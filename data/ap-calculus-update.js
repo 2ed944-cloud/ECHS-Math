@@ -30,8 +30,8 @@
         "notes": [
           {
             "type": "notes",
-            "label": "Notes 1.1 · Rates of Change — add PDF later",
-            "url": ""
+            "label": "Notes 1.1 · Can Change Occur at an Instant?",
+            "url": "notes/ap-calculus/unit-1/notes-1-1-can-change-occur-at-an-instant.pdf"
           }
         ],
         "resources": [
@@ -88,8 +88,8 @@
         "notes": [
           {
             "type": "notes",
-            "label": "Notes 1.2 · Limit Notation — add PDF later",
-            "url": ""
+            "label": "Notes 1.2 · Defining Limits and Using Limit Notation",
+            "url": "notes/ap-calculus/unit-1/notes-1-2-defining-limits-and-using-limit-notation.pdf"
           }
         ],
         "resources": [
@@ -154,8 +154,8 @@
         "notes": [
           {
             "type": "notes",
-            "label": "Notes 1.3 · Limits from Graphs — add PDF later",
-            "url": ""
+            "label": "Notes 1.3 · Estimating Limit Values from Graphs",
+            "url": "notes/ap-calculus/unit-1/notes-1-3-estimating-limit-values-from-graphs.pdf"
           }
         ],
         "resources": [
@@ -220,8 +220,8 @@
         "notes": [
           {
             "type": "notes",
-            "label": "Notes 1.4 · Limits from Tables — add PDF later",
-            "url": ""
+            "label": "Notes 1.4 · Estimating Limit Values from Tables",
+            "url": "notes/ap-calculus/unit-1/notes-1-4-estimating-limit-values-from-tables.pdf"
           }
         ],
         "resources": [
@@ -286,8 +286,8 @@
         "notes": [
           {
             "type": "notes",
-            "label": "Notes 1.5 · Algebraic Properties — add PDF later",
-            "url": ""
+            "label": "Notes 1.5 · Determining Limits Using Algebraic Properties of Limits",
+            "url": "notes/ap-calculus/unit-1/notes-1-5-determining-limits-using-algebraic-properties-of-limits.pdf"
           }
         ],
         "resources": [
@@ -349,8 +349,8 @@
         "notes": [
           {
             "type": "notes",
-            "label": "Notes 1.6 · Algebraic Manipulation — add PDF later",
-            "url": ""
+            "label": "Notes 1.6 · Determining Limits Using Algebraic Manipulation",
+            "url": "notes/ap-calculus/unit-1/notes-1-6-determining-limits-using-algebraic-manipulation.pdf"
           }
         ],
         "resources": [
@@ -419,8 +419,8 @@
         "notes": [
           {
             "type": "notes",
-            "label": "Notes 1.7 · Selecting Procedures — add PDF later",
-            "url": ""
+            "label": "Notes 1.7 · Selecting Procedures for Determining Limits",
+            "url": "notes/ap-calculus/unit-1/notes-1-7-selecting-procedures-for-determining-limits.pdf"
           }
         ],
         "resources": [
@@ -487,8 +487,8 @@
         "notes": [
           {
             "type": "notes",
-            "label": "Notes 1.8 · Squeeze Theorem — add PDF later",
-            "url": ""
+            "label": "Notes 1.8 · Determining Limits Using the Squeeze Theorem",
+            "url": "notes/ap-calculus/unit-1/notes-1-8-determining-limits-using-the-squeeze-theorem.pdf"
           }
         ],
         "resources": [
@@ -550,8 +550,8 @@
         "notes": [
           {
             "type": "notes",
-            "label": "Notes 1.9 · Multiple Representations — add PDF later",
-            "url": ""
+            "label": "Notes 1.9 · Connecting Multiple Representations of Limits",
+            "url": "notes/ap-calculus/unit-1/notes-1-9-connecting-multiple-representations-of-limits.pdf"
           }
         ],
         "resources": [
@@ -618,8 +618,8 @@
         "notes": [
           {
             "type": "notes",
-            "label": "Notes 1.10 · Types of Discontinuities — add PDF later",
-            "url": ""
+            "label": "Notes 1.10 · Exploring Types of Discontinuities",
+            "url": "notes/ap-calculus/unit-1/notes-1-10-exploring-types-of-discontinuities.pdf"
           }
         ],
         "resources": [
@@ -679,8 +679,8 @@
         "notes": [
           {
             "type": "notes",
-            "label": "Notes 1.11 · Continuity at a Point — add PDF later",
-            "url": ""
+            "label": "Notes 1.11 · Defining Continuity at a Point",
+            "url": "notes/ap-calculus/unit-1/notes-1-11-defining-continuity-at-a-point.pdf"
           }
         ],
         "resources": [
@@ -739,8 +739,8 @@
         "notes": [
           {
             "type": "notes",
-            "label": "Notes 1.12 · Continuity over an Interval — add PDF later",
-            "url": ""
+            "label": "Notes 1.12 · Confirming Continuity over an Interval",
+            "url": "notes/ap-calculus/unit-1/notes-1-12-confirming-continuity-over-an-interval.pdf"
           }
         ],
         "resources": [
@@ -796,8 +796,8 @@
         "notes": [
           {
             "type": "notes",
-            "label": "Notes 1.13 · Removing Discontinuities — add PDF later",
-            "url": ""
+            "label": "Notes 1.13 · Removing Discontinuities",
+            "url": "notes/ap-calculus/unit-1/notes-1-13-removing-discontinuities.pdf"
           }
         ],
         "resources": [
@@ -859,8 +859,8 @@
         "notes": [
           {
             "type": "notes",
-            "label": "Notes 1.14 · Infinite Limits — add PDF later",
-            "url": ""
+            "label": "Notes 1.14 · Connecting Infinite Limits and Vertical Asymptotes",
+            "url": "notes/ap-calculus/unit-1/notes-1-14-connecting-infinite-limits-and-vertical-asymptotes.pdf"
           }
         ],
         "resources": [
@@ -922,8 +922,8 @@
         "notes": [
           {
             "type": "notes",
-            "label": "Notes 1.15 · Limits at Infinity — add PDF later",
-            "url": ""
+            "label": "Notes 1.15 · Connecting Limits at Infinity and Horizontal Asymptotes",
+            "url": "notes/ap-calculus/unit-1/notes-1-15-connecting-limits-at-infinity-and-horizontal-asymptotes.pdf"
           }
         ],
         "resources": [
@@ -984,8 +984,8 @@
         "notes": [
           {
             "type": "notes",
-            "label": "Notes 1.16 · Intermediate Value Theorem — add PDF later",
-            "url": ""
+            "label": "Notes 1.16 · Working with the Intermediate Value Theorem",
+            "url": "notes/ap-calculus/unit-1/notes-1-16-working-with-the-intermediate-value-theorem.pdf"
           }
         ],
         "resources": [
@@ -1105,8 +1105,8 @@
         "notes": [
           {
             "type": "notes",
-            "label": "Notes 2.1 · Rates of Change — add PDF later",
-            "url": ""
+            "label": "Notes 2.1 · Rates of Change and Tangent Lines",
+            "url": "notes/ap-calculus/unit-2/notes-2-1-rates-of-change-and-tangent-lines.pdf"
           }
         ],
         "resources": [
@@ -1167,8 +1167,8 @@
         "notes": [
           {
             "type": "notes",
-            "label": "Notes 2.2 · Tangent Lines and Derivatives — add PDF later",
-            "url": ""
+            "label": "Notes 2.2 · Tangent Lines and the Derivative",
+            "url": "notes/ap-calculus/unit-2/notes-2-2-tangent-lines-and-the-derivative.pdf"
           }
         ],
         "resources": [
@@ -1233,13 +1233,8 @@
         "notes": [
           {
             "type": "notes",
-            "label": "Notes 2.3 · Derivative Graphs — add PDF later",
-            "url": ""
-          },
-          {
-            "type": "notes",
-            "label": "Notes 2.3 · Differentiability and Continuity — add PDF later",
-            "url": ""
+            "label": "Notes 2.3 · The Derivative: Graphs, Differentiability, and Continuity",
+            "url": "notes/ap-calculus/unit-2/notes-2-3-the-derivative-graphs-differentiability-and-continuity.pdf"
           }
         ],
         "resources": [
@@ -1306,8 +1301,8 @@
         "notes": [
           {
             "type": "notes",
-            "label": "Notes 2.4 · Basic Differentiation Rules — add PDF later",
-            "url": ""
+            "label": "Notes 2.4 · Basic Derivative Rules",
+            "url": "notes/ap-calculus/unit-2/notes-2-4-basic-derivative-rules.pdf"
           }
         ],
         "resources": [
@@ -1370,8 +1365,8 @@
         "notes": [
           {
             "type": "notes",
-            "label": "Notes 2.5 · Product and Quotient Rules — add PDF later",
-            "url": ""
+            "label": "Notes 2.5 · Product and Quotient Rules",
+            "url": "notes/ap-calculus/unit-2/notes-2-5-product-and-quotient-rules.pdf"
           }
         ],
         "resources": [
@@ -1492,15 +1487,15 @@
         "notes": [
           {
             "type": "notes",
-            "label": "Notes 3.1 · Chain Rule — add PDF later",
-            "url": ""
+            "label": "Notes 3.1 · The Chain Rule",
+            "url": "notes/ap-calculus/unit-3/notes-3-1-the-chain-rule.pdf"
           }
         ],
         "resources": [
           {
             "type": "practice",
-            "label": "Practice 3.1 · Chain Rule — add PDF later",
-            "url": ""
+            "label": "Worksheet 3.1 · The Chain Rule",
+            "url": "worksheets/ap-calculus/unit-3/worksheet-3-1-the-chain-rule.pdf"
           }
         ],
         "url": "lessons/ap-calculus/unit-3/3-1-chain-rule.html",
@@ -1557,15 +1552,15 @@
         "notes": [
           {
             "type": "notes",
-            "label": "Notes 3.2 · Implicit Differentiation — add PDF later",
-            "url": ""
+            "label": "Notes 3.2 · Implicit Differentiation",
+            "url": "notes/ap-calculus/unit-3/notes-3-2-implicit-differentiation.pdf"
           }
         ],
         "resources": [
           {
             "type": "practice",
-            "label": "Practice 3.2 · Implicit Differentiation — add PDF later",
-            "url": ""
+            "label": "Worksheet 3.2 · Implicit Differentiation",
+            "url": "worksheets/ap-calculus/unit-3/worksheet-3-2-implicit-differentiation.pdf"
           }
         ],
         "url": "lessons/ap-calculus/unit-3/3-2-implicit-differentiation.html",
@@ -1627,20 +1622,15 @@
         "notes": [
           {
             "type": "notes",
-            "label": "Notes 3.3 · Inverse Functions — add PDF later",
-            "url": ""
-          },
-          {
-            "type": "notes",
-            "label": "Notes 3.3 · Inverse Trigonometric Functions — add PDF later",
-            "url": ""
+            "label": "Notes 3.3 · Inverse Function and Inverse Trigonometric Derivatives",
+            "url": "notes/ap-calculus/unit-3/notes-3-3-inverse-function-and-inverse-trigonometric-derivatives.pdf"
           }
         ],
         "resources": [
           {
             "type": "practice",
-            "label": "Practice 3.3 · Inverse and Inverse Trig Derivatives — add PDF later",
-            "url": ""
+            "label": "Worksheet 3.3 · Inverse Function and Inverse Trigonometric Derivatives",
+            "url": "worksheets/ap-calculus/unit-3/worksheet-3-3-inverse-function-and-inverse-trigonometric-derivatives.pdf"
           }
         ],
         "url": "lessons/ap-calculus/unit-3/3-3-inverse-function-and-inverse-trig-derivatives.html",
