@@ -37,8 +37,8 @@
         "resources": [
           {
             "type": "practice",
-            "label": "Practice 1.1 · Rates of Change — add PDF later",
-            "url": ""
+            "label": "Worksheet 1.1 · Can Change Occur at an Instant?",
+            "url": "worksheets/ap-calculus/unit-1/worksheet-1-1-introducing-calculus-can-change-occur-at-an-instant.pdf"
           }
         ],
         "url": "lessons/ap-calculus/unit-1/1-1-can-change-occur-at-an-instant.html",
@@ -95,8 +95,8 @@
         "resources": [
           {
             "type": "practice",
-            "label": "Practice 1.2 · Limit Notation — add PDF later",
-            "url": ""
+            "label": "Worksheet 1.2 · Defining Limits and Using Limit Notation",
+            "url": "worksheets/ap-calculus/unit-1/worksheet-1-2-defining-limits-and-using-limit-notation.pdf"
           }
         ],
         "url": "lessons/ap-calculus/unit-1/1-2-defining-limits-and-using-limit-notation.html",
@@ -161,8 +161,8 @@
         "resources": [
           {
             "type": "practice",
-            "label": "Practice 1.3 · Limits from Graphs — add PDF later",
-            "url": ""
+            "label": "Worksheet 1.3 · Estimating Limit Values from Graphs",
+            "url": "worksheets/ap-calculus/unit-1/worksheet-1-3-estimating-limit-values-from-graphs.pdf"
           }
         ],
         "url": "lessons/ap-calculus/unit-1/1-3-estimating-limit-values-from-graphs.html",
@@ -227,8 +227,8 @@
         "resources": [
           {
             "type": "practice",
-            "label": "Practice 1.4 · Limits from Tables — add PDF later",
-            "url": ""
+            "label": "Worksheet 1.4 · Estimating Limit Values from Tables",
+            "url": "worksheets/ap-calculus/unit-1/worksheet-1-4-estimating-limit-values-from-tables.pdf"
           }
         ],
         "url": "lessons/ap-calculus/unit-1/1-4-estimating-limit-values-from-tables.html",
@@ -293,8 +293,8 @@
         "resources": [
           {
             "type": "practice",
-            "label": "Practice 1.5 · Algebraic Properties — add PDF later",
-            "url": ""
+            "label": "Worksheet 1.5 · Determining Limits Using Algebraic Properties of Limits",
+            "url": "worksheets/ap-calculus/unit-1/worksheet-1-5-determining-limits-using-algebraic-properties-of-limits.pdf"
           }
         ],
         "url": "lessons/ap-calculus/unit-1/1-5-algebraic-properties-of-limits.html",
@@ -356,8 +356,8 @@
         "resources": [
           {
             "type": "practice",
-            "label": "Practice 1.6 · Algebraic Manipulation — add PDF later",
-            "url": ""
+            "label": "Worksheet 1.6 · Determining Limits Using Algebraic Manipulation",
+            "url": "worksheets/ap-calculus/unit-1/worksheet-1-6-determining-limits-using-algebraic-manipulation.pdf"
           }
         ],
         "url": "lessons/ap-calculus/unit-1/1-6-algebraic-manipulation.html",
@@ -426,8 +426,8 @@
         "resources": [
           {
             "type": "practice",
-            "label": "Practice 1.7 · Selecting Procedures — add PDF later",
-            "url": ""
+            "label": "Worksheet 1.7 · Selecting Procedures for Determining Limits",
+            "url": "worksheets/ap-calculus/unit-1/worksheet-1-7-selecting-procedures-for-determining-limits.pdf"
           }
         ],
         "url": "lessons/ap-calculus/unit-1/1-7-selecting-limit-procedures.html",
@@ -494,8 +494,8 @@
         "resources": [
           {
             "type": "practice",
-            "label": "Practice 1.8 · Squeeze Theorem — add PDF later",
-            "url": ""
+            "label": "Worksheet 1.8 · Determining Limits Using the Squeeze Theorem",
+            "url": "worksheets/ap-calculus/unit-1/worksheet-1-8-determining-limits-using-the-squeeze-theorem.pdf"
           }
         ],
         "url": "lessons/ap-calculus/unit-1/1-8-squeeze-theorem.html",
@@ -557,8 +557,8 @@
         "resources": [
           {
             "type": "practice",
-            "label": "Practice 1.9 · Multiple Representations — add PDF later",
-            "url": ""
+            "label": "Worksheet 1.9 · Connecting Multiple Representations of Limits",
+            "url": "worksheets/ap-calculus/unit-1/worksheet-1-9-connecting-multiple-representations-of-limits.pdf"
           }
         ],
         "url": "lessons/ap-calculus/unit-1/1-9-multiple-representations-of-limits.html",
@@ -625,8 +625,8 @@
         "resources": [
           {
             "type": "practice",
-            "label": "Practice 1.10 · Discontinuities — add PDF later",
-            "url": ""
+            "label": "Worksheet 1.10 · Exploring Types of Discontinuities",
+            "url": "worksheets/ap-calculus/unit-1/worksheet-1-10-exploring-types-of-discontinuities.pdf"
           }
         ],
         "url": "lessons/ap-calculus/unit-1/1-10-types-of-discontinuities.html",
@@ -686,8 +686,8 @@
         "resources": [
           {
             "type": "practice",
-            "label": "Practice 1.11 · Continuity at a Point — add PDF later",
-            "url": ""
+            "label": "Worksheet 1.11 · Defining Continuity at a Point",
+            "url": "worksheets/ap-calculus/unit-1/worksheet-1-11-defining-continuity-at-a-point.pdf"
           }
         ],
         "url": "lessons/ap-calculus/unit-1/1-11-continuity-at-a-point.html",
@@ -746,8 +746,8 @@
         "resources": [
           {
             "type": "practice",
-            "label": "Practice 1.12 · Continuity over an Interval — add PDF later",
-            "url": ""
+            "label": "Worksheet 1.12 · Confirming Continuity over an Interval",
+            "url": "worksheets/ap-calculus/unit-1/worksheet-1-12-confirming-continuity-over-an-interval.pdf"
           }
         ],
         "url": "lessons/ap-calculus/unit-1/1-12-continuity-over-an-interval.html",
@@ -803,8 +803,8 @@
         "resources": [
           {
             "type": "practice",
-            "label": "Practice 1.13 · Removing Discontinuities — add PDF later",
-            "url": ""
+            "label": "Worksheet 1.13 · Removing Discontinuities",
+            "url": "worksheets/ap-calculus/unit-1/worksheet-1-13-removing-discontinuities.pdf"
           }
         ],
         "url": "lessons/ap-calculus/unit-1/1-13-removing-discontinuities.html",
@@ -866,8 +866,8 @@
         "resources": [
           {
             "type": "practice",
-            "label": "Practice 1.14 · Vertical Asymptotes — add PDF later",
-            "url": ""
+            "label": "Worksheet 1.14 · Connecting Infinite Limits and Vertical Asymptotes",
+            "url": "worksheets/ap-calculus/unit-1/worksheet-1-14-connecting-infinite-limits-and-vertical-asymptotes.pdf"
           }
         ],
         "url": "lessons/ap-calculus/unit-1/1-14-infinite-limits-and-vertical-asymptotes.html",
@@ -929,8 +929,8 @@
         "resources": [
           {
             "type": "practice",
-            "label": "Practice 1.15 · Horizontal Asymptotes — add PDF later",
-            "url": ""
+            "label": "Worksheet 1.15 · Connecting Limits at Infinity and Horizontal Asymptotes",
+            "url": "worksheets/ap-calculus/unit-1/worksheet-1-15-connecting-limits-at-infinity-and-horizontal-asymptotes.pdf"
           }
         ],
         "url": "lessons/ap-calculus/unit-1/1-15-limits-at-infinity-and-horizontal-asymptotes.html",
@@ -991,8 +991,8 @@
         "resources": [
           {
             "type": "practice",
-            "label": "Practice 1.16 · Intermediate Value Theorem — add PDF later",
-            "url": ""
+            "label": "Worksheet 1.16 · Working with the Intermediate Value Theorem",
+            "url": "worksheets/ap-calculus/unit-1/worksheet-1-16-working-with-the-intermediate-value-theorem-ivt.pdf"
           }
         ],
         "url": "lessons/ap-calculus/unit-1/1-16-intermediate-value-theorem.html",
@@ -1112,8 +1112,8 @@
         "resources": [
           {
             "type": "practice",
-            "label": "Practice 2.1 · Rates of Change — add PDF later",
-            "url": ""
+            "label": "Worksheet 2.1 · Rates of Change and Tangent Lines",
+            "url": "worksheets/ap-calculus/unit-2/worksheet-2-1-rates-of-change-and-tangent-lines.pdf"
           }
         ],
         "url": "lessons/ap-calculus/unit-2/2-1-rates-of-change-and-tangent-lines.html",
@@ -1174,8 +1174,8 @@
         "resources": [
           {
             "type": "practice",
-            "label": "Practice 2.2 · Tangent Lines and Derivatives — add PDF later",
-            "url": ""
+            "label": "Worksheet 2.2 · Tangent Lines and the Derivative",
+            "url": "worksheets/ap-calculus/unit-2/worksheet-2-2-tangent-lines-and-the-derivative.pdf"
           }
         ],
         "url": "lessons/ap-calculus/unit-2/2-2-tangent-lines-and-the-derivative.html",
@@ -1245,8 +1245,8 @@
         "resources": [
           {
             "type": "practice",
-            "label": "Practice 2.3 · Derivatives and Continuity — add PDF later",
-            "url": ""
+            "label": "Worksheet 2.3 · The Derivative: Graphs, Differentiability, and Continuity",
+            "url": "worksheets/ap-calculus/unit-2/worksheet-2-3-the-derivative-graphs-differentiability-and-continuity.pdf"
           }
         ],
         "url": "lessons/ap-calculus/unit-2/2-3-derivative-graphs-differentiability-continuity.html",
@@ -1313,8 +1313,8 @@
         "resources": [
           {
             "type": "practice",
-            "label": "Practice 2.4 · Basic Differentiation Rules — add PDF later",
-            "url": ""
+            "label": "Worksheet 2.4 · Basic Derivative Rules",
+            "url": "worksheets/ap-calculus/unit-2/worksheet-2-4-basic-derivative-rules.pdf"
           }
         ],
         "url": "lessons/ap-calculus/unit-2/2-4-basic-derivative-rules.html",
@@ -1377,8 +1377,8 @@
         "resources": [
           {
             "type": "practice",
-            "label": "Practice 2.5 · Product and Quotient Rules — add PDF later",
-            "url": ""
+            "label": "Worksheet 2.5 · Product and Quotient Rules",
+            "url": "worksheets/ap-calculus/unit-2/worksheet-2-5-product-and-quotient-rules.pdf"
           }
         ],
         "url": "lessons/ap-calculus/unit-2/2-5-product-and-quotient-rules.html",
@@ -2542,6 +2542,6 @@
 
   course.unitCount = course.units.length;
   course.lessonCount = course.units.reduce((total, unit) => total + (Array.isArray(unit.lessons) ? unit.lessons.length : 0), 0);
-  course.updatedUnits = "Units 1–5 refreshed · July 2026";
+  course.updatedUnits = "Units 1–5 refreshed · Unit 1 and Unit 2 worksheets active · July 2026";
   course.sourceNote = "AP Calculus AB Units 1–5 use the uploaded ECHS interactive lessons; Units 6–8 and all other courses remain unchanged.";
 })();
