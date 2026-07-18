@@ -1030,24 +1030,26 @@
             {
         "number": "1.R",
         "title": "Unit 1 Review: Limits and Continuity",
-        "summary": "Complete coloured review with a concept map, essential knowledge, solved examples, leveled mixed practice, and AP-style preparation.",
+        "summary": "Expanded complete-coverage coloured review: every website lesson, theorem hypothesis, representation, solved model, leveled mastery set, difficult synthesis, and AP-style practice.",
         "outcomes": [
           "Interpret and estimate limits from symbolic, graphical, and numerical representations.",
           "Evaluate limits using limit laws, algebraic manipulation, and the Squeeze Theorem.",
           "Analyze continuity, classify discontinuities, and repair removable discontinuities.",
-          "Connect infinite and end-behavior limits with asymptotes and apply the Intermediate Value Theorem."
+          "Connect infinite and end-behavior limits with asymptotes and apply the Intermediate Value Theorem.",
+          "Use precise definitions and complete theorem hypotheses in formal reasoning.",
+          "Synthesize all lesson ideas through difficult and challenge-level mixed problems."
         ],
         "videos": [],
         "notes": [],
         "resources": [
           {
             "type": "document",
-            "label": "Comprehensive Unit 1 Review · Coloured PDF",
+            "label": "Expanded Comprehensive Unit 1 Review · Coloured PDF",
             "url": "reviews/ap-calculus/unit-1/unit-1-comprehensive-review.pdf"
           },
           {
             "type": "document",
-            "label": "AP-Style Unit 1 Review · Coloured PDF",
+            "label": "Expanded AP-Style Unit 1 Review · Coloured PDF",
             "url": "reviews/ap-calculus/unit-1/unit-1-ap-style-review.pdf"
           }
         ],
@@ -1055,26 +1057,23 @@
         "status": "ready",
         "kind": "review",
         "new": true,
-        "openLabel": "Open Review",
+        "openLabel": "Open Expanded Review",
         "keywords": [
-          "comprehensive",
+          "expanded",
+          "complete coverage",
           "coloured",
           "pdf",
           "review",
-          "ap-style",
-          "mixed practice"
+          "difficult",
+          "challenge",
+          "ap-style"
         ]
       },
-            {
+      {
         "number": "1.A",
         "title": "Unit 1 Assessment: Limits and Continuity",
-        "summary": "Interactive full-unit assessment with 42 MCQ, 6 FRQ, calculator and non-calculator sections, topic practice, timing, saving, and response export.",
-        "outcomes": [
-          "Interpret and estimate limits from symbolic, graphical, and numerical representations.",
-          "Evaluate limits using limit laws, algebraic manipulation, and the Squeeze Theorem.",
-          "Analyze continuity, classify discontinuities, and repair removable discontinuities.",
-          "Connect infinite and end-behavior limits with asymptotes and apply the Intermediate Value Theorem."
-        ],
+        "summary": "Interactive assessment for the complete limits and continuity unit.",
+        "outcomes": [],
         "videos": [],
         "notes": [],
         "resources": [],
@@ -1085,11 +1084,11 @@
         "openLabel": "Open Assessment",
         "keywords": [
           "assessment",
+          "complete",
+          "continuity",
           "interactive",
           "limits",
-          "continuity",
-          "mcq",
-          "frq"
+          "unit"
         ]
       }
     ]
@@ -1420,24 +1419,26 @@
             {
         "number": "2.R",
         "title": "Unit 2 Review: Differentiation: Definition and Fundamental Properties",
-        "summary": "Complete coloured review with a concept map, essential knowledge, solved examples, leveled mixed practice, and AP-style preparation.",
+        "summary": "Expanded complete-coverage coloured review: every website lesson, theorem hypothesis, representation, solved model, leveled mastery set, difficult synthesis, and AP-style practice.",
         "outcomes": [
           "Compute and interpret average and instantaneous rates of change.",
           "Use the limit definition of the derivative and write tangent-line equations.",
           "Estimate derivatives and analyze differentiability and continuity from multiple representations.",
-          "Differentiate algebraic, exponential, logarithmic, and trigonometric functions using foundational, product, and quotient rules."
+          "Differentiate algebraic, exponential, logarithmic, and trigonometric functions using foundational, product, and quotient rules.",
+          "Use precise definitions and complete theorem hypotheses in formal reasoning.",
+          "Synthesize all lesson ideas through difficult and challenge-level mixed problems."
         ],
         "videos": [],
         "notes": [],
         "resources": [
           {
             "type": "document",
-            "label": "Comprehensive Unit 2 Review · Coloured PDF",
+            "label": "Expanded Comprehensive Unit 2 Review · Coloured PDF",
             "url": "reviews/ap-calculus/unit-2/unit-2-comprehensive-review.pdf"
           },
           {
             "type": "document",
-            "label": "AP-Style Unit 2 Review · Coloured PDF",
+            "label": "Expanded AP-Style Unit 2 Review · Coloured PDF",
             "url": "reviews/ap-calculus/unit-2/unit-2-ap-style-review.pdf"
           }
         ],
@@ -1445,25 +1446,28 @@
         "status": "ready",
         "kind": "review",
         "new": true,
-        "openLabel": "Open Review",
+        "openLabel": "Open Expanded Review",
         "keywords": [
-          "comprehensive",
+          "expanded",
+          "complete coverage",
           "coloured",
           "pdf",
           "review",
-          "ap-style",
-          "mixed practice"
+          "difficult",
+          "challenge",
+          "ap-style"
         ]
       },
             {
         "number": "2.A",
         "title": "Unit 2 Assessment: Differentiation: Definition and Fundamental Properties",
-        "summary": "Interactive full-unit assessment with 42 MCQ, 6 FRQ, calculator and non-calculator sections, topic practice, timing, saving, and response export.",
+        "summary": "Revised interactive assessment with fully audited KaTeX, 42 balanced MCQ, six deeper multi-part FRQs, complete lesson coverage, calculator and non-calculator sections, timing, saving, and response export.",
         "outcomes": [
           "Compute and interpret average and instantaneous rates of change.",
           "Use the limit definition of the derivative and write tangent-line equations.",
           "Estimate derivatives and analyze differentiability and continuity from multiple representations.",
-          "Differentiate algebraic, exponential, logarithmic, and trigonometric functions using foundational, product, and quotient rules."
+          "Differentiate algebraic, exponential, logarithmic, and trigonometric functions using foundational, product, and quotient rules.",
+          "Apply definitions, theorem hypotheses, and multi-step reasoning under AP-style conditions."
         ],
         "videos": [],
         "notes": [],
@@ -1472,9 +1476,10 @@
         "status": "ready",
         "kind": "assessment",
         "new": true,
-        "openLabel": "Open Assessment",
+        "openLabel": "Open Revised Assessment",
         "keywords": [
-          "assessment",
+          "revised assessment",
+          "katex audited",
           "interactive",
           "mcq",
           "frq",
@@ -1692,24 +1697,26 @@
             {
         "number": "3.R",
         "title": "Unit 3 Review: Differentiation: Composite, Implicit, and Inverse Functions",
-        "summary": "Complete coloured review with a concept map, essential knowledge, solved examples, leveled mixed practice, and AP-style preparation.",
+        "summary": "Expanded complete-coverage coloured review: every website lesson, theorem hypothesis, representation, solved model, leveled mastery set, difficult synthesis, and AP-style practice.",
         "outcomes": [
           "Recognize composite structure and apply the Chain Rule in symbolic, tabular, and graphical settings.",
           "Differentiate implicit relations and determine tangent, normal, and higher-derivative information.",
           "Apply the derivative-of-an-inverse theorem from formulas, tables, and graphs.",
-          "Differentiate inverse trigonometric functions and combine all derivative rules strategically."
+          "Differentiate inverse trigonometric functions and combine all derivative rules strategically.",
+          "Use precise definitions and complete theorem hypotheses in formal reasoning.",
+          "Synthesize all lesson ideas through difficult and challenge-level mixed problems."
         ],
         "videos": [],
         "notes": [],
         "resources": [
           {
             "type": "document",
-            "label": "Comprehensive Unit 3 Review · Coloured PDF",
+            "label": "Expanded Comprehensive Unit 3 Review · Coloured PDF",
             "url": "reviews/ap-calculus/unit-3/unit-3-comprehensive-review.pdf"
           },
           {
             "type": "document",
-            "label": "AP-Style Unit 3 Review · Coloured PDF",
+            "label": "Expanded AP-Style Unit 3 Review · Coloured PDF",
             "url": "reviews/ap-calculus/unit-3/unit-3-ap-style-review.pdf"
           }
         ],
@@ -1717,25 +1724,28 @@
         "status": "ready",
         "kind": "review",
         "new": true,
-        "openLabel": "Open Review",
+        "openLabel": "Open Expanded Review",
         "keywords": [
-          "comprehensive",
+          "expanded",
+          "complete coverage",
           "coloured",
           "pdf",
           "review",
-          "ap-style",
-          "mixed practice"
+          "difficult",
+          "challenge",
+          "ap-style"
         ]
       },
             {
         "number": "3.A",
         "title": "Unit 3 Assessment: Differentiation: Composite, Implicit, and Inverse Functions",
-        "summary": "Interactive full-unit assessment with 42 MCQ, 6 FRQ, calculator and non-calculator sections, topic practice, timing, saving, and response export.",
+        "summary": "Revised interactive assessment with fully audited KaTeX, 42 balanced MCQ, six deeper multi-part FRQs, complete lesson coverage, calculator and non-calculator sections, timing, saving, and response export.",
         "outcomes": [
           "Recognize composite structure and apply the Chain Rule in symbolic, tabular, and graphical settings.",
           "Differentiate implicit relations and determine tangent, normal, and higher-derivative information.",
           "Apply the derivative-of-an-inverse theorem from formulas, tables, and graphs.",
-          "Differentiate inverse trigonometric functions and combine all derivative rules strategically."
+          "Differentiate inverse trigonometric functions and combine all derivative rules strategically.",
+          "Apply definitions, theorem hypotheses, and multi-step reasoning under AP-style conditions."
         ],
         "videos": [],
         "notes": [],
@@ -1744,9 +1754,10 @@
         "status": "ready",
         "kind": "assessment",
         "new": true,
-        "openLabel": "Open Assessment",
+        "openLabel": "Open Revised Assessment",
         "keywords": [
-          "assessment",
+          "revised assessment",
+          "katex audited",
           "interactive",
           "mcq",
           "frq",
@@ -2141,25 +2152,27 @@
             {
         "number": "4.R",
         "title": "Unit 4 Review: Contextual Applications of Differentiation",
-        "summary": "Complete coloured review with a concept map, essential knowledge, solved examples, leveled mixed practice, and AP-style preparation.",
+        "summary": "Expanded complete-coverage coloured review: every website lesson, theorem hypothesis, representation, solved model, leveled mastery set, difficult synthesis, and AP-style practice.",
         "outcomes": [
           "Interpret derivatives and higher derivatives with correct units and contextual meaning.",
           "Analyze position, velocity, acceleration, speed, direction, and turning behavior.",
           "Model applied rates and solve related-rates problems from geometric or physical constraints.",
           "Use linearization and differentials for approximation and error analysis.",
-          "Recognize valid indeterminate forms and apply L'Hopital's Rule appropriately."
+          "Recognize valid indeterminate forms and apply L'Hopital's Rule appropriately.",
+          "Use precise definitions and complete theorem hypotheses in formal reasoning.",
+          "Synthesize all lesson ideas through difficult and challenge-level mixed problems."
         ],
         "videos": [],
         "notes": [],
         "resources": [
           {
             "type": "document",
-            "label": "Comprehensive Unit 4 Review · Coloured PDF",
+            "label": "Expanded Comprehensive Unit 4 Review · Coloured PDF",
             "url": "reviews/ap-calculus/unit-4/unit-4-comprehensive-review.pdf"
           },
           {
             "type": "document",
-            "label": "AP-Style Unit 4 Review · Coloured PDF",
+            "label": "Expanded AP-Style Unit 4 Review · Coloured PDF",
             "url": "reviews/ap-calculus/unit-4/unit-4-ap-style-review.pdf"
           }
         ],
@@ -2167,26 +2180,29 @@
         "status": "ready",
         "kind": "review",
         "new": true,
-        "openLabel": "Open Review",
+        "openLabel": "Open Expanded Review",
         "keywords": [
-          "comprehensive",
+          "expanded",
+          "complete coverage",
           "coloured",
           "pdf",
           "review",
-          "ap-style",
-          "mixed practice"
+          "difficult",
+          "challenge",
+          "ap-style"
         ]
       },
             {
         "number": "4.A",
         "title": "Unit 4 Assessment: Contextual Applications of Differentiation",
-        "summary": "Interactive full-unit assessment with 42 MCQ, 6 FRQ, calculator and non-calculator sections, topic practice, timing, saving, and response export.",
+        "summary": "Revised interactive assessment with fully audited KaTeX, 42 balanced MCQ, six deeper multi-part FRQs, complete lesson coverage, calculator and non-calculator sections, timing, saving, and response export.",
         "outcomes": [
           "Interpret derivatives and higher derivatives with correct units and contextual meaning.",
           "Analyze position, velocity, acceleration, speed, direction, and turning behavior.",
           "Model applied rates and solve related-rates problems from geometric or physical constraints.",
           "Use linearization and differentials for approximation and error analysis.",
-          "Recognize valid indeterminate forms and apply L'Hopital's Rule appropriately."
+          "Recognize valid indeterminate forms and apply L'Hopital's Rule appropriately.",
+          "Apply definitions, theorem hypotheses, and multi-step reasoning under AP-style conditions."
         ],
         "videos": [],
         "notes": [],
@@ -2195,9 +2211,10 @@
         "status": "ready",
         "kind": "assessment",
         "new": true,
-        "openLabel": "Open Assessment",
+        "openLabel": "Open Revised Assessment",
         "keywords": [
-          "assessment",
+          "revised assessment",
+          "katex audited",
           "interactive",
           "mcq",
           "frq",
@@ -2509,25 +2526,27 @@
             {
         "number": "5.R",
         "title": "Unit 5 Review: Analytical Applications of Differentiation",
-        "summary": "Complete coloured review with a concept map, essential knowledge, solved examples, leveled mixed practice, and AP-style preparation.",
+        "summary": "Expanded complete-coverage coloured review: every website lesson, theorem hypothesis, representation, solved model, leveled mastery set, difficult synthesis, and AP-style practice.",
         "outcomes": [
           "Verify hypotheses and apply Rolle's Theorem and the Mean Value Theorem.",
           "Use first-derivative information to determine intervals of increase/decrease and relative extrema.",
           "Use second-derivative information to determine concavity and points of inflection.",
           "Connect the graphs of a function and its derivatives and justify global conclusions.",
-          "Construct and solve optimization models with domain and endpoint analysis."
+          "Construct and solve optimization models with domain and endpoint analysis.",
+          "Use precise definitions and complete theorem hypotheses in formal reasoning.",
+          "Synthesize all lesson ideas through difficult and challenge-level mixed problems."
         ],
         "videos": [],
         "notes": [],
         "resources": [
           {
             "type": "document",
-            "label": "Comprehensive Unit 5 Review · Coloured PDF",
+            "label": "Expanded Comprehensive Unit 5 Review · Coloured PDF",
             "url": "reviews/ap-calculus/unit-5/unit-5-comprehensive-review.pdf"
           },
           {
             "type": "document",
-            "label": "AP-Style Unit 5 Review · Coloured PDF",
+            "label": "Expanded AP-Style Unit 5 Review · Coloured PDF",
             "url": "reviews/ap-calculus/unit-5/unit-5-ap-style-review.pdf"
           }
         ],
@@ -2535,26 +2554,29 @@
         "status": "ready",
         "kind": "review",
         "new": true,
-        "openLabel": "Open Review",
+        "openLabel": "Open Expanded Review",
         "keywords": [
-          "comprehensive",
+          "expanded",
+          "complete coverage",
           "coloured",
           "pdf",
           "review",
-          "ap-style",
-          "mixed practice"
+          "difficult",
+          "challenge",
+          "ap-style"
         ]
       },
             {
         "number": "5.A",
         "title": "Unit 5 Assessment: Analytical Applications of Differentiation",
-        "summary": "Interactive full-unit assessment with 42 MCQ, 6 FRQ, calculator and non-calculator sections, topic practice, timing, saving, and response export.",
+        "summary": "Revised interactive assessment with fully audited KaTeX, 42 balanced MCQ, six deeper multi-part FRQs, complete lesson coverage, calculator and non-calculator sections, timing, saving, and response export.",
         "outcomes": [
           "Verify hypotheses and apply Rolle's Theorem and the Mean Value Theorem.",
           "Use first-derivative information to determine intervals of increase/decrease and relative extrema.",
           "Use second-derivative information to determine concavity and points of inflection.",
           "Connect the graphs of a function and its derivatives and justify global conclusions.",
-          "Construct and solve optimization models with domain and endpoint analysis."
+          "Construct and solve optimization models with domain and endpoint analysis.",
+          "Apply definitions, theorem hypotheses, and multi-step reasoning under AP-style conditions."
         ],
         "videos": [],
         "notes": [],
@@ -2563,9 +2585,10 @@
         "status": "ready",
         "kind": "assessment",
         "new": true,
-        "openLabel": "Open Assessment",
+        "openLabel": "Open Revised Assessment",
         "keywords": [
-          "assessment",
+          "revised assessment",
+          "katex audited",
           "interactive",
           "mcq",
           "frq",
@@ -2587,6 +2610,6 @@
 
   course.unitCount = course.units.length;
   course.lessonCount = course.units.reduce((total, unit) => total + (Array.isArray(unit.lessons) ? unit.lessons.length : 0), 0);
-  course.updatedUnits = "Units 1-5 notes, worksheets, reviews, and assessments active - July 2026";
+  course.updatedUnits = "Units 1-5 notes and worksheets active - July 2026";
   course.sourceNote = "AP Calculus AB Units 1–5 use the uploaded ECHS interactive lessons; Units 6–8 and all other courses remain unchanged.";
 })();
