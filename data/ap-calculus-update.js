@@ -1741,15 +1741,15 @@
         "notes": [
           {
             "type": "notes",
-            "label": "Notes 4.1 · Interpretation of Derivative — add PDF later",
-            "url": ""
+            "label": "Notes 4.1 · Interpretations of the Derivative",
+            "url": "notes/ap-calculus/unit-4/notes-4-1-interpretations-of-the-derivative.pdf"
           }
         ],
         "resources": [
           {
             "type": "practice",
-            "label": "Practice 4.1 · Interpretation of Derivative — add PDF later",
-            "url": ""
+            "label": "Worksheet 4.1 · Interpretations of the Derivative",
+            "url": "worksheets/ap-calculus/unit-4/worksheet-4-1-interpretations-of-the-derivative.pdf"
           }
         ],
         "url": "lessons/ap-calculus/unit-4/4-1-interpretations-of-the-derivative.html",
@@ -1799,15 +1799,15 @@
         "notes": [
           {
             "type": "notes",
-            "label": "Notes 4.2 · Straight Line Motion — add PDF later",
-            "url": ""
+            "label": "Notes 4.2 · Straight Line Motion",
+            "url": "notes/ap-calculus/unit-4/notes-4-2-straight-line-motion.pdf"
           }
         ],
         "resources": [
           {
             "type": "practice",
-            "label": "Practice 4.2 · Straight Line Motion — add PDF later",
-            "url": ""
+            "label": "Worksheet 4.2 · Straight Line Motion",
+            "url": "worksheets/ap-calculus/unit-4/worksheet-4-2-straight-line-motion.pdf"
           }
         ],
         "url": "lessons/ap-calculus/unit-4/4-2-straight-line-motion.html",
@@ -1858,15 +1858,15 @@
         "notes": [
           {
             "type": "notes",
-            "label": "Notes 4.3 · Other Rates of Change — add PDF later",
-            "url": ""
+            "label": "Notes 4.3 · Other Rates of Change",
+            "url": "notes/ap-calculus/unit-4/notes-4-3-other-rates-of-change.pdf"
           }
         ],
         "resources": [
           {
             "type": "practice",
-            "label": "Practice 4.3 · Other Rates of Change — add PDF later",
-            "url": ""
+            "label": "Worksheet 4.3 · Other Rates of Change",
+            "url": "worksheets/ap-calculus/unit-4/worksheet-4-3-other-rates-of-change.pdf"
           }
         ],
         "url": "lessons/ap-calculus/unit-4/4-3-other-rates-of-change.html",
@@ -1923,20 +1923,15 @@
         "notes": [
           {
             "type": "notes",
-            "label": "Notes 4.4A · Related Rates — add PDF later",
-            "url": ""
-          },
-          {
-            "type": "notes",
-            "label": "Notes 4.4B · Related Rates — add PDF later",
-            "url": ""
+            "label": "Notes 4.4 · Related Rates",
+            "url": "notes/ap-calculus/unit-4/notes-4-4-related-rates.pdf"
           }
         ],
         "resources": [
           {
             "type": "practice",
-            "label": "Practice 4.4 · Related Rates — add PDF later",
-            "url": ""
+            "label": "Worksheet 4.4 · Related Rates",
+            "url": "worksheets/ap-calculus/unit-4/worksheet-4-4-related-rates.pdf"
           }
         ],
         "url": "lessons/ap-calculus/unit-4/4-4-related-rates.html",
@@ -1999,15 +1994,15 @@
         "notes": [
           {
             "type": "notes",
-            "label": "Notes 4.5 · Linear Approximations — add PDF later",
-            "url": ""
+            "label": "Notes 4.5 · Linear Approximation",
+            "url": "notes/ap-calculus/unit-4/notes-4-5-linear-approximation.pdf"
           }
         ],
         "resources": [
           {
             "type": "practice",
-            "label": "Practice 4.5 · Linear Approximations — add PDF later",
-            "url": ""
+            "label": "Worksheet 4.5 · Linear Approximation",
+            "url": "worksheets/ap-calculus/unit-4/worksheet-4-5-linear-approximation.pdf"
           }
         ],
         "url": "lessons/ap-calculus/unit-4/4-5-linear-approximation.html",
@@ -2059,15 +2054,15 @@
         "notes": [
           {
             "type": "notes",
-            "label": "Notes 4.6 · L’Hôpital’s Rule — add PDF later",
-            "url": ""
+            "label": "Notes 4.6 · L’Hôpital’s Rule",
+            "url": "notes/ap-calculus/unit-4/notes-4-6-lhopitals-rule.pdf"
           }
         ],
         "resources": [
           {
             "type": "practice",
-            "label": "Practice 4.6 · L’Hôpital’s Rule — add PDF later",
-            "url": ""
+            "label": "Worksheet 4.6 · L’Hôpital’s Rule",
+            "url": "worksheets/ap-calculus/unit-4/worksheet-4-6-lhopitals-rule.pdf"
           }
         ],
         "url": "lessons/ap-calculus/unit-4/4-6-lhopitals-rule.html",
@@ -2181,15 +2176,15 @@
         "notes": [
           {
             "type": "notes",
-            "label": "Notes 5.1 · Mean Value Theorem — add PDF later",
-            "url": ""
+            "label": "Notes 5.1 · Mean Value Theorem",
+            "url": "notes/ap-calculus/unit-5/notes-5-1-mean-value-theorem.pdf"
           }
         ],
         "resources": [
           {
             "type": "practice",
-            "label": "Practice 5.1 · Mean Value Theorem — add PDF later",
-            "url": ""
+            "label": "Worksheet 5.1 · Mean Value Theorem",
+            "url": "worksheets/ap-calculus/unit-5/worksheet-5-1-mean-value-theorem.pdf"
           }
         ],
         "url": "lessons/ap-calculus/unit-5/5-1-mean-value-theorem.html",
@@ -2247,20 +2242,15 @@
         "notes": [
           {
             "type": "notes",
-            "label": "Extrema & Curve Sketching — complete notes",
-            "url": "notes/ap-calculus/unit-5/extrema-curve-sketching-complete.pdf"
-          },
-          {
-            "type": "notes",
-            "label": "Extreme Values & Concavity — notes",
-            "url": "notes/ap-calculus/unit-5/extreme-values-and-concavity-english.pdf"
+            "label": "Notes 5.2–5.5 · I · Derivative Graph Analysis — Part 1",
+            "url": "notes/ap-calculus/unit-5/notes-5-2-to-5-5-part-1-derivative-graph-analysis-part-1.pdf"
           }
         ],
         "resources": [
           {
             "type": "practice",
-            "label": "Practice 5.2–5.3 · Extrema and First Derivative Test — add PDF later",
-            "url": ""
+            "label": "Worksheet 5.2–5.5 · I · Derivative Graph Analysis — Part 1",
+            "url": "worksheets/ap-calculus/unit-5/worksheet-5-2-to-5-5-part-1-derivative-graph-analysis-part-1.pdf"
           }
         ],
         "url": "lessons/ap-calculus/unit-5/5-2-to-5-5-derivative-graph-analysis-part-1.html",
@@ -2337,15 +2327,15 @@
         "notes": [
           {
             "type": "notes",
-            "label": "Derivative Applications — complete notes",
-            "url": "notes/ap-calculus/unit-5/derivative-applications-complete-english.pdf"
+            "label": "Notes 5.2–5.5 · II · Derivative Graph Analysis — Part 2: Challenge Questions",
+            "url": "notes/ap-calculus/unit-5/notes-5-2-to-5-5-part-2-derivative-graph-analysis-part-2-challenge-questions.pdf"
           }
         ],
         "resources": [
           {
             "type": "practice",
-            "label": "Practice 5.4–5.5 · Concavity and Curve Sketching — add PDF later",
-            "url": ""
+            "label": "Worksheet 5.2–5.5 · II · Derivative Graph Analysis — Part 2: Challenge Questions",
+            "url": "worksheets/ap-calculus/unit-5/worksheet-5-2-to-5-5-part-2-derivative-graph-analysis-part-2-challenge-questions.pdf"
           }
         ],
         "url": "lessons/ap-calculus/unit-5/5-2-to-5-5-derivative-graph-analysis-part-2.html",
@@ -2410,20 +2400,15 @@
         "notes": [
           {
             "type": "notes",
-            "label": "Maximum & Minimum Applications — notes",
-            "url": "notes/ap-calculus/unit-5/maximum-minimum-applications-english.pdf"
-          },
-          {
-            "type": "notes",
-            "label": "Notes 5.10 · Optimization — add PDF later",
-            "url": ""
+            "label": "Notes 5.10 · Optimization Problems",
+            "url": "notes/ap-calculus/unit-5/notes-5-10-optimization-problems.pdf"
           }
         ],
         "resources": [
           {
             "type": "practice",
-            "label": "Practice 5.10 · Optimization — add PDF later",
-            "url": ""
+            "label": "Worksheet 5.10 · Optimization Problems",
+            "url": "worksheets/ap-calculus/unit-5/worksheet-5-10-optimization-problems.pdf"
           }
         ],
         "url": "lessons/ap-calculus/unit-5/5-10-optimization-problems.html",
@@ -2532,6 +2517,6 @@
 
   course.unitCount = course.units.length;
   course.lessonCount = course.units.reduce((total, unit) => total + (Array.isArray(unit.lessons) ? unit.lessons.length : 0), 0);
-  course.updatedUnits = "Units 1–5 refreshed · Unit 1 and Unit 2 worksheets active · July 2026";
+  course.updatedUnits = "Units 1-5 notes and worksheets active - July 2026";
   course.sourceNote = "AP Calculus AB Units 1–5 use the uploaded ECHS interactive lessons; Units 6–8 and all other courses remain unchanged.";
 })();
