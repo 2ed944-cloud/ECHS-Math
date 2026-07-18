@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>AP Calculus 4.1 - Interpretations of the Derivative</title>
+<link href="https://cdn.jsdelivr.net" rel="preconnect"/>
+<link href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" rel="stylesheet"/>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<style>
+:root{--maroon:#7a1738;--navy:#203654;--teal:#0e6655;--ink:#17212b;--muted:#5d6877;--line:#d9e2ec;--gold:#c69c48;--bg:#f4f7fb;--white:#fff;--soft:#fbfaf7;--blue:#0b84c6;--orange:#d97706}
+*{box-sizing:border-box}html,body{height:100%}body{margin:0;font-family:Inter,Aptos,"Segoe UI",Arial,sans-serif;color:var(--ink);background:var(--bg)}
+.deck{height:100vh;display:grid;grid-template-rows:74px 1fr 54px;overflow:hidden}.topbar{display:flex;align-items:center;justify-content:space-between;padding:10px 22px;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 2px 14px rgba(20,30,55,.08);z-index:2}
+.brand{display:flex;align-items:center;gap:18px}.echs{height:48px;width:96px;border-radius:14px;background:linear-gradient(135deg,var(--maroon),var(--navy));color:#fff;display:grid;place-items:center;font-weight:900;letter-spacing:1.5px}.course{border-left:2px solid #d5dce4;padding-left:18px;line-height:1.15}.course strong{color:var(--maroon);font-size:20px}.course span{display:block;color:var(--muted);font-size:13px;margin-top:3px}
+.progress{display:flex;align-items:center;gap:10px;color:var(--muted);font-weight:700;font-size:14px}.dotbar{width:220px;height:9px;background:#e5ebf0;border-radius:99px;overflow:hidden}.dotbar span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--maroon),var(--teal));border-radius:99px}
+.main{overflow:hidden}.slide{display:none;height:100%;overflow-y:auto;padding:34px 48px 72px;background:linear-gradient(135deg,#fff 0%,#fbfaf7 58%,#f3fbf9 100%)}.slide.active{display:block}.slide h1{font-size:38px;line-height:1.04;margin:0 0 24px;color:var(--navy);letter-spacing:-1.1px}.kicker{color:var(--maroon);font-size:14px;text-transform:uppercase;letter-spacing:.12em;font-weight:900;margin-bottom:9px}
+.hero{display:grid;grid-template-columns:1fr 1.2fr;gap:28px;align-items:center;margin-top:20px}.big{font-size:86px;font-weight:900;color:var(--maroon);line-height:.9}.hero p{font-size:28px;color:var(--navy);margin:12px 0 0}.formula{background:#fff;border:1px solid var(--line);border-radius:22px;padding:26px;box-shadow:0 18px 35px rgba(20,30,55,.08);font-size:20px}
+.targets{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px}.targets span,.tag{display:inline-block;background:#eef7f4;border:1px solid #cce7df;color:var(--teal);border-radius:99px;padding:10px 14px;font-weight:800;margin:3px}
+.grid{display:grid;gap:22px}.two{grid-template-columns:1fr 1fr}.three{grid-template-columns:repeat(3,1fr)}.four{grid-template-columns:repeat(4,1fr)}.card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:22px;font-size:21px;line-height:1.45;box-shadow:0 16px 30px rgba(20,30,55,.06)}.card .num{font-size:20px;font-weight:900;color:var(--navy);margin-bottom:10px}.card ol,.card ul{margin-top:8px;padding-left:28px}.card li{margin:8px 0}.card h3{margin:0 0 10px;color:var(--maroon)}
+.rulebox{background:#fff;border:2px solid var(--maroon);border-radius:24px;padding:22px 28px;margin:8px 0 24px;box-shadow:0 16px 32px rgba(122,23,56,.08);font-size:21px}.rulebox h3{margin:0 0 10px;color:var(--maroon);font-size:22px}.rulebox.compact{padding:14px 22px}.prompt{font-size:23px;background:#fff7e6;border-left:8px solid var(--gold);padding:16px 20px;margin-top:20px;border-radius:16px;color:#3a2d12}
+.note{background:#eef3f9;border-left:7px solid var(--navy);padding:14px 18px;border-radius:16px;font-size:21px;margin:12px 0 22px;color:var(--navy);font-weight:700}.warning{background:#fff1f2;border-left:7px solid var(--maroon);padding:14px 18px;border-radius:16px;font-size:20px;margin:12px 0 22px;color:#5f1730}.sectionhead{background:#f8eef3;border:1px solid #edcbd8;border-radius:18px;padding:18px 22px;color:var(--maroon);font-weight:900;font-size:22px;margin-bottom:18px}
+.answer{margin-top:18px;background:#fff;border:1px solid #efd0dc;border-radius:18px;padding:10px 16px;font-size:18px}.answer summary{cursor:pointer;color:var(--maroon);font-weight:900}.answer div{margin-top:12px;border-top:1px solid #f1d7e2;padding-top:12px}.answer ol{margin:8px 0 0 22px}.answer li{margin:7px 0}.answer[open]{box-shadow:0 10px 28px rgba(122,23,56,.08)}
+.alpha{list-style:lower-alpha}.qblock>li{margin-bottom:18px}.mcq{list-style:upper-alpha;display:grid;grid-template-columns:1fr 1fr;gap:4px 16px}.compact-list li{margin:6px 0}.dense{font-size:18px;line-height:1.36}.smalltext{font-size:19px;line-height:1.38}.widecard{grid-column:1/-1}
+.tbl{width:100%;border-collapse:collapse;font-size:19px;margin:12px 0;background:#fff}.tbl th,.tbl td{border:1px solid #d7dee8;padding:10px;text-align:center}.tbl th{background:#eef3f9;color:var(--navy)}.tbl td.left,.tbl th.left{text-align:left}.tbl.small{font-size:17px}.unit{white-space:nowrap;color:var(--teal);font-weight:800}.good{color:var(--teal);font-weight:900}.bad{color:var(--maroon);font-weight:900}
+.svggraph{width:100%;height:310px;background:#fff;border-radius:16px;border:1px solid #e8eef5}.graphkey{display:flex;gap:14px;flex-wrap:wrap;font-size:15px;color:var(--muted);margin-top:8px}.swatch{width:24px;height:4px;border-radius:4px;display:inline-block;margin-right:5px;vertical-align:middle}
+.foot{display:flex;align-items:center;justify-content:space-between;background:#fff;border-top:1px solid var(--line);padding:8px 22px;box-shadow:0 -2px 12px rgba(20,30,55,.05);z-index:3}.nav{display:flex;gap:10px;align-items:center}button{border:0;border-radius:14px;padding:12px 18px;font-weight:900;font-size:15px;cursor:pointer}button.primary{background:var(--maroon);color:#fff}button.secondary{background:#e9eef4;color:var(--navy)}select{padding:12px 16px;border:1px solid var(--line);border-radius:14px;background:#fff;color:var(--navy);font-weight:800;min-width:360px}.katex-display{margin:.6em 0}.slide::-webkit-scrollbar{width:9px}.slide::-webkit-scrollbar-thumb{background:#c8d2dd;border-radius:20px}
+@media(max-width:900px){.two,.three,.four,.hero{grid-template-columns:1fr}.slide{padding:24px 24px 80px}.slide h1{font-size:32px}.card{font-size:19px}.big{font-size:60px}select{min-width:200px;max-width:42vw}.dotbar{width:120px}.course span{max-width:260px}.progress{font-size:12px}}
+@media print{body{background:#fff}.deck{height:auto;display:block}.topbar,.foot{display:none}.main{overflow:visible}.slide,.slide.active{display:block;height:7.2in;overflow:hidden;page-break-after:always;padding:24px;background:#fff}.answer{display:none}.slide h1{font-size:30px}.card{font-size:16px}.rulebox,.note,.prompt{font-size:17px}}
+</style>
+</head>
+<body>
+<div class="deck">
+<header class="topbar"><div class="brand"><div class="echs">ECHS</div><div class="course"><strong>AP Calculus AB</strong><span>4.1 Interpretations of the Derivative</span></div></div><div class="progress"><span id="count"></span><div class="dotbar"><span id="bar"></span></div></div></header>
+<main class="main">
+
+<section class="slide" data-title="Title">
+<h1>Interpretations of the Derivative</h1>
+<div class="hero"><div><div class="kicker">AP Calculus AB - 4.1</div><div class="big">4.1</div><p>Reading a derivative as a precise statement about change</p></div><div class="formula">
+\[
+f'(a)=\lim_{h\to0}\frac{f(a+h)-f(a)}{h}
+\]
+<div class="note" style="margin-bottom:0">Output changes at an instantaneous rate of \(f'(a)\) output-units per input-unit when the input is \(a\).</div>
+</div></div>
+<div class="targets"><span>instantaneous rate</span><span>meaning in context</span><span>correct variables</span><span>sign</span><span>units</span><span>AP-style reasoning</span></div>
+</section>
+
+<section class="slide" data-title="Learning targets and success criteria">
+<h1>Learning targets and success criteria</h1>
+<div class="grid two"><div class="card"><h3>Learning targets</h3><ul><li>Interpret a derivative in a real-world context.</li><li>Connect tangent slope and instantaneous rate of change.</li><li>Use derivative notation with meaningful variables.</li><li>Determine derivative units from the dependent and independent variables.</li></ul></div><div class="card"><h3>I can show mastery when...</h3><ul><li>My sentence names the quantity, input value, direction, rate, and units.</li><li>I distinguish \(f(a)\), \(f'(a)\), and an average rate.</li><li>I recognize when the output is already a rate and the derivative is a rate of a rate.</li><li>I avoid conclusions not justified by one derivative value.</li></ul></div></div>
+<div class="prompt">Precision matters: a correct number with an incorrect meaning or incorrect units is not a complete interpretation.</div>
+</section>
+
+<section class="slide" data-title="Opening diagnostic">
+<h1>Opening diagnostic: what does each quantity tell us?</h1>
+<div class="card">The temperature \(T\), in degrees Celsius, of soup is a differentiable function of time \(t\), in minutes.</div>
+<div class="grid four" style="margin-top:20px"><div class="card"><div class="num">A</div>\(T(6)=71\)</div><div class="card"><div class="num">B</div>\(T'(6)=-2.4\)</div><div class="card"><div class="num">C</div>\(\dfrac{T(8)-T(4)}{8-4}=-2.1\)</div><div class="card"><div class="num">D</div>\(T'(6)=0\)</div></div>
+<div class="prompt">For each: Is it a value, an instantaneous rate, or an average rate? Give its units and one valid conclusion.</div>
+<details class="answer"><summary>Answers</summary><div><ol><li>A is a value: 6 minutes after observation begins, the soup is \(71^\circ\text{C}\).</li><li>B is instantaneous: at \(t=6\), the temperature is decreasing at \(2.4^\circ\text{C}/\text{min}\).</li><li>C is average: from 4 to 8 minutes, the temperature decreases on average by \(2.1^\circ\text{C}/\text{min}\).</li><li>D says the instantaneous temperature change is zero at 6 minutes; it does not by itself prove a maximum, minimum, or constant temperature.</li></ol></div></details>
+</section>
+
+<section class="slide" data-title="Function value versus derivative value">
+<h1>Function value versus derivative value</h1>
+<table class="tbl"><thead><tr><th>Quantity</th><th>What it represents</th><th>If \(f\) is gallons and \(x\) is minutes</th></tr></thead><tbody><tr><td>\(f(a)\)</td><td>Amount at input \(a\)</td><td class="unit">gallons</td></tr><tr><td>\(f'(a)\)</td><td>Instantaneous change in amount at \(a\)</td><td class="unit">gallons/minute</td></tr><tr><td>\(\dfrac{f(b)-f(a)}{b-a}\)</td><td>Average change from \(a\) to \(b\)</td><td class="unit">gallons/minute</td></tr><tr><td>\(f''(a)\)</td><td>Instantaneous change in the rate \(f'\)</td><td class="unit">gallons/minute<sup>2</sup></td></tr></tbody></table>
+<div class="warning"><strong>Do not blur the levels.</strong> \(f'(a)\) describes how \(f\) changes; \(f''(a)\) describes how the rate \(f'\) changes.</div>
+<details class="answer"><summary>Quick check</summary><div>If \(V'(4)=-3\), the volume is decreasing at 3 gallons per minute at \(t=4\). If \(V''(4)=-3\), the rate \(V'\) is decreasing by 3 gallons per minute each minute at \(t=4\).</div></details>
+</section>
+
+<section class="slide" data-title="Derivative notation is one idea in several forms">
+<h1>Derivative notation: one idea in several forms</h1>
+<div class="grid two"><div class="rulebox"><h3>Equivalent notations</h3>
+\[
+f'(a)=\left.\frac{df}{dx}\right|_{x=a}
+=\left.\frac{dy}{dx}\right|_{x=a}
+=\left.\frac{d}{dx}[f(x)]\right|_{x=a}.
+\]
+</div><div class="card"><h3>Read it aloud</h3>“The derivative of \(f\) with respect to \(x\), evaluated at \(x=a\).”<br/><br/>The vertical bar means <em>evaluate the derivative at this input</em>.</div></div>
+<div class="card" style="margin-top:20px">If \(V\) is tank volume in gallons and \(t\) is time in minutes, write “the instantaneous rate of change of volume with respect to time at \(t=3\)” in two forms.</div>
+<details class="answer"><summary>Answers</summary><div>\(V'(3)\) and \(\left.\dfrac{dV}{dt}\right|_{t=3}\).</div></details>
+</section>
+
+<section class="slide" data-title="Use meaningful variables">
+<h1>Use meaningful variables</h1>
+<div class="note">AP free-response work should preserve the variables from the context. Writing \(\frac{dy}{dx}\) when the problem defines \(C\) as a function of \(n\) hides meaning.</div>
+<div class="grid two"><div class="card"><h3>Clear</h3>If \(C\) is cost and \(n\) is number of passengers,
+\[
+\frac{dC}{dn}=C'(n).
+\]
+Its units are dollars per passenger.</div><div class="card"><h3>Too generic</h3>
+\[
+\frac{dy}{dx}=58
+\]
+does not identify what changes, with respect to what, or the correct contextual units.</div></div>
+<div class="prompt">Write the most meaningful derivative notation when population \(P\) depends on years \(t\), and force \(F\) depends on height \(h\).</div>
+<details class="answer"><summary>Answers</summary><div>\(\frac{dP}{dt}=P'(t)\) and \(\frac{dF}{dh}=F'(h)\).</div></details>
+</section>
+
+<section class="slide" data-title="From average change to instantaneous change">
+<h1>From average change to instantaneous change</h1>
+<div class="grid two"><div class="card"><svg id="graph-secants" class="svggraph" role="img" aria-label="Graph of s of t with secant lines approaching a tangent at t equals 2"></svg><div class="graphkey"><span><i class="swatch" style="background:#0b84c6"></i>\(s(t)=(t+1)^2\)</span><span><i class="swatch" style="background:#d97706"></i>secants</span><span><i class="swatch" style="background:#7a1738"></i>tangent</span></div></div><div class="card"><h3>Average rate</h3>
+\[
+\frac{s(2)-s(2-h)}{h}
+\]
+is the slope of a secant line over a nonzero interval.<h3 style="margin-top:20px">Instantaneous rate</h3>
+\[
+s'(2)=\lim_{h\to0}\frac{s(2)-s(2-h)}{h}=6.
+\]
+It is the slope of the tangent line at \(t=2\).</div></div>
+<details class="answer"><summary>Graph check</summary><div>For \(s(t)=(t+1)^2\), \(s'(t)=2(t+1)\), so \(s'(2)=6\). The tangent drawn is \(y=6(t-2)+9=6t-3\). Secant slopes from \(t=0.5,1,1.5\) to \(t=2\) are \(4.5,5,\) and \(5.5\), approaching \(6\).</div></details>
+</section>
+
+<section class="slide" data-title="The unit rule">
+<h1>The unit rule</h1>
+<div class="rulebox"><h3>Units of a derivative</h3>
+\[
+\boxed{\text{units of }f'(x)=\frac{\text{units of }f}{\text{units of }x}}
+\]
+Read the fraction bar as “per.”</div>
+<div class="grid four"><div class="card"><div class="num">Distance / time</div>miles per hour</div><div class="card"><div class="num">Temperature / time</div>°C per minute</div><div class="card"><div class="num">Cost / item</div>dollars per item</div><div class="card"><div class="num">People / year</div>people per year</div></div>
+<div class="prompt">If \(F(h)\) is measured in newtons and \(h\) in meters, what are the units of \(F'(500)\)?</div>
+<details class="answer"><summary>Answer</summary><div>Newtons per meter, \(\text{N}/\text{m}\). The derivative measures how force changes with height, not force itself.</div></details>
+</section>
+
+<section class="slide" data-title="Units as a dimensional detector">
+<h1>Units as a dimensional detector</h1>
+<div class="card">The depth \(d(t)\) of water is measured in feet, with \(t\) in hours. Decide whether each sentence could describe \(d'(4)=-0.7\).</div>
+<div class="grid two" style="margin-top:20px"><div class="card"><span class="good">A.</span> At 4 hours, the depth is decreasing at \(0.7\) foot per hour.</div><div class="card"><span class="bad">B.</span> At 4 hours, the depth is \(-0.7\) foot.</div><div class="card"><span class="bad">C.</span> During the first 4 hours, the depth decreased by \(0.7\) foot.</div><div class="card"><span class="bad">D.</span> At 4 hours, the water has a velocity of \(-0.7\) foot.</div></div>
+<details class="answer"><summary>Answers</summary><div>Only A. B uses output units instead of derivative units. C is a total change over an interval, not an instantaneous rate. D omits “per hour” and introduces velocity without justification.</div></details>
+</section>
+
+<section class="slide" data-title="Sign gives direction">
+<h1>Sign gives direction</h1>
+<div class="grid three"><div class="card"><h3>\(f'(a)&gt;0\)</h3>At \(x=a\), \(f\) is increasing locally.</div><div class="card"><h3>\(f'(a)&lt;0\)</h3>At \(x=a\), \(f\) is decreasing locally.</div><div class="card"><h3>\(f'(a)=0\)</h3>The tangent is horizontal; more information is needed.</div></div>
+<div class="warning">Use “increasing at a rate of \(L\)” when \(L&gt;0\), and “decreasing at a rate of \(|L|\)” when \(L&lt;0\). Do not say “decreasing at a rate of \(-3\).”</div>
+<div class="card">If \(P'(7)=-420\), write a precise direction-and-rate phrase.</div>
+<details class="answer"><summary>Answer</summary><div>At input 7, \(P\) is decreasing at a rate of 420 output-units per input-unit. The contextual nouns and units must be added from the problem.</div></details>
+</section>
+
+<section class="slide" data-title="Reading sign from a graph">
+<h1>Reading sign from a graph</h1>
+<div class="grid two"><div class="card"><svg id="graph-depth" class="svggraph" role="img" aria-label="Water depth graph increasing and then decreasing with tangents at t equals 2 and t equals 6"></svg></div><div class="card"><p>The water depth is</p>
+\[
+d(t)=6+0.8t-0.12t^2,
+\]
+where \(d\) is in feet and \(t\) is in hours.<ol><li>Interpret \(d'(2)\).</li><li>Interpret \(d'(6)\).</li><li>At what time is the depth instantaneously not changing?</li></ol></div></div>
+<details class="answer"><summary>Answers</summary><div>\(d'(t)=0.8-0.24t\). Thus \(d'(2)=0.32\) ft/hr: at 2 hours, depth is increasing at 0.32 ft/hr. \(d'(6)=-0.64\) ft/hr: at 6 hours, depth is decreasing at 0.64 ft/hr. \(d'(t)=0\) at \(t=10/3\) hours.</div></details>
+</section>
+
+<section class="slide" data-title="The complete interpretation sentence">
+<h1>The complete interpretation sentence</h1>
+<div class="rulebox"><h3>Reliable AP sentence frame</h3>At <strong>[input value + input unit]</strong>, the <strong>[dependent quantity]</strong> is <strong>[increasing/decreasing]</strong> at an instantaneous rate of <strong>[magnitude + output unit per input unit]</strong>.</div>
+<div class="card">Let \(A(t)\) be the amount of medication, in milligrams, in a patient's bloodstream \(t\) hours after a dose. Interpret \(A'(3)=-4.6\).</div>
+<details class="answer"><summary>Model answer</summary><div>Three hours after the dose, the amount of medication in the patient's bloodstream is decreasing at an instantaneous rate of \(4.6\) milligrams per hour.</div></details>
+<div class="prompt">Every word earns its place: time, quantity, direction, magnitude, and units.</div>
+</section>
+
+<section class="slide" data-title="Five common interpretation errors">
+<h1>Five common interpretation errors</h1>
+<div class="grid two"><div class="card smalltext"><ol><li><strong>Missing the input:</strong> saying only “the population grows.”</li><li><strong>Missing “per” units:</strong> writing people instead of people/year.</li><li><strong>Confusing value and rate:</strong> treating \(f'(a)\) as \(f(a)\).</li><li><strong>Using an interval:</strong> saying “from 0 to \(a\)” for an instantaneous statement.</li><li><strong>Overclaiming:</strong> concluding global behavior from one derivative value.</li></ol></div><div class="card">Correct this response:<br/><br/><em>“\(T'(5)=-3\) means that during the first five minutes the pizza lost \(3^\circ\text{F}\).”</em></div></div>
+<details class="answer"><summary>Correction</summary><div>Five minutes after the pizza was removed from the oven, its temperature is decreasing at an instantaneous rate of \(3^\circ\text{F}\) per minute. The derivative does not state the total change over the first five minutes.</div></details>
+</section>
+
+<section class="slide" data-title="Worked example: draining a fish tank">
+<h1>Worked example: draining a fish tank</h1>
+<div class="grid two"><div class="card">The volume \(V\), in gallons, of water in a fish tank is a differentiable function of time \(t\), in minutes. Interpret
+\[
+\left.\frac{dV}{dt}\right|_{t=3}=-2.
+\]</div><div class="card"><h3>Decode</h3><ul><li>Input: time \({}=3\) minutes</li><li>Output: volume of water</li><li>Sign: negative, so decreasing</li><li>Magnitude: \(2\)</li><li>Units: gallons/minute</li></ul></div></div>
+<details class="answer"><summary>Model answer</summary><div>Three minutes after draining begins, the volume of water in the tank is decreasing at an instantaneous rate of 2 gallons per minute.</div></details>
+</section>
+
+<section class="slide" data-title="Worked example: water balloon motion">
+<h1>Worked example: water balloon motion</h1>
+<div class="card">Let \(s(t)\) be the distance, in feet, traveled by a water balloon \(t\) seconds after launch. Suppose
+\[
+s'(2)=38\ \frac{\text{ft}}{\text{s}}.
+\]</div>
+<div class="grid two" style="margin-top:20px"><div class="card"><h3>Meaning</h3>At exactly 2 seconds, the balloon's distance from its starting point is increasing at 38 feet per second.</div><div class="card"><h3>Not implied</h3><ul><li>The balloon traveled 38 feet total.</li><li>Its average speed from 0 to 2 seconds was 38 ft/s.</li><li>Its acceleration was 38 ft/s<sup>2</sup>.</li></ul></div></div>
+</section>
+
+<section class="slide" data-title="Write the derivative from words">
+<h1>Write the derivative from words</h1>
+<div class="grid two"><div class="card smalltext"><div class="num">1</div>The total extraction cost \(C(b)\), in dollars, depends on the number \(b\) of barrels. At 600 barrels, total cost is decreasing by 3 dollars per additional barrel.</div><div class="card smalltext"><div class="num">2</div>The leaked volume \(V(t)\), in cubic meters, is increasing at 790 cubic meters per day at the end of day 7.</div><div class="card smalltext"><div class="num">3</div>The gorilla population \(P(t)\) is increasing at 114 gorillas per year at \(t=11\), where \(t\) is years since 1992.</div><div class="card smalltext"><div class="num">4</div>At a height of 500 meters, force \(F(h)\) is increasing by 0.2 newton per meter.</div></div>
+<details class="answer"><summary>Answers</summary><div>1. \(C'(600)=-3\). 2. \(V'(7)=790\). 3. \(P'(11)=114\). 4. \(F'(500)=0.2\). Each derivative uses output units per input unit.</div></details>
+</section>
+
+<section class="slide" data-title="A subtle language trap: total change is not a derivative">
+<h1>A subtle language trap: total change is not a derivative</h1>
+<div class="warning">“The population increased by 114 during 2003” gives a change over a year. It does <strong>not</strong> by itself give the instantaneous derivative at one moment.</div>
+<div class="grid two"><div class="card"><h3>What is justified</h3>If \(t\) is years since 1992,
+\[
+P(12)-P(11)=114
+\]
+and the average rate over that year is \(114\) gorillas/year.</div><div class="card"><h3>What needs extra information</h3>
+\[
+P'(11)=114
+\]
+would require a statement about the instantaneous rate at \(t=11\), not merely the year's total increase.</div></div>
+<details class="answer"><summary>Teacher note</summary><div>This distinction is a common AP trap: finite changes belong to difference quotients; derivatives describe limiting instantaneous change.</div></details>
+</section>
+
+<section class="slide" data-title="Position, velocity, and direction">
+<h1>Position, velocity, and direction</h1>
+<div class="rulebox"><h3>When position is the output</h3>If \(s(t)\) is position, then \(s'(t)\) is velocity. The sign of velocity gives direction relative to the chosen positive direction.</div>
+<div class="grid two"><div class="card">A car's position \(s(t)\), in miles east of a checkpoint, satisfies \(s'(2)=-54\). Interpret this statement.</div><div class="card">A student's distance \(D(t)\), in miles traveled along a route, satisfies \(D'(2)=54\). Interpret this statement. Why is the wording different?</div></div>
+<details class="answer"><summary>Answers</summary><div>For position, at 2 hours the car is moving west at 54 mph because east was defined positive. For total route distance, at 2 hours the distance traveled is increasing at 54 mph; distance does not encode west/east direction.</div></details>
+</section>
+
+<section class="slide" data-title="Velocity, acceleration, and rate of a rate">
+<h1>Velocity, acceleration, and a rate of a rate</h1>
+<div class="grid two"><div class="card"><svg id="graph-velocity" class="svggraph" role="img" aria-label="Velocity graph v of t with a negative tangent slope at t equals 3"></svg></div><div class="card">A particle's velocity is
+\[
+v(t)=12+4t-t^2
+\]
+in meters per second, with \(t\) in seconds.<ol><li>Interpret \(v(3)\).</li><li>Interpret \(v'(3)\).</li><li>State the units of each.</li></ol></div></div>
+<details class="answer"><summary>Answers</summary><div>\(v(3)=15\) m/s: at 3 seconds, the particle moves in the positive direction at 15 m/s. \(v'(t)=4-2t\), so \(v'(3)=-2\) m/s<sup>2</sup>: at 3 seconds, velocity is decreasing by 2 m/s each second. Since \(v(3)&gt;0\) and \(v'(3)&lt;0\), the particle is slowing down at that instant.</div></details>
+</section>
+
+<section class="slide" data-title="When the function is already a rate">
+<h1>When the function is already a rate</h1>
+<div class="card">The water-flow rate \(q(t)\) is measured in gallons per second, where \(t\) is measured in seconds. Interpret each quantity.</div>
+<table class="tbl"><thead><tr><th>Statement</th><th>Correct level</th><th>Units</th></tr></thead><tbody><tr><td>\(q(5)=200\)</td><td>flow rate at 5 seconds</td><td>gal/s</td></tr><tr><td>\(q'(5)=200\)</td><td>instantaneous change in the flow rate</td><td>gal/s<sup>2</sup></td></tr><tr><td>\(q''(5)=200\)</td><td>instantaneous change in \(q'\)</td><td>gal/s<sup>3</sup></td></tr></tbody></table>
+<div class="warning">If the dependent variable's units already contain “per,” differentiating adds another division by the input unit.</div>
+<details class="answer"><summary>Model interpretation</summary><div>\(q'(5)=200\) means that at 5 seconds, the water-flow rate is increasing by 200 gallons per second each second.</div></details>
+</section>
+
+<section class="slide" data-title="Marginal cost is a derivative">
+<h1>Marginal cost is a derivative</h1>
+<div class="grid two"><div class="card">The total cost \(C(n)\), in dollars, of an airline flight is modeled as a differentiable function of the number \(n\) of passengers. Interpret
+\[
+C'(182)=58.
+\]</div><div class="card"><h3>Continuous model, discrete input</h3>Although passenger count is discrete, the model's derivative gives a local approximation:
+\[
+C(183)-C(182)\approx C'(182)(1)=58.
+\]</div></div>
+<details class="answer"><summary>Model answer</summary><div>When there are 182 passengers, the total flight cost is increasing at approximately 58 dollars per additional passenger. The model predicts that adding the 183rd passenger increases total cost by about 58 dollars.</div></details>
+</section>
+
+<section class="slide" data-title="Marginal cost wording trap">
+<h1>Marginal cost wording trap</h1>
+<div class="card">The total production cost is \(C(s)\), where \(s\) is the number of scooters. Compare the statements.</div>
+<div class="grid two" style="margin-top:20px"><div class="card"><h3>\(C'(400)=27.50\)</h3>Near 400 scooters, total cost increases by about \(\$27.50\) per additional scooter.</div><div class="card"><h3>\(C''(400)=27.50\)</h3>Near 400 scooters, the marginal cost itself increases by about \(\$27.50\) per scooter per additional scooter.</div></div>
+<div class="prompt">Which derivative matches: “At 400 scooters, the cost of producing one more scooter is increasing as production rises”?</div>
+<details class="answer"><summary>Answer</summary><div>The phrase describes a change in marginal cost, so it points to \(C''(400)&gt;0\). If it states that the marginal cost is exactly \(\$27.50\), then \(C'(400)=27.50\).</div></details>
+</section>
+
+<section class="slide" data-title="Medication dosage and local prediction">
+<h1>Medication dosage and local prediction</h1>
+<div class="card">The recommended antibiotic dose \(D(w)\), in milligrams, is a differentiable function of patient weight \(w\), in pounds. Suppose
+\[
+D(135)=120,\qquad D'(135)=2.5.
+\]</div>
+<div class="grid two" style="margin-top:20px"><div class="card"><h3>Interpretation</h3>At 135 lb, recommended dose is increasing at 2.5 mg per additional pound.</div><div class="card"><h3>Estimate \(D(140)\)</h3>
+\[
+D(140)\approx D(135)+D'(135)(5)=132.5\text{ mg}.
+\]</div></div>
+<details class="answer"><summary>Why this works</summary><div>The tangent line gives a local linear approximation. The derivative is not itself the dose; it converts a small weight change into an estimated dose change.</div></details>
+</section>
+
+<section class="slide" data-title="Cooling pizza: sign, units, and scope">
+<h1>Cooling pizza: sign, units, and scope</h1>
+<div class="card">The pizza temperature \(T(t)\), in degrees Fahrenheit, is a differentiable function of minutes \(t\) after removal from an oven. Suppose \(T'(5)=-3\).</div>
+<div class="grid two" style="margin-top:20px"><div class="card"><h3>What follows</h3><ul><li>At 5 minutes, temperature is decreasing.</li><li>The instantaneous rate is \(3^\circ\text{F}/\text{min}\).</li><li>For a very small \(\Delta t\), \(\Delta T\approx-3\Delta t\).</li></ul></div><div class="card"><h3>What does not follow</h3><ul><li>\(T(5)=-3\)</li><li>Total decrease during 5 minutes is \(3^\circ\text{F}\)</li><li>Cooling rate is \(-3\) for all time</li><li>The pizza reaches a minimum at \(t=5\)</li></ul></div></div>
+</section>
+
+<section class="slide" data-title="Population units may hide a scale factor">
+<h1>Population units may hide a scale factor</h1>
+<div class="rulebox">The population \(P(t)\) of a city is measured in <strong>thousands of people</strong>, with \(t\) in years since 2010. Suppose \(P'(4)=3\).</div>
+<div class="grid two"><div class="card"><h3>Model units</h3>
+\[
+3\ \frac{\text{thousand people}}{\text{year}}
+\]</div><div class="card"><h3>Ordinary units</h3>
+\[
+3000\ \frac{\text{people}}{\text{year}}
+\]</div></div>
+<details class="answer"><summary>Model interpretation</summary><div>In 2014, the city's population is increasing at an instantaneous rate of 3 thousand people per year, or 3,000 people per year.</div></details>
+</section>
+
+<section class="slide" data-title="Local linearity is built into the interpretation">
+<h1>Local linearity is built into the interpretation</h1>
+<div class="rulebox"><h3>For small changes near \(x=a\)</h3>
+\[
+\Delta f\approx f'(a)\Delta x,
+\qquad
+f(a+\Delta x)\approx f(a)+f'(a)\Delta x.
+\]</div>
+<div class="grid two"><div class="card">If \(R'(6)=0.5\) cm/hr for cumulative rainfall and \(R(6)=4.8\) cm, estimate \(R(6.2)\).</div><div class="card">If \(F'(500)=0.2\) N/m and \(F(500)=3.2\) N, estimate \(F(503)\).</div></div>
+<details class="answer"><summary>Answers</summary><div>\(R(6.2)\approx4.8+0.5(0.2)=4.9\) cm. \(F(503)\approx3.2+0.2(3)=3.8\) N. These are local estimates, not exact values unless the functions are linear.</div></details>
+</section>
+
+<section class="slide" data-title="Estimate a derivative from a table">
+<h1>Estimate a derivative from a table</h1>
+<div class="card">The amount \(M(t)\) of medication in a bloodstream is measured in milligrams.</div>
+<table class="tbl"><thead><tr><th>\(t\) (hours)</th><th>0</th><th>1.8</th><th>2.0</th><th>2.2</th><th>4</th></tr></thead><tbody><tr><th>\(M(t)\) (mg)</th><td>80.0</td><td>34.9</td><td>32.0</td><td>29.4</td><td>12.8</td></tr></tbody></table>
+<div class="grid two"><div class="card">Use a symmetric difference quotient to estimate \(M'(2)\).</div><div class="card">Interpret the estimate in context, with units.</div></div>
+<details class="answer"><summary>Answers</summary><div>\(M'(2)\approx\dfrac{M(2.2)-M(1.8)}{2.2-1.8}=\dfrac{29.4-34.9}{0.4}=-13.75\) mg/hr. At 2 hours, the medication amount is decreasing at approximately 13.75 mg/hr.</div></details>
+</section>
+
+<section class="slide" data-title="Table choice changes the quality of an estimate">
+<h1>Table choice changes the quality of an estimate</h1>
+<div class="card">To estimate \(f'(3)\), which quotient is usually most appropriate when all values are available?</div>
+<table class="tbl"><thead><tr><th>\(x\)</th><th>2.6</th><th>2.9</th><th>3.0</th><th>3.1</th><th>3.8</th></tr></thead><tbody><tr><th>\(f(x)\)</th><td>7.12</td><td>8.41</td><td>8.88</td><td>9.39</td><td>13.92</td></tr></tbody></table>
+<div class="grid three"><div class="card">A. \(\dfrac{f(3)-f(2.9)}{0.1}\)</div><div class="card">B. \(\dfrac{f(3.1)-f(2.9)}{0.2}\)</div><div class="card">C. \(\dfrac{f(3.8)-f(2.6)}{1.2}\)</div></div>
+<details class="answer"><summary>Answer</summary><div>B is generally best because it uses nearby points on both sides of 3. It gives \((9.39-8.41)/0.2=4.9\). A is one-sided; C averages over a much wider interval.</div></details>
+</section>
+
+<section class="slide" data-title="Interpret a table-based derivative estimate">
+<h1>Interpret a table-based derivative estimate</h1>
+<div class="card">The mass \(m(t)\), in grams, of a dissolving tablet is recorded \(t\) minutes after it enters water.</div>
+<table class="tbl"><thead><tr><th>\(t\)</th><th>4.5</th><th>5.0</th><th>5.5</th></tr></thead><tbody><tr><th>\(m(t)\)</th><td>18.7</td><td>17.1</td><td>15.8</td></tr></tbody></table>
+<ol class="qblock"><li>Estimate \(m'(5)\).</li><li>Interpret the sign and units.</li><li>Use the estimate to predict \(m(5.1)\).</li></ol>
+<details class="answer"><summary>Answers</summary><div>\(m'(5)\approx(15.8-18.7)/(5.5-4.5)=-2.9\) g/min. At 5 minutes, mass is decreasing at approximately 2.9 g/min. \(m(5.1)\approx17.1-2.9(0.1)=16.81\) g.</div></details>
+</section>
+
+<section class="slide" data-title="Interpret a derivative limit in context">
+<h1>Interpret a derivative limit in context</h1>
+<div class="card">The amount \(A(t)\), in liters, of fuel in a tank \(t\) hours after noon is differentiable. Interpret
+\[
+\lim_{h\to0}\frac{A(4+h)-A(4)}{h}=-7.2.
+\]</div>
+<div class="grid two" style="margin-top:20px"><div class="card"><h3>Recognition</h3>The limit is \(A'(4)\).</div><div class="card"><h3>Units</h3>
+\[
+\frac{\text{liters}}{\text{hour}}.
+\]</div></div>
+<details class="answer"><summary>Model answer</summary><div>At 4:00 p.m., the amount of fuel in the tank is decreasing at an instantaneous rate of 7.2 liters per hour.</div></details>
+</section>
+
+<section class="slide" data-title="Difference quotient: interpret the entire expression">
+<h1>Difference quotient: interpret the entire expression</h1>
+<div class="card">The population \(P(t)\), in thousands, is modeled \(t\) years after 2020. Explain the meaning and units of
+\[
+\frac{P(8)-P(3)}{8-3}=1.7.
+\]</div>
+<div class="grid two" style="margin-top:20px"><div class="card"><h3>Correct</h3>From 2023 to 2028, population increased on average by 1.7 thousand people per year.</div><div class="card"><h3>Incorrect</h3>At \(t=8\), population is increasing instantaneously by 1.7 thousand people per year.</div></div>
+<details class="answer"><summary>Why</summary><div>The quotient uses two distinct times, so it is an average rate over an interval. Only a limit of such quotients at one input becomes the derivative.</div></details>
+</section>
+
+<section class="slide" data-title="Amount versus rate function">
+<h1>Amount versus rate function</h1>
+<div class="grid two"><div class="card"><h3>Amount function</h3>\(W(t)\) is gallons of water in a tank.<ul><li>\(W'(t)\): gal/min</li><li>\(W''(t)\): gal/min<sup>2</sup></li></ul></div><div class="card"><h3>Rate function</h3>\(r(t)\) is the inflow rate in gal/min.<ul><li>\(r'(t)\): gal/min<sup>2</sup></li><li>The amount added from \(a\) to \(b\) is not \(r'(b)\).</li></ul></div></div>
+<div class="prompt">If \(W'(4)=-8\) and \(r'(4)=-8\), write one correct sentence for each.</div>
+<details class="answer"><summary>Answers</summary><div>\(W'(4)=-8\): at 4 minutes the water amount is decreasing at 8 gal/min. \(r'(4)=-8\): at 4 minutes the inflow rate is decreasing by 8 gal/min each minute.</div></details>
+</section>
+
+<section class="slide" data-title="A derivative hierarchy">
+<h1>A derivative hierarchy</h1>
+<table class="tbl"><thead><tr><th>Model</th><th>Quantity</th><th>Derivative</th><th>Derivative units</th></tr></thead><tbody><tr><td>Position \(s(t)\)</td><td>meters</td><td>velocity \(s'(t)\)</td><td>m/s</td></tr><tr><td>Velocity \(v(t)\)</td><td>m/s</td><td>acceleration \(v'(t)\)</td><td>m/s<sup>2</sup></td></tr><tr><td>Flow rate \(q(t)\)</td><td>L/min</td><td>change of flow rate \(q'(t)\)</td><td>L/min<sup>2</sup></td></tr><tr><td>Marginal cost \(M(n)\)</td><td>$/item</td><td>change in marginal cost \(M'(n)\)</td><td>$/item<sup>2</sup></td></tr></tbody></table>
+<div class="prompt">The noun phrase must match the level: position, velocity, flow rate, or marginal cost.</div>
+</section>
+
+<section class="slide" data-title="Notation guardrail: derivative or inverse?">
+<h1>Notation guardrail: derivative or inverse?</h1>
+<div class="card">If \(h(t)\) gives water depth in feet at time \(t\) hours, compare the four statements.</div>
+<table class="tbl small"><thead><tr><th>Statement</th><th>Meaning</th><th>Units of output</th></tr></thead><tbody><tr><td>\(h(7)=5\)</td><td>At 7 hours, depth is 5 feet.</td><td>feet</td></tr><tr><td>\(h'(7)=0.6\)</td><td>At 7 hours, depth increases at 0.6 ft/hr.</td><td>ft/hr</td></tr><tr><td>\(h^{-1}(7)=9\)</td><td>Depth reaches 7 feet at 9 hours.</td><td>hours</td></tr><tr><td>\((h^{-1})'(7)=1.4\)</td><td>Near depth 7 ft, required time changes by 1.4 hr/ft.</td><td>hr/ft</td></tr></tbody></table>
+<div class="warning">\(h^{-1}\) is an inverse function, not \(1/h\), and \((h^{-1})'\) is not \(1/h'\) at the same input.</div>
+</section>
+
+<section class="slide" data-title="Interpreting an inverse derivative in context">
+<h1>Interpreting an inverse derivative in context</h1>
+<div class="card">Rainfall \(R(t)\), in centimeters, is a one-to-one differentiable function of hours after midnight. Suppose
+\[
+R^{-1}(5)=14,\qquad (R^{-1})'(5)=1.5.
+\]</div>
+<div class="grid two" style="margin-top:20px"><div class="card"><h3>Inverse value</h3>Five centimeters of rain has accumulated by 14 hours after midnight.</div><div class="card"><h3>Inverse derivative</h3>Near a rainfall total of 5 cm, the time required changes at 1.5 hours per additional centimeter.</div></div>
+<details class="answer"><summary>Connection</summary><div>Since \(R(14)=5\), \((R^{-1})'(5)=1/R'(14)=1.5\), so \(R'(14)=2/3\) cm/hr.</div></details>
+</section>
+
+<section class="slide" data-title="Context practice A">
+<h1>Context practice A</h1>
+<div class="grid two"><div class="card smalltext"><div class="num">1</div>The distance \(d(t)\), in meters, of a scooter from home is measured \(t\) minutes after departure. Interpret \(d'(15)=650\).</div><div class="card smalltext"><div class="num">2</div>The grade \(G(t)\), in percentage points, is modeled by hours studied. Interpret \(G'(1)=3\).</div><div class="card smalltext"><div class="num">3</div>The water amount \(W(t)\), in gallons, is modeled by minutes. Interpret \(W'(10)=-8\).</div><div class="card smalltext"><div class="num">4</div>The height \(h(t)\), in meters, of a rocket is modeled by seconds. Interpret \(h'(10)=30\).</div></div>
+<details class="answer"><summary>Answers</summary><div><ol><li>At 15 minutes, the scooter's distance from home is increasing at 650 m/min.</li><li>At 1 hour of study, the predicted grade is increasing at 3 percentage points per additional hour.</li><li>At 10 minutes, tank water is decreasing at 8 gal/min.</li><li>At 10 seconds, rocket height is increasing at 30 m/s.</li></ol></div></details>
+</section>
+
+<section class="slide" data-title="Context practice B: rates of rates">
+<h1>Context practice B: rates of rates</h1>
+<div class="grid two"><div class="card smalltext"><div class="num">1</div>The leakage rate \(R(t)\) is in gallons per hour and \(t\) is in hours. Interpret \(R'(1)=23\).</div><div class="card smalltext"><div class="num">2</div>The fuel-consumption rate \(f(t)\) is in gallons per hour and \(t\) is in hours. Interpret \(f'(1)=1.2\).</div><div class="card smalltext"><div class="num">3</div>The weather's temperature-change rate \(T(h)\) is in degrees per hour. Interpret \(T'(8)=4\).</div><div class="card smalltext"><div class="num">4</div>The water-depth change rate \(d(t)\) is in feet per hour. Interpret \(d'(4)=-2\).</div></div>
+<details class="answer"><summary>Answers</summary><div><ol><li>At 1 hour, the leakage rate is increasing by 23 gal/hr each hour.</li><li>At 1 hour, the gasoline-consumption rate is increasing by 1.2 gal/hr each hour.</li><li>At 8 hours, the temperature-change rate is increasing by \(4^\circ\)/hr each hour.</li><li>At 4 hours, the water-depth change rate is decreasing by 2 ft/hr each hour.</li></ol>All derivative units contain the time unit twice.</div></details>
+</section>
+
+<section class="slide" data-title="Translate each sentence into notation">
+<h1>Translate each sentence into notation</h1>
+<div class="grid two"><div class="card smalltext"><div class="num">A</div>After 6.5 hours, medication amount \(M(t)\) is decreasing at 0.5 milligram per hour.</div><div class="card smalltext"><div class="num">B</div>At 5,000 tons removed, cleanup cost \(C(s)\) is decreasing by 120 dollars per additional ton.</div><div class="card smalltext"><div class="num">C</div>At 400 scooters, total production cost \(C(n)\) is increasing by 27.50 dollars per additional scooter.</div><div class="card smalltext"><div class="num">D</div>At 15 minutes, soda depth \(S(t)\) is increasing at 1.8 inches per minute.</div></div>
+<details class="answer"><summary>Answers</summary><div>A. \(M'(6.5)=-0.5\). B. \(C'(5000)=-120\). C. \(C'(400)=27.50\). D. \(S'(15)=1.8\).</div></details>
+</section>
+
+<section class="slide" data-title="Graph-based interpretation: position">
+<h1>Graph-based interpretation: position</h1>
+<div class="grid two"><div class="card"><svg id="graph-position" class="svggraph" role="img" aria-label="Position graph with a negative tangent slope at t equals 2"></svg></div><div class="card">A particle's position is
+\[
+s(t)=t^3-6t^2+9t+2
+\]
+meters at time \(t\) seconds.<ol><li>Interpret \(s'(2)\).</li><li>At what times is the particle instantaneously at rest?</li><li>Is the particle moving left or right at \(t=2\)?</li></ol></div></div>
+<details class="answer"><summary>Answers</summary><div>\(s'(t)=3t^2-12t+9=3(t-1)(t-3)\). Thus \(s'(2)=-3\) m/s: at 2 seconds, position is decreasing at 3 m/s, so the particle moves in the negative direction. It is at rest at \(t=1\) and \(t=3\).</div></details>
+</section>
+
+<section class="slide" data-title="Graph-based interpretation: tangent data">
+<h1>Graph-based interpretation: tangent data</h1>
+<div class="grid two"><div class="card"><svg id="graph-population" class="svggraph" role="img" aria-label="Population model and tangent line at t equals 4"></svg></div><div class="card">A population \(P(t)\), in thousands, is modeled \(t\) years after 2020 by
+\[
+P(t)=40+5t-0.4t^2.
+\]
+<ol><li>Find and interpret \(P'(4)\).</li><li>Use the tangent line to estimate \(P(4.25)\).</li><li>Explain why the estimate need not be exact.</li></ol></div></div>
+<details class="answer"><summary>Answers</summary><div>\(P'(t)=5-0.8t\), so \(P'(4)=1.8\) thousand people/year. In 2024, population is increasing at 1,800 people/year. \(P(4)=53.6\), so \(P(4.25)\approx53.6+1.8(0.25)=54.05\) thousand. The graph is curved, while the tangent model is linear.</div></details>
+</section>
+
+<section class="slide" data-title="AP-style multiple choice I">
+<h1>AP-style multiple choice I</h1>
+<div class="grid two"><div class="card dense"><ol class="qblock"><li>The population \(P(t)\), in thousands, is measured \(t\) years after 2020. If \(P'(6)=-0.42\), which is correct?<ol class="mcq"><li>In 2026, \(P=-420\).</li><li>In 2026, population decreases at 420 people/year.</li><li>From 2020 to 2026, population drops by 420.</li><li>At 6 years, population is 0.42 thousand.</li></ol></li></ol></div><div class="card dense"><ol class="qblock" start="2"><li>The total cost \(C(g)\), in dollars, depends on gallons \(g\). \(C'(500)=0.84\) means<ol class="mcq"><li>500 gallons cost \(\$0.84\).</li><li>cost decreases by \(\$0.84\) per gallon.</li><li>near 500 gallons, cost rises by about \(\$0.84\) per added gallon.</li><li>average cost is \(\$0.84\) per gallon.</li></ol></li></ol></div></div>
+<details class="answer"><summary>Answers</summary><div>1. B. Since \(P\) is in thousands, \(0.42\) thousand \({}=420\) people, and the negative sign means decreasing. 2. C. The derivative is local marginal cost.</div></details>
+</section>
+
+<section class="slide" data-title="AP-style multiple choice II">
+<h1>AP-style multiple choice II</h1>
+<div class="grid two"><div class="card dense"><ol class="qblock" start="3"><li>The flow rate \(q(t)\) is measured in liters per minute. The units of \(q'(4)\) are<ol class="mcq"><li>L</li><li>L/min</li><li>L/min<sup>2</sup></li><li>min/L</li></ol></li><li>If \(f'(5)=0\), which must be true?<ol class="mcq"><li>\(f\) has a local maximum at 5.</li><li>\(f(5)=0\).</li><li>The tangent at \(x=5\) is horizontal.</li><li>\(f\) is constant near 5.</li></ol></li></ol></div><div class="card dense"><ol class="qblock" start="5"><li>Which expression is the average rate of change of \(A\) from \(t=2\) to \(t=7\)?<ol class="mcq"><li>\(A'(2)\)</li><li>\(A'(7)\)</li><li>\(\frac{A(7)-A(2)}5\)</li><li>\(\lim_{h\to0}\frac{A(2+h)-A(2)}h\)</li></ol></li></ol></div></div>
+<details class="answer"><summary>Answers</summary><div>3. C. 4. C. 5. C.</div></details>
+</section>
+
+<section class="slide" data-title="AP-style multiple choice: limit and units">
+<h1>AP-style multiple choice: limit and units</h1>
+<div class="card dense">The mass \(M(t)\), in kilograms, of recycled material collected \(t\) days after a campaign begins satisfies
+\[
+\lim_{h\to0}\frac{M(12+h)-M(12)}h=4.7.
+\]
+Which statement is best?</div>
+<div class="grid two" style="margin-top:18px"><div class="card">A. During the first 12 days, 4.7 kg was collected.</div><div class="card">B. On day 12, total mass is 4.7 kg.</div><div class="card">C. At day 12, collected mass is increasing at 4.7 kg/day.</div><div class="card">D. From day 12 onward, exactly 4.7 kg/day will be collected.</div></div>
+<details class="answer"><summary>Answer</summary><div>C. The limit is \(M'(12)\), an instantaneous rate. It does not describe the entire first interval or guarantee a constant future rate.</div></details>
+</section>
+
+<section class="slide" data-title="AP free response: reservoir table">
+<h1>AP free response: reservoir table</h1>
+<div class="card">The volume \(V(t)\), in thousands of gallons, in a reservoir \(t\) hours after 8:00 a.m. is differentiable.</div>
+<table class="tbl"><thead><tr><th>\(t\)</th><th>0</th><th>1</th><th>2</th><th>3</th><th>4</th></tr></thead><tbody><tr><th>\(V(t)\)</th><td>120</td><td>116</td><td>109</td><td>99</td><td>86</td></tr></tbody></table>
+<div class="card dense"><ol class="alpha"><li>Estimate \(V'(2)\) using values on both sides.</li><li>Interpret the estimate in context.</li><li>Estimate \(V(2.1)\).</li><li>Explain why \(V'(2)\) cannot be interpreted as the total amount lost from 8:00 to 10:00 a.m.</li></ol></div>
+<details class="answer"><summary>Solutions</summary><div>\(V'(2)\approx[V(3)-V(1)]/2=(99-116)/2=-8.5\) thousand gal/hr. At 10:00 a.m., volume is decreasing at about 8,500 gal/hr. \(V(2.1)\approx109-8.5(0.1)=108.15\) thousand gallons. A derivative is instantaneous, while total loss over an interval is a difference in \(V\).</div></details>
+</section>
+
+<section class="slide" data-title="AP free response: antibiotic model">
+<h1>AP free response: antibiotic model</h1>
+<div class="card">The amount of antibiotic in a bloodstream is
+\[
+M(t)=18e^{-0.75t}
+\]
+milligrams, \(t\) hours after a dose.</div>
+<div class="grid two" style="margin-top:18px"><div class="card dense"><ol class="alpha"><li>Find \(M'(t)\).</li><li>Find \(M'(1)\) to three decimals.</li><li>Interpret \(M'(1)\).</li></ol></div><div class="card dense"><ol class="alpha" start="4"><li>State the units of \(M''(1)\).</li><li>Is the medication amount decreasing faster or slower at \(t=1\)? Justify from \(M'\) and \(M''\).</li></ol></div></div>
+<details class="answer"><summary>Solutions</summary><div>\(M'(t)=-13.5e^{-0.75t}\), so \(M'(1)\approx-6.377\) mg/hr. At 1 hour, medication amount is decreasing at about 6.377 mg/hr. \(M''(1)\) has units mg/hr<sup>2</sup>, and \(M''(t)=10.125e^{-0.75t}&gt;0\). Since \(M'&lt;0\) but rises toward 0, the amount is decreasing more slowly.</div></details>
+</section>
+
+<section class="slide" data-title="AP free response: a production rate">
+<h1>AP free response: a production rate</h1>
+<div class="card">The factory production rate \(b(t)\), in hats per hour, is differentiable, where \(t\) is hours after opening. Suppose
+\[
+b(1)=800,\qquad b'(1)=100.
+\]</div>
+<div class="grid two" style="margin-top:20px"><div class="card"><ol class="alpha"><li>Interpret \(b(1)\).</li><li>Interpret \(b'(1)\).</li></ol></div><div class="card"><ol class="alpha" start="3"><li>Estimate \(b(1.1)\).</li><li>Explain why \(b'(1)=100\) does not mean 100 hats are produced at \(t=1\).</li></ol></div></div>
+<details class="answer"><summary>Solutions</summary><div>At 1 hour, hats are being produced at 800 hats/hr. At that time, the production rate is increasing by 100 hats/hr each hour. \(b(1.1)\approx800+100(0.1)=810\) hats/hr. The derivative describes change in the production rate, so its units are hats/hr<sup>2</sup>, not hats.</div></details>
+</section>
+
+<section class="slide" data-title="Error analysis">
+<h1>Error analysis</h1>
+<div class="grid two"><div class="card smalltext"><div class="num">Student A</div>“\(f'(3)=-2\) means \(f(3)=-2\).”</div><div class="card smalltext"><div class="num">Student B</div>“Because \(f'(5)=0\), \(f\) has a maximum at 5.”</div><div class="card smalltext"><div class="num">Student C</div>“If \(C'(400)=27.50\), marginal cost is increasing at 27.50 dollars per scooter.”</div><div class="card smalltext"><div class="num">Student D</div>“If \(P(12)-P(11)=114\), then \(P'(11)=114\).”</div></div>
+<details class="answer"><summary>Corrections</summary><div><ol><li>A confuses output and derivative.</li><li>B knows only that the tangent is horizontal; \(x^3\) at 0 is a counterexample.</li><li>C should say marginal cost is \(\$27.50\) per scooter; “marginal cost is increasing” concerns \(C''\).</li><li>D confuses a finite change/average rate with an instantaneous rate.</li></ol></div></details>
+</section>
+
+<section class="slide" data-title="Claim, evidence, limitation">
+<h1>Claim, evidence, limitation</h1>
+<div class="card">Suppose \(H'(10)=1\), where \(H(t)\) is weather-station temperature in degrees Celsius and \(t\) is hours after midnight.</div>
+<div class="grid three" style="margin-top:20px"><div class="card"><h3>Claim</h3>At 10:00 a.m., temperature is increasing.</div><div class="card"><h3>Evidence</h3>\(H'(10)=1&gt;0\), with units \({}^{\circ}\text{C}/\text{hr}\).</div><div class="card"><h3>Limitation</h3>This one value does not guarantee an increase for the entire day or identify the actual temperature \(H(10)\).</div></div>
+<div class="prompt">Use this structure whenever a question asks you to justify an interpretation or reject an overclaim.</div>
+</section>
+
+<section class="slide" data-title="The zero-derivative trap">
+<h1>The zero-derivative trap</h1>
+<div class="card">All three functions satisfy \(f'(0)=0\), but their behavior at 0 is different.</div>
+<div class="grid three" style="margin-top:20px"><div class="card"><h3>\(f(x)=x^2\)</h3>Local minimum at 0.</div><div class="card"><h3>\(g(x)=-x^2\)</h3>Local maximum at 0.</div><div class="card"><h3>\(h(x)=x^3\)</h3>Neither maximum nor minimum at 0.</div></div>
+<div class="rulebox" style="margin-top:22px">
+\[
+f'(a)=0\quad\Longrightarrow\quad\text{horizontal tangent only.}
+\]
+</div>
+<details class="answer"><summary>Context connection</summary><div>If tank volume satisfies \(V'(4)=0\), the volume is instantaneously not changing at 4 minutes. It may begin increasing, begin decreasing, or continue through with a horizontal tangent; more information is needed.</div></details>
+</section>
+
+<section class="slide" data-title="Unit conversion challenge">
+<h1>Unit conversion challenge</h1>
+<div class="card">Force \(F(h)\) is measured in kilonewtons and height \(h\) in meters. Suppose \(F'(0.5)=2\).</div>
+<div class="grid three" style="margin-top:20px"><div class="card">Interpret in kN/m.</div><div class="card">Convert the rate to N/m.</div><div class="card">Convert the rate to N/cm.</div></div>
+<details class="answer"><summary>Answers</summary><div>At height 0.5 m, force is increasing at 2 kN/m. Since \(1\text{ kN}=1000\text{ N}\), this is 2000 N/m. Since \(1\text{ m}=100\text{ cm}\), this is 20 N/cm.</div></details>
+<div class="warning">Convert both the numerator and denominator units carefully. A “per meter” rate becomes numerically smaller when expressed “per centimeter.”</div>
+</section>
+
+<section class="slide" data-title="Same number, different mathematics">
+<h1>Same number, different mathematics</h1>
+<div class="card">Each derivative equals \(-4\). Write a complete interpretation and show why the number alone is not enough.</div>
+<div class="grid two" style="margin-top:18px"><div class="card">\(T'(6)=-4\), where \(T\) is °C and \(t\) is minutes.</div><div class="card">\(C'(6)=-4\), where \(C\) is dollars and \(n\) is items.</div><div class="card">\(v'(6)=-4\), where \(v\) is m/s and \(t\) is seconds.</div><div class="card">\(P'(6)=-4\), where \(P\) is thousands and \(t\) is years.</div></div>
+<details class="answer"><summary>Answers</summary><div>Temperature decreases at \(4^\circ\text{C}/\text{min}\); total cost decreases at \(\$4/\text{item}\); velocity decreases at \(4\text{ m/s}^2\); population decreases at 4 thousand people/year. Each statement is at input 6 in its defined input units.</div></details>
+</section>
+
+<section class="slide" data-title="Very difficult: two layers of change">
+<h1>Very difficult: two layers of change</h1>
+<div class="card">Let \(q(t)\) be the rate of change of a chemical concentration, measured in \((\text{mg/L})/\text{min}\). At \(t=4\),
+\[
+q(4)=-3,\qquad q'(4)=-0.8.
+\]</div>
+<div class="grid two" style="margin-top:20px"><div class="card"><ol class="alpha"><li>Interpret \(q(4)\).</li><li>Interpret \(q'(4)\), including units.</li></ol></div><div class="card"><ol class="alpha" start="3"><li>Is concentration increasing or decreasing?</li><li>Is that change becoming faster or slower?</li></ol></div></div>
+<details class="answer"><summary>Solutions</summary><div>At 4 minutes, concentration is decreasing at 3 mg/L per minute. The concentration-change rate is decreasing by 0.8 \((\text{mg/L})/\text{min}^2\). Because \(q&lt;0\) and \(q'&lt;0\), \(q\) is becoming more negative: concentration is decreasing faster.</div></details>
+</section>
+
+<section class="slide" data-title="Ultra challenge: identify every impossible claim">
+<h1>Ultra challenge: identify every impossible claim</h1>
+<div class="card">Let \(A(t)\), in liters, be differentiable with \(t\) in hours, and suppose \(A'(3)=-5\). Which claims are guaranteed, possible but not guaranteed, or impossible?</div>
+<div class="grid two" style="margin-top:18px"><div class="card smalltext">1. \(A(3)=-5\) liters.</div><div class="card smalltext">2. At 3 hours, amount decreases at 5 L/hr.</div><div class="card smalltext">3. \(A\) has decreased by 15 liters from 0 to 3.</div><div class="card smalltext">4. \(A\) has a local minimum at 3.</div><div class="card smalltext">5. For sufficiently small positive \(h\), \(A(3+h)&lt;A(3)\).</div><div class="card smalltext">6. \(A(3.01)\approx A(3)-0.05\).</div></div>
+<details class="answer"><summary>Answers</summary><div>Guaranteed: 2, and 5 follows from the negative derivative. The local approximation in 6 is justified, though not exact. Claim 3 is possible but not guaranteed. Claim 4 is impossible for a differentiable function at an interior local minimum because the derivative would have to be 0. Claim 1 is not determined by the derivative alone, but it is contextually impossible if \(A\) is a nonnegative physical amount.</div></details>
+</section>
+
+<section class="slide" data-title="AP-style mixed free response">
+<h1>AP-style mixed free response</h1>
+<div class="card dense">The cumulative rainfall \(R(t)\), in centimeters, is differentiable \(t\) hours after midnight. Meteorologists know \(R(6)=4.8\), \(R'(6)=0.5\), and \(R''(6)=-0.08\).</div>
+<div class="grid two" style="margin-top:18px"><div class="card dense"><ol class="alpha"><li>Interpret \(R(6)\).</li><li>Interpret \(R'(6)\).</li><li>Interpret \(R''(6)\), including units.</li></ol></div><div class="card dense"><ol class="alpha" start="4"><li>Estimate \(R(6.2)\).</li><li>At \(t=6\), is rainfall accumulation increasing faster or slower? Explain.</li></ol></div></div>
+<details class="answer"><summary>Solutions</summary><div>By 6:00 a.m., 4.8 cm has accumulated. At 6:00 a.m., the total is increasing at 0.5 cm/hr. At that time, the accumulation rate is decreasing by 0.08 cm/hr each hour. \(R(6.2)\approx4.9\) cm. Since \(R'&gt;0\) but \(R''&lt;0\), rainfall total is still increasing, but at a decreasing rate.</div></details>
+</section>
+
+<section class="slide" data-title="Quiz bank: Forms A and B">
+<h1>Quiz bank: Forms A and B</h1>
+<div class="grid two"><div class="card dense"><h3>Form A</h3><ol><li>Distance \(D(t)\), in miles, satisfies \(D'(2)=73\). Interpret.</li><li>Total scooter cost \(C(s)\) satisfies \(C'(400)=27.50\). Write a contextual sentence.</li><li>Oil depth \(h(t)\), in feet, satisfies \(h'(8)=-1.2\). Interpret.</li><li>If \(h^{-1}(8)=5\), interpret.</li></ol></div><div class="card dense"><h3>Form B</h3><ol><li>Tour cost \(T(n)\) satisfies \(T'(42)=8.25\). Interpret.</li><li>Total board cost \(C(s)\) satisfies \(C'(235)=-7.85\). Interpret.</li><li>Syrup depth \(h(t)\), in inches, satisfies \(h'(3)=-18\). Interpret.</li><li>If \((h^{-1})'(5)=0.75\), interpret the units.</li></ol></div></div>
+<details class="answer"><summary>Answer guide</summary><div>Each response must name the input, dependent quantity, direction, magnitude, and units. Inverse value \(h^{-1}(8)=5\) gives a time when depth is 8; inverse derivative has units time per depth.</div></details>
+</section>
+
+<section class="slide" data-title="Quiz bank: Forms C and D">
+<h1>Quiz bank: Forms C and D</h1>
+<div class="grid two"><div class="card dense"><h3>Form C</h3><ol><li>Distance \(D(t)\), in miles, satisfies \(D'(3.5)=48\).</li><li>Cleanup cost \(C(s)\) satisfies \(C'(5000)=-120\).</li><li>Pool depth \(h(t)\), in feet, satisfies \(h'(4)=3.5\).</li><li>If \(h^{-1}(6)=9.5\), interpret.</li></ol></div><div class="card dense"><h3>Form D</h3><ol><li>Banquet cost \(B(n)\) satisfies \(B'(125)=16.50\).</li><li>Medication \(M(t)\) satisfies \(M'(6.5)=-0.5\).</li><li>Soda depth \(h(t)\), in inches, satisfies \(h'(15)=1.8\).</li><li>If \((h^{-1})'(18)=1.5\), interpret.</li></ol></div></div>
+<details class="answer"><summary>Answer guide</summary><div>Use the complete sentence frame. For a discrete count such as students, say “approximately per additional student.” For inverse derivatives, reverse the ordinary derivative units.</div></details>
+</section>
+
+<section class="slide" data-title="Partner set: choose and justify">
+<h1>Partner set: choose and justify</h1>
+<div class="grid two"><div class="card dense"><ol><li>Create a context for \(f'(4)=-7\) with valid units.</li><li>Create a different context in which the same number has rate-of-rate units.</li><li>Write one false interpretation and explain exactly why it fails.</li></ol></div><div class="card dense"><ol start="4"><li>Write a finite difference that could approximate your derivative.</li><li>State one conclusion that is justified and one that is not.</li><li>Exchange with a partner and check all five interpretation elements.</li></ol></div></div>
+<details class="answer"><summary>Sample</summary><div>If \(V(t)\) is liters and \(t\) is minutes, \(V'(4)=-7\) means volume is decreasing at 7 L/min at 4 minutes. If \(q(t)\) is L/min, then \(q'(4)=-7\) means flow rate is decreasing by 7 L/min each minute.</div></details>
+</section>
+
+<section class="slide" data-title="Mini-assessment">
+<h1>Mini-assessment</h1>
+<div class="grid two"><div class="card dense"><ol><li>Interpret \(P'(5)=0.08\) when \(P\) is billions and \(t\) is years since 1990.</li><li>State the units of \(r'(0.5)\) if \(r\) is feet/second and \(t\) is seconds.</li><li>Write notation for “at 12 minutes, pressure is decreasing at 0.6 psi/min.”</li></ol></div><div class="card dense"><ol start="4"><li>Explain why \(f'(3)=0\) does not imply a local extremum.</li><li>Interpret \(\lim_{h\to0}[C(80+h)-C(80)]/h=1.25\), where \(C\) is dollars and input is pounds of paper.</li></ol></div></div>
+<details class="answer"><summary>Answers</summary><div><ol><li>In 1995, population increases at \(0.08\) billion/year \({}=80\) million/year.</li><li>ft/s<sup>2</sup>.</li><li>\(p'(12)=-0.6\).</li><li>It guarantees only a horizontal tangent; \(x^3\) at 0 is a counterexample.</li><li>At 80 lb, shredding cost increases by about \(\$1.25\) per additional pound.</li></ol></div></details>
+</section>
+
+<section class="slide" data-title="Exit ticket">
+<h1>Exit ticket</h1>
+<div class="grid two"><div class="card">The water depth \(H(t)\), in feet, is measured \(t\) hours after pumping begins. Interpret
+\[
+H'(7)=0.6.
+\]</div><div class="card">The rate \(q(t)\) of water flow is measured in gallons per minute, where \(t\) is measured in minutes. Interpret
+\[
+q'(7)=0.6.
+\]</div></div>
+<div class="prompt">Your two sentences must use different dependent quantities and different units.</div>
+<details class="answer"><summary>Answers</summary><div>At 7 hours, water depth is increasing at 0.6 ft/hr. At 7 minutes, the water-flow rate is increasing by 0.6 gal/min each minute, or 0.6 gal/min<sup>2</sup>.</div></details>
+</section>
+
+</main>
+<footer class="foot">
+<div class="nav"><button class="secondary" id="prev" type="button">← Prev</button><button class="primary" id="next" type="button">Next →</button><button class="secondary" id="ans" type="button">Answers</button></div>
+<select id="jump" aria-label="Jump to a slide"></select>
+</footer>
+<script>
+const slides=[...document.querySelectorAll('.slide')];
+let index=0;
+const count=document.getElementById('count'),bar=document.getElementById('bar'),jump=document.getElementById('jump');
+slides.forEach((s,i)=>{const opt=document.createElement('option');opt.value=i;opt.textContent=(i+1)+'. '+(s.dataset.title||('Slide '+(i+1)));jump.appendChild(opt);});
+function show(i){index=Math.max(0,Math.min(slides.length-1,i));slides.forEach((s,j)=>s.classList.toggle('active',j===index));count.textContent=(index+1)+' / '+slides.length;bar.style.width=((index+1)/slides.length*100)+'%';jump.value=index;}
+document.getElementById('prev').onclick=()=>show(index-1);
+document.getElementById('next').onclick=()=>show(index+1);
+jump.onchange=e=>show(+e.target.value);
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='PageDown')show(index+1);if(e.key==='ArrowLeft'||e.key==='PageUp')show(index-1);if(e.key==='Home')show(0);if(e.key==='End')show(slides.length-1);});
+document.getElementById('ans').onclick=()=>{const panels=[...document.querySelectorAll('.slide.active details.answer')];const openAll=panels.some(d=>!d.open);panels.forEach(d=>d.open=openAll);};
+
+const NS='http://www.w3.org/2000/svg';
+function svgEl(name,attrs={}){const e=document.createElementNS(NS,name);Object.entries(attrs).forEach(([k,v])=>e.setAttribute(k,v));return e;}
+function niceNumber(v){if(Math.abs(v)>=100)return String(Math.round(v));if(Math.abs(v)>=10)return String(Math.round(v*10)/10);return String(Math.round(v*100)/100);}
+function drawGraph(id,cfg){
+  const svg=document.getElementById(id);if(!svg)return;
+  const W=680,H=360,m={l:62,r:22,t:20,b:48},pw=W-m.l-m.r,ph=H-m.t-m.b;
+  svg.setAttribute('viewBox',`0 0 ${W} ${H}`);svg.innerHTML='';
+  const X=x=>m.l+(x-cfg.xMin)/(cfg.xMax-cfg.xMin)*pw;
+  const Y=y=>m.t+(cfg.yMax-y)/(cfg.yMax-cfg.yMin)*ph;
+  const clipId='clip-'+id;const defs=svgEl('defs');const clip=svgEl('clipPath',{id:clipId});clip.appendChild(svgEl('rect',{x:m.l,y:m.t,width:pw,height:ph}));defs.appendChild(clip);svg.appendChild(defs);
+  svg.appendChild(svgEl('rect',{x:m.l,y:m.t,width:pw,height:ph,fill:'#fff'}));
+  const ticks=5;
+  for(let i=0;i<=ticks;i++){
+    const xv=cfg.xMin+(cfg.xMax-cfg.xMin)*i/ticks,yv=cfg.yMin+(cfg.yMax-cfg.yMin)*i/ticks;
+    svg.appendChild(svgEl('line',{x1:X(xv),x2:X(xv),y1:m.t,y2:m.t+ph,stroke:'#e8eef5','stroke-width':1}));
+    svg.appendChild(svgEl('line',{x1:m.l,x2:m.l+pw,y1:Y(yv),y2:Y(yv),stroke:'#e8eef5','stroke-width':1}));
+    const xt=svgEl('text',{x:X(xv),y:H-26,'text-anchor':'middle',fill:'#607086','font-size':11});xt.textContent=niceNumber(xv);svg.appendChild(xt);
+    const yt=svgEl('text',{x:m.l-8,y:Y(yv)+4,'text-anchor':'end',fill:'#607086','font-size':11});yt.textContent=niceNumber(yv);svg.appendChild(yt);
+  }
+  const xAxisY=(cfg.yMin<=0&&cfg.yMax>=0)?Y(0):Y(cfg.yMin),yAxisX=(cfg.xMin<=0&&cfg.xMax>=0)?X(0):X(cfg.xMin);
+  svg.appendChild(svgEl('line',{x1:m.l,x2:m.l+pw,y1:xAxisY,y2:xAxisY,stroke:'#203654','stroke-width':2}));
+  svg.appendChild(svgEl('line',{x1:yAxisX,x2:yAxisX,y1:m.t,y2:m.t+ph,stroke:'#203654','stroke-width':2}));
+  const xl=svgEl('text',{x:m.l+pw,y:H-7,'text-anchor':'end',fill:'#203654','font-size':13,'font-weight':700});xl.textContent=cfg.xLabel||'x';svg.appendChild(xl);
+  const yl=svgEl('text',{x:m.l+5,y:m.t+13,fill:'#203654','font-size':13,'font-weight':700});yl.textContent=cfg.yLabel||'y';svg.appendChild(yl);
+  const group=svgEl('g',{'clip-path':`url(#${clipId})`});svg.appendChild(group);
+  let pts=[];for(let i=0;i<=360;i++){const x=cfg.xMin+(cfg.xMax-cfg.xMin)*i/360,y=cfg.fn(x);if(Number.isFinite(y))pts.push(`${X(x)},${Y(y)}`);}
+  group.appendChild(svgEl('polyline',{points:pts.join(' '),fill:'none',stroke:'#0b84c6','stroke-width':4,'stroke-linecap':'round','stroke-linejoin':'round'}));
+  (cfg.secants||[]).forEach((s,j)=>{const ya=cfg.fn(s.a),yb=cfg.fn(s.b);group.appendChild(svgEl('line',{x1:X(s.a),y1:Y(ya),x2:X(s.b),y2:Y(yb),stroke:s.color||'#d97706','stroke-width':2.2,'stroke-dasharray':j===0?'7 5':'4 4',opacity:.9}));});
+  (cfg.tangents||[]).forEach((t,j)=>{const y0=cfg.fn(t.x),xa=cfg.xMin,xb=cfg.xMax;group.appendChild(svgEl('line',{x1:X(xa),y1:Y(y0+t.slope*(xa-t.x)),x2:X(xb),y2:Y(y0+t.slope*(xb-t.x)),stroke:t.color||'#7a1738','stroke-width':3,'stroke-dasharray':'9 6'}));const p=svgEl('circle',{cx:X(t.x),cy:Y(y0),r:5,fill:t.color||'#7a1738'});group.appendChild(p);});
+  (cfg.points||[]).forEach(p=>group.appendChild(svgEl('circle',{cx:X(p.x),cy:Y(cfg.fn(p.x)),r:4.5,fill:p.color||'#0e6655'})));
+  if(cfg.title){const tt=svgEl('text',{x:W/2,y:16,'text-anchor':'middle',fill:'#203654','font-size':14,'font-weight':800});tt.textContent=cfg.title;svg.appendChild(tt);}
+}
+function drawAllGraphs(){
+  drawGraph('graph-secants',{xMin:0,xMax:4,yMin:0,yMax:26,xLabel:'t',yLabel:'s(t)',title:'Secants approach the tangent at t = 2',fn:t=>(t+1)*(t+1),secants:[{a:.5,b:2},{a:1,b:2},{a:1.5,b:2}],tangents:[{x:2,slope:6}]});
+  drawGraph('graph-depth',{xMin:0,xMax:8,yMin:4.5,yMax:7.6,xLabel:'t (hr)',yLabel:'d(t) ft',title:'Depth increases, levels, then decreases',fn:t=>6+.8*t-.12*t*t,tangents:[{x:2,slope:.32,color:'#0e6655'},{x:6,slope:-.64,color:'#7a1738'}]});
+  drawGraph('graph-velocity',{xMin:0,xMax:6,yMin:0,yMax:18,xLabel:'t (s)',yLabel:'v(t) m/s',title:'Velocity and its tangent at t = 3',fn:t=>12+4*t-t*t,tangents:[{x:3,slope:-2}]});
+  drawGraph('graph-position',{xMin:0,xMax:5,yMin:0,yMax:24,xLabel:'t (s)',yLabel:'s(t) m',title:'Position with tangent at t = 2',fn:t=>t*t*t-6*t*t+9*t+2,tangents:[{x:2,slope:-3}],points:[{x:1},{x:3}]});
+  drawGraph('graph-population',{xMin:0,xMax:8,yMin:38,yMax:58,xLabel:'t (yr)',yLabel:'P(t) thousands',title:'Population with tangent at t = 4',fn:t=>40+5*t-.4*t*t,tangents:[{x:4,slope:1.8}]});
+}
+drawAllGraphs();
+window.addEventListener('load',()=>{if(window.renderMathInElement){renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});}});
+show(0);
+</script>
+</div>
+</body>
+</html>

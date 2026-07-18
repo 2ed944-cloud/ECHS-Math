@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>AP Calculus 4.3 - Other Rates of Change</title>
+<link href="https://cdn.jsdelivr.net" rel="preconnect"/>
+<link href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" rel="stylesheet"/>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<style>
+:root{--maroon:#7a1738;--navy:#203654;--teal:#0e6655;--ink:#17212b;--muted:#5d6877;--line:#d9e2ec;--gold:#c69c48;--bg:#f4f7fb;--white:#fff;--soft:#fbfaf7;--blue:#0b84c6;--orange:#d97706}
+*{box-sizing:border-box}html,body{height:100%}body{margin:0;font-family:Inter,Aptos,"Segoe UI",Arial,sans-serif;color:var(--ink);background:var(--bg)}
+.deck{height:100vh;display:grid;grid-template-rows:74px 1fr 54px;overflow:hidden}.topbar{display:flex;align-items:center;justify-content:space-between;padding:10px 22px;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 2px 14px rgba(20,30,55,.08);z-index:2}
+.brand{display:flex;align-items:center;gap:18px}.echs{height:48px;width:96px;border-radius:14px;background:linear-gradient(135deg,var(--maroon),var(--navy));color:#fff;display:grid;place-items:center;font-weight:900;letter-spacing:1.5px}.course{border-left:2px solid #d5dce4;padding-left:18px;line-height:1.15}.course strong{color:var(--maroon);font-size:20px}.course span{display:block;color:var(--muted);font-size:13px;margin-top:3px}
+.progress{display:flex;align-items:center;gap:10px;color:var(--muted);font-weight:700;font-size:14px}.dotbar{width:220px;height:9px;background:#e5ebf0;border-radius:99px;overflow:hidden}.dotbar span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--maroon),var(--teal));border-radius:99px}
+.main{overflow:hidden}.slide{display:none;height:100%;overflow-y:auto;padding:34px 48px 72px;background:linear-gradient(135deg,#fff 0%,#fbfaf7 58%,#f3fbf9 100%)}.slide.active{display:block}.slide h1{font-size:38px;line-height:1.04;margin:0 0 24px;color:var(--navy);letter-spacing:-1.1px}.kicker{color:var(--maroon);font-size:14px;text-transform:uppercase;letter-spacing:.12em;font-weight:900;margin-bottom:9px}
+.hero{display:grid;grid-template-columns:1fr 1.2fr;gap:28px;align-items:center;margin-top:20px}.big{font-size:86px;font-weight:900;color:var(--maroon);line-height:.9}.hero p{font-size:28px;color:var(--navy);margin:12px 0 0}.formula{background:#fff;border:1px solid var(--line);border-radius:22px;padding:26px;box-shadow:0 18px 35px rgba(20,30,55,.08);font-size:20px}
+.targets{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px}.targets span,.tag{display:inline-block;background:#eef7f4;border:1px solid #cce7df;color:var(--teal);border-radius:99px;padding:10px 14px;font-weight:800;margin:3px}
+.grid{display:grid;gap:22px}.two{grid-template-columns:1fr 1fr}.three{grid-template-columns:repeat(3,1fr)}.four{grid-template-columns:repeat(4,1fr)}.card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:22px;font-size:21px;line-height:1.45;box-shadow:0 16px 30px rgba(20,30,55,.06)}.card .num{font-size:20px;font-weight:900;color:var(--navy);margin-bottom:10px}.card ol,.card ul{margin-top:8px;padding-left:28px}.card li{margin:8px 0}.card h3{margin:0 0 10px;color:var(--maroon)}
+.rulebox{background:#fff;border:2px solid var(--maroon);border-radius:24px;padding:22px 28px;margin:8px 0 24px;box-shadow:0 16px 32px rgba(122,23,56,.08);font-size:21px}.rulebox h3{margin:0 0 10px;color:var(--maroon);font-size:22px}.rulebox.compact{padding:14px 22px}.prompt{font-size:23px;background:#fff7e6;border-left:8px solid var(--gold);padding:16px 20px;margin-top:20px;border-radius:16px;color:#3a2d12}
+.note{background:#eef3f9;border-left:7px solid var(--navy);padding:14px 18px;border-radius:16px;font-size:21px;margin:12px 0 22px;color:var(--navy);font-weight:700}.warning{background:#fff1f2;border-left:7px solid var(--maroon);padding:14px 18px;border-radius:16px;font-size:20px;margin:12px 0 22px;color:#5f1730}.sectionhead{background:#f8eef3;border:1px solid #edcbd8;border-radius:18px;padding:18px 22px;color:var(--maroon);font-weight:900;font-size:22px;margin-bottom:18px}
+.answer{margin-top:18px;background:#fff;border:1px solid #efd0dc;border-radius:18px;padding:10px 16px;font-size:18px}.answer summary{cursor:pointer;color:var(--maroon);font-weight:900}.answer div{margin-top:12px;border-top:1px solid #f1d7e2;padding-top:12px}.answer ol{margin:8px 0 0 22px}.answer li{margin:7px 0}.answer[open]{box-shadow:0 10px 28px rgba(122,23,56,.08)}
+.alpha{list-style:lower-alpha}.qblock>li{margin-bottom:18px}.mcq{list-style:upper-alpha;display:grid;grid-template-columns:1fr 1fr;gap:4px 16px}.compact-list li{margin:6px 0}.dense{font-size:18px;line-height:1.36}.smalltext{font-size:19px;line-height:1.38}.tiny{font-size:16px;line-height:1.3}.widecard{grid-column:1/-1}
+.tbl{width:100%;border-collapse:collapse;font-size:19px;margin:12px 0;background:#fff}.tbl th,.tbl td{border:1px solid #d7dee8;padding:10px;text-align:center}.tbl th{background:#eef3f9;color:var(--navy)}.tbl td.left,.tbl th.left{text-align:left}.tbl.small{font-size:17px}.unit{white-space:nowrap;color:var(--teal);font-weight:800}.good{color:var(--teal);font-weight:900}.bad{color:var(--maroon);font-weight:900}
+.svggraph{width:100%;height:300px;background:#fff;border-radius:16px;border:1px solid #e8eef5}.triplegraph{height:235px}.graphkey{display:flex;gap:14px;flex-wrap:wrap;font-size:15px;color:var(--muted);margin-top:8px}.swatch{width:24px;height:4px;border-radius:4px;display:inline-block;margin-right:5px;vertical-align:middle}
+.signchart{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.signcell{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px;text-align:center;font-size:18px}.signcell strong{display:block;color:var(--navy);font-size:22px;margin-bottom:8px}
+.foot{display:flex;align-items:center;justify-content:space-between;background:#fff;border-top:1px solid var(--line);padding:8px 22px;box-shadow:0 -2px 12px rgba(20,30,55,.05);z-index:3}.nav{display:flex;gap:10px;align-items:center}button{border:0;border-radius:14px;padding:12px 18px;font-weight:900;font-size:15px;cursor:pointer}button.primary{background:var(--maroon);color:#fff}button.secondary{background:#e9eef4;color:var(--navy)}select{padding:12px 16px;border:1px solid var(--line);border-radius:14px;background:#fff;color:var(--navy);font-weight:800;min-width:360px}.katex-display{margin:.6em 0}.slide::-webkit-scrollbar{width:9px}.slide::-webkit-scrollbar-thumb{background:#c8d2dd;border-radius:20px}
+@media(max-width:900px){.two,.three,.four,.hero,.signchart{grid-template-columns:1fr}.slide{padding:24px 24px 80px}.slide h1{font-size:32px}.card{font-size:19px}.big{font-size:60px}select{min-width:200px;max-width:42vw}.dotbar{width:120px}.course span{max-width:260px}.progress{font-size:12px}}
+@media print{body{background:#fff}.deck{height:auto;display:block}.topbar,.foot{display:none}.main{overflow:visible}.slide,.slide.active{display:block;height:7.2in;overflow:hidden;page-break-after:always;padding:24px;background:#fff}.answer{display:none}.slide h1{font-size:30px}.card{font-size:16px}.rulebox,.note,.prompt{font-size:17px}}
+
+.contextmap{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:20px}.contextpill{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px;text-align:center;font-size:18px;font-weight:850;color:var(--navy);box-shadow:0 10px 22px rgba(20,30,55,.05)}
+.flow{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin:18px 0}.flowbox{background:#fff;border:2px solid var(--navy);border-radius:18px;padding:14px 18px;font-weight:900;color:var(--navy);font-size:20px}.arrow{font-size:28px;color:var(--maroon);font-weight:900}.equationline{font-size:25px;text-align:center;background:#fff;border:1px solid var(--line);border-radius:18px;padding:15px;margin:12px 0}.callout{background:#f7fbff;border:1px solid #cfe0ef;border-radius:18px;padding:16px 20px;font-size:20px}.legend{display:flex;gap:18px;flex-wrap:wrap;font-size:15px;color:var(--muted);margin:8px 0 0}.legend span{display:flex;align-items:center;gap:7px}.legend i{display:inline-block;width:26px;height:4px;border-radius:5px}.stat{font-size:38px;font-weight:950;color:var(--maroon);line-height:1}.center{text-align:center}.nowrap{white-space:nowrap}.pillrow{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}.pill{border-radius:999px;padding:9px 13px;background:#f3f6fa;border:1px solid var(--line);font-weight:800;color:var(--navy)}
+@media(max-width:900px){.contextmap{grid-template-columns:1fr 1fr}.flow{align-items:stretch}.flowbox{font-size:18px}.equationline{font-size:21px}}
+
+</style>
+</head>
+<body>
+<div class="deck">
+<header class="topbar"><div class="brand"><div class="echs">ECHS</div><div class="course"><strong>AP Calculus AB</strong><span>4.3 Other Rates of Change</span></div></div><div class="progress"><span id="count"></span><div class="dotbar"><span id="bar"></span></div></div></header>
+<main class="main">
+<section class="slide" data-title="Title">
+<h1>Other Rates of Change</h1>
+
+<div class="hero"><div><div class="kicker">AP Calculus AB - 4.3</div><div class="big">4.3</div><p>Using derivatives to interpret and solve real-world problems beyond straight-line motion</p></div><div class="formula">
+\[
+\text{instantaneous rate of change}=\frac{d(\text{output})}{d(\text{input})}
+\]
+<div class="note" style="margin-bottom:0">The meaning and units come from the variables, not from the derivative symbol alone.</div></div></div>
+<div class="targets"><span>tables</span><span>models</span><span>net rates</span><span>marginal analysis</span><span>chemistry</span><span>density</span><span>electric current</span><span>population growth</span></div>
+
+</section>
+
+<section class="slide" data-title="Learning targets and success criteria">
+<h1>Learning targets and success criteria</h1>
+
+<div class="grid two"><div class="card"><h3>Learning targets</h3><ul><li>Interpret rates of change in applied contexts.</li><li>Calculate instantaneous rates from formulas, tables, and graphs.</li><li>Distinguish an amount from a rate and a rate from a rate of a rate.</li><li>Use derivatives in economics, biology, chemistry, and physics.</li></ul></div><div class="card"><h3>Success criteria</h3><ul><li>I name what is changing and with respect to what variable.</li><li>I attach correct compound units.</li><li>I use the sign of a derivative to justify increasing or decreasing behavior.</li><li>I recognize when a model gives an impossible or questionable contextual prediction.</li></ul></div></div>
+<div class="prompt">Every strong AP response contains a number, units, a contextual noun, and a time or input value.</div>
+
+</section>
+
+<section class="slide" data-title="Lesson roadmap">
+<h1>Where derivatives appear outside motion</h1>
+
+<div class="contextmap"><div class="contextpill">Population<br/>people per year</div><div class="contextpill">Temperature<br/>degrees per minute</div><div class="contextpill">Economics<br/>dollars per unit</div><div class="contextpill">Chemistry<br/>moles/L per second</div><div class="contextpill">Electricity<br/>coulombs per second</div><div class="contextpill">Density<br/>mass per length</div><div class="contextpill">Medicine<br/>mg per hour</div><div class="contextpill">Water systems<br/>gallons per minute</div><div class="contextpill">Information<br/>views per day</div><div class="contextpill">Demand<br/>relative change</div></div>
+<div class="note">The mathematics is the same: identify the function, differentiate at the correct level, then interpret.</div>
+
+</section>
+
+<section class="slide" data-title="Opening diagnostic">
+<h1>Opening diagnostic</h1>
+
+<div class="card">The amount of medicine in a patient is modeled by \(M(t)=40e^{-0.18t}\) milligrams, where \(t\) is measured in hours.</div>
+<div class="grid four" style="margin-top:18px"><div class="card"><div class="num">A</div>What does \(M(3)\) represent?</div><div class="card"><div class="num">B</div>What does \(M'(3)\) represent?</div><div class="card"><div class="num">C</div>What are the units of \(M''(3)\)?</div><div class="card"><div class="num">D</div>Is the amount increasing or decreasing at \(t=3\)?</div></div>
+<details class="answer"><summary>Answers</summary><div>\(M(3)\) is the amount present after 3 hours. \(M'(3)\) is the instantaneous change in that amount, in mg/hour. \(M''(3)\) has units mg/hour\(^2\). Since \(M'(3)=-7.2e^{-0.54}<0\), the amount is decreasing.</div></details>
+
+</section>
+
+<section class="slide" data-title="Universal framework">
+<h1>The universal rate-of-change framework</h1>
+
+<div class="flow"><div class="flowbox">1. Name the output</div><div class="arrow">→</div><div class="flowbox">2. Name the input</div><div class="arrow">→</div><div class="flowbox">3. Differentiate</div><div class="arrow">→</div><div class="flowbox">4. Evaluate</div><div class="arrow">→</div><div class="flowbox">5. Interpret</div></div>
+<div class="rulebox"><h3>Interpretation template</h3>At input \(x=a\), the <strong>[output quantity]</strong> is increasing/decreasing at approximately <strong>\(f'(a)\)</strong> <strong>[output units per input unit]</strong>.</div>
+<div class="warning">Do not write “the function is changing by...” unless you identify the actual contextual quantity.</div>
+
+</section>
+
+<section class="slide" data-title="Derivative hierarchy">
+<h1>Amount, rate, and rate of a rate</h1>
+
+<div class="grid three"><div class="card"><h3>Level 0</h3>\(A(t)\): amount<br/><span class="unit">gallons</span></div><div class="card"><h3>Level 1</h3>\(A'(t)\): rate of amount<br/><span class="unit">gallons/hour</span></div><div class="card"><h3>Level 2</h3>\(A''(t)\): change in the rate<br/><span class="unit">gallons/hour\(^2\)</span></div></div>
+<div class="prompt">A negative second derivative does not necessarily mean the amount is decreasing. It means the first derivative is decreasing.</div>
+
+</section>
+
+<section class="slide" data-title="Units rule">
+<h1>The unit rule</h1>
+
+<div class="rulebox"><h3>Derivative units</h3>If \(y=f(x)\), then the units of \(f'(x)\) are
+\[
+\frac{\text{units of }y}{\text{units of }x}.
+\]
+Each additional derivative divides by the input unit one more time.</div>
+<table class="tbl"><tr><th>Function</th><th>Units</th><th>Derivative</th><th>Derivative units</th></tr><tr><td>\(T(t)\)</td><td>°F</td><td>\(T'(t)\)</td><td>°F/day</td></tr><tr><td>\(R(t)\)</td><td>gallons/min</td><td>\(R'(t)\)</td><td>gallons/min\(^2\)</td></tr><tr><td>\(C(x)\)</td><td>dollars</td><td>\(C'(x)\)</td><td>dollars/item</td></tr></table>
+
+</section>
+
+<section class="slide" data-title="Units diagnostic">
+<h1>Units as a dimensional detector</h1>
+
+<div class="grid two"><div class="card"><h3>Pond evaporation</h3>If \(t=f(P)\), where \(t\) is days and \(P\) is liters, then
+\[
+f'(P):\ \frac{\text{days}}{\text{liter}},\qquad f''(P):\ \frac{\text{days}}{\text{liter}^2}.
+\]</div><div class="card"><h3>Production rate</h3>If \(R(t)\) is items/hour, then
+\[
+R'(t):\ \frac{\text{items/hour}}{\text{hour}}=\frac{\text{items}}{\text{hour}^2}.
+\]</div></div>
+<div class="warning">Writing “items per hour” for \(R'(t)\) loses one time unit and changes the meaning.</div>
+
+</section>
+
+<section class="slide" data-title="Sign and behavior">
+<h1>Sign gives local behavior</h1>
+
+<div class="signchart"><div class="signcell"><strong>\(f'(a)>0\)</strong>output is increasing</div><div class="signcell"><strong>\(f'(a)<0\)</strong>output is decreasing</div><div class="signcell"><strong>\(f'(a)=0\)</strong>instantaneously unchanged</div><div class="signcell"><strong>\(f''(a)<0\)</strong>the rate \(f'\) is decreasing</div></div>
+<div class="note">“Increasing” and “positive” are different. A quantity may be negative and increasing, or positive and decreasing.</div>
+
+</section>
+
+<section class="slide" data-title="Complete interpretation">
+<h1>Build a complete interpretation sentence</h1>
+
+<div class="card">Suppose \(W'(10)=0.4\), where \(W(t)\) is lake temperature in °F and \(t\) is days.</div>
+<div class="grid two" style="margin-top:18px"><div class="card"><span class="bad">Incomplete:</span><br/>“It is increasing at 0.4.”</div><div class="card"><span class="good">Complete:</span><br/>“On day 10, the lake temperature is increasing at approximately \(0.4\) °F per day.”</div></div>
+<div class="prompt">Include the time, the contextual quantity, the direction, the numerical value, and the compound units.</div>
+
+</section>
+
+<section class="slide" data-title="Function already a rate">
+<h1>Is the function already a rate?</h1>
+
+<div class="grid two"><div class="card"><h3>Population amount</h3>If \(P(t)\) is the number of rabbits, then \(P'(t)\) is the rabbit population growth rate.</div><div class="card"><h3>Population growth rate</h3>If \(G(t)\) is already rabbits/year, then \(G'(t)\) tells how the growth rate changes, in rabbits/year\(^2\).</div></div>
+<div class="warning">Before differentiating, read the units printed beside the original function.</div>
+
+</section>
+
+<section class="slide" data-title="Second derivative language">
+<h1>Interpreting the derivative of a rate</h1>
+
+<div class="card">A factory produces items at rate \(R(t)\) items/hour. Suppose \(R'(4)=-18\).</div>
+<div class="rulebox"><h3>Correct interpretation</h3>Four hours after production begins, the production rate is decreasing at \(18\) items per hour per hour.</div>
+<div class="grid two"><div class="card"><span class="bad">Not:</span> the factory is losing 18 items/hour.</div><div class="card"><span class="bad">Not:</span> total production is decreasing by 18 items.</div></div>
+
+</section>
+
+<section class="slide" data-title="Calculator derivative">
+<h1>Derivative on a calculator</h1>
+
+<div class="grid two"><div class="card"><h3>Numerical derivative</h3>For \(f(x)=5^{\sin x}\), evaluate
+\[
+f'(3)=\left.\frac{d}{dx}5^{\sin x}\right|_{x=3}.
+\]
+A calculator gives approximately \(-1.983\).</div><div class="card"><h3>Analytic check</h3>
+\[
+f'(x)=5^{\sin x}\ln(5)\cos x,
+\]
+so \(f'(3)=5^{\sin3}\ln(5)\cos3\approx-2.000\).</div></div>
+<div class="note">A calculator value still needs context and units when the problem is applied.</div>
+
+</section>
+
+<section class="slide" data-title="Table derivative">
+<h1>Estimate a derivative from a table</h1>
+
+<table class="tbl"><tr><th>\(t\) (years)</th><td>0</td><td>10</td><td>20</td><td>30</td></tr><tr><th>\(P(t)\) (people)</th><td>100</td><td>120</td><td>150</td><td>200</td></tr></table>
+<div class="grid two"><div class="card"><h3>At \(t=15\)</h3>
+\[
+P'(15)\approx\frac{P(20)-P(10)}{20-10}=3
+\]
+people/year.</div><div class="card"><h3>At \(t=20\)</h3>A centered estimate uses \(t=10\) and \(t=30\):
+\[
+P'(20)\approx\frac{200-120}{30-10}=4
+\]
+people/year.</div></div>
+
+</section>
+
+<section class="slide" data-title="Centered estimate">
+<h1>Why a centered estimate is usually preferred</h1>
+
+<div class="grid three"><div class="card"><h3>Left</h3>\(\dfrac{P(20)-P(10)}{10}=3\)</div><div class="card"><h3>Centered</h3>\(\dfrac{P(30)-P(10)}{20}=4\)</div><div class="card"><h3>Right</h3>\(\dfrac{P(30)-P(20)}{10}=5\)</div></div>
+<div class="note">For a smooth function, data on both sides of the target often balances local curvature better than a one-sided slope.</div>
+<div class="warning">Use the closest available values on opposite sides when possible. Do not average slopes unless the intervals justify it.</div>
+
+</section>
+
+<section class="slide" data-title="Nonuniform table">
+<h1>Nonuniform spacing: choose points, not row numbers</h1>
+
+<table class="tbl"><tr><th>\(t\) (min)</th><td>0</td><td>20</td><td>30</td><td>50</td><td>60</td><td>90</td></tr><tr><th>\(R(t)\) (gal/min)</th><td>15</td><td>25</td><td>45</td><td>60</td><td>70</td><td>75</td></tr></table>
+<div class="equationline">\(R'(40)\approx\dfrac{R(50)-R(30)}{50-30}=\dfrac{60-45}{20}=0.75\ \text{gal/min}^2\)</div>
+<div class="prompt">At 40 minutes, the inflow rate is increasing by about 0.75 gallon per minute each minute.</div>
+
+</section>
+
+<section class="slide" data-title="Table interpretation">
+<h1>A table estimate needs a contextual conclusion</h1>
+
+<table class="tbl"><tr><th>\(t\) (days)</th><td>0</td><td>5</td><td>10</td><td>15</td><td>20</td></tr><tr><th>\(W(t)\) (°F)</th><td>58</td><td>60</td><td>61</td><td>64</td><td>68</td></tr></table>
+<div class="equationline">\(W'(10)\approx\dfrac{64-60}{15-5}=0.4\ \text{°F/day}\)</div>
+<div class="rulebox compact">On day 10, the lake temperature is increasing at approximately \(0.4\) °F per day.</div>
+
+</section>
+
+<section class="slide" data-title="Graph and slope">
+<h1>Read a rate of change from a graph</h1>
+
+<div class="grid two"><div><svg class="svggraph" id="graph-pond-data"></svg><div class="legend"><span><i style="background:#0b84c6"></i>flow-rate data</span><span><i style="background:#7a1738"></i>local secant near \(t=2\)</span></div></div><div class="card"><h3>Retention pond</h3>\(V(t)\) is the inflow rate in thousands of gallons/hour.<br/><br/>Using \(t=1.5\) and \(t=2.5\),
+\[
+V'(2)\approx\frac{1.24-0.93}{1}=0.31.
+\]
+The inflow rate is increasing by about 0.31 thousand gallons/hour each hour.</div></div>
+
+</section>
+
+<section class="slide" data-title="Net rate">
+<h1>Net rate: inputs minus outputs</h1>
+
+<div class="flow"><div class="flowbox">inflow \(I(t)\)</div><div class="arrow">−</div><div class="flowbox">outflow \(O(t)\)</div><div class="arrow">=</div><div class="flowbox">amount change \(A'(t)\)</div></div>
+<div class="equationline">\[A'(t)=I(t)-O(t)\]</div>
+<div class="grid two"><div class="card">If \(I>O\), the amount increases.</div><div class="card">If \(I<O\), the amount decreases.</div></div>
+<div class="warning">Do not differentiate the rate functions unless the question asks how the net rate itself is changing.</div>
+
+</section>
+
+<section class="slide" data-title="Museum rate question">
+<h1>Museum entering and exiting</h1>
+
+<div class="card">People enter a museum at \(f(t)\) people/hour and exit at \(g(t)\) people/hour. Which condition means the number of people inside is decreasing?</div>
+<ol class="mcq card"><li>\(g(t)<0\)</li><li>\(g'(t)<0\)</li><li>\(f(t)-g(t)<0\)</li><li>\(f'(t)-g'(t)<0\)</li></ol>
+<details class="answer"><summary>Answer and reasoning</summary><div><strong>C.</strong> If \(N(t)\) is the number inside, then \(N'(t)=f(t)-g(t)\). The building population decreases when \(N'(t)<0\).</div></details>
+
+</section>
+
+<section class="slide" data-title="Beach sand model">
+<h1>Worked example: beach sand</h1>
+
+<div class="card">Sand is removed at \(R(t)=1+6\sin\!\left(\frac{2\pi t}{25}\right)\) yd\(^3\)/hr and added at \(S(t)=\dfrac{18t}{1+4t}\) yd\(^3\)/hr.</div>
+<div class="equationline">\[
+A'(6)=S(6)-R(6)\approx4.320-6.988=-2.668\ \text{yd}^3/\text{hr}.
+\]</div>
+<div class="rulebox compact">At 6 hours, the total amount of sand on the beach is decreasing at approximately \(2.668\) cubic yards per hour.</div>
+
+</section>
+
+<section class="slide" data-title="Reservoir table">
+<h1>Rate of a rate from a table</h1>
+
+<table class="tbl"><tr><th>\(t\) (hr)</th><td>0</td><td>1</td><td>1.5</td><td>2</td><td>2.5</td><td>3</td><td>3.5</td><td>4</td></tr><tr><th>\(V(t)\) (thousand gal/hr)</th><td>0.50</td><td>0.75</td><td>0.93</td><td>1.15</td><td>1.24</td><td>1.05</td><td>0.97</td><td>0.72</td></tr></table>
+<div class="grid two"><div class="card"><h3>Interpret \(V'(t)\)</h3>It is the rate at which the water inflow rate changes, in thousand gal/hr\(^2\).</div><div class="card"><h3>When does flow begin slowing?</h3>The values peak near \(t=2.5\). A local estimate is
+\[
+V'(2.5)\approx\frac{1.05-1.15}{3-2}=-0.10.
+\]</div></div>
+
+</section>
+
+<section class="slide" data-title="Pollutant sign">
+<h1>Increasing or decreasing from a given derivative</h1>
+
+<div class="card">The pollutant amount \(P(t)\) satisfies
+\[
+P'(t)=2-4e^{-0.3\sqrt t}\quad\text{gallons/day}.
+\]</div>
+<div class="equationline">\(P'(7)=2-4e^{-0.3\sqrt7}\approx0.191>0\)</div>
+<div class="note">The pollutant amount is increasing at day 7. The initial value \(P(0)=100\) gallons is irrelevant to this sign question.</div>
+
+</section>
+
+<section class="slide" data-title="Model validity">
+<h1>A cumulative-count model can reveal a problem</h1>
+
+<div class="card">Suppose a cumulative shopper count is modeled by
+\[
+E(t)=0.2t^4-10t^3+50t^2,
+\]
+for \(0\le t\le10\). Then \(E'(4)=-28.8\) shoppers/hour.</div>
+<div class="warning"><strong>Context audit:</strong> a cumulative number who have entered cannot decrease. The derivative calculation is correct, but the model or claimed domain is not contextually valid near \(t=4\).</div>
+<div class="prompt">Calculus can test the plausibility of a model; do not force an impossible interpretation.</div>
+
+</section>
+
+<section class="slide" data-title="Trigonometric model">
+<h1>Water depth and a trigonometric rate</h1>
+
+<div class="card">The depth is \(D(t)=13-2.7\cos\!\left(\frac{\pi t}{4}\right)\) feet, where \(t\) is hours after 6 A.M.</div>
+<div class="equationline">\[
+D'(t)=\frac{2.7\pi}{4}\sin\!\left(\frac{\pi t}{4}\right),\qquad D'(3)\approx1.499.
+\]</div>
+<div class="rulebox compact">At 9 A.M., the water depth is increasing at approximately \(1.499\) feet per hour.</div>
+
+</section>
+
+<section class="slide" data-title="Cooling table">
+<h1>Cooling water: a centered estimate</h1>
+
+<table class="tbl"><tr><th>\(t\) (min)</th><td>0</td><td>10</td><td>20</td><td>30</td></tr><tr><th>\(W(t)\) (°F)</th><td>104</td><td>90</td><td>79</td><td>72</td></tr></table>
+<div class="equationline">\[
+W'(15)\approx\frac{W(20)-W(10)}{20-10}=\frac{79-90}{10}=-1.1\ \text{°F/min}.
+\]</div>
+<div class="rulebox compact">At 15 minutes, the water temperature is decreasing at approximately \(1.1\) °F per minute.</div>
+
+</section>
+
+<section class="slide" data-title="Decay rate">
+<h1>When the given function is already a decay rate</h1>
+
+<table class="tbl small"><tr><th>\(t\) (min)</th><td>0</td><td>4</td><td>8</td><td>12</td><td>16</td><td>20</td><td>24</td></tr><tr><th>\(R(t)\) (g/min)</th><td>320</td><td>221</td><td>130</td><td>82</td><td>39</td><td>22</td><td>11</td></tr></table>
+<div class="grid two"><div class="card">\[
+R'(12)\approx\frac{39-130}{16-8}=-11.375\ \text{g/min}^2.
+\]</div><div class="card">For \(G(t)=320(0.882)^t\),
+\[
+G'(12)=320(0.882)^{12}\ln(0.882)\approx-8.905.
+\]</div></div>
+<div class="note">Both derivatives describe how rapidly the decay rate itself is decreasing.</div>
+
+</section>
+
+<section class="slide" data-title="Exponential contexts">
+<h1>Exponential models in context</h1>
+
+<div class="grid three"><div class="card"><h3>Sharks</h3>\(S(t)=3570e^{-0.2t}\)<br/>\(S'(3)\approx-392\) sharks/year.</div><div class="card"><h3>Video views</h3>\(V(t)=243e^{0.5t}\)<br/>\(V'(5)\approx1480\) views/day.</div><div class="card"><h3>Medicine</h3>\(M(t)=22e^{-0.84t}\)<br/>\(M'(3)\approx-1.486\) mg/hour.</div></div>
+<div class="prompt">The sign follows the exponent: positive growth constant gives growth; negative constant gives decay.</div>
+
+</section>
+
+<section class="slide" data-title="Common interpretation errors">
+<h1>Seven common errors</h1>
+
+<div class="grid two"><div class="card dense"><ol><li>Omitting units.</li><li>Using amount units for a derivative.</li><li>Differentiating a rate when only net amount change is needed.</li><li>Calling a negative derivative a “negative amount.”</li></ol></div><div class="card dense"><ol start="5"><li>Using distant or same-side table values unnecessarily.</li><li>Ignoring a domain or endpoint.</li><li>Reporting an impossible contextual conclusion without questioning the model.</li></ol></div></div>
+
+</section>
+
+<section class="slide" data-title="Economic vocabulary">
+<h1>Economic vocabulary</h1>
+
+<table class="tbl"><tr><th>Quantity</th><th>Definition</th><th>Typical units</th></tr><tr><td>Cost \(C(x)\)</td><td>total cost to produce \(x\) units</td><td>dollars</td></tr><tr><td>Revenue \(R(x)\)</td><td>total income from selling \(x\) units</td><td>dollars</td></tr><tr><td>Profit \(\pi(x)\)</td><td>\(R(x)-C(x)\)</td><td>dollars</td></tr><tr><td>Average cost \(\bar C(x)\)</td><td>\(C(x)/x\)</td><td>dollars/unit</td></tr></table>
+<div class="note">In economics, “marginal” means derivative: marginal cost is \(C'(x)\).</div>
+
+</section>
+
+<section class="slide" data-title="Fixed and variable cost">
+<h1>Fixed cost versus variable cost</h1>
+
+<div class="card">A manufacturer has a monthly fixed cost of \$175,000 and a production cost of \$20 per unit.</div>
+<div class="equationline">\[
+C(x)=175000+20x.
+\]</div>
+<div class="grid two"><div class="card"><h3>Fixed cost</h3>\(C(0)=175000\): cost even when no units are produced.</div><div class="card"><h3>Variable cost rate</h3>\(C'(x)=20\): each additional unit adds exactly \$20 in this linear model.</div></div>
+
+</section>
+
+<section class="slide" data-title="Marginal cost">
+<h1>Marginal cost is a local estimate</h1>
+
+<div class="rulebox"><h3>Definition</h3>\[
+MC=C'(x)
+\]
+It estimates the additional cost of producing one more unit near production level \(x\).</div>
+<div class="grid two"><div class="card"><h3>Estimate</h3>Cost of the next unit \(\approx C'(x)\).</div><div class="card"><h3>Exact difference</h3>Cost of unit \(x+1\) is \(C(x+1)-C(x)\).</div></div>
+
+</section>
+
+<section class="slide" data-title="Marginal versus exact">
+<h1>Marginal estimate versus exact next-unit cost</h1>
+
+<div class="card">For \(C(x)=0.02x^2+2x+4000\), compare the marginal cost at \(x=100\) with the exact cost of the 101st unit.</div>
+<div class="grid two" style="margin-top:18px"><div class="card">\[
+C'(x)=0.04x+2,\qquad C'(100)=6.
+\]</div><div class="card">\[
+C(101)-C(100)=6.02.
+\]</div></div>
+<div class="note">The derivative is a local linear estimate. It is close, but not necessarily exactly equal, to a one-unit finite difference.</div>
+
+</section>
+
+<section class="slide" data-title="Translation cost">
+<h1>Worked marginal-cost model</h1>
+
+<div class="card">The cost of translating \(p\) pages is
+\[
+C(p)=0.002p^3-0.1p^2+8.75p.
+\]</div>
+<div class="grid two"><div class="card"><h3>Marginal at 10 pages</h3>\[
+C'(10)=7.35\ \text{dollars/page}.
+\]</div><div class="card"><h3>Exact 11th page</h3>\[
+C(11)-C(10)=7.312\ \text{dollars}.
+\]</div></div>
+<div class="prompt">Near 10 pages, total translation cost increases by about \$7.35 for one additional page.</div>
+
+</section>
+
+<section class="slide" data-title="Cost graph">
+<h1>A geometric view of marginal cost</h1>
+
+<div class="grid two"><div><svg class="svggraph" id="graph-cost-tangent"></svg><div class="legend"><span><i style="background:#0b84c6"></i>cost curve</span><span><i style="background:#7a1738"></i>tangent at 100</span><span><i style="background:#0e6655"></i>secant 100 to 101</span></div></div><div class="card"><h3>Interpretation</h3><ul><li>The tangent slope is \(C'(100)\).</li><li>The secant slope from 100 to 101 is exactly \(C(101)-C(100)\) because \(\Delta x=1\).</li><li>Close slopes justify the marginal approximation.</li></ul></div></div>
+
+</section>
+
+<section class="slide" data-title="Headphones model">
+<h1>Nonlinear cost model</h1>
+
+<div class="card">A production manager models cost by
+\[
+C(x)=1500+50x+0.01x^2.
+\]</div>
+<div class="grid three"><div class="card"><h3>Marginal cost</h3>\(C'(x)=50+0.02x\)</div><div class="card"><h3>At 100 units</h3>\(C'(100)=52\) dollars/unit</div><div class="card"><h3>Exact 101st unit</h3>\(C(101)-C(100)=52.01\) dollars</div></div>
+
+</section>
+
+<section class="slide" data-title="Average cost">
+<h1>Average cost is not marginal cost</h1>
+
+<div class="grid two"><div class="card"><h3>Average cost</h3>\[
+\bar C(x)=\frac{C(x)}x.
+\]
+It spreads the total cost, including fixed cost, across all units.</div><div class="card"><h3>For the model</h3>\[
+\bar C(100)=\frac{1500+5000+100}{100}=66
+\]
+dollars/unit.</div></div>
+<div class="warning">At \(x=100\), average cost is \$66 per unit while marginal cost is \$52 per additional unit.</div>
+
+</section>
+
+<section class="slide" data-title="Minimize average cost">
+<h1>Textbook extension: minimizing average cost</h1>
+
+<div class="grid two"><div class="card">For \(C(x)=0.02x^2+2x+4000\),
+\[
+\bar C(x)=0.02x+2+\frac{4000}{x}.
+\]
+Then
+\[
+\bar C'(x)=0.02-\frac{4000}{x^2}.
+\]</div><div><svg class="svggraph" id="graph-average-cost"></svg></div></div>
+<div class="note">\(\bar C'(x)=0\) gives \(x=\sqrt{200000}\approx447.2\). Thus the integer production level minimizing average cost is near 447 units.</div>
+
+</section>
+
+<section class="slide" data-title="Revenue and profit">
+<h1>Revenue and profit functions</h1>
+
+<div class="grid two"><div class="card"><h3>Revenue</h3>If each unit sells for a constant price \(p\), then
+\[
+R(x)=px.
+\]</div><div class="card"><h3>Profit</h3>\[
+\pi(x)=R(x)-C(x).
+\]
+Profit may be negative even when revenue is positive.</div></div>
+<div class="prompt">Break-even points satisfy \(R(x)=C(x)\), equivalently \(\pi(x)=0\).</div>
+
+</section>
+
+<section class="slide" data-title="Marginal functions">
+<h1>Marginal revenue and marginal profit</h1>
+
+<div class="equationline">\[
+MR=R'(x),\qquad MC=C'(x),\qquad MP=\pi'(x)=R'(x)-C'(x).
+\]</div>
+<div class="signchart"><div class="signcell"><strong>\(MR>MC\)</strong>profit increasing</div><div class="signcell"><strong>\(MR<MC\)</strong>profit decreasing</div><div class="signcell"><strong>\(MR=MC\)</strong>profit critical point</div><div class="signcell"><strong>endpoints</strong>must still be checked</div></div>
+
+</section>
+
+<section class="slide" data-title="Marginal profit interpretation">
+<h1>Interpret marginal profit</h1>
+
+<div class="card">If \(C'(400)=18\) and \(R'(400)=15\), then
+\[
+\pi'(400)=15-18=-3\ \text{dollars/unit}.
+\]</div>
+<div class="rulebox compact">Near 400 units, producing and selling one additional unit is expected to reduce profit by approximately \$3.</div>
+<div class="warning">This is a marginal loss on the next unit, not necessarily a statement that total profit is negative.</div>
+
+</section>
+
+<section class="slide" data-title="Full business model">
+<h1>Worked model: cost, revenue, and profit</h1>
+
+<div class="card">For \(C(x)=1500+50x+0.01x^2\), suppose each unit sells for \$125.</div>
+<div class="grid two"><div class="card">\[
+R(x)=125x,
+\]
+\[
+\pi(x)=-0.01x^2+75x-1500.
+\]</div><div class="card">\[
+\pi'(x)=75-0.02x.
+\]
+At \(x=100\), \(\pi'(100)=73\) dollars/unit.</div></div>
+<div class="note">At 100 units, one additional unit is expected to increase profit by about \$73.</div>
+
+</section>
+
+<section class="slide" data-title="Maximum profit">
+<h1>Maximum profit: use derivatives and the domain</h1>
+
+<div class="card">For \(\pi(x)=-0.01x^2+75x-1500\),
+\[
+\pi'(x)=75-0.02x=0\quad\Rightarrow\quad x=3750.
+\]</div>
+<div class="grid two"><div class="card"><h3>Derivative test</h3>\(\pi'\) changes from positive to negative, so profit is maximized.</div><div class="card"><h3>Maximum profit</h3>\[
+\pi(3750)=\$139{,}125.
+\]</div></div>
+<div class="warning">If a feasible production interval is given, include its endpoints in the comparison.</div>
+
+</section>
+
+<section class="slide" data-title="Cost and revenue graph">
+<h1>Cost, revenue, break-even, and maximum profit</h1>
+
+<div class="grid two"><div><svg class="svggraph" id="graph-cost-revenue"></svg><div class="legend"><span><i style="background:#0b84c6"></i>revenue</span><span><i style="background:#7a1738"></i>cost</span></div></div><div class="card"><ul><li>Vertical separation \(R-C\) is profit.</li><li>Intersections are break-even points.</li><li>The largest vertical separation occurs where the slopes match: \(MR=MC\).</li><li>For this model, the maximum is at \(x=3750\).</li></ul></div></div>
+
+</section>
+
+<section class="slide" data-title="Economic table">
+<h1>Analyze cost and revenue from a table</h1>
+
+<table class="tbl small"><tr><th>\(x\)</th><td>0</td><td>200</td><td>400</td><td>600</td><td>800</td><td>1000</td></tr><tr><th>\(R(x)\)</th><td>0</td><td>600</td><td>1200</td><td>1800</td><td>2400</td><td>3000</td></tr><tr><th>\(C(x)\)</th><td>800</td><td>1050</td><td>1200</td><td>1375</td><td>1450</td><td>1850</td></tr></table>
+<div class="grid three"><div class="card"><h3>Price</h3>\(R(x)/x=3\) dollars/unit.</div><div class="card"><h3>Fixed cost</h3>\(C(0)=800\) dollars.</div><div class="card"><h3>Largest listed profit</h3>At \(x=1000\): \(3000-1850=1150\) dollars.</div></div>
+
+</section>
+
+<section class="slide" data-title="Break-even versus maximum">
+<h1>Break-even is not maximum profit</h1>
+
+<div class="grid two"><div class="card"><h3>Break-even</h3>\[
+R(x)=C(x)\iff\pi(x)=0.
+\]
+No profit and no loss.</div><div class="card"><h3>Maximum profit</h3>Often occurs at an interior point where
+\[
+R'(x)=C'(x),
+\]
+but endpoints must be considered.</div></div>
+<div class="prompt">Equal function values locate break-even; equal derivative values locate candidates for maximum profit.</div>
+
+</section>
+
+<section class="slide" data-title="Elasticity definition">
+<h1>Enrichment: elasticity of demand</h1>
+
+<div class="card">If demand \(x=f(p)\) depends on price \(p\), the elasticity is
+\[
+E(p)=\frac{p}{f(p)}f'(p).
+\]</div>
+<div class="grid two"><div class="card"><h3>Why unitless?</h3>It compares relative change in demand with relative change in price.</div><div class="card"><h3>Elastic demand</h3>With this signed convention, demand is elastic when \(E<-1\).</div></div>
+<div class="note">Some economics texts define elasticity as \(-E\), making elastic demand correspond to a positive value greater than 1.</div>
+
+</section>
+
+<section class="slide" data-title="Elasticity and revenue">
+<h1>Elasticity predicts the direction of revenue</h1>
+
+<div class="grid two"><div class="card">For \(f(p)=400(20-p)\),
+\[
+E(p)=\frac{p}{p-20}.
+\]
+Demand is elastic when \(p>10\).</div><div><svg class="svggraph" id="graph-elasticity"></svg></div></div>
+<div class="equationline">\[
+R(p)=pf(p)=8000p-400p^2,\qquad R'(p)=8000-800p.
+\]</div>
+<div class="note">Revenue decreases exactly when \(p>10\), the same interval where \(E<-1\).</div>
+
+</section>
+
+<section class="slide" data-title="Chemical reaction rate">
+<h1>Chemical concentration and reaction rate</h1>
+
+<div class="card">If \([C](t)\) is product concentration in moles/liter, then the instantaneous reaction rate is
+\[
+\frac{d[C]}{dt}.
+\]</div>
+<div class="grid two"><div class="card"><h3>Positive derivative</h3>Product concentration is increasing.</div><div class="card"><h3>Derivative units</h3>moles per liter per second, often written mol/(L·s).</div></div>
+<div class="prompt">A reaction-rate model may give \([C]'(t)\) directly rather than giving \([C](t)\).</div>
+
+</section>
+
+<section class="slide" data-title="Autocatalytic reaction">
+<h1>Maximum rate in an autocatalytic reaction</h1>
+
+<div class="grid two"><div class="card">Suppose
+\[
+x'(t)=r x(t)[1-x(t)],\qquad r>0.
+\]
+Treat the rate as a function of concentration:
+\[
+g(x)=rx(1-x).
+\]
+Then \(g'(x)=r(1-2x)\).</div><div><svg class="svggraph" id="graph-reaction-rate"></svg></div></div>
+<div class="note">The reaction rate is greatest when \(x=\tfrac12\), exactly half the saturation concentration.</div>
+
+</section>
+
+<section class="slide" data-title="General reaction challenge">
+<h1>Generalized reaction-rate model</h1>
+
+<div class="card">For
+\[
+x'(t)=c x(t)[K-x(t)],\qquad c,K>0,
+\]
+find the concentration that maximizes the reaction rate.</div>
+<div class="equationline">\[
+g(x)=cx(K-x),\qquad g'(x)=c(K-2x)=0\Rightarrow x=\frac K2.
+\]</div>
+<div class="rulebox compact">The reaction proceeds most rapidly when the concentration reaches half of its limiting level \(K\).</div>
+
+</section>
+
+<section class="slide" data-title="Titration curve">
+<h1>A titration curve and a derivative minimum</h1>
+
+<div class="grid two"><div class="card">For \(0<x<1\), suppose
+\[
+p(x)=c+\ln\!\left(\frac{x}{1-x}\right).
+\]
+Then
+\[
+p'(x)=\frac1{x(1-x)}.
+\]
+The rate \(p'(x)\) is minimized at \(x=\tfrac12\).</div><div><svg class="svggraph" id="graph-titration"></svg></div></div>
+<div class="note">Because \(p'\) changes from decreasing to increasing, \(x=\tfrac12\) is an inflection point of the original pH curve.</div>
+
+</section>
+
+<section class="slide" data-title="Linear density">
+<h1>Linear density is a derivative</h1>
+
+<div class="card">If \(m(x)\) is the mass of the first \(x\) meters of a thin rod, then
+\[
+\rho(x)=m'(x)
+\]
+is its linear mass density.</div>
+<div class="grid two"><div class="card">For \(m(x)=\sqrt{2x}\),
+\[
+\rho(x)=\frac1{\sqrt{2x}}.
+\]</div><div class="card">\[
+\rho(2)=\frac12,\qquad \rho(8)=\frac14.
+\]
+The rod is less dense farther to the right.</div></div>
+
+</section>
+
+<section class="slide" data-title="Electric current">
+<h1>Electric current is a rate of charge</h1>
+
+<div class="rulebox"><h3>Charge-current relationship</h3>If \(Q(t)\) is electrical charge in coulombs, then
+\[
+I(t)=Q'(t)
+\]
+is current in amperes, where 1 ampere = 1 coulomb/second.</div>
+<div class="prompt">Charge is an accumulated quantity; current is its instantaneous flow rate.</div>
+
+</section>
+
+<section class="slide" data-title="Current model">
+<h1>Differentiate a charge model</h1>
+
+<div class="card">Suppose
+\[
+Q(t)=10e^{-5t}+2te^{-2t}+3\sin(2t)-7\cos(2t)
+\]
+coulombs.</div>
+<div class="equationline">\[
+I(t)=Q'(t)=-50e^{-5t}+2e^{-2t}-4te^{-2t}+6\cos(2t)+14\sin(2t).
+\]</div>
+<div class="note">The product rule is needed for \(2te^{-2t}\); current units are amperes.</div>
+
+</section>
+
+<section class="slide" data-title="Logistic population">
+<h1>Logistic population growth</h1>
+
+<div class="grid two"><div class="card">A normalized population may satisfy
+\[
+p'(t)=2p(t)[1-p(t)].
+\]
+The growth rate as a function of population is \(g(p)=2p(1-p)\).</div><div><svg class="svggraph" id="graph-logistic"></svg><div class="legend"><span><i style="background:#0b84c6"></i>population \(p(t)\)</span><span><i style="background:#7a1738"></i>growth rate \(p'(t)\)</span></div></div></div>
+<div class="note">Growth is fastest at \(p=\tfrac12\), the inflection point of the logistic population curve.</div>
+
+</section>
+
+<section class="slide" data-title="General logistic maximum">
+<h1>General logistic maximum-growth rule</h1>
+
+<div class="card">For a logistic-type rate
+\[
+P'(t)=rP(t)\left(1-\frac{P(t)}K\right),
+\]
+where \(K\) is carrying capacity, maximize the rate as a function of \(P\).</div>
+<div class="equationline">\[
+g(P)=rP-\frac rK P^2,\qquad g'(P)=r-\frac{2r}{K}P=0\Rightarrow P=\frac K2.
+\]</div>
+<div class="rulebox compact">A logistic population grows most rapidly at half its carrying capacity.</div>
+
+</section>
+
+<section class="slide" data-title="Same mathematics">
+<h1>Different contexts, same mathematical structure</h1>
+
+<div class="grid three"><div class="card"><h3>Chemistry</h3>\(x'=cx(K-x)\)</div><div class="card"><h3>Population</h3>\(P'=rP(1-P/K)\)</div><div class="card"><h3>Rumor spread</h3>growth proportional to people informed and people uninformed</div></div>
+<div class="note">A product of “current amount” and “remaining capacity” creates slow-fast-slow growth and an inflection point at halfway.</div>
+
+</section>
+
+<section class="slide" data-title="Science practice">
+<h1>Science practice set</h1>
+
+<div class="grid two"><div class="card dense"><ol><li>If \(m(x)=4x-\sin x\) grams, find and interpret \(m'(x)\).</li><li>If \(Q(t)=e^{-2t}(\cos3t-2\sin3t)\), find current.</li><li>For \(x'=0.5x(5-x)\), find the concentration giving maximum rate.</li></ol></div><div class="card dense"><ol start="4"><li>For \(p'=4p(5-p)\), find the population giving maximum growth.</li><li>Explain why \(dV/dP\) for \(PV^{1.4}=c\) is negative.</li></ol></div></div>
+<details class="answer"><summary>Answers</summary><div>1. \(4-\cos x\) g/m. 2. \(e^{-2t}(-8\cos3t+\sin3t)\) A. 3. \(x=2.5\). 4. \(p=2.5\). 5. Increasing pressure requires decreasing volume; implicit differentiation gives \(dV/dP=-V/(1.4P)\).</div></details>
+
+</section>
+
+<section class="slide" data-title="AP multiple choice I">
+<h1>AP-style multiple choice I</h1>
+
+<div class="card">A differentiable function \(R(t)\) gives the rate, in liters/minute, at which water enters a tank. What are the units of \(R'(8)\)?</div>
+<ol class="mcq card"><li>liters</li><li>liters/minute</li><li>liters/minute\(^2\)</li><li>minutes/liter</li></ol>
+<details class="answer"><summary>Answer</summary><div><strong>C.</strong> The original function is already liters/minute, so differentiating with respect to minutes adds another denominator of minute.</div></details>
+
+</section>
+
+<section class="slide" data-title="AP multiple choice II">
+<h1>AP-style multiple choice II</h1>
+
+<div class="card">The number of bacteria is \(B(t)\). At \(t=6\), \(B'(6)>0\) and \(B''(6)<0\). Which statement is correct?</div>
+<ol class="mcq card"><li>The population is decreasing at an increasing rate.</li><li>The population is increasing, but its growth rate is decreasing.</li><li>The population is negative and decreasing.</li><li>The growth rate is zero.</li></ol>
+<details class="answer"><summary>Answer</summary><div><strong>B.</strong> \(B'>0\) gives increasing population; \(B''<0\) says the growth rate \(B'\) is decreasing.</div></details>
+
+</section>
+
+<section class="slide" data-title="AP multiple choice III">
+<h1>AP-style multiple choice III</h1>
+
+<div class="card">A production rate is \(R(t)=4000+48(t-3)-4(t-3)^3\), where \(t\) is hours after 8 A.M. When is the production rate increasing most rapidly?</div>
+<ol class="mcq card"><li>8:00 A.M.</li><li>10:00 A.M.</li><li>11:00 A.M.</li><li>1:00 P.M.</li></ol>
+<details class="answer"><summary>Answer</summary><div><strong>C.</strong> “Rate increasing most rapidly” asks for the maximum of \(R'(t)=48-12(t-3)^2\), which occurs at \(t=3\), or 11:00 A.M.</div></details>
+
+</section>
+
+<section class="slide" data-title="AP multiple choice IV">
+<h1>AP-style multiple choice IV</h1>
+
+<div class="card">A company has \(C'(500)=24\) and \(R'(500)=29\). Which conclusion is best?</div>
+<ol class="mcq card"><li>Total profit is \$5.</li><li>The 501st unit will increase profit by about \$5.</li><li>The 501st unit costs exactly \$24.</li><li>Profit is maximized at 500 units.</li></ol>
+<details class="answer"><summary>Answer</summary><div><strong>B.</strong> \(\pi'(500)=29-24=5\) dollars/unit. The derivative gives an approximation for one additional unit; it does not by itself prove a maximum.</div></details>
+
+</section>
+
+<section class="slide" data-title="AP free response sand">
+<h1>AP free response: net sand rate</h1>
+
+<div class="card dense">Sand is added at \(S(t)=\dfrac{18t}{1+4t}\) and removed at \(R(t)=1+6\sin(2\pi t/25)\), both in yd\(^3\)/hr.<ol class="alpha"><li>Write an expression for the rate of change of the total sand.</li><li>Evaluate it at \(t=6\).</li><li>Determine whether that net rate is increasing or decreasing at \(t=6\).</li></ol></div>
+<details class="answer"><summary>Solution</summary><div>(a) \(A'=S-R\). (b) \(A'(6)\approx-2.668\) yd\(^3\)/hr. (c) \(A''(t)=\dfrac{18}{(1+4t)^2}-\dfrac{12\pi}{25}\cos(2\pi t/25)\), so \(A''(6)\approx-0.066<0\); the net rate is decreasing.</div></details>
+
+</section>
+
+<section class="slide" data-title="AP free response illness">
+<h1>AP free response: illness rate</h1>
+
+<table class="tbl small"><tr><th>day \(t\)</th><td>2</td><td>6</td><td>10</td><td>15</td><td>25</td><td>35</td><td>40</td><td>45</td></tr><tr><th>new cases/day \(N(t)\)</th><td>3</td><td>8</td><td>15</td><td>30</td><td>100</td><td>50</td><td>22</td><td>10</td></tr></table>
+<div class="card dense"><ol class="alpha"><li>Estimate \(N'(20)\).</li><li>Interpret the result.</li><li>Explain why the units are cases/day\(^2\), not cases/day.</li></ol></div>
+<details class="answer"><summary>Solution</summary><div>Use days 15 and 25: \(N'(20)\approx(100-30)/(25-15)=7\) cases/day\(^2\). On day 20, the daily new-case rate is increasing by about 7 cases per day each day.</div></details>
+
+</section>
+
+<section class="slide" data-title="AP free response reservoir">
+<h1>AP free response: reservoir table</h1>
+
+<table class="tbl small"><tr><th>\(t\)</th><td>0</td><td>1</td><td>1.5</td><td>2</td><td>2.5</td><td>3</td><td>3.5</td><td>4</td></tr><tr><th>\(V(t)\)</th><td>0.50</td><td>0.75</td><td>0.93</td><td>1.15</td><td>1.24</td><td>1.05</td><td>0.97</td><td>0.72</td></tr></table>
+<div class="card dense"><ol class="alpha"><li>Estimate \(V'(2)\).</li><li>Estimate when \(V\) reaches a local maximum.</li><li>Use a local slope to describe what happens immediately after that time.</li></ol></div>
+<details class="answer"><summary>Solution</summary><div>(a) \((1.24-0.93)/(2.5-1.5)=0.31\) thousand gal/hr\(^2\). (b) Near \(t=2.5\). (c) \(V'(2.5)\approx(1.05-1.15)/(3-2)=-0.10\), so the inflow rate begins decreasing.</div></details>
+
+</section>
+
+<section class="slide" data-title="AP free response business">
+<h1>AP free response: business model</h1>
+
+<div class="card">A product has cost \(C(x)=900+28x+0.015x^2\) and sells for \$94 per unit, for \(0\le x\le3000\).</div>
+<div class="grid two"><div class="card dense"><ol class="alpha"><li>Find \(C'(800)\) and interpret.</li><li>Find \(\pi'(800)\) and interpret.</li></ol></div><div class="card dense"><ol class="alpha" start="3"><li>Find the production level that maximizes profit.</li><li>Justify with the derivative and domain.</li></ol></div></div>
+<details class="answer"><summary>Solution</summary><div>\(C'=28+0.03x\), so \(C'(800)=52\) dollars/unit. \(\pi'=94-(28+0.03x)=66-0.03x\), so \(\pi'(800)=42\) dollars/unit. The critical point is \(x=2200\); \(\pi'\) changes from positive to negative and \(2200\) lies in the domain, so it maximizes profit.</div></details>
+
+</section>
+
+<section class="slide" data-title="AP free response science">
+<h1>AP free response: density and current</h1>
+
+<div class="grid two"><div class="card dense"><h3>Rod</h3>The mass of the first \(x\) meters is \(m(x)=4x^2+3\sin x\) grams.<ol class="alpha"><li>Find the density.</li><li>Interpret \(m'(2)\).</li></ol></div><div class="card dense"><h3>Circuit</h3>The charge is \(Q(t)=e^{-2t}\cos3t+4\sin3t\) coulombs.<ol class="alpha"><li>Find current.</li><li>Identify the transient term.</li></ol></div></div>
+<details class="answer"><summary>Solution</summary><div>Rod: \(m'(x)=8x+3\cos x\) g/m, so \(m'(2)=16+3\cos2\approx14.752\) g/m. Circuit: \(I=e^{-2t}(-2\cos3t-3\sin3t)+12\cos3t\) A; the exponentially decaying part is transient.</div></details>
+
+</section>
+
+<section class="slide" data-title="Error analysis">
+<h1>Error analysis</h1>
+
+<div class="grid two"><div class="card"><h3>Claim 1</h3>“Because \(R'(12)<0\), the radioactive substance has a negative amount.”</div><div class="card"><h3>Claim 2</h3>“Since \(C'(100)=52\), producing 100 units costs \$52.”</div><div class="card"><h3>Claim 3</h3>“If \(MR=MC\), profit must be maximized.”</div><div class="card"><h3>Claim 4</h3>“A cumulative count with negative derivative is always acceptable.”</div></div>
+<details class="answer"><summary>Corrections</summary><div>1. The decay rate is decreasing; the amount need not be negative. 2. \(C'(100)\) estimates added cost per next unit, not total cost. 3. It is only a critical-point condition; check sign change/endpoints. 4. A cumulative count should be nondecreasing, so the model/domain is suspect.</div></details>
+
+</section>
+
+<section class="slide" data-title="Parameter challenge">
+<h1>Parameter challenge: infer a model</h1>
+
+<div class="card">A chemical rate follows \(x'=cx(K-x)\). At one time, \(x=2\) and \(x'=3\); later, \(x=4\) and \(x'=4\). Find \(c\) and \(K\).</div>
+<div class="equationline">\[
+2c(K-2)=3,\qquad4c(K-4)=4.
+\]</div>
+<details class="answer"><summary>Solution</summary><div>From the equations, \(c(K-2)=1.5\) and \(c(K-4)=1\). Subtracting gives \(2c=0.5\), so \(c=0.25\). Then \(0.25(K-4)=1\), giving \(K=8\).</div></details>
+
+</section>
+
+<section class="slide" data-title="Very difficult">
+<h1>Very difficult: a rate of a net rate</h1>
+
+<div class="card">Water enters a reservoir at \(I(t)=40+8\sin(t/2)\) L/min and leaves at \(O(t)=15+0.6t^2\) L/min.</div>
+<div class="grid two"><div class="card"><ol><li>Find the net amount rate \(A'(t)\).</li><li>Find \(A'(6)\) and interpret.</li></ol></div><div class="card"><ol start="3"><li>Find \(A''(6)\).</li><li>Explain how the amount can be increasing while its net rate is decreasing.</li></ol></div></div>
+<details class="answer"><summary>Solution</summary><div>\(A'=25+8\sin(t/2)-0.6t^2\). \(A'(6)\approx4.529>0\) L/min, so the amount increases. \(A''=4\cos(t/2)-1.2t\), so \(A''(6)\approx-11.160\) L/min\(^2\). The net rate is positive but falling.</div></details>
+
+</section>
+
+<section class="slide" data-title="Ultra challenge">
+<h1>Ultra challenge: elasticity and marginal reasoning</h1>
+
+<div class="card">Demand is \(x=f(p)=1200p^{-1/2}\), and unit production cost is modeled by \(C(x)=5000+4x+0.002x^2\).</div>
+<div class="grid two"><div class="card dense"><ol><li>Find demand elasticity.</li><li>Is demand elastic?</li><li>Write revenue as a function of price.</li></ol></div><div class="card dense"><ol start="4"><li>Write profit as a function of quantity by solving for price.</li><li>Find a condition for maximum profit.</li></ol></div></div>
+<details class="answer"><summary>Outline</summary><div>\(E=(p/f)f'=-1/2\), so demand is inelastic under the signed convention. From \(x=1200p^{-1/2}\), \(p=(1200/x)^2\), so \(R(x)=1{,}440{,}000/x\) and \(\pi(x)=1{,}440{,}000/x-5000-4x-0.002x^2\). A maximum candidate satisfies \(-1{,}440{,}000/x^2-4-0.004x=0\), which has no positive solution; profit decreases on \(x>0\), so the feasible-domain endpoint controls the optimum. This is a warning that the demand model may be unrealistic near small \(x\).</div></details>
+
+</section>
+
+<section class="slide" data-title="Source practice A">
+<h1>Practice set A: formulas and units</h1>
+
+<div class="grid two"><div class="card dense"><ol><li>For \(E(t)=0.3t^4-14t^3+110t^2\), find \(E'(5)\) and audit the context.</li><li>If \(t=f(P)\), state units of \(f''(P)\).</li><li>For \(D(t)=13-2.7\cos(\pi t/4)\), find \(D'(3)\).</li></ol></div><div class="card dense"><ol start="4"><li>If \(R(t)=ce^{kt}\), \(R(0)=2\), and \(R\) doubles every 9 years, find \(c,k\).</li><li>For \(r(t)=50(1-e^{-0.7t^2})\), find \(r'(2)\).</li></ol></div></div>
+<details class="answer"><summary>Answers</summary><div>1. \(E'(5)=200\) shoppers/hour. 2. days/liter\(^2\). 3. \(1.499\) ft/hr. 4. \(c=2\), \(k=\ln2/9\). 5. \(r'(2)=70(2)e^{-2.8}=140e^{-2.8}\approx8.514\) mph/hour.</div></details>
+
+</section>
+
+<section class="slide" data-title="Source practice B">
+<h1>Practice set B: economics</h1>
+
+<div class="grid two"><div class="card dense"><ol><li>\(\pi(x)=-7x^2+840x-12500\), \(0\le x\le65\). Find maximum profit.</li><li>For \(R=650x-x^2\), \(C=175+12x\), find the maximizing quantity.</li></ol></div><div class="card dense"><ol start="3"><li>If fixed cost is \$2.5 million, variable cost \$0.05 million/game, and price \$0.175 million/game, write \(C,R,\pi\).</li><li>Interpret \(\pi'(x)\).</li></ol></div></div>
+<details class="answer"><summary>Answers</summary><div>1. Vertex at \(x=60\); \(\pi(60)=\$12{,}700\). 2. \(\pi=-x^2+638x-175\), maximum at \(x=319\). 3. \(C=2.5+0.05x\), \(R=0.175x\), \(\pi=0.125x-2.5\) million dollars. 4. Approximate change in profit per additional game.</div></details>
+
+</section>
+
+<section class="slide" data-title="Source practice C">
+<h1>Practice set C: tables and modeling</h1>
+
+<div class="grid two"><div class="card dense"><ol><li>Oil volume values at \(t=2,3\) are 52.8 and 49.6 gallons. Estimate \(V'(2.5)\).</li><li>Explain the sign.</li><li>From a marginal-cost table, why is profit maximized near where MC crosses selling price?</li></ol></div><div class="card dense"><ol start="4"><li>A population is \(P(t)=632e^{0.001t}\) hundreds of people. Find \(P'(1)\) and convert to people/year.</li><li>Explain why a model answer may need a scale conversion.</li></ol></div></div>
+<details class="answer"><summary>Answers</summary><div>1. \((49.6-52.8)/(3-2)=-3.2\) gal/hr. 2. Oil is leaking out. 3. Marginal profit is price minus MC; its sign changes when MC passes price. 4. \(P'(1)=0.632e^{0.001}\) hundred people/year, approximately 63.26 people/year. 5. The output unit is hundreds, not individual people.</div></details>
+
+</section>
+
+<section class="slide" data-title="Quiz bank A and B">
+<h1>Quiz bank: Forms A and B</h1>
+
+<div class="grid two"><div class="card dense"><h3>Form A</h3>Fixed cost \$175,000; unit cost \$20; selling price \$32.<ol><li>Find \(C,R,\pi\).</li><li>Find profit at 20,000 units.</li><li>Find production for \$50,000 profit.</li></ol></div><div class="card dense"><h3>Form B</h3>Fixed cost \$56,000; unit cost \$12; selling price \$18.<ol><li>Find \(C,R,\pi\).</li><li>Find profit at 5,000 units.</li><li>Find production for \$30,000 profit.</li></ol></div></div>
+<details class="answer"><summary>Answers</summary><div>A: \(C=175000+20x\), \(R=32x\), \(\pi=12x-175000\); \(\pi(20000)=65000\); \(x=18750\). B: \(C=56000+12x\), \(R=18x\), \(\pi=6x-56000\); \(\pi(5000)=-26000\); \(x=14333.33\), so at least 14,334 whole units.</div></details>
+
+</section>
+
+<section class="slide" data-title="Quiz bank C and D">
+<h1>Quiz bank: Forms C and D</h1>
+
+<div class="grid two"><div class="card dense"><h3>Form C</h3>\(C(x)=1200+0.06x+0.04x^2\), price \$120.<ol><li>Find MC.</li><li>Evaluate MC at 100.</li><li>Find marginal profit at 100.</li><li>Find maximizing production.</li></ol></div><div class="card dense"><h3>Form D</h3>\(C(x)=1500+40x+0.02x^2\), price \$150.<ol><li>Find MC.</li><li>Evaluate MC at 100.</li><li>Find marginal profit at 100.</li><li>Find break-even quantities.</li></ol></div></div>
+<details class="answer"><summary>Answers</summary><div>C: \(MC=0.06+0.08x\); at 100, \(8.06\); MP \(=111.94\); maximizing \(x=(120-0.06)/0.08=1499.25\), so compare nearby integers. D: \(MC=40+0.04x\); at 100, 44; MP=106; break-even solves \(0.02x^2-110x+1500=0\), approximately \(x=13.67\) and \(5486.33\).</div></details>
+
+</section>
+
+<section class="slide" data-title="Partner synthesis">
+<h1>Partner synthesis</h1>
+
+<div class="grid two"><div class="card"><ol><li>Choose one table problem.</li><li>Defend the data points used for the derivative estimate.</li><li>Write a complete interpretation.</li></ol></div><div class="card"><ol start="4"><li>Choose one economics or science model.</li><li>Identify amount, rate, and rate-of-rate levels.</li><li>Audit units, sign, domain, and contextual plausibility.</li></ol></div></div>
+<div class="prompt">Partners exchange solutions and highlight every noun and unit that makes the interpretation contextual.</div>
+
+</section>
+
+<section class="slide" data-title="Mini-assessment">
+<h1>Mini-assessment</h1>
+
+<div class="grid two"><div class="card dense"><ol><li>If \(F(t)\) is gallons/minute, state the meaning and units of \(F'(5)=-2\).</li><li>Estimate \(W'(10)\) from \(W(5)=60\), \(W(15)=64\).</li><li>If \(C'=31\) and \(R'=38\), interpret \(\pi'\).</li></ol></div><div class="card dense"><ol start="4"><li>For \(x'=3x(10-x)\), find the concentration of maximum reaction rate.</li><li>If \(Q(t)\) is charge, what physical quantity is \(Q'(t)\)?</li><li>Explain why \(A'>0\) and \(A''<0\) are not contradictory.</li></ol></div></div>
+<details class="answer"><summary>Answers</summary><div>1. The flow rate is decreasing by 2 gal/min each minute; units gal/min\(^2\). 2. 0.4 °F/day. 3. Profit increases by about \$7 per additional unit. 4. \(x=5\). 5. Current. 6. The amount is increasing, but its rate of increase is slowing.</div></details>
+
+</section>
+
+<section class="slide" data-title="Exit ticket">
+<h1>Exit ticket</h1>
+
+<div class="grid two"><div class="card">A lake pollutant amount satisfies \(P'(7)=0.191\) gallons/day and \(P''(7)=-0.08\) gallons/day\(^2\). Write one sentence interpreting both values.</div><div class="card">A company has \(MR=42\) dollars/unit and \(MC=47\) dollars/unit at \(x=900\). State what happens to profit near 900 units and whether this alone proves the total profit is negative.</div></div>
+<details class="answer"><summary>Answers</summary><div>At day 7, pollutant is increasing at 0.191 gal/day, while that rate is decreasing by 0.08 gal/day each day. Near 900 units, marginal profit is \(-5\) dollars/unit, so an additional unit lowers profit by about \$5; this does not prove total profit is negative.</div></details>
+
+</section>
+</main>
+<footer class="foot">
+<div class="nav"><button class="secondary" id="prev" type="button">← Prev</button><button class="primary" id="next" type="button">Next →</button><button class="secondary" id="ans" type="button">Answers</button></div>
+<select id="jump" aria-label="Jump to a slide"></select>
+</footer>
+<script>
+const slides=[...document.querySelectorAll('.slide')];
+let index=0;
+const count=document.getElementById('count'),bar=document.getElementById('bar'),jump=document.getElementById('jump');
+slides.forEach((s,i)=>{const opt=document.createElement('option');opt.value=i;opt.textContent=(i+1)+'. '+(s.dataset.title||('Slide '+(i+1)));jump.appendChild(opt);});
+function show(i){index=Math.max(0,Math.min(slides.length-1,i));slides.forEach((s,j)=>s.classList.toggle('active',j===index));count.textContent=(index+1)+' / '+slides.length;bar.style.width=((index+1)/slides.length*100)+'%';jump.value=index;}
+document.getElementById('prev').onclick=()=>show(index-1);
+document.getElementById('next').onclick=()=>show(index+1);
+jump.onchange=e=>show(+e.target.value);
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='PageDown')show(index+1);if(e.key==='ArrowLeft'||e.key==='PageUp')show(index-1);if(e.key==='Home')show(0);if(e.key==='End')show(slides.length-1);});
+document.getElementById('ans').onclick=()=>{const panels=[...document.querySelectorAll('.slide.active details.answer')];const openAll=panels.some(d=>!d.open);panels.forEach(d=>d.open=openAll);};
+
+const NS='http://www.w3.org/2000/svg';
+function svgEl(name,attrs){const e=document.createElementNS(NS,name);Object.entries(attrs||{}).forEach(([k,v])=>e.setAttribute(k,v));return e;}
+function nice(v){if(Math.abs(v)>=1000)return String(Math.round(v));if(Math.abs(v)>=100)return String(Math.round(v));if(Math.abs(v)>=10)return String(Math.round(v*10)/10);return String(Math.round(v*100)/100);}
+function drawGraph(id,cfg){
+  const svg=document.getElementById(id);if(!svg)return;
+  const W=680,H=360,m={l:70,r:24,t:26,b:52},pw=W-m.l-m.r,ph=H-m.t-m.b;
+  svg.setAttribute('viewBox','0 0 '+W+' '+H);svg.innerHTML='';
+  const X=x=>m.l+(x-cfg.xMin)/(cfg.xMax-cfg.xMin)*pw;
+  const Y=y=>m.t+(cfg.yMax-y)/(cfg.yMax-cfg.yMin)*ph;
+  const clipId='clip-'+id,defs=svgEl('defs'),clip=svgEl('clipPath',{id:clipId});clip.appendChild(svgEl('rect',{x:m.l,y:m.t,width:pw,height:ph}));defs.appendChild(clip);svg.appendChild(defs);
+  svg.appendChild(svgEl('rect',{x:m.l,y:m.t,width:pw,height:ph,fill:'#fff'}));
+  const xt=cfg.xTicks||5,yt=cfg.yTicks||5;
+  for(let i=0;i<=xt;i++){const xv=cfg.xMin+(cfg.xMax-cfg.xMin)*i/xt;svg.appendChild(svgEl('line',{x1:X(xv),x2:X(xv),y1:m.t,y2:m.t+ph,stroke:'#e8eef5','stroke-width':1}));const tx=svgEl('text',{x:X(xv),y:H-28,'text-anchor':'middle',fill:'#607086','font-size':11});tx.textContent=nice(xv);svg.appendChild(tx);}
+  for(let i=0;i<=yt;i++){const yv=cfg.yMin+(cfg.yMax-cfg.yMin)*i/yt;svg.appendChild(svgEl('line',{x1:m.l,x2:m.l+pw,y1:Y(yv),y2:Y(yv),stroke:'#e8eef5','stroke-width':1}));const ty=svgEl('text',{x:m.l-9,y:Y(yv)+4,'text-anchor':'end',fill:'#607086','font-size':11});ty.textContent=nice(yv);svg.appendChild(ty);}
+  const xAxisY=(cfg.yMin<=0&&cfg.yMax>=0)?Y(0):Y(cfg.yMin),yAxisX=(cfg.xMin<=0&&cfg.xMax>=0)?X(0):X(cfg.xMin);
+  svg.appendChild(svgEl('line',{x1:m.l,x2:m.l+pw,y1:xAxisY,y2:xAxisY,stroke:'#203654','stroke-width':2}));svg.appendChild(svgEl('line',{x1:yAxisX,x2:yAxisX,y1:m.t,y2:m.t+ph,stroke:'#203654','stroke-width':2}));
+  const xl=svgEl('text',{x:m.l+pw,y:H-7,'text-anchor':'end',fill:'#203654','font-size':13,'font-weight':700});xl.textContent=cfg.xLabel||'x';svg.appendChild(xl);const yl=svgEl('text',{x:m.l+4,y:m.t+14,fill:'#203654','font-size':13,'font-weight':700});yl.textContent=cfg.yLabel||'y';svg.appendChild(yl);
+  const group=svgEl('g',{'clip-path':'url(#'+clipId+')'});svg.appendChild(group);
+  (cfg.verticals||[]).forEach(v=>group.appendChild(svgEl('line',{x1:X(v.x),x2:X(v.x),y1:m.t,y2:m.t+ph,stroke:v.color||'#c69c48','stroke-width':v.width||2,'stroke-dasharray':v.dash||'7 6'})));
+  (cfg.series||[]).forEach((s,si)=>{
+    let pts=[];
+    if(s.data){pts=s.data.map(p=>X(p[0])+','+Y(p[1]));}
+    else {const n=s.samples||500;for(let i=0;i<=n;i++){const x=cfg.xMin+(cfg.xMax-cfg.xMin)*i/n,y=s.fn(x);if(Number.isFinite(y)&&y>=cfg.yMin-5*(cfg.yMax-cfg.yMin)&&y<=cfg.yMax+5*(cfg.yMax-cfg.yMin))pts.push(X(x)+','+Y(y));else if(pts.length){group.appendChild(svgEl('polyline',{points:pts.join(' '),fill:'none',stroke:s.color||'#0b84c6','stroke-width':s.width||4,'stroke-linecap':'round','stroke-linejoin':'round'}));pts=[];}}
+    }
+    if(pts.length)group.appendChild(svgEl('polyline',{points:pts.join(' '),fill:'none',stroke:s.color||'#0b84c6','stroke-width':s.width||4,'stroke-linecap':'round','stroke-linejoin':'round','stroke-dasharray':s.dash||''}));
+    (s.points||s.data||[]).forEach(p=>group.appendChild(svgEl('circle',{cx:X(p[0]),cy:Y(p[1]),r:s.r||4.2,fill:s.pointColor||s.color||'#0b84c6'})));
+  });
+  (cfg.segments||[]).forEach(s=>group.appendChild(svgEl('line',{x1:X(s.x1),y1:Y(s.y1),x2:X(s.x2),y2:Y(s.y2),stroke:s.color||'#7a1738','stroke-width':s.width||3,'stroke-dasharray':s.dash||''})));
+  if(cfg.title){const tt=svgEl('text',{x:W/2,y:17,'text-anchor':'middle',fill:'#203654','font-size':14,'font-weight':800});tt.textContent=cfg.title;svg.appendChild(tt);}
+}
+function drawAllGraphs(){
+  const pond=[[0,.5],[1,.75],[1.5,.93],[2,1.15],[2.5,1.24],[3,1.05],[3.5,.97],[4,.72]];
+  drawGraph('graph-pond-data',{xMin:0,xMax:4,yMin:0,yMax:1.4,xLabel:'t (hr)',yLabel:'V(t)',title:'Retention-pond inflow rate',series:[{data:pond,color:'#0b84c6'}],segments:[{x1:1.5,y1:.93,x2:2.5,y2:1.24,color:'#7a1738'}]});
+  const C=x=>1500+50*x+.01*x*x;
+  const tan=x=>C(100)+52*(x-100);
+  const sec=x=>C(100)+(C(101)-C(100))*(x-100);
+  drawGraph('graph-cost-tangent',{xMin:70,xMax:130,yMin:5000,yMax:8500,xLabel:'units x',yLabel:'C(x)',title:'Cost near x=100',series:[{fn:C,color:'#0b84c6'},{fn:tan,color:'#7a1738',width:3},{fn:sec,color:'#0e6655',width:2,dash:'6 5'}],verticals:[{x:100,color:'#c69c48'}]});
+  const AC=x=>.02*x+2+4000/x;
+  drawGraph('graph-average-cost',{xMin:100,xMax:800,yMin:18,yMax:45,xLabel:'units x',yLabel:'avg cost',title:'Average cost',series:[{fn:AC,color:'#0b84c6',points:[[447.2136,AC(447.2136)]]}],verticals:[{x:447.2136,color:'#7a1738'}]});
+  const rev=x=>125*x,cost=x=>1500+50*x+.01*x*x;
+  drawGraph('graph-cost-revenue',{xMin:0,xMax:8000,yMin:0,yMax:1000000,xLabel:'units x',yLabel:'dollars',title:'Revenue and cost',series:[{fn:rev,color:'#0b84c6'},{fn:cost,color:'#7a1738'}],verticals:[{x:3750,color:'#c69c48'}]});
+  const elast=p=>p/(p-20);
+  drawGraph('graph-elasticity',{xMin:0,xMax:19,yMin:-5,yMax:.5,xLabel:'price p',yLabel:'E(p)',title:'Elasticity E=p/(p-20)',series:[{fn:elast,color:'#0b84c6',points:[[10,-1]]}],segments:[{x1:0,y1:-1,x2:19,y2:-1,color:'#7a1738',dash:'6 5'}],verticals:[{x:10,color:'#c69c48'}]});
+  const react=x=>4*x*(1-x);
+  drawGraph('graph-reaction-rate',{xMin:0,xMax:1,yMin:0,yMax:1.1,xLabel:'concentration x',yLabel:'rate',title:'g(x)=4x(1-x)',series:[{fn:react,color:'#0b84c6',points:[[.5,1]]}],verticals:[{x:.5,color:'#7a1738'}]});
+  const ph=x=>Math.log(x/(1-x));
+  drawGraph('graph-titration',{xMin:.05,xMax:.95,yMin:-3.2,yMax:3.2,xLabel:'fraction x',yLabel:'pH shift',title:'c + ln(x/(1-x))',series:[{fn:ph,color:'#0b84c6'}],verticals:[{x:.5,color:'#7a1738'}]});
+  const pop=t=>1/(1+19*Math.exp(-2*t));
+  const grow=t=>2*pop(t)*(1-pop(t));
+  drawGraph('graph-logistic',{xMin:0,xMax:5,yMin:0,yMax:1.05,xLabel:'time t',yLabel:'normalized value',title:'Logistic population and growth rate',series:[{fn:pop,color:'#0b84c6'},{fn:grow,color:'#7a1738'}],verticals:[{x:Math.log(19)/2,color:'#c69c48'}]});
+}
+drawAllGraphs();
+window.addEventListener('load',()=>{if(window.renderMathInElement){renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});}});
+show(0);
+</script>
+</div>
+</body>
+</html>

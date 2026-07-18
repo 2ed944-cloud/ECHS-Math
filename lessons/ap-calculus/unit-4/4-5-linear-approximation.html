@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><title>AP Calculus 4.5 Linear Approximation</title><link href="https://cdn.jsdelivr.net" rel="preconnect"/><link href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" rel="stylesheet"/><script defer="" src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script><script defer="" src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script><style>
+:root{--maroon:#7a1738;--navy:#203654;--teal:#0e6655;--ink:#17212b;--muted:#607086;--line:#d9e2ec;--gold:#c69c48;--bg:#f4f7fb;--white:#fff;--soft:#fbfaf7;--blue:#0b84c6;--red:#b42318}*{box-sizing:border-box}html,body{height:100%}body{margin:0;font-family:Inter,Aptos,"Segoe UI",Arial,sans-serif;color:var(--ink);background:var(--bg)}.deck{height:100vh;display:grid;grid-template-rows:74px 1fr 56px;overflow:hidden}.topbar{display:flex;align-items:center;justify-content:space-between;padding:10px 22px;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 2px 14px #14203714;z-index:2}.brand{display:flex;align-items:center;gap:18px}.echs{height:48px;width:96px;border-radius:14px;background:linear-gradient(135deg,var(--maroon),var(--navy));color:#fff;display:grid;place-items:center;font-weight:900;letter-spacing:1.5px}.course{border-left:2px solid #d5dce4;padding-left:18px;line-height:1.15}.course strong{color:var(--maroon);font-size:20px}.course span{display:block;color:var(--muted);font-size:13px;margin-top:3px}.progress{display:flex;align-items:center;gap:10px;color:var(--muted);font-weight:800;font-size:14px}.dotbar{width:220px;height:9px;background:#e5ebf0;border-radius:99px;overflow:hidden}.dotbar span{display:block;height:100%;background:linear-gradient(90deg,var(--maroon),var(--teal));border-radius:99px}.main{overflow:hidden}.slide{display:none;height:100%;overflow-y:auto;padding:30px 46px 70px;background:linear-gradient(135deg,#fff 0%,#fbfaf7 60%,#f2fbf8 100%)}.slide.active{display:block}.slide h1{font-size:38px;line-height:1.05;margin:0 0 22px;color:var(--navy);letter-spacing:-1px}.slide h2{color:var(--maroon)}.kicker{color:var(--maroon);font-size:14px;text-transform:uppercase;letter-spacing:.12em;font-weight:900;margin-bottom:8px}.hero{display:grid;grid-template-columns:.9fr 1.2fr;gap:30px;align-items:center;margin-top:14px}.big{font-size:82px;font-weight:950;color:var(--maroon);line-height:.9}.hero p{font-size:27px;color:var(--navy);line-height:1.25}.formula{background:#fff;border:1px solid var(--line);border-radius:22px;padding:25px;box-shadow:0 18px 35px #14203714;font-size:21px}.targets{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}.targets span,.tag{display:inline-block;background:#eef7f4;border:1px solid #cce7df;color:var(--teal);border-radius:99px;padding:9px 13px;font-weight:850}.grid{display:grid;gap:20px}.c2{grid-template-columns:repeat(2,1fr)}.c3{grid-template-columns:repeat(3,1fr)}.c4{grid-template-columns:repeat(4,1fr)}.card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:20px;font-size:20px;line-height:1.42;box-shadow:0 13px 28px #1420370f}.card h3{margin:0 0 9px;color:var(--maroon)}.card ul,.card ol{margin:7px 0;padding-left:25px}.card li{margin:7px 0}.math{font-size:24px;color:var(--navy);margin:9px 0}.rulebox{background:#fff;border:2px solid var(--maroon);border-radius:22px;padding:20px 25px;margin:7px 0 20px;font-size:21px;box-shadow:0 15px 30px #7a173814}.rulebox h3{margin:0 0 9px;color:var(--maroon)}.prompt{font-size:23px;line-height:1.42;background:#fff7e6;border-left:8px solid var(--gold);padding:17px 20px;border-radius:15px;color:#3a2d12;margin-bottom:14px}.note{background:#eef3f9;border-left:7px solid var(--navy);padding:14px 18px;border-radius:15px;font-size:20px;color:var(--navy);font-weight:750;margin:10px 0 20px}.warning{background:#fff1f2;border-left:7px solid var(--maroon);padding:14px 18px;border-radius:15px;font-size:20px;color:#5f1730;margin:10px 0 20px}.answer{margin-top:16px;background:#fff;border:1px solid #efd0dc;border-radius:17px;padding:10px 16px;font-size:18px}.answer summary{cursor:pointer;color:var(--maroon);font-weight:900}.answer div{margin-top:10px;border-top:1px solid #f1d7e2;padding-top:11px;line-height:1.45}.answer[open]{box-shadow:0 10px 25px #7a173814}.muted{color:var(--muted);font-size:16px}.check{font-size:19px;line-height:1.5}.check li{margin:7px 0}.tbl{width:100%;border-collapse:collapse;background:#fff;font-size:18px;margin:12px 0}.tbl th,.tbl td{border:1px solid var(--line);padding:10px 12px;text-align:center}.tbl th{background:#eef3f9;color:var(--navy)}.foot{display:flex;justify-content:space-between;align-items:center;padding:8px 20px;background:#fff;border-top:1px solid var(--line)}button,select{font:inherit}.nav{display:flex;gap:9px}.primary,.secondary{border-radius:11px;padding:8px 16px;font-weight:850;cursor:pointer}.primary{background:var(--maroon);border:1px solid var(--maroon);color:#fff}.secondary{background:#fff;border:1px solid #bbc7d4;color:var(--navy)}select{max-width:520px;padding:8px 11px;border:1px solid #bbc7d4;border-radius:10px;color:var(--navy)}.graph-card{margin:12px 0 8px;background:#eef8fb;border:1px solid #c8d9ea;border-radius:22px;padding:16px;display:grid;grid-template-columns:minmax(420px,1.25fr) minmax(260px,.75fr);gap:16px;align-items:stretch}.plot-wrap{background:#fff;border:1px solid #d7e5f2;border-radius:18px;display:grid;place-items:center;overflow:hidden}.plot{width:100%;height:410px;display:block}.plot-bg{fill:#fbfdff}.gridline{stroke:#e8eef5;stroke-width:1}.axis{stroke:#607086;stroke-width:2}.curve{fill:none;stroke:#0e6655;stroke-width:4}.tangent{fill:none;stroke:#7a1738;stroke-width:4}.delta-x,.delta-y{stroke:#c69c48;stroke-width:2.5;stroke-dasharray:8 7}.error-line{stroke:#b42318;stroke-width:3;stroke-dasharray:5 5}.ptA{fill:#203654;stroke:#fff;stroke-width:3}.ptX{fill:#0e6655;stroke:#fff;stroke-width:3}.ptL{fill:#7a1738;stroke:#fff;stroke-width:3}.labelA,.labelX,.labelCurve,.labelLine{font-size:16px;font-weight:900;fill:#203654}.panel{background:#fff;border:1px solid #d7e5f2;border-radius:18px;padding:20px;display:flex;flex-direction:column;gap:14px}.panel h3{margin:0;color:var(--maroon);font-size:24px}.slider-label{font-size:18px;color:var(--navy);font-weight:850}.slider-label input{width:100%;accent-color:var(--maroon);margin-top:8px}.readout{background:#eef7f4;border:1px solid #cce7df;border-radius:15px;padding:13px 15px;color:var(--navy);font-weight:850;line-height:1.45;font-size:18px}.mini-note{font-size:16px;color:var(--muted);line-height:1.35}@media(max-width:1000px){.grid.c2,.grid.c3,.grid.c4,.hero,.graph-card{grid-template-columns:1fr}.slide{padding:24px 24px 70px}.slide h1{font-size:31px}.topbar{padding:9px 12px}.dotbar{width:100px}.course span{display:none}.plot{height:300px}}@media print{.deck{display:block;height:auto}.topbar,.foot{display:none}.slide{display:block!important;height:auto;min-height:100vh;page-break-after:always;padding:30px}.answer{display:block}.answer>div{display:block}}
+</style></head><body><div class="deck"><header class="topbar"><div class="brand"><div class="echs">ECHS</div><div class="course"><strong>AP Calculus 4.5</strong><span>Linear Approximation: Interactive Tangent-Line Models</span></div></div><div class="progress"><span id="count">1 / 68</span><div class="dotbar"><span id="bar"></span></div></div></header><main class="main"><section class="slide active" data-title="4.5 Linear Approximation"><div class="kicker">AP Calculus AB</div><h1>4.5 Linear Approximation</h1>
+<div class="hero"><div><div class="big">4.5</div><p>Use the tangent line as a local model for the curve.</p></div><div class="formula"><b>Core idea</b><br/><br/>Near a point of tangency, the graph and tangent line are almost indistinguishable.</div></div>
+<div class="targets"><span>Tangent line approximation</span><span>Local linearization</span><span>Differentials</span><span>Error</span><span>Underestimate / overestimate</span></div>
+</section><section class="slide" data-title="Learning targets"><div class="kicker">Lesson overview</div><h1>Learning targets</h1>
+<div class="grid c4"><div class="card"><h3>Approximate</h3>Use a tangent line to estimate a nearby function value.</div><div class="card"><h3>Model locally</h3>Explain why a differentiable graph behaves almost linearly when zoomed in.</div><div class="card"><h3>Compare</h3>Use concavity to decide overestimate or underestimate.</div><div class="card"><h3>Audit error</h3>Compute exact error and percentage error when the exact value is available.</div></div>
+</section><section class="slide" data-title="The formula"><div class="kicker">Definition</div><h1>The formula</h1>
+<div class="rulebox"><h3>Linearization at x=a</h3>\[L(x)=f(a)+f'(a)(x-a)\]</div>
+<div class="note">Use this when x is close to a. The input a is the center; x is the nearby target value.</div>
+</section><section class="slide" data-title="Differentials and increments"><div class="kicker">Textbook connection</div><h1>Differentials and increments</h1>
+<div class="grid c2"><div class="card"><h3>Actual change</h3>\[\Delta y=f(a+\Delta x)-f(a)\]</div><div class="card"><h3>Linear change</h3>\[dy=f'(a)\,dx,\qquad dx=\Delta x\]</div></div>
+<div class="rulebox">\[f(a+\Delta x)\approx f(a)+f'(a)\Delta x\]</div>
+</section><section class="slide" data-title="Interactive vocabulary"><div class="kicker">Visual model</div><h1>Interactive vocabulary</h1>
+<div class="graph-card" data-a="0" data-fn="cubicLocal" data-widget="graph" data-x="0.65">
+<div class="plot-wrap">
+<svg aria-label="Interactive graph of a curve, tangent line, approximation point, and error gap" class="plot" role="img" viewbox="0 0 760 430">
+<rect class="plot-bg" height="430" width="760" x="0" y="0"></rect>
+<g class="gridlines"></g>
+<line class="axis xaxis"></line><line class="axis yaxis"></line>
+<path class="curve"></path>
+<path class="tangent"></path>
+<line class="delta-x"></line><line class="delta-y"></line><line class="error-line"></line>
+<circle class="ptA" r="7"></circle><circle class="ptX" r="7"></circle><circle class="ptL" r="6"></circle>
+<text class="labelA">a</text><text class="labelX">x</text><text class="labelCurve">f(x)</text><text class="labelLine">L(x)</text>
+</svg>
+</div>
+<div class="panel">
+<h3>Tangent approximation vs true value</h3>
+<label class="slider-label">Move target value: <strong class="xout"></strong>
+<input class="xrange" step="0.001" type="range"/>
+</label>
+<div class="readout"></div>
+<div class="mini-note">The slider moves the target point, tangent-line estimate, error gap, and displayed values together.</div>
+<div class="mini-note">Move x away from a to see the error gap grow.</div>
+</div>
+</div></section><section class="slide" data-title="Zooming makes curves look linear"><div class="kicker">Local linearity</div><h1>Zooming makes curves look linear</h1>
+<div class="graph-card" data-a="0" data-fn="sin0" data-widget="graph" data-x="0.35">
+<div class="plot-wrap">
+<svg aria-label="Interactive graph of a curve, tangent line, approximation point, and error gap" class="plot" role="img" viewbox="0 0 760 430">
+<rect class="plot-bg" height="430" width="760" x="0" y="0"></rect>
+<g class="gridlines"></g>
+<line class="axis xaxis"></line><line class="axis yaxis"></line>
+<path class="curve"></path>
+<path class="tangent"></path>
+<line class="delta-x"></line><line class="delta-y"></line><line class="error-line"></line>
+<circle class="ptA" r="7"></circle><circle class="ptX" r="7"></circle><circle class="ptL" r="6"></circle>
+<text class="labelA">a</text><text class="labelX">x</text><text class="labelCurve">f(x)</text><text class="labelLine">L(x)</text>
+</svg>
+</div>
+<div class="panel">
+<h3>Zoom idea: sin x near 0</h3>
+<label class="slider-label">Move target value: <strong class="xout"></strong>
+<input class="xrange" step="0.001" type="range"/>
+</label>
+<div class="readout"></div>
+<div class="mini-note">The slider moves the target point, tangent-line estimate, error gap, and displayed values together.</div>
+<div class="mini-note">The tangent line at 0 is L(x)=x.</div>
+</div>
+</div></section><section class="slide" data-title="Overestimate or underestimate?"><div class="kicker">Concavity rule</div><h1>Overestimate or underestimate?</h1>
+<div class="grid c2"><div class="card"><h3>Concave up</h3>The curve lies above its tangent line, so the tangent-line value is an <b>underestimate</b>.</div><div class="card"><h3>Concave down</h3>The curve lies below its tangent line, so the tangent-line value is an <b>overestimate</b>.</div></div>
+<div class="warning">The rule is local: it must be true on the interval between a and the target x.</div>
+</section><section class="slide" data-title="Concave up interactive model"><div class="kicker">Underestimate</div><h1>Concave up interactive model</h1>
+<div class="graph-card" data-a="0" data-concavity="up" data-fa="1" data-fp="1" data-kind="up" data-widget="abstract" data-x="0.7">
+<div class="plot-wrap">
+<svg aria-label="Abstract local linearity model showing concavity and tangent approximation" class="plot" role="img" viewbox="0 0 760 430">
+<rect class="plot-bg" height="430" width="760" x="0" y="0"></rect>
+<g class="gridlines"></g><line class="axis xaxis"></line><line class="axis yaxis"></line>
+<path class="curve"></path><path class="tangent"></path>
+<line class="error-line"></line><circle class="ptA" r="7"></circle><circle class="ptX" r="7"></circle><circle class="ptL" r="6"></circle>
+<text class="labelA">a</text><text class="labelX">x</text><text class="labelCurve">model f</text><text class="labelLine">L(x)</text>
+</svg>
+</div>
+<div class="panel"><h3>Concave up: tangent underestimates</h3>
+<label class="slider-label">Move target value: <strong class="xout"></strong><input class="xrange" step="0.001" type="range"/></label>
+<div class="readout"></div><div class="mini-note">This figure uses a curve with the stated concavity and exact given tangent data.</div>
+</div>
+</div></section><section class="slide" data-title="Concave down interactive model"><div class="kicker">Overestimate</div><h1>Concave down interactive model</h1>
+<div class="graph-card" data-a="0" data-concavity="down" data-fa="1" data-fp="1" data-kind="down" data-widget="abstract" data-x="0.7">
+<div class="plot-wrap">
+<svg aria-label="Abstract local linearity model showing concavity and tangent approximation" class="plot" role="img" viewbox="0 0 760 430">
+<rect class="plot-bg" height="430" width="760" x="0" y="0"></rect>
+<g class="gridlines"></g><line class="axis xaxis"></line><line class="axis yaxis"></line>
+<path class="curve"></path><path class="tangent"></path>
+<line class="error-line"></line><circle class="ptA" r="7"></circle><circle class="ptX" r="7"></circle><circle class="ptL" r="6"></circle>
+<text class="labelA">a</text><text class="labelX">x</text><text class="labelCurve">model f</text><text class="labelLine">L(x)</text>
+</svg>
+</div>
+<div class="panel"><h3>Concave down: tangent overestimates</h3>
+<label class="slider-label">Move target value: <strong class="xout"></strong><input class="xrange" step="0.001" type="range"/></label>
+<div class="readout"></div><div class="mini-note">This figure uses a curve with the stated concavity and exact given tangent data.</div>
+</div>
+</div></section><section class="slide" data-title="Procedure"><div class="kicker">Method</div><h1>Procedure</h1>
+<ol class="check"><li>Choose a nearby center \(a\) where \(f(a)\) and \(f'(a)\) are known.</li><li>Write \(L(x)=f(a)+f'(a)(x-a)\).</li><li>Substitute the target input.</li><li>Use concavity to decide under or over.</li><li>If exact value is available, calculate \(|f(x)-L(x)|\).</li></ol>
+</section><section class="slide" data-title="Textbook Example: Approximate cos(1)"><div class="kicker">Tangent line approximation</div><h1>Textbook Example: Approximate cos(1)</h1><div class="prompt">Use the known value at \(a=\pi/3\) to write the tangent-line approximation for \(f(x)=\cos x\). Then approximate \(\cos(1)\), compare it with the exact value, and identify the error.</div>
+<div class="graph-card" data-a="1.0471975511965976" data-fn="cos" data-widget="graph" data-x="1">
+<div class="plot-wrap">
+<svg aria-label="Interactive graph of a curve, tangent line, approximation point, and error gap" class="plot" role="img" viewbox="0 0 760 430">
+<rect class="plot-bg" height="430" width="760" x="0" y="0"></rect>
+<g class="gridlines"></g>
+<line class="axis xaxis"></line><line class="axis yaxis"></line>
+<path class="curve"></path>
+<path class="tangent"></path>
+<line class="delta-x"></line><line class="delta-y"></line><line class="error-line"></line>
+<circle class="ptA" r="7"></circle><circle class="ptX" r="7"></circle><circle class="ptL" r="6"></circle>
+<text class="labelA">a</text><text class="labelX">x</text><text class="labelCurve">f(x)</text><text class="labelLine">L(x)</text>
+</svg>
+</div>
+<div class="panel">
+<h3>Approximating cos(1) from a=π/3</h3>
+<label class="slider-label">Move target value: <strong class="xout"></strong>
+<input class="xrange" step="0.001" type="range"/>
+</label>
+<div class="readout"></div>
+<div class="mini-note">The slider moves the target point, tangent-line estimate, error gap, and displayed values together.</div>
+<div class="mini-note">Exact cos(π/3)=1/2 and f′(π/3)=−√3/2.</div>
+</div>
+</div><details class="answer"><summary>Show solution</summary><div>\[L(x)=\frac12-\frac{\sqrt3}{2}\left(x-\frac{\pi}{3}\right)\]
+\[\cos(1)\approx L(1)\approx0.5409\] The exact value is about \(0.5403\), so the error is about \(0.0006\).</div></details></section><section class="slide" data-title="Textbook Example: sin x ≈ x"><div class="kicker">Common small-angle approximation</div><h1>Textbook Example: sin x ≈ x</h1><div class="prompt">Use the tangent line to \(f(x)=\sin x\) at \(a=0\) to justify the small-angle approximation \(\sin x\approx x\). Move the slider to see when the approximation starts to lose accuracy.</div>
+<div class="graph-card" data-a="0" data-fn="sin0" data-widget="graph" data-x="0.2">
+<div class="plot-wrap">
+<svg aria-label="Interactive graph of a curve, tangent line, approximation point, and error gap" class="plot" role="img" viewbox="0 0 760 430">
+<rect class="plot-bg" height="430" width="760" x="0" y="0"></rect>
+<g class="gridlines"></g>
+<line class="axis xaxis"></line><line class="axis yaxis"></line>
+<path class="curve"></path>
+<path class="tangent"></path>
+<line class="delta-x"></line><line class="delta-y"></line><line class="error-line"></line>
+<circle class="ptA" r="7"></circle><circle class="ptX" r="7"></circle><circle class="ptL" r="6"></circle>
+<text class="labelA">a</text><text class="labelX">x</text><text class="labelCurve">f(x)</text><text class="labelLine">L(x)</text>
+</svg>
+</div>
+<div class="panel">
+<h3>Small-angle approximation</h3>
+<label class="slider-label">Move target value: <strong class="xout"></strong>
+<input class="xrange" step="0.001" type="range"/>
+</label>
+<div class="readout"></div>
+<div class="mini-note">The slider moves the target point, tangent-line estimate, error gap, and displayed values together.</div>
+<div class="mini-note">Use radians: sin x≈x near x=0.</div>
+</div>
+</div><details class="answer"><summary>Show solution</summary><div>At \(a=0\), \(f(0)=0\), \(f'(0)=1\), so \(L(x)=x\).</div></details></section><section class="slide" data-title="Textbook Example: Cube root near 8"><div class="kicker">Differentials</div><h1>Textbook Example: Cube root near 8</h1><div class="prompt">Use \(f(x)=\sqrt[3]{x}\) centered at \(a=8\) to approximate nearby cube roots such as \(\sqrt[3]{8.07}\). Decide from concavity whether the estimate is an overestimate or underestimate.</div>
+<div class="graph-card" data-a="8" data-fn="cuberoot" data-widget="graph" data-x="8.07">
+<div class="plot-wrap">
+<svg aria-label="Interactive graph of a curve, tangent line, approximation point, and error gap" class="plot" role="img" viewbox="0 0 760 430">
+<rect class="plot-bg" height="430" width="760" x="0" y="0"></rect>
+<g class="gridlines"></g>
+<line class="axis xaxis"></line><line class="axis yaxis"></line>
+<path class="curve"></path>
+<path class="tangent"></path>
+<line class="delta-x"></line><line class="delta-y"></line><line class="error-line"></line>
+<circle class="ptA" r="7"></circle><circle class="ptX" r="7"></circle><circle class="ptL" r="6"></circle>
+<text class="labelA">a</text><text class="labelX">x</text><text class="labelCurve">f(x)</text><text class="labelLine">L(x)</text>
+</svg>
+</div>
+<div class="panel">
+<h3>Estimate cube roots near 8</h3>
+<label class="slider-label">Move target value: <strong class="xout"></strong>
+<input class="xrange" step="0.001" type="range"/>
+</label>
+<div class="readout"></div>
+<div class="mini-note">The slider moves the target point, tangent-line estimate, error gap, and displayed values together.</div>
+<div class="mini-note">At a=8, f(8)=2 and f′(8)=1/12.</div>
+</div>
+</div><details class="answer"><summary>Show solution</summary><div>\[L(x)=2+\frac{x-8}{12}\]
+For example, \(\sqrt[3]{8.07}\approx2+0.07/12=2.005833\). Because \(x^{1/3}\) is concave down for \(x&gt;0\), this is an overestimate.</div></details></section><section class="slide" data-title="Textbook Example: Camera demand table"><div class="kicker">Data-based linear approximation</div><h1>Textbook Example: Camera demand table</h1>
+<table class="tbl"><tr><th>Price x, hundreds of dollars</th><td>6</td><td>10</td><td>14</td></tr><tr><th>Demand f(x), thousands</th><td>84</td><td>60</td><td>32</td></tr></table>
+<div class="prompt">Use the data from \(x=6\) to \(x=10\) to approximate the demand at \(x=7\).</div><details class="answer"><summary>Show solution</summary><div>Secant slope \(\frac{60-84}{10-6}=-6\). So \(L(x)=84-6(x-6)\), and \(L(7)=78\). Demand is about 78,000 cameras.</div></details></section><section class="slide" data-title="Textbook practice: standard approximations"><div class="kicker">Small x library</div><h1>Textbook practice: standard approximations</h1><div class="prompt">For each expression, identify the function and the center, then explain why the listed tangent-line approximation is valid only for values close to the center.</div>
+<div class="grid c4"><div class="card">\[\tan x\approx x\]</div><div class="card">\[\sqrt{1+x}\approx1+\frac{x}{2}\]</div><div class="card">\[\sqrt{4+x}\approx2+\frac{x}{4}\]</div><div class="card">\[e^x\approx1+x\]</div></div>
+<div class="note">Each one comes from a tangent line centered at \(x=0\).</div>
+</section><section class="slide" data-title="Compare common approximations"><div class="kicker">Textbook exploration</div><h1>Compare common approximations</h1><div class="prompt">Three functions have the same value and derivative at \(x=0\). Verify that they share the same linearization, then compare which one departs from the tangent line fastest.</div>
+<div class="graph-card" data-a="0" data-fn="compareA" data-widget="graph" data-x="0.35">
+<div class="plot-wrap">
+<svg aria-label="Interactive graph of a curve, tangent line, approximation point, and error gap" class="plot" role="img" viewbox="0 0 760 430">
+<rect class="plot-bg" height="430" width="760" x="0" y="0"></rect>
+<g class="gridlines"></g>
+<line class="axis xaxis"></line><line class="axis yaxis"></line>
+<path class="curve"></path>
+<path class="tangent"></path>
+<line class="delta-x"></line><line class="delta-y"></line><line class="error-line"></line>
+<circle class="ptA" r="7"></circle><circle class="ptX" r="7"></circle><circle class="ptL" r="6"></circle>
+<text class="labelA">a</text><text class="labelX">x</text><text class="labelCurve">f(x)</text><text class="labelLine">L(x)</text>
+</svg>
+</div>
+<div class="panel">
+<h3>(1+x)^2, 1+sin(2x), and e^{2x}</h3>
+<label class="slider-label">Move target value: <strong class="xout"></strong>
+<input class="xrange" step="0.001" type="range"/>
+</label>
+<div class="readout"></div>
+<div class="mini-note">The slider moves the target point, tangent-line estimate, error gap, and displayed values together.</div>
+<div class="mini-note">All three have the same linearization at x=0: L(x)=1+2x.</div>
+</div>
+</div></section><section class="slide" data-title="Compare functions with L(x)=x"><div class="kicker">Textbook exploration</div><h1>Compare functions with L(x)=x</h1><div class="prompt">Compare \(\sin x\), \(\arctan x\), and \(\sinh x\). Show that all have linearization \(L(x)=x\) at \(x=0\), then use the graph to decide which is above or below the line near zero.</div>
+<div class="graph-card" data-a="0" data-fn="compareB" data-widget="graph" data-x="0.6">
+<div class="plot-wrap">
+<svg aria-label="Interactive graph of a curve, tangent line, approximation point, and error gap" class="plot" role="img" viewbox="0 0 760 430">
+<rect class="plot-bg" height="430" width="760" x="0" y="0"></rect>
+<g class="gridlines"></g>
+<line class="axis xaxis"></line><line class="axis yaxis"></line>
+<path class="curve"></path>
+<path class="tangent"></path>
+<line class="delta-x"></line><line class="delta-y"></line><line class="error-line"></line>
+<circle class="ptA" r="7"></circle><circle class="ptX" r="7"></circle><circle class="ptL" r="6"></circle>
+<text class="labelA">a</text><text class="labelX">x</text><text class="labelCurve">f(x)</text><text class="labelLine">L(x)</text>
+</svg>
+</div>
+<div class="panel">
+<h3>sin x, arctan x, and sinh x</h3>
+<label class="slider-label">Move target value: <strong class="xout"></strong>
+<input class="xrange" step="0.001" type="range"/>
+</label>
+<div class="readout"></div>
+<div class="mini-note">The slider moves the target point, tangent-line estimate, error gap, and displayed values together.</div>
+<div class="mini-note">All three have the same linearization at x=0: L(x)=x.</div>
+</div>
+</div></section><section class="slide" data-title="Notes Example 2: Given f(3), f′(3), f″(3)"><div class="kicker">Tangent data only</div><h1>Notes Example 2: Given f(3), f′(3), f″(3)</h1><div class="prompt">Given \(f(3)=-2\), \(f'(3)=5\), and local concavity up, write \(L(x)\), approximate \(f(3.1)\), and decide whether the actual value is greater or less than the approximation.</div>
+<div class="graph-card" data-a="3" data-concavity="up" data-fa="-2" data-fp="5" data-kind="up" data-widget="abstract" data-x="3.1">
+<div class="plot-wrap">
+<svg aria-label="Abstract local linearity model showing concavity and tangent approximation" class="plot" role="img" viewbox="0 0 760 430">
+<rect class="plot-bg" height="430" width="760" x="0" y="0"></rect>
+<g class="gridlines"></g><line class="axis xaxis"></line><line class="axis yaxis"></line>
+<path class="curve"></path><path class="tangent"></path>
+<line class="error-line"></line><circle class="ptA" r="7"></circle><circle class="ptX" r="7"></circle><circle class="ptL" r="6"></circle>
+<text class="labelA">a</text><text class="labelX">x</text><text class="labelCurve">model f</text><text class="labelLine">L(x)</text>
+</svg>
+</div>
+<div class="panel"><h3>Given f(3)=-2 and f′(3)=5</h3>
+<label class="slider-label">Move target value: <strong class="xout"></strong><input class="xrange" step="0.001" type="range"/></label>
+<div class="readout"></div><div class="mini-note">This figure uses a curve with the stated concavity and exact given tangent data.</div>
+</div>
+</div><details class="answer"><summary>Show solution</summary><div>\[L(x)=-2+5(x-3)\]
+\[f(3.1)\approx L(3.1)=-1.5\]
+Since \(f''(3)&gt;0\), the graph is concave up locally and the tangent value is an underestimate.</div></details></section><section class="slide" data-title="Notes Example 3: sin x near π/3"><div class="kicker">Trigonometric linearization</div><h1>Notes Example 3: sin x near π/3</h1><div class="prompt">Write the linearization of \(f(x)=\sin x\) at \(a=\pi/3\). Use it to approximate \(\sin(1.05)\) and interpret the graph.</div>
+<div class="graph-card" data-a="1.0471975511965976" data-fn="sin" data-widget="graph" data-x="1.05">
+<div class="plot-wrap">
+<svg aria-label="Interactive graph of a curve, tangent line, approximation point, and error gap" class="plot" role="img" viewbox="0 0 760 430">
+<rect class="plot-bg" height="430" width="760" x="0" y="0"></rect>
+<g class="gridlines"></g>
+<line class="axis xaxis"></line><line class="axis yaxis"></line>
+<path class="curve"></path>
+<path class="tangent"></path>
+<line class="delta-x"></line><line class="delta-y"></line><line class="error-line"></line>
+<circle class="ptA" r="7"></circle><circle class="ptX" r="7"></circle><circle class="ptL" r="6"></circle>
+<text class="labelA">a</text><text class="labelX">x</text><text class="labelCurve">f(x)</text><text class="labelLine">L(x)</text>
+</svg>
+</div>
+<div class="panel">
+<h3>Approximate sin(1.05)</h3>
+<label class="slider-label">Move target value: <strong class="xout"></strong>
+<input class="xrange" step="0.001" type="range"/>
+</label>
+<div class="readout"></div>
+<div class="mini-note">The slider moves the target point, tangent-line estimate, error gap, and displayed values together.</div>
+<div class="mini-note">At a=π/3, f(a)=√3/2 and f′(a)=1/2.</div>
+</div>
+</div><details class="answer"><summary>Show solution</summary><div>\[L(x)=\frac{\sqrt3}{2}+\frac12\left(x-\frac{\pi}{3}\right)\]
+\[L(1.05)\approx0.8674\]</div></details></section><section class="slide" data-title="Notes Example 4: 2^x near 3"><div class="kicker">Exponential linearization</div><h1>Notes Example 4: 2^x near 3</h1><div class="prompt">Use \(f(x)=2^x\) centered at \(a=3\) to estimate \(2^{2.97}\). Write the tangent line and state why the estimate should be close.</div>
+<div class="graph-card" data-a="3" data-fn="pow2" data-widget="graph" data-x="2.97">
+<div class="plot-wrap">
+<svg aria-label="Interactive graph of a curve, tangent line, approximation point, and error gap" class="plot" role="img" viewbox="0 0 760 430">
+<rect class="plot-bg" height="430" width="760" x="0" y="0"></rect>
+<g class="gridlines"></g>
+<line class="axis xaxis"></line><line class="axis yaxis"></line>
+<path class="curve"></path>
+<path class="tangent"></path>
+<line class="delta-x"></line><line class="delta-y"></line><line class="error-line"></line>
+<circle class="ptA" r="7"></circle><circle class="ptX" r="7"></circle><circle class="ptL" r="6"></circle>
+<text class="labelA">a</text><text class="labelX">x</text><text class="labelCurve">f(x)</text><text class="labelLine">L(x)</text>
+</svg>
+</div>
+<div class="panel">
+<h3>Estimate 2^{2.97}</h3>
+<label class="slider-label">Move target value: <strong class="xout"></strong>
+<input class="xrange" step="0.001" type="range"/>
+</label>
+<div class="readout"></div>
+<div class="mini-note">The slider moves the target point, tangent-line estimate, error gap, and displayed values together.</div>
+<div class="mini-note">At a=3, f(3)=8 and f′(3)=8 ln 2.</div>
+</div>
+</div><details class="answer"><summary>Show solution</summary><div>\[L(x)=8+8\ln2(x-3)\]
+\[2^{2.97}\approx L(2.97)=8-0.24\ln2\approx7.8336\]</div></details></section><section class="slide" data-title="Notes Example 5: Approximate (2.01)^5"><div class="kicker">Power approximation</div><h1>Notes Example 5: Approximate (2.01)^5</h1><div class="prompt">Use the tangent line to \(f(x)=x^5\) at \(a=2\) to estimate \((2.01)^5\). Use concavity to decide whether the tangent value is too small or too large.</div>
+<div class="graph-card" data-a="2" data-fn="x5" data-widget="graph" data-x="2.01">
+<div class="plot-wrap">
+<svg aria-label="Interactive graph of a curve, tangent line, approximation point, and error gap" class="plot" role="img" viewbox="0 0 760 430">
+<rect class="plot-bg" height="430" width="760" x="0" y="0"></rect>
+<g class="gridlines"></g>
+<line class="axis xaxis"></line><line class="axis yaxis"></line>
+<path class="curve"></path>
+<path class="tangent"></path>
+<line class="delta-x"></line><line class="delta-y"></line><line class="error-line"></line>
+<circle class="ptA" r="7"></circle><circle class="ptX" r="7"></circle><circle class="ptL" r="6"></circle>
+<text class="labelA">a</text><text class="labelX">x</text><text class="labelCurve">f(x)</text><text class="labelLine">L(x)</text>
+</svg>
+</div>
+<div class="panel">
+<h3>Estimate (2.01)^5</h3>
+<label class="slider-label">Move target value: <strong class="xout"></strong>
+<input class="xrange" step="0.001" type="range"/>
+</label>
+<div class="readout"></div>
+<div class="mini-note">The slider moves the target point, tangent-line estimate, error gap, and displayed values together.</div>
+<div class="mini-note">At a=2, f(2)=32 and f′(2)=80.</div>
+</div>
+</div><details class="answer"><summary>Show solution</summary><div>\[L(x)=32+80(x-2)\]
+\[(2.01)^5\approx32.8\]
+Because \(x^5\) is concave up near 2, this is an underestimate.</div></details></section><section class="slide" data-title="Notes Example 6: Cube root away from 8"><div class="kicker">When distance matters</div><h1>Notes Example 6: Cube root away from 8</h1><div class="prompt">Use the same linearization of \(\sqrt[3]{x}\) at \(a=8\) for several target values. Explain why the error grows as the target moves farther from \(8\).</div>
+<div class="graph-card" data-a="8" data-fn="cuberoot" data-widget="graph" data-x="16">
+<div class="plot-wrap">
+<svg aria-label="Interactive graph of a curve, tangent line, approximation point, and error gap" class="plot" role="img" viewbox="0 0 760 430">
+<rect class="plot-bg" height="430" width="760" x="0" y="0"></rect>
+<g class="gridlines"></g>
+<line class="axis xaxis"></line><line class="axis yaxis"></line>
+<path class="curve"></path>
+<path class="tangent"></path>
+<line class="delta-x"></line><line class="delta-y"></line><line class="error-line"></line>
+<circle class="ptA" r="7"></circle><circle class="ptX" r="7"></circle><circle class="ptL" r="6"></circle>
+<text class="labelA">a</text><text class="labelX">x</text><text class="labelCurve">f(x)</text><text class="labelLine">L(x)</text>
+</svg>
+</div>
+<div class="panel">
+<h3>Overestimate grows as x moves away</h3>
+<label class="slider-label">Move target value: <strong class="xout"></strong>
+<input class="xrange" step="0.001" type="range"/>
+</label>
+<div class="readout"></div>
+<div class="mini-note">The slider moves the target point, tangent-line estimate, error gap, and displayed values together.</div>
+<div class="mini-note">The tangent line is useful near 8, but the error grows farther away.</div>
+</div>
+</div><details class="answer"><summary>Show solution</summary><div>\[L(10)=2+\frac{2}{12}=2.1667,\quad L(16)=2+\frac{8}{12}=2.6667\]
+Both are overestimates because \(x^{1/3}\) is concave down.</div></details></section><section class="slide" data-title="Notes Example 7: Table and tangent line"><div class="kicker">Table-based tangent model</div><h1>Notes Example 7: Table and tangent line</h1>
+<table class="tbl"><tr><th>x</th><td>-1</td><td>-0.8</td><td>-0.6</td><td>-0.3</td><td>0</td><td>0.3</td><td>0.6</td><td>0.8</td><td>1</td></tr><tr><th>f(x)</th><td>-12</td><td>-36</td><td>-51</td><td>-64</td><td>-87</td><td>-73</td><td>-67</td><td>-19</td><td>5</td></tr><tr><th>f′(x)</th><td>-8</td><td>-5</td><td>-2</td><td>-1</td><td>0</td><td>2</td><td>3</td><td>6</td><td>14</td></tr></table>
+<div class="prompt">Use the tangent line at \(x=-0.6\) to estimate \(f(-0.5)\).</div><details class="answer"><summary>Show solution</summary><div>\[L(x)=-51-2(x+0.6)\]
+\[L(-0.5)=-51.2\]
+If the graph is concave up on this interval, the estimate is an underestimate.</div></details></section><section class="slide" data-title="Notes Example 8: Reciprocal function"><div class="kicker">Error and overestimate</div><h1>Notes Example 8: Reciprocal function</h1><div class="prompt">Find the tangent-line approximation for \(f(x)=\frac1{x-1}\) at \(a=-1\). Estimate \(f(-1.2)\), compute the error, and decide whether the tangent line overestimates or underestimates.</div>
+<div class="graph-card" data-a="-1" data-fn="recipMinus1" data-widget="graph" data-x="-1.2">
+<div class="plot-wrap">
+<svg aria-label="Interactive graph of a curve, tangent line, approximation point, and error gap" class="plot" role="img" viewbox="0 0 760 430">
+<rect class="plot-bg" height="430" width="760" x="0" y="0"></rect>
+<g class="gridlines"></g>
+<line class="axis xaxis"></line><line class="axis yaxis"></line>
+<path class="curve"></path>
+<path class="tangent"></path>
+<line class="delta-x"></line><line class="delta-y"></line><line class="error-line"></line>
+<circle class="ptA" r="7"></circle><circle class="ptX" r="7"></circle><circle class="ptL" r="6"></circle>
+<text class="labelA">a</text><text class="labelX">x</text><text class="labelCurve">f(x)</text><text class="labelLine">L(x)</text>
+</svg>
+</div>
+<div class="panel">
+<h3>f(x)=1/(x-1) centered at -1</h3>
+<label class="slider-label">Move target value: <strong class="xout"></strong>
+<input class="xrange" step="0.001" type="range"/>
+</label>
+<div class="readout"></div>
+<div class="mini-note">The slider moves the target point, tangent-line estimate, error gap, and displayed values together.</div>
+<div class="mini-note">Tangent line and exact value are both visible.</div>
+</div>
+</div><details class="answer"><summary>Show solution</summary><div>\[L(x)=-\frac12-\frac14(x+1)\]
+\[L(-1.2)=-0.45,\quad f(-1.2)=-0.454545\ldots\]
+Error \(\approx0.004545\).</div></details></section><section class="slide" data-title="Notes Example 9: Implicit curve"><div class="kicker">Implicit linearization</div><h1>Notes Example 9: Implicit curve</h1><div class="prompt">For the implicit curve \(x^2+\ln(x/y)=1\), find \(dy/dx\) at \((1,1)\). Then use the tangent line to approximate the corresponding \(y\)-value when \(x=1.25\).</div>
+<div class="graph-card" data-a="1" data-fn="implicitCurve" data-widget="graph" data-x="1.25">
+<div class="plot-wrap">
+<svg aria-label="Interactive graph of a curve, tangent line, approximation point, and error gap" class="plot" role="img" viewbox="0 0 760 430">
+<rect class="plot-bg" height="430" width="760" x="0" y="0"></rect>
+<g class="gridlines"></g>
+<line class="axis xaxis"></line><line class="axis yaxis"></line>
+<path class="curve"></path>
+<path class="tangent"></path>
+<line class="delta-x"></line><line class="delta-y"></line><line class="error-line"></line>
+<circle class="ptA" r="7"></circle><circle class="ptX" r="7"></circle><circle class="ptL" r="6"></circle>
+<text class="labelA">a</text><text class="labelX">x</text><text class="labelCurve">f(x)</text><text class="labelLine">L(x)</text>
+</svg>
+</div>
+<div class="panel">
+<h3>Implicit curve approximation</h3>
+<label class="slider-label">Move target value: <strong class="xout"></strong>
+<input class="xrange" step="0.001" type="range"/>
+</label>
+<div class="readout"></div>
+<div class="mini-note">The slider moves the target point, tangent-line estimate, error gap, and displayed values together.</div>
+<div class="mini-note">For the model x²+ln(x/y)=1, the tangent slope at (1,1) is 3.</div>
+</div>
+</div><details class="answer"><summary>Show solution</summary><div>Differentiating \(x^2+\ln(x/y)=1\) gives \(y'=3\) at \((1,1)\). Thus \(L(x)=1+3(x-1)\), so \(k\approx1.75\) at \(x=1.25\).</div></details></section><section class="slide" data-title="CA1 Question 1: Slope field data"><div class="kicker">Class activity</div><h1>CA1 Question 1: Slope field data</h1><div class="prompt">A function satisfies \(f(2)=-2\) and the slope at each point \((x,y)\) is \(\frac{x^2-1}{2y}\). Write the tangent line at \(x=2\) and approximate \(f(2.2)\).</div>
+<div class="graph-card" data-a="2" data-fn="caSlope" data-widget="graph" data-x="2.2">
+<div class="plot-wrap">
+<svg aria-label="Interactive graph of a curve, tangent line, approximation point, and error gap" class="plot" role="img" viewbox="0 0 760 430">
+<rect class="plot-bg" height="430" width="760" x="0" y="0"></rect>
+<g class="gridlines"></g>
+<line class="axis xaxis"></line><line class="axis yaxis"></line>
+<path class="curve"></path>
+<path class="tangent"></path>
+<line class="delta-x"></line><line class="delta-y"></line><line class="error-line"></line>
+<circle class="ptA" r="7"></circle><circle class="ptX" r="7"></circle><circle class="ptL" r="6"></circle>
+<text class="labelA">a</text><text class="labelX">x</text><text class="labelCurve">f(x)</text><text class="labelLine">L(x)</text>
+</svg>
+</div>
+<div class="panel">
+<h3>Given slope formula and one point</h3>
+<label class="slider-label">Move target value: <strong class="xout"></strong>
+<input class="xrange" step="0.001" type="range"/>
+</label>
+<div class="readout"></div>
+<div class="mini-note">The slider moves the target point, tangent-line estimate, error gap, and displayed values together.</div>
+<div class="mini-note">The local tangent slope is computed from (x²−1)/(2y) at (2,−2).</div>
+</div>
+</div><details class="answer"><summary>Show solution</summary><div>\[m=\frac{2^2-1}{2(-2)}=-\frac34\]
+\[L(x)=-2-\frac34(x-2)\]
+\[f(2.2)\approx -2.15\]</div></details></section><section class="slide" data-title="CA1 Question 2: Quadratic"><div class="kicker">Concavity decision</div><h1>CA1 Question 2: Quadratic</h1><div class="prompt">For \(f(x)=x^2-5x\), write the local linear approximation at \(x=3\), estimate \(f(3.2)\), and use concavity to classify the estimate.</div>
+<div class="graph-card" data-a="3" data-fn="quadCA" data-widget="graph" data-x="3.2">
+<div class="plot-wrap">
+<svg aria-label="Interactive graph of a curve, tangent line, approximation point, and error gap" class="plot" role="img" viewbox="0 0 760 430">
+<rect class="plot-bg" height="430" width="760" x="0" y="0"></rect>
+<g class="gridlines"></g>
+<line class="axis xaxis"></line><line class="axis yaxis"></line>
+<path class="curve"></path>
+<path class="tangent"></path>
+<line class="delta-x"></line><line class="delta-y"></line><line class="error-line"></line>
+<circle class="ptA" r="7"></circle><circle class="ptX" r="7"></circle><circle class="ptL" r="6"></circle>
+<text class="labelA">a</text><text class="labelX">x</text><text class="labelCurve">f(x)</text><text class="labelLine">L(x)</text>
+</svg>
+</div>
+<div class="panel">
+<h3>f(x)=x²−5x at x=3</h3>
+<label class="slider-label">Move target value: <strong class="xout"></strong>
+<input class="xrange" step="0.001" type="range"/>
+</label>
+<div class="readout"></div>
+<div class="mini-note">The slider moves the target point, tangent-line estimate, error gap, and displayed values together.</div>
+</div>
+</div><details class="answer"><summary>Show solution</summary><div>\[f(3)=-6,\quad f'(3)=1\]
+\[L(x)=-6+(x-3),\quad L(3.2)=-5.8\]
+Concave up, so this is an underestimate.</div></details></section><section class="slide" data-title="CA1 Question 3: x cos x"><div class="kicker">Concavity decision</div><h1>CA1 Question 3: x cos x</h1><div class="prompt">For \(f(x)=x\cos x\), write the local linear approximation at \(x=\pi/2\). Use it to estimate \(f(1.5)\) and decide whether the estimate is high or low.</div>
+<div class="graph-card" data-a="1.5707963267948966" data-fn="xcosx" data-widget="graph" data-x="1.5">
+<div class="plot-wrap">
+<svg aria-label="Interactive graph of a curve, tangent line, approximation point, and error gap" class="plot" role="img" viewbox="0 0 760 430">
+<rect class="plot-bg" height="430" width="760" x="0" y="0"></rect>
+<g class="gridlines"></g>
+<line class="axis xaxis"></line><line class="axis yaxis"></line>
+<path class="curve"></path>
+<path class="tangent"></path>
+<line class="delta-x"></line><line class="delta-y"></line><line class="error-line"></line>
+<circle class="ptA" r="7"></circle><circle class="ptX" r="7"></circle><circle class="ptL" r="6"></circle>
+<text class="labelA">a</text><text class="labelX">x</text><text class="labelCurve">f(x)</text><text class="labelLine">L(x)</text>
+</svg>
+</div>
+<div class="panel">
+<h3>f(x)=x cos x centered at π/2</h3>
+<label class="slider-label">Move target value: <strong class="xout"></strong>
+<input class="xrange" step="0.001" type="range"/>
+</label>
+<div class="readout"></div>
+<div class="mini-note">The slider moves the target point, tangent-line estimate, error gap, and displayed values together.</div>
+</div>
+</div><details class="answer"><summary>Show solution</summary><div>\[f(\pi/2)=0,\quad f'(\pi/2)=-\pi/2\]
+\[L(1.5)=-\frac{\pi}{2}\left(1.5-\frac{\pi}{2}\right)\approx0.111\]
+Concave down locally, so the tangent-line value is an overestimate.</div></details></section><section class="slide" data-title="CA1 Question 4: Concave up data"><div class="kicker">Given values only</div><h1>CA1 Question 4: Concave up data</h1><div class="prompt">A differentiable function is concave up with \(f(-3)=2\) and \(f'(-3)=4\). Approximate \(f(-2.9)\) and explain the direction of the error.</div>
+<div class="graph-card" data-a="-3" data-concavity="up" data-fa="2" data-fp="4" data-kind="up" data-widget="abstract" data-x="-2.9">
+<div class="plot-wrap">
+<svg aria-label="Abstract local linearity model showing concavity and tangent approximation" class="plot" role="img" viewbox="0 0 760 430">
+<rect class="plot-bg" height="430" width="760" x="0" y="0"></rect>
+<g class="gridlines"></g><line class="axis xaxis"></line><line class="axis yaxis"></line>
+<path class="curve"></path><path class="tangent"></path>
+<line class="error-line"></line><circle class="ptA" r="7"></circle><circle class="ptX" r="7"></circle><circle class="ptL" r="6"></circle>
+<text class="labelA">a</text><text class="labelX">x</text><text class="labelCurve">model f</text><text class="labelLine">L(x)</text>
+</svg>
+</div>
+<div class="panel"><h3>Concave up: f(-3)=2, f′(-3)=4</h3>
+<label class="slider-label">Move target value: <strong class="xout"></strong><input class="xrange" step="0.001" type="range"/></label>
+<div class="readout"></div><div class="mini-note">This figure uses a curve with the stated concavity and exact given tangent data.</div>
+</div>
+</div><details class="answer"><summary>Show solution</summary><div>\[L(x)=2+4(x+3),\quad L(-2.9)=2.4\]
+Concave up means underestimate.</div></details></section><section class="slide" data-title="CA1 Question 5: Concave down data"><div class="kicker">Given values only</div><h1>CA1 Question 5: Concave down data</h1><div class="prompt">A differentiable function is concave down with \(f(2)=-6\) and \(f'(2)=2\). Approximate \(f(1.8)\) and explain the direction of the error.</div>
+<div class="graph-card" data-a="2" data-concavity="down" data-fa="-6" data-fp="2" data-kind="down" data-widget="abstract" data-x="1.8">
+<div class="plot-wrap">
+<svg aria-label="Abstract local linearity model showing concavity and tangent approximation" class="plot" role="img" viewbox="0 0 760 430">
+<rect class="plot-bg" height="430" width="760" x="0" y="0"></rect>
+<g class="gridlines"></g><line class="axis xaxis"></line><line class="axis yaxis"></line>
+<path class="curve"></path><path class="tangent"></path>
+<line class="error-line"></line><circle class="ptA" r="7"></circle><circle class="ptX" r="7"></circle><circle class="ptL" r="6"></circle>
+<text class="labelA">a</text><text class="labelX">x</text><text class="labelCurve">model f</text><text class="labelLine">L(x)</text>
+</svg>
+</div>
+<div class="panel"><h3>Concave down: f(2)=-6, f′(2)=2</h3>
+<label class="slider-label">Move target value: <strong class="xout"></strong><input class="xrange" step="0.001" type="range"/></label>
+<div class="readout"></div><div class="mini-note">This figure uses a curve with the stated concavity and exact given tangent data.</div>
+</div>
+</div><details class="answer"><summary>Show solution</summary><div>\[L(x)=-6+2(x-2),\quad L(1.8)=-6.4\]
+Concave down means overestimate.</div></details></section><section class="slide" data-title="Packet Question 1: Concave up data"><div class="kicker">Local linearity</div><h1>Packet Question 1: Concave up data</h1><div class="prompt">Given \(f(4)=5\), \(f'(4)=3\), and concavity up, approximate \(f(3.8)\). Explain whether the tangent approximation is above or below the graph.</div>
+<div class="graph-card" data-a="4" data-concavity="up" data-fa="5" data-fp="3" data-kind="up" data-widget="abstract" data-x="3.8">
+<div class="plot-wrap">
+<svg aria-label="Abstract local linearity model showing concavity and tangent approximation" class="plot" role="img" viewbox="0 0 760 430">
+<rect class="plot-bg" height="430" width="760" x="0" y="0"></rect>
+<g class="gridlines"></g><line class="axis xaxis"></line><line class="axis yaxis"></line>
+<path class="curve"></path><path class="tangent"></path>
+<line class="error-line"></line><circle class="ptA" r="7"></circle><circle class="ptX" r="7"></circle><circle class="ptL" r="6"></circle>
+<text class="labelA">a</text><text class="labelX">x</text><text class="labelCurve">model f</text><text class="labelLine">L(x)</text>
+</svg>
+</div>
+<div class="panel"><h3>f(4)=5, f′(4)=3, concave up</h3>
+<label class="slider-label">Move target value: <strong class="xout"></strong><input class="xrange" step="0.001" type="range"/></label>
+<div class="readout"></div><div class="mini-note">This figure uses a curve with the stated concavity and exact given tangent data.</div>
+</div>
+</div><details class="answer"><summary>Show solution</summary><div>\[L(3.8)=5+3(3.8-4)=4.4\]
+Concave up means underestimate.</div></details></section><section class="slide" data-title="Packet Question 2: 5x−2x³−2"><div class="kicker">Tangent and concavity</div><h1>Packet Question 2: 5x−2x³−2</h1><div class="prompt">For \(f(x)=5x-2x^3-2\), find the tangent line at \(x=1\), estimate \(f(1.1)\), and use \(f''\) to classify the estimate.</div>
+<div class="graph-card" data-a="1" data-fn="polyDown" data-widget="graph" data-x="1.1">
+<div class="plot-wrap">
+<svg aria-label="Interactive graph of a curve, tangent line, approximation point, and error gap" class="plot" role="img" viewbox="0 0 760 430">
+<rect class="plot-bg" height="430" width="760" x="0" y="0"></rect>
+<g class="gridlines"></g>
+<line class="axis xaxis"></line><line class="axis yaxis"></line>
+<path class="curve"></path>
+<path class="tangent"></path>
+<line class="delta-x"></line><line class="delta-y"></line><line class="error-line"></line>
+<circle class="ptA" r="7"></circle><circle class="ptX" r="7"></circle><circle class="ptL" r="6"></circle>
+<text class="labelA">a</text><text class="labelX">x</text><text class="labelCurve">f(x)</text><text class="labelLine">L(x)</text>
+</svg>
+</div>
+<div class="panel">
+<h3>f(x)=5x−2x³−2 at x=1</h3>
+<label class="slider-label">Move target value: <strong class="xout"></strong>
+<input class="xrange" step="0.001" type="range"/>
+</label>
+<div class="readout"></div>
+<div class="mini-note">The slider moves the target point, tangent-line estimate, error gap, and displayed values together.</div>
+</div>
+</div><details class="answer"><summary>Show solution</summary><div>\[f(1)=1,\quad f'(x)=5-6x^2,\quad f'(1)=-1\]
+\[L(x)=1-(x-1),\quad L(1.1)=0.9\]
+Since \(f''(1)=-12&lt;0\), this is an overestimate.</div></details></section><section class="slide" data-title="Packet Question 3: Differential equation"><div class="kicker">Linear approximation from dy/dx</div><h1>Packet Question 3: Differential equation</h1><div class="prompt">The curve satisfies \(\frac{dy}{dx}=e^y(2x^2-5x)\) and \(f(2)=0\). Use the tangent line at \((2,0)\) to approximate \(f(2.2)\).</div>
+<div class="graph-card" data-a="2" data-fn="de1" data-widget="graph" data-x="2.2">
+<div class="plot-wrap">
+<svg aria-label="Interactive graph of a curve, tangent line, approximation point, and error gap" class="plot" role="img" viewbox="0 0 760 430">
+<rect class="plot-bg" height="430" width="760" x="0" y="0"></rect>
+<g class="gridlines"></g>
+<line class="axis xaxis"></line><line class="axis yaxis"></line>
+<path class="curve"></path>
+<path class="tangent"></path>
+<line class="delta-x"></line><line class="delta-y"></line><line class="error-line"></line>
+<circle class="ptA" r="7"></circle><circle class="ptX" r="7"></circle><circle class="ptL" r="6"></circle>
+<text class="labelA">a</text><text class="labelX">x</text><text class="labelCurve">f(x)</text><text class="labelLine">L(x)</text>
+</svg>
+</div>
+<div class="panel">
+<h3>dy/dx=e^y(2x²−5x), f(2)=0</h3>
+<label class="slider-label">Move target value: <strong class="xout"></strong>
+<input class="xrange" step="0.001" type="range"/>
+</label>
+<div class="readout"></div>
+<div class="mini-note">The slider moves the target point, tangent-line estimate, error gap, and displayed values together.</div>
+</div>
+</div><details class="answer"><summary>Show solution</summary><div>At \((2,0)\), \(y'=e^0(8-10)=-2\). So \(L(x)=-2(x-2)\), and \(f(2.2)\approx-0.4\).</div></details></section><section class="slide" data-title="Practice ODE 1: (5−y) sin x"><div class="kicker">Differential equation</div><h1>Practice ODE 1: (5−y) sin x</h1><div class="prompt">For the solution of \(\frac{dy}{dx}=(5-y)\sin x\) with \(f(\pi/2)=2\), write the tangent line at \(x=\pi/2\) and estimate \(f(1.5)\).</div>
+<div class="graph-card" data-a="1.5707963267948966" data-fn="deSin" data-widget="graph" data-x="1.5">
+<div class="plot-wrap">
+<svg aria-label="Interactive graph of a curve, tangent line, approximation point, and error gap" class="plot" role="img" viewbox="0 0 760 430">
+<rect class="plot-bg" height="430" width="760" x="0" y="0"></rect>
+<g class="gridlines"></g>
+<line class="axis xaxis"></line><line class="axis yaxis"></line>
+<path class="curve"></path>
+<path class="tangent"></path>
+<line class="delta-x"></line><line class="delta-y"></line><line class="error-line"></line>
+<circle class="ptA" r="7"></circle><circle class="ptX" r="7"></circle><circle class="ptL" r="6"></circle>
+<text class="labelA">a</text><text class="labelX">x</text><text class="labelCurve">f(x)</text><text class="labelLine">L(x)</text>
+</svg>
+</div>
+<div class="panel">
+<h3>dy/dx=(5−y)sin x, f(π/2)=2</h3>
+<label class="slider-label">Move target value: <strong class="xout"></strong>
+<input class="xrange" step="0.001" type="range"/>
+</label>
+<div class="readout"></div>
+<div class="mini-note">The slider moves the target point, tangent-line estimate, error gap, and displayed values together.</div>
+</div>
+</div><details class="answer"><summary>Show solution</summary><div>Slope at \((\pi/2,2)\) is \((5-2)\sin(\pi/2)=3\). Thus \(L(x)=2+3(x-\pi/2)\), so \(f(1.5)\approx1.7876\).</div></details></section><section class="slide" data-title="Practice ODE 2: −4x/y"><div class="kicker">Differential equation</div><h1>Practice ODE 2: −4x/y</h1><div class="prompt">For the solution of \(\frac{dy}{dx}=-\frac{4x}{y}\) with \(f(1)=3\), write the tangent line at \(x=1\) and estimate \(f(1.1)\).</div>
+<div class="graph-card" data-a="1" data-fn="de2" data-widget="graph" data-x="1.1">
+<div class="plot-wrap">
+<svg aria-label="Interactive graph of a curve, tangent line, approximation point, and error gap" class="plot" role="img" viewbox="0 0 760 430">
+<rect class="plot-bg" height="430" width="760" x="0" y="0"></rect>
+<g class="gridlines"></g>
+<line class="axis xaxis"></line><line class="axis yaxis"></line>
+<path class="curve"></path>
+<path class="tangent"></path>
+<line class="delta-x"></line><line class="delta-y"></line><line class="error-line"></line>
+<circle class="ptA" r="7"></circle><circle class="ptX" r="7"></circle><circle class="ptL" r="6"></circle>
+<text class="labelA">a</text><text class="labelX">x</text><text class="labelCurve">f(x)</text><text class="labelLine">L(x)</text>
+</svg>
+</div>
+<div class="panel">
+<h3>dy/dx=−4x/y, f(1)=3</h3>
+<label class="slider-label">Move target value: <strong class="xout"></strong>
+<input class="xrange" step="0.001" type="range"/>
+</label>
+<div class="readout"></div>
+<div class="mini-note">The slider moves the target point, tangent-line estimate, error gap, and displayed values together.</div>
+</div>
+</div><details class="answer"><summary>Show solution</summary><div>Slope at \((1,3)\) is \(-4/3\). Thus \(L(x)=3-\frac43(x-1)\), so \(f(1.1)\approx2.8667\).</div></details></section><section class="slide" data-title="Practice: 2cos x+1"><div class="kicker">Exact approximation</div><h1>Practice: 2cos x+1</h1><div class="prompt">For \(f(x)=2\cos x+1\), write \(L(x)\) at \(x=\pi/2\), estimate \(f(1)\), and determine whether the estimate is high or low.</div>
+<div class="graph-card" data-a="1.5707963267948966" data-fn="twocos" data-widget="graph" data-x="1">
+<div class="plot-wrap">
+<svg aria-label="Interactive graph of a curve, tangent line, approximation point, and error gap" class="plot" role="img" viewbox="0 0 760 430">
+<rect class="plot-bg" height="430" width="760" x="0" y="0"></rect>
+<g class="gridlines"></g>
+<line class="axis xaxis"></line><line class="axis yaxis"></line>
+<path class="curve"></path>
+<path class="tangent"></path>
+<line class="delta-x"></line><line class="delta-y"></line><line class="error-line"></line>
+<circle class="ptA" r="7"></circle><circle class="ptX" r="7"></circle><circle class="ptL" r="6"></circle>
+<text class="labelA">a</text><text class="labelX">x</text><text class="labelCurve">f(x)</text><text class="labelLine">L(x)</text>
+</svg>
+</div>
+<div class="panel">
+<h3>f(x)=2cos x+1 centered at π/2</h3>
+<label class="slider-label">Move target value: <strong class="xout"></strong>
+<input class="xrange" step="0.001" type="range"/>
+</label>
+<div class="readout"></div>
+<div class="mini-note">The slider moves the target point, tangent-line estimate, error gap, and displayed values together.</div>
+</div>
+</div><details class="answer"><summary>Show solution</summary><div>\[L(x)=1-2\left(x-\frac{\pi}{2}\right)\]
+\[f(1)\approx L(1)=\pi-1\]
+Concave down on \([0,\pi/2]\), so it is an overestimate.</div></details></section><section class="slide" data-title="Practice: e^{2x/(x+1)}"><div class="kicker">Concavity decision</div><h1>Practice: e^{2x/(x+1)}</h1><div class="prompt">For \(f(x)=e^{2x/(x+1)}\), write the linearization at \(x=0\), estimate \(f(0.1)\), and use local concavity to classify the estimate.</div>
+<div class="graph-card" data-a="0" data-fn="expFrac" data-widget="graph" data-x="0.1">
+<div class="plot-wrap">
+<svg aria-label="Interactive graph of a curve, tangent line, approximation point, and error gap" class="plot" role="img" viewbox="0 0 760 430">
+<rect class="plot-bg" height="430" width="760" x="0" y="0"></rect>
+<g class="gridlines"></g>
+<line class="axis xaxis"></line><line class="axis yaxis"></line>
+<path class="curve"></path>
+<path class="tangent"></path>
+<line class="delta-x"></line><line class="delta-y"></line><line class="error-line"></line>
+<circle class="ptA" r="7"></circle><circle class="ptX" r="7"></circle><circle class="ptL" r="6"></circle>
+<text class="labelA">a</text><text class="labelX">x</text><text class="labelCurve">f(x)</text><text class="labelLine">L(x)</text>
+</svg>
+</div>
+<div class="panel">
+<h3>f(x)=e^{2x/(x+1)} centered at 0</h3>
+<label class="slider-label">Move target value: <strong class="xout"></strong>
+<input class="xrange" step="0.001" type="range"/>
+</label>
+<div class="readout"></div>
+<div class="mini-note">The slider moves the target point, tangent-line estimate, error gap, and displayed values together.</div>
+</div>
+</div><details class="answer"><summary>Show solution</summary><div>\[f(0)=1,\quad f'(0)=2\]
+\[L(x)=1+2x,\quad L(0.1)=1.2\]
+The function is concave up near 0, so the tangent value is an underestimate.</div></details></section><section class="slide" data-title="Practice: −√(4−x)"><div class="kicker">Concave up model</div><h1>Practice: −√(4−x)</h1><div class="prompt">For \(f(x)=-\sqrt{4-x}\), write the tangent-line approximation at \(x=2\), estimate \(f(1.9)\), and decide whether the tangent value is above or below the curve.</div>
+<div class="graph-card" data-a="2" data-fn="negSqrt4x" data-widget="graph" data-x="1.9">
+<div class="plot-wrap">
+<svg aria-label="Interactive graph of a curve, tangent line, approximation point, and error gap" class="plot" role="img" viewbox="0 0 760 430">
+<rect class="plot-bg" height="430" width="760" x="0" y="0"></rect>
+<g class="gridlines"></g>
+<line class="axis xaxis"></line><line class="axis yaxis"></line>
+<path class="curve"></path>
+<path class="tangent"></path>
+<line class="delta-x"></line><line class="delta-y"></line><line class="error-line"></line>
+<circle class="ptA" r="7"></circle><circle class="ptX" r="7"></circle><circle class="ptL" r="6"></circle>
+<text class="labelA">a</text><text class="labelX">x</text><text class="labelCurve">f(x)</text><text class="labelLine">L(x)</text>
+</svg>
+</div>
+<div class="panel">
+<h3>f(x)=−√(4−x) centered at 2</h3>
+<label class="slider-label">Move target value: <strong class="xout"></strong>
+<input class="xrange" step="0.001" type="range"/>
+</label>
+<div class="readout"></div>
+<div class="mini-note">The slider moves the target point, tangent-line estimate, error gap, and displayed values together.</div>
+</div>
+</div><details class="answer"><summary>Show solution</summary><div>\[f(2)=-\sqrt2,\quad f'(2)=\frac{1}{2\sqrt2}\]
+\[L(1.9)\approx-1.450\]
+Concave up, so this is an underestimate.</div></details></section><section class="slide" data-title="Practice: Concave down data"><div class="kicker">Given values only</div><h1>Practice: Concave down data</h1><div class="prompt">Given only \(f(3)=-1\), \(f'(3)=2\), and concavity down, approximate \(f(3.2)\) and justify the overestimate or underestimate.</div>
+<div class="graph-card" data-a="3" data-concavity="down" data-fa="-1" data-fp="2" data-kind="down" data-widget="abstract" data-x="3.2">
+<div class="plot-wrap">
+<svg aria-label="Abstract local linearity model showing concavity and tangent approximation" class="plot" role="img" viewbox="0 0 760 430">
+<rect class="plot-bg" height="430" width="760" x="0" y="0"></rect>
+<g class="gridlines"></g><line class="axis xaxis"></line><line class="axis yaxis"></line>
+<path class="curve"></path><path class="tangent"></path>
+<line class="error-line"></line><circle class="ptA" r="7"></circle><circle class="ptX" r="7"></circle><circle class="ptL" r="6"></circle>
+<text class="labelA">a</text><text class="labelX">x</text><text class="labelCurve">model f</text><text class="labelLine">L(x)</text>
+</svg>
+</div>
+<div class="panel"><h3>f(3)=-1, f′(3)=2, concave down</h3>
+<label class="slider-label">Move target value: <strong class="xout"></strong><input class="xrange" step="0.001" type="range"/></label>
+<div class="readout"></div><div class="mini-note">This figure uses a curve with the stated concavity and exact given tangent data.</div>
+</div>
+</div><details class="answer"><summary>Show solution</summary><div>\[L(3.2)=-1+2(0.2)=-0.6\]
+Concave down means overestimate.</div></details></section><section class="slide" data-title="Practice: Concave up data"><div class="kicker">Given values only</div><h1>Practice: Concave up data</h1><div class="prompt">Given only \(f(-5)=2\), \(f'(-5)=-1\), and concavity up, approximate \(f(-5.1)\) and justify the error direction.</div>
+<div class="graph-card" data-a="-5" data-concavity="up" data-fa="2" data-fp="-1" data-kind="up" data-widget="abstract" data-x="-5.1">
+<div class="plot-wrap">
+<svg aria-label="Abstract local linearity model showing concavity and tangent approximation" class="plot" role="img" viewbox="0 0 760 430">
+<rect class="plot-bg" height="430" width="760" x="0" y="0"></rect>
+<g class="gridlines"></g><line class="axis xaxis"></line><line class="axis yaxis"></line>
+<path class="curve"></path><path class="tangent"></path>
+<line class="error-line"></line><circle class="ptA" r="7"></circle><circle class="ptX" r="7"></circle><circle class="ptL" r="6"></circle>
+<text class="labelA">a</text><text class="labelX">x</text><text class="labelCurve">model f</text><text class="labelLine">L(x)</text>
+</svg>
+</div>
+<div class="panel"><h3>f(-5)=2, f′(-5)=-1, concave up</h3>
+<label class="slider-label">Move target value: <strong class="xout"></strong><input class="xrange" step="0.001" type="range"/></label>
+<div class="readout"></div><div class="mini-note">This figure uses a curve with the stated concavity and exact given tangent data.</div>
+</div>
+</div><details class="answer"><summary>Show solution</summary><div>\[L(-5.1)=2+(-1)(-0.1)=2.1\]
+Concave up means underestimate.</div></details></section><section class="slide" data-title="Practice: Concave down negative slope"><div class="kicker">Given values only</div><h1>Practice: Concave down negative slope</h1><div class="prompt">Given only \(f(2)=1\), \(f'(2)=-3\), and concavity down, approximate \(f(1.9)\) and justify the error direction.</div>
+<div class="graph-card" data-a="2" data-concavity="down" data-fa="1" data-fp="-3" data-kind="down" data-widget="abstract" data-x="1.9">
+<div class="plot-wrap">
+<svg aria-label="Abstract local linearity model showing concavity and tangent approximation" class="plot" role="img" viewbox="0 0 760 430">
+<rect class="plot-bg" height="430" width="760" x="0" y="0"></rect>
+<g class="gridlines"></g><line class="axis xaxis"></line><line class="axis yaxis"></line>
+<path class="curve"></path><path class="tangent"></path>
+<line class="error-line"></line><circle class="ptA" r="7"></circle><circle class="ptX" r="7"></circle><circle class="ptL" r="6"></circle>
+<text class="labelA">a</text><text class="labelX">x</text><text class="labelCurve">model f</text><text class="labelLine">L(x)</text>
+</svg>
+</div>
+<div class="panel"><h3>f(2)=1, f′(2)=-3, concave down</h3>
+<label class="slider-label">Move target value: <strong class="xout"></strong><input class="xrange" step="0.001" type="range"/></label>
+<div class="readout"></div><div class="mini-note">This figure uses a curve with the stated concavity and exact given tangent data.</div>
+</div>
+</div><details class="answer"><summary>Show solution</summary><div>\[L(1.9)=1-3(-0.1)=1.3\]
+Concave down means overestimate.</div></details></section><section class="slide" data-title="AP-style error threshold"><div class="kicker">Calculator-free structure</div><h1>AP-style error threshold</h1><div class="prompt">For \(f(x)=3x^2-4x+2\), compare the exact function with its tangent line at \(x=1\). Find where the linear approximation error exceeds \(0.5\).</div>
+<div class="graph-card" data-a="1" data-fn="errorQuad" data-widget="graph" data-x="1.5">
+<div class="plot-wrap">
+<svg aria-label="Interactive graph of a curve, tangent line, approximation point, and error gap" class="plot" role="img" viewbox="0 0 760 430">
+<rect class="plot-bg" height="430" width="760" x="0" y="0"></rect>
+<g class="gridlines"></g>
+<line class="axis xaxis"></line><line class="axis yaxis"></line>
+<path class="curve"></path>
+<path class="tangent"></path>
+<line class="delta-x"></line><line class="delta-y"></line><line class="error-line"></line>
+<circle class="ptA" r="7"></circle><circle class="ptX" r="7"></circle><circle class="ptL" r="6"></circle>
+<text class="labelA">a</text><text class="labelX">x</text><text class="labelCurve">f(x)</text><text class="labelLine">L(x)</text>
+</svg>
+</div>
+<div class="panel">
+<h3>Error from tangent line for 3x²−4x+2</h3>
+<label class="slider-label">Move target value: <strong class="xout"></strong>
+<input class="xrange" step="0.001" type="range"/>
+</label>
+<div class="readout"></div>
+<div class="mini-note">The slider moves the target point, tangent-line estimate, error gap, and displayed values together.</div>
+<div class="mini-note">The error is exactly 3(x−1)².</div>
+</div>
+</div><details class="answer"><summary>Show solution</summary><div>At \(a=1\), \(L(x)=2x-1\). Exact error is
+\[|3x^2-4x+2-(2x-1)|=3(x-1)^2.\]
+For error more than \(0.5\), \(x&gt;1+\sqrt{1/6}\approx1.408\). If the listed choices are \(1.3,1.4,1.5,1.6,1.7\), the smallest choice that truly gives error greater than \(0.5\) is \(1.5\).</div></details></section><section class="slide" data-title="AP-style snow depth table"><div class="kicker">FRQ style</div><h1>AP-style snow depth table</h1>
+<table class="tbl"><tr><th>t (hours)</th><td>0</td><td>1</td><td>4</td><td>9</td><td>12</td></tr><tr><th>S′(t) cm/hr</th><td>1.8</td><td>2.4</td><td>2.0</td><td>1.6</td><td>1.3</td></tr></table>
+<div class="prompt">The graph of S is concave down on \(0\le t\le12\), and \(S(4)=28\). Approximate \(S(6)\) using the tangent line at \(t=4\), and decide whether the estimate is high or low.</div>
+<details class="answer"><summary>Show solution</summary><div>\[L(t)=28+2(t-4)\]
+\[S(6)\approx L(6)=32\text{ cm}\]
+Since \(S\) is concave down, the tangent line lies above the curve, so 32 cm is an overestimate.</div></details></section><section class="slide" data-title="Homework 1: tan x at π/4"><div class="kicker">Tangent approximation</div><h1>Homework 1: tan x at π/4</h1><div class="prompt">Find the tangent-line approximation to \(f(x)=\tan x\) at \(a=\pi/4\). Then use the slider to test nearby estimates and the sign of the error.</div>
+<div class="graph-card" data-a="0.7853981633974483" data-fn="tan" data-widget="graph" data-x="0.85">
+<div class="plot-wrap">
+<svg aria-label="Interactive graph of a curve, tangent line, approximation point, and error gap" class="plot" role="img" viewbox="0 0 760 430">
+<rect class="plot-bg" height="430" width="760" x="0" y="0"></rect>
+<g class="gridlines"></g>
+<line class="axis xaxis"></line><line class="axis yaxis"></line>
+<path class="curve"></path>
+<path class="tangent"></path>
+<line class="delta-x"></line><line class="delta-y"></line><line class="error-line"></line>
+<circle class="ptA" r="7"></circle><circle class="ptX" r="7"></circle><circle class="ptL" r="6"></circle>
+<text class="labelA">a</text><text class="labelX">x</text><text class="labelCurve">f(x)</text><text class="labelLine">L(x)</text>
+</svg>
+</div>
+<div class="panel">
+<h3>f(x)=tan x centered at π/4</h3>
+<label class="slider-label">Move target value: <strong class="xout"></strong>
+<input class="xrange" step="0.001" type="range"/>
+</label>
+<div class="readout"></div>
+<div class="mini-note">The slider moves the target point, tangent-line estimate, error gap, and displayed values together.</div>
+</div>
+</div><details class="answer"><summary>Show solution</summary><div>\[L(x)=1+2\left(x-\frac{\pi}{4}\right)\]</div></details></section><section class="slide" data-title="Homework 2: e^x at 1"><div class="kicker">Tangent approximation</div><h1>Homework 2: e^x at 1</h1><div class="prompt">Find the tangent-line approximation to \(f(x)=e^x\) at \(a=1\). Use it to estimate values near \(1\) and classify the tangent value using concavity.</div>
+<div class="graph-card" data-a="1" data-fn="exp" data-widget="graph" data-x="1.1">
+<div class="plot-wrap">
+<svg aria-label="Interactive graph of a curve, tangent line, approximation point, and error gap" class="plot" role="img" viewbox="0 0 760 430">
+<rect class="plot-bg" height="430" width="760" x="0" y="0"></rect>
+<g class="gridlines"></g>
+<line class="axis xaxis"></line><line class="axis yaxis"></line>
+<path class="curve"></path>
+<path class="tangent"></path>
+<line class="delta-x"></line><line class="delta-y"></line><line class="error-line"></line>
+<circle class="ptA" r="7"></circle><circle class="ptX" r="7"></circle><circle class="ptL" r="6"></circle>
+<text class="labelA">a</text><text class="labelX">x</text><text class="labelCurve">f(x)</text><text class="labelLine">L(x)</text>
+</svg>
+</div>
+<div class="panel">
+<h3>f(x)=e^x centered at 1</h3>
+<label class="slider-label">Move target value: <strong class="xout"></strong>
+<input class="xrange" step="0.001" type="range"/>
+</label>
+<div class="readout"></div>
+<div class="mini-note">The slider moves the target point, tangent-line estimate, error gap, and displayed values together.</div>
+</div>
+</div><details class="answer"><summary>Show solution</summary><div>\[L(x)=e+e(x-1)=ex\]</div></details></section><section class="slide" data-title="Homework 3: reciprocal square root"><div class="kicker">Tangent approximation</div><h1>Homework 3: reciprocal square root</h1><div class="prompt">Find the tangent-line approximation to \(g(x)=\frac1{\sqrt{1+x}}\) at \(a=3\). Use the graph to compare exact and approximate values near \(3\).</div>
+<div class="graph-card" data-a="3" data-fn="invSqrt" data-widget="graph" data-x="3.2">
+<div class="plot-wrap">
+<svg aria-label="Interactive graph of a curve, tangent line, approximation point, and error gap" class="plot" role="img" viewbox="0 0 760 430">
+<rect class="plot-bg" height="430" width="760" x="0" y="0"></rect>
+<g class="gridlines"></g>
+<line class="axis xaxis"></line><line class="axis yaxis"></line>
+<path class="curve"></path>
+<path class="tangent"></path>
+<line class="delta-x"></line><line class="delta-y"></line><line class="error-line"></line>
+<circle class="ptA" r="7"></circle><circle class="ptX" r="7"></circle><circle class="ptL" r="6"></circle>
+<text class="labelA">a</text><text class="labelX">x</text><text class="labelCurve">f(x)</text><text class="labelLine">L(x)</text>
+</svg>
+</div>
+<div class="panel">
+<h3>g(x)=1/√(1+x) centered at 3</h3>
+<label class="slider-label">Move target value: <strong class="xout"></strong>
+<input class="xrange" step="0.001" type="range"/>
+</label>
+<div class="readout"></div>
+<div class="mini-note">The slider moves the target point, tangent-line estimate, error gap, and displayed values together.</div>
+</div>
+</div><details class="answer"><summary>Show solution</summary><div>\[g(3)=\frac12,\quad g'(3)=-\frac{1}{16}\]
+\[L(x)=\frac12-\frac{x-3}{16}\]</div></details></section><section class="slide" data-title="Homework 4: arctan x at 1"><div class="kicker">Tangent approximation</div><h1>Homework 4: arctan x at 1</h1><div class="prompt">Find the tangent-line approximation to \(f(x)=\arctan x\) at \(a=1\). Estimate a nearby value and use concavity to judge the error direction.</div>
+<div class="graph-card" data-a="1" data-fn="atan" data-widget="graph" data-x="1.1">
+<div class="plot-wrap">
+<svg aria-label="Interactive graph of a curve, tangent line, approximation point, and error gap" class="plot" role="img" viewbox="0 0 760 430">
+<rect class="plot-bg" height="430" width="760" x="0" y="0"></rect>
+<g class="gridlines"></g>
+<line class="axis xaxis"></line><line class="axis yaxis"></line>
+<path class="curve"></path>
+<path class="tangent"></path>
+<line class="delta-x"></line><line class="delta-y"></line><line class="error-line"></line>
+<circle class="ptA" r="7"></circle><circle class="ptX" r="7"></circle><circle class="ptL" r="6"></circle>
+<text class="labelA">a</text><text class="labelX">x</text><text class="labelCurve">f(x)</text><text class="labelLine">L(x)</text>
+</svg>
+</div>
+<div class="panel">
+<h3>f(x)=arctan x centered at 1</h3>
+<label class="slider-label">Move target value: <strong class="xout"></strong>
+<input class="xrange" step="0.001" type="range"/>
+</label>
+<div class="readout"></div>
+<div class="mini-note">The slider moves the target point, tangent-line estimate, error gap, and displayed values together.</div>
+</div>
+</div><details class="answer"><summary>Show solution</summary><div>\[L(x)=\frac{\pi}{4}+\frac12(x-1)\]</div></details></section><section class="slide" data-title="Homework 5: approximate a zero from tangent data"><div class="kicker">Newton-style idea</div><h1>Homework 5: approximate a zero from tangent data</h1><div class="prompt">A differentiable function has \(f(-2)=3\) and \(f'(-2)=6\). Use the tangent line at \(x=-2\) to approximate a zero of \(f\).</div>
+<div class="graph-card" data-a="-2" data-concavity="unknown" data-fa="3" data-fp="6" data-kind="zero" data-widget="abstract" data-x="-2.5">
+<div class="plot-wrap">
+<svg aria-label="Abstract local linearity model showing concavity and tangent approximation" class="plot" role="img" viewbox="0 0 760 430">
+<rect class="plot-bg" height="430" width="760" x="0" y="0"></rect>
+<g class="gridlines"></g><line class="axis xaxis"></line><line class="axis yaxis"></line>
+<path class="curve"></path><path class="tangent"></path>
+<line class="error-line"></line><circle class="ptA" r="7"></circle><circle class="ptX" r="7"></circle><circle class="ptL" r="6"></circle>
+<text class="labelA">a</text><text class="labelX">x</text><text class="labelCurve">model f</text><text class="labelLine">L(x)</text>
+</svg>
+</div>
+<div class="panel"><h3>Tangent line zero estimate</h3>
+<label class="slider-label">Move target value: <strong class="xout"></strong><input class="xrange" step="0.001" type="range"/></label>
+<div class="readout"></div><div class="mini-note">This figure uses a curve with the stated concavity and exact given tangent data.</div>
+</div>
+</div><details class="answer"><summary>Show solution</summary><div>\[L(x)=3+6(x+2)\]
+Set \(L(x)=0\): \(3+6(x+2)=0\Rightarrow x=-2.5\).</div></details></section><section class="slide" data-title="Homework 6: sin²θ near π/4"><div class="kicker">Error and concavity caution</div><h1>Homework 6: sin²θ near π/4</h1><div class="prompt">For \(f(\theta)=\sin^2\theta\), write the linear approximation at \(\theta=\pi/4\), estimate \(f(0.8)\), compute the error, and decide whether the approximation is high or low.</div>
+<div class="graph-card" data-a="0.7853981633974483" data-fn="sin2" data-widget="graph" data-x="0.8">
+<div class="plot-wrap">
+<svg aria-label="Interactive graph of a curve, tangent line, approximation point, and error gap" class="plot" role="img" viewbox="0 0 760 430">
+<rect class="plot-bg" height="430" width="760" x="0" y="0"></rect>
+<g class="gridlines"></g>
+<line class="axis xaxis"></line><line class="axis yaxis"></line>
+<path class="curve"></path>
+<path class="tangent"></path>
+<line class="delta-x"></line><line class="delta-y"></line><line class="error-line"></line>
+<circle class="ptA" r="7"></circle><circle class="ptX" r="7"></circle><circle class="ptL" r="6"></circle>
+<text class="labelA">a</text><text class="labelX">x</text><text class="labelCurve">f(x)</text><text class="labelLine">L(x)</text>
+</svg>
+</div>
+<div class="panel">
+<h3>f(θ)=sin²θ centered at π/4</h3>
+<label class="slider-label">Move target value: <strong class="xout"></strong>
+<input class="xrange" step="0.001" type="range"/>
+</label>
+<div class="readout"></div>
+<div class="mini-note">The slider moves the target point, tangent-line estimate, error gap, and displayed values together.</div>
+</div>
+</div><details class="answer"><summary>Show solution</summary><div>\[f(\pi/4)=\frac12,\quad f'(\pi/4)=1\]
+\[L(\theta)=\frac12+\theta-\frac{\pi}{4}\]
+At \(\theta=0.8\), \(L(0.8)\approx0.5146\). Because \(f''(\pi/4)=0\), do not decide over/under from only the center point; compare exact values or analyze the interval.</div></details></section><section class="slide" data-title="Homework 7: √(x+3)"><div class="kicker">Estimate √4.05</div><h1>Homework 7: √(x+3)</h1><div class="prompt">Find the linear approximation for \(f(x)=\sqrt{x+3}\) at \(x=1\). Use it to estimate \(\sqrt{4.05}\) and determine whether it is an overestimate or underestimate.</div>
+<div class="graph-card" data-a="1" data-fn="sqrtx3" data-widget="graph" data-x="1.05">
+<div class="plot-wrap">
+<svg aria-label="Interactive graph of a curve, tangent line, approximation point, and error gap" class="plot" role="img" viewbox="0 0 760 430">
+<rect class="plot-bg" height="430" width="760" x="0" y="0"></rect>
+<g class="gridlines"></g>
+<line class="axis xaxis"></line><line class="axis yaxis"></line>
+<path class="curve"></path>
+<path class="tangent"></path>
+<line class="delta-x"></line><line class="delta-y"></line><line class="error-line"></line>
+<circle class="ptA" r="7"></circle><circle class="ptX" r="7"></circle><circle class="ptL" r="6"></circle>
+<text class="labelA">a</text><text class="labelX">x</text><text class="labelCurve">f(x)</text><text class="labelLine">L(x)</text>
+</svg>
+</div>
+<div class="panel">
+<h3>f(x)=√(x+3), estimate √4.05</h3>
+<label class="slider-label">Move target value: <strong class="xout"></strong>
+<input class="xrange" step="0.001" type="range"/>
+</label>
+<div class="readout"></div>
+<div class="mini-note">The slider moves the target point, tangent-line estimate, error gap, and displayed values together.</div>
+</div>
+</div><details class="answer"><summary>Show solution</summary><div>\[L(x)=2+\frac14(x-1)\]
+\[\sqrt{4.05}=f(1.05)\approx2.0125\]
+Since \(\sqrt{x+3}\) is concave down, the tangent estimate is an overestimate.</div></details></section><section class="slide" data-title="Homework 8: Table FRQ"><div class="kicker">Secant and tangent bounds</div><h1>Homework 8: Table FRQ</h1><table class="tbl"><tr><th>x</th><td>1</td><td>3</td><td>6</td><td>9</td><td>10</td></tr><tr><th>f(x)</th><td>2</td><td>4</td><td>-3</td><td>1</td><td>3</td></tr></table><div class="prompt">Use the table to estimate \(f'(5)\), then use tangent and secant lines to bound \(f(8)\).</div><details class="answer"><summary>Show solution</summary><div>Estimate \(f'(5)\) using \(x=3\) and \(x=6\): \((-3-4)/(6-3)=-7/3\). If \(f'(6)=2\) and the graph is concave down on \([6,9]\), the tangent at 6 gives \(L(8)=1\), so \(f(8)\le1\). The secant line from \((6,-3)\) to \((9,1)\) has value \(-1/3\) at \(x=8\), and concave down graphs lie above their secants, so \(f(8)\ge -1/3\).</div></details></section><section class="slide" data-title="Homework 9: Composite function table"><div class="kicker">Chain rule + linearization</div><h1>Homework 9: Composite function table</h1><table class="tbl"><tr><th>x</th><th>f(x)</th><th>f'(x)</th><th>g(x)</th><th>g'(x)</th></tr><tr><td>-2</td><td>3</td><td>-2</td><td>1</td><td>4</td></tr><tr><td>-1</td><td>1</td><td>-1</td><td>-2</td><td>1</td></tr><tr><td>0</td><td>-1</td><td>2</td><td>-1</td><td>-2</td></tr></table><div class="prompt">Given \(P(x)=f(g(x))\), write the tangent line for \(P\) at \(x=-1\), then estimate \(P(-1.5)\).</div><details class="answer"><summary>Show solution</summary><div>\[P(-1)=f(g(-1))=f(-2)=3\]
+\[P'(-1)=f'(g(-1))g'(-1)=f'(-2)(1)=-2\]
+\[L(x)=3-2(x+1),\quad P(-1.5)\approx4\]</div></details></section><section class="slide" data-title="Homework 10A: Estimate ln(1.06)"><div class="kicker">Common approximation</div><h1>Homework 10A: Estimate ln(1.06)</h1><div class="prompt">Use the tangent line to \(f(x)=\ln x\) at \(x=1\) to approximate \(\ln(1.06)\). Compute the error and explain why the tangent line is an overestimate.</div>
+<div class="graph-card" data-a="1" data-fn="ln" data-widget="graph" data-x="1.06">
+<div class="plot-wrap">
+<svg aria-label="Interactive graph of a curve, tangent line, approximation point, and error gap" class="plot" role="img" viewbox="0 0 760 430">
+<rect class="plot-bg" height="430" width="760" x="0" y="0"></rect>
+<g class="gridlines"></g>
+<line class="axis xaxis"></line><line class="axis yaxis"></line>
+<path class="curve"></path>
+<path class="tangent"></path>
+<line class="delta-x"></line><line class="delta-y"></line><line class="error-line"></line>
+<circle class="ptA" r="7"></circle><circle class="ptX" r="7"></circle><circle class="ptL" r="6"></circle>
+<text class="labelA">a</text><text class="labelX">x</text><text class="labelCurve">f(x)</text><text class="labelLine">L(x)</text>
+</svg>
+</div>
+<div class="panel">
+<h3>ln x centered at 1</h3>
+<label class="slider-label">Move target value: <strong class="xout"></strong>
+<input class="xrange" step="0.001" type="range"/>
+</label>
+<div class="readout"></div>
+<div class="mini-note">The slider moves the target point, tangent-line estimate, error gap, and displayed values together.</div>
+</div>
+</div><details class="answer"><summary>Show solution</summary><div>\[L(x)=x-1\]
+\[\ln(1.06)\approx0.06\]
+Exact \(\ln(1.06)\approx0.05827\), so the error is about \(0.00173\).</div></details></section><section class="slide" data-title="Homework 10B: Estimate 8.05^{2/3}"><div class="kicker">Power approximation</div><h1>Homework 10B: Estimate 8.05^{2/3}</h1><div class="prompt">Use \(f(x)=x^{2/3}\) centered at \(x=8\) to estimate \(8.05^{2/3}\). Check the approximation against the curve.</div>
+<div class="graph-card" data-a="8" data-fn="twoThirds" data-widget="graph" data-x="8.05">
+<div class="plot-wrap">
+<svg aria-label="Interactive graph of a curve, tangent line, approximation point, and error gap" class="plot" role="img" viewbox="0 0 760 430">
+<rect class="plot-bg" height="430" width="760" x="0" y="0"></rect>
+<g class="gridlines"></g>
+<line class="axis xaxis"></line><line class="axis yaxis"></line>
+<path class="curve"></path>
+<path class="tangent"></path>
+<line class="delta-x"></line><line class="delta-y"></line><line class="error-line"></line>
+<circle class="ptA" r="7"></circle><circle class="ptX" r="7"></circle><circle class="ptL" r="6"></circle>
+<text class="labelA">a</text><text class="labelX">x</text><text class="labelCurve">f(x)</text><text class="labelLine">L(x)</text>
+</svg>
+</div>
+<div class="panel">
+<h3>f(x)=x^{2/3} centered at 8</h3>
+<label class="slider-label">Move target value: <strong class="xout"></strong>
+<input class="xrange" step="0.001" type="range"/>
+</label>
+<div class="readout"></div>
+<div class="mini-note">The slider moves the target point, tangent-line estimate, error gap, and displayed values together.</div>
+</div>
+</div><details class="answer"><summary>Show solution</summary><div>\[f(8)=4,\quad f'(8)=\frac13\]
+\[8.05^{2/3}\approx4+\frac{0.05}{3}=4.0167\]</div></details></section><section class="slide" data-title="Homework 11: Read f(a) and f′(a) from L(x)"><div class="kicker">Reverse linearization</div><h1>Homework 11: Read f(a) and f′(a) from L(x)</h1>
+<div class="prompt">The local linear approximation to \(g\) at \(x=-3\) is \(y=4x-7\). Find \(g(-3)+g'(-3)\).</div><details class="answer"><summary>Show solution</summary><div>The tangent line passes through \((-3,g(-3))\), so \(g(-3)=4(-3)-7=-19\). Its slope is \(g'(-3)=4\). Therefore \(g(-3)+g'(-3)=-15\).</div></details></section><section class="slide" data-title="Homework 12: 2x e^{2x−6}"><div class="kicker">Challenge</div><h1>Homework 12: 2x e^{2x−6}</h1><div class="prompt">For \(f(x)=2x e^{2x-6}\), find \(L(x)\) at \(x=3\) and use it to estimate \(f(3.1)\).</div>
+<div class="graph-card" data-a="3" data-fn="twoXexp" data-widget="graph" data-x="3.1">
+<div class="plot-wrap">
+<svg aria-label="Interactive graph of a curve, tangent line, approximation point, and error gap" class="plot" role="img" viewbox="0 0 760 430">
+<rect class="plot-bg" height="430" width="760" x="0" y="0"></rect>
+<g class="gridlines"></g>
+<line class="axis xaxis"></line><line class="axis yaxis"></line>
+<path class="curve"></path>
+<path class="tangent"></path>
+<line class="delta-x"></line><line class="delta-y"></line><line class="error-line"></line>
+<circle class="ptA" r="7"></circle><circle class="ptX" r="7"></circle><circle class="ptL" r="6"></circle>
+<text class="labelA">a</text><text class="labelX">x</text><text class="labelCurve">f(x)</text><text class="labelLine">L(x)</text>
+</svg>
+</div>
+<div class="panel">
+<h3>f(x)=2x e^{2x−6} centered at 3</h3>
+<label class="slider-label">Move target value: <strong class="xout"></strong>
+<input class="xrange" step="0.001" type="range"/>
+</label>
+<div class="readout"></div>
+<div class="mini-note">The slider moves the target point, tangent-line estimate, error gap, and displayed values together.</div>
+</div>
+</div><details class="answer"><summary>Show solution</summary><div>\[f(3)=6\]
+\[f'(x)=2e^{2x-6}+4xe^{2x-6}=e^{2x-6}(2+4x),\quad f'(3)=14\]
+\[L(3.1)=6+14(0.1)=7.4\]</div></details></section><section class="slide" data-title="Homework 13: Error interval"><div class="kicker">Challenge</div><h1>Homework 13: Error interval</h1><div class="prompt">For \(f(x)=x^2-x-12\), find the tangent line at \(x=2\). Determine all nearby \(x\)-values where the linear approximation error is less than \(0.5\).</div>
+<div class="graph-card" data-a="2" data-fn="errorPoly2" data-widget="graph" data-x="2.7">
+<div class="plot-wrap">
+<svg aria-label="Interactive graph of a curve, tangent line, approximation point, and error gap" class="plot" role="img" viewbox="0 0 760 430">
+<rect class="plot-bg" height="430" width="760" x="0" y="0"></rect>
+<g class="gridlines"></g>
+<line class="axis xaxis"></line><line class="axis yaxis"></line>
+<path class="curve"></path>
+<path class="tangent"></path>
+<line class="delta-x"></line><line class="delta-y"></line><line class="error-line"></line>
+<circle class="ptA" r="7"></circle><circle class="ptX" r="7"></circle><circle class="ptL" r="6"></circle>
+<text class="labelA">a</text><text class="labelX">x</text><text class="labelCurve">f(x)</text><text class="labelLine">L(x)</text>
+</svg>
+</div>
+<div class="panel">
+<h3>f(x)=x²−x−12 centered at 2</h3>
+<label class="slider-label">Move target value: <strong class="xout"></strong>
+<input class="xrange" step="0.001" type="range"/>
+</label>
+<div class="readout"></div>
+<div class="mini-note">The slider moves the target point, tangent-line estimate, error gap, and displayed values together.</div>
+</div>
+</div><details class="answer"><summary>Show solution</summary><div>At \(x=2\), \(L(x)=3x-16\). Exact error is \((x-2)^2\). For error less than \(0.5\), \(|x-2|&lt;\sqrt{0.5}\), so the greatest target value is about \(2.707\).</div></details></section><section class="slide" data-title="Homework 14: Implicit curve"><div class="kicker">Challenge</div><h1>Homework 14: Implicit curve</h1><div class="prompt">For the implicit curve \(x^2+y^3=2x^2y\) near \((1,1)\), find \(dy/dx\), write the tangent line, and estimate \(y\) when \(x=1.2\).</div>
+<div class="graph-card" data-a="1" data-fn="implicit2" data-widget="graph" data-x="1.2">
+<div class="plot-wrap">
+<svg aria-label="Interactive graph of a curve, tangent line, approximation point, and error gap" class="plot" role="img" viewbox="0 0 760 430">
+<rect class="plot-bg" height="430" width="760" x="0" y="0"></rect>
+<g class="gridlines"></g>
+<line class="axis xaxis"></line><line class="axis yaxis"></line>
+<path class="curve"></path>
+<path class="tangent"></path>
+<line class="delta-x"></line><line class="delta-y"></line><line class="error-line"></line>
+<circle class="ptA" r="7"></circle><circle class="ptX" r="7"></circle><circle class="ptL" r="6"></circle>
+<text class="labelA">a</text><text class="labelX">x</text><text class="labelCurve">f(x)</text><text class="labelLine">L(x)</text>
+</svg>
+</div>
+<div class="panel">
+<h3>x²+y³=2x²y near (1,1)</h3>
+<label class="slider-label">Move target value: <strong class="xout"></strong>
+<input class="xrange" step="0.001" type="range"/>
+</label>
+<div class="readout"></div>
+<div class="mini-note">The slider moves the target point, tangent-line estimate, error gap, and displayed values together.</div>
+</div>
+</div><details class="answer"><summary>Show solution</summary><div>Differentiate:
+\[2x+3y^2y'=4xy+2x^2y'\]
+At \((1,1)\), \(2+3y'=4+2y'\), so \(y'=2\). Thus \(L(x)=1+2(x-1)\), and \(y(1.2)\approx1.4\).</div></details></section><section class="slide" data-title="Homework 15: Derivative-defined function"><div class="kicker">AP-style</div><h1>Homework 15: Derivative-defined function</h1><div class="prompt">A function satisfies \(f(1)=8\) and \(f'(x)=\frac{6x^4}{x^2+1}\). Use the tangent line at \(x=1\) to approximate \(f(1.02)\).</div>
+<div class="graph-card" data-a="1" data-concavity="unknown" data-fa="8" data-fp="3" data-kind="up" data-widget="abstract" data-x="1.02">
+<div class="plot-wrap">
+<svg aria-label="Abstract local linearity model showing concavity and tangent approximation" class="plot" role="img" viewbox="0 0 760 430">
+<rect class="plot-bg" height="430" width="760" x="0" y="0"></rect>
+<g class="gridlines"></g><line class="axis xaxis"></line><line class="axis yaxis"></line>
+<path class="curve"></path><path class="tangent"></path>
+<line class="error-line"></line><circle class="ptA" r="7"></circle><circle class="ptX" r="7"></circle><circle class="ptL" r="6"></circle>
+<text class="labelA">a</text><text class="labelX">x</text><text class="labelCurve">model f</text><text class="labelLine">L(x)</text>
+</svg>
+</div>
+<div class="panel"><h3>f(1)=8 and f′(1)=3</h3>
+<label class="slider-label">Move target value: <strong class="xout"></strong><input class="xrange" step="0.001" type="range"/></label>
+<div class="readout"></div><div class="mini-note">This figure uses a curve with the stated concavity and exact given tangent data.</div>
+</div>
+</div><details class="answer"><summary>Show solution</summary><div>If \(f'(x)=\frac{6x^4}{x^2+1}\), then \(f'(1)=3\). With \(f(1)=8\),
+\[L(1.02)=8+3(0.02)=8.06\]</div></details></section><section class="slide" data-title="Quiz Form A"><div class="kicker">Assessment</div><h1>Quiz Form A</h1><div class="prompt">Complete the four-question quiz form: one data-based linear approximation, one tangent-line approximation for a radical, one error calculation, and one question that extracts \(f(a)\) and \(f'(a)\) from \(L(x)\).</div>
+<ol class="check"><li>Given \(g(-5)=3\) and \(g'(-5)=-2\), approximate \(g(-4.8)\).</li><li>Find the tangent-line approximation for \(f(x)=\sqrt{2-x}\) at \(x=-2\), then estimate \(f(-2.1)\).</li><li>Find the error for the estimate in Question 2.</li><li>The local linear approximation to \(f\) at \(x=-3\) is \(y=3x-8\). Find \(f(-3)+f'(-3)\).</li></ol>
+<details class="answer"><summary>Show solution</summary><div>Answers: 1) \(2.6\). 2) \(L(x)=2-\frac14(x+2)\), \(L(-2.1)=2.025\). 3) Error \(\approx|\sqrt{4.1}-2.025|\approx0.00015\). 4) \(-14\).</div></details></section><section class="slide" data-title="Quiz Form B"><div class="kicker">Assessment</div><h1>Quiz Form B</h1><div class="prompt">Complete the four-question quiz form: one data-based linear approximation, one cube-root tangent approximation, one error calculation, and one question that extracts function data from the local linear model.</div>
+<ol class="check"><li>Given \(h(-3)=6\) and \(h'(-3)=4\), approximate \(h(-3.2)\).</li><li>Find the tangent-line approximation for \(f(x)=\sqrt[3]{x+1}\) at \(x=7\), then estimate \(f(7.1)\).</li><li>Find the error for the estimate in Question 2.</li><li>The local linear approximation to \(f\) at \(x=2\) is \(y=5x-4\). Find \(f(2)+f'(2)\).</li></ol>
+<details class="answer"><summary>Show solution</summary><div>Answers: 1) \(5.2\). 2) \(L(x)=2+\frac1{12}(x-7)\), \(L(7.1)=2.00833\). 3) Error \(\approx0.00003\). 4) \(11\).</div></details></section><section class="slide" data-title="Quiz Form C"><div class="kicker">Assessment</div><h1>Quiz Form C</h1><div class="prompt">Complete the four-question quiz form: estimate from given \(f(a)\) and \(f'(a)\), write a tangent approximation for a square-root function, calculate error, and interpret a given linearization.</div>
+<ol class="check"><li>Given \(f(-4)=6\) and \(f'(-4)=3\), approximate \(f(-3.8)\).</li><li>Find the tangent-line approximation for \(f(x)=\sqrt{x+5}\) at \(x=4\), then estimate \(f(4.1)\).</li><li>Find the error for the estimate in Question 2.</li><li>The local linear approximation to \(f\) at \(x=5\) is \(y=-4x+7\). Find \(f(5)+f'(5)\).</li></ol>
+<details class="answer"><summary>Show solution</summary><div>Answers: 1) \(6.6\). 2) \(L(x)=3+\frac16(x-4)\), \(L(4.1)=3.0167\). 3) Error \(\approx0.000046\). 4) \(-17\).</div></details></section><section class="slide" data-title="Quiz Form D"><div class="kicker">Assessment</div><h1>Quiz Form D</h1><div class="prompt">Complete the four-question quiz form: estimate from tangent data, write a square-root tangent approximation, calculate error, and interpret a given local linear approximation.</div>
+<ol class="check"><li>Given \(k(-2)=5\) and \(k'(-2)=-3\), approximate \(k(-2.2)\).</li><li>Find the tangent-line approximation for \(f(x)=\sqrt{4-x}\) at \(x=-5\), then estimate \(f(-5.1)\).</li><li>Find the error for the estimate in Question 2.</li><li>The local linear approximation to \(f\) at \(x=4\) is \(y=-6x+5\). Find \(f(4)+f'(4)\).</li></ol>
+<details class="answer"><summary>Show solution</summary><div>Answers: 1) \(5.6\). 2) \(L(x)=3-\frac16(x+5)\), \(L(-5.1)=3.0167\). 3) Error \(\approx0.000046\). 4) \(-25\).</div></details></section><section class="slide" data-title="AP Style 1: Two different approximations"><div class="kicker">Reasoning</div><h1>AP Style 1: Two different approximations</h1>
+<div class="prompt">A differentiable function has \(f(2)=5\), \(f'(2)=3\), \(f''(x)&gt;0\) near \(x=2\). Use the tangent line to approximate \(f(2.4)\), then determine whether the actual value is greater or less than your estimate.</div>
+<details class="answer"><summary>Show solution</summary><div>\[L(2.4)=5+3(0.4)=6.2\]
+Since the function is concave up, the actual value is greater than the tangent-line estimate.</div></details></section><section class="slide" data-title="AP Style 2: Bound from tangent and secant"><div class="kicker">Reasoning</div><h1>AP Style 2: Bound from tangent and secant</h1>
+<div class="prompt">Suppose \(f\) is concave down on \([1,4]\), \(f(1)=2\), \(f(4)=8\), and \(f'(1)=3\). Find an upper and lower bound for \(f(2)\).</div>
+<details class="answer"><summary>Show solution</summary><div>Tangent at \(x=1\): \(L(2)=2+3(1)=5\), and concave down means \(f(2)\le5\). Secant from \((1,2)\) to \((4,8)\) has slope 2 and value 4 at \(x=2\); concave down graph lies above its secant, so \(f(2)\ge4\). Therefore \(4\le f(2)\le5\).</div></details></section><section class="slide" data-title="AP Style 3: Error sign without exact value"><div class="kicker">Reasoning</div><h1>AP Style 3: Error sign without exact value</h1><div class="prompt">Without calculating the exact value of \(\ln x\), use concavity to decide whether the tangent-line approximation \(L(x)=x-1\) is above or below \(\ln x\) near \(x=1\).</div>
+<div class="graph-card" data-a="1" data-fn="ln" data-widget="graph" data-x="0.9">
+<div class="plot-wrap">
+<svg aria-label="Interactive graph of a curve, tangent line, approximation point, and error gap" class="plot" role="img" viewbox="0 0 760 430">
+<rect class="plot-bg" height="430" width="760" x="0" y="0"></rect>
+<g class="gridlines"></g>
+<line class="axis xaxis"></line><line class="axis yaxis"></line>
+<path class="curve"></path>
+<path class="tangent"></path>
+<line class="delta-x"></line><line class="delta-y"></line><line class="error-line"></line>
+<circle class="ptA" r="7"></circle><circle class="ptX" r="7"></circle><circle class="ptL" r="6"></circle>
+<text class="labelA">a</text><text class="labelX">x</text><text class="labelCurve">f(x)</text><text class="labelLine">L(x)</text>
+</svg>
+</div>
+<div class="panel">
+<h3>ln x near x=1</h3>
+<label class="slider-label">Move target value: <strong class="xout"></strong>
+<input class="xrange" step="0.001" type="range"/>
+</label>
+<div class="readout"></div>
+<div class="mini-note">The slider moves the target point, tangent-line estimate, error gap, and displayed values together.</div>
+</div>
+</div><details class="answer"><summary>Show solution</summary><div>For \(f(x)=\ln x\), \(f''(x)=-1/x^2&lt;0\). The graph is concave down, so \(L(x)=x-1\) overestimates \(\ln x\) near \(x=1\).</div></details></section><section class="slide" data-title="Ultra Challenge: Match three functions"><div class="kicker">Concept synthesis</div><h1>Ultra Challenge: Match three functions</h1>
+<div class="prompt">Find three different functions whose linearization at \(x=0\) is \(L(x)=1+2x\). Then decide which has the greatest positive error at \(x=0.1\).</div>
+<details class="answer"><summary>Show solution</summary><div>Examples: \((1+x)^2\), \(1+\sin(2x)\), and \(e^{2x}\). Their exact values at \(0.1\) are approximately \(1.21\), \(1.19867\), and \(1.22140\), while \(L(0.1)=1.2\). The greatest positive error \(f-L\) is from \(e^{2x}\).</div></details></section><section class="slide" data-title="Challenge 1: Inverse-function approximation"><div class="kicker">AP-style inverse function</div><h1>Challenge 1: Inverse-function approximation</h1><div class="prompt">A function has \(f(2)=5\) and \(f'(2)=4\). Use local linearity to approximate \(f^{-1}(5.3)\). Then explain why the reciprocal derivative appears.</div><div class="graph-card" data-a="5" data-concavity="unknown" data-fa="2" data-fp="0.25" data-widget="abstract" data-x="5.3">
+<div class="plot-wrap"><svg aria-label="Abstract local linearity model showing concavity and tangent approximation" class="plot" role="img" viewbox="0 0 760 430">
+<rect class="plot-bg" height="430" width="760" x="0" y="0"></rect><g class="gridlines"></g><line class="axis xaxis"></line><line class="axis yaxis"></line>
+<path class="curve"></path><path class="tangent"></path><line class="error-line"></line><circle class="ptA" r="7"></circle><circle class="ptX" r="7"></circle><circle class="ptL" r="6"></circle><text class="labelA">a</text><text class="labelX">x</text><text class="labelCurve">model f</text><text class="labelLine">L(x)</text></svg></div>
+<div class="panel"><h3>Inverse model: x as a function of y</h3><label class="slider-label">Move target value: <strong class="xout"></strong><input class="xrange" step="0.001" type="range"/></label><div class="readout"></div><div class="mini-note">This figure uses a curve with the stated concavity and exact tangent data.</div></div></div><details class="answer"><summary>Show solution</summary><div>Near \(x=2\), \(f(x)\approx 5+4(x-2)\). Set \(5.3=5+4(x-2)\). Then \(x-2=0.075\), so \(f^{-1}(5.3)\approx2.075\). Equivalently, \((f^{-1})'(5)=1/f'(2)=1/4\).</div></details></section><section class="slide" data-title="Challenge 2: Choose the better center"><div class="kicker">Error reasoning</div><h1>Challenge 2: Choose the better center</h1><div class="prompt">Estimate \(\sqrt{16.8}\) using a tangent line centered at \(16\). Compare with a tangent line centered at \(25\). Which center should be more accurate, and why?</div><div class="graph-card" data-a="16" data-fn="sqrt" data-widget="graph" data-x="16.8">
+<div class="plot-wrap">
+<svg aria-label="Interactive graph of a curve, tangent line, approximation point, and error gap" class="plot" role="img" viewbox="0 0 760 430">
+<rect class="plot-bg" height="430" width="760" x="0" y="0"></rect><g class="gridlines"></g>
+<line class="axis xaxis"></line><line class="axis yaxis"></line><path class="curve"></path><path class="tangent"></path>
+<line class="delta-x"></line><line class="delta-y"></line><line class="error-line"></line>
+<circle class="ptA" r="7"></circle><circle class="ptX" r="7"></circle><circle class="ptL" r="6"></circle>
+<text class="labelA">a</text><text class="labelX">x</text><text class="labelCurve">f(x)</text><text class="labelLine">L(x)</text>
+</svg></div>
+<div class="panel"><h3>Estimate square roots near 16</h3><label class="slider-label">Move target value: <strong class="xout"></strong><input class="xrange" step="0.001" type="range"/></label><div class="readout"></div><div class="mini-note">The slider moves the target point, tangent-line estimate, error gap, and displayed values together.</div></div></div><details class="answer"><summary>Show solution</summary><div>For \(f(x)=\sqrt{x}\), centered at \(16\), \(L(x)=4+\frac18(x-16)\). Thus \(\sqrt{16.8}\approx4+0.8/8=4.1\). A center at \(25\) gives \(5+\frac1{10}(16.8-25)=4.18\), which is much worse because \(16.8\) is farther from \(25\).</div></details></section><section class="slide" data-title="Challenge 3: Implicit upper semicircle"><div class="kicker">Implicit local linearity</div><h1>Challenge 3: Implicit upper semicircle</h1><div class="prompt">The upper branch of \(x^2+y^2=25\) passes through \((3,4)\). Use the tangent line at \((3,4)\) to approximate \(y\) when \(x=3.2\), and classify the estimate.</div><div class="graph-card" data-a="3" data-fn="upperCircle" data-widget="graph" data-x="3.2">
+<div class="plot-wrap">
+<svg aria-label="Interactive graph of a curve, tangent line, approximation point, and error gap" class="plot" role="img" viewbox="0 0 760 430">
+<rect class="plot-bg" height="430" width="760" x="0" y="0"></rect><g class="gridlines"></g>
+<line class="axis xaxis"></line><line class="axis yaxis"></line><path class="curve"></path><path class="tangent"></path>
+<line class="delta-x"></line><line class="delta-y"></line><line class="error-line"></line>
+<circle class="ptA" r="7"></circle><circle class="ptX" r="7"></circle><circle class="ptL" r="6"></circle>
+<text class="labelA">a</text><text class="labelX">x</text><text class="labelCurve">f(x)</text><text class="labelLine">L(x)</text>
+</svg></div>
+<div class="panel"><h3>Upper semicircle tangent approximation</h3><label class="slider-label">Move target value: <strong class="xout"></strong><input class="xrange" step="0.001" type="range"/></label><div class="readout"></div><div class="mini-note">The slider moves the target point, tangent-line estimate, error gap, and displayed values together.</div></div></div><details class="answer"><summary>Show solution</summary><div>Differentiate: \(2x+2yy'=0\), so \(y'=-x/y\). At \((3,4)\), \(y'=-3/4\). Hence \(L(x)=4-\frac34(x-3)\), so \(y(3.2)\approx3.85\). The upper semicircle is concave down, so the tangent-line approximation is an overestimate.</div></details></section><section class="slide" data-title="AP Style 4: Composite table linearization"><div class="kicker">Chain rule and table data</div><h1>AP Style 4: Composite table linearization</h1><div class="prompt">The table gives \(f(2)=9\), \(f'(2)=4\), \(g(1)=2\), and \(g'(1)=0.3\). For \(H(x)=\sqrt{f(g(x))}\), write the tangent-line approximation at \(x=1\) and estimate \(H(1.2)\).</div><table class="tbl"><tr><th>Quantity</th><th>Value</th></tr><tr><td>\(f(2)\)</td><td>9</td></tr><tr><td>\(f'(2)\)</td><td>4</td></tr><tr><td>\(g(1)\)</td><td>2</td></tr><tr><td>\(g'(1)\)</td><td>0.3</td></tr></table><details class="answer"><summary>Show solution</summary><div>\(H(1)=\sqrt{f(2)}=3\). By the chain rule, \(H'(x)=\frac{f'(g(x))g'(x)}{2\sqrt{f(g(x))}}\), so \(H'(1)=\frac{4(0.3)}{2(3)}=0.2\). Therefore \(L(x)=3+0.2(x-1)\), and \(H(1.2)\approx3.04\).</div></details></section><section class="slide" data-title="AP Style 5: Differential equation with unknown solution"><div class="kicker">ODE local linearity</div><h1>AP Style 5: Differential equation with unknown solution</h1><div class="prompt">Let \(y=f(x)\) satisfy \(\frac{dy}{dx}=\frac{x^2+y}{1+x}\) and \(f(1)=2\). Use the tangent line at \(x=1\) to approximate \(f(1.08)\).</div><div class="graph-card" data-a="1" data-concavity="unknown" data-fa="2" data-fp="1.5" data-widget="abstract" data-x="1.08">
+<div class="plot-wrap"><svg aria-label="Abstract local linearity model showing concavity and tangent approximation" class="plot" role="img" viewbox="0 0 760 430">
+<rect class="plot-bg" height="430" width="760" x="0" y="0"></rect><g class="gridlines"></g><line class="axis xaxis"></line><line class="axis yaxis"></line>
+<path class="curve"></path><path class="tangent"></path><line class="error-line"></line><circle class="ptA" r="7"></circle><circle class="ptX" r="7"></circle><circle class="ptL" r="6"></circle><text class="labelA">a</text><text class="labelX">x</text><text class="labelCurve">model f</text><text class="labelLine">L(x)</text></svg></div>
+<div class="panel"><h3>ODE tangent data model</h3><label class="slider-label">Move target value: <strong class="xout"></strong><input class="xrange" step="0.001" type="range"/></label><div class="readout"></div><div class="mini-note">This figure uses a curve with the stated concavity and exact tangent data.</div></div></div><details class="answer"><summary>Show solution</summary><div>At \((1,2)\), \(f'(1)=\frac{1^2+2}{1+1}=\frac32\). Thus \(L(x)=2+\frac32(x-1)\). Hence \(f(1.08)\approx2+\frac32(0.08)=2.12\).</div></details></section><section class="slide" data-title="AP Style 6: Error bound using second derivative"><div class="kicker">Approximation quality</div><h1>AP Style 6: Error bound using second derivative</h1><div class="prompt">Suppose \(|f''(x)|\le 6\) for \(1.9\le x\le2.1\). If \(f(2)=7\) and \(f'(2)=-3\), use the tangent line to approximate \(f(2.05)\) and give a guaranteed maximum error.</div><div class="graph-card" data-a="2" data-concavity="unknown" data-fa="7" data-fp="-3" data-widget="abstract" data-x="2.05">
+<div class="plot-wrap"><svg aria-label="Abstract local linearity model showing concavity and tangent approximation" class="plot" role="img" viewbox="0 0 760 430">
+<rect class="plot-bg" height="430" width="760" x="0" y="0"></rect><g class="gridlines"></g><line class="axis xaxis"></line><line class="axis yaxis"></line>
+<path class="curve"></path><path class="tangent"></path><line class="error-line"></line><circle class="ptA" r="7"></circle><circle class="ptX" r="7"></circle><circle class="ptL" r="6"></circle><text class="labelA">a</text><text class="labelX">x</text><text class="labelCurve">model f</text><text class="labelLine">L(x)</text></svg></div>
+<div class="panel"><h3>Tangent estimate with error bound</h3><label class="slider-label">Move target value: <strong class="xout"></strong><input class="xrange" step="0.001" type="range"/></label><div class="readout"></div><div class="mini-note">This figure uses a curve with the stated concavity and exact tangent data.</div></div></div><details class="answer"><summary>Show solution</summary><div>\(L(2.05)=7-3(0.05)=6.85\). The linearization error satisfies \(|R_1|\le \frac{M}{2}|x-a|^2\). With \(M=6\) and \(|x-a|=0.05\), \(|R_1|\le 3(0.0025)=0.0075\).</div></details></section><section class="slide" data-title="Ultra Challenge 2: Same tangent, different errors"><div class="kicker">Concept synthesis</div><h1>Ultra Challenge 2: Same tangent, different errors</h1><div class="prompt">Two functions have the same linearization \(L(x)=1+2x\) at \(x=0\): \(f(x)=e^{2x}\) and \(g(x)=1+\sin(2x)\). At \(x=0.1\), which function has the larger tangent-line error?</div><div class="graph-card" data-a="0" data-fn="compareA" data-widget="graph" data-x="0.1">
+<div class="plot-wrap">
+<svg aria-label="Interactive graph of a curve, tangent line, approximation point, and error gap" class="plot" role="img" viewbox="0 0 760 430">
+<rect class="plot-bg" height="430" width="760" x="0" y="0"></rect><g class="gridlines"></g>
+<line class="axis xaxis"></line><line class="axis yaxis"></line><path class="curve"></path><path class="tangent"></path>
+<line class="delta-x"></line><line class="delta-y"></line><line class="error-line"></line>
+<circle class="ptA" r="7"></circle><circle class="ptX" r="7"></circle><circle class="ptL" r="6"></circle>
+<text class="labelA">a</text><text class="labelX">x</text><text class="labelCurve">f(x)</text><text class="labelLine">L(x)</text>
+</svg></div>
+<div class="panel"><h3>Same tangent line, different curvature</h3><label class="slider-label">Move target value: <strong class="xout"></strong><input class="xrange" step="0.001" type="range"/></label><div class="readout"></div><div class="mini-note">The slider moves the target point, tangent-line estimate, error gap, and displayed values together.</div></div></div><details class="answer"><summary>Show solution</summary><div>Both functions have value \(1\) and derivative \(2\) at \(0\). At \(x=0.1\), \(L(0.1)=1.2\). For \(e^{0.2}\), the error is about \(1.2214-1.2=0.0214\). For \(1+\sin(0.2)\), the error is about \(1.1987-1.2=-0.0013\). The exponential has the larger absolute error because its curvature near \(0\) is much larger.</div></details></section><section class="slide" data-title="AP Multiple Choice: Estimate and classify"><div class="kicker">AP-style quick check</div><h1>AP Multiple Choice: Estimate and classify</h1><div class="prompt">Let \(f(x)=\sqrt[3]{x}\). Use the tangent line at \(x=8\) to estimate \(\sqrt[3]{7.76}\). Which statement is correct?</div><div class="graph-card" data-a="8" data-fn="cuberoot" data-widget="graph" data-x="7.76">
+<div class="plot-wrap">
+<svg aria-label="Interactive graph of a curve, tangent line, approximation point, and error gap" class="plot" role="img" viewbox="0 0 760 430">
+<rect class="plot-bg" height="430" width="760" x="0" y="0"></rect><g class="gridlines"></g>
+<line class="axis xaxis"></line><line class="axis yaxis"></line><path class="curve"></path><path class="tangent"></path>
+<line class="delta-x"></line><line class="delta-y"></line><line class="error-line"></line>
+<circle class="ptA" r="7"></circle><circle class="ptX" r="7"></circle><circle class="ptL" r="6"></circle>
+<text class="labelA">a</text><text class="labelX">x</text><text class="labelCurve">f(x)</text><text class="labelLine">L(x)</text>
+</svg></div>
+<div class="panel"><h3>Cube-root estimate near 8</h3><label class="slider-label">Move target value: <strong class="xout"></strong><input class="xrange" step="0.001" type="range"/></label><div class="readout"></div><div class="mini-note">The slider moves the target point, tangent-line estimate, error gap, and displayed values together.</div></div></div><details class="answer"><summary>Show solution</summary><div><div class="grid c2"><div class="card">A. \(1.98\), underestimate</div><div class="card">B. \(1.98\), overestimate</div><div class="card">C. \(2.02\), underestimate</div><div class="card">D. \(2.02\), overestimate</div></div><br/>\(L(7.76)=2+\frac{7.76-8}{12}=1.98\). Since \(x^{1/3}\) is concave down for \(x&gt;0\), the tangent line lies above the curve, so the estimate is an overestimate. Answer: B.</div></details></section><section class="slide" data-title="Exit ticket"><div class="kicker">Check for understanding</div><h1>Exit ticket</h1><div class="prompt">Answer these four questions to check mastery of the formula, the concavity interpretation, a numerical square-root estimate, and the limitation of local linearity.</div>
+<div class="grid c2"><div class="card"><h3>1</h3>Write the linearization formula at \(x=a\).</div><div class="card"><h3>2</h3>If a function is concave up, does the tangent-line approximation overestimate or underestimate?</div><div class="card"><h3>3</h3>Approximate \(\sqrt{9.1}\) using a tangent line centered at \(9\).</div><div class="card"><h3>4</h3>Explain why linear approximation becomes less reliable farther from the center.</div></div>
+<details class="answer"><summary>Show solution</summary><div>1) \(L(x)=f(a)+f'(a)(x-a)\). 2) Underestimate. 3) For \(f(x)=\sqrt{x}\), \(L(x)=3+\frac16(x-9)\), so \(\sqrt{9.1}\approx3.0167\). 4) Curvature accumulates error as \(|x-a|\) grows.</div></details></section></main><footer class="foot"><div class="nav"><button class="secondary" id="prev">← Prev</button><button class="primary" id="next">Next →</button><button class="secondary" onclick="document.querySelectorAll('.answer').forEach(d=&gt;d.open=!d.open)">Answers</button></div><select id="pick"></select></footer></div><script>
+const slides=[...document.querySelectorAll('.slide')];
+const count=document.getElementById('count'), bar=document.getElementById('bar'), pick=document.getElementById('pick');
+let idx=0;
+slides.forEach((s,i)=>{const o=document.createElement('option');o.value=i;o.textContent=(i+1)+'. '+s.dataset.title;pick.appendChild(o);});
+function renderMath(){ if(window.renderMathInElement){ renderMathInElement(document.body,{delimiters:[{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false}); }}
+function show(i){idx=Math.max(0,Math.min(slides.length-1,i));slides.forEach((s,j)=>s.classList.toggle('active',j===idx));count.textContent=(idx+1)+' / '+slides.length;bar.style.width=((idx+1)/slides.length*100)+'%';pick.value=idx;}
+document.getElementById('prev').onclick=()=>show(idx-1);document.getElementById('next').onclick=()=>show(idx+1);pick.onchange=e=>show(+e.target.value);document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')show(idx+1); if(e.key==='ArrowLeft')show(idx-1);});
+function fmt(v){ if(!Number.isFinite(v)) return 'undefined'; const av=Math.abs(v); if(av>1000||av<0.001&&av!==0) return v.toExponential(3); return String(Math.round(v*10000)/10000);}
+const F={
+  cubicLocal:{xmin:-1.2,xmax:1.2,f:x=>1+x+0.55*x*x*x+0.25*x*x, fp:x=>1+1.65*x*x+0.5*x},
+  sin0:{xmin:-1,xmax:1,f:Math.sin,fp:Math.cos}, sin:{xmin:0.4,xmax:1.35,f:Math.sin,fp:Math.cos},
+  cos:{xmin:0.7,xmax:1.25,f:Math.cos,fp:x=>-Math.sin(x)},
+  cuberoot:{xmin:6.5,xmax:17,f:x=>Math.cbrt(x),fp:x=>1/(3*Math.pow(x,2/3))},
+  compareA:{xmin:-0.5,xmax:0.7,f:x=>Math.exp(2*x),fp:x=>2*Math.exp(2*x),extra:x=>[(1+x)*(1+x),1+Math.sin(2*x)]},
+  compareB:{xmin:-1.2,xmax:1.2,f:x=>Math.sinh(x),fp:x=>Math.cosh(x),extra:x=>[Math.sin(x),Math.atan(x)]},
+  pow2:{xmin:2.7,xmax:3.25,f:x=>Math.pow(2,x),fp:x=>Math.LN2*Math.pow(2,x)},
+  x5:{xmin:1.85,xmax:2.15,f:x=>Math.pow(x,5),fp:x=>5*Math.pow(x,4)},
+  recipMinus1:{xmin:-1.5,xmax:-0.55,f:x=>1/(x-1),fp:x=>-1/Math.pow(x-1,2)},
+  implicitCurve:{xmin:0.75,xmax:1.35,f:x=>x*Math.exp(x*x-1),fp:x=>Math.exp(x*x-1)*(1+2*x*x)},
+  caSlope:{xmin:1.7,xmax:2.35,f:x=>-2-0.75*(x-2)+0.25*(x-2)*(x-2),fp:x=>-0.75+0.5*(x-2)},
+  quadCA:{xmin:2.3,xmax:3.7,f:x=>x*x-5*x,fp:x=>2*x-5},
+  xcosx:{xmin:1.35,xmax:1.75,f:x=>x*Math.cos(x),fp:x=>Math.cos(x)-x*Math.sin(x)},
+  polyDown:{xmin:0.6,xmax:1.4,f:x=>5*x-2*x*x*x-2,fp:x=>5-6*x*x},
+  de1:{xmin:1.75,xmax:2.35,f:x=>-2*(x-2)-0.6*(x-2)*(x-2),fp:x=>-2-1.2*(x-2)},
+  deSin:{xmin:1.35,xmax:1.8,f:x=>2+3*(x-Math.PI/2)-0.5*(x-Math.PI/2)*(x-Math.PI/2),fp:x=>3-(x-Math.PI/2)},
+  de2:{xmin:0.8,xmax:1.25,f:x=>Math.sqrt(13-4*x*x),fp:x=>-4*x/Math.sqrt(13-4*x*x)},
+  twocos:{xmin:0.55,xmax:1.7,f:x=>2*Math.cos(x)+1,fp:x=>-2*Math.sin(x)},
+  expFrac:{xmin:-0.15,xmax:0.25,f:x=>Math.exp(2*x/(x+1)),fp:x=>Math.exp(2*x/(x+1))*2/((x+1)*(x+1))},
+  negSqrt4x:{xmin:1.55,xmax:2.35,f:x=>-Math.sqrt(4-x),fp:x=>1/(2*Math.sqrt(4-x))},
+  errorQuad:{xmin:0.65,xmax:1.75,f:x=>3*x*x-4*x+2,fp:x=>6*x-4},
+  tan:{xmin:0.45,xmax:1.1,f:Math.tan,fp:x=>1/(Math.cos(x)**2)},
+  exp:{xmin:0.75,xmax:1.25,f:Math.exp,fp:Math.exp},
+  invSqrt:{xmin:2.5,xmax:3.6,f:x=>1/Math.sqrt(1+x),fp:x=>-0.5*Math.pow(1+x,-1.5)},
+  atan:{xmin:0.65,xmax:1.35,f:Math.atan,fp:x=>1/(1+x*x)},
+  sin2:{xmin:0.6,xmax:1.0,f:x=>Math.sin(x)**2,fp:x=>Math.sin(2*x)},
+  sqrtx3:{xmin:0.65,xmax:1.35,f:x=>Math.sqrt(x+3),fp:x=>1/(2*Math.sqrt(x+3))},
+  ln:{xmin:0.75,xmax:1.25,f:Math.log,fp:x=>1/x},
+  twoThirds:{xmin:7.7,xmax:8.3,f:x=>Math.pow(x,2/3),fp:x=>(2/3)*Math.pow(x,-1/3)},
+  twoXexp:{xmin:2.8,xmax:3.2,f:x=>2*x*Math.exp(2*x-6),fp:x=>Math.exp(2*x-6)*(2+4*x)},
+  errorPoly2:{xmin:1.2,xmax:2.9,f:x=>x*x-x-12,fp:x=>2*x-1},
+  implicit2:{xmin:0.75,xmax:1.3,f:x=>1+2*(x-1)+0.8*(x-1)*(x-1),fp:x=>2+1.6*(x-1)},
+  tan0:{xmin:-0.7,xmax:0.7,f:Math.tan,fp:x=>1/(Math.cos(x)**2)}
+};
+function initGraph(el){const id=el.dataset.fn, def=F[id]; if(!def){console.warn('missing fn',id); return;} const a=+el.dataset.a, x0=+el.dataset.x; const xmin=+(el.dataset.xmin||def.xmin), xmax=+(el.dataset.xmax||def.xmax); const xs=[]; for(let i=0;i<=320;i++){xs.push(xmin+(xmax-xmin)*i/320);} const vals=[]; xs.forEach(x=>{vals.push(def.f(x)); if(def.extra) def.extra(x).forEach(y=>vals.push(y));}); const fa=def.f(a), m=def.fp(a); xs.forEach(x=>vals.push(fa+m*(x-a))); const ymin=Math.min(...vals), ymax=Math.max(...vals); const padY=(ymax-ymin)*0.18||1; const ylo=ymin-padY, yhi=ymax+padY; const W=760,H=430,M=46; const sx=x=>M+(x-xmin)/(xmax-xmin)*(W-2*M); const sy=y=>H-M-(y-ylo)/(yhi-ylo)*(H-2*M); const svg=el.querySelector('svg'); const curve=el.querySelector('.curve'), tan=el.querySelector('.tangent'); const grid=el.querySelector('.gridlines'); grid.innerHTML=''; for(let i=0;i<=6;i++){const x=M+(W-2*M)*i/6; grid.insertAdjacentHTML('beforeend',`<line class="gridline" x1="${x}" x2="${x}" y1="${M}" y2="${H-M}"/>`); const y=M+(H-2*M)*i/6; grid.insertAdjacentHTML('beforeend',`<line class="gridline" y1="${y}" y2="${y}" x1="${M}" x2="${W-M}"/>`);} el.querySelector('.xaxis').setAttribute('x1',M);el.querySelector('.xaxis').setAttribute('x2',W-M);el.querySelector('.xaxis').setAttribute('y1',sy(0));el.querySelector('.xaxis').setAttribute('y2',sy(0)); el.querySelector('.yaxis').setAttribute('x1',sx(0));el.querySelector('.yaxis').setAttribute('x2',sx(0));el.querySelector('.yaxis').setAttribute('y1',M);el.querySelector('.yaxis').setAttribute('y2',H-M); function pathFor(f){let d=''; xs.forEach((x,i)=>{const y=f(x); if(Number.isFinite(y)){d+=(i?'L':'M')+sx(x).toFixed(2)+','+sy(y).toFixed(2)+' ';}}); return d;} curve.setAttribute('d',pathFor(def.f)); tan.setAttribute('d',pathFor(x=>fa+m*(x-a))); if(def.extra){def.extra(0).forEach((_,j)=>{let p=document.createElementNS('http://www.w3.org/2000/svg','path'); p.setAttribute('class','curve extra'+j); p.setAttribute('d',pathFor(x=>def.extra(x)[j])); p.style.stroke=j?'#c69c48':'#0b84c6'; p.style.strokeWidth='3'; p.style.fill='none'; p.style.opacity='.75'; svg.insertBefore(p,tan);});}
+ const rng=el.querySelector('.xrange'); rng.min=xmin; rng.max=xmax; rng.value=x0; const update=()=>{const x=+rng.value, fx=def.f(x), L=fa+m*(x-a), err=fx-L; el.querySelector('.xout').textContent=fmt(x); el.querySelector('.ptA').setAttribute('cx',sx(a)); el.querySelector('.ptA').setAttribute('cy',sy(fa)); el.querySelector('.ptX').setAttribute('cx',sx(x)); el.querySelector('.ptX').setAttribute('cy',sy(fx)); el.querySelector('.ptL').setAttribute('cx',sx(x)); el.querySelector('.ptL').setAttribute('cy',sy(L)); const ex=el.querySelector('.error-line'); ex.setAttribute('x1',sx(x));ex.setAttribute('x2',sx(x));ex.setAttribute('y1',sy(fx));ex.setAttribute('y2',sy(L)); const dx=el.querySelector('.delta-x'); dx.setAttribute('x1',sx(a));dx.setAttribute('x2',sx(x));dx.setAttribute('y1',sy(fa));dx.setAttribute('y2',sy(fa)); const dy=el.querySelector('.delta-y'); dy.setAttribute('x1',sx(x));dy.setAttribute('x2',sx(x));dy.setAttribute('y1',sy(fa));dy.setAttribute('y2',sy(L)); el.querySelector('.labelA').setAttribute('x',sx(a)+8);el.querySelector('.labelA').setAttribute('y',sy(fa)-8); el.querySelector('.labelX').setAttribute('x',sx(x)+8);el.querySelector('.labelX').setAttribute('y',sy(fx)-8); el.querySelector('.labelCurve').setAttribute('x',W-M-80);el.querySelector('.labelCurve').setAttribute('y',sy(def.f(xmax-(xmax-xmin)*.12))-8); el.querySelector('.labelLine').setAttribute('x',W-M-80);el.querySelector('.labelLine').setAttribute('y',sy(fa+m*((xmax-(xmax-xmin)*.12)-a))+18); el.querySelector('.readout').innerHTML=`a=${fmt(a)}, x=${fmt(x)}<br>f(a)=${fmt(fa)}, f′(a)=${fmt(m)}<br>L(x)=${fmt(L)}<br>f(x)=${fmt(fx)}<br>error f(x)−L(x)=${fmt(err)}`;}; rng.addEventListener('input',update); update();}
+function initAbstract(el){const a=+el.dataset.a, fa=+el.dataset.fa, fp=+el.dataset.fp, x0=+el.dataset.x; const conc=el.dataset.concavity; const c=conc==='down'?-0.7:(conc==='unknown'?0.35:0.7); const xmin=Math.min(a,x0)-1, xmax=Math.max(a,x0)+1; const f=x=>fa+fp*(x-a)+c*(x-a)*(x-a); const m=fp; const xs=[]; for(let i=0;i<=320;i++)xs.push(xmin+(xmax-xmin)*i/320); const vals=xs.flatMap(x=>[f(x),fa+m*(x-a)]); const ymin=Math.min(...vals), ymax=Math.max(...vals); const pad=(ymax-ymin)*.2||1, ylo=ymin-pad, yhi=ymax+pad; const W=760,H=430,M=46; const sx=x=>M+(x-xmin)/(xmax-xmin)*(W-2*M); const sy=y=>H-M-(y-ylo)/(yhi-ylo)*(H-2*M); const grid=el.querySelector('.gridlines'); grid.innerHTML=''; for(let i=0;i<=6;i++){const X=M+(W-2*M)*i/6; grid.insertAdjacentHTML('beforeend',`<line class="gridline" x1="${X}" x2="${X}" y1="${M}" y2="${H-M}"/>`); const Y=M+(H-2*M)*i/6; grid.insertAdjacentHTML('beforeend',`<line class="gridline" y1="${Y}" y2="${Y}" x1="${M}" x2="${W-M}"/>`);} el.querySelector('.xaxis').setAttribute('x1',M);el.querySelector('.xaxis').setAttribute('x2',W-M);el.querySelector('.xaxis').setAttribute('y1',sy(0));el.querySelector('.xaxis').setAttribute('y2',sy(0)); el.querySelector('.yaxis').setAttribute('x1',sx(0));el.querySelector('.yaxis').setAttribute('x2',sx(0));el.querySelector('.yaxis').setAttribute('y1',M);el.querySelector('.yaxis').setAttribute('y2',H-M); function path(g){return xs.map((x,i)=>(i?'L':'M')+sx(x).toFixed(2)+','+sy(g(x)).toFixed(2)).join(' ');} el.querySelector('.curve').setAttribute('d',path(f)); el.querySelector('.tangent').setAttribute('d',path(x=>fa+m*(x-a))); const rng=el.querySelector('.xrange'); rng.min=xmin; rng.max=xmax; rng.value=x0; const update=()=>{const x=+rng.value, fx=f(x), L=fa+m*(x-a), err=fx-L; el.querySelector('.xout').textContent=fmt(x); el.querySelector('.ptA').setAttribute('cx',sx(a));el.querySelector('.ptA').setAttribute('cy',sy(fa)); el.querySelector('.ptX').setAttribute('cx',sx(x));el.querySelector('.ptX').setAttribute('cy',sy(fx)); el.querySelector('.ptL').setAttribute('cx',sx(x));el.querySelector('.ptL').setAttribute('cy',sy(L)); const ex=el.querySelector('.error-line'); ex.setAttribute('x1',sx(x));ex.setAttribute('x2',sx(x));ex.setAttribute('y1',sy(fx));ex.setAttribute('y2',sy(L)); el.querySelector('.labelA').setAttribute('x',sx(a)+8);el.querySelector('.labelA').setAttribute('y',sy(fa)-8); el.querySelector('.labelX').setAttribute('x',sx(x)+8);el.querySelector('.labelX').setAttribute('y',sy(fx)-8); el.querySelector('.readout').innerHTML=`a=${fmt(a)}, x=${fmt(x)}<br>f(a)=${fmt(fa)}, f′(a)=${fmt(fp)}<br>L(x)=${fmt(L)}<br>model f(x)=${fmt(fx)}<br>gap=${fmt(err)}<br>${conc==='down'?'overestimate':conc==='up'?'underestimate':'tangent-data model'}`;}; rng.addEventListener('input',update); update();}
+function initWidgets(){document.querySelectorAll('[data-widget="graph"]').forEach(initGraph); document.querySelectorAll('[data-widget="abstract"]').forEach(initAbstract);} 
+window.addEventListener('DOMContentLoaded',()=>{show(0);initWidgets();setTimeout(renderMath,200);});
+</script></body></html>

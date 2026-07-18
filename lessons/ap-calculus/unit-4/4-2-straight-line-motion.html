@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>AP Calculus 4.2 - Straight Line Motion</title>
+<link href="https://cdn.jsdelivr.net" rel="preconnect"/>
+<link href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" rel="stylesheet"/>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<style>
+:root{--maroon:#7a1738;--navy:#203654;--teal:#0e6655;--ink:#17212b;--muted:#5d6877;--line:#d9e2ec;--gold:#c69c48;--bg:#f4f7fb;--white:#fff;--soft:#fbfaf7;--blue:#0b84c6;--orange:#d97706}
+*{box-sizing:border-box}html,body{height:100%}body{margin:0;font-family:Inter,Aptos,"Segoe UI",Arial,sans-serif;color:var(--ink);background:var(--bg)}
+.deck{height:100vh;display:grid;grid-template-rows:74px 1fr 54px;overflow:hidden}.topbar{display:flex;align-items:center;justify-content:space-between;padding:10px 22px;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 2px 14px rgba(20,30,55,.08);z-index:2}
+.brand{display:flex;align-items:center;gap:18px}.echs{height:48px;width:96px;border-radius:14px;background:linear-gradient(135deg,var(--maroon),var(--navy));color:#fff;display:grid;place-items:center;font-weight:900;letter-spacing:1.5px}.course{border-left:2px solid #d5dce4;padding-left:18px;line-height:1.15}.course strong{color:var(--maroon);font-size:20px}.course span{display:block;color:var(--muted);font-size:13px;margin-top:3px}
+.progress{display:flex;align-items:center;gap:10px;color:var(--muted);font-weight:700;font-size:14px}.dotbar{width:220px;height:9px;background:#e5ebf0;border-radius:99px;overflow:hidden}.dotbar span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--maroon),var(--teal));border-radius:99px}
+.main{overflow:hidden}.slide{display:none;height:100%;overflow-y:auto;padding:34px 48px 72px;background:linear-gradient(135deg,#fff 0%,#fbfaf7 58%,#f3fbf9 100%)}.slide.active{display:block}.slide h1{font-size:38px;line-height:1.04;margin:0 0 24px;color:var(--navy);letter-spacing:-1.1px}.kicker{color:var(--maroon);font-size:14px;text-transform:uppercase;letter-spacing:.12em;font-weight:900;margin-bottom:9px}
+.hero{display:grid;grid-template-columns:1fr 1.2fr;gap:28px;align-items:center;margin-top:20px}.big{font-size:86px;font-weight:900;color:var(--maroon);line-height:.9}.hero p{font-size:28px;color:var(--navy);margin:12px 0 0}.formula{background:#fff;border:1px solid var(--line);border-radius:22px;padding:26px;box-shadow:0 18px 35px rgba(20,30,55,.08);font-size:20px}
+.targets{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px}.targets span,.tag{display:inline-block;background:#eef7f4;border:1px solid #cce7df;color:var(--teal);border-radius:99px;padding:10px 14px;font-weight:800;margin:3px}
+.grid{display:grid;gap:22px}.two{grid-template-columns:1fr 1fr}.three{grid-template-columns:repeat(3,1fr)}.four{grid-template-columns:repeat(4,1fr)}.card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:22px;font-size:21px;line-height:1.45;box-shadow:0 16px 30px rgba(20,30,55,.06)}.card .num{font-size:20px;font-weight:900;color:var(--navy);margin-bottom:10px}.card ol,.card ul{margin-top:8px;padding-left:28px}.card li{margin:8px 0}.card h3{margin:0 0 10px;color:var(--maroon)}
+.rulebox{background:#fff;border:2px solid var(--maroon);border-radius:24px;padding:22px 28px;margin:8px 0 24px;box-shadow:0 16px 32px rgba(122,23,56,.08);font-size:21px}.rulebox h3{margin:0 0 10px;color:var(--maroon);font-size:22px}.rulebox.compact{padding:14px 22px}.prompt{font-size:23px;background:#fff7e6;border-left:8px solid var(--gold);padding:16px 20px;margin-top:20px;border-radius:16px;color:#3a2d12}
+.note{background:#eef3f9;border-left:7px solid var(--navy);padding:14px 18px;border-radius:16px;font-size:21px;margin:12px 0 22px;color:var(--navy);font-weight:700}.warning{background:#fff1f2;border-left:7px solid var(--maroon);padding:14px 18px;border-radius:16px;font-size:20px;margin:12px 0 22px;color:#5f1730}.sectionhead{background:#f8eef3;border:1px solid #edcbd8;border-radius:18px;padding:18px 22px;color:var(--maroon);font-weight:900;font-size:22px;margin-bottom:18px}
+.answer{margin-top:18px;background:#fff;border:1px solid #efd0dc;border-radius:18px;padding:10px 16px;font-size:18px}.answer summary{cursor:pointer;color:var(--maroon);font-weight:900}.answer div{margin-top:12px;border-top:1px solid #f1d7e2;padding-top:12px}.answer ol{margin:8px 0 0 22px}.answer li{margin:7px 0}.answer[open]{box-shadow:0 10px 28px rgba(122,23,56,.08)}
+.alpha{list-style:lower-alpha}.qblock>li{margin-bottom:18px}.mcq{list-style:upper-alpha;display:grid;grid-template-columns:1fr 1fr;gap:4px 16px}.compact-list li{margin:6px 0}.dense{font-size:18px;line-height:1.36}.smalltext{font-size:19px;line-height:1.38}.tiny{font-size:16px;line-height:1.3}.widecard{grid-column:1/-1}
+.tbl{width:100%;border-collapse:collapse;font-size:19px;margin:12px 0;background:#fff}.tbl th,.tbl td{border:1px solid #d7dee8;padding:10px;text-align:center}.tbl th{background:#eef3f9;color:var(--navy)}.tbl td.left,.tbl th.left{text-align:left}.tbl.small{font-size:17px}.unit{white-space:nowrap;color:var(--teal);font-weight:800}.good{color:var(--teal);font-weight:900}.bad{color:var(--maroon);font-weight:900}
+.svggraph{width:100%;height:300px;background:#fff;border-radius:16px;border:1px solid #e8eef5}.triplegraph{height:235px}.graphkey{display:flex;gap:14px;flex-wrap:wrap;font-size:15px;color:var(--muted);margin-top:8px}.swatch{width:24px;height:4px;border-radius:4px;display:inline-block;margin-right:5px;vertical-align:middle}
+.signchart{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.signcell{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px;text-align:center;font-size:18px}.signcell strong{display:block;color:var(--navy);font-size:22px;margin-bottom:8px}
+.foot{display:flex;align-items:center;justify-content:space-between;background:#fff;border-top:1px solid var(--line);padding:8px 22px;box-shadow:0 -2px 12px rgba(20,30,55,.05);z-index:3}.nav{display:flex;gap:10px;align-items:center}button{border:0;border-radius:14px;padding:12px 18px;font-weight:900;font-size:15px;cursor:pointer}button.primary{background:var(--maroon);color:#fff}button.secondary{background:#e9eef4;color:var(--navy)}select{padding:12px 16px;border:1px solid var(--line);border-radius:14px;background:#fff;color:var(--navy);font-weight:800;min-width:360px}.katex-display{margin:.6em 0}.slide::-webkit-scrollbar{width:9px}.slide::-webkit-scrollbar-thumb{background:#c8d2dd;border-radius:20px}
+@media(max-width:900px){.two,.three,.four,.hero,.signchart{grid-template-columns:1fr}.slide{padding:24px 24px 80px}.slide h1{font-size:32px}.card{font-size:19px}.big{font-size:60px}select{min-width:200px;max-width:42vw}.dotbar{width:120px}.course span{max-width:260px}.progress{font-size:12px}}
+@media print{body{background:#fff}.deck{height:auto;display:block}.topbar,.foot{display:none}.main{overflow:visible}.slide,.slide.active{display:block;height:7.2in;overflow:hidden;page-break-after:always;padding:24px;background:#fff}.answer{display:none}.slide h1{font-size:30px}.card{font-size:16px}.rulebox,.note,.prompt{font-size:17px}}
+</style>
+</head>
+<body>
+<div class="deck">
+<header class="topbar"><div class="brand"><div class="echs">ECHS</div><div class="course"><strong>AP Calculus AB</strong><span>4.2 Straight Line Motion</span></div></div><div class="progress"><span id="count"></span><div class="dotbar"><span id="bar"></span></div></div></header>
+<main class="main">
+
+<section class="slide" data-title="Title">
+<h1>Straight Line Motion</h1>
+<div class="hero"><div><div class="kicker">AP Calculus AB - 4.2</div><div class="big">4.2</div><p>Connecting position, velocity, speed, acceleration, displacement, and distance</p></div><div class="formula">
+\[
+v(t)=s'(t),\qquad a(t)=v'(t)=s''(t),\qquad \text{speed}=|v(t)|
+\]
+<div class="note" style="margin-bottom:0">The particle moves on a line or axis. It does not move along the drawn graph.</div>
+</div></div>
+<div class="targets"><span>position</span><span>velocity</span><span>speed</span><span>acceleration</span><span>direction</span><span>free fall</span><span>AP-style motion reasoning</span></div>
+</section>
+
+<section class="slide" data-title="Learning targets and success criteria">
+<h1>Learning targets and success criteria</h1>
+<div class="grid two"><div class="card"><h3>Learning targets</h3><ul><li>Interpret derivatives in motion contexts.</li><li>Calculate rates of change from formulas, tables, and graphs.</li><li>Solve rectilinear-motion problems involving position, velocity, speed, and acceleration.</li><li>Analyze direction changes and speeding up or slowing down.</li></ul></div><div class="card"><h3>Success criteria</h3><ul><li>I distinguish signed quantities from nonnegative quantities.</li><li>I use signs of \(v\) and \(a\) together.</li><li>I separate displacement from total distance traveled.</li><li>I state units and justify every motion conclusion.</li></ul></div></div>
+<div class="prompt">A correct derivative is only the beginning; the AP task is to explain what it says about the motion.</div>
+</section>
+
+<section class="slide" data-title="Opening diagnostic">
+<h1>Opening diagnostic</h1>
+<div class="card">A particle has position \(s(t)=t^3-6t^2+9t+2\) meters, where \(t\) is seconds.</div>
+<div class="grid four" style="margin-top:20px"><div class="card"><div class="num">A</div>Find \(s(2)\).</div><div class="card"><div class="num">B</div>Find \(v(2)\).</div><div class="card"><div class="num">C</div>Find \(a(2)\).</div><div class="card"><div class="num">D</div>State direction and whether speed increases.</div></div>
+<details class="answer"><summary>Answers</summary><div>\(s(2)=4\) m, \(v(t)=3t^2-12t+9\), so \(v(2)=-3\) m/s; \(a(t)=6t-12\), so \(a(2)=0\) m/s\(^2\). The particle moves left. At that instant acceleration is zero, so the instantaneous rate of change of speed is zero; no longer interval conclusion follows.</div></details>
+</section>
+
+<section class="slide" data-title="The motion hierarchy">
+<h1>The motion hierarchy</h1>
+<div class="grid three"><div class="card"><h3>Position</h3>\[
+s(t)
+\]<p>Where the particle is relative to a chosen origin.</p><p class="unit">meters or feet</p></div><div class="card"><h3>Velocity</h3>\[
+v(t)=s'(t)
+\]<p>Rate and direction of position change.</p><p class="unit">m/s or ft/s</p></div><div class="card"><h3>Acceleration</h3>\[
+a(t)=v'(t)=s''(t)
+\]<p>Rate at which velocity changes.</p><p class="unit">m/s\(^2\) or ft/s\(^2\)</p></div></div>
+<div class="rulebox" style="margin-top:20px">\[
+s\ \xrightarrow{\ d/dt\ }\ v\ \xrightarrow{\ d/dt\ }\ a
+\]</div>
+</section>
+
+<section class="slide" data-title="Vocabulary map">
+<h1>Vocabulary map</h1>
+<table class="tbl small"><thead><tr><th>Quantity</th><th>Formula</th><th>Meaning</th></tr></thead><tbody><tr><td>Position</td><td>\(s(t)\)</td><td>coordinate at time \(t\)</td></tr><tr><td>Displacement on \([a,b]\)</td><td>\(s(b)-s(a)\)</td><td>net signed change</td></tr><tr><td>Average velocity</td><td>\(\dfrac{s(b)-s(a)}{b-a}\)</td><td>displacement per elapsed time</td></tr><tr><td>Instantaneous velocity</td><td>\(v(t)=s'(t)\)</td><td>directional rate of position change</td></tr><tr><td>Speed</td><td>\(|v(t)|\)</td><td>how fast; never negative</td></tr><tr><td>Acceleration</td><td>\(a(t)=v'(t)=s''(t)\)</td><td>rate of velocity change</td></tr><tr><td>Distance traveled</td><td>sum of absolute position changes</td><td>total path length; never negative</td></tr></tbody></table>
+</section>
+
+<section class="slide" data-title="A particle moves on the axis, not on the graph">
+<h1>A particle moves on the axis, not on the graph</h1>
+<div class="grid two"><div class="card"><svg id="graph-position-basic" class="svggraph" role="img" aria-label="Position versus time graph"></svg></div><div class="card"><h3>What the graph means</h3><ul><li>The horizontal axis is time.</li><li>The vertical coordinate gives the particle's position on a separate motion line.</li><li>Positive graph slope means motion in the positive direction.</li><li>Negative graph slope means motion in the negative direction.</li></ul></div></div>
+<div class="warning">A rising position graph does not mean the path slopes upward in space. It means the coordinate is increasing with time.</div>
+</section>
+
+<section class="slide" data-title="Position depends on a reference point">
+<h1>Position depends on a reference point</h1>
+<div class="grid two"><div class="card"><h3>Signed coordinate</h3>\(s(t)=6\) means the particle is 6 units on the positive side of the origin. \(s(t)=-6\) means 6 units on the negative side.</div><div class="card"><h3>Position is not distance traveled</h3>A particle can return to its starting position after traveling a large distance. Then displacement is zero but distance traveled is positive.</div></div>
+<div class="prompt">A particle moves from position \(3\) to \(-5\), then to \(1\). Find displacement and distance traveled.</div>
+<details class="answer"><summary>Answer</summary><div>Displacement \(=1-3=-2\). Distance traveled \(=|-5-3|+|1-(-5)|=8+6=14\).</div></details>
+</section>
+
+<section class="slide" data-title="Displacement versus distance traveled">
+<h1>Displacement versus distance traveled</h1>
+<div class="grid two"><div class="rulebox"><h3>Displacement</h3>\[
+\Delta s=s(b)-s(a)
+\]<p>Signed net change; it may be positive, negative, or zero.</p></div><div class="rulebox"><h3>Total distance</h3><p>Split at every direction change and add absolute position changes:</p>\[
+|s(t_1)-s(a)|+\cdots+|s(b)-s(t_k)|.
+\]</div></div>
+<div class="warning">Never use \(|s(b)-s(a)|\) as total distance unless the particle never reverses direction.</div>
+</section>
+
+<section class="slide" data-title="Average velocity">
+<h1>Average velocity</h1>
+<div class="rulebox">\[
+v_{\mathrm{avg}}=\frac{s(b)-s(a)}{b-a}
+=\frac{\text{displacement}}{\text{elapsed time}}.
+\]</div>
+<div class="grid two"><div class="card">A falling book has height \(s(t)=100-16t^2\) feet. Find its average velocity on \([1,2]\).</div><div class="card">Interpret the sign and distinguish the answer from average speed.</div></div>
+<details class="answer"><summary>Answer</summary><div>\(\dfrac{s(2)-s(1)}{1}=\dfrac{36-84}{1}=-48\) ft/s. Over this interval its height decreases on average by 48 ft each second. Because it moves only downward on the interval, average speed is \(48\) ft/s.</div></details>
+</section>
+
+<section class="slide" data-title="Instantaneous velocity">
+<h1>Instantaneous velocity</h1>
+<div class="grid two"><div class="rulebox"><h3>Derivative definition</h3>\[
+v(t)=s'(t)=\lim_{h\to0}\frac{s(t+h)-s(t)}h.
+\]</div><div class="card"><h3>Interpretation</h3>Velocity is the tangent slope of the position graph. Its sign indicates direction, and its magnitude is speed.</div></div>
+<div class="card">For \(s(t)=64-16t^2\), find and interpret \(v(2)\).</div>
+<details class="answer"><summary>Answer</summary><div>\(v(t)=-32t\), so \(v(2)=-64\) ft/s. At 2 seconds, the object's height is decreasing at 64 ft/s; it moves downward with speed 64 ft/s.</div></details>
+</section>
+
+<section class="slide" data-title="Speed is magnitude, not direction">
+<h1>Speed is magnitude, not direction</h1>
+<div class="rulebox">\[
+\boxed{\text{speed}=|v(t)|}
+\]</div>
+<div class="grid three"><div class="card"><h3>\(v=7\)</h3>Moves right/up at speed 7.</div><div class="card"><h3>\(v=-7\)</h3>Moves left/down at speed 7.</div><div class="card"><h3>\(v=0\)</h3>Instantaneously at rest.</div></div>
+<div class="warning">Speed cannot be negative. A negative velocity means direction, not “negative fastness.”</div>
+</section>
+
+<section class="slide" data-title="Acceleration">
+<h1>Acceleration</h1>
+<div class="grid two"><div class="rulebox">\[
+a(t)=v'(t)=s''(t)=\frac{d^2s}{dt^2}.
+\]</div><div class="card">Acceleration tells how velocity changes—not automatically how speed changes. Positive acceleration means velocity is increasing; negative acceleration means velocity is decreasing.</div></div>
+<div class="card">If \(v(4)=-12\) m/s and \(a(4)=3\) m/s\(^2\), interpret both values.</div>
+<details class="answer"><summary>Answer</summary><div>At 4 seconds the particle moves in the negative direction at speed 12 m/s. Its velocity is increasing by 3 m/s each second; because velocity is negative while acceleration is positive, the speed is decreasing.</div></details>
+</section>
+
+<section class="slide" data-title="Direction comes from velocity">
+<h1>Direction comes from velocity</h1>
+<div class="grid three"><div class="card"><h3>\(v(t)&gt;0\)</h3>Moving right or upward—the chosen positive direction.</div><div class="card"><h3>\(v(t)&lt;0\)</h3>Moving left or downward—the chosen negative direction.</div><div class="card"><h3>\(v(t)=0\)</h3>At rest at that instant; check signs around the time before claiming reversal.</div></div>
+<div class="prompt">Position sign tells where the particle is. Velocity sign tells which way it is moving. These are different questions.</div>
+</section>
+
+<section class="slide" data-title="Speeding up or slowing down">
+<h1>Speeding up or slowing down</h1>
+<div class="signchart"><div class="signcell"><strong>\(v&gt;0,\ a&gt;0\)</strong><span class="good">speeding up</span></div><div class="signcell"><strong>\(v&gt;0,\ a&lt;0\)</strong><span class="bad">slowing down</span></div><div class="signcell"><strong>\(v&lt;0,\ a&lt;0\)</strong><span class="good">speeding up</span></div><div class="signcell"><strong>\(v&lt;0,\ a&gt;0\)</strong><span class="bad">slowing down</span></div></div>
+<div class="rulebox" style="margin-top:22px"><h3>Fast sign test</h3>\[
+v(t)a(t)&gt;0\Rightarrow\text{speeding up},\qquad
+v(t)a(t)&lt;0\Rightarrow\text{slowing down}.
+\]</div>
+<details class="answer"><summary>Why</summary><div>Speed increases when velocity and its rate of change point in the same signed direction. It decreases when acceleration pushes velocity toward zero.</div></details>
+</section>
+
+<section class="slide" data-title="At rest does not always mean direction change">
+<h1>At rest does not always mean direction change</h1>
+<div class="grid two"><div class="card"><h3>Stops and reverses</h3>\[
+v(t)=(t-2)
+\]<p>Velocity changes from negative to positive at \(t=2\).</p></div><div class="card"><h3>Stops but continues same way</h3>\[
+v(t)=(t-2)^2
+\]<p>Velocity is nonnegative on both sides of \(t=2\).</p></div></div>
+<div class="warning">Solve \(v(t)=0\), then make a sign chart. A zero alone does not prove a reversal.</div>
+</section>
+
+<section class="slide" data-title="A direction change can occur without velocity being defined">
+<h1>A direction change can occur without velocity being defined</h1>
+<div class="card">A particle changes direction whenever the sign of velocity changes—from positive to negative or negative to positive.</div>
+<div class="grid two" style="margin-top:20px"><div class="card">\[
+s(t)=|t-2|
+\]<p>At \(t=2\), velocity is not defined, yet the motion changes from left to right.</p></div><div class="card"><h3>AP reasoning</h3>Do not require \(v(c)=0\) if \(v(c)\) does not exist. Check the sign of velocity on the intervals around \(c\).</div></div>
+</section>
+
+<section class="slide" data-title="Acceleration zero: what it does and does not mean">
+<h1>Acceleration zero: what it does and does not mean</h1>
+<div class="grid two"><div class="card"><h3>\(a(c)=0\)</h3>Velocity has a horizontal tangent at \(t=c\). It may have a local maximum, local minimum, or neither.</div><div class="card"><h3>It does not mean</h3><ul><li>the particle is at rest;</li><li>speed is zero;</li><li>position is greatest;</li><li>velocity is constant for an interval.</li></ul></div></div>
+<div class="prompt">When a question says “maximum velocity,” solve \(a(t)=0\), then verify the change in \(a\) or behavior of \(v\).</div>
+</section>
+
+<section class="slide" data-title="Workflow from a position formula">
+<h1>Workflow from a position formula</h1>
+<div class="grid four"><div class="card"><div class="num">1</div>Differentiate: \(v=s'\), \(a=v'=s''\).</div><div class="card"><div class="num">2</div>Solve \(v=0\) for rest and possible direction changes.</div><div class="card"><div class="num">3</div>Make sign charts for \(v\) and \(a\).</div><div class="card"><div class="num">4</div>Use \(s\) for location, displacement, and total distance.</div></div>
+<div class="note" style="margin-top:22px">Always restrict answers to the physical domain, usually \(t\ge0\), and reject negative or nonreal times.</div>
+</section>
+
+<section class="slide" data-title="Worked model: a tennis ball">
+<h1>Worked model: a tennis ball</h1>
+<div class="card">A ball's height is \(s(t)=-4.9t^2+18t+2\) meters.</div>
+<div class="grid three" style="margin-top:18px"><div class="card"><svg id="graph-ball-s" class="svggraph triplegraph" role="img" aria-label="Ball position graph"></svg><strong>Position</strong></div><div class="card"><svg id="graph-ball-v" class="svggraph triplegraph" role="img" aria-label="Ball velocity graph"></svg><strong>Velocity</strong></div><div class="card"><svg id="graph-ball-a" class="svggraph triplegraph" role="img" aria-label="Ball acceleration graph"></svg><strong>Acceleration</strong></div></div>
+<details class="answer"><summary>Analysis</summary><div>\(v(t)=18-9.8t\), \(a(t)=-9.8\). The ball rises while \(0&lt;t&lt;18/9.8\), is momentarily at rest at \(t=18/9.8\), and falls afterward. Acceleration is downward throughout.</div></details>
+</section>
+
+<section class="slide" data-title="Worked algebraic motion example">
+<h1>Worked algebraic motion example</h1>
+<div class="card">For \(t\ge0\), let \[
+x(t)=t^3-\frac92t^2-12t+5.
+\]</div>
+<div class="grid two" style="margin-top:18px"><div class="card"><ol class="alpha"><li>Direction at \(t=0\)</li><li>Times of direction change</li><li>Whether velocity increases at \(t=1\)</li></ol></div><div class="card"><ol class="alpha" start="4"><li>Whether speed increases at \(t=1\)</li><li>Interpret \(a(1/4)\)</li></ol></div></div>
+<details class="answer"><summary>Solutions</summary><div>\(v=3t^2-9t-12=3(t-4)(t+1)\), \(a=6t-9\). At 0, \(v=-12\): left. The physical direction change is \(t=4\). At \(t=1\), \(a=-3\), so velocity decreases; \(v(1)=-18\) and \(a(1)=-3\) have the same sign, so speed increases. \(a(1/4)=-7.5\) position-units/time\(^2\): velocity is decreasing by 7.5 velocity-units each time-unit.</div></details>
+</section>
+
+<section class="slide" data-title="Direction and speed sign chart for the model">
+<h1>Direction and speed sign chart for the model</h1>
+<div class="card">Continue with \(x(t)=t^3-\frac92t^2-12t+5\), \(v=3(t-4)(t+1)\), and \(a=3(2t-3)\), for \(t\ge0\).</div>
+<table class="tbl"><thead><tr><th>Interval</th><th>Sign of \(v\)</th><th>Direction</th><th>Sign of \(a\)</th><th>Speed</th></tr></thead><tbody><tr><td>\((0,\frac32)\)</td><td>\(-\)</td><td>left</td><td>\(-\)</td><td>increasing</td></tr><tr><td>\((\frac32,4)\)</td><td>\(-\)</td><td>left</td><td>\(+\)</td><td>decreasing</td></tr><tr><td>\((4,\infty)\)</td><td>\(+\)</td><td>right</td><td>\(+\)</td><td>increasing</td></tr></tbody></table>
+<div class="prompt">At \(t=\frac32\), acceleration is zero and velocity is most negative; speed has a local maximum there.</div>
+</section>
+
+<section class="slide" data-title="Displacement and distance from a formula">
+<h1>Displacement and distance from a formula</h1>
+<div class="card">A particle has \(s(t)=t^3-8t^2+20t-16\) meters for \(0\le t\le3\).</div>
+<div class="grid two" style="margin-top:18px"><div class="card"><ol class="alpha"><li>Find \(v(t)\) and \(a(t)\).</li><li>Find all rest times in \([0,3]\).</li></ol></div><div class="card"><ol class="alpha" start="3"><li>Find displacement on \([0,3]\).</li><li>Find total distance on \([0,3]\).</li></ol></div></div>
+<details class="answer"><summary>Solutions</summary><div>\(v=3t^2-16t+20=(3t-10)(t-2)\), \(a=6t-16\). In \([0,3]\), rest occurs at \(t=2\) only; \(10/3\) is outside. Displacement \(s(3)-s(0)=(-1)-(-16)=15\) m. Since \(v&gt;0\) on \((0,2)\) and \(v&lt;0\) on \((2,3)\), distance \(=|s(2)-s(0)|+|s(3)-s(2)|=|0-(-16)|+|-1-0|=17\) m.</div></details>
+</section>
+
+<section class="slide" data-title="Read motion from a position graph">
+<h1>Read motion from a position graph</h1>
+<div class="grid two"><div class="card"><svg id="graph-piece-position" class="svggraph" role="img" aria-label="Piecewise position graph"></svg></div><div class="card"><ol><li>When does the particle move left?</li><li>When does it move right?</li><li>When is it at rest?</li><li>At which corners is velocity undefined?</li></ol></div></div>
+<details class="answer"><summary>Answers</summary><div>Moving left where the position graph decreases: \((0,1)\) and \((5,8)\). Moving right where it increases: \((1,3)\) and \((8,9)\). At rest on the horizontal interval \((3,5)\). Velocity is undefined at the sharp joins \(t=5\) and \(t=8\); the curve has horizontal tangents at \(t=1\) and \(t=3\).</div></details>
+</section>
+
+<section class="slide" data-title="Read motion from a velocity graph">
+<h1>Read motion from a velocity graph</h1>
+<div class="grid two"><div class="card"><svg id="graph-velocity-main" class="svggraph" role="img" aria-label="Piecewise velocity graph from zero to ten"></svg></div><div class="card"><ol><li>Moving right or left?</li><li>Speeding up or slowing down?</li><li>Velocity increasing, decreasing, or constant?</li><li>Greatest speed and direction changes?</li></ol></div></div>
+<div class="note">On a velocity graph: height gives velocity, slope gives acceleration, and distance from the \(t\)-axis gives speed.</div>
+</section>
+
+<section class="slide" data-title="Velocity-graph interval analysis">
+<h1>Velocity-graph interval analysis</h1>
+<div class="card">For the displayed velocity graph with vertices \((0,-10),(2,-10),(4,0),(6,15),(8,15),(10,0)\):</div>
+<table class="tbl small"><thead><tr><th>Interval</th><th>\(v\)</th><th>\(a\) from slope</th><th>Motion conclusion</th></tr></thead><tbody><tr><td>\((0,2)\)</td><td>negative</td><td>zero</td><td>left at constant speed</td></tr><tr><td>\((2,4)\)</td><td>negative</td><td>positive</td><td>left, slowing down</td></tr><tr><td>\((4,6)\)</td><td>positive</td><td>positive</td><td>right, speeding up</td></tr><tr><td>\((6,8)\)</td><td>positive</td><td>zero</td><td>right at constant speed</td></tr><tr><td>\((8,10)\)</td><td>positive</td><td>negative</td><td>right, slowing down</td></tr></tbody></table>
+<details class="answer"><summary>Key values</summary><div>At \(t=3\), \(v=-5\), so speed is 5 in the left direction. Direction changes at \(t=4\). Greatest speed is 15 on \([6,8]\).</div></details>
+</section>
+
+<section class="slide" data-title="Average acceleration">
+<h1>Average acceleration</h1>
+<div class="rulebox">\[
+a_{\mathrm{avg}}=\frac{v(b)-v(a)}{b-a}.
+\]</div>
+<div class="grid two"><div class="card">For the main velocity graph, find average acceleration on \([0,4]\).</div><div class="card">Find average acceleration on \([4,10]\) and explain why this does not mean acceleration is constant.</div></div>
+<details class="answer"><summary>Answers</summary><div>On \([0,4]\): \((0-(-10))/4=2.5\) units/s\(^2\). On \([4,10]\): \((0-0)/6=0\). The latter is zero because initial and final velocities match; the graph clearly shows positive, zero, and negative acceleration inside the interval.</div></details>
+</section>
+
+<section class="slide" data-title="Velocity table: direction and rest">
+<h1>Velocity table: direction and rest</h1>
+<table class="tbl"><thead><tr><th>\(t\) (s)</th><th>0</th><th>2</th><th>3</th><th>5</th><th>7</th><th>10</th><th>12</th><th>15</th></tr></thead><tbody><tr><th>\(v(t)\) (ft/s)</th><td>-4</td><td>-1</td><td>1</td><td>2</td><td>3</td><td>5</td><td>3</td><td>6</td></tr></tbody></table>
+<div class="grid two"><div class="card"><ol class="alpha"><li>Direction at \(t=0\)</li><li>Is rest guaranteed anywhere?</li></ol></div><div class="card"><ol class="alpha" start="3"><li>Approximate \(v'(8)\).</li><li>Find average acceleration on \([10,12]\).</li></ol></div></div>
+<details class="answer"><summary>Solutions</summary><div>At 0 it moves left. Since \(v(2)&lt;0&lt;v(3)\) and \(v\) is continuous, rest is guaranteed for some \(c\in(2,3)\). \(v'(8)\approx[v(10)-v(7)]/3=(5-3)/3=2/3\) ft/s\(^2\). Average acceleration on \([10,12]\) is \((3-5)/2=-1\) ft/s\(^2\).</div></details>
+</section>
+
+<section class="slide" data-title="When is zero acceleration guaranteed?">
+<h1>When is zero acceleration guaranteed?</h1>
+<div class="card">In the preceding table, \(v(7)=v(12)=3\) and \(v\) is differentiable.</div>
+<div class="rulebox"><h3>Rolle's Theorem applied to velocity</h3>Because velocity has equal endpoint values, there exists \(c\in(7,12)\) such that
+\[
+v'(c)=a(c)=0.
+\]</div>
+<div class="warning">A table alone does not locate \(c\). It guarantees existence only when continuity/differentiability conditions are given.</div>
+</section>
+
+<section class="slide" data-title="Estimate acceleration numerically">
+<h1>Estimate acceleration numerically</h1>
+<div class="card">Randy's velocity, in inches per minute, is recorded below.</div>
+<table class="tbl small"><thead><tr><th>\(t\)</th><th>0</th><th>0.5</th><th>1</th><th>2</th><th>2.5</th><th>4</th><th>5</th><th>6.5</th><th>8</th><th>10</th></tr></thead><tbody><tr><th>\(v(t)\)</th><td>-1.7</td><td>0.5</td><td>0.5</td><td>0.75</td><td>-0.5</td><td>-0.25</td><td>0.5</td><td>1.25</td><td>1.75</td><td>0.25</td></tr></tbody></table>
+<div class="grid two"><div class="card">Approximate \(v'(7)\) and interpret.</div><div class="card">Find average acceleration on \([4,5]\). List intervals where rest is guaranteed.</div></div>
+<details class="answer"><summary>Answers</summary><div>\(v'(7)\approx(1.75-1.25)/(8-6.5)=1/3\) in/min\(^2\). At 7 minutes, velocity is increasing at about \(1/3\) in/min each minute. Average acceleration on \([4,5]\) is \(0.75\) in/min\(^2\). Rest is guaranteed in \((0,0.5)\), \((2,2.5)\), and \((4,5)\).</div></details>
+</section>
+
+<section class="slide" data-title="Geometric displacement from a velocity graph">
+<h1>Geometric displacement from a velocity graph</h1>
+<div class="grid two"><div class="card"><svg id="graph-velocity-area" class="svggraph" role="img" aria-label="Velocity graph with positive and negative area"></svg></div><div class="card"><h3>When regions are simple shapes</h3><p>Signed area below the \(t\)-axis counts negatively for displacement. For total distance, use absolute areas.</p>\[
+\Delta s=\text{signed geometric area},\qquad
+\text{distance}=\text{sum of absolute areas}.
+\]</div></div>
+<details class="answer"><summary>Main-graph values</summary><div>On \([0,4]\), displacement is \(-20-10=-30\), so average velocity is \(-7.5\). On \([4,10]\), displacement is \(15+30+15=60\), so average velocity is 10. Total distance on \([0,10]\) is \(30+60=90\).</div></details>
+</section>
+
+<section class="slide" data-title="Practice velocity graph">
+<h1>Practice velocity graph</h1>
+<div class="grid two"><div class="card"><svg id="graph-velocity-practice" class="svggraph" role="img" aria-label="Piecewise velocity homework graph"></svg></div><div class="card"><ol><li>Complete the sign and speed analysis on each segment.</li><li>How far does the particle move during the first 10 seconds?</li><li>Find average velocity on \([0,12]\).</li><li>When does direction change?</li></ol></div></div>
+<details class="answer"><summary>Answers</summary><div>The particle changes direction at \(t=10\). Distance through \(t=10\) is \(4+12+13.5+6=35.5\) ft. The negative triangle on \([10,12]\) has area 4, so displacement on \([0,12]\) is \(31.5\) ft and average velocity is \(31.5/12=2.625\) ft/s.</div></details>
+</section>
+
+<section class="slide" data-title="Free-fall model">
+<h1>Free-fall model</h1>
+<div class="rulebox"><h3>Ignoring air resistance; upward is positive</h3>\[
+s(t)=s_0+v_0t-\frac12gt^2,\qquad
+v(t)=v_0-gt,\qquad
+a(t)=-g.
+\]</div>
+<div class="grid two"><div class="card"><h3>Earth</h3>\(g\approx9.8\text{ m/s}^2\) or \(32\text{ ft/s}^2\).</div><div class="card"><h3>Moon example</h3>The source models lunar acceleration as \(1.6\text{ m/s}^2\), giving \(s=s_0+v_0t-0.8t^2\).</div></div>
+<div class="warning">A different sign convention is valid, but position, velocity, and acceleration must all use it consistently.</div>
+</section>
+
+<section class="slide" data-title="Vertical-motion interpretation">
+<h1>Vertical-motion interpretation</h1>
+<div class="grid three"><div class="card"><h3>Rising</h3>\(v&gt;0\), while gravity gives \(a&lt;0\): the object slows down.</div><div class="card"><h3>Highest point</h3>\(v=0\), but \(a=-g\ne0\). It is instantaneously at rest.</div><div class="card"><h3>Falling</h3>\(v&lt;0\) and \(a&lt;0\): the object speeds up downward.</div></div>
+<div class="prompt">The highest point is found from \(v(t)=0\), not \(s(t)=0\). Ground impact is found by setting height equal to ground level.</div>
+</section>
+
+<section class="slide" data-title="Dropped object from 100 feet">
+<h1>Dropped object from 100 feet</h1>
+<div class="card">A book is dropped from 100 ft: \(s(t)=100-16t^2\).</div>
+<div class="grid two" style="margin-top:18px"><div class="card"><ol class="alpha"><li>Find \(v(t)\) and \(a(t)\).</li><li>When does it hit the ground?</li></ol></div><div class="card"><ol class="alpha" start="3"><li>Find velocity and speed at impact.</li><li>Interpret \(a(t)\).</li></ol></div></div>
+<details class="answer"><summary>Solutions</summary><div>\(v=-32t\), \(a=-32\). Ground: \(100-16t^2=0\Rightarrow t=2.5\) s. Impact velocity is \(-80\) ft/s and speed is 80 ft/s. Velocity decreases by 32 ft/s each second because downward is negative.</div></details>
+</section>
+
+<section class="slide" data-title="Rocket launched from the ground">
+<h1>Rocket launched from the ground</h1>
+<div class="card">A rocket has \(s(t)=-4.9t^2+120t\) meters.</div>
+<div class="grid two" style="margin-top:18px"><div class="card"><ol class="alpha"><li>When is velocity zero?</li><li>When does it return to the ground?</li></ol></div><div class="card"><ol class="alpha" start="3"><li>Velocity at impact</li><li>At \(t=15\), speeding up or slowing down?</li></ol></div></div>
+<details class="answer"><summary>Solutions</summary><div>\(v=120-9.8t\), \(a=-9.8\). Top at \(t=120/9.8\approx12.245\) s. Ground again at \(t=240/9.8\approx24.490\) s. Impact velocity is \(-120\) m/s. At \(t=15\), \(v=-27\) and \(a=-9.8\), so it is speeding up downward.</div></details>
+</section>
+
+<section class="slide" data-title="Jump from a ledge">
+<h1>Jump from a ledge</h1>
+<div class="card">Hayden's height above water is \(s(t)=-16t^2+16t+32\) feet.</div>
+<div class="grid two" style="margin-top:18px"><div class="card">When does Hayden hit the water?</div><div class="card">What are velocity and speed at impact?</div></div>
+<details class="answer"><summary>Solutions</summary><div>\(-16(t-2)(t+1)=0\), so the physical time is \(t=2\) s. \(v(t)=-32t+16\), hence \(v(2)=-48\) ft/s and speed is 48 ft/s downward.</div></details>
+</section>
+
+<section class="slide" data-title="Drone and potato projectile practice">
+<h1>Drone and potato projectile practice</h1>
+<div class="grid two"><div class="card dense"><h3>Drone package</h3>\[
+s(t)=-16t^2+12t+120
+\]<ol><li>Time to ground</li><li>Speed at impact</li></ol></div><div class="card dense"><h3>Potato cannon</h3>\[
+s(t)=-16t^2+84t+224
+\]<ol><li>Time and height at maximum</li><li>Return time to 224 ft</li><li>Velocity on return</li></ol></div></div>
+<details class="answer"><summary>Answers</summary><div>Drone: \(t=(3+\sqrt{489})/8\approx3.139\) s; impact speed \(4\sqrt{489}\approx88.45\) ft/s. Potato: top at \(t=21/8=2.625\) s and height \(334.25\) ft; returns to 224 ft at \(t=21/4=5.25\) s with velocity \(-84\) ft/s.</div></details>
+</section>
+
+<section class="slide" data-title="Motion on the moon">
+<h1>Motion on the moon</h1>
+<div class="card">A 7-meter-tall alien throws a rock upward at 48 m/s. Its height is
+\[
+s(t)=7+48t-0.8t^2.
+\]</div>
+<div class="grid two"><div class="card">Find \(v(t)\), \(a(t)\), and the time of maximum height.</div><div class="card">Explain why the top time is much later than on Earth.</div></div>
+<details class="answer"><summary>Answers</summary><div>\(v=48-1.6t\), \(a=-1.6\), and \(v=0\) at \(t=30\) s. Lunar gravitational acceleration in the model is much smaller than Earth's, so velocity takes longer to fall from 48 to 0.</div></details>
+</section>
+
+<section class="slide" data-title="Calculator model: logarithmic velocity">
+<h1>Calculator model: logarithmic velocity</h1>
+<div class="card">For \(0&lt;t\le6\),
+\[
+v(t)=\ln t-0.15t^3+t^2+2t^{4/5}.
+\]</div>
+<div class="grid two" style="margin-top:18px"><div class="card">At \(t=4\), is the object speeding up or slowing down?</div><div class="card">When does it change direction on the interval?</div></div>
+<details class="answer"><summary>Calculator answers</summary><div>\(v(4)\approx13.849\), \(a(4)=v'(4)\approx2.263\). Both are positive, so it is speeding up. The velocity changes sign at \(t\approx0.363\), so the particle changes from left to right there.</div></details>
+</section>
+
+<section class="slide" data-title="Calculator models: sine and composite motion">
+<h1>Calculator models: sine and composite motion</h1>
+<div class="grid two"><div class="card dense"><div class="num">1</div>\[
+v(t)=4+2.3\sin(0.85t)
+\]<p>Find \(a(4)\), direction, and whether speed increases.</p></div><div class="card dense"><div class="num">2</div>\[
+s(t)=-3\sin(0.25t^2)+1,\quad0\le t\le\pi
+\]<p>Find velocity when acceleration is zero and describe the motion.</p></div></div>
+<details class="answer"><summary>Answers</summary><div>1. \(a(t)=1.955\cos(0.85t)\), so \(a(4)\approx-1.890\) m/s\(^2\). \(v(4)\approx3.412&gt;0\), so it moves right and slows down. 2. \(v=-1.5t\cos(t^2/4)\), \(a=-1.5\cos(t^2/4)+0.75t^2\sin(t^2/4)\). Numerically, \(a=0\) at \(t\approx1.617\), where \(v\approx-1.925\); velocity has a local minimum and speed is instantaneously greatest locally.</div></details>
+</section>
+
+<section class="slide" data-title="Calculator model: cube-root tangent">
+<h1>Calculator model: cube-root tangent</h1>
+<div class="card">For \(0&lt;t\le15\), let
+\[
+v(t)=\tan\!\left(\sqrt[3]{t}-0.2t\right).
+\]</div>
+<div class="grid two" style="margin-top:18px"><div class="card"><ol class="alpha"><li>Find the time when acceleration is zero.</li><li>Explain what that says about velocity.</li></ol></div><div class="card"><ol class="alpha" start="3"><li>Find \(v(6)\) and \(a(6)\).</li><li>Determine speeding up or slowing down.</li></ol></div></div>
+<details class="answer"><summary>Method</summary><div>Differentiate with the chain rule:
+\[
+a(t)=\sec^2\!\left(t^{1/3}-0.2t\right)\left(\frac{1}{3t^{2/3}}-0.2\right).
+\]
+Thus \(a=0\) when \(t=(5/3)^{3/2}\approx2.152\), where velocity has a local extremum. Evaluate the displayed formulas numerically at \(t=6\) and compare signs of \(v\) and \(a\).</div></details>
+</section>
+
+<section class="slide" data-title="AP-style multiple choice I">
+<h1>AP-style multiple choice I</h1>
+<div class="grid two"><div class="card dense"><ol class="qblock"><li>If \(v(3)&lt;0\) and \(a(3)&gt;0\), the particle is<ol class="mcq"><li>right, speeding up</li><li>right, slowing down</li><li>left, speeding up</li><li>left, slowing down</li></ol></li><li>If \(s'(5)=0\), which must be true?<ol class="mcq"><li>direction changes</li><li>particle is at rest</li><li>acceleration is zero</li><li>position is zero</li></ol></li></ol></div><div class="card dense"><ol class="qblock" start="3"><li>If \(a(t)&gt;0\), then<ol class="mcq"><li>speed always increases</li><li>velocity increases</li><li>particle moves right</li><li>position is positive</li></ol></li><li>Which quantity is always nonnegative?<ol class="mcq"><li>position</li><li>velocity</li><li>acceleration</li><li>speed</li></ol></li></ol></div></div>
+<details class="answer"><summary>Answers</summary><div>1. D. 2. B. 3. B. 4. D.</div></details>
+</section>
+
+<section class="slide" data-title="AP-style multiple choice II">
+<h1>AP-style multiple choice II</h1>
+<div class="grid two"><div class="card dense"><ol class="qblock" start="5"><li>A particle changes direction at \(t=c\) when<ol class="mcq"><li>\(s(c)=0\)</li><li>\(a(c)=0\)</li><li>\(v\) changes sign</li><li>speed is largest</li></ol></li><li>If \(v&gt;0\) and \(a&lt;0\), then speed is<ol class="mcq"><li>increasing</li><li>decreasing</li><li>zero</li><li>constant</li></ol></li></ol></div><div class="card dense"><ol class="qblock" start="7"><li>Displacement on \([a,b]\) equals<ol class="mcq"><li>\(|s(b)-s(a)|\)</li><li>\(s(b)-s(a)\)</li><li>\(|v(b)-v(a)|\)</li><li>\(\frac{s(b)-s(a)}{b-a}\)</li></ol></li><li>At the highest point of free fall, usually<ol class="mcq"><li>\(v=0,a=0\)</li><li>\(v=0,a=-g\)</li><li>\(v=-g,a=0\)</li><li>\(s=0\)</li></ol></li></ol></div></div>
+<details class="answer"><summary>Answers</summary><div>5. C. 6. B. 7. B. 8. B.</div></details>
+</section>
+
+<section class="slide" data-title="AP free response: equation model">
+<h1>AP free response: equation model</h1>
+<div class="card">A particle's position is \(s(t)=\frac13t^3-3t^2+8t-5\) meters for \(t\ge0\).</div>
+<div class="grid two" style="margin-top:18px"><div class="card dense"><ol class="alpha"><li>Find \(v(t)\) and \(a(t)\).</li><li>Find all rest times.</li><li>Find all direction changes.</li></ol></div><div class="card dense"><ol class="alpha" start="4"><li>Find displacement on \([0,3]\).</li><li>Determine whether speed increases at \(t=1\).</li></ol></div></div>
+<details class="answer"><summary>Solutions</summary><div>\(v=t^2-6t+8=(t-2)(t-4)\), \(a=2t-6\). Rest at \(t=2,4\); velocity signs \(+,-,+\), so both are direction changes. Displacement \(s(3)-s(0)=(-2)-(-5)=3\) m. At \(t=1\), \(v=3&gt;0\), \(a=-4&lt;0\), so speed decreases.</div></details>
+</section>
+
+<section class="slide" data-title="AP free response: table model">
+<h1>AP free response: table model</h1>
+<table class="tbl"><thead><tr><th>\(t\) (min)</th><th>0</th><th>2</th><th>5</th><th>6</th><th>8</th><th>12</th></tr></thead><tbody><tr><th>\(v(t)\) (m/min)</th><td>-3</td><td>2</td><td>3</td><td>5</td><td>7</td><td>5</td></tr></tbody></table>
+<div class="grid two"><div class="card dense"><ol class="alpha"><li>Direction at \(t=0\)</li><li>Prove rest occurs.</li></ol></div><div class="card dense"><ol class="alpha" start="3"><li>Approximate \(v'(10)\).</li><li>Interpret \(v'(10)\).</li></ol></div></div>
+<details class="answer"><summary>Solutions</summary><div>Left at \(t=0\). Since \(v(0)&lt;0&lt;v(2)\) and \(v\) is continuous, some \(c\in(0,2)\) has \(v(c)=0\). \(v'(10)\approx[v(12)-v(8)]/4=(5-7)/4=-0.5\) m/min\(^2\): at 10 minutes, velocity is decreasing by about 0.5 m/min each minute.</div></details>
+</section>
+
+<section class="slide" data-title="AP free response: graph model">
+<h1>AP free response: graph model</h1>
+<div class="grid two"><div class="card"><svg id="graph-frq-velocity" class="svggraph" role="img" aria-label="Velocity graph for free response"></svg></div><div class="card dense"><ol class="alpha"><li>Intervals moving right</li><li>Intervals speed increasing</li><li>Average acceleration on \([2,4]\)</li><li>Time furthest right</li><li>Justify every answer from graph features.</li></ol></div></div>
+<details class="answer"><summary>Answer guide</summary><div>Use the sign of \(v\) for direction, the signs of \(v\) and graph slope for speed, the endpoint velocity quotient for average acceleration, and cumulative signed geometric area/position reasoning for “furthest right.”</div></details>
+</section>
+
+<section class="slide" data-title="Common motion errors">
+<h1>Common motion errors</h1>
+<div class="grid two"><div class="card smalltext"><div class="num">1</div>“\(v&lt;0\), so speed is negative.”</div><div class="card smalltext"><div class="num">2</div>“\(a&gt;0\), so the particle speeds up.”</div><div class="card smalltext"><div class="num">3</div>“\(v=0\), so direction changes.”</div><div class="card smalltext"><div class="num">4</div>“\(a=0\), so the particle is at rest.”</div><div class="card smalltext"><div class="num">5</div>“Distance equals \(s(b)-s(a)\).”</div><div class="card smalltext"><div class="num">6</div>“At the highest point, acceleration is zero.”</div></div>
+<details class="answer"><summary>Corrections</summary><div>Speed is \(|v|\); acceleration sign must be compared with velocity; direction changes require a sign change in \(v\); rest means \(v=0\); \(s(b)-s(a)\) is displacement; and gravity remains nonzero at the highest point.</div></details>
+</section>
+
+<section class="slide" data-title="Tricky reasoning set">
+<h1>Tricky reasoning set</h1>
+<div class="grid two"><div class="card smalltext"><div class="num">A</div>Can a particle move left while its velocity is increasing?</div><div class="card smalltext"><div class="num">B</div>Can speed be decreasing while acceleration is positive?</div><div class="card smalltext"><div class="num">C</div>Can displacement be zero while distance is positive?</div><div class="card smalltext"><div class="num">D</div>Can direction change where velocity is undefined?</div></div>
+<details class="answer"><summary>Answers</summary><div>Yes to all. A and B occur when \(v&lt;0&lt;a\). C occurs after a round trip. D occurs at a corner such as \(s(t)=|t-c|\), where one-sided velocity signs differ.</div></details>
+</section>
+
+<section class="slide" data-title="Parameter challenge">
+<h1>Parameter challenge</h1>
+<div class="card">A particle has velocity \(v(t)=t^2-kt+6\), \(t\ge0\).</div>
+<div class="grid two" style="margin-top:18px"><div class="card"><ol class="alpha"><li>Find \(k\) so the particle is at rest exactly once.</li><li>Does it change direction then?</li></ol></div><div class="card"><ol class="alpha" start="3"><li>Find the rest time.</li><li>Find acceleration there.</li></ol></div></div>
+<details class="answer"><summary>Solutions</summary><div>Exactly one zero requires discriminant \(k^2-24=0\). For a nonnegative rest time use \(k=2\sqrt6\), giving \(v=(t-\sqrt6)^2\). Rest occurs at \(t=\sqrt6\), but velocity stays nonnegative, so no direction change. \(a=2t-k\), so \(a(\sqrt6)=0\).</div></details>
+</section>
+
+<section class="slide" data-title="Four-form quiz bank">
+<h1>Four-form quiz bank</h1>
+<table class="tbl small"><thead><tr><th>Form</th><th>Acceleration zeros</th><th>Time of maximum velocity</th><th>Velocity when \(a=0\)</th></tr></thead><tbody><tr><td>A</td><td>\(v=3t^4-3t^3+5\)</td><td>\(s=-t^4-4t^3+18t^2+4\)</td><td>\(s=-t^3+3t^2-6\)</td></tr><tr><td>B</td><td>\(v=-t^4+8t^2+12\)</td><td>\(s=-t^4+2t^3+36t^2+5\)</td><td>\(s=-t^3+6t^2+18\)</td></tr><tr><td>C</td><td>\(v=3t^4-6t^2+8\)</td><td>\(s=-t^4-2t^3+36t^2+9\)</td><td>\(s=-t^3+6t^2-12t+4\)</td></tr><tr><td>D</td><td>\(v=t^4-3t^3+5\)</td><td>\(s=-t^4+6t^3+24t^2+15\)</td><td>\(s=t^3-3t^2-9t+6\)</td></tr></tbody></table>
+<details class="answer"><summary>Answers</summary><div>Acceleration is zero twice in every form (including \(t=0\)). Maximum-velocity times are A: \(1\), B: \(3\), C: \(2\), D: \(4\). Velocities when \(a=0\) are A: \(3\), B: \(12\), C: \(0\), D: \(-12\).</div></details>
+</section>
+
+<section class="slide" data-title="Source practice: particle from an equation">
+<h1>Source practice: particle from an equation</h1>
+<div class="card">The position of a particle is \(x(t)=t^3-4t^2+3\) centimeters, \(t\) minutes after observation begins.</div>
+<div class="grid two" style="margin-top:18px"><div class="card"><ol class="alpha"><li>Displacement during the first 2 minutes</li><li>Average velocity during the first 2 minutes</li></ol></div><div class="card"><ol class="alpha" start="3"><li>Velocity and acceleration at \(t=4\)</li><li>Speeding up or slowing down at \(t=4\)</li></ol></div></div>
+<details class="answer"><summary>Solutions</summary><div>\(x(2)-x(0)=-5-3=-8\) cm; average velocity \(-8/2=-4\) cm/min. \(v=3t^2-8t\), \(a=6t-8\); at 4 both equal 16 in their respective units. Since \(v(4)>0\) and \(a(4)>0\), speed is increasing.</div></details>
+</section>
+
+<section class="slide" data-title="Source practice: complete velocity-graph analysis">
+<h1>Source practice: complete velocity-graph analysis</h1>
+<div class="grid two"><div class="card"><svg id="graph-velocity-q10" class="svggraph" role="img" aria-label="Velocity graph from zero to twelve seconds"></svg></div><div class="card dense"><ol class="alpha"><li>Rest time and intervals moving right</li><li>Intervals speed increases or decreases</li><li>Distance and direction in first 4 s</li><li>Average velocity on \([4,12]\)</li><li>Position at 12 if \(s(0)=0\)</li></ol></div></div>
+<details class="answer"><summary>Answers</summary><div>Rest at \(t=4\); moving right on \((4,12)\). Speed increases on \((4,8)\) and decreases on \((3,4)\cup(8,12)\). In the first 4 s it travels 7 ft left. Average velocity on \([4,12]\) is \(44/8=5.5\) ft/s. Total displacement is \(-7+44=37\) ft, so \(s(12)=37\) ft when \(s(0)=0\).</div></details>
+</section>
+
+<section class="slide" data-title="Source practice: trigonometric and lunar motion">
+<h1>Source practice: trigonometric and lunar motion</h1>
+<div class="grid two"><div class="card dense"><div class="num">1</div>\[
+s(t)=5-\frac12t^2-3\cos t,\quad0\le t\le\pi
+\]<p>Find velocity when acceleration is zero.</p></div><div class="card dense"><div class="num">2</div>\[
+s(t)=32t-0.8t^2
+\]<p>Find lunar velocity, acceleration, and time of maximum height.</p></div></div>
+<details class="answer"><summary>Answers</summary><div>1. \(v=-t+3\sin t\), \(a=-1+3\cos t\). Thus \(t=\arccos(1/3)\) and \(v\approx1.597\). 2. \(v=32-1.6t\), \(a=-1.6\), and maximum height occurs at \(t=20\) s.</div></details>
+</section>
+
+<section class="slide" data-title="Translated Arabic resource: physical foundations">
+<h1>Translated Arabic resource: physical foundations</h1>
+<div class="grid two"><div class="card smalltext"><h3>Derivative meanings</h3><ul><li>Instantaneous velocity is the first derivative of position.</li><li>Acceleration is the first derivative of velocity and second derivative of position.</li><li>Terms such as “maximum height,” “minimum position,” “momentarily stops,” and “turns around” signal that velocity may be zero.</li><li>“Greatest or least velocity” signals that acceleration may be zero.</li></ul></div><div class="card smalltext"><h3>Physical restrictions</h3><ul><li>Time is nonnegative and must be real.</li><li>Velocity sign determines direction.</li><li>Acceleration sign alone does not determine speeding up.</li><li>Distance traveled is nonnegative; displacement may have any sign.</li><li>At the launch instant, use \(t=0\) and the initial position and velocity.</li></ul></div></div>
+<div class="note">All ideas on the Arabic summary page have been translated and reorganized here using standard AP Calculus notation.</div>
+</section>
+
+<section class="slide" data-title="Translated Arabic resource: displacement diagrams">
+<h1>Translated Arabic resource: displacement diagrams</h1>
+<div class="grid three"><div class="card"><h3>Above the origin</h3>Final coordinate above the reference point gives positive displacement.</div><div class="card"><h3>Below the origin</h3>Final coordinate below the reference point gives negative displacement.</div><div class="card"><h3>Back at the origin</h3>Displacement is zero even when total distance is large.</div></div>
+<div class="card" style="margin-top:20px">A body rises 50 m, falls 20 m, then rises 10 m. Find displacement and distance traveled.</div>
+<details class="answer"><summary>Answer</summary><div>Final displacement is \(50-20+10=40\) m upward. Total distance is \(50+20+10=80\) m.</div></details>
+</section>
+
+<section class="slide" data-title="Translated Arabic resource: vertical sign convention">
+<h1>Translated Arabic resource: vertical sign convention</h1>
+<div class="grid two"><div class="card"><h3>Upward positive</h3>\[
+s=s_0+v_0t-\frac12gt^2,\quad a=-g.
+\]<p>Rising velocity is positive; falling velocity is negative.</p></div><div class="card"><h3>Downward positive</h3>\[
+d=d_0+u_0t+\frac12gt^2,\quad a=+g.
+\]<p>Downward distance and velocity are positive.</p></div></div>
+<div class="warning">The Arabic diagrams use both “distance from launch” and “height above ground.” Add the launch height only when the required quantity is measured from ground level.</div>
+</section>
+
+<section class="slide" data-title="Arabic examples 1-4 translated">
+<h1>Arabic examples 1-4 translated</h1>
+<div class="grid two"><div class="card tiny"><div class="num">1</div>For \(s=t^3+t^2+3t+1\), find velocity after 2 s, speed after 3 s, acceleration, and average velocity on \([1,2]\).</div><div class="card tiny"><div class="num">2</div>For \(s=\frac13t^3-2t^2-5t+1\), find acceleration at each rest time and velocity when acceleration is zero.</div><div class="card tiny"><div class="num">3</div>For \(s=t^3+3t^2-9t+25\), determine when acceleration is 18 and find speed then.</div><div class="card tiny"><div class="num">4</div>If \(v=t^2-3t+2\), find initial velocity, all rest times, and acceleration at each rest time.</div></div>
+<details class="answer"><summary>Answers</summary><div>1. \(v=3t^2+2t+3\), so \(v(2)=19\), speed at 3 is 36, \(a=6t+2\), and average velocity is \(s(2)-s(1)=13\). 2. \(v=t^2-4t-5=(t-5)(t+1)\); physical rest at 5, where \(a=6\); \(a=2t-4=0\) at 2, where \(v=-9\). 3. \(a=6t+6=18\Rightarrow t=2\), speed \(=|15|=15\). 4. Initial velocity 2; rest at 1 and 2; accelerations \(-1\) and \(1\).</div></details>
+</section>
+
+<section class="slide" data-title="Arabic examples 5-8 translated">
+<h1>Arabic examples 5-8 translated</h1>
+<div class="grid two"><div class="card tiny"><div class="num">5</div>If \(s=\sqrt{2t^2+18}\), find the position when speed is \(1\) m/s.</div><div class="card tiny"><div class="num">6</div>If \(s=t^3-12t^2+24t\), find all times when velocity equals acceleration and the corresponding positions.</div><div class="card tiny"><div class="num">7</div>A body is thrown upward with \(s=128t-16t^2\) ft. How long is it rising before its speed becomes half its initial speed?</div><div class="card tiny"><div class="num">8</div>If \(s=2\sin(t/2)\), find acceleration the first time speed is \(1/2\) m/s.</div></div>
+<details class="answer"><summary>Answers</summary><div>5. \(t=3\), \(s=6\) m. 6. \(t=2,8\), with positions \(8,-64\). 7. \(v=128-32t\), so \(v=64\) at \(t=2\) s. 8. \(v=\cos(t/2)=1/2\) first at \(t=2\pi/3\); \(a=-\frac12\sin(t/2)=-\sqrt3/4\) m/s\(^2\).</div></details>
+</section>
+
+<section class="slide" data-title="Arabic examples 9-12 translated">
+<h1>Arabic examples 9-12 translated</h1>
+<div class="grid two"><div class="card tiny"><div class="num">9</div>For \(s=\frac14(t+2)^4-6t^2\), find acceleration when speed is 89 m/s.</div><div class="card tiny"><div class="num">10</div>For \(s=\sin^3t\), find the first positive time when acceleration is zero.</div><div class="card tiny"><div class="num">11</div>For \(s=t^3+pt^2\), find speed after 1 s if acceleration then is \(10\) m/s\(^2\).</div><div class="card tiny"><div class="num">12</div>A body has \(s=At^2+Bt\), initial velocity 2 m/s, and acceleration 8 m/s\(^2\). Find its distance from the origin after 3 s.</div></div>
+<details class="answer"><summary>Answers</summary><div>9. \(v=(t+2)^3-12t\); speed 89 occurs at \(t=3\), and \(a=3(t+2)^2-12=63\). 10. \(a=3\sin t(2-3\sin^2t)\); first positive zero is \(t=\sin^{-1}\sqrt{2/3}\). 11. \(a=6t+2p\), so \(p=2\), and speed at 1 is \(7\). 12. \(B=2\), \(2A=8\Rightarrow A=4\), so \(s(3)=42\) m.</div></details>
+</section>
+
+<section class="slide" data-title="Arabic examples 13-16 translated">
+<h1>Arabic examples 13-16 translated</h1>
+<div class="grid two"><div class="card tiny"><div class="num">13</div>A parameterized position model has average velocity on \([0,4]\) equal to instantaneous velocity at \(t=2\). Determine its parameter and justify using both formulas.</div><div class="card tiny"><div class="num">14</div>If velocity and position satisfy \(v^2=6s\), prove that acceleration is \(3\) m/s\(^2\).</div><div class="card tiny"><div class="num">15</div>If \(v=2\sqrt{s+1}\), find acceleration as a function of position.</div><div class="card tiny"><div class="num">16</div>If \(v^2=1-s^3\), prove that acceleration at instantaneous rest is \(-3/2\) m/s\(^2\).</div></div>
+<details class="answer"><summary>Methods</summary><div>13. Set \([s(4)-s(0)]/4=s'(2)\) and solve the resulting parameter equation. 14. Differentiate with respect to \(t\): \(2va=6v\), hence \(a=3\) where \(v\ne0\), with continuous extension at rest. 15. \(a=v\,dv/ds=2\). 16. \(2va=-3s^2v\Rightarrow a=-\frac32s^2\); at rest \(s=1\), so \(a=-3/2\).</div></details>
+</section>
+
+<section class="slide" data-title="Arabic examples 17-20 translated">
+<h1>Arabic examples 17-20 translated</h1>
+<div class="grid two"><div class="card tiny"><div class="num">17</div>A velocity-position relation is given implicitly. Use the quotient rule and the known speed at \(t=3\) to compute acceleration.</div><div class="card tiny"><div class="num">18</div>For \(s=t^3-6t^2+9t+4\), find when velocity is positive and when speed is decreasing.</div><div class="card tiny"><div class="num">19</div>For \(s=t^3-3t^2+3t+2\), prove the body stops once without changing direction.</div><div class="card tiny"><div class="num">20</div>A body is launched upward from ground with \(s=40t-5t^2\). Find maximum height, impact speed, speeds at height 60 m, and total distance traveled before impact.</div></div>
+<details class="answer"><summary>Answers</summary><div>18. \(v=3(t-1)(t-3)&gt;0\) on \([0,1)\cup(3,\infty)\); \(a=6(t-2)\), so speed decreases on \((0,1)\cup(2,3)\). 19. \(v=3(t-1)^2\ge0\); it is zero only at 1 and never changes sign. 20. Top at \(t=4\), height 80 m; impact at \(t=8\), speed 40 m/s; at 60 m the velocities are \(20\) and \(-20\) m/s; total distance is \(160\) m.</div></details>
+</section>
+
+<section class="slide" data-title="Arabic examples 21-24 translated">
+<h1>Arabic examples 21-24 translated</h1>
+<div class="grid two"><div class="card tiny"><div class="num">21</div>For a vertically launched body, prove that when upward speed is half the initial speed, it has completed three-fourths of the rise to maximum height.</div><div class="card tiny"><div class="num">22</div>From an 80-ft platform, \(s=64t-16t^2\) is displacement from launch. Find top time, maximum rise, maximum height above ground, return time to launch level, ground time, and impact velocity.</div><div class="card tiny"><div class="num">23</div>A ball is thrown from 160 ft with \(s=48t-16t^2\). Find velocity at ground impact.</div><div class="card tiny"><div class="num">24</div>From a 70-m roof, a body has displacement \(s=20t-5t^2\). Find velocity when it reaches height 45 m.</div></div>
+<details class="answer"><summary>Answers</summary><div>21. From \(v^2=v_0^2-2g\Delta s\), setting \(v=v_0/2\) gives \(\Delta s=3v_0^2/(8g)=3/4\) of \(v_0^2/(2g)\). 22. Top \(t=2\), rise 64 ft, max ground height 144 ft, return to launch \(t=4\), ground \(t=5\), impact velocity \(-96\) ft/s. 23. Ground at \(t=5\), \(v=-112\) ft/s. 24. At the descending time \(t=5\), \(v=-30\) m/s.</div></details>
+</section>
+
+<section class="slide" data-title="Arabic examples 25-29 translated">
+<h1>Arabic examples 25-29 translated</h1>
+<div class="grid two"><div class="card tiny"><div class="num">25</div>A body has displacement \(s=30t-5t^2\) from a building and impacts with velocity \(-60\) m/s. Find building height.</div><div class="card tiny"><div class="num">26</div>From 55 m below ground level, a body is thrown upward with \(s=60t-5t^2\). Find velocity when it first reaches ground level.</div><div class="card tiny"><div class="num">27</div>A body falls from 20 m with downward distance \(d=5t^2\). Find speed at ground and at height 15 m.</div><div class="card tiny"><div class="num">28</div>One body falls from 100 m with \(d_1=5t^2\); another is launched upward from ground with \(d_2=50t-5t^2\). Find both velocities when heights match.</div><div class="card tiny widecard"><div class="num">29</div>Two bodies start from the same roof: \(d_1=16t^2\) and \(d_2=20t+16t^2\). The first lands \(1/2\) s after the second. Find impact speeds and building height.</div></div>
+<details class="answer"><summary>Answers</summary><div>25. Impact occurs at \(t=9\), displacement \(-135\), so height 135 m. 26. First ground-level time \(t=1\), velocity 50 m/s upward. 27. Impact speed 20 m/s; at height 15 m it has fallen 5 m, so speed 10 m/s. 28. Equal height at \(t=2\): first velocity 20 m/s downward, second 30 m/s upward. 29. The second lands at 1 s and the first at 1.5 s; speeds are 52 and 48 ft/s, and height is 36 ft.</div></details>
+</section>
+
+<section class="slide" data-title="Arabic worksheet questions 1-4 translated">
+<h1>Arabic worksheet questions 1-4 translated</h1>
+<div class="grid two"><div class="card tiny"><div class="num">1</div>\(s=6t^2-\frac13t^3\) ft. Find speed at \(t=5\) and acceleration when velocity becomes zero.</div><div class="card tiny"><div class="num">2</div>\(v=\sqrt{t^2-6t+13}\). Find velocity when acceleration is zero.</div><div class="card tiny"><div class="num">3</div>\(s=t^3-7t^2+9t+1\). Find every possible acceleration when speed is \(1\) m/s.</div><div class="card tiny"><div class="num">4</div>\(s=2t^4-17t^3+44t^2+10\). Find velocity and acceleration whenever \(s=46\) m.</div></div>
+<details class="answer"><summary>Answers</summary><div>1. \(v=12t-t^2\), speed at 5 is 35 ft/s; after launch, \(v=0\) at 12 and \(a=12-24=-12\) ft/s\(^2\). 2. \(a=(t-3)/\sqrt{t^2-6t+13}=0\) at 3, where \(v=2\). 3. Accelerations are \(\pm10\) and \(\pm2\sqrt{19}\) m/s\(^2\). 4. Solve the position equation numerically, then evaluate \(v=8t^3-51t^2+88t\) and \(a=24t^2-102t+88\) at each physical root.</div></details>
+</section>
+
+<section class="slide" data-title="Arabic worksheet questions 5-8 translated">
+<h1>Arabic worksheet questions 5-8 translated</h1>
+<div class="grid two"><div class="card tiny"><div class="num">5</div>\(s=\frac13t^3-2t^2+3t+5\), \(t\ge0\). Find position and speed when acceleration is zero.</div><div class="card tiny"><div class="num">6</div>\(s=t^3-3t^2-40\). Find velocity and acceleration at \(t=3\), and when velocity is negative.</div><div class="card tiny"><div class="num">7</div>\(s=t^3-15t^2+63t-2\). Find all \(t\ge0\) for which velocity is positive.</div><div class="card tiny"><div class="num">8</div>\(s=\sin t+\cos t\), \(0\le t\le2\pi\). Find position and acceleration at every instantaneous rest time.</div></div>
+<details class="answer"><summary>Answers</summary><div>5. \(a=2t-4=0\) at 2; \(s=17/3\), speed \(=1\). 6. \(v(3)=9\), \(a(3)=12\); \(v=3t(t-2)&lt;0\) on \((0,2)\). 7. \(v=3(t-3)(t-7)&gt;0\) on \([0,3)\cup(7,\infty)\). 8. Rest at \(t=\pi/4,5\pi/4\); \((s,a)=(\sqrt2,-\sqrt2)\) and \((-\sqrt2,\sqrt2)\).</div></details>
+</section>
+
+<section class="slide" data-title="Arabic worksheet questions 9-12 translated">
+<h1>Arabic worksheet questions 9-12 translated</h1>
+<div class="grid two"><div class="card tiny"><div class="num">9</div>If \(s=A\sin t\), where \(A\) is constant, find acceleration when position is 4 m.</div><div class="card tiny"><div class="num">10</div>For \(s=t\sqrt{27-2t}\), prove the point begins returning after 9 s and find its position then.</div><div class="card tiny"><div class="num">11</div>A body has height \(h=At-5t^2\) and maximum rise 20 m. Find \(A\).</div><div class="card tiny"><div class="num">12</div>A body has height \(h=At+Bt^2\), maximum height 80 m, and acceleration \(-10\) m/s\(^2\). Find \(A,B\).</div></div>
+<details class="answer"><summary>Answers</summary><div>9. \(a=s''=-A\sin t=-s=-4\) m/s\(^2\). 10. \(v=(27-3t)/\sqrt{27-2t}\), so reversal occurs at 9; \(s(9)=27\) m. 11. \(A^2/20=20\Rightarrow A=20\) m/s. 12. \(2B=-10\Rightarrow B=-5\), and \(A^2/20=80\Rightarrow A=40\).</div></details>
+</section>
+
+<section class="slide" data-title="Arabic worksheet questions 13-16 translated">
+<h1>Arabic worksheet questions 13-16 translated</h1>
+<div class="grid two"><div class="card tiny"><div class="num">13</div>If \(v=\sqrt{s+1}\), prove acceleration is \(1/2\) m/s\(^2\).</div><div class="card tiny"><div class="num">14</div>A parameterized velocity law is given; use the speed at \(t=6\) to determine the parameter, then find acceleration at \(t=2\).</div><div class="card tiny"><div class="num">15</div>From a 112-ft tower, displacement is \(s=96t-16t^2\). Find maximum height above ground.</div><div class="card tiny"><div class="num">16</div>From a 140-m tower, displacement is \(s=60t-5t^2\). Find velocity at ground impact.</div></div>
+<details class="answer"><summary>Answers</summary><div>13. \(a=v\,dv/ds=\sqrt{s+1}\cdot[2\sqrt{s+1}]^{-1}=1/2\). 14. Substitute the given speed into the velocity law, solve for the parameter, differentiate, and evaluate at 2. 15. Maximum rise is \(96^2/64=144\) ft, so maximum height is \(112+144=256\) ft. 16. Ground occurs at \(t=14\); velocity is \(60-10(14)=-80\) m/s.</div></details>
+</section>
+
+<section class="slide" data-title="Arabic worksheet questions 17-20 translated">
+<h1>Arabic worksheet questions 17-20 translated</h1>
+<div class="grid two"><div class="card tiny"><div class="num">17</div>From a 200-ft building, displacement is \(s=64t-16t^2\). Find velocity when height is 120 ft.</div><div class="card tiny"><div class="num">18</div>From a building, displacement is \(s=20t-5t^2\). If maximum height above ground is 50 m, find building height.</div><div class="card tiny"><div class="num">19</div>For \(s=At-5t^2\), falling speed after 6 s is half the initial speed. Find maximum rise.</div><div class="card tiny"><div class="num">20</div>A body is dropped from 200 m with downward distance \(d=5t^2\). Find speed when it is 120 m above ground.</div></div>
+<details class="answer"><summary>Answers</summary><div>17. Height 120 means displacement \(-80\); the physical time is 5 and \(v=-96\) ft/s. 18. Maximum rise is \(20\) m, so building height is \(30\) m. 19. \(60-A=A/2\Rightarrow A=40\); maximum rise \(=A^2/20=80\) m. 20. It has fallen 80 m, so \(t=4\) and speed is 40 m/s.</div></details>
+</section>
+
+<section class="slide" data-title="Ultra challenge: motion logic">
+<h1>Ultra challenge: motion logic</h1>
+<div class="card">Construct or identify examples satisfying each condition.</div>
+<div class="grid two" style="margin-top:18px"><div class="card smalltext">1. \(v(c)=0\), no direction change, \(a(c)=0\).</div><div class="card smalltext">2. Direction changes although \(v(c)\) does not exist.</div><div class="card smalltext">3. \(a(c)=0\), but velocity has neither a maximum nor minimum.</div><div class="card smalltext">4. Displacement is zero, total distance is 20.</div></div>
+<details class="answer"><summary>Examples</summary><div>1. \(v=(t-c)^2\). 2. \(s=|t-c|\). 3. \(v=(t-c)^3\). 4. Move from 0 to 10 and back to 0.</div></details>
+</section>
+
+<section class="slide" data-title="Partner synthesis">
+<h1>Partner synthesis</h1>
+<div class="grid two"><div class="card"><ol><li>Choose one equation problem.</li><li>Find \(s,v,a\) and make sign charts.</li><li>Write one precise motion interpretation.</li></ol></div><div class="card"><ol start="4"><li>Choose one table or graph problem.</li><li>Justify direction and speed behavior.</li><li>Exchange and audit signs, units, and physical times.</li></ol></div></div>
+<div class="prompt">A complete solution contains computation, sign evidence, motion vocabulary, units, and domain restrictions.</div>
+</section>
+
+<section class="slide" data-title="Mini-assessment">
+<h1>Mini-assessment</h1>
+<div class="grid two"><div class="card dense"><ol><li>For \(s=t^3-6t^2+9t\), find every rest time and acceleration there.</li><li>If \(v=-4\) and \(a=7\), state direction and speed behavior.</li><li>Explain why \(v=0\) may not be a reversal.</li></ol></div><div class="card dense"><ol start="4"><li>A body is dropped from 45 m: \(s=45-4.9t^2\). Find impact speed.</li><li>A differentiable velocity changes from \(-2\) to \(5\). What existence conclusion follows?</li></ol></div></div>
+<details class="answer"><summary>Answers</summary><div>1. \(v=3(t-1)(t-3)\): rest at 1 and 3; accelerations \(-6,6\). 2. Left and slowing down. 3. Velocity may touch zero without changing sign. 4. Ground time \(\sqrt{45/4.9}\); impact speed \(9.8\sqrt{45/4.9}\approx29.7\) m/s. 5. By IVT, rest occurs at some intermediate time.</div></details>
+</section>
+
+<section class="slide" data-title="Exit ticket">
+<h1>Exit ticket</h1>
+<div class="grid two"><div class="card">A particle has \(v(6)=-3\) m/s and \(a(6)=-2\) m/s\(^2\). Interpret both values and decide whether speed is increasing.</div><div class="card">Explain the difference among \(s(8)-s(2)\), \(\dfrac{s(8)-s(2)}6\), and total distance traveled on \([2,8]\).</div></div>
+<details class="answer"><summary>Answers</summary><div>At 6 s the particle moves left at speed 3 m/s; velocity decreases by 2 m/s each second. Since \(v\) and \(a\) are both negative, speed increases. The three quantities are displacement, average velocity, and total nonnegative path length, respectively.</div></details>
+</section>
+
+</main>
+<footer class="foot">
+<div class="nav"><button class="secondary" id="prev" type="button">← Prev</button><button class="primary" id="next" type="button">Next →</button><button class="secondary" id="ans" type="button">Answers</button></div>
+<select id="jump" aria-label="Jump to a slide"></select>
+</footer>
+<script>
+const slides=[...document.querySelectorAll('.slide')];
+let index=0;
+const count=document.getElementById('count'),bar=document.getElementById('bar'),jump=document.getElementById('jump');
+slides.forEach((s,i)=>{const opt=document.createElement('option');opt.value=i;opt.textContent=(i+1)+'. '+(s.dataset.title||('Slide '+(i+1)));jump.appendChild(opt);});
+function show(i){index=Math.max(0,Math.min(slides.length-1,i));slides.forEach((s,j)=>s.classList.toggle('active',j===index));count.textContent=(index+1)+' / '+slides.length;bar.style.width=((index+1)/slides.length*100)+'%';jump.value=index;}
+document.getElementById('prev').onclick=()=>show(index-1);
+document.getElementById('next').onclick=()=>show(index+1);
+jump.onchange=e=>show(+e.target.value);
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='PageDown')show(index+1);if(e.key==='ArrowLeft'||e.key==='PageUp')show(index-1);if(e.key==='Home')show(0);if(e.key==='End')show(slides.length-1);});
+document.getElementById('ans').onclick=()=>{const panels=[...document.querySelectorAll('.slide.active details.answer')];const openAll=panels.some(d=>!d.open);panels.forEach(d=>d.open=openAll);};
+
+const NS='http://www.w3.org/2000/svg';
+function svgEl(name,attrs){const e=document.createElementNS(NS,name);Object.entries(attrs||{}).forEach(([k,v])=>e.setAttribute(k,v));return e;}
+function nice(v){if(Math.abs(v)>=100)return String(Math.round(v));if(Math.abs(v)>=10)return String(Math.round(v*10)/10);return String(Math.round(v*100)/100);}
+function drawGraph(id,cfg){
+  const svg=document.getElementById(id);if(!svg)return;
+  const W=680,H=360,m={l:62,r:22,t:20,b:48},pw=W-m.l-m.r,ph=H-m.t-m.b;
+  svg.setAttribute('viewBox','0 0 '+W+' '+H);svg.innerHTML='';
+  const X=x=>m.l+(x-cfg.xMin)/(cfg.xMax-cfg.xMin)*pw;
+  const Y=y=>m.t+(cfg.yMax-y)/(cfg.yMax-cfg.yMin)*ph;
+  const clipId='clip-'+id,defs=svgEl('defs'),clip=svgEl('clipPath',{id:clipId});
+  clip.appendChild(svgEl('rect',{x:m.l,y:m.t,width:pw,height:ph}));defs.appendChild(clip);svg.appendChild(defs);
+  svg.appendChild(svgEl('rect',{x:m.l,y:m.t,width:pw,height:ph,fill:'#fff'}));
+  const ticks=5;
+  for(let i=0;i<=ticks;i++){
+    const xv=cfg.xMin+(cfg.xMax-cfg.xMin)*i/ticks,yv=cfg.yMin+(cfg.yMax-cfg.yMin)*i/ticks;
+    svg.appendChild(svgEl('line',{x1:X(xv),x2:X(xv),y1:m.t,y2:m.t+ph,stroke:'#e8eef5','stroke-width':1}));
+    svg.appendChild(svgEl('line',{x1:m.l,x2:m.l+pw,y1:Y(yv),y2:Y(yv),stroke:'#e8eef5','stroke-width':1}));
+    const xt=svgEl('text',{x:X(xv),y:H-26,'text-anchor':'middle',fill:'#607086','font-size':11});xt.textContent=nice(xv);svg.appendChild(xt);
+    const yt=svgEl('text',{x:m.l-8,y:Y(yv)+4,'text-anchor':'end',fill:'#607086','font-size':11});yt.textContent=nice(yv);svg.appendChild(yt);
+  }
+  const xAxisY=(cfg.yMin<=0&&cfg.yMax>=0)?Y(0):Y(cfg.yMin),yAxisX=(cfg.xMin<=0&&cfg.xMax>=0)?X(0):X(cfg.xMin);
+  svg.appendChild(svgEl('line',{x1:m.l,x2:m.l+pw,y1:xAxisY,y2:xAxisY,stroke:'#203654','stroke-width':2}));
+  svg.appendChild(svgEl('line',{x1:yAxisX,x2:yAxisX,y1:m.t,y2:m.t+ph,stroke:'#203654','stroke-width':2}));
+  const xl=svgEl('text',{x:m.l+pw,y:H-7,'text-anchor':'end',fill:'#203654','font-size':13,'font-weight':700});xl.textContent=cfg.xLabel||'t';svg.appendChild(xl);
+  const yl=svgEl('text',{x:m.l+5,y:m.t+13,fill:'#203654','font-size':13,'font-weight':700});yl.textContent=cfg.yLabel||'y';svg.appendChild(yl);
+  const group=svgEl('g',{'clip-path':'url(#'+clipId+')'});svg.appendChild(group);
+  (cfg.areas||[]).forEach(a=>{let p=[X(a.a)+','+Y(0)];for(let i=0;i<=100;i++){const x=a.a+(a.b-a.a)*i/100;p.push(X(x)+','+Y(cfg.fn(x)));}p.push(X(a.b)+','+Y(0));group.appendChild(svgEl('polygon',{points:p.join(' '),fill:a.color||'#cce7df',opacity:a.opacity||.55}));});
+  let pts=[];for(let i=0;i<=500;i++){const x=cfg.xMin+(cfg.xMax-cfg.xMin)*i/500,y=cfg.fn(x);if(Number.isFinite(y))pts.push(X(x)+','+Y(y));}
+  group.appendChild(svgEl('polyline',{points:pts.join(' '),fill:'none',stroke:cfg.color||'#0b84c6','stroke-width':4,'stroke-linecap':'round','stroke-linejoin':'round'}));
+  (cfg.points||[]).forEach(p=>group.appendChild(svgEl('circle',{cx:X(p.x),cy:Y(cfg.fn(p.x)),r:4.5,fill:p.color||'#7a1738'})));
+  if(cfg.title){const tt=svgEl('text',{x:W/2,y:16,'text-anchor':'middle',fill:'#203654','font-size':14,'font-weight':800});tt.textContent=cfg.title;svg.appendChild(tt);}
+}
+const posPiece=t=>{
+  if(t<=1)return t*t-2*t;
+  if(t<=3){const u=(t-1)/2;return -1+2*(3*u*u-2*u*u*u);}
+  if(t<=5)return 1;
+  if(t<=8)return 6-t;
+  return -2+2*(t-8);
+};
+const vMain=t=>t<=2?-10:t<=4?5*t-20:t<=6?7.5*(t-4):t<=8?15:7.5*(10-t);
+const vPractice=t=>t<=1?5-2*t:t<=5?3:t<=8?t-2:t<=10?6-3*(t-8):t<=12?-2*(t-10):NaN;
+const vFrq=t=>t<=3?2+(10/3)*t:t<=5?12-9*(t-3):-6;
+const vQ10=t=>t<=3?-2:t<=8?-2+2*(t-3):8-.5*(t-8);
+function drawAllGraphs(){
+  drawGraph('graph-position-basic',{xMin:0,xMax:5,yMin:0,yMax:24,xLabel:'t (s)',yLabel:'s(t) m',title:'Position versus time',fn:t=>t*t*t-6*t*t+9*t+2,points:[{x:1},{x:3}]});
+  drawGraph('graph-ball-s',{xMin:0,xMax:4,yMin:0,yMax:20,xLabel:'t',yLabel:'s',title:'s(t)',fn:t=>-4.9*t*t+18*t+2});
+  drawGraph('graph-ball-v',{xMin:0,xMax:4,yMin:-22,yMax:20,xLabel:'t',yLabel:'v',title:'v(t)',fn:t=>18-9.8*t});
+  drawGraph('graph-ball-a',{xMin:0,xMax:4,yMin:-12,yMax:2,xLabel:'t',yLabel:'a',title:'a(t)',fn:t=>-9.8});
+  drawGraph('graph-piece-position',{xMin:0,xMax:9,yMin:-2.5,yMax:1.5,xLabel:'t',yLabel:'s(t)',title:'Piecewise position',fn:posPiece,points:[{x:1},{x:3},{x:5},{x:8}]});
+  drawGraph('graph-velocity-main',{xMin:0,xMax:10,yMin:-12,yMax:17,xLabel:'t',yLabel:'v(t)',title:'Velocity: height, slope, and speed',fn:vMain,points:[{x:2},{x:4},{x:6},{x:8},{x:10}]});
+  drawGraph('graph-velocity-area',{xMin:0,xMax:10,yMin:-12,yMax:17,xLabel:'t',yLabel:'v(t)',title:'Signed geometric areas',fn:vMain,areas:[{a:0,b:4,color:'#f4b7c8'},{a:4,b:10,color:'#a9dfcf'}]});
+  drawGraph('graph-velocity-practice',{xMin:0,xMax:12,yMin:-5,yMax:7,xLabel:'t',yLabel:'v(t)',title:'Homework velocity graph',fn:vPractice,points:[{x:1},{x:5},{x:8},{x:10},{x:12}]});
+  drawGraph('graph-frq-velocity',{xMin:0,xMax:9,yMin:-8,yMax:14,xLabel:'t',yLabel:'v(t)',title:'AP-style velocity graph',fn:vFrq,points:[{x:3},{x:5},{x:9}]});
+  drawGraph('graph-velocity-q10',{xMin:0,xMax:12,yMin:-4,yMax:10,xLabel:'t',yLabel:'v(t)',title:'Velocity source question',fn:vQ10,points:[{x:3},{x:4},{x:8},{x:12}]});
+}
+drawAllGraphs();
+window.addEventListener('load',()=>{if(window.renderMathInElement){renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});}});
+show(0);
+</script>
+</div>
+</body>
+</html>

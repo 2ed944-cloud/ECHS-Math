@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AP Calculus 2.3 — The Derivative: Graphs, Differentiability, and Continuity</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<style>
+:root{--maroon:#7a1738;--navy:#203654;--teal:#0e6655;--ink:#17212b;--muted:#5d6877;--line:#d9e2ec;--gold:#c69c48;--blue:#2c5aa0;--red:#c0392b;--green:#2d7d46;--bg:#f4f7fb}*{box-sizing:border-box}body{margin:0;font-family:Inter,Aptos,"Segoe UI",Arial,sans-serif;color:var(--ink);background:var(--bg)}.deck{height:100vh;display:grid;grid-template-rows:74px 1fr 54px;overflow:hidden}.topbar{display:flex;align-items:center;justify-content:space-between;padding:10px 22px;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 2px 14px rgba(20,30,55,.08);z-index:2}.brand{display:flex;align-items:center;gap:18px}.echs{height:48px;width:96px;border-radius:14px;background:linear-gradient(135deg,var(--maroon),var(--navy));color:#fff;display:grid;place-items:center;font-weight:900;letter-spacing:1.5px}.course{border-left:2px solid #d5dce4;padding-left:18px;line-height:1.15}.course strong{color:var(--maroon);font-size:20px}.course span{display:block;color:var(--muted);font-size:13px;margin-top:3px}.progress{display:flex;align-items:center;gap:10px;color:var(--muted);font-weight:700;font-size:14px}.dotbar{width:220px;height:9px;background:#e5ebf0;border-radius:99px;overflow:hidden}.dotbar span{display:block;height:100%;width:0%;background:linear-gradient(90deg,var(--maroon),var(--teal));border-radius:99px}.main{overflow:hidden}.slide{display:none;height:100%;overflow-y:auto;padding:34px 48px 72px;background:linear-gradient(135deg,#ffffff 0%,#fbf8f3 54%,#eef7f5 100%)}.slide.active{display:block}.footer{background:#fff;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:8px 22px;z-index:2}.nav{display:flex;gap:10px;align-items:center}.btn{border:none;background:var(--maroon);color:white;padding:10px 16px;border-radius:12px;cursor:pointer;font-weight:800;box-shadow:0 6px 16px rgba(122,23,56,.18)}.btn.secondary{background:#e9eef3;color:var(--navy);box-shadow:none}.btn.ghost{background:#fff;color:var(--maroon);border:1px solid #e1c7d2;box-shadow:none}.btn.small{padding:7px 10px;border-radius:10px;font-size:13px;margin-top:10px}select{border:1px solid var(--line);padding:9px 12px;border-radius:12px;color:var(--navy);font-weight:700;background:white}h1{font-size:56px;line-height:1.02;margin:0 0 14px;letter-spacing:-1.4px;color:var(--navy)}h2{font-size:37px;line-height:1.08;margin:0 0 20px;letter-spacing:-.6px;color:var(--navy)}h3{font-size:23px;margin:0 0 12px;color:var(--maroon)}h4{font-size:18px;margin:0 0 10px;color:var(--navy)}p,li{font-size:20px;line-height:1.45}.smalltext{font-size:16px;color:var(--muted)}ol,ul{margin:10px 0 0 24px}.kicker{text-transform:uppercase;letter-spacing:2.2px;color:var(--maroon);font-weight:900;font-size:14px;margin-bottom:12px}.subtitle{color:var(--muted);font-size:24px;max-width:1000px;line-height:1.35}.teacher{color:var(--navy);font-size:20px;margin-top:26px;font-weight:800}.title-grid,.grid2{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:start}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;align-items:start}.card{background:rgba(255,255,255,.96);border:1px solid var(--line);border-radius:24px;padding:22px;box-shadow:0 16px 42px rgba(24,39,75,.08)}.card.tint{background:#f5fbf9;border-color:#cfe7df}.bigmath{display:flex;align-items:center;justify-content:center;min-height:72px;padding:14px;background:#fff;border:1px solid var(--line);border-radius:20px;font-size:22px;overflow-x:auto;margin:10px 0}.problem{border:1px solid var(--line);background:#fff;border-radius:20px;padding:18px;margin:12px 0}.answer{display:none;margin-top:12px;padding:14px 16px;border-radius:16px;background:#eef7f5;border:1px solid #cfe7df;color:#0f5132;font-size:18px;line-height:1.45}.answer.show{display:block}.answer p,.answer li{font-size:18px}.table{width:100%;border-collapse:separate;border-spacing:0;overflow:hidden;border-radius:18px;border:1px solid var(--line);background:#fff;margin:10px 0}.table th,.table td{border-bottom:1px solid var(--line);border-right:1px solid var(--line);padding:11px;vertical-align:top;font-size:17px;line-height:1.35}.table th{background:#f1f5f9;color:var(--navy);font-weight:900}.table tr:last-child td,.table tr:last-child th{border-bottom:none}.table th:last-child,.table td:last-child{border-right:none}.workbox{height:150px;border:1px dashed #b7c4d0;background:#fbfdff;border-radius:18px;margin-top:12px}.graphbox{padding:14px;border-radius:24px;background:#fff;border:1px solid var(--line);box-shadow:0 12px 34px rgba(24,39,75,.08);text-align:center}.graph svg{width:100%;height:auto;display:block}.gridline{stroke:#d6dde6;stroke-width:1}.axis{stroke:#24364f;stroke-width:2}.tick{font-size:11px;fill:#526071;font-weight:700}.axislabel{font-size:16px;fill:#24364f;font-weight:900}.curve{fill:none;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}.curve.f{stroke:#7a1738}.curve.g{stroke:#0e6655}.curve.blue{stroke:#2c5aa0}.curve.gold{stroke:#c69c48}.curve.red{stroke:#c0392b}.curve.green{stroke:#2d7d46}.curve.thin{stroke-width:3}.tangent{stroke:#0e6655;stroke-width:3.5;stroke-linecap:round}.secant{stroke:#c69c48;stroke-width:3.2;stroke-linecap:round;stroke-dasharray:6 5}.dash{stroke-dasharray:7 6}.open{fill:#fff;stroke-width:4}.open.f{stroke:#7a1738}.open.g{stroke:#0e6655}.open.blue{stroke:#2c5aa0}.closed{stroke:#fff;stroke-width:2}.closed.f{fill:#7a1738}.closed.g{fill:#0e6655}.closed.blue{fill:#2c5aa0}.label{font-size:16px;font-weight:900}.label.maroon{fill:#7a1738}.label.teal{fill:#0e6655}.label.blue{fill:#2c5aa0}.label.red{fill:#c0392b}.label.gold{fill:#c69c48}.shade{fill:#e8f2ff;opacity:.55}.vline{stroke:#c0392b;stroke-width:2.5;stroke-dasharray:8 8}.pill{display:inline-block;padding:6px 10px;background:#eef3f7;border:1px solid var(--line);border-radius:99px;margin:3px 4px;font-weight:800;color:var(--navy)}@media(max-width:950px){.grid2,.grid3,.grid4,.title-grid{grid-template-columns:1fr}.slide{padding:26px 22px 72px}h1{font-size:42px}h2{font-size:32px}.topbar{display:none}.deck{grid-template-rows:1fr 54px}}@media print{.deck{height:auto;display:block}.topbar,.footer{display:none}.slide{display:block;page-break-after:always;min-height:100vh}.answer{display:block}.btn{display:none}body{background:#fff}}
+</style>
+</head>
+<body>
+<div class="deck">
+<header class="topbar"><div class="brand"><div class="echs">ECHS</div><div class="course"><strong>AP Calculus AB</strong><span>2.3 The Derivative: Graphs, Differentiability, and Continuity</span></div></div><div class="progress"><span id="counter">1 / 1</span><div class="dotbar"><span id="bar"></span></div></div></header>
+<main class="main">
+<section class="slide title-slide">
+  <div class="kicker">AP Calculus AB</div>
+  <h1>2.3 The Derivative: Graphs, Differentiability, and Continuity</h1>
+  <p class="subtitle">Estimating derivatives, connecting graphs of functions and derivatives, and deciding where derivatives exist.</p>
+  <div class="title-grid">
+    <div class="card tint"><div class="bigmath">\[f'(a)=\lim_{h\to0}\frac{f(a+h)-f(a)}{h}=\lim_{x\to a}\frac{f(x)-f(a)}{x-a}\]</div></div>
+    <div class="card"><h3>Focus</h3><p>Use the derivative as a number, a function, a graph, and a reasoned claim about continuity and smoothness.</p></div>
+  </div>
+  <p class="teacher">ECHS Mathematics • Mohammad Abu Ghuwaleh</p>
+</section>
+
+<section class="slide"><div class="kicker">Targets</div><h2>Learning targets</h2>
+<div class="grid4">
+  <div class="card"><h3>Estimate</h3><p>Estimate derivatives from graphs, tables, and small intervals.</p></div>
+  <div class="card"><h3>Represent</h3><p>Represent the derivative as a limit and as a function.</p></div>
+  <div class="card"><h3>Sketch</h3><p>Sketch a plausible graph of \(f'\) from \(f\), and sketch \(f\) from \(f'\).</p></div>
+  <div class="card"><h3>Justify</h3><p>Explain how differentiability and continuity are related.</p></div>
+</div>
+<div class="problem"><h4>Opening decision</h4><p>A graph has no break at \(x=2\), but it has a sharp corner there. Is the function continuous at \(x=2\)? Is it differentiable at \(x=2\)?</p><button class="btn small" onclick="toggleAnswer(this)">Show check</button><div class="answer">Continuous: yes. Differentiable: no. At a corner, the left-hand and right-hand tangent slopes are different.</div></div>
+</section>
+
+<section class="slide"><div class="kicker">Launch</div><h2>Derivative as an instant rate</h2>
+<div class="grid2">
+  <div class="graphbox"><div class="graph" data-graph="secant_to_tangent"></div></div>
+  <div class="card"><h3>From secant to tangent</h3><p>The average rate of change over \([a,b]\) is a secant slope.</p><div class="bigmath">\[\frac{f(b)-f(a)}{b-a}\]</div><p>The instantaneous rate at \(a\) is the limit of nearby secant slopes.</p><div class="bigmath">\[f'(a)=\lim_{x\to a}\frac{f(x)-f(a)}{x-a}\]</div></div>
+</div>
+</section>
+
+<section class="slide"><div class="kicker">Two Forms</div><h2>Same derivative, two useful limits</h2>
+<div class="grid2">
+  <div class="card tint"><h3>Form 1</h3><div class="bigmath">\[f'(a)=\lim_{h\to0}\frac{f(a+h)-f(a)}{h}\]</div><p>Useful when the nearby input is written as \(a+h\).</p></div>
+  <div class="card tint"><h3>Form 2</h3><div class="bigmath">\[f'(a)=\lim_{x\to a}\frac{f(x)-f(a)}{x-a}\]</div><p>Useful when the nearby input is written as \(x\).</p></div>
+</div>
+<div class="problem"><h4>Quick match</h4><p>Identify the function and the point represented by</p><div class="bigmath">\[\lim_{x\to 2}\frac{\sqrt{3x+1}-\sqrt{7}}{x-2}\]</div><button class="btn small" onclick="toggleAnswer(this)">Show answer</button><div class="answer">The function is \(f(x)=\sqrt{3x+1}\), and the derivative is being taken at \(x=2\), since \(f(2)=\sqrt7\).</div></div>
+</section>
+
+<section class="slide"><div class="kicker">Derivative Function</div><h2>Derivative as a function</h2>
+<div class="grid2">
+  <div class="card"><h3>A new function</h3><p>When the input remains \(x\), the limit gives a formula that returns a tangent slope at each allowed input.</p><div class="bigmath">\[f'(x)=\lim_{h\to0}\frac{f(x+h)-f(x)}{h}\]</div></div>
+  <div class="problem"><h4>Example</h4><p>Use the limit definition to find \(f'(x)\) for \(f(x)=x^2-4x+5\). Then find \(f'(0)\), \(f'(2)\), and \(f'(5)\).</p><button class="btn small" onclick="toggleAnswer(this)">Show solution</button><div class="answer">\(f(x+h)-(f(x))=(x+h)^2-4(x+h)+5-(x^2-4x+5)=2xh+h^2-4h\). Divide by \(h\): \(2x+h-4\). Let \(h\to0\): \(f'(x)=2x-4\). Then \(f'(0)=-4\), \(f'(2)=0\), \(f'(5)=6\).</div></div>
+</div>
+</section>
+
+<section class="slide"><div class="kicker">Practice</div><h2>Limit-definition practice</h2>
+<p>Find the derivative using limits. Use correct notation.</p>
+<div class="grid2">
+<div class="problem"><h4>1</h4><p>\(f(x)=3x+1\). Find \(f'(1)\).</p></div>
+<div class="problem"><h4>2</h4><p>\(f(x)=3x^2+1\). Find \(f'(1)\).</p></div>
+<div class="problem"><h4>3</h4><p>\(f(x)=\sqrt{3x+1}\). Find \(f'(1)\).</p></div>
+<div class="problem"><h4>4</h4><p>\(f(x)=\dfrac{3}{x+1}\). Find \(f'(2)\).</p></div>
+</div>
+<button class="btn small" onclick="toggleAnswer(this)">Show answers</button><div class="answer">1) \(3\). 2) \(6\). 3) \(\dfrac34\). 4) \(-\dfrac13\).</div>
+</section>
+
+<section class="slide"><div class="kicker">Practice</div><h2>Derivative functions from limits</h2>
+<div class="grid2">
+<div class="problem"><h4>1</h4><p>Find \(f'(x)\) if \(f(x)=x^3+2x-1\).</p></div>
+<div class="problem"><h4>2</h4><p>Find \(g'(x)\) if \(g(x)=\dfrac{1}{x-2}\), \(x\ne2\).</p></div>
+<div class="problem"><h4>3</h4><p>Find \(h'(x)\) if \(h(x)=\sqrt{x+4}\), \(x&gt;-4\).</p></div>
+<div class="problem"><h4>4</h4><p>Find \(p'(x)\) if \(p(x)=4-x^2\).</p></div>
+</div>
+<button class="btn small" onclick="toggleAnswer(this)">Show answers</button><div class="answer">1) \(3x^2+2\). 2) \(-\dfrac{1}{(x-2)^2}\). 3) \(\dfrac{1}{2\sqrt{x+4}}\). 4) \(-2x\).</div>
+</section>
+
+<section class="slide"><div class="kicker">Graph Estimate</div><h2>Estimate the derivative from a graph</h2>
+<div class="grid2">
+  <div class="graphbox"><div class="graph" data-graph="estimate_parabola"></div></div>
+  <div class="problem"><h4>Questions</h4><ol><li>Estimate \(f'(-1)\).</li><li>Estimate \(f'(1)\).</li><li>Estimate \(f'(4)\).</li><li>At which listed input is the derivative closest to \(0\)?</li></ol><button class="btn small" onclick="toggleAnswer(this)">Show check</button><div class="answer">The plotted function is \(f(x)=-\frac14(x-1)^2+3\), so \(f'(x)=-\frac12(x-1)\). Thus \(f'(-1)=1\), \(f'(1)=0\), and \(f'(4)=-\frac32\). The derivative is closest to \(0\) at \(x=1\).</div></div>
+</div>
+</section>
+
+<section class="slide"><div class="kicker">Graph Estimate</div><h2>Estimate the derivative from another graph</h2>
+<div class="grid2">
+  <div class="graphbox"><div class="graph" data-graph="estimate_g"></div></div>
+  <div class="problem"><h4>Questions</h4><ol><li>Estimate \(g'(0)\).</li><li>Estimate \(g'(-2)\).</li><li>Estimate \(g'(1)\).</li><li>Where is \(g'(x)=0\)?</li></ol><button class="btn small" onclick="toggleAnswer(this)">Show check</button><div class="answer">The plotted function is \(g(x)=\frac12(x+1)^2-2\), so \(g'(x)=x+1\). Therefore \(g'(0)=1\), \(g'(-2)=-1\), \(g'(1)=2\), and \(g'(x)=0\) at \(x=-1\).</div></div>
+</div>
+</section>
+
+<section class="slide"><div class="kicker">Table Estimate</div><h2>Estimate derivatives from data</h2>
+<div class="card"><p>When a derivative is requested at a data point, use nearby slopes. A centered estimate is often better than a one-sided estimate when both sides are available.</p></div>
+<table class="table"><tr><th>\(x\)</th><th>4.5</th><th>5</th><th>5.5</th><th>6</th><th>6.5</th><th>7</th></tr><tr><th>\(f(x)\)</th><td>2.169</td><td>2.321</td><td>2.459</td><td>2.585</td><td>2.700</td><td>2.807</td></tr></table>
+<div class="problem"><h4>Tasks</h4><ol><li>Approximate \(f'(5.5)\) using a centered difference.</li><li>Approximate \(f'(5)\) using the closest available data on each side.</li><li>Explain why the answer is an estimate, not an exact derivative.</li></ol><button class="btn small" onclick="toggleAnswer(this)">Show check</button><div class="answer">1) \(\dfrac{f(6)-f(5)}{6-5}=\dfrac{2.585-2.321}{1}=0.264\). 2) \(\dfrac{f(5.5)-f(4.5)}{1}=0.290\). These are secant slopes over intervals, not the limit as the interval length approaches \(0\).</div></div>
+</section>
+
+<section class="slide"><div class="kicker">Calculator Estimate</div><h2>Numerical derivative estimate</h2>
+<div class="card tint"><p>Use a symmetric difference with a small step:</p><div class="bigmath">\[f'(a)\approx\frac{f(a+h)-f(a-h)}{2h}\]</div></div>
+<div class="grid2">
+<div class="problem"><h4>1</h4><p>Estimate \(f'(2)\) for \(f(x)=\sin(\sqrt{x})\) using \(h=0.001\).</p></div>
+<div class="problem"><h4>2</h4><p>Estimate \(g'(1.3)\) for \(g(x)=\ln\!\left(\dfrac1{5-x}\right)\) using \(h=0.001\).</p></div>
+<div class="problem"><h4>3</h4><p>Estimate \(p'(6)\) for \(p(x)=\sin(\cos x)\) using \(h=0.001\).</p></div>
+<div class="problem"><h4>4</h4><p>Estimate \(q'(-3)\) for \(q(x)=x\ln(2-x)\) using \(h=0.001\).</p></div>
+</div>
+<button class="btn small" onclick="toggleAnswer(this)">Show approximate answers</button><div class="answer">Approximate: 1) \(0.0551\). 2) \(0.2703\). 3) about \(-0.0782\). 4) about \(0.8094\). Students should show the substituted symmetric-difference expression.</div>
+</section>
+
+<section class="slide"><div class="kicker">Behavior</div><h2>Read behavior from \(f'\)</h2>
+<div class="grid2">
+  <div class="card"><table class="table"><tr><th>Derivative statement</th><th>Behavior of \(f\)</th></tr><tr><td>\(f'(x)&gt;0\)</td><td>\(f\) is increasing.</td></tr><tr><td>\(f'(x)&lt;0\)</td><td>\(f\) is decreasing.</td></tr><tr><td>\(f'(x)=0\)</td><td>The tangent line is horizontal.</td></tr><tr><td>\(|f'(x)|\) is large</td><td>The graph of \(f\) is steep.</td></tr></table></div>
+  <div class="problem"><h4>Reasoning check</h4><p>If \(f'(2)=-5\), which statement is better?</p><ol type="A"><li>\(f(2)=-5\).</li><li>Near \(x=2\), \(f\) is decreasing at a rate of about \(5\) output units per input unit.</li><li>\(f\) must be below the \(x\)-axis at \(x=2\).</li></ol><button class="btn small" onclick="toggleAnswer(this)">Show answer</button><div class="answer">B. The derivative describes a rate of change, not the function value.</div></div>
+</div>
+</section>
+
+<section class="slide"><div class="kicker">Labeled Graph</div><h2>Compare slopes at labeled points</h2>
+<div class="grid2">
+  <div class="graphbox"><div class="graph" data-graph="labeled_curve"></div></div>
+  <div class="problem"><h4>Questions</h4><ol><li>At which labeled points is the slope positive?</li><li>At which labeled points is the slope negative?</li><li>At which labeled points is the slope approximately zero?</li><li>Which labeled point has the greatest slope?</li><li>Which labeled point has the least slope?</li></ol><button class="btn small" onclick="toggleAnswer(this)">Show check</button><div class="answer">Positive: \(A,E\). Negative: \(C\). Approximately zero: \(B,D,F\). Greatest slope: \(A\). Least slope: \(C\), the most negative slope.</div></div>
+</div>
+</section>
+
+<section class="slide"><div class="kicker">Graph Pair</div><h2>See \(f\) and \(f'\) together</h2>
+<div class="grid2">
+  <div class="graphbox"><div class="graph" data-graph="f_and_derivative"></div></div>
+  <div class="card"><h3>Reading the pair</h3><p>The maroon curve is \(f(x)=\frac14x^3-3x\). The blue curve is \(f'(x)=\frac34x^2-3\).</p><ul><li>Zeros of \(f'\) occur where \(f\) has horizontal tangents.</li><li>Where \(f'&gt;0\), \(f\) increases.</li><li>Where \(f'&lt;0\), \(f\) decreases.</li></ul></div>
+</div>
+</section>
+
+<section class="slide"><div class="kicker">Sketching</div><h2>Sketch \(f'\) from \(f\)</h2>
+<div class="grid2">
+  <div class="graphbox"><div class="graph" data-graph="sketch_fprime_cubic"></div></div>
+  <div class="problem"><h4>Task</h4><p>Use the graph of \(f\) to sketch a plausible graph of \(f'\).</p><ol><li>Where should \(f'(x)=0\)?</li><li>Where should \(f'(x)&gt;0\)?</li><li>Where should \(f'(x)&lt;0\)?</li><li>What rough shape should \(f'\) have?</li></ol><button class="btn small" onclick="toggleAnswer(this)">Show guide</button><div class="answer">For this cubic, horizontal tangents occur near \(x=-2\) and \(x=2\). \(f'&gt;0\) on the outer intervals and \(f'&lt;0\) between them. A plausible \(f'\) is an upward-opening parabola crossing the \(x\)-axis near \(-2\) and \(2\).</div></div>
+</div>
+</section>
+
+<section class="slide"><div class="kicker">Sketching</div><h2>Sketch \(f'\): W-shaped graph</h2>
+<div class="grid2">
+  <div class="graphbox"><div class="graph" data-graph="sketch_fprime_w"></div></div>
+  <div class="problem"><h4>Task</h4><p>The graph shown is \(f(x)=\frac14(x^2-1)^2\). Sketch a plausible graph of \(f'\).</p><ol><li>Where is \(f'(x)=0\)?</li><li>Where is \(f'(x)&gt;0\)?</li><li>Where is \(f'(x)&lt;0\)?</li><li>How many times should \(f'\) cross the \(x\)-axis?</li></ol><button class="btn small" onclick="toggleAnswer(this)">Show guide</button><div class="answer">Horizontal tangents at \(x=-1,0,1\). Correct signs: \(f'&lt;0\) on \((-\infty,-1)\), \(f'&gt;0\) on \((-1,0)\), \(f'&lt;0\) on \((0,1)\), \(f'&gt;0\) on \((1,\infty)\). A plausible \(f'\) crosses the \(x\)-axis at \(-1,0,1\).</div></div>
+</div>
+</section>
+
+<section class="slide"><div class="kicker">Sketching</div><h2>Sketch \(f\) from \(f'\)</h2>
+<div class="grid2">
+  <div class="graphbox"><div class="graph" data-graph="fprime_parabola"></div></div>
+  <div class="problem"><h4>Task</h4><p>The graph of \(f'\) is shown. Suppose \(f(-4)=1\). Sketch one possible continuous graph of \(f\).</p><ol><li>Where is \(f\) increasing?</li><li>Where is \(f\) decreasing?</li><li>Where does \(f\) have a local maximum or minimum?</li><li>Where is \(f\) steepest?</li></ol><button class="btn small" onclick="toggleAnswer(this)">Show guide</button><div class="answer">\(f'&lt;0\) on \((-4,-2)\), so \(f\) decreases there. \(f'&gt;0\) on \((-2,2)\), so \(f\) increases there. \(f'&lt;0\) on \((2,4)\), so \(f\) decreases there. \(f\) has a local minimum near \(-2\) and a local maximum near \(2\).</div></div>
+</div>
+</section>
+
+<section class="slide"><div class="kicker">Sketching</div><h2>Sketch \(f\) from a discontinuous \(f'\)</h2>
+<div class="grid2">
+  <div class="graphbox"><div class="graph" data-graph="fprime_piecewise"></div></div>
+  <div class="problem"><h4>Task</h4><p>The graph of \(f'\) is shown and \(f(0)=1\). Sketch one possible graph of \(f\).</p><ol><li>What is the slope of \(f\) on \([0,2)\)?</li><li>What is the slope of \(f\) on \((2,5]\)?</li><li>Does the jump in \(f'\) force \(f\) to be discontinuous?</li><li>What visible feature can \(f\) have at \(x=2\)?</li></ol><button class="btn small" onclick="toggleAnswer(this)">Show guide</button><div class="answer">Slope \(2\) on \([0,2)\), slope \(-1\) on \((2,5]\). A jump in \(f'\) does not force \(f\) to be discontinuous. A continuous \(f\) can have a sharp corner at \(x=2\).</div></div>
+</div>
+</section>
+
+<section class="slide"><div class="kicker">AP Style</div><h2>Sketching from \(f'\): AP-style</h2>
+<div class="grid2">
+  <div class="graphbox"><div class="graph" data-graph="fprime_ap_piecewise"></div></div>
+  <div class="problem"><h4>Question</h4><p>The graph of \(f'\) is shown. Which statement must be true?</p><ol type="A"><li>\(f\) is decreasing on \((-4,-1)\).</li><li>\(f\) has a local maximum at \(x=-1\).</li><li>\(f\) has a local minimum at \(x=2\).</li><li>\(f\) is increasing on \((2,5)\).</li></ol><button class="btn small" onclick="toggleAnswer(this)">Show answer</button><div class="answer">D. On \((2,5)\), the graph of \(f'\) is above the \(x\)-axis, so \(f\) is increasing. At \(x=-1\), \(f'\) changes from positive to negative, so \(f\) has a local maximum there.</div></div>
+</div>
+</section>
+
+<section class="slide"><div class="kicker">Differentiability</div><h2>Differentiability and continuity</h2>
+<div class="grid2">
+  <div class="card tint"><h3>Key theorem</h3><p>If \(f\) is differentiable at \(x=c\), then \(f\) is continuous at \(x=c\).</p><div class="bigmath">\[\text{Differentiable at }c \Longrightarrow \text{continuous at }c\]</div></div>
+  <div class="card"><h3>Converse warning</h3><p>Continuity does not guarantee differentiability. A continuous graph can still have a corner, cusp, or vertical tangent.</p><div class="bigmath">\[\text{Continuous at }c \not\Rightarrow \text{differentiable at }c\]</div></div>
+</div>
+<div class="problem"><h4>True or false</h4><ol><li>If \(f\) is differentiable at \(a\), then \(\lim_{x\to a}f(x)=f(a)\).</li><li>If \(\lim_{x\to a}f(x)=f(a)\), then \(f'(a)\) must exist.</li></ol><button class="btn small" onclick="toggleAnswer(this)">Show check</button><div class="answer">1) True. 2) False. Example: \(f(x)=|x|\) is continuous at \(0\), but \(f'(0)\) does not exist.</div></div>
+</section>
+
+<section class="slide"><div class="kicker">Why Derivatives Fail</div><h2>Four ways \(f'\) can fail to exist</h2>
+<div class="grid4">
+<div class="graphbox"><div class="graph" data-graph="fail_discontinuity"></div><h4>Discontinuity</h4></div>
+<div class="graphbox"><div class="graph" data-graph="fail_corner"></div><h4>Corner</h4></div>
+<div class="graphbox"><div class="graph" data-graph="fail_cusp"></div><h4>Cusp</h4></div>
+<div class="graphbox"><div class="graph" data-graph="fail_vertical"></div><h4>Vertical tangent</h4></div>
+</div>
+<div class="problem"><h4>Classify</h4><p>For each graph, decide whether the function is continuous at the marked point and whether it is differentiable there.</p></div>
+</section>
+
+<section class="slide"><div class="kicker">One-Sided Derivatives</div><h2>Corner: one-sided derivative test</h2>
+<div class="grid2">
+  <div class="graphbox"><div class="graph" data-graph="abs_corner"></div></div>
+  <div class="problem"><h4>Show not differentiable</h4><p>Let \(f(x)=|x-1|\). Use one-sided derivative limits at \(x=1\).</p><button class="btn small" onclick="toggleAnswer(this)">Show solution</button><div class="answer">\(f(1)=0\). For \(h&gt;0\), \(\dfrac{f(1+h)-f(1)}{h}=\dfrac{|h|}{h}=1\). For \(h&lt;0\), \(\dfrac{|h|}{h}=-1\). Since the one-sided derivatives are unequal, \(f'(1)\) does not exist.</div></div>
+</div>
+</section>
+
+<section class="slide"><div class="kicker">One-Sided Derivatives</div><h2>Piecewise derivative at a transition</h2>
+<div class="grid2">
+  <div class="graphbox"><div class="graph" data-graph="piecewise_corner"></div></div>
+  <div class="problem"><h4>Example</h4><p>Show that \(f(x)=\begin{cases}4,&x&lt;2\\2x,&x\ge2\end{cases}\) is not differentiable at \(x=2\).</p><button class="btn small" onclick="toggleAnswer(this)">Show solution</button><div class="answer">\(f(2)=4\). From the left, \(\dfrac{f(2+h)-f(2)}{h}=0\). From the right, \(\dfrac{2(2+h)-4}{h}=2\). Since \(0\ne2\), \(f'(2)\) does not exist.</div></div>
+</div>
+</section>
+
+<section class="slide"><div class="kicker">Vertical Tangent</div><h2>Vertical tangent: derivative is not finite</h2>
+<div class="grid2">
+  <div class="graphbox"><div class="graph" data-graph="cube_root"></div></div>
+  <div class="problem"><h4>Use the alternate form</h4><p>For \(f(x)=\sqrt[3]{x}\), examine \(\displaystyle\lim_{x\to0}\frac{f(x)-f(0)}{x-0}\).</p><button class="btn small" onclick="toggleAnswer(this)">Show solution</button><div class="answer">\(\dfrac{\sqrt[3]{x}}{x}=\dfrac{1}{x^{2/3}}\to\infty\) from both sides. The tangent line is vertical at \(x=0\); the derivative does not exist as a finite real number.</div></div>
+</div>
+</section>
+
+<section class="slide"><div class="kicker">Piecewise</div><h2>Right-hand and left-hand derivatives</h2>
+<div class="grid2">
+<div class="problem"><h4>1</h4><p>Compute \(D_+f(0)\), \(D_-f(0)\), and decide if \(f'(0)\) exists.</p><div class="bigmath">\[f(x)=\begin{cases}2x+1,&x&lt;0\\3x+1,&x\ge0\end{cases}\]</div></div>
+<div class="problem"><h4>2</h4><p>Compute \(D_+f(0)\), \(D_-f(0)\), and decide if \(f'(0)\) exists.</p><div class="bigmath">\[f(x)=\begin{cases}x^2,&x&lt;0\\x^3,&x\ge0\end{cases}\]</div></div>
+</div>
+<button class="btn small" onclick="toggleAnswer(this)">Show answers</button><div class="answer">1) The function is continuous at \(0\), but \(D_-f(0)=2\) and \(D_+f(0)=3\), so \(f'(0)\) does not exist. 2) \(D_-f(0)=0\) and \(D_+f(0)=0\), so \(f'(0)=0\).</div>
+</section>
+
+<section class="slide"><div class="kicker">Parameter Challenge</div><h2>Make a piecewise function differentiable</h2>
+<div class="problem"><h4>1</h4><p>Find all real numbers \(a\) and \(b\) such that \(f'(0)\) exists.</p><div class="bigmath">\[f(x)=\begin{cases}x^2+2x,&x&lt;0\\ax+b,&x\ge0\end{cases}\]</div><button class="btn small" onclick="toggleAnswer(this)">Show solution</button><div class="answer">Continuity at \(0\): left value \(0\), right value \(b\), so \(b=0\). Left derivative at \(0\) is \(2\); right derivative is \(a\). Therefore \(a=2\), \(b=0\).</div></div>
+<div class="problem"><h4>2</h4><p>Find \(k\) and \(m\) so that \(g\) is differentiable at \(x=1\).</p><div class="bigmath">\[g(x)=\begin{cases}kx^2+1,&x\le1\\\sqrt{x+3}+m,&x&gt;1\end{cases}\]</div><button class="btn small" onclick="toggleAnswer(this)">Show solution</button><div class="answer">Continuity: \(k+1=2+m\), so \(m=k-1\). Left derivative at \(1\): \(2k\). Right derivative: \(\dfrac{1}{2\sqrt{4}}=\dfrac14\). Thus \(2k=\dfrac14\), so \(k=\dfrac18\) and \(m=-\dfrac78\).</div></div>
+</section>
+
+<section class="slide"><div class="kicker">Mixed Graph</div><h2>Continuity and differentiability from a graph</h2>
+<div class="grid2">
+  <div class="graphbox"><div class="graph" data-graph="mixed_graph_1"></div></div>
+  <div class="problem"><h4>Task</h4><p>List all \(x\)-values where the function is:</p><ol><li>not continuous</li><li>continuous but not differentiable</li></ol><button class="btn small" onclick="toggleAnswer(this)">Show check</button><div class="answer">Not continuous: \(x=-1\) and \(x=3\). Continuous but not differentiable: \(x=1\), because the graph has a corner there.</div></div>
+</div>
+</section>
+
+<section class="slide"><div class="kicker">Mixed Graph</div><h2>Continuity and differentiability from another graph</h2>
+<div class="grid2">
+  <div class="graphbox"><div class="graph" data-graph="mixed_graph_2"></div></div>
+  <div class="problem"><h4>Task</h4><p>List all \(x\)-values where the function is:</p><ol><li>not continuous</li><li>continuous but not differentiable</li></ol><button class="btn small" onclick="toggleAnswer(this)">Show check</button><div class="answer">Not continuous: \(x=-2\) and \(x=4\). Continuous but not differentiable: \(x=0\), where the graph has a vertical-tangent style point.</div></div>
+</div>
+</section>
+
+<section class="slide"><div class="kicker">AP Style</div><h2>AP-style conceptual check</h2>
+<div class="problem"><h4>1</h4><p>If \(f\) is continuous on \([a,b]\) but not differentiable at some \(c\), where \(a&lt;c&lt;b\), which could be true?</p><ol type="A"><li>\(x=c\) is a vertical asymptote of \(f\).</li><li>\(\lim_{x\to c}f(x)\ne f(c)\).</li><li>The graph of \(f\) has a cusp at \(x=c\).</li><li>\(f(c)\) is undefined.</li></ol><button class="btn small" onclick="toggleAnswer(this)">Show answer</button><div class="answer">C. A cusp can be continuous but not differentiable. Choices A, B, and D violate continuity.</div></div>
+<div class="problem"><h4>2</h4><p>If \(g\) is differentiable at \(x=c\), which must be true?</p><p><span class="pill">I. \(g\) is continuous at \(c\)</span><span class="pill">II. \(\lim_{x\to c}g(x)\) exists</span><span class="pill">III. \(\lim_{h\to0}\dfrac{g(c+h)-g(c)}{h}\) exists</span></p><button class="btn small" onclick="toggleAnswer(this)">Show answer</button><div class="answer">I, II, and III. Differentiability includes existence of the derivative limit and implies continuity.</div></div>
+</section>
+
+<section class="slide"><div class="kicker">AP Style</div><h2>Graph-based multiple choice</h2>
+<div class="grid2">
+  <div class="graphbox"><div class="graph" data-graph="ap_graph_diff"></div></div>
+  <div class="problem"><h4>Question</h4><p>Which statement is true for the graph shown?</p><ol type="A"><li>\(f\) is continuous and differentiable at every shown \(x\)-value.</li><li>\(f\) is not continuous at \(x=-1\).</li><li>\(f\) is not continuous at \(x=1\), so it is not differentiable there.</li><li>\(f\) is differentiable at \(x=3\) but not continuous there.</li></ol><button class="btn small" onclick="toggleAnswer(this)">Show answer</button><div class="answer">C. A discontinuity at \(x=1\) prevents differentiability at \(x=1\).</div></div>
+</div>
+</section>
+
+<section class="slide"><div class="kicker">Hard Limit</div><h2>Derivative limit transformations</h2>
+<div class="grid2">
+<div class="problem"><h4>1</h4><p>If \(f\) is differentiable at \(x=a\), evaluate:</p><div class="bigmath">\[\lim_{h\to0}\frac{f(a+ch)-f(a)}{h}\]</div><button class="btn small" onclick="toggleAnswer(this)">Show solution</button><div class="answer">Multiply and divide by \(ch\): \(\dfrac{f(a+ch)-f(a)}{ch}\cdot c\to c f'(a)\).</div></div>
+<div class="problem"><h4>2</h4><p>If \(f\) is differentiable at \(a\ne0\), evaluate:</p><div class="bigmath">\[\lim_{x\to a}\frac{[f(x)]^2-[f(a)]^2}{x^2-a^2}\]</div><button class="btn small" onclick="toggleAnswer(this)">Show solution</button><div class="answer">Factor: \(\dfrac{(f(x)-f(a))(f(x)+f(a))}{(x-a)(x+a)}\). The limit is \(f'(a)\cdot\dfrac{2f(a)}{2a}=\dfrac{f(a)f'(a)}{a}\).</div></div>
+</div>
+</section>
+
+<section class="slide"><div class="kicker">Hard Limit</div><h2>More derivative limit forms</h2>
+<div class="grid2">
+<div class="problem"><h4>1</h4><p>If \(f(3)=5\) and \(f'(3)=-2\), evaluate:</p><div class="bigmath">\[\lim_{x\to3}\frac{x f(3)-3f(x)}{x-3}\]</div><button class="btn small" onclick="toggleAnswer(this)">Show solution</button><div class="answer">Rewrite numerator: \(5x-3f(x)=5(x-3)+15-3f(x)=5(x-3)-3(f(x)-5)\). Divide by \(x-3\): \(5-3\dfrac{f(x)-f(3)}{x-3}\to5-3(-2)=11\).</div></div>
+<div class="problem"><h4>2</h4><p>Suppose \(f(0)=0\), \(f'(0)\) exists, and \(f(x)\le x\) for all \(x\). What can be concluded about \(f'(0)\)?</p><button class="btn small" onclick="toggleAnswer(this)">Show guide</button><div class="answer">For \(h&gt;0\), \(\dfrac{f(h)}{h}\le1\). For \(h&lt;0\), division by a negative reverses the inequality, so \(\dfrac{f(h)}{h}\ge1\). If the two-sided limit exists, the only possible value is \(1\). Hence \(f'(0)=1\).</div></div>
+</div>
+
+</section>
+
+<section class="slide"><div class="kicker">Derivative Limits</div><h2>Derivative-limit traps</h2>
+<div class="grid2">
+<div class="problem"><h4>1</h4><p>If \(f\) is differentiable at \(x=4\), \(f(4)=5\), and \(f'(4)=3\), evaluate:</p><div class="bigmath">\[\lim_{x\to4}\frac{f(x)-5}{x-4}\]</div><button class="btn small" onclick="toggleAnswer(this)">Show solution</button><div class="answer">This is exactly the alternate form of the derivative at \(x=4\), so the value is \(f'(4)=3\).</div></div>
+<div class="problem"><h4>2</h4><p>If \(h\) is differentiable at \(x=1\), \(h(1)=6\), and \(h'(1)=0\), evaluate:</p><div class="bigmath">\[\lim_{u\to0}\frac{h(1+u)-6}{u}\]</div><button class="btn small" onclick="toggleAnswer(this)">Show solution</button><div class="answer">Since \(h(1)=6\), the numerator is \(h(1+u)-h(1)\). The limit is \(h'(1)=0\).</div></div>
+<div class="problem"><h4>3</h4><p>If \(p(3)=2\) and \(p'(3)=-1\), evaluate:</p><div class="bigmath">\[\lim_{x\to3}\frac{p(x)-2}{3-x}\]</div><button class="btn small" onclick="toggleAnswer(this)">Show solution</button><div class="answer">\(3-x=-(x-3)\), so the limit is \(-p'(3)=1\).</div></div>
+<div class="problem"><h4>4</h4><p>A function \(H\) satisfies \(H(x+y)=H(x)H(y)\), \(H(0)=1\), and</p><div class="bigmath">\[\lim_{u\to0}\frac{H(u)-1}{u}=3.\]</div><p>Prove \(H\) is differentiable and find \(H'(x)\).</p><button class="btn small" onclick="toggleAnswer(this)">Show solution</button><div class="answer">\(\displaystyle \frac{H(x+u)-H(x)}{u}=\frac{H(x)H(u)-H(x)}{u}=H(x)\frac{H(u)-1}{u}\to3H(x)\). Therefore \(H'(x)=3H(x)\).</div></div>
+</div>
+</section>
+
+
+<section class="slide"><div class="kicker">One-sided Derivatives</div><h2>One-sided derivative limit challenges</h2>
+<p class="smalltext">For each problem, let \(h(3)=6\), \(h'_+(3)=4\), and \(h'_-(3)=2\).</p>
+<div class="grid2">
+<div class="problem"><h4>1</h4><p>Determine whether each limit exists. If it exists, find its value.</p><div class="bigmath">\[\lim_{x\to3}\frac{h(x)-6}{|x-3|}\qquad\text{and}\qquad \lim_{x\to3}\frac{|h(x)-6|}{x-3}\]</div><button class="btn small" onclick="toggleAnswer(this)">Show guide</button><div class="answer">Use \(h(x)-6\sim h'_\pm(3)(x-3)\). For the first limit: left side \(-2\), right side \(4\), so it does not exist. For the second limit, since both one-sided slopes are positive, \(|h(x)-6|\sim |h'_\pm(3)(x-3)|\). Left side \(-2\), right side \(4\), so it does not exist.</div></div>
+<div class="problem"><h4>2</h4><p>Find \(a\), if it exists, so that the limit exists.</p><div class="bigmath">\[\lim_{x\to3}\frac{h(x)-6-a|x-3|}{x-3}\]</div><button class="btn small" onclick="toggleAnswer(this)">Show guide</button><div class="answer">Right side: \(4-a\). Left side: \(2+a\). Set \(2+a=4-a\), so \(a=1\). The limit value would be \(3\).</div></div>
+<div class="problem"><h4>3</h4><p>Find the limit.</p><div class="bigmath">\[\lim_{x\to3}\frac{h(x)-6}{\sqrt{|x-3|}}\]</div><button class="btn small" onclick="toggleAnswer(this)">Show guide</button><div class="answer">Since \(h(x)-6=O(x-3)\), the quotient behaves like a constant times \(\dfrac{x-3}{\sqrt{|x-3|}}\), which tends to \(0\) from both sides. The limit is \(0\).</div></div>
+<div class="problem"><h4>4</h4><p>Find the limit, or explain why it cannot be a two-sided finite limit.</p><div class="bigmath">\[\lim_{x\to3}\frac{h(x)-h(3)}{x-3+|x-3|}\]</div><button class="btn small" onclick="toggleAnswer(this)">Show guide</button><div class="answer">For \(x>3\), the denominator is \(2(x-3)\), giving \(\frac{1}{2}h'_+(3)=2\). For \(x&lt;3\), the denominator is \(0\), so the expression is not defined on the left side. The two-sided limit does not exist.</div></div>
+</div>
+</section>
+
+<section class="slide"><div class="kicker">One-sided Derivatives</div><h2>Build a limit from unequal one-sided slopes</h2>
+<p class="smalltext">For each problem, let \(h(3)=6\), \(h'_+(3)=4\), and \(h'_-(3)=2\).</p>
+<div class="grid2">
+<div class="problem"><h4>5</h4><p>Determine whether the following limit exists.</p><div class="bigmath">\[\lim_{x\to3}\frac{h(x)-6-3(x-3)}{|x-3|}\]</div><button class="btn small" onclick="toggleAnswer(this)">Show guide</button><div class="answer">Right side: \(\dfrac{(4-3)(x-3)}{|x-3|}=1\). Left side: \(\dfrac{(2-3)(x-3)}{|x-3|}=1\). The limit exists and equals \(1\).</div></div>
+<div class="problem"><h4>6</h4><p>Find \(a\), if it exists, so that the following limit exists.</p><div class="bigmath">\[\lim_{x\to3}\frac{h(x)-6-a(x-3)}{|x-3|}\]</div><button class="btn small" onclick="toggleAnswer(this)">Show guide</button><div class="answer">Right side: \(4-a\). Left side: \(-(2-a)=a-2\). Set \(4-a=a-2\), so \(a=3\). The common limit is \(1\).</div></div>
+<div class="problem"><h4>7</h4><p>If \(f\) is differentiable at \(x=1\) and</p><div class="bigmath">\[\lim_{h\to0}\frac{f(1+h)-3h+h^2}{h}=8,\]</div><p>find \(f(1)+f'(1)\).</p><button class="btn small" onclick="toggleAnswer(this)">Show guide</button><div class="answer">Write the expression as \(\dfrac{f(1+h)-f(1)}{h}+\dfrac{f(1)}{h}-3+h\). A finite limit forces \(f(1)=0\). Then \(f'(1)-3=8\), so \(f'(1)=11\). Thus \(f(1)+f'(1)=11\).</div></div>
+<div class="problem"><h4>8</h4><p>If \(f\) is differentiable at \(x=1\) and</p><div class="bigmath">\[\lim_{h\to0}\frac{f(1+h)-f(1-h)+4h}{2h}=7,\]</div><p>find \(f'(1)\).</p><button class="btn small" onclick="toggleAnswer(this)">Show guide</button><div class="answer">Since \(f(1+h)-f(1-h)=[f(1+h)-f(1)]+[f(1)-f(1-h)]\), dividing by \(2h\) gives \(\frac{f'(1)+f'(1)}{2}=f'(1)\). Hence \(f'(1)+2=7\), so \(f'(1)=5\).</div></div>
+</div>
+</section>
+
+<section class="slide"><div class="kicker">Derivative Limits</div><h2>Parameters inside derivative limits</h2>
+<div class="grid2">
+<div class="problem"><h4>9</h4><p>If \(f\) is differentiable at \(x=1\) and</p><div class="bigmath">\[\lim_{h\to0}\frac{f(1+h)+ah}{h}=b,\]</div><p>find \(f(1)\) and \(f'(1)\) in terms of \(a\) and \(b\).</p><button class="btn small" onclick="toggleAnswer(this)">Show guide</button><div class="answer">A finite limit forces \(f(1)=0\). Then the limit becomes \(f'(1)+a=b\), so \(f'(1)=b-a\).</div></div>
+<div class="problem"><h4>10</h4><p>If \(h(x+y)=h(x)h(y)\), \(h(0)=1\), and</p><div class="bigmath">\[\lim_{x\to0}\frac{h(x)-1}{x}=3,\]</div><p>prove that</p><div class="bigmath">\[\lim_{t\to0}\frac{h(x+t)-h(x)}{t}=3h(x).\]</div><button class="btn small" onclick="toggleAnswer(this)">Show proof</button><div class="answer">Use \(h(x+t)=h(x)h(t)\). Then \(\dfrac{h(x+t)-h(x)}{t}=h(x)\dfrac{h(t)-1}{t}\to3h(x)\).</div></div>
+</div>
+</section>
+
+
+<section class="slide"><div class="kicker">Challenge</div><h2>Nested derivative limits</h2>
+<div class="grid2">
+<div class="problem"><h4>1</h4><p>Let \(f\) be differentiable at \(x=1\), and suppose</p>
+<div class="bigmath">\[\lim_{h\to0}\frac{f(1+h^2)-f(1-h^2)+h f(1+h)-h f(1-h)}{h^2}=10.\]</div>
+<p>Find \(f'(1)\).</p><button class="btn small" onclick="toggleAnswer(this)">Show guide</button><div class="answer">\(\dfrac{f(1+h^2)-f(1-h^2)}{h^2}\to 2f'(1)\). Also \(\dfrac{h(f(1+h)-f(1-h))}{h^2}=\dfrac{f(1+h)-f(1-h)}{h}\to2f'(1)\). Therefore the full limit is \(4f'(1)=10\), so \(f'(1)=\dfrac52\).</div></div>
+<div class="problem"><h4>2</h4><p>Let \(f\) be differentiable at \(x=1\). For real constants \(a\) and \(\lambda\), define</p>
+<div class="bigmath">\[L(a,\lambda)=\lim_{h\to0}\frac{f(1+h+a|h|)+\lambda f(1-h+a|h|)-(1+\lambda)f(1)}{h}.\]</div>
+<p>Determine all values of \(a\) and \(\lambda\) for which \(L(a,\lambda)\) is guaranteed to exist for every differentiable \(f\). Then express \(L(a,\lambda)\) in terms of \(f'(1)\).</p><button class="btn small" onclick="toggleAnswer(this)">Show guide</button><div class="answer">For \(h&gt;0\), the coefficient of \(f'(1)\) is \((1+a)+\lambda(a-1)\). For \(h&lt;0\), it is \((1-a)+\lambda(-1-a)\). These must match for every differentiable \(f\), so \(2a(1+\lambda)=0\). Thus \(a=0\) or \(\lambda=-1\). If \(a=0\), then \(L=(1-\lambda)f'(1)\). If \(\lambda=-1\), then \(L=2f'(1)\).</div></div>
+</div>
+</section>
+<section class="slide"><div class="kicker">Functional Equation</div><h2>Proving differentiability from a local limit</h2>
+<div class="grid2">
+<div class="problem"><h4>1</h4><p>Let \(h(x+y)=h(x)h(y)\) for all real \(x,y\). Suppose</p><div class="bigmath">\[h(x)=1+xL(x),\qquad \lim_{x\to0}L(x)=2.\]</div><p>Prove that \(h\) is differentiable on \(\mathbb{R}\), and find \(h'(x)\) in terms of \(h(x)\).</p><button class="btn small" onclick="toggleAnswer(this)">Show proof</button><div class="answer">\(\dfrac{h(t)-1}{t}=L(t)\to2\). Then \(\dfrac{h(x+t)-h(x)}{t}=h(x)\dfrac{h(t)-1}{t}\to2h(x)\). Therefore \(h'(x)=2h(x)\).</div></div>
+<div class="problem"><h4>2</h4><p>Let \(h(x+y)=h(x)h(y)\) and</p><div class="bigmath">\[\lim_{x\to0}\frac{h(x)-1}{x}=5.\]</div><p>Prove that \(h\) is differentiable on \(\mathbb{R}\), and prove that \(h'(x)=5h(x)\).</p><button class="btn small" onclick="toggleAnswer(this)">Show proof</button><div class="answer">For any fixed \(x\), \(\dfrac{h(x+t)-h(x)}{t}=h(x)\dfrac{h(t)-1}{t}\to5h(x)\). Thus \(h'(x)=5h(x)\).</div></div>
+<div class="problem"><h4>3</h4><p>Let \(h(x+y)=h(x)h(y)\). Suppose \(h\) is differentiable at \(0\) and \(h'(0)=k\). Prove that \(h\) is differentiable for every real \(x\), and find \(h'(x)\).</p><button class="btn small" onclick="toggleAnswer(this)">Show proof</button><div class="answer">If \(h(0)=0\), then \(h(x)=h(x)h(0)=0\) for all \(x\), so \(k=0\) and \(h'(x)=kh(x)\). Otherwise \(h(0)=1\), so \(\lim_{t\to0}\dfrac{h(t)-1}{t}=k\). Then \(\dfrac{h(x+t)-h(x)}{t}=h(x)\dfrac{h(t)-1}{t}\to kh(x)\).</div></div>
+<div class="problem"><h4>4</h4><p>Let \(h(x+y)=h(x)h(y)\), \(h(x)=1+xL(x)\), and \(\lim_{x\to0}L(x)=1\). Prove that</p><div class="bigmath">\[\lim_{x\to0}\frac{h(ax)-1}{x}=a\]</div><p>for every real constant \(a\).</p><button class="btn small" onclick="toggleAnswer(this)">Show proof</button><div class="answer">\(h(ax)=1+axL(ax)\), so \(\dfrac{h(ax)-1}{x}=aL(ax)\to a\).</div></div>
+</div>
+</section>
+
+<section class="slide"><div class="kicker">Functional Equation</div><h2>Extensions from \(h(x+y)=h(x)h(y)\)</h2>
+<p class="smalltext">Assume \(h(x+y)=h(x)h(y)\), \(h(x)=1+xL(x)\), and \(\lim_{x\to0}L(x)=1\), unless stated otherwise.</p>
+<div class="grid2">
+<div class="problem"><h4>1</h4><p>Prove that \(h(-x)=\dfrac{1}{h(x)}\) for every real \(x\), and use this to show that \(h(x)\ne0\) for all real \(x\).</p><button class="btn small" onclick="toggleAnswer(this)">Show proof</button><div class="answer">From \(h(0)=h(x+(-x))=h(x)h(-x)\). Also \(h(0)=1\) from \(h(t)=1+tL(t)\) at \(t=0\). Hence \(h(x)h(-x)=1\), so \(h(x)\ne0\) and \(h(-x)=1/h(x)\).</div></div>
+<div class="problem"><h4>2</h4><p>Suppose instead that \(\lim_{x\to0}\dfrac{h(x)-1}{x}=4\). Prove that \(h(x)>0\) for all real \(x\), and then prove that \(h'(x)=4h(x)\).</p><button class="btn small" onclick="toggleAnswer(this)">Show proof</button><div class="answer">The local limit gives \(h(t)\to1\), so for small \(t\), \(h(t)>0\). For any \(x\), write \(x=n(x/n)\) with \(n\) large enough that \(h(x/n)>0\). Then \(h(x)=h(x/n)^n>0\). The derivative proof gives \(h'(x)=4h(x)\).</div></div>
+<div class="problem"><h4>3</h4><p>Define \(F(x)=h(x^2)\). Prove that \(F\) is differentiable for every real \(x\), and find \(F'(x)\) in terms of \(x\) and \(h(x^2)\).</p><button class="btn small" onclick="toggleAnswer(this)">Show proof</button><div class="answer">Use \(F(x+t)-F(x)=h((x+t)^2)-h(x^2)=h(x^2)\big(h(2xt+t^2)-1\big)\). Since \(h(s)=1+sL(s)\) and \(L(s)\to1\), \(\dfrac{h(2xt+t^2)-1}{t}=(2x+t)L(2xt+t^2)\to2x\). Hence \(F'(x)=2x h(x^2)\).</div></div>
+<div class="problem"><h4>4</h4><p>Define \(g(x)=\ln(h(x))\). Prove that \(g\) is differentiable and find \(g'(x)\).</p><button class="btn small" onclick="toggleAnswer(this)">Show proof</button><div class="answer">Since \(h(x)>0\), \(g\) is defined. Also \(g(x+t)-g(x)=\ln(h(x+t))-\ln(h(x))=\ln(h(t))\). Because \(h(t)=1+tL(t)\) and \(L(t)\to1\), \(\dfrac{\ln(h(t))}{t}\to1\). Thus \(g'(x)=1\).</div></div>
+</div>
+</section>
+
+
+<section class="slide"><div class="kicker">Ordering</div><h2>Order values from a graph</h2>
+<div class="grid2">
+  <div class="graphbox"><div class="graph" data-graph="order_graph"></div></div>
+  <div class="problem"><h4>Task</h4><p>Use the graph of \(f(x)=x^2+3\) to list the following in increasing order.</p><div class="bigmath">\[f(1),\qquad f(2)-f(1),\qquad \frac{f(1.5)-f(1)}{0.5},\qquad f'(1)\]</div><button class="btn small" onclick="toggleAnswer(this)">Show solution</button><div class="answer">\(f'(1)=2\). \(\dfrac{f(1.5)-f(1)}{0.5}=2.5\). \(f(2)-f(1)=3\). \(f(1)=4\). Increasing order: \(f'(1),\ \dfrac{f(1.5)-f(1)}{0.5},\ f(2)-f(1),\ f(1)\).</div></div>
+</div>
+</section>
+
+<section class="slide"><div class="kicker">Interpretation</div><h2>Interpreting derivative statements</h2>
+<div class="grid2">
+<div class="problem"><h4>1</h4><p>Let \(c(t)\) represent the amount of a chemical present, in grams, at time \(t\) minutes. Interpret \(c'(12)=-0.8\).</p></div>
+<div class="problem"><h4>2</h4><p>Let \(p(x)\) represent the mass, in kg, of the first \(x\) meters of a pipe. Interpret \(p'(4)=1.6\).</p></div>
+<div class="problem"><h4>3</h4><p>Let \(S(t)\) be the trading value of a stock at time \(t\) days. If \(S'(t)&lt;0\), what does this mean? Does that alone prove you should sell?</p></div>
+<div class="problem"><h4>4</h4><p>Two stocks have values \(f(t)\) and \(g(t)\), where \(f(t)&gt;g(t)\) and \(0&lt;f'(t)&lt;g'(t)\). Which stock has the larger current value? Which stock is increasing faster?</p></div>
+</div>
+<button class="btn small" onclick="toggleAnswer(this)">Show guide</button><div class="answer">1) At 12 minutes, the chemical amount is decreasing at about \(0.8\) grams per minute. 2) At 4 meters, adding a small additional length increases mass at about \(1.6\) kg per meter. 3) The stock value is decreasing at that time; selling needs more information than just instantaneous trend. 4) \(f\) has the larger current value; \(g\) is increasing faster because \(g'(t)&gt;f'(t)\), even though \(g(t)\) is currently lower.</div>
+</section>
+
+<section class="slide"><div class="kicker">Application</div><h2>Piecewise rate: phone charge</h2>
+<div class="problem"><h4>Task</h4><p>A phone company charges one dirham for the first 20 minutes of a call, then 10 fils per minute for the next 60 minutes, and 8 fils per minute for each additional minute. Let \(C(t)\) be the price in fils of a \(t\)-minute call, \(t&gt;0\). Determine \(C'(t)\) as completely as possible.</p><button class="btn small" onclick="toggleAnswer(this)">Show solution</button><div class="answer"><p>Since \(1\) dirham \(=100\) fils,</p><div class="bigmath">\[C(t)=\begin{cases}100,&0&lt;t\le20\\100+10(t-20),&20&lt;t\le80\\700+8(t-80),&t&gt;80\end{cases}\]</div><p>Thus \(C'(t)=0\) on \((0,20)\), \(C'(t)=10\) on \((20,80)\), and \(C'(t)=8\) on \((80,\infty)\). The derivative is not defined at \(t=20\) or \(t=80\).</p></div></div>
+</section>
+
+<section class="slide"><div class="kicker">Application</div><h2>Derivative graph in context</h2>
+<div class="grid2">
+  <div class="graphbox"><div class="graph" data-graph="disease_model"></div></div>
+  <div class="problem"><h4>Disease spread model</h4><p>Let \(I(t)\) be the number of infected people at time \(t\). Early in the outbreak \(I(t)\) increases slowly, then faster, then the infection rate decreases back to \(0\). Sketch \(I(t)\) and describe \(I'(t)\).</p><button class="btn small" onclick="toggleAnswer(this)">Show guide</button><div class="answer">\(I(t)\) is increasing and levels off. \(I'(t)\) is positive, rises to a maximum, then decreases toward \(0\). It should not be negative while the model says the number infected is still increasing.</div></div>
+</div>
+</section>
+
+<section class="slide"><div class="kicker">Challenge</div><h2>Construct and justify</h2>
+<div class="grid2">
+<div class="problem"><h4>1</h4><p>Give an example of a function that is continuous at \(x=0\) but not differentiable at \(x=0\). Justify with one-sided derivatives.</p></div>
+<div class="problem"><h4>2</h4><p>Give an example of a function with \(f'(0)=0\) but no local maximum or minimum at \(x=0\).</p></div>
+<div class="problem"><h4>3</h4><p>Give an example of a function that is differentiable everywhere, but whose derivative is not constant.</p></div>
+<div class="problem"><h4>4</h4><p>Can a derivative function have a jump discontinuity? Explain without using derivative rules.</p></div>
+</div>
+<button class="btn small" onclick="toggleAnswer(this)">Show examples</button><div class="answer">1) \(f(x)=|x|\). Left derivative \(-1\), right derivative \(1\). 2) \(f(x)=x^3\), since \(f'(0)=0\) but the function keeps increasing through \(0\). 3) \(f(x)=x^2\), whose derivative varies with \(x\). 4) A derivative can be discontinuous, but not every jump-shaped graph can be a derivative; derivative functions have special intermediate-value behavior later studied as Darboux's property.</div>
+</section>
+
+<section class="slide"><div class="kicker">Final AP Set</div><h2>AP-style mixed set</h2>
+<div class="grid2">
+<div class="problem"><h4>1</h4><p>For \(f(x)=\begin{cases}x^2+k,&x&lt;2\\3x+1,&x\ge2\end{cases}\), find \(k\) so that \(f\) is continuous at \(2\). Is \(f\) differentiable at \(2\)?</p></div>
+<div class="problem"><h4>2</h4><p>The function \(f\) is differentiable and \(f(4)=7\), \(f'(4)=-3\). Estimate \(f(4.02)\).</p></div>
+<div class="problem"><h4>3</h4><p>If \(f'(x)&lt;0\) on \((1,5)\), which must be true about \(f\) on \((1,5)\)?</p></div>
+<div class="problem"><h4>4</h4><p>Let \(f(x)=|x^2-4x|\). Identify all \(x\)-values at which \(f\) is not differentiable.</p></div>
+</div>
+<button class="btn small" onclick="toggleAnswer(this)">Show answers</button><div class="answer">1) Continuity: \(4+k=7\), so \(k=3\). Left derivative at \(2\) is \(4\), right derivative is \(3\), so not differentiable. 2) \(f(4.02)\approx 7+(-3)(0.02)=6.94\). 3) \(f\) is decreasing. 4) \(x=0\) and \(x=4\), where the inside expression changes sign and the absolute value creates corners.</div>
+</section>
+
+<section class="slide"><div class="kicker">Exit Ticket</div><h2>Exit ticket</h2>
+<div class="grid2">
+<div class="problem"><h4>1</h4><p>Estimate \(f'(3)\) using the table.</p><table class="table"><tr><th>\(x\)</th><td>2.8</td><td>3</td><td>3.2</td></tr><tr><th>\(f(x)\)</th><td>6.17</td><td>6.90</td><td>7.69</td></tr></table></div>
+<div class="problem"><h4>2</h4><p>Find \(f'(0)\), if it exists: \(f(x)=\begin{cases}x^2,&x&lt;0\\2x,&x\ge0\end{cases}\).</p></div>
+<div class="problem"><h4>3</h4><p>True or false: If \(f\) is differentiable at \(a\), then \(f\) is continuous at \(a\).</p></div>
+<div class="problem"><h4>4</h4><p>Sketch a graph with exactly one point where it is continuous but not differentiable.</p></div>
+</div>
+<button class="btn small" onclick="toggleAnswer(this)">Show answers</button><div class="answer">1) Centered estimate \(\dfrac{7.69-6.17}{0.4}=3.8\). 2) Left derivative \(0\), right derivative \(2\), so \(f'(0)\) does not exist. 3) True. 4) Example: \(y=|x|\), with the only issue at \(x=0\).</div>
+</section>
+
+</main><footer class="footer"><div class="nav"><button class="btn secondary" onclick="prevSlide()">← Prev</button><button class="btn" onclick="nextSlide()">Next →</button><button class="btn ghost" onclick="toggleAllAnswers()">Answers</button></div><select id="jump" onchange="goToSlide(Number(this.value))"></select></footer>
+</div>
+<script>
+const slides=[...document.querySelectorAll('.slide')];let current=0;const counter=document.getElementById('counter'),bar=document.getElementById('bar'),jump=document.getElementById('jump');slides.forEach((s,i)=>{const opt=document.createElement('option');opt.value=i;opt.textContent=`${i+1}. ${s.querySelector('h1,h2')?.textContent?.slice(0,58)||'Slide'}`;jump.appendChild(opt)});function showSlide(i){current=Math.max(0,Math.min(slides.length-1,i));slides.forEach((s,idx)=>s.classList.toggle('active',idx===current));counter.textContent=`${current+1} / ${slides.length}`;bar.style.width=`${((current+1)/slides.length)*100}%`;jump.value=current}function nextSlide(){showSlide(current+1)}function prevSlide(){showSlide(current-1)}function goToSlide(i){showSlide(i)}document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='PageDown')nextSlide();if(e.key==='ArrowLeft'||e.key==='PageUp')prevSlide()});function toggleAnswer(btn){btn.nextElementSibling?.classList.toggle('show')}function toggleAllAnswers(){document.querySelectorAll('.answer').forEach(a=>a.classList.toggle('show'))}
+function svgEl(name,attrs={}){const e=document.createElementNS('http://www.w3.org/2000/svg',name);for(const[k,v]of Object.entries(attrs))e.setAttribute(k,v);return e}
+function drawGraph(container,cfg){const W=520,H=340,p=36;const svg=svgEl('svg',{viewBox:`0 0 ${W} ${H}`,role:'img'});container.appendChild(svg);svg.appendChild(svgEl('rect',{x:0,y:0,width:W,height:H,rx:18,fill:'#fff'}));const xmin=cfg.xmin??-5,xmax=cfg.xmax??5,ymin=cfg.ymin??-5,ymax=cfg.ymax??5;const X=x=>p+(x-xmin)/(xmax-xmin)*(W-2*p);const Y=y=>H-p-(y-ymin)/(ymax-ymin)*(H-2*p);for(let x=Math.ceil(xmin);x<=Math.floor(xmax);x++){svg.appendChild(svgEl('line',{x1:X(x),y1:Y(ymin),x2:X(x),y2:Y(ymax),class:x===0?'axis':'gridline'}));if(x!==0){let t=svgEl('text',{x:X(x),y:Y(0)+16,class:'tick','text-anchor':'middle'});t.textContent=x;svg.appendChild(t)}}for(let y=Math.ceil(ymin);y<=Math.floor(ymax);y++){svg.appendChild(svgEl('line',{x1:X(xmin),y1:Y(y),x2:X(xmax),y2:Y(y),class:y===0?'axis':'gridline'}));if(y!==0){let t=svgEl('text',{x:X(0)-8,y:Y(y)+4,class:'tick','text-anchor':'end'});t.textContent=y;svg.appendChild(t)}}let tx=svgEl('text',{x:X(xmax)-4,y:Y(0)-8,class:'axislabel','text-anchor':'end'});tx.textContent='x';svg.appendChild(tx);let ty=svgEl('text',{x:X(0)+10,y:Y(ymax)+16,class:'axislabel'});ty.textContent='y';svg.appendChild(ty);
+function pathFor(f,range,steps=500){let d='',started=false;const a=range?.[0]??xmin,b=range?.[1]??xmax;for(let i=0;i<=steps;i++){const x=a+(b-a)*i/steps;let y=f(x);if(!isFinite(y)||y<ymin-4||y>ymax+4){started=false;continue}d+=(started?'L':'M')+X(x).toFixed(2)+','+Y(y).toFixed(2)+' ';started=true}return d}
+(cfg.shades||[]).forEach(s=>{const poly=svgEl('polygon',{points:s.points.map(([x,y])=>`${X(x)},${Y(y)}`).join(' '),class:'shade'});svg.appendChild(poly)});
+(cfg.funcs||[]).forEach(fn=>svg.appendChild(svgEl('path',{d:pathFor(fn.f,fn.range,fn.steps),class:`curve ${fn.cls||'f'}`})));
+(cfg.segments||[]).forEach(s=>svg.appendChild(svgEl('line',{x1:X(s.x1),y1:Y(s.y1),x2:X(s.x2),y2:Y(s.y2),class:s.cls||'tangent'})));
+(cfg.vlines||[]).forEach(x=>svg.appendChild(svgEl('line',{x1:X(x),y1:Y(ymin),x2:X(x),y2:Y(ymax),class:'vline'})));
+(cfg.points||[]).forEach(pt=>{svg.appendChild(svgEl('circle',{cx:X(pt.x),cy:Y(pt.y),r:pt.r||6,class:pt.open?`open ${pt.cls||'f'}`:`closed ${pt.cls||'f'}`}));if(pt.label){let t=svgEl('text',{x:X(pt.x)+(pt.dx??8),y:Y(pt.y)+(pt.dy??-10),class:`label ${pt.color||'maroon'}`});t.textContent=pt.label;svg.appendChild(t)}});
+(cfg.labels||[]).forEach(l=>{let t=svgEl('text',{x:X(l.x),y:Y(l.y),class:`label ${l.color||'maroon'}`});t.textContent=l.text;svg.appendChild(t)});
+}
+const graphDefs={
+secant_to_tangent:{xmin:-1,xmax:5,ymin:-2,ymax:8,funcs:[{f:x=>0.5*(x-1)*(x-1)+1,cls:'f'}],segments:[{x1:1,y1:1,x2:4,y2:5.5,cls:'secant'},{x1:-0.5,y1:1,x2:3.5,y2:1,cls:'tangent'}],points:[{x:1,y:1,label:'P',cls:'f'},{x:4,y:5.5,label:'Q',color:'gold',cls:'g'}],labels:[{x:2.7,y:3.8,text:'secant',color:'gold'},{x:2.25,y:2.15,text:'tangent',color:'teal'}]},
+estimate_parabola:{xmin:-5,xmax:7,ymin:-4,ymax:5,funcs:[{f:x=>-0.25*(x-1)*(x-1)+3,cls:'f'}],segments:[{x1:-2,y1:1,x2:0,y2:3,cls:'tangent'},{x1:-1.4,y1:3,x2:3.4,y2:3,cls:'tangent'},{x1:2.5,y1:3,x2:5.5,y2:-1.5,cls:'tangent'}],points:[{x:-1,y:2,label:'x=-1'},{x:1,y:3,label:'x=1'},{x:4,y:0.75,label:'x=4'}]},
+estimate_g:{xmin:-5,xmax:4,ymin:-4,ymax:5,funcs:[{f:x=>0.5*(x+1)*(x+1)-2,cls:'g'}],segments:[{x1:-3,y1:-0.5,x2:-1,y2:-2.5,cls:'tangent'},{x1:-1,y1:-2.5,x2:1,y2:-0.5,cls:'tangent'},{x1:0,y1:-2,x2:2,y2:2,cls:'tangent'}],points:[{x:0,y:-1.5,label:'0',cls:'g'},{x:-2,y:-1.5,label:'-2',cls:'g'},{x:1,y:0,label:'1',cls:'g'},{x:-1,y:-2,label:"g'=0",cls:'g'}]},
+labeled_curve:{xmin:-3,xmax:4,ymin:-2,ymax:4,funcs:[{f:x=>-0.12*(x+2.2)*(x+0.5)*(x-2.0)*(x-3.0)+1.0,cls:'f'}],points:[{x:-2.5,y:-0.782,label:'A'},{x:-1.525,y:2.324,label:'B'},{x:-0.3,y:0.654,label:'C'},{x:0.684,y:-0.249,label:'D'},{x:1.6,y:0.464,label:'E'},{x:2.566,y:1.431,label:'F'}]},
+f_and_derivative:{xmin:-4,xmax:4,ymin:-5,ymax:5,funcs:[{f:x=>0.25*x*x*x-3*x,cls:'f'},{f:x=>0.75*x*x-3,cls:'blue'}],points:[{x:-2,y:4,label:"f'=0"},{x:2,y:-4,label:"f'=0"}],labels:[{x:-3.5,y:-2.8,text:'f',color:'maroon'},{x:2.7,y:3.2,text:"f'",color:'blue'}]},
+sketch_fprime_cubic:{xmin:-5,xmax:5,ymin:-5,ymax:5,funcs:[{f:x=>0.125*x*x*x-1.5*x,cls:'f'}],points:[{x:-2,y:2,label:'slope 0'},{x:2,y:-2,label:'slope 0'}],labels:[{x:3.2,y:3.2,text:'y=f(x)',color:'maroon'}]},
+sketch_fprime_w:{xmin:-3,xmax:3,ymin:-1,ymax:5,funcs:[{f:x=>0.25*(x*x-1)*(x*x-1),cls:'f'}],points:[{x:-1,y:0,label:"f'=0"},{x:0,y:0.25,label:"f'=0",dy:-18},{x:1,y:0,label:"f'=0"}],labels:[{x:1.3,y:3,text:'f',color:'maroon'}]},
+fprime_parabola:{xmin:-4,xmax:4,ymin:-4,ymax:4,funcs:[{f:x=>-0.6*(x+2)*(x-2),cls:'blue'}],points:[{x:-2,y:0,label:'min of f?'},{x:2,y:0,label:'max of f?'}],labels:[{x:2.25,y:2.3,text:"y=f'(x)",color:'blue'}]},
+fprime_piecewise:{xmin:0,xmax:5,ymin:-3,ymax:3,segments:[{x1:0,y1:2,x2:2,y2:2,cls:'curve blue thin'},{x1:2,y1:-1,x2:5,y2:-1,cls:'curve blue thin'}],points:[{x:0,y:2,cls:'blue'},{x:2,y:2,open:true,cls:'blue'},{x:2,y:-1,cls:'blue'},{x:5,y:-1,cls:'blue'}],labels:[{x:0.35,y:2.4,text:"f'=2",color:'blue'},{x:3.2,y:-0.6,text:"f'=-1",color:'blue'}]},
+fprime_ap_piecewise:{xmin:-4,xmax:5,ymin:-3,ymax:3,segments:[{x1:-4,y1:1.5,x2:-1,y2:1.5,cls:'curve blue thin'},{x1:-1,y1:-2,x2:2,y2:-2,cls:'curve blue thin'},{x1:2,y1:1,x2:5,y2:1,cls:'curve blue thin'}],points:[{x:-1,y:1.5,open:true,cls:'blue'},{x:-1,y:-2,cls:'blue'},{x:2,y:-2,open:true,cls:'blue'},{x:2,y:1,cls:'blue'}],labels:[{x:3.4,y:1.4,text:"f'",color:'blue'}]},
+fail_discontinuity:{xmin:-2,xmax:2,ymin:-1,ymax:3,segments:[{x1:-2,y1:0,x2:0,y2:0,cls:'curve f thin'},{x1:0,y1:2,x2:2,y2:2,cls:'curve f thin'}],points:[{x:0,y:0,open:true},{x:0,y:2}]},
+fail_corner:{xmin:-2,xmax:2,ymin:-0.5,ymax:3,funcs:[{f:x=>Math.abs(x),cls:'f'}]},
+fail_cusp:{xmin:-2,xmax:2,ymin:-0.5,ymax:3,funcs:[{f:x=>Math.pow(Math.abs(x),2/3),cls:'f'}]},
+fail_vertical:{xmin:-2,xmax:2,ymin:-3,ymax:3,funcs:[{f:x=>Math.sign(x)*Math.pow(Math.abs(x),1/3),cls:'f'}]},
+abs_corner:{xmin:-2,xmax:4,ymin:-1,ymax:4,funcs:[{f:x=>Math.abs(x-1),cls:'f'}],points:[{x:1,y:0,label:'corner'}]},
+piecewise_corner:{xmin:0,xmax:4,ymin:0,ymax:6,segments:[{x1:0,y1:4,x2:2,y2:4,cls:'curve f thin'},{x1:2,y1:4,x2:4,y2:8,cls:'curve f thin'}],points:[{x:2,y:4,label:'corner'}]},
+cube_root:{xmin:-3,xmax:3,ymin:-2,ymax:2,funcs:[{f:x=>Math.sign(x)*Math.pow(Math.abs(x),1/3),cls:'f'}],points:[{x:0,y:0,label:'vertical tangent'}]},
+mixed_graph_1:{xmin:-4,xmax:5,ymin:-3,ymax:5,segments:[{x1:-4,y1:0,x2:-1,y2:2,cls:'curve f thin'},{x1:-1,y1:3,x2:1,y2:1,cls:'curve f thin'},{x1:1,y1:1,x2:3,y2:3,cls:'curve f thin'},{x1:3,y1:0,x2:5,y2:2,cls:'curve f thin'}],points:[{x:-1,y:2,open:true},{x:-1,y:3},{x:1,y:1,label:'corner'},{x:3,y:3,open:true},{x:3,y:0}]},
+mixed_graph_2:{xmin:-5,xmax:6,ymin:-3,ymax:5,segments:[{x1:-5,y1:2,x2:-2,y2:2,cls:'curve f thin'},{x1:-2,y1:0,x2:0,y2:0,cls:'curve f thin'},{x1:0,y1:0,x2:4,y2:2,cls:'curve f thin'},{x1:4,y1:2,x2:6,y2:3,cls:'curve f thin'}],points:[{x:-2,y:2,open:true},{x:-2,y:0},{x:0,y:0,label:'vertical tangent'},{x:4,y:2,open:true},{x:4,y:4}]},
+ap_graph_diff:{xmin:-4,xmax:5,ymin:-3,ymax:5,segments:[{x1:-4,y1:-1,x2:-1,y2:2,cls:'curve f thin'},{x1:-1,y1:2,x2:1,y2:0,cls:'curve f thin'},{x1:1,y1:3,x2:5,y2:1,cls:'curve f thin'}],points:[{x:-1,y:2,label:'corner'},{x:1,y:0,open:true},{x:1,y:3}]},
+order_graph:{xmin:-3,xmax:3,ymin:0,ymax:11,funcs:[{f:x=>x*x+3,cls:'f'}],segments:[{x1:-0.1,y1:1.8,x2:2.1,y2:6.2,cls:'tangent'}],points:[{x:1,y:4,label:'(1,4)'},{x:1.5,y:5.25,label:'(1.5,5.25)'},{x:2,y:7,label:'(2,7)'}]},
+disease_model:{xmin:0,xmax:10,ymin:-1,ymax:8,funcs:[{f:x=>6/(1+Math.exp(-0.9*(x-5))),cls:'f'},{f:x=>1.35*Math.exp(-0.18*(x-5)*(x-5)),cls:'blue'}],labels:[{x:8,y:6.5,text:'I(t)',color:'maroon'},{x:6.2,y:1.6,text:"I'(t)",color:'blue'}]}
+};
+document.querySelectorAll('.graph').forEach(div=>{const cfg=graphDefs[div.dataset.graph];if(cfg)drawGraph(div,cfg)});
+window.addEventListener('load',()=>{if(window.renderMathInElement){renderMathInElement(document.body,{delimiters:[{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});}showSlide(0);});
+</script>
+</body>
+</html>

@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>AP Calculus 2.4 — Basic Derivative Rules</title>
+<link href="https://cdn.jsdelivr.net" rel="preconnect"/>
+<link href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" rel="stylesheet"/>
+<script defer="" src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer="" src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<style>
+:root{--maroon:#7a1738;--navy:#203654;--teal:#0e6655;--ink:#17212b;--muted:#5d6877;--line:#d9e2ec;--gold:#c69c48;--bg:#f4f7fb;--white:#fff}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,Aptos,"Segoe UI",Arial,sans-serif;color:var(--ink);background:var(--bg)}
+.deck{height:100vh;display:grid;grid-template-rows:74px 1fr 54px;overflow:hidden}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:10px 22px;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 2px 14px rgba(20,30,55,.08);z-index:2}
+.brand{display:flex;align-items:center;gap:18px}.echs{height:48px;width:96px;border-radius:14px;background:linear-gradient(135deg,var(--maroon),var(--navy));color:#fff;display:grid;place-items:center;font-weight:900;letter-spacing:1.5px}
+.course{border-left:2px solid #d5dce4;padding-left:18px;line-height:1.15}.course strong{color:var(--maroon);font-size:20px}.course span{display:block;color:var(--muted);font-size:13px;margin-top:3px}
+.progress{display:flex;align-items:center;gap:10px;color:var(--muted);font-weight:700;font-size:14px}.dotbar{width:220px;height:9px;background:#e5ebf0;border-radius:99px;overflow:hidden}.dotbar span{display:block;height:100%;width:0%;background:linear-gradient(90deg,var(--maroon),var(--teal));border-radius:99px}
+.main{overflow:hidden}.slide{display:none;height:100%;overflow-y:auto;padding:34px 48px 72px;background:linear-gradient(135deg,#fff 0%,#fbfaf7 58%,#f3fbf9 100%)}
+.slide.active{display:block}.kicker{color:var(--maroon);font-weight:800;letter-spacing:.08em;text-transform:uppercase;font-size:13px;margin-bottom:6px}h1{font-size:46px;line-height:1.02;color:var(--navy);margin:0 0 18px}h2{font-size:34px;color:var(--navy);margin:0 0 22px;line-height:1.05}p{font-size:20px;line-height:1.45}.small{font-size:15px;color:var(--muted)}.center{text-align:center}.hero{display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:center;margin-top:20px}.bigbox{background:#fff;border:1px solid var(--line);border-radius:22px;padding:34px;box-shadow:0 10px 22px rgba(30,50,80,.08)}.bigmath{font-size:26px;text-align:center;color:var(--navy)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:stretch}.three{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.grid4{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.prompt,.mini,.work,.rule,.statement{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px;font-size:20px;line-height:1.45;box-shadow:0 6px 16px rgba(30,50,80,.05)}.mini{text-align:center}.work{background:#fffdfa}.rule{border-left:7px solid var(--teal);font-weight:700}.statement{font-size:24px;border-left:7px solid var(--maroon)}
+.table{width:100%;border-collapse:separate;border-spacing:0;background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;font-size:20px;box-shadow:0 6px 16px rgba(30,50,80,.05)}.table th{background:#f1f5f9;color:var(--navy);text-align:left;padding:14px 16px}.table td{padding:13px 16px;border-top:1px solid var(--line)}
+.choices{margin-top:18px;padding:14px 16px;border-radius:14px;background:#f8fafc;border:1px dashed #cbd5e1;font-size:19px}.tasks li{margin:8px 0;font-size:20px}
+.answer{display:none;margin-top:18px;background:#f7fff7;border:1px solid #bde5c8;border-left:7px solid #2d7d46;border-radius:18px;padding:18px 20px;font-size:19px;line-height:1.45}.slide.showAnswers .answer{display:block}
+.graph{height:330px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:8px;box-shadow:0 6px 16px rgba(30,50,80,.05)}.graph svg{width:100%;height:100%;display:block}.axis{stroke:#243247;stroke-width:1.6}.gridline{stroke:#e6edf3;stroke-width:1}.curve{fill:none;stroke:#1a88d1;stroke-width:3}.curve2{fill:none;stroke:#8a1c46;stroke-width:3}.tangent{stroke:#d84c3f;stroke-width:2.7;stroke-dasharray:7 5}.pt{fill:#111827;stroke:#fff;stroke-width:2}.pt2{fill:#7a1738;stroke:#fff;stroke-width:2}
+.footer{display:flex;align-items:center;justify-content:space-between;padding:8px 22px;background:#fff;border-top:1px solid var(--line)}button,select{font:inherit}button{border:0;border-radius:14px;padding:10px 18px;font-weight:800;cursor:pointer}.navbtn{background:#e9eef3;color:var(--navy)}.nextbtn,.ansbtn{background:var(--maroon);color:white}.ansbtn.on{background:#2d7d46}select{min-width:360px;max-width:50vw;border:1px solid var(--line);border-radius:12px;padding:9px 12px;color:var(--navy);font-weight:700;background:#fff}
+.katex-display{margin:.55em 0}@media(max-width:900px){.hero,.two,.three,.grid2,.grid3,.grid4{grid-template-columns:1fr}h1{font-size:34px}h2{font-size:28px}.slide{padding:24px 22px 80px}select{min-width:180px}}
+</style>
+</head>
+<body>
+<div class="deck">
+<header class="topbar"><div class="brand"><div class="echs">ECHS</div><div class="course"><strong>AP Calculus AB</strong><span>2.4 Basic Derivative Rules</span></div></div><div class="progress"><span id="count"></span><div class="dotbar"><span id="bar"></span></div></div></header>
+<main class="main" id="main"><section class="slide" data-title="2.4 Basic Derivative Rules">
+<div class="kicker">AP Calculus AB</div>
+<h2>2.4 Basic Derivative Rules</h2>
+<div class="hero">
+<div>
+<h1>Basic Derivative Rules</h1>
+<p>Use derivative rules to differentiate efficiently, connect rules to limits, find tangent and normal lines, work with higher-order derivatives, and handle AP-style interpretation questions.</p>
+</div>
+<div class="bigbox">
+<div class="bigmath">\(f'(x)=\displaystyle\lim_{h\to0}\frac{f(x+h)-f(x)}{h}\)</div>
+<div class="small">Every rule in this lesson comes from this limit.</div>
+</div>
+</div>
+</section>
+<section class="slide" data-title="Opening check">
+<div class="kicker">AP Calculus AB</div>
+<h2>Opening check</h2>
+<div class="two">
+<div class="prompt"><b>1.</b> Interpret the limit without simplifying it:
+  \[
+  \lim_{h\to0}\frac{(2+h)^5-2^5}{h}
+  \]
+  </div>
+<div class="prompt"><b>2.</b> Estimate the slope of \(y=x^2\) at \(x=2\). Then compare it with the slope from
+  \[
+  \lim_{h\to0}\frac{(2+h)^2-2^2}{h}.
+  \]
+  </div>
+</div>
+<div class="answer">1. It is \(f'(2)\) for \(f(x)=x^5\). Its value is \(80\).<br/>2. The slope is \(4\).</div>
+</section>
+<section class="slide" data-title="What a derivative rule does">
+<div class="kicker">AP Calculus AB</div>
+<h2>What a derivative rule does</h2>
+<div class="statement">A derivative rule is a shortcut for a limit that has already been proven.</div>
+<div class="three">
+<div class="mini"><b>Limit form</b><br/>\(\displaystyle f'(x)=\lim_{h\to0}\frac{f(x+h)-f(x)}{h}\)</div>
+<div class="mini"><b>Rule form</b><br/>\(\displaystyle \frac{d}{dx}\left[x^n\right]=nx^{n-1}\)</div>
+<div class="mini"><b>Meaning</b><br/>The derivative gives the slope of the tangent line and the instantaneous rate of change.</div>
+</div>
+<div class="prompt">Student task: For each rule today, explain what limit it replaces.</div>
+</section>
+<section class="slide" data-title="Rules from the simplest graphs">
+<div class="kicker">AP Calculus AB</div>
+<h2>Rules from the simplest graphs</h2>
+<div class="two">
+<div>
+<div class="graph" data-fn="constant" data-point="1,3" data-tangent="1,0" data-xmax="4" data-xmin="-4" data-ymax="5" data-ymin="-2"></div>
+<p class="center">For \(y=c\), the tangent is horizontal: \(\frac{d}{dx}[c]=0\).</p>
+</div>
+<div>
+<div class="graph" data-fn="identity" data-point="2,2" data-tangent="2,1" data-xmax="4" data-xmin="-4" data-ymax="4" data-ymin="-4"></div>
+<p class="center">For \(y=x\), every tangent has slope \(1\): \(\frac{d}{dx}[x]=1\).</p>
+</div>
+</div>
+<div class="prompt">Explain why each statement matches the graph.</div>
+</section>
+<section class="slide" data-title="Power rule pattern">
+<div class="kicker">AP Calculus AB</div>
+<h2>Power rule pattern</h2>
+<table class="table">
+<tr><th>Function</th><th>Derivative</th><th>Pattern</th></tr>
+<tr><td>\(x^2\)</td><td>\(2x\)</td><td>Bring down \(2\), subtract \(1\).</td></tr>
+<tr><td>\(x^3\)</td><td>\(3x^2\)</td><td>Bring down \(3\), subtract \(1\).</td></tr>
+<tr><td>\(x^4\)</td><td>\(4x^3\)</td><td>Bring down \(4\), subtract \(1\).</td></tr>
+<tr><td>\(x^5\)</td><td>\(5x^4\)</td><td>Bring down \(5\), subtract \(1\).</td></tr>
+</table>
+<div class="rule">If \(n\) is rational and the derivative exists, then \(\displaystyle \frac{d}{dx}\left[x^n\right]=nx^{n-1}\).</div>
+</section>
+<section class="slide" data-title="Power rule: first round">
+<div class="kicker">AP Calculus AB</div>
+<h2>Power rule: first round</h2>
+<div class="grid4">
+<div class="prompt"><b>1.</b> \(\displaystyle y=x^{17}\)</div>
+<div class="prompt"><b>2.</b> \(\displaystyle y=x^7\)</div>
+<div class="prompt"><b>3.</b> \(\displaystyle y=x\)</div>
+<div class="prompt"><b>4.</b> \(\displaystyle y=x^{\pi}\)</div>
+</div>
+<div class="answer">1. \(17x^{16}\)   2. \(7x^6\)   3. \(1\)   4. \(\pi x^{\pi-1}\)</div>
+</section>
+<section class="slide" data-title="Rewrite before differentiating">
+<div class="kicker">AP Calculus AB</div>
+<h2>Rewrite before differentiating</h2>
+<div class="rule">Convert radicals and reciprocals to powers before using the power rule.</div>
+<table class="table">
+<tr><th>Original</th><th>Rewrite</th><th>Derivative</th></tr>
+<tr><td>\(\sqrt{x}\)</td><td>\(x^{1/2}\)</td><td>\(\frac12x^{-1/2}=\frac{1}{2\sqrt{x}}\)</td></tr>
+<tr><td>\(\frac1{x^4}\)</td><td>\(x^{-4}\)</td><td>\(-4x^{-5}=\frac{-4}{x^5}\)</td></tr>
+<tr><td>\(\sqrt[5]{x^3}\)</td><td>\(x^{3/5}\)</td><td>\(\frac35x^{-2/5}\)</td></tr>
+</table>
+</section><section class="slide" data-title="Domain checks before using rules"><div class="kicker">AP Calculus AB</div>
+<h2>Domain checks before using rules</h2>
+<div class="grid2">
+<div class="rule">If a term contains \(x^{-n}\), the original function requires \(x\ne0\).</div>
+<div class="rule">If a term contains \(\sqrt{x}\), \(\ln x\), or \(x^{p/q}\) with even \(q\), check the domain before evaluating.</div>
+</div>
+<div class="grid3">
+<div class="prompt"><b>1.</b> Differentiate \(f(x)=x^{-6}\). State the restriction.</div>
+<div class="prompt"><b>2.</b> Differentiate \(g(x)=\frac{4}{x^3}-\frac{7}{x}\). State the restriction.</div>
+<div class="prompt"><b>3.</b> Differentiate \(h(x)=\sqrt{x}+\ln x\). State the restriction.</div>
+</div>
+<div class="answer">1. \(f'(x)=-6x^{-7}\), \(x\ne0\). 2. \(g'(x)=-12x^{-4}+7x^{-2}\), \(x\ne0\). 3. \(h'(x)=\frac{1}{2\sqrt{x}}+\frac1x\), \(x&gt;0\).</div>
+</section>
+<section class="slide" data-title="Power rule: radicals and reciprocals">
+<div class="kicker">AP Calculus AB</div>
+<h2>Power rule: radicals and reciprocals</h2>
+<div class="grid4">
+<div class="prompt"><b>1.</b> \(\displaystyle y=\sqrt[5]{x^3}\)</div>
+<div class="prompt"><b>2.</b> \(\displaystyle y=\frac{1}{x^{10}}\)</div>
+<div class="prompt"><b>3.</b> \(\displaystyle y=\frac{1}{\sqrt[4]{x^3}}\)</div>
+<div class="prompt"><b>4.</b> \(\displaystyle y=\sqrt[9]{x^4}\)</div>
+</div>
+<div class="answer">1. \(\frac35x^{-2/5}\)   2. \(-10x^{-11}\)   3. \(-\frac34x^{-7/4}\)   4. \(\frac49x^{-5/9}\)</div>
+</section>
+<section class="slide" data-title="General power rule">
+<div class="kicker">AP Calculus AB</div>
+<h2>General power rule</h2>
+<div class="rule">\[\frac{d}{dx}\left[ax^n\right]=a\cdot nx^{n-1}\]</div>
+<div class="grid3">
+<div class="prompt"><b>A.</b> \(y=3x^2\)</div>
+<div class="prompt"><b>B.</b> \(s(t)=-5t^3\)</div>
+<div class="prompt"><b>C.</b> \(y=6\sqrt{x}\)</div>
+<div class="prompt"><b>D.</b> \(g(x)=x^{3/2}\)</div>
+<div class="prompt"><b>E.</b> \(f(x)=\frac4x\)</div>
+<div class="prompt"><b>F.</b> \(y=-\frac8{x^4}\)</div>
+</div>
+<div class="answer">A. \(6x\), B. \(-15t^2\), C. \(3x^{-1/2}\), D. \(\frac32x^{1/2}\), E. \(-4x^{-2}\), F. \(32x^{-5}\).</div>
+</section>
+<section class="slide" data-title="Evaluate a derivative at a point">
+<div class="kicker">AP Calculus AB</div>
+<h2>Evaluate a derivative at a point</h2>
+<div class="grid3">
+<div class="prompt"><b>1.</b> \(f(x)=\sqrt[4]{x}\). Find \(f'(16)\).</div>
+<div class="prompt"><b>2.</b> \(f(x)=\frac1{x^6}\). Find \(f'(\pi)\).</div>
+<div class="prompt"><b>3.</b> \(f(x)=x^6\). Find \(f'(-2)\).</div>
+<div class="prompt"><b>4.</b> \(f(x)=\frac1{\sqrt[3]{x}}\). Find \(f'(27)\).</div>
+<div class="prompt"><b>5.</b> \(f(x)=\sqrt{x}\). Find \(f'(16)\).</div>
+<div class="prompt"><b>6.</b> \(f(x)=x^4\). Find \(f'(-1)\).</div>
+</div>
+<div class="answer">1. \(\frac1{32}\), 2. \(-\frac6{\pi^7}\), 3. \(-192\), 4. \(-\frac{1}{243}\), 5. \(\frac18\), 6. \(-4\).</div>
+</section>
+<section class="slide" data-title="Tangents with basic rules">
+<div class="kicker">AP Calculus AB</div>
+<h2>Tangents with basic rules</h2>
+<div class="two">
+<div>
+<div class="graph" data-fn="x3" data-point="-2,-8" data-tangent="-2,12" data-xmax="3" data-xmin="-3" data-ymax="10" data-ymin="-10"></div>
+</div>
+<div class="prompt"><b>Find the tangent line.</b><br/>
+  \[
+  y=x^3\quad \text{at }x=-2
+  \]
+  <ol>
+<li>Find the point.</li>
+<li>Find the slope.</li>
+<li>Write point-slope form.</li>
+</ol>
+</div>
+</div>
+<div class="answer">Point: \((-2,-8)\). Slope: \(3(-2)^2=12\). Tangent: \(y+8=12(x+2)\).</div>
+</section>
+<section class="slide" data-title="Tangent line practice">
+<div class="kicker">AP Calculus AB</div>
+<h2>Tangent line practice</h2>
+<div class="grid3">
+<div class="prompt"><b>1.</b> \(y=x^3\) at \(x=6\)</div>
+<div class="prompt"><b>2.</b> \(f(x)=\frac1{x^4}\) at \(x=2\)</div>
+<div class="prompt"><b>3.</b> \(y=x^3\) at \(x=-2\)</div>
+<div class="prompt"><b>4.</b> \(f(x)=\sqrt[4]{x^3}\) at \(x=1\)</div>
+<div class="prompt"><b>5.</b> \(f(x)=6x-16\sqrt{x}\) at \(x=4\)</div>
+<div class="prompt"><b>6.</b> \(g(x)=\sin x+\cos x\) at \(x=\frac{3\pi}{4}\)</div>
+</div>
+<div class="answer">1. \(y-216=108(x-6)\). 2. \(y-\frac1{16}=-\frac14(x-2)\). 3. \(y+8=12(x+2)\). 4. \(y-1=\frac34(x-1)\). 5. \(y+8=2(x-4)\). 6. \(y=-\sqrt2\left(x-\frac{3\pi}{4}\right)\).</div>
+</section>
+<section class="slide" data-title="Sum, difference, and constant multiple rules">
+<div class="kicker">AP Calculus AB</div>
+<h2>Sum, difference, and constant multiple rules</h2>
+<div class="three">
+<div class="mini">\[\frac{d}{dx}[cf(x)]=cf'(x)\]</div>
+<div class="mini">\[\frac{d}{dx}[f(x)+g(x)]=f'(x)+g'(x)\]</div>
+<div class="mini">\[\frac{d}{dx}[f(x)-g(x)]=f'(x)-g'(x)\]</div>
+</div>
+<div class="prompt">Differentiate term by term. Do not combine terms after differentiating unless simplification is clear and helpful.</div>
+</section>
+<section class="slide" data-title="Polynomial practice">
+<div class="kicker">AP Calculus AB</div>
+<h2>Polynomial practice</h2>
+<div class="grid4">
+<div class="prompt"><b>1.</b> \(f(x)=x^3-5x^2+2x-7\)</div>
+<div class="prompt"><b>2.</b> \(y=5x^5+x^4+3x^2-1\)</div>
+<div class="prompt"><b>3.</b> \(f(x)=2x^3+3x^2-4\)</div>
+<div class="prompt"><b>4.</b> \(f(x)=4x^3-5x^2+2\)</div>
+<div class="prompt"><b>5.</b> \(f(x)=6x^3-3x^2+5x\)</div>
+<div class="prompt"><b>6.</b> \(f(x)=4x^3+5x^2+6x\)</div>
+</div>
+<div class="answer">1. \(3x^2-10x+2\). 2. \(25x^4+4x^3+6x\). 3. \(6x^2+6x\). 4. \(12x^2-10x\). 5. \(18x^2-6x+5\). 6. \(12x^2+10x+6\).</div>
+</section>
+<section class="slide" data-title="Rewrite first">
+<div class="kicker">AP Calculus AB</div>
+<h2>Rewrite first</h2>
+<div class="two">
+<div class="prompt"><b>Example.</b> Differentiate
+  \[
+  f(x)=\frac{8x^3+4x^2-3}{x}.
+  \]
+  </div>
+<div class="work">
+  \[
+  f(x)=8x^2+4x-3x^{-1}
+  \]
+  \[
+  f'(x)=16x+4+3x^{-2}
+  \]
+  </div>
+</div>
+<div class="statement">When a quotient is only a polynomial divided by a monomial, divide first.</div>
+</section>
+<section class="slide" data-title="Rewrite practice">
+<div class="kicker">AP Calculus AB</div>
+<h2>Rewrite practice</h2>
+<div class="grid3">
+<div class="prompt"><b>1.</b> \(y=\frac{5x^3+7x^2}{x}\)</div>
+<div class="prompt"><b>2.</b> \(g(x)=\frac{x^3+5x^2+2}{x^2}\)</div>
+<div class="prompt"><b>3.</b> \(h(x)=\frac{x-6\sqrt{x}}{3x^2}\)</div>
+<div class="prompt"><b>4.</b> \(y=\frac{x}{\sqrt[3]{x}}\)</div>
+<div class="prompt"><b>5.</b> \(y=x^2\sqrt[6]{x^5}\)</div>
+<div class="prompt"><b>6.</b> \(f(x)=\frac{x^3-8}{x-2}\), \(x\ne2\)</div>
+</div>
+<div class="answer">1. \(10x+7\). 2. \(1-4x^{-3}\). 3. \(-\frac{1}{3x^2}+3x^{-5/2}\). 4. \(\frac23x^{-1/3}\). 5. \(\frac{17}{6}x^{11/6}\). 6. Rewrite as \(x^2+2x+4\), so \(f'(x)=2x+2\).</div>
+</section>
+<section class="slide" data-title="Familiar derivative rules">
+<div class="kicker">AP Calculus AB</div>
+<h2>Familiar derivative rules</h2>
+<table class="table">
+<tr><th>Function</th><th>Derivative</th><th>Required domain / note</th></tr>
+<tr><td>\(\sin x\)</td><td>\(\cos x\)</td><td>All real \(x\)</td></tr>
+<tr><td>\(\cos x\)</td><td>\(-\sin x\)</td><td>All real \(x\)</td></tr>
+<tr><td>\(\tan x\)</td><td>\(\sec^2 x\)</td><td>\(x\ne\frac{\pi}{2}+k\pi\), \(k\in\mathbb{Z}\)</td></tr>
+<tr><td>\(\cot x\)</td><td>\(-\csc^2 x\)</td><td>\(x\ne k\pi\), \(k\in\mathbb{Z}\)</td></tr>
+<tr><td>\(\sec x\)</td><td>\(\sec x\tan x\)</td><td>\(x\ne\frac{\pi}{2}+k\pi\), \(k\in\mathbb{Z}\)</td></tr>
+<tr><td>\(\csc x\)</td><td>\(-\csc x\cot x\)</td><td>\(x\ne k\pi\), \(k\in\mathbb{Z}\)</td></tr>
+<tr><td>\(e^x\)</td><td>\(e^x\)</td><td>All real \(x\)</td></tr>
+<tr><td>\(a^x\)</td><td>\(a^x\ln a\)</td><td>\(a&gt;0\), \(a\ne1\)</td></tr>
+<tr><td>\(\ln x\)</td><td>\(\frac1x\)</td><td>\(x&gt;0\)</td></tr>
+<tr><td>\(x^{-n}\)</td><td>\(-nx^{-n-1}\)</td><td>\(x\ne0\)</td></tr>
+</table>
+<div class="prompt">Before differentiating, state any restriction such as \(x&gt;0\), \(x\ne0\), or excluded trigonometric inputs when the original function requires it.</div>
+</section>
+<section class="slide" data-title="Trigonometric derivative practice">
+<div class="kicker">AP Calculus AB</div>
+<h2>Trigonometric derivative practice</h2>
+<div class="rule">Use these only for the basic functions \(\sin x\), \(\cos x\), \(\tan x\), \(\cot x\), \(\sec x\), and \(\csc x\).</div>
+<div class="grid3">
+<div class="prompt"><b>1.</b> \(y=3\sec x-2\csc x\)</div>
+<div class="prompt"><b>2.</b> \(f(x)=\cot x+4\tan x\)</div>
+<div class="prompt"><b>3.</b> \(g(x)=x^4+\sec x-\cos x\)</div>
+<div class="prompt"><b>4.</b> \(h(x)=5\csc x+2\sin x\)</div>
+<div class="prompt"><b>5.</b> \(p(x)=2\tan x-3\cot x+e^x\)</div>
+<div class="prompt"><b>6.</b> \(q(x)=3^x+\sec x+\csc x\)</div>
+</div>
+<div class="answer">1. \(3\sec x\tan x+2\csc x\cot x\). 2. \(-\csc^2x+4\sec^2x\). 3. \(4x^3+\sec x\tan x+\sin x\). 4. \(-5\csc x\cot x+2\cos x\). 5. \(2\sec^2x+3\csc^2x+e^x\). 6. \(3^x\ln3+\sec x\tan x-\csc x\cot x\).</div>
+</section><section class="slide" data-title="Exponential derivative practice"><div class="kicker">AP Calculus AB</div>
+<h2>Exponential derivative practice</h2>
+<div class="rule">\[\frac{d}{dx}\left(e^x\right)=e^x,\qquad \frac{d}{dx}\left(a^x\right)=a^x\ln a\quad(a&gt;0,\ a\ne1).\]</div>
+<div class="grid3">
+<div class="prompt"><b>1.</b> \(f(x)=2^x+3e^x\)</div>
+<div class="prompt"><b>2.</b> \(g(x)=4^x-2\sin x-\frac1x\), \(x\ne0\)</div>
+<div class="prompt"><b>3.</b> \(p(x)=5e^x-\cos x+3x^2\)</div>
+<div class="prompt"><b>4.</b> \(q(x)=6\ln x-2\cos x+e\), \(x&gt;0\)</div>
+<div class="prompt"><b>5.</b> \(r(x)=3^x+3x+x^3\)</div>
+<div class="prompt"><b>6.</b> \(s(x)=2\sin x+5e^x\)</div>
+</div>
+<div class="answer">1. \(2^x\ln2+3e^x\). 2. \(4^x\ln4-2\cos x+x^{-2}\). 3. \(5e^x+\sin x+6x\). 4. \(\frac6x+2\sin x\). 5. \(3^x\ln3+3+3x^2\). 6. \(2\cos x+5e^x\).</div>
+</section><section class="slide" data-title="Functional equation and derivative I">
+<div class="kicker">AP Calculus AB</div>
+<h2>Functional equation and derivative I</h2>
+<p>Assume \(h(x+y)=h(x)h(y)\) for all real \(x,y\).</p>
+<div class="grid2">
+<div class="prompt"><b>1.</b> If \(h(x)=1+xL(x)\) and \(\lim_{x\to0}L(x)=2\), prove that \(h\) is differentiable on \(\mathbb{R}\), and find \(h'(x)\) in terms of \(h(x)\).</div>
+<div class="prompt"><b>2.</b> If \(\displaystyle\lim_{x\to0}\frac{h(x)-1}{x}=5\), prove that \(h\) is differentiable on \(\mathbb{R}\), and prove \(h'(x)=5h(x)\).</div>
+<div class="prompt"><b>3.</b> If \(h\) is differentiable at \(0\) and \(h'(0)=k\), prove that \(h\) is differentiable for every real \(x\), and prove \(h'(x)=kh(x)\).</div>
+<div class="prompt"><b>4.</b> If \(h(0)=1\) and \(\displaystyle\lim_{x\to0}\frac{h(x)-1}{x}=3\), prove that
+\[\lim_{t\to0}\frac{h(x+t)-h(x)}{t}=3h(x).\]</div>
+</div>
+<div class="answer">Use \(h(x+t)-h(x)=h(x)(h(t)-1)\). Therefore \(\frac{h(x+t)-h(x)}{t}=h(x)\frac{h(t)-1}{t}\). The coefficient is the derivative at \(0\). Thus the answers are \(h'(x)=2h(x)\), \(h'(x)=5h(x)\), \(h'(x)=kh(x)\), and \(3h(x)\).</div>
+</section><section class="slide" data-title="Functional equation and derivative II">
+<div class="kicker">AP Calculus AB</div>
+<h2>Functional equation and derivative II</h2>
+<p>Assume \(h(x+y)=h(x)h(y)\) for all real \(x,y\).</p>
+<div class="grid2">
+<div class="prompt"><b>5.</b> If \(\displaystyle\lim_{x\to0}\frac{h(x)-1}{x}=4\), prove that \(h(x)&gt;0\) for all real \(x\), and then prove \(h'(x)=4h(x)\).</div>
+<div class="prompt"><b>6.</b> If \(h(x)=1+xL(x)\) and \(\lim_{x\to0}L(x)=1\), define \(F(x)=h(x^2)\). Prove that \(F\) is differentiable for every real \(x\), and find \(F'(x)\).</div>
+<div class="prompt"><b>7.</b> If \(h(x)=1+xL(x)\) and \(\lim_{x\to0}L(x)=1\), first prove \(h(x)&gt;0\). Then define \(g(x)=\ln(h(x))\). Prove that \(g\) is differentiable and find \(g'(x)\).</div>
+<div class="prompt"><b>8.</b> If \(h(x)=1+xL(x)\) and \(\lim_{x\to0}L(x)=1\), prove \(h(-x)=\frac{1}{h(x)}\) and use it to show \(h(x)\ne0\) for all real \(x\).</div>
+</div>
+<div class="answer">5. Since \(h(x)=h(x/2)^2\) and \(h(x)h(-x)=h(0)=1\), we get \(h(x)&gt;0\). Then \(h'(x)=4h(x)\). 6. Since \(h'(u)=h(u)\), \(F'(x)=2x h(x^2)\). 7. \(g'(x)=\frac{h'(x)}{h(x)}=1\). 8. \(h(x)h(-x)=h(0)=1\), so \(h(-x)=1/h(x)\) and \(h(x)\ne0\).</div>
+</section><section class="slide" data-title="Functional equation and derivative III">
+<div class="kicker">AP Calculus AB</div>
+<h2>Functional equation and derivative III</h2>
+<div class="prompt"><b>9.</b> Let \(h(x+y)=h(x)h(y)\) for all real \(x,y\). Suppose \(h(x)=1+xL(x)\) and \(\lim_{x\to0}L(x)=1\). Prove that
+\[\lim_{x\to0}\frac{h(ax)-1}{x}=a\]
+for every real constant \(a\).</div>
+<div class="answer">Write \(\frac{h(ax)-1}{x}=a\cdot\frac{h(ax)-1}{ax}\) when \(a\ne0\). As \(x\to0\), \(ax\to0\), so the limit is \(a\). If \(a=0\), the numerator is \(h(0)-1=0\), so the limit is also \(0\).</div>
+</section><section class="slide" data-title="Evaluate familiar derivatives"><div class="kicker">AP Calculus AB</div>
+<h2>Evaluate familiar derivatives</h2>
+<div class="grid2">
+<div class="prompt"><b>1.</b> If \(f(x)=6\ln x+x^2\), find \(f'(3)\).</div>
+<div class="prompt"><b>2.</b> If \(f(x)=2\sin x-\cos x\), find \(f'\!\left(\frac{\pi}{4}\right)\).</div>
+<div class="prompt"><b>3.</b> If \(f(x)=3\cos x+9e^x\), find \(f'(0)\).</div>
+<div class="prompt"><b>4.</b> If \(f(x)=4\ln x-3e^x+e\), find \(f'(1)\).</div>
+</div>
+<div class="answer">1. \(2+6=8\). 2. \(2\cos(\pi/4)+\sin(\pi/4)=\frac{3\sqrt2}{2}\). 3. \(9\). 4. \(4-3e\).</div>
+</section>
+<section class="slide" data-title="Familiar functions: first round">
+<div class="kicker">AP Calculus AB</div>
+<h2>Familiar functions: first round</h2>
+<div class="grid3">
+<div class="prompt"><b>1.</b> \(y=x^9+3\tan x\)</div>
+<div class="prompt"><b>2.</b> \(y=\frac1{x^4}-4\cos x\)</div>
+<div class="prompt"><b>3.</b> \(y=\sqrt[3]{x}+7e^x\)</div>
+<div class="prompt"><b>4.</b> \(f(x)=2x-7\ln x\)</div>
+<div class="prompt"><b>5.</b> \(g(x)=9\sin x-2x^3\)</div>
+<div class="prompt"><b>6.</b> \(s(t)=t^3+6t^2-2\cos t+9\sin t\)</div>
+</div>
+<div class="answer">1. \(9x^8+3\sec^2x\). 2. \(-4x^{-5}+4\sin x\). 3. \(\frac13x^{-2/3}+7e^x\). 4. \(2-\frac7x\). 5. \(9\cos x-6x^2\). 6. \(3t^2+12t+2\sin t+9\cos t\).</div>
+</section>
+<section class="slide" data-title="Logarithms: simplify before differentiating">
+<div class="kicker">AP Calculus AB</div>
+<h2>Logarithms: simplify before differentiating</h2>
+<div class="rule">Use logarithm properties first when possible.</div>
+<div class="grid3">
+<div class="prompt"><b>1.</b> \(f(x)=5\tan x-\ln(x^3)\)</div>
+<div class="prompt"><b>2.</b> \(y=\ln(x^2e^x)\)</div>
+<div class="prompt"><b>3.</b> \(y=\ln\left(\frac{x^3}{e^x}\right)\)</div>
+<div class="prompt"><b>4.</b> \(f(x)=4\sin x+\ln(e^x)\)</div>
+<div class="prompt"><b>5.</b> \(f(x)=\ln(x^4)-3\cos x\)</div>
+<div class="prompt"><b>6.</b> \(y=\ln\left(\frac{x^2}{e^{\pi}}\right)\)</div>
+</div>
+<div class="answer">1. \(5\sec^2x-\frac3x\). 2. \(\frac2x+1\). 3. \(\frac3x-1\). 4. \(4\cos x+1\). 5. \(\frac4x+3\sin x\). 6. \(\frac2x\).</div>
+</section>
+<section class="slide" data-title="Mixed derivative practice">
+<div class="kicker">AP Calculus AB</div>
+<h2>Mixed derivative practice</h2>
+<div class="grid3">
+<div class="prompt"><b>1.</b> \(y=4e^x-\sqrt{x}\)</div>
+<div class="prompt"><b>2.</b> \(f(x)=\cos x-\frac3{x^3}\)</div>
+<div class="prompt"><b>3.</b> \(g(x)=3e^x+5\ln(x^3)-2x\)</div>
+<div class="prompt"><b>4.</b> \(h(x)=x(x^3-1)\)</div>
+<div class="prompt"><b>5.</b> \(y=(2x-3)^2\) <span class="small">Expand first.</span></div>
+<div class="prompt"><b>6.</b> \(g(x)=4x^{-2}+8x+1\)</div>
+</div>
+<div class="answer">1. \(4e^x-\frac1{2\sqrt{x}}\). 2. \(-\sin x+\frac9{x^4}\). 3. \(3e^x+\frac{15}{x}-2\). 4. \(4x^3-1\). 5. \(8x-12\). 6. \(-8x^{-3}+8\).</div>
+</section><section class="slide" data-title="Higher order derivatives"><div class="kicker">AP Calculus AB</div>
+<h2>Higher order derivatives</h2>
+<table class="table">
+<tr><th>Order</th><th>Prime notation</th><th>Leibniz notation</th><th>Meaning</th></tr>
+<tr><td>1</td><td>\(f'(x)\)</td><td>\(\frac{df}{dx}\)</td><td>First derivative</td></tr>
+<tr><td>2</td><td>\(f''(x)\)</td><td>\(\frac{d^2f}{dx^2}\)</td><td>Derivative of \(f'\)</td></tr>
+<tr><td>3</td><td>\(f^{\prime\prime\prime}(x)\)</td><td>\(\frac{d^3f}{dx^3}\)</td><td>Derivative of \(f''\)</td></tr>
+<tr><td>4</td><td>\(f^{(4)}(x)\)</td><td>\(\frac{d^4f}{dx^4}\)</td><td>Use parentheses for order</td></tr>
+<tr><td>5</td><td>\(f^{(5)}(x)\)</td><td>\(\frac{d^5f}{dx^5}\)</td><td>Do not confuse with exponents</td></tr>
+</table>
+<div class="prompt">Compute several first derivatives in sequence. Each new derivative becomes the function for the next step.</div>
+</section><section class="slide" data-title="Higher order derivative practice"><div class="kicker">AP Calculus AB</div>
+<h2>Higher order derivative practice</h2>
+<div class="grid2">
+<div class="prompt"><b>1.</b> Compute \(f''(t)\) for \(f(t)=t^4+3t^2-2\).</div>
+<div class="prompt"><b>2.</b> Compute \(f^{\prime\prime\prime}(t)\) for \(f(t)=4t^2-12+\frac4{t^2}\), \(t\ne0\).</div>
+<div class="prompt"><b>3.</b> Compute \(\frac{d^2f}{dx^2}\) for \(f(x)=2x^4-\frac3{\sqrt{x}}\), \(x&gt;0\).</div>
+<div class="prompt"><b>4.</b> Compute \(\frac{d^2f}{dx^2}\) for \(f(x)=x^6-\sqrt{x}\), \(x&gt;0\).</div>
+<div class="prompt"><b>5.</b> Compute \(f^{(4)}(x)\) for \(f(x)=x^4+3x^2-\frac2{\sqrt{x}}\), \(x&gt;0\).</div>
+<div class="prompt"><b>6.</b> Compute \(f^{(5)}(x)\) for \(f(x)=x^{10}-3x^4+2x-1\).</div>
+</div>
+<div class="answer">1. \(12t^2+6\). 2. \(-96t^{-5}\). 3. \(24x^2-\frac94x^{-5/2}\). 4. \(30x^4+\frac14x^{-3/2}\). 5. \(24-\frac{105}{8}x^{-9/2}\). 6. \(30240x^5\).</div>
+</section><section class="slide" data-title="Higher order challenge: power patterns">
+<div class="kicker">AP Calculus AB</div>
+<h2>Higher order challenge: power patterns</h2>
+<div class="grid2">
+<div class="prompt"><b>1.</b> If \(h(x)=x^N\) and \(h^{(3)}(x)=60x^{N-3}\), find \(N\).</div>
+<div class="prompt"><b>2.</b> If \(h(x)=3x^N\) and \(h^{(4)}(x)=Px^3\), find \(P\).</div>
+<div class="prompt"><b>3.</b> If \(h(x)=1+x+x^2+x^3+\cdots+x^n\), prove that
+\[h'(x)=1+2x+3x^2+\cdots+nx^{n-1}.\]
+Then prove that, for \(x\ne1\),
+\[1+2x+3x^2+\cdots+nx^{n-1}=\frac{nx^{n+1}-(n+1)x^n+1}{(x-1)^2}.\]</div>
+<div class="prompt"><b>4.</b> If \(h(x)\) is a polynomial and \(h'(x)+h(x)=x^3+5x^2+4x+2\), find \(h(x)\).</div>
+</div>
+<div class="answer">1. \(N(N-1)(N-2)=60\Rightarrow N=5\). 2. \(N-4=3\Rightarrow N=7\), so \(P=3(7)(6)(5)(4)=2520\). 3. Differentiate the finite sum term by term, or differentiate \(h(x)=\frac{x^{n+1}-1}{x-1}\) for \(x\ne1\). 4. Let \(h=ax^3+bx^2+cx+d\). Matching coefficients gives \(h(x)=x^3+2x^2+2\).</div>
+</section><section class="slide" data-title="Velocity and acceleration"><div class="kicker">AP Calculus AB</div>
+<h2>Velocity and acceleration</h2>
+<div class="rule">If \(s(t)\) is position, then \(v(t)=s'(t)\) and \(a(t)=s''(t)\).</div>
+<div class="grid2">
+<div class="prompt"><b>1.</b> For \(s(t)=-16t^2+40t+10\), find \(v(t)\) and \(a(t)\). Is the object moving up or down at \(t=1\)?</div>
+<div class="prompt"><b>2.</b> For \(s(t)=10t^2-24t\), find \(v(t)\) and \(a(t)\). Is the object moving up or down at \(t=2\)?</div>
+<div class="prompt"><b>3.</b> For \(s(t)=\sqrt{t}+2t^2\), \(t&gt;0\), find \(v(t)\) and \(a(t)\).</div>
+<div class="prompt"><b>4.</b> For \(s(t)=10-\frac{10}{t}\), \(t&gt;0\), find \(v(t)\) and \(a(t)\).</div>
+</div>
+<div class="answer">1. \(v=-32t+40\), \(a=-32\); at \(t=1\), \(v=8\), moving up. 2. \(v=20t-24\), \(a=20\); at \(t=2\), \(v=16\), moving up. 3. \(v=\frac1{2\sqrt t}+4t\), \(a=-\frac14t^{-3/2}+4\). 4. \(v=10t^{-2}\), \(a=-20t^{-3}\).</div>
+</section><section class="slide" data-title="Reconstruct from higher derivatives"><div class="kicker">AP Calculus AB</div>
+<h2>Reconstruct from higher derivatives</h2>
+<div class="grid2">
+<div class="prompt"><b>1.</b> Find \(p(x)=ax^2+bx+c\) if \(p(1)=2\), \(p'(1)=4\), and \(p''(1)=6\).</div>
+<div class="prompt"><b>2.</b> Find a second-degree polynomial \(q(x)=ax^2+bx+c\) such that \(q(0)=-2\), \(q'(0)=2\), and \(q''(0)=3\).</div>
+<div class="prompt"><b>3.</b> Find \(A\) and \(B\) if \(r(x)=Ax^3+Bx+1\), \(r'(1)=8\), and \(r''(1)=12\).</div>
+<div class="prompt"><b>4.</b> Explain why no quadratic \(p(x)=ax^2+bx+c\) can have \(p''(x)=x+1\).</div>
+</div>
+<div class="answer">1. \(a=3\), \(b=-2\), \(c=1\), so \(p(x)=3x^2-2x+1\). 2. \(a=\frac32\), \(b=2\), \(c=-2\). 3. \(6A=12\Rightarrow A=2\); \(3A+B=8\Rightarrow B=2\). 4. The second derivative of a quadratic is constant, not linear.</div>
+</section>
+<section class="slide" data-title="Limit as a derivative">
+<div class="kicker">AP Calculus AB</div>
+<h2>Limit as a derivative</h2>
+<div class="two">
+<div class="prompt"><b>Question.</b>
+  \[
+  \lim_{x\to e}\frac{x^3-e^3}{x-e}
+  \]
+  is equal to which value?
+  <div class="choices">A. \(0\)   B. \(3e^2\)   C. \(e^3\)   D. \(3e\)</div>
+</div>
+<div class="prompt"><b>Justify.</b><br/>Identify the function and the input value before computing.</div>
+</div>
+<div class="answer">It is \(f'(e)\) for \(f(x)=x^3\). Therefore the value is \(3e^2\). Choice B.</div>
+</section><section class="slide" data-title="One-sided derivative limits I">
+<div class="kicker">AP Calculus AB</div>
+<h2>One-sided derivative limits I</h2>
+<p>Assume \(h(3)=6\), \(h'_+(3)=4\), and \(h'_-(3)=2\).</p>
+<div class="grid2">
+<div class="prompt"><b>1.</b> Determine whether each limit exists. If it exists, find its value.
+\[\lim_{x\to3}\frac{h(x)-6}{|x-3|}\qquad\text{and}\qquad \lim_{x\to3}\frac{|h(x)-6|}{x-3}.\]</div>
+<div class="prompt"><b>2.</b> Find \(a\), if it exists, so that
+\[\lim_{x\to3}\frac{h(x)-6-a|x-3|}{x-3}\]
+exists.</div>
+<div class="prompt"><b>3.</b> Find
+\[\lim_{x\to3}\frac{h(x)-6}{\sqrt{|x-3|}}.\]</div>
+<div class="prompt"><b>4.</b> Determine whether
+\[\lim_{x\to3}\frac{h(x)-h(3)}{x-3+|x-3|}\]
+exists.</div>
+</div>
+<div class="answer">Use \(h(x)-6\sim4(x-3)\) from the right and \(h(x)-6\sim2(x-3)\) from the left. 1. Both limits do not exist: right values are \(4\), left values are \(-2\). 2. Right value \(4-a\), left value \(2+a\), so \(a=1\) and the limit is \(3\). 3. The limit is \(0\). 4. It does not exist because the denominator is \(0\) for \(x&lt;3\).</div>
+</section><section class="slide" data-title="One-sided derivative limits II">
+<div class="kicker">AP Calculus AB</div>
+<h2>One-sided derivative limits II</h2>
+<p>Assume \(h(3)=6\), \(h'_+(3)=4\), and \(h'_-(3)=2\).</p>
+<div class="grid2">
+<div class="prompt"><b>5.</b> Determine whether
+\[\lim_{x\to3}\frac{h(x)-6-3(x-3)}{|x-3|}\]
+exists.</div>
+<div class="prompt"><b>6.</b> Find \(a\), if it exists, so that
+\[\lim_{x\to3}\frac{h(x)-6-a(x-3)}{|x-3|}\]
+exists.</div>
+<div class="prompt"><b>7.</b> Let \(f\) be continuous at \(x=0\), with \(f'_+(0)=a+3\) and \(f'_-(0)=2a-1\). Find all \(a\) such that \(f\) is differentiable at \(0\), then find \(f'(0)\).</div>
+<div class="prompt"><b>8.</b> Let \(f\) be differentiable at \(x=1\). Suppose \(\displaystyle\lim_{h\to0}\frac{f(1+|h|)-f(1)}{h}\) exists. What must be true about \(f'(1)\)?</div>
+</div>
+<div class="answer">5. Right value \(1\), left value \(1\), so the limit is \(1\). 6. Right value \(4-a\), left value \(a-2\), so \(a=3\) and the limit is \(1\). 7. \(a+3=2a-1\Rightarrow a=4\), so \(f'(0)=7\). 8. The right-hand limit is \(f'(1)\), while the left-hand limit is \(-f'(1)\), so \(f'(1)=0\).</div>
+</section>
+<section class="slide" data-title="Derivative-limit identification">
+<div class="kicker">AP Calculus AB</div>
+<h2>Derivative-limit identification</h2>
+<div class="grid3">
+<div class="prompt"><b>1.</b> \(\displaystyle \lim_{x\to 4}\frac{\sqrt{x}-2}{x-4}\)</div>
+<div class="prompt"><b>2.</b> \(\displaystyle \lim_{h\to0}\frac{(5+h)^7-5^7}{h}\)</div>
+<div class="prompt"><b>3.</b> \(\displaystyle \lim_{x\to \pi}\frac{\sin x-0}{x-\pi}\)</div>
+<div class="prompt"><b>4.</b> \(\displaystyle \lim_{x\to 1}\frac{\ln x-0}{x-1}\)</div>
+<div class="prompt"><b>5.</b> \(\displaystyle \lim_{x\to 2}\frac{x^{-4}-2^{-4}}{x-2}\)</div>
+<div class="prompt"><b>6.</b> \(\displaystyle \lim_{x\to a}\frac{x^n-a^n}{x-a}\)</div>
+</div>
+<div class="answer">1. \(\frac14\). 2. \(7\cdot5^6\). 3. \(-1\). 4. \(1\). 5. \(-\frac14\). 6. \(na^{n-1}\).</div>
+</section><section class="slide" data-title="Derivative definition challenge I">
+<div class="kicker">AP Calculus AB</div>
+<h2>Derivative definition challenge I</h2>
+<div class="grid2">
+<div class="prompt"><b>1.</b> If \(f\) is differentiable at \(x=1\) and
+\[\lim_{h\to0}\frac{f(1+h)-3h+h^2}{h}=8,\]
+find \(f(1)+f'(1)\).</div>
+<div class="prompt"><b>2.</b> If \(f\) is differentiable at \(x=1\) and
+\[\lim_{h\to0}\frac{f(1+h)-f(1-h)+4h}{2h}=7,\]
+find \(f'(1)\).</div>
+<div class="prompt"><b>3.</b> If \(f\) is differentiable at \(x=1\) and
+\[\lim_{h\to0}\frac{f(1+h)+ah}{h}=b,\]
+find \(f(1)\) and \(f'(1)\) in terms of \(a\) and \(b\).</div>
+<div class="prompt"><b>4.</b> Let \(f\) be differentiable at \(x=2\). If
+\[\lim_{h\to0}\frac{f(2+h)-7}{h}=4,\]
+find \(f(2)\) and \(f'(2)\).</div>
+</div>
+<div class="answer">1. Finite limit forces \(f(1)=0\), and \(f'(1)-3=8\), so \(f(1)+f'(1)=11\). 2. \(f'(1)+2=7\Rightarrow f'(1)=5\). 3. Finite limit forces \(f(1)=0\), and \(f'(1)+a=b\), so \(f'(1)=b-a\). 4. \(f(2)=7\) and \(f'(2)=4\).</div>
+</section><section class="slide" data-title="Derivative definition challenge II">
+<div class="kicker">AP Calculus AB</div>
+<h2>Derivative definition challenge II</h2>
+<div class="grid2">
+<div class="prompt"><b>5.</b> Let \(f\) be differentiable at \(x=3\). If
+\[\lim_{h\to0}\frac{f(3+5h)-f(3-2h)}{h}=21,\]
+find \(f'(3)\).</div>
+<div class="prompt"><b>6.</b> Let \(f\) be differentiable at \(x=0\). If
+\[\lim_{h\to0}\frac{f(h)-f(-h)+h^2f(h)}{h}=12,\]
+find \(f'(0)\).</div>
+<div class="prompt"><b>7.</b> Let \(f\) be differentiable at \(x=9\). If
+\[\lim_{h\to0}\frac{f(9+6h+h^2)-f(9)}{h}=30,\]
+find \(f'(9)\).</div>
+<div class="prompt"><b>8.</b> Let \(f\) be differentiable at \(x=4\). If
+\[\lim_{h\to0}\frac{f(4+h^2)-f(4)}{h}=10,\]
+is this possible?</div>
+</div>
+<div class="answer">5. The numerator behaves like \((5h+2h)f'(3)=7hf'(3)\), so \(f'(3)=3\). 6. The limit is \(2f'(0)\), so \(f'(0)=6\). 7. The displacement is \(6h+h^2\), so the limit is \(6f'(9)=30\Rightarrow f'(9)=5\). 8. No. The numerator behaves like \(f'(4)h^2\), so the quotient tends to \(0\), not \(10\).</div>
+</section><section class="slide" data-title="Derivative definition challenge III">
+<div class="kicker">AP Calculus AB</div>
+<h2>Derivative definition challenge III</h2>
+<div class="grid2">
+<div class="prompt"><b>9.</b> Let \(f\) be differentiable at \(x=1\). If
+\[\lim_{h\to0}\frac{f(1+h^2)-f(1-h^2)+h f(1+h)-h f(1-h)}{h^2}=10,\]
+find \(f'(1)\).</div>
+<div class="prompt"><b>10.</b> Let \(f\) be differentiable at \(x=1\). If
+\[\lim_{h\to0}\frac{f(1+h)-f(1-h)+f(1+h^2)-f(1)}{h}=18,\]
+find \(f'(1)\).</div>
+<div class="prompt"><b>11.</b> Let \(f\) be differentiable at \(x=0\). Suppose
+\[\lim_{h\to0}\frac{f(h)-f(-2h)+f(3h)-3f(0)}{h}\]
+exists. Express the limit in terms of \(f'(0)\).</div>
+<div class="prompt"><b>12.</b> Find a condition on \(A\), \(B\), and \(C\) so that
+\[\lim_{h\to0}\frac{Af(h)+Bf(-2h)+Cf(3h)-(A+B+C)f(0)}{h}=0\]
+for every function \(f\) differentiable at \(0\).</div>
+</div>
+<div class="answer">9. The quotient tends to \(4f'(1)\), so \(f'(1)=\frac52\). 10. The \(h^2\)-term contributes \(0\) after division by \(h\); the limit is \(2f'(1)=18\), so \(f'(1)=9\). 11. Existence forces the constant part to vanish; then the limit is \(6f'(0)\). 12. The limit equals \((A-2B+3C)f'(0)\), so require \(A-2B+3C=0\).</div>
+</section><section class="slide" data-title="Derivative definition challenge IV">
+<div class="kicker">AP Calculus AB</div>
+<h2>Derivative definition challenge IV</h2>
+<div class="grid2">
+<div class="prompt"><b>13.</b> Let \(f\) be differentiable at \(x=1\). For constants \(a\) and \(\lambda\), define
+\[L(a,\lambda)=\lim_{h\to0}\frac{f(1+h+a|h|)+\lambda f(1-h+a|h|)-(1+\lambda)f(1)}{h}.\]
+Find all values of \(a\) and \(\lambda\) for which \(L(a,\lambda)\) is guaranteed to exist for every differentiable \(f\), and express the limit in terms of \(f'(1)\).</div>
+<div class="prompt"><b>14.</b> Construct a function \(f\) such that \(f\) is differentiable at \(0\), \(f'(0)=0\), but \(f''(0)\) does not exist. Justify using limits.</div>
+</div>
+<div class="answer">13. The right coefficient is \(1+a+\lambda(a-1)\). The left coefficient is \(1-a-\lambda(1+a)\). Equality requires \(a(1+\lambda)=0\). If \(a=0\), then \(L=(1-\lambda)f'(1)\). If \(\lambda=-1\), then \(L=2f'(1)\). 14. One example is \(f(x)=x^2\sin(1/x)\) for \(x\ne0\), and \(f(0)=0\). Then \(f'(0)=\lim_{x\to0}x\sin(1/x)=0\), but \(f''(0)\) does not exist.</div>
+</section>
+<section class="slide" data-title="Horizontal tangents">
+<div class="kicker">AP Calculus AB</div>
+<h2>Horizontal tangents</h2>
+<div class="two">
+<div>
+<div class="graph" data-fn="cubicHT" data-points="-2,-16;2,16" data-xmax="4" data-xmin="-4" data-ymax="20" data-ymin="-20"></div>
+</div>
+<div class="prompt"><b>Find all points where the tangent line is horizontal.</b>
+  \[
+  f(x)=12x-x^3
+  \]
+  </div>
+</div>
+<div class="answer">\(f'(x)=12-3x^2\). Set \(f'(x)=0\): \(x=\pm2\). Points: \((-2,-16)\), \((2,16)\).</div>
+</section><section class="slide" data-title="Angles, horizontal tangents, and normal slopes"><div class="kicker">AP Calculus AB</div>
+<h2>Angles, horizontal tangents, and normal slopes</h2>
+<div class="grid2">
+<div class="rule">A tangent angle \(\theta\) with the positive \(x\)-axis has slope \(m=\tan\theta\).</div>
+<div class="rule">Horizontal tangent: \(f'(x)=0\). Normal slope: \(m_N=-\frac1{f'(x)}\), when \(f'(x)\ne0\).</div>
+</div>
+<div class="grid2">
+<div class="prompt"><b>1.</b> Find all \(x\) where the tangent to \(y=x^3-3x+1\) makes a \(45^\circ\) angle with the \(x\)-axis.</div>
+<div class="prompt"><b>2.</b> Find all \(x\) where the tangent to \(y=x^3-3x+1\) makes a \(30^\circ\) angle with the \(x\)-axis.</div>
+<div class="prompt"><b>3.</b> Find the normal line to \(f(x)=x^3-4x^2+x+3\) at \(x=3\).</div>
+<div class="prompt"><b>4.</b> Find all \(x\) where \(f(x)=x^4-4x+2\) has a horizontal tangent.</div>
+</div>
+<div class="answer">1. \(3x^2-3=1\Rightarrow x=\pm\frac2{\sqrt3}\). 2. \(3x^2-3=\frac1{\sqrt3}\Rightarrow x=\pm\sqrt{1+\frac1{3\sqrt3}}\). 3. \(f'(3)=16\), point \((3,3)\), normal: \(y-3=-\frac1{16}(x-3)\). 4. \(4x^3-4=0\Rightarrow x=1\).</div>
+</section>
+<section class="slide" data-title="Horizontal tangent practice">
+<div class="kicker">AP Calculus AB</div>
+<h2>Horizontal tangent practice</h2>
+<div class="grid2">
+<div class="prompt"><b>1.</b> Find all points where \(f(x)=12x-x^3\) has a horizontal tangent.</div>
+<div class="prompt"><b>2.</b> Find all points where \(g(x)=4x^{-2}+8x+1\) has a horizontal tangent.</div>
+<div class="prompt"><b>3.</b> Determine whether \(y=x^{2/3}\) has a horizontal tangent at \(x=0\).</div>
+<div class="prompt"><b>4.</b> Determine whether \(y=x^{4/3}\) has a horizontal tangent at \(x=0\).</div>
+</div>
+<div class="answer">1. \((-2,-16)\), \((2,16)\). 2. \(x=1\), point \((1,13)\). 3. No; derivative is undefined at \(0\). 4. Yes; derivative approaches \(0\) at \(0\).</div>
+</section><section class="slide" data-title="Corners and absolute value checks"><div class="kicker">AP Calculus AB</div>
+<h2>Corners and absolute value checks</h2>
+<div class="rule">Do not use a derivative rule blindly at a corner. Check one-sided slopes when an absolute value or piecewise definition changes form.</div>
+<div class="grid2">
+<div class="prompt"><b>1.</b> Let \(f(x)=\frac{|x-1|}{x}\), \(x\ne0\). Determine whether \(f'(1)\) exists.</div>
+<div class="prompt"><b>2.</b> Let \(g(x)=4-|3x-15|\). Determine whether \(g'(5)\) exists.</div>
+<div class="prompt"><b>3.</b> Let \(h(x)=|x+1|+|x-3|\). Find all values of \(x\) where \(h'(x)\) does not exist.</div>
+<div class="prompt"><b>4.</b> Let \(p(x)=|x-2|+x^2\). Find \(p'_-(2)\), \(p'_+(2)\), and decide whether \(p'(2)\) exists.</div>
+</div>
+<div class="answer">1. For \(x&lt;1\), \(f(x)=\frac{1-x}{x}=x^{-1}-1\), slope at \(1\) from the left is \(-1\). For \(x&gt;1\), \(f(x)=1-x^{-1}\), slope from the right is \(1\). No. 2. Left slope \(3\), right slope \(-3\); no. 3. \(x=-1,3\). 4. \(p'_-(2)=3\), \(p'_+(2)=5\); no.</div>
+</section><section class="slide" data-title="Absolute value differentiability challenge">
+<div class="kicker">AP Calculus AB</div>
+<h2>Absolute value differentiability challenge</h2>
+<div class="grid2">
+<div class="prompt"><b>1.</b> If \(h(x)=\left|x^2-px-3\right|\) is not differentiable at \(x=-1\), find \(p\).</div>
+<div class="prompt"><b>2.</b> Let \(P(x)\) be a nonzero polynomial with \(P(1)=0\). Suppose \(F(x)=|P(x)|\) is differentiable at \(x=1\), but \(G(x)=|P'(x)|\) is not differentiable at \(x=1\). Prove that \(x=1\) must be a double root of \(P(x)\). Then decide which must be true:
+\[P'(1)=0,\qquad P''(1)\ne0,\qquad P^{(3)}(1)=0.\]</div>
+</div>
+<div class="answer">1. The inside must be zero at \(-1\): \(1+p-3=0\Rightarrow p=2\). Since the inside derivative is \(2x-p\), at \(-1\) it is \(-4\ne0\), so the absolute value creates a corner. 2. Write \(P(x)=(x-1)^mQ(x)\), \(Q(1)\ne0\). \(|P|\) differentiable requires \(m\ge2\). \(|P'|\) not differentiable requires \(m-1=1\), so \(m=2\). Thus \(P'(1)=0\) and \(P''(1)\ne0\) must be true; \(P^{(3)}(1)=0\) need not be true.</div>
+</section>
+<section class="slide" data-title="Parallel tangent lines">
+<div class="kicker">AP Calculus AB</div>
+<h2>Parallel tangent lines</h2>
+<div class="prompt">Let \(f(x)=x^4\) and \(g(x)=x^3\). At what value(s) of \(x\) do the graphs have parallel tangent lines at the same input \(x\)?</div>
+<div class="work">Set the slopes equal:
+\[
+f'(x)=g'(x)
+\]
+</div>
+<div class="answer">\(4x^3=3x^2\Rightarrow x^2(4x-3)=0\). Thus \(x=0\) or \(x=\frac34\).</div>
+</section>
+<section class="slide" data-title="Parallel tangent practice">
+<div class="kicker">AP Calculus AB</div>
+<h2>Parallel tangent practice</h2>
+<div class="grid2">
+<div class="prompt"><b>1.</b> \(f(x)=x^2\), \(g(x)=x^5\). Find all \(x\)-values where the tangent lines are parallel.</div>
+<div class="prompt"><b>2.</b> \(f(x)=\sqrt{x}\), \(g(x)=x^3\). Find all \(x&gt;0\) where the tangent lines are parallel.</div>
+<div class="prompt"><b>3.</b> \(f(x)=x^4\), \(g(x)=x^3\). Find all common inputs where the tangents have the same slope.</div>
+<div class="prompt"><b>4.</b> Explain why solving \(f(x)=g(x)\) is not the same as solving for parallel tangents.</div>
+</div>
+<div class="answer">1. \(2x=5x^4\Rightarrow x=0\) or \(x=\sqrt[3]{\frac25}\). 2. \(\frac1{2\sqrt{x}}=3x^2\Rightarrow x=\left(\frac16\right)^{2/5}\). 3. \(0,\frac34\). 4. Equal values compare points; parallel tangents compare slopes.</div>
+</section>
+<section class="slide" data-title="Parameter problem">
+<div class="kicker">AP Calculus AB</div>
+<h2>Parameter problem</h2>
+<div class="prompt">Find \(a\) and \(b\) so that
+\[
+h(x)=x^2+ax+b,
+\]
+\[
+h(1)=0\quad\text{and}\quad h'(1)=4.
+\]
+</div>
+<div class="answer">\(h'(x)=2x+a\), so \(h'(1)=2+a=4\Rightarrow a=2\). Then \(h(1)=1+2+b=0\Rightarrow b=-3\).</div>
+</section><section class="slide" data-title="Piecewise differentiability with parameters"><div class="kicker">AP Calculus AB</div>
+<h2>Piecewise differentiability with parameters</h2>
+<div class="grid2">
+<div class="prompt"><b>1.</b> Find \(a\) and \(b\) so that \(f\) is differentiable at \(x=1\):
+  \[
+  f(x)=\begin{cases}ax^2+b,&amp;x&lt;1,\\ x-b,&amp;x\ge1.\end{cases}
+  \]</div>
+<div class="prompt"><b>2.</b> Find all pairs \((c,d)\) so that \(g\) is differentiable at \(x=2\):
+  \[
+  g(x)=\begin{cases}x^2+c,&amp;x&lt;2,\\4x+d,&amp;x\ge2.\end{cases}
+  \]</div>
+<div class="prompt"><b>3.</b> Determine whether \(r\) is differentiable at \(x=5\):
+  \[
+  r(x)=\begin{cases}2x-\frac85x^2+10,&amp;x\le5,\\50-14x,&amp;x&gt;5.\end{cases}
+  \]</div>
+<div class="prompt"><b>4.</b> Find \(a\) and \(b\) so that \(p\) is differentiable at \(x=-1\):
+  \[
+  p(x)=\begin{cases}x^3-ax+4,&amp;x\le -1,\\ ax^2+bx-2,&amp;x&gt;-1.\end{cases}
+  \]</div>
+</div>
+<div class="answer">1. Slopes: \(2a=1\Rightarrow a=\frac12\). Continuity: \(a+b=1-b\Rightarrow b=\frac14\). 2. Slopes already match since left slope at 2 is 4 and right slope is 4; continuity requires \(4+c=8+d\Rightarrow c-d=4\). 3. Left value \(-20\), right limit \(-20\); left slope \(2-16=-14\), right slope \(-14\), so differentiable. 4. Continuity: \(3+a=-a-b-2\). Slopes: \(3-a=-2a+b\). Solving gives \(a=-8\), \(b=11\).</div>
+</section>
+<section class="slide" data-title="Line tangent to another line">
+<div class="kicker">AP Calculus AB</div>
+<h2>Line tangent to another line</h2>
+<div class="prompt">Find all values of \(k\) such that the graph of
+\[
+f(x)=x^2+kx
+\]
+is tangent to the line
+\[
+y=2x-9.
+\]
+</div>
+<div class="answer">At tangency \(x=t\), slopes match: \(2t+k=2\Rightarrow k=2-2t\). Also the point lies on the line: \(t^2+kt=2t-9\). Substitute \(k\): \(t^2+(2-2t)t=2t-9\Rightarrow t^2=9\). Thus \(t=3\) gives \(k=-4\), and \(t=-3\) gives \(k=8\).</div>
+</section>
+<section class="slide" data-title="Normal line bridge">
+<div class="kicker">AP Calculus AB</div>
+<h2>Normal line bridge</h2>
+<div class="prompt">Find the equation of the line perpendicular to the tangent line to
+\[
+y=x^3-3x+4
+\]
+at \(x=2\).</div>
+<div class="answer">\(y'=3x^2-3\), so slope of tangent at \(x=2\) is \(9\). Normal slope is \(-\frac19\). Point: \((2,6)\). Normal line: \(y-6=-\frac19(x-2)\).</div>
+</section>
+<section class="slide" data-title="AP-style multiple choice">
+<div class="kicker">AP Calculus AB</div>
+<h2>AP-style multiple choice</h2>
+<div class="prompt">Let \(f(x)=3x^2-4\sqrt{x}+5\ln x\), for \(x&gt;0\). What is \(f'(4)\)?</div>
+<div class="choices">
+A. \(24\)    B. \(24-1+\frac54\)    C. \(24-\frac12+\frac54\)    D. \(6x-\frac2{\sqrt{x}}+\frac5x\)
+</div>
+<div class="answer">\(f'(x)=6x-\frac2{\sqrt{x}}+\frac5x\). Then \(f'(4)=24-1+\frac54=\frac{97}{4}\). Choice B.</div>
+</section><section class="slide" data-title="AP-style: derivative rules"><div class="kicker">AP Calculus AB</div>
+<h2>AP-style: derivative rules</h2>
+<div class="prompt">Given \(g(x)=2x^5+\frac{b}{x^2}\), where \(b\) is constant and \(x\ne0\), find \(b\) if \(g'(2)=180\).</div>
+<div class="choices">A. \(10\)    B. \(20\)    C. \(-40\)    D. \(80\)    E. none of these</div>
+<div class="answer">\(g'(x)=10x^4-2bx^{-3}\). Since \(g'(2)=160-\frac b4=180\), \(b=-80\). Choice E.</div>
+</section><section class="slide" data-title="AP-style: exponential and logarithmic limits"><div class="kicker">AP Calculus AB</div>
+<h2>AP-style: exponential and logarithmic limits</h2>
+<div class="grid2">
+<div class="prompt"><b>1.</b> \(\displaystyle \lim_{h\to0}\frac{\ln(3+h)-\ln3}{h}\)</div>
+<div class="prompt"><b>2.</b> \(\displaystyle \lim_{h\to0}\frac{\cos\left(\frac\pi6+h\right)-\cos\left(\frac\pi6\right)}{h}\)</div>
+<div class="prompt"><b>3.</b> If \(f(x)=\sin x\), evaluate \(\displaystyle \lim_{x\to\pi}\frac{f(\pi)-f(x)}{x-\pi}\).</div>
+<div class="prompt"><b>4.</b> Find the slope of \(y=2\ln x\) at \(x=8\).</div>
+</div>
+<div class="answer">1. \(\frac13\). 2. \(-\frac12\). 3. The expression equals \(-f'(\pi)=1\). 4. \(\frac14\).</div>
+</section>
+<section class="slide" data-title="AP-style multiple choice">
+<div class="kicker">AP Calculus AB</div>
+<h2>AP-style multiple choice</h2>
+<div class="prompt">Which expression is equal to
+\[
+\lim_{h\to0}\frac{(a+h)^{-3}-a^{-3}}{h},\qquad a\ne0?
+\]
+</div>
+<div class="choices">A. \(-3a^{-4}\)    B. \(3a^{-2}\)    C. \(-3a^{-2}\)    D. \(a^{-3}\)</div>
+<div class="answer">The limit is \(f'(a)\) for \(f(x)=x^{-3}\). Therefore it equals \(-3a^{-4}\). Choice A.</div>
+</section>
+<section class="slide" data-title="AP-style multiple choice">
+<div class="kicker">AP Calculus AB</div>
+<h2>AP-style multiple choice</h2>
+<div class="prompt">For \(x&gt;0\), let
+\[
+f(x)=\ln(x^2e^x)-4x^{-3}+2\sin x.
+\]
+Which is \(f'(x)\)?</div>
+<div class="choices">
+A. \(\frac2x+1+12x^{-4}+2\cos x\)<br/>
+B. \(\frac2x+x+12x^{-4}+2\cos x\)<br/>
+C. \(2x+e^x-12x^{-4}+2\cos x\)<br/>
+D. \(\frac2x+1-12x^{-4}+2\cos x\)
+</div>
+<div class="answer">\(\ln(x^2e^x)=2\ln x+x\). Also \(\frac{d}{dx}[-4x^{-3}]=12x^{-4}\). Choice A.</div>
+</section>
+<section class="slide" data-title="AP-style free response">
+<div class="kicker">AP Calculus AB</div>
+<h2>AP-style free response</h2>
+<div class="prompt">Let \(p(t)=t^4-8t^2+12t\) represent position in meters at time \(t\) seconds.</div>
+<ol class="tasks">
+<li>Find the velocity function \(v(t)\).</li>
+<li>Find all times when the particle is instantaneously at rest.</li>
+<li>Find \(v(2)\) and interpret its meaning with units.</li>
+</ol>
+<div class="answer">1. \(v(t)=4t^3-16t+12\). 2. Solve \(4(t^3-4t+3)=0\Rightarrow (t-1)(t^2+t-3)=0\), so \(t=1,\frac{-1\pm\sqrt{13}}2\). Use only domain-relevant times if a time interval is given. 3. \(v(2)=32-32+12=12\) m/s.</div>
+</section><section class="slide" data-title="AP-style free response: piecewise rate model"><div class="kicker">AP Calculus AB</div>
+<h2>AP-style free response: piecewise rate model</h2>
+<div class="prompt">A swimming-pool project removes dirt according to
+\[
+D(t)=\begin{cases}20t+t^2-\frac{t^3}{6},&amp;0\le t&lt;3,\\g(t),&amp;3\le t\le16,
+\end{cases}
+\]
+where \(g\) is differentiable. Values of \(g(t)\) are shown.</div>
+<table class="table"><tr><th>\(t\)</th><td>3</td><td>8</td><td>12</td><td>16</td></tr><tr><th>\(g(t)\)</th><td>64.5</td><td>2100</td><td>4050</td><td>6500</td></tr></table>
+<ol class="tasks">
+<li>Find the average rate of change of \(D\) on \([3,16]\).</li>
+<li>Approximate \(D'(10)\).</li>
+<li>Is \(D\) continuous at \(t=3\)? Justify.</li>
+</ol>
+<div class="answer">1. \(\frac{6500-64.5}{13}=495.038\) cubic ft/day. 2. Use the symmetric secant from 8 to 12: \(\frac{4050-2100}{4}=487.5\) cubic ft/day. 3. Left value: \(60+9-4.5=64.5\), and \(g(3)=64.5\); yes.</div>
+</section>
+<section class="slide" data-title="Error analysis">
+<div class="kicker">AP Calculus AB</div>
+<h2>Error analysis</h2>
+<div class="prompt">A student wrote:
+\[
+\frac{d}{dx}\left(\frac1{x^{19}}\right)=-19x^{-18}.
+\]
+Identify the error and correct it.</div>
+<div class="answer">\(\frac1{x^{19}}=x^{-19}\). Subtract one from the exponent: \(-19-1=-20\). Correct derivative: \(-19x^{-20}\).</div>
+</section>
+<section class="slide" data-title="Error analysis">
+<div class="kicker">AP Calculus AB</div>
+<h2>Error analysis</h2>
+<div class="grid2">
+<div class="prompt"><b>1.</b> A student says \(\frac{d}{dx}[\ln(x^3)]=\frac{1}{x^3}\). Correct the work.</div>
+<div class="prompt"><b>2.</b> A student says \(\frac{d}{dx}[\sqrt[3]{x^2}]=\frac23x^{-1/3}\). Is this correct?</div>
+<div class="prompt"><b>3.</b> A student differentiates \(\frac{x^3+5x^2+2}{x^2}\) without rewriting and gets stuck. Rewrite it.</div>
+<div class="prompt"><b>4.</b> A student says the derivative of \(e^x\) is \(xe^{x-1}\). Correct the rule.</div>
+</div>
+<div class="answer">1. \(\ln(x^3)=3\ln x\Rightarrow \frac3x\). 2. Correct. 3. \(x+5+2x^{-2}\). 4. \(\frac{d}{dx}e^x=e^x\).</div>
+</section>
+<section class="slide" data-title="Challenge set">
+<div class="kicker">AP Calculus AB</div>
+<h2>Challenge set</h2>
+<div class="grid2">
+<div class="prompt"><b>1.</b> Find all \(x\)-values where \(f(x)=x^4-8x^2+5\) has a horizontal tangent.</div>
+<div class="prompt"><b>2.</b> Find all \(x&gt;0\) where \(f(x)=x^3\) and \(g(x)=\sqrt{x}\) have parallel tangent lines.</div>
+<div class="prompt"><b>3.</b> Find \(a,b\) such that \(p(x)=x^3+ax^2+b\) satisfies \(p'(1)=0\) and \(p(1)=5\).</div>
+<div class="prompt"><b>4.</b> Find \(m\) so that \(y=mx+1\) is tangent to \(y=x^2-4x+6\).</div>
+</div>
+<div class="answer">1. \(f'(x)=4x^3-16x=4x(x^2-4)\Rightarrow x=-2,0,2\). 2. \(3x^2=\frac1{2\sqrt{x}}\Rightarrow x=(\frac16)^{2/5}\). 3. \(p'(x)=3x^2+2ax\); \(3+2a=0\Rightarrow a=-\frac32\). Then \(1-\frac32+b=5\Rightarrow b=\frac{11}{2}\). 4. Tangency means discriminant zero for \(x^2-(4+m)x+5=0\): \((4+m)^2-20=0\Rightarrow m=-4\pm2\sqrt5\).</div>
+</section>
+<section class="slide" data-title="Hard challenge">
+<div class="kicker">AP Calculus AB</div>
+<h2>Hard challenge</h2>
+<div class="prompt">For \(x&gt;0\), define
+\[
+F(x)=x^\pi+e^x+\ln(x^\pi)-\pi\ln x.
+\]
+Using only the rules from this lesson and simplification, find \(F'(x)\). Then evaluate \(F'(1)\).</div>
+<div class="answer">\(\ln(x^\pi)=\pi\ln x\), so the log terms cancel. Thus \(F(x)=x^\pi+e^x\). Therefore \(F'(x)=\pi x^{\pi-1}+e^x\), and \(F'(1)=\pi+e\).</div>
+</section><section class="slide" data-title="Mixed challenge I">
+<div class="kicker">AP Calculus AB</div>
+<h2>Mixed challenge I</h2>
+<div class="grid2">
+<div class="prompt"><b>1.</b> Let \(P(x)\) be a polynomial satisfying
+\[P'(x)+2P(x)=x^3+4x^2+x+7.\]
+Find \(P(x)\).</div>
+<div class="prompt"><b>2.</b> Let \(f\) and \(g\) be differentiable, with \(f(2)=3\), \(g(2)=-1\), and \(f'(2)=5\). If
+\[\lim_{x\to2}\frac{f(x)g(x)+3}{x-2}=11,\]
+find \(g'(2)\).</div>
+<div class="prompt"><b>3.</b> Let \(f\) and \(g\) be differentiable at \(x=1\), where \(f(1)=2\), \(g(1)=4\), and \(f'(1)=3\). If
+\[\lim_{x\to1}\frac{\frac{f(x)}{g(x)}-\frac12}{x-1}=1,\]
+find \(g'(1)\).</div>
+<div class="prompt"><b>4.</b> Let \(F(x)=|(x-2)^m(x+1)^n|\), where \(m,n\) are positive integers. Determine all \(m,n\) for which \(F\) is differentiable at \(x=2\) and \(x=-1\), but not twice differentiable at exactly one of those points.</div>
+</div>
+<div class="answer">1. \(P(x)=\frac12x^3+\frac54x^2-\frac34x+\frac{31}{8}\). 2. The limit is \((fg)'(2)=f'(2)g(2)+f(2)g'(2)=-5+3g'(2)=11\), so \(g'(2)=\frac{16}{3}\). 3. \(\left(\frac fg\right)'(1)=\frac{3\cdot4-2g'(1)}{16}=1\), so \(g'(1)=-2\). 4. There are no such positive integers: differentiability at both roots requires \(m,n\ge2\), and then \(|x-a|^m\) is twice differentiable at the root.</div>
+</section><section class="slide" data-title="Challenge: tangent, axes, and area"><div class="kicker">AP Calculus AB</div>
+<h2>Challenge: tangent, axes, and area</h2>
+<div class="grid2">
+<div class="prompt"><b>1.</b> The tangent to \(y=\frac1x\) at \(x=a&gt;0\) meets the axes. Show that the area of the triangle formed with the coordinate axes is constant.</div>
+<div class="prompt"><b>2.</b> Repeat the question for \(y=\frac1{x^2}\) at \(x=a&gt;0\). Does the area depend on \(a\)?</div>
+<div class="prompt"><b>3.</b> Find all values of \(x\) where the tangent line to \(y=x^3-3x+1\) is perpendicular to the line \(y=-\frac13x+5\).</div>
+<div class="prompt"><b>4.</b> Find all \(x\) where the tangent to \(y=x^3-3x+1\) has slope \(6\).</div>
+</div>
+<div class="answer">1. Tangent: \(y-\frac1a=-\frac1{a^2}(x-a)\). Intercepts: \((2a,0)\), \((0,2/a)\). Area \(=\frac12(2a)(2/a)=2\). 2. Tangent intercepts: \((\frac32a,0)\), \((0,\frac3{a^2})\). Area \(=\frac{9}{4a}\), so it depends on \(a\). 3. Required slope \(3\). Solve \(3x^2-3=3\Rightarrow x=\pm\sqrt2\). 4. \(3x^2-3=6\Rightarrow x=\pm\sqrt3\).</div>
+</section><section class="slide" data-title="Challenge: find a function from a derivative"><div class="kicker">AP Calculus AB</div>
+<h2>Challenge: find a function from a derivative</h2>
+<div class="grid2">
+<div class="prompt"><b>1.</b> Find a function \(f\) with \(f'(x)=4x^3\).</div>
+<div class="prompt"><b>2.</b> Find a function \(f\) with \(f'(x)=5x^4\).</div>
+<div class="prompt"><b>3.</b> Find a function \(f\) with \(f'(x)=\sqrt{x}\), \(x\ge0\).</div>
+<div class="prompt"><b>4.</b> Find a function \(f\) with \(f'(x)=\frac1{x^2}\), \(x\ne0\).</div>
+</div>
+<div class="answer">1. \(f(x)=x^4+C\). 2. \(f(x)=x^5+C\). 3. \(f(x)=\frac23x^{3/2}+C\). 4. \(f(x)=-\frac1x+C\).</div>
+</section>
+<section class="slide" data-title="Hard challenge">
+<div class="kicker">AP Calculus AB</div>
+<h2>Hard challenge</h2>
+<div class="prompt">Let
+\[
+H(x)=\frac{x^5-32}{x-2},\qquad x\ne2.
+\]
+<ol class="tasks">
+<li>Simplify \(H(x)\).</li>
+<li>Find \(H'(2)\) for the continuous extension of \(H\).</li>
+<li>Explain why the original formula does not define \(H'(2)\).</li>
+</ol></div>
+<div class="answer">\(x^5-32=(x-2)(x^4+2x^3+4x^2+8x+16)\), so the extension is \(x^4+2x^3+4x^2+8x+16\). Its derivative is \(4x^3+6x^2+8x+8\). At \(x=2\): \(32+24+16+8=80\). The original formula is undefined at \(x=2\).</div>
+</section>
+<section class="slide" data-title="Quick check">
+<div class="kicker">AP Calculus AB</div>
+<h2>Quick check</h2>
+<div class="grid2">
+<div class="prompt"><b>1.</b> \(f(x)=2x^3+3x^2-4\)</div>
+<div class="prompt"><b>2.</b> \(g(x)=3\sin x-2x^3\)</div>
+<div class="prompt"><b>3.</b> \(y=\frac{5x-3}{\sqrt{x}}\)</div>
+<div class="prompt"><b>4.</b> \(f(x)=5\tan x-\ln(x^3)\)</div>
+<div class="prompt"><b>5.</b> \(y=\ln(x^2e^x)\)</div>
+</div>
+<div class="answer">1. \(6x^2+6x\). 2. \(3\cos x-6x^2\). 3. Rewrite as \(5x^{1/2}-3x^{-1/2}\), derivative \(\frac52x^{-1/2}+\frac32x^{-3/2}\). 4. \(5\sec^2x-\frac3x\). 5. \(\frac2x+1\).</div>
+</section>
+<section class="slide" data-title="Exit ticket">
+<div class="kicker">AP Calculus AB</div>
+<h2>Exit ticket</h2>
+<div class="grid2">
+<div class="prompt"><b>1.</b> Differentiate \(y=\frac{1}{\sqrt[4]{x^3}}+4e^x-2\cos x\).</div>
+<div class="prompt"><b>2.</b> Interpret \(\displaystyle \lim_{h\to0}\frac{(a+h)^6-a^6}{h}\).</div>
+<div class="prompt"><b>3.</b> Find the tangent line to \(y=x^{-2}\) at \(x=1\).</div>
+<div class="prompt"><b>4.</b> Find all \(x\) where \(y=x^3-3x\) has horizontal tangent lines.</div>
+</div>
+<div class="answer">1. \(-\frac34x^{-7/4}+4e^x+2\sin x\). 2. It is \(f'(a)\) for \(f(x)=x^6\), equal to \(6a^5\). 3. Point \((1,1)\), slope \(-2\), so \(y-1=-2(x-1)\). 4. \(3x^2-3=0\Rightarrow x=\pm1\).</div>
+</section></main>
+<footer class="footer"><div><button class="navbtn" id="prev">← Prev</button> <button class="nextbtn" id="next">Next →</button> <button class="ansbtn" id="answers">Answers</button></div><select id="jump"></select></footer>
+</div>
+<script>
+const slides=[...document.querySelectorAll('.slide')];
+let i=0;
+const count=document.getElementById('count'), bar=document.getElementById('bar'), jump=document.getElementById('jump'), ans=document.getElementById('answers');
+slides.forEach((s,idx)=>{const opt=document.createElement('option'); opt.value=idx; opt.textContent=(idx+1)+'. '+(s.dataset.title||('Slide '+(idx+1))); jump.appendChild(opt);});
+function show(n){
+  slides[i].classList.remove('active');
+  i=Math.max(0,Math.min(slides.length-1,n));
+  slides[i].classList.add('active');
+  count.textContent=(i+1)+' / '+slides.length;
+  bar.style.width=((i+1)/slides.length*100)+'%';
+  jump.value=i;
+  ans.classList.toggle('on',slides[i].classList.contains('showAnswers'));
+}
+document.getElementById('prev').onclick=()=>show(i-1);
+document.getElementById('next').onclick=()=>show(i+1);
+jump.onchange=e=>show(+e.target.value);
+ans.onclick=()=>{slides[i].classList.toggle('showAnswers'); ans.classList.toggle('on',slides[i].classList.contains('showAnswers'));};
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')show(i+1); if(e.key==='ArrowLeft')show(i-1); if(e.key.toLowerCase()==='a')ans.click();});
+
+function fn(name,x){
+  if(name==='constant') return 3;
+  if(name==='identity') return x;
+  if(name==='x2') return x*x;
+  if(name==='x3') return x*x*x;
+  if(name==='inv4') return Math.pow(x,-4);
+  if(name==='cubicHT') return 12*x-x*x*x;
+  return x*x;
+}
+function drawGraph(el){
+  const w=520,h=300,p=28;
+  const xmin=+el.dataset.xmin, xmax=+el.dataset.xmax, ymin=+el.dataset.ymin, ymax=+el.dataset.ymax;
+  const f=el.dataset.fn;
+  const sx=x=>p+(x-xmin)/(xmax-xmin)*(w-2*p);
+  const sy=y=>h-p-(y-ymin)/(ymax-ymin)*(h-2*p);
+  let svg=`<svg viewBox="0 0 ${w} ${h}" role="img" aria-label="graph">`;
+  for(let gx=Math.ceil(xmin);gx<=Math.floor(xmax);gx++) svg+=`<line class="gridline" x1="${sx(gx)}" y1="${p}" x2="${sx(gx)}" y2="${h-p}"/>`;
+  for(let gy=Math.ceil(ymin);gy<=Math.floor(ymax);gy++) svg+=`<line class="gridline" x1="${p}" y1="${sy(gy)}" x2="${w-p}" y2="${sy(gy)}"/>`;
+  if(ymin<=0&&ymax>=0) svg+=`<line class="axis" x1="${p}" y1="${sy(0)}" x2="${w-p}" y2="${sy(0)}"/>`;
+  if(xmin<=0&&xmax>=0) svg+=`<line class="axis" x1="${sx(0)}" y1="${p}" x2="${sx(0)}" y2="${h-p}"/>`;
+  let d=''; let first=true;
+  for(let k=0;k<=420;k++){
+    let x=xmin+(xmax-xmin)*k/420, y=fn(f,x);
+    if(!Number.isFinite(y)||y<ymin-5||y>ymax+5){ first=true; continue; }
+    d+=(first?'M':'L')+sx(x).toFixed(2)+','+sy(y).toFixed(2)+' '; first=false;
+  }
+  svg+=`<path class="curve" d="${d}"/>`;
+  if(el.dataset.tangent){
+    const [a,m]=el.dataset.tangent.split(',').map(Number); const ya=fn(f,a);
+    const y1=m*(xmin-a)+ya, y2=m*(xmax-a)+ya;
+    svg+=`<line class="tangent" x1="${sx(xmin)}" y1="${sy(y1)}" x2="${sx(xmax)}" y2="${sy(y2)}"/>`;
+  }
+  const pts=[];
+  if(el.dataset.point) pts.push(el.dataset.point);
+  if(el.dataset.points) pts.push(...el.dataset.points.split(';'));
+  pts.forEach((s,idx)=>{const [x,y]=s.split(',').map(Number); svg+=`<circle class="${idx?'pt2':'pt'}" cx="${sx(x)}" cy="${sy(y)}" r="5"/>`; svg+=`<text x="${sx(x)+8}" y="${sy(y)-8}" font-size="13" fill="#203654">(${x},${y})</text>`;});
+  svg+=`<text x="${w-p-12}" y="${sy(0)-8}" font-size="13" fill="#243247">x</text><text x="${sx(0)+8}" y="${p+12}" font-size="13" fill="#243247">y</text></svg>`;
+  el.innerHTML=svg;
+}
+document.querySelectorAll('.graph').forEach(drawGraph);
+
+window.addEventListener('load',()=>{
+  if(window.renderMathInElement){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"\\[",right:"\\]",display:true},{left:"\\(",right:"\\)",display:false}],throwOnError:false,strict:false});}
+  show(0);
+});
+</script>
+</body>
+</html>

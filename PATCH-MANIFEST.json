@@ -1,0 +1,194 @@
+[
+  {
+    "path": "LESSON-MAPPING.md",
+    "bytes": 5146
+  },
+  {
+    "path": "README-DEPLOY.md",
+    "bytes": 1726
+  },
+  {
+    "path": "css/portal.css",
+    "bytes": 20142
+  },
+  {
+    "path": "data/ap-calculus-update.js",
+    "bytes": 72814
+  },
+  {
+    "path": "index.html",
+    "bytes": 4649
+  },
+  {
+    "path": "js/portal.js",
+    "bytes": 16412
+  },
+  {
+    "path": "lessons/ap-calculus/unit-1/1-1-can-change-occur-at-an-instant.html",
+    "bytes": 7466027
+  },
+  {
+    "path": "lessons/ap-calculus/unit-1/1-10-types-of-discontinuities.html",
+    "bytes": 1103807
+  },
+  {
+    "path": "lessons/ap-calculus/unit-1/1-11-continuity-at-a-point.html",
+    "bytes": 1099077
+  },
+  {
+    "path": "lessons/ap-calculus/unit-1/1-12-continuity-over-an-interval.html",
+    "bytes": 1119151
+  },
+  {
+    "path": "lessons/ap-calculus/unit-1/1-13-removing-discontinuities.html",
+    "bytes": 1063940
+  },
+  {
+    "path": "lessons/ap-calculus/unit-1/1-14-infinite-limits-and-vertical-asymptotes.html",
+    "bytes": 1084614
+  },
+  {
+    "path": "lessons/ap-calculus/unit-1/1-15-limits-at-infinity-and-horizontal-asymptotes.html",
+    "bytes": 1067787
+  },
+  {
+    "path": "lessons/ap-calculus/unit-1/1-16-intermediate-value-theorem.html",
+    "bytes": 1088041
+  },
+  {
+    "path": "lessons/ap-calculus/unit-1/1-2-defining-limits-and-using-limit-notation.html",
+    "bytes": 978144
+  },
+  {
+    "path": "lessons/ap-calculus/unit-1/1-3-estimating-limit-values-from-graphs.html",
+    "bytes": 1460467
+  },
+  {
+    "path": "lessons/ap-calculus/unit-1/1-4-estimating-limit-values-from-tables.html",
+    "bytes": 984567
+  },
+  {
+    "path": "lessons/ap-calculus/unit-1/1-5-algebraic-properties-of-limits.html",
+    "bytes": 1209642
+  },
+  {
+    "path": "lessons/ap-calculus/unit-1/1-6-algebraic-manipulation.html",
+    "bytes": 1131861
+  },
+  {
+    "path": "lessons/ap-calculus/unit-1/1-7-selecting-limit-procedures.html",
+    "bytes": 1144636
+  },
+  {
+    "path": "lessons/ap-calculus/unit-1/1-8-squeeze-theorem.html",
+    "bytes": 1049271
+  },
+  {
+    "path": "lessons/ap-calculus/unit-1/1-9-multiple-representations-of-limits.html",
+    "bytes": 1121621
+  },
+  {
+    "path": "lessons/ap-calculus/unit-1/unit-1-assessment.html",
+    "bytes": 854245
+  },
+  {
+    "path": "lessons/ap-calculus/unit-2/2-1-rates-of-change-and-tangent-lines.html",
+    "bytes": 105040
+  },
+  {
+    "path": "lessons/ap-calculus/unit-2/2-2-tangent-lines-and-the-derivative.html",
+    "bytes": 230430
+  },
+  {
+    "path": "lessons/ap-calculus/unit-2/2-3-derivative-graphs-differentiability-continuity.html",
+    "bytes": 61962
+  },
+  {
+    "path": "lessons/ap-calculus/unit-2/2-4-basic-derivative-rules.html",
+    "bytes": 63642
+  },
+  {
+    "path": "lessons/ap-calculus/unit-2/2-5-product-and-quotient-rules.html",
+    "bytes": 47307
+  },
+  {
+    "path": "lessons/ap-calculus/unit-3/3-1-chain-rule.html",
+    "bytes": 75340
+  },
+  {
+    "path": "lessons/ap-calculus/unit-3/3-2-implicit-differentiation.html",
+    "bytes": 79317
+  },
+  {
+    "path": "lessons/ap-calculus/unit-3/3-3-inverse-function-and-inverse-trig-derivatives.html",
+    "bytes": 120554
+  },
+  {
+    "path": "lessons/ap-calculus/unit-4/4-1-interpretations-of-the-derivative.html",
+    "bytes": 68853
+  },
+  {
+    "path": "lessons/ap-calculus/unit-4/4-2-straight-line-motion.html",
+    "bytes": 76430
+  },
+  {
+    "path": "lessons/ap-calculus/unit-4/4-3-other-rates-of-change.html",
+    "bytes": 68542
+  },
+  {
+    "path": "lessons/ap-calculus/unit-4/4-4-related-rates.html",
+    "bytes": 214766
+  },
+  {
+    "path": "lessons/ap-calculus/unit-4/4-5-linear-approximation.html",
+    "bytes": 125041
+  },
+  {
+    "path": "lessons/ap-calculus/unit-4/4-6-lhopitals-rule.html",
+    "bytes": 109066
+  },
+  {
+    "path": "lessons/ap-calculus/unit-5/5-1-mean-value-theorem.html",
+    "bytes": 183716
+  },
+  {
+    "path": "lessons/ap-calculus/unit-5/5-10-optimization-problems.html",
+    "bytes": 1577455
+  },
+  {
+    "path": "lessons/ap-calculus/unit-5/5-2-to-5-5-derivative-graph-analysis-part-1.html",
+    "bytes": 383374
+  },
+  {
+    "path": "lessons/ap-calculus/unit-5/5-2-to-5-5-derivative-graph-analysis-part-2.html",
+    "bytes": 222157
+  },
+  {
+    "path": "notes/ap-calculus/unit-5/derivative-applications-complete-english.pdf",
+    "bytes": 344265
+  },
+  {
+    "path": "notes/ap-calculus/unit-5/extrema-curve-sketching-complete.pdf",
+    "bytes": 3282189
+  },
+  {
+    "path": "notes/ap-calculus/unit-5/extreme-values-and-concavity-english.pdf",
+    "bytes": 316698
+  },
+  {
+    "path": "notes/ap-calculus/unit-5/maximum-minimum-applications-english.pdf",
+    "bytes": 368417
+  },
+  {
+    "path": "preview/courses-preview.js",
+    "bytes": 6575
+  },
+  {
+    "path": "preview.html",
+    "bytes": 4647
+  },
+  {
+    "path": "sw.js",
+    "bytes": 1414
+  }
+]

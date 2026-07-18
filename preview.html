@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#78183f">
+  <title>Preview · ECHS Mathematics Lesson Portal</title>
+  <meta name="description" content="ECHS Mathematics lesson portal for AP Calculus, AP Precalculus, IB Mathematics AI, and Grade 9 preparation.">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="assets/icon-192.png">
+  <link rel="stylesheet" href="css/portal.css">
+</head>
+<body>
+<a class="skip" href="#content">Skip to lesson content</a>
+<header class="site">
+  <div class="top">
+    <a class="brand" href="#content" aria-label="ECHS Mathematics home">
+      <span class="brandMark" aria-hidden="true">∫</span>
+      <img class="logo" src="assets/echs_logo.png" alt="Education City High School logo" onerror="this.hidden=true">
+      <span class="brandText"><strong>ECHS Mathematics Portal</strong><span>Mohammad Abu Ghuwaleh</span></span>
+    </a>
+    <label class="searchBox" aria-label="Search lessons">
+      <span class="searchIcon" aria-hidden="true">⌕</span>
+      <input id="search" placeholder="Search topics, objectives, videos, or notes…" autocomplete="off">
+      <kbd>/</kbd>
+    </label>
+    <div class="headerActions"><a class="btn" href="#courses">Browse courses</a></div>
+  </div>
+</header>
+
+<main id="content">
+  <section class="hero" aria-labelledby="portalTitle">
+    <div class="heroCard">
+      <div class="heroInner">
+        <span class="portalBadge"><i></i> ECHS Mathematics</span>
+        <h1 id="portalTitle">Explore mathematics.<span>Build understanding.</span></h1>
+        <p class="lead">Interactive lessons, clear learning objectives, video support, and an organized course pathway for every learner.</p>
+        <p class="teacher">Teacher · Mohammad Abu Ghuwaleh</p>
+        <div class="actions">
+          <a class="btn" href="#courses">Open courses</a>
+          <button class="btn secondary" id="printBtn">Print current course</button>
+          <button class="btn ghost" id="resetBtn">Reset local progress</button>
+        </div>
+      </div>
+      <div class="mathMotif" aria-hidden="true"><span>lim f(x)</span><span>f′(x)</span><span>∫ f(x)dx</span></div>
+    </div>
+    <div class="statGrid" aria-label="Portal summary">
+      <div class="stat"><b id="statCourses">0</b><span>Courses</span></div>
+      <div class="stat"><b id="statLessons">0</b><span>Lesson cards</span></div>
+      <div class="stat wide"><b id="statReady">0</b><span>Open interactive lessons</span><div class="progressBar"><i id="readyBar"></i></div><span class="statNote">New AP Calculus lessons are organized by official topic numbering.</span></div>
+    </div>
+  </section>
+
+  <nav class="courseTabs" id="tabs" aria-label="Course tabs"></nav>
+
+  <section class="layout" id="courses">
+    <aside class="sidebar">
+      <div class="panel coursePanel">
+        <h2>Courses</h2>
+        <p class="panelIntro">Choose a course to see its units, lessons, objectives, and resources.</p>
+        <div id="courseList"></div>
+      </div>
+      <div class="panel">
+        <h3>How to use the portal</h3>
+        <div class="guideList">
+          <div class="guideItem"><b>1</b><span>Open a unit and select an interactive lesson.</span></div>
+          <div class="guideItem"><b>2</b><span>Use the video and notes chips inside each lesson card.</span></div>
+          <div class="guideItem"><b>3</b><span>Bookmark lessons and mark your progress locally.</span></div>
+        </div>
+      </div>
+    </aside>
+
+    <section aria-live="polite">
+      <article class="courseHero" id="courseHero"></article>
+      <div class="toolbar">
+        <div class="filterGroup" aria-label="Lesson filters">
+          <button class="chip active" data-filter="all">All lessons</button>
+          <button class="chip" data-filter="ready">Open lessons</button>
+          <button class="chip" data-filter="bookmarked">Bookmarked</button>
+          <button class="chip" data-filter="completed">Completed</button>
+        </div>
+        <div class="filterGroup">
+          <button class="chip" id="expandAll">Expand all</button>
+          <button class="chip" id="collapseAll">Collapse all</button>
+        </div>
+      </div>
+      <div id="units"></div>
+    </section>
+  </section>
+</main>
+
+<footer>© <span id="currentYear"></span> <strong>ECHS Mathematics</strong> · Teacher: Mohammad Abu Ghuwaleh · Built for GitHub Pages.</footer>
+<script src="preview/courses-preview.js"></script>
+<script src="data/ap-calculus-update.js"></script>
+<script src="js/portal.js"></script>
+</body>
+</html>

@@ -1,184 +1,53 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ECHS Mathematics Lesson Portal | Mohammad Abu Ghuwaleh</title>
-<meta name="description" content="ECHS Mathematics lesson portal for AP Calculus, AP Precalculus, IB Mathematics AI, and Grade 9 preparation.">
-<link rel="manifest" href="manifest.json">
-<link rel="icon" href="assets/icon-192.png">
-<style>
-:root{
-  --maroon:#76153a;
-  --maroon-2:#9a224c;
-  --navy:#172c49;
-  --navy-2:#203a5f;
-  --teal:#0d6b60;
-  --gold:#c59a46;
-  --ink:#16202f;
-  --muted:#667385;
-  --line:#dbe3ec;
-  --line-2:#edf1f6;
-  --paper:#ffffff;
-  --bg:#f4f6fa;
-  --soft:#f7fafc;
-  --cream:#fbf6ed;
-  --green:#14765a;
-  --shadow:0 24px 70px rgba(23,44,73,.11);
-  --shadow-soft:0 12px 32px rgba(23,44,73,.07);
-  --radius:28px;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  margin:0;
-  font-family:Inter,Aptos,"Segoe UI",Arial,sans-serif;
-  color:var(--ink);
-  background:
-    radial-gradient(circle at 10% 0%,rgba(118,21,58,.12),transparent 30%),
-    radial-gradient(circle at 92% 8%,rgba(13,107,96,.13),transparent 35%),
-    linear-gradient(180deg,#f8fafc 0%,var(--bg) 55%,#eef3f8 100%);
-}
-a{color:inherit}
-.skip{position:absolute;left:-999px;top:0;background:white;padding:10px;z-index:1000}.skip:focus{left:10px}
-header.site{
-  position:sticky;top:0;z-index:30;
-  background:rgba(255,255,255,.86);
-  backdrop-filter:blur(18px);
-  border-bottom:1px solid rgba(219,227,236,.85);
-}
-.top{
-  max-width:1480px;margin:auto;padding:12px 22px;
-  display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:18px;
-}
-.brand{display:flex;align-items:center;gap:16px;min-width:0}
-.logo{height:54px;max-width:430px;object-fit:contain}
-.brandText{padding-left:16px;border-left:2px solid #d8e0e9;white-space:nowrap}
-.brandText strong{display:block;color:var(--navy);font-size:19px;letter-spacing:.15px}
-.brandText span{display:block;color:var(--muted);font-size:13px;margin-top:3px;font-weight:700}
-.headerActions{display:flex;align-items:center;gap:10px;justify-content:flex-end}
-.searchBox{
-  justify-self:center;display:flex;align-items:center;gap:10px;width:min(520px,100%);
-  background:#fff;border:1px solid var(--line);border-radius:999px;padding:9px 13px;
-  box-shadow:0 8px 25px rgba(23,44,73,.06)
-}
-.searchBox input{border:0;outline:0;font:inherit;width:100%;font-weight:750;color:var(--ink)}
-.searchBox input::placeholder{color:#8b96a6}
-.searchBox kbd{font:12px ui-monospace,SFMono-Regular,Menlo,monospace;background:#f2f5f8;border:1px solid #d5dde7;border-radius:7px;padding:2px 6px;color:var(--muted)}
-main{max-width:1480px;margin:0 auto;padding:28px 22px 66px}
-.hero{
-  display:grid;grid-template-columns:minmax(0,1.05fr) minmax(320px,.95fr);gap:24px;align-items:stretch;
-}
-.heroCard{
-  min-height:344px;border-radius:38px;padding:34px;position:relative;overflow:hidden;
-  background:linear-gradient(135deg,#ffffff 0%,#fff8fb 48%,#effaf7 100%);
-  border:1px solid rgba(219,227,236,.92);box-shadow:var(--shadow);
-}
-.heroCard:before{content:"";position:absolute;right:-90px;top:-110px;width:310px;height:310px;border-radius:50%;background:rgba(118,21,58,.10)}
-.heroCard:after{content:"";position:absolute;right:58px;bottom:-130px;width:300px;height:300px;border-radius:50%;background:rgba(197,154,70,.18)}
-.heroInner{position:relative;z-index:1;max-width:850px}
-.kicker{font-size:12px;font-weight:950;text-transform:uppercase;letter-spacing:2.2px;color:var(--maroon)}
-h1{font-size:clamp(42px,5vw,72px);line-height:.98;margin:14px 0 12px;color:var(--navy);letter-spacing:-2px}
-.lead{font-size:22px;line-height:1.42;color:var(--muted);max-width:760px;margin:0}
-.teacher{font-weight:950;color:var(--navy);margin-top:22px;font-size:20px}
-.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
-.btn{border:0;background:var(--maroon);color:#fff;border-radius:15px;padding:12px 16px;font-weight:950;text-decoration:none;cursor:pointer;box-shadow:0 12px 24px rgba(118,21,58,.18)}
-.btn.secondary{background:#e9eef4;color:var(--navy);box-shadow:none}
-.btn.ghost{background:#fff;color:var(--maroon);border:1px solid #e3c5d2;box-shadow:none}
-.btn:disabled{opacity:.55;cursor:not-allowed}
-.statGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
-.stat{
-  background:rgba(255,255,255,.82);border:1px solid rgba(219,227,236,.95);
-  border-radius:30px;padding:24px;box-shadow:var(--shadow-soft);backdrop-filter:blur(8px)
-}
-.stat b{display:block;font-size:48px;color:var(--maroon);line-height:.95;letter-spacing:-1px}
-.stat span{display:block;color:var(--muted);font-weight:850;margin-top:10px}
-.stat.wide{grid-column:span 2;background:linear-gradient(135deg,#ffffff,#f7fbfa)}
-.progressBar{height:13px;background:#e7edf3;border-radius:999px;overflow:hidden;margin-top:16px}
-.progressBar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--maroon),var(--teal));border-radius:999px}
-.courseTabs{display:flex;gap:12px;overflow:auto;padding:26px 0 10px;scrollbar-width:thin}
-.tab{min-width:max-content;border:1px solid var(--line);background:rgba(255,255,255,.88);border-radius:999px;padding:12px 16px;font-weight:950;color:var(--navy);cursor:pointer;box-shadow:0 10px 26px rgba(23,44,73,.04)}
-.tab.active{background:linear-gradient(135deg,var(--maroon),var(--maroon-2));color:#fff;border-color:var(--maroon)}
-.layout{display:grid;grid-template-columns:360px 1fr;gap:24px;margin-top:14px}
-.sidebar{position:sticky;top:94px;align-self:start}
-.panel{background:rgba(255,255,255,.9);border:1px solid var(--line);border-radius:30px;padding:22px;box-shadow:var(--shadow-soft);margin-bottom:18px}
-.panel h2,.panel h3{margin:0 0 12px;color:var(--navy);letter-spacing:-.3px}
-.miniCourse{border:1px solid var(--line);border-radius:22px;padding:15px;background:#fff;margin:10px 0;cursor:pointer;transition:.18s ease;outline:none}
-.miniCourse:hover,.miniCourse:focus{transform:translateY(-1px);box-shadow:0 10px 28px rgba(23,44,73,.08)}
-.miniCourse.active{border-color:#d9a5b9;background:#fff7fa;box-shadow:inset 4px 0 0 var(--maroon)}
-.miniCourse strong{display:block;color:var(--navy);font-size:16px}
-.miniCourse span{display:block;color:var(--muted);font-size:13px;margin-top:5px;font-weight:700}
-.pillRow{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
-.pill{font-size:12px;font-weight:950;text-transform:uppercase;letter-spacing:.55px;border-radius:999px;background:#eef3f7;color:var(--navy);padding:7px 10px}
-.pill.ready{background:#e7f6ef;color:#0a6041}.pill.flow{background:#fff1cf;color:#744e00}.pill.ap{background:#fde8ef;color:#8b153c}
-.courseHero{background:rgba(255,255,255,.9);border:1px solid var(--line);border-radius:34px;padding:26px;box-shadow:var(--shadow-soft);margin-bottom:18px}
-.courseHero h2{font-size:clamp(30px,3vw,44px);letter-spacing:-.7px;margin:0;color:var(--navy)}
-.courseMeta{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
-.meta{background:#f3f6f9;border:1px solid #e1e8ef;border-radius:999px;padding:8px 12px;font-weight:900;color:var(--navy);font-size:13px}
-.toolbar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin:18px 0}
-.filterGroup{display:flex;flex-wrap:wrap;gap:8px}
-.chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:9px 12px;font-weight:900;cursor:pointer;color:var(--navy)}
-.chip.active{background:var(--navy);color:#fff;border-color:var(--navy)}
-.unit{background:rgba(255,255,255,.94);border:1px solid var(--line);border-radius:30px;box-shadow:var(--shadow-soft);margin-bottom:16px;overflow:hidden}
-.unitHeader{width:100%;border:0;background:linear-gradient(90deg,#fff,#f8fbfa);display:flex;align-items:center;justify-content:space-between;gap:14px;text-align:left;padding:20px 22px;cursor:pointer;color:var(--ink)}
-.unitHeader h3{font-size:24px;margin:0;color:var(--navy);letter-spacing:-.35px}.unitHeader p{display:none}
-.unitCount{min-width:max-content;font-weight:950;color:var(--maroon);background:#fff;border:1px solid #ead8df;padding:8px 12px;border-radius:999px}
-.lessons{display:none;padding:0 18px 18px}
-.unit.open .lessons{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-.lesson{border:1px solid var(--line-2);background:#fcfdff;border-radius:24px;padding:17px;display:flex;flex-direction:column;gap:12px;transition:.16s ease;min-height:260px}
-.lesson:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(23,44,73,.08)}
-.lessonTop{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
-.lesson h4{font-size:19px;margin:8px 0 0;color:var(--navy);line-height:1.25;letter-spacing:-.15px}
-.lessonNo{display:inline-flex;align-items:center;justify-content:center;min-width:44px;height:32px;border-radius:999px;background:#eef3f7;font-weight:950;color:var(--maroon);font-size:13px}
-.lesson ul{margin:0;padding-left:20px}.lesson li{font-size:14px;line-height:1.38;color:#3f4a57;margin:4px 0}
-.lessonActions{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto}.small{font-size:13px;padding:8px 10px;border-radius:12px}
-.linkBtn{display:inline-block;text-decoration:none;background:var(--maroon);color:white;font-weight:950;padding:8px 10px;border-radius:12px}.linkBtn.flow{background:#e9eef3;color:var(--navy)}
-.star{border:0;background:#fff;border:1px solid var(--line);border-radius:12px;width:36px;height:36px;cursor:pointer;font-size:18px}.star.on{background:#fff1cf;border-color:#f0d487}
-.resource{font-size:12px;color:var(--muted);background:#fff;border:1px dashed #cbd5df;border-radius:12px;padding:9px;line-height:1.35}
-.resource a{font-weight:950;color:var(--maroon)}
-.empty{background:#fff;border:1px dashed #cbd5df;border-radius:24px;padding:26px;text-align:center;color:var(--muted);font-weight:800}
-footer{max-width:1480px;margin:0 auto;color:var(--muted);padding:20px 22px 40px;border-top:1px solid var(--line);font-weight:700}
-@media(max-width:1120px){.top{grid-template-columns:1fr}.headerActions{justify-content:flex-start}.searchBox{justify-self:stretch}.hero,.layout{grid-template-columns:1fr}.sidebar{position:static}.unit.open .lessons{grid-template-columns:1fr}.logo{max-width:270px}.brandText strong{font-size:17px}}
-@media(max-width:720px){.brand{align-items:flex-start}.brandText{white-space:normal}.statGrid{grid-template-columns:1fr}.stat.wide{grid-column:auto}main{padding:18px 14px}.heroCard{padding:24px;border-radius:30px}.top{padding:12px 14px}.logo{height:48px}.actions .btn{width:100%;text-align:center}.courseHero h2{font-size:30px}}
-@media print{header.site,.sidebar,.actions,.toolbar,.lessonActions,footer{display:none}.layout,.hero{display:block}.unit .lessons{display:grid!important;grid-template-columns:1fr!important}.unit{break-inside:avoid}.courseHero,.panel,.unit{box-shadow:none}.heroCard{box-shadow:none}.statGrid{display:none}}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#78183f">
+  <title>ECHS Mathematics Lesson Portal | Mohammad Abu Ghuwaleh</title>
+  <meta name="description" content="ECHS Mathematics lesson portal for AP Calculus, AP Precalculus, IB Mathematics AI, and Grade 9 preparation.">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="assets/icon-192.png">
+  <link rel="stylesheet" href="css/portal.css">
 </head>
 <body>
-<a href="#content" class="skip">Skip to content</a>
+<a class="skip" href="#content">Skip to lesson content</a>
 <header class="site">
   <div class="top">
-    <div class="brand">
-      <img class="logo" src="assets/echs_logo.png" alt="Education City High School logo">
-      <div class="brandText"><strong>ECHS Mathematics Portal</strong><span>Mohammad Abu Ghuwaleh</span></div>
-    </div>
+    <a class="brand" href="#content" aria-label="ECHS Mathematics home">
+      <span class="brandMark" aria-hidden="true">∫</span>
+      <img class="logo" src="assets/echs_logo.png" alt="Education City High School logo" onerror="this.hidden=true">
+      <span class="brandText"><strong>ECHS Mathematics Portal</strong><span>Mohammad Abu Ghuwaleh</span></span>
+    </a>
     <label class="searchBox" aria-label="Search lessons">
-      <span>🔎</span><input id="search" placeholder="Search lessons, units, keywords…" autocomplete="off"><kbd>/</kbd>
+      <span class="searchIcon" aria-hidden="true">⌕</span>
+      <input id="search" placeholder="Search topics, objectives, videos, or notes…" autocomplete="off">
+      <kbd>/</kbd>
     </label>
-    <div class="headerActions">
-      <a class="btn" href="#courses">Courses</a>
-    </div>
+    <div class="headerActions"><a class="btn" href="#courses">Browse courses</a></div>
   </div>
 </header>
 
 <main id="content">
-  <section class="hero">
+  <section class="hero" aria-labelledby="portalTitle">
     <div class="heroCard">
       <div class="heroInner">
-        <div class="kicker">ECHS Mathematics</div>
-        <h1>Lesson Portal</h1>
-        <p class="lead">AP Calculus AB, AP Precalculus, IB Mathematics: Applications and Interpretation, and Grade 9 preparation.</p>
-        <div class="teacher">Teacher: Mohammad Abu Ghuwaleh</div>
+        <span class="portalBadge"><i></i> ECHS Mathematics</span>
+        <h1 id="portalTitle">Explore mathematics.<span>Build understanding.</span></h1>
+        <p class="lead">Interactive lessons, clear learning objectives, video support, and an organized course pathway for every learner.</p>
+        <p class="teacher">Teacher · Mohammad Abu Ghuwaleh</p>
         <div class="actions">
-          <a class="btn" href="#courses">Open Courses</a>
-          <button class="btn secondary" id="printBtn">Print Current Course Flow</button>
-          <button class="btn ghost" id="resetBtn">Reset Local Progress</button>
+          <a class="btn" href="#courses">Open courses</a>
+          <button class="btn secondary" id="printBtn">Print current course</button>
+          <button class="btn ghost" id="resetBtn">Reset local progress</button>
         </div>
       </div>
+      <div class="mathMotif" aria-hidden="true"><span>lim f(x)</span><span>f′(x)</span><span>∫ f(x)dx</span></div>
     </div>
     <div class="statGrid" aria-label="Portal summary">
       <div class="stat"><b id="statCourses">0</b><span>Courses</span></div>
       <div class="stat"><b id="statLessons">0</b><span>Lesson cards</span></div>
-      <div class="stat wide"><b id="statReady">0</b><span>Open HTML lessons</span><div class="progressBar"><i id="readyBar"></i></div></div>
+      <div class="stat wide"><b id="statReady">0</b><span>Open interactive lessons</span><div class="progressBar"><i id="readyBar"></i></div><span class="statNote">New AP Calculus lessons are organized by official topic numbering.</span></div>
     </div>
   </section>
 
@@ -186,24 +55,26 @@ footer{max-width:1480px;margin:0 auto;color:var(--muted);padding:20px 22px 40px;
 
   <section class="layout" id="courses">
     <aside class="sidebar">
-      <div class="panel">
+      <div class="panel coursePanel">
         <h2>Courses</h2>
+        <p class="panelIntro">Choose a course to see its units, lessons, objectives, and resources.</p>
         <div id="courseList"></div>
       </div>
       <div class="panel">
-        <h3>Tools</h3>
-        <div class="pillRow">
-          <span class="pill ready">Open lessons</span>
-          <span class="pill flow">Flow map</span>
-          <span class="pill ap">GitHub Pages</span>
+        <h3>How to use the portal</h3>
+        <div class="guideList">
+          <div class="guideItem"><b>1</b><span>Open a unit and select an interactive lesson.</span></div>
+          <div class="guideItem"><b>2</b><span>Use the video and notes chips inside each lesson card.</span></div>
+          <div class="guideItem"><b>3</b><span>Bookmark lessons and mark your progress locally.</span></div>
         </div>
       </div>
     </aside>
-    <section>
+
+    <section aria-live="polite">
       <article class="courseHero" id="courseHero"></article>
       <div class="toolbar">
-        <div class="filterGroup">
-          <button class="chip active" data-filter="all">All</button>
+        <div class="filterGroup" aria-label="Lesson filters">
+          <button class="chip active" data-filter="all">All lessons</button>
           <button class="chip" data-filter="ready">Open lessons</button>
           <button class="chip" data-filter="bookmarked">Bookmarked</button>
           <button class="chip" data-filter="completed">Completed</button>
@@ -217,10 +88,10 @@ footer{max-width:1480px;margin:0 auto;color:var(--muted);padding:20px 22px 40px;
     </section>
   </section>
 </main>
-<footer>
-  © ECHS Mathematics • Teacher: Mohammad Abu Ghuwaleh • Static site for GitHub Pages.
-</footer>
+
+<footer>© <span id="currentYear"></span> <strong>ECHS Mathematics</strong> · Teacher: Mohammad Abu Ghuwaleh · Built for GitHub Pages.</footer>
 <script src="data/courses.js"></script>
+<script src="data/ap-calculus-update.js"></script>
 <script src="js/portal.js"></script>
 </body>
 </html>

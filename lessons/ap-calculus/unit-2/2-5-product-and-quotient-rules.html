@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>AP Calculus 2.5 — Product and Quotient Rules</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"/>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<style>
+:root{--maroon:#7a1738;--navy:#203654;--teal:#0e6655;--ink:#17212b;--muted:#5d6877;--line:#d9e2ec;--gold:#c69c48;--bg:#f4f7fb;--white:#fff}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,Aptos,"Segoe UI",Arial,sans-serif;color:var(--ink);background:var(--bg)}
+.deck{height:100vh;display:grid;grid-template-rows:74px 1fr 54px;overflow:hidden}.topbar{display:flex;align-items:center;justify-content:space-between;padding:10px 22px;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 2px 14px rgba(20,30,55,.08);z-index:2}.brand{display:flex;align-items:center;gap:18px}.echs{height:48px;width:96px;border-radius:14px;background:linear-gradient(135deg,var(--maroon),var(--navy));color:#fff;display:grid;place-items:center;font-weight:900;letter-spacing:1.5px}.course{border-left:2px solid #d5dce4;padding-left:18px;line-height:1.15}.course strong{color:var(--maroon);font-size:20px}.course span{display:block;color:var(--muted);font-size:13px;margin-top:3px}.progress{display:flex;align-items:center;gap:10px;color:var(--muted);font-weight:700;font-size:14px}.dotbar{width:220px;height:9px;background:#e5ebf0;border-radius:99px;overflow:hidden}.dotbar span{display:block;height:100%;width:0%;background:linear-gradient(90deg,var(--maroon),var(--teal));border-radius:99px}.main{overflow:hidden}.slide{display:none;height:100%;overflow-y:auto;padding:34px 48px 72px;background:linear-gradient(135deg,#fff 0%,#fbfaf7 58%,#f3fbf9 100%)}.slide.active{display:block}.kicker{color:var(--maroon);font-weight:800;letter-spacing:.08em;text-transform:uppercase;font-size:13px;margin-bottom:6px}h1{font-size:46px;line-height:1.02;color:var(--navy);margin:0 0 18px}h2{font-size:34px;color:var(--navy);margin:0 0 22px;line-height:1.05}p{font-size:20px;line-height:1.45}.small{font-size:15px;color:var(--muted)}.center{text-align:center}.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:28px;align-items:center;margin-top:20px}.bigbox{background:#fff;border:1px solid var(--line);border-radius:22px;padding:34px;box-shadow:0 10px 22px rgba(30,50,80,.08)}.bigmath{font-size:26px;text-align:center;color:var(--navy)}.two{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:stretch}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.grid4{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.prompt,.mini,.work,.rule,.statement{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px;font-size:20px;line-height:1.45;box-shadow:0 6px 16px rgba(30,50,80,.05)}.mini{text-align:center}.work{background:#fffdfa}.rule{border-left:7px solid var(--teal);font-weight:700}.statement{font-size:24px;border-left:7px solid var(--maroon)}.table{width:100%;border-collapse:separate;border-spacing:0;background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;font-size:20px;box-shadow:0 6px 16px rgba(30,50,80,.05);margin-bottom:18px}.table th{background:#f1f5f9;color:var(--navy);text-align:left;padding:14px 16px}.table td{padding:13px 16px;border-top:1px solid var(--line)}.choices{margin-top:18px;padding:14px 16px;border-radius:14px;background:#f8fafc;border:1px dashed #cbd5e1;font-size:19px;line-height:1.8}.answer{display:none;margin-top:18px;background:#f7fff7;border:1px solid #bde5c8;border-left:7px solid #2d7d46;border-radius:18px;padding:18px 20px;font-size:19px;line-height:1.45}.show .answer{display:block}.bottom{height:54px;display:flex;align-items:center;justify-content:space-between;padding:8px 22px;background:#fff;border-top:1px solid var(--line)}button{border:0;border-radius:14px;padding:11px 18px;font-size:16px;font-weight:800;cursor:pointer}button.primary{background:var(--maroon);color:#fff}button.light{background:#e8eef5;color:var(--navy)}button.outline{background:#fff;border:1px solid #e4cada;color:var(--maroon)}select{font-size:15px;padding:10px 12px;border-radius:14px;border:1px solid var(--line);color:var(--navy);font-weight:700;background:#fff;min-width:330px}.tag{display:inline-block;background:#eef7f5;color:var(--teal);border:1px solid #cde9e1;border-radius:999px;padding:6px 12px;font-size:15px;font-weight:800;margin:4px 6px 4px 0}.note{font-size:17px;color:var(--muted);margin-top:10px}.nowrap{white-space:nowrap}@media(max-width:900px){.grid3,.grid2,.grid4,.two,.hero{grid-template-columns:1fr}.slide{padding:28px 22px 80px}h1{font-size:38px}h2{font-size:30px}.course span{display:none}.dotbar{width:120px}select{min-width:180px}}
+</style>
+</head>
+<body>
+<div class="deck">
+  <div class="topbar">
+    <div class="brand"><div class="echs">ECHS</div><div class="course"><strong>AP Calculus AB</strong><span>2.5 Product and Quotient Rules</span></div></div>
+    <div class="progress"><span id="counter">1 / 45</span><div class="dotbar"><span id="fill"></span></div></div>
+  </div>
+  <main class="main"><section class="slide active" data-title="2.5 Product and Quotient Rules">
+<div class="kicker">Lesson 2.5</div>
+<h2>2.5 Product and Quotient Rules</h2>
+
+<div class="hero">
+  <div>
+    <h1>Product and Quotient Rules</h1>
+    <p>Differentiate products and quotients, decide when rewriting is better, and use derivatives in tangent-line, table, and AP-style questions.</p>
+  </div>
+  <div class="bigbox">
+    <div class="bigmath">\[
+      (fg)'=f'g+fg',\qquad \left(\frac{f}{g}\right)'=\frac{f'g-fg'}{g^2}
+    \]</div>
+  </div>
+</div>
+
+</section><section class="slide" data-title="Targets for today">
+<div class="kicker">AP Calculus AB</div>
+<h2>Targets for today</h2>
+
+<div class="grid3">
+  <div class="statement">Choose product rule, quotient rule, or rewriting.</div>
+  <div class="statement">Differentiate products and quotients of familiar functions.</div>
+  <div class="statement">Use derivative values from formulas, tables, and contexts.</div>
+</div>
+<div class="prompt">By the end, every answer should show the rule used and any domain restriction such as \(x\ne0\), \(x>0\), or denominator \(\ne0\).</div>
+
+</section><section class="slide" data-title="Quick rule decision">
+<div class="kicker">AP Calculus AB</div>
+<h2>Quick rule decision</h2>
+
+<div class="grid4">
+  <div class="prompt"><b>1.</b> \(y=(x^2-3x)(x^2+1)\)</div>
+  <div class="prompt"><b>2.</b> \(y=\dfrac{x^2-3x+5}{x}\)</div>
+  <div class="prompt"><b>3.</b> \(y=x^4\sin x\)</div>
+  <div class="prompt"><b>4.</b> \(y=\dfrac{e^x}{\cos x}\)</div>
+  <div class="prompt"><b>5.</b> \(y=\dfrac{4x-1}{3x+2}\)</div>
+  <div class="prompt"><b>6.</b> \(y=(3e^x-2)(x^3-1)\)</div>
+</div>
+<div class="answer">1 product or expand. 2 rewrite. 3 product. 4 quotient. 5 quotient. 6 product.</div>
+
+</section><section class="slide" data-title="Do not multiply derivatives">
+<div class="kicker">AP Calculus AB</div>
+<h2>Do not multiply derivatives</h2>
+
+<div class="two">
+  <div class="rule">Incorrect: \(\dfrac{d}{dx}[f(x)g(x)] = f'(x)g'(x)\)</div>
+  <div class="rule">Correct: \(\dfrac{d}{dx}[f(x)g(x)] = f'(x)g(x)+f(x)g'(x)\)</div>
+</div>
+<div class="prompt">Test the false rule using \(f(x)=x^2\) and \(g(x)=x^3\). Compare the derivative of \(x^5\) with \((2x)(3x^2)\).</div>
+<div class="answer">True derivative: \(5x^4\). False result: \(6x^3\). They are not the same.</div>
+
+</section><section class="slide" data-title="Product Rule">
+<div class="kicker">AP Calculus AB</div>
+<h2>Product Rule</h2>
+
+<div class="rule">If \(u\) and \(v\) are differentiable, then
+\[
+\frac{d}{dx}[u(x)v(x)] = u'(x)v(x)+u(x)v'(x).
+\]
+</div>
+<table class="table">
+<tr><th>Step</th><th>Action</th></tr>
+<tr><td>1</td><td>Identify \(u\) and \(v\).</td></tr>
+<tr><td>2</td><td>Compute \(u'\) and \(v'\).</td></tr>
+<tr><td>3</td><td>Form \(u'v+uv'\).</td></tr>
+<tr><td>4</td><td>Simplify only if it helps.</td></tr>
+</table>
+
+</section><section class="slide" data-title="Product Rule: first examples">
+<div class="kicker">AP Calculus AB</div>
+<h2>Product Rule: first examples</h2>
+
+<div class="grid3">
+  <div class="prompt"><b>1.</b> \(f(x)=(2x-3)\sin x\)</div>
+  <div class="prompt"><b>2.</b> \(g(x)=2x^3e^x\)</div>
+  <div class="prompt"><b>3.</b> \(h(x)=4\sqrt{x}\ln x\), \(x>0\)</div>
+  <div class="prompt"><b>4.</b> \(p(x)=(4-5x)\cos x\)</div>
+  <div class="prompt"><b>5.</b> \(q(x)=6\ln x\sin x\), \(x>0\)</div>
+  <div class="prompt"><b>6.</b> \(r(x)=2e^x(x^2+x)\)</div>
+</div>
+<div class="answer">1. \(2\sin x+(2x-3)\cos x\). 2. \(2e^x(3x^2+x^3)\). 3. \(\frac{2\ln x}{\sqrt{x}}+\frac{4}{\sqrt{x}}\). 4. \(-5\cos x-(4-5x)\sin x\). 5. \(\frac{6\sin x}{x}+6\ln x\cos x\). 6. \(2e^x(x^2+x)+2e^x(2x+1)\).</div>
+
+</section><section class="slide" data-title="Product Rule: table values">
+<div class="kicker">AP Calculus AB</div>
+<h2>Product Rule: table values</h2>
+
+<table class="table center">
+<tr><th>\(x\)</th><th>\(f(x)\)</th><th>\(f'(x)\)</th><th>\(g(x)\)</th><th>\(g'(x)\)</th></tr>
+<tr><td>2</td><td>4</td><td>\(-2\)</td><td>\(-1\)</td><td>2</td></tr>
+<tr><td>\(-5\)</td><td>3</td><td>4</td><td>\(-2\)</td><td>5</td></tr>
+</table>
+<div class="grid2">
+  <div class="prompt"><b>1.</b> If \(h(x)=3f(x)g(x)\), find \(h'(2)\).</div>
+  <div class="prompt"><b>2.</b> If \(r(x)=\left(\frac{f(x)}{2}+2\right)(3-g(x))\), find \(r'(-5)\).</div>
+</div>
+<div class="answer">1. \(h'(2)=3[f'(2)g(2)+f(2)g'(2)]=3[2+8]=30\). 2. \(r'(-5)=\frac{f'(-5)}2(3-g(-5))+\left(\frac{f(-5)}2+2\right)(-g'(-5))=2(5)+\frac72(-5)=-\frac{15}{2}\).</div>
+
+</section><section class="slide" data-title="Product Rule: AP table practice">
+<div class="kicker">AP Calculus AB</div>
+<h2>Product Rule: AP table practice</h2>
+
+<table class="table center">
+<tr><th>\(x\)</th><th>\(j(x)\)</th><th>\(j'(x)\)</th><th>\(k(x)\)</th><th>\(k'(x)\)</th></tr>
+<tr><td>\(-1\)</td><td>3</td><td>\(-4\)</td><td>5</td><td>\(-6\)</td></tr>
+</table>
+<div class="grid2">
+  <div class="prompt"><b>1.</b> \(H(x)=2j(x)k(x)\). Find \(H'(-1)\).</div>
+  <div class="prompt"><b>2.</b> \(F(x)=\left(\frac{j(x)}2-4\right)(1-k(x))\). Find \(F'(-1)\).</div>
+</div>
+<div class="answer">1. \(2[(-4)(5)+3(-6)]=-76\). 2. \(\frac{j'}2(1-k)+(\frac j2-4)(-k')=(-2)(-4)+(-\frac52)(6)=-7\).</div>
+
+</section><section class="slide" data-title="Product Rule with three factors">
+<div class="kicker">AP Calculus AB</div>
+<h2>Product Rule with three factors</h2>
+
+<div class="rule">For \(y=uvw\), differentiate one factor at a time:
+\[
+y'=u'vw+uv'w+uvw'.
+\]
+</div>
+<div class="grid2">
+  <div class="prompt"><b>1.</b> Find \(\dfrac{d}{dx}\left[x^2e^x\sin x\right]\).</div>
+  <div class="prompt"><b>2.</b> Find \(\dfrac{d}{dx}\left[(x^2+1)(x-3)\cos x\right]\).</div>
+</div>
+<div class="answer">1. \(2xe^x\sin x+x^2e^x\sin x+x^2e^x\cos x\). 2. \(2x(x-3)\cos x+(x^2+1)\cos x-(x^2+1)(x-3)\sin x\).</div>
+
+</section><section class="slide" data-title="When rewriting beats the Product Rule">
+<div class="kicker">AP Calculus AB</div>
+<h2>When rewriting beats the Product Rule</h2>
+
+<div class="grid2">
+  <div class="prompt"><b>1.</b> Differentiate \((x^2-3x)(x^2+1)\) two ways.</div>
+  <div class="prompt"><b>2.</b> Differentiate \(x^2(x^3-1)\) by expanding first.</div>
+</div>
+<div class="grid2">
+  <div class="prompt"><b>3.</b> Differentiate \(x^2\sqrt{x}\) by rewriting first.</div>
+  <div class="prompt"><b>4.</b> Differentiate \(\dfrac{3}{x}\cos x\). Which method is clearer?</div>
+</div>
+<div class="answer">1. \(4x^3-9x^2+2x-3\). 2. \(5x^4-2x\). 3. \(\frac52x^{3/2}\). 4. Product: \(-3x^{-2}\cos x-3x^{-1}\sin x\).</div>
+
+</section><section class="slide" data-title="Quotient Rule">
+<div class="kicker">AP Calculus AB</div>
+<h2>Quotient Rule</h2>
+
+<div class="rule">If \(u\) and \(v\) are differentiable and \(v(x)\ne0\), then
+\[
+\frac{d}{dx}\left[\frac{u(x)}{v(x)}\right]
+=
+\frac{u'(x)v(x)-u(x)v'(x)}{[v(x)]^2}.
+\]
+</div>
+<div class="statement">Low times derivative of high minus high times derivative of low, over low squared.</div>
+
+</section><section class="slide" data-title="Quotient Rule: first examples">
+<div class="kicker">AP Calculus AB</div>
+<h2>Quotient Rule: first examples</h2>
+
+<div class="grid3">
+  <div class="prompt"><b>1.</b> \(h(x)=\dfrac{4x-1}{3x+2}\)</div>
+  <div class="prompt"><b>2.</b> \(g(x)=\dfrac{\sin x}{x}\), \(x\ne0\)</div>
+  <div class="prompt"><b>3.</b> \(p(x)=\dfrac{x^3+2x^2-x}{2x}\), \(x\ne0\)</div>
+  <div class="prompt"><b>4.</b> \(q(x)=\dfrac{4x}{\ln x}\), \(x>0, x\ne1\)</div>
+  <div class="prompt"><b>5.</b> \(r(x)=\dfrac{e^x}{4\sin x}\), \(\sin x\ne0\)</div>
+  <div class="prompt"><b>6.</b> \(s(x)=\dfrac{2x+4}{3x+2}\), \(x\ne-\frac23\)</div>
+</div>
+<div class="answer">1. \(\frac{11}{(3x+2)^2}\). 2. \(\frac{x\cos x-\sin x}{x^2}\). 3. Rewrite: \(\frac12x^2+x-\frac12\), so \(p'(x)=x+1\). 4. \(\frac{4\ln x-4}{(\ln x)^2}\). 5. \(\frac{e^x(\sin x-\cos x)}{4\sin^2 x}\). 6. \(-\frac8{(3x+2)^2}\).</div>
+
+</section><section class="slide" data-title="Quotient Rule: table values">
+<div class="kicker">AP Calculus AB</div>
+<h2>Quotient Rule: table values</h2>
+
+<table class="table center">
+<tr><th>\(x\)</th><th>\(f(x)\)</th><th>\(f'(x)\)</th><th>\(g(x)\)</th><th>\(g'(x)\)</th></tr>
+<tr><td>7</td><td>\(-5\)</td><td>3</td><td>2</td><td>\(-3\)</td></tr>
+</table>
+<div class="grid2">
+  <div class="prompt"><b>1.</b> \(H(x)=\dfrac{5f(x)}{g(x)}\). Find \(H'(7)\).</div>
+  <div class="prompt"><b>2.</b> \(M(x)=\dfrac{1-g(x)}{f(x)+4}\). Find \(M'(7)\).</div>
+</div>
+<div class="answer">1. \(5\frac{f'g-fg'}{g^2}=5\frac{(3)(2)-(-5)(-3)}{4}=-\frac{45}{4}\). 2. \(\frac{(-g')(f+4)-(1-g)f'}{(f+4)^2}=\frac{3(-1)-(-1)(3)}{1}=0\).</div>
+
+</section><section class="slide" data-title="Quotient Rule: choose the shorter path">
+<div class="kicker">AP Calculus AB</div>
+<h2>Quotient Rule: choose the shorter path</h2>
+
+<div class="grid2">
+  <div class="prompt"><b>1.</b> \(f(x)=\dfrac{2x^2-3x+5}{x}\), \(x\ne0\)</div>
+  <div class="prompt"><b>2.</b> \(g(x)=\dfrac{\sin x-x^3}{x^2}\), \(x\ne0\)</div>
+  <div class="prompt"><b>3.</b> \(h(x)=\dfrac{3x^2}{x^3-1}\), \(x^3\ne1\)</div>
+  <div class="prompt"><b>4.</b> \(p(x)=\dfrac{x^2\cos x}{x+2}\), \(x\ne-2\)</div>
+</div>
+<div class="answer">1. Rewrite: \(2x-3+5x^{-1}\), so \(f'=2-5x^{-2}\). 2. Rewrite: \(x^{-2}\sin x-x\), so \(g'=\frac{x^2\cos x-2x\sin x}{x^4}-1\). 3 and 4 are usually cleaner with quotient rule.</div>
+
+</section><section class="slide" data-title="Product or quotient?">
+<div class="kicker">AP Calculus AB</div>
+<h2>Product or quotient?</h2>
+
+<table class="table">
+<tr><th>Function</th><th>Best first move</th><th>Why</th></tr>
+<tr><td>\(\dfrac{5x-3}{\sqrt{x}}\)</td><td>Rewrite</td><td>Each term becomes a power.</td></tr>
+<tr><td>\(x^4\ln x\)</td><td>Product</td><td>Two different function families.</td></tr>
+<tr><td>\(\dfrac{e^x}{5x-e^x}\)</td><td>Quotient</td><td>Denominator is not a monomial.</td></tr>
+<tr><td>\(\dfrac{x^3+3x^2-x}{x^2}\)</td><td>Rewrite</td><td>Divide each term by \(x^2\).</td></tr>
+<tr><td>\(\ln(x^3)\tan x\)</td><td>Product</td><td>Product of two non-power factors.</td></tr>
+</table>
+
+</section><section class="slide" data-title="Tangent lines with product and quotient rules">
+<div class="kicker">AP Calculus AB</div>
+<h2>Tangent lines with product and quotient rules</h2>
+
+<div class="rule">At \(x=a\), use \(y-f(a)=f'(a)(x-a)\).</div>
+<div class="grid2">
+  <div class="prompt"><b>1.</b> \(f(x)=(x^3+1)(x^2-2x+1)\), \(a=-1\).</div>
+  <div class="prompt"><b>2.</b> \(g(x)=\dfrac{x^2-9}{x-2}\), \(a=1\).</div>
+  <div class="prompt"><b>3.</b> \(p(\theta)=\theta\cos\theta\), \(a=\frac{\pi}{2}\).</div>
+  <div class="prompt"><b>4.</b> \(h(x)=\dfrac{3e^x-x^2}{x^3+1}\), \(a=0\).</div>
+</div>
+<div class="answer">1. At \(-1\), \(f(-1)=0\), \(f'(-1)=12\), so \(y=12(x+1)\). 2. \(g(1)=8\), \(g'(1)=-8\), so \(y-8=-8(x-1)\). 3. \(p(\pi/2)=0\), \(p'(\pi/2)=-\pi/2\), so \(y=-\frac{\pi}{2}(x-\frac{\pi}{2})\). 4. \(h(0)=3\), \(h'(0)=3\), so \(y-3=3x\).</div>
+
+</section><section class="slide" data-title="Horizontal tangents">
+<div class="kicker">AP Calculus AB</div>
+<h2>Horizontal tangents</h2>
+
+<div class="rule">A horizontal tangent occurs where \(f'(x)=0\) and the derivative exists.</div>
+<div class="grid2">
+  <div class="prompt"><b>1.</b> Find all horizontal tangents of \(f(x)=x^3-3x+1\).</div>
+  <div class="prompt"><b>2.</b> Find all horizontal tangents of \(g(x)=\dfrac{x}{x^2+1}\).</div>
+</div>
+<div class="grid2">
+  <div class="prompt"><b>3.</b> Find all \(x\)-values where \(h(x)=x^2e^x\) has a horizontal tangent.</div>
+  <div class="prompt"><b>4.</b> Find all \(x\)-values where \(p(x)=\dfrac{x^2-1}{x^2+1}\) has a horizontal tangent.</div>
+</div>
+<div class="answer">1. \(x=\pm1\). 2. \(g'(x)=\frac{1-x^2}{(x^2+1)^2}\), so \(x=\pm1\). 3. \(h'=e^x(x^2+2x)=e^xx(x+2)\), so \(x=0,-2\). 4. \(p'=\frac{4x}{(x^2+1)^2}\), so \(x=0\).</div>
+
+</section><section class="slide" data-title="Normal lines">
+<div class="kicker">AP Calculus AB</div>
+<h2>Normal lines</h2>
+
+<div class="rule">A normal line is perpendicular to the tangent line. If \(m_{\text{tan}}\ne0\), then \(m_{\text{normal}}=-\frac1{m_{\text{tan}}}\).</div>
+<div class="grid2">
+  <div class="prompt"><b>1.</b> Find the tangent and normal lines to \(f(x)=3\sqrt{x}+4\) at \(x=4\).</div>
+  <div class="prompt"><b>2.</b> Find the tangent and normal lines to \(y=\frac{x^2}{2}+\frac32x-2\) at \(x=8\).</div>
+</div>
+<div class="answer">1. \(f(4)=10\), \(f'(4)=\frac34\). Tangent: \(y-10=\frac34(x-4)\). Normal: \(y-10=-\frac43(x-4)\). 2. \(y(8)=42\), \(y'=x+\frac32\), slope \(\frac{19}{2}\). Tangent: \(y-42=\frac{19}{2}(x-8)\). Normal: \(y-42=-\frac{2}{19}(x-8)\).</div>
+
+</section><section class="slide" data-title="Trigonometric derivatives available today">
+<div class="kicker">AP Calculus AB</div>
+<h2>Trigonometric derivatives available today</h2>
+
+<table class="table center">
+<tr><th>Function</th><th>Derivative</th><th>Where the function is defined</th></tr>
+<tr><td>\(\sin x\)</td><td>\(\cos x\)</td><td>All real \(x\)</td></tr>
+<tr><td>\(\cos x\)</td><td>\(-\sin x\)</td><td>All real \(x\)</td></tr>
+<tr><td>\(\tan x\)</td><td>\(\sec^2 x\)</td><td>\(\cos x\ne0\)</td></tr>
+<tr><td>\(\cot x\)</td><td>\(-\csc^2 x\)</td><td>\(\sin x\ne0\)</td></tr>
+<tr><td>\(\sec x\)</td><td>\(\sec x\tan x\)</td><td>\(\cos x\ne0\)</td></tr>
+<tr><td>\(\csc x\)</td><td>\(-\csc x\cot x\)</td><td>\(\sin x\ne0\)</td></tr>
+</table>
+<div class="prompt">Do not use chain rule yet for expressions such as \(\sin(3x)\), \(\tan^2x\), or \(\sec(7x)\). Those are for the later trigonometric and chain-rule lessons.</div>
+
+</section><section class="slide" data-title="Product and quotient with basic trig">
+<div class="kicker">AP Calculus AB</div>
+<h2>Product and quotient with basic trig</h2>
+
+<div class="grid3">
+  <div class="prompt"><b>1.</b> \(y=x\tan x\)</div>
+  <div class="prompt"><b>2.</b> \(y=\sin x\tan x\)</div>
+  <div class="prompt"><b>3.</b> \(y=5x\sec x\)</div>
+  <div class="prompt"><b>4.</b> \(y=\dfrac{x}{\sec x}\)</div>
+  <div class="prompt"><b>5.</b> \(y=\dfrac{\cot x}{x}\), \(x\ne0\)</div>
+  <div class="prompt"><b>6.</b> \(y=\dfrac{\sin x}{x}\), \(x\ne0\)</div>
+</div>
+<div class="answer">1. \(\tan x+x\sec^2x\). 2. \(\cos x\tan x+\sin x\sec^2x\). 3. \(5\sec x+5x\sec x\tan x\). 4. Quotient gives \(\frac{\sec x-x\sec x\tan x}{\sec^2x}\), or rewrite \(x\cos x\Rightarrow \cos x-x\sin x\). 5. \(\frac{-x\csc^2x-\cot x}{x^2}\). 6. \(\frac{x\cos x-
+\sin x}{x^2}\).</div>
+
+</section><section class="slide" data-title="AP multiple choice: product rule">
+<div class="kicker">AP Calculus AB</div>
+<h2>AP multiple choice: product rule</h2>
+
+<div class="prompt">Let \(f(x)=x^4\sin x\). Which expression gives \(f'(x)\)?</div>
+<div class="choices">
+(A) \(4x^3\cos x\)&nbsp;&nbsp;&nbsp;
+(B) \(x^4\cos x\)&nbsp;&nbsp;&nbsp;
+(C) \(4x^3\sin x+x^4\cos x\)&nbsp;&nbsp;&nbsp;
+(D) \(4x^3\sin x\cos x\)&nbsp;&nbsp;&nbsp;
+(E) \(x^4\sin x+x^4\cos x\)
+</div>
+<div class="answer">C</div>
+
+</section><section class="slide" data-title="AP multiple choice: quotient rule">
+<div class="kicker">AP Calculus AB</div>
+<h2>AP multiple choice: quotient rule</h2>
+
+<div class="prompt">For \(x>0\), let \(g(x)=\dfrac{5x^2}{\ln x}\). Which expression is equivalent to \(g'(x)\)?</div>
+<div class="choices">
+(A) \(\dfrac{10x}{1/x}\)&nbsp;&nbsp;&nbsp;
+(B) \(\dfrac{10x\ln x-5x}{(\ln x)^2}\)&nbsp;&nbsp;&nbsp;
+(C) \(\dfrac{10x\ln x-5x^2}{(\ln x)^2}\)&nbsp;&nbsp;&nbsp;
+(D) \(\dfrac{5x^2-10x\ln x}{(\ln x)^2}\)&nbsp;&nbsp;&nbsp;
+(E) \(\dfrac{10x\ln x}{(\ln x)^2}\)
+</div>
+<div class="answer">B, because \(u=5x^2\), \(v=\ln x\), so \(u'v-uv'=10x\ln x-5x\).</div>
+
+</section><section class="slide" data-title="AP multiple choice: limit as derivative">
+<div class="kicker">AP Calculus AB</div>
+<h2>AP multiple choice: limit as derivative</h2>
+
+<div class="prompt">Evaluate
+\[
+\lim_{h\to0}\frac{(2+h)^4\sin(2+h)-16\sin2}{h}.
+\]</div>
+<div class="choices">
+(A) \(32\cos2\)&nbsp;&nbsp;&nbsp;
+(B) \(32\sin2+16\cos2\)&nbsp;&nbsp;&nbsp;
+(C) \(16\cos2\)&nbsp;&nbsp;&nbsp;
+(D) \(8\sin2+16\cos2\)&nbsp;&nbsp;&nbsp;
+(E) Does not exist
+</div>
+<div class="answer">B. The limit is the derivative of \(x^4\sin x\) at \(x=2\).</div>
+
+</section><section class="slide" data-title="AP multiple choice: tangent line">
+<div class="kicker">AP Calculus AB</div>
+<h2>AP multiple choice: tangent line</h2>
+
+<div class="prompt">Given \(f'(x)=\dfrac1x\) and \(f(2)=5\), which line is tangent to the graph of \(f\) at \(x=2\)?</div>
+<div class="choices">
+(A) \(y=\frac12x-\frac12\)&nbsp;&nbsp;&nbsp;
+(B) \(y=\frac15x+5\)&nbsp;&nbsp;&nbsp;
+(C) \(y=\frac12x+4\)&nbsp;&nbsp;&nbsp;
+(D) \(y=\frac15x-\frac{23}{5}\)&nbsp;&nbsp;&nbsp;
+(E) \(y=\frac12x+5\)
+</div>
+<div class="answer">C. Slope \(m=\frac12\), point \((2,5)\), so \(y-5=\frac12(x-2)\).</div>
+
+</section><section class="slide" data-title="Free-response table: product and quotient">
+<div class="kicker">AP Calculus AB</div>
+<h2>Free-response table: product and quotient</h2>
+
+<table class="table center">
+<tr><th>\(x\)</th><th>\(A(x)\)</th><th>\(A'(x)\)</th><th>\(B(x)\)</th><th>\(B'(x)\)</th></tr>
+<tr><td>3</td><td>\(-2\)</td><td>7</td><td>5</td><td>\(-1\)</td></tr>
+</table>
+<div class="grid2">
+  <div class="prompt"><b>(a)</b> Let \(P(x)=A(x)B(x)\). Find \(P'(3)\).</div>
+  <div class="prompt"><b>(b)</b> Let \(Q(x)=\dfrac{A(x)}{B(x)}\). Find \(Q'(3)\).</div>
+  <div class="prompt"><b>(c)</b> Let \(R(x)=\dfrac{2A(x)-1}{B(x)+3}\). Find \(R'(3)\).</div>
+  <div class="prompt"><b>(d)</b> Interpret why the quotient answer requires \(B(3)\ne0\).</div>
+</div>
+<div class="answer">(a) \(7(5)+(-2)(-1)=37\). (b) \(\frac{7(5)-(-2)(-1)}{25}=\frac{33}{25}\). (c) \(\frac{14(8)-(2(-2)-1)(-1)}{64}=\frac{107}{64}\). (d) A quotient is undefined when the denominator is zero.</div>
+
+</section><section class="slide" data-title="Free-response context">
+<div class="kicker">AP Calculus AB</div>
+<h2>Free-response context</h2>
+
+<div class="prompt">A quantity \(V(t)=r(t)s(t)\) models the total value of a shipment. The number of boxes is \(r(t)\), and the average value per box is \(s(t)\).</div>
+<table class="table center">
+<tr><th>\(t\)</th><th>\(r(t)\)</th><th>\(r'(t)\)</th><th>\(s(t)\)</th><th>\(s'(t)\)</th></tr>
+<tr><td>4</td><td>120</td><td>8</td><td>35</td><td>\(-1.5\)</td></tr>
+</table>
+<div class="prompt"><b>(a)</b> Find \(V'(4)\). <b>(b)</b> Interpret your answer with units.</div>
+<div class="answer">\(V'(4)=r'(4)s(4)+r(4)s'(4)=8(35)+120(-1.5)=100\). The shipment value is increasing at \(100\) currency units per unit time at \(t=4\).</div>
+
+</section><section class="slide" data-title="Quotient context">
+<div class="kicker">AP Calculus AB</div>
+<h2>Quotient context</h2>
+
+<div class="prompt">A runner’s average speed over time is modeled by \(S(t)=\dfrac{D(t)}{t}\), where \(D(t)\) is distance in meters and \(t>0\) is time in seconds.</div>
+<div class="grid2">
+  <div class="prompt"><b>1.</b> Find a formula for \(S'(t)\) in terms of \(D(t)\), \(D'(t)\), and \(t\).</div>
+  <div class="prompt"><b>2.</b> If \(D(20)=140\) and \(D'(20)=6.4\), find \(S'(20)\) and interpret it.</div>
+</div>
+<div class="answer">1. \(S'(t)=\frac{tD'(t)-D(t)}{t^2}\). 2. \(S'(20)=\frac{20(6.4)-140}{400}=-0.03\). The average speed is decreasing at \(0.03\) m/s per second at \(t=20\).</div>
+
+</section><section class="slide" data-title="Simplify completely">
+<div class="kicker">AP Calculus AB</div>
+<h2>Simplify completely</h2>
+
+<div class="grid2">
+  <div class="prompt"><b>1.</b> \(y=\dfrac{5x-3}{\sqrt{x}}\), \(x>0\)</div>
+  <div class="prompt"><b>2.</b> \(y=\dfrac{4x-9}{\sqrt{x}}\), \(x>0\)</div>
+  <div class="prompt"><b>3.</b> \(y=\ln(x^2e^x)\), \(x\ne0\)</div>
+  <div class="prompt"><b>4.</b> \(y=\ln\left(\dfrac{x^3}{e^x}\right)\), \(x>0\)</div>
+</div>
+<div class="answer">1. Rewrite \(5x^{1/2}-3x^{-1/2}\), so \(y'=\frac52x^{-1/2}+\frac32x^{-3/2}\). 2. \(2x^{-1/2}+\frac92x^{-3/2}\). 3. \(\frac2x+1\). 4. \(\frac3x-1\).</div>
+
+</section><section class="slide" data-title="Parameter in a derivative">
+<div class="kicker">AP Calculus AB</div>
+<h2>Parameter in a derivative</h2>
+
+<div class="prompt">Given \(G(x)=2x^5+\dfrac{b}{x^2}\), where \(x\ne0\) and \(b\) is constant, find \(b\) if \(G'(2)=180\).</div>
+<div class="answer">\(G'(x)=10x^4-2bx^{-3}\). Then \(G'(2)=160-\frac b4=180\), so \(b=-80\).</div>
+
+</section><section class="slide" data-title="Calculator-active tangent">
+<div class="kicker">AP Calculus AB</div>
+<h2>Calculator-active tangent</h2>
+
+<div class="prompt">Let \(f(x)=x^6-x^4\). Find an equation of the tangent line to the graph of \(f\) at the point where \(f'(x)=-1\).</div>
+<div class="choices">Use a graphing utility or numerical solver. Then write the line in the form \(y=-x+b\).</div>
+<div class="answer">Solve \(6x^5-4x^3=-1\). The relevant solution is approximately \(x\approx0.790\), giving \(f(x)\approx-0.142\). Thus \(b=f(x)+x\approx0.648\), so \(y\approx -x+0.648\). If a different restricted interval is stated, use the solution in that interval.</div>
+
+</section><section class="slide" data-title="Product Rule proof challenge">
+<div class="kicker">AP Calculus AB</div>
+<h2>Product Rule proof challenge</h2>
+
+<div class="prompt">Prove the Product Rule using the definition of derivative. Start with
+\[
+\frac{f(x+h)g(x+h)-f(x)g(x)}{h}.
+\]
+Add and subtract \(f(x+h)g(x)\) in the numerator.</div>
+<div class="answer">\[
+\frac{f(x+h)[g(x+h)-g(x)]}{h}+g(x)\frac{f(x+h)-f(x)}{h}.
+\]
+As \(h\to0\), \(f(x+h)\to f(x)\) since differentiability implies continuity, so the limit is \(f(x)g'(x)+g(x)f'(x)\).</div>
+
+</section><section class="slide" data-title="Quotient Rule proof challenge">
+<div class="kicker">AP Calculus AB</div>
+<h2>Quotient Rule proof challenge</h2>
+
+<div class="prompt">Assume \(g(x)\ne0\). Use the Product Rule on
+\[
+\frac{f(x)}{g(x)}=f(x)[g(x)]^{-1}
+\]
+to prove the Quotient Rule.</div>
+<div class="answer">\[
+\left(fg^{-1}\right)'=f'g^{-1}+f(-1)g^{-2}g'=\frac{f'}g-\frac{fg'}{g^2}=\frac{f'g-fg'}{g^2}.
+\]</div>
+
+</section><section class="slide" data-title="Compare two tangent slopes">
+<div class="kicker">AP Calculus AB</div>
+<h2>Compare two tangent slopes</h2>
+
+<div class="prompt">Find all values of \(x\) for which the tangent lines to
+\[
+y=x^3+2x+1\quad\text{and}\quad y=x^4+x^3+3
+\]
+are parallel.</div>
+<div class="answer">Parallel means equal slopes: \(3x^2+2=4x^3+3x^2\). Thus \(4x^3=2\), so \(x=\sqrt[3]{\frac12}\).</div>
+
+</section><section class="slide" data-title="Perpendicular tangent challenge">
+<div class="kicker">AP Calculus AB</div>
+<h2>Perpendicular tangent challenge</h2>
+
+<div class="prompt">Find all values of \(x\) for which the tangent lines to
+\[
+y=x^3+2x+1\quad\text{and}\quad y=x^4+x^3+3
+\]
+are perpendicular at the same \(x\)-value.</div>
+<div class="answer">We need \((3x^2+2)(4x^3+3x^2)=-1\). Since \(3x^2+2>0\), the second factor must be negative, so \(x<0\). This equation generally requires numerical solving. Students should set it up correctly and solve with technology if requested.</div>
+
+</section><section class="slide" data-title="Find a missing derivative value">
+<div class="kicker">AP Calculus AB</div>
+<h2>Find a missing derivative value</h2>
+
+<div class="prompt">Let \(f\) and \(g\) be differentiable. Suppose
+\[
+f(2)=3,\quad g(2)=-1,\quad f'(2)=5,
+\]
+and
+\[
+\lim_{x\to2}\frac{f(x)g(x)+3}{x-2}=11.
+\]
+Find \(g'(2)\).</div>
+<div class="answer">The numerator is \(f(x)g(x)-f(2)g(2)\), so the limit is \((fg)'(2)=f'(2)g(2)+f(2)g'(2)\). Thus \(11=5(-1)+3g'(2)\), so \(g'(2)=\frac{16}{3}\).</div>
+
+</section><section class="slide" data-title="Quotient limit challenge">
+<div class="kicker">AP Calculus AB</div>
+<h2>Quotient limit challenge</h2>
+
+<div class="prompt">Let \(f\) and \(g\) be differentiable at \(x=1\), where
+\[
+f(1)=2,\quad g(1)=4,\quad f'(1)=3.
+\]
+Suppose
+\[
+\lim_{x\to1}\frac{\frac{f(x)}{g(x)}-\frac12}{x-1}=1.
+\]
+Find \(g'(1)\).</div>
+<div class="answer">The limit is \(\left(\frac fg\right)'(1)=1\). Therefore
+\[
+1=\frac{f'(1)g(1)-f(1)g'(1)}{[g(1)]^2}=\frac{12-2g'(1)}{16}.
+\]
+So \(16=12-2g'(1)\), hence \(g'(1)=-2\).</div>
+
+</section><section class="slide" data-title="Rewrite or quotient? AP style">
+<div class="kicker">AP Calculus AB</div>
+<h2>Rewrite or quotient? AP style</h2>
+
+<div class="prompt">Evaluate
+\[
+\lim_{h\to0}\frac{3(x+h)^2+\frac{2}{x+h}-3x^2-rac2x}{h},\qquad x\ne0.
+\]</div>
+<div class="choices">
+(A) \(x^3+\frac2x\)&nbsp;&nbsp;&nbsp;
+(B) \(3x^2+\frac2x\)&nbsp;&nbsp;&nbsp;
+(C) \(6x-\frac{2}{x^2}\)&nbsp;&nbsp;&nbsp;
+(D) \(6x+\frac{2}{x^2}\)&nbsp;&nbsp;&nbsp;
+(E) nonexistent
+</div>
+<div class="answer">C. The limit is the derivative of \(3x^2+2x^{-1}\).</div>
+
+</section><section class="slide" data-title="Error analysis">
+<div class="kicker">AP Calculus AB</div>
+<h2>Error analysis</h2>
+
+<div class="prompt">A student differentiates \(y=x^2\ln x\) and writes
+\[
+y'=2x\cdot \frac1x=2.
+\]
+Explain the mistake and correct it.</div>
+<div class="answer">The student multiplied the derivatives. Correct: \(y'=2x\ln x+x^2\cdot \frac1x=2x\ln x+x\), for \(x>0\).</div>
+
+</section><section class="slide" data-title="Mixed practice set">
+<div class="kicker">AP Calculus AB</div>
+<h2>Mixed practice set</h2>
+
+<div class="grid3">
+  <div class="prompt"><b>1.</b> \(y=(x^2+1)(4-x^3)\)</div>
+  <div class="prompt"><b>2.</b> \(y=\dfrac{2x-3}{5x+2}\)</div>
+  <div class="prompt"><b>3.</b> \(y=x^4\sin x\)</div>
+  <div class="prompt"><b>4.</b> \(y=\dfrac{x^2}{\cos x}\)</div>
+  <div class="prompt"><b>5.</b> \(y=\dfrac{x\sin x}{x+2}\)</div>
+  <div class="prompt"><b>6.</b> \(y=(3e^x-2)(x^3-1)\)</div>
+</div>
+<div class="answer">1. \(2x(4-x^3)-3x^2(x^2+1)\). 2. \(\frac{19}{(5x+2)^2}\). 3. \(4x^3\sin x+x^4\cos x\). 4. \(\frac{2x\cos x+x^2\sin x}{\cos^2x}\). 5. \(\frac{(\sin x+x\cos x)(x+2)-x\sin x}{(x+2)^2}\). 6. \(3e^x(x^3-1)+(3e^x-2)3x^2\).</div>
+
+</section><section class="slide" data-title="Difficult mixed practice">
+<div class="kicker">AP Calculus AB</div>
+<h2>Difficult mixed practice</h2>
+
+<div class="grid2">
+  <div class="prompt"><b>1.</b> Find all \(x\) where \(f(x)=\dfrac{x^2-4}{x^2+1}\) has a horizontal tangent.</div>
+  <div class="prompt"><b>2.</b> Find \(a\) so that \(g(x)=x^2(a-x)\) has slope \(-3\) at \(x=1\).</div>
+  <div class="prompt"><b>3.</b> For \(h(x)=\dfrac{e^x}{x^2+1}\), find \(h'(0)\).</div>
+  <div class="prompt"><b>4.</b> For \(p(x)=x\ln x\), find the tangent line at \(x=e\).</div>
+</div>
+<div class="answer">1. \(f'=\frac{10x}{(x^2+1)^2}\), so \(x=0\). 2. \(g'=2ax-3x^2\), so \(2a-3=-3\Rightarrow a=0\). 3. \(h'(0)=1\). 4. \(p(e)=e\), \(p'(e)=2\), so \(y-e=2(x-e)\).</div>
+
+</section><section class="slide" data-title="Challenge: quotient with a hidden simplification">
+<div class="kicker">AP Calculus AB</div>
+<h2>Challenge: quotient with a hidden simplification</h2>
+
+<div class="prompt">Let
+\[
+R(x)=\frac{x^4-1}{x^2-1},\qquad x\ne\pm1.
+\]
+Find \(R'(x)\), then determine whether \(R'(1)\) exists for the original function.</div>
+<div class="answer">For \(x\ne\pm1\), \(R(x)=x^2+1\), so \(R'(x)=2x\). But the original function is not defined at \(x=1\), so \(R'(1)\) does not exist for the original function unless the function is redefined at \(x=1\).</div>
+
+</section><section class="slide" data-title="Challenge: derivative and domain">
+<div class="kicker">AP Calculus AB</div>
+<h2>Challenge: derivative and domain</h2>
+
+<div class="prompt">For each function, differentiate and state the domain where the original function is defined.</div>
+<div class="grid3">
+  <div class="prompt"><b>1.</b> \(f(x)=\dfrac{x^2\ln x}{x-1}\)</div>
+  <div class="prompt"><b>2.</b> \(g(x)=\dfrac{e^x\sin x}{x^2}\)</div>
+  <div class="prompt"><b>3.</b> \(h(x)=\sqrt{x}\cot x\)</div>
+</div>
+<div class="answer">1. Domain: \(x>0, x\ne1\). Use quotient. 2. Domain: \(x\ne0\). \(g'=\frac{x^2(e^x\sin x+e^x\cos x)-2xe^x\sin x}{x^4}\). 3. Domain: \(x\ge0\) and \(\sin x\ne0\), but \(x=0\) excluded because \(\cot0\) undefined. \(h'=\frac{1}{2\sqrt{x}}\cot x-\sqrt{x}\csc^2x\).</div>
+
+</section><section class="slide" data-title="Very difficult challenge">
+<div class="kicker">AP Calculus AB</div>
+<h2>Very difficult challenge</h2>
+
+<div class="prompt">Let \(f\) and \(g\) be differentiable at \(x=a\), with \(g(a)\ne0\). Suppose
+\[
+\lim_{x\to a}\frac{f(x)g(a)-f(a)g(x)}{x-a}=12.
+\]
+Express the limit in terms of \(f(a),g(a),f'(a),g'(a)\), then connect it to \(\left(\frac fg\right)'(a)\).</div>
+<div class="answer">The limit is \(g(a)f'(a)-f(a)g'(a)\). Since \(\left(\frac fg\right)'(a)=\frac{g(a)f'(a)-f(a)g'(a)}{[g(a)]^2}\), the quotient derivative equals \(\frac{12}{[g(a)]^2}\).</div>
+
+</section><section class="slide" data-title="AP-style free response">
+<div class="kicker">AP Calculus AB</div>
+<h2>AP-style free response</h2>
+
+<div class="prompt">Let \(f\) and \(g\) be differentiable functions. The table gives selected values.</div>
+<table class="table center">
+<tr><th>\(x\)</th><th>\(f(x)\)</th><th>\(f'(x)\)</th><th>\(g(x)\)</th><th>\(g'(x)\)</th></tr>
+<tr><td>1</td><td>2</td><td>\(-3\)</td><td>5</td><td>4</td></tr>
+<tr><td>4</td><td>7</td><td>6</td><td>\(-2\)</td><td>1</td></tr>
+</table>
+<div class="grid2">
+  <div class="prompt"><b>(a)</b> \(A(x)=f(x)g(x)+x^2\). Find \(A'(1)\).</div>
+  <div class="prompt"><b>(b)</b> \(B(x)=\dfrac{g(x)}{f(x)}\). Find \(B'(4)\).</div>
+  <div class="prompt"><b>(c)</b> \(C(x)=\dfrac{x f(x)}{g(x)}\). Find \(C'(1)\).</div>
+  <div class="prompt"><b>(d)</b> Write one sentence explaining why part (b) is valid.</div>
+</div>
+<div class="answer">(a) \((-3)(5)+2(4)+2= -5\). (b) \(\frac{1(7)-(-2)(6)}{49}=\frac{19}{49}\). (c) Use \(N=xf\), \(N'(1)=f(1)+f'(1)=2-3=-1\). \(C'(1)=\frac{(-1)(5)-(1\cdot2)(4)}{25}=-\frac{13}{25}\). (d) Since \(f(4)=7\ne0\), the quotient is defined near the table point for the purpose of the derivative computation.</div>
+
+</section>
+
+<section class="slide" data-title="Product and quotient limits I">
+<div class="kicker">Challenge Questions</div>
+<h2>Product and quotient limits I</h2>
+
+<div class="grid2">
+  <div class="prompt"><b>1.</b> Let \(f\) and \(g\) be differentiable at \(x=1\), where \(f(1)=2\) and \(g(1)=-3\). Suppose
+  \[
+  \lim_{x\to1}\frac{f(x)g(x)+6}{x-1}=11
+  \]
+  and
+  \[
+  \lim_{x\to1}\frac{\frac{f(x)}{g(x)}+\frac23}{x-1}=-\frac59.
+  \]
+  Find \(f'(1)\) and \(g'(1)\).</div>
+
+  <div class="prompt"><b>2.</b> Let \(f\) and \(g\) be differentiable at \(x=2\), where \(g(2)\ne0\). Suppose \(f(2)=g(2)\), \((fg)'(2)=24\), and \(\left(\frac fg\right)'(2)=\frac12\). Find \(f'(2)\) and \(g'(2)\) in terms of \(g(2)\).</div>
+</div>
+<div class="answer">1. \(-3f'(1)+2g'(1)=11\) and \(\frac{-3f'(1)-2g'(1)}9=-\frac59\). Hence \(f'(1)=-1\) and \(g'(1)=4\).<br/>2. Let \(m=g(2)=f(2)\). Then \(f'(2)+g'(2)=\frac{24}{m}\) and \(f'(2)-g'(2)=\frac{m}{2}\). Thus \(f'(2)=\frac{12}{m}+\frac{m}{4}\), \(g'(2)=\frac{12}{m}-\frac{m}{4}\).</div>
+</section>
+
+<section class="slide" data-title="Product and quotient limits II">
+<div class="kicker">Challenge Questions</div>
+<h2>Product and quotient limits II</h2>
+
+<div class="grid2">
+  <div class="prompt"><b>3.</b> Let \(f\) and \(g\) be differentiable at \(x=0\), where \(f(0)=4\) and \(g(0)=5\). Express
+  \[
+  \lim_{h\to0}\frac{f(h)g(-h)-20}{h}
+  \]
+  in terms of \(f'(0)\) and \(g'(0)\).</div>
+
+  <div class="prompt"><b>4.</b> Let \(f\) and \(g\) be differentiable at \(x=0\), where \(f(0)=6\), \(g(0)=2\), and \(g(x)\ne0\) near \(0\). Suppose
+  \[
+  \lim_{h\to0}\frac{\frac{f(h)}{g(-h)}-3}{h}=10.
+  \]
+  Express this condition in terms of \(f'(0)\) and \(g'(0)\).</div>
+
+  <div class="prompt"><b>5.</b> Let \(f\) and \(g\) be differentiable at \(x=3\), where \(f(3)=2\) and \(g(3)=7\). Suppose
+  \[
+  \lim_{h\to0}\frac{f(3+2h)g(3-5h)-14}{h}=9.
+  \]
+  Find a relationship between \(f'(3)\) and \(g'(3)\).</div>
+
+  <div class="prompt"><b>6.</b> Let \(f\) and \(g\) be differentiable at \(x=4\), where \(f(4)=8\), \(g(4)=2\), and \(g(x)\ne0\) near \(4\). Suppose
+  \[
+  \lim_{h\to0}\frac{\frac{f(4+3h)}{g(4-2h)}-4}{h}=18.
+  \]
+  Find a relationship between \(f'(4)\) and \(g'(4)\).</div>
+</div>
+<div class="answer">3. \(5f'(0)-4g'(0)\). 4. \(\frac12 f'(0)+\frac32 g'(0)=10\). 5. \(14f'(3)-10g'(3)=9\). 6. \(\frac32 f'(4)+4g'(4)=18\).</div>
+</section>
+
+<section class="slide" data-title="Zero value shortcuts">
+<div class="kicker">Challenge Questions</div>
+<h2>Zero value shortcuts</h2>
+
+<div class="grid2">
+  <div class="prompt"><b>7.</b> Let \(f\) and \(g\) be differentiable at \(x=2\), where \(f(2)=0\), \(g(2)=5\), and \(g'(2)=7\). Suppose
+  \[
+  \lim_{h\to0}\frac{f(2+h)g(2+h)}{h}=30.
+  \]
+  Find \(f'(2)\).</div>
+
+  <div class="prompt"><b>8.</b> Let \(f\) and \(g\) be differentiable at \(x=1\), where \(f(1)=0\), \(g(1)=-4\), and \(g'(1)=3\). Suppose
+  \[
+  \lim_{h\to0}\frac{\frac{f(1+h)}{g(1+h)}}{h}=5.
+  \]
+  Find \(f'(1)\).</div>
+</div>
+<div class="answer">7. Since \((fg)(2)=0\), the limit is \((fg)'(2)=f'(2)g(2)+f(2)g'(2)=5f'(2)\). Thus \(f'(2)=6\).<br/>8. Since \(f(1)=0\), \(\left(\frac fg\right)'(1)=\frac{f'(1)g(1)}{[g(1)]^2}=-\frac{f'(1)}4=5\). Thus \(f'(1)=-20\).</div>
+</section>
+
+<section class="slide" data-title="Quotient parameters and tangent lines">
+<div class="kicker">Challenge Questions</div>
+<h2>Quotient parameters and tangent lines</h2>
+
+<div class="grid2">
+  <div class="prompt"><b>9.</b> Let \(f(x)=\dfrac{ax+b}{cx+d}\), where \(c\ne0\) and \(cx+d\ne0\). Find the condition on \(a,b,c,d\) so that \(f'(x)=0\) for every \(x\) in the domain. Explain why the function is constant on each interval of its domain.</div>
+
+  <div class="prompt"><b>10.</b> Let \(f(x)=\dfrac{x^2+a}{x+b}\). Find all values of \(a\) and \(b\) such that the tangent line to \(f\) at \(x=1\) is \(y=-x+5\).</div>
+
+  <div class="prompt"><b>11.</b> Let \(f(x)=\dfrac{x^2+ax+b}{x+1}\). Find all values of \(a\) and \(b\) such that \(f(2)=5\) and \(f\) has a horizontal tangent at \(x=2\).</div>
+</div>
+<div class="answer">9. \(f'(x)=\frac{ad-bc}{(cx+d)^2}\), so \(ad-bc=0\). Then the numerator is a constant multiple of the denominator, so the function is constant on each interval of its domain.<br/>10. \(f(1)=4\Rightarrow a=3+4b\), and \(f'(1)=-1\Rightarrow b=1\), so \(a=7\).<br/>11. \(2a+b=11\) and \(8+a-b=0\). Hence \(a=1\), \(b=9\).</div>
+</section>
+
+<section class="slide" data-title="Removable quotients">
+<div class="kicker">Challenge Questions</div>
+<h2>Removable quotients</h2>
+
+<div class="grid2">
+  <div class="prompt"><b>12.</b> Let
+  \[
+  f(x)=\frac{x^3+ax^2+bx+c}{x-1},\qquad x\ne1.
+  \]
+  Find \(a,b,c\) such that \(f\) has a removable discontinuity at \(x=1\), and the simplified function has derivative \(6\) at \(x=1\).</div>
+
+  <div class="prompt"><b>13.</b> Let
+  \[
+  f(x)=\frac{x^3+ax^2+bx+c}{x-2},\qquad x\ne2.
+  \]
+  Find \(a,b,c\) such that \(f\) has a removable discontinuity at \(x=2\), and the continuous extension has tangent line \(y=4x-1\) at \(x=2\).</div>
+</div>
+<div class="answer">12. Dividing by \(x-1\) gives \(x^2+(a+1)x+(b+a+1)\) with remainder \(a+b+c+1\). The derivative at \(1\) is \(a+3\), so \(a=3\), and the removable condition gives \(b+c=-4\).<br/>13. Dividing by \(x-2\) gives \(x^2+(a+2)x+(b+2a+4)\). The tangent line requires value \(7\) and slope \(4\) at \(x=2\). Thus \(a=-2\), \(b=3\), and the removable condition gives \(c=-6\).</div>
+</section>
+
+<section class="slide" data-title="Extensions and original domains">
+<div class="kicker">Challenge Questions</div>
+<h2>Extensions and original domains</h2>
+
+<div class="grid2">
+  <div class="prompt"><b>14.</b> Let
+  \[
+  f(x)=\frac{x^4-1}{x^2-1}.
+  \]
+  The original function is undefined at \(x=1\) and \(x=-1\). Simplify \(f(x)\) where possible, then determine whether the continuous extension has the same derivative at \(x=1\) and \(x=-1\).</div>
+
+  <div class="prompt"><b>15.</b> Let
+  \[
+  f(x)=\frac{x^3-27}{x^2-9}.
+  \]
+  Find the domain of the original function. Simplify where possible and determine whether \(f'(3)\) exists for the original function and for the continuous extension.</div>
+
+  <div class="prompt"><b>16.</b> Let \(f(x)=\dfrac{x^2+a}{x^2+b}\). Find all values of \(a\) and \(b\) such that \(f(1)=2\) and \(f\) has a horizontal tangent at \(x=1\).</div>
+</div>
+<div class="answer">14. For \(x\ne\pm1\), \(f(x)=x^2+1\). The extension has derivative \(2x\), so the derivatives are \(2\) at \(x=1\) and \(-2\) at \(x=-1\); they are not the same.<br/>15. Original domain: \(x\ne -3,3\). For \(x\ne\pm3\), \(f(x)=\frac{x^2+3x+9}{x+3}\). The original \(f'(3)\) does not exist because \(f(3)\) is undefined. The extension derivative at \(3\) is \(\frac34\).<br/>16. No solution. The equations force \(a=b=-1\), but then \(f(1)\) is undefined.</div>
+</section>
+
+<section class="slide" data-title="Products and composed quotients">
+<div class="kicker">Challenge Questions</div>
+<h2>Products and composed quotients</h2>
+
+<div class="grid2">
+  <div class="prompt"><b>17.</b> Let \(f(x)=(x^2+a)(x^3+b)\). Find all \(a,b\) such that \(f(1)=12\) and \(f'(1)=30\).</div>
+  <div class="prompt"><b>18.</b> Let \(F(x)=x^3g(x)\), where \(g\) is differentiable. Suppose \(F(2)=40\) and \(F'(2)=76\). Find \(g(2)\) and \(g'(2)\).</div>
+  <div class="prompt"><b>19.</b> Let \(F(x)=\dfrac{g(x)}{x^2-1}\), where \(g\) is differentiable near \(x=2\). Suppose \(F(2)=5\) and \(F'(2)=7\). Find \(g(2)\) and \(g'(2)\).</div>
+  <div class="prompt"><b>20.</b> Let \(F(x)=\dfrac{x^2f(x)}{g(x)}\). Suppose \(f(1)=3\), \(f'(1)=4\), \(g(1)=2\), and \(g'(1)=-1\). Find \(F'(1)\).</div>
+</div>
+<div class="answer">17. \((1+a)(1+b)=12\) and \(3a+2b=25\). Thus \(a=4\pm\sqrt{17}\) and \(b=\frac{13\mp3\sqrt{17}}{2}\).<br/>18. \(g(2)=5\), \(g'(2)=2\). 19. \(g(2)=15\), \(g'(2)=41\). 20. \(F'(1)=\frac{23}{4}\).</div>
+</section>
+
+<section class="slide" data-title="Derivative information from products and quotients">
+<div class="kicker">Challenge Questions</div>
+<h2>Derivative information from products and quotients</h2>
+
+<div class="grid2">
+  <div class="prompt"><b>21.</b> Let \(f\) and \(g\) be differentiable at \(x=a\), with \(g(a)\ne0\). Suppose
+  \[
+  \lim_{x\to a}\frac{f(x)g(a)-f(a)g(x)}{x-a}=15.
+  \]
+  Express \(\left(\frac fg\right)'(a)\) in terms of \(g(a)\).</div>
+
+  <div class="prompt"><b>22.</b> Let \(f\) and \(g\) be differentiable at \(x=2\), where \(f(2)=4\), \(g(2)=5\), and \(g'(2)=3\). Suppose \(\left(\frac fg\right)'(2)=2\). Find \(f'(2)\).</div>
+
+  <div class="prompt"><b>23.</b> Let \(f\) and \(g\) be differentiable at \(x=-1\), where \(f(-1)=6\), \(g(-1)=-2\), and \(f'(-1)=5\). Suppose \((fg)'(-1)=1\). Find \(g'(-1)\).</div>
+</div>
+<div class="answer">21. The numerator limit is \(g(a)f'(a)-f(a)g'(a)=15\), so \(\left(\frac fg\right)'(a)=\frac{15}{[g(a)]^2}\).<br/>22. \(2=\frac{5f'(2)-4(3)}{25}\), so \(f'(2)=\frac{62}{5}\).<br/>23. \(1=5(-2)+6g'(-1)\), so \(g'(-1)=\frac{11}{6}\).</div>
+</section>
+
+<section class="slide" data-title="Symmetric product limits">
+<div class="kicker">Challenge Questions</div>
+<h2>Symmetric product limits</h2>
+
+<div class="grid2">
+  <div class="prompt"><b>24.</b> Let \(f\) and \(g\) be differentiable at \(x=1\), where \(f(1)=2\) and \(g(1)=3\). Evaluate the limit in terms of \(f'(1)\) and \(g'(1)\):
+  \[
+  \lim_{h\to0}\frac{f(1+h)g(1-h)-f(1-h)g(1+h)}{2h}.
+  \]</div>
+
+  <div class="prompt"><b>25.</b> Let \(f\) and \(g\) be differentiable at \(x=0\), where \(f(0)=A\) and \(g(0)=B\). Find a formula for
+  \[
+  \lim_{h\to0}\frac{f(\alpha h)g(\beta h)-f(\gamma h)g(\delta h)}{h}
+  \]
+  in terms of \(A,B,f'(0),g'(0),\alpha,\beta,\gamma,\delta\).</div>
+</div>
+<div class="answer">24. The limit is \(3f'(1)-2g'(1)\).<br/>25. The limit is \((\alpha-\gamma)Bf'(0)+(\beta-\delta)Ag'(0)\).</div>
+</section>
+
+<section class="slide" data-title="Exit ticket">
+<div class="kicker">AP Calculus AB</div>
+<h2>Exit ticket</h2>
+
+<div class="grid2">
+  <div class="prompt"><b>1.</b> Differentiate \(y=(x^2+3)\ln x\), \(x>0\).</div>
+  <div class="prompt"><b>2.</b> Differentiate \(y=\dfrac{x^2+1}{e^x}\).</div>
+  <div class="prompt"><b>3.</b> Find the tangent line to \(f(x)=x^2\sin x\) at \(x=\pi\).</div>
+  <div class="prompt"><b>4.</b> Let \(h(x)=\dfrac{f(x)}{g(x)}\). If \(f(2)=6\), \(f'(2)=1\), \(g(2)=3\), and \(g'(2)=-4\), find \(h'(2)\).</div>
+</div>
+<div class="answer">1. \(2x\ln x+\frac{x^2+3}{x}\). 2. Rewrite \((x^2+1)e^{-x}\) or quotient: \(e^{-x}(2x-x^2-1)\). 3. \(f(\pi)=0\), \(f'(x)=2x\sin x+x^2\cos x\), \(f'(\pi)=-\pi^2\), so \(y=-\pi^2(x-\pi)\). 4. \(\frac{1(3)-6(-4)}{9}=3\).</div>
+
+</section></main>
+  <div class="bottom"><div><button class="light" id="prev">← Prev</button> <button class="primary" id="next">Next →</button> <button class="outline" id="answers">Answers</button></div><select id="picker"></select></div>
+</div>
+<script>
+let current=0;
+const slides=[...document.querySelectorAll('.slide')];
+const counter=document.getElementById('counter');
+const fill=document.getElementById('fill');
+const picker=document.getElementById('picker');
+slides.forEach((slide,i)=>{
+  const opt=document.createElement('option');
+  opt.value=i;
+  opt.textContent=(i+1)+'. '+(slide.dataset.title || ('Slide '+(i+1)));
+  picker.appendChild(opt);
+});
+function show(i){
+  if(i<0||i>=slides.length) return;
+  slides[current].classList.remove('active');
+  current=i;
+  slides[current].classList.add('active');
+  slides[current].scrollTop=0;
+  counter.textContent=(current+1)+' / '+slides.length;
+  fill.style.width=((current+1)/slides.length*100)+'%';
+  picker.value=current;
+}
+document.getElementById('next').onclick=()=>show(current+1);
+document.getElementById('prev').onclick=()=>show(current-1);
+document.getElementById('answers').onclick=()=>slides[current].classList.toggle('show');
+picker.onchange=e=>show(Number(e.target.value));
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')show(current+1); if(e.key==='ArrowLeft')show(current-1); if(e.key.toLowerCase()==='a')slides[current].classList.toggle('show')});
+document.addEventListener('DOMContentLoaded',()=>{
+  if (window.renderMathInElement) {
+    renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"\\[",right:"\\]",display:true},{left:"\\(",right:"\\)",display:false}],throwOnError:false});
+  }
+  show(0);
+});
+</script>
+</body>
+</html>

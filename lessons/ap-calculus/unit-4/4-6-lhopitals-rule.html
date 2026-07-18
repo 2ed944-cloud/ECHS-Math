@@ -1,0 +1,1261 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AP Calculus 4.6 L’Hôpital’s Rule</title><link rel="preconnect" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script><style>
+:root{--maroon:#7a1738;--navy:#203654;--teal:#0e6655;--ink:#17212b;--muted:#607086;--line:#d9e2ec;--gold:#c69c48;--bg:#f4f7fb;--white:#fff;--soft:#fbfaf7;--blue:#0b84c6;--red:#b42318}
+*{box-sizing:border-box}html,body{height:100%}body{margin:0;font-family:Inter,Aptos,"Segoe UI",Arial,sans-serif;color:var(--ink);background:var(--bg)}
+.deck{height:100vh;display:grid;grid-template-rows:74px 1fr 56px;overflow:hidden}.topbar{display:flex;align-items:center;justify-content:space-between;padding:10px 22px;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 2px 14px #14203714;z-index:5}.brand{display:flex;align-items:center;gap:18px}.echs{height:48px;width:96px;border-radius:14px;background:linear-gradient(135deg,var(--maroon),var(--navy));color:#fff;display:grid;place-items:center;font-weight:900;letter-spacing:1.5px}.course{border-left:2px solid #d5dce4;padding-left:18px;line-height:1.15}.course strong{color:var(--maroon);font-size:20px}.course span{display:block;color:var(--muted);font-size:13px;margin-top:3px}.progress{display:flex;align-items:center;gap:10px;color:var(--muted);font-weight:800;font-size:14px}.dotbar{width:220px;height:9px;background:#e5ebf0;border-radius:99px;overflow:hidden}.dotbar span{display:block;height:100%;background:linear-gradient(90deg,var(--maroon),var(--teal));border-radius:99px}.main{overflow:hidden}.slide{display:none;height:100%;overflow-y:auto;padding:30px 46px 70px;background:linear-gradient(135deg,#fff 0%,#fbfaf7 60%,#f2fbf8 100%)}.slide.active{display:block}.slide h1{font-size:38px;line-height:1.05;margin:0 0 22px;color:var(--navy);letter-spacing:-1px}.slide h2{color:var(--maroon)}.kicker{color:var(--maroon);font-size:14px;text-transform:uppercase;letter-spacing:.12em;font-weight:900;margin-bottom:8px}.hero{display:grid;grid-template-columns:.9fr 1.2fr;gap:30px;align-items:center;margin-top:14px}.big{font-size:82px;font-weight:950;color:var(--maroon);line-height:.9}.hero p{font-size:27px;color:var(--navy);line-height:1.25}.formula{background:#fff;border:1px solid var(--line);border-radius:22px;padding:25px;box-shadow:0 18px 35px #14203714;font-size:21px}.targets{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}.targets span,.tag{display:inline-block;background:#eef7f4;border:1px solid #cce7df;color:var(--teal);border-radius:99px;padding:9px 13px;font-weight:850}.grid{display:grid;gap:20px}.c2{grid-template-columns:repeat(2,1fr)}.c3{grid-template-columns:repeat(3,1fr)}.c4{grid-template-columns:repeat(4,1fr)}.card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:20px;font-size:20px;line-height:1.42;box-shadow:0 13px 28px #1420370f}.card h3{margin:0 0 9px;color:var(--maroon)}.card ul,.card ol{margin:7px 0;padding-left:25px}.card li{margin:7px 0}.rulebox{background:#fff;border:2px solid var(--maroon);border-radius:22px;padding:20px 25px;margin:7px 0 20px;font-size:21px;box-shadow:0 15px 30px #7a173814}.rulebox h3{margin:0 0 9px;color:var(--maroon)}.prompt{font-size:23px;line-height:1.42;background:#fff7e6;border-left:8px solid var(--gold);padding:17px 20px;border-radius:15px;color:#3a2d12;margin-bottom:18px}.note{background:#eef3f9;border-left:7px solid var(--navy);padding:14px 18px;border-radius:15px;font-size:20px;color:var(--navy);font-weight:750;margin:10px 0 20px}.warning{background:#fff1f2;border-left:7px solid var(--maroon);padding:14px 18px;border-radius:15px;font-size:20px;color:#5f1730;margin:10px 0 20px}.answer{margin-top:16px;background:#fff;border:1px solid #efd0dc;border-radius:17px;padding:10px 16px;font-size:18px}.answer summary{cursor:pointer;color:var(--maroon);font-weight:900}.answer div{margin-top:10px;border-top:1px solid #f1d7e2;padding-top:11px;line-height:1.45}.answer[open]{box-shadow:0 10px 25px #7a173814}.check{font-size:19px;line-height:1.5}.check li{margin:7px 0}.tbl{width:100%;border-collapse:collapse;background:#fff;font-size:19px;margin:14px 0}.tbl th,.tbl td{border:1px solid var(--line);padding:10px 12px;vertical-align:top}.tbl th{background:#eef3f9;color:var(--navy)}.foot{display:flex;justify-content:space-between;align-items:center;padding:8px 20px;background:#fff;border-top:1px solid var(--line);z-index:5}.nav{display:flex;gap:9px}.primary,.secondary{border-radius:11px;padding:8px 16px;font-weight:850;cursor:pointer}.primary{background:var(--maroon);border:1px solid var(--maroon);color:#fff}.secondary{background:#fff;border:1px solid #bbc7d4;color:var(--navy)}select{max-width:520px;padding:8px 11px;border:1px solid #bbc7d4;border-radius:10px;color:var(--navy)}
+.limit-widget{margin:14px 0 8px;padding:16px;background:#f7fbff;border:1px solid #c8d9ea;border-radius:20px;display:grid;grid-template-columns:minmax(360px,1.2fr) minmax(260px,.8fr);gap:16px;align-items:stretch}.plot-wrap{background:#fff;border:1px solid var(--line);border-radius:17px;padding:8px}.plot{width:100%;height:390px;display:block}.plot-bg{fill:#f9fcff}.gridline{stroke:#e7edf4;stroke-width:1}.axis{stroke:#607086;stroke-width:2}.target-line{stroke:#b42318;stroke-width:2;stroke-dasharray:5 5}.limit-line{stroke:#0e6655;stroke-width:2;stroke-dasharray:6 5}.curve{fill:none;stroke:#7a1738;stroke-width:4}.derivcurve{fill:none;stroke:#0e6655;stroke-width:3;stroke-dasharray:7 7}.pt,.ptA{fill:#7a1738;stroke:#fff;stroke-width:3}.dpt{fill:#0e6655;stroke:#fff;stroke-width:3}.curve-label,.d-label,.target-label,.limit-label{font-size:15px;font-weight:800;fill:#203654}.panel{background:#fff;border:1px solid var(--line);border-radius:17px;padding:18px;box-shadow:0 10px 20px #1420370d}.panel h3{margin:0 0 12px;color:var(--maroon);font-size:24px}.slider-label{display:block;font-size:17px;color:var(--navy);font-weight:850}.slider-label input{width:100%;accent-color:var(--maroon);margin:12px 0}.readout{background:#eef7f4;border:1px solid #cce7df;border-radius:14px;padding:13px 15px;margin-top:10px;font-size:18px;line-height:1.45;color:var(--navy);font-weight:750}.mini-note{color:var(--muted);font-size:15px;line-height:1.35;margin-top:12px}.static-plot{background:#fff;border:1px solid var(--line);border-radius:18px;padding:12px}.static-plot svg{width:100%;height:310px}.tangent{fill:none;stroke:#c69c48;stroke-width:4}.ka-table{font-size:18px}
+@media(max-width:900px){.grid.c2,.grid.c3,.grid.c4,.hero,.limit-widget{grid-template-columns:1fr}.slide{padding:24px 24px 70px}.slide h1{font-size:31px}.topbar{padding:9px 12px}.dotbar{width:100px}.course span{display:none}.plot{height:300px}}
+@media print{.deck{display:block;height:auto}.topbar,.foot{display:none}.slide{display:block!important;height:auto;min-height:100vh;page-break-after:always;padding:30px}.answer{display:block}.answer>div{display:block}}
+</style></head><body><div class="deck"><header class="topbar"><div class="brand"><div class="echs">ECHS</div><div class="course"><strong>AP Calculus 4.6</strong><span>L’Hôpital’s Rule: Indeterminate Forms and Limits</span></div></div><div class="progress"><span id="count">1 / 69</span><div class="dotbar"><span id="bar"></span></div></div></header><main class="main"><section class="slide" data-title="4.6 L’Hôpital’s Rule"><div class="kicker">AP Calculus AB</div><h1>4.6 L’Hôpital’s Rule</h1>
+<div class="hero"><div><div class="big">4.6</div><p>Use derivatives to evaluate selected indeterminate limits.</p></div><div class="formula"><b>Central idea</b><br><br>When a quotient approaches \(0/0\) or \(\infty/\infty\), compare the rates at which numerator and denominator approach their limiting values.</div></div>
+<div class="targets"><span>0/0</span><span>∞/∞</span><span>L’Hôpital’s Rule</span><span>Repeated use</span><span>When not to use it</span><span>AP notation</span></div>
+</section><section class="slide" data-title="Learning targets"><div class="kicker">Lesson overview</div><h1>Learning targets</h1>
+<div class="grid c4"><div class="card"><h3>Identify</h3>Check direct substitution before using any rule.</div><div class="card"><h3>Apply</h3>Use L’Hôpital’s Rule only for \(0/0\) or \(\infty/\infty\).</div><div class="card"><h3>Repeat</h3>Apply the rule again only if the new quotient is still indeterminate.</div><div class="card"><h3>Justify</h3>Write AP-style limit notation and explain when the rule does not apply.</div></div>
+</section><section class="slide" data-title="AP boundary for this lesson"><div class="kicker">Exam scope</div><h1>AP boundary for this lesson</h1>
+<div class="rulebox"><h3>Assessed forms</h3>
+\[\frac{0}{0}\qquad\text{and}\qquad \frac{\infty}{\infty}\]
+</div>
+<div class="warning">Other indeterminate forms such as \(\infty-\infty\), \(0\cdot\infty\), \(1^\infty\), \(0^0\), and \(\infty^0\) exist, but those conversions are not required for AP Calculus AB/BC assessment in this lesson.</div>
+</section><section class="slide" data-title="First check: direct substitution"><div class="kicker">Decision step</div><h1>First check: direct substitution</h1>
+<div class="grid c3"><div class="card"><h3>Defined number</h3>If substitution gives a real number, stop.</div><div class="card"><h3>Not indeterminate</h3>If substitution gives nonzero over zero, analyze one-sided behavior; do not use L’Hôpital.</div><div class="card"><h3>Indeterminate quotient</h3>Only \(0/0\) or \(\infty/\infty\) can trigger L’Hôpital’s Rule.</div></div>
+</section><section class="slide" data-title="The rule"><div class="kicker">Formal statement</div><h1>The rule</h1>
+<div class="rulebox"><h3>L’Hôpital’s Rule</h3>
+If \(\displaystyle \lim_{x\to a}f(x)=\lim_{x\to a}g(x)=0\) or both limits are infinite, and the derivative quotient has a limit, then
+\[\lim_{x\to a}\frac{f(x)}{g(x)}=\lim_{x\to a}\frac{f'(x)}{g'(x)}.\]
+</div>
+<div class="note">The rule also works for one-sided limits and limits as \(x\to\pm\infty\), provided the hypotheses are satisfied.</div>
+</section><section class="slide" data-title="AP notation protocol"><div class="kicker">Communication</div><h1>AP notation protocol</h1>
+<ol class="check"><li>Write the original limit.</li><li>Show the numerator and denominator approach \(0\) or both approach \(\pm\infty\).</li><li>State the form: \(0/0\) or \(\infty/\infty\).</li><li>Write “By L’Hôpital’s Rule” and replace the quotient by \(f'(x)/g'(x)\).</li><li>Evaluate the new limit. Repeat only if the new quotient is still indeterminate.</li></ol>
+</section><section class="slide" data-title="L’Hôpital is not the quotient rule"><div class="kicker">Critical warning</div><h1>L’Hôpital is not the quotient rule</h1>
+<div class="grid c2"><div class="card"><h3>Limit problem</h3>\[\lim_{x\to a}\frac{f(x)}{g(x)}\]For \(0/0\) or \(\infty/\infty\), compare derivative quotient \(f'(x)/g'(x)\).</div><div class="card"><h3>Derivative problem</h3>\[\frac{d}{dx}\left(\frac{f(x)}{g(x)}\right)\]Use the quotient rule, not L’Hôpital’s Rule.</div></div>
+</section><section class="slide" data-title="Visual: a 0/0 quotient"><div class="kicker">Interactive graph</div><h1>Visual: a 0/0 quotient</h1><div class="prompt">Explore \(\displaystyle \lim_{x\to2}\frac{x^2-7x+10}{x-2}\).</div>
+    <div class="limit-widget" data-case="poly22">
+      <div class="plot-wrap">
+        <svg class="plot" viewBox="0 0 780 430" role="img" aria-label="Interactive graph of a quotient near a limiting input">
+          <rect class="plot-bg" x="0" y="0" width="780" height="430"/>
+          <g class="gridlines"></g>
+          <line class="axis xaxis"/><line class="axis yaxis"/>
+          <line class="target-line"/><line class="limit-line"/>
+          <path class="curve"/><path class="derivcurve"/>
+          <circle class="pt" r="7"/><circle class="dpt" r="6"/>
+          <text class="curve-label">quotient</text><text class="d-label">derivative quotient</text>
+          <text class="target-label"></text><text class="limit-label"></text>
+        </svg>
+      </div>
+      <div class="panel">
+        <h3>0/0: removable behavior</h3>
+        <label class="slider-label"><span class="slider-name">Move x</span>: <strong class="xout"></strong>
+          <input type="range" class="xrange" step="0.001">
+        </label>
+        <div class="readout"></div>
+        <div class="mini-note">The slider moves the input and updates the graph, quotient value, and derivative quotient value.</div>
+        
+      </div>
+    </div><details class="answer"><summary>Show solution</summary><div>Substitution gives \(0/0\). By L’Hôpital’s Rule,
+\[\lim_{x\to2}\frac{x^2-7x+10}{x-2}=\lim_{x\to2}(2x-7)=-3.\]</div></details></section><section class="slide" data-title="Visual: textbook 0/0 trigonometric limit"><div class="kicker">Interactive graph</div><h1>Visual: textbook 0/0 trigonometric limit</h1><div class="prompt">Evaluate \(\displaystyle \lim_{x\to0}\frac{1-\cos x}{\sin x}\).</div>
+    <div class="limit-widget" data-case="oneMinusCosOverSin">
+      <div class="plot-wrap">
+        <svg class="plot" viewBox="0 0 780 430" role="img" aria-label="Interactive graph of a quotient near a limiting input">
+          <rect class="plot-bg" x="0" y="0" width="780" height="430"/>
+          <g class="gridlines"></g>
+          <line class="axis xaxis"/><line class="axis yaxis"/>
+          <line class="target-line"/><line class="limit-line"/>
+          <path class="curve"/><path class="derivcurve"/>
+          <circle class="pt" r="7"/><circle class="dpt" r="6"/>
+          <text class="curve-label">quotient</text><text class="d-label">derivative quotient</text>
+          <text class="target-label"></text><text class="limit-label"></text>
+        </svg>
+      </div>
+      <div class="panel">
+        <h3>Textbook model: (1−cos x)/sin x</h3>
+        <label class="slider-label"><span class="slider-name">Move x</span>: <strong class="xout"></strong>
+          <input type="range" class="xrange" step="0.001">
+        </label>
+        <div class="readout"></div>
+        <div class="mini-note">The slider moves the input and updates the graph, quotient value, and derivative quotient value.</div>
+        
+      </div>
+    </div><details class="answer"><summary>Show solution</summary><div>The form is \(0/0\). By L’Hôpital,
+\[\lim_{x\to0}\frac{1-\cos x}{\sin x}=\lim_{x\to0}\frac{\sin x}{\cos x}=0.\]</div></details></section><section class="slide" data-title="Visual: special trig limit by L’Hôpital"><div class="kicker">Interactive graph</div><h1>Visual: special trig limit by L’Hôpital</h1><div class="prompt">Evaluate \(\displaystyle \lim_{x\to0}\frac{\sin(6x)}{x}\).</div>
+    <div class="limit-widget" data-case="sin6overx">
+      <div class="plot-wrap">
+        <svg class="plot" viewBox="0 0 780 430" role="img" aria-label="Interactive graph of a quotient near a limiting input">
+          <rect class="plot-bg" x="0" y="0" width="780" height="430"/>
+          <g class="gridlines"></g>
+          <line class="axis xaxis"/><line class="axis yaxis"/>
+          <line class="target-line"/><line class="limit-line"/>
+          <path class="curve"/><path class="derivcurve"/>
+          <circle class="pt" r="7"/><circle class="dpt" r="6"/>
+          <text class="curve-label">quotient</text><text class="d-label">derivative quotient</text>
+          <text class="target-label"></text><text class="limit-label"></text>
+        </svg>
+      </div>
+      <div class="panel">
+        <h3>Trig quotient</h3>
+        <label class="slider-label"><span class="slider-name">Move x</span>: <strong class="xout"></strong>
+          <input type="range" class="xrange" step="0.001">
+        </label>
+        <div class="readout"></div>
+        <div class="mini-note">The slider moves the input and updates the graph, quotient value, and derivative quotient value.</div>
+        
+      </div>
+    </div><details class="answer"><summary>Show solution</summary><div>The form is \(0/0\). By L’Hôpital,
+\[\lim_{x\to0}\frac{\sin(6x)}{x}=\lim_{x\to0}6\cos(6x)=6.\]</div></details></section><section class="slide" data-title="Visual: apply the rule twice"><div class="kicker">Interactive graph</div><h1>Visual: apply the rule twice</h1><div class="prompt">Evaluate \(\displaystyle \lim_{x\to0}\frac{1-\cos x}{x^2}\).</div>
+    <div class="limit-widget" data-case="oneMinusCosOverX2">
+      <div class="plot-wrap">
+        <svg class="plot" viewBox="0 0 780 430" role="img" aria-label="Interactive graph of a quotient near a limiting input">
+          <rect class="plot-bg" x="0" y="0" width="780" height="430"/>
+          <g class="gridlines"></g>
+          <line class="axis xaxis"/><line class="axis yaxis"/>
+          <line class="target-line"/><line class="limit-line"/>
+          <path class="curve"/><path class="derivcurve"/>
+          <circle class="pt" r="7"/><circle class="dpt" r="6"/>
+          <text class="curve-label">quotient</text><text class="d-label">derivative quotient</text>
+          <text class="target-label"></text><text class="limit-label"></text>
+        </svg>
+      </div>
+      <div class="panel">
+        <h3>Repeated L’Hôpital</h3>
+        <label class="slider-label"><span class="slider-name">Move x</span>: <strong class="xout"></strong>
+          <input type="range" class="xrange" step="0.001">
+        </label>
+        <div class="readout"></div>
+        <div class="mini-note">The slider moves the input and updates the graph, quotient value, and derivative quotient value.</div>
+        
+      </div>
+    </div><details class="answer"><summary>Show solution</summary><div>First application gives \(\displaystyle \lim_{x\to0}\frac{\sin x}{2x}\), still \(0/0\). Apply again:
+\[\lim_{x\to0}\frac{\cos x}{2}=\frac12.\]</div></details></section><section class="slide" data-title="Visual: growth at infinity"><div class="kicker">Interactive graph</div><h1>Visual: growth at infinity</h1><div class="prompt">Evaluate \(\displaystyle \lim_{x\to\infty}\frac{e^x}{x}\).</div>
+    <div class="limit-widget" data-case="expOverx">
+      <div class="plot-wrap">
+        <svg class="plot" viewBox="0 0 780 430" role="img" aria-label="Interactive graph of a quotient near a limiting input">
+          <rect class="plot-bg" x="0" y="0" width="780" height="430"/>
+          <g class="gridlines"></g>
+          <line class="axis xaxis"/><line class="axis yaxis"/>
+          <line class="target-line"/><line class="limit-line"/>
+          <path class="curve"/><path class="derivcurve"/>
+          <circle class="pt" r="7"/><circle class="dpt" r="6"/>
+          <text class="curve-label">quotient</text><text class="d-label">derivative quotient</text>
+          <text class="target-label"></text><text class="limit-label"></text>
+        </svg>
+      </div>
+      <div class="panel">
+        <h3>∞/∞: exponential beats linear</h3>
+        <label class="slider-label"><span class="slider-name">Move x</span>: <strong class="xout"></strong>
+          <input type="range" class="xrange" step="0.001">
+        </label>
+        <div class="readout"></div>
+        <div class="mini-note">The slider moves the input and updates the graph, quotient value, and derivative quotient value.</div>
+        
+      </div>
+    </div><details class="answer"><summary>Show solution</summary><div>The form is \(\infty/\infty\). By L’Hôpital,
+\[\lim_{x\to\infty}\frac{e^x}{x}=\lim_{x\to\infty}e^x=\infty.\]</div></details></section><section class="slide" data-title="Visual: repeated infinity limit"><div class="kicker">Interactive graph</div><h1>Visual: repeated infinity limit</h1><div class="prompt">Evaluate \(\displaystyle \lim_{x\to\infty}\frac{x^2}{e^x}\).</div>
+    <div class="limit-widget" data-case="x2OverExp">
+      <div class="plot-wrap">
+        <svg class="plot" viewBox="0 0 780 430" role="img" aria-label="Interactive graph of a quotient near a limiting input">
+          <rect class="plot-bg" x="0" y="0" width="780" height="430"/>
+          <g class="gridlines"></g>
+          <line class="axis xaxis"/><line class="axis yaxis"/>
+          <line class="target-line"/><line class="limit-line"/>
+          <path class="curve"/><path class="derivcurve"/>
+          <circle class="pt" r="7"/><circle class="dpt" r="6"/>
+          <text class="curve-label">quotient</text><text class="d-label">derivative quotient</text>
+          <text class="target-label"></text><text class="limit-label"></text>
+        </svg>
+      </div>
+      <div class="panel">
+        <h3>Apply twice at infinity</h3>
+        <label class="slider-label"><span class="slider-name">Move x</span>: <strong class="xout"></strong>
+          <input type="range" class="xrange" step="0.001">
+        </label>
+        <div class="readout"></div>
+        <div class="mini-note">The slider moves the input and updates the graph, quotient value, and derivative quotient value.</div>
+        
+      </div>
+    </div><details class="answer"><summary>Show solution</summary><div>\[\lim_{x\to\infty}\frac{x^2}{e^x}=\lim_{x\to\infty}\frac{2x}{e^x}=\lim_{x\to\infty}\frac{2}{e^x}=0.\]</div></details></section><section class="slide" data-title="Textbook caution: do not overapply"><div class="kicker">Error analysis</div><h1>Textbook caution: do not overapply</h1><div class="prompt">Find the mistake: \(\displaystyle \lim_{x\to0}\frac{x^2}{e^x-1}=\lim_{x\to0}\frac{2x}{e^x}=\lim_{x\to0}\frac{2}{e^x}=2\).</div>
+    <div class="limit-widget" data-case="x2OverExpMinus1">
+      <div class="plot-wrap">
+        <svg class="plot" viewBox="0 0 780 430" role="img" aria-label="Interactive graph of a quotient near a limiting input">
+          <rect class="plot-bg" x="0" y="0" width="780" height="430"/>
+          <g class="gridlines"></g>
+          <line class="axis xaxis"/><line class="axis yaxis"/>
+          <line class="target-line"/><line class="limit-line"/>
+          <path class="curve"/><path class="derivcurve"/>
+          <circle class="pt" r="7"/><circle class="dpt" r="6"/>
+          <text class="curve-label">quotient</text><text class="d-label">derivative quotient</text>
+          <text class="target-label"></text><text class="limit-label"></text>
+        </svg>
+      </div>
+      <div class="panel">
+        <h3>Wrong second application</h3>
+        <label class="slider-label"><span class="slider-name">Move x</span>: <strong class="xout"></strong>
+          <input type="range" class="xrange" step="0.001">
+        </label>
+        <div class="readout"></div>
+        <div class="mini-note">The slider moves the input and updates the graph, quotient value, and derivative quotient value.</div>
+        
+      </div>
+    </div><details class="answer"><summary>Show solution</summary><div>The first L’Hôpital step is valid because the original form is \(0/0\). After one step,
+\[\lim_{x\to0}\frac{2x}{e^x}=0,\]
+which is no longer indeterminate. Applying L’Hôpital a second time is invalid. The correct limit is \(0\).</div></details></section><section class="slide" data-title="Textbook one-sided example"><div class="kicker">Interactive graph</div><h1>Textbook one-sided example</h1><div class="prompt">Evaluate \(\displaystyle \lim_{x\to0^+}\frac{\ln x}{\csc x}\).</div>
+    <div class="limit-widget" data-case="lnOverCsc">
+      <div class="plot-wrap">
+        <svg class="plot" viewBox="0 0 780 430" role="img" aria-label="Interactive graph of a quotient near a limiting input">
+          <rect class="plot-bg" x="0" y="0" width="780" height="430"/>
+          <g class="gridlines"></g>
+          <line class="axis xaxis"/><line class="axis yaxis"/>
+          <line class="target-line"/><line class="limit-line"/>
+          <path class="curve"/><path class="derivcurve"/>
+          <circle class="pt" r="7"/><circle class="dpt" r="6"/>
+          <text class="curve-label">quotient</text><text class="d-label">derivative quotient</text>
+          <text class="target-label"></text><text class="limit-label"></text>
+        </svg>
+      </div>
+      <div class="panel">
+        <h3>One-sided ∞/∞ with simplification</h3>
+        <label class="slider-label"><span class="slider-name">Move x</span>: <strong class="xout"></strong>
+          <input type="range" class="xrange" step="0.001">
+        </label>
+        <div class="readout"></div>
+        <div class="mini-note">The slider moves the input and updates the graph, quotient value, and derivative quotient value.</div>
+        
+      </div>
+    </div><details class="answer"><summary>Show solution</summary><div>The form is \(\infty/\infty\) in magnitude. One L’Hôpital step gives
+\[\lim_{x\to0^+}\frac{1/x}{-\csc x\cot x}.\]
+Simplify to \(-\frac{\sin x\tan x}{x}\), which tends to \(0\).</div></details></section><section class="slide" data-title="Why the derivative quotient makes sense"><div class="kicker">Local linearity connection</div><h1>Why the derivative quotient makes sense</h1>
+<div class="formula">If \(f(c)=g(c)=0\), then near \(x=c\):
+\[f(x)\approx f'(c)(x-c),\qquad g(x)\approx g'(c)(x-c).\]
+So
+\[\frac{f(x)}{g(x)}\approx\frac{f'(c)}{g'(c)}.\]</div>
+<div class="note">This connects L’Hôpital’s Rule to the linear approximation lesson.</div>
+</section><section class="slide" data-title="CA1 Q1: Check the form first"><div class="kicker">Guided practice</div><h1>CA1 Q1: Check the form first</h1><div class="prompt">Evaluate \(\displaystyle \lim_{x\to3}\frac{x^2-2x+1}{x-3}\). Use L’Hôpital only if possible.</div>
+    <div class="limit-widget" data-case="nonIndet1">
+      <div class="plot-wrap">
+        <svg class="plot" viewBox="0 0 780 430" role="img" aria-label="Interactive graph of a quotient near a limiting input">
+          <rect class="plot-bg" x="0" y="0" width="780" height="430"/>
+          <g class="gridlines"></g>
+          <line class="axis xaxis"/><line class="axis yaxis"/>
+          <line class="target-line"/><line class="limit-line"/>
+          <path class="curve"/><path class="derivcurve"/>
+          <circle class="pt" r="7"/><circle class="dpt" r="6"/>
+          <text class="curve-label">quotient</text><text class="d-label">derivative quotient</text>
+          <text class="target-label"></text><text class="limit-label"></text>
+        </svg>
+      </div>
+      <div class="panel">
+        <h3>CA1 Q1: Check the form first</h3>
+        <label class="slider-label"><span class="slider-name">Move x</span>: <strong class="xout"></strong>
+          <input type="range" class="xrange" step="0.001">
+        </label>
+        <div class="readout"></div>
+        <div class="mini-note">The slider moves the input and updates the graph, quotient value, and derivative quotient value.</div>
+        
+      </div>
+    </div><details class="answer"><summary>Show solution</summary><div>Substitution gives \(4/0\), not \(0/0\). L’Hôpital’s Rule does not apply. Since the numerator is positive near 3 and the denominator changes sign, the two-sided limit does not exist.</div></details></section><section class="slide" data-title="CA1 Q2: Two applications"><div class="kicker">Guided practice</div><h1>CA1 Q2: Two applications</h1><div class="prompt">Evaluate \(\displaystyle \lim_{x\to0}\frac{3x^2}{e^x-1-x}\).</div>
+    <div class="limit-widget" data-case="threeX2OverExMinus1MinusX">
+      <div class="plot-wrap">
+        <svg class="plot" viewBox="0 0 780 430" role="img" aria-label="Interactive graph of a quotient near a limiting input">
+          <rect class="plot-bg" x="0" y="0" width="780" height="430"/>
+          <g class="gridlines"></g>
+          <line class="axis xaxis"/><line class="axis yaxis"/>
+          <line class="target-line"/><line class="limit-line"/>
+          <path class="curve"/><path class="derivcurve"/>
+          <circle class="pt" r="7"/><circle class="dpt" r="6"/>
+          <text class="curve-label">quotient</text><text class="d-label">derivative quotient</text>
+          <text class="target-label"></text><text class="limit-label"></text>
+        </svg>
+      </div>
+      <div class="panel">
+        <h3>CA1 Q2: Two applications</h3>
+        <label class="slider-label"><span class="slider-name">Move x</span>: <strong class="xout"></strong>
+          <input type="range" class="xrange" step="0.001">
+        </label>
+        <div class="readout"></div>
+        <div class="mini-note">The slider moves the input and updates the graph, quotient value, and derivative quotient value.</div>
+        
+      </div>
+    </div><details class="answer"><summary>Show solution</summary><div>The form is \(0/0\). Apply L’Hôpital twice:
+\[\lim_{x\to0}\frac{6x}{e^x-1}=\lim_{x\to0}\frac{6}{e^x}=6.\]</div></details></section><section class="slide" data-title="CA1 Q3: Quotient rule, not L’Hôpital"><div class="kicker">Guided practice</div><h1>CA1 Q3: Quotient rule, not L’Hôpital</h1><div class="prompt">Find \(\displaystyle \frac{d}{dx}\left(\frac{3x-2}{5x+1}\right)\).</div><div class="note">This item is intentionally not an indeterminate limit. Decide the correct calculus tool before solving.</div><details class="answer"><summary>Show solution</summary><div>This is a derivative problem. Use the quotient rule:
+\[\frac{(5x+1)(3)-(3x-2)(5)}{(5x+1)^2}=\frac{13}{(5x+1)^2}.\]</div></details></section><section class="slide" data-title="CA1 Q4: Radical 0/0"><div class="kicker">Guided practice</div><h1>CA1 Q4: Radical 0/0</h1><div class="prompt">Evaluate \(\displaystyle \lim_{x\to6}\frac{7-\sqrt{55-x}}{x-6}\).</div>
+    <div class="limit-widget" data-case="radical6">
+      <div class="plot-wrap">
+        <svg class="plot" viewBox="0 0 780 430" role="img" aria-label="Interactive graph of a quotient near a limiting input">
+          <rect class="plot-bg" x="0" y="0" width="780" height="430"/>
+          <g class="gridlines"></g>
+          <line class="axis xaxis"/><line class="axis yaxis"/>
+          <line class="target-line"/><line class="limit-line"/>
+          <path class="curve"/><path class="derivcurve"/>
+          <circle class="pt" r="7"/><circle class="dpt" r="6"/>
+          <text class="curve-label">quotient</text><text class="d-label">derivative quotient</text>
+          <text class="target-label"></text><text class="limit-label"></text>
+        </svg>
+      </div>
+      <div class="panel">
+        <h3>CA1 Q4: Radical 0/0</h3>
+        <label class="slider-label"><span class="slider-name">Move x</span>: <strong class="xout"></strong>
+          <input type="range" class="xrange" step="0.001">
+        </label>
+        <div class="readout"></div>
+        <div class="mini-note">The slider moves the input and updates the graph, quotient value, and derivative quotient value.</div>
+        
+      </div>
+    </div><details class="answer"><summary>Show solution</summary><div>The form is \(0/0\). By L’Hôpital,
+\[\lim_{x\to6}\frac{\frac{1}{2\sqrt{55-x}}}{1}=\frac1{14}.\]</div></details></section><section class="slide" data-title="CA1 Q5: Polynomial over sign-changing denominator"><div class="kicker">Guided practice</div><h1>CA1 Q5: Polynomial over sign-changing denominator</h1><div class="prompt">Evaluate \(\displaystyle \lim_{x\to4}\frac{x^2+6x-40}{4-x}\).</div>
+    <div class="limit-widget" data-case="poly4">
+      <div class="plot-wrap">
+        <svg class="plot" viewBox="0 0 780 430" role="img" aria-label="Interactive graph of a quotient near a limiting input">
+          <rect class="plot-bg" x="0" y="0" width="780" height="430"/>
+          <g class="gridlines"></g>
+          <line class="axis xaxis"/><line class="axis yaxis"/>
+          <line class="target-line"/><line class="limit-line"/>
+          <path class="curve"/><path class="derivcurve"/>
+          <circle class="pt" r="7"/><circle class="dpt" r="6"/>
+          <text class="curve-label">quotient</text><text class="d-label">derivative quotient</text>
+          <text class="target-label"></text><text class="limit-label"></text>
+        </svg>
+      </div>
+      <div class="panel">
+        <h3>CA1 Q5: Polynomial over sign-changing denominator</h3>
+        <label class="slider-label"><span class="slider-name">Move x</span>: <strong class="xout"></strong>
+          <input type="range" class="xrange" step="0.001">
+        </label>
+        <div class="readout"></div>
+        <div class="mini-note">The slider moves the input and updates the graph, quotient value, and derivative quotient value.</div>
+        
+      </div>
+    </div><details class="answer"><summary>Show solution</summary><div>The form is \(0/0\). By L’Hôpital,
+\[\lim_{x\to4}\frac{2x+6}{-1}=-14.\]</div></details></section><section class="slide" data-title="CA1 Q6: Direct substitution"><div class="kicker">Guided practice</div><h1>CA1 Q6: Direct substitution</h1><div class="prompt">Evaluate \(\displaystyle \lim_{x\to0}\frac{x+1}{x^2-5x+3}\).</div>
+    <div class="limit-widget" data-case="direct13">
+      <div class="plot-wrap">
+        <svg class="plot" viewBox="0 0 780 430" role="img" aria-label="Interactive graph of a quotient near a limiting input">
+          <rect class="plot-bg" x="0" y="0" width="780" height="430"/>
+          <g class="gridlines"></g>
+          <line class="axis xaxis"/><line class="axis yaxis"/>
+          <line class="target-line"/><line class="limit-line"/>
+          <path class="curve"/><path class="derivcurve"/>
+          <circle class="pt" r="7"/><circle class="dpt" r="6"/>
+          <text class="curve-label">quotient</text><text class="d-label">derivative quotient</text>
+          <text class="target-label"></text><text class="limit-label"></text>
+        </svg>
+      </div>
+      <div class="panel">
+        <h3>CA1 Q6: Direct substitution</h3>
+        <label class="slider-label"><span class="slider-name">Move x</span>: <strong class="xout"></strong>
+          <input type="range" class="xrange" step="0.001">
+        </label>
+        <div class="readout"></div>
+        <div class="mini-note">The slider moves the input and updates the graph, quotient value, and derivative quotient value.</div>
+        
+      </div>
+    </div><details class="answer"><summary>Show solution</summary><div>Direct substitution gives \(1/3\). L’Hôpital’s Rule is not needed and does not apply.</div></details></section><section class="slide" data-title="CA1 Q7: Quotient rule again"><div class="kicker">Guided practice</div><h1>CA1 Q7: Quotient rule again</h1><div class="prompt">Find \(\displaystyle \frac{d}{dx}\left(\frac{e^x}{\tan(3x)}\right)\).</div><div class="note">This item is intentionally not an indeterminate limit. Decide the correct calculus tool before solving.</div><details class="answer"><summary>Show solution</summary><div>Use the quotient rule:
+\[\frac{e^x\tan(3x)-3e^x\sec^2(3x)}{\tan^2(3x)}.\]</div></details></section><section class="slide" data-title="CA1 Q8: Logarithm quotient"><div class="kicker">Guided practice</div><h1>CA1 Q8: Logarithm quotient</h1><div class="prompt">Evaluate \(\displaystyle \lim_{x\to1}\frac{5\ln(x^2)}{x^2-1}\).</div>
+    <div class="limit-widget" data-case="fiveLnX2OverX2Minus1">
+      <div class="plot-wrap">
+        <svg class="plot" viewBox="0 0 780 430" role="img" aria-label="Interactive graph of a quotient near a limiting input">
+          <rect class="plot-bg" x="0" y="0" width="780" height="430"/>
+          <g class="gridlines"></g>
+          <line class="axis xaxis"/><line class="axis yaxis"/>
+          <line class="target-line"/><line class="limit-line"/>
+          <path class="curve"/><path class="derivcurve"/>
+          <circle class="pt" r="7"/><circle class="dpt" r="6"/>
+          <text class="curve-label">quotient</text><text class="d-label">derivative quotient</text>
+          <text class="target-label"></text><text class="limit-label"></text>
+        </svg>
+      </div>
+      <div class="panel">
+        <h3>CA1 Q8: Logarithm quotient</h3>
+        <label class="slider-label"><span class="slider-name">Move x</span>: <strong class="xout"></strong>
+          <input type="range" class="xrange" step="0.001">
+        </label>
+        <div class="readout"></div>
+        <div class="mini-note">The slider moves the input and updates the graph, quotient value, and derivative quotient value.</div>
+        
+      </div>
+    </div><details class="answer"><summary>Show solution</summary><div>The form is \(0/0\). By L’Hôpital,
+\[\lim_{x\to1}\frac{10/x}{2x}=5.\]</div></details></section><section class="slide" data-title="CA1 Q9: Trig quotient requiring two steps"><div class="kicker">Guided practice</div><h1>CA1 Q9: Trig quotient requiring two steps</h1><div class="prompt">Evaluate \(\displaystyle \lim_{x\to0}\frac{1-\cos(4x)}{\cos(3x)-1}\).</div>
+    <div class="limit-widget" data-case="cos4cos3">
+      <div class="plot-wrap">
+        <svg class="plot" viewBox="0 0 780 430" role="img" aria-label="Interactive graph of a quotient near a limiting input">
+          <rect class="plot-bg" x="0" y="0" width="780" height="430"/>
+          <g class="gridlines"></g>
+          <line class="axis xaxis"/><line class="axis yaxis"/>
+          <line class="target-line"/><line class="limit-line"/>
+          <path class="curve"/><path class="derivcurve"/>
+          <circle class="pt" r="7"/><circle class="dpt" r="6"/>
+          <text class="curve-label">quotient</text><text class="d-label">derivative quotient</text>
+          <text class="target-label"></text><text class="limit-label"></text>
+        </svg>
+      </div>
+      <div class="panel">
+        <h3>CA1 Q9: Trig quotient requiring two steps</h3>
+        <label class="slider-label"><span class="slider-name">Move x</span>: <strong class="xout"></strong>
+          <input type="range" class="xrange" step="0.001">
+        </label>
+        <div class="readout"></div>
+        <div class="mini-note">The slider moves the input and updates the graph, quotient value, and derivative quotient value.</div>
+        
+      </div>
+    </div><details class="answer"><summary>Show solution</summary><div>After one L’Hôpital step the form is still \(0/0\). Apply again:
+\[\lim_{x\to0}\frac{16\cos(4x)}{-9\cos(3x)}=-\frac{16}{9}.\]</div></details></section><section class="slide" data-title="Notes recall: direct substitution"><div class="kicker">Notes practice</div><h1>Notes recall: direct substitution</h1><div class="prompt">Evaluate \(\displaystyle \lim_{x\to3}\frac{2x-5}{x}\).</div>
+    <div class="limit-widget" data-case="directRecall">
+      <div class="plot-wrap">
+        <svg class="plot" viewBox="0 0 780 430" role="img" aria-label="Interactive graph of a quotient near a limiting input">
+          <rect class="plot-bg" x="0" y="0" width="780" height="430"/>
+          <g class="gridlines"></g>
+          <line class="axis xaxis"/><line class="axis yaxis"/>
+          <line class="target-line"/><line class="limit-line"/>
+          <path class="curve"/><path class="derivcurve"/>
+          <circle class="pt" r="7"/><circle class="dpt" r="6"/>
+          <text class="curve-label">quotient</text><text class="d-label">derivative quotient</text>
+          <text class="target-label"></text><text class="limit-label"></text>
+        </svg>
+      </div>
+      <div class="panel">
+        <h3>Notes recall: direct substitution</h3>
+        <label class="slider-label"><span class="slider-name">Move x</span>: <strong class="xout"></strong>
+          <input type="range" class="xrange" step="0.001">
+        </label>
+        <div class="readout"></div>
+        <div class="mini-note">The slider moves the input and updates the graph, quotient value, and derivative quotient value.</div>
+        
+      </div>
+    </div><details class="answer"><summary>Show solution</summary><div>Direct substitution gives \((6-5)/3=1/3\).</div></details></section><section class="slide" data-title="Notes Q1: factorable 0/0"><div class="kicker">Notes practice</div><h1>Notes Q1: factorable 0/0</h1><div class="prompt">Evaluate \(\displaystyle \lim_{x\to2}\frac{x^2-7x+10}{x-2}\).</div>
+    <div class="limit-widget" data-case="poly22">
+      <div class="plot-wrap">
+        <svg class="plot" viewBox="0 0 780 430" role="img" aria-label="Interactive graph of a quotient near a limiting input">
+          <rect class="plot-bg" x="0" y="0" width="780" height="430"/>
+          <g class="gridlines"></g>
+          <line class="axis xaxis"/><line class="axis yaxis"/>
+          <line class="target-line"/><line class="limit-line"/>
+          <path class="curve"/><path class="derivcurve"/>
+          <circle class="pt" r="7"/><circle class="dpt" r="6"/>
+          <text class="curve-label">quotient</text><text class="d-label">derivative quotient</text>
+          <text class="target-label"></text><text class="limit-label"></text>
+        </svg>
+      </div>
+      <div class="panel">
+        <h3>Notes Q1: factorable 0/0</h3>
+        <label class="slider-label"><span class="slider-name">Move x</span>: <strong class="xout"></strong>
+          <input type="range" class="xrange" step="0.001">
+        </label>
+        <div class="readout"></div>
+        <div class="mini-note">The slider moves the input and updates the graph, quotient value, and derivative quotient value.</div>
+        
+      </div>
+    </div><details class="answer"><summary>Show solution</summary><div>By factoring, the quotient is \(x-5\) for \(x\ne2\), so the limit is \(-3\). L’Hôpital gives the same result.</div></details></section><section class="slide" data-title="Notes Q2: cubic denominator"><div class="kicker">Notes practice</div><h1>Notes Q2: cubic denominator</h1><div class="prompt">Evaluate \(\displaystyle \lim_{x\to2}\frac{x-2}{3x^3-6x^2+x-2}\).</div>
+    <div class="limit-widget" data-case="cubicDen2">
+      <div class="plot-wrap">
+        <svg class="plot" viewBox="0 0 780 430" role="img" aria-label="Interactive graph of a quotient near a limiting input">
+          <rect class="plot-bg" x="0" y="0" width="780" height="430"/>
+          <g class="gridlines"></g>
+          <line class="axis xaxis"/><line class="axis yaxis"/>
+          <line class="target-line"/><line class="limit-line"/>
+          <path class="curve"/><path class="derivcurve"/>
+          <circle class="pt" r="7"/><circle class="dpt" r="6"/>
+          <text class="curve-label">quotient</text><text class="d-label">derivative quotient</text>
+          <text class="target-label"></text><text class="limit-label"></text>
+        </svg>
+      </div>
+      <div class="panel">
+        <h3>Notes Q2: cubic denominator</h3>
+        <label class="slider-label"><span class="slider-name">Move x</span>: <strong class="xout"></strong>
+          <input type="range" class="xrange" step="0.001">
+        </label>
+        <div class="readout"></div>
+        <div class="mini-note">The slider moves the input and updates the graph, quotient value, and derivative quotient value.</div>
+        
+      </div>
+    </div><details class="answer"><summary>Show solution</summary><div>The form is \(0/0\). By L’Hôpital,
+\[\lim_{x\to2}\frac{1}{9x^2-12x+1}=\frac1{13}.\]</div></details></section><section class="slide" data-title="Notes Q3: special trig limit"><div class="kicker">Notes practice</div><h1>Notes Q3: special trig limit</h1><div class="prompt">Evaluate \(\displaystyle \lim_{x\to0}\frac{\sin(6x)}{x}\).</div>
+    <div class="limit-widget" data-case="sin6overx">
+      <div class="plot-wrap">
+        <svg class="plot" viewBox="0 0 780 430" role="img" aria-label="Interactive graph of a quotient near a limiting input">
+          <rect class="plot-bg" x="0" y="0" width="780" height="430"/>
+          <g class="gridlines"></g>
+          <line class="axis xaxis"/><line class="axis yaxis"/>
+          <line class="target-line"/><line class="limit-line"/>
+          <path class="curve"/><path class="derivcurve"/>
+          <circle class="pt" r="7"/><circle class="dpt" r="6"/>
+          <text class="curve-label">quotient</text><text class="d-label">derivative quotient</text>
+          <text class="target-label"></text><text class="limit-label"></text>
+        </svg>
+      </div>
+      <div class="panel">
+        <h3>Notes Q3: special trig limit</h3>
+        <label class="slider-label"><span class="slider-name">Move x</span>: <strong class="xout"></strong>
+          <input type="range" class="xrange" step="0.001">
+        </label>
+        <div class="readout"></div>
+        <div class="mini-note">The slider moves the input and updates the graph, quotient value, and derivative quotient value.</div>
+        
+      </div>
+    </div><details class="answer"><summary>Show solution</summary><div>By L’Hôpital, the limit is \(\lim_{x\to0}6\cos(6x)=6\).</div></details></section><section class="slide" data-title="Notes Q4: apply twice"><div class="kicker">Notes practice</div><h1>Notes Q4: apply twice</h1><div class="prompt">Evaluate \(\displaystyle \lim_{x\to0}\frac{1-\cos x}{x^2}\).</div>
+    <div class="limit-widget" data-case="oneMinusCosOverX2">
+      <div class="plot-wrap">
+        <svg class="plot" viewBox="0 0 780 430" role="img" aria-label="Interactive graph of a quotient near a limiting input">
+          <rect class="plot-bg" x="0" y="0" width="780" height="430"/>
+          <g class="gridlines"></g>
+          <line class="axis xaxis"/><line class="axis yaxis"/>
+          <line class="target-line"/><line class="limit-line"/>
+          <path class="curve"/><path class="derivcurve"/>
+          <circle class="pt" r="7"/><circle class="dpt" r="6"/>
+          <text class="curve-label">quotient</text><text class="d-label">derivative quotient</text>
+          <text class="target-label"></text><text class="limit-label"></text>
+        </svg>
+      </div>
+      <div class="panel">
+        <h3>Notes Q4: apply twice</h3>
+        <label class="slider-label"><span class="slider-name">Move x</span>: <strong class="xout"></strong>
+          <input type="range" class="xrange" step="0.001">
+        </label>
+        <div class="readout"></div>
+        <div class="mini-note">The slider moves the input and updates the graph, quotient value, and derivative quotient value.</div>
+        
+      </div>
+    </div><details class="answer"><summary>Show solution</summary><div>Two applications give \(1/2\).</div></details></section><section class="slide" data-title="Notes Q5: polynomial over exponential"><div class="kicker">Notes practice</div><h1>Notes Q5: polynomial over exponential</h1><div class="prompt">Evaluate \(\displaystyle \lim_{x\to\infty}\frac{2x^2}{e^{2x}}\).</div>
+    <div class="limit-widget" data-case="twoX2OverE2x">
+      <div class="plot-wrap">
+        <svg class="plot" viewBox="0 0 780 430" role="img" aria-label="Interactive graph of a quotient near a limiting input">
+          <rect class="plot-bg" x="0" y="0" width="780" height="430"/>
+          <g class="gridlines"></g>
+          <line class="axis xaxis"/><line class="axis yaxis"/>
+          <line class="target-line"/><line class="limit-line"/>
+          <path class="curve"/><path class="derivcurve"/>
+          <circle class="pt" r="7"/><circle class="dpt" r="6"/>
+          <text class="curve-label">quotient</text><text class="d-label">derivative quotient</text>
+          <text class="target-label"></text><text class="limit-label"></text>
+        </svg>
+      </div>
+      <div class="panel">
+        <h3>Notes Q5: polynomial over exponential</h3>
+        <label class="slider-label"><span class="slider-name">Move x</span>: <strong class="xout"></strong>
+          <input type="range" class="xrange" step="0.001">
+        </label>
+        <div class="readout"></div>
+        <div class="mini-note">The slider moves the input and updates the graph, quotient value, and derivative quotient value.</div>
+        
+      </div>
+    </div><details class="answer"><summary>Show solution</summary><div>Apply L’Hôpital twice:
+\[\lim\frac{4x}{2e^{2x}}=\lim\frac{4}{4e^{2x}}=0.\]</div></details></section><section class="slide" data-title="Notes Q6: derivative of a quotient"><div class="kicker">Notes practice</div><h1>Notes Q6: derivative of a quotient</h1><div class="prompt">Find \(\displaystyle \frac{d}{dx}\left(\frac{\sin(6x)}{x}\right)\).</div><div class="note">This is not a limit; use the quotient rule.</div><details class="answer"><summary>Show solution</summary><div>Use quotient rule:
+\[\frac{6x\cos(6x)-\sin(6x)}{x^2}.\]</div></details></section><section class="slide" data-title="Practice 1"><div class="kicker">Homework practice</div><h1>Practice 1</h1><div class="prompt">Evaluate \(\displaystyle \lim_{x\to1}\frac{x-1}{x^2-3x+2}\).</div>
+    <div class="limit-widget" data-case="xMinus1Quad">
+      <div class="plot-wrap">
+        <svg class="plot" viewBox="0 0 780 430" role="img" aria-label="Interactive graph of a quotient near a limiting input">
+          <rect class="plot-bg" x="0" y="0" width="780" height="430"/>
+          <g class="gridlines"></g>
+          <line class="axis xaxis"/><line class="axis yaxis"/>
+          <line class="target-line"/><line class="limit-line"/>
+          <path class="curve"/><path class="derivcurve"/>
+          <circle class="pt" r="7"/><circle class="dpt" r="6"/>
+          <text class="curve-label">quotient</text><text class="d-label">derivative quotient</text>
+          <text class="target-label"></text><text class="limit-label"></text>
+        </svg>
+      </div>
+      <div class="panel">
+        <h3>Practice 1</h3>
+        <label class="slider-label"><span class="slider-name">Move x</span>: <strong class="xout"></strong>
+          <input type="range" class="xrange" step="0.001">
+        </label>
+        <div class="readout"></div>
+        <div class="mini-note">The slider moves the input and updates the graph, quotient value, and derivative quotient value.</div>
+        
+      </div>
+    </div><details class="answer"><summary>Show solution</summary><div>The form is \(0/0\). By L’Hôpital, \(\displaystyle \lim_{x\to1}\frac{1}{2x-3}=-1\).</div></details></section><section class="slide" data-title="Practice 2"><div class="kicker">Homework practice</div><h1>Practice 2</h1><div class="prompt">Evaluate \(\displaystyle \lim_{x\to-5}\frac{x^2-2x-35}{x+5}\).</div>
+    <div class="limit-widget" data-case="polyMinus5">
+      <div class="plot-wrap">
+        <svg class="plot" viewBox="0 0 780 430" role="img" aria-label="Interactive graph of a quotient near a limiting input">
+          <rect class="plot-bg" x="0" y="0" width="780" height="430"/>
+          <g class="gridlines"></g>
+          <line class="axis xaxis"/><line class="axis yaxis"/>
+          <line class="target-line"/><line class="limit-line"/>
+          <path class="curve"/><path class="derivcurve"/>
+          <circle class="pt" r="7"/><circle class="dpt" r="6"/>
+          <text class="curve-label">quotient</text><text class="d-label">derivative quotient</text>
+          <text class="target-label"></text><text class="limit-label"></text>
+        </svg>
+      </div>
+      <div class="panel">
+        <h3>Practice 2</h3>
+        <label class="slider-label"><span class="slider-name">Move x</span>: <strong class="xout"></strong>
+          <input type="range" class="xrange" step="0.001">
+        </label>
+        <div class="readout"></div>
+        <div class="mini-note">The slider moves the input and updates the graph, quotient value, and derivative quotient value.</div>
+        
+      </div>
+    </div><details class="answer"><summary>Show solution</summary><div>By L’Hôpital, \(2x-2\) at \(-5\) gives \(-12\).</div></details></section><section class="slide" data-title="Practice 3"><div class="kicker">Homework practice</div><h1>Practice 3</h1><div class="prompt">Evaluate \(\displaystyle \lim_{x\to0}\frac{4x}{\ln(x+1)}\).</div>
+    <div class="limit-widget" data-case="fourXOverLn1x">
+      <div class="plot-wrap">
+        <svg class="plot" viewBox="0 0 780 430" role="img" aria-label="Interactive graph of a quotient near a limiting input">
+          <rect class="plot-bg" x="0" y="0" width="780" height="430"/>
+          <g class="gridlines"></g>
+          <line class="axis xaxis"/><line class="axis yaxis"/>
+          <line class="target-line"/><line class="limit-line"/>
+          <path class="curve"/><path class="derivcurve"/>
+          <circle class="pt" r="7"/><circle class="dpt" r="6"/>
+          <text class="curve-label">quotient</text><text class="d-label">derivative quotient</text>
+          <text class="target-label"></text><text class="limit-label"></text>
+        </svg>
+      </div>
+      <div class="panel">
+        <h3>Practice 3</h3>
+        <label class="slider-label"><span class="slider-name">Move x</span>: <strong class="xout"></strong>
+          <input type="range" class="xrange" step="0.001">
+        </label>
+        <div class="readout"></div>
+        <div class="mini-note">The slider moves the input and updates the graph, quotient value, and derivative quotient value.</div>
+        
+      </div>
+    </div><details class="answer"><summary>Show solution</summary><div>The form is \(0/0\). By L’Hôpital, \(\displaystyle \lim_{x\to0}4(x+1)=4\).</div></details></section><section class="slide" data-title="Practice 4"><div class="kicker">Homework practice</div><h1>Practice 4</h1><div class="prompt">Evaluate \(\displaystyle \lim_{x\to0}\frac{x-1}{x^2-3x+2}\).</div>
+    <div class="limit-widget" data-case="directNegHalf">
+      <div class="plot-wrap">
+        <svg class="plot" viewBox="0 0 780 430" role="img" aria-label="Interactive graph of a quotient near a limiting input">
+          <rect class="plot-bg" x="0" y="0" width="780" height="430"/>
+          <g class="gridlines"></g>
+          <line class="axis xaxis"/><line class="axis yaxis"/>
+          <line class="target-line"/><line class="limit-line"/>
+          <path class="curve"/><path class="derivcurve"/>
+          <circle class="pt" r="7"/><circle class="dpt" r="6"/>
+          <text class="curve-label">quotient</text><text class="d-label">derivative quotient</text>
+          <text class="target-label"></text><text class="limit-label"></text>
+        </svg>
+      </div>
+      <div class="panel">
+        <h3>Practice 4</h3>
+        <label class="slider-label"><span class="slider-name">Move x</span>: <strong class="xout"></strong>
+          <input type="range" class="xrange" step="0.001">
+        </label>
+        <div class="readout"></div>
+        <div class="mini-note">The slider moves the input and updates the graph, quotient value, and derivative quotient value.</div>
+        
+      </div>
+    </div><details class="answer"><summary>Show solution</summary><div>Direct substitution gives \(-1/2\). L’Hôpital’s Rule does not apply.</div></details></section><section class="slide" data-title="Practice 5"><div class="kicker">Homework practice</div><h1>Practice 5</h1><div class="prompt">Evaluate \(\displaystyle \lim_{x\to1}\frac{2(x^2-1)}{\ln(x^2)}\).</div>
+    <div class="limit-widget" data-case="twoX2Minus1OverLnX2">
+      <div class="plot-wrap">
+        <svg class="plot" viewBox="0 0 780 430" role="img" aria-label="Interactive graph of a quotient near a limiting input">
+          <rect class="plot-bg" x="0" y="0" width="780" height="430"/>
+          <g class="gridlines"></g>
+          <line class="axis xaxis"/><line class="axis yaxis"/>
+          <line class="target-line"/><line class="limit-line"/>
+          <path class="curve"/><path class="derivcurve"/>
+          <circle class="pt" r="7"/><circle class="dpt" r="6"/>
+          <text class="curve-label">quotient</text><text class="d-label">derivative quotient</text>
+          <text class="target-label"></text><text class="limit-label"></text>
+        </svg>
+      </div>
+      <div class="panel">
+        <h3>Practice 5</h3>
+        <label class="slider-label"><span class="slider-name">Move x</span>: <strong class="xout"></strong>
+          <input type="range" class="xrange" step="0.001">
+        </label>
+        <div class="readout"></div>
+        <div class="mini-note">The slider moves the input and updates the graph, quotient value, and derivative quotient value.</div>
+        
+      </div>
+    </div><details class="answer"><summary>Show solution</summary><div>By L’Hôpital, \(\displaystyle \lim_{x\to1}\frac{4x}{2/x}=2\).</div></details></section><section class="slide" data-title="Practice 6"><div class="kicker">Homework practice</div><h1>Practice 6</h1><div class="prompt">Find \(\displaystyle \frac{d}{dx}\left(\frac{6x^2+x}{\sin x}\right)\).</div><div class="note">This item asks for a derivative, so use derivative rules.</div><details class="answer"><summary>Show solution</summary><div>Use quotient rule:
+\[\frac{(12x+1)\sin x-(6x^2+x)\cos x}{\sin^2x}.\]</div></details></section><section class="slide" data-title="Practice 7"><div class="kicker">Homework practice</div><h1>Practice 7</h1><div class="prompt">Evaluate \(\displaystyle \lim_{x\to0}\frac{2x^2}{e^x-1-x}\).</div>
+    <div class="limit-widget" data-case="twoX2OverExMinus1MinusX">
+      <div class="plot-wrap">
+        <svg class="plot" viewBox="0 0 780 430" role="img" aria-label="Interactive graph of a quotient near a limiting input">
+          <rect class="plot-bg" x="0" y="0" width="780" height="430"/>
+          <g class="gridlines"></g>
+          <line class="axis xaxis"/><line class="axis yaxis"/>
+          <line class="target-line"/><line class="limit-line"/>
+          <path class="curve"/><path class="derivcurve"/>
+          <circle class="pt" r="7"/><circle class="dpt" r="6"/>
+          <text class="curve-label">quotient</text><text class="d-label">derivative quotient</text>
+          <text class="target-label"></text><text class="limit-label"></text>
+        </svg>
+      </div>
+      <div class="panel">
+        <h3>Practice 7</h3>
+        <label class="slider-label"><span class="slider-name">Move x</span>: <strong class="xout"></strong>
+          <input type="range" class="xrange" step="0.001">
+        </label>
+        <div class="readout"></div>
+        <div class="mini-note">The slider moves the input and updates the graph, quotient value, and derivative quotient value.</div>
+        
+      </div>
+    </div><details class="answer"><summary>Show solution</summary><div>Apply L’Hôpital twice to get \(4\).</div></details></section><section class="slide" data-title="Practice 8"><div class="kicker">Homework practice</div><h1>Practice 8</h1><div class="prompt">Evaluate \(\displaystyle \lim_{x\to0}\frac{2x^2}{1-\cos(4x)}\).</div>
+    <div class="limit-widget" data-case="twoX2OverOneMinusCos4">
+      <div class="plot-wrap">
+        <svg class="plot" viewBox="0 0 780 430" role="img" aria-label="Interactive graph of a quotient near a limiting input">
+          <rect class="plot-bg" x="0" y="0" width="780" height="430"/>
+          <g class="gridlines"></g>
+          <line class="axis xaxis"/><line class="axis yaxis"/>
+          <line class="target-line"/><line class="limit-line"/>
+          <path class="curve"/><path class="derivcurve"/>
+          <circle class="pt" r="7"/><circle class="dpt" r="6"/>
+          <text class="curve-label">quotient</text><text class="d-label">derivative quotient</text>
+          <text class="target-label"></text><text class="limit-label"></text>
+        </svg>
+      </div>
+      <div class="panel">
+        <h3>Practice 8</h3>
+        <label class="slider-label"><span class="slider-name">Move x</span>: <strong class="xout"></strong>
+          <input type="range" class="xrange" step="0.001">
+        </label>
+        <div class="readout"></div>
+        <div class="mini-note">The slider moves the input and updates the graph, quotient value, and derivative quotient value.</div>
+        
+      </div>
+    </div><details class="answer"><summary>Show solution</summary><div>Apply L’Hôpital twice:
+\[\lim_{x\to0}\frac{4}{16\cos(4x)}=\frac14.\]</div></details></section><section class="slide" data-title="Practice 9"><div class="kicker">Homework practice</div><h1>Practice 9</h1><div class="prompt">Evaluate \(\displaystyle \lim_{x\to0}\frac{x^2}{1-\cos x}\).</div>
+    <div class="limit-widget" data-case="x2OverOneMinusCos">
+      <div class="plot-wrap">
+        <svg class="plot" viewBox="0 0 780 430" role="img" aria-label="Interactive graph of a quotient near a limiting input">
+          <rect class="plot-bg" x="0" y="0" width="780" height="430"/>
+          <g class="gridlines"></g>
+          <line class="axis xaxis"/><line class="axis yaxis"/>
+          <line class="target-line"/><line class="limit-line"/>
+          <path class="curve"/><path class="derivcurve"/>
+          <circle class="pt" r="7"/><circle class="dpt" r="6"/>
+          <text class="curve-label">quotient</text><text class="d-label">derivative quotient</text>
+          <text class="target-label"></text><text class="limit-label"></text>
+        </svg>
+      </div>
+      <div class="panel">
+        <h3>Practice 9</h3>
+        <label class="slider-label"><span class="slider-name">Move x</span>: <strong class="xout"></strong>
+          <input type="range" class="xrange" step="0.001">
+        </label>
+        <div class="readout"></div>
+        <div class="mini-note">The slider moves the input and updates the graph, quotient value, and derivative quotient value.</div>
+        
+      </div>
+    </div><details class="answer"><summary>Show solution</summary><div>Two applications give \(2\).</div></details></section><section class="slide" data-title="Practice 10"><div class="kicker">Homework practice</div><h1>Practice 10</h1><div class="prompt">Evaluate \(\displaystyle \lim_{x\to\infty}\frac{e^{2x}-x-1}{x^2}\).</div>
+    <div class="limit-widget" data-case="e2xMinusXOverX2">
+      <div class="plot-wrap">
+        <svg class="plot" viewBox="0 0 780 430" role="img" aria-label="Interactive graph of a quotient near a limiting input">
+          <rect class="plot-bg" x="0" y="0" width="780" height="430"/>
+          <g class="gridlines"></g>
+          <line class="axis xaxis"/><line class="axis yaxis"/>
+          <line class="target-line"/><line class="limit-line"/>
+          <path class="curve"/><path class="derivcurve"/>
+          <circle class="pt" r="7"/><circle class="dpt" r="6"/>
+          <text class="curve-label">quotient</text><text class="d-label">derivative quotient</text>
+          <text class="target-label"></text><text class="limit-label"></text>
+        </svg>
+      </div>
+      <div class="panel">
+        <h3>Practice 10</h3>
+        <label class="slider-label"><span class="slider-name">Move x</span>: <strong class="xout"></strong>
+          <input type="range" class="xrange" step="0.001">
+        </label>
+        <div class="readout"></div>
+        <div class="mini-note">The slider moves the input and updates the graph, quotient value, and derivative quotient value.</div>
+        
+      </div>
+    </div><details class="answer"><summary>Show solution</summary><div>The form is \(\infty/\infty\). After L’Hôpital, the quotient still tends to \(\infty\), so the original limit is \(\infty\).</div></details></section><section class="slide" data-title="Practice 11"><div class="kicker">Homework practice</div><h1>Practice 11</h1><div class="prompt">Evaluate \(\displaystyle \lim_{x\to0}\frac{\tan x}{x}\).</div>
+    <div class="limit-widget" data-case="tanOverX">
+      <div class="plot-wrap">
+        <svg class="plot" viewBox="0 0 780 430" role="img" aria-label="Interactive graph of a quotient near a limiting input">
+          <rect class="plot-bg" x="0" y="0" width="780" height="430"/>
+          <g class="gridlines"></g>
+          <line class="axis xaxis"/><line class="axis yaxis"/>
+          <line class="target-line"/><line class="limit-line"/>
+          <path class="curve"/><path class="derivcurve"/>
+          <circle class="pt" r="7"/><circle class="dpt" r="6"/>
+          <text class="curve-label">quotient</text><text class="d-label">derivative quotient</text>
+          <text class="target-label"></text><text class="limit-label"></text>
+        </svg>
+      </div>
+      <div class="panel">
+        <h3>Practice 11</h3>
+        <label class="slider-label"><span class="slider-name">Move x</span>: <strong class="xout"></strong>
+          <input type="range" class="xrange" step="0.001">
+        </label>
+        <div class="readout"></div>
+        <div class="mini-note">The slider moves the input and updates the graph, quotient value, and derivative quotient value.</div>
+        
+      </div>
+    </div><details class="answer"><summary>Show solution</summary><div>By L’Hôpital, \(\lim_{x\to0}\sec^2x=1\).</div></details></section><section class="slide" data-title="Practice 12"><div class="kicker">Homework practice</div><h1>Practice 12</h1><div class="prompt">Evaluate \(\displaystyle \lim_{x\to0}\frac{e^x-2}{\sin x}\).</div>
+    <div class="limit-widget" data-case="nonIndet2">
+      <div class="plot-wrap">
+        <svg class="plot" viewBox="0 0 780 430" role="img" aria-label="Interactive graph of a quotient near a limiting input">
+          <rect class="plot-bg" x="0" y="0" width="780" height="430"/>
+          <g class="gridlines"></g>
+          <line class="axis xaxis"/><line class="axis yaxis"/>
+          <line class="target-line"/><line class="limit-line"/>
+          <path class="curve"/><path class="derivcurve"/>
+          <circle class="pt" r="7"/><circle class="dpt" r="6"/>
+          <text class="curve-label">quotient</text><text class="d-label">derivative quotient</text>
+          <text class="target-label"></text><text class="limit-label"></text>
+        </svg>
+      </div>
+      <div class="panel">
+        <h3>Practice 12</h3>
+        <label class="slider-label"><span class="slider-name">Move x</span>: <strong class="xout"></strong>
+          <input type="range" class="xrange" step="0.001">
+        </label>
+        <div class="readout"></div>
+        <div class="mini-note">The slider moves the input and updates the graph, quotient value, and derivative quotient value.</div>
+        
+      </div>
+    </div><details class="answer"><summary>Show solution</summary><div>Substitution gives \(-1/0\), not \(0/0\). The two-sided limit does not exist.</div></details></section><section class="slide" data-title="Practice 13"><div class="kicker">Homework practice</div><h1>Practice 13</h1><div class="prompt">Evaluate \(\displaystyle \lim_{x\to\infty}\frac{x^{2/3}+2x}{x^{5/3}-x}\).</div>
+    <div class="limit-widget" data-case="powersInfinity">
+      <div class="plot-wrap">
+        <svg class="plot" viewBox="0 0 780 430" role="img" aria-label="Interactive graph of a quotient near a limiting input">
+          <rect class="plot-bg" x="0" y="0" width="780" height="430"/>
+          <g class="gridlines"></g>
+          <line class="axis xaxis"/><line class="axis yaxis"/>
+          <line class="target-line"/><line class="limit-line"/>
+          <path class="curve"/><path class="derivcurve"/>
+          <circle class="pt" r="7"/><circle class="dpt" r="6"/>
+          <text class="curve-label">quotient</text><text class="d-label">derivative quotient</text>
+          <text class="target-label"></text><text class="limit-label"></text>
+        </svg>
+      </div>
+      <div class="panel">
+        <h3>Practice 13</h3>
+        <label class="slider-label"><span class="slider-name">Move x</span>: <strong class="xout"></strong>
+          <input type="range" class="xrange" step="0.001">
+        </label>
+        <div class="readout"></div>
+        <div class="mini-note">The slider moves the input and updates the graph, quotient value, and derivative quotient value.</div>
+        
+      </div>
+    </div><details class="answer"><summary>Show solution</summary><div>Divide by \(x^{5/3}\): numerator tends to \(0\), denominator tends to \(1\), so the limit is \(0\).</div></details></section><section class="slide" data-title="Practice 14"><div class="kicker">Homework practice</div><h1>Practice 14</h1><div class="prompt">Evaluate \(\displaystyle \lim_{x\to0}\frac{x^3}{\sin x-x}\).</div>
+    <div class="limit-widget" data-case="x3OverSinMinusX">
+      <div class="plot-wrap">
+        <svg class="plot" viewBox="0 0 780 430" role="img" aria-label="Interactive graph of a quotient near a limiting input">
+          <rect class="plot-bg" x="0" y="0" width="780" height="430"/>
+          <g class="gridlines"></g>
+          <line class="axis xaxis"/><line class="axis yaxis"/>
+          <line class="target-line"/><line class="limit-line"/>
+          <path class="curve"/><path class="derivcurve"/>
+          <circle class="pt" r="7"/><circle class="dpt" r="6"/>
+          <text class="curve-label">quotient</text><text class="d-label">derivative quotient</text>
+          <text class="target-label"></text><text class="limit-label"></text>
+        </svg>
+      </div>
+      <div class="panel">
+        <h3>Practice 14</h3>
+        <label class="slider-label"><span class="slider-name">Move x</span>: <strong class="xout"></strong>
+          <input type="range" class="xrange" step="0.001">
+        </label>
+        <div class="readout"></div>
+        <div class="mini-note">The slider moves the input and updates the graph, quotient value, and derivative quotient value.</div>
+        
+      </div>
+    </div><details class="answer"><summary>Show solution</summary><div>Apply L’Hôpital three times, or use the known expansion. The limit is \(-6\).</div></details></section><section class="slide" data-title="Practice 15"><div class="kicker">Homework practice</div><h1>Practice 15</h1><div class="prompt">Evaluate \(\displaystyle \lim_{x\to1}\frac{\tan^{-1}x-\pi/4}{x-1}\).</div>
+    <div class="limit-widget" data-case="atanLimit">
+      <div class="plot-wrap">
+        <svg class="plot" viewBox="0 0 780 430" role="img" aria-label="Interactive graph of a quotient near a limiting input">
+          <rect class="plot-bg" x="0" y="0" width="780" height="430"/>
+          <g class="gridlines"></g>
+          <line class="axis xaxis"/><line class="axis yaxis"/>
+          <line class="target-line"/><line class="limit-line"/>
+          <path class="curve"/><path class="derivcurve"/>
+          <circle class="pt" r="7"/><circle class="dpt" r="6"/>
+          <text class="curve-label">quotient</text><text class="d-label">derivative quotient</text>
+          <text class="target-label"></text><text class="limit-label"></text>
+        </svg>
+      </div>
+      <div class="panel">
+        <h3>Practice 15</h3>
+        <label class="slider-label"><span class="slider-name">Move x</span>: <strong class="xout"></strong>
+          <input type="range" class="xrange" step="0.001">
+        </label>
+        <div class="readout"></div>
+        <div class="mini-note">The slider moves the input and updates the graph, quotient value, and derivative quotient value.</div>
+        
+      </div>
+    </div><details class="answer"><summary>Show solution</summary><div>By L’Hôpital, \(\displaystyle \frac{1}{1+x^2}\) at \(x=1\) gives \(1/2\).</div></details></section><section class="slide" data-title="Practice 16"><div class="kicker">Homework practice</div><h1>Practice 16</h1><div class="prompt">Evaluate \(\displaystyle \lim_{x\to1}\frac{\ln(x^2)}{x^2-1}\).</div>
+    <div class="limit-widget" data-case="lnX2OverX2Minus1">
+      <div class="plot-wrap">
+        <svg class="plot" viewBox="0 0 780 430" role="img" aria-label="Interactive graph of a quotient near a limiting input">
+          <rect class="plot-bg" x="0" y="0" width="780" height="430"/>
+          <g class="gridlines"></g>
+          <line class="axis xaxis"/><line class="axis yaxis"/>
+          <line class="target-line"/><line class="limit-line"/>
+          <path class="curve"/><path class="derivcurve"/>
+          <circle class="pt" r="7"/><circle class="dpt" r="6"/>
+          <text class="curve-label">quotient</text><text class="d-label">derivative quotient</text>
+          <text class="target-label"></text><text class="limit-label"></text>
+        </svg>
+      </div>
+      <div class="panel">
+        <h3>Practice 16</h3>
+        <label class="slider-label"><span class="slider-name">Move x</span>: <strong class="xout"></strong>
+          <input type="range" class="xrange" step="0.001">
+        </label>
+        <div class="readout"></div>
+        <div class="mini-note">The slider moves the input and updates the graph, quotient value, and derivative quotient value.</div>
+        
+      </div>
+    </div><details class="answer"><summary>Show solution</summary><div>By L’Hôpital, \(\displaystyle \lim_{x\to1}\frac{2/x}{2x}=1\).</div></details></section><section class="slide" data-title="Practice 17"><div class="kicker">Homework practice</div><h1>Practice 17</h1><div class="prompt">Evaluate \(\displaystyle \lim_{x\to\infty}\frac{x}{x^2+1}\).</div>
+    <div class="limit-widget" data-case="xOverX2p1">
+      <div class="plot-wrap">
+        <svg class="plot" viewBox="0 0 780 430" role="img" aria-label="Interactive graph of a quotient near a limiting input">
+          <rect class="plot-bg" x="0" y="0" width="780" height="430"/>
+          <g class="gridlines"></g>
+          <line class="axis xaxis"/><line class="axis yaxis"/>
+          <line class="target-line"/><line class="limit-line"/>
+          <path class="curve"/><path class="derivcurve"/>
+          <circle class="pt" r="7"/><circle class="dpt" r="6"/>
+          <text class="curve-label">quotient</text><text class="d-label">derivative quotient</text>
+          <text class="target-label"></text><text class="limit-label"></text>
+        </svg>
+      </div>
+      <div class="panel">
+        <h3>Practice 17</h3>
+        <label class="slider-label"><span class="slider-name">Move x</span>: <strong class="xout"></strong>
+          <input type="range" class="xrange" step="0.001">
+        </label>
+        <div class="readout"></div>
+        <div class="mini-note">The slider moves the input and updates the graph, quotient value, and derivative quotient value.</div>
+        
+      </div>
+    </div><details class="answer"><summary>Show solution</summary><div>Direct algebra gives \(0\). It is also an \(\infty/\infty\) form, and L’Hôpital gives \(\lim 1/(2x)=0\).</div></details></section><section class="slide" data-title="Practice 18"><div class="kicker">Homework practice</div><h1>Practice 18</h1><div class="prompt">Evaluate \(\displaystyle \lim_{x\to\infty}\frac{\ln x}{x}\).</div>
+    <div class="limit-widget" data-case="lnOverX">
+      <div class="plot-wrap">
+        <svg class="plot" viewBox="0 0 780 430" role="img" aria-label="Interactive graph of a quotient near a limiting input">
+          <rect class="plot-bg" x="0" y="0" width="780" height="430"/>
+          <g class="gridlines"></g>
+          <line class="axis xaxis"/><line class="axis yaxis"/>
+          <line class="target-line"/><line class="limit-line"/>
+          <path class="curve"/><path class="derivcurve"/>
+          <circle class="pt" r="7"/><circle class="dpt" r="6"/>
+          <text class="curve-label">quotient</text><text class="d-label">derivative quotient</text>
+          <text class="target-label"></text><text class="limit-label"></text>
+        </svg>
+      </div>
+      <div class="panel">
+        <h3>Practice 18</h3>
+        <label class="slider-label"><span class="slider-name">Move x</span>: <strong class="xout"></strong>
+          <input type="range" class="xrange" step="0.001">
+        </label>
+        <div class="readout"></div>
+        <div class="mini-note">The slider moves the input and updates the graph, quotient value, and derivative quotient value.</div>
+        
+      </div>
+    </div><details class="answer"><summary>Show solution</summary><div>By L’Hôpital, \(\displaystyle \lim_{x\to\infty}\frac{1/x}{1}=0\).</div></details></section><section class="slide" data-title="MC 1"><div class="kicker">Multiple-choice style</div><h1>MC 1</h1><div class="prompt">Find \(\displaystyle \lim_{x\to1^+}\frac{x}{\ln x}\).</div>
+    <div class="limit-widget" data-case="xOverLnX">
+      <div class="plot-wrap">
+        <svg class="plot" viewBox="0 0 780 430" role="img" aria-label="Interactive graph of a quotient near a limiting input">
+          <rect class="plot-bg" x="0" y="0" width="780" height="430"/>
+          <g class="gridlines"></g>
+          <line class="axis xaxis"/><line class="axis yaxis"/>
+          <line class="target-line"/><line class="limit-line"/>
+          <path class="curve"/><path class="derivcurve"/>
+          <circle class="pt" r="7"/><circle class="dpt" r="6"/>
+          <text class="curve-label">quotient</text><text class="d-label">derivative quotient</text>
+          <text class="target-label"></text><text class="limit-label"></text>
+        </svg>
+      </div>
+      <div class="panel">
+        <h3>MC 1</h3>
+        <label class="slider-label"><span class="slider-name">Move x</span>: <strong class="xout"></strong>
+          <input type="range" class="xrange" step="0.001">
+        </label>
+        <div class="readout"></div>
+        <div class="mini-note">The slider moves the input and updates the graph, quotient value, and derivative quotient value.</div>
+        
+      </div>
+    </div><details class="answer"><summary>Show solution</summary><div>As \(x\to1^+\), numerator \(\to1\) and denominator \(\to0^+\), so the limit is \(+\infty\). This is not \(0/0\) or \(\infty/\infty\).</div></details></section><section class="slide" data-title="MC 2"><div class="kicker">Multiple-choice style</div><h1>MC 2</h1><div class="prompt">Evaluate \(\displaystyle \lim_{x\to0}\frac{e^x-1}{\tan x}\).</div>
+    <div class="limit-widget" data-case="exMinus1OverTan">
+      <div class="plot-wrap">
+        <svg class="plot" viewBox="0 0 780 430" role="img" aria-label="Interactive graph of a quotient near a limiting input">
+          <rect class="plot-bg" x="0" y="0" width="780" height="430"/>
+          <g class="gridlines"></g>
+          <line class="axis xaxis"/><line class="axis yaxis"/>
+          <line class="target-line"/><line class="limit-line"/>
+          <path class="curve"/><path class="derivcurve"/>
+          <circle class="pt" r="7"/><circle class="dpt" r="6"/>
+          <text class="curve-label">quotient</text><text class="d-label">derivative quotient</text>
+          <text class="target-label"></text><text class="limit-label"></text>
+        </svg>
+      </div>
+      <div class="panel">
+        <h3>MC 2</h3>
+        <label class="slider-label"><span class="slider-name">Move x</span>: <strong class="xout"></strong>
+          <input type="range" class="xrange" step="0.001">
+        </label>
+        <div class="readout"></div>
+        <div class="mini-note">The slider moves the input and updates the graph, quotient value, and derivative quotient value.</div>
+        
+      </div>
+    </div><details class="answer"><summary>Show solution</summary><div>The form is \(0/0\). By L’Hôpital, \(\lim e^x/\sec^2x=1\).</div></details></section><section class="slide" data-title="MC 3"><div class="kicker">Multiple-choice style</div><h1>MC 3</h1><div class="prompt">If \(\lim_{x\to\infty}f(x)=\lim_{x\to\infty}g(x)=\infty\), \(f'(x)=1\), and \(g'(x)=e^x\), find \(\displaystyle \lim_{x\to\infty}\frac{f(x)}{g(x)}\), if the hypotheses allow L’Hôpital.</div>
+    <div class="limit-widget" data-case="derivativeData">
+      <div class="plot-wrap">
+        <svg class="plot" viewBox="0 0 780 430" role="img" aria-label="Interactive graph of a quotient near a limiting input">
+          <rect class="plot-bg" x="0" y="0" width="780" height="430"/>
+          <g class="gridlines"></g>
+          <line class="axis xaxis"/><line class="axis yaxis"/>
+          <line class="target-line"/><line class="limit-line"/>
+          <path class="curve"/><path class="derivcurve"/>
+          <circle class="pt" r="7"/><circle class="dpt" r="6"/>
+          <text class="curve-label">quotient</text><text class="d-label">derivative quotient</text>
+          <text class="target-label"></text><text class="limit-label"></text>
+        </svg>
+      </div>
+      <div class="panel">
+        <h3>MC 3</h3>
+        <label class="slider-label"><span class="slider-name">Move x</span>: <strong class="xout"></strong>
+          <input type="range" class="xrange" step="0.001">
+        </label>
+        <div class="readout"></div>
+        <div class="mini-note">The slider moves the input and updates the graph, quotient value, and derivative quotient value.</div>
+        
+      </div>
+    </div><details class="answer"><summary>Show solution</summary><div>By L’Hôpital, the limit equals \(\lim_{x\to\infty}1/e^x=0\).</div></details></section><section class="slide" data-title="MC 4"><div class="kicker">Multiple-choice style</div><h1>MC 4</h1><div class="prompt">Evaluate \(\displaystyle \lim_{x\to1}\frac{\frac1{1-x}-1}{1-\frac1{x^2}}\).</div><div class="warning">This item is included as a reasoning trap: identify whether the AP-targeted form is present before using any rule.</div><details class="answer"><summary>Show solution</summary><div>This is an excluded-type expression if approached directly. For this AP-focused lesson, first rewrite only if instructed; otherwise note that it is not initially a quotient of \(0/0\) or \(\infty/\infty\) in a clean form. If simplified algebraically, it can be evaluated separately.</div></details></section><section class="slide" data-title="AP-style table problem"><div class="kicker">Justification from data</div><h1>AP-style table problem</h1>
+<div class="prompt">The table gives selected values for a twice-differentiable function \(f\). Evaluate
+\[\lim_{x\to-2}\frac{f(3x+2)}{x^2-4}\]
+if possible.</div>
+<table class="tbl"><tr><th>u</th><td>-4</td><td>-1</td><td>2</td></tr><tr><th>f(u)</th><td>0</td><td>3</td><td>0</td></tr><tr><th>f'(u)</th><td>8</td><td>-2</td><td>6</td></tr></table><details class="answer"><summary>Show solution</summary><div>As \(x\to-2\), \(3x+2\to-4\), so the numerator tends to \(f(-4)=0\), and the denominator tends to \(0\). By L’Hôpital and the chain rule,
+\[\lim_{x\to-2}\frac{3f'(3x+2)}{2x}=\frac{3f'(-4)}{-4}=\frac{24}{-4}=-6.\]</div></details></section><section class="slide" data-title="AP-style graph problem"><div class="kicker">Slope from a graph</div><h1>AP-style graph problem</h1>
+<div class="prompt">Suppose \(g(3)=0\) and the graph has tangent slope \(g'(3)=2\). Find
+\[\lim_{x\to3}\frac{g(x)}{x-3}.\]</div>
+<div class="static-plot"><svg viewBox="0 0 760 360"><rect x="0" y="0" width="760" height="360" class="plot-bg"/><line x1="70" y1="290" x2="700" y2="290" class="axis"/><line x1="380" y1="330" x2="380" y2="40" class="axis"/><path d="M120 305 C240 270 315 230 380 180 C450 125 560 90 690 70" class="curve"/><line x1="280" y1="250" x2="500" y2="110" class="tangent"/><circle cx="380" cy="180" r="7" class="ptA"/><text x="392" y="173">(3,0)</text><text x="505" y="112">slope 2</text></svg></div>
+<details class="answer"><summary>Show solution</summary><div>The limit is the derivative definition at \(x=3\):
+\[\lim_{x\to3}\frac{g(x)-g(3)}{x-3}=g'(3)=2.\]</div></details></section><section class="slide" data-title="AP-style differential equation problem"><div class="kicker">L’Hôpital with chain rule</div><h1>AP-style differential equation problem</h1><div class="prompt">Let \(h\) satisfy \(\frac{dy}{dx}=\frac{3x}{y+2}\) and \(h(3)=-1\). Evaluate \(\displaystyle \lim_{x\to3}\frac{h(x)+x-2}{\ln(7-2x)}\).</div>
+    <div class="limit-widget" data-case="deAP">
+      <div class="plot-wrap">
+        <svg class="plot" viewBox="0 0 780 430" role="img" aria-label="Interactive graph of a quotient near a limiting input">
+          <rect class="plot-bg" x="0" y="0" width="780" height="430"/>
+          <g class="gridlines"></g>
+          <line class="axis xaxis"/><line class="axis yaxis"/>
+          <line class="target-line"/><line class="limit-line"/>
+          <path class="curve"/><path class="derivcurve"/>
+          <circle class="pt" r="7"/><circle class="dpt" r="6"/>
+          <text class="curve-label">quotient</text><text class="d-label">derivative quotient</text>
+          <text class="target-label"></text><text class="limit-label"></text>
+        </svg>
+      </div>
+      <div class="panel">
+        <h3>Differential equation limit</h3>
+        <label class="slider-label"><span class="slider-name">Move x</span>: <strong class="xout"></strong>
+          <input type="range" class="xrange" step="0.001">
+        </label>
+        <div class="readout"></div>
+        <div class="mini-note">The slider moves the input and updates the graph, quotient value, and derivative quotient value.</div>
+        
+      </div>
+    </div><details class="answer"><summary>Show solution</summary><div>At \(x=3\), numerator \(h(3)+3-2=0\), denominator \(\ln1=0\). By L’Hôpital,
+\[\lim_{x\to3}\frac{h'(x)+1}{-2/(7-2x)}.\]
+Since \(h'(3)=\frac{9}{1}=9\), the limit is \(\frac{10}{-2}=-5\).</div></details></section><section class="slide" data-title="AP-style growth comparison"><div class="kicker">Reasoning without overwork</div><h1>AP-style growth comparison</h1><div class="prompt">Evaluate \(\displaystyle \lim_{x\to\infty}\frac{2x}{x^{99}}\).</div>
+    <div class="limit-widget" data-case="twoXOverX99">
+      <div class="plot-wrap">
+        <svg class="plot" viewBox="0 0 780 430" role="img" aria-label="Interactive graph of a quotient near a limiting input">
+          <rect class="plot-bg" x="0" y="0" width="780" height="430"/>
+          <g class="gridlines"></g>
+          <line class="axis xaxis"/><line class="axis yaxis"/>
+          <line class="target-line"/><line class="limit-line"/>
+          <path class="curve"/><path class="derivcurve"/>
+          <circle class="pt" r="7"/><circle class="dpt" r="6"/>
+          <text class="curve-label">quotient</text><text class="d-label">derivative quotient</text>
+          <text class="target-label"></text><text class="limit-label"></text>
+        </svg>
+      </div>
+      <div class="panel">
+        <h3>Polynomial powers</h3>
+        <label class="slider-label"><span class="slider-name">Move x</span>: <strong class="xout"></strong>
+          <input type="range" class="xrange" step="0.001">
+        </label>
+        <div class="readout"></div>
+        <div class="mini-note">The slider moves the input and updates the graph, quotient value, and derivative quotient value.</div>
+        
+      </div>
+    </div><details class="answer"><summary>Show solution</summary><div>Simplify first:
+\[\frac{2x}{x^{99}}=\frac{2}{x^{98}}\to0.\]
+L’Hôpital could be used repeatedly, but simplification is the efficient method.</div></details></section><section class="slide" data-title="Challenge: parameter limit"><div class="kicker">Advanced practice</div><h1>Challenge: parameter limit</h1><div class="prompt">For a constant \(k\), evaluate \(\displaystyle \lim_{x\to0}\frac{e^{kx}-1}{x}\).</div>
+    <div class="limit-widget" data-case="paramK">
+      <div class="plot-wrap">
+        <svg class="plot" viewBox="0 0 780 430" role="img" aria-label="Interactive graph of a quotient near a limiting input">
+          <rect class="plot-bg" x="0" y="0" width="780" height="430"/>
+          <g class="gridlines"></g>
+          <line class="axis xaxis"/><line class="axis yaxis"/>
+          <line class="target-line"/><line class="limit-line"/>
+          <path class="curve"/><path class="derivcurve"/>
+          <circle class="pt" r="7"/><circle class="dpt" r="6"/>
+          <text class="curve-label">quotient</text><text class="d-label">derivative quotient</text>
+          <text class="target-label"></text><text class="limit-label"></text>
+        </svg>
+      </div>
+      <div class="panel">
+        <h3>Parameter model with k=3 shown</h3>
+        <label class="slider-label"><span class="slider-name">Move x</span>: <strong class="xout"></strong>
+          <input type="range" class="xrange" step="0.001">
+        </label>
+        <div class="readout"></div>
+        <div class="mini-note">The slider moves the input and updates the graph, quotient value, and derivative quotient value.</div>
+        
+      </div>
+    </div><details class="answer"><summary>Show solution</summary><div>The form is \(0/0\). By L’Hôpital,
+\[\lim_{x\to0}\frac{ke^{kx}}{1}=k.\]</div></details></section><section class="slide" data-title="Challenge: tune the coefficient"><div class="kicker">Parameter reasoning</div><h1>Challenge: tune the coefficient</h1><div class="prompt">Find \(a\) so that \(\displaystyle \lim_{x\to0}\frac{\sin(5x)-ax}{x^3}\) is finite.</div><details class="answer"><summary>Show solution</summary><div>For the numerator to vanish to at least third order, the linear term must cancel. Since \(\sin(5x)\sim5x\), we need \(a=5\). Then the limit is \(-125/6\).</div></details></section><section class="slide" data-title="Challenge: repeated 0/0 with hidden cancellation"><div class="kicker">Advanced practice</div><h1>Challenge: repeated 0/0 with hidden cancellation</h1><div class="prompt">Evaluate \(\displaystyle \lim_{x\to0}\frac{x-\sin x}{x^3}\).</div>
+    <div class="limit-widget" data-case="xMinusSinOverX3">
+      <div class="plot-wrap">
+        <svg class="plot" viewBox="0 0 780 430" role="img" aria-label="Interactive graph of a quotient near a limiting input">
+          <rect class="plot-bg" x="0" y="0" width="780" height="430"/>
+          <g class="gridlines"></g>
+          <line class="axis xaxis"/><line class="axis yaxis"/>
+          <line class="target-line"/><line class="limit-line"/>
+          <path class="curve"/><path class="derivcurve"/>
+          <circle class="pt" r="7"/><circle class="dpt" r="6"/>
+          <text class="curve-label">quotient</text><text class="d-label">derivative quotient</text>
+          <text class="target-label"></text><text class="limit-label"></text>
+        </svg>
+      </div>
+      <div class="panel">
+        <h3>Third-order cancellation</h3>
+        <label class="slider-label"><span class="slider-name">Move x</span>: <strong class="xout"></strong>
+          <input type="range" class="xrange" step="0.001">
+        </label>
+        <div class="readout"></div>
+        <div class="mini-note">The slider moves the input and updates the graph, quotient value, and derivative quotient value.</div>
+        
+      </div>
+    </div><details class="answer"><summary>Show solution</summary><div>Apply L’Hôpital three times:
+\[\lim\frac{1-\cos x}{3x^2}=\lim\frac{\sin x}{6x}=\lim\frac{\cos x}{6}=\frac16.\]</div></details></section><section class="slide" data-title="Challenge: limit does not exist"><div class="kicker">Trap</div><h1>Challenge: limit does not exist</h1><div class="prompt">Evaluate \(\displaystyle \lim_{x\to0}\frac{|x|}{x}\). Can L’Hôpital’s Rule be used?</div><details class="answer"><summary>Show solution</summary><div>The two-sided limit does not exist because the left-hand limit is \(-1\) and the right-hand limit is \(1\). L’Hôpital’s Rule does not apply because \(|x|\) is not differentiable at \(0\), and the one-sided limits disagree.</div></details></section><section class="slide" data-title="Challenge: oscillation trap"><div class="kicker">Trap</div><h1>Challenge: oscillation trap</h1><div class="prompt">Evaluate \(\displaystyle \lim_{x\to0}\frac{x^2\sin(1/x)}{x}\).</div><details class="answer"><summary>Show solution</summary><div>The expression simplifies to \(x\sin(1/x)\), whose absolute value is at most \(|x|\), so the limit is \(0\) by squeeze. Do not force L’Hôpital when a simpler theorem applies.</div></details></section><section class="slide" data-title="Quiz Form A"><div class="kicker">Assessment</div><h1>Quiz Form A</h1><ol class="check"><li>Evaluate \(\displaystyle \lim_{x\to0}\frac{3\sin(2x)}{5x}\).</li><li>Evaluate \(\displaystyle \lim_{x\to\infty}\frac{e^x}{x^2}\).</li><li>Evaluate \(\displaystyle \lim_{x\to\infty}\frac{3x+13}{12-4x}\).</li><li>Evaluate \(\displaystyle \lim_{x\to1}\frac{\ln x+x-1}{2-2x^2}\).</li></ol><details class="answer"><summary>Show solution</summary><div>1) \(\frac65\)<br>2) \(\infty\)<br>3) \(-\frac34\)<br>4) \(-\frac12\)</div></details></section><section class="slide" data-title="Quiz Form B"><div class="kicker">Assessment</div><h1>Quiz Form B</h1><ol class="check"><li>Evaluate \(\displaystyle \lim_{x\to0}\frac{5\tan(3x)}{2x}\).</li><li>Evaluate \(\displaystyle \lim_{x\to\infty}\frac{x^3}{e^x}\).</li><li>Evaluate \(\displaystyle \lim_{x\to-\infty}\frac{1-6x}{3+5x}\).</li><li>Evaluate \(\displaystyle \lim_{x\to1}\frac{e^x-e}{3\ln x}\).</li></ol><details class="answer"><summary>Show solution</summary><div>1) \(\frac{15}{2}\)<br>2) \(0\)<br>3) \(-\frac65\)<br>4) \(\frac e3\)</div></details></section><section class="slide" data-title="Quiz Form C"><div class="kicker">Assessment</div><h1>Quiz Form C</h1><ol class="check"><li>Evaluate \(\displaystyle \lim_{x\to0}\frac{4\sin(2x)}{3x}\).</li><li>Evaluate \(\displaystyle \lim_{x\to-\infty}\frac{e^x}{x^3}\).</li><li>Evaluate \(\displaystyle \lim_{x\to\infty}\frac{2x^2+15}{3x^2-9}\).</li><li>Evaluate \(\displaystyle \lim_{x\to1}\frac{x^2+5x-6}{\ln x}\).</li></ol><details class="answer"><summary>Show solution</summary><div>1) \(\frac83\)<br>2) \(0\)<br>3) \(\frac23\)<br>4) \(7\)</div></details></section><section class="slide" data-title="Quiz Form D"><div class="kicker">Assessment</div><h1>Quiz Form D</h1><ol class="check"><li>Evaluate \(\displaystyle \lim_{x\to0}\frac{6\tan(3x)}{4x}\).</li><li>Evaluate \(\displaystyle \lim_{x\to\infty}\frac{x^3}{e^x}\).</li><li>Evaluate \(\displaystyle \lim_{x\to-\infty}\frac{3x^3+7}{11-5x^3}\).</li><li>Evaluate \(\displaystyle \lim_{x\to1}\frac{x^2+3x-4}{\ln x}\).</li></ol><details class="answer"><summary>Show solution</summary><div>1) \(\frac92\)<br>2) \(0\)<br>3) \(-\frac35\)<br>4) \(5\)</div></details></section><section class="slide" data-title="Common mistakes checklist"><div class="kicker">Before using the rule</div><h1>Common mistakes checklist</h1>
+<div class="grid c2"><div class="card"><h3>Do not</h3><ul><li>Use L’Hôpital on a derivative problem.</li><li>Use it on a nonzero-over-zero form.</li><li>Apply it twice if the first derivative quotient is no longer indeterminate.</li><li>Drop the limit notation before the final value.</li></ul></div><div class="card"><h3>Do</h3><ul><li>Substitute first.</li><li>State \(0/0\) or \(\infty/\infty\).</li><li>Differentiate numerator and denominator separately.</li><li>Simplify if that is easier than repeated use.</li></ul></div></div>
+</section><section class="slide" data-title="Exit ticket"><div class="kicker">5-minute check</div><h1>Exit ticket</h1>
+<ol class="check"><li>Evaluate \(\displaystyle \lim_{x\to0}\frac{1-\cos(3x)}{x^2}\).</li><li>Explain why \(\displaystyle \lim_{x\to0}\frac{x+1}{x}\) is not a L’Hôpital problem.</li><li>Evaluate \(\displaystyle \lim_{x\to\infty}\frac{x^4}{e^x}\).</li></ol>
+<details class="answer"><summary>Show solution</summary><div>1) \(9/2\). 2) It is nonzero over zero, not \(0/0\) or \(\infty/\infty\). 3) \(0\), after four applications or by growth comparison.</div></details></section></main><footer class="foot"><div class="nav"><button class="secondary" id="prev">← Prev</button><button class="primary" id="next">Next →</button><button class="secondary" onclick="document.querySelectorAll('.answer').forEach(d=>d.open=!d.open)">Answers</button></div><select id="jump" aria-label="Jump to slide"></select></footer></div><script>
+const CASES = {
+  poly22:{name:'(x²−7x+10)/(x−2)', type:'finite', a:2, min:0.8, max:3.2, init:2.35, limit:-3,
+    f:x=>x*x-7*x+10, g:x=>x-2, fp:x=>2*x-7, gp:x=>1},
+  oneMinusCosOverSin:{name:'(1−cos x)/sin x', type:'finite', a:0, min:-1.2, max:1.2, init:0.45, limit:0,
+    f:x=>1-Math.cos(x), g:x=>Math.sin(x), fp:x=>Math.sin(x), gp:x=>Math.cos(x)},
+  sin6overx:{name:'sin(6x)/x', type:'finite', a:0, min:-0.8, max:0.8, init:0.25, limit:6,
+    f:x=>Math.sin(6*x), g:x=>x, fp:x=>6*Math.cos(6*x), gp:x=>1},
+  oneMinusCosOverX2:{name:'(1−cos x)/x²', type:'finite', a:0, min:-1.2, max:1.2, init:0.5, limit:0.5,
+    f:x=>1-Math.cos(x), g:x=>x*x, fp:x=>Math.sin(x), gp:x=>2*x},
+  expOverx:{name:'e^x/x', type:'infinity', min:1, max:8, init:3, limit:Infinity,
+    f:x=>Math.exp(x), g:x=>x, fp:x=>Math.exp(x), gp:x=>1},
+  x2OverExp:{name:'x²/e^x', type:'infinity', min:0.5, max:12, init:4, limit:0,
+    f:x=>x*x, g:x=>Math.exp(x), fp:x=>2*x, gp:x=>Math.exp(x)},
+  x2OverExpMinus1:{name:'x²/(e^x−1)', type:'finite', a:0, min:-1, max:1, init:0.35, limit:0,
+    f:x=>x*x, g:x=>Math.exp(x)-1, fp:x=>2*x, gp:x=>Math.exp(x)},
+  lnOverCsc:{name:'ln x / csc x', type:'right', a:0, min:0.02, max:1.4, init:0.5, limit:0,
+    f:x=>Math.log(x), g:x=>1/Math.sin(x), fp:x=>1/x, gp:x=>-1/Math.sin(x)/Math.tan(x)},
+  nonIndet1:{name:'(x²−2x+1)/(x−3)', type:'finite', a:3, min:1.8, max:4.2, init:3.35, limit:null,
+    f:x=>x*x-2*x+1, g:x=>x-3, fp:x=>2*x-2, gp:x=>1},
+  threeX2OverExMinus1MinusX:{name:'3x²/(e^x−1−x)', type:'finite', a:0, min:-1, max:1, init:0.35, limit:6,
+    f:x=>3*x*x, g:x=>Math.exp(x)-1-x, fp:x=>6*x, gp:x=>Math.exp(x)-1},
+  radical6:{name:'(7−√(55−x))/(x−6)', type:'finite', a:6, min:4, max:8, init:6.7, limit:1/14,
+    f:x=>7-Math.sqrt(55-x), g:x=>x-6, fp:x=>1/(2*Math.sqrt(55-x)), gp:x=>1},
+  poly4:{name:'(x²+6x−40)/(4−x)', type:'finite', a:4, min:2.5, max:5.5, init:4.55, limit:-14,
+    f:x=>x*x+6*x-40, g:x=>4-x, fp:x=>2*x+6, gp:x=>-1},
+  direct13:{name:'(x+1)/(x²−5x+3)', type:'finite', a:0, min:-1.2, max:1.2, init:0.4, limit:1/3,
+    f:x=>x+1, g:x=>x*x-5*x+3, fp:x=>1, gp:x=>2*x-5},
+  fiveLnX2OverX2Minus1:{name:'5ln(x²)/(x²−1)', type:'finite', a:1, min:0.2, max:1.8, init:1.25, limit:5,
+    f:x=>5*Math.log(x*x), g:x=>x*x-1, fp:x=>10/x, gp:x=>2*x},
+  cos4cos3:{name:'(1−cos4x)/(cos3x−1)', type:'finite', a:0, min:-0.8, max:0.8, init:0.25, limit:-16/9,
+    f:x=>1-Math.cos(4*x), g:x=>Math.cos(3*x)-1, fp:x=>4*Math.sin(4*x), gp:x=>-3*Math.sin(3*x)},
+  directRecall:{name:'(2x−5)/x', type:'finite', a:3, min:1, max:5, init:3.5, limit:1/3,
+    f:x=>2*x-5, g:x=>x, fp:x=>2, gp:x=>1},
+  cubicDen2:{name:'(x−2)/(3x³−6x²+x−2)', type:'finite', a:2, min:1, max:3, init:2.4, limit:1/13,
+    f:x=>x-2, g:x=>3*x*x*x-6*x*x+x-2, fp:x=>1, gp:x=>9*x*x-12*x+1},
+  twoX2OverE2x:{name:'2x²/e^{2x}', type:'infinity', min:0.5, max:10, init:3, limit:0,
+    f:x=>2*x*x, g:x=>Math.exp(2*x), fp:x=>4*x, gp:x=>2*Math.exp(2*x)},
+  xMinus1Quad:{name:'(x−1)/(x²−3x+2)', type:'finite', a:1, min:0.2, max:1.8, init:1.3, limit:-1,
+    f:x=>x-1, g:x=>x*x-3*x+2, fp:x=>1, gp:x=>2*x-3},
+  polyMinus5:{name:'(x²−2x−35)/(x+5)', type:'finite', a:-5, min:-6.2, max:-3.8, init:-4.6, limit:-12,
+    f:x=>x*x-2*x-35, g:x=>x+5, fp:x=>2*x-2, gp:x=>1},
+  fourXOverLn1x:{name:'4x/ln(1+x)', type:'finite', a:0, min:-0.8, max:1.2, init:0.3, limit:4,
+    f:x=>4*x, g:x=>Math.log(1+x), fp:x=>4, gp:x=>1/(1+x)},
+  directNegHalf:{name:'(x−1)/(x²−3x+2)', type:'finite', a:0, min:-1, max:1, init:0.35, limit:-0.5,
+    f:x=>x-1, g:x=>x*x-3*x+2, fp:x=>1, gp:x=>2*x-3},
+  twoX2Minus1OverLnX2:{name:'2(x²−1)/ln(x²)', type:'finite', a:1, min:0.2, max:1.8, init:1.3, limit:2,
+    f:x=>2*(x*x-1), g:x=>Math.log(x*x), fp:x=>4*x, gp:x=>2/x},
+  twoX2OverExMinus1MinusX:{name:'2x²/(e^x−1−x)', type:'finite', a:0, min:-1, max:1, init:0.35, limit:4,
+    f:x=>2*x*x, g:x=>Math.exp(x)-1-x, fp:x=>4*x, gp:x=>Math.exp(x)-1},
+  twoX2OverOneMinusCos4:{name:'2x²/(1−cos4x)', type:'finite', a:0, min:-0.8, max:0.8, init:0.25, limit:0.25,
+    f:x=>2*x*x, g:x=>1-Math.cos(4*x), fp:x=>4*x, gp:x=>4*Math.sin(4*x)},
+  x2OverOneMinusCos:{name:'x²/(1−cos x)', type:'finite', a:0, min:-1, max:1, init:0.35, limit:2,
+    f:x=>x*x, g:x=>1-Math.cos(x), fp:x=>2*x, gp:x=>Math.sin(x)},
+  e2xMinusXOverX2:{name:'(e^{2x}−x−1)/x²', type:'infinity', min:1, max:8, init:3, limit:Infinity,
+    f:x=>Math.exp(2*x)-x-1, g:x=>x*x, fp:x=>2*Math.exp(2*x)-1, gp:x=>2*x},
+  tanOverX:{name:'tan x/x', type:'finite', a:0, min:-1, max:1, init:0.35, limit:1,
+    f:x=>Math.tan(x), g:x=>x, fp:x=>1/(Math.cos(x)**2), gp:x=>1},
+  nonIndet2:{name:'(e^x−2)/sin x', type:'finite', a:0, min:-1, max:1, init:0.35, limit:null,
+    f:x=>Math.exp(x)-2, g:x=>Math.sin(x), fp:x=>Math.exp(x), gp:x=>Math.cos(x)},
+  powersInfinity:{name:'(x^{2/3}+2x)/(x^{5/3}−x)', type:'infinity', min:2, max:80, init:20, limit:0,
+    f:x=>Math.pow(x,2/3)+2*x, g:x=>Math.pow(x,5/3)-x, fp:x=>(2/3)*Math.pow(x,-1/3)+2, gp:x=>(5/3)*Math.pow(x,2/3)-1},
+  x3OverSinMinusX:{name:'x³/(sin x−x)', type:'finite', a:0, min:-1, max:1, init:0.35, limit:-6,
+    f:x=>x*x*x, g:x=>Math.sin(x)-x, fp:x=>3*x*x, gp:x=>Math.cos(x)-1},
+  atanLimit:{name:'(arctan x−π/4)/(x−1)', type:'finite', a:1, min:0.2, max:1.8, init:1.25, limit:0.5,
+    f:x=>Math.atan(x)-Math.PI/4, g:x=>x-1, fp:x=>1/(1+x*x), gp:x=>1},
+  lnX2OverX2Minus1:{name:'ln(x²)/(x²−1)', type:'finite', a:1, min:0.2, max:1.8, init:1.25, limit:1,
+    f:x=>Math.log(x*x), g:x=>x*x-1, fp:x=>2/x, gp:x=>2*x},
+  xOverX2p1:{name:'x/(x²+1)', type:'infinity', min:1, max:50, init:10, limit:0,
+    f:x=>x, g:x=>x*x+1, fp:x=>1, gp:x=>2*x},
+  lnOverX:{name:'ln x/x', type:'infinity', min:1, max:100, init:20, limit:0,
+    f:x=>Math.log(x), g:x=>x, fp:x=>1/x, gp:x=>1},
+  xOverLnX:{name:'x/ln x', type:'right', a:1, min:1.02, max:3, init:1.4, limit:Infinity,
+    f:x=>x, g:x=>Math.log(x), fp:x=>1, gp:x=>1/x},
+  exMinus1OverTan:{name:'(e^x−1)/tan x', type:'finite', a:0, min:-1, max:1, init:0.35, limit:1,
+    f:x=>Math.exp(x)-1, g:x=>Math.tan(x), fp:x=>Math.exp(x), gp:x=>1/(Math.cos(x)**2)},
+  derivativeData:{name:'Derivative quotient 1/e^x', type:'infinity', min:1, max:10, init:3, limit:0,
+    f:x=>x, g:x=>Math.exp(x), fp:x=>1, gp:x=>Math.exp(x)},
+  deAP:{name:'[h(x)+x−2]/ln(7−2x)', type:'finite', a:3, min:2.2, max:3.4, init:2.75, limit:-5,
+    f:x=>((4.5*(x-3)*(x-3)-1)+(x)-2), g:x=>Math.log(7-2*x), fp:x=>9*(x-3)+1, gp:x=>-2/(7-2*x)},
+  twoXOverX99:{name:'2x/x^99', type:'infinity', min:1, max:20, init:4, limit:0,
+    f:x=>2*x, g:x=>Math.pow(x,99), fp:x=>2, gp:x=>99*Math.pow(x,98)},
+  paramK:{name:'(e^{3x}−1)/x', type:'finite', a:0, min:-1, max:1, init:0.3, limit:3,
+    f:x=>Math.exp(3*x)-1, g:x=>x, fp:x=>3*Math.exp(3*x), gp:x=>1},
+  xMinusSinOverX3:{name:'(x−sin x)/x³', type:'finite', a:0, min:-1, max:1, init:0.35, limit:1/6,
+    f:x=>x-Math.sin(x), g:x=>x*x*x, fp:x=>1-Math.cos(x), gp:x=>3*x*x}
+};
+
+
+const slides=[...document.querySelectorAll('.slide')];
+let idx=0;
+const count=document.getElementById('count'), bar=document.getElementById('bar'), jump=document.getElementById('jump');
+slides.forEach((s,i)=>{const o=document.createElement('option'); o.value=i; o.textContent=`${i+1}. ${s.dataset.title||'Slide'}`; jump.appendChild(o);});
+function show(i){idx=Math.max(0,Math.min(slides.length-1,i)); slides.forEach((s,j)=>s.classList.toggle('active',j===idx)); count.textContent=`${idx+1} / ${slides.length}`; bar.style.width=((idx+1)/slides.length*100)+'%'; jump.value=idx; window.scrollTo(0,0); if(window.renderMathInElement){renderMathInElement(slides[idx],{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}]});}}
+document.getElementById('prev').onclick=()=>show(idx-1); document.getElementById('next').onclick=()=>show(idx+1); jump.onchange=e=>show(+e.target.value);
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')show(idx+1); if(e.key==='ArrowLeft')show(idx-1);});
+function finite(v){return Number.isFinite(v) && !Number.isNaN(v);}
+function fmt(v){if(!finite(v)) return v===Infinity?'∞':v===-Infinity?'−∞':'undefined'; let av=Math.abs(v); if(av>9999||av<0.001&&av>0) return v.toExponential(3); return (Math.round(v*10000)/10000).toString();}
+function clamp(v,min,max){return Math.max(min,Math.min(max,v));}
+function initLimitWidget(w){
+  const c=CASES[w.dataset.case]; if(!c) return;
+  const svg=w.querySelector('svg'), curve=w.querySelector('.curve'), dcurve=w.querySelector('.derivcurve');
+  const pt=w.querySelector('.pt'), dpt=w.querySelector('.dpt'), xout=w.querySelector('.xout'), range=w.querySelector('.xrange');
+  const read=w.querySelector('.readout'), targetLine=w.querySelector('.target-line'), limitLine=w.querySelector('.limit-line');
+  const targetLabel=w.querySelector('.target-label'), limitLabel=w.querySelector('.limit-label'), curveLabel=w.querySelector('.curve-label'), dLabel=w.querySelector('.d-label');
+  range.min=c.min; range.max=c.max; range.value=c.init; range.step=(c.max-c.min)/500;
+  w.querySelector('.slider-name').textContent = c.type==='infinity' ? 'Increase x' : (c.type==='right'?'Move x toward the one-sided target':'Move x near the target');
+  const W=780,H=430,pad=46;
+  function safeX(x){ if(c.a!==undefined && Math.abs(x-c.a)<1e-5) return c.a+1e-5; return x; }
+  function sample(){
+    let xs=[], ys=[], dys=[];
+    for(let i=0;i<=360;i++){
+      let x=c.min+(c.max-c.min)*i/360; x=safeX(x);
+      let y=c.f(x)/c.g(x), dy=c.fp(x)/c.gp(x);
+      if(finite(y) && Math.abs(y)<1e5){xs.push(x); ys.push(y)}
+      if(finite(dy) && Math.abs(dy)<1e5){dys.push(dy)}
+    }
+    let vals=ys.concat(dys.filter((_,i)=>i%3===0));
+    if(finite(c.limit) && Math.abs(c.limit)<1e5) vals.push(c.limit);
+    if(vals.length===0) vals=[-1,1];
+    vals.sort((a,b)=>a-b);
+    let lo=vals[Math.floor(vals.length*0.08)], hi=vals[Math.floor(vals.length*0.92)];
+    if(!finite(lo)||!finite(hi)||lo===hi){lo=-1;hi=1;}
+    let span=hi-lo; lo-=0.22*span; hi+=0.22*span;
+    return {ymin:lo,ymax:hi};
+  }
+  let sc=sample();
+  function X(x){return pad+(x-c.min)/(c.max-c.min)*(W-2*pad);} function Y(y){return H-pad-(y-sc.ymin)/(sc.ymax-sc.ymin)*(H-2*pad);} 
+  function pathFor(fn){let d='', started=false; for(let i=0;i<=480;i++){let x=c.min+(c.max-c.min)*i/480; x=safeX(x); let y=fn(x); if(!finite(y)||Math.abs(y)>1e5||y<sc.ymin-10*(sc.ymax-sc.ymin)||y>sc.ymax+10*(sc.ymax-sc.ymin)){started=false; continue;} let px=X(x), py=Y(clamp(y,sc.ymin,sc.ymax)); d += (started?'L':'M')+px.toFixed(2)+' '+py.toFixed(2)+' '; started=true;} return d;}
+  function drawStatic(){
+    w.querySelector('.gridlines').innerHTML='';
+    for(let k=0;k<=5;k++){let gx=pad+k*(W-2*pad)/5, gy=pad+k*(H-2*pad)/5; let l1=document.createElementNS('http://www.w3.org/2000/svg','line'); l1.setAttribute('x1',gx); l1.setAttribute('x2',gx); l1.setAttribute('y1',pad); l1.setAttribute('y2',H-pad); l1.setAttribute('class','gridline'); w.querySelector('.gridlines').appendChild(l1); let l2=document.createElementNS('http://www.w3.org/2000/svg','line'); l2.setAttribute('x1',pad); l2.setAttribute('x2',W-pad); l2.setAttribute('y1',gy); l2.setAttribute('y2',gy); l2.setAttribute('class','gridline'); w.querySelector('.gridlines').appendChild(l2);}
+    let xAxis=0>=c.min&&0<=c.max?X(0):pad, yAxis=0>=sc.ymin&&0<=sc.ymax?Y(0):H-pad;
+    w.querySelector('.xaxis').setAttribute('x1',pad); w.querySelector('.xaxis').setAttribute('x2',W-pad); w.querySelector('.xaxis').setAttribute('y1',yAxis); w.querySelector('.xaxis').setAttribute('y2',yAxis);
+    w.querySelector('.yaxis').setAttribute('x1',xAxis); w.querySelector('.yaxis').setAttribute('x2',xAxis); w.querySelector('.yaxis').setAttribute('y1',pad); w.querySelector('.yaxis').setAttribute('y2',H-pad);
+    curve.setAttribute('d', pathFor(x=>c.f(x)/c.g(x))); dcurve.setAttribute('d', pathFor(x=>c.fp(x)/c.gp(x)));
+    if(c.a!==undefined && c.a>=c.min && c.a<=c.max){let xa=X(c.a); targetLine.setAttribute('x1',xa); targetLine.setAttribute('x2',xa); targetLine.setAttribute('y1',pad); targetLine.setAttribute('y2',H-pad); targetLabel.setAttribute('x',xa+6); targetLabel.setAttribute('y',pad+18); targetLabel.textContent=`target x=${fmt(c.a)}`;} else {targetLine.setAttribute('x1',-10);targetLine.setAttribute('x2',-10); targetLabel.textContent='';}
+    if(finite(c.limit) && c.limit>=sc.ymin && c.limit<=sc.ymax){let yl=Y(c.limit); limitLine.setAttribute('x1',pad); limitLine.setAttribute('x2',W-pad); limitLine.setAttribute('y1',yl); limitLine.setAttribute('y2',yl); limitLabel.setAttribute('x',W-pad-150); limitLabel.setAttribute('y',yl-8); limitLabel.textContent=`limit ${fmt(c.limit)}`;} else {limitLine.setAttribute('x1',-10);limitLine.setAttribute('x2',-10); limitLabel.textContent = c.limit===Infinity?'limit grows without bound':(c.limit===null?'no two-sided finite limit':'');}
+    curveLabel.setAttribute('x',W-pad-145); curveLabel.setAttribute('y',pad+25); dLabel.setAttribute('x',W-pad-210); dLabel.setAttribute('y',pad+48);
+  }
+  function update(){let x=safeX(parseFloat(range.value)); let y=c.f(x)/c.g(x), dy=c.fp(x)/c.gp(x); xout.textContent=fmt(x); if(finite(y)){pt.setAttribute('cx',X(x)); pt.setAttribute('cy',Y(clamp(y,sc.ymin,sc.ymax))); pt.style.display='block';} else {pt.style.display='none';}
+    if(finite(dy)){dpt.setAttribute('cx',X(x)); dpt.setAttribute('cy',Y(clamp(dy,sc.ymin,sc.ymax))); dpt.style.display='block';} else {dpt.style.display='none';}
+    const fval=c.f(x), gval=c.g(x);
+    read.innerHTML=`<b>${c.name}</b><br>f(x)=${fmt(fval)}, g(x)=${fmt(gval)}<br>quotient=${fmt(y)}<br>f′(x)/g′(x)=${fmt(dy)}<br>claimed limit: ${c.limit===null?'does not exist / not L’Hôpital':fmt(c.limit)}`;
+  }
+  drawStatic(); update(); range.addEventListener('input',update);
+}
+document.querySelectorAll('.limit-widget').forEach(initLimitWidget);
+window.addEventListener('load',()=>show(0));
+</script></body></html>

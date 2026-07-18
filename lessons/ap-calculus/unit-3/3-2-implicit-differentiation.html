@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>AP Calculus 3.2 — Implicit Differentiation</title>
+<link href="https://cdn.jsdelivr.net" rel="preconnect"/>
+<link href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" rel="stylesheet"/>
+<script defer="" src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer="" src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<style>
+:root{--maroon:#7a1738;--navy:#203654;--teal:#0e6655;--ink:#17212b;--muted:#5d6877;--line:#d9e2ec;--gold:#c69c48;--bg:#f4f7fb;--white:#fff;--soft:#fbfaf7}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,Aptos,"Segoe UI",Arial,sans-serif;color:var(--ink);background:var(--bg)}
+.deck{height:100vh;display:grid;grid-template-rows:74px 1fr 54px;overflow:hidden}.topbar{display:flex;align-items:center;justify-content:space-between;padding:10px 22px;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 2px 14px rgba(20,30,55,.08);z-index:2}
+.brand{display:flex;align-items:center;gap:18px}.echs{height:48px;width:96px;border-radius:14px;background:linear-gradient(135deg,var(--maroon),var(--navy));color:#fff;display:grid;place-items:center;font-weight:900;letter-spacing:1.5px}.course{border-left:2px solid #d5dce4;padding-left:18px;line-height:1.15}.course strong{color:var(--maroon);font-size:20px}.course span{display:block;color:var(--muted);font-size:13px;margin-top:3px}
+.progress{display:flex;align-items:center;gap:10px;color:var(--muted);font-weight:700;font-size:14px}.dotbar{width:220px;height:9px;background:#e5ebf0;border-radius:99px;overflow:hidden}.dotbar span{display:block;height:100%;width:0%;background:linear-gradient(90deg,var(--maroon),var(--teal));border-radius:99px}
+.main{overflow:hidden}.slide{display:none;height:100%;overflow-y:auto;padding:34px 48px 72px;background:linear-gradient(135deg,#fff 0%,#fbfaf7 58%,#f3fbf9 100%)}.slide.active{display:block}.slide h1{font-size:38px;line-height:1.02;margin:0 0 26px;color:var(--navy);letter-spacing:-1.2px}.kicker{color:var(--maroon);font-size:14px;text-transform:uppercase;letter-spacing:.12em;font-weight:900;margin-bottom:10px}
+.hero{display:grid;grid-template-columns:1fr 1.2fr;gap:28px;align-items:center;margin-top:20px}.big{font-size:86px;font-weight:900;color:var(--maroon);line-height:.9}.hero p{font-size:28px;color:var(--navy);margin:12px 0 0}.formula{background:#fff;border:1px solid var(--line);border-radius:22px;padding:26px;box-shadow:0 18px 35px rgba(20,30,55,.08)}
+.targets{display:flex;gap:14px;flex-wrap:wrap;margin-top:36px}.targets span,.tag{display:inline-block;background:#eef7f4;border:1px solid #cce7df;color:#0e6655;border-radius:99px;padding:10px 14px;font-weight:800;margin:3px}
+.grid{display:grid;gap:22px}.two{grid-template-columns:1fr 1fr}.three{grid-template-columns:repeat(3,1fr)}.four{grid-template-columns:repeat(4,1fr)}.card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:22px;font-size:22px;line-height:1.45;box-shadow:0 16px 30px rgba(20,30,55,.06)}.card .num{font-size:20px;font-weight:900;color:var(--navy);margin-bottom:12px}.card ol,.card ul{margin-top:8px;padding-left:28px}.card li{margin:8px 0}.card h3{margin-top:0;color:var(--maroon)}
+.rulebox{background:#fff;border:2px solid var(--maroon);border-radius:24px;padding:22px 28px;margin:8px 0 24px;box-shadow:0 16px 32px rgba(122,23,56,.08)}.rulebox h3{margin:0 0 10px;color:var(--maroon);font-size:22px}.rulebox.compact{padding:14px 22px}
+.prompt{font-size:24px;background:#fff7e6;border-left:8px solid var(--gold);padding:16px 20px;margin-top:22px;border-radius:16px;color:#3a2d12}.answer{margin-top:18px;background:#fff;border:1px solid #efd0dc;border-radius:18px;padding:10px 16px;font-size:20px}.answer summary{cursor:pointer;color:var(--maroon);font-weight:900}.answer div{margin-top:12px;border-top:1px solid #f1d7e2;padding-top:12px}.alpha{list-style:lower-alpha}
+.tbl{width:100%;border-collapse:collapse;font-size:19px;margin:12px 0;background:#fff}.tbl th,.tbl td{border:1px solid #d7dee8;padding:10px;text-align:center}.tbl th{background:#eef3f9;color:var(--navy)}.tbl.small{font-size:18px}
+.svggraph{width:100%;height:260px;background:#fff;border-radius:16px}.svggraph line{stroke:#17212b;stroke-width:2}.svggraph path{fill:none;stroke:#0b84c6;stroke-width:4}.svggraph circle{fill:var(--maroon)}.svggraph text{font:16px Arial;fill:#17212b}
+.foot{display:flex;align-items:center;justify-content:space-between;background:#fff;border-top:1px solid var(--line);padding:8px 22px;box-shadow:0 -2px 12px rgba(20,30,55,.05);z-index:3}.nav{display:flex;gap:10px;align-items:center}button{border:0;border-radius:14px;padding:12px 18px;font-weight:900;font-size:15px;cursor:pointer}button.primary{background:var(--maroon);color:#fff}button.secondary{background:#e9eef4;color:var(--navy)}select{padding:12px 16px;border:1px solid var(--line);border-radius:14px;color:var(--navy);font-weight:800;min-width:360px;background:#fff}
+@media (max-width:900px){.two,.three,.four,.hero{grid-template-columns:1fr}.slide{padding:26px 26px 80px}.slide h1{font-size:32px}.card{font-size:20px}.progress .dotbar{width:120px}select{min-width:180px}}
+.card.smalltext{font-size:19px;line-height:1.38}.card.smalltext ol{padding-left:22px}.note{background:#eef3f9;border-left:7px solid var(--navy);padding:14px 18px;border-radius:16px;font-size:21px;margin:12px 0 22px;color:var(--navy);font-weight:700}
+
+.card.dense{font-size:18px;line-height:1.34}.card.dense li{margin:9px 0}.card.dense .mcq{columns:2;list-style:upper-alpha;margin-top:6px}.sectionhead{background:#f8eef3;border:1px solid #edcbd8;border-radius:18px;padding:18px 22px;color:var(--maroon);font-weight:900;font-size:22px;margin-bottom:18px}.compact-list li{margin:6px 0}.widecard{grid-column:1/-1}
+
+
+.answer ol{margin:8px 0 0 22px}.answer li{margin:7px 0}.answer{font-size:18px}.answer[open]{box-shadow:0 10px 28px rgba(122,23,56,.08)}
+</style>
+</head>
+<body>
+<div class="deck">
+<header class="topbar">
+<div class="brand"><div class="echs">ECHS</div><div class="course"><strong>AP Calculus AB</strong><span>3.2 Implicit Differentiation</span></div></div>
+<div class="progress"><span id="count"></span><div class="dotbar"><span id="bar"></span></div></div>
+</header>
+<main class="main"><section class="slide" data-title="Implicit Differentiation">
+<h1>Implicit Differentiation</h1>
+<div class="hero">
+<div>
+<div class="big">3.2</div>
+<p>Finding derivatives when a curve is not solved for \(y\)</p>
+</div>
+<div class="formula">
+    \[x^2+y^2=16\qquad \frac{dy}{dx}\text{ is found by differentiating both sides with respect to }x.\]
+  </div>
+</div>
+<div class="targets">
+<span>Differentiate implicit equations</span>
+<span>Use the chain rule on every \(y\)-expression</span>
+<span>Find slopes, tangent lines, normal lines, and horizontal or vertical tangents</span>
+</div>
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>Differentiate both sides with respect to \(x\). Every derivative of a \(y\)-expression must include \(y'\).</li><li>Move all terms containing \(y'\) to one side, factor \(y'\), and divide.</li><li>For tangent-line questions, substitute the point only after finding \(y'\), then use \(y-y_1=m(x-x_1)\).</li><li>For horizontal tangents use numerator \(=0\) with denominator \(\ne0\); for vertical tangents use denominator \(=0\) with numerator \(\ne0\).</li></ol></div></details></section><section class="slide" data-title="Opening decision">
+<h1>Opening decision</h1>
+<div class="grid two">
+<div class="card">Classify each equation as explicit or implicit. Then choose whether ordinary rules alone are enough or whether implicit differentiation is needed.
+  <ol>
+<li>\(y=3x^2-5x+1\)</li>
+<li>\(x^2+y^2=25\)</li>
+<li>\(y=\sin(x^2)\)</li>
+<li>\(\ln(2xy^2)=4x\)</li>
+<li>\(\cos(2x+y)=5x\)</li>
+<li>\(x^2y+y^2x=6\)</li>
+</ol></div><div class="card">For an implicit equation, assume \(y\) is a differentiable function of \(x\).<br/><br/>
+  Every time you differentiate a term containing \(y\), multiply by \(\frac{dy}{dx}\).</div>
+</div>
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>Explicit: \(y=3x^2-5x+1\), \(y=\sin(x^2)\).</li><li>Implicit: \(x^2+y^2=25\), \(\ln(2xy^2)=4x\), \(\cos(2x+y)=5x\), \(x^2y+y^2x=6\).</li></ol></div></details></section><section class="slide" data-title="Explicit vs implicit">
+<h1>Explicit vs implicit</h1>
+<div class="grid two">
+<div class="card"><h3>Explicit</h3>
+  \[y=x+16\]
+  \[y'=1\]
+  The equation is already solved for \(y\).</div><div class="card"><h3>Implicit</h3>
+  \[x^2+y^2=16\]
+  Differentiate both sides:
+  \[2x+2y\frac{dy}{dx}=0\]
+  \[\frac{dy}{dx}=-\frac{x}{y}\]</div>
+</div>
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>\(2x+2yy'=0\Rightarrow y'=-\frac{x}{y}\).</li></ol></div></details></section><section class="slide" data-title="The key idea">
+<h1>The key idea</h1>
+<div class="rulebox">
+<h3>Chain rule inside implicit differentiation</h3>
+  \[\frac{d}{dx}[y]=\frac{dy}{dx}\]
+  \[\frac{d}{dx}[y^n]=ny^{n-1}\frac{dy}{dx}\]
+  \[\frac{d}{dx}[e^{5y}]=5e^{5y}\frac{dy}{dx}\]
+  \[\frac{d}{dx}[\sin(2y)]=2\cos(2y)\frac{dy}{dx}\]
+</div>
+<div class="prompt">Differentiate with respect to \(x\), not with respect to the variable you see.</div>
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>Differentiate both sides with respect to \(x\). Every derivative of a \(y\)-expression must include \(y'\).</li><li>Move all terms containing \(y'\) to one side, factor \(y'\), and divide.</li><li>For tangent-line questions, substitute the point only after finding \(y'\), then use \(y-y_1=m(x-x_1)\).</li><li>For horizontal tangents use numerator \(=0\) with denominator \(\ne0\); for vertical tangents use denominator \(=0\) with numerator \(\ne0\).</li></ol></div></details></section><section class="slide" data-title="Derivative comparison table">
+<h1>Derivative comparison table</h1>
+<table class="tbl">
+<tr><th>Expression in \(x\)</th><th>Derivative</th><th>Expression in \(y\)</th><th>Derivative</th></tr>
+<tr><td>\(x\)</td><td>\(1\)</td><td>\(y\)</td><td>\(y'\)</td></tr>
+<tr><td>\(x^2\)</td><td>\(2x\)</td><td>\(y^2\)</td><td>\(2yy'\)</td></tr>
+<tr><td>\(x^5\)</td><td>\(5x^4\)</td><td>\(y^5\)</td><td>\(5y^4y'\)</td></tr>
+<tr><td>\(\sin x\)</td><td>\(\cos x\)</td><td>\(\sin y\)</td><td>\(\cos y\,y'\)</td></tr>
+<tr><td>\(\ln x\)</td><td>\(\frac{1}{x}\)</td><td>\(\ln y\)</td><td>\(\frac{y'}{y}\)</td></tr>
+</table>
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>Differentiate both sides with respect to \(x\). Every derivative of a \(y\)-expression must include \(y'\).</li><li>Move all terms containing \(y'\) to one side, factor \(y'\), and divide.</li><li>For tangent-line questions, substitute the point only after finding \(y'\), then use \(y-y_1=m(x-x_1)\).</li><li>For horizontal tangents use numerator \(=0\) with denominator \(\ne0\); for vertical tangents use denominator \(=0\) with numerator \(\ne0\).</li></ol></div></details></section><section class="slide" data-title="Procedure">
+<h1>Procedure</h1>
+<div class="grid four">
+<div class="card"><div class="num">1</div>Differentiate both sides with respect to \(x\).</div><div class="card"><div class="num">2</div>Include \(y'\) whenever the derivative of a \(y\)-expression appears.</div><div class="card"><div class="num">3</div>Move every term containing \(y'\) to one side.</div><div class="card"><div class="num">4</div>Factor out \(y'\), then solve for \(y'\).</div>
+</div>
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>Differentiate both sides with respect to \(x\). Every derivative of a \(y\)-expression must include \(y'\).</li><li>Move all terms containing \(y'\) to one side, factor \(y'\), and divide.</li><li>For tangent-line questions, substitute the point only after finding \(y'\), then use \(y-y_1=m(x-x_1)\).</li><li>For horizontal tangents use numerator \(=0\) with denominator \(\ne0\); for vertical tangents use denominator \(=0\) with numerator \(\ne0\).</li></ol></div></details></section><section class="slide" data-title="First example">
+<h1>First example</h1>
+<div class="grid two">
+<div class="card">Find \(\frac{dy}{dx}\) for
+\[y^2-5x^3=3y.\]</div><div class="card">\[2yy'-15x^2=3y'\]
+\[2yy'-3y'=15x^2\]
+\[y'(2y-3)=15x^2\]
+\[\boxed{y'=\frac{15x^2}{2y-3}}\]</div>
+</div>
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>\(y'=\frac{15x^2}{2y-3}\).</li></ol></div></details></section><section class="slide" data-title="Guided practice">
+<h1>Guided practice</h1>
+<div class="grid two">
+<div class="card">Find \(\frac{dy}{dx}\).
+<ol>
+<li>\(y^3-2x=x^4+2y\)</li>
+<li>\(8x^2+y^2=10\)</li>
+<li>\(5x^2-xy-4y^2=0\)</li>
+<li>\(y^3-4y=3x^2+2x\)</li>
+</ol></div><div class="card">Check for these moves:
+<ul>
+<li>\(\frac{d}{dx}(y^3)=3y^2y'\)</li>
+<li>\(\frac{d}{dx}(xy)=xy'+y\)</li>
+<li>Collect all \(y'\)-terms before dividing.</li>
+</ul></div>
+</div>
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>\(y^3-2x=x^4+2y\Rightarrow y'=\frac{4x^3+2}{3y^2-2}\).</li><li>\(8x^2+y^2=10\Rightarrow y'=-\frac{8x}{y}\).</li><li>\(5x^2-xy-4y^2=0\Rightarrow y'=\frac{10x-y}{x+8y}\).</li><li>\(y^3-4y=3x^2+2x\Rightarrow y'=\frac{6x+2}{3y^2-4}\).</li></ol></div></details></section><section class="slide" data-title="Worked example: product term">
+<h1>Worked example: product term</h1>
+<div class="grid two">
+<div class="card">Find \(\frac{dy}{dx}\) for
+\[x^2y+y^2x=6.\]</div><div class="card">Differentiate using product rule on both terms:
+\[2xy+x^2y'+2yy'x+y^2=0.\]
+Collect \(y'\)-terms:
+\[y'(x^2+2xy)=-(2xy+y^2).\]
+\[\boxed{y'=-\frac{2xy+y^2}{x^2+2xy}}\]</div>
+</div>
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>Differentiate both sides with respect to \(x\). Every derivative of a \(y\)-expression must include \(y'\).</li><li>Move all terms containing \(y'\) to one side, factor \(y'\), and divide.</li><li>For tangent-line questions, substitute the point only after finding \(y'\), then use \(y-y_1=m(x-x_1)\).</li><li>For horizontal tangents use numerator \(=0\) with denominator \(\ne0\); for vertical tangents use denominator \(=0\) with numerator \(\ne0\).</li></ol></div></details></section><section class="slide" data-title="Products and quotients inside implicit equations">
+<h1>Products and quotients inside implicit equations</h1>
+<div class="grid two">
+<div class="card">Find \(\frac{dy}{dx}\).
+<ol>
+<li>\(x^2y+y^2x=6\)</li>
+<li>\(\frac{x}{y}+\frac{y}{x}=3y\)</li>
+<li>\(3x^2-xy^2+y^{-1}=1\)</li>
+<li>\(5x^2+2x^2y+y^2=8\)</li>
+</ol></div><div class="card">Before differentiating, decide:
+<ul>
+<li>Do I need product rule?</li>
+<li>Can I rewrite with negative exponents?</li>
+<li>Will \(y'\)-terms appear in more than one place?</li>
+</ul></div>
+</div>
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>\(x^2y+y^2x=6\Rightarrow y'=-\frac{2xy+y^2}{x^2+2xy}\).</li><li>\(\frac{x}{y}+\frac{y}{x}=3y\Rightarrow y'=\frac{\frac{y}{x^2}-\frac1y}{-\frac{x}{y^2}+\frac1x-3}\).</li><li>\(3x^2-xy^2+y^{-1}=1\Rightarrow y'=\frac{6x-y^2}{2xy+y^{-2}}\).</li><li>\(5x^2+2x^2y+y^2=8\Rightarrow y'=-\frac{5x+2xy}{x^2+y}\).</li></ol></div></details></section><section class="slide" data-title="Chain rule with powers of y">
+<h1>Chain rule with powers of \(y\)</h1>
+<div class="grid two">
+<div class="card">Find \(\frac{dy}{dx}\).
+\[(2y^4+1)^2=5x^2\]</div><div class="card">\[2(2y^4+1)(8y^3y')=10x\]
+\[16y^3(2y^4+1)y'=10x\]
+\[\boxed{y'=\frac{5x}{8y^3(2y^4+1)}}\]</div>
+</div>
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>Differentiate both sides with respect to \(x\). Every derivative of a \(y\)-expression must include \(y'\).</li><li>Move all terms containing \(y'\) to one side, factor \(y'\), and divide.</li><li>For tangent-line questions, substitute the point only after finding \(y'\), then use \(y-y_1=m(x-x_1)\).</li><li>For horizontal tangents use numerator \(=0\) with denominator \(\ne0\); for vertical tangents use denominator \(=0\) with numerator \(\ne0\).</li></ol></div></details></section><section class="slide" data-title="Powers and radicals">
+<h1>Powers and radicals</h1>
+<div class="grid two">
+<div class="card">Find \(\frac{dy}{dx}\).
+<ol>
+<li>\(\sqrt{x}+\sqrt{y}=100\)</li>
+<li>\(\sqrt{x^2+y^2}=5\)</li>
+<li>\((2y^4+1)^2=5x^2\)</li>
+<li>\((x-y)^2-4x=20y\)</li>
+</ol></div><div class="card">For radicals, rewrite first:
+\[\sqrt{y}=y^{1/2},\qquad \sqrt{x^2+y^2}=(x^2+y^2)^{1/2}.\]
+Then apply chain rule carefully.</div>
+</div>
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>\(\sqrt{x}+\sqrt{y}=100\Rightarrow y'=-\frac{\sqrt y}{\sqrt x}\).</li><li>\(\sqrt{x^2+y^2}=5\Rightarrow y'=-\frac{x}{y}\).</li><li>\((2y^4+1)^2=5x^2\Rightarrow y'=\frac{5x}{8y^3(2y^4+1)}\).</li><li>\((x-y)^2-4x=20y\Rightarrow y'=\frac{x-y-2}{x-y+10}\).</li></ol></div></details></section><section class="slide" data-title="Trigonometric implicit equations">
+<h1>Trigonometric implicit equations</h1>
+<div class="grid two">
+<div class="card">Find \(\frac{dy}{dx}\).
+<ol>
+<li>\(\sin(xy)=10x\)</li>
+<li>\(\cos(2x+y)=5x\)</li>
+<li>\(\sin x+2\cos(2y)=1\)</li>
+<li>\(\cos(xy)=x\)</li>
+<li>\(2x+\pi\cos y=2\pi\)</li>
+<li>\(y=\cos(xy)\)</li>
+</ol></div><div class="card">Key derivatives:
+\[\frac{d}{dx}\sin(xy)=\cos(xy)(xy'+y)\]
+\[\frac{d}{dx}\cos(2x+y)=-\sin(2x+y)(2+y')\]
+\[\frac{d}{dx}\cos(2y)=-2\sin(2y)y'\]</div>
+</div>
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>\(\sin(xy)=10x\Rightarrow y'=\frac{10-y\cos(xy)}{x\cos(xy)}\).</li><li>\(\cos(2x+y)=5x\Rightarrow y'=-\frac5{\sin(2x+y)}-2\).</li><li>\(\sin x+2\cos(2y)=1\Rightarrow y'=\frac{\cos x}{4\sin(2y)}\).</li><li>\(\cos(xy)=x\Rightarrow y'=\frac{-1-y\sin(xy)}{x\sin(xy)}\).</li><li>\(2x+\pi\cos y=2\pi\Rightarrow y'=\frac{2}{\pi\sin y}\).</li><li>\(y=\cos(xy)\Rightarrow y'=-\frac{y\sin(xy)}{1+x\sin(xy)}\).</li></ol></div></details></section><section class="slide" data-title="Worked example: trigonometric">
+<h1>Worked example: trigonometric</h1>
+<div class="grid two">
+<div class="card">Find \(\frac{dy}{dx}\) for
+\[\cos(2x+y)=5x.\]</div><div class="card">\[-\sin(2x+y)(2+y')=5\]
+\[2+y'=-\frac{5}{\sin(2x+y)}\]
+\[\boxed{y'=-\frac{5}{\sin(2x+y)}-2}\]</div>
+</div>
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>Differentiate both sides with respect to \(x\). Every derivative of a \(y\)-expression must include \(y'\).</li><li>Move all terms containing \(y'\) to one side, factor \(y'\), and divide.</li><li>For tangent-line questions, substitute the point only after finding \(y'\), then use \(y-y_1=m(x-x_1)\).</li><li>For horizontal tangents use numerator \(=0\) with denominator \(\ne0\); for vertical tangents use denominator \(=0\) with numerator \(\ne0\).</li></ol></div></details></section><section class="slide" data-title="Exponential implicit equations">
+<h1>Exponential implicit equations</h1>
+<div class="grid two">
+<div class="card">Find \(\frac{dy}{dx}\).
+<ol>
+<li>\(xe^y=2x+y^3\)</li>
+<li>\(2x-e^{4y^4}=y^2\)</li>
+<li>\(e^{xy}=x+y\)</li>
+<li>\(e^{x+y}=xy\)</li>
+</ol></div><div class="card">Examples of inner derivatives:
+\[\frac{d}{dx}(e^y)=e^y y'\]
+\[\frac{d}{dx}(e^{4y^4})=16y^3e^{4y^4}y'\]
+\[\frac{d}{dx}(e^{xy})=e^{xy}(xy'+y)\]</div>
+</div>
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>\(xe^y=2x+y^3\Rightarrow y'=\frac{2-e^y}{xe^y-3y^2}\).</li><li>\(2x-e^{4y^4}=y^2\Rightarrow y'=\frac{1}{y+8y^3e^{4y^4}}\).</li><li>\(e^{xy}=x+y\Rightarrow y'=\frac{1-ye^{xy}}{xe^{xy}-1}\).</li><li>\(e^{x+y}=xy\Rightarrow y'=\frac{y-e^{x+y}}{e^{x+y}-x}\).</li></ol></div></details></section><section class="slide" data-title="Logarithmic implicit equations">
+<h1>Logarithmic implicit equations</h1>
+<div class="grid two">
+<div class="card">Find \(\frac{dy}{dx}\).
+<ol>
+<li>\(\ln(2xy^2)=4x\)</li>
+<li>\(\ln(xy)=\sin x\)</li>
+<li>\(\ln(x^2+y^2)=xy\)</li>
+<li>\(\ln y=x^2-y\)</li>
+</ol></div><div class="card">Two possible approaches:
+<ul>
+<li>Differentiate directly using \(\frac{u'}{u}\).</li>
+<li>Use log properties first if it makes the derivative cleaner.</li>
+</ul>
+Example:
+\[\ln(2xy^2)=\ln 2+\ln x+2\ln y.\]</div>
+</div>
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>\(\ln(2xy^2)=4x\Rightarrow y'=2y-\frac{y}{2x}\).</li><li>\(\ln(xy)=\sin x\Rightarrow y'=y\left(\cos x-\frac1x\right)\).</li><li>\(\ln(x^2+y^2)=xy\Rightarrow y'=\frac{y(x^2+y^2)-2x}{2y-x(x^2+y^2)}\).</li><li>\(\ln y=x^2-y\Rightarrow y'=\frac{2xy}{1+y}\).</li></ol></div></details></section><section class="slide" data-title="Worked example: logarithmic">
+<h1>Worked example: logarithmic</h1>
+<div class="grid two">
+<div class="card">Find \(\frac{dy}{dx}\) for
+\[\ln(2xy^2)=4x.\]</div><div class="card">Use log properties:
+\[\ln 2+\ln x+2\ln y=4x\]
+\[\frac{1}{x}+2\frac{y'}{y}=4\]
+\[2\frac{y'}{y}=4-\frac{1}{x}\]
+\[\boxed{y'=2y-\frac{y}{2x}}\]</div>
+</div>
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>Differentiate both sides with respect to \(x\). Every derivative of a \(y\)-expression must include \(y'\).</li><li>Move all terms containing \(y'\) to one side, factor \(y'\), and divide.</li><li>For tangent-line questions, substitute the point only after finding \(y'\), then use \(y-y_1=m(x-x_1)\).</li><li>For horizontal tangents use numerator \(=0\) with denominator \(\ne0\); for vertical tangents use denominator \(=0\) with numerator \(\ne0\).</li></ol></div></details></section><section class="slide" data-title="Find \(dy/dx\): mixed practice A">
+<h1>Find \(\frac{dy}{dx}\): mixed practice A</h1>
+<div class="grid two">
+<div class="card"><ol>
+<li>\(4x^2-2x^4y^4=5\)</li>
+<li>\(-4y+3y^2+7=4x^2\)</li>
+<li>\(x^3+5x=3y^2-2y\)</li>
+<li>\(y^4+6y=7x-4x^3\)</li>
+</ol></div><div class="card">After differentiating, your equation should be linear in \(y'\). If you see \((y')^2\), you differentiated incorrectly.</div>
+</div>
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>\(4x^2-2x^4y^4=5\Rightarrow y'=\frac{1-x^2y^4}{x^3y^3}\).</li><li>\(-4y+3y^2+7=4x^2\Rightarrow y'=\frac{4x}{3y-2}\).</li><li>\(x^3+5x=3y^2-2y\Rightarrow y'=\frac{3x^2+5}{6y-2}\).</li><li>\(y^4+6y=7x-4x^3\Rightarrow y'=\frac{7-12x^2}{4y^3+6}\).</li></ol></div></details></section><section class="slide" data-title="Find \(dy/dx\): mixed practice B">
+<h1>Find \(\frac{dy}{dx}\): mixed practice B</h1>
+<div class="grid two">
+<div class="card"><ol>
+<li>\(x^3+2x-y^2=11\)</li>
+<li>\(x^2y+y^2x=6\)</li>
+<li>\(x^2-xy+y^2=7\)</li>
+<li>\(x^4+y^4=16xy\)</li>
+</ol></div><div class="card">Choose one problem and write the derivative equation before solving for \(y'\). Your partner checks only the derivative equation first.</div>
+</div>
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>\(x^3+2x-y^2=11\Rightarrow y'=\frac{3x^2+2}{2y}\).</li><li>\(x^2y+y^2x=6\Rightarrow y'=-\frac{2xy+y^2}{x^2+2xy}\).</li><li>\(x^2-xy+y^2=7\Rightarrow y'=\frac{y-2x}{2y-x}\).</li><li>\(x^4+y^4=16xy\Rightarrow y'=\frac{4y-x^3}{y^3-4x}\).</li></ol></div></details></section><section class="slide" data-title="Derivative at a point">
+<h1>Derivative at a point</h1>
+<div class="grid two">
+<div class="card">Find \(y'\) at the given point.
+<ol>
+<li>\(x^2-y^2=27\) at \((6,-3)\)</li>
+<li>\((x-y)^2-4x=20y\) at \((4,2)\)</li>
+<li>\(x^3+2x-y^2=11\) at \((2,3)\)</li>
+<li>\(x^2y+y^2x=6\) at \((2,1)\)</li>
+</ol></div><div class="card">Workflow:
+<ol>
+<li>Differentiate implicitly.</li>
+<li>Solve for \(y'\).</li>
+<li>Substitute the point.</li>
+</ol>
+Do not substitute before differentiating.</div>
+</div>
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>\((6,-3)\): \(y'=-2\).</li><li>\((4,2)\): \(y'=0\).</li><li>\((2,3)\): \(y'=\frac73\).</li><li>\((2,1)\): \(y'=-\frac58\).</li></ol></div></details></section><section class="slide" data-title="Tangent lines">
+<h1>Tangent lines</h1>
+<div class="grid two">
+<div class="card">Find an equation of the tangent line.
+<ol>
+<li>\(x^2-y^2=27\) at \((6,-3)\)</li>
+<li>\((x-y)^2-4x=20y\) at \((4,2)\)</li>
+<li>\(x^3+2x-y^2=11\) at \((2,3)\)</li>
+<li>\(x^2y+y^2x=6\) at \((2,1)\)</li>
+</ol></div><div class="card">Once you have slope \(m\), use
+\[y-y_1=m(x-x_1).\]
+Check: the point must satisfy the original equation.</div>
+</div>
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>\(y+3=-2(x-6)\).</li><li>\(y=2\).</li><li>\(y-3=\frac73(x-2)\).</li><li>\(y-1=-\frac58(x-2)\).</li></ol></div></details></section><section class="slide" data-title="Tangent and normal lines">
+<h1>Tangent and normal lines</h1>
+<div class="grid two">
+<div class="card">For each curve, find the tangent and normal line at the indicated point.
+<ol>
+<li>\(x^2-x+y^2=6\) at \((-1,2)\)</li>
+<li>\(x^2y+y^2x=6\) at \((2,1)\)</li>
+<li>\(x^3+2x-y^2=11\) at \((2,3)\)</li>
+</ol></div><div class="card">If the tangent slope is \(m\), then the normal slope is \(-\frac{1}{m}\), provided \(m\ne0\).<br/><br/>
+If the tangent is horizontal, the normal is vertical.<br/>
+If the tangent is vertical, the normal is horizontal.</div>
+</div>
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>Differentiate both sides with respect to \(x\). Every derivative of a \(y\)-expression must include \(y'\).</li><li>Move all terms containing \(y'\) to one side, factor \(y'\), and divide.</li><li>For tangent-line questions, substitute the point only after finding \(y'\), then use \(y-y_1=m(x-x_1)\).</li><li>For horizontal tangents use numerator \(=0\) with denominator \(\ne0\); for vertical tangents use denominator \(=0\) with numerator \(\ne0\).</li></ol></div></details></section><section class="slide" data-title="Accurate graph check: circle">
+<h1>Accurate graph check: circle</h1>
+<div class="grid two">
+<div class="card">For \(x^2+y^2=4\), find the equation of all tangent lines when \(x=1\).</div><div class="card"><svg class="svggraph" viewbox="0 0 420 300">
+<defs>
+<marker id="arrowCircle23" markerheight="8" markerwidth="8" orient="auto" refx="4" refy="4"><path d="M0,0 L8,4 L0,8 Z" fill="#17212b"></path></marker>
+</defs>
+<rect fill="#ffffff" height="300" width="420" x="0" y="0"></rect>
+<line marker-end="url(#arrowCircle23)" stroke="#17212b" stroke-width="2" x1="25" x2="395" y1="150" y2="150"></line>
+<line marker-end="url(#arrowCircle23)" stroke="#17212b" stroke-width="2" x1="200" x2="200" y1="280" y2="20"></line>
+<text fill="#17212b" font-size="15" x="382" y="142">x</text>
+<text fill="#17212b" font-size="15" x="209" y="31">y</text>
+<circle cx="200" cy="150" fill="#f8fbff" r="110" stroke="#0b84c6" stroke-width="4"></circle>
+<line stroke="#6b7280" stroke-dasharray="7 7" stroke-width="2" x1="255" x2="255" y1="30" y2="270"></line>
+<text fill="#6b7280" font-size="13" x="258" y="34">x = 1</text>
+<line stroke="#64748b" stroke-width="2" x1="200" x2="255" y1="150" y2="54.737"></line>
+<line stroke="#64748b" stroke-width="2" x1="200" x2="255" y1="150" y2="245.263"></line>
+<text fill="#64748b" font-size="13" x="218" y="96">radius</text>
+<line stroke="#8a1538" stroke-width="3" x1="164.25" x2="387" y1="2.343" y2="130.947"></line>
+<line stroke="#8a1538" stroke-width="3" x1="164.25" x2="387" y1="297.657" y2="169.053"></line>
+<circle cx="255" cy="54.737" fill="#0b84c6" r="5.5" stroke="#ffffff" stroke-width="2"></circle>
+<circle cx="255" cy="245.263" fill="#0b84c6" r="5.5" stroke="#ffffff" stroke-width="2"></circle>
+<text fill="#17212b" font-size="15" x="262" y="52">(1, √3)</text>
+<text fill="#17212b" font-size="15" x="262" y="250">(1, −√3)</text>
+<text fill="#8a1538" font-size="12.5" x="248" y="106">m = −1/√3</text>
+<text fill="#8a1538" font-size="12.5" x="248" y="200">m = 1/√3</text>
+<text fill="#17212b" font-size="13" x="191" y="165">O</text>
+</svg></div>
+</div>
+
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>\(y'=-\frac{x}{y}\). At \((1,\sqrt3)\): \(y-\sqrt3=-\frac1{\sqrt3}(x-1)\).</li><li>At \((1,-\sqrt3)\): \(y+\sqrt3=\frac1{\sqrt3}(x-1)\).</li></ol></div></details></section><section class="slide" data-title="Horizontal and vertical tangents">
+<h1>Horizontal and vertical tangents</h1>
+<div class="rulebox">
+If \(y'=\frac{N(x,y)}{D(x,y)}\), then horizontal tangents usually occur where \(N=0\) and \(D\ne0\). Vertical tangents usually occur where \(D=0\) and \(N\ne0\).
+</div>
+<div class="grid two">
+<div class="card">Find all horizontal and vertical tangent lines.
+<ol>
+<li>\(x^2+10x=-7y^5+10\)</li>
+<li>\(12x-3x^2=y^2-4y\)</li>
+</ol></div><div class="card">For each candidate point, verify it lies on the original curve. Then decide horizontal or vertical using the derivative.</div>
+</div>
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>For \(x^2+10x=-7y^5+10\): \(y'=-\frac{2x+10}{35y^4}\). Horizontal: \(y=\sqrt[5]{5}\). Vertical: \(x=-5\pm\sqrt{35}\).</li><li>For \(12x-3x^2=y^2-4y\): \(y'=\frac{12-6x}{2y-4}\). Horizontal: \(y=6\), \(y=-2\). Vertical: \(x=2\pm\frac{4\sqrt3}{3}\).</li></ol></div></details></section><section class="slide" data-title="Horizontal and vertical tangent practice">
+<h1>Horizontal and vertical tangent practice</h1>
+<div class="grid two">
+<div class="card">Find the points where the graph has horizontal or vertical tangent lines.
+<ol>
+<li>\(x^2+xy+y^2=27\)</li>
+<li>\(x^3+y^3=6xy\)</li>
+<li>\(x^2-y^2=16\)</li>
+<li>\(x^4+y^4=16xy\)</li>
+</ol></div><div class="card">A candidate is not enough. Your final answer should include:
+<ul>
+<li>point(s)</li>
+<li>line equation(s)</li>
+<li>reason: numerator zero or denominator zero</li>
+</ul></div>
+</div>
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>\(x^2+xy+y^2=27\): horizontal \((3,-6),(-3,6)\); vertical \((-6,3),(6,-3)\).</li><li>\(x^3+y^3=6xy\): \(y'=\frac{2y-x^2}{y^2-2x}\).</li><li>\(x^2-y^2=16\): no horizontal tangents; vertical tangents at \((\pm4,0)\).</li><li>\(x^4+y^4=16xy\): \(y'=\frac{4y-x^3}{y^3-4x}\).</li></ol></div></details></section><section class="slide" data-title="Second derivatives implicitly">
+<h1>Second derivatives implicitly</h1>
+<div class="grid two">
+<div class="card">Find \(\frac{d^2y}{dx^2}\) for
+\[x^2+y^2=25.\]</div><div class="card">First:
+\[2x+2yy'=0\Rightarrow y'=-\frac{x}{y}.\]
+Differentiate again:
+\[y''=\frac{-y+x y'}{y^2}.\]
+Substitute \(y'=-\frac{x}{y}\):
+\[\boxed{y''=-\frac{x^2+y^2}{y^3}=-\frac{25}{y^3}}\]</div>
+</div>
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>Differentiate both sides with respect to \(x\). Every derivative of a \(y\)-expression must include \(y'\).</li><li>Move all terms containing \(y'\) to one side, factor \(y'\), and divide.</li><li>For tangent-line questions, substitute the point only after finding \(y'\), then use \(y-y_1=m(x-x_1)\).</li><li>For horizontal tangents use numerator \(=0\) with denominator \(\ne0\); for vertical tangents use denominator \(=0\) with numerator \(\ne0\).</li></ol></div></details></section><section class="slide" data-title="Higher-order implicit practice">
+<h1>Higher-order implicit practice</h1>
+<div class="grid two">
+<div class="card">Find \(\frac{d^2y}{dx^2}\).
+<ol>
+<li>\(x^2+y^2=16\)</li>
+<li>\(\cos y=x\)</li>
+<li>\(y^2=x^3\)</li>
+<li>\(xy=1\)</li>
+</ol></div><div class="card">When differentiating \(y'\)-expressions, use product, quotient, and chain rules as needed. Substitute the first derivative at the end to simplify.</div>
+</div>
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>\(x^2+y^2=16\Rightarrow y''=-\frac{16}{y^3}\).</li><li>\(\cos y=x\Rightarrow y'=-\csc y\), \(y''=-\csc^2y\cot y\).</li><li>\(y^2=x^3\Rightarrow y'=\frac{3x^2}{2y}\), \(y''=\frac{3x^4}{4y^3}\).</li><li>\(xy=1\Rightarrow y''=\frac{2}{x^3}\).</li></ol></div></details></section><section class="slide" data-title="Checking a point before using it">
+<h1>Checking a point before using it</h1>
+<div class="grid two">
+<div class="card">A student is asked to find the tangent line to
+\[x^2-xy+y^2=7\]
+at \((1,2)\). What should the student check first?</div><div class="card">Check whether the point lies on the curve:
+\[1^2-(1)(2)+2^2=1-2+4=3\ne7.\]
+So \((1,2)\) is not on the curve. The requested tangent line does not exist for this curve at that point.</div>
+</div>
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>Differentiate both sides with respect to \(x\). Every derivative of a \(y\)-expression must include \(y'\).</li><li>Move all terms containing \(y'\) to one side, factor \(y'\), and divide.</li><li>For tangent-line questions, substitute the point only after finding \(y'\), then use \(y-y_1=m(x-x_1)\).</li><li>For horizontal tangents use numerator \(=0\) with denominator \(\ne0\); for vertical tangents use denominator \(=0\) with numerator \(\ne0\).</li></ol></div></details></section><section class="slide" data-title="Solving for parameters">
+<h1>Solving for parameters</h1>
+<div class="grid two">
+<div class="card">Find the value of \(a\) so the curve
+\[x^2+axy+y^2=7\]
+has slope \(-2\) at \((1,2)\), assuming the point lies on the curve after choosing \(a\).</div><div class="card">First use the point condition:
+\[1+2a+4=7\Rightarrow a=1.\]
+Then the slope is determined by that value. If the required slope does not match, no such \(a\) exists. This type of problem requires both the point condition and the derivative condition.</div>
+</div>
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>Differentiate both sides with respect to \(x\). Every derivative of a \(y\)-expression must include \(y'\).</li><li>Move all terms containing \(y'\) to one side, factor \(y'\), and divide.</li><li>For tangent-line questions, substitute the point only after finding \(y'\), then use \(y-y_1=m(x-x_1)\).</li><li>For horizontal tangents use numerator \(=0\) with denominator \(\ne0\); for vertical tangents use denominator \(=0\) with numerator \(\ne0\).</li></ol></div></details></section><section class="slide" data-title="Parameter practice">
+<h1>Parameter practice</h1>
+<div class="grid two">
+<div class="card">Solve for the parameter(s).
+<ol>
+<li>For \(x^2+ay^2=10\), the tangent at \((1,3)\) is horizontal. Find \(a\).</li>
+<li>For \(x^2+axy+y^2=9\), the point \((1,2)\) lies on the curve. Find \(a\), then find \(y'\) there.</li>
+<li>For \(x^2+y^2+bxy=12\), the tangent at \((2,2)\) has slope \(-1\). Find \(b\), if possible.</li>
+</ol></div><div class="card">Use two checks when needed:
+<ol>
+<li>Does the point satisfy the equation?</li>
+<li>Does the derivative condition hold?</li>
+</ol></div>
+</div>
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>No such \(a\) in the first question: point condition gives \(a=1\), but the tangent is not horizontal.</li><li>Second: \(a=2\), then \(y'=-1\).</li><li>Third: \(b=1\), then \(y'=-1\).</li></ol></div></details></section><section class="slide" data-title="Implicit differentiation with restrictions">
+<h1>Implicit differentiation with restrictions</h1>
+<div class="grid two">
+<div class="card">For each equation, find \(\frac{dy}{dx}\) and state any restrictions needed for your expression.
+<ol>
+<li>\(\frac{x}{y}+\frac{y}{x}=3y\)</li>
+<li>\(\ln(2xy^2)=4x\)</li>
+<li>\(\sqrt{x}+\sqrt{y}=100\)</li>
+</ol></div><div class="card">Examples:
+<ul>
+<li>Fractions require nonzero denominators.</li>
+<li>Logarithms require positive arguments.</li>
+<li>Square roots require nonnegative radicands; differentiability may require positive input.</li>
+</ul></div>
+</div>
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>First: \(y'=\frac{\frac{y}{x^2}-\frac1y}{-\frac{x}{y^2}+\frac1x-3}\), with \(x\ne0,y\ne0\).</li><li>Second: \(y'=2y-\frac{y}{2x}\), with \(2xy^2\gt0\).</li><li>Third: \(y'=-\frac{\sqrt y}{\sqrt x}\), requiring positive inputs for the derivative formula.</li></ol></div></details></section><section class="slide" data-title="AP-style multiple choice">
+<h1>AP-style multiple choice</h1>
+<div class="grid two">
+<div class="card">If
+\[x^2+xy+y^2=7,\]
+which expression gives \(\frac{dy}{dx}\)?
+<ol class="alpha">
+<li>\(-\frac{2x+y}{x+2y}\)</li>
+<li>\(\frac{2x+y}{x+2y}\)</li>
+<li>\(-\frac{x+2y}{2x+y}\)</li>
+<li>\(\frac{x+2y}{2x+y}\)</li>
+</ol></div><div class="card">Differentiate:
+\[2x+(xy'+y)+2yy'=0\]
+\[y'(x+2y)=-(2x+y)\]
+\[\boxed{y'=-\frac{2x+y}{x+2y}}\]
+Answer: A</div>
+</div>
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>Correct choice: A.</li></ol></div></details></section><section class="slide" data-title="AP-style multiple choice: tangent slope">
+<h1>AP-style multiple choice: tangent slope</h1>
+<div class="grid two">
+<div class="card">For the curve
+\[x^2-y^2=27,\]
+what is the slope of the tangent line at \((6,-3)\)?
+<ol class="alpha">
+<li>\(-2\)</li><li>\(-1\)</li><li>\(1\)</li><li>\(2\)</li>
+</ol></div><div class="card">\[2x-2yy'=0\Rightarrow y'=\frac{x}{y}.\]
+At \((6,-3)\):
+\[y'=\frac{6}{-3}=-2.\]
+Answer: A</div>
+</div>
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>Correct choice: A. The slope is \(-2\).</li></ol></div></details></section><section class="slide" data-title="AP-style free response">
+<h1>AP-style free response</h1>
+<div class="card smalltext">
+Consider the curve \(x^2+y^2+xy=12\).
+<ol class="alpha">
+<li>Find \(\frac{dy}{dx}\) in terms of \(x\) and \(y\).</li>
+<li>Find the slope at \((2,2)\).</li>
+<li>Find the tangent line at \((2,2)\).</li>
+<li>Determine whether the tangent at \((2,2)\) is horizontal, vertical, or neither.</li>
+</ol>
+</div>
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>\(y'=-\frac{2x+y}{x+2y}\). At \((2,2)\), \(y'=-1\). Tangent: \(y-2=-(x-2)\). Neither horizontal nor vertical.</li></ol></div></details></section><section class="slide" data-title="AP-style free response: horizontal and vertical">
+<h1>AP-style free response: horizontal and vertical</h1>
+<div class="card smalltext">
+The curve \(12x-3x^2=y^2-4y\) is given.
+<ol class="alpha">
+<li>Find \(\frac{dy}{dx}\).</li>
+<li>Find all points where the tangent is horizontal.</li>
+<li>Find all points where the tangent is vertical.</li>
+<li>Write equations of the tangent lines found in parts (b) and (c).</li>
+</ol>
+</div>
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>\(y'=\frac{12-6x}{2y-4}\).</li><li>Horizontal: \(y=6\), \(y=-2\).</li><li>Vertical: \(x=2\pm\frac{4\sqrt3}{3}\).</li></ol></div></details></section><section class="slide" data-title="Error analysis">
+<h1>Error analysis</h1>
+<div class="grid two">
+<div class="card">A student differentiates
+\[x^2+y^2=16\]
+and writes
+\[2x+2y=0.\]
+Explain the error and correct it.</div><div class="card">The derivative of \(y^2\) with respect to \(x\) is not \(2y\). Since \(y\) depends on \(x\),
+\[\frac{d}{dx}(y^2)=2yy'.\]
+Correct:
+\[2x+2yy'=0\Rightarrow y'=-\frac{x}{y}.\]</div>
+</div>
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>Differentiate both sides with respect to \(x\). Every derivative of a \(y\)-expression must include \(y'\).</li><li>Move all terms containing \(y'\) to one side, factor \(y'\), and divide.</li><li>For tangent-line questions, substitute the point only after finding \(y'\), then use \(y-y_1=m(x-x_1)\).</li><li>For horizontal tangents use numerator \(=0\) with denominator \(\ne0\); for vertical tangents use denominator \(=0\) with numerator \(\ne0\).</li></ol></div></details></section><section class="slide" data-title="Error analysis: product rule">
+<h1>Error analysis: product rule</h1>
+<div class="grid two">
+<div class="card">A student differentiates
+\[x^2y+y^2x=6\]
+and writes
+\[2xy+x^2y'+2yy'=0.\]
+What is missing?</div><div class="card">The term \(y^2x\) needs product rule:
+\[\frac{d}{dx}(y^2x)=2yy'\cdot x+y^2.\]
+Correct derivative equation:
+\[2xy+x^2y'+2xyy'+y^2=0.\]</div>
+</div>
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>Differentiate both sides with respect to \(x\). Every derivative of a \(y\)-expression must include \(y'\).</li><li>Move all terms containing \(y'\) to one side, factor \(y'\), and divide.</li><li>For tangent-line questions, substitute the point only after finding \(y'\), then use \(y-y_1=m(x-x_1)\).</li><li>For horizontal tangents use numerator \(=0\) with denominator \(\ne0\); for vertical tangents use denominator \(=0\) with numerator \(\ne0\).</li></ol></div></details></section><section class="slide" data-title="Quick check: isolate \(y'\)">
+<h1>Quick check: isolate \(y'\)</h1>
+<div class="grid two">
+<div class="card">Solve each derivative equation for \(y'\).
+<ol>
+<li>\(2x+2yy'=0\)</li>
+<li>\(3y^2y'-2=x^4+2y'\)</li>
+<li>\(\cos(xy)(xy'+y)=10\)</li>
+<li>\(2xy+x^2y'+2xyy'+y^2=0\)</li>
+</ol></div><div class="card">This slide focuses only on algebra after differentiating. Many implicit errors happen after the calculus step is already correct.</div>
+</div>
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>\(y'=-\frac{x}{y}\).</li><li>\(y'=\frac{x^4+2}{3y^2-2}\).</li><li>\(y'=\frac{10-y\cos(xy)}{x\cos(xy)}\).</li><li>\(y'=-\frac{2xy+y^2}{x^2+2xy}\).</li></ol></div></details></section><section class="slide" data-title="Challenge: hidden simplification">
+<h1>Challenge: hidden simplification</h1>
+<div class="grid two">
+<div class="card">The curve is
+\[x^2+y^2=2xy.\]
+Find \(\frac{dy}{dx}\). Then explain what the equation represents.</div><div class="card">\[2x+2yy'=2(xy'+y)\]
+\[2x+2yy'=2xy'+2y\]
+\[y'(2y-2x)=2y-2x\]
+If \(x\ne y\), \(y'=1\). But the equation is
+\[(x-y)^2=0\Rightarrow y=x.\]
+The curve is the line \(y=x\), so slope is \(1\).</div>
+</div>
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>Differentiate both sides with respect to \(x\). Every derivative of a \(y\)-expression must include \(y'\).</li><li>Move all terms containing \(y'\) to one side, factor \(y'\), and divide.</li><li>For tangent-line questions, substitute the point only after finding \(y'\), then use \(y-y_1=m(x-x_1)\).</li><li>For horizontal tangents use numerator \(=0\) with denominator \(\ne0\); for vertical tangents use denominator \(=0\) with numerator \(\ne0\).</li></ol></div></details></section><section class="slide" data-title="Challenge: singular points">
+<h1>Challenge: singular points</h1>
+<div class="grid two">
+<div class="card">For
+\[x^3+y^3=3xy,\]
+find \(\frac{dy}{dx}\). Then discuss what happens at \((0,0)\).</div><div class="card">\[3x^2+3y^2y'=3xy'+3y\]
+\[y'(3y^2-3x)=3y-3x^2\]
+\[y'=\frac{y-x^2}{y^2-x}.\]
+At \((0,0)\), both numerator and denominator are zero, so the formula does not determine one tangent slope. More analysis is needed.</div>
+</div>
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>Differentiate both sides with respect to \(x\). Every derivative of a \(y\)-expression must include \(y'\).</li><li>Move all terms containing \(y'\) to one side, factor \(y'\), and divide.</li><li>For tangent-line questions, substitute the point only after finding \(y'\), then use \(y-y_1=m(x-x_1)\).</li><li>For horizontal tangents use numerator \(=0\) with denominator \(\ne0\); for vertical tangents use denominator \(=0\) with numerator \(\ne0\).</li></ol></div></details></section><section class="slide" data-title="Challenge set: find \(dy/dx\)">
+<h1>Challenge set: find \(\frac{dy}{dx}\)</h1>
+<div class="grid two">
+<div class="card"><ol>
+<li>\(x^2y^3+y^2=x+1\)</li>
+<li>\(\sin(x+y)=xy\)</li>
+<li>\(e^{xy}+x^2=y^2\)</li>
+<li>\(\ln(x^2+y^2)=x-y\)</li>
+<li>\(\sqrt{x+y}=xy\)</li>
+</ol></div><div class="card">Before solving, circle every term that will generate \(y'\). Then compare with a partner before collecting terms.</div>
+</div>
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>\(y'=\frac{1-2xy^3}{3x^2y^2+2y}\).</li><li>\(y'=\frac{y-\cos(x+y)}{\cos(x+y)-x}\).</li><li>\(y'=\frac{2x+ye^{xy}}{2y-xe^{xy}}\).</li><li>\(y'=\frac{x^2+y^2-2x}{2y+x^2+y^2}\).</li><li>\(y'=\frac{2y\sqrt{x+y}-1}{1-2x\sqrt{x+y}}\).</li></ol></div></details></section><section class="slide" data-title="Challenge set: tangent and normal">
+<h1>Challenge set: tangent and normal</h1>
+<div class="grid two">
+<div class="card">Find tangent and normal lines.
+<ol>
+<li>\(x^2+xy+y^2=7\) at \((1,2)\)</li>
+<li>\(x^3+y^3=9xy\) at \((2,4)\)</li>
+<li>\(e^{xy}=x+y\) at \((1,0)\)</li>
+</ol></div><div class="card">If a point does not lie on the curve, state that clearly and stop. This is part of the reasoning.</div>
+</div>
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>First: tangent \(y-2=-\frac45(x-1)\), normal \(y-2=\frac54(x-1)\).</li><li>Second: slope \(\frac45\); tangent \(y-4=\frac45(x-2)\), normal \(y-4=-\frac54(x-2)\).</li><li>Third: vertical tangent \(x=1\); normal \(y=0\).</li></ol></div></details></section><section class="slide" data-title="Challenge set: horizontal and vertical">
+<h1>Challenge set: horizontal and vertical</h1>
+<div class="grid two">
+<div class="card">Find all points where the curve has horizontal or vertical tangents.
+<ol>
+<li>\(x^2+4y^2=16\)</li>
+<li>\(x^3+y^3=6xy\)</li>
+<li>\(x^2y+y^2x=12\)</li>
+</ol></div><div class="card">Record candidates in a table:
+<table class="tbl small"><tr><th>Condition</th><th>Equation</th><th>Candidate points</th><th>Valid?</th></tr><tr><td>Horizontal</td><td>\(N=0\)</td><td></td><td></td></tr><tr><td>Vertical</td><td>\(D=0\)</td><td></td><td></td></tr></table></div>
+</div>
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>\(x^2+4y^2=16\): horizontal \((0,\pm2)\), vertical \((\pm4,0)\).</li><li>\(x^3+y^3=6xy\): horizontal uses \(x^2=2y\); vertical uses \(y^2=2x\), then check the curve.</li><li>\(x^2y+y^2x=12\): horizontal \((\sqrt[3]{6},-2\sqrt[3]{6})\), vertical \((-2\sqrt[3]{6},\sqrt[3]{6})\).</li></ol></div></details></section><section class="slide" data-title="Challenge: second derivative at a point">
+<h1>Challenge: second derivative at a point</h1>
+<div class="grid two">
+<div class="card">For \(x^2+y^2=25\), find \(y''\) at \((3,4)\).</div><div class="card">From earlier,
+\[y''=-\frac{25}{y^3}.\]
+At \((3,4)\):
+\[\boxed{y''=-\frac{25}{64}}\]</div>
+</div>
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>Differentiate both sides with respect to \(x\). Every derivative of a \(y\)-expression must include \(y'\).</li><li>Move all terms containing \(y'\) to one side, factor \(y'\), and divide.</li><li>For tangent-line questions, substitute the point only after finding \(y'\), then use \(y-y_1=m(x-x_1)\).</li><li>For horizontal tangents use numerator \(=0\) with denominator \(\ne0\); for vertical tangents use denominator \(=0\) with numerator \(\ne0\).</li></ol></div></details></section><section class="slide" data-title="Challenge: second derivative with substitution">
+<h1>Challenge: second derivative with substitution</h1>
+<div class="grid two">
+<div class="card">For \(xy=1\), find \(y''\) in terms of \(x\).</div><div class="card">First derivative:
+\[xy'+y=0\Rightarrow y'=-\frac{y}{x}.\]
+Since \(y=1/x\), \(y'=-1/x^2\). Then
+\[\boxed{y''=\frac{2}{x^3}}\]</div>
+</div>
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>Differentiate both sides with respect to \(x\). Every derivative of a \(y\)-expression must include \(y'\).</li><li>Move all terms containing \(y'\) to one side, factor \(y'\), and divide.</li><li>For tangent-line questions, substitute the point only after finding \(y'\), then use \(y-y_1=m(x-x_1)\).</li><li>For horizontal tangents use numerator \(=0\) with denominator \(\ne0\); for vertical tangents use denominator \(=0\) with numerator \(\ne0\).</li></ol></div></details></section><section class="slide" data-title="Calculator allowed: tangent type">
+<h1>Calculator allowed: tangent type</h1>
+<div class="grid two">
+<div class="card">For
+\[x^2+10x=-7y^5+10,\]
+find the horizontal and vertical tangent lines. Round coordinates to three decimals if needed.</div><div class="card">Use the derivative to generate candidates, then solve the original equation for the matching coordinates. A graphing calculator can help approximate candidate points after the calculus setup is complete.</div>
+</div>
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>Differentiate both sides with respect to \(x\). Every derivative of a \(y\)-expression must include \(y'\).</li><li>Move all terms containing \(y'\) to one side, factor \(y'\), and divide.</li><li>For tangent-line questions, substitute the point only after finding \(y'\), then use \(y-y_1=m(x-x_1)\).</li><li>For horizontal tangents use numerator \(=0\) with denominator \(\ne0\); for vertical tangents use denominator \(=0\) with numerator \(\ne0\).</li></ol></div></details></section><section class="slide" data-title="Calculator allowed: second curve">
+<h1>Calculator allowed: second curve</h1>
+<div class="grid two">
+<div class="card">For
+\[12x-3x^2=y^2-4y,\]
+find the horizontal and vertical tangent lines. Round coordinates to three decimals if needed.</div><div class="card">Differentiate first. Then use:
+<ul>
+<li>horizontal: numerator \(=0\), denominator \(\ne0\)</li>
+<li>vertical: denominator \(=0\), numerator \(\ne0\)</li>
+</ul></div>
+</div>
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>Differentiate both sides with respect to \(x\). Every derivative of a \(y\)-expression must include \(y'\).</li><li>Move all terms containing \(y'\) to one side, factor \(y'\), and divide.</li><li>For tangent-line questions, substitute the point only after finding \(y'\), then use \(y-y_1=m(x-x_1)\).</li><li>For horizontal tangents use numerator \(=0\) with denominator \(\ne0\); for vertical tangents use denominator \(=0\) with numerator \(\ne0\).</li></ol></div></details></section>
+<section class="slide" data-title="Implicit practice: fractions, powers, and products">
+<h1>Implicit practice: fractions, powers, and products</h1>
+<div class="grid two">
+<div class="card dense"><ol class="compact-list">
+<li>If \(\frac{x}{y}+\frac{3}{x}=3\), find \(\frac{dy}{dx}\).</li>
+<li>If \((2x+y)^4=5\), find \(\frac{dy}{dx}\).</li>
+<li>If \(xy=y^2\sqrt{1+5x^4}\), find \(\frac{dy}{dx}\).</li>
+<li>If \(x\cos y=y\cos(2x)\), find \(\frac{dy}{dx}\) at \(\left(\frac{\pi}{4},\frac{\pi}{2}\right)\).</li>
+</ol></div>
+<div class="card dense"><ol class="compact-list" start="5">
+<li>Find the point on \(\sqrt{x}+\sqrt{y}=3\) where the slope of the tangent line is \(m=-2\).</li>
+<li>If \(h(y^2)=x\) and \(h'(1)=3\), find \(\frac{dy}{dx}\) when \(y=1\).</li>
+<li>If \(h(y+1)=x^3\), \(h(5)=8\), and \(h'(5)=4\), find \(\frac{dy}{dx}\) when \(y=4\).</li>
+<li>If \(h(2y+3)=x^4\), \(x\gt0\), \(h(7)=6\), and \(h'(7)=9\), find \(\frac{dy}{dx}\) when \(y=2\).</li>
+</ol></div>
+</div>
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>\(\frac{x}{y}+\frac3x=3\Rightarrow y'=\frac{y}{x}-\frac{3y^2}{x^3}\).</li><li>\((2x+y)^4=5\Rightarrow y'=-2\).</li><li>\(xy=y^2\sqrt{1+5x^4}\Rightarrow y'=\frac{\frac{10x^3y^2}{\sqrt{1+5x^4}}-y}{x-2y\sqrt{1+5x^4}}\).</li><li>At \(\left(\frac\pi4,\frac\pi2\right)\), \(y'=4\).</li><li>Slope \(-2\) on \(\sqrt{x}+\sqrt{y}=3\) occurs at \((1,4)\).</li><li>\(h(y^2)=x\): \(y'=\frac16\).</li><li>\(h(y+1)=x^3\): \(y'=3\).</li><li>\(h(2y+3)=x^4\): \(y'=\frac{2\cdot6^{3/4}}{9}\).</li></ol></div></details></section>
+<section class="slide" data-title="Implicit proof tasks: inverse trig forms without inverse notation">
+<h1>Implicit proof tasks: trigonometric relations</h1>
+<div class="grid two">
+<div class="card dense"><ol class="compact-list">
+<li>If \(x=\sin y\), prove that \(\frac{dy}{dx}=\sec y\). Then prove that \(\frac{dy}{dx}=\frac{1}{\sqrt{1-x^2}}\), where \(0\lt y\lt\frac{\pi}{2}\).</li>
+<li>If \(x=\tan y\), prove that \(\frac{dy}{dx}=\cos^2 y\). Also prove that \(\frac{d^2y}{dx^2}=-\frac{2x}{(1+x^2)^2}\).</li>
+<li>If \(y=\tan(xy)\), prove that \(\frac{dy}{dx}=\frac{y+y^3}{1-x(1+y^2)}\).</li>
+</ol></div>
+<div class="card dense"><ol class="compact-list" start="4">
+<li>If \(x+y=\sec(x+y)\), prove that \(\frac{dy}{dx}=-1\).</li>
+<li>If \(y^2=\sin x\), prove that \(4y^2\left(\frac{dy}{dx}\right)^2+y^4-1=0\).</li>
+<li>If \(y=x\) is not isolated explicitly but appears inside a trig expression, decide whether differentiating both sides first is easier than solving for \(y\).</li>
+</ol></div>
+</div>
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>Differentiate both sides with respect to \(x\). Every derivative of a \(y\)-expression must include \(y'\).</li><li>Move all terms containing \(y'\) to one side, factor \(y'\), and divide.</li><li>For tangent-line questions, substitute the point only after finding \(y'\), then use \(y-y_1=m(x-x_1)\).</li><li>For horizontal tangents use numerator \(=0\) with denominator \(\ne0\); for vertical tangents use denominator \(=0\) with numerator \(\ne0\).</li></ol></div></details></section>
+<section class="slide" data-title="Implicit second derivative identities">
+<h1>Implicit second derivative identities</h1>
+<div class="grid two">
+<div class="card dense"><ol class="compact-list">
+<li>If \(xy=\cos x\), prove that \(x\frac{d^2y}{dx^2}+2\frac{dy}{dx}+xy=0\).</li>
+<li>If \(y=\sqrt{4+3\cos x}\), prove that \(2y\frac{d^2y}{dx^2}+2\left(\frac{dy}{dx}\right)^2+y^2=4\).</li>
+<li>If \(y-x=\cos y\), prove that \(\frac{d^2y}{dx^2}=-\left(\frac{dy}{dx}\right)^2(\sec y-\tan y)\).</li>
+<li>If \(x^2+y^2=25\), prove that \(\frac{d^2y}{dx^2}=-\frac{25}{y^3}\).</li>
+</ol></div>
+<div class="card dense"><ol class="compact-list" start="5">
+<li>If \(x+y=xy\), prove that \(\frac{d^2y}{dx^2}=\frac{2y^3}{x^3}\).</li>
+<li>If \(\sqrt{x}-\sqrt{y}=1\), prove that \(\frac{d^2y}{dx^2}=\frac{1}{2\sqrt{x^3}}\).</li>
+<li>If \(y=\left(x+\sqrt{x^2+1}\right)^n\), prove that \(\sqrt{x^2+1}\frac{dy}{dx}-ny=0\).</li>
+</ol></div>
+</div>
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>Differentiate both sides with respect to \(x\). Every derivative of a \(y\)-expression must include \(y'\).</li><li>Move all terms containing \(y'\) to one side, factor \(y'\), and divide.</li><li>For tangent-line questions, substitute the point only after finding \(y'\), then use \(y-y_1=m(x-x_1)\).</li><li>For horizontal tangents use numerator \(=0\) with denominator \(\ne0\); for vertical tangents use denominator \(=0\) with numerator \(\ne0\).</li></ol></div></details></section>
+<section class="slide" data-title="Implicit identities with parameters">
+<h1>Implicit identities with parameters</h1>
+<div class="grid two">
+<div class="card dense"><ol class="compact-list">
+<li>If \(xy=a\cos(4x)+b\sin(4x)\), prove that \(x\frac{d^2y}{dx^2}+2\frac{dy}{dx}+16xy=0\).</li>
+<li>If \(y^4=\cos x\), prove that \(y\frac{d^2y}{dx^2}+3\left(\frac{dy}{dx}\right)^2+\frac14y^2=0\).</li>
+<li>If \(y=\frac{\tan x}{x}\), \(x\ne0\), prove that \(x\frac{d^2y}{dx^2}+2\frac{dy}{dx}-2xy=2\tan^3x\).</li>
+<li>If \(x=\frac12ay^2+by+c\), prove that \(\frac{d^2y}{dx^2}=-a\left(\frac{dy}{dx}\right)^3\).</li>
+</ol></div>
+<div class="card dense"><ol class="compact-list" start="5">
+<li>If \(y=\frac{mx^{n+1}+b}{x^n}\), prove that \(x\frac{dy}{dx}=m(n+1)x-ny\).</li>
+<li>If \(xy=a\cos(kx)+b\sin(kx)\), prove that \(x\frac{d^2y}{dx^2}+2\frac{dy}{dx}+k^2xy=0\).</li>
+<li>If \(y^n=\cos x\), prove that \(y\frac{d^2y}{dx^2}+(n-1)\left(\frac{dy}{dx}\right)^2+\frac{1}{n}y^2=0\).</li>
+<li>If \(x^2+y^2=a^2\), prove that \(\left(1+\left(\frac{dy}{dx}\right)^2\right)^3=a^2\left(\frac{d^2y}{dx^2}\right)^2\).</li>
+<li>If \(x^2+xy+y^2=1\), prove that \((2y+x)^3\frac{d^2y}{dx^2}\) is constant. Find that constant.</li>
+</ol></div>
+</div>
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>Differentiate both sides with respect to \(x\). Every derivative of a \(y\)-expression must include \(y'\).</li><li>Move all terms containing \(y'\) to one side, factor \(y'\), and divide.</li><li>For tangent-line questions, substitute the point only after finding \(y'\), then use \(y-y_1=m(x-x_1)\).</li><li>For horizontal tangents use numerator \(=0\) with denominator \(\ne0\); for vertical tangents use denominator \(=0\) with numerator \(\ne0\).</li></ol></div></details></section>
+<section class="slide" data-title="Parametric derivative practice">
+<h1>Parametric derivative practice</h1>
+<div class="grid two">
+<div class="card dense"><ol class="compact-list">
+<li>If \(y=\sin t\) and \(x=3\cos t\), find \(\frac{d^2y}{dx^2}\).</li>
+<li>If \(y=t^2-8t\) and \(x=\frac12t^2-2t\), find \(\frac{d^2y}{dx^2}\) when \(t=6\).</li>
+<li>If \(y=t^2+2t\) and \(\frac{dx}{dt}=4t\), find \(\frac{dy}{dx}\) when \(t=1\).</li>
+<li>If \(x=\sin(2t)\) and \(y=\cos(2t)\), find \(\frac{dy}{dx}\) when \(t=\frac{\pi}{3}\).</li>
+</ol></div>
+<div class="card dense"><ol class="compact-list" start="5">
+<li>If \(y=\sin t\) and \(x=\cos t\), find \(\frac{dy}{dx}\) at the point \((0,-1)\).</li>
+<li>If \(x=\tan t\) and \(y=\cot t\), prove that \(\frac{d^2y}{dx^2}=2\cot^3t\).</li>
+<li>If \(y=p\sin t\) and \(x=p\cos t\), prove that \(\frac{d^2y}{dx^2}=-\frac{1}{p\sin^3t}\).</li>
+</ol></div>
+</div>
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>\(y=\sin t, x=3\cos t\): \(d^2y/dx^2=-\frac1{9\sin^3t}\).</li><li>\(y=t^2-8t, x=\frac12t^2-2t\): at \(t=6\), \(d^2y/dx^2=\frac1{16}\).</li><li>\(y=t^2+2t\), \(dx/dt=4t\): at \(t=1\), \(dy/dx=1\).</li><li>\(x=\sin(2t), y=\cos(2t)\): at \(t=\frac\pi3\), \(dy/dx=\sqrt3\).</li><li>At \((0,-1)\) for \(x=\cos t, y=\sin t\), \(dy/dx=0\).</li><li>\(x=\tan t, y=\cot t\Rightarrow d^2y/dx^2=2\cot^3t\).</li><li>\(x=p\cos t, y=p\sin t\Rightarrow d^2y/dx^2=-\frac1{p\sin^3t}\).</li></ol></div></details></section>
+<section class="slide" data-title="Function composition inside implicit equations">
+<h1>Function composition inside implicit equations</h1>
+<div class="grid two">
+<div class="card dense"><ol class="compact-list">
+<li>If \(x=(1-y^2)^6\), prove that \(\frac{dy}{dx}=-\frac{1-y^2}{12xy}\).</li>
+<li>If \(y=h(g(x))\), where \(g(x)=\frac1x\) and \(h'(x)=\frac{x}{\sqrt{1+x^2}}\), prove that
+\[\frac{dy}{dx}=\begin{cases}\dfrac{1}{x^2\sqrt{1+x^2}},&amp;x\lt0,\\-\dfrac{1}{x^2\sqrt{1+x^2}},&amp;x\gt0.\end{cases}\]</li>
+</ol></div>
+<div class="card dense"><ol class="compact-list" start="3">
+<li>Suppose \(h(xy)=x^2+y^2\), \(h(1)=2\), and \(h'(1)=5\). Find \(\frac{dy}{dx}\) at \((1,1)\).</li>
+<li>Suppose \(h(x^2+y^2)=xy\), where \(h'(2)=4\). Find \(\frac{dy}{dx}\) at \((1,1)\).</li>
+<li>Suppose \(h(xy+x)=y^2\), where \(h'(2)=5\). Find \(\frac{dy}{dx}\) at \((1,1)\), if the point satisfies the equation.</li>
+<li>Suppose \(h(x+y)=xy\), where \(h\) is twice differentiable, \(h'(2)=3\), and \(h''(2)=-4\). Find \(\frac{d^2y}{dx^2}\) at \((1,1)\).</li>
+</ol></div>
+</div>
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>\(x=(1-y^2)^6\Rightarrow y'=-\frac{1-y^2}{12xy}\).</li><li>\(y=h(1/x)\Rightarrow y'=h'(1/x)(-1/x^2)\), then simplify using \(|x|\) to get the stated piecewise form.</li><li>\(h(xy)=x^2+y^2\) at \((1,1)\): \(y'=-1\).</li><li>\(h(x^2+y^2)=xy\) at \((1,1)\): \(y'=-1\).</li><li>\(h(xy+x)=y^2\) at \((1,1)\): if valid, \(y'=-\frac{10}{3}\).</li><li>\(h(x+y)=xy\) at \((1,1)\): \(y'=-1\), \(y''=-1\).</li></ol></div></details></section>
+<section class="slide" data-title="Challenge: find dy/dx without solving">
+<h1>Challenge: find \(dy/dx\) without solving</h1>
+<div class="grid two">
+<div class="card dense"><ol class="compact-list">
+<li>Given \(x^3y^2+x^2y^3=12\), find \(\frac{dy}{dx}\).</li>
+<li>Given \(e^{xy}+x^2y=y^3+1\), find \(\frac{dy}{dx}\). Then evaluate the slope at \((0,1)\).</li>
+<li>Given \(\ln(x+y)=x^2-y^2\), find \(\frac{dy}{dx}\).</li>
+<li>Given \(x^y+y^x=10\), find \(\frac{dy}{dx}\).</li>
+</ol></div>
+<div class="card dense"><ol class="compact-list" start="5">
+<li>Given \(x^2\sin y+y^2\cos x=1\), find \(\frac{dy}{dx}\).</li>
+<li>Given \(\sin(xy)=x^2-y^2\), find \(\frac{dy}{dx}\). Then evaluate the slope at \((0,0)\), if it exists.</li>
+<li>Given \(x^2y+y^2x=6\), find \(\frac{dy}{dx}\), then find the tangent line at \((1,2)\).</li>
+</ol></div>
+</div>
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>\(x^3y^2+x^2y^3=12\Rightarrow y'=-\frac{3x^2y^2+2xy^3}{2x^3y+3x^2y^2}\).</li><li>\(e^{xy}+x^2y=y^3+1\Rightarrow y'=\frac{3y^2-ye^{xy}-2xy}{xe^{xy}+x^2-3y^2}\).</li><li>\(\ln(x+y)=x^2-y^2\Rightarrow y'=\frac{2x(x+y)-1}{1+2y(x+y)}\).</li><li>\(x^y+y^x=10\Rightarrow y'=-\frac{x^y(y/x)+y^x\ln y}{x^y\ln x+(x/y)y^x}\).</li><li>\(x^2\sin y+y^2\cos x=1\Rightarrow y'=\frac{y^2\sin x-2x\sin y}{x^2\cos y+2y\cos x}\).</li><li>\(\sin(xy)=x^2-y^2\Rightarrow y'=\frac{2x-y\cos(xy)}{x\cos(xy)+2y}\).</li><li>\(x^2y+y^2x=6\) at \((1,2)\): tangent \(y-2=-\frac85(x-1)\).</li></ol></div></details></section>
+<section class="slide" data-title="Challenge: horizontal and vertical tangents">
+<h1>Challenge: horizontal and vertical tangents</h1>
+<div class="grid two">
+<div class="card dense"><ol class="compact-list">
+<li>Given \(x^2+y^2+xy=7\), find \(\frac{dy}{dx}\) and determine all points where the tangent line is horizontal.</li>
+<li>Given \(x^4+y^4=16xy\), find \(\frac{dy}{dx}\), then determine all points where the tangent line is vertical.</li>
+<li>Given \(x^3+y^3-6xy=0\), find all points where the tangent line is horizontal.</li>
+<li>Given \(x^3+y^3=9xy\), find all horizontal and vertical tangent points.</li>
+</ol></div>
+<div class="card dense"><ol class="compact-list" start="5">
+<li>Given \(x^2y^2=x^2+y^2\), find all points where the tangent line is horizontal.</li>
+<li>Given \(x^4+y^4=4x^2y^2\), determine whether the curve has horizontal or vertical tangents at the origin.</li>
+<li>Given \(x^2+y^2=|xy|+4\), find the slope when \(xy\gt0\) and when \(xy\lt0\).</li>
+<li>Given \(x^2+y^2=4|x-y|\), determine all points where the curve may fail to be differentiable.</li>
+</ol></div>
+</div>
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>\(x^2+y^2+xy=7\): horizontal \((\pm\sqrt{7/3},\mp2\sqrt{7/3})\); vertical \((\mp2\sqrt{7/3},\pm\sqrt{7/3})\).</li><li>\(x^4+y^4=16xy\): vertical candidates satisfy \(y^3=4x\) and the original equation.</li><li>\(x^3+y^3-6xy=0\): horizontal candidates satisfy \(x^2=2y\) and the curve.</li><li>\(x^3+y^3=9xy\): horizontal \(x^2=3y\); vertical \(y^2=3x\).</li><li>\(x^4+y^4=4x^2y^2\): slopes \(m=\pm\sqrt{2\pm\sqrt3}\).</li><li>For \(x^2+y^2=|xy|+4\): if \(xy\gt0\), \(y'= -\frac{2x-y}{2y-x}\); if \(xy\lt0\), \(y'= -\frac{2x+y}{2y+x}\).</li></ol></div></details></section>
+<section class="slide" data-title="Challenge: second derivatives implicitly">
+<h1>Challenge: second derivatives implicitly</h1>
+<div class="grid two">
+<div class="card dense"><ol class="compact-list">
+<li>Given \(x^2+y^2=25\), prove that \(\frac{d^2y}{dx^2}=-\frac{25}{y^3}\).</li>
+<li>Given \(x^2+xy+y^2=7\), prove that \(\frac{d^2y}{dx^2}=-\frac{42}{(x+2y)^3}\).</li>
+<li>Given \(x^2+2xy+3y^2=18\), find \(\frac{d^2y}{dx^2}\) in terms of \(x\) and \(y\).</li>
+<li>Given \(x^2y+y^2x=6\), find \(\frac{d^2y}{dx^2}\) at \((1,2)\).</li>
+</ol></div>
+<div class="card dense"><ol class="compact-list" start="5">
+<li>Given \(x^3+y^3=3xy\), find \(\frac{d^2y}{dx^2}\) at \((1,2)\), if the point lies on the curve.</li>
+<li>Given \(y^2=x^3+3x^2\), find \(\frac{dy}{dx}\) and \(\frac{d^2y}{dx^2}\) at \((1,2)\), if the point lies on the curve.</li>
+<li>Given \(xy+\sin y=x^2\), find \(\frac{d^2y}{dx^2}\) at \((0,0)\).</li>
+<li>Given \(x^2+y^2+xy=3\), find all points where \(\frac{d^2y}{dx^2}=0\).</li>
+</ol></div>
+</div>
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>\(x^2+y^2=25\Rightarrow y''=-\frac{25}{y^3}\).</li><li>\(x^2+xy+y^2=7\Rightarrow y''=-\frac{42}{(x+2y)^3}\).</li><li>For \(x^2+2xy+3y^2=18\): \(y'=-\frac{x+y}{x+3y}\), then \(y''=-\frac{2+4y'+6(y')^2}{2x+6y}\).</li><li>For \(x^2y+y^2x=6\) at \((1,2)\): \(y''=\frac{252}{125}\).</li><li>\((1,2)\) is not on \(x^3+y^3=3xy\), so that question is invalid.</li><li>For \(y^2=x^3+3x^2\) at \((1,2)\): \(y'=\frac94\), \(y''=\frac{15}{32}\).</li><li>For \(xy+\sin y=x^2\) at \((0,0)\): \(y''=2\).</li></ol></div></details></section>
+<section class="slide" data-title="Challenge: tangent lines at the origin">
+<h1>Challenge: tangent lines at the origin</h1>
+<div class="grid two">
+<div class="card dense"><ol class="compact-list">
+<li>Given \(y^2=x^2(x+1)\), find the tangent lines at the origin.</li>
+<li>Given \(y^2=x^4+x^5\), find the tangent line at the origin.</li>
+<li>For \(x^2y^2=x^4+y^4\), show that \((0,0)\) is singular. Determine whether any real tangent lines pass through the origin.</li>
+<li>For \(x^3+y^3=3xy\), find the possible tangent lines at \((0,0)\).</li>
+</ol></div>
+<div class="card dense"><ol class="compact-list" start="5">
+<li>For \(y^2=x^3\), find the tangent line at the origin.</li>
+<li>For \(x^4+y^4=2x^2y^2\), find all possible tangent lines at the origin.</li>
+<li>For \((x^2+y^2)^2=4x^2y\), find all tangent lines at the origin.</li>
+<li>For \(y^3=x^2(x+1)\), find the tangent line at the origin.</li>
+</ol></div>
+</div>
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>\(y^2=x^2(x+1)\): \(y=x\) and \(y=-x\).</li><li>\(y^2=x^4+x^5\): \(y=0\).</li><li>\(x^2y^2=x^4+y^4\): no real tangent slopes.</li><li>\(x^3+y^3=3xy\): \(x=0\) and \(y=0\).</li><li>\(y^2=x^3\): \(y=0\).</li><li>\(x^4+y^4=2x^2y^2\): \(y=x\), \(y=-x\).</li><li>\((x^2+y^2)^2=4x^2y\): possible tangent lines \(x=0\), \(y=0\).</li><li>\(y^3=x^2(x+1)\): vertical tangent \(x=0\).</li></ol></div></details></section>
+<section class="slide" data-title="Challenge: singular tangent lines">
+<h1>Challenge: singular tangent lines</h1>
+<div class="grid two">
+<div class="card dense"><ol class="compact-list">
+<li>If \(x^2+y^2+x^3-y^3=0\), find all possible tangent lines at the origin.</li>
+<li>If \(x^4+y^4=x^2y^2+x^5\), find all possible tangent lines at the origin.</li>
+<li>If \(y^4=x^6+x^7\), find the tangent line at the origin.</li>
+</ol></div>
+<div class="card dense"><ol class="compact-list" start="4">
+<li>A curve is defined by \(x^4+y^4=x^2y^2+x^5\). Explain why direct implicit differentiation at \((0,0)\) does not immediately give the tangent line. Let \(y=mx\), find all possible slopes, and write the tangent lines.</li>
+</ol></div>
+</div>
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>\(x^2+y^2+x^3-y^3=0\): no real linear tangent from the lowest-degree equation.</li><li>\(x^4+y^4=x^2y^2+x^5\): no real tangent slopes because \(m^4-m^2+1=0\).</li><li>\(y^4=x^6+x^7\): tangent line \(y=0\).</li><li>At a singular origin, direct implicit differentiation usually gives \(0=0\); use lowest-degree terms with \(y=mx\).</li></ol></div></details></section>
+<section class="slide" data-title="Challenge: parameter equations">
+<h1>Challenge: parameter equations</h1>
+<div class="grid two">
+<div class="card dense"><ol class="compact-list">
+<li>For \(x^2+2kxy+y^2=1\), find all \(k\) for which the curve has a horizontal tangent at \(\left(\frac12,\frac12\right)\).</li>
+<li>For \(x^3+y^3-3axy=0\), find all \(a\) for which the curve has a vertical tangent at \((1,2)\).</li>
+<li>For \(x^2+ay^2+bxy=10\), find \(a\) and \(b\) if the tangent at \((1,2)\) has slope \(-3\), and \((1,2)\) lies on the curve.</li>
+</ol></div>
+<div class="card dense"><ol class="compact-list" start="4">
+<li>For \(x^3+y^3+kxy=0\), find \(k\) such that the tangent line at \((1,-1)\) is horizontal.</li>
+<li>For \(x^2+y^2+kx+2y=0\), find \(k\) such that the tangent line at \((1,-3)\) is vertical.</li>
+<li>For \(x^2+2xy+ay^2=9\), find \(a\) such that \(\frac{d^2y}{dx^2}=0\) at \((1,2)\), assuming the point lies on the curve.</li>
+</ol></div>
+</div>
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>First: no \(k\) satisfies both point and horizontal conditions.</li><li>Second: no \(a\) satisfies both point and vertical conditions.</li><li>Third: \(a=-\frac14\), \(b=5\).</li><li>Fourth: no \(k\) satisfies both point and horizontal conditions.</li><li>Fifth: no \(k\) makes the tangent vertical.</li><li>Sixth: \(a=1\).</li></ol></div></details></section>
+<section class="slide" data-title="AP-style multiple choice: implicit slope">
+<h1>AP-style multiple choice: implicit slope</h1>
+<div class="grid two">
+<div class="card dense"><ol class="compact-list">
+<li>The curve \(x^2+xy+y^2=12\) has a tangent at \((2,2)\). What is the slope?<ol class="mcq"><li>\(-2\)</li><li>\(-1\)</li><li>\(-\frac12\)</li><li>\(1\)</li></ol></li>
+<li>Let \(x^3+y^3=6xy\). Where \(y\ne x^2/2\), which gives \(\frac{dy}{dx}\)?<ol class="mcq"><li>\(\frac{2y-x^2}{y^2-2x}\)</li><li>\(\frac{x^2-2y}{y^2-2x}\)</li><li>\(\frac{2x-y^2}{2y-x^2}\)</li><li>\(\frac{y^2-2x}{x^2-2y}\)</li></ol></li>
+</ol></div>
+<div class="card dense"><ol class="compact-list" start="3">
+<li>Let \(x^2y+y^2=10\). At \((2,1)\), the tangent slope is<ol class="mcq"><li>\(-4\)</li><li>\(-2\)</li><li>\(-1\)</li><li>\(2\)</li></ol></li>
+<li>If \(x^2+y^2+4xy=9\), then at any horizontal tangent point, \(x\) and \(y\) must satisfy<ol class="mcq"><li>\(x+2y=0\)</li><li>\(2x+4y=0\)</li><li>\(2y+4x=0\)</li><li>\(x-y=0\)</li></ol></li>
+</ol></div>
+</div>
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>Answers: 1) B, 2) A, 3) the point is not on the curve as written, 4) A.</li></ol></div></details></section>
+<section class="slide" data-title="AP-style multiple choice: second derivatives and parameters">
+<h1>AP-style multiple choice: second derivatives and parameters</h1>
+<div class="grid two">
+<div class="card dense"><ol class="compact-list" start="5">
+<li>Suppose \(e^{xy}=x+y\). At \((0,1)\), \(\frac{dy}{dx}=\)<ol class="mcq"><li>\(-1\)</li><li>\(0\)</li><li>\(1\)</li><li>\(2\)</li></ol></li>
+<li>If \(x^2+y^2=25\), then \(\frac{d^2y}{dx^2}\) at \((3,4)\) is<ol class="mcq"><li>\(-\frac{25}{64}\)</li><li>\(-\frac{25}{16}\)</li><li>\(-\frac{4}{25}\)</li><li>\(-\frac34\)</li></ol></li>
+<li>The curve \(x^3+y^3=9xy\) has a horizontal tangent when<ol class="mcq"><li>\(x^2=3y\)</li><li>\(y^2=3x\)</li><li>\(x^2=y^2\)</li><li>\(xy=3\)</li></ol></li>
+</ol></div>
+<div class="card dense"><ol class="compact-list" start="8">
+<li>Let \(x^2+2xy+ay^2=9\). If the tangent line at \((1,2)\) is horizontal, then \(a=\)<ol class="mcq"><li>\(-1\)</li><li>\(-\frac12\)</li><li>\(0\)</li><li>\(\frac12\)</li></ol></li>
+<li>Let \(\ln(x+y)=xy\). At \((1,0)\), the slope is<ol class="mcq"><li>\(-1\)</li><li>\(0\)</li><li>\(1\)</li><li>undefined</li></ol></li>
+<li>If \(x^2y^2=x^2+y^2\), then \(\frac{dy}{dx}=0\) when<ol class="mcq"><li>\(xy^2=x\)</li><li>\(xy^2=x+y\)</li><li>\(y(x^2-1)=0\)</li><li>\(x(y^2-1)=0\)</li></ol></li>
+</ol></div>
+</div>
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>Answers: 5) B, 6) A, 7) A, 8) no listed value, 9) D, 10) D.</li></ol></div></details></section>
+<section class="slide" data-title="AP-style free response: curve analysis I">
+<h1>AP-style free response: curve analysis I</h1>
+<div class="grid two">
+<div class="card dense">A curve \(C\) is defined by \(x^3+y^3=6xy\).<ol class="alpha"><li>Find \(\frac{dy}{dx}\) in terms of \(x\) and \(y\).</li><li>Find all points where the tangent line is horizontal.</li><li>Find all points where the tangent line is vertical.</li><li>Find the tangent line at \((3,3)\), if the point lies on the curve.</li></ol></div>
+<div class="card dense">A curve \(C\) is defined by \(x^2+xy+y^2=7\).<ol class="alpha"><li>Find \(\frac{dy}{dx}\).</li><li>Show that \(\frac{d^2y}{dx^2}=-\frac{42}{(x+2y)^3}\).</li><li>Determine whether the curve is concave up or down at \((1,2)\), if the point lies on the curve.</li></ol></div>
+</div>
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>For \(x^3+y^3=6xy\): \(y'=\frac{2y-x^2}{y^2-2x}\). At \((3,3)\), tangent \(y-3=-(x-3)\).</li><li>For \(x^2+xy+y^2=7\): \(y'=-\frac{2x+y}{x+2y}\), \(y''=-\frac{42}{(x+2y)^3}\), and at \((1,2)\) concave down.</li></ol></div></details></section>
+<section class="slide" data-title="AP-style free response: curve analysis II">
+<h1>AP-style free response: curve analysis II</h1>
+<div class="grid two">
+<div class="card dense">Let \(y\) be defined implicitly by \(e^{xy}+x^2y=y^3+1\).<ol class="alpha"><li>Find \(\frac{dy}{dx}\).</li><li>Evaluate \(\frac{dy}{dx}\) at \((0,1)\).</li><li>Find the tangent line at \((0,1)\).</li><li>Determine whether the tangent line is horizontal, vertical, or neither.</li></ol></div>
+<div class="card dense">The curve \(C\) is defined by \(x^2+y^2=|xy|+4\).<ol class="alpha"><li>Find \(\frac{dy}{dx}\) when \(xy\gt0\).</li><li>Find \(\frac{dy}{dx}\) when \(xy\lt0\).</li><li>Explain why the derivative formula changes depending on the sign of \(xy\).</li><li>Determine whether the curve may fail to be differentiable at points where \(xy=0\).</li></ol></div>
+</div>
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>For \(e^{xy}+x^2y=y^3+1\): \(y'=\frac{3y^2-ye^{xy}-2xy}{xe^{xy}+x^2-3y^2}\). At \((0,1)\), slope \(0\), tangent \(y=1\).</li><li>For \(x^2+y^2=|xy|+4\), split into \(|xy|=xy\) for \(xy\gt0\) and \(|xy|=-xy\) for \(xy\lt0\).</li></ol></div></details></section>
+<section class="slide" data-title="AP-style free response: parameters and functions">
+<h1>AP-style free response: parameters and functions</h1>
+<div class="grid two">
+<div class="card dense">A curve is defined by \(x^2+ay^2+bxy=10\).<ol class="alpha"><li>Use \((1,2)\) on the curve to write one equation involving \(a,b\).</li><li>Use tangent slope \(-3\) at \((1,2)\) to write a second equation.</li><li>Find \(a\) and \(b\).</li><li>Find the tangent line at \((1,2)\).</li></ol></div>
+<div class="card dense">Let \(h(xy)=x^2+y^2\), where \(h\) is differentiable, \(h(1)=2\), and \(h'(1)=5\).<ol class="alpha"><li>Verify that \((1,1)\) satisfies the equation.</li><li>Differentiate the equation implicitly.</li><li>Find \(\frac{dy}{dx}\) at \((1,1)\).</li><li>Explain why the chain rule is necessary.</li></ol></div>
+</div>
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>\(1+4a+2b=10\) and \(-\frac{2+2b}{4a+b}=-3\), so \(a=-\frac14\), \(b=5\). Tangent: \(y-2=-3(x-1)\).</li><li>\(h(xy)=x^2+y^2\Rightarrow h'(xy)(xy'+y)=2x+2yy'\). At \((1,1)\), \(y'=-1\).</li></ol></div></details></section>
+<section class="slide" data-title="AP-style free response: singular points and identities">
+<h1>AP-style free response: singular points and identities</h1>
+<div class="grid two">
+<div class="card dense">A curve is defined by \((x^2+y^2)^2=4x^2y\).<ol class="alpha"><li>Show that direct substitution into the implicit derivative at \((0,0)\) gives an indeterminate form.</li><li>Let \(y=mx\) and substitute into the lowest-degree terms.</li><li>Find all possible tangent lines at the origin.</li><li>Explain why using only \(\frac{dy}{dx}\) directly at \((0,0)\) is not enough.</li></ol></div>
+<div class="card dense">Let \(xy=a\cos(kx)+b\sin(kx)\).<ol class="alpha"><li>Find \(\frac{dy}{dx}\).</li><li>Find \(\frac{d^2y}{dx^2}\).</li><li>Prove that \(x\frac{d^2y}{dx^2}+2\frac{dy}{dx}+k^2xy=0\).</li></ol></div>
+</div>
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>For \((x^2+y^2)^2=4x^2y\), lowest-degree analysis gives tangent lines \(x=0\) and \(y=0\).</li><li>For \(xy=a\cos(kx)+b\sin(kx)\), differentiating twice and substituting gives \(xy''+2y'+k^2xy=0\).</li></ol></div></details></section>
+<section class="slide" data-title="AP-style free response: general powers">
+<h1>AP-style free response: general powers</h1>
+<div class="grid two">
+<div class="card dense">Let \(y^n=\cos x\), where \(n\) is a positive constant.<ol class="alpha"><li>Find \(\frac{dy}{dx}\).</li><li>Find \(\frac{d^2y}{dx^2}\).</li><li>Prove that \(y\frac{d^2y}{dx^2}+(n-1)\left(\frac{dy}{dx}\right)^2+\frac{1}{n}y^2=0\).</li></ol></div>
+<div class="card dense">The curve \(C\) is defined by \(x^4+y^4=x^2y^2+x^5\).<ol class="alpha"><li>Explain why direct implicit differentiation at \((0,0)\) does not immediately give the tangent line.</li><li>Let \(y=mx\) and substitute into the lowest-degree terms.</li><li>Find all possible slopes of tangent lines at the origin.</li><li>Write the equations of the tangent lines.</li></ol></div>
+</div>
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>For \(y^n=\cos x\), differentiating twice gives \(y y''+(n-1)(y')^2+\frac1n y^2=0\).</li><li>For \(x^4+y^4=x^2y^2+x^5\), \(y=mx\) gives \(1+m^4=m^2\), which has no real slopes.</li></ol></div></details></section>
+<section class="slide" data-title="Exit ticket">
+<h1>Exit ticket</h1>
+<div class="grid two">
+<div class="card">Find \(\frac{dy}{dx}\):
+\[x^2+xy+y^2=9.\]</div><div class="card">Find the tangent line to
+\[x^2+y^2=10\]
+at \((1,3)\).</div>
+</div>
+
+<details class="answer"><summary>Solutions</summary><div><ol class="compact-list"><li>\(y'=-\frac{2x+y}{x+2y}\).</li><li>At \((1,3)\), \(y'=-\frac13\), so \(y-3=-\frac13(x-1)\).</li></ol></div></details></section></main>
+<footer class="foot">
+<div class="nav"><button class="secondary" id="prev">← Prev</button><button class="primary" id="next">Next →</button><button class="secondary" id="ans">Answers</button></div>
+<select id="jump"></select>
+</footer>
+</div>
+<script>
+const slides=[...document.querySelectorAll('.slide')];
+let index=0;
+const count=document.getElementById('count'),bar=document.getElementById('bar'),jump=document.getElementById('jump');
+slides.forEach((s,i)=>{const opt=document.createElement('option');opt.value=i;opt.textContent=(i+1)+'. '+(s.dataset.title||('Slide '+(i+1)));jump.appendChild(opt);});
+function show(i){index=Math.max(0,Math.min(slides.length-1,i));slides.forEach((s,j)=>s.classList.toggle('active',j===index));count.textContent=(index+1)+' / '+slides.length;bar.style.width=((index+1)/slides.length*100)+'%';jump.value=index;}
+document.getElementById('prev').onclick=()=>show(index-1);document.getElementById('next').onclick=()=>show(index+1);jump.onchange=e=>show(+e.target.value);
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')show(index+1);if(e.key==='ArrowLeft')show(index-1);});
+document.getElementById('ans').onclick=()=>{const panels=[...document.querySelectorAll('.slide.active details.answer')]; const openAll=panels.some(d=>!d.open); panels.forEach(d=>d.open=openAll);};
+window.addEventListener('load',()=>{
+  if(window.renderMathInElement){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"\\[",right:"\\]",display:true},{left:"\\(",right:"\\)",display:false}],throwOnError:false});}
+});
+show(0);
+</script>
+</body>
+</html>

@@ -1,30 +1,43 @@
-const CACHE = "echs-math-lessons-v2";
-const ASSETS = [
+const CACHE = "echs-math-shell-v4";
+const SHELL = [
   "./",
   "./index.html",
+  "./css/portal.css",
   "./data/courses.js",
+  "./data/ap-calculus-update.js",
   "./js/portal.js",
   "./assets/echs_logo.png",
   "./assets/icon-192.png",
-  "./assets/icon-512.png",
-  "./lessons/ap-calculus/1-1-introducing-calculus.html",
-  "./lessons/ap-calculus/1-2-understanding-limits-graphically.html",
-  "./lessons/ap-calculus/1-3-properties-of-limits.html",
-  "./lessons/ap-calculus/1-4-limits-of-composite-functions.html",
-  "./lessons/ap-precalculus/1-1-change-in-tandem.html",
-  "./lessons/ap-precalculus/1-2-rates-of-change.html"
+  "./assets/icon-512.png"
 ];
+
 self.addEventListener("install", event => {
-  event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(ASSETS)).then(()=>self.skipWaiting()));
+  event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(SHELL)).then(() => self.skipWaiting()));
 });
+
 self.addEventListener("activate", event => {
-  event.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()));
+  event.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(key => key !== CACHE).map(key => caches.delete(key)))).then(() => self.clients.claim()));
 });
+
 self.addEventListener("fetch", event => {
   if(event.request.method !== "GET") return;
-  event.respondWith(fetch(event.request).then(res => {
-    const copy = res.clone();
-    caches.open(CACHE).then(cache => cache.put(event.request, copy));
-    return res;
-  }).catch(() => caches.match(event.request).then(hit => hit || caches.match("./index.html"))));
+  const request = event.request;
+  if(request.mode === "navigate"){
+    event.respondWith(fetch(request).then(response => {
+      const copy = response.clone();
+      caches.open(CACHE).then(cache => cache.put(request, copy));
+      return response;
+    }).catch(() => caches.match(request).then(hit => hit || caches.match("./index.html"))));
+    return;
+  }
+  event.respondWith(caches.match(request).then(cached => {
+    const network = fetch(request).then(response => {
+      if(response.ok){
+        const copy = response.clone();
+        caches.open(CACHE).then(cache => cache.put(request, copy));
+      }
+      return response;
+    }).catch(() => cached);
+    return cached || network;
+  }));
 });
