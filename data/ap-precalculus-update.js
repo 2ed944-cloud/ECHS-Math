@@ -25,9 +25,21 @@
         "Determine domain, range, images, and preimages in context."
       ],
       "resources": [
-        "Interactive lesson: Complete multi-day module",
-        "Practice Studio: 80 leveled questions",
-        "AP Exam Room: 10 MCQ and 2 FRQ"
+        {
+          "label": "Complete interactive lesson",
+          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.1_Change_in_Tandem_ECHS_Refined.html",
+          "type": "resource"
+        },
+        {
+          "label": "80-question Practice Studio included",
+          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.1_Change_in_Tandem_ECHS_Refined.html",
+          "type": "practice"
+        },
+        {
+          "label": "AP Exam Room and timed quiz included",
+          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.1_Change_in_Tandem_ECHS_Refined.html",
+          "type": "document"
+        }
       ],
       "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.1_Change_in_Tandem_ECHS_Refined.html",
       "status": "ready",
@@ -52,9 +64,21 @@
         "Describe how two quantities vary together over intervals."
       ],
       "resources": [
-        "Interactive lesson: Complete multi-day module",
-        "Practice Studio: 80 leveled questions",
-        "AP Exam Room: 10 MCQ and 2 FRQ"
+        {
+          "label": "Complete interactive lesson",
+          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.2_Rates_of_Change_ECHS_Refined.html",
+          "type": "resource"
+        },
+        {
+          "label": "80-question Practice Studio included",
+          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.2_Rates_of_Change_ECHS_Refined.html",
+          "type": "practice"
+        },
+        {
+          "label": "AP Exam Room and timed quiz included",
+          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.2_Rates_of_Change_ECHS_Refined.html",
+          "type": "document"
+        }
       ],
       "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.2_Rates_of_Change_ECHS_Refined.html",
       "status": "ready",
@@ -79,9 +103,21 @@
         "Connect rate patterns to increasing, decreasing, and concavity behavior."
       ],
       "resources": [
-        "Interactive lesson: Complete multi-day module",
-        "Practice Studio: 80 leveled questions",
-        "AP Exam Room: 10 MCQ and 2 FRQ"
+        {
+          "label": "Complete interactive lesson",
+          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.3_Rates_of_Change_in_Linear_and_Quadratic_Functions_ECHS_Refined.html",
+          "type": "resource"
+        },
+        {
+          "label": "80-question Practice Studio included",
+          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.3_Rates_of_Change_in_Linear_and_Quadratic_Functions_ECHS_Refined.html",
+          "type": "practice"
+        },
+        {
+          "label": "AP Exam Room and timed quiz included",
+          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.3_Rates_of_Change_in_Linear_and_Quadratic_Functions_ECHS_Refined.html",
+          "type": "document"
+        }
       ],
       "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.3_Rates_of_Change_in_Linear_and_Quadratic_Functions_ECHS_Refined.html",
       "status": "ready",
@@ -110,9 +146,21 @@
         "Interpret changing rates of change in polynomial models."
       ],
       "resources": [
-        "Interactive lesson: Complete multi-day module",
-        "Practice Studio: 80 leveled questions",
-        "AP Exam Room: 10 MCQ and 2 FRQ"
+        {
+          "label": "Complete interactive lesson",
+          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.4_Polynomial_Functions_and_Rates_of_Change_ECHS_Refined.html",
+          "type": "resource"
+        },
+        {
+          "label": "80-question Practice Studio included",
+          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.4_Polynomial_Functions_and_Rates_of_Change_ECHS_Refined.html",
+          "type": "practice"
+        },
+        {
+          "label": "AP Exam Room and timed quiz included",
+          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.4_Polynomial_Functions_and_Rates_of_Change_ECHS_Refined.html",
+          "type": "document"
+        }
       ],
       "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.4_Polynomial_Functions_and_Rates_of_Change_ECHS_Refined.html",
       "status": "ready",
@@ -138,9 +186,21 @@
         "Use zeros and multiplicities to analyze polynomial graphs."
       ],
       "resources": [
-        "Interactive lesson: Complete multi-day module",
-        "Practice Studio: 80 leveled questions",
-        "AP Exam Room: 10 MCQ and 2 FRQ"
+        {
+          "label": "Complete interactive lesson",
+          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.5_Polynomial_Functions_and_Complex_Zeros_ECHS_Refined.html",
+          "type": "resource"
+        },
+        {
+          "label": "80-question Practice Studio included",
+          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.5_Polynomial_Functions_and_Complex_Zeros_ECHS_Refined.html",
+          "type": "practice"
+        },
+        {
+          "label": "AP Exam Room and timed quiz included",
+          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.5_Polynomial_Functions_and_Complex_Zeros_ECHS_Refined.html",
+          "type": "document"
+        }
       ],
       "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.5_Polynomial_Functions_and_Complex_Zeros_ECHS_Refined.html",
       "status": "ready",
@@ -165,9 +225,21 @@
         "Use polynomial structure to justify asymptotic conclusions."
       ],
       "resources": [
-        "Interactive lesson: Complete multi-day module",
-        "Practice Studio: 80 leveled questions",
-        "AP Exam Room: 10 MCQ and 2 FRQ"
+        {
+          "label": "Complete interactive lesson",
+          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.6_Polynomial_Functions_and_End_Behavior_ECHS_Refined.html",
+          "type": "resource"
+        },
+        {
+          "label": "80-question Practice Studio included",
+          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.6_Polynomial_Functions_and_End_Behavior_ECHS_Refined.html",
+          "type": "practice"
+        },
+        {
+          "label": "AP Exam Room and timed quiz included",
+          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.6_Polynomial_Functions_and_End_Behavior_ECHS_Refined.html",
+          "type": "document"
+        }
       ],
       "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.6_Polynomial_Functions_and_End_Behavior_ECHS_Refined.html",
       "status": "ready",
@@ -192,9 +264,21 @@
         "Interpret long-run behavior in context."
       ],
       "resources": [
-        "Interactive lesson: Complete multi-day module",
-        "Practice Studio: 80 leveled questions",
-        "AP Exam Room: 10 MCQ and 2 FRQ"
+        {
+          "label": "Complete interactive lesson",
+          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.7_Rational_Functions_and_End_Behavior_ECHS_Refined.html",
+          "type": "resource"
+        },
+        {
+          "label": "80-question Practice Studio included",
+          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.7_Rational_Functions_and_End_Behavior_ECHS_Refined.html",
+          "type": "practice"
+        },
+        {
+          "label": "AP Exam Room and timed quiz included",
+          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.7_Rational_Functions_and_End_Behavior_ECHS_Refined.html",
+          "type": "document"
+        }
       ],
       "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.7_Rational_Functions_and_End_Behavior_ECHS_Refined.html",
       "status": "ready",
@@ -219,9 +303,21 @@
         "Analyze rational functions across representations."
       ],
       "resources": [
-        "Interactive lesson: Complete multi-day module",
-        "Practice Studio: 80 leveled questions",
-        "AP Exam Room: 10 MCQ and 2 FRQ"
+        {
+          "label": "Complete interactive lesson",
+          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.8_Rational_Functions_and_Zeros_ECHS_Refined.html",
+          "type": "resource"
+        },
+        {
+          "label": "80-question Practice Studio included",
+          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.8_Rational_Functions_and_Zeros_ECHS_Refined.html",
+          "type": "practice"
+        },
+        {
+          "label": "AP Exam Room and timed quiz included",
+          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.8_Rational_Functions_and_Zeros_ECHS_Refined.html",
+          "type": "document"
+        }
       ],
       "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.8_Rational_Functions_and_Zeros_ECHS_Refined.html",
       "status": "ready",
@@ -245,9 +341,21 @@
         "Connect denominator factors to graphical behavior."
       ],
       "resources": [
-        "Interactive lesson: Complete multi-day module",
-        "Practice Studio: 80 leveled questions",
-        "AP Exam Room: 10 MCQ and 2 FRQ"
+        {
+          "label": "Complete interactive lesson",
+          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.9_Rational_Functions_and_Vertical_Asymptotes_ECHS_Refined.html",
+          "type": "resource"
+        },
+        {
+          "label": "80-question Practice Studio included",
+          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.9_Rational_Functions_and_Vertical_Asymptotes_ECHS_Refined.html",
+          "type": "practice"
+        },
+        {
+          "label": "AP Exam Room and timed quiz included",
+          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.9_Rational_Functions_and_Vertical_Asymptotes_ECHS_Refined.html",
+          "type": "document"
+        }
       ],
       "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.9_Rational_Functions_and_Vertical_Asymptotes_ECHS_Refined.html",
       "status": "ready",
@@ -272,9 +380,21 @@
         "Use equivalent forms while preserving domain restrictions."
       ],
       "resources": [
-        "Interactive lesson: Complete multi-day module",
-        "Practice Studio: 80 leveled questions",
-        "AP Exam Room: 10 MCQ and 2 FRQ"
+        {
+          "label": "Complete interactive lesson",
+          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.10_Rational_Functions_and_Holes_ECHS_Refined.html",
+          "type": "resource"
+        },
+        {
+          "label": "80-question Practice Studio included",
+          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.10_Rational_Functions_and_Holes_ECHS_Refined.html",
+          "type": "practice"
+        },
+        {
+          "label": "AP Exam Room and timed quiz included",
+          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.10_Rational_Functions_and_Holes_ECHS_Refined.html",
+          "type": "document"
+        }
       ],
       "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.10_Rational_Functions_and_Holes_ECHS_Refined.html",
       "status": "ready",
@@ -298,9 +418,21 @@
         "Justify equivalence while tracking domain restrictions."
       ],
       "resources": [
-        "Interactive lesson: Complete multi-day module",
-        "Practice Studio: 80 leveled questions",
-        "AP Exam Room: 10 MCQ and 2 FRQ"
+        {
+          "label": "Complete interactive lesson",
+          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.11_Equivalent_Representations_of_Polynomial_and_Rational_Expressions_ECHS_Refined.html",
+          "type": "resource"
+        },
+        {
+          "label": "80-question Practice Studio included",
+          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.11_Equivalent_Representations_of_Polynomial_and_Rational_Expressions_ECHS_Refined.html",
+          "type": "practice"
+        },
+        {
+          "label": "AP Exam Room and timed quiz included",
+          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.11_Equivalent_Representations_of_Polynomial_and_Rational_Expressions_ECHS_Refined.html",
+          "type": "document"
+        }
       ],
       "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.11_Equivalent_Representations_of_Polynomial_and_Rational_Expressions_ECHS_Refined.html",
       "status": "ready",
@@ -327,9 +459,21 @@
         "Connect algebraic transformations to graphical changes."
       ],
       "resources": [
-        "Interactive lesson: Complete multi-day module",
-        "Practice Studio: 80 leveled questions",
-        "AP Exam Room: 10 MCQ and 2 FRQ"
+        {
+          "label": "Complete interactive lesson",
+          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.12_Transformations_of_Functions_ECHS_Refined.html",
+          "type": "resource"
+        },
+        {
+          "label": "80-question Practice Studio included",
+          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.12_Transformations_of_Functions_ECHS_Refined.html",
+          "type": "practice"
+        },
+        {
+          "label": "AP Exam Room and timed quiz included",
+          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.12_Transformations_of_Functions_ECHS_Refined.html",
+          "type": "document"
+        }
       ],
       "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.12_Transformations_of_Functions_ECHS_Refined.html",
       "status": "ready",
@@ -353,9 +497,21 @@
         "Compare model suitability using rates, residual behavior, and structural evidence."
       ],
       "resources": [
-        "Interactive lesson: Complete multi-day module",
-        "Practice Studio: 80 leveled questions",
-        "AP Exam Room: 10 MCQ and 2 FRQ"
+        {
+          "label": "Complete interactive lesson",
+          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.13_Function_Model_Selection_and_Assumption_Articulation_ECHS_Refined.html",
+          "type": "resource"
+        },
+        {
+          "label": "80-question Practice Studio included",
+          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.13_Function_Model_Selection_and_Assumption_Articulation_ECHS_Refined.html",
+          "type": "practice"
+        },
+        {
+          "label": "AP Exam Room and timed quiz included",
+          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.13_Function_Model_Selection_and_Assumption_Articulation_ECHS_Refined.html",
+          "type": "document"
+        }
       ],
       "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.13_Function_Model_Selection_and_Assumption_Articulation_ECHS_Refined.html",
       "status": "ready",
@@ -383,9 +539,21 @@
         "Interpret values, rates, and changing rates in context."
       ],
       "resources": [
-        "Interactive lesson: Complete multi-day module",
-        "Practice Studio: 80 leveled questions",
-        "AP Exam Room: 10 MCQ and 2 FRQ"
+        {
+          "label": "Complete interactive lesson",
+          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.14_Function_Model_Construction_and_Application_ECHS_Refined.html",
+          "type": "resource"
+        },
+        {
+          "label": "80-question Practice Studio included",
+          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.14_Function_Model_Construction_and_Application_ECHS_Refined.html",
+          "type": "practice"
+        },
+        {
+          "label": "AP Exam Room and timed quiz included",
+          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.14_Function_Model_Construction_and_Application_ECHS_Refined.html",
+          "type": "document"
+        }
       ],
       "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.14_Function_Model_Construction_and_Application_ECHS_Refined.html",
       "status": "ready",
@@ -408,12 +576,655 @@
   "portalSummary": "14 complete interactive Pearson-aligned lessons"
 };
 
+  var unitTwo = {
+  "title": "Unit 2: Exponential and Logarithmic Functions",
+  "description": "Fifteen complete AP Precalculus modules covering arithmetic and geometric sequences; linear and exponential change; exponential structure, manipulation, modeling, and model validation; composition and inverse functions; logarithmic expressions and functions; exponential and logarithmic equations, inequalities, contextual modeling, and semi-log plots. Each lesson includes a two-day Core AP route, optional extension, interactive explorations, leveled practice, AP-style assessment, and a timed quiz.",
+  "essential_questions": [
+    "How do additive and multiplicative patterns distinguish arithmetic, geometric, linear, and exponential change?",
+    "How can equivalent exponential and logarithmic forms reveal structure and support efficient reasoning?",
+    "How do composition and inverse functions connect exponential and logarithmic relationships?",
+    "How can exponential and logarithmic models be constructed, validated, interpreted, and limited in context?",
+    "How do semi-log plots linearize exponential data and reveal model parameters?"
+  ],
+  "lessons": [
+    {
+      "number": "15",
+      "title": "2.1 Change in Arithmetic and Geometric Sequences",
+      "outcomes": [
+        "2.1.A Describe how arithmetic-sequence terms change by equal additions.",
+        "2.1.B Describe how geometric-sequence terms change by equal multiplications.",
+        "Represent sequences recursively, explicitly, numerically, graphically, and contextually.",
+        "Use precise notation, show evidence, retain restrictions, and interpret results with units."
+      ],
+      "resources": [
+        {
+          "label": "Complete interactive lesson",
+          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.1_Change_in_Arithmetic_and_Geometric_Sequences_ECHS_Refined.html",
+          "type": "resource"
+        },
+        {
+          "label": "80-question Practice Studio included",
+          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.1_Change_in_Arithmetic_and_Geometric_Sequences_ECHS_Refined.html",
+          "type": "practice"
+        },
+        {
+          "label": "AP Exam Room and timed quiz included",
+          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.1_Change_in_Arithmetic_and_Geometric_Sequences_ECHS_Refined.html",
+          "type": "document"
+        }
+      ],
+      "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.1_Change_in_Arithmetic_and_Geometric_Sequences_ECHS_Refined.html",
+      "status": "ready",
+      "new": true,
+      "keywords": [
+        "2.1",
+        "change",
+        "in",
+        "arithmetic",
+        "and",
+        "geometric",
+        "sequences",
+        "ap",
+        "precalculus",
+        "exponential",
+        "logarithmic",
+        "functions"
+      ]
+    },
+    {
+      "number": "16",
+      "title": "2.2 Change in Linear and Exponential Functions",
+      "outcomes": [
+        "2.2.A Describe similarities and differences between linear and exponential change.",
+        "2.2.B Construct linear and exponential functions from two values or from rates.",
+        "Interpret additive and proportional change across discrete and continuous domains.",
+        "Use precise notation, show evidence, retain restrictions, and interpret results with units."
+      ],
+      "resources": [
+        {
+          "label": "Complete interactive lesson",
+          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.2_Change_in_Linear_and_Exponential_Functions_ECHS_Refined.html",
+          "type": "resource"
+        },
+        {
+          "label": "80-question Practice Studio included",
+          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.2_Change_in_Linear_and_Exponential_Functions_ECHS_Refined.html",
+          "type": "practice"
+        },
+        {
+          "label": "AP Exam Room and timed quiz included",
+          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.2_Change_in_Linear_and_Exponential_Functions_ECHS_Refined.html",
+          "type": "document"
+        }
+      ],
+      "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.2_Change_in_Linear_and_Exponential_Functions_ECHS_Refined.html",
+      "status": "ready",
+      "new": true,
+      "keywords": [
+        "2.2",
+        "change",
+        "in",
+        "linear",
+        "and",
+        "exponential",
+        "functions",
+        "ap",
+        "precalculus",
+        "logarithmic"
+      ]
+    },
+    {
+      "number": "17",
+      "title": "2.3 Exponential Functions",
+      "outcomes": [
+        "2.3.A Describe exponential-function structure, domain, range, monotonicity, concavity, and end behavior.",
+        "2.3.B Connect proportional change over equal intervals to exponential formulas.",
+        "Analyze shifted, reflected, and scaled exponential graphs with precise asymptotic language.",
+        "Use precise notation, show evidence, retain restrictions, and interpret results with units."
+      ],
+      "resources": [
+        {
+          "label": "Complete interactive lesson",
+          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.3_Exponential_Functions_ECHS_Refined.html",
+          "type": "resource"
+        },
+        {
+          "label": "80-question Practice Studio included",
+          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.3_Exponential_Functions_ECHS_Refined.html",
+          "type": "practice"
+        },
+        {
+          "label": "AP Exam Room and timed quiz included",
+          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.3_Exponential_Functions_ECHS_Refined.html",
+          "type": "document"
+        }
+      ],
+      "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.3_Exponential_Functions_ECHS_Refined.html",
+      "status": "ready",
+      "new": true,
+      "keywords": [
+        "2.3",
+        "exponential",
+        "functions",
+        "ap",
+        "precalculus",
+        "logarithmic"
+      ]
+    },
+    {
+      "number": "18",
+      "title": "2.4 Exponential Function Manipulation",
+      "outcomes": [
+        "2.4.A Rewrite exponential expressions using exponent properties.",
+        "2.4.B Explain graphical equivalences produced by horizontal shifts and scalings.",
+        "Connect rational exponents, roots, and equivalent time scales.",
+        "Use precise notation, show evidence, retain restrictions, and interpret results with units."
+      ],
+      "resources": [
+        {
+          "label": "Complete interactive lesson",
+          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.4_Exponential_Function_Manipulation_ECHS_Refined.html",
+          "type": "resource"
+        },
+        {
+          "label": "80-question Practice Studio included",
+          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.4_Exponential_Function_Manipulation_ECHS_Refined.html",
+          "type": "practice"
+        },
+        {
+          "label": "AP Exam Room and timed quiz included",
+          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.4_Exponential_Function_Manipulation_ECHS_Refined.html",
+          "type": "document"
+        }
+      ],
+      "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.4_Exponential_Function_Manipulation_ECHS_Refined.html",
+      "status": "ready",
+      "new": true,
+      "keywords": [
+        "2.4",
+        "exponential",
+        "function",
+        "manipulation",
+        "ap",
+        "precalculus",
+        "logarithmic",
+        "functions"
+      ]
+    },
+    {
+      "number": "19",
+      "title": "2.5 Exponential Function Context and Data Modeling",
+      "outcomes": [
+        "2.5.A Construct exponential models from rates, two points, transformations, or regression.",
+        "2.5.B Apply exponential models to predict dependent and independent variables.",
+        "Interpret growth factors, percent change, equivalent time scales, and limitations with units.",
+        "Use precise notation, show evidence, retain restrictions, and interpret results with units."
+      ],
+      "resources": [
+        {
+          "label": "Complete interactive lesson",
+          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.5_Exponential_Function_Context_and_Data_Modeling_ECHS_Refined.html",
+          "type": "resource"
+        },
+        {
+          "label": "80-question Practice Studio included",
+          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.5_Exponential_Function_Context_and_Data_Modeling_ECHS_Refined.html",
+          "type": "practice"
+        },
+        {
+          "label": "AP Exam Room and timed quiz included",
+          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.5_Exponential_Function_Context_and_Data_Modeling_ECHS_Refined.html",
+          "type": "document"
+        }
+      ],
+      "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.5_Exponential_Function_Context_and_Data_Modeling_ECHS_Refined.html",
+      "status": "ready",
+      "new": true,
+      "keywords": [
+        "2.5",
+        "exponential",
+        "function",
+        "context",
+        "and",
+        "data",
+        "modeling",
+        "ap",
+        "precalculus",
+        "logarithmic",
+        "functions"
+      ]
+    },
+    {
+      "number": "20",
+      "title": "2.6 Competing Function Model Validation",
+      "outcomes": [
+        "2.6.A Select plausible linear, quadratic, and exponential models from patterns and context.",
+        "2.6.B Compare model errors using signed and absolute residuals.",
+        "2.6.C Validate a model and articulate consequences of over- and underprediction.",
+        "Use precise notation, show evidence, retain restrictions, and interpret results with units."
+      ],
+      "resources": [
+        {
+          "label": "Complete interactive lesson",
+          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.6_Competing_Function_Model_Validation_ECHS_Refined.html",
+          "type": "resource"
+        },
+        {
+          "label": "80-question Practice Studio included",
+          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.6_Competing_Function_Model_Validation_ECHS_Refined.html",
+          "type": "practice"
+        },
+        {
+          "label": "AP Exam Room and timed quiz included",
+          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.6_Competing_Function_Model_Validation_ECHS_Refined.html",
+          "type": "document"
+        }
+      ],
+      "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.6_Competing_Function_Model_Validation_ECHS_Refined.html",
+      "status": "ready",
+      "new": true,
+      "keywords": [
+        "2.6",
+        "competing",
+        "function",
+        "model",
+        "validation",
+        "ap",
+        "precalculus",
+        "exponential",
+        "logarithmic",
+        "functions"
+      ]
+    },
+    {
+      "number": "21",
+      "title": "2.7 Composition of Functions",
+      "outcomes": [
+        "2.7.A Evaluate compositions from formulas, tables, graphs, and contexts.",
+        "2.7.B Determine composition domains and explain noncommutativity.",
+        "2.7.C Construct, represent, and decompose composite functions.",
+        "Use precise notation, show evidence, retain restrictions, and interpret results with units."
+      ],
+      "resources": [
+        {
+          "label": "Complete interactive lesson",
+          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.7_Composition_of_Functions_ECHS_Refined.html",
+          "type": "resource"
+        },
+        {
+          "label": "80-question Practice Studio included",
+          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.7_Composition_of_Functions_ECHS_Refined.html",
+          "type": "practice"
+        },
+        {
+          "label": "AP Exam Room and timed quiz included",
+          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.7_Composition_of_Functions_ECHS_Refined.html",
+          "type": "document"
+        }
+      ],
+      "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.7_Composition_of_Functions_ECHS_Refined.html",
+      "status": "ready",
+      "new": true,
+      "keywords": [
+        "2.7",
+        "composition",
+        "of",
+        "functions",
+        "ap",
+        "precalculus",
+        "exponential",
+        "logarithmic"
+      ]
+    },
+    {
+      "number": "22",
+      "title": "2.8 Inverse Functions",
+      "outcomes": [
+        "2.8.A Determine whether a function is invertible on a stated domain.",
+        "2.8.B Construct and verify inverse functions algebraically and graphically.",
+        "2.8.C Interpret inverse functions and restrictions in context.",
+        "Use precise notation, show evidence, retain restrictions, and interpret results with units."
+      ],
+      "resources": [
+        {
+          "label": "Complete interactive lesson",
+          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.8_Inverse_Functions_ECHS_Refined.html",
+          "type": "resource"
+        },
+        {
+          "label": "80-question Practice Studio included",
+          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.8_Inverse_Functions_ECHS_Refined.html",
+          "type": "practice"
+        },
+        {
+          "label": "AP Exam Room and timed quiz included",
+          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.8_Inverse_Functions_ECHS_Refined.html",
+          "type": "document"
+        }
+      ],
+      "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.8_Inverse_Functions_ECHS_Refined.html",
+      "status": "ready",
+      "new": true,
+      "keywords": [
+        "2.8",
+        "inverse",
+        "functions",
+        "ap",
+        "precalculus",
+        "exponential",
+        "logarithmic"
+      ]
+    },
+    {
+      "number": "23",
+      "title": "2.9 Logarithmic Expressions",
+      "outcomes": [
+        "2.9.A Evaluate logarithmic expressions by translating to exponential form.",
+        "2.9.B Use technology to approximate common, natural, and arbitrary-base logarithms.",
+        "Interpret logarithms in scientific and contextual scales.",
+        "Use precise notation, show evidence, retain restrictions, and interpret results with units."
+      ],
+      "resources": [
+        {
+          "label": "Complete interactive lesson",
+          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.9_Logarithmic_Expressions_ECHS_Refined.html",
+          "type": "resource"
+        },
+        {
+          "label": "80-question Practice Studio included",
+          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.9_Logarithmic_Expressions_ECHS_Refined.html",
+          "type": "practice"
+        },
+        {
+          "label": "AP Exam Room and timed quiz included",
+          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.9_Logarithmic_Expressions_ECHS_Refined.html",
+          "type": "document"
+        }
+      ],
+      "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.9_Logarithmic_Expressions_ECHS_Refined.html",
+      "status": "ready",
+      "new": true,
+      "keywords": [
+        "2.9",
+        "logarithmic",
+        "expressions",
+        "ap",
+        "precalculus",
+        "exponential",
+        "functions"
+      ]
+    },
+    {
+      "number": "24",
+      "title": "2.10 Inverses of Exponential Functions",
+      "outcomes": [
+        "2.10.A Explain logarithms as inverses of exponential functions.",
+        "2.10.B Connect inverse pairs through compositions, points, graphs, domains, and ranges.",
+        "Construct inverses of basic and transformed exponential functions.",
+        "Use precise notation, show evidence, retain restrictions, and interpret results with units."
+      ],
+      "resources": [
+        {
+          "label": "Complete interactive lesson",
+          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.10_Inverses_of_Exponential_Functions_ECHS_Refined.html",
+          "type": "resource"
+        },
+        {
+          "label": "80-question Practice Studio included",
+          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.10_Inverses_of_Exponential_Functions_ECHS_Refined.html",
+          "type": "practice"
+        },
+        {
+          "label": "AP Exam Room and timed quiz included",
+          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.10_Inverses_of_Exponential_Functions_ECHS_Refined.html",
+          "type": "document"
+        }
+      ],
+      "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.10_Inverses_of_Exponential_Functions_ECHS_Refined.html",
+      "status": "ready",
+      "new": true,
+      "keywords": [
+        "2.10",
+        "inverses",
+        "of",
+        "exponential",
+        "functions",
+        "ap",
+        "precalculus",
+        "logarithmic"
+      ]
+    },
+    {
+      "number": "25",
+      "title": "2.11 Logarithmic Functions",
+      "outcomes": [
+        "2.11.A Describe logarithmic domain, range, asymptotes, monotonicity, concavity, and end behavior.",
+        "2.11.B Connect equal multiplicative input changes to equal additive output changes.",
+        "Analyze transformed logarithmic functions and interpret their restrictions.",
+        "Use precise notation, show evidence, retain restrictions, and interpret results with units."
+      ],
+      "resources": [
+        {
+          "label": "Complete interactive lesson",
+          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.11_Logarithmic_Functions_ECHS_Refined.html",
+          "type": "resource"
+        },
+        {
+          "label": "80-question Practice Studio included",
+          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.11_Logarithmic_Functions_ECHS_Refined.html",
+          "type": "practice"
+        },
+        {
+          "label": "AP Exam Room and timed quiz included",
+          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.11_Logarithmic_Functions_ECHS_Refined.html",
+          "type": "document"
+        }
+      ],
+      "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.11_Logarithmic_Functions_ECHS_Refined.html",
+      "status": "ready",
+      "new": true,
+      "keywords": [
+        "2.11",
+        "logarithmic",
+        "functions",
+        "ap",
+        "precalculus",
+        "exponential"
+      ]
+    },
+    {
+      "number": "26",
+      "title": "2.12 Logarithmic Function Manipulation",
+      "outcomes": [
+        "2.12.A Rewrite logarithmic expressions using product, quotient, and power properties.",
+        "2.12.B Use change of base and natural logarithms to evaluate and compare logs.",
+        "2.12.C Explain graphical equivalences created by input scaling and powers.",
+        "Use precise notation, show evidence, retain restrictions, and interpret results with units."
+      ],
+      "resources": [
+        {
+          "label": "Complete interactive lesson",
+          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.12_Logarithmic_Function_Manipulation_ECHS_Refined.html",
+          "type": "resource"
+        },
+        {
+          "label": "80-question Practice Studio included",
+          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.12_Logarithmic_Function_Manipulation_ECHS_Refined.html",
+          "type": "practice"
+        },
+        {
+          "label": "AP Exam Room and timed quiz included",
+          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.12_Logarithmic_Function_Manipulation_ECHS_Refined.html",
+          "type": "document"
+        }
+      ],
+      "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.12_Logarithmic_Function_Manipulation_ECHS_Refined.html",
+      "status": "ready",
+      "new": true,
+      "keywords": [
+        "2.12",
+        "logarithmic",
+        "function",
+        "manipulation",
+        "ap",
+        "precalculus",
+        "exponential",
+        "functions"
+      ]
+    },
+    {
+      "number": "27",
+      "title": "2.13 Exponential and Logarithmic Equations and Inequalities",
+      "outcomes": [
+        "2.13.A Solve exponential equations and inequalities exactly or approximately.",
+        "2.13.B Solve logarithmic equations and inequalities while rejecting invalid solutions.",
+        "2.13.C Construct inverses of transformed exponential/logarithmic functions and interpret contextual solutions.",
+        "Use precise notation, show evidence, retain restrictions, and interpret results with units."
+      ],
+      "resources": [
+        {
+          "label": "Complete interactive lesson",
+          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.13_Exponential_and_Logarithmic_Equations_and_Inequalities_ECHS_Refined.html",
+          "type": "resource"
+        },
+        {
+          "label": "80-question Practice Studio included",
+          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.13_Exponential_and_Logarithmic_Equations_and_Inequalities_ECHS_Refined.html",
+          "type": "practice"
+        },
+        {
+          "label": "AP Exam Room and timed quiz included",
+          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.13_Exponential_and_Logarithmic_Equations_and_Inequalities_ECHS_Refined.html",
+          "type": "document"
+        }
+      ],
+      "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.13_Exponential_and_Logarithmic_Equations_and_Inequalities_ECHS_Refined.html",
+      "status": "ready",
+      "new": true,
+      "keywords": [
+        "2.13",
+        "exponential",
+        "and",
+        "logarithmic",
+        "equations",
+        "inequalities",
+        "ap",
+        "precalculus",
+        "functions"
+      ]
+    },
+    {
+      "number": "28",
+      "title": "2.14 Logarithmic Function Context and Data Modeling",
+      "outcomes": [
+        "2.14.A Construct logarithmic models from proportional input change, two points, transformations, or regression.",
+        "2.14.B Apply logarithmic models to predict dependent or independent variables.",
+        "Interpret domains, units, scale meaning, and limitations.",
+        "Use precise notation, show evidence, retain restrictions, and interpret results with units."
+      ],
+      "resources": [
+        {
+          "label": "Complete interactive lesson",
+          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.14_Logarithmic_Function_Context_and_Data_Modeling_ECHS_Refined.html",
+          "type": "resource"
+        },
+        {
+          "label": "80-question Practice Studio included",
+          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.14_Logarithmic_Function_Context_and_Data_Modeling_ECHS_Refined.html",
+          "type": "practice"
+        },
+        {
+          "label": "AP Exam Room and timed quiz included",
+          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.14_Logarithmic_Function_Context_and_Data_Modeling_ECHS_Refined.html",
+          "type": "document"
+        }
+      ],
+      "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.14_Logarithmic_Function_Context_and_Data_Modeling_ECHS_Refined.html",
+      "status": "ready",
+      "new": true,
+      "keywords": [
+        "2.14",
+        "logarithmic",
+        "function",
+        "context",
+        "and",
+        "data",
+        "modeling",
+        "ap",
+        "precalculus",
+        "exponential",
+        "functions"
+      ]
+    },
+    {
+      "number": "29",
+      "title": "2.15 Semi-log Plots",
+      "outcomes": [
+        "2.15.A Interpret semi-log plots with a logarithmically scaled output axis.",
+        "2.15.B Use linearity on a semi-log plot to identify and construct exponential models.",
+        "2.15.C Explain how shifts, bases, slope, and intercept affect linearization and model limitations.",
+        "Use precise notation, show evidence, retain restrictions, and interpret results with units."
+      ],
+      "resources": [
+        {
+          "label": "Complete interactive lesson",
+          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.15_Semi_log_Plots_ECHS_Refined.html",
+          "type": "resource"
+        },
+        {
+          "label": "80-question Practice Studio included",
+          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.15_Semi_log_Plots_ECHS_Refined.html",
+          "type": "practice"
+        },
+        {
+          "label": "AP Exam Room and timed quiz included",
+          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.15_Semi_log_Plots_ECHS_Refined.html",
+          "type": "document"
+        }
+      ],
+      "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.15_Semi_log_Plots_ECHS_Refined.html",
+      "status": "ready",
+      "new": true,
+      "keywords": [
+        "2.15",
+        "semi",
+        "log",
+        "plots",
+        "ap",
+        "precalculus",
+        "exponential",
+        "logarithmic",
+        "functions"
+      ]
+    }
+  ],
+  "refreshed": true,
+  "portalSummary": "15 complete interactive Pearson-aligned lessons"
+};
+
   function normalize(value) {
     return String(value || "")
       .toLowerCase()
       .replace(/[–—−]/g, "-")
       .replace(/\s+/g, " ")
       .trim();
+  }
+
+  function findUnitIndex(units, unitNumber) {
+    var pattern = new RegExp("^unit\\s*" + unitNumber + "(?:\\s*:|\\b)", "i");
+    return units.findIndex(function (unit) {
+      return pattern.test(String(unit && unit.title || "").trim());
+    });
+  }
+
+  function replaceOrInsertUnit(course, unitNumber, unitData) {
+    var index = findUnitIndex(course.units, unitNumber);
+    if (index >= 0) {
+      course.units[index] = unitData;
+      return;
+    }
+    var insertionIndex = Math.max(0, Math.min(unitNumber - 1, course.units.length));
+    course.units.splice(insertionIndex, 0, unitData);
   }
 
   var courseIndex = window.ECHS_COURSES.findIndex(function (item) {
@@ -445,17 +1256,10 @@
       targetCourse.units = [];
     }
 
-    var unitIndex = targetCourse.units.findIndex(function (unit) {
-      return /^unit\s*1(?:\s*:|\b)/i.test(String(unit && unit.title || "").trim());
-    });
+    replaceOrInsertUnit(targetCourse, 1, unitOne);
+    replaceOrInsertUnit(targetCourse, 2, unitTwo);
 
-    if (unitIndex >= 0) {
-      targetCourse.units[unitIndex] = unitOne;
-    } else {
-      targetCourse.units.unshift(unitOne);
-    }
-
-    targetCourse.updatedUnits = "Unit 1 · 14 interactive lessons";
+    targetCourse.updatedUnits = "Units 1–2 · 29 interactive lessons";
     targetCourse.unitCount = targetCourse.units.length;
     targetCourse.lessonCount = targetCourse.units.reduce(function (total, unit) {
       return total + (Array.isArray(unit && unit.lessons) ? unit.lessons.length : 0);
@@ -473,10 +1277,10 @@
       priority: 2,
       color: "teal",
       sourceNote: "Pearson-aligned ECHS AP Precalculus lessons.",
-      updatedUnits: "Unit 1 · 14 interactive lessons",
-      lessonCount: unitOne.lessons.length,
-      unitCount: 1,
-      units: [unitOne]
+      updatedUnits: "Units 1–2 · 29 interactive lessons",
+      lessonCount: unitOne.lessons.length + unitTwo.lessons.length,
+      unitCount: 2,
+      units: [unitOne, unitTwo]
     });
   }
 })();
