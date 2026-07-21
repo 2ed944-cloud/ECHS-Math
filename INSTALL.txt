@@ -1,13 +1,16 @@
-ECHS Math AP Precalculus Unit 1 Patch
+AP PRECALCULUS UNIT 1 HOTFIX
 
-Upload/merge the contents of this folder into the ROOT of the ECHS-Math repository.
+Cause fixed:
+The earlier script searched for "G10–11 AP Precalculus" instead of the portal's actual course "G10–G11 AP Precalculus". This created a blank fifth course.
 
-Files added:
-- data/ap-precalculus-update.js
-- lessons/ap-precalculus/unit-1/index.html
-- lessons/ap-precalculus/unit-1/AP_Precalculus_1.1...1.14 HTML files
+UPLOAD THESE TWO FILES TO THE REPOSITORY ROOT:
+1. data/ap-precalculus-update.js  (replace the existing file)
+2. index.html                    (replace the existing file; adds cache busting)
 
-File replaced:
-- index.html (only functional change: loads data/ap-precalculus-update.js after the existing course data scripts and before js/portal.js)
+Do not delete lessons/ap-precalculus/unit-1.
+After GitHub Pages finishes deploying, press Ctrl+F5 once.
 
-This patch does not replace data/courses.js and does not change AP Calculus or other courses.
+Expected result:
+- No blank fifth course.
+- G10–G11 AP Precalculus remains one course with four units.
+- Unit 1 contains 14 open interactive lessons.
