@@ -1,0 +1,13 @@
+ECHS Math AP Precalculus Unit 1 Patch
+
+Upload/merge the contents of this folder into the ROOT of the ECHS-Math repository.
+
+Files added:
+- data/ap-precalculus-update.js
+- lessons/ap-precalculus/unit-1/index.html
+- lessons/ap-precalculus/unit-1/AP_Precalculus_1.1...1.14 HTML files
+
+File replaced:
+- index.html (only functional change: loads data/ap-precalculus-update.js after the existing course data scripts and before js/portal.js)
+
+This patch does not replace data/courses.js and does not change AP Calculus or other courses.
