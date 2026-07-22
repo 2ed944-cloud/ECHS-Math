@@ -7,643 +7,788 @@
 
   var unitOne = {
   "title": "Unit 1: Polynomial and Rational Functions",
-  "description": "Fourteen complete interactive lessons supported by fully rewritten ECHS guided notes, practice worksheets, challenge questions, AP-style multiple-choice and free-response tasks, a cumulative AP challenge review, and detailed teacher solutions. The strengthened resource set emphasizes mathematical structure, representations, justification, modeling, error analysis, domain reasoning, and responsible technology use.",
+  "description": "Fourteen complete AP Precalculus modules with fully strengthened printable resources. Every topic now includes redesigned guided notes, distinct challenge questions, original AP-style multiple-choice questions, six-point free-response tasks, and a power practice worksheet.",
+  "portalSummary": "14 interactive lessons · 14 topic video buttons · strengthened notes and AP-style worksheets",
   "essential_questions": [
-    "How can multiple representations reveal how quantities change together?",
-    "How do rates of change describe and distinguish function behavior?",
-    "How do the algebraic structures of polynomial and rational functions determine their graphs?",
-    "How can equivalent forms reveal zeros, asymptotes, holes, and end behavior?",
-    "How are transformations and function models used to represent and analyze real situations?"
+    "How do multiple representations reveal how quantities change together?",
+    "How do rates of change organize linear, quadratic, polynomial, and rational behavior?",
+    "How do zeros, multiplicities, asymptotes, holes, and end behavior arise from algebraic structure?",
+    "Which equivalent form best reveals the feature needed for a problem?",
+    "How can assumptions and validation make a function model defensible?"
   ],
   "lessons": [
     {
       "number": "1",
       "title": "1.1 Change in Tandem",
       "outcomes": [
-        "Define a function as a relationship in which each input has exactly one output.",
-        "Interpret how input and output quantities change together across representations.",
-        "Determine domain, range, images, and preimages in context."
+        "Decide whether a relation defines an output as a function of an input.",
+        "Interpret domain, range, images, preimages, direction, and concavity across representations.",
+        "Defend conclusions about covariation with numerical or graphical evidence."
       ],
       "resources": [
         {
-          "label": "Strengthened guided notes - Topic 1.1",
+          "label": "Complete interactive lesson",
+          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.1_Change_in_Tandem_ECHS_Refined.html",
+          "type": "resource"
+        },
+        {
+          "label": "Strengthened guided notes",
           "url": "resources/ap-precalculus/unit-1/notes/AP_Precalculus_1.1_Guided_Notes.pdf",
           "type": "notes"
         },
         {
-          "label": "Strengthened practice worksheet - Topic 1.1",
+          "label": "Power practice worksheet with AP-style questions",
           "url": "resources/ap-precalculus/unit-1/worksheets/AP_Precalculus_1.1_Practice_Worksheet.pdf",
           "type": "practice"
-        },
-        {
-          "label": "Unit 1 AP challenge review",
-          "url": "resources/ap-precalculus/unit-1/combined/AP_Precalculus_Unit_1_AP_Challenge_Review.pdf",
-          "type": "document"
-        },
-        {
-          "label": "Unit 1 complete resource library",
-          "url": "resources/ap-precalculus/unit-1/index.html",
-          "type": "resource"
         }
       ],
       "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.1_Change_in_Tandem_ECHS_Refined.html",
       "status": "ready",
       "keywords": [
-        "change",
-        "in",
-        "tandem",
-        "1.1",
+        "1",
         "ap",
-        "precalculus",
+        "challenge",
+        "change",
+        "functions",
+        "in",
+        "notes",
         "polynomial",
+        "precalculus",
         "rational",
-        "functions"
+        "tandem",
+        "worksheet",
+        "video",
+        "tutorial",
+        "youtube"
+      ],
+      "new": true,
+      "videos": [
+        {
+          "label": "Video: Topics 1.1–1.3 — Change in Tandem and Rates of Change",
+          "url": "https://youtu.be/KqOe9HN5-Lw",
+          "type": "video"
+        }
       ]
     },
     {
       "number": "2",
       "title": "1.2 Rates of Change",
       "outcomes": [
-        "Calculate and interpret average rates of change from formulas, tables, graphs, and contexts.",
-        "Compare rates of change at two points using nearby average rates.",
-        "Describe how two quantities vary together over intervals."
+        "Compute average rate of change from formulas, tables, graphs, and contexts.",
+        "Attach correct units and interpret the sign and magnitude of a rate.",
+        "Use shrinking intervals to estimate rate at a point without overclaiming."
       ],
       "resources": [
         {
-          "label": "Strengthened guided notes - Topic 1.2",
+          "label": "Complete interactive lesson",
+          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.2_Rates_of_Change_ECHS_Refined.html",
+          "type": "resource"
+        },
+        {
+          "label": "Strengthened guided notes",
           "url": "resources/ap-precalculus/unit-1/notes/AP_Precalculus_1.2_Guided_Notes.pdf",
           "type": "notes"
         },
         {
-          "label": "Strengthened practice worksheet - Topic 1.2",
+          "label": "Power practice worksheet with AP-style questions",
           "url": "resources/ap-precalculus/unit-1/worksheets/AP_Precalculus_1.2_Practice_Worksheet.pdf",
           "type": "practice"
-        },
-        {
-          "label": "Unit 1 AP challenge review",
-          "url": "resources/ap-precalculus/unit-1/combined/AP_Precalculus_Unit_1_AP_Challenge_Review.pdf",
-          "type": "document"
-        },
-        {
-          "label": "Unit 1 complete resource library",
-          "url": "resources/ap-precalculus/unit-1/index.html",
-          "type": "resource"
         }
       ],
       "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.2_Rates_of_Change_ECHS_Refined.html",
       "status": "ready",
       "keywords": [
-        "rates",
-        "of",
-        "change",
-        "1.2",
+        "1",
+        "2",
         "ap",
-        "precalculus",
+        "challenge",
+        "change",
+        "functions",
+        "notes",
+        "of",
         "polynomial",
+        "precalculus",
+        "rates",
         "rational",
-        "functions"
+        "worksheet",
+        "video",
+        "tutorial",
+        "youtube"
+      ],
+      "new": true,
+      "videos": [
+        {
+          "label": "Video: Topics 1.1–1.3 — Change in Tandem and Rates of Change",
+          "url": "https://youtu.be/KqOe9HN5-Lw",
+          "type": "video"
+        }
       ]
     },
     {
       "number": "3",
       "title": "1.3 Rates of Change in Linear and Quadratic Functions",
       "outcomes": [
-        "Analyze rates of change in linear and quadratic functions.",
-        "Use first and second differences to identify linear and quadratic behavior.",
-        "Connect rate patterns to increasing, decreasing, and concavity behavior."
+        "Recognize constant rates as linear evidence and linearly changing rates as quadratic evidence.",
+        "Use first and second differences only when input steps are equal.",
+        "Derive and apply symbolic rate formulas for linear and quadratic functions."
       ],
       "resources": [
         {
-          "label": "Strengthened guided notes - Topic 1.3",
+          "label": "Complete interactive lesson",
+          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.3_Rates_of_Change_in_Linear_and_Quadratic_Functions_ECHS_Refined.html",
+          "type": "resource"
+        },
+        {
+          "label": "Strengthened guided notes",
           "url": "resources/ap-precalculus/unit-1/notes/AP_Precalculus_1.3_Guided_Notes.pdf",
           "type": "notes"
         },
         {
-          "label": "Strengthened practice worksheet - Topic 1.3",
+          "label": "Power practice worksheet with AP-style questions",
           "url": "resources/ap-precalculus/unit-1/worksheets/AP_Precalculus_1.3_Practice_Worksheet.pdf",
           "type": "practice"
-        },
-        {
-          "label": "Unit 1 AP challenge review",
-          "url": "resources/ap-precalculus/unit-1/combined/AP_Precalculus_Unit_1_AP_Challenge_Review.pdf",
-          "type": "document"
-        },
-        {
-          "label": "Unit 1 complete resource library",
-          "url": "resources/ap-precalculus/unit-1/index.html",
-          "type": "resource"
         }
       ],
       "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.3_Rates_of_Change_in_Linear_and_Quadratic_Functions_ECHS_Refined.html",
       "status": "ready",
       "keywords": [
-        "rates",
-        "of",
+        "1",
+        "3",
+        "and",
+        "ap",
+        "challenge",
         "change",
+        "functions",
         "in",
         "linear",
-        "and",
-        "quadratic",
-        "functions",
-        "1.3",
-        "ap",
-        "precalculus",
+        "notes",
+        "of",
         "polynomial",
-        "rational"
+        "precalculus",
+        "quadratic",
+        "rates",
+        "rational",
+        "worksheet",
+        "video",
+        "tutorial",
+        "youtube"
+      ],
+      "new": true,
+      "videos": [
+        {
+          "label": "Video: Topics 1.1–1.3 — Linear and Quadratic Rates of Change",
+          "url": "https://youtu.be/KqOe9HN5-Lw",
+          "type": "video"
+        }
       ]
     },
     {
       "number": "4",
       "title": "1.4 Polynomial Functions and Rates of Change",
       "outcomes": [
-        "Analyze polynomial functions using rates of change.",
-        "Connect degree and leading-term behavior to graphical features.",
-        "Interpret changing rates of change in polynomial models."
+        "Use degree to bound turning points and finite-difference behavior.",
+        "Connect signs and changes of rates to increasing/decreasing and concavity.",
+        "Use continuity and structural constraints to justify polynomial conclusions."
       ],
       "resources": [
         {
-          "label": "Strengthened guided notes - Topic 1.4",
+          "label": "Complete interactive lesson",
+          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.4_Polynomial_Functions_and_Rates_of_Change_ECHS_Refined.html",
+          "type": "resource"
+        },
+        {
+          "label": "Strengthened guided notes",
           "url": "resources/ap-precalculus/unit-1/notes/AP_Precalculus_1.4_Guided_Notes.pdf",
           "type": "notes"
         },
         {
-          "label": "Strengthened practice worksheet - Topic 1.4",
+          "label": "Power practice worksheet with AP-style questions",
           "url": "resources/ap-precalculus/unit-1/worksheets/AP_Precalculus_1.4_Practice_Worksheet.pdf",
           "type": "practice"
-        },
-        {
-          "label": "Unit 1 AP challenge review",
-          "url": "resources/ap-precalculus/unit-1/combined/AP_Precalculus_Unit_1_AP_Challenge_Review.pdf",
-          "type": "document"
-        },
-        {
-          "label": "Unit 1 complete resource library",
-          "url": "resources/ap-precalculus/unit-1/index.html",
-          "type": "resource"
         }
       ],
       "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.4_Polynomial_Functions_and_Rates_of_Change_ECHS_Refined.html",
       "status": "ready",
       "keywords": [
-        "polynomial",
-        "functions",
+        "1",
+        "4",
         "and",
-        "rates",
-        "of",
-        "change",
-        "1.4",
         "ap",
+        "challenge",
+        "change",
+        "functions",
+        "notes",
+        "of",
+        "polynomial",
         "precalculus",
-        "rational"
+        "rates",
+        "rational",
+        "worksheet",
+        "video",
+        "tutorial",
+        "youtube"
+      ],
+      "new": true,
+      "videos": [
+        {
+          "label": "Video: Topic 1.4 — Polynomial Functions and Rates of Change",
+          "url": "https://youtu.be/yQzCmPICwFM",
+          "type": "video"
+        }
       ]
     },
     {
       "number": "5",
       "title": "1.5 Polynomial Functions and Complex Zeros",
       "outcomes": [
-        "Determine real and complex zeros of polynomial functions.",
-        "Apply the Fundamental Theorem of Algebra and conjugate-pair reasoning.",
-        "Use zeros and multiplicities to analyze polynomial graphs."
+        "Determine real and nonreal zeros and their multiplicities.",
+        "Use the Fundamental Theorem of Algebra and conjugate-pair theorem.",
+        "Construct real-coefficient polynomials from prescribed zero information."
       ],
       "resources": [
         {
-          "label": "Strengthened guided notes - Topic 1.5",
+          "label": "Complete interactive lesson",
+          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.5_Polynomial_Functions_and_Complex_Zeros_ECHS_Refined.html",
+          "type": "resource"
+        },
+        {
+          "label": "Strengthened guided notes",
           "url": "resources/ap-precalculus/unit-1/notes/AP_Precalculus_1.5_Guided_Notes.pdf",
           "type": "notes"
         },
         {
-          "label": "Strengthened practice worksheet - Topic 1.5",
+          "label": "Power practice worksheet with AP-style questions",
           "url": "resources/ap-precalculus/unit-1/worksheets/AP_Precalculus_1.5_Practice_Worksheet.pdf",
           "type": "practice"
-        },
-        {
-          "label": "Unit 1 AP challenge review",
-          "url": "resources/ap-precalculus/unit-1/combined/AP_Precalculus_Unit_1_AP_Challenge_Review.pdf",
-          "type": "document"
-        },
-        {
-          "label": "Unit 1 complete resource library",
-          "url": "resources/ap-precalculus/unit-1/index.html",
-          "type": "resource"
         }
       ],
       "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.5_Polynomial_Functions_and_Complex_Zeros_ECHS_Refined.html",
       "status": "ready",
       "keywords": [
-        "polynomial",
-        "functions",
+        "1",
+        "5",
         "and",
-        "complex",
-        "zeros",
-        "1.5",
         "ap",
+        "challenge",
+        "complex",
+        "functions",
+        "notes",
+        "polynomial",
         "precalculus",
-        "rational"
+        "rational",
+        "worksheet",
+        "zeros",
+        "video",
+        "tutorial",
+        "youtube"
+      ],
+      "new": true,
+      "videos": [
+        {
+          "label": "Video: Topic 1.5 — Polynomial Functions and Complex Zeros",
+          "url": "https://youtu.be/md0fuC8Yg9k",
+          "type": "video"
+        }
       ]
     },
     {
       "number": "6",
       "title": "1.6 Polynomial Functions and End Behavior",
       "outcomes": [
-        "Determine polynomial end behavior from degree and leading coefficient.",
-        "Connect symbolic forms to global graphical behavior.",
-        "Use polynomial structure to justify asymptotic conclusions."
+        "Determine polynomial end behavior from degree parity and leading-coefficient sign.",
+        "Use end behavior and turning-point evidence to constrain possible degrees.",
+        "Construct polynomial models from zeros, multiplicities, end behavior, and a point."
       ],
       "resources": [
         {
-          "label": "Strengthened guided notes - Topic 1.6",
+          "label": "Complete interactive lesson",
+          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.6_Polynomial_Functions_and_End_Behavior_ECHS_Refined.html",
+          "type": "resource"
+        },
+        {
+          "label": "Strengthened guided notes",
           "url": "resources/ap-precalculus/unit-1/notes/AP_Precalculus_1.6_Guided_Notes.pdf",
           "type": "notes"
         },
         {
-          "label": "Strengthened practice worksheet - Topic 1.6",
+          "label": "Power practice worksheet with AP-style questions",
           "url": "resources/ap-precalculus/unit-1/worksheets/AP_Precalculus_1.6_Practice_Worksheet.pdf",
           "type": "practice"
-        },
-        {
-          "label": "Unit 1 AP challenge review",
-          "url": "resources/ap-precalculus/unit-1/combined/AP_Precalculus_Unit_1_AP_Challenge_Review.pdf",
-          "type": "document"
-        },
-        {
-          "label": "Unit 1 complete resource library",
-          "url": "resources/ap-precalculus/unit-1/index.html",
-          "type": "resource"
         }
       ],
       "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.6_Polynomial_Functions_and_End_Behavior_ECHS_Refined.html",
       "status": "ready",
       "keywords": [
-        "polynomial",
-        "functions",
+        "1",
+        "6",
         "and",
-        "end",
-        "behavior",
-        "1.6",
         "ap",
+        "behavior",
+        "challenge",
+        "end",
+        "functions",
+        "notes",
+        "polynomial",
         "precalculus",
-        "rational"
+        "rational",
+        "worksheet",
+        "video",
+        "tutorial",
+        "youtube"
+      ],
+      "new": true,
+      "videos": [
+        {
+          "label": "Video: Topic 1.6 — Polynomial End Behavior",
+          "url": "https://youtu.be/Vgt7SNor6W8",
+          "type": "video"
+        }
       ]
     },
     {
       "number": "7",
       "title": "1.7 Rational Functions and End Behavior",
       "outcomes": [
-        "Analyze rational-function end behavior.",
-        "Determine horizontal and polynomial asymptotes from algebraic structure.",
-        "Interpret long-run behavior in context."
+        "Classify horizontal, slant, and higher-degree polynomial end-behavior models.",
+        "Use leading coefficients or polynomial division to identify the asymptotic model.",
+        "Interpret the remainder term as the vanishing error from the end-behavior model."
       ],
       "resources": [
         {
-          "label": "Strengthened guided notes - Topic 1.7",
+          "label": "Complete interactive lesson",
+          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.7_Rational_Functions_and_End_Behavior_ECHS_Refined.html",
+          "type": "resource"
+        },
+        {
+          "label": "Strengthened guided notes",
           "url": "resources/ap-precalculus/unit-1/notes/AP_Precalculus_1.7_Guided_Notes.pdf",
           "type": "notes"
         },
         {
-          "label": "Strengthened practice worksheet - Topic 1.7",
+          "label": "Power practice worksheet with AP-style questions",
           "url": "resources/ap-precalculus/unit-1/worksheets/AP_Precalculus_1.7_Practice_Worksheet.pdf",
           "type": "practice"
-        },
-        {
-          "label": "Unit 1 AP challenge review",
-          "url": "resources/ap-precalculus/unit-1/combined/AP_Precalculus_Unit_1_AP_Challenge_Review.pdf",
-          "type": "document"
-        },
-        {
-          "label": "Unit 1 complete resource library",
-          "url": "resources/ap-precalculus/unit-1/index.html",
-          "type": "resource"
         }
       ],
       "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.7_Rational_Functions_and_End_Behavior_ECHS_Refined.html",
       "status": "ready",
       "keywords": [
-        "rational",
-        "functions",
+        "1",
+        "7",
         "and",
-        "end",
-        "behavior",
-        "1.7",
         "ap",
+        "behavior",
+        "challenge",
+        "end",
+        "functions",
+        "notes",
+        "polynomial",
         "precalculus",
-        "polynomial"
+        "rational",
+        "worksheet",
+        "video",
+        "tutorial",
+        "youtube"
+      ],
+      "new": true,
+      "videos": [
+        {
+          "label": "Video: Topic 1.7 — Rational Functions and End Behavior",
+          "url": "https://youtu.be/_u9kgmAMBwc",
+          "type": "video"
+        }
       ]
     },
     {
       "number": "8",
       "title": "1.8 Rational Functions and Zeros",
       "outcomes": [
-        "Determine zeros of rational functions and distinguish them from excluded values.",
-        "Connect factors, intercepts, and sign behavior.",
-        "Analyze rational functions across representations."
+        "Identify valid rational-function zeros and multiplicities.",
+        "Distinguish zeros from excluded inputs created by denominator factors.",
+        "Use sign analysis to solve rational equations and inequalities."
       ],
       "resources": [
         {
-          "label": "Strengthened guided notes - Topic 1.8",
+          "label": "Complete interactive lesson",
+          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.8_Rational_Functions_and_Zeros_ECHS_Refined.html",
+          "type": "resource"
+        },
+        {
+          "label": "Strengthened guided notes",
           "url": "resources/ap-precalculus/unit-1/notes/AP_Precalculus_1.8_Guided_Notes.pdf",
           "type": "notes"
         },
         {
-          "label": "Strengthened practice worksheet - Topic 1.8",
+          "label": "Power practice worksheet with AP-style questions",
           "url": "resources/ap-precalculus/unit-1/worksheets/AP_Precalculus_1.8_Practice_Worksheet.pdf",
           "type": "practice"
-        },
-        {
-          "label": "Unit 1 AP challenge review",
-          "url": "resources/ap-precalculus/unit-1/combined/AP_Precalculus_Unit_1_AP_Challenge_Review.pdf",
-          "type": "document"
-        },
-        {
-          "label": "Unit 1 complete resource library",
-          "url": "resources/ap-precalculus/unit-1/index.html",
-          "type": "resource"
         }
       ],
       "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.8_Rational_Functions_and_Zeros_ECHS_Refined.html",
       "status": "ready",
       "keywords": [
-        "rational",
-        "functions",
+        "1",
+        "8",
         "and",
-        "zeros",
-        "1.8",
         "ap",
+        "challenge",
+        "functions",
+        "notes",
+        "polynomial",
         "precalculus",
-        "polynomial"
+        "rational",
+        "worksheet",
+        "zeros",
+        "video",
+        "tutorial",
+        "youtube"
+      ],
+      "new": true,
+      "videos": [
+        {
+          "label": "Video: Topic 1.8 — Rational Functions and Zeros",
+          "url": "https://youtu.be/3XBQK05tG5g",
+          "type": "video"
+        }
       ]
     },
     {
       "number": "9",
       "title": "1.9 Rational Functions and Vertical Asymptotes",
       "outcomes": [
-        "Determine vertical asymptotes of rational functions.",
-        "Use one-sided behavior to describe divergence near excluded inputs.",
-        "Connect denominator factors to graphical behavior."
+        "Find vertical asymptotes after complete factorization and cancellation.",
+        "Determine one-sided infinite behavior using sign analysis.",
+        "Construct rational functions with specified asymptotes and local behavior."
       ],
       "resources": [
         {
-          "label": "Strengthened guided notes - Topic 1.9",
+          "label": "Complete interactive lesson",
+          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.9_Rational_Functions_and_Vertical_Asymptotes_ECHS_Refined.html",
+          "type": "resource"
+        },
+        {
+          "label": "Strengthened guided notes",
           "url": "resources/ap-precalculus/unit-1/notes/AP_Precalculus_1.9_Guided_Notes.pdf",
           "type": "notes"
         },
         {
-          "label": "Strengthened practice worksheet - Topic 1.9",
+          "label": "Power practice worksheet with AP-style questions",
           "url": "resources/ap-precalculus/unit-1/worksheets/AP_Precalculus_1.9_Practice_Worksheet.pdf",
           "type": "practice"
-        },
-        {
-          "label": "Unit 1 AP challenge review",
-          "url": "resources/ap-precalculus/unit-1/combined/AP_Precalculus_Unit_1_AP_Challenge_Review.pdf",
-          "type": "document"
-        },
-        {
-          "label": "Unit 1 complete resource library",
-          "url": "resources/ap-precalculus/unit-1/index.html",
-          "type": "resource"
         }
       ],
       "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.9_Rational_Functions_and_Vertical_Asymptotes_ECHS_Refined.html",
       "status": "ready",
       "keywords": [
-        "rational",
-        "functions",
+        "1",
+        "9",
         "and",
-        "vertical",
-        "asymptotes",
-        "1.9",
         "ap",
+        "asymptotes",
+        "challenge",
+        "functions",
+        "notes",
+        "polynomial",
         "precalculus",
-        "polynomial"
+        "rational",
+        "vertical",
+        "worksheet",
+        "video",
+        "tutorial",
+        "youtube"
+      ],
+      "new": true,
+      "videos": [
+        {
+          "label": "Video: Topics 1.9–1.10 — Vertical Asymptotes and Holes",
+          "url": "https://youtu.be/Jq1UiByItvQ",
+          "type": "video"
+        }
       ]
     },
     {
       "number": "10",
       "title": "1.10 Rational Functions and Holes",
       "outcomes": [
-        "Identify and analyze holes in rational functions.",
-        "Distinguish removable discontinuities from vertical asymptotes.",
-        "Use equivalent forms while preserving domain restrictions."
+        "Identify canceled factors and locate the corresponding holes.",
+        "Find a hole coordinate by evaluating the reduced rule at the excluded input.",
+        "Distinguish holes, zeros, and vertical asymptotes using multiplicity."
       ],
       "resources": [
         {
-          "label": "Strengthened guided notes - Topic 1.10",
+          "label": "Complete interactive lesson",
+          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.10_Rational_Functions_and_Holes_ECHS_Refined.html",
+          "type": "resource"
+        },
+        {
+          "label": "Strengthened guided notes",
           "url": "resources/ap-precalculus/unit-1/notes/AP_Precalculus_1.10_Guided_Notes.pdf",
           "type": "notes"
         },
         {
-          "label": "Strengthened practice worksheet - Topic 1.10",
+          "label": "Power practice worksheet with AP-style questions",
           "url": "resources/ap-precalculus/unit-1/worksheets/AP_Precalculus_1.10_Practice_Worksheet.pdf",
           "type": "practice"
-        },
-        {
-          "label": "Unit 1 AP challenge review",
-          "url": "resources/ap-precalculus/unit-1/combined/AP_Precalculus_Unit_1_AP_Challenge_Review.pdf",
-          "type": "document"
-        },
-        {
-          "label": "Unit 1 complete resource library",
-          "url": "resources/ap-precalculus/unit-1/index.html",
-          "type": "resource"
         }
       ],
       "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.10_Rational_Functions_and_Holes_ECHS_Refined.html",
       "status": "ready",
       "keywords": [
-        "rational",
-        "functions",
+        "1",
+        "10",
         "and",
-        "holes",
-        "1.10",
         "ap",
+        "challenge",
+        "functions",
+        "holes",
+        "notes",
+        "polynomial",
         "precalculus",
-        "polynomial"
+        "rational",
+        "worksheet",
+        "video",
+        "tutorial",
+        "youtube"
+      ],
+      "new": true,
+      "videos": [
+        {
+          "label": "Video: Topics 1.9–1.10 — Vertical Asymptotes and Holes",
+          "url": "https://youtu.be/Jq1UiByItvQ",
+          "type": "video"
+        }
       ]
     },
     {
       "number": "11",
       "title": "1.11 Equivalent Representations of Polynomial and Rational Expressions",
       "outcomes": [
-        "Rewrite polynomial and rational expressions in equivalent forms.",
-        "Select forms that reveal zeros, asymptotes, holes, and end behavior.",
-        "Justify equivalence while tracking domain restrictions."
+        "Expand and factor polynomial expressions strategically.",
+        "Use polynomial division to obtain quotient-remainder form.",
+        "Explain what standard, factored, vertex, and quotient forms reveal or hide."
       ],
       "resources": [
         {
-          "label": "Strengthened guided notes - Topic 1.11",
+          "label": "Complete interactive lesson",
+          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.11_Equivalent_Representations_of_Polynomial_and_Rational_Expressions_ECHS_Refined.html",
+          "type": "resource"
+        },
+        {
+          "label": "Strengthened guided notes",
           "url": "resources/ap-precalculus/unit-1/notes/AP_Precalculus_1.11_Guided_Notes.pdf",
           "type": "notes"
         },
         {
-          "label": "Strengthened practice worksheet - Topic 1.11",
+          "label": "Power practice worksheet with AP-style questions",
           "url": "resources/ap-precalculus/unit-1/worksheets/AP_Precalculus_1.11_Practice_Worksheet.pdf",
           "type": "practice"
-        },
-        {
-          "label": "Unit 1 AP challenge review",
-          "url": "resources/ap-precalculus/unit-1/combined/AP_Precalculus_Unit_1_AP_Challenge_Review.pdf",
-          "type": "document"
-        },
-        {
-          "label": "Unit 1 complete resource library",
-          "url": "resources/ap-precalculus/unit-1/index.html",
-          "type": "resource"
         }
       ],
       "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.11_Equivalent_Representations_of_Polynomial_and_Rational_Expressions_ECHS_Refined.html",
       "status": "ready",
       "keywords": [
+        "1",
+        "11",
+        "and",
+        "ap",
+        "challenge",
         "equivalent",
-        "representations",
+        "expressions",
+        "functions",
+        "notes",
         "of",
         "polynomial",
-        "and",
-        "rational",
-        "expressions",
-        "1.11",
-        "ap",
         "precalculus",
-        "functions"
+        "rational",
+        "representations",
+        "worksheet",
+        "video",
+        "tutorial",
+        "youtube"
+      ],
+      "new": true,
+      "videos": [
+        {
+          "label": "Video: Topic 1.11 — Equivalent Polynomial and Rational Forms",
+          "url": "https://youtu.be/uCvEdwgxsjA",
+          "type": "video"
+        }
       ]
     },
     {
       "number": "12",
       "title": "1.12 Transformations of Functions",
       "outcomes": [
-        "Describe transformations of functions using precise preimage and image language.",
-        "Analyze translations, reflections, stretches, and compressions.",
-        "Connect algebraic transformations to graphical changes."
+        "Interpret translations, reflections, stretches, and compressions from formulas.",
+        "Map points, domains, ranges, zeros, extrema, and asymptotes under transformations.",
+        "Construct a transformation from desired image points or graph features."
       ],
       "resources": [
         {
-          "label": "Strengthened guided notes - Topic 1.12",
+          "label": "Complete interactive lesson",
+          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.12_Transformations_of_Functions_ECHS_Refined.html",
+          "type": "resource"
+        },
+        {
+          "label": "Strengthened guided notes",
           "url": "resources/ap-precalculus/unit-1/notes/AP_Precalculus_1.12_Guided_Notes.pdf",
           "type": "notes"
         },
         {
-          "label": "Strengthened practice worksheet - Topic 1.12",
+          "label": "Power practice worksheet with AP-style questions",
           "url": "resources/ap-precalculus/unit-1/worksheets/AP_Precalculus_1.12_Practice_Worksheet.pdf",
           "type": "practice"
-        },
-        {
-          "label": "Unit 1 AP challenge review",
-          "url": "resources/ap-precalculus/unit-1/combined/AP_Precalculus_Unit_1_AP_Challenge_Review.pdf",
-          "type": "document"
-        },
-        {
-          "label": "Unit 1 complete resource library",
-          "url": "resources/ap-precalculus/unit-1/index.html",
-          "type": "resource"
         }
       ],
       "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.12_Transformations_of_Functions_ECHS_Refined.html",
       "status": "ready",
       "keywords": [
-        "transformations",
-        "of",
-        "functions",
-        "1.12",
+        "1",
+        "12",
         "ap",
-        "precalculus",
+        "challenge",
+        "functions",
+        "notes",
+        "of",
         "polynomial",
-        "rational"
+        "precalculus",
+        "rational",
+        "transformations",
+        "worksheet",
+        "video",
+        "tutorial",
+        "youtube"
+      ],
+      "new": true,
+      "videos": [
+        {
+          "label": "Video: Topic 1.12 — Transformations of Functions",
+          "url": "https://youtu.be/ZnpPR9Q3eVw",
+          "type": "video"
+        }
       ]
     },
     {
       "number": "13",
       "title": "1.13 Function Model Selection and Assumption Articulation",
       "outcomes": [
-        "Select an appropriate function model from data or context.",
-        "State and evaluate modeling assumptions.",
-        "Compare model suitability using rates, residual behavior, and structural evidence."
+        "Select plausible model families from differences, rates, graph features, and context.",
+        "Compare models using residual patterns, constraints, and interpretability.",
+        "State assumptions, limitations, and appropriate interpolation or extrapolation domains."
       ],
       "resources": [
         {
-          "label": "Strengthened guided notes - Topic 1.13",
+          "label": "Complete interactive lesson",
+          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.13_Function_Model_Selection_and_Assumption_Articulation_ECHS_Refined.html",
+          "type": "resource"
+        },
+        {
+          "label": "Strengthened guided notes",
           "url": "resources/ap-precalculus/unit-1/notes/AP_Precalculus_1.13_Guided_Notes.pdf",
           "type": "notes"
         },
         {
-          "label": "Strengthened practice worksheet - Topic 1.13",
+          "label": "Power practice worksheet with AP-style questions",
           "url": "resources/ap-precalculus/unit-1/worksheets/AP_Precalculus_1.13_Practice_Worksheet.pdf",
           "type": "practice"
-        },
-        {
-          "label": "Unit 1 AP challenge review",
-          "url": "resources/ap-precalculus/unit-1/combined/AP_Precalculus_Unit_1_AP_Challenge_Review.pdf",
-          "type": "document"
-        },
-        {
-          "label": "Unit 1 complete resource library",
-          "url": "resources/ap-precalculus/unit-1/index.html",
-          "type": "resource"
         }
       ],
       "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.13_Function_Model_Selection_and_Assumption_Articulation_ECHS_Refined.html",
       "status": "ready",
       "keywords": [
-        "function",
-        "model",
-        "selection",
+        "1",
+        "13",
         "and",
-        "assumption",
-        "articulation",
-        "1.13",
         "ap",
-        "precalculus",
+        "articulation",
+        "assumption",
+        "challenge",
+        "function",
+        "functions",
+        "model",
+        "notes",
         "polynomial",
+        "precalculus",
         "rational",
-        "functions"
+        "selection",
+        "worksheet",
+        "video",
+        "tutorial",
+        "youtube"
+      ],
+      "new": true,
+      "videos": [
+        {
+          "label": "Video: Topics 1.13–1.14 — Function Modeling and Regression",
+          "url": "https://youtu.be/rPUSiRDCuIM",
+          "type": "video"
+        }
       ]
     },
     {
       "number": "14",
       "title": "1.14 Function Model Construction and Application",
       "outcomes": [
-        "Construct and apply function models.",
-        "Use regression and algebraic reasoning to determine model parameters.",
-        "Interpret values, rates, and changing rates in context."
+        "Construct linear, quadratic, polynomial, rational, and piecewise models from constraints.",
+        "Determine scale parameters from points, data, or regression output.",
+        "Apply, interpret, and validate a model within a justified domain."
       ],
       "resources": [
         {
-          "label": "Strengthened guided notes - Topic 1.14",
+          "label": "Complete interactive lesson",
+          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.14_Function_Model_Construction_and_Application_ECHS_Refined.html",
+          "type": "resource"
+        },
+        {
+          "label": "Strengthened guided notes",
           "url": "resources/ap-precalculus/unit-1/notes/AP_Precalculus_1.14_Guided_Notes.pdf",
           "type": "notes"
         },
         {
-          "label": "Strengthened practice worksheet - Topic 1.14",
+          "label": "Power practice worksheet with AP-style questions",
           "url": "resources/ap-precalculus/unit-1/worksheets/AP_Precalculus_1.14_Practice_Worksheet.pdf",
           "type": "practice"
-        },
-        {
-          "label": "Unit 1 AP challenge review",
-          "url": "resources/ap-precalculus/unit-1/combined/AP_Precalculus_Unit_1_AP_Challenge_Review.pdf",
-          "type": "document"
-        },
-        {
-          "label": "Unit 1 complete resource library",
-          "url": "resources/ap-precalculus/unit-1/index.html",
-          "type": "resource"
         }
       ],
       "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.14_Function_Model_Construction_and_Application_ECHS_Refined.html",
       "status": "ready",
       "keywords": [
-        "function",
-        "model",
-        "construction",
+        "1",
+        "14",
         "and",
-        "application",
-        "1.14",
         "ap",
-        "precalculus",
+        "application",
+        "challenge",
+        "construction",
+        "function",
+        "functions",
+        "model",
+        "notes",
         "polynomial",
+        "precalculus",
         "rational",
-        "functions"
+        "worksheet",
+        "video",
+        "tutorial",
+        "youtube"
+      ],
+      "new": true,
+      "videos": [
+        {
+          "label": "Video: Topics 1.13–1.14 — Function Modeling and Regression",
+          "url": "https://youtu.be/rPUSiRDCuIM",
+          "type": "video"
+        },
+        {
+          "label": "Video review: Complete AP Precalculus Unit 1",
+          "url": "https://youtu.be/u43snOQ5Nms",
+          "type": "video"
+        }
       ]
     }
   ],
   "refreshed": true,
-  "portalSummary": "14 interactive lessons + 28 strengthened topic PDFs + AP challenge review"
+  "videoSource": "Bao Le Math AP Precalculus topic tutorials"
 };
 
   var unitTwo = {
@@ -698,7 +843,17 @@
         "precalculus",
         "exponential",
         "logarithmic",
-        "functions"
+        "functions",
+        "video",
+        "tutorial",
+        "youtube"
+      ],
+      "videos": [
+        {
+          "label": "Video: Topic 2.1 — Arithmetic and Geometric Sequences",
+          "url": "https://youtu.be/a97xs8-V7zE",
+          "type": "video"
+        }
       ]
     },
     {
@@ -740,7 +895,17 @@
         "functions",
         "ap",
         "precalculus",
-        "logarithmic"
+        "logarithmic",
+        "video",
+        "tutorial",
+        "youtube"
+      ],
+      "videos": [
+        {
+          "label": "Video: Topic 2.2 — Linear and Exponential Change",
+          "url": "https://youtu.be/FNPhOs9OkSk",
+          "type": "video"
+        }
       ]
     },
     {
@@ -778,7 +943,17 @@
         "functions",
         "ap",
         "precalculus",
-        "logarithmic"
+        "logarithmic",
+        "video",
+        "tutorial",
+        "youtube"
+      ],
+      "videos": [
+        {
+          "label": "Video: Topic 2.3 — Exponential Functions",
+          "url": "https://youtu.be/Yz10JnbqHtI",
+          "type": "video"
+        }
       ]
     },
     {
@@ -818,7 +993,17 @@
         "ap",
         "precalculus",
         "logarithmic",
-        "functions"
+        "functions",
+        "video",
+        "tutorial",
+        "youtube"
+      ],
+      "videos": [
+        {
+          "label": "Video: Topic 2.4 — Exponential Function Manipulation",
+          "url": "https://youtu.be/UIx2ohllp1U",
+          "type": "video"
+        }
       ]
     },
     {
@@ -861,7 +1046,17 @@
         "ap",
         "precalculus",
         "logarithmic",
-        "functions"
+        "functions",
+        "video",
+        "tutorial",
+        "youtube"
+      ],
+      "videos": [
+        {
+          "label": "Video: Topic 2.5 — Exponential Context and Data Modeling",
+          "url": "https://youtu.be/ilmg3FW7_cg",
+          "type": "video"
+        }
       ]
     },
     {
@@ -903,7 +1098,17 @@
         "precalculus",
         "exponential",
         "logarithmic",
-        "functions"
+        "functions",
+        "video",
+        "tutorial",
+        "youtube"
+      ],
+      "videos": [
+        {
+          "label": "Video: Topic 2.6 — Competing Function Model Validation",
+          "url": "https://youtu.be/jpv5gKTBOVo",
+          "type": "video"
+        }
       ]
     },
     {
@@ -943,7 +1148,17 @@
         "ap",
         "precalculus",
         "exponential",
-        "logarithmic"
+        "logarithmic",
+        "video",
+        "tutorial",
+        "youtube"
+      ],
+      "videos": [
+        {
+          "label": "Video: Topic 2.7 — Composition of Functions",
+          "url": "https://youtu.be/0V1o4_oxLqo",
+          "type": "video"
+        }
       ]
     },
     {
@@ -982,7 +1197,17 @@
         "ap",
         "precalculus",
         "exponential",
-        "logarithmic"
+        "logarithmic",
+        "video",
+        "tutorial",
+        "youtube"
+      ],
+      "videos": [
+        {
+          "label": "Video: Topic 2.8 — Inverse Functions",
+          "url": "https://youtu.be/kaW-5Y-l6dU",
+          "type": "video"
+        }
       ]
     },
     {
@@ -1021,7 +1246,17 @@
         "ap",
         "precalculus",
         "exponential",
-        "functions"
+        "functions",
+        "video",
+        "tutorial",
+        "youtube"
+      ],
+      "videos": [
+        {
+          "label": "Video: Topic 2.9 — Logarithmic Expressions",
+          "url": "https://youtu.be/1v3QLVmQVX8",
+          "type": "video"
+        }
       ]
     },
     {
@@ -1061,7 +1296,17 @@
         "functions",
         "ap",
         "precalculus",
-        "logarithmic"
+        "logarithmic",
+        "video",
+        "tutorial",
+        "youtube"
+      ],
+      "videos": [
+        {
+          "label": "Video: Topic 2.10 — Inverses of Exponential Functions",
+          "url": "https://youtu.be/hFB-4-CHEdw",
+          "type": "video"
+        }
       ]
     },
     {
@@ -1099,7 +1344,17 @@
         "functions",
         "ap",
         "precalculus",
-        "exponential"
+        "exponential",
+        "video",
+        "tutorial",
+        "youtube"
+      ],
+      "videos": [
+        {
+          "label": "Video: Topic 2.11 — Logarithmic Functions",
+          "url": "https://youtu.be/Wa-Ji_mXJV0",
+          "type": "video"
+        }
       ]
     },
     {
@@ -1139,7 +1394,17 @@
         "ap",
         "precalculus",
         "exponential",
-        "functions"
+        "functions",
+        "video",
+        "tutorial",
+        "youtube"
+      ],
+      "videos": [
+        {
+          "label": "Video: Topic 2.12 — Logarithmic Function Manipulation",
+          "url": "https://youtu.be/0UiiZj1OMrw",
+          "type": "video"
+        }
       ]
     },
     {
@@ -1180,7 +1445,17 @@
         "inequalities",
         "ap",
         "precalculus",
-        "functions"
+        "functions",
+        "video",
+        "tutorial",
+        "youtube"
+      ],
+      "videos": [
+        {
+          "label": "Video: Topic 2.13 — Exponential and Logarithmic Equations",
+          "url": "https://youtu.be/EES1m0ogPAQ",
+          "type": "video"
+        }
       ]
     },
     {
@@ -1223,7 +1498,17 @@
         "ap",
         "precalculus",
         "exponential",
-        "functions"
+        "functions",
+        "video",
+        "tutorial",
+        "youtube"
+      ],
+      "videos": [
+        {
+          "label": "Video: Topic 2.14 — Logarithmic Context and Data Modeling",
+          "url": "https://youtu.be/ubjxGv04Gr4",
+          "type": "video"
+        }
       ]
     },
     {
@@ -1264,12 +1549,28 @@
         "precalculus",
         "exponential",
         "logarithmic",
-        "functions"
+        "functions",
+        "video",
+        "tutorial",
+        "youtube"
+      ],
+      "videos": [
+        {
+          "label": "Video: Topic 2.15 — Semi-log Plots",
+          "url": "https://youtu.be/f-wqyHokJ3Y",
+          "type": "video"
+        },
+        {
+          "label": "Video review: Complete AP Precalculus Unit 2",
+          "url": "https://youtu.be/RY35-G_Lkxc",
+          "type": "video"
+        }
       ]
     }
   ],
   "refreshed": true,
-  "portalSummary": "15 interactive lessons + 30 rewritten student PDFs"
+  "portalSummary": "15 interactive lessons · 15 topic video buttons · 30 rewritten student PDFs",
+  "videoSource": "Bao Le Math AP Precalculus topic tutorials"
 };
 
   function normalize(value) {
@@ -1329,8 +1630,8 @@
     replaceOrInsertUnit(targetCourse, 1, unitOne);
     replaceOrInsertUnit(targetCourse, 2, unitTwo);
 
-    targetCourse.updatedUnits = "Units 1–2 · 29 interactive lessons · strengthened notes, worksheets, and AP challenge review";
-    targetCourse.sourceNote = "Pearson-aligned ECHS AP Precalculus lessons with fully rewritten Unit 1 and Unit 2 student resources.";
+    targetCourse.updatedUnits = "Units 1–2 · 29 interactive lessons · topic videos · 58 strengthened student PDFs";
+    targetCourse.sourceNote = "Pearson-aligned ECHS AP Precalculus lessons, strengthened printable resources, and topic-aligned video tutorials.";
     targetCourse.unitCount = targetCourse.units.length;
     targetCourse.lessonCount = targetCourse.units.reduce(function (total, unit) {
       return total + (Array.isArray(unit && unit.lessons) ? unit.lessons.length : 0);
@@ -1343,12 +1644,12 @@
       shortTitle: "AP Precalculus",
       subtitle: "Polynomial, rational, exponential, logarithmic, trigonometric, polar, vector, parametric, and matrix functions.",
       course: "G10–G11 AP Precalculus",
-      resource: "Pearson-aligned ECHS refined lessons and rewritten printable resources",
+      resource: "Pearson-aligned ECHS lessons, topic videos, and strengthened printable resources",
       status: "Started",
       priority: 2,
       color: "teal",
-      sourceNote: "Pearson-aligned ECHS AP Precalculus lessons with fully rewritten Unit 1 and Unit 2 student resources.",
-      updatedUnits: "Units 1–2 · 29 interactive lessons · strengthened notes, worksheets, and AP challenge review",
+      sourceNote: "Pearson-aligned ECHS AP Precalculus lessons, strengthened printable resources, and topic-aligned video tutorials.",
+      updatedUnits: "Units 1–2 · 29 interactive lessons · topic videos · 58 strengthened student PDFs",
       lessonCount: unitOne.lessons.length + unitTwo.lessons.length,
       unitCount: 2,
       units: [unitOne, unitTwo]
