@@ -578,7 +578,7 @@
 
   var unitTwo = {
   "title": "Unit 2: Exponential and Logarithmic Functions",
-  "description": "Fifteen complete AP Precalculus modules covering arithmetic and geometric sequences; linear and exponential change; exponential structure, manipulation, modeling, and model validation; composition and inverse functions; logarithmic expressions and functions; exponential and logarithmic equations, inequalities, contextual modeling, and semi-log plots. Each lesson includes a two-day Core AP route, optional extension, interactive explorations, leveled practice, AP-style assessment, and a timed quiz.",
+  "description": "Fifteen complete interactive lessons supported by fully rewritten ECHS guided notes and practice worksheets. The resource set strengthens algebraic structure, representations, model validation, domain reasoning, calculator decisions, interpretation, and AP-style free-response justification.",
   "essential_questions": [
     "How do additive and multiplicative patterns distinguish arithmetic, geometric, linear, and exponential change?",
     "How can equivalent exponential and logarithmic forms reveal structure and support efficient reasoning?",
@@ -603,14 +603,14 @@
           "type": "resource"
         },
         {
-          "label": "80-question Practice Studio included",
-          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.1_Change_in_Arithmetic_and_Geometric_Sequences_ECHS_Refined.html",
-          "type": "practice"
+          "label": "Rewritten guided notes PDF",
+          "url": "resources/ap-precalculus/unit-2/notes/AP_Precalculus_2.1_Guided_Notes.pdf",
+          "type": "notes"
         },
         {
-          "label": "AP Exam Room and timed quiz included",
-          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.1_Change_in_Arithmetic_and_Geometric_Sequences_ECHS_Refined.html",
-          "type": "document"
+          "label": "Rewritten practice worksheet PDF",
+          "url": "resources/ap-precalculus/unit-2/worksheets/AP_Precalculus_2.1_Practice_Worksheet.pdf",
+          "type": "practice"
         }
       ],
       "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.1_Change_in_Arithmetic_and_Geometric_Sequences_ECHS_Refined.html",
@@ -647,14 +647,14 @@
           "type": "resource"
         },
         {
-          "label": "80-question Practice Studio included",
-          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.2_Change_in_Linear_and_Exponential_Functions_ECHS_Refined.html",
-          "type": "practice"
+          "label": "Rewritten guided notes PDF",
+          "url": "resources/ap-precalculus/unit-2/notes/AP_Precalculus_2.2_Guided_Notes.pdf",
+          "type": "notes"
         },
         {
-          "label": "AP Exam Room and timed quiz included",
-          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.2_Change_in_Linear_and_Exponential_Functions_ECHS_Refined.html",
-          "type": "document"
+          "label": "Rewritten practice worksheet PDF",
+          "url": "resources/ap-precalculus/unit-2/worksheets/AP_Precalculus_2.2_Practice_Worksheet.pdf",
+          "type": "practice"
         }
       ],
       "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.2_Change_in_Linear_and_Exponential_Functions_ECHS_Refined.html",
@@ -689,14 +689,14 @@
           "type": "resource"
         },
         {
-          "label": "80-question Practice Studio included",
-          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.3_Exponential_Functions_ECHS_Refined.html",
-          "type": "practice"
+          "label": "Rewritten guided notes PDF",
+          "url": "resources/ap-precalculus/unit-2/notes/AP_Precalculus_2.3_Guided_Notes.pdf",
+          "type": "notes"
         },
         {
-          "label": "AP Exam Room and timed quiz included",
-          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.3_Exponential_Functions_ECHS_Refined.html",
-          "type": "document"
+          "label": "Rewritten practice worksheet PDF",
+          "url": "resources/ap-precalculus/unit-2/worksheets/AP_Precalculus_2.3_Practice_Worksheet.pdf",
+          "type": "practice"
         }
       ],
       "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.3_Exponential_Functions_ECHS_Refined.html",
@@ -727,14 +727,14 @@
           "type": "resource"
         },
         {
-          "label": "80-question Practice Studio included",
-          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.4_Exponential_Function_Manipulation_ECHS_Refined.html",
-          "type": "practice"
+          "label": "Rewritten guided notes PDF",
+          "url": "resources/ap-precalculus/unit-2/notes/AP_Precalculus_2.4_Guided_Notes.pdf",
+          "type": "notes"
         },
         {
-          "label": "AP Exam Room and timed quiz included",
-          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.4_Exponential_Function_Manipulation_ECHS_Refined.html",
-          "type": "document"
+          "label": "Rewritten practice worksheet PDF",
+          "url": "resources/ap-precalculus/unit-2/worksheets/AP_Precalculus_2.4_Practice_Worksheet.pdf",
+          "type": "practice"
         }
       ],
       "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.4_Exponential_Function_Manipulation_ECHS_Refined.html",
@@ -767,14 +767,14 @@
           "type": "resource"
         },
         {
-          "label": "80-question Practice Studio included",
-          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.5_Exponential_Function_Context_and_Data_Modeling_ECHS_Refined.html",
-          "type": "practice"
+          "label": "Rewritten guided notes PDF",
+          "url": "resources/ap-precalculus/unit-2/notes/AP_Precalculus_2.5_Guided_Notes.pdf",
+          "type": "notes"
         },
         {
-          "label": "AP Exam Room and timed quiz included",
-          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.5_Exponential_Function_Context_and_Data_Modeling_ECHS_Refined.html",
-          "type": "document"
+          "label": "Rewritten practice worksheet PDF",
+          "url": "resources/ap-precalculus/unit-2/worksheets/AP_Precalculus_2.5_Practice_Worksheet.pdf",
+          "type": "practice"
         }
       ],
       "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.5_Exponential_Function_Context_and_Data_Modeling_ECHS_Refined.html",
@@ -810,14 +810,14 @@
           "type": "resource"
         },
         {
-          "label": "80-question Practice Studio included",
-          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.6_Competing_Function_Model_Validation_ECHS_Refined.html",
-          "type": "practice"
+          "label": "Rewritten guided notes PDF",
+          "url": "resources/ap-precalculus/unit-2/notes/AP_Precalculus_2.6_Guided_Notes.pdf",
+          "type": "notes"
         },
         {
-          "label": "AP Exam Room and timed quiz included",
-          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.6_Competing_Function_Model_Validation_ECHS_Refined.html",
-          "type": "document"
+          "label": "Rewritten practice worksheet PDF",
+          "url": "resources/ap-precalculus/unit-2/worksheets/AP_Precalculus_2.6_Practice_Worksheet.pdf",
+          "type": "practice"
         }
       ],
       "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.6_Competing_Function_Model_Validation_ECHS_Refined.html",
@@ -852,14 +852,14 @@
           "type": "resource"
         },
         {
-          "label": "80-question Practice Studio included",
-          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.7_Composition_of_Functions_ECHS_Refined.html",
-          "type": "practice"
+          "label": "Rewritten guided notes PDF",
+          "url": "resources/ap-precalculus/unit-2/notes/AP_Precalculus_2.7_Guided_Notes.pdf",
+          "type": "notes"
         },
         {
-          "label": "AP Exam Room and timed quiz included",
-          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.7_Composition_of_Functions_ECHS_Refined.html",
-          "type": "document"
+          "label": "Rewritten practice worksheet PDF",
+          "url": "resources/ap-precalculus/unit-2/worksheets/AP_Precalculus_2.7_Practice_Worksheet.pdf",
+          "type": "practice"
         }
       ],
       "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.7_Composition_of_Functions_ECHS_Refined.html",
@@ -892,14 +892,14 @@
           "type": "resource"
         },
         {
-          "label": "80-question Practice Studio included",
-          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.8_Inverse_Functions_ECHS_Refined.html",
-          "type": "practice"
+          "label": "Rewritten guided notes PDF",
+          "url": "resources/ap-precalculus/unit-2/notes/AP_Precalculus_2.8_Guided_Notes.pdf",
+          "type": "notes"
         },
         {
-          "label": "AP Exam Room and timed quiz included",
-          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.8_Inverse_Functions_ECHS_Refined.html",
-          "type": "document"
+          "label": "Rewritten practice worksheet PDF",
+          "url": "resources/ap-precalculus/unit-2/worksheets/AP_Precalculus_2.8_Practice_Worksheet.pdf",
+          "type": "practice"
         }
       ],
       "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.8_Inverse_Functions_ECHS_Refined.html",
@@ -931,14 +931,14 @@
           "type": "resource"
         },
         {
-          "label": "80-question Practice Studio included",
-          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.9_Logarithmic_Expressions_ECHS_Refined.html",
-          "type": "practice"
+          "label": "Rewritten guided notes PDF",
+          "url": "resources/ap-precalculus/unit-2/notes/AP_Precalculus_2.9_Guided_Notes.pdf",
+          "type": "notes"
         },
         {
-          "label": "AP Exam Room and timed quiz included",
-          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.9_Logarithmic_Expressions_ECHS_Refined.html",
-          "type": "document"
+          "label": "Rewritten practice worksheet PDF",
+          "url": "resources/ap-precalculus/unit-2/worksheets/AP_Precalculus_2.9_Practice_Worksheet.pdf",
+          "type": "practice"
         }
       ],
       "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.9_Logarithmic_Expressions_ECHS_Refined.html",
@@ -970,14 +970,14 @@
           "type": "resource"
         },
         {
-          "label": "80-question Practice Studio included",
-          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.10_Inverses_of_Exponential_Functions_ECHS_Refined.html",
-          "type": "practice"
+          "label": "Rewritten guided notes PDF",
+          "url": "resources/ap-precalculus/unit-2/notes/AP_Precalculus_2.10_Guided_Notes.pdf",
+          "type": "notes"
         },
         {
-          "label": "AP Exam Room and timed quiz included",
-          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.10_Inverses_of_Exponential_Functions_ECHS_Refined.html",
-          "type": "document"
+          "label": "Rewritten practice worksheet PDF",
+          "url": "resources/ap-precalculus/unit-2/worksheets/AP_Precalculus_2.10_Practice_Worksheet.pdf",
+          "type": "practice"
         }
       ],
       "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.10_Inverses_of_Exponential_Functions_ECHS_Refined.html",
@@ -1010,14 +1010,14 @@
           "type": "resource"
         },
         {
-          "label": "80-question Practice Studio included",
-          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.11_Logarithmic_Functions_ECHS_Refined.html",
-          "type": "practice"
+          "label": "Rewritten guided notes PDF",
+          "url": "resources/ap-precalculus/unit-2/notes/AP_Precalculus_2.11_Guided_Notes.pdf",
+          "type": "notes"
         },
         {
-          "label": "AP Exam Room and timed quiz included",
-          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.11_Logarithmic_Functions_ECHS_Refined.html",
-          "type": "document"
+          "label": "Rewritten practice worksheet PDF",
+          "url": "resources/ap-precalculus/unit-2/worksheets/AP_Precalculus_2.11_Practice_Worksheet.pdf",
+          "type": "practice"
         }
       ],
       "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.11_Logarithmic_Functions_ECHS_Refined.html",
@@ -1048,14 +1048,14 @@
           "type": "resource"
         },
         {
-          "label": "80-question Practice Studio included",
-          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.12_Logarithmic_Function_Manipulation_ECHS_Refined.html",
-          "type": "practice"
+          "label": "Rewritten guided notes PDF",
+          "url": "resources/ap-precalculus/unit-2/notes/AP_Precalculus_2.12_Guided_Notes.pdf",
+          "type": "notes"
         },
         {
-          "label": "AP Exam Room and timed quiz included",
-          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.12_Logarithmic_Function_Manipulation_ECHS_Refined.html",
-          "type": "document"
+          "label": "Rewritten practice worksheet PDF",
+          "url": "resources/ap-precalculus/unit-2/worksheets/AP_Precalculus_2.12_Practice_Worksheet.pdf",
+          "type": "practice"
         }
       ],
       "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.12_Logarithmic_Function_Manipulation_ECHS_Refined.html",
@@ -1088,14 +1088,14 @@
           "type": "resource"
         },
         {
-          "label": "80-question Practice Studio included",
-          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.13_Exponential_and_Logarithmic_Equations_and_Inequalities_ECHS_Refined.html",
-          "type": "practice"
+          "label": "Rewritten guided notes PDF",
+          "url": "resources/ap-precalculus/unit-2/notes/AP_Precalculus_2.13_Guided_Notes.pdf",
+          "type": "notes"
         },
         {
-          "label": "AP Exam Room and timed quiz included",
-          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.13_Exponential_and_Logarithmic_Equations_and_Inequalities_ECHS_Refined.html",
-          "type": "document"
+          "label": "Rewritten practice worksheet PDF",
+          "url": "resources/ap-precalculus/unit-2/worksheets/AP_Precalculus_2.13_Practice_Worksheet.pdf",
+          "type": "practice"
         }
       ],
       "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.13_Exponential_and_Logarithmic_Equations_and_Inequalities_ECHS_Refined.html",
@@ -1129,14 +1129,14 @@
           "type": "resource"
         },
         {
-          "label": "80-question Practice Studio included",
-          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.14_Logarithmic_Function_Context_and_Data_Modeling_ECHS_Refined.html",
-          "type": "practice"
+          "label": "Rewritten guided notes PDF",
+          "url": "resources/ap-precalculus/unit-2/notes/AP_Precalculus_2.14_Guided_Notes.pdf",
+          "type": "notes"
         },
         {
-          "label": "AP Exam Room and timed quiz included",
-          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.14_Logarithmic_Function_Context_and_Data_Modeling_ECHS_Refined.html",
-          "type": "document"
+          "label": "Rewritten practice worksheet PDF",
+          "url": "resources/ap-precalculus/unit-2/worksheets/AP_Precalculus_2.14_Practice_Worksheet.pdf",
+          "type": "practice"
         }
       ],
       "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.14_Logarithmic_Function_Context_and_Data_Modeling_ECHS_Refined.html",
@@ -1172,14 +1172,14 @@
           "type": "resource"
         },
         {
-          "label": "80-question Practice Studio included",
-          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.15_Semi_log_Plots_ECHS_Refined.html",
-          "type": "practice"
+          "label": "Rewritten guided notes PDF",
+          "url": "resources/ap-precalculus/unit-2/notes/AP_Precalculus_2.15_Guided_Notes.pdf",
+          "type": "notes"
         },
         {
-          "label": "AP Exam Room and timed quiz included",
-          "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.15_Semi_log_Plots_ECHS_Refined.html",
-          "type": "document"
+          "label": "Rewritten practice worksheet PDF",
+          "url": "resources/ap-precalculus/unit-2/worksheets/AP_Precalculus_2.15_Practice_Worksheet.pdf",
+          "type": "practice"
         }
       ],
       "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.15_Semi_log_Plots_ECHS_Refined.html",
@@ -1199,7 +1199,7 @@
     }
   ],
   "refreshed": true,
-  "portalSummary": "15 complete interactive Pearson-aligned lessons"
+  "portalSummary": "15 interactive lessons + 30 rewritten student PDFs"
 };
 
   function normalize(value) {
@@ -1259,7 +1259,7 @@
     replaceOrInsertUnit(targetCourse, 1, unitOne);
     replaceOrInsertUnit(targetCourse, 2, unitTwo);
 
-    targetCourse.updatedUnits = "Units 1–2 · 29 interactive lessons";
+    targetCourse.updatedUnits = "Units 1–2 · 29 interactive lessons · 30 rewritten Unit 2 student PDFs";
     targetCourse.unitCount = targetCourse.units.length;
     targetCourse.lessonCount = targetCourse.units.reduce(function (total, unit) {
       return total + (Array.isArray(unit && unit.lessons) ? unit.lessons.length : 0);
@@ -1272,12 +1272,12 @@
       shortTitle: "AP Precalculus",
       subtitle: "Polynomial, rational, exponential, logarithmic, trigonometric, polar, vector, parametric, and matrix functions.",
       course: "G10–G11 AP Precalculus",
-      resource: "Pearson-aligned ECHS refined lessons",
+      resource: "Pearson-aligned ECHS refined lessons and rewritten printable resources",
       status: "Started",
       priority: 2,
       color: "teal",
-      sourceNote: "Pearson-aligned ECHS AP Precalculus lessons.",
-      updatedUnits: "Units 1–2 · 29 interactive lessons",
+      sourceNote: "Pearson-aligned ECHS AP Precalculus lessons with strengthened Unit 2 notes and worksheets.",
+      updatedUnits: "Units 1–2 · 29 interactive lessons · 30 rewritten Unit 2 student PDFs",
       lessonCount: unitOne.lessons.length + unitTwo.lessons.length,
       unitCount: 2,
       units: [unitOne, unitTwo]
