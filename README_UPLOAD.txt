@@ -1,19 +1,12 @@
-ECHS Math - AP Precalculus Unit 2 strengthened resources
-
-Upload/merge every item in this folder into the root of the ECHS-Math repository.
+UPLOAD THIS FOLDER TO THE ROOT OF ECHS-Math
 
 Replace:
 - index.html
 - data/ap-precalculus-update.js
 
 Add:
-- resources/ap-precalculus/unit-2/
+- resources/ap-precalculus/unit-1/
 
-Do not delete:
-- data/courses.js
-- data/ap-calculus-update.js
-- lessons/ap-precalculus/unit-1/
-- lessons/ap-precalculus/unit-2/
-
-The public portal links only the student guided notes and practice worksheets.
-Teacher answer keys are deliberately stored in the separate TEACHER_ONLY_DO_NOT_UPLOAD_PUBLICLY folder.
+Keep the folder structure exactly as supplied so the portal links resolve correctly.
+The package updates only AP Precalculus Units 1 and 2 and preserves the existing Units 3 and 4 from data/courses.js.
+Teacher answer keys are deliberately excluded from this public upload folder.

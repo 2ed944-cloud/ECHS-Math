@@ -7,7 +7,7 @@
 
   var unitOne = {
   "title": "Unit 1: Polynomial and Rational Functions",
-  "description": "Fourteen complete AP Precalculus modules covering change in tandem, rates of change, polynomial and rational functions, transformations, and function modeling. Each lesson includes a Core AP route, optional extension, interactive explorations, leveled practice, AP-style assessment, and a timed quiz.",
+  "description": "Fourteen complete interactive lessons supported by fully rewritten ECHS guided notes, practice worksheets, challenge questions, AP-style multiple-choice and free-response tasks, a cumulative AP challenge review, and detailed teacher solutions. The strengthened resource set emphasizes mathematical structure, representations, justification, modeling, error analysis, domain reasoning, and responsible technology use.",
   "essential_questions": [
     "How can multiple representations reveal how quantities change together?",
     "How do rates of change describe and distinguish function behavior?",
@@ -26,19 +26,24 @@
       ],
       "resources": [
         {
-          "label": "Complete interactive lesson",
-          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.1_Change_in_Tandem_ECHS_Refined.html",
-          "type": "resource"
+          "label": "Strengthened guided notes - Topic 1.1",
+          "url": "resources/ap-precalculus/unit-1/notes/AP_Precalculus_1.1_Guided_Notes.pdf",
+          "type": "notes"
         },
         {
-          "label": "80-question Practice Studio included",
-          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.1_Change_in_Tandem_ECHS_Refined.html",
+          "label": "Strengthened practice worksheet - Topic 1.1",
+          "url": "resources/ap-precalculus/unit-1/worksheets/AP_Precalculus_1.1_Practice_Worksheet.pdf",
           "type": "practice"
         },
         {
-          "label": "AP Exam Room and timed quiz included",
-          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.1_Change_in_Tandem_ECHS_Refined.html",
+          "label": "Unit 1 AP challenge review",
+          "url": "resources/ap-precalculus/unit-1/combined/AP_Precalculus_Unit_1_AP_Challenge_Review.pdf",
           "type": "document"
+        },
+        {
+          "label": "Unit 1 complete resource library",
+          "url": "resources/ap-precalculus/unit-1/index.html",
+          "type": "resource"
         }
       ],
       "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.1_Change_in_Tandem_ECHS_Refined.html",
@@ -65,19 +70,24 @@
       ],
       "resources": [
         {
-          "label": "Complete interactive lesson",
-          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.2_Rates_of_Change_ECHS_Refined.html",
-          "type": "resource"
+          "label": "Strengthened guided notes - Topic 1.2",
+          "url": "resources/ap-precalculus/unit-1/notes/AP_Precalculus_1.2_Guided_Notes.pdf",
+          "type": "notes"
         },
         {
-          "label": "80-question Practice Studio included",
-          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.2_Rates_of_Change_ECHS_Refined.html",
+          "label": "Strengthened practice worksheet - Topic 1.2",
+          "url": "resources/ap-precalculus/unit-1/worksheets/AP_Precalculus_1.2_Practice_Worksheet.pdf",
           "type": "practice"
         },
         {
-          "label": "AP Exam Room and timed quiz included",
-          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.2_Rates_of_Change_ECHS_Refined.html",
+          "label": "Unit 1 AP challenge review",
+          "url": "resources/ap-precalculus/unit-1/combined/AP_Precalculus_Unit_1_AP_Challenge_Review.pdf",
           "type": "document"
+        },
+        {
+          "label": "Unit 1 complete resource library",
+          "url": "resources/ap-precalculus/unit-1/index.html",
+          "type": "resource"
         }
       ],
       "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.2_Rates_of_Change_ECHS_Refined.html",
@@ -104,19 +114,24 @@
       ],
       "resources": [
         {
-          "label": "Complete interactive lesson",
-          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.3_Rates_of_Change_in_Linear_and_Quadratic_Functions_ECHS_Refined.html",
-          "type": "resource"
+          "label": "Strengthened guided notes - Topic 1.3",
+          "url": "resources/ap-precalculus/unit-1/notes/AP_Precalculus_1.3_Guided_Notes.pdf",
+          "type": "notes"
         },
         {
-          "label": "80-question Practice Studio included",
-          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.3_Rates_of_Change_in_Linear_and_Quadratic_Functions_ECHS_Refined.html",
+          "label": "Strengthened practice worksheet - Topic 1.3",
+          "url": "resources/ap-precalculus/unit-1/worksheets/AP_Precalculus_1.3_Practice_Worksheet.pdf",
           "type": "practice"
         },
         {
-          "label": "AP Exam Room and timed quiz included",
-          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.3_Rates_of_Change_in_Linear_and_Quadratic_Functions_ECHS_Refined.html",
+          "label": "Unit 1 AP challenge review",
+          "url": "resources/ap-precalculus/unit-1/combined/AP_Precalculus_Unit_1_AP_Challenge_Review.pdf",
           "type": "document"
+        },
+        {
+          "label": "Unit 1 complete resource library",
+          "url": "resources/ap-precalculus/unit-1/index.html",
+          "type": "resource"
         }
       ],
       "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.3_Rates_of_Change_in_Linear_and_Quadratic_Functions_ECHS_Refined.html",
@@ -147,19 +162,24 @@
       ],
       "resources": [
         {
-          "label": "Complete interactive lesson",
-          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.4_Polynomial_Functions_and_Rates_of_Change_ECHS_Refined.html",
-          "type": "resource"
+          "label": "Strengthened guided notes - Topic 1.4",
+          "url": "resources/ap-precalculus/unit-1/notes/AP_Precalculus_1.4_Guided_Notes.pdf",
+          "type": "notes"
         },
         {
-          "label": "80-question Practice Studio included",
-          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.4_Polynomial_Functions_and_Rates_of_Change_ECHS_Refined.html",
+          "label": "Strengthened practice worksheet - Topic 1.4",
+          "url": "resources/ap-precalculus/unit-1/worksheets/AP_Precalculus_1.4_Practice_Worksheet.pdf",
           "type": "practice"
         },
         {
-          "label": "AP Exam Room and timed quiz included",
-          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.4_Polynomial_Functions_and_Rates_of_Change_ECHS_Refined.html",
+          "label": "Unit 1 AP challenge review",
+          "url": "resources/ap-precalculus/unit-1/combined/AP_Precalculus_Unit_1_AP_Challenge_Review.pdf",
           "type": "document"
+        },
+        {
+          "label": "Unit 1 complete resource library",
+          "url": "resources/ap-precalculus/unit-1/index.html",
+          "type": "resource"
         }
       ],
       "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.4_Polynomial_Functions_and_Rates_of_Change_ECHS_Refined.html",
@@ -187,19 +207,24 @@
       ],
       "resources": [
         {
-          "label": "Complete interactive lesson",
-          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.5_Polynomial_Functions_and_Complex_Zeros_ECHS_Refined.html",
-          "type": "resource"
+          "label": "Strengthened guided notes - Topic 1.5",
+          "url": "resources/ap-precalculus/unit-1/notes/AP_Precalculus_1.5_Guided_Notes.pdf",
+          "type": "notes"
         },
         {
-          "label": "80-question Practice Studio included",
-          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.5_Polynomial_Functions_and_Complex_Zeros_ECHS_Refined.html",
+          "label": "Strengthened practice worksheet - Topic 1.5",
+          "url": "resources/ap-precalculus/unit-1/worksheets/AP_Precalculus_1.5_Practice_Worksheet.pdf",
           "type": "practice"
         },
         {
-          "label": "AP Exam Room and timed quiz included",
-          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.5_Polynomial_Functions_and_Complex_Zeros_ECHS_Refined.html",
+          "label": "Unit 1 AP challenge review",
+          "url": "resources/ap-precalculus/unit-1/combined/AP_Precalculus_Unit_1_AP_Challenge_Review.pdf",
           "type": "document"
+        },
+        {
+          "label": "Unit 1 complete resource library",
+          "url": "resources/ap-precalculus/unit-1/index.html",
+          "type": "resource"
         }
       ],
       "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.5_Polynomial_Functions_and_Complex_Zeros_ECHS_Refined.html",
@@ -226,19 +251,24 @@
       ],
       "resources": [
         {
-          "label": "Complete interactive lesson",
-          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.6_Polynomial_Functions_and_End_Behavior_ECHS_Refined.html",
-          "type": "resource"
+          "label": "Strengthened guided notes - Topic 1.6",
+          "url": "resources/ap-precalculus/unit-1/notes/AP_Precalculus_1.6_Guided_Notes.pdf",
+          "type": "notes"
         },
         {
-          "label": "80-question Practice Studio included",
-          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.6_Polynomial_Functions_and_End_Behavior_ECHS_Refined.html",
+          "label": "Strengthened practice worksheet - Topic 1.6",
+          "url": "resources/ap-precalculus/unit-1/worksheets/AP_Precalculus_1.6_Practice_Worksheet.pdf",
           "type": "practice"
         },
         {
-          "label": "AP Exam Room and timed quiz included",
-          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.6_Polynomial_Functions_and_End_Behavior_ECHS_Refined.html",
+          "label": "Unit 1 AP challenge review",
+          "url": "resources/ap-precalculus/unit-1/combined/AP_Precalculus_Unit_1_AP_Challenge_Review.pdf",
           "type": "document"
+        },
+        {
+          "label": "Unit 1 complete resource library",
+          "url": "resources/ap-precalculus/unit-1/index.html",
+          "type": "resource"
         }
       ],
       "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.6_Polynomial_Functions_and_End_Behavior_ECHS_Refined.html",
@@ -265,19 +295,24 @@
       ],
       "resources": [
         {
-          "label": "Complete interactive lesson",
-          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.7_Rational_Functions_and_End_Behavior_ECHS_Refined.html",
-          "type": "resource"
+          "label": "Strengthened guided notes - Topic 1.7",
+          "url": "resources/ap-precalculus/unit-1/notes/AP_Precalculus_1.7_Guided_Notes.pdf",
+          "type": "notes"
         },
         {
-          "label": "80-question Practice Studio included",
-          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.7_Rational_Functions_and_End_Behavior_ECHS_Refined.html",
+          "label": "Strengthened practice worksheet - Topic 1.7",
+          "url": "resources/ap-precalculus/unit-1/worksheets/AP_Precalculus_1.7_Practice_Worksheet.pdf",
           "type": "practice"
         },
         {
-          "label": "AP Exam Room and timed quiz included",
-          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.7_Rational_Functions_and_End_Behavior_ECHS_Refined.html",
+          "label": "Unit 1 AP challenge review",
+          "url": "resources/ap-precalculus/unit-1/combined/AP_Precalculus_Unit_1_AP_Challenge_Review.pdf",
           "type": "document"
+        },
+        {
+          "label": "Unit 1 complete resource library",
+          "url": "resources/ap-precalculus/unit-1/index.html",
+          "type": "resource"
         }
       ],
       "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.7_Rational_Functions_and_End_Behavior_ECHS_Refined.html",
@@ -304,19 +339,24 @@
       ],
       "resources": [
         {
-          "label": "Complete interactive lesson",
-          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.8_Rational_Functions_and_Zeros_ECHS_Refined.html",
-          "type": "resource"
+          "label": "Strengthened guided notes - Topic 1.8",
+          "url": "resources/ap-precalculus/unit-1/notes/AP_Precalculus_1.8_Guided_Notes.pdf",
+          "type": "notes"
         },
         {
-          "label": "80-question Practice Studio included",
-          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.8_Rational_Functions_and_Zeros_ECHS_Refined.html",
+          "label": "Strengthened practice worksheet - Topic 1.8",
+          "url": "resources/ap-precalculus/unit-1/worksheets/AP_Precalculus_1.8_Practice_Worksheet.pdf",
           "type": "practice"
         },
         {
-          "label": "AP Exam Room and timed quiz included",
-          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.8_Rational_Functions_and_Zeros_ECHS_Refined.html",
+          "label": "Unit 1 AP challenge review",
+          "url": "resources/ap-precalculus/unit-1/combined/AP_Precalculus_Unit_1_AP_Challenge_Review.pdf",
           "type": "document"
+        },
+        {
+          "label": "Unit 1 complete resource library",
+          "url": "resources/ap-precalculus/unit-1/index.html",
+          "type": "resource"
         }
       ],
       "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.8_Rational_Functions_and_Zeros_ECHS_Refined.html",
@@ -342,19 +382,24 @@
       ],
       "resources": [
         {
-          "label": "Complete interactive lesson",
-          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.9_Rational_Functions_and_Vertical_Asymptotes_ECHS_Refined.html",
-          "type": "resource"
+          "label": "Strengthened guided notes - Topic 1.9",
+          "url": "resources/ap-precalculus/unit-1/notes/AP_Precalculus_1.9_Guided_Notes.pdf",
+          "type": "notes"
         },
         {
-          "label": "80-question Practice Studio included",
-          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.9_Rational_Functions_and_Vertical_Asymptotes_ECHS_Refined.html",
+          "label": "Strengthened practice worksheet - Topic 1.9",
+          "url": "resources/ap-precalculus/unit-1/worksheets/AP_Precalculus_1.9_Practice_Worksheet.pdf",
           "type": "practice"
         },
         {
-          "label": "AP Exam Room and timed quiz included",
-          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.9_Rational_Functions_and_Vertical_Asymptotes_ECHS_Refined.html",
+          "label": "Unit 1 AP challenge review",
+          "url": "resources/ap-precalculus/unit-1/combined/AP_Precalculus_Unit_1_AP_Challenge_Review.pdf",
           "type": "document"
+        },
+        {
+          "label": "Unit 1 complete resource library",
+          "url": "resources/ap-precalculus/unit-1/index.html",
+          "type": "resource"
         }
       ],
       "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.9_Rational_Functions_and_Vertical_Asymptotes_ECHS_Refined.html",
@@ -381,19 +426,24 @@
       ],
       "resources": [
         {
-          "label": "Complete interactive lesson",
-          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.10_Rational_Functions_and_Holes_ECHS_Refined.html",
-          "type": "resource"
+          "label": "Strengthened guided notes - Topic 1.10",
+          "url": "resources/ap-precalculus/unit-1/notes/AP_Precalculus_1.10_Guided_Notes.pdf",
+          "type": "notes"
         },
         {
-          "label": "80-question Practice Studio included",
-          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.10_Rational_Functions_and_Holes_ECHS_Refined.html",
+          "label": "Strengthened practice worksheet - Topic 1.10",
+          "url": "resources/ap-precalculus/unit-1/worksheets/AP_Precalculus_1.10_Practice_Worksheet.pdf",
           "type": "practice"
         },
         {
-          "label": "AP Exam Room and timed quiz included",
-          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.10_Rational_Functions_and_Holes_ECHS_Refined.html",
+          "label": "Unit 1 AP challenge review",
+          "url": "resources/ap-precalculus/unit-1/combined/AP_Precalculus_Unit_1_AP_Challenge_Review.pdf",
           "type": "document"
+        },
+        {
+          "label": "Unit 1 complete resource library",
+          "url": "resources/ap-precalculus/unit-1/index.html",
+          "type": "resource"
         }
       ],
       "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.10_Rational_Functions_and_Holes_ECHS_Refined.html",
@@ -419,19 +469,24 @@
       ],
       "resources": [
         {
-          "label": "Complete interactive lesson",
-          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.11_Equivalent_Representations_of_Polynomial_and_Rational_Expressions_ECHS_Refined.html",
-          "type": "resource"
+          "label": "Strengthened guided notes - Topic 1.11",
+          "url": "resources/ap-precalculus/unit-1/notes/AP_Precalculus_1.11_Guided_Notes.pdf",
+          "type": "notes"
         },
         {
-          "label": "80-question Practice Studio included",
-          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.11_Equivalent_Representations_of_Polynomial_and_Rational_Expressions_ECHS_Refined.html",
+          "label": "Strengthened practice worksheet - Topic 1.11",
+          "url": "resources/ap-precalculus/unit-1/worksheets/AP_Precalculus_1.11_Practice_Worksheet.pdf",
           "type": "practice"
         },
         {
-          "label": "AP Exam Room and timed quiz included",
-          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.11_Equivalent_Representations_of_Polynomial_and_Rational_Expressions_ECHS_Refined.html",
+          "label": "Unit 1 AP challenge review",
+          "url": "resources/ap-precalculus/unit-1/combined/AP_Precalculus_Unit_1_AP_Challenge_Review.pdf",
           "type": "document"
+        },
+        {
+          "label": "Unit 1 complete resource library",
+          "url": "resources/ap-precalculus/unit-1/index.html",
+          "type": "resource"
         }
       ],
       "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.11_Equivalent_Representations_of_Polynomial_and_Rational_Expressions_ECHS_Refined.html",
@@ -460,19 +515,24 @@
       ],
       "resources": [
         {
-          "label": "Complete interactive lesson",
-          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.12_Transformations_of_Functions_ECHS_Refined.html",
-          "type": "resource"
+          "label": "Strengthened guided notes - Topic 1.12",
+          "url": "resources/ap-precalculus/unit-1/notes/AP_Precalculus_1.12_Guided_Notes.pdf",
+          "type": "notes"
         },
         {
-          "label": "80-question Practice Studio included",
-          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.12_Transformations_of_Functions_ECHS_Refined.html",
+          "label": "Strengthened practice worksheet - Topic 1.12",
+          "url": "resources/ap-precalculus/unit-1/worksheets/AP_Precalculus_1.12_Practice_Worksheet.pdf",
           "type": "practice"
         },
         {
-          "label": "AP Exam Room and timed quiz included",
-          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.12_Transformations_of_Functions_ECHS_Refined.html",
+          "label": "Unit 1 AP challenge review",
+          "url": "resources/ap-precalculus/unit-1/combined/AP_Precalculus_Unit_1_AP_Challenge_Review.pdf",
           "type": "document"
+        },
+        {
+          "label": "Unit 1 complete resource library",
+          "url": "resources/ap-precalculus/unit-1/index.html",
+          "type": "resource"
         }
       ],
       "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.12_Transformations_of_Functions_ECHS_Refined.html",
@@ -498,19 +558,24 @@
       ],
       "resources": [
         {
-          "label": "Complete interactive lesson",
-          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.13_Function_Model_Selection_and_Assumption_Articulation_ECHS_Refined.html",
-          "type": "resource"
+          "label": "Strengthened guided notes - Topic 1.13",
+          "url": "resources/ap-precalculus/unit-1/notes/AP_Precalculus_1.13_Guided_Notes.pdf",
+          "type": "notes"
         },
         {
-          "label": "80-question Practice Studio included",
-          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.13_Function_Model_Selection_and_Assumption_Articulation_ECHS_Refined.html",
+          "label": "Strengthened practice worksheet - Topic 1.13",
+          "url": "resources/ap-precalculus/unit-1/worksheets/AP_Precalculus_1.13_Practice_Worksheet.pdf",
           "type": "practice"
         },
         {
-          "label": "AP Exam Room and timed quiz included",
-          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.13_Function_Model_Selection_and_Assumption_Articulation_ECHS_Refined.html",
+          "label": "Unit 1 AP challenge review",
+          "url": "resources/ap-precalculus/unit-1/combined/AP_Precalculus_Unit_1_AP_Challenge_Review.pdf",
           "type": "document"
+        },
+        {
+          "label": "Unit 1 complete resource library",
+          "url": "resources/ap-precalculus/unit-1/index.html",
+          "type": "resource"
         }
       ],
       "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.13_Function_Model_Selection_and_Assumption_Articulation_ECHS_Refined.html",
@@ -540,19 +605,24 @@
       ],
       "resources": [
         {
-          "label": "Complete interactive lesson",
-          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.14_Function_Model_Construction_and_Application_ECHS_Refined.html",
-          "type": "resource"
+          "label": "Strengthened guided notes - Topic 1.14",
+          "url": "resources/ap-precalculus/unit-1/notes/AP_Precalculus_1.14_Guided_Notes.pdf",
+          "type": "notes"
         },
         {
-          "label": "80-question Practice Studio included",
-          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.14_Function_Model_Construction_and_Application_ECHS_Refined.html",
+          "label": "Strengthened practice worksheet - Topic 1.14",
+          "url": "resources/ap-precalculus/unit-1/worksheets/AP_Precalculus_1.14_Practice_Worksheet.pdf",
           "type": "practice"
         },
         {
-          "label": "AP Exam Room and timed quiz included",
-          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.14_Function_Model_Construction_and_Application_ECHS_Refined.html",
+          "label": "Unit 1 AP challenge review",
+          "url": "resources/ap-precalculus/unit-1/combined/AP_Precalculus_Unit_1_AP_Challenge_Review.pdf",
           "type": "document"
+        },
+        {
+          "label": "Unit 1 complete resource library",
+          "url": "resources/ap-precalculus/unit-1/index.html",
+          "type": "resource"
         }
       ],
       "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.14_Function_Model_Construction_and_Application_ECHS_Refined.html",
@@ -573,7 +643,7 @@
     }
   ],
   "refreshed": true,
-  "portalSummary": "14 complete interactive Pearson-aligned lessons"
+  "portalSummary": "14 interactive lessons + 28 strengthened topic PDFs + AP challenge review"
 };
 
   var unitTwo = {
@@ -1259,7 +1329,8 @@
     replaceOrInsertUnit(targetCourse, 1, unitOne);
     replaceOrInsertUnit(targetCourse, 2, unitTwo);
 
-    targetCourse.updatedUnits = "Units 1–2 · 29 interactive lessons · 30 rewritten Unit 2 student PDFs";
+    targetCourse.updatedUnits = "Units 1–2 · 29 interactive lessons · strengthened notes, worksheets, and AP challenge review";
+    targetCourse.sourceNote = "Pearson-aligned ECHS AP Precalculus lessons with fully rewritten Unit 1 and Unit 2 student resources.";
     targetCourse.unitCount = targetCourse.units.length;
     targetCourse.lessonCount = targetCourse.units.reduce(function (total, unit) {
       return total + (Array.isArray(unit && unit.lessons) ? unit.lessons.length : 0);
@@ -1276,8 +1347,8 @@
       status: "Started",
       priority: 2,
       color: "teal",
-      sourceNote: "Pearson-aligned ECHS AP Precalculus lessons with strengthened Unit 2 notes and worksheets.",
-      updatedUnits: "Units 1–2 · 29 interactive lessons · 30 rewritten Unit 2 student PDFs",
+      sourceNote: "Pearson-aligned ECHS AP Precalculus lessons with fully rewritten Unit 1 and Unit 2 student resources.",
+      updatedUnits: "Units 1–2 · 29 interactive lessons · strengthened notes, worksheets, and AP challenge review",
       lessonCount: unitOne.lessons.length + unitTwo.lessons.length,
       unitCount: 2,
       units: [unitOne, unitTwo]
