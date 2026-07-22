@@ -76,18 +76,18 @@
   }
   .top{
     max-width:1500px;margin:auto;padding:12px 24px;
-    display:grid;grid-template-columns:minmax(300px,auto) minmax(280px,560px) auto;align-items:center;gap:22px;
+    display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,520px) auto;align-items:center;gap:22px;
   }
-  .brand{display:flex;align-items:center;gap:14px;min-width:0;text-decoration:none}
+  .brand{display:flex;align-items:center;gap:14px;min-width:0;text-decoration:none;overflow:hidden}
   .brandMark{
     width:48px;height:48px;display:grid;place-items:center;flex:0 0 auto;
     border-radius:16px;color:var(--gold-pale);font:600 26px var(--display);
     background:linear-gradient(150deg,var(--wine),var(--maroon) 42%,var(--maroon-deep));
     box-shadow:inset 0 0 0 1.5px rgba(233,200,124,.42),0 11px 28px rgba(120,24,63,.26);
   }
-  .logo{height:44px;max-width:250px;object-fit:contain}
-  .brandText{padding-left:14px;border-left:1px solid var(--line);min-width:0}
-  .brandText strong{display:block;color:var(--maroon);font-family:var(--display);font-weight:560;font-size:18px;letter-spacing:.1px;white-space:nowrap}
+  .logo{height:44px;max-width:250px;object-fit:contain;flex:0 1 auto;min-width:90px}
+  .brandText{padding-left:14px;border-left:1px solid var(--line);min-width:0;overflow:hidden}
+  .brandText strong{display:block;color:var(--maroon);font-family:var(--display);font-weight:560;font-size:18px;letter-spacing:.1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .brandText span{display:block;color:var(--muted);font-size:12px;margin-top:3px;font-weight:750}
   .searchBox{
     display:flex;align-items:center;gap:10px;width:100%;
@@ -251,11 +251,15 @@
     white-space:nowrap;
     animation:tagBob 6s ease-in-out infinite alternate,fadeTangent .6s ease both;
   }
-  .formulaTag sub{font-size:.68em}
-  .ft1{left:36%;top:16%;animation-delay:0s,2.1s}
-  .ft2{left:26%;bottom:12%;animation-delay:1.4s,2.4s}
-  .ft3{right:-4%;top:38%;animation-delay:2.6s,2.7s}
+  .formulaTag sub{font-size:.66em}
+  .formulaTag sup{font-size:.66em}
+  .ft1{left:8%;top:14%;animation-delay:0s,2.1s}
+  .ft2{left:33%;bottom:8%;animation-delay:1.4s,2.4s}
+  .ft3{right:-3%;top:8%;animation-delay:2.6s,2.7s}
   @keyframes tagBob{from{transform:translateY(-5px)}to{transform:translateY(6px)}}
+
+  .areaGuide{stroke:rgba(233,200,124,.42);stroke-width:1.2;stroke-dasharray:4 5;opacity:0;animation:fadeTangent .9s ease 2.2s forwards}
+  .axisLabel{fill:rgba(233,200,124,.8);font:italic 560 15px var(--display);opacity:0;animation:fadeTangent .9s ease 2.3s forwards}
 
   /* ---------- Stats: glass ledger ---------- */
   .statGrid{
@@ -284,8 +288,15 @@
   .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
   .reveal.in{opacity:1;transform:none}
 
+  /* ---------- Section intro ---------- */
+  .sectionIntro{margin:38px 2px 0}
+  .sectionEyebrow{display:inline-flex;align-items:center;gap:9px;color:var(--maroon);font-size:11px;font-weight:950;text-transform:uppercase;letter-spacing:1.8px}
+  .sectionEyebrow::before{content:"";width:26px;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--gold),var(--maroon))}
+  .sectionTitle{margin-top:8px;color:var(--navy-deep);font-family:var(--display);font-weight:560;font-size:clamp(26px,2.6vw,38px);line-height:1.06;letter-spacing:-.01em}
+  .sectionSub{margin-top:8px;color:var(--muted);font-size:14px;line-height:1.55;max-width:640px}
+
   /* ---------- Course tabs ---------- */
-  .courseTabs{display:flex;gap:9px;overflow:auto;padding:28px 2px 11px;scrollbar-width:thin}
+  .courseTabs{display:flex;gap:9px;overflow:auto;padding:18px 2px 11px;scrollbar-width:thin}
   .tab{min-width:max-content;border:1px solid var(--line);background:rgba(255,255,255,.92);border-radius:999px;padding:10px 16px;color:var(--navy);font-weight:850;cursor:pointer;box-shadow:0 8px 22px rgba(18,42,67,.04);transition:.16s ease}
   .tab span{margin-right:7px;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.6px}
   .tab:hover{transform:translateY(-1px);border-color:#d8b4c3}
@@ -480,7 +491,7 @@
 
   /* ---------- Print ---------- */
   @media print{
-    header.site,.sidebar,.actions,.toolbar,.courseTabs,.lessonActions,.star,footer,.heroScene,.heroVisual{display:none!important}
+    header.site,.sidebar,.actions,.toolbar,.courseTabs,.lessonActions,.star,footer,.heroScene,.heroVisual,.sectionIntro{display:none!important}
     body{background:#fff}
     .hero{display:block;color:var(--ink);background:#fff;border:0;box-shadow:none;padding:0}
     h1,.lead,.teacher{color:var(--ink)}
