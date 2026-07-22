@@ -1,0 +1,1 @@
+This package is safe for the public ECHS GitHub Pages repository. It contains student notes, student worksheets, the AP Precalculus resource-link update script, and installation instructions. Teacher answer keys are intentionally excluded.
