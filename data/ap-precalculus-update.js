@@ -8,7 +8,7 @@
   var unitOne = {
   "title": "Unit 1: Polynomial and Rational Functions",
   "description": "Fourteen complete AP Precalculus modules with fully strengthened printable resources. Every topic now includes redesigned guided notes, distinct challenge questions, original AP-style multiple-choice questions, six-point free-response tasks, and a power practice worksheet.",
-  "portalSummary": "14 interactive lessons · 14 topic video buttons · strengthened notes and AP-style worksheets",
+  "portalSummary": "14 interactive lessons · 20 Flipped Math video/review links · strengthened notes and AP-style worksheets",
   "essential_questions": [
     "How do multiple representations reveal how quantities change together?",
     "How do rates of change organize linear, quadratic, polynomial, and rational behavior?",
@@ -59,13 +59,14 @@
         "worksheet",
         "video",
         "tutorial",
-        "youtube"
+        "flipped math",
+        "flippedmath"
       ],
       "new": true,
       "videos": [
         {
-          "label": "Video: Topics 1.1–1.3 — Change in Tandem and Rates of Change",
-          "url": "https://youtu.be/KqOe9HN5-Lw",
+          "label": "Flipped Math video: 1.1 Change in Tandem",
+          "url": "https://precalculus.flippedmath.com/11-change-in-tandem.html",
           "type": "video"
         }
       ]
@@ -113,13 +114,14 @@
         "worksheet",
         "video",
         "tutorial",
-        "youtube"
+        "flipped math",
+        "flippedmath"
       ],
       "new": true,
       "videos": [
         {
-          "label": "Video: Topics 1.1–1.3 — Change in Tandem and Rates of Change",
-          "url": "https://youtu.be/KqOe9HN5-Lw",
+          "label": "Flipped Math video: 1.2 Rates of Change",
+          "url": "https://precalculus.flippedmath.com/12-rates-of-change.html",
           "type": "video"
         }
       ]
@@ -171,13 +173,14 @@
         "worksheet",
         "video",
         "tutorial",
-        "youtube"
+        "flipped math",
+        "flippedmath"
       ],
       "new": true,
       "videos": [
         {
-          "label": "Video: Topics 1.1–1.3 — Linear and Quadratic Rates of Change",
-          "url": "https://youtu.be/KqOe9HN5-Lw",
+          "label": "Flipped Math video: 1.3 Rates of Change in Linear and Quadratic Functions",
+          "url": "https://precalculus.flippedmath.com/13-rates-of-change-in-linear-and-quadratic-functions.html",
           "type": "video"
         }
       ]
@@ -226,13 +229,14 @@
         "worksheet",
         "video",
         "tutorial",
-        "youtube"
+        "flipped math",
+        "flippedmath"
       ],
       "new": true,
       "videos": [
         {
-          "label": "Video: Topic 1.4 — Polynomial Functions and Rates of Change",
-          "url": "https://youtu.be/yQzCmPICwFM",
+          "label": "Flipped Math video: 1.4 Polynomial Functions and Rates of Change",
+          "url": "https://precalculus.flippedmath.com/14-polynomial-functions-and-rates-of-change.html",
           "type": "video"
         }
       ]
@@ -280,13 +284,19 @@
         "zeros",
         "video",
         "tutorial",
-        "youtube"
+        "flipped math",
+        "flippedmath"
       ],
       "new": true,
       "videos": [
         {
-          "label": "Video: Topic 1.5 — Polynomial Functions and Complex Zeros",
-          "url": "https://youtu.be/md0fuC8Yg9k",
+          "label": "Flipped Math video: 1.5A Polynomial Functions and Complex Zeros",
+          "url": "https://precalculus.flippedmath.com/15a-polynomial-functions-and-complex-zeros.html",
+          "type": "video"
+        },
+        {
+          "label": "Flipped Math video: 1.5B Even and Odd Polynomials — extension",
+          "url": "https://precalculus.flippedmath.com/15b-even-and-odd-polynomials.html",
           "type": "video"
         }
       ]
@@ -334,13 +344,19 @@
         "worksheet",
         "video",
         "tutorial",
-        "youtube"
+        "flipped math",
+        "flippedmath"
       ],
       "new": true,
       "videos": [
         {
-          "label": "Video: Topic 1.6 — Polynomial End Behavior",
-          "url": "https://youtu.be/Vgt7SNor6W8",
+          "label": "Flipped Math video: 1.6 Polynomial Functions and End Behavior",
+          "url": "https://precalculus.flippedmath.com/16-polynomial-functions-and-end-behavior.html",
+          "type": "video"
+        },
+        {
+          "label": "Flipped Math review video: Unit 1A",
+          "url": "https://precalculus.flippedmath.com/unit-1a-review.html",
           "type": "video"
         }
       ]
@@ -388,13 +404,19 @@
         "worksheet",
         "video",
         "tutorial",
-        "youtube"
+        "flipped math",
+        "flippedmath"
       ],
       "new": true,
       "videos": [
         {
-          "label": "Video: Topic 1.7 — Rational Functions and End Behavior",
-          "url": "https://youtu.be/_u9kgmAMBwc",
+          "label": "Flipped Math video: 1.7A Rational Functions and End Behavior",
+          "url": "https://precalculus.flippedmath.com/17a-rational-functions-and-end-behavior.html",
+          "type": "video"
+        },
+        {
+          "label": "Flipped Math video: 1.7B Rational Functions and End Behavior",
+          "url": "https://precalculus.flippedmath.com/17b-rational-functions-and-end-behavior.html",
           "type": "video"
         }
       ]
@@ -441,13 +463,14 @@
         "zeros",
         "video",
         "tutorial",
-        "youtube"
+        "flipped math",
+        "flippedmath"
       ],
       "new": true,
       "videos": [
         {
-          "label": "Video: Topic 1.8 — Rational Functions and Zeros",
-          "url": "https://youtu.be/3XBQK05tG5g",
+          "label": "Flipped Math video: 1.8 Rational Functions and Zeros",
+          "url": "https://precalculus.flippedmath.com/18-rational-functions-and-zeros.html",
           "type": "video"
         }
       ]
@@ -495,13 +518,14 @@
         "worksheet",
         "video",
         "tutorial",
-        "youtube"
+        "flipped math",
+        "flippedmath"
       ],
       "new": true,
       "videos": [
         {
-          "label": "Video: Topics 1.9–1.10 — Vertical Asymptotes and Holes",
-          "url": "https://youtu.be/Jq1UiByItvQ",
+          "label": "Flipped Math video: 1.9 Rational Functions and Vertical Asymptotes",
+          "url": "https://precalculus.flippedmath.com/19-rational-functions-and-vertical-asymptotes.html",
           "type": "video"
         }
       ]
@@ -548,13 +572,14 @@
         "worksheet",
         "video",
         "tutorial",
-        "youtube"
+        "flipped math",
+        "flippedmath"
       ],
       "new": true,
       "videos": [
         {
-          "label": "Video: Topics 1.9–1.10 — Vertical Asymptotes and Holes",
-          "url": "https://youtu.be/Jq1UiByItvQ",
+          "label": "Flipped Math video: 1.10 Rational Functions and Holes",
+          "url": "https://precalculus.flippedmath.com/110-rational-functions-and-holes.html",
           "type": "video"
         }
       ]
@@ -604,13 +629,19 @@
         "worksheet",
         "video",
         "tutorial",
-        "youtube"
+        "flipped math",
+        "flippedmath"
       ],
       "new": true,
       "videos": [
         {
-          "label": "Video: Topic 1.11 — Equivalent Polynomial and Rational Forms",
-          "url": "https://youtu.be/uCvEdwgxsjA",
+          "label": "Flipped Math video: 1.11A Equivalent Expressions and the Binomial Theorem",
+          "url": "https://precalculus.flippedmath.com/111a-equivalent-expressions-and-binomial-thm.html",
+          "type": "video"
+        },
+        {
+          "label": "Flipped Math video: 1.11B Polynomial Long Division and Slant Asymptotes",
+          "url": "https://precalculus.flippedmath.com/111b-polynomial-long-division-and-slant-asymptotes.html",
           "type": "video"
         }
       ]
@@ -657,13 +688,19 @@
         "worksheet",
         "video",
         "tutorial",
-        "youtube"
+        "flipped math",
+        "flippedmath"
       ],
       "new": true,
       "videos": [
         {
-          "label": "Video: Topic 1.12 — Transformations of Functions",
-          "url": "https://youtu.be/ZnpPR9Q3eVw",
+          "label": "Flipped Math video: 1.12A Translations of Functions",
+          "url": "https://precalculus.flippedmath.com/112a-translations-of-functions.html",
+          "type": "video"
+        },
+        {
+          "label": "Flipped Math video: 1.12B Dilations of Functions",
+          "url": "https://precalculus.flippedmath.com/112b-dilations-of-functions.html",
           "type": "video"
         }
       ]
@@ -714,13 +751,14 @@
         "worksheet",
         "video",
         "tutorial",
-        "youtube"
+        "flipped math",
+        "flippedmath"
       ],
       "new": true,
       "videos": [
         {
-          "label": "Video: Topics 1.13–1.14 — Function Modeling and Regression",
-          "url": "https://youtu.be/rPUSiRDCuIM",
+          "label": "Flipped Math video: 1.13 Function Model Selection",
+          "url": "https://precalculus.flippedmath.com/113-function-model-selection.html",
           "type": "video"
         }
       ]
@@ -770,25 +808,26 @@
         "worksheet",
         "video",
         "tutorial",
-        "youtube"
+        "flipped math",
+        "flippedmath"
       ],
       "new": true,
       "videos": [
         {
-          "label": "Video: Topics 1.13–1.14 — Function Modeling and Regression",
-          "url": "https://youtu.be/rPUSiRDCuIM",
+          "label": "Flipped Math video: 1.14 Function Model Construction",
+          "url": "https://precalculus.flippedmath.com/114-function-model-construction.html",
           "type": "video"
         },
         {
-          "label": "Video review: Complete AP Precalculus Unit 1",
-          "url": "https://youtu.be/u43snOQ5Nms",
+          "label": "Flipped Math review video: Unit 1B",
+          "url": "https://precalculus.flippedmath.com/unit-1b-review.html",
           "type": "video"
         }
       ]
     }
   ],
   "refreshed": true,
-  "videoSource": "Bao Le Math AP Precalculus topic tutorials"
+  "videoSource": "Flipped Math AP Precalculus — free topic-aligned video lessons"
 };
 
   var unitTwo = {
@@ -846,12 +885,13 @@
         "functions",
         "video",
         "tutorial",
-        "youtube"
+        "flipped math",
+        "flippedmath"
       ],
       "videos": [
         {
-          "label": "Video: Topic 2.1 — Arithmetic and Geometric Sequences",
-          "url": "https://youtu.be/a97xs8-V7zE",
+          "label": "Flipped Math video: 2.1 Change in Arithmetic and Geometric Sequences",
+          "url": "https://precalculus.flippedmath.com/21-change-in-arithmetic-and-geometric-sequences.html",
           "type": "video"
         }
       ]
@@ -898,12 +938,13 @@
         "logarithmic",
         "video",
         "tutorial",
-        "youtube"
+        "flipped math",
+        "flippedmath"
       ],
       "videos": [
         {
-          "label": "Video: Topic 2.2 — Linear and Exponential Change",
-          "url": "https://youtu.be/FNPhOs9OkSk",
+          "label": "Flipped Math video: 2.2 Change in Linear and Exponential Functions",
+          "url": "https://precalculus.flippedmath.com/22-change-in-linear-and-exponential-functions.html",
           "type": "video"
         }
       ]
@@ -946,12 +987,13 @@
         "logarithmic",
         "video",
         "tutorial",
-        "youtube"
+        "flipped math",
+        "flippedmath"
       ],
       "videos": [
         {
-          "label": "Video: Topic 2.3 — Exponential Functions",
-          "url": "https://youtu.be/Yz10JnbqHtI",
+          "label": "Flipped Math video: 2.3 Exponential Functions",
+          "url": "https://precalculus.flippedmath.com/23-exponential-functions.html",
           "type": "video"
         }
       ]
@@ -996,12 +1038,13 @@
         "functions",
         "video",
         "tutorial",
-        "youtube"
+        "flipped math",
+        "flippedmath"
       ],
       "videos": [
         {
-          "label": "Video: Topic 2.4 — Exponential Function Manipulation",
-          "url": "https://youtu.be/UIx2ohllp1U",
+          "label": "Flipped Math video: 2.4 Exponential Function Manipulation",
+          "url": "https://precalculus.flippedmath.com/24-exponential-function-manipulation.html",
           "type": "video"
         }
       ]
@@ -1049,12 +1092,18 @@
         "functions",
         "video",
         "tutorial",
-        "youtube"
+        "flipped math",
+        "flippedmath"
       ],
       "videos": [
         {
-          "label": "Video: Topic 2.5 — Exponential Context and Data Modeling",
-          "url": "https://youtu.be/ilmg3FW7_cg",
+          "label": "Flipped Math video: 2.5A Exponential Function Context and Data Modeling",
+          "url": "https://precalculus.flippedmath.com/25a-exponential-function-context-and-data-modeling.html",
+          "type": "video"
+        },
+        {
+          "label": "Flipped Math video: 2.5B Exponential Function Context and Data Modeling",
+          "url": "https://precalculus.flippedmath.com/25b-exponential-function-context-and-data-modeling.html",
           "type": "video"
         }
       ]
@@ -1101,12 +1150,13 @@
         "functions",
         "video",
         "tutorial",
-        "youtube"
+        "flipped math",
+        "flippedmath"
       ],
       "videos": [
         {
-          "label": "Video: Topic 2.6 — Competing Function Model Validation",
-          "url": "https://youtu.be/jpv5gKTBOVo",
+          "label": "Flipped Math video: 2.6 Competing Function Model Validation",
+          "url": "https://precalculus.flippedmath.com/26-competing-function-model-validation.html",
           "type": "video"
         }
       ]
@@ -1151,12 +1201,18 @@
         "logarithmic",
         "video",
         "tutorial",
-        "youtube"
+        "flipped math",
+        "flippedmath"
       ],
       "videos": [
         {
-          "label": "Video: Topic 2.7 — Composition of Functions",
-          "url": "https://youtu.be/0V1o4_oxLqo",
+          "label": "Flipped Math video: 2.7A Composition of Functions",
+          "url": "https://precalculus.flippedmath.com/27a-composition-of-functions.html",
+          "type": "video"
+        },
+        {
+          "label": "Flipped Math video: 2.7B Composition of Functions",
+          "url": "https://precalculus.flippedmath.com/27b-composition-of-functions.html",
           "type": "video"
         }
       ]
@@ -1200,12 +1256,18 @@
         "logarithmic",
         "video",
         "tutorial",
-        "youtube"
+        "flipped math",
+        "flippedmath"
       ],
       "videos": [
         {
-          "label": "Video: Topic 2.8 — Inverse Functions",
-          "url": "https://youtu.be/kaW-5Y-l6dU",
+          "label": "Flipped Math video: 2.8 Inverse Functions",
+          "url": "https://precalculus.flippedmath.com/28-inverse-functions.html",
+          "type": "video"
+        },
+        {
+          "label": "Flipped Math review video: Unit 2A",
+          "url": "https://precalculus.flippedmath.com/unit-2a-review.html",
           "type": "video"
         }
       ]
@@ -1249,12 +1311,13 @@
         "functions",
         "video",
         "tutorial",
-        "youtube"
+        "flipped math",
+        "flippedmath"
       ],
       "videos": [
         {
-          "label": "Video: Topic 2.9 — Logarithmic Expressions",
-          "url": "https://youtu.be/1v3QLVmQVX8",
+          "label": "Flipped Math video: 2.9 Logarithmic Expressions",
+          "url": "https://precalculus.flippedmath.com/29-logarithmic-expressions.html",
           "type": "video"
         }
       ]
@@ -1299,12 +1362,13 @@
         "logarithmic",
         "video",
         "tutorial",
-        "youtube"
+        "flipped math",
+        "flippedmath"
       ],
       "videos": [
         {
-          "label": "Video: Topic 2.10 — Inverses of Exponential Functions",
-          "url": "https://youtu.be/hFB-4-CHEdw",
+          "label": "Flipped Math video: 2.10 Inverses of Exponential Functions",
+          "url": "https://precalculus.flippedmath.com/210-inverses-of-exponential-functions.html",
           "type": "video"
         }
       ]
@@ -1347,12 +1411,13 @@
         "exponential",
         "video",
         "tutorial",
-        "youtube"
+        "flipped math",
+        "flippedmath"
       ],
       "videos": [
         {
-          "label": "Video: Topic 2.11 — Logarithmic Functions",
-          "url": "https://youtu.be/Wa-Ji_mXJV0",
+          "label": "Flipped Math video: 2.11 Logarithmic Functions",
+          "url": "https://precalculus.flippedmath.com/211-logarithmic-functions.html",
           "type": "video"
         }
       ]
@@ -1397,12 +1462,13 @@
         "functions",
         "video",
         "tutorial",
-        "youtube"
+        "flipped math",
+        "flippedmath"
       ],
       "videos": [
         {
-          "label": "Video: Topic 2.12 — Logarithmic Function Manipulation",
-          "url": "https://youtu.be/0UiiZj1OMrw",
+          "label": "Flipped Math video: 2.12 Logarithmic Function Manipulation",
+          "url": "https://precalculus.flippedmath.com/212-logarithmic-function-manipulation.html",
           "type": "video"
         }
       ]
@@ -1448,12 +1514,18 @@
         "functions",
         "video",
         "tutorial",
-        "youtube"
+        "flipped math",
+        "flippedmath"
       ],
       "videos": [
         {
-          "label": "Video: Topic 2.13 — Exponential and Logarithmic Equations",
-          "url": "https://youtu.be/EES1m0ogPAQ",
+          "label": "Flipped Math video: 2.13A Exponential and Logarithmic Equations and Inequalities",
+          "url": "https://precalculus.flippedmath.com/213a-exponential-and-logarithmic-equations-and-inequalities.html",
+          "type": "video"
+        },
+        {
+          "label": "Flipped Math video: 2.13B Exponential and Logarithmic Equations and Inequalities",
+          "url": "https://precalculus.flippedmath.com/213b-exponential-and-logarithmic-equations-and-inequalities.html",
           "type": "video"
         }
       ]
@@ -1501,12 +1573,13 @@
         "functions",
         "video",
         "tutorial",
-        "youtube"
+        "flipped math",
+        "flippedmath"
       ],
       "videos": [
         {
-          "label": "Video: Topic 2.14 — Logarithmic Context and Data Modeling",
-          "url": "https://youtu.be/ubjxGv04Gr4",
+          "label": "Flipped Math video: 2.14 Logarithmic Function Context and Data Modeling",
+          "url": "https://precalculus.flippedmath.com/214-logarithmic-function-context-and-data-modeling.html",
           "type": "video"
         }
       ]
@@ -1552,25 +1625,26 @@
         "functions",
         "video",
         "tutorial",
-        "youtube"
+        "flipped math",
+        "flippedmath"
       ],
       "videos": [
         {
-          "label": "Video: Topic 2.15 — Semi-log Plots",
-          "url": "https://youtu.be/f-wqyHokJ3Y",
+          "label": "Flipped Math video: 2.15 Semi-Log Plots",
+          "url": "https://precalculus.flippedmath.com/215-semi-log-plots.html",
           "type": "video"
         },
         {
-          "label": "Video review: Complete AP Precalculus Unit 2",
-          "url": "https://youtu.be/RY35-G_Lkxc",
+          "label": "Flipped Math review video: Unit 2B",
+          "url": "https://precalculus.flippedmath.com/unit-2b-review.html",
           "type": "video"
         }
       ]
     }
   ],
   "refreshed": true,
-  "portalSummary": "15 interactive lessons · 15 topic video buttons · 30 rewritten student PDFs",
-  "videoSource": "Bao Le Math AP Precalculus topic tutorials"
+  "portalSummary": "15 interactive lessons · 20 Flipped Math video/review links · 30 rewritten student PDFs",
+  "videoSource": "Flipped Math AP Precalculus — free topic-aligned video lessons"
 };
 
   function normalize(value) {
@@ -1630,8 +1704,8 @@
     replaceOrInsertUnit(targetCourse, 1, unitOne);
     replaceOrInsertUnit(targetCourse, 2, unitTwo);
 
-    targetCourse.updatedUnits = "Units 1–2 · 29 interactive lessons · topic videos · 58 strengthened student PDFs";
-    targetCourse.sourceNote = "Pearson-aligned ECHS AP Precalculus lessons, strengthened printable resources, and topic-aligned video tutorials.";
+    targetCourse.updatedUnits = "Units 1–2 · 29 interactive lessons · 40 Flipped Math video/review links · 58 strengthened student PDFs";
+    targetCourse.sourceNote = "Pearson-aligned ECHS AP Precalculus lessons, strengthened printable resources, and free topic-aligned Flipped Math video lessons.";
     targetCourse.unitCount = targetCourse.units.length;
     targetCourse.lessonCount = targetCourse.units.reduce(function (total, unit) {
       return total + (Array.isArray(unit && unit.lessons) ? unit.lessons.length : 0);
@@ -1644,12 +1718,12 @@
       shortTitle: "AP Precalculus",
       subtitle: "Polynomial, rational, exponential, logarithmic, trigonometric, polar, vector, parametric, and matrix functions.",
       course: "G10–G11 AP Precalculus",
-      resource: "Pearson-aligned ECHS lessons, topic videos, and strengthened printable resources",
+      resource: "Pearson-aligned ECHS lessons, Flipped Math videos, and strengthened printable resources",
       status: "Started",
       priority: 2,
       color: "teal",
-      sourceNote: "Pearson-aligned ECHS AP Precalculus lessons, strengthened printable resources, and topic-aligned video tutorials.",
-      updatedUnits: "Units 1–2 · 29 interactive lessons · topic videos · 58 strengthened student PDFs",
+      sourceNote: "Pearson-aligned ECHS AP Precalculus lessons, strengthened printable resources, and free topic-aligned Flipped Math video lessons.",
+      updatedUnits: "Units 1–2 · 29 interactive lessons · 40 Flipped Math video/review links · 58 strengthened student PDFs",
       lessonCount: unitOne.lessons.length + unitTwo.lessons.length,
       unitCount: 2,
       units: [unitOne, unitTwo]
