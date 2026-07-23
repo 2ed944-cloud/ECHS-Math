@@ -1,28 +1,20 @@
 {
-  "course_id": "ap-precalculus-g10-g11",
-  "updated_units": [
-    1,
-    2
-  ],
-  "unit_1_lessons": 14,
-  "unit_2_lessons": 15,
-  "unit_2_files": [
-    "AP_Precalculus_2.1_Change_in_Arithmetic_and_Geometric_Sequences_ECHS_Refined.html",
-    "AP_Precalculus_2.2_Change_in_Linear_and_Exponential_Functions_ECHS_Refined.html",
-    "AP_Precalculus_2.3_Exponential_Functions_ECHS_Refined.html",
-    "AP_Precalculus_2.4_Exponential_Function_Manipulation_ECHS_Refined.html",
-    "AP_Precalculus_2.5_Exponential_Function_Context_and_Data_Modeling_ECHS_Refined.html",
-    "AP_Precalculus_2.6_Competing_Function_Model_Validation_ECHS_Refined.html",
-    "AP_Precalculus_2.7_Composition_of_Functions_ECHS_Refined.html",
-    "AP_Precalculus_2.8_Inverse_Functions_ECHS_Refined.html",
-    "AP_Precalculus_2.9_Logarithmic_Expressions_ECHS_Refined.html",
-    "AP_Precalculus_2.10_Inverses_of_Exponential_Functions_ECHS_Refined.html",
-    "AP_Precalculus_2.11_Logarithmic_Functions_ECHS_Refined.html",
-    "AP_Precalculus_2.12_Logarithmic_Function_Manipulation_ECHS_Refined.html",
-    "AP_Precalculus_2.13_Exponential_and_Logarithmic_Equations_and_Inequalities_ECHS_Refined.html",
-    "AP_Precalculus_2.14_Logarithmic_Function_Context_and_Data_Modeling_ECHS_Refined.html",
-    "AP_Precalculus_2.15_Semi_log_Plots_ECHS_Refined.html"
-  ],
-  "expected_existing_course_total_lessons": 72,
-  "expected_open_lessons_after_update": 29
+  "name": "ECHS Mathematics Lesson Portal",
+  "short_name": "ECHS Math",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f4f7fb",
+  "theme_color": "#7a1738",
+  "icons": [
+    {
+      "src": "assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
 }

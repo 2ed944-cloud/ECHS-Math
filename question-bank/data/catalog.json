@@ -1,0 +1,2114 @@
+{
+  "version": "2.0-all-courses",
+  "generated_for": "ECHS Mathematics · All Courses Practice Platform",
+  "banks": [
+    {
+      "code": "CALCT3BC",
+      "title": "Calculus: Early Transcendentals, 3e",
+      "authors": "Briggs, Cochran, Gillett, Schulz",
+      "edition": "3e",
+      "isbn": "9780134770529",
+      "resource_isbn": "9780134770529",
+      "format": "Pearson TestGen Blackboard QTI pool export",
+      "question_count": 3309
+    },
+    {
+      "code": "ADAMS10",
+      "title": "Calculus: A Complete Course, 10e",
+      "authors": "Adams, Essex",
+      "edition": "10e",
+      "isbn": "9780135732588",
+      "resource_isbn": "9780136835004",
+      "format": "Pearson test bank Blackboard QTI pool export + Word/TIF metadata",
+      "question_count": 2170
+    },
+    {
+      "code": "PEARSON_CH0",
+      "title": "Pearson Calculus Chapter 0 Preliminaries Test Bank",
+      "authors": "Pearson Education",
+      "edition": "2007 resource",
+      "isbn": "0132255235",
+      "resource_isbn": "0132255235",
+      "format": "Pearson TestGen PDF export with answer key",
+      "question_count": 403
+    }
+  ],
+  "bundles": {
+    "topics": [
+      {
+        "id": "1.1",
+        "label": "1.1 · Introducing Calculus: Can Change Occur at an Instant?",
+        "file": "data/ap/topics/1_1.json",
+        "count": 22,
+        "auto_gradable_count": 22,
+        "type_counts": {
+          "mcq": 22
+        },
+        "bank_counts": {
+          "CALCT3BC": 18,
+          "ADAMS10": 4
+        },
+        "topic": "1.1",
+        "unit": 1
+      },
+      {
+        "id": "1.2",
+        "label": "1.2 · Defining Limits and Using Limit Notation",
+        "file": "data/ap/topics/1_2.json",
+        "count": 11,
+        "auto_gradable_count": 11,
+        "type_counts": {
+          "mcq": 11
+        },
+        "bank_counts": {
+          "CALCT3BC": 9,
+          "ADAMS10": 2
+        },
+        "topic": "1.2",
+        "unit": 1
+      },
+      {
+        "id": "1.3",
+        "label": "1.3 · Estimating Limit Values from Graphs",
+        "file": "data/ap/topics/1_3.json",
+        "count": 10,
+        "auto_gradable_count": 10,
+        "type_counts": {
+          "mcq": 10
+        },
+        "bank_counts": {
+          "CALCT3BC": 10
+        },
+        "topic": "1.3",
+        "unit": 1
+      },
+      {
+        "id": "1.4",
+        "label": "1.4 · Estimating Limit Values from Tables",
+        "file": "data/ap/topics/1_4.json",
+        "count": 7,
+        "auto_gradable_count": 7,
+        "type_counts": {
+          "mcq": 7
+        },
+        "bank_counts": {
+          "CALCT3BC": 7
+        },
+        "topic": "1.4",
+        "unit": 1
+      },
+      {
+        "id": "1.5",
+        "label": "1.5 · Determining Limits Using Algebraic Properties of Limits",
+        "file": "data/ap/topics/1_5.json",
+        "count": 32,
+        "auto_gradable_count": 31,
+        "type_counts": {
+          "essay": 1,
+          "mcq": 28,
+          "true_false": 3
+        },
+        "bank_counts": {
+          "CALCT3BC": 23,
+          "ADAMS10": 9
+        },
+        "topic": "1.5",
+        "unit": 1
+      },
+      {
+        "id": "1.6",
+        "label": "1.6 · Determining Limits Using Algebraic Manipulation",
+        "file": "data/ap/topics/1_6.json",
+        "count": 23,
+        "auto_gradable_count": 22,
+        "type_counts": {
+          "mcq": 22,
+          "essay": 1
+        },
+        "bank_counts": {
+          "CALCT3BC": 11,
+          "ADAMS10": 12
+        },
+        "topic": "1.6",
+        "unit": 1
+      },
+      {
+        "id": "1.7",
+        "label": "1.7 · Selecting Procedures for Determining Limits",
+        "file": "data/ap/topics/1_7.json",
+        "count": 8,
+        "auto_gradable_count": 8,
+        "type_counts": {
+          "mcq": 7,
+          "true_false": 1
+        },
+        "bank_counts": {
+          "ADAMS10": 8
+        },
+        "topic": "1.7",
+        "unit": 1
+      },
+      {
+        "id": "1.8",
+        "label": "1.8 · Determining Limits Using the Squeeze Theorem",
+        "file": "data/ap/topics/1_8.json",
+        "count": 3,
+        "auto_gradable_count": 3,
+        "type_counts": {
+          "mcq": 3
+        },
+        "bank_counts": {
+          "CALCT3BC": 3
+        },
+        "topic": "1.8",
+        "unit": 1
+      },
+      {
+        "id": "1.9",
+        "label": "1.9 · Connecting Multiple Representations of Limits",
+        "file": "data/ap/topics/1_9.json",
+        "count": 11,
+        "auto_gradable_count": 7,
+        "type_counts": {
+          "mcq": 7,
+          "essay": 4
+        },
+        "bank_counts": {
+          "CALCT3BC": 11
+        },
+        "topic": "1.9",
+        "unit": 1
+      },
+      {
+        "id": "1.10",
+        "label": "1.10 · Exploring Types of Discontinuities",
+        "file": "data/ap/topics/1_10.json",
+        "count": 11,
+        "auto_gradable_count": 11,
+        "type_counts": {
+          "mcq": 11
+        },
+        "bank_counts": {
+          "CALCT3BC": 9,
+          "ADAMS10": 2
+        },
+        "topic": "1.10",
+        "unit": 1
+      },
+      {
+        "id": "1.11",
+        "label": "1.11 · Defining Continuity at a Point",
+        "file": "data/ap/topics/1_11.json",
+        "count": 9,
+        "auto_gradable_count": 9,
+        "type_counts": {
+          "mcq": 9
+        },
+        "bank_counts": {
+          "CALCT3BC": 4,
+          "ADAMS10": 5
+        },
+        "topic": "1.11",
+        "unit": 1
+      },
+      {
+        "id": "1.12",
+        "label": "1.12 · Confirming Continuity over an Interval",
+        "file": "data/ap/topics/1_12.json",
+        "count": 19,
+        "auto_gradable_count": 19,
+        "type_counts": {
+          "mcq": 19
+        },
+        "bank_counts": {
+          "CALCT3BC": 18,
+          "ADAMS10": 1
+        },
+        "topic": "1.12",
+        "unit": 1
+      },
+      {
+        "id": "1.13",
+        "label": "1.13 · Removing Discontinuities",
+        "file": "data/ap/topics/1_13.json",
+        "count": 9,
+        "auto_gradable_count": 9,
+        "type_counts": {
+          "mcq": 7,
+          "true_false": 2
+        },
+        "bank_counts": {
+          "CALCT3BC": 5,
+          "ADAMS10": 4
+        },
+        "topic": "1.13",
+        "unit": 1
+      },
+      {
+        "id": "1.14",
+        "label": "1.14 · Connecting Infinite Limits and Vertical Asymptotes",
+        "file": "data/ap/topics/1_14.json",
+        "count": 69,
+        "auto_gradable_count": 69,
+        "type_counts": {
+          "mcq": 65,
+          "true_false": 4
+        },
+        "bank_counts": {
+          "CALCT3BC": 38,
+          "ADAMS10": 31
+        },
+        "topic": "1.14",
+        "unit": 1
+      },
+      {
+        "id": "1.15",
+        "label": "1.15 · Connecting Limits at Infinity and Horizontal Asymptotes",
+        "file": "data/ap/topics/1_15.json",
+        "count": 36,
+        "auto_gradable_count": 36,
+        "type_counts": {
+          "mcq": 36
+        },
+        "bank_counts": {
+          "CALCT3BC": 32,
+          "ADAMS10": 4
+        },
+        "topic": "1.15",
+        "unit": 1
+      },
+      {
+        "id": "1.16",
+        "label": "1.16 · Working with the Intermediate Value Theorem (IVT)",
+        "file": "data/ap/topics/1_16.json",
+        "count": 8,
+        "auto_gradable_count": 4,
+        "type_counts": {
+          "essay": 4,
+          "true_false": 2,
+          "mcq": 2
+        },
+        "bank_counts": {
+          "CALCT3BC": 4,
+          "ADAMS10": 4
+        },
+        "topic": "1.16",
+        "unit": 1
+      }
+    ],
+    "ap_units": [
+      {
+        "id": "unit_1",
+        "label": "AP Unit 1 · Limits and Continuity",
+        "file": "data/ap/unit_1.json",
+        "count": 289,
+        "auto_gradable_count": 279,
+        "type_counts": {
+          "mcq": 267,
+          "essay": 10,
+          "true_false": 12
+        },
+        "bank_counts": {
+          "CALCT3BC": 202,
+          "ADAMS10": 87
+        },
+        "unit": 1
+      },
+      {
+        "id": "unit_2",
+        "label": "AP Unit 2 · Differentiation: Definition and Fundamental Properties",
+        "file": "data/ap/unit_2.json",
+        "count": 228,
+        "auto_gradable_count": 222,
+        "type_counts": {
+          "mcq": 215,
+          "fill_blank": 1,
+          "essay": 6,
+          "true_false": 6
+        },
+        "bank_counts": {
+          "CALCT3BC": 169,
+          "ADAMS10": 59
+        },
+        "unit": 2
+      },
+      {
+        "id": "unit_3",
+        "label": "AP Unit 3 · Differentiation: Composite, Implicit, and Inverse Functions",
+        "file": "data/ap/unit_3.json",
+        "count": 280,
+        "auto_gradable_count": 267,
+        "type_counts": {
+          "mcq": 259,
+          "essay": 13,
+          "fill_blank": 3,
+          "true_false": 5
+        },
+        "bank_counts": {
+          "CALCT3BC": 165,
+          "ADAMS10": 115
+        },
+        "unit": 3
+      },
+      {
+        "id": "unit_4",
+        "label": "AP Unit 4 · Contextual Applications of Differentiation",
+        "file": "data/ap/unit_4.json",
+        "count": 149,
+        "auto_gradable_count": 148,
+        "type_counts": {
+          "mcq": 145,
+          "essay": 1,
+          "fill_blank": 1,
+          "true_false": 2
+        },
+        "bank_counts": {
+          "CALCT3BC": 88,
+          "ADAMS10": 61
+        },
+        "unit": 4
+      },
+      {
+        "id": "unit_5",
+        "label": "AP Unit 5 · Analytical Applications of Differentiation",
+        "file": "data/ap/unit_5.json",
+        "count": 194,
+        "auto_gradable_count": 172,
+        "type_counts": {
+          "mcq": 169,
+          "essay": 22,
+          "true_false": 3
+        },
+        "bank_counts": {
+          "CALCT3BC": 122,
+          "ADAMS10": 72
+        },
+        "unit": 5
+      },
+      {
+        "id": "unit_6",
+        "label": "AP Unit 6 · Integration and Accumulation of Change",
+        "file": "data/ap/unit_6.json",
+        "count": 638,
+        "auto_gradable_count": 624,
+        "type_counts": {
+          "mcq": 607,
+          "true_false": 14,
+          "essay": 14,
+          "fill_blank": 3
+        },
+        "bank_counts": {
+          "CALCT3BC": 406,
+          "ADAMS10": 232
+        },
+        "unit": 6
+      },
+      {
+        "id": "unit_7",
+        "label": "AP Unit 7 · Differential Equations",
+        "file": "data/ap/unit_7.json",
+        "count": 196,
+        "auto_gradable_count": 191,
+        "type_counts": {
+          "mcq": 187,
+          "essay": 5,
+          "fill_blank": 2,
+          "true_false": 2
+        },
+        "bank_counts": {
+          "CALCT3BC": 102,
+          "ADAMS10": 94
+        },
+        "unit": 7
+      },
+      {
+        "id": "unit_8",
+        "label": "AP Unit 8 · Applications of Integration",
+        "file": "data/ap/unit_8.json",
+        "count": 333,
+        "auto_gradable_count": 325,
+        "type_counts": {
+          "mcq": 316,
+          "essay": 8,
+          "true_false": 5,
+          "fill_blank": 4
+        },
+        "bank_counts": {
+          "CALCT3BC": 202,
+          "ADAMS10": 131
+        },
+        "unit": 8
+      },
+      {
+        "id": "unit_9",
+        "label": "AP Unit 9 · Parametric Equations, Polar Coordinates, and Vector-Valued Functions",
+        "file": "data/ap/unit_9.json",
+        "count": 291,
+        "auto_gradable_count": 275,
+        "type_counts": {
+          "mcq": 268,
+          "essay": 16,
+          "fill_blank": 1,
+          "true_false": 6
+        },
+        "bank_counts": {
+          "CALCT3BC": 154,
+          "ADAMS10": 137
+        },
+        "unit": 9
+      },
+      {
+        "id": "unit_10",
+        "label": "AP Unit 10 · Infinite Sequences and Series",
+        "file": "data/ap/unit_10.json",
+        "count": 415,
+        "auto_gradable_count": 407,
+        "type_counts": {
+          "mcq": 378,
+          "essay": 8,
+          "true_false": 29
+        },
+        "bank_counts": {
+          "CALCT3BC": 280,
+          "ADAMS10": 135
+        },
+        "unit": 10
+      }
+    ],
+    "source_chapters": [
+      {
+        "id": "ADAMS10_P",
+        "label": "Calculus: A Complete Course, 10e · Chapter P",
+        "file": "data/source/adams10/chapter_p.json",
+        "count": 127,
+        "auto_gradable_count": 105,
+        "type_counts": {
+          "mcq": 103,
+          "true_false": 2,
+          "essay": 22
+        },
+        "bank_counts": {
+          "ADAMS10": 127
+        },
+        "bank_code": "ADAMS10",
+        "chapter": "P"
+      },
+      {
+        "id": "ADAMS10_1",
+        "label": "Calculus: A Complete Course, 10e · Chapter 1",
+        "file": "data/source/adams10/chapter_01.json",
+        "count": 94,
+        "auto_gradable_count": 91,
+        "type_counts": {
+          "mcq": 79,
+          "essay": 3,
+          "true_false": 12
+        },
+        "bank_counts": {
+          "ADAMS10": 94
+        },
+        "bank_code": "ADAMS10",
+        "chapter": "1"
+      },
+      {
+        "id": "ADAMS10_2",
+        "label": "Calculus: A Complete Course, 10e · Chapter 2",
+        "file": "data/source/adams10/chapter_02.json",
+        "count": 131,
+        "auto_gradable_count": 126,
+        "type_counts": {
+          "mcq": 112,
+          "true_false": 12,
+          "fill_blank": 2,
+          "essay": 5
+        },
+        "bank_counts": {
+          "ADAMS10": 131
+        },
+        "bank_code": "ADAMS10",
+        "chapter": "2"
+      },
+      {
+        "id": "ADAMS10_3",
+        "label": "Calculus: A Complete Course, 10e · Chapter 3",
+        "file": "data/source/adams10/chapter_03.json",
+        "count": 127,
+        "auto_gradable_count": 114,
+        "type_counts": {
+          "mcq": 107,
+          "true_false": 5,
+          "essay": 13,
+          "fill_blank": 2
+        },
+        "bank_counts": {
+          "ADAMS10": 127
+        },
+        "bank_code": "ADAMS10",
+        "chapter": "3"
+      },
+      {
+        "id": "ADAMS10_4",
+        "label": "Calculus: A Complete Course, 10e · Chapter 4",
+        "file": "data/source/adams10/chapter_04.json",
+        "count": 130,
+        "auto_gradable_count": 114,
+        "type_counts": {
+          "mcq": 111,
+          "essay": 16,
+          "fill_blank": 1,
+          "true_false": 2
+        },
+        "bank_counts": {
+          "ADAMS10": 130
+        },
+        "bank_code": "ADAMS10",
+        "chapter": "4"
+      },
+      {
+        "id": "ADAMS10_5",
+        "label": "Calculus: A Complete Course, 10e · Chapter 5",
+        "file": "data/source/adams10/chapter_05.json",
+        "count": 119,
+        "auto_gradable_count": 113,
+        "type_counts": {
+          "mcq": 107,
+          "true_false": 5,
+          "fill_blank": 1,
+          "essay": 6
+        },
+        "bank_counts": {
+          "ADAMS10": 119
+        },
+        "bank_code": "ADAMS10",
+        "chapter": "5"
+      },
+      {
+        "id": "ADAMS10_6",
+        "label": "Calculus: A Complete Course, 10e · Chapter 6",
+        "file": "data/source/adams10/chapter_06.json",
+        "count": 118,
+        "auto_gradable_count": 108,
+        "type_counts": {
+          "mcq": 99,
+          "essay": 10,
+          "true_false": 7,
+          "fill_blank": 2
+        },
+        "bank_counts": {
+          "ADAMS10": 118
+        },
+        "bank_code": "ADAMS10",
+        "chapter": "6"
+      },
+      {
+        "id": "ADAMS10_7",
+        "label": "Calculus: A Complete Course, 10e · Chapter 7",
+        "file": "data/source/adams10/chapter_07.json",
+        "count": 139,
+        "auto_gradable_count": 133,
+        "type_counts": {
+          "mcq": 122,
+          "true_false": 6,
+          "essay": 6,
+          "fill_blank": 5
+        },
+        "bank_counts": {
+          "ADAMS10": 139
+        },
+        "bank_code": "ADAMS10",
+        "chapter": "7"
+      },
+      {
+        "id": "ADAMS10_8",
+        "label": "Calculus: A Complete Course, 10e · Chapter 8",
+        "file": "data/source/adams10/chapter_08.json",
+        "count": 115,
+        "auto_gradable_count": 104,
+        "type_counts": {
+          "mcq": 98,
+          "true_false": 5,
+          "essay": 11,
+          "fill_blank": 1
+        },
+        "bank_counts": {
+          "ADAMS10": 115
+        },
+        "bank_code": "ADAMS10",
+        "chapter": "8"
+      },
+      {
+        "id": "ADAMS10_9",
+        "label": "Calculus: A Complete Course, 10e · Chapter 9",
+        "file": "data/source/adams10/chapter_09.json",
+        "count": 125,
+        "auto_gradable_count": 120,
+        "type_counts": {
+          "mcq": 91,
+          "essay": 5,
+          "true_false": 29
+        },
+        "bank_counts": {
+          "ADAMS10": 125
+        },
+        "bank_code": "ADAMS10",
+        "chapter": "9"
+      },
+      {
+        "id": "ADAMS10_10",
+        "label": "Calculus: A Complete Course, 10e · Chapter 10",
+        "file": "data/source/adams10/chapter_10.json",
+        "count": 119,
+        "auto_gradable_count": 113,
+        "type_counts": {
+          "mcq": 103,
+          "essay": 6,
+          "true_false": 9,
+          "fill_blank": 1
+        },
+        "bank_counts": {
+          "ADAMS10": 119
+        },
+        "bank_code": "ADAMS10",
+        "chapter": "10"
+      },
+      {
+        "id": "ADAMS10_11",
+        "label": "Calculus: A Complete Course, 10e · Chapter 11",
+        "file": "data/source/adams10/chapter_11.json",
+        "count": 40,
+        "auto_gradable_count": 39,
+        "type_counts": {
+          "mcq": 27,
+          "true_false": 4,
+          "fill_blank": 8,
+          "essay": 1
+        },
+        "bank_counts": {
+          "ADAMS10": 40
+        },
+        "bank_code": "ADAMS10",
+        "chapter": "11"
+      },
+      {
+        "id": "ADAMS10_12",
+        "label": "Calculus: A Complete Course, 10e · Chapter 12",
+        "file": "data/source/adams10/chapter_12.json",
+        "count": 87,
+        "auto_gradable_count": 82,
+        "type_counts": {
+          "mcq": 75,
+          "essay": 5,
+          "true_false": 7
+        },
+        "bank_counts": {
+          "ADAMS10": 87
+        },
+        "bank_code": "ADAMS10",
+        "chapter": "12"
+      },
+      {
+        "id": "ADAMS10_13",
+        "label": "Calculus: A Complete Course, 10e · Chapter 13",
+        "file": "data/source/adams10/chapter_13.json",
+        "count": 104,
+        "auto_gradable_count": 101,
+        "type_counts": {
+          "mcq": 98,
+          "true_false": 3,
+          "essay": 3
+        },
+        "bank_counts": {
+          "ADAMS10": 104
+        },
+        "bank_code": "ADAMS10",
+        "chapter": "13"
+      },
+      {
+        "id": "ADAMS10_14",
+        "label": "Calculus: A Complete Course, 10e · Chapter 14",
+        "file": "data/source/adams10/chapter_14.json",
+        "count": 67,
+        "auto_gradable_count": 60,
+        "type_counts": {
+          "mcq": 54,
+          "true_false": 4,
+          "essay": 7,
+          "fill_blank": 2
+        },
+        "bank_counts": {
+          "ADAMS10": 67
+        },
+        "bank_code": "ADAMS10",
+        "chapter": "14"
+      },
+      {
+        "id": "ADAMS10_15",
+        "label": "Calculus: A Complete Course, 10e · Chapter 15",
+        "file": "data/source/adams10/chapter_15.json",
+        "count": 105,
+        "auto_gradable_count": 103,
+        "type_counts": {
+          "mcq": 97,
+          "essay": 2,
+          "true_false": 3,
+          "fill_blank": 3
+        },
+        "bank_counts": {
+          "ADAMS10": 105
+        },
+        "bank_code": "ADAMS10",
+        "chapter": "15"
+      },
+      {
+        "id": "ADAMS10_16",
+        "label": "Calculus: A Complete Course, 10e · Chapter 16",
+        "file": "data/source/adams10/chapter_16.json",
+        "count": 90,
+        "auto_gradable_count": 83,
+        "type_counts": {
+          "mcq": 77,
+          "essay": 7,
+          "true_false": 3,
+          "fill_blank": 3
+        },
+        "bank_counts": {
+          "ADAMS10": 90
+        },
+        "bank_code": "ADAMS10",
+        "chapter": "16"
+      },
+      {
+        "id": "ADAMS10_17",
+        "label": "Calculus: A Complete Course, 10e · Chapter 17",
+        "file": "data/source/adams10/chapter_17.json",
+        "count": 92,
+        "auto_gradable_count": 89,
+        "type_counts": {
+          "mcq": 86,
+          "fill_blank": 1,
+          "true_false": 2,
+          "essay": 3
+        },
+        "bank_counts": {
+          "ADAMS10": 92
+        },
+        "bank_code": "ADAMS10",
+        "chapter": "17"
+      },
+      {
+        "id": "ADAMS10_18",
+        "label": "Calculus: A Complete Course, 10e · Chapter 18",
+        "file": "data/source/adams10/chapter_18.json",
+        "count": 76,
+        "auto_gradable_count": 63,
+        "type_counts": {
+          "mcq": 50,
+          "true_false": 11,
+          "essay": 13,
+          "fill_blank": 2
+        },
+        "bank_counts": {
+          "ADAMS10": 76
+        },
+        "bank_code": "ADAMS10",
+        "chapter": "18"
+      },
+      {
+        "id": "ADAMS10_19",
+        "label": "Calculus: A Complete Course, 10e · Chapter 19",
+        "file": "data/source/adams10/chapter_19.json",
+        "count": 94,
+        "auto_gradable_count": 88,
+        "type_counts": {
+          "mcq": 87,
+          "essay": 6,
+          "true_false": 1
+        },
+        "bank_counts": {
+          "ADAMS10": 94
+        },
+        "bank_code": "ADAMS10",
+        "chapter": "19"
+      },
+      {
+        "id": "ADAMS10_20",
+        "label": "Calculus: A Complete Course, 10e · Chapter 20",
+        "file": "data/source/adams10/chapter_20.json",
+        "count": 71,
+        "auto_gradable_count": 52,
+        "type_counts": {
+          "mcq": 43,
+          "essay": 19,
+          "true_false": 9
+        },
+        "bank_counts": {
+          "ADAMS10": 71
+        },
+        "bank_code": "ADAMS10",
+        "chapter": "20"
+      },
+      {
+        "id": "CALCT3BC_1",
+        "label": "Calculus: Early Transcendentals, 3e · Chapter 1",
+        "file": "data/source/calct3bc/chapter_01.json",
+        "count": 229,
+        "auto_gradable_count": 229,
+        "type_counts": {
+          "mcq": 229
+        },
+        "bank_counts": {
+          "CALCT3BC": 229
+        },
+        "bank_code": "CALCT3BC",
+        "chapter": "1"
+      },
+      {
+        "id": "CALCT3BC_2",
+        "label": "Calculus: Early Transcendentals, 3e · Chapter 2",
+        "file": "data/source/calct3bc/chapter_02.json",
+        "count": 225,
+        "auto_gradable_count": 212,
+        "type_counts": {
+          "mcq": 212,
+          "essay": 13
+        },
+        "bank_counts": {
+          "CALCT3BC": 225
+        },
+        "bank_code": "CALCT3BC",
+        "chapter": "2"
+      },
+      {
+        "id": "CALCT3BC_3",
+        "label": "Calculus: Early Transcendentals, 3e · Chapter 3",
+        "file": "data/source/calct3bc/chapter_03.json",
+        "count": 373,
+        "auto_gradable_count": 362,
+        "type_counts": {
+          "mcq": 361,
+          "fill_blank": 1,
+          "essay": 11
+        },
+        "bank_counts": {
+          "CALCT3BC": 373
+        },
+        "bank_code": "CALCT3BC",
+        "chapter": "3"
+      },
+      {
+        "id": "CALCT3BC_4",
+        "label": "Calculus: Early Transcendentals, 3e · Chapter 4",
+        "file": "data/source/calct3bc/chapter_04.json",
+        "count": 248,
+        "auto_gradable_count": 238,
+        "type_counts": {
+          "mcq": 238,
+          "essay": 10
+        },
+        "bank_counts": {
+          "CALCT3BC": 248
+        },
+        "bank_code": "CALCT3BC",
+        "chapter": "4"
+      },
+      {
+        "id": "CALCT3BC_5",
+        "label": "Calculus: Early Transcendentals, 3e · Chapter 5",
+        "file": "data/source/calct3bc/chapter_05.json",
+        "count": 166,
+        "auto_gradable_count": 166,
+        "type_counts": {
+          "mcq": 166
+        },
+        "bank_counts": {
+          "CALCT3BC": 166
+        },
+        "bank_code": "CALCT3BC",
+        "chapter": "5"
+      },
+      {
+        "id": "CALCT3BC_6",
+        "label": "Calculus: Early Transcendentals, 3e · Chapter 6",
+        "file": "data/source/calct3bc/chapter_06.json",
+        "count": 219,
+        "auto_gradable_count": 219,
+        "type_counts": {
+          "mcq": 219
+        },
+        "bank_counts": {
+          "CALCT3BC": 219
+        },
+        "bank_code": "CALCT3BC",
+        "chapter": "6"
+      },
+      {
+        "id": "CALCT3BC_7",
+        "label": "Calculus: Early Transcendentals, 3e · Chapter 7",
+        "file": "data/source/calct3bc/chapter_07.json",
+        "count": 88,
+        "auto_gradable_count": 83,
+        "type_counts": {
+          "mcq": 83,
+          "essay": 5
+        },
+        "bank_counts": {
+          "CALCT3BC": 88
+        },
+        "bank_code": "CALCT3BC",
+        "chapter": "7"
+      },
+      {
+        "id": "CALCT3BC_8",
+        "label": "Calculus: Early Transcendentals, 3e · Chapter 8",
+        "file": "data/source/calct3bc/chapter_08.json",
+        "count": 292,
+        "auto_gradable_count": 292,
+        "type_counts": {
+          "mcq": 292
+        },
+        "bank_counts": {
+          "CALCT3BC": 292
+        },
+        "bank_code": "CALCT3BC",
+        "chapter": "8"
+      },
+      {
+        "id": "CALCT3BC_9",
+        "label": "Calculus: Early Transcendentals, 3e · Chapter 9",
+        "file": "data/source/calct3bc/chapter_09.json",
+        "count": 76,
+        "auto_gradable_count": 75,
+        "type_counts": {
+          "mcq": 75,
+          "essay": 1
+        },
+        "bank_counts": {
+          "CALCT3BC": 76
+        },
+        "bank_code": "CALCT3BC",
+        "chapter": "9"
+      },
+      {
+        "id": "CALCT3BC_10",
+        "label": "Calculus: Early Transcendentals, 3e · Chapter 10",
+        "file": "data/source/calct3bc/chapter_10.json",
+        "count": 177,
+        "auto_gradable_count": 177,
+        "type_counts": {
+          "mcq": 177
+        },
+        "bank_counts": {
+          "CALCT3BC": 177
+        },
+        "bank_code": "CALCT3BC",
+        "chapter": "10"
+      },
+      {
+        "id": "CALCT3BC_11",
+        "label": "Calculus: Early Transcendentals, 3e · Chapter 11",
+        "file": "data/source/calct3bc/chapter_11.json",
+        "count": 103,
+        "auto_gradable_count": 103,
+        "type_counts": {
+          "mcq": 103
+        },
+        "bank_counts": {
+          "CALCT3BC": 103
+        },
+        "bank_code": "CALCT3BC",
+        "chapter": "11"
+      },
+      {
+        "id": "CALCT3BC_12",
+        "label": "Calculus: Early Transcendentals, 3e · Chapter 12",
+        "file": "data/source/calct3bc/chapter_12.json",
+        "count": 170,
+        "auto_gradable_count": 167,
+        "type_counts": {
+          "mcq": 167,
+          "essay": 3
+        },
+        "bank_counts": {
+          "CALCT3BC": 170
+        },
+        "bank_code": "CALCT3BC",
+        "chapter": "12"
+      },
+      {
+        "id": "CALCT3BC_13",
+        "label": "Calculus: Early Transcendentals, 3e · Chapter 13",
+        "file": "data/source/calct3bc/chapter_13.json",
+        "count": 142,
+        "auto_gradable_count": 125,
+        "type_counts": {
+          "mcq": 125,
+          "essay": 17
+        },
+        "bank_counts": {
+          "CALCT3BC": 142
+        },
+        "bank_code": "CALCT3BC",
+        "chapter": "13"
+      },
+      {
+        "id": "CALCT3BC_14",
+        "label": "Calculus: Early Transcendentals, 3e · Chapter 14",
+        "file": "data/source/calct3bc/chapter_14.json",
+        "count": 86,
+        "auto_gradable_count": 85,
+        "type_counts": {
+          "mcq": 85,
+          "essay": 1
+        },
+        "bank_counts": {
+          "CALCT3BC": 86
+        },
+        "bank_code": "CALCT3BC",
+        "chapter": "14"
+      },
+      {
+        "id": "CALCT3BC_15",
+        "label": "Calculus: Early Transcendentals, 3e · Chapter 15",
+        "file": "data/source/calct3bc/chapter_15.json",
+        "count": 234,
+        "auto_gradable_count": 225,
+        "type_counts": {
+          "mcq": 224,
+          "fill_blank": 1,
+          "essay": 9
+        },
+        "bank_counts": {
+          "CALCT3BC": 234
+        },
+        "bank_code": "CALCT3BC",
+        "chapter": "15"
+      },
+      {
+        "id": "CALCT3BC_16",
+        "label": "Calculus: Early Transcendentals, 3e · Chapter 16",
+        "file": "data/source/calct3bc/chapter_16.json",
+        "count": 301,
+        "auto_gradable_count": 301,
+        "type_counts": {
+          "mcq": 301
+        },
+        "bank_counts": {
+          "CALCT3BC": 301
+        },
+        "bank_code": "CALCT3BC",
+        "chapter": "16"
+      },
+      {
+        "id": "CALCT3BC_17",
+        "label": "Calculus: Early Transcendentals, 3e · Chapter 17",
+        "file": "data/source/calct3bc/chapter_17.json",
+        "count": 180,
+        "auto_gradable_count": 167,
+        "type_counts": {
+          "essay": 13,
+          "mcq": 167
+        },
+        "bank_counts": {
+          "CALCT3BC": 180
+        },
+        "bank_code": "CALCT3BC",
+        "chapter": "17"
+      },
+      {
+        "id": "PEARSON_CH0_0",
+        "label": "Pearson Calculus Chapter 0 Preliminaries Test Bank · Chapter 0",
+        "file": "data/source/pearson_ch0/chapter_00.json",
+        "count": 403,
+        "auto_gradable_count": 400,
+        "type_counts": {
+          "mcq": 392,
+          "essay": 3,
+          "true_false": 8
+        },
+        "bank_counts": {
+          "PEARSON_CH0": 403
+        },
+        "bank_code": "PEARSON_CH0",
+        "chapter": "0"
+      }
+    ],
+    "scopes": [
+      {
+        "id": "prerequisite",
+        "label": "AP Readiness / Prerequisite",
+        "file": "data/ap/scope_prerequisite.json",
+        "count": 852,
+        "auto_gradable_count": 827,
+        "type_counts": {
+          "mcq": 816,
+          "true_false": 11,
+          "essay": 25
+        },
+        "bank_counts": {
+          "CALCT3BC": 302,
+          "ADAMS10": 147,
+          "PEARSON_CH0": 403
+        }
+      },
+      {
+        "id": "enrichment",
+        "label": "AP Enrichment",
+        "file": "data/ap/scope_enrichment.json",
+        "count": 66,
+        "auto_gradable_count": 59,
+        "type_counts": {
+          "mcq": 59,
+          "essay": 7
+        },
+        "bank_counts": {
+          "CALCT3BC": 43,
+          "ADAMS10": 23
+        }
+      },
+      {
+        "id": "beyond_ap",
+        "label": "Beyond AP Calculus",
+        "file": "data/ap/scope_beyond_ap.json",
+        "count": 1952,
+        "auto_gradable_count": 1832,
+        "type_counts": {
+          "mcq": 1757,
+          "essay": 120,
+          "fill_blank": 21,
+          "true_false": 54
+        },
+        "bank_counts": {
+          "CALCT3BC": 1074,
+          "ADAMS10": 878
+        }
+      }
+    ],
+    "course_units": [
+      {
+        "id": "ap-calculus-unit-1",
+        "label": "AP Unit 1 · Limits and Continuity",
+        "file": "data/ap/unit_1.json",
+        "count": 289,
+        "auto_gradable_count": 279,
+        "type_counts": {
+          "mcq": 267,
+          "essay": 10,
+          "true_false": 12
+        },
+        "bank_counts": {
+          "CALCT3BC": 202,
+          "ADAMS10": 87
+        },
+        "unit": 1,
+        "course_key": "ap-calculus",
+        "course_label": "AP Calculus AB / BC",
+        "unit_label": "Limits and Continuity",
+        "coverage": "full"
+      },
+      {
+        "id": "ap-calculus-unit-2",
+        "label": "AP Unit 2 · Differentiation: Definition and Fundamental Properties",
+        "file": "data/ap/unit_2.json",
+        "count": 228,
+        "auto_gradable_count": 222,
+        "type_counts": {
+          "mcq": 215,
+          "fill_blank": 1,
+          "essay": 6,
+          "true_false": 6
+        },
+        "bank_counts": {
+          "CALCT3BC": 169,
+          "ADAMS10": 59
+        },
+        "unit": 2,
+        "course_key": "ap-calculus",
+        "course_label": "AP Calculus AB / BC",
+        "unit_label": "Differentiation: Definition and Fundamental Properties",
+        "coverage": "full"
+      },
+      {
+        "id": "ap-calculus-unit-3",
+        "label": "AP Unit 3 · Differentiation: Composite, Implicit, and Inverse Functions",
+        "file": "data/ap/unit_3.json",
+        "count": 280,
+        "auto_gradable_count": 267,
+        "type_counts": {
+          "mcq": 259,
+          "essay": 13,
+          "fill_blank": 3,
+          "true_false": 5
+        },
+        "bank_counts": {
+          "CALCT3BC": 165,
+          "ADAMS10": 115
+        },
+        "unit": 3,
+        "course_key": "ap-calculus",
+        "course_label": "AP Calculus AB / BC",
+        "unit_label": "Differentiation: Composite, Implicit, and Inverse Functions",
+        "coverage": "full"
+      },
+      {
+        "id": "ap-calculus-unit-4",
+        "label": "AP Unit 4 · Contextual Applications of Differentiation",
+        "file": "data/ap/unit_4.json",
+        "count": 149,
+        "auto_gradable_count": 148,
+        "type_counts": {
+          "mcq": 145,
+          "essay": 1,
+          "fill_blank": 1,
+          "true_false": 2
+        },
+        "bank_counts": {
+          "CALCT3BC": 88,
+          "ADAMS10": 61
+        },
+        "unit": 4,
+        "course_key": "ap-calculus",
+        "course_label": "AP Calculus AB / BC",
+        "unit_label": "Contextual Applications of Differentiation",
+        "coverage": "full"
+      },
+      {
+        "id": "ap-calculus-unit-5",
+        "label": "AP Unit 5 · Analytical Applications of Differentiation",
+        "file": "data/ap/unit_5.json",
+        "count": 194,
+        "auto_gradable_count": 172,
+        "type_counts": {
+          "mcq": 169,
+          "essay": 22,
+          "true_false": 3
+        },
+        "bank_counts": {
+          "CALCT3BC": 122,
+          "ADAMS10": 72
+        },
+        "unit": 5,
+        "course_key": "ap-calculus",
+        "course_label": "AP Calculus AB / BC",
+        "unit_label": "Analytical Applications of Differentiation",
+        "coverage": "full"
+      },
+      {
+        "id": "ap-calculus-unit-6",
+        "label": "AP Unit 6 · Integration and Accumulation of Change",
+        "file": "data/ap/unit_6.json",
+        "count": 638,
+        "auto_gradable_count": 624,
+        "type_counts": {
+          "mcq": 607,
+          "true_false": 14,
+          "essay": 14,
+          "fill_blank": 3
+        },
+        "bank_counts": {
+          "CALCT3BC": 406,
+          "ADAMS10": 232
+        },
+        "unit": 6,
+        "course_key": "ap-calculus",
+        "course_label": "AP Calculus AB / BC",
+        "unit_label": "Integration and Accumulation of Change",
+        "coverage": "full"
+      },
+      {
+        "id": "ap-calculus-unit-7",
+        "label": "AP Unit 7 · Differential Equations",
+        "file": "data/ap/unit_7.json",
+        "count": 196,
+        "auto_gradable_count": 191,
+        "type_counts": {
+          "mcq": 187,
+          "essay": 5,
+          "fill_blank": 2,
+          "true_false": 2
+        },
+        "bank_counts": {
+          "CALCT3BC": 102,
+          "ADAMS10": 94
+        },
+        "unit": 7,
+        "course_key": "ap-calculus",
+        "course_label": "AP Calculus AB / BC",
+        "unit_label": "Differential Equations",
+        "coverage": "full"
+      },
+      {
+        "id": "ap-calculus-unit-8",
+        "label": "AP Unit 8 · Applications of Integration",
+        "file": "data/ap/unit_8.json",
+        "count": 333,
+        "auto_gradable_count": 325,
+        "type_counts": {
+          "mcq": 316,
+          "essay": 8,
+          "true_false": 5,
+          "fill_blank": 4
+        },
+        "bank_counts": {
+          "CALCT3BC": 202,
+          "ADAMS10": 131
+        },
+        "unit": 8,
+        "course_key": "ap-calculus",
+        "course_label": "AP Calculus AB / BC",
+        "unit_label": "Applications of Integration",
+        "coverage": "full"
+      },
+      {
+        "id": "ap-calculus-unit-9",
+        "label": "AP Unit 9 · Parametric Equations, Polar Coordinates, and Vector-Valued Functions",
+        "file": "data/ap/unit_9.json",
+        "count": 291,
+        "auto_gradable_count": 275,
+        "type_counts": {
+          "mcq": 268,
+          "essay": 16,
+          "fill_blank": 1,
+          "true_false": 6
+        },
+        "bank_counts": {
+          "CALCT3BC": 154,
+          "ADAMS10": 137
+        },
+        "unit": 9,
+        "course_key": "ap-calculus",
+        "course_label": "AP Calculus AB / BC",
+        "unit_label": "Parametric Equations, Polar Coordinates, and Vector-Valued Functions",
+        "coverage": "full"
+      },
+      {
+        "id": "ap-calculus-unit-10",
+        "label": "AP Unit 10 · Infinite Sequences and Series",
+        "file": "data/ap/unit_10.json",
+        "count": 415,
+        "auto_gradable_count": 407,
+        "type_counts": {
+          "mcq": 378,
+          "essay": 8,
+          "true_false": 29
+        },
+        "bank_counts": {
+          "CALCT3BC": 280,
+          "ADAMS10": 135
+        },
+        "unit": 10,
+        "course_key": "ap-calculus",
+        "course_label": "AP Calculus AB / BC",
+        "unit_label": "Infinite Sequences and Series",
+        "coverage": "full"
+      },
+      {
+        "id": "ap-precalculus-unit-1",
+        "label": "AP Precalculus · Unit 1 · Polynomial and Rational Functions",
+        "file": "data/courses/ap-precalculus/unit_1.json",
+        "course_key": "ap-precalculus",
+        "course_label": "AP Precalculus",
+        "unit": 1,
+        "unit_label": "Polynomial and Rational Functions",
+        "coverage": "strong",
+        "count": 515,
+        "auto_gradable_count": 493,
+        "type_counts": {
+          "true_false": 4,
+          "mcq": 487,
+          "fill_blank": 2,
+          "essay": 22
+        },
+        "bank_counts": {
+          "ADAMS10": 116,
+          "CALCT3BC": 269,
+          "PEARSON_CH0": 130
+        }
+      },
+      {
+        "id": "ap-precalculus-unit-2",
+        "label": "AP Precalculus · Unit 2 · Exponential and Logarithmic Functions",
+        "file": "data/courses/ap-precalculus/unit_2.json",
+        "course_key": "ap-precalculus",
+        "course_label": "AP Precalculus",
+        "unit": 2,
+        "unit_label": "Exponential and Logarithmic Functions",
+        "coverage": "strong",
+        "count": 69,
+        "auto_gradable_count": 69,
+        "type_counts": {
+          "mcq": 69
+        },
+        "bank_counts": {
+          "CALCT3BC": 69
+        }
+      },
+      {
+        "id": "ap-precalculus-unit-3",
+        "label": "AP Precalculus · Unit 3 · Trigonometric and Polar Functions",
+        "file": "data/courses/ap-precalculus/unit_3.json",
+        "course_key": "ap-precalculus",
+        "course_label": "AP Precalculus",
+        "unit": 3,
+        "unit_label": "Trigonometric and Polar Functions",
+        "coverage": "strong",
+        "count": 471,
+        "auto_gradable_count": 451,
+        "type_counts": {
+          "mcq": 433,
+          "true_false": 10,
+          "fill_blank": 8,
+          "essay": 20
+        },
+        "bank_counts": {
+          "ADAMS10": 197,
+          "CALCT3BC": 203,
+          "PEARSON_CH0": 71
+        }
+      },
+      {
+        "id": "ap-precalculus-unit-4",
+        "label": "AP Precalculus · Unit 4 · Functions Involving Parameters, Vectors, and Matrices",
+        "file": "data/courses/ap-precalculus/unit_4.json",
+        "course_key": "ap-precalculus",
+        "course_label": "AP Precalculus",
+        "unit": 4,
+        "unit_label": "Functions Involving Parameters, Vectors, and Matrices",
+        "coverage": "strong",
+        "count": 450,
+        "auto_gradable_count": 450,
+        "type_counts": {
+          "mcq": 430,
+          "true_false": 19,
+          "fill_blank": 1
+        },
+        "bank_counts": {
+          "ADAMS10": 298,
+          "CALCT3BC": 152
+        }
+      },
+      {
+        "id": "algebra-2-unit-1",
+        "label": "Algebra 2 · Unit 1 · Foundations, Equations, and Inequalities",
+        "file": "data/courses/algebra-2/unit_1.json",
+        "course_key": "algebra-2",
+        "course_label": "Algebra 2 Concepts",
+        "unit": 1,
+        "unit_label": "Foundations, Equations, and Inequalities",
+        "coverage": "strong",
+        "count": 600,
+        "auto_gradable_count": 600,
+        "type_counts": {
+          "mcq": 576,
+          "true_false": 21,
+          "fill_blank": 3
+        },
+        "bank_counts": {
+          "ADAMS10": 280,
+          "CALCT3BC": 219,
+          "PEARSON_CH0": 101
+        }
+      },
+      {
+        "id": "algebra-2-unit-2",
+        "label": "Algebra 2 · Unit 2 · Functions and Linear Models",
+        "file": "data/courses/algebra-2/unit_2.json",
+        "course_key": "algebra-2",
+        "course_label": "Algebra 2 Concepts",
+        "unit": 2,
+        "unit_label": "Functions and Linear Models",
+        "coverage": "strong",
+        "count": 700,
+        "auto_gradable_count": 700,
+        "type_counts": {
+          "mcq": 678,
+          "true_false": 21,
+          "fill_blank": 1
+        },
+        "bank_counts": {
+          "ADAMS10": 341,
+          "CALCT3BC": 359
+        }
+      },
+      {
+        "id": "algebra-2-unit-3",
+        "label": "Algebra 2 · Unit 3 · Quadratic and Polynomial Functions",
+        "file": "data/courses/algebra-2/unit_3.json",
+        "course_key": "algebra-2",
+        "course_label": "Algebra 2 Concepts",
+        "unit": 3,
+        "unit_label": "Quadratic and Polynomial Functions",
+        "coverage": "strong",
+        "count": 221,
+        "auto_gradable_count": 204,
+        "type_counts": {
+          "true_false": 5,
+          "mcq": 197,
+          "fill_blank": 2,
+          "essay": 17
+        },
+        "bank_counts": {
+          "ADAMS10": 91,
+          "CALCT3BC": 121,
+          "PEARSON_CH0": 9
+        }
+      },
+      {
+        "id": "algebra-2-unit-4",
+        "label": "Algebra 2 · Unit 4 · Rational and Radical Functions",
+        "file": "data/courses/algebra-2/unit_4.json",
+        "course_key": "algebra-2",
+        "course_label": "Algebra 2 Concepts",
+        "unit": 4,
+        "unit_label": "Rational and Radical Functions",
+        "coverage": "strong",
+        "count": 35,
+        "auto_gradable_count": 35,
+        "type_counts": {
+          "mcq": 35
+        },
+        "bank_counts": {
+          "ADAMS10": 20,
+          "CALCT3BC": 15
+        }
+      },
+      {
+        "id": "algebra-2-unit-5",
+        "label": "Algebra 2 · Unit 5 · Exponential and Logarithmic Functions",
+        "file": "data/courses/algebra-2/unit_5.json",
+        "course_key": "algebra-2",
+        "course_label": "Algebra 2 Concepts",
+        "unit": 5,
+        "unit_label": "Exponential and Logarithmic Functions",
+        "coverage": "strong",
+        "count": 71,
+        "auto_gradable_count": 70,
+        "type_counts": {
+          "mcq": 70,
+          "essay": 1
+        },
+        "bank_counts": {
+          "CALCT3BC": 70,
+          "ADAMS10": 1
+        }
+      },
+      {
+        "id": "algebra-2-unit-6",
+        "label": "Algebra 2 · Unit 6 · Trigonometry, Sequences, and Modeling",
+        "file": "data/courses/algebra-2/unit_6.json",
+        "course_key": "algebra-2",
+        "course_label": "Algebra 2 Concepts",
+        "unit": 6,
+        "unit_label": "Trigonometry, Sequences, and Modeling",
+        "coverage": "strong",
+        "count": 440,
+        "auto_gradable_count": 431,
+        "type_counts": {
+          "mcq": 429,
+          "fill_blank": 2,
+          "essay": 9
+        },
+        "bank_counts": {
+          "ADAMS10": 90,
+          "CALCT3BC": 279,
+          "PEARSON_CH0": 71
+        }
+      },
+      {
+        "id": "ib-math-ai-unit-1",
+        "label": "IB Math AI · Unit 1 · Number and Algebra",
+        "file": "data/courses/ib-math-ai/unit_1.json",
+        "course_key": "ib-math-ai",
+        "course_label": "IB Mathematics: Applications and Interpretation",
+        "unit": 1,
+        "unit_label": "Number and Algebra",
+        "coverage": "initial",
+        "count": 650,
+        "auto_gradable_count": 650,
+        "type_counts": {
+          "mcq": 625,
+          "true_false": 21,
+          "fill_blank": 4
+        },
+        "bank_counts": {
+          "ADAMS10": 478,
+          "CALCT3BC": 172
+        }
+      },
+      {
+        "id": "ib-math-ai-unit-2",
+        "label": "IB Math AI · Unit 2 · Functions",
+        "file": "data/courses/ib-math-ai/unit_2.json",
+        "course_key": "ib-math-ai",
+        "course_label": "IB Mathematics: Applications and Interpretation",
+        "unit": 2,
+        "unit_label": "Functions",
+        "coverage": "initial",
+        "count": 750,
+        "auto_gradable_count": 750,
+        "type_counts": {
+          "mcq": 714,
+          "true_false": 26,
+          "fill_blank": 10
+        },
+        "bank_counts": {
+          "ADAMS10": 481,
+          "CALCT3BC": 269
+        }
+      },
+      {
+        "id": "ib-math-ai-unit-3",
+        "label": "IB Math AI · Unit 3 · Geometry and Trigonometry",
+        "file": "data/courses/ib-math-ai/unit_3.json",
+        "course_key": "ib-math-ai",
+        "course_label": "IB Mathematics: Applications and Interpretation",
+        "unit": 3,
+        "unit_label": "Geometry and Trigonometry",
+        "coverage": "initial",
+        "count": 650,
+        "auto_gradable_count": 650,
+        "type_counts": {
+          "mcq": 611,
+          "fill_blank": 13,
+          "true_false": 26
+        },
+        "bank_counts": {
+          "ADAMS10": 455,
+          "CALCT3BC": 195
+        }
+      },
+      {
+        "id": "ib-math-ai-unit-4",
+        "label": "IB Math AI · Unit 4 · Statistics and Probability",
+        "file": "data/courses/ib-math-ai/unit_4.json",
+        "course_key": "ib-math-ai",
+        "course_label": "IB Mathematics: Applications and Interpretation",
+        "unit": 4,
+        "unit_label": "Statistics and Probability",
+        "coverage": "initial",
+        "count": 82,
+        "auto_gradable_count": 77,
+        "type_counts": {
+          "mcq": 66,
+          "true_false": 6,
+          "fill_blank": 5,
+          "essay": 5
+        },
+        "bank_counts": {
+          "ADAMS10": 50,
+          "CALCT3BC": 32
+        }
+      },
+      {
+        "id": "ib-math-ai-unit-5",
+        "label": "IB Math AI · Unit 5 · Calculus",
+        "file": "data/courses/ib-math-ai/unit_5.json",
+        "course_key": "ib-math-ai",
+        "course_label": "IB Mathematics: Applications and Interpretation",
+        "unit": 5,
+        "unit_label": "Calculus",
+        "coverage": "initial",
+        "count": 750,
+        "auto_gradable_count": 750,
+        "type_counts": {
+          "mcq": 690,
+          "true_false": 52,
+          "fill_blank": 8
+        },
+        "bank_counts": {
+          "ADAMS10": 742,
+          "CALCT3BC": 8
+        }
+      },
+      {
+        "id": "grade-9-unit-1",
+        "label": "Grade 9 · Unit 1 · Number and Algebra Foundations",
+        "file": "data/courses/grade-9/unit_1.json",
+        "course_key": "grade-9",
+        "course_label": "Grade 9 Pre-Precalculus",
+        "unit": 1,
+        "unit_label": "Number and Algebra Foundations",
+        "coverage": "strong",
+        "count": 55,
+        "auto_gradable_count": 52,
+        "type_counts": {
+          "mcq": 52,
+          "essay": 3
+        },
+        "bank_counts": {
+          "PEARSON_CH0": 55
+        }
+      },
+      {
+        "id": "grade-9-unit-2",
+        "label": "Grade 9 · Unit 2 · Equations and Inequalities",
+        "file": "data/courses/grade-9/unit_2.json",
+        "course_key": "grade-9",
+        "course_label": "Grade 9 Pre-Precalculus",
+        "unit": 2,
+        "unit_label": "Equations and Inequalities",
+        "coverage": "strong",
+        "count": 124,
+        "auto_gradable_count": 124,
+        "type_counts": {
+          "mcq": 116,
+          "true_false": 8
+        },
+        "bank_counts": {
+          "PEARSON_CH0": 124
+        }
+      },
+      {
+        "id": "grade-9-unit-3",
+        "label": "Grade 9 · Unit 3 · Functions and Graphs",
+        "file": "data/courses/grade-9/unit_3.json",
+        "course_key": "grade-9",
+        "course_label": "Grade 9 Pre-Precalculus",
+        "unit": 3,
+        "unit_label": "Functions and Graphs",
+        "coverage": "strong",
+        "count": 326,
+        "auto_gradable_count": 326,
+        "type_counts": {
+          "mcq": 326
+        },
+        "bank_counts": {
+          "PEARSON_CH0": 326
+        }
+      },
+      {
+        "id": "grade-9-unit-4",
+        "label": "Grade 9 · Unit 4 · Coordinate Geometry",
+        "file": "data/courses/grade-9/unit_4.json",
+        "course_key": "grade-9",
+        "course_label": "Grade 9 Pre-Precalculus",
+        "unit": 4,
+        "unit_label": "Coordinate Geometry",
+        "coverage": "strong",
+        "count": 68,
+        "auto_gradable_count": 68,
+        "type_counts": {
+          "mcq": 68
+        },
+        "bank_counts": {
+          "PEARSON_CH0": 68
+        }
+      },
+      {
+        "id": "grade-9-unit-5",
+        "label": "Grade 9 · Unit 5 · Polynomials, Radicals, and Exponents",
+        "file": "data/courses/grade-9/unit_5.json",
+        "course_key": "grade-9",
+        "course_label": "Grade 9 Pre-Precalculus",
+        "unit": 5,
+        "unit_label": "Polynomials, Radicals, and Exponents",
+        "coverage": "strong",
+        "count": 24,
+        "auto_gradable_count": 24,
+        "type_counts": {
+          "mcq": 24
+        },
+        "bank_counts": {
+          "PEARSON_CH0": 24
+        }
+      },
+      {
+        "id": "grade-9-unit-6",
+        "label": "Grade 9 · Unit 6 · Data and Probability",
+        "file": "data/courses/grade-9/unit_6.json",
+        "course_key": "grade-9",
+        "course_label": "Grade 9 Pre-Precalculus",
+        "unit": 6,
+        "unit_label": "Data and Probability",
+        "coverage": "strong",
+        "count": 67,
+        "auto_gradable_count": 62,
+        "type_counts": {
+          "mcq": 52,
+          "true_false": 6,
+          "fill_blank": 4,
+          "essay": 5
+        },
+        "bank_counts": {
+          "ADAMS10": 47,
+          "CALCT3BC": 20
+        }
+      }
+    ],
+    "course_all": [
+      {
+        "id": "ap-calculus-all",
+        "label": "AP Calculus · Full Course",
+        "file": "data/courses/ap-calculus/all.json",
+        "course_key": "ap-calculus",
+        "course_label": "AP Calculus AB / BC",
+        "coverage": "full",
+        "count": 3013,
+        "auto_gradable_count": 2910,
+        "type_counts": {
+          "mcq": 2811,
+          "essay": 103,
+          "true_false": 84,
+          "fill_blank": 15
+        },
+        "bank_counts": {
+          "ADAMS10": 1123,
+          "CALCT3BC": 1890
+        }
+      },
+      {
+        "id": "ap-precalculus-all",
+        "label": "AP Precalculus · Full Course",
+        "file": "data/courses/ap-precalculus/all.json",
+        "course_key": "ap-precalculus",
+        "course_label": "AP Precalculus",
+        "coverage": "strong",
+        "count": 1247,
+        "auto_gradable_count": 1205,
+        "type_counts": {
+          "true_false": 27,
+          "mcq": 1168,
+          "essay": 42,
+          "fill_blank": 10
+        },
+        "bank_counts": {
+          "ADAMS10": 466,
+          "CALCT3BC": 581,
+          "PEARSON_CH0": 200
+        }
+      },
+      {
+        "id": "algebra-2-all",
+        "label": "Algebra 2 · Full Course",
+        "file": "data/courses/algebra-2/all.json",
+        "course_key": "algebra-2",
+        "course_label": "Algebra 2 Concepts",
+        "coverage": "strong",
+        "count": 1652,
+        "auto_gradable_count": 1625,
+        "type_counts": {
+          "mcq": 1577,
+          "true_false": 41,
+          "essay": 27,
+          "fill_blank": 7
+        },
+        "bank_counts": {
+          "ADAMS10": 676,
+          "CALCT3BC": 800,
+          "PEARSON_CH0": 176
+        }
+      },
+      {
+        "id": "ib-math-ai-all",
+        "label": "IB Math AI · Full Course",
+        "file": "data/courses/ib-math-ai/all.json",
+        "course_key": "ib-math-ai",
+        "course_label": "IB Mathematics: Applications and Interpretation",
+        "coverage": "initial",
+        "count": 1957,
+        "auto_gradable_count": 1952,
+        "type_counts": {
+          "mcq": 1833,
+          "true_false": 97,
+          "fill_blank": 22,
+          "essay": 5
+        },
+        "bank_counts": {
+          "ADAMS10": 1461,
+          "CALCT3BC": 496
+        }
+      },
+      {
+        "id": "grade-9-all",
+        "label": "Grade 9 · Full Course",
+        "file": "data/courses/grade-9/all.json",
+        "course_key": "grade-9",
+        "course_label": "Grade 9 Pre-Precalculus",
+        "coverage": "strong",
+        "count": 470,
+        "auto_gradable_count": 462,
+        "type_counts": {
+          "mcq": 444,
+          "essay": 8,
+          "true_false": 14,
+          "fill_blank": 4
+        },
+        "bank_counts": {
+          "ADAMS10": 47,
+          "CALCT3BC": 20,
+          "PEARSON_CH0": 403
+        }
+      }
+    ]
+  },
+  "stats": {
+    "questions": 5882,
+    "banks": {
+      "CALCT3BC": 3309,
+      "ADAMS10": 2170,
+      "PEARSON_CH0": 403
+    },
+    "types": {
+      "mcq": 5442,
+      "essay": 255,
+      "fill_blank": 36,
+      "true_false": 149
+    },
+    "ap_units": {
+      "1": 289,
+      "2": 228,
+      "3": 280,
+      "4": 149,
+      "5": 194,
+      "6": 638,
+      "7": 196,
+      "8": 333,
+      "9": 291,
+      "10": 415
+    },
+    "unit1_topics": {
+      "1.1": 22,
+      "1.2": 11,
+      "1.3": 10,
+      "1.4": 7,
+      "1.5": 32,
+      "1.6": 23,
+      "1.7": 8,
+      "1.8": 3,
+      "1.9": 11,
+      "1.10": 11,
+      "1.11": 9,
+      "1.12": 19,
+      "1.13": 9,
+      "1.14": 69,
+      "1.15": 36,
+      "1.16": 8
+    },
+    "alignment_confidence": {
+      "high": 288
+    },
+    "difficulty": {
+      "unrated": 3712,
+      "1": 546,
+      "2": 1201,
+      "3": 423
+    },
+    "with_solution": 258,
+    "auto_gradable": 5627,
+    "course_bundles": {
+      "ap-calculus": 3013,
+      "ap-precalculus": 1247,
+      "algebra-2": 1652,
+      "ib-math-ai": 1957,
+      "grade-9": 470
+    }
+  },
+  "courses": [
+    {
+      "key": "ap-calculus",
+      "label": "AP Calculus AB / BC",
+      "short_label": "AP Calculus",
+      "aliases": [
+        "ap-calculus-ab",
+        "ap-calculus-bc",
+        "g12 ap calculus ab",
+        "g12 ap calculus bc"
+      ],
+      "coverage": "full",
+      "coverage_note": "All AP Calculus units are connected to imported unit pools. Unit 1 also has exact topic-level bundles."
+    },
+    {
+      "key": "ap-precalculus",
+      "label": "AP Precalculus",
+      "short_label": "AP Precalculus",
+      "aliases": [
+        "ap-precalculus-g10-g11",
+        "ap-precalculus",
+        "g10–g11 ap precalculus"
+      ],
+      "coverage": "strong",
+      "coverage_note": "Four AP Precalculus unit pools are generated from the available function, algebra, exponential/logarithmic, trigonometric, polar, parametric, vector, and matrix-related questions."
+    },
+    {
+      "key": "algebra-2",
+      "label": "Algebra 2 Concepts",
+      "short_label": "Algebra 2",
+      "aliases": [
+        "algebra-2-concepts",
+        "algebra 2 concepts",
+        "algebra ii",
+        "algebra 2"
+      ],
+      "coverage": "strong",
+      "coverage_note": "Six thematic pools are prepared from the preliminary algebra/function test banks."
+    },
+    {
+      "key": "ib-math-ai",
+      "label": "IB Mathematics: Applications and Interpretation",
+      "short_label": "IB Math AI",
+      "aliases": [
+        "ib-mathematics-ai",
+        "ib math ai",
+        "ib mathematics ai",
+        "g11 ib ai"
+      ],
+      "coverage": "initial",
+      "coverage_note": "The full course routing is ready. Existing banks provide strong functions, algebra, geometry/trigonometry, basic probability, and calculus practice; additional IB-specific statistics and contextual modeling banks can be imported later."
+    },
+    {
+      "key": "grade-9",
+      "label": "Grade 9 Pre-Precalculus",
+      "short_label": "Grade 9",
+      "aliases": [
+        "grade-9-pre-precalculus",
+        "grade 9",
+        "g9",
+        "pre-precalculus",
+        "pre precalculus"
+      ],
+      "coverage": "strong",
+      "coverage_note": "Six foundational pools are prepared primarily from the Pearson preliminary-skills bank."
+    }
+  ],
+  "coverage": [
+    {
+      "course_key": "ap-calculus",
+      "course_label": "AP Calculus AB / BC",
+      "coverage": "full",
+      "unit_count": 10,
+      "question_count": 3013,
+      "note": "All AP Calculus units are connected to imported unit pools. Unit 1 also has exact topic-level bundles."
+    },
+    {
+      "course_key": "ap-precalculus",
+      "course_label": "AP Precalculus",
+      "coverage": "strong",
+      "unit_count": 4,
+      "question_count": 1247,
+      "note": "Four AP Precalculus unit pools are generated from the available function, algebra, exponential/logarithmic, trigonometric, polar, parametric, vector, and matrix-related questions."
+    },
+    {
+      "course_key": "algebra-2",
+      "course_label": "Algebra 2 Concepts",
+      "coverage": "strong",
+      "unit_count": 6,
+      "question_count": 1652,
+      "note": "Six thematic pools are prepared from the preliminary algebra/function test banks."
+    },
+    {
+      "course_key": "ib-math-ai",
+      "course_label": "IB Mathematics: Applications and Interpretation",
+      "coverage": "initial",
+      "unit_count": 5,
+      "question_count": 1957,
+      "note": "The full course routing is ready. Existing banks provide strong functions, algebra, geometry/trigonometry, basic probability, and calculus practice; additional IB-specific statistics and contextual modeling banks can be imported later."
+    },
+    {
+      "course_key": "grade-9",
+      "course_label": "Grade 9 Pre-Precalculus",
+      "coverage": "strong",
+      "unit_count": 6,
+      "question_count": 470,
+      "note": "Six foundational pools are prepared primarily from the Pearson preliminary-skills bank."
+    }
+  ]
+}
