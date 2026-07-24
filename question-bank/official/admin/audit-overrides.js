@@ -17,17 +17,21 @@
 
   function patchArrayByKey(baseRows, patchRows, keyName) {
     if (!Array.isArray(patchRows)) return Array.isArray(baseRows) ? baseRows : [];
-    const byKey = new Map(patchRows.map(row => [String(row?.[keyName]), row]));
+    const byKey = new Map(patchRows.map(row => [String(row?.matchKey ?? row?.matchLabel ?? row?.[keyName]), row]));
     return (Array.isArray(baseRows) ? baseRows : []).map(row => {
       const rowPatch = byKey.get(String(row?.[keyName]));
-      return rowPatch ? merge(row, rowPatch) : row;
+      if (!rowPatch) return row;
+      const cleanPatch = { ...rowPatch };
+      delete cleanPatch.matchKey;
+      delete cleanPatch.matchLabel;
+      return merge(row, cleanPatch);
     });
   }
 
   function merge(base, patch) {
     const out = isObject(base) ? { ...base } : {};
     for (const [key, value] of Object.entries(patch || {})) {
-      if (key === "partsPatches" || key === "mediaPatches") continue;
+      if (key === "partsPatches" || key === "mediaPatches" || key === "matchKey" || key === "matchLabel") continue;
       if (isObject(value)) out[key] = merge(out[key], value);
       else out[key] = value;
     }
