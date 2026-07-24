@@ -94,8 +94,8 @@ async function openArchiveRecord(id) {
     ${ECHSOfficial.renderPrompt(question)}
     ${
       ready
-        ? `<div class="notice"><strong>Student Ready.</strong> This complete record passed the v6 source, answer-evidence, media, and private-practice gate.</div><a class="button primary" href="practice.html?q=${encodeURIComponent(question.id)}&autostart=1">Practice this question</a>`
-        : `<div class="notice indexedRecord"><strong>Question complete; solution review remains.</strong> The full question source is available above. Answer interaction stays withheld until its solution or scoring guideline is verified.</div>`
+        ? `<div class="notice"><strong>Verified-answer practice.</strong> This complete record has a verified answer or scoring solution and supports grading.</div><a class="button primary" href="practice.html?q=${encodeURIComponent(question.id)}&content=ready&autostart=1">Practice this question</a>`
+        : `<div class="notice indexedRecord"><strong>Complete response-only practice.</strong> The full question is available. A student may answer it, but grading and solution reveal stay off until the answer or scoring guideline is verified.</div><a class="button primary" href="practice.html?q=${encodeURIComponent(question.id)}&content=all&autostart=1">Practice this complete question</a>`
     }
   </article>`;
   AUI.detail.hidden = false;

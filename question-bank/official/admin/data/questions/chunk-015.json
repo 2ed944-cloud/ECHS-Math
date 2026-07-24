@@ -210,9 +210,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -232,7 +232,9 @@
         "mathematical_status": "consistency_check_only",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       }
     },
     {
@@ -440,9 +442,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -462,7 +464,9 @@
         "mathematical_status": "consistency_check_only",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       }
     },
     {
@@ -669,9 +673,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -691,7 +695,9 @@
         "mathematical_status": "consistency_check_only",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       }
     },
     {
@@ -903,9 +909,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -925,7 +931,9 @@
         "mathematical_status": "consistency_check_only",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       }
     },
     {
@@ -1157,9 +1165,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -1179,7 +1187,9 @@
         "mathematical_status": "consistency_check_only",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       }
     },
     {
@@ -1415,9 +1425,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -1437,7 +1447,9 @@
         "mathematical_status": "consistency_check_only",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       }
     },
     {
@@ -1669,9 +1681,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -1691,7 +1703,9 @@
         "mathematical_status": "consistency_check_only",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       }
     },
     {
@@ -1923,9 +1937,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -1945,7 +1959,9 @@
         "mathematical_status": "consistency_check_only",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       }
     },
     {
@@ -2182,9 +2198,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -2204,7 +2220,9 @@
         "mathematical_status": "consistency_check_only",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       }
     },
     {
@@ -2437,9 +2455,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -2459,7 +2477,9 @@
         "mathematical_status": "consistency_check_only",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       }
     },
     {
@@ -2691,9 +2711,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -2713,7 +2733,9 @@
         "mathematical_status": "consistency_check_only",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       }
     },
     {
@@ -2945,9 +2967,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -2967,7 +2989,9 @@
         "mathematical_status": "consistency_check_only",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       }
     },
     {
@@ -3203,9 +3227,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -3225,7 +3249,9 @@
         "mathematical_status": "consistency_check_only",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       }
     },
     {
@@ -3464,9 +3490,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -3486,7 +3512,9 @@
         "mathematical_status": "consistency_check_only",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       }
     },
     {
@@ -3723,9 +3751,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -3745,7 +3773,9 @@
         "mathematical_status": "consistency_check_only",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       }
     },
     {
@@ -3977,9 +4007,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -3999,7 +4029,9 @@
         "mathematical_status": "consistency_check_only",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       }
     },
     {
@@ -4231,9 +4263,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -4253,7 +4285,9 @@
         "mathematical_status": "consistency_check_only",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       }
     },
     {
@@ -4490,9 +4524,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -4512,7 +4546,9 @@
         "mathematical_status": "consistency_check_only",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       }
     },
     {
@@ -4744,9 +4780,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -4766,7 +4802,9 @@
         "mathematical_status": "consistency_check_only",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       }
     },
     {
@@ -4998,9 +5036,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -5020,7 +5058,9 @@
         "mathematical_status": "consistency_check_only",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       }
     },
     {
@@ -5259,9 +5299,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -5281,7 +5321,9 @@
         "mathematical_status": "consistency_check_only",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       }
     },
     {
@@ -5518,9 +5560,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -5540,7 +5582,9 @@
         "mathematical_status": "consistency_check_only",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       }
     },
     {
@@ -5772,9 +5816,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -5794,7 +5838,9 @@
         "mathematical_status": "consistency_check_only",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       }
     },
     {
@@ -6031,9 +6077,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -6053,7 +6099,9 @@
         "mathematical_status": "consistency_check_only",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       }
     },
     {
@@ -6289,9 +6337,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -6311,7 +6359,9 @@
         "mathematical_status": "consistency_check_only",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       }
     },
     {
@@ -6547,9 +6597,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -6569,7 +6619,9 @@
         "mathematical_status": "consistency_check_only",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       }
     },
     {
@@ -6801,9 +6853,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -6823,7 +6875,9 @@
         "mathematical_status": "consistency_check_only",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       }
     },
     {
@@ -7059,9 +7113,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -7081,7 +7135,9 @@
         "mathematical_status": "consistency_check_only",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       }
     },
     {
@@ -7313,9 +7369,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -7335,7 +7391,9 @@
         "mathematical_status": "consistency_check_only",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       }
     },
     {
@@ -7571,9 +7629,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -7593,7 +7651,9 @@
         "mathematical_status": "consistency_check_only",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       }
     },
     {
@@ -7826,9 +7886,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -7848,7 +7908,9 @@
         "mathematical_status": "consistency_check_only",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       }
     },
     {
@@ -8087,9 +8149,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -8109,7 +8171,9 @@
         "mathematical_status": "consistency_check_only",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       }
     },
     {
@@ -8341,9 +8405,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -8363,7 +8427,9 @@
         "mathematical_status": "consistency_check_only",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       }
     },
     {
@@ -8599,9 +8665,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -8621,7 +8687,9 @@
         "mathematical_status": "consistency_check_only",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       }
     },
     {
@@ -8854,9 +8922,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -8876,7 +8944,9 @@
         "mathematical_status": "consistency_check_only",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       }
     },
     {
@@ -9115,9 +9185,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -9137,7 +9207,9 @@
         "mathematical_status": "consistency_check_only",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       }
     },
     {
@@ -9370,9 +9442,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -9392,7 +9464,9 @@
         "mathematical_status": "consistency_check_only",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       }
     },
     {
@@ -9629,9 +9703,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -9651,7 +9725,9 @@
         "mathematical_status": "consistency_check_only",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       }
     },
     {
@@ -9887,9 +9963,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -9909,7 +9985,9 @@
         "mathematical_status": "consistency_check_only",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       }
     },
     {
@@ -10142,9 +10220,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -10164,7 +10242,9 @@
         "mathematical_status": "consistency_check_only",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       }
     },
     {
@@ -10404,9 +10484,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -10426,7 +10506,9 @@
         "mathematical_status": "consistency_check_only",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       }
     },
     {
@@ -10666,9 +10748,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -10688,7 +10770,9 @@
         "mathematical_status": "consistency_check_only",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       }
     },
     {
@@ -10920,9 +11004,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -10942,7 +11026,9 @@
         "mathematical_status": "consistency_check_only",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       }
     },
     {
@@ -11181,9 +11267,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -11203,7 +11289,9 @@
         "mathematical_status": "consistency_check_only",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       }
     },
     {
@@ -11436,9 +11524,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -11458,7 +11546,9 @@
         "mathematical_status": "consistency_check_only",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       }
     },
     {
@@ -11694,9 +11784,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -11716,7 +11806,9 @@
         "mathematical_status": "consistency_check_only",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       }
     },
     {
@@ -11955,9 +12047,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -11977,7 +12069,9 @@
         "mathematical_status": "consistency_check_only",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       }
     },
     {
@@ -12208,9 +12302,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -12230,7 +12324,9 @@
         "mathematical_status": "consistency_check_only",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       }
     },
     {
@@ -12466,9 +12562,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -12488,7 +12584,9 @@
         "mathematical_status": "consistency_check_only",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       }
     },
     {
@@ -12700,9 +12798,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -12722,7 +12820,9 @@
         "mathematical_status": "consistency_check_only",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       }
     },
     {
@@ -12931,9 +13031,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -12953,7 +13053,9 @@
         "mathematical_status": "consistency_check_only",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       }
     },
     {
@@ -13162,9 +13264,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -13184,7 +13286,9 @@
         "mathematical_status": "consistency_check_only",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       }
     },
     {
@@ -13393,9 +13497,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -13415,7 +13519,9 @@
         "mathematical_status": "consistency_check_only",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       }
     },
     {
@@ -13622,9 +13728,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -13644,7 +13750,9 @@
         "mathematical_status": "consistency_check_only",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 6
+        "corrections_count": 6,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       }
     },
     {
@@ -13856,9 +13964,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -13878,7 +13986,9 @@
         "mathematical_status": "consistency_check_only",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       }
     },
     {
@@ -14112,7 +14222,9 @@
         "mathematical_status": "blocked",
         "student_ready": true,
         "archive_status": "Student Ready",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "verified-answer"
       }
     },
     {
@@ -14343,7 +14455,9 @@
         "mathematical_status": "blocked",
         "student_ready": true,
         "archive_status": "Student Ready",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "verified-answer"
       }
     },
     {
@@ -14549,9 +14663,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -14571,7 +14685,9 @@
         "mathematical_status": "consistency_check_only",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       }
     },
     {
@@ -14800,7 +14916,9 @@
         "mathematical_status": "blocked",
         "student_ready": true,
         "archive_status": "Student Ready",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "verified-answer"
       }
     },
     {
@@ -15038,7 +15156,9 @@
         "mathematical_status": "blocked",
         "student_ready": true,
         "archive_status": "Student Ready",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "verified-answer"
       }
     },
     {
@@ -15250,9 +15370,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -15272,7 +15392,9 @@
         "mathematical_status": "consistency_check_only",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       }
     },
     {
@@ -15510,7 +15632,9 @@
         "mathematical_status": "blocked",
         "student_ready": true,
         "archive_status": "Student Ready",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "verified-answer"
       }
     },
     {
@@ -15741,7 +15865,9 @@
         "mathematical_status": "blocked",
         "student_ready": true,
         "archive_status": "Student Ready",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "verified-answer"
       }
     },
     {
@@ -15972,7 +16098,9 @@
         "mathematical_status": "blocked",
         "student_ready": true,
         "archive_status": "Student Ready",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "verified-answer"
       }
     },
     {
@@ -16209,7 +16337,9 @@
         "mathematical_status": "blocked",
         "student_ready": true,
         "archive_status": "Student Ready",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "verified-answer"
       }
     },
     {
@@ -16420,9 +16550,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -16442,7 +16572,9 @@
         "mathematical_status": "consistency_check_only",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       }
     },
     {
@@ -16673,7 +16805,9 @@
         "mathematical_status": "blocked",
         "student_ready": true,
         "archive_status": "Student Ready",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "verified-answer"
       }
     },
     {
@@ -16892,9 +17026,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -16914,7 +17048,9 @@
         "mathematical_status": "consistency_check_only",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       }
     },
     {
@@ -17124,9 +17260,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -17146,7 +17282,9 @@
         "mathematical_status": "consistency_check_only",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       }
     },
     {
@@ -17377,10 +17515,12 @@
         "mathematical_status": "blocked",
         "student_ready": true,
         "archive_status": "Student Ready",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "verified-answer"
       }
     }
   ],
-  "schemaVersion": "6.0.0",
-  "generatedAt": "2026-07-24T16:20:12+00:00"
+  "schemaVersion": "6.1.0",
+  "generatedAt": "2026-07-24T16:56:46+00:00"
 }

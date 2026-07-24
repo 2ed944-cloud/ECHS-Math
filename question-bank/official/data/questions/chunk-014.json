@@ -187,9 +187,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -206,7 +206,9 @@
         "mapping_status": "medium",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       },
       "answerWithheld": true
     },
@@ -439,7 +441,9 @@
         "mathematical_status": "blocked",
         "student_ready": true,
         "archive_status": "Student Ready",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "verified-answer"
       }
     },
     {
@@ -673,7 +677,9 @@
         "mathematical_status": "blocked",
         "student_ready": true,
         "archive_status": "Student Ready",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "verified-answer"
       }
     },
     {
@@ -912,7 +918,9 @@
         "mathematical_status": "blocked",
         "student_ready": true,
         "archive_status": "Student Ready",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "verified-answer"
       }
     },
     {
@@ -1142,7 +1150,9 @@
         "mathematical_status": "blocked",
         "student_ready": true,
         "archive_status": "Student Ready",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "verified-answer"
       }
     },
     {
@@ -1373,7 +1383,9 @@
         "mathematical_status": "blocked",
         "student_ready": true,
         "archive_status": "Student Ready",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "verified-answer"
       }
     },
     {
@@ -1569,9 +1581,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -1588,7 +1600,9 @@
         "mapping_status": "medium",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       },
       "answerWithheld": true
     },
@@ -1779,9 +1793,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -1798,7 +1812,9 @@
         "mapping_status": "medium",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       },
       "answerWithheld": true
     },
@@ -1992,9 +2008,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -2011,7 +2027,9 @@
         "mapping_status": "medium",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       },
       "answerWithheld": true
     },
@@ -2243,7 +2261,9 @@
         "mathematical_status": "blocked",
         "student_ready": true,
         "archive_status": "Student Ready",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "verified-answer"
       }
     },
     {
@@ -2478,7 +2498,9 @@
         "mathematical_status": "blocked",
         "student_ready": true,
         "archive_status": "Student Ready",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "verified-answer"
       }
     },
     {
@@ -2685,9 +2707,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -2704,7 +2726,9 @@
         "mapping_status": "medium",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       },
       "answerWithheld": true
     },
@@ -2924,9 +2948,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -2943,7 +2967,9 @@
         "mapping_status": "medium",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       },
       "answerWithheld": true
     },
@@ -3178,7 +3204,9 @@
         "mathematical_status": "blocked",
         "student_ready": true,
         "archive_status": "Student Ready",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "verified-answer"
       }
     },
     {
@@ -3366,9 +3394,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -3385,7 +3413,9 @@
         "mapping_status": "medium",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       },
       "answerWithheld": true
     },
@@ -3617,7 +3647,9 @@
         "mathematical_status": "blocked",
         "student_ready": true,
         "archive_status": "Student Ready",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "verified-answer"
       }
     },
     {
@@ -3852,7 +3884,9 @@
         "mathematical_status": "blocked",
         "student_ready": true,
         "archive_status": "Student Ready",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "verified-answer"
       }
     },
     {
@@ -4087,7 +4121,9 @@
         "mathematical_status": "blocked",
         "student_ready": true,
         "archive_status": "Student Ready",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "verified-answer"
       }
     },
     {
@@ -4276,9 +4312,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -4295,7 +4331,9 @@
         "mapping_status": "medium",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       },
       "answerWithheld": true
     },
@@ -4530,7 +4568,9 @@
         "mathematical_status": "blocked",
         "student_ready": true,
         "archive_status": "Student Ready",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "verified-answer"
       }
     },
     {
@@ -4768,7 +4808,9 @@
         "mathematical_status": "blocked",
         "student_ready": true,
         "archive_status": "Student Ready",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "verified-answer"
       }
     },
     {
@@ -4987,9 +5029,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -5006,7 +5048,9 @@
         "mapping_status": "medium",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       },
       "answerWithheld": true
     },
@@ -5222,9 +5266,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -5241,7 +5285,9 @@
         "mapping_status": "medium",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       },
       "answerWithheld": true
     },
@@ -5473,7 +5519,9 @@
         "mathematical_status": "blocked",
         "student_ready": true,
         "archive_status": "Student Ready",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "verified-answer"
       }
     },
     {
@@ -5674,9 +5722,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -5693,7 +5741,9 @@
         "mapping_status": "medium",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       },
       "answerWithheld": true
     },
@@ -5925,7 +5975,9 @@
         "mathematical_status": "blocked",
         "student_ready": true,
         "archive_status": "Student Ready",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "verified-answer"
       }
     },
     {
@@ -6156,7 +6208,9 @@
         "mathematical_status": "blocked",
         "student_ready": true,
         "archive_status": "Student Ready",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "verified-answer"
       }
     },
     {
@@ -6351,9 +6405,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -6370,7 +6424,9 @@
         "mapping_status": "medium",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       },
       "answerWithheld": true
     },
@@ -6608,7 +6664,9 @@
         "mathematical_status": "blocked",
         "student_ready": true,
         "archive_status": "Student Ready",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "verified-answer"
       }
     },
     {
@@ -6843,7 +6901,9 @@
         "mathematical_status": "blocked",
         "student_ready": true,
         "archive_status": "Student Ready",
-        "corrections_count": 2
+        "corrections_count": 2,
+        "student_accessible": true,
+        "practice_mode": "verified-answer"
       }
     },
     {
@@ -7078,7 +7138,9 @@
         "mathematical_status": "blocked",
         "student_ready": true,
         "archive_status": "Student Ready",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "verified-answer"
       }
     },
     {
@@ -7312,7 +7374,9 @@
         "mathematical_status": "blocked",
         "student_ready": true,
         "archive_status": "Student Ready",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "verified-answer"
       }
     },
     {
@@ -7509,9 +7573,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -7528,7 +7592,9 @@
         "mapping_status": "medium",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       },
       "answerWithheld": true
     },
@@ -7723,9 +7789,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -7742,7 +7808,9 @@
         "mapping_status": "medium",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       },
       "answerWithheld": true
     },
@@ -7937,9 +8005,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -7956,7 +8024,9 @@
         "mapping_status": "medium",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       },
       "answerWithheld": true
     },
@@ -8187,7 +8257,9 @@
         "mathematical_status": "blocked",
         "student_ready": true,
         "archive_status": "Student Ready",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "verified-answer"
       }
     },
     {
@@ -8417,7 +8489,9 @@
         "mathematical_status": "blocked",
         "student_ready": true,
         "archive_status": "Student Ready",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "verified-answer"
       }
     },
     {
@@ -8612,9 +8686,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -8631,7 +8705,9 @@
         "mapping_status": "medium",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       },
       "answerWithheld": true
     },
@@ -8826,9 +8902,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -8845,7 +8921,9 @@
         "mapping_status": "medium",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       },
       "answerWithheld": true
     },
@@ -9077,7 +9155,9 @@
         "mathematical_status": "blocked",
         "student_ready": true,
         "archive_status": "Student Ready",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "verified-answer"
       }
     },
     {
@@ -9308,7 +9388,9 @@
         "mathematical_status": "blocked",
         "student_ready": true,
         "archive_status": "Student Ready",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "verified-answer"
       }
     },
     {
@@ -9503,9 +9585,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -9522,7 +9604,9 @@
         "mapping_status": "medium",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       },
       "answerWithheld": true
     },
@@ -9753,7 +9837,9 @@
         "mathematical_status": "blocked",
         "student_ready": true,
         "archive_status": "Student Ready",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "verified-answer"
       }
     },
     {
@@ -9988,7 +10074,9 @@
         "mathematical_status": "blocked",
         "student_ready": true,
         "archive_status": "Student Ready",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "verified-answer"
       }
     },
     {
@@ -10189,9 +10277,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -10208,7 +10296,9 @@
         "mapping_status": "medium",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       },
       "answerWithheld": true
     },
@@ -10402,9 +10492,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -10421,7 +10511,9 @@
         "mapping_status": "medium",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       },
       "answerWithheld": true
     },
@@ -10652,7 +10744,9 @@
         "mathematical_status": "blocked",
         "student_ready": true,
         "archive_status": "Student Ready",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "verified-answer"
       }
     },
     {
@@ -10845,9 +10939,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -10864,7 +10958,9 @@
         "mapping_status": "medium",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       },
       "answerWithheld": true
     },
@@ -11059,9 +11155,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -11078,7 +11174,9 @@
         "mapping_status": "medium",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       },
       "answerWithheld": true
     },
@@ -11309,7 +11407,9 @@
         "mathematical_status": "blocked",
         "student_ready": true,
         "archive_status": "Student Ready",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "verified-answer"
       }
     },
     {
@@ -11543,7 +11643,9 @@
         "mathematical_status": "blocked",
         "student_ready": true,
         "archive_status": "Student Ready",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "verified-answer"
       }
     },
     {
@@ -11781,7 +11883,9 @@
         "mathematical_status": "blocked",
         "student_ready": true,
         "archive_status": "Student Ready",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "verified-answer"
       }
     },
     {
@@ -11979,9 +12083,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -11998,7 +12102,9 @@
         "mapping_status": "medium",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       },
       "answerWithheld": true
     },
@@ -12230,7 +12336,9 @@
         "mathematical_status": "blocked",
         "student_ready": true,
         "archive_status": "Student Ready",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "verified-answer"
       }
     },
     {
@@ -12428,9 +12536,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -12447,7 +12555,9 @@
         "mapping_status": "medium",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       },
       "answerWithheld": true
     },
@@ -12686,7 +12796,9 @@
         "mathematical_status": "blocked",
         "student_ready": true,
         "archive_status": "Student Ready",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "verified-answer"
       }
     },
     {
@@ -12880,9 +12992,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -12899,7 +13011,9 @@
         "mapping_status": "medium",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       },
       "answerWithheld": true
     },
@@ -13137,7 +13251,9 @@
         "mathematical_status": "blocked",
         "student_ready": true,
         "archive_status": "Student Ready",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "verified-answer"
       }
     },
     {
@@ -13372,7 +13488,9 @@
         "mathematical_status": "blocked",
         "student_ready": true,
         "archive_status": "Student Ready",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "verified-answer"
       }
     },
     {
@@ -13574,9 +13692,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -13593,7 +13711,9 @@
         "mapping_status": "medium",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       },
       "answerWithheld": true
     },
@@ -13832,7 +13952,9 @@
         "mathematical_status": "blocked",
         "student_ready": true,
         "archive_status": "Student Ready",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "verified-answer"
       }
     },
     {
@@ -14027,9 +14149,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -14046,7 +14168,9 @@
         "mapping_status": "medium",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       },
       "answerWithheld": true
     },
@@ -14249,9 +14373,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -14268,7 +14392,9 @@
         "mapping_status": "medium",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       },
       "answerWithheld": true
     },
@@ -14499,7 +14625,9 @@
         "mathematical_status": "blocked",
         "student_ready": true,
         "archive_status": "Student Ready",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "verified-answer"
       }
     },
     {
@@ -14733,7 +14861,9 @@
         "mathematical_status": "blocked",
         "student_ready": true,
         "archive_status": "Student Ready",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "verified-answer"
       }
     },
     {
@@ -14927,9 +15057,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -14946,7 +15076,9 @@
         "mapping_status": "medium",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       },
       "answerWithheld": true
     },
@@ -15142,9 +15274,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -15161,7 +15293,9 @@
         "mapping_status": "medium",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       },
       "answerWithheld": true
     },
@@ -15400,7 +15534,9 @@
         "mathematical_status": "blocked",
         "student_ready": true,
         "archive_status": "Student Ready",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "verified-answer"
       }
     },
     {
@@ -15601,9 +15737,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -15620,7 +15756,9 @@
         "mapping_status": "medium",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       },
       "answerWithheld": true
     },
@@ -15808,9 +15946,9 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-source-practice-private",
       "contentStatus": "complete",
       "studentReady": false,
       "archiveStatus": "Review Required",
@@ -15827,11 +15965,13 @@
         "mapping_status": "medium",
         "student_ready": false,
         "archive_status": "Review Required",
-        "corrections_count": 0
+        "corrections_count": 0,
+        "student_accessible": true,
+        "practice_mode": "response-only"
       },
       "answerWithheld": true
     }
   ],
-  "schemaVersion": "6.0.0",
-  "generatedAt": "2026-07-24T16:20:12+00:00"
+  "schemaVersion": "6.1.0",
+  "generatedAt": "2026-07-24T16:56:46+00:00"
 }
