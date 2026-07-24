@@ -2,18 +2,23 @@ name: Independent question-bank audit and repair
 
 on:
   workflow_dispatch:
-  push:
+  pull_request:
     branches:
-      - agent/full-question-bank-audit
+      - main
+    types:
+      - opened
+      - synchronize
+      - reopened
     paths:
       - .github/workflows/independent-question-bank-repair.yml
       - .github/audit-bootstrap.part-*
+      - .github/audit-bootstrap.safe-*
 
 permissions:
   contents: write
 
 concurrency:
-  group: independent-question-bank-audit-${{ github.ref }}
+  group: independent-question-bank-audit-${{ github.event.pull_request.head.ref || github.ref_name }}
   cancel-in-progress: false
 
 jobs:
@@ -25,6 +30,7 @@ jobs:
       - name: Check out exact audit branch
         uses: actions/checkout@v4
         with:
+          ref: ${{ github.event.pull_request.head.ref || github.ref_name }}
           fetch-depth: 0
 
       - name: Restore independently reviewed audit tools
@@ -85,6 +91,7 @@ jobs:
         run: git diff --check
 
       - name: Commit generated repair artifacts
+        if: steps.katex.outputs.exit_code == '0' && steps.audit.outputs.exit_code == '0'
         shell: bash
         run: |
           git config user.name "github-actions[bot]"
@@ -95,7 +102,8 @@ jobs:
             echo "No generated changes to commit."
           else
             git commit -m "audit: rebuild strict verified question bank [skip ci]"
-            git push origin "HEAD:${GITHUB_REF_NAME}"
+            target_branch='${{ github.event.pull_request.head.ref || github.ref_name }}'
+            git push origin "HEAD:${target_branch}"
           fi
 
       - name: Upload independent audit evidence
