@@ -5,7 +5,8 @@
   "use strict";
   if (!window.ECHS_ADMIN_MODE || !window.ECHSOfficial) return;
 
-  const url = window.ECHS_AUDIT_OVERRIDES_URL || "../data/admin-audit-overrides.json";
+  const configured = window.ECHS_AUDIT_OVERRIDES_URLS || [window.ECHS_AUDIT_OVERRIDES_URL || "../data/admin-audit-overrides.json"];
+  const urls = [...new Set(configured.filter(Boolean))];
   let loaded = false;
   let loading = null;
   const overrides = new Map();
@@ -35,11 +36,16 @@
     if (loaded) return;
     if (loading) return loading;
     loading = (async () => {
-      const response = await fetch(url, { cache: "no-store" });
-      if (!response.ok) throw new Error(`Could not load admin audit overrides (${response.status})`);
-      const payload = await response.json();
-      for (const row of payload.records || []) {
-        if (row?.id) overrides.set(String(row.id), row);
+      for (const url of urls) {
+        const response = await fetch(url, { cache: "no-store" });
+        if (!response.ok) throw new Error(`Could not load admin audit overrides ${url} (${response.status})`);
+        const payload = await response.json();
+        for (const row of payload.records || []) {
+          if (!row?.id) continue;
+          const expanded = merge(payload.defaults || {}, row);
+          const previous = overrides.get(String(row.id)) || {};
+          overrides.set(String(row.id), merge(previous, expanded));
+        }
       }
       loaded = true;
     })();
@@ -87,6 +93,6 @@
   window.ECHS_AUDIT_OVERRIDE_STATE = {
     get loaded() { return loaded; },
     get count() { return overrides.size; },
-    url
+    urls
   };
 })();
