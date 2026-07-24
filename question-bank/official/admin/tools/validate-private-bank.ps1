@@ -5,8 +5,8 @@ $OfficialRoot=[IO.Path]::GetFullPath($OfficialRoot)
 $errors=@();$warnings=@()
 function Load-Json([string]$Relative){
   $p=Join-Path $OfficialRoot $Relative
-  if(-not(Test-Path $p)){$script:errors += "Missing required JSON: $Relative";return $null}
-  try{return Get-Content $p -Raw -Encoding UTF8|ConvertFrom-Json}catch{$script:errors += "Invalid JSON $Relative: $($_.Exception.Message)";return $null}
+  if(-not(Test-Path -LiteralPath $p)){$script:errors += ('Missing required JSON: {0}' -f $Relative);return $null}
+  try{return Get-Content -LiteralPath $p -Raw -Encoding UTF8|ConvertFrom-Json}catch{$script:errors += ('Invalid JSON {0}: {1}' -f $Relative,$_.Exception.Message);return $null}
 }
 $full=Load-Json 'data\question-index.json'
 $student=Load-Json 'data\student\question-index.json'

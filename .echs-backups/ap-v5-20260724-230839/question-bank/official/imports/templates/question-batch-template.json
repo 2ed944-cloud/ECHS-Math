@@ -1,0 +1,92 @@
+{
+  "schemaVersion": "1.0.0",
+  "batchId": "official-ap-YYYY-source",
+  "label": "Official AP New Batch",
+  "mergeMode": "upsert",
+  "createdAt": "YYYY-MM-DDTHH:MM:SSZ",
+  "questions": [
+    {
+      "id": "APCALC-AB-FRQ-YYYY-01",
+      "course": "AP Calculus AB",
+      "courseId": "ap-calculus-ab",
+      "assessmentFamily": "Official AP New Batch",
+      "type": "frq",
+      "year": 2026,
+      "questionNumber": "1",
+      "section": "II",
+      "calculator": "calculator-required",
+      "prompt": "Complete question stem in KaTeX-compatible text.",
+      "parts": [
+        {
+          "label": "(a)",
+          "prompt": "Part (a) prompt",
+          "maxPoints": 2,
+          "answer": "Student-facing answer or rubric summary",
+          "rubric": [
+            {
+              "description": "Scoring criterion",
+              "points": 1
+            }
+          ]
+        }
+      ],
+      "answer": null,
+      "workedSolution": "Complete worked solution.",
+      "explanation": "Concise explanation.",
+      "acceptedAnswers": [],
+      "media": [
+        {
+          "path": "media/expansions/official-ap-YYYY-source/question-01.svg",
+          "alt": "Accessible description",
+          "caption": "Official source figure",
+          "cropStatus": "question-region"
+        }
+      ],
+      "classification": {
+        "primaryUnit": 1,
+        "primaryTopic": "1.1 Topic Name",
+        "topicCode": "1.1",
+        "concepts": [
+          "concept"
+        ],
+        "representations": [
+          "symbolic"
+        ],
+        "lessons": [
+          "APCALC-1.1"
+        ]
+      },
+      "pedagogy": {
+        "difficulty": 3,
+        "difficultyLabel": "Medium",
+        "estimatedTimeSeconds": 600,
+        "hints": [
+          {
+            "text": "Orientation hint"
+          },
+          {
+            "text": "Concept hint"
+          },
+          {
+            "text": "Strategy hint"
+          }
+        ]
+      },
+      "quality": {
+        "productionStatus": "ready",
+        "needsReview": false,
+        "transcriptionVerified": true,
+        "answerVerified": true,
+        "mediaVerified": true,
+        "reviewReasons": []
+      },
+      "source": {
+        "organization": "College Board",
+        "officialStatus": "official-released",
+        "accessLevel": "private-school-approved",
+        "sourceFile": "",
+        "sourcePage": null
+      }
+    }
+  ]
+}

@@ -1,0 +1,2200 @@
+{
+  "questions": [
+    {
+      "id": "MYMAXSCORE-AB-PRACTICE-MCQ-029",
+      "course": "AP Calculus AB",
+      "courseId": "ap-calculus-ab",
+      "assessmentFamily": "my-max-score-ab-practice",
+      "type": "mcq",
+      "year": null,
+      "form": "",
+      "questionNumber": "29",
+      "section": "I, Part B",
+      "calculator": "calculator-required",
+      "prompt": "",
+      "directions": "",
+      "parts": [],
+      "choices": [],
+      "media": [],
+      "answer": null,
+      "acceptedAnswers": [],
+      "explanation": "",
+      "workedSolution": "",
+      "scoringGuideline": null,
+      "rubric": [],
+      "source": {
+        "organization": "my-max-score-ab-practice",
+        "publisher": "my-max-score-ab-practice",
+        "bankName": "my-max-score-ab-practice",
+        "sourceType": "My Max Score AP Calculus AB practice exam",
+        "officialStatus": "supplemental-unofficial",
+        "releaseStatus": "supplemental source supplied by user",
+        "accessLevel": "school-internal",
+        "rightsStatus": "permission-required",
+        "publicPublicationAllowed": false,
+        "sourcePages": [
+          8,
+          17
+        ]
+      },
+      "classification": {
+        "primaryUnit": 2,
+        "primaryUnitLabel": "Unit 2: Differentiation: Definition and Fundamental Properties",
+        "primaryTopic": "Differentiation: Definition and Fundamental Properties",
+        "topicCode": "U2",
+        "additionalTopics": [],
+        "learningObjectives": [
+          "APCALC-U2-GENERAL"
+        ],
+        "bigIdeas": [
+          "Change",
+          "Limits",
+          "Analysis of Functions"
+        ],
+        "mathematicalPractices": [
+          "MP1",
+          "MP3"
+        ],
+        "skillCategories": [
+          "Representing",
+          "Reasoning",
+          "Justification"
+        ],
+        "concepts": [
+          "derivatives",
+          "Differentiation: Definition and Fundamental Properties"
+        ],
+        "prerequisites": [],
+        "functionFamilies": [],
+        "representations": [
+          "symbolic",
+          "graphical"
+        ],
+        "reasoningActions": [
+          "model",
+          "compute",
+          "justify"
+        ],
+        "lessonIds": [
+          "APCALC-U2"
+        ],
+        "keywords": [
+          "differentiation-definition-and-fundamental-properties",
+          "derivatives",
+          "ap-calculus-ab"
+        ]
+      },
+      "pedagogy": {
+        "difficulty": 3,
+        "difficultyLabel": "Medium",
+        "hints": []
+      },
+      "quality": {
+        "productionStatus": "teacher-archive-only",
+        "needsReview": true,
+        "studentReadyGatePassed": false,
+        "reviewReasons": [
+          "Rights/permission review required before public publication.",
+          "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+        ]
+      },
+      "audit": {
+        "sourceChecked": true,
+        "sourcePage": "8; 17",
+        "transcriptionStatus": "uncertain",
+        "stemStatus": "uncertain",
+        "choicesStatus": "uncertain",
+        "answerStatus": "uncertain",
+        "solutionStatus": "review-required",
+        "katexStatus": "syntax_checked_not_source_verified",
+        "mediaStatus": "verified",
+        "courseMappingStatus": "uncertain",
+        "unitMappingStatus": "uncertain",
+        "topicMappingStatus": "uncertain",
+        "lessonMappingStatus": "uncertain",
+        "calculatorStatus": "review-required",
+        "overallStatus": "teacher-archive-only",
+        "correctionsMade": 0,
+        "reviewRequired": true,
+        "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+        "auditedAt": "2026-07-24T17:46:03+00:00"
+      },
+      "studentEligible": false,
+      "studentAccessible": true,
+      "studentReady": false,
+      "deploymentAccess": "archive-metadata-only",
+      "contentStatus": "indexed-only",
+      "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
+    },
+    {
+      "id": "MYMAXSCORE-AB-PRACTICE-MCQ-030",
+      "course": "AP Calculus AB",
+      "courseId": "ap-calculus-ab",
+      "assessmentFamily": "my-max-score-ab-practice",
+      "type": "mcq",
+      "year": null,
+      "form": "",
+      "questionNumber": "30",
+      "section": "I, Part B",
+      "calculator": "calculator-required",
+      "prompt": "",
+      "directions": "",
+      "parts": [],
+      "choices": [],
+      "media": [],
+      "answer": null,
+      "acceptedAnswers": [],
+      "explanation": "",
+      "workedSolution": "",
+      "scoringGuideline": null,
+      "rubric": [],
+      "source": {
+        "organization": "my-max-score-ab-practice",
+        "publisher": "my-max-score-ab-practice",
+        "bankName": "my-max-score-ab-practice",
+        "sourceType": "My Max Score AP Calculus AB practice exam",
+        "officialStatus": "supplemental-unofficial",
+        "releaseStatus": "supplemental source supplied by user",
+        "accessLevel": "school-internal",
+        "rightsStatus": "permission-required",
+        "publicPublicationAllowed": false,
+        "sourcePages": [
+          8,
+          18
+        ]
+      },
+      "classification": {
+        "primaryUnit": 5,
+        "primaryUnitLabel": "Unit 5: Analytical Applications of Differentiation",
+        "primaryTopic": "Analytical Applications of Differentiation",
+        "topicCode": "U5",
+        "additionalTopics": [
+          "extrema",
+          "concavity"
+        ],
+        "learningObjectives": [
+          "APCALC-U5-GENERAL"
+        ],
+        "bigIdeas": [
+          "Change",
+          "Limits",
+          "Analysis of Functions"
+        ],
+        "mathematicalPractices": [
+          "MP1",
+          "MP4"
+        ],
+        "skillCategories": [
+          "Representing",
+          "Reasoning",
+          "Justification"
+        ],
+        "concepts": [
+          "function analysis",
+          "extrema",
+          "concavity",
+          "Analytical Applications of Differentiation"
+        ],
+        "prerequisites": [],
+        "functionFamilies": [],
+        "representations": [
+          "symbolic"
+        ],
+        "reasoningActions": [
+          "model",
+          "compute",
+          "justify"
+        ],
+        "lessonIds": [
+          "APCALC-U5"
+        ],
+        "keywords": [
+          "analytical-applications-of-differentiation",
+          "function-analysis",
+          "extrema",
+          "concavity",
+          "ap-calculus-ab"
+        ]
+      },
+      "pedagogy": {
+        "difficulty": 3,
+        "difficultyLabel": "Medium",
+        "hints": []
+      },
+      "quality": {
+        "productionStatus": "teacher-archive-only",
+        "needsReview": true,
+        "studentReadyGatePassed": false,
+        "reviewReasons": [
+          "Rights/permission review required before public publication.",
+          "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+        ]
+      },
+      "audit": {
+        "sourceChecked": true,
+        "sourcePage": "8; 18",
+        "transcriptionStatus": "uncertain",
+        "stemStatus": "uncertain",
+        "choicesStatus": "uncertain",
+        "answerStatus": "uncertain",
+        "solutionStatus": "review-required",
+        "katexStatus": "syntax_checked_not_source_verified",
+        "mediaStatus": "verified",
+        "courseMappingStatus": "uncertain",
+        "unitMappingStatus": "uncertain",
+        "topicMappingStatus": "uncertain",
+        "lessonMappingStatus": "uncertain",
+        "calculatorStatus": "review-required",
+        "overallStatus": "teacher-archive-only",
+        "correctionsMade": 0,
+        "reviewRequired": true,
+        "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+        "auditedAt": "2026-07-24T17:46:03+00:00"
+      },
+      "studentEligible": false,
+      "studentAccessible": true,
+      "studentReady": false,
+      "deploymentAccess": "archive-metadata-only",
+      "contentStatus": "indexed-only",
+      "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
+    },
+    {
+      "id": "MYMAXSCORE-AB-PRACTICE-MCQ-031",
+      "course": "AP Calculus AB",
+      "courseId": "ap-calculus-ab",
+      "assessmentFamily": "my-max-score-ab-practice",
+      "type": "mcq",
+      "year": null,
+      "form": "",
+      "questionNumber": "31",
+      "section": "I, Part B",
+      "calculator": "calculator-required",
+      "prompt": "",
+      "directions": "",
+      "parts": [],
+      "choices": [],
+      "media": [],
+      "answer": null,
+      "acceptedAnswers": [],
+      "explanation": "",
+      "workedSolution": "",
+      "scoringGuideline": null,
+      "rubric": [],
+      "source": {
+        "organization": "my-max-score-ab-practice",
+        "publisher": "my-max-score-ab-practice",
+        "bankName": "my-max-score-ab-practice",
+        "sourceType": "My Max Score AP Calculus AB practice exam",
+        "officialStatus": "supplemental-unofficial",
+        "releaseStatus": "supplemental source supplied by user",
+        "accessLevel": "school-internal",
+        "rightsStatus": "permission-required",
+        "publicPublicationAllowed": false,
+        "sourcePages": [
+          8,
+          18
+        ]
+      },
+      "classification": {
+        "primaryUnit": 2,
+        "primaryUnitLabel": "Unit 2: Calculus Foundations",
+        "primaryTopic": "Calculus Foundations",
+        "topicCode": "U2",
+        "additionalTopics": [],
+        "learningObjectives": [
+          "APCALC-U2-GENERAL"
+        ],
+        "bigIdeas": [
+          "Change",
+          "Limits",
+          "Analysis of Functions"
+        ],
+        "mathematicalPractices": [
+          "MP1",
+          "MP2"
+        ],
+        "skillCategories": [
+          "Representing",
+          "Reasoning",
+          "Justification"
+        ],
+        "concepts": [
+          "calculus",
+          "Calculus Foundations"
+        ],
+        "prerequisites": [],
+        "functionFamilies": [],
+        "representations": [
+          "symbolic",
+          "graphical"
+        ],
+        "reasoningActions": [
+          "model",
+          "compute",
+          "justify"
+        ],
+        "lessonIds": [
+          "APCALC-U2"
+        ],
+        "keywords": [
+          "calculus-foundations",
+          "calculus",
+          "ap-calculus-ab"
+        ]
+      },
+      "pedagogy": {
+        "difficulty": 3,
+        "difficultyLabel": "Medium",
+        "hints": []
+      },
+      "quality": {
+        "productionStatus": "teacher-archive-only",
+        "needsReview": true,
+        "studentReadyGatePassed": false,
+        "reviewReasons": [
+          "Rights/permission review required before public publication.",
+          "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+        ]
+      },
+      "audit": {
+        "sourceChecked": true,
+        "sourcePage": "8; 18",
+        "transcriptionStatus": "uncertain",
+        "stemStatus": "uncertain",
+        "choicesStatus": "uncertain",
+        "answerStatus": "uncertain",
+        "solutionStatus": "review-required",
+        "katexStatus": "syntax_checked_not_source_verified",
+        "mediaStatus": "verified",
+        "courseMappingStatus": "uncertain",
+        "unitMappingStatus": "uncertain",
+        "topicMappingStatus": "uncertain",
+        "lessonMappingStatus": "uncertain",
+        "calculatorStatus": "review-required",
+        "overallStatus": "teacher-archive-only",
+        "correctionsMade": 0,
+        "reviewRequired": true,
+        "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+        "auditedAt": "2026-07-24T17:46:03+00:00"
+      },
+      "studentEligible": false,
+      "studentAccessible": true,
+      "studentReady": false,
+      "deploymentAccess": "archive-metadata-only",
+      "contentStatus": "indexed-only",
+      "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
+    },
+    {
+      "id": "MYMAXSCORE-AB-PRACTICE-MCQ-032",
+      "course": "AP Calculus AB",
+      "courseId": "ap-calculus-ab",
+      "assessmentFamily": "my-max-score-ab-practice",
+      "type": "mcq",
+      "year": null,
+      "form": "",
+      "questionNumber": "32",
+      "section": "I, Part B",
+      "calculator": "calculator-required",
+      "prompt": "",
+      "directions": "",
+      "parts": [],
+      "choices": [],
+      "media": [],
+      "answer": null,
+      "acceptedAnswers": [],
+      "explanation": "",
+      "workedSolution": "",
+      "scoringGuideline": null,
+      "rubric": [],
+      "source": {
+        "organization": "my-max-score-ab-practice",
+        "publisher": "my-max-score-ab-practice",
+        "bankName": "my-max-score-ab-practice",
+        "sourceType": "My Max Score AP Calculus AB practice exam",
+        "officialStatus": "supplemental-unofficial",
+        "releaseStatus": "supplemental source supplied by user",
+        "accessLevel": "school-internal",
+        "rightsStatus": "permission-required",
+        "publicPublicationAllowed": false,
+        "sourcePages": [
+          9,
+          18
+        ]
+      },
+      "classification": {
+        "primaryUnit": 5,
+        "primaryUnitLabel": "Unit 5: Analytical Applications of Differentiation",
+        "primaryTopic": "Analytical Applications of Differentiation",
+        "topicCode": "U5",
+        "additionalTopics": [
+          "extrema",
+          "concavity"
+        ],
+        "learningObjectives": [
+          "APCALC-U5-GENERAL"
+        ],
+        "bigIdeas": [
+          "Change",
+          "Limits",
+          "Analysis of Functions"
+        ],
+        "mathematicalPractices": [
+          "MP1",
+          "MP4"
+        ],
+        "skillCategories": [
+          "Representing",
+          "Reasoning",
+          "Justification"
+        ],
+        "concepts": [
+          "function analysis",
+          "extrema",
+          "concavity",
+          "Analytical Applications of Differentiation"
+        ],
+        "prerequisites": [],
+        "functionFamilies": [],
+        "representations": [
+          "symbolic",
+          "graphical"
+        ],
+        "reasoningActions": [
+          "model",
+          "compute",
+          "justify"
+        ],
+        "lessonIds": [
+          "APCALC-U5"
+        ],
+        "keywords": [
+          "analytical-applications-of-differentiation",
+          "function-analysis",
+          "extrema",
+          "concavity",
+          "ap-calculus-ab"
+        ]
+      },
+      "pedagogy": {
+        "difficulty": 3,
+        "difficultyLabel": "Medium",
+        "hints": []
+      },
+      "quality": {
+        "productionStatus": "teacher-archive-only",
+        "needsReview": true,
+        "studentReadyGatePassed": false,
+        "reviewReasons": [
+          "Rights/permission review required before public publication.",
+          "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+        ]
+      },
+      "audit": {
+        "sourceChecked": true,
+        "sourcePage": "9; 18",
+        "transcriptionStatus": "uncertain",
+        "stemStatus": "uncertain",
+        "choicesStatus": "uncertain",
+        "answerStatus": "uncertain",
+        "solutionStatus": "review-required",
+        "katexStatus": "syntax_checked_not_source_verified",
+        "mediaStatus": "verified",
+        "courseMappingStatus": "uncertain",
+        "unitMappingStatus": "uncertain",
+        "topicMappingStatus": "uncertain",
+        "lessonMappingStatus": "uncertain",
+        "calculatorStatus": "review-required",
+        "overallStatus": "teacher-archive-only",
+        "correctionsMade": 0,
+        "reviewRequired": true,
+        "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+        "auditedAt": "2026-07-24T17:46:03+00:00"
+      },
+      "studentEligible": false,
+      "studentAccessible": true,
+      "studentReady": false,
+      "deploymentAccess": "archive-metadata-only",
+      "contentStatus": "indexed-only",
+      "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
+    },
+    {
+      "id": "MYMAXSCORE-AB-PRACTICE-MCQ-033",
+      "course": "AP Calculus AB",
+      "courseId": "ap-calculus-ab",
+      "assessmentFamily": "my-max-score-ab-practice",
+      "type": "mcq",
+      "year": null,
+      "form": "",
+      "questionNumber": "33",
+      "section": "I, Part B",
+      "calculator": "calculator-required",
+      "prompt": "",
+      "directions": "",
+      "parts": [],
+      "choices": [],
+      "media": [],
+      "answer": null,
+      "acceptedAnswers": [],
+      "explanation": "",
+      "workedSolution": "",
+      "scoringGuideline": null,
+      "rubric": [],
+      "source": {
+        "organization": "my-max-score-ab-practice",
+        "publisher": "my-max-score-ab-practice",
+        "bankName": "my-max-score-ab-practice",
+        "sourceType": "My Max Score AP Calculus AB practice exam",
+        "officialStatus": "supplemental-unofficial",
+        "releaseStatus": "supplemental source supplied by user",
+        "accessLevel": "school-internal",
+        "rightsStatus": "permission-required",
+        "publicPublicationAllowed": false,
+        "sourcePages": [
+          9,
+          18
+        ]
+      },
+      "classification": {
+        "primaryUnit": 2,
+        "primaryUnitLabel": "Unit 2: Calculus Foundations",
+        "primaryTopic": "Calculus Foundations",
+        "topicCode": "U2",
+        "additionalTopics": [],
+        "learningObjectives": [
+          "APCALC-U2-GENERAL"
+        ],
+        "bigIdeas": [
+          "Change",
+          "Limits",
+          "Analysis of Functions"
+        ],
+        "mathematicalPractices": [
+          "MP1",
+          "MP2"
+        ],
+        "skillCategories": [
+          "Representing",
+          "Reasoning",
+          "Justification"
+        ],
+        "concepts": [
+          "calculus",
+          "Calculus Foundations"
+        ],
+        "prerequisites": [],
+        "functionFamilies": [],
+        "representations": [
+          "symbolic",
+          "graphical"
+        ],
+        "reasoningActions": [
+          "model",
+          "compute",
+          "justify"
+        ],
+        "lessonIds": [
+          "APCALC-U2"
+        ],
+        "keywords": [
+          "calculus-foundations",
+          "calculus",
+          "ap-calculus-ab"
+        ]
+      },
+      "pedagogy": {
+        "difficulty": 3,
+        "difficultyLabel": "Medium",
+        "hints": []
+      },
+      "quality": {
+        "productionStatus": "teacher-archive-only",
+        "needsReview": true,
+        "studentReadyGatePassed": false,
+        "reviewReasons": [
+          "Rights/permission review required before public publication.",
+          "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+        ]
+      },
+      "audit": {
+        "sourceChecked": true,
+        "sourcePage": "9; 18",
+        "transcriptionStatus": "uncertain",
+        "stemStatus": "uncertain",
+        "choicesStatus": "uncertain",
+        "answerStatus": "uncertain",
+        "solutionStatus": "review-required",
+        "katexStatus": "syntax_checked_not_source_verified",
+        "mediaStatus": "verified",
+        "courseMappingStatus": "uncertain",
+        "unitMappingStatus": "uncertain",
+        "topicMappingStatus": "uncertain",
+        "lessonMappingStatus": "uncertain",
+        "calculatorStatus": "review-required",
+        "overallStatus": "teacher-archive-only",
+        "correctionsMade": 0,
+        "reviewRequired": true,
+        "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+        "auditedAt": "2026-07-24T17:46:03+00:00"
+      },
+      "studentEligible": false,
+      "studentAccessible": true,
+      "studentReady": false,
+      "deploymentAccess": "archive-metadata-only",
+      "contentStatus": "indexed-only",
+      "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
+    },
+    {
+      "id": "MYMAXSCORE-AB-PRACTICE-MCQ-034",
+      "course": "AP Calculus AB",
+      "courseId": "ap-calculus-ab",
+      "assessmentFamily": "my-max-score-ab-practice",
+      "type": "mcq",
+      "year": null,
+      "form": "",
+      "questionNumber": "34",
+      "section": "I, Part B",
+      "calculator": "calculator-required",
+      "prompt": "",
+      "directions": "",
+      "parts": [],
+      "choices": [],
+      "media": [],
+      "answer": null,
+      "acceptedAnswers": [],
+      "explanation": "",
+      "workedSolution": "",
+      "scoringGuideline": null,
+      "rubric": [],
+      "source": {
+        "organization": "my-max-score-ab-practice",
+        "publisher": "my-max-score-ab-practice",
+        "bankName": "my-max-score-ab-practice",
+        "sourceType": "My Max Score AP Calculus AB practice exam",
+        "officialStatus": "supplemental-unofficial",
+        "releaseStatus": "supplemental source supplied by user",
+        "accessLevel": "school-internal",
+        "rightsStatus": "permission-required",
+        "publicPublicationAllowed": false,
+        "sourcePages": [
+          9,
+          18
+        ]
+      },
+      "classification": {
+        "primaryUnit": 6,
+        "primaryUnitLabel": "Unit 6: Integration and Accumulation of Change",
+        "primaryTopic": "Integration and Accumulation of Change",
+        "topicCode": "U6",
+        "additionalTopics": [
+          "FTC"
+        ],
+        "learningObjectives": [
+          "APCALC-U6-GENERAL"
+        ],
+        "bigIdeas": [
+          "Change",
+          "Limits",
+          "Analysis of Functions"
+        ],
+        "mathematicalPractices": [
+          "MP1",
+          "MP3"
+        ],
+        "skillCategories": [
+          "Representing",
+          "Reasoning",
+          "Justification"
+        ],
+        "concepts": [
+          "integration",
+          "FTC",
+          "Integration and Accumulation of Change"
+        ],
+        "prerequisites": [],
+        "functionFamilies": [],
+        "representations": [
+          "symbolic",
+          "tabular"
+        ],
+        "reasoningActions": [
+          "model",
+          "compute",
+          "justify"
+        ],
+        "lessonIds": [
+          "APCALC-U6"
+        ],
+        "keywords": [
+          "integration-and-accumulation-of-change",
+          "integration",
+          "ftc",
+          "ap-calculus-ab"
+        ]
+      },
+      "pedagogy": {
+        "difficulty": 3,
+        "difficultyLabel": "Medium",
+        "hints": []
+      },
+      "quality": {
+        "productionStatus": "teacher-archive-only",
+        "needsReview": true,
+        "studentReadyGatePassed": false,
+        "reviewReasons": [
+          "Rights/permission review required before public publication.",
+          "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+        ]
+      },
+      "audit": {
+        "sourceChecked": true,
+        "sourcePage": "9; 18",
+        "transcriptionStatus": "uncertain",
+        "stemStatus": "uncertain",
+        "choicesStatus": "uncertain",
+        "answerStatus": "uncertain",
+        "solutionStatus": "review-required",
+        "katexStatus": "syntax_checked_not_source_verified",
+        "mediaStatus": "verified",
+        "courseMappingStatus": "uncertain",
+        "unitMappingStatus": "uncertain",
+        "topicMappingStatus": "uncertain",
+        "lessonMappingStatus": "uncertain",
+        "calculatorStatus": "review-required",
+        "overallStatus": "teacher-archive-only",
+        "correctionsMade": 0,
+        "reviewRequired": true,
+        "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+        "auditedAt": "2026-07-24T17:46:03+00:00"
+      },
+      "studentEligible": false,
+      "studentAccessible": true,
+      "studentReady": false,
+      "deploymentAccess": "archive-metadata-only",
+      "contentStatus": "indexed-only",
+      "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
+    },
+    {
+      "id": "MYMAXSCORE-AB-PRACTICE-MCQ-035",
+      "course": "AP Calculus AB",
+      "courseId": "ap-calculus-ab",
+      "assessmentFamily": "my-max-score-ab-practice",
+      "type": "mcq",
+      "year": null,
+      "form": "",
+      "questionNumber": "35",
+      "section": "I, Part B",
+      "calculator": "calculator-required",
+      "prompt": "",
+      "directions": "",
+      "parts": [],
+      "choices": [],
+      "media": [],
+      "answer": null,
+      "acceptedAnswers": [],
+      "explanation": "",
+      "workedSolution": "",
+      "scoringGuideline": null,
+      "rubric": [],
+      "source": {
+        "organization": "my-max-score-ab-practice",
+        "publisher": "my-max-score-ab-practice",
+        "bankName": "my-max-score-ab-practice",
+        "sourceType": "My Max Score AP Calculus AB practice exam",
+        "officialStatus": "supplemental-unofficial",
+        "releaseStatus": "supplemental source supplied by user",
+        "accessLevel": "school-internal",
+        "rightsStatus": "permission-required",
+        "publicPublicationAllowed": false,
+        "sourcePages": [
+          10,
+          18
+        ]
+      },
+      "classification": {
+        "primaryUnit": 2,
+        "primaryUnitLabel": "Unit 2: Differentiation: Definition and Fundamental Properties",
+        "primaryTopic": "Differentiation: Definition and Fundamental Properties",
+        "topicCode": "U2",
+        "additionalTopics": [],
+        "learningObjectives": [
+          "APCALC-U2-GENERAL"
+        ],
+        "bigIdeas": [
+          "Change",
+          "Limits",
+          "Analysis of Functions"
+        ],
+        "mathematicalPractices": [
+          "MP1",
+          "MP3"
+        ],
+        "skillCategories": [
+          "Representing",
+          "Reasoning",
+          "Justification"
+        ],
+        "concepts": [
+          "derivatives",
+          "Differentiation: Definition and Fundamental Properties"
+        ],
+        "prerequisites": [],
+        "functionFamilies": [],
+        "representations": [
+          "symbolic"
+        ],
+        "reasoningActions": [
+          "model",
+          "compute",
+          "justify"
+        ],
+        "lessonIds": [
+          "APCALC-U2"
+        ],
+        "keywords": [
+          "differentiation-definition-and-fundamental-properties",
+          "derivatives",
+          "ap-calculus-ab"
+        ]
+      },
+      "pedagogy": {
+        "difficulty": 3,
+        "difficultyLabel": "Medium",
+        "hints": []
+      },
+      "quality": {
+        "productionStatus": "teacher-archive-only",
+        "needsReview": true,
+        "studentReadyGatePassed": false,
+        "reviewReasons": [
+          "Rights/permission review required before public publication.",
+          "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+        ]
+      },
+      "audit": {
+        "sourceChecked": true,
+        "sourcePage": "10; 18",
+        "transcriptionStatus": "uncertain",
+        "stemStatus": "uncertain",
+        "choicesStatus": "uncertain",
+        "answerStatus": "uncertain",
+        "solutionStatus": "review-required",
+        "katexStatus": "syntax_checked_not_source_verified",
+        "mediaStatus": "verified",
+        "courseMappingStatus": "uncertain",
+        "unitMappingStatus": "uncertain",
+        "topicMappingStatus": "uncertain",
+        "lessonMappingStatus": "uncertain",
+        "calculatorStatus": "review-required",
+        "overallStatus": "teacher-archive-only",
+        "correctionsMade": 0,
+        "reviewRequired": true,
+        "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+        "auditedAt": "2026-07-24T17:46:03+00:00"
+      },
+      "studentEligible": false,
+      "studentAccessible": true,
+      "studentReady": false,
+      "deploymentAccess": "archive-metadata-only",
+      "contentStatus": "indexed-only",
+      "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
+    },
+    {
+      "id": "MYMAXSCORE-AB-PRACTICE-MCQ-036",
+      "course": "AP Calculus AB",
+      "courseId": "ap-calculus-ab",
+      "assessmentFamily": "my-max-score-ab-practice",
+      "type": "mcq",
+      "year": null,
+      "form": "",
+      "questionNumber": "36",
+      "section": "I, Part B",
+      "calculator": "calculator-required",
+      "prompt": "",
+      "directions": "",
+      "parts": [],
+      "choices": [],
+      "media": [],
+      "answer": null,
+      "acceptedAnswers": [],
+      "explanation": "",
+      "workedSolution": "",
+      "scoringGuideline": null,
+      "rubric": [],
+      "source": {
+        "organization": "my-max-score-ab-practice",
+        "publisher": "my-max-score-ab-practice",
+        "bankName": "my-max-score-ab-practice",
+        "sourceType": "My Max Score AP Calculus AB practice exam",
+        "officialStatus": "supplemental-unofficial",
+        "releaseStatus": "supplemental source supplied by user",
+        "accessLevel": "school-internal",
+        "rightsStatus": "permission-required",
+        "publicPublicationAllowed": false,
+        "sourcePages": [
+          10,
+          18
+        ]
+      },
+      "classification": {
+        "primaryUnit": 8,
+        "primaryUnitLabel": "Unit 8: Applications of Integration",
+        "primaryTopic": "Applications of Integration",
+        "topicCode": "U8",
+        "additionalTopics": [
+          "volume",
+          "accumulation"
+        ],
+        "learningObjectives": [
+          "APCALC-U8-GENERAL"
+        ],
+        "bigIdeas": [
+          "Change",
+          "Limits",
+          "Analysis of Functions"
+        ],
+        "mathematicalPractices": [
+          "MP2",
+          "MP3"
+        ],
+        "skillCategories": [
+          "Representing",
+          "Reasoning",
+          "Justification"
+        ],
+        "concepts": [
+          "area",
+          "volume",
+          "accumulation",
+          "Applications of Integration"
+        ],
+        "prerequisites": [],
+        "functionFamilies": [],
+        "representations": [
+          "symbolic"
+        ],
+        "reasoningActions": [
+          "model",
+          "compute",
+          "justify"
+        ],
+        "lessonIds": [
+          "APCALC-U8"
+        ],
+        "keywords": [
+          "applications-of-integration",
+          "area",
+          "volume",
+          "accumulation",
+          "ap-calculus-ab"
+        ]
+      },
+      "pedagogy": {
+        "difficulty": 3,
+        "difficultyLabel": "Medium",
+        "hints": []
+      },
+      "quality": {
+        "productionStatus": "teacher-archive-only",
+        "needsReview": true,
+        "studentReadyGatePassed": false,
+        "reviewReasons": [
+          "Rights/permission review required before public publication.",
+          "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+        ]
+      },
+      "audit": {
+        "sourceChecked": true,
+        "sourcePage": "10; 18",
+        "transcriptionStatus": "uncertain",
+        "stemStatus": "uncertain",
+        "choicesStatus": "uncertain",
+        "answerStatus": "uncertain",
+        "solutionStatus": "review-required",
+        "katexStatus": "syntax_checked_not_source_verified",
+        "mediaStatus": "verified",
+        "courseMappingStatus": "uncertain",
+        "unitMappingStatus": "uncertain",
+        "topicMappingStatus": "uncertain",
+        "lessonMappingStatus": "uncertain",
+        "calculatorStatus": "review-required",
+        "overallStatus": "teacher-archive-only",
+        "correctionsMade": 0,
+        "reviewRequired": true,
+        "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+        "auditedAt": "2026-07-24T17:46:03+00:00"
+      },
+      "studentEligible": false,
+      "studentAccessible": true,
+      "studentReady": false,
+      "deploymentAccess": "archive-metadata-only",
+      "contentStatus": "indexed-only",
+      "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
+    },
+    {
+      "id": "MYMAXSCORE-AB-PRACTICE-MCQ-037",
+      "course": "AP Calculus AB",
+      "courseId": "ap-calculus-ab",
+      "assessmentFamily": "my-max-score-ab-practice",
+      "type": "mcq",
+      "year": null,
+      "form": "",
+      "questionNumber": "37",
+      "section": "I, Part B",
+      "calculator": "calculator-required",
+      "prompt": "",
+      "directions": "",
+      "parts": [],
+      "choices": [],
+      "media": [],
+      "answer": null,
+      "acceptedAnswers": [],
+      "explanation": "",
+      "workedSolution": "",
+      "scoringGuideline": null,
+      "rubric": [],
+      "source": {
+        "organization": "my-max-score-ab-practice",
+        "publisher": "my-max-score-ab-practice",
+        "bankName": "my-max-score-ab-practice",
+        "sourceType": "My Max Score AP Calculus AB practice exam",
+        "officialStatus": "supplemental-unofficial",
+        "releaseStatus": "supplemental source supplied by user",
+        "accessLevel": "school-internal",
+        "rightsStatus": "permission-required",
+        "publicPublicationAllowed": false,
+        "sourcePages": [
+          10,
+          18
+        ]
+      },
+      "classification": {
+        "primaryUnit": 2,
+        "primaryUnitLabel": "Unit 2: Differentiation: Definition and Fundamental Properties",
+        "primaryTopic": "Differentiation: Definition and Fundamental Properties",
+        "topicCode": "U2",
+        "additionalTopics": [],
+        "learningObjectives": [
+          "APCALC-U2-GENERAL"
+        ],
+        "bigIdeas": [
+          "Change",
+          "Limits",
+          "Analysis of Functions"
+        ],
+        "mathematicalPractices": [
+          "MP1",
+          "MP3"
+        ],
+        "skillCategories": [
+          "Representing",
+          "Reasoning",
+          "Justification"
+        ],
+        "concepts": [
+          "derivatives",
+          "Differentiation: Definition and Fundamental Properties"
+        ],
+        "prerequisites": [],
+        "functionFamilies": [],
+        "representations": [
+          "symbolic"
+        ],
+        "reasoningActions": [
+          "model",
+          "compute",
+          "justify"
+        ],
+        "lessonIds": [
+          "APCALC-U2"
+        ],
+        "keywords": [
+          "differentiation-definition-and-fundamental-properties",
+          "derivatives",
+          "ap-calculus-ab"
+        ]
+      },
+      "pedagogy": {
+        "difficulty": 3,
+        "difficultyLabel": "Medium",
+        "hints": []
+      },
+      "quality": {
+        "productionStatus": "teacher-archive-only",
+        "needsReview": true,
+        "studentReadyGatePassed": false,
+        "reviewReasons": [
+          "Rights/permission review required before public publication.",
+          "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+        ]
+      },
+      "audit": {
+        "sourceChecked": true,
+        "sourcePage": "10; 18",
+        "transcriptionStatus": "uncertain",
+        "stemStatus": "uncertain",
+        "choicesStatus": "uncertain",
+        "answerStatus": "uncertain",
+        "solutionStatus": "review-required",
+        "katexStatus": "syntax_checked_not_source_verified",
+        "mediaStatus": "verified",
+        "courseMappingStatus": "uncertain",
+        "unitMappingStatus": "uncertain",
+        "topicMappingStatus": "uncertain",
+        "lessonMappingStatus": "uncertain",
+        "calculatorStatus": "review-required",
+        "overallStatus": "teacher-archive-only",
+        "correctionsMade": 0,
+        "reviewRequired": true,
+        "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+        "auditedAt": "2026-07-24T17:46:03+00:00"
+      },
+      "studentEligible": false,
+      "studentAccessible": true,
+      "studentReady": false,
+      "deploymentAccess": "archive-metadata-only",
+      "contentStatus": "indexed-only",
+      "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
+    },
+    {
+      "id": "MYMAXSCORE-AB-PRACTICE-MCQ-038",
+      "course": "AP Calculus AB",
+      "courseId": "ap-calculus-ab",
+      "assessmentFamily": "my-max-score-ab-practice",
+      "type": "mcq",
+      "year": null,
+      "form": "",
+      "questionNumber": "38",
+      "section": "I, Part B",
+      "calculator": "calculator-required",
+      "prompt": "",
+      "directions": "",
+      "parts": [],
+      "choices": [],
+      "media": [],
+      "answer": null,
+      "acceptedAnswers": [],
+      "explanation": "",
+      "workedSolution": "",
+      "scoringGuideline": null,
+      "rubric": [],
+      "source": {
+        "organization": "my-max-score-ab-practice",
+        "publisher": "my-max-score-ab-practice",
+        "bankName": "my-max-score-ab-practice",
+        "sourceType": "My Max Score AP Calculus AB practice exam",
+        "officialStatus": "supplemental-unofficial",
+        "releaseStatus": "supplemental source supplied by user",
+        "accessLevel": "school-internal",
+        "rightsStatus": "permission-required",
+        "publicPublicationAllowed": false,
+        "sourcePages": [
+          10,
+          18
+        ]
+      },
+      "classification": {
+        "primaryUnit": 2,
+        "primaryUnitLabel": "Unit 2: Calculus Foundations",
+        "primaryTopic": "Calculus Foundations",
+        "topicCode": "U2",
+        "additionalTopics": [],
+        "learningObjectives": [
+          "APCALC-U2-GENERAL"
+        ],
+        "bigIdeas": [
+          "Change",
+          "Limits",
+          "Analysis of Functions"
+        ],
+        "mathematicalPractices": [
+          "MP1",
+          "MP2"
+        ],
+        "skillCategories": [
+          "Representing",
+          "Reasoning",
+          "Justification"
+        ],
+        "concepts": [
+          "calculus",
+          "Calculus Foundations"
+        ],
+        "prerequisites": [],
+        "functionFamilies": [],
+        "representations": [
+          "symbolic",
+          "graphical"
+        ],
+        "reasoningActions": [
+          "model",
+          "compute",
+          "justify"
+        ],
+        "lessonIds": [
+          "APCALC-U2"
+        ],
+        "keywords": [
+          "calculus-foundations",
+          "calculus",
+          "ap-calculus-ab"
+        ]
+      },
+      "pedagogy": {
+        "difficulty": 3,
+        "difficultyLabel": "Medium",
+        "hints": []
+      },
+      "quality": {
+        "productionStatus": "teacher-archive-only",
+        "needsReview": true,
+        "studentReadyGatePassed": false,
+        "reviewReasons": [
+          "Rights/permission review required before public publication.",
+          "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+        ]
+      },
+      "audit": {
+        "sourceChecked": true,
+        "sourcePage": "10; 18",
+        "transcriptionStatus": "uncertain",
+        "stemStatus": "uncertain",
+        "choicesStatus": "uncertain",
+        "answerStatus": "uncertain",
+        "solutionStatus": "review-required",
+        "katexStatus": "syntax_checked_not_source_verified",
+        "mediaStatus": "verified",
+        "courseMappingStatus": "uncertain",
+        "unitMappingStatus": "uncertain",
+        "topicMappingStatus": "uncertain",
+        "lessonMappingStatus": "uncertain",
+        "calculatorStatus": "review-required",
+        "overallStatus": "teacher-archive-only",
+        "correctionsMade": 0,
+        "reviewRequired": true,
+        "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+        "auditedAt": "2026-07-24T17:46:03+00:00"
+      },
+      "studentEligible": false,
+      "studentAccessible": true,
+      "studentReady": false,
+      "deploymentAccess": "archive-metadata-only",
+      "contentStatus": "indexed-only",
+      "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
+    },
+    {
+      "id": "MYMAXSCORE-AB-PRACTICE-MCQ-039",
+      "course": "AP Calculus AB",
+      "courseId": "ap-calculus-ab",
+      "assessmentFamily": "my-max-score-ab-practice",
+      "type": "mcq",
+      "year": null,
+      "form": "",
+      "questionNumber": "39",
+      "section": "I, Part B",
+      "calculator": "calculator-required",
+      "prompt": "",
+      "directions": "",
+      "parts": [],
+      "choices": [],
+      "media": [],
+      "answer": null,
+      "acceptedAnswers": [],
+      "explanation": "",
+      "workedSolution": "",
+      "scoringGuideline": null,
+      "rubric": [],
+      "source": {
+        "organization": "my-max-score-ab-practice",
+        "publisher": "my-max-score-ab-practice",
+        "bankName": "my-max-score-ab-practice",
+        "sourceType": "My Max Score AP Calculus AB practice exam",
+        "officialStatus": "supplemental-unofficial",
+        "releaseStatus": "supplemental source supplied by user",
+        "accessLevel": "school-internal",
+        "rightsStatus": "permission-required",
+        "publicPublicationAllowed": false,
+        "sourcePages": [
+          10,
+          18
+        ]
+      },
+      "classification": {
+        "primaryUnit": 5,
+        "primaryUnitLabel": "Unit 5: Analytical Applications of Differentiation",
+        "primaryTopic": "Analytical Applications of Differentiation",
+        "topicCode": "U5",
+        "additionalTopics": [
+          "extrema",
+          "concavity"
+        ],
+        "learningObjectives": [
+          "APCALC-U5-GENERAL"
+        ],
+        "bigIdeas": [
+          "Change",
+          "Limits",
+          "Analysis of Functions"
+        ],
+        "mathematicalPractices": [
+          "MP1",
+          "MP4"
+        ],
+        "skillCategories": [
+          "Representing",
+          "Reasoning",
+          "Justification"
+        ],
+        "concepts": [
+          "function analysis",
+          "extrema",
+          "concavity",
+          "Analytical Applications of Differentiation"
+        ],
+        "prerequisites": [],
+        "functionFamilies": [],
+        "representations": [
+          "symbolic"
+        ],
+        "reasoningActions": [
+          "model",
+          "compute",
+          "justify"
+        ],
+        "lessonIds": [
+          "APCALC-U5"
+        ],
+        "keywords": [
+          "analytical-applications-of-differentiation",
+          "function-analysis",
+          "extrema",
+          "concavity",
+          "ap-calculus-ab"
+        ]
+      },
+      "pedagogy": {
+        "difficulty": 3,
+        "difficultyLabel": "Medium",
+        "hints": []
+      },
+      "quality": {
+        "productionStatus": "teacher-archive-only",
+        "needsReview": true,
+        "studentReadyGatePassed": false,
+        "reviewReasons": [
+          "Rights/permission review required before public publication.",
+          "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+        ]
+      },
+      "audit": {
+        "sourceChecked": true,
+        "sourcePage": "10; 18",
+        "transcriptionStatus": "uncertain",
+        "stemStatus": "uncertain",
+        "choicesStatus": "uncertain",
+        "answerStatus": "uncertain",
+        "solutionStatus": "review-required",
+        "katexStatus": "syntax_checked_not_source_verified",
+        "mediaStatus": "verified",
+        "courseMappingStatus": "uncertain",
+        "unitMappingStatus": "uncertain",
+        "topicMappingStatus": "uncertain",
+        "lessonMappingStatus": "uncertain",
+        "calculatorStatus": "review-required",
+        "overallStatus": "teacher-archive-only",
+        "correctionsMade": 0,
+        "reviewRequired": true,
+        "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+        "auditedAt": "2026-07-24T17:46:03+00:00"
+      },
+      "studentEligible": false,
+      "studentAccessible": true,
+      "studentReady": false,
+      "deploymentAccess": "archive-metadata-only",
+      "contentStatus": "indexed-only",
+      "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
+    },
+    {
+      "id": "MYMAXSCORE-AB-PRACTICE-MCQ-040",
+      "course": "AP Calculus AB",
+      "courseId": "ap-calculus-ab",
+      "assessmentFamily": "my-max-score-ab-practice",
+      "type": "mcq",
+      "year": null,
+      "form": "",
+      "questionNumber": "40",
+      "section": "I, Part B",
+      "calculator": "calculator-required",
+      "prompt": "",
+      "directions": "",
+      "parts": [],
+      "choices": [],
+      "media": [],
+      "answer": null,
+      "acceptedAnswers": [],
+      "explanation": "",
+      "workedSolution": "",
+      "scoringGuideline": null,
+      "rubric": [],
+      "source": {
+        "organization": "my-max-score-ab-practice",
+        "publisher": "my-max-score-ab-practice",
+        "bankName": "my-max-score-ab-practice",
+        "sourceType": "My Max Score AP Calculus AB practice exam",
+        "officialStatus": "supplemental-unofficial",
+        "releaseStatus": "supplemental source supplied by user",
+        "accessLevel": "school-internal",
+        "rightsStatus": "permission-required",
+        "publicPublicationAllowed": false,
+        "sourcePages": [
+          11,
+          19
+        ]
+      },
+      "classification": {
+        "primaryUnit": 2,
+        "primaryUnitLabel": "Unit 2: Differentiation: Definition and Fundamental Properties",
+        "primaryTopic": "Differentiation: Definition and Fundamental Properties",
+        "topicCode": "U2",
+        "additionalTopics": [],
+        "learningObjectives": [
+          "APCALC-U2-GENERAL"
+        ],
+        "bigIdeas": [
+          "Change",
+          "Limits",
+          "Analysis of Functions"
+        ],
+        "mathematicalPractices": [
+          "MP1",
+          "MP3"
+        ],
+        "skillCategories": [
+          "Representing",
+          "Reasoning",
+          "Justification"
+        ],
+        "concepts": [
+          "derivatives",
+          "Differentiation: Definition and Fundamental Properties"
+        ],
+        "prerequisites": [],
+        "functionFamilies": [],
+        "representations": [
+          "symbolic"
+        ],
+        "reasoningActions": [
+          "model",
+          "compute",
+          "justify"
+        ],
+        "lessonIds": [
+          "APCALC-U2"
+        ],
+        "keywords": [
+          "differentiation-definition-and-fundamental-properties",
+          "derivatives",
+          "ap-calculus-ab"
+        ]
+      },
+      "pedagogy": {
+        "difficulty": 3,
+        "difficultyLabel": "Medium",
+        "hints": []
+      },
+      "quality": {
+        "productionStatus": "teacher-archive-only",
+        "needsReview": true,
+        "studentReadyGatePassed": false,
+        "reviewReasons": [
+          "Rights/permission review required before public publication.",
+          "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+        ]
+      },
+      "audit": {
+        "sourceChecked": true,
+        "sourcePage": "11; 19",
+        "transcriptionStatus": "uncertain",
+        "stemStatus": "uncertain",
+        "choicesStatus": "uncertain",
+        "answerStatus": "uncertain",
+        "solutionStatus": "review-required",
+        "katexStatus": "syntax_checked_not_source_verified",
+        "mediaStatus": "verified",
+        "courseMappingStatus": "uncertain",
+        "unitMappingStatus": "uncertain",
+        "topicMappingStatus": "uncertain",
+        "lessonMappingStatus": "uncertain",
+        "calculatorStatus": "review-required",
+        "overallStatus": "teacher-archive-only",
+        "correctionsMade": 0,
+        "reviewRequired": true,
+        "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+        "auditedAt": "2026-07-24T17:46:03+00:00"
+      },
+      "studentEligible": false,
+      "studentAccessible": true,
+      "studentReady": false,
+      "deploymentAccess": "archive-metadata-only",
+      "contentStatus": "indexed-only",
+      "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
+    },
+    {
+      "id": "MYMAXSCORE-AB-PRACTICE-MCQ-041",
+      "course": "AP Calculus AB",
+      "courseId": "ap-calculus-ab",
+      "assessmentFamily": "my-max-score-ab-practice",
+      "type": "mcq",
+      "year": null,
+      "form": "",
+      "questionNumber": "41",
+      "section": "I, Part B",
+      "calculator": "calculator-required",
+      "prompt": "",
+      "directions": "",
+      "parts": [],
+      "choices": [],
+      "media": [],
+      "answer": null,
+      "acceptedAnswers": [],
+      "explanation": "",
+      "workedSolution": "",
+      "scoringGuideline": null,
+      "rubric": [],
+      "source": {
+        "organization": "my-max-score-ab-practice",
+        "publisher": "my-max-score-ab-practice",
+        "bankName": "my-max-score-ab-practice",
+        "sourceType": "My Max Score AP Calculus AB practice exam",
+        "officialStatus": "supplemental-unofficial",
+        "releaseStatus": "supplemental source supplied by user",
+        "accessLevel": "school-internal",
+        "rightsStatus": "permission-required",
+        "publicPublicationAllowed": false,
+        "sourcePages": [
+          11,
+          19
+        ]
+      },
+      "classification": {
+        "primaryUnit": 5,
+        "primaryUnitLabel": "Unit 5: Analytical Applications of Differentiation",
+        "primaryTopic": "Analytical Applications of Differentiation",
+        "topicCode": "U5",
+        "additionalTopics": [
+          "extrema",
+          "concavity"
+        ],
+        "learningObjectives": [
+          "APCALC-U5-GENERAL"
+        ],
+        "bigIdeas": [
+          "Change",
+          "Limits",
+          "Analysis of Functions"
+        ],
+        "mathematicalPractices": [
+          "MP1",
+          "MP4"
+        ],
+        "skillCategories": [
+          "Representing",
+          "Reasoning",
+          "Justification"
+        ],
+        "concepts": [
+          "function analysis",
+          "extrema",
+          "concavity",
+          "Analytical Applications of Differentiation"
+        ],
+        "prerequisites": [],
+        "functionFamilies": [],
+        "representations": [
+          "symbolic"
+        ],
+        "reasoningActions": [
+          "model",
+          "compute",
+          "justify"
+        ],
+        "lessonIds": [
+          "APCALC-U5"
+        ],
+        "keywords": [
+          "analytical-applications-of-differentiation",
+          "function-analysis",
+          "extrema",
+          "concavity",
+          "ap-calculus-ab"
+        ]
+      },
+      "pedagogy": {
+        "difficulty": 3,
+        "difficultyLabel": "Medium",
+        "hints": []
+      },
+      "quality": {
+        "productionStatus": "teacher-archive-only",
+        "needsReview": true,
+        "studentReadyGatePassed": false,
+        "reviewReasons": [
+          "Rights/permission review required before public publication.",
+          "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+        ]
+      },
+      "audit": {
+        "sourceChecked": true,
+        "sourcePage": "11; 19",
+        "transcriptionStatus": "uncertain",
+        "stemStatus": "uncertain",
+        "choicesStatus": "uncertain",
+        "answerStatus": "uncertain",
+        "solutionStatus": "review-required",
+        "katexStatus": "syntax_checked_not_source_verified",
+        "mediaStatus": "verified",
+        "courseMappingStatus": "uncertain",
+        "unitMappingStatus": "uncertain",
+        "topicMappingStatus": "uncertain",
+        "lessonMappingStatus": "uncertain",
+        "calculatorStatus": "review-required",
+        "overallStatus": "teacher-archive-only",
+        "correctionsMade": 0,
+        "reviewRequired": true,
+        "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+        "auditedAt": "2026-07-24T17:46:03+00:00"
+      },
+      "studentEligible": false,
+      "studentAccessible": true,
+      "studentReady": false,
+      "deploymentAccess": "archive-metadata-only",
+      "contentStatus": "indexed-only",
+      "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
+    },
+    {
+      "id": "MYMAXSCORE-AB-PRACTICE-MCQ-042",
+      "course": "AP Calculus AB",
+      "courseId": "ap-calculus-ab",
+      "assessmentFamily": "my-max-score-ab-practice",
+      "type": "mcq",
+      "year": null,
+      "form": "",
+      "questionNumber": "42",
+      "section": "I, Part B",
+      "calculator": "calculator-required",
+      "prompt": "",
+      "directions": "",
+      "parts": [],
+      "choices": [],
+      "media": [],
+      "answer": null,
+      "acceptedAnswers": [],
+      "explanation": "",
+      "workedSolution": "",
+      "scoringGuideline": null,
+      "rubric": [],
+      "source": {
+        "organization": "my-max-score-ab-practice",
+        "publisher": "my-max-score-ab-practice",
+        "bankName": "my-max-score-ab-practice",
+        "sourceType": "My Max Score AP Calculus AB practice exam",
+        "officialStatus": "supplemental-unofficial",
+        "releaseStatus": "supplemental source supplied by user",
+        "accessLevel": "school-internal",
+        "rightsStatus": "permission-required",
+        "publicPublicationAllowed": false,
+        "sourcePages": [
+          11,
+          19
+        ]
+      },
+      "classification": {
+        "primaryUnit": 2,
+        "primaryUnitLabel": "Unit 2: Calculus Foundations",
+        "primaryTopic": "Calculus Foundations",
+        "topicCode": "U2",
+        "additionalTopics": [],
+        "learningObjectives": [
+          "APCALC-U2-GENERAL"
+        ],
+        "bigIdeas": [
+          "Change",
+          "Limits",
+          "Analysis of Functions"
+        ],
+        "mathematicalPractices": [
+          "MP1",
+          "MP2"
+        ],
+        "skillCategories": [
+          "Representing",
+          "Reasoning",
+          "Justification"
+        ],
+        "concepts": [
+          "calculus",
+          "Calculus Foundations"
+        ],
+        "prerequisites": [],
+        "functionFamilies": [],
+        "representations": [
+          "symbolic",
+          "graphical"
+        ],
+        "reasoningActions": [
+          "model",
+          "compute",
+          "justify"
+        ],
+        "lessonIds": [
+          "APCALC-U2"
+        ],
+        "keywords": [
+          "calculus-foundations",
+          "calculus",
+          "ap-calculus-ab"
+        ]
+      },
+      "pedagogy": {
+        "difficulty": 3,
+        "difficultyLabel": "Medium",
+        "hints": []
+      },
+      "quality": {
+        "productionStatus": "teacher-archive-only",
+        "needsReview": true,
+        "studentReadyGatePassed": false,
+        "reviewReasons": [
+          "Rights/permission review required before public publication.",
+          "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+        ]
+      },
+      "audit": {
+        "sourceChecked": true,
+        "sourcePage": "11; 19",
+        "transcriptionStatus": "uncertain",
+        "stemStatus": "uncertain",
+        "choicesStatus": "uncertain",
+        "answerStatus": "uncertain",
+        "solutionStatus": "review-required",
+        "katexStatus": "syntax_checked_not_source_verified",
+        "mediaStatus": "verified",
+        "courseMappingStatus": "uncertain",
+        "unitMappingStatus": "uncertain",
+        "topicMappingStatus": "uncertain",
+        "lessonMappingStatus": "uncertain",
+        "calculatorStatus": "review-required",
+        "overallStatus": "teacher-archive-only",
+        "correctionsMade": 0,
+        "reviewRequired": true,
+        "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+        "auditedAt": "2026-07-24T17:46:03+00:00"
+      },
+      "studentEligible": false,
+      "studentAccessible": true,
+      "studentReady": false,
+      "deploymentAccess": "archive-metadata-only",
+      "contentStatus": "indexed-only",
+      "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
+    },
+    {
+      "id": "MYMAXSCORE-AB-PRACTICE-MCQ-043",
+      "course": "AP Calculus AB",
+      "courseId": "ap-calculus-ab",
+      "assessmentFamily": "my-max-score-ab-practice",
+      "type": "mcq",
+      "year": null,
+      "form": "",
+      "questionNumber": "43",
+      "section": "I, Part B",
+      "calculator": "calculator-required",
+      "prompt": "",
+      "directions": "",
+      "parts": [],
+      "choices": [],
+      "media": [],
+      "answer": null,
+      "acceptedAnswers": [],
+      "explanation": "",
+      "workedSolution": "",
+      "scoringGuideline": null,
+      "rubric": [],
+      "source": {
+        "organization": "my-max-score-ab-practice",
+        "publisher": "my-max-score-ab-practice",
+        "bankName": "my-max-score-ab-practice",
+        "sourceType": "My Max Score AP Calculus AB practice exam",
+        "officialStatus": "supplemental-unofficial",
+        "releaseStatus": "supplemental source supplied by user",
+        "accessLevel": "school-internal",
+        "rightsStatus": "permission-required",
+        "publicPublicationAllowed": false,
+        "sourcePages": [
+          11,
+          19
+        ]
+      },
+      "classification": {
+        "primaryUnit": 6,
+        "primaryUnitLabel": "Unit 6: Integration and Accumulation of Change",
+        "primaryTopic": "Integration and Accumulation of Change",
+        "topicCode": "U6",
+        "additionalTopics": [
+          "FTC"
+        ],
+        "learningObjectives": [
+          "APCALC-U6-GENERAL"
+        ],
+        "bigIdeas": [
+          "Change",
+          "Limits",
+          "Analysis of Functions"
+        ],
+        "mathematicalPractices": [
+          "MP1",
+          "MP3"
+        ],
+        "skillCategories": [
+          "Representing",
+          "Reasoning",
+          "Justification"
+        ],
+        "concepts": [
+          "integration",
+          "FTC",
+          "Integration and Accumulation of Change"
+        ],
+        "prerequisites": [],
+        "functionFamilies": [],
+        "representations": [
+          "symbolic"
+        ],
+        "reasoningActions": [
+          "model",
+          "compute",
+          "justify"
+        ],
+        "lessonIds": [
+          "APCALC-U6"
+        ],
+        "keywords": [
+          "integration-and-accumulation-of-change",
+          "integration",
+          "ftc",
+          "ap-calculus-ab"
+        ]
+      },
+      "pedagogy": {
+        "difficulty": 3,
+        "difficultyLabel": "Medium",
+        "hints": []
+      },
+      "quality": {
+        "productionStatus": "teacher-archive-only",
+        "needsReview": true,
+        "studentReadyGatePassed": false,
+        "reviewReasons": [
+          "Rights/permission review required before public publication.",
+          "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+        ]
+      },
+      "audit": {
+        "sourceChecked": true,
+        "sourcePage": "11; 19",
+        "transcriptionStatus": "uncertain",
+        "stemStatus": "uncertain",
+        "choicesStatus": "uncertain",
+        "answerStatus": "uncertain",
+        "solutionStatus": "review-required",
+        "katexStatus": "syntax_checked_not_source_verified",
+        "mediaStatus": "verified",
+        "courseMappingStatus": "uncertain",
+        "unitMappingStatus": "uncertain",
+        "topicMappingStatus": "uncertain",
+        "lessonMappingStatus": "uncertain",
+        "calculatorStatus": "review-required",
+        "overallStatus": "teacher-archive-only",
+        "correctionsMade": 0,
+        "reviewRequired": true,
+        "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+        "auditedAt": "2026-07-24T17:46:03+00:00"
+      },
+      "studentEligible": false,
+      "studentAccessible": true,
+      "studentReady": false,
+      "deploymentAccess": "archive-metadata-only",
+      "contentStatus": "indexed-only",
+      "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
+    },
+    {
+      "id": "MYMAXSCORE-AB-PRACTICE-MCQ-044",
+      "course": "AP Calculus AB",
+      "courseId": "ap-calculus-ab",
+      "assessmentFamily": "my-max-score-ab-practice",
+      "type": "mcq",
+      "year": null,
+      "form": "",
+      "questionNumber": "44",
+      "section": "I, Part B",
+      "calculator": "calculator-required",
+      "prompt": "",
+      "directions": "",
+      "parts": [],
+      "choices": [],
+      "media": [],
+      "answer": null,
+      "acceptedAnswers": [],
+      "explanation": "",
+      "workedSolution": "",
+      "scoringGuideline": null,
+      "rubric": [],
+      "source": {
+        "organization": "my-max-score-ab-practice",
+        "publisher": "my-max-score-ab-practice",
+        "bankName": "my-max-score-ab-practice",
+        "sourceType": "My Max Score AP Calculus AB practice exam",
+        "officialStatus": "supplemental-unofficial",
+        "releaseStatus": "supplemental source supplied by user",
+        "accessLevel": "school-internal",
+        "rightsStatus": "permission-required",
+        "publicPublicationAllowed": false,
+        "sourcePages": [
+          11,
+          19
+        ]
+      },
+      "classification": {
+        "primaryUnit": 2,
+        "primaryUnitLabel": "Unit 2: Calculus Foundations",
+        "primaryTopic": "Calculus Foundations",
+        "topicCode": "U2",
+        "additionalTopics": [],
+        "learningObjectives": [
+          "APCALC-U2-GENERAL"
+        ],
+        "bigIdeas": [
+          "Change",
+          "Limits",
+          "Analysis of Functions"
+        ],
+        "mathematicalPractices": [
+          "MP1",
+          "MP2"
+        ],
+        "skillCategories": [
+          "Representing",
+          "Reasoning",
+          "Justification"
+        ],
+        "concepts": [
+          "calculus",
+          "Calculus Foundations"
+        ],
+        "prerequisites": [],
+        "functionFamilies": [],
+        "representations": [
+          "symbolic"
+        ],
+        "reasoningActions": [
+          "model",
+          "compute",
+          "justify"
+        ],
+        "lessonIds": [
+          "APCALC-U2"
+        ],
+        "keywords": [
+          "calculus-foundations",
+          "calculus",
+          "ap-calculus-ab"
+        ]
+      },
+      "pedagogy": {
+        "difficulty": 3,
+        "difficultyLabel": "Medium",
+        "hints": []
+      },
+      "quality": {
+        "productionStatus": "teacher-archive-only",
+        "needsReview": true,
+        "studentReadyGatePassed": false,
+        "reviewReasons": [
+          "Rights/permission review required before public publication.",
+          "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+        ]
+      },
+      "audit": {
+        "sourceChecked": true,
+        "sourcePage": "11; 19",
+        "transcriptionStatus": "uncertain",
+        "stemStatus": "uncertain",
+        "choicesStatus": "uncertain",
+        "answerStatus": "uncertain",
+        "solutionStatus": "review-required",
+        "katexStatus": "syntax_checked_not_source_verified",
+        "mediaStatus": "verified",
+        "courseMappingStatus": "uncertain",
+        "unitMappingStatus": "uncertain",
+        "topicMappingStatus": "uncertain",
+        "lessonMappingStatus": "uncertain",
+        "calculatorStatus": "review-required",
+        "overallStatus": "teacher-archive-only",
+        "correctionsMade": 0,
+        "reviewRequired": true,
+        "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+        "auditedAt": "2026-07-24T17:46:03+00:00"
+      },
+      "studentEligible": false,
+      "studentAccessible": true,
+      "studentReady": false,
+      "deploymentAccess": "archive-metadata-only",
+      "contentStatus": "indexed-only",
+      "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
+    },
+    {
+      "id": "MYMAXSCORE-AB-PRACTICE-MCQ-045",
+      "course": "AP Calculus AB",
+      "courseId": "ap-calculus-ab",
+      "assessmentFamily": "my-max-score-ab-practice",
+      "type": "mcq",
+      "year": null,
+      "form": "",
+      "questionNumber": "45",
+      "section": "I, Part B",
+      "calculator": "calculator-required",
+      "prompt": "",
+      "directions": "",
+      "parts": [],
+      "choices": [],
+      "media": [],
+      "answer": null,
+      "acceptedAnswers": [],
+      "explanation": "",
+      "workedSolution": "",
+      "scoringGuideline": null,
+      "rubric": [],
+      "source": {
+        "organization": "my-max-score-ab-practice",
+        "publisher": "my-max-score-ab-practice",
+        "bankName": "my-max-score-ab-practice",
+        "sourceType": "My Max Score AP Calculus AB practice exam",
+        "officialStatus": "supplemental-unofficial",
+        "releaseStatus": "supplemental source supplied by user",
+        "accessLevel": "school-internal",
+        "rightsStatus": "permission-required",
+        "publicPublicationAllowed": false,
+        "sourcePages": [
+          11,
+          19
+        ]
+      },
+      "classification": {
+        "primaryUnit": 1,
+        "primaryUnitLabel": "Unit 1: Limits and Continuity",
+        "primaryTopic": "Limits and Continuity",
+        "topicCode": "U1",
+        "additionalTopics": [
+          "continuity"
+        ],
+        "learningObjectives": [
+          "APCALC-U1-GENERAL"
+        ],
+        "bigIdeas": [
+          "Change",
+          "Limits",
+          "Analysis of Functions"
+        ],
+        "mathematicalPractices": [
+          "MP1",
+          "MP4"
+        ],
+        "skillCategories": [
+          "Representing",
+          "Reasoning",
+          "Justification"
+        ],
+        "concepts": [
+          "limits",
+          "continuity",
+          "Limits and Continuity"
+        ],
+        "prerequisites": [],
+        "functionFamilies": [],
+        "representations": [
+          "symbolic"
+        ],
+        "reasoningActions": [
+          "model",
+          "compute",
+          "justify"
+        ],
+        "lessonIds": [
+          "APCALC-U1"
+        ],
+        "keywords": [
+          "limits-and-continuity",
+          "limits",
+          "continuity",
+          "ap-calculus-ab"
+        ]
+      },
+      "pedagogy": {
+        "difficulty": 3,
+        "difficultyLabel": "Medium",
+        "hints": []
+      },
+      "quality": {
+        "productionStatus": "teacher-archive-only",
+        "needsReview": true,
+        "studentReadyGatePassed": false,
+        "reviewReasons": [
+          "Rights/permission review required before public publication.",
+          "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+        ]
+      },
+      "audit": {
+        "sourceChecked": true,
+        "sourcePage": "11; 19",
+        "transcriptionStatus": "uncertain",
+        "stemStatus": "uncertain",
+        "choicesStatus": "uncertain",
+        "answerStatus": "uncertain",
+        "solutionStatus": "review-required",
+        "katexStatus": "syntax_checked_not_source_verified",
+        "mediaStatus": "verified",
+        "courseMappingStatus": "uncertain",
+        "unitMappingStatus": "uncertain",
+        "topicMappingStatus": "uncertain",
+        "lessonMappingStatus": "uncertain",
+        "calculatorStatus": "review-required",
+        "overallStatus": "teacher-archive-only",
+        "correctionsMade": 0,
+        "reviewRequired": true,
+        "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+        "auditedAt": "2026-07-24T17:46:03+00:00"
+      },
+      "studentEligible": false,
+      "studentAccessible": true,
+      "studentReady": false,
+      "deploymentAccess": "archive-metadata-only",
+      "contentStatus": "indexed-only",
+      "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
+    }
+  ]
+}

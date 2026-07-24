@@ -1,0 +1,15 @@
+{
+  "generatedAt": "2026-07-24T18:22:04+00:00",
+  "studentRuntimeQuestionCount": 352,
+  "studentArchiveMetadataCount": 1217,
+  "studentReadyArchiveContentCount": 352,
+  "restrictedArchiveRecordCount": 865,
+  "restrictedPromptsLeaked": 0,
+  "restrictedChoicesLeaked": 0,
+  "restrictedAnswersLeaked": 0,
+  "restrictedSolutionsOrRubricsLeaked": 0,
+  "restrictedMediaLeaked": 0,
+  "teacherNavigationLinksOnStudentPages": 0,
+  "staticAdminSeparationIsAuthentication": false,
+  "status": "PASS"
+}

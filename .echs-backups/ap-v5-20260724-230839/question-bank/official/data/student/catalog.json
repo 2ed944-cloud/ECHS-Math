@@ -1,0 +1,143 @@
+{
+  "schemaVersion": "5.0.0",
+  "mode": "student-ready-gated",
+  "generatedAt": "2026-07-24T17:46:03+00:00",
+  "questionCount": 352,
+  "archiveQuestionCount": 1217,
+  "stats": {
+    "questions": 352,
+    "mcq": 342,
+    "frq": 10,
+    "withMedia": 22,
+    "withHints": 300,
+    "answerVerified": 352,
+    "needsReview": 0,
+    "studentEligible": 352,
+    "studentAccessible": 352,
+    "studentReady": 352,
+    "teacherArchiveOnly": 865,
+    "fullyDigitized": 352,
+    "indexedOnly": 0
+  },
+  "courses": {
+    "AP Calculus AB": 317,
+    "AP Calculus BC": 5,
+    "AP Precalculus": 19,
+    "Grade 9 Pre-Precalculus": 11
+  },
+  "types": {
+    "frq": 10,
+    "mcq": 342
+  },
+  "calculator": {
+    "calculator-allowed": 42,
+    "calculator-required": 35,
+    "no-calculator": 275
+  },
+  "units": {
+    "1": 34,
+    "10": 1,
+    "2": 49,
+    "3": 41,
+    "4": 27,
+    "5": 46,
+    "6": 78,
+    "7": 8,
+    "8": 36
+  },
+  "readiness": {
+    "student-ready": 352
+  },
+  "officialStatus": {
+    "echs-original": 52,
+    "legacy-ap": 300
+  },
+  "years": {
+    "1969": {
+      "total": 44,
+      "mcq": 44,
+      "frq": 0,
+      "ab": 43,
+      "bc": 1,
+      "eligible": 44
+    },
+    "1973": {
+      "total": 45,
+      "mcq": 45,
+      "frq": 0,
+      "ab": 45,
+      "bc": 0,
+      "eligible": 45
+    },
+    "1985": {
+      "total": 44,
+      "mcq": 44,
+      "frq": 0,
+      "ab": 43,
+      "bc": 1,
+      "eligible": 44
+    },
+    "1988": {
+      "total": 44,
+      "mcq": 44,
+      "frq": 0,
+      "ab": 43,
+      "bc": 1,
+      "eligible": 44
+    },
+    "1993": {
+      "total": 42,
+      "mcq": 42,
+      "frq": 0,
+      "ab": 41,
+      "bc": 1,
+      "eligible": 42
+    },
+    "1997": {
+      "total": 38,
+      "mcq": 38,
+      "frq": 0,
+      "ab": 37,
+      "bc": 1,
+      "eligible": 38
+    },
+    "1998": {
+      "total": 43,
+      "mcq": 43,
+      "frq": 0,
+      "ab": 43,
+      "bc": 0,
+      "eligible": 43
+    }
+  },
+  "collections": [
+    {
+      "id": "AP historical archive",
+      "label": "AP historical archive",
+      "count": 300,
+      "studentReadyCount": 300,
+      "officialStatus": "legacy-ap",
+      "accessLevel": "school-internal"
+    },
+    {
+      "id": "ECHS original practice",
+      "label": "ECHS original practice",
+      "count": 52,
+      "studentReadyCount": 52,
+      "officialStatus": "echs-original",
+      "accessLevel": "public"
+    }
+  ],
+  "restrictedSummary": {
+    "canonicalQuestions": 1217,
+    "studentReady": 352,
+    "teacherArchiveOnly": 865,
+    "message": "Only independently audited student-ready records are used in practice, exams, recommendations, and dashboard calculations."
+  },
+  "deployment": {
+    "studentDataRoot": "data/student",
+    "adminDataRoot": "data",
+    "staticAuthenticationAvailable": false,
+    "adminRoute": "admin/"
+  }
+}

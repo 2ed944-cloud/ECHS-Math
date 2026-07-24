@@ -1,0 +1,897 @@
+[
+  {
+    "id": "MEDIA-APCALC-LEGACY-MCQ-1985-035-PROMPT-01",
+    "sourceFile": "ECHS_Math_Practice_Exams_Part_17_1978_1980_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1980-frq.json",
+    "sourcePage": 50,
+    "originalFilename": "",
+    "normalizedFilename": "media/audit-repairs/descriptor-svg/apcalc-legacy-mcq-1985-035.svg",
+    "mimeType": "image/svg+xml",
+    "width": null,
+    "height": null,
+    "checksum": "81acb28891008f390113d49008ba108576460aa4af6b7d49514d3622487ce941",
+    "linkedQuestions": [
+      "APCALC-LEGACY-MCQ-1985-035"
+    ],
+    "altText": "Sine curve for one period from zero to two with amplitude two.",
+    "caption": "",
+    "verificationStatus": "audited-descriptor-svg-verified",
+    "cropStatus": "question-region",
+    "qualityStatus": "student-legible",
+    "renderMode": "static-svg",
+    "descriptor": {
+      "shape": "1985-q35-sine",
+      "ariaLabel": "Sine curve for one period from zero to two with amplitude two."
+    },
+    "sourceReferences": [
+      "ECHS_Math_Practice_Exams_Part_10_1971_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1971-frq.json",
+      "ECHS_Math_Practice_Exams_Part_11_1972_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1972-frq.json",
+      "ECHS_Math_Practice_Exams_Part_12_1973_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1973-frq.json",
+      "ECHS_Math_Practice_Exams_Part_13_1974_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1974-frq.json",
+      "ECHS_Math_Practice_Exams_Part_14_1975_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1975-frq.json",
+      "ECHS_Math_Practice_Exams_Part_15_1976_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1976-frq.json",
+      "ECHS_Math_Practice_Exams_Part_16_1977_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1977-frq.json",
+      "ECHS_Math_Practice_Exams_Part_17_1978_1980_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1980-frq.json",
+      "ECHS_Math_Practice_Exams_Part_3_1985_AB/private-banks/ap-calculus-ab-1969-1985-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_3_1985_AB/private-banks/ap-calculus-ab-1985-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_4_1988_AB/private-banks/ap-calculus-ab-1969-1988-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_5_1993_AB/private-banks/ap-calculus-ab-1969-1993-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_6_1997_AB/private-banks/ap-calculus-ab-1969-1997-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_7_1998_AB/private-banks/ap-calculus-ab-1969-1998-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ.zip::ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-frq.json",
+      "ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ.zip::ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ/private-banks/cumulative/ap-calculus-ab-1969-1998-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_9_1970_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1970-frq.json"
+    ]
+  },
+  {
+    "id": "MEDIA-APCALC-LEGACY-MCQ-1973-042-PROMPT-01",
+    "sourceFile": "ECHS_Math_Practice_Exams_Part_17_1978_1980_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1980-frq.json",
+    "sourcePage": 33,
+    "originalFilename": "",
+    "normalizedFilename": "media/audit-repairs/descriptor-svg/apcalc-legacy-mcq-1973-042.svg",
+    "mimeType": "image/svg+xml",
+    "width": null,
+    "height": null,
+    "checksum": "aff9d4507c5818c95a10cbe78c7979a68fca7712d1f9b8127f2695a153a61e53",
+    "linkedQuestions": [
+      "APCALC-LEGACY-MCQ-1973-042"
+    ],
+    "altText": "Coordinate graph of y equals x squared with the region from x equals 1 to x equals 2 shaded and division guides at four thirds and five thirds.",
+    "caption": "",
+    "verificationStatus": "audited-descriptor-svg-verified",
+    "cropStatus": "question-region",
+    "qualityStatus": "student-legible",
+    "renderMode": "static-svg",
+    "descriptor": {
+      "shape": "parabola-area-x1-x2",
+      "ariaLabel": "Coordinate graph of y equals x squared with the region from x equals 1 to x equals 2 shaded and division guides at four thirds and five thirds."
+    },
+    "sourceReferences": [
+      "ECHS_Math_Practice_Exams_Part_10_1971_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1971-frq.json",
+      "ECHS_Math_Practice_Exams_Part_11_1972_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1972-frq.json",
+      "ECHS_Math_Practice_Exams_Part_12_1973_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1973-frq.json",
+      "ECHS_Math_Practice_Exams_Part_13_1974_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1974-frq.json",
+      "ECHS_Math_Practice_Exams_Part_14_1975_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1975-frq.json",
+      "ECHS_Math_Practice_Exams_Part_15_1976_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1976-frq.json",
+      "ECHS_Math_Practice_Exams_Part_16_1977_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1977-frq.json",
+      "ECHS_Math_Practice_Exams_Part_17_1978_1980_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1980-frq.json",
+      "ECHS_Math_Practice_Exams_Part_2_1973_AB/private-banks/ap-calculus-ab-1969-1973-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_2_1973_AB/private-banks/ap-calculus-ab-1973-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_3_1985_AB/private-banks/ap-calculus-ab-1969-1985-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_4_1988_AB/private-banks/ap-calculus-ab-1969-1988-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_5_1993_AB/private-banks/ap-calculus-ab-1969-1993-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_6_1997_AB/private-banks/ap-calculus-ab-1969-1997-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_7_1998_AB/private-banks/ap-calculus-ab-1969-1998-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ.zip::ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-frq.json",
+      "ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ.zip::ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ/private-banks/cumulative/ap-calculus-ab-1969-1998-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_9_1970_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1970-frq.json"
+    ]
+  },
+  {
+    "id": "MEDIA-APCALC-LEGACY-MCQ-1998-085-PROMPT-01",
+    "sourceFile": "ECHS_Math_Practice_Exams_Part_9_1970_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1970-frq.json",
+    "sourcePage": 142,
+    "originalFilename": "",
+    "normalizedFilename": "media/audit-repairs/descriptor-svg/apcalc-legacy-mcq-1998-085.svg",
+    "mimeType": "image/svg+xml",
+    "width": null,
+    "height": null,
+    "checksum": "3fc0641976e879db0c3de8a041676dd08421a8d1976bd89c218d71e1b19a6323",
+    "linkedQuestions": [
+      "APCALC-LEGACY-MCQ-1998-085"
+    ],
+    "altText": "Table with x values two, five, seven, eight and f of x values ten, thirty, forty, twenty.",
+    "caption": "",
+    "verificationStatus": "audited-descriptor-svg-verified",
+    "cropStatus": "question-region",
+    "qualityStatus": "student-legible",
+    "renderMode": "static-svg",
+    "descriptor": {
+      "shape": "1998-q85-table",
+      "ariaLabel": "Table with x values two, five, seven, eight and f of x values ten, thirty, forty, twenty."
+    },
+    "sourceReferences": [
+      "ECHS_Math_Practice_Exams_Part_10_1971_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1971-frq.json",
+      "ECHS_Math_Practice_Exams_Part_11_1972_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1972-frq.json",
+      "ECHS_Math_Practice_Exams_Part_12_1973_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1973-frq.json",
+      "ECHS_Math_Practice_Exams_Part_13_1974_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1974-frq.json",
+      "ECHS_Math_Practice_Exams_Part_14_1975_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1975-frq.json",
+      "ECHS_Math_Practice_Exams_Part_15_1976_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1976-frq.json",
+      "ECHS_Math_Practice_Exams_Part_16_1977_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1977-frq.json",
+      "ECHS_Math_Practice_Exams_Part_17_1978_1980_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1980-frq.json",
+      "ECHS_Math_Practice_Exams_Part_7_1998_AB/private-banks/ap-calculus-ab-1969-1998-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_7_1998_AB/private-banks/ap-calculus-ab-1998-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ.zip::ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ/private-banks/ap-calculus-ab-1998-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ.zip::ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-frq.json",
+      "ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ.zip::ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ/private-banks/cumulative/ap-calculus-ab-1969-1998-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_9_1970_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1970-frq.json"
+    ]
+  },
+  {
+    "id": "MEDIA-APCALC-LEGACY-MCQ-1997-015-PROMPT-01",
+    "sourceFile": "ECHS_Math_Practice_Exams_Part_17_1978_1980_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1980-frq.json",
+    "sourcePage": 110,
+    "originalFilename": "",
+    "normalizedFilename": "media/audit-repairs/descriptor-svg/apcalc-legacy-mcq-1997-015.svg",
+    "mimeType": "image/svg+xml",
+    "width": null,
+    "height": null,
+    "checksum": "cd0a92bbc2d4b254aa5cdecf9bb1d30942685c88abf04cf1adbd220b0a2b30cb",
+    "linkedQuestions": [
+      "APCALC-LEGACY-MCQ-1997-015"
+    ],
+    "altText": "A curve approaches an open point at (a,2) from both sides. At b the left branch approaches 2, while a right branch begins at the filled point (b,1).",
+    "caption": "",
+    "verificationStatus": "audited-descriptor-svg-verified",
+    "cropStatus": "question-region",
+    "qualityStatus": "student-legible",
+    "renderMode": "static-svg",
+    "descriptor": {
+      "shape": "1997-q15-limits",
+      "ariaLabel": "A curve approaches an open point at (a,2) from both sides. At b the left branch approaches 2, while a right branch begins at the filled point (b,1)."
+    },
+    "sourceReferences": [
+      "ECHS_Math_Practice_Exams_Part_10_1971_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1971-frq.json",
+      "ECHS_Math_Practice_Exams_Part_11_1972_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1972-frq.json",
+      "ECHS_Math_Practice_Exams_Part_12_1973_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1973-frq.json",
+      "ECHS_Math_Practice_Exams_Part_13_1974_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1974-frq.json",
+      "ECHS_Math_Practice_Exams_Part_14_1975_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1975-frq.json",
+      "ECHS_Math_Practice_Exams_Part_15_1976_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1976-frq.json",
+      "ECHS_Math_Practice_Exams_Part_16_1977_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1977-frq.json",
+      "ECHS_Math_Practice_Exams_Part_17_1978_1980_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1980-frq.json",
+      "ECHS_Math_Practice_Exams_Part_6_1997_AB/private-banks/ap-calculus-ab-1969-1997-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_6_1997_AB/private-banks/ap-calculus-ab-1997-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_7_1998_AB/private-banks/ap-calculus-ab-1969-1998-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ.zip::ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-frq.json",
+      "ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ.zip::ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ/private-banks/cumulative/ap-calculus-ab-1969-1998-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_9_1970_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1970-frq.json"
+    ]
+  },
+  {
+    "id": "MEDIA-APCALC-LEGACY-MCQ-1997-078-PROMPT-01",
+    "sourceFile": "ECHS_Math_Practice_Exams_Part_17_1978_1980_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1980-frq.json",
+    "sourcePage": 114,
+    "originalFilename": "",
+    "normalizedFilename": "media/audit-repairs/descriptor-svg/apcalc-legacy-mcq-1997-078.svg",
+    "mimeType": "image/svg+xml",
+    "width": null,
+    "height": null,
+    "checksum": "af26ad77e46e790e253a87fb2fa4d5b2c77697ab062969e2df64080f620a5184",
+    "linkedQuestions": [
+      "APCALC-LEGACY-MCQ-1997-078"
+    ],
+    "altText": "Graph of f equal to 2 from x=0 to 1, then decreasing smoothly toward one half by x=3 and remaining nearly constant to x=4.",
+    "caption": "",
+    "verificationStatus": "audited-descriptor-svg-verified",
+    "cropStatus": "question-region",
+    "qualityStatus": "student-legible",
+    "renderMode": "static-svg",
+    "descriptor": {
+      "shape": "1997-q78-function",
+      "ariaLabel": "Graph of f equal to 2 from x=0 to 1, then decreasing smoothly toward one half by x=3 and remaining nearly constant to x=4."
+    },
+    "sourceReferences": [
+      "ECHS_Math_Practice_Exams_Part_10_1971_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1971-frq.json",
+      "ECHS_Math_Practice_Exams_Part_11_1972_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1972-frq.json",
+      "ECHS_Math_Practice_Exams_Part_12_1973_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1973-frq.json",
+      "ECHS_Math_Practice_Exams_Part_13_1974_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1974-frq.json",
+      "ECHS_Math_Practice_Exams_Part_14_1975_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1975-frq.json",
+      "ECHS_Math_Practice_Exams_Part_15_1976_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1976-frq.json",
+      "ECHS_Math_Practice_Exams_Part_16_1977_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1977-frq.json",
+      "ECHS_Math_Practice_Exams_Part_17_1978_1980_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1980-frq.json",
+      "ECHS_Math_Practice_Exams_Part_6_1997_AB/private-banks/ap-calculus-ab-1969-1997-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_6_1997_AB/private-banks/ap-calculus-ab-1997-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_7_1998_AB/private-banks/ap-calculus-ab-1969-1998-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ.zip::ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-frq.json",
+      "ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ.zip::ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ/private-banks/cumulative/ap-calculus-ab-1969-1998-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_9_1970_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1970-frq.json"
+    ]
+  },
+  {
+    "id": "MEDIA-APCALC-LEGACY-MCQ-1997-083-PROMPT-01",
+    "sourceFile": "ECHS_Math_Practice_Exams_Part_17_1978_1980_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1980-frq.json",
+    "sourcePage": 115,
+    "originalFilename": "",
+    "normalizedFilename": "media/audit-repairs/descriptor-svg/apcalc-legacy-mcq-1997-083.svg",
+    "mimeType": "image/svg+xml",
+    "width": null,
+    "height": null,
+    "checksum": "69db18aabe9b0025113247019dc9e395bfdf29234eddd65eea38146f43d97a86",
+    "linkedQuestions": [
+      "APCALC-LEGACY-MCQ-1997-083"
+    ],
+    "altText": "First-quadrant region between y=cos x above, y=x below, and the y-axis, ending at their intersection near x=0.739.",
+    "caption": "",
+    "verificationStatus": "audited-descriptor-svg-verified",
+    "cropStatus": "question-region",
+    "qualityStatus": "student-legible",
+    "renderMode": "static-svg",
+    "descriptor": {
+      "shape": "1997-q83-area",
+      "ariaLabel": "First-quadrant region between y=cos x above, y=x below, and the y-axis, ending at their intersection near x=0.739."
+    },
+    "sourceReferences": [
+      "ECHS_Math_Practice_Exams_Part_10_1971_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1971-frq.json",
+      "ECHS_Math_Practice_Exams_Part_11_1972_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1972-frq.json",
+      "ECHS_Math_Practice_Exams_Part_12_1973_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1973-frq.json",
+      "ECHS_Math_Practice_Exams_Part_13_1974_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1974-frq.json",
+      "ECHS_Math_Practice_Exams_Part_14_1975_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1975-frq.json",
+      "ECHS_Math_Practice_Exams_Part_15_1976_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1976-frq.json",
+      "ECHS_Math_Practice_Exams_Part_16_1977_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1977-frq.json",
+      "ECHS_Math_Practice_Exams_Part_17_1978_1980_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1980-frq.json",
+      "ECHS_Math_Practice_Exams_Part_6_1997_AB/private-banks/ap-calculus-ab-1969-1997-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_6_1997_AB/private-banks/ap-calculus-ab-1997-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_7_1998_AB/private-banks/ap-calculus-ab-1969-1998-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ.zip::ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-frq.json",
+      "ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ.zip::ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ/private-banks/cumulative/ap-calculus-ab-1969-1998-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_9_1970_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1970-frq.json"
+    ]
+  },
+  {
+    "id": "MEDIA-APCALC-LEGACY-MCQ-1988-008-PROMPT-01",
+    "sourceFile": "ECHS_Math_Practice_Exams_Part_17_1978_1980_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1980-frq.json",
+    "sourcePage": 64,
+    "originalFilename": "",
+    "normalizedFilename": "media/audit-repairs/descriptor-svg/apcalc-legacy-mcq-1988-008.svg",
+    "mimeType": "image/svg+xml",
+    "width": null,
+    "height": null,
+    "checksum": "50606ab9bc9e184eeecde4d443b7b2e6a9a784464d96c9047dc2bc1fefbee3d3",
+    "linkedQuestions": [
+      "APCALC-LEGACY-MCQ-1988-008"
+    ],
+    "altText": "Smooth graph increasing and concave up from a to b, increasing and concave down from b to c, then decreasing and concave down from c to d.",
+    "caption": "",
+    "verificationStatus": "audited-descriptor-svg-verified",
+    "cropStatus": "question-region",
+    "qualityStatus": "student-legible",
+    "renderMode": "static-svg",
+    "descriptor": {
+      "shape": "1988-q08-curve",
+      "ariaLabel": "Smooth graph increasing and concave up from a to b, increasing and concave down from b to c, then decreasing and concave down from c to d."
+    },
+    "sourceReferences": [
+      "ECHS_Math_Practice_Exams_Part_10_1971_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1971-frq.json",
+      "ECHS_Math_Practice_Exams_Part_11_1972_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1972-frq.json",
+      "ECHS_Math_Practice_Exams_Part_12_1973_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1973-frq.json",
+      "ECHS_Math_Practice_Exams_Part_13_1974_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1974-frq.json",
+      "ECHS_Math_Practice_Exams_Part_14_1975_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1975-frq.json",
+      "ECHS_Math_Practice_Exams_Part_15_1976_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1976-frq.json",
+      "ECHS_Math_Practice_Exams_Part_16_1977_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1977-frq.json",
+      "ECHS_Math_Practice_Exams_Part_17_1978_1980_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1980-frq.json",
+      "ECHS_Math_Practice_Exams_Part_4_1988_AB/private-banks/ap-calculus-ab-1969-1988-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_4_1988_AB/private-banks/ap-calculus-ab-1988-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_5_1993_AB/private-banks/ap-calculus-ab-1969-1993-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_6_1997_AB/private-banks/ap-calculus-ab-1969-1997-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_7_1998_AB/private-banks/ap-calculus-ab-1969-1998-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ.zip::ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-frq.json",
+      "ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ.zip::ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ/private-banks/cumulative/ap-calculus-ab-1969-1998-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_9_1970_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1970-frq.json"
+    ]
+  },
+  {
+    "id": "MEDIA-APCALC-LEGACY-MCQ-1997-089-PROMPT-01",
+    "sourceFile": "ECHS_Math_Practice_Exams_Part_17_1978_1980_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1980-frq.json",
+    "sourcePage": 118,
+    "originalFilename": "",
+    "normalizedFilename": "media/audit-repairs/descriptor-svg/apcalc-legacy-mcq-1997-089.svg",
+    "mimeType": "image/svg+xml",
+    "width": null,
+    "height": null,
+    "checksum": "546b4fc6d54420dd1ae9277e6d2184e03afe47e4c102d2a750c7c3089f0cc86a",
+    "linkedQuestions": [
+      "APCALC-LEGACY-MCQ-1997-089"
+    ],
+    "altText": "Table with x values 0, 0.5, 1.0, 1.5, 2.0 and f(x) values 3, 3, 5, 8, 13.",
+    "caption": "",
+    "verificationStatus": "audited-descriptor-svg-verified",
+    "cropStatus": "question-region",
+    "qualityStatus": "student-legible",
+    "renderMode": "static-svg",
+    "descriptor": {
+      "shape": "1997-q89-table",
+      "ariaLabel": "Table with x values 0, 0.5, 1.0, 1.5, 2.0 and f(x) values 3, 3, 5, 8, 13."
+    },
+    "sourceReferences": [
+      "ECHS_Math_Practice_Exams_Part_10_1971_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1971-frq.json",
+      "ECHS_Math_Practice_Exams_Part_11_1972_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1972-frq.json",
+      "ECHS_Math_Practice_Exams_Part_12_1973_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1973-frq.json",
+      "ECHS_Math_Practice_Exams_Part_13_1974_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1974-frq.json",
+      "ECHS_Math_Practice_Exams_Part_14_1975_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1975-frq.json",
+      "ECHS_Math_Practice_Exams_Part_15_1976_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1976-frq.json",
+      "ECHS_Math_Practice_Exams_Part_16_1977_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1977-frq.json",
+      "ECHS_Math_Practice_Exams_Part_17_1978_1980_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1980-frq.json",
+      "ECHS_Math_Practice_Exams_Part_6_1997_AB/private-banks/ap-calculus-ab-1969-1997-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_6_1997_AB/private-banks/ap-calculus-ab-1997-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_7_1998_AB/private-banks/ap-calculus-ab-1969-1998-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ.zip::ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-frq.json",
+      "ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ.zip::ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ/private-banks/cumulative/ap-calculus-ab-1969-1998-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_9_1970_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1970-frq.json"
+    ]
+  },
+  {
+    "id": "MEDIA-APCALC-LEGACY-MCQ-1997-008-PROMPT-01",
+    "sourceFile": "ECHS_Math_Practice_Exams_Part_17_1978_1980_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1980-frq.json",
+    "sourcePage": 108,
+    "originalFilename": "",
+    "normalizedFilename": "media/audit-repairs/descriptor-svg/apcalc-legacy-mcq-1997-008.svg",
+    "mimeType": "image/svg+xml",
+    "width": null,
+    "height": null,
+    "checksum": "b94c7d0883e3eca966bf1f9bd249e0b57734bebc4c3f84a8ab51b9c02df993e2",
+    "linkedQuestions": [
+      "APCALC-LEGACY-MCQ-1997-008"
+    ],
+    "altText": "Piecewise-linear velocity graph through the points (0,0), (2,3), (4,3), (6,0), (7,-1), and (8,0).",
+    "caption": "",
+    "verificationStatus": "audited-descriptor-svg-verified",
+    "cropStatus": "question-region",
+    "qualityStatus": "student-legible",
+    "renderMode": "static-svg",
+    "descriptor": {
+      "shape": "1997-q08-velocity",
+      "ariaLabel": "Piecewise-linear velocity graph through the points (0,0), (2,3), (4,3), (6,0), (7,-1), and (8,0)."
+    },
+    "sourceReferences": [
+      "ECHS_Math_Practice_Exams_Part_10_1971_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1971-frq.json",
+      "ECHS_Math_Practice_Exams_Part_11_1972_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1972-frq.json",
+      "ECHS_Math_Practice_Exams_Part_12_1973_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1973-frq.json",
+      "ECHS_Math_Practice_Exams_Part_13_1974_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1974-frq.json",
+      "ECHS_Math_Practice_Exams_Part_14_1975_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1975-frq.json",
+      "ECHS_Math_Practice_Exams_Part_15_1976_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1976-frq.json",
+      "ECHS_Math_Practice_Exams_Part_16_1977_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1977-frq.json",
+      "ECHS_Math_Practice_Exams_Part_17_1978_1980_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1980-frq.json",
+      "ECHS_Math_Practice_Exams_Part_6_1997_AB/private-banks/ap-calculus-ab-1969-1997-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_6_1997_AB/private-banks/ap-calculus-ab-1997-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_7_1998_AB/private-banks/ap-calculus-ab-1969-1998-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ.zip::ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-frq.json",
+      "ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ.zip::ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ/private-banks/cumulative/ap-calculus-ab-1969-1998-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_9_1970_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1970-frq.json"
+    ]
+  },
+  {
+    "id": "MEDIA-APCALC-LEGACY-MCQ-1997-009-PROMPT-01",
+    "sourceFile": "ECHS_Math_Practice_Exams_Part_17_1978_1980_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1980-frq.json",
+    "sourcePage": 108,
+    "originalFilename": "",
+    "normalizedFilename": "media/audit-repairs/descriptor-svg/apcalc-legacy-mcq-1997-009.svg",
+    "mimeType": "image/svg+xml",
+    "width": null,
+    "height": null,
+    "checksum": "8609f6b2bc6a26dbb0958db11305fb6dbbcd62ee52a31e353efc1925f44e0344",
+    "linkedQuestions": [
+      "APCALC-LEGACY-MCQ-1997-009"
+    ],
+    "altText": "Piecewise-linear velocity graph through the points (0,0), (2,3), (4,3), (6,0), (7,-1), and (8,0).",
+    "caption": "",
+    "verificationStatus": "audited-descriptor-svg-verified",
+    "cropStatus": "question-region",
+    "qualityStatus": "student-legible",
+    "renderMode": "static-svg",
+    "descriptor": {
+      "shape": "1997-q08-velocity",
+      "ariaLabel": "Piecewise-linear velocity graph through the points (0,0), (2,3), (4,3), (6,0), (7,-1), and (8,0)."
+    },
+    "sourceReferences": [
+      "ECHS_Math_Practice_Exams_Part_10_1971_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1971-frq.json",
+      "ECHS_Math_Practice_Exams_Part_11_1972_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1972-frq.json",
+      "ECHS_Math_Practice_Exams_Part_12_1973_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1973-frq.json",
+      "ECHS_Math_Practice_Exams_Part_13_1974_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1974-frq.json",
+      "ECHS_Math_Practice_Exams_Part_14_1975_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1975-frq.json",
+      "ECHS_Math_Practice_Exams_Part_15_1976_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1976-frq.json",
+      "ECHS_Math_Practice_Exams_Part_16_1977_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1977-frq.json",
+      "ECHS_Math_Practice_Exams_Part_17_1978_1980_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1980-frq.json",
+      "ECHS_Math_Practice_Exams_Part_6_1997_AB/private-banks/ap-calculus-ab-1969-1997-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_6_1997_AB/private-banks/ap-calculus-ab-1997-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_7_1998_AB/private-banks/ap-calculus-ab-1969-1998-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ.zip::ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-frq.json",
+      "ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ.zip::ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ/private-banks/cumulative/ap-calculus-ab-1969-1998-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_9_1970_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1970-frq.json"
+    ]
+  },
+  {
+    "id": "MEDIA-APCALC-LEGACY-MCQ-1998-079-PROMPT-01",
+    "sourceFile": "ECHS_Math_Practice_Exams_Part_17_1978_1980_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1980-frq.json",
+    "sourcePage": 140,
+    "originalFilename": "",
+    "normalizedFilename": "media/audit-repairs/descriptor-svg/apcalc-legacy-mcq-1998-079.svg",
+    "mimeType": "image/svg+xml",
+    "width": null,
+    "height": null,
+    "checksum": "c00badd354d45b403c3a464179ca50bdc1f4ba414bb3f5b925060bc4ea90fa35",
+    "linkedQuestions": [
+      "APCALC-LEGACY-MCQ-1998-079"
+    ],
+    "altText": "Three derivative graphs: f prime changes positive to negative, g prime changes negative to positive, and h prime remains positive.",
+    "caption": "",
+    "verificationStatus": "audited-descriptor-svg-verified",
+    "cropStatus": "question-region",
+    "qualityStatus": "student-legible",
+    "renderMode": "static-svg",
+    "descriptor": {
+      "shape": "1998-q79-derivatives",
+      "ariaLabel": "Three derivative graphs: f prime changes positive to negative, g prime changes negative to positive, and h prime remains positive."
+    },
+    "sourceReferences": [
+      "ECHS_Math_Practice_Exams_Part_10_1971_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1971-frq.json",
+      "ECHS_Math_Practice_Exams_Part_11_1972_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1972-frq.json",
+      "ECHS_Math_Practice_Exams_Part_12_1973_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1973-frq.json",
+      "ECHS_Math_Practice_Exams_Part_13_1974_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1974-frq.json",
+      "ECHS_Math_Practice_Exams_Part_14_1975_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1975-frq.json",
+      "ECHS_Math_Practice_Exams_Part_15_1976_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1976-frq.json",
+      "ECHS_Math_Practice_Exams_Part_16_1977_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1977-frq.json",
+      "ECHS_Math_Practice_Exams_Part_17_1978_1980_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1980-frq.json",
+      "ECHS_Math_Practice_Exams_Part_7_1998_AB/private-banks/ap-calculus-ab-1969-1998-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_7_1998_AB/private-banks/ap-calculus-ab-1998-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ.zip::ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ/private-banks/ap-calculus-ab-1998-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ.zip::ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-frq.json",
+      "ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ.zip::ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ/private-banks/cumulative/ap-calculus-ab-1969-1998-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_9_1970_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1970-frq.json"
+    ]
+  },
+  {
+    "id": "MEDIA-APCALC-LEGACY-MCQ-1997-081-PROMPT-01",
+    "sourceFile": "ECHS_Math_Practice_Exams_Part_17_1978_1980_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1980-frq.json",
+    "sourcePage": 115,
+    "originalFilename": "",
+    "normalizedFilename": "media/audit-repairs/descriptor-svg/apcalc-legacy-mcq-1997-081.svg",
+    "mimeType": "image/svg+xml",
+    "width": null,
+    "height": null,
+    "checksum": "90f9f7bb2bc8965608d28cc8bce9a8c01179140421ad40b19489eba6aaedbadb",
+    "linkedQuestions": [
+      "APCALC-LEGACY-MCQ-1997-081"
+    ],
+    "altText": "Right triangle with eastward train distance 240, southward observer distance 70, and line-of-sight distance 250.",
+    "caption": "",
+    "verificationStatus": "audited-descriptor-svg-verified",
+    "cropStatus": "question-region",
+    "qualityStatus": "student-legible",
+    "renderMode": "static-svg",
+    "descriptor": {
+      "shape": "1997-q81-train",
+      "ariaLabel": "Right triangle with eastward train distance 240, southward observer distance 70, and line-of-sight distance 250."
+    },
+    "sourceReferences": [
+      "ECHS_Math_Practice_Exams_Part_10_1971_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1971-frq.json",
+      "ECHS_Math_Practice_Exams_Part_11_1972_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1972-frq.json",
+      "ECHS_Math_Practice_Exams_Part_12_1973_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1973-frq.json",
+      "ECHS_Math_Practice_Exams_Part_13_1974_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1974-frq.json",
+      "ECHS_Math_Practice_Exams_Part_14_1975_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1975-frq.json",
+      "ECHS_Math_Practice_Exams_Part_15_1976_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1976-frq.json",
+      "ECHS_Math_Practice_Exams_Part_16_1977_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1977-frq.json",
+      "ECHS_Math_Practice_Exams_Part_17_1978_1980_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1980-frq.json",
+      "ECHS_Math_Practice_Exams_Part_6_1997_AB/private-banks/ap-calculus-ab-1969-1997-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_6_1997_AB/private-banks/ap-calculus-ab-1997-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_7_1998_AB/private-banks/ap-calculus-ab-1969-1998-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ.zip::ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-frq.json",
+      "ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ.zip::ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ/private-banks/cumulative/ap-calculus-ab-1969-1998-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_9_1970_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1970-frq.json"
+    ]
+  },
+  {
+    "id": "MEDIA-APCALC-LEGACY-MCQ-1998-013-PROMPT-01",
+    "sourceFile": "ECHS_Math_Practice_Exams_Part_17_1978_1980_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1980-frq.json",
+    "sourcePage": 134,
+    "originalFilename": "",
+    "normalizedFilename": "media/audit-repairs/descriptor-svg/apcalc-legacy-mcq-1998-013.svg",
+    "mimeType": "image/svg+xml",
+    "width": null,
+    "height": null,
+    "checksum": "2b0963d4164e6d8620622a10745920f21913ca3b998a094a5d4fbd340b8f297f",
+    "linkedQuestions": [
+      "APCALC-LEGACY-MCQ-1998-013"
+    ],
+    "altText": "Graph with a jump at x=0, a lower semicircle from x=0 to x=2, and an upper semicircle from x=2 to x=4.",
+    "caption": "",
+    "verificationStatus": "audited-descriptor-svg-verified",
+    "cropStatus": "question-region",
+    "qualityStatus": "student-legible",
+    "renderMode": "static-svg",
+    "descriptor": {
+      "shape": "1998-q13-differentiability",
+      "ariaLabel": "Graph with a jump at x=0, a lower semicircle from x=0 to x=2, and an upper semicircle from x=2 to x=4."
+    },
+    "sourceReferences": [
+      "ECHS_Math_Practice_Exams_Part_10_1971_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1971-frq.json",
+      "ECHS_Math_Practice_Exams_Part_11_1972_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1972-frq.json",
+      "ECHS_Math_Practice_Exams_Part_12_1973_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1973-frq.json",
+      "ECHS_Math_Practice_Exams_Part_13_1974_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1974-frq.json",
+      "ECHS_Math_Practice_Exams_Part_14_1975_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1975-frq.json",
+      "ECHS_Math_Practice_Exams_Part_15_1976_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1976-frq.json",
+      "ECHS_Math_Practice_Exams_Part_16_1977_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1977-frq.json",
+      "ECHS_Math_Practice_Exams_Part_17_1978_1980_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1980-frq.json",
+      "ECHS_Math_Practice_Exams_Part_7_1998_AB/private-banks/ap-calculus-ab-1969-1998-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_7_1998_AB/private-banks/ap-calculus-ab-1998-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ.zip::ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ/private-banks/ap-calculus-ab-1998-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ.zip::ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-frq.json",
+      "ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ.zip::ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ/private-banks/cumulative/ap-calculus-ab-1969-1998-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_9_1970_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1970-frq.json"
+    ]
+  },
+  {
+    "id": "MEDIA-APCALC-LEGACY-MCQ-1988-040-PROMPT-01",
+    "sourceFile": "ECHS_Math_Practice_Exams_Part_17_1978_1980_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1980-frq.json",
+    "sourcePage": 71,
+    "originalFilename": "",
+    "normalizedFilename": "media/audit-repairs/descriptor-svg/apcalc-legacy-mcq-1988-040.svg",
+    "mimeType": "image/svg+xml",
+    "width": null,
+    "height": null,
+    "checksum": "17c89fe838e03511b32525da4cb95ab9561961cc0ad90c00580784f31c3114ee",
+    "linkedQuestions": [
+      "APCALC-LEGACY-MCQ-1988-040"
+    ],
+    "altText": "Rectangle with horizontal side x, vertical side y, and diagonal z.",
+    "caption": "",
+    "verificationStatus": "audited-descriptor-svg-verified",
+    "cropStatus": "question-region",
+    "qualityStatus": "student-legible",
+    "renderMode": "static-svg",
+    "descriptor": {
+      "shape": "1988-q40-rectangle",
+      "ariaLabel": "Rectangle with horizontal side x, vertical side y, and diagonal z."
+    },
+    "sourceReferences": [
+      "ECHS_Math_Practice_Exams_Part_10_1971_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1971-frq.json",
+      "ECHS_Math_Practice_Exams_Part_11_1972_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1972-frq.json",
+      "ECHS_Math_Practice_Exams_Part_12_1973_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1973-frq.json",
+      "ECHS_Math_Practice_Exams_Part_13_1974_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1974-frq.json",
+      "ECHS_Math_Practice_Exams_Part_14_1975_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1975-frq.json",
+      "ECHS_Math_Practice_Exams_Part_15_1976_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1976-frq.json",
+      "ECHS_Math_Practice_Exams_Part_16_1977_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1977-frq.json",
+      "ECHS_Math_Practice_Exams_Part_17_1978_1980_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1980-frq.json",
+      "ECHS_Math_Practice_Exams_Part_4_1988_AB/private-banks/ap-calculus-ab-1969-1988-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_4_1988_AB/private-banks/ap-calculus-ab-1988-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_5_1993_AB/private-banks/ap-calculus-ab-1969-1993-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_6_1997_AB/private-banks/ap-calculus-ab-1969-1997-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_7_1998_AB/private-banks/ap-calculus-ab-1969-1998-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ.zip::ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-frq.json",
+      "ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ.zip::ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ/private-banks/cumulative/ap-calculus-ab-1969-1998-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_9_1970_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1970-frq.json"
+    ]
+  },
+  {
+    "id": "MEDIA-APCALC-LEGACY-MCQ-1988-034-PROMPT-01",
+    "sourceFile": "ECHS_Math_Practice_Exams_Part_17_1978_1980_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1980-frq.json",
+    "sourcePage": 69,
+    "originalFilename": "",
+    "normalizedFilename": "media/audit-repairs/descriptor-svg/apcalc-legacy-mcq-1988-034.svg",
+    "mimeType": "image/svg+xml",
+    "width": null,
+    "height": null,
+    "checksum": "9a7ab10e4fe57dd8257947cbf3c2b0f39ffff8344742ecf937268f942d033c4a",
+    "linkedQuestions": [
+      "APCALC-LEGACY-MCQ-1988-034"
+    ],
+    "altText": "Two curves meet at a and c; f is above g throughout, with f crossing the x-axis at b and the region between them shaded.",
+    "caption": "",
+    "verificationStatus": "audited-descriptor-svg-verified",
+    "cropStatus": "question-region",
+    "qualityStatus": "student-legible",
+    "renderMode": "static-svg",
+    "descriptor": {
+      "shape": "1988-q34-area",
+      "ariaLabel": "Two curves meet at a and c; f is above g throughout, with f crossing the x-axis at b and the region between them shaded."
+    },
+    "sourceReferences": [
+      "ECHS_Math_Practice_Exams_Part_10_1971_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1971-frq.json",
+      "ECHS_Math_Practice_Exams_Part_11_1972_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1972-frq.json",
+      "ECHS_Math_Practice_Exams_Part_12_1973_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1973-frq.json",
+      "ECHS_Math_Practice_Exams_Part_13_1974_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1974-frq.json",
+      "ECHS_Math_Practice_Exams_Part_14_1975_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1975-frq.json",
+      "ECHS_Math_Practice_Exams_Part_15_1976_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1976-frq.json",
+      "ECHS_Math_Practice_Exams_Part_16_1977_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1977-frq.json",
+      "ECHS_Math_Practice_Exams_Part_17_1978_1980_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1980-frq.json",
+      "ECHS_Math_Practice_Exams_Part_4_1988_AB/private-banks/ap-calculus-ab-1969-1988-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_4_1988_AB/private-banks/ap-calculus-ab-1988-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_5_1993_AB/private-banks/ap-calculus-ab-1969-1993-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_6_1997_AB/private-banks/ap-calculus-ab-1969-1997-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_7_1998_AB/private-banks/ap-calculus-ab-1969-1998-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ.zip::ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-frq.json",
+      "ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ.zip::ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ/private-banks/cumulative/ap-calculus-ab-1969-1998-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_9_1970_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1970-frq.json"
+    ]
+  },
+  {
+    "id": "MEDIA-APCALC-LEGACY-MCQ-1998-026-PROMPT-01",
+    "sourceFile": "ECHS_Math_Practice_Exams_Part_17_1978_1980_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1980-frq.json",
+    "sourcePage": 138,
+    "originalFilename": "",
+    "normalizedFilename": "media/audit-repairs/descriptor-svg/apcalc-legacy-mcq-1998-026.svg",
+    "mimeType": "image/svg+xml",
+    "width": null,
+    "height": null,
+    "checksum": "a69a5c3bf21d852608d52b12704b64b0d798c524ba7769e42bea6d50e7609347",
+    "linkedQuestions": [
+      "APCALC-LEGACY-MCQ-1998-026"
+    ],
+    "altText": "Table with x values 0, 1, 2 and f(x) values 1, k, 2.",
+    "caption": "",
+    "verificationStatus": "audited-descriptor-svg-verified",
+    "cropStatus": "question-region",
+    "qualityStatus": "student-legible",
+    "renderMode": "static-svg",
+    "descriptor": {
+      "shape": "1998-q26-table",
+      "ariaLabel": "Table with x values 0, 1, 2 and f(x) values 1, k, 2."
+    },
+    "sourceReferences": [
+      "ECHS_Math_Practice_Exams_Part_10_1971_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1971-frq.json",
+      "ECHS_Math_Practice_Exams_Part_11_1972_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1972-frq.json",
+      "ECHS_Math_Practice_Exams_Part_12_1973_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1973-frq.json",
+      "ECHS_Math_Practice_Exams_Part_13_1974_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1974-frq.json",
+      "ECHS_Math_Practice_Exams_Part_14_1975_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1975-frq.json",
+      "ECHS_Math_Practice_Exams_Part_15_1976_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1976-frq.json",
+      "ECHS_Math_Practice_Exams_Part_16_1977_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1977-frq.json",
+      "ECHS_Math_Practice_Exams_Part_17_1978_1980_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1980-frq.json",
+      "ECHS_Math_Practice_Exams_Part_7_1998_AB/private-banks/ap-calculus-ab-1969-1998-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_7_1998_AB/private-banks/ap-calculus-ab-1998-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ.zip::ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ/private-banks/ap-calculus-ab-1998-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ.zip::ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-frq.json",
+      "ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ.zip::ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ/private-banks/cumulative/ap-calculus-ab-1969-1998-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_9_1970_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1970-frq.json"
+    ]
+  },
+  {
+    "id": "MEDIA-APCALC-LEGACY-MCQ-1993-034-PROMPT-01",
+    "sourceFile": "ECHS_Math_Practice_Exams_Part_17_1978_1980_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1980-frq.json",
+    "sourcePage": 91,
+    "originalFilename": "",
+    "normalizedFilename": "media/audit-repairs/descriptor-svg/apcalc-legacy-mcq-1993-034.svg",
+    "mimeType": "image/svg+xml",
+    "width": null,
+    "height": null,
+    "checksum": "5b6d60a3e75a4de5ced284c859a5b214daf740eeb75ad777a1c80f3217137712",
+    "linkedQuestions": [
+      "APCALC-LEGACY-MCQ-1993-034"
+    ],
+    "altText": "A right triangle formed by a vertical wall, horizontal ground, and a 25-foot ladder, with height 7 and horizontal distance 24 at the instant considered.",
+    "caption": "",
+    "verificationStatus": "audited-descriptor-svg-verified",
+    "cropStatus": "question-region",
+    "qualityStatus": "student-legible",
+    "renderMode": "static-svg",
+    "descriptor": {
+      "shape": "1993-q34-ladder",
+      "ariaLabel": "A right triangle formed by a vertical wall, horizontal ground, and a 25-foot ladder, with height 7 and horizontal distance 24 at the instant considered."
+    },
+    "sourceReferences": [
+      "ECHS_Math_Practice_Exams_Part_10_1971_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1971-frq.json",
+      "ECHS_Math_Practice_Exams_Part_11_1972_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1972-frq.json",
+      "ECHS_Math_Practice_Exams_Part_12_1973_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1973-frq.json",
+      "ECHS_Math_Practice_Exams_Part_13_1974_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1974-frq.json",
+      "ECHS_Math_Practice_Exams_Part_14_1975_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1975-frq.json",
+      "ECHS_Math_Practice_Exams_Part_15_1976_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1976-frq.json",
+      "ECHS_Math_Practice_Exams_Part_16_1977_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1977-frq.json",
+      "ECHS_Math_Practice_Exams_Part_17_1978_1980_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1980-frq.json",
+      "ECHS_Math_Practice_Exams_Part_5_1993_AB/private-banks/ap-calculus-ab-1969-1993-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_5_1993_AB/private-banks/ap-calculus-ab-1993-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_6_1997_AB/private-banks/ap-calculus-ab-1969-1997-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_7_1998_AB/private-banks/ap-calculus-ab-1969-1998-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ.zip::ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-frq.json",
+      "ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ.zip::ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ/private-banks/cumulative/ap-calculus-ab-1969-1998-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_9_1970_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1970-frq.json"
+    ]
+  },
+  {
+    "id": "MEDIA-APCALC-LEGACY-MCQ-1998-017-PROMPT-01",
+    "sourceFile": "ECHS_Math_Practice_Exams_Part_9_1970_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1970-frq.json",
+    "sourcePage": 135,
+    "originalFilename": "",
+    "normalizedFilename": "media/audit-repairs/descriptor-svg/apcalc-legacy-mcq-1998-017.svg",
+    "mimeType": "image/svg+xml",
+    "width": null,
+    "height": null,
+    "checksum": "e6c69fc1b6e1f6076b955c151ec0681df1583087405173586157340d206a1c5b",
+    "linkedQuestions": [
+      "APCALC-LEGACY-MCQ-1998-017"
+    ],
+    "altText": "Increasing concave-down graph crossing the x-axis at x equals one.",
+    "caption": "",
+    "verificationStatus": "audited-descriptor-svg-verified",
+    "cropStatus": "question-region",
+    "qualityStatus": "student-legible",
+    "renderMode": "static-svg",
+    "descriptor": {
+      "shape": "1998-q17-function",
+      "ariaLabel": "Increasing concave-down graph crossing the x-axis at x equals one."
+    },
+    "sourceReferences": [
+      "ECHS_Math_Practice_Exams_Part_10_1971_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1971-frq.json",
+      "ECHS_Math_Practice_Exams_Part_11_1972_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1972-frq.json",
+      "ECHS_Math_Practice_Exams_Part_12_1973_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1973-frq.json",
+      "ECHS_Math_Practice_Exams_Part_13_1974_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1974-frq.json",
+      "ECHS_Math_Practice_Exams_Part_14_1975_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1975-frq.json",
+      "ECHS_Math_Practice_Exams_Part_15_1976_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1976-frq.json",
+      "ECHS_Math_Practice_Exams_Part_16_1977_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1977-frq.json",
+      "ECHS_Math_Practice_Exams_Part_17_1978_1980_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1980-frq.json",
+      "ECHS_Math_Practice_Exams_Part_7_1998_AB/private-banks/ap-calculus-ab-1969-1998-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_7_1998_AB/private-banks/ap-calculus-ab-1998-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ.zip::ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ/private-banks/ap-calculus-ab-1998-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ.zip::ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-frq.json",
+      "ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ.zip::ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ/private-banks/cumulative/ap-calculus-ab-1969-1998-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_9_1970_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1970-frq.json"
+    ]
+  },
+  {
+    "id": "MEDIA-APCALC-LEGACY-MCQ-1998-002-PROMPT-01",
+    "sourceFile": "ECHS_Math_Practice_Exams_Part_17_1978_1980_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1980-frq.json",
+    "sourcePage": 131,
+    "originalFilename": "",
+    "normalizedFilename": "media/audit-repairs/descriptor-svg/apcalc-legacy-mcq-1998-002.svg",
+    "mimeType": "image/svg+xml",
+    "width": null,
+    "height": null,
+    "checksum": "8a2e7f8957239164995b321da8096f0689b8eb773d12a67821a393c94a62e070",
+    "linkedQuestions": [
+      "APCALC-LEGACY-MCQ-1998-002"
+    ],
+    "altText": "Piecewise-linear graph through (-1,0), (0,2), (1,2), (2,0), (3,-1), and (4,-1).",
+    "caption": "",
+    "verificationStatus": "audited-descriptor-svg-verified",
+    "cropStatus": "question-region",
+    "qualityStatus": "student-legible",
+    "renderMode": "static-svg",
+    "descriptor": {
+      "shape": "1998-q02-piecewise",
+      "ariaLabel": "Piecewise-linear graph through (-1,0), (0,2), (1,2), (2,0), (3,-1), and (4,-1)."
+    },
+    "sourceReferences": [
+      "ECHS_Math_Practice_Exams_Part_10_1971_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1971-frq.json",
+      "ECHS_Math_Practice_Exams_Part_11_1972_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1972-frq.json",
+      "ECHS_Math_Practice_Exams_Part_12_1973_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1973-frq.json",
+      "ECHS_Math_Practice_Exams_Part_13_1974_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1974-frq.json",
+      "ECHS_Math_Practice_Exams_Part_14_1975_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1975-frq.json",
+      "ECHS_Math_Practice_Exams_Part_15_1976_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1976-frq.json",
+      "ECHS_Math_Practice_Exams_Part_16_1977_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1977-frq.json",
+      "ECHS_Math_Practice_Exams_Part_17_1978_1980_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1980-frq.json",
+      "ECHS_Math_Practice_Exams_Part_7_1998_AB/private-banks/ap-calculus-ab-1969-1998-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_7_1998_AB/private-banks/ap-calculus-ab-1998-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ.zip::ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ/private-banks/ap-calculus-ab-1998-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ.zip::ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-frq.json",
+      "ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ.zip::ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ/private-banks/cumulative/ap-calculus-ab-1969-1998-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_9_1970_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1970-frq.json"
+    ]
+  },
+  {
+    "id": "MEDIA-APCALC-LEGACY-MCQ-1993-002-PROMPT-01",
+    "sourceFile": "ECHS_Math_Practice_Exams_Part_17_1978_1980_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1980-frq.json",
+    "sourcePage": 84,
+    "originalFilename": "",
+    "normalizedFilename": "media/audit-repairs/descriptor-svg/apcalc-legacy-mcq-1993-002.svg",
+    "mimeType": "image/svg+xml",
+    "width": null,
+    "height": null,
+    "checksum": "a1e6c7247f3d778a70aca87104cb512f92c1275ff4203db175e484f6e356070b",
+    "linkedQuestions": [
+      "APCALC-LEGACY-MCQ-1993-002"
+    ],
+    "altText": "A shaded region from x equals a to x equals b, below the horizontal line y equals d and above the increasing curve y equals f of x.",
+    "caption": "",
+    "verificationStatus": "audited-descriptor-svg-verified",
+    "cropStatus": "question-region",
+    "qualityStatus": "student-legible",
+    "renderMode": "static-svg",
+    "descriptor": {
+      "shape": "1993-q02-area",
+      "ariaLabel": "A shaded region from x equals a to x equals b, below the horizontal line y equals d and above the increasing curve y equals f of x."
+    },
+    "sourceReferences": [
+      "ECHS_Math_Practice_Exams_Part_10_1971_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1971-frq.json",
+      "ECHS_Math_Practice_Exams_Part_11_1972_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1972-frq.json",
+      "ECHS_Math_Practice_Exams_Part_12_1973_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1973-frq.json",
+      "ECHS_Math_Practice_Exams_Part_13_1974_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1974-frq.json",
+      "ECHS_Math_Practice_Exams_Part_14_1975_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1975-frq.json",
+      "ECHS_Math_Practice_Exams_Part_15_1976_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1976-frq.json",
+      "ECHS_Math_Practice_Exams_Part_16_1977_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1977-frq.json",
+      "ECHS_Math_Practice_Exams_Part_17_1978_1980_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1980-frq.json",
+      "ECHS_Math_Practice_Exams_Part_5_1993_AB/private-banks/ap-calculus-ab-1969-1993-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_5_1993_AB/private-banks/ap-calculus-ab-1993-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_6_1997_AB/private-banks/ap-calculus-ab-1969-1997-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_7_1998_AB/private-banks/ap-calculus-ab-1969-1998-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ.zip::ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-frq.json",
+      "ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ.zip::ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ/private-banks/cumulative/ap-calculus-ab-1969-1998-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_9_1970_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1970-frq.json"
+    ]
+  },
+  {
+    "id": "MEDIA-APCALC-LEGACY-MCQ-1998-076-PROMPT-01",
+    "sourceFile": "ECHS_Math_Practice_Exams_Part_17_1978_1980_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1980-frq.json",
+    "sourcePage": 139,
+    "originalFilename": "",
+    "normalizedFilename": "media/audit-repairs/descriptor-svg/apcalc-legacy-mcq-1998-076.svg",
+    "mimeType": "image/svg+xml",
+    "width": null,
+    "height": null,
+    "checksum": "b6b86eec49e85023605c78fe20bbd06b577d84f13429b78af26b33dd7640d318",
+    "linkedQuestions": [
+      "APCALC-LEGACY-MCQ-1998-076"
+    ],
+    "altText": "Smooth increasing curve with an open circle at x=a and a filled point directly above it.",
+    "caption": "",
+    "verificationStatus": "audited-descriptor-svg-verified",
+    "cropStatus": "question-region",
+    "qualityStatus": "student-legible",
+    "renderMode": "static-svg",
+    "descriptor": {
+      "shape": "1998-q76-hole",
+      "ariaLabel": "Smooth increasing curve with an open circle at x=a and a filled point directly above it."
+    },
+    "sourceReferences": [
+      "ECHS_Math_Practice_Exams_Part_10_1971_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1971-frq.json",
+      "ECHS_Math_Practice_Exams_Part_11_1972_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1972-frq.json",
+      "ECHS_Math_Practice_Exams_Part_12_1973_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1973-frq.json",
+      "ECHS_Math_Practice_Exams_Part_13_1974_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1974-frq.json",
+      "ECHS_Math_Practice_Exams_Part_14_1975_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1975-frq.json",
+      "ECHS_Math_Practice_Exams_Part_15_1976_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1976-frq.json",
+      "ECHS_Math_Practice_Exams_Part_16_1977_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1977-frq.json",
+      "ECHS_Math_Practice_Exams_Part_17_1978_1980_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1980-frq.json",
+      "ECHS_Math_Practice_Exams_Part_7_1998_AB/private-banks/ap-calculus-ab-1969-1998-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_7_1998_AB/private-banks/ap-calculus-ab-1998-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ.zip::ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ/private-banks/ap-calculus-ab-1998-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ.zip::ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-frq.json",
+      "ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ.zip::ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ/private-banks/cumulative/ap-calculus-ab-1969-1998-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_9_1970_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1970-frq.json"
+    ]
+  },
+  {
+    "id": "MEDIA-APCALC-LEGACY-MCQ-1998-086-PROMPT-01",
+    "sourceFile": "ECHS_Math_Practice_Exams_Part_17_1978_1980_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1980-frq.json",
+    "sourcePage": 142,
+    "originalFilename": "",
+    "normalizedFilename": "media/audit-repairs/descriptor-svg/apcalc-legacy-mcq-1998-086.svg",
+    "mimeType": "image/svg+xml",
+    "width": null,
+    "height": null,
+    "checksum": "6789668d6eca80724fa00ef24605fa8d657df1e963e5320f418ef7ad9baf79ae",
+    "linkedQuestions": [
+      "APCALC-LEGACY-MCQ-1998-086"
+    ],
+    "altText": "First-quadrant triangular region with intercepts (0,4) and (8,0) under the line x+2y=8.",
+    "caption": "",
+    "verificationStatus": "audited-descriptor-svg-verified",
+    "cropStatus": "question-region",
+    "qualityStatus": "student-legible",
+    "renderMode": "static-svg",
+    "descriptor": {
+      "shape": "1998-q86-base",
+      "ariaLabel": "First-quadrant triangular region with intercepts (0,4) and (8,0) under the line x+2y=8."
+    },
+    "sourceReferences": [
+      "ECHS_Math_Practice_Exams_Part_10_1971_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1971-frq.json",
+      "ECHS_Math_Practice_Exams_Part_11_1972_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1972-frq.json",
+      "ECHS_Math_Practice_Exams_Part_12_1973_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1973-frq.json",
+      "ECHS_Math_Practice_Exams_Part_13_1974_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1974-frq.json",
+      "ECHS_Math_Practice_Exams_Part_14_1975_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1975-frq.json",
+      "ECHS_Math_Practice_Exams_Part_15_1976_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1976-frq.json",
+      "ECHS_Math_Practice_Exams_Part_16_1977_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1977-frq.json",
+      "ECHS_Math_Practice_Exams_Part_17_1978_1980_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1980-frq.json",
+      "ECHS_Math_Practice_Exams_Part_7_1998_AB/private-banks/ap-calculus-ab-1969-1998-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_7_1998_AB/private-banks/ap-calculus-ab-1998-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ.zip::ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ/private-banks/ap-calculus-ab-1998-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ.zip::ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-frq.json",
+      "ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ.zip::ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ/private-banks/cumulative/ap-calculus-ab-1969-1998-mcq.json",
+      "ECHS_Math_Practice_Exams_Part_9_1970_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1970-frq.json"
+    ]
+  }
+]

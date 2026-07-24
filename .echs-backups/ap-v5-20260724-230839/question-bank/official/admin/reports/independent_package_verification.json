@@ -1,0 +1,205 @@
+{
+  "overall": "PASS",
+  "checks": [
+    {
+      "name": "JSON schema and parse validation",
+      "passed": true,
+      "detail": "0 error(s)"
+    },
+    {
+      "name": "ID uniqueness validation",
+      "passed": true,
+      "detail": "1217 admin records; 1217 unique IDs"
+    },
+    {
+      "name": "Canonical count reconciliation",
+      "passed": true,
+      "detail": "admin=1217, student=1217, baseline=1217"
+    },
+    {
+      "name": "Source-reference validation",
+      "passed": true,
+      "detail": "0 record(s) lack source metadata"
+    },
+    {
+      "name": "Question completeness validation",
+      "passed": true,
+      "detail": "0 record(s) lack disposition; 0 ready record(s) incomplete"
+    },
+    {
+      "name": "MCQ-choice validation",
+      "passed": true,
+      "detail": "43 ready MCQ; 0 structural failure(s)"
+    },
+    {
+      "name": "MCQ-answer validation",
+      "passed": true,
+      "detail": "0 ready MCQ key failure(s)"
+    },
+    {
+      "name": "FRQ-part validation",
+      "passed": true,
+      "detail": "10 ready FRQ; 0 part failure(s)"
+    },
+    {
+      "name": "FRQ-point validation",
+      "passed": true,
+      "detail": "0 point-total mismatch(es)"
+    },
+    {
+      "name": "Mathematical verification validation",
+      "passed": true,
+      "detail": "0 ready record failure(s)"
+    },
+    {
+      "name": "KaTeX validation",
+      "passed": true,
+      "detail": "14338 expression(s); 0 failure(s)"
+    },
+    {
+      "name": "Media validation",
+      "passed": true,
+      "detail": "1073 SVG(s) parsed; 0 ready failure(s)"
+    },
+    {
+      "name": "Broken-path validation",
+      "passed": true,
+      "detail": "0 referenced media file(s) missing"
+    },
+    {
+      "name": "Duplicate detection",
+      "passed": true,
+      "detail": "0 duplicate prompt group(s) in certified pool"
+    },
+    {
+      "name": "Course mapping validation",
+      "passed": true,
+      "detail": "0 ready mapping failure(s)"
+    },
+    {
+      "name": "Unit mapping validation",
+      "passed": true,
+      "detail": "0 ready mapping failure(s)"
+    },
+    {
+      "name": "Topic mapping validation",
+      "passed": true,
+      "detail": "0 ready mapping failure(s)"
+    },
+    {
+      "name": "Lesson mapping validation",
+      "passed": true,
+      "detail": "0 ready mapping failure(s)"
+    },
+    {
+      "name": "Student-ready gate validation",
+      "passed": true,
+      "detail": "53 certified record(s); 0 gate failure(s)"
+    },
+    {
+      "name": "Archive filtering validation",
+      "passed": true,
+      "detail": "0 non-ready answer leak(s); runtime guard=True"
+    },
+    {
+      "name": "Practice filtering validation",
+      "passed": true,
+      "detail": "Student-ready and exact topic/lesson scope are required"
+    },
+    {
+      "name": "Exam filtering validation",
+      "passed": true,
+      "detail": "Exam pool is initialized from student-ready rows only"
+    },
+    {
+      "name": "Dashboard attribution validation",
+      "passed": true,
+      "detail": "Dashboard excludes attempts for non-ready IDs"
+    },
+    {
+      "name": "Teacher-navigation separation validation",
+      "passed": true,
+      "detail": "leaks=none"
+    },
+    {
+      "name": "Student-navigation validation",
+      "passed": true,
+      "detail": "incomplete nav=none"
+    },
+    {
+      "name": "GitHub path validation",
+      "passed": true,
+      "detail": "Expected payload overlay and exact lesson URL integration are present"
+    },
+    {
+      "name": "Secret-pattern scan",
+      "passed": true,
+      "detail": "0 potential secret(s)"
+    },
+    {
+      "name": "Case-sensitivity validation",
+      "passed": true,
+      "detail": "0 collision(s)"
+    },
+    {
+      "name": "JavaScript syntax validation",
+      "passed": true,
+      "detail": "0 error(s)"
+    },
+    {
+      "name": "Local HTML link validation",
+      "passed": true,
+      "detail": "0 broken link(s)"
+    },
+    {
+      "name": "Student index/chunk reconciliation",
+      "passed": true,
+      "detail": "index=1217, id-map=1217, chunks=1217"
+    },
+    {
+      "name": "One audit record per canonical question",
+      "passed": true,
+      "detail": "1217 audit row(s)"
+    },
+    {
+      "name": "Required report validation",
+      "passed": true,
+      "detail": "missing=none"
+    },
+    {
+      "name": "Public/private rights boundary",
+      "passed": true,
+      "detail": "public=53; forbidden paths=0; ineligible records=0"
+    },
+    {
+      "name": "Public index/chunk reconciliation",
+      "passed": true,
+      "detail": "chunks=53, index=53, id-map=53"
+    }
+  ],
+  "metrics": {
+    "canonicalQuestions": 1217,
+    "studentReady": 53,
+    "archiveOrTeacherOnly": 1164,
+    "questionsCorrected": 96,
+    "correctionEntries": 340,
+    "katexExpressions": 14338,
+    "katexFailures": 0,
+    "statusCounts": {
+      "incomplete": 87,
+      "metadata_only": 539,
+      "student_ready": 53,
+      "teacher_only": 538
+    },
+    "correctionTypeCounts": {
+      "KaTeX": 102,
+      "answer": 9,
+      "lesson_mapping": 31,
+      "notation": 8,
+      "solution": 5,
+      "topic_mapping": 57,
+      "transcription": 128
+    },
+    "publicQuestions": 53
+  }
+}

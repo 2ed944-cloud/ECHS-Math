@@ -1,0 +1,100 @@
+{
+  "cases": 12,
+  "passed": 12,
+  "failed": 0,
+  "errors": 0,
+  "warnings": 0,
+  "results": [
+    {
+      "name": "Student home and navigation",
+      "status": "PASS",
+      "detail": {
+        "stats": "352 | Student-ready questions | 342 | Verified MCQ | 10 | Verified FRQ | 865 | Restricted archive records"
+      }
+    },
+    {
+      "name": "Archive count reconciliation",
+      "status": "PASS",
+      "detail": {
+        "stats": "1,217 | Canonical archive records | 352 | Student Ready | 865 | Teacher/archive only | 331 | Incomplete source"
+      }
+    },
+    {
+      "name": "Ready archive record opens verified content",
+      "status": "PASS",
+      "detail": {
+        "id": "APCALC-LEGACY-MCQ-1969-001",
+        "detailCharacters": 376
+      }
+    },
+    {
+      "name": "Restricted archive record remains redacted",
+      "status": "PASS",
+      "detail": {
+        "id": "APCALC-AB-FRQ-1969-01",
+        "redacted": true
+      }
+    },
+    {
+      "name": "Direct ready-question practice",
+      "status": "PASS",
+      "detail": {
+        "id": "APCALC-LEGACY-MCQ-1969-001",
+        "choices": 5,
+        "archiveHref": "archive.html?id=APCALC-LEGACY-MCQ-1969-001"
+      }
+    },
+    {
+      "name": "Exact lesson filtering",
+      "status": "PASS",
+      "detail": {
+        "lesson": "APCALC-6.9",
+        "choiceButtons": 5
+      }
+    },
+    {
+      "name": "Exact lesson zero-result honesty",
+      "status": "PASS",
+      "detail": {
+        "noFallback": true
+      }
+    },
+    {
+      "name": "Student-ready-only exam build",
+      "status": "PASS",
+      "detail": {
+        "blueprint": "Unit 6",
+        "requested": "5 MCQ + 1 FRQ"
+      }
+    },
+    {
+      "name": "Dashboard valid-attempt and lesson attribution",
+      "status": "PASS",
+      "detail": {
+        "lessonAttributionPanel": true
+      }
+    },
+    {
+      "name": "Admin Teacher Studio full-record inspection",
+      "status": "PASS",
+      "detail": {
+        "canonicalRecords": 1217,
+        "restrictedFullInspection": true
+      }
+    },
+    {
+      "name": "Admin import promotion boundary",
+      "status": "PASS",
+      "detail": {
+        "promotionBoundaryVisible": true
+      }
+    },
+    {
+      "name": "Stable teacher URL redirect",
+      "status": "PASS",
+      "detail": {
+        "target": "admin/teacher.html"
+      }
+    }
+  ]
+}
