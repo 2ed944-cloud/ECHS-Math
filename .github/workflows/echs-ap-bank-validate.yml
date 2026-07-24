@@ -1,0 +1,22 @@
+name: Validate ECHS AP Question Bank
+on:
+  push:
+    paths:
+      - 'question-bank/official/data/**'
+      - 'question-bank/official/media/**'
+      - 'question-bank/official/tools/**'
+  pull_request:
+    paths:
+      - 'question-bank/official/data/**'
+      - 'question-bank/official/media/**'
+      - 'question-bank/official/tools/**'
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate private bank and expansions
+        shell: powershell
+        run: ./question-bank/official/tools/validate-private-bank.ps1 -OfficialRoot ./question-bank/official

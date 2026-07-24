@@ -1,0 +1,503 @@
+{
+  "schemaVersion": "4.0.0",
+  "mode": "private-school-unified",
+  "generatedAt": "2026-07-23T23:55:23.843532+00:00",
+  "questionCount": 1217,
+  "stats": {
+    "questions": 1217,
+    "mcq": 876,
+    "frq": 341,
+    "withMedia": 572,
+    "withHints": 854,
+    "answerVerified": 636,
+    "needsReview": 1217,
+    "studentEligible": 1217,
+    "studentAccessible": 1217,
+    "fullyDigitized": 907,
+    "indexedOnly": 310
+  },
+  "courses": {
+    "AP Calculus AB": 804,
+    "AP Calculus BC": 382,
+    "AP Precalculus": 19,
+    "Grade 9 Pre-Precalculus": 12
+  },
+  "types": {
+    "frq": 341,
+    "mcq": 876
+  },
+  "calculator": {
+    "calculator-allowed": 90,
+    "calculator-permitted": 10,
+    "calculator-required": 194,
+    "mixed-by-part": 12,
+    "no-calculator": 911
+  },
+  "units": {
+    "1": 55,
+    "10": 29,
+    "2": 188,
+    "3": 56,
+    "4": 66,
+    "5": 160,
+    "6": 111,
+    "7": 35,
+    "8": 143,
+    "9": 22
+  },
+  "readiness": {
+    "answer-review": 53,
+    "incomplete": 310,
+    "source-complete-review-required": 460,
+    "transcription-review": 394
+  },
+  "officialStatus": {
+    "echs-original": 53,
+    "legacy-ap": 704,
+    "official-released": 348,
+    "supplemental-unofficial": 112
+  },
+  "years": {
+    "1969": {
+      "total": 97,
+      "mcq": 90,
+      "frq": 7,
+      "ab": 52,
+      "bc": 45,
+      "eligible": 52
+    },
+    "1970": {
+      "total": 7,
+      "mcq": 0,
+      "frq": 7,
+      "ab": 7,
+      "bc": 0,
+      "eligible": 7
+    },
+    "1971": {
+      "total": 7,
+      "mcq": 0,
+      "frq": 7,
+      "ab": 7,
+      "bc": 0,
+      "eligible": 7
+    },
+    "1972": {
+      "total": 7,
+      "mcq": 0,
+      "frq": 7,
+      "ab": 7,
+      "bc": 0,
+      "eligible": 7
+    },
+    "1973": {
+      "total": 97,
+      "mcq": 90,
+      "frq": 7,
+      "ab": 52,
+      "bc": 45,
+      "eligible": 52
+    },
+    "1974": {
+      "total": 8,
+      "mcq": 0,
+      "frq": 8,
+      "ab": 7,
+      "bc": 1,
+      "eligible": 7
+    },
+    "1975": {
+      "total": 7,
+      "mcq": 0,
+      "frq": 7,
+      "ab": 7,
+      "bc": 0,
+      "eligible": 7
+    },
+    "1976": {
+      "total": 7,
+      "mcq": 0,
+      "frq": 7,
+      "ab": 7,
+      "bc": 0,
+      "eligible": 7
+    },
+    "1977": {
+      "total": 7,
+      "mcq": 0,
+      "frq": 7,
+      "ab": 7,
+      "bc": 0,
+      "eligible": 7
+    },
+    "1978": {
+      "total": 7,
+      "mcq": 0,
+      "frq": 7,
+      "ab": 7,
+      "bc": 0,
+      "eligible": 7
+    },
+    "1979": {
+      "total": 7,
+      "mcq": 0,
+      "frq": 7,
+      "ab": 7,
+      "bc": 0,
+      "eligible": 7
+    },
+    "1980": {
+      "total": 7,
+      "mcq": 0,
+      "frq": 7,
+      "ab": 7,
+      "bc": 0,
+      "eligible": 7
+    },
+    "1981": {
+      "total": 7,
+      "mcq": 0,
+      "frq": 7,
+      "ab": 7,
+      "bc": 0,
+      "eligible": 0
+    },
+    "1982": {
+      "total": 7,
+      "mcq": 0,
+      "frq": 7,
+      "ab": 7,
+      "bc": 0,
+      "eligible": 0
+    },
+    "1983": {
+      "total": 6,
+      "mcq": 0,
+      "frq": 6,
+      "ab": 6,
+      "bc": 0,
+      "eligible": 0
+    },
+    "1984": {
+      "total": 5,
+      "mcq": 0,
+      "frq": 5,
+      "ab": 5,
+      "bc": 0,
+      "eligible": 0
+    },
+    "1985": {
+      "total": 96,
+      "mcq": 90,
+      "frq": 6,
+      "ab": 51,
+      "bc": 45,
+      "eligible": 45
+    },
+    "1986": {
+      "total": 6,
+      "mcq": 0,
+      "frq": 6,
+      "ab": 6,
+      "bc": 0,
+      "eligible": 0
+    },
+    "1987": {
+      "total": 6,
+      "mcq": 0,
+      "frq": 6,
+      "ab": 6,
+      "bc": 0,
+      "eligible": 0
+    },
+    "1988": {
+      "total": 96,
+      "mcq": 90,
+      "frq": 6,
+      "ab": 51,
+      "bc": 45,
+      "eligible": 45
+    },
+    "1989": {
+      "total": 6,
+      "mcq": 0,
+      "frq": 6,
+      "ab": 6,
+      "bc": 0,
+      "eligible": 0
+    },
+    "1990": {
+      "total": 6,
+      "mcq": 0,
+      "frq": 6,
+      "ab": 6,
+      "bc": 0,
+      "eligible": 0
+    },
+    "1991": {
+      "total": 6,
+      "mcq": 0,
+      "frq": 6,
+      "ab": 6,
+      "bc": 0,
+      "eligible": 0
+    },
+    "1992": {
+      "total": 6,
+      "mcq": 0,
+      "frq": 6,
+      "ab": 6,
+      "bc": 0,
+      "eligible": 0
+    },
+    "1993": {
+      "total": 96,
+      "mcq": 90,
+      "frq": 6,
+      "ab": 51,
+      "bc": 45,
+      "eligible": 45
+    },
+    "1994": {
+      "total": 6,
+      "mcq": 0,
+      "frq": 6,
+      "ab": 6,
+      "bc": 0,
+      "eligible": 0
+    },
+    "1995": {
+      "total": 6,
+      "mcq": 0,
+      "frq": 6,
+      "ab": 6,
+      "bc": 0,
+      "eligible": 0
+    },
+    "1996": {
+      "total": 6,
+      "mcq": 0,
+      "frq": 6,
+      "ab": 6,
+      "bc": 0,
+      "eligible": 0
+    },
+    "1997": {
+      "total": 86,
+      "mcq": 80,
+      "frq": 6,
+      "ab": 46,
+      "bc": 40,
+      "eligible": 40
+    },
+    "1998": {
+      "total": 96,
+      "mcq": 90,
+      "frq": 6,
+      "ab": 51,
+      "bc": 45,
+      "eligible": 45
+    },
+    "1999": {
+      "total": 6,
+      "mcq": 0,
+      "frq": 6,
+      "ab": 6,
+      "bc": 0,
+      "eligible": 0
+    },
+    "2000": {
+      "total": 6,
+      "mcq": 0,
+      "frq": 6,
+      "ab": 6,
+      "bc": 0,
+      "eligible": 0
+    },
+    "2001": {
+      "total": 6,
+      "mcq": 0,
+      "frq": 6,
+      "ab": 6,
+      "bc": 0,
+      "eligible": 0
+    },
+    "2002": {
+      "total": 12,
+      "mcq": 0,
+      "frq": 12,
+      "ab": 12,
+      "bc": 0,
+      "eligible": 0
+    },
+    "2003": {
+      "total": 12,
+      "mcq": 0,
+      "frq": 12,
+      "ab": 12,
+      "bc": 0,
+      "eligible": 0
+    },
+    "2004": {
+      "total": 12,
+      "mcq": 0,
+      "frq": 12,
+      "ab": 12,
+      "bc": 0,
+      "eligible": 0
+    },
+    "2005": {
+      "total": 6,
+      "mcq": 0,
+      "frq": 6,
+      "ab": 6,
+      "bc": 0,
+      "eligible": 0
+    },
+    "2006": {
+      "total": 6,
+      "mcq": 0,
+      "frq": 6,
+      "ab": 6,
+      "bc": 0,
+      "eligible": 0
+    },
+    "2007": {
+      "total": 12,
+      "mcq": 0,
+      "frq": 12,
+      "ab": 12,
+      "bc": 0,
+      "eligible": 0
+    },
+    "2008": {
+      "total": 12,
+      "mcq": 0,
+      "frq": 12,
+      "ab": 12,
+      "bc": 0,
+      "eligible": 0
+    },
+    "2009": {
+      "total": 12,
+      "mcq": 0,
+      "frq": 12,
+      "ab": 12,
+      "bc": 0,
+      "eligible": 0
+    },
+    "2010": {
+      "total": 6,
+      "mcq": 0,
+      "frq": 6,
+      "ab": 6,
+      "bc": 0,
+      "eligible": 1
+    },
+    "2012": {
+      "total": 51,
+      "mcq": 45,
+      "frq": 6,
+      "ab": 51,
+      "bc": 0,
+      "eligible": 51
+    },
+    "2014": {
+      "total": 28,
+      "mcq": 24,
+      "frq": 4,
+      "ab": 18,
+      "bc": 10,
+      "eligible": 28
+    },
+    "2015": {
+      "total": 61,
+      "mcq": 54,
+      "frq": 7,
+      "ab": 51,
+      "bc": 10,
+      "eligible": 55
+    },
+    "2016": {
+      "total": 51,
+      "mcq": 45,
+      "frq": 6,
+      "ab": 0,
+      "bc": 51,
+      "eligible": 51
+    }
+  },
+  "collections": [
+    {
+      "id": "AP historical archive",
+      "label": "Ap Historical Archive",
+      "count": 704,
+      "officialStatus": "legacy-ap",
+      "accessLevel": "private-school-approved"
+    },
+    {
+      "id": "historical-frq-1969-2010",
+      "label": "Historical Frq 1969 2010",
+      "count": 218,
+      "officialStatus": "official-released",
+      "accessLevel": "private-school-approved"
+    },
+    {
+      "id": "ECHS original practice",
+      "label": "Echs Original Practice",
+      "count": 53,
+      "officialStatus": "echs-original",
+      "accessLevel": "private-school-approved"
+    },
+    {
+      "id": "lucid-ab-practice-2015",
+      "label": "Lucid Ab Practice 2015",
+      "count": 51,
+      "officialStatus": "supplemental-unofficial",
+      "accessLevel": "private-school-approved"
+    },
+    {
+      "id": "my-max-score-ab-practice",
+      "label": "My Max Score Ab Practice",
+      "count": 51,
+      "officialStatus": "supplemental-unofficial",
+      "accessLevel": "private-school-approved"
+    },
+    {
+      "id": "official-ab-practice-2012",
+      "label": "Official Ab Practice 2012",
+      "count": 51,
+      "officialStatus": "official-released",
+      "accessLevel": "private-school-approved"
+    },
+    {
+      "id": "official-bc-practice-2016",
+      "label": "Official Bc Practice 2016",
+      "count": 51,
+      "officialStatus": "official-released",
+      "accessLevel": "private-school-approved"
+    },
+    {
+      "id": "framework-sample-2014",
+      "label": "Framework Sample 2014",
+      "count": 28,
+      "officialStatus": "official-released",
+      "accessLevel": "private-school-approved"
+    },
+    {
+      "id": "echs-bc-ch7-8-2015",
+      "label": "Echs Bc Ch7 8 2015",
+      "count": 10,
+      "officialStatus": "supplemental-unofficial",
+      "accessLevel": "private-school-approved"
+    }
+  ],
+  "restrictedSummary": {
+    "privateQuestions": 1217,
+    "studentAccessible": 1217,
+    "fullyDigitized": 907,
+    "indexedOnly": 310,
+    "message": "All records are accessible inside the approved private-school deployment. Indexed-only records remain visibly labeled until a complete transcription is added by an expansion batch."
+  },
+  "deployment": "private-github-approved"
+}

@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#78183f">
+  <title>ECHS Mathematics Lesson Portal | Mohammad Abu Ghuwaleh</title>
+  <meta name="description" content="ECHS Mathematics lesson portal for AP Calculus, AP Precalculus, IB Mathematics AI, and Grade 9 preparation.">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="assets/icon-192.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,560;0,9..144,640;1,9..144,480;1,9..144,560&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/portal.css?v=20260722-landing-v2">
+  <link rel="stylesheet" href="css/practice-integration.css?v=20260723-all-courses-v2">
+</head>
+<body>
+<a class="skip" href="#content">Skip to lesson content</a>
+
+<header class="site">
+  <div class="top">
+    <a class="brand" href="#content" aria-label="ECHS Mathematics home">
+      <span class="brandMark" aria-hidden="true">&int;</span>
+      <img class="logo" src="assets/echs_logo.png" alt="Education City High School logo" onerror="this.hidden=true">
+      <span class="brandText"><strong>ECHS Mathematics Portal</strong><span>Mohammad Abu Ghuwaleh</span></span>
+    </a>
+    <label class="searchBox" aria-label="Search lessons">
+      <span class="searchIcon" aria-hidden="true">&#8981;</span>
+      <input id="search" placeholder="Search topics, objectives, videos, or notes&hellip;" autocomplete="off">
+      <kbd>/</kbd>
+    </label>
+    <div class="headerActions"><a class="btn" href="#courses">Browse courses</a></div>
+  </div>
+</header>
+
+<main id="content">
+
+  <!-- ============ LANDING HERO ============ -->
+  <section class="hero" aria-labelledby="portalTitle">
+    <div class="heroScene" aria-hidden="true">
+      <span class="glow glowGold"></span>
+      <span class="glow glowWine"></span>
+      <span class="glow glowTeal"></span>
+      <div class="heroGridLines"></div>
+      <div class="symbolField">
+        <span style="--fx:3%;  --fy:14%; --fd:16s; --fs:62px">&part;</span>
+        <span style="--fx:10%; --fy:76%; --fd:21s; --fs:44px">&Sigma;</span>
+        <span style="--fx:44%; --fy:6%;  --fd:18s; --fs:38px">&pi;</span>
+        <span style="--fx:90%; --fy:10%; --fd:24s; --fs:50px">&int;</span>
+        <span style="--fx:68%; --fy:84%; --fd:19s; --fs:40px">dx</span>
+        <span style="--fx:28%; --fy:88%; --fd:23s; --fs:36px">&infin;</span>
+      </div>
+    </div>
+
+    <div class="heroContent">
+      <div class="heroText">
+        <span class="portalBadge"><i></i> Education City High School &middot; Mathematics</span>
+        <h1 id="portalTitle">Explore mathematics.<span>Build understanding.</span></h1>
+        <p class="lead">Interactive lessons, clear learning objectives, video support, and an organized course pathway for every learner.</p>
+        <p class="teacher">Teacher &middot; Mohammad Abu Ghuwaleh</p>
+        <div class="actions">
+          <a class="btn" href="#courses">Open courses</a>
+          <button class="btn secondary" id="printBtn">Print current course</button>
+          <button class="btn ghost" id="resetBtn">Reset local progress</button>
+        </div>
+      </div>
+
+      <div class="heroVisual" aria-hidden="true">
+        <figure class="curveBoard">
+          <svg viewBox="0 0 560 420" preserveAspectRatio="xMidYMid meet" role="presentation" focusable="false">
+            <defs>
+              <pattern id="boardGrid" width="40" height="40" patternUnits="userSpaceOnUse">
+                <path d="M40 0H0V40" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+              </pattern>
+              <linearGradient id="goldStroke" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0" stop-color="#e9c87c"/>
+                <stop offset=".55" stop-color="#c99b42"/>
+                <stop offset="1" stop-color="#e9c87c"/>
+              </linearGradient>
+              <linearGradient id="areaFill" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="rgba(201,155,66,.36)"/>
+                <stop offset="1" stop-color="rgba(201,155,66,.02)"/>
+              </linearGradient>
+              <clipPath id="areaClip"><rect x="210" y="0" width="120" height="420"/></clipPath>
+            </defs>
+
+            <rect x="0" y="0" width="560" height="420" fill="url(#boardGrid)"/>
+
+            <!-- axes -->
+            <line x1="40" y1="380" x2="540" y2="380" stroke="rgba(255,255,255,.28)" stroke-width="1.5"/>
+            <line x1="40" y1="380" x2="40"  y2="24"  stroke="rgba(255,255,255,.28)" stroke-width="1.5"/>
+            <path d="M540 380 l-9 -4 v8 z" fill="rgba(255,255,255,.28)"/>
+            <path d="M40 24 l-4 9 h8 z" fill="rgba(255,255,255,.28)"/>
+
+            <!-- integral: region under the curve on [a,b], clipped so it hugs f exactly -->
+            <path class="areaUnder" clip-path="url(#areaClip)"
+              d="M56 330 C 100 240, 130 150, 190 150 C 250 150, 300 300, 360 300 C 420 300, 470 190, 532 88 L 532 380 L 56 380 Z"
+              fill="url(#areaFill)"/>
+            <line class="areaGuide" x1="210" y1="380" x2="210" y2="157"/>
+            <line class="areaGuide" x1="330" y1="380" x2="330" y2="290"/>
+            <text class="axisLabel" x="206" y="402">a</text>
+            <text class="axisLabel" x="326" y="402">b</text>
+
+            <!-- the curve: local max at (190,150), local min at (360,300), rising end -->
+            <path class="mainCurve" pathLength="1"
+              d="M56 330 C 100 240, 130 150, 190 150 C 250 150, 300 300, 360 300 C 420 300, 470 190, 532 88"
+              fill="none" stroke="url(#goldStroke)" stroke-width="4" stroke-linecap="round"/>
+
+            <!-- horizontal tangent at the local maximum: f'(x) = 0 -->
+            <line class="tangentLine" pathLength="1" x1="104" y1="150" x2="286" y2="150"
+              stroke="rgba(255,255,255,.66)" stroke-width="2" stroke-dasharray="7 7"/>
+
+            <!-- plotted points -->
+            <g class="plotPoint p1"><circle cx="190" cy="150" r="10" fill="rgba(233,200,124,.25)"/><circle cx="190" cy="150" r="4.5" fill="#e9c87c"/></g>
+            <g class="plotPoint p2"><circle cx="445" cy="232" r="9" fill="rgba(255,255,255,.16)"/><circle cx="445" cy="232" r="4" fill="#fff"/></g>
+          </svg>
+
+          <span class="formulaTag ft1">f&thinsp;&prime;(x) = 0 &mdash; local max</span>
+          <span class="formulaTag ft2">&int;<sub>a</sub><sup>b</sup> f(x)&thinsp;dx</span>
+          <span class="formulaTag ft3">lim<sub>x&rarr;a</sub> f(x)</span>
+        </figure>
+      </div>
+    </div>
+
+    <div class="statGrid" aria-label="Portal summary">
+      <div class="stat"><b id="statCourses">0</b><span>Courses</span></div>
+      <div class="stat"><b id="statLessons">0</b><span>Lesson cards</span></div>
+      <div class="stat wide">
+        <b id="statReady">0</b><span>Open interactive lessons</span>
+        <div class="progressBar"><i id="readyBar"></i></div>
+        <span class="statNote">New AP Calculus and AP Precalculus lessons are organized by official topic numbering.</span>
+      </div>
+    </div>
+  </section>
+  <!-- ============ /LANDING HERO ============ -->
+
+  <div class="sectionIntro">
+    <span class="sectionEyebrow">Courses</span>
+    <h2 class="sectionTitle">Choose your pathway</h2>
+    <p class="sectionSub">From Grade 9 preparation to AP Calculus AB &mdash; every course organized by units, lessons, and objectives.</p>
+  </div>
+
+  <nav class="courseTabs" id="tabs" aria-label="Course tabs"></nav>
+
+  <section class="layout" id="courses">
+    <aside class="sidebar">
+      <div class="panel coursePanel">
+        <h2>Courses</h2>
+        <p class="panelIntro">Choose a course to see its units, lessons, objectives, and resources.</p>
+        <div id="courseList"></div>
+      </div>
+      <div class="panel">
+        <h3>How to use the portal</h3>
+        <div class="guideList">
+          <div class="guideItem"><b>1</b><span>Open a unit and select an interactive lesson.</span></div>
+          <div class="guideItem"><b>2</b><span>Use the video and notes chips inside each lesson card.</span></div>
+          <div class="guideItem"><b>3</b><span>Bookmark lessons and mark your progress locally.</span></div>
+        </div>
+      </div>
+    </aside>
+    <section aria-live="polite">
+      <article class="courseHero" id="courseHero"></article>
+      <div class="toolbar">
+        <div class="filterGroup" aria-label="Lesson filters">
+          <button class="chip active" data-filter="all">All lessons</button>
+          <button class="chip" data-filter="ready">Open lessons</button>
+          <button class="chip" data-filter="bookmarked">Bookmarked</button>
+          <button class="chip" data-filter="completed">Completed</button>
+        </div>
+        <div class="filterGroup">
+          <button class="chip" id="expandAll">Expand all</button>
+          <button class="chip" id="collapseAll">Collapse all</button>
+        </div>
+      </div>
+      <div id="units"></div>
+    </section>
+  </section>
+</main>
+
+<footer>
+  <div class="footerInner">
+    <span class="footerMark" aria-hidden="true">&int;</span>
+    <p>&copy; <span id="currentYear"></span> <strong>ECHS Mathematics</strong> &middot; Teacher: Mohammad Abu Ghuwaleh &middot; Built for GitHub Pages.</p>
+  </div>
+</footer>
+
+<script src="data/courses.js"></script>
+<script src="data/ap-calculus-update.js"></script>
+<script src="data/ap-precalculus-update.js?v=20260722-unit2-resources-v2"></script>
+<script src="js/portal.js"></script>
+  <script src="js/practice-integration.js?v=20260723-all-courses-v2"></script>
+<script>
+/* Landing enhancements: stat count-up + gentle reveal (motion-safe, fail-safe) */
+(function(){
+  var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if(!reduce){
+    ["statCourses","statLessons","statReady"].forEach(function(id){
+      var el = document.getElementById(id);
+      if(!el) return;
+      var target = parseInt(el.textContent, 10) || 0;
+      if(!target) return;
+      var start = null, dur = 950;
+      function tick(t){
+        if(start === null) start = t;
+        var p = Math.min((t - start) / dur, 1);
+        el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
+        if(p < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    });
+  }
+
+  /* Reveal only small intro elements — the course layout is always visible. */
+  var targets = document.querySelectorAll(".sectionIntro, .courseTabs");
+  function showAll(){ targets.forEach(function(el){ el.classList.add("in"); }); }
+  targets.forEach(function(el){ el.classList.add("reveal"); });
+
+  if(reduce || !("IntersectionObserver" in window)){
+    showAll();
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); }
+      });
+    }, {threshold: 0});
+    targets.forEach(function(el){ io.observe(el); });
+    /* Fail-safe: never leave anything hidden. */
+    setTimeout(showAll, 1500);
+  }
+})();
+</script>
+</body>
+</html>

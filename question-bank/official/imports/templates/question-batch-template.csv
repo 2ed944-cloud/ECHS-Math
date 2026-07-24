@@ -1,0 +1,2 @@
+﻿id,course,courseId,assessmentFamily,type,year,questionNumber,section,calculator,prompt,choiceA,choiceB,choiceC,choiceD,choiceE,answer,workedSolution,primaryUnit,primaryTopic,topicCode,difficulty,difficultyLabel,officialStatus,sourceFile,sourcePage
+APCALC-AB-MCQ-2026-001,AP Calculus AB,ap-calculus-ab,Official AP New Batch,mcq,2026,1,I,no-calculator,Question stem,Choice A,Choice B,Choice C,Choice D,Choice E,C,Worked solution,1,1.1 Topic Name,1.1,3,Medium,official-released,source.pdf,1
