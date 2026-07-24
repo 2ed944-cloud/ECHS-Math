@@ -15,19 +15,27 @@
     return value && typeof value === "object" && !Array.isArray(value);
   }
 
+  function patchArrayByKey(baseRows, patchRows, keyName) {
+    if (!Array.isArray(patchRows)) return Array.isArray(baseRows) ? baseRows : [];
+    const byKey = new Map(patchRows.map(row => [String(row?.[keyName]), row]));
+    return (Array.isArray(baseRows) ? baseRows : []).map(row => {
+      const rowPatch = byKey.get(String(row?.[keyName]));
+      return rowPatch ? merge(row, rowPatch) : row;
+    });
+  }
+
   function merge(base, patch) {
     const out = isObject(base) ? { ...base } : {};
     for (const [key, value] of Object.entries(patch || {})) {
-      if (key === "partsPatches") continue;
+      if (key === "partsPatches" || key === "mediaPatches") continue;
       if (isObject(value)) out[key] = merge(out[key], value);
       else out[key] = value;
     }
     if (Array.isArray(patch?.partsPatches)) {
-      const byLabel = new Map(patch.partsPatches.map(row => [String(row.label), row]));
-      out.parts = (Array.isArray(base?.parts) ? base.parts : []).map(part => {
-        const partPatch = byLabel.get(String(part.label));
-        return partPatch ? merge(part, partPatch) : part;
-      });
+      out.parts = patchArrayByKey(base?.parts, patch.partsPatches, "label");
+    }
+    if (Array.isArray(patch?.mediaPatches)) {
+      out.media = patchArrayByKey(base?.media, patch.mediaPatches, "id");
     }
     return out;
   }
