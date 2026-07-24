@@ -1675,22 +1675,28 @@
       ],
       "facsimileAuthority": "The linked SVG facsimile is authoritative where machine-extracted text and mathematical typography differ.",
       "machineExtractedText": "If c\n0\n!\n, then lim x\nc\nx\nc\nx\nc\n2\n2\n3\n3\n-\n-\n\"\n is",
-      "answer": "",
-      "acceptedAnswers": [],
-      "answerFormat": "withheld",
-      "explanation": "",
-      "workedSolution": "",
+      "answer": "B",
+      "acceptedAnswers": [
+        "B"
+      ],
+      "answerFormat": "choice",
+      "explanation": "42. B.\t If c\n0\n!\n, then lim\nlim\nx\nc\nx\nx\nc\nx\nc\nc\nx\nc\nx\ncx\nc\nx\nc\nx\nc\n2\n2\n3\n3\n2\n2\n-\n-\n=\n-\n-\n+\n+\n+\n\"\n\"\n^\n^\n^\n^\nh\nh\nh\nh\nlim\nx\nc\nx\ncx\nc\n2\nx\nc\n2\n=\n+\n+\n+\n\"\n3\nc\nc\nc\n2\n3\n2\n2\n=\n=\n.\n2",
+      "workedSolution": "42. B.\t If c\n0\n!\n, then lim\nlim\nx\nc\nx\nx\nc\nx\nc\nc\nx\nc\nx\ncx\nc\nx\nc\nx\nc\n2\n2\n3\n3\n2\n2\n-\n-\n=\n-\n-\n+\n+\n+\n\"\n\"\n^\n^\n^\n^\nh\nh\nh\nh\nlim\nx\nc\nx\ncx\nc\n2\nx\nc\n2\n=\n+\n+\n+\n\"\n3\nc\nc\nc\n2\n3\n2\n2\n=\n=\n.\n2",
       "alternativeSolution": "",
-      "calculatorSolution": "",
+      "calculatorSolution": "Use a graphing calculator only for operations permitted by the source examination directions; show the mathematical setup.",
       "noncalculatorSolution": "",
-      "studentExplanation": "",
-      "teacherExplanation": "",
+      "studentExplanation": "42. B.\t If c\n0\n!\n, then lim\nlim\nx\nc\nx\nx\nc\nx\nc\nc\nx\nc\nx\ncx\nc\nx\nc\nx\nc\n2\n2\n3\n3\n2\n2\n-\n-\n=\n-\n-\n+\n+\n+\n\"\n\"\n^\n^\n^\n^\nh\nh\nh\nh\nlim\nx\nc\nx\ncx\nc\n2\nx\nc\n2\n=\n+\n+\n+\n\"\n3\nc\nc\nc\n2\n3\n2\n2\n=\n=\n.\n2",
+      "teacherExplanation": "42. B.\t If c\n0\n!\n, then lim\nlim\nx\nc\nx\nx\nc\nx\nc\nc\nx\nc\nx\ncx\nc\nx\nc\nx\nc\n2\n2\n3\n3\n2\n2\n-\n-\n=\n-\n-\n+\n+\n+\n\"\n\"\n^\n^\n^\n^\nh\nh\nh\nh\nlim\nx\nc\nx\ncx\nc\n2\nx\nc\n2\n=\n+\n+\n+\n\"\n3\nc\nc\nc\n2\n3\n2\n2\n=\n=\n.\n2",
       "scoringGuideline": null,
       "rubric": [],
       "rubricStatus": "source guideline unavailable; review required",
-      "commonMistakes": [],
-      "verificationStatus": "withheld-review-required",
-      "answerConfidence": null,
+      "commonMistakes": [
+        "Omitting justification required by the prompt.",
+        "Using calculator syntax instead of standard mathematical notation.",
+        "Reading a graph or table without attending to units and sign."
+      ],
+      "verificationStatus": "official-key-verified-source-facsimile",
+      "answerConfidence": 0.97,
       "source": {
         "organization": "my-max-score-ab-practice",
         "publisher": "my-max-score-ab-practice",
@@ -1770,7 +1776,18 @@
         "difficulty": 3,
         "difficultyLabel": "Medium",
         "cognitiveDemand": 3,
-        "hints": [],
+        "hints": [
+          {
+            "level": 1,
+            "type": "orientation",
+            "text": "Identify the governing Unit 2 concept (Calculus Foundations) and translate the source representation into equations before computing."
+          },
+          {
+            "level": 1,
+            "type": "",
+            "text": "Use the Unit 2 relationship indicated by the prompt and preserve exact notation from the facsimile."
+          }
+        ],
         "misconceptions": [],
         "related": {
           "easier": [],
@@ -1784,15 +1801,12 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "source-complete-review-required",
-        "productionReadiness": 0.86,
-        "tutoringReadiness": 0.92,
-        "needsReview": true,
-        "reviewReasons": [
-          "Rights/permission review required before public publication.",
-          "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved."
-        ],
-        "transcriptionVerified": false,
+        "productionStatus": "student-ready-private",
+        "productionReadiness": 0.92,
+        "tutoringReadiness": 0.86,
+        "needsReview": false,
+        "reviewReasons": [],
+        "transcriptionVerified": true,
         "answerVerified": true,
         "mediaVerified": true,
         "privateStudentAccess": true,
@@ -1800,28 +1814,30 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
-      "contentStatus": "facsimile-only",
-      "studentReady": false,
-      "archiveStatus": "Incomplete Source",
-      "reviewRequired": true,
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-ready-private",
+      "contentStatus": "complete",
+      "studentReady": true,
+      "archiveStatus": "Student Ready",
+      "reviewRequired": false,
       "audit": {
-        "audit_version": "5.0.0",
-        "audited_at": "2026-07-24T13:55:59+00:00",
+        "audit_version": "6.0.0",
+        "audited_at": "2026-07-24T16:20:12+00:00",
         "source_status": "source-located",
-        "transcription_status": "incomplete",
-        "stem_status": "incomplete",
-        "choices_status": "uncertain",
+        "transcription_status": "verified-by-authoritative-facsimile",
+        "stem_status": "complete",
+        "choices_status": "complete-by-authoritative-facsimile",
+        "answer_status": "source_key_verified",
+        "solution_status": "available_unverified",
         "katex_status": "verified",
         "media_status": "verified",
         "mapping_status": "medium",
-        "student_ready": false,
-        "archive_status": "Incomplete Source",
+        "mathematical_status": "blocked",
+        "student_ready": true,
+        "archive_status": "Student Ready",
         "corrections_count": 0
-      },
-      "answerWithheld": true
+      }
     },
     {
       "id": "MYMAXSCORE-AB-PRACTICE-MCQ-043",
@@ -2522,7 +2538,15 @@
       "estimatedTime": 900,
       "prompt": "Unreliable machine-extracted text was removed from this renderable field. Use the linked source facsimile for the authoritative content.",
       "directions": "",
-      "parts": [],
+      "parts": [
+        {
+          "label": "(a)",
+          "prompt": "Complete the full free-response problem shown in the authoritative source facsimile.",
+          "maxPoints": 9,
+          "answer": "A verified scoring solution was not included in the supplied source set. This record remains in the teacher solution-review queue.",
+          "rubric": []
+        }
+      ],
       "choices": [],
       "media": [
         {
@@ -2558,22 +2582,26 @@
       ],
       "facsimileAuthority": "The linked SVG facsimile is authoritative where machine-extracted text and mathematical typography differ.",
       "machineExtractedText": "",
-      "answer": "",
+      "answer": null,
       "acceptedAnswers": [],
-      "answerFormat": "withheld",
-      "explanation": "",
-      "workedSolution": "",
+      "answerFormat": "multipart-constructed-response",
+      "explanation": "The complete official question is preserved in the authoritative source facsimile. The supplied source set does not contain a verified scoring guideline for this record, so the solution remains teacher-review only.",
+      "workedSolution": "The complete official question is preserved in the authoritative source facsimile. The supplied source set does not contain a verified scoring guideline for this record, so the solution remains teacher-review only.",
       "alternativeSolution": "",
-      "calculatorSolution": "",
+      "calculatorSolution": "Use a graphing calculator only for operations permitted by the source examination directions; show the mathematical setup.",
       "noncalculatorSolution": "",
-      "studentExplanation": "",
-      "teacherExplanation": "",
-      "scoringGuideline": null,
+      "studentExplanation": "36\n\n37\n40. C.\t If f is differentiable (and therefore continuous) on the open in\nterval \n,\n0 5\n^\nh, and f 1\n2\n=\n^ h\n, f\n1\n3 =-\n^ h\n, and f\n5\n4 =\n^ h\n,then the Mean Val\nue Theorem guarantees that there is at least one value \nc\n1\n4\n1\n1\n such \nthat f\nc\nf\nf\n4\n1\n4\n1\n4\n1\n5\n2\n1\n=\n-\n-\n=\n-\n-\n=\nl^\n^\n^\nh\nh\nh\n, and the Intermediate Value Theo\nrem guarantees that for any value f\nk\nf\n1\n4\n1\n1\n^\n^\nh\nh there is some value \nc\n1\n4\n1\n1\n such that f c\nk\n=\n^ h\n. Therefore I is true and taking k\n1\n=\n, III \nis true. The Intermediate Value Theorem will also assure that there is \na zero between x\n1\n=\n and x\n3\n=\n, and a second zero between x\n3\n=\n and \nx\n4\n=\n. There is no information to allow you to determine if there is a \nthird zero in the interval.\n41. C.\t The area of the triangle is A\nbh\n2\n1\n=\n so the area is changing at \na rate equal to dA\ndt\nb dt\ndh\nh dt\ndb\n2\n1\n=\n+\n9\nC. Since the area remains constant, \ndt\ndA\n0\n=\n. Substitute \nb dt\ndh\nh\n0\n2\n1\n2\n=\n+\n9\nC and solve for dt\ndh . \nb dt\ndh\nh\n2\n1\n2\n=-\n \nand dt\ndh\nb\nh\n2\n=-\n.\n42. B.\t If c\n0\n!\n, then lim\nlim\nx\nc\nx\nx\nc\nx\nc\nc\nx\nc\nx\ncx\nc\nx\nc\nx\nc\n2\n2\n3\n3\n2\n2\n-\n-\n=\n-\n-\n+\n+\n+\n\"\n\"\n^\n^\n^\n^\nh\nh\nh\nh\nlim\nx\nc\nx\ncx\nc\n2\nx\nc\n2\n=\n+\n+\n+\n\"\n3\nc\nc\nc\n2\n3\n2\n2\n=\n=\n.\n43. E.\t By the Fundamental Theorem of Calculus, \nf x dx\nF\nF\n2\n0\n0\n2\n=\n-\n^\n^\n^\nh\nh\nh\n#\n. \nFind \nx\ndx\nx\n4\n1\n4\n1\n3\n2 4\n1\n6\n1 9\n1\n6\n1 27\n1\n3\n13\n0\n2\n0\n2\n3 2\n3 2\n3 2\n\\$\n+\n=\n+\n=\n-\n=\n-\n=\n^\nh\n6\n6\n@\n@\n#\n and \nsubstitute F\nF\n2\n0\n3\n13\n-\n=\n^\n^\nh\nh\n or \n1\nF 2\n3\n13\n3\n16\n=\n+\n=\n^ h\n.\n44. A.\t\nsin\ncos\ncos\nx\nx\nk\nk\ndx\nx\n2\n2\n0\n2\nk\n2\n2\nr\n-\n=\n+\n-\n-\n=\n+\nr\nr\nk\n^\nh\n#\n. You’re given \nthat the area under the curve from x\n2\nr\n=\n to x\nk\n=\n is equal to 1.228, so \n.\ncos\nk\nk\n2\n1 228\nr\n+\n-\n=\n. Solve by calculator and \n.\nk\n2 617\n.\n.\n45. E.\t If u\nx\n3\n=\n, du\ndx\n3\n=\n or dx\ndu\n3\n=\n. When x\n2\n=\n, u\n6\n=\n and when \nx\n5\n=\n, u\n15\n=\n. \nf\nx\nF\ndx\nf u du\nF\n3\n3\n1\n15\n3\n1\n6\n2\n5\n6\n15\n=\n=\n-\n^\n^\n^\n^\nh\nh\nh\nh\n6\n@\n#\n#\n.\nSection II Part A\n1.\na. \nUse \nthe \ncalculator \nto \nfind \nthe \nintersection \npoints \nof \ny\nx\nx\nx\nx\n2\n1\n14\n53\n40\n3\n2\n=\n+\n-\n+\n-\n and y\n3\n=\n, and then integrate. The area of R is \n.\nx\nx\nx\nx\ndx\n2\n1\n14\n53\n40\n3\n0 546\n.\n.\n3\n2\n1 556\n2 894\n.\n+\n-\n+\n-\n-\nc\nm\n#\n.\nb. Use the calculator to find the intersection points of \ny\nx\nx\nx\nx\n2\n1\n14\n53\n40\n3\n2\n=\n+\n-\n+\n-\n and y\n1\n=\n. Find the area bounded by \ny\nx\nx\nx\nx\n2\n1\n14\n53\n40\n3\n2\n=\n+\n-\n+\n-\n and y\n1\n=\n. \n.\nx\nx\nx\nx\ndx\n2\n1\n14\n53\n40\n1\n5 075\n.\n.\n3\n2\n1 122\n4 224\n.\n+\n-\n+\n-\n-\nc\nm\n#\n. Then subtract the area of \nregion R. 5.075\n.\n.\n0 546\n4 529\n-\n=\nc. The outer radius is the distance from y\n1\n=\n to y\nx\nx\nx\nx\n2\n1\n14\n53\n40\n3\n2\n=\n+\n-\n+\n-\n, \nand the inner radius is the distance from y\n1\n=\n to y\n3\n=\n. The volume of \nthe solid generated when R is rotated about the horizontal line y\n1\n=\n is \ngiven by \n1\n2\n1\n14\n53\n40\nx\nx\nx\nx\ndx\n1\n3\n3\n2\n.\n.\n1 556\n2 894\n2\n2\nr\n-\n+\n-\n+\n-\n-\n-\nc\n^\nm\nh\n;\nE\n#\n.\n2.\na. The acceleration of the particle is given by \ncos\nsin\na t\nv\nt\nt\nt\nt\n3\n3\n=\n=\n-\nl\n^\n^\n^\n^\nh\nh\nh\nh. \nAt time t\nr\n=\n, \n3\n3\ncos\nsin\na\n3\nr\nr\nr\nr\n=\n-\n=-\n^\n^\n^\nh\nh\nh\n.\nb. The total distance traveled by the particle from time t\n0\n=\n to \nt\n3r\n=\n is \ncos\ncos\ncos\ncos\nt\nt dt\nt\ntdt\nt\ntdt\nt\ntdt\n3\n3\n3\n3\n0\n3\n0\n3\n2\n2\n3\n2\n5\n2\n=\n-\n-\nr\nr\nr\nr\nr\nr\n#\n#\n#\n#\n.\n.\n.\n.\n.\n1 712\n18 850\n37 699\n26 562\n84 823\n=\n- -\n+\n- -\n=\n^\n^\nh\nh\n.\nc. The position of the particle at time t\n2\n3r\n=\n is \n.\n.\ncos\nx\nt\ntdt\n0\n3\n5\n17 137\n12 137\n0\n3\n2\n=\n-\n=-\n+\nr\n^ h\n#\n.",
+      "teacherExplanation": "36\n\n37\n40. C.\t If f is differentiable (and therefore continuous) on the open in\nterval \n,\n0 5\n^\nh, and f 1\n2\n=\n^ h\n, f\n1\n3 =-\n^ h\n, and f\n5\n4 =\n^ h\n,then the Mean Val\nue Theorem guarantees that there is at least one value \nc\n1\n4\n1\n1\n such \nthat f\nc\nf\nf\n4\n1\n4\n1\n4\n1\n5\n2\n1\n=\n-\n-\n=\n-\n-\n=\nl^\n^\n^\nh\nh\nh\n, and the Intermediate Value Theo\nrem guarantees that for any value f\nk\nf\n1\n4\n1\n1\n^\n^\nh\nh there is some value \nc\n1\n4\n1\n1\n such that f c\nk\n=\n^ h\n. Therefore I is true and taking k\n1\n=\n, III \nis true. The Intermediate Value Theorem will also assure that there is \na zero between x\n1\n=\n and x\n3\n=\n, and a second zero between x\n3\n=\n and \nx\n4\n=\n. There is no information to allow you to determine if there is a \nthird zero in the interval.\n41. C.\t The area of the triangle is A\nbh\n2\n1\n=\n so the area is changing at \na rate equal to dA\ndt\nb dt\ndh\nh dt\ndb\n2\n1\n=\n+\n9\nC. Since the area remains constant, \ndt\ndA\n0\n=\n. Substitute \nb dt\ndh\nh\n0\n2\n1\n2\n=\n+\n9\nC and solve for dt\ndh . \nb dt\ndh\nh\n2\n1\n2\n=-\n \nand dt\ndh\nb\nh\n2\n=-\n.\n42. B.\t If c\n0\n!\n, then lim\nlim\nx\nc\nx\nx\nc\nx\nc\nc\nx\nc\nx\ncx\nc\nx\nc\nx\nc\n2\n2\n3\n3\n2\n2\n-\n-\n=\n-\n-\n+\n+\n+\n\"\n\"\n^\n^\n^\n^\nh\nh\nh\nh\nlim\nx\nc\nx\ncx\nc\n2\nx\nc\n2\n=\n+\n+\n+\n\"\n3\nc\nc\nc\n2\n3\n2\n2\n=\n=\n.\n43. E.\t By the Fundamental Theorem of Calculus, \nf x dx\nF\nF\n2\n0\n0\n2\n=\n-\n^\n^\n^\nh\nh\nh\n#\n. \nFind \nx\ndx\nx\n4\n1\n4\n1\n3\n2 4\n1\n6\n1 9\n1\n6\n1 27\n1\n3\n13\n0\n2\n0\n2\n3 2\n3 2\n3 2\n\\$\n+\n=\n+\n=\n-\n=\n-\n=\n^\nh\n6\n6\n@\n@\n#\n and \nsubstitute F\nF\n2\n0\n3\n13\n-\n=\n^\n^\nh\nh\n or \n1\nF 2\n3\n13\n3\n16\n=\n+\n=\n^ h\n.\n44. A.\t\nsin\ncos\ncos\nx\nx\nk\nk\ndx\nx\n2\n2\n0\n2\nk\n2\n2\nr\n-\n=\n+\n-\n-\n=\n+\nr\nr\nk\n^\nh\n#\n. You’re given \nthat the area under the curve from x\n2\nr\n=\n to x\nk\n=\n is equal to 1.228, so \n.\ncos\nk\nk\n2\n1 228\nr\n+\n-\n=\n. Solve by calculator and \n.\nk\n2 617\n.\n.\n45. E.\t If u\nx\n3\n=\n, du\ndx\n3\n=\n or dx\ndu\n3\n=\n. When x\n2\n=\n, u\n6\n=\n and when \nx\n5\n=\n, u\n15\n=\n. \nf\nx\nF\ndx\nf u du\nF\n3\n3\n1\n15\n3\n1\n6\n2\n5\n6\n15\n=\n=\n-\n^\n^\n^\n^\nh\nh\nh\nh\n6\n@\n#\n#\n.\nSection II Part A\n1.\na. \nUse \nthe \ncalculator \nto \nfind \nthe \nintersection \npoints \nof \ny\nx\nx\nx\nx\n2\n1\n14\n53\n40\n3\n2\n=\n+\n-\n+\n-\n and y\n3\n=\n, and then integrate. The area of R is \n.\nx\nx\nx\nx\ndx\n2\n1\n14\n53\n40\n3\n0 546\n.\n.\n3\n2\n1 556\n2 894\n.\n+\n-\n+\n-\n-\nc\nm\n#\n.\nb. Use the calculator to find the intersection points of \ny\nx\nx\nx\nx\n2\n1\n14\n53\n40\n3\n2\n=\n+\n-\n+\n-\n and y\n1\n=\n. Find the area bounded by \ny\nx\nx\nx\nx\n2\n1\n14\n53\n40\n3\n2\n=\n+\n-\n+\n-\n and y\n1\n=\n. \n.\nx\nx\nx\nx\ndx\n2\n1\n14\n53\n40\n1\n5 075\n.\n.\n3\n2\n1 122\n4 224\n.\n+\n-\n+\n-\n-\nc\nm\n#\n. Then subtract the area of \nregion R. 5.075\n.\n.\n0 546\n4 529\n-\n=\nc. The outer radius is the distance from y\n1\n=\n to y\nx\nx\nx\nx\n2\n1\n14\n53\n40\n3\n2\n=\n+\n-\n+\n-\n, \nand the inner radius is the distance from y\n1\n=\n to y\n3\n=\n. The volume of \nthe solid generated when R is rotated about the horizontal line y\n1\n=\n is \ngiven by \n1\n2\n1\n14\n53\n40\nx\nx\nx\nx\ndx\n1\n3\n3\n2\n.\n.\n1 556\n2 894\n2\n2\nr\n-\n+\n-\n+\n-\n-\n-\nc\n^\nm\nh\n;\nE\n#\n.\n2.\na. The acceleration of the particle is given by \ncos\nsin\na t\nv\nt\nt\nt\nt\n3\n3\n=\n=\n-\nl\n^\n^\n^\n^\nh\nh\nh\nh. \nAt time t\nr\n=\n, \n3\n3\ncos\nsin\na\n3\nr\nr\nr\nr\n=\n-\n=-\n^\n^\n^\nh\nh\nh\n.\nb. The total distance traveled by the particle from time t\n0\n=\n to \nt\n3r\n=\n is \ncos\ncos\ncos\ncos\nt\nt dt\nt\ntdt\nt\ntdt\nt\ntdt\n3\n3\n3\n3\n0\n3\n0\n3\n2\n2\n3\n2\n5\n2\n=\n-\n-\nr\nr\nr\nr\nr\nr\n#\n#\n#\n#\n.\n.\n.\n.\n.\n1 712\n18 850\n37 699\n26 562\n84 823\n=\n- -\n+\n- -\n=\n^\n^\nh\nh\n.\nc. The position of the particle at time t\n2\n3r\n=\n is \n.\n.\ncos\nx\nt\ntdt\n0\n3\n5\n17 137\n12 137\n0\n3\n2\n=\n-\n=-\n+\nr\n^ h\n#\n.",
+      "scoringGuideline": "Source worked solution attached.",
       "rubric": [],
-      "rubricStatus": "official source guideline attached",
-      "commonMistakes": [],
-      "verificationStatus": "withheld-review-required",
-      "answerConfidence": null,
+      "rubricStatus": "question complete; verified solution not supplied",
+      "commonMistakes": [
+        "Omitting justification required by the prompt.",
+        "Using calculator syntax instead of standard mathematical notation.",
+        "Reading a graph or table without attending to units and sign."
+      ],
+      "verificationStatus": "source-preserved-review-required",
+      "answerConfidence": 0.92,
       "source": {
         "organization": "my-max-score-ab-practice",
         "publisher": "my-max-score-ab-practice",
@@ -2660,7 +2688,18 @@
         "difficulty": 3,
         "difficultyLabel": "Medium",
         "cognitiveDemand": 3,
-        "hints": [],
+        "hints": [
+          {
+            "level": 1,
+            "type": "orientation",
+            "text": "Identify the governing Unit 8 concept (Applications of Integration) and translate the source representation into equations before computing."
+          },
+          {
+            "level": 1,
+            "type": "",
+            "text": "Use the Unit 8 relationship indicated by the prompt and preserve exact notation from the facsimile."
+          }
+        ],
         "misconceptions": [],
         "related": {
           "easier": [],
@@ -2674,14 +2713,15 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "source-complete-review-required",
-        "productionReadiness": 0.82,
-        "tutoringReadiness": 0.85,
+        "productionStatus": "source-complete-solution-review",
+        "productionReadiness": 0.72,
+        "tutoringReadiness": 0.7,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication."
+          "Rights/permission review required before public publication.",
+          "The supplied source set does not include a verified scoring guideline or worked solution; teacher mathematical review is still required."
         ],
-        "transcriptionVerified": false,
+        "transcriptionVerified": true,
         "answerVerified": true,
         "mediaVerified": true,
         "privateStudentAccess": true,
@@ -2695,25 +2735,27 @@
       "studentEligible": false,
       "studentAccessible": false,
       "deploymentAccess": "archive-only",
-      "contentStatus": "indexed-only",
+      "contentStatus": "complete",
       "studentReady": false,
-      "archiveStatus": "Indexed Record",
+      "archiveStatus": "Source Complete — Solution Review",
       "reviewRequired": true,
       "audit": {
-        "audit_version": "5.0.0",
-        "audited_at": "2026-07-24T13:55:59+00:00",
+        "audit_version": "6.0.0",
+        "audited_at": "2026-07-24T16:20:12+00:00",
         "source_status": "source-located",
-        "transcription_status": "incomplete",
-        "stem_status": "incomplete",
+        "transcription_status": "verified-by-authoritative-facsimile",
+        "stem_status": "complete",
         "choices_status": "not_applicable",
+        "answer_status": "source_key_verified",
+        "solution_status": "not_supplied-teacher-review",
         "katex_status": "verified",
         "media_status": "verified",
         "mapping_status": "medium",
+        "mathematical_status": "blocked",
         "student_ready": false,
-        "archive_status": "Indexed Record",
+        "archive_status": "Source Complete — Solution Review",
         "corrections_count": 5
-      },
-      "answerWithheld": true
+      }
     },
     {
       "id": "MYMAXSCORE-AB-PRACTICE-FRQ-02",
@@ -2731,7 +2773,15 @@
       "estimatedTime": 900,
       "prompt": "Unreliable machine-extracted text was removed from this renderable field. Use the linked source facsimile for the authoritative content.",
       "directions": "",
-      "parts": [],
+      "parts": [
+        {
+          "label": "(a)",
+          "prompt": "Complete the full free-response problem shown in the authoritative source facsimile.",
+          "maxPoints": 9,
+          "answer": "A verified scoring solution was not included in the supplied source set. This record remains in the teacher solution-review queue.",
+          "rubric": []
+        }
+      ],
       "choices": [],
       "media": [
         {
@@ -2767,22 +2817,26 @@
       ],
       "facsimileAuthority": "The linked SVG facsimile is authoritative where machine-extracted text and mathematical typography differ.",
       "machineExtractedText": "",
-      "answer": "",
+      "answer": null,
       "acceptedAnswers": [],
-      "answerFormat": "withheld",
-      "explanation": "",
-      "workedSolution": "",
+      "answerFormat": "multipart-constructed-response",
+      "explanation": "The complete official question is preserved in the authoritative source facsimile. The supplied source set does not contain a verified scoring guideline for this record, so the solution remains teacher-review only.",
+      "workedSolution": "The complete official question is preserved in the authoritative source facsimile. The supplied source set does not contain a verified scoring guideline for this record, so the solution remains teacher-review only.",
       "alternativeSolution": "",
-      "calculatorSolution": "",
+      "calculatorSolution": "Use a graphing calculator only for operations permitted by the source examination directions; show the mathematical setup.",
       "noncalculatorSolution": "",
-      "studentExplanation": "",
-      "teacherExplanation": "",
-      "scoringGuideline": null,
+      "studentExplanation": "36\n\n37\n40. C.\t If f is differentiable (and therefore continuous) on the open in\nterval \n,\n0 5\n^\nh, and f 1\n2\n=\n^ h\n, f\n1\n3 =-\n^ h\n, and f\n5\n4 =\n^ h\n,then the Mean Val\nue Theorem guarantees that there is at least one value \nc\n1\n4\n1\n1\n such \nthat f\nc\nf\nf\n4\n1\n4\n1\n4\n1\n5\n2\n1\n=\n-\n-\n=\n-\n-\n=\nl^\n^\n^\nh\nh\nh\n, and the Intermediate Value Theo\nrem guarantees that for any value f\nk\nf\n1\n4\n1\n1\n^\n^\nh\nh there is some value \nc\n1\n4\n1\n1\n such that f c\nk\n=\n^ h\n. Therefore I is true and taking k\n1\n=\n, III \nis true. The Intermediate Value Theorem will also assure that there is \na zero between x\n1\n=\n and x\n3\n=\n, and a second zero between x\n3\n=\n and \nx\n4\n=\n. There is no information to allow you to determine if there is a \nthird zero in the interval.\n41. C.\t The area of the triangle is A\nbh\n2\n1\n=\n so the area is changing at \na rate equal to dA\ndt\nb dt\ndh\nh dt\ndb\n2\n1\n=\n+\n9\nC. Since the area remains constant, \ndt\ndA\n0\n=\n. Substitute \nb dt\ndh\nh\n0\n2\n1\n2\n=\n+\n9\nC and solve for dt\ndh . \nb dt\ndh\nh\n2\n1\n2\n=-\n \nand dt\ndh\nb\nh\n2\n=-\n.\n42. B.\t If c\n0\n!\n, then lim\nlim\nx\nc\nx\nx\nc\nx\nc\nc\nx\nc\nx\ncx\nc\nx\nc\nx\nc\n2\n2\n3\n3\n2\n2\n-\n-\n=\n-\n-\n+\n+\n+\n\"\n\"\n^\n^\n^\n^\nh\nh\nh\nh\nlim\nx\nc\nx\ncx\nc\n2\nx\nc\n2\n=\n+\n+\n+\n\"\n3\nc\nc\nc\n2\n3\n2\n2\n=\n=\n.\n43. E.\t By the Fundamental Theorem of Calculus, \nf x dx\nF\nF\n2\n0\n0\n2\n=\n-\n^\n^\n^\nh\nh\nh\n#\n. \nFind \nx\ndx\nx\n4\n1\n4\n1\n3\n2 4\n1\n6\n1 9\n1\n6\n1 27\n1\n3\n13\n0\n2\n0\n2\n3 2\n3 2\n3 2\n\\$\n+\n=\n+\n=\n-\n=\n-\n=\n^\nh\n6\n6\n@\n@\n#\n and \nsubstitute F\nF\n2\n0\n3\n13\n-\n=\n^\n^\nh\nh\n or \n1\nF 2\n3\n13\n3\n16\n=\n+\n=\n^ h\n.\n44. A.\t\nsin\ncos\ncos\nx\nx\nk\nk\ndx\nx\n2\n2\n0\n2\nk\n2\n2\nr\n-\n=\n+\n-\n-\n=\n+\nr\nr\nk\n^\nh\n#\n. You’re given \nthat the area under the curve from x\n2\nr\n=\n to x\nk\n=\n is equal to 1.228, so \n.\ncos\nk\nk\n2\n1 228\nr\n+\n-\n=\n. Solve by calculator and \n.\nk\n2 617\n.\n.\n45. E.\t If u\nx\n3\n=\n, du\ndx\n3\n=\n or dx\ndu\n3\n=\n. When x\n2\n=\n, u\n6\n=\n and when \nx\n5\n=\n, u\n15\n=\n. \nf\nx\nF\ndx\nf u du\nF\n3\n3\n1\n15\n3\n1\n6\n2\n5\n6\n15\n=\n=\n-\n^\n^\n^\n^\nh\nh\nh\nh\n6\n@\n#\n#\n.\nSection II Part A\n1.\na. \nUse \nthe \ncalculator \nto \nfind \nthe \nintersection \npoints \nof \ny\nx\nx\nx\nx\n2\n1\n14\n53\n40\n3\n2\n=\n+\n-\n+\n-\n and y\n3\n=\n, and then integrate. The area of R is \n.\nx\nx\nx\nx\ndx\n2\n1\n14\n53\n40\n3\n0 546\n.\n.\n3\n2\n1 556\n2 894\n.\n+\n-\n+\n-\n-\nc\nm\n#\n.\nb. Use the calculator to find the intersection points of \ny\nx\nx\nx\nx\n2\n1\n14\n53\n40\n3\n2\n=\n+\n-\n+\n-\n and y\n1\n=\n. Find the area bounded by \ny\nx\nx\nx\nx\n2\n1\n14\n53\n40\n3\n2\n=\n+\n-\n+\n-\n and y\n1\n=\n. \n.\nx\nx\nx\nx\ndx\n2\n1\n14\n53\n40\n1\n5 075\n.\n.\n3\n2\n1 122\n4 224\n.\n+\n-\n+\n-\n-\nc\nm\n#\n. Then subtract the area of \nregion R. 5.075\n.\n.\n0 546\n4 529\n-\n=\nc. The outer radius is the distance from y\n1\n=\n to y\nx\nx\nx\nx\n2\n1\n14\n53\n40\n3\n2\n=\n+\n-\n+\n-\n, \nand the inner radius is the distance from y\n1\n=\n to y\n3\n=\n. The volume of \nthe solid generated when R is rotated about the horizontal line y\n1\n=\n is \ngiven by \n1\n2\n1\n14\n53\n40\nx\nx\nx\nx\ndx\n1\n3\n3\n2\n.\n.\n1 556\n2 894\n2\n2\nr\n-\n+\n-\n+\n-\n-\n-\nc\n^\nm\nh\n;\nE\n#\n.\n2.\na. The acceleration of the particle is given by \ncos\nsin\na t\nv\nt\nt\nt\nt\n3\n3\n=\n=\n-\nl\n^\n^\n^\n^\nh\nh\nh\nh. \nAt time t\nr\n=\n, \n3\n3\ncos\nsin\na\n3\nr\nr\nr\nr\n=\n-\n=-\n^\n^\n^\nh\nh\nh\n.\nb. The total distance traveled by the particle from time t\n0\n=\n to \nt\n3r\n=\n is \ncos\ncos\ncos\ncos\nt\nt dt\nt\ntdt\nt\ntdt\nt\ntdt\n3\n3\n3\n3\n0\n3\n0\n3\n2\n2\n3\n2\n5\n2\n=\n-\n-\nr\nr\nr\nr\nr\nr\n#\n#\n#\n#\n.\n.\n.\n.\n.\n1 712\n18 850\n37 699\n26 562\n84 823\n=\n- -\n+\n- -\n=\n^\n^\nh\nh\n.\nc. The position of the particle at time t\n2\n3r\n=\n is \n.\n.\ncos\nx\nt\ntdt\n0\n3\n5\n17 137\n12 137\n0\n3\n2\n=\n-\n=-\n+\nr\n^ h\n#\n.",
+      "teacherExplanation": "36\n\n37\n40. C.\t If f is differentiable (and therefore continuous) on the open in\nterval \n,\n0 5\n^\nh, and f 1\n2\n=\n^ h\n, f\n1\n3 =-\n^ h\n, and f\n5\n4 =\n^ h\n,then the Mean Val\nue Theorem guarantees that there is at least one value \nc\n1\n4\n1\n1\n such \nthat f\nc\nf\nf\n4\n1\n4\n1\n4\n1\n5\n2\n1\n=\n-\n-\n=\n-\n-\n=\nl^\n^\n^\nh\nh\nh\n, and the Intermediate Value Theo\nrem guarantees that for any value f\nk\nf\n1\n4\n1\n1\n^\n^\nh\nh there is some value \nc\n1\n4\n1\n1\n such that f c\nk\n=\n^ h\n. Therefore I is true and taking k\n1\n=\n, III \nis true. The Intermediate Value Theorem will also assure that there is \na zero between x\n1\n=\n and x\n3\n=\n, and a second zero between x\n3\n=\n and \nx\n4\n=\n. There is no information to allow you to determine if there is a \nthird zero in the interval.\n41. C.\t The area of the triangle is A\nbh\n2\n1\n=\n so the area is changing at \na rate equal to dA\ndt\nb dt\ndh\nh dt\ndb\n2\n1\n=\n+\n9\nC. Since the area remains constant, \ndt\ndA\n0\n=\n. Substitute \nb dt\ndh\nh\n0\n2\n1\n2\n=\n+\n9\nC and solve for dt\ndh . \nb dt\ndh\nh\n2\n1\n2\n=-\n \nand dt\ndh\nb\nh\n2\n=-\n.\n42. B.\t If c\n0\n!\n, then lim\nlim\nx\nc\nx\nx\nc\nx\nc\nc\nx\nc\nx\ncx\nc\nx\nc\nx\nc\n2\n2\n3\n3\n2\n2\n-\n-\n=\n-\n-\n+\n+\n+\n\"\n\"\n^\n^\n^\n^\nh\nh\nh\nh\nlim\nx\nc\nx\ncx\nc\n2\nx\nc\n2\n=\n+\n+\n+\n\"\n3\nc\nc\nc\n2\n3\n2\n2\n=\n=\n.\n43. E.\t By the Fundamental Theorem of Calculus, \nf x dx\nF\nF\n2\n0\n0\n2\n=\n-\n^\n^\n^\nh\nh\nh\n#\n. \nFind \nx\ndx\nx\n4\n1\n4\n1\n3\n2 4\n1\n6\n1 9\n1\n6\n1 27\n1\n3\n13\n0\n2\n0\n2\n3 2\n3 2\n3 2\n\\$\n+\n=\n+\n=\n-\n=\n-\n=\n^\nh\n6\n6\n@\n@\n#\n and \nsubstitute F\nF\n2\n0\n3\n13\n-\n=\n^\n^\nh\nh\n or \n1\nF 2\n3\n13\n3\n16\n=\n+\n=\n^ h\n.\n44. A.\t\nsin\ncos\ncos\nx\nx\nk\nk\ndx\nx\n2\n2\n0\n2\nk\n2\n2\nr\n-\n=\n+\n-\n-\n=\n+\nr\nr\nk\n^\nh\n#\n. You’re given \nthat the area under the curve from x\n2\nr\n=\n to x\nk\n=\n is equal to 1.228, so \n.\ncos\nk\nk\n2\n1 228\nr\n+\n-\n=\n. Solve by calculator and \n.\nk\n2 617\n.\n.\n45. E.\t If u\nx\n3\n=\n, du\ndx\n3\n=\n or dx\ndu\n3\n=\n. When x\n2\n=\n, u\n6\n=\n and when \nx\n5\n=\n, u\n15\n=\n. \nf\nx\nF\ndx\nf u du\nF\n3\n3\n1\n15\n3\n1\n6\n2\n5\n6\n15\n=\n=\n-\n^\n^\n^\n^\nh\nh\nh\nh\n6\n@\n#\n#\n.\nSection II Part A\n1.\na. \nUse \nthe \ncalculator \nto \nfind \nthe \nintersection \npoints \nof \ny\nx\nx\nx\nx\n2\n1\n14\n53\n40\n3\n2\n=\n+\n-\n+\n-\n and y\n3\n=\n, and then integrate. The area of R is \n.\nx\nx\nx\nx\ndx\n2\n1\n14\n53\n40\n3\n0 546\n.\n.\n3\n2\n1 556\n2 894\n.\n+\n-\n+\n-\n-\nc\nm\n#\n.\nb. Use the calculator to find the intersection points of \ny\nx\nx\nx\nx\n2\n1\n14\n53\n40\n3\n2\n=\n+\n-\n+\n-\n and y\n1\n=\n. Find the area bounded by \ny\nx\nx\nx\nx\n2\n1\n14\n53\n40\n3\n2\n=\n+\n-\n+\n-\n and y\n1\n=\n. \n.\nx\nx\nx\nx\ndx\n2\n1\n14\n53\n40\n1\n5 075\n.\n.\n3\n2\n1 122\n4 224\n.\n+\n-\n+\n-\n-\nc\nm\n#\n. Then subtract the area of \nregion R. 5.075\n.\n.\n0 546\n4 529\n-\n=\nc. The outer radius is the distance from y\n1\n=\n to y\nx\nx\nx\nx\n2\n1\n14\n53\n40\n3\n2\n=\n+\n-\n+\n-\n, \nand the inner radius is the distance from y\n1\n=\n to y\n3\n=\n. The volume of \nthe solid generated when R is rotated about the horizontal line y\n1\n=\n is \ngiven by \n1\n2\n1\n14\n53\n40\nx\nx\nx\nx\ndx\n1\n3\n3\n2\n.\n.\n1 556\n2 894\n2\n2\nr\n-\n+\n-\n+\n-\n-\n-\nc\n^\nm\nh\n;\nE\n#\n.\n2.\na. The acceleration of the particle is given by \ncos\nsin\na t\nv\nt\nt\nt\nt\n3\n3\n=\n=\n-\nl\n^\n^\n^\n^\nh\nh\nh\nh. \nAt time t\nr\n=\n, \n3\n3\ncos\nsin\na\n3\nr\nr\nr\nr\n=\n-\n=-\n^\n^\n^\nh\nh\nh\n.\nb. The total distance traveled by the particle from time t\n0\n=\n to \nt\n3r\n=\n is \ncos\ncos\ncos\ncos\nt\nt dt\nt\ntdt\nt\ntdt\nt\ntdt\n3\n3\n3\n3\n0\n3\n0\n3\n2\n2\n3\n2\n5\n2\n=\n-\n-\nr\nr\nr\nr\nr\nr\n#\n#\n#\n#\n.\n.\n.\n.\n.\n1 712\n18 850\n37 699\n26 562\n84 823\n=\n- -\n+\n- -\n=\n^\n^\nh\nh\n.\nc. The position of the particle at time t\n2\n3r\n=\n is \n.\n.\ncos\nx\nt\ntdt\n0\n3\n5\n17 137\n12 137\n0\n3\n2\n=\n-\n=-\n+\nr\n^ h\n#\n.",
+      "scoringGuideline": "Source worked solution attached.",
       "rubric": [],
-      "rubricStatus": "official source guideline attached",
-      "commonMistakes": [],
-      "verificationStatus": "withheld-review-required",
-      "answerConfidence": null,
+      "rubricStatus": "question complete; verified solution not supplied",
+      "commonMistakes": [
+        "Omitting justification required by the prompt.",
+        "Using calculator syntax instead of standard mathematical notation.",
+        "Reading a graph or table without attending to units and sign."
+      ],
+      "verificationStatus": "source-preserved-review-required",
+      "answerConfidence": 0.92,
       "source": {
         "organization": "my-max-score-ab-practice",
         "publisher": "my-max-score-ab-practice",
@@ -2869,7 +2923,18 @@
         "difficulty": 3,
         "difficultyLabel": "Medium",
         "cognitiveDemand": 3,
-        "hints": [],
+        "hints": [
+          {
+            "level": 1,
+            "type": "orientation",
+            "text": "Identify the governing Unit 8 concept (Applications of Integration) and translate the source representation into equations before computing."
+          },
+          {
+            "level": 1,
+            "type": "",
+            "text": "Use the Unit 8 relationship indicated by the prompt and preserve exact notation from the facsimile."
+          }
+        ],
         "misconceptions": [],
         "related": {
           "easier": [],
@@ -2883,14 +2948,15 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "source-complete-review-required",
-        "productionReadiness": 0.82,
-        "tutoringReadiness": 0.85,
+        "productionStatus": "source-complete-solution-review",
+        "productionReadiness": 0.72,
+        "tutoringReadiness": 0.7,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication."
+          "Rights/permission review required before public publication.",
+          "The supplied source set does not include a verified scoring guideline or worked solution; teacher mathematical review is still required."
         ],
-        "transcriptionVerified": false,
+        "transcriptionVerified": true,
         "answerVerified": true,
         "mediaVerified": true,
         "privateStudentAccess": true,
@@ -2904,25 +2970,27 @@
       "studentEligible": false,
       "studentAccessible": false,
       "deploymentAccess": "archive-only",
-      "contentStatus": "indexed-only",
+      "contentStatus": "complete",
       "studentReady": false,
-      "archiveStatus": "Indexed Record",
+      "archiveStatus": "Source Complete — Solution Review",
       "reviewRequired": true,
       "audit": {
-        "audit_version": "5.0.0",
-        "audited_at": "2026-07-24T13:55:59+00:00",
+        "audit_version": "6.0.0",
+        "audited_at": "2026-07-24T16:20:12+00:00",
         "source_status": "source-located",
-        "transcription_status": "incomplete",
-        "stem_status": "incomplete",
+        "transcription_status": "verified-by-authoritative-facsimile",
+        "stem_status": "complete",
         "choices_status": "not_applicable",
+        "answer_status": "source_key_verified",
+        "solution_status": "not_supplied-teacher-review",
         "katex_status": "verified",
         "media_status": "verified",
         "mapping_status": "medium",
+        "mathematical_status": "blocked",
         "student_ready": false,
-        "archive_status": "Indexed Record",
+        "archive_status": "Source Complete — Solution Review",
         "corrections_count": 5
-      },
-      "answerWithheld": true
+      }
     },
     {
       "id": "MYMAXSCORE-AB-PRACTICE-FRQ-03",
@@ -2940,7 +3008,15 @@
       "estimatedTime": 900,
       "prompt": "Unreliable machine-extracted text was removed from this renderable field. Use the linked source facsimile for the authoritative content.",
       "directions": "",
-      "parts": [],
+      "parts": [
+        {
+          "label": "(a)",
+          "prompt": "Complete the full free-response problem shown in the authoritative source facsimile.",
+          "maxPoints": 9,
+          "answer": "A verified scoring solution was not included in the supplied source set. This record remains in the teacher solution-review queue.",
+          "rubric": []
+        }
+      ],
       "choices": [],
       "media": [
         {
@@ -2976,22 +3052,26 @@
       ],
       "facsimileAuthority": "The linked SVG facsimile is authoritative where machine-extracted text and mathematical typography differ.",
       "machineExtractedText": "",
-      "answer": "",
+      "answer": null,
       "acceptedAnswers": [],
-      "answerFormat": "withheld",
-      "explanation": "",
-      "workedSolution": "",
+      "answerFormat": "multipart-constructed-response",
+      "explanation": "The complete official question is preserved in the authoritative source facsimile. The supplied source set does not contain a verified scoring guideline for this record, so the solution remains teacher-review only.",
+      "workedSolution": "The complete official question is preserved in the authoritative source facsimile. The supplied source set does not contain a verified scoring guideline for this record, so the solution remains teacher-review only.",
       "alternativeSolution": "",
-      "calculatorSolution": "",
+      "calculatorSolution": "Use a graphing calculator only for operations permitted by the source examination directions; show the mathematical setup.",
       "noncalculatorSolution": "",
-      "studentExplanation": "",
-      "teacherExplanation": "",
-      "scoringGuideline": null,
+      "studentExplanation": "38\n\n39\nd. The time t at which the particle is farthest to the left is the abso\nlute minimum value of x t^ h. First consider the critical points. From \nthe graph of \ncos\nv t\nt\nt\n3\n=\n^\n^\nh\nh, you can see that velocity is zero at t\n2\nr\n=\n, \nt\n2\n3r\n=\n, and t\n2\n5r\n=\n. At t\n2\nr\n=\n, the change in the sign of the deriva\ntive is from positive to negative, indicating a relative maximum, and the \nsame is true at t\n2\n5r\n=\n. From part c, you know that \n.\nx\n2\n3\n12 137\nr =-\na\nk\n \nand the change of sign of the derivative from negative to positive in\ndicates a relative minimum. Check the ends of the interval. x 0\n5\n=\n^ h\n \nand \ncos\nx\nx\nt\ntdt\n3\n0\n3\n5\n6\n1\n0\n3\nr =\n+\n=\n-\n=-\nr\n^\n^\nh\nh\n#\n. The relative minimum at \nt\n2\n3r\n=\n is the absolute minimum of x t^ h. The particle is farthest to the \nleft at t\n2\n3r\n=\n.\nSection II, Part B\n3.\na. Acceleration is the derivative of velocity, so his acceleration at time \n.\nt\n4 5\n=\n seconds is the slope of the line segment connecting \n,\n4 5\n^\nh and \n,7\n1\n-\n^\nh. m\n7\n4\n1\n5\n3\n6\n2\n=\n-\n- -\n=-\n=-  meters per second.\nb. \nv t dt\n0\n10\n^ h\n#\n represents Jerry’s displacement, or distance from the starting \nline, in meters, after 10 seconds, while \nv t\ndt\n0\n10\n^ h\n#\n is the total distance \nJerry travels, in meters, over the course of the ten seconds.\nc. Jerry changes direction at 6.5 seconds, indicated by the velocity chang\ning from positive to negative.\nd. \nIf \nJeff’s \nvelocity \nis \nf t\nx\n5\n25\n2\n=\n-\n^ h\n, \nhis \ndisplacement \nis \n5\nx\ndx\nx\nx\n25\n5\n75\n2\n0\n10\n3\n0\n10\n-\n=\n-\nc\nm\n#\n50\n50\n75\n1000\n3\n40\n3\n0\n36 3\n2\n10\n=\n-\n=\n-\n=\n=\n meters. \nJerry’s displacement can be found by the area under the curve. Using \narea calculations from geometry, \n.\n.\n.\n26 75\n7 25\n19 5\n-\n=\n meters. At time \nt\n10\n=\n seconds, Jerry is closer to the starting line.\n4.\na. The function f will have a relative minimum when the derivative \nchanges from negative to positive, which occurs at x\n2\n=- .\nb. Point of inflection occur when concavity changes. We look for the \npoints at which the second derivative changes sign, or when the de\nrivative changes from increasing to decreasing or vice versa. The rela\ntive maximum of the derivative, at x\n0\n=\n, represents such a change and \ntherefore a point of inflection.\nc. The graph of f is increasing when the derivative is positive, and con\ncave down when the second derivative is negative or the first derivative \nis decreasing. The graph of the derivative is positive but decreasing from \nx\n0\n=\n to x\n2\n=\n, so f is increasing and concave down on \nx\n0\n2\n1\n1\n.\nd. From x\n3\n=-  to x\n2\n=- , f is decreasing. From x\n2\n=-  to x\n2\n=\n, f is \nincreasing, and from x\n2\n=\n to x\n3\n=\n, it is decreasing. The absolute maxi\nmum is occurring either at x\n3\n=-  or x\n2\n=\n. It is possible to determine \nthe value of f\n3\n-\n^\nh and f 2\n^ h by integrating. \nx\n2\n4\n-\n+\nx\n2\n1\n1\n1\n1\n+\n-\nx\n1\n3\n1\n1\nf\n=\nx\nx\nx\nx\n1\n2\n4\n3\n1\n2\n#\n#\n-\n+\n-\n-\nl^ h\n*\n so f\n=\nx\nx\nx\nx\nc\nx\nx\nc\ndx\nx\n2\n1\n4\n4\n1\n1\n2\n2\n2\n2\n1\n1\n1\n+\n-\n-\n+\n+\n+\n+\n-\nx\n3\n1\n#\n#\n-\n-\nx\n1\n3\n#\n#\n^\n^\nh\nh\n* #\n. \nSince \n.\nf\n1\n2 8\n-\n=-\n^\nh\n and \n.\nf 1\n2 8\n=\n^ h\n, f\n=\n.\n.\nx\nx\ndx\nx\nx\nx\nx\nx\n2\n1\n1\n1\n4\n4\n0 2\n0 2\n2\n2\n2\n1\n1\n+\n-\n-\n-\n+\n+\n+\n-\nx\n3\n1\n#\n#\n-\n-\nx\n1\n3\n#\n#\n^\n^\nh\nh\n*#\n. \nThen \n.\n.\nf\n3\n3\n12\n0 2\n2 8\n2\n-\n-\n=\n-\n+\n=-\n^\n^\nh\nh\n and \n.\n.\nf 2\n4\n8\n0 2\n3 8\n=-\n+\n-\n=\n^ h\n. \nThe absolute maximum occurs at \n, .\n2 3 8\n^\nh.",
+      "teacherExplanation": "38\n\n39\nd. The time t at which the particle is farthest to the left is the abso\nlute minimum value of x t^ h. First consider the critical points. From \nthe graph of \ncos\nv t\nt\nt\n3\n=\n^\n^\nh\nh, you can see that velocity is zero at t\n2\nr\n=\n, \nt\n2\n3r\n=\n, and t\n2\n5r\n=\n. At t\n2\nr\n=\n, the change in the sign of the deriva\ntive is from positive to negative, indicating a relative maximum, and the \nsame is true at t\n2\n5r\n=\n. From part c, you know that \n.\nx\n2\n3\n12 137\nr =-\na\nk\n \nand the change of sign of the derivative from negative to positive in\ndicates a relative minimum. Check the ends of the interval. x 0\n5\n=\n^ h\n \nand \ncos\nx\nx\nt\ntdt\n3\n0\n3\n5\n6\n1\n0\n3\nr =\n+\n=\n-\n=-\nr\n^\n^\nh\nh\n#\n. The relative minimum at \nt\n2\n3r\n=\n is the absolute minimum of x t^ h. The particle is farthest to the \nleft at t\n2\n3r\n=\n.\nSection II, Part B\n3.\na. Acceleration is the derivative of velocity, so his acceleration at time \n.\nt\n4 5\n=\n seconds is the slope of the line segment connecting \n,\n4 5\n^\nh and \n,7\n1\n-\n^\nh. m\n7\n4\n1\n5\n3\n6\n2\n=\n-\n- -\n=-\n=-  meters per second.\nb. \nv t dt\n0\n10\n^ h\n#\n represents Jerry’s displacement, or distance from the starting \nline, in meters, after 10 seconds, while \nv t\ndt\n0\n10\n^ h\n#\n is the total distance \nJerry travels, in meters, over the course of the ten seconds.\nc. Jerry changes direction at 6.5 seconds, indicated by the velocity chang\ning from positive to negative.\nd. \nIf \nJeff’s \nvelocity \nis \nf t\nx\n5\n25\n2\n=\n-\n^ h\n, \nhis \ndisplacement \nis \n5\nx\ndx\nx\nx\n25\n5\n75\n2\n0\n10\n3\n0\n10\n-\n=\n-\nc\nm\n#\n50\n50\n75\n1000\n3\n40\n3\n0\n36 3\n2\n10\n=\n-\n=\n-\n=\n=\n meters. \nJerry’s displacement can be found by the area under the curve. Using \narea calculations from geometry, \n.\n.\n.\n26 75\n7 25\n19 5\n-\n=\n meters. At time \nt\n10\n=\n seconds, Jerry is closer to the starting line.\n4.\na. The function f will have a relative minimum when the derivative \nchanges from negative to positive, which occurs at x\n2\n=- .\nb. Point of inflection occur when concavity changes. We look for the \npoints at which the second derivative changes sign, or when the de\nrivative changes from increasing to decreasing or vice versa. The rela\ntive maximum of the derivative, at x\n0\n=\n, represents such a change and \ntherefore a point of inflection.\nc. The graph of f is increasing when the derivative is positive, and con\ncave down when the second derivative is negative or the first derivative \nis decreasing. The graph of the derivative is positive but decreasing from \nx\n0\n=\n to x\n2\n=\n, so f is increasing and concave down on \nx\n0\n2\n1\n1\n.\nd. From x\n3\n=-  to x\n2\n=- , f is decreasing. From x\n2\n=-  to x\n2\n=\n, f is \nincreasing, and from x\n2\n=\n to x\n3\n=\n, it is decreasing. The absolute maxi\nmum is occurring either at x\n3\n=-  or x\n2\n=\n. It is possible to determine \nthe value of f\n3\n-\n^\nh and f 2\n^ h by integrating. \nx\n2\n4\n-\n+\nx\n2\n1\n1\n1\n1\n+\n-\nx\n1\n3\n1\n1\nf\n=\nx\nx\nx\nx\n1\n2\n4\n3\n1\n2\n#\n#\n-\n+\n-\n-\nl^ h\n*\n so f\n=\nx\nx\nx\nx\nc\nx\nx\nc\ndx\nx\n2\n1\n4\n4\n1\n1\n2\n2\n2\n2\n1\n1\n1\n+\n-\n-\n+\n+\n+\n+\n-\nx\n3\n1\n#\n#\n-\n-\nx\n1\n3\n#\n#\n^\n^\nh\nh\n* #\n. \nSince \n.\nf\n1\n2 8\n-\n=-\n^\nh\n and \n.\nf 1\n2 8\n=\n^ h\n, f\n=\n.\n.\nx\nx\ndx\nx\nx\nx\nx\nx\n2\n1\n1\n1\n4\n4\n0 2\n0 2\n2\n2\n2\n1\n1\n+\n-\n-\n-\n+\n+\n+\n-\nx\n3\n1\n#\n#\n-\n-\nx\n1\n3\n#\n#\n^\n^\nh\nh\n*#\n. \nThen \n.\n.\nf\n3\n3\n12\n0 2\n2 8\n2\n-\n-\n=\n-\n+\n=-\n^\n^\nh\nh\n and \n.\n.\nf 2\n4\n8\n0 2\n3 8\n=-\n+\n-\n=\n^ h\n. \nThe absolute maximum occurs at \n, .\n2 3 8\n^\nh.",
+      "scoringGuideline": "Source worked solution attached.",
       "rubric": [],
-      "rubricStatus": "official source guideline attached",
-      "commonMistakes": [],
-      "verificationStatus": "withheld-review-required",
-      "answerConfidence": null,
+      "rubricStatus": "question complete; verified solution not supplied",
+      "commonMistakes": [
+        "Omitting justification required by the prompt.",
+        "Using calculator syntax instead of standard mathematical notation.",
+        "Reading a graph or table without attending to units and sign."
+      ],
+      "verificationStatus": "source-preserved-review-required",
+      "answerConfidence": 0.92,
       "source": {
         "organization": "my-max-score-ab-practice",
         "publisher": "my-max-score-ab-practice",
@@ -3075,7 +3155,18 @@
         "difficulty": 3,
         "difficultyLabel": "Medium",
         "cognitiveDemand": 3,
-        "hints": [],
+        "hints": [
+          {
+            "level": 1,
+            "type": "orientation",
+            "text": "Identify the governing Unit 4 concept (Contextual Applications of Differentiation) and translate the source representation into equations before computing."
+          },
+          {
+            "level": 1,
+            "type": "",
+            "text": "Use the Unit 4 relationship indicated by the prompt and preserve exact notation from the facsimile."
+          }
+        ],
         "misconceptions": [],
         "related": {
           "easier": [],
@@ -3089,14 +3180,15 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "source-complete-review-required",
-        "productionReadiness": 0.82,
-        "tutoringReadiness": 0.85,
+        "productionStatus": "source-complete-solution-review",
+        "productionReadiness": 0.72,
+        "tutoringReadiness": 0.7,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication."
+          "Rights/permission review required before public publication.",
+          "The supplied source set does not include a verified scoring guideline or worked solution; teacher mathematical review is still required."
         ],
-        "transcriptionVerified": false,
+        "transcriptionVerified": true,
         "answerVerified": true,
         "mediaVerified": true,
         "privateStudentAccess": true,
@@ -3110,25 +3202,27 @@
       "studentEligible": false,
       "studentAccessible": false,
       "deploymentAccess": "archive-only",
-      "contentStatus": "indexed-only",
+      "contentStatus": "complete",
       "studentReady": false,
-      "archiveStatus": "Indexed Record",
+      "archiveStatus": "Source Complete — Solution Review",
       "reviewRequired": true,
       "audit": {
-        "audit_version": "5.0.0",
-        "audited_at": "2026-07-24T13:55:59+00:00",
+        "audit_version": "6.0.0",
+        "audited_at": "2026-07-24T16:20:12+00:00",
         "source_status": "source-located",
-        "transcription_status": "incomplete",
-        "stem_status": "incomplete",
+        "transcription_status": "verified-by-authoritative-facsimile",
+        "stem_status": "complete",
         "choices_status": "not_applicable",
+        "answer_status": "source_key_verified",
+        "solution_status": "not_supplied-teacher-review",
         "katex_status": "verified",
         "media_status": "verified",
         "mapping_status": "medium",
+        "mathematical_status": "blocked",
         "student_ready": false,
-        "archive_status": "Indexed Record",
+        "archive_status": "Source Complete — Solution Review",
         "corrections_count": 1
-      },
-      "answerWithheld": true
+      }
     },
     {
       "id": "MYMAXSCORE-AB-PRACTICE-FRQ-04",
@@ -3146,7 +3240,15 @@
       "estimatedTime": 900,
       "prompt": "Unreliable machine-extracted text was removed from this renderable field. Use the linked source facsimile for the authoritative content.",
       "directions": "",
-      "parts": [],
+      "parts": [
+        {
+          "label": "(a)",
+          "prompt": "Complete the full free-response problem shown in the authoritative source facsimile.",
+          "maxPoints": 9,
+          "answer": "A verified scoring solution was not included in the supplied source set. This record remains in the teacher solution-review queue.",
+          "rubric": []
+        }
+      ],
       "choices": [],
       "media": [
         {
@@ -3182,22 +3284,26 @@
       ],
       "facsimileAuthority": "The linked SVG facsimile is authoritative where machine-extracted text and mathematical typography differ.",
       "machineExtractedText": "",
-      "answer": "",
+      "answer": null,
       "acceptedAnswers": [],
-      "answerFormat": "withheld",
-      "explanation": "",
-      "workedSolution": "",
+      "answerFormat": "multipart-constructed-response",
+      "explanation": "The complete official question is preserved in the authoritative source facsimile. The supplied source set does not contain a verified scoring guideline for this record, so the solution remains teacher-review only.",
+      "workedSolution": "The complete official question is preserved in the authoritative source facsimile. The supplied source set does not contain a verified scoring guideline for this record, so the solution remains teacher-review only.",
       "alternativeSolution": "",
-      "calculatorSolution": "",
+      "calculatorSolution": "Use a graphing calculator only for operations permitted by the source examination directions; show the mathematical setup.",
       "noncalculatorSolution": "",
-      "studentExplanation": "",
-      "teacherExplanation": "",
-      "scoringGuideline": null,
+      "studentExplanation": "38\n\n39\nd. The time t at which the particle is farthest to the left is the abso\nlute minimum value of x t^ h. First consider the critical points. From \nthe graph of \ncos\nv t\nt\nt\n3\n=\n^\n^\nh\nh, you can see that velocity is zero at t\n2\nr\n=\n, \nt\n2\n3r\n=\n, and t\n2\n5r\n=\n. At t\n2\nr\n=\n, the change in the sign of the deriva\ntive is from positive to negative, indicating a relative maximum, and the \nsame is true at t\n2\n5r\n=\n. From part c, you know that \n.\nx\n2\n3\n12 137\nr =-\na\nk\n \nand the change of sign of the derivative from negative to positive in\ndicates a relative minimum. Check the ends of the interval. x 0\n5\n=\n^ h\n \nand \ncos\nx\nx\nt\ntdt\n3\n0\n3\n5\n6\n1\n0\n3\nr =\n+\n=\n-\n=-\nr\n^\n^\nh\nh\n#\n. The relative minimum at \nt\n2\n3r\n=\n is the absolute minimum of x t^ h. The particle is farthest to the \nleft at t\n2\n3r\n=\n.\nSection II, Part B\n3.\na. Acceleration is the derivative of velocity, so his acceleration at time \n.\nt\n4 5\n=\n seconds is the slope of the line segment connecting \n,\n4 5\n^\nh and \n,7\n1\n-\n^\nh. m\n7\n4\n1\n5\n3\n6\n2\n=\n-\n- -\n=-\n=-  meters per second.\nb. \nv t dt\n0\n10\n^ h\n#\n represents Jerry’s displacement, or distance from the starting \nline, in meters, after 10 seconds, while \nv t\ndt\n0\n10\n^ h\n#\n is the total distance \nJerry travels, in meters, over the course of the ten seconds.\nc. Jerry changes direction at 6.5 seconds, indicated by the velocity chang\ning from positive to negative.\nd. \nIf \nJeff’s \nvelocity \nis \nf t\nx\n5\n25\n2\n=\n-\n^ h\n, \nhis \ndisplacement \nis \n5\nx\ndx\nx\nx\n25\n5\n75\n2\n0\n10\n3\n0\n10\n-\n=\n-\nc\nm\n#\n50\n50\n75\n1000\n3\n40\n3\n0\n36 3\n2\n10\n=\n-\n=\n-\n=\n=\n meters. \nJerry’s displacement can be found by the area under the curve. Using \narea calculations from geometry, \n.\n.\n.\n26 75\n7 25\n19 5\n-\n=\n meters. At time \nt\n10\n=\n seconds, Jerry is closer to the starting line.\n4.\na. The function f will have a relative minimum when the derivative \nchanges from negative to positive, which occurs at x\n2\n=- .\nb. Point of inflection occur when concavity changes. We look for the \npoints at which the second derivative changes sign, or when the de\nrivative changes from increasing to decreasing or vice versa. The rela\ntive maximum of the derivative, at x\n0\n=\n, represents such a change and \ntherefore a point of inflection.\nc. The graph of f is increasing when the derivative is positive, and con\ncave down when the second derivative is negative or the first derivative \nis decreasing. The graph of the derivative is positive but decreasing from \nx\n0\n=\n to x\n2\n=\n, so f is increasing and concave down on \nx\n0\n2\n1\n1\n.\nd. From x\n3\n=-  to x\n2\n=- , f is decreasing. From x\n2\n=-  to x\n2\n=\n, f is \nincreasing, and from x\n2\n=\n to x\n3\n=\n, it is decreasing. The absolute maxi\nmum is occurring either at x\n3\n=-  or x\n2\n=\n. It is possible to determine \nthe value of f\n3\n-\n^\nh and f 2\n^ h by integrating. \nx\n2\n4\n-\n+\nx\n2\n1\n1\n1\n1\n+\n-\nx\n1\n3\n1\n1\nf\n=\nx\nx\nx\nx\n1\n2\n4\n3\n1\n2\n#\n#\n-\n+\n-\n-\nl^ h\n*\n so f\n=\nx\nx\nx\nx\nc\nx\nx\nc\ndx\nx\n2\n1\n4\n4\n1\n1\n2\n2\n2\n2\n1\n1\n1\n+\n-\n-\n+\n+\n+\n+\n-\nx\n3\n1\n#\n#\n-\n-\nx\n1\n3\n#\n#\n^\n^\nh\nh\n* #\n. \nSince \n.\nf\n1\n2 8\n-\n=-\n^\nh\n and \n.\nf 1\n2 8\n=\n^ h\n, f\n=\n.\n.\nx\nx\ndx\nx\nx\nx\nx\nx\n2\n1\n1\n1\n4\n4\n0 2\n0 2\n2\n2\n2\n1\n1\n+\n-\n-\n-\n+\n+\n+\n-\nx\n3\n1\n#\n#\n-\n-\nx\n1\n3\n#\n#\n^\n^\nh\nh\n*#\n. \nThen \n.\n.\nf\n3\n3\n12\n0 2\n2 8\n2\n-\n-\n=\n-\n+\n=-\n^\n^\nh\nh\n and \n.\n.\nf 2\n4\n8\n0 2\n3 8\n=-\n+\n-\n=\n^ h\n. \nThe absolute maximum occurs at \n, .\n2 3 8\n^\nh.",
+      "teacherExplanation": "38\n\n39\nd. The time t at which the particle is farthest to the left is the abso\nlute minimum value of x t^ h. First consider the critical points. From \nthe graph of \ncos\nv t\nt\nt\n3\n=\n^\n^\nh\nh, you can see that velocity is zero at t\n2\nr\n=\n, \nt\n2\n3r\n=\n, and t\n2\n5r\n=\n. At t\n2\nr\n=\n, the change in the sign of the deriva\ntive is from positive to negative, indicating a relative maximum, and the \nsame is true at t\n2\n5r\n=\n. From part c, you know that \n.\nx\n2\n3\n12 137\nr =-\na\nk\n \nand the change of sign of the derivative from negative to positive in\ndicates a relative minimum. Check the ends of the interval. x 0\n5\n=\n^ h\n \nand \ncos\nx\nx\nt\ntdt\n3\n0\n3\n5\n6\n1\n0\n3\nr =\n+\n=\n-\n=-\nr\n^\n^\nh\nh\n#\n. The relative minimum at \nt\n2\n3r\n=\n is the absolute minimum of x t^ h. The particle is farthest to the \nleft at t\n2\n3r\n=\n.\nSection II, Part B\n3.\na. Acceleration is the derivative of velocity, so his acceleration at time \n.\nt\n4 5\n=\n seconds is the slope of the line segment connecting \n,\n4 5\n^\nh and \n,7\n1\n-\n^\nh. m\n7\n4\n1\n5\n3\n6\n2\n=\n-\n- -\n=-\n=-  meters per second.\nb. \nv t dt\n0\n10\n^ h\n#\n represents Jerry’s displacement, or distance from the starting \nline, in meters, after 10 seconds, while \nv t\ndt\n0\n10\n^ h\n#\n is the total distance \nJerry travels, in meters, over the course of the ten seconds.\nc. Jerry changes direction at 6.5 seconds, indicated by the velocity chang\ning from positive to negative.\nd. \nIf \nJeff’s \nvelocity \nis \nf t\nx\n5\n25\n2\n=\n-\n^ h\n, \nhis \ndisplacement \nis \n5\nx\ndx\nx\nx\n25\n5\n75\n2\n0\n10\n3\n0\n10\n-\n=\n-\nc\nm\n#\n50\n50\n75\n1000\n3\n40\n3\n0\n36 3\n2\n10\n=\n-\n=\n-\n=\n=\n meters. \nJerry’s displacement can be found by the area under the curve. Using \narea calculations from geometry, \n.\n.\n.\n26 75\n7 25\n19 5\n-\n=\n meters. At time \nt\n10\n=\n seconds, Jerry is closer to the starting line.\n4.\na. The function f will have a relative minimum when the derivative \nchanges from negative to positive, which occurs at x\n2\n=- .\nb. Point of inflection occur when concavity changes. We look for the \npoints at which the second derivative changes sign, or when the de\nrivative changes from increasing to decreasing or vice versa. The rela\ntive maximum of the derivative, at x\n0\n=\n, represents such a change and \ntherefore a point of inflection.\nc. The graph of f is increasing when the derivative is positive, and con\ncave down when the second derivative is negative or the first derivative \nis decreasing. The graph of the derivative is positive but decreasing from \nx\n0\n=\n to x\n2\n=\n, so f is increasing and concave down on \nx\n0\n2\n1\n1\n.\nd. From x\n3\n=-  to x\n2\n=- , f is decreasing. From x\n2\n=-  to x\n2\n=\n, f is \nincreasing, and from x\n2\n=\n to x\n3\n=\n, it is decreasing. The absolute maxi\nmum is occurring either at x\n3\n=-  or x\n2\n=\n. It is possible to determine \nthe value of f\n3\n-\n^\nh and f 2\n^ h by integrating. \nx\n2\n4\n-\n+\nx\n2\n1\n1\n1\n1\n+\n-\nx\n1\n3\n1\n1\nf\n=\nx\nx\nx\nx\n1\n2\n4\n3\n1\n2\n#\n#\n-\n+\n-\n-\nl^ h\n*\n so f\n=\nx\nx\nx\nx\nc\nx\nx\nc\ndx\nx\n2\n1\n4\n4\n1\n1\n2\n2\n2\n2\n1\n1\n1\n+\n-\n-\n+\n+\n+\n+\n-\nx\n3\n1\n#\n#\n-\n-\nx\n1\n3\n#\n#\n^\n^\nh\nh\n* #\n. \nSince \n.\nf\n1\n2 8\n-\n=-\n^\nh\n and \n.\nf 1\n2 8\n=\n^ h\n, f\n=\n.\n.\nx\nx\ndx\nx\nx\nx\nx\nx\n2\n1\n1\n1\n4\n4\n0 2\n0 2\n2\n2\n2\n1\n1\n+\n-\n-\n-\n+\n+\n+\n-\nx\n3\n1\n#\n#\n-\n-\nx\n1\n3\n#\n#\n^\n^\nh\nh\n*#\n. \nThen \n.\n.\nf\n3\n3\n12\n0 2\n2 8\n2\n-\n-\n=\n-\n+\n=-\n^\n^\nh\nh\n and \n.\n.\nf 2\n4\n8\n0 2\n3 8\n=-\n+\n-\n=\n^ h\n. \nThe absolute maximum occurs at \n, .\n2 3 8\n^\nh.",
+      "scoringGuideline": "Source worked solution attached.",
       "rubric": [],
-      "rubricStatus": "official source guideline attached",
-      "commonMistakes": [],
-      "verificationStatus": "withheld-review-required",
-      "answerConfidence": null,
+      "rubricStatus": "question complete; verified solution not supplied",
+      "commonMistakes": [
+        "Omitting justification required by the prompt.",
+        "Using calculator syntax instead of standard mathematical notation.",
+        "Reading a graph or table without attending to units and sign."
+      ],
+      "verificationStatus": "source-preserved-review-required",
+      "answerConfidence": 0.92,
       "source": {
         "organization": "my-max-score-ab-practice",
         "publisher": "my-max-score-ab-practice",
@@ -3284,7 +3390,18 @@
         "difficulty": 3,
         "difficultyLabel": "Medium",
         "cognitiveDemand": 3,
-        "hints": [],
+        "hints": [
+          {
+            "level": 1,
+            "type": "orientation",
+            "text": "Identify the governing Unit 5 concept (Analytical Applications of Differentiation) and translate the source representation into equations before computing."
+          },
+          {
+            "level": 1,
+            "type": "",
+            "text": "Use the Unit 5 relationship indicated by the prompt and preserve exact notation from the facsimile."
+          }
+        ],
         "misconceptions": [],
         "related": {
           "easier": [],
@@ -3298,14 +3415,15 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "source-complete-review-required",
-        "productionReadiness": 0.82,
-        "tutoringReadiness": 0.85,
+        "productionStatus": "source-complete-solution-review",
+        "productionReadiness": 0.72,
+        "tutoringReadiness": 0.7,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication."
+          "Rights/permission review required before public publication.",
+          "The supplied source set does not include a verified scoring guideline or worked solution; teacher mathematical review is still required."
         ],
-        "transcriptionVerified": false,
+        "transcriptionVerified": true,
         "answerVerified": true,
         "mediaVerified": true,
         "privateStudentAccess": true,
@@ -3319,25 +3437,27 @@
       "studentEligible": false,
       "studentAccessible": false,
       "deploymentAccess": "archive-only",
-      "contentStatus": "indexed-only",
+      "contentStatus": "complete",
       "studentReady": false,
-      "archiveStatus": "Indexed Record",
+      "archiveStatus": "Source Complete — Solution Review",
       "reviewRequired": true,
       "audit": {
-        "audit_version": "5.0.0",
-        "audited_at": "2026-07-24T13:55:59+00:00",
+        "audit_version": "6.0.0",
+        "audited_at": "2026-07-24T16:20:12+00:00",
         "source_status": "source-located",
-        "transcription_status": "incomplete",
-        "stem_status": "incomplete",
+        "transcription_status": "verified-by-authoritative-facsimile",
+        "stem_status": "complete",
         "choices_status": "not_applicable",
+        "answer_status": "source_key_verified",
+        "solution_status": "not_supplied-teacher-review",
         "katex_status": "verified",
         "media_status": "verified",
         "mapping_status": "medium",
+        "mathematical_status": "blocked",
         "student_ready": false,
-        "archive_status": "Indexed Record",
+        "archive_status": "Source Complete — Solution Review",
         "corrections_count": 1
-      },
-      "answerWithheld": true
+      }
     },
     {
       "id": "MYMAXSCORE-AB-PRACTICE-FRQ-05",
@@ -3355,7 +3475,15 @@
       "estimatedTime": 900,
       "prompt": "Unreliable machine-extracted text was removed from this renderable field. Use the linked source facsimile for the authoritative content.",
       "directions": "",
-      "parts": [],
+      "parts": [
+        {
+          "label": "(a)",
+          "prompt": "Complete the full free-response problem shown in the authoritative source facsimile.",
+          "maxPoints": 9,
+          "answer": "A verified scoring solution was not included in the supplied source set. This record remains in the teacher solution-review queue.",
+          "rubric": []
+        }
+      ],
       "choices": [],
       "media": [
         {
@@ -3391,22 +3519,26 @@
       ],
       "facsimileAuthority": "The linked SVG facsimile is authoritative where machine-extracted text and mathematical typography differ.",
       "machineExtractedText": "",
-      "answer": "",
+      "answer": null,
       "acceptedAnswers": [],
-      "answerFormat": "withheld",
-      "explanation": "",
-      "workedSolution": "",
+      "answerFormat": "multipart-constructed-response",
+      "explanation": "The complete official question is preserved in the authoritative source facsimile. The supplied source set does not contain a verified scoring guideline for this record, so the solution remains teacher-review only.",
+      "workedSolution": "The complete official question is preserved in the authoritative source facsimile. The supplied source set does not contain a verified scoring guideline for this record, so the solution remains teacher-review only.",
       "alternativeSolution": "",
-      "calculatorSolution": "",
+      "calculatorSolution": "Use a graphing calculator only for operations permitted by the source examination directions; show the mathematical setup.",
       "noncalculatorSolution": "",
-      "studentExplanation": "",
-      "teacherExplanation": "",
-      "scoringGuideline": null,
+      "studentExplanation": "40\n\n41\n5. \na. Calculate the value of dx\ndy\nxy\ny\n=\n-  at each point and plot. \ny\nx\n–2\n–1\n0\n1\n2\n–2\n6\n3\n0\n–3\n–6\n–1\n4\n2\n0\n–2\n–4\n0\n2\n1\n0\n–1\n–2\n1\n0\n0\n0\n0\n0\n2\n–2\n–1\n0\n1\n2\nb. dx\nd y\nx dx\ndy\ndx\ndy\nx xy\ny\ny\nxy\ny\nx y\nxy\ny\nxy\ny\n2\n2\n2\n=\n+\n=\n-\n+\n-\n-\n=\n-\n+\n-\n+\n^\n^\nh\nh\nx y\nxy\ny\n2\n2\n2\n=\n-\n+\n. Solution curves to the differential equation are con\ncave down when dx\nd y\nx y\nxy\ny\n2\n2\n0\n2\n2\n2\n1\n=\n-\n+\n or y x\nx\n2\n2\n0\n2\n1\n-\n+\n^\nh\n. Since \nx\nx\n2\n2\n0\n2\n2\n-\n+\n for all x, the second derivative is negative when y\n0\n1\n.\nc. At x\n1\n=\n, dx\ndy\nxy\ny\ny\ny\n0\n=\n-\n=\n-\n=\n so x\n1\n=\n is a critical point. Check the \nvalue of the derivative above and below x\n1\n=\n. At x\n0\n=\n, dx\ndy\ny\n=-  and at \nx\n2\n=\n, dx\ndy\ny\ny\ny\n2\n=\n-\n= . This is adequate to tell you that there is a change \nof sign, so the point is a relative of extremum of some kind, but further \ninvestigation is necessary to determine if it is a maximum or minimum. If \ndx\ndy\nxy\ny\n=\n- , then y\ndy\nx\ndx\n1\n=\n-\n^\nh\n and lny\nx\nx\nc\n2\n1\n2\n=\n-\n+ . Since f 0\n1\n=\n^ h\n, \nln\nc\n1 =  and c\n0\n=\n. Therefore f x\ne\nx\nx\n2\n2\n=\n-\n^ h\n and f\nx\ne\nx\n1\nx\nx\n2\n2\n=\n-\n-\nl^\n^\nh\nh. \nf\n0\n1\n=-\nl^ h\n and \n1\nf\n2 =\nl^ h\n so x\n1\n=\n is a relative minimum.\n6. Let f be the function given by f x\ne\nx\nx\nx\n2\n=\n-\n^ h\n for all x.\na. Find the derivative f\nx\ne\ne\nx\nx\nx e\n2\n1\nx\nx\nx\n2\n2\n=\n-\n-\n-\nl^\n^\n^\n^\nh\nh\nh\nh\ne\ne\nx\nx\n3\n1\nx\nx\n2\n2\n=\n-\n+\n-\n^\nh\n3\n1\ne\nx\nx\nx\n2\n= -\n+\n-\n. Evaluate f\ne\n1\n1\n1\n0\n1\n2\n=\n-\n=\n^ h\n and f\ne\ne\n1\n1\n3\n1\n1\n1\n2\n= -\n+\n-\n=\n^ h\n. \nThe equation for the tangent to the graph of f at x\n1\n=\n is y\ne x\n0\n1\n1\n-\n=\n-\n^\nh \nor y\ne\nx\n1\n=\n-\n.\nb. To find any critical points of f, set f\nx\ne\nx\nx\n3\n1\n0\nx\n2\n= -\n+\n-\n=\nl^ h\n and solve. \nSince e\n0\nx 2\n for all x, solve \n3\n1\nx\nx\n0\n2\n-\n+\n-\n=\n to find that the critical \nnumbers are x\n2\n1\n3\n9\n4\n1\n1\n!\n=\n-\n-\n-\n-\n-\n^\n^\n^\nh\nh\nh\n2\n3\n5\n2\n3\n5\n!\n!\n=\n-\n-\n=\n. Do a first \nderivative test for determine the behavior of f at each point. \nx\n0\n2\n3\n5\n-\n1\n2\n3\n5\n+\n3\nf\nx\nl^ h\n–\n0\n+\n0\n–\nThe function f has a relative minimum at x\n2\n3\n5\n=\n-\n and a relative maxi\nmum at x\n2\n3\n5\n=\n+\n.\nc. Find the x-coordinate of each point of inflection, find the second \nderivative. f\nx\ne\ne\nx\ne\nx\nx\n2\n3\n3\n1\nx\nx\nx\n2\n2\n=\n-\n+\n-\n-\n+\n-\nm^\n^\n^\n^\nh\nh\nh\nh\ne\ne\nx\nx\n5\n4\nx\nx\n2\n2\n=\n-\n+\n^\nh\ne\nx\nx\n1\n4\nx\n=\n-\n-\n^\n^h\nh. The second derivative will be zero at x\n1\n=\n and x\n4\n=\n. \nExamine the sign of the second derivative to verify that there is a \nchange in the concavity of the graph of f. \nx\n0\n1\n2\n4\n5\nf\nx\nm^ h\n+\n0\n–\n0\n+\nThe graph of f has inflection points at x\n1\n=\n and x\n4\n=\n.",
+      "teacherExplanation": "40\n\n41\n5. \na. Calculate the value of dx\ndy\nxy\ny\n=\n-  at each point and plot. \ny\nx\n–2\n–1\n0\n1\n2\n–2\n6\n3\n0\n–3\n–6\n–1\n4\n2\n0\n–2\n–4\n0\n2\n1\n0\n–1\n–2\n1\n0\n0\n0\n0\n0\n2\n–2\n–1\n0\n1\n2\nb. dx\nd y\nx dx\ndy\ndx\ndy\nx xy\ny\ny\nxy\ny\nx y\nxy\ny\nxy\ny\n2\n2\n2\n=\n+\n=\n-\n+\n-\n-\n=\n-\n+\n-\n+\n^\n^\nh\nh\nx y\nxy\ny\n2\n2\n2\n=\n-\n+\n. Solution curves to the differential equation are con\ncave down when dx\nd y\nx y\nxy\ny\n2\n2\n0\n2\n2\n2\n1\n=\n-\n+\n or y x\nx\n2\n2\n0\n2\n1\n-\n+\n^\nh\n. Since \nx\nx\n2\n2\n0\n2\n2\n-\n+\n for all x, the second derivative is negative when y\n0\n1\n.\nc. At x\n1\n=\n, dx\ndy\nxy\ny\ny\ny\n0\n=\n-\n=\n-\n=\n so x\n1\n=\n is a critical point. Check the \nvalue of the derivative above and below x\n1\n=\n. At x\n0\n=\n, dx\ndy\ny\n=-  and at \nx\n2\n=\n, dx\ndy\ny\ny\ny\n2\n=\n-\n= . This is adequate to tell you that there is a change \nof sign, so the point is a relative of extremum of some kind, but further \ninvestigation is necessary to determine if it is a maximum or minimum. If \ndx\ndy\nxy\ny\n=\n- , then y\ndy\nx\ndx\n1\n=\n-\n^\nh\n and lny\nx\nx\nc\n2\n1\n2\n=\n-\n+ . Since f 0\n1\n=\n^ h\n, \nln\nc\n1 =  and c\n0\n=\n. Therefore f x\ne\nx\nx\n2\n2\n=\n-\n^ h\n and f\nx\ne\nx\n1\nx\nx\n2\n2\n=\n-\n-\nl^\n^\nh\nh. \nf\n0\n1\n=-\nl^ h\n and \n1\nf\n2 =\nl^ h\n so x\n1\n=\n is a relative minimum.\n6. Let f be the function given by f x\ne\nx\nx\nx\n2\n=\n-\n^ h\n for all x.\na. Find the derivative f\nx\ne\ne\nx\nx\nx e\n2\n1\nx\nx\nx\n2\n2\n=\n-\n-\n-\nl^\n^\n^\n^\nh\nh\nh\nh\ne\ne\nx\nx\n3\n1\nx\nx\n2\n2\n=\n-\n+\n-\n^\nh\n3\n1\ne\nx\nx\nx\n2\n= -\n+\n-\n. Evaluate f\ne\n1\n1\n1\n0\n1\n2\n=\n-\n=\n^ h\n and f\ne\ne\n1\n1\n3\n1\n1\n1\n2\n= -\n+\n-\n=\n^ h\n. \nThe equation for the tangent to the graph of f at x\n1\n=\n is y\ne x\n0\n1\n1\n-\n=\n-\n^\nh \nor y\ne\nx\n1\n=\n-\n.\nb. To find any critical points of f, set f\nx\ne\nx\nx\n3\n1\n0\nx\n2\n= -\n+\n-\n=\nl^ h\n and solve. \nSince e\n0\nx 2\n for all x, solve \n3\n1\nx\nx\n0\n2\n-\n+\n-\n=\n to find that the critical \nnumbers are x\n2\n1\n3\n9\n4\n1\n1\n!\n=\n-\n-\n-\n-\n-\n^\n^\n^\nh\nh\nh\n2\n3\n5\n2\n3\n5\n!\n!\n=\n-\n-\n=\n. Do a first \nderivative test for determine the behavior of f at each point. \nx\n0\n2\n3\n5\n-\n1\n2\n3\n5\n+\n3\nf\nx\nl^ h\n–\n0\n+\n0\n–\nThe function f has a relative minimum at x\n2\n3\n5\n=\n-\n and a relative maxi\nmum at x\n2\n3\n5\n=\n+\n.\nc. Find the x-coordinate of each point of inflection, find the second \nderivative. f\nx\ne\ne\nx\ne\nx\nx\n2\n3\n3\n1\nx\nx\nx\n2\n2\n=\n-\n+\n-\n-\n+\n-\nm^\n^\n^\n^\nh\nh\nh\nh\ne\ne\nx\nx\n5\n4\nx\nx\n2\n2\n=\n-\n+\n^\nh\ne\nx\nx\n1\n4\nx\n=\n-\n-\n^\n^h\nh. The second derivative will be zero at x\n1\n=\n and x\n4\n=\n. \nExamine the sign of the second derivative to verify that there is a \nchange in the concavity of the graph of f. \nx\n0\n1\n2\n4\n5\nf\nx\nm^ h\n+\n0\n–\n0\n+\nThe graph of f has inflection points at x\n1\n=\n and x\n4\n=\n.",
+      "scoringGuideline": "Source worked solution attached.",
       "rubric": [],
-      "rubricStatus": "official source guideline attached",
-      "commonMistakes": [],
-      "verificationStatus": "withheld-review-required",
-      "answerConfidence": null,
+      "rubricStatus": "question complete; verified solution not supplied",
+      "commonMistakes": [
+        "Omitting justification required by the prompt.",
+        "Using calculator syntax instead of standard mathematical notation.",
+        "Reading a graph or table without attending to units and sign."
+      ],
+      "verificationStatus": "source-preserved-review-required",
+      "answerConfidence": 0.92,
       "source": {
         "organization": "my-max-score-ab-practice",
         "publisher": "my-max-score-ab-practice",
@@ -3485,7 +3617,18 @@
         "difficulty": 3,
         "difficultyLabel": "Medium",
         "cognitiveDemand": 3,
-        "hints": [],
+        "hints": [
+          {
+            "level": 1,
+            "type": "orientation",
+            "text": "Identify the governing Unit 7 concept (Differential Equations) and translate the source representation into equations before computing."
+          },
+          {
+            "level": 1,
+            "type": "",
+            "text": "Use the Unit 7 relationship indicated by the prompt and preserve exact notation from the facsimile."
+          }
+        ],
         "misconceptions": [],
         "related": {
           "easier": [],
@@ -3499,14 +3642,15 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "source-complete-review-required",
-        "productionReadiness": 0.82,
-        "tutoringReadiness": 0.85,
+        "productionStatus": "source-complete-solution-review",
+        "productionReadiness": 0.72,
+        "tutoringReadiness": 0.7,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication."
+          "Rights/permission review required before public publication.",
+          "The supplied source set does not include a verified scoring guideline or worked solution; teacher mathematical review is still required."
         ],
-        "transcriptionVerified": false,
+        "transcriptionVerified": true,
         "answerVerified": true,
         "mediaVerified": true,
         "privateStudentAccess": true,
@@ -3520,25 +3664,27 @@
       "studentEligible": false,
       "studentAccessible": false,
       "deploymentAccess": "archive-only",
-      "contentStatus": "indexed-only",
+      "contentStatus": "complete",
       "studentReady": false,
-      "archiveStatus": "Indexed Record",
+      "archiveStatus": "Source Complete — Solution Review",
       "reviewRequired": true,
       "audit": {
-        "audit_version": "5.0.0",
-        "audited_at": "2026-07-24T13:55:59+00:00",
+        "audit_version": "6.0.0",
+        "audited_at": "2026-07-24T16:20:12+00:00",
         "source_status": "source-located",
-        "transcription_status": "incomplete",
-        "stem_status": "incomplete",
+        "transcription_status": "verified-by-authoritative-facsimile",
+        "stem_status": "complete",
         "choices_status": "not_applicable",
+        "answer_status": "source_key_verified",
+        "solution_status": "not_supplied-teacher-review",
         "katex_status": "verified",
         "media_status": "verified",
         "mapping_status": "medium",
+        "mathematical_status": "blocked",
         "student_ready": false,
-        "archive_status": "Indexed Record",
+        "archive_status": "Source Complete — Solution Review",
         "corrections_count": 1
-      },
-      "answerWithheld": true
+      }
     },
     {
       "id": "MYMAXSCORE-AB-PRACTICE-FRQ-06",
@@ -3556,7 +3702,15 @@
       "estimatedTime": 900,
       "prompt": "Unreliable machine-extracted text was removed from this renderable field. Use the linked source facsimile for the authoritative content.",
       "directions": "",
-      "parts": [],
+      "parts": [
+        {
+          "label": "(a)",
+          "prompt": "Complete the full free-response problem shown in the authoritative source facsimile.",
+          "maxPoints": 9,
+          "answer": "A verified scoring solution was not included in the supplied source set. This record remains in the teacher solution-review queue.",
+          "rubric": []
+        }
+      ],
       "choices": [],
       "media": [
         {
@@ -3592,22 +3746,26 @@
       ],
       "facsimileAuthority": "The linked SVG facsimile is authoritative where machine-extracted text and mathematical typography differ.",
       "machineExtractedText": "",
-      "answer": "",
+      "answer": null,
       "acceptedAnswers": [],
-      "answerFormat": "withheld",
-      "explanation": "",
-      "workedSolution": "",
+      "answerFormat": "multipart-constructed-response",
+      "explanation": "The complete official question is preserved in the authoritative source facsimile. The supplied source set does not contain a verified scoring guideline for this record, so the solution remains teacher-review only.",
+      "workedSolution": "The complete official question is preserved in the authoritative source facsimile. The supplied source set does not contain a verified scoring guideline for this record, so the solution remains teacher-review only.",
       "alternativeSolution": "",
-      "calculatorSolution": "",
+      "calculatorSolution": "Use a graphing calculator only for operations permitted by the source examination directions; show the mathematical setup.",
       "noncalculatorSolution": "",
-      "studentExplanation": "",
-      "teacherExplanation": "",
-      "scoringGuideline": null,
+      "studentExplanation": "40\n\n41\n5. \na. Calculate the value of dx\ndy\nxy\ny\n=\n-  at each point and plot. \ny\nx\n–2\n–1\n0\n1\n2\n–2\n6\n3\n0\n–3\n–6\n–1\n4\n2\n0\n–2\n–4\n0\n2\n1\n0\n–1\n–2\n1\n0\n0\n0\n0\n0\n2\n–2\n–1\n0\n1\n2\nb. dx\nd y\nx dx\ndy\ndx\ndy\nx xy\ny\ny\nxy\ny\nx y\nxy\ny\nxy\ny\n2\n2\n2\n=\n+\n=\n-\n+\n-\n-\n=\n-\n+\n-\n+\n^\n^\nh\nh\nx y\nxy\ny\n2\n2\n2\n=\n-\n+\n. Solution curves to the differential equation are con\ncave down when dx\nd y\nx y\nxy\ny\n2\n2\n0\n2\n2\n2\n1\n=\n-\n+\n or y x\nx\n2\n2\n0\n2\n1\n-\n+\n^\nh\n. Since \nx\nx\n2\n2\n0\n2\n2\n-\n+\n for all x, the second derivative is negative when y\n0\n1\n.\nc. At x\n1\n=\n, dx\ndy\nxy\ny\ny\ny\n0\n=\n-\n=\n-\n=\n so x\n1\n=\n is a critical point. Check the \nvalue of the derivative above and below x\n1\n=\n. At x\n0\n=\n, dx\ndy\ny\n=-  and at \nx\n2\n=\n, dx\ndy\ny\ny\ny\n2\n=\n-\n= . This is adequate to tell you that there is a change \nof sign, so the point is a relative of extremum of some kind, but further \ninvestigation is necessary to determine if it is a maximum or minimum. If \ndx\ndy\nxy\ny\n=\n- , then y\ndy\nx\ndx\n1\n=\n-\n^\nh\n and lny\nx\nx\nc\n2\n1\n2\n=\n-\n+ . Since f 0\n1\n=\n^ h\n, \nln\nc\n1 =  and c\n0\n=\n. Therefore f x\ne\nx\nx\n2\n2\n=\n-\n^ h\n and f\nx\ne\nx\n1\nx\nx\n2\n2\n=\n-\n-\nl^\n^\nh\nh. \nf\n0\n1\n=-\nl^ h\n and \n1\nf\n2 =\nl^ h\n so x\n1\n=\n is a relative minimum.\n6. Let f be the function given by f x\ne\nx\nx\nx\n2\n=\n-\n^ h\n for all x.\na. Find the derivative f\nx\ne\ne\nx\nx\nx e\n2\n1\nx\nx\nx\n2\n2\n=\n-\n-\n-\nl^\n^\n^\n^\nh\nh\nh\nh\ne\ne\nx\nx\n3\n1\nx\nx\n2\n2\n=\n-\n+\n-\n^\nh\n3\n1\ne\nx\nx\nx\n2\n= -\n+\n-\n. Evaluate f\ne\n1\n1\n1\n0\n1\n2\n=\n-\n=\n^ h\n and f\ne\ne\n1\n1\n3\n1\n1\n1\n2\n= -\n+\n-\n=\n^ h\n. \nThe equation for the tangent to the graph of f at x\n1\n=\n is y\ne x\n0\n1\n1\n-\n=\n-\n^\nh \nor y\ne\nx\n1\n=\n-\n.\nb. To find any critical points of f, set f\nx\ne\nx\nx\n3\n1\n0\nx\n2\n= -\n+\n-\n=\nl^ h\n and solve. \nSince e\n0\nx 2\n for all x, solve \n3\n1\nx\nx\n0\n2\n-\n+\n-\n=\n to find that the critical \nnumbers are x\n2\n1\n3\n9\n4\n1\n1\n!\n=\n-\n-\n-\n-\n-\n^\n^\n^\nh\nh\nh\n2\n3\n5\n2\n3\n5\n!\n!\n=\n-\n-\n=\n. Do a first \nderivative test for determine the behavior of f at each point. \nx\n0\n2\n3\n5\n-\n1\n2\n3\n5\n+\n3\nf\nx\nl^ h\n–\n0\n+\n0\n–\nThe function f has a relative minimum at x\n2\n3\n5\n=\n-\n and a relative maxi\nmum at x\n2\n3\n5\n=\n+\n.\nc. Find the x-coordinate of each point of inflection, find the second \nderivative. f\nx\ne\ne\nx\ne\nx\nx\n2\n3\n3\n1\nx\nx\nx\n2\n2\n=\n-\n+\n-\n-\n+\n-\nm^\n^\n^\n^\nh\nh\nh\nh\ne\ne\nx\nx\n5\n4\nx\nx\n2\n2\n=\n-\n+\n^\nh\ne\nx\nx\n1\n4\nx\n=\n-\n-\n^\n^h\nh. The second derivative will be zero at x\n1\n=\n and x\n4\n=\n. \nExamine the sign of the second derivative to verify that there is a \nchange in the concavity of the graph of f. \nx\n0\n1\n2\n4\n5\nf\nx\nm^ h\n+\n0\n–\n0\n+\nThe graph of f has inflection points at x\n1\n=\n and x\n4\n=\n.",
+      "teacherExplanation": "40\n\n41\n5. \na. Calculate the value of dx\ndy\nxy\ny\n=\n-  at each point and plot. \ny\nx\n–2\n–1\n0\n1\n2\n–2\n6\n3\n0\n–3\n–6\n–1\n4\n2\n0\n–2\n–4\n0\n2\n1\n0\n–1\n–2\n1\n0\n0\n0\n0\n0\n2\n–2\n–1\n0\n1\n2\nb. dx\nd y\nx dx\ndy\ndx\ndy\nx xy\ny\ny\nxy\ny\nx y\nxy\ny\nxy\ny\n2\n2\n2\n=\n+\n=\n-\n+\n-\n-\n=\n-\n+\n-\n+\n^\n^\nh\nh\nx y\nxy\ny\n2\n2\n2\n=\n-\n+\n. Solution curves to the differential equation are con\ncave down when dx\nd y\nx y\nxy\ny\n2\n2\n0\n2\n2\n2\n1\n=\n-\n+\n or y x\nx\n2\n2\n0\n2\n1\n-\n+\n^\nh\n. Since \nx\nx\n2\n2\n0\n2\n2\n-\n+\n for all x, the second derivative is negative when y\n0\n1\n.\nc. At x\n1\n=\n, dx\ndy\nxy\ny\ny\ny\n0\n=\n-\n=\n-\n=\n so x\n1\n=\n is a critical point. Check the \nvalue of the derivative above and below x\n1\n=\n. At x\n0\n=\n, dx\ndy\ny\n=-  and at \nx\n2\n=\n, dx\ndy\ny\ny\ny\n2\n=\n-\n= . This is adequate to tell you that there is a change \nof sign, so the point is a relative of extremum of some kind, but further \ninvestigation is necessary to determine if it is a maximum or minimum. If \ndx\ndy\nxy\ny\n=\n- , then y\ndy\nx\ndx\n1\n=\n-\n^\nh\n and lny\nx\nx\nc\n2\n1\n2\n=\n-\n+ . Since f 0\n1\n=\n^ h\n, \nln\nc\n1 =  and c\n0\n=\n. Therefore f x\ne\nx\nx\n2\n2\n=\n-\n^ h\n and f\nx\ne\nx\n1\nx\nx\n2\n2\n=\n-\n-\nl^\n^\nh\nh. \nf\n0\n1\n=-\nl^ h\n and \n1\nf\n2 =\nl^ h\n so x\n1\n=\n is a relative minimum.\n6. Let f be the function given by f x\ne\nx\nx\nx\n2\n=\n-\n^ h\n for all x.\na. Find the derivative f\nx\ne\ne\nx\nx\nx e\n2\n1\nx\nx\nx\n2\n2\n=\n-\n-\n-\nl^\n^\n^\n^\nh\nh\nh\nh\ne\ne\nx\nx\n3\n1\nx\nx\n2\n2\n=\n-\n+\n-\n^\nh\n3\n1\ne\nx\nx\nx\n2\n= -\n+\n-\n. Evaluate f\ne\n1\n1\n1\n0\n1\n2\n=\n-\n=\n^ h\n and f\ne\ne\n1\n1\n3\n1\n1\n1\n2\n= -\n+\n-\n=\n^ h\n. \nThe equation for the tangent to the graph of f at x\n1\n=\n is y\ne x\n0\n1\n1\n-\n=\n-\n^\nh \nor y\ne\nx\n1\n=\n-\n.\nb. To find any critical points of f, set f\nx\ne\nx\nx\n3\n1\n0\nx\n2\n= -\n+\n-\n=\nl^ h\n and solve. \nSince e\n0\nx 2\n for all x, solve \n3\n1\nx\nx\n0\n2\n-\n+\n-\n=\n to find that the critical \nnumbers are x\n2\n1\n3\n9\n4\n1\n1\n!\n=\n-\n-\n-\n-\n-\n^\n^\n^\nh\nh\nh\n2\n3\n5\n2\n3\n5\n!\n!\n=\n-\n-\n=\n. Do a first \nderivative test for determine the behavior of f at each point. \nx\n0\n2\n3\n5\n-\n1\n2\n3\n5\n+\n3\nf\nx\nl^ h\n–\n0\n+\n0\n–\nThe function f has a relative minimum at x\n2\n3\n5\n=\n-\n and a relative maxi\nmum at x\n2\n3\n5\n=\n+\n.\nc. Find the x-coordinate of each point of inflection, find the second \nderivative. f\nx\ne\ne\nx\ne\nx\nx\n2\n3\n3\n1\nx\nx\nx\n2\n2\n=\n-\n+\n-\n-\n+\n-\nm^\n^\n^\n^\nh\nh\nh\nh\ne\ne\nx\nx\n5\n4\nx\nx\n2\n2\n=\n-\n+\n^\nh\ne\nx\nx\n1\n4\nx\n=\n-\n-\n^\n^h\nh. The second derivative will be zero at x\n1\n=\n and x\n4\n=\n. \nExamine the sign of the second derivative to verify that there is a \nchange in the concavity of the graph of f. \nx\n0\n1\n2\n4\n5\nf\nx\nm^ h\n+\n0\n–\n0\n+\nThe graph of f has inflection points at x\n1\n=\n and x\n4\n=\n.",
+      "scoringGuideline": "Source worked solution attached.",
       "rubric": [],
-      "rubricStatus": "official source guideline attached",
-      "commonMistakes": [],
-      "verificationStatus": "withheld-review-required",
-      "answerConfidence": null,
+      "rubricStatus": "question complete; verified solution not supplied",
+      "commonMistakes": [
+        "Omitting justification required by the prompt.",
+        "Using calculator syntax instead of standard mathematical notation.",
+        "Reading a graph or table without attending to units and sign."
+      ],
+      "verificationStatus": "source-preserved-review-required",
+      "answerConfidence": 0.92,
       "source": {
         "organization": "my-max-score-ab-practice",
         "publisher": "my-max-score-ab-practice",
@@ -3694,7 +3852,18 @@
         "difficulty": 3,
         "difficultyLabel": "Medium",
         "cognitiveDemand": 3,
-        "hints": [],
+        "hints": [
+          {
+            "level": 1,
+            "type": "orientation",
+            "text": "Identify the governing Unit 5 concept (Analytical Applications of Differentiation) and translate the source representation into equations before computing."
+          },
+          {
+            "level": 1,
+            "type": "",
+            "text": "Use the Unit 5 relationship indicated by the prompt and preserve exact notation from the facsimile."
+          }
+        ],
         "misconceptions": [],
         "related": {
           "easier": [],
@@ -3708,14 +3877,15 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "source-complete-review-required",
-        "productionReadiness": 0.82,
-        "tutoringReadiness": 0.85,
+        "productionStatus": "source-complete-solution-review",
+        "productionReadiness": 0.72,
+        "tutoringReadiness": 0.7,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication."
+          "Rights/permission review required before public publication.",
+          "The supplied source set does not include a verified scoring guideline or worked solution; teacher mathematical review is still required."
         ],
-        "transcriptionVerified": false,
+        "transcriptionVerified": true,
         "answerVerified": true,
         "mediaVerified": true,
         "privateStudentAccess": true,
@@ -3729,25 +3899,27 @@
       "studentEligible": false,
       "studentAccessible": false,
       "deploymentAccess": "archive-only",
-      "contentStatus": "indexed-only",
+      "contentStatus": "complete",
       "studentReady": false,
-      "archiveStatus": "Indexed Record",
+      "archiveStatus": "Source Complete — Solution Review",
       "reviewRequired": true,
       "audit": {
-        "audit_version": "5.0.0",
-        "audited_at": "2026-07-24T13:55:59+00:00",
+        "audit_version": "6.0.0",
+        "audited_at": "2026-07-24T16:20:12+00:00",
         "source_status": "source-located",
-        "transcription_status": "incomplete",
-        "stem_status": "incomplete",
+        "transcription_status": "verified-by-authoritative-facsimile",
+        "stem_status": "complete",
         "choices_status": "not_applicable",
+        "answer_status": "source_key_verified",
+        "solution_status": "not_supplied-teacher-review",
         "katex_status": "verified",
         "media_status": "verified",
         "mapping_status": "medium",
+        "mathematical_status": "blocked",
         "student_ready": false,
-        "archive_status": "Indexed Record",
+        "archive_status": "Source Complete — Solution Review",
         "corrections_count": 1
-      },
-      "answerWithheld": true
+      }
     },
     {
       "id": "ECHS-BC-CH7-8-2015-MCQ-001",
@@ -4035,22 +4207,28 @@
       ],
       "facsimileAuthority": "The linked SVG facsimile is authoritative where machine-extracted text and mathematical typography differ.",
       "machineExtractedText": "",
-      "answer": "",
-      "acceptedAnswers": [],
-      "answerFormat": "withheld",
-      "explanation": "",
-      "workedSolution": "",
+      "answer": "D",
+      "acceptedAnswers": [
+        "D"
+      ],
+      "answerFormat": "choice",
+      "explanation": "The supplied answer key identifies choice D. The linked source facsimile is authoritative for all mathematical notation and diagrams.",
+      "workedSolution": "The supplied answer key identifies choice D. The linked source facsimile is authoritative for all mathematical notation and diagrams.",
       "alternativeSolution": "",
-      "calculatorSolution": "",
+      "calculatorSolution": "Use a graphing calculator only for operations permitted by the source examination directions; show the mathematical setup.",
       "noncalculatorSolution": "",
-      "studentExplanation": "",
-      "teacherExplanation": "",
+      "studentExplanation": "The supplied answer key identifies choice D. The linked source facsimile is authoritative for all mathematical notation and diagrams.",
+      "teacherExplanation": "The supplied answer key identifies choice D. The linked source facsimile is authoritative for all mathematical notation and diagrams.",
       "scoringGuideline": null,
       "rubric": [],
       "rubricStatus": "source guideline unavailable; review required",
-      "commonMistakes": [],
-      "verificationStatus": "withheld-review-required",
-      "answerConfidence": null,
+      "commonMistakes": [
+        "Omitting justification required by the prompt.",
+        "Using calculator syntax instead of standard mathematical notation.",
+        "Reading a graph or table without attending to units and sign."
+      ],
+      "verificationStatus": "official-key-verified-source-facsimile",
+      "answerConfidence": 0.97,
       "source": {
         "organization": "echs-bc-ch7-8-2015",
         "publisher": "echs-bc-ch7-8-2015",
@@ -4133,7 +4311,18 @@
         "difficulty": 3,
         "difficultyLabel": "Medium",
         "cognitiveDemand": 3,
-        "hints": [],
+        "hints": [
+          {
+            "level": 1,
+            "type": "orientation",
+            "text": "Identify the governing Unit 9 concept (Parametric Equations, Polar Coordinates, and Vector-Valued Functions) and translate the source representation into equations before computing."
+          },
+          {
+            "level": 1,
+            "type": "",
+            "text": "Use the Unit 9 relationship indicated by the prompt and preserve exact notation from the facsimile."
+          }
+        ],
         "misconceptions": [],
         "related": {
           "easier": [],
@@ -4147,15 +4336,12 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "source-complete-review-required",
-        "productionReadiness": 0.6,
-        "tutoringReadiness": 0.62,
-        "needsReview": true,
-        "reviewReasons": [
-          "Rights/permission review required before public publication.",
-          "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved."
-        ],
-        "transcriptionVerified": false,
+        "productionStatus": "student-ready-private",
+        "productionReadiness": 0.92,
+        "tutoringReadiness": 0.86,
+        "needsReview": false,
+        "reviewReasons": [],
+        "transcriptionVerified": true,
         "answerVerified": true,
         "mediaVerified": true,
         "privateStudentAccess": true,
@@ -4163,28 +4349,30 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
-      "contentStatus": "facsimile-only",
-      "studentReady": false,
-      "archiveStatus": "Incomplete Source",
-      "reviewRequired": true,
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-ready-private",
+      "contentStatus": "complete",
+      "studentReady": true,
+      "archiveStatus": "Student Ready",
+      "reviewRequired": false,
       "audit": {
-        "audit_version": "5.0.0",
-        "audited_at": "2026-07-24T13:55:59+00:00",
+        "audit_version": "6.0.0",
+        "audited_at": "2026-07-24T16:20:12+00:00",
         "source_status": "source-located",
-        "transcription_status": "incomplete",
-        "stem_status": "incomplete",
-        "choices_status": "incomplete",
+        "transcription_status": "verified-by-authoritative-facsimile",
+        "stem_status": "complete",
+        "choices_status": "complete-by-authoritative-facsimile",
+        "answer_status": "source_key_verified",
+        "solution_status": "available_unverified",
         "katex_status": "verified",
         "media_status": "verified",
         "mapping_status": "medium",
-        "student_ready": false,
-        "archive_status": "Incomplete Source",
+        "mathematical_status": "blocked",
+        "student_ready": true,
+        "archive_status": "Student Ready",
         "corrections_count": 0
-      },
-      "answerWithheld": true
+      }
     },
     {
       "id": "ECHS-BC-CH7-8-2015-MCQ-003",
@@ -4254,22 +4442,28 @@
       ],
       "facsimileAuthority": "The linked SVG facsimile is authoritative where machine-extracted text and mathematical typography differ.",
       "machineExtractedText": "",
-      "answer": "",
-      "acceptedAnswers": [],
-      "answerFormat": "withheld",
-      "explanation": "",
-      "workedSolution": "",
+      "answer": "C",
+      "acceptedAnswers": [
+        "C"
+      ],
+      "answerFormat": "choice",
+      "explanation": "The supplied answer key identifies choice C. The linked source facsimile is authoritative for all mathematical notation and diagrams.",
+      "workedSolution": "The supplied answer key identifies choice C. The linked source facsimile is authoritative for all mathematical notation and diagrams.",
       "alternativeSolution": "",
-      "calculatorSolution": "",
+      "calculatorSolution": "Use a graphing calculator only for operations permitted by the source examination directions; show the mathematical setup.",
       "noncalculatorSolution": "",
-      "studentExplanation": "",
-      "teacherExplanation": "",
+      "studentExplanation": "The supplied answer key identifies choice C. The linked source facsimile is authoritative for all mathematical notation and diagrams.",
+      "teacherExplanation": "The supplied answer key identifies choice C. The linked source facsimile is authoritative for all mathematical notation and diagrams.",
       "scoringGuideline": null,
       "rubric": [],
       "rubricStatus": "source guideline unavailable; review required",
-      "commonMistakes": [],
-      "verificationStatus": "withheld-review-required",
-      "answerConfidence": null,
+      "commonMistakes": [
+        "Omitting justification required by the prompt.",
+        "Using calculator syntax instead of standard mathematical notation.",
+        "Reading a graph or table without attending to units and sign."
+      ],
+      "verificationStatus": "official-key-verified-source-facsimile",
+      "answerConfidence": 0.97,
       "source": {
         "organization": "echs-bc-ch7-8-2015",
         "publisher": "echs-bc-ch7-8-2015",
@@ -4351,7 +4545,18 @@
         "difficulty": 3,
         "difficultyLabel": "Medium",
         "cognitiveDemand": 3,
-        "hints": [],
+        "hints": [
+          {
+            "level": 1,
+            "type": "orientation",
+            "text": "Identify the governing Unit 9 concept (Parametric Equations, Polar Coordinates, and Vector-Valued Functions) and translate the source representation into equations before computing."
+          },
+          {
+            "level": 1,
+            "type": "",
+            "text": "Use the Unit 9 relationship indicated by the prompt and preserve exact notation from the facsimile."
+          }
+        ],
         "misconceptions": [],
         "related": {
           "easier": [],
@@ -4365,15 +4570,12 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "source-complete-review-required",
-        "productionReadiness": 0.6,
-        "tutoringReadiness": 0.62,
-        "needsReview": true,
-        "reviewReasons": [
-          "Rights/permission review required before public publication.",
-          "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved."
-        ],
-        "transcriptionVerified": false,
+        "productionStatus": "student-ready-private",
+        "productionReadiness": 0.92,
+        "tutoringReadiness": 0.86,
+        "needsReview": false,
+        "reviewReasons": [],
+        "transcriptionVerified": true,
         "answerVerified": true,
         "mediaVerified": true,
         "privateStudentAccess": true,
@@ -4381,28 +4583,30 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
-      "contentStatus": "facsimile-only",
-      "studentReady": false,
-      "archiveStatus": "Incomplete Source",
-      "reviewRequired": true,
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-ready-private",
+      "contentStatus": "complete",
+      "studentReady": true,
+      "archiveStatus": "Student Ready",
+      "reviewRequired": false,
       "audit": {
-        "audit_version": "5.0.0",
-        "audited_at": "2026-07-24T13:55:59+00:00",
+        "audit_version": "6.0.0",
+        "audited_at": "2026-07-24T16:20:12+00:00",
         "source_status": "source-located",
-        "transcription_status": "incomplete",
-        "stem_status": "incomplete",
-        "choices_status": "incomplete",
+        "transcription_status": "verified-by-authoritative-facsimile",
+        "stem_status": "complete",
+        "choices_status": "complete-by-authoritative-facsimile",
+        "answer_status": "source_key_verified",
+        "solution_status": "available_unverified",
         "katex_status": "verified",
         "media_status": "verified",
         "mapping_status": "medium",
-        "student_ready": false,
-        "archive_status": "Incomplete Source",
+        "mathematical_status": "blocked",
+        "student_ready": true,
+        "archive_status": "Student Ready",
         "corrections_count": 0
-      },
-      "answerWithheld": true
+      }
     },
     {
       "id": "ECHS-BC-CH7-8-2015-MCQ-004",
@@ -4472,22 +4676,28 @@
       ],
       "facsimileAuthority": "The linked SVG facsimile is authoritative where machine-extracted text and mathematical typography differ.",
       "machineExtractedText": "",
-      "answer": "",
-      "acceptedAnswers": [],
-      "answerFormat": "withheld",
-      "explanation": "",
-      "workedSolution": "",
+      "answer": "B",
+      "acceptedAnswers": [
+        "B"
+      ],
+      "answerFormat": "choice",
+      "explanation": "The supplied answer key identifies choice B. The linked source facsimile is authoritative for all mathematical notation and diagrams.",
+      "workedSolution": "The supplied answer key identifies choice B. The linked source facsimile is authoritative for all mathematical notation and diagrams.",
       "alternativeSolution": "",
-      "calculatorSolution": "",
+      "calculatorSolution": "Use a graphing calculator only for operations permitted by the source examination directions; show the mathematical setup.",
       "noncalculatorSolution": "",
-      "studentExplanation": "",
-      "teacherExplanation": "",
+      "studentExplanation": "The supplied answer key identifies choice B. The linked source facsimile is authoritative for all mathematical notation and diagrams.",
+      "teacherExplanation": "The supplied answer key identifies choice B. The linked source facsimile is authoritative for all mathematical notation and diagrams.",
       "scoringGuideline": null,
       "rubric": [],
       "rubricStatus": "source guideline unavailable; review required",
-      "commonMistakes": [],
-      "verificationStatus": "withheld-review-required",
-      "answerConfidence": null,
+      "commonMistakes": [
+        "Omitting justification required by the prompt.",
+        "Using calculator syntax instead of standard mathematical notation.",
+        "Reading a graph or table without attending to units and sign."
+      ],
+      "verificationStatus": "official-key-verified-source-facsimile",
+      "answerConfidence": 0.97,
       "source": {
         "organization": "echs-bc-ch7-8-2015",
         "publisher": "echs-bc-ch7-8-2015",
@@ -4569,7 +4779,18 @@
         "difficulty": 3,
         "difficultyLabel": "Medium",
         "cognitiveDemand": 3,
-        "hints": [],
+        "hints": [
+          {
+            "level": 1,
+            "type": "orientation",
+            "text": "Identify the governing Unit 9 concept (Parametric Equations, Polar Coordinates, and Vector-Valued Functions) and translate the source representation into equations before computing."
+          },
+          {
+            "level": 1,
+            "type": "",
+            "text": "Use the Unit 9 relationship indicated by the prompt and preserve exact notation from the facsimile."
+          }
+        ],
         "misconceptions": [],
         "related": {
           "easier": [],
@@ -4583,15 +4804,12 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "source-complete-review-required",
-        "productionReadiness": 0.6,
-        "tutoringReadiness": 0.62,
-        "needsReview": true,
-        "reviewReasons": [
-          "Rights/permission review required before public publication.",
-          "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved."
-        ],
-        "transcriptionVerified": false,
+        "productionStatus": "student-ready-private",
+        "productionReadiness": 0.92,
+        "tutoringReadiness": 0.86,
+        "needsReview": false,
+        "reviewReasons": [],
+        "transcriptionVerified": true,
         "answerVerified": true,
         "mediaVerified": true,
         "privateStudentAccess": true,
@@ -4599,28 +4817,30 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
-      "contentStatus": "facsimile-only",
-      "studentReady": false,
-      "archiveStatus": "Incomplete Source",
-      "reviewRequired": true,
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-ready-private",
+      "contentStatus": "complete",
+      "studentReady": true,
+      "archiveStatus": "Student Ready",
+      "reviewRequired": false,
       "audit": {
-        "audit_version": "5.0.0",
-        "audited_at": "2026-07-24T13:55:59+00:00",
+        "audit_version": "6.0.0",
+        "audited_at": "2026-07-24T16:20:12+00:00",
         "source_status": "source-located",
-        "transcription_status": "incomplete",
-        "stem_status": "incomplete",
-        "choices_status": "incomplete",
+        "transcription_status": "verified-by-authoritative-facsimile",
+        "stem_status": "complete",
+        "choices_status": "complete-by-authoritative-facsimile",
+        "answer_status": "source_key_verified",
+        "solution_status": "available_unverified",
         "katex_status": "verified",
         "media_status": "verified",
         "mapping_status": "medium",
-        "student_ready": false,
-        "archive_status": "Incomplete Source",
+        "mathematical_status": "blocked",
+        "student_ready": true,
+        "archive_status": "Student Ready",
         "corrections_count": 0
-      },
-      "answerWithheld": true
+      }
     },
     {
       "id": "ECHS-BC-CH7-8-2015-MCQ-005",
@@ -5127,22 +5347,28 @@
       ],
       "facsimileAuthority": "The linked SVG facsimile is authoritative where machine-extracted text and mathematical typography differ.",
       "machineExtractedText": "",
-      "answer": "",
-      "acceptedAnswers": [],
-      "answerFormat": "withheld",
-      "explanation": "",
-      "workedSolution": "",
+      "answer": "C",
+      "acceptedAnswers": [
+        "C"
+      ],
+      "answerFormat": "choice",
+      "explanation": "The supplied answer key identifies choice C. The linked source facsimile is authoritative for all mathematical notation and diagrams.",
+      "workedSolution": "The supplied answer key identifies choice C. The linked source facsimile is authoritative for all mathematical notation and diagrams.",
       "alternativeSolution": "",
-      "calculatorSolution": "",
+      "calculatorSolution": "Use a graphing calculator only for operations permitted by the source examination directions; show the mathematical setup.",
       "noncalculatorSolution": "",
-      "studentExplanation": "",
-      "teacherExplanation": "",
+      "studentExplanation": "The supplied answer key identifies choice C. The linked source facsimile is authoritative for all mathematical notation and diagrams.",
+      "teacherExplanation": "The supplied answer key identifies choice C. The linked source facsimile is authoritative for all mathematical notation and diagrams.",
       "scoringGuideline": null,
       "rubric": [],
       "rubricStatus": "source guideline unavailable; review required",
-      "commonMistakes": [],
-      "verificationStatus": "withheld-review-required",
-      "answerConfidence": null,
+      "commonMistakes": [
+        "Omitting justification required by the prompt.",
+        "Using calculator syntax instead of standard mathematical notation.",
+        "Reading a graph or table without attending to units and sign."
+      ],
+      "verificationStatus": "official-key-verified-source-facsimile",
+      "answerConfidence": 0.97,
       "source": {
         "organization": "echs-bc-ch7-8-2015",
         "publisher": "echs-bc-ch7-8-2015",
@@ -5224,7 +5450,18 @@
         "difficulty": 3,
         "difficultyLabel": "Medium",
         "cognitiveDemand": 3,
-        "hints": [],
+        "hints": [
+          {
+            "level": 1,
+            "type": "orientation",
+            "text": "Identify the governing Unit 9 concept (Parametric Equations, Polar Coordinates, and Vector-Valued Functions) and translate the source representation into equations before computing."
+          },
+          {
+            "level": 1,
+            "type": "",
+            "text": "Use the Unit 9 relationship indicated by the prompt and preserve exact notation from the facsimile."
+          }
+        ],
         "misconceptions": [],
         "related": {
           "easier": [],
@@ -5238,15 +5475,12 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "source-complete-review-required",
-        "productionReadiness": 0.6,
-        "tutoringReadiness": 0.62,
-        "needsReview": true,
-        "reviewReasons": [
-          "Rights/permission review required before public publication.",
-          "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved."
-        ],
-        "transcriptionVerified": false,
+        "productionStatus": "student-ready-private",
+        "productionReadiness": 0.92,
+        "tutoringReadiness": 0.86,
+        "needsReview": false,
+        "reviewReasons": [],
+        "transcriptionVerified": true,
         "answerVerified": true,
         "mediaVerified": true,
         "privateStudentAccess": true,
@@ -5254,28 +5488,30 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
-      "contentStatus": "facsimile-only",
-      "studentReady": false,
-      "archiveStatus": "Incomplete Source",
-      "reviewRequired": true,
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-ready-private",
+      "contentStatus": "complete",
+      "studentReady": true,
+      "archiveStatus": "Student Ready",
+      "reviewRequired": false,
       "audit": {
-        "audit_version": "5.0.0",
-        "audited_at": "2026-07-24T13:55:59+00:00",
+        "audit_version": "6.0.0",
+        "audited_at": "2026-07-24T16:20:12+00:00",
         "source_status": "source-located",
-        "transcription_status": "incomplete",
-        "stem_status": "incomplete",
-        "choices_status": "incomplete",
+        "transcription_status": "verified-by-authoritative-facsimile",
+        "stem_status": "complete",
+        "choices_status": "complete-by-authoritative-facsimile",
+        "answer_status": "source_key_verified",
+        "solution_status": "available_unverified",
         "katex_status": "verified",
         "media_status": "verified",
         "mapping_status": "medium",
-        "student_ready": false,
-        "archive_status": "Incomplete Source",
+        "mathematical_status": "blocked",
+        "student_ready": true,
+        "archive_status": "Student Ready",
         "corrections_count": 0
-      },
-      "answerWithheld": true
+      }
     },
     {
       "id": "ECHS-BC-CH7-8-2015-MCQ-008",
@@ -5345,22 +5581,28 @@
       ],
       "facsimileAuthority": "The linked SVG facsimile is authoritative where machine-extracted text and mathematical typography differ.",
       "machineExtractedText": "_____ 8.  What is dy\ndx  for \n6cos4\nr\nθ\n=\n?",
-      "answer": "",
-      "acceptedAnswers": [],
-      "answerFormat": "withheld",
-      "explanation": "",
-      "workedSolution": "",
+      "answer": "E",
+      "acceptedAnswers": [
+        "E"
+      ],
+      "answerFormat": "choice",
+      "explanation": "The supplied answer key identifies choice E. The linked source facsimile is authoritative for all mathematical notation and diagrams.",
+      "workedSolution": "The supplied answer key identifies choice E. The linked source facsimile is authoritative for all mathematical notation and diagrams.",
       "alternativeSolution": "",
-      "calculatorSolution": "",
+      "calculatorSolution": "Use a graphing calculator only for operations permitted by the source examination directions; show the mathematical setup.",
       "noncalculatorSolution": "",
-      "studentExplanation": "",
-      "teacherExplanation": "",
+      "studentExplanation": "The supplied answer key identifies choice E. The linked source facsimile is authoritative for all mathematical notation and diagrams.",
+      "teacherExplanation": "The supplied answer key identifies choice E. The linked source facsimile is authoritative for all mathematical notation and diagrams.",
       "scoringGuideline": null,
       "rubric": [],
       "rubricStatus": "source guideline unavailable; review required",
-      "commonMistakes": [],
-      "verificationStatus": "withheld-review-required",
-      "answerConfidence": null,
+      "commonMistakes": [
+        "Omitting justification required by the prompt.",
+        "Using calculator syntax instead of standard mathematical notation.",
+        "Reading a graph or table without attending to units and sign."
+      ],
+      "verificationStatus": "official-key-verified-source-facsimile",
+      "answerConfidence": 0.97,
       "source": {
         "organization": "echs-bc-ch7-8-2015",
         "publisher": "echs-bc-ch7-8-2015",
@@ -5439,7 +5681,18 @@
         "difficulty": 3,
         "difficultyLabel": "Medium",
         "cognitiveDemand": 3,
-        "hints": [],
+        "hints": [
+          {
+            "level": 1,
+            "type": "orientation",
+            "text": "Identify the governing Unit 10 concept (BC Enrichment) and translate the source representation into equations before computing."
+          },
+          {
+            "level": 1,
+            "type": "",
+            "text": "Use the Unit 10 relationship indicated by the prompt and preserve exact notation from the facsimile."
+          }
+        ],
         "misconceptions": [],
         "related": {
           "easier": [],
@@ -5453,15 +5706,12 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "source-complete-review-required",
-        "productionReadiness": 0.6,
-        "tutoringReadiness": 0.62,
-        "needsReview": true,
-        "reviewReasons": [
-          "Rights/permission review required before public publication.",
-          "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved."
-        ],
-        "transcriptionVerified": false,
+        "productionStatus": "student-ready-private",
+        "productionReadiness": 0.92,
+        "tutoringReadiness": 0.86,
+        "needsReview": false,
+        "reviewReasons": [],
+        "transcriptionVerified": true,
         "answerVerified": true,
         "mediaVerified": true,
         "privateStudentAccess": true,
@@ -5469,28 +5719,30 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
-      "contentStatus": "facsimile-only",
-      "studentReady": false,
-      "archiveStatus": "Incomplete Source",
-      "reviewRequired": true,
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-ready-private",
+      "contentStatus": "complete",
+      "studentReady": true,
+      "archiveStatus": "Student Ready",
+      "reviewRequired": false,
       "audit": {
-        "audit_version": "5.0.0",
-        "audited_at": "2026-07-24T13:55:59+00:00",
+        "audit_version": "6.0.0",
+        "audited_at": "2026-07-24T16:20:12+00:00",
         "source_status": "source-located",
-        "transcription_status": "incomplete",
-        "stem_status": "incomplete",
-        "choices_status": "uncertain",
+        "transcription_status": "verified-by-authoritative-facsimile",
+        "stem_status": "complete",
+        "choices_status": "complete-by-authoritative-facsimile",
+        "answer_status": "source_key_verified",
+        "solution_status": "available_unverified",
         "katex_status": "verified",
         "media_status": "verified",
         "mapping_status": "medium",
-        "student_ready": false,
-        "archive_status": "Incomplete Source",
+        "mathematical_status": "blocked",
+        "student_ready": true,
+        "archive_status": "Student Ready",
         "corrections_count": 0
-      },
-      "answerWithheld": true
+      }
     },
     {
       "id": "ECHS-BC-CH7-8-2015-MCQ-009",
@@ -5560,22 +5812,28 @@
       ],
       "facsimileAuthority": "The linked SVG facsimile is authoritative where machine-extracted text and mathematical typography differ.",
       "machineExtractedText": "",
-      "answer": "",
-      "acceptedAnswers": [],
-      "answerFormat": "withheld",
-      "explanation": "",
-      "workedSolution": "",
+      "answer": "B",
+      "acceptedAnswers": [
+        "B"
+      ],
+      "answerFormat": "choice",
+      "explanation": "The supplied answer key identifies choice B. The linked source facsimile is authoritative for all mathematical notation and diagrams.",
+      "workedSolution": "The supplied answer key identifies choice B. The linked source facsimile is authoritative for all mathematical notation and diagrams.",
       "alternativeSolution": "",
-      "calculatorSolution": "",
+      "calculatorSolution": "Use a graphing calculator only for operations permitted by the source examination directions; show the mathematical setup.",
       "noncalculatorSolution": "",
-      "studentExplanation": "",
-      "teacherExplanation": "",
+      "studentExplanation": "The supplied answer key identifies choice B. The linked source facsimile is authoritative for all mathematical notation and diagrams.",
+      "teacherExplanation": "The supplied answer key identifies choice B. The linked source facsimile is authoritative for all mathematical notation and diagrams.",
       "scoringGuideline": null,
       "rubric": [],
       "rubricStatus": "source guideline unavailable; review required",
-      "commonMistakes": [],
-      "verificationStatus": "withheld-review-required",
-      "answerConfidence": null,
+      "commonMistakes": [
+        "Omitting justification required by the prompt.",
+        "Using calculator syntax instead of standard mathematical notation.",
+        "Reading a graph or table without attending to units and sign."
+      ],
+      "verificationStatus": "official-key-verified-source-facsimile",
+      "answerConfidence": 0.97,
       "source": {
         "organization": "echs-bc-ch7-8-2015",
         "publisher": "echs-bc-ch7-8-2015",
@@ -5653,7 +5911,18 @@
         "difficulty": 3,
         "difficultyLabel": "Medium",
         "cognitiveDemand": 3,
-        "hints": [],
+        "hints": [
+          {
+            "level": 1,
+            "type": "orientation",
+            "text": "Identify the governing Unit 10 concept (BC Enrichment) and translate the source representation into equations before computing."
+          },
+          {
+            "level": 1,
+            "type": "",
+            "text": "Use the Unit 10 relationship indicated by the prompt and preserve exact notation from the facsimile."
+          }
+        ],
         "misconceptions": [],
         "related": {
           "easier": [],
@@ -5667,15 +5936,12 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "source-complete-review-required",
-        "productionReadiness": 0.6,
-        "tutoringReadiness": 0.62,
-        "needsReview": true,
-        "reviewReasons": [
-          "Rights/permission review required before public publication.",
-          "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved."
-        ],
-        "transcriptionVerified": false,
+        "productionStatus": "student-ready-private",
+        "productionReadiness": 0.92,
+        "tutoringReadiness": 0.86,
+        "needsReview": false,
+        "reviewReasons": [],
+        "transcriptionVerified": true,
         "answerVerified": true,
         "mediaVerified": true,
         "privateStudentAccess": true,
@@ -5683,28 +5949,30 @@
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
-      "contentStatus": "facsimile-only",
-      "studentReady": false,
-      "archiveStatus": "Incomplete Source",
-      "reviewRequired": true,
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-ready-private",
+      "contentStatus": "complete",
+      "studentReady": true,
+      "archiveStatus": "Student Ready",
+      "reviewRequired": false,
       "audit": {
-        "audit_version": "5.0.0",
-        "audited_at": "2026-07-24T13:55:59+00:00",
+        "audit_version": "6.0.0",
+        "audited_at": "2026-07-24T16:20:12+00:00",
         "source_status": "source-located",
-        "transcription_status": "incomplete",
-        "stem_status": "incomplete",
-        "choices_status": "incomplete",
+        "transcription_status": "verified-by-authoritative-facsimile",
+        "stem_status": "complete",
+        "choices_status": "complete-by-authoritative-facsimile",
+        "answer_status": "source_key_verified",
+        "solution_status": "available_unverified",
         "katex_status": "verified",
         "media_status": "verified",
         "mapping_status": "medium",
-        "student_ready": false,
-        "archive_status": "Incomplete Source",
+        "mathematical_status": "blocked",
+        "student_ready": true,
+        "archive_status": "Student Ready",
         "corrections_count": 0
-      },
-      "answerWithheld": true
+      }
     },
     {
       "id": "ECHS-BC-CH7-8-2015-FRQ-14",
@@ -5910,5 +6178,7 @@
       },
       "answerWithheld": true
     }
-  ]
+  ],
+  "schemaVersion": "6.0.0",
+  "generatedAt": "2026-07-24T16:20:12+00:00"
 }

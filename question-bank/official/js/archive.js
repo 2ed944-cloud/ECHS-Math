@@ -94,8 +94,8 @@ async function openArchiveRecord(id) {
     ${ECHSOfficial.renderPrompt(question)}
     ${
       ready
-        ? `<div class="notice"><strong>Student Ready.</strong> This record passed the v5 source, mathematics, KaTeX, media, and exact-mapping gate.</div><a class="button primary" href="practice.html?q=${encodeURIComponent(question.id)}&autostart=1">Practice this question</a>`
-        : `<div class="notice indexedRecord"><strong>No answer interaction is available.</strong> This record remains in the archive for provenance and teacher review; its answer and rubric are withheld from the student build.</div>`
+        ? `<div class="notice"><strong>Student Ready.</strong> This complete record passed the v6 source, answer-evidence, media, and private-practice gate.</div><a class="button primary" href="practice.html?q=${encodeURIComponent(question.id)}&autostart=1">Practice this question</a>`
+        : `<div class="notice indexedRecord"><strong>Question complete; solution review remains.</strong> The full question source is available above. Answer interaction stays withheld until its solution or scoring guideline is verified.</div>`
     }
   </article>`;
   AUI.detail.hidden = false;
@@ -115,7 +115,7 @@ async function initArchive() {
     <div class="stat"><b>${catalog.stats.questions.toLocaleString()}</b><span>Preserved records</span></div>
     <div class="stat"><b>${catalog.stats.studentReady.toLocaleString()}</b><span>Student ready</span></div>
     <div class="stat"><b>${catalog.stats.reviewRequired.toLocaleString()}</b><span>Review required</span></div>
-    <div class="stat"><b>${catalog.stats.indexedOnly.toLocaleString()}</b><span>Indexed only</span></div>`;
+    <div class="stat"><b>${catalog.stats.fullyDigitized.toLocaleString()}</b><span>Complete sources</span></div>`;
   document.getElementById("years").innerHTML = Object.entries(catalog.years)
     .map(
       ([year, value]) =>

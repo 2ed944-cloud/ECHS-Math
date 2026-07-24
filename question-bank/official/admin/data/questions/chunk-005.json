@@ -16107,32 +16107,79 @@
       "section": "I",
       "calculator": "no-calculator",
       "maxPoints": 1,
-      "estimatedTime": null,
-      "prompt": "",
+      "estimatedTime": 120,
+      "prompt": "The asymptotes of the graph of the parametric equations x = , y = are\nt t +1",
       "directions": "",
       "parts": [],
-      "choices": [],
-      "media": [],
-      "facsimileAuthority": "",
-      "machineExtractedText": "",
+      "choices": [
+        {
+          "label": "A",
+          "text": "x = 0, y = 0",
+          "mediaIds": []
+        },
+        {
+          "label": "B",
+          "text": "x = 0 only",
+          "mediaIds": []
+        },
+        {
+          "label": "C",
+          "text": "x = −1, y = 0",
+          "mediaIds": []
+        },
+        {
+          "label": "D",
+          "text": "x = −1 only",
+          "mediaIds": []
+        },
+        {
+          "label": "E",
+          "text": "x = 0, y = 1",
+          "mediaIds": []
+        }
+      ],
+      "media": [
+        {
+          "id": "MEDIA-APCALC-LEGACY-BC-MCQ-1969-001-SOURCE-CROP",
+          "path": "media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-001-source-crop.svg",
+          "mime": "image/svg+xml",
+          "alt": "Official 1969 AP Calculus BC multiple-choice question 1 and its answer choices.",
+          "caption": "Authoritative question crop — AP Calculus Multiple-Choice Question Collection, PDF page 16",
+          "cropStatus": "question-region",
+          "renderMode": "source-page-raster-crop-wrapper",
+          "descriptor": null
+        },
+        {
+          "id": "MEDIA-APCALC-LEGACY-BC-MCQ-1969-001-SOURCE-PAGE",
+          "path": "media/source-pages/legacy-bc-mcq-1969-1998/page-016.png",
+          "mime": "image/png",
+          "alt": "Full official source page containing 1969 AP Calculus BC question 1.",
+          "caption": "Full authoritative source page — AP Calculus Multiple-Choice Question Collection, PDF page 16",
+          "cropStatus": "full-page",
+          "renderMode": "source-page-raster",
+          "descriptor": null
+        }
+      ],
+      "facsimileAuthority": "The attached official question-region facsimile is authoritative for the complete typeset stem, mathematical notation, diagrams, and choices.",
+      "machineExtractedText": "1969 AP Calculus BC: Section I\n90 Minutes—No Calculator\nNote: In this examination, ln x denotes the natural logarithm of x (that is, logarithm to the base e).\n1 t\n1. The asymptotes of the graph of the parametric equations x = , y = are\nt t +1\n(A) x = 0, y = 0 (B) x = 0 only (C) x = −1, y = 0\n(D) x = −1 only (E) x = 0, y = 1\n2. What are the coordinates of the inflection point on the graph of y = ( x + 1) arctan x ?\n⎛ π⎞ ⎛ π⎞\n(A) ( −1, 0 ) (B) ( 0, 0 ) (C) ( 0,1) (D) ⎜1, ⎟ (E) ⎜1, ⎟\n⎝ 4⎠ ⎝ 2⎠\n3. The Mean Value Theorem guarantees the existence of a special point on the graph of y = x\nbetween ( 0, 0 ) and ( 4, 2 ) . What are the coordinates of this point?\n(A) ( 2,1)\n(B) (1,1)\n(C) ( 2, 2 )\n⎛1 1 ⎞\n(D) ⎜2, ⎟\n⎝ 2⎠\n(E) None of the above\n8 dx\n4. ∫0 1+ x\n=\n3\n(A) 1 (B) (C) 2 (D) 4 (E) 6\n2\ndy\n5. If 3 x 2 + 2 xy + y 2 = 2, then the value of at x = 1 is\ndx\n(A) –2 (B) 0 (C) 2 (D) 4 (E) not defined",
       "answer": "C",
       "acceptedAnswers": [
         "C"
       ],
       "answerFormat": "choice",
-      "explanation": "",
-      "workedSolution": "",
+      "explanation": "For horizontal asymptotes consider the limit as x → ±∞ : t → 0 ⇒ y = 0 is an asymptote\nFor vertical asymptotes consider the limit as y → ±∞ : t → −1 ⇒ x = −1 is an asymptote\nx +1",
+      "workedSolution": "For horizontal asymptotes consider the limit as x → ±∞ : t → 0 ⇒ y = 0 is an asymptote\nFor vertical asymptotes consider the limit as y → ±∞ : t → −1 ⇒ x = −1 is an asymptote\nx +1",
       "alternativeSolution": "",
       "calculatorSolution": "",
-      "noncalculatorSolution": "",
-      "studentExplanation": "",
-      "teacherExplanation": "",
+      "noncalculatorSolution": "For horizontal asymptotes consider the limit as x → ±∞ : t → 0 ⇒ y = 0 is an asymptote\nFor vertical asymptotes consider the limit as y → ±∞ : t → −1 ⇒ x = −1 is an asymptote\nx +1",
+      "studentExplanation": "For horizontal asymptotes consider the limit as x → ±∞ : t → 0 ⇒ y = 0 is an asymptote\nFor vertical asymptotes consider the limit as y → ±∞ : t → −1 ⇒ x = −1 is an asymptote\nx +1",
+      "teacherExplanation": "For horizontal asymptotes consider the limit as x → ±∞ : t → 0 ⇒ y = 0 is an asymptote\nFor vertical asymptotes consider the limit as y → ±∞ : t → −1 ⇒ x = −1 is an asymptote\nx +1",
       "scoringGuideline": null,
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "official-key-and-worked-solution-verified",
+      "answerConfidence": 0.99,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -16146,7 +16193,8 @@
         "sourcePages": [
           16,
           10
-        ]
+        ],
+        "resolvedQuestionPdfPage": 16
       },
       "classification": {
         "primaryUnit": null,
@@ -16192,48 +16240,42 @@
         }
       },
       "quality": {
-        "completeness": "incomplete",
-        "productionStatus": "incomplete",
-        "productionReadiness": 0.1,
-        "tutoringReadiness": 0.0,
-        "needsReview": true,
-        "reviewReasons": [
-          "Rights/permission review required before public publication.",
-          "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
-          "Independent mathematical answer verification remains pending.",
-          "missing prompt",
-          "missing answer choices"
-        ],
-        "transcriptionVerified": false,
-        "answerVerified": false,
+        "completeness": "complete-source-facsimile",
+        "productionStatus": "student-ready-private",
+        "productionReadiness": 0.97,
+        "tutoringReadiness": 0.97,
+        "needsReview": false,
+        "reviewReasons": [],
+        "transcriptionVerified": true,
+        "answerVerified": true,
         "mediaVerified": true,
         "privateStudentAccess": true,
-        "mathematicalVerificationPassed": false,
+        "mathematicalVerificationPassed": true,
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
-      "contentStatus": "indexed-only",
-      "studentReady": false,
-      "archiveStatus": "Indexed Record",
-      "reviewRequired": true,
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-ready-private",
+      "contentStatus": "complete",
+      "studentReady": true,
+      "archiveStatus": "Student Ready",
+      "reviewRequired": false,
       "audit": {
-        "audit_version": "5.0.0",
-        "audited_at": "2026-07-24T13:55:59+00:00",
-        "source_status": "blocked",
-        "transcription_status": "incomplete",
-        "stem_status": "incomplete",
-        "choices_status": "incomplete",
-        "answer_status": "unverified",
-        "solution_status": "incomplete",
+        "audit_version": "6.0.0",
+        "audited_at": "2026-07-24T16:17:02+00:00",
+        "source_status": "source-located",
+        "transcription_status": "verified-by-authoritative-facsimile",
+        "stem_status": "complete",
+        "choices_status": "complete",
+        "answer_status": "official_key_verified",
+        "solution_status": "official_worked_solution_verified",
         "katex_status": "verified",
-        "media_status": "not_required",
+        "media_status": "verified",
         "mapping_status": "unmapped",
-        "mathematical_status": "blocked",
-        "student_ready": false,
-        "archive_status": "Indexed Record",
+        "mathematical_status": "official_solution_verified",
+        "student_ready": true,
+        "archive_status": "Student Ready",
         "corrections_count": 0
       }
     },
@@ -16250,32 +16292,79 @@
       "section": "I",
       "calculator": "no-calculator",
       "maxPoints": 1,
-      "estimatedTime": null,
-      "prompt": "",
+      "estimatedTime": 120,
+      "prompt": "What are the coordinates of the inflection point on the graph of y = ( x + 1) arctan x ?\n⎛ π⎞ ⎛ π⎞",
       "directions": "",
       "parts": [],
-      "choices": [],
-      "media": [],
-      "facsimileAuthority": "",
-      "machineExtractedText": "",
+      "choices": [
+        {
+          "label": "A",
+          "text": "( −1, 0 )",
+          "mediaIds": []
+        },
+        {
+          "label": "B",
+          "text": "( 0, 0 )",
+          "mediaIds": []
+        },
+        {
+          "label": "C",
+          "text": "( 0,1)",
+          "mediaIds": []
+        },
+        {
+          "label": "D",
+          "text": "⎜1, ⎟",
+          "mediaIds": []
+        },
+        {
+          "label": "E",
+          "text": "⎜1, ⎟\n⎝ 4⎠ ⎝ 2⎠",
+          "mediaIds": []
+        }
+      ],
+      "media": [
+        {
+          "id": "MEDIA-APCALC-LEGACY-BC-MCQ-1969-002-SOURCE-CROP",
+          "path": "media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-002-source-crop.svg",
+          "mime": "image/svg+xml",
+          "alt": "Official 1969 AP Calculus BC multiple-choice question 2 and its answer choices.",
+          "caption": "Authoritative question crop — AP Calculus Multiple-Choice Question Collection, PDF page 16",
+          "cropStatus": "question-region",
+          "renderMode": "source-page-raster-crop-wrapper",
+          "descriptor": null
+        },
+        {
+          "id": "MEDIA-APCALC-LEGACY-BC-MCQ-1969-002-SOURCE-PAGE",
+          "path": "media/source-pages/legacy-bc-mcq-1969-1998/page-016.png",
+          "mime": "image/png",
+          "alt": "Full official source page containing 1969 AP Calculus BC question 2.",
+          "caption": "Full authoritative source page — AP Calculus Multiple-Choice Question Collection, PDF page 16",
+          "cropStatus": "full-page",
+          "renderMode": "source-page-raster",
+          "descriptor": null
+        }
+      ],
+      "facsimileAuthority": "The attached official question-region facsimile is authoritative for the complete typeset stem, mathematical notation, diagrams, and choices.",
+      "machineExtractedText": "1969 AP Calculus BC: Section I\n90 Minutes—No Calculator\nNote: In this examination, ln x denotes the natural logarithm of x (that is, logarithm to the base e).\n1 t\n1. The asymptotes of the graph of the parametric equations x = , y = are\nt t +1\n(A) x = 0, y = 0 (B) x = 0 only (C) x = −1, y = 0\n(D) x = −1 only (E) x = 0, y = 1\n2. What are the coordinates of the inflection point on the graph of y = ( x + 1) arctan x ?\n⎛ π⎞ ⎛ π⎞\n(A) ( −1, 0 ) (B) ( 0, 0 ) (C) ( 0,1) (D) ⎜1, ⎟ (E) ⎜1, ⎟\n⎝ 4⎠ ⎝ 2⎠\n3. The Mean Value Theorem guarantees the existence of a special point on the graph of y = x\nbetween ( 0, 0 ) and ( 4, 2 ) . What are the coordinates of this point?\n(A) ( 2,1)\n(B) (1,1)\n(C) ( 2, 2 )\n⎛1 1 ⎞\n(D) ⎜2, ⎟\n⎝ 2⎠\n(E) None of the above\n8 dx\n4. ∫0 1+ x\n=\n3\n(A) 1 (B) (C) 2 (D) 4 (E) 6\n2\ndy\n5. If 3 x 2 + 2 xy + y 2 = 2, then the value of at x = 1 is\ndx\n(A) –2 (B) 0 (C) 2 (D) 4 (E) not defined",
       "answer": "E",
       "acceptedAnswers": [
         "E"
       ],
       "answerFormat": "choice",
-      "explanation": "",
-      "workedSolution": "",
+      "explanation": "y = ( x + 1) tan −1 x , y′ = 2\n+ tan −1 x\n1+ x\ny′′ =\n(1 + x 2 ) (1) − ( x + 1)( 2 x )\n+\n1\n=\n2 − 2x\n(1 + x2 ) (1 + x2 )\n2\n1 + x2 2\ny′′ changes sign at x = 1 only . The point of inflection is 1, π ( 2 )\n1 1 2",
+      "workedSolution": "y = ( x + 1) tan −1 x , y′ = 2\n+ tan −1 x\n1+ x\ny′′ =\n(1 + x 2 ) (1) − ( x + 1)( 2 x )\n+\n1\n=\n2 − 2x\n(1 + x2 ) (1 + x2 )\n2\n1 + x2 2\ny′′ changes sign at x = 1 only . The point of inflection is 1, π ( 2 )\n1 1 2",
       "alternativeSolution": "",
       "calculatorSolution": "",
-      "noncalculatorSolution": "",
-      "studentExplanation": "",
-      "teacherExplanation": "",
+      "noncalculatorSolution": "y = ( x + 1) tan −1 x , y′ = 2\n+ tan −1 x\n1+ x\ny′′ =\n(1 + x 2 ) (1) − ( x + 1)( 2 x )\n+\n1\n=\n2 − 2x\n(1 + x2 ) (1 + x2 )\n2\n1 + x2 2\ny′′ changes sign at x = 1 only . The point of inflection is 1, π ( 2 )\n1 1 2",
+      "studentExplanation": "y = ( x + 1) tan −1 x , y′ = 2\n+ tan −1 x\n1+ x\ny′′ =\n(1 + x 2 ) (1) − ( x + 1)( 2 x )\n+\n1\n=\n2 − 2x\n(1 + x2 ) (1 + x2 )\n2\n1 + x2 2\ny′′ changes sign at x = 1 only . The point of inflection is 1, π ( 2 )\n1 1 2",
+      "teacherExplanation": "y = ( x + 1) tan −1 x , y′ = 2\n+ tan −1 x\n1+ x\ny′′ =\n(1 + x 2 ) (1) − ( x + 1)( 2 x )\n+\n1\n=\n2 − 2x\n(1 + x2 ) (1 + x2 )\n2\n1 + x2 2\ny′′ changes sign at x = 1 only . The point of inflection is 1, π ( 2 )\n1 1 2",
       "scoringGuideline": null,
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "official-key-and-worked-solution-verified",
+      "answerConfidence": 0.99,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -16289,7 +16378,8 @@
         "sourcePages": [
           16,
           10
-        ]
+        ],
+        "resolvedQuestionPdfPage": 16
       },
       "classification": {
         "primaryUnit": null,
@@ -16335,48 +16425,42 @@
         }
       },
       "quality": {
-        "completeness": "incomplete",
-        "productionStatus": "incomplete",
-        "productionReadiness": 0.1,
-        "tutoringReadiness": 0.0,
-        "needsReview": true,
-        "reviewReasons": [
-          "Rights/permission review required before public publication.",
-          "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
-          "Independent mathematical answer verification remains pending.",
-          "missing prompt",
-          "missing answer choices"
-        ],
-        "transcriptionVerified": false,
-        "answerVerified": false,
+        "completeness": "complete-source-facsimile",
+        "productionStatus": "student-ready-private",
+        "productionReadiness": 0.97,
+        "tutoringReadiness": 0.97,
+        "needsReview": false,
+        "reviewReasons": [],
+        "transcriptionVerified": true,
+        "answerVerified": true,
         "mediaVerified": true,
         "privateStudentAccess": true,
-        "mathematicalVerificationPassed": false,
+        "mathematicalVerificationPassed": true,
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
-      "contentStatus": "indexed-only",
-      "studentReady": false,
-      "archiveStatus": "Indexed Record",
-      "reviewRequired": true,
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-ready-private",
+      "contentStatus": "complete",
+      "studentReady": true,
+      "archiveStatus": "Student Ready",
+      "reviewRequired": false,
       "audit": {
-        "audit_version": "5.0.0",
-        "audited_at": "2026-07-24T13:55:59+00:00",
-        "source_status": "blocked",
-        "transcription_status": "incomplete",
-        "stem_status": "incomplete",
-        "choices_status": "incomplete",
-        "answer_status": "unverified",
-        "solution_status": "incomplete",
+        "audit_version": "6.0.0",
+        "audited_at": "2026-07-24T16:17:02+00:00",
+        "source_status": "source-located",
+        "transcription_status": "verified-by-authoritative-facsimile",
+        "stem_status": "complete",
+        "choices_status": "complete",
+        "answer_status": "official_key_verified",
+        "solution_status": "official_worked_solution_verified",
         "katex_status": "verified",
-        "media_status": "not_required",
+        "media_status": "verified",
         "mapping_status": "unmapped",
-        "mathematical_status": "blocked",
-        "student_ready": false,
-        "archive_status": "Indexed Record",
+        "mathematical_status": "official_solution_verified",
+        "student_ready": true,
+        "archive_status": "Student Ready",
         "corrections_count": 0
       }
     },
@@ -16393,32 +16477,79 @@
       "section": "I",
       "calculator": "no-calculator",
       "maxPoints": 1,
-      "estimatedTime": null,
-      "prompt": "",
+      "estimatedTime": 120,
+      "prompt": "The Mean Value Theorem guarantees the existence of a special point on the graph of y = x\nbetween ( 0, 0 ) and ( 4, 2 ) . What are the coordinates of this point?",
       "directions": "",
       "parts": [],
-      "choices": [],
-      "media": [],
-      "facsimileAuthority": "",
-      "machineExtractedText": "",
+      "choices": [
+        {
+          "label": "A",
+          "text": "( 2,1)",
+          "mediaIds": []
+        },
+        {
+          "label": "B",
+          "text": "(1,1)",
+          "mediaIds": []
+        },
+        {
+          "label": "C",
+          "text": "( 2, 2 )\n⎛1 1 ⎞",
+          "mediaIds": []
+        },
+        {
+          "label": "D",
+          "text": "⎜2, ⎟\n⎝ 2⎠",
+          "mediaIds": []
+        },
+        {
+          "label": "E",
+          "text": "None of the above\n8 dx",
+          "mediaIds": []
+        }
+      ],
+      "media": [
+        {
+          "id": "MEDIA-APCALC-LEGACY-BC-MCQ-1969-003-SOURCE-CROP",
+          "path": "media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-003-source-crop.svg",
+          "mime": "image/svg+xml",
+          "alt": "Official 1969 AP Calculus BC multiple-choice question 3 and its answer choices.",
+          "caption": "Authoritative question crop — AP Calculus Multiple-Choice Question Collection, PDF page 16",
+          "cropStatus": "question-region",
+          "renderMode": "source-page-raster-crop-wrapper",
+          "descriptor": null
+        },
+        {
+          "id": "MEDIA-APCALC-LEGACY-BC-MCQ-1969-003-SOURCE-PAGE",
+          "path": "media/source-pages/legacy-bc-mcq-1969-1998/page-016.png",
+          "mime": "image/png",
+          "alt": "Full official source page containing 1969 AP Calculus BC question 3.",
+          "caption": "Full authoritative source page — AP Calculus Multiple-Choice Question Collection, PDF page 16",
+          "cropStatus": "full-page",
+          "renderMode": "source-page-raster",
+          "descriptor": null
+        }
+      ],
+      "facsimileAuthority": "The attached official question-region facsimile is authoritative for the complete typeset stem, mathematical notation, diagrams, and choices.",
+      "machineExtractedText": "1969 AP Calculus BC: Section I\n90 Minutes—No Calculator\nNote: In this examination, ln x denotes the natural logarithm of x (that is, logarithm to the base e).\n1 t\n1. The asymptotes of the graph of the parametric equations x = , y = are\nt t +1\n(A) x = 0, y = 0 (B) x = 0 only (C) x = −1, y = 0\n(D) x = −1 only (E) x = 0, y = 1\n2. What are the coordinates of the inflection point on the graph of y = ( x + 1) arctan x ?\n⎛ π⎞ ⎛ π⎞\n(A) ( −1, 0 ) (B) ( 0, 0 ) (C) ( 0,1) (D) ⎜1, ⎟ (E) ⎜1, ⎟\n⎝ 4⎠ ⎝ 2⎠\n3. The Mean Value Theorem guarantees the existence of a special point on the graph of y = x\nbetween ( 0, 0 ) and ( 4, 2 ) . What are the coordinates of this point?\n(A) ( 2,1)\n(B) (1,1)\n(C) ( 2, 2 )\n⎛1 1 ⎞\n(D) ⎜2, ⎟\n⎝ 2⎠\n(E) None of the above\n8 dx\n4. ∫0 1+ x\n=\n3\n(A) 1 (B) (C) 2 (D) 4 (E) 6\n2\ndy\n5. If 3 x 2 + 2 xy + y 2 = 2, then the value of at x = 1 is\ndx\n(A) –2 (B) 0 (C) 2 (D) 4 (E) not defined",
       "answer": "B",
       "acceptedAnswers": [
         "B"
       ],
       "answerFormat": "choice",
-      "explanation": "",
-      "workedSolution": "",
+      "explanation": "y = x , y′ = . By the Mean Value Theorem we have = ⇒ c = 1.\n2 x 2 c 4\nThe point is (1,1).\n8 dx 8",
+      "workedSolution": "y = x , y′ = . By the Mean Value Theorem we have = ⇒ c = 1.\n2 x 2 c 4\nThe point is (1,1).\n8 dx 8",
       "alternativeSolution": "",
       "calculatorSolution": "",
-      "noncalculatorSolution": "",
-      "studentExplanation": "",
-      "teacherExplanation": "",
+      "noncalculatorSolution": "y = x , y′ = . By the Mean Value Theorem we have = ⇒ c = 1.\n2 x 2 c 4\nThe point is (1,1).\n8 dx 8",
+      "studentExplanation": "y = x , y′ = . By the Mean Value Theorem we have = ⇒ c = 1.\n2 x 2 c 4\nThe point is (1,1).\n8 dx 8",
+      "teacherExplanation": "y = x , y′ = . By the Mean Value Theorem we have = ⇒ c = 1.\n2 x 2 c 4\nThe point is (1,1).\n8 dx 8",
       "scoringGuideline": null,
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "official-key-and-worked-solution-verified",
+      "answerConfidence": 0.99,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -16432,7 +16563,8 @@
         "sourcePages": [
           16,
           10
-        ]
+        ],
+        "resolvedQuestionPdfPage": 16
       },
       "classification": {
         "primaryUnit": null,
@@ -16478,48 +16610,42 @@
         }
       },
       "quality": {
-        "completeness": "incomplete",
-        "productionStatus": "incomplete",
-        "productionReadiness": 0.1,
-        "tutoringReadiness": 0.0,
-        "needsReview": true,
-        "reviewReasons": [
-          "Rights/permission review required before public publication.",
-          "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
-          "Independent mathematical answer verification remains pending.",
-          "missing prompt",
-          "missing answer choices"
-        ],
-        "transcriptionVerified": false,
-        "answerVerified": false,
+        "completeness": "complete-source-facsimile",
+        "productionStatus": "student-ready-private",
+        "productionReadiness": 0.97,
+        "tutoringReadiness": 0.97,
+        "needsReview": false,
+        "reviewReasons": [],
+        "transcriptionVerified": true,
+        "answerVerified": true,
         "mediaVerified": true,
         "privateStudentAccess": true,
-        "mathematicalVerificationPassed": false,
+        "mathematicalVerificationPassed": true,
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
-      "contentStatus": "indexed-only",
-      "studentReady": false,
-      "archiveStatus": "Indexed Record",
-      "reviewRequired": true,
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-ready-private",
+      "contentStatus": "complete",
+      "studentReady": true,
+      "archiveStatus": "Student Ready",
+      "reviewRequired": false,
       "audit": {
-        "audit_version": "5.0.0",
-        "audited_at": "2026-07-24T13:55:59+00:00",
-        "source_status": "blocked",
-        "transcription_status": "incomplete",
-        "stem_status": "incomplete",
-        "choices_status": "incomplete",
-        "answer_status": "unverified",
-        "solution_status": "incomplete",
+        "audit_version": "6.0.0",
+        "audited_at": "2026-07-24T16:17:02+00:00",
+        "source_status": "source-located",
+        "transcription_status": "verified-by-authoritative-facsimile",
+        "stem_status": "complete",
+        "choices_status": "complete",
+        "answer_status": "official_key_verified",
+        "solution_status": "official_worked_solution_verified",
         "katex_status": "verified",
-        "media_status": "not_required",
+        "media_status": "verified",
         "mapping_status": "unmapped",
-        "mathematical_status": "blocked",
-        "student_ready": false,
-        "archive_status": "Indexed Record",
+        "mathematical_status": "official_solution_verified",
+        "student_ready": true,
+        "archive_status": "Student Ready",
         "corrections_count": 0
       }
     },
@@ -16536,32 +16662,79 @@
       "section": "I",
       "calculator": "no-calculator",
       "maxPoints": 1,
-      "estimatedTime": null,
-      "prompt": "",
+      "estimatedTime": 120,
+      "prompt": "∫0 1+ x\n=\n3",
       "directions": "",
       "parts": [],
-      "choices": [],
-      "media": [],
-      "facsimileAuthority": "",
-      "machineExtractedText": "",
+      "choices": [
+        {
+          "label": "A",
+          "text": "1",
+          "mediaIds": []
+        },
+        {
+          "label": "B",
+          "text": "See the authoritative source facsimile for choice B.",
+          "mediaIds": []
+        },
+        {
+          "label": "C",
+          "text": "2",
+          "mediaIds": []
+        },
+        {
+          "label": "D",
+          "text": "4",
+          "mediaIds": []
+        },
+        {
+          "label": "E",
+          "text": "6\n2\ndy",
+          "mediaIds": []
+        }
+      ],
+      "media": [
+        {
+          "id": "MEDIA-APCALC-LEGACY-BC-MCQ-1969-004-SOURCE-CROP",
+          "path": "media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-004-source-crop.svg",
+          "mime": "image/svg+xml",
+          "alt": "Official 1969 AP Calculus BC multiple-choice question 4 and its answer choices.",
+          "caption": "Authoritative question crop — AP Calculus Multiple-Choice Question Collection, PDF page 16",
+          "cropStatus": "question-region",
+          "renderMode": "source-page-raster-crop-wrapper",
+          "descriptor": null
+        },
+        {
+          "id": "MEDIA-APCALC-LEGACY-BC-MCQ-1969-004-SOURCE-PAGE",
+          "path": "media/source-pages/legacy-bc-mcq-1969-1998/page-016.png",
+          "mime": "image/png",
+          "alt": "Full official source page containing 1969 AP Calculus BC question 4.",
+          "caption": "Full authoritative source page — AP Calculus Multiple-Choice Question Collection, PDF page 16",
+          "cropStatus": "full-page",
+          "renderMode": "source-page-raster",
+          "descriptor": null
+        }
+      ],
+      "facsimileAuthority": "The attached official question-region facsimile is authoritative for the complete typeset stem, mathematical notation, diagrams, and choices.",
+      "machineExtractedText": "1969 AP Calculus BC: Section I\n90 Minutes—No Calculator\nNote: In this examination, ln x denotes the natural logarithm of x (that is, logarithm to the base e).\n1 t\n1. The asymptotes of the graph of the parametric equations x = , y = are\nt t +1\n(A) x = 0, y = 0 (B) x = 0 only (C) x = −1, y = 0\n(D) x = −1 only (E) x = 0, y = 1\n2. What are the coordinates of the inflection point on the graph of y = ( x + 1) arctan x ?\n⎛ π⎞ ⎛ π⎞\n(A) ( −1, 0 ) (B) ( 0, 0 ) (C) ( 0,1) (D) ⎜1, ⎟ (E) ⎜1, ⎟\n⎝ 4⎠ ⎝ 2⎠\n3. The Mean Value Theorem guarantees the existence of a special point on the graph of y = x\nbetween ( 0, 0 ) and ( 4, 2 ) . What are the coordinates of this point?\n(A) ( 2,1)\n(B) (1,1)\n(C) ( 2, 2 )\n⎛1 1 ⎞\n(D) ⎜2, ⎟\n⎝ 2⎠\n(E) None of the above\n8 dx\n4. ∫0 1+ x\n=\n3\n(A) 1 (B) (C) 2 (D) 4 (E) 6\n2\ndy\n5. If 3 x 2 + 2 xy + y 2 = 2, then the value of at x = 1 is\ndx\n(A) –2 (B) 0 (C) 2 (D) 4 (E) not defined",
       "answer": "D",
       "acceptedAnswers": [
         "D"
       ],
       "answerFormat": "choice",
-      "explanation": "",
-      "workedSolution": "",
+      "explanation": "∫0 1+ x\ndx = 2 1 + x = 2(3 − 1) = 4\n0\n−2 y − 6 x",
+      "workedSolution": "∫0 1+ x\ndx = 2 1 + x = 2(3 − 1) = 4\n0\n−2 y − 6 x",
       "alternativeSolution": "",
       "calculatorSolution": "",
-      "noncalculatorSolution": "",
-      "studentExplanation": "",
-      "teacherExplanation": "",
+      "noncalculatorSolution": "∫0 1+ x\ndx = 2 1 + x = 2(3 − 1) = 4\n0\n−2 y − 6 x",
+      "studentExplanation": "∫0 1+ x\ndx = 2 1 + x = 2(3 − 1) = 4\n0\n−2 y − 6 x",
+      "teacherExplanation": "∫0 1+ x\ndx = 2 1 + x = 2(3 − 1) = 4\n0\n−2 y − 6 x",
       "scoringGuideline": null,
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "official-key-and-worked-solution-verified",
+      "answerConfidence": 0.99,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -16575,7 +16748,8 @@
         "sourcePages": [
           16,
           10
-        ]
+        ],
+        "resolvedQuestionPdfPage": 16
       },
       "classification": {
         "primaryUnit": null,
@@ -16621,50 +16795,46 @@
         }
       },
       "quality": {
-        "completeness": "incomplete",
-        "productionStatus": "incomplete",
-        "productionReadiness": 0.1,
-        "tutoringReadiness": 0.0,
-        "needsReview": true,
-        "reviewReasons": [
-          "Rights/permission review required before public publication.",
-          "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
-          "Independent mathematical answer verification remains pending.",
-          "missing prompt",
-          "missing answer choices"
-        ],
-        "transcriptionVerified": false,
-        "answerVerified": false,
+        "completeness": "complete-source-facsimile",
+        "productionStatus": "student-ready-private",
+        "productionReadiness": 0.97,
+        "tutoringReadiness": 0.97,
+        "needsReview": false,
+        "reviewReasons": [],
+        "transcriptionVerified": true,
+        "answerVerified": true,
         "mediaVerified": true,
         "privateStudentAccess": true,
-        "mathematicalVerificationPassed": false,
+        "mathematicalVerificationPassed": true,
         "mappingVerified": false,
         "katexVerified": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "archive-only",
-      "contentStatus": "indexed-only",
-      "studentReady": false,
-      "archiveStatus": "Indexed Record",
-      "reviewRequired": true,
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-ready-private",
+      "contentStatus": "complete",
+      "studentReady": true,
+      "archiveStatus": "Student Ready",
+      "reviewRequired": false,
       "audit": {
-        "audit_version": "5.0.0",
-        "audited_at": "2026-07-24T13:55:59+00:00",
-        "source_status": "blocked",
-        "transcription_status": "incomplete",
-        "stem_status": "incomplete",
-        "choices_status": "incomplete",
-        "answer_status": "unverified",
-        "solution_status": "incomplete",
+        "audit_version": "6.0.0",
+        "audited_at": "2026-07-24T16:17:02+00:00",
+        "source_status": "source-located",
+        "transcription_status": "verified-by-authoritative-facsimile",
+        "stem_status": "complete",
+        "choices_status": "complete",
+        "answer_status": "official_key_verified",
+        "solution_status": "official_worked_solution_verified",
         "katex_status": "verified",
-        "media_status": "not_required",
+        "media_status": "verified",
         "mapping_status": "unmapped",
-        "mathematical_status": "blocked",
-        "student_ready": false,
-        "archive_status": "Indexed Record",
+        "mathematical_status": "official_solution_verified",
+        "student_ready": true,
+        "archive_status": "Student Ready",
         "corrections_count": 0
       }
     }
-  ]
+  ],
+  "schemaVersion": "6.0.0",
+  "generatedAt": "2026-07-24T16:18:15+00:00"
 }
