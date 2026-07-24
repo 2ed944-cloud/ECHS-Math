@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-07-23T23:55:23.843532+00:00",
+  "generatedAt": "2026-07-24T18:22:04+00:00",
   "questions": 1217,
-  "media": 1185,
+  "media": 1186,
   "courses": {
     "AP Calculus AB": 804,
     "AP Calculus BC": 382,
@@ -75,5 +75,13 @@
   "officialSourceRepresentation": 432,
   "legacyBCMetadataOnly": 310,
   "validationCriticalErrors": 0,
-  "validationWarnings": 621
+  "validationWarnings": 1,
+  "studentReady": 352,
+  "teacherArchiveRestricted": 865,
+  "correctionRecords": 277,
+  "correctedQuestionOrDispositionRecords": 88,
+  "browserSmokeCases": 12,
+  "browserSmokePassed": 12,
+  "validationChecks": 31,
+  "validationWarningNote": "Six exact normalized placeholder-prompt groups are intentionally retained under distinct permanent IDs and source contexts."
 }

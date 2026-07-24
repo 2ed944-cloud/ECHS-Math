@@ -1,22 +1,30 @@
-name: Validate ECHS AP Question Bank
+name: Validate ECHS AP v5 Question Bank
+
 on:
   push:
     paths:
-      - 'question-bank/official/data/**'
-      - 'question-bank/official/media/**'
-      - 'question-bank/official/tools/**'
+      - 'question-bank/official/**'
+      - 'js/official-ap-integration.js'
+      - '.github/workflows/echs-ap-bank-validate.yml'
   pull_request:
     paths:
-      - 'question-bank/official/data/**'
-      - 'question-bank/official/media/**'
-      - 'question-bank/official/tools/**'
+      - 'question-bank/official/**'
+      - 'js/official-ap-integration.js'
+      - '.github/workflows/echs-ap-bank-validate.yml'
+
 permissions:
   contents: read
+
 jobs:
   validate:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Validate private bank and expansions
-        shell: powershell
-        run: ./question-bank/official/tools/validate-private-bank.ps1 -OfficialRoot ./question-bank/official
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run the independently audited release validator
+        run: python question-bank/official/tools/validate_release.py

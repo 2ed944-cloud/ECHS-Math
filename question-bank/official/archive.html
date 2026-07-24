@@ -1,125 +1,42 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="theme-color" content="#78183f" />
-    <title>Official AP Archive</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"
-    />
-    <script
-      defer
-      src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"
-    ></script>
-    <script
-      defer
-      src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
-    ></script>
-    <link rel="stylesheet" href="css/app.css?v=6.2.0" />
-  </head>
-  <body>
-    <header class="siteHeader">
-      <a class="brand" href="index.html">
-        <span class="brandMark">∫</span>
-        <span class="brandText">
-          <strong>ECHS AP Practice Center</strong>
-          <span>Official archive · tutoring · assessment</span>
-        </span>
-      </a>
-      <nav>
-        <a class="navLink" href="index.html">Home</a>
-        <a class="navLink active" href="archive.html">Official Archive</a>
-        <a class="navLink" href="practice.html">Tutor Practice</a>
-        <a class="navLink" href="exam.html">Exam Simulator</a>
-        <a class="navLink" href="dashboard.html">Dashboard</a>
-        <a class="navLink" href="../../">ECHS Portal</a>
-      </nav>
-      <span class="modeBadge">Private School</span>
-    </header>
-    <main>
-      <section class="hero">
-        <span class="eyebrow">Official AP Archive</span>
-        <h1>Decades of calculus,<span>one connected archive.</span></h1>
-        <p>
-          Choose any year to open every complete question assigned to that year
-          in source order. Verified records are auto-graded; the others remain
-          available as response-only practice.
-        </p>
-        <div class="heroActions">
-          <a class="button gold" href="practice.html">Practice by filter</a>
-          <a class="button ghost" href="exam.html?mode=year"
-            >Build year exam</a
-          >
-        </div>
-      </section>
-      <section class="stats" id="archiveStats"></section>
-      <div class="sectionHead">
-        <div>
-          <h2>Years</h2>
-          <p>
-            Select a year to start a complete, ordered session containing all
-            available questions from that year.
-          </p>
-        </div>
-      </div>
-      <section class="yearGrid" id="years"></section>
-      <div class="sectionHead">
-        <div>
-          <h2>Collections</h2>
-          <p>
-            Official, historical, sample, ECHS, and supplementary collections
-            remain clearly separated.
-          </p>
-        </div>
-      </div>
-      <section class="grid" id="collections"></section>
-      <div class="sectionHead">
-        <div>
-          <h2>Question browser</h2>
-          <p>
-            Every complete question is preserved and can be opened. Verified
-            records include grading; other records accept a response without
-            showing an unverified answer.
-          </p>
-        </div>
-      </div>
-      <section class="panel">
-        <div class="controls">
-          <div class="control">
-            <label>Course</label>
-            <select id="archiveCourse"></select>
-          </div>
-          <div class="control">
-            <label>Year</label>
-            <select id="archiveYear"></select>
-          </div>
-          <div class="control">
-            <label>Audit status</label>
-            <select id="archiveStatus"></select>
-          </div>
-          <div class="control">
-            <label>Question / topic / ID</label>
-            <input id="archiveSearch" placeholder="Search the archive" />
-          </div>
-        </div>
-        <div class="pillRow" id="archiveRecordSummary"></div>
-      </section>
-      <section class="grid" id="archiveRecords"></section>
-      <section id="archiveDetail" hidden></section>
-    </main>
-    <footer class="footer">
-      ECHS Mathematics · Deterministic tutoring · No AI API key · Progress
-      remains in this browser.
-    </footer>
-    <script src="js/app.js?v=6.2.0"></script>
-    <script src="js/archive.js?v=6.2.0"></script>
-  </body>
-</html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#78183f">
+  <title>Official Archive</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.27/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.27/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.27/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<header class="siteHeader">
+  <a class="brand" href="index.html"><span class="brandMark">∫</span><span class="brandText"><strong>ECHS AP Practice Center</strong><span>Audited archive · tutoring · assessment</span></span></a>
+  <nav><a class="navLink" href="index.html">Home</a><a class="navLink active" href="archive.html">Official Archive</a><a class="navLink" href="practice.html">Tutor Practice</a><a class="navLink" href="exam.html">Exam Simulator</a><a class="navLink" href="dashboard.html">Dashboard</a><a class="navLink" href="../../">ECHS Portal</a></nav>
+  <span class="modeBadge">Student Release 5.0</span>
+</header>
+<main>
+  <section class="hero"><span class="eyebrow">Official Archive</span><h1>Every canonical record.<span>Only verified content is interactive.</span></h1><p>The archive indexes all 1,217 records. Student-ready questions can open in practice; restricted records contain metadata and audit status only, with prompts and answers redacted.</p></section>
+  <section class="stats" id="archiveStats"><div class="stat"><b>—</b><span>Loading archive</span></div></section>
+  <section class="panel">
+    <div class="controls">
+      <div class="control" style="grid-column:span 2"><label>Search ID, topic, source, objective, or skill</label><input id="archiveSearch" placeholder="Search the canonical archive"></div>
+      <div class="control"><label>Course</label><select id="archiveCourse"><option value="all">All courses</option></select></div>
+      <div class="control"><label>Year</label><select id="archiveYear"><option value="all">All years</option></select></div>
+      <div class="control"><label>Type</label><select id="archiveType"><option value="all">MCQ + FRQ</option><option value="mcq">MCQ</option><option value="frq">FRQ</option></select></div>
+      <div class="control"><label>Archive status</label><select id="archiveStatus"><option value="all">All statuses</option><option value="Student Ready">Student Ready</option><option value="Corrected">Corrected</option><option value="Verified">Verified</option><option value="Archive Only">Archive Only</option><option value="Review Required">Review Required</option><option value="Incomplete Source">Incomplete Source</option><option value="Indexed Record">Indexed Record</option></select></div>
+    </div>
+    <div class="toolbar"><span class="pill" id="archiveCount">Loading…</span><span class="pill gold">Restricted records never reveal unverified answers</span></div>
+  </section>
+  <div class="tableWrap"><table class="dataTable"><thead><tr><th>ID</th><th>Course / year</th><th>Mapped topic</th><th>Type</th><th>Status</th></tr></thead><tbody id="archiveTable"></tbody></table></div>
+  <section class="panel hidden" id="archiveDetail" style="margin-top:1rem"></section>
+  <div class="sectionHead"><div><h2>Source collections</h2><p>Indexed and student-ready counts by canonical assessment family.</p></div></div>
+  <section class="grid" id="collections"></section>
+</main>
+<footer class="footer">ECHS Mathematics · Independently audited student pool · Progress remains in this browser.</footer>
+<script src="js/app.js"></script><script src="js/archive.js"></script>
+</body></html>

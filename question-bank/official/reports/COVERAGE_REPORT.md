@@ -1,12 +1,23 @@
 # Coverage Report
 
-- Final questions: **1,217** (preserved 757; added 460).
-- Uploaded resources analyzed: **11/11**.
-- Official question headings represented from newly supplied official sources: **432/432**.
-- Exact duplicate framework PDF: skipped without duplicate creation.
-- Known legacy BC metadata-only records: **310**. Their source scans were not supplied, so exact wording, choices, and figures cannot be fabricated.
-- Historical FRQs without a source scoring guideline after all supplied merges: **233**.
+Generated: 2026-07-24T18:22:04+00:00
 
-## Conclusion
+## Canonical and student boundaries
 
-All newly uploaded files were analyzed. All official question headings detected in the supplied official PDFs were imported or merged exactly once. Literal 100% historical AP MCQ coverage cannot be certified because the canonical repository contains 310 BC legacy metadata-only records whose source scans were not supplied.
+- Canonical questions with an individual audit row: **1,217 / 1,217**.
+- Student-ready questions: **352**.
+- Teacher/archive-restricted questions: **865**.
+- Canonical MCQ: **876**; canonical FRQ: **341**.
+- Uploaded source resources analyzed during the underlying bank expansion: **11 / 11**.
+- Official question headings represented from the supplied official sources: **432 / 432**.
+- Exact duplicate framework source: retained as provenance without creating duplicate canonical IDs.
+
+## Known source limitations preserved honestly
+
+- Legacy BC metadata-only records without supplied source scans: **310**.
+- Historical FRQs without an available official scoring guideline after supplied-source reconciliation: **233**.
+- Records restricted in the final gate because an exact required visual remained unavailable: **6**.
+
+## Release conclusion
+
+Every canonical record is represented in `QUESTION_BY_QUESTION_AUDIT.csv`. The release does not claim full interactive certification of all 1,217 records: only the 352 records that passed source, transcription, answer, mathematics, KaTeX, media, and exact mapping gates enter student practice, exams, recommendations, or dashboard calculations.
