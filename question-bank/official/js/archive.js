@@ -15,9 +15,15 @@ function archiveOption(value, label) {
 }
 
 function populateArchiveFilters() {
-  const courses = ECHSOfficial.uniq(archiveRows.map((row) => row.course)).sort();
-  const years = ECHSOfficial.uniq(archiveRows.map((row) => row.year)).sort((a, b) => Number(a) - Number(b));
-  const statuses = ECHSOfficial.uniq(archiveRows.map((row) => row.archiveStatus)).sort();
+  const courses = ECHSOfficial.uniq(
+    archiveRows.map((row) => row.course),
+  ).sort();
+  const years = ECHSOfficial.uniq(archiveRows.map((row) => row.year)).sort(
+    (a, b) => Number(a) - Number(b),
+  );
+  const statuses = ECHSOfficial.uniq(
+    archiveRows.map((row) => row.archiveStatus),
+  ).sort();
   AUI.course.innerHTML =
     archiveOption("all", "All courses") +
     courses.map((course) => archiveOption(course, course)).join("");
@@ -35,7 +41,9 @@ function populateArchiveFilters() {
 }
 
 function archiveMatches() {
-  const query = String(AUI.search.value || "").trim().toLowerCase();
+  const query = String(AUI.search.value || "")
+    .trim()
+    .toLowerCase();
   return archiveRows.filter((row) => {
     if (
       AUI.course.value !== "all" &&
@@ -43,8 +51,10 @@ function archiveMatches() {
       row.courseId !== AUI.course.value
     )
       return false;
-    if (AUI.year.value !== "all" && String(row.year) !== AUI.year.value) return false;
-    if (AUI.status.value !== "all" && row.archiveStatus !== AUI.status.value) return false;
+    if (AUI.year.value !== "all" && String(row.year) !== AUI.year.value)
+      return false;
+    if (AUI.status.value !== "all" && row.archiveStatus !== AUI.status.value)
+      return false;
     if (query && !row.search.includes(query)) return false;
     return true;
   });
@@ -52,7 +62,7 @@ function archiveMatches() {
 
 function renderArchiveList() {
   const matched = archiveMatches();
-  AUI.summary.innerHTML = `<span class="pill wine">${matched.length.toLocaleString()} records</span><span class="pill teal">${matched.filter((row) => row.studentReady).length.toLocaleString()} student ready</span><span class="pill">${matched.filter((row) => !row.studentReady).length.toLocaleString()} archive/review only</span>`;
+  AUI.summary.innerHTML = `<span class="pill wine">${matched.length.toLocaleString()} complete questions</span><span class="pill teal">${matched.filter((row) => row.studentReady).length.toLocaleString()} auto-graded</span><span class="pill">${matched.filter((row) => !row.studentReady).length.toLocaleString()} response-only</span>`;
   const visible = matched.slice(0, 150);
   AUI.list.innerHTML =
     visible
@@ -67,15 +77,10 @@ function renderArchiveList() {
             ${row.topicCode ? `<span class="pill">${ECHSOfficial.esc(row.topicCode)}</span>` : ""}
           </div>
           <p><button class="button ghost" data-open-record="${ECHSOfficial.esc(row.id)}">Open record</button></p>
-        </article>`
+        </article>`,
       )
-      .join("") || '<div class="empty">No archive records match these filters.</div>';
-  if (matched.length > visible.length) {
-    AUI.list.insertAdjacentHTML(
-      "afterend",
-      `<p class="notice">Showing the first ${visible.length} records. Narrow the filters to inspect a specific item.</p>`
-    );
-  }
+      .join("") ||
+    '<div class="empty">No archive records match these filters.</div>';
   document.querySelectorAll("[data-open-record]").forEach((button) => {
     button.onclick = () => openArchiveRecord(button.dataset.openRecord);
   });
@@ -112,16 +117,25 @@ async function initArchive() {
   archiveRows = ECHSOfficial.index;
   const catalog = ECHSOfficial.catalog;
   document.getElementById("archiveStats").innerHTML = `
-    <div class="stat"><b>${catalog.stats.questions.toLocaleString()}</b><span>Preserved records</span></div>
-    <div class="stat"><b>${catalog.stats.studentReady.toLocaleString()}</b><span>Student ready</span></div>
-    <div class="stat"><b>${catalog.stats.reviewRequired.toLocaleString()}</b><span>Review required</span></div>
+    <div class="stat"><b>${catalog.stats.questions.toLocaleString()}</b><span>Complete questions</span></div>
+    <div class="stat"><b>${catalog.stats.studentReady.toLocaleString()}</b><span>Auto-graded</span></div>
+    <div class="stat"><b>${catalog.stats.reviewRequired.toLocaleString()}</b><span>Response-only</span></div>
     <div class="stat"><b>${catalog.stats.fullyDigitized.toLocaleString()}</b><span>Complete sources</span></div>`;
-  document.getElementById("years").innerHTML = Object.entries(catalog.years)
-    .map(
-      ([year, value]) =>
-        `<a class="yearCard" href="archive.html?year=${year}"><b>${year}</b><span>${value.total} records · ${value.ready || 0} student ready</span></a>`
-    )
-    .join("");
+  const assignedToYears = Object.values(catalog.years).reduce(
+    (total, value) => total + value.total,
+    0,
+  );
+  const noYearCount = catalog.stats.questions - assignedToYears;
+  document.getElementById("years").innerHTML =
+    Object.entries(catalog.years)
+      .map(
+        ([year, value]) =>
+          `<a class="yearCard" href="practice.html?year=${encodeURIComponent(year)}&content=all&count=all&sessionMode=ordered&autostart=1"><b>${year}</b><span>Open all ${value.total} questions · ${value.ready || 0} auto-graded</span></a>`,
+      )
+      .join("") +
+    (noYearCount
+      ? `<a class="yearCard" href="practice.html?year=unassigned&content=all&count=all&sessionMode=ordered&autostart=1"><b>Other</b><span>Open all ${noYearCount} form/collection questions without a source year</span></a>`
+      : "");
   document.getElementById("collections").innerHTML = catalog.collections
     .map(
       (collection) => `<article class="card">
@@ -129,12 +143,12 @@ async function initArchive() {
         <h3>${ECHSOfficial.esc(collection.label)}</h3>
         <div class="pillRow"><span class="pill wine">${collection.count} records</span><span class="pill teal">${collection.ready || 0} student ready</span></div>
         <p><a class="button ghost" href="archive.html?q=${encodeURIComponent(collection.id)}">Inspect collection</a></p>
-      </article>`
+      </article>`,
     )
     .join("");
   populateArchiveFilters();
   [AUI.course, AUI.year, AUI.status].forEach((element) =>
-    element.addEventListener("change", renderArchiveList)
+    element.addEventListener("change", renderArchiveList),
   );
   AUI.search.addEventListener("input", renderArchiveList);
   renderArchiveList();
