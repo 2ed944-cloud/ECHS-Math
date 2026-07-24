@@ -2,7 +2,7 @@
 
 Generated: 2026-07-24T14:43:26+00:00
 
-This report covers every lesson identifier present in the canonical bank and every current G9/AP Precalculus portal lesson. Only mappings with `mappingConfidence = verified` are used automatically by lesson links. A lesson with zero verified questions must not broaden silently to its unit.
+This report covers every lesson identifier present in the canonical bank and every current G9/AP Precalculus portal lesson. A verified mapping does not by itself grant public student access: only the 52 records that also pass source/publication, transcription, mathematics, answer, solution, KaTeX, and media gates are available to exact lesson links. A lesson with zero fully student-ready questions must not broaden silently to its unit.
 
 | lesson_id | lesson_title | course | unit | official_topic | verified_questions | high_confidence_questions | removed_as_unrelated | requiring_review | question_ids | verified_question_ids | review_question_ids | mapping_rationale |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |

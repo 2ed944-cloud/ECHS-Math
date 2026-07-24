@@ -14,7 +14,7 @@
       "calculator": "no-calculator",
       "maxPoints": 10,
       "estimatedTime": 900,
-      "prompt": "Let \\(f(x)=x^3-3x^2-4x+12\\), and define \\[h(x)=\\begin{cases}\\dfrac{f(x)}{x-3},&x\\ne3,\\p,&x=3.\\end{cases}\\]",
+      "prompt": "Let \\(f(x)=x^3-3x^2-4x+12\\), and define \\[h(x)=\\begin{cases}\\dfrac{f(x)}{x-3},&x\\ne3,p,&x=3.\\end{cases}\\]",
       "directions": "",
       "parts": [
         {
@@ -470,7 +470,7 @@
         "lessonMappingStatus": "uncertain",
         "calculatorStatus": "review-required",
         "overallStatus": "teacher-archive-only",
-        "correctionsMade": 0,
+        "correctionsMade": 1,
         "reviewRequired": true,
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
         "auditedAt": "2026-07-24T17:46:03+00:00"
@@ -4352,7 +4352,7 @@
         },
         {
           "label": "(c)",
-          "prompt": "Find \\(\\left(\\frac{f}{g}\night)'(2)\\).",
+          "prompt": "Find \\(\\left(\\frac{f}{g}\\right)'(2)\\).",
           "maxPoints": 2,
           "answer": "\\[\\left(\\frac fg\\right)'(2)=\\frac{f'(2)g(2)-f(2)g'(2)}{[g(2)]^2}=\\boxed{\\frac{6\\pi-21}{\\pi^2}}.\\]",
           "rubric": [
@@ -4775,7 +4775,7 @@
         "lessonMappingStatus": "uncertain",
         "calculatorStatus": "review-required",
         "overallStatus": "teacher-archive-only",
-        "correctionsMade": 6,
+        "correctionsMade": 7,
         "reviewRequired": true,
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
         "auditedAt": "2026-07-24T17:46:03+00:00"
@@ -15270,7 +15270,7 @@
           "label": "(d)",
           "prompt": "Determine a formula for the continuous function \\(f\\).",
           "maxPoints": 3,
-          "answer": "The relation factors as\n\\[(y^2-x^2)(4y^2-x^2)=0,\\]\nso possible lines are \\(y=\\pm x\\) and \\(y=\\pm x/2\\). The point \\((2,1)\\) selects \\(y=x/2\\) for \\(x>0\\), while \\((-2,-2)\\) selects \\(y=x\\) for \\(x<0\\). Both meet at the origin, so continuity gives\n\\[\\boxed{f(x)=\\begin{cases}x,&x<0,\\x/2,&x\\ge0.\\end{cases}}\\]",
+          "answer": "The relation factors as\n\\[(y^2-x^2)(4y^2-x^2)=0,\\]\nso possible lines are \\(y=\\pm x\\) and \\(y=\\pm x/2\\). The point \\((2,1)\\) selects \\(y=x/2\\) for \\(x>0\\), while \\((-2,-2)\\) selects \\(y=x\\) for \\(x<0\\). Both meet at the origin, so continuity gives\n\\[\\boxed{f(x)=\\begin{cases}x,&x<0,x/2,&x\\ge0.\\end{cases}}\\]",
           "rubric": [
             {
               "criterionId": "D1",
@@ -15656,7 +15656,7 @@
         "lessonMappingStatus": "uncertain",
         "calculatorStatus": "review-required",
         "overallStatus": "teacher-archive-only",
-        "correctionsMade": 0,
+        "correctionsMade": 1,
         "reviewRequired": true,
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
         "auditedAt": "2026-07-24T17:46:03+00:00"
@@ -16378,31 +16378,32 @@
       },
       "quality": {
         "completeness": "complete-unverified",
-        "productionStatus": "student-ready",
+        "productionStatus": "teacher-archive-only",
         "productionReadiness": 0.65,
         "tutoringReadiness": 0.8,
-        "needsReview": false,
+        "needsReview": true,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
-          "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation."
+          "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
+          "Public release blocked: source access is school-internal and publicPublicationAllowed is false."
         ],
-        "transcriptionVerified": true,
+        "transcriptionVerified": false,
         "answerVerified": true,
         "mediaVerified": true,
         "privateStudentAccess": true,
         "mathematicalVerificationPassed": true,
         "katexVerified": true,
         "mappingVerified": true,
-        "studentReadyGatePassed": true
+        "studentReadyGatePassed": false
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "student-ready",
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "teacher-archive-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "44; 38",
-        "transcriptionStatus": "verified",
+        "transcriptionStatus": "human_review_required",
         "stemStatus": "verified",
         "choicesStatus": "verified",
         "answerStatus": "verified",
@@ -16414,13 +16415,13 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "student-ready",
-        "correctionsMade": 0,
-        "reviewRequired": false,
-        "reviewerNotes": "Complete independent source and mathematical verification passed.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "overallStatus": "teacher-archive-only",
+        "correctionsMade": 1,
+        "reviewRequired": true,
+        "reviewerNotes": "Preserved in the canonical teacher/archive bank. Excluded from the public GitHub Pages student pool because the source metadata permits school-internal use only and page-by-page transcription signoff is pending.",
+        "auditedAt": "2026-07-24T21:33:52+00:00"
       },
-      "studentReady": true
+      "studentReady": false
     },
     {
       "id": "APCALC-LEGACY-MCQ-1985-002",
@@ -16648,31 +16649,32 @@
       },
       "quality": {
         "completeness": "complete-unverified",
-        "productionStatus": "student-ready",
+        "productionStatus": "teacher-archive-only",
         "productionReadiness": 0.65,
         "tutoringReadiness": 0.8,
-        "needsReview": false,
+        "needsReview": true,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
-          "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation."
+          "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
+          "Public release blocked: source access is school-internal and publicPublicationAllowed is false."
         ],
-        "transcriptionVerified": true,
+        "transcriptionVerified": false,
         "answerVerified": true,
         "mediaVerified": true,
         "privateStudentAccess": true,
         "mathematicalVerificationPassed": true,
         "katexVerified": true,
         "mappingVerified": true,
-        "studentReadyGatePassed": true
+        "studentReadyGatePassed": false
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "student-ready",
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "teacher-archive-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "44; 38",
-        "transcriptionStatus": "verified",
+        "transcriptionStatus": "human_review_required",
         "stemStatus": "verified",
         "choicesStatus": "verified",
         "answerStatus": "verified",
@@ -16684,13 +16686,13 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "student-ready",
-        "correctionsMade": 0,
-        "reviewRequired": false,
-        "reviewerNotes": "Complete independent source and mathematical verification passed.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "overallStatus": "teacher-archive-only",
+        "correctionsMade": 1,
+        "reviewRequired": true,
+        "reviewerNotes": "Preserved in the canonical teacher/archive bank. Excluded from the public GitHub Pages student pool because the source metadata permits school-internal use only and page-by-page transcription signoff is pending.",
+        "auditedAt": "2026-07-24T21:33:52+00:00"
       },
-      "studentReady": true
+      "studentReady": false
     },
     {
       "id": "APCALC-LEGACY-MCQ-1985-003",
@@ -16893,32 +16895,33 @@
       },
       "quality": {
         "completeness": "complete-unverified",
-        "productionStatus": "student-ready",
+        "productionStatus": "teacher-archive-only",
         "productionReadiness": 0.65,
         "tutoringReadiness": 0.8,
-        "needsReview": false,
+        "needsReview": true,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
           "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
-          "repeated choice text"
+          "repeated choice text",
+          "Public release blocked: source access is school-internal and publicPublicationAllowed is false."
         ],
-        "transcriptionVerified": true,
+        "transcriptionVerified": false,
         "answerVerified": true,
         "mediaVerified": true,
         "privateStudentAccess": true,
         "mathematicalVerificationPassed": true,
         "katexVerified": true,
         "mappingVerified": true,
-        "studentReadyGatePassed": true
+        "studentReadyGatePassed": false
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "student-ready",
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "teacher-archive-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "44; 38",
-        "transcriptionStatus": "verified",
+        "transcriptionStatus": "human_review_required",
         "stemStatus": "verified",
         "choicesStatus": "verified",
         "answerStatus": "verified",
@@ -16930,13 +16933,13 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "student-ready",
-        "correctionsMade": 0,
-        "reviewRequired": false,
-        "reviewerNotes": "Complete independent source and mathematical verification passed.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "overallStatus": "teacher-archive-only",
+        "correctionsMade": 1,
+        "reviewRequired": true,
+        "reviewerNotes": "Preserved in the canonical teacher/archive bank. Excluded from the public GitHub Pages student pool because the source metadata permits school-internal use only and page-by-page transcription signoff is pending.",
+        "auditedAt": "2026-07-24T21:33:52+00:00"
       },
-      "studentReady": true
+      "studentReady": false
     },
     {
       "id": "APCALC-LEGACY-MCQ-1985-004",
@@ -17151,32 +17154,33 @@
       },
       "quality": {
         "completeness": "complete-unverified",
-        "productionStatus": "student-ready",
+        "productionStatus": "teacher-archive-only",
         "productionReadiness": 0.65,
         "tutoringReadiness": 0.8,
-        "needsReview": false,
+        "needsReview": true,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
           "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
-          "repeated choice text"
+          "repeated choice text",
+          "Public release blocked: source access is school-internal and publicPublicationAllowed is false."
         ],
-        "transcriptionVerified": true,
+        "transcriptionVerified": false,
         "answerVerified": true,
         "mediaVerified": true,
         "privateStudentAccess": true,
         "mathematicalVerificationPassed": true,
         "katexVerified": true,
         "mappingVerified": true,
-        "studentReadyGatePassed": true
+        "studentReadyGatePassed": false
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "student-ready",
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "teacher-archive-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "44; 38",
-        "transcriptionStatus": "verified",
+        "transcriptionStatus": "human_review_required",
         "stemStatus": "verified",
         "choicesStatus": "verified",
         "answerStatus": "verified",
@@ -17188,13 +17192,13 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "student-ready",
-        "correctionsMade": 0,
-        "reviewRequired": false,
-        "reviewerNotes": "Complete independent source and mathematical verification passed.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "overallStatus": "teacher-archive-only",
+        "correctionsMade": 1,
+        "reviewRequired": true,
+        "reviewerNotes": "Preserved in the canonical teacher/archive bank. Excluded from the public GitHub Pages student pool because the source metadata permits school-internal use only and page-by-page transcription signoff is pending.",
+        "auditedAt": "2026-07-24T21:33:52+00:00"
       },
-      "studentReady": true
+      "studentReady": false
     },
     {
       "id": "APCALC-LEGACY-MCQ-1985-005",
@@ -17404,31 +17408,32 @@
       },
       "quality": {
         "completeness": "complete-unverified",
-        "productionStatus": "student-ready",
+        "productionStatus": "teacher-archive-only",
         "productionReadiness": 0.65,
         "tutoringReadiness": 0.8,
-        "needsReview": false,
+        "needsReview": true,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
-          "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation."
+          "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
+          "Public release blocked: source access is school-internal and publicPublicationAllowed is false."
         ],
-        "transcriptionVerified": true,
+        "transcriptionVerified": false,
         "answerVerified": true,
         "mediaVerified": true,
         "privateStudentAccess": true,
         "mathematicalVerificationPassed": true,
         "katexVerified": true,
         "mappingVerified": true,
-        "studentReadyGatePassed": true
+        "studentReadyGatePassed": false
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "student-ready",
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "teacher-archive-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "44; 38",
-        "transcriptionStatus": "verified",
+        "transcriptionStatus": "human_review_required",
         "stemStatus": "verified",
         "choicesStatus": "verified",
         "answerStatus": "verified",
@@ -17440,13 +17445,13 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "student-ready",
-        "correctionsMade": 0,
-        "reviewRequired": false,
-        "reviewerNotes": "Complete independent source and mathematical verification passed.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "overallStatus": "teacher-archive-only",
+        "correctionsMade": 1,
+        "reviewRequired": true,
+        "reviewerNotes": "Preserved in the canonical teacher/archive bank. Excluded from the public GitHub Pages student pool because the source metadata permits school-internal use only and page-by-page transcription signoff is pending.",
+        "auditedAt": "2026-07-24T21:33:52+00:00"
       },
-      "studentReady": true
+      "studentReady": false
     },
     {
       "id": "APCALC-LEGACY-MCQ-1985-006",
@@ -17626,31 +17631,32 @@
       },
       "quality": {
         "completeness": "complete-unverified",
-        "productionStatus": "student-ready",
+        "productionStatus": "teacher-archive-only",
         "productionReadiness": 0.65,
         "tutoringReadiness": 0.8,
-        "needsReview": false,
+        "needsReview": true,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
-          "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation."
+          "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
+          "Public release blocked: source access is school-internal and publicPublicationAllowed is false."
         ],
-        "transcriptionVerified": true,
+        "transcriptionVerified": false,
         "answerVerified": true,
         "mediaVerified": true,
         "privateStudentAccess": true,
         "mathematicalVerificationPassed": true,
         "katexVerified": true,
         "mappingVerified": true,
-        "studentReadyGatePassed": true
+        "studentReadyGatePassed": false
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "student-ready",
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "teacher-archive-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "45; 39",
-        "transcriptionStatus": "verified",
+        "transcriptionStatus": "human_review_required",
         "stemStatus": "verified",
         "choicesStatus": "verified",
         "answerStatus": "verified",
@@ -17662,13 +17668,13 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "student-ready",
-        "correctionsMade": 0,
-        "reviewRequired": false,
-        "reviewerNotes": "Complete independent source and mathematical verification passed.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "overallStatus": "teacher-archive-only",
+        "correctionsMade": 1,
+        "reviewRequired": true,
+        "reviewerNotes": "Preserved in the canonical teacher/archive bank. Excluded from the public GitHub Pages student pool because the source metadata permits school-internal use only and page-by-page transcription signoff is pending.",
+        "auditedAt": "2026-07-24T21:33:52+00:00"
       },
-      "studentReady": true
+      "studentReady": false
     },
     {
       "id": "APCALC-LEGACY-MCQ-1985-007",
@@ -17886,31 +17892,32 @@
       },
       "quality": {
         "completeness": "complete-unverified",
-        "productionStatus": "student-ready",
+        "productionStatus": "teacher-archive-only",
         "productionReadiness": 0.65,
         "tutoringReadiness": 0.8,
-        "needsReview": false,
+        "needsReview": true,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
-          "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation."
+          "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
+          "Public release blocked: source access is school-internal and publicPublicationAllowed is false."
         ],
-        "transcriptionVerified": true,
+        "transcriptionVerified": false,
         "answerVerified": true,
         "mediaVerified": true,
         "privateStudentAccess": true,
         "mathematicalVerificationPassed": true,
         "katexVerified": true,
         "mappingVerified": true,
-        "studentReadyGatePassed": true
+        "studentReadyGatePassed": false
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "student-ready",
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "teacher-archive-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "45; 39",
-        "transcriptionStatus": "verified",
+        "transcriptionStatus": "human_review_required",
         "stemStatus": "verified",
         "choicesStatus": "verified",
         "answerStatus": "verified",
@@ -17922,13 +17929,13 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "student-ready",
-        "correctionsMade": 0,
-        "reviewRequired": false,
-        "reviewerNotes": "Complete independent source and mathematical verification passed.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "overallStatus": "teacher-archive-only",
+        "correctionsMade": 1,
+        "reviewRequired": true,
+        "reviewerNotes": "Preserved in the canonical teacher/archive bank. Excluded from the public GitHub Pages student pool because the source metadata permits school-internal use only and page-by-page transcription signoff is pending.",
+        "auditedAt": "2026-07-24T21:33:52+00:00"
       },
-      "studentReady": true
+      "studentReady": false
     },
     {
       "id": "APCALC-LEGACY-MCQ-1985-008",
@@ -18139,31 +18146,32 @@
       },
       "quality": {
         "completeness": "complete-unverified",
-        "productionStatus": "student-ready",
+        "productionStatus": "teacher-archive-only",
         "productionReadiness": 0.65,
         "tutoringReadiness": 0.8,
-        "needsReview": false,
+        "needsReview": true,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
-          "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation."
+          "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
+          "Public release blocked: source access is school-internal and publicPublicationAllowed is false."
         ],
-        "transcriptionVerified": true,
+        "transcriptionVerified": false,
         "answerVerified": true,
         "mediaVerified": true,
         "privateStudentAccess": true,
         "mathematicalVerificationPassed": true,
         "katexVerified": true,
         "mappingVerified": true,
-        "studentReadyGatePassed": true
+        "studentReadyGatePassed": false
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "student-ready",
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "teacher-archive-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "45; 39",
-        "transcriptionStatus": "verified",
+        "transcriptionStatus": "human_review_required",
         "stemStatus": "verified",
         "choicesStatus": "verified",
         "answerStatus": "verified",
@@ -18175,13 +18183,13 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "student-ready",
-        "correctionsMade": 0,
-        "reviewRequired": false,
-        "reviewerNotes": "Complete independent source and mathematical verification passed.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "overallStatus": "teacher-archive-only",
+        "correctionsMade": 1,
+        "reviewRequired": true,
+        "reviewerNotes": "Preserved in the canonical teacher/archive bank. Excluded from the public GitHub Pages student pool because the source metadata permits school-internal use only and page-by-page transcription signoff is pending.",
+        "auditedAt": "2026-07-24T21:33:52+00:00"
       },
-      "studentReady": true
+      "studentReady": false
     },
     {
       "id": "APCALC-LEGACY-MCQ-1985-009",
@@ -18409,32 +18417,33 @@
       },
       "quality": {
         "completeness": "complete-unverified",
-        "productionStatus": "student-ready",
+        "productionStatus": "teacher-archive-only",
         "productionReadiness": 0.65,
         "tutoringReadiness": 0.8,
-        "needsReview": false,
+        "needsReview": true,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
           "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
-          "repeated choice text"
+          "repeated choice text",
+          "Public release blocked: source access is school-internal and publicPublicationAllowed is false."
         ],
-        "transcriptionVerified": true,
+        "transcriptionVerified": false,
         "answerVerified": true,
         "mediaVerified": true,
         "privateStudentAccess": true,
         "mathematicalVerificationPassed": true,
         "katexVerified": true,
         "mappingVerified": true,
-        "studentReadyGatePassed": true
+        "studentReadyGatePassed": false
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "student-ready",
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "teacher-archive-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "45; 39",
-        "transcriptionStatus": "verified",
+        "transcriptionStatus": "human_review_required",
         "stemStatus": "verified",
         "choicesStatus": "verified",
         "answerStatus": "verified",
@@ -18446,13 +18455,13 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "student-ready",
-        "correctionsMade": 0,
-        "reviewRequired": false,
-        "reviewerNotes": "Complete independent source and mathematical verification passed.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "overallStatus": "teacher-archive-only",
+        "correctionsMade": 1,
+        "reviewRequired": true,
+        "reviewerNotes": "Preserved in the canonical teacher/archive bank. Excluded from the public GitHub Pages student pool because the source metadata permits school-internal use only and page-by-page transcription signoff is pending.",
+        "auditedAt": "2026-07-24T21:33:52+00:00"
       },
-      "studentReady": true
+      "studentReady": false
     },
     {
       "id": "APCALC-LEGACY-MCQ-1985-010",
@@ -18681,31 +18690,32 @@
       },
       "quality": {
         "completeness": "complete-unverified",
-        "productionStatus": "student-ready",
+        "productionStatus": "teacher-archive-only",
         "productionReadiness": 0.65,
         "tutoringReadiness": 0.8,
-        "needsReview": false,
+        "needsReview": true,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
-          "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation."
+          "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
+          "Public release blocked: source access is school-internal and publicPublicationAllowed is false."
         ],
-        "transcriptionVerified": true,
+        "transcriptionVerified": false,
         "answerVerified": true,
         "mediaVerified": true,
         "privateStudentAccess": true,
         "mathematicalVerificationPassed": true,
         "katexVerified": true,
         "mappingVerified": true,
-        "studentReadyGatePassed": true
+        "studentReadyGatePassed": false
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "student-ready",
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "teacher-archive-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "45; 39",
-        "transcriptionStatus": "verified",
+        "transcriptionStatus": "human_review_required",
         "stemStatus": "verified",
         "choicesStatus": "verified",
         "answerStatus": "verified",
@@ -18717,13 +18727,13 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "student-ready",
-        "correctionsMade": 0,
-        "reviewRequired": false,
-        "reviewerNotes": "Complete independent source and mathematical verification passed.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "overallStatus": "teacher-archive-only",
+        "correctionsMade": 1,
+        "reviewRequired": true,
+        "reviewerNotes": "Preserved in the canonical teacher/archive bank. Excluded from the public GitHub Pages student pool because the source metadata permits school-internal use only and page-by-page transcription signoff is pending.",
+        "auditedAt": "2026-07-24T21:33:52+00:00"
       },
-      "studentReady": true
+      "studentReady": false
     },
     {
       "id": "APCALC-LEGACY-MCQ-1985-011",
@@ -18926,31 +18936,32 @@
       },
       "quality": {
         "completeness": "complete-unverified",
-        "productionStatus": "student-ready",
+        "productionStatus": "teacher-archive-only",
         "productionReadiness": 0.65,
         "tutoringReadiness": 0.8,
-        "needsReview": false,
+        "needsReview": true,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
-          "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation."
+          "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
+          "Public release blocked: source access is school-internal and publicPublicationAllowed is false."
         ],
-        "transcriptionVerified": true,
+        "transcriptionVerified": false,
         "answerVerified": true,
         "mediaVerified": true,
         "privateStudentAccess": true,
         "mathematicalVerificationPassed": true,
         "katexVerified": true,
         "mappingVerified": true,
-        "studentReadyGatePassed": true
+        "studentReadyGatePassed": false
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "student-ready",
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "teacher-archive-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "45; 39",
-        "transcriptionStatus": "verified",
+        "transcriptionStatus": "human_review_required",
         "stemStatus": "verified",
         "choicesStatus": "verified",
         "answerStatus": "verified",
@@ -18962,13 +18973,13 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "student-ready",
-        "correctionsMade": 0,
-        "reviewRequired": false,
-        "reviewerNotes": "Complete independent source and mathematical verification passed.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "overallStatus": "teacher-archive-only",
+        "correctionsMade": 1,
+        "reviewRequired": true,
+        "reviewerNotes": "Preserved in the canonical teacher/archive bank. Excluded from the public GitHub Pages student pool because the source metadata permits school-internal use only and page-by-page transcription signoff is pending.",
+        "auditedAt": "2026-07-24T21:33:52+00:00"
       },
-      "studentReady": true
+      "studentReady": false
     },
     {
       "id": "APCALC-LEGACY-MCQ-1985-012",
@@ -19156,31 +19167,32 @@
       },
       "quality": {
         "completeness": "complete-unverified",
-        "productionStatus": "student-ready",
+        "productionStatus": "teacher-archive-only",
         "productionReadiness": 0.65,
         "tutoringReadiness": 0.8,
-        "needsReview": false,
+        "needsReview": true,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
-          "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation."
+          "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
+          "Public release blocked: source access is school-internal and publicPublicationAllowed is false."
         ],
-        "transcriptionVerified": true,
+        "transcriptionVerified": false,
         "answerVerified": true,
         "mediaVerified": true,
         "privateStudentAccess": true,
         "mathematicalVerificationPassed": true,
         "katexVerified": true,
         "mappingVerified": true,
-        "studentReadyGatePassed": true
+        "studentReadyGatePassed": false
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "student-ready",
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "teacher-archive-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "45; 39",
-        "transcriptionStatus": "verified",
+        "transcriptionStatus": "human_review_required",
         "stemStatus": "verified",
         "choicesStatus": "verified",
         "answerStatus": "verified",
@@ -19192,13 +19204,13 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "student-ready",
-        "correctionsMade": 0,
-        "reviewRequired": false,
-        "reviewerNotes": "Complete independent source and mathematical verification passed.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "overallStatus": "teacher-archive-only",
+        "correctionsMade": 1,
+        "reviewRequired": true,
+        "reviewerNotes": "Preserved in the canonical teacher/archive bank. Excluded from the public GitHub Pages student pool because the source metadata permits school-internal use only and page-by-page transcription signoff is pending.",
+        "auditedAt": "2026-07-24T21:33:52+00:00"
       },
-      "studentReady": true
+      "studentReady": false
     },
     {
       "id": "APCALC-LEGACY-MCQ-1985-013",
@@ -19421,31 +19433,32 @@
       },
       "quality": {
         "completeness": "complete-unverified",
-        "productionStatus": "student-ready",
+        "productionStatus": "teacher-archive-only",
         "productionReadiness": 0.65,
         "tutoringReadiness": 0.8,
-        "needsReview": false,
+        "needsReview": true,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
-          "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation."
+          "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
+          "Public release blocked: source access is school-internal and publicPublicationAllowed is false."
         ],
-        "transcriptionVerified": true,
+        "transcriptionVerified": false,
         "answerVerified": true,
         "mediaVerified": true,
         "privateStudentAccess": true,
         "mathematicalVerificationPassed": true,
         "katexVerified": true,
         "mappingVerified": true,
-        "studentReadyGatePassed": true
+        "studentReadyGatePassed": false
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "student-ready",
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "teacher-archive-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "46; 40",
-        "transcriptionStatus": "verified",
+        "transcriptionStatus": "human_review_required",
         "stemStatus": "verified",
         "choicesStatus": "verified",
         "answerStatus": "verified",
@@ -19457,13 +19470,13 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "student-ready",
-        "correctionsMade": 0,
-        "reviewRequired": false,
-        "reviewerNotes": "Complete independent source and mathematical verification passed.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "overallStatus": "teacher-archive-only",
+        "correctionsMade": 1,
+        "reviewRequired": true,
+        "reviewerNotes": "Preserved in the canonical teacher/archive bank. Excluded from the public GitHub Pages student pool because the source metadata permits school-internal use only and page-by-page transcription signoff is pending.",
+        "auditedAt": "2026-07-24T21:33:52+00:00"
       },
-      "studentReady": true
+      "studentReady": false
     },
     {
       "id": "APCALC-LEGACY-MCQ-1985-014",
@@ -19681,31 +19694,32 @@
       },
       "quality": {
         "completeness": "complete-unverified",
-        "productionStatus": "student-ready",
+        "productionStatus": "teacher-archive-only",
         "productionReadiness": 0.65,
         "tutoringReadiness": 0.8,
-        "needsReview": false,
+        "needsReview": true,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
-          "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation."
+          "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
+          "Public release blocked: source access is school-internal and publicPublicationAllowed is false."
         ],
-        "transcriptionVerified": true,
+        "transcriptionVerified": false,
         "answerVerified": true,
         "mediaVerified": true,
         "privateStudentAccess": true,
         "mathematicalVerificationPassed": true,
         "katexVerified": true,
         "mappingVerified": true,
-        "studentReadyGatePassed": true
+        "studentReadyGatePassed": false
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "student-ready",
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "teacher-archive-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "46; 40",
-        "transcriptionStatus": "verified",
+        "transcriptionStatus": "human_review_required",
         "stemStatus": "verified",
         "choicesStatus": "verified",
         "answerStatus": "verified",
@@ -19717,13 +19731,13 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "student-ready",
-        "correctionsMade": 0,
-        "reviewRequired": false,
-        "reviewerNotes": "Complete independent source and mathematical verification passed.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "overallStatus": "teacher-archive-only",
+        "correctionsMade": 1,
+        "reviewRequired": true,
+        "reviewerNotes": "Preserved in the canonical teacher/archive bank. Excluded from the public GitHub Pages student pool because the source metadata permits school-internal use only and page-by-page transcription signoff is pending.",
+        "auditedAt": "2026-07-24T21:33:52+00:00"
       },
-      "studentReady": true
+      "studentReady": false
     },
     {
       "id": "APCALC-LEGACY-MCQ-1985-015",
@@ -19910,32 +19924,33 @@
       },
       "quality": {
         "completeness": "complete-unverified",
-        "productionStatus": "student-ready",
+        "productionStatus": "teacher-archive-only",
         "productionReadiness": 0.65,
         "tutoringReadiness": 0.8,
-        "needsReview": false,
+        "needsReview": true,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
           "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
-          "repeated choice text"
+          "repeated choice text",
+          "Public release blocked: source access is school-internal and publicPublicationAllowed is false."
         ],
-        "transcriptionVerified": true,
+        "transcriptionVerified": false,
         "answerVerified": true,
         "mediaVerified": true,
         "privateStudentAccess": true,
         "mathematicalVerificationPassed": true,
         "katexVerified": true,
         "mappingVerified": true,
-        "studentReadyGatePassed": true
+        "studentReadyGatePassed": false
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "student-ready",
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "teacher-archive-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "46; 40",
-        "transcriptionStatus": "verified",
+        "transcriptionStatus": "human_review_required",
         "stemStatus": "verified",
         "choicesStatus": "verified",
         "answerStatus": "verified",
@@ -19947,13 +19962,13 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "student-ready",
-        "correctionsMade": 0,
-        "reviewRequired": false,
-        "reviewerNotes": "Complete independent source and mathematical verification passed.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "overallStatus": "teacher-archive-only",
+        "correctionsMade": 1,
+        "reviewRequired": true,
+        "reviewerNotes": "Preserved in the canonical teacher/archive bank. Excluded from the public GitHub Pages student pool because the source metadata permits school-internal use only and page-by-page transcription signoff is pending.",
+        "auditedAt": "2026-07-24T21:33:52+00:00"
       },
-      "studentReady": true
+      "studentReady": false
     },
     {
       "id": "APCALC-LEGACY-MCQ-1985-016",
@@ -20141,32 +20156,33 @@
       },
       "quality": {
         "completeness": "complete-unverified",
-        "productionStatus": "student-ready",
+        "productionStatus": "teacher-archive-only",
         "productionReadiness": 0.65,
         "tutoringReadiness": 0.8,
-        "needsReview": false,
+        "needsReview": true,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
           "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
-          "repeated choice text"
+          "repeated choice text",
+          "Public release blocked: source access is school-internal and publicPublicationAllowed is false."
         ],
-        "transcriptionVerified": true,
+        "transcriptionVerified": false,
         "answerVerified": true,
         "mediaVerified": true,
         "privateStudentAccess": true,
         "mathematicalVerificationPassed": true,
         "katexVerified": true,
         "mappingVerified": true,
-        "studentReadyGatePassed": true
+        "studentReadyGatePassed": false
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "student-ready",
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "teacher-archive-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "46; 40",
-        "transcriptionStatus": "verified",
+        "transcriptionStatus": "human_review_required",
         "stemStatus": "verified",
         "choicesStatus": "verified",
         "answerStatus": "verified",
@@ -20178,13 +20194,13 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "student-ready",
-        "correctionsMade": 0,
-        "reviewRequired": false,
-        "reviewerNotes": "Complete independent source and mathematical verification passed.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "overallStatus": "teacher-archive-only",
+        "correctionsMade": 1,
+        "reviewRequired": true,
+        "reviewerNotes": "Preserved in the canonical teacher/archive bank. Excluded from the public GitHub Pages student pool because the source metadata permits school-internal use only and page-by-page transcription signoff is pending.",
+        "auditedAt": "2026-07-24T21:33:52+00:00"
       },
-      "studentReady": true
+      "studentReady": false
     },
     {
       "id": "APCALC-LEGACY-MCQ-1985-017",
@@ -20370,32 +20386,33 @@
       },
       "quality": {
         "completeness": "complete-unverified",
-        "productionStatus": "student-ready",
+        "productionStatus": "teacher-archive-only",
         "productionReadiness": 0.65,
         "tutoringReadiness": 0.8,
-        "needsReview": false,
+        "needsReview": true,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
           "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
-          "repeated choice text"
+          "repeated choice text",
+          "Public release blocked: source access is school-internal and publicPublicationAllowed is false."
         ],
-        "transcriptionVerified": true,
+        "transcriptionVerified": false,
         "answerVerified": true,
         "mediaVerified": true,
         "privateStudentAccess": true,
         "mathematicalVerificationPassed": true,
         "katexVerified": true,
         "mappingVerified": true,
-        "studentReadyGatePassed": true
+        "studentReadyGatePassed": false
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "student-ready",
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "teacher-archive-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "46; 40",
-        "transcriptionStatus": "verified",
+        "transcriptionStatus": "human_review_required",
         "stemStatus": "verified",
         "choicesStatus": "verified",
         "answerStatus": "verified",
@@ -20407,13 +20424,13 @@
         "topicMappingStatus": "corrected",
         "lessonMappingStatus": "corrected",
         "calculatorStatus": "verified",
-        "overallStatus": "student-ready",
-        "correctionsMade": 7,
-        "reviewRequired": false,
-        "reviewerNotes": "Complete independent source and mathematical verification passed.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "overallStatus": "teacher-archive-only",
+        "correctionsMade": 8,
+        "reviewRequired": true,
+        "reviewerNotes": "Preserved in the canonical teacher/archive bank. Excluded from the public GitHub Pages student pool because the source metadata permits school-internal use only and page-by-page transcription signoff is pending.",
+        "auditedAt": "2026-07-24T21:33:52+00:00"
       },
-      "studentReady": true
+      "studentReady": false
     },
     {
       "id": "APCALC-LEGACY-MCQ-1985-018",
@@ -20636,32 +20653,33 @@
       },
       "quality": {
         "completeness": "complete-unverified",
-        "productionStatus": "student-ready",
+        "productionStatus": "teacher-archive-only",
         "productionReadiness": 0.65,
         "tutoringReadiness": 0.8,
-        "needsReview": false,
+        "needsReview": true,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
           "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
-          "repeated choice text"
+          "repeated choice text",
+          "Public release blocked: source access is school-internal and publicPublicationAllowed is false."
         ],
-        "transcriptionVerified": true,
+        "transcriptionVerified": false,
         "answerVerified": true,
         "mediaVerified": true,
         "privateStudentAccess": true,
         "mathematicalVerificationPassed": true,
         "katexVerified": true,
         "mappingVerified": true,
-        "studentReadyGatePassed": true
+        "studentReadyGatePassed": false
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "student-ready",
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "teacher-archive-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "46; 40",
-        "transcriptionStatus": "verified",
+        "transcriptionStatus": "human_review_required",
         "stemStatus": "verified",
         "choicesStatus": "verified",
         "answerStatus": "verified",
@@ -20673,13 +20691,13 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "student-ready",
-        "correctionsMade": 0,
-        "reviewRequired": false,
-        "reviewerNotes": "Complete independent source and mathematical verification passed.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "overallStatus": "teacher-archive-only",
+        "correctionsMade": 1,
+        "reviewRequired": true,
+        "reviewerNotes": "Preserved in the canonical teacher/archive bank. Excluded from the public GitHub Pages student pool because the source metadata permits school-internal use only and page-by-page transcription signoff is pending.",
+        "auditedAt": "2026-07-24T21:33:52+00:00"
       },
-      "studentReady": true
+      "studentReady": false
     },
     {
       "id": "APCALC-LEGACY-MCQ-1985-019",
@@ -20865,31 +20883,32 @@
       },
       "quality": {
         "completeness": "complete-unverified",
-        "productionStatus": "student-ready",
+        "productionStatus": "teacher-archive-only",
         "productionReadiness": 0.65,
         "tutoringReadiness": 0.8,
-        "needsReview": false,
+        "needsReview": true,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
-          "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation."
+          "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
+          "Public release blocked: source access is school-internal and publicPublicationAllowed is false."
         ],
-        "transcriptionVerified": true,
+        "transcriptionVerified": false,
         "answerVerified": true,
         "mediaVerified": true,
         "privateStudentAccess": true,
         "mathematicalVerificationPassed": true,
         "katexVerified": true,
         "mappingVerified": true,
-        "studentReadyGatePassed": true
+        "studentReadyGatePassed": false
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "student-ready",
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "teacher-archive-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "46; 40",
-        "transcriptionStatus": "verified",
+        "transcriptionStatus": "human_review_required",
         "stemStatus": "verified",
         "choicesStatus": "verified",
         "answerStatus": "verified",
@@ -20901,13 +20920,13 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "student-ready",
-        "correctionsMade": 0,
-        "reviewRequired": false,
-        "reviewerNotes": "Complete independent source and mathematical verification passed.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "overallStatus": "teacher-archive-only",
+        "correctionsMade": 1,
+        "reviewRequired": true,
+        "reviewerNotes": "Preserved in the canonical teacher/archive bank. Excluded from the public GitHub Pages student pool because the source metadata permits school-internal use only and page-by-page transcription signoff is pending.",
+        "auditedAt": "2026-07-24T21:33:52+00:00"
       },
-      "studentReady": true
+      "studentReady": false
     },
     {
       "id": "APCALC-LEGACY-MCQ-1985-020",
@@ -21102,31 +21121,32 @@
       },
       "quality": {
         "completeness": "complete-unverified",
-        "productionStatus": "student-ready",
+        "productionStatus": "teacher-archive-only",
         "productionReadiness": 0.65,
         "tutoringReadiness": 0.8,
-        "needsReview": false,
+        "needsReview": true,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
-          "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation."
+          "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
+          "Public release blocked: source access is school-internal and publicPublicationAllowed is false."
         ],
-        "transcriptionVerified": true,
+        "transcriptionVerified": false,
         "answerVerified": true,
         "mediaVerified": true,
         "privateStudentAccess": true,
         "mathematicalVerificationPassed": true,
         "katexVerified": true,
         "mappingVerified": true,
-        "studentReadyGatePassed": true
+        "studentReadyGatePassed": false
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "student-ready",
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "teacher-archive-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "47; 41",
-        "transcriptionStatus": "verified",
+        "transcriptionStatus": "human_review_required",
         "stemStatus": "verified",
         "choicesStatus": "verified",
         "answerStatus": "verified",
@@ -21138,13 +21158,13 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "student-ready",
-        "correctionsMade": 0,
-        "reviewRequired": false,
-        "reviewerNotes": "Complete independent source and mathematical verification passed.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "overallStatus": "teacher-archive-only",
+        "correctionsMade": 1,
+        "reviewRequired": true,
+        "reviewerNotes": "Preserved in the canonical teacher/archive bank. Excluded from the public GitHub Pages student pool because the source metadata permits school-internal use only and page-by-page transcription signoff is pending.",
+        "auditedAt": "2026-07-24T21:33:52+00:00"
       },
-      "studentReady": true
+      "studentReady": false
     },
     {
       "id": "APCALC-LEGACY-MCQ-1985-021",
@@ -21334,32 +21354,33 @@
       },
       "quality": {
         "completeness": "complete-unverified",
-        "productionStatus": "student-ready",
+        "productionStatus": "teacher-archive-only",
         "productionReadiness": 0.65,
         "tutoringReadiness": 0.8,
-        "needsReview": false,
+        "needsReview": true,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
           "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
-          "repeated choice text"
+          "repeated choice text",
+          "Public release blocked: source access is school-internal and publicPublicationAllowed is false."
         ],
-        "transcriptionVerified": true,
+        "transcriptionVerified": false,
         "answerVerified": true,
         "mediaVerified": true,
         "privateStudentAccess": true,
         "mathematicalVerificationPassed": true,
         "katexVerified": true,
         "mappingVerified": true,
-        "studentReadyGatePassed": true
+        "studentReadyGatePassed": false
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "student-ready",
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "teacher-archive-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "47; 41",
-        "transcriptionStatus": "verified",
+        "transcriptionStatus": "human_review_required",
         "stemStatus": "verified",
         "choicesStatus": "verified",
         "answerStatus": "verified",
@@ -21371,13 +21392,13 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "student-ready",
-        "correctionsMade": 0,
-        "reviewRequired": false,
-        "reviewerNotes": "Complete independent source and mathematical verification passed.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "overallStatus": "teacher-archive-only",
+        "correctionsMade": 1,
+        "reviewRequired": true,
+        "reviewerNotes": "Preserved in the canonical teacher/archive bank. Excluded from the public GitHub Pages student pool because the source metadata permits school-internal use only and page-by-page transcription signoff is pending.",
+        "auditedAt": "2026-07-24T21:33:52+00:00"
       },
-      "studentReady": true
+      "studentReady": false
     },
     {
       "id": "APCALC-LEGACY-MCQ-1985-022",
@@ -21597,31 +21618,32 @@
       },
       "quality": {
         "completeness": "complete-unverified",
-        "productionStatus": "student-ready",
+        "productionStatus": "teacher-archive-only",
         "productionReadiness": 0.65,
         "tutoringReadiness": 0.8,
-        "needsReview": false,
+        "needsReview": true,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
-          "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation."
+          "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
+          "Public release blocked: source access is school-internal and publicPublicationAllowed is false."
         ],
-        "transcriptionVerified": true,
+        "transcriptionVerified": false,
         "answerVerified": true,
         "mediaVerified": true,
         "privateStudentAccess": true,
         "mathematicalVerificationPassed": true,
         "katexVerified": true,
         "mappingVerified": true,
-        "studentReadyGatePassed": true
+        "studentReadyGatePassed": false
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "student-ready",
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "teacher-archive-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "47; 41",
-        "transcriptionStatus": "verified",
+        "transcriptionStatus": "human_review_required",
         "stemStatus": "verified",
         "choicesStatus": "verified",
         "answerStatus": "verified",
@@ -21633,13 +21655,13 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "student-ready",
-        "correctionsMade": 0,
-        "reviewRequired": false,
-        "reviewerNotes": "Complete independent source and mathematical verification passed.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "overallStatus": "teacher-archive-only",
+        "correctionsMade": 1,
+        "reviewRequired": true,
+        "reviewerNotes": "Preserved in the canonical teacher/archive bank. Excluded from the public GitHub Pages student pool because the source metadata permits school-internal use only and page-by-page transcription signoff is pending.",
+        "auditedAt": "2026-07-24T21:33:52+00:00"
       },
-      "studentReady": true
+      "studentReady": false
     },
     {
       "id": "APCALC-LEGACY-MCQ-1985-023",
@@ -21838,32 +21860,33 @@
       },
       "quality": {
         "completeness": "complete-unverified",
-        "productionStatus": "student-ready",
+        "productionStatus": "teacher-archive-only",
         "productionReadiness": 0.65,
         "tutoringReadiness": 0.8,
-        "needsReview": false,
+        "needsReview": true,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
           "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
-          "repeated choice text"
+          "repeated choice text",
+          "Public release blocked: source access is school-internal and publicPublicationAllowed is false."
         ],
-        "transcriptionVerified": true,
+        "transcriptionVerified": false,
         "answerVerified": true,
         "mediaVerified": true,
         "privateStudentAccess": true,
         "mathematicalVerificationPassed": true,
         "katexVerified": true,
         "mappingVerified": true,
-        "studentReadyGatePassed": true
+        "studentReadyGatePassed": false
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "student-ready",
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "teacher-archive-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "47; 41",
-        "transcriptionStatus": "verified",
+        "transcriptionStatus": "human_review_required",
         "stemStatus": "verified",
         "choicesStatus": "verified",
         "answerStatus": "verified",
@@ -21875,13 +21898,13 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "student-ready",
-        "correctionsMade": 0,
-        "reviewRequired": false,
-        "reviewerNotes": "Complete independent source and mathematical verification passed.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "overallStatus": "teacher-archive-only",
+        "correctionsMade": 1,
+        "reviewRequired": true,
+        "reviewerNotes": "Preserved in the canonical teacher/archive bank. Excluded from the public GitHub Pages student pool because the source metadata permits school-internal use only and page-by-page transcription signoff is pending.",
+        "auditedAt": "2026-07-24T21:33:52+00:00"
       },
-      "studentReady": true
+      "studentReady": false
     },
     {
       "id": "APCALC-LEGACY-MCQ-1985-024",
@@ -22106,32 +22129,33 @@
       },
       "quality": {
         "completeness": "complete-unverified",
-        "productionStatus": "student-ready",
+        "productionStatus": "teacher-archive-only",
         "productionReadiness": 0.65,
         "tutoringReadiness": 0.8,
-        "needsReview": false,
+        "needsReview": true,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
           "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
-          "repeated choice text"
+          "repeated choice text",
+          "Public release blocked: source access is school-internal and publicPublicationAllowed is false."
         ],
-        "transcriptionVerified": true,
+        "transcriptionVerified": false,
         "answerVerified": true,
         "mediaVerified": true,
         "privateStudentAccess": true,
         "mathematicalVerificationPassed": true,
         "katexVerified": true,
         "mappingVerified": true,
-        "studentReadyGatePassed": true
+        "studentReadyGatePassed": false
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "student-ready",
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "teacher-archive-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "47; 41",
-        "transcriptionStatus": "verified",
+        "transcriptionStatus": "human_review_required",
         "stemStatus": "verified",
         "choicesStatus": "verified",
         "answerStatus": "verified",
@@ -22143,13 +22167,13 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "student-ready",
-        "correctionsMade": 0,
-        "reviewRequired": false,
-        "reviewerNotes": "Complete independent source and mathematical verification passed.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "overallStatus": "teacher-archive-only",
+        "correctionsMade": 1,
+        "reviewRequired": true,
+        "reviewerNotes": "Preserved in the canonical teacher/archive bank. Excluded from the public GitHub Pages student pool because the source metadata permits school-internal use only and page-by-page transcription signoff is pending.",
+        "auditedAt": "2026-07-24T21:33:52+00:00"
       },
-      "studentReady": true
+      "studentReady": false
     },
     {
       "id": "APCALC-LEGACY-MCQ-1985-025",
@@ -22335,31 +22359,32 @@
       },
       "quality": {
         "completeness": "complete-unverified",
-        "productionStatus": "student-ready",
+        "productionStatus": "teacher-archive-only",
         "productionReadiness": 0.65,
         "tutoringReadiness": 0.8,
-        "needsReview": false,
+        "needsReview": true,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
-          "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation."
+          "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
+          "Public release blocked: source access is school-internal and publicPublicationAllowed is false."
         ],
-        "transcriptionVerified": true,
+        "transcriptionVerified": false,
         "answerVerified": true,
         "mediaVerified": true,
         "privateStudentAccess": true,
         "mathematicalVerificationPassed": true,
         "katexVerified": true,
         "mappingVerified": true,
-        "studentReadyGatePassed": true
+        "studentReadyGatePassed": false
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "student-ready",
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "teacher-archive-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "47; 41",
-        "transcriptionStatus": "verified",
+        "transcriptionStatus": "human_review_required",
         "stemStatus": "verified",
         "choicesStatus": "verified",
         "answerStatus": "verified",
@@ -22371,13 +22396,13 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "student-ready",
-        "correctionsMade": 0,
-        "reviewRequired": false,
-        "reviewerNotes": "Complete independent source and mathematical verification passed.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "overallStatus": "teacher-archive-only",
+        "correctionsMade": 1,
+        "reviewRequired": true,
+        "reviewerNotes": "Preserved in the canonical teacher/archive bank. Excluded from the public GitHub Pages student pool because the source metadata permits school-internal use only and page-by-page transcription signoff is pending.",
+        "auditedAt": "2026-07-24T21:33:52+00:00"
       },
-      "studentReady": true
+      "studentReady": false
     },
     {
       "id": "APCALC-LEGACY-MCQ-1985-026",
@@ -22579,31 +22604,32 @@
       },
       "quality": {
         "completeness": "complete-unverified",
-        "productionStatus": "student-ready",
+        "productionStatus": "teacher-archive-only",
         "productionReadiness": 0.65,
         "tutoringReadiness": 0.8,
-        "needsReview": false,
+        "needsReview": true,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
-          "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation."
+          "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
+          "Public release blocked: source access is school-internal and publicPublicationAllowed is false."
         ],
-        "transcriptionVerified": true,
+        "transcriptionVerified": false,
         "answerVerified": true,
         "mediaVerified": true,
         "privateStudentAccess": true,
         "mathematicalVerificationPassed": true,
         "katexVerified": true,
         "mappingVerified": true,
-        "studentReadyGatePassed": true
+        "studentReadyGatePassed": false
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "student-ready",
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "teacher-archive-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "48; 42",
-        "transcriptionStatus": "verified",
+        "transcriptionStatus": "human_review_required",
         "stemStatus": "verified",
         "choicesStatus": "verified",
         "answerStatus": "verified",
@@ -22615,13 +22641,13 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "student-ready",
-        "correctionsMade": 0,
-        "reviewRequired": false,
-        "reviewerNotes": "Complete independent source and mathematical verification passed.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "overallStatus": "teacher-archive-only",
+        "correctionsMade": 1,
+        "reviewRequired": true,
+        "reviewerNotes": "Preserved in the canonical teacher/archive bank. Excluded from the public GitHub Pages student pool because the source metadata permits school-internal use only and page-by-page transcription signoff is pending.",
+        "auditedAt": "2026-07-24T21:33:52+00:00"
       },
-      "studentReady": true
+      "studentReady": false
     },
     {
       "id": "APCALC-LEGACY-MCQ-1985-027",
@@ -22826,31 +22852,32 @@
       },
       "quality": {
         "completeness": "complete-unverified",
-        "productionStatus": "student-ready",
+        "productionStatus": "teacher-archive-only",
         "productionReadiness": 0.65,
         "tutoringReadiness": 0.8,
-        "needsReview": false,
+        "needsReview": true,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
-          "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation."
+          "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
+          "Public release blocked: source access is school-internal and publicPublicationAllowed is false."
         ],
-        "transcriptionVerified": true,
+        "transcriptionVerified": false,
         "answerVerified": true,
         "mediaVerified": true,
         "privateStudentAccess": true,
         "mathematicalVerificationPassed": true,
         "katexVerified": true,
         "mappingVerified": true,
-        "studentReadyGatePassed": true
+        "studentReadyGatePassed": false
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "student-ready",
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "teacher-archive-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "48; 42",
-        "transcriptionStatus": "verified",
+        "transcriptionStatus": "human_review_required",
         "stemStatus": "verified",
         "choicesStatus": "verified",
         "answerStatus": "verified",
@@ -22862,13 +22889,13 @@
         "topicMappingStatus": "corrected",
         "lessonMappingStatus": "corrected",
         "calculatorStatus": "verified",
-        "overallStatus": "student-ready",
-        "correctionsMade": 3,
-        "reviewRequired": false,
-        "reviewerNotes": "Complete independent source and mathematical verification passed.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "overallStatus": "teacher-archive-only",
+        "correctionsMade": 4,
+        "reviewRequired": true,
+        "reviewerNotes": "Preserved in the canonical teacher/archive bank. Excluded from the public GitHub Pages student pool because the source metadata permits school-internal use only and page-by-page transcription signoff is pending.",
+        "auditedAt": "2026-07-24T21:33:52+00:00"
       },
-      "studentReady": true
+      "studentReady": false
     },
     {
       "id": "APCALC-LEGACY-MCQ-1985-028",
@@ -23055,31 +23082,32 @@
       },
       "quality": {
         "completeness": "complete-unverified",
-        "productionStatus": "student-ready",
+        "productionStatus": "teacher-archive-only",
         "productionReadiness": 0.65,
         "tutoringReadiness": 0.8,
-        "needsReview": false,
+        "needsReview": true,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
-          "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation."
+          "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
+          "Public release blocked: source access is school-internal and publicPublicationAllowed is false."
         ],
-        "transcriptionVerified": true,
+        "transcriptionVerified": false,
         "answerVerified": true,
         "mediaVerified": true,
         "privateStudentAccess": true,
         "mathematicalVerificationPassed": true,
         "katexVerified": true,
         "mappingVerified": true,
-        "studentReadyGatePassed": true
+        "studentReadyGatePassed": false
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "student-ready",
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "teacher-archive-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "48; 42",
-        "transcriptionStatus": "verified",
+        "transcriptionStatus": "human_review_required",
         "stemStatus": "verified",
         "choicesStatus": "verified",
         "answerStatus": "verified",
@@ -23091,13 +23119,13 @@
         "topicMappingStatus": "corrected",
         "lessonMappingStatus": "corrected",
         "calculatorStatus": "verified",
-        "overallStatus": "student-ready",
-        "correctionsMade": 3,
-        "reviewRequired": false,
-        "reviewerNotes": "Complete independent source and mathematical verification passed.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "overallStatus": "teacher-archive-only",
+        "correctionsMade": 4,
+        "reviewRequired": true,
+        "reviewerNotes": "Preserved in the canonical teacher/archive bank. Excluded from the public GitHub Pages student pool because the source metadata permits school-internal use only and page-by-page transcription signoff is pending.",
+        "auditedAt": "2026-07-24T21:33:52+00:00"
       },
-      "studentReady": true
+      "studentReady": false
     },
     {
       "id": "APCALC-LEGACY-MCQ-1985-029",
@@ -23296,31 +23324,32 @@
       },
       "quality": {
         "completeness": "complete-unverified",
-        "productionStatus": "student-ready",
+        "productionStatus": "teacher-archive-only",
         "productionReadiness": 0.65,
         "tutoringReadiness": 0.8,
-        "needsReview": false,
+        "needsReview": true,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
-          "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation."
+          "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
+          "Public release blocked: source access is school-internal and publicPublicationAllowed is false."
         ],
-        "transcriptionVerified": true,
+        "transcriptionVerified": false,
         "answerVerified": true,
         "mediaVerified": true,
         "privateStudentAccess": true,
         "mathematicalVerificationPassed": true,
         "katexVerified": true,
         "mappingVerified": true,
-        "studentReadyGatePassed": true
+        "studentReadyGatePassed": false
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "student-ready",
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "teacher-archive-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "48; 42",
-        "transcriptionStatus": "verified",
+        "transcriptionStatus": "human_review_required",
         "stemStatus": "verified",
         "choicesStatus": "verified",
         "answerStatus": "verified",
@@ -23332,13 +23361,13 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "student-ready",
-        "correctionsMade": 0,
-        "reviewRequired": false,
-        "reviewerNotes": "Complete independent source and mathematical verification passed.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "overallStatus": "teacher-archive-only",
+        "correctionsMade": 1,
+        "reviewRequired": true,
+        "reviewerNotes": "Preserved in the canonical teacher/archive bank. Excluded from the public GitHub Pages student pool because the source metadata permits school-internal use only and page-by-page transcription signoff is pending.",
+        "auditedAt": "2026-07-24T21:33:52+00:00"
       },
-      "studentReady": true
+      "studentReady": false
     },
     {
       "id": "APCALC-LEGACY-MCQ-1985-030",
@@ -23556,32 +23585,33 @@
       },
       "quality": {
         "completeness": "complete-unverified",
-        "productionStatus": "student-ready",
+        "productionStatus": "teacher-archive-only",
         "productionReadiness": 0.65,
         "tutoringReadiness": 0.8,
-        "needsReview": false,
+        "needsReview": true,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
           "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
-          "repeated choice text"
+          "repeated choice text",
+          "Public release blocked: source access is school-internal and publicPublicationAllowed is false."
         ],
-        "transcriptionVerified": true,
+        "transcriptionVerified": false,
         "answerVerified": true,
         "mediaVerified": true,
         "privateStudentAccess": true,
         "mathematicalVerificationPassed": true,
         "katexVerified": true,
         "mappingVerified": true,
-        "studentReadyGatePassed": true
+        "studentReadyGatePassed": false
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "student-ready",
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "teacher-archive-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "48; 42",
-        "transcriptionStatus": "verified",
+        "transcriptionStatus": "human_review_required",
         "stemStatus": "verified",
         "choicesStatus": "verified",
         "answerStatus": "verified",
@@ -23593,13 +23623,13 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "student-ready",
-        "correctionsMade": 0,
-        "reviewRequired": false,
-        "reviewerNotes": "Complete independent source and mathematical verification passed.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "overallStatus": "teacher-archive-only",
+        "correctionsMade": 1,
+        "reviewRequired": true,
+        "reviewerNotes": "Preserved in the canonical teacher/archive bank. Excluded from the public GitHub Pages student pool because the source metadata permits school-internal use only and page-by-page transcription signoff is pending.",
+        "auditedAt": "2026-07-24T21:33:52+00:00"
       },
-      "studentReady": true
+      "studentReady": false
     },
     {
       "id": "APCALC-LEGACY-MCQ-1985-031",
@@ -23819,31 +23849,32 @@
       },
       "quality": {
         "completeness": "complete-unverified",
-        "productionStatus": "student-ready",
+        "productionStatus": "teacher-archive-only",
         "productionReadiness": 0.65,
         "tutoringReadiness": 0.8,
-        "needsReview": false,
+        "needsReview": true,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
-          "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation."
+          "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
+          "Public release blocked: source access is school-internal and publicPublicationAllowed is false."
         ],
-        "transcriptionVerified": true,
+        "transcriptionVerified": false,
         "answerVerified": true,
         "mediaVerified": true,
         "privateStudentAccess": true,
         "mathematicalVerificationPassed": true,
         "katexVerified": true,
         "mappingVerified": true,
-        "studentReadyGatePassed": true
+        "studentReadyGatePassed": false
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "student-ready",
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "teacher-archive-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "49; 43",
-        "transcriptionStatus": "verified",
+        "transcriptionStatus": "human_review_required",
         "stemStatus": "verified",
         "choicesStatus": "verified",
         "answerStatus": "verified",
@@ -23855,13 +23886,13 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "student-ready",
-        "correctionsMade": 0,
-        "reviewRequired": false,
-        "reviewerNotes": "Complete independent source and mathematical verification passed.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "overallStatus": "teacher-archive-only",
+        "correctionsMade": 1,
+        "reviewRequired": true,
+        "reviewerNotes": "Preserved in the canonical teacher/archive bank. Excluded from the public GitHub Pages student pool because the source metadata permits school-internal use only and page-by-page transcription signoff is pending.",
+        "auditedAt": "2026-07-24T21:33:52+00:00"
       },
-      "studentReady": true
+      "studentReady": false
     },
     {
       "id": "APCALC-LEGACY-MCQ-1985-032",
@@ -24076,32 +24107,33 @@
       },
       "quality": {
         "completeness": "complete-unverified",
-        "productionStatus": "student-ready",
+        "productionStatus": "teacher-archive-only",
         "productionReadiness": 0.65,
         "tutoringReadiness": 0.8,
-        "needsReview": false,
+        "needsReview": true,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
           "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
-          "repeated choice text"
+          "repeated choice text",
+          "Public release blocked: source access is school-internal and publicPublicationAllowed is false."
         ],
-        "transcriptionVerified": true,
+        "transcriptionVerified": false,
         "answerVerified": true,
         "mediaVerified": true,
         "privateStudentAccess": true,
         "mathematicalVerificationPassed": true,
         "katexVerified": true,
         "mappingVerified": true,
-        "studentReadyGatePassed": true
+        "studentReadyGatePassed": false
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "student-ready",
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "teacher-archive-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "49; 43",
-        "transcriptionStatus": "verified",
+        "transcriptionStatus": "human_review_required",
         "stemStatus": "verified",
         "choicesStatus": "verified",
         "answerStatus": "verified",
@@ -24113,13 +24145,13 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "student-ready",
-        "correctionsMade": 0,
-        "reviewRequired": false,
-        "reviewerNotes": "Complete independent source and mathematical verification passed.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "overallStatus": "teacher-archive-only",
+        "correctionsMade": 1,
+        "reviewRequired": true,
+        "reviewerNotes": "Preserved in the canonical teacher/archive bank. Excluded from the public GitHub Pages student pool because the source metadata permits school-internal use only and page-by-page transcription signoff is pending.",
+        "auditedAt": "2026-07-24T21:33:52+00:00"
       },
-      "studentReady": true
+      "studentReady": false
     },
     {
       "id": "APCALC-LEGACY-MCQ-1985-033",
@@ -24375,7 +24407,7 @@
         "lessonMappingStatus": "verified",
         "calculatorStatus": "review-required",
         "overallStatus": "teacher-archive-only",
-        "correctionsMade": 1,
+        "correctionsMade": 0,
         "reviewRequired": true,
         "reviewerNotes": "Complete independent source and mathematical verification passed. Required source/choice visual is unavailable in a student-usable form; the record is preserved as teacher/archive-only until exact media is supplied.",
         "auditedAt": "2026-07-24T17:46:03+00:00"
@@ -24606,31 +24638,32 @@
       },
       "quality": {
         "completeness": "complete-unverified",
-        "productionStatus": "student-ready",
+        "productionStatus": "teacher-archive-only",
         "productionReadiness": 0.65,
         "tutoringReadiness": 0.8,
-        "needsReview": false,
+        "needsReview": true,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
-          "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation."
+          "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
+          "Public release blocked: source access is school-internal and publicPublicationAllowed is false."
         ],
-        "transcriptionVerified": true,
+        "transcriptionVerified": false,
         "answerVerified": true,
         "mediaVerified": true,
         "privateStudentAccess": true,
         "mathematicalVerificationPassed": true,
         "katexVerified": true,
         "mappingVerified": true,
-        "studentReadyGatePassed": true
+        "studentReadyGatePassed": false
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "student-ready",
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "teacher-archive-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "50; 44",
-        "transcriptionStatus": "verified",
+        "transcriptionStatus": "human_review_required",
         "stemStatus": "verified",
         "choicesStatus": "verified",
         "answerStatus": "verified",
@@ -24642,13 +24675,13 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "student-ready",
-        "correctionsMade": 0,
-        "reviewRequired": false,
-        "reviewerNotes": "Complete independent source and mathematical verification passed.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "overallStatus": "teacher-archive-only",
+        "correctionsMade": 1,
+        "reviewRequired": true,
+        "reviewerNotes": "Preserved in the canonical teacher/archive bank. Excluded from the public GitHub Pages student pool because the source metadata permits school-internal use only and page-by-page transcription signoff is pending.",
+        "auditedAt": "2026-07-24T21:33:52+00:00"
       },
-      "studentReady": true
+      "studentReady": false
     },
     {
       "id": "APCALC-LEGACY-MCQ-1985-035",
@@ -24851,31 +24884,32 @@
       },
       "quality": {
         "completeness": "complete-unverified",
-        "productionStatus": "student-ready",
+        "productionStatus": "teacher-archive-only",
         "productionReadiness": 0.65,
         "tutoringReadiness": 0.8,
-        "needsReview": false,
+        "needsReview": true,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
-          "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation."
+          "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
+          "Public release blocked: source access is school-internal and publicPublicationAllowed is false."
         ],
-        "transcriptionVerified": true,
+        "transcriptionVerified": false,
         "answerVerified": true,
         "mediaVerified": true,
         "privateStudentAccess": true,
         "mathematicalVerificationPassed": true,
         "katexVerified": true,
         "mappingVerified": true,
-        "studentReadyGatePassed": true
+        "studentReadyGatePassed": false
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "student-ready",
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "teacher-archive-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "50; 44",
-        "transcriptionStatus": "verified",
+        "transcriptionStatus": "human_review_required",
         "stemStatus": "verified",
         "choicesStatus": "verified",
         "answerStatus": "verified",
@@ -24887,13 +24921,13 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "student-ready",
-        "correctionsMade": 2,
-        "reviewRequired": false,
-        "reviewerNotes": "Complete independent source and mathematical verification passed. Descriptor-only media was converted to an accessible static SVG.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "overallStatus": "teacher-archive-only",
+        "correctionsMade": 3,
+        "reviewRequired": true,
+        "reviewerNotes": "Preserved in the canonical teacher/archive bank. Excluded from the public GitHub Pages student pool because the source metadata permits school-internal use only and page-by-page transcription signoff is pending.",
+        "auditedAt": "2026-07-24T21:33:52+00:00"
       },
-      "studentReady": true
+      "studentReady": false
     },
     {
       "id": "APCALC-LEGACY-MCQ-1985-036",
@@ -25081,31 +25115,32 @@
       },
       "quality": {
         "completeness": "complete-unverified",
-        "productionStatus": "student-ready",
+        "productionStatus": "teacher-archive-only",
         "productionReadiness": 0.65,
         "tutoringReadiness": 0.8,
-        "needsReview": false,
+        "needsReview": true,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
-          "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation."
+          "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
+          "Public release blocked: source access is school-internal and publicPublicationAllowed is false."
         ],
-        "transcriptionVerified": true,
+        "transcriptionVerified": false,
         "answerVerified": true,
         "mediaVerified": true,
         "privateStudentAccess": true,
         "mathematicalVerificationPassed": true,
         "katexVerified": true,
         "mappingVerified": true,
-        "studentReadyGatePassed": true
+        "studentReadyGatePassed": false
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "student-ready",
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "teacher-archive-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "50; 44",
-        "transcriptionStatus": "verified",
+        "transcriptionStatus": "human_review_required",
         "stemStatus": "verified",
         "choicesStatus": "verified",
         "answerStatus": "verified",
@@ -25117,13 +25152,13 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "student-ready",
-        "correctionsMade": 0,
-        "reviewRequired": false,
-        "reviewerNotes": "Complete independent source and mathematical verification passed.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "overallStatus": "teacher-archive-only",
+        "correctionsMade": 1,
+        "reviewRequired": true,
+        "reviewerNotes": "Preserved in the canonical teacher/archive bank. Excluded from the public GitHub Pages student pool because the source metadata permits school-internal use only and page-by-page transcription signoff is pending.",
+        "auditedAt": "2026-07-24T21:33:52+00:00"
       },
-      "studentReady": true
+      "studentReady": false
     }
   ]
 }

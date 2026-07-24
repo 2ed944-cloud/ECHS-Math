@@ -6957,22 +6957,41 @@
       "courseId": "ap-calculus-ab",
       "assessmentFamily": "AP historical archive",
       "type": "frq",
+      "format": "multipart-free-response",
       "year": 1976,
       "form": "",
       "questionNumber": "2",
       "section": "II",
       "calculator": "no-calculator",
+      "maxPoints": 10,
+      "estimatedTime": 900,
       "prompt": "",
       "directions": "",
       "parts": [],
       "choices": [],
       "media": [],
+      "facsimileAuthority": "",
+      "machineExtractedText": "",
       "answer": null,
       "acceptedAnswers": [],
+      "answerFormat": "multipart-constructed-response",
       "explanation": "",
       "workedSolution": "",
+      "alternativeSolution": "",
+      "calculatorSolution": "",
+      "noncalculatorSolution": "",
+      "studentExplanation": "",
+      "teacherExplanation": "",
       "scoringGuideline": null,
       "rubric": [],
+      "rubricStatus": "ECHS analytic rubric based on independent mathematical verification; not an official historical College Board point-by-point scoring guideline.",
+      "commonMistakes": [
+        "Cancelling x−3 without stating x≠3.",
+        "Choosing p=0 because the original numerator is 0 at x=3.",
+        "Checking parity only away from the redefined point."
+      ],
+      "verificationStatus": "multi-source-verified",
+      "answerConfidence": 0.86,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -7048,19 +7067,84 @@
       "pedagogy": {
         "difficulty": 3,
         "difficultyLabel": "Medium",
-        "hints": []
+        "cognitiveDemand": 3,
+        "hints": [],
+        "misconceptions": [
+          {
+            "code": "APCALC-AB-FRQ-1976-02-M01",
+            "title": "Cancelling x−3 without stating x≠3.",
+            "triggerAnswers": [],
+            "diagnosis": "Cancelling x−3 without stating x≠3.",
+            "feedback": "",
+            "recommendedPrerequisites": [
+              "SKILL-FUNCTION-NOTATION",
+              "SKILL-ALGEBRAIC-SIMPLIFICATION"
+            ],
+            "confidence": 0.75,
+            "source": "source-provided common-mistake note"
+          },
+          {
+            "code": "APCALC-AB-FRQ-1976-02-M02",
+            "title": "Choosing p=0 because the original numerator is 0 at x=3.",
+            "triggerAnswers": [],
+            "diagnosis": "Choosing p=0 because the original numerator is 0 at x=3.",
+            "feedback": "",
+            "recommendedPrerequisites": [
+              "SKILL-FUNCTION-NOTATION",
+              "SKILL-ALGEBRAIC-SIMPLIFICATION"
+            ],
+            "confidence": 0.75,
+            "source": "source-provided common-mistake note"
+          },
+          {
+            "code": "APCALC-AB-FRQ-1976-02-M03",
+            "title": "Checking parity only away from the redefined point.",
+            "triggerAnswers": [],
+            "diagnosis": "Checking parity only away from the redefined point.",
+            "feedback": "",
+            "recommendedPrerequisites": [
+              "SKILL-FUNCTION-NOTATION",
+              "SKILL-ALGEBRAIC-SIMPLIFICATION"
+            ],
+            "confidence": 0.75,
+            "source": "source-provided common-mistake note"
+          }
+        ],
+        "related": {
+          "easier": [],
+          "parallel": [],
+          "harder": [],
+          "prerequisite": [],
+          "sameOfficialTopic": [],
+          "relatedFRQ": [],
+          "relatedMCQ": []
+        }
       },
       "quality": {
+        "completeness": "complete-unverified",
         "productionStatus": "teacher-archive-only",
+        "productionReadiness": 0.65,
+        "tutoringReadiness": 0.65,
         "needsReview": true,
-        "studentReadyGatePassed": false,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
           "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
           "Independent mathematical answer verification remains pending.",
           "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
-        ]
+        ],
+        "transcriptionVerified": false,
+        "answerVerified": false,
+        "mediaVerified": false,
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "katexVerified": false,
+        "mappingVerified": false,
+        "studentReadyGatePassed": false
       },
+      "studentEligible": false,
+      "studentAccessible": true,
+      "deploymentAccess": "archive-metadata-only",
+      "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "14",
@@ -7077,16 +7161,12 @@
         "lessonMappingStatus": "uncertain",
         "calculatorStatus": "review-required",
         "overallStatus": "teacher-archive-only",
-        "correctionsMade": 0,
+        "correctionsMade": 1,
         "reviewRequired": true,
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
         "auditedAt": "2026-07-24T17:46:03+00:00"
       },
-      "studentEligible": false,
-      "studentAccessible": true,
       "studentReady": false,
-      "deploymentAccess": "archive-metadata-only",
-      "contentStatus": "indexed-only",
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
     },
     {
@@ -8213,22 +8293,41 @@
       "courseId": "ap-calculus-ab",
       "assessmentFamily": "AP historical archive",
       "type": "frq",
+      "format": "multipart-free-response",
       "year": 1977,
       "form": "",
       "questionNumber": "4",
       "section": "II",
       "calculator": "no-calculator",
+      "maxPoints": 10,
+      "estimatedTime": 900,
       "prompt": "",
       "directions": "",
       "parts": [],
       "choices": [],
       "media": [],
+      "facsimileAuthority": "",
+      "machineExtractedText": "",
       "answer": null,
       "acceptedAnswers": [],
+      "answerFormat": "multipart-constructed-response",
       "explanation": "",
       "workedSolution": "",
+      "alternativeSolution": "",
+      "calculatorSolution": "",
+      "noncalculatorSolution": "",
+      "studentExplanation": "",
+      "teacherExplanation": "",
       "scoringGuideline": null,
       "rubric": [],
+      "rubricStatus": "ECHS analytic rubric based on independent mathematical verification; not an official historical College Board point-by-point scoring guideline.",
+      "commonMistakes": [
+        "Using the product of derivatives for the product rule.",
+        "Reversing the numerator terms in the quotient rule.",
+        "Using 1/g′(2) instead of evaluating g′ at g⁻¹(2)."
+      ],
+      "verificationStatus": "multi-source-verified",
+      "answerConfidence": 0.86,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -8306,19 +8405,75 @@
       "pedagogy": {
         "difficulty": 3,
         "difficultyLabel": "Medium",
-        "hints": []
+        "cognitiveDemand": 3,
+        "hints": [],
+        "misconceptions": [
+          {
+            "code": "APCALC-AB-FRQ-1977-04-M01",
+            "title": "Using the product of derivatives for the product rule.",
+            "triggerAnswers": [],
+            "diagnosis": "Using the product of derivatives for the product rule.",
+            "feedback": "",
+            "recommendedPrerequisites": [],
+            "confidence": 0.75,
+            "source": "source-provided common-mistake note"
+          },
+          {
+            "code": "APCALC-AB-FRQ-1977-04-M02",
+            "title": "Reversing the numerator terms in the quotient rule.",
+            "triggerAnswers": [],
+            "diagnosis": "Reversing the numerator terms in the quotient rule.",
+            "feedback": "",
+            "recommendedPrerequisites": [],
+            "confidence": 0.75,
+            "source": "source-provided common-mistake note"
+          },
+          {
+            "code": "APCALC-AB-FRQ-1977-04-M03",
+            "title": "Using 1/g′(2) instead of evaluating g′ at g⁻¹(2).",
+            "triggerAnswers": [],
+            "diagnosis": "Using 1/g′(2) instead of evaluating g′ at g⁻¹(2).",
+            "feedback": "",
+            "recommendedPrerequisites": [],
+            "confidence": 0.75,
+            "source": "source-provided common-mistake note"
+          }
+        ],
+        "related": {
+          "easier": [],
+          "parallel": [],
+          "harder": [],
+          "prerequisite": [],
+          "sameOfficialTopic": [],
+          "relatedFRQ": [],
+          "relatedMCQ": []
+        }
       },
       "quality": {
+        "completeness": "complete-unverified",
         "productionStatus": "teacher-archive-only",
+        "productionReadiness": 0.65,
+        "tutoringReadiness": 0.65,
         "needsReview": true,
-        "studentReadyGatePassed": false,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
           "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
           "Independent mathematical answer verification remains pending.",
           "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
-        ]
+        ],
+        "transcriptionVerified": false,
+        "answerVerified": false,
+        "mediaVerified": false,
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "katexVerified": false,
+        "mappingVerified": false,
+        "studentReadyGatePassed": false
       },
+      "studentEligible": false,
+      "studentAccessible": true,
+      "deploymentAccess": "archive-metadata-only",
+      "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "16",
@@ -8335,16 +8490,12 @@
         "lessonMappingStatus": "uncertain",
         "calculatorStatus": "review-required",
         "overallStatus": "teacher-archive-only",
-        "correctionsMade": 6,
+        "correctionsMade": 7,
         "reviewRequired": true,
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
         "auditedAt": "2026-07-24T17:46:03+00:00"
       },
-      "studentEligible": false,
-      "studentAccessible": true,
       "studentReady": false,
-      "deploymentAccess": "archive-metadata-only",
-      "contentStatus": "indexed-only",
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
     }
   ]
