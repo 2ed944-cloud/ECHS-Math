@@ -1,0 +1,59 @@
+{
+  "schemaVersion": "1.0.0",
+  "generatedAt": "2026-07-24T21:58:21+00:00",
+  "scope": "1970 AP Calculus AB FRQ independently verified admin overlay; no student promotion because publication rights are unresolved.",
+  "defaults": {
+    "verificationStatus": "independently-verified-source-compared",
+    "answerConfidence": 1.0,
+    "quality": {
+      "completeness": "complete-verified",
+      "productionStatus": "teacher-archive-only",
+      "productionReadiness": 0.98,
+      "tutoringReadiness": 0.98,
+      "needsReview": true,
+      "reviewReasons": ["Rights/permission review required before public publication."],
+      "transcriptionVerified": true,
+      "answerVerified": true,
+      "mediaVerified": true,
+      "privateStudentAccess": true,
+      "mathematicalVerificationPassed": true,
+      "katexVerified": true,
+      "mappingVerified": true,
+      "studentReadyGatePassed": false
+    },
+    "studentEligible": false,
+    "studentAccessible": false,
+    "deploymentAccess": "teacher-archive-only",
+    "contentStatus": "complete",
+    "studentReady": false,
+    "audit": {
+      "sourceChecked": true,
+      "transcriptionStatus": "verified",
+      "stemStatus": "verified",
+      "choicesStatus": "not_applicable",
+      "answerStatus": "verified",
+      "solutionStatus": "verified",
+      "katexStatus": "verified",
+      "mediaStatus": "verified",
+      "courseMappingStatus": "verified",
+      "unitMappingStatus": "verified",
+      "topicMappingStatus": "verified",
+      "lessonMappingStatus": "verified",
+      "calculatorStatus": "verified",
+      "overallStatus": "teacher-archive-only",
+      "correctionsMade": 0,
+      "reviewRequired": true,
+      "reviewerNotes": "Source page visually compared and every part independently solved. Content, answers, KaTeX, media, calculator policy, and mathematical mapping are verified. The record remains teacher/archive-only solely because public-publication permission is not established.",
+      "auditedAt": "2026-07-24T21:58:21+00:00"
+    }
+  },
+  "records": [
+    {"id": "APCALC-AB-FRQ-1970-01", "audit": {"sourcePage": "5"}},
+    {"id": "APCALC-AB-FRQ-1970-02", "audit": {"sourcePage": "5; 6", "unitMappingStatus": "not_applicable", "lessonMappingStatus": "not_applicable"}},
+    {"id": "APCALC-AB-FRQ-1970-03", "audit": {"sourcePage": "6"}},
+    {"id": "APCALC-AB-FRQ-1970-04", "audit": {"sourcePage": "6"}},
+    {"id": "APCALC-AB-FRQ-1970-05", "audit": {"sourcePage": "6"}},
+    {"id": "APCALC-AB-FRQ-1970-06", "audit": {"sourcePage": "6; 7"}},
+    {"id": "APCALC-AB-FRQ-1970-07", "audit": {"sourcePage": "7"}}
+  ]
+}
