@@ -1,0 +1,90 @@
+[
+  {
+    "filename": "2016Intl-2(3).pdf",
+    "sha256": "2c299cba5219810720d3eebb5b10cff401e6bded30093d0a5ea2f2aebb27647e",
+    "size_bytes": 1658149,
+    "page_count": 84,
+    "duplicate_of": null,
+    "status": "indexed"
+  },
+  {
+    "filename": "7.1-8.2 2015(3).pdf",
+    "sha256": "0e3345cf30261013d61281fcc5376297b18072e87596358081d40a5ca46533e6",
+    "size_bytes": 52531,
+    "page_count": 4,
+    "duplicate_of": null,
+    "status": "indexed"
+  },
+  {
+    "filename": "AB My Max Score 01(3).pdf",
+    "sha256": "e250a9b113c040e5f560cc80248df3599c9f002d718e216b6c091b8bcc122afe",
+    "size_bytes": 47049205,
+    "page_count": 21,
+    "duplicate_of": null,
+    "status": "indexed"
+  },
+  {
+    "filename": "AP_Calculus_AB_Practice_Exam_and_Answers(3).pdf",
+    "sha256": "95a4a82a33409e1f0749d0c0a007366ab384b1a7c2307ef8927c161c2f911626",
+    "size_bytes": 1679566,
+    "page_count": 46,
+    "duplicate_of": null,
+    "status": "indexed"
+  },
+  {
+    "filename": "Newtons_Notebook.363125445 (1)(5).pdf",
+    "sha256": "0ef774e0e35ffb810ae81fad1df0875875c91cc720ad075d4f05c60b291dc918",
+    "size_bytes": 4631371,
+    "page_count": 128,
+    "duplicate_of": null,
+    "status": "indexed"
+  },
+  {
+    "filename": "Newtons_Notebook.363125445(1).pdf",
+    "sha256": "0ef774e0e35ffb810ae81fad1df0875875c91cc720ad075d4f05c60b291dc918",
+    "size_bytes": 4631371,
+    "page_count": 128,
+    "duplicate_of": "Newtons_Notebook.363125445 (1)(5).pdf",
+    "status": "exact-duplicate"
+  },
+  {
+    "filename": "ap-calculus-ab-practice-exam-2012(3).pdf",
+    "sha256": "846c2f223479c3c7c5ca183a95fcd30f99bea2741a867073be7439afb67967d6",
+    "size_bytes": 2907234,
+    "page_count": 86,
+    "duplicate_of": null,
+    "status": "indexed"
+  },
+  {
+    "filename": "ap_calculus_free_response_1969_2010(5).pdf",
+    "sha256": "3724051594943c6244dc93fd30f673ca5267df828684bc13a558cc4bff39d617",
+    "size_bytes": 1978693,
+    "page_count": 105,
+    "duplicate_of": null,
+    "status": "indexed"
+  },
+  {
+    "filename": "calculusquestionsandsolutions_master(5).pdf",
+    "sha256": "7599a7d3dfc979e094c61faa5e5e4165a6764139a229a3c8156de6b18a02595c",
+    "size_bytes": 5950858,
+    "page_count": 121,
+    "duplicate_of": null,
+    "status": "indexed"
+  },
+  {
+    "filename": "sample-questions-ap-calculus-ab-and-bc-exams (1)(5).pdf",
+    "sha256": "2c197f70907716832341c12bef95aed3ddf8ee97c52bc89a00a77a80a97f0a1c",
+    "size_bytes": 3426270,
+    "page_count": 45,
+    "duplicate_of": null,
+    "status": "indexed"
+  },
+  {
+    "filename": "sample-questions-ap-calculus-ab-and-bc-exams(4).pdf",
+    "sha256": "2c197f70907716832341c12bef95aed3ddf8ee97c52bc89a00a77a80a97f0a1c",
+    "size_bytes": 3426270,
+    "page_count": 45,
+    "duplicate_of": "sample-questions-ap-calculus-ab-and-bc-exams (1)(5).pdf",
+    "status": "exact-duplicate"
+  }
+]

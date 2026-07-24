@@ -1,0 +1,80 @@
+{
+  "generatedAt": "2026-07-24T13:55:59+00:00",
+  "checks": [
+    {
+      "name": "Canonical count reconciliation",
+      "passed": true,
+      "detail": "1217 records"
+    },
+    {
+      "name": "Unique IDs",
+      "passed": true,
+      "detail": "No duplicate canonical IDs"
+    },
+    {
+      "name": "One audit row per record",
+      "passed": true,
+      "detail": "1217 audit rows"
+    },
+    {
+      "name": "KaTeX strict parse",
+      "passed": true,
+      "detail": "14338 expressions; 0 failures"
+    },
+    {
+      "name": "Student-ready media references",
+      "passed": true,
+      "detail": "0 student-ready issue(s); 113 archive review blocker(s)"
+    },
+    {
+      "name": "Student-ready gate",
+      "passed": true,
+      "detail": "53 independently verified records"
+    },
+    {
+      "name": "Answer withholding",
+      "passed": true,
+      "detail": "0 non-ready records expose answer data"
+    },
+    {
+      "name": "Student navigation separation",
+      "passed": true,
+      "detail": "Teacher links found in: none"
+    },
+    {
+      "name": "Practice pool filter",
+      "passed": true,
+      "detail": "Practice initializes from student-ready rows only"
+    },
+    {
+      "name": "Exam pool filter",
+      "passed": true,
+      "detail": "Exam simulator initializes from student-ready rows only"
+    },
+    {
+      "name": "Exact lesson URL integration",
+      "passed": true,
+      "detail": "Portal patch sends exact topicCode and lesson"
+    },
+    {
+      "name": "Dashboard attribution filter",
+      "passed": true,
+      "detail": "Dashboard ignores archive-only attempts"
+    },
+    {
+      "name": "JavaScript syntax",
+      "passed": true,
+      "detail": "All JS parsed"
+    },
+    {
+      "name": "JSON parse",
+      "passed": true,
+      "detail": "All JSON parsed"
+    },
+    {
+      "name": "Secret-pattern scan",
+      "passed": true,
+      "detail": "No token/private-key pattern found"
+    }
+  ]
+}

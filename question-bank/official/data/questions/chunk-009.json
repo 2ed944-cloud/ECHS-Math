@@ -21,15 +21,13 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "A",
-      "acceptedAnswers": [
-        "A"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
-      "calculatorSolution": "Use only calculator operations allowed by the source directions and show the mathematical setup.",
+      "calculatorSolution": "",
       "noncalculatorSolution": "",
       "studentExplanation": "",
       "teacherExplanation": "",
@@ -37,8 +35,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -76,7 +74,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -110,12 +111,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1993-036",
@@ -138,15 +160,13 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "E",
-      "acceptedAnswers": [
-        "E"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
-      "calculatorSolution": "Use only calculator operations allowed by the source directions and show the mathematical setup.",
+      "calculatorSolution": "",
       "noncalculatorSolution": "",
       "studentExplanation": "",
       "teacherExplanation": "",
@@ -154,8 +174,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -193,7 +213,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -227,12 +250,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1993-037",
@@ -255,15 +299,13 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "B",
-      "acceptedAnswers": [
-        "B"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
-      "calculatorSolution": "Use only calculator operations allowed by the source directions and show the mathematical setup.",
+      "calculatorSolution": "",
       "noncalculatorSolution": "",
       "studentExplanation": "",
       "teacherExplanation": "",
@@ -271,8 +313,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -310,7 +352,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -344,12 +389,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1993-038",
@@ -372,15 +438,13 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "C",
-      "acceptedAnswers": [
-        "C"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
-      "calculatorSolution": "Use only calculator operations allowed by the source directions and show the mathematical setup.",
+      "calculatorSolution": "",
       "noncalculatorSolution": "",
       "studentExplanation": "",
       "teacherExplanation": "",
@@ -388,8 +452,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -427,7 +491,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -461,12 +528,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1993-039",
@@ -489,15 +577,13 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "C",
-      "acceptedAnswers": [
-        "C"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
-      "calculatorSolution": "Use only calculator operations allowed by the source directions and show the mathematical setup.",
+      "calculatorSolution": "",
       "noncalculatorSolution": "",
       "studentExplanation": "",
       "teacherExplanation": "",
@@ -505,8 +591,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -544,7 +630,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -578,12 +667,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1993-040",
@@ -606,15 +716,13 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "C",
-      "acceptedAnswers": [
-        "C"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
-      "calculatorSolution": "Use only calculator operations allowed by the source directions and show the mathematical setup.",
+      "calculatorSolution": "",
       "noncalculatorSolution": "",
       "studentExplanation": "",
       "teacherExplanation": "",
@@ -622,8 +730,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -661,7 +769,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -695,12 +806,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1993-041",
@@ -723,15 +855,13 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "C",
-      "acceptedAnswers": [
-        "C"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
-      "calculatorSolution": "Use only calculator operations allowed by the source directions and show the mathematical setup.",
+      "calculatorSolution": "",
       "noncalculatorSolution": "",
       "studentExplanation": "",
       "teacherExplanation": "",
@@ -739,8 +869,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -778,7 +908,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -812,12 +945,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1993-042",
@@ -840,15 +994,13 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "E",
-      "acceptedAnswers": [
-        "E"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
-      "calculatorSolution": "Use only calculator operations allowed by the source directions and show the mathematical setup.",
+      "calculatorSolution": "",
       "noncalculatorSolution": "",
       "studentExplanation": "",
       "teacherExplanation": "",
@@ -856,8 +1008,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -895,7 +1047,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -929,12 +1084,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1993-043",
@@ -957,15 +1133,13 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "A",
-      "acceptedAnswers": [
-        "A"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
-      "calculatorSolution": "Use only calculator operations allowed by the source directions and show the mathematical setup.",
+      "calculatorSolution": "",
       "noncalculatorSolution": "",
       "studentExplanation": "",
       "teacherExplanation": "",
@@ -973,8 +1147,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -1012,7 +1186,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -1046,12 +1223,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1993-044",
@@ -1074,15 +1272,13 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "E",
-      "acceptedAnswers": [
-        "E"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
-      "calculatorSolution": "Use only calculator operations allowed by the source directions and show the mathematical setup.",
+      "calculatorSolution": "",
       "noncalculatorSolution": "",
       "studentExplanation": "",
       "teacherExplanation": "",
@@ -1090,8 +1286,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -1129,7 +1325,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -1163,12 +1362,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1993-045",
@@ -1191,15 +1411,13 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "D",
-      "acceptedAnswers": [
-        "D"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
-      "calculatorSolution": "Use only calculator operations allowed by the source directions and show the mathematical setup.",
+      "calculatorSolution": "",
       "noncalculatorSolution": "",
       "studentExplanation": "",
       "teacherExplanation": "",
@@ -1207,8 +1425,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -1246,7 +1464,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -1280,12 +1501,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1997-001",
@@ -1308,11 +1550,9 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "C",
-      "acceptedAnswers": [
-        "C"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
@@ -1324,8 +1564,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -1363,7 +1603,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -1397,12 +1640,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1997-002",
@@ -1425,11 +1689,9 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "E",
-      "acceptedAnswers": [
-        "E"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
@@ -1441,8 +1703,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -1480,7 +1742,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -1514,12 +1779,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1997-003",
@@ -1542,11 +1828,9 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "A",
-      "acceptedAnswers": [
-        "A"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
@@ -1558,8 +1842,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -1597,7 +1881,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -1631,12 +1918,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1997-004",
@@ -1659,11 +1967,9 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "C",
-      "acceptedAnswers": [
-        "C"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
@@ -1675,8 +1981,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -1714,7 +2020,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -1748,12 +2057,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1997-005",
@@ -1776,11 +2106,9 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "C",
-      "acceptedAnswers": [
-        "C"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
@@ -1792,8 +2120,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -1831,7 +2159,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -1865,12 +2196,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1997-006",
@@ -1893,11 +2245,9 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "A",
-      "acceptedAnswers": [
-        "A"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
@@ -1909,8 +2259,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -1948,7 +2298,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -1982,12 +2335,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1997-007",
@@ -2010,11 +2384,9 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "C",
-      "acceptedAnswers": [
-        "C"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
@@ -2026,8 +2398,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -2065,7 +2437,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -2099,12 +2474,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1997-008",
@@ -2127,11 +2523,9 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "E",
-      "acceptedAnswers": [
-        "E"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
@@ -2143,8 +2537,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -2182,7 +2576,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -2216,12 +2613,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1997-009",
@@ -2244,11 +2662,9 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "A",
-      "acceptedAnswers": [
-        "A"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
@@ -2260,8 +2676,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -2299,7 +2715,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -2333,12 +2752,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1997-010",
@@ -2361,11 +2801,9 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "B",
-      "acceptedAnswers": [
-        "B"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
@@ -2377,8 +2815,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -2416,7 +2854,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -2450,12 +2891,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1997-011",
@@ -2478,11 +2940,9 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "C",
-      "acceptedAnswers": [
-        "C"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
@@ -2494,8 +2954,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -2533,7 +2993,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -2567,12 +3030,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1997-012",
@@ -2595,11 +3079,9 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "A",
-      "acceptedAnswers": [
-        "A"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
@@ -2611,8 +3093,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -2650,7 +3132,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -2684,12 +3169,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1997-013",
@@ -2712,11 +3218,9 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "B",
-      "acceptedAnswers": [
-        "B"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
@@ -2728,8 +3232,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -2767,7 +3271,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -2801,12 +3308,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1997-014",
@@ -2829,11 +3357,9 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "C",
-      "acceptedAnswers": [
-        "C"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
@@ -2845,8 +3371,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -2884,7 +3410,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -2918,12 +3447,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1997-015",
@@ -2946,11 +3496,9 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "D",
-      "acceptedAnswers": [
-        "D"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
@@ -2962,8 +3510,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -3001,7 +3549,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -3035,12 +3586,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1997-016",
@@ -3063,11 +3635,9 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "B",
-      "acceptedAnswers": [
-        "B"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
@@ -3079,8 +3649,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -3118,7 +3688,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -3152,12 +3725,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1997-017",
@@ -3180,11 +3774,9 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "B",
-      "acceptedAnswers": [
-        "B"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
@@ -3196,8 +3788,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -3235,7 +3827,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -3269,12 +3864,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1997-018",
@@ -3297,11 +3913,9 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "C",
-      "acceptedAnswers": [
-        "C"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
@@ -3313,8 +3927,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -3352,7 +3966,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -3386,12 +4003,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1997-019",
@@ -3414,11 +4052,9 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "D",
-      "acceptedAnswers": [
-        "D"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
@@ -3430,8 +4066,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -3469,7 +4105,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -3503,12 +4142,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1997-020",
@@ -3531,11 +4191,9 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "E",
-      "acceptedAnswers": [
-        "E"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
@@ -3547,8 +4205,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -3586,7 +4244,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -3620,12 +4281,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1997-021",
@@ -3648,11 +4330,9 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "A",
-      "acceptedAnswers": [
-        "A"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
@@ -3664,8 +4344,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -3703,7 +4383,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -3737,12 +4420,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1997-022",
@@ -3765,11 +4469,9 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "C",
-      "acceptedAnswers": [
-        "C"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
@@ -3781,8 +4483,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -3820,7 +4522,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -3854,12 +4559,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1997-023",
@@ -3882,11 +4608,9 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "E",
-      "acceptedAnswers": [
-        "E"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
@@ -3898,8 +4622,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -3937,7 +4661,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -3971,12 +4698,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1997-024",
@@ -3999,11 +4747,9 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "D",
-      "acceptedAnswers": [
-        "D"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
@@ -4015,8 +4761,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -4054,7 +4800,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -4088,12 +4837,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1997-025",
@@ -4116,11 +4886,9 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "A",
-      "acceptedAnswers": [
-        "A"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
@@ -4132,8 +4900,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -4171,7 +4939,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -4205,12 +4976,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1997-076",
@@ -4233,15 +5025,13 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "D",
-      "acceptedAnswers": [
-        "D"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
-      "calculatorSolution": "Use only calculator operations allowed by the source directions and show the mathematical setup.",
+      "calculatorSolution": "",
       "noncalculatorSolution": "",
       "studentExplanation": "",
       "teacherExplanation": "",
@@ -4249,8 +5039,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -4288,7 +5078,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -4322,12 +5115,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1997-077",
@@ -4350,15 +5164,13 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "E",
-      "acceptedAnswers": [
-        "E"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
-      "calculatorSolution": "Use only calculator operations allowed by the source directions and show the mathematical setup.",
+      "calculatorSolution": "",
       "noncalculatorSolution": "",
       "studentExplanation": "",
       "teacherExplanation": "",
@@ -4366,8 +5178,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -4405,7 +5217,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -4439,12 +5254,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1997-078",
@@ -4467,15 +5303,13 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "A",
-      "acceptedAnswers": [
-        "A"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
-      "calculatorSolution": "Use only calculator operations allowed by the source directions and show the mathematical setup.",
+      "calculatorSolution": "",
       "noncalculatorSolution": "",
       "studentExplanation": "",
       "teacherExplanation": "",
@@ -4483,8 +5317,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -4522,7 +5356,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -4556,12 +5393,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1997-079",
@@ -4584,15 +5442,13 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "D",
-      "acceptedAnswers": [
-        "D"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
-      "calculatorSolution": "Use only calculator operations allowed by the source directions and show the mathematical setup.",
+      "calculatorSolution": "",
       "noncalculatorSolution": "",
       "studentExplanation": "",
       "teacherExplanation": "",
@@ -4600,8 +5456,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -4639,7 +5495,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -4673,12 +5532,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1997-080",
@@ -4701,15 +5581,13 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "B",
-      "acceptedAnswers": [
-        "B"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
-      "calculatorSolution": "Use only calculator operations allowed by the source directions and show the mathematical setup.",
+      "calculatorSolution": "",
       "noncalculatorSolution": "",
       "studentExplanation": "",
       "teacherExplanation": "",
@@ -4717,8 +5595,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -4756,7 +5634,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -4790,12 +5671,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1997-081",
@@ -4818,15 +5720,13 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "D",
-      "acceptedAnswers": [
-        "D"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
-      "calculatorSolution": "Use only calculator operations allowed by the source directions and show the mathematical setup.",
+      "calculatorSolution": "",
       "noncalculatorSolution": "",
       "studentExplanation": "",
       "teacherExplanation": "",
@@ -4834,8 +5734,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -4873,7 +5773,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -4907,12 +5810,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1997-082",
@@ -4935,15 +5859,13 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "B",
-      "acceptedAnswers": [
-        "B"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
-      "calculatorSolution": "Use only calculator operations allowed by the source directions and show the mathematical setup.",
+      "calculatorSolution": "",
       "noncalculatorSolution": "",
       "studentExplanation": "",
       "teacherExplanation": "",
@@ -4951,8 +5873,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -4990,7 +5912,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -5024,12 +5949,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1997-083",
@@ -5052,15 +5998,13 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "E",
-      "acceptedAnswers": [
-        "E"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
-      "calculatorSolution": "Use only calculator operations allowed by the source directions and show the mathematical setup.",
+      "calculatorSolution": "",
       "noncalculatorSolution": "",
       "studentExplanation": "",
       "teacherExplanation": "",
@@ -5068,8 +6012,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -5107,7 +6051,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -5141,12 +6088,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1997-084",
@@ -5169,15 +6137,13 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "C",
-      "acceptedAnswers": [
-        "C"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
-      "calculatorSolution": "Use only calculator operations allowed by the source directions and show the mathematical setup.",
+      "calculatorSolution": "",
       "noncalculatorSolution": "",
       "studentExplanation": "",
       "teacherExplanation": "",
@@ -5185,8 +6151,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -5224,7 +6190,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -5258,12 +6227,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1997-085",
@@ -5286,15 +6276,13 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "D",
-      "acceptedAnswers": [
-        "D"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
-      "calculatorSolution": "Use only calculator operations allowed by the source directions and show the mathematical setup.",
+      "calculatorSolution": "",
       "noncalculatorSolution": "",
       "studentExplanation": "",
       "teacherExplanation": "",
@@ -5302,8 +6290,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -5341,7 +6329,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -5375,12 +6366,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1997-086",
@@ -5403,15 +6415,13 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "A",
-      "acceptedAnswers": [
-        "A"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
-      "calculatorSolution": "Use only calculator operations allowed by the source directions and show the mathematical setup.",
+      "calculatorSolution": "",
       "noncalculatorSolution": "",
       "studentExplanation": "",
       "teacherExplanation": "",
@@ -5419,8 +6429,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -5458,7 +6468,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -5492,12 +6505,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1997-087",
@@ -5520,15 +6554,13 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "B",
-      "acceptedAnswers": [
-        "B"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
-      "calculatorSolution": "Use only calculator operations allowed by the source directions and show the mathematical setup.",
+      "calculatorSolution": "",
       "noncalculatorSolution": "",
       "studentExplanation": "",
       "teacherExplanation": "",
@@ -5536,8 +6568,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -5575,7 +6607,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -5609,12 +6644,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1997-088",
@@ -5637,15 +6693,13 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "C",
-      "acceptedAnswers": [
-        "C"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
-      "calculatorSolution": "Use only calculator operations allowed by the source directions and show the mathematical setup.",
+      "calculatorSolution": "",
       "noncalculatorSolution": "",
       "studentExplanation": "",
       "teacherExplanation": "",
@@ -5653,8 +6707,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -5692,7 +6746,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -5726,12 +6783,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1997-089",
@@ -5754,15 +6832,13 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "D",
-      "acceptedAnswers": [
-        "D"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
-      "calculatorSolution": "Use only calculator operations allowed by the source directions and show the mathematical setup.",
+      "calculatorSolution": "",
       "noncalculatorSolution": "",
       "studentExplanation": "",
       "teacherExplanation": "",
@@ -5770,8 +6846,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -5809,7 +6885,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -5843,12 +6922,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1997-090",
@@ -5871,15 +6971,13 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "B",
-      "acceptedAnswers": [
-        "B"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
-      "calculatorSolution": "Use only calculator operations allowed by the source directions and show the mathematical setup.",
+      "calculatorSolution": "",
       "noncalculatorSolution": "",
       "studentExplanation": "",
       "teacherExplanation": "",
@@ -5887,8 +6985,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -5926,7 +7024,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -5960,12 +7061,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1998-001",
@@ -5988,11 +7110,9 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "C",
-      "acceptedAnswers": [
-        "C"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
@@ -6004,8 +7124,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -6043,7 +7163,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -6077,12 +7200,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1998-002",
@@ -6105,11 +7249,9 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "A",
-      "acceptedAnswers": [
-        "A"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
@@ -6121,8 +7263,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -6160,7 +7302,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -6194,12 +7339,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1998-003",
@@ -6222,11 +7388,9 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "D",
-      "acceptedAnswers": [
-        "D"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
@@ -6238,8 +7402,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -6277,7 +7441,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -6311,12 +7478,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1998-004",
@@ -6339,11 +7527,9 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "A",
-      "acceptedAnswers": [
-        "A"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
@@ -6355,8 +7541,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -6394,7 +7580,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -6428,12 +7617,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1998-005",
@@ -6456,11 +7666,9 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "A",
-      "acceptedAnswers": [
-        "A"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
@@ -6472,8 +7680,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -6511,7 +7719,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -6545,12 +7756,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1998-006",
@@ -6573,11 +7805,9 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "E",
-      "acceptedAnswers": [
-        "E"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
@@ -6589,8 +7819,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -6628,7 +7858,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -6662,12 +7895,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1998-007",
@@ -6690,11 +7944,9 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "E",
-      "acceptedAnswers": [
-        "E"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
@@ -6706,8 +7958,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -6745,7 +7997,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -6779,12 +8034,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1998-008",
@@ -6807,11 +8083,9 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "B",
-      "acceptedAnswers": [
-        "B"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
@@ -6823,8 +8097,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -6862,7 +8136,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -6896,12 +8173,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1998-009",
@@ -6924,11 +8222,9 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "D",
-      "acceptedAnswers": [
-        "D"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
@@ -6940,8 +8236,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -6979,7 +8275,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -7013,12 +8312,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1998-010",
@@ -7041,11 +8361,9 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "E",
-      "acceptedAnswers": [
-        "E"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
@@ -7057,8 +8375,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -7096,7 +8414,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -7130,12 +8451,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1998-011",
@@ -7158,11 +8500,9 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "A",
-      "acceptedAnswers": [
-        "A"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
@@ -7174,8 +8514,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -7213,7 +8553,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -7247,12 +8590,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1998-012",
@@ -7275,11 +8639,9 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "E",
-      "acceptedAnswers": [
-        "E"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
@@ -7291,8 +8653,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -7330,7 +8692,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -7364,12 +8729,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1998-013",
@@ -7392,11 +8778,9 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "B",
-      "acceptedAnswers": [
-        "B"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
@@ -7408,8 +8792,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -7447,7 +8831,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -7481,12 +8868,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1998-014",
@@ -7509,11 +8917,9 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "E",
-      "acceptedAnswers": [
-        "E"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
@@ -7525,8 +8931,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -7564,7 +8970,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -7598,12 +9007,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1998-015",
@@ -7626,11 +9056,9 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "B",
-      "acceptedAnswers": [
-        "B"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
@@ -7642,8 +9070,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -7681,7 +9109,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -7715,12 +9146,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1998-016",
@@ -7743,11 +9195,9 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "C",
-      "acceptedAnswers": [
-        "C"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
@@ -7759,8 +9209,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -7798,7 +9248,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -7832,12 +9285,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1998-017",
@@ -7860,11 +9334,9 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "D",
-      "acceptedAnswers": [
-        "D"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
@@ -7876,8 +9348,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -7915,7 +9387,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -7949,12 +9424,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1998-018",
@@ -7977,11 +9473,9 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "B",
-      "acceptedAnswers": [
-        "B"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
@@ -7993,8 +9487,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -8032,7 +9526,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -8066,12 +9563,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1998-019",
@@ -8094,11 +9612,9 @@
       "media": [],
       "facsimileAuthority": "",
       "machineExtractedText": "",
-      "answer": "D",
-      "acceptedAnswers": [
-        "D"
-      ],
-      "answerFormat": "choice",
+      "answer": "",
+      "acceptedAnswers": [],
+      "answerFormat": "withheld",
       "explanation": "",
       "workedSolution": "",
       "alternativeSolution": "",
@@ -8110,8 +9626,8 @@
       "rubric": [],
       "rubricStatus": "",
       "commonMistakes": [],
-      "verificationStatus": "single-source-unverified",
-      "answerConfidence": 0.65,
+      "verificationStatus": "withheld-review-required",
+      "answerConfidence": null,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -8149,7 +9665,10 @@
         "lessonIds": [],
         "keywords": [
           "ap-calculus-bc"
-        ]
+        ],
+        "mappingConfidence": "unmapped",
+        "mappingReason": "No exact lesson mapping is available.",
+        "lessonMappings": []
       },
       "pedagogy": {
         "difficulty": null,
@@ -8183,12 +9702,33 @@
         "transcriptionVerified": false,
         "answerVerified": false,
         "mediaVerified": true,
-        "privateStudentAccess": true
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "mappingVerified": false,
+        "katexVerified": true
       },
-      "studentEligible": true,
-      "studentAccessible": true,
-      "deploymentAccess": "private-school-approved",
-      "contentStatus": "indexed-only"
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "archive-only",
+      "contentStatus": "indexed-only",
+      "studentReady": false,
+      "archiveStatus": "Indexed Record",
+      "reviewRequired": true,
+      "audit": {
+        "audit_version": "5.0.0",
+        "audited_at": "2026-07-24T13:55:59+00:00",
+        "source_status": "blocked",
+        "transcription_status": "incomplete",
+        "stem_status": "incomplete",
+        "choices_status": "incomplete",
+        "katex_status": "verified",
+        "media_status": "not_required",
+        "mapping_status": "unmapped",
+        "student_ready": false,
+        "archive_status": "Indexed Record",
+        "corrections_count": 0
+      },
+      "answerWithheld": true
     }
   ]
 }
