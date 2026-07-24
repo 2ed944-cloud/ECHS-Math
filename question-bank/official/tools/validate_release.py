@@ -464,8 +464,13 @@ for p in ps_files:
     scrub=re.sub(r"'(?:''|[^'])*'|\"(?:`.|[^\"])*\"",'',scrub)
     for op,cl in [('(',')'),('[',']'),('{','}')]:
         if scrub.count(op)!=scrub.count(cl): c.errors.append(f'{p.relative_to(ROOT)}: unbalanced {op}{cl}')
+    # In an expandable PowerShell string, `$Name:` followed by whitespace or punctuation
+    # is parsed as a malformed drive-qualified variable. Require `${Name}:` or formatting.
+    for string_match in re.finditer(r'"(?:`.|[^"])*"', text):
+        for bad in re.finditer(r'\$[A-Za-z_][A-Za-z0-9_]*:(?=[^A-Za-z0-9_?])', string_match.group(0)):
+            c.errors.append(f'{p.relative_to(ROOT)}: ambiguous PowerShell variable interpolation {bad.group(0)}')
 if package_mode and not (ROOT/'rollback.ps1').exists(): c.errors.append('rollback.ps1 missing')
-c.evidence={'mode':'release-package' if package_mode else 'deployed-repository','powerShellFilesStaticallyChecked':len(ps_files),'installerVersion':'5.0.0' if package_mode else 'not-applicable'}
+c.evidence={'mode':'release-package' if package_mode else 'deployed-repository','powerShellFilesStaticallyChecked':len(ps_files),'installerVersion':'5.0.1' if package_mode else 'not-applicable','ambiguousVariableColonCheck':True}
 
 # Prepare report now; browser smoke will be added by a separate runner and patched below.
 

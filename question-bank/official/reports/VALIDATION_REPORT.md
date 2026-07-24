@@ -1,6 +1,6 @@
 # Validation Report
 
-Generated: 2026-07-24T18:26:17+00:00
+Generated: 2026-07-24T19:51:10+00:00
 
 **Overall result: PASS**
 
@@ -376,7 +376,7 @@ Warnings:
 
 ```json
 {
-  "textFilesScanned": 1224,
+  "textFilesScanned": 1227,
   "secretPatternHits": 0
 }
 ```
@@ -448,7 +448,8 @@ Warnings:
 {
   "mode": "release-package",
   "powerShellFilesStaticallyChecked": 9,
-  "installerVersion": "5.0.0"
+  "installerVersion": "5.0.1",
+  "ambiguousVariableColonCheck": true
 }
 ```
 

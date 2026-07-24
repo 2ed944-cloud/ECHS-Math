@@ -1,11 +1,15 @@
 ﻿{
     "valid":  true,
-    "coreRecords":  1217,
+    "canonicalRecords":  1217,
+    "studentReadyRecords":  352,
+    "archiveRecords":  1217,
+    "teacherArchiveOnly":  865,
     "expansionRecords":  0,
-    "effectiveUniqueRecords":  1217,
-    "enabledBatches":  0,
     "errors":  [
 
                ],
-    "checkedAt":  "2026-07-24T17:24:45.3567719Z"
+    "warnings":  [
+
+                 ],
+    "checkedAt":  "2026-07-24T20:09:08.6278155Z"
 }
