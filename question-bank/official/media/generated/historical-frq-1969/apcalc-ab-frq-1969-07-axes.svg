@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 660" role="img" aria-labelledby="title desc">
+  <title id="title">Blank coordinate axes for the 1969 exponential-curve sketch</title>
+  <desc id="desc">A clean rectangular graphing area with horizontal x-axis, vertical y-axis, arrowheads, origin, and light grid lines. No curve is drawn.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L10,5 L0,10 z" fill="#172033"/>
+    </marker>
+  </defs>
+  <rect width="1040" height="660" rx="30" fill="#fbf7f1"/>
+  <rect x="75" y="55" width="890" height="540" fill="#ffffff" stroke="#c8d3df" stroke-width="2"/>
+  <g stroke="#dbe5ee" stroke-width="1.5" stroke-dasharray="5 7">
+    <line x1="185" y1="55" x2="185" y2="595"/><line x1="295" y1="55" x2="295" y2="595"/>
+    <line x1="405" y1="55" x2="405" y2="595"/><line x1="515" y1="55" x2="515" y2="595"/>
+    <line x1="625" y1="55" x2="625" y2="595"/><line x1="735" y1="55" x2="735" y2="595"/>
+    <line x1="845" y1="55" x2="845" y2="595"/>
+    <line x1="75" y1="145" x2="965" y2="145"/><line x1="75" y1="235" x2="965" y2="235"/>
+    <line x1="75" y1="325" x2="965" y2="325"/><line x1="75" y1="415" x2="965" y2="415"/>
+    <line x1="75" y1="505" x2="965" y2="505"/>
+  </g>
+  <g stroke="#172033" stroke-width="3" fill="none" marker-end="url(#arrow)">
+    <line x1="95" y1="505" x2="945" y2="505"/>
+    <line x1="515" y1="575" x2="515" y2="75"/>
+  </g>
+  <g stroke="#172033" stroke-width="2">
+    <line x1="185" y1="497" x2="185" y2="513"/><line x1="295" y1="497" x2="295" y2="513"/>
+    <line x1="405" y1="497" x2="405" y2="513"/><line x1="625" y1="497" x2="625" y2="513"/>
+    <line x1="735" y1="497" x2="735" y2="513"/><line x1="845" y1="497" x2="845" y2="513"/>
+    <line x1="507" y1="145" x2="523" y2="145"/><line x1="507" y1="235" x2="523" y2="235"/>
+    <line x1="507" y1="325" x2="523" y2="325"/><line x1="507" y1="415" x2="523" y2="415"/>
+  </g>
+  <g fill="#172033" font-family="Arial, Helvetica, sans-serif">
+    <text x="949" y="490" font-size="25" font-weight="700">x</text>
+    <text x="530" y="82" font-size="25" font-weight="700">y</text>
+    <text x="528" y="530" font-size="20">0</text>
+  </g>
+  <text x="520" y="635" text-anchor="middle" fill="#172033" font-family="Arial, Helvetica, sans-serif" font-size="21">
+    Sketch y = (eˣ + e⁻ˣ)/2 on the axes.
+  </text>
+</svg>
