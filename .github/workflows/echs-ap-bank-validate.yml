@@ -32,6 +32,8 @@ jobs:
         run: npx --prefix question-bank/official/tools playwright install --with-deps chromium-headless-shell
       - name: Parse every canonical math expression
         run: npm run validate:katex --prefix question-bank/official/tools
+      - name: Validate cumulative teacher audit overlays
+        run: npm run validate:overlays --prefix question-bank/official/tools
       - name: Run browser smoke tests
         run: npm run validate:browser --prefix question-bank/official/tools
       - name: Generate deterministic release checksums
