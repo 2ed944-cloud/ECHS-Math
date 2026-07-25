@@ -53,7 +53,7 @@ const ECHSBank={
         const addonResponse=await fetch("data/blackboard-addon.json");
         if(addonResponse.ok)this.mergeAddon(catalog,await addonResponse.json());
       }catch(error){
-        console.warn("Optional Blackboard catalog addon was not loaded",error);
+        console.warn("Optional publisher catalog addon was not loaded",error);
       }
       this.catalog=catalog;
     }
@@ -124,18 +124,34 @@ const ECHSBank={
     });
   },
   labelType(type){return({mcq:"Multiple choice",true_false:"True / False",fill_blank:"Fill in the blank",essay:"Open response"})[type]||type;},
+  cleanStudentLabel(value){
+    return String(value??"")
+      .replace(/\s*·\s*(Initial Import|Pilot|Preview)\b/gi,"")
+      .replace(/\b(Initial Import|Pilot|Preview)\b/gi,"")
+      .replace(/\bBlackboard\b/gi,"Publisher")
+      .replace(/\s{2,}/g," ")
+      .replace(/\s*·\s*$/g,"")
+      .trim();
+  },
   bankLabel(code){
     const bank=(this.catalog?.banks||[]).find(x=>x.code===code);
-    return bank?.title?`${code} · ${bank.title}`:code;
+    if(bank?.title)return this.cleanStudentLabel(bank.title);
+    return({
+      PCALRT5S:"Pearson Precalculus",
+      CAF5S:"Pearson Precalculus Foundations",
+      CALCT3BC:"Calculus: Early Transcendentals",
+      ADAMS10:"Calculus: A Complete Course",
+      PEARSON_CH0:"Pearson Calculus Foundations"
+    })[code]||this.cleanStudentLabel(code);
   },
   bundleGroups(catalog){return[
     {key:"course_units",label:"Course and Unit"},
     {key:"course_all",label:"Full Course"},
-    {key:"blackboard_banks",label:"Blackboard Bank"},
+    {key:"blackboard_banks",label:"Textbook Collection"},
     {key:"topics",label:"AP Calculus Unit 1 Topic"},
     {key:"ap_units",label:"AP Calculus Unit"},
-    {key:"source_chapters",label:"Source Chapter"},
-    {key:"scopes",label:"Scope / Readiness"}
+    {key:"source_chapters",label:"Textbook Chapter"},
+    {key:"scopes",label:"Coverage / Readiness"}
   ].filter(g=>(catalog.bundles[g.key]||[]).length);},
   selectedBundleFromParams(catalog){
     const p=this.params(),course=p.get("course"),topic=p.get("topic"),unit=p.get("unit"),bundle=p.get("bundle");
