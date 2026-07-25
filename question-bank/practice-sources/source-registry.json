@@ -1,78 +1,72 @@
 {
-  "schemaVersion": "1.0.0",
+  "schemaVersion": "2.0.0",
   "generatedAt": "2026-07-25",
   "publicationPolicy": {
-    "destination": "teacher-only practice staging",
-    "publicQuestionContentAllowed": false,
-    "notes": "These are publisher/instructor resources supplied by the user. Raw packages and extracted proprietary question text must not be committed to the public repository unless publication rights are documented. Import locally, deduplicate, classify, verify, and promote only rights-cleared or independently authored derivatives."
+    "destination": "public student Practice Studio",
+    "publicQuestionContentAllowed": true,
+    "rightsBasis": "The user confirmed that they hold publication rights for the supplied Blackboard banks.",
+    "auditPolicy": "Publisher prompts, choices, answer keys, feedback, and figures are treated as source-authoritative. Only technical import validation is required.",
+    "duplicatePolicy": "Retain every source item and every source version; do not delete duplicates. Random practice may avoid repeating the same duplicate group within one generated set."
   },
   "sources": [
     {
-      "sourceId": "PEARSON-CALC-EARLY-TRANS-BB-9780134770529",
+      "sourceId": "CALCT3BC",
       "archiveName": "_irc_files_312625_9780134770529_TG_calcearlytrans_BB (1).zip",
       "format": "blackboard-qti-dat",
       "courseScope": ["AP Calculus AB", "AP Calculus BC", "Calculus"],
       "poolFiles": 532,
       "sourceItems": 3309,
       "imageAssets": 13964,
-      "priority": 1,
-      "status": "registered-for-local-ingestion",
-      "rightsStatus": "permission-required",
-      "publicPublicationAllowed": false
+      "status": "already-imported-in-practice-studio",
+      "rightsStatus": "publication-authorised-by-user",
+      "publicPublicationAllowed": true,
+      "studentAccessible": true,
+      "retainAllDuplicates": true
     },
     {
-      "sourceId": "PEARSON-PRECALC-BB-A103000235993",
+      "sourceId": "PCALRT5S",
       "archiveName": "_irc_files_307321_A103000235993_TB_BlackBoard.zip",
       "format": "blackboard-qti-dat",
       "courseScope": ["AP Precalculus", "Precalculus"],
       "poolFiles": 385,
       "sourceItems": 4528,
       "imageAssets": 11171,
-      "priority": 2,
-      "status": "registered-for-local-ingestion",
-      "rightsStatus": "permission-required",
-      "publicPublicationAllowed": false
+      "status": "student-import-in-progress",
+      "rightsStatus": "publication-authorised-by-user",
+      "publicPublicationAllowed": true,
+      "studentAccessible": true,
+      "retainAllDuplicates": true
     },
     {
-      "sourceId": "PEARSON-CALCULUS-BB-A103000239115",
+      "sourceId": "CAF5S",
       "archiveName": "_irc_files_307873_A103000239115_TB_BlackBoard.zip",
       "format": "blackboard-qti-dat",
-      "courseScope": ["AP Calculus AB", "AP Calculus BC", "Calculus"],
+      "courseScope": ["AP Precalculus", "Precalculus", "College Algebra Foundations"],
       "poolFiles": 251,
       "sourceItems": 3101,
       "imageAssets": 6974,
-      "priority": 3,
-      "status": "registered-for-local-ingestion",
-      "rightsStatus": "permission-required",
-      "publicPublicationAllowed": false
-    },
+      "status": "queued-for-student-import",
+      "rightsStatus": "publication-authorised-by-user",
+      "publicPublicationAllowed": true,
+      "studentAccessible": true,
+      "retainAllDuplicates": true
+    }
+  ],
+  "excludedSources": [
     {
-      "sourceId": "PEARSON-PRECALC-TIF-9780137321902",
       "archiveName": "_irc_files_300399_9780137321902_TB_TIF.zip",
-      "format": "pdf-test-item-file",
-      "courseScope": ["AP Precalculus", "Precalculus"],
-      "pdfFiles": 1,
-      "priority": 5,
-      "status": "registered-manual-extraction",
-      "rightsStatus": "permission-required",
-      "publicPublicationAllowed": false
+      "reason": "PDF source excluded at the user's request."
     },
     {
-      "sourceId": "PEARSON-PRECALC-REMEDIATED-9780137978397",
       "archiveName": "_irc_files_312418_9780137978397_TB_Remediated_Files.zip",
-      "format": "remediated-pdf-chapters",
-      "courseScope": ["AP Precalculus", "Precalculus"],
-      "pdfFiles": 32,
-      "priority": 4,
-      "status": "registered-manual-extraction",
-      "rightsStatus": "permission-required",
-      "publicPublicationAllowed": false
+      "reason": "PDF source excluded at the user's request."
     }
   ],
   "totals": {
     "blackboardSourceItems": 10938,
     "blackboardPoolFiles": 1168,
     "blackboardImageAssets": 32109,
-    "pdfFiles": 33
+    "alreadyLiveSourceItems": 3309,
+    "newSourceItemsToImport": 7629
   }
 }
