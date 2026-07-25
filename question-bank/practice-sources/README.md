@@ -1,63 +1,45 @@
-# ECHS Practice-Bank Ingestion
+# ECHS Practice Studio — Blackboard Bank Imports
 
-This area registers publisher-supplied instructional banks and provides a controlled local ingestion pipeline.
+This directory documents and supports direct student import of the three supplied Pearson/TestGen Blackboard QTI banks.
 
-## Important rights boundary
+## Active scope
 
-The source archives are instructor/publisher materials supplied by the user. The repository is public, so raw archives, extracted source images, and proprietary question text must **not** be committed here unless explicit publication rights are documented.
+Only Blackboard QTI archives are included:
 
-The tools therefore create `teacher-only-staging` records. A question can enter the public/student practice bank only after all of the following:
+- `CALCT3BC` — 3,309 questions, already present in the Practice Studio.
+- `PCALRT5S` — 4,528 Precalculus questions.
+- `CAF5S` — 3,101 Precalculus / college-algebra-foundation questions.
 
-1. rights/publication clearance or replacement with an independently authored derivative;
-2. source-faithful transcription review;
-3. mathematical answer verification;
-4. KaTeX conversion and validation;
-5. media accessibility and path verification;
-6. AP course/unit/topic/lesson classification;
-7. exact and near-duplicate review;
-8. full practice-bank validation.
+The two PDF archives are excluded at the user's request.
 
-## Registered sources
+## Content policy
 
-The registry currently covers three Blackboard packages with **10,938 source items**, **1,168 pool files**, and **32,109 image assets**, plus **33 PDF files** for later manual extraction.
+The user confirmed publication rights for these sources. Publisher question text, answer choices, keys, feedback, and figures are treated as source-authoritative. The import process performs technical checks only:
 
-See `source-registry.json` for source-level counts and restrictions.
+- stable and unique IDs;
+- valid JSON;
+- answer-key references resolve to existing choices;
+- image-package paths resolve;
+- source pool/chapter metadata is retained;
+- generated bundles load in the existing Practice Studio.
 
-## Local import example
+No independent mathematical audit is required before student access.
 
-```bash
-python question-bank/practice-sources/tools/import_blackboard_qti.py \
-  "/secure-sources/_irc_files_312625_9780134770529_TG_calcearlytrans_BB (1).zip" \
-  --source-id PEARSON-CALC-EARLY-TRANS-BB-9780134770529 \
-  --output .private-practice-staging/calculus-early-trans.json \
-  --media-output .private-practice-staging/media/calculus-early-trans
-```
+## Duplicate policy
 
-Use `--limit 20` for the first review batch.
+All source questions and all source versions are retained. Duplicate detection may be used only to avoid showing equivalent items twice in one generated practice set; it must never delete source questions.
 
-## Duplicate detection
+## Student experience
 
-```bash
-python question-bank/practice-sources/tools/dedupe_practice_bank.py \
-  .private-practice-staging/*.json \
-  --output .private-practice-staging/reports/duplicates.json
-```
+Imported banks use the existing `question-bank/practice.html` interface and its filters, random-set generator, immediate answer checking, local progress history, dashboard, and source-section filtering.
 
-No record is deleted automatically. Duplicate groups retain all source references until a reviewer selects the practice-bank canonical record.
+## Media packaging
 
-## Staging validation
+For large banks, source images are grouped into chapter-level ZIP packages. The browser loads only the package needed for the visible question through `js/blackboard-assets.js`, avoiding tens of thousands of loose Git objects while preserving the original publisher figures.
 
-```bash
-python question-bank/practice-sources/tools/validate_practice_staging.py \
-  .private-practice-staging/*.json
-```
+## Import order
 
-## Recommended batch order
-
-1. Calculus Early Transcendentals Blackboard bank.
-2. Precalculus Blackboard bank A103000235993.
-3. Calculus Blackboard bank A103000239115.
-4. Remediated chapter PDFs.
-5. Single Precalculus test-item PDF.
-
-Use batches of 20 straightforward MCQs or 5–10 figure-heavy/constructed-response items. Each reviewed batch should have its own branch and draft pull request. Do not merge raw staging records into the official College Board bank.
+1. `PCALRT5S`
+2. `CAF5S`
+3. Combined AP Precalculus course/unit bundles
+4. Browser smoke test and catalog count verification
