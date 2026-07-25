@@ -1,0 +1,83 @@
+name: Independent question-bank audit snapshot
+
+on:
+  pull_request:
+    branches:
+      - main
+    types: [opened, synchronize, reopened]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  export-audit-snapshot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Build deterministic inventory and repository snapshot
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf audit-export
+          mkdir -p audit-export
+          python3 - <<'PY'
+          import hashlib
+          import json
+          import os
+          from pathlib import Path
+
+          root = Path('.').resolve()
+          excluded_roots = {'.git', 'audit-export'}
+          records = []
+          for path in sorted(root.rglob('*')):
+              rel = path.relative_to(root)
+              if not rel.parts or rel.parts[0] in excluded_roots or path.is_dir():
+                  continue
+              digest = hashlib.sha256()
+              with path.open('rb') as handle:
+                  for chunk in iter(lambda: handle.read(1024 * 1024), b''):
+                      digest.update(chunk)
+              records.append({
+                  'path': rel.as_posix(),
+                  'bytes': path.stat().st_size,
+                  'sha256': digest.hexdigest(),
+              })
+
+          payload = {
+              'repository': os.environ.get('GITHUB_REPOSITORY'),
+              'commit': os.environ.get('GITHUB_SHA'),
+              'ref': os.environ.get('GITHUB_REF'),
+              'file_count': len(records),
+              'files': records,
+          }
+          Path('audit-export/repository-inventory.json').write_text(
+              json.dumps(payload, indent=2, ensure_ascii=False) + '\n',
+              encoding='utf-8',
+          )
+          PY
+          tar \
+            --exclude='./.git' \
+            --exclude='./audit-export' \
+            --sort=name \
+            --mtime='UTC 1970-01-01' \
+            --owner=0 \
+            --group=0 \
+            --numeric-owner \
+            -czf audit-export/ECHS-Math-audit-snapshot.tar.gz .
+          sha256sum audit-export/ECHS-Math-audit-snapshot.tar.gz \
+            > audit-export/ECHS-Math-audit-snapshot.tar.gz.sha256
+
+      - name: Upload exact audit snapshot
+        uses: actions/upload-artifact@v4
+        with:
+          name: independent-question-bank-audit-snapshot
+          path: audit-export/
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 7

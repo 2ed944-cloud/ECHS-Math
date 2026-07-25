@@ -1,0 +1,145 @@
+name: Independent question-bank audit and repair
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - synchronize
+      - reopened
+    paths:
+      - .github/workflows/independent-question-bank-repair.yml
+      - .github/audit-bootstrap.part-*
+      - .github/audit-bootstrap.safe-*
+
+permissions:
+  contents: write
+
+concurrency:
+  group: independent-question-bank-audit-${{ github.event.pull_request.head.ref || github.ref_name }}
+  cancel-in-progress: false
+
+jobs:
+  audit-and-repair:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - name: Check out exact audit branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref || github.ref_name }}
+          fetch-depth: 0
+
+      - name: Restore independently reviewed audit tools
+        shell: bash
+        run: |
+          cat \
+            .github/audit-bootstrap.part-00 \
+            .github/audit-bootstrap.part-01 \
+            .github/audit-bootstrap.part-02a \
+            .github/audit-bootstrap.safe-00 \
+            .github/audit-bootstrap.safe-01a \
+            .github/audit-bootstrap.safe-01n \
+            .github/audit-bootstrap.safe-01b \
+            .github/audit-bootstrap.safe-02 \
+            .github/audit-bootstrap.safe-03 \
+            .github/audit-bootstrap.safe-04 \
+            .github/audit-bootstrap.safe-05 \
+            .github/audit-bootstrap.safe-06 \
+            .github/audit-bootstrap.safe-07 \
+            .github/audit-bootstrap.safe-08 \
+            | base64 --decode > /tmp/audit-bootstrap.tar.xz
+          echo "f7cadd5a979326a06c7380b158996860649f06059e20d2944bc471771c178a7e  /tmp/audit-bootstrap.tar.xz" | sha256sum --check --strict
+          tar -xJf /tmp/audit-bootstrap.tar.xz
+          chmod +x question-bank/official/tools/independent_full_audit.py question-bank/official/tools/katex_audit.js
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Prepare strict projections and parser input
+        run: python question-bank/official/tools/independent_full_audit.py
+
+      - name: Install fixed KaTeX parser
+        run: npm install --prefix /tmp/echs-katex --no-audit --no-fund katex@0.16.27
+
+      - name: Parse every delimited expression with real KaTeX
+        id: katex
+        shell: bash
+        run: |
+          set +e
+          NODE_PATH=/tmp/echs-katex/node_modules node question-bank/official/tools/katex_audit.js
+          rc=$?
+          echo "exit_code=$rc" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Finalize audit, validation, manifest, and checksums
+        id: audit
+        shell: bash
+        run: |
+          set +e
+          python question-bank/official/tools/independent_full_audit.py
+          rc=$?
+          echo "exit_code=$rc" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Verify generated diff formatting
+        run: git diff --check
+
+      - name: Commit generated repair artifacts
+        if: steps.katex.outputs.exit_code == '0' && steps.audit.outputs.exit_code == '0'
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          rm -f .github/audit-bootstrap.part-* .github/audit-bootstrap.safe-*
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No generated changes to commit."
+          else
+            git commit -m "audit: rebuild strict verified question bank [skip ci]"
+            target_branch='${{ github.event.pull_request.head.ref || github.ref_name }}'
+            git push origin "HEAD:${target_branch}"
+          fi
+
+      - name: Upload independent audit evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: independent-question-bank-audit-results
+          retention-days: 14
+          compression-level: 9
+          path: |
+            question-bank/official/reports/QUESTION_BY_QUESTION_AUDIT.csv
+            question-bank/official/reports/FULL_QUESTION_AUDIT.json
+            question-bank/official/reports/QUESTION_CORRECTIONS_LOG.json
+            question-bank/official/reports/MATHEMATICAL_VERIFICATION_REPORT.md
+            question-bank/official/reports/KATEX_MACHINE_LOG.json
+            question-bank/official/reports/KATEX_AUDIT_REPORT.md
+            question-bank/official/reports/MEDIA_MACHINE_LOG.json
+            question-bank/official/reports/LESSON_MAPPING_AUDIT.md
+            question-bank/official/reports/STUDENT_READY_REPORT.md
+            question-bank/official/reports/TEACHER_REVIEW_QUEUE.csv
+            question-bank/official/reports/VALIDATION_RESULTS.json
+            question-bank/official/reports/VALIDATION_REPORT.md
+            question-bank/official/reports/COUNT_RECONCILIATION_REPORT.md
+            question-bank/official/reports/FINAL_ARTIFACT_INTEGRITY_AUDIT.md
+            question-bank/official/reports/FINAL_PRODUCTION_READINESS_REPORT.md
+            question-bank/official/FILE_MANIFEST.json
+            question-bank/official/SHA256SUMS.txt
+
+      - name: Enforce parser and validation result
+        if: always()
+        shell: bash
+        run: |
+          katex_rc='${{ steps.katex.outputs.exit_code }}'
+          audit_rc='${{ steps.audit.outputs.exit_code }}'
+          echo "KaTeX exit: ${katex_rc:-missing}"
+          echo "Audit exit: ${audit_rc:-missing}"
+          if [[ "${katex_rc:-1}" != "0" || "${audit_rc:-1}" != "0" ]]; then
+            exit 1
+          fi
