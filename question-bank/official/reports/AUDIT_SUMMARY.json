@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-24T21:33:52+00:00",
+  "generatedAt": "2026-07-25T04:30:00+00:00",
   "totalQuestionsAudited": 1217,
   "mcqAudited": 876,
   "frqAudited": 341,
@@ -18,7 +18,12 @@
   "questionsRemappedLesson": 41,
   "unrelatedLessonLinksRemoved": 46,
   "remainingBlockingReviewItems": 1165,
-  "productionReadinessJudgment": "PASS WITH RESTRICTIONS — the public student runtime contains only 52 independently verified, exactly mapped, ECHS-owned records. The remaining 1165 records are preserved and redacted from student interaction pending verification and/or release authorization.",
+  "historicalABFRQYearsCovered": "1969-2010",
+  "historicalABFRQRecordsCovered": 301,
+  "historicalABFRQIndependentlySolved": 225,
+  "historicalABFRQOfficialGuidelineVerifiedPendingIndependentResolution": 76,
+  "historicalABFRQPublicPromotions": 0,
+  "productionReadinessJudgment": "PASS WITH RESTRICTIONS — the public student runtime contains only 52 independently verified, exactly mapped, ECHS-owned records. The remaining 1165 records are preserved and redacted from student interaction pending verification and/or release authorization. Teacher-only historical AB FRQ source coverage now extends through 2010; permission-restricted records remain excluded from public practice.",
   "packageVersion": "6.3.0-strict-audit-gate",
   "criticalValidationErrors": 0
 }

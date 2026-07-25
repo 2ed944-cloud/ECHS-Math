@@ -16,7 +16,34 @@ permissions:
   contents: read
 
 jobs:
+  validate-overlays:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install pinned validation dependencies
+        run: npm ci --prefix question-bank/official/tools
+      - name: Validate cumulative teacher audit overlays
+        id: overlay
+        continue-on-error: true
+        run: npm run validate:overlays --prefix question-bank/official/tools
+      - name: Upload overlay validation report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: admin-overlay-validation
+          path: |
+            question-bank/official/admin/reports/ADMIN_OVERLAY_VALIDATION.json
+            question-bank/official/admin/reports/ADMIN_OVERLAY_VALIDATION.md
+          if-no-files-found: error
+      - name: Enforce overlay validation result
+        if: steps.overlay.outcome == 'failure'
+        run: exit 1
+
   validate:
+    needs: validate-overlays
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
