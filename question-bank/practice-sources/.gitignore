@@ -1,0 +1,6 @@
+# Raw source archives are not required after conversion.
+raw-archives/
+*.zip
+
+# Generated Practice Studio question/media output is intentionally allowed in
+# question-bank/data/imported and question-bank/assets/blackboard-packages.
