@@ -13,11 +13,14 @@
   const firstYear = Number(window.ECHS_AUDIT_FIRST_YEAR || 1976);
   const lastYear = Number(window.ECHS_AUDIT_LAST_YEAR || 2010);
   const partCount = Number(window.ECHS_AUDIT_PART_COUNT || 4);
+  const splitYears = new Set((window.ECHS_AUDIT_SPLIT_YEARS || [2009, 2010]).map(Number));
   const discovered = [];
   for (let year = firstYear; year <= lastYear; year += 1) {
     discovered.push(`../data/admin-audit-overrides-${year}.json`);
-    for (let part = 1; part <= partCount; part += 1) {
-      discovered.push(`../data/admin-audit-overrides-${year}-part${part}.json`);
+    if (splitYears.has(year)) {
+      for (let part = 1; part <= partCount; part += 1) {
+        discovered.push(`../data/admin-audit-overrides-${year}-part${part}.json`);
+      }
     }
   }
   const urls = [...new Set([...explicit, ...discovered].filter(Boolean))];
