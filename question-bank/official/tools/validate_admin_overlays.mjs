@@ -150,4 +150,7 @@ const report = [
 ].join("\n");
 fs.writeFileSync(path.join(reportDir, "ADMIN_OVERLAY_VALIDATION.md"), `${report}\n`);
 console.log(JSON.stringify({ status: result.status, overlayFilesChecked: overlayFiles.length, overlayRecordsChecked: recordCount, expressionsParsed: expressionCount, errors: errors.length }, null, 2));
-if (errors.length) process.exit(1);
+if (errors.length) {
+  console.error(JSON.stringify(errors.slice(0, 100), null, 2));
+  process.exit(1);
+}
