@@ -1,0 +1,6 @@
+# Local-only publisher source packages and extracted staging
+.private-practice-staging/
+secure-sources/
+raw-archives/
+extracted-source-media/
+*.zip
