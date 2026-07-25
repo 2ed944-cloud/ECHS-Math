@@ -1,6 +1,6 @@
-# Local-only publisher source packages and extracted staging
-.private-practice-staging/
-secure-sources/
+# Raw source archives are not required after conversion.
 raw-archives/
-extracted-source-media/
 *.zip
+
+# Generated Practice Studio question/media output is intentionally allowed in
+# question-bank/data/imported and question-bank/assets/blackboard-packages.
