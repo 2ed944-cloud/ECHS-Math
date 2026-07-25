@@ -1,0 +1,25 @@
+{
+  "bank_code": "CAF5S",
+  "bank_slug": "caf5s",
+  "title": "Pearson College Algebra & Precalculus Foundations",
+  "authors": "Pearson Education",
+  "edition": "Blackboard pool export",
+  "resource_isbn": "A103000239115",
+  "ap_scope": "precalculus-foundations",
+  "course_scope": "AP Precalculus / Precalculus / College Algebra Foundations",
+  "framework": "AP Precalculus Course and Exam Description",
+  "default_ap_unit": null,
+  "chapter_to_ap_unit": {
+    "0": 1,
+    "1": 1,
+    "2": 1,
+    "3": 1,
+    "4": 2,
+    "5": 4,
+    "6": 4,
+    "7": 2,
+    "8": null,
+    "9": 1,
+    "10": 1
+  }
+}
