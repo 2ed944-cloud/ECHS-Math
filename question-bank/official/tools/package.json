@@ -5,6 +5,7 @@
   "description": "Pinned validation dependencies for the canonical ECHS question bank.",
   "scripts": {
     "validate:katex": "node validate_katex.mjs",
+    "validate:overlays": "node validate_admin_overlays.mjs",
     "validate:browser": "node browser_smoke.mjs"
   },
   "dependencies": {
