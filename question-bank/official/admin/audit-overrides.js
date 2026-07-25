@@ -5,11 +5,23 @@
   "use strict";
   if (!window.ECHS_ADMIN_MODE || !window.ECHSOfficial) return;
 
-  const configured = window.ECHS_AUDIT_OVERRIDES_URLS || [window.ECHS_AUDIT_OVERRIDES_URL || "../data/admin-audit-overrides.json"];
-  const urls = [...new Set(configured.filter(Boolean))];
+  const explicit = window.ECHS_AUDIT_OVERRIDES_URLS || [
+    window.ECHS_AUDIT_OVERRIDES_URL || "../data/admin-audit-overrides.json",
+    "../data/admin-audit-overrides-1970.json",
+    "../data/admin-audit-overrides-1971-1975.json"
+  ];
+  const firstYear = Number(window.ECHS_AUDIT_FIRST_YEAR || 1976);
+  const lastYear = Number(window.ECHS_AUDIT_LAST_YEAR || 2010);
+  const discovered = [];
+  for (let year = firstYear; year <= lastYear; year += 1) {
+    discovered.push(`../data/admin-audit-overrides-${year}.json`);
+  }
+  const urls = [...new Set([...explicit, ...discovered].filter(Boolean))];
   let loaded = false;
   let loading = null;
   const overrides = new Map();
+  const loadedUrls = [];
+  const missingUrls = [];
 
   function isObject(value) {
     return value && typeof value === "object" && !Array.isArray(value);
@@ -50,8 +62,13 @@
     loading = (async () => {
       for (const url of urls) {
         const response = await fetch(url, { cache: "no-store" });
+        if (response.status === 404) {
+          missingUrls.push(url);
+          continue;
+        }
         if (!response.ok) throw new Error(`Could not load admin audit overrides ${url} (${response.status})`);
         const payload = await response.json();
+        loadedUrls.push(url);
         for (const row of payload.records || []) {
           if (!row?.id) continue;
           const expanded = merge(payload.defaults || {}, row);
@@ -105,6 +122,8 @@
   window.ECHS_AUDIT_OVERRIDE_STATE = {
     get loaded() { return loaded; },
     get count() { return overrides.size; },
+    get loadedUrls() { return [...loadedUrls]; },
+    get missingUrls() { return [...missingUrls]; },
     urls
   };
 })();
