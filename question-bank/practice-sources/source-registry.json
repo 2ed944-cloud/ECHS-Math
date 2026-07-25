@@ -1,0 +1,78 @@
+{
+  "schemaVersion": "1.0.0",
+  "generatedAt": "2026-07-25",
+  "publicationPolicy": {
+    "destination": "teacher-only practice staging",
+    "publicQuestionContentAllowed": false,
+    "notes": "These are publisher/instructor resources supplied by the user. Raw packages and extracted proprietary question text must not be committed to the public repository unless publication rights are documented. Import locally, deduplicate, classify, verify, and promote only rights-cleared or independently authored derivatives."
+  },
+  "sources": [
+    {
+      "sourceId": "PEARSON-CALC-EARLY-TRANS-BB-9780134770529",
+      "archiveName": "_irc_files_312625_9780134770529_TG_calcearlytrans_BB (1).zip",
+      "format": "blackboard-qti-dat",
+      "courseScope": ["AP Calculus AB", "AP Calculus BC", "Calculus"],
+      "poolFiles": 532,
+      "sourceItems": 3309,
+      "imageAssets": 13964,
+      "priority": 1,
+      "status": "registered-for-local-ingestion",
+      "rightsStatus": "permission-required",
+      "publicPublicationAllowed": false
+    },
+    {
+      "sourceId": "PEARSON-PRECALC-BB-A103000235993",
+      "archiveName": "_irc_files_307321_A103000235993_TB_BlackBoard.zip",
+      "format": "blackboard-qti-dat",
+      "courseScope": ["AP Precalculus", "Precalculus"],
+      "poolFiles": 385,
+      "sourceItems": 4528,
+      "imageAssets": 11171,
+      "priority": 2,
+      "status": "registered-for-local-ingestion",
+      "rightsStatus": "permission-required",
+      "publicPublicationAllowed": false
+    },
+    {
+      "sourceId": "PEARSON-CALCULUS-BB-A103000239115",
+      "archiveName": "_irc_files_307873_A103000239115_TB_BlackBoard.zip",
+      "format": "blackboard-qti-dat",
+      "courseScope": ["AP Calculus AB", "AP Calculus BC", "Calculus"],
+      "poolFiles": 251,
+      "sourceItems": 3101,
+      "imageAssets": 6974,
+      "priority": 3,
+      "status": "registered-for-local-ingestion",
+      "rightsStatus": "permission-required",
+      "publicPublicationAllowed": false
+    },
+    {
+      "sourceId": "PEARSON-PRECALC-TIF-9780137321902",
+      "archiveName": "_irc_files_300399_9780137321902_TB_TIF.zip",
+      "format": "pdf-test-item-file",
+      "courseScope": ["AP Precalculus", "Precalculus"],
+      "pdfFiles": 1,
+      "priority": 5,
+      "status": "registered-manual-extraction",
+      "rightsStatus": "permission-required",
+      "publicPublicationAllowed": false
+    },
+    {
+      "sourceId": "PEARSON-PRECALC-REMEDIATED-9780137978397",
+      "archiveName": "_irc_files_312418_9780137978397_TB_Remediated_Files.zip",
+      "format": "remediated-pdf-chapters",
+      "courseScope": ["AP Precalculus", "Precalculus"],
+      "pdfFiles": 32,
+      "priority": 4,
+      "status": "registered-manual-extraction",
+      "rightsStatus": "permission-required",
+      "publicPublicationAllowed": false
+    }
+  ],
+  "totals": {
+    "blackboardSourceItems": 10938,
+    "blackboardPoolFiles": 1168,
+    "blackboardImageAssets": 32109,
+    "pdfFiles": 33
+  }
+}
