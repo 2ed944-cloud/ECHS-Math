@@ -1,4 +1,4 @@
-name: Validate ECHS AP v5 Question Bank
+name: Validate ECHS Question Bank
 
 on:
   push:
@@ -26,5 +26,15 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Install pinned validation dependencies
+        run: npm ci --prefix question-bank/official/tools
+      - name: Install headless Chromium
+        run: npx --prefix question-bank/official/tools playwright install --with-deps chromium-headless-shell
+      - name: Parse every canonical math expression
+        run: npm run validate:katex --prefix question-bank/official/tools
+      - name: Run browser smoke tests
+        run: npm run validate:browser --prefix question-bank/official/tools
+      - name: Generate deterministic release checksums
+        run: python question-bank/official/tools/generate_release_checksums.py
       - name: Run the independently audited release validator
         run: python question-bank/official/tools/validate_release.py

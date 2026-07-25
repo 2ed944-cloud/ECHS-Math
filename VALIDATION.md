@@ -1,21 +1,17 @@
-# v6.2 Year Access Validation
+# Strict Audit-Gate Validation
 
-- Result: **PASS**
-- Complete and student-accessible records: **1,217 / 1,217**
-- Represented years: **46**
-- Year manifests passing: **46 / 46**
-- Questions assigned to a year: **1,113**
-- Form/collection records without a year: **104**
-- Auto-graded records: **760**
-- Response-only records: **457**
-- Duplicate archive control IDs: **0**
-- Archive year cards open all matching questions: **PASS**
-- Practice year URL accepts `count=all`: **PASS**
-- `Other / no source year` route: **104 / 104** questions
-- Cache-busted archive and practice scripts: **PASS**
+- Result: **PASS WITH RESTRICTIONS**
+- Canonical records audited: **1,217 / 1,217**
+- Public student-ready records: **52**
+- Teacher/archive-restricted records: **1,165**
+- Real KaTeX 0.16.27 parser coverage: **14,337 expressions**
+- Remaining KaTeX parser errors: **0**
+- Fresh local Chromium smoke cases: **12 / 12 passed**
+- Duplicate canonical question IDs: **0**
+- Restricted content leaks in the public archive: **0**
+- Non-public records in practice/exam/dashboard data: **0**
+- Case-insensitive manifest collisions: **0**
+- Deterministic SHA-256 release manifest: **validated**
 
-Focused regression checks:
-
-- 1969: **97 / 97** questions opened by the all-year route, including 90
-  auto-graded MCQs and 7 response-only FRQs.
-- 1970: **7 / 7** questions exposed.
+The final machine-generated evidence is in
+`question-bank/official/reports/VALIDATION_REPORT.md`.

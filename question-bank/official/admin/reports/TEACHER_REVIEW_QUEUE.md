@@ -1,1172 +1,1173 @@
 # Teacher Review Queue
 
-Generated: 2026-07-24T13:55:59+00:00
+Generated: 2026-07-24T21:33:52+00:00
 
-Records requiring review: **1,164**
+**1165 canonical records remain teacher/archive-only.**
 
-| Priority | Question | Status | Source / transcription | Math | Mapping | Notes |
-|---|---|---|---|---|---|---|
-| P2 | APCALC-AB-FRQ-1969-01 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1969-02 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1969-03 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1969-04 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1969-05 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1969-06 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1969-07 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1970-01 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1970-02 | teacher_only | uncertain | consistency_check_only | unmapped | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1970-03 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1970-04 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1970-05 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1970-06 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1970-07 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1971-01 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1971-02 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1971-03 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1971-04 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1971-05 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1971-06 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1971-07 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1972-01 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1972-02 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1972-03 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1972-04 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1972-05 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1972-06 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1972-07 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1973-01 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1973-02 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1973-03 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1973-04 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1973-05 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1973-06 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1973-07 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1974-01 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1974-02 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1974-03 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1974-04 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1974-05 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1974-06 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1974-07 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1975-01 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1975-02 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1975-03 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1975-04 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1975-05 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1975-06 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1975-07 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1976-01 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1976-02 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1976-03 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1976-04 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1976-05 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1976-06 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1976-07 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1977-01 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1977-02 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1977-03 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1977-04 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1977-05 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1977-06 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1977-07 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1978-01 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1978-02 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1978-03 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1978-04 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1978-05 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1978-06 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1978-07 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1979-01 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1979-02 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1979-03 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1979-04 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1979-05 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1979-06 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1979-07 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1980-01 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1980-02 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1980-03 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1980-04 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1980-05 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1980-06 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-FRQ-1980-07 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P1 | APCALC-AB-FRQ-1981-01 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1981-02 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1981-03 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1981-04 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1981-05 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1981-06 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1981-07 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1982-01 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1982-02 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1982-03 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1982-04 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1982-05 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1982-06 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1982-07 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1983-01 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1983-02 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1983-03 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1983-04 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1983-05 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1983-06 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1984-01 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1984-02 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1984-03 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1984-04 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1984-05 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1985-01 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1985-02 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1985-03 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1985-04 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1985-05 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1985-06 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1986-01 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1986-02 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1986-03 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1986-04 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1986-05 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1986-06 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1987-01 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1987-02 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1987-03 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1987-04 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1987-05 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1987-06 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1988-01 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1988-02 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1988-03 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1988-04 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1988-05 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1988-06 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1989-01 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1989-02 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1989-03 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1989-04 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1989-05 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1989-06 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1990-01 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1990-02 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1990-03 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1990-04 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1990-05 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1990-06 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1991-01 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1991-02 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1991-03 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1991-04 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1991-05 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1991-06 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1992-01 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1992-02 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1992-03 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1992-04 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1992-05 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1992-06 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1993-01 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1993-02 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1993-03 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1993-04 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1993-05 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1993-06 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1994-01 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1994-02 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1994-03 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1994-04 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1994-05 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1994-06 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1995-01 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1995-02 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1995-03 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1995-04 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1995-05 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1995-06 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1996-01 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1996-02 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1996-03 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1996-04 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1996-05 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1996-06 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1997-01 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1997-02 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1997-03 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1997-04 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1997-05 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1997-06 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1998-01 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1998-02 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1998-03 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1998-04 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1998-05 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1998-06 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1999-01 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1999-02 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1999-03 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1999-04 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1999-05 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-1999-06 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2000-01 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2000-02 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2000-03 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2000-04 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2000-05 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2000-06 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2001-01 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2001-02 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2001-03 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2001-04 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2001-05 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2001-06 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2002-01 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2002-01-FORM-B | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2002-02 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2002-02-FORM-B | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2002-03 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2002-03-FORM-B | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2002-04 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2002-04-FORM-B | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2002-05 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2002-05-FORM-B | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2002-06 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2002-06-FORM-B | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2003-01 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2003-01-FORM-B | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2003-02 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2003-02-FORM-B | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2003-03 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2003-03-FORM-B | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2003-04 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2003-04-FORM-B | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2003-05 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2003-05-FORM-B | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2003-06 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2003-06-FORM-B | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2004-01 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2004-01-FORM-B | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2004-02 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2004-02-FORM-B | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2004-03 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2004-03-FORM-B | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2004-04 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2004-04-FORM-B | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2004-05 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2004-05-FORM-B | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2004-06 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2004-06-FORM-B | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2005-01 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2005-02 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2005-03 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2005-04 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2005-05 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2005-06 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2006-01 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2006-02 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2006-03 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2006-04 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2006-05 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2006-06 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2007-01 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2007-01-FORM-B | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2007-02 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2007-02-FORM-B | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2007-03 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2007-03-FORM-B | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2007-04 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2007-04-FORM-B | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2007-05 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2007-05-FORM-B | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2007-06 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2007-06-FORM-B | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2008-01 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2008-01-FORM-B | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2008-02 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2008-02-FORM-B | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2008-03 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2008-03-FORM-B | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2008-04 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2008-04-FORM-B | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2008-05 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2008-05-FORM-B | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2008-06 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2008-06-FORM-B | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2009-01 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2009-01-FORM-B | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2009-02 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2009-02-FORM-B | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2009-03 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2009-03-FORM-B | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2009-04 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2009-04-FORM-B | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2009-05 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2009-05-FORM-B | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2009-06 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2009-06-FORM-B | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P2 | APCALC-AB-FRQ-2010-01 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P1 | APCALC-AB-FRQ-2010-02 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2010-03 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2010-04 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2010-05 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-FRQ-2010-06 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P2 | APCALC-AB-PRACTICE-2012-FRQ-01 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-PRACTICE-2012-FRQ-02 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-PRACTICE-2012-FRQ-03 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-PRACTICE-2012-FRQ-04 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-PRACTICE-2012-FRQ-05 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-PRACTICE-2012-FRQ-06 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P1 | APCALC-AB-PRACTICE-2012-MCQ-001 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P2 | APCALC-AB-PRACTICE-2012-MCQ-002 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P1 | APCALC-AB-PRACTICE-2012-MCQ-003 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-PRACTICE-2012-MCQ-004 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P2 | APCALC-AB-PRACTICE-2012-MCQ-005 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P1 | APCALC-AB-PRACTICE-2012-MCQ-006 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-PRACTICE-2012-MCQ-007 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-PRACTICE-2012-MCQ-008 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-PRACTICE-2012-MCQ-009 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P2 | APCALC-AB-PRACTICE-2012-MCQ-010 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-PRACTICE-2012-MCQ-011 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-PRACTICE-2012-MCQ-012 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P1 | APCALC-AB-PRACTICE-2012-MCQ-013 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-PRACTICE-2012-MCQ-014 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P2 | APCALC-AB-PRACTICE-2012-MCQ-015 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-PRACTICE-2012-MCQ-016 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P1 | APCALC-AB-PRACTICE-2012-MCQ-017 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-PRACTICE-2012-MCQ-018 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P2 | APCALC-AB-PRACTICE-2012-MCQ-019 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P1 | APCALC-AB-PRACTICE-2012-MCQ-020 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-PRACTICE-2012-MCQ-021 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P2 | APCALC-AB-PRACTICE-2012-MCQ-022 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-PRACTICE-2012-MCQ-023 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P1 | APCALC-AB-PRACTICE-2012-MCQ-024 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P2 | APCALC-AB-PRACTICE-2012-MCQ-025 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-PRACTICE-2012-MCQ-026 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P1 | APCALC-AB-PRACTICE-2012-MCQ-027 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-PRACTICE-2012-MCQ-028 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-PRACTICE-2012-MCQ-076 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P2 | APCALC-AB-PRACTICE-2012-MCQ-077 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P1 | APCALC-AB-PRACTICE-2012-MCQ-078 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P2 | APCALC-AB-PRACTICE-2012-MCQ-079 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P1 | APCALC-AB-PRACTICE-2012-MCQ-080 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P2 | APCALC-AB-PRACTICE-2012-MCQ-081 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P1 | APCALC-AB-PRACTICE-2012-MCQ-082 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-PRACTICE-2012-MCQ-083 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P2 | APCALC-AB-PRACTICE-2012-MCQ-084 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P1 | APCALC-AB-PRACTICE-2012-MCQ-085 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P2 | APCALC-AB-PRACTICE-2012-MCQ-086 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-PRACTICE-2012-MCQ-087 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P1 | APCALC-AB-PRACTICE-2012-MCQ-088 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-PRACTICE-2012-MCQ-089 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P2 | APCALC-AB-PRACTICE-2012-MCQ-090 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-PRACTICE-2012-MCQ-091 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P1 | APCALC-AB-PRACTICE-2012-MCQ-092 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P2 | APCALC-AB-SAMPLE-2014-FRQ-01 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-SAMPLE-2014-FRQ-02 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P1 | APCALC-AB-SAMPLE-2014-MCQ-001 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-SAMPLE-2014-MCQ-002 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-SAMPLE-2014-MCQ-003 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-SAMPLE-2014-MCQ-004 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-SAMPLE-2014-MCQ-005 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P2 | APCALC-AB-SAMPLE-2014-MCQ-006 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P1 | APCALC-AB-SAMPLE-2014-MCQ-007 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-SAMPLE-2014-MCQ-008 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-SAMPLE-2014-MCQ-009 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-SAMPLE-2014-MCQ-010 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-SAMPLE-2014-MCQ-011 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P2 | APCALC-AB-SAMPLE-2014-MCQ-012 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-SAMPLE-2014-MCQ-013 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-AB-SAMPLE-2014-MCQ-014 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P1 | APCALC-AB-SAMPLE-2014-MCQ-015 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-AB-SAMPLE-2014-MCQ-016 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-BC-FRQ-1974-03 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P2 | APCALC-BC-PRACTICE-2016-FRQ-01 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-BC-PRACTICE-2016-FRQ-02 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-BC-PRACTICE-2016-FRQ-03 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-BC-PRACTICE-2016-FRQ-04 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-BC-PRACTICE-2016-FRQ-05 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-BC-PRACTICE-2016-FRQ-06 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-BC-PRACTICE-2016-MCQ-001 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-BC-PRACTICE-2016-MCQ-002 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-BC-PRACTICE-2016-MCQ-003 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-BC-PRACTICE-2016-MCQ-004 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-BC-PRACTICE-2016-MCQ-005 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-BC-PRACTICE-2016-MCQ-006 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-BC-PRACTICE-2016-MCQ-007 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-BC-PRACTICE-2016-MCQ-008 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-BC-PRACTICE-2016-MCQ-009 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-BC-PRACTICE-2016-MCQ-010 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-BC-PRACTICE-2016-MCQ-011 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-BC-PRACTICE-2016-MCQ-012 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-BC-PRACTICE-2016-MCQ-013 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-BC-PRACTICE-2016-MCQ-014 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-BC-PRACTICE-2016-MCQ-015 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-BC-PRACTICE-2016-MCQ-016 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-BC-PRACTICE-2016-MCQ-017 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-BC-PRACTICE-2016-MCQ-018 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-BC-PRACTICE-2016-MCQ-019 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-BC-PRACTICE-2016-MCQ-020 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-BC-PRACTICE-2016-MCQ-021 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-BC-PRACTICE-2016-MCQ-022 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-BC-PRACTICE-2016-MCQ-023 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-BC-PRACTICE-2016-MCQ-024 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-BC-PRACTICE-2016-MCQ-025 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-BC-PRACTICE-2016-MCQ-026 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-BC-PRACTICE-2016-MCQ-027 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-BC-PRACTICE-2016-MCQ-028 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-BC-PRACTICE-2016-MCQ-076 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-BC-PRACTICE-2016-MCQ-077 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-BC-PRACTICE-2016-MCQ-078 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-BC-PRACTICE-2016-MCQ-079 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-BC-PRACTICE-2016-MCQ-080 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-BC-PRACTICE-2016-MCQ-081 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-BC-PRACTICE-2016-MCQ-082 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-BC-PRACTICE-2016-MCQ-083 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-BC-PRACTICE-2016-MCQ-084 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-BC-PRACTICE-2016-MCQ-085 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-BC-PRACTICE-2016-MCQ-086 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-BC-PRACTICE-2016-MCQ-087 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-BC-PRACTICE-2016-MCQ-088 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-BC-PRACTICE-2016-MCQ-089 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-BC-PRACTICE-2016-MCQ-090 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-BC-PRACTICE-2016-MCQ-091 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-BC-PRACTICE-2016-MCQ-092 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-BC-SAMPLE-2014-FRQ-01 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-BC-SAMPLE-2014-FRQ-02 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P1 | APCALC-BC-SAMPLE-2014-MCQ-001 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P2 | APCALC-BC-SAMPLE-2014-MCQ-002 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P1 | APCALC-BC-SAMPLE-2014-MCQ-003 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-BC-SAMPLE-2014-MCQ-004 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-BC-SAMPLE-2014-MCQ-005 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P2 | APCALC-BC-SAMPLE-2014-MCQ-006 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P1 | APCALC-BC-SAMPLE-2014-MCQ-007 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-BC-SAMPLE-2014-MCQ-008 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1969-001 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1969-002 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1969-003 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1969-004 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1969-005 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1969-006 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1969-007 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1969-008 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1969-009 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1969-010 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1969-011 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1969-012 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1969-013 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1969-014 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1969-015 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1969-016 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1969-017 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1969-018 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1969-019 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1969-020 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1969-021 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1969-022 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1969-023 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1969-024 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1969-025 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1969-026 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1969-027 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1969-028 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1969-029 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1969-030 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1969-031 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1969-032 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1969-033 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1969-034 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1969-035 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1969-036 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1969-037 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1969-038 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1969-039 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1969-040 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1969-041 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1969-042 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1969-043 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1969-044 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1969-045 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1973-001 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1973-002 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1973-003 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1973-004 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1973-005 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1973-006 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1973-007 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1973-008 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1973-009 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1973-010 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1973-011 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1973-012 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1973-013 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1973-014 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1973-015 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1973-016 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1973-017 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1973-018 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1973-019 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1973-020 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1973-021 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1973-022 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1973-023 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1973-024 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1973-025 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1973-026 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1973-027 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1973-028 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1973-029 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1973-030 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1973-031 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1973-032 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1973-033 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1973-034 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1973-035 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1973-036 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1973-037 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1973-038 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1973-039 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1973-040 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1973-041 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1973-042 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1973-043 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1973-044 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1973-045 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1985-001 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1985-002 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1985-003 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1985-004 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1985-005 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1985-006 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1985-007 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1985-008 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1985-009 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1985-010 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1985-011 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1985-012 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1985-013 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1985-014 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1985-015 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1985-016 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1985-017 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1985-018 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1985-019 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1985-020 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1985-021 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1985-022 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1985-023 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1985-024 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1985-025 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1985-026 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1985-027 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1985-028 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1985-029 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1985-030 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1985-031 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1985-032 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1985-033 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1985-034 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1985-035 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1985-036 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1985-037 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1985-038 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1985-039 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1985-040 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1985-041 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1985-042 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1985-043 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1985-044 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1985-045 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1988-001 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1988-002 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1988-003 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1988-004 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1988-005 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1988-006 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1988-007 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1988-008 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1988-009 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1988-010 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1988-011 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1988-012 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1988-013 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1988-014 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1988-015 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1988-016 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1988-017 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1988-018 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1988-019 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1988-020 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1988-021 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1988-022 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1988-023 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1988-024 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1988-025 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1988-026 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1988-027 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1988-028 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1988-029 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1988-030 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1988-031 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1988-032 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1988-033 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1988-034 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1988-035 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1988-036 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1988-037 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1988-038 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1988-039 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1988-040 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1988-041 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1988-042 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1988-043 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1988-044 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1988-045 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1993-001 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1993-002 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1993-003 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1993-004 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1993-005 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1993-006 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1993-007 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1993-008 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1993-009 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1993-010 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1993-011 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1993-012 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1993-013 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1993-014 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1993-015 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1993-016 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1993-017 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1993-018 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1993-019 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1993-020 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1993-021 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1993-022 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1993-023 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1993-024 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1993-025 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1993-026 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1993-027 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1993-028 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1993-029 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1993-030 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1993-031 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1993-032 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1993-033 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1993-034 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1993-035 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1993-036 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1993-037 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1993-038 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1993-039 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1993-040 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1993-041 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1993-042 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1993-043 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1993-044 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1993-045 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1997-001 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1997-002 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1997-003 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1997-004 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1997-005 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1997-006 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1997-007 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1997-008 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1997-009 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1997-010 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1997-011 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1997-012 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1997-013 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1997-014 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1997-015 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1997-016 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1997-017 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1997-018 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1997-019 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1997-020 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1997-021 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1997-022 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1997-023 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1997-024 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1997-025 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1997-076 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1997-077 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1997-078 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1997-079 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1997-080 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1997-081 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1997-082 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1997-083 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1997-084 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1997-085 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1997-086 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1997-087 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1997-088 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1997-089 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1997-090 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1998-001 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1998-002 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1998-003 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1998-004 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1998-005 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1998-006 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1998-007 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1998-008 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1998-009 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1998-010 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1998-011 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1998-012 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1998-013 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1998-014 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1998-015 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1998-016 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1998-017 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1998-018 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1998-019 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1998-020 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1998-021 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1998-022 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1998-023 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1998-024 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1998-025 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1998-026 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1998-027 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1998-028 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1998-076 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1998-077 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1998-078 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1998-079 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1998-080 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1998-081 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1998-082 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1998-083 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1998-084 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1998-085 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1998-086 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1998-087 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1998-088 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1998-089 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1998-090 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1998-091 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P1 | APCALC-LEGACY-BC-MCQ-1998-092 | metadata_only | incomplete | blocked | unmapped | Incomplete digital content prevents independent solution. |
-| P2 | APCALC-LEGACY-MCQ-1969-001 | teacher_only | uncertain | consistency_check_only | low | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1969-002 | teacher_only | uncertain | consistency_check_only | low | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1969-003 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1969-004 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1969-005 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1969-006 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1969-007 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1969-008 | teacher_only | uncertain | consistency_check_only | low | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1969-009 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1969-010 | teacher_only | uncertain | consistency_check_only | low | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1969-011 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1969-012 | teacher_only | uncertain | consistency_check_only | low | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1969-013 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1969-014 | teacher_only | uncertain | consistency_check_only | low | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1969-015 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1969-016 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1969-017 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1969-018 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1969-019 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1969-020 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1969-021 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1969-022 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1969-023 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1969-024 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1969-025 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1969-026 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1969-027 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1969-028 | teacher_only | uncertain | consistency_check_only | low | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1969-029 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1969-030 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1969-031 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1969-032 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1969-033 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1969-034 | teacher_only | uncertain | consistency_check_only | unmapped | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1969-035 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1969-036 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1969-037 | teacher_only | uncertain | consistency_check_only | unmapped | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1969-038 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1969-039 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1969-040 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1969-041 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1969-042 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1969-043 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1969-044 | teacher_only | uncertain | consistency_check_only | low | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1969-045 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1973-001 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1973-002 | teacher_only | uncertain | consistency_check_only | low | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1973-003 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1973-004 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1973-005 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1973-006 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1973-007 | teacher_only | uncertain | consistency_check_only | low | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1973-008 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1973-009 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1973-010 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1973-011 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1973-012 | teacher_only | uncertain | consistency_check_only | low | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1973-013 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1973-014 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1973-015 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1973-016 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1973-017 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1973-018 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1973-019 | teacher_only | uncertain | consistency_check_only | low | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1973-020 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1973-021 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1973-022 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1973-023 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1973-024 | teacher_only | uncertain | consistency_check_only | low | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1973-025 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1973-026 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1973-027 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1973-028 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1973-029 | teacher_only | uncertain | consistency_check_only | low | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1973-030 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1973-031 | teacher_only | uncertain | consistency_check_only | low | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1973-032 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1973-033 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1973-034 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1973-035 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1973-036 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1973-037 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1973-038 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1973-039 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1973-040 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1973-041 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1973-042 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1973-043 | teacher_only | uncertain | consistency_check_only | low | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1973-044 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1973-045 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1985-001 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1985-002 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1985-003 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1985-004 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1985-005 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1985-006 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1985-007 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1985-008 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1985-009 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1985-010 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1985-011 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1985-012 | teacher_only | uncertain | consistency_check_only | low | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1985-013 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1985-014 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1985-015 | teacher_only | uncertain | consistency_check_only | low | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1985-016 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1985-017 | teacher_only | uncertain | consistency_check_only | unmapped | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1985-018 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1985-019 | teacher_only | uncertain | consistency_check_only | low | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1985-020 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1985-021 | teacher_only | uncertain | consistency_check_only | low | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1985-022 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1985-023 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1985-024 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1985-025 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1985-026 | teacher_only | uncertain | consistency_check_only | low | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1985-027 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1985-028 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1985-029 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1985-030 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1985-031 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1985-032 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1985-033 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1985-034 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1985-035 | teacher_only | uncertain | consistency_check_only | low | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1985-036 | teacher_only | uncertain | consistency_check_only | low | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1985-037 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1985-038 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1985-039 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1985-040 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1985-041 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1985-042 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1985-043 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1985-044 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1985-045 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1988-001 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1988-002 | teacher_only | uncertain | consistency_check_only | low | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1988-003 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1988-004 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1988-005 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1988-006 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1988-007 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1988-008 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1988-009 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1988-010 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1988-011 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1988-012 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1988-013 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1988-014 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1988-015 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1988-016 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1988-017 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1988-018 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1988-019 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1988-020 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1988-021 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1988-022 | teacher_only | uncertain | consistency_check_only | low | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1988-023 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1988-024 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1988-025 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1988-026 | teacher_only | uncertain | consistency_check_only | unmapped | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1988-027 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1988-028 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1988-029 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1988-030 | teacher_only | uncertain | consistency_check_only | unmapped | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1988-031 | teacher_only | uncertain | consistency_check_only | low | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1988-032 | teacher_only | uncertain | consistency_check_only | low | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1988-033 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1988-034 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1988-035 | teacher_only | uncertain | consistency_check_only | low | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1988-036 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1988-037 | teacher_only | uncertain | consistency_check_only | low | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1988-038 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1988-039 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1988-040 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1988-041 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1988-042 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1988-043 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1988-044 | teacher_only | uncertain | consistency_check_only | low | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1988-045 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1993-001 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1993-002 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1993-003 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1993-004 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1993-005 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1993-006 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1993-007 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1993-008 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1993-009 | teacher_only | uncertain | consistency_check_only | low | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1993-010 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1993-011 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1993-012 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1993-013 | teacher_only | uncertain | consistency_check_only | low | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1993-014 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1993-015 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1993-016 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1993-017 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1993-018 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1993-019 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1993-020 | teacher_only | uncertain | consistency_check_only | unmapped | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1993-021 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1993-022 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1993-023 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1993-024 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1993-025 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1993-026 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1993-027 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1993-028 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1993-029 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1993-030 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1993-031 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1993-032 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1993-033 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1993-034 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1993-035 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1993-036 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1993-037 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1993-038 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1993-039 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1993-040 | teacher_only | uncertain | consistency_check_only | low | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1993-041 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1993-042 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1993-043 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1993-044 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1993-045 | teacher_only | uncertain | consistency_check_only | unmapped | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1997-001 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1997-002 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1997-003 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1997-004 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1997-005 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1997-006 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1997-007 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1997-008 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1997-009 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1997-010 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1997-011 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1997-012 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1997-013 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1997-014 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1997-015 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1997-016 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1997-017 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1997-018 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1997-019 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1997-020 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1997-021 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1997-022 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1997-023 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1997-024 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1997-025 | teacher_only | uncertain | consistency_check_only | low | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1997-076 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1997-077 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1997-078 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1997-079 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1997-080 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1997-081 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1997-082 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1997-083 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1997-084 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1997-085 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1997-086 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1997-087 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1997-088 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1997-089 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1997-090 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1998-001 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1998-002 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1998-003 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1998-004 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1998-005 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1998-006 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1998-007 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1998-008 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1998-009 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1998-010 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1998-011 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1998-012 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1998-013 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1998-014 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1998-015 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1998-016 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1998-017 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1998-018 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1998-019 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1998-020 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1998-021 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1998-022 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1998-023 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1998-024 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1998-025 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1998-026 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1998-027 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1998-028 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1998-076 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1998-077 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1998-078 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1998-079 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1998-080 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1998-081 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1998-082 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1998-083 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1998-084 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1998-085 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1998-086 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1998-087 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1998-088 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1998-089 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1998-090 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1998-091 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | APCALC-LEGACY-MCQ-1998-092 | teacher_only | uncertain | consistency_check_only | high | Requires independent human mathematical verification against the complete source. |
-| P2 | ECHS-BC-CH7-8-2015-FRQ-14 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | ECHS-BC-CH7-8-2015-MCQ-001 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P1 | ECHS-BC-CH7-8-2015-MCQ-002 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | ECHS-BC-CH7-8-2015-MCQ-003 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | ECHS-BC-CH7-8-2015-MCQ-004 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P2 | ECHS-BC-CH7-8-2015-MCQ-005 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | ECHS-BC-CH7-8-2015-MCQ-006 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P1 | ECHS-BC-CH7-8-2015-MCQ-007 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | ECHS-BC-CH7-8-2015-MCQ-008 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | ECHS-BC-CH7-8-2015-MCQ-009 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | LUCID-AB-PRACTICE-2015-FRQ-01 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | LUCID-AB-PRACTICE-2015-FRQ-02 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | LUCID-AB-PRACTICE-2015-FRQ-03 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | LUCID-AB-PRACTICE-2015-FRQ-04 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | LUCID-AB-PRACTICE-2015-FRQ-05 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | LUCID-AB-PRACTICE-2015-FRQ-06 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | LUCID-AB-PRACTICE-2015-MCQ-001 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | LUCID-AB-PRACTICE-2015-MCQ-002 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P2 | LUCID-AB-PRACTICE-2015-MCQ-003 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P1 | LUCID-AB-PRACTICE-2015-MCQ-004 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | LUCID-AB-PRACTICE-2015-MCQ-005 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P2 | LUCID-AB-PRACTICE-2015-MCQ-006 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P1 | LUCID-AB-PRACTICE-2015-MCQ-007 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | LUCID-AB-PRACTICE-2015-MCQ-008 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | LUCID-AB-PRACTICE-2015-MCQ-009 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | LUCID-AB-PRACTICE-2015-MCQ-010 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P2 | LUCID-AB-PRACTICE-2015-MCQ-011 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P1 | LUCID-AB-PRACTICE-2015-MCQ-012 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P2 | LUCID-AB-PRACTICE-2015-MCQ-013 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | LUCID-AB-PRACTICE-2015-MCQ-014 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P1 | LUCID-AB-PRACTICE-2015-MCQ-015 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | LUCID-AB-PRACTICE-2015-MCQ-016 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | LUCID-AB-PRACTICE-2015-MCQ-017 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | LUCID-AB-PRACTICE-2015-MCQ-018 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | LUCID-AB-PRACTICE-2015-MCQ-019 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | LUCID-AB-PRACTICE-2015-MCQ-020 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P2 | LUCID-AB-PRACTICE-2015-MCQ-021 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | LUCID-AB-PRACTICE-2015-MCQ-022 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P1 | LUCID-AB-PRACTICE-2015-MCQ-023 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | LUCID-AB-PRACTICE-2015-MCQ-024 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | LUCID-AB-PRACTICE-2015-MCQ-025 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | LUCID-AB-PRACTICE-2015-MCQ-026 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P2 | LUCID-AB-PRACTICE-2015-MCQ-027 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P1 | LUCID-AB-PRACTICE-2015-MCQ-028 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P2 | LUCID-AB-PRACTICE-2015-MCQ-076 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | LUCID-AB-PRACTICE-2015-MCQ-077 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P1 | LUCID-AB-PRACTICE-2015-MCQ-078 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | LUCID-AB-PRACTICE-2015-MCQ-079 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P2 | LUCID-AB-PRACTICE-2015-MCQ-080 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P1 | LUCID-AB-PRACTICE-2015-MCQ-081 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P2 | LUCID-AB-PRACTICE-2015-MCQ-082 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P1 | LUCID-AB-PRACTICE-2015-MCQ-083 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | LUCID-AB-PRACTICE-2015-MCQ-084 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P2 | LUCID-AB-PRACTICE-2015-MCQ-085 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | LUCID-AB-PRACTICE-2015-MCQ-086 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | LUCID-AB-PRACTICE-2015-MCQ-087 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P1 | LUCID-AB-PRACTICE-2015-MCQ-088 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P2 | LUCID-AB-PRACTICE-2015-MCQ-089 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P1 | LUCID-AB-PRACTICE-2015-MCQ-090 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P2 | LUCID-AB-PRACTICE-2015-MCQ-091 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | LUCID-AB-PRACTICE-2015-MCQ-092 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P1 | MYMAXSCORE-AB-PRACTICE-FRQ-01 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | MYMAXSCORE-AB-PRACTICE-FRQ-02 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | MYMAXSCORE-AB-PRACTICE-FRQ-03 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | MYMAXSCORE-AB-PRACTICE-FRQ-04 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | MYMAXSCORE-AB-PRACTICE-FRQ-05 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | MYMAXSCORE-AB-PRACTICE-FRQ-06 | metadata_only | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | MYMAXSCORE-AB-PRACTICE-MCQ-001 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | MYMAXSCORE-AB-PRACTICE-MCQ-002 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | MYMAXSCORE-AB-PRACTICE-MCQ-003 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P2 | MYMAXSCORE-AB-PRACTICE-MCQ-004 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | MYMAXSCORE-AB-PRACTICE-MCQ-005 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | MYMAXSCORE-AB-PRACTICE-MCQ-006 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | MYMAXSCORE-AB-PRACTICE-MCQ-007 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P1 | MYMAXSCORE-AB-PRACTICE-MCQ-008 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | MYMAXSCORE-AB-PRACTICE-MCQ-009 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P1 | MYMAXSCORE-AB-PRACTICE-MCQ-010 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P2 | MYMAXSCORE-AB-PRACTICE-MCQ-011 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | MYMAXSCORE-AB-PRACTICE-MCQ-012 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P1 | MYMAXSCORE-AB-PRACTICE-MCQ-013 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P2 | MYMAXSCORE-AB-PRACTICE-MCQ-014 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | MYMAXSCORE-AB-PRACTICE-MCQ-015 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | MYMAXSCORE-AB-PRACTICE-MCQ-016 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | MYMAXSCORE-AB-PRACTICE-MCQ-017 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | MYMAXSCORE-AB-PRACTICE-MCQ-018 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | MYMAXSCORE-AB-PRACTICE-MCQ-019 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | MYMAXSCORE-AB-PRACTICE-MCQ-020 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | MYMAXSCORE-AB-PRACTICE-MCQ-021 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | MYMAXSCORE-AB-PRACTICE-MCQ-022 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P1 | MYMAXSCORE-AB-PRACTICE-MCQ-023 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P2 | MYMAXSCORE-AB-PRACTICE-MCQ-024 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | MYMAXSCORE-AB-PRACTICE-MCQ-025 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | MYMAXSCORE-AB-PRACTICE-MCQ-026 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | MYMAXSCORE-AB-PRACTICE-MCQ-027 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P1 | MYMAXSCORE-AB-PRACTICE-MCQ-028 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P2 | MYMAXSCORE-AB-PRACTICE-MCQ-029 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | MYMAXSCORE-AB-PRACTICE-MCQ-030 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P1 | MYMAXSCORE-AB-PRACTICE-MCQ-031 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P2 | MYMAXSCORE-AB-PRACTICE-MCQ-032 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | MYMAXSCORE-AB-PRACTICE-MCQ-033 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | MYMAXSCORE-AB-PRACTICE-MCQ-034 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | MYMAXSCORE-AB-PRACTICE-MCQ-035 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | MYMAXSCORE-AB-PRACTICE-MCQ-036 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | MYMAXSCORE-AB-PRACTICE-MCQ-037 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | MYMAXSCORE-AB-PRACTICE-MCQ-038 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | MYMAXSCORE-AB-PRACTICE-MCQ-039 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | MYMAXSCORE-AB-PRACTICE-MCQ-040 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | MYMAXSCORE-AB-PRACTICE-MCQ-041 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P1 | MYMAXSCORE-AB-PRACTICE-MCQ-042 | incomplete | incomplete | blocked | medium | Incomplete digital content prevents independent solution. |
-| P2 | MYMAXSCORE-AB-PRACTICE-MCQ-043 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | MYMAXSCORE-AB-PRACTICE-MCQ-044 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
-| P2 | MYMAXSCORE-AB-PRACTICE-MCQ-045 | teacher_only | uncertain | consistency_check_only | medium | Requires independent human mathematical verification against the complete source. |
+| question_id | issue_type | source_file | source_page | confidence | recommended_action |
+| --- | --- | --- | --- | --- | --- |
+| `APCALC-LEGACY-MCQ-1969-001` | public_release_blocked | AP Calculus historical archive | 7; 1 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1969-002` | public_release_blocked | AP Calculus historical archive | 7; 1 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1969-003` | public_release_blocked | AP Calculus historical archive | 7; 1 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1969-004` | public_release_blocked | AP Calculus historical archive | 7; 1 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1969-005` | public_release_blocked | AP Calculus historical archive | 7; 1 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1969-006` | public_release_blocked | AP Calculus historical archive | 8; 2 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1969-007` | public_release_blocked | AP Calculus historical archive | 8; 2 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1969-008` | public_release_blocked | AP Calculus historical archive | 8; 2 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1969-009` | public_release_blocked | AP Calculus historical archive | 8; 2 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1969-010` | public_release_blocked | AP Calculus historical archive | 8; 2 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1969-011` | public_release_blocked | AP Calculus historical archive | 8; 2 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1969-012` | public_release_blocked | AP Calculus historical archive | 9; 3 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1969-013` | public_release_blocked | AP Calculus historical archive | 9; 3 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1969-014` | public_release_blocked | AP Calculus historical archive | 9; 3 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1969-015` | public_release_blocked | AP Calculus historical archive | 9; 3 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1969-016` | public_release_blocked | AP Calculus historical archive | 10; 4 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1969-017` | public_release_blocked | AP Calculus historical archive | 10; 4 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1969-018` | public_release_blocked | AP Calculus historical archive | 10; 4 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1969-019` | public_release_blocked | AP Calculus historical archive | 10; 4 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1969-020` | public_release_blocked | AP Calculus historical archive | 11; 5 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1969-021` | public_release_blocked | AP Calculus historical archive | 11; 5 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1969-022` | public_release_blocked | AP Calculus historical archive | 11; 5 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1969-023` | public_release_blocked | AP Calculus historical archive | 11; 5 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1969-024` | public_release_blocked | AP Calculus historical archive | 11; 5 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1969-025` | public_release_blocked | AP Calculus historical archive | 12; 6 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1969-026` | public_release_blocked | AP Calculus historical archive | 12; 6 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1969-027` | public_release_blocked | AP Calculus historical archive | 12; 6 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1969-028` | public_release_blocked | AP Calculus historical archive | 12; 6 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1969-029` | public_release_blocked | AP Calculus historical archive | 13; 7 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1969-030` | public_release_blocked | AP Calculus historical archive | 13; 7 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1969-031` | public_release_blocked | AP Calculus historical archive | 13; 7 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1969-032` | public_release_blocked | AP Calculus historical archive | 13; 7 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1969-033` | public_release_blocked | AP Calculus historical archive | 13; 7 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1969-034` | public_release_blocked | AP Calculus historical archive | 14; 8 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1969-035` | public_release_blocked | AP Calculus historical archive | 14; 8 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1969-036` | public_release_blocked | AP Calculus historical archive | 14; 8 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1969-037` | public_release_blocked | AP Calculus historical archive | 14; 8 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1969-038` | public_release_blocked | AP Calculus historical archive | 14; 8 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1969-039` | public_release_blocked | AP Calculus historical archive | 14; 8 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1969-040` | public_release_blocked | AP Calculus historical archive | 15; 9 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1969-041` | public_release_blocked | AP Calculus historical archive | 15; 9 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1969-042` | public_release_blocked | AP Calculus historical archive | 15; 9 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1969-043` | public_release_blocked | AP Calculus historical archive | 15; 9 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1969-044` | public_release_blocked | AP Calculus historical archive | 15; 9 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1969-045` | public_release_blocked | AP Calculus historical archive | 15; 9 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1969-01` | public_release_blocked | AP Calculus historical archive | 3 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1969-02` | public_release_blocked | AP Calculus historical archive | 3 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1969-03` | public_release_blocked | AP Calculus historical archive | 3; 4 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1969-04` | public_release_blocked | AP Calculus historical archive | 4 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1969-05` | public_release_blocked | AP Calculus historical archive | 4 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1969-06` | public_release_blocked | AP Calculus historical archive | 4; 5 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1969-07` | public_release_blocked | AP Calculus historical archive | 5 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1970-01` | public_release_blocked | AP Calculus historical archive | 5 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1970-02` | public_release_blocked | AP Calculus historical archive | 5; 6 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1970-03` | public_release_blocked | AP Calculus historical archive | 6 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1970-04` | public_release_blocked | AP Calculus historical archive | 6 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1970-05` | public_release_blocked | AP Calculus historical archive | 6 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1970-06` | public_release_blocked | AP Calculus historical archive | 6; 7 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1970-07` | public_release_blocked | AP Calculus historical archive | 7 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1971-01` | public_release_blocked | AP Calculus historical archive | 7 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1971-02` | public_release_blocked | AP Calculus historical archive | 7 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1971-03` | public_release_blocked | AP Calculus historical archive | 7 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1971-04` | public_release_blocked | AP Calculus historical archive | 7 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1971-05` | public_release_blocked | AP Calculus historical archive | 7 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1971-06` | public_release_blocked | AP Calculus historical archive | 7; 8 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1971-07` | public_release_blocked | AP Calculus historical archive | 8 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1972-01` | public_release_blocked | AP Calculus historical archive | 8 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1972-02` | public_release_blocked | AP Calculus historical archive | 8 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1972-03` | public_release_blocked | AP Calculus historical archive | 8 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1972-04` | public_release_blocked | AP Calculus historical archive | 8; 9 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1972-05` | public_release_blocked | AP Calculus historical archive | 9 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1972-06` | public_release_blocked | AP Calculus historical archive | 9 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1972-07` | public_release_blocked | AP Calculus historical archive | 9 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1973-001` | public_release_blocked | AP Calculus historical archive | 26; 20 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1973-002` | public_release_blocked | AP Calculus historical archive | 26; 20 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1973-003` | public_release_blocked | AP Calculus historical archive | 26; 20 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1973-004` | public_release_blocked | AP Calculus historical archive | 26; 20 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1973-005` | public_release_blocked | AP Calculus historical archive | 26; 20 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1973-006` | public_release_blocked | AP Calculus historical archive | 26; 20 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1973-007` | public_release_blocked | AP Calculus historical archive | 27; 21 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1973-008` | public_release_blocked | AP Calculus historical archive | 27; 21 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1973-009` | public_release_blocked | AP Calculus historical archive | 27; 21 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1973-010` | public_release_blocked | AP Calculus historical archive | 27; 21 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1973-011` | public_release_blocked | AP Calculus historical archive | 27; 21 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1973-012` | public_release_blocked | AP Calculus historical archive | 27; 21 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1973-013` | public_release_blocked | AP Calculus historical archive | 28; 22 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1973-014` | public_release_blocked | AP Calculus historical archive | 28; 22 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1973-015` | public_release_blocked | AP Calculus historical archive | 28; 22 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1973-016` | public_release_blocked | AP Calculus historical archive | 28; 22 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1973-017` | public_release_blocked | AP Calculus historical archive | 28; 22 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1973-018` | public_release_blocked | AP Calculus historical archive | 28; 22 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1973-019` | public_release_blocked | AP Calculus historical archive | 29; 23 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1973-020` | public_release_blocked | AP Calculus historical archive | 29; 23 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1973-021` | public_release_blocked | AP Calculus historical archive | 29; 23 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1973-022` | public_release_blocked | AP Calculus historical archive | 29; 23 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1973-023` | public_release_blocked | AP Calculus historical archive | 30; 24 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1973-024` | public_release_blocked | AP Calculus historical archive | 30; 24 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1973-025` | public_release_blocked | AP Calculus historical archive | 30; 24 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1973-026` | public_release_blocked | AP Calculus historical archive | 30; 24 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1973-027` | public_release_blocked | AP Calculus historical archive | 30; 24 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1973-028` | public_release_blocked | AP Calculus historical archive | 30; 24 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1973-029` | public_release_blocked | AP Calculus historical archive | 31; 25 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1973-030` | public_release_blocked | AP Calculus historical archive | 31; 25 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1973-031` | public_release_blocked | AP Calculus historical archive | 31; 25 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1973-032` | public_release_blocked | AP Calculus historical archive | 31; 25 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1973-033` | public_release_blocked | AP Calculus historical archive | 31; 25 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1973-034` | public_release_blocked | AP Calculus historical archive | 32; 26 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1973-035` | public_release_blocked | AP Calculus historical archive | 32; 26 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1973-036` | public_release_blocked | AP Calculus historical archive | 32; 26 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1973-037` | public_release_blocked | AP Calculus historical archive | 32; 26 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1973-038` | public_release_blocked | AP Calculus historical archive | 32; 26 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1973-039` | public_release_blocked | AP Calculus historical archive | 32; 26 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1973-040` | public_release_blocked | AP Calculus historical archive | 32; 26 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1973-041` | public_release_blocked | AP Calculus historical archive | 33; 27 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1973-042` | public_release_blocked | AP Calculus historical archive | 33; 27 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1973-043` | public_release_blocked | AP Calculus historical archive | 33; 27 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1973-044` | public_release_blocked | AP Calculus historical archive | 33; 27 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1973-045` | public_release_blocked | AP Calculus historical archive | 34; 28 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1973-01` | public_release_blocked | AP Calculus historical archive | 9 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1973-02` | public_release_blocked | AP Calculus historical archive | 9; 10 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1973-03` | public_release_blocked | AP Calculus historical archive | 10 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1973-04` | public_release_blocked | AP Calculus historical archive | 10 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1973-05` | public_release_blocked | AP Calculus historical archive | 10 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1973-06` | public_release_blocked | AP Calculus historical archive | 10 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1973-07` | public_release_blocked | AP Calculus historical archive | 10; 11 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1974-01` | public_release_blocked | AP Calculus historical archive | 11 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1974-02` | public_release_blocked | AP Calculus historical archive | 11 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1974-03` | public_release_blocked | AP Calculus historical archive | 11 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1974-04` | public_release_blocked | AP Calculus historical archive | 11 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1974-05` | public_release_blocked | AP Calculus historical archive | 11; 12 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1974-06` | public_release_blocked | AP Calculus historical archive | 12 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1974-07` | public_release_blocked | AP Calculus historical archive | 12 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1975-01` | public_release_blocked | AP Calculus historical archive | 12 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1975-02` | public_release_blocked | AP Calculus historical archive | 12; 13 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1975-03` | public_release_blocked | AP Calculus historical archive | 13 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1975-04` | public_release_blocked | AP Calculus historical archive | 13 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1975-05` | public_release_blocked | AP Calculus historical archive | 13 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1975-06` | public_release_blocked | AP Calculus historical archive | 13; 14 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1975-07` | public_release_blocked | AP Calculus historical archive | 14 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1976-01` | public_release_blocked | AP Calculus historical archive | 14 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1976-02` | public_release_blocked | AP Calculus historical archive | 14 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1976-03` | public_release_blocked | AP Calculus historical archive | 14 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1976-04` | public_release_blocked | AP Calculus historical archive | 14; 15 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1976-05` | public_release_blocked | AP Calculus historical archive | 15 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1976-06` | public_release_blocked | AP Calculus historical archive | 15 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1976-07` | public_release_blocked | AP Calculus historical archive | 15 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1977-01` | public_release_blocked | AP Calculus historical archive | 15; 16 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1977-02` | public_release_blocked | AP Calculus historical archive | 16 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1977-03` | public_release_blocked | AP Calculus historical archive | 16 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1977-04` | public_release_blocked | AP Calculus historical archive | 16 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1977-05` | public_release_blocked | AP Calculus historical archive | 16; 17 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1977-06` | public_release_blocked | AP Calculus historical archive | 17 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1977-07` | public_release_blocked | AP Calculus historical archive | 17 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1978-01` | public_release_blocked | AP Calculus historical archive | 17 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1978-02` | public_release_blocked | AP Calculus historical archive | 17 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1978-03` | public_release_blocked | AP Calculus historical archive | 17; 18 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1978-04` | public_release_blocked | AP Calculus historical archive | 18 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1978-05` | public_release_blocked | AP Calculus historical archive | 18 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1978-06` | public_release_blocked | AP Calculus historical archive | 18 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1978-07` | public_release_blocked | AP Calculus historical archive | 18; 19 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1979-01` | public_release_blocked | AP Calculus historical archive | 19 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1979-02` | public_release_blocked | AP Calculus historical archive | 19 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1979-03` | public_release_blocked | AP Calculus historical archive | 19 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1979-04` | public_release_blocked | AP Calculus historical archive | 19 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1979-05` | public_release_blocked | AP Calculus historical archive | 19; 20 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1979-06` | public_release_blocked | AP Calculus historical archive | 20 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1979-07` | public_release_blocked | AP Calculus historical archive | 20 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1980-01` | public_release_blocked | AP Calculus historical archive | 20 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1980-02` | public_release_blocked | AP Calculus historical archive | 20 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1980-03` | public_release_blocked | AP Calculus historical archive | 20; 21 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1980-04` | public_release_blocked | AP Calculus historical archive | 21 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1980-05` | public_release_blocked | AP Calculus historical archive | 21 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1980-06` | public_release_blocked | AP Calculus historical archive | 21 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1980-07` | public_release_blocked | AP Calculus historical archive | 21; 22 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1985-001` | public_release_blocked | AP Calculus historical archive | 44; 38 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1985-002` | public_release_blocked | AP Calculus historical archive | 44; 38 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1985-003` | public_release_blocked | AP Calculus historical archive | 44; 38 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1985-004` | public_release_blocked | AP Calculus historical archive | 44; 38 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1985-005` | public_release_blocked | AP Calculus historical archive | 44; 38 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1985-006` | public_release_blocked | AP Calculus historical archive | 45; 39 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1985-007` | public_release_blocked | AP Calculus historical archive | 45; 39 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1985-008` | public_release_blocked | AP Calculus historical archive | 45; 39 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1985-009` | public_release_blocked | AP Calculus historical archive | 45; 39 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1985-010` | public_release_blocked | AP Calculus historical archive | 45; 39 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1985-011` | public_release_blocked | AP Calculus historical archive | 45; 39 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1985-012` | public_release_blocked | AP Calculus historical archive | 45; 39 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1985-013` | public_release_blocked | AP Calculus historical archive | 46; 40 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1985-014` | public_release_blocked | AP Calculus historical archive | 46; 40 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1985-015` | public_release_blocked | AP Calculus historical archive | 46; 40 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1985-016` | public_release_blocked | AP Calculus historical archive | 46; 40 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1985-017` | public_release_blocked | AP Calculus historical archive | 46; 40 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1985-018` | public_release_blocked | AP Calculus historical archive | 46; 40 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1985-019` | public_release_blocked | AP Calculus historical archive | 46; 40 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1985-020` | public_release_blocked | AP Calculus historical archive | 47; 41 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1985-021` | public_release_blocked | AP Calculus historical archive | 47; 41 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1985-022` | public_release_blocked | AP Calculus historical archive | 47; 41 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1985-023` | public_release_blocked | AP Calculus historical archive | 47; 41 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1985-024` | public_release_blocked | AP Calculus historical archive | 47; 41 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1985-025` | public_release_blocked | AP Calculus historical archive | 47; 41 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1985-026` | public_release_blocked | AP Calculus historical archive | 48; 42 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1985-027` | public_release_blocked | AP Calculus historical archive | 48; 42 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1985-028` | public_release_blocked | AP Calculus historical archive | 48; 42 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1985-029` | public_release_blocked | AP Calculus historical archive | 48; 42 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1985-030` | public_release_blocked | AP Calculus historical archive | 48; 42 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1985-031` | public_release_blocked | AP Calculus historical archive | 49; 43 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1985-032` | public_release_blocked | AP Calculus historical archive | 49; 43 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1985-033` | public_release_blocked | AP Calculus historical archive | 49; 43 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1985-034` | public_release_blocked | AP Calculus historical archive | 50; 44 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1985-035` | public_release_blocked | AP Calculus historical archive | 50; 44 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1985-036` | public_release_blocked | AP Calculus historical archive | 50; 44 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1985-037` | public_release_blocked | AP Calculus historical archive | 50; 44 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1985-038` | public_release_blocked | AP Calculus historical archive | 51; 45 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1985-039` | public_release_blocked | AP Calculus historical archive | 51; 45 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1985-040` | public_release_blocked | AP Calculus historical archive | 51; 45 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1985-041` | public_release_blocked | AP Calculus historical archive | 51; 45 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1985-042` | public_release_blocked | AP Calculus historical archive | 52; 46 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1985-043` | public_release_blocked | AP Calculus historical archive | 52; 46 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1985-044` | public_release_blocked | AP Calculus historical archive | 52; 46 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1985-045` | public_release_blocked | AP Calculus historical archive | 52; 46 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1988-001` | public_release_blocked | AP Calculus historical archive | 63; 57 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1988-002` | public_release_blocked | AP Calculus historical archive | 63; 57 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1988-003` | public_release_blocked | AP Calculus historical archive | 63; 57 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1988-004` | public_release_blocked | AP Calculus historical archive | 63; 57 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1988-005` | public_release_blocked | AP Calculus historical archive | 63; 57 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1988-006` | public_release_blocked | AP Calculus historical archive | 64; 58 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1988-007` | public_release_blocked | AP Calculus historical archive | 64; 58 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1988-008` | public_release_blocked | AP Calculus historical archive | 64; 58 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1988-009` | public_release_blocked | AP Calculus historical archive | 65; 59 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1988-010` | public_release_blocked | AP Calculus historical archive | 65; 59 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1988-011` | public_release_blocked | AP Calculus historical archive | 65; 59 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1988-012` | public_release_blocked | AP Calculus historical archive | 65; 59 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1988-013` | public_release_blocked | AP Calculus historical archive | 65; 59 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1988-014` | public_release_blocked | AP Calculus historical archive | 65; 59 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1988-015` | public_release_blocked | AP Calculus historical archive | 66; 60 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1988-016` | public_release_blocked | AP Calculus historical archive | 66; 60 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1988-017` | public_release_blocked | AP Calculus historical archive | 66; 60 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1988-018` | public_release_blocked | AP Calculus historical archive | 66; 60 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1988-019` | public_release_blocked | AP Calculus historical archive | 66; 60 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1988-020` | public_release_blocked | AP Calculus historical archive | 66; 60 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1988-021` | public_release_blocked | AP Calculus historical archive | 67; 61 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1988-022` | public_release_blocked | AP Calculus historical archive | 67; 61 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1988-023` | public_release_blocked | AP Calculus historical archive | 67; 61 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1988-024` | public_release_blocked | AP Calculus historical archive | 67; 61 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1988-025` | public_release_blocked | AP Calculus historical archive | 67; 61 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1988-026` | public_release_blocked | AP Calculus historical archive | 67; 61 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1988-027` | public_release_blocked | AP Calculus historical archive | 68; 62 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1988-028` | public_release_blocked | AP Calculus historical archive | 68; 62 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1988-029` | public_release_blocked | AP Calculus historical archive | 68; 62 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1988-030` | public_release_blocked | AP Calculus historical archive | 68; 62 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1988-031` | public_release_blocked | AP Calculus historical archive | 69; 63 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1988-032` | public_release_blocked | AP Calculus historical archive | 69; 63 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1988-033` | public_release_blocked | AP Calculus historical archive | 69; 63 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1988-034` | public_release_blocked | AP Calculus historical archive | 69; 63 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1988-035` | public_release_blocked | AP Calculus historical archive | 70; 64 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1988-036` | public_release_blocked | AP Calculus historical archive | 70; 64 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1988-037` | public_release_blocked | AP Calculus historical archive | 70; 64 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1988-038` | public_release_blocked | AP Calculus historical archive | 70; 64 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1988-039` | public_release_blocked | AP Calculus historical archive | 70; 64 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1988-040` | public_release_blocked | AP Calculus historical archive | 71; 65 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1988-041` | public_release_blocked | AP Calculus historical archive | 71; 65 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1988-042` | public_release_blocked | AP Calculus historical archive | 71; 65 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1988-043` | public_release_blocked | AP Calculus historical archive | 71; 65 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1988-044` | public_release_blocked | AP Calculus historical archive | 72; 66 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1988-045` | public_release_blocked | AP Calculus historical archive | 72; 66 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1993-001` | public_release_blocked | AP Calculus historical archive | 84; 78 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1993-002` | public_release_blocked | AP Calculus historical archive | 84; 78 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1993-003` | public_release_blocked | AP Calculus historical archive | 84; 78 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1993-004` | public_release_blocked | AP Calculus historical archive | 85; 79 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1993-005` | public_release_blocked | AP Calculus historical archive | 85; 79 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1993-006` | public_release_blocked | AP Calculus historical archive | 85; 79 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1993-007` | public_release_blocked | AP Calculus historical archive | 85; 79 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1993-008` | public_release_blocked | AP Calculus historical archive | 86; 80 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1993-009` | public_release_blocked | AP Calculus historical archive | 86; 80 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1993-010` | public_release_blocked | AP Calculus historical archive | 86; 80 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1993-011` | public_release_blocked | AP Calculus historical archive | 86; 80 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1993-012` | public_release_blocked | AP Calculus historical archive | 86; 80 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1993-013` | public_release_blocked | AP Calculus historical archive | 87; 81 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1993-014` | public_release_blocked | AP Calculus historical archive | 87; 81 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1993-015` | public_release_blocked | AP Calculus historical archive | 87; 81 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1993-016` | public_release_blocked | AP Calculus historical archive | 87; 81 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1993-017` | public_release_blocked | AP Calculus historical archive | 88; 82 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1993-018` | public_release_blocked | AP Calculus historical archive | 88; 82 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1993-019` | public_release_blocked | AP Calculus historical archive | 88; 82 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1993-020` | public_release_blocked | AP Calculus historical archive | 89; 83 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1993-021` | public_release_blocked | AP Calculus historical archive | 89; 83 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1993-022` | public_release_blocked | AP Calculus historical archive | 89; 83 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1993-023` | public_release_blocked | AP Calculus historical archive | 89; 83 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1993-024` | public_release_blocked | AP Calculus historical archive | 89; 83 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1993-025` | public_release_blocked | AP Calculus historical archive | 90; 84 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1993-026` | public_release_blocked | AP Calculus historical archive | 90; 84 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1993-027` | public_release_blocked | AP Calculus historical archive | 90; 84 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1993-028` | public_release_blocked | AP Calculus historical archive | 90; 84 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1993-029` | public_release_blocked | AP Calculus historical archive | 90; 84 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1993-030` | public_release_blocked | AP Calculus historical archive | 90; 84 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1993-031` | public_release_blocked | AP Calculus historical archive | 91; 85 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1993-032` | public_release_blocked | AP Calculus historical archive | 91; 85 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1993-033` | public_release_blocked | AP Calculus historical archive | 91; 85 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1993-034` | public_release_blocked | AP Calculus historical archive | 91; 85 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1993-035` | public_release_blocked | AP Calculus historical archive | 91; 85 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1993-036` | public_release_blocked | AP Calculus historical archive | 92; 86 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1993-037` | public_release_blocked | AP Calculus historical archive | 92; 86 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1993-038` | public_release_blocked | AP Calculus historical archive | 92; 86 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1993-039` | public_release_blocked | AP Calculus historical archive | 92; 86 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1993-040` | public_release_blocked | AP Calculus historical archive | 93; 87 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1993-041` | public_release_blocked | AP Calculus historical archive | 93; 87 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1993-042` | public_release_blocked | AP Calculus historical archive | 93; 87 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1993-043` | public_release_blocked | AP Calculus historical archive | 94; 88 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1993-044` | public_release_blocked | AP Calculus historical archive | 94; 88 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1993-045` | public_release_blocked | AP Calculus historical archive | 94; 88 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1997-001` | public_release_blocked | AP Calculus historical archive | 106; 100 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1997-002` | public_release_blocked | AP Calculus historical archive | 106; 100 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1997-003` | public_release_blocked | AP Calculus historical archive | 106; 100 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1997-004` | public_release_blocked | AP Calculus historical archive | 106; 100 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1997-005` | public_release_blocked | AP Calculus historical archive | 107; 101 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1997-006` | public_release_blocked | AP Calculus historical archive | 107; 101 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1997-007` | public_release_blocked | AP Calculus historical archive | 107; 101 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1997-008` | public_release_blocked | AP Calculus historical archive | 108; 102 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1997-009` | public_release_blocked | AP Calculus historical archive | 108; 102 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1997-010` | public_release_blocked | AP Calculus historical archive | 108; 102 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1997-011` | public_release_blocked | AP Calculus historical archive | 109; 103 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1997-012` | public_release_blocked | AP Calculus historical archive | 109; 103 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1997-013` | public_release_blocked | AP Calculus historical archive | 110; 104 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1997-014` | public_release_blocked | AP Calculus historical archive | 110; 104 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1997-015` | public_release_blocked | AP Calculus historical archive | 110; 104 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1997-016` | public_release_blocked | AP Calculus historical archive | 111; 105 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1997-017` | public_release_blocked | AP Calculus historical archive | 111; 105 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1997-018` | public_release_blocked | AP Calculus historical archive | 111; 105 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1997-019` | public_release_blocked | AP Calculus historical archive | 111; 105 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1997-020` | public_release_blocked | AP Calculus historical archive | 112; 106 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1997-021` | public_release_blocked | AP Calculus historical archive | 112; 106 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1997-022` | public_release_blocked | AP Calculus historical archive | 112; 106 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1997-023` | public_release_blocked | AP Calculus historical archive | 112; 106 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1997-024` | public_release_blocked | AP Calculus historical archive | 113; 107 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1997-025` | public_release_blocked | AP Calculus historical archive | 113; 107 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1997-076` | public_release_blocked | AP Calculus historical archive | 114; 108 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1997-077` | public_release_blocked | AP Calculus historical archive | 114; 108 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1997-078` | public_release_blocked | AP Calculus historical archive | 114; 108 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1997-079` | public_release_blocked | AP Calculus historical archive | 115; 109 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1997-080` | public_release_blocked | AP Calculus historical archive | 115; 109 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1997-081` | public_release_blocked | AP Calculus historical archive | 115; 109 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1997-082` | public_release_blocked | AP Calculus historical archive | 115; 109 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1997-083` | public_release_blocked | AP Calculus historical archive | 115; 109 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1997-084` | public_release_blocked | AP Calculus historical archive | 115; 109 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1997-085` | public_release_blocked | AP Calculus historical archive | 116; 110 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1997-086` | public_release_blocked | AP Calculus historical archive | 116; 110 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1997-087` | public_release_blocked | AP Calculus historical archive | 116; 110 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1997-088` | public_release_blocked | AP Calculus historical archive | 117; 111 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1997-089` | public_release_blocked | AP Calculus historical archive | 118; 112 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1997-090` | public_release_blocked | AP Calculus historical archive | 118; 112 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1998-001` | public_release_blocked | AP Calculus historical archive | 131; 125 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1998-002` | public_release_blocked | AP Calculus historical archive | 131; 125 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1998-003` | public_release_blocked | AP Calculus historical archive | 131; 125 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1998-004` | public_release_blocked | AP Calculus historical archive | 132; 126 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1998-005` | public_release_blocked | AP Calculus historical archive | 132; 126 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1998-006` | public_release_blocked | AP Calculus historical archive | 132; 126 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1998-007` | public_release_blocked | AP Calculus historical archive | 132; 126 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1998-008` | public_release_blocked | AP Calculus historical archive | 132; 126 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1998-009` | public_release_blocked | AP Calculus historical archive | 133; 127 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1998-010` | public_release_blocked | AP Calculus historical archive | 133; 127 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1998-011` | public_release_blocked | AP Calculus historical archive | 133; 127 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1998-012` | public_release_blocked | AP Calculus historical archive | 133; 127 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1998-013` | public_release_blocked | AP Calculus historical archive | 134; 128 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1998-014` | public_release_blocked | AP Calculus historical archive | 134; 128 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1998-015` | public_release_blocked | AP Calculus historical archive | 134; 128 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1998-016` | public_release_blocked | AP Calculus historical archive | 134; 128 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1998-017` | public_release_blocked | AP Calculus historical archive | 135; 129 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1998-018` | public_release_blocked | AP Calculus historical archive | 135; 129 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1998-019` | public_release_blocked | AP Calculus historical archive | 135; 129 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1998-020` | public_release_blocked | AP Calculus historical archive | 135; 129 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1998-021` | public_release_blocked | AP Calculus historical archive | 135; 129 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1998-022` | public_release_blocked | AP Calculus historical archive | 136; 130 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1998-023` | public_release_blocked | AP Calculus historical archive | 137; 131 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1998-024` | public_release_blocked | AP Calculus historical archive | 138; 132 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1998-025` | public_release_blocked | AP Calculus historical archive | 138; 132 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1998-026` | public_release_blocked | AP Calculus historical archive | 138; 132 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1998-027` | public_release_blocked | AP Calculus historical archive | 138; 132 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1998-028` | public_release_blocked | AP Calculus historical archive | 138; 132 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1998-076` | public_release_blocked | AP Calculus historical archive | 139; 133 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1998-077` | public_release_blocked | AP Calculus historical archive | 139; 133 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1998-078` | public_release_blocked | AP Calculus historical archive | 140; 134 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1998-079` | public_release_blocked | AP Calculus historical archive | 140; 134 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1998-080` | public_release_blocked | AP Calculus historical archive | 140; 134 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1998-081` | public_release_blocked | AP Calculus historical archive | 141; 135 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1998-082` | public_release_blocked | AP Calculus historical archive | 141; 135 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1998-083` | public_release_blocked | AP Calculus historical archive | 141; 135 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1998-084` | public_release_blocked | AP Calculus historical archive | 141; 135 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1998-085` | public_release_blocked | AP Calculus historical archive | 142; 136 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1998-086` | public_release_blocked | AP Calculus historical archive | 142; 136 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1998-087` | public_release_blocked | AP Calculus historical archive | 142; 136 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1998-088` | public_release_blocked | AP Calculus historical archive | 142; 136 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1998-089` | public_release_blocked | AP Calculus historical archive | 143; 137 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1998-090` | public_release_blocked | AP Calculus historical archive | 143; 137 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1998-091` | public_release_blocked | AP Calculus historical archive | 143; 137 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-MCQ-1998-092` | public_release_blocked | AP Calculus historical archive | 143; 137 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1969-001` | public_release_blocked | AP Calculus historical archive | 16; 10 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1969-002` | public_release_blocked | AP Calculus historical archive | 16; 10 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1969-003` | public_release_blocked | AP Calculus historical archive | 16; 10 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1969-004` | public_release_blocked | AP Calculus historical archive | 16; 10 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1969-005` | public_release_blocked | AP Calculus historical archive | 16; 10 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1969-006` | public_release_blocked | AP Calculus historical archive | 17; 11 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1969-007` | public_release_blocked | AP Calculus historical archive | 17; 11 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1969-008` | public_release_blocked | AP Calculus historical archive | 17; 11 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1969-009` | public_release_blocked | AP Calculus historical archive | 17; 11 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1969-010` | public_release_blocked | AP Calculus historical archive | 17; 11 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1969-011` | public_release_blocked | AP Calculus historical archive | 18; 12 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1969-012` | public_release_blocked | AP Calculus historical archive | 18; 12 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1969-013` | public_release_blocked | AP Calculus historical archive | 18; 12 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1969-014` | public_release_blocked | AP Calculus historical archive | 18; 12 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1969-015` | public_release_blocked | AP Calculus historical archive | 19; 13 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1969-016` | public_release_blocked | AP Calculus historical archive | 19; 13 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1969-017` | public_release_blocked | AP Calculus historical archive | 19; 13 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1969-018` | public_release_blocked | AP Calculus historical archive | 19; 13 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1969-019` | public_release_blocked | AP Calculus historical archive | 20; 14 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1969-020` | public_release_blocked | AP Calculus historical archive | 20; 14 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1969-021` | public_release_blocked | AP Calculus historical archive | 20; 14 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1969-022` | public_release_blocked | AP Calculus historical archive | 20; 14 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1969-023` | public_release_blocked | AP Calculus historical archive | 21; 15 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1969-024` | public_release_blocked | AP Calculus historical archive | 21; 15 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1969-025` | public_release_blocked | AP Calculus historical archive | 21; 15 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1969-026` | public_release_blocked | AP Calculus historical archive | 21; 15 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1969-027` | public_release_blocked | AP Calculus historical archive | 22; 16 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1969-028` | public_release_blocked | AP Calculus historical archive | 22; 16 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1969-029` | public_release_blocked | AP Calculus historical archive | 22; 16 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1969-030` | public_release_blocked | AP Calculus historical archive | 22; 16 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1969-031` | public_release_blocked | AP Calculus historical archive | 22; 16 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1969-032` | public_release_blocked | AP Calculus historical archive | 22; 16 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1969-033` | public_release_blocked | AP Calculus historical archive | 22; 16 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1969-034` | public_release_blocked | AP Calculus historical archive | 23; 17 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1969-035` | public_release_blocked | AP Calculus historical archive | 23; 17 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1969-036` | public_release_blocked | AP Calculus historical archive | 23; 17 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1969-037` | public_release_blocked | AP Calculus historical archive | 23; 17 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1969-038` | public_release_blocked | AP Calculus historical archive | 23; 17 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1969-039` | public_release_blocked | AP Calculus historical archive | 23; 17 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1969-040` | public_release_blocked | AP Calculus historical archive | 24; 18 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1969-041` | public_release_blocked | AP Calculus historical archive | 24; 18 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1969-042` | public_release_blocked | AP Calculus historical archive | 24; 18 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1969-043` | public_release_blocked | AP Calculus historical archive | 24; 18 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1969-044` | public_release_blocked | AP Calculus historical archive | 25; 19 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1969-045` | public_release_blocked | AP Calculus historical archive | 25; 19 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1973-001` | public_release_blocked | AP Calculus historical archive | 35; 29 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1973-002` | public_release_blocked | AP Calculus historical archive | 35; 29 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1973-003` | public_release_blocked | AP Calculus historical archive | 35; 29 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1973-004` | public_release_blocked | AP Calculus historical archive | 35; 29 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1973-005` | public_release_blocked | AP Calculus historical archive | 35; 29 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1973-006` | public_release_blocked | AP Calculus historical archive | 35; 29 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1973-007` | public_release_blocked | AP Calculus historical archive | 36; 30 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1973-008` | public_release_blocked | AP Calculus historical archive | 36; 30 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1973-009` | public_release_blocked | AP Calculus historical archive | 36; 30 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1973-010` | public_release_blocked | AP Calculus historical archive | 36; 30 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1973-011` | public_release_blocked | AP Calculus historical archive | 36; 30 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1973-012` | public_release_blocked | AP Calculus historical archive | 37; 31 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1973-013` | public_release_blocked | AP Calculus historical archive | 37; 31 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1973-014` | public_release_blocked | AP Calculus historical archive | 37; 31 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1973-015` | public_release_blocked | AP Calculus historical archive | 37; 31 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1973-016` | public_release_blocked | AP Calculus historical archive | 37; 31 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1973-017` | public_release_blocked | AP Calculus historical archive | 38; 32 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1973-018` | public_release_blocked | AP Calculus historical archive | 38; 32 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1973-019` | public_release_blocked | AP Calculus historical archive | 38; 32 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1973-020` | public_release_blocked | AP Calculus historical archive | 38; 32 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1973-021` | public_release_blocked | AP Calculus historical archive | 38; 32 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1973-022` | public_release_blocked | AP Calculus historical archive | 39; 33 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1973-023` | public_release_blocked | AP Calculus historical archive | 39; 33 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1973-024` | public_release_blocked | AP Calculus historical archive | 39; 33 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1973-025` | public_release_blocked | AP Calculus historical archive | 39; 33 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1973-026` | public_release_blocked | AP Calculus historical archive | 39; 33 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1973-027` | public_release_blocked | AP Calculus historical archive | 39; 33 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1973-028` | public_release_blocked | AP Calculus historical archive | 40; 34 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1973-029` | public_release_blocked | AP Calculus historical archive | 40; 34 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1973-030` | public_release_blocked | AP Calculus historical archive | 40; 34 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1973-031` | public_release_blocked | AP Calculus historical archive | 40; 34 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1973-032` | public_release_blocked | AP Calculus historical archive | 40; 34 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1973-033` | public_release_blocked | AP Calculus historical archive | 41; 35 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1973-034` | public_release_blocked | AP Calculus historical archive | 41; 35 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1973-035` | public_release_blocked | AP Calculus historical archive | 35; 29 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1973-036` | public_release_blocked | AP Calculus historical archive | 41; 35 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1973-037` | public_release_blocked | AP Calculus historical archive | 41; 35 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1973-038` | public_release_blocked | AP Calculus historical archive | 41; 35 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1973-039` | public_release_blocked | AP Calculus historical archive | 42; 36 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1973-040` | public_release_blocked | AP Calculus historical archive | 42; 36 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1973-041` | public_release_blocked | AP Calculus historical archive | 42; 36 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1973-042` | public_release_blocked | AP Calculus historical archive | 42; 36 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1973-043` | public_release_blocked | AP Calculus historical archive | 43; 37 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1973-044` | public_release_blocked | AP Calculus historical archive | 43; 37 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1973-045` | public_release_blocked | AP Calculus historical archive | 43; 37 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1985-001` | public_release_blocked | AP Calculus historical archive | 53; 47 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1985-002` | public_release_blocked | AP Calculus historical archive | 53; 47 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1985-003` | public_release_blocked | AP Calculus historical archive | 53; 47 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1985-004` | public_release_blocked | AP Calculus historical archive | 53; 47 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1985-005` | public_release_blocked | AP Calculus historical archive | 54; 48 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1985-006` | public_release_blocked | AP Calculus historical archive | 54; 48 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1985-007` | public_release_blocked | AP Calculus historical archive | 55; 49 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1985-008` | public_release_blocked | AP Calculus historical archive | 55; 49 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1985-009` | public_release_blocked | AP Calculus historical archive | 55; 49 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1985-010` | public_release_blocked | AP Calculus historical archive | 55; 49 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1985-011` | public_release_blocked | AP Calculus historical archive | 56; 50 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1985-012` | public_release_blocked | AP Calculus historical archive | 56; 50 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1985-013` | public_release_blocked | AP Calculus historical archive | 56; 50 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1985-014` | public_release_blocked | AP Calculus historical archive | 56; 50 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1985-015` | public_release_blocked | AP Calculus historical archive | 56; 50 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1985-016` | public_release_blocked | AP Calculus historical archive | 57; 51 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1985-017` | public_release_blocked | AP Calculus historical archive | 57; 51 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1985-018` | public_release_blocked | AP Calculus historical archive | 57; 51 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1985-019` | public_release_blocked | AP Calculus historical archive | 57; 51 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1985-020` | public_release_blocked | AP Calculus historical archive | 57; 51 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1985-021` | public_release_blocked | AP Calculus historical archive | 58; 52 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1985-022` | public_release_blocked | AP Calculus historical archive | 58; 52 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1985-023` | public_release_blocked | AP Calculus historical archive | 58; 52 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1985-024` | public_release_blocked | AP Calculus historical archive | 58; 52 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1985-025` | public_release_blocked | AP Calculus historical archive | 58; 52 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1985-026` | public_release_blocked | AP Calculus historical archive | 58; 52 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1985-027` | public_release_blocked | AP Calculus historical archive | 59; 53 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1985-028` | public_release_blocked | AP Calculus historical archive | 59; 53 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1985-029` | public_release_blocked | AP Calculus historical archive | 59; 53 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1985-030` | public_release_blocked | AP Calculus historical archive | 59; 53 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1985-031` | public_release_blocked | AP Calculus historical archive | 59; 53 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1985-032` | public_release_blocked | AP Calculus historical archive | 60; 54 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1985-033` | public_release_blocked | AP Calculus historical archive | 60; 54 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1985-034` | public_release_blocked | AP Calculus historical archive | 60; 54 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1985-035` | public_release_blocked | AP Calculus historical archive | 60; 54 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1985-036` | public_release_blocked | AP Calculus historical archive | 61; 55 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1985-037` | public_release_blocked | AP Calculus historical archive | 61; 55 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1985-038` | public_release_blocked | AP Calculus historical archive | 61; 55 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1985-039` | public_release_blocked | AP Calculus historical archive | 61; 55 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1985-040` | public_release_blocked | AP Calculus historical archive | 61; 55 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1985-041` | public_release_blocked | AP Calculus historical archive | 62; 56 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1985-042` | public_release_blocked | AP Calculus historical archive | 62; 56 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1985-043` | public_release_blocked | AP Calculus historical archive | 62; 56 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1985-044` | public_release_blocked | AP Calculus historical archive | 62; 56 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1985-045` | public_release_blocked | AP Calculus historical archive | 62; 56 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1988-001` | public_release_blocked | AP Calculus historical archive | 73; 67 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1988-002` | public_release_blocked | AP Calculus historical archive | 73; 67 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1988-003` | public_release_blocked | AP Calculus historical archive | 73; 67 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1988-004` | public_release_blocked | AP Calculus historical archive | 73; 67 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1988-005` | public_release_blocked | AP Calculus historical archive | 74; 68 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1988-006` | public_release_blocked | AP Calculus historical archive | 74; 68 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1988-007` | public_release_blocked | AP Calculus historical archive | 74; 68 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1988-008` | public_release_blocked | AP Calculus historical archive | 74; 68 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1988-009` | public_release_blocked | AP Calculus historical archive | 75; 69 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1988-010` | public_release_blocked | AP Calculus historical archive | 75; 69 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1988-011` | public_release_blocked | AP Calculus historical archive | 75; 69 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1988-012` | public_release_blocked | AP Calculus historical archive | 75; 69 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1988-013` | public_release_blocked | AP Calculus historical archive | 76; 70 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1988-014` | public_release_blocked | AP Calculus historical archive | 76; 70 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1988-015` | public_release_blocked | AP Calculus historical archive | 76; 70 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1988-016` | public_release_blocked | AP Calculus historical archive | 77; 71 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1988-017` | public_release_blocked | AP Calculus historical archive | 77; 71 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1988-018` | public_release_blocked | AP Calculus historical archive | 77; 71 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1988-019` | public_release_blocked | AP Calculus historical archive | 77; 71 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1988-020` | public_release_blocked | AP Calculus historical archive | 77; 71 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1988-021` | public_release_blocked | AP Calculus historical archive | 78; 72 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1988-022` | public_release_blocked | AP Calculus historical archive | 78; 72 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1988-023` | public_release_blocked | AP Calculus historical archive | 78; 72 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1988-024` | public_release_blocked | AP Calculus historical archive | 79; 73 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1988-025` | public_release_blocked | AP Calculus historical archive | 79; 73 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1988-026` | public_release_blocked | AP Calculus historical archive | 79; 73 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1988-027` | public_release_blocked | AP Calculus historical archive | 79; 73 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1988-028` | public_release_blocked | AP Calculus historical archive | 80; 74 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1988-029` | public_release_blocked | AP Calculus historical archive | 80; 74 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1988-030` | public_release_blocked | AP Calculus historical archive | 80; 74 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1988-031` | public_release_blocked | AP Calculus historical archive | 80; 74 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1988-032` | public_release_blocked | AP Calculus historical archive | 80; 74 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1988-033` | public_release_blocked | AP Calculus historical archive | 81; 75 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1988-034` | public_release_blocked | AP Calculus historical archive | 81; 75 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1988-035` | public_release_blocked | AP Calculus historical archive | 81; 75 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1988-036` | public_release_blocked | AP Calculus historical archive | 81; 75 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1988-037` | public_release_blocked | AP Calculus historical archive | 81; 75 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1988-038` | public_release_blocked | AP Calculus historical archive | 82; 76 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1988-039` | public_release_blocked | AP Calculus historical archive | 82; 76 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1988-040` | public_release_blocked | AP Calculus historical archive | 82; 76 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1988-041` | public_release_blocked | AP Calculus historical archive | 82; 76 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1988-042` | public_release_blocked | AP Calculus historical archive | 82; 76 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1988-043` | public_release_blocked | AP Calculus historical archive | 83; 77 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1988-044` | public_release_blocked | AP Calculus historical archive | 83; 77 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1988-045` | public_release_blocked | AP Calculus historical archive | 83; 77 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1993-001` | public_release_blocked | AP Calculus historical archive | 95; 89 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1993-002` | public_release_blocked | AP Calculus historical archive | 95; 89 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1993-003` | public_release_blocked | AP Calculus historical archive | 95; 89 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1993-004` | public_release_blocked | AP Calculus historical archive | 95; 89 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1993-005` | public_release_blocked | AP Calculus historical archive | 96; 90 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1993-006` | public_release_blocked | AP Calculus historical archive | 96; 90 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1993-007` | public_release_blocked | AP Calculus historical archive | 96; 90 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1993-008` | public_release_blocked | AP Calculus historical archive | 96; 90 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1993-009` | public_release_blocked | AP Calculus historical archive | 97; 91 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1993-010` | public_release_blocked | AP Calculus historical archive | 97; 91 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1993-011` | public_release_blocked | AP Calculus historical archive | 97; 91 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1993-012` | public_release_blocked | AP Calculus historical archive | 97; 91 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1993-013` | public_release_blocked | AP Calculus historical archive | 97; 91 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1993-014` | public_release_blocked | AP Calculus historical archive | 98; 92 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1993-015` | public_release_blocked | AP Calculus historical archive | 98; 92 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1993-016` | public_release_blocked | AP Calculus historical archive | 98; 92 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1993-017` | public_release_blocked | AP Calculus historical archive | 98; 92 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1993-018` | public_release_blocked | AP Calculus historical archive | 98; 92 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1993-019` | public_release_blocked | AP Calculus historical archive | 99; 93 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1993-020` | public_release_blocked | AP Calculus historical archive | 99; 93 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1993-021` | public_release_blocked | AP Calculus historical archive | 99; 93 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1993-022` | public_release_blocked | AP Calculus historical archive | 100; 94 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1993-023` | public_release_blocked | AP Calculus historical archive | 100; 94 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1993-024` | public_release_blocked | AP Calculus historical archive | 100; 94 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1993-025` | public_release_blocked | AP Calculus historical archive | 100; 94 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1993-026` | public_release_blocked | AP Calculus historical archive | 101; 95 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1993-027` | public_release_blocked | AP Calculus historical archive | 96; 90 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1993-028` | public_release_blocked | AP Calculus historical archive | 101; 95 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1993-029` | public_release_blocked | AP Calculus historical archive | 101; 95 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1993-030` | public_release_blocked | AP Calculus historical archive | 101; 95 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1993-031` | public_release_blocked | AP Calculus historical archive | 102; 96 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1993-032` | public_release_blocked | AP Calculus historical archive | 102; 96 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1993-033` | public_release_blocked | AP Calculus historical archive | 102; 96 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1993-034` | public_release_blocked | AP Calculus historical archive | 103; 97 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1993-035` | public_release_blocked | AP Calculus historical archive | 103; 97 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1993-036` | public_release_blocked | AP Calculus historical archive | 103; 97 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1993-037` | public_release_blocked | AP Calculus historical archive | 104; 98 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1993-038` | public_release_blocked | AP Calculus historical archive | 104; 98 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1993-039` | public_release_blocked | AP Calculus historical archive | 104; 98 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1993-040` | public_release_blocked | AP Calculus historical archive | 104; 98 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1993-041` | public_release_blocked | AP Calculus historical archive | 104; 98 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1993-042` | public_release_blocked | AP Calculus historical archive | 104; 98 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1993-043` | public_release_blocked | AP Calculus historical archive | 105; 99 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1993-044` | public_release_blocked | AP Calculus historical archive | 105; 99 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1993-045` | public_release_blocked | AP Calculus historical archive | 105; 99 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1997-001` | public_release_blocked | AP Calculus historical archive | 119; 113 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1997-002` | public_release_blocked | AP Calculus historical archive | 119; 113 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1997-003` | public_release_blocked | AP Calculus historical archive | 119; 113 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1997-004` | public_release_blocked | AP Calculus historical archive | 119; 113 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1997-005` | public_release_blocked | AP Calculus historical archive | 119; 113 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1997-006` | public_release_blocked | AP Calculus historical archive | 119; 113 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1997-007` | public_release_blocked | AP Calculus historical archive | 120; 114 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1997-008` | public_release_blocked | AP Calculus historical archive | 120; 114 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1997-009` | public_release_blocked | AP Calculus historical archive | 121; 115 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1997-010` | public_release_blocked | AP Calculus historical archive | 121; 115 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1997-011` | public_release_blocked | AP Calculus historical archive | 121; 115 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1997-012` | public_release_blocked | AP Calculus historical archive | 121; 115 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1997-013` | public_release_blocked | AP Calculus historical archive | 122; 116 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1997-014` | public_release_blocked | AP Calculus historical archive | 122; 116 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1997-015` | public_release_blocked | AP Calculus historical archive | 122; 116 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1997-016` | public_release_blocked | AP Calculus historical archive | 122; 116 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1997-017` | public_release_blocked | AP Calculus historical archive | 123; 117 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1997-018` | public_release_blocked | AP Calculus historical archive | 123; 117 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1997-019` | public_release_blocked | AP Calculus historical archive | 123; 117 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1997-020` | public_release_blocked | AP Calculus historical archive | 124; 118 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1997-021` | public_release_blocked | AP Calculus historical archive | 124; 118 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1997-022` | public_release_blocked | AP Calculus historical archive | 124; 118 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1997-023` | public_release_blocked | AP Calculus historical archive | 125; 119 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1997-024` | public_release_blocked | AP Calculus historical archive | 125; 119 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1997-025` | public_release_blocked | AP Calculus historical archive | 125; 119 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1997-076` | public_release_blocked | AP Calculus historical archive | 126; 120 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1997-077` | public_release_blocked | AP Calculus historical archive | 126; 120 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1997-078` | public_release_blocked | AP Calculus historical archive | 127; 121 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1997-079` | public_release_blocked | AP Calculus historical archive | 127; 121 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1997-080` | public_release_blocked | AP Calculus historical archive | 127; 121 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1997-081` | public_release_blocked | AP Calculus historical archive | 127; 121 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1997-082` | public_release_blocked | AP Calculus historical archive | 128; 122 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1997-083` | public_release_blocked | AP Calculus historical archive | 128; 122 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1997-084` | public_release_blocked | AP Calculus historical archive | 128; 122 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1997-085` | public_release_blocked | AP Calculus historical archive | 128; 122 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1997-086` | public_release_blocked | AP Calculus historical archive | 129; 123 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1997-087` | public_release_blocked | AP Calculus historical archive | 129; 123 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1997-088` | public_release_blocked | AP Calculus historical archive | 130; 124 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1997-089` | public_release_blocked | AP Calculus historical archive | 130; 124 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1997-090` | public_release_blocked | AP Calculus historical archive | 130; 124 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1998-001` | public_release_blocked | AP Calculus historical archive | 144; 138 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1998-002` | public_release_blocked | AP Calculus historical archive | 144; 138 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1998-003` | public_release_blocked | AP Calculus historical archive | 144; 138 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1998-004` | public_release_blocked | AP Calculus historical archive | 144; 138 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1998-005` | public_release_blocked | AP Calculus historical archive | 145; 139 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1998-006` | public_release_blocked | AP Calculus historical archive | 146; 140 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1998-007` | public_release_blocked | AP Calculus historical archive | 147; 141 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1998-008` | public_release_blocked | AP Calculus historical archive | 147; 141 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1998-009` | public_release_blocked | AP Calculus historical archive | 147; 141 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1998-010` | public_release_blocked | AP Calculus historical archive | 147; 141 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1998-011` | public_release_blocked | AP Calculus historical archive | 147; 141 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1998-012` | public_release_blocked | AP Calculus historical archive | 148; 142 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1998-013` | public_release_blocked | AP Calculus historical archive | 148; 142 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1998-014` | public_release_blocked | AP Calculus historical archive | 148; 142 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1998-015` | public_release_blocked | AP Calculus historical archive | 149; 143 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1998-016` | public_release_blocked | AP Calculus historical archive | 149; 143 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1998-017` | public_release_blocked | AP Calculus historical archive | 149; 143 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1998-018` | public_release_blocked | AP Calculus historical archive | 150; 144 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1998-019` | public_release_blocked | AP Calculus historical archive | 150; 144 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1998-020` | public_release_blocked | AP Calculus historical archive | 150; 144 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1998-021` | public_release_blocked | AP Calculus historical archive | 150; 144 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1998-022` | public_release_blocked | AP Calculus historical archive | 151; 145 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1998-023` | public_release_blocked | AP Calculus historical archive | 151; 145 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1998-024` | public_release_blocked | AP Calculus historical archive | 144; 138 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1998-025` | public_release_blocked | AP Calculus historical archive | 152; 146 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1998-026` | public_release_blocked | AP Calculus historical archive | 152; 146 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1998-027` | public_release_blocked | AP Calculus historical archive | 152; 146 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1998-028` | public_release_blocked | AP Calculus historical archive | 152; 146 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1998-076` | public_release_blocked | AP Calculus historical archive | 153; 147 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1998-077` | public_release_blocked | AP Calculus historical archive | 153; 147 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1998-078` | public_release_blocked | AP Calculus historical archive | 153; 147 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1998-079` | public_release_blocked | AP Calculus historical archive | 154; 148 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1998-080` | public_release_blocked | AP Calculus historical archive | 154; 148 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1998-081` | public_release_blocked | AP Calculus historical archive | 154; 148 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1998-082` | public_release_blocked | AP Calculus historical archive | 154; 148 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1998-083` | public_release_blocked | AP Calculus historical archive | 155; 149 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1998-084` | public_release_blocked | AP Calculus historical archive | 155; 149 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1998-085` | public_release_blocked | AP Calculus historical archive | 155; 149 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1998-086` | public_release_blocked | AP Calculus historical archive | 155; 149 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1998-087` | public_release_blocked | AP Calculus historical archive | 156; 150 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1998-088` | public_release_blocked | AP Calculus historical archive | 156; 150 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1998-089` | public_release_blocked | AP Calculus historical archive | 157; 151 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1998-090` | public_release_blocked | AP Calculus historical archive | 157; 151 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1998-091` | public_release_blocked | AP Calculus historical archive | 158; 152 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-LEGACY-BC-MCQ-1998-092` | public_release_blocked | AP Calculus historical archive | 158; 152 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `ECHS-G9PRECALC-ORIGINAL-G9-U5-001` | verification_or_mapping_incomplete | ECHS Original Question Bank |  | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
+| `APCALC-BC-FRQ-1974-03` | public_release_blocked | historical-frq-1969-2010 | 12 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1981-01` | public_release_blocked | historical-frq-1969-2010 | 22 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1981-02` | public_release_blocked | historical-frq-1969-2010 | 22 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1981-03` | public_release_blocked | historical-frq-1969-2010 | 22 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1981-04` | public_release_blocked | historical-frq-1969-2010 | 22 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1981-05` | public_release_blocked | historical-frq-1969-2010 | 22; 23 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1981-06` | public_release_blocked | historical-frq-1969-2010 | 23 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1981-07` | public_release_blocked | historical-frq-1969-2010 | 23 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1982-01` | public_release_blocked | historical-frq-1969-2010 | 23 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1982-02` | public_release_blocked | historical-frq-1969-2010 | 23; 24 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1982-03` | public_release_blocked | historical-frq-1969-2010 | 24 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1982-04` | public_release_blocked | historical-frq-1969-2010 | 24 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1982-05` | public_release_blocked | historical-frq-1969-2010 | 24 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1982-06` | public_release_blocked | historical-frq-1969-2010 | 24 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1982-07` | public_release_blocked | historical-frq-1969-2010 | 24; 25 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1983-01` | public_release_blocked | historical-frq-1969-2010 | 25 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1983-02` | public_release_blocked | historical-frq-1969-2010 | 25 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1983-03` | public_release_blocked | historical-frq-1969-2010 | 25 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1983-04` | public_release_blocked | historical-frq-1969-2010 | 25 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1983-05` | public_release_blocked | historical-frq-1969-2010 | 25; 26 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1983-06` | public_release_blocked | historical-frq-1969-2010 | 26 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1984-01` | public_release_blocked | historical-frq-1969-2010 | 26 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1984-02` | public_release_blocked | historical-frq-1969-2010 | 26 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1984-03` | public_release_blocked | historical-frq-1969-2010 | 26; 27 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1984-04` | public_release_blocked | historical-frq-1969-2010 | 27 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1984-05` | public_release_blocked | historical-frq-1969-2010 | 27 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1985-01` | public_release_blocked | historical-frq-1969-2010 | 27; 28 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1985-02` | public_release_blocked | historical-frq-1969-2010 | 28 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1985-03` | public_release_blocked | historical-frq-1969-2010 | 28 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1985-04` | public_release_blocked | historical-frq-1969-2010 | 28 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1985-05` | public_release_blocked | historical-frq-1969-2010 | 28; 29 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1985-06` | public_release_blocked | historical-frq-1969-2010 | 29 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1986-01` | public_release_blocked | historical-frq-1969-2010 | 29 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1986-02` | public_release_blocked | historical-frq-1969-2010 | 29 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1986-03` | public_release_blocked | historical-frq-1969-2010 | 29; 30 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1986-04` | public_release_blocked | historical-frq-1969-2010 | 30 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1986-05` | public_release_blocked | historical-frq-1969-2010 | 30 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1986-06` | public_release_blocked | historical-frq-1969-2010 | 30 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1987-01` | public_release_blocked | historical-frq-1969-2010 | 30 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1987-02` | public_release_blocked | historical-frq-1969-2010 | 30 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1987-03` | public_release_blocked | historical-frq-1969-2010 | 30; 31 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1987-04` | public_release_blocked | historical-frq-1969-2010 | 31 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1987-05` | public_release_blocked | historical-frq-1969-2010 | 31 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1987-06` | public_release_blocked | historical-frq-1969-2010 | 31 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1988-01` | public_release_blocked | historical-frq-1969-2010 | 31; 32 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1988-02` | public_release_blocked | historical-frq-1969-2010 | 32 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1988-03` | public_release_blocked | historical-frq-1969-2010 | 32 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1988-04` | public_release_blocked | historical-frq-1969-2010 | 32 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1988-05` | public_release_blocked | historical-frq-1969-2010 | 32; 33 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1988-06` | public_release_blocked | historical-frq-1969-2010 | 33 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1989-01` | public_release_blocked | historical-frq-1969-2010 | 33 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1989-02` | public_release_blocked | historical-frq-1969-2010 | 33; 26; 27 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1989-03` | public_release_blocked | historical-frq-1969-2010 | 33; 107; 108 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1989-04` | public_release_blocked | historical-frq-1969-2010 | 33; 34 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1989-05` | public_release_blocked | historical-frq-1969-2010 | 34; 59; 60 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1989-06` | public_release_blocked | historical-frq-1969-2010 | 34; 38; 39 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1990-01` | public_release_blocked | historical-frq-1969-2010 | 34; 35 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1990-02` | public_release_blocked | historical-frq-1969-2010 | 35 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1990-03` | public_release_blocked | historical-frq-1969-2010 | 35; 24; 25 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1990-04` | public_release_blocked | historical-frq-1969-2010 | 35; 77; 78 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1990-05` | public_release_blocked | historical-frq-1969-2010 | 35 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1990-06` | public_release_blocked | historical-frq-1969-2010 | 35; 36 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1991-01` | public_release_blocked | historical-frq-1969-2010 | 36 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1991-02` | public_release_blocked | historical-frq-1969-2010 | 36; 22; 23 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1991-03` | public_release_blocked | historical-frq-1969-2010 | 36; 37 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1991-04` | public_release_blocked | historical-frq-1969-2010 | 37 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1991-05` | public_release_blocked | historical-frq-1969-2010 | 37; 111; 112 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1991-06` | public_release_blocked | historical-frq-1969-2010 | 37; 38 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1992-01` | public_release_blocked | historical-frq-1969-2010 | 38 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1992-02` | public_release_blocked | historical-frq-1969-2010 | 38 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1992-03` | public_release_blocked | historical-frq-1969-2010 | 38 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1992-04` | public_release_blocked | historical-frq-1969-2010 | 38; 20; 21 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1992-05` | public_release_blocked | historical-frq-1969-2010 | 38; 39 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1992-06` | public_release_blocked | historical-frq-1969-2010 | 39; 75; 76 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1993-01` | public_release_blocked | historical-frq-1969-2010 | 39 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1993-02` | public_release_blocked | historical-frq-1969-2010 | 39 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1993-03` | public_release_blocked | historical-frq-1969-2010 | 39 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1993-04` | public_release_blocked | historical-frq-1969-2010 | 39; 40 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1993-05` | public_release_blocked | historical-frq-1969-2010 | 40 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1993-06` | public_release_blocked | historical-frq-1969-2010 | 40 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1994-01` | public_release_blocked | historical-frq-1969-2010 | 40 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1994-02` | public_release_blocked | historical-frq-1969-2010 | 40; 41 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1994-03` | public_release_blocked | historical-frq-1969-2010 | 41 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1994-04` | public_release_blocked | historical-frq-1969-2010 | 41 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1994-05` | public_release_blocked | historical-frq-1969-2010 | 41 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1994-06` | public_release_blocked | historical-frq-1969-2010 | 41; 42 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1995-01` | public_release_blocked | historical-frq-1969-2010 | 42 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1995-02` | public_release_blocked | historical-frq-1969-2010 | 42 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1995-03` | public_release_blocked | historical-frq-1969-2010 | 42; 43 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1995-04` | public_release_blocked | historical-frq-1969-2010 | 43 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1995-05` | public_release_blocked | historical-frq-1969-2010 | 43; 44 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1995-06` | public_release_blocked | historical-frq-1969-2010 | 44 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1996-01` | public_release_blocked | historical-frq-1969-2010 | 44; 45 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1996-02` | public_release_blocked | historical-frq-1969-2010 | 45 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1996-03` | public_release_blocked | historical-frq-1969-2010 | 45 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1996-04` | public_release_blocked | historical-frq-1969-2010 | 45; 46 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1996-05` | public_release_blocked | historical-frq-1969-2010 | 46 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1996-06` | public_release_blocked | historical-frq-1969-2010 | 46; 47 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1997-01` | public_release_blocked | historical-frq-1969-2010 | 47 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1997-02` | public_release_blocked | historical-frq-1969-2010 | 47 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1997-03` | public_release_blocked | historical-frq-1969-2010 | 47; 48 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1997-04` | public_release_blocked | historical-frq-1969-2010 | 48 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1997-05` | public_release_blocked | historical-frq-1969-2010 | 48; 49 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1997-06` | public_release_blocked | historical-frq-1969-2010 | 49 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1998-01` | public_release_blocked | historical-frq-1969-2010 | 49; 3 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1998-02` | public_release_blocked | historical-frq-1969-2010 | 49; 50 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1998-03` | public_release_blocked | historical-frq-1969-2010 | 50 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1998-04` | public_release_blocked | historical-frq-1969-2010 | 50; 51; 69 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1998-05` | public_release_blocked | historical-frq-1969-2010 | 51 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1998-06` | public_release_blocked | historical-frq-1969-2010 | 51; 93 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1999-01` | public_release_blocked | historical-frq-1969-2010 | 51 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1999-02` | public_release_blocked | historical-frq-1969-2010 | 51; 52 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1999-03` | public_release_blocked | historical-frq-1969-2010 | 52 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1999-04` | public_release_blocked | historical-frq-1969-2010 | 52; 53 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1999-05` | public_release_blocked | historical-frq-1969-2010 | 53 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-1999-06` | public_release_blocked | historical-frq-1969-2010 | 53; 54 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2000-01` | public_release_blocked | historical-frq-1969-2010 | 54 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2000-02` | public_release_blocked | historical-frq-1969-2010 | 54; 55 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2000-03` | public_release_blocked | historical-frq-1969-2010 | 55; 56 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2000-04` | public_release_blocked | historical-frq-1969-2010 | 56 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2000-05` | public_release_blocked | historical-frq-1969-2010 | 56 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2000-06` | public_release_blocked | historical-frq-1969-2010 | 56; 57 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2001-01` | public_release_blocked | historical-frq-1969-2010 | 57; 6 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2001-02` | public_release_blocked | historical-frq-1969-2010 | 57; 58; 45 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2001-03` | public_release_blocked | historical-frq-1969-2010 | 58; 80 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2001-04` | public_release_blocked | historical-frq-1969-2010 | 58; 116 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2001-05` | public_release_blocked | historical-frq-1969-2010 | 58; 59; 115 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2001-06` | public_release_blocked | historical-frq-1969-2010 | 59; 95 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2002-01` | public_release_blocked | historical-frq-1969-2010 | 59; 8 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2002-02` | public_release_blocked | historical-frq-1969-2010 | 59; 60; 28 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2002-03` | public_release_blocked | historical-frq-1969-2010 | 60; 61; 100 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2002-04` | public_release_blocked | historical-frq-1969-2010 | 61; 82 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2002-05` | public_release_blocked | historical-frq-1969-2010 | 61; 62; 73 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2002-06` | public_release_blocked | historical-frq-1969-2010 | 62; 63; 113 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2002-01-FORM-B` | public_release_blocked | historical-frq-1969-2010 | 63; 7 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2002-02-FORM-B` | public_release_blocked | historical-frq-1969-2010 | 63; 42 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2002-03-FORM-B` | public_release_blocked | historical-frq-1969-2010 | 63; 64; 99 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2002-04-FORM-B` | public_release_blocked | historical-frq-1969-2010 | 64; 81 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2002-05-FORM-B` | public_release_blocked | historical-frq-1969-2010 | 64; 71 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2002-06-FORM-B` | public_release_blocked | historical-frq-1969-2010 | 64; 65; 72 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2003-01` | public_release_blocked | historical-frq-1969-2010 | 65; 9 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2003-02` | public_release_blocked | historical-frq-1969-2010 | 65; 66; 102 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2003-03` | public_release_blocked | historical-frq-1969-2010 | 66; 47 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2003-04` | public_release_blocked | historical-frq-1969-2010 | 66; 67; 84 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2003-05` | public_release_blocked | historical-frq-1969-2010 | 67; 68; 74 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2003-06` | public_release_blocked | historical-frq-1969-2010 | 68; 117 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2003-01-FORM-B` | public_release_blocked | historical-frq-1969-2010 | 68; 69; 125 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2003-02-FORM-B` | public_release_blocked | historical-frq-1969-2010 | 69; 29 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2003-03-FORM-B` | public_release_blocked | historical-frq-1969-2010 | 69; 46 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2003-04-FORM-B` | public_release_blocked | historical-frq-1969-2010 | 69; 70; 101 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2003-05-FORM-B` | public_release_blocked | historical-frq-1969-2010 | 70; 83 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2003-06-FORM-B` | public_release_blocked | historical-frq-1969-2010 | 70; 71; 121 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2004-01` | public_release_blocked | historical-frq-1969-2010 | 71; 31 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2004-02` | public_release_blocked | historical-frq-1969-2010 | 71; 72; 11 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2004-03` | public_release_blocked | historical-frq-1969-2010 | 72; 103 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2004-04` | public_release_blocked | historical-frq-1969-2010 | 72; 96 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2004-05` | public_release_blocked | historical-frq-1969-2010 | 72; 73; 85 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2004-06` | public_release_blocked | historical-frq-1969-2010 | 73; 62 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2004-01-FORM-B` | public_release_blocked | historical-frq-1969-2010 | 73; 10 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2004-02-FORM-B` | public_release_blocked | historical-frq-1969-2010 | 73; 74; 30 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2004-03-FORM-B` | public_release_blocked | historical-frq-1969-2010 | 74; 75; 48 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2004-04-FORM-B` | public_release_blocked | historical-frq-1969-2010 | 75; 56 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2004-05-FORM-B` | public_release_blocked | historical-frq-1969-2010 | 75; 76; 61 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2004-06-FORM-B` | public_release_blocked | historical-frq-1969-2010 | 76; 77; 126 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2005-01` | public_release_blocked | historical-frq-1969-2010 | 77; 13 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2005-02` | public_release_blocked | historical-frq-1969-2010 | 77; 33 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2005-03` | public_release_blocked | historical-frq-1969-2010 | 77; 78; 49 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2005-04` | public_release_blocked | historical-frq-1969-2010 | 78; 79; 109 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2005-05` | public_release_blocked | historical-frq-1969-2010 | 79; 80; 87 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2005-06` | public_release_blocked | historical-frq-1969-2010 | 80; 64 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2006-01` | public_release_blocked | historical-frq-1969-2010 | 80; 15 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2006-02` | public_release_blocked | historical-frq-1969-2010 | 80; 81; 34 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2006-03` | public_release_blocked | historical-frq-1969-2010 | 81; 89 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2006-04` | public_release_blocked | historical-frq-1969-2010 | 81; 82; 51 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2006-05` | public_release_blocked | historical-frq-1969-2010 | 82; 83; 66 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2006-06` | public_release_blocked | historical-frq-1969-2010 | 83; 122 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2007-01` | public_release_blocked | historical-frq-1969-2010 | 83; 84; 17 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2007-02` | public_release_blocked | historical-frq-1969-2010 | 84; 35 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2007-03` | public_release_blocked | historical-frq-1969-2010 | 84; 85; 110 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2007-04` | public_release_blocked | historical-frq-1969-2010 | 85; 106 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2007-05` | public_release_blocked | historical-frq-1969-2010 | 85; 86; 52 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2007-06` | public_release_blocked | historical-frq-1969-2010 | 86; 118 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2007-01-FORM-B` | public_release_blocked | historical-frq-1969-2010 | 86; 16 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2007-02-FORM-B` | public_release_blocked | historical-frq-1969-2010 | 86; 87; 105 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2007-03-FORM-B` | public_release_blocked | historical-frq-1969-2010 | 87 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2007-04-FORM-B` | public_release_blocked | historical-frq-1969-2010 | 87; 90 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2007-05-FORM-B` | public_release_blocked | historical-frq-1969-2010 | 87; 88; 67 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2007-06-FORM-B` | public_release_blocked | historical-frq-1969-2010 | 88; 123 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2008-01` | public_release_blocked | historical-frq-1969-2010 | 88; 89; 19 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2008-02` | public_release_blocked | historical-frq-1969-2010 | 89; 90; 54 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2008-03` | public_release_blocked | historical-frq-1969-2010 | 90; 91; 37 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2008-04` | public_release_blocked | historical-frq-1969-2010 | 91; 58 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2008-05` | public_release_blocked | historical-frq-1969-2010 | 91; 92; 68 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2008-06` | public_release_blocked | historical-frq-1969-2010 | 92; 119 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2008-01-FORM-B` | public_release_blocked | historical-frq-1969-2010 | 92; 93; 18 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2008-02-FORM-B` | public_release_blocked | historical-frq-1969-2010 | 93; 36 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2008-03-FORM-B` | public_release_blocked | historical-frq-1969-2010 | 93; 94; 53 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2008-04-FORM-B` | public_release_blocked | historical-frq-1969-2010 | 94; 128 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2008-05-FORM-B` | public_release_blocked | historical-frq-1969-2010 | 94; 95; 92 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2008-06-FORM-B` | public_release_blocked | historical-frq-1969-2010 | 95 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2009-01` | public_release_blocked | historical-frq-1969-2010 | 95; 96 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2009-02` | public_release_blocked | historical-frq-1969-2010 | 96 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2009-03` | public_release_blocked | historical-frq-1969-2010 | 96; 97 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2009-04` | public_release_blocked | historical-frq-1969-2010 | 97 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2009-05` | public_release_blocked | historical-frq-1969-2010 | 97; 98 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2009-06` | public_release_blocked | historical-frq-1969-2010 | 98 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2009-01-FORM-B` | public_release_blocked | historical-frq-1969-2010 | 98; 99 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2009-02-FORM-B` | public_release_blocked | historical-frq-1969-2010 | 99 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2009-03-FORM-B` | public_release_blocked | historical-frq-1969-2010 | 99; 100 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2009-04-FORM-B` | public_release_blocked | historical-frq-1969-2010 | 100; 101 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2009-05-FORM-B` | public_release_blocked | historical-frq-1969-2010 | 101 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2009-06-FORM-B` | public_release_blocked | historical-frq-1969-2010 | 101; 102 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2010-01` | public_release_blocked | historical-frq-1969-2010 | 102; 103 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2010-02` | public_release_blocked | historical-frq-1969-2010 | 103 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2010-03` | public_release_blocked | historical-frq-1969-2010 | 103; 104 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2010-04` | public_release_blocked | historical-frq-1969-2010 | 104; 105 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2010-05` | public_release_blocked | historical-frq-1969-2010 | 105 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-FRQ-2010-06` | public_release_blocked | historical-frq-1969-2010 | 105 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-SAMPLE-2014-MCQ-001` | public_release_blocked | framework-sample-2014 | 5 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-SAMPLE-2014-MCQ-002` | public_release_blocked | framework-sample-2014 | 6 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-SAMPLE-2014-MCQ-003` | public_release_blocked | framework-sample-2014 | 7 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-SAMPLE-2014-MCQ-004` | public_release_blocked | framework-sample-2014 | 8 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-SAMPLE-2014-MCQ-005` | public_release_blocked | framework-sample-2014 | 9 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-SAMPLE-2014-MCQ-006` | public_release_blocked | framework-sample-2014 | 10 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-SAMPLE-2014-MCQ-007` | public_release_blocked | framework-sample-2014 | 11 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-SAMPLE-2014-MCQ-008` | public_release_blocked | framework-sample-2014 | 12 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-SAMPLE-2014-MCQ-009` | public_release_blocked | framework-sample-2014 | 13 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-SAMPLE-2014-MCQ-010` | public_release_blocked | framework-sample-2014 | 14 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-SAMPLE-2014-MCQ-011` | public_release_blocked | framework-sample-2014 | 15 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-SAMPLE-2014-MCQ-012` | public_release_blocked | framework-sample-2014 | 17 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-SAMPLE-2014-MCQ-013` | public_release_blocked | framework-sample-2014 | 18 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-SAMPLE-2014-MCQ-014` | public_release_blocked | framework-sample-2014 | 19 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-SAMPLE-2014-MCQ-015` | public_release_blocked | framework-sample-2014 | 20 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-SAMPLE-2014-MCQ-016` | public_release_blocked | framework-sample-2014 | 21 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-SAMPLE-2014-FRQ-01` | public_release_blocked | framework-sample-2014 | 22; 27 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-SAMPLE-2014-FRQ-02` | public_release_blocked | framework-sample-2014 | 24; 28 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-BC-SAMPLE-2014-MCQ-001` | public_release_blocked | framework-sample-2014 | 29 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-BC-SAMPLE-2014-MCQ-002` | public_release_blocked | framework-sample-2014 | 30 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-BC-SAMPLE-2014-MCQ-003` | public_release_blocked | framework-sample-2014 | 31 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-BC-SAMPLE-2014-MCQ-004` | public_release_blocked | framework-sample-2014 | 32 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-BC-SAMPLE-2014-MCQ-005` | public_release_blocked | framework-sample-2014 | 33 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-BC-SAMPLE-2014-MCQ-006` | public_release_blocked | framework-sample-2014 | 34 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-BC-SAMPLE-2014-MCQ-007` | public_release_blocked | framework-sample-2014 | 35 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-BC-SAMPLE-2014-MCQ-008` | public_release_blocked | framework-sample-2014 | 36 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-BC-SAMPLE-2014-FRQ-01` | public_release_blocked | framework-sample-2014 | 37; 43 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-BC-SAMPLE-2014-FRQ-02` | public_release_blocked | framework-sample-2014 | 39; 44; 45 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-PRACTICE-2012-MCQ-001` | public_release_blocked | official-ab-practice-2012 | 22 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-PRACTICE-2012-MCQ-002` | public_release_blocked | official-ab-practice-2012 | 22 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-PRACTICE-2012-MCQ-003` | public_release_blocked | official-ab-practice-2012 | 23 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-PRACTICE-2012-MCQ-004` | public_release_blocked | official-ab-practice-2012 | 23 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-PRACTICE-2012-MCQ-005` | public_release_blocked | official-ab-practice-2012 | 24 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-PRACTICE-2012-MCQ-006` | public_release_blocked | official-ab-practice-2012 | 24 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-PRACTICE-2012-MCQ-007` | public_release_blocked | official-ab-practice-2012 | 25 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-PRACTICE-2012-MCQ-008` | public_release_blocked | official-ab-practice-2012 | 25 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-PRACTICE-2012-MCQ-009` | public_release_blocked | official-ab-practice-2012 | 26 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-PRACTICE-2012-MCQ-010` | public_release_blocked | official-ab-practice-2012 | 26 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-PRACTICE-2012-MCQ-011` | public_release_blocked | official-ab-practice-2012 | 27 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-PRACTICE-2012-MCQ-012` | public_release_blocked | official-ab-practice-2012 | 27 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-PRACTICE-2012-MCQ-013` | public_release_blocked | official-ab-practice-2012 | 28 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-PRACTICE-2012-MCQ-014` | public_release_blocked | official-ab-practice-2012 | 28 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-PRACTICE-2012-MCQ-015` | public_release_blocked | official-ab-practice-2012 | 29 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-PRACTICE-2012-MCQ-016` | public_release_blocked | official-ab-practice-2012 | 30 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-PRACTICE-2012-MCQ-017` | public_release_blocked | official-ab-practice-2012 | 31 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-PRACTICE-2012-MCQ-018` | public_release_blocked | official-ab-practice-2012 | 32 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-PRACTICE-2012-MCQ-019` | public_release_blocked | official-ab-practice-2012 | 32 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-PRACTICE-2012-MCQ-020` | public_release_blocked | official-ab-practice-2012 | 33 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-PRACTICE-2012-MCQ-021` | public_release_blocked | official-ab-practice-2012 | 33 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-PRACTICE-2012-MCQ-022` | public_release_blocked | official-ab-practice-2012 | 34 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-PRACTICE-2012-MCQ-023` | public_release_blocked | official-ab-practice-2012 | 34 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-PRACTICE-2012-MCQ-024` | public_release_blocked | official-ab-practice-2012 | 35 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-PRACTICE-2012-MCQ-025` | public_release_blocked | official-ab-practice-2012 | 36 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-PRACTICE-2012-MCQ-026` | public_release_blocked | official-ab-practice-2012 | 37 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-PRACTICE-2012-MCQ-027` | public_release_blocked | official-ab-practice-2012 | 38 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-PRACTICE-2012-MCQ-028` | public_release_blocked | official-ab-practice-2012 | 39 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-PRACTICE-2012-MCQ-076` | public_release_blocked | official-ab-practice-2012 | 41 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-PRACTICE-2012-MCQ-077` | public_release_blocked | official-ab-practice-2012 | 42 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-PRACTICE-2012-MCQ-078` | public_release_blocked | official-ab-practice-2012 | 42 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-PRACTICE-2012-MCQ-079` | public_release_blocked | official-ab-practice-2012 | 43 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-PRACTICE-2012-MCQ-080` | public_release_blocked | official-ab-practice-2012 | 44 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-PRACTICE-2012-MCQ-081` | public_release_blocked | official-ab-practice-2012 | 45 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-PRACTICE-2012-MCQ-082` | public_release_blocked | official-ab-practice-2012 | 45 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-PRACTICE-2012-MCQ-083` | public_release_blocked | official-ab-practice-2012 | 46 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-PRACTICE-2012-MCQ-084` | public_release_blocked | official-ab-practice-2012 | 46 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-PRACTICE-2012-MCQ-085` | public_release_blocked | official-ab-practice-2012 | 47 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-PRACTICE-2012-MCQ-086` | public_release_blocked | official-ab-practice-2012 | 48 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-PRACTICE-2012-MCQ-087` | public_release_blocked | official-ab-practice-2012 | 49 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-PRACTICE-2012-MCQ-088` | public_release_blocked | official-ab-practice-2012 | 50 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-PRACTICE-2012-MCQ-089` | public_release_blocked | official-ab-practice-2012 | 50 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-PRACTICE-2012-MCQ-090` | public_release_blocked | official-ab-practice-2012 | 51 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-PRACTICE-2012-MCQ-091` | public_release_blocked | official-ab-practice-2012 | 51 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-PRACTICE-2012-MCQ-092` | public_release_blocked | official-ab-practice-2012 | 52 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-PRACTICE-2012-FRQ-01` | public_release_blocked | official-ab-practice-2012 | 58; 76 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-PRACTICE-2012-FRQ-02` | public_release_blocked | official-ab-practice-2012 | 60; 77 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-PRACTICE-2012-FRQ-03` | public_release_blocked | official-ab-practice-2012 | 63; 78 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-PRACTICE-2012-FRQ-04` | public_release_blocked | official-ab-practice-2012 | 65; 79 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-PRACTICE-2012-FRQ-05` | public_release_blocked | official-ab-practice-2012 | 67; 80 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-AB-PRACTICE-2012-FRQ-06` | public_release_blocked | official-ab-practice-2012 | 69; 81 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-BC-PRACTICE-2016-MCQ-001` | public_release_blocked | official-bc-practice-2016 | 19 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-BC-PRACTICE-2016-MCQ-002` | public_release_blocked | official-bc-practice-2016 | 19 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-BC-PRACTICE-2016-MCQ-003` | public_release_blocked | official-bc-practice-2016 | 20 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-BC-PRACTICE-2016-MCQ-004` | public_release_blocked | official-bc-practice-2016 | 20 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-BC-PRACTICE-2016-MCQ-005` | public_release_blocked | official-bc-practice-2016 | 21 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-BC-PRACTICE-2016-MCQ-006` | public_release_blocked | official-bc-practice-2016 | 21 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-BC-PRACTICE-2016-MCQ-007` | public_release_blocked | official-bc-practice-2016 | 22 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-BC-PRACTICE-2016-MCQ-008` | public_release_blocked | official-bc-practice-2016 | 22 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-BC-PRACTICE-2016-MCQ-009` | public_release_blocked | official-bc-practice-2016 | 23 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-BC-PRACTICE-2016-MCQ-010` | public_release_blocked | official-bc-practice-2016 | 24 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-BC-PRACTICE-2016-MCQ-011` | public_release_blocked | official-bc-practice-2016 | 25 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-BC-PRACTICE-2016-MCQ-012` | public_release_blocked | official-bc-practice-2016 | 25 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-BC-PRACTICE-2016-MCQ-013` | public_release_blocked | official-bc-practice-2016 | 26 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-BC-PRACTICE-2016-MCQ-014` | public_release_blocked | official-bc-practice-2016 | 27 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-BC-PRACTICE-2016-MCQ-015` | public_release_blocked | official-bc-practice-2016 | 28 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-BC-PRACTICE-2016-MCQ-016` | public_release_blocked | official-bc-practice-2016 | 28 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-BC-PRACTICE-2016-MCQ-017` | public_release_blocked | official-bc-practice-2016 | 29 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-BC-PRACTICE-2016-MCQ-018` | public_release_blocked | official-bc-practice-2016 | 29 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-BC-PRACTICE-2016-MCQ-019` | public_release_blocked | official-bc-practice-2016 | 30 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-BC-PRACTICE-2016-MCQ-020` | public_release_blocked | official-bc-practice-2016 | 30 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-BC-PRACTICE-2016-MCQ-021` | public_release_blocked | official-bc-practice-2016 | 31 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-BC-PRACTICE-2016-MCQ-022` | public_release_blocked | official-bc-practice-2016 | 31 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-BC-PRACTICE-2016-MCQ-023` | public_release_blocked | official-bc-practice-2016 | 32 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-BC-PRACTICE-2016-MCQ-024` | public_release_blocked | official-bc-practice-2016 | 33 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-BC-PRACTICE-2016-MCQ-025` | public_release_blocked | official-bc-practice-2016 | 33 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-BC-PRACTICE-2016-MCQ-026` | public_release_blocked | official-bc-practice-2016 | 34 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-BC-PRACTICE-2016-MCQ-027` | public_release_blocked | official-bc-practice-2016 | 35 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-BC-PRACTICE-2016-MCQ-028` | public_release_blocked | official-bc-practice-2016 | 36 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-BC-PRACTICE-2016-MCQ-076` | public_release_blocked | official-bc-practice-2016 | 38 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-BC-PRACTICE-2016-MCQ-077` | public_release_blocked | official-bc-practice-2016 | 38 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-BC-PRACTICE-2016-MCQ-078` | public_release_blocked | official-bc-practice-2016 | 39 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-BC-PRACTICE-2016-MCQ-079` | public_release_blocked | official-bc-practice-2016 | 39 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-BC-PRACTICE-2016-MCQ-080` | public_release_blocked | official-bc-practice-2016 | 40 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-BC-PRACTICE-2016-MCQ-081` | public_release_blocked | official-bc-practice-2016 | 41 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-BC-PRACTICE-2016-MCQ-082` | public_release_blocked | official-bc-practice-2016 | 41 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-BC-PRACTICE-2016-MCQ-083` | public_release_blocked | official-bc-practice-2016 | 42 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-BC-PRACTICE-2016-MCQ-084` | public_release_blocked | official-bc-practice-2016 | 43 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-BC-PRACTICE-2016-MCQ-085` | public_release_blocked | official-bc-practice-2016 | 44 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-BC-PRACTICE-2016-MCQ-086` | public_release_blocked | official-bc-practice-2016 | 45 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-BC-PRACTICE-2016-MCQ-087` | public_release_blocked | official-bc-practice-2016 | 45 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-BC-PRACTICE-2016-MCQ-088` | public_release_blocked | official-bc-practice-2016 | 46 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-BC-PRACTICE-2016-MCQ-089` | public_release_blocked | official-bc-practice-2016 | 46 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-BC-PRACTICE-2016-MCQ-090` | public_release_blocked | official-bc-practice-2016 | 47 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-BC-PRACTICE-2016-MCQ-091` | public_release_blocked | official-bc-practice-2016 | 48 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-BC-PRACTICE-2016-MCQ-092` | public_release_blocked | official-bc-practice-2016 | 49 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-BC-PRACTICE-2016-FRQ-01` | public_release_blocked | official-bc-practice-2016 | 54; 72 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-BC-PRACTICE-2016-FRQ-02` | public_release_blocked | official-bc-practice-2016 | 56; 73 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-BC-PRACTICE-2016-FRQ-03` | public_release_blocked | official-bc-practice-2016 | 60; 74 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-BC-PRACTICE-2016-FRQ-04` | public_release_blocked | official-bc-practice-2016 | 62; 75 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-BC-PRACTICE-2016-FRQ-05` | public_release_blocked | official-bc-practice-2016 | 64; 76 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `APCALC-BC-PRACTICE-2016-FRQ-06` | public_release_blocked | official-bc-practice-2016 | 66; 77 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `LUCID-AB-PRACTICE-2015-MCQ-001` | public_release_blocked | lucid-ab-practice-2015 | 3 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `LUCID-AB-PRACTICE-2015-MCQ-002` | public_release_blocked | lucid-ab-practice-2015 | 3 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `LUCID-AB-PRACTICE-2015-MCQ-003` | public_release_blocked | lucid-ab-practice-2015 | 4 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `LUCID-AB-PRACTICE-2015-MCQ-004` | public_release_blocked | lucid-ab-practice-2015 | 4 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `LUCID-AB-PRACTICE-2015-MCQ-005` | public_release_blocked | lucid-ab-practice-2015 | 5 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `LUCID-AB-PRACTICE-2015-MCQ-006` | public_release_blocked | lucid-ab-practice-2015 | 5 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `LUCID-AB-PRACTICE-2015-MCQ-007` | public_release_blocked | lucid-ab-practice-2015 | 6 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `LUCID-AB-PRACTICE-2015-MCQ-008` | public_release_blocked | lucid-ab-practice-2015 | 6 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `LUCID-AB-PRACTICE-2015-MCQ-009` | public_release_blocked | lucid-ab-practice-2015 | 7 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `LUCID-AB-PRACTICE-2015-MCQ-010` | public_release_blocked | lucid-ab-practice-2015 | 7 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `LUCID-AB-PRACTICE-2015-MCQ-011` | public_release_blocked | lucid-ab-practice-2015 | 8 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `LUCID-AB-PRACTICE-2015-MCQ-012` | public_release_blocked | lucid-ab-practice-2015 | 8 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `LUCID-AB-PRACTICE-2015-MCQ-013` | public_release_blocked | lucid-ab-practice-2015 | 9 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `LUCID-AB-PRACTICE-2015-MCQ-014` | public_release_blocked | lucid-ab-practice-2015 | 9 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `LUCID-AB-PRACTICE-2015-MCQ-015` | public_release_blocked | lucid-ab-practice-2015 | 10 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `LUCID-AB-PRACTICE-2015-MCQ-016` | public_release_blocked | lucid-ab-practice-2015 | 10 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `LUCID-AB-PRACTICE-2015-MCQ-017` | public_release_blocked | lucid-ab-practice-2015 | 11 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `LUCID-AB-PRACTICE-2015-MCQ-018` | public_release_blocked | lucid-ab-practice-2015 | 11 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `LUCID-AB-PRACTICE-2015-MCQ-019` | public_release_blocked | lucid-ab-practice-2015 | 12 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `LUCID-AB-PRACTICE-2015-MCQ-020` | public_release_blocked | lucid-ab-practice-2015 | 12 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `LUCID-AB-PRACTICE-2015-MCQ-021` | public_release_blocked | lucid-ab-practice-2015 | 13 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `LUCID-AB-PRACTICE-2015-MCQ-022` | public_release_blocked | lucid-ab-practice-2015 | 13 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `LUCID-AB-PRACTICE-2015-MCQ-023` | public_release_blocked | lucid-ab-practice-2015 | 14 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `LUCID-AB-PRACTICE-2015-MCQ-024` | public_release_blocked | lucid-ab-practice-2015 | 14 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `LUCID-AB-PRACTICE-2015-MCQ-025` | public_release_blocked | lucid-ab-practice-2015 | 15 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `LUCID-AB-PRACTICE-2015-MCQ-026` | public_release_blocked | lucid-ab-practice-2015 | 15 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `LUCID-AB-PRACTICE-2015-MCQ-027` | public_release_blocked | lucid-ab-practice-2015 | 16 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `LUCID-AB-PRACTICE-2015-MCQ-028` | public_release_blocked | lucid-ab-practice-2015 | 16 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `LUCID-AB-PRACTICE-2015-MCQ-076` | public_release_blocked | lucid-ab-practice-2015 | 18 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `LUCID-AB-PRACTICE-2015-MCQ-077` | public_release_blocked | lucid-ab-practice-2015 | 18 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `LUCID-AB-PRACTICE-2015-MCQ-078` | public_release_blocked | lucid-ab-practice-2015 | 19 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `LUCID-AB-PRACTICE-2015-MCQ-079` | public_release_blocked | lucid-ab-practice-2015 | 19 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `LUCID-AB-PRACTICE-2015-MCQ-080` | public_release_blocked | lucid-ab-practice-2015 | 20 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `LUCID-AB-PRACTICE-2015-MCQ-081` | public_release_blocked | lucid-ab-practice-2015 | 20 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `LUCID-AB-PRACTICE-2015-MCQ-082` | public_release_blocked | lucid-ab-practice-2015 | 21 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `LUCID-AB-PRACTICE-2015-MCQ-083` | public_release_blocked | lucid-ab-practice-2015 | 21 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `LUCID-AB-PRACTICE-2015-MCQ-084` | public_release_blocked | lucid-ab-practice-2015 | 22 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `LUCID-AB-PRACTICE-2015-MCQ-085` | public_release_blocked | lucid-ab-practice-2015 | 22 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `LUCID-AB-PRACTICE-2015-MCQ-086` | public_release_blocked | lucid-ab-practice-2015 | 23 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `LUCID-AB-PRACTICE-2015-MCQ-087` | public_release_blocked | lucid-ab-practice-2015 | 23 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `LUCID-AB-PRACTICE-2015-MCQ-088` | public_release_blocked | lucid-ab-practice-2015 | 24 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `LUCID-AB-PRACTICE-2015-MCQ-089` | public_release_blocked | lucid-ab-practice-2015 | 24 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `LUCID-AB-PRACTICE-2015-MCQ-090` | public_release_blocked | lucid-ab-practice-2015 | 25 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `LUCID-AB-PRACTICE-2015-MCQ-091` | public_release_blocked | lucid-ab-practice-2015 | 25 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `LUCID-AB-PRACTICE-2015-MCQ-092` | public_release_blocked | lucid-ab-practice-2015 | 26 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `LUCID-AB-PRACTICE-2015-FRQ-01` | public_release_blocked | lucid-ab-practice-2015 | 28; 39 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `LUCID-AB-PRACTICE-2015-FRQ-02` | public_release_blocked | lucid-ab-practice-2015 | 29; 30; 31; 40 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `LUCID-AB-PRACTICE-2015-FRQ-03` | public_release_blocked | lucid-ab-practice-2015 | 32; 41; 42 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `LUCID-AB-PRACTICE-2015-FRQ-04` | public_release_blocked | lucid-ab-practice-2015 | 33; 43 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `LUCID-AB-PRACTICE-2015-FRQ-05` | public_release_blocked | lucid-ab-practice-2015 | 34; 44; 45 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `LUCID-AB-PRACTICE-2015-FRQ-06` | public_release_blocked | lucid-ab-practice-2015 | 35; 45; 46 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `MYMAXSCORE-AB-PRACTICE-MCQ-001` | public_release_blocked | my-max-score-ab-practice | 1; 15 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `MYMAXSCORE-AB-PRACTICE-MCQ-002` | public_release_blocked | my-max-score-ab-practice | 2; 15 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `MYMAXSCORE-AB-PRACTICE-MCQ-003` | public_release_blocked | my-max-score-ab-practice | 2; 15 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `MYMAXSCORE-AB-PRACTICE-MCQ-004` | public_release_blocked | my-max-score-ab-practice | 2; 15 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `MYMAXSCORE-AB-PRACTICE-MCQ-005` | public_release_blocked | my-max-score-ab-practice | 2; 15 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `MYMAXSCORE-AB-PRACTICE-MCQ-006` | public_release_blocked | my-max-score-ab-practice | 2; 15 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `MYMAXSCORE-AB-PRACTICE-MCQ-007` | public_release_blocked | my-max-score-ab-practice | 2; 15 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `MYMAXSCORE-AB-PRACTICE-MCQ-008` | public_release_blocked | my-max-score-ab-practice | 3; 15 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `MYMAXSCORE-AB-PRACTICE-MCQ-009` | public_release_blocked | my-max-score-ab-practice | 3; 15 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `MYMAXSCORE-AB-PRACTICE-MCQ-010` | public_release_blocked | my-max-score-ab-practice | 3; 15 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `MYMAXSCORE-AB-PRACTICE-MCQ-011` | public_release_blocked | my-max-score-ab-practice | 3; 15 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `MYMAXSCORE-AB-PRACTICE-MCQ-012` | public_release_blocked | my-max-score-ab-practice | 3; 15 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `MYMAXSCORE-AB-PRACTICE-MCQ-013` | public_release_blocked | my-max-score-ab-practice | 3; 16 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `MYMAXSCORE-AB-PRACTICE-MCQ-014` | public_release_blocked | my-max-score-ab-practice | 3; 16 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `MYMAXSCORE-AB-PRACTICE-MCQ-015` | public_release_blocked | my-max-score-ab-practice | 4; 16 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `MYMAXSCORE-AB-PRACTICE-MCQ-016` | public_release_blocked | my-max-score-ab-practice | 4; 16 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `MYMAXSCORE-AB-PRACTICE-MCQ-017` | public_release_blocked | my-max-score-ab-practice | 4; 16 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `MYMAXSCORE-AB-PRACTICE-MCQ-018` | public_release_blocked | my-max-score-ab-practice | 4; 16 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `MYMAXSCORE-AB-PRACTICE-MCQ-019` | public_release_blocked | my-max-score-ab-practice | 4; 16 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `MYMAXSCORE-AB-PRACTICE-MCQ-020` | public_release_blocked | my-max-score-ab-practice | 4; 16 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `MYMAXSCORE-AB-PRACTICE-MCQ-021` | public_release_blocked | my-max-score-ab-practice | 5; 16 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `MYMAXSCORE-AB-PRACTICE-MCQ-022` | public_release_blocked | my-max-score-ab-practice | 5; 17 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `MYMAXSCORE-AB-PRACTICE-MCQ-023` | public_release_blocked | my-max-score-ab-practice | 6; 17 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `MYMAXSCORE-AB-PRACTICE-MCQ-024` | public_release_blocked | my-max-score-ab-practice | 6; 17 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `MYMAXSCORE-AB-PRACTICE-MCQ-025` | public_release_blocked | my-max-score-ab-practice | 7; 17 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `MYMAXSCORE-AB-PRACTICE-MCQ-026` | public_release_blocked | my-max-score-ab-practice | 7; 17 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `MYMAXSCORE-AB-PRACTICE-MCQ-027` | public_release_blocked | my-max-score-ab-practice | 7; 17 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `MYMAXSCORE-AB-PRACTICE-MCQ-028` | public_release_blocked | my-max-score-ab-practice | 7; 17 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `MYMAXSCORE-AB-PRACTICE-MCQ-029` | public_release_blocked | my-max-score-ab-practice | 8; 17 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `MYMAXSCORE-AB-PRACTICE-MCQ-030` | public_release_blocked | my-max-score-ab-practice | 8; 18 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `MYMAXSCORE-AB-PRACTICE-MCQ-031` | public_release_blocked | my-max-score-ab-practice | 8; 18 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `MYMAXSCORE-AB-PRACTICE-MCQ-032` | public_release_blocked | my-max-score-ab-practice | 9; 18 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `MYMAXSCORE-AB-PRACTICE-MCQ-033` | public_release_blocked | my-max-score-ab-practice | 9; 18 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `MYMAXSCORE-AB-PRACTICE-MCQ-034` | public_release_blocked | my-max-score-ab-practice | 9; 18 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `MYMAXSCORE-AB-PRACTICE-MCQ-035` | public_release_blocked | my-max-score-ab-practice | 10; 18 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `MYMAXSCORE-AB-PRACTICE-MCQ-036` | public_release_blocked | my-max-score-ab-practice | 10; 18 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `MYMAXSCORE-AB-PRACTICE-MCQ-037` | public_release_blocked | my-max-score-ab-practice | 10; 18 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `MYMAXSCORE-AB-PRACTICE-MCQ-038` | public_release_blocked | my-max-score-ab-practice | 10; 18 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `MYMAXSCORE-AB-PRACTICE-MCQ-039` | public_release_blocked | my-max-score-ab-practice | 10; 18 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `MYMAXSCORE-AB-PRACTICE-MCQ-040` | public_release_blocked | my-max-score-ab-practice | 11; 19 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `MYMAXSCORE-AB-PRACTICE-MCQ-041` | public_release_blocked | my-max-score-ab-practice | 11; 19 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `MYMAXSCORE-AB-PRACTICE-MCQ-042` | public_release_blocked | my-max-score-ab-practice | 11; 19 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `MYMAXSCORE-AB-PRACTICE-MCQ-043` | public_release_blocked | my-max-score-ab-practice | 11; 19 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `MYMAXSCORE-AB-PRACTICE-MCQ-044` | public_release_blocked | my-max-score-ab-practice | 11; 19 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `MYMAXSCORE-AB-PRACTICE-MCQ-045` | public_release_blocked | my-max-score-ab-practice | 11; 19 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `MYMAXSCORE-AB-PRACTICE-FRQ-01` | public_release_blocked | my-max-score-ab-practice | 12; 19 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `MYMAXSCORE-AB-PRACTICE-FRQ-02` | public_release_blocked | my-max-score-ab-practice | 13; 19 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `MYMAXSCORE-AB-PRACTICE-FRQ-03` | public_release_blocked | my-max-score-ab-practice | 13; 20 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `MYMAXSCORE-AB-PRACTICE-FRQ-04` | public_release_blocked | my-max-score-ab-practice | 14; 20 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `MYMAXSCORE-AB-PRACTICE-FRQ-05` | public_release_blocked | my-max-score-ab-practice | 14; 21 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `MYMAXSCORE-AB-PRACTICE-FRQ-06` | public_release_blocked | my-max-score-ab-practice | 14; 21 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `ECHS-BC-CH7-8-2015-MCQ-001` | public_release_blocked | echs-bc-ch7-8-2015 | 1 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `ECHS-BC-CH7-8-2015-MCQ-002` | public_release_blocked | echs-bc-ch7-8-2015 | 1 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `ECHS-BC-CH7-8-2015-MCQ-003` | public_release_blocked | echs-bc-ch7-8-2015 | 1 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `ECHS-BC-CH7-8-2015-MCQ-004` | public_release_blocked | echs-bc-ch7-8-2015 | 2 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `ECHS-BC-CH7-8-2015-MCQ-005` | public_release_blocked | echs-bc-ch7-8-2015 | 2 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `ECHS-BC-CH7-8-2015-MCQ-006` | public_release_blocked | echs-bc-ch7-8-2015 | 2 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `ECHS-BC-CH7-8-2015-MCQ-007` | public_release_blocked | echs-bc-ch7-8-2015 | 3 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `ECHS-BC-CH7-8-2015-MCQ-008` | public_release_blocked | echs-bc-ch7-8-2015 | 3 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `ECHS-BC-CH7-8-2015-MCQ-009` | public_release_blocked | echs-bc-ch7-8-2015 | 3 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |
+| `ECHS-BC-CH7-8-2015-FRQ-14` | public_release_blocked | echs-bc-ch7-8-2015 | 4 | verified | Keep redacted from public student practice; verify source/transcription and obtain release authorization before promotion. |

@@ -1,0 +1,21 @@
+{
+  "schemaVersion":"1.0.0",
+  "generatedAt":"2026-07-25T00:35:00+00:00",
+  "scope":"1979 AP Calculus AB FRQs source-compared and independently solved; admin-only correction overlay.",
+  "defaults":{
+    "verificationStatus":"independently-verified-source-compared",
+    "answerConfidence":1.0,
+    "quality":{"completeness":"complete-verified","productionStatus":"teacher-archive-only","productionReadiness":0.98,"tutoringReadiness":0.98,"needsReview":true,"reviewReasons":["Rights/permission review required before public publication."],"transcriptionVerified":true,"answerVerified":true,"mediaVerified":true,"privateStudentAccess":true,"mathematicalVerificationPassed":true,"katexVerified":true,"mappingVerified":true,"studentReadyGatePassed":false},
+    "studentEligible":false,"studentAccessible":false,"deploymentAccess":"teacher-archive-only","contentStatus":"complete","studentReady":false,
+    "audit":{"sourceChecked":true,"transcriptionStatus":"verified","stemStatus":"verified","choicesStatus":"not_applicable","answerStatus":"verified","solutionStatus":"verified","katexStatus":"verified","mediaStatus":"verified","courseMappingStatus":"verified","unitMappingStatus":"verified","topicMappingStatus":"verified","lessonMappingStatus":"verified","calculatorStatus":"verified","overallStatus":"teacher-archive-only","correctionsMade":0,"reviewRequired":true,"reviewerNotes":"Rendered source page compared question-by-question and every part independently solved. Wording, answers, KaTeX, media, calculator designation, and mathematical mapping are verified. The record remains teacher/archive-only solely because public-publication permission is not established.","auditedAt":"2026-07-25T00:35:00+00:00"}
+  },
+  "records":[
+    {"id":"APCALC-AB-FRQ-1979-01","audit":{"sourcePage":"19","correctionsMade":0}},
+    {"id":"APCALC-AB-FRQ-1979-02","audit":{"sourcePage":"19","correctionsMade":0}},
+    {"id":"APCALC-AB-FRQ-1979-03","audit":{"sourcePage":"19","correctionsMade":0}},
+    {"id":"APCALC-AB-FRQ-1979-04","audit":{"sourcePage":"19","correctionsMade":0}},
+    {"id":"APCALC-AB-FRQ-1979-05","audit":{"sourcePage":"19","correctionsMade":0}},
+    {"id":"APCALC-AB-FRQ-1979-06","audit":{"sourcePage":"20","correctionsMade":0}},
+    {"id":"APCALC-AB-FRQ-1979-07","audit":{"sourcePage":"20","correctionsMade":0}}
+  ]
+}

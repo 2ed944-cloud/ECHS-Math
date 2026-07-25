@@ -2,6 +2,10 @@
 
 Generated: 2026-07-24T17:46:03+00:00
 
+Strict release note (2026-07-25): this inventory covers all canonical media.
+Only media attached to the 52 records that pass every public student-readiness
+gate is included in the student runtime; all restricted media remains excluded.
+
 - Canonical questions: **1217**
 - Media references with file paths: **1583**
 - Unique referenced file paths: **1095**

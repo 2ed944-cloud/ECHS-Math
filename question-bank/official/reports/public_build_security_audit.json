@@ -1,15 +1,15 @@
 {
-  "generatedAt": "2026-07-24T18:22:04+00:00",
-  "studentRuntimeQuestionCount": 352,
+  "generatedAt": "2026-07-24T21:33:52+00:00",
+  "studentRuntimeQuestionCount": 52,
   "studentArchiveMetadataCount": 1217,
-  "studentReadyArchiveContentCount": 352,
-  "restrictedArchiveRecordCount": 865,
+  "studentReadyArchiveContentCount": 52,
+  "restrictedArchiveRecordCount": 1165,
   "restrictedPromptsLeaked": 0,
   "restrictedChoicesLeaked": 0,
   "restrictedAnswersLeaked": 0,
   "restrictedSolutionsOrRubricsLeaked": 0,
   "restrictedMediaLeaked": 0,
-  "teacherNavigationLinksOnStudentPages": 0,
+  "nonPublicRecordsInStudentRuntime": 0,
   "staticAdminSeparationIsAuthentication": false,
-  "status": "PASS"
+  "status": "PASS WITH RESTRICTIONS"
 }

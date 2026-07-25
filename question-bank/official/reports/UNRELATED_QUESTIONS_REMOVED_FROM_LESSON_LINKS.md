@@ -2,7 +2,10 @@
 
 Generated: 2026-07-24T14:43:26+00:00
 
-The v5 filter no longer broadens an exact lesson request to an entire unit. The records below were reassigned or withheld from automatic lesson-linked practice.
+The strict public filter does not broaden an exact lesson request to an entire
+unit. The records below were reassigned or withheld from automatic
+lesson-linked practice; the public runtime additionally requires every other
+student-readiness gate to pass.
 
 | lesson | question_id | previous_mapping | corrected_mapping | reason_for_removal |
 | --- | --- | --- | --- | --- |

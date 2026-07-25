@@ -1,0 +1,105 @@
+{
+  "schemaVersion": "1.0.0",
+  "generatedAt": "2026-07-24T22:15:00+00:00",
+  "scope": "1971–1975 AP Calculus AB FRQs independently source-compared and solved; no student promotion because publication rights are unresolved.",
+  "defaults": {
+    "verificationStatus": "independently-verified-source-compared",
+    "answerConfidence": 1.0,
+    "quality": {
+      "completeness": "complete-verified",
+      "productionStatus": "teacher-archive-only",
+      "productionReadiness": 0.98,
+      "tutoringReadiness": 0.98,
+      "needsReview": true,
+      "reviewReasons": [
+        "Rights/permission review required before public publication."
+      ],
+      "transcriptionVerified": true,
+      "answerVerified": true,
+      "mediaVerified": true,
+      "privateStudentAccess": true,
+      "mathematicalVerificationPassed": true,
+      "katexVerified": true,
+      "mappingVerified": true,
+      "studentReadyGatePassed": false
+    },
+    "studentEligible": false,
+    "studentAccessible": false,
+    "deploymentAccess": "teacher-archive-only",
+    "contentStatus": "complete",
+    "studentReady": false,
+    "audit": {
+      "sourceChecked": true,
+      "transcriptionStatus": "verified",
+      "stemStatus": "verified",
+      "choicesStatus": "not_applicable",
+      "answerStatus": "verified",
+      "solutionStatus": "verified",
+      "katexStatus": "verified",
+      "mediaStatus": "verified",
+      "courseMappingStatus": "verified",
+      "unitMappingStatus": "verified",
+      "topicMappingStatus": "verified",
+      "lessonMappingStatus": "verified",
+      "calculatorStatus": "verified",
+      "overallStatus": "teacher-archive-only",
+      "correctionsMade": 0,
+      "reviewRequired": true,
+      "reviewerNotes": "Rendered source page compared question-by-question and every part independently solved. Wording, answers, KaTeX, media, calculator designation, and mathematical mapping are verified. The record remains teacher/archive-only solely because public-publication permission is not established.",
+      "auditedAt": "2026-07-24T22:15:00+00:00"
+    }
+  },
+  "records": [
+    {"id":"APCALC-AB-FRQ-1971-01","audit":{"sourcePage":"7","correctionsMade":0}},
+    {"id":"APCALC-AB-FRQ-1971-02","audit":{"sourcePage":"7","correctionsMade":0}},
+    {"id":"APCALC-AB-FRQ-1971-03","audit":{"sourcePage":"7","correctionsMade":0}},
+    {"id":"APCALC-AB-FRQ-1971-04","audit":{"sourcePage":"7","correctionsMade":0}},
+    {"id":"APCALC-AB-FRQ-1971-05","audit":{"sourcePage":"7","correctionsMade":0}},
+    {"id":"APCALC-AB-FRQ-1971-06","audit":{"sourcePage":"7; 8","correctionsMade":0}},
+    {"id":"APCALC-AB-FRQ-1971-07","audit":{"sourcePage":"8","correctionsMade":0}},
+    {"id":"APCALC-AB-FRQ-1972-01","audit":{"sourcePage":"8","correctionsMade":0}},
+    {"id":"APCALC-AB-FRQ-1972-02","audit":{"sourcePage":"8","correctionsMade":0}},
+    {"id":"APCALC-AB-FRQ-1972-03","audit":{"sourcePage":"8","correctionsMade":0}},
+    {"id":"APCALC-AB-FRQ-1972-04","audit":{"sourcePage":"8; 9","correctionsMade":0}},
+    {"id":"APCALC-AB-FRQ-1972-05","audit":{"sourcePage":"9","correctionsMade":0}},
+    {"id":"APCALC-AB-FRQ-1972-06","audit":{"sourcePage":"9","correctionsMade":0}},
+    {"id":"APCALC-AB-FRQ-1972-07","audit":{"sourcePage":"9","correctionsMade":0}},
+    {"id":"APCALC-AB-FRQ-1973-01","audit":{"sourcePage":"9","correctionsMade":0}},
+    {"id":"APCALC-AB-FRQ-1973-02","audit":{"sourcePage":"9; 10","correctionsMade":0}},
+    {"id":"APCALC-AB-FRQ-1973-03","audit":{"sourcePage":"10","correctionsMade":0}},
+    {"id":"APCALC-AB-FRQ-1973-04","audit":{"sourcePage":"10","correctionsMade":0}},
+    {"id":"APCALC-AB-FRQ-1973-05","audit":{"sourcePage":"10","correctionsMade":0}},
+    {"id":"APCALC-AB-FRQ-1973-06","audit":{"sourcePage":"10","correctionsMade":0}},
+    {"id":"APCALC-AB-FRQ-1973-07","audit":{"sourcePage":"10; 11","correctionsMade":0}},
+    {
+      "id":"APCALC-AB-FRQ-1974-01","audit":{"sourcePage":"11","correctionsMade":5},
+      "prompt":"Given\n\\[\nf(x)=|\\sin x|,\\qquad -\\pi\\le x\\le\\pi,\n\\]\nand\n\\[\ng(x)=x^2\n\\]\nfor all real values of \\(x\\).",
+      "partsPatches":[
+        {"label":"(a)","answer":"On \\([-\\pi,0]\\), \\(\\sin x\\le0\\), so \\(f(x)=-\\sin x\\). On \\([0,\\pi]\\), \\(f(x)=\\sin x\\). Thus the graph consists of two nonnegative sine arches, with included zeros at \\(x=-\\pi,0,\\pi\\) and maxima \\(1\\) at \\(x=\\pm\\frac{\\pi}{2}\\).","rubric":[{"criterionId":"A1","description":"1 point for reflecting the negative sine arch above the \\(x\\)-axis.","points":null,"evidenceRequired":"1 point for reflecting the negative sine arch above the \\(x\\)-axis.","commonErrors":[],"rubricType":"ECHS interpreted rubric"},{"criterionId":"A2","description":"1 point for the correct key points and included endpoints at \\(x=\\pm\\pi\\).","points":null,"evidenceRequired":"1 point for the correct key points and included endpoints at \\(x=\\pm\\pi\\).","commonErrors":[],"rubricType":"ECHS interpreted rubric"}]},
+        {"label":"(c)","answer":"The composition uses the same allowed inputs as \\(f\\), because \\(g\\) is defined for every real input. Hence\n\\[\n\\operatorname{Dom}(H)=\\boxed{[-\\pi,\\pi]}.\n\\]\nSince \\(0\\leq\\sin^2x\\leq1\\), and both values are attained,\n\\[\n\\operatorname{Range}(H)=\\boxed{[0,1]}.\n\\]","rubric":[{"criterionId":"C1","description":"1 point for the domain \\([-\\pi,\\pi]\\).","points":null,"evidenceRequired":"1 point for the domain \\([-\\pi,\\pi]\\).","commonErrors":[],"rubricType":"ECHS interpreted rubric"},{"criterionId":"C2","description":"1 point for showing \\(0\\le H(x)\\le1\\).","points":null,"evidenceRequired":"1 point for showing \\(0\\le H(x)\\le1\\).","commonErrors":[],"rubricType":"ECHS interpreted rubric"},{"criterionId":"C3","description":"1 point for the range \\([0,1]\\).","points":null,"evidenceRequired":"1 point for the range \\([0,1]\\).","commonErrors":[],"rubricType":"ECHS interpreted rubric"}]}
+      ]
+    },
+    {"id":"APCALC-AB-FRQ-1974-02","audit":{"sourcePage":"11","correctionsMade":0}},
+    {"id":"APCALC-AB-FRQ-1974-03","audit":{"sourcePage":"11","correctionsMade":2},"prompt":"Let\n\\[\nf(x)=kx^2+c.\n\\]","partsPatches":[{"label":"(a)","answer":"If \\(k=0\\), both tangent lines are horizontal, so no such perpendicular pair exists. For \\(k\\ne0\\), since \\(f'(x)=2kx\\), the two slopes at \\(x_0\\) and \\(-x_0\\) are \\(2kx_0\\) and \\(-2kx_0\\). Their product must be \\(-1\\):\n\\[\n(2kx_0)(-2kx_0)=-1.\n\\]\nThus \\(4k^2x_0^2=1\\). One convenient choice is\n\\[\n\\boxed{x_0=\\frac1{2k}},\n\\]\nand the opposite choice merely interchanges the two tangent points."}]},
+    {"id":"APCALC-AB-FRQ-1974-04","audit":{"sourcePage":"11","correctionsMade":0}},
+    {"id":"APCALC-AB-FRQ-1974-05","audit":{"sourcePage":"11; 12","correctionsMade":0}},
+    {"id":"APCALC-AB-FRQ-1974-06","audit":{"sourcePage":"12","correctionsMade":0}},
+    {"id":"APCALC-AB-FRQ-1974-07","audit":{"sourcePage":"12","correctionsMade":0}},
+    {"id":"APCALC-AB-FRQ-1975-01","audit":{"sourcePage":"12","correctionsMade":0}},
+    {"id":"APCALC-AB-FRQ-1975-02","audit":{"sourcePage":"12; 13","correctionsMade":0}},
+    {
+      "id":"APCALC-AB-FRQ-1975-03","audit":{"sourcePage":"13","correctionsMade":8},
+      "prompt":"The function \\(f\\) is defined for every real number by\n\\[\nf(x)=2|x-1|x^2.\n\\]",
+      "partsPatches":[
+        {"label":"(a)","answer":"Because \\(2|x-1|x^2\\ge0\\), and it equals \\(0\\) at \\(x=0\\) and \\(x=1\\), the minimum value is \\(0\\). Also \\(f(x)\\to\\infty\\) as \\(x\\to\\pm\\infty\\). Therefore\n\\[\n\\boxed{\\operatorname{Range}(f)=[0,\\infty)}.\n\\]","rubric":[{"criterionId":"A1","description":"1 point for recognizing \\(f(x)\\ge0\\).","points":null,"evidenceRequired":"1 point for recognizing \\(f(x)\\ge0\\).","commonErrors":[],"rubricType":"ECHS interpreted rubric"},{"criterionId":"A2","description":"1 point for identifying that \\(0\\) is attained at \\(x=0\\) and \\(x=1\\).","points":null,"evidenceRequired":"1 point for identifying that \\(0\\) is attained at \\(x=0\\) and \\(x=1\\).","commonErrors":[],"rubricType":"ECHS interpreted rubric"},{"criterionId":"A3","description":"1 point for the range \\([0,\\infty)\\).","points":null,"evidenceRequired":"1 point for the range \\([0,\\infty)\\).","commonErrors":[],"rubricType":"ECHS interpreted rubric"}]},
+        {"label":"(c)","answer":"Write the function piecewise:\n\\[\nf(x)=\\begin{cases}2x^2-2x^3,&x<1,\\\\2x^3-2x^2,&x\\ge1.\\end{cases}\n\\]\nThus\n\\[\nf'(x)=\\begin{cases}4x-6x^2,&x<1,\\\\6x^2-4x,&x>1.\\end{cases}\n\\]\nAt \\(x=1\\), the one-sided derivatives are \\(-2\\) and \\(2\\), so \\(f'\\) does not exist there. Hence \\(f'\\) is continuous on\n\\[\n\\boxed{(-\\infty,1)\\cup(1,\\infty)}.\n\\]"},
+        {"label":"(d)","answer":"On \\([0,1]\\), \\(|x-1|=1-x\\), so\n\\[\n\\int_0^1 f(x)\\,dx=\\int_0^1 2(1-x)x^2\\,dx=\\int_0^1(2x^2-2x^3)\\,dx.\n\\]\nTherefore\n\\[\n\\int_0^1 f(x)\\,dx=\\left[\\frac{2x^3}{3}-\\frac{x^4}{2}\\right]_0^1=\\boxed{\\frac16}.\n\\]","rubric":[{"criterionId":"D1","description":"1 point for replacing \\(|x-1|\\) by \\(1-x\\) on \\([0,1]\\).","points":null,"evidenceRequired":"1 point for replacing \\(|x-1|\\) by \\(1-x\\) on \\([0,1]\\).","commonErrors":[],"rubricType":"ECHS interpreted rubric"},{"criterionId":"D2","description":"1 point for the correct integrand and antiderivative.","points":null,"evidenceRequired":"1 point for the correct integrand and antiderivative.","commonErrors":[],"rubricType":"ECHS interpreted rubric"},{"criterionId":"D3","description":"1 point for \\(1/6\\).","points":null,"evidenceRequired":"1 point for \\(1/6\\).","commonErrors":[],"rubricType":"ECHS interpreted rubric"}]}
+      ],
+      "mediaPatches":[{"id":"MEDIA-APCALC-AB-FRQ-1975-03-PROMPT-01","alt":"Graph of \\(f(x)=2|x-1|x^2\\), showing its zeros at \\(x=0\\) and \\(x=1\\), its cusp at \\(x=1\\), and the interval of integration from \\(0\\) to \\(1\\).","descriptor":{"shape":"1975-frq3-absolute-quadratic","ariaLabel":"Graph of f of x equals two times absolute x minus one times x squared, showing zeros at zero and one, a cusp at one, and the interval from zero to one."}}]
+    },
+    {"id":"APCALC-AB-FRQ-1975-04","audit":{"sourcePage":"13","correctionsMade":0}},
+    {"id":"APCALC-AB-FRQ-1975-05","audit":{"sourcePage":"13","correctionsMade":0}},
+    {"id":"APCALC-AB-FRQ-1975-06","audit":{"sourcePage":"13; 14","correctionsMade":0}},
+    {"id":"APCALC-AB-FRQ-1975-07","audit":{"sourcePage":"14","correctionsMade":0}}
+  ]
+}
