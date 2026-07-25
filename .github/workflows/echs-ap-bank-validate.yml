@@ -16,7 +16,20 @@ permissions:
   contents: read
 
 jobs:
+  validate-overlays:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install pinned validation dependencies
+        run: npm ci --prefix question-bank/official/tools
+      - name: Validate cumulative teacher audit overlays
+        run: npm run validate:overlays --prefix question-bank/official/tools
+
   validate:
+    needs: validate-overlays
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -32,8 +45,6 @@ jobs:
         run: npx --prefix question-bank/official/tools playwright install --with-deps chromium-headless-shell
       - name: Parse every canonical math expression
         run: npm run validate:katex --prefix question-bank/official/tools
-      - name: Validate cumulative teacher audit overlays
-        run: npm run validate:overlays --prefix question-bank/official/tools
       - name: Run browser smoke tests
         run: npm run validate:browser --prefix question-bank/official/tools
       - name: Generate deterministic release checksums
