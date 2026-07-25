@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="420" viewBox="0 0 760 420" role="img" aria-labelledby="title desc">
+  <title id="title">Region A bounded by y equals sine x divided by x and x equals k</title>
+  <desc id="desc">A coordinate plane showing the curve y equals sine x divided by x for positive x. Region A is shaded from the y-axis to the vertical line x equals k and above the x-axis.</desc>
+  <defs>
+    <linearGradient id="shade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#d6d6d6"/>
+      <stop offset="1" stop-color="#b8b8b8"/>
+    </linearGradient>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,4 L0,8 z" fill="#111"/>
+    </marker>
+  </defs>
+  <rect width="760" height="420" fill="#fff"/>
+  <g transform="translate(120 45)">
+    <line x1="0" y1="290" x2="525" y2="290" stroke="#111" stroke-width="2.4" marker-end="url(#arrow)"/>
+    <line x1="35" y1="320" x2="35" y2="0" stroke="#111" stroke-width="2.4" marker-end="url(#arrow)"/>
+    <path d="M35 70 C95 72,145 86,205 108 C265 130,325 160,385 195 C425 218,455 237,485 253 L485 290 L35 290 Z" fill="url(#shade)" opacity="0.95"/>
+    <path d="M35 70 C95 72,145 86,205 108 C265 130,325 160,385 195 C425 218,455 237,485 253" fill="none" stroke="#111" stroke-width="2.3"/>
+    <line x1="300" y1="135" x2="300" y2="290" stroke="#111" stroke-width="1.8"/>
+    <circle cx="35" cy="70" r="4.5" fill="#fff" stroke="#111" stroke-width="1.8"/>
+    <text x="512" y="307" font-family="Times New Roman, serif" font-size="24" font-style="italic">x</text>
+    <text x="20" y="-8" font-family="Times New Roman, serif" font-size="24" font-style="italic">y</text>
+    <text x="8" y="314" font-family="Times New Roman, serif" font-size="22" font-style="italic">O</text>
+    <text x="292" y="314" font-family="Times New Roman, serif" font-size="22" font-style="italic">k</text>
+    <text x="142" y="190" font-family="Times New Roman, serif" font-size="24" font-style="italic">A</text>
+    <text x="232" y="62" font-family="Times New Roman, serif" font-size="24" font-style="italic">y = f(x)</text>
+    <path d="M245 72 C235 83,232 94,232 103" fill="none" stroke="#111" stroke-width="1.4"/>
+  </g>
+</svg>
