@@ -1,0 +1,166 @@
+{
+  "questions": [
+    {
+      "id": "APCALC-AB-FRQ-1969-02",
+      "course": "AP Calculus AB",
+      "courseId": "ap-calculus-ab",
+      "assessmentFamily": "AP historical archive",
+      "type": "frq",
+      "format": "multi-part-free-response",
+      "year": 1969,
+      "form": "",
+      "questionNumber": "2",
+      "section": "II",
+      "calculator": "no-calculator",
+      "maxPoints": null,
+      "estimatedTime": 15,
+      "prompt": "A particle moves along the $x$-axis in such a way that its position at time $t$ is given by $x(t)=3t^4-16t^3+24t^2$ for $-5\\le t\\le 5$.",
+      "directions": "Show the mathematical work supporting each answer.",
+      "parts": [
+        {
+          "label": "a",
+          "prompt": "Determine the velocity and acceleration of the particle at time $t$.",
+          "answer": "$v(t)=12t^3-48t^2+48t=12t(t-2)^2$ and $a(t)=36t^2-96t+48=12(3t-2)(t-2)$.",
+          "solution": "Differentiate the position function once to obtain velocity and twice to obtain acceleration."
+        },
+        {
+          "label": "b",
+          "prompt": "At what values of $t$ is the particle at rest?",
+          "answer": "$t=0$ and $t=2$.",
+          "solution": "Set $v(t)=12t(t-2)^2=0$."
+        },
+        {
+          "label": "c",
+          "prompt": "At what values of $t$ does the particle change direction?",
+          "answer": "$t=0$ only.",
+          "solution": "Because $v(t)=12t(t-2)^2$, the factor $(t-2)^2$ does not change sign at $t=2$. The velocity changes from negative to positive only at $t=0$."
+        },
+        {
+          "label": "d",
+          "prompt": "What is the velocity when the acceleration is first zero?",
+          "answer": "$\\dfrac{128}{9}$ units per unit time.",
+          "solution": "Solve $a(t)=12(3t-2)(t-2)=0$. The first zero in the interval is $t=\\frac23$. Then $v\\left(\\frac23\\right)=12\\left(\\frac23\\right)\\left(\\frac23-2\\right)^2=\\frac{128}{9}$."
+        }
+      ],
+      "choices": [],
+      "media": [],
+      "facsimileAuthority": "The source scan remains authoritative for historical wording; this record is a verified mathematical transcription.",
+      "machineExtractedText": "",
+      "answer": null,
+      "acceptedAnswers": [],
+      "answerFormat": "multi-part",
+      "explanation": "Velocity is the derivative of position and acceleration is the derivative of velocity. A particle changes direction only where velocity changes sign, not merely wherever velocity equals zero.",
+      "workedSolution": "Differentiate: $v(t)=x'(t)=12t^3-48t^2+48t=12t(t-2)^2$. Differentiate again: $a(t)=v'(t)=36t^2-96t+48=12(3t-2)(t-2)$. The particle is at rest at $t=0$ and $t=2$. Since $(t-2)^2\\ge0$, the sign of $v$ is determined by the sign of $t$; hence the only direction change occurs at $t=0$. Acceleration is zero at $t=\\frac23$ and $t=2$, so the first such time is $t=\\frac23$. Substitution gives $v(\\frac23)=\\frac{128}{9}$.",
+      "alternativeSolution": "Use a sign chart for $v(t)=12t(t-2)^2$ to distinguish a zero of even multiplicity from a genuine sign change.",
+      "calculatorSolution": "",
+      "noncalculatorSolution": "All derivatives, factorizations, sign analysis, and substitutions can be completed exactly without a calculator.",
+      "studentExplanation": "The particle is at rest when $v=0$, but it changes direction only when the sign of $v$ changes. The double root at $t=2$ does not cause a sign change.",
+      "teacherExplanation": "Emphasize the distinction between rest and direction change. The even multiplicity of the velocity zero at $t=2$ is the central conceptual point.",
+      "scoringGuideline": null,
+      "rubric": [],
+      "rubricStatus": "Historical scoring guideline not supplied; mathematical solution independently verified.",
+      "commonMistakes": [
+        "Listing both $t=0$ and $t=2$ as direction changes without checking the sign of velocity.",
+        "Using the zeros of acceleration to answer the rest question.",
+        "Selecting $t=2$ rather than the first chronological zero $t=\\frac23$ in part (d).",
+        "Substituting into the position function instead of the velocity function in part (d)."
+      ],
+      "verificationStatus": "independently-mathematically-verified",
+      "answerConfidence": 0.99,
+      "source": {
+        "organization": "College Board",
+        "publisher": "College Board",
+        "bankName": "AP Calculus historical archive",
+        "sourceType": "historical AP examination item / ECHS verified digital transcription",
+        "officialStatus": "legacy-ap",
+        "releaseStatus": "historical compilation; publication permission not established",
+        "accessLevel": "school-internal",
+        "rightsStatus": "permission-required",
+        "publicPublicationAllowed": false,
+        "sourcePages": [3],
+        "supportingSource": "MyMathsCloud AP Calculus past-paper archive and historical FRQ compilation"
+      },
+      "classification": {
+        "primaryUnit": 4,
+        "primaryUnitLabel": "Unit 4: Contextual Applications of Differentiation",
+        "primaryTopic": "Straight-line motion: position, velocity, acceleration, rest, and direction change",
+        "topicCode": "4.2",
+        "additionalTopics": [
+          "Derivative relationships in motion",
+          "Sign analysis",
+          "Zeros with even multiplicity"
+        ],
+        "learningObjectives": [
+          "Interpret velocity and acceleration as derivatives of position.",
+          "Determine when a particle is at rest.",
+          "Use the sign of velocity to identify changes in direction."
+        ],
+        "bigIdeas": ["Change"],
+        "mathematicalPractices": ["MP1", "MP2", "MP3"],
+        "skillCategories": ["Representing", "Procedures", "Reasoning", "Justification"],
+        "concepts": ["motion", "position", "velocity", "acceleration", "direction change", "multiplicity"],
+        "prerequisites": ["Polynomial differentiation", "Factoring", "Sign charts"],
+        "functionFamilies": ["polynomial"],
+        "representations": ["symbolic", "verbal", "contextual"],
+        "reasoningActions": ["differentiate", "solve", "analyze-sign", "justify"],
+        "lessonIds": ["APCALC-4.2"],
+        "keywords": ["particle-motion", "velocity", "acceleration", "at-rest", "direction-change", "ap-calculus-ab"]
+      },
+      "pedagogy": {
+        "difficulty": 3,
+        "difficultyLabel": "Medium",
+        "cognitiveDemand": 3,
+        "hints": [
+          {"level": 1, "type": "orientation", "text": "Differentiate position to obtain velocity, then differentiate velocity to obtain acceleration."},
+          {"level": 2, "type": "conceptual", "text": "A zero of velocity produces a direction change only if velocity changes sign there."}
+        ],
+        "misconceptions": ["Every zero of velocity is automatically a direction change."]
+      },
+      "quality": {
+        "completeness": "complete-verified-transcription",
+        "productionStatus": "teacher-archive-verified",
+        "productionReadiness": 0.96,
+        "tutoringReadiness": 1.0,
+        "needsReview": true,
+        "reviewReasons": [
+          "Rights/permission review remains required before public publication.",
+          "Historical source wording should receive a final visual comparison against the source scan before student promotion."
+        ],
+        "transcriptionVerified": true,
+        "answerVerified": true,
+        "mediaVerified": true,
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": true,
+        "katexVerified": true,
+        "mappingVerified": true,
+        "studentReadyGatePassed": false
+      },
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "teacher-archive-only",
+      "contentStatus": "complete",
+      "audit": {
+        "sourceChecked": true,
+        "sourcePage": "3",
+        "transcriptionStatus": "verified-against-readable-source-text",
+        "stemStatus": "complete",
+        "choicesStatus": "not-applicable",
+        "answerStatus": "independently-verified",
+        "solutionStatus": "complete",
+        "katexStatus": "verified",
+        "mediaStatus": "not-required",
+        "courseMappingStatus": "verified",
+        "unitMappingStatus": "verified",
+        "topicMappingStatus": "verified",
+        "lessonMappingStatus": "verified",
+        "calculatorStatus": "verified",
+        "overallStatus": "teacher-archive-verified",
+        "correctionsMade": 1,
+        "reviewRequired": true,
+        "reviewerNotes": "Reconstructed from the historical source, independently solved, and retained as teacher-only pending rights and final facsimile signoff.",
+        "auditedAt": "2026-07-25T00:00:00+00:00"
+      },
+      "studentReady": false
+    }
+  ]
+}
