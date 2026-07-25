@@ -1,0 +1,235 @@
+{
+  "questions": [
+    {
+      "id": "APCALC-MANUAL-MCQ-084-AREA-RELATED-RATES",
+      "course": "AP Calculus AB",
+      "courseId": "ap-calculus-ab",
+      "assessmentFamily": "manual-source-verification",
+      "type": "mcq",
+      "format": "single-select",
+      "year": null,
+      "form": "",
+      "questionNumber": "84",
+      "section": "I",
+      "calculator": "noncalculator",
+      "maxPoints": 1,
+      "estimatedTime": 120,
+      "prompt": "The figure above shows the region $A$, which is bounded by the $x$- and $y$-axes, the graph of $f(x)=\\frac{\\sin x}{x}$ for $x>0$, and the vertical line $x=k$. If $k$ increases at a rate of $\\frac{\\pi}{4}$ units per second, how fast is the area of region $A$ increasing when $k=\\frac{\\pi}{6}$?",
+      "directions": "Select one answer.",
+      "parts": [],
+      "choices": [
+        {
+          "label": "A",
+          "text": "$0$",
+          "mediaIds": []
+        },
+        {
+          "label": "B",
+          "text": "$\\frac{3}{4}$",
+          "mediaIds": []
+        },
+        {
+          "label": "C",
+          "text": "$\\frac{3}{\\pi}$",
+          "mediaIds": []
+        },
+        {
+          "label": "D",
+          "text": "$\\frac{\\sqrt{3}}{2}$",
+          "mediaIds": []
+        },
+        {
+          "label": "E",
+          "text": "$2\\sqrt{3}$",
+          "mediaIds": []
+        }
+      ],
+      "media": [
+        {
+          "id": "MEDIA-APCALC-MANUAL-Q084-FIGURE",
+          "path": "media/manual-additions/ap-calc-area-related-rates-q084.svg",
+          "mime": "image/svg+xml",
+          "alt": "A shaded region A bounded by the y-axis, x-axis, the curve y equals sine x divided by x, and the vertical line x equals k.",
+          "caption": "Region A bounded by the coordinate axes, $y=\\frac{\\sin x}{x}$, and $x=k$.",
+          "cropStatus": "reconstructed-diagram",
+          "renderMode": "native-svg",
+          "descriptor": {
+            "width": 760,
+            "height": 420
+          }
+        }
+      ],
+      "facsimileAuthority": "The reconstructed SVG preserves the mathematical relationships shown in the supplied source figure.",
+      "machineExtractedText": "",
+      "answer": "B",
+      "acceptedAnswers": [
+        "B"
+      ],
+      "answerFormat": "choice",
+      "explanation": "Let $A(k)=\\int_0^k \\frac{\\sin x}{x}\\,dx$. By the Fundamental Theorem of Calculus and the chain rule, $\\frac{dA}{dt}=\\frac{\\sin k}{k}\\frac{dk}{dt}$. At $k=\\frac{\\pi}{6}$ and $\\frac{dk}{dt}=\\frac{\\pi}{4}$, this is $\\frac{1/2}{\\pi/6}\\cdot\\frac{\\pi}{4}=\\frac{3}{4}$.",
+      "workedSolution": "Define the area by $A(k)=\\int_0^k \\frac{\\sin x}{x}\\,dx$. Differentiate with respect to time: $\\frac{dA}{dt}=\\frac{\\sin k}{k}\\frac{dk}{dt}$. Substituting $k=\\frac{\\pi}{6}$ gives $\\frac{\\sin(\\pi/6)}{\\pi/6}=\\frac{1/2}{\\pi/6}=\\frac{3}{\\pi}$. Therefore $\\frac{dA}{dt}=\\frac{3}{\\pi}\\cdot\\frac{\\pi}{4}=\\frac{3}{4}$ square units per second.",
+      "alternativeSolution": "At any instant, increasing the right boundary by $dk$ adds an approximate strip of area $f(k)dk$. Hence $\\frac{dA}{dt}=f(k)\\frac{dk}{dt}$, which gives the same result.",
+      "calculatorSolution": "",
+      "noncalculatorSolution": "Use the Fundamental Theorem of Calculus and exact trigonometric values.",
+      "studentExplanation": "The instantaneous area growth equals the height of the region at $x=k$ times the speed of the moving boundary.",
+      "teacherExplanation": "This item assesses a geometric interpretation of the Fundamental Theorem of Calculus combined with the chain rule.",
+      "scoringGuideline": null,
+      "rubric": [],
+      "rubricStatus": "not applicable to MCQ",
+      "commonMistakes": [
+        "Stopping at $f(\\pi/6)=\\frac{3}{\\pi}$ and forgetting to multiply by $\\frac{dk}{dt}$.",
+        "Treating the area as a rectangle $kf(k)$.",
+        "Using $\\sin(\\pi/6)=\\frac{\\sqrt{3}}{2}$ instead of $\\frac{1}{2}$."
+      ],
+      "verificationStatus": "mathematically-verified-from-supplied-image",
+      "answerConfidence": 1.0,
+      "source": {
+        "organization": "College Board",
+        "publisher": "College Board",
+        "bankName": "AP Calculus historical item supplied by user",
+        "sourceType": "historical AP-style examination item / ECHS manual transcription",
+        "officialStatus": "legacy-ap",
+        "releaseStatus": "source image supplied by user; exact year not established",
+        "accessLevel": "school-internal",
+        "rightsStatus": "permission-required",
+        "publicPublicationAllowed": false,
+        "sourcePages": []
+      },
+      "classification": {
+        "primaryUnit": 6,
+        "primaryUnitLabel": "Unit 6: Integration and Accumulation of Change",
+        "primaryTopic": "Accumulation Functions, the Fundamental Theorem of Calculus, and Related Rates",
+        "topicCode": "U6",
+        "additionalTopics": [
+          "Related Rates"
+        ],
+        "learningObjectives": [
+          "Apply the Fundamental Theorem of Calculus to an accumulation function.",
+          "Use the chain rule when the upper limit depends on time.",
+          "Interpret area growth geometrically."
+        ],
+        "bigIdeas": [
+          "Change",
+          "Limits",
+          "Analysis of Functions"
+        ],
+        "mathematicalPractices": [
+          "MP2",
+          "MP3"
+        ],
+        "skillCategories": [
+          "Representing",
+          "Reasoning",
+          "Justification"
+        ],
+        "concepts": [
+          "accumulation function",
+          "Fundamental Theorem of Calculus",
+          "chain rule",
+          "related rates"
+        ],
+        "prerequisites": [
+          "definite integrals",
+          "exact trigonometric values"
+        ],
+        "functionFamilies": [
+          "trigonometric"
+        ],
+        "representations": [
+          "graphical",
+          "symbolic"
+        ],
+        "reasoningActions": [
+          "model",
+          "compute",
+          "interpret"
+        ],
+        "lessonIds": [
+          "APCALC-U6"
+        ],
+        "keywords": [
+          "ap-calculus-ab",
+          "fundamental-theorem-of-calculus",
+          "accumulation",
+          "related-rates",
+          "area"
+        ]
+      },
+      "pedagogy": {
+        "difficulty": 3,
+        "difficultyLabel": "Medium",
+        "cognitiveDemand": 3,
+        "hints": [
+          {
+            "level": 1,
+            "type": "orientation",
+            "text": "Write the shaded area as an integral with upper limit $k$."
+          },
+          {
+            "level": 2,
+            "type": "strategy",
+            "text": "Differentiate the accumulation function with respect to time and include $\\frac{dk}{dt}$."
+          }
+        ],
+        "misconceptions": [
+          "Confusing the integrand value with the rate of change of area.",
+          "Forgetting the chain-rule factor."
+        ],
+        "related": {
+          "easier": [],
+          "parallel": [],
+          "harder": [],
+          "prerequisite": [],
+          "sameOfficialTopic": [],
+          "relatedFRQ": [],
+          "relatedMCQ": []
+        }
+      },
+      "quality": {
+        "completeness": "complete-reconstructed-source",
+        "productionStatus": "teacher-archive-only",
+        "productionReadiness": 0.96,
+        "tutoringReadiness": 0.98,
+        "needsReview": true,
+        "reviewReasons": [
+          "Exact source year and form have not been established.",
+          "Rights review is required before public publication."
+        ],
+        "transcriptionVerified": true,
+        "answerVerified": true,
+        "mediaVerified": true,
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": true,
+        "katexVerified": true,
+        "mappingVerified": true,
+        "studentReadyGatePassed": false
+      },
+      "studentEligible": false,
+      "studentAccessible": false,
+      "deploymentAccess": "teacher-archive-only",
+      "contentStatus": "complete",
+      "audit": {
+        "sourceChecked": true,
+        "sourcePage": "user-supplied image",
+        "transcriptionStatus": "verified",
+        "stemStatus": "verified",
+        "choicesStatus": "verified",
+        "answerStatus": "verified",
+        "solutionStatus": "verified",
+        "katexStatus": "verified",
+        "mediaStatus": "verified",
+        "courseMappingStatus": "verified",
+        "unitMappingStatus": "verified",
+        "topicMappingStatus": "verified",
+        "lessonMappingStatus": "verified",
+        "calculatorStatus": "verified",
+        "overallStatus": "teacher-archive-only",
+        "correctionsMade": 1,
+        "reviewRequired": true,
+        "reviewerNotes": "Correct answer verified as B, not C. Figure reconstructed as native SVG. Exact source year remains unknown.",
+        "auditedAt": "2026-07-25T00:00:00+00:00"
+      },
+      "studentReady": false
+    }
+  ]
+}
