@@ -54,7 +54,7 @@ function delimitedExpressions(text) {
   }
   for (const close of ["\\)", "\\]"]) {
     const opens = close === "\\)" ? (text.match(/\\\(/g) ?? []).length : (text.match(/\\\[/g) ?? []).length;
-    const closes = (text.match(new RegExp(close.replace("\\", "\\\\"), "g")) ?? []).length;
+    const closes = text.split(close).length - 1;
     if (opens !== closes) errors.push(`Unbalanced ${close === "\\)" ? "inline" : "display"} delimiters: ${opens} opening, ${closes} closing`);
   }
   return { expressions, errors };
