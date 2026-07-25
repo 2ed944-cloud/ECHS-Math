@@ -10,10 +10,10 @@
     "../data/admin-audit-overrides-1970.json",
     "../data/admin-audit-overrides-1971-1975.json"
   ];
-  const firstYear = Number(window.ECHS_AUDIT_FIRST_YEAR || 1976);
+  const firstYear = Number(window.ECHS_AUDIT_FIRST_YEAR || 1969);
   const lastYear = Number(window.ECHS_AUDIT_LAST_YEAR || 2010);
   const partCount = Number(window.ECHS_AUDIT_PART_COUNT || 4);
-  const splitYears = new Set((window.ECHS_AUDIT_SPLIT_YEARS || [2009, 2010]).map(Number));
+  const splitYears = new Set((window.ECHS_AUDIT_SPLIT_YEARS || [1969, 2009, 2010]).map(Number));
   const discovered = [];
   for (let year = firstYear; year <= lastYear; year += 1) {
     discovered.push(`../data/admin-audit-overrides-${year}.json`);
