@@ -1,4 +1,4 @@
-const VERSION = "echs-platform-phase3-v1";
+const VERSION = "echs-platform-phase3-v2";
 const STATIC_CACHE = `${VERSION}-static`;
 const RUNTIME_CACHE = `${VERSION}-runtime`;
 const SHELL = [
@@ -32,7 +32,7 @@ self.addEventListener("fetch",event=>{
   const url=new URL(request.url);
   if(request.mode==="navigate"){event.respondWith(networkFirst(request,"./offline.html"));return;}
   if(url.origin!==location.origin){
-    const privateApi=/\/functions\/v1\/(?:account-api|institution-api)(?:\/|$)/.test(url.pathname);
+    const privateApi=/\/functions\/v1\/(?:account-api|institution-api|learning-sync)(?:\/|$)/.test(url.pathname);
     if(privateApi){event.respondWith(fetch(request));return;}
     event.respondWith(staleWhileRevalidate(request));return;
   }
