@@ -5,7 +5,9 @@ on:
     paths:
       - "login.html"
       - "css/institution-premium.css"
+      - "css/institution-completion.css"
       - "js/institution-experience.js"
+      - "js/institution-completion.js"
       - "js/login.js"
       - "question-bank/student.html"
       - "question-bank/teacher.html"
@@ -16,6 +18,7 @@ on:
       - "question-bank/js/parent-cloud.js"
       - "question-bank/js/admin-accounts.js"
       - "platform/PHASE_4_PREMIUM_EXPERIENCE.md"
+      - "platform/PHASE_4_PREMIUM_COMPLETION.md"
       - "tools/validate_premium_experience.py"
       - "sw.js"
       - ".github/workflows/premium-experience.yml"
@@ -39,7 +42,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "22"
-      - name: Validate premium role portals and preview safety
+      - name: Validate complete premium role experiences
         run: python tools/validate_premium_experience.py
       - name: Re-run institutional release gate
         run: python tools/validate_institution_platform.py
