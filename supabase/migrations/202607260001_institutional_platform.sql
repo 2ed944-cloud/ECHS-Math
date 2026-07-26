@@ -3,7 +3,6 @@
 -- Apply with: supabase db push
 
 create extension if not exists pgcrypto;
-create extension if not exists citext;
 
 create schema if not exists private;
 revoke all on schema private from public, anon, authenticated;
@@ -11,7 +10,7 @@ revoke all on schema private from public, anon, authenticated;
 create table if not exists public.organizations (
   id uuid primary key default gen_random_uuid(),
   name text not null,
-  slug citext not null unique,
+  slug text not null unique,
   settings jsonb not null default jsonb_build_object(
     'teachers_can_view_all_accounts', true,
     'teachers_can_reset_student_passwords', true,
@@ -26,9 +25,9 @@ create table if not exists public.organizations (
 create table if not exists public.accounts (
   id uuid primary key default gen_random_uuid(),
   organization_id uuid not null references public.organizations(id) on delete cascade,
-  username citext not null,
+  username text not null,
   display_name text not null,
-  email citext,
+  email text,
   role text not null check (role in ('admin','teacher','student','parent')),
   status text not null default 'active' check (status in ('active','suspended','archived')),
   external_id text,
@@ -254,12 +253,12 @@ as $$
 $$;
 
 create or replace function private.normalise_username(p_username text)
-returns public.citext
+returns text
 language sql
 immutable
 set search_path = ''
 as $$
-  select lower(trim(p_username))::public.citext;
+  select lower(trim(p_username));
 $$;
 
 create or replace function public.api_bootstrap_admin(
@@ -270,7 +269,7 @@ create or replace function public.api_bootstrap_admin(
   p_email text,
   p_password text
 )
-returns table(account_id uuid, organization_id uuid, username citext, display_name text, role text)
+returns table(account_id uuid, organization_id uuid, username text, display_name text, role text)
 language plpgsql
 security definer
 set search_path = public, private, extensions
@@ -278,7 +277,7 @@ as $$
 declare
   v_org_id uuid;
   v_account_id uuid;
-  v_username citext;
+  v_username text;
 begin
   if exists(select 1 from public.accounts where role = 'admin') then
     raise exception 'Bootstrap is already complete';
@@ -292,13 +291,13 @@ begin
   end if;
 
   insert into public.organizations(name, slug)
-  values (trim(p_organization_name), lower(trim(p_organization_slug))::citext)
+  values (trim(p_organization_name), lower(trim(p_organization_slug)))
   returning id into v_org_id;
 
   insert into public.accounts(
     organization_id, username, display_name, email, role, can_manage_accounts
   ) values (
-    v_org_id, v_username, trim(p_display_name), nullif(trim(p_email),'')::citext,
+    v_org_id, v_username, trim(p_display_name), nullif(trim(p_email),''),
     'admin', true
   ) returning id into v_account_id;
 
@@ -334,7 +333,7 @@ as $$
 declare
   v_actor public.accounts;
   v_account public.accounts;
-  v_username citext;
+  v_username text;
 begin
   select * into v_actor from public.accounts where id = p_actor_id and status = 'active';
   if not found or v_actor.organization_id <> p_organization_id then
@@ -359,7 +358,7 @@ begin
     organization_id, username, display_name, email, role, external_id, grade,
     can_manage_accounts, created_by
   ) values (
-    p_organization_id, v_username, trim(p_display_name), nullif(trim(p_email),'')::citext,
+    p_organization_id, v_username, trim(p_display_name), nullif(trim(p_email),''),
     p_role, nullif(trim(p_external_id),''), nullif(trim(p_grade),''),
     case when p_role in ('admin','teacher') then p_can_manage_accounts else false end,
     p_actor_id
@@ -386,9 +385,9 @@ create or replace function public.api_verify_login(
 returns table(
   account_id uuid,
   organization_id uuid,
-  username citext,
+  username text,
   display_name text,
-  email citext,
+  email text,
   role text,
   status text,
   grade text,
@@ -481,9 +480,9 @@ returns table(
   session_id uuid,
   account_id uuid,
   organization_id uuid,
-  username citext,
+  username text,
   display_name text,
-  email citext,
+  email text,
   role text,
   status text,
   grade text,
