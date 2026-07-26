@@ -1,0 +1,67 @@
+name: Initial Institutional Setup QA
+
+on:
+  pull_request:
+    paths:
+      - "setup.html"
+      - "login.html"
+      - "robots.txt"
+      - "sw.js"
+      - "config/institution*.json"
+      - "css/institution-setup.css"
+      - "js/institution-setup.js"
+      - "js/login.js"
+      - "supabase/config.toml"
+      - "supabase/functions/setup-api/**"
+      - "platform/PHASE_5_INITIAL_SETUP.md"
+      - "tools/validate_initial_setup.py"
+      - ".github/workflows/initial-setup.yml"
+      - ".github/workflows/deploy-institution-backend.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-initial-setup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Set up Deno
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+
+      - name: Validate the one-time setup release
+        run: python tools/validate_initial_setup.py
+
+      - name: Re-run institutional compatibility gate
+        run: python tools/validate_institution_platform.py
+
+      - name: Type-check the setup Edge Function
+        run: deno check supabase/functions/setup-api/index.ts
+
+      - name: Validate configuration files
+        run: |
+          python -m json.tool config/institution.json >/dev/null
+          python -m json.tool config/institution.example.json >/dev/null
+          python -m py_compile tools/validate_initial_setup.py
+          python - <<'PY'
+          import tomllib
+          with open('supabase/config.toml','rb') as handle:
+              tomllib.load(handle)
+          print('supabase/config.toml: PASS')
+          PY
