@@ -114,10 +114,17 @@
     if(toggle&&sidebar)toggle.addEventListener("click",()=>sidebar.classList.toggle("open"));
     document.addEventListener("click",event=>{if(innerWidth>950||!sidebar?.classList.contains("open"))return;if(!sidebar.contains(event.target)&&event.target!==toggle)sidebar.classList.remove("open")});
   }
+  let syncTimer=null;
+  function scheduleLearningSync(){
+    clearTimeout(syncTimer);
+    syncTimer=setTimeout(()=>syncLearning().catch(error=>console.warn("Institution learning sync failed",error)),1200);
+  }
   function bind(){
     setupMobileSidebar();
     addEventListener("online",flushPending);
-    document.addEventListener("echs:learning-updated",()=>syncLearning().catch(error=>console.warn(error)));
+    document.addEventListener("echs:learning-updated",scheduleLearningSync);
+    window.addEventListener("echs:learning-attempt",scheduleLearningSync);
+    window.addEventListener("echs:learning-session",scheduleLearningSync);
   }
   if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",bind,{once:true});else bind();
 
