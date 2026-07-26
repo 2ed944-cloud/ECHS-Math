@@ -1,0 +1,44 @@
+name: Authenticated Shell Cache Recovery QA
+
+on:
+  pull_request:
+    paths:
+      - "login.html"
+      - "js/login.js"
+      - "sw.js"
+      - "question-bank/admin.html"
+      - "tools/validate_auth_shell_cache.py"
+      - ".github/workflows/auth-shell-cache-repair.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-auth-shell-cache:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Validate authenticated shell recovery
+        run: python tools/validate_auth_shell_cache.py
+
+      - name: Validate JavaScript syntax
+        run: |
+          node --check sw.js
+          node --check js/login.js
+
+      - name: Validate Python syntax
+        run: python -m py_compile tools/validate_auth_shell_cache.py
