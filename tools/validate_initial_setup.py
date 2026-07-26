@@ -27,6 +27,7 @@ def read(path: str) -> str:
 required = [
     "setup.html",
     "css/institution-setup.css",
+    "js/setup-frame-guard.js",
     "js/institution-setup.js",
     "config/institution.json",
     "config/institution.example.json",
@@ -72,15 +73,22 @@ for marker in [
     "setupSuccess",
     "setupLocked",
     "institution-setup.css",
+    "setup-frame-guard.js",
     "institution-setup.js",
     "noindex,nofollow,noarchive",
-    "frame-ancestors 'none'",
     "connect-src 'self' https://wkqadnfloiohqfnesmyq.supabase.co",
 ]:
     if marker not in page:
         fail(f"Setup page missing required marker: {marker}")
+if "frame-ancestors" in page:
+    fail("frame-ancestors must not be delivered through a CSP meta element")
 if "<script>" in page.lower():
     fail("Setup page must not contain inline executable scripts")
+
+frame_guard = read("js/setup-frame-guard.js")
+for marker in ["window.top===window.self", "document.documentElement.style.display", "window.stop"]:
+    if marker not in frame_guard:
+        fail(f"Setup anti-framing guard missing: {marker}")
 
 client = read("js/institution-setup.js")
 for marker in [
@@ -160,7 +168,7 @@ for marker in ["setup_api_base", "setup-api/status", "Open Initial Setup"]:
     if marker not in login:
         fail(f"Login setup guidance missing: {marker}")
 
-for relative in ["js/institution-setup.js", "js/login.js", "sw.js"]:
+for relative in ["js/setup-frame-guard.js", "js/institution-setup.js", "js/login.js", "sw.js"]:
     result = subprocess.run(
         ["node", "--check", str(ROOT / relative)],
         capture_output=True,
