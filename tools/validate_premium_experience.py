@@ -15,7 +15,7 @@ def read(path):
     return file.read_text(encoding="utf-8")
 
 required=[
- "css/institution-premium.css","css/institution-completion.css",
+ "css/institution-premium.css","css/institution-responsive.css","css/institution-completion.css",
  "js/institution-experience.js","js/institution-completion.js","login.html",
  "question-bank/student.html","question-bank/teacher.html","question-bank/parent.html","question-bank/admin.html",
  "question-bank/js/student-cloud.js","question-bank/js/teacher-cloud.js","question-bank/js/parent-cloud.js","question-bank/js/admin-accounts.js",
@@ -40,12 +40,15 @@ for path,markers in page_markers.items():
 css=read("css/institution-premium.css")
 for marker in [".experienceHero",".missionRing",".premiumMetrics",".premiumGrid",".journeyMap",".weekBars",".planTimeline","@media(prefers-reduced-motion:reduce)"]:
     if marker not in css: fail(f"Premium CSS missing {marker}")
+responsive_css=read("css/institution-responsive.css")
+for marker in ["overflow-x:clip",".meterGrid",".premiumMobileDock",".planTimeline","@media(max-width:760px)"]:
+    if marker not in responsive_css: fail(f"Responsive CSS missing {marker}")
 completion_css=read("css/institution-completion.css")
-for marker in [".premiumCommandDialog",".premiumDrawer",".premiumMobileDock",".guideTask",".premiumGoalsDialog",".offlineRibbon","@media print","@media(prefers-reduced-motion:reduce)"]:
+for marker in [".premiumCommandDialog",".premiumDrawer","visibility:hidden",".premiumMobileDock",".guideTask",".premiumGoalsDialog",".offlineRibbon","@media print","@media(prefers-reduced-motion:reduce)"]:
     if marker not in completion_css: fail(f"Completion CSS missing {marker}")
 
 client=read("js/institution-experience.js")
-for marker in ["showPreview","renderWeekBars","setRing","bindTheme","ECHSExperience","loadCompletionLayer","institution-completion.css","institution-completion.js"]:
+for marker in ["showPreview","renderWeekBars","setRing","bindTheme","bindGuideShortcutCompatibility","ECHSExperience","loadCompletionLayer","institution-responsive.css","institution-completion.css","institution-completion.js"]:
     if marker not in client: fail(f"Premium experience helper missing: {marker}")
 completion=read("js/institution-completion.js")
 for marker in ["openCommands","deriveNotifications","onboardingTasks","openGoals","addMobileDock","exportVisibleTable","ECHSPremiumCompletion","Ctrl / ⌘ + K"]:
@@ -67,7 +70,7 @@ for marker in ["canStatus","canReset","row.role===\"student\"","current?.role===
     if marker not in admin_js: fail(f"Restricted account UI missing permission marker: {marker}")
 
 worker=read("sw.js")
-for asset in ["./css/institution-premium.css","./css/institution-completion.css","./js/institution-experience.js","./js/institution-completion.js","./question-bank/student.html","./question-bank/teacher.html","./question-bank/parent.html","./question-bank/admin.html"]:
+for asset in ["./css/institution-premium.css","./css/institution-responsive.css","./css/institution-completion.css","./js/institution-experience.js","./js/institution-completion.js","./question-bank/student.html","./question-bank/teacher.html","./question-bank/parent.html","./question-bank/admin.html"]:
     if asset not in worker: fail(f"Service worker missing premium asset {asset}")
 if "learning-sync" not in worker or "event.respondWith(fetch(request))" not in worker: fail("Private institutional APIs must bypass caches")
 
