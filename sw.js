@@ -1,9 +1,9 @@
-const VERSION = "echs-platform-phase3-v2";
+const VERSION = "echs-platform-phase3-v3";
 const STATIC_CACHE = `${VERSION}-static`;
 const RUNTIME_CACHE = `${VERSION}-runtime`;
 const SHELL = [
   "./","./index.html","./offline.html","./manifest.json","./login.html","./config/institution.json",
-  "./css/portal.css","./css/practice-integration.css","./css/official-ap-integration.css","./css/platform-foundation.css","./css/institution.css",
+  "./css/portal.css","./css/practice-integration.css","./css/official-ap-integration.css","./css/platform-foundation.css","./css/institution.css","./css/institution-polish.css",
   "./data/courses.js","./data/ap-calculus-update.js","./data/ap-precalculus-update.js",
   "./js/portal.js","./js/practice-integration.js","./js/official-ap-integration.js","./js/platform-foundation.js","./js/lesson-learning-bridge.js","./js/institution-client.js","./js/institution-portal.js","./js/login.js",
   "./question-bank/index.html","./question-bank/practice.html","./question-bank/exam.html","./question-bank/dashboard.html","./question-bank/mistakes.html","./question-bank/student.html","./question-bank/teacher.html","./question-bank/parent.html","./question-bank/admin.html",
