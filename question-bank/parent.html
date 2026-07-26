@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#7d1845">
+  <title>ECHS Parent Learning Report</title><meta name="description" content="A clear family-facing summary of mathematics learning progress, strengths and next steps."><meta name="robots" content="noindex,follow">
+  <link rel="manifest" href="../manifest.json"><link rel="icon" href="../assets/icon-192.png"><link rel="apple-touch-icon" href="../assets/icon-192.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/bank.css"><link rel="stylesheet" href="css/practice-studio.css"><link rel="stylesheet" href="css/learning-system.css?v=20260726-phase2"><link rel="stylesheet" href="../css/platform-foundation.css?v=20260726-phase2">
+</head>
+<body class="practiceStudio" data-platform-page="parent">
+<header class="siteHeader"><a class="brand" href="dashboard.html"><span class="brandMark">⌂</span><span class="brandText"><strong>ECHS Parent Report</strong><span>Progress · strengths · support priorities</span></span></a><nav class="platformNav" id="platformNav"><a class="navLink" href="index.html">Learning Home</a><a class="navLink" href="practice.html">Practice</a><a class="navLink" href="exam.html">Tests</a><a class="navLink" href="dashboard.html">Student</a><a class="navLink" href="mistakes.html">Review</a><a class="navLink" href="teacher.html">Teacher</a><a class="navLink active" href="parent.html" aria-current="page">Parent</a><a class="navLink" href="../">Lessons</a></nav><div class="platformHeaderActions"></div></header>
+<main>
+  <section class="studioHero"><div class="studioHeroContent"><span class="eyebrow">Family learning summary</span><h1>Understand progress.<span>Support the next step.</span></h1><p>This report translates local learning data into a clear summary of practice, mastery, review needs and a practical study plan.</p><div class="studioHeroMeta"><span>Strengths</span><span>Topics needing support</span><span>Review workload</span><span>Printable summary</span></div></div><div class="studioHeroStats"><div class="studioHeroStat"><b id="heroStudent">Student</b><span>learner</span></div><div class="studioHeroStat"><b id="heroAccuracy">0%</b><span>accuracy</span></div><div class="studioHeroStat"><b id="heroMastered">0</b><span>topics mastered</span></div><div class="studioHeroStat"><b id="heroStreak">0</b><span>day streak</span></div></div></section>
+
+  <nav class="learningTabs"><a href="dashboard.html">Student Overview</a><a href="mistakes.html">Review Centre</a><a href="teacher.html">Teacher Dashboard</a><a class="active" href="parent.html">Parent Report</a></nav>
+
+  <div class="learningToolbar"><div class="left"><button class="button ghost" id="useCurrent">Use this device's student data</button><label class="button ghost" for="importReport">Open exported report<input id="importReport" type="file" accept="application/json" hidden></label></div><div class="right"><button class="button wine" id="printReport">Print family report</button></div></div>
+
+  <section class="learningCard full parentHero"><div><span class="learningKicker">Current picture</span><h2 id="reportTitle">Student learning report</h2><p id="reportSubtitle">No report loaded.</p><section class="metricGrid" id="parentMetrics"></section></div><div class="parentScore"><b id="overallScore">0%</b><span>overall practice accuracy</span></div></section>
+
+  <section class="learningGrid">
+    <article class="learningCard wide"><span class="learningKicker">Strengths</span><h2>Topics showing confidence</h2><div id="strengthList"></div></article>
+    <article class="learningCard"><span class="learningKicker">Review workload</span><div class="learningMetric" id="parentDue">0</div><p>questions currently due for review</p></article>
+    <article class="learningCard wide"><span class="learningKicker">Support priorities</span><h2>Topics to strengthen next</h2><div id="weakList"></div></article>
+    <article class="learningCard"><span class="learningKicker">Consistency</span><div class="learningMetric" id="parentStreak">0</div><p>current consecutive learning days</p></article>
+  </section>
+
+  <div class="sectionHead"><div><h2>Suggested seven-day support plan</h2><p>Short, focused practice is recommended over one long session.</p></div></div>
+  <section class="learningCard full"><div class="planList" id="familyPlan"></div></section>
+
+  <div class="sectionHead"><div><h2>Recent achievements</h2></div></div>
+  <section class="achievementGrid" id="parentAchievements"></section>
+
+  <div class="notice"><strong>Privacy:</strong> this page reads data stored on the current device or an exported learning-report file selected by the family. It does not transmit the report to ECHS or a third party.</div>
+</main>
+<footer class="footer">ECHS Mathematics · Family-facing learning report.</footer>
+<script src="js/learning-system.js?v=20260726-phase2"></script><script src="js/parent.js?v=20260726-phase2"></script><script src="../js/platform-foundation.js?v=20260726-phase2"></script>
+</body>
+</html>
