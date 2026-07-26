@@ -2,6 +2,7 @@
 """Static release gate for the complete ECHS premium role experiences."""
 from __future__ import annotations
 import json
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -75,9 +76,16 @@ for asset in ["./css/institution-premium.css","./css/institution-responsive.css"
 if "learning-sync" not in worker or "event.respondWith(fetch(request))" not in worker: fail("Private institutional APIs must bypass caches")
 
 config=json.loads(read("config/institution.json") or "{}")
-if config.get("enabled") is not False: fail("Institutional configuration must remain disabled until approved backend activation")
+if config.get("enabled") is True:
+    endpoint=r"https://[a-z0-9]+\.supabase\.co/functions/v1"
+    if not re.fullmatch(endpoint,str(config.get("api_base",""))): fail("Activated premium experience requires a real Supabase API endpoint")
+    if config.get("setup_enabled") is not False: fail("Activated premium experience must close the one-time setup UI")
+    if config.get("backend_deployed") is not True: fail("Activated premium experience requires a deployed backend")
+elif config.get("enabled") is not False:
+    fail("Institutional enabled flag must be a boolean")
 
 print("ECHS Phase 4 complete premium experience validation")
+print(f"Mode: {'production-active' if config.get('enabled') is True else 'preview'}")
 print(f"Errors: {len(ERRORS)}")
 for error in ERRORS: print(f"  ERROR: {error}")
 if ERRORS: sys.exit(1)

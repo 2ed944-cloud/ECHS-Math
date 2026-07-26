@@ -42,17 +42,25 @@ for path in required:
     read(path)
 
 config = json.loads(read("config/institution.json") or "{}")
-if config.get("enabled") is not False:
-    fail("Live sign-in must remain disabled until the first administrator is created")
-if config.get("setup_enabled") is not True:
-    fail("Initial setup must be explicitly enabled")
-if config.get("backend_deployed") is not True:
-    fail("The setup release must record that the backend was deployed")
+enabled = config.get("enabled") is True
+api_base = str(config.get("api_base", ""))
 setup_base = str(config.get("setup_api_base", ""))
+if config.get("backend_deployed") is not True:
+    fail("The institutional release must record that the backend was deployed")
 if not re.fullmatch(r"https://[a-z0-9]+\.supabase\.co/functions/v1", setup_base):
     fail("setup_api_base must point to a deployed Supabase functions endpoint")
-if "YOUR_PROJECT_REF" not in str(config.get("api_base", "")):
-    fail("Live api_base must remain a placeholder until the activation release")
+if enabled:
+    if config.get("setup_enabled") is not False:
+        fail("Initial setup must be disabled after the first administrator is created")
+    if not re.fullmatch(r"https://[a-z0-9]+\.supabase\.co/functions/v1", api_base):
+        fail("Activated live api_base must point to a deployed Supabase functions endpoint")
+    if api_base != setup_base:
+        fail("Activated account and setup APIs must use the same reviewed Supabase project")
+else:
+    if config.get("setup_enabled") is not True:
+        fail("Initial setup must be explicitly enabled before production activation")
+    if "YOUR_PROJECT_REF" not in api_base:
+        fail("Pre-activation live api_base must retain the project-ref placeholder")
 if config.get("setup_path") != "setup.html":
     fail("setup_path must point to setup.html")
 
@@ -62,20 +70,10 @@ if "YOUR_PROJECT_REF" not in str(example.get("setup_api_base", "")):
 
 page = read("setup.html")
 for marker in [
-    "setupWizard",
-    "organizationName",
-    "organizationSlug",
-    "adminName",
-    "adminUsername",
-    "adminPassword",
-    "bootstrapSecret",
-    "confirmPermanent",
-    "setupSuccess",
-    "setupLocked",
-    "institution-setup.css",
-    "setup-frame-guard.js",
-    "institution-setup.js",
-    "noindex,nofollow,noarchive",
+    "setupWizard", "organizationName", "organizationSlug", "adminName",
+    "adminUsername", "adminPassword", "bootstrapSecret", "confirmPermanent",
+    "setupSuccess", "setupLocked", "institution-setup.css", "setup-frame-guard.js",
+    "institution-setup.js", "noindex,nofollow,noarchive",
     "connect-src 'self' https://wkqadnfloiohqfnesmyq.supabase.co",
 ]:
     if marker not in page:
@@ -92,48 +90,24 @@ for marker in ["window.top===window.self", "document.documentElement.style.displ
 
 client = read("js/institution-setup.js")
 for marker in [
-    "setup_api_base",
-    "/setup-api",
-    "x-bootstrap-secret",
-    "crypto.getRandomValues",
-    "beforeunload",
-    "setup_complete",
-    "Preview mode cannot create",
-    'cache:"no-store"',
+    "setup_api_base", "/setup-api", "x-bootstrap-secret", "crypto.getRandomValues",
+    "beforeunload", "setup_complete", "Preview mode cannot create", 'cache:"no-store"',
 ]:
     if marker not in client:
         fail(f"Setup client missing security/integration marker: {marker}")
-for forbidden in [
-    "localStorage",
-    "sessionStorage",
-    "console.log",
-    "document.cookie",
-    "bootstrap_secret=",
-]:
+for forbidden in ["localStorage", "sessionStorage", "console.log", "document.cookie", "bootstrap_secret="]:
     if forbidden in client:
         fail(f"Setup client contains forbidden persistence or disclosure pattern: {forbidden}")
 
 api = read("supabase/functions/setup-api/index.ts")
 for marker in [
-    "originAllowed",
-    "secretsEqual",
-    "bootstrapComplete",
-    'route === "/status"',
-    'route === "/bootstrap"',
-    "api_bootstrap_admin",
-    "x-bootstrap-secret",
-    "cache-control",
-    "no-store",
-    "setup_locked",
+    "originAllowed", "secretsEqual", "bootstrapComplete", 'route === "/status"',
+    'route === "/bootstrap"', "api_bootstrap_admin", "x-bootstrap-secret",
+    "cache-control", "no-store", "setup_locked",
 ]:
     if marker not in api:
         fail(f"Setup Edge Function missing marker: {marker}")
-for forbidden in [
-    "console.log",
-    "password_hash:",
-    "initial_password",
-    "localStorage",
-]:
+for forbidden in ["console.log", "password_hash:", "initial_password", "localStorage"]:
     if forbidden in api:
         fail(f"Setup Edge Function contains forbidden pattern: {forbidden}")
 
@@ -142,12 +116,7 @@ if "[functions.setup-api]" not in supabase_config or "verify_jwt = false" not in
     fail("Supabase config must register setup-api with custom bootstrap authentication")
 
 deploy = read(".github/workflows/deploy-institution-backend.yml")
-for marker in [
-    "setup-api/health",
-    "supabase functions deploy",
-    "ECHS_BOOTSTRAP_SECRET",
-    "institutional-production",
-]:
+for marker in ["setup-api/health", "supabase functions deploy", "ECHS_BOOTSTRAP_SECRET", "institutional-production"]:
     if marker not in deploy:
         fail(f"Deployment workflow missing setup marker: {marker}")
 
@@ -169,15 +138,12 @@ for marker in ["setup_api_base", "setup-api/status", "Open Initial Setup"]:
         fail(f"Login setup guidance missing: {marker}")
 
 for relative in ["js/setup-frame-guard.js", "js/institution-setup.js", "js/login.js", "sw.js"]:
-    result = subprocess.run(
-        ["node", "--check", str(ROOT / relative)],
-        capture_output=True,
-        text=True,
-    )
+    result = subprocess.run(["node", "--check", str(ROOT / relative)], capture_output=True, text=True)
     if result.returncode:
         fail(f"JavaScript syntax failed in {relative}: {result.stderr.strip()}")
 
 print("ECHS initial setup wizard validation")
+print(f"Mode: {'production-active' if enabled else 'pre-activation'}")
 print(f"Errors: {len(ERRORS)}")
 for error in ERRORS:
     print(f"  ERROR: {error}")
