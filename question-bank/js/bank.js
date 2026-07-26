@@ -8,6 +8,15 @@ const ECHSBank={
   appendFiles(row,files){
     row.files=[...new Set([...(row.files||[row.file]).filter(Boolean),...(files||[])])];
   },
+  appendBundleEntries(row,entries){
+    const merged=[...(row.bundle_entries||[]),...(entries||[])];
+    const seen=new Set();
+    row.bundle_entries=merged.filter(entry=>{
+      const key=`${entry.package}#${entry.entry}`;
+      if(seen.has(key))return false;
+      seen.add(key);return true;
+    });
+  },
   mergeAddon(catalog,addon){
     if(!addon)return catalog;
     catalog.banks=catalog.banks||[];
@@ -20,13 +29,16 @@ const ECHSBank={
     Object.entries(addon.bundles||{}).forEach(([key,rows])=>{
       catalog.bundles[key]=catalog.bundles[key]||[];
       (rows||[]).forEach(row=>{
-        if(!catalog.bundles[key].some(x=>x.id===row.id))catalog.bundles[key].push(row);
+        const existing=catalog.bundles[key].find(x=>x.id===row.id);
+        if(existing)Object.assign(existing,row);
+        else catalog.bundles[key].push(row);
       });
     });
     (addon.courseUnitAugments||[]).forEach(augment=>{
       const row=(catalog.bundles.course_units||[]).find(x=>x.course_key===augment.course_key&&String(x.unit)===String(augment.unit));
       if(!row)return;
       this.appendFiles(row,augment.files);
+      this.appendBundleEntries(row,augment.bundle_entries);
       row.count=(row.count||0)+(augment.count||0);
       row.auto_gradable_count=(row.auto_gradable_count||0)+(augment.auto_gradable_count||0);
       row.bank_counts=this.mergeCounts(row.bank_counts||{},augment.bank_counts||{});
@@ -37,6 +49,7 @@ const ECHSBank={
       const row=(catalog.bundles.course_all||[]).find(x=>x.course_key===augment.course_key);
       if(!row)return;
       this.appendFiles(row,augment.files);
+      this.appendBundleEntries(row,augment.bundle_entries);
       row.count=(row.count||0)+(augment.count||0);
       row.auto_gradable_count=(row.auto_gradable_count||0)+(augment.auto_gradable_count||0);
       row.bank_counts=this.mergeCounts(row.bank_counts||{},augment.bank_counts||{});
@@ -68,16 +81,28 @@ const ECHSBank={
       return Array.isArray(expected)?expected.map(String).includes(String(actual)):String(actual)===String(expected);
     });
   },
+  async loadBundleEntry(source){
+    if(!window.ECHSBlackboardAssets)throw new Error("Packaged publisher-bank loader is unavailable");
+    const zip=await ECHSBlackboardAssets.loadZip(source.package);
+    const file=zip.file(source.entry);
+    if(!file)throw new Error(`Could not find ${source.entry} in ${source.package}`);
+    const data=JSON.parse(await file.async("string"));
+    return data.questions||data;
+  },
   async loadBundle(source){
     const row=typeof source==="string"?{file:source}:source;
     const files=(row?.files||[row?.file]).filter(Boolean);
-    if(!files.length)return[];
-    const groups=await Promise.all(files.map(async file=>{
-      const response=await fetch(file);
-      if(!response.ok)throw new Error("Could not load "+file);
-      const data=await response.json();
-      return data.questions||data;
-    }));
+    const entries=(row?.bundle_entries||[]).filter(x=>x?.package&&x?.entry);
+    if(!files.length&&!entries.length)return[];
+    const groups=await Promise.all([
+      ...files.map(async file=>{
+        const response=await fetch(file);
+        if(!response.ok)throw new Error("Could not load "+file);
+        const data=await response.json();
+        return data.questions||data;
+      }),
+      ...entries.map(entry=>this.loadBundleEntry(entry))
+    ]);
     const seen=new Set(),out=[];
     groups.flat().forEach(q=>{if(q&&q.id&&!seen.has(q.id)){seen.add(q.id);out.push(q);}});
     return row?.questionFilter?out.filter(q=>this.matchesQuestionFilter(q,row.questionFilter)):out;
