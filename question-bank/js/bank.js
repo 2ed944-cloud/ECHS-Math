@@ -2,10 +2,7 @@ const ECHSBank={
   catalog:null,
   storeKey:"echs_qbank_attempts_v20",
   payloadCache:new Map(),
-  mergeCounts(target={},source={}){
-    Object.entries(source||{}).forEach(([key,value])=>target[key]=(target[key]||0)+(Number(value)||0));
-    return target;
-  },
+  mergeCounts(target={},source={}){Object.entries(source||{}).forEach(([key,value])=>target[key]=(target[key]||0)+(Number(value)||0));return target;},
   appendFiles(row,files){row.files=[...new Set([...(row.files||[row.file]).filter(Boolean),...(files||[])])];},
   appendBundleEntries(row,entries){
     const merged=[...(row.bundle_entries||[]),...(entries||[])],seen=new Set();
@@ -73,11 +70,13 @@ const ECHSBank={
   choiceOrder(question){const rows=(question.choices||[]).map((choice,index)=>({...choice,_sourceIndex:index}));return question.metadata?.shuffle_choices?this.shuffle(rows):rows;},
   params(){return new URLSearchParams(location.search);},
   getAttempts(){try{const value=JSON.parse(localStorage.getItem(this.storeKey)||"[]");return Array.isArray(value)?value:[];}catch{return[];}},
-  saveAttempt(question,correct,response){
+  saveAttempt(question,correct,response,context={}){
     const params=this.params(),attempts=this.getAttempts(),scope=(question.classification?.course_scope||"").toLowerCase();
     const inferredCourse=scope.includes("precalculus")?"ap-precalculus":scope.includes("calculus")?"ap-calculus":null;
-    attempts.push({id:question.id,bank_code:question.bank_code,type:question.type,correct:Boolean(correct),response:String(response??""),topic:question.classification?.ap_topic||params.get("topic")||null,unit:question.classification?.ap_unit||params.get("unit")||null,course:params.get("course")||inferredCourse,lesson:params.get("from")||null,section:question.source?.section||null,at:new Date().toISOString()});
-    localStorage.setItem(this.storeKey,JSON.stringify(attempts.slice(-5000)));
+    const legacy={id:question.id,bank_code:question.bank_code,type:question.type,correct:Boolean(correct),response:String(response??""),topic:question.classification?.ap_topic||params.get("topic")||null,unit:question.classification?.ap_unit||params.get("unit")||null,course:params.get("course")||inferredCourse,lesson:params.get("from")||null,section:question.source?.section||null,at:new Date().toISOString(),mode:context.mode||params.get("mode")||"practice",sessionId:context.sessionId||null,assignmentId:context.assignmentId||params.get("assignment")||null};
+    attempts.push(legacy);localStorage.setItem(this.storeKey,JSON.stringify(attempts.slice(-5000)));
+    if(window.ECHSLearning)ECHSLearning.recordAttempt({question,correct,response,mode:legacy.mode,sessionId:legacy.sessionId,durationMs:context.durationMs,context:{course:legacy.course,unit:legacy.unit,topic:legacy.topic,assignmentId:legacy.assignmentId}});
+    return legacy;
   },
   normalizeAnswer(value){return String(value??"").trim().toLowerCase().replace(/\s+/g," ");},
   isAutoGradable(question){return["mcq","true_false","fill_blank"].includes(question.type)&&((question.correct_choice_ids||[]).length||(question.accepted_answers||[]).length);},
