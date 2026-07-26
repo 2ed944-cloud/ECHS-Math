@@ -9,6 +9,7 @@ on:
       - "sw.js"
       - "config/institution*.json"
       - "css/institution-setup.css"
+      - "js/setup-frame-guard.js"
       - "js/institution-setup.js"
       - "js/login.js"
       - "supabase/config.toml"
