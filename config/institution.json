@@ -1,6 +1,9 @@
 {
   "enabled": false,
-  "api_base": "https://YOUR_PROJECT_REF.supabase.co/functions/v1",
+  "api_base": "https://wkqadnfloiohqfnesmyq.supabase.co/functions/v1",
+  "setup_enabled": true,
+  "backend_deployed": true,
+  "setup_path": "setup.html",
   "institution_name": "Education City High School",
   "platform_name": "ECHS Mathematics",
   "site_base": "https://2ed944-cloud.github.io/ECHS-Math/",
