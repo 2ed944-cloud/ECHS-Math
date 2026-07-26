@@ -1,1 +1,26 @@
-{"sourceBank":"PCALRT5S","sourceArchive":"A103000235993","questionCount":4528,"poolCount":385,"chapterCount":16,"chapterRange":"0-15","imageAssetCount":11171,"questionIdsUnique":true,"answerChoiceReferencesValid":true,"studentAccessible":true,"retainAllDuplicates":true,"publisherSourceAuthoritative":true,"installationStatus":"payload-ready"}
+{
+  "questions": 4528,
+  "chapters": 16,
+  "mediaPackages": 16,
+  "imageReferencesChecked": 10741,
+  "answerReferencesChecked": 4210,
+  "chapterCounts": {
+    "0": 234,
+    "1": 302,
+    "2": 302,
+    "3": 355,
+    "4": 518,
+    "5": 451,
+    "6": 403,
+    "7": 90,
+    "8": 271,
+    "9": 200,
+    "10": 235,
+    "11": 238,
+    "12": 116,
+    "13": 145,
+    "14": 639,
+    "15": 29
+  },
+  "status": "PASS"
+}
