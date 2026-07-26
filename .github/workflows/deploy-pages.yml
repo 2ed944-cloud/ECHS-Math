@@ -57,21 +57,24 @@ jobs:
             --exclude='supabase/.temp/' \
             ./ _pages/
           touch _pages/.nojekyll
-          DEPLOYED_AT="$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
           python - <<'PY'
-          import json, os
+          import json
+          import os
+          from datetime import datetime, timezone
           from pathlib import Path
+
           payload = {
               "sha": os.environ["GITHUB_SHA"],
               "run_id": os.environ["GITHUB_RUN_ID"],
               "run_attempt": os.environ["GITHUB_RUN_ATTEMPT"],
               "ref": os.environ["GITHUB_REF"],
-              "deployed_at": os.environ["DEPLOYED_AT"],
+              "deployed_at": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
           }
-          Path("_pages/deployment.json").write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+          Path("_pages/deployment.json").write_text(
+              json.dumps(payload, indent=2) + "\n",
+              encoding="utf-8",
+          )
           PY
-        env:
-          DEPLOYED_AT: ${{ env.DEPLOYED_AT }}
 
       - name: Validate exact Pages artifact
         run: python tools/validate_pages_artifact.py _pages --expected-sha "$GITHUB_SHA"
@@ -108,25 +111,36 @@ jobs:
           base="${PAGE_URL%/}"
           for attempt in $(seq 1 40); do
             echo "Live verification attempt ${attempt}/40"
-            deployment="$(curl --fail --silent --show-error \
+            rm -f /tmp/echs-deployment.json /tmp/echs-admin.html /tmp/echs-sw.js
+            curl --fail --silent --show-error \
               --header 'Cache-Control: no-cache' \
-              "${base}/deployment.json?sha=${GITHUB_SHA}" || true)"
-            admin="$(curl --fail --silent --show-error \
+              "${base}/deployment.json?sha=${GITHUB_SHA}" \
+              --output /tmp/echs-deployment.json || true
+            curl --fail --silent --show-error \
               --header 'Cache-Control: no-cache' \
-              "${base}/question-bank/admin.html?sha=${GITHUB_SHA}" || true)"
-            worker="$(curl --fail --silent --show-error \
+              "${base}/question-bank/admin.html?sha=${GITHUB_SHA}" \
+              --output /tmp/echs-admin.html || true
+            curl --fail --silent --show-error \
               --header 'Cache-Control: no-cache' \
-              "${base}/sw.js?sha=${GITHUB_SHA}" || true)"
-            if DEPLOYMENT="$deployment" ADMIN="$admin" WORKER="$worker" python - <<'PY'
-          import json, os, sys
+              "${base}/sw.js?sha=${GITHUB_SHA}" \
+              --output /tmp/echs-sw.js || true
+            if python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
           expected = os.environ["GITHUB_SHA"]
-          deployment = os.environ.get("DEPLOYMENT", "")
-          admin = os.environ.get("ADMIN", "")
-          worker = os.environ.get("WORKER", "")
+          deployment_path = Path("/tmp/echs-deployment.json")
+          admin_path = Path("/tmp/echs-admin.html")
+          worker_path = Path("/tmp/echs-sw.js")
+          if not all(path.is_file() for path in (deployment_path, admin_path, worker_path)):
+              raise SystemExit(1)
           try:
-              identity = json.loads(deployment)
+              identity = json.loads(deployment_path.read_text(encoding="utf-8"))
           except Exception:
               raise SystemExit(1)
+          admin = admin_path.read_text(encoding="utf-8", errors="replace")
+          worker = worker_path.read_text(encoding="utf-8", errors="replace")
           checks = [
               identity.get("sha") == expected,
               len(admin.encode("utf-8")) > 12000,
