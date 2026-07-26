@@ -60,7 +60,7 @@ async function staleWhileRevalidate(request){
 
 self.addEventListener("install",event=>{
   event.waitUntil(caches.open(STATIC_CACHE)
-    .then(cache=>cache.addAll(SHELL.map(url=>new Request(url,{cache:"reload"}))))
+    .then(cache=>cache.addAll(SHELL.map(url=>new Request(new URL(url,self.location.href),{cache:"reload"}))))
     .then(()=>self.skipWaiting()));
 });
 self.addEventListener("activate",event=>{
@@ -73,11 +73,12 @@ self.addEventListener("fetch",event=>{
   if(request.method!=="GET")return;
   const url=new URL(request.url);
   const sameOrigin=url.origin===self.location.origin;
+  const setupPage=sameOrigin&&/\/setup\.html$/i.test(url.pathname);
   if(sameOrigin&&AUTH_DOCUMENT.test(url.pathname)){
     event.respondWith(freshAuthDocument(request));
     return;
   }
-  if(sameOrigin&&/\/setup\.html$/i.test(url.pathname)){
+  if(setupPage){
     event.respondWith(fetch(reloadRequest(request)));
     return;
   }
