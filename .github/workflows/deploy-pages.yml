@@ -150,7 +150,7 @@ jobs:
               "institutionBody" in control,
               "accountRows" in control,
               control.strip().lower() != "admin",
-              "echs-platform-auth-shell-v2" in worker,
+              "echs-platform-school-control-v3" in worker,
           ]
           raise SystemExit(0 if all(checks) else 1)
           PY
