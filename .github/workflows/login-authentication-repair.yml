@@ -1,0 +1,42 @@
+name: Production Login Authentication Repair QA
+
+on:
+  pull_request:
+    paths:
+      - "supabase/migrations/202607260003_login_authentication_repair.sql"
+      - "supabase/functions/login-diagnostics/**"
+      - "supabase/config.toml"
+      - ".github/workflows/deploy-institution-backend.yml"
+      - "tools/validate_login_authentication_repair.py"
+      - ".github/workflows/login-authentication-repair.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-login-repair:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Set up Deno
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+
+      - name: Validate login transaction repair
+        run: python tools/validate_login_authentication_repair.py
+
+      - name: Type-check login diagnostics Edge Function
+        run: deno check supabase/functions/login-diagnostics/index.ts
+
+      - name: Validate Python syntax
+        run: python -m py_compile tools/validate_login_authentication_repair.py
