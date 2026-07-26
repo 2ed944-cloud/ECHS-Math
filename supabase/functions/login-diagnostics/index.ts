@@ -56,10 +56,10 @@ Deno.serve(async (req: Request): Promise<Response> => {
   try {
     const { data, error } = await admin.rpc("api_login_self_test");
     if (error) throw error;
-    if (data !== true) throw new Error("Login self-test did not return true");
-    return response({ ok: true, login_contract: true });
+    if (data !== true) throw new Error("Authentication self-test did not return true");
+    return response({ ok: true, login_contract: true, session_contract: true });
   } catch (error) {
     console.error("login-diagnostics", error);
-    return response({ ok: false, error: { code: "login_contract_failed" } }, 500);
+    return response({ ok: false, error: { code: "authentication_contract_failed" } }, 500);
   }
 });
