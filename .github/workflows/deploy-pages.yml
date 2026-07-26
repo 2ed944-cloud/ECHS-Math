@@ -14,6 +14,7 @@ on:
       - "js/institution-client.js"
       - "css/institution*.css"
       - "question-bank/admin.html"
+      - "question-bank/school-control.html"
       - "question-bank/teacher.html"
       - "question-bank/student.html"
       - "question-bank/parent.html"
@@ -102,7 +103,7 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
-      - name: Verify live deployment identity and administrator shell
+      - name: Verify live deployment identity and fresh School Control Center
         shell: bash
         env:
           PAGE_URL: ${{ steps.deployment.outputs.page_url }}
@@ -111,15 +112,15 @@ jobs:
           base="${PAGE_URL%/}"
           for attempt in $(seq 1 40); do
             echo "Live verification attempt ${attempt}/40"
-            rm -f /tmp/echs-deployment.json /tmp/echs-admin.html /tmp/echs-sw.js
+            rm -f /tmp/echs-deployment.json /tmp/echs-school-control.html /tmp/echs-sw.js
             curl --fail --silent --show-error \
               --header 'Cache-Control: no-cache' \
               "${base}/deployment.json?sha=${GITHUB_SHA}" \
               --output /tmp/echs-deployment.json || true
             curl --fail --silent --show-error \
               --header 'Cache-Control: no-cache' \
-              "${base}/question-bank/admin.html?sha=${GITHUB_SHA}" \
-              --output /tmp/echs-admin.html || true
+              "${base}/question-bank/school-control.html?sha=${GITHUB_SHA}" \
+              --output /tmp/echs-school-control.html || true
             curl --fail --silent --show-error \
               --header 'Cache-Control: no-cache' \
               "${base}/sw.js?sha=${GITHUB_SHA}" \
@@ -131,33 +132,33 @@ jobs:
 
           expected = os.environ["GITHUB_SHA"]
           deployment_path = Path("/tmp/echs-deployment.json")
-          admin_path = Path("/tmp/echs-admin.html")
+          control_path = Path("/tmp/echs-school-control.html")
           worker_path = Path("/tmp/echs-sw.js")
-          if not all(path.is_file() for path in (deployment_path, admin_path, worker_path)):
+          if not all(path.is_file() for path in (deployment_path, control_path, worker_path)):
               raise SystemExit(1)
           try:
               identity = json.loads(deployment_path.read_text(encoding="utf-8"))
           except Exception:
               raise SystemExit(1)
-          admin = admin_path.read_text(encoding="utf-8", errors="replace")
+          control = control_path.read_text(encoding="utf-8", errors="replace")
           worker = worker_path.read_text(encoding="utf-8", errors="replace")
           checks = [
               identity.get("sha") == expected,
-              len(admin.encode("utf-8")) > 12000,
-              "<!doctype html" in admin.lower(),
-              "School Control Center" in admin,
-              "institutionBody" in admin,
-              "accountRows" in admin,
-              admin.strip().lower() != "admin",
+              len(control.encode("utf-8")) > 12000,
+              "<!doctype html" in control.lower(),
+              "School Control Center" in control,
+              "institutionBody" in control,
+              "accountRows" in control,
+              control.strip().lower() != "admin",
               "echs-platform-auth-shell-v2" in worker,
           ]
           raise SystemExit(0 if all(checks) else 1)
           PY
             then
-              echo "GitHub Pages live artifact verification: PASS"
+              echo "GitHub Pages live School Control Center verification: PASS"
               exit 0
             fi
             sleep 15
           done
-          echo "GitHub Pages did not publish the expected administrator shell for ${GITHUB_SHA}" >&2
+          echo "GitHub Pages did not publish the expected School Control Center for ${GITHUB_SHA}" >&2
           exit 1
