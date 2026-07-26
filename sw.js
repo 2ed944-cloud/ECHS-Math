@@ -1,14 +1,14 @@
-const VERSION = "echs-platform-phase2-v1";
+const VERSION = "echs-platform-phase3-v1";
 const STATIC_CACHE = `${VERSION}-static`;
 const RUNTIME_CACHE = `${VERSION}-runtime`;
 const SHELL = [
-  "./","./index.html","./offline.html","./manifest.json",
-  "./css/portal.css","./css/practice-integration.css","./css/official-ap-integration.css","./css/platform-foundation.css",
+  "./","./index.html","./offline.html","./manifest.json","./login.html","./config/institution.json",
+  "./css/portal.css","./css/practice-integration.css","./css/official-ap-integration.css","./css/platform-foundation.css","./css/institution.css",
   "./data/courses.js","./data/ap-calculus-update.js","./data/ap-precalculus-update.js",
-  "./js/portal.js","./js/practice-integration.js","./js/official-ap-integration.js","./js/platform-foundation.js","./js/lesson-learning-bridge.js",
-  "./question-bank/index.html","./question-bank/practice.html","./question-bank/exam.html","./question-bank/dashboard.html","./question-bank/mistakes.html","./question-bank/teacher.html","./question-bank/parent.html",
+  "./js/portal.js","./js/practice-integration.js","./js/official-ap-integration.js","./js/platform-foundation.js","./js/lesson-learning-bridge.js","./js/institution-client.js","./js/institution-portal.js","./js/login.js",
+  "./question-bank/index.html","./question-bank/practice.html","./question-bank/exam.html","./question-bank/dashboard.html","./question-bank/mistakes.html","./question-bank/student.html","./question-bank/teacher.html","./question-bank/parent.html","./question-bank/admin.html",
   "./question-bank/css/bank.css","./question-bank/css/practice-studio.css","./question-bank/css/learning-system.css",
-  "./question-bank/js/learning-system.js","./question-bank/js/sync-adapter.js","./question-bank/js/bank.js","./question-bank/js/learning-home.js","./question-bank/js/practice.js","./question-bank/js/exam.js","./question-bank/js/dashboard.js","./question-bank/js/mistakes.js","./question-bank/js/teacher.js","./question-bank/js/parent.js",
+  "./question-bank/js/learning-system.js","./question-bank/js/sync-adapter.js","./question-bank/js/bank.js","./question-bank/js/learning-home.js","./question-bank/js/practice.js","./question-bank/js/exam.js","./question-bank/js/dashboard.js","./question-bank/js/mistakes.js","./question-bank/js/student-cloud.js","./question-bank/js/teacher-cloud.js","./question-bank/js/parent-cloud.js","./question-bank/js/admin-accounts.js",
   "./question-bank/data/catalog.json","./question-bank/data/blackboard-addon.json",
   "./assets/echs_logo.png","./assets/icon-192.png","./assets/icon-512.png"
 ];
@@ -18,7 +18,7 @@ self.addEventListener("activate",event=>{event.waitUntil(caches.keys().then(keys
 
 async function networkFirst(request,fallbackUrl){
   const cache=await caches.open(RUNTIME_CACHE);
-  try{const response=await fetch(request);if(response&&response.ok)cache.put(request,response.clone());return response;}
+  try{const response=await fetch(request);if(response&&response.ok&&response.type!=="opaque")cache.put(request,response.clone());return response;}
   catch(_error){return(await cache.match(request))||(await caches.match(request))||(fallbackUrl?caches.match(fallbackUrl):Response.error());}
 }
 async function staleWhileRevalidate(request){
@@ -31,7 +31,11 @@ self.addEventListener("fetch",event=>{
   const request=event.request;if(request.method!=="GET")return;
   const url=new URL(request.url);
   if(request.mode==="navigate"){event.respondWith(networkFirst(request,"./offline.html"));return;}
-  if(url.origin!==location.origin){event.respondWith(staleWhileRevalidate(request));return;}
+  if(url.origin!==location.origin){
+    const privateApi=/\/functions\/v1\/(?:account-api|institution-api)(?:\/|$)/.test(url.pathname);
+    if(privateApi){event.respondWith(fetch(request));return;}
+    event.respondWith(staleWhileRevalidate(request));return;
+  }
   const isQuestionPayload=/\/question-bank\/data\/(imported|ap|courses)\//.test(url.pathname),isJson=url.pathname.endsWith(".json");
   if(isQuestionPayload||isJson){event.respondWith(networkFirst(request));return;}
   if(["style","script","image","font"].includes(request.destination)){event.respondWith(staleWhileRevalidate(request));return;}
