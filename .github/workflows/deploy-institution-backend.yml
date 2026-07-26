@@ -67,8 +67,10 @@ jobs:
             "https://${SUPABASE_PROJECT_ID}.supabase.co/functions/v1/account-api/health" | python -m json.tool
           curl --fail --silent --show-error \
             "https://${SUPABASE_PROJECT_ID}.supabase.co/functions/v1/institution-api/health" | python -m json.tool
+          curl --fail --silent --show-error \
+            "https://${SUPABASE_PROJECT_ID}.supabase.co/functions/v1/setup-api/health" | python -m json.tool
 
       - name: Deployment reminder
         run: |
-          echo "Backend deployed. Run tools/bootstrap_institution.py once to create the first administrator."
-          echo "Then commit the generated config/institution.json change in a separate reviewed pull request."
+          echo "Backend deployed. Open setup.html to create the first administrator."
+          echo "After setup succeeds, enable the frontend in a separate reviewed pull request."
