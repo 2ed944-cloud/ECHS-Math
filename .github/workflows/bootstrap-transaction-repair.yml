@@ -1,0 +1,41 @@
+name: Bootstrap Transaction Repair QA
+
+on:
+  pull_request:
+    paths:
+      - "supabase/migrations/202607260002_bootstrap_function_repair.sql"
+      - "supabase/functions/setup-api/**"
+      - "tools/validate_bootstrap_repair.py"
+      - ".github/workflows/bootstrap-transaction-repair.yml"
+      - ".github/workflows/deploy-institution-backend.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-bootstrap-repair:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Set up Deno
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+
+      - name: Validate bootstrap transaction repair
+        run: python tools/validate_bootstrap_repair.py
+
+      - name: Type-check setup Edge Function
+        run: deno check supabase/functions/setup-api/index.ts
+
+      - name: Validate Python syntax
+        run: python -m py_compile tools/validate_bootstrap_repair.py
