@@ -51,7 +51,7 @@ header.site,.siteHeader,header.site .top{position:relative}
 .platformInventoryItem b{display:block;color:var(--pf-maroon);font:900 1.1rem Inter,sans-serif}.platformInventoryItem span{font-size:.7rem;color:var(--pf-muted)}
 .platformToast{position:fixed;right:1rem;bottom:1rem;z-index:1000;max-width:360px;padding:1rem;border-radius:16px;color:#fff;background:var(--pf-navy);box-shadow:0 20px 60px rgba(0,0,0,.25);font:700 .82rem/1.5 Inter,sans-serif;transform:translateY(140%);opacity:0;transition:.25s ease}
 .platformToast.show{transform:none;opacity:1}.platformToast button{margin-left:.65rem;border:0;border-radius:8px;padding:.35rem .55rem;color:var(--pf-navy);background:#fff;font-weight:900;cursor:pointer}
-.platformPageBand{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin:0 auto 1rem;max-width:1500px;padding:.7rem 1rem;border:1px solid var(--pf-line);border-radius:16px;background:rgba(255,255,255,.82);box-shadow:0 8px 24px rgba(16,43,70,.06)}
+.platformPageBand{display:none!important}
 .platformPageBandNav{display:flex;gap:.4rem;flex-wrap:wrap}.platformPageBandNav a{padding:.45rem .65rem;border-radius:9px;color:var(--pf-navy);text-decoration:none;font:800 .73rem Inter,sans-serif}.platformPageBandNav a:hover{background:#f4e8ee;color:var(--pf-maroon)}
 .platformPolicyLinks{display:flex;justify-content:center;gap:.75rem;flex-wrap:wrap;margin:.7rem auto 0;padding:.65rem 1rem 0;border-top:1px solid rgba(255,255,255,.16);font:800 .72rem Inter,sans-serif}
 .platformPolicyLinks a{color:inherit;text-decoration:underline;text-underline-offset:3px;opacity:.84}.platformPolicyLinks a:hover{opacity:1}
