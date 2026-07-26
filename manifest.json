@@ -19,7 +19,8 @@
   ],
   "shortcuts": [
     {"name": "Secure Sign In", "short_name": "Sign In", "description": "Open the school-managed account sign-in", "url": "./login.html", "icons": [{"src": "assets/icon-192.png", "sizes": "192x192"}]},
-    {"name": "Student Dashboard", "short_name": "Student", "description": "Open the institutional student learning dashboard", "url": "./question-bank/student.html", "icons": [{"src": "assets/icon-192.png", "sizes": "192x192"}]},
+    {"name": "Institutional Student Dashboard", "short_name": "Student", "description": "Open the secure institutional student dashboard", "url": "./question-bank/student.html", "icons": [{"src": "assets/icon-192.png", "sizes": "192x192"}]},
+    {"name": "Local Learning Dashboard", "short_name": "Learning", "description": "Open the local-first learning dashboard and existing progress", "url": "./question-bank/dashboard.html", "icons": [{"src": "assets/icon-192.png", "sizes": "192x192"}]},
     {"name": "Teacher Dashboard", "short_name": "Teacher", "description": "Open classes, accounts, assignments and analytics", "url": "./question-bank/teacher.html", "icons": [{"src": "assets/icon-192.png", "sizes": "192x192"}]},
     {"name": "Adaptive Practice", "short_name": "Adaptive", "description": "Start adaptive mathematics practice", "url": "./question-bank/practice.html?mode=adaptive", "icons": [{"src": "assets/icon-192.png", "sizes": "192x192"}]},
     {"name": "Review Centre", "short_name": "Review", "description": "Open the Mistake Bank and spaced review", "url": "./question-bank/mistakes.html", "icons": [{"src": "assets/icon-192.png", "sizes": "192x192"}]},
