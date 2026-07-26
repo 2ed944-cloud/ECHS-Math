@@ -68,7 +68,7 @@
     });
     return mePromise;
   }
-  function roleHome(role){return role==="admin"?"question-bank/admin.html":role==="teacher"?"question-bank/teacher.html":role==="parent"?"question-bank/parent.html":"question-bank/student.html"}
+  function roleHome(role){return role==="admin"?"question-bank/school-control.html":role==="teacher"?"question-bank/teacher.html":role==="parent"?"question-bank/parent.html":"question-bank/student.html"}
   function showAuthUnavailable(error){
     if(document.getElementById("institutionAuthUnavailable"))return;
     const notice=document.createElement("div");
