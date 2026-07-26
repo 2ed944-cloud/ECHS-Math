@@ -22,3 +22,6 @@ verify_jwt = false
 
 [functions.setup-api]
 verify_jwt = false
+
+[functions.login-diagnostics]
+verify_jwt = false

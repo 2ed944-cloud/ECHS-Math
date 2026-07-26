@@ -79,7 +79,25 @@ jobs:
             --header "x-bootstrap-secret: $ECHS_BOOTSTRAP_SECRET" \
             "https://${SUPABASE_PROJECT_ID}.supabase.co/functions/v1/setup-api/verify-secret" | python -m json.tool
 
+      - name: Verify production login transaction
+        shell: bash
+        run: |
+          set -euo pipefail
+          result="$(curl --fail --silent --show-error \
+            --request POST \
+            --header "x-bootstrap-secret: $ECHS_BOOTSTRAP_SECRET" \
+            "https://${SUPABASE_PROJECT_ID}.supabase.co/functions/v1/login-diagnostics")"
+          printf '%s' "$result" | python -m json.tool
+          RESULT="$result" python - <<'PY'
+          import json, os, sys
+          payload = json.loads(os.environ["RESULT"])
+          if payload.get("ok") is not True or payload.get("login_contract") is not True:
+              print("Production login transaction self-test failed", file=sys.stderr)
+              sys.exit(1)
+          print("Production login transaction: PASS")
+          PY
+
       - name: Deployment reminder
         run: |
-          echo "Backend deployed and bootstrap secret verified. Open setup.html to create the first administrator."
-          echo "After setup succeeds, enable the frontend in a separate reviewed pull request."
+          echo "Backend deployed, bootstrap secret verified and production login transaction passed."
+          echo "The institutional sign-in page is ready for account verification."
