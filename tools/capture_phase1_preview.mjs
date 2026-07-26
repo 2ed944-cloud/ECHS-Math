@@ -9,7 +9,7 @@ const browser=await chromium.launch({executablePath:process.env.CHROME_PATH||'/u
 const routes=[
   {key:'home',path:'/index.html',ready:'#courses'},
   {key:'login',path:'/login.html',ready:'#loginForm',premium:true},
-  {key:'initial-setup',path:'/setup.html?preview=1',ready:'#setupWizard',delay:1200},
+  {key:'initial-setup',path:'/setup.html?preview=1',ready:'#setupWizard',delay:1200,setup:true},
   {key:'learning-home',path:'/question-bank/index.html',ready:'#homePlan'},
   {key:'adaptive-practice',path:'/question-bank/practice.html?mode=adaptive',ready:'#start',delay:6500},
   {key:'test-generator',path:'/question-bank/exam.html',ready:'#start',delay:6500},
@@ -54,6 +54,26 @@ for(const device of devices){
       entry.theme=await page.evaluate(()=>document.documentElement.dataset.theme||'light');
       entry.institutionState=await page.evaluate(()=>document.documentElement.dataset.institution||'public');
       const screenshot=path.join(outputDir,`${route.key}-${device.key}.png`);await page.screenshot({path:screenshot,fullPage:true});entry.screenshot=screenshot;
+      if(route.setup){
+        await page.locator('#nextStep').click();
+        await page.locator('[data-panel="2"].active').waitFor({state:'visible',timeout:5000});
+        await page.locator('#nextStep').click();
+        await page.locator('[data-panel="3"].active').waitFor({state:'visible',timeout:5000});
+        await page.locator('#adminName').fill('Preview Administrator');
+        await page.locator('#adminEmail').fill('preview@echs.example');
+        await page.locator('#generatePassword').click();
+        await page.locator('#bootstrapSecret').fill('PreviewBootstrapSecret-Only-123!');
+        await page.locator('#nextStep').click();
+        await page.locator('[data-panel="4"].active').waitFor({state:'visible',timeout:5000});
+        entry.interactions.setupReview=true;
+        const reviewScreenshot=path.join(outputDir,`${route.key}-review-${device.key}.png`);await page.screenshot({path:reviewScreenshot,fullPage:true});entry.interactions.reviewScreenshot=reviewScreenshot;
+        await page.locator('#confirmPermanent').check();
+        await page.locator('#createInstitution').click();
+        await page.locator('#setupError.show').waitFor({state:'visible',timeout:5000});
+        const previewError=await page.locator('#setupError').textContent();
+        entry.interactions.previewBlocked=/preview mode cannot create/i.test(previewError||'');
+        if(!entry.interactions.previewBlocked)report.errors.push(`${route.key}/${device.key}: preview mode did not block bootstrap submission`);
+      }
       if(route.premium){
         await page.keyboard.press('Control+K');
         await page.locator('#premiumCommandDialog[open]').waitFor({state:'visible',timeout:8000});
