@@ -1,0 +1,85 @@
+name: Phase 3 Institutional Platform QA
+
+on:
+  pull_request:
+    paths:
+      - "login.html"
+      - "index.html"
+      - "privacy.html"
+      - "manifest.json"
+      - "sw.js"
+      - "robots.txt"
+      - ".gitignore"
+      - "config/**"
+      - "css/institution.css"
+      - "js/institution-*.js"
+      - "js/login.js"
+      - "question-bank/admin.html"
+      - "question-bank/student.html"
+      - "question-bank/teacher.html"
+      - "question-bank/parent.html"
+      - "question-bank/js/admin-accounts.js"
+      - "question-bank/js/student-cloud.js"
+      - "question-bank/js/teacher-cloud.js"
+      - "question-bank/js/parent-cloud.js"
+      - "supabase/**"
+      - "templates/**"
+      - "tools/bootstrap_institution.py"
+      - "tools/validate_institution_platform.py"
+      - ".github/workflows/institution-platform.yml"
+      - ".github/workflows/deploy-institution-backend.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-institution:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Set up Deno
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+
+      - name: Validate institutional security and integration
+        run: python tools/validate_institution_platform.py
+
+      - name: Re-run Phase 1 and Phase 2 release gates
+        run: |
+          python tools/validate_platform_phase1.py
+          python tools/validate_learning_system.py
+          node tools/test_learning_system.mjs
+
+      - name: Type-check Supabase Edge Functions
+        run: |
+          deno check supabase/functions/account-api/index.ts
+          deno check supabase/functions/institution-api/index.ts
+          deno check supabase/functions/learning-sync/index.ts
+
+      - name: Validate JSON, TOML and Python files
+        run: |
+          python -m json.tool manifest.json >/dev/null
+          python -m json.tool config/institution.json >/dev/null
+          python -m json.tool config/institution.example.json >/dev/null
+          python -m py_compile tools/bootstrap_institution.py tools/validate_institution_platform.py
+          python - <<'PY'
+          import tomllib
+          with open('supabase/config.toml','rb') as handle:
+              tomllib.load(handle)
+          print('supabase/config.toml: PASS')
+          PY
