@@ -16,6 +16,8 @@ on:
       - "supabase/functions/setup-api/**"
       - "platform/PHASE_5_INITIAL_SETUP.md"
       - "tools/validate_initial_setup.py"
+      - "tools/validate_institution_platform.py"
+      - "tools/validate_production_activation.py"
       - ".github/workflows/initial-setup.yml"
       - ".github/workflows/deploy-institution-backend.yml"
   workflow_dispatch:
@@ -50,7 +52,17 @@ jobs:
         run: python tools/validate_initial_setup.py
 
       - name: Re-run institutional compatibility gate
-        run: python tools/validate_institution_platform.py
+        run: |
+          if python - <<'PY'
+          import json
+          with open('config/institution.json', encoding='utf-8') as handle:
+              raise SystemExit(0 if json.load(handle).get('enabled') is True else 1)
+          PY
+          then
+            python tools/validate_production_activation.py
+          else
+            python tools/validate_institution_platform.py
+          fi
 
       - name: Type-check the setup Edge Function
         run: deno check supabase/functions/setup-api/index.ts
@@ -59,7 +71,7 @@ jobs:
         run: |
           python -m json.tool config/institution.json >/dev/null
           python -m json.tool config/institution.example.json >/dev/null
-          python -m py_compile tools/validate_initial_setup.py
+          python -m py_compile tools/validate_initial_setup.py tools/validate_institution_platform.py tools/validate_production_activation.py
           python - <<'PY'
           import tomllib
           with open('supabase/config.toml','rb') as handle:
