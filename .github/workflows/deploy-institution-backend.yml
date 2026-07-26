@@ -70,7 +70,16 @@ jobs:
           curl --fail --silent --show-error \
             "https://${SUPABASE_PROJECT_ID}.supabase.co/functions/v1/setup-api/health" | python -m json.tool
 
+      - name: Verify deployed bootstrap secret
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error \
+            --request POST \
+            --header "x-bootstrap-secret: $ECHS_BOOTSTRAP_SECRET" \
+            "https://${SUPABASE_PROJECT_ID}.supabase.co/functions/v1/setup-api/verify-secret" | python -m json.tool
+
       - name: Deployment reminder
         run: |
-          echo "Backend deployed. Open setup.html to create the first administrator."
+          echo "Backend deployed and bootstrap secret verified. Open setup.html to create the first administrator."
           echo "After setup succeeds, enable the frontend in a separate reviewed pull request."
