@@ -58,9 +58,9 @@
     const response=await fetch("config/institution.json",{cache:"no-store",headers:{"cache-control":"no-cache"}});
     if(!response.ok)throw new Error("Institution configuration could not be loaded.");
     const cfg=await response.json();
-    const base=String(cfg.api_base||"").replace(/\/$/,"");
-    if(!/^https:\/\/[a-z0-9]+\.supabase\.co\/functions\/v1$/i.test(base))throw new Error("The deployed Supabase endpoint is not configured.");
-    return {...cfg,api_base:base};
+    const base=String(cfg.setup_api_base||cfg.api_base||"").replace(/\/$/,"");
+    if(!/^https:\/\/[a-z0-9]+\.supabase\.co\/functions\/v1$/i.test(base))throw new Error("The deployed Supabase setup endpoint is not configured.");
+    return {...cfg,setup_api_base:base};
   }
 
   const cfg=await loadConfig().catch(error=>{showError(error.message);return null});
@@ -72,7 +72,7 @@
       throw new Error("Preview mode cannot create an institution.");
     }
     if(!cfg)throw new Error("Institution configuration is unavailable.");
-    const response=await fetch(`${cfg.api_base}/setup-api${path}`,{
+    const response=await fetch(`${cfg.setup_api_base}/setup-api${path}`,{
       ...options,
       cache:"no-store",
       headers:new Headers(options.headers||{})
