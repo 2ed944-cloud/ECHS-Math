@@ -101,13 +101,13 @@
     const current=await me();if(!current||current.role!=="student")return{skipped:true};
     const payload=localLearningPayload();
     if(!navigator.onLine){localStorage.setItem(KEYS.pending,JSON.stringify(payload));return{queued:true}}
-    const result=await api("institution-api","/learning/sync",{method:"POST",body:JSON.stringify(payload)});
+    const result=await api("learning-sync","/sync",{method:"POST",body:JSON.stringify(payload)});
     localStorage.removeItem(KEYS.pending);return result;
   }
   async function flushPending(){
     const pending=safeJSON(localStorage.getItem(KEYS.pending),null);
     if(!pending||!navigator.onLine)return;
-    try{await api("institution-api","/learning/sync",{method:"POST",body:JSON.stringify(pending)});localStorage.removeItem(KEYS.pending)}catch(error){console.warn("Pending learning sync failed",error)}
+    try{await api("learning-sync","/sync",{method:"POST",body:JSON.stringify(pending)});localStorage.removeItem(KEYS.pending)}catch(error){console.warn("Pending learning sync failed",error)}
   }
   function setupMobileSidebar(){
     const toggle=document.querySelector("[data-institution-menu]"),sidebar=document.querySelector(".institutionSidebar");
