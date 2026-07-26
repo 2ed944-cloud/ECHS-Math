@@ -1,69 +1,100 @@
-const CACHE = "echs-math-shell-v6-2";
+const VERSION = "echs-platform-phase1-v7";
+const STATIC_CACHE = `${VERSION}-static`;
+const RUNTIME_CACHE = `${VERSION}-runtime`;
 const SHELL = [
   "./",
   "./index.html",
+  "./offline.html",
+  "./manifest.json",
   "./css/portal.css",
+  "./css/practice-integration.css",
+  "./css/official-ap-integration.css",
+  "./css/platform-foundation.css",
   "./data/courses.js",
   "./data/ap-calculus-update.js",
+  "./data/ap-precalculus-update.js",
   "./js/portal.js",
+  "./js/practice-integration.js",
+  "./js/official-ap-integration.js",
+  "./js/platform-foundation.js",
+  "./question-bank/index.html",
+  "./question-bank/practice.html",
+  "./question-bank/exam.html",
+  "./question-bank/dashboard.html",
+  "./question-bank/css/bank.css",
+  "./question-bank/css/practice-studio.css",
+  "./question-bank/js/bank.js",
+  "./question-bank/js/practice.js",
+  "./question-bank/data/catalog.json",
+  "./question-bank/data/blackboard-addon.json",
   "./assets/echs_logo.png",
   "./assets/icon-192.png",
-  "./assets/icon-512.png",
+  "./assets/icon-512.png"
 ];
 
-self.addEventListener("install", (event) => {
+self.addEventListener("install", event => {
+  event.waitUntil(caches.open(STATIC_CACHE).then(cache => cache.addAll(SHELL)).then(() => self.skipWaiting()));
+});
+
+self.addEventListener("activate", event => {
   event.waitUntil(
-    caches
-      .open(CACHE)
-      .then((cache) => cache.addAll(SHELL))
-      .then(() => self.skipWaiting()),
+    caches.keys()
+      .then(keys => Promise.all(keys.filter(key => key.startsWith("echs-") && ![STATIC_CACHE,RUNTIME_CACHE].includes(key)).map(key => caches.delete(key))))
+      .then(() => self.clients.claim())
   );
 });
 
-self.addEventListener("activate", (event) => {
-  event.waitUntil(
-    caches
-      .keys()
-      .then((keys) =>
-        Promise.all(
-          keys.filter((key) => key !== CACHE).map((key) => caches.delete(key)),
-        ),
-      )
-      .then(() => self.clients.claim()),
-  );
-});
+async function networkFirst(request, fallbackUrl){
+  const cache = await caches.open(RUNTIME_CACHE);
+  try{
+    const response = await fetch(request);
+    if(response && response.ok) cache.put(request,response.clone());
+    return response;
+  }catch(_error){
+    return (await cache.match(request)) || (await caches.match(request)) || (fallbackUrl ? caches.match(fallbackUrl) : Response.error());
+  }
+}
 
-self.addEventListener("fetch", (event) => {
-  if (event.request.method !== "GET") return;
+async function staleWhileRevalidate(request){
+  const cache = await caches.open(RUNTIME_CACHE);
+  const cached = await cache.match(request) || await caches.match(request);
+  const network = fetch(request).then(response => {
+    if(response && response.ok && (response.type === "basic" || response.type === "cors")) cache.put(request,response.clone());
+    return response;
+  }).catch(() => cached);
+  return cached || network;
+}
+
+self.addEventListener("fetch", event => {
   const request = event.request;
-  if (request.mode === "navigate") {
-    event.respondWith(
-      fetch(request)
-        .then((response) => {
-          const copy = response.clone();
-          caches.open(CACHE).then((cache) => cache.put(request, copy));
-          return response;
-        })
-        .catch(() =>
-          caches
-            .match(request)
-            .then((hit) => hit || caches.match("./index.html")),
-        ),
-    );
+  if(request.method !== "GET") return;
+  const url = new URL(request.url);
+
+  if(request.mode === "navigate"){
+    event.respondWith(networkFirst(request,"./offline.html"));
     return;
   }
-  event.respondWith(
-    caches.match(request).then((cached) => {
-      const network = fetch(request)
-        .then((response) => {
-          if (response.ok) {
-            const copy = response.clone();
-            caches.open(CACHE).then((cache) => cache.put(request, copy));
-          }
-          return response;
-        })
-        .catch(() => cached);
-      return cached || network;
-    }),
-  );
+
+  if(url.origin !== location.origin){
+    event.respondWith(staleWhileRevalidate(request));
+    return;
+  }
+
+  const isQuestionPayload = /\/question-bank\/data\/(imported|ap|courses)\//.test(url.pathname);
+  const isJson = url.pathname.endsWith(".json");
+  if(isQuestionPayload || isJson){
+    event.respondWith(networkFirst(request));
+    return;
+  }
+
+  if(["style","script","image","font"].includes(request.destination)){
+    event.respondWith(staleWhileRevalidate(request));
+    return;
+  }
+
+  event.respondWith(networkFirst(request));
+});
+
+self.addEventListener("message", event => {
+  if(event.data === "SKIP_WAITING") self.skipWaiting();
 });

@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /.echs-backups/
+Disallow: /question-bank/review.html
+Disallow: /question-bank/practice-sources/
+Disallow: /question-bank/teacher/
+Disallow: /question-bank/official/data/
+
+Sitemap: https://2ed944-cloud.github.io/ECHS-Math/sitemap.xml

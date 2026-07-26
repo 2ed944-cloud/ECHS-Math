@@ -1,0 +1,64 @@
+name: Platform Visual QA
+
+on:
+  pull_request:
+    paths:
+      - "index.html"
+      - "privacy.html"
+      - "accessibility.html"
+      - "sources-and-rights.html"
+      - "404.html"
+      - "css/**"
+      - "js/**"
+      - "question-bank/**"
+      - "tools/capture_phase1_preview.mjs"
+      - ".github/workflows/platform-visual-qa.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  capture-platform:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install browser driver
+        run: npm install --no-save --no-package-lock playwright-core@1.54.1
+
+      - name: Start local platform server
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/echs-preview-server.log 2>&1 &
+          echo $! > /tmp/echs-preview-server.pid
+          for attempt in {1..30}; do
+            if curl --fail --silent http://127.0.0.1:4173/index.html >/dev/null; then
+              exit 0
+            fi
+            sleep 1
+          done
+          cat /tmp/echs-preview-server.log
+          exit 1
+
+      - name: Capture desktop and mobile pages
+        env:
+          ECHS_PREVIEW_URL: http://127.0.0.1:4173
+          ECHS_PREVIEW_OUTPUT: artifacts/phase1-visual
+          CHROME_PATH: /usr/bin/google-chrome
+        run: node tools/capture_phase1_preview.mjs
+
+      - name: Upload visual QA evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: phase1-visual-qa-${{ github.run_number }}
+          path: artifacts/phase1-visual
+          if-no-files-found: error
+          retention-days: 14

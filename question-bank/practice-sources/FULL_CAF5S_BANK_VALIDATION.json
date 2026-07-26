@@ -1,0 +1,22 @@
+{
+  "bank": "CAF5S",
+  "questions": 3101,
+  "chapters": 11,
+  "mediaPackages": 11,
+  "imageReferencesChecked": 6773,
+  "answerReferencesChecked": 2916,
+  "chapterCounts": {
+    "0": 234,
+    "1": 302,
+    "2": 302,
+    "3": 355,
+    "4": 518,
+    "5": 133,
+    "6": 235,
+    "7": 238,
+    "8": 116,
+    "9": 639,
+    "10": 29
+  },
+  "status": "PASS"
+}

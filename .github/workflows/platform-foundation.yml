@@ -1,0 +1,48 @@
+name: Platform Foundation QA
+
+on:
+  pull_request:
+    paths:
+      - "index.html"
+      - "offline.html"
+      - "manifest.json"
+      - "sw.js"
+      - "css/**"
+      - "js/**"
+      - "question-bank/**"
+      - "tools/validate_platform_phase1.py"
+      - ".github/workflows/platform-foundation.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-platform:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Validate platform files and bank inventory
+        run: python tools/validate_platform_phase1.py
+      - name: Check JavaScript syntax
+        run: |
+          node --check js/platform-foundation.js
+          node --check question-bank/js/bank.js
+          node --check question-bank/js/practice.js
+          node --check question-bank/js/precalculus-bank-audit.js
+      - name: Validate core JSON files
+        run: |
+          python -m json.tool manifest.json >/dev/null
+          python -m json.tool question-bank/data/catalog.json >/dev/null
+          python -m json.tool question-bank/data/blackboard-addon.json >/dev/null
+          python -m json.tool question-bank/practice-sources/FULL_PRECALCULUS_BANK_VALIDATION.json >/dev/null
