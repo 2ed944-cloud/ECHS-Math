@@ -32,7 +32,7 @@
     }
 
     try{
-      const response=await fetch(`${base}/setup-api/status`,{cache:"no-store",headers:{"cache-control":"no-cache"}});
+      const response=await fetch(`${base}/setup-api/status`,{cache:"no-store"});
       const status=await response.json();
       if(!response.ok||!status.ok)throw new Error(status?.error?.message||"Setup status is unavailable");
       if(status.complete){
