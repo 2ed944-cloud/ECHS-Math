@@ -43,3 +43,11 @@
   font-size:10px;
   font-weight:800;
 }
+@media(max-width:680px){
+  .institutionTopbar>*{min-width:0}
+  .institutionTopActions{min-width:0;max-width:100%;width:100%}
+  .institutionTopActions>.iControl,
+  .institutionTopActions>select,
+  .institutionTopActions>.iButton{min-width:0;max-width:100%}
+  body[data-premium-page="parent"] #childSelector{width:100%;flex:1 1 100%;text-overflow:ellipsis}
+}
