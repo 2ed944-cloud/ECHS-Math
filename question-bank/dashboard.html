@@ -2,22 +2,44 @@
 <html lang="en">
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#7d1845">
-  <title>ECHS Mathematics Progress</title><meta name="description" content="Review local mathematics practice accuracy, unit performance, recent attempts and mistakes.">
+  <title>ECHS Student Learning Dashboard</title><meta name="description" content="Daily plan, mastery, spaced review, mistakes, achievements and learning progress for ECHS Mathematics.">
+  <meta name="robots" content="noindex,follow">
   <link rel="manifest" href="../manifest.json"><link rel="icon" href="../assets/icon-192.png"><link rel="apple-touch-icon" href="../assets/icon-192.png">
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/bank.css"><link rel="stylesheet" href="css/practice-studio.css"><link rel="stylesheet" href="../css/platform-foundation.css?v=20260726-phase1">
+  <link rel="stylesheet" href="css/bank.css"><link rel="stylesheet" href="css/practice-studio.css"><link rel="stylesheet" href="css/learning-system.css?v=20260726-phase2"><link rel="stylesheet" href="../css/platform-foundation.css?v=20260726-phase2">
 </head>
 <body class="practiceStudio" data-platform-page="dashboard">
-<header class="siteHeader"><a class="brand" href="index.html"><span class="brandMark">∫</span><span class="brandText"><strong>ECHS Progress</strong><span>Personal practice and mistake history</span></span></a><nav class="platformNav" id="platformNav"><a class="navLink" href="index.html">Practice Home</a><a class="navLink" href="practice.html">Practice Studio</a><a class="navLink" href="exam.html">Test Generator</a><a class="navLink active" href="dashboard.html" aria-current="page">My Progress</a><a class="navLink" href="official/index.html">Official AP</a><a class="navLink" href="../">Lessons</a></nav><div class="platformHeaderActions"></div></header>
+<header class="siteHeader"><a class="brand" href="index.html"><span class="brandMark">∫</span><span class="brandText"><strong>ECHS Student Dashboard</strong><span>Daily plan · mastery · review · achievements</span></span></a><nav class="platformNav" id="platformNav"><a class="navLink" href="index.html">Learning Home</a><a class="navLink" href="practice.html">Practice</a><a class="navLink" href="exam.html">Tests</a><a class="navLink active" href="dashboard.html" aria-current="page">Student</a><a class="navLink" href="mistakes.html">Review</a><a class="navLink" href="teacher.html">Teacher</a><a class="navLink" href="parent.html">Parent</a><a class="navLink" href="../">Lessons</a></nav><div class="platformHeaderActions"></div></header>
 <main>
-  <section class="studioHero"><div class="studioHeroContent"><span class="eyebrow">Practice Studio · Browser-local analytics</span><h1>Turn every attempt into <span>a smarter next step.</span></h1><p>Review accuracy by course and unit, recent attempts and unresolved mistakes from textbook and ECHS practice. Official AP simulator results remain separate.</p><div class="studioHeroMeta"><span>Course mastery</span><span>Unit accuracy</span><span>Recent activity</span><span>Local privacy</span></div></div><div class="studioHeroStats"><div class="studioHeroStat"><b data-platform-attempts>0</b><span>saved responses</span></div><div class="studioHeroStat"><b data-platform-completed>0</b><span>completed lessons</span></div><div class="studioHeroStat"><b data-platform-bookmarks>0</b><span>bookmarked lessons</span></div><div class="studioHeroStat"><b>Private</b><span>stored on this device</span></div></div></section>
-  <div class="sectionHead"><div><h2>Practice summary</h2><p>Textbook and ECHS Practice Studio attempts only.</p></div><button class="button danger" id="reset">Reset local attempts</button></div>
-  <section class="metricGrid" id="metrics" aria-live="polite"></section>
-  <div class="sectionHead"><div><h2>Course and unit performance</h2><p>Answered auto-gradable questions appear here.</p></div></div>
-  <div class="studioPanel" style="overflow:auto"><table class="topicTable"><thead><tr><th>Course / Unit</th><th>Attempts</th><th>Correct</th><th>Accuracy</th><th>Progress</th><th></th></tr></thead><tbody id="rows"></tbody></table></div>
-  <div class="sectionHead"><div><h2>Recent Practice Studio activity</h2></div><a class="button ghost" href="practice.html">Continue practising</a></div><section id="recent"></section>
+  <section class="studioHero"><div class="studioHeroContent"><span class="eyebrow">ECHS Mathematics · Personal learning system</span><h1 id="welcomeTitle">Welcome back.<span>Your next step is ready.</span></h1><p>The dashboard combines Practice Studio attempts, lesson progress, spaced review and topic mastery without mixing in the separately gated Official AP archive.</p><div class="studioHeroMeta"><span id="streakMeta">0-day streak</span><span id="goalMeta">Daily goal 10</span><span id="dueMeta">0 reviews due</span><span>Local-first privacy</span></div></div><div class="studioHeroStats"><div class="studioHeroStat"><b id="heroMastery">0</b><span>topics mastered</span></div><div class="studioHeroStat"><b id="heroAccuracy">0%</b><span>practice accuracy</span></div><div class="studioHeroStat"><b id="heroAttempts">0</b><span>learning attempts</span></div><div class="studioHeroStat"><b id="heroStreak">0</b><span>current streak</span></div></div></section>
+
+  <nav class="learningTabs" aria-label="Learning system sections"><a class="active" href="dashboard.html">Overview</a><a href="mistakes.html">Mistake Bank</a><a href="practice.html?mode=adaptive">Adaptive Practice</a><a href="teacher.html">Teacher Dashboard</a><a href="parent.html">Parent Report</a></nav>
+
+  <div class="learningToolbar"><div class="left"><button class="button ghost" id="editProfile">Edit profile</button><button class="button ghost" id="exportReport">Export learning report</button><button class="button ghost" id="printReport">Print</button></div><div class="right"><a class="button wine" href="practice.html?mode=adaptive&autostart=1">Start adaptive practice</a></div></div>
+
+  <section class="learningGrid">
+    <article class="learningCard wide heroCard"><span class="learningKicker">Today</span><h2>Your learning plan</h2><div class="goalTrack" aria-label="Daily goal progress"><i id="goalBar" style="width:0%"></i></div><p id="goalText">0 of 10 questions completed today.</p><div class="planList" id="dailyPlan"></div></article>
+    <article class="learningCard"><span class="learningKicker">Continue</span><h2>Resume learning</h2><div id="continueCard"></div></article>
+    <article class="learningCard"><span class="learningKicker">Review</span><div class="learningMetric" id="dueCount">0</div><p>questions due for spaced review</p><a class="button ghost" href="practice.html?mode=review&autostart=1">Start due review</a></article>
+    <article class="learningCard"><span class="learningKicker">Mistake Bank</span><div class="learningMetric" id="mistakeCount">0</div><p>unresolved questions to revisit</p><a class="button ghost" href="mistakes.html">Open Mistake Bank</a></article>
+    <article class="learningCard"><span class="learningKicker">Weekly momentum</span><div class="learningMetric" id="weekCount">0</div><p>active learning days in the last seven days</p></article>
+  </section>
+
+  <div class="sectionHead"><div><h2>Topic mastery</h2><p>Mastery combines overall accuracy, recent performance and the amount of evidence available.</p></div><div class="control"><label for="courseFilter">Course</label><select id="courseFilter"><option value="all">All courses</option></select></div></div>
+  <section class="learningCard full" style="overflow:auto"><table class="masteryTable"><thead><tr><th>Course / topic</th><th>Mastery</th><th>Accuracy</th><th>Evidence</th><th>Status</th><th>Next step</th></tr></thead><tbody id="masteryRows"></tbody></table></section>
+
+  <div class="sectionHead"><div><h2>Achievements</h2><p>Achievements recognise consistency, accuracy and topic mastery.</p></div></div>
+  <section class="achievementGrid" id="achievementGrid"></section>
+
+  <div class="sectionHead"><div><h2>Recent learning sessions</h2><p>Practice, adaptive review and test sessions from this device.</p></div></div>
+  <section class="learningCard full" id="recentSessions"></section>
+
+  <section class="learningCard full dangerZone"><span class="learningKicker">Local data controls</span><h2>Reset student learning data</h2><p>This removes practice history, mastery, reviews, streaks and achievements stored on this browser. Teacher classes and assignments are preserved.</p><button class="button danger" id="resetLearning">Reset student learning data</button></section>
 </main>
-<footer class="footer">ECHS Mathematics · Local analytics for textbook and ECHS practice collections.</footer>
-<script src="js/bank.js"></script><script src="js/dashboard.js"></script><script src="../js/platform-foundation.js?v=20260726-phase1"></script>
+<footer class="footer">ECHS Mathematics Learning System · Student progress is stored locally on this device until cloud synchronization is configured.</footer>
+
+<dialog id="profileDialog"><form method="dialog" class="learningCard" style="max-width:620px"><span class="learningKicker">Student profile</span><h2>Personalise your dashboard</h2><div class="profileForm"><div class="control"><label for="profileName">Student name</label><input id="profileName" autocomplete="name"></div><div class="control"><label for="profileGrade">Grade</label><input id="profileGrade"></div><div class="control"><label for="profileSchool">School</label><input id="profileSchool"></div><div class="control"><label for="profileGoal">Daily question goal</label><input id="profileGoal" type="number" min="1" max="200"></div></div><div class="learningToolbar"><button class="button ghost" value="cancel">Cancel</button><button class="button wine" id="saveProfile" value="default">Save profile</button></div></form></dialog>
+
+<script src="js/learning-system.js?v=20260726-phase2"></script><script src="js/sync-adapter.js?v=20260726-phase2"></script><script src="js/bank.js"></script><script src="js/dashboard.js?v=20260726-phase2"></script><script src="../js/platform-foundation.js?v=20260726-phase2"></script>
 </body>
 </html>
