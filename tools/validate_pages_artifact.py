@@ -83,7 +83,7 @@ def validate(root: Path, expected_sha: str) -> list[str]:
 
     worker = read(root, "sw.js", errors)
     for marker in [
-        'echs-platform-auth-shell-v2',
+        "echs-platform-auth-shell-v2",
         "AUTH_DOCUMENT",
         "validAuthShell",
         "freshAuthDocument",
@@ -95,7 +95,13 @@ def validate(root: Path, expected_sha: str) -> list[str]:
             fail(errors, f"Service worker missing deployment marker: {marker}")
 
     client = read(root, "js/institution-client.js", errors)
-    for marker in ["requireAuth", "session_contract", "institutionAuthUnavailable"]:
+    for marker in [
+        "requestError",
+        "requireAuth",
+        "institutionAuthUnavailable",
+        "error?.status===401",
+        "echs:institution-auth-error",
+    ]:
         if marker not in client:
             fail(errors, f"Institution client missing marker: {marker}")
 
