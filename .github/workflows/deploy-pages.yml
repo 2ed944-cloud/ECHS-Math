@@ -1,0 +1,149 @@
+name: Deploy ECHS Mathematics to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    paths:
+      - ".github/workflows/deploy-pages.yml"
+      - ".nojekyll"
+      - "login.html"
+      - "sw.js"
+      - "js/login.js"
+      - "js/institution-client.js"
+      - "css/institution*.css"
+      - "question-bank/admin.html"
+      - "question-bank/teacher.html"
+      - "question-bank/student.html"
+      - "question-bank/parent.html"
+      - "question-bank/js/**"
+      - "tools/validate_pages_artifact.py"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out exact repository revision
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Prepare immutable Pages artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf _pages
+          mkdir -p _pages
+          rsync -a \
+            --exclude='.git/' \
+            --exclude='_pages/' \
+            --exclude='.echs-backups/' \
+            --exclude='node_modules/' \
+            --exclude='supabase/.temp/' \
+            ./ _pages/
+          touch _pages/.nojekyll
+          DEPLOYED_AT="$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          payload = {
+              "sha": os.environ["GITHUB_SHA"],
+              "run_id": os.environ["GITHUB_RUN_ID"],
+              "run_attempt": os.environ["GITHUB_RUN_ATTEMPT"],
+              "ref": os.environ["GITHUB_REF"],
+              "deployed_at": os.environ["DEPLOYED_AT"],
+          }
+          Path("_pages/deployment.json").write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+          PY
+        env:
+          DEPLOYED_AT: ${{ env.DEPLOYED_AT }}
+
+      - name: Validate exact Pages artifact
+        run: python tools/validate_pages_artifact.py _pages --expected-sha "$GITHUB_SHA"
+
+      - name: Configure GitHub Pages
+        if: github.event_name != 'pull_request'
+        uses: actions/configure-pages@v5
+
+      - name: Upload exact Pages artifact
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: _pages
+
+  deploy:
+    if: github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy exact artifact to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      - name: Verify live deployment identity and administrator shell
+        shell: bash
+        env:
+          PAGE_URL: ${{ steps.deployment.outputs.page_url }}
+        run: |
+          set -euo pipefail
+          base="${PAGE_URL%/}"
+          for attempt in $(seq 1 40); do
+            echo "Live verification attempt ${attempt}/40"
+            deployment="$(curl --fail --silent --show-error \
+              --header 'Cache-Control: no-cache' \
+              "${base}/deployment.json?sha=${GITHUB_SHA}" || true)"
+            admin="$(curl --fail --silent --show-error \
+              --header 'Cache-Control: no-cache' \
+              "${base}/question-bank/admin.html?sha=${GITHUB_SHA}" || true)"
+            worker="$(curl --fail --silent --show-error \
+              --header 'Cache-Control: no-cache' \
+              "${base}/sw.js?sha=${GITHUB_SHA}" || true)"
+            if DEPLOYMENT="$deployment" ADMIN="$admin" WORKER="$worker" python - <<'PY'
+          import json, os, sys
+          expected = os.environ["GITHUB_SHA"]
+          deployment = os.environ.get("DEPLOYMENT", "")
+          admin = os.environ.get("ADMIN", "")
+          worker = os.environ.get("WORKER", "")
+          try:
+              identity = json.loads(deployment)
+          except Exception:
+              raise SystemExit(1)
+          checks = [
+              identity.get("sha") == expected,
+              len(admin.encode("utf-8")) > 12000,
+              "<!doctype html" in admin.lower(),
+              "School Control Center" in admin,
+              "institutionBody" in admin,
+              "accountRows" in admin,
+              admin.strip().lower() != "admin",
+              "echs-platform-auth-shell-v2" in worker,
+          ]
+          raise SystemExit(0 if all(checks) else 1)
+          PY
+            then
+              echo "GitHub Pages live artifact verification: PASS"
+              exit 0
+            fi
+            sleep 15
+          done
+          echo "GitHub Pages did not publish the expected administrator shell for ${GITHUB_SHA}" >&2
+          exit 1
