@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Static release gate for the ECHS Phase 4 premium role experiences."""
+"""Static release gate for the complete ECHS premium role experiences."""
 from __future__ import annotations
 import json
 import subprocess
@@ -15,10 +15,11 @@ def read(path):
     return file.read_text(encoding="utf-8")
 
 required=[
- "css/institution-premium.css","js/institution-experience.js","login.html",
+ "css/institution-premium.css","css/institution-responsive.css","css/institution-completion.css",
+ "js/institution-experience.js","js/institution-completion.js","login.html",
  "question-bank/student.html","question-bank/teacher.html","question-bank/parent.html","question-bank/admin.html",
  "question-bank/js/student-cloud.js","question-bank/js/teacher-cloud.js","question-bank/js/parent-cloud.js","question-bank/js/admin-accounts.js",
- "platform/PHASE_4_PREMIUM_EXPERIENCE.md","sw.js"
+ "platform/PHASE_4_PREMIUM_EXPERIENCE.md","platform/PHASE_4_PREMIUM_COMPLETION.md","sw.js"
 ]
 for path in required: read(path)
 
@@ -39,12 +40,23 @@ for path,markers in page_markers.items():
 css=read("css/institution-premium.css")
 for marker in [".experienceHero",".missionRing",".premiumMetrics",".premiumGrid",".journeyMap",".weekBars",".planTimeline","@media(prefers-reduced-motion:reduce)"]:
     if marker not in css: fail(f"Premium CSS missing {marker}")
+responsive_css=read("css/institution-responsive.css")
+for marker in ["overflow-x:clip",".meterGrid",".premiumMobileDock",".planTimeline","@media(max-width:760px)"]:
+    if marker not in responsive_css: fail(f"Responsive CSS missing {marker}")
+completion_css=read("css/institution-completion.css")
+for marker in [".premiumCommandDialog",".premiumDrawer","visibility:hidden",".premiumMobileDock",".guideTask",".premiumGoalsDialog",".offlineRibbon","@media print","@media(prefers-reduced-motion:reduce)"]:
+    if marker not in completion_css: fail(f"Completion CSS missing {marker}")
 
 client=read("js/institution-experience.js")
-for marker in ["showPreview","renderWeekBars","setRing","bindTheme","ECHSExperience"]:
-    if marker not in client: fail(f"Premium experience helper missing {marker}")
+for marker in ["showPreview","renderWeekBars","setRing","bindTheme","bindGuideShortcutCompatibility","ECHSExperience","loadCompletionLayer","institution-responsive.css","institution-completion.css","institution-completion.js"]:
+    if marker not in client: fail(f"Premium experience helper missing: {marker}")
+completion=read("js/institution-completion.js")
+for marker in ["openCommands","deriveNotifications","onboardingTasks","openGoals","addMobileDock","exportVisibleTable","ECHSPremiumCompletion","Ctrl / ⌘ + K"]:
+    if marker not in completion: fail(f"Premium completion helper missing: {marker}")
+for forbidden in ["eval(","new Function(","innerHTML = password","localStorage.setItem(\"password"]:
+    if forbidden.lower() in completion.lower(): fail(f"Completion layer contains forbidden pattern: {forbidden}")
 
-scripts=["js/institution-experience.js","js/login.js","question-bank/js/student-cloud.js","question-bank/js/teacher-cloud.js","question-bank/js/parent-cloud.js","question-bank/js/admin-accounts.js","sw.js"]
+scripts=["js/institution-experience.js","js/institution-completion.js","js/login.js","question-bank/js/student-cloud.js","question-bank/js/teacher-cloud.js","question-bank/js/parent-cloud.js","question-bank/js/admin-accounts.js","sw.js"]
 for path in scripts:
     result=subprocess.run(["node","--check",str(ROOT/path)],capture_output=True,text=True)
     if result.returncode: fail(f"JavaScript syntax failed in {path}: {result.stderr.strip()}")
@@ -58,14 +70,14 @@ for marker in ["canStatus","canReset","row.role===\"student\"","current?.role===
     if marker not in admin_js: fail(f"Restricted account UI missing permission marker: {marker}")
 
 worker=read("sw.js")
-for asset in ["./css/institution-premium.css","./js/institution-experience.js","./question-bank/student.html","./question-bank/teacher.html","./question-bank/parent.html","./question-bank/admin.html"]:
+for asset in ["./css/institution-premium.css","./css/institution-responsive.css","./css/institution-completion.css","./js/institution-experience.js","./js/institution-completion.js","./question-bank/student.html","./question-bank/teacher.html","./question-bank/parent.html","./question-bank/admin.html"]:
     if asset not in worker: fail(f"Service worker missing premium asset {asset}")
 if "learning-sync" not in worker or "event.respondWith(fetch(request))" not in worker: fail("Private institutional APIs must bypass caches")
 
 config=json.loads(read("config/institution.json") or "{}")
 if config.get("enabled") is not False: fail("Institutional configuration must remain disabled until approved backend activation")
 
-print("ECHS Phase 4 premium experience validation")
+print("ECHS Phase 4 complete premium experience validation")
 print(f"Errors: {len(ERRORS)}")
 for error in ERRORS: print(f"  ERROR: {error}")
 if ERRORS: sys.exit(1)
