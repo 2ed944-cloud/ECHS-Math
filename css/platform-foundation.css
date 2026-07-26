@@ -15,8 +15,9 @@
 html{color-scheme:light}
 html[data-theme="dark"]{color-scheme:dark;--pf-paper:#142234;--pf-canvas:#0d1826;--pf-ink:#edf5fb;--pf-muted:#a9b8c7;--pf-line:#2c4054;--pf-shadow:0 18px 54px rgba(0,0,0,.32)}
 body{transition:background-color .2s ease,color .2s ease}
+header.site,.siteHeader,header.site .top{position:relative}
 .platformHeaderActions{display:flex;align-items:center;justify-content:flex-end;gap:.5rem;flex-wrap:wrap}
-.platformNav{display:flex;align-items:center;gap:.35rem;flex-wrap:wrap}
+.platformNav{display:flex;align-items:center;gap:.35rem;flex-wrap:wrap;z-index:80}
 .platformNav a,.platformIconButton{
   min-height:40px;display:inline-flex;align-items:center;justify-content:center;gap:.35rem;
   padding:.58rem .78rem;border:1px solid transparent;border-radius:12px;text-decoration:none;
@@ -52,13 +53,20 @@ body{transition:background-color .2s ease,color .2s ease}
 .platformToast.show{transform:none;opacity:1}.platformToast button{margin-left:.65rem;border:0;border-radius:8px;padding:.35rem .55rem;color:var(--pf-navy);background:#fff;font-weight:900;cursor:pointer}
 .platformPageBand{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin:0 auto 1rem;max-width:1500px;padding:.7rem 1rem;border:1px solid var(--pf-line);border-radius:16px;background:rgba(255,255,255,.82);box-shadow:0 8px 24px rgba(16,43,70,.06)}
 .platformPageBandNav{display:flex;gap:.4rem;flex-wrap:wrap}.platformPageBandNav a{padding:.45rem .65rem;border-radius:9px;color:var(--pf-navy);text-decoration:none;font:800 .73rem Inter,sans-serif}.platformPageBandNav a:hover{background:#f4e8ee;color:var(--pf-maroon)}
+.platformPolicyLinks{display:flex;justify-content:center;gap:.75rem;flex-wrap:wrap;margin:.7rem auto 0;padding:.65rem 1rem 0;border-top:1px solid rgba(255,255,255,.16);font:800 .72rem Inter,sans-serif}
+.platformPolicyLinks a{color:inherit;text-decoration:underline;text-underline-offset:3px;opacity:.84}.platformPolicyLinks a:hover{opacity:1}
 html[data-theme="dark"] body{background:#0d1826;color:var(--pf-ink)}
 html[data-theme="dark"] .platformTile,html[data-theme="dark"] .platformPageBand,html[data-theme="dark"] .platformIconButton{background:rgba(20,34,52,.96);border-color:var(--pf-line);color:var(--pf-ink)}
 html[data-theme="dark"] .platformTile h3,html[data-theme="dark"] .platformPageBandNav a{color:#e9f3fa}
 html[data-theme="dark"] .platformInventoryItem{background:#17283a;border-color:#2b4155}
-html[data-theme="dark"] header.site,html[data-theme="dark"] .siteHeader{background:rgba(13,24,38,.92)!important;border-color:#2a4054!important}
+html[data-theme="dark"] header.site,html[data-theme="dark"] .siteHeader{background:rgba(13,24,38,.94)!important;border-color:#2a4054!important}
 html[data-theme="dark"] .searchBox{background:#142234;border-color:#2d4256}html[data-theme="dark"] .searchBox input{color:#eff7fc}
-@media(max-width:1120px){.platformDashboard{grid-template-columns:repeat(2,minmax(0,1fr))}.platformNav{display:none}.platformNav.open{display:flex;position:absolute;left:1rem;right:1rem;top:76px;padding:.75rem;border:1px solid var(--pf-line);border-radius:16px;background:#fff;box-shadow:var(--pf-shadow)}.platformMenuButton{display:inline-flex}}
-@media(max-width:720px){.platformDashboard{grid-template-columns:1fr}.platformTile{min-height:auto}.platformInventory{grid-template-columns:repeat(2,minmax(0,1fr))}.platformStatus{display:none}.platformPageBand{align-items:flex-start;flex-direction:column}.platformHeaderActions{gap:.35rem}}
+html[data-theme="dark"] :where(.panel,.courseHero,.unit,.lesson,.tab,.miniCourse,.courseProgress,.chip,.card,.studioPanel,.studioStatusBar,.questionCard,.empty,.bankIntegrity,.topicTable,.tableWrap){background:#142234!important;border-color:#2c4054!important;color:#edf5fb!important}
+html[data-theme="dark"] :where(.sectionTitle,.courseHero h2,.unitHeading strong,.miniCourse strong,.lesson h3,.studioPanel h2,.studioPanel h3,.emptyState h2,.questionCard h2,.sectionHead h2){color:#edf5fb!important}
+html[data-theme="dark"] :where(.sectionSub,.courseSubtitle,.unitHeading small,.lesson p,.panelIntro,.emptyState p,.questionCard .prompt,.studioPanel p,.sectionHead p){color:#a9b8c7!important}
+html[data-theme="dark"] :where(select,input,textarea){background:#0f1d2c!important;color:#edf5fb!important;border-color:#355069!important}
+html[data-theme="dark"] .platformNav.open{background:#142234!important}
+@media(max-width:1120px){.platformDashboard{grid-template-columns:repeat(2,minmax(0,1fr))}.platformNav{display:none}.platformNav.open{display:flex;position:absolute;left:1rem;right:1rem;top:calc(100% + .5rem);padding:.75rem;border:1px solid var(--pf-line);border-radius:16px;background:#fff;box-shadow:var(--pf-shadow)}.platformMenuButton{display:inline-flex}}
+@media(max-width:720px){.platformDashboard{grid-template-columns:1fr}.platformTile{min-height:auto}.platformInventory{grid-template-columns:repeat(2,minmax(0,1fr))}.platformStatus{display:none}.platformPageBand{align-items:flex-start;flex-direction:column}.platformHeaderActions{gap:.35rem}.platformPolicyLinks{font-size:.68rem}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}}
-@media print{.platformNav,.platformHeaderActions,.platformPageBand,.platformToast,.platformDashboard{display:none!important}}
+@media print{.platformNav,.platformHeaderActions,.platformPageBand,.platformToast,.platformDashboard,.platformPolicyLinks{display:none!important}}
