@@ -26,9 +26,23 @@ const devices=[
   {key:'desktop',viewport:{width:1440,height:1000},isMobile:false},
   {key:'mobile',viewport:{width:390,height:844},isMobile:true}
 ];
+const previewInstitutionConfig={
+  enabled:false,
+  api_base:'https://YOUR_PROJECT_REF.supabase.co/functions/v1',
+  setup_api_base:'https://wkqadnfloiohqfnesmyq.supabase.co/functions/v1',
+  setup_enabled:true,
+  backend_deployed:true,
+  setup_path:'setup.html',
+  institution_name:'Education City High School',
+  platform_name:'ECHS Mathematics',
+  site_base:'https://2ed944-cloud.github.io/ECHS-Math/',
+  support_email:'',
+  session_storage:'local'
+};
 const report={generatedAt:new Date().toISOString(),baseURL,pages:[],errors:[]};
 for(const device of devices){
   const context=await browser.newContext({viewport:device.viewport,isMobile:device.isMobile,deviceScaleFactor:1,reducedMotion:'reduce'});
+  await context.route('**/config/institution.json',route=>route.fulfill({status:200,contentType:'application/json',body:JSON.stringify(previewInstitutionConfig)}));
   for(const route of routes){
     const page=await context.newPage(),consoleErrors=[],pageErrors=[],failedRequests=[];
     page.on('console',message=>{if(message.type()==='error')consoleErrors.push(message.text());});
