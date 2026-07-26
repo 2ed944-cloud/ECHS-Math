@@ -1,0 +1,46 @@
+name: Phase 2 Learning System QA
+
+on:
+  pull_request:
+    paths:
+      - "index.html"
+      - "manifest.json"
+      - "sw.js"
+      - "js/platform-foundation.js"
+      - "js/lesson-learning-bridge.js"
+      - "question-bank/index.html"
+      - "question-bank/practice.html"
+      - "question-bank/exam.html"
+      - "question-bank/dashboard.html"
+      - "question-bank/mistakes.html"
+      - "question-bank/teacher.html"
+      - "question-bank/parent.html"
+      - "question-bank/css/learning-system.css"
+      - "question-bank/js/**"
+      - "tools/validate_learning_system.py"
+      - "tools/test_learning_system.mjs"
+      - ".github/workflows/learning-system.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-learning-system:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Validate Phase 2 files, pages and learning engine
+        run: python tools/validate_learning_system.py
+      - name: Validate manifest JSON
+        run: python -m json.tool manifest.json >/dev/null
