@@ -1,0 +1,47 @@
+name: Phase 4 Premium Experience QA
+
+on:
+  pull_request:
+    paths:
+      - "login.html"
+      - "css/institution-premium.css"
+      - "js/institution-experience.js"
+      - "js/login.js"
+      - "question-bank/student.html"
+      - "question-bank/teacher.html"
+      - "question-bank/parent.html"
+      - "question-bank/admin.html"
+      - "question-bank/js/student-cloud.js"
+      - "question-bank/js/teacher-cloud.js"
+      - "question-bank/js/parent-cloud.js"
+      - "question-bank/js/admin-accounts.js"
+      - "platform/PHASE_4_PREMIUM_EXPERIENCE.md"
+      - "tools/validate_premium_experience.py"
+      - "sw.js"
+      - ".github/workflows/premium-experience.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-premium-experience:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Validate premium role portals and preview safety
+        run: python tools/validate_premium_experience.py
+      - name: Re-run institutional release gate
+        run: python tools/validate_institution_platform.py
+      - name: Re-run Phase 2 compatibility gate
+        run: python tools/validate_learning_system.py

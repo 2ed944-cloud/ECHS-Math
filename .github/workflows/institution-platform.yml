@@ -12,6 +12,7 @@ on:
       - ".gitignore"
       - "config/**"
       - "css/institution.css"
+      - "css/institution-premium.css"
       - "js/institution-*.js"
       - "js/login.js"
       - "question-bank/admin.html"
@@ -22,75 +23,20 @@ on:
       - "question-bank/js/student-cloud.js"
       - "question-bank/js/teacher-cloud.js"
       - "question-bank/js/parent-cloud.js"
+      - "platform/PHASE_4_PREMIUM_EXPERIENCE.md"
       - "supabase/**"
       - "templates/**"
       - "tools/bootstrap_institution.py"
       - "tools/validate_institution_platform.py"
+      - "tools/validate_premium_experience.py"
       - ".github/workflows/institution-platform.yml"
       - ".github/workflows/deploy-institution-backend.yml"
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
-  apply-premium-experience:
-    if: github.event_name == 'pull_request' && github.event.pull_request.head.ref == 'chatgpt/phase-3-institutional-platform-20260726'
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    steps:
-      - name: Check out premium branch
-        uses: actions/checkout@v4
-        with:
-          ref: chatgpt/phase-3-institutional-platform-20260726
-          fetch-depth: 0
-
-      - name: Reassemble and verify premium payload
-        shell: bash
-        run: |
-          set -euo pipefail
-          cat .premium-payload/part-* | base64 --decode > /tmp/echs-premium-payload.tar.gz
-          echo "d0345eb94b0d4dde30b91ec4b577011713f6b8f3e7a54a48b62a1030be6fd33f  /tmp/echs-premium-payload.tar.gz" | sha256sum --check
-          tar -xzf /tmp/echs-premium-payload.tar.gz -C .
-
-      - name: Validate premium experience files
-        shell: bash
-        run: |
-          set -euo pipefail
-          python3 tools/validate_premium_experience.py
-          node --check js/institution-experience.js
-          node --check js/login.js
-          node --check question-bank/js/student-cloud.js
-          node --check question-bank/js/teacher-cloud.js
-          node --check question-bank/js/parent-cloud.js
-          node --check question-bank/js/admin-accounts.js
-          node --check sw.js
-
-      - name: Commit premium experience assets
-        shell: bash
-        run: |
-          set -euo pipefail
-          git config user.name "ECHS Platform Automation"
-          git config user.email "actions@users.noreply.github.com"
-          git add \
-            css/institution-premium.css \
-            js/institution-experience.js \
-            js/login.js \
-            login.html \
-            platform/PHASE_4_PREMIUM_EXPERIENCE.md \
-            question-bank/admin.html \
-            question-bank/student.html \
-            question-bank/teacher.html \
-            question-bank/parent.html \
-            question-bank/js/admin-accounts.js \
-            question-bank/js/student-cloud.js \
-            question-bank/js/teacher-cloud.js \
-            question-bank/js/parent-cloud.js \
-            sw.js \
-            tools/validate_premium_experience.py
-          git commit -m "Build the Phase 4 premium role experiences"
-          git push origin HEAD:chatgpt/phase-3-institutional-platform-20260726
-
   validate-institution:
     runs-on: ubuntu-latest
     timeout-minutes: 20
@@ -116,6 +62,9 @@ jobs:
       - name: Validate institutional security and integration
         run: python tools/validate_institution_platform.py
 
+      - name: Validate premium role experiences
+        run: python tools/validate_premium_experience.py
+
       - name: Re-run Phase 1 and Phase 2 release gates
         run: |
           python tools/validate_platform_phase1.py
@@ -133,7 +82,7 @@ jobs:
           python -m json.tool manifest.json >/dev/null
           python -m json.tool config/institution.json >/dev/null
           python -m json.tool config/institution.example.json >/dev/null
-          python -m py_compile tools/bootstrap_institution.py tools/validate_institution_platform.py
+          python -m py_compile tools/bootstrap_institution.py tools/validate_institution_platform.py tools/validate_premium_experience.py
           python - <<'PY'
           import tomllib
           with open('supabase/config.toml','rb') as handle:
