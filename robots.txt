@@ -3,6 +3,10 @@ Allow: /
 Disallow: /.echs-backups/
 Disallow: /question-bank/review.html
 Disallow: /question-bank/practice-sources/
+Disallow: /question-bank/dashboard.html
+Disallow: /question-bank/mistakes.html
+Disallow: /question-bank/teacher.html
+Disallow: /question-bank/parent.html
 Disallow: /question-bank/teacher/
 Disallow: /question-bank/official/data/
 
