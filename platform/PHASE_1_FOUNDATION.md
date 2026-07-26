@@ -12,6 +12,7 @@ Turn the current lesson portal, Practice Studio and Official AP centre into one 
 - Do not expose teacher/archive-only Official AP content.
 - Do not remove provenance, source, rights, lesson, topic, unit or audit metadata.
 - Do not claim a collection is complete unless an automated inventory gate passes.
+- Do not merge to `main` without the user's explicit approval.
 
 ## Workstreams
 
@@ -68,9 +69,18 @@ The base catalog currently registers:
 
 These collections remain under their existing catalog and source rules.
 
-#### Additional uploaded collections
+#### Pearson College Algebra & Precalculus Foundations (`CAF5S`)
 
-`CAF5S` is a separate foundation/college-algebra collection. It is not required to declare the 4,528-question Pearson AP Precalculus collection complete. It can be integrated as an additional collection after its own payload and media validation gate passes.
+- [x] Source archive identified.
+- [x] 3,101 converted questions prepared.
+- [x] 11 chapter JSON payloads prepared.
+- [x] 11 media packages prepared.
+- [x] A branch-safe installer and independent validation gate prepared.
+- [ ] Binary payload pushed to the Phase 1 branch.
+- [ ] `FULL_CAF5S_BANK_VALIDATION.json` reports `PASS` in the repository.
+- [ ] GitHub Actions pass after the binary payload commit.
+
+`CAF5S` is a separate foundation/college-algebra collection. It is not required to declare the 4,528-question Pearson AP Precalculus collection complete, but it is included in the broader Phase 1 goal of publishing every available Blackboard collection.
 
 ### 5. Automated quality assurance
 
@@ -80,17 +90,31 @@ These collections remain under their existing catalog and source rules.
 - [x] Validate all 4,528 Pearson Precalculus IDs.
 - [x] Validate chapter and media-package counts.
 - [x] Check core local HTML references.
+- [x] Validate public discovery and policy files.
 - [x] Add JavaScript syntax checks in GitHub Actions.
 - [x] Add JSON syntax checks in GitHub Actions.
+
+### 6. Global publication foundation
+
+- [x] Add canonical and social-sharing metadata to the main platform page.
+- [x] Add structured `WebSite` and educational-publisher metadata.
+- [x] Add `robots.txt` with private/review-data exclusions.
+- [x] Add an initial public `sitemap.xml`.
+- [x] Add a helpful GitHub Pages `404.html`.
+- [x] Add a transparent privacy page for browser-local data.
+- [x] Add an accessibility statement and WCAG 2.2 AA target.
+- [x] Add a source, attribution and publication-boundary page.
 
 ## Phase 1 merge gate
 
 Phase 1 is ready for production review when:
 
 1. `Platform Foundation QA` passes on the pull request.
-2. The portal home, Practice Home, Practice Studio, Test Generator and Progress pages pass desktop and mobile visual review.
-3. Pearson Precalculus displays 4,528 questions and `Complete` coverage.
-4. A full practice set can be generated from at least two AP Precalculus units.
-5. A test can be generated and scored locally.
-6. Official AP pages still expose only student-ready records.
-7. The user explicitly approves merging the pull request.
+2. The independent question-bank audit snapshot passes.
+3. The portal home, Practice Home, Practice Studio, Test Generator and Progress pages pass desktop and mobile visual review.
+4. Pearson Precalculus displays 4,528 questions and `Complete` coverage.
+5. The CAF5S installer has pushed 3,101 validated questions and all required media to the branch.
+6. A full practice set can be generated from at least two AP Precalculus units and the CAF5S full collection.
+7. A test can be generated and scored locally.
+8. Official AP pages still expose only student-ready records.
+9. The user explicitly approves merging the pull request.
