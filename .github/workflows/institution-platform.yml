@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - "login.html"
+      - "setup.html"
       - "index.html"
       - "privacy.html"
       - "manifest.json"
@@ -13,6 +14,7 @@ on:
       - "config/**"
       - "css/institution.css"
       - "css/institution-premium.css"
+      - "css/institution-setup.css"
       - "js/institution-*.js"
       - "js/login.js"
       - "question-bank/admin.html"
@@ -24,12 +26,15 @@ on:
       - "question-bank/js/teacher-cloud.js"
       - "question-bank/js/parent-cloud.js"
       - "platform/PHASE_4_PREMIUM_EXPERIENCE.md"
+      - "platform/PHASE_5_INITIAL_SETUP.md"
       - "supabase/**"
       - "templates/**"
       - "tools/bootstrap_institution.py"
+      - "tools/validate_initial_setup.py"
       - "tools/validate_institution_platform.py"
       - "tools/validate_premium_experience.py"
       - ".github/workflows/institution-platform.yml"
+      - ".github/workflows/initial-setup.yml"
       - ".github/workflows/deploy-institution-backend.yml"
   workflow_dispatch:
 
@@ -59,6 +64,9 @@ jobs:
         with:
           deno-version: v2.x
 
+      - name: Validate initial setup security and integration
+        run: python tools/validate_initial_setup.py
+
       - name: Validate institutional security and integration
         run: python tools/validate_institution_platform.py
 
@@ -76,13 +84,14 @@ jobs:
           deno check supabase/functions/account-api/index.ts
           deno check supabase/functions/institution-api/index.ts
           deno check supabase/functions/learning-sync/index.ts
+          deno check supabase/functions/setup-api/index.ts
 
       - name: Validate JSON, TOML and Python files
         run: |
           python -m json.tool manifest.json >/dev/null
           python -m json.tool config/institution.json >/dev/null
           python -m json.tool config/institution.example.json >/dev/null
-          python -m py_compile tools/bootstrap_institution.py tools/validate_institution_platform.py tools/validate_premium_experience.py
+          python -m py_compile tools/bootstrap_institution.py tools/validate_initial_setup.py tools/validate_institution_platform.py tools/validate_premium_experience.py
           python - <<'PY'
           import tomllib
           with open('supabase/config.toml','rb') as handle:
