@@ -1,2 +1,18 @@
 question-bank/official/tools/node_modules/
 question-bank/official/tools/__pycache__/
+
+# Institutional backend secrets and local Supabase state
+.env
+.env.*
+!.env.example
+supabase/.env
+supabase/.env.*
+supabase/.branches/
+supabase/.temp/
+supabase/.supabase/
+.supabase/
+
+# Local test output
+artifacts/
+node_modules/
+__pycache__/
