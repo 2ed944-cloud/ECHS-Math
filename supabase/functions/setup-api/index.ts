@@ -61,9 +61,13 @@ function fail(req: Request, message: string, status = 400, code = "setup_error")
   return json(req, { ok: false, error: { code, message } }, status);
 }
 
+function canonicalSecret(value: string): string {
+  return value.normalize("NFKC").trim();
+}
+
 async function sha256(value: string): Promise<Uint8Array> {
   return new Uint8Array(
-    await crypto.subtle.digest("SHA-256", new TextEncoder().encode(value)),
+    await crypto.subtle.digest("SHA-256", new TextEncoder().encode(canonicalSecret(value))),
   );
 }
 
@@ -130,8 +134,8 @@ async function setupRoute(req: Request): Promise<Response> {
       return json(req, {
         ok: true,
         service: "echs-setup-api",
-        version: "1.0.0",
-        bootstrap_secret_configured: Boolean(BOOTSTRAP_SECRET),
+        version: "1.1.0",
+        bootstrap_secret_configured: Boolean(canonicalSecret(BOOTSTRAP_SECRET)),
       });
     }
 
@@ -139,12 +143,20 @@ async function setupRoute(req: Request): Promise<Response> {
       return json(req, {
         ok: true,
         complete: await bootstrapComplete(),
-        setup_available: Boolean(BOOTSTRAP_SECRET),
+        setup_available: Boolean(canonicalSecret(BOOTSTRAP_SECRET)),
       });
     }
 
+    if (route === "/verify-secret" && method === "POST") {
+      const suppliedSecret = req.headers.get("x-bootstrap-secret") ?? "";
+      if (!canonicalSecret(BOOTSTRAP_SECRET) || !suppliedSecret || !await secretsEqual(suppliedSecret, BOOTSTRAP_SECRET)) {
+        return fail(req, "Bootstrap secret verification failed", 403, "forbidden");
+      }
+      return json(req, { ok: true, verified: true });
+    }
+
     if (route === "/bootstrap" && method === "POST") {
-      if (!BOOTSTRAP_SECRET) {
+      if (!canonicalSecret(BOOTSTRAP_SECRET)) {
         return fail(req, "Initial setup is not available on this deployment", 503, "setup_unavailable");
       }
 
