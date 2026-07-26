@@ -6,6 +6,7 @@ on:
     paths:
       - "index.html"
       - "login.html"
+      - "setup.html"
       - "privacy.html"
       - "accessibility.html"
       - "sources-and-rights.html"

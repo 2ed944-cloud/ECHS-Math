@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' https://wkqadnfloiohqfnesmyq.supabase.co; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self';">
+  <meta http-equiv="Cache-Control" content="no-store, max-age=0">
+  <meta name="referrer" content="no-referrer">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="theme-color" content="#102a43">
+  <title>Initial School Setup | ECHS Mathematics</title>
+  <link rel="icon" href="assets/icon-192.png">
+  <script src="js/setup-frame-guard.js"></script>
+  <link rel="stylesheet" href="css/institution-setup.css?v=20260726">
+</head>
+<body class="setupBody">
+  <main class="setupShell" id="setupWizard">
+    <aside class="setupVisual" aria-label="ECHS Mathematics secure initial setup">
+      <a class="setupBrand" href="index.html">
+        <span class="setupBrandMark" aria-hidden="true">∫</span>
+        <span><strong>ECHS Mathematics</strong><small>Secure institutional setup</small></span>
+      </a>
+      <div class="setupVisualCopy">
+        <span class="setupEyebrow">One-time school activation</span>
+        <h1>Create the first administrator.<em>Then the setup locks permanently.</em></h1>
+        <p>This wizard provisions the school organisation and its first administrator through the deployed Supabase security layer.</p>
+      </div>
+      <div class="setupSecurityList">
+        <div><span>01</span><p><strong>No public registration</strong>Only the school controls account creation.</p></div>
+        <div><span>02</span><p><strong>No readable password storage</strong>The database stores a bcrypt hash, never the original password.</p></div>
+        <div><span>03</span><p><strong>One-time bootstrap</strong>After the first administrator exists, the database refuses every future setup attempt.</p></div>
+      </div>
+      <p class="setupFootnote">The bootstrap secret and administrator password are sent only over HTTPS and are never saved by this page.</p>
+    </aside>
+
+    <section class="setupWorkspace">
+      <div class="setupCard">
+        <header class="setupHeader">
+          <div>
+            <span class="setupEyebrow">Initial setup wizard</span>
+            <h2>Activate your school workspace</h2>
+            <p>Complete four short steps. Keep the administrator credential in a secure school record.</p>
+          </div>
+          <a class="setupExit" href="login.html">Exit</a>
+        </header>
+
+        <ol class="setupProgress" aria-label="Setup progress">
+          <li class="active" data-step-indicator="1"><span>1</span><b>Connection</b></li>
+          <li data-step-indicator="2"><span>2</span><b>Institution</b></li>
+          <li data-step-indicator="3"><span>3</span><b>Administrator</b></li>
+          <li data-step-indicator="4"><span>4</span><b>Review</b></li>
+        </ol>
+
+        <div class="setupStatus checking" id="backendStatus" role="status" aria-live="polite">
+          <span class="setupStatusDot"></span>
+          <div><strong>Checking the secure backend…</strong><small>Please keep this page open.</small></div>
+        </div>
+
+        <form id="setupForm" novalidate>
+          <section class="setupPanel active" data-panel="1">
+            <span class="panelNumber">Step 1</span>
+            <h3>Confirm the secure connection</h3>
+            <p>The wizard checks the deployed setup service before accepting any credentials.</p>
+            <div class="connectionGrid">
+              <article><small>Project</small><strong>ECHS Mathematics</strong></article>
+              <article><small>Region</small><strong>Singapore</strong></article>
+              <article><small>Transport</small><strong>HTTPS only</strong></article>
+              <article><small>Setup state</small><strong id="setupState">Checking</strong></article>
+            </div>
+            <button class="setupSecondary" id="retryConnection" type="button">Check connection again</button>
+          </section>
+
+          <section class="setupPanel" data-panel="2">
+            <span class="panelNumber">Step 2</span>
+            <h3>Institution details</h3>
+            <p>These details identify the school throughout the administrator, teacher, student and family portals.</p>
+            <div class="setupFields">
+              <label class="setupField full">
+                <span>Institution name</span>
+                <input id="organizationName" name="organization_name" required maxlength="120" value="Education City High School" autocomplete="organization">
+                <small>The full name displayed throughout the platform.</small>
+              </label>
+              <label class="setupField full">
+                <span>Institution slug</span>
+                <div class="slugInput"><span>school/</span><input id="organizationSlug" name="organization_slug" required maxlength="40" value="echs" autocapitalize="none" spellcheck="false"></div>
+                <small>Lowercase letters, numbers and hyphens only.</small>
+              </label>
+            </div>
+          </section>
+
+          <section class="setupPanel" data-panel="3">
+            <span class="panelNumber">Step 3</span>
+            <h3>First administrator</h3>
+            <p>This account receives full control of school accounts, classes and security operations.</p>
+            <div class="setupFields">
+              <label class="setupField full">
+                <span>Administrator full name</span>
+                <input id="adminName" name="display_name" required maxlength="120" autocomplete="name" placeholder="Mohammad Abu-Ghuwaleh">
+              </label>
+              <label class="setupField">
+                <span>Username</span>
+                <input id="adminUsername" name="username" required minlength="3" maxlength="40" value="admin" autocomplete="username" autocapitalize="none" spellcheck="false">
+              </label>
+              <label class="setupField">
+                <span>Email <em>optional</em></span>
+                <input id="adminEmail" name="email" type="email" autocomplete="email" placeholder="name@school.edu">
+              </label>
+              <label class="setupField full">
+                <span>Administrator password</span>
+                <div class="passwordInput">
+                  <input id="adminPassword" name="password" type="password" required minlength="10" autocomplete="new-password" spellcheck="false">
+                  <button type="button" id="togglePassword" aria-label="Show password">Show</button>
+                  <button type="button" id="generatePassword">Generate</button>
+                </div>
+                <div class="passwordRules" id="passwordRules" aria-live="polite">
+                  <span data-rule="length">10+ characters</span>
+                  <span data-rule="upper">Uppercase</span>
+                  <span data-rule="lower">Lowercase</span>
+                  <span data-rule="number">Number</span>
+                  <span data-rule="symbol">Symbol</span>
+                </div>
+              </label>
+              <label class="setupField full sensitiveField">
+                <span>Bootstrap secret</span>
+                <input id="bootstrapSecret" name="bootstrap_secret" type="password" required autocomplete="off" autocapitalize="none" spellcheck="false">
+                <small>Enter the exact value you saved as <code>ECHS_BOOTSTRAP_SECRET</code>. GitHub will not display it later.</small>
+              </label>
+            </div>
+          </section>
+
+          <section class="setupPanel" data-panel="4">
+            <span class="panelNumber">Step 4</span>
+            <h3>Review and create</h3>
+            <p>Confirm the permanent one-time operation before creating the institution.</p>
+            <dl class="setupReview">
+              <div><dt>Institution</dt><dd id="reviewOrganization">—</dd></div>
+              <div><dt>Administrator</dt><dd id="reviewName">—</dd></div>
+              <div><dt>Username</dt><dd id="reviewUsername">—</dd></div>
+              <div><dt>Email</dt><dd id="reviewEmail">Not provided</dd></div>
+            </dl>
+            <label class="setupConfirm">
+              <input id="confirmPermanent" type="checkbox" required>
+              <span>I understand that creating the first administrator permanently locks this bootstrap operation and that the password cannot be retrieved from the database.</span>
+            </label>
+          </section>
+
+          <div class="setupError" id="setupError" role="alert" aria-live="assertive"></div>
+          <footer class="setupActions">
+            <button class="setupSecondary hidden" id="backStep" type="button">Back</button>
+            <button class="setupPrimary" id="nextStep" type="button" disabled>Continue</button>
+            <button class="setupPrimary hidden" id="createInstitution" type="submit">Create institution securely</button>
+          </footer>
+        </form>
+
+        <section class="setupResult hidden" id="setupSuccess" aria-live="polite">
+          <span class="resultIcon success">✓</span>
+          <span class="setupEyebrow">Institution created</span>
+          <h3>The first administrator is ready</h3>
+          <p>The database has permanently locked initial setup. Save this credential now, then request the final frontend activation.</p>
+          <div class="credentialCard">
+            <div><small>Username</small><strong id="createdUsername"></strong></div>
+            <div><small>Initial password</small><strong id="createdPassword"></strong></div>
+          </div>
+          <div class="resultActions">
+            <button class="setupSecondary" id="copyCredentials" type="button">Copy credentials</button>
+            <button class="setupSecondary" id="downloadCredentials" type="button">Download secure record</button>
+            <a class="setupPrimary" href="login.html">Open sign-in page</a>
+          </div>
+          <div class="activationNotice"><strong>Final activation:</strong> the frontend remains disabled until the reviewed activation change switches <code>config/institution.json</code> to live mode.</div>
+        </section>
+
+        <section class="setupResult hidden" id="setupLocked">
+          <span class="resultIcon locked">⌾</span>
+          <span class="setupEyebrow">Setup locked</span>
+          <h3>An administrator already exists</h3>
+          <p>The one-time bootstrap is permanently closed. Use the school sign-in page, or complete the final frontend activation if it is still pending.</p>
+          <div class="resultActions">
+            <a class="setupPrimary" href="login.html">Go to school sign-in</a>
+            <a class="setupSecondary" href="index.html">Open public portal</a>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+  <script src="js/institution-setup.js?v=20260726"></script>
+</body>
+</html>

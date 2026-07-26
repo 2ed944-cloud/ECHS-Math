@@ -19,3 +19,6 @@ verify_jwt = false
 
 [functions.learning-sync]
 verify_jwt = false
+
+[functions.setup-api]
+verify_jwt = false
