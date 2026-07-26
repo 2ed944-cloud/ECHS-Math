@@ -26,6 +26,7 @@ def text(path: str) -> str:
 REQUIRED = [
     "login.html",
     "css/institution.css",
+    "css/institution-polish.css",
     "js/institution-client.js",
     "js/institution-portal.js",
     "js/login.js",
@@ -94,6 +95,7 @@ for marker in [
     "x-bootstrap-secret",
     "generatePassword",
     "initial_password",
+    "teachers_can_view_all_accounts",
 ]:
     if marker not in account_api:
         fail(f"Account API missing: {marker}")
@@ -119,6 +121,7 @@ for marker in [
     "roleHome",
     "echs:learning-attempt",
     "Institutional accounts are not configured yet",
+    "institution-polish.css",
 ]:
     if marker not in client:
         fail(f"Institution client missing: {marker}")
@@ -141,11 +144,45 @@ for path, markers in page_requirements.items():
         if marker not in body:
             fail(f"{path} missing required interface marker: {marker}")
 
+# All private account and role pages need a restrictive browser content policy.
+for path in [
+    "login.html",
+    "question-bank/admin.html",
+    "question-bank/student.html",
+    "question-bank/teacher.html",
+    "question-bank/parent.html",
+]:
+    body = text(path)
+    for marker in [
+        "Content-Security-Policy",
+        "default-src 'self'",
+        "connect-src 'self' https://*.supabase.co",
+        "script-src 'self'",
+        "object-src 'none'",
+        "base-uri 'self'",
+    ]:
+        if marker not in body:
+            fail(f"{path} is missing CSP marker: {marker}")
+
 login = text("login.html").lower()
 if "google" not in login or "disabled" not in login:
     fail("Login page must state that Google/public registration is disabled")
 if re.search(r"href=[\"'][^\"']*(?:register|sign-up|signup)", login):
     fail("Public login page must not expose a self-registration link")
+login_controller = text("js/login.js")
+for marker in ["candidate.origin!==location.origin", "candidate.pathname.startsWith(platformRoot.pathname)"]:
+    if marker not in login_controller:
+        fail(f"Login redirect validation is missing: {marker}")
+
+account_controller = text("question-bank/js/admin-accounts.js")
+for marker in [
+    'requireAuth(["admin","teacher"])',
+    'const mayReset=row=>isAdmin()||row.role==="student"',
+    'if(!isAdmin())return',
+    'if(!mayCreate())',
+]:
+    if marker not in account_controller:
+        fail(f"Teacher account-directory permissions are missing: {marker}")
 
 csv_header = text("templates/echs-account-import-template.csv").splitlines()[0].split(",")
 for column in [
@@ -164,16 +201,30 @@ for column in [
 
 manifest = json.loads(text("manifest.json") or "{}")
 urls = {row.get("url") for row in manifest.get("shortcuts", [])}
-for url in ["./login.html", "./question-bank/student.html", "./question-bank/teacher.html"]:
+for url in [
+    "./login.html",
+    "./question-bank/student.html",
+    "./question-bank/dashboard.html",
+    "./question-bank/teacher.html",
+]:
     if url not in urls:
         fail(f"PWA manifest missing shortcut {url}")
 
 worker = text("sw.js")
-for asset in ["./login.html", "./css/institution.css", "./question-bank/admin.html", "./question-bank/student.html"]:
+for asset in [
+    "./login.html",
+    "./css/institution.css",
+    "./css/institution-polish.css",
+    "./question-bank/admin.html",
+    "./question-bank/student.html",
+]:
     if asset not in worker:
         fail(f"Service worker missing institutional shell asset {asset}")
 if "privateApi" not in worker or "event.respondWith(fetch(request))" not in worker:
     fail("Service worker must bypass caches for institutional API responses")
+for service in ["account-api", "institution-api", "learning-sync"]:
+    if service not in worker:
+        fail(f"Service worker private API bypass missing {service}")
 
 robots = text("robots.txt")
 for route in [
@@ -194,6 +245,7 @@ for marker in [".env", "supabase/.temp/", ".supabase/"]:
 deploy = text(".github/workflows/deploy-institution-backend.yml")
 for marker in [
     "workflow_dispatch",
+    "institutional-production",
     "SUPABASE_ACCESS_TOKEN",
     "SUPABASE_PROJECT_REF",
     "SUPABASE_DB_PASSWORD",
