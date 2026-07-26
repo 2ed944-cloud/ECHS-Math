@@ -1,9 +1,37 @@
 (async()=>{
   "use strict";
+  const AUTH_SHELL_VERSION="20260727-auth-shell-v2";
+  const AUTH_SHELL_MARKER="echs_auth_shell_cache_version";
   const form=document.getElementById("loginForm");
   const button=document.getElementById("loginButton");
   const errorBox=document.getElementById("loginError");
   const warning=document.getElementById("configWarning");
+
+  async function refreshAuthenticatedShell(){
+    if(localStorage.getItem(AUTH_SHELL_MARKER)===AUTH_SHELL_VERSION)return;
+    try{
+      if("caches" in window){
+        const keys=await caches.keys();
+        await Promise.all(keys.filter(key=>key.startsWith("echs-")).map(key=>caches.delete(key)));
+      }
+      if("serviceWorker" in navigator){
+        const registration=await navigator.serviceWorker.register(ECHSInstitution.root("sw.js"),{updateViaCache:"none"});
+        await registration.update().catch(()=>{});
+        if(registration.waiting)registration.waiting.postMessage({type:"SKIP_WAITING"});
+        if(navigator.serviceWorker.controller)navigator.serviceWorker.controller.postMessage({type:"PURGE_AUTH_SHELL"});
+      }
+      localStorage.setItem(AUTH_SHELL_MARKER,AUTH_SHELL_VERSION);
+    }catch(error){
+      console.warn("Authenticated shell refresh could not complete",error);
+    }
+  }
+  function versionedRoleHome(role){
+    const target=new URL(ECHSInstitution.root(ECHSInstitution.roleHome(role)));
+    target.searchParams.set("shell",AUTH_SHELL_VERSION);
+    return target.href;
+  }
+
+  await refreshAuthenticatedShell();
   const cfg=await ECHSInstitution.config();
   const platformRoot=new URL(ECHSInstitution.root(""),location.href);
   const isLocalPreview=["localhost","127.0.0.1"].includes(location.hostname);
@@ -49,7 +77,7 @@
 
   const existing=await ECHSInstitution.me();
   if(existing){
-    location.replace(ECHSInstitution.root(ECHSInstitution.roleHome(existing.role)));
+    location.replace(versionedRoleHome(existing.role));
     return;
   }
 
@@ -60,16 +88,20 @@
     button.disabled=true;
     button.textContent="Signing in…";
     try{
+      await refreshAuthenticatedShell();
       const account=await ECHSInstitution.login(form.username.value,form.password.value,form.remember.checked);
       const next=params.get("next");
       if(next){
         try{
           const candidate=new URL(next,location.href);
           if(candidate.origin!==location.origin)throw new Error("External redirect blocked");
-          if(candidate.pathname.startsWith(platformRoot.pathname))return location.replace(candidate.href);
+          if(candidate.pathname.startsWith(platformRoot.pathname)){
+            candidate.searchParams.set("shell",AUTH_SHELL_VERSION);
+            return location.replace(candidate.href);
+          }
         }catch(_error){}
       }
-      location.replace(ECHSInstitution.root(ECHSInstitution.roleHome(account.role)));
+      location.replace(versionedRoleHome(account.role));
     }catch(error){
       errorBox.textContent=error.message||"Sign-in failed";
       errorBox.classList.add("show");
