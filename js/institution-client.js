@@ -21,6 +21,12 @@
     store.setItem(KEYS.account,JSON.stringify(data.account));
     store.setItem(KEYS.expires,data.expires_at);
   }
+  function requestError(message,status=0,code="request_error"){
+    const error=new Error(message||"Institutional request failed");
+    error.status=status;
+    error.code=code;
+    return error;
+  }
   async function config(){
     if(!configPromise)configPromise=fetch(root("config/institution.json"),{cache:"no-store"})
       .then(response=>{if(!response.ok)throw new Error("Institution configuration could not be loaded");return response.json()})
@@ -29,7 +35,7 @@
   }
   async function api(service,path,options={}){
     const cfg=await config();
-    if(!cfg.enabled)throw new Error("Institutional accounts are not configured yet");
+    if(!cfg.enabled)throw requestError("Institutional accounts are not configured yet",503,"unconfigured");
     const base=String(cfg.api_base||"").replace(/\/$/,"");
     const headers=new Headers(options.headers||{});
     if(options.body&&!headers.has("content-type"))headers.set("content-type","application/json");
@@ -37,7 +43,7 @@
     const response=await fetch(`${base}/${service}${path}`,{...options,headers});
     const payload=await response.json().catch(()=>({ok:false,error:{message:`HTTP ${response.status}`}}));
     if(response.status===401){clearSession();document.dispatchEvent(new CustomEvent("echs:institution-signed-out"))}
-    if(!response.ok&&response.status!==207)throw new Error(payload?.error?.message||`Request failed (${response.status})`);
+    if(!response.ok&&response.status!==207)throw requestError(payload?.error?.message||`Request failed (${response.status})`,response.status,payload?.error?.code||"request_error");
     return payload;
   }
   async function login(username,password,remember=false){
@@ -50,17 +56,42 @@
   }
   async function me(force=false){
     if(!token()||isExpired()){clearSession();return null}
-    if(force||!mePromise)mePromise=api("account-api","/me").then(payload=>{const current=payload.account;const store=storage().getItem(KEYS.token)?storage():sessionStorage;store.setItem(KEYS.account,JSON.stringify(current));return current}).catch(()=>{clearSession();return null});
+    if(force||!mePromise)mePromise=api("account-api","/me").then(payload=>{
+      const current=payload.account;
+      const store=storage().getItem(KEYS.token)?storage():sessionStorage;
+      store.setItem(KEYS.account,JSON.stringify(current));
+      return current;
+    }).catch(error=>{
+      mePromise=null;
+      if(error?.status===401){clearSession();return null}
+      throw error;
+    });
     return mePromise;
   }
   function roleHome(role){return role==="admin"?"question-bank/admin.html":role==="teacher"?"question-bank/teacher.html":role==="parent"?"question-bank/parent.html":"question-bank/student.html"}
+  function showAuthUnavailable(error){
+    if(document.getElementById("institutionAuthUnavailable"))return;
+    const notice=document.createElement("div");
+    notice.id="institutionAuthUnavailable";
+    notice.setAttribute("role","alert");
+    notice.style.cssText="position:relative;z-index:9999;margin:12px;padding:14px 16px;border:1px solid #e7b2bd;border-radius:14px;background:#fff1f3;color:#7b1835;font:600 14px/1.45 system-ui,sans-serif";
+    notice.innerHTML=`<strong>Account session could not be verified.</strong><br>${String(error?.message||"The account service is temporarily unavailable.")} <button type="button" style="margin-left:8px;padding:6px 10px;border:0;border-radius:8px;background:#7b1835;color:white;cursor:pointer">Retry</button>`;
+    notice.querySelector("button").addEventListener("click",()=>location.reload());
+    document.body.prepend(notice);
+  }
   async function requireAuth(roles=[]){
     const cfg=await config();
     if(!cfg.enabled){
       document.documentElement.dataset.institution="unconfigured";
       return null;
     }
-    const current=await me();
+    let current;
+    try{current=await me()}catch(error){
+      document.documentElement.dataset.institution="unavailable";
+      showAuthUnavailable(error);
+      document.dispatchEvent(new CustomEvent("echs:institution-auth-error",{detail:{message:error?.message||"Session verification failed"}}));
+      return null;
+    }
     if(!current){
       const next=encodeURIComponent(location.href);
       location.replace(root(`login.html?next=${next}`));return null;
