@@ -1,39 +1,62 @@
 <!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#7d1845">
-  <title>ECHS Parent Learning Report</title><meta name="description" content="A clear family-facing summary of mathematics learning progress, strengths and next steps."><meta name="robots" content="noindex,follow">
-  <link rel="manifest" href="../manifest.json"><link rel="icon" href="../assets/icon-192.png"><link rel="apple-touch-icon" href="../assets/icon-192.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/bank.css"><link rel="stylesheet" href="css/practice-studio.css"><link rel="stylesheet" href="css/learning-system.css?v=20260726-phase2"><link rel="stylesheet" href="../css/platform-foundation.css?v=20260726-phase2">
-</head>
-<body class="practiceStudio" data-platform-page="parent">
-<header class="siteHeader"><a class="brand" href="dashboard.html"><span class="brandMark">⌂</span><span class="brandText"><strong>ECHS Parent Report</strong><span>Progress · strengths · support priorities</span></span></a><nav class="platformNav" id="platformNav"><a class="navLink" href="index.html">Learning Home</a><a class="navLink" href="practice.html">Practice</a><a class="navLink" href="exam.html">Tests</a><a class="navLink" href="dashboard.html">Student</a><a class="navLink" href="mistakes.html">Review</a><a class="navLink" href="teacher.html">Teacher</a><a class="navLink active" href="parent.html" aria-current="page">Parent</a><a class="navLink" href="../">Lessons</a></nav><div class="platformHeaderActions"></div></header>
-<main>
-  <section class="studioHero"><div class="studioHeroContent"><span class="eyebrow">Family learning summary</span><h1>Understand progress.<span>Support the next step.</span></h1><p>This report translates local learning data into a clear summary of practice, mastery, review needs and a practical study plan.</p><div class="studioHeroMeta"><span>Strengths</span><span>Topics needing support</span><span>Review workload</span><span>Printable summary</span></div></div><div class="studioHeroStats"><div class="studioHeroStat"><b id="heroStudent">Student</b><span>learner</span></div><div class="studioHeroStat"><b id="heroAccuracy">0%</b><span>accuracy</span></div><div class="studioHeroStat"><b id="heroMastered">0</b><span>topics mastered</span></div><div class="studioHeroStat"><b id="heroStreak">0</b><span>day streak</span></div></div></section>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#74183d"><meta name="robots" content="noindex,nofollow">
+<title>Family Dashboard | ECHS Mathematics</title>
+<link rel="manifest" href="../manifest.json"><link rel="icon" href="../assets/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/institution.css?v=20260726-phase3">
+</head><body class="institutionBody">
+<div class="institutionShell">
+<aside class="institutionSidebar">
+<a class="institutionBrand" href="../index.html"><span class="institutionBrandMark">⌂</span><div><strong>ECHS Mathematics</strong><span data-institution-org>Family Platform</span></div></a>
+<div class="institutionUser"><strong data-institution-name>Parent / Guardian</strong><small>@<span data-institution-username></span></small><span class="roleBadge">parent</span></div>
+<nav class="institutionNav">
+<div class="institutionNavSection">Family Overview</div>
+<a class="active" href="parent.html"><span class="institutionNavIcon">⌂</span>Dashboard</a>
+<a href="#progressSection"><span class="institutionNavIcon">◎</span>Progress</a>
+<a href="#assignmentsSection"><span class="institutionNavIcon">✓</span>Assignments</a>
+<a href="#supportPlan"><span class="institutionNavIcon">✦</span>7-Day Support Plan</a>
+<div class="institutionNavSection">Platform</div>
+<a href="../index.html#courses"><span class="institutionNavIcon">∫</span>Lesson Portal</a>
+<a href="index.html"><span class="institutionNavIcon">◫</span>Learning Centre</a>
+</nav>
+<div class="institutionSidebarFooter"><button data-institution-logout type="button">Sign out</button></div>
+</aside>
+<section class="institutionWorkspace">
+<header class="institutionTopbar"><button class="iIconButton mobileMenu" data-institution-menu>☰</button>
+<div><h1>Family Dashboard</h1><p>A clear, supportive view of learning progress and next steps.</p></div>
+<div class="institutionTopActions"><select id="childSelector" class="iButton secondary"><option>Loading students…</option></select><button class="iButton secondary" id="printReport">Print report</button></div></header>
+<main class="institutionMain">
+<section class="iHero"><div class="iHeroText"><span class="iEyebrow">Family Learning Report</span><h2 id="familyHero">Learning progress.<span>Support that makes a difference.</span></h2><p id="familyMessage">See mastery, assignments, review needs and practical actions without exposing private question responses.</p><div class="iHeroActions"><a class="iButton gold" href="#supportPlan">View this week’s plan</a><a class="iButton secondary" href="../index.html#courses">Browse lessons</a></div></div>
+<div class="iHeroStats"><div class="iHeroStat"><b id="familyMastery">0%</b><span>Mastery</span></div><div class="iHeroStat"><b id="familyAccuracy">0%</b><span>Accuracy</span></div><div class="iHeroStat"><b id="familyStreak">0</b><span>Day streak</span></div><div class="iHeroStat"><b id="familyDue">0</b><span>Reviews due</span></div></div></section>
 
-  <nav class="learningTabs"><a href="dashboard.html">Student Overview</a><a href="mistakes.html">Review Centre</a><a href="teacher.html">Teacher Dashboard</a><a class="active" href="parent.html">Parent Report</a></nav>
+<div class="iSectionHead" id="progressSection"><div><h2>Progress at a glance</h2><p>Four simple indicators show where learning stands today.</p></div></div>
+<section class="meterGrid">
+<article class="meterCard"><div class="radialMeter" id="parentMasteryMeter"><strong>0%</strong><small>Mastery</small></div><div><h3>Knowledge mastery</h3><p>Overall skill development from evidence across topics.</p></div></article>
+<article class="meterCard"><div class="radialMeter" id="parentAccuracyMeter" style="--meter:var(--i-gold)"><strong>0%</strong><small>Accuracy</small></div><div><h3>Practice accuracy</h3><p>Correct responses across all synchronized work.</p></div></article>
+<article class="meterCard"><div class="radialMeter" id="parentTopicMeter" style="--meter:var(--i-maroon)"><strong>0%</strong><small>Topics</small></div><div><h3>Topics mastered</h3><p><span id="parentMastered">0</span> of <span id="parentTopics">0</span> topics mastered.</p></div></article>
+<article class="meterCard"><div class="radialMeter" id="parentEngagementMeter" style="--meter:var(--i-navy-2)"><strong>0%</strong><small>Weekly time</small></div><div><h3>Weekly engagement</h3><p><span id="parentMinutes">0</span> minutes of recent learning.</p></div></article>
+</section>
 
-  <div class="learningToolbar"><div class="left"><button class="button ghost" id="useCurrent">Use this device's student data</button><label class="button ghost" for="importReport">Open exported report<input id="importReport" type="file" accept="application/json" hidden></label></div><div class="right"><button class="button wine" id="printReport">Print family report</button></div></div>
+<section class="iGrid cols4" style="margin-top:15px">
+<article class="iMetric"><div class="iMetricTop"><span>Total practice</span><span class="iMetricIcon">✓</span></div><b id="parentAttempts">0</b><span>Synced responses</span></article>
+<article class="iMetric"><div class="iMetricTop"><span>Open mistakes</span><span class="iMetricIcon">!</span></div><b id="parentMistakes">0</b><span>Questions to recover</span></article>
+<article class="iMetric"><div class="iMetricTop"><span>Reviews due</span><span class="iMetricIcon">↻</span></div><b id="parentReviews">0</b><span>Spaced review items</span></article>
+<article class="iMetric"><div class="iMetricTop"><span>Questions today</span><span class="iMetricIcon">✦</span></div><b id="parentToday">0</b><span>Daily activity</span></article>
+</section>
 
-  <section class="learningCard full parentHero"><div><span class="learningKicker">Current picture</span><h2 id="reportTitle">Student learning report</h2><p id="reportSubtitle">No report loaded.</p><section class="metricGrid" id="parentMetrics"></section></div><div class="parentScore"><b id="overallScore">0%</b><span>overall practice accuracy</span></div></section>
+<section class="iGrid cols2" style="margin-top:20px">
+<article class="iCard"><div class="iCardHeader"><div><small>Celebrate</small><h3>Strengths</h3></div><span class="statusPill mastered">Strong areas</span></div><div class="skillList" id="familyStrengths"></div></article>
+<article class="iCard"><div class="iCardHeader"><div><small>Support</small><h3>Priority areas</h3></div><span class="statusPill suspended">Next steps</span></div><div class="skillList" id="familyPriorities"></div></article>
+</section>
 
-  <section class="learningGrid">
-    <article class="learningCard wide"><span class="learningKicker">Strengths</span><h2>Topics showing confidence</h2><div id="strengthList"></div></article>
-    <article class="learningCard"><span class="learningKicker">Review workload</span><div class="learningMetric" id="parentDue">0</div><p>questions currently due for review</p></article>
-    <article class="learningCard wide"><span class="learningKicker">Support priorities</span><h2>Topics to strengthen next</h2><div id="weakList"></div></article>
-    <article class="learningCard"><span class="learningKicker">Consistency</span><div class="learningMetric" id="parentStreak">0</div><p>current consecutive learning days</p></article>
-  </section>
+<div class="iSectionHead" id="assignmentsSection"><div><h2>Assignments</h2><p>Current teacher-assigned work and completion status.</p></div></div>
+<section class="iCard"><div class="assignmentStack" id="familyAssignments"></div></section>
 
-  <div class="sectionHead"><div><h2>Suggested seven-day support plan</h2><p>Short, focused practice is recommended over one long session.</p></div></div>
-  <section class="learningCard full"><div class="planList" id="familyPlan"></div></section>
-
-  <div class="sectionHead"><div><h2>Recent achievements</h2></div></div>
-  <section class="achievementGrid" id="parentAchievements"></section>
-
-  <div class="notice"><strong>Privacy:</strong> this page reads data stored on the current device or an exported learning-report file selected by the family. It does not transmit the report to ECHS or a third party.</div>
-</main>
-<footer class="footer">ECHS Mathematics · Family-facing learning report.</footer>
-<script src="js/learning-system.js?v=20260726-phase2"></script><script src="js/parent.js?v=20260726-phase2"></script><script src="../js/platform-foundation.js?v=20260726-phase2"></script>
-</body>
-</html>
+<div class="iSectionHead" id="supportPlan"><div><h2>Seven-day family support plan</h2><p>Short, realistic actions based on the learner’s current evidence.</p></div></div>
+<section class="iGrid cols3" id="familyPlan"></section>
+</main></section></div>
+<script src="../js/institution-client.js?v=20260726-phase3"></script><script src="js/parent-cloud.js?v=20260726-phase3"></script>
+</body></html>
