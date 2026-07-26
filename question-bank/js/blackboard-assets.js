@@ -1,20 +1,38 @@
 const ECHSBlackboardAssets={
   zipCache:new Map(),
   urlCache:new Map(),
+  async readBase64Package(packagePath){
+    const response=await fetch(packagePath);
+    if(!response.ok)throw new Error('Could not load Blackboard media package: '+packagePath);
+    const raw=(await response.text()).trim();
+    if(raw.startsWith('ECHS-B64-PARTS:')){
+      const names=raw.slice('ECHS-B64-PARTS:'.length).split(',').map(x=>x.trim()).filter(Boolean);
+      const base=new URL('.',new URL(packagePath,location.href));
+      const parts=await Promise.all(names.map(async name=>{
+        const partResponse=await fetch(new URL(name,base));
+        if(!partResponse.ok)throw new Error('Could not load Blackboard package part: '+name);
+        return (await partResponse.text()).replace(/\s+/g,'');
+      }));
+      return parts.join('');
+    }
+    return raw.replace(/\s+/g,'');
+  },
   async loadZip(packagePath){
     if(!packagePath)throw new Error('Missing Blackboard media package path');
     if(this.zipCache.has(packagePath))return this.zipCache.get(packagePath);
     const task=(async()=>{
       if(typeof JSZip==='undefined')throw new Error('JSZip is not available');
-      const response=await fetch(packagePath);
-      if(!response.ok)throw new Error('Could not load Blackboard media package: '+packagePath);
       let payload;
       if(packagePath.endsWith('.b64')){
-        const text=(await response.text()).replace(/\s+/g,'');
+        const text=await this.readBase64Package(packagePath);
         const binary=atob(text),bytes=new Uint8Array(binary.length);
         for(let i=0;i<binary.length;i++)bytes[i]=binary.charCodeAt(i);
         payload=bytes;
-      }else payload=await response.arrayBuffer();
+      }else{
+        const response=await fetch(packagePath);
+        if(!response.ok)throw new Error('Could not load Blackboard media package: '+packagePath);
+        payload=await response.arrayBuffer();
+      }
       return JSZip.loadAsync(payload);
     })();
     this.zipCache.set(packagePath,task);
@@ -37,17 +55,21 @@ const ECHSBlackboardAssets={
     return task;
   },
   async hydrate(root=document){
-    const images=[...root.querySelectorAll('img[data-bbzip-package][data-bbzip-path]')];
+    const images=[...root.querySelectorAll('img[data-bbzip-package][data-bbzip-path],image[data-bbzip-package][data-bbzip-path]')];
     await Promise.all(images.map(async image=>{
       if(image.dataset.bbzipLoaded==='1')return;
       image.dataset.bbzipLoaded='1';
       try{
-        image.src=await this.resolve(image.dataset.bbzipPackage,image.dataset.bbzipPath);
+        const url=await this.resolve(image.dataset.bbzipPackage,image.dataset.bbzipPath);
+        if(image.tagName.toLowerCase()==='image'){
+          image.setAttribute('href',url);
+          image.setAttributeNS('http://www.w3.org/1999/xlink','href',url);
+        }else image.src=url;
         image.classList.remove('bbzip-pending');
       }catch(error){
         image.classList.add('bbzip-missing');
-        image.title=error.message;
-        if(!image.alt)image.alt='Source figure unavailable';
+        image.setAttribute('title',error.message);
+        if(image.tagName.toLowerCase()==='img'&&!image.alt)image.alt='Source figure unavailable';
       }
     }));
   }
