@@ -79,7 +79,7 @@ jobs:
             --header "x-bootstrap-secret: $ECHS_BOOTSTRAP_SECRET" \
             "https://${SUPABASE_PROJECT_ID}.supabase.co/functions/v1/setup-api/verify-secret" | python -m json.tool
 
-      - name: Verify production login transaction
+      - name: Verify production authentication and session transaction
         shell: bash
         run: |
           set -euo pipefail
@@ -91,13 +91,14 @@ jobs:
           RESULT="$result" python - <<'PY'
           import json, os, sys
           payload = json.loads(os.environ["RESULT"])
-          if payload.get("ok") is not True or payload.get("login_contract") is not True:
-              print("Production login transaction self-test failed", file=sys.stderr)
+          required = (payload.get("ok"), payload.get("login_contract"), payload.get("session_contract"))
+          if required != (True, True, True):
+              print("Production authentication/session self-test failed", file=sys.stderr)
               sys.exit(1)
-          print("Production login transaction: PASS")
+          print("Production authentication and session transaction: PASS")
           PY
 
       - name: Deployment reminder
         run: |
-          echo "Backend deployed, bootstrap secret verified and production login transaction passed."
+          echo "Backend deployed, bootstrap secret verified, and production login/session transaction passed."
           echo "The institutional sign-in page is ready for account verification."
