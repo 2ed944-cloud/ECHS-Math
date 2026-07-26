@@ -109,6 +109,10 @@
     if(!pending||!navigator.onLine)return;
     try{await api("learning-sync","/sync",{method:"POST",body:JSON.stringify(pending)});localStorage.removeItem(KEYS.pending)}catch(error){console.warn("Pending learning sync failed",error)}
   }
+  function ensurePolish(){
+    if(!document.body.classList.contains("institutionBody")||document.querySelector('link[data-institution-polish]'))return;
+    const link=document.createElement("link");link.rel="stylesheet";link.href=root("css/institution-polish.css?v=20260726-phase3");link.dataset.institutionPolish="true";document.head.append(link);
+  }
   function setupMobileSidebar(){
     const toggle=document.querySelector("[data-institution-menu]"),sidebar=document.querySelector(".institutionSidebar");
     if(toggle&&sidebar)toggle.addEventListener("click",()=>sidebar.classList.toggle("open"));
@@ -120,6 +124,7 @@
     syncTimer=setTimeout(()=>syncLearning().catch(error=>console.warn("Institution learning sync failed",error)),1200);
   }
   function bind(){
+    ensurePolish();
     setupMobileSidebar();
     addEventListener("online",flushPending);
     document.addEventListener("echs:learning-updated",scheduleLearningSync);
