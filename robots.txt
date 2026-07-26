@@ -1,10 +1,14 @@
 User-agent: *
 Allow: /
 Disallow: /.echs-backups/
+Disallow: /login.html
+Disallow: /config/institution.json
 Disallow: /question-bank/review.html
 Disallow: /question-bank/practice-sources/
 Disallow: /question-bank/dashboard.html
 Disallow: /question-bank/mistakes.html
+Disallow: /question-bank/admin.html
+Disallow: /question-bank/student.html
 Disallow: /question-bank/teacher.html
 Disallow: /question-bank/parent.html
 Disallow: /question-bank/teacher/
