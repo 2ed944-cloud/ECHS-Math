@@ -24,6 +24,25 @@ def read(root: Path, relative: str, errors: list[str]) -> str:
         return ""
 
 
+def validate_control_shell(body: str, label: str, errors: list[str]) -> None:
+    markers = [
+        "<!doctype html",
+        "School Control Center",
+        "institutionBody",
+        "accountRows",
+        "createDialog",
+        "importDialog",
+        "admin-accounts.js",
+    ]
+    if len(body.encode("utf-8")) <= 12000:
+        fail(errors, f"{label} is unexpectedly short")
+    if body.strip().lower() == "admin":
+        fail(errors, f"{label} is the legacy one-word placeholder")
+    for marker in markers:
+        if marker.lower() not in body.lower():
+            fail(errors, f"{label} missing marker: {marker}")
+
+
 def validate(root: Path, expected_sha: str) -> list[str]:
     errors: list[str] = []
 
@@ -40,22 +59,11 @@ def validate(root: Path, expected_sha: str) -> list[str]:
         fail(errors, f"deployment.json SHA does not match artifact revision {expected_sha}")
 
     admin = read(root, "question-bank/admin.html", errors)
-    admin_markers = [
-        "<!doctype html",
-        "School Control Center",
-        "institutionBody",
-        "accountRows",
-        "createDialog",
-        "importDialog",
-        "admin-accounts.js",
-    ]
-    if len(admin.encode("utf-8")) <= 12000:
-        fail(errors, "Administrator shell is unexpectedly short")
-    if admin.strip().lower() == "admin":
-        fail(errors, "Administrator shell is the legacy one-word placeholder")
-    for marker in admin_markers:
-        if marker.lower() not in admin.lower():
-            fail(errors, f"Administrator shell missing marker: {marker}")
+    control = read(root, "question-bank/school-control.html", errors)
+    validate_control_shell(admin, "Legacy administrator shell", errors)
+    validate_control_shell(control, "Fresh School Control Center shell", errors)
+    if admin and control and admin != control:
+        fail(errors, "Fresh School Control Center must initially match the reviewed administrator shell exactly")
 
     role_pages = {
         "question-bank/teacher.html": ["Teaching Command Center", "studentRows", "teacher-cloud.js"],
@@ -74,12 +82,21 @@ def validate(root: Path, expected_sha: str) -> list[str]:
     for marker in [
         "Welcome back",
         "loginForm",
-        "20260727-auth-shell-v2",
         "js/institution-client.js",
         "js/login.js",
     ]:
         if marker not in login:
             fail(errors, f"Login shell missing marker: {marker}")
+
+    login_controller = read(root, "js/login.js", errors)
+    for marker in [
+        "20260727-school-control-v1",
+        "question-bank/school-control.html",
+        "role===\"admin\"",
+        "question-bank\\/admin\\.html",
+    ]:
+        if marker not in login_controller:
+            fail(errors, f"Login controller missing fresh administrator-route marker: {marker}")
 
     worker = read(root, "sw.js", errors)
     for marker in [
@@ -104,6 +121,10 @@ def validate(root: Path, expected_sha: str) -> list[str]:
     ]:
         if marker not in client:
             fail(errors, f"Institution client missing marker: {marker}")
+
+    robots = read(root, "robots.txt", errors)
+    if "Disallow: /question-bank/school-control.html" not in robots:
+        fail(errors, "robots.txt must exclude the fresh School Control Center route")
 
     return errors
 
