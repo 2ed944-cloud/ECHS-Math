@@ -4,10 +4,12 @@ on:
   pull_request:
     paths:
       - "index.html"
+      - "login.html"
       - "privacy.html"
       - "accessibility.html"
       - "sources-and-rights.html"
       - "404.html"
+      - "config/**"
       - "css/**"
       - "js/**"
       - "question-bank/**"
@@ -46,14 +48,14 @@ jobs:
       - name: Capture desktop and mobile pages
         env:
           ECHS_PREVIEW_URL: http://127.0.0.1:4173
-          ECHS_PREVIEW_OUTPUT: artifacts/phase2-visual
+          ECHS_PREVIEW_OUTPUT: artifacts/phase3-visual
           CHROME_PATH: /usr/bin/google-chrome
         run: node tools/capture_phase1_preview.mjs
       - name: Upload visual QA evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: phase2-visual-qa-${{ github.run_number }}
-          path: artifacts/phase2-visual
+          name: phase3-visual-qa-${{ github.run_number }}
+          path: artifacts/phase3-visual
           if-no-files-found: error
           retention-days: 14
