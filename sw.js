@@ -14,7 +14,7 @@ const SHELL = [
 ];
 const AUTH_DOCUMENT = /\/(?:login\.html|question-bank\/(?:admin|teacher|student|parent)\.html)$/i;
 const AUTH_ASSET = /\/(?:css\/institution[^/]*\.css|js\/(?:institution[^/]*|login)\.js|question-bank\/js\/(?:admin-accounts|student-cloud|teacher-cloud|parent-cloud)\.js)$/i;
-const PRIVATE_API = /\/functions\/v1\/(?:account-api|institution-api|learning-sync|setup-api|login-diagnostics)(?:\/|$)/i;
+const privateApi = /\/functions\/v1\/(?:account-api|institution-api|learning-sync|setup-api|login-diagnostics)(?:\/|$)/i;
 
 function reloadRequest(request){
   return new Request(request,{cache:"reload"});
@@ -87,7 +87,7 @@ self.addEventListener("fetch",event=>{
     return;
   }
   if(!sameOrigin){
-    if(PRIVATE_API.test(url.pathname)){
+    if(privateApi.test(url.pathname)){
       event.respondWith(fetch(request));
       return;
     }
