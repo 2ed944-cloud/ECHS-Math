@@ -14,10 +14,10 @@ const routes=[
   {key:'test-generator',path:'/question-bank/exam.html',ready:'#start',delay:6500},
   {key:'local-student-dashboard',path:'/question-bank/dashboard.html',ready:'#dailyPlan'},
   {key:'mistake-bank',path:'/question-bank/mistakes.html',ready:'#reviewList'},
-  {key:'account-administration',path:'/question-bank/admin.html',ready:'#accountRows',premium:true},
-  {key:'institutional-student',path:'/question-bank/student.html',ready:'#masteryMeter',premium:true},
-  {key:'teacher-dashboard',path:'/question-bank/teacher.html',ready:'#studentRows',premium:true},
-  {key:'parent-dashboard',path:'/question-bank/parent.html',ready:'#familyPlan',premium:true},
+  {key:'account-administration',path:'/question-bank/admin.html',ready:'#accountRows',premium:true,dock:true},
+  {key:'institutional-student',path:'/question-bank/student.html',ready:'#masteryMeter',premium:true,dock:true},
+  {key:'teacher-dashboard',path:'/question-bank/teacher.html',ready:'#studentRows',premium:true,dock:true},
+  {key:'parent-dashboard',path:'/question-bank/parent.html',ready:'#familyPlan',premium:true,dock:true},
   {key:'privacy',path:'/privacy.html',ready:'main'},
   {key:'accessibility',path:'/accessibility.html',ready:'main'}
 ];
@@ -59,12 +59,12 @@ for(const device of devices){
         entry.interactions.commandPalette=true;
         const commandScreenshot=path.join(outputDir,`${route.key}-command-${device.key}.png`);await page.screenshot({path:commandScreenshot,fullPage:false});entry.interactions.commandScreenshot=commandScreenshot;
         await page.keyboard.press('Escape');
-        await page.keyboard.press('?');
+        await page.keyboard.press('Shift+/');
         await page.locator('#premiumGuideDrawer.open').waitFor({state:'visible',timeout:8000});
         entry.interactions.roleGuide=true;
         const guideScreenshot=path.join(outputDir,`${route.key}-guide-${device.key}.png`);await page.screenshot({path:guideScreenshot,fullPage:false});entry.interactions.guideScreenshot=guideScreenshot;
         await page.keyboard.press('Escape');
-        if(device.isMobile){const dock=page.locator('.premiumMobileDock');entry.interactions.mobileDock=await dock.isVisible().catch(()=>false);if(!entry.interactions.mobileDock)report.errors.push(`${route.key}/${device.key}: premium mobile dock is not visible`);}
+        if(device.isMobile&&route.dock){const dock=page.locator('.premiumMobileDock');entry.interactions.mobileDock=await dock.isVisible().catch(()=>false);if(!entry.interactions.mobileDock)report.errors.push(`${route.key}/${device.key}: premium mobile dock is not visible`);}
       }
       if(entry.status&&entry.status>=400)report.errors.push(`${route.key}/${device.key}: HTTP ${entry.status}`);
       if(entry.horizontalOverflow){const names=entry.overflowOffenders.slice(0,5).map(row=>`${row.selector}[${row.left},${row.right};w=${row.width};sw=${row.scrollWidth}]`).join(', ');report.errors.push(`${route.key}/${device.key}: horizontal overflow ${Math.max(entry.bodyWidth,entry.documentWidth)}px > ${device.viewport.width}px${names?` :: ${names}`:''}`);}
