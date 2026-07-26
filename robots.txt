@@ -2,6 +2,7 @@ User-agent: *
 Allow: /
 Disallow: /.echs-backups/
 Disallow: /login.html
+Disallow: /setup.html
 Disallow: /config/institution.json
 Disallow: /question-bank/review.html
 Disallow: /question-bank/practice-sources/
