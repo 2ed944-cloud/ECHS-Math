@@ -1,0 +1,27 @@
+/* ECHS Mathematics — final responsive constraints for premium role portals */
+html{max-width:100%;overflow-x:clip}body.institutionBody{max-width:100%;overflow-x:hidden}.institutionShell,.institutionWorkspace,.institutionMain{min-width:0;max-width:100%}.experienceHero>*{min-width:0}.premiumCard,.premiumMetric,.meterCard,.premiumListRow,.planStep{min-width:0}
+@media(max-width:760px){
+  .institutionMain{width:100%;padding-left:15px!important;padding-right:15px!important}
+  .experienceHero{grid-template-columns:minmax(0,1fr)!important;width:100%;max-width:100%;min-width:0}
+  .experienceHeroContent,.experienceHeroPanel,.missionPanel,.missionBody,.missionCopy{min-width:0;max-width:100%}
+  .missionBody{grid-template-columns:112px minmax(0,1fr)!important;gap:13px!important}
+  .missionRing{width:112px!important;height:112px!important}.missionRing small{top:72px!important}
+  .premiumMetrics,.meterGrid{grid-template-columns:minmax(0,1fr)!important;width:100%;max-width:100%}
+  .premiumMetric{width:100%;max-width:100%;overflow:hidden}
+  .meterCard{grid-template-columns:100px minmax(0,1fr)!important;width:100%;max-width:100%;overflow:hidden}
+  .radialMeter{width:96px!important;height:96px!important}.radialMeter small{top:61px!important}
+  .premiumGrid{grid-template-columns:minmax(0,1fr)!important;width:100%;max-width:100%}
+  .premiumCard,.premiumCard.span5,.premiumCard.span6,.premiumCard.span7,.premiumCard.span8,.premiumCard.span12{grid-column:1/-1!important;width:100%;max-width:100%}
+  .premiumListRow,.assignmentPremium,.attentionRow,.activityRow{grid-template-columns:minmax(0,1fr)!important;max-width:100%}
+  .premiumListRow>div,.assignmentPremium>div,.attentionRow>div,.activityRow>div{min-width:0}
+  .planTimeline{grid-template-columns:minmax(0,1fr)!important}.planStep{width:100%;max-width:100%}
+  .weekBars{max-width:100%;overflow:hidden}.weekBar{min-width:0}
+  .institutionTopbar,.topbarTitle,.topbarMeta,.institutionTopActions{min-width:0;max-width:100%}
+  .institutionTopbar select{max-width:100%}
+  .premiumMobileDock{left:8px!important;right:8px!important;width:auto!important;max-width:calc(100vw - 16px)!important;box-sizing:border-box}
+  .premiumBackdrop{width:100vw!important;max-width:100vw!important}
+}
+@media(max-width:390px){
+  .missionBody{grid-template-columns:1fr!important}.missionRing{margin:auto}
+  .meterCard{grid-template-columns:88px minmax(0,1fr)!important;padding:14px!important}.radialMeter{width:84px!important;height:84px!important}.radialMeter strong{font-size:20px!important}.radialMeter small{top:53px!important}
+}
