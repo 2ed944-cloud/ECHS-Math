@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - "login.html"
+      - "config/institution.json"
       - "css/institution-premium.css"
       - "css/institution-responsive.css"
       - "css/institution-completion.css"
@@ -21,6 +22,8 @@ on:
       - "platform/PHASE_4_PREMIUM_EXPERIENCE.md"
       - "platform/PHASE_4_PREMIUM_COMPLETION.md"
       - "tools/validate_premium_experience.py"
+      - "tools/validate_institution_platform.py"
+      - "tools/validate_production_activation.py"
       - "sw.js"
       - ".github/workflows/premium-experience.yml"
   workflow_dispatch:
@@ -46,6 +49,16 @@ jobs:
       - name: Validate complete premium role experiences
         run: python tools/validate_premium_experience.py
       - name: Re-run institutional release gate
-        run: python tools/validate_institution_platform.py
+        run: |
+          if python - <<'PY'
+          import json
+          with open('config/institution.json', encoding='utf-8') as handle:
+              raise SystemExit(0 if json.load(handle).get('enabled') is True else 1)
+          PY
+          then
+            python tools/validate_production_activation.py
+          else
+            python tools/validate_institution_platform.py
+          fi
       - name: Re-run Phase 2 compatibility gate
         run: python tools/validate_learning_system.py
