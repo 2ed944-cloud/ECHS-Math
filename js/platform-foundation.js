@@ -1,4 +1,4 @@
-/* ECHS Mathematics Platform Foundation — Phase 2 */
+/* ECHS Mathematics Platform Foundation — Phase 3 */
 (function(){
   "use strict";
   const script=document.currentScript;
@@ -27,12 +27,14 @@
       <a href="${rootLink("question-bank/mistakes.html")}" ${active("question-bank/mistakes.html")?'aria-current="page"':""}>Review</a>
       <a href="${rootLink("question-bank/dashboard.html")}" ${active("question-bank/dashboard.html")?'aria-current="page"':""}>Student</a>
       <a href="${rootLink("question-bank/official/index.html")}" ${path.includes("/question-bank/official/")?'aria-current="page"':""}>Official AP</a>
+      <a href="${rootLink("login.html")}">Sign in</a>
     </nav>`;
   }
   function enhanceHeader(){
     const header=qs("header.site")||qs(".siteHeader");if(!header)return;
     const top=qs(".top",header)||header;let nav=qs(".platformNav",header);
     if(!nav){const oldNav=qs("nav",header);if(oldNav)oldNav.classList.add("platformNav");else top.insertAdjacentHTML("beforeend",navigationHTML());nav=qs(".platformNav",header);}
+    if(nav&&!qs('a[href$="login.html"]',nav))nav.insertAdjacentHTML("beforeend",`<a href="${rootLink("login.html")}">Sign in</a>`);
     let actions=qs(".platformHeaderActions",header);if(!actions){actions=document.createElement("div");actions.className="platformHeaderActions";top.append(actions);}
     if(!qs("[data-platform-status]",actions))actions.insertAdjacentHTML("beforeend",'<span class="platformStatus" data-platform-status>Online</span>');
     if(!qs("[data-platform-install]",actions))actions.insertAdjacentHTML("beforeend",'<button class="platformIconButton" type="button" data-platform-install hidden title="Install ECHS Mathematics" aria-label="Install ECHS Mathematics">⇩</button>');
@@ -45,7 +47,7 @@
   function addPageBand(){
     if(qs(".platformPageBand")||!document.body.classList.contains("practiceStudio"))return;
     const main=qs("main");if(!main)return;
-    const band=document.createElement("div");band.className="platformPageBand";band.innerHTML=`<strong>ECHS Mathematics Platform</strong><div class="platformPageBandNav"><a href="${rootLink("index.html")}">Lessons</a><a href="${rootLink("question-bank/index.html")}">Learning</a><a href="${rootLink("question-bank/practice.html")}">Practice</a><a href="${rootLink("question-bank/mistakes.html")}">Review</a><a href="${rootLink("question-bank/dashboard.html")}">Student</a><a href="${rootLink("question-bank/teacher.html")}">Teacher</a><a href="${rootLink("question-bank/parent.html")}">Parent</a><a href="${rootLink("question-bank/official/index.html")}">Official AP</a></div>`;
+    const band=document.createElement("div");band.className="platformPageBand";band.innerHTML=`<strong>ECHS Mathematics Platform</strong><div class="platformPageBandNav"><a href="${rootLink("index.html")}">Lessons</a><a href="${rootLink("question-bank/index.html")}">Learning</a><a href="${rootLink("question-bank/practice.html")}">Practice</a><a href="${rootLink("question-bank/mistakes.html")}">Review</a><a href="${rootLink("question-bank/dashboard.html")}">Student</a><a href="${rootLink("question-bank/teacher.html")}">Teacher</a><a href="${rootLink("question-bank/parent.html")}">Parent</a><a href="${rootLink("question-bank/official/index.html")}">Official AP</a><a href="${rootLink("login.html")}">Sign in</a></div>`;
     main.prepend(band);
   }
   function enhanceFooter(){
@@ -53,7 +55,7 @@
     const nav=document.createElement("nav");nav.className="platformPolicyLinks";nav.setAttribute("aria-label","Platform policies");nav.innerHTML=`<a href="${rootLink("privacy.html")}">Privacy</a><a href="${rootLink("accessibility.html")}">Accessibility</a><a href="${rootLink("sources-and-rights.html")}">Sources and rights</a>`;footer.append(nav);
   }
   function ensureDiscoveryMetadata(){
-    const noIndex=/\/(?:offline|dashboard|teacher|parent|mistakes)\.html$/i.test(location.pathname);
+    const noIndex=/\/(?:offline|dashboard|teacher|parent|student|admin|mistakes)\.html$/i.test(location.pathname);
     if(noIndex&&!qs('meta[name="robots"]')){const robots=document.createElement("meta");robots.name="robots";robots.content="noindex,follow";document.head.append(robots);}
     if(!noIndex&&!qs('link[rel="canonical"]')){const canonical=document.createElement("link");canonical.rel="canonical";canonical.href=`${location.origin}${location.pathname}`;document.head.append(canonical);}
   }
@@ -67,6 +69,10 @@
   async function registerServiceWorker(){
     if(!("serviceWorker" in navigator)||location.protocol==="file:")return;
     try{const registration=await navigator.serviceWorker.register(rootLink("sw.js"),{scope:new URL("./",ROOT).pathname});registration.addEventListener("updatefound",()=>{const worker=registration.installing;if(!worker)return;worker.addEventListener("statechange",()=>{if(worker.state==="installed"&&navigator.serviceWorker.controller)toast("A new platform version is ready.","Reload",()=>location.reload());});});}catch(error){console.warn("ECHS service worker registration failed",error);}
+  }
+  function loadInstitutionClient(){
+    if(window.ECHSInstitution||qs('script[src*="institution-client.js"]'))return;
+    const node=document.createElement("script");node.src=rootLink("js/institution-client.js?v=20260726-phase3");node.defer=true;document.head.append(node);
   }
   async function loadBankSnapshot(){
     const targets=qsa("[data-platform-bank-snapshot]");if(!targets.length&&!qs("#statQuestions"))return;
@@ -98,7 +104,7 @@
     if(event.altKey&&event.key.toLowerCase()==="d")location.href=rootLink("question-bank/dashboard.html");
     if(event.altKey&&event.key.toLowerCase()==="r")location.href=rootLink("question-bank/mistakes.html");
   }
-  function init(){enhanceHeader();addPageBand();enhanceFooter();ensureDiscoveryMetadata();updateConnectivity();configureInstall();populateLearningSnapshot();loadBankSnapshot();registerServiceWorker();addEventListener("online",updateConnectivity);addEventListener("offline",updateConnectivity);addEventListener("keydown",keyboardShortcuts);}
+  function init(){enhanceHeader();addPageBand();enhanceFooter();ensureDiscoveryMetadata();updateConnectivity();configureInstall();populateLearningSnapshot();loadBankSnapshot();registerServiceWorker();loadInstitutionClient();addEventListener("online",updateConnectivity);addEventListener("offline",updateConnectivity);addEventListener("keydown",keyboardShortcuts);}
   if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init,{once:true});else init();
   window.ECHSPlatform={ROOT:ROOT.href,setTheme,toast,loadBankSnapshot,populateLearningSnapshot};
 })();
