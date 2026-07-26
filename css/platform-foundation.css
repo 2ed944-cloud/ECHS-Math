@@ -1,0 +1,64 @@
+/* ECHS Mathematics Platform Foundation — Phase 1 */
+:root{
+  --pf-maroon:#78183f;
+  --pf-maroon-dark:#4a0d26;
+  --pf-navy:#102b46;
+  --pf-teal:#0d776f;
+  --pf-gold:#d1a344;
+  --pf-paper:#fff;
+  --pf-canvas:#f4f7fb;
+  --pf-ink:#172434;
+  --pf-muted:#667586;
+  --pf-line:#d9e3ec;
+  --pf-shadow:0 18px 54px rgba(16,43,70,.12);
+}
+html{color-scheme:light}
+html[data-theme="dark"]{color-scheme:dark;--pf-paper:#142234;--pf-canvas:#0d1826;--pf-ink:#edf5fb;--pf-muted:#a9b8c7;--pf-line:#2c4054;--pf-shadow:0 18px 54px rgba(0,0,0,.32)}
+body{transition:background-color .2s ease,color .2s ease}
+.platformHeaderActions{display:flex;align-items:center;justify-content:flex-end;gap:.5rem;flex-wrap:wrap}
+.platformNav{display:flex;align-items:center;gap:.35rem;flex-wrap:wrap}
+.platformNav a,.platformIconButton{
+  min-height:40px;display:inline-flex;align-items:center;justify-content:center;gap:.35rem;
+  padding:.58rem .78rem;border:1px solid transparent;border-radius:12px;text-decoration:none;
+  color:#394b5d;background:transparent;font:800 .78rem/1 Inter,Aptos,"Segoe UI",sans-serif;cursor:pointer;
+}
+.platformNav a:hover,.platformNav a[aria-current="page"],.platformIconButton:hover{background:#f4e8ee;color:var(--pf-maroon);border-color:#ead4de}
+.platformIconButton{width:42px;padding:0;background:#fff;border-color:var(--pf-line)}
+.platformIconButton[hidden]{display:none}
+.platformStatus{display:inline-flex;align-items:center;gap:.4rem;padding:.48rem .66rem;border-radius:999px;background:#e6f4f1;color:#075e59;font:850 .7rem Inter,sans-serif}
+.platformStatus::before{content:"";width:7px;height:7px;border-radius:50%;background:#0b8b80;box-shadow:0 0 0 4px rgba(11,139,128,.12)}
+.platformStatus.offline{background:#fff1dc;color:#8a5a0c}.platformStatus.offline::before{background:#d89420}
+.platformMenuButton{display:none}
+.platformDashboard{display:grid;grid-template-columns:1.25fr repeat(3,minmax(0,.75fr));gap:1rem;margin:1.2rem 0 2rem}
+.platformTile{position:relative;overflow:hidden;min-height:164px;padding:1.2rem;border:1px solid var(--pf-line);border-radius:22px;background:rgba(255,255,255,.92);box-shadow:0 12px 34px rgba(16,43,70,.07)}
+.platformTile::after{content:"";position:absolute;width:130px;height:130px;right:-62px;bottom:-72px;border-radius:50%;background:rgba(13,119,111,.09)}
+.platformTile.primary{color:#fff;background:linear-gradient(140deg,var(--pf-navy),#174b67 55%,var(--pf-teal));border-color:transparent;box-shadow:var(--pf-shadow)}
+.platformTile.primary::after{background:rgba(255,255,255,.08)}
+.platformTileLabel{display:block;margin-bottom:.45rem;color:var(--pf-maroon);font:900 .7rem Inter,sans-serif;letter-spacing:.09em;text-transform:uppercase}
+.platformTile.primary .platformTileLabel{color:#f2cf83}
+.platformTile h2,.platformTile h3{position:relative;z-index:1;margin:0;color:var(--pf-navy);font-family:Inter,Aptos,"Segoe UI",sans-serif;line-height:1.18}
+.platformTile.primary h2{color:#fff;font-size:clamp(1.35rem,2.3vw,2rem)}
+.platformTile h3{font-size:1.05rem}
+.platformTile p{position:relative;z-index:1;margin:.55rem 0 0;color:var(--pf-muted);font-size:.86rem;line-height:1.55}
+.platformTile.primary p{color:#e4eef4}
+.platformTileAction{position:relative;z-index:1;display:inline-flex;margin-top:.9rem;padding:.56rem .78rem;border-radius:10px;background:#f2f5f8;color:var(--pf-navy);text-decoration:none;font:850 .76rem Inter,sans-serif}
+.platformTile.primary .platformTileAction{background:#fff;color:var(--pf-maroon)}
+.platformTileMetric{position:relative;z-index:1;display:block;margin-top:.8rem;color:var(--pf-maroon);font:900 1.55rem Inter,sans-serif}
+.platformTileMetric small{display:block;margin-top:.15rem;color:var(--pf-muted);font-size:.7rem;font-weight:700}
+.platformInventory{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.65rem;margin-top:.8rem}
+.platformInventoryItem{padding:.78rem;border-radius:14px;background:#f5f8fb;border:1px solid #e5ecf2}
+.platformInventoryItem b{display:block;color:var(--pf-maroon);font:900 1.1rem Inter,sans-serif}.platformInventoryItem span{font-size:.7rem;color:var(--pf-muted)}
+.platformToast{position:fixed;right:1rem;bottom:1rem;z-index:1000;max-width:360px;padding:1rem;border-radius:16px;color:#fff;background:var(--pf-navy);box-shadow:0 20px 60px rgba(0,0,0,.25);font:700 .82rem/1.5 Inter,sans-serif;transform:translateY(140%);opacity:0;transition:.25s ease}
+.platformToast.show{transform:none;opacity:1}.platformToast button{margin-left:.65rem;border:0;border-radius:8px;padding:.35rem .55rem;color:var(--pf-navy);background:#fff;font-weight:900;cursor:pointer}
+.platformPageBand{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin:0 auto 1rem;max-width:1500px;padding:.7rem 1rem;border:1px solid var(--pf-line);border-radius:16px;background:rgba(255,255,255,.82);box-shadow:0 8px 24px rgba(16,43,70,.06)}
+.platformPageBandNav{display:flex;gap:.4rem;flex-wrap:wrap}.platformPageBandNav a{padding:.45rem .65rem;border-radius:9px;color:var(--pf-navy);text-decoration:none;font:800 .73rem Inter,sans-serif}.platformPageBandNav a:hover{background:#f4e8ee;color:var(--pf-maroon)}
+html[data-theme="dark"] body{background:#0d1826;color:var(--pf-ink)}
+html[data-theme="dark"] .platformTile,html[data-theme="dark"] .platformPageBand,html[data-theme="dark"] .platformIconButton{background:rgba(20,34,52,.96);border-color:var(--pf-line);color:var(--pf-ink)}
+html[data-theme="dark"] .platformTile h3,html[data-theme="dark"] .platformPageBandNav a{color:#e9f3fa}
+html[data-theme="dark"] .platformInventoryItem{background:#17283a;border-color:#2b4155}
+html[data-theme="dark"] header.site,html[data-theme="dark"] .siteHeader{background:rgba(13,24,38,.92)!important;border-color:#2a4054!important}
+html[data-theme="dark"] .searchBox{background:#142234;border-color:#2d4256}html[data-theme="dark"] .searchBox input{color:#eff7fc}
+@media(max-width:1120px){.platformDashboard{grid-template-columns:repeat(2,minmax(0,1fr))}.platformNav{display:none}.platformNav.open{display:flex;position:absolute;left:1rem;right:1rem;top:76px;padding:.75rem;border:1px solid var(--pf-line);border-radius:16px;background:#fff;box-shadow:var(--pf-shadow)}.platformMenuButton{display:inline-flex}}
+@media(max-width:720px){.platformDashboard{grid-template-columns:1fr}.platformTile{min-height:auto}.platformInventory{grid-template-columns:repeat(2,minmax(0,1fr))}.platformStatus{display:none}.platformPageBand{align-items:flex-start;flex-direction:column}.platformHeaderActions{gap:.35rem}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}}
+@media print{.platformNav,.platformHeaderActions,.platformPageBand,.platformToast,.platformDashboard{display:none!important}}
