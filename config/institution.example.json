@@ -1,6 +1,7 @@
 {
   "enabled": false,
   "api_base": "https://YOUR_PROJECT_REF.supabase.co/functions/v1",
+  "setup_api_base": "https://YOUR_PROJECT_REF.supabase.co/functions/v1",
   "setup_enabled": false,
   "backend_deployed": false,
   "setup_path": "setup.html",
