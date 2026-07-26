@@ -5,6 +5,7 @@ on:
     paths:
       - "login.html"
       - "css/institution-premium.css"
+      - "css/institution-responsive.css"
       - "css/institution-completion.css"
       - "js/institution-experience.js"
       - "js/institution-completion.js"
