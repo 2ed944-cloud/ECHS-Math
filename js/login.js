@@ -18,7 +18,7 @@
     disableLogin();
     const setupPath=String(cfg.setup_path||"setup.html").replace(/^\/+/,"");
     const setupUrl=ECHSInstitution.root(setupPath);
-    const base=String(cfg.api_base||"").replace(/\/$/,"");
+    const base=String(cfg.setup_api_base||cfg.api_base||"").replace(/\/$/,"");
     const hasBackend=Boolean(cfg.setup_enabled)&&/^https:\/\/[a-z0-9]+\.supabase\.co\/functions\/v1$/i.test(base);
 
     if(!hasBackend){
