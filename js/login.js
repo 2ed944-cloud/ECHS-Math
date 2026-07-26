@@ -1,6 +1,6 @@
 (async()=>{
   "use strict";
-  const AUTH_SHELL_VERSION="20260727-auth-shell-v2";
+  const AUTH_SHELL_VERSION="20260727-school-control-v1";
   const AUTH_SHELL_MARKER="echs_auth_shell_cache_version";
   const form=document.getElementById("loginForm");
   const button=document.getElementById("loginButton");
@@ -25,8 +25,11 @@
       console.warn("Authenticated shell refresh could not complete",error);
     }
   }
+  function rolePath(role){
+    return role==="admin"?"question-bank/school-control.html":ECHSInstitution.roleHome(role);
+  }
   function versionedRoleHome(role){
-    const target=new URL(ECHSInstitution.root(ECHSInstitution.roleHome(role)));
+    const target=new URL(ECHSInstitution.root(rolePath(role)));
     target.searchParams.set("shell",AUTH_SHELL_VERSION);
     return target.href;
   }
@@ -96,6 +99,9 @@
           const candidate=new URL(next,location.href);
           if(candidate.origin!==location.origin)throw new Error("External redirect blocked");
           if(candidate.pathname.startsWith(platformRoot.pathname)){
+            if(account.role==="admin"&&/\/question-bank\/admin\.html$/i.test(candidate.pathname)){
+              candidate.pathname=new URL(ECHSInstitution.root("question-bank/school-control.html")).pathname;
+            }
             candidate.searchParams.set("shell",AUTH_SHELL_VERSION);
             return location.replace(candidate.href);
           }
