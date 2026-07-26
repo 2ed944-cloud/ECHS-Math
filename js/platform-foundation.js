@@ -83,6 +83,26 @@
     main.prepend(band);
   }
 
+  function enhanceFooter(){
+    const footer=qs("footer");
+    if(!footer||qs(".platformPolicyLinks",footer))return;
+    const nav=document.createElement("nav");
+    nav.className="platformPolicyLinks";
+    nav.setAttribute("aria-label","Platform policies");
+    nav.innerHTML=`<a href="${rootLink("privacy.html")}">Privacy</a><a href="${rootLink("accessibility.html")}">Accessibility</a><a href="${rootLink("sources-and-rights.html")}">Sources and rights</a>`;
+    footer.append(nav);
+  }
+
+  function ensureDiscoveryMetadata(){
+    const noIndex=/\/(?:offline|dashboard)\.html$/i.test(location.pathname);
+    if(noIndex&&!qs('meta[name="robots"]')){
+      const robots=document.createElement("meta");robots.name="robots";robots.content="noindex,follow";document.head.append(robots);
+    }
+    if(!noIndex&&!qs('link[rel="canonical"]')){
+      const canonical=document.createElement("link");canonical.rel="canonical";canonical.href=`${location.origin}${location.pathname}`;document.head.append(canonical);
+    }
+  }
+
   function updateConnectivity(){
     const online=navigator.onLine;
     qsa("[data-platform-status]").forEach(node=>{node.textContent=online?"Online":"Offline";node.classList.toggle("offline",!online)});
@@ -159,7 +179,7 @@
   }
 
   function init(){
-    enhanceHeader();addPageBand();updateConnectivity();configureInstall();populateLearningSnapshot();loadBankSnapshot();registerServiceWorker();
+    enhanceHeader();addPageBand();enhanceFooter();ensureDiscoveryMetadata();updateConnectivity();configureInstall();populateLearningSnapshot();loadBankSnapshot();registerServiceWorker();
     addEventListener("online",updateConnectivity);addEventListener("offline",updateConnectivity);addEventListener("keydown",keyboardShortcuts);
   }
   if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init,{once:true});else init();
