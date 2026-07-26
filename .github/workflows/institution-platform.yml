@@ -32,6 +32,7 @@ on:
       - "tools/bootstrap_institution.py"
       - "tools/validate_initial_setup.py"
       - "tools/validate_institution_platform.py"
+      - "tools/validate_production_activation.py"
       - "tools/validate_premium_experience.py"
       - ".github/workflows/institution-platform.yml"
       - ".github/workflows/initial-setup.yml"
@@ -68,7 +69,17 @@ jobs:
         run: python tools/validate_initial_setup.py
 
       - name: Validate institutional security and integration
-        run: python tools/validate_institution_platform.py
+        run: |
+          if python - <<'PY'
+          import json
+          with open('config/institution.json', encoding='utf-8') as handle:
+              raise SystemExit(0 if json.load(handle).get('enabled') is True else 1)
+          PY
+          then
+            python tools/validate_production_activation.py
+          else
+            python tools/validate_institution_platform.py
+          fi
 
       - name: Validate premium role experiences
         run: python tools/validate_premium_experience.py
@@ -91,7 +102,7 @@ jobs:
           python -m json.tool manifest.json >/dev/null
           python -m json.tool config/institution.json >/dev/null
           python -m json.tool config/institution.example.json >/dev/null
-          python -m py_compile tools/bootstrap_institution.py tools/validate_initial_setup.py tools/validate_institution_platform.py tools/validate_premium_experience.py
+          python -m py_compile tools/bootstrap_institution.py tools/validate_initial_setup.py tools/validate_institution_platform.py tools/validate_production_activation.py tools/validate_premium_experience.py
           python - <<'PY'
           import tomllib
           with open('supabase/config.toml','rb') as handle:
