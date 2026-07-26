@@ -9,7 +9,6 @@ const browser=await chromium.launch({executablePath:process.env.CHROME_PATH||'/u
 const routes=[
   {key:'home',path:'/index.html',ready:'#courses'},
   {key:'login',path:'/login.html',ready:'#loginForm',premium:true},
-  {key:'initial-setup',path:'/setup.html?preview=1',ready:'#setupWizard',delay:1200,setup:true},
   {key:'learning-home',path:'/question-bank/index.html',ready:'#homePlan'},
   {key:'adaptive-practice',path:'/question-bank/practice.html?mode=adaptive',ready:'#start',delay:6500},
   {key:'test-generator',path:'/question-bank/exam.html',ready:'#start',delay:6500},
@@ -31,11 +30,6 @@ const report={generatedAt:new Date().toISOString(),baseURL,pages:[],errors:[]};
 for(const device of devices){
   const context=await browser.newContext({viewport:device.viewport,isMobile:device.isMobile,deviceScaleFactor:1,reducedMotion:'reduce'});
   await context.route('**/config/institution.json',route=>route.fulfill({status:200,contentType:'application/json',body:JSON.stringify(previewInstitutionConfig)}));
-  await context.route('**/functions/v1/setup-api/**',route=>{
-    const url=new URL(route.request().url());
-    const body=url.pathname.endsWith('/status')?{ok:true,complete:false,setup_available:true}:{ok:true,service:'echs-setup-api-preview',version:'visual-qa',bootstrap_secret_configured:true};
-    return route.fulfill({status:200,contentType:'application/json',headers:{'access-control-allow-origin':'*','cache-control':'no-store'},body:JSON.stringify(body)});
-  });
   for(const route of routes){
     const page=await context.newPage(),consoleErrors=[],pageErrors=[],failedRequests=[];
     page.on('console',message=>{if(message.type()==='error')consoleErrors.push(message.text());});
@@ -52,7 +46,6 @@ for(const device of devices){
       entry.bodyWidth=geometry.bodyWidth;entry.documentWidth=geometry.documentWidth;entry.viewportWidth=device.viewport.width;entry.horizontalOverflow=Math.max(entry.bodyWidth,entry.documentWidth)>device.viewport.width+2;entry.overflowOffenders=geometry.offenders;
       entry.theme=await page.evaluate(()=>document.documentElement.dataset.theme||'light');entry.institutionState=await page.evaluate(()=>document.documentElement.dataset.institution||'public');
       const screenshot=path.join(outputDir,`${route.key}-${device.key}.png`);await page.screenshot({path:screenshot,fullPage:true});entry.screenshot=screenshot;
-      if(route.setup){await page.locator('#nextStep').click();await page.locator('[data-panel="2"].active').waitFor({state:'visible',timeout:5000});await page.locator('#nextStep').click();await page.locator('[data-panel="3"].active').waitFor({state:'visible',timeout:5000});await page.locator('#adminName').fill('Preview Administrator');await page.locator('#adminEmail').fill('preview@echs.example');await page.locator('#generatePassword').click();await page.locator('#bootstrapSecret').fill('PreviewBootstrapSecret-Only-123!');await page.locator('#nextStep').click();await page.locator('[data-panel="4"].active').waitFor({state:'visible',timeout:5000});entry.interactions.setupReview=true;const reviewScreenshot=path.join(outputDir,`${route.key}-review-${device.key}.png`);await page.screenshot({path:reviewScreenshot,fullPage:true});entry.interactions.reviewScreenshot=reviewScreenshot;await page.locator('#confirmPermanent').check();await page.locator('#createInstitution').click();await page.locator('#setupError.show').waitFor({state:'visible',timeout:5000});const previewError=await page.locator('#setupError').textContent();entry.interactions.previewBlocked=/preview mode cannot create/i.test(previewError||'');if(!entry.interactions.previewBlocked)report.errors.push(`${route.key}/${device.key}: preview mode did not block bootstrap submission`);}
       if(route.premium){await page.keyboard.press('Control+K');await page.locator('#premiumCommandDialog[open]').waitFor({state:'visible',timeout:8000});entry.interactions.commandPalette=true;const commandScreenshot=path.join(outputDir,`${route.key}-command-${device.key}.png`);await page.screenshot({path:commandScreenshot,fullPage:false});entry.interactions.commandScreenshot=commandScreenshot;await page.keyboard.press('Escape');await page.keyboard.press('Shift+/');await page.locator('#premiumGuideDrawer.open').waitFor({state:'visible',timeout:8000});entry.interactions.roleGuide=true;const guideScreenshot=path.join(outputDir,`${route.key}-guide-${device.key}.png`);await page.screenshot({path:guideScreenshot,fullPage:false});entry.interactions.guideScreenshot=guideScreenshot;await page.keyboard.press('Escape');if(device.isMobile&&route.dock){const dock=page.locator('.premiumMobileDock');entry.interactions.mobileDock=await dock.isVisible().catch(()=>false);if(!entry.interactions.mobileDock)report.errors.push(`${route.key}/${device.key}: premium mobile dock is not visible`);}}
       if(entry.status&&entry.status>=400)report.errors.push(`${route.key}/${device.key}: HTTP ${entry.status}`);
       if(entry.horizontalOverflow){const names=entry.overflowOffenders.slice(0,5).map(row=>`${row.selector}[${row.left},${row.right};w=${row.width};sw=${row.scrollWidth}]`).join(', ');report.errors.push(`${route.key}/${device.key}: horizontal overflow ${Math.max(entry.bodyWidth,entry.documentWidth)}px > ${device.viewport.width}px${names?` :: ${names}`:''}`);}
