@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#74183d">
+  <meta name="color-scheme" content="light dark">
+  <title>Sign in | ECHS Mathematics</title>
+  <meta name="description" content="Secure username and password sign-in for the ECHS Mathematics institutional platform.">
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="icon" href="assets/icon-192.png">
+  <link rel="apple-touch-icon" href="assets/icon-192.png">
+  <link rel="manifest" href="manifest.json">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;1,500&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/institution.css?v=20260726-phase3">
+</head>
+<body class="institutionBody">
+  <main class="authPage">
+    <section class="authVisual" aria-label="ECHS Mathematics institutional learning platform">
+      <div class="authVisualBrand">
+        <span class="institutionBrandMark" aria-hidden="true">∫</span>
+        <div><strong>ECHS Mathematics</strong><span>Institutional learning platform</span></div>
+      </div>
+      <div class="authPitch">
+        <span>Education City High School · Mathematics</span>
+        <h1>One account.<em>A complete learning pathway.</em></h1>
+        <p>Lessons, adaptive practice, mastery, assignments, teacher analytics and family reports are connected under one secure school-managed account.</p>
+        <div class="authFeatures"><b>Student mastery</b><b>Teacher insights</b><b>Family reports</b><b>Admin-managed accounts</b></div>
+      </div>
+      <small>Accounts are created by the school. Public self-registration and Google sign-in are disabled.</small>
+    </section>
+    <section class="authPanel">
+      <article class="authCard">
+        <span class="iEyebrow">Secure school access</span>
+        <h2>Welcome back</h2>
+        <p>Enter the username and password provided by your administrator or teacher.</p>
+        <form class="authForm" id="loginForm">
+          <div class="iControl">
+            <label for="username">Username</label>
+            <input id="username" name="username" autocomplete="username" autocapitalize="none" spellcheck="false" required minlength="3">
+          </div>
+          <div class="iControl">
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password" autocomplete="current-password" required>
+          </div>
+          <div class="rememberRow">
+            <label><input id="remember" type="checkbox"> Keep me signed in on this device</label>
+            <span>School-managed account</span>
+          </div>
+          <div class="authError" id="loginError" role="alert"></div>
+          <button class="iButton" id="loginButton" type="submit">Sign in to ECHS Mathematics</button>
+        </form>
+        <div class="configWarning hidden" id="configWarning">
+          <strong>Institutional backend setup is not complete.</strong><br>
+          An administrator must deploy the supplied Supabase migration and Edge Functions, then update <code>config/institution.json</code>.
+        </div>
+        <p style="margin-top:20px"><a href="index.html">← Continue to the public lesson portal</a></p>
+      </article>
+    </section>
+  </main>
+  <script src="js/institution-client.js?v=20260726-phase3"></script>
+  <script src="js/login.js?v=20260726-phase3"></script>
+</body>
+</html>
