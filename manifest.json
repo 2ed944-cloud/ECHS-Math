@@ -2,25 +2,110 @@
   "id": "./",
   "name": "ECHS Mathematics Learning Platform",
   "short_name": "ECHS Math",
-  "description": "Free interactive mathematics lessons, practice collections, test generation, progress tools and verified Official AP resources.",
+  "description": "Free interactive mathematics lessons, adaptive practice, mastery, spaced review, test generation and separately verified Official AP resources.",
   "lang": "en",
   "dir": "ltr",
   "start_url": "./index.html?source=pwa",
   "scope": "./",
   "display": "standalone",
-  "display_override": ["window-controls-overlay", "standalone", "minimal-ui"],
+  "display_override": [
+    "window-controls-overlay",
+    "standalone",
+    "minimal-ui"
+  ],
   "orientation": "any",
   "background_color": "#f4f7fb",
   "theme_color": "#78183f",
-  "categories": ["education", "productivity"],
+  "categories": [
+    "education",
+    "productivity"
+  ],
   "icons": [
-    {"src": "assets/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable"},
-    {"src": "assets/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable"}
+    {
+      "src": "assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
   ],
   "shortcuts": [
-    {"name": "Courses and Lessons", "short_name": "Lessons", "description": "Open the ECHS course portal", "url": "./index.html#courses", "icons": [{"src": "assets/icon-192.png", "sizes": "192x192"}]},
-    {"name": "Practice Studio", "short_name": "Practice", "description": "Build a targeted mathematics practice set", "url": "./question-bank/practice.html", "icons": [{"src": "assets/icon-192.png", "sizes": "192x192"}]},
-    {"name": "Test Generator", "short_name": "Tests", "description": "Create a focused mathematics test", "url": "./question-bank/exam.html", "icons": [{"src": "assets/icon-192.png", "sizes": "192x192"}]},
-    {"name": "Official AP Centre", "short_name": "Official AP", "description": "Open the separately verified Official AP archive", "url": "./question-bank/official/index.html", "icons": [{"src": "assets/icon-192.png", "sizes": "192x192"}]}
+    {
+      "name": "Courses and Lessons",
+      "short_name": "Lessons",
+      "description": "Open the ECHS course portal",
+      "url": "./index.html#courses",
+      "icons": [
+        {
+          "src": "assets/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Student Dashboard",
+      "short_name": "Student",
+      "description": "Open the personal learning dashboard",
+      "url": "./question-bank/dashboard.html",
+      "icons": [
+        {
+          "src": "assets/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Adaptive Practice",
+      "short_name": "Adaptive",
+      "description": "Start an adaptive mathematics practice set",
+      "url": "./question-bank/practice.html?mode=adaptive",
+      "icons": [
+        {
+          "src": "assets/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Review Centre",
+      "short_name": "Review",
+      "description": "Open the Mistake Bank and spaced review",
+      "url": "./question-bank/mistakes.html",
+      "icons": [
+        {
+          "src": "assets/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Test Generator",
+      "short_name": "Tests",
+      "description": "Create a focused mathematics test",
+      "url": "./question-bank/exam.html",
+      "icons": [
+        {
+          "src": "assets/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Official AP Centre",
+      "short_name": "Official AP",
+      "description": "Open the separately verified Official AP archive",
+      "url": "./question-bank/official/index.html",
+      "icons": [
+        {
+          "src": "assets/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
   ]
 }
