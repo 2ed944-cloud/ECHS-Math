@@ -9,6 +9,7 @@ Disallow: /question-bank/practice-sources/
 Disallow: /question-bank/dashboard.html
 Disallow: /question-bank/mistakes.html
 Disallow: /question-bank/admin.html
+Disallow: /question-bank/school-control.html
 Disallow: /question-bank/student.html
 Disallow: /question-bank/teacher.html
 Disallow: /question-bank/parent.html

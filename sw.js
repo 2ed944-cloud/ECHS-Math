@@ -1,4 +1,4 @@
-const VERSION = "echs-platform-auth-shell-v2";
+const VERSION = "echs-platform-school-control-v3";
 const STATIC_CACHE = `${VERSION}-static`;
 const RUNTIME_CACHE = `${VERSION}-runtime`;
 const SHELL = [
@@ -6,13 +6,13 @@ const SHELL = [
   "./css/portal.css","./css/practice-integration.css","./css/official-ap-integration.css","./css/platform-foundation.css","./css/institution.css","./css/institution-polish.css","./css/institution-premium.css","./css/institution-responsive.css","./css/institution-completion.css",
   "./data/courses.js","./data/ap-calculus-update.js","./data/ap-precalculus-update.js",
   "./js/portal.js","./js/practice-integration.js","./js/official-ap-integration.js","./js/platform-foundation.js","./js/lesson-learning-bridge.js","./js/institution-client.js","./js/institution-experience.js","./js/institution-completion.js","./js/institution-portal.js","./js/login.js",
-  "./question-bank/index.html","./question-bank/practice.html","./question-bank/exam.html","./question-bank/dashboard.html","./question-bank/mistakes.html","./question-bank/student.html","./question-bank/teacher.html","./question-bank/parent.html","./question-bank/admin.html",
+  "./question-bank/index.html","./question-bank/practice.html","./question-bank/exam.html","./question-bank/dashboard.html","./question-bank/mistakes.html","./question-bank/student.html","./question-bank/teacher.html","./question-bank/parent.html","./question-bank/admin.html","./question-bank/school-control.html",
   "./question-bank/css/bank.css","./question-bank/css/practice-studio.css","./question-bank/css/learning-system.css",
   "./question-bank/js/learning-system.js","./question-bank/js/sync-adapter.js","./question-bank/js/bank.js","./question-bank/js/learning-home.js","./question-bank/js/practice.js","./question-bank/js/exam.js","./question-bank/js/dashboard.js","./question-bank/js/mistakes.js","./question-bank/js/student-cloud.js","./question-bank/js/teacher-cloud.js","./question-bank/js/parent-cloud.js","./question-bank/js/admin-accounts.js",
   "./question-bank/data/catalog.json","./question-bank/data/blackboard-addon.json",
   "./assets/echs_logo.png","./assets/icon-192.png","./assets/icon-512.png"
 ];
-const AUTH_DOCUMENT = /\/(?:login\.html|question-bank\/(?:admin|teacher|student|parent)\.html)$/i;
+const AUTH_DOCUMENT = /\/(?:login\.html|question-bank\/(?:admin|school-control|teacher|student|parent)\.html)$/i;
 const AUTH_ASSET = /\/(?:css\/institution[^/]*\.css|js\/(?:institution[^/]*|login)\.js|question-bank\/js\/(?:admin-accounts|student-cloud|teacher-cloud|parent-cloud)\.js)$/i;
 const privateApi = /\/functions\/v1\/(?:account-api|institution-api|learning-sync|setup-api|login-diagnostics)(?:\/|$)/i;
 

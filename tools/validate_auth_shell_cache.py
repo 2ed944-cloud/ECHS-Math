@@ -17,8 +17,9 @@ def read(path: str) -> str:
 
 sw = read("sw.js")
 for marker in [
-    'echs-platform-auth-shell-v2',
+    'echs-platform-school-control-v3',
     'AUTH_DOCUMENT',
+    'school-control',
     'freshAuthDocument',
     'validAuthShell',
     'cache:"reload"',
@@ -30,28 +31,32 @@ for marker in [
     if marker not in sw:
         ERRORS.append(f"Service worker missing auth-shell marker: {marker}")
 
-if 'echs-platform-initial-setup-v1' in sw:
-    ERRORS.append("Service worker still uses the initial-setup cache version")
+for forbidden_version in [
+    'echs-platform-initial-setup-v1',
+    'const VERSION = "echs-platform-auth-shell-v2"',
+]:
+    if forbidden_version in sw:
+        ERRORS.append(f"Service worker still uses a superseded cache version: {forbidden_version}")
 if 'event.respondWith(staleWhileRevalidate(request));\n    return;\n  }\n  if(request.mode==="navigate")' in sw:
     ERRORS.append("Authenticated navigations must be handled before generic stale caching")
 
 login_html = read("login.html")
 for marker in [
-    '20260727-auth-shell-v2',
-    'js/institution-client.js?v=20260727-auth-shell-v2',
-    'js/login.js?v=20260727-auth-shell-v2',
+    'js/institution-client.js',
+    'js/login.js',
 ]:
     if marker not in login_html:
-        ERRORS.append(f"Login page missing cache-busting marker: {marker}")
+        ERRORS.append(f"Login page missing required asset marker: {marker}")
 
 login_js = read("js/login.js")
 for marker in [
-    'AUTH_SHELL_VERSION="20260727-auth-shell-v2"',
+    'AUTH_SHELL_VERSION="20260727-school-control-v1"',
     'echs_auth_shell_cache_version',
     'caches.delete',
     'updateViaCache:"none"',
     'PURGE_AUTH_SHELL',
     'versionedRoleHome',
+    'question-bank/school-control.html',
     'searchParams.set("shell",AUTH_SHELL_VERSION)',
 ]:
     if marker not in login_js:
@@ -66,18 +71,28 @@ for forbidden in [
     if forbidden in login_js or forbidden in login_html:
         ERRORS.append(f"Auth-shell frontend contains forbidden secret marker: {forbidden}")
 
-admin_html = read("question-bank/admin.html")
-for marker in [
-    '<!doctype html>',
-    'class="institutionBody"',
-    'School Control Center',
-    'id="accountRows"',
-    'js/admin-accounts.js',
+for path, label in [
+    ("question-bank/admin.html", "Legacy admin shell"),
+    ("question-bank/school-control.html", "Fresh School Control Center shell"),
 ]:
-    if marker not in admin_html:
-        ERRORS.append(f"Admin shell missing structural marker: {marker}")
-if len(admin_html) < 10000:
-    ERRORS.append("Admin shell is unexpectedly short and may have been replaced by a placeholder")
+    body = read(path)
+    for marker in [
+        '<!doctype html>',
+        'class="institutionBody"',
+        'School Control Center',
+        'id="accountRows"',
+        'js/admin-accounts.js',
+    ]:
+        if marker not in body:
+            ERRORS.append(f"{label} missing structural marker: {marker}")
+    if len(body) < 10000:
+        ERRORS.append(f"{label} is unexpectedly short and may have been replaced by a placeholder")
+    if body.strip().lower() == "admin":
+        ERRORS.append(f"{label} is the legacy one-word placeholder")
+
+client = read("js/institution-client.js")
+if 'role==="admin"?"question-bank/school-control.html"' not in client:
+    ERRORS.append("Institution client does not use the fresh School Control Center as the canonical admin route")
 
 print("ECHS authenticated shell cache recovery validation")
 print(f"Errors: {len(ERRORS)}")
