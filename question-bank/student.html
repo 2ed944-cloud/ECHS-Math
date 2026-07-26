@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#74183d"><meta name="robots" content="noindex,nofollow">
+<title>Student Dashboard | ECHS Mathematics</title>
+<link rel="manifest" href="../manifest.json"><link rel="icon" href="../assets/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/institution.css?v=20260726-phase3">
+</head><body class="institutionBody">
+<div class="institutionShell">
+<aside class="institutionSidebar">
+  <a class="institutionBrand" href="../index.html"><span class="institutionBrandMark">∫</span><div><strong>ECHS Mathematics</strong><span data-institution-org>Student Learning</span></div></a>
+  <div class="institutionUser"><strong data-institution-name>Student</strong><small>@<span data-institution-username></span></small><span class="roleBadge">student</span></div>
+  <nav class="institutionNav">
+    <div class="institutionNavSection">My Learning</div>
+    <a class="active" href="student.html"><span class="institutionNavIcon">◉</span>Dashboard</a>
+    <a href="practice.html?mode=adaptive"><span class="institutionNavIcon">✦</span>Adaptive Practice</a>
+    <a href="mistakes.html"><span class="institutionNavIcon">↻</span>Review & Mistakes</a>
+    <a href="exam.html"><span class="institutionNavIcon">▤</span>Tests</a>
+    <a href="../index.html#courses"><span class="institutionNavIcon">∫</span>Lessons</a>
+    <div class="institutionNavSection">Progress</div>
+    <a href="#masterySection"><span class="institutionNavIcon">◎</span>Mastery Map</a>
+    <a href="#assignmentSection"><span class="institutionNavIcon">✓</span>Assignments</a>
+    <a href="dashboard.html"><span class="institutionNavIcon">★</span>Achievements</a>
+  </nav>
+  <div class="institutionSidebarFooter"><button type="button" data-institution-logout>Sign out</button></div>
+</aside>
+<section class="institutionWorkspace">
+<header class="institutionTopbar"><button class="iIconButton mobileMenu" data-institution-menu>☰</button>
+  <div><h1 id="welcomeTitle">Student Dashboard</h1><p>Your personalized mathematics learning path.</p></div>
+  <div class="institutionTopActions"><button class="iButton secondary" id="syncNow">Sync progress</button><a class="iButton" href="practice.html?mode=adaptive">Start practice</a></div>
+</header>
+<main class="institutionMain">
+  <section class="iHero"><div class="iHeroText"><span class="iEyebrow">Today’s learning path</span><h2 id="heroGreeting">Ready to grow?<span>Every question moves you forward.</span></h2><p id="heroMessage">Your dashboard combines lessons, assignments, practice, review and mastery into one clear pathway.</p>
+    <div class="iHeroActions"><a class="iButton gold" id="primaryAction" href="practice.html?mode=adaptive">Continue learning</a><a class="iButton secondary" href="mistakes.html">Review due work</a></div></div>
+    <div class="iHeroStats"><div class="iHeroStat"><b id="heroMastery">0%</b><span>Overall mastery</span></div><div class="iHeroStat"><b id="heroToday">0</b><span>Questions today</span></div><div class="iHeroStat"><b id="heroStreak">0</b><span>Day streak</span></div><div class="iHeroStat"><b id="heroDue">0</b><span>Reviews due</span></div></div>
+  </section>
+
+  <div class="iSectionHead"><div><h2>My progress meters</h2><p>ALEKS-style clarity with ECHS mastery and evidence.</p></div><span class="statusPill active" id="syncStatus">Cloud connected</span></div>
+  <section class="meterGrid">
+    <article class="meterCard"><div class="radialMeter" id="masteryMeter"><strong>0%</strong><small>Mastery</small></div><div><h3>Knowledge mastery</h3><p>Your weighted performance across all practiced skills.</p></div></article>
+    <article class="meterCard"><div class="radialMeter" id="topicsMeter" style="--meter:var(--i-gold)"><strong>0%</strong><small>Topics</small></div><div><h3>Topics mastered</h3><p><span id="masteredCount">0</span> of <span id="totalTopicCount">0</span> skills have reached mastery.</p></div></article>
+    <article class="meterCard"><div class="radialMeter" id="goalMeter" style="--meter:var(--i-maroon)"><strong>0%</strong><small>Daily goal</small></div><div><h3>Daily question goal</h3><p><span id="todayCount">0</span> of <span id="dailyGoal">10</span> questions completed today.</p></div></article>
+    <article class="meterCard"><div class="radialMeter" id="timeMeter" style="--meter:var(--i-navy-2)"><strong>0%</strong><small>Weekly time</small></div><div><h3>Weekly learning time</h3><p><span id="weeklyMinutes">0</span> of <span id="weeklyGoal">120</span> recommended minutes.</p></div></article>
+  </section>
+
+  <section class="iGrid cols4" style="margin-top:15px">
+    <article class="iMetric"><div class="iMetricTop"><span>Accuracy</span><span class="iMetricIcon">✓</span></div><b id="accuracyMetric">0%</b><span>Across all synced practice</span></article>
+    <article class="iMetric"><div class="iMetricTop"><span>Review due</span><span class="iMetricIcon">↻</span></div><b id="dueMetric">0</b><span>Spaced-repetition questions</span></article>
+    <article class="iMetric"><div class="iMetricTop"><span>Mistakes to recover</span><span class="iMetricIcon">!</span></div><b id="mistakeMetric">0</b><span>Open mistake-bank items</span></article>
+    <article class="iMetric"><div class="iMetricTop"><span>Current streak</span><span class="iMetricIcon">🔥</span></div><b id="streakMetric">0</b><span>Consecutive learning days</span></article>
+  </section>
+
+  <div class="iSectionHead" id="assignmentSection"><div><h2>Assignments</h2><p>Work assigned by your teacher appears here automatically.</p></div><a class="iButton secondary" href="practice.html">Open Practice Studio</a></div>
+  <section class="iCard"><div class="assignmentStack" id="assignmentList"><div class="emptyInstitution">Loading assignments…</div></div></section>
+
+  <section class="iGrid cols2" style="margin-top:20px">
+    <article class="iCard"><div class="iCardHeader"><div><small>Recommended next</small><h3>My learning path</h3></div><span class="statusPill active">Personalized</span></div><div class="skillList" id="priorityList"></div></article>
+    <article class="iCard"><div class="iCardHeader"><div><small>Strongest areas</small><h3>What I am doing well</h3></div><span class="statusPill mastered">Strengths</span></div><div class="skillList" id="strengthList"></div></article>
+  </section>
+
+  <div class="iSectionHead" id="masterySection"><div><h2>Mastery map</h2><p>Each skill moves through Starting, Developing, Proficient and Mastered.</p></div></div>
+  <section class="iCard"><div class="skillList" id="masteryList"><div class="emptyInstitution">No mastery evidence yet.</div></div></section>
+
+  <div class="iSectionHead"><div><h2>Recent learning activity</h2><p>Your latest sessions across practice, review and tests.</p></div></div>
+  <section class="iCard"><div class="activityList" id="recentSessions"><div class="emptyInstitution">No sessions yet.</div></div></section>
+</main></section></div>
+<script src="js/learning-system.js?v=20260726-phase2"></script>
+<script src="../js/institution-client.js?v=20260726-phase3"></script>
+<script src="js/student-cloud.js?v=20260726-phase3"></script>
+</body></html>
