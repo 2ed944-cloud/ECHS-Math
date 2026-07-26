@@ -79,7 +79,7 @@ self.addEventListener("fetch",event=>{
     return;
   }
   if(setupPage){
-    event.respondWith(fetch(reloadRequest(request)));
+    event.respondWith(fetch(request,{cache:"no-store"}));
     return;
   }
   if(request.mode==="navigate"){
