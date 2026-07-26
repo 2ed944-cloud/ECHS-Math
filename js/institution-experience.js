@@ -1,42 +1,29 @@
 /* ECHS Mathematics Premium Experience helpers */
 (function(){
   "use strict";
+  const script=document.currentScript;
+  const ROOT=script?new URL("../",script.src):new URL("./",location.href);
   const THEME_KEY="echs_institution_theme_v2";
   const $=(selector,root=document)=>root.querySelector(selector);
   const $$=(selector,root=document)=>[...root.querySelectorAll(selector)];
   const clamp=(value,min=0,max=100)=>Math.min(max,Math.max(min,Number(value)||0));
   const escapeHTML=value=>String(value??"").replace(/[&<>"']/g,char=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[char]));
-  const icon=(name)=>({
-    practice:"✦",review:"↻",assignment:"✓",lesson:"∫",test:"▤",mastery:"◎",streak:"🔥",time:"◷",accuracy:"✓",alert:"!",students:"◉",accounts:"◫",family:"⌂",security:"⌾",activity:"↗",support:"◇",achievement:"★",calendar:"◷",classroom:"▦"
-  }[name]||"•");
+  const icon=(name)=>({practice:"✦",review:"↻",assignment:"✓",lesson:"∫",test:"▤",mastery:"◎",streak:"🔥",time:"◷",accuracy:"✓",alert:"!",students:"◉",accounts:"◫",family:"⌂",security:"⌾",activity:"↗",support:"◇",achievement:"★",calendar:"◷",classroom:"▦"}[name]||"•");
   function greeting(date=new Date()){const hour=date.getHours();return hour<12?"Good morning":hour<18?"Good afternoon":"Good evening"}
   function formatDate(value=new Date()){const date=value instanceof Date?value:new Date(value);return date.toLocaleDateString(undefined,{weekday:"long",month:"long",day:"numeric"})}
   function safePercent(value){return Math.round(clamp(value))}
   function setRing(nodeOrId,value,label){const node=typeof nodeOrId==="string"?document.getElementById(nodeOrId):nodeOrId;if(!node)return;const safe=safePercent(value);node.style.setProperty("--value",safe);const strong=$("strong",node);if(strong)strong.textContent=label??`${safe}%`}
   function setIdentityAvatar(current){const initials=window.ECHSInstitution?.initials(current?.display_name)||"EC";$$('.institutionUser').forEach(node=>node.dataset.avatar=initials)}
-  function showPreview(message="Interactive preview data is shown. Institutional accounts remain disabled until the approved Supabase deployment is complete."){
-    if($(".premiumPreview"))return;
-    const main=$(".institutionMain");if(!main)return;
-    const banner=document.createElement("div");banner.className="premiumPreview";banner.innerHTML=`<div><strong>Premium experience preview</strong><br><span>${escapeHTML(message)}</span></div><a href="../platform/PHASE_4_PREMIUM_EXPERIENCE.md">Preview details →</a>`;main.prepend(banner);
-  }
-  function renderWeekBars(target,values=[]){
-    const node=typeof target==="string"?document.getElementById(target):target;if(!node)return;
-    const rows=[...values].slice(-7);while(rows.length<7)rows.unshift({label:"–",value:0});const max=Math.max(1,...rows.map(row=>Number(row.value)||0));
-    node.innerHTML=rows.map((row,index)=>`<div class="weekBar ${row.today||index===rows.length-1?"today":""}"><div class="weekBarTrack" title="${escapeHTML(row.label)}: ${Number(row.value)||0}"><i style="height:${Math.max(5,Math.round((Number(row.value)||0)/max*100))}%"></i></div><span>${escapeHTML(row.short||row.label||"")}</span></div>`).join("");
-  }
-  function renderDistribution(target,rows=[]){
-    const node=typeof target==="string"?document.getElementById(target):target;if(!node)return;
-    node.classList.add("distributionStack");node.innerHTML=rows.map(row=>`<div class="distributionRow"><span>${escapeHTML(row.label)}</span><div class="distributionTrack"><i style="width:${safePercent(row.value)}%;--dist:${row.color||"var(--px-teal)"}"></i></div><strong>${Math.round(Number(row.count??row.value)||0)}</strong></div>`).join("");
-  }
-  function toast(message,type="success"){
-    let node=$(".premiumToast");if(!node){node=document.createElement("div");node.className="premiumToast";Object.assign(node.style,{position:"fixed",right:"18px",bottom:"18px",zIndex:"500",maxWidth:"360px",padding:"13px 15px",borderRadius:"15px",color:"#fff",font:"800 10px Inter",boxShadow:"0 20px 55px rgba(0,0,0,.25)",transition:"opacity .2s,transform .2s"});document.body.append(node)}
-    node.style.background=type==="danger"?"#a7223b":type==="warning"?"#9a680d":"#087d72";node.textContent=message;node.style.opacity="1";node.style.transform="translateY(0)";clearTimeout(node._timer);node._timer=setTimeout(()=>{node.style.opacity="0";node.style.transform="translateY(8px)"},4200);
-  }
+  function showPreview(message="Interactive preview data is shown. Institutional accounts remain disabled until the approved Supabase deployment is complete."){if($(".premiumPreview"))return;const main=$(".institutionMain");if(!main)return;const banner=document.createElement("div");banner.className="premiumPreview";banner.innerHTML=`<div><strong>Premium experience preview</strong><br><span>${escapeHTML(message)}</span></div><a href="${new URL("platform/PHASE_4_PREMIUM_EXPERIENCE.md",ROOT).href}">Preview details →</a>`;main.prepend(banner)}
+  function renderWeekBars(target,values=[]){const node=typeof target==="string"?document.getElementById(target):target;if(!node)return;const rows=[...values].slice(-7);while(rows.length<7)rows.unshift({label:"–",value:0});const max=Math.max(1,...rows.map(row=>Number(row.value)||0));node.innerHTML=rows.map((row,index)=>`<div class="weekBar ${row.today||index===rows.length-1?"today":""}"><div class="weekBarTrack" title="${escapeHTML(row.label)}: ${Number(row.value)||0}"><i style="height:${Math.max(5,Math.round((Number(row.value)||0)/max*100))}%"></i></div><span>${escapeHTML(row.short||row.label||"")}</span></div>`).join("")}
+  function renderDistribution(target,rows=[]){const node=typeof target==="string"?document.getElementById(target):target;if(!node)return;node.classList.add("distributionStack");node.innerHTML=rows.map(row=>`<div class="distributionRow"><span>${escapeHTML(row.label)}</span><div class="distributionTrack"><i style="width:${safePercent(row.value)}%;--dist:${row.color||"var(--px-teal)"}"></i></div><strong>${Math.round(Number(row.count??row.value)||0)}</strong></div>`).join("")}
+  function toast(message,type="success"){let node=$(".premiumToast");if(!node){node=document.createElement("div");node.className="premiumToast";Object.assign(node.style,{position:"fixed",right:"18px",bottom:"18px",zIndex:"900",maxWidth:"360px",padding:"13px 15px",borderRadius:"15px",color:"#fff",font:"800 10px Inter",boxShadow:"0 20px 55px rgba(0,0,0,.25)",transition:"opacity .2s,transform .2s"});node.setAttribute("role","status");document.body.append(node)}node.style.background=type==="danger"?"#a7223b":type==="warning"?"#9a680d":"#087d72";node.textContent=message;node.style.opacity="1";node.style.transform="translateY(0)";clearTimeout(node._timer);node._timer=setTimeout(()=>{node.style.opacity="0";node.style.transform="translateY(8px)"},4200)}
   function applyTheme(theme){document.documentElement.dataset.theme=theme;localStorage.setItem(THEME_KEY,theme);$$('[data-experience-theme]').forEach(button=>{button.textContent=theme==="dark"?"☀":"☾";button.setAttribute("aria-label",theme==="dark"?"Use light appearance":"Use dark appearance")})}
   function bindTheme(){const saved=localStorage.getItem(THEME_KEY)||"light";applyTheme(saved);$$('[data-experience-theme]').forEach(button=>button.addEventListener("click",()=>applyTheme(document.documentElement.dataset.theme==="dark"?"light":"dark")))}
   function bindDate(){$$('[data-experience-date]').forEach(node=>node.textContent=formatDate())}
   function bindAnimatedNumbers(){if(!('IntersectionObserver'in window))return;const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(!entry.isIntersecting)return;const node=entry.target,raw=node.textContent.trim(),match=raw.match(/^([\d,.]+)(.*)$/);if(!match)return observer.unobserve(node);const target=Number(match[1].replace(/,/g,""));if(!Number.isFinite(target)||target>5000)return observer.unobserve(node);const suffix=match[2],start=performance.now(),duration=500;function tick(now){const p=Math.min(1,(now-start)/duration),value=Math.round(target*(1-Math.pow(1-p,3)));node.textContent=value.toLocaleString()+suffix;if(p<1)requestAnimationFrame(tick)}requestAnimationFrame(tick);observer.unobserve(node)}),{threshold:.55});$$('[data-animate-number]').forEach(node=>observer.observe(node))}
-  function init(){bindTheme();bindDate();bindAnimatedNumbers();const current=window.ECHSInstitution?.account?.();if(current)setIdentityAvatar(current)}
+  function loadCompletionLayer(){if(!document.querySelector('link[data-premium-completion]')){const link=document.createElement("link");link.rel="stylesheet";link.href=new URL("css/institution-completion.css?v=20260726-complete",ROOT).href;link.dataset.premiumCompletion="true";document.head.append(link)}if(!document.querySelector('script[data-premium-completion]')){const completion=document.createElement("script");completion.src=new URL("js/institution-completion.js?v=20260726-complete",ROOT).href;completion.dataset.premiumCompletion="true";completion.defer=true;document.head.append(completion)}}
+  function init(){bindTheme();bindDate();bindAnimatedNumbers();const current=window.ECHSInstitution?.account?.();if(current)setIdentityAvatar(current);loadCompletionLayer()}
   if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init,{once:true});else init();
-  window.ECHSExperience={clamp,escapeHTML,icon,greeting,formatDate,safePercent,setRing,setIdentityAvatar,showPreview,renderWeekBars,renderDistribution,toast};
+  window.ECHSExperience={ROOT:ROOT.href,clamp,escapeHTML,icon,greeting,formatDate,safePercent,setRing,setIdentityAvatar,showPreview,renderWeekBars,renderDistribution,toast,loadCompletionLayer};
 })();
