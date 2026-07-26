@@ -1,0 +1,5 @@
+display_name,email,username,password,role,grade,external_id,class_name,student_username
+Amina Hassan,amina.hassan@example.edu,,,student,11,S001,AP Precalculus,
+Omar Khalid,omar.khalid@example.edu,omar.khalid,,student,12,S002,AP Calculus BC,
+Ms Sara Ali,sara.ali@example.edu,sara.teacher,,teacher,,,,
+Hassan Parent,hassan.parent@example.edu,hassan.parent,,parent,,,,amina.hassan

@@ -1,0 +1,137 @@
+/* ECHS Mathematics institutional client — custom account sessions */
+(function(){
+  "use strict";
+  const script=document.currentScript;
+  const ROOT=script?new URL("../",script.src):new URL("./",location.href);
+  const KEYS={token:"echs_institution_token_v1",account:"echs_institution_account_v1",expires:"echs_institution_expires_v1",pending:"echs_institution_pending_sync_v1"};
+  let configPromise=null,mePromise=null;
+
+  function safeJSON(value,fallback){try{const parsed=JSON.parse(value);return parsed??fallback}catch{return fallback}}
+  function root(path=""){return new URL(path,ROOT).href}
+  function storage(){return localStorage}
+  function token(){return storage().getItem(KEYS.token)||sessionStorage.getItem(KEYS.token)||""}
+  function account(){return safeJSON(storage().getItem(KEYS.account)||sessionStorage.getItem(KEYS.account),"")}
+  function expiresAt(){return storage().getItem(KEYS.expires)||sessionStorage.getItem(KEYS.expires)||""}
+  function isExpired(){const value=expiresAt();return !value||new Date(value)<=new Date()}
+  function clearSession(){[storage(),sessionStorage].forEach(store=>{store.removeItem(KEYS.token);store.removeItem(KEYS.account);store.removeItem(KEYS.expires)});mePromise=null}
+  function setSession(data,remember){
+    clearSession();
+    const store=remember?storage():sessionStorage;
+    store.setItem(KEYS.token,data.token);
+    store.setItem(KEYS.account,JSON.stringify(data.account));
+    store.setItem(KEYS.expires,data.expires_at);
+  }
+  async function config(){
+    if(!configPromise)configPromise=fetch(root("config/institution.json"),{cache:"no-store"})
+      .then(response=>{if(!response.ok)throw new Error("Institution configuration could not be loaded");return response.json()})
+      .catch(error=>({enabled:false,configuration_error:error.message,api_base:""}));
+    return configPromise;
+  }
+  async function api(service,path,options={}){
+    const cfg=await config();
+    if(!cfg.enabled)throw new Error("Institutional accounts are not configured yet");
+    const base=String(cfg.api_base||"").replace(/\/$/,"");
+    const headers=new Headers(options.headers||{});
+    if(options.body&&!headers.has("content-type"))headers.set("content-type","application/json");
+    const currentToken=token();if(currentToken)headers.set("authorization",`Bearer ${currentToken}`);
+    const response=await fetch(`${base}/${service}${path}`,{...options,headers});
+    const payload=await response.json().catch(()=>({ok:false,error:{message:`HTTP ${response.status}`}}));
+    if(response.status===401){clearSession();document.dispatchEvent(new CustomEvent("echs:institution-signed-out"))}
+    if(!response.ok&&response.status!==207)throw new Error(payload?.error?.message||`Request failed (${response.status})`);
+    return payload;
+  }
+  async function login(username,password,remember=false){
+    const payload=await api("account-api","/login",{method:"POST",body:JSON.stringify({username,password,remember})});
+    setSession(payload,remember);mePromise=Promise.resolve(payload.account);return payload.account;
+  }
+  async function logout(){
+    try{if(token())await api("account-api","/logout",{method:"POST",body:"{}"})}catch(_error){}
+    clearSession();location.href=root("login.html");
+  }
+  async function me(force=false){
+    if(!token()||isExpired()){clearSession();return null}
+    if(force||!mePromise)mePromise=api("account-api","/me").then(payload=>{const current=payload.account;const store=storage().getItem(KEYS.token)?storage():sessionStorage;store.setItem(KEYS.account,JSON.stringify(current));return current}).catch(()=>{clearSession();return null});
+    return mePromise;
+  }
+  function roleHome(role){return role==="admin"?"question-bank/admin.html":role==="teacher"?"question-bank/teacher.html":role==="parent"?"question-bank/parent.html":"question-bank/student.html"}
+  async function requireAuth(roles=[]){
+    const cfg=await config();
+    if(!cfg.enabled){
+      document.documentElement.dataset.institution="unconfigured";
+      return null;
+    }
+    const current=await me();
+    if(!current){
+      const next=encodeURIComponent(location.href);
+      location.replace(root(`login.html?next=${next}`));return null;
+    }
+    if(roles.length&&!roles.includes(current.role)){location.replace(root(roleHome(current.role)));return null}
+    document.documentElement.dataset.institutionRole=current.role;
+    return current;
+  }
+  function initials(name){return String(name||"?").split(/\s+/).slice(0,2).map(part=>part[0]).join("").toUpperCase()}
+  function mountIdentity(current){
+    document.querySelectorAll("[data-institution-name]").forEach(node=>node.textContent=current?.display_name||"Guest");
+    document.querySelectorAll("[data-institution-username]").forEach(node=>node.textContent=current?.username||"");
+    document.querySelectorAll("[data-institution-role]").forEach(node=>node.textContent=current?.role||"");
+    document.querySelectorAll("[data-institution-org]").forEach(node=>node.textContent=current?.organization_name||"ECHS Mathematics");
+    document.querySelectorAll("[data-institution-initials]").forEach(node=>node.textContent=initials(current?.display_name));
+    document.querySelectorAll("[data-institution-logout]").forEach(button=>button.addEventListener("click",logout));
+  }
+  function localLearningPayload(){
+    if(window.ECHSLearning&&typeof window.ECHSLearning.exportStudentReport==="function"){
+      const report=window.ECHSLearning.exportStudentReport();
+      return {
+        attempts:report.attempts||[],
+        sessions:report.sessions||[],
+        mastery:report.mastery||[],
+        review:report.review||report.mistakes||[]
+      };
+    }
+    const attemptKeys=["echs_learning_attempts_v2","echs_qbank_attempts_v20"];
+    const attempts=attemptKeys.flatMap(key=>safeJSON(localStorage.getItem(key),[]));
+    return {
+      attempts,
+      sessions:safeJSON(localStorage.getItem("echs_learning_sessions_v2"),[]),
+      mastery:Object.values(safeJSON(localStorage.getItem("echs_learning_mastery_v2"),{})),
+      review:Object.values(safeJSON(localStorage.getItem("echs_learning_review_v2"),{}))
+    };
+  }
+  async function syncLearning(){
+    const current=await me();if(!current||current.role!=="student")return{skipped:true};
+    const payload=localLearningPayload();
+    if(!navigator.onLine){localStorage.setItem(KEYS.pending,JSON.stringify(payload));return{queued:true}}
+    const result=await api("learning-sync","/sync",{method:"POST",body:JSON.stringify(payload)});
+    localStorage.removeItem(KEYS.pending);return result;
+  }
+  async function flushPending(){
+    const pending=safeJSON(localStorage.getItem(KEYS.pending),null);
+    if(!pending||!navigator.onLine)return;
+    try{await api("learning-sync","/sync",{method:"POST",body:JSON.stringify(pending)});localStorage.removeItem(KEYS.pending)}catch(error){console.warn("Pending learning sync failed",error)}
+  }
+  function ensurePolish(){
+    if(!document.body.classList.contains("institutionBody")||document.querySelector('link[data-institution-polish]'))return;
+    const link=document.createElement("link");link.rel="stylesheet";link.href=root("css/institution-polish.css?v=20260726-phase3");link.dataset.institutionPolish="true";document.head.append(link);
+  }
+  function setupMobileSidebar(){
+    const toggle=document.querySelector("[data-institution-menu]"),sidebar=document.querySelector(".institutionSidebar");
+    if(toggle&&sidebar)toggle.addEventListener("click",()=>sidebar.classList.toggle("open"));
+    document.addEventListener("click",event=>{if(innerWidth>950||!sidebar?.classList.contains("open"))return;if(!sidebar.contains(event.target)&&event.target!==toggle)sidebar.classList.remove("open")});
+  }
+  let syncTimer=null;
+  function scheduleLearningSync(){
+    clearTimeout(syncTimer);
+    syncTimer=setTimeout(()=>syncLearning().catch(error=>console.warn("Institution learning sync failed",error)),1200);
+  }
+  function bind(){
+    ensurePolish();
+    setupMobileSidebar();
+    addEventListener("online",flushPending);
+    document.addEventListener("echs:learning-updated",scheduleLearningSync);
+    window.addEventListener("echs:learning-attempt",scheduleLearningSync);
+    window.addEventListener("echs:learning-session",scheduleLearningSync);
+  }
+  if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",bind,{once:true});else bind();
+
+  window.ECHSInstitution={ROOT:ROOT.href,root,config,api,login,logout,me,requireAuth,account,token,setSession,clearSession,roleHome,mountIdentity,syncLearning,flushPending,initials};
+})();

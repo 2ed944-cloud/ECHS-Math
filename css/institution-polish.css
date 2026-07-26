@@ -1,0 +1,56 @@
+/* Final visual polish for institutional identity and metric icons. */
+.institutionBrandMark{
+  display:grid!important;
+  place-items:center!important;
+  margin:0!important;
+  padding:0!important;
+  color:var(--i-gold-soft)!important;
+  font:700 24px/1 Georgia,"Times New Roman",serif!important;
+  text-align:center!important;
+  overflow:hidden;
+}
+.institutionBrand>div>span{
+  display:block;
+  margin-top:3px;
+  color:rgba(255,255,255,.62);
+  font-size:10px;
+  font-weight:700;
+}
+.authVisualBrand>div{display:grid;gap:4px;min-width:0}
+.authVisualBrand strong,.authVisualBrand>div>span{display:block}
+.authVisualBrand>div>span{color:rgba(255,255,255,.72);font-size:12px;line-height:1.3}
+.iMetricIcon{
+  display:grid!important;
+  place-items:center!important;
+  margin:0!important;
+  color:var(--i-maroon)!important;
+  font-size:18px!important;
+  font-weight:800!important;
+  line-height:1!important;
+  text-transform:none!important;
+  letter-spacing:0!important;
+}
+.iMetricTop>span:first-child{
+  display:block;
+  margin:0;
+  color:var(--i-muted);
+  font-size:10px;
+  font-weight:800;
+  text-transform:none;
+  letter-spacing:0;
+}
+.iMetric>span{
+  display:block;
+  margin-top:6px;
+  color:var(--i-muted);
+  font-size:10px;
+  font-weight:800;
+}
+@media(max-width:680px){
+  .institutionTopbar>*{min-width:0}
+  .institutionTopActions{min-width:0;max-width:100%;width:100%}
+  .institutionTopActions>.iControl,
+  .institutionTopActions>select,
+  .institutionTopActions>.iButton{min-width:0;max-width:100%}
+  body[data-premium-page="parent"] #childSelector{width:100%;flex:1 1 100%;text-overflow:ellipsis}
+}

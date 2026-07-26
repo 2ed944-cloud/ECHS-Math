@@ -1,0 +1,74 @@
+name: Deploy Institutional Backend
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirmation:
+        description: "Type DEPLOY to apply migrations and deploy account services"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    if: ${{ inputs.confirmation == 'DEPLOY' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    environment: institutional-production
+    env:
+      SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+      SUPABASE_PROJECT_ID: ${{ secrets.SUPABASE_PROJECT_REF }}
+      SUPABASE_DB_PASSWORD: ${{ secrets.SUPABASE_DB_PASSWORD }}
+      ECHS_BOOTSTRAP_SECRET: ${{ secrets.ECHS_BOOTSTRAP_SECRET }}
+      ECHS_ALLOWED_ORIGINS: https://2ed944-cloud.github.io
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Confirm required encrypted secrets exist
+        shell: bash
+        run: |
+          set -euo pipefail
+          for name in SUPABASE_ACCESS_TOKEN SUPABASE_PROJECT_ID SUPABASE_DB_PASSWORD ECHS_BOOTSTRAP_SECRET; do
+            if [ -z "${!name:-}" ]; then
+              echo "Missing required encrypted secret: $name" >&2
+              exit 1
+            fi
+          done
+
+      - name: Set up Supabase CLI
+        uses: supabase/setup-cli@v1
+        with:
+          version: latest
+
+      - name: Link production project
+        run: supabase link --project-ref "$SUPABASE_PROJECT_ID"
+
+      - name: Apply institutional database migrations
+        run: supabase db push --linked
+
+      - name: Set Edge Function secrets
+        run: |
+          supabase secrets set \
+            "BOOTSTRAP_SECRET=$ECHS_BOOTSTRAP_SECRET" \
+            "ALLOWED_ORIGINS=$ECHS_ALLOWED_ORIGINS" \
+            --project-ref "$SUPABASE_PROJECT_ID"
+
+      - name: Deploy all institutional Edge Functions
+        run: supabase functions deploy --project-ref "$SUPABASE_PROJECT_ID" --use-api
+
+      - name: Verify deployed health endpoints
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error \
+            "https://${SUPABASE_PROJECT_ID}.supabase.co/functions/v1/account-api/health" | python -m json.tool
+          curl --fail --silent --show-error \
+            "https://${SUPABASE_PROJECT_ID}.supabase.co/functions/v1/institution-api/health" | python -m json.tool
+
+      - name: Deployment reminder
+        run: |
+          echo "Backend deployed. Run tools/bootstrap_institution.py once to create the first administrator."
+          echo "Then commit the generated config/institution.json change in a separate reviewed pull request."

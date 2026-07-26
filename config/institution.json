@@ -1,0 +1,9 @@
+{
+  "enabled": false,
+  "api_base": "https://YOUR_PROJECT_REF.supabase.co/functions/v1",
+  "institution_name": "Education City High School",
+  "platform_name": "ECHS Mathematics",
+  "site_base": "https://2ed944-cloud.github.io/ECHS-Math/",
+  "support_email": "",
+  "session_storage": "local"
+}
