@@ -59,7 +59,7 @@ def validate(root: Path, expected_sha: str) -> list[str]:
 
     role_pages = {
         "question-bank/teacher.html": ["Teaching Command Center", "studentRows", "teacher-cloud.js"],
-        "question-bank/student.html": ["Student Learning Journey", "masteryMeter", "student-cloud.js"],
+        "question-bank/student.html": ["My Learning Journey", "masteryMeter", "student-cloud.js"],
         "question-bank/parent.html": ["Family Progress Center", "parentMasteryMeter", "parent-cloud.js"],
     }
     for relative, markers in role_pages.items():
