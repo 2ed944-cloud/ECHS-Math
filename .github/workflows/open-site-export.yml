@@ -52,9 +52,27 @@ jobs:
         run: python tools/build_open_site.py . _open
 
       - name: Validate account-free contract
-        run: python tools/test_open_site_contract.py _open
+        id: validation
+        shell: bash
+        run: |
+          set +e
+          python tools/test_open_site_contract.py _open > open-validation.txt 2>&1
+          status=$?
+          cat open-validation.txt
+          echo "status=${status}" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Upload validation diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: echs-math-open-validation
+          path: open-validation.txt
+          if-no-files-found: error
+          retention-days: 7
 
       - name: Upload ready-to-publish open site
+        if: steps.validation.outputs.status == '0'
         uses: actions/upload-artifact@v4
         with:
           name: echs-math-open-site
@@ -62,3 +80,7 @@ jobs:
           include-hidden-files: true
           if-no-files-found: error
           retention-days: 7
+
+      - name: Enforce validation result
+        if: steps.validation.outputs.status != '0'
+        run: exit 1
