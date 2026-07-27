@@ -6,12 +6,14 @@ on:
       - "login.html"
       - "setup.html"
       - "index.html"
+      - "learning-library.html"
       - "privacy.html"
       - "manifest.json"
       - "sw.js"
       - "robots.txt"
       - ".gitignore"
       - "config/**"
+      - "css/public-entry.css"
       - "css/institution.css"
       - "css/institution-premium.css"
       - "css/institution-setup.css"
@@ -32,6 +34,7 @@ on:
       - "templates/**"
       - "tools/bootstrap_institution.py"
       - "tools/test_institution_identity_mount.mjs"
+      - "tools/test_phase1_public_entry.py"
       - "tools/validate_initial_setup.py"
       - "tools/validate_institution_platform.py"
       - "tools/validate_production_activation.py"
@@ -86,6 +89,9 @@ jobs:
       - name: Verify identity rendering preserves the document root
         run: node tools/test_institution_identity_mount.mjs
 
+      - name: Verify public entry and protected role routing
+        run: python tools/test_phase1_public_entry.py
+
       - name: Validate premium role experiences
         run: python tools/validate_premium_experience.py
 
@@ -107,7 +113,7 @@ jobs:
           python -m json.tool manifest.json >/dev/null
           python -m json.tool config/institution.json >/dev/null
           python -m json.tool config/institution.example.json >/dev/null
-          python -m py_compile tools/bootstrap_institution.py tools/validate_initial_setup.py tools/validate_institution_platform.py tools/validate_production_activation.py tools/validate_premium_experience.py
+          python -m py_compile tools/bootstrap_institution.py tools/test_phase1_public_entry.py tools/validate_initial_setup.py tools/validate_institution_platform.py tools/validate_production_activation.py tools/validate_premium_experience.py
           python - <<'PY'
           import tomllib
           with open('supabase/config.toml','rb') as handle:
