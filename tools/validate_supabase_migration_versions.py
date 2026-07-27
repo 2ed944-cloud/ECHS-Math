@@ -14,7 +14,7 @@ else:
 for version,names in sorted(versions.items()):
  if len(names)>1:errors.append(f'Duplicate migration version {version}: {", ".join(names)}')
 required={
- '202607270001_session_lookup_repair.sql','202607272001_mastery_evidence_foundation.sql','202607272002_mastery_authority_guard.sql','202607272003_attempt_trust_guard.sql','202607272004_atomic_skill_mapping.sql','202607272101_private_bank_foundation.sql','202607272102_private_attempt_trust_bridge.sql'
+ '202607270001_session_lookup_repair.sql','202607272001_mastery_evidence_foundation.sql','202607272002_mastery_authority_guard.sql','202607272003_attempt_trust_guard.sql','202607272004_atomic_skill_mapping.sql','202607272101_private_bank_foundation.sql','202607272102_private_attempt_trust_bridge.sql','202607272201_teacher_upload_manager.sql'
 }
 existing={path.name for path in MIGRATIONS.glob('*.sql')} if MIGRATIONS.is_dir() else set()
 for name in sorted(required-existing):errors.append(f'Missing required migration: {name}')

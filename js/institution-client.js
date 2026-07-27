@@ -40,18 +40,19 @@
     const headers=new Headers(options.headers||{});
     if(options.body&&!headers.has("content-type"))headers.set("content-type","application/json");
     const currentToken=token();if(currentToken)headers.set("authorization",`Bearer ${currentToken}`);
-    const response=await fetch(`${base}/${service}${path}`,{...options,headers});
+    const body=options.body&&typeof options.body!=="string"&&!(options.body instanceof FormData)&&!(options.body instanceof Blob)?JSON.stringify(options.body):options.body;
+    const response=await fetch(`${base}/${service}${path}`,{...options,body,headers});
     const payload=await response.json().catch(()=>({ok:false,error:{message:`HTTP ${response.status}`}}));
     if(response.status===401){clearSession();document.dispatchEvent(new CustomEvent("echs:institution-signed-out"))}
     if(!response.ok&&response.status!==207)throw requestError(payload?.error?.message||`Request failed (${response.status})`,response.status,payload?.error?.code||"request_error");
     return payload;
   }
   async function login(username,password,remember=false){
-    const payload=await api("account-api","/login",{method:"POST",body:JSON.stringify({username,password,remember})});
+    const payload=await api("account-api","/login",{method:"POST",body:{username,password,remember}});
     setSession(payload,remember);mePromise=Promise.resolve(payload.account);return payload.account;
   }
   async function logout(){
-    try{if(token())await api("account-api","/logout",{method:"POST",body:"{}"})}catch(_error){}
+    try{if(token())await api("account-api","/logout",{method:"POST",body:{}})}catch(_error){}
     clearSession();location.href=root("login.html");
   }
   async function me(force=false){
@@ -81,10 +82,7 @@
   }
   async function requireAuth(roles=[]){
     const cfg=await config();
-    if(!cfg.enabled){
-      document.documentElement.dataset.institution="unconfigured";
-      return null;
-    }
+    if(!cfg.enabled){document.documentElement.dataset.institution="unconfigured";return null}
     let current;
     try{current=await me()}catch(error){
       document.documentElement.dataset.institution="unavailable";
@@ -92,22 +90,17 @@
       document.dispatchEvent(new CustomEvent("echs:institution-auth-error",{detail:{message:error?.message||"Session verification failed"}}));
       return null;
     }
-    if(!current){
-      const next=encodeURIComponent(location.href);
-      location.replace(root(`login.html?next=${next}`));return null;
-    }
+    if(!current){const next=encodeURIComponent(location.href);location.replace(root(`login.html?next=${next}`));return null}
     if(roles.length&&!roles.includes(current.role)){location.replace(root(roleHome(current.role)));return null}
     delete document.documentElement.dataset.institutionRole;
     document.documentElement.dataset.institutionAccessRole=current.role;
+    mountUploadManagerLink(current);
     return current;
   }
   function initials(name){return String(name||"?").split(/\s+/).slice(0,2).map(part=>part[0]).join("").toUpperCase()}
   function mountIdentity(current){
     const safeText=(selector,value)=>document.querySelectorAll(selector).forEach(node=>{
-      if(node===document.documentElement||node===document.head||node===document.body){
-        console.error(`Blocked identity text write to document root for ${selector}`);
-        return;
-      }
+      if(node===document.documentElement||node===document.head||node===document.body){console.error(`Blocked identity text write to document root for ${selector}`);return}
       node.textContent=value;
     });
     const username=current?.username||String(current?.email||"").split("@")[0]||"";
@@ -117,37 +110,40 @@
     safeText("[data-institution-org]",current?.organization_name||"ECHS Mathematics");
     safeText("[data-institution-initials]",initials(current?.display_name));
     document.querySelectorAll("[data-institution-logout]").forEach(button=>button.addEventListener("click",logout));
+    mountUploadManagerLink(current);
+  }
+  function mountUploadManagerLink(current=account()){
+    if(!current||!["teacher","admin"].includes(current.role))return;
+    document.querySelectorAll(".institutionNav").forEach(nav=>{
+      if(nav.querySelector('[data-upload-manager-link]'))return;
+      const link=document.createElement("a");
+      link.href=root("question-bank/official/admin/upload-manager.html");
+      link.dataset.uploadManagerLink="true";
+      link.innerHTML='<span class="institutionNavIcon">⇧</span>Upload Banks & Units';
+      const adminLink=nav.querySelector('#adminNav');
+      if(adminLink)nav.insertBefore(link,adminLink);else nav.append(link);
+    });
   }
   function localLearningPayload(){
     if(window.ECHSLearning&&typeof window.ECHSLearning.exportStudentReport==="function"){
       const report=window.ECHSLearning.exportStudentReport();
-      return {
-        attempts:report.attempts||[],
-        sessions:report.sessions||[],
-        mastery:report.mastery||[],
-        review:report.review||report.mistakes||[]
-      };
+      return {attempts:report.attempts||[],sessions:report.sessions||[],mastery:report.mastery||[],review:report.review||report.mistakes||[]};
     }
     const attemptKeys=["echs_learning_attempts_v2","echs_qbank_attempts_v20"];
     const attempts=attemptKeys.flatMap(key=>safeJSON(localStorage.getItem(key),[]));
-    return {
-      attempts,
-      sessions:safeJSON(localStorage.getItem("echs_learning_sessions_v2"),[]),
-      mastery:Object.values(safeJSON(localStorage.getItem("echs_learning_mastery_v2"),{})),
-      review:Object.values(safeJSON(localStorage.getItem("echs_learning_review_v2"),{}))
-    };
+    return {attempts,sessions:safeJSON(localStorage.getItem("echs_learning_sessions_v2"),[]),mastery:Object.values(safeJSON(localStorage.getItem("echs_learning_mastery_v2"),{})),review:Object.values(safeJSON(localStorage.getItem("echs_learning_review_v2"),{}))};
   }
   async function syncLearning(){
     const current=await me();if(!current||current.role!=="student")return{skipped:true};
     const payload=localLearningPayload();
     if(!navigator.onLine){localStorage.setItem(KEYS.pending,JSON.stringify(payload));return{queued:true}}
-    const result=await api("learning-sync","/sync",{method:"POST",body:JSON.stringify(payload)});
+    const result=await api("learning-sync","/sync",{method:"POST",body:payload});
     localStorage.removeItem(KEYS.pending);return result;
   }
   async function flushPending(){
     const pending=safeJSON(localStorage.getItem(KEYS.pending),null);
     if(!pending||!navigator.onLine)return;
-    try{await api("learning-sync","/sync",{method:"POST",body:JSON.stringify(pending)});localStorage.removeItem(KEYS.pending)}catch(error){console.warn("Pending learning sync failed",error)}
+    try{await api("learning-sync","/sync",{method:"POST",body:pending});localStorage.removeItem(KEYS.pending)}catch(error){console.warn("Pending learning sync failed",error)}
   }
   function ensurePolish(){
     if(!document.body.classList.contains("institutionBody")||document.querySelector('link[data-institution-polish]'))return;
@@ -159,13 +155,9 @@
     document.addEventListener("click",event=>{if(innerWidth>950||!sidebar?.classList.contains("open"))return;if(!sidebar.contains(event.target)&&event.target!==toggle)sidebar.classList.remove("open")});
   }
   let syncTimer=null;
-  function scheduleLearningSync(){
-    clearTimeout(syncTimer);
-    syncTimer=setTimeout(()=>syncLearning().catch(error=>console.warn("Institution learning sync failed",error)),1200);
-  }
+  function scheduleLearningSync(){clearTimeout(syncTimer);syncTimer=setTimeout(()=>syncLearning().catch(error=>console.warn("Institution learning sync failed",error)),1200)}
   function bind(){
-    ensurePolish();
-    setupMobileSidebar();
+    ensurePolish();setupMobileSidebar();mountUploadManagerLink();
     addEventListener("online",flushPending);
     document.addEventListener("echs:learning-updated",scheduleLearningSync);
     window.addEventListener("echs:learning-attempt",scheduleLearningSync);
@@ -173,5 +165,5 @@
   }
   if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",bind,{once:true});else bind();
 
-  window.ECHSInstitution={ROOT:ROOT.href,root,config,api,login,logout,me,requireAuth,account,token,setSession,clearSession,roleHome,mountIdentity,syncLearning,flushPending,initials};
+  window.ECHSInstitution={ROOT:ROOT.href,root,config,api,login,logout,me,requireAuth,account,token,setSession,clearSession,roleHome,mountIdentity,mountUploadManagerLink,syncLearning,flushPending,initials};
 })();

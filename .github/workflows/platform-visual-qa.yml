@@ -17,6 +17,7 @@ on:
       - "question-bank/**"
       - "tools/capture_phase1_preview.mjs"
       - "tools/capture_private_bank_center.mjs"
+      - "tools/capture_upload_manager.mjs"
       - ".github/workflows/platform-visual-qa.yml"
   workflow_dispatch:
 
@@ -60,6 +61,12 @@ jobs:
           ECHS_PREVIEW_OUTPUT: artifacts/phase3-visual
           CHROME_PATH: /usr/bin/google-chrome
         run: node tools/capture_private_bank_center.mjs
+      - name: Capture Teacher Upload Manager
+        env:
+          ECHS_PREVIEW_URL: http://127.0.0.1:4173
+          ECHS_PREVIEW_OUTPUT: artifacts/phase3-visual
+          CHROME_PATH: /usr/bin/google-chrome
+        run: node tools/capture_upload_manager.mjs
       - name: Upload visual QA evidence
         if: always()
         uses: actions/upload-artifact@v4
