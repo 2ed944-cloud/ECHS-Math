@@ -37,6 +37,8 @@ def validate_source(root: Path, errors: list[str]) -> None:
     learning_entry = read(root, "question-bank/index.html", errors)
     practice_shell = read(root, "question-bank/practice.html", errors)
     practice = read(root, "question-bank/js/practice.js", errors)
+    practice_builder = read(root, "question-bank/js/practice-builder.js", errors)
+    practice_builder_css = read(root, "question-bank/css/practice-builder-compact.css", errors)
     bank = read(root, "question-bank/js/bank.js", errors)
     experience = read(root, "js/institution-experience.js", errors)
     worker = read(root, "sw.js", errors)
@@ -73,12 +75,45 @@ def validate_source(root: Path, errors: list[str]) -> None:
     require(lesson_guard, ["data-finish-lesson", "Finish lesson & unlock practice", "echs:lesson-completed", "course-not-assigned"], "Lesson guard", errors)
     require(learning_entry, ['data-require-account="student teacher admin parent"', "Opening your workspace", "role-entry.js"], "Learning entry router", errors)
     forbid(learning_entry, ["ALEKS", "IXL", "Pearson", "publisher"], "Learning entry router", errors)
-    require(practice_shell, ['data-require-account="student teacher admin"', "Learn → Practise → Master", "ECHS practice bank", "js/portal-access.js"], "Practice shell", errors)
+    require(practice_shell, [
+        'data-require-account="student teacher admin"',
+        "Learn → Practise → Master",
+        "ECHS practice bank",
+        "js/portal-access.js",
+        "practiceBuilder",
+        "builderCompactSummary",
+        "Adjust filters",
+        "practice-builder-compact.css",
+        "practice-builder.js",
+    ], "Practice shell", errors)
     forbid(practice_shell, ["ALEKS", "IXL", "Pearson", "publisher collection", "textbook"], "Practice shell", errors)
     require(practice, ["access.courseKeys.includes", "unlockedTopics", "lessonLocked", "This course is not assigned", "studentFocused"], "Focused practice controller", errors)
+    require(practice_builder, [
+        "MutationObserver",
+        "setCollapsed",
+        "builderAdjust",
+        "#shell .questionCard",
+        "isCollapsed",
+    ], "Compact practice-builder controller", errors)
+    require(practice_builder_css, [
+        ".builderCompactSummary",
+        ".builderToggle",
+        ".studioSidebar.isCollapsed",
+        ".studentFocused .questionShell",
+        "@media(max-width:980px)",
+    ], "Compact practice-builder stylesheet", errors)
     require(bank, ['PCALRT5S:"AP Precalculus Bank 1"', 'CAF5S:"AP Precalculus Bank 2"', 'CALCT3BC:"AP Calculus Bank 1"', 'ADAMS10:"AP Calculus Bank 2"', "sanitiseCatalog"], "Bank-label adapter", errors)
     require(experience, ["gamification.css", "gamification-overlay.js"], "Student experience loader", errors)
-    require(worker, ["learning-access.css", "landing-premium.css", "portal-access.js", "lesson-access-guard.js", "gamification-overlay.js", "pathway2-landing1"], "Service worker", errors)
+    require(worker, [
+        "learning-access.css",
+        "landing-premium.css",
+        "practice-builder-compact.css",
+        "practice-builder.js",
+        "portal-access.js",
+        "lesson-access-guard.js",
+        "gamification-overlay.js",
+        "builder1",
+    ], "Service worker", errors)
 
 
 def validate_artifact(root: Path, errors: list[str]) -> None:
