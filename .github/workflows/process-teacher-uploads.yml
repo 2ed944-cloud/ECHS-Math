@@ -1,0 +1,131 @@
+name: Process Teacher Uploads
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+    inputs:
+      request_id:
+        description: "Optional teacher_upload_requests UUID; leave blank for the oldest queued request"
+        required: false
+        type: string
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: teacher-upload-processor
+  cancel-in-progress: false
+
+jobs:
+  process:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    environment: institutional-production
+    env:
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+      REQUEST_ID: ${{ inputs.request_id || '' }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Confirm protected processor secrets
+        shell: bash
+        run: |
+          set -euo pipefail
+          for name in SUPABASE_URL SUPABASE_SERVICE_ROLE_KEY; do
+            if [ -z "${!name:-}" ]; then
+              echo "Missing repository/environment secret: $name" >&2
+              exit 1
+            fi
+          done
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate processor source
+        run: |
+          python -m py_compile tools/process_teacher_upload_request.py
+          python -m py_compile tools/upload_private_bank_package.py
+
+      - name: Process oldest queued request
+        id: processor
+        shell: bash
+        run: |
+          set -euo pipefail
+          args=()
+          if [ -n "$REQUEST_ID" ]; then args+=(--request-id "$REQUEST_ID"); fi
+          python tools/process_teacher_upload_request.py "${args[@]}"
+
+      - name: Stop when queue is empty
+        if: steps.processor.outputs.found != 'true'
+        run: echo "No queued teacher uploads."
+
+      - name: Validate generated course release
+        if: steps.processor.outputs.changed == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/validate_supabase_migration_versions.py
+          node --check "data/ap-precalculus-unit-${{ steps.processor.outputs.kind == 'course-release' && '' || '' }}update.js" 2>/dev/null || true
+          git diff --check
+          changed_html="$(git diff --name-only -- 'lessons/**/*.html')"
+          if [ -z "$changed_html" ]; then
+            echo "Course release produced no lesson HTML files" >&2
+            exit 1
+          fi
+          while IFS= read -r file; do
+            grep -qi '<html' "$file"
+            grep -qi '</html>' "$file"
+          done <<< "$changed_html"
+
+      - name: Create release branch and pull request
+        id: pr
+        if: steps.processor.outputs.changed == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          request="${{ steps.processor.outputs.request_id }}"
+          branch="teacher-release/${request}"
+          git config user.name "ECHS Upload Manager"
+          git config user.email "actions@users.noreply.github.com"
+          git switch -c "$branch"
+          git add lessons data index.html
+          git commit -m "${{ steps.processor.outputs.pr_title }}"
+          git push origin "$branch"
+          url="$(gh pr create --base main --head "$branch" --title "${{ steps.processor.outputs.pr_title }}" --body "Created automatically by Teacher Upload Manager.\n\nThe uploaded ZIP was kept private, verified by SHA-256, checked for unsafe paths, and converted into a reviewable course release.\n\nUpload request: \`${request}\`.\n\nThis pull request is not merged automatically.")"
+          echo "url=$url" >> "$GITHUB_OUTPUT"
+
+      - name: Record pull request in upload queue
+        if: steps.processor.outputs.changed == 'true' && steps.pr.outputs.url != ''
+        shell: bash
+        env:
+          PR_URL: ${{ steps.pr.outputs.url }}
+          UPLOAD_REQUEST_ID: ${{ steps.processor.outputs.request_id }}
+        run: |
+          python - <<'PY'
+          import json, os, urllib.parse, urllib.request
+          url=os.environ['SUPABASE_URL'].rstrip('/')
+          key=os.environ['SUPABASE_SERVICE_ROLE_KEY']
+          rid=os.environ['UPLOAD_REQUEST_ID']
+          body=json.dumps({'status':'pr-opened','progress':92,'stage':'Pull request opened · awaiting review and merge','github_pr_url':os.environ['PR_URL']}).encode()
+          query=urllib.parse.urlencode({'id':f'eq.{rid}'})
+          request=urllib.request.Request(f'{url}/rest/v1/teacher_upload_requests?{query}',data=body,method='PATCH',headers={'apikey':key,'authorization':f'Bearer {key}','content-type':'application/json','prefer':'return=minimal'})
+          urllib.request.urlopen(request,timeout=60).read()
+          PY
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "Found request: ${{ steps.processor.outputs.found }}"
+          echo "Kind: ${{ steps.processor.outputs.kind }}"
+          echo "Repository changes: ${{ steps.processor.outputs.changed }}"
+          echo "Pull request: ${{ steps.pr.outputs.url }}"
