@@ -7,7 +7,7 @@ const outputDir=process.env.ECHS_PREVIEW_OUTPUT||'artifacts/phase4-visual';
 await mkdir(outputDir,{recursive:true});
 const browser=await chromium.launch({executablePath:process.env.CHROME_PATH||'/usr/bin/google-chrome',headless:true,args:['--no-sandbox','--disable-dev-shm-usage']});
 const routes=[
-  {key:'home',path:'/index.html',ready:'#courses'},
+  {key:'home',path:'/index.html',ready:'#courses',hybridHero:true},
   {key:'login',path:'/login.html',ready:'#loginForm',premium:true},
   {key:'learning-home',path:'/question-bank/index.html',ready:'#roleEntryStatus'},
   {key:'adaptive-practice',path:'/question-bank/practice.html?mode=adaptive',ready:'#start',delay:6500},
@@ -41,6 +41,19 @@ for(const device of devices){
       const response=await page.goto(url,{waitUntil:'domcontentloaded',timeout:45000});entry.status=response?.status()??null;
       await page.locator(route.ready).first().waitFor({state:'attached',timeout:30000});
       await page.waitForTimeout(route.delay||2200);
+      if(route.hybridHero){
+        await page.waitForFunction(()=>document.querySelector('.premiumIdentityVisual')?.dataset.hybridHeroReady==='true',null,{timeout:12000});
+        const hybrid=await page.evaluate(()=>{
+          const board=document.querySelector('.calculusMotionBoard'),card=document.querySelector('.compactSchoolIdentityCard'),motion=document.querySelector('.tangentTraveller animateMotion'),guide=document.querySelector('.maximumTangentGuide');
+          const boardRect=board?.getBoundingClientRect(),cardRect=card?.getBoundingClientRect();
+          return{board:Boolean(board),card:Boolean(card),motion:Boolean(motion),guide:Boolean(guide),boardHeight:Math.round(boardRect?.height||0),cardHeight:Math.round(cardRect?.height||0),overlap:Boolean(boardRect&&cardRect&&cardRect.top<boardRect.bottom&&cardRect.top>boardRect.top)};
+        });
+        Object.assign(entry.interactions,{hybridCalculusHero:true,...hybrid});
+        if(!hybrid.board||!hybrid.card||!hybrid.motion||!hybrid.guide)report.errors.push(`${route.key}/${device.key}: hybrid calculus artwork is incomplete`);
+        if(hybrid.boardHeight<200)report.errors.push(`${route.key}/${device.key}: calculus board is unexpectedly short (${hybrid.boardHeight}px)`);
+        if(hybrid.cardHeight>350)report.errors.push(`${route.key}/${device.key}: compact ECHS card is too tall (${hybrid.cardHeight}px)`);
+        if(!hybrid.overlap)report.errors.push(`${route.key}/${device.key}: ECHS card does not visually overlap the calculus board`);
+      }
       if(route.compactBuilder){
         await page.locator('#builderToggle').waitFor({state:'attached',timeout:8000});
         await page.evaluate(()=>{
