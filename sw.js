@@ -1,4 +1,4 @@
-const VERSION = "echs-platform-school-control-v3-pathway2-landing2-builder1";
+const VERSION = "echs-platform-school-control-v3-pathway2-landing1-builder1-hybrid1";
 const STATIC_CACHE = `${VERSION}-static`;
 const RUNTIME_CACHE = `${VERSION}-runtime`;
 const SHELL = [
