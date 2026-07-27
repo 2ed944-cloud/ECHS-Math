@@ -41,8 +41,10 @@ jobs:
       - name: Reject duplicate Supabase migration versions
         run: python tools/validate_supabase_migration_versions.py
 
-      - name: Validate private bank foundation before deployment
-        run: python tools/validate_private_bank_foundation.py
+      - name: Validate private bank and upload manager foundations
+        run: |
+          python tools/validate_private_bank_foundation.py
+          python tools/validate_upload_manager.py
 
       - name: Set up Supabase CLI
         uses: supabase/setup-cli@v1
@@ -69,16 +71,10 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          curl --fail --silent --show-error \
-            "https://${SUPABASE_PROJECT_ID}.supabase.co/functions/v1/account-api/health" | python -m json.tool
-          curl --fail --silent --show-error \
-            "https://${SUPABASE_PROJECT_ID}.supabase.co/functions/v1/institution-api/health" | python -m json.tool
-          curl --fail --silent --show-error \
-            "https://${SUPABASE_PROJECT_ID}.supabase.co/functions/v1/mastery-evidence/health" | python -m json.tool
-          curl --fail --silent --show-error \
-            "https://${SUPABASE_PROJECT_ID}.supabase.co/functions/v1/private-bank-api/health" | python -m json.tool
-          curl --fail --silent --show-error \
-            "https://${SUPABASE_PROJECT_ID}.supabase.co/functions/v1/setup-api/health" | python -m json.tool
+          for endpoint in account-api institution-api mastery-evidence private-bank-api upload-manager-api setup-api; do
+            curl --fail --silent --show-error \
+              "https://${SUPABASE_PROJECT_ID}.supabase.co/functions/v1/${endpoint}/health" | python -m json.tool
+          done
 
       - name: Verify deployed bootstrap secret
         shell: bash
@@ -110,5 +106,5 @@ jobs:
 
       - name: Deployment reminder
         run: |
-          echo "Backend deployed; Mastery 2.0, private bank API, bootstrap secret, and production login/session contracts passed."
-          echo "Private Blackboard source packages must still be uploaded separately with the secure import tool."
+          echo "Backend deployed; Mastery 2.0, private banks, Teacher Upload Manager, bootstrap secret, and production login/session contracts passed."
+          echo "The scheduled Process Teacher Uploads workflow requires SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in the institutional-production environment."
