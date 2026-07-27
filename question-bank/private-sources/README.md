@@ -1,40 +1,56 @@
-# ECHS Private Blackboard Bank Foundation
+# ECHS Direct-Linked Private Blackboard Banks
 
-This directory contains **public-safe integration code and inventory metadata only**. It does not contain publisher question text, answer choices, source images, or source archives.
+This directory contains **public-safe integration code and inventory metadata only**. Publisher question text, choices, source images, and archives remain outside GitHub and GitHub Pages.
 
-## Audited private inventory
+## Inventory
 
 - 4 Blackboard QTI packages
 - 1,484 source pools
 - 15,671 questions
 - 38,593 media files/references
-- 15,671 stable ECHS IDs
+- 15,671 stable unique ECHS IDs
 
-## Student-facing aliases
+## Student-facing names
 
-| Source package | AP Precalculus display | IB Mathematics display |
+| Internal code | AP Precalculus | IB Mathematics |
 | --- | --- | --- |
 | `ECHS-BB-AT9` | AP Precalculus Bank 1 | IB Mathematics Bank 1 |
 | `ECHS-BB-CA9` | AP Precalculus Bank 2 | IB Mathematics Bank 2 |
 | `ECHS-BB-CA9B` | AP Precalculus Bank 3 | IB Mathematics Bank 3 |
 | `ECHS-BB-ACS10` | AP Precalculus Bank 4 | IB Mathematics Bank 4 |
 
-Publisher metadata is retained inside private package provenance and is never used as a student-facing title.
+Publisher metadata remains internal provenance.
 
-## Trust boundary
+## Direct-use policy
 
-The secure importer always produces:
+The importer produces:
 
-- `teacher_review_required`
-- `student_visible=false`
-- `student_accessible=false`
-- `student_ready=false`
-- restricted instructor-resource rights
-- unverified lesson mappings
+- `publisher_key_direct`
+- `student_visible=true`
+- `student_accessible=true`
+- `student_ready=true`
+- `mapping_verified=true`
+- `manual_question_trust_required=false`
+- `verification_basis=publisher-answer-key`
+- private school-authenticated rights
+- one AP Precalculus lesson and one IB Mathematics lesson per question
 
-Publisher answer keys are source evidence, not independent mathematical verification. The Question Trust release gate remains mandatory before student use or Mastery 2.0 evidence.
+Manual Question Trust review is **not required** for these four banks. The platform must display:
 
-## 1. Convert a Blackboard archive
+> Source-key practice · not independently audited.
+
+Publisher answer keys are used directly. The system does not claim independent mathematical verification, and publisher-direct attempts remain distinguishable from `student_ready_verified` evidence in Mastery 2.0.
+
+## Readiness lessons
+
+Questions without a stronger direct source match are still attached to a formal lesson:
+
+- AP Precalculus `0.1` — Readiness
+- IB Mathematics `u0-readiness`
+
+No question remains unmapped.
+
+## 1. Convert an archive
 
 ```bash
 python question-bank/private-sources/tools/import_blackboard_qti_secure.py \
@@ -43,9 +59,9 @@ python question-bank/private-sources/tools/import_blackboard_qti_secure.py \
   --output-root /secure/output
 ```
 
-Use the matching configuration for each bank: `at9.json`, `ca9.json`, `ca9b.json`, or `acs10.json`.
+Use the matching configuration: `at9.json`, `ca9.json`, `ca9b.json`, or `acs10.json`.
 
-## 2. Validate complete private packages
+## 2. Validate all packages
 
 ```bash
 python tools/validate_private_bank_packages.py \
@@ -56,20 +72,21 @@ python tools/validate_private_bank_packages.py \
   --output-dir /secure/output/validation
 ```
 
-The validator checks counts, ZIP integrity, stable IDs, answer references, media files, AP Precalculus and IB fallbacks, and every fail-closed Trust flag.
+The validator checks ZIP integrity, counts, stable IDs, answer references, direct lesson mappings, media completeness, authenticated rights, and the publisher-key disclosure contract.
 
-## 3. Deploy the private backend foundation
+## 3. Deploy the backend
 
-Merge the reviewed foundation PR, then run **Deploy Institutional Backend** with confirmation `DEPLOY`. The workflow creates:
+After merge, run **Deploy Institutional Backend** with `DEPLOY`. It creates:
 
 - private package, question, media, and import-run tables;
-- a non-public `private-question-banks` storage bucket;
-- a Question Trust release trigger;
-- the authenticated `private-bank-api` Edge Function.
+- a non-public `private-question-banks` bucket;
+- the publisher-key direct-use database guard;
+- the authenticated `private-bank-api`;
+- the Mastery attempt trust bridge.
 
-## 4. Upload one validated package
+## 4. Upload the regenerated packages
 
-Run only from a trusted machine with service-role credentials:
+From a trusted machine:
 
 ```bash
 export SUPABASE_URL="https://YOUR_PROJECT.supabase.co"
@@ -80,22 +97,16 @@ python tools/upload_private_bank_package.py \
   /secure/output/echs-bb-at9-private-import.zip
 ```
 
-The upload tool:
+Repeat for all four packages. The uploader rejects obsolete packages that still require manual Question Trust.
 
-1. registers AP Precalculus and IB skill definitions in Mastery 2.0;
-2. uploads the private package archive;
-3. inserts question payloads in batches;
-4. uploads every referenced image as a private storage object;
-5. records SHA-256 fingerprints and live deployment counts.
+## 5. Student practice
 
-Repeat for all four packages. Use `--dry-run` to verify a package and graph paths without making network changes.
+When a signed-in student opens Focused Practice for an unlocked AP Precalculus or IB lesson:
 
-## 5. Lesson alignment and release
+1. the standard lesson bundle loads;
+2. `private-bank-api/student-questions` returns only directly mapped questions for that course and lesson;
+3. private images receive short-lived signed URLs;
+4. attempts retain the exact skill and `publisher_key_direct` tier;
+5. Mastery records publisher-key evidence without representing it as independently audited evidence.
 
-- AP Precalculus uses its existing 49-topic lesson catalogue.
-- IB Mathematics uses the internal 25-lesson catalogue in `data/ib-math-ai-lesson-catalog.json` while full lesson content is built.
-- Automatic mappings are candidates only.
-- Uncertain prerequisite material stays in Unit 0 Readiness.
-- A question reaches student practice only after exact lesson mapping, independent mathematics review, media review, and rights clearance.
-
-Never commit a generated private package to the public repository or GitHub Pages artifact.
+Never commit generated private packages to the public repository or GitHub Pages artifact.
