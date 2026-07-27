@@ -9,7 +9,7 @@ const browser=await chromium.launch({executablePath:process.env.CHROME_PATH||'/u
 const routes=[
   {key:'home',path:'/index.html',ready:'#courses'},
   {key:'login',path:'/login.html',ready:'#loginForm',premium:true},
-  {key:'learning-home',path:'/question-bank/index.html',ready:'#homePlan'},
+  {key:'learning-home',path:'/question-bank/index.html',ready:'#roleEntryStatus'},
   {key:'adaptive-practice',path:'/question-bank/practice.html?mode=adaptive',ready:'#start',delay:6500},
   {key:'test-generator',path:'/question-bank/exam.html',ready:'#start',delay:6500},
   {key:'local-student-dashboard',path:'/question-bank/dashboard.html',ready:'#dailyPlan'},
