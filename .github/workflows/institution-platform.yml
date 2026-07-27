@@ -18,6 +18,7 @@ on:
       - "js/institution-*.js"
       - "js/login.js"
       - "question-bank/admin.html"
+      - "question-bank/school-control.html"
       - "question-bank/student.html"
       - "question-bank/teacher.html"
       - "question-bank/parent.html"
@@ -30,6 +31,7 @@ on:
       - "supabase/**"
       - "templates/**"
       - "tools/bootstrap_institution.py"
+      - "tools/test_institution_identity_mount.mjs"
       - "tools/validate_initial_setup.py"
       - "tools/validate_institution_platform.py"
       - "tools/validate_production_activation.py"
@@ -80,6 +82,9 @@ jobs:
           else
             python tools/validate_institution_platform.py
           fi
+
+      - name: Verify identity rendering preserves the document root
+        run: node tools/test_institution_identity_mount.mjs
 
       - name: Validate premium role experiences
         run: python tools/validate_premium_experience.py
