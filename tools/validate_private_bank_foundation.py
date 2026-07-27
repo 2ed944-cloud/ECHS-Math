@@ -75,6 +75,17 @@ if (ib.get('policy') or {}).get('unmatched_destination',{}).get('unit')!=0: fail
 if len(ap.get('topic_catalog') or [])<49: fail('AP topic catalog is incomplete')
 if len(ib.get('unit_catalog') or [])!=5: fail('IB unit catalog must contain five units')
 
+routing=load('question-bank/data/course-routing.json')
+routes={row.get('key'):row for row in routing.get('courses') or []}
+for course,aliases,graph_path in [
+    ('ap-precalculus',['AP Precalculus Bank 1','AP Precalculus Bank 2','AP Precalculus Bank 3','AP Precalculus Bank 4'],'../../data/knowledge-graph/ap-precalculus-v1.json'),
+    ('ib-math-ai',['IB Mathematics Bank 1','IB Mathematics Bank 2','IB Mathematics Bank 3','IB Mathematics Bank 4'],'../../data/knowledge-graph/ib-math-ai-v1.json'),
+]:
+    route=routes.get(course) or {}
+    if route.get('private_banks')!=aliases: fail(f'{course} private bank aliases are incomplete')
+    if route.get('knowledge_graph')!=graph_path: fail(f'{course} knowledge graph route is missing')
+    if (route.get('readiness_unit') or {}).get('unit')!=0: fail(f'{course} readiness Unit 0 is missing')
+
 for name in ('at9','ca9','ca9b','acs10'):
     cfg=load(f'question-bank/private-sources/config/{name}.json')
     if cfg.get('student_visible') is not False or cfg.get('trust_default')!='teacher_review_required': fail(f'{name} config is not fail-closed')
@@ -86,14 +97,51 @@ require(importer,[
     "'restricted-instructor-resource'", 'private-bank://', 'retain_duplicate', "qid=f'{code}-P{pool_index:04d}-Q{item_index:04d}'", 'accepted_answers'
 ],'Secure importer')
 forbid(importer,["'student_visible':True","'student_accessible':True","'student_ready':True"],'Secure importer')
-if importer:
-    result=subprocess.run([sys.executable,'-m','py_compile',str(ROOT/'question-bank/private-sources/tools/import_blackboard_qti_secure.py')],capture_output=True,text=True)
-    if result.returncode: fail(f'Importer syntax error: {result.stderr.strip()}')
+
+upload=read('tools/upload_private_bank_package.py')
+require(upload,[
+    'SUPABASE_SERVICE_ROLE_KEY','private-question-banks','teacher_review_required','student_visible": False',
+    'private_bank_packages','private_bank_questions','private_bank_media_objects','payload_sha256','--dry-run'
+],'Private bank upload tool')
+forbid(upload,['student_visible": True','trust_tier": "student_ready_verified"'],'Private bank upload tool')
+
+for relative in ('question-bank/private-sources/tools/import_blackboard_qti_secure.py','tools/upload_private_bank_package.py'):
+    if read(relative):
+        result=subprocess.run([sys.executable,'-m','py_compile',str(ROOT/relative)],capture_output=True,text=True)
+        if result.returncode: fail(f'Python syntax error for {relative}: {result.stderr.strip()}')
+
+migration=read('supabase/migrations/202607272101_private_bank_foundation.sql')
+require(migration,[
+    'create table if not exists public.private_bank_packages',
+    'create table if not exists public.private_bank_questions',
+    'create table if not exists public.private_bank_media_objects',
+    'private.enforce_private_bank_question_release',
+    "v_trust.trust_tier <> 'student_ready_verified'",
+    'new.mapping_verified is not true',
+    "'private-question-banks'",
+    'public = false',
+    'revoke all on public.private_bank_questions from public, anon, authenticated'
+],'Private bank database foundation')
+
+api=read('supabase/functions/private-bank-api/index.ts')
+require(api,[
+    'authorised(current)','current.role === "teacher"','current.role === "admin"',
+    'private_bank_packages','private_bank_questions','private_bank_media_objects',
+    'createSignedUrl(path, 300)','Teacher or administrator sign-in is required','echs-private-bank-api'
+],'Private bank API')
+forbid(api,['current.role === "student"','student_ready_verified'],'Private bank API')
+
+config=read('supabase/config.toml')
+require(config,['[functions.private-bank-api]','verify_jwt = false'],'Supabase function config')
+deploy=read('.github/workflows/deploy-institution-backend.yml')
+require(deploy,['Validate private bank foundation before deployment','private-bank-api/health'],'Backend deployment workflow')
 
 page=read('question-bank/official/admin/private-bank-center.html')
 controller=read('question-bank/official/admin/js/private-bank-center.js')
 require(page,['Private Bank Center','15,671','private-bank-center.js'],'Private Bank Center')
 require(controller,['requireAuth(["teacher","admin"])','private-bank-registry.json','publisher names stay internal'],'Private Bank controller')
+visual=read('tools/capture_private_bank_center.mjs')
+require(visual,['private-bank-center.html','Expected four bank cards','Publisher-facing text leaked','private-bank-center-report.json'],'Private Bank visual QA')
 
 print('ECHS private Blackboard bank foundation')
 print(f'Errors: {len(errors)}')
