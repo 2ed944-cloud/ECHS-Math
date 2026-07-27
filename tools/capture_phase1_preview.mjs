@@ -11,6 +11,7 @@ const routes=[
   {key:'login',path:'/login.html',ready:'#loginForm',premium:true},
   {key:'learning-home',path:'/question-bank/index.html',ready:'#roleEntryStatus'},
   {key:'adaptive-practice',path:'/question-bank/practice.html?mode=adaptive',ready:'#start',delay:6500},
+  {key:'adaptive-practice-compact',path:'/question-bank/practice.html?mode=adaptive',ready:'#practiceBuilder',delay:1600,compactBuilder:true},
   {key:'test-generator',path:'/question-bank/exam.html',ready:'#start',delay:6500},
   {key:'local-student-dashboard',path:'/question-bank/dashboard.html',ready:'#dailyPlan'},
   {key:'mistake-bank',path:'/question-bank/mistakes.html',ready:'#reviewList'},
@@ -40,6 +41,24 @@ for(const device of devices){
       const response=await page.goto(url,{waitUntil:'domcontentloaded',timeout:45000});entry.status=response?.status()??null;
       await page.locator(route.ready).first().waitFor({state:'attached',timeout:30000});
       await page.waitForTimeout(route.delay||2200);
+      if(route.compactBuilder){
+        await page.locator('#builderToggle').waitFor({state:'attached',timeout:8000});
+        await page.evaluate(()=>{
+          document.body.classList.add('studentFocused');
+          const shell=document.getElementById('shell');
+          shell.innerHTML='<article class="questionCard"><div class="pillRow"><span class="pill wine">Question 1 of 10</span><span class="pill teal">AP Calculus Bank 2</span><span class="pill gold">Adaptive practice</span><span class="pill">Skill 1.1</span><span class="pill">Multiple choice</span></div><div class="progressTrack"><i style="width:10%"></i></div><h2>Introducing Calculus: Can Change Occur at an Instant?</h2><div class="prompt"><p>Representative question content for compact-builder visual verification.</p></div></article>';
+        });
+        await page.locator('#practiceBuilder.isCollapsed').waitFor({state:'attached',timeout:8000});
+        const compactHeight=await page.locator('#practiceBuilder .studioPanel').evaluate(node=>Math.round(node.getBoundingClientRect().height));
+        entry.interactions.compactPracticeBuilder=true;entry.interactions.compactBuilderHeight=compactHeight;
+        if(compactHeight>100)report.errors.push(`${route.key}/${device.key}: compact builder is ${compactHeight}px high`);
+        await page.locator('#builderAdjust').click();
+        await page.waitForFunction(()=>!document.getElementById('practiceBuilder')?.classList.contains('isCollapsed'));
+        entry.interactions.builderAdjust=true;
+        await page.locator('#builderToggle').click();
+        await page.waitForFunction(()=>document.getElementById('practiceBuilder')?.classList.contains('isCollapsed'));
+        entry.interactions.builderRecollapsed=true;
+      }
       if(route.premium){await page.waitForFunction(()=>document.documentElement.dataset.premiumCompletion==='ready',null,{timeout:15000});entry.interactions.completionReady=true;}
       entry.title=await page.title();entry.h1=await page.locator('h1').first().textContent().catch(()=>null);
       const geometry=await page.evaluate(()=>{const viewport=document.documentElement.clientWidth;const describe=element=>{const rect=element.getBoundingClientRect(),style=getComputedStyle(element),selector=element.id?`#${element.id}`:element.classList.length?`${element.tagName.toLowerCase()}.${[...element.classList].slice(0,3).join('.')}`:element.tagName.toLowerCase();return{selector,left:Math.round(rect.left),right:Math.round(rect.right),width:Math.round(rect.width),scrollWidth:element.scrollWidth,clientWidth:element.clientWidth,display:style.display,position:style.position,overflowX:style.overflowX,minWidth:style.minWidth,maxWidth:style.maxWidth,whiteSpace:style.whiteSpace}};const offenders=[...document.querySelectorAll('body *')].filter(element=>{const style=getComputedStyle(element);if(style.display==='none'||style.visibility==='hidden')return false;const rect=element.getBoundingClientRect();return rect.right>viewport+2||rect.left<-2||element.scrollWidth>Math.max(element.clientWidth+2,viewport+2)}).map(describe).sort((a,b)=>(b.right-viewport)-(a.right-viewport)).slice(0,25);return{bodyWidth:document.body.scrollWidth,documentWidth:document.documentElement.scrollWidth,viewport,offenders};});
