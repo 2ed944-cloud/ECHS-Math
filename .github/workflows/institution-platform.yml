@@ -17,6 +17,7 @@ on:
       - "css/institution-setup.css"
       - "css/mastery-evidence.css"
       - "data/knowledge-graph/**"
+      - "data/ib-math-ai-lesson-catalog.json"
       - "js/institution-*.js"
       - "js/login.js"
       - "question-bank/admin.html"
@@ -49,6 +50,7 @@ on:
       - "tools/validate_mastery_foundation.py"
       - "tools/validate_mastery_guards.py"
       - "tools/validate_private_bank_foundation.py"
+      - "tools/validate_private_bank_packages.py"
       - "tools/validate_supabase_migration_versions.py"
       - "tools/validate_production_activation.py"
       - "tools/validate_premium_experience.py"
@@ -162,6 +164,7 @@ jobs:
           python -m json.tool data/knowledge-graph/ap-calculus-unit-1.json >/dev/null
           python -m json.tool data/knowledge-graph/ap-precalculus-v1.json >/dev/null
           python -m json.tool data/knowledge-graph/ib-math-ai-v1.json >/dev/null
+          python -m json.tool data/ib-math-ai-lesson-catalog.json >/dev/null
           python -m json.tool question-bank/data/course-routing.json >/dev/null
           python -m json.tool question-bank/official/admin/data/question-trust-manifest.json >/dev/null
           python -m json.tool question-bank/private-sources/data/private-bank-registry.json >/dev/null
@@ -171,7 +174,7 @@ jobs:
           python -m json.tool question-bank/private-sources/config/ca9.json >/dev/null
           python -m json.tool question-bank/private-sources/config/ca9b.json >/dev/null
           python -m json.tool question-bank/private-sources/config/acs10.json >/dev/null
-          python -m py_compile tools/bootstrap_institution.py tools/upload_private_bank_package.py tools/validate_initial_setup.py tools/validate_institution_platform.py tools/validate_mastery_foundation.py tools/validate_mastery_guards.py tools/validate_private_bank_foundation.py tools/validate_supabase_migration_versions.py tools/validate_production_activation.py tools/validate_premium_experience.py question-bank/private-sources/tools/import_blackboard_qti_secure.py
+          python -m py_compile tools/bootstrap_institution.py tools/upload_private_bank_package.py tools/validate_initial_setup.py tools/validate_institution_platform.py tools/validate_mastery_foundation.py tools/validate_mastery_guards.py tools/validate_private_bank_foundation.py tools/validate_private_bank_packages.py tools/validate_supabase_migration_versions.py tools/validate_production_activation.py tools/validate_premium_experience.py question-bank/private-sources/tools/import_blackboard_qti_secure.py
           node --check tools/capture_private_bank_center.mjs
           python - <<'PY'
           import tomllib
