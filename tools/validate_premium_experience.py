@@ -11,16 +11,16 @@ ROOT=Path(__file__).resolve().parents[1]
 ERRORS=[]
 def fail(message): ERRORS.append(message)
 def read(path):
-    file=ROOT/path
-    if not file.is_file(): fail(f"Missing required premium file: {path}"); return ""
-    return file.read_text(encoding="utf-8")
+ file=ROOT/path
+ if not file.is_file(): fail(f"Missing required premium file: {path}"); return ""
+ return file.read_text(encoding="utf-8")
 
 required=[
- "css/institution-premium.css","css/institution-responsive.css","css/institution-completion.css",
- "js/institution-experience.js","js/institution-completion.js","login.html",
+ "css/public-entry.css","css/institution-premium.css","css/institution-responsive.css","css/institution-completion.css",
+ "js/institution-gate.js","js/institution-experience.js","js/institution-completion.js","login.html","learning-library.html",
  "question-bank/student.html","question-bank/teacher.html","question-bank/parent.html","question-bank/admin.html",
  "question-bank/js/student-cloud.js","question-bank/js/teacher-cloud.js","question-bank/js/parent-cloud.js","question-bank/js/admin-accounts.js",
- "platform/PHASE_4_PREMIUM_EXPERIENCE.md","platform/PHASE_4_PREMIUM_COMPLETION.md","sw.js"
+ "platform/PHASE_4_PREMIUM_EXPERIENCE.md","platform/PHASE_4_PREMIUM_COMPLETION.md","sw.js","tools/test_phase1_public_entry.py"
 ]
 for path in required: read(path)
 
@@ -29,60 +29,79 @@ page_markers={
  "question-bank/teacher.html":["Teaching Command Center","classReadinessRing","attentionList","classPulseBars","studentRows","supportList","distributionChart","classHeatmap","assignmentDialog","resetDialog","importDialog"],
  "question-bank/parent.html":["Family Progress Center","familyProgressRing","familyNarrativeScore","familyWeeklyActivity","parentMasteryMeter","familyAssignments","familyPlan"],
  "question-bank/admin.html":["School Control Center","schoolHealthRing","roleMix","recentAccountActivity","securityChecks","accountRows","createDialog","importDialog","passwordDialog"],
- "login.html":["A complete learning journey","Public self-registration and Google sign-in are disabled","Student preview","Teacher preview","Family preview","Admin preview"]
+ "login.html":["Your complete learning journey","Public self-registration and Google sign-in are disabled","routed automatically to the correct workspace","No public registration"]
 }
 for path,markers in page_markers.items():
-    body=read(path)
-    for marker in markers:
-        if marker not in body: fail(f"{path} missing premium marker: {marker}")
-    if "Content-Security-Policy" not in body: fail(f"{path} missing Content Security Policy")
-    if "institution-premium.css" not in body: fail(f"{path} does not load premium CSS")
+ body=read(path)
+ for marker in markers:
+  if marker not in body: fail(f"{path} missing premium marker: {marker}")
+ if "Content-Security-Policy" not in body: fail(f"{path} missing Content Security Policy")
+ if "institution-premium.css" not in body: fail(f"{path} does not load premium CSS")
+
+login=read("login.html")
+for marker in ["Student preview","Teacher preview","Family preview","Admin preview"]:
+ if marker in login: fail(f"Login page must not expose public role preview: {marker}")
+
+library=read("learning-library.html")
+for marker in [
+ 'data-institution-guard="teacher,admin"',"Content-Security-Policy",'name="robots" content="noindex,nofollow"',
+ "js/institution-gate.js","data/courses.js",'id="courses"',"Protected workspace"
+]:
+ if marker not in library: fail(f"Protected course library missing marker: {marker}")
+for forbidden in ["Publisher questions","Publisher collections","Student preview","Teacher preview"]:
+ if forbidden in library: fail(f"Protected course library contains forbidden marker: {forbidden}")
 
 css=read("css/institution-premium.css")
 for marker in [".experienceHero",".missionRing",".premiumMetrics",".premiumGrid",".journeyMap",".weekBars",".planTimeline","@media(prefers-reduced-motion:reduce)"]:
-    if marker not in css: fail(f"Premium CSS missing {marker}")
+ if marker not in css: fail(f"Premium CSS missing {marker}")
 responsive_css=read("css/institution-responsive.css")
 for marker in ["overflow-x:clip",".meterGrid",".premiumMobileDock",".planTimeline","@media(max-width:760px)"]:
-    if marker not in responsive_css: fail(f"Responsive CSS missing {marker}")
+ if marker not in responsive_css: fail(f"Responsive CSS missing {marker}")
 completion_css=read("css/institution-completion.css")
 for marker in [".premiumCommandDialog",".premiumDrawer","visibility:hidden",".premiumMobileDock",".guideTask",".premiumGoalsDialog",".offlineRibbon","@media print","@media(prefers-reduced-motion:reduce)"]:
-    if marker not in completion_css: fail(f"Completion CSS missing {marker}")
+ if marker not in completion_css: fail(f"Completion CSS missing {marker}")
 
 client=read("js/institution-experience.js")
 for marker in ["showPreview","renderWeekBars","setRing","bindTheme","bindGuideShortcutCompatibility","ECHSExperience","loadCompletionLayer","institution-responsive.css","institution-completion.css","institution-completion.js"]:
-    if marker not in client: fail(f"Premium experience helper missing: {marker}")
+ if marker not in client: fail(f"Premium experience helper missing: {marker}")
 completion=read("js/institution-completion.js")
 for marker in ["openCommands","deriveNotifications","onboardingTasks","openGoals","addMobileDock","exportVisibleTable","ECHSPremiumCompletion","Ctrl / ⌘ + K"]:
-    if marker not in completion: fail(f"Premium completion helper missing: {marker}")
+ if marker not in completion: fail(f"Premium completion helper missing: {marker}")
 for forbidden in ["eval(","new Function(","innerHTML = password","localStorage.setItem(\"password"]:
-    if forbidden.lower() in completion.lower(): fail(f"Completion layer contains forbidden pattern: {forbidden}")
+ if forbidden.lower() in completion.lower(): fail(f"Completion layer contains forbidden pattern: {forbidden}")
 
-scripts=["js/institution-experience.js","js/institution-completion.js","js/login.js","question-bank/js/student-cloud.js","question-bank/js/teacher-cloud.js","question-bank/js/parent-cloud.js","question-bank/js/admin-accounts.js","sw.js"]
+gate=read("js/institution-gate.js")
+for marker in ["requireAuth(requested)",'authGuardState="blocked"',"Protected learning content remains closed",'authGuardState="ready"']:
+ if marker not in gate: fail(f"Institution role guard missing: {marker}")
+for forbidden in ["document.write","document.documentElement.textContent"]:
+ if forbidden in gate: fail(f"Institution role guard contains forbidden write: {forbidden}")
+
+scripts=["js/institution-gate.js","js/institution-portal.js","js/institution-experience.js","js/institution-completion.js","js/login.js","question-bank/js/student-cloud.js","question-bank/js/teacher-cloud.js","question-bank/js/parent-cloud.js","question-bank/js/admin-accounts.js","sw.js"]
 for path in scripts:
-    result=subprocess.run(["node","--check",str(ROOT/path)],capture_output=True,text=True)
-    if result.returncode: fail(f"JavaScript syntax failed in {path}: {result.stderr.strip()}")
+ result=subprocess.run(["node","--check",str(ROOT/path)],capture_output=True,text=True)
+ if result.returncode: fail(f"JavaScript syntax failed in {path}: {result.stderr.strip()}")
 
 for path in ["question-bank/js/student-cloud.js","question-bank/js/teacher-cloud.js","question-bank/js/parent-cloud.js","question-bank/js/admin-accounts.js"]:
-    body=read(path)
-    if "unconfigured" not in body or "showPreview" not in body: fail(f"{path} must provide an honest unconfigured preview mode")
+ body=read(path)
+ if "unconfigured" not in body or "showPreview" not in body: fail(f"{path} must provide an honest unconfigured preview mode")
 
 admin_js=read("question-bank/js/admin-accounts.js")
 for marker in ["canStatus","canReset","row.role===\"student\"","current?.role===\"admin\""]:
-    if marker not in admin_js: fail(f"Restricted account UI missing permission marker: {marker}")
+ if marker not in admin_js: fail(f"Restricted account UI missing permission marker: {marker}")
 
 worker=read("sw.js")
 for asset in ["./css/institution-premium.css","./css/institution-responsive.css","./css/institution-completion.css","./js/institution-experience.js","./js/institution-completion.js","./question-bank/student.html","./question-bank/teacher.html","./question-bank/parent.html","./question-bank/admin.html"]:
-    if asset not in worker: fail(f"Service worker missing premium asset {asset}")
+ if asset not in worker: fail(f"Service worker missing premium asset {asset}")
 if "learning-sync" not in worker or "event.respondWith(fetch(request))" not in worker: fail("Private institutional APIs must bypass caches")
 
 config=json.loads(read("config/institution.json") or "{}")
 if config.get("enabled") is True:
-    endpoint=r"https://[a-z0-9]+\.supabase\.co/functions/v1"
-    if not re.fullmatch(endpoint,str(config.get("api_base",""))): fail("Activated premium experience requires a real Supabase API endpoint")
-    if config.get("setup_enabled") is not False: fail("Activated premium experience must close the one-time setup UI")
-    if config.get("backend_deployed") is not True: fail("Activated premium experience requires a deployed backend")
+ endpoint=r"https://[a-z0-9]+\.supabase\.co/functions/v1"
+ if not re.fullmatch(endpoint,str(config.get("api_base",""))): fail("Activated premium experience requires a real Supabase API endpoint")
+ if config.get("setup_enabled") is not False: fail("Activated premium experience must close the one-time setup UI")
+ if config.get("backend_deployed") is not True: fail("Activated premium experience requires a deployed backend")
 elif config.get("enabled") is not False:
-    fail("Institutional enabled flag must be a boolean")
+ fail("Institutional enabled flag must be a boolean")
 
 print("ECHS Phase 4 complete premium experience validation")
 print(f"Mode: {'production-active' if config.get('enabled') is True else 'preview'}")
