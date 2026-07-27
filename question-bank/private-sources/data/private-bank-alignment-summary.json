@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.1.0",
+  "questions": 15671,
+  "mapping_mode": "deterministic-one-lesson-per-course",
+  "exact_question_mappings_per_course": 15671,
+  "exact_course_mappings_total": 31342,
+  "counts_may_overlap": false,
+  "manual_question_trust_required": false,
+  "verification_basis": "publisher-answer-key",
+  "independently_audited": false,
+  "explanation": "Every source question is linked to exactly one AP Precalculus lesson and one IB Mathematics lesson. Readiness lessons receive material without a stronger direct match.",
+  "ap-precalculus": {
+    "exact_counts": {
+      "unit_0_readiness": 6695,
+      "unit_1_polynomial_rational": 4775,
+      "unit_2_exponential_logarithmic": 2707,
+      "unit_3_trigonometric_polar": 611,
+      "unit_4_parameters_vectors_matrices": 883
+    },
+    "lesson_catalog_topics": 50,
+    "release_state": "publisher-key-direct-authenticated"
+  },
+  "ib-math-ai": {
+    "exact_counts": {
+      "unit_0_readiness": 122,
+      "unit_1_number_algebra": 6107,
+      "unit_2_functions": 6978,
+      "unit_3_geometry_trigonometry": 1858,
+      "unit_4_statistics_probability": 521,
+      "unit_5_calculus": 85
+    },
+    "lesson_catalog_lessons": 26,
+    "release_state": "publisher-key-direct-authenticated"
+  },
+  "disclosure": "Source-key practice; not independently audited. Publisher content remains private and school-authenticated."
+}

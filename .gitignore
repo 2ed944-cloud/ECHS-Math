@@ -12,6 +12,15 @@ supabase/.temp/
 supabase/.supabase/
 .supabase/
 
+# Private publisher bank sources and generated packages
+question-bank/private-sources/generated/
+question-bank/private-sources/uploads/
+*-private-import.zip
+_irc_files_*BlackBoard.zip
+_irc_files_*Blackboard.zip
+PRIVATE_BANK_VALIDATION.json
+PRIVATE_BANK_VALIDATION.md
+
 # Local test output
 artifacts/
 node_modules/

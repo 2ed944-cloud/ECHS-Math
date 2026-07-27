@@ -15,7 +15,7 @@ jobs:
   deploy:
     if: ${{ inputs.confirmation == 'DEPLOY' }}
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 35
     environment: institutional-production
     env:
       SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
@@ -40,6 +40,9 @@ jobs:
 
       - name: Reject duplicate Supabase migration versions
         run: python tools/validate_supabase_migration_versions.py
+
+      - name: Validate private bank foundation before deployment
+        run: python tools/validate_private_bank_foundation.py
 
       - name: Set up Supabase CLI
         uses: supabase/setup-cli@v1
@@ -73,6 +76,8 @@ jobs:
           curl --fail --silent --show-error \
             "https://${SUPABASE_PROJECT_ID}.supabase.co/functions/v1/mastery-evidence/health" | python -m json.tool
           curl --fail --silent --show-error \
+            "https://${SUPABASE_PROJECT_ID}.supabase.co/functions/v1/private-bank-api/health" | python -m json.tool
+          curl --fail --silent --show-error \
             "https://${SUPABASE_PROJECT_ID}.supabase.co/functions/v1/setup-api/health" | python -m json.tool
 
       - name: Verify deployed bootstrap secret
@@ -105,5 +110,5 @@ jobs:
 
       - name: Deployment reminder
         run: |
-          echo "Backend deployed, Mastery 2.0 evidence service verified, bootstrap secret verified, and production login/session transaction passed."
-          echo "The institutional sign-in page is ready for account verification."
+          echo "Backend deployed; Mastery 2.0, private bank API, bootstrap secret, and production login/session contracts passed."
+          echo "Private Blackboard source packages must still be uploaded separately with the secure import tool."

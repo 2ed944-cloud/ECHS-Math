@@ -23,6 +23,9 @@ verify_jwt = false
 [functions.mastery-evidence]
 verify_jwt = false
 
+[functions.private-bank-api]
+verify_jwt = false
+
 [functions.setup-api]
 verify_jwt = false
 
