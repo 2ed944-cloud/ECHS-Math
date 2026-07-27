@@ -114,7 +114,9 @@
   const traveller=target.querySelector("#heroTangentTraveller");
   const formula=target.querySelector("#calculusBoardFormula");
   const callouts=[...target.querySelectorAll("[data-extremum-callout]")];
+  const evidenceB=target.querySelector(".evidenceB");
   const prefersReducedMotion=matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if(evidenceB)evidenceB.style.transition="opacity .28s ease";
   if(!board||!curve||!traveller||!formula)return;
 
   const totalLength=curve.getTotalLength();
@@ -153,6 +155,7 @@
     board.dataset.extremumPhase=phase;
     formula.textContent=phase==="maximum"?extrema.maximum.formula:phase==="minimum"?extrema.minimum.formula:phase==="overview"?"Stationary points · f′(x) = 0":"Instantaneous slope";
     callouts.forEach(callout=>callout.setAttribute("aria-hidden",String(callout.dataset.extremumCallout!==phase&&phase!=="overview")));
+    if(evidenceB){evidenceB.style.opacity=phase==="minimum"?"0":"";evidenceB.style.pointerEvents=phase==="minimum"?"none":"";}
   };
 
   const schedule={moveToMaximum:3200,holdMaximum:2300,moveToMinimum:3600,holdMinimum:2300,moveToEnd:2700,reset:650};
