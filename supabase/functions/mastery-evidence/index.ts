@@ -4,11 +4,11 @@ type Role = "admin" | "teacher" | "student" | "parent";
 type SessionAccount = { account_id: string; organization_id: string; role: Role };
 type AttemptInput = Record<string, unknown>;
 
-const URL = Deno.env.get("SUPABASE_URL") ?? "";
+const SUPABASE_URL = Deno.env.get("SUPABASE_URL") ?? "";
 const KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "";
 const ORIGINS = (Deno.env.get("ALLOWED_ORIGINS") ?? "https://2ed944-cloud.github.io,http://localhost:4173,http://127.0.0.1:4173")
   .split(",").map((value) => value.trim()).filter(Boolean);
-const db = createClient(URL, KEY, { auth: { persistSession: false, autoRefreshToken: false } });
+const db = createClient(SUPABASE_URL, KEY, { auth: { persistSession: false, autoRefreshToken: false } });
 
 function headers(req: Request): HeadersInit {
   const origin = req.headers.get("origin") ?? "";
