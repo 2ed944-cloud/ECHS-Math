@@ -4,8 +4,13 @@ Disallow: /.echs-backups/
 Disallow: /login.html
 Disallow: /setup.html
 Disallow: /config/institution.json
+Disallow: /lessons/
+Disallow: /notes/
+Disallow: /worksheets/
+Disallow: /question-bank/index.html
+Disallow: /question-bank/practice.html
+Disallow: /question-bank/exam.html
 Disallow: /question-bank/review.html
-Disallow: /question-bank/practice-sources/
 Disallow: /question-bank/dashboard.html
 Disallow: /question-bank/mistakes.html
 Disallow: /question-bank/admin.html
@@ -14,6 +19,7 @@ Disallow: /question-bank/student.html
 Disallow: /question-bank/teacher.html
 Disallow: /question-bank/parent.html
 Disallow: /question-bank/teacher/
-Disallow: /question-bank/official/data/
+Disallow: /question-bank/practice-sources/
+Disallow: /question-bank/official/
 
 Sitemap: https://2ed944-cloud.github.io/ECHS-Math/sitemap.xml
