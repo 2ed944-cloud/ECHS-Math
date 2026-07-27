@@ -22,7 +22,7 @@ def check(relative: str, required: list[str], forbidden: list[str] | None = None
 
 
 check(
-    "supabase/migrations/202607270003_attempt_trust_guard.sql",
+    "supabase/migrations/202607272003_attempt_trust_guard.sql",
     [
         "private.apply_question_trust_to_attempt",
         "from public.question_trust_records",
@@ -31,7 +31,7 @@ check(
     ],
 )
 check(
-    "supabase/migrations/202607270004_atomic_skill_mapping.sql",
+    "supabase/migrations/202607272004_atomic_skill_mapping.sql",
     [
         "private.apply_atomic_skill_to_attempt",
         "select count(*), min(definition.skill_key)",

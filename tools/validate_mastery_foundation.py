@@ -111,8 +111,8 @@ def validate_trust_manifest() -> None:
 
 
 def validate_server_authority() -> None:
-    migration = read("supabase/migrations/202607270001_mastery_evidence_foundation.sql")
-    guard = read("supabase/migrations/202607270002_mastery_authority_guard.sql")
+    migration = read("supabase/migrations/202607272001_mastery_evidence_foundation.sql")
+    guard = read("supabase/migrations/202607272002_mastery_authority_guard.sql")
     service = read("supabase/functions/mastery-evidence/index.ts")
     legacy = read("supabase/functions/learning-sync/index.ts")
     require(migration, [
