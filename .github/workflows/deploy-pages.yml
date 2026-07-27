@@ -22,6 +22,7 @@ on:
       - "question-bank/parent.html"
       - "question-bank/js/**"
       - "tools/fingerprint_school_control.py"
+      - "tools/test_institution_identity_mount.mjs"
       - "tools/validate_pages_artifact.py"
   workflow_dispatch:
 
@@ -46,6 +47,14 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Verify identity rendering preserves the document root
+        run: node tools/test_institution_identity_mount.mjs
 
       - name: Prepare immutable Pages artifact
         shell: bash
@@ -116,6 +125,7 @@ jobs:
           base="${PAGE_URL%/}"
           short="${GITHUB_SHA:0:12}"
           runtime_path="question-bank/js/school-control.${short}.js"
+          client_path="js/institution-client.${short}.js"
           for attempt in $(seq 1 40); do
             echo "Live verification attempt ${attempt}/40"
             rm -f \
@@ -123,6 +133,7 @@ jobs:
               /tmp/echs-school-control-assets.json \
               /tmp/echs-school-control.html \
               /tmp/echs-school-control.js \
+              /tmp/echs-institution-client.js \
               /tmp/echs-sw.js
             curl --fail --silent --show-error \
               --header 'Cache-Control: no-cache' \
@@ -142,6 +153,10 @@ jobs:
               --output /tmp/echs-school-control.js || true
             curl --fail --silent --show-error \
               --header 'Cache-Control: no-cache' \
+              "${base}/${client_path}" \
+              --output /tmp/echs-institution-client.js || true
+            curl --fail --silent --show-error \
+              --header 'Cache-Control: no-cache' \
               "${base}/sw.js?sha=${GITHUB_SHA}" \
               --output /tmp/echs-sw.js || true
             if python - <<'PY'
@@ -155,8 +170,9 @@ jobs:
           assets_path = Path("/tmp/echs-school-control-assets.json")
           control_path = Path("/tmp/echs-school-control.html")
           runtime_path = Path("/tmp/echs-school-control.js")
+          client_path = Path("/tmp/echs-institution-client.js")
           worker_path = Path("/tmp/echs-sw.js")
-          required = (deployment_path, assets_path, control_path, runtime_path, worker_path)
+          required = (deployment_path, assets_path, control_path, runtime_path, client_path, worker_path)
           if not all(path.is_file() for path in required):
               raise SystemExit(1)
           try:
@@ -166,6 +182,7 @@ jobs:
               raise SystemExit(1)
           control = control_path.read_text(encoding="utf-8", errors="replace")
           runtime = runtime_path.read_text(encoding="utf-8", errors="replace")
+          client = client_path.read_text(encoding="utf-8", errors="replace")
           worker = worker_path.read_text(encoding="utf-8", errors="replace")
           checks = [
               identity.get("sha") == expected,
@@ -185,6 +202,10 @@ jobs:
               "accountRows" in runtime,
               "document.body.textContent" not in runtime,
               "document.write" not in runtime,
+              "dataset.institutionAccessRole=current.role" in client,
+              "dataset.institutionRole=current.role" not in client,
+              "node===document.documentElement" in client,
+              "Blocked identity text write to document root" in client,
               "echs-platform-school-control-v3" in worker,
           ]
           raise SystemExit(0 if all(checks) else 1)
@@ -195,5 +216,5 @@ jobs:
             fi
             sleep 15
           done
-          echo "GitHub Pages did not publish the immutable School Control Center runtime for ${GITHUB_SHA}" >&2
+          echo "GitHub Pages did not publish the protected School Control Center client for ${GITHUB_SHA}" >&2
           exit 1
