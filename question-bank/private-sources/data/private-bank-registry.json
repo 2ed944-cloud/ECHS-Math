@@ -1,139 +1,74 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
   "generated_from": "four user-supplied Blackboard QTI archives",
   "public_safe": true,
   "source_content_in_registry": false,
-  "totals": {
-    "banks": 4,
-    "questions": 15671,
-    "pools": 1484,
-    "media_files": 38593
-  },
+  "totals": {"banks": 4, "questions": 15671, "pools": 1484, "media_files": 38593},
   "display_policy": {
     "publisher_names_visible": false,
     "course_aliases_only": true,
-    "single_canonical_record_multiple_course_mappings": true
+    "single_canonical_record_multiple_course_mappings": true,
+    "verification_disclosure_visible": true
   },
   "release_policy": {
-    "default_trust_tier": "teacher_review_required",
-    "student_visible": false,
-    "requires_independent_math_review": true,
-    "requires_media_review": true,
-    "requires_exact_lesson_mapping": true,
-    "requires_rights_clearance": true
+    "default_trust_tier": "publisher_key_direct",
+    "student_visible": true,
+    "manual_question_trust_required": false,
+    "verification_basis": "publisher-answer-key",
+    "independent_math_review_claimed": false,
+    "requires_media_integrity": true,
+    "requires_direct_lesson_mapping": true,
+    "public_web_publication_allowed": false,
+    "authenticated_school_use_only": true
   },
   "banks": [
     {
-      "bank_code": "ECHS-BB-AT9",
-      "bank_slug": "echs-bb-at9",
-      "display_order": 1,
-      "display_aliases": {
-        "ap-precalculus": "AP Precalculus Bank 1",
-        "ib-math-ai": "IB Mathematics Bank 1"
-      },
+      "bank_code": "ECHS-BB-AT9", "bank_slug": "echs-bb-at9", "display_order": 1,
+      "display_aliases": {"ap-precalculus": "AP Precalculus Bank 1", "ib-math-ai": "IB Mathematics Bank 1"},
       "package_fingerprint": "A103000398498",
-      "package_sha256": "5c4d79ffa1c4107cae83249a265ca150c9a06489ded329bb9aa306c9d2f951c2",
-      "package_size_bytes": 29517532,
-      "questions": 4945,
-      "pools": 355,
-      "question_types": {
-        "mcq": 4483,
-        "true_false": 114,
-        "fill_blank": 73,
-        "essay": 275
-      },
-      "media_files": 13439,
-      "ap_precalculus_fallback": 1521,
-      "ib_fallback": 0,
-      "access": "private-teacher-archive",
-      "trust_default": "teacher_review_required",
-      "student_visible": false,
-      "deployment_state": "converted-validated-pending-private-upload",
-      "source_content_committed_to_public_repo": false
+      "package_sha256": "1cf093dd23ded30de15503189c03a25c8c8d638c0f90fc9f62008fdee9da2718",
+      "package_size_bytes": 29558507, "questions": 4945, "pools": 355,
+      "question_types": {"mcq": 4483, "true_false": 114, "fill_blank": 73, "essay": 275},
+      "media_files": 13439, "ap_precalculus_readiness": 2055, "ib_readiness": 0,
+      "access": "private-school-authenticated", "trust_default": "publisher_key_direct", "student_visible": true,
+      "verification_basis": "publisher-answer-key", "manual_question_trust_required": false,
+      "deployment_state": "converted-direct-linked-pending-private-upload", "source_content_committed_to_public_repo": false
     },
     {
-      "bank_code": "ECHS-BB-CA9",
-      "bank_slug": "echs-bb-ca9",
-      "display_order": 2,
-      "display_aliases": {
-        "ap-precalculus": "AP Precalculus Bank 2",
-        "ib-math-ai": "IB Mathematics Bank 2"
-      },
+      "bank_code": "ECHS-BB-CA9", "bank_slug": "echs-bb-ca9", "display_order": 2,
+      "display_aliases": {"ap-precalculus": "AP Precalculus Bank 2", "ib-math-ai": "IB Mathematics Bank 2"},
       "package_fingerprint": "A103000398840",
-      "package_sha256": "0766bcc8ab0e818239589687d727691e54bfc78dce1a51ef7d3cdde0b5b7b325",
-      "package_size_bytes": 20032213,
-      "questions": 3604,
-      "pools": 253,
-      "question_types": {
-        "mcq": 3349,
-        "true_false": 91,
-        "fill_blank": 42,
-        "essay": 122
-      },
-      "media_files": 8767,
-      "ap_precalculus_fallback": 1490,
-      "ib_fallback": 0,
-      "access": "private-teacher-archive",
-      "trust_default": "teacher_review_required",
-      "student_visible": false,
-      "deployment_state": "converted-validated-pending-private-upload",
-      "source_content_committed_to_public_repo": false
+      "package_sha256": "7f9fafab54bfa2f46b9d983bf5327ab71e1f589278cab86cc82fa3a3803fc261",
+      "package_size_bytes": 20062702, "questions": 3604, "pools": 253,
+      "question_types": {"mcq": 3349, "true_false": 91, "fill_blank": 42, "essay": 122},
+      "media_files": 8767, "ap_precalculus_readiness": 1634, "ib_readiness": 0,
+      "access": "private-school-authenticated", "trust_default": "publisher_key_direct", "student_visible": true,
+      "verification_basis": "publisher-answer-key", "manual_question_trust_required": false,
+      "deployment_state": "converted-direct-linked-pending-private-upload", "source_content_committed_to_public_repo": false
     },
     {
-      "bank_code": "ECHS-BB-CA9B",
-      "bank_slug": "echs-bb-ca9b",
-      "display_order": 3,
-      "display_aliases": {
-        "ap-precalculus": "AP Precalculus Bank 3",
-        "ib-math-ai": "IB Mathematics Bank 3"
-      },
+      "bank_code": "ECHS-BB-CA9B", "bank_slug": "echs-bb-ca9b", "display_order": 3,
+      "display_aliases": {"ap-precalculus": "AP Precalculus Bank 3", "ib-math-ai": "IB Mathematics Bank 3"},
       "package_fingerprint": "A103000405541",
-      "package_sha256": "63256bfe095b13c0a5e02a4d5186a2aee7dc5c96e92395c7d43a84cc16e6931f",
-      "package_size_bytes": 23953975,
-      "questions": 2837,
-      "pools": 282,
-      "question_types": {
-        "mcq": 2667,
-        "true_false": 137,
-        "essay": 31,
-        "fill_blank": 2
-      },
-      "media_files": 7415,
-      "ap_precalculus_fallback": 956,
-      "ib_fallback": 0,
-      "access": "private-teacher-archive",
-      "trust_default": "teacher_review_required",
-      "student_visible": false,
-      "deployment_state": "converted-validated-pending-private-upload",
-      "source_content_committed_to_public_repo": false
+      "package_sha256": "45c06e9742ae56a4d9e5952132a0f8e95d850fd0fbe1822766b56e5a6e1a4984",
+      "package_size_bytes": 23978162, "questions": 2837, "pools": 282,
+      "question_types": {"mcq": 2667, "true_false": 137, "essay": 31, "fill_blank": 2},
+      "media_files": 7415, "ap_precalculus_readiness": 1168, "ib_readiness": 0,
+      "access": "private-school-authenticated", "trust_default": "publisher_key_direct", "student_visible": true,
+      "verification_basis": "publisher-answer-key", "manual_question_trust_required": false,
+      "deployment_state": "converted-direct-linked-pending-private-upload", "source_content_committed_to_public_repo": false
     },
     {
-      "bank_code": "ECHS-BB-ACS10",
-      "bank_slug": "echs-bb-acs10",
-      "display_order": 4,
-      "display_aliases": {
-        "ap-precalculus": "AP Precalculus Bank 4",
-        "ib-math-ai": "IB Mathematics Bank 4"
-      },
+      "bank_code": "ECHS-BB-ACS10", "bank_slug": "echs-bb-acs10", "display_order": 4,
+      "display_aliases": {"ap-precalculus": "AP Precalculus Bank 4", "ib-math-ai": "IB Mathematics Bank 4"},
       "package_fingerprint": "A103000322316",
-      "package_sha256": "21a0abe7e506bda15b519aaf7f45732b7754a99af0505b71b427284f69fc23cd",
-      "package_size_bytes": 25648511,
-      "questions": 4285,
-      "pools": 594,
-      "question_types": {
-        "mcq": 3761,
-        "true_false": 218,
-        "essay": 263,
-        "fill_blank": 43
-      },
-      "media_files": 8972,
-      "ap_precalculus_fallback": 1787,
-      "ib_fallback": 164,
-      "access": "private-teacher-archive",
-      "trust_default": "teacher_review_required",
-      "student_visible": false,
-      "deployment_state": "converted-validated-pending-private-upload",
-      "source_content_committed_to_public_repo": false
+      "package_sha256": "06ae6e9da1a2862c59fd194c917bd7bb3dfdf3fb794bc526dcd92243fb87fdad",
+      "package_size_bytes": 25684655, "questions": 4285, "pools": 594,
+      "question_types": {"mcq": 3761, "true_false": 218, "essay": 263, "fill_blank": 43},
+      "media_files": 8972, "ap_precalculus_readiness": 1838, "ib_readiness": 122,
+      "access": "private-school-authenticated", "trust_default": "publisher_key_direct", "student_visible": true,
+      "verification_basis": "publisher-answer-key", "manual_question_trust_required": false,
+      "deployment_state": "converted-direct-linked-pending-private-upload", "source_content_committed_to_public_repo": false
     }
   ]
 }
