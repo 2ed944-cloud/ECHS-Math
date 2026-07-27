@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0.0",
+  "questions": 15671,
+  "mapping_mode": "candidate-many-to-many",
+  "exact_verified_mappings": 0,
+  "counts_may_overlap": true,
+  "explanation": "One source question may have multiple candidate units or skills. Counts are routing candidates, not student-release counts.",
+  "ap-precalculus": {
+    "candidate_counts": {
+      "unit_0_readiness": 5754,
+      "unit_1_polynomial_rational": 7631,
+      "unit_2_exponential_logarithmic": 3977,
+      "unit_3_trigonometric_polar": 2021,
+      "unit_4_parameters_vectors_matrices": 927
+    },
+    "lesson_catalog_topics": 49,
+    "release_state": "teacher-review-required"
+  },
+  "ib-math-ai": {
+    "candidate_counts": {
+      "unit_0_readiness": 164,
+      "unit_1_number_algebra": 9916,
+      "unit_2_functions": 10368,
+      "unit_3_geometry_trigonometry": 2455,
+      "unit_4_statistics_probability": 906,
+      "unit_5_calculus": 231
+    },
+    "lesson_catalog_lessons": 25,
+    "release_state": "lesson-content-and-question-review-required"
+  },
+  "next_review_queue": [
+    "AP Precalculus exact lesson mapping",
+    "IB exact lesson mapping after lesson content build",
+    "independent mathematical verification",
+    "media accessibility review",
+    "rights and publication review"
+  ]
+}
