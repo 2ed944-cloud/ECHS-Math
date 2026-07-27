@@ -10,7 +10,7 @@ def read(path):
 def require(text,items,label):
  for item in items:
   if item not in text:errors.append(f'{label} missing {item}')
-html=read('question-bank/official/admin/upload-manager.html');js=read('question-bank/official/admin/js/upload-manager.js');css=read('question-bank/official/admin/css/upload-manager.css');api=read('supabase/functions/upload-manager-api/index.ts');migration=read('supabase/migrations/202607272201_teacher_upload_manager.sql');workflow=read('.github/workflows/process-teacher-uploads.yml');processor=read('tools/process_teacher_upload_request.py');deploy=read('.github/workflows/deploy-institution-backend.yml')
+html=read('question-bank/official/admin/upload-manager.html');js=read('question-bank/official/admin/js/upload-manager.js');css=read('question-bank/official/admin/css/upload-manager.css');api=read('supabase/functions/upload-manager-api/index.ts');migration=read('supabase/migrations/202607272201_teacher_upload_manager.sql');workflow=read('.github/workflows/process-teacher-uploads.yml');processor=read('tools/process_teacher_upload_request.py');deploy=read('.github/workflows/deploy-institution-backend.yml');supabase_config=read('supabase/config.toml')
 require(html,['Private Bank Manager','Course Release Manager','zipFile','upload-manager.js','data-require-account="teacher admin"','institutionBody'],'Upload manager page')
 require(js,['crypto.subtle.digest','signed_url','XMLHttpRequest','/complete','requireAuth(["teacher","admin"])','escapeHTML'],'Upload manager client')
 require(css,['.dropZone','.progressBar','.requestItem','@media'],'Upload manager styles')
@@ -19,6 +19,7 @@ require(migration,['teacher_upload_requests','teacher-upload-staging','file_size
 require(workflow,['schedule:','*/5 * * * *','SUPABASE_SERVICE_ROLE_KEY','process_teacher_upload_request.py','gh pr create','github_pr_url'],'Upload processor workflow')
 require(processor,['SHA-256 mismatch','safe_extract','upload_private_bank_package.py','ap-precalculus-unit-','pr_title'],'Upload processor')
 require(deploy,['upload-manager-api','setup-api/health','supabase functions deploy'],'Backend deployment health contract')
+require(supabase_config,['[functions.upload-manager-api]','verify_jwt = false'],'Supabase upload-manager function config')
 if 'SUPABASE_SERVICE_ROLE_KEY' in html+js:errors.append('Browser code must not contain the service-role secret name')
 if re.search(r"storage\.buckets.*public\s*=\s*true",migration,re.S):errors.append('Teacher upload bucket must not be public')
 if 'public=false' not in migration.replace(' ',''):errors.append('Teacher upload bucket must be explicitly private')
