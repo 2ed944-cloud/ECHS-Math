@@ -1,0 +1,75 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-07-27T13:00:00Z",
+  "canonical_scope": {
+    "questions": 1217,
+    "mcq": 876,
+    "frq": 341,
+    "student_ready": 52,
+    "teacher_archive_restricted": 1165,
+    "media_warnings": 91,
+    "correction_records": 633
+  },
+  "trust_tiers": [
+    {
+      "id": "student_ready_verified",
+      "label": "Verified student-ready",
+      "student_visible": true,
+      "requirements": [
+        "source located and transcription compared directly",
+        "answer independently verified",
+        "valid KaTeX",
+        "complete choices or FRQ parts",
+        "required media resolved",
+        "course, unit, topic and lesson mapping complete",
+        "rights permit student publication"
+      ]
+    },
+    {
+      "id": "teacher_review_required",
+      "label": "Teacher review required",
+      "student_visible": false,
+      "requirements": [
+        "canonical ID and provenance preserved",
+        "one or more student-ready gates remain incomplete"
+      ]
+    },
+    {
+      "id": "indexed_only",
+      "label": "Indexed only",
+      "student_visible": false,
+      "requirements": [
+        "record is discoverable for audit",
+        "prompt or solution is not trusted for student delivery"
+      ]
+    },
+    {
+      "id": "rights_restricted",
+      "label": "Rights restricted",
+      "student_visible": false,
+      "requirements": [
+        "source and provenance retained",
+        "student-facing content remains redacted"
+      ]
+    }
+  ],
+  "student_release_gate": {
+    "minimum_status": "student_ready_verified",
+    "forbid_unknown_answer": true,
+    "forbid_missing_media": true,
+    "forbid_unmapped_skill": true,
+    "forbid_unverified_math": true,
+    "forbid_unresolved_rights": true
+  },
+  "active_programme": {
+    "issue": 3,
+    "programme_issue": 34,
+    "batch_order": [
+      "indexed-only AP Calculus AB records",
+      "incomplete AP Calculus AB records with source media",
+      "AP Calculus BC records",
+      "historical and modern FRQs",
+      "supplemental and unofficial banks"
+    ]
+  }
+}
