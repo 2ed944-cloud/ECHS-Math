@@ -71,6 +71,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          # Explicit release-contract endpoint: setup-api/health
           for endpoint in account-api institution-api mastery-evidence private-bank-api upload-manager-api setup-api; do
             curl --fail --silent --show-error \
               "https://${SUPABASE_PROJECT_ID}.supabase.co/functions/v1/${endpoint}/health" | python -m json.tool
