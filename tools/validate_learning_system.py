@@ -33,8 +33,8 @@ SCRIPT_MARKERS={
 "question-bank/js/learning-system.js":["recordAttempt","selectAdaptive","dailyPlan","exportStudentReport","migrateLegacyAttempts"],
 "question-bank/js/practice.js":["modeCopy","persistContinue","selectAdaptive","Mistake recovery"],
 "question-bank/js/practice-builder.js":["MutationObserver","setCollapsed","builderAdjust","isCollapsed"],
-"js/landing-hybrid-hero.js":["animateMotion","tangentTraveller","f′(0) = 0","HORIZONTAL TANGENT","LOCAL MAXIMUM"],
-"js/institution-portal.js":["landing-calculus-motion.css","landing-hybrid-hero.js","hybridLandingHero"],
+"js/landing-hybrid-hero.js":["requestAnimationFrame","getPointAtLength","setVisualPhase","ECHSLandingCalculus","f′(0) = 0","f′(a) = 0","HORIZONTAL TANGENT","LOCAL MAXIMUM","LOCAL MINIMUM"],
+"js/institution-portal.js":["landing-calculus-motion.css","landing-hybrid-hero.js","hybridLandingHero","hybrid2"],
 "question-bank/js/teacher.js":["assignmentLink","importReports","exportWorkspace"],
 "question-bank/js/parent.js":["planItems","exportStudentReport"],
 }
@@ -76,6 +76,7 @@ def validate_manifest_and_worker():
         "question-bank/js/learning-system.js","question-bank/js/practice-builder.js","question-bank/css/practice-builder-compact.css"
     ):
         if f'"./{relative}"' not in worker: fail(f"sw.js does not pre-cache {relative}")
+    if "hybrid2" not in worker: fail("sw.js does not identify the hybrid2 extrema animation cache")
 
 def validate_source_boundary():
     official=ROOT/"question-bank/official"
