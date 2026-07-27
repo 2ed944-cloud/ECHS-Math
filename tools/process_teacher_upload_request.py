@@ -18,6 +18,7 @@ BUCKET = "teacher-upload-staging"
 def now(): return datetime.now(timezone.utc).isoformat()
 def canonical(value): return json.dumps(value, ensure_ascii=False, separators=(",", ":")).encode()
 
+
 def request(method, path, body=None, headers=None):
     merged={"apikey":SERVICE_KEY,"authorization":f"Bearer {SERVICE_KEY}","user-agent":"ECHS-Teacher-Upload-Processor/1.0"};merged.update(headers or {})
     req=urllib.request.Request(f"{SUPABASE_URL}{path}",data=body,method=method,headers=merged)
@@ -25,18 +26,26 @@ def request(method, path, body=None, headers=None):
         data=response.read();ctype=response.headers.get("content-type","")
         return json.loads(data) if data and "json" in ctype else data
 
+
 def patch(request_id, values):
     query=urllib.parse.urlencode({"id":f"eq.{request_id}"})
     return request("PATCH",f"/rest/v1/teacher_upload_requests?{query}",canonical({**values,"updated_at":now()}),{"content-type":"application/json","prefer":"return=representation"})
+
 
 def queued(request_id=""):
     select="id,organization_id,upload_kind,course_key,unit_key,original_filename,object_path,file_size_bytes,sha256,status"
     if request_id:
         query=urllib.parse.urlencode({"select":select,"id":f"eq.{request_id}","limit":"1"},safe=",")
     else:
-        query=urllib.parse.urlencode({"select":select,"status":"eq.queued","order":"created_at.asc","limit":"1"},safe=",")
+        query=urllib.parse.urlencode({
+            "select":select,
+            "or":"(status.eq.queued,and(status.eq.processing,upload_kind.eq.course-release))",
+            "order":"created_at.asc",
+            "limit":"1",
+        },safe=",().")
     rows=request("GET",f"/rest/v1/teacher_upload_requests?{query}") or []
     return rows[0] if rows else None
+
 
 def download(row, destination):
     encoded="/".join(urllib.parse.quote(part,safe="._+-") for part in row["object_path"].split("/"))
@@ -45,6 +54,7 @@ def download(row, destination):
     digest=hashlib.sha256(data).hexdigest()
     if digest!=row["sha256"]: raise RuntimeError(f"SHA-256 mismatch: expected {row['sha256']}, got {digest}")
     if len(data)!=int(row["file_size_bytes"]): raise RuntimeError("Staged ZIP size does not match the upload request")
+
 
 def safe_extract(archive_path, destination):
     with zipfile.ZipFile(archive_path) as archive:
@@ -56,9 +66,11 @@ def safe_extract(archive_path, destination):
             if member.file_size>25*1024*1024: raise RuntimeError(f"Oversized release member: {member.filename}")
         archive.extractall(destination)
 
+
 def lesson_number(name, unit):
     match=re.search(rf"(?:^|_){re.escape(str(unit))}\.(\d+)(?:_|\b)",name)
     return int(match.group(1)) if match else 999
+
 
 def human_title(path):
     text=path.read_text(encoding="utf-8",errors="replace")
@@ -67,6 +79,7 @@ def human_title(path):
     value=re.sub(r"\s+"," ",value).strip()
     value=re.sub(r"\s*[|·-]\s*ECHS.*$","",value,flags=re.I)
     return value or path.stem.replace("_"," ")
+
 
 def process_course(row, package):
     course=row.get("course_key") or "";unit=str(row.get("unit_key") or "").strip()
@@ -113,6 +126,7 @@ def process_course(row, package):
             index_path.write_text(index,encoding="utf-8")
         return {"course":course,"unit":unit,"lessons":len(lessons),"destination":str(destinations.relative_to(ROOT)),"update_file":str(update_path.relative_to(ROOT)),"pr_title":f"Add AP Precalculus Unit {unit} lessons"}
 
+
 def process_bank(row, package):
     command=[sys.executable,str(ROOT/"tools"/"upload_private_bank_package.py"),str(package),"--organization-id",row["organization_id"]]
     result=subprocess.run(command,cwd=ROOT,text=True,capture_output=True)
@@ -124,10 +138,12 @@ def process_bank(row, package):
         except Exception:pass
     return {"kind":"private-bank",**parsed,"log_tail":result.stdout[-1200:]}
 
+
 def write_output(name,value):
     output=os.environ.get("GITHUB_OUTPUT")
     if output:
         with open(output,"a",encoding="utf-8") as handle:handle.write(f"{name}={value}\n")
+
 
 def main():
     parser=argparse.ArgumentParser();parser.add_argument("--request-id",default="");args=parser.parse_args()
@@ -150,5 +166,6 @@ def main():
         return 0
     except Exception as exc:
         patch(request_id,{"status":"failed","progress":0,"stage":"Automatic processing failed","error_message":str(exc)[:4000],"completed_at":now()});raise
+
 
 if __name__=="__main__":raise SystemExit(main())
