@@ -68,6 +68,8 @@ jobs:
           curl --fail --silent --show-error \
             "https://${SUPABASE_PROJECT_ID}.supabase.co/functions/v1/institution-api/health" | python -m json.tool
           curl --fail --silent --show-error \
+            "https://${SUPABASE_PROJECT_ID}.supabase.co/functions/v1/mastery-evidence/health" | python -m json.tool
+          curl --fail --silent --show-error \
             "https://${SUPABASE_PROJECT_ID}.supabase.co/functions/v1/setup-api/health" | python -m json.tool
 
       - name: Verify deployed bootstrap secret
@@ -100,5 +102,5 @@ jobs:
 
       - name: Deployment reminder
         run: |
-          echo "Backend deployed, bootstrap secret verified, and production login/session transaction passed."
+          echo "Backend deployed, Mastery 2.0 evidence service verified, bootstrap secret verified, and production login/session transaction passed."
           echo "The institutional sign-in page is ready for account verification."
