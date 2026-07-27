@@ -42,17 +42,39 @@ for(const device of devices){
       await page.locator(route.ready).first().waitFor({state:'attached',timeout:30000});
       await page.waitForTimeout(route.delay||2200);
       if(route.hybridHero){
-        await page.waitForFunction(()=>document.querySelector('.premiumIdentityVisual')?.dataset.hybridHeroReady==='true',null,{timeout:12000});
+        await page.waitForFunction(()=>document.querySelector('.premiumIdentityVisual')?.dataset.hybridHeroReady==='true'&&window.ECHSLandingCalculus?.setPhase,null,{timeout:12000});
         const hybrid=await page.evaluate(()=>{
-          const board=document.querySelector('.calculusMotionBoard'),card=document.querySelector('.compactSchoolIdentityCard'),motion=document.querySelector('.tangentTraveller animateMotion'),guide=document.querySelector('.maximumTangentGuide');
+          const board=document.querySelector('.calculusMotionBoard'),card=document.querySelector('.compactSchoolIdentityCard'),traveller=document.querySelector('#heroTangentTraveller'),maximumGuide=document.querySelector('.maximumTangentGuide'),minimumGuide=document.querySelector('.minimumTangentGuide');
           const boardRect=board?.getBoundingClientRect(),cardRect=card?.getBoundingClientRect();
-          return{board:Boolean(board),card:Boolean(card),motion:Boolean(motion),guide:Boolean(guide),boardHeight:Math.round(boardRect?.height||0),cardHeight:Math.round(cardRect?.height||0),overlap:Boolean(boardRect&&cardRect&&cardRect.top<boardRect.bottom&&cardRect.top>boardRect.top)};
+          return{board:Boolean(board),card:Boolean(card),traveller:Boolean(traveller),maximumGuide:Boolean(maximumGuide),minimumGuide:Boolean(minimumGuide),boardHeight:Math.round(boardRect?.height||0),cardHeight:Math.round(cardRect?.height||0),overlap:Boolean(boardRect&&cardRect&&cardRect.top<boardRect.bottom&&cardRect.top>boardRect.top)};
         });
         Object.assign(entry.interactions,{hybridCalculusHero:true,...hybrid});
-        if(!hybrid.board||!hybrid.card||!hybrid.motion||!hybrid.guide)report.errors.push(`${route.key}/${device.key}: hybrid calculus artwork is incomplete`);
+        if(!hybrid.board||!hybrid.card||!hybrid.traveller||!hybrid.maximumGuide||!hybrid.minimumGuide)report.errors.push(`${route.key}/${device.key}: extrema calculus artwork is incomplete`);
         if(hybrid.boardHeight<200)report.errors.push(`${route.key}/${device.key}: calculus board is unexpectedly short (${hybrid.boardHeight}px)`);
         if(hybrid.cardHeight>350)report.errors.push(`${route.key}/${device.key}: compact ECHS card is too tall (${hybrid.cardHeight}px)`);
         if(!hybrid.overlap)report.errors.push(`${route.key}/${device.key}: ECHS card does not visually overlap the calculus board`);
+
+        for(const phase of ['maximum','minimum']){
+          await page.evaluate(value=>window.ECHSLandingCalculus.setPhase(value),phase);
+          await page.waitForFunction(value=>document.querySelector('.calculusMotionBoard')?.dataset.extremumPhase===value,phase,{timeout:5000});
+          const state=await page.evaluate(value=>{
+            const active=document.querySelector(`[data-extremum-callout="${value}"]`);
+            const other=document.querySelector(`[data-extremum-callout="${value==='maximum'?'minimum':'maximum'}"]`);
+            const formula=document.getElementById('calculusBoardFormula')?.textContent||'';
+            const transform=document.getElementById('heroTangentTraveller')?.getAttribute('transform')||'';
+            return{activeOpacity:Number.parseFloat(getComputedStyle(active).opacity||'0'),otherOpacity:Number.parseFloat(getComputedStyle(other).opacity||'0'),formula,transform};
+          },phase);
+          entry.interactions[`${phase}Reveal`]=state;
+          if(state.activeOpacity<.75)report.errors.push(`${route.key}/${device.key}: ${phase} callout did not appear`);
+          if(state.otherOpacity>.25)report.errors.push(`${route.key}/${device.key}: inactive extremum callout remained visible during ${phase}`);
+          const expectedFormula=phase==='maximum'?"f′(0) = 0":"f′(a) = 0";
+          if(state.formula!==expectedFormula)report.errors.push(`${route.key}/${device.key}: ${phase} formula is ${state.formula||'missing'}`);
+          if(!/translate\(.+\) rotate\(.+\)/.test(state.transform))report.errors.push(`${route.key}/${device.key}: tangent transform was not calculated during ${phase}`);
+          const phaseScreenshot=path.join(outputDir,`${route.key}-calculus-${phase}-${device.key}.png`);
+          await page.screenshot({path:phaseScreenshot,fullPage:false});
+          entry.interactions[`${phase}Screenshot`]=phaseScreenshot;
+        }
+        await page.evaluate(()=>window.ECHSLandingCalculus.setPhase('maximum'));
       }
       if(route.compactBuilder){
         await page.locator('#builderToggle').waitFor({state:'attached',timeout:8000});
