@@ -52,16 +52,16 @@
     const current=ECHSInstitution.account?.(),nav=document.querySelector(".institutionNav");
     if(!current||!nav||!["teacher","admin"].includes(current.role))return;
     const adminLink=nav.querySelector("#adminNav");
-    const add=(selector,href,label,icon)=>{
+    const add=(selector,attribute,href,label,icon)=>{
       if(nav.querySelector(selector))return;
       const link=document.createElement("a");
       link.href=root(href);
-      link.setAttribute(selector.slice(1),"true");
+      link.setAttribute(attribute,"true");
       link.innerHTML=`<span class="institutionNavIcon">${icon}</span>${label}`;
       if(adminLink)nav.insertBefore(link,adminLink);else nav.append(link);
     };
-    add("[data-question-trust-link]","question-bank/official/admin/question-trust.html","Question Trust","⌾");
-    add("[data-private-bank-link]","question-bank/official/admin/private-bank-center.html","Private Banks","▦");
+    add("[data-question-trust-link]","data-question-trust-link","question-bank/official/admin/question-trust.html","Question Trust","⌾");
+    add("[data-private-bank-link]","data-private-bank-link","question-bank/official/admin/private-bank-center.html","Private Banks","▦");
   }
 
   function install(){
