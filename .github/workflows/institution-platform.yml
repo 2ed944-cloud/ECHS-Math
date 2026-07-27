@@ -29,9 +29,12 @@ on:
       - "question-bank/js/teacher-cloud.js"
       - "question-bank/js/teacher-evidence-heatmap.js"
       - "question-bank/js/parent-cloud.js"
+      - "question-bank/private-sources/**"
       - "question-bank/official/admin/question-trust.html"
       - "question-bank/official/admin/js/question-trust.js"
       - "question-bank/official/admin/data/question-trust-manifest.json"
+      - "question-bank/official/admin/private-bank-center.html"
+      - "question-bank/official/admin/js/private-bank-center.js"
       - "platform/PHASE_4_PREMIUM_EXPERIENCE.md"
       - "platform/PHASE_5_INITIAL_SETUP.md"
       - "supabase/**"
@@ -42,6 +45,7 @@ on:
       - "tools/validate_institution_platform.py"
       - "tools/validate_mastery_foundation.py"
       - "tools/validate_mastery_guards.py"
+      - "tools/validate_private_bank_foundation.py"
       - "tools/validate_supabase_migration_versions.py"
       - "tools/validate_production_activation.py"
       - "tools/validate_premium_experience.py"
@@ -106,6 +110,9 @@ jobs:
           python tools/validate_mastery_foundation.py
           python tools/validate_mastery_guards.py
 
+      - name: Validate private Blackboard banks and course alignment
+        run: python tools/validate_private_bank_foundation.py
+
       - name: Re-run Phase 1 and Phase 2 release gates
         run: |
           python tools/validate_platform_phase1.py
@@ -148,8 +155,17 @@ jobs:
           python -m json.tool config/institution.example.json >/dev/null
           python -m json.tool data/knowledge-graph/schema-v1.json >/dev/null
           python -m json.tool data/knowledge-graph/ap-calculus-unit-1.json >/dev/null
+          python -m json.tool data/knowledge-graph/ap-precalculus-v1.json >/dev/null
+          python -m json.tool data/knowledge-graph/ib-math-ai-v1.json >/dev/null
           python -m json.tool question-bank/official/admin/data/question-trust-manifest.json >/dev/null
-          python -m py_compile tools/bootstrap_institution.py tools/validate_initial_setup.py tools/validate_institution_platform.py tools/validate_mastery_foundation.py tools/validate_mastery_guards.py tools/validate_supabase_migration_versions.py tools/validate_production_activation.py tools/validate_premium_experience.py
+          python -m json.tool question-bank/private-sources/data/private-bank-registry.json >/dev/null
+          python -m json.tool question-bank/private-sources/data/ap-precalculus-crosswalk.json >/dev/null
+          python -m json.tool question-bank/private-sources/data/ib-math-ai-crosswalk.json >/dev/null
+          python -m json.tool question-bank/private-sources/config/at9.json >/dev/null
+          python -m json.tool question-bank/private-sources/config/ca9.json >/dev/null
+          python -m json.tool question-bank/private-sources/config/ca9b.json >/dev/null
+          python -m json.tool question-bank/private-sources/config/acs10.json >/dev/null
+          python -m py_compile tools/bootstrap_institution.py tools/validate_initial_setup.py tools/validate_institution_platform.py tools/validate_mastery_foundation.py tools/validate_mastery_guards.py tools/validate_private_bank_foundation.py tools/validate_supabase_migration_versions.py tools/validate_production_activation.py tools/validate_premium_experience.py question-bank/private-sources/tools/import_blackboard_qti_secure.py
           python - <<'PY'
           import tomllib
           with open('supabase/config.toml','rb') as handle:
