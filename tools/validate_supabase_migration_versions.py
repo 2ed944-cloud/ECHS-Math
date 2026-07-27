@@ -33,6 +33,7 @@ required = {
     "202607272002_mastery_authority_guard.sql",
     "202607272003_attempt_trust_guard.sql",
     "202607272004_atomic_skill_mapping.sql",
+    "202607272101_private_bank_foundation.sql",
 }
 existing = {path.name for path in MIGRATIONS.glob("*.sql")} if MIGRATIONS.is_dir() else set()
 for name in sorted(required - existing):
