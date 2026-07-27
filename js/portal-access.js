@@ -59,7 +59,7 @@
   }
   const ready=resolve().catch(error=>({ready:true,authenticated:false,role:"guest",current:null,classes:[],courseKeys:[],allCourses:false,error:error?.message||String(error)})).then(access=>{
     window.ECHSPortalAccess.current=access;
-    document.documentElement.dataset.platformRole=access.role;
+    document.documentElement.dataset.platformRole=access.unconfigured?"preview":access.role;
     updateRoleLinks(access);
     enforcePage(access);
     document.dispatchEvent(new CustomEvent("echs:portal-access",{detail:access}));
