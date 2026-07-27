@@ -30,7 +30,7 @@ PAGE_IDS={
 }
 SCRIPT_MARKERS={
 "question-bank/js/learning-system.js":["recordAttempt","selectAdaptive","dailyPlan","exportStudentReport","migrateLegacyAttempts"],
-"question-bank/js/practice.js":["modeCopy","persistContinue","selectAdaptive","Mistake Bank"],
+"question-bank/js/practice.js":["modeCopy","persistContinue","selectAdaptive","Mistake recovery"],
 "question-bank/js/teacher.js":["assignmentLink","importReports","exportWorkspace"],
 "question-bank/js/parent.js":["planItems","exportStudentReport"],
 }

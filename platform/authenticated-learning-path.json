@@ -1,0 +1,15 @@
+{
+  "schema": "echs-authenticated-learning-pathway",
+  "version": "1.0.0",
+  "public_catalogue": false,
+  "student_course_scope": "assigned-classes",
+  "teacher_course_scope": "all-courses",
+  "administrator_course_scope": "all-courses",
+  "student_sequence": ["lesson", "focused-practice", "review", "mastery"],
+  "visible_bank_labels": {
+    "ap-calculus": ["AP Calculus Bank 1", "AP Calculus Bank 2", "AP Calculus Bank 3"],
+    "ap-precalculus": ["AP Precalculus Bank 1", "AP Precalculus Bank 2"]
+  },
+  "gamification_identity": "ECHS original",
+  "strict_static_content_confidentiality": false
+}

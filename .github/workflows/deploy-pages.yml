@@ -8,20 +8,34 @@ on:
     paths:
       - ".github/workflows/deploy-pages.yml"
       - ".nojekyll"
+      - "index.html"
       - "login.html"
+      - "robots.txt"
+      - "sitemap.xml"
       - "sw.js"
+      - "lessons/**"
+      - "css/learning-access.css"
+      - "css/gamification.css"
+      - "js/portal.js"
+      - "js/portal-access.js"
+      - "js/lesson-access-guard.js"
+      - "js/gamification-overlay.js"
       - "js/login.js"
       - "js/institution-client.js"
       - "js/institution-experience.js"
       - "js/institution-completion.js"
-      - "css/institution*.css"
+      - "question-bank/*.html"
+      - "question-bank/official/**/*.html"
+      - "question-bank/js/**"
       - "question-bank/admin.html"
       - "question-bank/school-control.html"
-      - "question-bank/teacher.html"
       - "question-bank/student.html"
+      - "question-bank/teacher.html"
       - "question-bank/parent.html"
-      - "question-bank/js/**"
+      - "css/institution*.css"
       - "tools/fingerprint_school_control.py"
+      - "tools/inject_learning_access_guard.py"
+      - "tools/test_learning_access_contract.py"
       - "tools/test_institution_identity_mount.mjs"
       - "tools/validate_pages_artifact.py"
   workflow_dispatch:
@@ -56,6 +70,9 @@ jobs:
       - name: Verify identity rendering preserves the document root
         run: node tools/test_institution_identity_mount.mjs
 
+      - name: Verify authenticated learning pathway source contract
+        run: python tools/test_learning_access_contract.py .
+
       - name: Prepare immutable Pages artifact
         shell: bash
         run: |
@@ -70,6 +87,8 @@ jobs:
             --exclude='supabase/.temp/' \
             ./ _pages/
           touch _pages/.nojekyll
+          python tools/inject_learning_access_guard.py _pages
+          python tools/test_learning_access_contract.py _pages --artifact
           python tools/fingerprint_school_control.py _pages --sha "$GITHUB_SHA"
           python - <<'PY'
           import json
@@ -84,10 +103,7 @@ jobs:
               "ref": os.environ["GITHUB_REF"],
               "deployed_at": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
           }
-          Path("_pages/deployment.json").write_text(
-              json.dumps(payload, indent=2) + "\n",
-              encoding="utf-8",
-          )
+          Path("_pages/deployment.json").write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
           PY
 
       - name: Validate exact Pages artifact
@@ -116,7 +132,7 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
-      - name: Verify live deployment identity and immutable School Control Center runtime
+      - name: Verify live authenticated learning pathway and School Control Center
         shell: bash
         env:
           PAGE_URL: ${{ steps.deployment.outputs.page_url }}
@@ -126,39 +142,19 @@ jobs:
           short="${GITHUB_SHA:0:12}"
           runtime_path="question-bank/js/school-control.${short}.js"
           client_path="js/institution-client.${short}.js"
+          lesson_path="lessons/ap-calculus/unit-1/1-1-can-change-occur-at-an-instant.html"
           for attempt in $(seq 1 40); do
             echo "Live verification attempt ${attempt}/40"
-            rm -f \
-              /tmp/echs-deployment.json \
-              /tmp/echs-school-control-assets.json \
-              /tmp/echs-school-control.html \
-              /tmp/echs-school-control.js \
-              /tmp/echs-institution-client.js \
-              /tmp/echs-sw.js
-            curl --fail --silent --show-error \
-              --header 'Cache-Control: no-cache' \
-              "${base}/deployment.json?sha=${GITHUB_SHA}" \
-              --output /tmp/echs-deployment.json || true
-            curl --fail --silent --show-error \
-              --header 'Cache-Control: no-cache' \
-              "${base}/school-control-assets.json?sha=${GITHUB_SHA}" \
-              --output /tmp/echs-school-control-assets.json || true
-            curl --fail --silent --show-error \
-              --header 'Cache-Control: no-cache' \
-              "${base}/question-bank/school-control.html?sha=${GITHUB_SHA}" \
-              --output /tmp/echs-school-control.html || true
-            curl --fail --silent --show-error \
-              --header 'Cache-Control: no-cache' \
-              "${base}/${runtime_path}" \
-              --output /tmp/echs-school-control.js || true
-            curl --fail --silent --show-error \
-              --header 'Cache-Control: no-cache' \
-              "${base}/${client_path}" \
-              --output /tmp/echs-institution-client.js || true
-            curl --fail --silent --show-error \
-              --header 'Cache-Control: no-cache' \
-              "${base}/sw.js?sha=${GITHUB_SHA}" \
-              --output /tmp/echs-sw.js || true
+            rm -f /tmp/echs-deployment.json /tmp/echs-school-control-assets.json /tmp/echs-school-control.html /tmp/echs-school-control.js /tmp/echs-institution-client.js /tmp/echs-index.html /tmp/echs-practice.html /tmp/echs-lesson.html /tmp/echs-sw.js
+            curl --fail --silent --show-error --header 'Cache-Control: no-cache' "${base}/deployment.json?sha=${GITHUB_SHA}" --output /tmp/echs-deployment.json || true
+            curl --fail --silent --show-error --header 'Cache-Control: no-cache' "${base}/school-control-assets.json?sha=${GITHUB_SHA}" --output /tmp/echs-school-control-assets.json || true
+            curl --fail --silent --show-error --header 'Cache-Control: no-cache' "${base}/question-bank/school-control.html?sha=${GITHUB_SHA}" --output /tmp/echs-school-control.html || true
+            curl --fail --silent --show-error --header 'Cache-Control: no-cache' "${base}/${runtime_path}" --output /tmp/echs-school-control.js || true
+            curl --fail --silent --show-error --header 'Cache-Control: no-cache' "${base}/${client_path}" --output /tmp/echs-institution-client.js || true
+            curl --fail --silent --show-error --header 'Cache-Control: no-cache' "${base}/index.html?sha=${GITHUB_SHA}" --output /tmp/echs-index.html || true
+            curl --fail --silent --show-error --header 'Cache-Control: no-cache' "${base}/question-bank/practice.html?sha=${GITHUB_SHA}" --output /tmp/echs-practice.html || true
+            curl --fail --silent --show-error --header 'Cache-Control: no-cache' "${base}/${lesson_path}?sha=${GITHUB_SHA}" --output /tmp/echs-lesson.html || true
+            curl --fail --silent --show-error --header 'Cache-Control: no-cache' "${base}/sw.js?sha=${GITHUB_SHA}" --output /tmp/echs-sw.js || true
             if python - <<'PY'
           import json
           import os
@@ -166,55 +162,53 @@ jobs:
 
           expected = os.environ["GITHUB_SHA"]
           token = expected[:12]
-          deployment_path = Path("/tmp/echs-deployment.json")
-          assets_path = Path("/tmp/echs-school-control-assets.json")
-          control_path = Path("/tmp/echs-school-control.html")
-          runtime_path = Path("/tmp/echs-school-control.js")
-          client_path = Path("/tmp/echs-institution-client.js")
-          worker_path = Path("/tmp/echs-sw.js")
-          required = (deployment_path, assets_path, control_path, runtime_path, client_path, worker_path)
-          if not all(path.is_file() for path in required):
+          paths = {
+              "deployment": Path("/tmp/echs-deployment.json"),
+              "assets": Path("/tmp/echs-school-control-assets.json"),
+              "control": Path("/tmp/echs-school-control.html"),
+              "runtime": Path("/tmp/echs-school-control.js"),
+              "client": Path("/tmp/echs-institution-client.js"),
+              "index": Path("/tmp/echs-index.html"),
+              "practice": Path("/tmp/echs-practice.html"),
+              "lesson": Path("/tmp/echs-lesson.html"),
+              "worker": Path("/tmp/echs-sw.js"),
+          }
+          if not all(path.is_file() for path in paths.values()):
               raise SystemExit(1)
           try:
-              identity = json.loads(deployment_path.read_text(encoding="utf-8"))
-              assets = json.loads(assets_path.read_text(encoding="utf-8"))
+              identity = json.loads(paths["deployment"].read_text(encoding="utf-8"))
+              assets = json.loads(paths["assets"].read_text(encoding="utf-8"))
           except Exception:
               raise SystemExit(1)
-          control = control_path.read_text(encoding="utf-8", errors="replace")
-          runtime = runtime_path.read_text(encoding="utf-8", errors="replace")
-          client = client_path.read_text(encoding="utf-8", errors="replace")
-          worker = worker_path.read_text(encoding="utf-8", errors="replace")
+          text = {key: path.read_text(encoding="utf-8", errors="replace") for key, path in paths.items() if key not in {"deployment", "assets"}}
           checks = [
               identity.get("sha") == expected,
               assets.get("sha") == expected,
               assets.get("token") == token,
               assets.get("runtime") == f"question-bank/js/school-control.{token}.js",
-              len(control.encode("utf-8")) > 12000,
-              "<!doctype html" in control.lower(),
-              "School Control Center" in control,
-              "institutionBody" in control,
-              "accountRows" in control,
-              f"js/school-control.{token}.js" in control,
-              f"../js/institution-client.{token}.js" in control,
-              "js/admin-accounts.js?v=" not in control,
-              len(runtime.encode("utf-8")) > 10000,
-              'requireAuth(["admin","teacher"])' in runtime,
-              "accountRows" in runtime,
-              "document.body.textContent" not in runtime,
-              "document.write" not in runtime,
-              "dataset.institutionAccessRole=current.role" in client,
-              "dataset.institutionRole=current.role" not in client,
-              "node===document.documentElement" in client,
-              "Blocked identity text write to document root" in client,
-              "echs-platform-school-control-v3" in worker,
+              len(text["control"].encode("utf-8")) > 12000,
+              "School Control Center" in text["control"],
+              f"js/school-control.{token}.js" in text["control"],
+              f"../js/institution-client.{token}.js" in text["control"],
+              'requireAuth(["admin","teacher"])' in text["runtime"],
+              "document.body.textContent" not in text["runtime"],
+              "dataset.institutionAccessRole=current.role" in text["client"],
+              "dataset.institutionRole=current.role" not in text["client"],
+              "node===document.documentElement" in text["client"],
+              "Lessons appear after sign-in." in text["index"],
+              "Explore courses" not in text["index"],
+              'data-require-account="student teacher admin"' in text["practice"],
+              'data-echs-lesson-guard="1"' in text["lesson"],
+              "lesson-access-guard.js" in text["lesson"],
+              "echs-platform-school-control-v3-pathway1" in text["worker"],
           ]
           raise SystemExit(0 if all(checks) else 1)
           PY
             then
-              echo "GitHub Pages immutable School Control Center verification: PASS"
+              echo "GitHub Pages authenticated learning pathway verification: PASS"
               exit 0
             fi
             sleep 15
           done
-          echo "GitHub Pages did not publish the protected School Control Center client for ${GITHUB_SHA}" >&2
+          echo "GitHub Pages did not publish the protected learning pathway for ${GITHUB_SHA}" >&2
           exit 1
