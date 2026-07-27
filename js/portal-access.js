@@ -50,7 +50,7 @@
   function enforcePage(access){
     const body=document.body;if(!body)return;
     const roles=String(body.dataset.requireAccount||"").split(/\s+/).filter(Boolean);
-    if(!roles.length)return;
+    if(!roles.length||access.unconfigured)return;
     if(!access.authenticated){
       const next=encodeURIComponent(location.href);
       location.replace(ECHSInstitution.root(`login.html?next=${next}`));return;
