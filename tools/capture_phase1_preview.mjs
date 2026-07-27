@@ -53,10 +53,13 @@ for(const device of devices){
         if(hybrid.boardHeight<200)report.errors.push(`${route.key}/${device.key}: calculus board is unexpectedly short (${hybrid.boardHeight}px)`);
         if(hybrid.cardHeight>350)report.errors.push(`${route.key}/${device.key}: compact ECHS card is too tall (${hybrid.cardHeight}px)`);
         if(!hybrid.overlap)report.errors.push(`${route.key}/${device.key}: ECHS card does not visually overlap the calculus board`);
+        await page.locator('.calculusMotionBoard').scrollIntoViewIfNeeded();
+        await page.waitForTimeout(140);
 
         for(const phase of ['maximum','minimum']){
           await page.evaluate(value=>window.ECHSLandingCalculus.setPhase(value),phase);
           await page.waitForFunction(value=>document.querySelector('.calculusMotionBoard')?.dataset.extremumPhase===value,phase,{timeout:5000});
+          await page.waitForTimeout(420);
           const state=await page.evaluate(value=>{
             const active=document.querySelector(`[data-extremum-callout="${value}"]`);
             const other=document.querySelector(`[data-extremum-callout="${value==='maximum'?'minimum':'maximum'}"]`);
@@ -75,6 +78,8 @@ for(const device of devices){
           entry.interactions[`${phase}Screenshot`]=phaseScreenshot;
         }
         await page.evaluate(()=>window.ECHSLandingCalculus.setPhase('maximum'));
+        await page.waitForTimeout(420);
+        await page.evaluate(()=>scrollTo({top:0,behavior:'instant'}));
       }
       if(route.compactBuilder){
         await page.locator('#builderToggle').waitFor({state:'attached',timeout:8000});
