@@ -146,7 +146,7 @@ def validate_source(root: Path, errors: list[str]) -> None:
         "portal-access.js",
         "lesson-access-guard.js",
         "gamification-overlay.js",
-        "landing2",
+        "hybrid1",
         "builder1",
     ], "Service worker", errors)
 
