@@ -97,16 +97,25 @@
       location.replace(root(`login.html?next=${next}`));return null;
     }
     if(roles.length&&!roles.includes(current.role)){location.replace(root(roleHome(current.role)));return null}
-    document.documentElement.dataset.institutionRole=current.role;
+    delete document.documentElement.dataset.institutionRole;
+    document.documentElement.dataset.institutionAccessRole=current.role;
     return current;
   }
   function initials(name){return String(name||"?").split(/\s+/).slice(0,2).map(part=>part[0]).join("").toUpperCase()}
   function mountIdentity(current){
-    document.querySelectorAll("[data-institution-name]").forEach(node=>node.textContent=current?.display_name||"Guest");
-    document.querySelectorAll("[data-institution-username]").forEach(node=>node.textContent=current?.username||"");
-    document.querySelectorAll("[data-institution-role]").forEach(node=>node.textContent=current?.role||"");
-    document.querySelectorAll("[data-institution-org]").forEach(node=>node.textContent=current?.organization_name||"ECHS Mathematics");
-    document.querySelectorAll("[data-institution-initials]").forEach(node=>node.textContent=initials(current?.display_name));
+    const safeText=(selector,value)=>document.querySelectorAll(selector).forEach(node=>{
+      if(node===document.documentElement||node===document.head||node===document.body){
+        console.error(`Blocked identity text write to document root for ${selector}`);
+        return;
+      }
+      node.textContent=value;
+    });
+    const username=current?.username||String(current?.email||"").split("@")[0]||"";
+    safeText("[data-institution-name]",current?.display_name||"Guest");
+    safeText("[data-institution-username]",username);
+    safeText("[data-institution-role]",current?.role||"");
+    safeText("[data-institution-org]",current?.organization_name||"ECHS Mathematics");
+    safeText("[data-institution-initials]",initials(current?.display_name));
     document.querySelectorAll("[data-institution-logout]").forEach(button=>button.addEventListener("click",logout));
   }
   function localLearningPayload(){
