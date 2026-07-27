@@ -18,6 +18,7 @@ REQUIRED=[
 "question-bank/css/learning-system.css","question-bank/css/practice-builder-compact.css","question-bank/js/learning-system.js","question-bank/js/sync-adapter.js",
 "question-bank/js/learning-home.js","question-bank/js/practice.js","question-bank/js/practice-builder.js","question-bank/js/exam.js","question-bank/js/dashboard.js",
 "question-bank/js/mistakes.js","question-bank/js/teacher.js","question-bank/js/parent.js",
+"css/landing-calculus-motion.css","js/landing-hybrid-hero.js","js/institution-portal.js",
 "js/lesson-learning-bridge.js","tools/test_learning_system.mjs"
 ]
 PAGE_IDS={
@@ -32,6 +33,8 @@ SCRIPT_MARKERS={
 "question-bank/js/learning-system.js":["recordAttempt","selectAdaptive","dailyPlan","exportStudentReport","migrateLegacyAttempts"],
 "question-bank/js/practice.js":["modeCopy","persistContinue","selectAdaptive","Mistake recovery"],
 "question-bank/js/practice-builder.js":["MutationObserver","setCollapsed","builderAdjust","isCollapsed"],
+"js/landing-hybrid-hero.js":["animateMotion","tangentTraveller","f′(0) = 0","HORIZONTAL TANGENT","LOCAL MAXIMUM"],
+"js/institution-portal.js":["landing-calculus-motion.css","landing-hybrid-hero.js","hybridLandingHero"],
 "question-bank/js/teacher.js":["assignmentLink","importReports","exportWorkspace"],
 "question-bank/js/parent.js":["planItems","exportStudentReport"],
 }
@@ -68,6 +71,7 @@ def validate_manifest_and_worker():
         if url not in shortcut_urls: fail(f"manifest.json is missing Phase 2 shortcut {url}")
     worker=(ROOT/"sw.js").read_text(encoding="utf-8")
     for relative in (
+        "css/landing-calculus-motion.css","js/landing-hybrid-hero.js",
         "question-bank/dashboard.html","question-bank/mistakes.html","question-bank/teacher.html","question-bank/parent.html",
         "question-bank/js/learning-system.js","question-bank/js/practice-builder.js","question-bank/css/practice-builder-compact.css"
     ):
@@ -85,7 +89,7 @@ def check_javascript():
       "question-bank/js/learning-system.js","question-bank/js/sync-adapter.js","question-bank/js/bank.js",
       "question-bank/js/learning-home.js","question-bank/js/practice.js","question-bank/js/practice-builder.js","question-bank/js/exam.js",
       "question-bank/js/dashboard.js","question-bank/js/mistakes.js","question-bank/js/teacher.js",
-      "question-bank/js/parent.js","js/platform-foundation.js","js/lesson-learning-bridge.js","sw.js"
+      "question-bank/js/parent.js","js/platform-foundation.js","js/institution-portal.js","js/landing-hybrid-hero.js","js/lesson-learning-bridge.js","sw.js"
     ]
     for relative in scripts:
         result=subprocess.run(["node","--check",str(ROOT/relative)],capture_output=True,text=True)
