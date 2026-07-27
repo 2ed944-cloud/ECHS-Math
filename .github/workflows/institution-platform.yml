@@ -109,12 +109,33 @@ jobs:
           node tools/test_learning_system.mjs
 
       - name: Type-check Supabase Edge Functions
+        id: deno_check
+        continue-on-error: true
+        shell: bash
         run: |
-          deno check supabase/functions/account-api/index.ts
-          deno check supabase/functions/institution-api/index.ts
-          deno check supabase/functions/learning-sync/index.ts
-          deno check supabase/functions/mastery-evidence/index.ts
-          deno check supabase/functions/setup-api/index.ts
+          set -o pipefail
+          {
+            deno check supabase/functions/account-api/index.ts
+            deno check supabase/functions/institution-api/index.ts
+            deno check supabase/functions/learning-sync/index.ts
+            deno check supabase/functions/mastery-evidence/index.ts
+            deno check supabase/functions/setup-api/index.ts
+          } 2>&1 | tee deno-check.log
+
+      - name: Upload Deno type-check diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: institutional-deno-check
+          path: deno-check.log
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Enforce Deno type-check result
+        if: steps.deno_check.outcome != 'success'
+        run: |
+          echo "Deno type-check failed. See the institutional-deno-check artifact." >&2
+          exit 1
 
       - name: Validate JSON, TOML and Python files
         run: |
