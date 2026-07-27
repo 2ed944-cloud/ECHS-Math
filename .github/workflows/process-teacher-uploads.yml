@@ -61,8 +61,91 @@ jobs:
           python -m py_compile tools/process_teacher_upload_request.py
           python -m py_compile tools/upload_private_bank_package.py
 
+      - name: Reconcile existing course release pull request
+        id: reconcile
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json, os, subprocess, urllib.parse, urllib.request
+          from datetime import datetime, timezone
+
+          base = os.environ['SUPABASE_URL'].rstrip('/')
+          key = os.environ['SUPABASE_SERVICE_ROLE_KEY']
+          requested = os.environ.get('REQUEST_ID', '').strip()
+          select = 'id,status,upload_kind,github_pr_url'
+          if requested:
+              query = urllib.parse.urlencode({'select': select, 'id': f'eq.{requested}', 'limit': '1'}, safe=',')
+          else:
+              query = urllib.parse.urlencode({
+                  'select': select,
+                  'status': 'eq.processing',
+                  'upload_kind': 'eq.course-release',
+                  'order': 'created_at.asc',
+                  'limit': '1',
+              }, safe=',')
+          req = urllib.request.Request(
+              f'{base}/rest/v1/teacher_upload_requests?{query}',
+              headers={'apikey': key, 'authorization': f'Bearer {key}'},
+          )
+          with urllib.request.urlopen(req, timeout=60) as response:
+              rows = json.load(response)
+          output = os.environ['GITHUB_OUTPUT']
+          if not rows or rows[0].get('upload_kind') != 'course-release':
+              with open(output, 'a', encoding='utf-8') as handle:
+                  handle.write('reconciled=false\n')
+              raise SystemExit(0)
+
+          row = rows[0]
+          branch = f"teacher-release/{row['id']}"
+          command = [
+              'gh', 'pr', 'list', '--head', branch, '--state', 'all', '--limit', '1',
+              '--json', 'url,state,mergedAt',
+          ]
+          result = subprocess.run(command, check=True, text=True, capture_output=True)
+          prs = json.loads(result.stdout or '[]')
+          if not prs:
+              with open(output, 'a', encoding='utf-8') as handle:
+                  handle.write('reconciled=false\n')
+              raise SystemExit(0)
+
+          pr = prs[0]
+          merged = bool(pr.get('mergedAt'))
+          values = {
+              'status': 'completed' if merged else 'pr-opened',
+              'progress': 100 if merged else 92,
+              'stage': 'Course release merged and published' if merged else 'Pull request opened · awaiting review and merge',
+              'github_pr_url': pr['url'],
+              'updated_at': datetime.now(timezone.utc).isoformat(),
+              'error_message': None,
+          }
+          if merged:
+              values['completed_at'] = datetime.now(timezone.utc).isoformat()
+          patch_query = urllib.parse.urlencode({'id': f"eq.{row['id']}"})
+          body = json.dumps(values).encode()
+          patch = urllib.request.Request(
+              f'{base}/rest/v1/teacher_upload_requests?{patch_query}',
+              data=body,
+              method='PATCH',
+              headers={
+                  'apikey': key,
+                  'authorization': f'Bearer {key}',
+                  'content-type': 'application/json',
+                  'prefer': 'return=minimal',
+              },
+          )
+          urllib.request.urlopen(patch, timeout=60).read()
+          with open(output, 'a', encoding='utf-8') as handle:
+              handle.write('reconciled=true\n')
+              handle.write(f"request_id={row['id']}\n")
+              handle.write(f"pr_url={pr['url']}\n")
+              handle.write(f"merged={'true' if merged else 'false'}\n")
+          print(f"Reconciled {row['id']} from {pr['url']} · merged={merged}")
+          PY
+
       - name: Process oldest queued request
         id: processor
+        if: steps.reconcile.outputs.reconciled != 'true'
         shell: bash
         run: |
           set -euo pipefail
@@ -71,7 +154,7 @@ jobs:
           python tools/process_teacher_upload_request.py "${args[@]}"
 
       - name: Stop when queue is empty
-        if: steps.processor.outputs.found != 'true'
+        if: steps.reconcile.outputs.reconciled != 'true' && steps.processor.outputs.found != 'true'
         run: echo "No queued teacher uploads."
 
       - name: Validate generated course release
@@ -143,6 +226,8 @@ jobs:
       - name: Summary
         if: always()
         run: |
+          echo "Reconciled existing release: ${{ steps.reconcile.outputs.reconciled }}"
+          echo "Reconciled PR: ${{ steps.reconcile.outputs.pr_url }}"
           echo "Found request: ${{ steps.processor.outputs.found }}"
           echo "Kind: ${{ steps.processor.outputs.kind }}"
           echo "Repository changes: ${{ steps.processor.outputs.changed }}"
