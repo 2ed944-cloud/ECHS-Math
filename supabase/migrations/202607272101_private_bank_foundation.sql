@@ -1,5 +1,7 @@
--- ECHS Mathematics: private Blackboard bank storage and registry foundation.
--- Source question payloads remain server-only. Student exposure requires Question Trust.
+-- ECHS Mathematics: authenticated private Blackboard banks with direct lesson mapping.
+-- Source payloads stay server-only. Publisher-key items may be used in authenticated
+-- course practice without a manual Question Trust review, while their independent
+-- audit status remains explicit in the payload and learning evidence.
 
 create table if not exists public.private_bank_packages (
   id uuid primary key default gen_random_uuid(),
@@ -13,8 +15,8 @@ create table if not exists public.private_bank_packages (
   question_count integer not null default 0 check (question_count >= 0),
   pool_count integer not null default 0 check (pool_count >= 0),
   media_count integer not null default 0 check (media_count >= 0),
-  access text not null default 'private-teacher-archive' check (access = 'private-teacher-archive'),
-  trust_default text not null default 'teacher_review_required' check (trust_default = 'teacher_review_required'),
+  access text not null default 'private-school-authenticated' check (access in ('private-school-authenticated','private-teacher-archive')),
+  trust_default text not null default 'publisher_key_direct' check (trust_default in ('publisher_key_direct','teacher_review_required')),
   deployment_state text not null default 'registered',
   storage_bucket text not null default 'private-question-banks',
   storage_path text,
@@ -41,7 +43,8 @@ create table if not exists public.private_bank_questions (
   skill_candidates text[] not null default '{}',
   course_mappings jsonb not null default '[]'::jsonb,
   mapping_verified boolean not null default false,
-  trust_tier text not null default 'teacher_review_required' check (trust_tier in (
+  trust_tier text not null default 'publisher_key_direct' check (trust_tier in (
+    'publisher_key_direct',
     'student_ready_verified',
     'teacher_review_required',
     'indexed_only',
@@ -104,25 +107,42 @@ language plpgsql
 security definer
 set search_path = public, private
 as $$
-declare
-  v_trust public.question_trust_records%rowtype;
 begin
   if new.student_visible then
-    select * into v_trust
-    from public.question_trust_records
-    where question_id = new.question_id;
-
-    if v_trust.question_id is null
-      or v_trust.trust_tier <> 'student_ready_verified'
-      or v_trust.student_visible is not true
-      or v_trust.source_verified is not true
-      or v_trust.mathematical_verified is not true
-      or v_trust.media_verified is not true
-      or v_trust.mapping_verified is not true
-      or new.mapping_verified is not true
-      or new.trust_tier <> 'student_ready_verified'
+    if new.mapping_verified is not true
+      or coalesce(array_length(new.lesson_keys, 1), 0) < 2
+      or coalesce(array_length(new.skill_candidates, 1), 0) < 2
+      or new.trust_tier not in ('publisher_key_direct', 'student_ready_verified')
     then
-      raise exception 'Private bank question % has not passed the complete Question Trust release gate', new.question_id;
+      raise exception 'Private bank question % is missing direct course, lesson, or skill mapping', new.question_id;
+    end if;
+
+    if new.trust_tier = 'publisher_key_direct' and (
+      coalesce((new.payload #>> '{trust,source_verified}')::boolean, false) is not true
+      or coalesce((new.payload #>> '{trust,media_verified}')::boolean, false) is not true
+      or coalesce((new.payload #>> '{trust,mapping_verified}')::boolean, false) is not true
+      or coalesce(new.payload #>> '{trust,verification_basis}', '') <> 'publisher-answer-key'
+      or coalesce((new.payload #>> '{trust,manual_question_trust_required}')::boolean, true) is not false
+      or coalesce((new.payload #>> '{rights,student_publication_allowed}')::boolean, false) is not true
+      or coalesce((new.payload #>> '{metadata,student_ready}')::boolean, false) is not true
+    ) then
+      raise exception 'Private bank question % is missing the publisher-key direct-use contract', new.question_id;
+    end if;
+
+    if new.trust_tier = 'student_ready_verified' then
+      if not exists (
+        select 1
+        from public.question_trust_records trust
+        where trust.question_id = new.question_id
+          and trust.trust_tier = 'student_ready_verified'
+          and trust.student_visible is true
+          and trust.source_verified is true
+          and trust.mathematical_verified is true
+          and trust.media_verified is true
+          and trust.mapping_verified is true
+      ) then
+        raise exception 'Verified private bank question % does not have complete Question Trust evidence', new.question_id;
+      end if;
     end if;
   end if;
   return new;
@@ -131,7 +151,7 @@ $$;
 
 drop trigger if exists private_bank_question_release_guard on public.private_bank_questions;
 create trigger private_bank_question_release_guard
-before insert or update of student_visible, mapping_verified, trust_tier, question_id
+before insert or update of student_visible, mapping_verified, trust_tier, question_id, lesson_keys, skill_candidates, payload
 on public.private_bank_questions
 for each row execute function private.enforce_private_bank_question_release();
 
@@ -165,6 +185,6 @@ on conflict (id) do update set
   file_size_limit = excluded.file_size_limit,
   allowed_mime_types = excluded.allowed_mime_types;
 
-comment on table public.private_bank_packages is 'Private teacher/archive package inventory. No publisher question payload is exposed directly to browser roles.';
-comment on table public.private_bank_questions is 'Private imported question payloads. Student visibility is guarded by complete Question Trust evidence.';
+comment on table public.private_bank_packages is 'Private school-authenticated package inventory. Publisher payloads are not published through GitHub Pages.';
+comment on table public.private_bank_questions is 'Authenticated publisher-key practice questions with deterministic AP Precalculus and IB lesson mappings. Independent audit status is retained separately.';
 comment on table public.private_bank_media_objects is 'Private storage object inventory for imported Blackboard figures and media.';
