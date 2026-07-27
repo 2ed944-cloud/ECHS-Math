@@ -24,6 +24,7 @@ on:
       - "question-bank/student.html"
       - "question-bank/teacher.html"
       - "question-bank/parent.html"
+      - "question-bank/data/course-routing.json"
       - "question-bank/js/admin-accounts.js"
       - "question-bank/js/student-cloud.js"
       - "question-bank/js/teacher-cloud.js"
@@ -40,7 +41,9 @@ on:
       - "supabase/**"
       - "templates/**"
       - "tools/bootstrap_institution.py"
+      - "tools/capture_private_bank_center.mjs"
       - "tools/test_institution_identity_mount.mjs"
+      - "tools/upload_private_bank_package.py"
       - "tools/validate_initial_setup.py"
       - "tools/validate_institution_platform.py"
       - "tools/validate_mastery_foundation.py"
@@ -52,6 +55,7 @@ on:
       - ".github/workflows/institution-platform.yml"
       - ".github/workflows/initial-setup.yml"
       - ".github/workflows/deploy-institution-backend.yml"
+      - ".github/workflows/platform-visual-qa.yml"
   workflow_dispatch:
 
 permissions:
@@ -130,6 +134,7 @@ jobs:
             deno check supabase/functions/institution-api/index.ts
             deno check supabase/functions/learning-sync/index.ts
             deno check supabase/functions/mastery-evidence/index.ts
+            deno check supabase/functions/private-bank-api/index.ts
             deno check supabase/functions/setup-api/index.ts
           } 2>&1 | tee deno-check.log
 
@@ -157,6 +162,7 @@ jobs:
           python -m json.tool data/knowledge-graph/ap-calculus-unit-1.json >/dev/null
           python -m json.tool data/knowledge-graph/ap-precalculus-v1.json >/dev/null
           python -m json.tool data/knowledge-graph/ib-math-ai-v1.json >/dev/null
+          python -m json.tool question-bank/data/course-routing.json >/dev/null
           python -m json.tool question-bank/official/admin/data/question-trust-manifest.json >/dev/null
           python -m json.tool question-bank/private-sources/data/private-bank-registry.json >/dev/null
           python -m json.tool question-bank/private-sources/data/ap-precalculus-crosswalk.json >/dev/null
@@ -165,7 +171,8 @@ jobs:
           python -m json.tool question-bank/private-sources/config/ca9.json >/dev/null
           python -m json.tool question-bank/private-sources/config/ca9b.json >/dev/null
           python -m json.tool question-bank/private-sources/config/acs10.json >/dev/null
-          python -m py_compile tools/bootstrap_institution.py tools/validate_initial_setup.py tools/validate_institution_platform.py tools/validate_mastery_foundation.py tools/validate_mastery_guards.py tools/validate_private_bank_foundation.py tools/validate_supabase_migration_versions.py tools/validate_production_activation.py tools/validate_premium_experience.py question-bank/private-sources/tools/import_blackboard_qti_secure.py
+          python -m py_compile tools/bootstrap_institution.py tools/upload_private_bank_package.py tools/validate_initial_setup.py tools/validate_institution_platform.py tools/validate_mastery_foundation.py tools/validate_mastery_guards.py tools/validate_private_bank_foundation.py tools/validate_supabase_migration_versions.py tools/validate_production_activation.py tools/validate_premium_experience.py question-bank/private-sources/tools/import_blackboard_qti_secure.py
+          node --check tools/capture_private_bank_center.mjs
           python - <<'PY'
           import tomllib
           with open('supabase/config.toml','rb') as handle:
