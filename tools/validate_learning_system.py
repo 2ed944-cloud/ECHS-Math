@@ -15,8 +15,8 @@ def fail(message): ERRORS.append(message)
 REQUIRED=[
 "question-bank/index.html","question-bank/practice.html","question-bank/exam.html","question-bank/dashboard.html",
 "question-bank/mistakes.html","question-bank/teacher.html","question-bank/parent.html",
-"question-bank/css/learning-system.css","question-bank/js/learning-system.js","question-bank/js/sync-adapter.js",
-"question-bank/js/learning-home.js","question-bank/js/practice.js","question-bank/js/exam.js","question-bank/js/dashboard.js",
+"question-bank/css/learning-system.css","question-bank/css/practice-builder-compact.css","question-bank/js/learning-system.js","question-bank/js/sync-adapter.js",
+"question-bank/js/learning-home.js","question-bank/js/practice.js","question-bank/js/practice-builder.js","question-bank/js/exam.js","question-bank/js/dashboard.js",
 "question-bank/js/mistakes.js","question-bank/js/teacher.js","question-bank/js/parent.js",
 "js/lesson-learning-bridge.js","tools/test_learning_system.mjs"
 ]
@@ -25,12 +25,13 @@ PAGE_IDS={
 "question-bank/mistakes.html":["reviewList","viewFilter","startReview"],
 "question-bank/teacher.html":["classList","classOverview","assignmentList","classDialog","assignmentDialog"],
 "question-bank/parent.html":["parentMetrics","strengthList","weakList","familyPlan"],
-"question-bank/practice.html":["mode","group","bundle","start","shell"],
+"question-bank/practice.html":["mode","group","bundle","start","shell","practiceBuilder","builderToggle","builderCompactSummary","builderControls"],
 "question-bank/exam.html":["group","bundle","start","exam"]
 }
 SCRIPT_MARKERS={
 "question-bank/js/learning-system.js":["recordAttempt","selectAdaptive","dailyPlan","exportStudentReport","migrateLegacyAttempts"],
 "question-bank/js/practice.js":["modeCopy","persistContinue","selectAdaptive","Mistake recovery"],
+"question-bank/js/practice-builder.js":["MutationObserver","setCollapsed","builderAdjust","isCollapsed"],
 "question-bank/js/teacher.js":["assignmentLink","importReports","exportWorkspace"],
 "question-bank/js/parent.js":["planItems","exportStudentReport"],
 }
@@ -48,6 +49,9 @@ def validate_ids():
             if not re.search(rf'\bid=["\']{re.escape(value)}["\']',text): fail(f"{relative} is missing id={value}")
         if "learning-system.js" not in text: fail(f"{relative} does not load learning-system.js")
         if "learning-system.css" not in text: fail(f"{relative} does not load learning-system.css")
+    practice=(ROOT/"question-bank/practice.html").read_text(encoding="utf-8")
+    for marker in ["practice-builder-compact.css","practice-builder.js","Adjust filters"]:
+        if marker not in practice: fail(f"question-bank/practice.html is missing compact-builder marker: {marker}")
 
 def validate_markers():
     for relative,markers in SCRIPT_MARKERS.items():
@@ -63,7 +67,10 @@ def validate_manifest_and_worker():
     for url in ("./question-bank/dashboard.html","./question-bank/practice.html?mode=adaptive","./question-bank/mistakes.html"):
         if url not in shortcut_urls: fail(f"manifest.json is missing Phase 2 shortcut {url}")
     worker=(ROOT/"sw.js").read_text(encoding="utf-8")
-    for relative in ("question-bank/dashboard.html","question-bank/mistakes.html","question-bank/teacher.html","question-bank/parent.html","question-bank/js/learning-system.js"):
+    for relative in (
+        "question-bank/dashboard.html","question-bank/mistakes.html","question-bank/teacher.html","question-bank/parent.html",
+        "question-bank/js/learning-system.js","question-bank/js/practice-builder.js","question-bank/css/practice-builder-compact.css"
+    ):
         if f'"./{relative}"' not in worker: fail(f"sw.js does not pre-cache {relative}")
 
 def validate_source_boundary():
@@ -76,7 +83,7 @@ def validate_source_boundary():
 def check_javascript():
     scripts=[
       "question-bank/js/learning-system.js","question-bank/js/sync-adapter.js","question-bank/js/bank.js",
-      "question-bank/js/learning-home.js","question-bank/js/practice.js","question-bank/js/exam.js",
+      "question-bank/js/learning-home.js","question-bank/js/practice.js","question-bank/js/practice-builder.js","question-bank/js/exam.js",
       "question-bank/js/dashboard.js","question-bank/js/mistakes.js","question-bank/js/teacher.js",
       "question-bank/js/parent.js","js/platform-foundation.js","js/lesson-learning-bridge.js","sw.js"
     ]
