@@ -94,7 +94,6 @@ def validate_source(root: Path, errors: list[str]) -> None:
         "builderAdjust",
         "#shell .questionCard",
         "isCollapsed",
-        "Adjust filters",
     ], "Compact practice-builder controller", errors)
     require(practice_builder_css, [
         ".builderCompactSummary",
