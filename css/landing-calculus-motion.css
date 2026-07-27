@@ -1,0 +1,235 @@
+/* Hybrid animated calculus artwork for the ECHS landing hero */
+.hybridHeroVisual{
+  position:relative;
+  min-height:580px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  isolation:isolate;
+}
+.calculusMotionBoard{
+  position:relative;
+  z-index:2;
+  width:min(100%,620px);
+  margin:0;
+  padding:17px 18px 15px;
+  overflow:hidden;
+  border:1px solid rgba(246,223,170,.27);
+  border-radius:31px;
+  background:
+    radial-gradient(circle at 82% 12%,rgba(209,166,83,.17),transparent 32%),
+    linear-gradient(155deg,rgba(255,255,255,.105),rgba(255,255,255,.035));
+  box-shadow:0 30px 78px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.14);
+  backdrop-filter:blur(15px) saturate(1.15);
+  transform:rotate(-.55deg);
+}
+.calculusMotionBoard::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:linear-gradient(115deg,transparent 12%,rgba(255,255,255,.055) 38%,transparent 58%);
+  transform:translateX(-115%);
+  animation:calculusBoardSheen 8s ease-in-out infinite;
+}
+@keyframes calculusBoardSheen{0%,55%{transform:translateX(-115%)}78%,100%{transform:translateX(115%)}}
+.calculusBoardHeader{
+  position:relative;
+  z-index:2;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  padding:0 4px 11px;
+}
+.calculusBoardKicker{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  color:var(--landing-gold-soft);
+  font-size:10px;
+  font-weight:950;
+  letter-spacing:1.35px;
+  text-transform:uppercase;
+}
+.calculusBoardKicker::before{
+  content:"";
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--landing-gold);
+  box-shadow:0 0 0 6px rgba(209,166,83,.12);
+}
+.calculusBoardFormula{
+  padding:7px 11px;
+  border:1px solid rgba(255,255,255,.13);
+  border-radius:999px;
+  background:rgba(35,7,20,.24);
+  color:#fff;
+  font:560 13px/1 Fraunces,serif;
+}
+.calculusMotionBoard svg{
+  position:relative;
+  z-index:1;
+  display:block;
+  width:100%;
+  height:auto;
+  overflow:visible;
+  border-radius:23px;
+}
+.calculusGrid{stroke:rgba(255,255,255,.055);stroke-width:1}
+.calculusAxis{stroke:rgba(255,255,255,.34);stroke-width:1.45}
+.calculusAxisLabel{fill:rgba(255,255,255,.58);font:800 12px Inter,sans-serif}
+.calculusFunctionLabel{fill:var(--landing-gold-soft);font:italic 560 15px Fraunces,serif}
+.calculusArea{fill:url(#heroAreaGradient);opacity:0;animation:calculusAreaIn .9s ease 1.45s forwards}
+.calculusHeroCurve{
+  fill:none;
+  stroke:url(#heroCurveGradient);
+  stroke-width:5;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  path-length:1;
+  stroke-dasharray:1;
+  stroke-dashoffset:1;
+  filter:url(#heroCurveGlow);
+  animation:calculusCurveDraw 1.65s cubic-bezier(.5,.08,.25,1) .22s forwards;
+}
+@keyframes calculusCurveDraw{to{stroke-dashoffset:0}}
+@keyframes calculusAreaIn{to{opacity:1}}
+.maximumTangentGuide{
+  stroke:rgba(255,255,255,.6);
+  stroke-width:2;
+  stroke-dasharray:7 7;
+  opacity:.65;
+}
+.maximumPoint{fill:var(--landing-gold-soft);stroke:#fff;stroke-width:2.5;filter:url(#heroPointGlow)}
+.maximumHalo{fill:none;stroke:rgba(246,223,170,.44);stroke-width:2;transform-origin:300px 88px;animation:maximumPulse 2.6s ease-in-out infinite}
+@keyframes maximumPulse{0%,100%{r:12;opacity:.2}50%{r:21;opacity:.75}}
+.tangentTraveller line{
+  stroke:#fff;
+  stroke-width:3;
+  stroke-linecap:round;
+  filter:url(#heroPointGlow);
+}
+.tangentTraveller circle{fill:var(--landing-gold-soft);stroke:#fff;stroke-width:2}
+.maximumConnector{fill:none;stroke:rgba(246,223,170,.55);stroke-width:1.4;stroke-dasharray:4 5}
+.maximumCallout rect{fill:rgba(255,255,255,.96);stroke:rgba(16,42,67,.1);stroke-width:1}
+.maximumCalloutTitle{fill:#78183f;font:900 15px Inter,sans-serif}
+.maximumCalloutSub{fill:#526579;font:700 10px Inter,sans-serif;letter-spacing:.2px}
+.calculusConceptRow{
+  position:relative;
+  z-index:2;
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:8px;
+  margin-top:10px;
+}
+.calculusConceptRow span{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  min-width:0;
+  padding:8px 9px;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:12px;
+  background:rgba(35,7,20,.23);
+  color:rgba(255,255,255,.76);
+  font-size:9px;
+  font-weight:850;
+  letter-spacing:.2px;
+  white-space:nowrap;
+}
+.calculusConceptRow i{width:7px;height:7px;border-radius:50%;background:var(--landing-gold);box-shadow:0 0 0 4px rgba(209,166,83,.1)}
+.compactSchoolIdentityCard{
+  z-index:3;
+  width:min(88%,500px);
+  min-height:236px;
+  margin-top:-34px;
+  padding:23px;
+  display:grid;
+  grid-template-columns:126px minmax(0,1fr);
+  gap:17px;
+  align-items:center;
+  border-radius:29px;
+  transform:rotate(.8deg);
+}
+.compactSchoolIdentityCard::after{width:180px;height:180px;border-width:34px;right:-55px;bottom:-78px}
+.compactSchoolIdentityCard .identityGlow{width:190px;height:190px;inset:-70px auto auto -60px}
+.compactSchoolIdentityCard .identityLogoPlate{
+  width:100%;
+  height:94px;
+  padding:15px;
+  border-radius:20px;
+}
+.compactIdentityCopy{min-width:0;padding-right:53px}
+.compactSchoolIdentityCard .identityKicker{margin-top:0;font-size:8px;letter-spacing:1.45px}
+.compactSchoolIdentityCard h2{margin-top:5px;font-size:clamp(29px,3vw,40px)}
+.compactIdentityCopy p{margin-top:7px;color:rgba(255,255,255,.66);font-size:11px;line-height:1.45}
+.compactIdentityPath{
+  grid-column:1/-1;
+  margin-top:0;
+  padding:10px;
+  border-radius:17px;
+}
+.compactIdentityPath i{width:27px;height:27px;border-radius:9px}
+.compactIdentityPath strong{font-size:10px}
+.compactIdentityPath small{font-size:7px}
+.compactSchoolIdentityCard .identitySeal{
+  top:18px;
+  right:18px;
+  width:58px;
+  height:58px;
+}
+.compactSchoolIdentityCard .identitySeal span{font-size:15px}
+.compactSchoolIdentityCard .identitySeal small{font-size:5px}
+.hybridHeroVisual .evidenceA{left:-10px;bottom:30px}
+.hybridHeroVisual .evidenceB{right:-16px;top:228px}
+@media(max-width:1220px){
+  .hybridHeroVisual{min-height:560px}
+  .calculusMotionBoard{max-width:570px}
+  .compactSchoolIdentityCard{width:min(91%,480px)}
+}
+@media(max-width:900px){
+  .hybridHeroVisual{min-height:590px;margin-top:12px}
+  .calculusMotionBoard{max-width:640px}
+  .compactSchoolIdentityCard{width:min(92%,520px);min-height:228px}
+  .hybridHeroVisual .floatingEvidence{display:none}
+}
+@media(max-width:680px){
+  .hybridHeroVisual{min-height:520px}
+  .calculusMotionBoard{padding:13px 12px 11px;border-radius:24px;transform:none}
+  .calculusBoardHeader{padding-bottom:7px}
+  .calculusBoardKicker{font-size:8px;letter-spacing:1px}
+  .calculusBoardFormula{font-size:11px;padding:6px 8px}
+  .calculusConceptRow{gap:5px}
+  .calculusConceptRow span{padding:7px 5px;font-size:7px}
+  .compactSchoolIdentityCard{
+    width:100%;
+    min-height:220px;
+    margin-top:-16px;
+    padding:18px;
+    grid-template-columns:88px minmax(0,1fr);
+    gap:12px;
+    border-radius:24px;
+    transform:none;
+  }
+  .compactSchoolIdentityCard .identityLogoPlate{height:72px;padding:11px;border-radius:16px}
+  .compactIdentityCopy{padding-right:44px}
+  .compactSchoolIdentityCard h2{font-size:27px}
+  .compactIdentityCopy p{font-size:9px}
+  .compactIdentityPath{grid-template-columns:repeat(3,minmax(0,1fr));gap:5px;padding:8px}
+  .compactIdentityPath>b{display:none}
+  .compactIdentityPath>div{justify-content:center;padding:4px;border-radius:9px;background:rgba(255,255,255,.04)}
+  .compactIdentityPath small{display:none}
+  .compactSchoolIdentityCard .identitySeal{width:49px;height:49px;top:14px;right:14px}
+  .maximumCallout{transform:translate(336px 28px) scale(.82)}
+}
+@media(prefers-reduced-motion:reduce){
+  .calculusMotionBoard::after,.calculusHeroCurve,.calculusArea,.maximumHalo{animation:none!important}
+  .calculusHeroCurve{stroke-dasharray:none;stroke-dashoffset:0}
+  .calculusArea{opacity:1}
+  .tangentTraveller{display:none}
+  .maximumTangentGuide{opacity:1}
+}

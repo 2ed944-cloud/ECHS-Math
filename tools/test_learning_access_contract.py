@@ -31,6 +31,9 @@ def forbid(text: str, markers: list[str], label: str, errors: list[str]) -> None
 def validate_source(root: Path, errors: list[str]) -> None:
     index = read(root, "index.html", errors)
     landing = read(root, "css/landing-premium.css", errors)
+    landing_motion = read(root, "css/landing-calculus-motion.css", errors)
+    landing_controller = read(root, "js/landing-hybrid-hero.js", errors)
+    institution_portal = read(root, "js/institution-portal.js", errors)
     portal = read(root, "js/portal.js", errors)
     access = read(root, "js/portal-access.js", errors)
     lesson_guard = read(root, "js/lesson-access-guard.js", errors)
@@ -70,6 +73,35 @@ def validate_source(root: Path, errors: list[str]) -> None:
         ".premiumLandingFooter",
         "@media(max-width:680px)",
     ], "Premium landing stylesheet", errors)
+    require(institution_portal, [
+        "landing-calculus-motion.css",
+        "landing-hybrid-hero.js",
+        "data-hybrid-landing-hero",
+        'dataset.platformPage!=="home"',
+    ], "Landing asset loader", errors)
+    require(landing_controller, [
+        "hybridHeroVisual",
+        "calculusMotionBoard",
+        "compactSchoolIdentityCard",
+        "heroCalculusCurve",
+        "tangentTraveller",
+        "animateMotion",
+        'rotate="auto"',
+        "f′(0) = 0",
+        "HORIZONTAL TANGENT",
+        "LOCAL MAXIMUM",
+        "assets/echs_logo.png",
+    ], "Hybrid animated landing controller", errors)
+    require(landing_motion, [
+        ".hybridHeroVisual",
+        ".calculusMotionBoard",
+        ".calculusHeroCurve",
+        ".maximumTangentGuide",
+        ".tangentTraveller",
+        ".compactSchoolIdentityCard",
+        "@media(max-width:680px)",
+        "@media(prefers-reduced-motion:reduce)",
+    ], "Hybrid animated landing stylesheet", errors)
     require(access, ['role==="student"', '"/dashboard/student"', "courseKeys", "courseAllowed"], "Access resolver", errors)
     require(portal, ["access.allCourses?ALL_COURSES", "lessonURL(", "Complete each lesson to unlock", "lessonPracticeBtn"], "Learning-path portal", errors)
     require(lesson_guard, ["data-finish-lesson", "Finish lesson & unlock practice", "echs:lesson-completed", "course-not-assigned"], "Lesson guard", errors)
@@ -107,11 +139,14 @@ def validate_source(root: Path, errors: list[str]) -> None:
     require(worker, [
         "learning-access.css",
         "landing-premium.css",
+        "landing-calculus-motion.css",
+        "landing-hybrid-hero.js",
         "practice-builder-compact.css",
         "practice-builder.js",
         "portal-access.js",
         "lesson-access-guard.js",
         "gamification-overlay.js",
+        "hybrid1",
         "builder1",
     ], "Service worker", errors)
 
