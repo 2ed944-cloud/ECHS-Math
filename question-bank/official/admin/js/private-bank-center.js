@@ -4,9 +4,14 @@
   const number=value=>new Intl.NumberFormat("en-GB").format(Number(value||0));
   try{
     await window.ECHSInstitution.requireAuth(["teacher","admin"]);
-    const response=await fetch("../../private-sources/data/private-bank-registry.json",{cache:"no-store"});
-    if(!response.ok) throw new Error(`Private bank registry returned ${response.status}`);
-    const registry=await response.json();
+    const [registryResponse,alignmentResponse]=await Promise.all([
+      fetch("../../private-sources/data/private-bank-registry.json",{cache:"no-store"}),
+      fetch("../../private-sources/data/private-bank-alignment-summary.json",{cache:"no-store"})
+    ]);
+    if(!registryResponse.ok) throw new Error(`Private bank registry returned ${registryResponse.status}`);
+    if(!alignmentResponse.ok) throw new Error(`Private bank alignment summary returned ${alignmentResponse.status}`);
+    const registry=await registryResponse.json();
+    const alignment=await alignmentResponse.json();
     let livePackages=[];
     try{
       const live=await window.ECHSInstitution.api("private-bank-api","/packages");
@@ -20,6 +25,13 @@
     document.getElementById("questionTotal").textContent=number(totals.questions);
     document.getElementById("poolTotal").textContent=number(totals.pools);
     document.getElementById("mediaTotal").textContent=number(totals.media_files);
+    const ap=alignment["ap-precalculus"]||{},ib=alignment["ib-math-ai"]||{};
+    document.getElementById("apLessons").textContent=number(ap.lesson_catalog_topics);
+    document.getElementById("apReadiness").textContent=number(ap.candidate_counts?.unit_0_readiness);
+    document.getElementById("apVerified").textContent=number(alignment.exact_verified_mappings);
+    document.getElementById("ibLessons").textContent=number(ib.lesson_catalog_lessons);
+    document.getElementById("ibReadiness").textContent=number(ib.candidate_counts?.unit_0_readiness);
+    document.getElementById("ibVerified").textContent=number(alignment.exact_verified_mappings);
     const grid=document.getElementById("bankGrid");
     grid.innerHTML=(registry.banks||[]).map(bank=>{
       const aliases=bank.display_aliases||{};
