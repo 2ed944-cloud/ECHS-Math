@@ -1,0 +1,29 @@
+{
+  "bankId": "calculus-practice-bank-1",
+  "displayName": "Calculus Practice Bank 1",
+  "batchId": "schaums-ch01-batch-001",
+  "chapter": 1,
+  "sourceProblemRange": "1.1-1.10",
+  "questionCount": 10,
+  "ids": [
+    "CALC-BANK-01-CH01-001",
+    "CALC-BANK-01-CH01-002",
+    "CALC-BANK-01-CH01-003",
+    "CALC-BANK-01-CH01-004",
+    "CALC-BANK-01-CH01-005",
+    "CALC-BANK-01-CH01-006",
+    "CALC-BANK-01-CH01-007",
+    "CALC-BANK-01-CH01-008",
+    "CALC-BANK-01-CH01-009",
+    "CALC-BANK-01-CH01-010"
+  ],
+  "releaseBoundary": "teacher-archive-only",
+  "studentReadyCount": 0,
+  "verification": {
+    "sourceCompared": 10,
+    "mathematicallyVerified": 10,
+    "katexParserPassed": 0,
+    "mappingVerified": 0
+  },
+  "nextBatch": "Chapter 1, Problems 1.11-1.20"
+}
