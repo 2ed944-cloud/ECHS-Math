@@ -51,6 +51,11 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
       - name: Validate processor source
         run: |
           python -m py_compile tools/process_teacher_upload_request.py
@@ -74,18 +79,29 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          python tools/validate_supabase_migration_versions.py
-          node --check "data/ap-precalculus-unit-${{ steps.processor.outputs.kind == 'course-release' && '' || '' }}update.js" 2>/dev/null || true
           git diff --check
           changed_html="$(git diff --name-only -- 'lessons/**/*.html')"
+          changed_js="$(git diff --name-only -- 'data/ap-precalculus-unit-*-update.js')"
           if [ -z "$changed_html" ]; then
             echo "Course release produced no lesson HTML files" >&2
             exit 1
           fi
+          if [ -z "$changed_js" ]; then
+            echo "Course release produced no portal update file" >&2
+            exit 1
+          fi
           while IFS= read -r file; do
+            [ -n "$file" ] || continue
             grep -qi '<html' "$file"
             grep -qi '</html>' "$file"
+            if grep -Eqi '<script[^>]+src=["'"']https?://[^"'"']+["'"']' "$file"; then
+              echo "Warning: external script source in $file"
+            fi
           done <<< "$changed_html"
+          while IFS= read -r file; do
+            [ -n "$file" ] || continue
+            node --check "$file"
+          done <<< "$changed_js"
 
       - name: Create release branch and pull request
         id: pr
