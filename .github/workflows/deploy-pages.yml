@@ -16,6 +16,7 @@ on:
       - "lessons/**"
       - "css/learning-access.css"
       - "css/gamification.css"
+      - "css/landing-premium.css"
       - "js/portal.js"
       - "js/portal-access.js"
       - "js/lesson-access-guard.js"
@@ -132,7 +133,7 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
-      - name: Verify live authenticated learning pathway and School Control Center
+      - name: Verify live premium landing pathway and School Control Center
         shell: bash
         env:
           PAGE_URL: ${{ steps.deployment.outputs.page_url }}
@@ -145,13 +146,14 @@ jobs:
           lesson_path="lessons/ap-calculus/unit-1/1-1-can-change-occur-at-an-instant.html"
           for attempt in $(seq 1 40); do
             echo "Live verification attempt ${attempt}/40"
-            rm -f /tmp/echs-deployment.json /tmp/echs-school-control-assets.json /tmp/echs-school-control.html /tmp/echs-school-control.js /tmp/echs-institution-client.js /tmp/echs-index.html /tmp/echs-practice.html /tmp/echs-lesson.html /tmp/echs-sw.js
+            rm -f /tmp/echs-deployment.json /tmp/echs-school-control-assets.json /tmp/echs-school-control.html /tmp/echs-school-control.js /tmp/echs-institution-client.js /tmp/echs-index.html /tmp/echs-landing.css /tmp/echs-practice.html /tmp/echs-lesson.html /tmp/echs-sw.js
             curl --fail --silent --show-error --header 'Cache-Control: no-cache' "${base}/deployment.json?sha=${GITHUB_SHA}" --output /tmp/echs-deployment.json || true
             curl --fail --silent --show-error --header 'Cache-Control: no-cache' "${base}/school-control-assets.json?sha=${GITHUB_SHA}" --output /tmp/echs-school-control-assets.json || true
             curl --fail --silent --show-error --header 'Cache-Control: no-cache' "${base}/question-bank/school-control.html?sha=${GITHUB_SHA}" --output /tmp/echs-school-control.html || true
             curl --fail --silent --show-error --header 'Cache-Control: no-cache' "${base}/${runtime_path}" --output /tmp/echs-school-control.js || true
             curl --fail --silent --show-error --header 'Cache-Control: no-cache' "${base}/${client_path}" --output /tmp/echs-institution-client.js || true
             curl --fail --silent --show-error --header 'Cache-Control: no-cache' "${base}/index.html?sha=${GITHUB_SHA}" --output /tmp/echs-index.html || true
+            curl --fail --silent --show-error --header 'Cache-Control: no-cache' "${base}/css/landing-premium.css?sha=${GITHUB_SHA}" --output /tmp/echs-landing.css || true
             curl --fail --silent --show-error --header 'Cache-Control: no-cache' "${base}/question-bank/practice.html?sha=${GITHUB_SHA}" --output /tmp/echs-practice.html || true
             curl --fail --silent --show-error --header 'Cache-Control: no-cache' "${base}/${lesson_path}?sha=${GITHUB_SHA}" --output /tmp/echs-lesson.html || true
             curl --fail --silent --show-error --header 'Cache-Control: no-cache' "${base}/sw.js?sha=${GITHUB_SHA}" --output /tmp/echs-sw.js || true
@@ -169,6 +171,7 @@ jobs:
               "runtime": Path("/tmp/echs-school-control.js"),
               "client": Path("/tmp/echs-institution-client.js"),
               "index": Path("/tmp/echs-index.html"),
+              "landing": Path("/tmp/echs-landing.css"),
               "practice": Path("/tmp/echs-practice.html"),
               "lesson": Path("/tmp/echs-lesson.html"),
               "worker": Path("/tmp/echs-sw.js"),
@@ -196,19 +199,25 @@ jobs:
               "dataset.institutionRole=current.role" not in text["client"],
               "node===document.documentElement" in text["client"],
               "Lessons appear after sign-in." in text["index"],
+              "Learn with purpose." in text["index"],
+              "Mohammad Abu Ghuwaleh" in text["index"],
+              "schoolIdentityCard" in text["index"],
+              "css/landing-premium.css" in text["index"],
+              ".premiumLandingHero" in text["landing"],
+              ".identityLogoPlate" in text["landing"],
               "Explore courses" not in text["index"],
               'data-require-account="student teacher admin"' in text["practice"],
               'data-echs-lesson-guard="1"' in text["lesson"],
               "lesson-access-guard.js" in text["lesson"],
-              "echs-platform-school-control-v3-pathway1" in text["worker"],
+              "echs-platform-school-control-v3-pathway2-landing1" in text["worker"],
           ]
           raise SystemExit(0 if all(checks) else 1)
           PY
             then
-              echo "GitHub Pages authenticated learning pathway verification: PASS"
+              echo "GitHub Pages premium landing pathway verification: PASS"
               exit 0
             fi
             sleep 15
           done
-          echo "GitHub Pages did not publish the protected learning pathway for ${GITHUB_SHA}" >&2
+          echo "GitHub Pages did not publish the premium protected learning pathway for ${GITHUB_SHA}" >&2
           exit 1

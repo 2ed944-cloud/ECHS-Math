@@ -30,6 +30,7 @@ def forbid(text: str, markers: list[str], label: str, errors: list[str]) -> None
 
 def validate_source(root: Path, errors: list[str]) -> None:
     index = read(root, "index.html", errors)
+    landing = read(root, "css/landing-premium.css", errors)
     portal = read(root, "js/portal.js", errors)
     access = read(root, "js/portal-access.js", errors)
     lesson_guard = read(root, "js/lesson-access-guard.js", errors)
@@ -40,8 +41,33 @@ def validate_source(root: Path, errors: list[str]) -> None:
     experience = read(root, "js/institution-experience.js", errors)
     worker = read(root, "sw.js", errors)
 
-    require(index, ['data-auth-state="loading"', "Lessons appear after sign-in.", "Assigned learning pathway", "js/portal-access.js"], "Public landing page", errors)
+    require(index, [
+        'data-auth-state="loading"',
+        "Lessons appear after sign-in.",
+        "Assigned learning pathway",
+        "js/portal-access.js",
+        "css/landing-premium.css",
+        "Education City High School",
+        "Learn with purpose.",
+        "Master with confidence.",
+        "Continue to secure sign in",
+        "Created and developed by",
+        "Mohammad Abu Ghuwaleh",
+        "schoolIdentityCard",
+        "roleGrid",
+        "journeyRail",
+    ], "Public landing page", errors)
     forbid(index, ["Pearson", "Blackboard", "publisher questions", "Explore courses"], "Public landing page", errors)
+    require(landing, [
+        ".premiumLandingHero",
+        ".schoolLockup",
+        ".identityLogoPlate",
+        ".roleGrid",
+        ".journeyRail",
+        ".creatorSection",
+        ".premiumLandingFooter",
+        "@media(max-width:680px)",
+    ], "Premium landing stylesheet", errors)
     require(access, ['role==="student"', '"/dashboard/student"', "courseKeys", "courseAllowed"], "Access resolver", errors)
     require(portal, ["access.allCourses?ALL_COURSES", "lessonURL(", "Complete each lesson to unlock", "lessonPracticeBtn"], "Learning-path portal", errors)
     require(lesson_guard, ["data-finish-lesson", "Finish lesson & unlock practice", "echs:lesson-completed", "course-not-assigned"], "Lesson guard", errors)
@@ -52,7 +78,7 @@ def validate_source(root: Path, errors: list[str]) -> None:
     require(practice, ["access.courseKeys.includes", "unlockedTopics", "lessonLocked", "This course is not assigned", "studentFocused"], "Focused practice controller", errors)
     require(bank, ['PCALRT5S:"AP Precalculus Bank 1"', 'CAF5S:"AP Precalculus Bank 2"', 'CALCT3BC:"AP Calculus Bank 1"', 'ADAMS10:"AP Calculus Bank 2"', "sanitiseCatalog"], "Bank-label adapter", errors)
     require(experience, ["gamification.css", "gamification-overlay.js"], "Student experience loader", errors)
-    require(worker, ["learning-access.css", "portal-access.js", "lesson-access-guard.js", "gamification-overlay.js"], "Service worker", errors)
+    require(worker, ["learning-access.css", "landing-premium.css", "portal-access.js", "lesson-access-guard.js", "gamification-overlay.js", "pathway2-landing1"], "Service worker", errors)
 
 
 def validate_artifact(root: Path, errors: list[str]) -> None:
