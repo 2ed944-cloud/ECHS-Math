@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
   "course": "ib-math-ai",
   "title": "IB Mathematics: Applications and Interpretation Lesson Catalogue",
   "student_visible": false,
@@ -7,60 +7,43 @@
   "implementation_window": "current-school-course-through-2028",
   "future_review": "Reconcile with the first-assessment-2029 guide before adoption for that cohort.",
   "units": [
-    {
-      "unit": 1,
-      "title": "Number and Algebra",
-      "lessons": [
-        {"lesson_key":"u1-number","number":"1.1","title":"Number Systems, Approximation, and Technology","skill_id":"IBAI.U1.NUMBER","status":"content-build-required","student_visible":false},
-        {"lesson_key":"u1-algebra","number":"1.2","title":"Algebraic Manipulation, Equations, and Inequalities","skill_id":"IBAI.U1.ALGEBRA","status":"content-build-required","student_visible":false},
-        {"lesson_key":"u1-sequences","number":"1.3","title":"Sequences, Series, and Financial Models","skill_id":"IBAI.U1.SEQUENCES","status":"content-build-required","student_visible":false},
-        {"lesson_key":"u1-matrices","number":"1.4","title":"Matrices, Systems, and Technology","skill_id":"IBAI.U1.MATRICES","status":"content-build-required","student_visible":false},
-        {"lesson_key":"u1-modeling","number":"1.5","title":"Number and Algebra Modeling","skill_id":"IBAI.U1.MODELING","status":"content-build-required","student_visible":false}
-      ]
-    },
-    {
-      "unit": 2,
-      "title": "Functions",
-      "lessons": [
-        {"lesson_key":"u2-concept","number":"2.1","title":"Functions, Domain, Range, and Representations","skill_id":"IBAI.U2.CONCEPT","status":"content-build-required","student_visible":false},
-        {"lesson_key":"u2-linear_quadratic","number":"2.2","title":"Linear and Quadratic Models","skill_id":"IBAI.U2.LINEAR_QUADRATIC","status":"content-build-required","student_visible":false},
-        {"lesson_key":"u2-poly_rational","number":"2.3","title":"Polynomial and Rational Models","skill_id":"IBAI.U2.POLY_RATIONAL","status":"content-build-required","student_visible":false},
-        {"lesson_key":"u2-exp_log","number":"2.4","title":"Exponential and Logarithmic Models","skill_id":"IBAI.U2.EXP_LOG","status":"content-build-required","student_visible":false},
-        {"lesson_key":"u2-transform","number":"2.5","title":"Transformations, Composition, and Inverses","skill_id":"IBAI.U2.TRANSFORM","status":"content-build-required","student_visible":false},
-        {"lesson_key":"u2-regression","number":"2.6","title":"Regression, Technology, and Model Validation","skill_id":"IBAI.U2.REGRESSION","status":"content-build-required","student_visible":false}
-      ]
-    },
-    {
-      "unit": 3,
-      "title": "Geometry and Trigonometry",
-      "lessons": [
-        {"lesson_key":"u3-coordinate","number":"3.1","title":"Coordinate Geometry and Measurement","skill_id":"IBAI.U3.COORDINATE","status":"content-build-required","student_visible":false},
-        {"lesson_key":"u3-trig","number":"3.2","title":"Trigonometric Relationships and Models","skill_id":"IBAI.U3.TRIG","status":"content-build-required","student_visible":false},
-        {"lesson_key":"u3-conics","number":"3.3","title":"Circles and Conic Representations","skill_id":"IBAI.U3.CONICS","status":"content-build-required","student_visible":false},
-        {"lesson_key":"u3-vectors","number":"3.4","title":"Vectors and Geometric Applications","skill_id":"IBAI.U3.VECTORS","status":"content-build-required","student_visible":false},
-        {"lesson_key":"u3-polar","number":"3.5","title":"Polar and Parametric Representations","skill_id":"IBAI.U3.POLAR","status":"content-build-required","student_visible":false}
-      ]
-    },
-    {
-      "unit": 4,
-      "title": "Statistics and Probability",
-      "lessons": [
-        {"lesson_key":"u4-data","number":"4.1","title":"Data Representation and Summary","skill_id":"IBAI.U4.DATA","status":"content-build-required","student_visible":false},
-        {"lesson_key":"u4-probability","number":"4.2","title":"Probability and Counting","skill_id":"IBAI.U4.PROBABILITY","status":"content-build-required","student_visible":false},
-        {"lesson_key":"u4-distributions","number":"4.3","title":"Probability Distributions","skill_id":"IBAI.U4.DISTRIBUTIONS","status":"content-build-required","student_visible":false},
-        {"lesson_key":"u4-correlation","number":"4.4","title":"Correlation, Regression, and Interpretation","skill_id":"IBAI.U4.CORRELATION","status":"content-build-required","student_visible":false},
-        {"lesson_key":"u4-inference","number":"4.5","title":"Statistical Inference Readiness","skill_id":"IBAI.U4.INFERENCE","status":"content-build-required","student_visible":false}
-      ]
-    },
-    {
-      "unit": 5,
-      "title": "Calculus",
-      "lessons": [
-        {"lesson_key":"u5-change","number":"5.1","title":"Rates of Change and Tangent Concepts","skill_id":"IBAI.U5.CHANGE","status":"content-build-required","student_visible":false},
-        {"lesson_key":"u5-derivative","number":"5.2","title":"Differentiation and Interpretation","skill_id":"IBAI.U5.DERIVATIVE","status":"content-build-required","student_visible":false},
-        {"lesson_key":"u5-integral","number":"5.3","title":"Integration and Accumulation","skill_id":"IBAI.U5.INTEGRAL","status":"content-build-required","student_visible":false},
-        {"lesson_key":"u5-optimization","number":"5.4","title":"Optimization and Contextual Applications","skill_id":"IBAI.U5.OPTIMIZATION","status":"content-build-required","student_visible":false}
-      ]
-    }
+    {"unit":0,"title":"IB Mathematics Readiness","lessons":[
+      {"lesson_key":"u0-readiness","number":"0.1","title":"IB Mathematics Readiness","skill_id":"IBAI.U0.READINESS","status":"content-build-required","student_visible":false,"bank_alignment":"publisher-key-direct"}
+    ]},
+    {"unit":1,"title":"Number and Algebra","lessons":[
+      {"lesson_key":"u1-number","number":"1.1","title":"Number Systems, Approximation, and Technology","skill_id":"IBAI.U1.NUMBER","status":"content-build-required","student_visible":false},
+      {"lesson_key":"u1-algebra","number":"1.2","title":"Algebraic Manipulation, Equations, and Inequalities","skill_id":"IBAI.U1.ALGEBRA","status":"content-build-required","student_visible":false},
+      {"lesson_key":"u1-sequences","number":"1.3","title":"Sequences, Series, and Financial Models","skill_id":"IBAI.U1.SEQUENCES","status":"content-build-required","student_visible":false},
+      {"lesson_key":"u1-matrices","number":"1.4","title":"Matrices, Systems, and Technology","skill_id":"IBAI.U1.MATRICES","status":"content-build-required","student_visible":false},
+      {"lesson_key":"u1-modeling","number":"1.5","title":"Number and Algebra Modeling","skill_id":"IBAI.U1.MODELING","status":"content-build-required","student_visible":false}
+    ]},
+    {"unit":2,"title":"Functions","lessons":[
+      {"lesson_key":"u2-concept","number":"2.1","title":"Functions, Domain, Range, and Representations","skill_id":"IBAI.U2.CONCEPT","status":"content-build-required","student_visible":false},
+      {"lesson_key":"u2-linear_quadratic","number":"2.2","title":"Linear and Quadratic Models","skill_id":"IBAI.U2.LINEAR_QUADRATIC","status":"content-build-required","student_visible":false},
+      {"lesson_key":"u2-poly_rational","number":"2.3","title":"Polynomial and Rational Models","skill_id":"IBAI.U2.POLY_RATIONAL","status":"content-build-required","student_visible":false},
+      {"lesson_key":"u2-exp_log","number":"2.4","title":"Exponential and Logarithmic Models","skill_id":"IBAI.U2.EXP_LOG","status":"content-build-required","student_visible":false},
+      {"lesson_key":"u2-transform","number":"2.5","title":"Transformations, Composition, and Inverses","skill_id":"IBAI.U2.TRANSFORM","status":"content-build-required","student_visible":false},
+      {"lesson_key":"u2-regression","number":"2.6","title":"Regression, Technology, and Model Validation","skill_id":"IBAI.U2.REGRESSION","status":"content-build-required","student_visible":false}
+    ]},
+    {"unit":3,"title":"Geometry and Trigonometry","lessons":[
+      {"lesson_key":"u3-coordinate","number":"3.1","title":"Coordinate Geometry and Measurement","skill_id":"IBAI.U3.COORDINATE","status":"content-build-required","student_visible":false},
+      {"lesson_key":"u3-trig","number":"3.2","title":"Trigonometric Relationships and Models","skill_id":"IBAI.U3.TRIG","status":"content-build-required","student_visible":false},
+      {"lesson_key":"u3-conics","number":"3.3","title":"Circles and Conic Representations","skill_id":"IBAI.U3.CONICS","status":"content-build-required","student_visible":false},
+      {"lesson_key":"u3-vectors","number":"3.4","title":"Vectors and Geometric Applications","skill_id":"IBAI.U3.VECTORS","status":"content-build-required","student_visible":false},
+      {"lesson_key":"u3-polar","number":"3.5","title":"Polar and Parametric Representations","skill_id":"IBAI.U3.POLAR","status":"content-build-required","student_visible":false}
+    ]},
+    {"unit":4,"title":"Statistics and Probability","lessons":[
+      {"lesson_key":"u4-data","number":"4.1","title":"Data Representation and Summary","skill_id":"IBAI.U4.DATA","status":"content-build-required","student_visible":false},
+      {"lesson_key":"u4-probability","number":"4.2","title":"Probability and Counting","skill_id":"IBAI.U4.PROBABILITY","status":"content-build-required","student_visible":false},
+      {"lesson_key":"u4-distributions","number":"4.3","title":"Probability Distributions","skill_id":"IBAI.U4.DISTRIBUTIONS","status":"content-build-required","student_visible":false},
+      {"lesson_key":"u4-correlation","number":"4.4","title":"Correlation, Regression, and Interpretation","skill_id":"IBAI.U4.CORRELATION","status":"content-build-required","student_visible":false},
+      {"lesson_key":"u4-inference","number":"4.5","title":"Statistical Inference Readiness","skill_id":"IBAI.U4.INFERENCE","status":"content-build-required","student_visible":false}
+    ]},
+    {"unit":5,"title":"Calculus","lessons":[
+      {"lesson_key":"u5-change","number":"5.1","title":"Rates of Change and Tangent Concepts","skill_id":"IBAI.U5.CHANGE","status":"content-build-required","student_visible":false},
+      {"lesson_key":"u5-derivative","number":"5.2","title":"Differentiation and Interpretation","skill_id":"IBAI.U5.DERIVATIVE","status":"content-build-required","student_visible":false},
+      {"lesson_key":"u5-integral","number":"5.3","title":"Integration and Accumulation","skill_id":"IBAI.U5.INTEGRAL","status":"content-build-required","student_visible":false},
+      {"lesson_key":"u5-optimization","number":"5.4","title":"Optimization and Contextual Applications","skill_id":"IBAI.U5.OPTIMIZATION","status":"content-build-required","student_visible":false}
+    ]}
   ]
 }
