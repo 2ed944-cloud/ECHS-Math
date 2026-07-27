@@ -1,38 +1,36 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
   "questions": 15671,
-  "mapping_mode": "candidate-many-to-many",
-  "exact_verified_mappings": 0,
-  "counts_may_overlap": true,
-  "explanation": "One source question may have multiple candidate units or skills. Counts are routing candidates, not student-release counts.",
+  "mapping_mode": "deterministic-one-lesson-per-course",
+  "exact_question_mappings_per_course": 15671,
+  "exact_course_mappings_total": 31342,
+  "counts_may_overlap": false,
+  "manual_question_trust_required": false,
+  "verification_basis": "publisher-answer-key",
+  "independently_audited": false,
+  "explanation": "Every source question is linked to exactly one AP Precalculus lesson and one IB Mathematics lesson. Readiness lessons receive material without a stronger direct match.",
   "ap-precalculus": {
-    "candidate_counts": {
-      "unit_0_readiness": 5754,
-      "unit_1_polynomial_rational": 7631,
-      "unit_2_exponential_logarithmic": 3977,
-      "unit_3_trigonometric_polar": 2021,
-      "unit_4_parameters_vectors_matrices": 927
+    "exact_counts": {
+      "unit_0_readiness": 6695,
+      "unit_1_polynomial_rational": 4775,
+      "unit_2_exponential_logarithmic": 2707,
+      "unit_3_trigonometric_polar": 611,
+      "unit_4_parameters_vectors_matrices": 883
     },
-    "lesson_catalog_topics": 49,
-    "release_state": "teacher-review-required"
+    "lesson_catalog_topics": 50,
+    "release_state": "publisher-key-direct-authenticated"
   },
   "ib-math-ai": {
-    "candidate_counts": {
-      "unit_0_readiness": 164,
-      "unit_1_number_algebra": 9916,
-      "unit_2_functions": 10368,
-      "unit_3_geometry_trigonometry": 2455,
-      "unit_4_statistics_probability": 906,
-      "unit_5_calculus": 231
+    "exact_counts": {
+      "unit_0_readiness": 122,
+      "unit_1_number_algebra": 6107,
+      "unit_2_functions": 6978,
+      "unit_3_geometry_trigonometry": 1858,
+      "unit_4_statistics_probability": 521,
+      "unit_5_calculus": 85
     },
-    "lesson_catalog_lessons": 25,
-    "release_state": "lesson-content-and-question-review-required"
+    "lesson_catalog_lessons": 26,
+    "release_state": "publisher-key-direct-authenticated"
   },
-  "next_review_queue": [
-    "AP Precalculus exact lesson mapping",
-    "IB exact lesson mapping after lesson content build",
-    "independent mathematical verification",
-    "media accessibility review",
-    "rights and publication review"
-  ]
+  "disclosure": "Source-key practice; not independently audited. Publisher content remains private and school-authenticated."
 }
