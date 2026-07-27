@@ -32,6 +32,13 @@ for(const device of devices){
       questionTotal:document.getElementById('questionTotal')?.textContent,
       poolTotal:document.getElementById('poolTotal')?.textContent,
       mediaTotal:document.getElementById('mediaTotal')?.textContent,
+      apLessons:document.getElementById('apLessons')?.textContent,
+      apReadiness:document.getElementById('apReadiness')?.textContent,
+      apVerified:document.getElementById('apVerified')?.textContent,
+      ibLessons:document.getElementById('ibLessons')?.textContent,
+      ibReadiness:document.getElementById('ibReadiness')?.textContent,
+      ibVerified:document.getElementById('ibVerified')?.textContent,
+      alignmentCards:document.querySelectorAll('.alignmentCard').length,
       text:document.body.innerText,
       width:Math.max(document.body.scrollWidth,document.documentElement.scrollWidth),
       viewport:document.documentElement.clientWidth,
@@ -40,6 +47,9 @@ for(const device of devices){
     if(state.banks!==4)entry.errors.push(`Expected four bank cards, found ${state.banks}`);
     if(state.complete!==4||!state.text.includes('complete private upload'))entry.errors.push('Live package states did not render');
     if(state.questionTotal!=='15,671'||state.poolTotal!=='1,484'||state.mediaTotal!=='38,593')entry.errors.push('Private inventory totals did not render');
+    if(state.alignmentCards!==2||state.apLessons!=='49'||state.apReadiness!=='5,754'||state.apVerified!=='0')entry.errors.push('AP Precalculus alignment metrics did not render correctly');
+    if(state.ibLessons!=='25'||state.ibReadiness!=='164'||state.ibVerified!=='0')entry.errors.push('IB Mathematics alignment metrics did not render correctly');
+    if(!state.text.includes('Candidate counts can overlap')||!state.text.includes('content build required'))entry.errors.push('Candidate-versus-verified mapping warning is missing');
     for(const alias of ['AP Precalculus Bank 1','AP Precalculus Bank 4','IB Mathematics Bank 1','IB Mathematics Bank 4'])if(!state.text.includes(alias))entry.errors.push(`Missing alias ${alias}`);
     for(const publisher of ['Pearson','Blitzer','Addison-Wesley','ISBN'])if(state.text.includes(publisher))entry.errors.push(`Publisher-facing text leaked: ${publisher}`);
     if(state.width>state.viewport+2)entry.errors.push(`Horizontal overflow ${state.width}px > ${state.viewport}px`);
