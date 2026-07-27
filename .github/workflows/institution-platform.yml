@@ -41,6 +41,7 @@ on:
       - "tools/validate_initial_setup.py"
       - "tools/validate_institution_platform.py"
       - "tools/validate_mastery_foundation.py"
+      - "tools/validate_mastery_guards.py"
       - "tools/validate_production_activation.py"
       - "tools/validate_premium_experience.py"
       - ".github/workflows/institution-platform.yml"
@@ -97,7 +98,9 @@ jobs:
         run: python tools/validate_premium_experience.py
 
       - name: Validate Question Trust, Knowledge Graph and Mastery 2.0
-        run: python tools/validate_mastery_foundation.py
+        run: |
+          python tools/validate_mastery_foundation.py
+          python tools/validate_mastery_guards.py
 
       - name: Re-run Phase 1 and Phase 2 release gates
         run: |
@@ -121,7 +124,7 @@ jobs:
           python -m json.tool data/knowledge-graph/schema-v1.json >/dev/null
           python -m json.tool data/knowledge-graph/ap-calculus-unit-1.json >/dev/null
           python -m json.tool question-bank/official/admin/data/question-trust-manifest.json >/dev/null
-          python -m py_compile tools/bootstrap_institution.py tools/validate_initial_setup.py tools/validate_institution_platform.py tools/validate_mastery_foundation.py tools/validate_production_activation.py tools/validate_premium_experience.py
+          python -m py_compile tools/bootstrap_institution.py tools/validate_initial_setup.py tools/validate_institution_platform.py tools/validate_mastery_foundation.py tools/validate_mastery_guards.py tools/validate_production_activation.py tools/validate_premium_experience.py
           python - <<'PY'
           import tomllib
           with open('supabase/config.toml','rb') as handle:
