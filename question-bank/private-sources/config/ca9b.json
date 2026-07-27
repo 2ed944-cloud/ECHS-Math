@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
   "bank_code": "ECHS-BB-CA9B",
   "bank_slug": "echs-bb-ca9b",
   "package_fingerprint": "A103000405541",
@@ -7,14 +7,13 @@
     "ap-precalculus": "AP Precalculus Bank 3",
     "ib-math-ai": "IB Mathematics Bank 3"
   },
-  "expected_inventory": {
-    "questions": 2837,
-    "pools": 282
-  },
+  "expected_inventory": {"questions": 2837, "pools": 282},
   "source_format": "Blackboard QTI pool export",
-  "access": "private-teacher-archive",
-  "trust_default": "teacher_review_required",
-  "student_visible": false,
+  "access": "private-school-authenticated",
+  "trust_default": "publisher_key_direct",
+  "verification_basis": "publisher-answer-key",
+  "manual_question_trust_required": false,
+  "student_visible": true,
   "retain_duplicate_variants": true,
   "publisher_metadata_visibility": "internal-only",
   "archive_argument_required": true
