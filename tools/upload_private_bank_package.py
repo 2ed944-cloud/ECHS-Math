@@ -5,7 +5,7 @@ Run only from a trusted machine or protected CI environment with the service-rol
 The source package is never committed to GitHub and the storage bucket remains private.
 """
 from __future__ import annotations
-import argparse, hashlib, json, mimetypes, os, sys, time, urllib.error, urllib.parse, urllib.request, zipfile
+import argparse, hashlib, io, json, mimetypes, os, urllib.error, urllib.parse, urllib.request, zipfile
 from datetime import datetime, timezone
 from pathlib import PurePosixPath, Path
 
@@ -108,6 +108,52 @@ def batches(rows, size):
         yield rows[index:index + size]
 
 
+def load_graph(path: Path) -> dict:
+    if not path.is_file():
+        raise RuntimeError(f"Knowledge graph not found: {path}")
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def skill_rows(graph: dict) -> list[dict]:
+    defaults = graph.get("skill_defaults") or {}
+    default_representations = defaults.get("representations") or ["symbolic", "graphical", "numerical", "verbal", "contextual"]
+    default_rules = defaults.get("evidence_rules") or {}
+    course = str(graph.get("course") or "")
+    rows = []
+    for skill in graph.get("skills") or []:
+        lesson_ids = [str(value) for value in skill.get("lesson_ids") or []]
+        topic = str(skill.get("topic") or (lesson_ids[0] if lesson_ids else ""))
+        rows.append({
+            "skill_key": str(skill["id"]),
+            "course": course,
+            "unit": str(skill.get("unit") or ""),
+            "topic": topic or None,
+            "title": str(skill.get("title") or skill["id"]),
+            "description": str(skill.get("description") or skill.get("title") or skill["id"]),
+            "ap_topics": [topic] if course == "ap-precalculus" and topic else [],
+            "lesson_ids": lesson_ids,
+            "prerequisites": [str(value) for value in skill.get("prerequisites") or []],
+            "representations": [str(value) for value in skill.get("representations") or default_representations],
+            "misconceptions": [str(value) for value in skill.get("misconceptions") or ["question-level-misconception-tag-required-before-release"]],
+            "evidence_rules": skill.get("evidence_rules") or default_rules,
+            "active": True,
+            "updated_at": datetime.now(timezone.utc).isoformat(),
+        })
+    return rows
+
+
+def seed_graphs(client: Supabase, graph_paths: list[Path], batch_size: int):
+    rows = []
+    for path in graph_paths:
+        rows.extend(skill_rows(load_graph(path)))
+    ids = [row["skill_key"] for row in rows]
+    if len(ids) != len(set(ids)):
+        raise RuntimeError("Knowledge graphs contain duplicate skill IDs")
+    for group in batches(rows, batch_size):
+        client.upsert("skill_definitions", group, "skill_key")
+    print(f"Skill definitions registered: {len(rows)}")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("package", type=Path)
@@ -116,7 +162,10 @@ def main() -> int:
     parser.add_argument("--service-role-key", default=os.getenv("SUPABASE_SERVICE_ROLE_KEY", ""))
     parser.add_argument("--bucket", default="private-question-banks")
     parser.add_argument("--batch-size", type=int, default=100)
+    parser.add_argument("--ap-graph", type=Path, default=Path("data/knowledge-graph/ap-precalculus-v1.json"))
+    parser.add_argument("--ib-graph", type=Path, default=Path("data/knowledge-graph/ib-math-ai-v1.json"))
     parser.add_argument("--skip-media", action="store_true")
+    parser.add_argument("--skip-skill-seed", action="store_true")
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args()
 
@@ -130,6 +179,8 @@ def main() -> int:
         raise SystemExit("--batch-size must be between 1 and 500")
 
     client = Supabase(args.supabase_url or "https://dry-run.invalid", args.service_role_key or "dry-run", args.dry_run)
+    if not args.skip_skill_seed:
+        seed_graphs(client, [args.ap_graph, args.ib_graph], args.batch_size)
     package_bytes = args.package.read_bytes()
     package_hash = sha256(package_bytes)
     now = datetime.now(timezone.utc).isoformat()
@@ -214,7 +265,7 @@ def main() -> int:
             for media_archive_name in media_archives:
                 chapter_match = PurePosixPath(media_archive_name).stem.replace("chapter_", "")
                 chapter = int(chapter_match) if chapter_match.isdigit() else None
-                with zipfile.ZipFile(archive.open(media_archive_name)) as media_archive:
+                with zipfile.ZipFile(io.BytesIO(archive.read(media_archive_name))) as media_archive:
                     for source_path in sorted(name for name in media_archive.namelist() if not name.endswith("/")):
                         data = media_archive.read(source_path)
                         object_path = f"{bank_slug}/chapter_{(chapter or 0):02d}/{source_path.lstrip('/')}"
