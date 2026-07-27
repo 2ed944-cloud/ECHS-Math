@@ -1,9 +1,9 @@
-const VERSION = "echs-platform-school-control-v3-pathway1";
+const VERSION = "echs-platform-school-control-v3-pathway2-landing1";
 const STATIC_CACHE = `${VERSION}-static`;
 const RUNTIME_CACHE = `${VERSION}-runtime`;
 const SHELL = [
   "./","./index.html","./offline.html","./manifest.json","./login.html","./config/institution.json",
-  "./css/portal.css","./css/practice-integration.css","./css/official-ap-integration.css","./css/platform-foundation.css","./css/institution.css","./css/institution-polish.css","./css/institution-premium.css","./css/institution-responsive.css","./css/institution-completion.css","./css/learning-access.css","./css/gamification.css",
+  "./css/portal.css","./css/practice-integration.css","./css/official-ap-integration.css","./css/platform-foundation.css","./css/institution.css","./css/institution-polish.css","./css/institution-premium.css","./css/institution-responsive.css","./css/institution-completion.css","./css/learning-access.css","./css/gamification.css","./css/landing-premium.css",
   "./data/courses.js","./data/ap-calculus-update.js","./data/ap-precalculus-update.js",
   "./js/portal.js","./js/practice-integration.js","./js/official-ap-integration.js","./js/platform-foundation.js","./js/lesson-learning-bridge.js","./js/institution-client.js","./js/institution-experience.js","./js/institution-completion.js","./js/institution-portal.js","./js/login.js","./js/portal-access.js","./js/lesson-access-guard.js","./js/gamification-overlay.js",
   "./question-bank/index.html","./question-bank/practice.html","./question-bank/exam.html","./question-bank/dashboard.html","./question-bank/mistakes.html","./question-bank/student.html","./question-bank/teacher.html","./question-bank/parent.html","./question-bank/admin.html","./question-bank/school-control.html",
