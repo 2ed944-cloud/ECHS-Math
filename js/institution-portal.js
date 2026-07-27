@@ -1,3 +1,24 @@
+/* ECHS landing entry and hybrid calculus artwork */
+(function(){
+  "use strict";
+  if(document.body?.dataset.platformPage!=="home")return;
+  const root=path=>window.ECHSInstitution?.root?.(path)||new URL(path,location.href).href;
+  if(!document.querySelector('link[data-hybrid-landing-hero]')){
+    const link=document.createElement("link");
+    link.rel="stylesheet";
+    link.href=root("css/landing-calculus-motion.css?v=20260727-hybrid1");
+    link.dataset.hybridLandingHero="true";
+    document.head.append(link);
+  }
+  if(!document.querySelector('script[data-hybrid-landing-hero]')){
+    const script=document.createElement("script");
+    script.src=root("js/landing-hybrid-hero.js?v=20260727-hybrid1");
+    script.dataset.hybridLandingHero="true";
+    script.async=true;
+    document.head.append(script);
+  }
+})();
+
 (async()=>{
   const entry=document.getElementById("institutionEntry"),tile=document.querySelector("[data-institution-entry]");
   if(!entry&&!tile)return;
