@@ -23,8 +23,14 @@ for(const device of devices){
   const entry={device:device.key,errors:[]};
   try{
     const response=await page.goto(`${baseURL}/question-bank/official/admin/private-bank-center.html`,{waitUntil:'domcontentloaded',timeout:45000});entry.status=response?.status()??null;
-    await page.locator('#bankStatus').waitFor({state:'attached',timeout:15000});
-    await page.waitForFunction(()=>document.getElementById('bankStatus')?.textContent?.includes('Private backend connected'),null,{timeout:15000});
+    const statusLocator=page.locator('#bankStatus');
+    await statusLocator.waitFor({state:'visible',timeout:15000});
+    for(let attempt=0;attempt<60;attempt++){
+      const value=await statusLocator.textContent();
+      if(value?.includes('Private backend connected'))break;
+      if(attempt===59)throw new Error(`Private Bank Center did not connect: ${value||'empty status'}`);
+      await page.waitForTimeout(250);
+    }
     const state=await page.evaluate(()=>({banks:document.querySelectorAll('#bankGrid .bankCard').length,complete:document.querySelectorAll('#bankGrid .bankState').length,questionTotal:document.getElementById('questionTotal')?.textContent,poolTotal:document.getElementById('poolTotal')?.textContent,mediaTotal:document.getElementById('mediaTotal')?.textContent,apLessons:document.getElementById('apLessons')?.textContent,apReadiness:document.getElementById('apReadiness')?.textContent,apVerified:document.getElementById('apVerified')?.textContent,ibLessons:document.getElementById('ibLessons')?.textContent,ibReadiness:document.getElementById('ibReadiness')?.textContent,ibVerified:document.getElementById('ibVerified')?.textContent,alignmentCards:document.querySelectorAll('.alignmentCard').length,text:document.body.innerText,width:Math.max(document.body.scrollWidth,document.documentElement.scrollWidth),viewport:document.documentElement.clientWidth}));
     Object.assign(entry,state);
     if(state.banks!==4)entry.errors.push(`Expected four bank cards, found ${state.banks}`);
