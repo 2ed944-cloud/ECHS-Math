@@ -34,6 +34,10 @@
     return value && typeof value === "object" && !Array.isArray(value);
   }
 
+  function normaliseText(value) {
+    return typeof value === "string" ? value.replace(/\\n/g, "\n") : value;
+  }
+
   function patchArrayByKey(baseRows, patchRows, keyName) {
     if (!Array.isArray(patchRows)) return Array.isArray(baseRows) ? baseRows : [];
     const byKey = new Map(patchRows.map(row => [String(row?.matchKey ?? row?.matchLabel ?? row?.[keyName]), row]));
@@ -52,7 +56,8 @@
     for (const [key, value] of Object.entries(patch || {})) {
       if (key === "partsPatches" || key === "mediaPatches" || key === "matchKey" || key === "matchLabel") continue;
       if (isObject(value)) out[key] = merge(out[key], value);
-      else out[key] = value;
+      else if (Array.isArray(value)) out[key] = value.map(item => typeof item === "string" ? normaliseText(item) : isObject(item) ? merge({}, item) : item);
+      else out[key] = normaliseText(value);
     }
     if (Array.isArray(patch?.partsPatches)) {
       out.parts = patchArrayByKey(base?.parts, patch.partsPatches, "label");
