@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -24,7 +25,7 @@ def read(root: Path, relative: str, errors: list[str]) -> str:
         return ""
 
 
-def validate_control_shell(body: str, label: str, errors: list[str]) -> None:
+def validate_control_shell(body: str, label: str, errors: list[str], runtime_marker: str) -> None:
     markers = [
         "<!doctype html",
         "School Control Center",
@@ -32,7 +33,7 @@ def validate_control_shell(body: str, label: str, errors: list[str]) -> None:
         "accountRows",
         "createDialog",
         "importDialog",
-        "admin-accounts.js",
+        runtime_marker,
     ]
     if len(body.encode("utf-8")) <= 12000:
         fail(errors, f"{label} is unexpectedly short")
@@ -45,6 +46,10 @@ def validate_control_shell(body: str, label: str, errors: list[str]) -> None:
 
 def validate(root: Path, expected_sha: str) -> list[str]:
     errors: list[str] = []
+    token = expected_sha[:12]
+
+    if not re.fullmatch(r"[0-9a-f]{40}", expected_sha):
+        fail(errors, "Expected SHA must be a full lowercase 40-character Git SHA")
 
     if not (root / ".nojekyll").is_file():
         fail(errors, "Pages artifact must include .nojekyll")
@@ -58,12 +63,88 @@ def validate(root: Path, expected_sha: str) -> list[str]:
     if deployment.get("sha") != expected_sha:
         fail(errors, f"deployment.json SHA does not match artifact revision {expected_sha}")
 
+    manifest_text = read(root, "school-control-assets.json", errors)
+    try:
+        manifest = json.loads(manifest_text or "{}")
+    except json.JSONDecodeError as exc:
+        fail(errors, f"school-control-assets.json is invalid JSON: {exc}")
+        manifest = {}
+    expected_runtime = f"question-bank/js/school-control.{token}.js"
+    if manifest.get("sha") != expected_sha:
+        fail(errors, "School Control Center asset manifest SHA mismatch")
+    if manifest.get("token") != token:
+        fail(errors, "School Control Center asset manifest token mismatch")
+    if manifest.get("runtime") != expected_runtime:
+        fail(errors, "School Control Center runtime path mismatch")
+
     admin = read(root, "question-bank/admin.html", errors)
     control = read(root, "question-bank/school-control.html", errors)
-    validate_control_shell(admin, "Legacy administrator shell", errors)
-    validate_control_shell(control, "Fresh School Control Center shell", errors)
-    if admin and control and admin != control:
-        fail(errors, "Fresh School Control Center must initially match the reviewed administrator shell exactly")
+    validate_control_shell(admin, "Legacy administrator shell", errors, "admin-accounts.js")
+    validate_control_shell(control, "Fingerprint-protected School Control Center shell", errors, f"school-control.{token}.js")
+
+    expected_refs = [
+        f"../css/institution.{token}.css",
+        f"../css/institution-premium.{token}.css",
+        f"../js/institution-client.{token}.js",
+        f"../js/institution-experience.{token}.js",
+        f"js/school-control.{token}.js",
+        'href="school-control.html"',
+    ]
+    for marker in expected_refs:
+        if marker not in control:
+            fail(errors, f"School Control Center shell missing fingerprinted reference: {marker}")
+    for forbidden in [
+        "js/admin-accounts.js?v=",
+        "../js/institution-client.js?v=",
+        "../js/institution-experience.js?v=",
+        "../css/institution.css?v=",
+        "../css/institution-premium.css?v=",
+        'href="admin.html"',
+    ]:
+        if forbidden in control:
+            fail(errors, f"School Control Center shell retains legacy cacheable reference: {forbidden}")
+
+    fingerprinted_files = [
+        f"js/institution-client.{token}.js",
+        f"js/institution-experience.{token}.js",
+        f"js/institution-completion.{token}.js",
+        f"css/institution.{token}.css",
+        f"css/institution-polish.{token}.css",
+        f"css/institution-premium.{token}.css",
+        f"css/institution-responsive.{token}.css",
+        f"css/institution-completion.{token}.css",
+        expected_runtime,
+    ]
+    for relative in fingerprinted_files:
+        if not (root / relative).is_file():
+            fail(errors, f"Missing fingerprinted School Control Center asset: {relative}")
+
+    runtime = read(root, expected_runtime, errors)
+    for marker in [
+        'requireAuth(["admin","teacher"])',
+        "accountRows",
+        "createDialog",
+        "importDialog",
+        "ECHSInstitution.api",
+    ]:
+        if marker not in runtime:
+            fail(errors, f"Fingerprint-protected runtime missing marker: {marker}")
+    for forbidden in ["document.body.textContent", "document.write", "location.href=\"admin\""]:
+        if forbidden in runtime:
+            fail(errors, f"Fingerprint-protected runtime contains destructive marker: {forbidden}")
+
+    fingerprinted_client = read(root, f"js/institution-client.{token}.js", errors)
+    if f"css/institution-polish.{token}.css" not in fingerprinted_client:
+        fail(errors, "Fingerprint-protected client does not load the fingerprinted polish stylesheet")
+
+    fingerprinted_experience = read(root, f"js/institution-experience.{token}.js", errors)
+    for marker in [
+        f"css/institution-responsive.{token}.css",
+        f"css/institution-completion.{token}.css",
+        f"js/institution-completion.{token}.js",
+    ]:
+        if marker not in fingerprinted_experience:
+            fail(errors, f"Fingerprint-protected experience layer missing marker: {marker}")
 
     role_pages = {
         "question-bank/teacher.html": ["Teaching Command Center", "studentRows", "teacher-cloud.js"],
@@ -79,12 +160,7 @@ def validate(root: Path, expected_sha: str) -> list[str]:
                 fail(errors, f"{relative} missing marker: {marker}")
 
     login = read(root, "login.html", errors)
-    for marker in [
-        "Welcome back",
-        "loginForm",
-        "js/institution-client.js",
-        "js/login.js",
-    ]:
+    for marker in ["Welcome back", "loginForm", "js/institution-client.js", "js/login.js"]:
         if marker not in login:
             fail(errors, f"Login shell missing marker: {marker}")
 
@@ -93,7 +169,7 @@ def validate(root: Path, expected_sha: str) -> list[str]:
         "20260727-school-control-v1",
         "question-bank/school-control.html",
         "role===\"admin\"",
-        "question-bank\\/admin\\.html",
+        "question-bank\/admin\.html",
     ]:
         if marker not in login_controller:
             fail(errors, f"Login controller missing fresh administrator-route marker: {marker}")
@@ -126,7 +202,7 @@ def validate(root: Path, expected_sha: str) -> list[str]:
 
     robots = read(root, "robots.txt", errors)
     if "Disallow: /question-bank/school-control.html" not in robots:
-        fail(errors, "robots.txt must exclude the fresh School Control Center route")
+        fail(errors, "robots.txt must exclude the School Control Center route")
 
     return errors
 
@@ -137,7 +213,7 @@ def main() -> int:
     parser.add_argument("--expected-sha", required=True)
     args = parser.parse_args()
 
-    errors = validate(args.root.resolve(), args.expected_sha)
+    errors = validate(args.root.resolve(), args.expected_sha.strip().lower())
     print("ECHS deterministic GitHub Pages artifact validation")
     print(f"Root: {args.root}")
     print(f"Expected SHA: {args.expected_sha}")
