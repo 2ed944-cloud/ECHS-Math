@@ -46,11 +46,12 @@ for row in banks:
 if sum(int(r.get('questions') or 0) for r in banks)!=15671: fail('Bank question counts do not reconcile')
 if sum(int(r.get('pools') or 0) for r in banks)!=1484: fail('Bank pool counts do not reconcile')
 
+graphs={}
 for rel,course,min_skills in [
     ('data/knowledge-graph/ap-precalculus-v1.json','ap-precalculus',49),
     ('data/knowledge-graph/ib-math-ai-v1.json','ib-math-ai',24),
 ]:
-    graph=load(rel);skills=graph.get('skills') or []
+    graph=load(rel);graphs[course]=graph;skills=graph.get('skills') or []
     if graph.get('course')!=course: fail(f'{rel} course mismatch')
     if len(skills)<min_skills: fail(f'{rel} has only {len(skills)} skills')
     ids=[s.get('id') for s in skills]
@@ -66,6 +67,17 @@ for rel,course,min_skills in [
         if not skill.get('lesson_ids'): fail(f"{skill.get('id')} missing lesson IDs")
         for p in skill.get('prerequisites') or []:
             if p not in known: fail(f"{skill.get('id')} unknown prerequisite {p}")
+
+ib_catalog=load('data/ib-math-ai-lesson-catalog.json')
+ib_lessons=[lesson for unit in ib_catalog.get('units') or [] for lesson in unit.get('lessons') or []]
+if ib_catalog.get('student_visible') is not False: fail('IB lesson catalogue must remain hidden until content is built')
+if ib_catalog.get('catalog_state')!='curriculum-mapped-content-build-required': fail('IB lesson catalogue state is unsafe')
+if len(ib_lessons)!=25: fail(f'IB lesson catalogue must contain 25 lessons, found {len(ib_lessons)}')
+lesson_keys=[lesson.get('lesson_key') for lesson in ib_lessons]
+if len(lesson_keys)!=len(set(lesson_keys)): fail('IB lesson catalogue contains duplicate lesson keys')
+if any(lesson.get('student_visible') is not False or lesson.get('status')!='content-build-required' for lesson in ib_lessons): fail('IB unfinished lessons must stay hidden and content-build-required')
+graph_lesson_keys={value for skill in (graphs.get('ib-math-ai') or {}).get('skills') or [] for value in skill.get('lesson_ids') or []}
+if graph_lesson_keys!=set(lesson_keys): fail('IB lesson catalogue and skill graph lesson IDs do not reconcile')
 
 ap=load('question-bank/private-sources/data/ap-precalculus-crosswalk.json')
 ib=load('question-bank/private-sources/data/ib-math-ai-crosswalk.json')
@@ -101,11 +113,12 @@ forbid(importer,["'student_visible':True","'student_accessible':True","'student_
 upload=read('tools/upload_private_bank_package.py')
 require(upload,[
     'SUPABASE_SERVICE_ROLE_KEY','private-question-banks','teacher_review_required','student_visible": False',
-    'private_bank_packages','private_bank_questions','private_bank_media_objects','payload_sha256','--dry-run'
+    'private_bank_packages','private_bank_questions','private_bank_media_objects','payload_sha256','--dry-run',
+    'skill_definitions','ap-precalculus-v1.json','ib-math-ai-v1.json','seed_graphs'
 ],'Private bank upload tool')
 forbid(upload,['student_visible": True','trust_tier": "student_ready_verified"'],'Private bank upload tool')
 
-for relative in ('question-bank/private-sources/tools/import_blackboard_qti_secure.py','tools/upload_private_bank_package.py'):
+for relative in ('question-bank/private-sources/tools/import_blackboard_qti_secure.py','tools/upload_private_bank_package.py','tools/validate_private_bank_packages.py'):
     if read(relative):
         result=subprocess.run([sys.executable,'-m','py_compile',str(ROOT/relative)],capture_output=True,text=True)
         if result.returncode: fail(f'Python syntax error for {relative}: {result.stderr.strip()}')
@@ -139,9 +152,11 @@ require(deploy,['Validate private bank foundation before deployment','private-ba
 page=read('question-bank/official/admin/private-bank-center.html')
 controller=read('question-bank/official/admin/js/private-bank-center.js')
 require(page,['Private Bank Center','15,671','private-bank-center.js'],'Private Bank Center')
-require(controller,['requireAuth(["teacher","admin"])','private-bank-registry.json','publisher names stay internal'],'Private Bank controller')
+require(controller,['requireAuth(["teacher","admin"])','private-bank-registry.json','private-bank-api','publisher names stay internal'],'Private Bank controller')
 visual=read('tools/capture_private_bank_center.mjs')
 require(visual,['private-bank-center.html','Expected four bank cards','Publisher-facing text leaked','private-bank-center-report.json'],'Private Bank visual QA')
+worker=read('sw.js')
+require(worker,['private-bank-center.html','private-bank-center.js','private-bank-registry.json','private-bank-api'],'Service worker private bank boundary')
 
 print('ECHS private Blackboard bank foundation')
 print(f'Errors: {len(errors)}')
