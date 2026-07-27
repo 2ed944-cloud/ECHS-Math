@@ -48,6 +48,17 @@
   const skillGraph=()=>fetch(root("data/knowledge-graph/ap-calculus-unit-1.json"),{cache:"no-store"}).then(response=>{if(!response.ok)throw new Error("Knowledge graph could not be loaded");return response.json()});
   const questionTrust=()=>fetch(root("question-bank/official/admin/data/question-trust-manifest.json"),{cache:"no-store"}).then(response=>{if(!response.ok)throw new Error("Question trust manifest could not be loaded");return response.json()});
 
+  function addTrustNavigation(){
+    const current=ECHSInstitution.account?.(),nav=document.querySelector(".institutionNav");
+    if(!current||!nav||!["teacher","admin"].includes(current.role)||nav.querySelector("[data-question-trust-link]"))return;
+    const link=document.createElement("a");
+    link.href=root("question-bank/official/admin/question-trust.html");
+    link.dataset.questionTrustLink="true";
+    link.innerHTML='<span class="institutionNavIcon">⌾</span>Question Trust';
+    const adminLink=nav.querySelector("#adminNav");
+    if(adminLink)nav.insertBefore(link,adminLink);else nav.append(link);
+  }
+
   function install(){
     if(!window.ECHSInstitution)return setTimeout(install,40);
     ECHSInstitution.syncLearning=syncLearning;
@@ -55,6 +66,7 @@
     document.documentElement.dataset.masteryAuthority="server";
     addEventListener("online",()=>flushPending().catch(error=>console.warn("Pending mastery evidence sync failed",error)));
     window.ECHSMasteryEvidence={ROOT:ROOT.href,learningPayload,syncLearning,flushPending,classEvidence,skillGraph,questionTrust};
+    addTrustNavigation();
     document.dispatchEvent(new CustomEvent("echs:mastery-evidence-ready"));
   }
   install();
