@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       request_id:
-        description: "Optional teacher_upload_requests UUID; leave blank for the oldest queued request"
+        description: "Optional teacher_upload_requests UUID; leave blank for the oldest queued or recoverable course request"
         required: false
         type: string
 
@@ -80,14 +80,16 @@ jobs:
         run: |
           set -euo pipefail
           git diff --check
-          changed_html="$(git diff --name-only -- 'lessons/**/*.html')"
-          changed_js="$(git diff --name-only -- 'data/ap-precalculus-unit-*-update.js')"
+          changed_html="$(git status --porcelain --untracked-files=all | awk '{print $2}' | grep -E '^lessons/.+\.html$' || true)"
+          changed_js="$(git status --porcelain --untracked-files=all | awk '{print $2}' | grep -E '^data/ap-precalculus-unit-[0-9]+-update\.js$' || true)"
           if [ -z "$changed_html" ]; then
             echo "Course release produced no lesson HTML files" >&2
+            git status --short
             exit 1
           fi
           if [ -z "$changed_js" ]; then
             echo "Course release produced no portal update file" >&2
+            git status --short
             exit 1
           fi
           while IFS= read -r file; do
