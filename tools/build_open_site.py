@@ -168,6 +168,7 @@ def write_metadata(root: Path) -> None:
 def install_open_files(source: Path, root: Path) -> None:
     shutil.copy2(source / "variants/open/index.html", root / "index.html")
     shutil.copy2(source / "variants/open/open-platform.css", root / "css/open-platform.css")
+    shutil.copy2(source / "variants/open/platform-foundation.js", root / "js/platform-foundation.js")
     (root / ".github/workflows").mkdir(parents=True, exist_ok=True)
     shutil.copy2(source / "variants/open/deploy-pages.yml", root / ".github/workflows/deploy-pages.yml")
     shutil.copy2(source / "variants/open/README.md", root / "README.md")
