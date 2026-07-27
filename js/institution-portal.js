@@ -6,14 +6,14 @@
   if(!document.querySelector('link[data-hybrid-landing-hero]')){
     const link=document.createElement("link");
     link.rel="stylesheet";
-    link.href=root("css/landing-calculus-motion.css?v=20260727-hybrid1");
+    link.href=root("css/landing-calculus-motion.css?v=20260727-hybrid2");
     link.dataset.hybridLandingHero="true";
     link.setAttribute("data-hybrid-landing-hero","true");
     document.head.append(link);
   }
   if(!document.querySelector('script[data-hybrid-landing-hero]')){
     const script=document.createElement("script");
-    script.src=root("js/landing-hybrid-hero.js?v=20260727-hybrid1");
+    script.src=root("js/landing-hybrid-hero.js?v=20260727-hybrid2");
     script.dataset.hybridLandingHero="true";
     script.setAttribute("data-hybrid-landing-hero","true");
     script.async=true;

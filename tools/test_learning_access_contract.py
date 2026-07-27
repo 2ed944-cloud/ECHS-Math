@@ -77,6 +77,7 @@ def validate_source(root: Path, errors: list[str]) -> None:
         "landing-calculus-motion.css",
         "landing-hybrid-hero.js",
         "data-hybrid-landing-hero",
+        "hybrid2",
         'dataset.platformPage!=="home"',
     ], "Landing asset loader", errors)
     require(landing_controller, [
@@ -84,24 +85,34 @@ def validate_source(root: Path, errors: list[str]) -> None:
         "calculusMotionBoard",
         "compactSchoolIdentityCard",
         "heroCalculusCurve",
-        "tangentTraveller",
-        "animateMotion",
-        'rotate="auto"',
+        "heroTangentTraveller",
+        "requestAnimationFrame",
+        "getPointAtLength",
+        "setVisualPhase",
+        "window.ECHSLandingCalculus",
+        'data-extremum-callout="maximum"',
+        'data-extremum-callout="minimum"',
         "f′(0) = 0",
+        "f′(a) = 0",
         "HORIZONTAL TANGENT",
         "LOCAL MAXIMUM",
+        "LOCAL MINIMUM",
         "assets/echs_logo.png",
-    ], "Hybrid animated landing controller", errors)
+    ], "Timed extrema landing controller", errors)
     require(landing_motion, [
         ".hybridHeroVisual",
         ".calculusMotionBoard",
         ".calculusHeroCurve",
         ".maximumTangentGuide",
+        ".minimumTangentGuide",
+        ".extremumCallout",
+        '.calculusMotionBoard[data-extremum-phase="maximum"]',
+        '.calculusMotionBoard[data-extremum-phase="minimum"]',
         ".tangentTraveller",
         ".compactSchoolIdentityCard",
         "@media(max-width:680px)",
         "@media(prefers-reduced-motion:reduce)",
-    ], "Hybrid animated landing stylesheet", errors)
+    ], "Timed extrema landing stylesheet", errors)
     require(access, ['role==="student"', '"/dashboard/student"', "courseKeys", "courseAllowed"], "Access resolver", errors)
     require(portal, ["access.allCourses?ALL_COURSES", "lessonURL(", "Complete each lesson to unlock", "lessonPracticeBtn"], "Learning-path portal", errors)
     require(lesson_guard, ["data-finish-lesson", "Finish lesson & unlock practice", "echs:lesson-completed", "course-not-assigned"], "Lesson guard", errors)
@@ -146,7 +157,7 @@ def validate_source(root: Path, errors: list[str]) -> None:
         "portal-access.js",
         "lesson-access-guard.js",
         "gamification-overlay.js",
-        "hybrid1",
+        "hybrid2",
         "builder1",
     ], "Service worker", errors)
 
