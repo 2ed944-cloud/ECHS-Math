@@ -38,6 +38,9 @@ jobs:
             fi
           done
 
+      - name: Reject duplicate Supabase migration versions
+        run: python tools/validate_supabase_migration_versions.py
+
       - name: Set up Supabase CLI
         uses: supabase/setup-cli@v1
         with:
