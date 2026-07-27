@@ -4,7 +4,7 @@
   const number=value=>new Intl.NumberFormat("en-GB").format(Number(value||0));
   try{
     await window.ECHSInstitution.requireAuth(["teacher","admin"]);
-    const response=await fetch("../../../private-sources/data/private-bank-registry.json",{cache:"no-store"});
+    const response=await fetch("../../private-sources/data/private-bank-registry.json",{cache:"no-store"});
     if(!response.ok) throw new Error(`Private bank registry returned ${response.status}`);
     const registry=await response.json();
     let livePackages=[];
