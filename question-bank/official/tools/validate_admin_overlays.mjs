@@ -15,8 +15,12 @@ function readJson(filePath) {
   return JSON.parse(fs.readFileSync(filePath, "utf8").replace(/^\uFEFF/, ""));
 }
 
+function normaliseOverlayText(value) {
+  return typeof value === "string" ? value.replace(/\\n/g, "\n") : value;
+}
+
 function walkStrings(value, field = "") {
-  if (typeof value === "string") return [{ field, text: value }];
+  if (typeof value === "string") return [{ field, text: normaliseOverlayText(value) }];
   if (Array.isArray(value)) return value.flatMap((item, index) => walkStrings(item, `${field}[${index}]`));
   if (value && typeof value === "object") {
     return Object.entries(value).flatMap(([key, item]) => walkStrings(item, field ? `${field}.${key}` : key));
@@ -42,7 +46,7 @@ function delimitedExpressions(text) {
       errors.push(`Unmatched ${token.open} delimiter at character ${token.index}`);
       break;
     }
-    expressions.push({ expression: text.slice(token.index + token.open.length, end), displayMode: token.display });
+    expressions.push({ expression: text.slice(token.index + token.open.length, end).trim(), displayMode: token.display });
     cursor = end + token.close.length;
   }
   for (const close of ["\\)", "\\]"]) {
@@ -134,6 +138,7 @@ const result = {
   canonicalIdsLoaded: canonicalIds.size,
   mathFieldsChecked: mathFieldCount,
   expressionsParsed: expressionCount,
+  normalisation: "escaped-newlines-to-runtime-newlines",
   errors,
   warnings,
 };
@@ -145,6 +150,7 @@ const report = [
   `| Overlay records checked | ${recordCount} |`, `| Unique overlay IDs | ${seen.size} |`,
   `| Canonical IDs loaded | ${canonicalIds.size} |`, `| Math-bearing fields checked | ${mathFieldCount} |`,
   `| KaTeX expressions parsed | ${expressionCount} |`, `| Errors | ${errors.length} |`, "",
+  "Escaped overlay newlines are normalised exactly as they are in Teacher Studio before KaTeX parsing.", "",
   ...(errors.length ? ["## Errors", "", ...errors.slice(0, 300).map((item) => `- \`${item.file}\` ${item.id ? `\`${item.id}\` ` : ""}${item.field ? `\`${item.field}\` ` : ""}${item.issue}`), ""] : ["Zero JSON, duplicate-ID, access-gate, delimiter, or KaTeX parser errors remain.", ""]),
   ...(warnings.length ? ["## Warnings", "", ...warnings.map((item) => `- ${item}`), ""] : []),
 ].join("\n");

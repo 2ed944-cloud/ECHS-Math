@@ -1,0 +1,184 @@
+{
+  "schema_version": "1.0.0",
+  "course": "ap-calculus",
+  "unit": "1",
+  "title": "Limits and Continuity",
+  "skills": [
+    {
+      "id": "APCALC.U1.RATE.INSTANTANEOUS",
+      "title": "Interpret instantaneous rate through limiting average rates",
+      "description": "Connect shrinking-interval average rates and secant slopes to an instantaneous rate and tangent slope.",
+      "ap_topics": ["1.1"],
+      "lesson_ids": ["1.1"],
+      "prerequisites": [],
+      "representations": ["symbolic", "graphical", "numerical", "contextual"],
+      "misconceptions": ["instantaneous-rate-is-direct-substitution", "secant-and-tangent-slopes-are-identical"],
+      "evidence_rules": {"minimum_independent": 4, "minimum_days": 2, "requires_transfer": true, "requires_retention": true, "minimum_confidence": 0.72}
+    },
+    {
+      "id": "APCALC.U1.LIMIT.NOTATION",
+      "title": "Interpret and write limit notation",
+      "description": "Distinguish the value of a function at an input from the value approached near that input and express one-sided and two-sided limits precisely.",
+      "ap_topics": ["1.2"],
+      "lesson_ids": ["1.2"],
+      "prerequisites": ["APCALC.U1.RATE.INSTANTANEOUS"],
+      "representations": ["symbolic", "verbal"],
+      "misconceptions": ["limit-equals-function-value", "direction-symbol-ignored"],
+      "evidence_rules": {"minimum_independent": 4, "minimum_days": 2, "requires_transfer": false, "requires_retention": true, "minimum_confidence": 0.7}
+    },
+    {
+      "id": "APCALC.U1.LIMIT.GRAPH",
+      "title": "Estimate limits from graphs",
+      "description": "Read left-hand, right-hand and two-sided limits from graphical behaviour while treating open and closed points correctly.",
+      "ap_topics": ["1.3"],
+      "lesson_ids": ["1.3"],
+      "prerequisites": ["APCALC.U1.LIMIT.NOTATION"],
+      "representations": ["graphical", "verbal", "symbolic"],
+      "misconceptions": ["closed-dot-controls-limit", "left-and-right-disagreement-overlooked"],
+      "evidence_rules": {"minimum_independent": 5, "minimum_days": 2, "requires_transfer": true, "requires_retention": true, "minimum_confidence": 0.74}
+    },
+    {
+      "id": "APCALC.U1.LIMIT.TABLE",
+      "title": "Estimate limits from numerical tables",
+      "description": "Select inputs approaching a target from both sides and infer a limit using only precision supported by the data.",
+      "ap_topics": ["1.4"],
+      "lesson_ids": ["1.4"],
+      "prerequisites": ["APCALC.U1.LIMIT.NOTATION"],
+      "representations": ["tabular", "numerical", "symbolic"],
+      "misconceptions": ["uses-target-input-in-table", "claims-unsupported-precision"],
+      "evidence_rules": {"minimum_independent": 4, "minimum_days": 2, "requires_transfer": true, "requires_retention": true, "minimum_confidence": 0.72}
+    },
+    {
+      "id": "APCALC.U1.LIMIT.LAWS",
+      "title": "Apply algebraic properties of limits",
+      "description": "Use sum, difference, product, quotient, power and composition properties when their conditions are satisfied.",
+      "ap_topics": ["1.5"],
+      "lesson_ids": ["1.5"],
+      "prerequisites": ["APCALC.U1.LIMIT.NOTATION"],
+      "representations": ["symbolic", "verbal"],
+      "misconceptions": ["quotient-law-used-with-zero-denominator-limit", "composition-law-used-without-continuity-condition"],
+      "evidence_rules": {"minimum_independent": 5, "minimum_days": 2, "requires_transfer": true, "requires_retention": true, "minimum_confidence": 0.74}
+    },
+    {
+      "id": "APCALC.U1.LIMIT.FACTOR",
+      "title": "Resolve indeterminate forms by factoring",
+      "description": "Recognise a removable common factor, rewrite an equivalent expression and evaluate the resulting limit.",
+      "ap_topics": ["1.6"],
+      "lesson_ids": ["1.6"],
+      "prerequisites": ["APCALC.U1.LIMIT.LAWS"],
+      "representations": ["symbolic", "graphical"],
+      "misconceptions": ["zero-over-zero-is-zero", "cancels-terms-instead-of-factors"],
+      "evidence_rules": {"minimum_independent": 5, "minimum_days": 2, "requires_transfer": true, "requires_retention": true, "minimum_confidence": 0.75}
+    },
+    {
+      "id": "APCALC.U1.LIMIT.RATIONALISE",
+      "title": "Resolve indeterminate forms by rationalising",
+      "description": "Use a conjugate to rewrite radical expressions and evaluate a limit after removing an indeterminate form.",
+      "ap_topics": ["1.6"],
+      "lesson_ids": ["1.6"],
+      "prerequisites": ["APCALC.U1.LIMIT.LAWS"],
+      "representations": ["symbolic"],
+      "misconceptions": ["conjugate-applied-to-one-factor-only", "radical-distribution-error"],
+      "evidence_rules": {"minimum_independent": 4, "minimum_days": 2, "requires_transfer": true, "requires_retention": true, "minimum_confidence": 0.73}
+    },
+    {
+      "id": "APCALC.U1.LIMIT.PROCEDURE",
+      "title": "Select an efficient limit procedure",
+      "description": "Classify the expression and select direct substitution, factoring, rationalising, a known limit, numerical evidence or a theorem appropriately.",
+      "ap_topics": ["1.7"],
+      "lesson_ids": ["1.7"],
+      "prerequisites": ["APCALC.U1.LIMIT.LAWS", "APCALC.U1.LIMIT.FACTOR", "APCALC.U1.LIMIT.RATIONALISE"],
+      "representations": ["symbolic", "verbal"],
+      "misconceptions": ["uses-one-procedure-for-every-limit", "fails-to-check-indeterminate-form"],
+      "evidence_rules": {"minimum_independent": 6, "minimum_days": 3, "requires_transfer": true, "requires_retention": true, "minimum_confidence": 0.78}
+    },
+    {
+      "id": "APCALC.U1.LIMIT.SQUEEZE",
+      "title": "Use the Squeeze Theorem",
+      "description": "Identify bounding functions with a common limit and justify the limit of a function trapped between them.",
+      "ap_topics": ["1.8"],
+      "lesson_ids": ["1.8"],
+      "prerequisites": ["APCALC.U1.LIMIT.LAWS"],
+      "representations": ["symbolic", "graphical", "verbal"],
+      "misconceptions": ["bounds-do-not-share-limit", "inequality-direction-not-preserved"],
+      "evidence_rules": {"minimum_independent": 4, "minimum_days": 2, "requires_transfer": true, "requires_retention": true, "minimum_confidence": 0.75}
+    },
+    {
+      "id": "APCALC.U1.LIMIT.MULTIREP",
+      "title": "Connect multiple representations of limits",
+      "description": "Reconcile graphical, numerical, analytical and verbal evidence about the same limiting behaviour.",
+      "ap_topics": ["1.9"],
+      "lesson_ids": ["1.9"],
+      "prerequisites": ["APCALC.U1.LIMIT.GRAPH", "APCALC.U1.LIMIT.TABLE", "APCALC.U1.LIMIT.PROCEDURE"],
+      "representations": ["symbolic", "graphical", "tabular", "verbal", "contextual"],
+      "misconceptions": ["treats-representations-as-unrelated", "chooses-point-value-over-nearby-behaviour"],
+      "evidence_rules": {"minimum_independent": 6, "minimum_days": 3, "requires_transfer": true, "requires_retention": true, "minimum_confidence": 0.8}
+    },
+    {
+      "id": "APCALC.U1.DISCONTINUITY.CLASSIFY",
+      "title": "Classify discontinuities",
+      "description": "Distinguish removable, jump and infinite discontinuities from graphical or analytical evidence.",
+      "ap_topics": ["1.10"],
+      "lesson_ids": ["1.10"],
+      "prerequisites": ["APCALC.U1.LIMIT.GRAPH", "APCALC.U1.LIMIT.NOTATION"],
+      "representations": ["graphical", "symbolic", "verbal"],
+      "misconceptions": ["all-discontinuities-are-holes", "vertical-asymptote-called-jump"],
+      "evidence_rules": {"minimum_independent": 5, "minimum_days": 2, "requires_transfer": true, "requires_retention": true, "minimum_confidence": 0.75}
+    },
+    {
+      "id": "APCALC.U1.CONTINUITY.POINT",
+      "title": "Justify continuity at a point",
+      "description": "Verify that the function value exists, the limit exists and the two values are equal, using precise notation and reasoning.",
+      "ap_topics": ["1.11"],
+      "lesson_ids": ["1.11"],
+      "prerequisites": ["APCALC.U1.LIMIT.NOTATION", "APCALC.U1.DISCONTINUITY.CLASSIFY"],
+      "representations": ["symbolic", "graphical", "verbal"],
+      "misconceptions": ["checks-only-function-defined", "checks-only-limit-exists"],
+      "evidence_rules": {"minimum_independent": 5, "minimum_days": 2, "requires_transfer": true, "requires_retention": true, "minimum_confidence": 0.77}
+    },
+    {
+      "id": "APCALC.U1.CONTINUITY.INTERVAL",
+      "title": "Determine intervals of continuity",
+      "description": "Identify all intervals where a function is continuous and use correct interval notation, including endpoint conventions.",
+      "ap_topics": ["1.12"],
+      "lesson_ids": ["1.12"],
+      "prerequisites": ["APCALC.U1.CONTINUITY.POINT"],
+      "representations": ["symbolic", "graphical"],
+      "misconceptions": ["includes-discontinuity-endpoint", "ignores-domain-restrictions"],
+      "evidence_rules": {"minimum_independent": 4, "minimum_days": 2, "requires_transfer": true, "requires_retention": true, "minimum_confidence": 0.74}
+    },
+    {
+      "id": "APCALC.U1.CONTINUITY.PARAMETER",
+      "title": "Choose parameters that create continuity",
+      "description": "Use a limit condition to solve for a parameter that removes a discontinuity or joins pieces continuously.",
+      "ap_topics": ["1.13"],
+      "lesson_ids": ["1.13"],
+      "prerequisites": ["APCALC.U1.CONTINUITY.POINT", "APCALC.U1.LIMIT.PROCEDURE"],
+      "representations": ["symbolic", "graphical"],
+      "misconceptions": ["sets-piece-formulas-equal-without-evaluating-limit", "uses-wrong-one-sided-piece"],
+      "evidence_rules": {"minimum_independent": 5, "minimum_days": 2, "requires_transfer": true, "requires_retention": true, "minimum_confidence": 0.77}
+    },
+    {
+      "id": "APCALC.U1.INFINITE.LIMITS",
+      "title": "Interpret infinite limits and vertical asymptotes",
+      "description": "Determine one-sided infinite behaviour, distinguish positive and negative infinity and connect it to vertical asymptotes.",
+      "ap_topics": ["1.14", "1.15"],
+      "lesson_ids": ["1.14", "1.15"],
+      "prerequisites": ["APCALC.U1.LIMIT.GRAPH", "APCALC.U1.LIMIT.PROCEDURE"],
+      "representations": ["symbolic", "graphical", "tabular"],
+      "misconceptions": ["infinity-treated-as-number", "two-sided-infinite-limit-claimed-when-signs-differ"],
+      "evidence_rules": {"minimum_independent": 5, "minimum_days": 2, "requires_transfer": true, "requires_retention": true, "minimum_confidence": 0.76}
+    },
+    {
+      "id": "APCALC.U1.IVT",
+      "title": "Apply the Intermediate Value Theorem",
+      "description": "Verify continuity and endpoint-value conditions, then justify the existence of an input producing a target output.",
+      "ap_topics": ["1.16"],
+      "lesson_ids": ["1.16"],
+      "prerequisites": ["APCALC.U1.CONTINUITY.INTERVAL"],
+      "representations": ["symbolic", "graphical", "verbal", "contextual"],
+      "misconceptions": ["ivt-proves-unique-solution", "continuity-condition-omitted", "target-not-between-endpoint-values"],
+      "evidence_rules": {"minimum_independent": 5, "minimum_days": 3, "requires_transfer": true, "requires_retention": true, "minimum_confidence": 0.8}
+    }
+  ]
+}

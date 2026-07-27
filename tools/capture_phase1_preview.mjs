@@ -17,8 +17,9 @@ const routes=[
   {key:'mistake-bank',path:'/question-bank/mistakes.html',ready:'#reviewList'},
   {key:'account-administration',path:'/question-bank/admin.html',ready:'#accountRows',premium:true,dock:true},
   {key:'institutional-student',path:'/question-bank/student.html',ready:'#masteryMeter',premium:true,dock:true},
-  {key:'teacher-dashboard',path:'/question-bank/teacher.html',ready:'#studentRows',premium:true,dock:true},
+  {key:'teacher-dashboard',path:'/question-bank/teacher.html',ready:'#studentRows',premium:true,dock:true,evidenceHeatmap:true},
   {key:'parent-dashboard',path:'/question-bank/parent.html',ready:'#familyPlan',premium:true,dock:true},
+  {key:'question-trust',path:'/question-bank/official/admin/question-trust.html',ready:'#trustStatus',trustCenter:true},
   {key:'privacy',path:'/privacy.html',ready:'main'},
   {key:'accessibility',path:'/accessibility.html',ready:'main'}
 ];
@@ -27,6 +28,8 @@ const devices=[
   {key:'mobile',viewport:{width:390,height:844},isMobile:true}
 ];
 const previewInstitutionConfig={enabled:false,api_base:'https://YOUR_PROJECT_REF.supabase.co/functions/v1',setup_api_base:'https://wkqadnfloiohqfnesmyq.supabase.co/functions/v1',setup_enabled:true,backend_deployed:true,setup_path:'setup.html',institution_name:'Education City High School',platform_name:'ECHS Mathematics',site_base:'https://2ed944-cloud.github.io/ECHS-Math/',support_email:'',session_storage:'local'};
+const teacherAccount={id:'t1',display_name:'Mohammad Abu Ghuwaleh',username:'m.abughuwaleh',role:'teacher',organization_name:'ECHS Mathematics',can_manage_accounts:true};
+const evidenceFixture={ok:true,authoritative:true,class:{id:'c1',name:'AP Calculus · Period 1',course_key:'AP Calculus'},coverage:{students_with_evidence:3,students_total:4,percent:75},students:[{id:'s1',display_name:'Amina Hassan'},{id:'s2',display_name:'Yousef Ali'},{id:'s3',display_name:'Sara Omar'},{id:'s4',display_name:'Khalid Noor'}],skills:[{skill_key:'APCALC.U1.LIMIT.GRAPH',title:'Estimate limits from graphs',lesson_ids:['1.3'],average_score:74},{skill_key:'APCALC.U1.LIMIT.TABLE',title:'Estimate limits from numerical tables',lesson_ids:['1.4'],average_score:67},{skill_key:'APCALC.U1.CONTINUITY.POINT',title:'Justify continuity at a point',lesson_ids:['1.11'],average_score:58}],matrix:[{account_id:'s1',skill_key:'APCALC.U1.LIMIT.GRAPH',score:91,confidence:.84,attempts:12,independent_evidence:9,retention_evidence:3,transfer_evidence:2},{account_id:'s1',skill_key:'APCALC.U1.LIMIT.TABLE',score:78,confidence:.72,attempts:9,independent_evidence:7,retention_evidence:2,transfer_evidence:1},{account_id:'s2',skill_key:'APCALC.U1.LIMIT.GRAPH',score:72,confidence:.66,attempts:8,independent_evidence:6,retention_evidence:1,transfer_evidence:1},{account_id:'s2',skill_key:'APCALC.U1.CONTINUITY.POINT',score:63,confidence:.58,attempts:7,independent_evidence:5,retention_evidence:1,transfer_evidence:0},{account_id:'s3',skill_key:'APCALC.U1.LIMIT.TABLE',score:56,confidence:.52,attempts:6,independent_evidence:4,retention_evidence:0,transfer_evidence:0}]};
 const report={generatedAt:new Date().toISOString(),baseURL,pages:[],errors:[]};
 for(const device of devices){
   const context=await browser.newContext({viewport:device.viewport,isMobile:device.isMobile,deviceScaleFactor:1,reducedMotion:'reduce',serviceWorkers:'block'});
@@ -36,82 +39,50 @@ for(const device of devices){
     page.on('console',message=>{if(message.type()==='error')consoleErrors.push(message.text());});
     page.on('pageerror',error=>pageErrors.push(error.message));
     page.on('requestfailed',request=>failedRequests.push(`${request.method()} ${request.url()} :: ${request.failure()?.errorText||'failed'}`));
+    if(route.trustCenter){
+      await page.addInitScript(account=>{localStorage.setItem('echs_institution_token_v1','visual-qa-token');localStorage.setItem('echs_institution_account_v1',JSON.stringify(account));localStorage.setItem('echs_institution_expires_v1',new Date(Date.now()+3600000).toISOString())},teacherAccount);
+      const configured={...previewInstitutionConfig,enabled:true,api_base:`${baseURL}/functions/v1`};
+      await page.route('**/config/institution.json*',request=>request.fulfill({status:200,contentType:'application/json',body:JSON.stringify(configured)}));
+      await page.route('**/functions/v1/account-api/me*',request=>request.fulfill({status:200,contentType:'application/json',body:JSON.stringify({ok:true,account:teacherAccount})}));
+    }
     const url=`${baseURL}${route.path}`,entry={device:device.key,route:route.key,url,consoleErrors,pageErrors,failedRequests,interactions:{}};
     try{
       const response=await page.goto(url,{waitUntil:'domcontentloaded',timeout:45000});entry.status=response?.status()??null;
       await page.locator(route.ready).first().waitFor({state:'attached',timeout:30000});
       await page.waitForTimeout(route.delay||2200);
+      if(route.trustCenter){
+        await page.waitForFunction(()=>document.getElementById('trustStatus')?.textContent?.includes('Authorised as teacher'),null,{timeout:12000});
+        const trust=await page.evaluate(()=>({canonical:document.getElementById('canonicalCount')?.textContent,ready:document.getElementById('readyCount')?.textContent,restricted:document.getElementById('restrictedCount')?.textContent,tiers:document.querySelectorAll('.trustTier').length,gates:document.querySelectorAll('#releaseGate>div').length}));
+        Object.assign(entry.interactions,{questionTrust:true,...trust});
+        if(trust.canonical!=='1,217'||trust.ready!=='52'||trust.restricted!=='1,165'||trust.tiers<4||trust.gates<5)report.errors.push(`${route.key}/${device.key}: Question Trust Center did not render the audited boundary`);
+      }
+      if(route.evidenceHeatmap){
+        await page.waitForFunction(()=>window.ECHSMasteryEvidence?.classEvidence&&document.getElementById('classSelector')?.value,null,{timeout:12000});
+        await page.evaluate(fixture=>{window.ECHSMasteryEvidence.classEvidence=async()=>fixture;document.getElementById('classHeatmap').removeAttribute('data-authoritative-evidence');document.getElementById('classSelector').dispatchEvent(new Event('change',{bubbles:true}))},evidenceFixture);
+        await page.waitForFunction(()=>document.querySelector('#classHeatmap[data-authoritative-evidence="true"] .evidenceCell:not(.noEvidence)'),null,{timeout:8000});
+        const evidence=await page.evaluate(()=>({cells:document.querySelectorAll('#classHeatmap .evidenceCell').length,realCells:document.querySelectorAll('#classHeatmap .evidenceCell:not(.noEvidence)').length,noEvidence:document.querySelectorAll('#classHeatmap .evidenceCell.noEvidence').length,coverage:document.getElementById('coverageMetric')?.textContent,legend:document.querySelector('.evidenceLegend')?.textContent||'',sample:document.querySelector('#classHeatmap .evidenceCell:not(.noEvidence)')?.getAttribute('title')||''}));
+        Object.assign(entry.interactions,{authoritativeHeatmap:true,...evidence});
+        if(evidence.realCells<5||evidence.noEvidence<1||evidence.coverage!=='75%'||!evidence.legend.includes('Server-authoritative')||!evidence.sample.includes('confidence'))report.errors.push(`${route.key}/${device.key}: authoritative evidence heatmap is incomplete`);
+      }
       if(route.hybridHero){
         await page.waitForFunction(()=>document.querySelector('.premiumIdentityVisual')?.dataset.hybridHeroReady==='true'&&window.ECHSLandingCalculus?.setPhase,null,{timeout:12000});
-        const hybrid=await page.evaluate(()=>{
-          const board=document.querySelector('.calculusMotionBoard'),card=document.querySelector('.compactSchoolIdentityCard'),traveller=document.querySelector('#heroTangentTraveller'),maximumGuide=document.querySelector('.maximumTangentGuide'),minimumGuide=document.querySelector('.minimumTangentGuide');
-          const boardRect=board?.getBoundingClientRect(),cardRect=card?.getBoundingClientRect();
-          return{board:Boolean(board),card:Boolean(card),traveller:Boolean(traveller),maximumGuide:Boolean(maximumGuide),minimumGuide:Boolean(minimumGuide),boardHeight:Math.round(boardRect?.height||0),cardHeight:Math.round(cardRect?.height||0),overlap:Boolean(boardRect&&cardRect&&cardRect.top<boardRect.bottom&&cardRect.top>boardRect.top)};
-        });
+        const hybrid=await page.evaluate(()=>{const board=document.querySelector('.calculusMotionBoard'),card=document.querySelector('.compactSchoolIdentityCard'),traveller=document.querySelector('#heroTangentTraveller'),maximumGuide=document.querySelector('.maximumTangentGuide'),minimumGuide=document.querySelector('.minimumTangentGuide');const boardRect=board?.getBoundingClientRect(),cardRect=card?.getBoundingClientRect();return{board:Boolean(board),card:Boolean(card),traveller:Boolean(traveller),maximumGuide:Boolean(maximumGuide),minimumGuide:Boolean(minimumGuide),boardHeight:Math.round(boardRect?.height||0),cardHeight:Math.round(cardRect?.height||0),overlap:Boolean(boardRect&&cardRect&&cardRect.top<boardRect.bottom&&cardRect.top>boardRect.top)}});
         Object.assign(entry.interactions,{hybridCalculusHero:true,...hybrid});
         if(!hybrid.board||!hybrid.card||!hybrid.traveller||!hybrid.maximumGuide||!hybrid.minimumGuide)report.errors.push(`${route.key}/${device.key}: extrema calculus artwork is incomplete`);
         if(hybrid.boardHeight<200)report.errors.push(`${route.key}/${device.key}: calculus board is unexpectedly short (${hybrid.boardHeight}px)`);
         if(hybrid.cardHeight>350)report.errors.push(`${route.key}/${device.key}: compact ECHS card is too tall (${hybrid.cardHeight}px)`);
         if(!hybrid.overlap)report.errors.push(`${route.key}/${device.key}: ECHS card does not visually overlap the calculus board`);
-        await page.locator('.calculusMotionBoard').scrollIntoViewIfNeeded();
-        await page.waitForTimeout(140);
-
-        for(const phase of ['maximum','minimum']){
-          await page.evaluate(value=>window.ECHSLandingCalculus.setPhase(value),phase);
-          await page.waitForFunction(value=>document.querySelector('.calculusMotionBoard')?.dataset.extremumPhase===value,phase,{timeout:5000});
-          await page.waitForTimeout(420);
-          const state=await page.evaluate(value=>{
-            const active=document.querySelector(`[data-extremum-callout="${value}"]`);
-            const other=document.querySelector(`[data-extremum-callout="${value==='maximum'?'minimum':'maximum'}"]`);
-            const formula=document.getElementById('calculusBoardFormula')?.textContent||'';
-            const transform=document.getElementById('heroTangentTraveller')?.getAttribute('transform')||'';
-            return{activeOpacity:Number.parseFloat(getComputedStyle(active).opacity||'0'),otherOpacity:Number.parseFloat(getComputedStyle(other).opacity||'0'),formula,transform};
-          },phase);
-          entry.interactions[`${phase}Reveal`]=state;
-          if(state.activeOpacity<.75)report.errors.push(`${route.key}/${device.key}: ${phase} callout did not appear`);
-          if(state.otherOpacity>.25)report.errors.push(`${route.key}/${device.key}: inactive extremum callout remained visible during ${phase}`);
-          const expectedFormula=phase==='maximum'?"f′(0) = 0":"f′(a) = 0";
-          if(state.formula!==expectedFormula)report.errors.push(`${route.key}/${device.key}: ${phase} formula is ${state.formula||'missing'}`);
-          if(!/translate\(.+\) rotate\(.+\)/.test(state.transform))report.errors.push(`${route.key}/${device.key}: tangent transform was not calculated during ${phase}`);
-          const phaseScreenshot=path.join(outputDir,`${route.key}-calculus-${phase}-${device.key}.png`);
-          await page.screenshot({path:phaseScreenshot,fullPage:false});
-          entry.interactions[`${phase}Screenshot`]=phaseScreenshot;
-        }
-        await page.evaluate(()=>window.ECHSLandingCalculus.setPhase('maximum'));
-        await page.waitForTimeout(420);
-        await page.evaluate(()=>scrollTo({top:0,behavior:'instant'}));
+        await page.locator('.calculusMotionBoard').scrollIntoViewIfNeeded();await page.waitForTimeout(140);
+        for(const phase of ['maximum','minimum']){await page.evaluate(value=>window.ECHSLandingCalculus.setPhase(value),phase);await page.waitForFunction(value=>document.querySelector('.calculusMotionBoard')?.dataset.extremumPhase===value,phase,{timeout:5000});await page.waitForTimeout(420);const state=await page.evaluate(value=>{const active=document.querySelector(`[data-extremum-callout="${value}"]`),other=document.querySelector(`[data-extremum-callout="${value==='maximum'?'minimum':'maximum'}"]`),formula=document.getElementById('calculusBoardFormula')?.textContent||'',transform=document.getElementById('heroTangentTraveller')?.getAttribute('transform')||'';return{activeOpacity:Number.parseFloat(getComputedStyle(active).opacity||'0'),otherOpacity:Number.parseFloat(getComputedStyle(other).opacity||'0'),formula,transform}},phase);entry.interactions[`${phase}Reveal`]=state;if(state.activeOpacity<.75)report.errors.push(`${route.key}/${device.key}: ${phase} callout did not appear`);if(state.otherOpacity>.25)report.errors.push(`${route.key}/${device.key}: inactive extremum callout remained visible during ${phase}`);const expectedFormula=phase==='maximum'?"f′(0) = 0":"f′(a) = 0";if(state.formula!==expectedFormula)report.errors.push(`${route.key}/${device.key}: ${phase} formula is ${state.formula||'missing'}`);if(!/translate\(.+\) rotate\(.+\)/.test(state.transform))report.errors.push(`${route.key}/${device.key}: tangent transform was not calculated during ${phase}`);const phaseScreenshot=path.join(outputDir,`${route.key}-calculus-${phase}-${device.key}.png`);await page.screenshot({path:phaseScreenshot,fullPage:false});entry.interactions[`${phase}Screenshot`]=phaseScreenshot}await page.evaluate(()=>window.ECHSLandingCalculus.setPhase('maximum'));await page.waitForTimeout(420);await page.evaluate(()=>scrollTo({top:0,behavior:'instant'}));
       }
-      if(route.compactBuilder){
-        await page.locator('#builderToggle').waitFor({state:'attached',timeout:8000});
-        await page.evaluate(()=>{
-          document.body.classList.add('studentFocused');
-          const shell=document.getElementById('shell');
-          shell.innerHTML='<article class="questionCard"><div class="pillRow"><span class="pill wine">Question 1 of 10</span><span class="pill teal">AP Calculus Bank 2</span><span class="pill gold">Adaptive practice</span><span class="pill">Skill 1.1</span><span class="pill">Multiple choice</span></div><div class="progressTrack"><i style="width:10%"></i></div><h2>Introducing Calculus: Can Change Occur at an Instant?</h2><div class="prompt"><p>Representative question content for compact-builder visual verification.</p></div></article>';
-        });
-        await page.locator('#practiceBuilder.isCollapsed').waitFor({state:'attached',timeout:8000});
-        const compactHeight=await page.locator('#practiceBuilder .studioPanel').evaluate(node=>Math.round(node.getBoundingClientRect().height));
-        entry.interactions.compactPracticeBuilder=true;entry.interactions.compactBuilderHeight=compactHeight;
-        if(compactHeight>100)report.errors.push(`${route.key}/${device.key}: compact builder is ${compactHeight}px high`);
-        await page.locator('#builderAdjust').click();
-        await page.waitForFunction(()=>!document.getElementById('practiceBuilder')?.classList.contains('isCollapsed'));
-        entry.interactions.builderAdjust=true;
-        await page.locator('#builderToggle').click();
-        await page.waitForFunction(()=>document.getElementById('practiceBuilder')?.classList.contains('isCollapsed'));
-        entry.interactions.builderRecollapsed=true;
-      }
-      if(route.premium){await page.waitForFunction(()=>document.documentElement.dataset.premiumCompletion==='ready',null,{timeout:15000});entry.interactions.completionReady=true;}
+      if(route.compactBuilder){await page.locator('#builderToggle').waitFor({state:'attached',timeout:8000});await page.evaluate(()=>{document.body.classList.add('studentFocused');const shell=document.getElementById('shell');shell.innerHTML='<article class="questionCard"><div class="pillRow"><span class="pill wine">Question 1 of 10</span><span class="pill teal">AP Calculus Bank 2</span><span class="pill gold">Adaptive practice</span><span class="pill">Skill 1.1</span><span class="pill">Multiple choice</span></div><div class="progressTrack"><i style="width:10%"></i></div><h2>Introducing Calculus: Can Change Occur at an Instant?</h2><div class="prompt"><p>Representative question content for compact-builder visual verification.</p></div></article>'});await page.locator('#practiceBuilder.isCollapsed').waitFor({state:'attached',timeout:8000});const compactHeight=await page.locator('#practiceBuilder .studioPanel').evaluate(node=>Math.round(node.getBoundingClientRect().height));entry.interactions.compactPracticeBuilder=true;entry.interactions.compactBuilderHeight=compactHeight;if(compactHeight>100)report.errors.push(`${route.key}/${device.key}: compact builder is ${compactHeight}px high`);await page.locator('#builderAdjust').click();await page.waitForFunction(()=>!document.getElementById('practiceBuilder')?.classList.contains('isCollapsed'));entry.interactions.builderAdjust=true;await page.locator('#builderToggle').click();await page.waitForFunction(()=>document.getElementById('practiceBuilder')?.classList.contains('isCollapsed'));entry.interactions.builderRecollapsed=true}
+      if(route.premium){await page.waitForFunction(()=>document.documentElement.dataset.premiumCompletion==='ready',null,{timeout:15000});entry.interactions.completionReady=true}
       entry.title=await page.title();entry.h1=await page.locator('h1').first().textContent().catch(()=>null);
-      const geometry=await page.evaluate(()=>{const viewport=document.documentElement.clientWidth;const describe=element=>{const rect=element.getBoundingClientRect(),style=getComputedStyle(element),selector=element.id?`#${element.id}`:element.classList.length?`${element.tagName.toLowerCase()}.${[...element.classList].slice(0,3).join('.')}`:element.tagName.toLowerCase();return{selector,left:Math.round(rect.left),right:Math.round(rect.right),width:Math.round(rect.width),scrollWidth:element.scrollWidth,clientWidth:element.clientWidth,display:style.display,position:style.position,overflowX:style.overflowX,minWidth:style.minWidth,maxWidth:style.maxWidth,whiteSpace:style.whiteSpace}};const offenders=[...document.querySelectorAll('body *')].filter(element=>{const style=getComputedStyle(element);if(style.display==='none'||style.visibility==='hidden')return false;const rect=element.getBoundingClientRect();return rect.right>viewport+2||rect.left<-2||element.scrollWidth>Math.max(element.clientWidth+2,viewport+2)}).map(describe).sort((a,b)=>(b.right-viewport)-(a.right-viewport)).slice(0,25);return{bodyWidth:document.body.scrollWidth,documentWidth:document.documentElement.scrollWidth,viewport,offenders};});
-      entry.bodyWidth=geometry.bodyWidth;entry.documentWidth=geometry.documentWidth;entry.viewportWidth=device.viewport.width;entry.horizontalOverflow=Math.max(entry.bodyWidth,entry.documentWidth)>device.viewport.width+2;entry.overflowOffenders=geometry.offenders;
-      entry.theme=await page.evaluate(()=>document.documentElement.dataset.theme||'light');entry.institutionState=await page.evaluate(()=>document.documentElement.dataset.institution||'public');
-      const screenshot=path.join(outputDir,`${route.key}-${device.key}.png`);await page.screenshot({path:screenshot,fullPage:true});entry.screenshot=screenshot;
-      if(route.premium){await page.keyboard.press('Control+K');await page.locator('#premiumCommandDialog[open]').waitFor({state:'visible',timeout:8000});entry.interactions.commandPalette=true;const commandScreenshot=path.join(outputDir,`${route.key}-command-${device.key}.png`);await page.screenshot({path:commandScreenshot,fullPage:false});entry.interactions.commandScreenshot=commandScreenshot;await page.keyboard.press('Escape');await page.keyboard.press('Shift+/');await page.locator('#premiumGuideDrawer.open').waitFor({state:'visible',timeout:8000});entry.interactions.roleGuide=true;const guideScreenshot=path.join(outputDir,`${route.key}-guide-${device.key}.png`);await page.screenshot({path:guideScreenshot,fullPage:false});entry.interactions.guideScreenshot=guideScreenshot;await page.keyboard.press('Escape');if(device.isMobile&&route.dock){const dock=page.locator('.premiumMobileDock');entry.interactions.mobileDock=await dock.isVisible().catch(()=>false);if(!entry.interactions.mobileDock)report.errors.push(`${route.key}/${device.key}: premium mobile dock is not visible`);}}
-      if(entry.status&&entry.status>=400)report.errors.push(`${route.key}/${device.key}: HTTP ${entry.status}`);
-      if(entry.horizontalOverflow){const names=entry.overflowOffenders.slice(0,5).map(row=>`${row.selector}[${row.left},${row.right};w=${row.width};sw=${row.scrollWidth}]`).join(', ');report.errors.push(`${route.key}/${device.key}: horizontal overflow ${Math.max(entry.bodyWidth,entry.documentWidth)}px > ${device.viewport.width}px${names?` :: ${names}`:''}`);}
-      if(pageErrors.length)report.errors.push(`${route.key}/${device.key}: ${pageErrors.join(' | ')}`);
-      const relevant=consoleErrors.filter(message=>!/favicon|Failed to load resource.*fonts\.gstatic|net::ERR_BLOCKED_BY_CLIENT/i.test(message));if(relevant.length)report.errors.push(`${route.key}/${device.key}: console ${relevant.join(' | ')}`);
-      const relevantFailures=failedRequests.filter(message=>!/fonts\.googleapis|fonts\.gstatic/i.test(message));if(relevantFailures.length)report.errors.push(`${route.key}/${device.key}: requests ${relevantFailures.join(' | ')}`);
-    }catch(error){entry.captureError=error.message;report.errors.push(`${route.key}/${device.key}: capture failed: ${error.message}`);}finally{report.pages.push(entry);await page.close();}
+      const geometry=await page.evaluate(()=>{const viewport=document.documentElement.clientWidth;const describe=element=>{const rect=element.getBoundingClientRect(),style=getComputedStyle(element),selector=element.id?`#${element.id}`:element.classList.length?`${element.tagName.toLowerCase()}.${[...element.classList].slice(0,3).join('.')}`:element.tagName.toLowerCase();return{selector,left:Math.round(rect.left),right:Math.round(rect.right),width:Math.round(rect.width),scrollWidth:element.scrollWidth,clientWidth:element.clientWidth,display:style.display,position:style.position,overflowX:style.overflowX,minWidth:style.minWidth,maxWidth:style.maxWidth,whiteSpace:style.whiteSpace}};const offenders=[...document.querySelectorAll('body *')].filter(element=>{const style=getComputedStyle(element);if(style.display==='none'||style.visibility==='hidden')return false;const rect=element.getBoundingClientRect();return rect.right>viewport+2||rect.left<-2||element.scrollWidth>Math.max(element.clientWidth+2,viewport+2)}).map(describe).sort((a,b)=>(b.right-viewport)-(a.right-viewport)).slice(0,25);return{bodyWidth:document.body.scrollWidth,documentWidth:document.documentElement.scrollWidth,viewport,offenders}});
+      entry.bodyWidth=geometry.bodyWidth;entry.documentWidth=geometry.documentWidth;entry.viewportWidth=device.viewport.width;entry.horizontalOverflow=Math.max(entry.bodyWidth,entry.documentWidth)>device.viewport.width+2;entry.overflowOffenders=geometry.offenders;entry.theme=await page.evaluate(()=>document.documentElement.dataset.theme||'light');entry.institutionState=await page.evaluate(()=>document.documentElement.dataset.institution||'public');const screenshot=path.join(outputDir,`${route.key}-${device.key}.png`);await page.screenshot({path:screenshot,fullPage:true});entry.screenshot=screenshot;
+      if(route.premium){await page.keyboard.press('Control+K');await page.locator('#premiumCommandDialog[open]').waitFor({state:'visible',timeout:8000});entry.interactions.commandPalette=true;const commandScreenshot=path.join(outputDir,`${route.key}-command-${device.key}.png`);await page.screenshot({path:commandScreenshot,fullPage:false});entry.interactions.commandScreenshot=commandScreenshot;await page.keyboard.press('Escape');await page.keyboard.press('Shift+/');await page.locator('#premiumGuideDrawer.open').waitFor({state:'visible',timeout:8000});entry.interactions.roleGuide=true;const guideScreenshot=path.join(outputDir,`${route.key}-guide-${device.key}.png`);await page.screenshot({path:guideScreenshot,fullPage:false});entry.interactions.guideScreenshot=guideScreenshot;await page.keyboard.press('Escape');if(device.isMobile&&route.dock){const dock=page.locator('.premiumMobileDock');entry.interactions.mobileDock=await dock.isVisible().catch(()=>false);if(!entry.interactions.mobileDock)report.errors.push(`${route.key}/${device.key}: premium mobile dock is not visible`)}}
+      if(entry.status&&entry.status>=400)report.errors.push(`${route.key}/${device.key}: HTTP ${entry.status}`);if(entry.horizontalOverflow){const names=entry.overflowOffenders.slice(0,5).map(row=>`${row.selector}[${row.left},${row.right};w=${row.width};sw=${row.scrollWidth}]`).join(', ');report.errors.push(`${route.key}/${device.key}: horizontal overflow ${Math.max(entry.bodyWidth,entry.documentWidth)}px > ${device.viewport.width}px${names?` :: ${names}`:''}`)}if(pageErrors.length)report.errors.push(`${route.key}/${device.key}: ${pageErrors.join(' | ')}`);const relevant=consoleErrors.filter(message=>!/favicon|Failed to load resource.*fonts\.gstatic|net::ERR_BLOCKED_BY_CLIENT/i.test(message));if(relevant.length)report.errors.push(`${route.key}/${device.key}: console ${relevant.join(' | ')}`);const relevantFailures=failedRequests.filter(message=>!/fonts\.googleapis|fonts\.gstatic/i.test(message));if(relevantFailures.length)report.errors.push(`${route.key}/${device.key}: requests ${relevantFailures.join(' | ')}`)
+    }catch(error){entry.captureError=error.message;report.errors.push(`${route.key}/${device.key}: capture failed: ${error.message}`)}finally{report.pages.push(entry);await page.close()}
   }
   await context.close();
 }
