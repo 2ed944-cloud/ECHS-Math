@@ -666,7 +666,7 @@ Warnings:
       "status": "PASS",
       "detail": {
         "lesson": "APCALC-PREREQUISITE",
-        "loadedId": "APCALC-LEGACY-MCQ-1969-014",
+        "loadedId": "APCALC-LEGACY-MCQ-1988-035",
         "eligibleQuestions": 33
       }
     },
@@ -788,7 +788,7 @@ Warnings:
       "status": "PASS",
       "detail": {
         "lesson": "APCALC-PREREQUISITE",
-        "loadedId": "APCALC-LEGACY-MCQ-1969-014",
+        "loadedId": "APCALC-LEGACY-MCQ-1988-035",
         "eligibleQuestions": 33
       }
     },

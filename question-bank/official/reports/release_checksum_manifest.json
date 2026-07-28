@@ -124,8 +124,8 @@
     },
     {
       "path": "data/student/archive-index.json",
-      "bytes": 2269823,
-      "sha256": "bc15d8331256a171a6a4d10aa2aa0941d5b7d143a3134007da53646dfc847872"
+      "bytes": 2287503,
+      "sha256": "ca214c7d6639d06e8f8f080e6f9a0ae29e62ecc7639f7629f854e89640a07e2d"
     },
     {
       "path": "data/student/archive-questions/chunk-000.json",
