@@ -479,8 +479,18 @@ def main() -> None:
     gate.save_chunk_groups(effective, canonical_locations)
 
     effective_admin = []
-    for question in admin:
-        updated = copy.deepcopy(effective_by_id[question["id"]])
+    for original_admin in admin:
+        updated = merge_objects(
+            original_admin,
+            overlay_map.get(original_admin["id"]) or {},
+        )
+        official_status = (updated.get("source") or {}).get("officialStatus")
+        if official_status in OFFICIAL_STATUSES:
+            apply_license(updated, authorization)
+            if updated["id"] in licensed_ready_ids:
+                promote(updated, authorization)
+            else:
+                retain_for_content_review(updated, authorization)
         updated["reviewRequired"] = bool(
             (updated.get("audit") or {}).get("reviewRequired")
         )
