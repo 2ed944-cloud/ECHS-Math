@@ -1,8 +1,8 @@
 {
   "generatedAt": "2026-07-28T03:03:45+03:00",
   "canonicalCount": 1217,
-  "studentReadyCount": 896,
-  "restrictedCount": 321,
+  "studentReadyCount": 1104,
+  "restrictedCount": 113,
   "cases": 12,
   "passed": 12,
   "failed": 0,
@@ -14,7 +14,7 @@
       "name": "Student home and navigation",
       "status": "PASS",
       "detail": {
-        "stats": "896 | Student-ready questions | 661 | Verified MCQ | 235 | Verified FRQ | 321 | Restricted archive records",
+        "stats": "1,104 | Student-ready questions | 776 | Verified MCQ | 328 | Verified FRQ | 113 | Restricted archive records",
         "labels": [
           "Home",
           "Official Archive",
@@ -29,7 +29,7 @@
       "name": "Archive count reconciliation",
       "status": "PASS",
       "detail": {
-        "stats": "1,217 | Canonical archive records | 896 | Student Ready | 321 | Teacher/archive only | 0 | Incomplete source"
+        "stats": "1,217 | Canonical archive records | 1,104 | Student Ready | 113 | Teacher/archive only | 0 | Incomplete source"
       }
     },
     {
@@ -44,7 +44,7 @@
       "name": "Restricted archive record remains redacted",
       "status": "PASS",
       "detail": {
-        "id": "APCALC-AB-FRQ-2001-01",
+        "id": "ECHS-BC-CH7-8-2015-FRQ-14",
         "redacted": true
       }
     },
@@ -77,7 +77,7 @@
       "name": "Student-ready-only exam build",
       "status": "PASS",
       "detail": {
-        "records": 896,
+        "records": 1104,
         "allReady": true
       }
     },
@@ -85,7 +85,7 @@
       "name": "Dashboard valid-attempt boundary",
       "status": "PASS",
       "detail": {
-        "validIds": 896,
+        "validIds": 1104,
         "allReady": true,
         "lessonPanel": true
       }

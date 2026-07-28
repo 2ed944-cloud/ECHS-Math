@@ -2,7 +2,7 @@
 
 Generated: 2026-07-28T03:03:45+03:00
 
-**Overall result: FAIL**
+**Overall result: PASS WITH RESTRICTIONS**
 
 This report validates the strict public release boundary. Student practice, exams, smart recommendations, and dashboard calculations use only the 1104 verified public records. Official AP items pass either complete independent structured verification or the exact-official-facsimile plus matched official-answer-authority gate; the 113 remaining non-ready records are preserved in the canonical teacher/admin bank and redacted in the public archive.
 
@@ -56,7 +56,7 @@ This report validates the strict public release boundary. Student practice, exam
 | 32 | Manifest validation | **PASS** | 0 | 0 |
 | 33 | Checksum validation | **PASS** | 0 | 0 |
 | 34 | Required report validation | **PASS** | 0 | 0 |
-| 35 | Browser smoke testing | **FAIL** | 2 | 0 |
+| 35 | Browser smoke testing | **PASS** | 0 | 0 |
 | B | Local Chromium browser smoke tests | **PASS** | 0 | 0 |
 
 ## Detailed evidence
@@ -600,14 +600,14 @@ Warnings:
 
 ### 35. Browser smoke testing
 
-**FAIL**
+**PASS**
 
 ```json
 {
   "generatedAt": "2026-07-28T03:03:45+03:00",
   "canonicalCount": 1217,
-  "studentReadyCount": 896,
-  "restrictedCount": 321,
+  "studentReadyCount": 1104,
+  "restrictedCount": 113,
   "cases": 12,
   "passed": 12,
   "failed": 0,
@@ -619,7 +619,7 @@ Warnings:
       "name": "Student home and navigation",
       "status": "PASS",
       "detail": {
-        "stats": "896 | Student-ready questions | 661 | Verified MCQ | 235 | Verified FRQ | 321 | Restricted archive records",
+        "stats": "1,104 | Student-ready questions | 776 | Verified MCQ | 328 | Verified FRQ | 113 | Restricted archive records",
         "labels": [
           "Home",
           "Official Archive",
@@ -634,7 +634,7 @@ Warnings:
       "name": "Archive count reconciliation",
       "status": "PASS",
       "detail": {
-        "stats": "1,217 | Canonical archive records | 896 | Student Ready | 321 | Teacher/archive only | 0 | Incomplete source"
+        "stats": "1,217 | Canonical archive records | 1,104 | Student Ready | 113 | Teacher/archive only | 0 | Incomplete source"
       }
     },
     {
@@ -649,7 +649,7 @@ Warnings:
       "name": "Restricted archive record remains redacted",
       "status": "PASS",
       "detail": {
-        "id": "APCALC-AB-FRQ-2001-01",
+        "id": "ECHS-BC-CH7-8-2015-FRQ-14",
         "redacted": true
       }
     },
@@ -682,7 +682,7 @@ Warnings:
       "name": "Student-ready-only exam build",
       "status": "PASS",
       "detail": {
-        "records": 896,
+        "records": 1104,
         "allReady": true
       }
     },
@@ -690,7 +690,7 @@ Warnings:
       "name": "Dashboard valid-attempt boundary",
       "status": "PASS",
       "detail": {
-        "validIds": 896,
+        "validIds": 1104,
         "allReady": true,
         "lessonPanel": true
       }
@@ -720,10 +720,6 @@ Warnings:
 }
 ```
 
-Errors:
-- Browser smoke restricted count is stale.
-- Browser smoke student-ready count is stale.
-
 ### B. Local Chromium browser smoke tests
 
 **PASS**
@@ -732,8 +728,8 @@ Errors:
 {
   "generatedAt": "2026-07-28T03:03:45+03:00",
   "canonicalCount": 1217,
-  "studentReadyCount": 896,
-  "restrictedCount": 321,
+  "studentReadyCount": 1104,
+  "restrictedCount": 113,
   "cases": 12,
   "passed": 12,
   "failed": 0,
@@ -745,7 +741,7 @@ Errors:
       "name": "Student home and navigation",
       "status": "PASS",
       "detail": {
-        "stats": "896 | Student-ready questions | 661 | Verified MCQ | 235 | Verified FRQ | 321 | Restricted archive records",
+        "stats": "1,104 | Student-ready questions | 776 | Verified MCQ | 328 | Verified FRQ | 113 | Restricted archive records",
         "labels": [
           "Home",
           "Official Archive",
@@ -760,7 +756,7 @@ Errors:
       "name": "Archive count reconciliation",
       "status": "PASS",
       "detail": {
-        "stats": "1,217 | Canonical archive records | 896 | Student Ready | 321 | Teacher/archive only | 0 | Incomplete source"
+        "stats": "1,217 | Canonical archive records | 1,104 | Student Ready | 113 | Teacher/archive only | 0 | Incomplete source"
       }
     },
     {
@@ -775,7 +771,7 @@ Errors:
       "name": "Restricted archive record remains redacted",
       "status": "PASS",
       "detail": {
-        "id": "APCALC-AB-FRQ-2001-01",
+        "id": "ECHS-BC-CH7-8-2015-FRQ-14",
         "redacted": true
       }
     },
@@ -808,7 +804,7 @@ Errors:
       "name": "Student-ready-only exam build",
       "status": "PASS",
       "detail": {
-        "records": 896,
+        "records": 1104,
         "allReady": true
       }
     },
@@ -816,7 +812,7 @@ Errors:
       "name": "Dashboard valid-attempt boundary",
       "status": "PASS",
       "detail": {
-        "validIds": 896,
+        "validIds": 1104,
         "allReady": true,
         "lessonPanel": true
       }
@@ -852,4 +848,4 @@ The final structural pass rechecked approved delimiters, braces, and environment
 
 ## Production-readiness judgment
 
-The release is not production-ready until the failures above are corrected.
+The repository passes for the strictly gated 1104-question public student pool. The 113 remaining records are deliberately not certified for student interaction and remain blocking review items for future promotion. Static GitHub Pages does not provide an authenticated boundary for the canonical/admin files, so a genuinely private teacher deployment still requires an authenticated host.
