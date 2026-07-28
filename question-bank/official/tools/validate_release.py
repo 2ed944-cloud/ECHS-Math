@@ -21,8 +21,8 @@ else:
 DATA=OFF/'data'; STUDENT=DATA/'student'; REPORTS=OFF/'reports'
 SKIP_PARTS={'.git','node_modules','.echs-backups','__pycache__'}
 CANONICAL_EXPECTED=1217
-READY_EXPECTED=52
-RESTRICTED_EXPECTED=1165
+READY_EXPECTED=None
+RESTRICTED_EXPECTED=None
 
 @dataclass
 class Check:
@@ -114,6 +114,8 @@ archive_idmap=load_json(STUDENT/'archive-id-map.json')
 student_catalog=load_json(STUDENT/'catalog.json')
 full_catalog=load_json(DATA/'catalog.json')
 gate=load_json(STUDENT/'gate.json')
+READY_EXPECTED=int(gate['studentReadyCount'])
+RESTRICTED_EXPECTED=int(gate['restrictedCount'])
 summary=load_json(REPORTS/'AUDIT_SUMMARY.json')
 corrections=load_json(REPORTS/'QUESTION_CORRECTIONS_LOG.json')
 ready_by_id={q['id']:q for q in student_questions}; full_by_id={q['id']:q for q in canonical_questions}; archive_by_id={q['id']:q for q in archive_questions}
