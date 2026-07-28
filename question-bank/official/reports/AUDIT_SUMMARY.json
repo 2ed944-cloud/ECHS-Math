@@ -5,8 +5,8 @@
   "frqAudited": 341,
   "questionsCorrected": 360,
   "questionsUnchangedAndVerified": 0,
-  "questionsStudentReady": 722,
-  "questionsRestricted": 495,
+  "questionsStudentReady": 880,
+  "questionsRestricted": 337,
   "questionsWithAnswerCorrections": 3,
   "questionsWithChoiceCorrections": 0,
   "questionsWithSolutionCorrections": 0,
@@ -17,8 +17,8 @@
   "questionsRemappedTopic": 40,
   "questionsRemappedLesson": 41,
   "unrelatedLessonLinksRemoved": 46,
-  "remainingBlockingReviewItems": 495,
-  "productionReadinessJudgment": "PASS WITH RESTRICTIONS — the public student runtime contains only 722 independently verified, exactly mapped, ECHS-owned records. The remaining 495 records are preserved and redacted from student interaction pending verification and/or release authorization.",
+  "remainingBlockingReviewItems": 337,
+  "productionReadinessJudgment": "PASS WITH RESTRICTIONS — the public student runtime contains only 880 independently verified, exactly mapped, ECHS-owned records. The remaining 337 records are preserved and redacted from student interaction pending verification and/or release authorization.",
   "packageVersion": "6.3.0-strict-audit-gate",
   "criticalValidationErrors": 0
 }

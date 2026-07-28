@@ -2,13 +2,11 @@
 
 Generated: 2026-07-28T03:03:45+03:00
 
-**495 canonical records remain teacher/archive-only.**
+**337 canonical records remain teacher/archive-only.**
 
 | question_id | issue_type | source_file | source_page | confidence | recommended_action |
 | --- | --- | --- | --- | --- | --- |
-| `APCALC-AB-FRQ-1969-01` | verification_or_mapping_incomplete | AP Calculus historical archive | 3 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
 | `APCALC-AB-FRQ-1969-03` | verification_or_mapping_incomplete | AP Calculus historical archive | 3; 4 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1970-02` | verification_or_mapping_incomplete | AP Calculus historical archive | 5; 6 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
 | `APCALC-AB-FRQ-1974-01` | verification_or_mapping_incomplete | AP Calculus historical archive | 11 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
 | `APCALC-AB-FRQ-1974-03` | verification_or_mapping_incomplete | AP Calculus historical archive | 11 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
 | `APCALC-AB-FRQ-1975-03` | verification_or_mapping_incomplete | AP Calculus historical archive | 13 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
@@ -19,150 +17,14 @@ Generated: 2026-07-28T03:03:45+03:00
 | `APCALC-AB-FRQ-1977-01` | verification_or_mapping_incomplete | AP Calculus historical archive | 15 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
 | `APCALC-AB-FRQ-1977-04` | verification_or_mapping_incomplete | AP Calculus historical archive | 16 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
 | `APCALC-AB-FRQ-1977-05` | verification_or_mapping_incomplete | AP Calculus historical archive | 16; 17 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1978-01` | verification_or_mapping_incomplete | AP Calculus historical archive | 17 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1978-02` | verification_or_mapping_incomplete | AP Calculus historical archive | 17 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1978-03` | verification_or_mapping_incomplete | AP Calculus historical archive | 17; 18 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
 | `APCALC-AB-FRQ-1978-04` | verification_or_mapping_incomplete | AP Calculus historical archive | 18 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1978-05` | verification_or_mapping_incomplete | AP Calculus historical archive | 18 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1978-06` | verification_or_mapping_incomplete | AP Calculus historical archive | 18 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1978-07` | verification_or_mapping_incomplete | AP Calculus historical archive | 18; 19 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1979-01` | verification_or_mapping_incomplete | AP Calculus historical archive | 19 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1979-02` | verification_or_mapping_incomplete | AP Calculus historical archive | 19 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1979-04` | verification_or_mapping_incomplete | AP Calculus historical archive | 19 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1979-05` | verification_or_mapping_incomplete | AP Calculus historical archive | 19 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1979-06` | verification_or_mapping_incomplete | AP Calculus historical archive | 20 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1979-07` | verification_or_mapping_incomplete | AP Calculus historical archive | 20 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1980-01` | verification_or_mapping_incomplete | AP Calculus historical archive | 20 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1980-02` | verification_or_mapping_incomplete | AP Calculus historical archive | 20 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
 | `APCALC-AB-FRQ-1980-03` | verification_or_mapping_incomplete | AP Calculus historical archive | 20 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
 | `APCALC-AB-FRQ-1980-04` | verification_or_mapping_incomplete | AP Calculus historical archive | 21 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1980-05` | verification_or_mapping_incomplete | AP Calculus historical archive | 21 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
 | `APCALC-AB-FRQ-1980-06` | verification_or_mapping_incomplete | AP Calculus historical archive | 21 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
 | `APCALC-AB-FRQ-1980-07` | verification_or_mapping_incomplete | AP Calculus historical archive | 21 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
 | `APCALC-LEGACY-BC-MCQ-1985-040` | verification_or_mapping_incomplete | AP Calculus historical archive | 61 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
 | `ECHS-G9PRECALC-ORIGINAL-G9-U5-001` | verification_or_mapping_incomplete | ECHS Original Question Bank |  | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
 | `APCALC-BC-FRQ-1974-03` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 12 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1981-01` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 22 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1981-02` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 22 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1981-03` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 22 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1981-04` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 22 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1981-05` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 22-23 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1981-06` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 23 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1981-07` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 23 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1982-01` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 23 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1982-02` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 24 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1982-03` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 24 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1982-04` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 24 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1982-05` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 24 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1982-06` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 24 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1982-07` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 24-25 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1983-01` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 25 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1983-02` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 25 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1983-03` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 25 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1983-04` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 25 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1983-05` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 25-26 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1983-06` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 26 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1984-01` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 26 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1984-02` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 26 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1984-03` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 26 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1984-04` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 27 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1984-05` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 27 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1985-01` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 27 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1985-02` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 28 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1985-03` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 28 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1985-04` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 28 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1985-05` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 28 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1985-06` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 29 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1986-01` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 29 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1986-02` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 29 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1986-03` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 29 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1986-04` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 30 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1986-05` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 30 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1986-06` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 30 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1987-01` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 30 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1987-02` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 30 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1987-03` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 31 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1987-04` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 31 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1987-05` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 31 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1987-06` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 31 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1988-01` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 31 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1988-02` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 32 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1988-03` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 32 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1988-04` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 32 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1988-05` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 32 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1988-06` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 33 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1989-01` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 33 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1989-02` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 33 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1989-03` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 33 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1989-04` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 34 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1989-05` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 34 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1989-06` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 34 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1990-01` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 34 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1990-02` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 35 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1990-03` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 35 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1990-04` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 35 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1990-05` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 35 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1990-06` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 36 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1991-01` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 36 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1991-02` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 36 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1991-03` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 36-37 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1991-04` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 37 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1991-05` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 37 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1991-06` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 37-38 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1992-01` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 38 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1992-02` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 38 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1992-03` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 38 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1992-04` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 38 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1992-05` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 38-39 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1992-06` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 39 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1993-01` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 39 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1993-02` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 39 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1993-03` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 39 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1993-04` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 39-40 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1993-05` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 40 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1993-06` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 40 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1994-01` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 40 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1994-02` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 40-41 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1994-03` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 41 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1994-04` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 41 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1994-05` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 41 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1994-06` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 41-42 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1995-01` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 42 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1995-02` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 42 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1995-03` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 42 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1995-04` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 43 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1995-05` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 43-44 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1995-06` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 44 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1996-01` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 44; 45 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1996-02` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 45 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1996-03` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 45 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1996-04` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 45; 46 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1996-05` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 46 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1996-06` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 46; 47 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1997-01` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 47 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1997-02` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 47 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1997-03` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 47; 48 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1997-04` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 48 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1997-05` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 48; 49 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1997-06` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 49 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1998-01` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 49; 3 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1998-02` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 49; 50 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1998-03` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 50 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1998-04` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 50; 51; 69 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1998-05` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 51 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1998-06` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 51; 93 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1999-01` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 51 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1999-02` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 51; 52 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1999-03` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 52 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1999-04` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 52; 53 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1999-05` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 53 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1999-06` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 53; 54 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-2000-01` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 54 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-2000-02` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 54; 55 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-2000-03` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 55; 56 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-2000-04` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 56 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-2000-05` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 56 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-2000-06` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 56; 57 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
 | `APCALC-AB-FRQ-2001-01` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 57; 6 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
 | `APCALC-AB-FRQ-2001-02` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 57; 58; 45 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
 | `APCALC-AB-FRQ-2001-03` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 58; 80 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
@@ -225,7 +87,6 @@ Generated: 2026-07-28T03:03:45+03:00
 | `APCALC-AB-FRQ-2007-06` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 86; 118 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
 | `APCALC-AB-FRQ-2007-01-FORM-B` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 86; 16 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
 | `APCALC-AB-FRQ-2007-02-FORM-B` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 86; 87; 105 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-2007-03-FORM-B` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 87 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
 | `APCALC-AB-FRQ-2007-04-FORM-B` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 87; 90 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
 | `APCALC-AB-FRQ-2007-05-FORM-B` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 87; 88; 67 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
 | `APCALC-AB-FRQ-2007-06-FORM-B` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 88; 123 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
@@ -240,25 +101,6 @@ Generated: 2026-07-28T03:03:45+03:00
 | `APCALC-AB-FRQ-2008-03-FORM-B` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 93; 94; 53 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
 | `APCALC-AB-FRQ-2008-04-FORM-B` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 94; 128 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
 | `APCALC-AB-FRQ-2008-05-FORM-B` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 94; 95; 92 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-2008-06-FORM-B` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 95 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-2009-01` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 95; 96 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-2009-02` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 96 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-2009-03` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 96; 97 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-2009-04` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 97 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-2009-05` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 97; 98 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-2009-06` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 98 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-2009-01-FORM-B` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 98; 99 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-2009-02-FORM-B` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 99 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-2009-03-FORM-B` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 99; 100 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-2009-04-FORM-B` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 100 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-2009-05-FORM-B` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 101 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-2009-06-FORM-B` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 101; 102 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-2010-01` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 102 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-2010-02` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 103 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-2010-03` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 103; 104 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-2010-04` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 104 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-2010-05` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 105 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-2010-06` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 105 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
 | `APCALC-AB-SAMPLE-2014-MCQ-001` | verification_or_mapping_incomplete | framework-sample-2014 | 5 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
 | `APCALC-AB-SAMPLE-2014-MCQ-002` | verification_or_mapping_incomplete | framework-sample-2014 | 6 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
 | `APCALC-AB-SAMPLE-2014-MCQ-003` | verification_or_mapping_incomplete | framework-sample-2014 | 7 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |

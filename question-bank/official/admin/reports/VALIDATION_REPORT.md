@@ -1,10 +1,10 @@
 # Validation Report
 
-Generated: 2026-07-28T03:26:45+00:00
+Generated: 2026-07-28T03:36:34+00:00
 
 **Overall result: FAIL**
 
-This report validates the strict public release boundary. Student practice, exams, smart recommendations, and dashboard calculations use only the 722 independently verified public records; all 495 remaining records are preserved in the canonical teacher/admin bank and redacted in the public archive.
+This report validates the strict public release boundary. Student practice, exams, smart recommendations, and dashboard calculations use only the 880 independently verified public records; all 337 remaining records are preserved in the canonical teacher/admin bank and redacted in the public archive.
 
 ## Reconciled release counts
 
@@ -13,8 +13,8 @@ This report validates the strict public release boundary. Student practice, exam
 | Canonical questions | 1,217 |
 | MCQ | 876 |
 | FRQ | 341 |
-| Student-ready | 722 |
-| Teacher/archive restricted | 495 |
+| Student-ready | 880 |
+| Teacher/archive restricted | 337 |
 | Correction records | 633 |
 | Browser smoke cases | 12 |
 
@@ -32,7 +32,7 @@ This report validates the strict public release boundary. Student practice, exam
 | 8 | FRQ-point validation | **PASS** | 0 | 0 |
 | 9 | Mathematical verification validation | **PASS** | 0 | 0 |
 | 10 | KaTeX validation | **PASS** | 0 | 0 |
-| 11 | Media validation | **PASS** | 0 | 343 |
+| 11 | Media validation | **PASS** | 0 | 326 |
 | 12 | Broken-path validation | **PASS** | 0 | 0 |
 | 13 | Duplicate detection | **PASS** | 0 | 1 |
 | 14 | Course mapping validation | **PASS** | 0 | 0 |
@@ -67,7 +67,7 @@ This report validates the strict public release boundary. Student practice, exam
 
 ```json
 {
-  "jsonFilesParsed": 315,
+  "jsonFilesParsed": 318,
   "canonicalQuestionObjects": 1217
 }
 ```
@@ -79,7 +79,7 @@ This report validates the strict public release boundary. Student practice, exam
 ```json
 {
   "canonicalIds": 1217,
-  "readyIds": 722,
+  "readyIds": 880,
   "archiveIds": 1217
 }
 ```
@@ -102,8 +102,8 @@ This report validates the strict public release boundary. Student practice, exam
 
 ```json
 {
-  "studentReady": 722,
-  "restricted": 495
+  "studentReady": 880,
+  "restricted": 337
 }
 ```
 
@@ -134,8 +134,8 @@ This report validates the strict public release boundary. Student practice, exam
 
 ```json
 {
-  "readyFRQ": 61,
-  "partCount": 168
+  "readyFRQ": 219,
+  "partCount": 676
 }
 ```
 
@@ -145,7 +145,7 @@ This report validates the strict public release boundary. Student practice, exam
 
 ```json
 {
-  "totalFRQPoints": 561
+  "totalFRQPoints": 2107
 }
 ```
 
@@ -155,7 +155,7 @@ This report validates the strict public release boundary. Student practice, exam
 
 ```json
 {
-  "readyMathematicallyVerified": 722,
+  "readyMathematicallyVerified": 880,
   "correctionLogRecords": 633
 }
 ```
@@ -188,106 +188,106 @@ This report validates the strict public release boundary. Student practice, exam
 ```
 
 Warnings:
-- APCALC-AB-FRQ-1970-02: media entry without path
-- APCALC-AB-FRQ-1970-02: media entry without path
 - APCALC-AB-FRQ-1974-01: media entry without path
 - APCALC-AB-FRQ-1974-03: media entry without path
 - APCALC-AB-FRQ-1976-04: media entry without path
 - APCALC-AB-FRQ-1976-07: media entry without path
 - APCALC-AB-FRQ-1977-04: media entry without path
 - APCALC-AB-FRQ-1977-05: media entry without path
-- APCALC-AB-FRQ-1978-01: media entry without path
-- APCALC-AB-FRQ-1978-02: media entry without path
-- APCALC-AB-FRQ-1978-03: media entry without path
 - APCALC-AB-FRQ-1978-04: media entry without path
-- APCALC-AB-FRQ-1978-05: media entry without path
-- APCALC-AB-FRQ-1978-06: media entry without path
-- APCALC-AB-FRQ-1978-07: media entry without path
-- APCALC-AB-FRQ-1979-01: media entry without path
-- APCALC-AB-FRQ-1979-02: media entry without path
-- APCALC-AB-FRQ-1979-04: media entry without path
-- APCALC-AB-FRQ-1979-05: media entry without path
-- APCALC-AB-FRQ-1979-06: media entry without path
-- APCALC-AB-FRQ-1979-07: media entry without path
-- APCALC-AB-FRQ-1980-01: media entry without path
-- APCALC-AB-FRQ-1980-02: media entry without path
 - APCALC-AB-FRQ-1980-03: media entry without path
 - APCALC-AB-FRQ-1980-04: media entry without path
-- APCALC-AB-FRQ-1980-05: media entry without path
 - APCALC-AB-FRQ-1980-06: media entry without path
 - APCALC-AB-FRQ-1980-07: media entry without path
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1997-084-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1997-086-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-008-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1973-031-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1985-001-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1973-040-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-038-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1993-032-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1998-085-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-001-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-029-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1993-008-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-040-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1985-011-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-015-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1993-019-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-ab-mcq-1969-1998/apcalc-legacy-mcq-1985-033-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1985-023-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1998-015-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1997-024-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1988-024-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1973-004-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-035-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1997-085-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-024-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-011-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1997-005-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1998-090-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-020-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1997-010-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1988-037-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1985-019-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-041-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1993-002-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1973-016-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1998-003-source-crop.svg
 - Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1985-026-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1973-034-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1997-077-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1998-010-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1973-012-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1993-016-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1985-007-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-012-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1988-026-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1973-018-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1998-026-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1985-004-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1988-043-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1997-089-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1997-078-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1998-006-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1985-010-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1985-027-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1998-019-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1985-037-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1985-033-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1997-088-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1993-038-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1997-025-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1985-036-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1998-022-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1988-011-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-024-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-037-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1973-007-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1985-030-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1988-040-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1988-034-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1998-028-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-005-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1993-024-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1973-008-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1998-077-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-ab-mcq-1969-1998/apcalc-legacy-mcq-1997-088-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-015-source-crop.svg
 - Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-009-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1973-010-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1993-042-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-ab-mcq-1969-1998/apcalc-legacy-mcq-1998-023-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1988-002-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1973-033-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1998-011-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-032-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1988-038-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1988-028-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1997-011-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1973-035-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1997-007-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1998-005-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1985-044-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1985-007-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1973-024-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1993-038-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1997-013-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1998-003-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1997-076-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1985-034-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1997-081-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1988-015-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1993-040-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1997-018-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1985-009-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1993-029-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1988-024-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1988-026-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1973-045-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1973-004-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-001-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1985-021-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1985-029-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1973-036-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1998-027-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1985-037-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1998-021-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1973-039-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1998-020-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1985-028-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1997-006-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-033-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1988-016-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-026-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1973-038-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1993-006-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1997-024-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1988-023-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1997-086-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1973-022-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1997-084-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1997-020-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-016-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1993-036-source-crop.svg
 - Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1973-030-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1985-024-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1997-022-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1998-025-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1998-024-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-022-source-crop.svg
-- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1988-007-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1998-002-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1988-008-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-003-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1988-006-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1997-005-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1973-021-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1988-037-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-ab-mcq-1969-1998/apcalc-legacy-mcq-1997-011-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1998-012-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1985-045-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1998-014-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1998-092-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1988-019-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1988-039-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1993-008-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1998-009-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1998-083-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1997-015-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1997-014-source-crop.svg
 
 ### 12. Broken-path validation
 
@@ -322,7 +322,7 @@ Warnings:
 ```json
 {
   "mappedCourses": {
-    "ap-calculus-ab": 378,
+    "ap-calculus-ab": 536,
     "ap-calculus-bc": 314,
     "ap-precalculus": 19,
     "grade-9-pre-precalculus": 11
@@ -337,17 +337,17 @@ Warnings:
 ```json
 {
   "units": {
-    "None": 34,
-    "1": 52,
-    "6": 165,
-    "3": 76,
-    "2": 78,
-    "5": 99,
-    "4": 58,
-    "8": 74,
-    "7": 29,
+    "None": 35,
+    "1": 56,
+    "6": 175,
+    "3": 91,
+    "2": 91,
+    "5": 138,
+    "4": 86,
+    "8": 114,
+    "7": 36,
     "10": 32,
-    "9": 25
+    "9": 26
   }
 }
 ```
@@ -358,7 +358,7 @@ Warnings:
 
 ```json
 {
-  "uniqueTopicCodes": 137
+  "uniqueTopicCodes": 156
 }
 ```
 
@@ -368,7 +368,7 @@ Warnings:
 
 ```json
 {
-  "lessonIds": 124
+  "lessonIds": 133
 }
 ```
 
@@ -378,9 +378,9 @@ Warnings:
 
 ```json
 {
-  "gateFlagsChecked": 5054,
-  "studentReady": 722,
-  "publicPublicationApproved": 722
+  "gateFlagsChecked": 6160,
+  "studentReady": 880,
+  "publicPublicationApproved": 880
 }
 ```
 
@@ -390,8 +390,8 @@ Warnings:
 
 ```json
 {
-  "restrictedArchiveRecords": 495,
-  "fullyRedactedRestrictedRecords": 495
+  "restrictedArchiveRecords": 337,
+  "fullyRedactedRestrictedRecords": 337
 }
 ```
 
@@ -401,7 +401,7 @@ Warnings:
 
 ```json
 {
-  "studentIndexRecords": 722,
+  "studentIndexRecords": 880,
   "exactFilterParameters": [
     "course",
     "unit",
@@ -420,7 +420,7 @@ Warnings:
 ```json
 {
   "examSource": "student question-index only",
-  "studentReadyPool": 722
+  "studentReadyPool": 880
 }
 ```
 
@@ -486,7 +486,7 @@ Warnings:
 
 ```json
 {
-  "textFilesScanned": 2463,
+  "textFilesScanned": 2468,
   "secretPatternHits": 0
 }
 ```
@@ -513,11 +513,11 @@ Warnings:
   "archiveIndex": 1217,
   "archiveChunks": 1217,
   "auditRows": 1217,
-  "studentIndex": 722,
-  "studentChunks": 722,
+  "studentIndex": 880,
+  "studentChunks": 880,
   "summaryTotal": 1217,
-  "summaryReady": 722,
-  "summaryRestricted": 495,
+  "summaryReady": 880,
+  "summaryRestricted": 337,
   "correctionRecords": 633
 }
 ```
@@ -582,7 +582,7 @@ Warnings:
 ```json
 {
   "algorithm": "SHA-256",
-  "filesChecked": 91
+  "filesChecked": 94
 }
 ```
 

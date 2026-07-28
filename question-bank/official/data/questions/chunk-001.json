@@ -244,7 +244,7 @@
           ]
         }
       ],
-      "rubricStatus": "ECHS analytic rubric based on independent mathematical verification; not an official modern College Board point-by-point scoring guideline.",
+      "rubricStatus": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline.",
       "commonMistakes": [
         "Dropping the negative sign from the derivative of \\(\\cos x\\).",
         "Treating the second derivative as only another chain-rule step and omitting the product rule.",
@@ -455,7 +455,8 @@
         "reviewerNotes": "Independently verified content gates passed. Licensed for student practice on the ECHS platform under Issue #56.",
         "auditedAt": "2026-07-28T03:03:45+03:00",
         "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
-        "obsoleteRuntimeMediaRemoved": 1
+        "obsoleteRuntimeMediaRemoved": 1,
+        "frqStructureStatus": "verified-parts-points-and-echs-rubric"
       },
       "studentReady": true
     },
@@ -703,7 +704,7 @@
           ]
         }
       ],
-      "rubricStatus": "ECHS analytic rubric based on independent mathematical verification; not an official modern College Board point-by-point scoring guideline.",
+      "rubricStatus": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline.",
       "commonMistakes": [
         "Using radius \\(x\\) instead of distance \\(3-x\\) from the vertical axis.",
         "Forgetting to square the disk radius in part (a).",
@@ -906,7 +907,8 @@
         "reviewerNotes": "Independently verified content gates passed. Licensed for student practice on the ECHS platform under Issue #56.",
         "auditedAt": "2026-07-28T03:03:45+03:00",
         "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
-        "obsoleteRuntimeMediaRemoved": 1
+        "obsoleteRuntimeMediaRemoved": 1,
+        "frqStructureStatus": "verified-parts-points-and-echs-rubric"
       },
       "studentReady": true
     },
@@ -1168,7 +1170,7 @@
           ]
         }
       ],
-      "rubricStatus": "ECHS analytic rubric based on independent mathematical verification; not an official modern College Board point-by-point scoring guideline.",
+      "rubricStatus": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline.",
       "commonMistakes": [
         "Differentiating the identity with respect to the wrong variable without justifying what is held constant.",
         "Forgetting to divide by the increment before taking the limit.",
@@ -1356,7 +1358,8 @@
         "reviewerNotes": "Independently verified content gates passed. Licensed for student practice on the ECHS platform under Issue #56.",
         "auditedAt": "2026-07-28T03:03:45+03:00",
         "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
-        "obsoleteRuntimeMediaRemoved": 1
+        "obsoleteRuntimeMediaRemoved": 1,
+        "frqStructureStatus": "verified-parts-points-and-echs-rubric"
       },
       "studentReady": true
     },
@@ -13084,7 +13087,7 @@
           ]
         }
       ],
-      "rubricStatus": "ECHS analytic rubric based on independent mathematical verification; not an official modern College Board point-by-point scoring guideline.",
+      "rubricStatus": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline.",
       "commonMistakes": [
         "Solving only for intersections and forgetting coordinate pairs.",
         "Missing the double zero at \\(x=3\\).",
@@ -13277,7 +13280,8 @@
         "reviewerNotes": "Independently verified content gates passed. Licensed for student practice on the ECHS platform under Issue #56.",
         "auditedAt": "2026-07-28T03:03:45+03:00",
         "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
-        "obsoleteRuntimeMediaRemoved": 1
+        "obsoleteRuntimeMediaRemoved": 1,
+        "frqStructureStatus": "verified-parts-points-and-echs-rubric"
       },
       "studentReady": true
     },
@@ -13559,7 +13563,7 @@
           ]
         }
       ],
-      "rubricStatus": "ECHS analytic rubric based on independent mathematical verification; not an official modern College Board point-by-point scoring guideline.",
+      "rubricStatus": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline.",
       "commonMistakes": [
         "Integrating \\(-t^{-2}\\) with the wrong sign.",
         "Ignoring the initial conditions.",
@@ -13756,7 +13760,8 @@
         "reviewerNotes": "Independently verified content gates passed. Licensed for student practice on the ECHS platform under Issue #56.",
         "auditedAt": "2026-07-28T03:03:45+03:00",
         "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
-        "obsoleteRuntimeMediaRemoved": 1
+        "obsoleteRuntimeMediaRemoved": 1,
+        "frqStructureStatus": "verified-parts-points-and-echs-rubric"
       },
       "studentReady": true
     },
@@ -14018,7 +14023,7 @@
           ]
         }
       ],
-      "rubricStatus": "ECHS analytic rubric based on independent mathematical verification; not an official modern College Board point-by-point scoring guideline.",
+      "rubricStatus": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline.",
       "commonMistakes": [
         "Differentiating \\(xy\\) as only \\(x y'\\).",
         "Using a normal-line slope instead of the tangent slope.",
@@ -14221,7 +14226,8 @@
         "reviewerNotes": "Independently verified content gates passed. Licensed for student practice on the ECHS platform under Issue #56.",
         "auditedAt": "2026-07-28T03:03:45+03:00",
         "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
-        "obsoleteRuntimeMediaRemoved": 1
+        "obsoleteRuntimeMediaRemoved": 1,
+        "frqStructureStatus": "verified-parts-points-and-echs-rubric"
       },
       "studentReady": true
     },
@@ -14499,7 +14505,7 @@
           ]
         }
       ],
-      "rubricStatus": "ECHS analytic rubric based on independent mathematical verification; not an official modern College Board point-by-point scoring guideline.",
+      "rubricStatus": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline.",
       "commonMistakes": [
         "Using a non-strict discriminant inequality and including tangency.",
         "Subtracting the area boundaries in the wrong order.",
@@ -14705,7 +14711,8 @@
         "reviewerNotes": "Independently verified content gates passed. Licensed for student practice on the ECHS platform under Issue #56.",
         "auditedAt": "2026-07-28T03:03:45+03:00",
         "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
-        "obsoleteRuntimeMediaRemoved": 1
+        "obsoleteRuntimeMediaRemoved": 1,
+        "frqStructureStatus": "verified-parts-points-and-echs-rubric"
       },
       "studentReady": true
     },
@@ -14937,7 +14944,7 @@
           ]
         }
       ],
-      "rubricStatus": "ECHS analytic rubric based on independent mathematical verification; not an official modern College Board point-by-point scoring guideline.",
+      "rubricStatus": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline.",
       "commonMistakes": [
         "Forgetting the factor \\(k\\) in the derivative.",
         "Finding a critical point without justifying it is an absolute maximum.",
@@ -15128,7 +15135,8 @@
         "reviewerNotes": "Independently verified content gates passed. Licensed for student practice on the ECHS platform under Issue #56.",
         "auditedAt": "2026-07-28T03:03:45+03:00",
         "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
-        "obsoleteRuntimeMediaRemoved": 1
+        "obsoleteRuntimeMediaRemoved": 1,
+        "frqStructureStatus": "verified-parts-points-and-echs-rubric"
       },
       "studentReady": true
     },
@@ -15282,7 +15290,7 @@
           ]
         }
       ],
-      "rubricStatus": "ECHS analytic rubric based on independent mathematical verification; not an official modern College Board point-by-point scoring guideline.",
+      "rubricStatus": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline.",
       "commonMistakes": [
         "Applying the extra labor cost at all production levels.",
         "Optimizing only one branch of the profit function.",
@@ -15477,7 +15485,8 @@
         "reviewerNotes": "Independently verified content gates passed. Licensed for student practice on the ECHS platform under Issue #56.",
         "auditedAt": "2026-07-28T03:03:45+03:00",
         "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
-        "obsoleteRuntimeMediaRemoved": 1
+        "obsoleteRuntimeMediaRemoved": 1,
+        "frqStructureStatus": "verified-parts-points-and-echs-rubric"
       },
       "studentReady": true
     },
@@ -15775,7 +15784,7 @@
           ]
         }
       ],
-      "rubricStatus": "ECHS analytic rubric based on independent mathematical verification; not an official modern College Board point-by-point scoring guideline.",
+      "rubricStatus": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline.",
       "commonMistakes": [
         "Using \\(\\tan k\\) instead of \\(\\arctan k\\) for the intersection.",
         "Reversing top minus bottom in the area integral.",
@@ -15983,7 +15992,8 @@
         "reviewerNotes": "Independently verified content gates passed. Licensed for student practice on the ECHS platform under Issue #56.",
         "auditedAt": "2026-07-28T03:03:45+03:00",
         "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
-        "obsoleteRuntimeMediaRemoved": 1
+        "obsoleteRuntimeMediaRemoved": 1,
+        "frqStructureStatus": "verified-parts-points-and-echs-rubric"
       },
       "studentReady": true
     },
@@ -16590,7 +16600,7 @@
           ]
         }
       ],
-      "rubricStatus": "ECHS analytic rubric based on independent mathematical verification; not an official modern College Board point-by-point scoring guideline.",
+      "rubricStatus": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline.",
       "commonMistakes": [
         "Keeping nonzero odd-power terms despite symmetry about the \\(y\\)-axis.",
         "Using only \\(P(q)=-3\\) without the critical-point condition.",
@@ -16791,7 +16801,8 @@
         "reviewerNotes": "Independently verified content gates passed. Licensed for student practice on the ECHS platform under Issue #56.",
         "auditedAt": "2026-07-28T03:03:45+03:00",
         "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
-        "obsoleteRuntimeMediaRemoved": 1
+        "obsoleteRuntimeMediaRemoved": 1,
+        "frqStructureStatus": "verified-parts-points-and-echs-rubric"
       },
       "studentReady": true
     },
@@ -17316,7 +17327,7 @@
           ]
         }
       ],
-      "rubricStatus": "ECHS analytic rubric based on independent mathematical verification; not an official modern College Board point-by-point scoring guideline.",
+      "rubricStatus": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline.",
       "commonMistakes": [
         "Treating the inclination angle itself as the slope instead of using tangent.",
         "Losing the factor \\(2\\) when integrating \\((x+5)^{-1/2}\\).",
@@ -17515,7 +17526,8 @@
         "reviewerNotes": "Independently verified content gates passed. Licensed for student practice on the ECHS platform under Issue #56.",
         "auditedAt": "2026-07-28T03:03:45+03:00",
         "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
-        "obsoleteRuntimeMediaRemoved": 1
+        "obsoleteRuntimeMediaRemoved": 1,
+        "frqStructureStatus": "verified-parts-points-and-echs-rubric"
       },
       "studentReady": true
     },
@@ -17783,7 +17795,7 @@
           ]
         }
       ],
-      "rubricStatus": "ECHS analytic rubric based on independent mathematical verification; not an official modern College Board point-by-point scoring guideline.",
+      "rubricStatus": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline.",
       "commonMistakes": [
         "Optimizing the path with respect to \\(x\\) when the problem asks for the best parameter \\(m\\).",
         "Forgetting the nonzero root when finding the horizontal range.",
@@ -17986,7 +17998,8 @@
         "reviewerNotes": "Independently verified content gates passed. Licensed for student practice on the ECHS platform under Issue #56.",
         "auditedAt": "2026-07-28T03:03:45+03:00",
         "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
-        "obsoleteRuntimeMediaRemoved": 1
+        "obsoleteRuntimeMediaRemoved": 1,
+        "frqStructureStatus": "verified-parts-points-and-echs-rubric"
       },
       "studentReady": true
     },
@@ -18218,7 +18231,7 @@
           ]
         }
       ],
-      "rubricStatus": "ECHS analytic rubric based on independent mathematical verification; not an official modern College Board point-by-point scoring guideline.",
+      "rubricStatus": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline.",
       "commonMistakes": [
         "Reading the radical coefficient as \\(2\\) instead of \\(\\sqrt2\\).",
         "Integrating \\(\\tan x\\) with the wrong sign.",
@@ -18429,7 +18442,8 @@
         "reviewerNotes": "Independently verified content gates passed. Licensed for student practice on the ECHS platform under Issue #56.",
         "auditedAt": "2026-07-28T03:03:45+03:00",
         "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
-        "obsoleteRuntimeMediaRemoved": 1
+        "obsoleteRuntimeMediaRemoved": 1,
+        "frqStructureStatus": "verified-parts-points-and-echs-rubric"
       },
       "studentReady": true
     },
@@ -18691,7 +18705,7 @@
           ]
         }
       ],
-      "rubricStatus": "ECHS analytic rubric based on independent mathematical verification; not an official modern College Board point-by-point scoring guideline.",
+      "rubricStatus": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline.",
       "commonMistakes": [
         "Assuming the doubling time is 10 minutes; the 10-minute interval represents growth by a factor of 5.",
         "Using 20,000 as the initial population.",
@@ -18895,7 +18909,8 @@
         "reviewerNotes": "Independently verified content gates passed. Licensed for student practice on the ECHS platform under Issue #56.",
         "auditedAt": "2026-07-28T03:03:45+03:00",
         "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
-        "obsoleteRuntimeMediaRemoved": 1
+        "obsoleteRuntimeMediaRemoved": 1,
+        "frqStructureStatus": "verified-parts-points-and-echs-rubric"
       },
       "studentReady": true
     },
@@ -19171,7 +19186,7 @@
           ]
         }
       ],
-      "rubricStatus": "ECHS analytic rubric based on independent mathematical verification; not an official modern College Board point-by-point scoring guideline.",
+      "rubricStatus": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline.",
       "commonMistakes": [
         "Using \\(x^2-9\\ge0\\) instead of a strict logarithm condition.",
         "Keeping only one zero in part (c).",
@@ -19367,7 +19382,8 @@
         "reviewerNotes": "Independently verified content gates passed. Licensed for student practice on the ECHS platform under Issue #56.",
         "auditedAt": "2026-07-28T03:03:45+03:00",
         "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
-        "obsoleteRuntimeMediaRemoved": 1
+        "obsoleteRuntimeMediaRemoved": 1,
+        "frqStructureStatus": "verified-parts-points-and-echs-rubric"
       },
       "studentReady": true
     },
@@ -19663,7 +19679,7 @@
           ]
         }
       ],
-      "rubricStatus": "ECHS analytic rubric based on independent mathematical verification; not an official modern College Board point-by-point scoring guideline.",
+      "rubricStatus": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline.",
       "commonMistakes": [
         "Using displacement \\(s(3)-s(0)\\) as total distance.",
         "Including \\(t=2\\) or \\(t=4\\) in the moving-left interval.",
@@ -19858,7 +19874,8 @@
         "reviewerNotes": "Independently verified content gates passed. Licensed for student practice on the ECHS platform under Issue #56.",
         "auditedAt": "2026-07-28T03:03:45+03:00",
         "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
-        "obsoleteRuntimeMediaRemoved": 1
+        "obsoleteRuntimeMediaRemoved": 1,
+        "frqStructureStatus": "verified-parts-points-and-echs-rubric"
       },
       "studentReady": true
     },
@@ -20473,7 +20490,7 @@
           ]
         }
       ],
-      "rubricStatus": "ECHS analytic rubric based on independent mathematical verification; not an official modern College Board point-by-point scoring guideline.",
+      "rubricStatus": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline.",
       "commonMistakes": [
         "Calling \\(x=\\pi\\) a local maximum because \\(y'(\\pi)=0\\).",
         "Omitting endpoint absolute extrema.",
@@ -20666,7 +20683,8 @@
         "reviewerNotes": "Independently verified content gates passed. Licensed for student practice on the ECHS platform under Issue #56.",
         "auditedAt": "2026-07-28T03:03:45+03:00",
         "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
-        "obsoleteRuntimeMediaRemoved": 1
+        "obsoleteRuntimeMediaRemoved": 1,
+        "frqStructureStatus": "verified-parts-points-and-echs-rubric"
       },
       "studentReady": true
     },
@@ -20866,7 +20884,7 @@
           ]
         }
       ],
-      "rubricStatus": "ECHS analytic rubric based on independent mathematical verification; not an official modern College Board point-by-point scoring guideline.",
+      "rubricStatus": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline.",
       "commonMistakes": [
         "Equating the function values instead of the derivatives.",
         "Using the same point for both tangent lines.",
@@ -21060,7 +21078,8 @@
         "reviewerNotes": "Independently verified content gates passed. Licensed for student practice on the ECHS platform under Issue #56.",
         "auditedAt": "2026-07-28T03:03:45+03:00",
         "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
-        "obsoleteRuntimeMediaRemoved": 1
+        "obsoleteRuntimeMediaRemoved": 1,
+        "frqStructureStatus": "verified-parts-points-and-echs-rubric"
       },
       "studentReady": true
     },
@@ -21342,7 +21361,7 @@
           ]
         }
       ],
-      "rubricStatus": "ECHS analytic rubric based on independent mathematical verification; not an official modern College Board point-by-point scoring guideline.",
+      "rubricStatus": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline.",
       "commonMistakes": [
         "Using the line as the outer radius about the \\(x\\)-axis.",
         "Forgetting to square both washer radii.",
@@ -21549,7 +21568,8 @@
         "reviewerNotes": "Independently verified content gates passed. Licensed for student practice on the ECHS platform under Issue #56.",
         "auditedAt": "2026-07-28T03:03:45+03:00",
         "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
-        "obsoleteRuntimeMediaRemoved": 1
+        "obsoleteRuntimeMediaRemoved": 1,
+        "frqStructureStatus": "verified-parts-points-and-echs-rubric"
       },
       "studentReady": true
     },
@@ -21825,7 +21845,7 @@
           ]
         }
       ],
-      "rubricStatus": "ECHS analytic rubric based on independent mathematical verification; not an official modern College Board point-by-point scoring guideline.",
+      "rubricStatus": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline.",
       "commonMistakes": [
         "Assuming \\(f(0)=0\\) without deriving it.",
         "Forgetting the term \\((e^h-1)f(x)/h\\) in the difference quotient.",
@@ -22021,7 +22041,8 @@
         "reviewerNotes": "Independently verified content gates passed. Licensed for student practice on the ECHS platform under Issue #56.",
         "auditedAt": "2026-07-28T03:03:45+03:00",
         "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
-        "obsoleteRuntimeMediaRemoved": 1
+        "obsoleteRuntimeMediaRemoved": 1,
+        "frqStructureStatus": "verified-parts-points-and-echs-rubric"
       },
       "studentReady": true
     },

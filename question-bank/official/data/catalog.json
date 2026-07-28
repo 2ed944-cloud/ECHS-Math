@@ -11,11 +11,11 @@
     "withMedia": 871,
     "withHints": 1164,
     "answerVerified": 974,
-    "needsReview": 495,
-    "studentEligible": 722,
-    "studentAccessible": 722,
-    "studentReady": 722,
-    "teacherArchiveOnly": 495,
+    "needsReview": 337,
+    "studentEligible": 880,
+    "studentAccessible": 880,
+    "studentReady": 880,
+    "teacherArchiveOnly": 337,
     "fullyDigitized": 1217,
     "indexedOnly": 0
   },
@@ -49,8 +49,8 @@
     "10": 61
   },
   "readiness": {
-    "student-ready": 722,
-    "teacher-archive-only": 495
+    "student-ready": 880,
+    "teacher-archive-only": 337
   },
   "officialStatus": {
     "legacy-ap": 704,
@@ -65,7 +65,7 @@
       "frq": 7,
       "ab": 51,
       "bc": 46,
-      "eligible": 95
+      "eligible": 96
     },
     "1970": {
       "total": 7,
@@ -73,7 +73,7 @@
       "frq": 7,
       "ab": 7,
       "bc": 0,
-      "eligible": 6
+      "eligible": 7
     },
     "1971": {
       "total": 7,
@@ -137,7 +137,7 @@
       "frq": 7,
       "ab": 7,
       "bc": 0,
-      "eligible": 0
+      "eligible": 6
     },
     "1979": {
       "total": 7,
@@ -145,7 +145,7 @@
       "frq": 7,
       "ab": 7,
       "bc": 0,
-      "eligible": 1
+      "eligible": 7
     },
     "1980": {
       "total": 7,
@@ -153,7 +153,7 @@
       "frq": 7,
       "ab": 7,
       "bc": 0,
-      "eligible": 0
+      "eligible": 3
     },
     "1985": {
       "total": 96,
@@ -161,7 +161,7 @@
       "frq": 6,
       "ab": 50,
       "bc": 46,
-      "eligible": 89
+      "eligible": 95
     },
     "1988": {
       "total": 96,
@@ -169,7 +169,7 @@
       "frq": 6,
       "ab": 50,
       "bc": 46,
-      "eligible": 90
+      "eligible": 96
     },
     "1993": {
       "total": 96,
@@ -177,7 +177,7 @@
       "frq": 6,
       "ab": 50,
       "bc": 46,
-      "eligible": 90
+      "eligible": 96
     },
     "1997": {
       "total": 86,
@@ -185,7 +185,7 @@
       "frq": 6,
       "ab": 45,
       "bc": 41,
-      "eligible": 80
+      "eligible": 86
     },
     "1998": {
       "total": 96,
@@ -193,7 +193,7 @@
       "frq": 6,
       "ab": 51,
       "bc": 45,
-      "eligible": 90
+      "eligible": 96
     },
     "1981": {
       "total": 7,
@@ -201,7 +201,7 @@
       "frq": 7,
       "ab": 7,
       "bc": 0,
-      "eligible": 0
+      "eligible": 7
     },
     "1982": {
       "total": 7,
@@ -209,7 +209,7 @@
       "frq": 7,
       "ab": 7,
       "bc": 0,
-      "eligible": 0
+      "eligible": 7
     },
     "1983": {
       "total": 6,
@@ -217,7 +217,7 @@
       "frq": 6,
       "ab": 6,
       "bc": 0,
-      "eligible": 0
+      "eligible": 6
     },
     "1984": {
       "total": 5,
@@ -225,7 +225,7 @@
       "frq": 5,
       "ab": 5,
       "bc": 0,
-      "eligible": 0
+      "eligible": 5
     },
     "1986": {
       "total": 6,
@@ -233,7 +233,7 @@
       "frq": 6,
       "ab": 6,
       "bc": 0,
-      "eligible": 0
+      "eligible": 6
     },
     "1987": {
       "total": 6,
@@ -241,7 +241,7 @@
       "frq": 6,
       "ab": 6,
       "bc": 0,
-      "eligible": 0
+      "eligible": 6
     },
     "1989": {
       "total": 6,
@@ -249,7 +249,7 @@
       "frq": 6,
       "ab": 6,
       "bc": 0,
-      "eligible": 0
+      "eligible": 6
     },
     "1990": {
       "total": 6,
@@ -257,7 +257,7 @@
       "frq": 6,
       "ab": 6,
       "bc": 0,
-      "eligible": 0
+      "eligible": 6
     },
     "1991": {
       "total": 6,
@@ -265,7 +265,7 @@
       "frq": 6,
       "ab": 6,
       "bc": 0,
-      "eligible": 0
+      "eligible": 6
     },
     "1992": {
       "total": 6,
@@ -273,7 +273,7 @@
       "frq": 6,
       "ab": 6,
       "bc": 0,
-      "eligible": 0
+      "eligible": 6
     },
     "1994": {
       "total": 6,
@@ -281,7 +281,7 @@
       "frq": 6,
       "ab": 6,
       "bc": 0,
-      "eligible": 0
+      "eligible": 6
     },
     "1995": {
       "total": 6,
@@ -289,7 +289,7 @@
       "frq": 6,
       "ab": 6,
       "bc": 0,
-      "eligible": 0
+      "eligible": 6
     },
     "1996": {
       "total": 6,
@@ -297,7 +297,7 @@
       "frq": 6,
       "ab": 6,
       "bc": 0,
-      "eligible": 0
+      "eligible": 6
     },
     "1999": {
       "total": 6,
@@ -305,7 +305,7 @@
       "frq": 6,
       "ab": 6,
       "bc": 0,
-      "eligible": 0
+      "eligible": 6
     },
     "2000": {
       "total": 6,
@@ -313,7 +313,7 @@
       "frq": 6,
       "ab": 6,
       "bc": 0,
-      "eligible": 0
+      "eligible": 6
     },
     "2001": {
       "total": 6,
@@ -369,7 +369,7 @@
       "frq": 12,
       "ab": 12,
       "bc": 0,
-      "eligible": 0
+      "eligible": 1
     },
     "2008": {
       "total": 12,
@@ -377,7 +377,7 @@
       "frq": 12,
       "ab": 12,
       "bc": 0,
-      "eligible": 0
+      "eligible": 1
     },
     "2009": {
       "total": 12,
@@ -385,7 +385,7 @@
       "frq": 12,
       "ab": 12,
       "bc": 0,
-      "eligible": 0
+      "eligible": 12
     },
     "2010": {
       "total": 6,
@@ -393,7 +393,7 @@
       "frq": 6,
       "ab": 6,
       "bc": 0,
-      "eligible": 0
+      "eligible": 6
     },
     "2014": {
       "total": 28,
@@ -433,7 +433,7 @@
       "id": "AP historical archive",
       "label": "AP historical archive",
       "count": 704,
-      "studentReadyCount": 670,
+      "studentReadyCount": 687,
       "officialStatus": "legacy-ap",
       "accessLevel": "public"
     },
@@ -441,7 +441,7 @@
       "id": "historical-frq-1969-2010",
       "label": "historical-frq-1969-2010",
       "count": 218,
-      "studentReadyCount": 0,
+      "studentReadyCount": 141,
       "officialStatus": "official-released",
       "accessLevel": "public"
     },
@@ -504,8 +504,8 @@
   ],
   "restrictedSummary": {
     "canonicalQuestions": 1217,
-    "studentReady": 722,
-    "teacherArchiveOnly": 495,
+    "studentReady": 880,
+    "teacherArchiveOnly": 337,
     "message": "Only independently audited, exactly mapped, public-release-approved records are used by the GitHub Pages student runtime."
   },
   "deployment": {

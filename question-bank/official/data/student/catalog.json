@@ -2,73 +2,74 @@
   "schemaVersion": "5.0.0",
   "mode": "student-ready-public-gated",
   "generatedAt": "2026-07-28T03:03:45+03:00",
-  "questionCount": 722,
+  "questionCount": 880,
   "archiveQuestionCount": 1217,
   "stats": {
-    "questions": 722,
+    "questions": 880,
     "mcq": 661,
-    "frq": 61,
-    "withMedia": 383,
-    "withHints": 670,
-    "answerVerified": 722,
+    "frq": 219,
+    "withMedia": 540,
+    "withHints": 828,
+    "answerVerified": 880,
     "needsReview": 0,
-    "studentEligible": 722,
-    "studentAccessible": 722,
-    "studentReady": 722,
-    "teacherArchiveOnly": 495,
-    "fullyDigitized": 722,
+    "studentEligible": 880,
+    "studentAccessible": 880,
+    "studentReady": 880,
+    "teacherArchiveOnly": 337,
+    "fullyDigitized": 880,
     "indexedOnly": 0
   },
   "courses": {
-    "AP Calculus AB": 378,
+    "AP Calculus AB": 536,
     "AP Calculus BC": 314,
     "AP Precalculus": 19,
     "Grade 9 Pre-Precalculus": 11
   },
   "types": {
     "mcq": 661,
-    "frq": 61
+    "frq": 219
   },
   "calculator": {
-    "no-calculator": 564,
+    "no-calculator": 704,
     "calculator-allowed": 90,
-    "calculator-required": 68
+    "calculator-required": 86
   },
   "units": {
-    "1": 52,
-    "2": 78,
-    "3": 76,
-    "4": 58,
-    "5": 99,
-    "6": 165,
-    "7": 29,
-    "8": 74,
-    "9": 25,
+    "1": 56,
+    "2": 91,
+    "3": 91,
+    "4": 86,
+    "5": 138,
+    "6": 175,
+    "7": 36,
+    "8": 114,
+    "9": 26,
     "10": 32
   },
   "readiness": {
-    "student-ready": 722
+    "student-ready": 880
   },
   "officialStatus": {
-    "legacy-ap": 670,
-    "echs-original": 52
+    "legacy-ap": 687,
+    "echs-original": 52,
+    "official-released": 141
   },
   "years": {
     "1969": {
-      "total": 95,
+      "total": 96,
       "mcq": 90,
-      "frq": 5,
-      "ab": 49,
+      "frq": 6,
+      "ab": 50,
       "bc": 46,
-      "eligible": 95
+      "eligible": 96
     },
     "1970": {
-      "total": 6,
+      "total": 7,
       "mcq": 0,
-      "frq": 6,
-      "ab": 6,
+      "frq": 7,
+      "ab": 7,
       "bc": 0,
-      "eligible": 6
+      "eligible": 7
     },
     "1971": {
       "total": 7,
@@ -126,7 +127,191 @@
       "bc": 0,
       "eligible": 4
     },
+    "1978": {
+      "total": 6,
+      "mcq": 0,
+      "frq": 6,
+      "ab": 6,
+      "bc": 0,
+      "eligible": 6
+    },
     "1979": {
+      "total": 7,
+      "mcq": 0,
+      "frq": 7,
+      "ab": 7,
+      "bc": 0,
+      "eligible": 7
+    },
+    "1980": {
+      "total": 3,
+      "mcq": 0,
+      "frq": 3,
+      "ab": 3,
+      "bc": 0,
+      "eligible": 3
+    },
+    "1985": {
+      "total": 95,
+      "mcq": 89,
+      "frq": 6,
+      "ab": 50,
+      "bc": 45,
+      "eligible": 95
+    },
+    "1988": {
+      "total": 96,
+      "mcq": 90,
+      "frq": 6,
+      "ab": 50,
+      "bc": 46,
+      "eligible": 96
+    },
+    "1993": {
+      "total": 96,
+      "mcq": 90,
+      "frq": 6,
+      "ab": 50,
+      "bc": 46,
+      "eligible": 96
+    },
+    "1997": {
+      "total": 86,
+      "mcq": 80,
+      "frq": 6,
+      "ab": 45,
+      "bc": 41,
+      "eligible": 86
+    },
+    "1998": {
+      "total": 96,
+      "mcq": 90,
+      "frq": 6,
+      "ab": 51,
+      "bc": 45,
+      "eligible": 96
+    },
+    "1981": {
+      "total": 7,
+      "mcq": 0,
+      "frq": 7,
+      "ab": 7,
+      "bc": 0,
+      "eligible": 7
+    },
+    "1982": {
+      "total": 7,
+      "mcq": 0,
+      "frq": 7,
+      "ab": 7,
+      "bc": 0,
+      "eligible": 7
+    },
+    "1983": {
+      "total": 6,
+      "mcq": 0,
+      "frq": 6,
+      "ab": 6,
+      "bc": 0,
+      "eligible": 6
+    },
+    "1984": {
+      "total": 5,
+      "mcq": 0,
+      "frq": 5,
+      "ab": 5,
+      "bc": 0,
+      "eligible": 5
+    },
+    "1986": {
+      "total": 6,
+      "mcq": 0,
+      "frq": 6,
+      "ab": 6,
+      "bc": 0,
+      "eligible": 6
+    },
+    "1987": {
+      "total": 6,
+      "mcq": 0,
+      "frq": 6,
+      "ab": 6,
+      "bc": 0,
+      "eligible": 6
+    },
+    "1989": {
+      "total": 6,
+      "mcq": 0,
+      "frq": 6,
+      "ab": 6,
+      "bc": 0,
+      "eligible": 6
+    },
+    "1990": {
+      "total": 6,
+      "mcq": 0,
+      "frq": 6,
+      "ab": 6,
+      "bc": 0,
+      "eligible": 6
+    },
+    "1991": {
+      "total": 6,
+      "mcq": 0,
+      "frq": 6,
+      "ab": 6,
+      "bc": 0,
+      "eligible": 6
+    },
+    "1992": {
+      "total": 6,
+      "mcq": 0,
+      "frq": 6,
+      "ab": 6,
+      "bc": 0,
+      "eligible": 6
+    },
+    "1994": {
+      "total": 6,
+      "mcq": 0,
+      "frq": 6,
+      "ab": 6,
+      "bc": 0,
+      "eligible": 6
+    },
+    "1995": {
+      "total": 6,
+      "mcq": 0,
+      "frq": 6,
+      "ab": 6,
+      "bc": 0,
+      "eligible": 6
+    },
+    "1996": {
+      "total": 6,
+      "mcq": 0,
+      "frq": 6,
+      "ab": 6,
+      "bc": 0,
+      "eligible": 6
+    },
+    "1999": {
+      "total": 6,
+      "mcq": 0,
+      "frq": 6,
+      "ab": 6,
+      "bc": 0,
+      "eligible": 6
+    },
+    "2000": {
+      "total": 6,
+      "mcq": 0,
+      "frq": 6,
+      "ab": 6,
+      "bc": 0,
+      "eligible": 6
+    },
+    "2007": {
       "total": 1,
       "mcq": 0,
       "frq": 1,
@@ -134,54 +319,46 @@
       "bc": 0,
       "eligible": 1
     },
-    "1985": {
-      "total": 89,
-      "mcq": 89,
-      "frq": 0,
-      "ab": 44,
-      "bc": 45,
-      "eligible": 89
+    "2008": {
+      "total": 1,
+      "mcq": 0,
+      "frq": 1,
+      "ab": 1,
+      "bc": 0,
+      "eligible": 1
     },
-    "1988": {
-      "total": 90,
-      "mcq": 90,
-      "frq": 0,
-      "ab": 44,
-      "bc": 46,
-      "eligible": 90
+    "2009": {
+      "total": 12,
+      "mcq": 0,
+      "frq": 12,
+      "ab": 12,
+      "bc": 0,
+      "eligible": 12
     },
-    "1993": {
-      "total": 90,
-      "mcq": 90,
-      "frq": 0,
-      "ab": 44,
-      "bc": 46,
-      "eligible": 90
-    },
-    "1997": {
-      "total": 80,
-      "mcq": 80,
-      "frq": 0,
-      "ab": 39,
-      "bc": 41,
-      "eligible": 80
-    },
-    "1998": {
-      "total": 90,
-      "mcq": 90,
-      "frq": 0,
-      "ab": 45,
-      "bc": 45,
-      "eligible": 90
+    "2010": {
+      "total": 6,
+      "mcq": 0,
+      "frq": 6,
+      "ab": 6,
+      "bc": 0,
+      "eligible": 6
     }
   },
   "collections": [
     {
       "id": "AP historical archive",
       "label": "AP historical archive",
-      "count": 670,
-      "studentReadyCount": 670,
+      "count": 687,
+      "studentReadyCount": 687,
       "officialStatus": "legacy-ap",
+      "accessLevel": "public"
+    },
+    {
+      "id": "historical-frq-1969-2010",
+      "label": "historical-frq-1969-2010",
+      "count": 141,
+      "studentReadyCount": 141,
+      "officialStatus": "official-released",
       "accessLevel": "public"
     },
     {
@@ -195,8 +372,8 @@
   ],
   "restrictedSummary": {
     "canonicalQuestions": 1217,
-    "studentReady": 722,
-    "teacherArchiveOnly": 495,
+    "studentReady": 880,
+    "teacherArchiveOnly": 337,
     "message": "Only independently audited, exactly mapped, public-release-approved records are used by the GitHub Pages student runtime."
   },
   "deployment": {

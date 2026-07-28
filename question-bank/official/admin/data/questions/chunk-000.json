@@ -12963,13 +12963,13 @@
           ]
         }
       ],
-      "rubricStatus": "ECHS analytic rubric based on the archived official solution; not an official modern College Board point-by-point scoring guideline.",
+      "rubricStatus": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline.",
       "commonMistakes": [
         "Treating \\(x\\cos x\\) as periodic merely because cosine is periodic.",
         "Saying \\(f_4\\) is odd because it contains \\(x\\).",
         "Forgetting that invertibility requires one-to-one behavior."
       ],
-      "verificationStatus": "independently-verified-source-compared",
+      "verificationStatus": "independently-verified-licensed-student-practice",
       "answerConfidence": 1.0,
       "source": {
         "organization": "College Board",
@@ -13043,7 +13043,11 @@
         "reasoningActions": [
           "compute"
         ],
-        "lessonIds": [],
+        "lessonIds": [
+          "APCALC-1.10",
+          "APCALC-3.3",
+          "APCALC-PREREQUISITE"
+        ],
         "keywords": [
           "function-properties-symmetry-invertibility-periodicity-and-continuity",
           "functions",
@@ -13141,13 +13145,11 @@
       },
       "quality": {
         "completeness": "complete-verified",
-        "productionStatus": "teacher-review-only",
-        "productionReadiness": 0.98,
+        "productionStatus": "student-ready",
+        "productionReadiness": 1.0,
         "tutoringReadiness": 0.98,
-        "needsReview": true,
-        "reviewReasons": [
-          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
-        ],
+        "needsReview": false,
+        "reviewReasons": [],
         "transcriptionVerified": true,
         "answerVerified": true,
         "mediaVerified": true,
@@ -13155,15 +13157,15 @@
         "mathematicalVerificationPassed": true,
         "mappingVerified": true,
         "katexVerified": true,
-        "studentReadyGatePassed": false
+        "studentReadyGatePassed": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "teacher-review-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-ready",
       "contentStatus": "complete",
-      "studentReady": false,
-      "archiveStatus": "Source Complete — Solution Review",
-      "reviewRequired": true,
+      "studentReady": true,
+      "archiveStatus": "Student Ready",
+      "reviewRequired": false,
       "audit": {
         "audit_version": "5.0.0",
         "audited_at": "2026-07-24T13:55:59+00:00",
@@ -13185,7 +13187,7 @@
         "sourceChecked": true,
         "transcriptionStatus": "verified",
         "stemStatus": "verified",
-        "choicesStatus": "not_applicable",
+        "choicesStatus": "not_required",
         "answerStatus": "verified",
         "solutionStatus": "verified",
         "katexStatus": "verified",
@@ -13193,15 +13195,16 @@
         "courseMappingStatus": "verified",
         "unitMappingStatus": "verified",
         "topicMappingStatus": "verified",
-        "lessonMappingStatus": "not_applicable",
+        "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "teacher-review-only",
-        "reviewRequired": true,
-        "reviewerNotes": "Repository source-page and question-crop SVG facsimiles were compared directly with the canonical transcription, and all mathematics was recomputed independently. The record remains teacher/archive-only solely because the source rights are permission-required and public publication has not been approved.",
+        "overallStatus": "student-ready",
+        "reviewRequired": false,
+        "reviewerNotes": "Independently verified content gates passed. Licensed for student practice on the ECHS platform under Issue #56.",
         "auditedAt": "2026-07-28T03:03:45+03:00",
         "sourcePage": "3",
         "correctionsMade": 4,
-        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "frqStructureStatus": "verified-parts-points-and-echs-rubric"
       }
     },
     {
@@ -16774,13 +16777,13 @@
           ]
         }
       ],
-      "rubricStatus": "ECHS analytic rubric based on the archived worked solution; not an official modern College Board point-by-point scoring guideline.",
+      "rubricStatus": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline.",
       "commonMistakes": [
         "Reflecting the left half in f(|x|) instead of copying the right half.",
         "Compressing f(x/2) instead of stretching it horizontally.",
         "Shifting f(x-1) left rather than right."
       ],
-      "verificationStatus": "independently-verified-source-compared",
+      "verificationStatus": "independently-verified-licensed-student-practice",
       "answerConfidence": 1.0,
       "source": {
         "organization": "College Board",
@@ -16848,7 +16851,10 @@
         "reasoningActions": [
           "construct"
         ],
-        "lessonIds": [],
+        "lessonIds": [
+          "APCALC-1.12",
+          "APCALC-PREREQUISITE"
+        ],
         "keywords": [
           "graph-transformations-involving-absolute-value-reflection-stretch-and-translation",
           "graph-transformations",
@@ -16935,13 +16941,11 @@
       },
       "quality": {
         "completeness": "complete-verified",
-        "productionStatus": "teacher-review-only",
-        "productionReadiness": 0.98,
+        "productionStatus": "student-ready",
+        "productionReadiness": 1.0,
         "tutoringReadiness": 0.98,
-        "needsReview": true,
-        "reviewReasons": [
-          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
-        ],
+        "needsReview": false,
+        "reviewReasons": [],
         "transcriptionVerified": true,
         "answerVerified": true,
         "mediaVerified": true,
@@ -16949,15 +16953,15 @@
         "mathematicalVerificationPassed": true,
         "mappingVerified": true,
         "katexVerified": true,
-        "studentReadyGatePassed": false
+        "studentReadyGatePassed": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "teacher-review-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-ready",
       "contentStatus": "complete",
-      "studentReady": false,
-      "archiveStatus": "Source Complete — Solution Review",
-      "reviewRequired": true,
+      "studentReady": true,
+      "archiveStatus": "Student Ready",
+      "reviewRequired": false,
       "audit": {
         "audit_version": "5.0.0",
         "audited_at": "2026-07-24T13:55:59+00:00",
@@ -16979,23 +16983,24 @@
         "sourceChecked": true,
         "transcriptionStatus": "verified",
         "stemStatus": "verified",
-        "choicesStatus": "not_applicable",
+        "choicesStatus": "not_required",
         "answerStatus": "verified",
         "solutionStatus": "verified",
         "katexStatus": "verified",
         "mediaStatus": "verified",
         "courseMappingStatus": "verified",
-        "unitMappingStatus": "not_applicable",
+        "unitMappingStatus": "verified",
         "topicMappingStatus": "verified",
-        "lessonMappingStatus": "not_applicable",
+        "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "teacher-review-only",
+        "overallStatus": "student-ready",
         "correctionsMade": 0,
-        "reviewRequired": true,
-        "reviewerNotes": "Source page visually compared and every part independently solved. Content, answers, KaTeX, media, calculator policy, and mathematical mapping are verified. The record remains teacher/archive-only solely because public-publication permission is not established.",
+        "reviewRequired": false,
+        "reviewerNotes": "Independently verified content gates passed. Licensed for student practice on the ECHS platform under Issue #56.",
         "auditedAt": "2026-07-28T03:03:45+03:00",
         "sourcePage": "5; 6",
-        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "frqStructureStatus": "verified-parts-points-and-echs-rubric"
       }
     },
     {

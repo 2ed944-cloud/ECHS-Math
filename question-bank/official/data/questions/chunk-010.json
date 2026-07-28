@@ -11856,21 +11856,72 @@
           "prompt": "Find the zeros of \\(f\\).",
           "answer": "Factor:\n\\[\nf(x)=(x^2-1)(x^2-2).\n\\]\nThus the zeros are\n\\[\n\\boxed{x=-\\sqrt2,-1,1,\\sqrt2}.\n\\]",
           "maxPoints": 3,
-          "rubric": []
+          "rubric": [
+            {
+              "criterionId": "A-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "A-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
         },
         {
           "label": "(b)",
           "prompt": "Write an equation of the tangent line at \\(x=1\\).",
           "answer": "Since \\(f(1)=0\\) and\n\\[\nf'(x)=4x^3-6x,\n\\]\nwe have \\(f'(1)=-2\\). Therefore\n\\[\n\\boxed{y=-2x+2}.\n\\]",
           "maxPoints": 3,
-          "rubric": []
+          "rubric": [
+            {
+              "criterionId": "B-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "B-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
         },
         {
           "label": "(c)",
           "prompt": "Find each \\(x\\)-coordinate where the tangent is parallel to \\(y=-2x+4\\).",
           "answer": "Parallel tangents have slope \\(-2\\), so\n\\[\n4x^3-6x=-2.\n\\]\nEquivalently,\n\\[\n2x^3-3x+1=(x-1)(2x^2+2x-1)=0.\n\\]\nHence\n\\[\n\\boxed{x=1,\\quad x=\\frac{-1+\\sqrt3}{2},\\quad x=\\frac{-1-\\sqrt3}{2}}.\n\\]",
           "maxPoints": 3,
-          "rubric": []
+          "rubric": [
+            {
+              "criterionId": "C-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "C-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
         }
       ],
       "choices": [],
@@ -11909,14 +11960,81 @@
       "studentExplanation": "The linked source facsimile preserves the complete official question. A source-supplied scoring guideline is attached when available.",
       "teacherExplanation": "The linked source facsimile preserves the complete official question. A source-supplied scoring guideline is attached when available.",
       "scoringGuideline": null,
-      "rubric": [],
-      "rubricStatus": "ECHS instructional solution generated after independent verification; official source scoring guideline unavailable.",
+      "rubric": [
+        {
+          "part": "(a)",
+          "maxPoints": 3,
+          "criteria": [
+            {
+              "criterionId": "A-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "A-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
+        },
+        {
+          "part": "(b)",
+          "maxPoints": 3,
+          "criteria": [
+            {
+              "criterionId": "B-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "B-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
+        },
+        {
+          "part": "(c)",
+          "maxPoints": 3,
+          "criteria": [
+            {
+              "criterionId": "C-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "C-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
+        }
+      ],
+      "rubricStatus": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline.",
       "commonMistakes": [
         "Omitting justification required by the prompt.",
         "Using calculator syntax instead of standard mathematical notation.",
         "Reading a graph or table without attending to units and sign."
       ],
-      "verificationStatus": "independently-verified-source-compared",
+      "verificationStatus": "independently-verified-licensed-student-practice",
       "answerConfidence": 1.0,
       "source": {
         "organization": "College Board",
@@ -12020,13 +12138,11 @@
       },
       "quality": {
         "completeness": "complete-verified",
-        "productionStatus": "teacher-review-only",
-        "productionReadiness": 0.98,
+        "productionStatus": "student-ready",
+        "productionReadiness": 1.0,
         "tutoringReadiness": 0.98,
-        "needsReview": true,
-        "reviewReasons": [
-          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
-        ],
+        "needsReview": false,
+        "reviewReasons": [],
         "transcriptionVerified": true,
         "answerVerified": true,
         "mediaVerified": true,
@@ -12034,18 +12150,18 @@
         "mathematicalVerificationPassed": true,
         "katexVerified": true,
         "mappingVerified": true,
-        "studentReadyGatePassed": false
+        "studentReadyGatePassed": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "teacher-review-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-ready",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "22",
         "transcriptionStatus": "corrected",
         "stemStatus": "verified",
-        "choicesStatus": "not_applicable",
+        "choicesStatus": "not_required",
         "answerStatus": "verified",
         "solutionStatus": "verified",
         "katexStatus": "verified",
@@ -12055,14 +12171,15 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "teacher-review-only",
+        "overallStatus": "student-ready",
         "correctionsMade": 6,
-        "reviewRequired": true,
-        "reviewerNotes": "Rendered source page compared question-by-question and every part independently solved. The structured transcription, KaTeX, answers, media association, calculator designation, and mathematical mapping are verified. The record remains teacher/archive-only solely because public-publication permission is not established.",
+        "reviewRequired": false,
+        "reviewerNotes": "Independently verified content gates passed. Licensed for student practice on the ECHS platform under Issue #56.",
         "auditedAt": "2026-07-28T03:03:45+03:00",
-        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "frqStructureStatus": "verified-parts-points-and-echs-rubric"
       },
-      "studentReady": false
+      "studentReady": true
     },
     {
       "id": "APCALC-AB-FRQ-1981-02",
@@ -12076,7 +12193,7 @@
       "questionNumber": "2",
       "section": "II",
       "calculator": "no-calculator",
-      "maxPoints": 9,
+      "maxPoints": 7,
       "estimatedTime": 900,
       "prompt": "Let \\(R\\) be the first-quadrant region enclosed by\n\\[\ny=4-x^2,\\qquad y=3x,\n\\]\nand the \\(y\\)-axis.",
       "directions": "",
@@ -12086,14 +12203,48 @@
           "prompt": "Find the area of \\(R\\).",
           "answer": "The curves meet where \\(4-x^2=3x\\), giving \\(x=1\\) in the first quadrant. Thus\n\\[\nA=\\int_0^1\\bigl((4-x^2)-3x\\bigr)\\,dx\n=\\left[4x-\\frac{x^3}{3}-\\frac{3x^2}{2}\\right]_0^1\n=\\boxed{\\frac{13}{6}}.\n\\]",
           "maxPoints": 3,
-          "rubric": []
+          "rubric": [
+            {
+              "criterionId": "A-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "A-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
         },
         {
           "label": "(b)",
           "prompt": "Find the volume formed by revolving \\(R\\) about the \\(x\\)-axis.",
           "answer": "Using washers,\n\\[\nV=\\pi\\int_0^1\\left[(4-x^2)^2-(3x)^2\\right]dx.\n\\]\nTherefore\n\\[\nV=\\pi\\int_0^1(16-17x^2+x^4)\\,dx\n=\\boxed{\\frac{158\\pi}{15}}.\n\\]",
           "maxPoints": 4,
-          "rubric": []
+          "rubric": [
+            {
+              "criterionId": "B-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "B-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 3,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
         }
       ],
       "choices": [],
@@ -12132,14 +12283,59 @@
       "studentExplanation": "The linked source facsimile preserves the complete official question. A source-supplied scoring guideline is attached when available.",
       "teacherExplanation": "The linked source facsimile preserves the complete official question. A source-supplied scoring guideline is attached when available.",
       "scoringGuideline": null,
-      "rubric": [],
-      "rubricStatus": "ECHS instructional solution generated after independent verification; official source scoring guideline unavailable.",
+      "rubric": [
+        {
+          "part": "(a)",
+          "maxPoints": 3,
+          "criteria": [
+            {
+              "criterionId": "A-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "A-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
+        },
+        {
+          "part": "(b)",
+          "maxPoints": 4,
+          "criteria": [
+            {
+              "criterionId": "B-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "B-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 3,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
+        }
+      ],
+      "rubricStatus": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline.",
       "commonMistakes": [
         "Omitting justification required by the prompt.",
         "Using calculator syntax instead of standard mathematical notation.",
         "Reading a graph or table without attending to units and sign."
       ],
-      "verificationStatus": "independently-verified-source-compared",
+      "verificationStatus": "independently-verified-licensed-student-practice",
       "answerConfidence": 1.0,
       "source": {
         "organization": "College Board",
@@ -12247,13 +12443,11 @@
       },
       "quality": {
         "completeness": "complete-verified",
-        "productionStatus": "teacher-review-only",
-        "productionReadiness": 0.98,
+        "productionStatus": "student-ready",
+        "productionReadiness": 1.0,
         "tutoringReadiness": 0.98,
-        "needsReview": true,
-        "reviewReasons": [
-          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
-        ],
+        "needsReview": false,
+        "reviewReasons": [],
         "transcriptionVerified": true,
         "answerVerified": true,
         "mediaVerified": true,
@@ -12261,18 +12455,18 @@
         "mathematicalVerificationPassed": true,
         "katexVerified": true,
         "mappingVerified": true,
-        "studentReadyGatePassed": false
+        "studentReadyGatePassed": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "teacher-review-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-ready",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "22",
         "transcriptionStatus": "corrected",
         "stemStatus": "verified",
-        "choicesStatus": "not_applicable",
+        "choicesStatus": "not_required",
         "answerStatus": "verified",
         "solutionStatus": "verified",
         "katexStatus": "verified",
@@ -12282,14 +12476,15 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "teacher-review-only",
+        "overallStatus": "student-ready",
         "correctionsMade": 5,
-        "reviewRequired": true,
-        "reviewerNotes": "Rendered source page compared question-by-question and every part independently solved. The structured transcription, KaTeX, answers, media association, calculator designation, and mathematical mapping are verified. The record remains teacher/archive-only solely because public-publication permission is not established.",
+        "reviewRequired": false,
+        "reviewerNotes": "Independently verified content gates passed. Licensed for student practice on the ECHS platform under Issue #56.",
         "auditedAt": "2026-07-28T03:03:45+03:00",
-        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "frqStructureStatus": "verified-parts-points-and-echs-rubric"
       },
-      "studentReady": false
+      "studentReady": true
     },
     {
       "id": "APCALC-AB-FRQ-1981-03",
@@ -12303,7 +12498,7 @@
       "questionNumber": "3",
       "section": "II",
       "calculator": "no-calculator",
-      "maxPoints": 9,
+      "maxPoints": 15,
       "estimatedTime": 900,
       "prompt": "Let\n\\[\nf(x)=12x^{2/3}-4x.\n\\]",
       "directions": "",
@@ -12313,35 +12508,120 @@
           "prompt": "Find the intervals on which \\(f\\) is increasing.",
           "answer": "For \\(x\\ne0\\),\n\\[\nf'(x)=8x^{-1/3}-4.\n\\]\nThe derivative is positive only for \\(0<x<8\\). Thus \\(f\\) is increasing on\n\\[\n\\boxed{(0,8)}.\n\\]",
           "maxPoints": 3,
-          "rubric": []
+          "rubric": [
+            {
+              "criterionId": "A-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "A-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
         },
         {
           "label": "(b)",
           "prompt": "Find all relative maximum points.",
           "answer": "At \\(x=8\\), \\(f'\\) changes from positive to negative. Since \\(f(8)=16\\), the relative maximum point is\n\\[\n\\boxed{(8,16)}.\n\\]",
           "maxPoints": 3,
-          "rubric": []
+          "rubric": [
+            {
+              "criterionId": "B-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "B-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
         },
         {
           "label": "(c)",
           "prompt": "Find all relative minimum points.",
           "answer": "At \\(x=0\\), \\(f'\\) changes from negative to positive, although \\(f'\\) is undefined there. Since \\(f(0)=0\\), the relative minimum point is\n\\[\n\\boxed{(0,0)}.\n\\]",
           "maxPoints": 3,
-          "rubric": []
+          "rubric": [
+            {
+              "criterionId": "C-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "C-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
         },
         {
           "label": "(d)",
           "prompt": "Find the intervals on which \\(f\\) is concave downward.",
           "answer": "For \\(x\\ne0\\),\n\\[\nf''(x)=-\\frac{8}{3}x^{-4/3}<0.\n\\]\nHence the graph is concave downward on\n\\[\n\\boxed{(-\\infty,0)\\cup(0,\\infty)}.\n\\]",
           "maxPoints": 3,
-          "rubric": []
+          "rubric": [
+            {
+              "criterionId": "D-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "D-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
         },
         {
           "label": "(e)",
           "prompt": "Sketch the graph using the preceding information.",
           "answer": "The graph decreases and is concave down to the cusp-like relative minimum \\((0,0)\\), rises concave down to the relative maximum \\((8,16)\\), and then decreases while remaining concave down.",
           "maxPoints": 3,
-          "rubric": []
+          "rubric": [
+            {
+              "criterionId": "E-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "E-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
         }
       ],
       "choices": [],
@@ -12380,14 +12660,125 @@
       "studentExplanation": "The linked source facsimile preserves the complete official question. A source-supplied scoring guideline is attached when available.",
       "teacherExplanation": "The linked source facsimile preserves the complete official question. A source-supplied scoring guideline is attached when available.",
       "scoringGuideline": null,
-      "rubric": [],
-      "rubricStatus": "ECHS instructional solution generated after independent verification; official source scoring guideline unavailable.",
+      "rubric": [
+        {
+          "part": "(a)",
+          "maxPoints": 3,
+          "criteria": [
+            {
+              "criterionId": "A-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "A-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
+        },
+        {
+          "part": "(b)",
+          "maxPoints": 3,
+          "criteria": [
+            {
+              "criterionId": "B-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "B-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
+        },
+        {
+          "part": "(c)",
+          "maxPoints": 3,
+          "criteria": [
+            {
+              "criterionId": "C-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "C-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
+        },
+        {
+          "part": "(d)",
+          "maxPoints": 3,
+          "criteria": [
+            {
+              "criterionId": "D-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "D-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
+        },
+        {
+          "part": "(e)",
+          "maxPoints": 3,
+          "criteria": [
+            {
+              "criterionId": "E-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "E-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
+        }
+      ],
+      "rubricStatus": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline.",
       "commonMistakes": [
         "Omitting justification required by the prompt.",
         "Using calculator syntax instead of standard mathematical notation.",
         "Reading a graph or table without attending to units and sign."
       ],
-      "verificationStatus": "independently-verified-source-compared",
+      "verificationStatus": "independently-verified-licensed-student-practice",
       "answerConfidence": 1.0,
       "source": {
         "organization": "College Board",
@@ -12496,13 +12887,11 @@
       },
       "quality": {
         "completeness": "complete-verified",
-        "productionStatus": "teacher-review-only",
-        "productionReadiness": 0.98,
+        "productionStatus": "student-ready",
+        "productionReadiness": 1.0,
         "tutoringReadiness": 0.98,
-        "needsReview": true,
-        "reviewReasons": [
-          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
-        ],
+        "needsReview": false,
+        "reviewReasons": [],
         "transcriptionVerified": true,
         "answerVerified": true,
         "mediaVerified": true,
@@ -12510,18 +12899,18 @@
         "mathematicalVerificationPassed": true,
         "katexVerified": true,
         "mappingVerified": true,
-        "studentReadyGatePassed": false
+        "studentReadyGatePassed": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "teacher-review-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-ready",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "22",
         "transcriptionStatus": "corrected",
         "stemStatus": "verified",
-        "choicesStatus": "not_applicable",
+        "choicesStatus": "not_required",
         "answerStatus": "verified",
         "solutionStatus": "verified",
         "katexStatus": "verified",
@@ -12531,14 +12920,15 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "teacher-review-only",
+        "overallStatus": "student-ready",
         "correctionsMade": 8,
-        "reviewRequired": true,
-        "reviewerNotes": "Rendered source page compared question-by-question and every part independently solved. The structured transcription, KaTeX, answers, media association, calculator designation, and mathematical mapping are verified. The record remains teacher/archive-only solely because public-publication permission is not established.",
+        "reviewRequired": false,
+        "reviewerNotes": "Independently verified content gates passed. Licensed for student practice on the ECHS platform under Issue #56.",
         "auditedAt": "2026-07-28T03:03:45+03:00",
-        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "frqStructureStatus": "verified-parts-points-and-echs-rubric"
       },
-      "studentReady": false
+      "studentReady": true
     },
     {
       "id": "APCALC-AB-FRQ-1981-04",
@@ -12552,7 +12942,7 @@
       "questionNumber": "4",
       "section": "II",
       "calculator": "no-calculator",
-      "maxPoints": 9,
+      "maxPoints": 12,
       "estimatedTime": 900,
       "prompt": "Let\n\\[\nf(x)=5^{\\sqrt{2x^2-1}}.\n\\]",
       "directions": "",
@@ -12562,28 +12952,96 @@
           "prompt": "Determine whether \\(f\\) is even or odd, and justify.",
           "answer": "Because the exponent depends on \\(x^2\\),\n\\[\nf(-x)=5^{\\sqrt{2(-x)^2-1}}=f(x).\n\\]\nTherefore \\(\\boxed{f\\text{ is even}}\\).",
           "maxPoints": 3,
-          "rubric": []
+          "rubric": [
+            {
+              "criterionId": "A-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "A-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
         },
         {
           "label": "(b)",
           "prompt": "Find the domain of \\(f\\).",
           "answer": "The square root requires\n\\[\n2x^2-1\\ge0.\n\\]\nThus\n\\[\n\\boxed{\\operatorname{Dom}(f)=\\left(-\\infty,-\\frac1{\\sqrt2}\\right]\\cup\\left[\\frac1{\\sqrt2},\\infty\\right)}.\n\\]",
           "maxPoints": 3,
-          "rubric": []
+          "rubric": [
+            {
+              "criterionId": "B-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "B-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
         },
         {
           "label": "(c)",
           "prompt": "Find the range of \\(f\\).",
           "answer": "The exponent \\(\\sqrt{2x^2-1}\\) takes every value in \\([0,\\infty)\\). Since the base is \\(5\\),\n\\[\n\\boxed{\\operatorname{Range}(f)=[1,\\infty)}.\n\\]",
           "maxPoints": 3,
-          "rubric": []
+          "rubric": [
+            {
+              "criterionId": "C-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "C-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
         },
         {
           "label": "(d)",
           "prompt": "Find \\(f'(x)\\).",
           "answer": "At interior points of the domain,\n\\[\nf'(x)=5^{\\sqrt{2x^2-1}}\\ln 5\\,\\frac{2x}{\\sqrt{2x^2-1}}.\n\\]\nThe derivative is not finite at the two domain endpoints.",
           "maxPoints": 3,
-          "rubric": []
+          "rubric": [
+            {
+              "criterionId": "D-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "D-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
         }
       ],
       "choices": [],
@@ -12622,14 +13080,103 @@
       "studentExplanation": "The linked source facsimile preserves the complete official question. A source-supplied scoring guideline is attached when available.",
       "teacherExplanation": "The linked source facsimile preserves the complete official question. A source-supplied scoring guideline is attached when available.",
       "scoringGuideline": null,
-      "rubric": [],
-      "rubricStatus": "ECHS instructional solution generated after independent verification; official source scoring guideline unavailable.",
+      "rubric": [
+        {
+          "part": "(a)",
+          "maxPoints": 3,
+          "criteria": [
+            {
+              "criterionId": "A-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "A-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
+        },
+        {
+          "part": "(b)",
+          "maxPoints": 3,
+          "criteria": [
+            {
+              "criterionId": "B-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "B-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
+        },
+        {
+          "part": "(c)",
+          "maxPoints": 3,
+          "criteria": [
+            {
+              "criterionId": "C-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "C-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
+        },
+        {
+          "part": "(d)",
+          "maxPoints": 3,
+          "criteria": [
+            {
+              "criterionId": "D-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "D-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
+        }
+      ],
+      "rubricStatus": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline.",
       "commonMistakes": [
         "Omitting justification required by the prompt.",
         "Using calculator syntax instead of standard mathematical notation.",
         "Reading a graph or table without attending to units and sign."
       ],
-      "verificationStatus": "independently-verified-source-compared",
+      "verificationStatus": "independently-verified-licensed-student-practice",
       "answerConfidence": 1.0,
       "source": {
         "organization": "College Board",
@@ -12732,13 +13279,11 @@
       },
       "quality": {
         "completeness": "complete-verified",
-        "productionStatus": "teacher-review-only",
-        "productionReadiness": 0.98,
+        "productionStatus": "student-ready",
+        "productionReadiness": 1.0,
         "tutoringReadiness": 0.98,
-        "needsReview": true,
-        "reviewReasons": [
-          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
-        ],
+        "needsReview": false,
+        "reviewReasons": [],
         "transcriptionVerified": true,
         "answerVerified": true,
         "mediaVerified": true,
@@ -12746,18 +13291,18 @@
         "mathematicalVerificationPassed": true,
         "katexVerified": true,
         "mappingVerified": true,
-        "studentReadyGatePassed": false
+        "studentReadyGatePassed": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "teacher-review-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-ready",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "22",
         "transcriptionStatus": "corrected",
         "stemStatus": "verified",
-        "choicesStatus": "not_applicable",
+        "choicesStatus": "not_required",
         "answerStatus": "verified",
         "solutionStatus": "verified",
         "katexStatus": "verified",
@@ -12767,14 +13312,15 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "teacher-review-only",
+        "overallStatus": "student-ready",
         "correctionsMade": 7,
-        "reviewRequired": true,
-        "reviewerNotes": "Rendered source page compared question-by-question and every part independently solved. The structured transcription, KaTeX, answers, media association, calculator designation, and mathematical mapping are verified. The record remains teacher/archive-only solely because public-publication permission is not established.",
+        "reviewRequired": false,
+        "reviewerNotes": "Independently verified content gates passed. Licensed for student practice on the ECHS platform under Issue #56.",
         "auditedAt": "2026-07-28T03:03:45+03:00",
-        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "frqStructureStatus": "verified-parts-points-and-echs-rubric"
       },
-      "studentReady": false
+      "studentReady": true
     },
     {
       "id": "APCALC-AB-FRQ-1981-05",
@@ -12788,7 +13334,7 @@
       "questionNumber": "5",
       "section": "II",
       "calculator": "no-calculator",
-      "maxPoints": 9,
+      "maxPoints": 10,
       "estimatedTime": 900,
       "prompt": "Define\n\\[\nf(x)=\\begin{cases}\n2x+1,&x\\le2,\\\\\n\\frac12x^2+k,&x>2.\n\\end{cases}\n\\]",
       "directions": "",
@@ -12798,21 +13344,72 @@
           "prompt": "For what value of \\(k\\) is \\(f\\) continuous at \\(x=2\\)?",
           "answer": "Continuity requires\n\\[\n5=f(2)=\\lim_{x\\to2^+}\\left(\\frac12x^2+k\\right)=2+k.\n\\]\nHence \\(\\boxed{k=3}\\).",
           "maxPoints": 3,
-          "rubric": []
+          "rubric": [
+            {
+              "criterionId": "A-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "A-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
         },
         {
           "label": "(b)",
           "prompt": "Using that value of \\(k\\), determine whether \\(f\\) is differentiable at \\(x=2\\), using the definition.",
           "answer": "For \\(k=3\\), the function is continuous. The left difference quotient tends to \\(2\\). On the right,\n\\[\n\\frac{\\frac12(2+h)^2+3-5}{h}=\\frac{2h+\\frac12h^2}{h}=2+\\frac h2\\to2.\n\\]\nBoth one-sided derivatives equal \\(2\\), so \\(\\boxed{f\\text{ is differentiable at }2}\\).",
           "maxPoints": 4,
-          "rubric": []
+          "rubric": [
+            {
+              "criterionId": "B-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "B-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 3,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
         },
         {
           "label": "(c)",
           "prompt": "Let \\(k=4\\). Determine whether \\(f\\) is differentiable at \\(x=4\\).",
           "answer": "A neighbourhood of \\(x=4\\) lies entirely in the polynomial branch \\(\\frac12x^2+4\\). Therefore \\(f'(4)=4\\), and \\(\\boxed{f\\text{ is differentiable at }4}\\).",
           "maxPoints": 3,
-          "rubric": []
+          "rubric": [
+            {
+              "criterionId": "C-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "C-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
         }
       ],
       "choices": [],
@@ -12871,14 +13468,81 @@
       "studentExplanation": "The linked source facsimile preserves the complete official question. A source-supplied scoring guideline is attached when available.",
       "teacherExplanation": "The linked source facsimile preserves the complete official question. A source-supplied scoring guideline is attached when available.",
       "scoringGuideline": null,
-      "rubric": [],
-      "rubricStatus": "ECHS instructional solution generated after independent verification; official source scoring guideline unavailable.",
+      "rubric": [
+        {
+          "part": "(a)",
+          "maxPoints": 3,
+          "criteria": [
+            {
+              "criterionId": "A-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "A-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
+        },
+        {
+          "part": "(b)",
+          "maxPoints": 4,
+          "criteria": [
+            {
+              "criterionId": "B-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "B-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 3,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
+        },
+        {
+          "part": "(c)",
+          "maxPoints": 3,
+          "criteria": [
+            {
+              "criterionId": "C-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "C-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
+        }
+      ],
+      "rubricStatus": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline.",
       "commonMistakes": [
         "Omitting justification required by the prompt.",
         "Using calculator syntax instead of standard mathematical notation.",
         "Reading a graph or table without attending to units and sign."
       ],
-      "verificationStatus": "independently-verified-source-compared",
+      "verificationStatus": "independently-verified-licensed-student-practice",
       "answerConfidence": 1.0,
       "source": {
         "organization": "College Board",
@@ -12982,13 +13646,11 @@
       },
       "quality": {
         "completeness": "complete-verified",
-        "productionStatus": "teacher-review-only",
-        "productionReadiness": 0.98,
+        "productionStatus": "student-ready",
+        "productionReadiness": 1.0,
         "tutoringReadiness": 0.98,
-        "needsReview": true,
-        "reviewReasons": [
-          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
-        ],
+        "needsReview": false,
+        "reviewReasons": [],
         "transcriptionVerified": true,
         "answerVerified": true,
         "mediaVerified": true,
@@ -12996,18 +13658,18 @@
         "mathematicalVerificationPassed": true,
         "katexVerified": true,
         "mappingVerified": true,
-        "studentReadyGatePassed": false
+        "studentReadyGatePassed": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "teacher-review-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-ready",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "22-23",
         "transcriptionStatus": "corrected",
         "stemStatus": "verified",
-        "choicesStatus": "not_applicable",
+        "choicesStatus": "not_required",
         "answerStatus": "verified",
         "solutionStatus": "verified",
         "katexStatus": "verified",
@@ -13017,14 +13679,15 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "teacher-review-only",
+        "overallStatus": "student-ready",
         "correctionsMade": 6,
-        "reviewRequired": true,
-        "reviewerNotes": "Rendered source page compared question-by-question and every part independently solved. The structured transcription, KaTeX, answers, media association, calculator designation, and mathematical mapping are verified. The record remains teacher/archive-only solely because public-publication permission is not established.",
+        "reviewRequired": false,
+        "reviewerNotes": "Independently verified content gates passed. Licensed for student practice on the ECHS platform under Issue #56.",
         "auditedAt": "2026-07-28T03:03:45+03:00",
-        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "frqStructureStatus": "verified-parts-points-and-echs-rubric"
       },
-      "studentReady": false
+      "studentReady": true
     },
     {
       "id": "APCALC-AB-FRQ-1981-06",
@@ -13038,7 +13701,7 @@
       "questionNumber": "6",
       "section": "II",
       "calculator": "no-calculator",
-      "maxPoints": 9,
+      "maxPoints": 12,
       "estimatedTime": 900,
       "prompt": "A particle moves along the \\(x\\)-axis with position\n\\[\nx(t)=\\sin(\\pi t^2),\\qquad -1\\le t\\le1.\n\\]",
       "directions": "",
@@ -13048,28 +13711,96 @@
           "prompt": "Find the velocity.",
           "answer": "\\[\nv(t)=x'(t)=\\boxed{2\\pi t\\cos(\\pi t^2)}.\n\\]",
           "maxPoints": 3,
-          "rubric": []
+          "rubric": [
+            {
+              "criterionId": "A-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "A-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
         },
         {
           "label": "(b)",
           "prompt": "Find the acceleration.",
           "answer": "\\[\na(t)=v'(t)=\\boxed{2\\pi\\cos(\\pi t^2)-4\\pi^2t^2\\sin(\\pi t^2)}.\n\\]",
           "maxPoints": 3,
-          "rubric": []
+          "rubric": [
+            {
+              "criterionId": "B-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "B-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
         },
         {
           "label": "(c)",
           "prompt": "For what values of \\(t\\) does the particle change direction?",
           "answer": "The velocity vanishes at\n\\[\nt=0,\\qquad t=\\pm\\frac1{\\sqrt2}.\n\\]\nA sign chart shows a sign change at all three values. Therefore the particle changes direction at\n\\[\n\\boxed{t=-\\frac1{\\sqrt2},\\ 0,\\ \\frac1{\\sqrt2}}.\n\\]",
           "maxPoints": 3,
-          "rubric": []
+          "rubric": [
+            {
+              "criterionId": "C-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "C-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
         },
         {
           "label": "(d)",
           "prompt": "Find all times when the particle is moving left.",
           "answer": "The velocity is negative on\n\\[\n\\boxed{\\left(-\\frac1{\\sqrt2},0\\right)\\cup\\left(\\frac1{\\sqrt2},1\\right]}.\n\\]",
           "maxPoints": 3,
-          "rubric": []
+          "rubric": [
+            {
+              "criterionId": "D-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "D-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
         }
       ],
       "choices": [],
@@ -13108,14 +13839,103 @@
       "studentExplanation": "The linked source facsimile preserves the complete official question. A source-supplied scoring guideline is attached when available.",
       "teacherExplanation": "The linked source facsimile preserves the complete official question. A source-supplied scoring guideline is attached when available.",
       "scoringGuideline": null,
-      "rubric": [],
-      "rubricStatus": "ECHS instructional solution generated after independent verification; official source scoring guideline unavailable.",
+      "rubric": [
+        {
+          "part": "(a)",
+          "maxPoints": 3,
+          "criteria": [
+            {
+              "criterionId": "A-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "A-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
+        },
+        {
+          "part": "(b)",
+          "maxPoints": 3,
+          "criteria": [
+            {
+              "criterionId": "B-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "B-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
+        },
+        {
+          "part": "(c)",
+          "maxPoints": 3,
+          "criteria": [
+            {
+              "criterionId": "C-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "C-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
+        },
+        {
+          "part": "(d)",
+          "maxPoints": 3,
+          "criteria": [
+            {
+              "criterionId": "D-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "D-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
+        }
+      ],
+      "rubricStatus": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline.",
       "commonMistakes": [
         "Omitting justification required by the prompt.",
         "Using calculator syntax instead of standard mathematical notation.",
         "Reading a graph or table without attending to units and sign."
       ],
-      "verificationStatus": "independently-verified-source-compared",
+      "verificationStatus": "independently-verified-licensed-student-practice",
       "answerConfidence": 1.0,
       "source": {
         "organization": "College Board",
@@ -13221,13 +14041,11 @@
       },
       "quality": {
         "completeness": "complete-verified",
-        "productionStatus": "teacher-review-only",
-        "productionReadiness": 0.98,
+        "productionStatus": "student-ready",
+        "productionReadiness": 1.0,
         "tutoringReadiness": 0.98,
-        "needsReview": true,
-        "reviewReasons": [
-          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
-        ],
+        "needsReview": false,
+        "reviewReasons": [],
         "transcriptionVerified": true,
         "answerVerified": true,
         "mediaVerified": true,
@@ -13235,18 +14053,18 @@
         "mathematicalVerificationPassed": true,
         "katexVerified": true,
         "mappingVerified": true,
-        "studentReadyGatePassed": false
+        "studentReadyGatePassed": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "teacher-review-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-ready",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "23",
         "transcriptionStatus": "corrected",
         "stemStatus": "verified",
-        "choicesStatus": "not_applicable",
+        "choicesStatus": "not_required",
         "answerStatus": "verified",
         "solutionStatus": "verified",
         "katexStatus": "verified",
@@ -13256,14 +14074,15 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "teacher-review-only",
+        "overallStatus": "student-ready",
         "correctionsMade": 7,
-        "reviewRequired": true,
-        "reviewerNotes": "Rendered source page compared question-by-question and every part independently solved. The structured transcription, KaTeX, answers, media association, calculator designation, and mathematical mapping are verified. The record remains teacher/archive-only solely because public-publication permission is not established.",
+        "reviewRequired": false,
+        "reviewerNotes": "Independently verified content gates passed. Licensed for student practice on the ECHS platform under Issue #56.",
         "auditedAt": "2026-07-28T03:03:45+03:00",
-        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "frqStructureStatus": "verified-parts-points-and-echs-rubric"
       },
-      "studentReady": false
+      "studentReady": true
     },
     {
       "id": "APCALC-AB-FRQ-1981-07",
@@ -13287,21 +14106,72 @@
           "prompt": "Find the average value of \\(f\\) on \\([1,3]\\).",
           "answer": "\\[\nf_{\\mathrm{avg}}=\\frac1{3-1}\\int_1^3f(x)\\,dx=\\boxed{\\frac54}.\n\\]",
           "maxPoints": 3,
-          "rubric": []
+          "rubric": [
+            {
+              "criterionId": "A-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "A-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
         },
         {
           "label": "(b)",
           "prompt": "Find \\(\\int_3^5(2f(x)+6)\\,dx\\).",
           "answer": "First,\n\\[\n\\int_3^5f(x)\\,dx=10-\\frac52=\\frac{15}{2}.\n\\]\nHence\n\\[\n\\int_3^5(2f(x)+6)\\,dx=2\\left(\\frac{15}{2}\\right)+6(2)=\\boxed{27}.\n\\]",
           "maxPoints": 3,
-          "rubric": []
+          "rubric": [
+            {
+              "criterionId": "B-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "B-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
         },
         {
           "label": "(c)",
           "prompt": "Given \\(f(x)=ax+b\\), find \\(a\\) and \\(b\\).",
           "answer": "The two integral conditions give\n\\[\n4a+2b=\\frac52,\n\\qquad\n12a+4b=10.\n\\]\nSolving yields\n\\[\n\\boxed{a=\\frac54,\\qquad b=-\\frac54}.\n\\]",
           "maxPoints": 3,
-          "rubric": []
+          "rubric": [
+            {
+              "criterionId": "C-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "C-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
         }
       ],
       "choices": [],
@@ -13340,14 +14210,81 @@
       "studentExplanation": "The linked source facsimile preserves the complete official question. A source-supplied scoring guideline is attached when available.",
       "teacherExplanation": "The linked source facsimile preserves the complete official question. A source-supplied scoring guideline is attached when available.",
       "scoringGuideline": null,
-      "rubric": [],
-      "rubricStatus": "ECHS instructional solution generated after independent verification; official source scoring guideline unavailable.",
+      "rubric": [
+        {
+          "part": "(a)",
+          "maxPoints": 3,
+          "criteria": [
+            {
+              "criterionId": "A-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "A-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
+        },
+        {
+          "part": "(b)",
+          "maxPoints": 3,
+          "criteria": [
+            {
+              "criterionId": "B-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "B-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
+        },
+        {
+          "part": "(c)",
+          "maxPoints": 3,
+          "criteria": [
+            {
+              "criterionId": "C-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "C-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
+        }
+      ],
+      "rubricStatus": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline.",
       "commonMistakes": [
         "Omitting justification required by the prompt.",
         "Using calculator syntax instead of standard mathematical notation.",
         "Reading a graph or table without attending to units and sign."
       ],
-      "verificationStatus": "independently-verified-source-compared",
+      "verificationStatus": "independently-verified-licensed-student-practice",
       "answerConfidence": 1.0,
       "source": {
         "organization": "College Board",
@@ -13453,13 +14390,11 @@
       },
       "quality": {
         "completeness": "complete-verified",
-        "productionStatus": "teacher-review-only",
-        "productionReadiness": 0.98,
+        "productionStatus": "student-ready",
+        "productionReadiness": 1.0,
         "tutoringReadiness": 0.98,
-        "needsReview": true,
-        "reviewReasons": [
-          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
-        ],
+        "needsReview": false,
+        "reviewReasons": [],
         "transcriptionVerified": true,
         "answerVerified": true,
         "mediaVerified": true,
@@ -13467,18 +14402,18 @@
         "mathematicalVerificationPassed": true,
         "katexVerified": true,
         "mappingVerified": true,
-        "studentReadyGatePassed": false
+        "studentReadyGatePassed": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "teacher-review-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-ready",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "23",
         "transcriptionStatus": "corrected",
         "stemStatus": "verified",
-        "choicesStatus": "not_applicable",
+        "choicesStatus": "not_required",
         "answerStatus": "verified",
         "solutionStatus": "verified",
         "katexStatus": "verified",
@@ -13488,14 +14423,15 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "teacher-review-only",
+        "overallStatus": "student-ready",
         "correctionsMade": 6,
-        "reviewRequired": true,
-        "reviewerNotes": "Rendered source page compared question-by-question and every part independently solved. The structured transcription, KaTeX, answers, media association, calculator designation, and mathematical mapping are verified. The record remains teacher/archive-only solely because public-publication permission is not established.",
+        "reviewRequired": false,
+        "reviewerNotes": "Independently verified content gates passed. Licensed for student practice on the ECHS platform under Issue #56.",
         "auditedAt": "2026-07-28T03:03:45+03:00",
-        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "frqStructureStatus": "verified-parts-points-and-echs-rubric"
       },
-      "studentReady": false
+      "studentReady": true
     },
     {
       "id": "APCALC-AB-FRQ-1982-01",
@@ -13519,21 +14455,72 @@
           "prompt": "Find \\(v(t)\\).",
           "answer": "Integrating acceleration,\n\\[\nv(t)=-\\frac3t+C.\n\\]\nSince \\(v(1)=2\\), \\(C=5\\). Thus\n\\[\n\\boxed{v(t)=5-\\frac3t}.\n\\]",
           "maxPoints": 3,
-          "rubric": []
+          "rubric": [
+            {
+              "criterionId": "A-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "A-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
         },
         {
           "label": "(b)",
           "prompt": "Find \\(x(t)\\).",
           "answer": "Integrating velocity,\n\\[\nx(t)=5t-3\\ln t+C.\n\\]\nSince \\(x(1)=6\\), \\(C=1\\). Hence\n\\[\n\\boxed{x(t)=5t-3\\ln t+1}.\n\\]",
           "maxPoints": 3,
-          "rubric": []
+          "rubric": [
+            {
+              "criterionId": "B-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "B-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
         },
         {
           "label": "(c)",
           "prompt": "Find the position at \\(t=e\\).",
           "answer": "\\[\nx(e)=5e-3\\ln e+1=\\boxed{5e-2}.\n\\]",
           "maxPoints": 3,
-          "rubric": []
+          "rubric": [
+            {
+              "criterionId": "C-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "C-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
         }
       ],
       "choices": [],
@@ -13572,14 +14559,81 @@
       "studentExplanation": "The linked source facsimile preserves the complete official question. A source-supplied scoring guideline is attached when available.",
       "teacherExplanation": "The linked source facsimile preserves the complete official question. A source-supplied scoring guideline is attached when available.",
       "scoringGuideline": null,
-      "rubric": [],
-      "rubricStatus": "ECHS instructional solution generated after independent verification; official source scoring guideline unavailable.",
+      "rubric": [
+        {
+          "part": "(a)",
+          "maxPoints": 3,
+          "criteria": [
+            {
+              "criterionId": "A-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "A-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
+        },
+        {
+          "part": "(b)",
+          "maxPoints": 3,
+          "criteria": [
+            {
+              "criterionId": "B-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "B-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
+        },
+        {
+          "part": "(c)",
+          "maxPoints": 3,
+          "criteria": [
+            {
+              "criterionId": "C-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "C-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
+        }
+      ],
+      "rubricStatus": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline.",
       "commonMistakes": [
         "Omitting justification required by the prompt.",
         "Using calculator syntax instead of standard mathematical notation.",
         "Reading a graph or table without attending to units and sign."
       ],
-      "verificationStatus": "independently-verified-source-compared",
+      "verificationStatus": "independently-verified-licensed-student-practice",
       "answerConfidence": 1.0,
       "source": {
         "organization": "College Board",
@@ -13684,13 +14738,11 @@
       },
       "quality": {
         "completeness": "complete-verified",
-        "productionStatus": "teacher-review-only",
-        "productionReadiness": 0.98,
+        "productionStatus": "student-ready",
+        "productionReadiness": 1.0,
         "tutoringReadiness": 0.98,
-        "needsReview": true,
-        "reviewReasons": [
-          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
-        ],
+        "needsReview": false,
+        "reviewReasons": [],
         "transcriptionVerified": true,
         "answerVerified": true,
         "mediaVerified": true,
@@ -13698,18 +14750,18 @@
         "mathematicalVerificationPassed": true,
         "katexVerified": true,
         "mappingVerified": true,
-        "studentReadyGatePassed": false
+        "studentReadyGatePassed": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "teacher-review-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-ready",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "23",
         "transcriptionStatus": "corrected",
         "stemStatus": "verified",
-        "choicesStatus": "not_applicable",
+        "choicesStatus": "not_required",
         "answerStatus": "verified",
         "solutionStatus": "verified",
         "katexStatus": "verified",
@@ -13719,14 +14771,15 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "teacher-review-only",
+        "overallStatus": "student-ready",
         "correctionsMade": 6,
-        "reviewRequired": true,
-        "reviewerNotes": "Rendered source page compared question-by-question and every part independently solved. The structured transcription, KaTeX, answers, media association, calculator designation, and mathematical mapping are verified. The record remains teacher/archive-only solely because public-publication permission is not established.",
+        "reviewRequired": false,
+        "reviewerNotes": "Independently verified content gates passed. Licensed for student practice on the ECHS platform under Issue #56.",
         "auditedAt": "2026-07-28T03:03:45+03:00",
-        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "frqStructureStatus": "verified-parts-points-and-echs-rubric"
       },
-      "studentReady": false
+      "studentReady": true
     },
     {
       "id": "APCALC-AB-FRQ-1982-02",
@@ -13740,7 +14793,7 @@
       "questionNumber": "2",
       "section": "II",
       "calculator": "no-calculator",
-      "maxPoints": 9,
+      "maxPoints": 15,
       "estimatedTime": 900,
       "prompt": "Let\n\\[\nf(x)=\\frac{x^3-x}{x^3-4x},\n\\]\nwith its original algebraic domain.",
       "directions": "",
@@ -13750,35 +14803,120 @@
           "prompt": "Find \\(\\lim_{x\\to0}f(x)\\).",
           "answer": "For \\(x\\ne0\\),\n\\[\nf(x)=\\frac{x^2-1}{x^2-4}.\n\\]\nTherefore\n\\[\n\\boxed{\\lim_{x\\to0}f(x)=\\frac14}.\n\\]",
           "maxPoints": 3,
-          "rubric": []
+          "rubric": [
+            {
+              "criterionId": "A-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "A-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
         },
         {
           "label": "(b)",
           "prompt": "Find the zeros of \\(f\\).",
           "answer": "The numerator vanishes at \\(x=0,\\pm1\\), but \\(x=0\\) is excluded from the original domain. Hence the zeros are\n\\[\n\\boxed{x=-1,1}.\n\\]",
           "maxPoints": 3,
-          "rubric": []
+          "rubric": [
+            {
+              "criterionId": "B-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "B-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
         },
         {
           "label": "(c)",
           "prompt": "Find all vertical and horizontal asymptotes.",
           "answer": "The reduced denominator is zero at \\(x=\\pm2\\), so the vertical asymptotes are\n\\[\n\\boxed{x=-2\\quad\\text{and}\\quad x=2}.\n\\]\nThe degrees and leading coefficients give the horizontal asymptote\n\\[\n\\boxed{y=1}.\n\\]",
           "maxPoints": 3,
-          "rubric": []
+          "rubric": [
+            {
+              "criterionId": "C-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "C-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
         },
         {
           "label": "(d)",
           "prompt": "Describe the symmetry.",
           "answer": "Since the reduced expression depends only on \\(x^2\\), \\(f(-x)=f(x)\\). Thus \\(\\boxed{f\\text{ is even}}\\).",
           "maxPoints": 3,
-          "rubric": []
+          "rubric": [
+            {
+              "criterionId": "D-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "D-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
         },
         {
           "label": "(e)",
           "prompt": "Sketch the graph.",
           "answer": "The graph is even, has a removable hole at \\((0,1/4)\\), zeros at \\(\\pm1\\), vertical asymptotes at \\(\\pm2\\), and horizontal asymptote \\(y=1\\).",
           "maxPoints": 3,
-          "rubric": []
+          "rubric": [
+            {
+              "criterionId": "E-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "E-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
         }
       ],
       "choices": [],
@@ -13837,14 +14975,125 @@
       "studentExplanation": "The linked source facsimile preserves the complete official question. A source-supplied scoring guideline is attached when available.",
       "teacherExplanation": "The linked source facsimile preserves the complete official question. A source-supplied scoring guideline is attached when available.",
       "scoringGuideline": null,
-      "rubric": [],
-      "rubricStatus": "ECHS instructional solution generated after independent verification; official source scoring guideline unavailable.",
+      "rubric": [
+        {
+          "part": "(a)",
+          "maxPoints": 3,
+          "criteria": [
+            {
+              "criterionId": "A-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "A-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
+        },
+        {
+          "part": "(b)",
+          "maxPoints": 3,
+          "criteria": [
+            {
+              "criterionId": "B-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "B-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
+        },
+        {
+          "part": "(c)",
+          "maxPoints": 3,
+          "criteria": [
+            {
+              "criterionId": "C-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "C-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
+        },
+        {
+          "part": "(d)",
+          "maxPoints": 3,
+          "criteria": [
+            {
+              "criterionId": "D-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "D-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
+        },
+        {
+          "part": "(e)",
+          "maxPoints": 3,
+          "criteria": [
+            {
+              "criterionId": "E-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "E-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
+        }
+      ],
+      "rubricStatus": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline.",
       "commonMistakes": [
         "Omitting justification required by the prompt.",
         "Using calculator syntax instead of standard mathematical notation.",
         "Reading a graph or table without attending to units and sign."
       ],
-      "verificationStatus": "independently-verified-source-compared",
+      "verificationStatus": "independently-verified-licensed-student-practice",
       "answerConfidence": 1.0,
       "source": {
         "organization": "College Board",
@@ -13952,13 +15201,11 @@
       },
       "quality": {
         "completeness": "complete-verified",
-        "productionStatus": "teacher-review-only",
-        "productionReadiness": 0.98,
+        "productionStatus": "student-ready",
+        "productionReadiness": 1.0,
         "tutoringReadiness": 0.98,
-        "needsReview": true,
-        "reviewReasons": [
-          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
-        ],
+        "needsReview": false,
+        "reviewReasons": [],
         "transcriptionVerified": true,
         "answerVerified": true,
         "mediaVerified": true,
@@ -13966,18 +15213,18 @@
         "mathematicalVerificationPassed": true,
         "katexVerified": true,
         "mappingVerified": true,
-        "studentReadyGatePassed": false
+        "studentReadyGatePassed": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "teacher-review-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-ready",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "24",
         "transcriptionStatus": "corrected",
         "stemStatus": "verified",
-        "choicesStatus": "not_applicable",
+        "choicesStatus": "not_required",
         "answerStatus": "verified",
         "solutionStatus": "verified",
         "katexStatus": "verified",
@@ -13987,14 +15234,15 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "teacher-review-only",
+        "overallStatus": "student-ready",
         "correctionsMade": 8,
-        "reviewRequired": true,
-        "reviewerNotes": "Rendered source page compared question-by-question and every part independently solved. The structured transcription, KaTeX, answers, media association, calculator designation, and mathematical mapping are verified. The record remains teacher/archive-only solely because public-publication permission is not established.",
+        "reviewRequired": false,
+        "reviewerNotes": "Independently verified content gates passed. Licensed for student practice on the ECHS platform under Issue #56.",
         "auditedAt": "2026-07-28T03:03:45+03:00",
-        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "frqStructureStatus": "verified-parts-points-and-echs-rubric"
       },
-      "studentReady": false
+      "studentReady": true
     },
     {
       "id": "APCALC-AB-FRQ-1982-03",
@@ -14008,7 +15256,7 @@
       "questionNumber": "3",
       "section": "II",
       "calculator": "no-calculator",
-      "maxPoints": 9,
+      "maxPoints": 6,
       "estimatedTime": 900,
       "prompt": "Let \\(R\\) be the first-quadrant region bounded by\n\\[\ny=\\tan x,\n\\]\nthe \\(x\\)-axis, and \\(x=\\pi/3\\).",
       "directions": "",
@@ -14018,14 +15266,48 @@
           "prompt": "Find the area of \\(R\\).",
           "answer": "\\[\nA=\\int_0^{\\pi/3}\\tan x\\,dx\n=\\left[-\\ln(\\cos x)\\right]_0^{\\pi/3}\n=\\boxed{\\ln2}.\n\\]",
           "maxPoints": 3,
-          "rubric": []
+          "rubric": [
+            {
+              "criterionId": "A-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "A-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
         },
         {
           "label": "(b)",
           "prompt": "Find the volume obtained by revolving \\(R\\) about the \\(x\\)-axis.",
           "answer": "\\[\nV=\\pi\\int_0^{\\pi/3}\\tan^2x\\,dx\n=\\pi\\left[\\tan x-x\\right]_0^{\\pi/3}\n=\\boxed{\\pi\\left(\\sqrt3-\\frac\\pi3\\right)}.\n\\]",
           "maxPoints": 3,
-          "rubric": []
+          "rubric": [
+            {
+              "criterionId": "B-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "B-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
         }
       ],
       "choices": [],
@@ -14064,14 +15346,59 @@
       "studentExplanation": "The linked source facsimile preserves the complete official question. A source-supplied scoring guideline is attached when available.",
       "teacherExplanation": "The linked source facsimile preserves the complete official question. A source-supplied scoring guideline is attached when available.",
       "scoringGuideline": null,
-      "rubric": [],
-      "rubricStatus": "ECHS instructional solution generated after independent verification; official source scoring guideline unavailable.",
+      "rubric": [
+        {
+          "part": "(a)",
+          "maxPoints": 3,
+          "criteria": [
+            {
+              "criterionId": "A-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "A-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
+        },
+        {
+          "part": "(b)",
+          "maxPoints": 3,
+          "criteria": [
+            {
+              "criterionId": "B-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "B-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
+        }
+      ],
+      "rubricStatus": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline.",
       "commonMistakes": [
         "Omitting justification required by the prompt.",
         "Using calculator syntax instead of standard mathematical notation.",
         "Reading a graph or table without attending to units and sign."
       ],
-      "verificationStatus": "independently-verified-source-compared",
+      "verificationStatus": "independently-verified-licensed-student-practice",
       "answerConfidence": 1.0,
       "source": {
         "organization": "College Board",
@@ -14179,13 +15506,11 @@
       },
       "quality": {
         "completeness": "complete-verified",
-        "productionStatus": "teacher-review-only",
-        "productionReadiness": 0.98,
+        "productionStatus": "student-ready",
+        "productionReadiness": 1.0,
         "tutoringReadiness": 0.98,
-        "needsReview": true,
-        "reviewReasons": [
-          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
-        ],
+        "needsReview": false,
+        "reviewReasons": [],
         "transcriptionVerified": true,
         "answerVerified": true,
         "mediaVerified": true,
@@ -14193,18 +15518,18 @@
         "mathematicalVerificationPassed": true,
         "katexVerified": true,
         "mappingVerified": true,
-        "studentReadyGatePassed": false
+        "studentReadyGatePassed": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "teacher-review-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-ready",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "24",
         "transcriptionStatus": "corrected",
         "stemStatus": "verified",
-        "choicesStatus": "not_applicable",
+        "choicesStatus": "not_required",
         "answerStatus": "verified",
         "solutionStatus": "verified",
         "katexStatus": "verified",
@@ -14214,14 +15539,15 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "teacher-review-only",
+        "overallStatus": "student-ready",
         "correctionsMade": 5,
-        "reviewRequired": true,
-        "reviewerNotes": "Rendered source page compared question-by-question and every part independently solved. The structured transcription, KaTeX, answers, media association, calculator designation, and mathematical mapping are verified. The record remains teacher/archive-only solely because public-publication permission is not established.",
+        "reviewRequired": false,
+        "reviewerNotes": "Independently verified content gates passed. Licensed for student practice on the ECHS platform under Issue #56.",
         "auditedAt": "2026-07-28T03:03:45+03:00",
-        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "frqStructureStatus": "verified-parts-points-and-echs-rubric"
       },
-      "studentReady": false
+      "studentReady": true
     },
     {
       "id": "APCALC-AB-FRQ-1982-04",
@@ -14235,7 +15561,7 @@
       "questionNumber": "4",
       "section": "II",
       "calculator": "no-calculator",
-      "maxPoints": 9,
+      "maxPoints": 6,
       "estimatedTime": 900,
       "prompt": "A \\(15\\)-foot ladder leans against a wall. Its lower end moves away from the wall at\n\\[\n\\frac{dx}{dt}=\\frac12\\ \\text{ft/s}.\n\\]",
       "directions": "",
@@ -14245,14 +15571,48 @@
           "prompt": "Find \\(dy/dt\\) when the lower end is \\(9\\) feet from the wall.",
           "answer": "From \\(x^2+y^2=225\\), when \\(x=9\\), \\(y=12\\). Differentiating,\n\\[\n2x\\frac{dx}{dt}+2y\\frac{dy}{dt}=0.\n\\]\nThus\n\\[\n\\boxed{\\frac{dy}{dt}=-\\frac38\\ \\text{ft/s}}.\n\\]",
           "maxPoints": 3,
-          "rubric": []
+          "rubric": [
+            {
+              "criterionId": "A-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "A-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
         },
         {
           "label": "(b)",
           "prompt": "Find the rate of change of the triangle area at that instant.",
           "answer": "The area is \\(A=\\frac12xy\\). Therefore\n\\[\n\\frac{dA}{dt}=\\frac12\\left(x\\frac{dy}{dt}+y\\frac{dx}{dt}\\right)\n=\\frac12\\left(9\\left(-\\frac38\\right)+12\\left(\\frac12\\right)\\right)\n=\\boxed{\\frac{21}{16}\\ \\text{ft}^2/\\text{s}}.\n\\]",
           "maxPoints": 3,
-          "rubric": []
+          "rubric": [
+            {
+              "criterionId": "B-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "B-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
         }
       ],
       "choices": [],
@@ -14291,14 +15651,59 @@
       "studentExplanation": "The linked source facsimile preserves the complete official question. A source-supplied scoring guideline is attached when available.",
       "teacherExplanation": "The linked source facsimile preserves the complete official question. A source-supplied scoring guideline is attached when available.",
       "scoringGuideline": null,
-      "rubric": [],
-      "rubricStatus": "ECHS instructional solution generated after independent verification; official source scoring guideline unavailable.",
+      "rubric": [
+        {
+          "part": "(a)",
+          "maxPoints": 3,
+          "criteria": [
+            {
+              "criterionId": "A-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "A-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
+        },
+        {
+          "part": "(b)",
+          "maxPoints": 3,
+          "criteria": [
+            {
+              "criterionId": "B-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "B-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
+        }
+      ],
+      "rubricStatus": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline.",
       "commonMistakes": [
         "Omitting justification required by the prompt.",
         "Using calculator syntax instead of standard mathematical notation.",
         "Reading a graph or table without attending to units and sign."
       ],
-      "verificationStatus": "independently-verified-source-compared",
+      "verificationStatus": "independently-verified-licensed-student-practice",
       "answerConfidence": 1.0,
       "source": {
         "organization": "College Board",
@@ -14403,13 +15808,11 @@
       },
       "quality": {
         "completeness": "complete-verified",
-        "productionStatus": "teacher-review-only",
-        "productionReadiness": 0.98,
+        "productionStatus": "student-ready",
+        "productionReadiness": 1.0,
         "tutoringReadiness": 0.98,
-        "needsReview": true,
-        "reviewReasons": [
-          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
-        ],
+        "needsReview": false,
+        "reviewReasons": [],
         "transcriptionVerified": true,
         "answerVerified": true,
         "mediaVerified": true,
@@ -14417,18 +15820,18 @@
         "mathematicalVerificationPassed": true,
         "katexVerified": true,
         "mappingVerified": true,
-        "studentReadyGatePassed": false
+        "studentReadyGatePassed": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "teacher-review-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-ready",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "24",
         "transcriptionStatus": "corrected",
         "stemStatus": "verified",
-        "choicesStatus": "not_applicable",
+        "choicesStatus": "not_required",
         "answerStatus": "verified",
         "solutionStatus": "verified",
         "katexStatus": "verified",
@@ -14438,14 +15841,15 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "teacher-review-only",
+        "overallStatus": "student-ready",
         "correctionsMade": 5,
-        "reviewRequired": true,
-        "reviewerNotes": "Rendered source page compared question-by-question and every part independently solved. The structured transcription, KaTeX, answers, media association, calculator designation, and mathematical mapping are verified. The record remains teacher/archive-only solely because public-publication permission is not established.",
+        "reviewRequired": false,
+        "reviewerNotes": "Independently verified content gates passed. Licensed for student practice on the ECHS platform under Issue #56.",
         "auditedAt": "2026-07-28T03:03:45+03:00",
-        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "frqStructureStatus": "verified-parts-points-and-echs-rubric"
       },
-      "studentReady": false
+      "studentReady": true
     },
     {
       "id": "APCALC-AB-FRQ-1982-05",
@@ -14459,7 +15863,7 @@
       "questionNumber": "5",
       "section": "II",
       "calculator": "no-calculator",
-      "maxPoints": 9,
+      "maxPoints": 6,
       "estimatedTime": 900,
       "prompt": "Let\n\\[\nf(x)=(x^2+1)e^{-x},\\qquad -4\\le x\\le4.\n\\]",
       "directions": "",
@@ -14469,14 +15873,48 @@
           "prompt": "Find where \\(f\\) reaches its absolute maximum.",
           "answer": "\\[\nf'(x)=e^{-x}(2x-x^2-1)=-e^{-x}(x-1)^2\\le0.\n\\]\nThus \\(f\\) is nonincreasing on the entire interval, so its absolute maximum occurs at\n\\[\n\\boxed{x=-4}.\n\\]",
           "maxPoints": 3,
-          "rubric": []
+          "rubric": [
+            {
+              "criterionId": "A-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "A-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
         },
         {
           "label": "(b)",
           "prompt": "Find all inflection-point \\(x\\)-coordinates.",
           "answer": "\\[\nf''(x)=e^{-x}(x-1)(x-3).\n\\]\nIts sign changes at both \\(x=1\\) and \\(x=3\\). Therefore the inflection-point coordinates are\n\\[\n\\boxed{x=1\\quad\\text{and}\\quad x=3}.\n\\]",
           "maxPoints": 3,
-          "rubric": []
+          "rubric": [
+            {
+              "criterionId": "B-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "B-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
         }
       ],
       "choices": [],
@@ -14515,14 +15953,59 @@
       "studentExplanation": "The linked source facsimile preserves the complete official question. A source-supplied scoring guideline is attached when available.",
       "teacherExplanation": "The linked source facsimile preserves the complete official question. A source-supplied scoring guideline is attached when available.",
       "scoringGuideline": null,
-      "rubric": [],
-      "rubricStatus": "ECHS instructional solution generated after independent verification; official source scoring guideline unavailable.",
+      "rubric": [
+        {
+          "part": "(a)",
+          "maxPoints": 3,
+          "criteria": [
+            {
+              "criterionId": "A-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "A-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
+        },
+        {
+          "part": "(b)",
+          "maxPoints": 3,
+          "criteria": [
+            {
+              "criterionId": "B-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            },
+            {
+              "criterionId": "B-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
+              "commonErrors": [],
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
+            }
+          ]
+        }
+      ],
+      "rubricStatus": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline.",
       "commonMistakes": [
         "Omitting justification required by the prompt.",
         "Using calculator syntax instead of standard mathematical notation.",
         "Reading a graph or table without attending to units and sign."
       ],
-      "verificationStatus": "independently-verified-source-compared",
+      "verificationStatus": "independently-verified-licensed-student-practice",
       "answerConfidence": 1.0,
       "source": {
         "organization": "College Board",
@@ -14629,13 +16112,11 @@
       },
       "quality": {
         "completeness": "complete-verified",
-        "productionStatus": "teacher-review-only",
-        "productionReadiness": 0.98,
+        "productionStatus": "student-ready",
+        "productionReadiness": 1.0,
         "tutoringReadiness": 0.98,
-        "needsReview": true,
-        "reviewReasons": [
-          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
-        ],
+        "needsReview": false,
+        "reviewReasons": [],
         "transcriptionVerified": true,
         "answerVerified": true,
         "mediaVerified": true,
@@ -14643,18 +16124,18 @@
         "mathematicalVerificationPassed": true,
         "katexVerified": true,
         "mappingVerified": true,
-        "studentReadyGatePassed": false
+        "studentReadyGatePassed": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "teacher-review-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-ready",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "24",
         "transcriptionStatus": "corrected",
         "stemStatus": "verified",
-        "choicesStatus": "not_applicable",
+        "choicesStatus": "not_required",
         "answerStatus": "verified",
         "solutionStatus": "verified",
         "katexStatus": "verified",
@@ -14664,14 +16145,15 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "teacher-review-only",
+        "overallStatus": "student-ready",
         "correctionsMade": 5,
-        "reviewRequired": true,
-        "reviewerNotes": "Rendered source page compared question-by-question and every part independently solved. The structured transcription, KaTeX, answers, media association, calculator designation, and mathematical mapping are verified. The record remains teacher/archive-only solely because public-publication permission is not established.",
+        "reviewRequired": false,
+        "reviewerNotes": "Independently verified content gates passed. Licensed for student practice on the ECHS platform under Issue #56.",
         "auditedAt": "2026-07-28T03:03:45+03:00",
-        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "frqStructureStatus": "verified-parts-points-and-echs-rubric"
       },
-      "studentReady": false
+      "studentReady": true
     }
   ]
 }

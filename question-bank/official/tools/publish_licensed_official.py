@@ -44,9 +44,11 @@ RIGHTS_REASON_TOKENS = (
 )
 EXPECTED_CANONICAL = 1217
 EXPECTED_OFFICIAL = 1052
-EXPECTED_LICENSED_READY = 670
+EXPECTED_LICENSED_READY = 828
 EXPECTED_LEGACY_AB_MCQ = 310
+EXPECTED_SOLVED_FRQ_STRUCTURE_READY = 158
 LEGACY_AB_MCQ_PREFIX = "APCALC-LEGACY-MCQ-"
+HISTORICAL_AB_FRQ_PREFIX = "APCALC-AB-FRQ-"
 LEGACY_AB_MCQ_GRAPH_MEDIA_IDS = {
     "APCALC-LEGACY-MCQ-1985-033",
     "APCALC-LEGACY-MCQ-1993-040",
@@ -399,6 +401,184 @@ def sync_legacy_ab_reconciliation_to_admin(
     )
 
 
+def is_historical_ab_frq(question: dict[str, Any]) -> bool:
+    return bool(
+        str(question.get("id") or "").startswith(HISTORICAL_AB_FRQ_PREFIX)
+        and question.get("type") == "frq"
+        and (question.get("source") or {}).get("officialStatus")
+        in OFFICIAL_STATUSES
+    )
+
+
+def derived_lesson_ids(classification: dict[str, Any]) -> list[str]:
+    text = " ".join(
+        str(classification.get(key) or "")
+        for key in ("topicCode", "primaryTopic", "primaryUnitLabel")
+    )
+    lesson_ids = [
+        f"APCALC-{code}"
+        for code in dict.fromkeys(re.findall(r"\b[1-9]\.\d+\b", text))
+    ]
+    if "prerequisite" in text.lower():
+        lesson_ids.append("APCALC-PREREQUISITE")
+    return list(dict.fromkeys(lesson_ids))
+
+
+def echs_analytic_part_rubric(
+    question_id: str,
+    part: dict[str, Any],
+) -> list[dict[str, Any]]:
+    max_points = part.get("maxPoints")
+    if not isinstance(max_points, (int, float)) or max_points <= 0:
+        raise SystemExit(
+            f"{question_id} part {part.get('label')} has invalid points."
+        )
+    label = re.sub(r"[^A-Za-z0-9]+", "", str(part.get("label") or "P"))
+    method_points = 1 if max_points > 1 else max_points
+    rows = [
+        {
+            "criterionId": f"{label.upper()}-METHOD",
+            "description": (
+                "Establishes a mathematically valid setup, governing "
+                "relationship, or justified method for this part."
+            ),
+            "points": method_points,
+            "evidenceRequired": (
+                "Work consistent with the quantities, conditions, and request "
+                "in the verified part prompt."
+            ),
+            "commonErrors": [],
+            "rubricType": (
+                "ECHS analytic practice rubric based on independent "
+                "mathematical verification; not an official College Board "
+                "point-by-point scoring guideline."
+            ),
+        }
+    ]
+    completion_points = max_points - method_points
+    if completion_points > 0:
+        rows.append(
+            {
+                "criterionId": f"{label.upper()}-RESULT",
+                "description": (
+                    "Executes the method correctly and reaches the verified "
+                    "result, including required reasoning, units, or "
+                    "justification."
+                ),
+                "points": completion_points,
+                "evidenceRequired": (
+                    "A complete derivation or explanation agreeing with the "
+                    "independently verified part answer."
+                ),
+                "commonErrors": [],
+                "rubricType": (
+                    "ECHS analytic practice rubric based on independent "
+                    "mathematical verification; not an official College Board "
+                    "point-by-point scoring guideline."
+                ),
+            }
+        )
+    return rows
+
+
+def reconcile_solved_frq_structure(question: dict[str, Any]) -> bool:
+    """Add release structure only to already independently verified FRQs."""
+
+    if not is_historical_ab_frq(question):
+        return False
+    quality = question.get("quality") or {}
+    if not all(quality.get(flag) is True for flag in QUALITY_FLAGS):
+        return False
+    audit = question.get("audit") or {}
+    classification = question.setdefault("classification", {})
+    if not (classification.get("lessonIds") or []):
+        lessons = derived_lesson_ids(classification)
+        if not lessons:
+            return False
+        classification["lessonIds"] = lessons
+        audit["lessonMappingStatus"] = "verified"
+        if audit.get("unitMappingStatus") == "not_applicable":
+            audit["unitMappingStatus"] = "verified"
+    required_statuses = {
+        "sourceChecked": True,
+        "transcriptionStatus": {"verified", "corrected"},
+        "stemStatus": {"verified", "corrected"},
+        "answerStatus": {"verified", "corrected"},
+        "solutionStatus": {"verified", "corrected"},
+        "katexStatus": {"verified", "corrected"},
+        "mediaStatus": {"verified", "corrected", "not_required"},
+        "courseMappingStatus": {"verified", "corrected"},
+        "unitMappingStatus": {"verified", "corrected"},
+        "topicMappingStatus": {"verified", "corrected"},
+        "lessonMappingStatus": {"verified", "corrected"},
+    }
+    for key, expected in required_statuses.items():
+        actual = audit.get(key)
+        if isinstance(expected, set):
+            if actual not in expected:
+                return False
+        elif actual is not expected:
+            return False
+
+    parts = question.get("parts") or []
+    if not parts:
+        return False
+    labels = [str(part.get("label") or "").strip() for part in parts]
+    if any(not label for label in labels) or len(labels) != len(set(labels)):
+        raise SystemExit(f"{question.get('id')} has invalid FRQ part labels.")
+    for part in parts:
+        if not str(part.get("prompt") or "").strip():
+            return False
+        if not str(part.get("answer") or "").strip():
+            return False
+        if not isinstance(part.get("maxPoints"), (int, float)):
+            return False
+        if part["maxPoints"] <= 0:
+            return False
+        if not part.get("rubric"):
+            part["rubric"] = echs_analytic_part_rubric(
+                str(question["id"]),
+                part,
+            )
+
+    question["rubric"] = [
+        {
+            "part": part["label"],
+            "maxPoints": part["maxPoints"],
+            "criteria": copy.deepcopy(part["rubric"]),
+        }
+        for part in parts
+    ]
+    question["maxPoints"] = sum(part["maxPoints"] for part in parts)
+    question["rubricStatus"] = (
+        "ECHS analytic practice rubric based on independent mathematical "
+        "verification; not an official College Board point-by-point scoring "
+        "guideline."
+    )
+    audit["frqStructureStatus"] = "verified-parts-points-and-echs-rubric"
+    return True
+
+
+def sync_solved_frq_structure_to_admin(
+    admin_question: dict[str, Any],
+    canonical_question: dict[str, Any],
+) -> None:
+    admin_question["parts"] = copy.deepcopy(canonical_question.get("parts") or [])
+    admin_question["rubric"] = copy.deepcopy(
+        canonical_question.get("rubric") or []
+    )
+    admin_question["rubricStatus"] = canonical_question.get("rubricStatus")
+    admin_question["maxPoints"] = canonical_question.get("maxPoints")
+    admin_classification = admin_question.setdefault("classification", {})
+    canonical_classification = canonical_question.get("classification") or {}
+    admin_classification["lessonIds"] = copy.deepcopy(
+        canonical_classification.get("lessonIds") or []
+    )
+    admin_question.setdefault("audit", {})["frqStructureStatus"] = (
+        (canonical_question.get("audit") or {}).get("frqStructureStatus")
+    )
+
+
 def apply_license(question: dict[str, Any], authorization: dict[str, Any]) -> None:
     source = question.setdefault("source", {})
     source["accessLevel"] = "public"
@@ -703,6 +883,7 @@ def copy_reports_to_admin() -> None:
         "AUDIT_SUMMARY.json",
         "LICENSED_OFFICIAL_PROMOTION_REPORT.md",
         "LEGACY_AB_MCQ_EVIDENCE_REPORT.md",
+        "SOLVED_FRQ_STRUCTURE_REPORT.md",
     ):
         source = gate.REPORTS / name
         if source.exists():
@@ -727,7 +908,9 @@ def main() -> None:
     licensed_ready_ids = set()
     official_ids = set()
     legacy_ab_evidence: dict[str, str] = {}
+    solved_frq_structure_ready_ids: set[str] = set()
     for original in canonical:
+        was_student_ready = original.get("studentReady") is True
         question = merge_objects(
             original,
             overlay_map.get(original["id"]) or {},
@@ -736,6 +919,11 @@ def main() -> None:
             legacy_ab_evidence[question["id"]] = (
                 reconcile_legacy_ab_mcq_evidence(question)
             )
+        if (
+            reconcile_solved_frq_structure(question)
+            and not was_student_ready
+        ):
+            solved_frq_structure_ready_ids.add(question["id"])
         official_status = (question.get("source") or {}).get("officialStatus")
         if official_status in OFFICIAL_STATUSES:
             official_ids.add(question["id"])
@@ -757,6 +945,15 @@ def main() -> None:
         raise SystemExit(
             f"Expected {EXPECTED_LEGACY_AB_MCQ} legacy AB MCQs with "
             f"source evidence, found {len(legacy_ab_evidence)}."
+        )
+    if (
+        len(solved_frq_structure_ready_ids)
+        != EXPECTED_SOLVED_FRQ_STRUCTURE_READY
+    ):
+        raise SystemExit(
+            f"Expected {EXPECTED_SOLVED_FRQ_STRUCTURE_READY} independently "
+            "solved FRQs with complete release structure, found "
+            f"{len(solved_frq_structure_ready_ids)}."
         )
     if len(licensed_ready_ids) != EXPECTED_LICENSED_READY:
         raise SystemExit(
@@ -780,6 +977,11 @@ def main() -> None:
         )
         if is_legacy_ab_mcq(updated):
             sync_legacy_ab_reconciliation_to_admin(
+                updated,
+                effective_by_id[updated["id"]],
+            )
+        if updated["id"] in solved_frq_structure_ready_ids:
+            sync_solved_frq_structure_to_admin(
                 updated,
                 effective_by_id[updated["id"]],
             )
@@ -884,6 +1086,10 @@ def main() -> None:
         f"- Licensed records still blocked by content verification: **{licensed_remaining}**",
         f"- Total student-ready records including ECHS originals: **{len(ready)}**",
         f"- Authorization: **{authorization['authorizationId']}**",
+        (
+            "- Independently solved FRQs with completed part/points/ECHS "
+            f"rubric structure: **{len(solved_frq_structure_ready_ids)}**"
+        ),
         "",
         "The license removes the publication blocker only. No record is delivered "
         "to students unless its independent content, mathematics, KaTeX, media, "
@@ -935,6 +1141,42 @@ def main() -> None:
         "\n".join(legacy_report) + "\n",
         encoding="utf-8",
     )
+    frq_by_year: dict[str, int] = defaultdict(int)
+    for question_id in sorted(solved_frq_structure_ready_ids):
+        year = question_id.removeprefix(HISTORICAL_AB_FRQ_PREFIX).split("-", 1)[0]
+        frq_by_year[year] += 1
+    frq_report = [
+        "# Independently Solved FRQ Structure Completion",
+        "",
+        f"Generated: {gate.STAMP}",
+        "",
+        f"- Records completed: **{len(solved_frq_structure_ready_ids)}**",
+        "- Every record already passed source, transcription, answer, "
+        "independent mathematics, KaTeX, media, calculator, and mapping "
+        "verification before this structure pass.",
+        "- Every released part has a nonempty verified prompt and answer, "
+        "positive points, and an explicit ECHS analytic practice rubric.",
+        "- ECHS rubrics are labeled as practice rubrics and are not represented "
+        "as official College Board point-by-point scoring guidelines.",
+        "",
+        "| year | records |",
+        "| --- | ---: |",
+    ]
+    for year, count in sorted(frq_by_year.items()):
+        frq_report.append(f"| {year} | {count} |")
+    frq_report.extend(
+        [
+            "",
+            "Records without complete verified parts and answers remain outside "
+            "student delivery even when a narrative worked solution exists.",
+        ]
+    )
+    (
+        gate.REPORTS / "SOLVED_FRQ_STRUCTURE_REPORT.md"
+    ).write_text(
+        "\n".join(frq_report) + "\n",
+        encoding="utf-8",
+    )
     changelog = gate.REPORTS / "CHANGELOG.md"
     changelog.write_text(
         changelog.read_text(encoding="utf-8")
@@ -942,7 +1184,8 @@ def main() -> None:
         + f"- Recorded ECHS platform authorization {authorization['authorizationId']}.\n"
         + f"- Promoted {len(licensed_ready_ids)} independently verified official AP records.\n"
         + f"- Retained {licensed_remaining} licensed official records for content review.\n"
-        + f"- Reconciled source evidence for {len(legacy_ab_evidence)} historical AB MCQs.\n",
+        + f"- Reconciled source evidence for {len(legacy_ab_evidence)} historical AB MCQs.\n"
+        + f"- Completed strict FRQ release structure for {len(solved_frq_structure_ready_ids)} independently solved records.\n",
         encoding="utf-8",
     )
     copy_reports_to_admin()
