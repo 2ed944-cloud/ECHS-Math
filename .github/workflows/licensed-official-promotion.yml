@@ -54,7 +54,16 @@ jobs:
         run: npm run validate:overlays --prefix question-bank/official/tools
 
       - name: Validate all KaTeX
-        run: npm run validate:katex --prefix question-bank/official/tools
+        shell: bash
+        run: |
+          set +e
+          npm run validate:katex --prefix question-bank/official/tools
+          rc=$?
+          if [[ "$rc" != "0" ]]; then
+            echo "KaTeX parser errors:"
+            python -m json.tool question-bank/official/reports/katex_error_log.json
+          fi
+          exit "$rc"
 
       - name: Regenerate release checksums
         run: python question-bank/official/tools/generate_release_checksums.py
