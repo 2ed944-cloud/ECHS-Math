@@ -8,6 +8,7 @@ const SERVICE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "";
 const ALLOWED_ORIGINS = (Deno.env.get("ALLOWED_ORIGINS") ?? "https://2ed944-cloud.github.io,http://localhost:4173,http://127.0.0.1:4173")
   .split(",").map((value) => value.trim()).filter(Boolean);
 const db = createClient(SUPABASE_URL, SERVICE_KEY, { auth: { persistSession: false, autoRefreshToken: false } });
+const SUPPORTED_COURSES = ["ap-precalculus", "ib-math-ai", "ap-calculus", "algebra-2", "grade-9"];
 
 function responseHeaders(req: Request): HeadersInit {
   const origin = req.headers.get("origin") ?? "";
@@ -52,15 +53,16 @@ function positiveInteger(value: string | null, fallback: number, maximum: number
 }
 function safeBankCode(value: string) { return /^[A-Z0-9-]{3,64}$/.test(value); }
 function safeQuestionId(value: string) { return /^[A-Za-z0-9._:-]{3,160}$/.test(value); }
-function safeCourse(value: string) { return ["ap-precalculus", "ib-math-ai"].includes(value); }
-function safeLesson(value: string) { return /^[A-Za-z0-9._-]{1,80}$/.test(value); }
+function safeCourse(value: string) { return SUPPORTED_COURSES.includes(value); }
+function safeLesson(value: string) { return /^[A-Za-z0-9._-]{1,100}$/.test(value); }
+function safeUnit(value: string) { return /^\d{1,2}$/.test(value) && Number(value) >= 0 && Number(value) <= 20; }
 function safeStoragePath(value: string) {
   return value.length > 0 && value.length <= 900 && !value.startsWith("/") && !value.includes("..") && /^[A-Za-z0-9._/+-]+$/.test(value);
 }
 
 async function listPackages(req: Request, current: SessionAccount) {
   const { data, error } = await db.from("private_bank_packages")
-    .select("id,bank_code,bank_slug,display_aliases,package_fingerprint,package_sha256,package_size_bytes,question_count,pool_count,media_count,access,trust_default,deployment_state,storage_bucket,storage_path,imported_at,updated_at")
+    .select("id,bank_code,bank_slug,display_aliases,package_fingerprint,package_sha256,package_size_bytes,question_count,pool_count,media_count,access,trust_default,deployment_state,storage_bucket,storage_path,manifest,imported_at,updated_at")
     .eq("organization_id", current.organization_id).order("bank_code");
   if (error) throw error;
   return reply(req, { ok: true, private: true, packages: data ?? [] });
@@ -95,7 +97,10 @@ async function staffQuestions(req: Request, current: SessionAccount, url: URL) {
     if (!safeBankCode(bank)) return fail(req, "Invalid bank code", 400, "invalid_bank_code");
     query = query.eq("bank_code", bank);
   }
-  if (course) query = query.contains("course_keys", [course]);
+  if (course) {
+    if (!safeCourse(course)) return fail(req, "Invalid course", 400, "invalid_course");
+    query = query.contains("course_keys", [course]);
+  }
   if (lesson) query = query.contains("lesson_keys", [course ? `${course}:${lesson}` : lesson]);
   const { data, count, error } = await query;
   if (error) throw error;
@@ -105,22 +110,30 @@ async function staffQuestions(req: Request, current: SessionAccount, url: URL) {
 async function studentQuestions(req: Request, current: SessionAccount, url: URL) {
   const course = url.searchParams.get("course")?.trim() ?? "";
   const lesson = url.searchParams.get("lesson")?.trim() ?? "";
+  const unit = url.searchParams.get("unit")?.trim() ?? "";
   const limit = positiveInteger(url.searchParams.get("limit"), 500, 2000);
   const offset = positiveInteger(url.searchParams.get("offset"), 0, 1000000);
-  if (!safeCourse(course) || !safeLesson(lesson)) return fail(req, "A valid course and lesson are required", 400, "invalid_lesson_scope");
-  const lessonKey = `${course}:${lesson}`;
-  const { data, count, error } = await db.from("private_bank_questions")
+  if (!safeCourse(course)) return fail(req, "A valid course is required", 400, "invalid_course_scope");
+  if (!lesson && !unit) return fail(req, "A valid lesson or unit is required", 400, "invalid_lesson_scope");
+  if (lesson && !safeLesson(lesson)) return fail(req, "Invalid lesson", 400, "invalid_lesson_scope");
+  if (unit && !safeUnit(unit)) return fail(req, "Invalid unit", 400, "invalid_unit_scope");
+  const lessonKey = lesson ? `${course}:${lesson}` : "";
+  let query = db.from("private_bank_questions")
     .select("question_id,bank_code,pool_id,chapter,section,question_type,course_keys,lesson_keys,skill_candidates,course_mappings,mapping_verified,trust_tier,student_visible,payload_sha256,payload,updated_at", { count: "exact" })
     .eq("organization_id", current.organization_id)
     .eq("student_visible", true).eq("mapping_verified", true)
     .in("trust_tier", ["publisher_key_direct", "student_ready_verified"])
-    .contains("course_keys", [course]).contains("lesson_keys", [lessonKey])
-    .order("question_id").range(offset, offset + Math.max(limit, 1) - 1);
+    .contains("course_keys", [course]);
+  if (lessonKey) query = query.contains("lesson_keys", [lessonKey]);
+  if (unit) query = query.contains("course_mappings", [{ course, unit: Number(unit) }]);
+  const { data, count, error } = await query.order("question_id").range(offset, offset + Math.max(limit, 1) - 1);
   if (error) throw error;
   return reply(req, {
-    ok: true, private: true, course, lesson, total: count ?? 0, limit, offset,
-    verification_basis: "publisher-answer-key", independently_audited: false,
-    disclosure: "Source-key practice; not independently audited",
+    ok: true, private: true, course, lesson: lesson || null, unit: unit ? Number(unit) : null,
+    total: count ?? 0, limit, offset,
+    verification_basis: "source-key-or-independent-package-evidence",
+    independently_audited: false,
+    disclosure: "Each package preserves its own verification disclosure.",
     questions: (data ?? []).map((row) => ({ ...row, payload: row.payload })),
   });
 }
@@ -166,7 +179,7 @@ Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { status: 204, headers: responseHeaders(req) });
   const url = new URL(req.url); const path = url.pathname.split("/private-bank-api")[1] || "/";
   try {
-    if (path === "/health" && req.method === "GET") return reply(req, { ok: true, service: "echs-private-bank-api", version: "1.1.0-direct-lessons" });
+    if (path === "/health" && req.method === "GET") return reply(req, { ok: true, service: "echs-private-bank-api", version: "1.2.0-multi-course" });
     const current = await session(req);
     if (!canPractise(current)) return fail(req, "Student, teacher, or administrator sign-in is required", 403, "forbidden");
     if (path === "/student-questions" && req.method === "GET") return await studentQuestions(req, current, url);
