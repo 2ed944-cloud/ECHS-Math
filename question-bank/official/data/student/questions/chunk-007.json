@@ -12343,6 +12343,230 @@
       "studentReady": true
     },
     {
+      "id": "APCALC-LEGACY-BC-MCQ-1985-040",
+      "course": "AP Calculus BC",
+      "courseId": "ap-calculus-bc",
+      "assessmentFamily": "AP historical archive",
+      "type": "mcq",
+      "format": "single-select",
+      "year": 1985,
+      "form": "",
+      "questionNumber": "40",
+      "section": "I",
+      "calculator": "no-calculator",
+      "maxPoints": 1,
+      "estimatedTime": null,
+      "prompt": "If the substitution \\(u=\\dfrac{x}{2}\\) is made, the integral \\(\\displaystyle \\int_2^4\\frac{1-(x/2)^2}{x}\\,dx=\\)",
+      "directions": "90 Minutes—No Calculator. Notes: (1) In this examination, ln x denotes the natural logarithm of x (that is, logarithm to the base e). (2) Unless otherwise specified, the domain of a function f is assumed to be the set of all real numbers x for which f(x) is a real number.",
+      "parts": [],
+      "choices": [
+        {
+          "label": "A",
+          "text": "\\displaystyle \\int_1^2\\frac{1-u^2}{u}\\,du",
+          "mediaIds": []
+        },
+        {
+          "label": "B",
+          "text": "\\displaystyle \\int_2^4\\frac{1-u^2}{u}\\,du",
+          "mediaIds": []
+        },
+        {
+          "label": "C",
+          "text": "\\displaystyle \\int_1^2\\frac{1-u^2}{2u}\\,du",
+          "mediaIds": []
+        },
+        {
+          "label": "D",
+          "text": "\\displaystyle \\int_1^2\\frac{1-u^2}{4u}\\,du",
+          "mediaIds": []
+        },
+        {
+          "label": "E",
+          "text": "\\displaystyle \\int_2^4\\frac{1-u^2}{2u}\\,du",
+          "mediaIds": []
+        }
+      ],
+      "media": [
+        {
+          "id": "MEDIA-APCALC-LEGACY-BC-MCQ-1985-040-SOURCE-CROP",
+          "path": "media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1985-040-source-crop.svg",
+          "mime": "image/svg+xml",
+          "alt": "Verified source crop for 1985 AP Calculus BC multiple-choice question 40.",
+          "caption": "1985 AP Calculus BC Section I, question 40, source-faithful facsimile.",
+          "cropStatus": "question-region",
+          "renderMode": "svg-source-page-crop",
+          "descriptor": null
+        }
+      ],
+      "facsimileAuthority": "The repository source crop is authoritative for historical wording, mathematical notation, and graphical content; the structured transcription was visually compared against it.",
+      "machineExtractedText": "",
+      "answer": "A",
+      "acceptedAnswers": [
+        "A"
+      ],
+      "answerFormat": "choice",
+      "explanation": "With \\(x=2u\\) and \\(dx=2du\\), the integrand becomes \\((1-u^2)/(2u)\\cdot2du=(1-u^2)/u\\,du\\). The bounds \\(x=2,4\\) become \\(u=1,2\\).",
+      "workedSolution": "With \\(x=2u\\) and \\(dx=2du\\), the integrand becomes \\((1-u^2)/(2u)\\cdot2du=(1-u^2)/u\\,du\\). The bounds \\(x=2,4\\) become \\(u=1,2\\).",
+      "alternativeSolution": "",
+      "calculatorSolution": "",
+      "noncalculatorSolution": "With \\(x=2u\\) and \\(dx=2du\\), the integrand becomes \\((1-u^2)/(2u)\\cdot2du=(1-u^2)/u\\,du\\). The bounds \\(x=2,4\\) become \\(u=1,2\\).",
+      "studentExplanation": "With \\(x=2u\\) and \\(dx=2du\\), the integrand becomes \\((1-u^2)/(2u)\\cdot2du=(1-u^2)/u\\,du\\). The bounds \\(x=2,4\\) become \\(u=1,2\\).",
+      "teacherExplanation": "With \\(x=2u\\) and \\(dx=2du\\), the integrand becomes \\((1-u^2)/(2u)\\cdot2du=(1-u^2)/u\\,du\\). The bounds \\(x=2,4\\) become \\(u=1,2\\). The official historical key and an independent mathematical solution agree on choice A.",
+      "scoringGuideline": null,
+      "rubric": [],
+      "rubricStatus": "One-point historical multiple-choice item; official answer key and independent solution agree.",
+      "commonMistakes": [
+        "Transforming the integrand but not the bounds."
+      ],
+      "verificationStatus": "independently-verified-licensed-student-practice",
+      "answerConfidence": 1.0,
+      "source": {
+        "organization": "College Board",
+        "publisher": "College Board",
+        "bankName": "AP Calculus historical archive",
+        "sourceType": "historical AP examination item / ECHS verified digital transcription",
+        "officialStatus": "legacy-ap",
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
+        "sourcePages": [
+          61,
+          55
+        ],
+        "supportingSource": "Repository facsimile: AP Calculus Multiple-Choice Question Collection, 1985 AP Calculus BC Section I",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
+      },
+      "classification": {
+        "primaryUnit": 6,
+        "primaryUnitLabel": "Unit 6: Integration and Accumulation of Change",
+        "primaryTopic": "Definite integrals by substitution",
+        "topicCode": "6.9",
+        "additionalTopics": [],
+        "learningObjectives": [
+          "Apply definite integrals by substitution to a source-faithful AP Calculus BC multiple-choice item."
+        ],
+        "bigIdeas": [
+          "Accumulation of Change"
+        ],
+        "mathematicalPractices": [
+          "MP1",
+          "MP2",
+          "MP3"
+        ],
+        "skillCategories": [
+          "Representing",
+          "Procedures",
+          "Reasoning",
+          "Justification"
+        ],
+        "concepts": [
+          "u-substitution",
+          "bounds"
+        ],
+        "prerequisites": [],
+        "functionFamilies": [],
+        "representations": [
+          "symbolic",
+          "verbal"
+        ],
+        "reasoningActions": [
+          "interpret",
+          "compute",
+          "verify"
+        ],
+        "lessonIds": [
+          "APCALC-6.9"
+        ],
+        "keywords": [
+          "u-substitution",
+          "bounds",
+          "ap-calculus-bc",
+          "1985-bc-mcq"
+        ]
+      },
+      "pedagogy": {
+        "difficulty": 3,
+        "difficultyLabel": "Medium",
+        "cognitiveDemand": 3,
+        "hints": [
+          {
+            "level": 1,
+            "type": "orientation",
+            "text": "Replace \\(x\\) by \\(2u\\), \\(dx\\) by \\(2du\\), and both bounds."
+          },
+          {
+            "level": 2,
+            "type": "verification",
+            "text": "Verify the selected option from the governing calculus definition or theorem rather than relying on the historical key alone."
+          }
+        ],
+        "misconceptions": [
+          "Transforming the integrand but not the bounds."
+        ],
+        "related": {
+          "easier": [],
+          "parallel": [],
+          "harder": [],
+          "prerequisite": [],
+          "sameOfficialTopic": [],
+          "relatedFRQ": [],
+          "relatedMCQ": []
+        }
+      },
+      "quality": {
+        "completeness": "complete-verified",
+        "productionStatus": "student-ready",
+        "productionReadiness": 1.0,
+        "tutoringReadiness": 1,
+        "needsReview": false,
+        "reviewReasons": [],
+        "transcriptionVerified": true,
+        "answerVerified": true,
+        "mediaVerified": true,
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": true,
+        "katexVerified": true,
+        "mappingVerified": true,
+        "studentReadyGatePassed": true
+      },
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-ready",
+      "contentStatus": "complete",
+      "audit": {
+        "sourceChecked": true,
+        "sourcePage": "61",
+        "transcriptionStatus": "verified",
+        "stemStatus": "verified",
+        "choicesStatus": "verified",
+        "answerStatus": "verified",
+        "solutionStatus": "verified",
+        "katexStatus": "verified",
+        "mediaStatus": "verified",
+        "courseMappingStatus": "verified",
+        "unitMappingStatus": "verified",
+        "topicMappingStatus": "verified",
+        "lessonMappingStatus": "verified",
+        "calculatorStatus": "verified-no-calculator",
+        "overallStatus": "student-ready",
+        "correctionsMade": 8,
+        "reviewRequired": false,
+        "reviewerNotes": "Independently verified content gates passed. Licensed for student practice on the ECHS platform under Issue #56.",
+        "auditedAt": "2026-07-28T03:03:45+03:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
+      },
+      "studentReady": true
+    },
+    {
       "id": "APCALC-LEGACY-BC-MCQ-1985-041",
       "course": "AP Calculus BC",
       "courseId": "ap-calculus-bc",

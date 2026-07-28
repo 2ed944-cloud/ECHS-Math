@@ -46,4 +46,4 @@ Generated: 2026-07-28T03:03:45+03:00
 | 2009 | 12 |
 | 2010 | 6 |
 
-Records without complete verified parts and answers remain outside student delivery even when a narrative worked solution exists.
+This report counts only the independently solved, fully structured FRQ cohort. Other source-complete official FRQs may be delivered through the separately labeled official-facsimile and official-scoring-guideline evidence path.

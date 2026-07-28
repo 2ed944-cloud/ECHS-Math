@@ -8,8 +8,8 @@
   "canonicalQuestionsChecked": 1217,
   "uniqueQuestionIdsChecked": 1217,
   "duplicateQuestionIds": 0,
-  "mathFieldsChecked": 9080,
-  "expressionsParsed": 23088,
+  "mathFieldsChecked": 9277,
+  "expressionsParsed": 23487,
   "parserErrors": 0,
   "status": "PASS",
   "questions": [
@@ -5314,8 +5314,8 @@
     },
     {
       "question_id": "APCALC-BC-FRQ-1974-03",
-      "math_fields_checked": 0,
-      "expressions_parsed": 0,
+      "math_fields_checked": 15,
+      "expressions_parsed": 31,
       "parser_errors": 0,
       "final_validation_result": "passed"
     },
@@ -6840,197 +6840,197 @@
     },
     {
       "question_id": "APCALC-AB-SAMPLE-2014-MCQ-001",
-      "math_fields_checked": 0,
-      "expressions_parsed": 0,
+      "math_fields_checked": 6,
+      "expressions_parsed": 9,
       "parser_errors": 0,
       "final_validation_result": "passed"
     },
     {
       "question_id": "APCALC-AB-SAMPLE-2014-MCQ-002",
-      "math_fields_checked": 0,
-      "expressions_parsed": 0,
+      "math_fields_checked": 6,
+      "expressions_parsed": 8,
       "parser_errors": 0,
       "final_validation_result": "passed"
     },
     {
       "question_id": "APCALC-AB-SAMPLE-2014-MCQ-003",
-      "math_fields_checked": 0,
-      "expressions_parsed": 0,
+      "math_fields_checked": 7,
+      "expressions_parsed": 18,
       "parser_errors": 0,
       "final_validation_result": "passed"
     },
     {
       "question_id": "APCALC-AB-SAMPLE-2014-MCQ-004",
-      "math_fields_checked": 0,
-      "expressions_parsed": 0,
+      "math_fields_checked": 7,
+      "expressions_parsed": 12,
       "parser_errors": 0,
       "final_validation_result": "passed"
     },
     {
       "question_id": "APCALC-AB-SAMPLE-2014-MCQ-005",
-      "math_fields_checked": 0,
-      "expressions_parsed": 0,
+      "math_fields_checked": 6,
+      "expressions_parsed": 8,
       "parser_errors": 0,
       "final_validation_result": "passed"
     },
     {
       "question_id": "APCALC-AB-SAMPLE-2014-MCQ-006",
-      "math_fields_checked": 0,
-      "expressions_parsed": 0,
+      "math_fields_checked": 3,
+      "expressions_parsed": 10,
       "parser_errors": 0,
       "final_validation_result": "passed"
     },
     {
       "question_id": "APCALC-AB-SAMPLE-2014-MCQ-007",
-      "math_fields_checked": 0,
-      "expressions_parsed": 0,
+      "math_fields_checked": 6,
+      "expressions_parsed": 8,
       "parser_errors": 0,
       "final_validation_result": "passed"
     },
     {
       "question_id": "APCALC-AB-SAMPLE-2014-MCQ-008",
-      "math_fields_checked": 0,
-      "expressions_parsed": 0,
+      "math_fields_checked": 7,
+      "expressions_parsed": 9,
       "parser_errors": 0,
       "final_validation_result": "passed"
     },
     {
       "question_id": "APCALC-AB-SAMPLE-2014-MCQ-009",
-      "math_fields_checked": 0,
-      "expressions_parsed": 0,
+      "math_fields_checked": 7,
+      "expressions_parsed": 10,
       "parser_errors": 0,
       "final_validation_result": "passed"
     },
     {
       "question_id": "APCALC-AB-SAMPLE-2014-MCQ-010",
-      "math_fields_checked": 0,
-      "expressions_parsed": 0,
+      "math_fields_checked": 7,
+      "expressions_parsed": 15,
       "parser_errors": 0,
       "final_validation_result": "passed"
     },
     {
       "question_id": "APCALC-AB-SAMPLE-2014-MCQ-011",
-      "math_fields_checked": 0,
-      "expressions_parsed": 0,
+      "math_fields_checked": 4,
+      "expressions_parsed": 15,
       "parser_errors": 0,
       "final_validation_result": "passed"
     },
     {
       "question_id": "APCALC-AB-SAMPLE-2014-MCQ-012",
-      "math_fields_checked": 0,
-      "expressions_parsed": 0,
+      "math_fields_checked": 7,
+      "expressions_parsed": 15,
       "parser_errors": 0,
       "final_validation_result": "passed"
     },
     {
       "question_id": "APCALC-AB-SAMPLE-2014-MCQ-013",
-      "math_fields_checked": 0,
-      "expressions_parsed": 0,
+      "math_fields_checked": 6,
+      "expressions_parsed": 11,
       "parser_errors": 0,
       "final_validation_result": "passed"
     },
     {
       "question_id": "APCALC-AB-SAMPLE-2014-MCQ-014",
-      "math_fields_checked": 0,
-      "expressions_parsed": 0,
+      "math_fields_checked": 5,
+      "expressions_parsed": 14,
       "parser_errors": 0,
       "final_validation_result": "passed"
     },
     {
       "question_id": "APCALC-AB-SAMPLE-2014-MCQ-015",
-      "math_fields_checked": 0,
-      "expressions_parsed": 0,
+      "math_fields_checked": 7,
+      "expressions_parsed": 11,
       "parser_errors": 0,
       "final_validation_result": "passed"
     },
     {
       "question_id": "APCALC-AB-SAMPLE-2014-MCQ-016",
-      "math_fields_checked": 0,
-      "expressions_parsed": 0,
+      "math_fields_checked": 7,
+      "expressions_parsed": 10,
       "parser_errors": 0,
       "final_validation_result": "passed"
     },
     {
       "question_id": "APCALC-AB-SAMPLE-2014-FRQ-01",
-      "math_fields_checked": 0,
-      "expressions_parsed": 0,
+      "math_fields_checked": 9,
+      "expressions_parsed": 36,
       "parser_errors": 0,
       "final_validation_result": "passed"
     },
     {
       "question_id": "APCALC-AB-SAMPLE-2014-FRQ-02",
-      "math_fields_checked": 0,
-      "expressions_parsed": 0,
+      "math_fields_checked": 10,
+      "expressions_parsed": 30,
       "parser_errors": 0,
       "final_validation_result": "passed"
     },
     {
       "question_id": "APCALC-BC-SAMPLE-2014-MCQ-001",
-      "math_fields_checked": 0,
-      "expressions_parsed": 0,
+      "math_fields_checked": 7,
+      "expressions_parsed": 12,
       "parser_errors": 0,
       "final_validation_result": "passed"
     },
     {
       "question_id": "APCALC-BC-SAMPLE-2014-MCQ-002",
-      "math_fields_checked": 0,
-      "expressions_parsed": 0,
+      "math_fields_checked": 7,
+      "expressions_parsed": 12,
       "parser_errors": 0,
       "final_validation_result": "passed"
     },
     {
       "question_id": "APCALC-BC-SAMPLE-2014-MCQ-003",
-      "math_fields_checked": 0,
-      "expressions_parsed": 0,
+      "math_fields_checked": 7,
+      "expressions_parsed": 9,
       "parser_errors": 0,
       "final_validation_result": "passed"
     },
     {
       "question_id": "APCALC-BC-SAMPLE-2014-MCQ-004",
-      "math_fields_checked": 0,
-      "expressions_parsed": 0,
+      "math_fields_checked": 6,
+      "expressions_parsed": 10,
       "parser_errors": 0,
       "final_validation_result": "passed"
     },
     {
       "question_id": "APCALC-BC-SAMPLE-2014-MCQ-005",
-      "math_fields_checked": 0,
-      "expressions_parsed": 0,
+      "math_fields_checked": 7,
+      "expressions_parsed": 12,
       "parser_errors": 0,
       "final_validation_result": "passed"
     },
     {
       "question_id": "APCALC-BC-SAMPLE-2014-MCQ-006",
-      "math_fields_checked": 0,
-      "expressions_parsed": 0,
+      "math_fields_checked": 3,
+      "expressions_parsed": 4,
       "parser_errors": 0,
       "final_validation_result": "passed"
     },
     {
       "question_id": "APCALC-BC-SAMPLE-2014-MCQ-007",
-      "math_fields_checked": 0,
-      "expressions_parsed": 0,
+      "math_fields_checked": 6,
+      "expressions_parsed": 8,
       "parser_errors": 0,
       "final_validation_result": "passed"
     },
     {
       "question_id": "APCALC-BC-SAMPLE-2014-MCQ-008",
-      "math_fields_checked": 0,
-      "expressions_parsed": 0,
+      "math_fields_checked": 7,
+      "expressions_parsed": 12,
       "parser_errors": 0,
       "final_validation_result": "passed"
     },
     {
       "question_id": "APCALC-BC-SAMPLE-2014-FRQ-01",
-      "math_fields_checked": 0,
-      "expressions_parsed": 0,
+      "math_fields_checked": 8,
+      "expressions_parsed": 21,
       "parser_errors": 0,
       "final_validation_result": "passed"
     },
     {
       "question_id": "APCALC-BC-SAMPLE-2014-FRQ-02",
-      "math_fields_checked": 0,
-      "expressions_parsed": 0,
+      "math_fields_checked": 7,
+      "expressions_parsed": 19,
       "parser_errors": 0,
       "final_validation_result": "passed"
     },

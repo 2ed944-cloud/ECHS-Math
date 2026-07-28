@@ -226,7 +226,9 @@ try {
     );
     await page.locator(".questionCard").waitFor();
     const choices = await page.locator(".choice").count();
-    if (choices !== 5) throw new Error(`Expected 5 choices, found ${choices}.`);
+    if (![4, 5].includes(choices)) {
+      throw new Error(`Expected 4 or 5 choices, found ${choices}.`);
+    }
     const archiveHref = await page
       .getByRole("link", { name: "Archive record" })
       .getAttribute("href");

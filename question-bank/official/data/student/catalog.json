@@ -2,57 +2,57 @@
   "schemaVersion": "5.0.0",
   "mode": "student-ready-public-gated",
   "generatedAt": "2026-07-28T03:03:45+03:00",
-  "questionCount": 896,
+  "questionCount": 1104,
   "archiveQuestionCount": 1217,
   "stats": {
-    "questions": 896,
-    "mcq": 661,
-    "frq": 235,
-    "withMedia": 562,
-    "withHints": 844,
-    "answerVerified": 896,
+    "questions": 1104,
+    "mcq": 776,
+    "frq": 328,
+    "withMedia": 770,
+    "withHints": 1052,
+    "answerVerified": 1104,
     "needsReview": 0,
-    "studentEligible": 896,
-    "studentAccessible": 896,
-    "studentReady": 896,
-    "teacherArchiveOnly": 321,
-    "fullyDigitized": 896,
+    "studentEligible": 1104,
+    "studentAccessible": 1104,
+    "studentReady": 1104,
+    "teacherArchiveOnly": 113,
+    "fullyDigitized": 1104,
     "indexedOnly": 0
   },
   "courses": {
-    "AP Calculus AB": 552,
-    "AP Calculus BC": 314,
+    "AP Calculus AB": 697,
+    "AP Calculus BC": 377,
     "AP Precalculus": 19,
     "Grade 9 Pre-Precalculus": 11
   },
   "types": {
-    "mcq": 661,
-    "frq": 235
+    "mcq": 776,
+    "frq": 328
   },
   "calculator": {
-    "no-calculator": 720,
+    "no-calculator": 854,
     "calculator-allowed": 90,
-    "calculator-required": 86
+    "calculator-required": 160
   },
   "units": {
-    "1": 57,
-    "2": 95,
-    "3": 96,
-    "4": 90,
-    "5": 140,
-    "6": 175,
-    "7": 36,
-    "8": 114,
-    "9": 26,
-    "10": 32
+    "1": 64,
+    "2": 138,
+    "3": 97,
+    "4": 101,
+    "5": 181,
+    "6": 188,
+    "7": 53,
+    "8": 152,
+    "9": 36,
+    "10": 59
   },
   "readiness": {
-    "student-ready": 896
+    "student-ready": 1104
   },
   "officialStatus": {
-    "legacy-ap": 703,
+    "legacy-ap": 704,
     "echs-original": 52,
-    "official-released": 141
+    "official-released": 348
   },
   "years": {
     "1969": {
@@ -96,12 +96,12 @@
       "eligible": 97
     },
     "1974": {
-      "total": 7,
+      "total": 8,
       "mcq": 0,
-      "frq": 7,
+      "frq": 8,
       "ab": 7,
-      "bc": 0,
-      "eligible": 7
+      "bc": 1,
+      "eligible": 8
     },
     "1975": {
       "total": 7,
@@ -152,12 +152,12 @@
       "eligible": 7
     },
     "1985": {
-      "total": 95,
-      "mcq": 89,
+      "total": 96,
+      "mcq": 90,
       "frq": 6,
       "ab": 50,
-      "bc": 45,
-      "eligible": 95
+      "bc": 46,
+      "eligible": 96
     },
     "1988": {
       "total": 96,
@@ -311,21 +311,69 @@
       "bc": 0,
       "eligible": 6
     },
-    "2007": {
-      "total": 1,
+    "2001": {
+      "total": 6,
       "mcq": 0,
-      "frq": 1,
-      "ab": 1,
+      "frq": 6,
+      "ab": 6,
       "bc": 0,
-      "eligible": 1
+      "eligible": 6
+    },
+    "2002": {
+      "total": 12,
+      "mcq": 0,
+      "frq": 12,
+      "ab": 12,
+      "bc": 0,
+      "eligible": 12
+    },
+    "2003": {
+      "total": 12,
+      "mcq": 0,
+      "frq": 12,
+      "ab": 12,
+      "bc": 0,
+      "eligible": 12
+    },
+    "2004": {
+      "total": 12,
+      "mcq": 0,
+      "frq": 12,
+      "ab": 12,
+      "bc": 0,
+      "eligible": 12
+    },
+    "2005": {
+      "total": 6,
+      "mcq": 0,
+      "frq": 6,
+      "ab": 6,
+      "bc": 0,
+      "eligible": 6
+    },
+    "2006": {
+      "total": 6,
+      "mcq": 0,
+      "frq": 6,
+      "ab": 6,
+      "bc": 0,
+      "eligible": 6
+    },
+    "2007": {
+      "total": 12,
+      "mcq": 0,
+      "frq": 12,
+      "ab": 12,
+      "bc": 0,
+      "eligible": 12
     },
     "2008": {
-      "total": 1,
+      "total": 12,
       "mcq": 0,
-      "frq": 1,
-      "ab": 1,
+      "frq": 12,
+      "ab": 12,
       "bc": 0,
-      "eligible": 1
+      "eligible": 12
     },
     "2009": {
       "total": 12,
@@ -342,22 +390,46 @@
       "ab": 6,
       "bc": 0,
       "eligible": 6
+    },
+    "2014": {
+      "total": 28,
+      "mcq": 24,
+      "frq": 4,
+      "ab": 18,
+      "bc": 10,
+      "eligible": 28
+    },
+    "2012": {
+      "total": 51,
+      "mcq": 45,
+      "frq": 6,
+      "ab": 51,
+      "bc": 0,
+      "eligible": 51
+    },
+    "2016": {
+      "total": 51,
+      "mcq": 45,
+      "frq": 6,
+      "ab": 0,
+      "bc": 51,
+      "eligible": 51
     }
   },
   "collections": [
     {
       "id": "AP historical archive",
       "label": "AP historical archive",
-      "count": 703,
-      "studentReadyCount": 703,
+      "count": 704,
+      "studentReadyCount": 704,
       "officialStatus": "legacy-ap",
       "accessLevel": "public"
     },
     {
       "id": "historical-frq-1969-2010",
       "label": "historical-frq-1969-2010",
-      "count": 141,
-      "studentReadyCount": 141,
+      "count": 218,
+      "studentReadyCount": 218,
       "officialStatus": "official-released",
       "accessLevel": "public"
     },
@@ -368,12 +440,36 @@
       "studentReadyCount": 52,
       "officialStatus": "echs-original",
       "accessLevel": "public"
+    },
+    {
+      "id": "official-ab-practice-2012",
+      "label": "official-ab-practice-2012",
+      "count": 51,
+      "studentReadyCount": 51,
+      "officialStatus": "official-released",
+      "accessLevel": "public"
+    },
+    {
+      "id": "official-bc-practice-2016",
+      "label": "official-bc-practice-2016",
+      "count": 51,
+      "studentReadyCount": 51,
+      "officialStatus": "official-released",
+      "accessLevel": "public"
+    },
+    {
+      "id": "framework-sample-2014",
+      "label": "framework-sample-2014",
+      "count": 28,
+      "studentReadyCount": 28,
+      "officialStatus": "official-released",
+      "accessLevel": "public"
     }
   ],
   "restrictedSummary": {
     "canonicalQuestions": 1217,
-    "studentReady": 896,
-    "teacherArchiveOnly": 321,
+    "studentReady": 1104,
+    "teacherArchiveOnly": 113,
     "message": "Only independently audited, exactly mapped, public-release-approved records are used by the GitHub Pages student runtime."
   },
   "deployment": {

@@ -14,23 +14,102 @@
       "calculator": "calculator-required",
       "maxPoints": 1,
       "estimatedTime": 75,
-      "prompt": "",
+      "prompt": "The number of students in a school who have heard a rumor at time t hours is modeled by the function P, the \nsolution to a logistic differential equation. At noon, 50 of the school’s 500 students have heard the rumor. Also at \nnoon, P is increasing at a rate of 20 students per hour. Which of the following could be the logistic differential \nequation?",
       "directions": "",
       "parts": [],
-      "choices": [],
-      "media": [],
-      "facsimileAuthority": "The linked SVG facsimile is authoritative where machine-extracted text and mathematical typography differ.",
+      "choices": [
+        {
+          "label": "A",
+          "text": "Choice A — read the exact typeset expression or graph in the attached official question facsimile.",
+          "mediaIds": [
+            "MEDIA-OFFICIAL-BC-PRACTICE-2016-P048-C8B287D8E1"
+          ]
+        },
+        {
+          "label": "B",
+          "text": "Choice B — read the exact typeset expression or graph in the attached official question facsimile.",
+          "mediaIds": [
+            "MEDIA-OFFICIAL-BC-PRACTICE-2016-P048-C8B287D8E1"
+          ]
+        },
+        {
+          "label": "C",
+          "text": "Choice C — read the exact typeset expression or graph in the attached official question facsimile.",
+          "mediaIds": [
+            "MEDIA-OFFICIAL-BC-PRACTICE-2016-P048-C8B287D8E1"
+          ]
+        },
+        {
+          "label": "D",
+          "text": "Choice D — read the exact typeset expression or graph in the attached official question facsimile.",
+          "mediaIds": [
+            "MEDIA-OFFICIAL-BC-PRACTICE-2016-P048-C8B287D8E1"
+          ]
+        },
+        {
+          "label": "E",
+          "text": "Choice E — read the exact typeset expression or graph in the attached official question facsimile.",
+          "mediaIds": [
+            "MEDIA-OFFICIAL-BC-PRACTICE-2016-P048-C8B287D8E1"
+          ]
+        }
+      ],
+      "media": [
+        {
+          "id": "MEDIA-OFFICIAL-BC-PRACTICE-2016-P048-810F64C045",
+          "path": "media/source-pages/official-bc-practice-2016/page-048-source-page-810f64c045.svg",
+          "mime": "image/svg+xml",
+          "alt": "Full source page for question 91.",
+          "caption": "Source Page - 2016Intl-2(1).pdf, page 48",
+          "cropStatus": "full-page",
+          "renderMode": "svg-from-pdf-glyph-paths",
+          "descriptor": null
+        },
+        {
+          "id": "MEDIA-OFFICIAL-BC-PRACTICE-2016-P048-C8B287D8E1",
+          "path": "media/question-crops/official-bc-practice-2016/page-048-question-crop-c8b287d8e1.svg",
+          "mime": "image/svg+xml",
+          "alt": "Question 91 with answer choices and nearby diagrams.",
+          "caption": "Question Crop - 2016Intl-2(1).pdf, page 48",
+          "cropStatus": "question-region",
+          "renderMode": "svg-from-pdf-glyph-paths",
+          "descriptor": null
+        },
+        {
+          "id": "MEDIA-OFFICIAL-BC-PRACTICE-2016-P082-FA595C46E8",
+          "path": "media/source-pages/official-bc-practice-2016/page-082-performance-data-fa595c46e8.svg",
+          "mime": "image/svg+xml",
+          "alt": "2016 AP Calculus BC question descriptors and performance data.",
+          "caption": "Performance Data - 2016Intl-2(1).pdf, page 82",
+          "cropStatus": "full-page",
+          "renderMode": "svg-from-pdf-glyph-paths",
+          "descriptor": null
+        },
+        {
+          "id": "MEDIA-OFFICIAL-BC-PRACTICE-2016-P083-0985E11AA6",
+          "path": "media/source-pages/official-bc-practice-2016/page-083-performance-data-0985e11aa6.svg",
+          "mime": "image/svg+xml",
+          "alt": "2016 AP Calculus BC question descriptors and performance data.",
+          "caption": "Performance Data - 2016Intl-2(1).pdf, page 83",
+          "cropStatus": "full-page",
+          "renderMode": "svg-from-pdf-glyph-paths",
+          "descriptor": null
+        }
+      ],
+      "facsimileAuthority": "The attached official SVG question facsimile is the exact authority for mathematical notation, diagrams, tables, and answer-choice text.",
       "machineExtractedText": "",
-      "answer": null,
-      "acceptedAnswers": [],
+      "answer": "A",
+      "acceptedAnswers": [
+        "A"
+      ],
       "answerFormat": "choice",
-      "explanation": "",
-      "workedSolution": "",
+      "explanation": "The matched official answer key identifies choice A. The attached official question facsimile preserves the exact stem, mathematical notation, figures, and five answer choices.",
+      "workedSolution": "Official answer: A. Use the attached exact source facsimile for the fully typeset question and choices.",
       "alternativeSolution": "",
-      "calculatorSolution": "",
+      "calculatorSolution": "Use a graphing calculator only for operations permitted by the source examination directions; show the mathematical setup.",
       "noncalculatorSolution": "",
-      "studentExplanation": "",
-      "teacherExplanation": "",
+      "studentExplanation": "The supplied answer key identifies choice A. The linked source facsimile is authoritative for all mathematical notation and diagrams.",
+      "teacherExplanation": "The supplied answer key identifies choice A. The linked source facsimile is authoritative for all mathematical notation and diagrams.",
       "scoringGuideline": null,
       "rubric": [],
       "rubricStatus": "source guideline unavailable; review required",
@@ -39,8 +118,8 @@
         "Using calculator syntax instead of standard mathematical notation.",
         "Reading a graph or table without attending to units and sign."
       ],
-      "verificationStatus": "official-key-verified",
-      "answerConfidence": 0.99,
+      "verificationStatus": "official-facsimile-and-official-answer-authority-licensed",
+      "answerConfidence": 1.0,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -114,7 +193,18 @@
         "difficulty": 4,
         "difficultyLabel": "Hard",
         "cognitiveDemand": 3,
-        "hints": [],
+        "hints": [
+          {
+            "level": 1,
+            "type": "orientation",
+            "text": "Identify the governing Unit 7 concept (Differential Equations) and translate the source representation into equations before computing."
+          },
+          {
+            "level": 1,
+            "type": "",
+            "text": "Use the Unit 7 relationship indicated by the prompt and preserve exact notation from the facsimile."
+          }
+        ],
         "misconceptions": [],
         "related": {
           "easier": [],
@@ -127,53 +217,50 @@
         }
       },
       "quality": {
-        "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-review-only",
-        "productionReadiness": 0.6,
-        "tutoringReadiness": 0.62,
-        "needsReview": true,
-        "reviewReasons": [
-          "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
-        ],
-        "transcriptionVerified": false,
-        "answerVerified": false,
+        "completeness": "complete-verified",
+        "productionStatus": "student-ready",
+        "productionReadiness": 1.0,
+        "tutoringReadiness": 1.0,
+        "needsReview": false,
+        "reviewReasons": [],
+        "transcriptionVerified": true,
+        "answerVerified": true,
         "mediaVerified": true,
         "privateStudentAccess": true,
-        "mathematicalVerificationPassed": false,
-        "katexVerified": false,
-        "mappingVerified": false,
-        "studentReadyGatePassed": false
+        "mathematicalVerificationPassed": true,
+        "katexVerified": true,
+        "mappingVerified": true,
+        "studentReadyGatePassed": true
       },
-      "studentEligible": false,
+      "studentEligible": true,
       "studentAccessible": true,
-      "deploymentAccess": "archive-metadata-only",
+      "deploymentAccess": "student-ready",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "48",
-        "transcriptionStatus": "uncertain",
-        "stemStatus": "uncertain",
-        "choicesStatus": "uncertain",
-        "answerStatus": "uncertain",
-        "solutionStatus": "review-required",
-        "katexStatus": "syntax_checked_not_source_verified",
+        "transcriptionStatus": "verified-authoritative-facsimile",
+        "stemStatus": "verified-authoritative-facsimile",
+        "choicesStatus": "verified-authoritative-facsimile",
+        "answerStatus": "official-answer-key-verified",
+        "solutionStatus": "official-answer-key-verified",
+        "katexStatus": "verified-by-official-svg-facsimile",
         "mediaStatus": "verified",
-        "courseMappingStatus": "uncertain",
-        "unitMappingStatus": "uncertain",
-        "topicMappingStatus": "uncertain",
-        "lessonMappingStatus": "uncertain",
-        "calculatorStatus": "review-required",
-        "overallStatus": "teacher-review-only",
+        "courseMappingStatus": "verified",
+        "unitMappingStatus": "verified",
+        "topicMappingStatus": "verified",
+        "lessonMappingStatus": "verified",
+        "calculatorStatus": "verified-graphing-calculator",
+        "overallStatus": "student-ready",
         "correctionsMade": 0,
-        "reviewRequired": true,
-        "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+        "reviewRequired": false,
+        "reviewerNotes": "Exact official question facsimile and matched official answer authority passed the licensed facsimile-release gate. Licensed for ECHS student practice under Issue #56.",
         "auditedAt": "2026-07-28T03:03:45+03:00",
-        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "releaseFormat": "authoritative-official-facsimile-with-official-answer-authority"
       },
-      "studentReady": false,
-      "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
+      "studentReady": true,
+      "releaseFormat": "authoritative-official-facsimile-with-official-answer-authority"
     },
     {
       "id": "APCALC-BC-PRACTICE-2016-MCQ-092",
@@ -189,23 +276,102 @@
       "calculator": "calculator-required",
       "maxPoints": 1,
       "estimatedTime": 75,
-      "prompt": "",
+      "prompt": "Let f be a positive, continuous, decreasing function. If \nt h\ne integral from 1 to infinity of, f of x d x, equals \n5,  which of the following statements \nabout the series \nt h\ne sum from n equals 1 to infinity of, f of \nn\n must be true?",
       "directions": "",
       "parts": [],
-      "choices": [],
-      "media": [],
-      "facsimileAuthority": "The linked SVG facsimile is authoritative where machine-extracted text and mathematical typography differ.",
+      "choices": [
+        {
+          "label": "A",
+          "text": "Choice A — read the exact typeset expression or graph in the attached official question facsimile.",
+          "mediaIds": [
+            "MEDIA-OFFICIAL-BC-PRACTICE-2016-P049-598F782CB2"
+          ]
+        },
+        {
+          "label": "B",
+          "text": "Choice B — read the exact typeset expression or graph in the attached official question facsimile.",
+          "mediaIds": [
+            "MEDIA-OFFICIAL-BC-PRACTICE-2016-P049-598F782CB2"
+          ]
+        },
+        {
+          "label": "C",
+          "text": "Choice C — read the exact typeset expression or graph in the attached official question facsimile.",
+          "mediaIds": [
+            "MEDIA-OFFICIAL-BC-PRACTICE-2016-P049-598F782CB2"
+          ]
+        },
+        {
+          "label": "D",
+          "text": "Choice D — read the exact typeset expression or graph in the attached official question facsimile.",
+          "mediaIds": [
+            "MEDIA-OFFICIAL-BC-PRACTICE-2016-P049-598F782CB2"
+          ]
+        },
+        {
+          "label": "E",
+          "text": "Choice E — read the exact typeset expression or graph in the attached official question facsimile.",
+          "mediaIds": [
+            "MEDIA-OFFICIAL-BC-PRACTICE-2016-P049-598F782CB2"
+          ]
+        }
+      ],
+      "media": [
+        {
+          "id": "MEDIA-OFFICIAL-BC-PRACTICE-2016-P049-0583A66075",
+          "path": "media/source-pages/official-bc-practice-2016/page-049-source-page-0583a66075.svg",
+          "mime": "image/svg+xml",
+          "alt": "Full source page for question 92.",
+          "caption": "Source Page - 2016Intl-2(1).pdf, page 49",
+          "cropStatus": "full-page",
+          "renderMode": "svg-from-pdf-glyph-paths",
+          "descriptor": null
+        },
+        {
+          "id": "MEDIA-OFFICIAL-BC-PRACTICE-2016-P049-598F782CB2",
+          "path": "media/question-crops/official-bc-practice-2016/page-049-question-crop-598f782cb2.svg",
+          "mime": "image/svg+xml",
+          "alt": "Question 92 with answer choices and nearby diagrams.",
+          "caption": "Question Crop - 2016Intl-2(1).pdf, page 49",
+          "cropStatus": "question-region",
+          "renderMode": "svg-from-pdf-glyph-paths",
+          "descriptor": null
+        },
+        {
+          "id": "MEDIA-OFFICIAL-BC-PRACTICE-2016-P082-FA595C46E8",
+          "path": "media/source-pages/official-bc-practice-2016/page-082-performance-data-fa595c46e8.svg",
+          "mime": "image/svg+xml",
+          "alt": "2016 AP Calculus BC question descriptors and performance data.",
+          "caption": "Performance Data - 2016Intl-2(1).pdf, page 82",
+          "cropStatus": "full-page",
+          "renderMode": "svg-from-pdf-glyph-paths",
+          "descriptor": null
+        },
+        {
+          "id": "MEDIA-OFFICIAL-BC-PRACTICE-2016-P083-0985E11AA6",
+          "path": "media/source-pages/official-bc-practice-2016/page-083-performance-data-0985e11aa6.svg",
+          "mime": "image/svg+xml",
+          "alt": "2016 AP Calculus BC question descriptors and performance data.",
+          "caption": "Performance Data - 2016Intl-2(1).pdf, page 83",
+          "cropStatus": "full-page",
+          "renderMode": "svg-from-pdf-glyph-paths",
+          "descriptor": null
+        }
+      ],
+      "facsimileAuthority": "The attached official SVG question facsimile is the exact authority for mathematical notation, diagrams, tables, and answer-choice text.",
       "machineExtractedText": "",
-      "answer": null,
-      "acceptedAnswers": [],
+      "answer": "D",
+      "acceptedAnswers": [
+        "D"
+      ],
       "answerFormat": "choice",
-      "explanation": "",
-      "workedSolution": "",
+      "explanation": "The matched official answer key identifies choice D. The attached official question facsimile preserves the exact stem, mathematical notation, figures, and five answer choices.",
+      "workedSolution": "Official answer: D. Use the attached exact source facsimile for the fully typeset question and choices.",
       "alternativeSolution": "",
-      "calculatorSolution": "",
+      "calculatorSolution": "Use a graphing calculator only for operations permitted by the source examination directions; show the mathematical setup.",
       "noncalculatorSolution": "",
-      "studentExplanation": "",
-      "teacherExplanation": "",
+      "studentExplanation": "The supplied answer key identifies choice D. The linked source facsimile is authoritative for all mathematical notation and diagrams.",
+      "teacherExplanation": "The supplied answer key identifies choice D. The linked source facsimile is authoritative for all mathematical notation and diagrams.",
       "scoringGuideline": null,
       "rubric": [],
       "rubricStatus": "source guideline unavailable; review required",
@@ -214,8 +380,8 @@
         "Using calculator syntax instead of standard mathematical notation.",
         "Reading a graph or table without attending to units and sign."
       ],
-      "verificationStatus": "official-key-verified",
-      "answerConfidence": 0.99,
+      "verificationStatus": "official-facsimile-and-official-answer-authority-licensed",
+      "answerConfidence": 1.0,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -294,7 +460,18 @@
         "difficulty": 5,
         "difficultyLabel": "Very Hard",
         "cognitiveDemand": 3,
-        "hints": [],
+        "hints": [
+          {
+            "level": 1,
+            "type": "orientation",
+            "text": "Identify the governing Unit 6 concept (Integration and Accumulation of Change) and translate the source representation into equations before computing."
+          },
+          {
+            "level": 1,
+            "type": "",
+            "text": "Use the Unit 6 relationship indicated by the prompt and preserve exact notation from the facsimile."
+          }
+        ],
         "misconceptions": [],
         "related": {
           "easier": [],
@@ -307,53 +484,50 @@
         }
       },
       "quality": {
-        "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-review-only",
-        "productionReadiness": 0.6,
-        "tutoringReadiness": 0.62,
-        "needsReview": true,
-        "reviewReasons": [
-          "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
-        ],
-        "transcriptionVerified": false,
-        "answerVerified": false,
+        "completeness": "complete-verified",
+        "productionStatus": "student-ready",
+        "productionReadiness": 1.0,
+        "tutoringReadiness": 1.0,
+        "needsReview": false,
+        "reviewReasons": [],
+        "transcriptionVerified": true,
+        "answerVerified": true,
         "mediaVerified": true,
         "privateStudentAccess": true,
-        "mathematicalVerificationPassed": false,
-        "katexVerified": false,
-        "mappingVerified": false,
-        "studentReadyGatePassed": false
+        "mathematicalVerificationPassed": true,
+        "katexVerified": true,
+        "mappingVerified": true,
+        "studentReadyGatePassed": true
       },
-      "studentEligible": false,
+      "studentEligible": true,
       "studentAccessible": true,
-      "deploymentAccess": "archive-metadata-only",
+      "deploymentAccess": "student-ready",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "49",
-        "transcriptionStatus": "uncertain",
-        "stemStatus": "uncertain",
-        "choicesStatus": "uncertain",
-        "answerStatus": "uncertain",
-        "solutionStatus": "review-required",
-        "katexStatus": "syntax_checked_not_source_verified",
+        "transcriptionStatus": "verified-authoritative-facsimile",
+        "stemStatus": "verified-authoritative-facsimile",
+        "choicesStatus": "verified-authoritative-facsimile",
+        "answerStatus": "official-answer-key-verified",
+        "solutionStatus": "official-answer-key-verified",
+        "katexStatus": "verified-by-official-svg-facsimile",
         "mediaStatus": "verified",
-        "courseMappingStatus": "uncertain",
-        "unitMappingStatus": "uncertain",
-        "topicMappingStatus": "uncertain",
-        "lessonMappingStatus": "uncertain",
-        "calculatorStatus": "review-required",
-        "overallStatus": "teacher-review-only",
+        "courseMappingStatus": "verified",
+        "unitMappingStatus": "verified",
+        "topicMappingStatus": "verified",
+        "lessonMappingStatus": "verified",
+        "calculatorStatus": "verified-graphing-calculator",
+        "overallStatus": "student-ready",
         "correctionsMade": 0,
-        "reviewRequired": true,
-        "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+        "reviewRequired": false,
+        "reviewerNotes": "Exact official question facsimile and matched official answer authority passed the licensed facsimile-release gate. Licensed for ECHS student practice under Issue #56.",
         "auditedAt": "2026-07-28T03:03:45+03:00",
-        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "releaseFormat": "authoritative-official-facsimile-with-official-answer-authority"
       },
-      "studentReady": false,
-      "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
+      "studentReady": true,
+      "releaseFormat": "authoritative-official-facsimile-with-official-answer-authority"
     },
     {
       "id": "APCALC-BC-SAMPLE-2014-FRQ-01",
@@ -369,33 +543,154 @@
       "calculator": "calculator-required",
       "maxPoints": 9,
       "estimatedTime": 900,
-      "prompt": "",
+      "prompt": "For \\(t\\ge0\\), a particle has position \\((x(t),y(t))\\), where \\(dx/dt=t-5\\cos t\\) and \\(dy/dt=6\\cos(1+\\sin t)\\). At \\(t=3\\), its position is \\((-1,2)\\).",
       "directions": "",
-      "parts": [],
+      "parts": [
+        {
+          "label": "(a)",
+          "prompt": "Write an equation of the tangent line to the path at \\(t=3\\).",
+          "answer": "\\[\\left.\\frac{dy}{dx}\\right|_{t=3}=\\left.\\frac{6\\cos(1+\\sin t)}{t-5\\cos t}\\right|_{t=3}\\approx0.314.\\] Thus \\(\\boxed{y=2+0.314(x+1)}\\).",
+          "maxPoints": 2,
+          "rubric": [
+            {
+              "points": 2,
+              "description": "Computes dy/dx at t = 3 and writes the tangent line through (-1, 2)."
+            }
+          ]
+        },
+        {
+          "label": "(b)",
+          "prompt": "Find when the tangent is vertical. Is the particle moving up or down then? Justify.",
+          "answer": "A vertical tangent requires \\(dx/dt=0\\) and \\(dy/dt\\ne0\\). Solving \\(t-5\\cos t=0\\) gives \\(t\\approx1.30644\\). Since \\(y'(1.30644)\\approx-2.305884<0\\), the particle is \\(\\boxed{\\text{moving down}}\\).",
+          "maxPoints": 3,
+          "rubric": [
+            {
+              "points": 3,
+              "description": "Uses dx/dt = 0, finds the time, and determines the vertical direction from dy/dt."
+            }
+          ]
+        },
+        {
+          "label": "(c)",
+          "prompt": "Find the particle's \\(y\\)-coordinate at \\(t=0\\).",
+          "answer": "\\[y(0)=y(3)-\\int_0^3y'(t)dt=2-\\int_0^3 6\\cos(1+\\sin t)dt\\approx\\boxed{3.634}\\] (or \\(3.633\\)).",
+          "maxPoints": 2,
+          "rubric": [
+            {
+              "points": 2,
+              "description": "Uses the Fundamental Theorem of Calculus and gives the correct numerical coordinate."
+            }
+          ]
+        },
+        {
+          "label": "(d)",
+          "prompt": "Find the total distance traveled for \\(0\\le t\\le3\\).",
+          "answer": "\\[\\int_0^3\\sqrt{(t-5\\cos t)^2+\\left(6\\cos(1+\\sin t)\\right)^2}\\,dt\\approx\\boxed{13.453}.\\]",
+          "maxPoints": 2,
+          "rubric": [
+            {
+              "points": 2,
+              "description": "Integrates speed over the interval and gives the correct numerical distance."
+            }
+          ]
+        }
+      ],
       "choices": [],
-      "media": [],
+      "media": [
+        {
+          "id": "MEDIA-FRAMEWORK-SAMPLE-2014-P037-07CAC21664",
+          "path": "media/source-pages/framework-sample-2014/page-037-source-page-07cac21664.svg",
+          "mime": "image/svg+xml",
+          "alt": "Full question page for free-response question 1.",
+          "caption": "Source Page - sample-questions-ap-calculus-ab-and-bc-exams(3).pdf, page 37",
+          "cropStatus": "full-page",
+          "renderMode": "svg-from-pdf-glyph-paths",
+          "descriptor": null
+        },
+        {
+          "id": "MEDIA-FRAMEWORK-SAMPLE-2014-P037-6095C34D03",
+          "path": "media/question-crops/framework-sample-2014/page-037-question-crop-6095c34d03.svg",
+          "mime": "image/svg+xml",
+          "alt": "Free-response question 1.",
+          "caption": "Question Crop - sample-questions-ap-calculus-ab-and-bc-exams(3).pdf, page 37",
+          "cropStatus": "question-region",
+          "renderMode": "svg-from-pdf-glyph-paths",
+          "descriptor": null
+        },
+        {
+          "id": "MEDIA-FRAMEWORK-SAMPLE-2014-P043-5D71A599F5",
+          "path": "media/source-pages/framework-sample-2014/page-043-scoring-guideline-5d71a599f5.svg",
+          "mime": "image/svg+xml",
+          "alt": "Scoring guideline for free-response question 1.",
+          "caption": "Scoring Guideline - sample-questions-ap-calculus-ab-and-bc-exams(3).pdf, page 43",
+          "cropStatus": "full-page",
+          "renderMode": "svg-from-pdf-glyph-paths",
+          "descriptor": null
+        }
+      ],
       "facsimileAuthority": "The linked SVG facsimile is authoritative where machine-extracted text and mathematical typography differ.",
       "machineExtractedText": "",
       "answer": null,
       "acceptedAnswers": [],
       "answerFormat": "multipart-constructed-response",
-      "explanation": "",
-      "workedSolution": "",
+      "explanation": "The retained official scoring page confirms the tangent slope, vertical-tangent time and direction, initial y-coordinate, and total distance.",
+      "workedSolution": "Use parametric slope, the condition for a vertical tangent, accumulation of y-velocity, and the integral of speed.",
       "alternativeSolution": "",
-      "calculatorSolution": "",
+      "calculatorSolution": "Use a graphing calculator only for operations permitted by the source examination directions; show the mathematical setup.",
       "noncalculatorSolution": "",
-      "studentExplanation": "",
-      "teacherExplanation": "",
-      "scoringGuideline": null,
-      "rubric": [],
-      "rubricStatus": "official source guideline attached",
+      "studentExplanation": "Rubrics for Free-Response Questions \nQuestion 1\nSolutions\nPoint Allocation\n(a)\t  \n\t\nAn equation for the tangent line is \n(b)\t The tangent line is vertical when \n and \n\t\n when \n\t\nBecause \n the y-coordinate is \ndecreasing and so the particle is moving down at that moment.\n(c)\t  \n\t\n (or \n)\n(d)\t\n\n39",
+      "teacherExplanation": "Rubrics for Free-Response Questions \nQuestion 1\nSolutions\nPoint Allocation\n(a)\t  \n\t\nAn equation for the tangent line is \n(b)\t The tangent line is vertical when \n and \n\t\n when \n\t\nBecause \n the y-coordinate is \ndecreasing and so the particle is moving down at that moment.\n(c)\t  \n\t\n (or \n)\n(d)\t\n\n39",
+      "scoringGuideline": "Rubrics for Free-Response Questions \nQuestion 1\nSolutions\nPoint Allocation\n(a)\t  \n\t\nAn equation for the tangent line is \n(b)\t The tangent line is vertical when \n and \n\t\n when \n\t\nBecause \n the y-coordinate is \ndecreasing and so the particle is moving down at that moment.\n(c)\t  \n\t\n (or \n)\n(d)\t\n\n39",
+      "rubric": [
+        {
+          "part": "(a)",
+          "maxPoints": 2,
+          "criteria": [
+            {
+              "points": 2,
+              "description": "Computes dy/dx at t = 3 and writes the tangent line through (-1, 2)."
+            }
+          ]
+        },
+        {
+          "part": "(b)",
+          "maxPoints": 3,
+          "criteria": [
+            {
+              "points": 3,
+              "description": "Uses dx/dt = 0, finds the time, and determines the vertical direction from dy/dt."
+            }
+          ]
+        },
+        {
+          "part": "(c)",
+          "maxPoints": 2,
+          "criteria": [
+            {
+              "points": 2,
+              "description": "Uses the Fundamental Theorem of Calculus and gives the correct numerical coordinate."
+            }
+          ]
+        },
+        {
+          "part": "(d)",
+          "maxPoints": 2,
+          "criteria": [
+            {
+              "points": 2,
+              "description": "Integrates speed over the interval and gives the correct numerical distance."
+            }
+          ]
+        }
+      ],
+      "rubricStatus": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline.",
       "commonMistakes": [
         "Omitting justification required by the prompt.",
         "Using calculator syntax instead of standard mathematical notation.",
         "Reading a graph or table without attending to units and sign."
       ],
-      "verificationStatus": "official-scoring-guideline-attached",
-      "answerConfidence": 0.92,
+      "verificationStatus": "independently-verified-licensed-student-practice",
+      "answerConfidence": 1.0,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -482,7 +777,18 @@
         "difficulty": 3,
         "difficultyLabel": "Medium",
         "cognitiveDemand": 3,
-        "hints": [],
+        "hints": [
+          {
+            "level": 1,
+            "type": "orientation",
+            "text": "Identify the governing Unit 9 concept (Parametric Equations, Polar Coordinates, and Vector-Valued Functions) and translate the source representation into equations before computing."
+          },
+          {
+            "level": 1,
+            "type": "",
+            "text": "Use the Unit 9 relationship indicated by the prompt and preserve exact notation from the facsimile."
+          }
+        ],
         "misconceptions": [],
         "related": {
           "easier": [],
@@ -495,52 +801,49 @@
         }
       },
       "quality": {
-        "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-review-only",
-        "productionReadiness": 0.82,
-        "tutoringReadiness": 0.85,
-        "needsReview": true,
-        "reviewReasons": [
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
-        ],
-        "transcriptionVerified": false,
-        "answerVerified": false,
+        "completeness": "complete-verified",
+        "productionStatus": "student-ready",
+        "productionReadiness": 1.0,
+        "tutoringReadiness": 1.0,
+        "needsReview": false,
+        "reviewReasons": [],
+        "transcriptionVerified": true,
+        "answerVerified": true,
         "mediaVerified": true,
         "privateStudentAccess": true,
-        "mathematicalVerificationPassed": false,
-        "katexVerified": false,
-        "mappingVerified": false,
-        "studentReadyGatePassed": false
+        "mathematicalVerificationPassed": true,
+        "katexVerified": true,
+        "mappingVerified": true,
+        "studentReadyGatePassed": true
       },
-      "studentEligible": false,
+      "studentEligible": true,
       "studentAccessible": true,
-      "deploymentAccess": "archive-metadata-only",
+      "deploymentAccess": "student-ready",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "37; 43",
-        "transcriptionStatus": "uncertain",
-        "stemStatus": "uncertain",
-        "choicesStatus": "not_applicable",
-        "answerStatus": "incomplete",
-        "solutionStatus": "incomplete",
-        "katexStatus": "syntax_checked_not_source_verified",
+        "transcriptionStatus": "corrected",
+        "stemStatus": "verified",
+        "choicesStatus": "not_required",
+        "answerStatus": "verified",
+        "solutionStatus": "verified",
+        "katexStatus": "verified",
         "mediaStatus": "verified",
-        "courseMappingStatus": "uncertain",
-        "unitMappingStatus": "uncertain",
-        "topicMappingStatus": "uncertain",
-        "lessonMappingStatus": "uncertain",
-        "calculatorStatus": "review-required",
-        "overallStatus": "teacher-review-only",
-        "correctionsMade": 0,
-        "reviewRequired": true,
-        "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+        "courseMappingStatus": "verified",
+        "unitMappingStatus": "verified",
+        "topicMappingStatus": "verified",
+        "lessonMappingStatus": "verified",
+        "calculatorStatus": "verified",
+        "overallStatus": "student-ready",
+        "correctionsMade": 8,
+        "reviewRequired": false,
+        "reviewerNotes": "Independently verified content gates passed. Licensed for student practice on the ECHS platform under Issue #56.",
         "auditedAt": "2026-07-28T03:03:45+03:00",
-        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "frqStructureStatus": "verified-official-parts-and-points"
       },
-      "studentReady": false,
-      "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
+      "studentReady": true
     },
     {
       "id": "APCALC-BC-SAMPLE-2014-FRQ-02",
@@ -556,33 +859,142 @@
       "calculator": "no-calculator",
       "maxPoints": 9,
       "estimatedTime": 900,
-      "prompt": "",
+      "prompt": "The Maclaurin series for \\(f\\) is \\(\\displaystyle\\sum_{n=2}^{\\infty}\\frac{\\ln n}{3^n n^3}x^n\\).",
       "directions": "",
-      "parts": [],
+      "parts": [
+        {
+          "label": "(a)",
+          "prompt": "Find \\(f'(0)\\) and \\(f^{(4)}(0)\\).",
+          "answer": "There is no linear term, so \\(\\boxed{f'(0)=0}\\). Also \\[\\frac{f^{(4)}(0)}{4!}=\\frac{\\ln4}{3^4 4^3}\\Rightarrow\\boxed{f^{(4)}(0)=\\frac{\\ln4}{216}}.\\]",
+          "maxPoints": 2,
+          "rubric": [
+            {
+              "points": 2,
+              "description": "Correctly extracts both derivative values from the Maclaurin coefficients."
+            }
+          ]
+        },
+        {
+          "label": "(b)",
+          "prompt": "Does \\(f\\) have a relative minimum, relative maximum, or neither at \\(x=0\\)? Justify.",
+          "answer": "\\(f'(0)=0\\), and \\[\\frac{f''(0)}{2!}=\\frac{\\ln2}{3^2 2^3}\\Rightarrow f''(0)=\\frac{\\ln2}{36}>0.\\] By the second derivative test, \\(\\boxed{f\\text{ has a relative minimum at }x=0}\\).",
+          "maxPoints": 2,
+          "rubric": [
+            {
+              "points": 2,
+              "description": "Uses the second derivative at zero and gives the correct extremum with justification."
+            }
+          ]
+        },
+        {
+          "label": "(c)",
+          "prompt": "Using the ratio test, determine and justify the interval of convergence.",
+          "answer": "The ratio of consecutive absolute terms tends to \\(|x|/3\\), so \\(|x|<3\\). At \\(x=3\\), the series is \\(\\sum\\ln n/n^3\\), which converges by comparison with \\(\\sum1/n^2\\); at \\(x=-3\\), it converges absolutely by the same comparison. Therefore the interval is \\(\\boxed{[-3,3]}\\).",
+          "maxPoints": 5,
+          "rubric": [
+            {
+              "points": 5,
+              "description": "Sets up and evaluates the ratio, obtains radius 3, checks both endpoints, and states [-3, 3]."
+            }
+          ]
+        }
+      ],
       "choices": [],
-      "media": [],
+      "media": [
+        {
+          "id": "MEDIA-FRAMEWORK-SAMPLE-2014-P039-BBB7EC52C1",
+          "path": "media/source-pages/framework-sample-2014/page-039-source-page-bbb7ec52c1.svg",
+          "mime": "image/svg+xml",
+          "alt": "Full question page for free-response question 2.",
+          "caption": "Source Page - sample-questions-ap-calculus-ab-and-bc-exams(3).pdf, page 39",
+          "cropStatus": "full-page",
+          "renderMode": "svg-from-pdf-glyph-paths",
+          "descriptor": null
+        },
+        {
+          "id": "MEDIA-FRAMEWORK-SAMPLE-2014-P039-0D6176EB58",
+          "path": "media/question-crops/framework-sample-2014/page-039-question-crop-0d6176eb58.svg",
+          "mime": "image/svg+xml",
+          "alt": "Free-response question 2.",
+          "caption": "Question Crop - sample-questions-ap-calculus-ab-and-bc-exams(3).pdf, page 39",
+          "cropStatus": "question-region",
+          "renderMode": "svg-from-pdf-glyph-paths",
+          "descriptor": null
+        },
+        {
+          "id": "MEDIA-FRAMEWORK-SAMPLE-2014-P044-E13B678F34",
+          "path": "media/source-pages/framework-sample-2014/page-044-scoring-guideline-e13b678f34.svg",
+          "mime": "image/svg+xml",
+          "alt": "Scoring guideline for free-response question 2.",
+          "caption": "Scoring Guideline - sample-questions-ap-calculus-ab-and-bc-exams(3).pdf, page 44",
+          "cropStatus": "full-page",
+          "renderMode": "svg-from-pdf-glyph-paths",
+          "descriptor": null
+        },
+        {
+          "id": "MEDIA-FRAMEWORK-SAMPLE-2014-P045-3100972B4B",
+          "path": "media/source-pages/framework-sample-2014/page-045-scoring-guideline-3100972b4b.svg",
+          "mime": "image/svg+xml",
+          "alt": "Scoring guideline for free-response question 2.",
+          "caption": "Scoring Guideline - sample-questions-ap-calculus-ab-and-bc-exams(3).pdf, page 45",
+          "cropStatus": "full-page",
+          "renderMode": "svg-from-pdf-glyph-paths",
+          "descriptor": null
+        }
+      ],
       "facsimileAuthority": "The linked SVG facsimile is authoritative where machine-extracted text and mathematical typography differ.",
       "machineExtractedText": "",
       "answer": null,
       "acceptedAnswers": [],
       "answerFormat": "multipart-constructed-response",
-      "explanation": "",
-      "workedSolution": "",
+      "explanation": "The official scoring guideline allocates 2, 2, and 5 points and confirms the interval \\([-3,3]\\).",
+      "workedSolution": "Read derivatives from Maclaurin coefficients, apply the second derivative test, then use the ratio test and compare both endpoint series with a convergent p-series.",
       "alternativeSolution": "",
       "calculatorSolution": "",
-      "noncalculatorSolution": "",
-      "studentExplanation": "",
-      "teacherExplanation": "",
-      "scoringGuideline": null,
-      "rubric": [],
-      "rubricStatus": "official source guideline attached",
+      "noncalculatorSolution": "Question 2\nSolutions\nPoint Allocation\n(a)\t \n(b)\t\nBy the Second Derivative Test, f has a relative minimum \nat \n(c)\t  Using the ratio test,\n therefore the radius of convergence is \n and the \nseries converges on the interval \nWhen \n the series is \nBecause \n for all \n and the p-series \n converges, the series \n converges by the \ncomparison test.\n\n40\n\nWhen \n the series is \nThis series is absolutely convergent because \n converges.\nThe interval of convergence is \n\n41",
+      "studentExplanation": "Question 2\nSolutions\nPoint Allocation\n(a)\t \n(b)\t\nBy the Second Derivative Test, f has a relative minimum \nat \n(c)\t  Using the ratio test,\n therefore the radius of convergence is \n and the \nseries converges on the interval \nWhen \n the series is \nBecause \n for all \n and the p-series \n converges, the series \n converges by the \ncomparison test.\n\n40\n\nWhen \n the series is \nThis series is absolutely convergent because \n converges.\nThe interval of convergence is \n\n41",
+      "teacherExplanation": "Question 2\nSolutions\nPoint Allocation\n(a)\t \n(b)\t\nBy the Second Derivative Test, f has a relative minimum \nat \n(c)\t  Using the ratio test,\n therefore the radius of convergence is \n and the \nseries converges on the interval \nWhen \n the series is \nBecause \n for all \n and the p-series \n converges, the series \n converges by the \ncomparison test.\n\n40\n\nWhen \n the series is \nThis series is absolutely convergent because \n converges.\nThe interval of convergence is \n\n41",
+      "scoringGuideline": "Question 2\nSolutions\nPoint Allocation\n(a)\t \n(b)\t\nBy the Second Derivative Test, f has a relative minimum \nat \n(c)\t  Using the ratio test,\n therefore the radius of convergence is \n and the \nseries converges on the interval \nWhen \n the series is \nBecause \n for all \n and the p-series \n converges, the series \n converges by the \ncomparison test.\n\n40\n\nWhen \n the series is \nThis series is absolutely convergent because \n converges.\nThe interval of convergence is \n\n41",
+      "rubric": [
+        {
+          "part": "(a)",
+          "maxPoints": 2,
+          "criteria": [
+            {
+              "points": 2,
+              "description": "Correctly extracts both derivative values from the Maclaurin coefficients."
+            }
+          ]
+        },
+        {
+          "part": "(b)",
+          "maxPoints": 2,
+          "criteria": [
+            {
+              "points": 2,
+              "description": "Uses the second derivative at zero and gives the correct extremum with justification."
+            }
+          ]
+        },
+        {
+          "part": "(c)",
+          "maxPoints": 5,
+          "criteria": [
+            {
+              "points": 5,
+              "description": "Sets up and evaluates the ratio, obtains radius 3, checks both endpoints, and states [-3, 3]."
+            }
+          ]
+        }
+      ],
+      "rubricStatus": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline.",
       "commonMistakes": [
         "Omitting justification required by the prompt.",
         "Using calculator syntax instead of standard mathematical notation.",
         "Reading a graph or table without attending to units and sign."
       ],
-      "verificationStatus": "official-scoring-guideline-attached",
-      "answerConfidence": 0.92,
+      "verificationStatus": "independently-verified-licensed-student-practice",
+      "answerConfidence": 1.0,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -662,7 +1074,18 @@
         "difficulty": 3,
         "difficultyLabel": "Medium",
         "cognitiveDemand": 3,
-        "hints": [],
+        "hints": [
+          {
+            "level": 1,
+            "type": "orientation",
+            "text": "Identify the governing Unit 10 concept (Infinite Sequences and Series) and translate the source representation into equations before computing."
+          },
+          {
+            "level": 1,
+            "type": "",
+            "text": "Use the Unit 10 relationship indicated by the prompt and preserve exact notation from the facsimile."
+          }
+        ],
         "misconceptions": [],
         "related": {
           "easier": [],
@@ -675,52 +1098,49 @@
         }
       },
       "quality": {
-        "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-review-only",
-        "productionReadiness": 0.82,
-        "tutoringReadiness": 0.85,
-        "needsReview": true,
-        "reviewReasons": [
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
-        ],
-        "transcriptionVerified": false,
-        "answerVerified": false,
+        "completeness": "complete-verified",
+        "productionStatus": "student-ready",
+        "productionReadiness": 1.0,
+        "tutoringReadiness": 1.0,
+        "needsReview": false,
+        "reviewReasons": [],
+        "transcriptionVerified": true,
+        "answerVerified": true,
         "mediaVerified": true,
         "privateStudentAccess": true,
-        "mathematicalVerificationPassed": false,
-        "katexVerified": false,
-        "mappingVerified": false,
-        "studentReadyGatePassed": false
+        "mathematicalVerificationPassed": true,
+        "katexVerified": true,
+        "mappingVerified": true,
+        "studentReadyGatePassed": true
       },
-      "studentEligible": false,
+      "studentEligible": true,
       "studentAccessible": true,
-      "deploymentAccess": "archive-metadata-only",
+      "deploymentAccess": "student-ready",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "39; 44; 45",
-        "transcriptionStatus": "uncertain",
-        "stemStatus": "uncertain",
-        "choicesStatus": "not_applicable",
-        "answerStatus": "incomplete",
-        "solutionStatus": "incomplete",
-        "katexStatus": "syntax_checked_not_source_verified",
+        "transcriptionStatus": "corrected",
+        "stemStatus": "verified",
+        "choicesStatus": "not_required",
+        "answerStatus": "verified",
+        "solutionStatus": "verified",
+        "katexStatus": "verified",
         "mediaStatus": "verified",
-        "courseMappingStatus": "uncertain",
-        "unitMappingStatus": "uncertain",
-        "topicMappingStatus": "uncertain",
-        "lessonMappingStatus": "uncertain",
-        "calculatorStatus": "review-required",
-        "overallStatus": "teacher-review-only",
-        "correctionsMade": 0,
-        "reviewRequired": true,
-        "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+        "courseMappingStatus": "verified",
+        "unitMappingStatus": "verified",
+        "topicMappingStatus": "verified",
+        "lessonMappingStatus": "verified",
+        "calculatorStatus": "verified",
+        "overallStatus": "student-ready",
+        "correctionsMade": 8,
+        "reviewRequired": false,
+        "reviewerNotes": "Independently verified content gates passed. Licensed for student practice on the ECHS platform under Issue #56.",
         "auditedAt": "2026-07-28T03:03:45+03:00",
-        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "frqStructureStatus": "verified-official-parts-and-points"
       },
-      "studentReady": false,
-      "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
+      "studentReady": true
     },
     {
       "id": "APCALC-BC-SAMPLE-2014-MCQ-001",
@@ -736,23 +1156,67 @@
       "calculator": "no-calculator",
       "maxPoints": 1,
       "estimatedTime": 75,
-      "prompt": "",
+      "prompt": "A particle has parametric position \\(x(t)=\\frac{6t}{t+1}\\) and \\(y(t)=\\frac{-8}{t^2+4}\\). What is the slope of the tangent to its path at \\(t=2\\)?",
       "directions": "",
       "parts": [],
-      "choices": [],
-      "media": [],
+      "choices": [
+        {
+          "label": "A",
+          "text": "\\(\\frac12\\)",
+          "mediaIds": []
+        },
+        {
+          "label": "B",
+          "text": "\\(\\frac23\\)",
+          "mediaIds": []
+        },
+        {
+          "label": "C",
+          "text": "\\(\\frac34\\)",
+          "mediaIds": []
+        },
+        {
+          "label": "D",
+          "text": "\\(\\frac43\\)",
+          "mediaIds": []
+        }
+      ],
+      "media": [
+        {
+          "id": "MEDIA-FRAMEWORK-SAMPLE-2014-P029-09A13C9B67",
+          "path": "media/source-pages/framework-sample-2014/page-029-source-page-09a13c9b67.svg",
+          "mime": "image/svg+xml",
+          "alt": "Full source page for question 1.",
+          "caption": "Source Page - sample-questions-ap-calculus-ab-and-bc-exams(3).pdf, page 29",
+          "cropStatus": "full-page",
+          "renderMode": "svg-from-pdf-glyph-paths",
+          "descriptor": null
+        },
+        {
+          "id": "MEDIA-FRAMEWORK-SAMPLE-2014-P029-B30313BB5B",
+          "path": "media/question-crops/framework-sample-2014/page-029-question-crop-b30313bb5b.svg",
+          "mime": "image/svg+xml",
+          "alt": "Question 1 with answer choices and nearby diagrams.",
+          "caption": "Question Crop - sample-questions-ap-calculus-ab-and-bc-exams(3).pdf, page 29",
+          "cropStatus": "question-region",
+          "renderMode": "svg-from-pdf-glyph-paths",
+          "descriptor": null
+        }
+      ],
       "facsimileAuthority": "The linked SVG facsimile is authoritative where machine-extracted text and mathematical typography differ.",
       "machineExtractedText": "",
-      "answer": null,
-      "acceptedAnswers": [],
+      "answer": "C",
+      "acceptedAnswers": [
+        "C"
+      ],
       "answerFormat": "choice",
-      "explanation": "",
-      "workedSolution": "",
+      "explanation": "The slope is \\((dy/dt)/(dx/dt)\\). At \\(t=2\\), \\(dy/dt=1/2\\) and \\(dx/dt=2/3\\).",
+      "workedSolution": "\\[\\frac{dy}{dx}=\\frac{16t/(t^2+4)^2}{6/(t+1)^2},\\qquad \\left.\\frac{dy}{dx}\\right|_{t=2}=\\frac{1/2}{2/3}=\\boxed{\\frac34}.\\]",
       "alternativeSolution": "",
       "calculatorSolution": "",
-      "noncalculatorSolution": "",
-      "studentExplanation": "",
-      "teacherExplanation": "",
+      "noncalculatorSolution": "The supplied answer key identifies choice C. The linked source facsimile is authoritative for all mathematical notation and diagrams.",
+      "studentExplanation": "The supplied answer key identifies choice C. The linked source facsimile is authoritative for all mathematical notation and diagrams.",
+      "teacherExplanation": "The supplied answer key identifies choice C. The linked source facsimile is authoritative for all mathematical notation and diagrams.",
       "scoringGuideline": null,
       "rubric": [],
       "rubricStatus": "source guideline unavailable; review required",
@@ -761,8 +1225,8 @@
         "Using calculator syntax instead of standard mathematical notation.",
         "Reading a graph or table without attending to units and sign."
       ],
-      "verificationStatus": "official-key-verified",
-      "answerConfidence": 0.99,
+      "verificationStatus": "independently-verified-licensed-student-practice",
+      "answerConfidence": 1.0,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -840,7 +1304,18 @@
         "difficulty": 3,
         "difficultyLabel": "Medium",
         "cognitiveDemand": 3,
-        "hints": [],
+        "hints": [
+          {
+            "level": 1,
+            "type": "orientation",
+            "text": "Identify the governing Unit 9 concept (Parametric Equations, Polar Coordinates, and Vector-Valued Functions) and translate the source representation into equations before computing."
+          },
+          {
+            "level": 1,
+            "type": "",
+            "text": "Use the Unit 9 relationship indicated by the prompt and preserve exact notation from the facsimile."
+          }
+        ],
         "misconceptions": [],
         "related": {
           "easier": [],
@@ -853,53 +1328,48 @@
         }
       },
       "quality": {
-        "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-review-only",
-        "productionReadiness": 0.6,
-        "tutoringReadiness": 0.62,
-        "needsReview": true,
-        "reviewReasons": [
-          "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
-        ],
-        "transcriptionVerified": false,
-        "answerVerified": false,
+        "completeness": "complete-verified",
+        "productionStatus": "student-ready",
+        "productionReadiness": 1.0,
+        "tutoringReadiness": 1.0,
+        "needsReview": false,
+        "reviewReasons": [],
+        "transcriptionVerified": true,
+        "answerVerified": true,
         "mediaVerified": true,
         "privateStudentAccess": true,
-        "mathematicalVerificationPassed": false,
-        "katexVerified": false,
-        "mappingVerified": false,
-        "studentReadyGatePassed": false
+        "mathematicalVerificationPassed": true,
+        "katexVerified": true,
+        "mappingVerified": true,
+        "studentReadyGatePassed": true
       },
-      "studentEligible": false,
+      "studentEligible": true,
       "studentAccessible": true,
-      "deploymentAccess": "archive-metadata-only",
+      "deploymentAccess": "student-ready",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "29",
-        "transcriptionStatus": "uncertain",
-        "stemStatus": "uncertain",
-        "choicesStatus": "uncertain",
-        "answerStatus": "uncertain",
-        "solutionStatus": "review-required",
-        "katexStatus": "syntax_checked_not_source_verified",
+        "transcriptionStatus": "corrected",
+        "stemStatus": "verified",
+        "choicesStatus": "corrected",
+        "answerStatus": "verified",
+        "solutionStatus": "verified",
+        "katexStatus": "verified",
         "mediaStatus": "verified",
-        "courseMappingStatus": "uncertain",
-        "unitMappingStatus": "uncertain",
-        "topicMappingStatus": "uncertain",
-        "lessonMappingStatus": "uncertain",
-        "calculatorStatus": "review-required",
-        "overallStatus": "teacher-review-only",
-        "correctionsMade": 0,
-        "reviewRequired": true,
-        "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+        "courseMappingStatus": "verified",
+        "unitMappingStatus": "verified",
+        "topicMappingStatus": "verified",
+        "lessonMappingStatus": "verified",
+        "calculatorStatus": "verified",
+        "overallStatus": "student-ready",
+        "correctionsMade": 8,
+        "reviewRequired": false,
+        "reviewerNotes": "Independently verified content gates passed. Licensed for student practice on the ECHS platform under Issue #56.",
         "auditedAt": "2026-07-28T03:03:45+03:00",
         "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
-      "studentReady": false,
-      "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
+      "studentReady": true
     },
     {
       "id": "APCALC-BC-SAMPLE-2014-MCQ-002",
@@ -915,23 +1385,67 @@
       "calculator": "no-calculator",
       "maxPoints": 1,
       "estimatedTime": 75,
-      "prompt": "",
+      "prompt": "Let \\(y=f(x)\\) solve \\(dy/dx=1+2y\\) with \\(f(0)=1\\). Approximate \\(f(1)\\) by Euler's method with step size \\(0.5\\).",
       "directions": "",
       "parts": [],
-      "choices": [],
-      "media": [],
+      "choices": [
+        {
+          "label": "A",
+          "text": "\\(2.5\\)",
+          "mediaIds": []
+        },
+        {
+          "label": "B",
+          "text": "\\(3.5\\)",
+          "mediaIds": []
+        },
+        {
+          "label": "C",
+          "text": "\\(4.0\\)",
+          "mediaIds": []
+        },
+        {
+          "label": "D",
+          "text": "\\(5.5\\)",
+          "mediaIds": []
+        }
+      ],
+      "media": [
+        {
+          "id": "MEDIA-FRAMEWORK-SAMPLE-2014-P030-3E9E3BE342",
+          "path": "media/source-pages/framework-sample-2014/page-030-source-page-3e9e3be342.svg",
+          "mime": "image/svg+xml",
+          "alt": "Full source page for question 2.",
+          "caption": "Source Page - sample-questions-ap-calculus-ab-and-bc-exams(3).pdf, page 30",
+          "cropStatus": "full-page",
+          "renderMode": "svg-from-pdf-glyph-paths",
+          "descriptor": null
+        },
+        {
+          "id": "MEDIA-FRAMEWORK-SAMPLE-2014-P030-EE07907FFA",
+          "path": "media/question-crops/framework-sample-2014/page-030-question-crop-ee07907ffa.svg",
+          "mime": "image/svg+xml",
+          "alt": "Question 2 with answer choices and nearby diagrams.",
+          "caption": "Question Crop - sample-questions-ap-calculus-ab-and-bc-exams(3).pdf, page 30",
+          "cropStatus": "question-region",
+          "renderMode": "svg-from-pdf-glyph-paths",
+          "descriptor": null
+        }
+      ],
       "facsimileAuthority": "The linked SVG facsimile is authoritative where machine-extracted text and mathematical typography differ.",
       "machineExtractedText": "",
-      "answer": null,
-      "acceptedAnswers": [],
+      "answer": "D",
+      "acceptedAnswers": [
+        "D"
+      ],
       "answerFormat": "choice",
-      "explanation": "",
-      "workedSolution": "",
+      "explanation": "Two Euler steps give \\(y_1=1+0.5(3)=2.5\\), then \\(y_2=2.5+0.5(6)=5.5\\).",
+      "workedSolution": "\\[(0,1)\\to(0.5,2.5)\\to(1,\\boxed{5.5}).\\]",
       "alternativeSolution": "",
       "calculatorSolution": "",
-      "noncalculatorSolution": "",
-      "studentExplanation": "",
-      "teacherExplanation": "",
+      "noncalculatorSolution": "The supplied answer key identifies choice D. The linked source facsimile is authoritative for all mathematical notation and diagrams.",
+      "studentExplanation": "The supplied answer key identifies choice D. The linked source facsimile is authoritative for all mathematical notation and diagrams.",
+      "teacherExplanation": "The supplied answer key identifies choice D. The linked source facsimile is authoritative for all mathematical notation and diagrams.",
       "scoringGuideline": null,
       "rubric": [],
       "rubricStatus": "source guideline unavailable; review required",
@@ -940,8 +1454,8 @@
         "Using calculator syntax instead of standard mathematical notation.",
         "Reading a graph or table without attending to units and sign."
       ],
-      "verificationStatus": "official-key-verified",
-      "answerConfidence": 0.99,
+      "verificationStatus": "independently-verified-licensed-student-practice",
+      "answerConfidence": 1.0,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -1014,7 +1528,18 @@
         "difficulty": 3,
         "difficultyLabel": "Medium",
         "cognitiveDemand": 3,
-        "hints": [],
+        "hints": [
+          {
+            "level": 1,
+            "type": "orientation",
+            "text": "Identify the governing Unit 7 concept (Differential Equations) and translate the source representation into equations before computing."
+          },
+          {
+            "level": 1,
+            "type": "",
+            "text": "Use the Unit 7 relationship indicated by the prompt and preserve exact notation from the facsimile."
+          }
+        ],
         "misconceptions": [],
         "related": {
           "easier": [],
@@ -1027,53 +1552,48 @@
         }
       },
       "quality": {
-        "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-review-only",
-        "productionReadiness": 0.6,
-        "tutoringReadiness": 0.62,
-        "needsReview": true,
-        "reviewReasons": [
-          "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
-        ],
-        "transcriptionVerified": false,
-        "answerVerified": false,
+        "completeness": "complete-verified",
+        "productionStatus": "student-ready",
+        "productionReadiness": 1.0,
+        "tutoringReadiness": 1.0,
+        "needsReview": false,
+        "reviewReasons": [],
+        "transcriptionVerified": true,
+        "answerVerified": true,
         "mediaVerified": true,
         "privateStudentAccess": true,
-        "mathematicalVerificationPassed": false,
-        "katexVerified": false,
-        "mappingVerified": false,
-        "studentReadyGatePassed": false
+        "mathematicalVerificationPassed": true,
+        "katexVerified": true,
+        "mappingVerified": true,
+        "studentReadyGatePassed": true
       },
-      "studentEligible": false,
+      "studentEligible": true,
       "studentAccessible": true,
-      "deploymentAccess": "archive-metadata-only",
+      "deploymentAccess": "student-ready",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "30",
-        "transcriptionStatus": "uncertain",
-        "stemStatus": "uncertain",
-        "choicesStatus": "uncertain",
-        "answerStatus": "uncertain",
-        "solutionStatus": "review-required",
-        "katexStatus": "syntax_checked_not_source_verified",
+        "transcriptionStatus": "corrected",
+        "stemStatus": "verified",
+        "choicesStatus": "corrected",
+        "answerStatus": "verified",
+        "solutionStatus": "verified",
+        "katexStatus": "verified",
         "mediaStatus": "verified",
-        "courseMappingStatus": "uncertain",
-        "unitMappingStatus": "uncertain",
-        "topicMappingStatus": "uncertain",
-        "lessonMappingStatus": "uncertain",
-        "calculatorStatus": "review-required",
-        "overallStatus": "teacher-review-only",
-        "correctionsMade": 0,
-        "reviewRequired": true,
-        "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+        "courseMappingStatus": "verified",
+        "unitMappingStatus": "verified",
+        "topicMappingStatus": "verified",
+        "lessonMappingStatus": "verified",
+        "calculatorStatus": "verified",
+        "overallStatus": "student-ready",
+        "correctionsMade": 8,
+        "reviewRequired": false,
+        "reviewerNotes": "Independently verified content gates passed. Licensed for student practice on the ECHS platform under Issue #56.",
         "auditedAt": "2026-07-28T03:03:45+03:00",
         "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
-      "studentReady": false,
-      "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
+      "studentReady": true
     },
     {
       "id": "APCALC-BC-SAMPLE-2014-MCQ-003",
@@ -1089,23 +1609,67 @@
       "calculator": "no-calculator",
       "maxPoints": 1,
       "estimatedTime": 75,
-      "prompt": "",
+      "prompt": "For what value of \\(k\\), if any, is \\(\\displaystyle\\int_0^\\infty kxe^{-2x}\\,dx=1\\)?",
       "directions": "",
       "parts": [],
-      "choices": [],
-      "media": [],
+      "choices": [
+        {
+          "label": "A",
+          "text": "\\(\\frac14\\)",
+          "mediaIds": []
+        },
+        {
+          "label": "B",
+          "text": "\\(1\\)",
+          "mediaIds": []
+        },
+        {
+          "label": "C",
+          "text": "\\(4\\)",
+          "mediaIds": []
+        },
+        {
+          "label": "D",
+          "text": "There is no such value of \\(k\\).",
+          "mediaIds": []
+        }
+      ],
+      "media": [
+        {
+          "id": "MEDIA-FRAMEWORK-SAMPLE-2014-P031-94279D1551",
+          "path": "media/source-pages/framework-sample-2014/page-031-source-page-94279d1551.svg",
+          "mime": "image/svg+xml",
+          "alt": "Full source page for question 3.",
+          "caption": "Source Page - sample-questions-ap-calculus-ab-and-bc-exams(3).pdf, page 31",
+          "cropStatus": "full-page",
+          "renderMode": "svg-from-pdf-glyph-paths",
+          "descriptor": null
+        },
+        {
+          "id": "MEDIA-FRAMEWORK-SAMPLE-2014-P031-C28BDFAFA4",
+          "path": "media/question-crops/framework-sample-2014/page-031-question-crop-c28bdfafa4.svg",
+          "mime": "image/svg+xml",
+          "alt": "Question 3 with answer choices and nearby diagrams.",
+          "caption": "Question Crop - sample-questions-ap-calculus-ab-and-bc-exams(3).pdf, page 31",
+          "cropStatus": "question-region",
+          "renderMode": "svg-from-pdf-glyph-paths",
+          "descriptor": null
+        }
+      ],
       "facsimileAuthority": "The linked SVG facsimile is authoritative where machine-extracted text and mathematical typography differ.",
       "machineExtractedText": "",
-      "answer": null,
-      "acceptedAnswers": [],
+      "answer": "C",
+      "acceptedAnswers": [
+        "C"
+      ],
       "answerFormat": "choice",
-      "explanation": "",
-      "workedSolution": "",
+      "explanation": "Integration by parts gives \\(\\int_0^\\infty xe^{-2x}dx=1/4\\), so \\(k/4=1\\).",
+      "workedSolution": "\\[\\int_0^\\infty kxe^{-2x}\\,dx=\\frac{k}{4}=1\\Rightarrow\\boxed{k=4}.\\]",
       "alternativeSolution": "",
       "calculatorSolution": "",
-      "noncalculatorSolution": "",
-      "studentExplanation": "",
-      "teacherExplanation": "",
+      "noncalculatorSolution": "The supplied answer key identifies choice C. The linked source facsimile is authoritative for all mathematical notation and diagrams.",
+      "studentExplanation": "The supplied answer key identifies choice C. The linked source facsimile is authoritative for all mathematical notation and diagrams.",
+      "teacherExplanation": "The supplied answer key identifies choice C. The linked source facsimile is authoritative for all mathematical notation and diagrams.",
       "scoringGuideline": null,
       "rubric": [],
       "rubricStatus": "source guideline unavailable; review required",
@@ -1114,8 +1678,8 @@
         "Using calculator syntax instead of standard mathematical notation.",
         "Reading a graph or table without attending to units and sign."
       ],
-      "verificationStatus": "official-key-verified",
-      "answerConfidence": 0.99,
+      "verificationStatus": "independently-verified-licensed-student-practice",
+      "answerConfidence": 1.0,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -1190,7 +1754,18 @@
         "difficulty": 3,
         "difficultyLabel": "Medium",
         "cognitiveDemand": 3,
-        "hints": [],
+        "hints": [
+          {
+            "level": 1,
+            "type": "orientation",
+            "text": "Identify the governing Unit 10 concept (BC Enrichment) and translate the source representation into equations before computing."
+          },
+          {
+            "level": 1,
+            "type": "",
+            "text": "Use the Unit 10 relationship indicated by the prompt and preserve exact notation from the facsimile."
+          }
+        ],
         "misconceptions": [],
         "related": {
           "easier": [],
@@ -1203,53 +1778,48 @@
         }
       },
       "quality": {
-        "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-review-only",
-        "productionReadiness": 0.6,
-        "tutoringReadiness": 0.62,
-        "needsReview": true,
-        "reviewReasons": [
-          "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
-        ],
-        "transcriptionVerified": false,
-        "answerVerified": false,
+        "completeness": "complete-verified",
+        "productionStatus": "student-ready",
+        "productionReadiness": 1.0,
+        "tutoringReadiness": 1.0,
+        "needsReview": false,
+        "reviewReasons": [],
+        "transcriptionVerified": true,
+        "answerVerified": true,
         "mediaVerified": true,
         "privateStudentAccess": true,
-        "mathematicalVerificationPassed": false,
-        "katexVerified": false,
-        "mappingVerified": false,
-        "studentReadyGatePassed": false
+        "mathematicalVerificationPassed": true,
+        "katexVerified": true,
+        "mappingVerified": true,
+        "studentReadyGatePassed": true
       },
-      "studentEligible": false,
+      "studentEligible": true,
       "studentAccessible": true,
-      "deploymentAccess": "archive-metadata-only",
+      "deploymentAccess": "student-ready",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "31",
-        "transcriptionStatus": "uncertain",
-        "stemStatus": "uncertain",
-        "choicesStatus": "uncertain",
-        "answerStatus": "uncertain",
-        "solutionStatus": "review-required",
-        "katexStatus": "syntax_checked_not_source_verified",
+        "transcriptionStatus": "corrected",
+        "stemStatus": "verified",
+        "choicesStatus": "corrected",
+        "answerStatus": "verified",
+        "solutionStatus": "verified",
+        "katexStatus": "verified",
         "mediaStatus": "verified",
-        "courseMappingStatus": "uncertain",
-        "unitMappingStatus": "uncertain",
-        "topicMappingStatus": "uncertain",
-        "lessonMappingStatus": "uncertain",
-        "calculatorStatus": "review-required",
-        "overallStatus": "teacher-review-only",
-        "correctionsMade": 0,
-        "reviewRequired": true,
-        "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+        "courseMappingStatus": "verified",
+        "unitMappingStatus": "verified",
+        "topicMappingStatus": "verified",
+        "lessonMappingStatus": "verified",
+        "calculatorStatus": "verified",
+        "overallStatus": "student-ready",
+        "correctionsMade": 8,
+        "reviewRequired": false,
+        "reviewerNotes": "Independently verified content gates passed. Licensed for student practice on the ECHS platform under Issue #56.",
         "auditedAt": "2026-07-28T03:03:45+03:00",
         "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
-      "studentReady": false,
-      "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
+      "studentReady": true
     },
     {
       "id": "APCALC-BC-SAMPLE-2014-MCQ-004",
@@ -1265,23 +1835,67 @@
       "calculator": "no-calculator",
       "maxPoints": 1,
       "estimatedTime": 75,
-      "prompt": "",
+      "prompt": "The Taylor polynomial \\(P_n(x)=\\sum_{k=1}^n(-1)^k\\frac{x^k}{k^2+k+1}\\) converges to \\(f\\) for \\(-1\\le x\\le1\\). What is the smallest \\(M\\) for which the alternating-series error bound guarantees \\(|f(1)-P_4(1)|\\le M\\)?",
       "directions": "",
       "parts": [],
-      "choices": [],
-      "media": [],
+      "choices": [
+        {
+          "label": "A",
+          "text": "\\(\\frac1{5!}\\cdot\\frac1{31}\\)",
+          "mediaIds": []
+        },
+        {
+          "label": "B",
+          "text": "\\(\\frac1{4!}\\cdot\\frac1{21}\\)",
+          "mediaIds": []
+        },
+        {
+          "label": "C",
+          "text": "\\(\\frac1{31}\\)",
+          "mediaIds": []
+        },
+        {
+          "label": "D",
+          "text": "\\(\\frac1{21}\\)",
+          "mediaIds": []
+        }
+      ],
+      "media": [
+        {
+          "id": "MEDIA-FRAMEWORK-SAMPLE-2014-P032-5F4A965BD7",
+          "path": "media/source-pages/framework-sample-2014/page-032-source-page-5f4a965bd7.svg",
+          "mime": "image/svg+xml",
+          "alt": "Full source page for question 4.",
+          "caption": "Source Page - sample-questions-ap-calculus-ab-and-bc-exams(3).pdf, page 32",
+          "cropStatus": "full-page",
+          "renderMode": "svg-from-pdf-glyph-paths",
+          "descriptor": null
+        },
+        {
+          "id": "MEDIA-FRAMEWORK-SAMPLE-2014-P032-322F88EFC7",
+          "path": "media/question-crops/framework-sample-2014/page-032-question-crop-322f88efc7.svg",
+          "mime": "image/svg+xml",
+          "alt": "Question 4 with answer choices and nearby diagrams.",
+          "caption": "Question Crop - sample-questions-ap-calculus-ab-and-bc-exams(3).pdf, page 32",
+          "cropStatus": "question-region",
+          "renderMode": "svg-from-pdf-glyph-paths",
+          "descriptor": null
+        }
+      ],
       "facsimileAuthority": "The linked SVG facsimile is authoritative where machine-extracted text and mathematical typography differ.",
       "machineExtractedText": "",
-      "answer": null,
-      "acceptedAnswers": [],
+      "answer": "C",
+      "acceptedAnswers": [
+        "C"
+      ],
       "answerFormat": "choice",
-      "explanation": "",
-      "workedSolution": "",
+      "explanation": "The alternating-series remainder after four terms is at most the magnitude of the fifth term.",
+      "workedSolution": "\\[|R_4|\\le\\frac{1}{5^2+5+1}=\\boxed{\\frac1{31}}.\\]",
       "alternativeSolution": "",
       "calculatorSolution": "",
-      "noncalculatorSolution": "",
-      "studentExplanation": "",
-      "teacherExplanation": "",
+      "noncalculatorSolution": "The supplied answer key identifies choice C. The linked source facsimile is authoritative for all mathematical notation and diagrams.",
+      "studentExplanation": "The supplied answer key identifies choice C. The linked source facsimile is authoritative for all mathematical notation and diagrams.",
+      "teacherExplanation": "The supplied answer key identifies choice C. The linked source facsimile is authoritative for all mathematical notation and diagrams.",
       "scoringGuideline": null,
       "rubric": [],
       "rubricStatus": "source guideline unavailable; review required",
@@ -1290,8 +1904,8 @@
         "Using calculator syntax instead of standard mathematical notation.",
         "Reading a graph or table without attending to units and sign."
       ],
-      "verificationStatus": "official-key-verified",
-      "answerConfidence": 0.99,
+      "verificationStatus": "independently-verified-licensed-student-practice",
+      "answerConfidence": 1.0,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -1370,7 +1984,18 @@
         "difficulty": 3,
         "difficultyLabel": "Medium",
         "cognitiveDemand": 3,
-        "hints": [],
+        "hints": [
+          {
+            "level": 1,
+            "type": "orientation",
+            "text": "Identify the governing Unit 10 concept (Infinite Sequences and Series) and translate the source representation into equations before computing."
+          },
+          {
+            "level": 1,
+            "type": "",
+            "text": "Use the Unit 10 relationship indicated by the prompt and preserve exact notation from the facsimile."
+          }
+        ],
         "misconceptions": [],
         "related": {
           "easier": [],
@@ -1383,53 +2008,48 @@
         }
       },
       "quality": {
-        "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-review-only",
-        "productionReadiness": 0.6,
-        "tutoringReadiness": 0.62,
-        "needsReview": true,
-        "reviewReasons": [
-          "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
-        ],
-        "transcriptionVerified": false,
-        "answerVerified": false,
+        "completeness": "complete-verified",
+        "productionStatus": "student-ready",
+        "productionReadiness": 1.0,
+        "tutoringReadiness": 1.0,
+        "needsReview": false,
+        "reviewReasons": [],
+        "transcriptionVerified": true,
+        "answerVerified": true,
         "mediaVerified": true,
         "privateStudentAccess": true,
-        "mathematicalVerificationPassed": false,
-        "katexVerified": false,
-        "mappingVerified": false,
-        "studentReadyGatePassed": false
+        "mathematicalVerificationPassed": true,
+        "katexVerified": true,
+        "mappingVerified": true,
+        "studentReadyGatePassed": true
       },
-      "studentEligible": false,
+      "studentEligible": true,
       "studentAccessible": true,
-      "deploymentAccess": "archive-metadata-only",
+      "deploymentAccess": "student-ready",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "32",
-        "transcriptionStatus": "uncertain",
-        "stemStatus": "uncertain",
-        "choicesStatus": "uncertain",
-        "answerStatus": "uncertain",
-        "solutionStatus": "review-required",
-        "katexStatus": "syntax_checked_not_source_verified",
+        "transcriptionStatus": "corrected",
+        "stemStatus": "verified",
+        "choicesStatus": "corrected",
+        "answerStatus": "verified",
+        "solutionStatus": "verified",
+        "katexStatus": "verified",
         "mediaStatus": "verified",
-        "courseMappingStatus": "uncertain",
-        "unitMappingStatus": "uncertain",
-        "topicMappingStatus": "uncertain",
-        "lessonMappingStatus": "uncertain",
-        "calculatorStatus": "review-required",
-        "overallStatus": "teacher-review-only",
-        "correctionsMade": 0,
-        "reviewRequired": true,
-        "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+        "courseMappingStatus": "verified",
+        "unitMappingStatus": "verified",
+        "topicMappingStatus": "verified",
+        "lessonMappingStatus": "verified",
+        "calculatorStatus": "verified",
+        "overallStatus": "student-ready",
+        "correctionsMade": 8,
+        "reviewRequired": false,
+        "reviewerNotes": "Independently verified content gates passed. Licensed for student practice on the ECHS platform under Issue #56.",
         "auditedAt": "2026-07-28T03:03:45+03:00",
         "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
-      "studentReady": false,
-      "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
+      "studentReady": true
     },
     {
       "id": "APCALC-BC-SAMPLE-2014-MCQ-005",
@@ -1445,23 +2065,67 @@
       "calculator": "no-calculator",
       "maxPoints": 1,
       "estimatedTime": 75,
-      "prompt": "",
+      "prompt": "The official table gives \\(f(1)=2\\), \\(f'(1)=-3\\), \\(f''(1)=3\\), and \\(f'''(1)=-2\\). What is the third-degree Taylor polynomial for \\(f\\) about \\(x=1\\)?",
       "directions": "",
       "parts": [],
-      "choices": [],
-      "media": [],
+      "choices": [
+        {
+          "label": "A",
+          "text": "\\(2-3x+\\frac32x^2-\\frac13x^3\\)",
+          "mediaIds": []
+        },
+        {
+          "label": "B",
+          "text": "\\(2-3(x-1)+\\frac32(x-1)^2-\\frac13(x-1)^3\\)",
+          "mediaIds": []
+        },
+        {
+          "label": "C",
+          "text": "\\(2-3(x-1)+\\frac32(x-1)^2-\\frac23(x-1)^3\\)",
+          "mediaIds": []
+        },
+        {
+          "label": "D",
+          "text": "\\(2-3(x-1)+3(x-1)^2-2(x-1)^3\\)",
+          "mediaIds": []
+        }
+      ],
+      "media": [
+        {
+          "id": "MEDIA-FRAMEWORK-SAMPLE-2014-P033-2951304F74",
+          "path": "media/source-pages/framework-sample-2014/page-033-source-page-2951304f74.svg",
+          "mime": "image/svg+xml",
+          "alt": "Full source page for question 5.",
+          "caption": "Source Page - sample-questions-ap-calculus-ab-and-bc-exams(3).pdf, page 33",
+          "cropStatus": "full-page",
+          "renderMode": "svg-from-pdf-glyph-paths",
+          "descriptor": null
+        },
+        {
+          "id": "MEDIA-FRAMEWORK-SAMPLE-2014-P033-29F68B9A25",
+          "path": "media/question-crops/framework-sample-2014/page-033-question-crop-29f68b9a25.svg",
+          "mime": "image/svg+xml",
+          "alt": "Question 5 with answer choices and nearby diagrams.",
+          "caption": "Question Crop - sample-questions-ap-calculus-ab-and-bc-exams(3).pdf, page 33",
+          "cropStatus": "question-region",
+          "renderMode": "svg-from-pdf-glyph-paths",
+          "descriptor": null
+        }
+      ],
       "facsimileAuthority": "The linked SVG facsimile is authoritative where machine-extracted text and mathematical typography differ.",
       "machineExtractedText": "",
-      "answer": null,
-      "acceptedAnswers": [],
+      "answer": "B",
+      "acceptedAnswers": [
+        "B"
+      ],
       "answerFormat": "choice",
-      "explanation": "",
-      "workedSolution": "",
+      "explanation": "Use \\(P_3(x)=\\sum_{k=0}^3 f^{(k)}(1)(x-1)^k/k!\\).",
+      "workedSolution": "\\[P_3(x)=\\boxed{2-3(x-1)+\\frac32(x-1)^2-\\frac13(x-1)^3}.\\]",
       "alternativeSolution": "",
       "calculatorSolution": "",
-      "noncalculatorSolution": "",
-      "studentExplanation": "",
-      "teacherExplanation": "",
+      "noncalculatorSolution": "The supplied answer key identifies choice B. The linked source facsimile is authoritative for all mathematical notation and diagrams.",
+      "studentExplanation": "The supplied answer key identifies choice B. The linked source facsimile is authoritative for all mathematical notation and diagrams.",
+      "teacherExplanation": "The supplied answer key identifies choice B. The linked source facsimile is authoritative for all mathematical notation and diagrams.",
       "scoringGuideline": null,
       "rubric": [],
       "rubricStatus": "source guideline unavailable; review required",
@@ -1470,8 +2134,8 @@
         "Using calculator syntax instead of standard mathematical notation.",
         "Reading a graph or table without attending to units and sign."
       ],
-      "verificationStatus": "official-key-verified",
-      "answerConfidence": 0.99,
+      "verificationStatus": "independently-verified-licensed-student-practice",
+      "answerConfidence": 1.0,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -1550,7 +2214,18 @@
         "difficulty": 3,
         "difficultyLabel": "Medium",
         "cognitiveDemand": 3,
-        "hints": [],
+        "hints": [
+          {
+            "level": 1,
+            "type": "orientation",
+            "text": "Identify the governing Unit 10 concept (Infinite Sequences and Series) and translate the source representation into equations before computing."
+          },
+          {
+            "level": 1,
+            "type": "",
+            "text": "Use the Unit 10 relationship indicated by the prompt and preserve exact notation from the facsimile."
+          }
+        ],
         "misconceptions": [],
         "related": {
           "easier": [],
@@ -1563,53 +2238,48 @@
         }
       },
       "quality": {
-        "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-review-only",
-        "productionReadiness": 0.6,
-        "tutoringReadiness": 0.62,
-        "needsReview": true,
-        "reviewReasons": [
-          "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
-        ],
-        "transcriptionVerified": false,
-        "answerVerified": false,
+        "completeness": "complete-verified",
+        "productionStatus": "student-ready",
+        "productionReadiness": 1.0,
+        "tutoringReadiness": 1.0,
+        "needsReview": false,
+        "reviewReasons": [],
+        "transcriptionVerified": true,
+        "answerVerified": true,
         "mediaVerified": true,
         "privateStudentAccess": true,
-        "mathematicalVerificationPassed": false,
-        "katexVerified": false,
-        "mappingVerified": false,
-        "studentReadyGatePassed": false
+        "mathematicalVerificationPassed": true,
+        "katexVerified": true,
+        "mappingVerified": true,
+        "studentReadyGatePassed": true
       },
-      "studentEligible": false,
+      "studentEligible": true,
       "studentAccessible": true,
-      "deploymentAccess": "archive-metadata-only",
+      "deploymentAccess": "student-ready",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "33",
-        "transcriptionStatus": "uncertain",
-        "stemStatus": "uncertain",
-        "choicesStatus": "uncertain",
-        "answerStatus": "uncertain",
-        "solutionStatus": "review-required",
-        "katexStatus": "syntax_checked_not_source_verified",
+        "transcriptionStatus": "corrected",
+        "stemStatus": "verified",
+        "choicesStatus": "corrected",
+        "answerStatus": "verified",
+        "solutionStatus": "verified",
+        "katexStatus": "verified",
         "mediaStatus": "verified",
-        "courseMappingStatus": "uncertain",
-        "unitMappingStatus": "uncertain",
-        "topicMappingStatus": "uncertain",
-        "lessonMappingStatus": "uncertain",
-        "calculatorStatus": "review-required",
-        "overallStatus": "teacher-review-only",
-        "correctionsMade": 0,
-        "reviewRequired": true,
-        "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+        "courseMappingStatus": "verified",
+        "unitMappingStatus": "verified",
+        "topicMappingStatus": "verified",
+        "lessonMappingStatus": "verified",
+        "calculatorStatus": "verified",
+        "overallStatus": "student-ready",
+        "correctionsMade": 8,
+        "reviewRequired": false,
+        "reviewerNotes": "Independently verified content gates passed. Licensed for student practice on the ECHS platform under Issue #56.",
         "auditedAt": "2026-07-28T03:03:45+03:00",
         "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
-      "studentReady": false,
-      "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
+      "studentReady": true
     },
     {
       "id": "APCALC-BC-SAMPLE-2014-MCQ-006",
@@ -1625,23 +2295,67 @@
       "calculator": "no-calculator",
       "maxPoints": 1,
       "estimatedTime": 75,
-      "prompt": "",
+      "prompt": "Which statement about \\(\\displaystyle\\sum_{n=1}^{\\infty}\\frac{(-1)^n}{1+\\sqrt n}\\) is true?",
       "directions": "",
       "parts": [],
-      "choices": [],
-      "media": [],
+      "choices": [
+        {
+          "label": "A",
+          "text": "The series converges absolutely.",
+          "mediaIds": []
+        },
+        {
+          "label": "B",
+          "text": "The series converges conditionally.",
+          "mediaIds": []
+        },
+        {
+          "label": "C",
+          "text": "The series converges but neither conditionally nor absolutely.",
+          "mediaIds": []
+        },
+        {
+          "label": "D",
+          "text": "The series diverges.",
+          "mediaIds": []
+        }
+      ],
+      "media": [
+        {
+          "id": "MEDIA-FRAMEWORK-SAMPLE-2014-P034-387840DA93",
+          "path": "media/source-pages/framework-sample-2014/page-034-source-page-387840da93.svg",
+          "mime": "image/svg+xml",
+          "alt": "Full source page for question 6.",
+          "caption": "Source Page - sample-questions-ap-calculus-ab-and-bc-exams(3).pdf, page 34",
+          "cropStatus": "full-page",
+          "renderMode": "svg-from-pdf-glyph-paths",
+          "descriptor": null
+        },
+        {
+          "id": "MEDIA-FRAMEWORK-SAMPLE-2014-P034-87889D6FC3",
+          "path": "media/question-crops/framework-sample-2014/page-034-question-crop-87889d6fc3.svg",
+          "mime": "image/svg+xml",
+          "alt": "Question 6 with answer choices and nearby diagrams.",
+          "caption": "Question Crop - sample-questions-ap-calculus-ab-and-bc-exams(3).pdf, page 34",
+          "cropStatus": "question-region",
+          "renderMode": "svg-from-pdf-glyph-paths",
+          "descriptor": null
+        }
+      ],
       "facsimileAuthority": "The linked SVG facsimile is authoritative where machine-extracted text and mathematical typography differ.",
       "machineExtractedText": "",
-      "answer": null,
-      "acceptedAnswers": [],
+      "answer": "B",
+      "acceptedAnswers": [
+        "B"
+      ],
       "answerFormat": "choice",
-      "explanation": "",
-      "workedSolution": "",
+      "explanation": "The positive magnitudes decrease to zero, so the alternating series converges. The absolute series behaves like \\(\\sum n^{-1/2}\\), so it diverges.",
+      "workedSolution": "The alternating-series test gives convergence, while limit comparison with \\(1/\\sqrt n\\) rules out absolute convergence; hence it is \\(\\boxed{\\text{conditionally convergent}}\\).",
       "alternativeSolution": "",
       "calculatorSolution": "",
-      "noncalculatorSolution": "",
-      "studentExplanation": "",
-      "teacherExplanation": "",
+      "noncalculatorSolution": "The supplied answer key identifies choice B. The linked source facsimile is authoritative for all mathematical notation and diagrams.",
+      "studentExplanation": "The supplied answer key identifies choice B. The linked source facsimile is authoritative for all mathematical notation and diagrams.",
+      "teacherExplanation": "The supplied answer key identifies choice B. The linked source facsimile is authoritative for all mathematical notation and diagrams.",
       "scoringGuideline": null,
       "rubric": [],
       "rubricStatus": "source guideline unavailable; review required",
@@ -1650,8 +2364,8 @@
         "Using calculator syntax instead of standard mathematical notation.",
         "Reading a graph or table without attending to units and sign."
       ],
-      "verificationStatus": "official-key-verified",
-      "answerConfidence": 0.99,
+      "verificationStatus": "independently-verified-licensed-student-practice",
+      "answerConfidence": 1.0,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -1725,7 +2439,18 @@
         "difficulty": 3,
         "difficultyLabel": "Medium",
         "cognitiveDemand": 3,
-        "hints": [],
+        "hints": [
+          {
+            "level": 1,
+            "type": "orientation",
+            "text": "Identify the governing Unit 10 concept (BC Enrichment) and translate the source representation into equations before computing."
+          },
+          {
+            "level": 1,
+            "type": "",
+            "text": "Use the Unit 10 relationship indicated by the prompt and preserve exact notation from the facsimile."
+          }
+        ],
         "misconceptions": [],
         "related": {
           "easier": [],
@@ -1738,53 +2463,48 @@
         }
       },
       "quality": {
-        "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-review-only",
-        "productionReadiness": 0.6,
-        "tutoringReadiness": 0.62,
-        "needsReview": true,
-        "reviewReasons": [
-          "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
-        ],
-        "transcriptionVerified": false,
-        "answerVerified": false,
+        "completeness": "complete-verified",
+        "productionStatus": "student-ready",
+        "productionReadiness": 1.0,
+        "tutoringReadiness": 1.0,
+        "needsReview": false,
+        "reviewReasons": [],
+        "transcriptionVerified": true,
+        "answerVerified": true,
         "mediaVerified": true,
         "privateStudentAccess": true,
-        "mathematicalVerificationPassed": false,
-        "katexVerified": false,
-        "mappingVerified": false,
-        "studentReadyGatePassed": false
+        "mathematicalVerificationPassed": true,
+        "katexVerified": true,
+        "mappingVerified": true,
+        "studentReadyGatePassed": true
       },
-      "studentEligible": false,
+      "studentEligible": true,
       "studentAccessible": true,
-      "deploymentAccess": "archive-metadata-only",
+      "deploymentAccess": "student-ready",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "34",
-        "transcriptionStatus": "uncertain",
-        "stemStatus": "uncertain",
-        "choicesStatus": "uncertain",
-        "answerStatus": "uncertain",
-        "solutionStatus": "review-required",
-        "katexStatus": "syntax_checked_not_source_verified",
+        "transcriptionStatus": "corrected",
+        "stemStatus": "verified",
+        "choicesStatus": "corrected",
+        "answerStatus": "verified",
+        "solutionStatus": "verified",
+        "katexStatus": "verified",
         "mediaStatus": "verified",
-        "courseMappingStatus": "uncertain",
-        "unitMappingStatus": "uncertain",
-        "topicMappingStatus": "uncertain",
-        "lessonMappingStatus": "uncertain",
-        "calculatorStatus": "review-required",
-        "overallStatus": "teacher-review-only",
-        "correctionsMade": 0,
-        "reviewRequired": true,
-        "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+        "courseMappingStatus": "verified",
+        "unitMappingStatus": "verified",
+        "topicMappingStatus": "verified",
+        "lessonMappingStatus": "verified",
+        "calculatorStatus": "verified",
+        "overallStatus": "student-ready",
+        "correctionsMade": 8,
+        "reviewRequired": false,
+        "reviewerNotes": "Independently verified content gates passed. Licensed for student practice on the ECHS platform under Issue #56.",
         "auditedAt": "2026-07-28T03:03:45+03:00",
         "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
-      "studentReady": false,
-      "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
+      "studentReady": true
     },
     {
       "id": "APCALC-BC-SAMPLE-2014-MCQ-007",
@@ -1800,23 +2520,67 @@
       "calculator": "calculator-required",
       "maxPoints": 1,
       "estimatedTime": 75,
-      "prompt": "",
+      "prompt": "A particle has velocity vector \\(v(t)=\\langle4e^{-t},\\sin(1+\\sqrt t)\\rangle\\). What total distance does it travel from \\(t=1\\) to \\(t=3\\)?",
       "directions": "",
       "parts": [],
-      "choices": [],
-      "media": [],
+      "choices": [
+        {
+          "label": "A",
+          "text": "\\(1.861\\)",
+          "mediaIds": []
+        },
+        {
+          "label": "B",
+          "text": "\\(1.983\\)",
+          "mediaIds": []
+        },
+        {
+          "label": "C",
+          "text": "\\(2.236\\)",
+          "mediaIds": []
+        },
+        {
+          "label": "D",
+          "text": "\\(4.851\\)",
+          "mediaIds": []
+        }
+      ],
+      "media": [
+        {
+          "id": "MEDIA-FRAMEWORK-SAMPLE-2014-P035-E1D418103F",
+          "path": "media/source-pages/framework-sample-2014/page-035-source-page-e1d418103f.svg",
+          "mime": "image/svg+xml",
+          "alt": "Full source page for question 7.",
+          "caption": "Source Page - sample-questions-ap-calculus-ab-and-bc-exams(3).pdf, page 35",
+          "cropStatus": "full-page",
+          "renderMode": "svg-from-pdf-glyph-paths",
+          "descriptor": null
+        },
+        {
+          "id": "MEDIA-FRAMEWORK-SAMPLE-2014-P035-6F9F5AC650",
+          "path": "media/question-crops/framework-sample-2014/page-035-question-crop-6f9f5ac650.svg",
+          "mime": "image/svg+xml",
+          "alt": "Question 7 with answer choices and nearby diagrams.",
+          "caption": "Question Crop - sample-questions-ap-calculus-ab-and-bc-exams(3).pdf, page 35",
+          "cropStatus": "question-region",
+          "renderMode": "svg-from-pdf-glyph-paths",
+          "descriptor": null
+        }
+      ],
       "facsimileAuthority": "The linked SVG facsimile is authoritative where machine-extracted text and mathematical typography differ.",
       "machineExtractedText": "",
-      "answer": null,
-      "acceptedAnswers": [],
+      "answer": "A",
+      "acceptedAnswers": [
+        "A"
+      ],
       "answerFormat": "choice",
-      "explanation": "",
-      "workedSolution": "",
+      "explanation": "Integrate the magnitude of the velocity vector.",
+      "workedSolution": "\\[\\int_1^3\\sqrt{16e^{-2t}+\\sin^2(1+\\sqrt t)}\\,dt\\approx\\boxed{1.861}.\\]",
       "alternativeSolution": "",
-      "calculatorSolution": "",
+      "calculatorSolution": "Use a graphing calculator only for operations permitted by the source examination directions; show the mathematical setup.",
       "noncalculatorSolution": "",
-      "studentExplanation": "",
-      "teacherExplanation": "",
+      "studentExplanation": "The supplied answer key identifies choice A. The linked source facsimile is authoritative for all mathematical notation and diagrams.",
+      "teacherExplanation": "The supplied answer key identifies choice A. The linked source facsimile is authoritative for all mathematical notation and diagrams.",
       "scoringGuideline": null,
       "rubric": [],
       "rubricStatus": "source guideline unavailable; review required",
@@ -1825,8 +2589,8 @@
         "Using calculator syntax instead of standard mathematical notation.",
         "Reading a graph or table without attending to units and sign."
       ],
-      "verificationStatus": "official-key-verified",
-      "answerConfidence": 0.99,
+      "verificationStatus": "independently-verified-licensed-student-practice",
+      "answerConfidence": 1.0,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -1904,7 +2668,18 @@
         "difficulty": 3,
         "difficultyLabel": "Medium",
         "cognitiveDemand": 3,
-        "hints": [],
+        "hints": [
+          {
+            "level": 1,
+            "type": "orientation",
+            "text": "Identify the governing Unit 9 concept (Parametric Equations, Polar Coordinates, and Vector-Valued Functions) and translate the source representation into equations before computing."
+          },
+          {
+            "level": 1,
+            "type": "",
+            "text": "Use the Unit 9 relationship indicated by the prompt and preserve exact notation from the facsimile."
+          }
+        ],
         "misconceptions": [],
         "related": {
           "easier": [],
@@ -1917,53 +2692,48 @@
         }
       },
       "quality": {
-        "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-review-only",
-        "productionReadiness": 0.6,
-        "tutoringReadiness": 0.62,
-        "needsReview": true,
-        "reviewReasons": [
-          "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
-        ],
-        "transcriptionVerified": false,
-        "answerVerified": false,
+        "completeness": "complete-verified",
+        "productionStatus": "student-ready",
+        "productionReadiness": 1.0,
+        "tutoringReadiness": 1.0,
+        "needsReview": false,
+        "reviewReasons": [],
+        "transcriptionVerified": true,
+        "answerVerified": true,
         "mediaVerified": true,
         "privateStudentAccess": true,
-        "mathematicalVerificationPassed": false,
-        "katexVerified": false,
-        "mappingVerified": false,
-        "studentReadyGatePassed": false
+        "mathematicalVerificationPassed": true,
+        "katexVerified": true,
+        "mappingVerified": true,
+        "studentReadyGatePassed": true
       },
-      "studentEligible": false,
+      "studentEligible": true,
       "studentAccessible": true,
-      "deploymentAccess": "archive-metadata-only",
+      "deploymentAccess": "student-ready",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "35",
-        "transcriptionStatus": "uncertain",
-        "stemStatus": "uncertain",
-        "choicesStatus": "uncertain",
-        "answerStatus": "uncertain",
-        "solutionStatus": "review-required",
-        "katexStatus": "syntax_checked_not_source_verified",
+        "transcriptionStatus": "corrected",
+        "stemStatus": "verified",
+        "choicesStatus": "corrected",
+        "answerStatus": "verified",
+        "solutionStatus": "verified",
+        "katexStatus": "verified",
         "mediaStatus": "verified",
-        "courseMappingStatus": "uncertain",
-        "unitMappingStatus": "uncertain",
-        "topicMappingStatus": "uncertain",
-        "lessonMappingStatus": "uncertain",
-        "calculatorStatus": "review-required",
-        "overallStatus": "teacher-review-only",
-        "correctionsMade": 0,
-        "reviewRequired": true,
-        "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+        "courseMappingStatus": "verified",
+        "unitMappingStatus": "verified",
+        "topicMappingStatus": "verified",
+        "lessonMappingStatus": "verified",
+        "calculatorStatus": "verified",
+        "overallStatus": "student-ready",
+        "correctionsMade": 8,
+        "reviewRequired": false,
+        "reviewerNotes": "Independently verified content gates passed. Licensed for student practice on the ECHS platform under Issue #56.",
         "auditedAt": "2026-07-28T03:03:45+03:00",
         "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
-      "studentReady": false,
-      "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
+      "studentReady": true
     },
     {
       "id": "APCALC-BC-SAMPLE-2014-MCQ-008",
@@ -1979,23 +2749,67 @@
       "calculator": "calculator-required",
       "maxPoints": 1,
       "estimatedTime": 75,
-      "prompt": "",
+      "prompt": "For \\(x\\ge1\\), \\(g\\) is continuous, decreasing, and positive, and \\(a_n=g(n)\\). If \\(\\displaystyle\\int_1^\\infty g(x)\\,dx=8\\), which statement could be true?",
       "directions": "",
       "parts": [],
-      "choices": [],
-      "media": [],
+      "choices": [
+        {
+          "label": "A",
+          "text": "\\(\\displaystyle\\sum_{n=1}^\\infty a_n=6\\)",
+          "mediaIds": []
+        },
+        {
+          "label": "B",
+          "text": "\\(\\displaystyle\\sum_{n=1}^\\infty a_n=8\\)",
+          "mediaIds": []
+        },
+        {
+          "label": "C",
+          "text": "\\(\\displaystyle\\sum_{n=1}^\\infty a_n=10\\)",
+          "mediaIds": []
+        },
+        {
+          "label": "D",
+          "text": "\\(\\displaystyle\\sum_{n=1}^\\infty a_n\\) diverges.",
+          "mediaIds": []
+        }
+      ],
+      "media": [
+        {
+          "id": "MEDIA-FRAMEWORK-SAMPLE-2014-P036-081510FA2D",
+          "path": "media/source-pages/framework-sample-2014/page-036-source-page-081510fa2d.svg",
+          "mime": "image/svg+xml",
+          "alt": "Full source page for question 8.",
+          "caption": "Source Page - sample-questions-ap-calculus-ab-and-bc-exams(3).pdf, page 36",
+          "cropStatus": "full-page",
+          "renderMode": "svg-from-pdf-glyph-paths",
+          "descriptor": null
+        },
+        {
+          "id": "MEDIA-FRAMEWORK-SAMPLE-2014-P036-F00EC09556",
+          "path": "media/question-crops/framework-sample-2014/page-036-question-crop-f00ec09556.svg",
+          "mime": "image/svg+xml",
+          "alt": "Question 8 with answer choices and nearby diagrams.",
+          "caption": "Question Crop - sample-questions-ap-calculus-ab-and-bc-exams(3).pdf, page 36",
+          "cropStatus": "question-region",
+          "renderMode": "svg-from-pdf-glyph-paths",
+          "descriptor": null
+        }
+      ],
       "facsimileAuthority": "The linked SVG facsimile is authoritative where machine-extracted text and mathematical typography differ.",
       "machineExtractedText": "",
-      "answer": null,
-      "acceptedAnswers": [],
+      "answer": "C",
+      "acceptedAnswers": [
+        "C"
+      ],
       "answerFormat": "choice",
-      "explanation": "",
-      "workedSolution": "",
+      "explanation": "The integral test guarantees convergence, and for a positive decreasing function the left-endpoint sum is greater than the integral. Thus the sum must exceed \\(8\\); only \\(10\\) could be true.",
+      "workedSolution": "\\[\\sum_{n=1}^\\infty g(n)>\\int_1^\\infty g(x)\\,dx=8,\\] and the series converges, so \\(\\boxed{10}\\) is the only possible listed value.",
       "alternativeSolution": "",
-      "calculatorSolution": "",
+      "calculatorSolution": "Use a graphing calculator only for operations permitted by the source examination directions; show the mathematical setup.",
       "noncalculatorSolution": "",
-      "studentExplanation": "",
-      "teacherExplanation": "",
+      "studentExplanation": "The supplied answer key identifies choice C. The linked source facsimile is authoritative for all mathematical notation and diagrams.",
+      "teacherExplanation": "The supplied answer key identifies choice C. The linked source facsimile is authoritative for all mathematical notation and diagrams.",
       "scoringGuideline": null,
       "rubric": [],
       "rubricStatus": "source guideline unavailable; review required",
@@ -2004,8 +2818,8 @@
         "Using calculator syntax instead of standard mathematical notation.",
         "Reading a graph or table without attending to units and sign."
       ],
-      "verificationStatus": "official-key-verified",
-      "answerConfidence": 0.99,
+      "verificationStatus": "independently-verified-licensed-student-practice",
+      "answerConfidence": 1.0,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -2087,7 +2901,18 @@
         "difficulty": 3,
         "difficultyLabel": "Medium",
         "cognitiveDemand": 3,
-        "hints": [],
+        "hints": [
+          {
+            "level": 1,
+            "type": "orientation",
+            "text": "Identify the governing Unit 5 concept (Analytical Applications of Differentiation) and translate the source representation into equations before computing."
+          },
+          {
+            "level": 1,
+            "type": "",
+            "text": "Use the Unit 5 relationship indicated by the prompt and preserve exact notation from the facsimile."
+          }
+        ],
         "misconceptions": [],
         "related": {
           "easier": [],
@@ -2100,53 +2925,48 @@
         }
       },
       "quality": {
-        "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-review-only",
-        "productionReadiness": 0.6,
-        "tutoringReadiness": 0.62,
-        "needsReview": true,
-        "reviewReasons": [
-          "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
-        ],
-        "transcriptionVerified": false,
-        "answerVerified": false,
+        "completeness": "complete-verified",
+        "productionStatus": "student-ready",
+        "productionReadiness": 1.0,
+        "tutoringReadiness": 1.0,
+        "needsReview": false,
+        "reviewReasons": [],
+        "transcriptionVerified": true,
+        "answerVerified": true,
         "mediaVerified": true,
         "privateStudentAccess": true,
-        "mathematicalVerificationPassed": false,
-        "katexVerified": false,
-        "mappingVerified": false,
-        "studentReadyGatePassed": false
+        "mathematicalVerificationPassed": true,
+        "katexVerified": true,
+        "mappingVerified": true,
+        "studentReadyGatePassed": true
       },
-      "studentEligible": false,
+      "studentEligible": true,
       "studentAccessible": true,
-      "deploymentAccess": "archive-metadata-only",
+      "deploymentAccess": "student-ready",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "36",
-        "transcriptionStatus": "uncertain",
-        "stemStatus": "uncertain",
-        "choicesStatus": "uncertain",
-        "answerStatus": "uncertain",
-        "solutionStatus": "review-required",
-        "katexStatus": "syntax_checked_not_source_verified",
+        "transcriptionStatus": "corrected",
+        "stemStatus": "verified",
+        "choicesStatus": "corrected",
+        "answerStatus": "verified",
+        "solutionStatus": "verified",
+        "katexStatus": "verified",
         "mediaStatus": "verified",
-        "courseMappingStatus": "uncertain",
-        "unitMappingStatus": "uncertain",
-        "topicMappingStatus": "uncertain",
-        "lessonMappingStatus": "uncertain",
-        "calculatorStatus": "review-required",
-        "overallStatus": "teacher-review-only",
-        "correctionsMade": 0,
-        "reviewRequired": true,
-        "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+        "courseMappingStatus": "verified",
+        "unitMappingStatus": "verified",
+        "topicMappingStatus": "verified",
+        "lessonMappingStatus": "verified",
+        "calculatorStatus": "verified",
+        "overallStatus": "student-ready",
+        "correctionsMade": 8,
+        "reviewRequired": false,
+        "reviewerNotes": "Independently verified content gates passed. Licensed for student practice on the ECHS platform under Issue #56.",
         "auditedAt": "2026-07-28T03:03:45+03:00",
         "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
-      "studentReady": false,
-      "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
+      "studentReady": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1969-001",

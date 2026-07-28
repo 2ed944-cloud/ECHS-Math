@@ -15,6 +15,7 @@ from __future__ import annotations
 import copy
 import csv
 import json
+import re
 import subprocess
 from collections import Counter, defaultdict
 from datetime import datetime, timezone
@@ -963,7 +964,10 @@ def write_reports(
         "remainingBlockingReviewItems": len(restricted),
         "productionReadinessJudgment": (
             "PASS WITH RESTRICTIONS — the public student runtime contains only "
-            f"{len(ready)} independently verified, exactly mapped, ECHS-owned records. "
+            f"{len(ready)} verified, exactly mapped, ECHS-owned records. "
+            "Official facsimile-mode records retain exact source media and a "
+            "matched official answer key or scoring guideline; other ready "
+            "records are independently verified in structured form. "
             f"The remaining {len(restricted)} records are preserved and redacted from "
             "student interaction pending verification and/or release authorization."
         ),
@@ -1008,9 +1012,10 @@ def write_reports(
         "",
         f"**{len(ready)} questions pass the strict public student-ready gate.**",
         "",
-        "All are ECHS-authored, independently re-solved, KaTeX-validated, and "
-        "exactly mapped. School-internal and permission-restricted source records "
-        "are excluded from the public runtime.",
+        "Every record is authorized for the ECHS platform, exactly mapped, and "
+        "passes either complete structured verification or the explicit exact-"
+        "official-facsimile plus matched official-answer-authority gate. "
+        "Restricted records are excluded from the public runtime.",
         "",
         "## Student-ready question IDs",
         "",
@@ -1080,7 +1085,7 @@ def write_reports(
         f"Generated: {STAMP}",
         "",
         f"- Canonical questions with an audit disposition: **{len(canonical)}**",
-        f"- Strict public student-ready questions independently re-solved: **{len(ready)}**",
+        f"- Strict public student-ready questions verified for release: **{len(ready)}**",
         f"- Restricted pending review or release authorization: **{len(restricted)}**",
         "",
         "| question_id | stored_answer | computed_answer | mathematical_status | student_ready |",
@@ -1094,9 +1099,15 @@ def write_reports(
             (question.get("quality") or {}).get("mathematicalVerificationPassed")
         )
         computed = stored if verified else ""
+        stored_cell = re.sub(r"\s+", " ", str(stored)).strip().replace(
+            "|", "&#124;"
+        )
+        computed_cell = re.sub(r"\s+", " ", str(computed)).strip().replace(
+            "|", "&#124;"
+        )
         math_lines.append(
-            f"| `{question['id']}` | {str(stored).replace('|', '&#124;')} | "
-            f"{str(computed).replace('|', '&#124;')} | "
+            f"| `{question['id']}` | {stored_cell} | "
+            f"{computed_cell} | "
             f"{'verified' if verified else 'human_review_required'} | "
             f"{str(bool(question.get('studentReady'))).lower()} |"
         )

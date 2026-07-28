@@ -2,9 +2,9 @@
 
 Generated: 2026-07-28T03:03:45+03:00
 
-**Overall result: PASS WITH RESTRICTIONS**
+**Overall result: FAIL**
 
-This report validates the strict public release boundary. Student practice, exams, smart recommendations, and dashboard calculations use only the 896 independently verified public records; all 321 remaining records are preserved in the canonical teacher/admin bank and redacted in the public archive.
+This report validates the strict public release boundary. Student practice, exams, smart recommendations, and dashboard calculations use only the 1104 verified public records. Official AP items pass either complete independent structured verification or the exact-official-facsimile plus matched official-answer-authority gate; the 113 remaining non-ready records are preserved in the canonical teacher/admin bank and redacted in the public archive.
 
 ## Reconciled release counts
 
@@ -13,8 +13,8 @@ This report validates the strict public release boundary. Student practice, exam
 | Canonical questions | 1,217 |
 | MCQ | 876 |
 | FRQ | 341 |
-| Student-ready | 896 |
-| Teacher/archive restricted | 321 |
+| Student-ready | 1,104 |
+| Teacher/archive restricted | 113 |
 | Correction records | 633 |
 | Browser smoke cases | 12 |
 
@@ -32,7 +32,7 @@ This report validates the strict public release boundary. Student practice, exam
 | 8 | FRQ-point validation | **PASS** | 0 | 0 |
 | 9 | Mathematical verification validation | **PASS** | 0 | 0 |
 | 10 | KaTeX validation | **PASS** | 0 | 0 |
-| 11 | Media validation | **PASS** | 0 | 315 |
+| 11 | Media validation | **PASS** | 0 | 316 |
 | 12 | Broken-path validation | **PASS** | 0 | 0 |
 | 13 | Duplicate detection | **PASS** | 0 | 1 |
 | 14 | Course mapping validation | **PASS** | 0 | 0 |
@@ -56,7 +56,7 @@ This report validates the strict public release boundary. Student practice, exam
 | 32 | Manifest validation | **PASS** | 0 | 0 |
 | 33 | Checksum validation | **PASS** | 0 | 0 |
 | 34 | Required report validation | **PASS** | 0 | 0 |
-| 35 | Browser smoke testing | **PASS** | 0 | 0 |
+| 35 | Browser smoke testing | **FAIL** | 2 | 0 |
 | B | Local Chromium browser smoke tests | **PASS** | 0 | 0 |
 
 ## Detailed evidence
@@ -67,7 +67,7 @@ This report validates the strict public release boundary. Student practice, exam
 
 ```json
 {
-  "jsonFilesParsed": 318,
+  "jsonFilesParsed": 322,
   "canonicalQuestionObjects": 1217
 }
 ```
@@ -79,7 +79,7 @@ This report validates the strict public release boundary. Student practice, exam
 ```json
 {
   "canonicalIds": 1217,
-  "readyIds": 896,
+  "readyIds": 1104,
   "archiveIds": 1217
 }
 ```
@@ -102,8 +102,8 @@ This report validates the strict public release boundary. Student practice, exam
 
 ```json
 {
-  "studentReady": 896,
-  "restricted": 321
+  "studentReady": 1104,
+  "restricted": 113
 }
 ```
 
@@ -113,8 +113,8 @@ This report validates the strict public release boundary. Student practice, exam
 
 ```json
 {
-  "readyMCQ": 661,
-  "allFiveChoices": 661
+  "readyMCQ": 776,
+  "validFourOrFiveChoiceSets": 776
 }
 ```
 
@@ -124,7 +124,7 @@ This report validates the strict public release boundary. Student practice, exam
 
 ```json
 {
-  "answersInChoiceSet": 661
+  "answersInChoiceSet": 776
 }
 ```
 
@@ -134,8 +134,8 @@ This report validates the strict public release boundary. Student practice, exam
 
 ```json
 {
-  "readyFRQ": 235,
-  "partCount": 731
+  "readyFRQ": 328,
+  "partCount": 835
 }
 ```
 
@@ -145,7 +145,7 @@ This report validates the strict public release boundary. Student practice, exam
 
 ```json
 {
-  "totalFRQPoints": 2266
+  "totalFRQPoints": 3102
 }
 ```
 
@@ -155,7 +155,7 @@ This report validates the strict public release boundary. Student practice, exam
 
 ```json
 {
-  "readyMathematicallyVerified": 896,
+  "readyMathematicallyVerified": 1104,
   "correctionLogRecords": 633
 }
 ```
@@ -167,9 +167,9 @@ This report validates the strict public release boundary. Student practice, exam
 ```json
 {
   "structurallyCheckedQuestions": 1217,
-  "mathFields": 9080,
-  "expressionsFound": 23088,
-  "actualParserExpressions": 23088,
+  "mathFields": 9277,
+  "expressionsFound": 23487,
+  "actualParserExpressions": 23487,
   "actualParserErrors": 0,
   "actualParserReport": "KATEX_AUDIT_REPORT.md (KaTeX 0.16.27)"
 }
@@ -307,13 +307,13 @@ Warnings:
 
 ```json
 {
-  "exactPromptDuplicateGroups": 9,
+  "exactPromptDuplicateGroups": 8,
   "largestGroup": 3
 }
 ```
 
 Warnings:
-- 9 exact normalized prompt group(s) retained with distinct permanent IDs/source contexts.
+- 8 exact normalized prompt group(s) retained with distinct permanent IDs/source contexts.
 
 ### 14. Course mapping validation
 
@@ -322,8 +322,8 @@ Warnings:
 ```json
 {
   "mappedCourses": {
-    "ap-calculus-ab": 552,
-    "ap-calculus-bc": 314,
+    "ap-calculus-ab": 697,
+    "ap-calculus-bc": 377,
     "ap-precalculus": 19,
     "grade-9-pre-precalculus": 11
   }
@@ -338,16 +338,16 @@ Warnings:
 {
   "units": {
     "None": 35,
-    "1": 57,
-    "6": 175,
-    "3": 96,
-    "2": 95,
-    "5": 140,
-    "4": 90,
-    "8": 114,
-    "7": 36,
-    "10": 32,
-    "9": 26
+    "1": 64,
+    "6": 188,
+    "3": 97,
+    "2": 138,
+    "5": 181,
+    "4": 101,
+    "8": 152,
+    "7": 53,
+    "10": 59,
+    "9": 36
   }
 }
 ```
@@ -358,7 +358,7 @@ Warnings:
 
 ```json
 {
-  "uniqueTopicCodes": 168
+  "uniqueTopicCodes": 172
 }
 ```
 
@@ -368,7 +368,7 @@ Warnings:
 
 ```json
 {
-  "lessonIds": 134
+  "lessonIds": 135
 }
 ```
 
@@ -378,9 +378,9 @@ Warnings:
 
 ```json
 {
-  "gateFlagsChecked": 6272,
-  "studentReady": 896,
-  "publicPublicationApproved": 896
+  "gateFlagsChecked": 7728,
+  "studentReady": 1104,
+  "publicPublicationApproved": 1104
 }
 ```
 
@@ -390,8 +390,8 @@ Warnings:
 
 ```json
 {
-  "restrictedArchiveRecords": 321,
-  "fullyRedactedRestrictedRecords": 321,
+  "restrictedArchiveRecords": 113,
+  "fullyRedactedRestrictedRecords": 113,
   "deterministicArchiveIndexRows": 1217
 }
 ```
@@ -402,7 +402,7 @@ Warnings:
 
 ```json
 {
-  "studentIndexRecords": 896,
+  "studentIndexRecords": 1104,
   "exactFilterParameters": [
     "course",
     "unit",
@@ -421,7 +421,7 @@ Warnings:
 ```json
 {
   "examSource": "student question-index only",
-  "studentReadyPool": 896
+  "studentReadyPool": 1104
 }
 ```
 
@@ -487,7 +487,7 @@ Warnings:
 
 ```json
 {
-  "textFilesScanned": 2468,
+  "textFilesScanned": 2472,
   "secretPatternHits": 0
 }
 ```
@@ -514,11 +514,11 @@ Warnings:
   "archiveIndex": 1217,
   "archiveChunks": 1217,
   "auditRows": 1217,
-  "studentIndex": 896,
-  "studentChunks": 896,
+  "studentIndex": 1104,
+  "studentChunks": 1104,
   "summaryTotal": 1217,
-  "summaryReady": 896,
-  "summaryRestricted": 321,
+  "summaryReady": 1104,
+  "summaryRestricted": 113,
   "correctionRecords": 633
 }
 ```
@@ -583,7 +583,7 @@ Warnings:
 ```json
 {
   "algorithm": "SHA-256",
-  "filesChecked": 94
+  "filesChecked": 96
 }
 ```
 
@@ -600,7 +600,7 @@ Warnings:
 
 ### 35. Browser smoke testing
 
-**PASS**
+**FAIL**
 
 ```json
 {
@@ -719,6 +719,10 @@ Warnings:
   ]
 }
 ```
+
+Errors:
+- Browser smoke restricted count is stale.
+- Browser smoke student-ready count is stale.
 
 ### B. Local Chromium browser smoke tests
 
@@ -844,8 +848,8 @@ Warnings:
 
 ## KaTeX verification note
 
-The final structural pass rechecked approved delimiters, braces, and environments across all 1,217 canonical records. The detailed `KATEX_AUDIT_REPORT.md` records the actual KaTeX 0.16.27 parser run over 23,088 expressions with zero parser errors. External CDN availability is a deployment concern and is not treated as a mathematical-content failure.
+The final structural pass rechecked approved delimiters, braces, and environments across all 1,217 canonical records. The detailed `KATEX_AUDIT_REPORT.md` records the actual KaTeX 0.16.27 parser run over 23,487 expressions with zero parser errors. External CDN availability is a deployment concern and is not treated as a mathematical-content failure.
 
 ## Production-readiness judgment
 
-The repository passes for the strictly gated 896-question public student pool. The 321 remaining records are deliberately not certified for student interaction and remain blocking review items for future promotion. Static GitHub Pages does not provide an authenticated boundary for the canonical/admin files, so a genuinely private teacher deployment still requires an authenticated host.
+The release is not production-ready until the failures above are corrected.

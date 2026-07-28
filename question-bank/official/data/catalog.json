@@ -10,12 +10,12 @@
     "frq": 341,
     "withMedia": 882,
     "withHints": 1164,
-    "answerVerified": 974,
-    "needsReview": 321,
-    "studentEligible": 896,
-    "studentAccessible": 896,
-    "studentReady": 896,
-    "teacherArchiveOnly": 321,
+    "answerVerified": 1105,
+    "needsReview": 113,
+    "studentEligible": 1104,
+    "studentAccessible": 1104,
+    "studentReady": 1104,
+    "teacherArchiveOnly": 113,
     "fullyDigitized": 1217,
     "indexedOnly": 0
   },
@@ -49,8 +49,8 @@
     "10": 61
   },
   "readiness": {
-    "student-ready": 896,
-    "teacher-archive-only": 321
+    "student-ready": 1104,
+    "teacher-archive-only": 113
   },
   "officialStatus": {
     "legacy-ap": 704,
@@ -105,7 +105,7 @@
       "frq": 8,
       "ab": 7,
       "bc": 1,
-      "eligible": 7
+      "eligible": 8
     },
     "1975": {
       "total": 7,
@@ -161,7 +161,7 @@
       "frq": 6,
       "ab": 50,
       "bc": 46,
-      "eligible": 95
+      "eligible": 96
     },
     "1988": {
       "total": 96,
@@ -321,7 +321,7 @@
       "frq": 6,
       "ab": 6,
       "bc": 0,
-      "eligible": 0
+      "eligible": 6
     },
     "2002": {
       "total": 12,
@@ -329,7 +329,7 @@
       "frq": 12,
       "ab": 12,
       "bc": 0,
-      "eligible": 0
+      "eligible": 12
     },
     "2003": {
       "total": 12,
@@ -337,7 +337,7 @@
       "frq": 12,
       "ab": 12,
       "bc": 0,
-      "eligible": 0
+      "eligible": 12
     },
     "2004": {
       "total": 12,
@@ -345,7 +345,7 @@
       "frq": 12,
       "ab": 12,
       "bc": 0,
-      "eligible": 0
+      "eligible": 12
     },
     "2005": {
       "total": 6,
@@ -353,7 +353,7 @@
       "frq": 6,
       "ab": 6,
       "bc": 0,
-      "eligible": 0
+      "eligible": 6
     },
     "2006": {
       "total": 6,
@@ -361,7 +361,7 @@
       "frq": 6,
       "ab": 6,
       "bc": 0,
-      "eligible": 0
+      "eligible": 6
     },
     "2007": {
       "total": 12,
@@ -369,7 +369,7 @@
       "frq": 12,
       "ab": 12,
       "bc": 0,
-      "eligible": 1
+      "eligible": 12
     },
     "2008": {
       "total": 12,
@@ -377,7 +377,7 @@
       "frq": 12,
       "ab": 12,
       "bc": 0,
-      "eligible": 1
+      "eligible": 12
     },
     "2009": {
       "total": 12,
@@ -401,7 +401,7 @@
       "frq": 4,
       "ab": 18,
       "bc": 10,
-      "eligible": 0
+      "eligible": 28
     },
     "2012": {
       "total": 51,
@@ -409,7 +409,7 @@
       "frq": 6,
       "ab": 51,
       "bc": 0,
-      "eligible": 0
+      "eligible": 51
     },
     "2016": {
       "total": 51,
@@ -417,7 +417,7 @@
       "frq": 6,
       "ab": 0,
       "bc": 51,
-      "eligible": 0
+      "eligible": 51
     },
     "2015": {
       "total": 61,
@@ -433,7 +433,7 @@
       "id": "AP historical archive",
       "label": "AP historical archive",
       "count": 704,
-      "studentReadyCount": 703,
+      "studentReadyCount": 704,
       "officialStatus": "legacy-ap",
       "accessLevel": "public"
     },
@@ -441,7 +441,7 @@
       "id": "historical-frq-1969-2010",
       "label": "historical-frq-1969-2010",
       "count": 218,
-      "studentReadyCount": 141,
+      "studentReadyCount": 218,
       "officialStatus": "official-released",
       "accessLevel": "public"
     },
@@ -473,7 +473,7 @@
       "id": "official-ab-practice-2012",
       "label": "official-ab-practice-2012",
       "count": 51,
-      "studentReadyCount": 0,
+      "studentReadyCount": 51,
       "officialStatus": "official-released",
       "accessLevel": "public"
     },
@@ -481,7 +481,7 @@
       "id": "official-bc-practice-2016",
       "label": "official-bc-practice-2016",
       "count": 51,
-      "studentReadyCount": 0,
+      "studentReadyCount": 51,
       "officialStatus": "official-released",
       "accessLevel": "public"
     },
@@ -489,7 +489,7 @@
       "id": "framework-sample-2014",
       "label": "framework-sample-2014",
       "count": 28,
-      "studentReadyCount": 0,
+      "studentReadyCount": 28,
       "officialStatus": "official-released",
       "accessLevel": "public"
     },
@@ -504,8 +504,8 @@
   ],
   "restrictedSummary": {
     "canonicalQuestions": 1217,
-    "studentReady": 896,
-    "teacherArchiveOnly": 321,
+    "studentReady": 1104,
+    "teacherArchiveOnly": 113,
     "message": "Only independently audited, exactly mapped, public-release-approved records are used by the GitHub Pages student runtime."
   },
   "deployment": {

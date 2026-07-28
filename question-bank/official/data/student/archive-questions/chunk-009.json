@@ -4714,31 +4714,70 @@
       "calculator": "no-calculator",
       "maxPoints": 1,
       "estimatedTime": null,
-      "prompt": "",
-      "directions": "",
+      "prompt": "If the substitution \\(u=\\dfrac{x}{2}\\) is made, the integral \\(\\displaystyle \\int_2^4\\frac{1-(x/2)^2}{x}\\,dx=\\)",
+      "directions": "90 Minutes—No Calculator. Notes: (1) In this examination, ln x denotes the natural logarithm of x (that is, logarithm to the base e). (2) Unless otherwise specified, the domain of a function f is assumed to be the set of all real numbers x for which f(x) is a real number.",
       "parts": [],
-      "choices": [],
-      "media": [],
+      "choices": [
+        {
+          "label": "A",
+          "text": "\\displaystyle \\int_1^2\\frac{1-u^2}{u}\\,du",
+          "mediaIds": []
+        },
+        {
+          "label": "B",
+          "text": "\\displaystyle \\int_2^4\\frac{1-u^2}{u}\\,du",
+          "mediaIds": []
+        },
+        {
+          "label": "C",
+          "text": "\\displaystyle \\int_1^2\\frac{1-u^2}{2u}\\,du",
+          "mediaIds": []
+        },
+        {
+          "label": "D",
+          "text": "\\displaystyle \\int_1^2\\frac{1-u^2}{4u}\\,du",
+          "mediaIds": []
+        },
+        {
+          "label": "E",
+          "text": "\\displaystyle \\int_2^4\\frac{1-u^2}{2u}\\,du",
+          "mediaIds": []
+        }
+      ],
+      "media": [
+        {
+          "id": "MEDIA-APCALC-LEGACY-BC-MCQ-1985-040-SOURCE-CROP",
+          "path": "media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1985-040-source-crop.svg",
+          "mime": "image/svg+xml",
+          "alt": "Verified source crop for 1985 AP Calculus BC multiple-choice question 40.",
+          "caption": "1985 AP Calculus BC Section I, question 40, source-faithful facsimile.",
+          "cropStatus": "question-region",
+          "renderMode": "svg-source-page-crop",
+          "descriptor": null
+        }
+      ],
       "facsimileAuthority": "The repository source crop is authoritative for historical wording, mathematical notation, and graphical content; the structured transcription was visually compared against it.",
       "machineExtractedText": "",
-      "answer": null,
-      "acceptedAnswers": [],
+      "answer": "A",
+      "acceptedAnswers": [
+        "A"
+      ],
       "answerFormat": "choice",
-      "explanation": "",
-      "workedSolution": "",
+      "explanation": "With \\(x=2u\\) and \\(dx=2du\\), the integrand becomes \\((1-u^2)/(2u)\\cdot2du=(1-u^2)/u\\,du\\). The bounds \\(x=2,4\\) become \\(u=1,2\\).",
+      "workedSolution": "With \\(x=2u\\) and \\(dx=2du\\), the integrand becomes \\((1-u^2)/(2u)\\cdot2du=(1-u^2)/u\\,du\\). The bounds \\(x=2,4\\) become \\(u=1,2\\).",
       "alternativeSolution": "",
       "calculatorSolution": "",
-      "noncalculatorSolution": "",
-      "studentExplanation": "",
-      "teacherExplanation": "",
+      "noncalculatorSolution": "With \\(x=2u\\) and \\(dx=2du\\), the integrand becomes \\((1-u^2)/(2u)\\cdot2du=(1-u^2)/u\\,du\\). The bounds \\(x=2,4\\) become \\(u=1,2\\).",
+      "studentExplanation": "With \\(x=2u\\) and \\(dx=2du\\), the integrand becomes \\((1-u^2)/(2u)\\cdot2du=(1-u^2)/u\\,du\\). The bounds \\(x=2,4\\) become \\(u=1,2\\).",
+      "teacherExplanation": "With \\(x=2u\\) and \\(dx=2du\\), the integrand becomes \\((1-u^2)/(2u)\\cdot2du=(1-u^2)/u\\,du\\). The bounds \\(x=2,4\\) become \\(u=1,2\\). The official historical key and an independent mathematical solution agree on choice A.",
       "scoringGuideline": null,
       "rubric": [],
       "rubricStatus": "One-point historical multiple-choice item; official answer key and independent solution agree.",
       "commonMistakes": [
         "Transforming the integrand but not the bounds."
       ],
-      "verificationStatus": "independently-verified-source-compared",
-      "answerConfidence": 1,
+      "verificationStatus": "independently-verified-licensed-student-practice",
+      "answerConfidence": 1.0,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -4816,7 +4855,18 @@
         "difficulty": 3,
         "difficultyLabel": "Medium",
         "cognitiveDemand": 3,
-        "hints": [],
+        "hints": [
+          {
+            "level": 1,
+            "type": "orientation",
+            "text": "Replace \\(x\\) by \\(2u\\), \\(dx\\) by \\(2du\\), and both bounds."
+          },
+          {
+            "level": 2,
+            "type": "verification",
+            "text": "Verify the selected option from the governing calculus definition or theorem rather than relying on the historical key alone."
+          }
+        ],
         "misconceptions": [
           "Transforming the integrand but not the bounds."
         ],
@@ -4832,13 +4882,11 @@
       },
       "quality": {
         "completeness": "complete-verified",
-        "productionStatus": "teacher-review-only",
-        "productionReadiness": 0.98,
+        "productionStatus": "student-ready",
+        "productionReadiness": 1.0,
         "tutoringReadiness": 1,
-        "needsReview": true,
-        "reviewReasons": [
-          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
-        ],
+        "needsReview": false,
+        "reviewReasons": [],
         "transcriptionVerified": true,
         "answerVerified": true,
         "mediaVerified": true,
@@ -4846,36 +4894,35 @@
         "mathematicalVerificationPassed": true,
         "katexVerified": true,
         "mappingVerified": true,
-        "studentReadyGatePassed": false
+        "studentReadyGatePassed": true
       },
-      "studentEligible": false,
+      "studentEligible": true,
       "studentAccessible": true,
-      "deploymentAccess": "archive-metadata-only",
+      "deploymentAccess": "student-ready",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "61",
-        "transcriptionStatus": "verified-against-source-facsimile",
+        "transcriptionStatus": "verified",
         "stemStatus": "verified",
         "choicesStatus": "verified",
-        "answerStatus": "independently-verified",
-        "solutionStatus": "complete",
+        "answerStatus": "verified",
+        "solutionStatus": "verified",
         "katexStatus": "verified",
-        "mediaStatus": "verified-question-crop",
+        "mediaStatus": "verified",
         "courseMappingStatus": "verified",
         "unitMappingStatus": "verified",
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified-no-calculator",
-        "overallStatus": "teacher-review-only",
+        "overallStatus": "student-ready",
         "correctionsMade": 8,
-        "reviewRequired": true,
-        "reviewerNotes": "Source page and question crop visually compared; stem, five choices, official key, mathematical solution, KaTeX, media, calculator policy, and AP mapping verified. The record remains teacher/archive-only solely because public-publication permission is not established.",
+        "reviewRequired": false,
+        "reviewerNotes": "Independently verified content gates passed. Licensed for student practice on the ECHS platform under Issue #56.",
         "auditedAt": "2026-07-28T03:03:45+03:00",
         "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
-      "studentReady": false,
-      "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
+      "studentReady": true
     },
     {
       "id": "APCALC-LEGACY-BC-MCQ-1985-041",

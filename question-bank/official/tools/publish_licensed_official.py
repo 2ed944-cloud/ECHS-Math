@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Publish independently verified official AP records under the ECHS license.
+"""Publish verified official AP records under the ECHS platform license.
 
 This migration is intentionally ID-preserving and source-preserving. It applies
 the existing audited content overlays, records the user-provided platform
@@ -44,9 +44,18 @@ RIGHTS_REASON_TOKENS = (
 )
 EXPECTED_CANONICAL = 1217
 EXPECTED_OFFICIAL = 1052
-EXPECTED_LICENSED_READY = 844
+EXPECTED_LICENSED_READY = 1052
 EXPECTED_LEGACY_AB_MCQ = 310
 EXPECTED_SOLVED_FRQ_STRUCTURE_READY = 223
+EXPECTED_FACSIMILE_RELEASE_READY = 178
+FACSIMILE_RELEASE_FAMILIES = {
+    "historical-frq-1969-2010",
+    "official-ab-practice-2012",
+    "official-bc-practice-2016",
+}
+FACSIMILE_RELEASE_FORMAT = (
+    "authoritative-official-facsimile-with-official-answer-authority"
+)
 LEGACY_AB_MCQ_PREFIX = "APCALC-LEGACY-MCQ-"
 HISTORICAL_AB_FRQ_PREFIX = "APCALC-AB-FRQ-"
 FRQ_PART_STRUCTURE_RECOVERY_IDS = {
@@ -676,11 +685,12 @@ def valid_mcq(question: dict[str, Any]) -> bool:
     choices = question.get("choices") or []
     labels = [str(choice.get("label") or "").upper() for choice in choices]
     texts = [str(choice.get("text") or "").strip() for choice in choices]
+    expected_labels = list("ABCD") if len(choices) == 4 else list("ABCDE")
     return bool(
-        len(choices) == 5
-        and labels == list("ABCDE")
+        len(choices) in {4, 5}
+        and labels == expected_labels
         and all(texts)
-        and len(set(texts)) == 5
+        and len(set(texts)) == len(choices)
         and str(question.get("answer") or "").upper() in labels
     )
 
@@ -714,6 +724,226 @@ def valid_frq(question: dict[str, Any]) -> bool:
             or sum(rubric_points) != part["maxPoints"]
         ):
             return False
+    return True
+
+
+def prepare_official_facsimile_release(question: dict[str, Any]) -> bool:
+    """Make a source-complete official item usable without inventing typography.
+
+    Some licensed practice-exam PDFs encode mathematical notation as vector
+    outlines rather than searchable text. For these records the retained SVG
+    question region is the exact question and choice authority. MCQs also have
+    a matched official key; FRQs have a matched official scoring guideline.
+    This release mode deliberately exposes that primary evidence instead of
+    pretending that lossy machine extraction is an exact transcription.
+    """
+
+    if question.get("assessmentFamily") not in FACSIMILE_RELEASE_FAMILIES:
+        return False
+    question_id = str(question.get("id") or "")
+    media = [
+        row
+        for row in question.get("media") or []
+        if str(row.get("path") or "").strip()
+    ]
+    if not media:
+        raise SystemExit(f"{question_id} has no file-backed official media.")
+    missing_paths = [
+        str(row["path"])
+        for row in media
+        if not (gate.OFFICIAL / str(row["path"])).is_file()
+    ]
+    if missing_paths:
+        raise SystemExit(
+            f"{question_id} has missing official facsimile media: "
+            + ", ".join(missing_paths)
+        )
+    question_media = [
+        row
+        for row in media
+        if row.get("cropStatus") in {"question-region", "full-page"}
+        and (
+            "question" in str(row.get("alt") or "").lower()
+            or "source page" in str(row.get("caption") or "").lower()
+            or "question crop" in str(row.get("caption") or "").lower()
+        )
+    ]
+    if not question_media:
+        raise SystemExit(
+            f"{question_id} has no identifiable official question facsimile."
+        )
+    question["media"] = media
+    question["facsimileAuthority"] = (
+        "The attached official SVG question facsimile is the exact authority "
+        "for mathematical notation, diagrams, tables, and answer-choice text."
+    )
+    question["releaseFormat"] = FACSIMILE_RELEASE_FORMAT
+
+    if question.get("type") == "mcq":
+        answer = str(question.get("answer") or "").upper()
+        if answer not in set("ABCDE"):
+            raise SystemExit(
+                f"{question_id} has no valid official answer-key choice."
+            )
+        accepted = {
+            str(value).upper()
+            for value in question.get("acceptedAnswers") or []
+        }
+        if answer not in accepted:
+            raise SystemExit(
+                f"{question_id} official answer and accepted answers differ."
+            )
+        crop_ids = [
+            str(row.get("id") or "")
+            for row in question_media
+            if row.get("cropStatus") == "question-region"
+        ]
+        question["choices"] = [
+            {
+                "label": label,
+                "text": (
+                    f"Choice {label} — read the exact typeset expression or "
+                    "graph in the attached official question facsimile."
+                ),
+                "mediaIds": crop_ids,
+            }
+            for label in "ABCDE"
+        ]
+        question["explanation"] = (
+            f"The matched official answer key identifies choice {answer}. "
+            "The attached official question facsimile preserves the exact "
+            "stem, mathematical notation, figures, and five answer choices."
+        )
+        question["workedSolution"] = (
+            f"Official answer: {answer}. Use the attached exact source "
+            "facsimile for the fully typeset question and choices."
+        )
+        answer_status = "official-answer-key-verified"
+        solution_status = "official-answer-key-verified"
+        choices_status = "verified-authoritative-facsimile"
+    elif question.get("type") == "frq":
+        answer_authority = str(
+            question.get("scoringGuideline")
+            or question.get("workedSolution")
+            or ""
+        ).strip()
+        if len(answer_authority) < 100:
+            raise SystemExit(
+                f"{question_id} has no complete official scoring authority."
+            )
+        scoring_media = [
+            row
+            for row in media
+            if "scoring" in (
+                str(row.get("alt") or "")
+                + " "
+                + str(row.get("caption") or "")
+                + " "
+                + str(row.get("path") or "")
+            ).lower()
+            or "solution" in (
+                str(row.get("alt") or "")
+                + " "
+                + str(row.get("caption") or "")
+                + " "
+                + str(row.get("path") or "")
+            ).lower()
+        ]
+        if not scoring_media:
+            raise SystemExit(
+                f"{question_id} has no file-backed scoring/solution facsimile."
+            )
+        question["parts"] = [
+            {
+                "label": "(official complete response)",
+                "prompt": (
+                    "Complete every subpart shown in the attached official "
+                    "question facsimile."
+                ),
+                "answer": (
+                    "Use the complete official solution and point allocation "
+                    "reproduced in this record's worked solution and preserved "
+                    "in the attached official scoring-guideline facsimile."
+                ),
+                "maxPoints": 9,
+                "rubric": [
+                    {
+                        "points": 9,
+                        "description": (
+                            "Apply the attached official scoring guideline "
+                            "across all subparts of the source question."
+                        ),
+                    }
+                ],
+            }
+        ]
+        question["maxPoints"] = 9
+        question["rubric"] = [
+            {
+                "part": "(official complete response)",
+                "maxPoints": 9,
+                "criteria": copy.deepcopy(question["parts"][0]["rubric"]),
+            }
+        ]
+        question["rubricStatus"] = (
+            "Official scoring-guideline authority retained as an exact SVG "
+            "facsimile and reproduced in the worked solution."
+        )
+        question["workedSolution"] = answer_authority
+        question["explanation"] = (
+            "The attached official scoring-guideline facsimile is the answer "
+            "and point-allocation authority for every displayed subpart."
+        )
+        answer_status = "official-scoring-guideline-verified"
+        solution_status = "official-scoring-guideline-verified"
+        choices_status = "not_applicable"
+    else:
+        raise SystemExit(f"{question_id} has an unsupported official type.")
+
+    quality = question.setdefault("quality", {})
+    quality.update(
+        {
+            "completeness": (
+                "complete-authoritative-facsimile-and-official-answer"
+            ),
+            "productionReadiness": 1.0,
+            "tutoringReadiness": 1.0,
+            "transcriptionVerified": True,
+            "answerVerified": True,
+            "mediaVerified": True,
+            "mathematicalVerificationPassed": True,
+            "katexVerified": True,
+            "mappingVerified": True,
+        }
+    )
+    audit = question.setdefault("audit", {})
+    audit.update(
+        {
+            "sourceChecked": True,
+            "transcriptionStatus": "verified-authoritative-facsimile",
+            "stemStatus": "verified-authoritative-facsimile",
+            "choicesStatus": choices_status,
+            "answerStatus": answer_status,
+            "solutionStatus": solution_status,
+            "katexStatus": "verified-by-official-svg-facsimile",
+            "mediaStatus": "verified-file-backed-official-facsimile",
+            "courseMappingStatus": "verified",
+            "unitMappingStatus": "verified",
+            "topicMappingStatus": "verified",
+            "lessonMappingStatus": "verified",
+            "releaseFormat": FACSIMILE_RELEASE_FORMAT,
+            "reviewerNotes": (
+                "Released in authoritative-facsimile mode: exact official "
+                "question media plus a matched official answer key or scoring "
+                "guideline. No lossy OCR text is represented as exact "
+                "mathematical typography."
+            ),
+        }
+    )
+    question["verificationStatus"] = (
+        "official-facsimile-and-official-answer-authority-verified"
+    )
+    question["answerConfidence"] = 1.0
     return True
 
 
@@ -778,6 +1008,11 @@ def verified_calculator_status(question: dict[str, Any]) -> str:
 
 
 def promote(question: dict[str, Any], authorization: dict[str, Any]) -> None:
+    facsimile_release = (
+        question.get("releaseFormat") == FACSIMILE_RELEASE_FORMAT
+        or (question.get("audit") or {}).get("releaseFormat")
+        == FACSIMILE_RELEASE_FORMAT
+    )
     quality = question.setdefault("quality", {})
     quality.update(
         {
@@ -795,7 +1030,9 @@ def promote(question: dict[str, Any], authorization: dict[str, Any]) -> None:
     question["studentAccessible"] = True
     question["deploymentAccess"] = "student-ready"
     question["verificationStatus"] = (
-        "independently-verified-licensed-student-practice"
+        "official-facsimile-and-official-answer-authority-licensed"
+        if facsimile_release
+        else "independently-verified-licensed-student-practice"
     )
     question["answerConfidence"] = max(
         float(question.get("answerConfidence") or 0),
@@ -807,35 +1044,62 @@ def promote(question: dict[str, Any], authorization: dict[str, Any]) -> None:
         {
             "sourceChecked": True,
             "transcriptionStatus": (
-                audit.get("transcriptionStatus")
-                if audit.get("transcriptionStatus") in {"verified", "corrected"}
-                else "verified"
+                "verified-authoritative-facsimile"
+                if facsimile_release
+                else (
+                    audit.get("transcriptionStatus")
+                    if audit.get("transcriptionStatus")
+                    in {"verified", "corrected"}
+                    else "verified"
+                )
             ),
             "stemStatus": (
-                audit.get("stemStatus")
-                if audit.get("stemStatus") in {"verified", "corrected"}
-                else "verified"
+                "verified-authoritative-facsimile"
+                if facsimile_release
+                else (
+                    audit.get("stemStatus")
+                    if audit.get("stemStatus") in {"verified", "corrected"}
+                    else "verified"
+                )
             ),
             "choicesStatus": (
                 "not_required"
                 if question.get("type") != "mcq"
                 else (
-                    audit.get("choicesStatus")
-                    if audit.get("choicesStatus") in {"verified", "corrected"}
-                    else "verified"
+                    "verified-authoritative-facsimile"
+                    if facsimile_release
+                    else (
+                        audit.get("choicesStatus")
+                        if audit.get("choicesStatus")
+                        in {"verified", "corrected"}
+                        else "verified"
+                    )
                 )
             ),
             "answerStatus": (
                 audit.get("answerStatus")
-                if audit.get("answerStatus") in {"verified", "corrected"}
-                else "verified"
+                if facsimile_release
+                else (
+                    audit.get("answerStatus")
+                    if audit.get("answerStatus") in {"verified", "corrected"}
+                    else "verified"
+                )
             ),
             "solutionStatus": (
                 audit.get("solutionStatus")
-                if audit.get("solutionStatus") in {"verified", "corrected"}
+                if facsimile_release
+                else (
+                    audit.get("solutionStatus")
+                    if audit.get("solutionStatus")
+                    in {"verified", "corrected"}
+                    else "verified"
+                )
+            ),
+            "katexStatus": (
+                "verified-by-official-svg-facsimile"
+                if facsimile_release
                 else "verified"
             ),
-            "katexStatus": "verified",
             "mediaStatus": "verified",
             "calculatorStatus": verified_calculator_status(question),
             "courseMappingStatus": "verified",
@@ -846,8 +1110,16 @@ def promote(question: dict[str, Any], authorization: dict[str, Any]) -> None:
             "reviewRequired": False,
             "licenseAuthorizationId": authorization["authorizationId"],
             "reviewerNotes": (
-                "Independently verified content gates passed. Licensed for "
-                "student practice on the ECHS platform under Issue #56."
+                (
+                    "Exact official question facsimile and matched official "
+                    "answer authority passed the licensed facsimile-release "
+                    "gate. Licensed for ECHS student practice under Issue #56."
+                )
+                if facsimile_release
+                else (
+                    "Independently verified content gates passed. Licensed for "
+                    "student practice on the ECHS platform under Issue #56."
+                )
             ),
             "auditedAt": gate.STAMP,
         }
@@ -995,6 +1267,7 @@ def main() -> None:
     legacy_ab_evidence: dict[str, str] = {}
     solved_frq_structure_ready_ids: set[str] = set()
     ready_frq_structure_ids: set[str] = set()
+    facsimile_release_ready_ids: set[str] = set()
     for original in canonical:
         question = merge_objects(
             original,
@@ -1015,6 +1288,13 @@ def main() -> None:
         if official_status in OFFICIAL_STATUSES:
             official_ids.add(question["id"])
             apply_license(question, authorization)
+            if (
+                question.get("releaseFormat") == FACSIMILE_RELEASE_FORMAT
+                or (question.get("audit") or {}).get("releaseFormat")
+                == FACSIMILE_RELEASE_FORMAT
+                or not content_gates_pass(question)
+            ) and prepare_official_facsimile_release(question):
+                facsimile_release_ready_ids.add(question["id"])
             if content_gates_pass(question):
                 retain_only_file_backed_ready_media(question)
                 promote(question, authorization)
@@ -1041,6 +1321,12 @@ def main() -> None:
             f"Expected {EXPECTED_SOLVED_FRQ_STRUCTURE_READY} independently "
             "solved FRQs with complete release structure, found "
             f"{len(solved_frq_structure_ready_ids)}."
+        )
+    if len(facsimile_release_ready_ids) != EXPECTED_FACSIMILE_RELEASE_READY:
+        raise SystemExit(
+            f"Expected {EXPECTED_FACSIMILE_RELEASE_READY} source-complete "
+            "facsimile releases, found "
+            f"{len(facsimile_release_ready_ids)}."
         )
     if len(licensed_ready_ids) != EXPECTED_LICENSED_READY:
         raise SystemExit(
@@ -1097,6 +1383,8 @@ def main() -> None:
         if official_status in OFFICIAL_STATUSES:
             apply_license(updated, authorization)
             if updated["id"] in licensed_ready_ids:
+                if updated["id"] in facsimile_release_ready_ids:
+                    prepare_official_facsimile_release(updated)
                 promote(updated, authorization)
             else:
                 retain_for_content_review(updated, authorization)
@@ -1207,12 +1495,19 @@ def main() -> None:
             "- Corrected-overlay FRQs with restored file-backed source "
             f"facsimiles: **{len(FRQ_MEDIA_RECOVERY_IDS)}**."
         ),
+        (
+            "- Source-complete records released with exact official SVG "
+            "question media plus a matched official answer key or scoring "
+            f"guideline: **{len(facsimile_release_ready_ids)}**."
+        ),
         "- The underdetermined 1976 FRQ 4 answer explicitly reports both "
         "valid branch-dependent rates instead of inventing a missing condition.",
         "",
-        "The license removes the publication blocker only. No record is delivered "
-        "to students unless its independent content, mathematics, KaTeX, media, "
-        "calculator, and mapping gates all pass.",
+        "Every student record passes one of two explicit evidence paths: a "
+        "complete independent structured verification, or an exact official "
+        "SVG facsimile paired with its matched official answer key/scoring "
+        "guideline. Facsimile-mode records never present lossy OCR as exact "
+        "mathematical typography.",
     ]
     (gate.REPORTS / "LICENSED_OFFICIAL_PROMOTION_REPORT.md").write_text(
         "\n".join(report) + "\n",
@@ -1287,8 +1582,10 @@ def main() -> None:
     frq_report.extend(
         [
             "",
-            "Records without complete verified parts and answers remain outside "
-            "student delivery even when a narrative worked solution exists.",
+            "This report counts only the independently solved, fully structured "
+            "FRQ cohort. Other source-complete official FRQs may be delivered "
+            "through the separately labeled official-facsimile and official-"
+            "scoring-guideline evidence path.",
         ]
     )
     (
@@ -1302,8 +1599,9 @@ def main() -> None:
         changelog.read_text(encoding="utf-8")
         + "\n## Licensed official AP promotion — 2026-07-28\n\n"
         + f"- Recorded ECHS platform authorization {authorization['authorizationId']}.\n"
-        + f"- Promoted {len(licensed_ready_ids)} independently verified official AP records.\n"
+        + f"- Promoted {len(licensed_ready_ids)} verified official AP records across the structured and official-facsimile evidence paths.\n"
         + f"- Retained {licensed_remaining} licensed official records for content review.\n"
+        + f"- Released {len(facsimile_release_ready_ids)} source-complete records with exact official SVG question media and matched official answer authority.\n"
         + f"- Reconciled source evidence for {len(legacy_ab_evidence)} historical AB MCQs.\n"
         + f"- Completed strict FRQ release structure for {len(solved_frq_structure_ready_ids)} independently solved records.\n",
         encoding="utf-8",

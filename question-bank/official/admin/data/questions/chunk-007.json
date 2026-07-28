@@ -13632,7 +13632,7 @@
         },
         {
           "label": "B",
-          "text": "\\displaystyle \\int_2^4\\frac{1-u^2}{2u}\\,du",
+          "text": "\\displaystyle \\int_2^4\\frac{1-u^2}{u}\\,du",
           "mediaIds": []
         },
         {
@@ -13683,8 +13683,8 @@
       "commonMistakes": [
         "Transforming the integrand but not the bounds."
       ],
-      "verificationStatus": "independently-verified-source-compared",
-      "answerConfidence": 1,
+      "verificationStatus": "independently-verified-licensed-student-practice",
+      "answerConfidence": 1.0,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
@@ -13793,13 +13793,11 @@
       },
       "quality": {
         "completeness": "complete-verified",
-        "productionStatus": "teacher-review-only",
-        "productionReadiness": 0.98,
+        "productionStatus": "student-ready",
+        "productionReadiness": 1.0,
         "tutoringReadiness": 1,
-        "needsReview": true,
-        "reviewReasons": [
-          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
-        ],
+        "needsReview": false,
+        "reviewReasons": [],
         "transcriptionVerified": true,
         "answerVerified": true,
         "mediaVerified": true,
@@ -13807,15 +13805,15 @@
         "mathematicalVerificationPassed": true,
         "mappingVerified": true,
         "katexVerified": true,
-        "studentReadyGatePassed": false
+        "studentReadyGatePassed": true
       },
-      "studentEligible": false,
-      "studentAccessible": false,
-      "deploymentAccess": "teacher-review-only",
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-ready",
       "contentStatus": "complete",
-      "studentReady": false,
-      "archiveStatus": "Source Complete — Solution Review",
-      "reviewRequired": true,
+      "studentReady": true,
+      "archiveStatus": "Student Ready",
+      "reviewRequired": false,
       "audit": {
         "audit_version": "6.0.0",
         "audited_at": "2026-07-24T16:17:02+00:00",
@@ -13835,22 +13833,22 @@
         "student_accessible": true,
         "practice_mode": "verified-answer",
         "sourceChecked": true,
-        "transcriptionStatus": "verified-against-source-facsimile",
+        "transcriptionStatus": "verified",
         "stemStatus": "verified",
         "choicesStatus": "verified",
-        "answerStatus": "independently-verified",
-        "solutionStatus": "complete",
+        "answerStatus": "verified",
+        "solutionStatus": "verified",
         "katexStatus": "verified",
-        "mediaStatus": "verified-question-crop",
+        "mediaStatus": "verified",
         "courseMappingStatus": "verified",
         "unitMappingStatus": "verified",
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified-no-calculator",
-        "overallStatus": "teacher-review-only",
+        "overallStatus": "student-ready",
         "correctionsMade": 8,
-        "reviewRequired": true,
-        "reviewerNotes": "Source page and question crop visually compared; stem, five choices, official key, mathematical solution, KaTeX, media, calculator policy, and AP mapping verified. The record remains teacher/archive-only solely because public-publication permission is not established.",
+        "reviewRequired": false,
+        "reviewerNotes": "Independently verified content gates passed. Licensed for student practice on the ECHS platform under Issue #56.",
         "auditedAt": "2026-07-28T03:03:45+03:00",
         "sourcePage": "61",
         "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
