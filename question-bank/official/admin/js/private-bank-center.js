@@ -62,7 +62,10 @@
       const types=bank.question_types||bank.manifest?.question_types||{};
       const state=bank.deployment_state||"pending-private-upload";
       const questions=Number(bank.question_count??bank.questions??bank.manifest?.questions??0),pools=Number(bank.pool_count??bank.pools??bank.manifest?.pools??0),media=Number(bank.media_count??bank.media_files??bank.manifest?.media_files??0);
-      const targetTags=targets(bank).map(course=>`<span>${escapeHTML(courseLabels[course]||course)}</span>`).join("")||'<span>Manifest target pending</span>';
+      const aliases=bank.display_aliases||{};
+      const aliasValues=["student","teacher","ap-calculus","ap-precalculus","ib-math-ai","algebra-2","grade-9"].map(key=>aliases[key]).filter(Boolean);
+      const tagValues=[...new Set([...aliasValues,...targets(bank).map(course=>courseLabels[course]||course)])];
+      const targetTags=tagValues.map(value=>`<span>${escapeHTML(value)}</span>`).join("")||'<span>Manifest target pending</span>';
       const openResponse=Number(types.essay||0)+Number(types.fill_blank||0);
       return `<article class="bankCard"><div class="bankCardTop"><div><small>${escapeHTML(bank.bank_code||"")}</small><h2>${escapeHTML(visibleName(bank))}</h2><div class="bankAliases">${targetTags}</div></div><span class="bankState">${escapeHTML(String(state).replaceAll("-"," "))}</span></div><div class="bankMetrics"><div><strong>${number(questions)}</strong><small>questions</small></div><div><strong>${number(pools)}</strong><small>pools</small></div><div><strong>${number(media)}</strong><small>media</small></div><div><strong>${number(openResponse)}</strong><small>open response</small></div></div><div class="bankFooter"><span>SHA-256 ${escapeHTML(String(bank.package_sha256||"").slice(0,12))}${bank.package_sha256?"…":""}</span><span class="bankTrust">Private · verified mapping</span></div></article>`;
     }).join(""):'<article class="bankCard"><h2>No private banks registered yet</h2><p>Open Upload Manager and upload a validated private-bank ZIP.</p></article>';
