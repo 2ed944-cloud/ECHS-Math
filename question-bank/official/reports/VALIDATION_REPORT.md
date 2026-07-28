@@ -1,6 +1,6 @@
 # Validation Report
 
-Generated: 2026-07-24T21:34:27+00:00
+Generated: 2026-07-28T01:24:11+00:00
 
 **Overall result: PASS WITH RESTRICTIONS**
 
@@ -67,7 +67,7 @@ This report validates the strict public release boundary. Student practice, exam
 
 ```json
 {
-  "jsonFilesParsed": 203,
+  "jsonFilesParsed": 302,
   "canonicalQuestionObjects": 1217
 }
 ```
@@ -183,7 +183,7 @@ This report validates the strict public release boundary. Student practice, exam
 {
   "canonicalMediaReferences": 1583,
   "uniqueCanonicalMediaPaths": 1095,
-  "actualMediaFiles": 1867
+  "actualMediaFiles": 1868
 }
 ```
 
@@ -286,8 +286,8 @@ Warnings:
 
 ```json
 {
-  "htmlFiles": 11,
-  "localReferencesChecked": 108,
+  "htmlFiles": 14,
+  "localReferencesChecked": 131,
   "javascriptFilesSyntaxChecked": 8
 }
 ```
@@ -473,7 +473,7 @@ Warnings:
 
 ```json
 {
-  "textFilesScanned": 2127,
+  "textFilesScanned": 2444,
   "secretPatternHits": 0
 }
 ```
@@ -484,7 +484,7 @@ Warnings:
 
 ```json
 {
-  "caseSensitiveReferencesChecked": 108,
+  "caseSensitiveReferencesChecked": 131,
   "errors": 0
 }
 ```
@@ -557,7 +557,7 @@ Warnings:
 ```json
 {
   "webManifest": "manifest.json",
-  "name": "ECHS Mathematics Lesson Portal",
+  "name": "ECHS Mathematics Learning Platform",
   "icons": 2
 }
 ```

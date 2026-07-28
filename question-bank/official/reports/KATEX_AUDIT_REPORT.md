@@ -1,6 +1,6 @@
 # KaTeX Audit Report
 
-Generated: 2026-07-24T21:33:57.099Z
+Generated: 2026-07-28T01:23:08.825Z
 
 **Overall result: PASS**
 

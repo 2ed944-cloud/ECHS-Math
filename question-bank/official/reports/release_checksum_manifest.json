@@ -329,8 +329,8 @@
     },
     {
       "path": "js/teacher.js",
-      "bytes": 4169,
-      "sha256": "5feac4f9384ddff9e13e8aa07718cbb20e0916a99cbacd9ba7bc46538fec4d9a"
+      "bytes": 9360,
+      "sha256": "92d3a9e7bc2655f27139e381bebe69372d860b25afb3d2311365f060065e0662"
     },
     {
       "path": "practice.html",
@@ -350,7 +350,7 @@
     {
       "path": "reports/KATEX_AUDIT_REPORT.md",
       "bytes": 544,
-      "sha256": "984d4c881213d713af90d48a2c4dc3b1f228882f491537f7f00b27e26c2f8d42"
+      "sha256": "db70c081a461d776b0423122a543b34d70743e1094a7d97813fe21427035e36f"
     },
     {
       "path": "reports/LESSON_MAPPING_AUDIT.md",
@@ -400,12 +400,12 @@
     {
       "path": "reports/katex_audit_results.json",
       "bytes": 239519,
-      "sha256": "01f7656d16a617817c149e81fc469804cf1d900d3b1e82927337c9c33f4e7300"
+      "sha256": "aab9386ae3a5d6421207d927be1c7f2dc3174885b34165c7b1dfc5de462414f6"
     },
     {
       "path": "reports/katex_error_log.json",
       "bytes": 114,
-      "sha256": "22328a922dbcd0c4a4ec04ef058314bd5a55c8ed210749d0883184c4044b3270"
+      "sha256": "e2d19762cd1a6527113d991454805195e3fa7af6007b98d503a4cc5ccbbf17dd"
     },
     {
       "path": "tools/apply_strict_audit_gate.py",
@@ -419,8 +419,8 @@
     },
     {
       "path": "tools/package.json",
-      "bytes": 397,
-      "sha256": "eeddf8d295a50be61321f0a4d612e311470f9f7248ad8ddebb6bda3636032da1"
+      "bytes": 458,
+      "sha256": "d2645c8717def8ae1f5577bc103f464a2eacf473af26947ee3ca9f88ea8736e3"
     },
     {
       "path": "tools/validate_katex.mjs",
