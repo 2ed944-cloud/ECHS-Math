@@ -11,6 +11,15 @@ const officialDir = path.dirname(scriptDir);
 const repositoryDir = path.resolve(officialDir, "..", "..");
 const reportsDir = path.join(officialDir, "reports");
 const studentDir = path.join(officialDir, "data", "student");
+const authorizationPath = path.join(
+  officialDir,
+  "data",
+  "rights",
+  "echs-ap-official-student-practice-2026-07-28.json",
+);
+const generatedAt = fs.existsSync(authorizationPath)
+  ? readJson(authorizationPath).recordedAt
+  : new Date().toISOString();
 const port = Number(process.env.ECHS_SMOKE_PORT || 8765);
 const smokeGroup = process.env.ECHS_SMOKE_GROUP || "all";
 const baseUrl = `http://127.0.0.1:${port}/question-bank/official`;
@@ -349,7 +358,7 @@ const mergedResults = [...caseGroups.keys()]
 const mergedPageErrors = [...(prior.pageErrors ?? []), ...pageErrors];
 const failed = mergedResults.filter((row) => row.status === "FAIL").length;
 const output = {
-  generatedAt: new Date().toISOString(),
+  generatedAt,
   canonicalCount: expected.canonical,
   studentReadyCount: expected.ready,
   restrictedCount: expected.restricted,

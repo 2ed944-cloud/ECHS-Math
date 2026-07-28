@@ -16,6 +16,7 @@ on:
       - question-bank/official/data/manual-repairs/**
       - question-bank/official/tools/publish_licensed_official.py
       - question-bank/official/tools/validate_admin_overlays.mjs
+      - question-bank/official/tools/browser_smoke.mjs
       - question-bank/official/tools/validate_katex.mjs
       - question-bank/official/tools/validate_release.py
 

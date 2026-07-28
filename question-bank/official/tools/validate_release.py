@@ -19,6 +19,7 @@ else:
     PAYLOAD=ROOT/'payload'
     OFF=PAYLOAD/'question-bank/official'
 DATA=OFF/'data'; STUDENT=DATA/'student'; REPORTS=OFF/'reports'
+AUTHORIZATION_PATH=DATA/'rights'/'echs-ap-official-student-practice-2026-07-28.json'
 SKIP_PARTS={'.git','node_modules','.echs-backups','__pycache__'}
 CANONICAL_EXPECTED=1217
 READY_EXPECTED=None
@@ -578,7 +579,14 @@ c.evidence={'requiredReports':len(required_reports),'present':len(required_repor
 
 def report_text(browser=None):
     overall=all(x.passed for x in checks) and (browser is None or browser.get('errors',0)==0)
-    now=datetime.now(timezone.utc).replace(microsecond=0).isoformat()
+    now=(
+        load_json(AUTHORIZATION_PATH).get('recordedAt')
+        if AUTHORIZATION_PATH.is_file()
+        else datetime.now(timezone.utc).replace(microsecond=0).isoformat()
+    )
+    for item in checks:
+        item.errors.sort()
+        item.warnings.sort()
     lines=['# Validation Report','',f'Generated: {now}','',f"**Overall result: {'PASS WITH RESTRICTIONS' if overall else 'FAIL'}**",'',
       f'This report validates the strict public release boundary. Student practice, exams, smart recommendations, and dashboard calculations use only the {len(student_questions)} independently verified public records; all {len(canonical_questions)-len(student_questions)} remaining records are preserved in the canonical teacher/admin bank and redacted in the public archive.','',
       '## Reconciled release counts','',
