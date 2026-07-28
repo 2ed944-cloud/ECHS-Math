@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0",
   "issue": 3,
-  "updatedAt": "2026-07-28T00:00:00+03:00",
+  "updatedAt": "2026-07-28T03:00:00+03:00",
   "policy": {
     "canonicalIdsPreserved": true,
     "canonicalProvenancePreserved": true,
@@ -32,6 +32,31 @@
         23,
         24,
         25
+      ],
+      "officialAnswerKeyAgreement": "45 of 45"
+    },
+    {
+      "batchId": "issue-3-batch-002-1973-bc-mcq",
+      "file": "batch-002-1973-bc-mcq.json",
+      "url": "../data/manual-repairs/issue-3/batch-002-1973-bc-mcq.json",
+      "course": "AP Calculus BC",
+      "year": 1973,
+      "type": "mcq",
+      "questionCount": 45,
+      "firstId": "APCALC-LEGACY-BC-MCQ-1973-001",
+      "lastId": "APCALC-LEGACY-BC-MCQ-1973-045",
+      "status": "independently-verified-source-compared",
+      "studentAccess": "teacher-archive-only",
+      "sourcePagesCompared": [
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43
       ],
       "officialAnswerKeyAgreement": "45 of 45"
     }

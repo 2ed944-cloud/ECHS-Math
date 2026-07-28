@@ -16,3 +16,8 @@ The validator treats the manifest as the batch allowlist and rejects missing
 canonical IDs, duplicate IDs, incomplete MCQs, missing worked solutions,
 invalid KaTeX, missing media files, incomplete mappings, or any attempt to
 promote a restricted repair to student access.
+
+Completed chronological batches:
+
+- Batch 001: 1969 AP Calculus BC Section I, 45 MCQs, source pages 16–25.
+- Batch 002: 1973 AP Calculus BC Section I, 45 MCQs, source pages 35–43.
