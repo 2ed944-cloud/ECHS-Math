@@ -8,6 +8,7 @@ import io
 import json
 import mimetypes
 import os
+import time
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -37,25 +38,47 @@ def log(message: str) -> None:
 
 
 class Supabase:
+    TRANSIENT_HTTP = {408, 425, 429, 500, 502, 503, 504}
+
     def __init__(self, url: str, key: str):
         self.url = url.rstrip("/")
         self.key = key
 
-    def request(self, method: str, path: str, body: bytes | None = None, headers: dict[str, str] | None = None):
+    def request(
+        self,
+        method: str,
+        path: str,
+        body: bytes | None = None,
+        headers: dict[str, str] | None = None,
+        *,
+        attempts: int = 1,
+    ):
         merged = {
             "apikey": self.key,
             "authorization": f"Bearer {self.key}",
-            "user-agent": "ECHS-Private-Bank-Importer/2.1-fast",
+            "user-agent": "ECHS-Private-Bank-Importer/2.2-resumable-multicourse",
         }
         merged.update(headers or {})
-        request = urllib.request.Request(f"{self.url}{path}", data=body, method=method, headers=merged)
-        try:
-            with urllib.request.urlopen(request, timeout=180) as response:
-                data = response.read()
-                return json.loads(data) if data and "json" in response.headers.get("content-type", "") else data
-        except urllib.error.HTTPError as error:
-            detail = error.read().decode("utf-8", errors="replace")
-            raise RuntimeError(f"Supabase {method} {path} failed ({error.code}): {detail}") from error
+        last_error: Exception | None = None
+        for attempt in range(1, attempts + 1):
+            request = urllib.request.Request(f"{self.url}{path}", data=body, method=method, headers=merged)
+            try:
+                with urllib.request.urlopen(request, timeout=180) as response:
+                    data = response.read()
+                    return json.loads(data) if data and "json" in response.headers.get("content-type", "") else data
+            except urllib.error.HTTPError as error:
+                detail = error.read().decode("utf-8", errors="replace")
+                last_error = RuntimeError(f"Supabase {method} {path} failed ({error.code}): {detail}")
+                if error.code not in self.TRANSIENT_HTTP or attempt == attempts:
+                    raise last_error from error
+            except (urllib.error.URLError, TimeoutError) as error:
+                last_error = RuntimeError(f"Supabase {method} {path} failed: {error}")
+                if attempt == attempts:
+                    raise last_error from error
+            delay = min(30, 2 ** (attempt - 1))
+            log(f"Transient storage/API error; retrying in {delay}s ({attempt}/{attempts})")
+            time.sleep(delay)
+        raise last_error or RuntimeError("Supabase request failed")
 
     def upsert(self, table: str, rows: list[dict], conflict: str, *, return_rows: bool = False):
         if not rows:
@@ -64,19 +87,39 @@ class Supabase:
         preference = "resolution=merge-duplicates,return=representation" if return_rows else "resolution=merge-duplicates,return=minimal"
         return self.request("POST", f"/rest/v1/{table}?{query}", canonical(rows), {
             "content-type": "application/json", "prefer": preference,
-        }) or []
+        }, attempts=4) or []
 
     def patch(self, table: str, filters: dict[str, str], values: dict):
         query = "&".join(f"{urllib.parse.quote(k)}=eq.{urllib.parse.quote(str(v))}" for k, v in filters.items())
         return self.request("PATCH", f"/rest/v1/{table}?{query}", canonical(values), {
             "content-type": "application/json", "prefer": "return=minimal",
-        })
+        }, attempts=4)
+
+    def select_existing_media(self, organization_id: str, package_id: str) -> dict[str, str]:
+        existing: dict[str, str] = {}
+        offset, page_size = 0, 1000
+        while True:
+            query = urllib.parse.urlencode({
+                "select": "object_path,sha256",
+                "organization_id": f"eq.{organization_id}",
+                "package_id": f"eq.{package_id}",
+                "order": "object_path.asc",
+            }, safe=",")
+            rows = self.request("GET", f"/rest/v1/private_bank_media_objects?{query}", headers={
+                "range": f"{offset}-{offset + page_size - 1}",
+            }, attempts=4) or []
+            for row in rows:
+                existing[str(row.get("object_path") or "")] = str(row.get("sha256") or "")
+            if len(rows) < page_size:
+                break
+            offset += page_size
+        return existing
 
     def upload(self, bucket: str, path: str, data: bytes, content_type: str):
         encoded = "/".join(urllib.parse.quote(part, safe="._+-") for part in path.split("/"))
         return self.request("POST", f"/storage/v1/object/{urllib.parse.quote(bucket, safe='')}/{encoded}", data, {
             "content-type": content_type, "x-upsert": "true",
-        })
+        }, attempts=7)
 
 
 def package_root(archive: zipfile.ZipFile) -> str:
@@ -281,8 +324,11 @@ def main() -> int:
             percent = 45 + int(35 * index / total_batches)
             progress(client, args.request_id, percent, f"Questions imported: {done}/{len(rows)}")
 
-        uploaded, media_rows = 0, []
+        uploaded, skipped, media_rows = 0, 0, []
         media_archives = sorted(name for name in archive.namelist() if name.startswith(f"{root}/media/") and name.endswith(".zip"))
+        existing_media = client.select_existing_media(args.organization_id, package_id) if not args.skip_media else {}
+        if existing_media:
+            log(f"Resuming media import with {len(existing_media)} previously registered files")
         if not args.skip_media:
             for archive_index, media_name in enumerate(media_archives, 1):
                 chapter_token = PurePosixPath(media_name).stem.replace("chapter_", "")
@@ -294,6 +340,10 @@ def main() -> int:
                     for source_path in sorted(name for name in media_archive.namelist() if not name.endswith("/")):
                         data = media_archive.read(source_path)
                         object_path = f"{bank_slug}/chapter_{(chapter or 0):02d}/{source_path.lstrip('/')}"
+                        data_hash = digest(data)
+                        if existing_media.get(object_path) == data_hash:
+                            skipped += 1
+                            continue
                         content_type = mimetypes.guess_type(source_path)[0] or "application/octet-stream"
                         client.upload(args.bucket, object_path, data, content_type)
                         media_rows.append({
@@ -303,7 +353,7 @@ def main() -> int:
                             "source_path": source_path,
                             "chapter": chapter,
                             "size_bytes": len(data),
-                            "sha256": digest(data),
+                            "sha256": data_hash,
                             "mime_type": content_type,
                             "uploaded_at": now,
                         })
@@ -311,15 +361,17 @@ def main() -> int:
                         if len(media_rows) >= args.batch_size:
                             client.upsert("private_bank_media_objects", media_rows, "organization_id,object_path")
                             media_rows.clear()
+                if media_rows:
+                    client.upsert("private_bank_media_objects", media_rows, "organization_id,object_path")
+                    media_rows.clear()
                 percent = 80 + int(17 * archive_index / max(1, len(media_archives)))
-                progress(client, args.request_id, percent, f"Media archives uploaded: {archive_index}/{len(media_archives)} ({uploaded} files)")
-            if media_rows:
-                client.upsert("private_bank_media_objects", media_rows, "organization_id,object_path")
+                progress(client, args.request_id, percent, f"Media archives uploaded: {archive_index}/{len(media_archives)} · new {uploaded} · reused {skipped}")
 
+        total_media = uploaded + skipped
         state = "registered-direct" if args.skip_media else "complete-direct-upload"
         client.patch("private_bank_packages", {"organization_id": args.organization_id, "bank_code": bank_code}, {
             "deployment_state": state,
-            "media_count": uploaded,
+            "media_count": total_media,
             "updated_at": datetime.now(timezone.utc).isoformat(),
         })
         aliases = manifest.get("display_aliases") or {}
@@ -328,6 +380,8 @@ def main() -> int:
             "display_name": aliases.get("teacher") or aliases.get("student") or bank_code,
             "questions": len(rows),
             "media_uploaded": uploaded,
+            "media_reused": skipped,
+            "media_total": total_media,
             "target_courses": effective_targets,
             "package_sha256": package_hash,
             "deployment_state": state,
