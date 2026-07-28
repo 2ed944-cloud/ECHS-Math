@@ -15,7 +15,7 @@
     {
       "path": "data/catalog.json",
       "bytes": 9314,
-      "sha256": "fcfb2c9881209ab66ebe36ad6e26e777ba586c331eacced0967f678bd98a5bf2"
+      "sha256": "f5ad664ddc64e4a466f37c1fa04f65a6abd88993077a73bd892f34d90f017d3a"
     },
     {
       "path": "data/id-map.json",
@@ -30,82 +30,82 @@
     {
       "path": "data/questions/chunk-000.json",
       "bytes": 890264,
-      "sha256": "0fdc9134b90855b47303291a3ab1497f4e636cca6a918f6df7d768dd89987328"
+      "sha256": "70ec5a06f74fc6069f8a80a6bfc76e8b0d1cd13a147e0c616c3d2003e56fc943"
     },
     {
       "path": "data/questions/chunk-001.json",
       "bytes": 871837,
-      "sha256": "824a983b2e1654e416181fb2b4f32138e4849323a8b510ee780a4a59f8291a98"
+      "sha256": "925b9f0f5fcee582615e23d49b7213dc6cc8e4d1bb7dfeb12860f07d3a0e9ed1"
     },
     {
       "path": "data/questions/chunk-002.json",
       "bytes": 1136416,
-      "sha256": "9e657c0e4de79b39672108a2d0a495c2d85139d47fad0ae6ceb8132f2c3dc93d"
+      "sha256": "a9fa195d5ecaa9a44a46ea0f6b9c3d0e2a51f88cd1202a80766dfaa0ba6d7433"
     },
     {
       "path": "data/questions/chunk-003.json",
       "bytes": 682370,
-      "sha256": "973a0ad374fdf9cd775aedc67c13f51f9ecd33920277b411bff4a052e523e0c6"
+      "sha256": "80e68a68ffedea85ab41bae4c3bf038c4e526f4312bbc47762fb604068701dbf"
     },
     {
       "path": "data/questions/chunk-004.json",
       "bytes": 675783,
-      "sha256": "17d13b2db70ba889e02aeb4f0881bd2936b2f70713721f31b74b4f9f88db2af3"
+      "sha256": "8a1c4ba84ef35d2df940804906e00fc64a01d4b95a0b2b1a3dae24f8403e3b8a"
     },
     {
       "path": "data/questions/chunk-005.json",
       "bytes": 625279,
-      "sha256": "7c3921beb4669ac822692dfd731fd3a0f8b81f86891387ddb57631ddaadb6b29"
+      "sha256": "379dd2280b4ff17d3def7b69a635c57df1a0d9bee8c0fcc06413e2dcb601afc1"
     },
     {
       "path": "data/questions/chunk-006.json",
       "bytes": 632355,
-      "sha256": "7d0b0caef680bbff0923227202426f0397cba9a71aec35f3d15e97f5fe2d34eb"
+      "sha256": "3e38f23763af99be870eee41c63c05961048b16bb14d359cc39e8e0000f36584"
     },
     {
       "path": "data/questions/chunk-007.json",
       "bytes": 613554,
-      "sha256": "bf9830ea13d8ca2a499ed73e406d507e3f38bc470250e08dc2c0eb1cc0852c18"
+      "sha256": "7259700dd05b25f5270c031d537f95253cd8ce56a233849b4dc5bbe6a35ac455"
     },
     {
       "path": "data/questions/chunk-008.json",
       "bytes": 612680,
-      "sha256": "31a53892bbb6feb2451519777db4730fbd5650b1ebf3e1a8450935d3cbb4f8d1"
+      "sha256": "5c404cfa1c2f552d9c4be907d544fee74f3a0fbd61062c93bd3e3fb1c62731b5"
     },
     {
       "path": "data/questions/chunk-009.json",
       "bytes": 603507,
-      "sha256": "47a878a0e9e697db9ae63685495158c612d07d2ec38e17dee53206aee657df9a"
+      "sha256": "e70b6bf7a6798b11958cc7809bb71e628cfaf5f648b474a1155b840acbb1dbdb"
     },
     {
       "path": "data/questions/chunk-010.json",
       "bytes": 545230,
-      "sha256": "2eb997d321ae16f899401cf7ea8b6417036fb1a459cc0aca46bb77b10c72ca6e"
+      "sha256": "fccb2eef2e967e7caa20341dbfe93f38b62096ec9ac2853c0d8b94b8caf5bb7b"
     },
     {
       "path": "data/questions/chunk-011.json",
       "bytes": 700267,
-      "sha256": "1d20b879527e2d751aeccd221a8e986b98a73c6a32a73c1658fb711c70bfb28d"
+      "sha256": "918a3a02e995f25c484e06c9b7d2d5e184d1380e653e8bb12f18cdbb476366b8"
     },
     {
       "path": "data/questions/chunk-012.json",
       "bytes": 1243343,
-      "sha256": "4e166cdde321098d4c03369e9237463aea3d6f26fbdb273fbad74ebe5dd4e0dd"
+      "sha256": "18ab2ea2d2d4bce96b9f2f3739f6c9be61508937ba3ed78fc9d0f435b41dc0ac"
     },
     {
       "path": "data/questions/chunk-013.json",
       "bytes": 1071363,
-      "sha256": "bea5818c471ba871e4ccc6761512ea65fe9189879ddfa7cb040d1d44461ec153"
+      "sha256": "4a8d2f70737ccf57d565fbf3439e7ac0999781e929aef10bdf07757ab83d2b62"
     },
     {
       "path": "data/questions/chunk-014.json",
       "bytes": 675001,
-      "sha256": "a785b46d3bdc3e8166e48b250e26a626e2cf91553eceb0ae65ee44a43294baef"
+      "sha256": "1b1b9470fffeed4b73fc6966f98c1de7d971d5d5cc638c0a81abe4e6a31f7b81"
     },
     {
       "path": "data/questions/chunk-015.json",
       "bytes": 842031,
-      "sha256": "79f5e1c0f3bb6d1a7dfc0cb7802a01c60ffa0380b159c7d978385d43c74d5464"
+      "sha256": "7016e992fc0a788abdacde5aedfbdab2b323bc3645d599fc9f3dbd3a31e50bb9"
     },
     {
       "path": "data/questions/chunk-016.json",
@@ -124,98 +124,98 @@
     },
     {
       "path": "data/student/archive-index.json",
-      "bytes": 2153619,
-      "sha256": "e29b9863fd0942e5d4470eb61a632f97566d2ee4a731fb9b9ace926734f9dc88"
+      "bytes": 2172267,
+      "sha256": "d7dd035a10cee727de68f046f9efe32c41229e1a44d51082cd6222ef9cd0a6d3"
     },
     {
       "path": "data/student/archive-questions/chunk-000.json",
       "bytes": 1009113,
-      "sha256": "410a0fe2980189577397e57146a56d4e90ef2e951e4611c296dbd28484f6bf6a"
+      "sha256": "90538d30101c3f24cd8094e813fde6aba1000ddd09d3b67bbae96cc1d6714ea1"
     },
     {
       "path": "data/student/archive-questions/chunk-001.json",
       "bytes": 452817,
-      "sha256": "707d8c704ea6754f538a906db91ce83e662ca3e5507eda10dd5b23bfaaa6f970"
+      "sha256": "04c544c395c52a8a971279ec806b83cbf014b75ab4072029315747fb1211d370"
     },
     {
       "path": "data/student/archive-questions/chunk-002.json",
       "bytes": 382671,
-      "sha256": "517779d9a8304013d6f84254ca176e2ffc5ded8ccfcd7cbce296b02900827462"
+      "sha256": "9e4951412fd368800db29427ec60aecf129983a84c7a6b85e83fe28800bc2f17"
     },
     {
       "path": "data/student/archive-questions/chunk-003.json",
       "bytes": 389188,
-      "sha256": "a38c459b9afdb80774709e8ed2d4a02de1f1e658e2e5d7ff53b35ac9a2075f4c"
+      "sha256": "81c3a72c81e7cc8c00b60ba598700cd7fa91a7642109051124b9fa0a282837b4"
     },
     {
       "path": "data/student/archive-questions/chunk-004.json",
       "bytes": 391573,
-      "sha256": "fc93facb390726ca9dbf7dc035d186931ce8ab6fd08718735a1fd7a6c6401148"
+      "sha256": "317517fc5605816af03093770f16e87a4e6d78235967a3d908e5347012675473"
     },
     {
       "path": "data/student/archive-questions/chunk-005.json",
       "bytes": 379725,
-      "sha256": "7bcca6d2c76d253b15e47847934202ffcf53c48581f51e9a953ceea6cd3e6e52"
+      "sha256": "e6297f76109049ce73f31accbb1a1fa313e9339aa77ab42fe33f20aff6f4e9b3"
     },
     {
       "path": "data/student/archive-questions/chunk-006.json",
       "bytes": 380751,
-      "sha256": "27aeabb3d2d356fc6f8b66b83e6a7bfa453d2804da757c35296bf2c096a023c0"
+      "sha256": "bafa26cf4088f84798a6fa7332737fb4733eb17fa2fe7a92c78932183afa7d99"
     },
     {
       "path": "data/student/archive-questions/chunk-007.json",
       "bytes": 510414,
-      "sha256": "5d8616f11dbe4bbeb4ae65d6c4ec6022334a33d9b94eef80401c70f86a7bffab"
+      "sha256": "84f7ba53a9a8d18f7c0884627f62a2ae7995472488245f54ed24a4cd40cb5472"
     },
     {
       "path": "data/student/archive-questions/chunk-008.json",
       "bytes": 533343,
-      "sha256": "2c3f8db1e6d3e53de95b256312f4b2a0659ff6dc1b582ab19109ed0a5b3a5ebe"
+      "sha256": "8bb327ac80e61db16d12bc4caa85acae0918ad3e20b4ea431f058147739d6e86"
     },
     {
       "path": "data/student/archive-questions/chunk-009.json",
       "bytes": 518368,
-      "sha256": "30f143f32202dde457f63494080d7c16080cb008724ea2c1911f341a41a1b5bb"
+      "sha256": "27b349c2da5dbf62aa3525a825def8ebad87ac7c666ddc267414450449413712"
     },
     {
       "path": "data/student/archive-questions/chunk-010.json",
       "bytes": 528119,
-      "sha256": "dbf2e2f496a249b901e142bc57aa8baf62d137022f345d22ee355b05995cf192"
+      "sha256": "63df3086c956651f539fd230e1abf350e992989b12d5d5129c0c3b5a67be17fb"
     },
     {
       "path": "data/student/archive-questions/chunk-011.json",
       "bytes": 515615,
-      "sha256": "ffce212fddffd2767588e5d9668eceaecc36b1b293d7b7de5d1475acabc42b90"
+      "sha256": "fd02a7f1265536ebf3d82d0353f6382caa3921614de1ad5f3f1c54d87a9da731"
     },
     {
       "path": "data/student/archive-questions/chunk-012.json",
       "bytes": 482748,
-      "sha256": "a2f7ce9c8c0a1e6cd395a2f52cc49c822c0b8ffe32c662651a24e56ed608106f"
+      "sha256": "7e4dfab9723a8ab2ab27bc356174d750b34b64cc515fa47a71dfb5c005e58223"
     },
     {
       "path": "data/student/archive-questions/chunk-013.json",
       "bytes": 482961,
-      "sha256": "f6d41cff58e56cbbad3d2dc9454a03135d92e7d008bba659a1b42323dbc8da47"
+      "sha256": "11545d8a5f97c3ea3fee3a1cd9c3adb7116fa3aeda2725a715abb979a0464b28"
     },
     {
       "path": "data/student/archive-questions/chunk-014.json",
       "bytes": 492314,
-      "sha256": "20e3fbbadd3bea22b1ae88b11546456096de7807099feb8fa5061ae836fc8d38"
+      "sha256": "e099af1e66ca20731b9248046611019c4cc0da323e8b6547d0ad824498886bea"
     },
     {
       "path": "data/student/archive-questions/chunk-015.json",
       "bytes": 476720,
-      "sha256": "f13a151ee27ce26d7c2d13acd26c808974a6acf9f7c3b1ff564e3abf043f5495"
+      "sha256": "82af74c180a181110a44a8e26c4b78b05e679cfa57c8f2173483c23ffaa6101e"
     },
     {
       "path": "data/student/archive-questions/chunk-016.json",
       "bytes": 491385,
-      "sha256": "adf0172398249daf7a601361a4e87341c4ca29274fa839042a31baa7e6a4e226"
+      "sha256": "ddfc4f740d60b8276bb2366545a6e8969a60ec08d0696e1d55ca7d7a4e17c860"
     },
     {
       "path": "data/student/archive-questions/chunk-017.json",
       "bytes": 456673,
-      "sha256": "0fc6d9f4a432ae6bc2eeacb217daddfd24d0e7bfe828d86ea42a336350541e6c"
+      "sha256": "8fc8138599584f687ffb1d02638bcd297b2f3d2334795f2704db862388c5ce93"
     },
     {
       "path": "data/student/archive-questions/chunk-018.json",
@@ -235,12 +235,12 @@
     {
       "path": "data/student/catalog.json",
       "bytes": 3781,
-      "sha256": "d1491ce8bb6eef382514429dc1ce99db60f1ea7e9ec56c9e8be0617edc96565f"
+      "sha256": "6b0b020039fa312303a785d4b8e86e7317c550a3614ba45e21178852fce3684a"
     },
     {
       "path": "data/student/gate.json",
       "bytes": 42658,
-      "sha256": "d789aaf30b3e5053adf1b868ce2cc6a4bf32d1698b21b6e1c87aecd4dee582a8"
+      "sha256": "cc5ee5c2b3bd00bc45493727510c5aa55b8f47cdfdb4b26620e97a9cf252141e"
     },
     {
       "path": "data/student/id-map.json",
@@ -260,47 +260,47 @@
     {
       "path": "data/student/questions/chunk-000.json",
       "bytes": 423436,
-      "sha256": "5f6e34905350562a081131c556132bab7d74fdcaeab99ee9f56397de054e4f76"
+      "sha256": "c87ffe43a51e1967831bc026a926306f023a8070f96b210c13b645922227af56"
     },
     {
       "path": "data/student/questions/chunk-001.json",
       "bytes": 392107,
-      "sha256": "d0ecee2fdae80bc046b7319d74fffcde0fafde49c85c31a30456104506fcdb0c"
+      "sha256": "1ad6623e8e559714b1b3aac8b1d9becb897e01346523e93f797c89aeb9f85600"
     },
     {
       "path": "data/student/questions/chunk-002.json",
       "bytes": 149661,
-      "sha256": "a82818b98aadbacd0684a39b33c76b1c9fa91a028d0e995e56d57d23342c2789"
+      "sha256": "ebdc47f726bf7dbe3040b47517254361eb0643dea0954ff4955b73ef4a04ba28"
     },
     {
       "path": "data/student/questions/chunk-005.json",
       "bytes": 178573,
-      "sha256": "993691e854c01a419a7ab58a8d8b2a2fa986fa48b8201556910f64625858c36a"
+      "sha256": "0ed4796ab6f38d9510b458cd788c59c19ef837223e61692c1c9e943403182cd6"
     },
     {
       "path": "data/student/questions/chunk-006.json",
       "bytes": 632355,
-      "sha256": "7d0b0caef680bbff0923227202426f0397cba9a71aec35f3d15e97f5fe2d34eb"
+      "sha256": "3e38f23763af99be870eee41c63c05961048b16bb14d359cc39e8e0000f36584"
     },
     {
       "path": "data/student/questions/chunk-007.json",
       "bytes": 604407,
-      "sha256": "2b48fb457e15fd54b974be0e8dd3943a613cd57233ef811dc91e4643cae2f109"
+      "sha256": "751ecfe28096446ba628e7b9a3590a5cbbbb1e11402a95505ef251e846fdcb1c"
     },
     {
       "path": "data/student/questions/chunk-008.json",
       "bytes": 612680,
-      "sha256": "31a53892bbb6feb2451519777db4730fbd5650b1ebf3e1a8450935d3cbb4f8d1"
+      "sha256": "5c404cfa1c2f552d9c4be907d544fee74f3a0fbd61062c93bd3e3fb1c62731b5"
     },
     {
       "path": "data/student/questions/chunk-009.json",
       "bytes": 603507,
-      "sha256": "47a878a0e9e697db9ae63685495158c612d07d2ec38e17dee53206aee657df9a"
+      "sha256": "e70b6bf7a6798b11958cc7809bb71e628cfaf5f648b474a1155b840acbb1dbdb"
     },
     {
       "path": "data/student/questions/chunk-010.json",
       "bytes": 414711,
-      "sha256": "93b87c952264d3e92e37c3fcb83647d338a8f68dcc71f69a23be638b7d171ace"
+      "sha256": "b8dd1342c56c1098e9b3bb3aa12533d00246b85e597f3a567620a6dbaa2b8d02"
     },
     {
       "path": "exam.html",
@@ -360,12 +360,12 @@
     {
       "path": "reports/COUNT_RECONCILIATION_REPORT.md",
       "bytes": 620,
-      "sha256": "405356ce7c07f3037203891905da3cb421628349bb51d6d2f3e089f1f104f424"
+      "sha256": "cd7088311a090397cd1b21f3915613425f2fc57e66f967dc660a0e36cc543bb4"
     },
     {
       "path": "reports/KATEX_AUDIT_REPORT.md",
       "bytes": 544,
-      "sha256": "d6f05ba4f93b6b2567a14a077bc413df9724e469486332775f100d6701cdd771"
+      "sha256": "d058ed81bad8fb76962f92d812b692f0c4ce3533e00f9be8b37d385429fd2a9a"
     },
     {
       "path": "reports/LESSON_MAPPING_AUDIT.md",
@@ -375,7 +375,7 @@
     {
       "path": "reports/MATHEMATICAL_VERIFICATION_REPORT.md",
       "bytes": 267105,
-      "sha256": "128553d003e0458ad99d4cd91e507b4d41f2599a4858e2a82ddc5375e7d828bd"
+      "sha256": "4b686abbceb0f72e2c54f2469ce371002e22865f2d72951445c2655ead8c783d"
     },
     {
       "path": "reports/MEDIA_AUDIT_REPORT.md",
@@ -385,7 +385,7 @@
     {
       "path": "reports/QUESTION_BY_QUESTION_AUDIT.csv",
       "bytes": 1351311,
-      "sha256": "0c60ceeed845912a135ba6e52dc2c17b1894fce2a406a1f8433c6f876e1ef8c7"
+      "sha256": "37a20a884cf199dc0c336fef7074c2c8d398d3c142652f24f8706e8771ef0896"
     },
     {
       "path": "reports/QUESTION_CORRECTIONS_LOG.json",
@@ -395,17 +395,17 @@
     {
       "path": "reports/QUESTION_CORRECTIONS_REPORT.md",
       "bytes": 367,
-      "sha256": "21e74f0197a03edc82f7332b1fa7866f92656717a87f08007d5536e754725e5b"
+      "sha256": "dfe7e0adc27bf92c84e9c09857e2259b24da11fe7c93ccd404f76cef67f21403"
     },
     {
       "path": "reports/STUDENT_READY_REPORT.md",
       "bytes": 14151,
-      "sha256": "097b80adff924c2fa9df867cbd252e4c3c0fbba214c9de5ea4a10c174673b8b2"
+      "sha256": "c88ce8306b18fb4ccf1b6af57db1c0c1625b3f71810dad60fad367d112335472"
     },
     {
       "path": "reports/TEACHER_REVIEW_QUEUE.md",
       "bytes": 159967,
-      "sha256": "84ef2af0f91e009dc599007ee442338f044107d64818df1f11de73a431dfc096"
+      "sha256": "9a1e69aa0591fa492a665a08499c91b659228691e022fda69f32551ef7be5456"
     },
     {
       "path": "reports/UNRELATED_QUESTIONS_REMOVED_FROM_LESSON_LINKS.md",
@@ -415,12 +415,12 @@
     {
       "path": "reports/katex_audit_results.json",
       "bytes": 239966,
-      "sha256": "d10593819c9a9c2b4615d4b1945c8e144ee3a472322dbf9358344cbce7a7138b"
+      "sha256": "403116314f5b68502a41f0d065ccb00733ee86d0b5da10034064495ba71192d3"
     },
     {
       "path": "reports/katex_error_log.json",
       "bytes": 114,
-      "sha256": "2be22932173ee83993b8b1f9f4b8b1fe9c1ac5d061543f7ee41b7e80b6cb4b93"
+      "sha256": "de55aedafbbd551115f7ccb36d9aba83727fa4c6722c61a508fd5a0d1750ebd5"
     },
     {
       "path": "tools/apply_strict_audit_gate.py",
