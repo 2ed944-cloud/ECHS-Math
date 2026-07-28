@@ -20,11 +20,15 @@
   async function digest(file){const buffer=await file.arrayBuffer(),hash=await crypto.subtle.digest("SHA-256",buffer);return [...new Uint8Array(hash)].map(byte=>byte.toString(16).padStart(2,"0")).join("")}
   function resetFile(){state.file=null;state.request=null;fileInput.value="";summary.classList.add("hidden");start.disabled=true;setProgress(0,"Ready for a ZIP package")}
   function acceptFile(file){if(!file)return;if(!file.name.toLowerCase().endsWith(".zip")){alert("Please choose a ZIP package.");return}if(file.size>150*1024*1024){alert("The maximum package size is 150 MB.");return}state.file=file;nameNode.textContent=file.name;metaNode.textContent=`${formatBytes(file.size)} · ZIP package`;summary.classList.remove("hidden");start.disabled=false;setProgress(0,"Ready to validate")}
+  function normalisedZip(file){
+    try{return new File([file],file.name,{type:"application/zip",lastModified:file.lastModified||Date.now()})}
+    catch{return new Blob([file],{type:"application/zip"})}
+  }
   async function signedUpload(url,file){
     return new Promise((resolve,reject)=>{
-      const xhr=new XMLHttpRequest(),form=new FormData();
+      const xhr=new XMLHttpRequest(),form=new FormData(),zip=normalisedZip(file);
       form.append("cacheControl","3600");
-      form.append("",file,file.name);
+      form.append("",zip,file.name);
       xhr.open("PUT",url,true);
       xhr.timeout=15*60*1000;
       xhr.setRequestHeader("x-upsert","true");
