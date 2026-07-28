@@ -20,7 +20,28 @@
   async function digest(file){const buffer=await file.arrayBuffer(),hash=await crypto.subtle.digest("SHA-256",buffer);return [...new Uint8Array(hash)].map(byte=>byte.toString(16).padStart(2,"0")).join("")}
   function resetFile(){state.file=null;state.request=null;fileInput.value="";summary.classList.add("hidden");start.disabled=true;setProgress(0,"Ready for a ZIP package")}
   function acceptFile(file){if(!file)return;if(!file.name.toLowerCase().endsWith(".zip")){alert("Please choose a ZIP package.");return}if(file.size>150*1024*1024){alert("The maximum package size is 150 MB.");return}state.file=file;nameNode.textContent=file.name;metaNode.textContent=`${formatBytes(file.size)} · ZIP package`;summary.classList.remove("hidden");start.disabled=false;setProgress(0,"Ready to validate")}
-  async function signedUpload(url,file){return new Promise((resolve,reject)=>{const xhr=new XMLHttpRequest();xhr.open("PUT",url,true);xhr.setRequestHeader("content-type","application/zip");xhr.upload.onprogress=event=>{if(event.lengthComputable)setProgress(12+Math.round((event.loaded/event.total)*68),`Uploading securely · ${formatBytes(event.loaded)} of ${formatBytes(event.total)}`)};xhr.onload=()=>xhr.status>=200&&xhr.status<300?resolve(xhr.response):reject(new Error(`Storage upload failed (${xhr.status})`));xhr.onerror=()=>reject(new Error("Network error while uploading"));xhr.send(file)})}
+  async function signedUpload(url,file){
+    return new Promise((resolve,reject)=>{
+      const xhr=new XMLHttpRequest(),form=new FormData();
+      form.append("cacheControl","3600");
+      form.append("",file,file.name);
+      xhr.open("PUT",url,true);
+      xhr.timeout=15*60*1000;
+      xhr.setRequestHeader("x-upsert","true");
+      xhr.upload.onloadstart=()=>setProgress(12,"Secure upload started");
+      xhr.upload.onprogress=event=>{if(event.lengthComputable)setProgress(12+Math.round((event.loaded/event.total)*68),`Uploading securely · ${formatBytes(event.loaded)} of ${formatBytes(event.total)}`)};
+      xhr.onload=()=>{
+        if(xhr.status>=200&&xhr.status<300){resolve(xhr.response);return}
+        let detail="";
+        try{const parsed=JSON.parse(xhr.responseText||"{}");detail=parsed.message||parsed.error||""}catch{detail=(xhr.responseText||"").slice(0,240)}
+        reject(new Error(`Storage upload failed (${xhr.status})${detail?`: ${detail}`:""}`));
+      };
+      xhr.onerror=()=>reject(new Error("Network or browser security error while uploading to private storage"));
+      xhr.ontimeout=()=>reject(new Error("The secure upload timed out. Press Validate and Upload to resume with a fresh signed URL."));
+      xhr.onabort=()=>reject(new Error("The secure upload was cancelled"));
+      xhr.send(form);
+    });
+  }
   async function begin(){
     if(!state.file)return;start.disabled=true;clear.disabled=true;
     try{
@@ -31,9 +52,9 @@
       const created=await api("/requests",{method:"POST",body:payload});state.request=created.request;
       if(created.duplicate){setProgress(created.request.progress,created.request.stage||"This package is already active or completed");watch(created.request.id);await loadHistory();return}
       if(!created.upload?.signed_url)throw new Error("Secure upload URL was not returned");
-      setProgress(12,created.retry?"Retrying failed package upload":"Uploading ZIP to private staging");await signedUpload(created.upload.signed_url,state.file);setProgress(82,"Confirming upload");
+      setProgress(12,created.retry?"Refreshing signed URL and retrying upload":"Uploading ZIP to private staging");await signedUpload(created.upload.signed_url,state.file);setProgress(82,"Confirming upload");
       const completed=await api(`/requests/${state.request.id}/complete`,{method:"POST",body:{}});state.request=completed.request;setProgress(state.request.progress,state.request.stage);watch(state.request.id);await loadHistory();
-    }catch(error){console.error(error);setProgress(0,error.message||"Upload failed");start.disabled=false}finally{clear.disabled=false}
+    }catch(error){console.error(error);setProgress(0,error.message||"Upload failed");start.disabled=false;await loadHistory()}finally{clear.disabled=false}
   }
   function watch(id){clearInterval(state.poll);state.poll=setInterval(async()=>{try{const result=await api(`/requests/${id}`);const row=result.request;state.request=row;setProgress(row.progress,row.stage);await loadHistory();if(["completed","pr-opened","failed","cancelled"].includes(row.status)){clearInterval(state.poll);start.disabled=false}}catch(error){console.warn(error)}},5000)}
   function requestCard(row){
