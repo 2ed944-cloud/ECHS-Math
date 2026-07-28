@@ -21,3 +21,4 @@ Completed chronological batches:
 
 - Batch 001: 1969 AP Calculus BC Section I, 45 MCQs, source pages 16–25.
 - Batch 002: 1973 AP Calculus BC Section I, 45 MCQs, source pages 35–43.
+- Batch 003: 1985 AP Calculus BC Section I, 45 MCQs, source pages 53–62.
