@@ -77,6 +77,10 @@ function questionsFromDirectory(directory) {
     .flatMap((name) => readJson(path.join(directory, name)).questions ?? []);
 }
 
+function canonicalAnswerChoices(value) {
+  return new Set(String(value ?? "").toUpperCase().match(/[A-E]/g) ?? []);
+}
+
 const canonicalQuestions = [
   ...questionsFromDirectory(path.join(dataDir, "questions")),
   ...questionsFromDirectory(path.join(officialDir, "admin", "data", "questions")),
@@ -194,7 +198,8 @@ for (const fileSpec of filesToCheck) {
         if (choiceLabels.join("") !== "ABCDE") errors.push({ file: fileName, id, issue: "Manual MCQ choice labels must be A through E in order." });
       }
       if (!/^[A-E]$/.test(String(expanded.answer ?? "").toUpperCase())) errors.push({ file: fileName, id, issue: "Manual MCQ repair must contain an A–E answer." });
-      if (canonical?.answer && String(expanded.answer).toUpperCase() !== String(canonical.answer).toUpperCase()) {
+      const canonicalChoices = canonicalAnswerChoices(canonical?.answer);
+      if (canonicalChoices.size && !canonicalChoices.has(String(expanded.answer).toUpperCase())) {
         errors.push({ file: fileName, id, issue: `Manual repair answer ${expanded.answer} does not agree with canonical source key ${canonical.answer}.` });
       }
       const canonicalSourcePages = (canonical?.source?.sourcePages ?? []).map(String);
