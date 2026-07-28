@@ -11,11 +11,11 @@
     "withMedia": 871,
     "withHints": 1164,
     "answerVerified": 974,
-    "needsReview": 805,
-    "studentEligible": 412,
-    "studentAccessible": 412,
-    "studentReady": 412,
-    "teacherArchiveOnly": 805,
+    "needsReview": 495,
+    "studentEligible": 722,
+    "studentAccessible": 722,
+    "studentReady": 722,
+    "teacherArchiveOnly": 495,
     "fullyDigitized": 1217,
     "indexedOnly": 0
   },
@@ -43,14 +43,14 @@
     "4": 106,
     "5": 199,
     "6": 193,
-    "7": 55,
-    "8": 158,
+    "7": 56,
+    "8": 160,
     "9": 44,
     "10": 61
   },
   "readiness": {
-    "student-ready": 412,
-    "teacher-archive-only": 805
+    "student-ready": 722,
+    "teacher-archive-only": 495
   },
   "officialStatus": {
     "legacy-ap": 704,
@@ -65,7 +65,7 @@
       "frq": 7,
       "ab": 51,
       "bc": 46,
-      "eligible": 50
+      "eligible": 95
     },
     "1970": {
       "total": 7,
@@ -97,7 +97,7 @@
       "frq": 7,
       "ab": 52,
       "bc": 45,
-      "eligible": 52
+      "eligible": 97
     },
     "1974": {
       "total": 8,
@@ -161,7 +161,7 @@
       "frq": 6,
       "ab": 50,
       "bc": 46,
-      "eligible": 44
+      "eligible": 89
     },
     "1988": {
       "total": 96,
@@ -169,7 +169,7 @@
       "frq": 6,
       "ab": 50,
       "bc": 46,
-      "eligible": 45
+      "eligible": 90
     },
     "1993": {
       "total": 96,
@@ -177,7 +177,7 @@
       "frq": 6,
       "ab": 50,
       "bc": 46,
-      "eligible": 45
+      "eligible": 90
     },
     "1997": {
       "total": 86,
@@ -185,7 +185,7 @@
       "frq": 6,
       "ab": 45,
       "bc": 41,
-      "eligible": 40
+      "eligible": 80
     },
     "1998": {
       "total": 96,
@@ -193,7 +193,7 @@
       "frq": 6,
       "ab": 51,
       "bc": 45,
-      "eligible": 45
+      "eligible": 90
     },
     "1981": {
       "total": 7,
@@ -433,7 +433,7 @@
       "id": "AP historical archive",
       "label": "AP historical archive",
       "count": 704,
-      "studentReadyCount": 360,
+      "studentReadyCount": 670,
       "officialStatus": "legacy-ap",
       "accessLevel": "public"
     },
@@ -504,8 +504,8 @@
   ],
   "restrictedSummary": {
     "canonicalQuestions": 1217,
-    "studentReady": 412,
-    "teacherArchiveOnly": 805,
+    "studentReady": 722,
+    "teacherArchiveOnly": 495,
     "message": "Only independently audited, exactly mapped, public-release-approved records are used by the GitHub Pages student runtime."
   },
   "deployment": {

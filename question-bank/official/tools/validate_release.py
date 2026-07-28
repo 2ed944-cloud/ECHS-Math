@@ -60,6 +60,7 @@ def strings(obj:Any, path='') -> Iterable[tuple[str,str]]:
         for i,v in enumerate(obj): yield from strings(v,f'{path}[{i}]')
 
 def norm_text(s): return re.sub(r'\s+',' ',re.sub(r'<[^>]+>',' ',str(s))).strip().lower()
+def norm_choice_text(s): return re.sub(r'\s+',' ',re.sub(r'<[^>]+>',' ',str(s))).strip()
 
 def balanced_braces(expr):
     # TeX requires balanced grouping braces. Square brackets may be literal interval
@@ -173,7 +174,9 @@ ready_mcq=[q for q in student_questions if q.get('type')=='mcq']
 for q in ready_mcq:
     choices=q.get('choices',[]); labels=[str(x.get('label','')).upper() for x in choices]
     if labels!=list('ABCDE'): c.errors.append(f"{q['id']}: choice labels/order are {labels}")
-    texts=[norm_text(x.get('text','')) for x in choices]
+    # Mathematical symbols are case-sensitive: f and F can legitimately name
+    # different functions in separate answer choices.
+    texts=[norm_choice_text(x.get('text','')) for x in choices]
     if any(not x for x in texts): c.errors.append(f"{q['id']}: empty choice")
     if len(set(texts))!=5: c.errors.append(f"{q['id']}: duplicate choice text")
 c.evidence={'readyMCQ':len(ready_mcq),'allFiveChoices':sum(len(q.get('choices',[]))==5 for q in ready_mcq)}

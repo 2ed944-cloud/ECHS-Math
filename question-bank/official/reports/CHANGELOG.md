@@ -13,5 +13,6 @@
 ## Licensed official AP promotion — 2026-07-28
 
 - Recorded ECHS platform authorization echs-ap-official-student-practice-2026-07-28.
-- Promoted 360 independently verified official AP records.
-- Retained 692 licensed official records for content review.
+- Promoted 670 independently verified official AP records.
+- Retained 382 licensed official records for content review.
+- Reconciled source evidence for 310 historical AB MCQs.
