@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/upload-manager.css?v=20260729-signed-upload-fix">
+  <link rel="stylesheet" href="css/upload-manager.css?v=20260729-zip-mime-fix">
 </head>
 <body class="institutionBody uploadManagerBody" data-require-account="teacher admin">
   <div class="uploadShell">
@@ -39,7 +39,7 @@
           <div class="fileSummary hidden" id="fileSummary"><strong id="fileName"></strong><small id="fileMeta"></small></div>
           <div class="uploadActions"><button class="button primary" id="startUpload" type="button" disabled>Validate and Upload</button><button class="button secondary" id="clearUpload" type="button">Clear</button></div>
           <div class="progressWrap"><div class="progressTrack"><div class="progressBar" id="progressBar"></div></div><div class="progressMeta"><span id="progressStage">Ready for a ZIP package</span><strong id="progressPercent">0%</strong></div></div>
-          <div class="notice">For private banks, the selected course is checked against <code>target_courses</code> in the package manifest. A package left at <strong>Created</strong> can be retried with a fresh signed URL by pressing Validate and Upload again. Files upload through private staging; no service-role key reaches the browser.</div>
+          <div class="notice">For private banks, the selected course is checked against <code>target_courses</code> in the package manifest. Windows ZIP files are normalised to <code>application/zip</code> before private storage upload. A package left at <strong>Created</strong> can be retried by pressing Validate and Upload again.</div>
         </article>
         <aside class="historyCard">
           <div class="historyHead"><div class="cardHead"><small>Live processing queue</small><h2>Recent uploads</h2><p>Keep this page open or return later. Progress is stored in the institutional database.</p></div><button class="button historyClear" id="clearTerminalRequests" type="button" disabled>Clear completed &amp; failed</button></div>
@@ -49,6 +49,6 @@
     </main>
   </div>
   <script src="../../../js/institution-client.js"></script>
-  <script src="js/upload-manager.js?v=20260729-signed-upload-fix"></script>
+  <script src="js/upload-manager.js?v=20260729-zip-mime-fix"></script>
 </body>
 </html>
