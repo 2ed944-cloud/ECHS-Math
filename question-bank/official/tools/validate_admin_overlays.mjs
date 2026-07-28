@@ -81,6 +81,13 @@ function canonicalAnswerChoices(value) {
   return new Set(String(value ?? "").toUpperCase().match(/[A-E]/g) ?? []);
 }
 
+const verifiedCalculatorStatuses = new Set([
+  "verified-no-calculator",
+  "verified-scientific-calculator",
+  "verified-graphing-calculator",
+  "verified-calculator-permitted",
+]);
+
 const canonicalQuestions = [
   ...questionsFromDirectory(path.join(dataDir, "questions")),
   ...questionsFromDirectory(path.join(officialDir, "admin", "data", "questions")),
@@ -216,7 +223,7 @@ for (const fileSpec of filesToCheck) {
       if (!expanded.quality?.transcriptionVerified || !expanded.quality?.answerVerified || !expanded.quality?.mathematicalVerificationPassed || !expanded.quality?.katexVerified || !expanded.quality?.mappingVerified) {
         errors.push({ file: fileName, id, issue: "Manual repair verification flags are incomplete." });
       }
-      if (expanded.audit?.calculatorStatus !== "verified-no-calculator") errors.push({ file: fileName, id, issue: "Manual repair calculator status is not verified." });
+      if (!verifiedCalculatorStatuses.has(expanded.audit?.calculatorStatus)) errors.push({ file: fileName, id, issue: "Manual repair calculator status is not verified." });
       if (!Array.isArray(expanded.media) || !expanded.media.length) {
         errors.push({ file: fileName, id, issue: "Manual repair must link verified source media." });
       } else {

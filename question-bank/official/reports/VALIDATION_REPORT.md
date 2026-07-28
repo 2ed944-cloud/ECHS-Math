@@ -1,6 +1,6 @@
 # Validation Report
 
-Generated: 2026-07-28T02:08:18+00:00
+Generated: 2026-07-28T02:16:45+00:00
 
 **Overall result: PASS WITH RESTRICTIONS**
 
@@ -67,7 +67,7 @@ This report validates the strict public release boundary. Student practice, exam
 
 ```json
 {
-  "jsonFilesParsed": 305,
+  "jsonFilesParsed": 306,
   "canonicalQuestionObjects": 1217
 }
 ```
