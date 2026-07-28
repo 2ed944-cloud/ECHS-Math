@@ -11,6 +11,7 @@ const db = createClient(SUPABASE_URL, SERVICE_KEY, { auth: { persistSession: fal
 const BUCKET = "teacher-upload-staging";
 const MAX_BYTES = 150 * 1024 * 1024;
 const TERMINAL_STATUSES = ["completed", "failed", "cancelled"];
+const ACTIVE_STATUSES = ["queued", "processing", "pr-opened", "completed"];
 
 function headers(req: Request): HeadersInit {
   const origin = req.headers.get("origin") ?? "";
@@ -78,7 +79,7 @@ async function createUpload(req: Request, current: Account) {
     .eq("organization_id", current.organization_id).eq("sha256", sha256).eq("upload_kind", kind).maybeSingle();
   if (existingError) throw existingError;
 
-  if (existing && !["failed", "cancelled"].includes(String(existing.status))) {
+  if (existing && ACTIVE_STATUSES.includes(String(existing.status))) {
     return reply(req, { ok: true, duplicate: true, request: existing });
   }
 
@@ -91,7 +92,7 @@ async function createUpload(req: Request, current: Account) {
       file_size_bytes: Math.floor(size),
       status: "created",
       progress: 2,
-      stage: "Retry upload URL created",
+      stage: String(existing.status) === "created" ? "Fresh signed upload URL created" : "Retry upload URL created",
       result: {},
       error_message: null,
       github_pr_url: null,
@@ -243,7 +244,7 @@ Deno.serve(async (req) => {
   const url = new URL(req.url);
   const path = url.pathname.split("/upload-manager-api")[1] || "/";
   try {
-    if (path === "/health" && req.method === "GET") return reply(req, { ok: true, service: "echs-upload-manager-api", version: "1.1.0" });
+    if (path === "/health" && req.method === "GET") return reply(req, { ok: true, service: "echs-upload-manager-api", version: "1.2.0-signed-upload-recovery" });
     const current = await account(req);
     if (!staff(current)) return fail(req, "Teacher or administrator sign-in is required", 403, "forbidden");
     if (path === "/requests" && req.method === "GET") return await listRequests(req, current, url);
