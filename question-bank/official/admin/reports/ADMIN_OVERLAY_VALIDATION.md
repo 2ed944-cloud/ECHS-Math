@@ -1,18 +1,18 @@
 # Admin Audit Overlay Validation
 
-Generated: 2026-07-28T01:45:31.657Z
+Generated: 2026-07-28T01:59:38.911Z
 
 **Result: PASS**
 
 | Measure | Result |
 | --- | ---: |
-| Overlay files checked | 44 |
-| Manual repair batches checked | 2 |
-| Overlay records checked | 391 |
-| Unique overlay IDs | 391 |
+| Overlay files checked | 45 |
+| Manual repair batches checked | 3 |
+| Overlay records checked | 436 |
+| Unique overlay IDs | 436 |
 | Canonical IDs loaded | 1217 |
-| Math-bearing fields checked | 1976 |
-| KaTeX expressions parsed | 5205 |
+| Math-bearing fields checked | 2282 |
+| KaTeX expressions parsed | 6213 |
 | Errors | 0 |
 
 Escaped overlay newlines are normalised exactly as they are in Teacher Studio before KaTeX parsing.
