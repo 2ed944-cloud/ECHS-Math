@@ -93,14 +93,23 @@
         "bankName": "official-ab-practice-2012",
         "sourceType": "official College Board released practice exam and scoring guidelines",
         "officialStatus": "official-released",
-        "releaseStatus": "official released/practice material supplied by user",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           63,
           78
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 1,
@@ -182,13 +191,13 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.82,
         "tutoringReadiness": 0.85,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": false,
@@ -201,7 +210,7 @@
       },
       "studentEligible": false,
       "studentAccessible": false,
-      "deploymentAccess": "teacher-archive-only",
+      "deploymentAccess": "teacher-review-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
@@ -218,11 +227,12 @@
         "topicMappingStatus": "uncertain",
         "lessonMappingStatus": "uncertain",
         "calculatorStatus": "review-required",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 0,
         "reviewRequired": true,
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false
     },
@@ -319,14 +329,23 @@
         "bankName": "official-ab-practice-2012",
         "sourceType": "official College Board released practice exam and scoring guidelines",
         "officialStatus": "official-released",
-        "releaseStatus": "official released/practice material supplied by user",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           65,
           79
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 2,
@@ -403,13 +422,13 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.82,
         "tutoringReadiness": 0.85,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": false,
@@ -422,7 +441,7 @@
       },
       "studentEligible": false,
       "studentAccessible": false,
-      "deploymentAccess": "teacher-archive-only",
+      "deploymentAccess": "teacher-review-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
@@ -439,11 +458,12 @@
         "topicMappingStatus": "uncertain",
         "lessonMappingStatus": "uncertain",
         "calculatorStatus": "review-required",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 0,
         "reviewRequired": true,
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false
     },
@@ -540,14 +560,23 @@
         "bankName": "official-ab-practice-2012",
         "sourceType": "official College Board released practice exam and scoring guidelines",
         "officialStatus": "official-released",
-        "releaseStatus": "official released/practice material supplied by user",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           67,
           80
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 7,
@@ -623,13 +652,13 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.82,
         "tutoringReadiness": 0.85,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": false,
@@ -642,7 +671,7 @@
       },
       "studentEligible": false,
       "studentAccessible": false,
-      "deploymentAccess": "teacher-archive-only",
+      "deploymentAccess": "teacher-review-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
@@ -659,11 +688,12 @@
         "topicMappingStatus": "uncertain",
         "lessonMappingStatus": "uncertain",
         "calculatorStatus": "review-required",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 0,
         "reviewRequired": true,
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false
     },
@@ -760,14 +790,23 @@
         "bankName": "official-ab-practice-2012",
         "sourceType": "official College Board released practice exam and scoring guidelines",
         "officialStatus": "official-released",
-        "releaseStatus": "official released/practice material supplied by user",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           69,
           81
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 4,
@@ -848,13 +887,13 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.82,
         "tutoringReadiness": 0.85,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": false,
@@ -867,7 +906,7 @@
       },
       "studentEligible": false,
       "studentAccessible": false,
-      "deploymentAccess": "teacher-archive-only",
+      "deploymentAccess": "teacher-review-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
@@ -884,11 +923,12 @@
         "topicMappingStatus": "uncertain",
         "lessonMappingStatus": "uncertain",
         "calculatorStatus": "review-required",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 0,
         "reviewRequired": true,
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false
     },
@@ -1008,13 +1048,22 @@
         "bankName": "official-bc-practice-2016",
         "sourceType": "official College Board released practice exam",
         "officialStatus": "official-released",
-        "releaseStatus": "official released/practice material supplied by user",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           19
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 10,
@@ -1092,14 +1141,14 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.6,
         "tutoringReadiness": 0.62,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": false,
@@ -1112,7 +1161,7 @@
       },
       "studentEligible": false,
       "studentAccessible": false,
-      "deploymentAccess": "teacher-archive-only",
+      "deploymentAccess": "teacher-review-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
@@ -1129,11 +1178,12 @@
         "topicMappingStatus": "uncertain",
         "lessonMappingStatus": "uncertain",
         "calculatorStatus": "review-required",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 0,
         "reviewRequired": true,
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false
     },
@@ -1253,13 +1303,22 @@
         "bankName": "official-bc-practice-2016",
         "sourceType": "official College Board released practice exam",
         "officialStatus": "official-released",
-        "releaseStatus": "official released/practice material supplied by user",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           19
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 9,
@@ -1341,14 +1400,14 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.6,
         "tutoringReadiness": 0.62,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": false,
@@ -1361,7 +1420,7 @@
       },
       "studentEligible": false,
       "studentAccessible": false,
-      "deploymentAccess": "teacher-archive-only",
+      "deploymentAccess": "teacher-review-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
@@ -1378,11 +1437,12 @@
         "topicMappingStatus": "uncertain",
         "lessonMappingStatus": "uncertain",
         "calculatorStatus": "review-required",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 0,
         "reviewRequired": true,
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false
     },
@@ -1502,13 +1562,22 @@
         "bankName": "official-bc-practice-2016",
         "sourceType": "official College Board released practice exam",
         "officialStatus": "official-released",
-        "releaseStatus": "official released/practice material supplied by user",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           20
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 10,
@@ -1586,14 +1655,14 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.6,
         "tutoringReadiness": 0.62,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": false,
@@ -1606,7 +1675,7 @@
       },
       "studentEligible": false,
       "studentAccessible": false,
-      "deploymentAccess": "teacher-archive-only",
+      "deploymentAccess": "teacher-review-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
@@ -1623,11 +1692,12 @@
         "topicMappingStatus": "uncertain",
         "lessonMappingStatus": "uncertain",
         "calculatorStatus": "review-required",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 0,
         "reviewRequired": true,
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false
     },
@@ -1747,13 +1817,22 @@
         "bankName": "official-bc-practice-2016",
         "sourceType": "official College Board released practice exam",
         "officialStatus": "official-released",
-        "releaseStatus": "official released/practice material supplied by user",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           20
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 2,
@@ -1831,14 +1910,14 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.6,
         "tutoringReadiness": 0.62,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": false,
@@ -1851,7 +1930,7 @@
       },
       "studentEligible": false,
       "studentAccessible": false,
-      "deploymentAccess": "teacher-archive-only",
+      "deploymentAccess": "teacher-review-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
@@ -1868,11 +1947,12 @@
         "topicMappingStatus": "uncertain",
         "lessonMappingStatus": "uncertain",
         "calculatorStatus": "review-required",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 0,
         "reviewRequired": true,
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false
     },
@@ -1992,13 +2072,22 @@
         "bankName": "official-bc-practice-2016",
         "sourceType": "official College Board released practice exam",
         "officialStatus": "official-released",
-        "releaseStatus": "official released/practice material supplied by user",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           21
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 9,
@@ -2081,14 +2170,14 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.6,
         "tutoringReadiness": 0.62,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": false,
@@ -2101,7 +2190,7 @@
       },
       "studentEligible": false,
       "studentAccessible": false,
-      "deploymentAccess": "teacher-archive-only",
+      "deploymentAccess": "teacher-review-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
@@ -2118,11 +2207,12 @@
         "topicMappingStatus": "uncertain",
         "lessonMappingStatus": "uncertain",
         "calculatorStatus": "review-required",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 0,
         "reviewRequired": true,
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false
     },
@@ -2242,13 +2332,22 @@
         "bankName": "official-bc-practice-2016",
         "sourceType": "official College Board released practice exam",
         "officialStatus": "official-released",
-        "releaseStatus": "official released/practice material supplied by user",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           21
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 10,
@@ -2327,14 +2426,14 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.6,
         "tutoringReadiness": 0.62,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": false,
@@ -2347,7 +2446,7 @@
       },
       "studentEligible": false,
       "studentAccessible": false,
-      "deploymentAccess": "teacher-archive-only",
+      "deploymentAccess": "teacher-review-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
@@ -2364,11 +2463,12 @@
         "topicMappingStatus": "uncertain",
         "lessonMappingStatus": "uncertain",
         "calculatorStatus": "review-required",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 0,
         "reviewRequired": true,
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false
     },
@@ -2488,13 +2588,22 @@
         "bankName": "official-bc-practice-2016",
         "sourceType": "official College Board released practice exam",
         "officialStatus": "official-released",
-        "releaseStatus": "official released/practice material supplied by user",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           22
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 7,
@@ -2572,14 +2681,14 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.6,
         "tutoringReadiness": 0.62,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": false,
@@ -2592,7 +2701,7 @@
       },
       "studentEligible": false,
       "studentAccessible": false,
-      "deploymentAccess": "teacher-archive-only",
+      "deploymentAccess": "teacher-review-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
@@ -2609,11 +2718,12 @@
         "topicMappingStatus": "uncertain",
         "lessonMappingStatus": "uncertain",
         "calculatorStatus": "review-required",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 0,
         "reviewRequired": true,
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false
     },
@@ -2733,13 +2843,22 @@
         "bankName": "official-bc-practice-2016",
         "sourceType": "official College Board released practice exam",
         "officialStatus": "official-released",
-        "releaseStatus": "official released/practice material supplied by user",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           22
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 10,
@@ -2817,14 +2936,14 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.6,
         "tutoringReadiness": 0.62,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": false,
@@ -2837,7 +2956,7 @@
       },
       "studentEligible": false,
       "studentAccessible": false,
-      "deploymentAccess": "teacher-archive-only",
+      "deploymentAccess": "teacher-review-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
@@ -2854,11 +2973,12 @@
         "topicMappingStatus": "uncertain",
         "lessonMappingStatus": "uncertain",
         "calculatorStatus": "review-required",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 0,
         "reviewRequired": true,
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false
     },
@@ -2978,13 +3098,22 @@
         "bankName": "official-bc-practice-2016",
         "sourceType": "official College Board released practice exam",
         "officialStatus": "official-released",
-        "releaseStatus": "official released/practice material supplied by user",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           23
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 9,
@@ -3066,14 +3195,14 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.6,
         "tutoringReadiness": 0.62,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": false,
@@ -3086,7 +3215,7 @@
       },
       "studentEligible": false,
       "studentAccessible": false,
-      "deploymentAccess": "teacher-archive-only",
+      "deploymentAccess": "teacher-review-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
@@ -3103,11 +3232,12 @@
         "topicMappingStatus": "uncertain",
         "lessonMappingStatus": "uncertain",
         "calculatorStatus": "review-required",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 0,
         "reviewRequired": true,
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false
     },
@@ -3227,13 +3357,22 @@
         "bankName": "official-bc-practice-2016",
         "sourceType": "official College Board released practice exam",
         "officialStatus": "official-released",
-        "releaseStatus": "official released/practice material supplied by user",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           24
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 5,
@@ -3318,14 +3457,14 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.6,
         "tutoringReadiness": 0.62,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": false,
@@ -3338,7 +3477,7 @@
       },
       "studentEligible": false,
       "studentAccessible": false,
-      "deploymentAccess": "teacher-archive-only",
+      "deploymentAccess": "teacher-review-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
@@ -3355,11 +3494,12 @@
         "topicMappingStatus": "uncertain",
         "lessonMappingStatus": "uncertain",
         "calculatorStatus": "review-required",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 0,
         "reviewRequired": true,
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false
     },
@@ -3479,13 +3619,22 @@
         "bankName": "official-bc-practice-2016",
         "sourceType": "official College Board released practice exam",
         "officialStatus": "official-released",
-        "releaseStatus": "official released/practice material supplied by user",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           25
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 6,
@@ -3568,14 +3717,14 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.6,
         "tutoringReadiness": 0.62,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": false,
@@ -3588,7 +3737,7 @@
       },
       "studentEligible": false,
       "studentAccessible": false,
-      "deploymentAccess": "teacher-archive-only",
+      "deploymentAccess": "teacher-review-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
@@ -3605,11 +3754,12 @@
         "topicMappingStatus": "uncertain",
         "lessonMappingStatus": "uncertain",
         "calculatorStatus": "review-required",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 0,
         "reviewRequired": true,
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false
     },
@@ -3729,13 +3879,22 @@
         "bankName": "official-bc-practice-2016",
         "sourceType": "official College Board released practice exam",
         "officialStatus": "official-released",
-        "releaseStatus": "official released/practice material supplied by user",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           25
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 10,
@@ -3813,14 +3972,14 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.6,
         "tutoringReadiness": 0.62,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": false,
@@ -3833,7 +3992,7 @@
       },
       "studentEligible": false,
       "studentAccessible": false,
-      "deploymentAccess": "teacher-archive-only",
+      "deploymentAccess": "teacher-review-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
@@ -3850,11 +4009,12 @@
         "topicMappingStatus": "uncertain",
         "lessonMappingStatus": "uncertain",
         "calculatorStatus": "review-required",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 0,
         "reviewRequired": true,
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false
     },
@@ -3974,13 +4134,22 @@
         "bankName": "official-bc-practice-2016",
         "sourceType": "official College Board released practice exam",
         "officialStatus": "official-released",
-        "releaseStatus": "official released/practice material supplied by user",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           26
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 7,
@@ -4058,14 +4227,14 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.6,
         "tutoringReadiness": 0.62,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": false,
@@ -4078,7 +4247,7 @@
       },
       "studentEligible": false,
       "studentAccessible": false,
-      "deploymentAccess": "teacher-archive-only",
+      "deploymentAccess": "teacher-review-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
@@ -4095,11 +4264,12 @@
         "topicMappingStatus": "uncertain",
         "lessonMappingStatus": "uncertain",
         "calculatorStatus": "review-required",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 0,
         "reviewRequired": true,
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false
     },
@@ -4219,13 +4389,22 @@
         "bankName": "official-bc-practice-2016",
         "sourceType": "official College Board released practice exam",
         "officialStatus": "official-released",
-        "releaseStatus": "official released/practice material supplied by user",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           27
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 10,
@@ -4308,14 +4487,14 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.6,
         "tutoringReadiness": 0.62,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": false,
@@ -4328,7 +4507,7 @@
       },
       "studentEligible": false,
       "studentAccessible": false,
-      "deploymentAccess": "teacher-archive-only",
+      "deploymentAccess": "teacher-review-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
@@ -4345,11 +4524,12 @@
         "topicMappingStatus": "uncertain",
         "lessonMappingStatus": "uncertain",
         "calculatorStatus": "review-required",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 0,
         "reviewRequired": true,
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false
     },
@@ -4469,13 +4649,22 @@
         "bankName": "official-bc-practice-2016",
         "sourceType": "official College Board released practice exam",
         "officialStatus": "official-released",
-        "releaseStatus": "official released/practice material supplied by user",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           28
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 10,
@@ -4553,14 +4742,14 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.6,
         "tutoringReadiness": 0.62,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": false,
@@ -4573,7 +4762,7 @@
       },
       "studentEligible": false,
       "studentAccessible": false,
-      "deploymentAccess": "teacher-archive-only",
+      "deploymentAccess": "teacher-review-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
@@ -4590,11 +4779,12 @@
         "topicMappingStatus": "uncertain",
         "lessonMappingStatus": "uncertain",
         "calculatorStatus": "review-required",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 0,
         "reviewRequired": true,
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false
     },
@@ -4714,13 +4904,22 @@
         "bankName": "official-bc-practice-2016",
         "sourceType": "official College Board released practice exam",
         "officialStatus": "official-released",
-        "releaseStatus": "official released/practice material supplied by user",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           28
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 10,
@@ -4798,14 +4997,14 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.6,
         "tutoringReadiness": 0.62,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": false,
@@ -4818,7 +5017,7 @@
       },
       "studentEligible": false,
       "studentAccessible": false,
-      "deploymentAccess": "teacher-archive-only",
+      "deploymentAccess": "teacher-review-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
@@ -4835,11 +5034,12 @@
         "topicMappingStatus": "uncertain",
         "lessonMappingStatus": "uncertain",
         "calculatorStatus": "review-required",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 0,
         "reviewRequired": true,
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false
     },
@@ -4959,13 +5159,22 @@
         "bankName": "official-bc-practice-2016",
         "sourceType": "official College Board released practice exam",
         "officialStatus": "official-released",
-        "releaseStatus": "official released/practice material supplied by user",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           29
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 8,
@@ -5050,14 +5259,14 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.6,
         "tutoringReadiness": 0.62,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": false,
@@ -5070,7 +5279,7 @@
       },
       "studentEligible": false,
       "studentAccessible": false,
-      "deploymentAccess": "teacher-archive-only",
+      "deploymentAccess": "teacher-review-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
@@ -5087,11 +5296,12 @@
         "topicMappingStatus": "uncertain",
         "lessonMappingStatus": "uncertain",
         "calculatorStatus": "review-required",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 0,
         "reviewRequired": true,
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false
     },
@@ -5211,13 +5421,22 @@
         "bankName": "official-bc-practice-2016",
         "sourceType": "official College Board released practice exam",
         "officialStatus": "official-released",
-        "releaseStatus": "official released/practice material supplied by user",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           29
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 10,
@@ -5300,14 +5519,14 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.6,
         "tutoringReadiness": 0.62,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": false,
@@ -5320,7 +5539,7 @@
       },
       "studentEligible": false,
       "studentAccessible": false,
-      "deploymentAccess": "teacher-archive-only",
+      "deploymentAccess": "teacher-review-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
@@ -5337,11 +5556,12 @@
         "topicMappingStatus": "uncertain",
         "lessonMappingStatus": "uncertain",
         "calculatorStatus": "review-required",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 0,
         "reviewRequired": true,
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false
     },
@@ -5461,13 +5681,22 @@
         "bankName": "official-bc-practice-2016",
         "sourceType": "official College Board released practice exam",
         "officialStatus": "official-released",
-        "releaseStatus": "official released/practice material supplied by user",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           30
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 10,
@@ -5545,14 +5774,14 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.6,
         "tutoringReadiness": 0.62,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": false,
@@ -5565,7 +5794,7 @@
       },
       "studentEligible": false,
       "studentAccessible": false,
-      "deploymentAccess": "teacher-archive-only",
+      "deploymentAccess": "teacher-review-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
@@ -5582,11 +5811,12 @@
         "topicMappingStatus": "uncertain",
         "lessonMappingStatus": "uncertain",
         "calculatorStatus": "review-required",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 0,
         "reviewRequired": true,
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false
     },
@@ -5706,13 +5936,22 @@
         "bankName": "official-bc-practice-2016",
         "sourceType": "official College Board released practice exam",
         "officialStatus": "official-released",
-        "releaseStatus": "official released/practice material supplied by user",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           30
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 9,
@@ -5795,14 +6034,14 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.6,
         "tutoringReadiness": 0.62,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": false,
@@ -5815,7 +6054,7 @@
       },
       "studentEligible": false,
       "studentAccessible": false,
-      "deploymentAccess": "teacher-archive-only",
+      "deploymentAccess": "teacher-review-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
@@ -5832,11 +6071,12 @@
         "topicMappingStatus": "uncertain",
         "lessonMappingStatus": "uncertain",
         "calculatorStatus": "review-required",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 0,
         "reviewRequired": true,
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false
     },
@@ -5956,13 +6196,22 @@
         "bankName": "official-bc-practice-2016",
         "sourceType": "official College Board released practice exam",
         "officialStatus": "official-released",
-        "releaseStatus": "official released/practice material supplied by user",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           31
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 10,
@@ -6044,14 +6293,14 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.6,
         "tutoringReadiness": 0.62,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": false,
@@ -6064,7 +6313,7 @@
       },
       "studentEligible": false,
       "studentAccessible": false,
-      "deploymentAccess": "teacher-archive-only",
+      "deploymentAccess": "teacher-review-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
@@ -6081,11 +6330,12 @@
         "topicMappingStatus": "uncertain",
         "lessonMappingStatus": "uncertain",
         "calculatorStatus": "review-required",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 0,
         "reviewRequired": true,
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false
     },
@@ -6205,13 +6455,22 @@
         "bankName": "official-bc-practice-2016",
         "sourceType": "official College Board released practice exam",
         "officialStatus": "official-released",
-        "releaseStatus": "official released/practice material supplied by user",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           31
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 10,
@@ -6293,14 +6552,14 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.6,
         "tutoringReadiness": 0.62,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": false,
@@ -6313,7 +6572,7 @@
       },
       "studentEligible": false,
       "studentAccessible": false,
-      "deploymentAccess": "teacher-archive-only",
+      "deploymentAccess": "teacher-review-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
@@ -6330,11 +6589,12 @@
         "topicMappingStatus": "uncertain",
         "lessonMappingStatus": "uncertain",
         "calculatorStatus": "review-required",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 0,
         "reviewRequired": true,
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false
     },
@@ -6454,13 +6714,22 @@
         "bankName": "official-bc-practice-2016",
         "sourceType": "official College Board released practice exam",
         "officialStatus": "official-released",
-        "releaseStatus": "official released/practice material supplied by user",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           32
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 10,
@@ -6538,14 +6807,14 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.6,
         "tutoringReadiness": 0.62,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": false,
@@ -6558,7 +6827,7 @@
       },
       "studentEligible": false,
       "studentAccessible": false,
-      "deploymentAccess": "teacher-archive-only",
+      "deploymentAccess": "teacher-review-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
@@ -6575,11 +6844,12 @@
         "topicMappingStatus": "uncertain",
         "lessonMappingStatus": "uncertain",
         "calculatorStatus": "review-required",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 0,
         "reviewRequired": true,
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false
     },
@@ -6699,13 +6969,22 @@
         "bankName": "official-bc-practice-2016",
         "sourceType": "official College Board released practice exam",
         "officialStatus": "official-released",
-        "releaseStatus": "official released/practice material supplied by user",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           33
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 10,
@@ -6787,14 +7066,14 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.6,
         "tutoringReadiness": 0.62,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": false,
@@ -6807,7 +7086,7 @@
       },
       "studentEligible": false,
       "studentAccessible": false,
-      "deploymentAccess": "teacher-archive-only",
+      "deploymentAccess": "teacher-review-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
@@ -6824,11 +7103,12 @@
         "topicMappingStatus": "uncertain",
         "lessonMappingStatus": "uncertain",
         "calculatorStatus": "review-required",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 0,
         "reviewRequired": true,
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false
     },
@@ -6948,13 +7228,22 @@
         "bankName": "official-bc-practice-2016",
         "sourceType": "official College Board released practice exam",
         "officialStatus": "official-released",
-        "releaseStatus": "official released/practice material supplied by user",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           33
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 10,
@@ -7032,14 +7321,14 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.6,
         "tutoringReadiness": 0.62,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": false,
@@ -7052,7 +7341,7 @@
       },
       "studentEligible": false,
       "studentAccessible": false,
-      "deploymentAccess": "teacher-archive-only",
+      "deploymentAccess": "teacher-review-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
@@ -7069,11 +7358,12 @@
         "topicMappingStatus": "uncertain",
         "lessonMappingStatus": "uncertain",
         "calculatorStatus": "review-required",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 0,
         "reviewRequired": true,
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false
     },
@@ -7193,13 +7483,22 @@
         "bankName": "official-bc-practice-2016",
         "sourceType": "official College Board released practice exam",
         "officialStatus": "official-released",
-        "releaseStatus": "official released/practice material supplied by user",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           34
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 4,
@@ -7281,14 +7580,14 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.6,
         "tutoringReadiness": 0.62,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": false,
@@ -7301,7 +7600,7 @@
       },
       "studentEligible": false,
       "studentAccessible": false,
-      "deploymentAccess": "teacher-archive-only",
+      "deploymentAccess": "teacher-review-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
@@ -7318,11 +7617,12 @@
         "topicMappingStatus": "uncertain",
         "lessonMappingStatus": "uncertain",
         "calculatorStatus": "review-required",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 0,
         "reviewRequired": true,
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false
     },
@@ -7442,13 +7742,22 @@
         "bankName": "official-bc-practice-2016",
         "sourceType": "official College Board released practice exam",
         "officialStatus": "official-released",
-        "releaseStatus": "official released/practice material supplied by user",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           35
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 10,
@@ -7527,14 +7836,14 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.6,
         "tutoringReadiness": 0.62,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": false,
@@ -7547,7 +7856,7 @@
       },
       "studentEligible": false,
       "studentAccessible": false,
-      "deploymentAccess": "teacher-archive-only",
+      "deploymentAccess": "teacher-review-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
@@ -7564,11 +7873,12 @@
         "topicMappingStatus": "uncertain",
         "lessonMappingStatus": "uncertain",
         "calculatorStatus": "review-required",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 0,
         "reviewRequired": true,
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false
     },
@@ -7688,13 +7998,22 @@
         "bankName": "official-bc-practice-2016",
         "sourceType": "official College Board released practice exam",
         "officialStatus": "official-released",
-        "releaseStatus": "official released/practice material supplied by user",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           36
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 8,
@@ -7779,14 +8098,14 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.6,
         "tutoringReadiness": 0.62,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": false,
@@ -7799,7 +8118,7 @@
       },
       "studentEligible": false,
       "studentAccessible": false,
-      "deploymentAccess": "teacher-archive-only",
+      "deploymentAccess": "teacher-review-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
@@ -7816,11 +8135,12 @@
         "topicMappingStatus": "uncertain",
         "lessonMappingStatus": "uncertain",
         "calculatorStatus": "review-required",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 0,
         "reviewRequired": true,
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false
     },
@@ -7940,13 +8260,22 @@
         "bankName": "official-bc-practice-2016",
         "sourceType": "official College Board released practice exam",
         "officialStatus": "official-released",
-        "releaseStatus": "official released/practice material supplied by user",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           38
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 10,
@@ -8024,14 +8353,14 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.6,
         "tutoringReadiness": 0.62,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": false,
@@ -8044,7 +8373,7 @@
       },
       "studentEligible": false,
       "studentAccessible": false,
-      "deploymentAccess": "teacher-archive-only",
+      "deploymentAccess": "teacher-review-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
@@ -8061,11 +8390,12 @@
         "topicMappingStatus": "uncertain",
         "lessonMappingStatus": "uncertain",
         "calculatorStatus": "review-required",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 0,
         "reviewRequired": true,
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false
     },
@@ -8185,13 +8515,22 @@
         "bankName": "official-bc-practice-2016",
         "sourceType": "official College Board released practice exam",
         "officialStatus": "official-released",
-        "releaseStatus": "official released/practice material supplied by user",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           38
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 1,
@@ -8273,14 +8612,14 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.6,
         "tutoringReadiness": 0.62,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": false,
@@ -8293,7 +8632,7 @@
       },
       "studentEligible": false,
       "studentAccessible": false,
-      "deploymentAccess": "teacher-archive-only",
+      "deploymentAccess": "teacher-review-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
@@ -8310,11 +8649,12 @@
         "topicMappingStatus": "uncertain",
         "lessonMappingStatus": "uncertain",
         "calculatorStatus": "review-required",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 0,
         "reviewRequired": true,
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false
     },
@@ -8434,13 +8774,22 @@
         "bankName": "official-bc-practice-2016",
         "sourceType": "official College Board released practice exam",
         "officialStatus": "official-released",
-        "releaseStatus": "official released/practice material supplied by user",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           39
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 10,
@@ -8519,14 +8868,14 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.6,
         "tutoringReadiness": 0.62,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": false,
@@ -8539,7 +8888,7 @@
       },
       "studentEligible": false,
       "studentAccessible": false,
-      "deploymentAccess": "teacher-archive-only",
+      "deploymentAccess": "teacher-review-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
@@ -8556,11 +8905,12 @@
         "topicMappingStatus": "uncertain",
         "lessonMappingStatus": "uncertain",
         "calculatorStatus": "review-required",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 0,
         "reviewRequired": true,
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false
     },
@@ -8680,13 +9030,22 @@
         "bankName": "official-bc-practice-2016",
         "sourceType": "official College Board released practice exam",
         "officialStatus": "official-released",
-        "releaseStatus": "official released/practice material supplied by user",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           39
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 5,
@@ -8771,14 +9130,14 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.6,
         "tutoringReadiness": 0.62,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": false,
@@ -8791,7 +9150,7 @@
       },
       "studentEligible": false,
       "studentAccessible": false,
-      "deploymentAccess": "teacher-archive-only",
+      "deploymentAccess": "teacher-review-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
@@ -8808,11 +9167,12 @@
         "topicMappingStatus": "uncertain",
         "lessonMappingStatus": "uncertain",
         "calculatorStatus": "review-required",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 0,
         "reviewRequired": true,
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false
     },
@@ -8932,13 +9292,22 @@
         "bankName": "official-bc-practice-2016",
         "sourceType": "official College Board released practice exam",
         "officialStatus": "official-released",
-        "releaseStatus": "official released/practice material supplied by user",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           40
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 2,
@@ -9017,14 +9386,14 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.6,
         "tutoringReadiness": 0.62,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": false,
@@ -9037,7 +9406,7 @@
       },
       "studentEligible": false,
       "studentAccessible": false,
-      "deploymentAccess": "teacher-archive-only",
+      "deploymentAccess": "teacher-review-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
@@ -9054,11 +9423,12 @@
         "topicMappingStatus": "uncertain",
         "lessonMappingStatus": "uncertain",
         "calculatorStatus": "review-required",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 0,
         "reviewRequired": true,
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false
     },
@@ -9178,13 +9548,22 @@
         "bankName": "official-bc-practice-2016",
         "sourceType": "official College Board released practice exam",
         "officialStatus": "official-released",
-        "releaseStatus": "official released/practice material supplied by user",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           41
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 6,
@@ -9267,14 +9646,14 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.6,
         "tutoringReadiness": 0.62,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": false,
@@ -9287,7 +9666,7 @@
       },
       "studentEligible": false,
       "studentAccessible": false,
-      "deploymentAccess": "teacher-archive-only",
+      "deploymentAccess": "teacher-review-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
@@ -9304,11 +9683,12 @@
         "topicMappingStatus": "uncertain",
         "lessonMappingStatus": "uncertain",
         "calculatorStatus": "review-required",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 0,
         "reviewRequired": true,
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false
     },
@@ -9428,13 +9808,22 @@
         "bankName": "official-bc-practice-2016",
         "sourceType": "official College Board released practice exam",
         "officialStatus": "official-released",
-        "releaseStatus": "official released/practice material supplied by user",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           41
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 4,
@@ -9516,14 +9905,14 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.6,
         "tutoringReadiness": 0.62,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": false,
@@ -9536,7 +9925,7 @@
       },
       "studentEligible": false,
       "studentAccessible": false,
-      "deploymentAccess": "teacher-archive-only",
+      "deploymentAccess": "teacher-review-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
@@ -9553,11 +9942,12 @@
         "topicMappingStatus": "uncertain",
         "lessonMappingStatus": "uncertain",
         "calculatorStatus": "review-required",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 0,
         "reviewRequired": true,
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false
     },
@@ -9677,13 +10067,22 @@
         "bankName": "official-bc-practice-2016",
         "sourceType": "official College Board released practice exam",
         "officialStatus": "official-released",
-        "releaseStatus": "official released/practice material supplied by user",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           42
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 2,
@@ -9762,14 +10161,14 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.6,
         "tutoringReadiness": 0.62,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": false,
@@ -9782,7 +10181,7 @@
       },
       "studentEligible": false,
       "studentAccessible": false,
-      "deploymentAccess": "teacher-archive-only",
+      "deploymentAccess": "teacher-review-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
@@ -9799,11 +10198,12 @@
         "topicMappingStatus": "uncertain",
         "lessonMappingStatus": "uncertain",
         "calculatorStatus": "review-required",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 0,
         "reviewRequired": true,
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false
     },
@@ -9923,13 +10323,22 @@
         "bankName": "official-bc-practice-2016",
         "sourceType": "official College Board released practice exam",
         "officialStatus": "official-released",
-        "releaseStatus": "official released/practice material supplied by user",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           43
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 5,
@@ -10015,14 +10424,14 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.6,
         "tutoringReadiness": 0.62,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": false,
@@ -10035,7 +10444,7 @@
       },
       "studentEligible": false,
       "studentAccessible": false,
-      "deploymentAccess": "teacher-archive-only",
+      "deploymentAccess": "teacher-review-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
@@ -10052,11 +10461,12 @@
         "topicMappingStatus": "uncertain",
         "lessonMappingStatus": "uncertain",
         "calculatorStatus": "review-required",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 0,
         "reviewRequired": true,
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false
     },
@@ -10176,13 +10586,22 @@
         "bankName": "official-bc-practice-2016",
         "sourceType": "official College Board released practice exam",
         "officialStatus": "official-released",
-        "releaseStatus": "official released/practice material supplied by user",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           44
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 5,
@@ -10268,14 +10687,14 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.6,
         "tutoringReadiness": 0.62,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": false,
@@ -10288,7 +10707,7 @@
       },
       "studentEligible": false,
       "studentAccessible": false,
-      "deploymentAccess": "teacher-archive-only",
+      "deploymentAccess": "teacher-review-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
@@ -10305,11 +10724,12 @@
         "topicMappingStatus": "uncertain",
         "lessonMappingStatus": "uncertain",
         "calculatorStatus": "review-required",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 0,
         "reviewRequired": true,
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false
     },
@@ -10429,13 +10849,22 @@
         "bankName": "official-bc-practice-2016",
         "sourceType": "official College Board released practice exam",
         "officialStatus": "official-released",
-        "releaseStatus": "official released/practice material supplied by user",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           45
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 2,
@@ -10513,14 +10942,14 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.6,
         "tutoringReadiness": 0.62,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": false,
@@ -10533,7 +10962,7 @@
       },
       "studentEligible": false,
       "studentAccessible": false,
-      "deploymentAccess": "teacher-archive-only",
+      "deploymentAccess": "teacher-review-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
@@ -10550,11 +10979,12 @@
         "topicMappingStatus": "uncertain",
         "lessonMappingStatus": "uncertain",
         "calculatorStatus": "review-required",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 0,
         "reviewRequired": true,
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false
     },
@@ -10674,13 +11104,22 @@
         "bankName": "official-bc-practice-2016",
         "sourceType": "official College Board released practice exam",
         "officialStatus": "official-released",
-        "releaseStatus": "official released/practice material supplied by user",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           45
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 5,
@@ -10765,14 +11204,14 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.6,
         "tutoringReadiness": 0.62,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": false,
@@ -10785,7 +11224,7 @@
       },
       "studentEligible": false,
       "studentAccessible": false,
-      "deploymentAccess": "teacher-archive-only",
+      "deploymentAccess": "teacher-review-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
@@ -10802,11 +11241,12 @@
         "topicMappingStatus": "uncertain",
         "lessonMappingStatus": "uncertain",
         "calculatorStatus": "review-required",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 0,
         "reviewRequired": true,
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false
     },
@@ -10926,13 +11366,22 @@
         "bankName": "official-bc-practice-2016",
         "sourceType": "official College Board released practice exam",
         "officialStatus": "official-released",
-        "releaseStatus": "official released/practice material supplied by user",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           46
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 10,
@@ -11011,14 +11460,14 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.6,
         "tutoringReadiness": 0.62,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": false,
@@ -11031,7 +11480,7 @@
       },
       "studentEligible": false,
       "studentAccessible": false,
-      "deploymentAccess": "teacher-archive-only",
+      "deploymentAccess": "teacher-review-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
@@ -11048,11 +11497,12 @@
         "topicMappingStatus": "uncertain",
         "lessonMappingStatus": "uncertain",
         "calculatorStatus": "review-required",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 0,
         "reviewRequired": true,
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false
     },
@@ -11172,13 +11622,22 @@
         "bankName": "official-bc-practice-2016",
         "sourceType": "official College Board released practice exam",
         "officialStatus": "official-released",
-        "releaseStatus": "official released/practice material supplied by user",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           46
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 4,
@@ -11260,14 +11719,14 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.6,
         "tutoringReadiness": 0.62,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": false,
@@ -11280,7 +11739,7 @@
       },
       "studentEligible": false,
       "studentAccessible": false,
-      "deploymentAccess": "teacher-archive-only",
+      "deploymentAccess": "teacher-review-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
@@ -11297,11 +11756,12 @@
         "topicMappingStatus": "uncertain",
         "lessonMappingStatus": "uncertain",
         "calculatorStatus": "review-required",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 0,
         "reviewRequired": true,
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false
     },
@@ -11421,13 +11881,22 @@
         "bankName": "official-bc-practice-2016",
         "sourceType": "official College Board released practice exam",
         "officialStatus": "official-released",
-        "releaseStatus": "official released/practice material supplied by user",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           47
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 8,
@@ -11512,14 +11981,14 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.6,
         "tutoringReadiness": 0.62,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": false,
@@ -11532,7 +12001,7 @@
       },
       "studentEligible": false,
       "studentAccessible": false,
-      "deploymentAccess": "teacher-archive-only",
+      "deploymentAccess": "teacher-review-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
@@ -11549,11 +12018,12 @@
         "topicMappingStatus": "uncertain",
         "lessonMappingStatus": "uncertain",
         "calculatorStatus": "review-required",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 0,
         "reviewRequired": true,
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false
     },
@@ -11673,13 +12143,22 @@
         "bankName": "official-bc-practice-2016",
         "sourceType": "official College Board released practice exam",
         "officialStatus": "official-released",
-        "releaseStatus": "official released/practice material supplied by user",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           48
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 7,
@@ -11756,14 +12235,14 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.6,
         "tutoringReadiness": 0.62,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": false,
@@ -11776,7 +12255,7 @@
       },
       "studentEligible": false,
       "studentAccessible": false,
-      "deploymentAccess": "teacher-archive-only",
+      "deploymentAccess": "teacher-review-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
@@ -11793,11 +12272,12 @@
         "topicMappingStatus": "uncertain",
         "lessonMappingStatus": "uncertain",
         "calculatorStatus": "review-required",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 0,
         "reviewRequired": true,
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false
     },
@@ -11917,13 +12397,22 @@
         "bankName": "official-bc-practice-2016",
         "sourceType": "official College Board released practice exam",
         "officialStatus": "official-released",
-        "releaseStatus": "official released/practice material supplied by user",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           49
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 6,
@@ -12005,14 +12494,14 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.6,
         "tutoringReadiness": 0.62,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": false,
@@ -12025,7 +12514,7 @@
       },
       "studentEligible": false,
       "studentAccessible": false,
-      "deploymentAccess": "teacher-archive-only",
+      "deploymentAccess": "teacher-review-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
@@ -12042,11 +12531,12 @@
         "topicMappingStatus": "uncertain",
         "lessonMappingStatus": "uncertain",
         "calculatorStatus": "review-required",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 0,
         "reviewRequired": true,
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false
     },
@@ -12143,14 +12633,23 @@
         "bankName": "official-bc-practice-2016",
         "sourceType": "official College Board released practice exam and scoring guidelines",
         "officialStatus": "official-released",
-        "releaseStatus": "official released/practice material supplied by user",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           54,
           72
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 9,
@@ -12231,13 +12730,13 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.82,
         "tutoringReadiness": 0.85,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": false,
@@ -12250,7 +12749,7 @@
       },
       "studentEligible": false,
       "studentAccessible": false,
-      "deploymentAccess": "teacher-archive-only",
+      "deploymentAccess": "teacher-review-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
@@ -12267,11 +12766,12 @@
         "topicMappingStatus": "uncertain",
         "lessonMappingStatus": "uncertain",
         "calculatorStatus": "review-required",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 0,
         "reviewRequired": true,
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false
     },
@@ -12368,14 +12868,23 @@
         "bankName": "official-bc-practice-2016",
         "sourceType": "official College Board released practice exam and scoring guidelines",
         "officialStatus": "official-released",
-        "releaseStatus": "official released/practice material supplied by user",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           56,
           73
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 2,
@@ -12453,13 +12962,13 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.82,
         "tutoringReadiness": 0.85,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": false,
@@ -12472,7 +12981,7 @@
       },
       "studentEligible": false,
       "studentAccessible": false,
-      "deploymentAccess": "teacher-archive-only",
+      "deploymentAccess": "teacher-review-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
@@ -12489,11 +12998,12 @@
         "topicMappingStatus": "uncertain",
         "lessonMappingStatus": "uncertain",
         "calculatorStatus": "review-required",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 0,
         "reviewRequired": true,
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false
     },
@@ -12590,14 +13100,23 @@
         "bankName": "official-bc-practice-2016",
         "sourceType": "official College Board released practice exam and scoring guidelines",
         "officialStatus": "official-released",
-        "releaseStatus": "official released/practice material supplied by user",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           60,
           74
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 10,
@@ -12675,13 +13194,13 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.82,
         "tutoringReadiness": 0.85,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": false,
@@ -12694,7 +13213,7 @@
       },
       "studentEligible": false,
       "studentAccessible": false,
-      "deploymentAccess": "teacher-archive-only",
+      "deploymentAccess": "teacher-review-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
@@ -12711,11 +13230,12 @@
         "topicMappingStatus": "uncertain",
         "lessonMappingStatus": "uncertain",
         "calculatorStatus": "review-required",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 0,
         "reviewRequired": true,
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false
     },
@@ -12812,14 +13332,23 @@
         "bankName": "official-bc-practice-2016",
         "sourceType": "official College Board released practice exam and scoring guidelines",
         "officialStatus": "official-released",
-        "releaseStatus": "official released/practice material supplied by user",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           62,
           75
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 10,
@@ -12897,13 +13426,13 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.82,
         "tutoringReadiness": 0.85,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": false,
@@ -12916,7 +13445,7 @@
       },
       "studentEligible": false,
       "studentAccessible": false,
-      "deploymentAccess": "teacher-archive-only",
+      "deploymentAccess": "teacher-review-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
@@ -12933,11 +13462,12 @@
         "topicMappingStatus": "uncertain",
         "lessonMappingStatus": "uncertain",
         "calculatorStatus": "review-required",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 0,
         "reviewRequired": true,
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false
     },
@@ -13034,14 +13564,23 @@
         "bankName": "official-bc-practice-2016",
         "sourceType": "official College Board released practice exam and scoring guidelines",
         "officialStatus": "official-released",
-        "releaseStatus": "official released/practice material supplied by user",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           64,
           76
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 7,
@@ -13117,13 +13656,13 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.82,
         "tutoringReadiness": 0.85,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": false,
@@ -13136,7 +13675,7 @@
       },
       "studentEligible": false,
       "studentAccessible": false,
-      "deploymentAccess": "teacher-archive-only",
+      "deploymentAccess": "teacher-review-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
@@ -13153,11 +13692,12 @@
         "topicMappingStatus": "uncertain",
         "lessonMappingStatus": "uncertain",
         "calculatorStatus": "review-required",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 0,
         "reviewRequired": true,
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false
     },
@@ -13254,14 +13794,23 @@
         "bankName": "official-bc-practice-2016",
         "sourceType": "official College Board released practice exam and scoring guidelines",
         "officialStatus": "official-released",
-        "releaseStatus": "official released/practice material supplied by user",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           66,
           77
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 10,
@@ -13342,13 +13891,13 @@
       },
       "quality": {
         "completeness": "complete-source-facsimile",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.82,
         "tutoringReadiness": 0.85,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
-          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
+          "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": false,
@@ -13361,7 +13910,7 @@
       },
       "studentEligible": false,
       "studentAccessible": false,
-      "deploymentAccess": "teacher-archive-only",
+      "deploymentAccess": "teacher-review-only",
       "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
@@ -13378,11 +13927,12 @@
         "topicMappingStatus": "uncertain",
         "lessonMappingStatus": "uncertain",
         "calculatorStatus": "review-required",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 0,
         "reviewRequired": true,
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false
     },

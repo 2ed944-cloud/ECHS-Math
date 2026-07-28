@@ -47,14 +47,23 @@
         "bankName": "AP Calculus historical archive",
         "sourceType": "historical AP examination item / ECHS digital transcription",
         "officialStatus": "legacy-ap",
-        "releaseStatus": "historical compilation; publication permission not established",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           134,
           128
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 4,
@@ -174,14 +183,13 @@
       },
       "quality": {
         "completeness": "complete-unverified",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.65,
         "tutoringReadiness": 0.8,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
-          "Public release blocked: source access is school-internal and publicPublicationAllowed is false."
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": true,
@@ -211,11 +219,12 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 1,
         "reviewRequired": true,
         "reviewerNotes": "Preserved in the canonical teacher/archive bank. Excluded from the public GitHub Pages student pool because the source metadata permits school-internal use only and page-by-page transcription signoff is pending.",
-        "auditedAt": "2026-07-24T21:33:52+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false,
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
@@ -267,14 +276,23 @@
         "bankName": "AP Calculus historical archive",
         "sourceType": "historical AP examination item / ECHS digital transcription",
         "officialStatus": "legacy-ap",
-        "releaseStatus": "historical compilation; publication permission not established",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           134,
           128
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 6,
@@ -383,15 +401,14 @@
       },
       "quality": {
         "completeness": "complete-unverified",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.65,
         "tutoringReadiness": 0.8,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
           "repeated choice text",
-          "Public release blocked: source access is school-internal and publicPublicationAllowed is false."
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": true,
@@ -421,11 +438,12 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 1,
         "reviewRequired": true,
         "reviewerNotes": "Preserved in the canonical teacher/archive bank. Excluded from the public GitHub Pages student pool because the source metadata permits school-internal use only and page-by-page transcription signoff is pending.",
-        "auditedAt": "2026-07-24T21:33:52+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false,
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
@@ -477,14 +495,23 @@
         "bankName": "AP Calculus historical archive",
         "sourceType": "historical AP examination item / ECHS digital transcription",
         "officialStatus": "legacy-ap",
-        "releaseStatus": "historical compilation; publication permission not established",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           134,
           128
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 3,
@@ -621,15 +648,14 @@
       },
       "quality": {
         "completeness": "complete-unverified",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.65,
         "tutoringReadiness": 0.8,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
           "repeated choice text",
-          "Public release blocked: source access is school-internal and publicPublicationAllowed is false."
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": true,
@@ -659,11 +685,12 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 1,
         "reviewRequired": true,
         "reviewerNotes": "Preserved in the canonical teacher/archive bank. Excluded from the public GitHub Pages student pool because the source metadata permits school-internal use only and page-by-page transcription signoff is pending.",
-        "auditedAt": "2026-07-24T21:33:52+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false,
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
@@ -715,14 +742,23 @@
         "bankName": "AP Calculus historical archive",
         "sourceType": "historical AP examination item / ECHS digital transcription",
         "officialStatus": "legacy-ap",
-        "releaseStatus": "historical compilation; publication permission not established",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           135,
           129
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 5,
@@ -815,15 +851,14 @@
       },
       "quality": {
         "completeness": "complete-unverified",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.1,
         "tutoringReadiness": 0.8,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
           "Merged source records contain field conflicts; see provenance.fieldConflicts.",
-          "Public release blocked: source access is school-internal and publicPublicationAllowed is false."
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": true,
@@ -853,11 +888,12 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 3,
         "reviewRequired": true,
         "reviewerNotes": "Preserved in the canonical teacher/archive bank. Excluded from the public GitHub Pages student pool because the source metadata permits school-internal use only and page-by-page transcription signoff is pending.",
-        "auditedAt": "2026-07-24T21:33:52+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false,
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
@@ -909,14 +945,23 @@
         "bankName": "AP Calculus historical archive",
         "sourceType": "historical AP examination item / ECHS digital transcription",
         "officialStatus": "legacy-ap",
-        "releaseStatus": "historical compilation; publication permission not established",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           135,
           129
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 2,
@@ -1026,15 +1071,14 @@
       },
       "quality": {
         "completeness": "complete-unverified",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.65,
         "tutoringReadiness": 0.8,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
           "repeated choice text",
-          "Public release blocked: source access is school-internal and publicPublicationAllowed is false."
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": true,
@@ -1064,11 +1108,12 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 1,
         "reviewRequired": true,
         "reviewerNotes": "Preserved in the canonical teacher/archive bank. Excluded from the public GitHub Pages student pool because the source metadata permits school-internal use only and page-by-page transcription signoff is pending.",
-        "auditedAt": "2026-07-24T21:33:52+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false,
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
@@ -1120,14 +1165,23 @@
         "bankName": "AP Calculus historical archive",
         "sourceType": "historical AP examination item / ECHS digital transcription",
         "officialStatus": "legacy-ap",
-        "releaseStatus": "historical compilation; publication permission not established",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           135,
           129
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 5,
@@ -1243,14 +1297,13 @@
       },
       "quality": {
         "completeness": "complete-unverified",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.65,
         "tutoringReadiness": 0.8,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
-          "Public release blocked: source access is school-internal and publicPublicationAllowed is false."
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": true,
@@ -1280,11 +1333,12 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 1,
         "reviewRequired": true,
         "reviewerNotes": "Preserved in the canonical teacher/archive bank. Excluded from the public GitHub Pages student pool because the source metadata permits school-internal use only and page-by-page transcription signoff is pending.",
-        "auditedAt": "2026-07-24T21:33:52+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false,
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
@@ -1336,14 +1390,23 @@
         "bankName": "AP Calculus historical archive",
         "sourceType": "historical AP examination item / ECHS digital transcription",
         "officialStatus": "legacy-ap",
-        "releaseStatus": "historical compilation; publication permission not established",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           135,
           129
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 6,
@@ -1481,16 +1544,15 @@
       },
       "quality": {
         "completeness": "complete-unverified",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.1,
         "tutoringReadiness": 0.8,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
           "repeated choice text",
           "Merged source records contain field conflicts; see provenance.fieldConflicts.",
-          "Public release blocked: source access is school-internal and publicPublicationAllowed is false."
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": true,
@@ -1520,11 +1582,12 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 1,
         "reviewRequired": true,
         "reviewerNotes": "Preserved in the canonical teacher/archive bank. Excluded from the public GitHub Pages student pool because the source metadata permits school-internal use only and page-by-page transcription signoff is pending.",
-        "auditedAt": "2026-07-24T21:33:52+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false,
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
@@ -1576,14 +1639,23 @@
         "bankName": "AP Calculus historical archive",
         "sourceType": "historical AP examination item / ECHS digital transcription",
         "officialStatus": "legacy-ap",
-        "releaseStatus": "historical compilation; publication permission not established",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           135,
           129
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 7,
@@ -1703,14 +1775,13 @@
       },
       "quality": {
         "completeness": "complete-unverified",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.65,
         "tutoringReadiness": 0.8,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
-          "Public release blocked: source access is school-internal and publicPublicationAllowed is false."
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": true,
@@ -1740,11 +1811,12 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 1,
         "reviewRequired": true,
         "reviewerNotes": "Preserved in the canonical teacher/archive bank. Excluded from the public GitHub Pages student pool because the source metadata permits school-internal use only and page-by-page transcription signoff is pending.",
-        "auditedAt": "2026-07-24T21:33:52+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false,
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
@@ -1796,14 +1868,23 @@
         "bankName": "AP Calculus historical archive",
         "sourceType": "historical AP examination item / ECHS digital transcription",
         "officialStatus": "legacy-ap",
-        "releaseStatus": "historical compilation; publication permission not established",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           136,
           130
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 5,
@@ -1921,14 +2002,13 @@
       },
       "quality": {
         "completeness": "complete-unverified",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.65,
         "tutoringReadiness": 0.8,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
-          "Public release blocked: source access is school-internal and publicPublicationAllowed is false."
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": true,
@@ -1958,11 +2038,12 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 1,
         "reviewRequired": true,
         "reviewerNotes": "Preserved in the canonical teacher/archive bank. Excluded from the public GitHub Pages student pool because the source metadata permits school-internal use only and page-by-page transcription signoff is pending.",
-        "auditedAt": "2026-07-24T21:33:52+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false,
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
@@ -1973,36 +2054,64 @@
       "courseId": "ap-calculus-ab",
       "assessmentFamily": "AP historical archive",
       "type": "mcq",
+      "format": "single-select",
       "year": 1998,
       "form": "",
       "questionNumber": "23",
       "section": "I, Part A",
       "calculator": "no-calculator",
+      "maxPoints": 1,
+      "estimatedTime": 125,
       "prompt": "",
       "directions": "",
       "parts": [],
       "choices": [],
       "media": [],
+      "facsimileAuthority": "",
+      "machineExtractedText": "",
       "answer": null,
       "acceptedAnswers": [],
+      "answerFormat": "choice",
       "explanation": "",
       "workedSolution": "",
+      "alternativeSolution": "",
+      "calculatorSolution": "",
+      "noncalculatorSolution": "",
+      "studentExplanation": "",
+      "teacherExplanation": "",
       "scoringGuideline": null,
       "rubric": [],
+      "rubricStatus": "",
+      "commonMistakes": [
+        "Matching the graph of \\(f\\) to the same shape for \\(f\\prime\\).",
+        "Ignoring the sign of the derivative before and after the maximum.",
+        "Using only monotonicity and ignoring concavity."
+      ],
+      "verificationStatus": "official-key-verified",
+      "answerConfidence": 0.96,
       "source": {
         "organization": "College Board",
         "publisher": "College Board",
         "bankName": "AP Calculus historical archive",
         "sourceType": "historical AP examination item / ECHS digital transcription",
         "officialStatus": "legacy-ap",
-        "releaseStatus": "historical compilation; publication permission not established",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           137,
           131
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 5,
@@ -2049,18 +2158,93 @@
       "pedagogy": {
         "difficulty": 3,
         "difficultyLabel": "Medium",
-        "hints": []
+        "cognitiveDemand": 3,
+        "hints": [],
+        "misconceptions": [
+          {
+            "code": "APCALC-LEGACY-MCQ-1998-023-M01",
+            "title": "Matching the graph of \\(f\\) to the same shape for \\(f\\prime\\).",
+            "triggerAnswers": [],
+            "diagnosis": "Matching the graph of \\(f\\) to the same shape for \\(f\\prime\\).",
+            "feedback": "",
+            "recommendedPrerequisites": [],
+            "confidence": 0.75,
+            "source": "source-provided common-mistake note"
+          },
+          {
+            "code": "APCALC-LEGACY-MCQ-1998-023-M02",
+            "title": "Ignoring the sign of the derivative before and after the maximum.",
+            "triggerAnswers": [],
+            "diagnosis": "Ignoring the sign of the derivative before and after the maximum.",
+            "feedback": "",
+            "recommendedPrerequisites": [],
+            "confidence": 0.75,
+            "source": "source-provided common-mistake note"
+          },
+          {
+            "code": "APCALC-LEGACY-MCQ-1998-023-M03",
+            "title": "Using only monotonicity and ignoring concavity.",
+            "triggerAnswers": [],
+            "diagnosis": "Using only monotonicity and ignoring concavity.",
+            "feedback": "",
+            "recommendedPrerequisites": [],
+            "confidence": 0.75,
+            "source": "source-provided common-mistake note"
+          }
+        ],
+        "related": {
+          "easier": [],
+          "parallel": [
+            "APCALC-LEGACY-MCQ-1969-016",
+            "APCALC-LEGACY-MCQ-1985-033",
+            "APCALC-LEGACY-MCQ-1988-008",
+            "APCALC-LEGACY-MCQ-1997-011"
+          ],
+          "harder": [
+            "APCALC-LEGACY-MCQ-1973-010"
+          ],
+          "prerequisite": [],
+          "sameOfficialTopic": [
+            "APCALC-LEGACY-MCQ-1969-016",
+            "APCALC-LEGACY-MCQ-1973-010",
+            "APCALC-LEGACY-MCQ-1985-033",
+            "APCALC-LEGACY-MCQ-1988-008",
+            "APCALC-LEGACY-MCQ-1997-011"
+          ],
+          "relatedFRQ": [],
+          "relatedMCQ": [
+            "APCALC-LEGACY-MCQ-1969-016",
+            "APCALC-LEGACY-MCQ-1973-010",
+            "APCALC-LEGACY-MCQ-1985-033",
+            "APCALC-LEGACY-MCQ-1988-008",
+            "APCALC-LEGACY-MCQ-1997-011"
+          ]
+        }
       },
       "quality": {
-        "productionStatus": "teacher-archive-only",
+        "completeness": "complete-unverified",
+        "productionStatus": "teacher-review-only",
+        "productionReadiness": 0.65,
+        "tutoringReadiness": 0.8,
         "needsReview": true,
-        "studentReadyGatePassed": false,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
-          "Independent audit restriction: Complete independent source and mathematical verification passed. Required source/choice visual is unavailable in a student-usable form; the record is preserved as teacher/archive-only until exact media is supplied."
-        ]
+          "Independent audit restriction: Complete independent source and mathematical verification passed. Required source/choice visual is unavailable in a student-usable form; the record is preserved as teacher/archive-only until exact media is supplied.",
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
+        ],
+        "transcriptionVerified": true,
+        "answerVerified": true,
+        "mediaVerified": false,
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": true,
+        "katexVerified": true,
+        "mappingVerified": true,
+        "studentReadyGatePassed": false
       },
+      "studentEligible": false,
+      "studentAccessible": true,
+      "deploymentAccess": "archive-metadata-only",
+      "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "137; 131",
@@ -2076,17 +2260,14 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "review-required",
-        "overallStatus": "teacher-archive-only",
-        "correctionsMade": 1,
+        "overallStatus": "teacher-review-only",
+        "correctionsMade": 0,
         "reviewRequired": true,
         "reviewerNotes": "Complete independent source and mathematical verification passed. Required source/choice visual is unavailable in a student-usable form; the record is preserved as teacher/archive-only until exact media is supplied.",
-        "auditedAt": "2026-07-24T17:46:03+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
-      "studentEligible": false,
-      "studentAccessible": true,
       "studentReady": false,
-      "deploymentAccess": "archive-metadata-only",
-      "contentStatus": "indexed-only",
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
     },
     {
@@ -2136,14 +2317,23 @@
         "bankName": "AP Calculus historical archive",
         "sourceType": "historical AP examination item / ECHS digital transcription",
         "officialStatus": "legacy-ap",
-        "releaseStatus": "historical compilation; publication permission not established",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           138,
           132
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 4,
@@ -2263,14 +2453,13 @@
       },
       "quality": {
         "completeness": "complete-unverified",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.65,
         "tutoringReadiness": 0.8,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
-          "Public release blocked: source access is school-internal and publicPublicationAllowed is false."
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": true,
@@ -2300,11 +2489,12 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 1,
         "reviewRequired": true,
         "reviewerNotes": "Preserved in the canonical teacher/archive bank. Excluded from the public GitHub Pages student pool because the source metadata permits school-internal use only and page-by-page transcription signoff is pending.",
-        "auditedAt": "2026-07-24T21:33:52+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false,
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
@@ -2356,14 +2546,23 @@
         "bankName": "AP Calculus historical archive",
         "sourceType": "historical AP examination item / ECHS digital transcription",
         "officialStatus": "legacy-ap",
-        "releaseStatus": "historical compilation; publication permission not established",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           138,
           132
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 8,
@@ -2497,14 +2696,13 @@
       },
       "quality": {
         "completeness": "complete-unverified",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.65,
         "tutoringReadiness": 0.8,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
-          "Public release blocked: source access is school-internal and publicPublicationAllowed is false."
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": true,
@@ -2534,11 +2732,12 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 1,
         "reviewRequired": true,
         "reviewerNotes": "Preserved in the canonical teacher/archive bank. Excluded from the public GitHub Pages student pool because the source metadata permits school-internal use only and page-by-page transcription signoff is pending.",
-        "auditedAt": "2026-07-24T21:33:52+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false,
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
@@ -2590,14 +2789,23 @@
         "bankName": "AP Calculus historical archive",
         "sourceType": "historical AP examination item / ECHS digital transcription",
         "officialStatus": "legacy-ap",
-        "releaseStatus": "historical compilation; publication permission not established",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           138,
           132
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 1,
@@ -2702,15 +2910,14 @@
       },
       "quality": {
         "completeness": "complete-unverified",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.1,
         "tutoringReadiness": 0.8,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
           "Merged source records contain field conflicts; see provenance.fieldConflicts.",
-          "Public release blocked: source access is school-internal and publicPublicationAllowed is false."
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": true,
@@ -2740,11 +2947,12 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 3,
         "reviewRequired": true,
         "reviewerNotes": "Preserved in the canonical teacher/archive bank. Excluded from the public GitHub Pages student pool because the source metadata permits school-internal use only and page-by-page transcription signoff is pending.",
-        "auditedAt": "2026-07-24T21:33:52+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false,
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
@@ -2796,14 +3004,23 @@
         "bankName": "AP Calculus historical archive",
         "sourceType": "historical AP examination item / ECHS digital transcription",
         "officialStatus": "legacy-ap",
-        "releaseStatus": "historical compilation; publication permission not established",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           138,
           132
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 8,
@@ -2917,14 +3134,13 @@
       },
       "quality": {
         "completeness": "complete-unverified",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.65,
         "tutoringReadiness": 0.8,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
-          "Public release blocked: source access is school-internal and publicPublicationAllowed is false."
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": true,
@@ -2954,11 +3170,12 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 1,
         "reviewRequired": true,
         "reviewerNotes": "Preserved in the canonical teacher/archive bank. Excluded from the public GitHub Pages student pool because the source metadata permits school-internal use only and page-by-page transcription signoff is pending.",
-        "auditedAt": "2026-07-24T21:33:52+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false,
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
@@ -3010,14 +3227,23 @@
         "bankName": "AP Calculus historical archive",
         "sourceType": "historical AP examination item / ECHS digital transcription",
         "officialStatus": "legacy-ap",
-        "releaseStatus": "historical compilation; publication permission not established",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           138,
           132
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 3,
@@ -3153,15 +3379,14 @@
       },
       "quality": {
         "completeness": "complete-unverified",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.1,
         "tutoringReadiness": 0.8,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
           "Merged source records contain field conflicts; see provenance.fieldConflicts.",
-          "Public release blocked: source access is school-internal and publicPublicationAllowed is false."
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": true,
@@ -3191,11 +3416,12 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 1,
         "reviewRequired": true,
         "reviewerNotes": "Preserved in the canonical teacher/archive bank. Excluded from the public GitHub Pages student pool because the source metadata permits school-internal use only and page-by-page transcription signoff is pending.",
-        "auditedAt": "2026-07-24T21:33:52+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false,
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
@@ -3247,14 +3473,23 @@
         "bankName": "AP Calculus historical archive",
         "sourceType": "historical AP examination item / ECHS digital transcription",
         "officialStatus": "legacy-ap",
-        "releaseStatus": "historical compilation; publication permission not established",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           139,
           133
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 1,
@@ -3368,15 +3603,14 @@
       },
       "quality": {
         "completeness": "complete-unverified",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.1,
         "tutoringReadiness": 0.8,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
           "Merged source records contain field conflicts; see provenance.fieldConflicts.",
-          "Public release blocked: source access is school-internal and publicPublicationAllowed is false."
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": true,
@@ -3406,11 +3640,12 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 3,
         "reviewRequired": true,
         "reviewerNotes": "Preserved in the canonical teacher/archive bank. Excluded from the public GitHub Pages student pool because the source metadata permits school-internal use only and page-by-page transcription signoff is pending.",
-        "auditedAt": "2026-07-24T21:33:52+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false,
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
@@ -3462,14 +3697,23 @@
         "bankName": "AP Calculus historical archive",
         "sourceType": "historical AP examination item / ECHS digital transcription",
         "officialStatus": "legacy-ap",
-        "releaseStatus": "historical compilation; publication permission not established",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           139,
           133
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 2,
@@ -3568,15 +3812,14 @@
       },
       "quality": {
         "completeness": "complete-unverified",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.1,
         "tutoringReadiness": 0.8,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
           "Merged source records contain field conflicts; see provenance.fieldConflicts.",
-          "Public release blocked: source access is school-internal and publicPublicationAllowed is false."
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": true,
@@ -3606,11 +3849,12 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 1,
         "reviewRequired": true,
         "reviewerNotes": "Preserved in the canonical teacher/archive bank. Excluded from the public GitHub Pages student pool because the source metadata permits school-internal use only and page-by-page transcription signoff is pending.",
-        "auditedAt": "2026-07-24T21:33:52+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false,
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
@@ -3662,14 +3906,23 @@
         "bankName": "AP Calculus historical archive",
         "sourceType": "historical AP examination item / ECHS digital transcription",
         "officialStatus": "legacy-ap",
-        "releaseStatus": "historical compilation; publication permission not established",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           140,
           134
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 4,
@@ -3802,15 +4055,14 @@
       },
       "quality": {
         "completeness": "complete-unverified",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.1,
         "tutoringReadiness": 0.8,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
           "Merged source records contain field conflicts; see provenance.fieldConflicts.",
-          "Public release blocked: source access is school-internal and publicPublicationAllowed is false."
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": true,
@@ -3840,11 +4092,12 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 1,
         "reviewRequired": true,
         "reviewerNotes": "Preserved in the canonical teacher/archive bank. Excluded from the public GitHub Pages student pool because the source metadata permits school-internal use only and page-by-page transcription signoff is pending.",
-        "auditedAt": "2026-07-24T21:33:52+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false,
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
@@ -3896,14 +4149,23 @@
         "bankName": "AP Calculus historical archive",
         "sourceType": "historical AP examination item / ECHS digital transcription",
         "officialStatus": "legacy-ap",
-        "releaseStatus": "historical compilation; publication permission not established",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           140,
           134
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 5,
@@ -4015,15 +4277,14 @@
       },
       "quality": {
         "completeness": "complete-unverified",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.1,
         "tutoringReadiness": 0.8,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
           "Merged source records contain field conflicts; see provenance.fieldConflicts.",
-          "Public release blocked: source access is school-internal and publicPublicationAllowed is false."
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": true,
@@ -4053,11 +4314,12 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 3,
         "reviewRequired": true,
         "reviewerNotes": "Preserved in the canonical teacher/archive bank. Excluded from the public GitHub Pages student pool because the source metadata permits school-internal use only and page-by-page transcription signoff is pending.",
-        "auditedAt": "2026-07-24T21:33:52+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false,
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
@@ -4109,14 +4371,23 @@
         "bankName": "AP Calculus historical archive",
         "sourceType": "historical AP examination item / ECHS digital transcription",
         "officialStatus": "legacy-ap",
-        "releaseStatus": "historical compilation; publication permission not established",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           140,
           134
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 5,
@@ -4217,14 +4488,13 @@
       },
       "quality": {
         "completeness": "complete-unverified",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.65,
         "tutoringReadiness": 0.8,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
-          "Public release blocked: source access is school-internal and publicPublicationAllowed is false."
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": true,
@@ -4254,11 +4524,12 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 1,
         "reviewRequired": true,
         "reviewerNotes": "Preserved in the canonical teacher/archive bank. Excluded from the public GitHub Pages student pool because the source metadata permits school-internal use only and page-by-page transcription signoff is pending.",
-        "auditedAt": "2026-07-24T21:33:52+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false,
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
@@ -4310,14 +4581,23 @@
         "bankName": "AP Calculus historical archive",
         "sourceType": "historical AP examination item / ECHS digital transcription",
         "officialStatus": "legacy-ap",
-        "releaseStatus": "historical compilation; publication permission not established",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           141,
           135
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 2,
@@ -4442,14 +4722,13 @@
       },
       "quality": {
         "completeness": "complete-unverified",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.65,
         "tutoringReadiness": 0.8,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
-          "Public release blocked: source access is school-internal and publicPublicationAllowed is false."
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": true,
@@ -4479,11 +4758,12 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 1,
         "reviewRequired": true,
         "reviewerNotes": "Preserved in the canonical teacher/archive bank. Excluded from the public GitHub Pages student pool because the source metadata permits school-internal use only and page-by-page transcription signoff is pending.",
-        "auditedAt": "2026-07-24T21:33:52+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false,
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
@@ -4535,14 +4815,23 @@
         "bankName": "AP Calculus historical archive",
         "sourceType": "historical AP examination item / ECHS digital transcription",
         "officialStatus": "legacy-ap",
-        "releaseStatus": "historical compilation; publication permission not established",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           141,
           135
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 6,
@@ -4665,14 +4954,13 @@
       },
       "quality": {
         "completeness": "complete-unverified",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.65,
         "tutoringReadiness": 0.8,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
-          "Public release blocked: source access is school-internal and publicPublicationAllowed is false."
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": true,
@@ -4702,11 +4990,12 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 1,
         "reviewRequired": true,
         "reviewerNotes": "Preserved in the canonical teacher/archive bank. Excluded from the public GitHub Pages student pool because the source metadata permits school-internal use only and page-by-page transcription signoff is pending.",
-        "auditedAt": "2026-07-24T21:33:52+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false,
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
@@ -4758,14 +5047,23 @@
         "bankName": "AP Calculus historical archive",
         "sourceType": "historical AP examination item / ECHS digital transcription",
         "officialStatus": "legacy-ap",
-        "releaseStatus": "historical compilation; publication permission not established",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           141,
           135
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 1,
@@ -4872,14 +5170,13 @@
       },
       "quality": {
         "completeness": "complete-unverified",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.65,
         "tutoringReadiness": 0.8,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
-          "Public release blocked: source access is school-internal and publicPublicationAllowed is false."
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": true,
@@ -4909,11 +5206,12 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 1,
         "reviewRequired": true,
         "reviewerNotes": "Preserved in the canonical teacher/archive bank. Excluded from the public GitHub Pages student pool because the source metadata permits school-internal use only and page-by-page transcription signoff is pending.",
-        "auditedAt": "2026-07-24T21:33:52+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false,
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
@@ -4965,14 +5263,23 @@
         "bankName": "AP Calculus historical archive",
         "sourceType": "historical AP examination item / ECHS digital transcription",
         "officialStatus": "legacy-ap",
-        "releaseStatus": "historical compilation; publication permission not established",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           141,
           135
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 7,
@@ -5095,15 +5402,14 @@
       },
       "quality": {
         "completeness": "complete-unverified",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.1,
         "tutoringReadiness": 0.8,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
           "Merged source records contain field conflicts; see provenance.fieldConflicts.",
-          "Public release blocked: source access is school-internal and publicPublicationAllowed is false."
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": true,
@@ -5133,11 +5439,12 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 1,
         "reviewRequired": true,
         "reviewerNotes": "Preserved in the canonical teacher/archive bank. Excluded from the public GitHub Pages student pool because the source metadata permits school-internal use only and page-by-page transcription signoff is pending.",
-        "auditedAt": "2026-07-24T21:33:52+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false,
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
@@ -5189,14 +5496,23 @@
         "bankName": "AP Calculus historical archive",
         "sourceType": "historical AP examination item / ECHS digital transcription",
         "officialStatus": "legacy-ap",
-        "releaseStatus": "historical compilation; publication permission not established",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           142,
           136
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 6,
@@ -5319,15 +5635,14 @@
       },
       "quality": {
         "completeness": "complete-unverified",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.1,
         "tutoringReadiness": 0.8,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
           "Merged source records contain field conflicts; see provenance.fieldConflicts.",
-          "Public release blocked: source access is school-internal and publicPublicationAllowed is false."
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": true,
@@ -5357,11 +5672,12 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 3,
         "reviewRequired": true,
         "reviewerNotes": "Preserved in the canonical teacher/archive bank. Excluded from the public GitHub Pages student pool because the source metadata permits school-internal use only and page-by-page transcription signoff is pending.",
-        "auditedAt": "2026-07-24T21:33:52+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false,
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
@@ -5413,14 +5729,23 @@
         "bankName": "AP Calculus historical archive",
         "sourceType": "historical AP examination item / ECHS digital transcription",
         "officialStatus": "legacy-ap",
-        "releaseStatus": "historical compilation; publication permission not established",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           142,
           136
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 8,
@@ -5529,15 +5854,14 @@
       },
       "quality": {
         "completeness": "complete-unverified",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.1,
         "tutoringReadiness": 0.8,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
           "Merged source records contain field conflicts; see provenance.fieldConflicts.",
-          "Public release blocked: source access is school-internal and publicPublicationAllowed is false."
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": true,
@@ -5567,11 +5891,12 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 3,
         "reviewRequired": true,
         "reviewerNotes": "Preserved in the canonical teacher/archive bank. Excluded from the public GitHub Pages student pool because the source metadata permits school-internal use only and page-by-page transcription signoff is pending.",
-        "auditedAt": "2026-07-24T21:33:52+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false,
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
@@ -5623,14 +5948,23 @@
         "bankName": "AP Calculus historical archive",
         "sourceType": "historical AP examination item / ECHS digital transcription",
         "officialStatus": "legacy-ap",
-        "releaseStatus": "historical compilation; publication permission not established",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           142,
           136
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 2,
@@ -5735,14 +6069,13 @@
       },
       "quality": {
         "completeness": "complete-unverified",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.65,
         "tutoringReadiness": 0.8,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
-          "Public release blocked: source access is school-internal and publicPublicationAllowed is false."
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": true,
@@ -5772,11 +6105,12 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 1,
         "reviewRequired": true,
         "reviewerNotes": "Preserved in the canonical teacher/archive bank. Excluded from the public GitHub Pages student pool because the source metadata permits school-internal use only and page-by-page transcription signoff is pending.",
-        "auditedAt": "2026-07-24T21:33:52+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false,
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
@@ -5828,14 +6162,23 @@
         "bankName": "AP Calculus historical archive",
         "sourceType": "historical AP examination item / ECHS digital transcription",
         "officialStatus": "legacy-ap",
-        "releaseStatus": "historical compilation; publication permission not established",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           142,
           136
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 6,
@@ -5960,15 +6303,14 @@
       },
       "quality": {
         "completeness": "complete-unverified",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.1,
         "tutoringReadiness": 0.8,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
           "Merged source records contain field conflicts; see provenance.fieldConflicts.",
-          "Public release blocked: source access is school-internal and publicPublicationAllowed is false."
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": true,
@@ -5998,11 +6340,12 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 1,
         "reviewRequired": true,
         "reviewerNotes": "Preserved in the canonical teacher/archive bank. Excluded from the public GitHub Pages student pool because the source metadata permits school-internal use only and page-by-page transcription signoff is pending.",
-        "auditedAt": "2026-07-24T21:33:52+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false,
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
@@ -6054,14 +6397,23 @@
         "bankName": "AP Calculus historical archive",
         "sourceType": "historical AP examination item / ECHS digital transcription",
         "officialStatus": "legacy-ap",
-        "releaseStatus": "historical compilation; publication permission not established",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           143,
           137
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 5,
@@ -6174,15 +6526,14 @@
       },
       "quality": {
         "completeness": "complete-unverified",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.1,
         "tutoringReadiness": 0.8,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
           "Merged source records contain field conflicts; see provenance.fieldConflicts.",
-          "Public release blocked: source access is school-internal and publicPublicationAllowed is false."
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": true,
@@ -6212,11 +6563,12 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 1,
         "reviewRequired": true,
         "reviewerNotes": "Preserved in the canonical teacher/archive bank. Excluded from the public GitHub Pages student pool because the source metadata permits school-internal use only and page-by-page transcription signoff is pending.",
-        "auditedAt": "2026-07-24T21:33:52+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false,
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
@@ -6268,14 +6620,23 @@
         "bankName": "AP Calculus historical archive",
         "sourceType": "historical AP examination item / ECHS digital transcription",
         "officialStatus": "legacy-ap",
-        "releaseStatus": "historical compilation; publication permission not established",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           143,
           137
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 4,
@@ -6409,16 +6770,15 @@
       },
       "quality": {
         "completeness": "complete-unverified",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.1,
         "tutoringReadiness": 0.8,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
           "repeated choice text",
           "Merged source records contain field conflicts; see provenance.fieldConflicts.",
-          "Public release blocked: source access is school-internal and publicPublicationAllowed is false."
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": true,
@@ -6448,11 +6808,12 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 1,
         "reviewRequired": true,
         "reviewerNotes": "Preserved in the canonical teacher/archive bank. Excluded from the public GitHub Pages student pool because the source metadata permits school-internal use only and page-by-page transcription signoff is pending.",
-        "auditedAt": "2026-07-24T21:33:52+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false,
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
@@ -6504,14 +6865,23 @@
         "bankName": "AP Calculus historical archive",
         "sourceType": "historical AP examination item / ECHS digital transcription",
         "officialStatus": "legacy-ap",
-        "releaseStatus": "historical compilation; publication permission not established",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           143,
           137
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 5,
@@ -6618,15 +6988,14 @@
       },
       "quality": {
         "completeness": "complete-unverified",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.1,
         "tutoringReadiness": 0.8,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
           "Merged source records contain field conflicts; see provenance.fieldConflicts.",
-          "Public release blocked: source access is school-internal and publicPublicationAllowed is false."
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": true,
@@ -6656,11 +7025,12 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 1,
         "reviewRequired": true,
         "reviewerNotes": "Preserved in the canonical teacher/archive bank. Excluded from the public GitHub Pages student pool because the source metadata permits school-internal use only and page-by-page transcription signoff is pending.",
-        "auditedAt": "2026-07-24T21:33:52+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false,
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
@@ -6712,14 +7082,23 @@
         "bankName": "AP Calculus historical archive",
         "sourceType": "historical AP examination item / ECHS digital transcription",
         "officialStatus": "legacy-ap",
-        "releaseStatus": "historical compilation; publication permission not established",
-        "accessLevel": "school-internal",
-        "rightsStatus": "permission-required",
-        "publicPublicationAllowed": false,
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
         "sourcePages": [
           143,
           137
-        ]
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
       },
       "classification": {
         "primaryUnit": 6,
@@ -6849,15 +7228,14 @@
       },
       "quality": {
         "completeness": "complete-unverified",
-        "productionStatus": "teacher-archive-only",
+        "productionStatus": "teacher-review-only",
         "productionReadiness": 0.1,
         "tutoringReadiness": 0.8,
         "needsReview": true,
         "reviewReasons": [
-          "Rights/permission review required before public publication.",
           "Transcription inherited from prior digitization and not re-compared page-by-page against the source scan in this consolidation.",
           "Merged source records contain field conflicts; see provenance.fieldConflicts.",
-          "Public release blocked: source access is school-internal and publicPublicationAllowed is false."
+          "Licensed for ECHS student practice, but content verification remains incomplete; do not deliver to students yet."
         ],
         "transcriptionVerified": false,
         "answerVerified": true,
@@ -6887,11 +7265,12 @@
         "topicMappingStatus": "verified",
         "lessonMappingStatus": "verified",
         "calculatorStatus": "verified",
-        "overallStatus": "teacher-archive-only",
+        "overallStatus": "teacher-review-only",
         "correctionsMade": 1,
         "reviewRequired": true,
         "reviewerNotes": "Preserved in the canonical teacher/archive bank. Excluded from the public GitHub Pages student pool because the source metadata permits school-internal use only and page-by-page transcription signoff is pending.",
-        "auditedAt": "2026-07-24T21:33:52+00:00"
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
       },
       "studentReady": false,
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."

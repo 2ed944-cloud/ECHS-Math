@@ -1,3 +1,3754 @@
 {
-  "questions": []
+  "questions": [
+    {
+      "id": "APCALC-AB-FRQ-1976-02",
+      "course": "AP Calculus AB",
+      "courseId": "ap-calculus-ab",
+      "assessmentFamily": "AP historical archive",
+      "type": "frq",
+      "format": "multipart-free-response",
+      "year": 1976,
+      "form": "",
+      "questionNumber": "2",
+      "section": "II",
+      "calculator": "no-calculator",
+      "maxPoints": 10,
+      "estimatedTime": 900,
+      "prompt": "Let \\(f(x)=x^3-3x^2-4x+12\\), and define \\[h(x)=\\begin{cases}\\dfrac{f(x)}{x-3},&x\\ne3,p,&x=3.\\end{cases}\\]",
+      "directions": "",
+      "parts": [
+        {
+          "label": "(a)",
+          "prompt": "Find all zeros of \\(f\\).",
+          "maxPoints": 3,
+          "answer": "\\[f(x)=x^3-3x^2-4x+12=(x-3)(x-2)(x+2).\\]Hence \\[\\boxed{x=-2,2,3}.\\]",
+          "rubric": [
+            {
+              "criterionId": "A1",
+              "description": "1 point for a valid factorization step.",
+              "points": null,
+              "evidenceRequired": "1 point for a valid factorization step.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "A2",
+              "description": "1 point for complete factorization.",
+              "points": null,
+              "evidenceRequired": "1 point for complete factorization.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "A3",
+              "description": "1 point for all three zeros.",
+              "points": null,
+              "evidenceRequired": "1 point for all three zeros.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            }
+          ]
+        },
+        {
+          "label": "(b)",
+          "prompt": "Find \\(p\\) so that \\(h\\) is continuous at \\(x=3\\). Justify.",
+          "maxPoints": 4,
+          "answer": "For \\(x\\ne3\\), \\[h(x)=\\frac{(x-3)(x-2)(x+2)}{x-3}=x^2-4.\\]Thus \\[\\lim_{x\\to3}h(x)=9-4=5.\\]Continuity requires \\[\\boxed{p=5}.\\]",
+          "rubric": [
+            {
+              "criterionId": "B1",
+              "description": "1 point for factorization.",
+              "points": null,
+              "evidenceRequired": "1 point for factorization.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "B2",
+              "description": "1 point for cancellation away from x=3.",
+              "points": null,
+              "evidenceRequired": "1 point for cancellation away from x=3.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "B3",
+              "description": "1 point for the limit.",
+              "points": null,
+              "evidenceRequired": "1 point for the limit.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "B4",
+              "description": "1 point for p and continuity justification.",
+              "points": null,
+              "evidenceRequired": "1 point for p and continuity justification.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            }
+          ]
+        },
+        {
+          "label": "(c)",
+          "prompt": "Using this value of \\(p\\), determine whether \\(h\\) is even.",
+          "maxPoints": 3,
+          "answer": "With \\(p=5\\), the piecewise definition agrees with \\(h(x)=x^2-4\\) at every real number, including \\(x=3\\). Therefore \\[h(-x)=(-x)^2-4=h(x),\\]so \\(\\boxed{h\\text{ is even}}\\).",
+          "rubric": [
+            {
+              "criterionId": "C1",
+              "description": "1 point for recognizing the global formula.",
+              "points": null,
+              "evidenceRequired": "1 point for recognizing the global formula.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "C2",
+              "description": "1 point for evaluating h(-x).",
+              "points": null,
+              "evidenceRequired": "1 point for evaluating h(-x).",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "C3",
+              "description": "1 point for the conclusion.",
+              "points": null,
+              "evidenceRequired": "1 point for the conclusion.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            }
+          ]
+        }
+      ],
+      "choices": [],
+      "media": [
+        {
+          "id": "MEDIA-APCALC-AB-FRQ-1976-02-PROMPT-01",
+          "path": "",
+          "mime": "application/vnd.echs.runtime-svg-descriptor+json",
+          "alt": "Original ECHS digital figure for 1976 Question 2.",
+          "caption": "",
+          "cropStatus": "not-applicable",
+          "renderMode": "runtime-svg-descriptor",
+          "descriptor": {
+            "shape": "1976-frq2",
+            "ariaLabel": "Original ECHS digital figure for 1976 Question 2.",
+            "svg": "<svg viewBox=\"0 0 720 360\" role=\"img\" aria-label=\"Cubic zeros and the removable discontinuity simplified to x squared minus four.\" xmlns=\"http://www.w3.org/2000/svg\" style=\"width:100%;height:auto;background:#fff;border-radius:18px\"><defs><marker id=\"arr\" markerWidth=\"8\" markerHeight=\"8\" refX=\"6\" refY=\"3\" orient=\"auto\"><path d=\"M0,0 L0,6 L7,3 z\" fill=\"#14213d\"/></marker></defs><line x1=\"70\" y1=\"290\" x2=\"680\" y2=\"290\" stroke=\"#14213d\" stroke-width=\"2\" marker-end=\"url(#arr)\"/><line x1=\"70\" y1=\"290\" x2=\"70\" y2=\"30\" stroke=\"#14213d\" stroke-width=\"2\" marker-end=\"url(#arr)\"/><path d=\"M85 235 C145 160 210 125 275 145 C340 165 405 250 470 245 C535 240 595 170 670 75\" fill=\"none\" stroke=\"#78183f\" stroke-width=\"5\"/><circle cx=\"215\" cy=\"218\" r=\"6\" fill=\"#d59b2b\"/><circle cx=\"330\" cy=\"245\" r=\"6\" fill=\"#d59b2b\"/><circle cx=\"500\" cy=\"215\" r=\"6\" fill=\"#d59b2b\"/><text x=\"190\" y=\"240\" font-family=\"Inter\" font-size=\"15\">−2</text><text x=\"322\" y=\"268\" font-family=\"Inter\" font-size=\"15\">2</text><text x=\"492\" y=\"240\" font-family=\"Inter\" font-size=\"15\">3</text><text x=\"500\" y=\"70\" font-family=\"Inter\" font-size=\"16\" fill=\"#0f766e\">h(x)=x²−4</text></svg>"
+          }
+        },
+        {
+          "id": "MEDIA-HISTORICAL-FRQ-1969-2010-P014-7C7EABE017",
+          "path": "media/source-pages/historical-frq-1969-2010/page-014-source-page-7c7eabe017.svg",
+          "mime": "image/svg+xml",
+          "alt": "Historical AP Calculus FRQ source page, 1975 question 6.",
+          "caption": "Source Page - ap_calculus_free_response_1969_2010(3).pdf, page 14",
+          "cropStatus": "full-page",
+          "renderMode": "svg-from-pdf-glyph-paths",
+          "descriptor": null
+        },
+        {
+          "id": "MEDIA-HISTORICAL-FRQ-1969-2010-P014-2B48C33832",
+          "path": "media/question-crops/historical-frq-1969-2010/page-014-question-crop-2b48c33832.svg",
+          "mime": "image/svg+xml",
+          "alt": "Historical AP Calculus FRQ 1976 AB 2.",
+          "caption": "Question Crop - ap_calculus_free_response_1969_2010(3).pdf, page 14",
+          "cropStatus": "question-region",
+          "renderMode": "svg-from-pdf-glyph-paths",
+          "descriptor": null
+        }
+      ],
+      "facsimileAuthority": "",
+      "machineExtractedText": "",
+      "answer": null,
+      "acceptedAnswers": [],
+      "answerFormat": "multipart-constructed-response",
+      "explanation": "See the part-level reference answers and ECHS analytic rubric.",
+      "workedSolution": "See the part-level reference answers and ECHS analytic rubric.",
+      "alternativeSolution": "",
+      "calculatorSolution": "",
+      "noncalculatorSolution": "See the part-level reference answers and ECHS analytic rubric.",
+      "studentExplanation": "See the part-level reference answers and ECHS analytic rubric.",
+      "teacherExplanation": "See the part-level reference answers and ECHS analytic rubric.",
+      "scoringGuideline": null,
+      "rubric": [
+        {
+          "part": "(a)",
+          "maxPoints": 3,
+          "criteria": [
+            {
+              "criterionId": "A1",
+              "description": "1 point for a valid factorization step.",
+              "points": null,
+              "evidenceRequired": "1 point for a valid factorization step.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "A2",
+              "description": "1 point for complete factorization.",
+              "points": null,
+              "evidenceRequired": "1 point for complete factorization.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "A3",
+              "description": "1 point for all three zeros.",
+              "points": null,
+              "evidenceRequired": "1 point for all three zeros.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            }
+          ]
+        },
+        {
+          "part": "(b)",
+          "maxPoints": 4,
+          "criteria": [
+            {
+              "criterionId": "B1",
+              "description": "1 point for factorization.",
+              "points": null,
+              "evidenceRequired": "1 point for factorization.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "B2",
+              "description": "1 point for cancellation away from x=3.",
+              "points": null,
+              "evidenceRequired": "1 point for cancellation away from x=3.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "B3",
+              "description": "1 point for the limit.",
+              "points": null,
+              "evidenceRequired": "1 point for the limit.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "B4",
+              "description": "1 point for p and continuity justification.",
+              "points": null,
+              "evidenceRequired": "1 point for p and continuity justification.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            }
+          ]
+        },
+        {
+          "part": "(c)",
+          "maxPoints": 3,
+          "criteria": [
+            {
+              "criterionId": "C1",
+              "description": "1 point for recognizing the global formula.",
+              "points": null,
+              "evidenceRequired": "1 point for recognizing the global formula.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "C2",
+              "description": "1 point for evaluating h(-x).",
+              "points": null,
+              "evidenceRequired": "1 point for evaluating h(-x).",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "C3",
+              "description": "1 point for the conclusion.",
+              "points": null,
+              "evidenceRequired": "1 point for the conclusion.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            }
+          ]
+        }
+      ],
+      "rubricStatus": "ECHS analytic rubric based on independent mathematical verification; not an official historical College Board point-by-point scoring guideline.",
+      "commonMistakes": [
+        "Cancelling x−3 without stating x≠3.",
+        "Choosing p=0 because the original numerator is 0 at x=3.",
+        "Checking parity only away from the redefined point."
+      ],
+      "verificationStatus": "independently-verified-licensed-student-practice",
+      "answerConfidence": 1.0,
+      "source": {
+        "organization": "College Board",
+        "publisher": "College Board",
+        "bankName": "AP Calculus historical archive",
+        "sourceType": "historical AP examination item / ECHS digital transcription",
+        "officialStatus": "legacy-ap",
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
+        "sourcePages": [
+          14
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
+      },
+      "classification": {
+        "primaryUnit": 1,
+        "primaryUnitLabel": "Unit 1: Limits and Continuity",
+        "primaryTopic": "Removable discontinuity and parity",
+        "topicCode": "1.10 / prerequisite algebra",
+        "additionalTopics": [
+          "Polynomial factorization",
+          "Even functions"
+        ],
+        "learningObjectives": [
+          "Remove a discontinuity using a limit and analyze symmetry of the resulting function."
+        ],
+        "bigIdeas": [],
+        "mathematicalPractices": [
+          "Reasoning and Justification"
+        ],
+        "skillCategories": [
+          "1.C / 2.C / 3.C"
+        ],
+        "concepts": [
+          "Removable discontinuity and parity",
+          "continuity",
+          "removable discontinuity",
+          "factorization",
+          "even function",
+          "Polynomial factorization",
+          "Even functions"
+        ],
+        "prerequisites": [
+          "SKILL-FUNCTION-NOTATION",
+          "SKILL-ALGEBRAIC-SIMPLIFICATION"
+        ],
+        "functionFamilies": [
+          "quadratic",
+          "cubic"
+        ],
+        "representations": [
+          "symbolic",
+          "graphical"
+        ],
+        "reasoningActions": [
+          "compute",
+          "justify"
+        ],
+        "lessonIds": [
+          "APCALC-1.10"
+        ],
+        "keywords": [
+          "removable-discontinuity-and-parity",
+          "continuity",
+          "removable-discontinuity",
+          "factorization",
+          "even-function",
+          "polynomial-factorization",
+          "even-functions",
+          "ap-calculus-ab"
+        ]
+      },
+      "pedagogy": {
+        "difficulty": 3,
+        "difficultyLabel": "Medium",
+        "cognitiveDemand": 3,
+        "hints": [
+          {
+            "level": 1,
+            "type": "orientation",
+            "text": "Identify what the question gives and what quantity or conclusion is required."
+          },
+          {
+            "level": 2,
+            "type": "concept",
+            "text": "Recall the key ideas connected to Removable discontinuity and parity."
+          },
+          {
+            "level": 3,
+            "type": "strategy",
+            "text": "Choose a representation and procedure consistent with the classified topic and calculator policy."
+          },
+          {
+            "level": 4,
+            "type": "partial-setup",
+            "text": "Write the governing definition, equation, derivative, or integral before simplifying."
+          }
+        ],
+        "misconceptions": [
+          {
+            "code": "APCALC-AB-FRQ-1976-02-M01",
+            "title": "Cancelling x−3 without stating x≠3.",
+            "triggerAnswers": [],
+            "diagnosis": "Cancelling x−3 without stating x≠3.",
+            "feedback": "",
+            "recommendedPrerequisites": [
+              "SKILL-FUNCTION-NOTATION",
+              "SKILL-ALGEBRAIC-SIMPLIFICATION"
+            ],
+            "confidence": 0.75,
+            "source": "source-provided common-mistake note"
+          },
+          {
+            "code": "APCALC-AB-FRQ-1976-02-M02",
+            "title": "Choosing p=0 because the original numerator is 0 at x=3.",
+            "triggerAnswers": [],
+            "diagnosis": "Choosing p=0 because the original numerator is 0 at x=3.",
+            "feedback": "",
+            "recommendedPrerequisites": [
+              "SKILL-FUNCTION-NOTATION",
+              "SKILL-ALGEBRAIC-SIMPLIFICATION"
+            ],
+            "confidence": 0.75,
+            "source": "source-provided common-mistake note"
+          },
+          {
+            "code": "APCALC-AB-FRQ-1976-02-M03",
+            "title": "Checking parity only away from the redefined point.",
+            "triggerAnswers": [],
+            "diagnosis": "Checking parity only away from the redefined point.",
+            "feedback": "",
+            "recommendedPrerequisites": [
+              "SKILL-FUNCTION-NOTATION",
+              "SKILL-ALGEBRAIC-SIMPLIFICATION"
+            ],
+            "confidence": 0.75,
+            "source": "source-provided common-mistake note"
+          }
+        ],
+        "related": {
+          "easier": [],
+          "parallel": [],
+          "harder": [],
+          "prerequisite": [],
+          "sameOfficialTopic": [],
+          "relatedFRQ": [],
+          "relatedMCQ": []
+        }
+      },
+      "quality": {
+        "completeness": "complete-verified",
+        "productionStatus": "student-ready",
+        "productionReadiness": 1.0,
+        "tutoringReadiness": 0.98,
+        "needsReview": false,
+        "reviewReasons": [],
+        "transcriptionVerified": true,
+        "answerVerified": true,
+        "mediaVerified": true,
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": true,
+        "katexVerified": true,
+        "mappingVerified": true,
+        "studentReadyGatePassed": true
+      },
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-ready",
+      "contentStatus": "complete",
+      "audit": {
+        "sourceChecked": true,
+        "sourcePage": "14",
+        "transcriptionStatus": "verified",
+        "stemStatus": "verified",
+        "choicesStatus": "not_required",
+        "answerStatus": "verified",
+        "solutionStatus": "verified",
+        "katexStatus": "verified",
+        "mediaStatus": "verified",
+        "courseMappingStatus": "verified",
+        "unitMappingStatus": "verified",
+        "topicMappingStatus": "verified",
+        "lessonMappingStatus": "verified",
+        "calculatorStatus": "verified",
+        "overallStatus": "student-ready",
+        "correctionsMade": 0,
+        "reviewRequired": false,
+        "reviewerNotes": "Independently verified content gates passed. Licensed for student practice on the ECHS platform under Issue #56.",
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
+      },
+      "studentReady": true
+    },
+    {
+      "id": "APCALC-AB-FRQ-1976-03",
+      "course": "AP Calculus AB",
+      "courseId": "ap-calculus-ab",
+      "assessmentFamily": "AP historical archive",
+      "type": "frq",
+      "format": "multipart-free-response",
+      "year": 1976,
+      "form": "",
+      "questionNumber": "3",
+      "section": "II",
+      "calculator": "no-calculator",
+      "maxPoints": 10,
+      "estimatedTime": 900,
+      "prompt": "Let \\(R\\) be the region bounded by \\[y=\\frac4x\\qquad\\text{and}\\qquad y=(x-3)^2.\\]",
+      "directions": "",
+      "parts": [
+        {
+          "label": "(a)",
+          "prompt": "Find the area of \\(R\\).",
+          "maxPoints": 5,
+          "answer": "The curves intersect at \\(x=1\\) and \\(x=4\\). On this interval, \\(4/x\\) is above \\((x-3)^2\\). Therefore \\[A=\\int_1^4\\left(\\frac4x-(x-3)^2\\right)dx=4\\ln4-3=\\boxed{\\ln256-3}.\\]",
+          "rubric": [
+            {
+              "criterionId": "A1",
+              "description": "1 point for intersections.",
+              "points": null,
+              "evidenceRequired": "1 point for intersections.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "A2",
+              "description": "1 point for top-minus-bottom.",
+              "points": null,
+              "evidenceRequired": "1 point for top-minus-bottom.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "A3",
+              "description": "1 point for correct bounds.",
+              "points": null,
+              "evidenceRequired": "1 point for correct bounds.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "A4",
+              "description": "1 point for antiderivative.",
+              "points": null,
+              "evidenceRequired": "1 point for antiderivative.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "A5",
+              "description": "1 point for the exact value.",
+              "points": null,
+              "evidenceRequired": "1 point for the exact value.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            }
+          ]
+        },
+        {
+          "label": "(b)",
+          "prompt": "Find the volume when \\(R\\) is revolved about the \\(x\\)-axis.",
+          "maxPoints": 5,
+          "answer": "Using washers, \\[V=\\pi\\int_1^4\\left[\\left(\\frac4x\\right)^2-(x-3)^4\\right]dx.\\]Evaluation gives \\[\\boxed{V=\\frac{27\\pi}{5}}.\\]",
+          "rubric": [
+            {
+              "criterionId": "B1",
+              "description": "1 point for the washer method.",
+              "points": null,
+              "evidenceRequired": "1 point for the washer method.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "B2",
+              "description": "1 point for correct outer radius.",
+              "points": null,
+              "evidenceRequired": "1 point for correct outer radius.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "B3",
+              "description": "1 point for correct inner radius.",
+              "points": null,
+              "evidenceRequired": "1 point for correct inner radius.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "B4",
+              "description": "1 point for bounds.",
+              "points": null,
+              "evidenceRequired": "1 point for bounds.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "B5",
+              "description": "1 point for the value.",
+              "points": null,
+              "evidenceRequired": "1 point for the value.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            }
+          ]
+        }
+      ],
+      "choices": [],
+      "media": [
+        {
+          "id": "MEDIA-APCALC-AB-FRQ-1976-03-PROMPT-01",
+          "path": "",
+          "mime": "application/vnd.echs.runtime-svg-descriptor+json",
+          "alt": "Original ECHS digital figure for 1976 Question 3.",
+          "caption": "",
+          "cropStatus": "not-applicable",
+          "renderMode": "runtime-svg-descriptor",
+          "descriptor": {
+            "shape": "1976-frq3",
+            "ariaLabel": "Original ECHS digital figure for 1976 Question 3.",
+            "svg": "<svg viewBox=\"0 0 720 360\" role=\"img\" aria-label=\"Region between y equals four over x and y equals x minus three squared.\" xmlns=\"http://www.w3.org/2000/svg\" style=\"width:100%;height:auto;background:#fff;border-radius:18px\"><defs><marker id=\"arr\" markerWidth=\"8\" markerHeight=\"8\" refX=\"6\" refY=\"3\" orient=\"auto\"><path d=\"M0,0 L0,6 L7,3 z\" fill=\"#14213d\"/></marker></defs><line x1=\"70\" y1=\"290\" x2=\"680\" y2=\"290\" stroke=\"#14213d\" stroke-width=\"2\" marker-end=\"url(#arr)\"/><line x1=\"70\" y1=\"290\" x2=\"70\" y2=\"30\" stroke=\"#14213d\" stroke-width=\"2\" marker-end=\"url(#arr)\"/><path d=\"M100 65 C150 110 210 160 265 200 C330 245 400 265 475 230 C535 202 600 145 670 80\" fill=\"none\" stroke=\"#78183f\" stroke-width=\"5\"/><path d=\"M100 70 C165 115 220 170 275 220 C340 270 410 288 475 240 C540 190 605 120 670 58\" fill=\"none\" stroke=\"#0f766e\" stroke-width=\"5\"/><path d=\"M160 150 C230 175 300 205 365 230 C430 250 495 228 560 175 L560 220 C500 270 430 292 365 275 C295 255 230 220 160 190 Z\" fill=\"#d59b2b\" opacity=\".25\"/><text x=\"530\" y=\"105\" font-family=\"Inter\" font-size=\"16\" fill=\"#78183f\">y=4/x</text><text x=\"520\" y=\"150\" font-family=\"Inter\" font-size=\"16\" fill=\"#0f766e\">y=(x−3)²</text><text x=\"260\" y=\"325\" font-family=\"Inter\" font-size=\"15\">x=1</text><text x=\"520\" y=\"325\" font-family=\"Inter\" font-size=\"15\">x=4</text></svg>"
+          }
+        },
+        {
+          "id": "MEDIA-HISTORICAL-FRQ-1969-2010-P014-7C7EABE017",
+          "path": "media/source-pages/historical-frq-1969-2010/page-014-source-page-7c7eabe017.svg",
+          "mime": "image/svg+xml",
+          "alt": "Historical AP Calculus FRQ source page, 1975 question 6.",
+          "caption": "Source Page - ap_calculus_free_response_1969_2010(3).pdf, page 14",
+          "cropStatus": "full-page",
+          "renderMode": "svg-from-pdf-glyph-paths",
+          "descriptor": null
+        },
+        {
+          "id": "MEDIA-HISTORICAL-FRQ-1969-2010-P014-8C187DB615",
+          "path": "media/question-crops/historical-frq-1969-2010/page-014-question-crop-8c187db615.svg",
+          "mime": "image/svg+xml",
+          "alt": "Historical AP Calculus FRQ 1976 AB 3.",
+          "caption": "Question Crop - ap_calculus_free_response_1969_2010(3).pdf, page 14",
+          "cropStatus": "question-region",
+          "renderMode": "svg-from-pdf-glyph-paths",
+          "descriptor": null
+        }
+      ],
+      "facsimileAuthority": "",
+      "machineExtractedText": "",
+      "answer": null,
+      "acceptedAnswers": [],
+      "answerFormat": "multipart-constructed-response",
+      "explanation": "See the part-level reference answers and ECHS analytic rubric.",
+      "workedSolution": "See the part-level reference answers and ECHS analytic rubric.",
+      "alternativeSolution": "",
+      "calculatorSolution": "",
+      "noncalculatorSolution": "See the part-level reference answers and ECHS analytic rubric.",
+      "studentExplanation": "See the part-level reference answers and ECHS analytic rubric.",
+      "teacherExplanation": "See the part-level reference answers and ECHS analytic rubric.",
+      "scoringGuideline": null,
+      "rubric": [
+        {
+          "part": "(a)",
+          "maxPoints": 5,
+          "criteria": [
+            {
+              "criterionId": "A1",
+              "description": "1 point for intersections.",
+              "points": null,
+              "evidenceRequired": "1 point for intersections.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "A2",
+              "description": "1 point for top-minus-bottom.",
+              "points": null,
+              "evidenceRequired": "1 point for top-minus-bottom.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "A3",
+              "description": "1 point for correct bounds.",
+              "points": null,
+              "evidenceRequired": "1 point for correct bounds.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "A4",
+              "description": "1 point for antiderivative.",
+              "points": null,
+              "evidenceRequired": "1 point for antiderivative.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "A5",
+              "description": "1 point for the exact value.",
+              "points": null,
+              "evidenceRequired": "1 point for the exact value.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            }
+          ]
+        },
+        {
+          "part": "(b)",
+          "maxPoints": 5,
+          "criteria": [
+            {
+              "criterionId": "B1",
+              "description": "1 point for the washer method.",
+              "points": null,
+              "evidenceRequired": "1 point for the washer method.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "B2",
+              "description": "1 point for correct outer radius.",
+              "points": null,
+              "evidenceRequired": "1 point for correct outer radius.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "B3",
+              "description": "1 point for correct inner radius.",
+              "points": null,
+              "evidenceRequired": "1 point for correct inner radius.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "B4",
+              "description": "1 point for bounds.",
+              "points": null,
+              "evidenceRequired": "1 point for bounds.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "B5",
+              "description": "1 point for the value.",
+              "points": null,
+              "evidenceRequired": "1 point for the value.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            }
+          ]
+        }
+      ],
+      "rubricStatus": "ECHS analytic rubric based on independent mathematical verification; not an official historical College Board point-by-point scoring guideline.",
+      "commonMistakes": [
+        "Using the wrong curve as the upper function.",
+        "Squaring the difference instead of subtracting squared radii.",
+        "Missing one intersection."
+      ],
+      "verificationStatus": "independently-verified-licensed-student-practice",
+      "answerConfidence": 1.0,
+      "source": {
+        "organization": "College Board",
+        "publisher": "College Board",
+        "bankName": "AP Calculus historical archive",
+        "sourceType": "historical AP examination item / ECHS digital transcription",
+        "officialStatus": "legacy-ap",
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
+        "sourcePages": [
+          14
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
+      },
+      "classification": {
+        "primaryUnit": 8,
+        "primaryUnitLabel": "Unit 8: Applications of Integration",
+        "primaryTopic": "Area and volume between reciprocal and quadratic curves",
+        "topicCode": "8.4 / 8.7",
+        "additionalTopics": [
+          "Area between curves",
+          "Washer method"
+        ],
+        "learningObjectives": [
+          "Use intersections and definite integrals to compute area and a volume of revolution."
+        ],
+        "bigIdeas": [],
+        "mathematicalPractices": [
+          "Modeling and Procedural"
+        ],
+        "skillCategories": [
+          "1.C / 2.C / 3.C"
+        ],
+        "concepts": [
+          "Area and volume between reciprocal and quadratic curves",
+          "area",
+          "volume",
+          "washers",
+          "reciprocal",
+          "intersection",
+          "Area between curves",
+          "Washer method"
+        ],
+        "prerequisites": [
+          "SKILL-ANTIDERIVATIVES",
+          "SKILL-DEFINITE-INTEGRAL"
+        ],
+        "functionFamilies": [
+          "quadratic",
+          "rational"
+        ],
+        "representations": [
+          "symbolic",
+          "graphical",
+          "geometric",
+          "mixed-representation"
+        ],
+        "reasoningActions": [
+          "compute"
+        ],
+        "lessonIds": [
+          "APCALC-8.4",
+          "APCALC-8.7"
+        ],
+        "keywords": [
+          "area-and-volume-between-reciprocal-and-quadratic-curves",
+          "area",
+          "volume",
+          "washers",
+          "reciprocal",
+          "intersection",
+          "area-between-curves",
+          "washer-method",
+          "ap-calculus-ab"
+        ]
+      },
+      "pedagogy": {
+        "difficulty": 4,
+        "difficultyLabel": "Hard",
+        "cognitiveDemand": 4,
+        "hints": [
+          {
+            "level": 1,
+            "type": "orientation",
+            "text": "Identify what the question gives and what quantity or conclusion is required."
+          },
+          {
+            "level": 2,
+            "type": "concept",
+            "text": "Recall the key ideas connected to Area and volume between reciprocal and quadratic curves."
+          },
+          {
+            "level": 3,
+            "type": "strategy",
+            "text": "Choose a representation and procedure consistent with the classified topic and calculator policy."
+          },
+          {
+            "level": 4,
+            "type": "partial-setup",
+            "text": "Write the governing definition, equation, derivative, or integral before simplifying."
+          }
+        ],
+        "misconceptions": [
+          {
+            "code": "APCALC-AB-FRQ-1976-03-M01",
+            "title": "Using the wrong curve as the upper function.",
+            "triggerAnswers": [],
+            "diagnosis": "Using the wrong curve as the upper function.",
+            "feedback": "",
+            "recommendedPrerequisites": [
+              "SKILL-ANTIDERIVATIVES",
+              "SKILL-DEFINITE-INTEGRAL"
+            ],
+            "confidence": 0.75,
+            "source": "source-provided common-mistake note"
+          },
+          {
+            "code": "APCALC-AB-FRQ-1976-03-M02",
+            "title": "Squaring the difference instead of subtracting squared radii.",
+            "triggerAnswers": [],
+            "diagnosis": "Squaring the difference instead of subtracting squared radii.",
+            "feedback": "",
+            "recommendedPrerequisites": [
+              "SKILL-ANTIDERIVATIVES",
+              "SKILL-DEFINITE-INTEGRAL"
+            ],
+            "confidence": 0.75,
+            "source": "source-provided common-mistake note"
+          },
+          {
+            "code": "APCALC-AB-FRQ-1976-03-M03",
+            "title": "Missing one intersection.",
+            "triggerAnswers": [],
+            "diagnosis": "Missing one intersection.",
+            "feedback": "",
+            "recommendedPrerequisites": [
+              "SKILL-ANTIDERIVATIVES",
+              "SKILL-DEFINITE-INTEGRAL"
+            ],
+            "confidence": 0.75,
+            "source": "source-provided common-mistake note"
+          }
+        ],
+        "related": {
+          "easier": [],
+          "parallel": [],
+          "harder": [],
+          "prerequisite": [],
+          "sameOfficialTopic": [],
+          "relatedFRQ": [],
+          "relatedMCQ": []
+        }
+      },
+      "quality": {
+        "completeness": "complete-verified",
+        "productionStatus": "student-ready",
+        "productionReadiness": 1.0,
+        "tutoringReadiness": 0.98,
+        "needsReview": false,
+        "reviewReasons": [],
+        "transcriptionVerified": true,
+        "answerVerified": true,
+        "mediaVerified": true,
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": true,
+        "katexVerified": true,
+        "mappingVerified": true,
+        "studentReadyGatePassed": true
+      },
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-ready",
+      "contentStatus": "complete",
+      "audit": {
+        "sourceChecked": true,
+        "sourcePage": "14",
+        "transcriptionStatus": "verified",
+        "stemStatus": "verified",
+        "choicesStatus": "not_required",
+        "answerStatus": "verified",
+        "solutionStatus": "verified",
+        "katexStatus": "verified",
+        "mediaStatus": "verified",
+        "courseMappingStatus": "verified",
+        "unitMappingStatus": "verified",
+        "topicMappingStatus": "verified",
+        "lessonMappingStatus": "verified",
+        "calculatorStatus": "verified",
+        "overallStatus": "student-ready",
+        "correctionsMade": 0,
+        "reviewRequired": false,
+        "reviewerNotes": "Independently verified content gates passed. Licensed for student practice on the ECHS platform under Issue #56.",
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
+      },
+      "studentReady": true
+    },
+    {
+      "id": "APCALC-AB-FRQ-1976-06",
+      "course": "AP Calculus AB",
+      "courseId": "ap-calculus-ab",
+      "assessmentFamily": "AP historical archive",
+      "type": "frq",
+      "format": "multipart-free-response",
+      "year": 1976,
+      "form": "",
+      "questionNumber": "6",
+      "section": "II",
+      "calculator": "no-calculator",
+      "maxPoints": 10,
+      "estimatedTime": 900,
+      "prompt": "Use the Fundamental Theorem of Calculus in each part.",
+      "directions": "",
+      "parts": [
+        {
+          "label": "(a)(i)",
+          "prompt": "Given \\(5x^3+40=\\int_c^x f(t)dt\\), find \\(f(x)\\).",
+          "maxPoints": 3,
+          "answer": "Differentiate both sides with respect to \\(x\\): \\[15x^2=f(x).\\]Therefore \\[\\boxed{f(x)=15x^2}.\\]",
+          "rubric": [
+            {
+              "criterionId": "A)(I1",
+              "description": "1 point for differentiating both sides.",
+              "points": null,
+              "evidenceRequired": "1 point for differentiating both sides.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "A)(I2",
+              "description": "1 point for the FTC.",
+              "points": null,
+              "evidenceRequired": "1 point for the FTC.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "A)(I3",
+              "description": "1 point for f(x).",
+              "points": null,
+              "evidenceRequired": "1 point for f(x).",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            }
+          ]
+        },
+        {
+          "label": "(a)(ii)",
+          "prompt": "Find the value of \\(c\\).",
+          "maxPoints": 3,
+          "answer": "Set \\(x=c\\). The integral is zero, so \\[5c^3+40=0\\implies c^3=-8\\implies\\boxed{c=-2}.\\]",
+          "rubric": [
+            {
+              "criterionId": "A)(II1",
+              "description": "1 point for setting x=c.",
+              "points": null,
+              "evidenceRequired": "1 point for setting x=c.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "A)(II2",
+              "description": "1 point for the cubic equation.",
+              "points": null,
+              "evidenceRequired": "1 point for the cubic equation.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "A)(II3",
+              "description": "1 point for c.",
+              "points": null,
+              "evidenceRequired": "1 point for c.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            }
+          ]
+        },
+        {
+          "label": "(b)",
+          "prompt": "If \\(F(x)=\\int_x^3\\sqrt{1+t^{16}}\\,dt\\), find \\(F'(x)\\).",
+          "maxPoints": 4,
+          "answer": "A variable lower limit contributes a negative sign: \\[\\boxed{F'(x)=-\\sqrt{1+x^{16}}}.\\]",
+          "rubric": [
+            {
+              "criterionId": "B1",
+              "description": "1 point for recognizing the lower limit.",
+              "points": null,
+              "evidenceRequired": "1 point for recognizing the lower limit.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "B2",
+              "description": "1 point for the negative sign.",
+              "points": null,
+              "evidenceRequired": "1 point for the negative sign.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "B3",
+              "description": "1 point for substituting x for t.",
+              "points": null,
+              "evidenceRequired": "1 point for substituting x for t.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "B4",
+              "description": "1 point for the complete derivative.",
+              "points": null,
+              "evidenceRequired": "1 point for the complete derivative.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            }
+          ]
+        }
+      ],
+      "choices": [],
+      "media": [
+        {
+          "id": "MEDIA-APCALC-AB-FRQ-1976-06-PROMPT-01",
+          "path": "",
+          "mime": "application/vnd.echs.runtime-svg-descriptor+json",
+          "alt": "Original ECHS digital figure for 1976 Question 6.",
+          "caption": "",
+          "cropStatus": "not-applicable",
+          "renderMode": "runtime-svg-descriptor",
+          "descriptor": {
+            "shape": "1976-frq6",
+            "ariaLabel": "Original ECHS digital figure for 1976 Question 6.",
+            "svg": "<svg viewBox=\"0 0 720 360\" role=\"img\" aria-label=\"Fundamental Theorem of Calculus displays for an accumulation function and a variable lower limit.\" xmlns=\"http://www.w3.org/2000/svg\" style=\"width:100%;height:auto;background:#fff;border-radius:18px\"><defs><marker id=\"arr\" markerWidth=\"8\" markerHeight=\"8\" refX=\"6\" refY=\"3\" orient=\"auto\"><path d=\"M0,0 L0,6 L7,3 z\" fill=\"#14213d\"/></marker></defs><line x1=\"70\" y1=\"290\" x2=\"680\" y2=\"290\" stroke=\"#14213d\" stroke-width=\"2\" marker-end=\"url(#arr)\"/><line x1=\"70\" y1=\"290\" x2=\"70\" y2=\"30\" stroke=\"#14213d\" stroke-width=\"2\" marker-end=\"url(#arr)\"/><path d=\"M90 270 C170 265 235 245 300 205 C370 160 430 105 500 65 C555 35 615 40 680 70\" fill=\"none\" stroke=\"#78183f\" stroke-width=\"5\"/><path d=\"M90 80 C170 90 245 115 315 150 C390 190 470 235 550 260 C600 275 645 282 680 285\" fill=\"none\" stroke=\"#0f766e\" stroke-width=\"5\"/><text x=\"500\" y=\"55\" font-family=\"Inter\" font-size=\"16\" fill=\"#78183f\">5x³+40</text><text x=\"470\" y=\"250\" font-family=\"Inter\" font-size=\"16\" fill=\"#0f766e\">F(x)=∫ₓ³√(1+t¹⁶)dt</text></svg>"
+          }
+        },
+        {
+          "id": "MEDIA-HISTORICAL-FRQ-1969-2010-P015-9C644BCEEE",
+          "path": "media/source-pages/historical-frq-1969-2010/page-015-source-page-9c644bceee.svg",
+          "mime": "image/svg+xml",
+          "alt": "Historical AP Calculus FRQ source page, 1976 question 4.",
+          "caption": "Source Page - ap_calculus_free_response_1969_2010(3).pdf, page 15",
+          "cropStatus": "full-page",
+          "renderMode": "svg-from-pdf-glyph-paths",
+          "descriptor": null
+        },
+        {
+          "id": "MEDIA-HISTORICAL-FRQ-1969-2010-P015-2A9EC6B471",
+          "path": "media/question-crops/historical-frq-1969-2010/page-015-question-crop-2a9ec6b471.svg",
+          "mime": "image/svg+xml",
+          "alt": "Historical AP Calculus FRQ 1976 AB 6.",
+          "caption": "Question Crop - ap_calculus_free_response_1969_2010(3).pdf, page 15",
+          "cropStatus": "question-region",
+          "renderMode": "svg-from-pdf-glyph-paths",
+          "descriptor": null
+        }
+      ],
+      "facsimileAuthority": "",
+      "machineExtractedText": "",
+      "answer": null,
+      "acceptedAnswers": [],
+      "answerFormat": "multipart-constructed-response",
+      "explanation": "See the part-level reference answers and ECHS analytic rubric.",
+      "workedSolution": "See the part-level reference answers and ECHS analytic rubric.",
+      "alternativeSolution": "",
+      "calculatorSolution": "",
+      "noncalculatorSolution": "See the part-level reference answers and ECHS analytic rubric.",
+      "studentExplanation": "See the part-level reference answers and ECHS analytic rubric.",
+      "teacherExplanation": "See the part-level reference answers and ECHS analytic rubric.",
+      "scoringGuideline": null,
+      "rubric": [
+        {
+          "part": "(a)(i)",
+          "maxPoints": 3,
+          "criteria": [
+            {
+              "criterionId": "A)(I1",
+              "description": "1 point for differentiating both sides.",
+              "points": null,
+              "evidenceRequired": "1 point for differentiating both sides.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "A)(I2",
+              "description": "1 point for the FTC.",
+              "points": null,
+              "evidenceRequired": "1 point for the FTC.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "A)(I3",
+              "description": "1 point for f(x).",
+              "points": null,
+              "evidenceRequired": "1 point for f(x).",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            }
+          ]
+        },
+        {
+          "part": "(a)(ii)",
+          "maxPoints": 3,
+          "criteria": [
+            {
+              "criterionId": "A)(II1",
+              "description": "1 point for setting x=c.",
+              "points": null,
+              "evidenceRequired": "1 point for setting x=c.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "A)(II2",
+              "description": "1 point for the cubic equation.",
+              "points": null,
+              "evidenceRequired": "1 point for the cubic equation.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "A)(II3",
+              "description": "1 point for c.",
+              "points": null,
+              "evidenceRequired": "1 point for c.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            }
+          ]
+        },
+        {
+          "part": "(b)",
+          "maxPoints": 4,
+          "criteria": [
+            {
+              "criterionId": "B1",
+              "description": "1 point for recognizing the lower limit.",
+              "points": null,
+              "evidenceRequired": "1 point for recognizing the lower limit.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "B2",
+              "description": "1 point for the negative sign.",
+              "points": null,
+              "evidenceRequired": "1 point for the negative sign.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "B3",
+              "description": "1 point for substituting x for t.",
+              "points": null,
+              "evidenceRequired": "1 point for substituting x for t.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "B4",
+              "description": "1 point for the complete derivative.",
+              "points": null,
+              "evidenceRequired": "1 point for the complete derivative.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            }
+          ]
+        }
+      ],
+      "rubricStatus": "ECHS analytic rubric based on independent mathematical verification; not an official historical College Board point-by-point scoring guideline.",
+      "commonMistakes": [
+        "Adding an arbitrary constant after differentiating the integral identity.",
+        "Trying to differentiate c in part (a).",
+        "Missing the negative sign for a variable lower limit."
+      ],
+      "verificationStatus": "independently-verified-licensed-student-practice",
+      "answerConfidence": 1.0,
+      "source": {
+        "organization": "College Board",
+        "publisher": "College Board",
+        "bankName": "AP Calculus historical archive",
+        "sourceType": "historical AP examination item / ECHS digital transcription",
+        "officialStatus": "legacy-ap",
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
+        "sourcePages": [
+          15
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
+      },
+      "classification": {
+        "primaryUnit": 6,
+        "primaryUnitLabel": "Unit 6: Integration and Accumulation of Change",
+        "primaryTopic": "Fundamental Theorem with variable bounds",
+        "topicCode": "6.4 / 6.5",
+        "additionalTopics": [
+          "Accumulation functions",
+          "Variable limits"
+        ],
+        "learningObjectives": [
+          "Differentiate accumulation functions and recover a fixed lower limit from an integral identity."
+        ],
+        "bigIdeas": [],
+        "mathematicalPractices": [
+          "Procedural"
+        ],
+        "skillCategories": [
+          "1.C / 2.C / 3.C"
+        ],
+        "concepts": [
+          "Fundamental Theorem with variable bounds",
+          "FTC",
+          "accumulation",
+          "variable bounds",
+          "integral",
+          "Accumulation functions",
+          "Variable limits"
+        ],
+        "prerequisites": [],
+        "functionFamilies": [],
+        "representations": [
+          "symbolic",
+          "graphical"
+        ],
+        "reasoningActions": [
+          "compute"
+        ],
+        "lessonIds": [
+          "APCALC-6.4",
+          "APCALC-6.5"
+        ],
+        "keywords": [
+          "fundamental-theorem-with-variable-bounds",
+          "ftc",
+          "accumulation",
+          "variable-bounds",
+          "integral",
+          "accumulation-functions",
+          "variable-limits",
+          "ap-calculus-ab"
+        ]
+      },
+      "pedagogy": {
+        "difficulty": 3,
+        "difficultyLabel": "Medium",
+        "cognitiveDemand": 3,
+        "hints": [
+          {
+            "level": 1,
+            "type": "orientation",
+            "text": "Identify what the question gives and what quantity or conclusion is required."
+          },
+          {
+            "level": 2,
+            "type": "concept",
+            "text": "Recall the key ideas connected to Fundamental Theorem with variable bounds."
+          },
+          {
+            "level": 3,
+            "type": "strategy",
+            "text": "Choose a representation and procedure consistent with the classified topic and calculator policy."
+          },
+          {
+            "level": 4,
+            "type": "partial-setup",
+            "text": "Write the governing definition, equation, derivative, or integral before simplifying."
+          }
+        ],
+        "misconceptions": [
+          {
+            "code": "APCALC-AB-FRQ-1976-06-M01",
+            "title": "Adding an arbitrary constant after differentiating the integral identity.",
+            "triggerAnswers": [],
+            "diagnosis": "Adding an arbitrary constant after differentiating the integral identity.",
+            "feedback": "",
+            "recommendedPrerequisites": [],
+            "confidence": 0.75,
+            "source": "source-provided common-mistake note"
+          },
+          {
+            "code": "APCALC-AB-FRQ-1976-06-M02",
+            "title": "Trying to differentiate c in part (a).",
+            "triggerAnswers": [],
+            "diagnosis": "Trying to differentiate c in part (a).",
+            "feedback": "",
+            "recommendedPrerequisites": [],
+            "confidence": 0.75,
+            "source": "source-provided common-mistake note"
+          },
+          {
+            "code": "APCALC-AB-FRQ-1976-06-M03",
+            "title": "Missing the negative sign for a variable lower limit.",
+            "triggerAnswers": [],
+            "diagnosis": "Missing the negative sign for a variable lower limit.",
+            "feedback": "",
+            "recommendedPrerequisites": [],
+            "confidence": 0.75,
+            "source": "source-provided common-mistake note"
+          }
+        ],
+        "related": {
+          "easier": [],
+          "parallel": [],
+          "harder": [],
+          "prerequisite": [],
+          "sameOfficialTopic": [],
+          "relatedFRQ": [],
+          "relatedMCQ": []
+        }
+      },
+      "quality": {
+        "completeness": "complete-verified",
+        "productionStatus": "student-ready",
+        "productionReadiness": 1.0,
+        "tutoringReadiness": 0.98,
+        "needsReview": false,
+        "reviewReasons": [],
+        "transcriptionVerified": true,
+        "answerVerified": true,
+        "mediaVerified": true,
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": true,
+        "katexVerified": true,
+        "mappingVerified": true,
+        "studentReadyGatePassed": true
+      },
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-ready",
+      "contentStatus": "complete",
+      "audit": {
+        "sourceChecked": true,
+        "sourcePage": "15",
+        "transcriptionStatus": "verified",
+        "stemStatus": "verified",
+        "choicesStatus": "not_required",
+        "answerStatus": "verified",
+        "solutionStatus": "verified",
+        "katexStatus": "verified",
+        "mediaStatus": "verified",
+        "courseMappingStatus": "verified",
+        "unitMappingStatus": "verified",
+        "topicMappingStatus": "verified",
+        "lessonMappingStatus": "verified",
+        "calculatorStatus": "verified",
+        "overallStatus": "student-ready",
+        "correctionsMade": 0,
+        "reviewRequired": false,
+        "reviewerNotes": "Independently verified content gates passed. Licensed for student practice on the ECHS platform under Issue #56.",
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
+      },
+      "studentReady": true
+    },
+    {
+      "id": "APCALC-AB-FRQ-1977-02",
+      "course": "AP Calculus AB",
+      "courseId": "ap-calculus-ab",
+      "assessmentFamily": "AP historical archive",
+      "type": "frq",
+      "format": "multipart-free-response",
+      "year": 1977,
+      "form": "",
+      "questionNumber": "2",
+      "section": "II",
+      "calculator": "no-calculator",
+      "maxPoints": 10,
+      "estimatedTime": 1050,
+      "prompt": "Consider the function \\[f(x)=(x^2-1)^3\\]defined for all real numbers \\(x\\).",
+      "directions": "",
+      "parts": [
+        {
+          "label": "(a)",
+          "prompt": "For what values of \\(x\\) is \\(f\\) increasing?",
+          "maxPoints": 3,
+          "answer": "\\[f'(x)=6x(x^2-1)^2.\\]Because \\((x^2-1)^2\\ge0\\), the derivative is positive for \\(x>0\\) except for the isolated stationary point \\(x=1\\). The function is strictly increasing across that point, so \\[\\boxed{f\\text{ is increasing on }(0,\\infty)}.\\]Equivalently, a derivative sign chart may list \\((0,1)\\cup(1,\\infty)\\) and then note that the monotonic behavior continues through \\(x=1\\).",
+          "rubric": [
+            {
+              "criterionId": "A1",
+              "description": "1 point for the derivative.",
+              "points": null,
+              "evidenceRequired": "1 point for the derivative.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "A2",
+              "description": "1 point for a correct sign analysis.",
+              "points": null,
+              "evidenceRequired": "1 point for a correct sign analysis.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "A3",
+              "description": "1 point for the increasing interval(s) with correct interpretation of x=1.",
+              "points": null,
+              "evidenceRequired": "1 point for the increasing interval(s) with correct interpretation of x=1.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            }
+          ]
+        },
+        {
+          "label": "(b)",
+          "prompt": "Find the coordinates of all relative maximum and relative minimum points. Justify.",
+          "maxPoints": 3,
+          "answer": "The derivative is negative for \\(x<0\\) and positive for \\(x>0\\), so the sign changes from negative to positive at \\(x=0\\). Thus \\[\\boxed{(0,-1)\\text{ is a relative minimum}.}\\]At \\(x=\\pm1\\), the derivative is zero but does not change sign. Therefore \\[\\boxed{\\text{there is no relative maximum}.}\\]",
+          "rubric": [
+            {
+              "criterionId": "B1",
+              "description": "1 point for identifying the sign change at x=0.",
+              "points": null,
+              "evidenceRequired": "1 point for identifying the sign change at x=0.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "B2",
+              "description": "1 point for the relative minimum coordinate.",
+              "points": null,
+              "evidenceRequired": "1 point for the relative minimum coordinate.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "B3",
+              "description": "1 point for correctly rejecting x=±1 as extrema and stating no relative maximum.",
+              "points": null,
+              "evidenceRequired": "1 point for correctly rejecting x=±1 as extrema and stating no relative maximum.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            }
+          ]
+        },
+        {
+          "label": "(c)",
+          "prompt": "For what values of \\(x\\) is the graph of \\(f\\) concave upward?",
+          "maxPoints": 3,
+          "answer": "\\[f''(x)=6(x^2-1)(5x^2-1).\\]This product is positive when both factors have the same sign. Therefore the graph is concave upward on \\[\\boxed{(-\\infty,-1)\\cup\\left(-\\frac1{\\sqrt5},\\frac1{\\sqrt5}\\right)\\cup(1,\\infty)}.\\]",
+          "rubric": [
+            {
+              "criterionId": "C1",
+              "description": "1 point for the second derivative.",
+              "points": null,
+              "evidenceRequired": "1 point for the second derivative.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "C2",
+              "description": "1 point for the critical second-derivative values.",
+              "points": null,
+              "evidenceRequired": "1 point for the critical second-derivative values.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "C3",
+              "description": "1 point for all concave-up intervals.",
+              "points": null,
+              "evidenceRequired": "1 point for all concave-up intervals.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            }
+          ]
+        },
+        {
+          "label": "(d)",
+          "prompt": "Using the information from the previous parts, sketch the graph of \\(f\\).",
+          "maxPoints": 1,
+          "answer": "The graph is even, has an absolute/relative minimum at \\((0,-1)\\), crosses the x-axis with horizontal tangents at \\((\\pm1,0)\\), has inflection points at \\(x=\\pm1\\) and \\(x=\\pm1/\\sqrt5\\), and rises to \\(+\\infty\\) as \\(x\\to\\pm\\infty\\).",
+          "rubric": [
+            {
+              "criterionId": "D1",
+              "description": "1 point for a sketch consistent with the symmetry, extrema, stationary crossings, concavity, and end behavior.",
+              "points": null,
+              "evidenceRequired": "1 point for a sketch consistent with the symmetry, extrema, stationary crossings, concavity, and end behavior.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            }
+          ]
+        }
+      ],
+      "choices": [],
+      "media": [
+        {
+          "id": "MEDIA-APCALC-AB-FRQ-1977-02-PROMPT-01",
+          "path": "",
+          "mime": "application/vnd.echs.runtime-svg-descriptor+json",
+          "alt": "Interactive ECHS graph of (x squared minus 1) cubed with stationary and inflection points.",
+          "caption": "",
+          "cropStatus": "not-applicable",
+          "renderMode": "runtime-svg-descriptor",
+          "descriptor": {
+            "shape": "1977-frq2-sextic",
+            "ariaLabel": "Interactive ECHS graph of (x squared minus 1) cubed with stationary and inflection points."
+          }
+        },
+        {
+          "id": "MEDIA-HISTORICAL-FRQ-1969-2010-P016-4A3362B8E3",
+          "path": "media/source-pages/historical-frq-1969-2010/page-016-source-page-4a3362b8e3.svg",
+          "mime": "image/svg+xml",
+          "alt": "Historical AP Calculus FRQ source page, 1977 question 1.",
+          "caption": "Source Page - ap_calculus_free_response_1969_2010(3).pdf, page 16",
+          "cropStatus": "full-page",
+          "renderMode": "svg-from-pdf-glyph-paths",
+          "descriptor": null
+        },
+        {
+          "id": "MEDIA-HISTORICAL-FRQ-1969-2010-P016-E4ED3C6C4D",
+          "path": "media/question-crops/historical-frq-1969-2010/page-016-question-crop-e4ed3c6c4d.svg",
+          "mime": "image/svg+xml",
+          "alt": "Historical AP Calculus FRQ 1977 AB 2.",
+          "caption": "Question Crop - ap_calculus_free_response_1969_2010(3).pdf, page 16",
+          "cropStatus": "question-region",
+          "renderMode": "svg-from-pdf-glyph-paths",
+          "descriptor": null
+        }
+      ],
+      "facsimileAuthority": "",
+      "machineExtractedText": "",
+      "answer": null,
+      "acceptedAnswers": [],
+      "answerFormat": "multipart-constructed-response",
+      "explanation": "See the part-level reference answers and ECHS analytic rubric.",
+      "workedSolution": "See the part-level reference answers and ECHS analytic rubric.",
+      "alternativeSolution": "",
+      "calculatorSolution": "",
+      "noncalculatorSolution": "See the part-level reference answers and ECHS analytic rubric.",
+      "studentExplanation": "See the part-level reference answers and ECHS analytic rubric.",
+      "teacherExplanation": "See the part-level reference answers and ECHS analytic rubric.",
+      "scoringGuideline": null,
+      "rubric": [
+        {
+          "part": "(a)",
+          "maxPoints": 3,
+          "criteria": [
+            {
+              "criterionId": "A1",
+              "description": "1 point for the derivative.",
+              "points": null,
+              "evidenceRequired": "1 point for the derivative.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "A2",
+              "description": "1 point for a correct sign analysis.",
+              "points": null,
+              "evidenceRequired": "1 point for a correct sign analysis.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "A3",
+              "description": "1 point for the increasing interval(s) with correct interpretation of x=1.",
+              "points": null,
+              "evidenceRequired": "1 point for the increasing interval(s) with correct interpretation of x=1.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            }
+          ]
+        },
+        {
+          "part": "(b)",
+          "maxPoints": 3,
+          "criteria": [
+            {
+              "criterionId": "B1",
+              "description": "1 point for identifying the sign change at x=0.",
+              "points": null,
+              "evidenceRequired": "1 point for identifying the sign change at x=0.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "B2",
+              "description": "1 point for the relative minimum coordinate.",
+              "points": null,
+              "evidenceRequired": "1 point for the relative minimum coordinate.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "B3",
+              "description": "1 point for correctly rejecting x=±1 as extrema and stating no relative maximum.",
+              "points": null,
+              "evidenceRequired": "1 point for correctly rejecting x=±1 as extrema and stating no relative maximum.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            }
+          ]
+        },
+        {
+          "part": "(c)",
+          "maxPoints": 3,
+          "criteria": [
+            {
+              "criterionId": "C1",
+              "description": "1 point for the second derivative.",
+              "points": null,
+              "evidenceRequired": "1 point for the second derivative.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "C2",
+              "description": "1 point for the critical second-derivative values.",
+              "points": null,
+              "evidenceRequired": "1 point for the critical second-derivative values.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "C3",
+              "description": "1 point for all concave-up intervals.",
+              "points": null,
+              "evidenceRequired": "1 point for all concave-up intervals.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            }
+          ]
+        },
+        {
+          "part": "(d)",
+          "maxPoints": 1,
+          "criteria": [
+            {
+              "criterionId": "D1",
+              "description": "1 point for a sketch consistent with the symmetry, extrema, stationary crossings, concavity, and end behavior.",
+              "points": null,
+              "evidenceRequired": "1 point for a sketch consistent with the symmetry, extrema, stationary crossings, concavity, and end behavior.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            }
+          ]
+        }
+      ],
+      "rubricStatus": "ECHS analytic rubric based on independent mathematical verification; not an official historical College Board point-by-point scoring guideline.",
+      "commonMistakes": [
+        "Treating every point where f′=0 as a relative extremum.",
+        "Missing the inner concave-up interval.",
+        "Forgetting that the function is even."
+      ],
+      "verificationStatus": "independently-verified-licensed-student-practice",
+      "answerConfidence": 1.0,
+      "source": {
+        "organization": "College Board",
+        "publisher": "College Board",
+        "bankName": "AP Calculus historical archive",
+        "sourceType": "historical AP examination item / ECHS digital transcription",
+        "officialStatus": "legacy-ap",
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
+        "sourcePages": [
+          16
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
+      },
+      "classification": {
+        "primaryUnit": 5,
+        "primaryUnitLabel": "Unit 5: Analytical Applications of Differentiation",
+        "primaryTopic": "Increasing behavior, relative extrema, and concavity",
+        "topicCode": "5.3 / 5.4 / 5.6",
+        "additionalTopics": [
+          "First derivative test",
+          "Second derivative test",
+          "Graph sketching"
+        ],
+        "learningObjectives": [
+          "Use first- and second-derivative sign analysis to describe and sketch a polynomial function."
+        ],
+        "bigIdeas": [],
+        "mathematicalPractices": [
+          "Reasoning and Justification"
+        ],
+        "skillCategories": [
+          "1.C / 2.C / 3.C"
+        ],
+        "concepts": [
+          "Increasing behavior, relative extrema, and concavity",
+          "polynomial",
+          "increasing",
+          "relative extrema",
+          "concavity",
+          "inflection",
+          "sketch",
+          "First derivative test",
+          "Second derivative test",
+          "Graph sketching"
+        ],
+        "prerequisites": [],
+        "functionFamilies": [
+          "quadratic",
+          "polynomial"
+        ],
+        "representations": [
+          "symbolic",
+          "graphical"
+        ],
+        "reasoningActions": [
+          "compute",
+          "justify",
+          "analyze",
+          "construct"
+        ],
+        "lessonIds": [
+          "APCALC-5.3",
+          "APCALC-5.4",
+          "APCALC-5.6"
+        ],
+        "keywords": [
+          "increasing-behavior-relative-extrema-and-concavity",
+          "polynomial",
+          "increasing",
+          "relative-extrema",
+          "concavity",
+          "inflection",
+          "sketch",
+          "first-derivative-test",
+          "second-derivative-test",
+          "graph-sketching",
+          "ap-calculus-ab"
+        ]
+      },
+      "pedagogy": {
+        "difficulty": 4,
+        "difficultyLabel": "Hard",
+        "cognitiveDemand": 4,
+        "hints": [
+          {
+            "level": 1,
+            "type": "orientation",
+            "text": "Identify what the question gives and what quantity or conclusion is required."
+          },
+          {
+            "level": 2,
+            "type": "concept",
+            "text": "Recall the key ideas connected to Increasing behavior, relative extrema, and concavity."
+          },
+          {
+            "level": 3,
+            "type": "strategy",
+            "text": "Choose a representation and procedure consistent with the classified topic and calculator policy."
+          },
+          {
+            "level": 4,
+            "type": "partial-setup",
+            "text": "Write the governing definition, equation, derivative, or integral before simplifying."
+          }
+        ],
+        "misconceptions": [
+          {
+            "code": "APCALC-AB-FRQ-1977-02-M01",
+            "title": "Treating every point where f′=0 as a relative extremum.",
+            "triggerAnswers": [],
+            "diagnosis": "Treating every point where f′=0 as a relative extremum.",
+            "feedback": "",
+            "recommendedPrerequisites": [],
+            "confidence": 0.75,
+            "source": "source-provided common-mistake note"
+          },
+          {
+            "code": "APCALC-AB-FRQ-1977-02-M02",
+            "title": "Missing the inner concave-up interval.",
+            "triggerAnswers": [],
+            "diagnosis": "Missing the inner concave-up interval.",
+            "feedback": "",
+            "recommendedPrerequisites": [],
+            "confidence": 0.75,
+            "source": "source-provided common-mistake note"
+          },
+          {
+            "code": "APCALC-AB-FRQ-1977-02-M03",
+            "title": "Forgetting that the function is even.",
+            "triggerAnswers": [],
+            "diagnosis": "Forgetting that the function is even.",
+            "feedback": "",
+            "recommendedPrerequisites": [],
+            "confidence": 0.75,
+            "source": "source-provided common-mistake note"
+          }
+        ],
+        "related": {
+          "easier": [],
+          "parallel": [],
+          "harder": [],
+          "prerequisite": [],
+          "sameOfficialTopic": [],
+          "relatedFRQ": [],
+          "relatedMCQ": []
+        }
+      },
+      "quality": {
+        "completeness": "complete-verified",
+        "productionStatus": "student-ready",
+        "productionReadiness": 1.0,
+        "tutoringReadiness": 0.98,
+        "needsReview": false,
+        "reviewReasons": [],
+        "transcriptionVerified": true,
+        "answerVerified": true,
+        "mediaVerified": true,
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": true,
+        "katexVerified": true,
+        "mappingVerified": true,
+        "studentReadyGatePassed": true
+      },
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-ready",
+      "contentStatus": "complete",
+      "audit": {
+        "sourceChecked": true,
+        "sourcePage": "16",
+        "transcriptionStatus": "verified",
+        "stemStatus": "verified",
+        "choicesStatus": "not_required",
+        "answerStatus": "verified",
+        "solutionStatus": "verified",
+        "katexStatus": "verified",
+        "mediaStatus": "verified",
+        "courseMappingStatus": "verified",
+        "unitMappingStatus": "verified",
+        "topicMappingStatus": "verified",
+        "lessonMappingStatus": "verified",
+        "calculatorStatus": "verified",
+        "overallStatus": "student-ready",
+        "correctionsMade": 0,
+        "reviewRequired": false,
+        "reviewerNotes": "Independently verified content gates passed. Licensed for student practice on the ECHS platform under Issue #56.",
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
+      },
+      "studentReady": true
+    },
+    {
+      "id": "APCALC-AB-FRQ-1977-03",
+      "course": "AP Calculus AB",
+      "courseId": "ap-calculus-ab",
+      "assessmentFamily": "AP historical archive",
+      "type": "frq",
+      "format": "multipart-free-response",
+      "year": 1977,
+      "form": "",
+      "questionNumber": "3",
+      "section": "II",
+      "calculator": "no-calculator",
+      "maxPoints": 10,
+      "estimatedTime": 900,
+      "prompt": "Let \\[f(x)=e^{x/2}.\\]Let \\(R\\) be the region bounded by the line \\(y=e\\), the graph of \\(f\\), and the \\(y\\)-axis.",
+      "directions": "",
+      "parts": [
+        {
+          "label": "(a)",
+          "prompt": "Find the area of \\(R\\).",
+          "maxPoints": 5,
+          "answer": "The curves meet when \\(e^{x/2}=e\\), so \\(x=2\\). Hence \\[A=\\int_0^2\\left(e-e^{x/2}\\right)\\,dx=\\left[ex-2e^{x/2}\\right]_0^2=\\boxed{2}.\\]",
+          "rubric": [
+            {
+              "criterionId": "A1",
+              "description": "1 point for the intersection x=2.",
+              "points": null,
+              "evidenceRequired": "1 point for the intersection x=2.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "A2",
+              "description": "1 point for correct limits.",
+              "points": null,
+              "evidenceRequired": "1 point for correct limits.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "A3",
+              "description": "1 point for top-minus-bottom integrand.",
+              "points": null,
+              "evidenceRequired": "1 point for top-minus-bottom integrand.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "A4",
+              "description": "1 point for a correct antiderivative.",
+              "points": null,
+              "evidenceRequired": "1 point for a correct antiderivative.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "A5",
+              "description": "1 point for area 2.",
+              "points": null,
+              "evidenceRequired": "1 point for area 2.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            }
+          ]
+        },
+        {
+          "label": "(b)",
+          "prompt": "Find the volume generated when \\(R\\) is revolved about the \\(x\\)-axis.",
+          "maxPoints": 5,
+          "answer": "Using washers, the outer radius is \\(e\\) and the inner radius is \\(e^{x/2}\\): \\[V=\\pi\\int_0^2\\left(e^2-e^x\\right)\\,dx=\\pi\\left[ e^2x-e^x\\right]_0^2=\\boxed{\\pi(e^2+1)}.\\]",
+          "rubric": [
+            {
+              "criterionId": "B1",
+              "description": "1 point for the washer method.",
+              "points": null,
+              "evidenceRequired": "1 point for the washer method.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "B2",
+              "description": "1 point for outer radius squared.",
+              "points": null,
+              "evidenceRequired": "1 point for outer radius squared.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "B3",
+              "description": "1 point for inner radius squared.",
+              "points": null,
+              "evidenceRequired": "1 point for inner radius squared.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "B4",
+              "description": "1 point for correct limits/evaluation.",
+              "points": null,
+              "evidenceRequired": "1 point for correct limits/evaluation.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "B5",
+              "description": "1 point for the exact volume.",
+              "points": null,
+              "evidenceRequired": "1 point for the exact volume.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            }
+          ]
+        }
+      ],
+      "choices": [],
+      "media": [
+        {
+          "id": "MEDIA-APCALC-AB-FRQ-1977-03-PROMPT-01",
+          "path": "",
+          "mime": "application/vnd.echs.runtime-svg-descriptor+json",
+          "alt": "Interactive ECHS region between y=e and y=e^(x/2), including a representative washer.",
+          "caption": "",
+          "cropStatus": "not-applicable",
+          "renderMode": "runtime-svg-descriptor",
+          "descriptor": {
+            "shape": "1977-frq3-area-volume",
+            "ariaLabel": "Interactive ECHS region between y=e and y=e^(x/2), including a representative washer."
+          }
+        },
+        {
+          "id": "MEDIA-HISTORICAL-FRQ-1969-2010-P016-4A3362B8E3",
+          "path": "media/source-pages/historical-frq-1969-2010/page-016-source-page-4a3362b8e3.svg",
+          "mime": "image/svg+xml",
+          "alt": "Historical AP Calculus FRQ source page, 1977 question 1.",
+          "caption": "Source Page - ap_calculus_free_response_1969_2010(3).pdf, page 16",
+          "cropStatus": "full-page",
+          "renderMode": "svg-from-pdf-glyph-paths",
+          "descriptor": null
+        },
+        {
+          "id": "MEDIA-HISTORICAL-FRQ-1969-2010-P016-EE33CDCDDC",
+          "path": "media/question-crops/historical-frq-1969-2010/page-016-question-crop-ee33cdcddc.svg",
+          "mime": "image/svg+xml",
+          "alt": "Historical AP Calculus FRQ 1977 AB 3.",
+          "caption": "Question Crop - ap_calculus_free_response_1969_2010(3).pdf, page 16",
+          "cropStatus": "question-region",
+          "renderMode": "svg-from-pdf-glyph-paths",
+          "descriptor": null
+        }
+      ],
+      "facsimileAuthority": "",
+      "machineExtractedText": "",
+      "answer": null,
+      "acceptedAnswers": [],
+      "answerFormat": "multipart-constructed-response",
+      "explanation": "See the part-level reference answers and ECHS analytic rubric.",
+      "workedSolution": "See the part-level reference answers and ECHS analytic rubric.",
+      "alternativeSolution": "",
+      "calculatorSolution": "",
+      "noncalculatorSolution": "See the part-level reference answers and ECHS analytic rubric.",
+      "studentExplanation": "See the part-level reference answers and ECHS analytic rubric.",
+      "teacherExplanation": "See the part-level reference answers and ECHS analytic rubric.",
+      "scoringGuideline": null,
+      "rubric": [
+        {
+          "part": "(a)",
+          "maxPoints": 5,
+          "criteria": [
+            {
+              "criterionId": "A1",
+              "description": "1 point for the intersection x=2.",
+              "points": null,
+              "evidenceRequired": "1 point for the intersection x=2.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "A2",
+              "description": "1 point for correct limits.",
+              "points": null,
+              "evidenceRequired": "1 point for correct limits.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "A3",
+              "description": "1 point for top-minus-bottom integrand.",
+              "points": null,
+              "evidenceRequired": "1 point for top-minus-bottom integrand.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "A4",
+              "description": "1 point for a correct antiderivative.",
+              "points": null,
+              "evidenceRequired": "1 point for a correct antiderivative.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "A5",
+              "description": "1 point for area 2.",
+              "points": null,
+              "evidenceRequired": "1 point for area 2.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            }
+          ]
+        },
+        {
+          "part": "(b)",
+          "maxPoints": 5,
+          "criteria": [
+            {
+              "criterionId": "B1",
+              "description": "1 point for the washer method.",
+              "points": null,
+              "evidenceRequired": "1 point for the washer method.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "B2",
+              "description": "1 point for outer radius squared.",
+              "points": null,
+              "evidenceRequired": "1 point for outer radius squared.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "B3",
+              "description": "1 point for inner radius squared.",
+              "points": null,
+              "evidenceRequired": "1 point for inner radius squared.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "B4",
+              "description": "1 point for correct limits/evaluation.",
+              "points": null,
+              "evidenceRequired": "1 point for correct limits/evaluation.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "B5",
+              "description": "1 point for the exact volume.",
+              "points": null,
+              "evidenceRequired": "1 point for the exact volume.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            }
+          ]
+        }
+      ],
+      "rubricStatus": "ECHS analytic rubric based on independent mathematical verification; not an official historical College Board point-by-point scoring guideline.",
+      "commonMistakes": [
+        "Using x=1 as the intersection.",
+        "Subtracting the radii before squaring in the washer formula.",
+        "Omitting the factor of π."
+      ],
+      "verificationStatus": "independently-verified-licensed-student-practice",
+      "answerConfidence": 1.0,
+      "source": {
+        "organization": "College Board",
+        "publisher": "College Board",
+        "bankName": "AP Calculus historical archive",
+        "sourceType": "historical AP examination item / ECHS digital transcription",
+        "officialStatus": "legacy-ap",
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
+        "sourcePages": [
+          16
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
+      },
+      "classification": {
+        "primaryUnit": 8,
+        "primaryUnitLabel": "Unit 8: Applications of Integration",
+        "primaryTopic": "Area and washer volume between an exponential curve and a line",
+        "topicCode": "8.4 / 8.8",
+        "additionalTopics": [
+          "Area between curves",
+          "Washer method",
+          "Exact integration"
+        ],
+        "learningObjectives": [
+          "Construct and evaluate definite integrals for area and volume from a bounded exponential region."
+        ],
+        "bigIdeas": [],
+        "mathematicalPractices": [
+          "Procedural and Representational"
+        ],
+        "skillCategories": [
+          "1.C / 2.C / 3.C"
+        ],
+        "concepts": [
+          "Area and washer volume between an exponential curve and a line",
+          "exponential",
+          "area",
+          "volume",
+          "washers",
+          "definite integral",
+          "Area between curves",
+          "Washer method",
+          "Exact integration"
+        ],
+        "prerequisites": [
+          "SKILL-ANTIDERIVATIVES",
+          "SKILL-DEFINITE-INTEGRAL"
+        ],
+        "functionFamilies": [
+          "linear",
+          "exponential"
+        ],
+        "representations": [
+          "symbolic",
+          "graphical",
+          "geometric",
+          "mixed-representation"
+        ],
+        "reasoningActions": [
+          "compute"
+        ],
+        "lessonIds": [
+          "APCALC-8.4",
+          "APCALC-8.8",
+          "APCALC-6.8"
+        ],
+        "keywords": [
+          "area-and-washer-volume-between-an-exponential-curve-and-a-line",
+          "exponential",
+          "area",
+          "volume",
+          "washers",
+          "definite-integral",
+          "area-between-curves",
+          "washer-method",
+          "exact-integration",
+          "ap-calculus-ab"
+        ]
+      },
+      "pedagogy": {
+        "difficulty": 3,
+        "difficultyLabel": "Medium",
+        "cognitiveDemand": 3,
+        "hints": [
+          {
+            "level": 1,
+            "type": "orientation",
+            "text": "Identify what the question gives and what quantity or conclusion is required."
+          },
+          {
+            "level": 2,
+            "type": "concept",
+            "text": "Recall the key ideas connected to Area and washer volume between an exponential curve and a line."
+          },
+          {
+            "level": 3,
+            "type": "strategy",
+            "text": "Choose a representation and procedure consistent with the classified topic and calculator policy."
+          },
+          {
+            "level": 4,
+            "type": "partial-setup",
+            "text": "Write the governing definition, equation, derivative, or integral before simplifying."
+          }
+        ],
+        "misconceptions": [
+          {
+            "code": "APCALC-AB-FRQ-1977-03-M01",
+            "title": "Using x=1 as the intersection.",
+            "triggerAnswers": [],
+            "diagnosis": "Using x=1 as the intersection.",
+            "feedback": "",
+            "recommendedPrerequisites": [
+              "SKILL-ANTIDERIVATIVES",
+              "SKILL-DEFINITE-INTEGRAL"
+            ],
+            "confidence": 0.75,
+            "source": "source-provided common-mistake note"
+          },
+          {
+            "code": "APCALC-AB-FRQ-1977-03-M02",
+            "title": "Subtracting the radii before squaring in the washer formula.",
+            "triggerAnswers": [],
+            "diagnosis": "Subtracting the radii before squaring in the washer formula.",
+            "feedback": "",
+            "recommendedPrerequisites": [
+              "SKILL-ANTIDERIVATIVES",
+              "SKILL-DEFINITE-INTEGRAL"
+            ],
+            "confidence": 0.75,
+            "source": "source-provided common-mistake note"
+          },
+          {
+            "code": "APCALC-AB-FRQ-1977-03-M03",
+            "title": "Omitting the factor of π.",
+            "triggerAnswers": [],
+            "diagnosis": "Omitting the factor of π.",
+            "feedback": "",
+            "recommendedPrerequisites": [
+              "SKILL-ANTIDERIVATIVES",
+              "SKILL-DEFINITE-INTEGRAL"
+            ],
+            "confidence": 0.75,
+            "source": "source-provided common-mistake note"
+          }
+        ],
+        "related": {
+          "easier": [],
+          "parallel": [],
+          "harder": [],
+          "prerequisite": [],
+          "sameOfficialTopic": [],
+          "relatedFRQ": [],
+          "relatedMCQ": []
+        }
+      },
+      "quality": {
+        "completeness": "complete-verified",
+        "productionStatus": "student-ready",
+        "productionReadiness": 1.0,
+        "tutoringReadiness": 0.98,
+        "needsReview": false,
+        "reviewReasons": [],
+        "transcriptionVerified": true,
+        "answerVerified": true,
+        "mediaVerified": true,
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": true,
+        "katexVerified": true,
+        "mappingVerified": true,
+        "studentReadyGatePassed": true
+      },
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-ready",
+      "contentStatus": "complete",
+      "audit": {
+        "sourceChecked": true,
+        "sourcePage": "16",
+        "transcriptionStatus": "verified",
+        "stemStatus": "verified",
+        "choicesStatus": "not_required",
+        "answerStatus": "verified",
+        "solutionStatus": "verified",
+        "katexStatus": "verified",
+        "mediaStatus": "verified",
+        "courseMappingStatus": "verified",
+        "unitMappingStatus": "verified",
+        "topicMappingStatus": "verified",
+        "lessonMappingStatus": "verified",
+        "calculatorStatus": "verified",
+        "overallStatus": "student-ready",
+        "correctionsMade": 0,
+        "reviewRequired": false,
+        "reviewerNotes": "Independently verified content gates passed. Licensed for student practice on the ECHS platform under Issue #56.",
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
+      },
+      "studentReady": true
+    },
+    {
+      "id": "APCALC-AB-FRQ-1977-06",
+      "course": "AP Calculus AB",
+      "courseId": "ap-calculus-ab",
+      "assessmentFamily": "AP historical archive",
+      "type": "frq",
+      "format": "multipart-free-response",
+      "year": 1977,
+      "form": "",
+      "questionNumber": "6",
+      "section": "II",
+      "calculator": "no-calculator",
+      "maxPoints": 10,
+      "estimatedTime": 900,
+      "prompt": "A rectangle has constant area \\(200\\) square meters. Its length \\(L\\) is increasing at \\(4\\) meters per second.",
+      "directions": "",
+      "parts": [
+        {
+          "label": "(a)",
+          "prompt": "Find the width \\(W\\) at the instant when the width is decreasing at \\(0.5\\) meter per second.",
+          "maxPoints": 5,
+          "answer": "From \\(LW=200\\), \\[L\\frac{dW}{dt}+W\\frac{dL}{dt}=0.\\]At the stated instant, \\(dW/dt=-\\frac12\\) and \\(dL/dt=4\\), so \\(-\\frac12L+4W=0\\), or \\(L=8W\\). Combining this with \\(LW=200\\) gives \\(8W^2=200\\), so \\[\\boxed{W=5\\text{ m}}.\\]",
+          "rubric": [
+            {
+              "criterionId": "A1",
+              "description": "1 point for LW=200.",
+              "points": null,
+              "evidenceRequired": "1 point for LW=200.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "A2",
+              "description": "1 point for differentiating with respect to time.",
+              "points": null,
+              "evidenceRequired": "1 point for differentiating with respect to time.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "A3",
+              "description": "1 point for substituting the rates.",
+              "points": null,
+              "evidenceRequired": "1 point for substituting the rates.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "A4",
+              "description": "1 point for relating L and W.",
+              "points": null,
+              "evidenceRequired": "1 point for relating L and W.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "A5",
+              "description": "1 point for W=5 meters.",
+              "points": null,
+              "evidenceRequired": "1 point for W=5 meters.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            }
+          ]
+        },
+        {
+          "label": "(b)",
+          "prompt": "At what rate is the diagonal \\(D\\) changing when \\(W=10\\) meters?",
+          "maxPoints": 5,
+          "answer": "When \\(W=10\\), constant area gives \\(L=20\\). Also \\[\\frac{dW}{dt}=-\\frac{W}{L}\\frac{dL}{dt}=-2.\\]Since \\(D^2=L^2+W^2\\), \\[2D\\frac{dD}{dt}=2L\\frac{dL}{dt}+2W\\frac{dW}{dt}.\\]Here \\(D=\\sqrt{20^2+10^2}=10\\sqrt5\\), so \\[\\frac{dD}{dt}=\\frac{20(4)+10(-2)}{10\\sqrt5}=\\boxed{\\frac6{\\sqrt5}=\\frac{6\\sqrt5}{5}\\text{ m/s}}.\\]",
+          "rubric": [
+            {
+              "criterionId": "B1",
+              "description": "1 point for L=20.",
+              "points": null,
+              "evidenceRequired": "1 point for L=20.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "B2",
+              "description": "1 point for dW/dt=-2.",
+              "points": null,
+              "evidenceRequired": "1 point for dW/dt=-2.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "B3",
+              "description": "1 point for differentiating D²=L²+W².",
+              "points": null,
+              "evidenceRequired": "1 point for differentiating D²=L²+W².",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "B4",
+              "description": "1 point for D=10sqrt(5).",
+              "points": null,
+              "evidenceRequired": "1 point for D=10sqrt(5).",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "B5",
+              "description": "1 point for the exact diagonal rate.",
+              "points": null,
+              "evidenceRequired": "1 point for the exact diagonal rate.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            }
+          ]
+        }
+      ],
+      "choices": [],
+      "media": [
+        {
+          "id": "MEDIA-APCALC-AB-FRQ-1977-06-PROMPT-01",
+          "path": "",
+          "mime": "application/vnd.echs.runtime-svg-descriptor+json",
+          "alt": "Interactive ECHS constant-area rectangle with changing length, width, and diagonal.",
+          "caption": "",
+          "cropStatus": "not-applicable",
+          "renderMode": "runtime-svg-descriptor",
+          "descriptor": {
+            "shape": "1977-frq6-rectangle",
+            "ariaLabel": "Interactive ECHS constant-area rectangle with changing length, width, and diagonal."
+          }
+        },
+        {
+          "id": "MEDIA-HISTORICAL-FRQ-1969-2010-P017-FA817C85FD",
+          "path": "media/source-pages/historical-frq-1969-2010/page-017-source-page-fa817c85fd.svg",
+          "mime": "image/svg+xml",
+          "alt": "Historical AP Calculus FRQ source page, 1977 question 5.",
+          "caption": "Source Page - ap_calculus_free_response_1969_2010(3).pdf, page 17",
+          "cropStatus": "full-page",
+          "renderMode": "svg-from-pdf-glyph-paths",
+          "descriptor": null
+        },
+        {
+          "id": "MEDIA-HISTORICAL-FRQ-1969-2010-P017-A9A84516DE",
+          "path": "media/question-crops/historical-frq-1969-2010/page-017-question-crop-a9a84516de.svg",
+          "mime": "image/svg+xml",
+          "alt": "Historical AP Calculus FRQ 1977 AB 6.",
+          "caption": "Question Crop - ap_calculus_free_response_1969_2010(3).pdf, page 17",
+          "cropStatus": "question-region",
+          "renderMode": "svg-from-pdf-glyph-paths",
+          "descriptor": null
+        }
+      ],
+      "facsimileAuthority": "",
+      "machineExtractedText": "",
+      "answer": null,
+      "acceptedAnswers": [],
+      "answerFormat": "multipart-constructed-response",
+      "explanation": "See the part-level reference answers and ECHS analytic rubric.",
+      "workedSolution": "See the part-level reference answers and ECHS analytic rubric.",
+      "alternativeSolution": "",
+      "calculatorSolution": "",
+      "noncalculatorSolution": "See the part-level reference answers and ECHS analytic rubric.",
+      "studentExplanation": "See the part-level reference answers and ECHS analytic rubric.",
+      "teacherExplanation": "See the part-level reference answers and ECHS analytic rubric.",
+      "scoringGuideline": null,
+      "rubric": [
+        {
+          "part": "(a)",
+          "maxPoints": 5,
+          "criteria": [
+            {
+              "criterionId": "A1",
+              "description": "1 point for LW=200.",
+              "points": null,
+              "evidenceRequired": "1 point for LW=200.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "A2",
+              "description": "1 point for differentiating with respect to time.",
+              "points": null,
+              "evidenceRequired": "1 point for differentiating with respect to time.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "A3",
+              "description": "1 point for substituting the rates.",
+              "points": null,
+              "evidenceRequired": "1 point for substituting the rates.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "A4",
+              "description": "1 point for relating L and W.",
+              "points": null,
+              "evidenceRequired": "1 point for relating L and W.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "A5",
+              "description": "1 point for W=5 meters.",
+              "points": null,
+              "evidenceRequired": "1 point for W=5 meters.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            }
+          ]
+        },
+        {
+          "part": "(b)",
+          "maxPoints": 5,
+          "criteria": [
+            {
+              "criterionId": "B1",
+              "description": "1 point for L=20.",
+              "points": null,
+              "evidenceRequired": "1 point for L=20.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "B2",
+              "description": "1 point for dW/dt=-2.",
+              "points": null,
+              "evidenceRequired": "1 point for dW/dt=-2.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "B3",
+              "description": "1 point for differentiating D²=L²+W².",
+              "points": null,
+              "evidenceRequired": "1 point for differentiating D²=L²+W².",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "B4",
+              "description": "1 point for D=10sqrt(5).",
+              "points": null,
+              "evidenceRequired": "1 point for D=10sqrt(5).",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "B5",
+              "description": "1 point for the exact diagonal rate.",
+              "points": null,
+              "evidenceRequired": "1 point for the exact diagonal rate.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            }
+          ]
+        }
+      ],
+      "rubricStatus": "ECHS analytic rubric based on independent mathematical verification; not an official historical College Board point-by-point scoring guideline.",
+      "commonMistakes": [
+        "Using dW/dt=-0.5 in part (b), where the instant is different.",
+        "Treating the constant area as L+W=200.",
+        "Forgetting to differentiate the diagonal equation with respect to time."
+      ],
+      "verificationStatus": "independently-verified-licensed-student-practice",
+      "answerConfidence": 1.0,
+      "source": {
+        "organization": "College Board",
+        "publisher": "College Board",
+        "bankName": "AP Calculus historical archive",
+        "sourceType": "historical AP examination item / ECHS digital transcription",
+        "officialStatus": "legacy-ap",
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
+        "sourcePages": [
+          17
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
+      },
+      "classification": {
+        "primaryUnit": 4,
+        "primaryUnitLabel": "Unit 4: Contextual Applications of Differentiation",
+        "primaryTopic": "Related rates for a constant-area rectangle",
+        "topicCode": "4.5",
+        "additionalTopics": [
+          "Implicit differentiation",
+          "Diagonal rate",
+          "Geometric constraint"
+        ],
+        "learningObjectives": [
+          "Differentiate geometric constraints with respect to time to relate changing side lengths and a diagonal."
+        ],
+        "bigIdeas": [],
+        "mathematicalPractices": [
+          "Contextual and Procedural"
+        ],
+        "skillCategories": [
+          "1.C / 2.C / 3.C"
+        ],
+        "concepts": [
+          "Related rates for a constant-area rectangle",
+          "related rates",
+          "rectangle",
+          "constant area",
+          "diagonal",
+          "geometry",
+          "Implicit differentiation",
+          "Diagonal rate",
+          "Geometric constraint"
+        ],
+        "prerequisites": [
+          "SKILL-IMPLICIT-DIFFERENTIATION",
+          "SKILL-UNIT-INTERPRETATION",
+          "SKILL-ANTIDERIVATIVES",
+          "SKILL-DEFINITE-INTEGRAL"
+        ],
+        "functionFamilies": [],
+        "representations": [
+          "symbolic",
+          "graphical",
+          "verbal",
+          "contextual",
+          "geometric",
+          "mixed-representation"
+        ],
+        "reasoningActions": [
+          "compute",
+          "analyze"
+        ],
+        "lessonIds": [
+          "APCALC-4.5",
+          "APCALC-3.2"
+        ],
+        "keywords": [
+          "related-rates-for-a-constant-area-rectangle",
+          "related-rates",
+          "rectangle",
+          "constant-area",
+          "diagonal",
+          "geometry",
+          "implicit-differentiation",
+          "diagonal-rate",
+          "geometric-constraint",
+          "ap-calculus-ab"
+        ]
+      },
+      "pedagogy": {
+        "difficulty": 3,
+        "difficultyLabel": "Medium",
+        "cognitiveDemand": 3,
+        "hints": [
+          {
+            "level": 1,
+            "type": "orientation",
+            "text": "Identify what the question gives and what quantity or conclusion is required."
+          },
+          {
+            "level": 2,
+            "type": "concept",
+            "text": "Recall the key ideas connected to Related rates for a constant-area rectangle."
+          },
+          {
+            "level": 3,
+            "type": "strategy",
+            "text": "Choose a representation and procedure consistent with the classified topic and calculator policy."
+          },
+          {
+            "level": 4,
+            "type": "partial-setup",
+            "text": "Write the governing definition, equation, derivative, or integral before simplifying."
+          }
+        ],
+        "misconceptions": [
+          {
+            "code": "APCALC-AB-FRQ-1977-06-M01",
+            "title": "Using dW/dt=-0.5 in part (b), where the instant is different.",
+            "triggerAnswers": [],
+            "diagnosis": "Using dW/dt=-0.5 in part (b), where the instant is different.",
+            "feedback": "",
+            "recommendedPrerequisites": [
+              "SKILL-IMPLICIT-DIFFERENTIATION",
+              "SKILL-UNIT-INTERPRETATION",
+              "SKILL-ANTIDERIVATIVES",
+              "SKILL-DEFINITE-INTEGRAL"
+            ],
+            "confidence": 0.75,
+            "source": "source-provided common-mistake note"
+          },
+          {
+            "code": "APCALC-AB-FRQ-1977-06-M02",
+            "title": "Treating the constant area as L+W=200.",
+            "triggerAnswers": [],
+            "diagnosis": "Treating the constant area as L+W=200.",
+            "feedback": "",
+            "recommendedPrerequisites": [
+              "SKILL-IMPLICIT-DIFFERENTIATION",
+              "SKILL-UNIT-INTERPRETATION",
+              "SKILL-ANTIDERIVATIVES",
+              "SKILL-DEFINITE-INTEGRAL"
+            ],
+            "confidence": 0.75,
+            "source": "source-provided common-mistake note"
+          },
+          {
+            "code": "APCALC-AB-FRQ-1977-06-M03",
+            "title": "Forgetting to differentiate the diagonal equation with respect to time.",
+            "triggerAnswers": [],
+            "diagnosis": "Forgetting to differentiate the diagonal equation with respect to time.",
+            "feedback": "",
+            "recommendedPrerequisites": [
+              "SKILL-IMPLICIT-DIFFERENTIATION",
+              "SKILL-UNIT-INTERPRETATION",
+              "SKILL-ANTIDERIVATIVES",
+              "SKILL-DEFINITE-INTEGRAL"
+            ],
+            "confidence": 0.75,
+            "source": "source-provided common-mistake note"
+          }
+        ],
+        "related": {
+          "easier": [],
+          "parallel": [],
+          "harder": [],
+          "prerequisite": [],
+          "sameOfficialTopic": [],
+          "relatedFRQ": [],
+          "relatedMCQ": []
+        }
+      },
+      "quality": {
+        "completeness": "complete-verified",
+        "productionStatus": "student-ready",
+        "productionReadiness": 1.0,
+        "tutoringReadiness": 0.98,
+        "needsReview": false,
+        "reviewReasons": [],
+        "transcriptionVerified": true,
+        "answerVerified": true,
+        "mediaVerified": true,
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": true,
+        "katexVerified": true,
+        "mappingVerified": true,
+        "studentReadyGatePassed": true
+      },
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-ready",
+      "contentStatus": "complete",
+      "audit": {
+        "sourceChecked": true,
+        "sourcePage": "17",
+        "transcriptionStatus": "verified",
+        "stemStatus": "verified",
+        "choicesStatus": "not_required",
+        "answerStatus": "verified",
+        "solutionStatus": "verified",
+        "katexStatus": "verified",
+        "mediaStatus": "verified",
+        "courseMappingStatus": "verified",
+        "unitMappingStatus": "verified",
+        "topicMappingStatus": "verified",
+        "lessonMappingStatus": "verified",
+        "calculatorStatus": "verified",
+        "overallStatus": "student-ready",
+        "correctionsMade": 0,
+        "reviewRequired": false,
+        "reviewerNotes": "Independently verified content gates passed. Licensed for student practice on the ECHS platform under Issue #56.",
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
+      },
+      "studentReady": true
+    },
+    {
+      "id": "APCALC-AB-FRQ-1977-07",
+      "course": "AP Calculus AB",
+      "courseId": "ap-calculus-ab",
+      "assessmentFamily": "AP historical archive",
+      "type": "frq",
+      "format": "multipart-free-response",
+      "year": 1977,
+      "form": "",
+      "questionNumber": "7",
+      "section": "II",
+      "calculator": "no-calculator",
+      "maxPoints": 10,
+      "estimatedTime": 900,
+      "prompt": "Let \\[f(x)=\\sin^3 x+\\sin^3|x|.\\]",
+      "directions": "",
+      "parts": [
+        {
+          "label": "(a)",
+          "prompt": "Find \\(f'(x)\\) for \\(x>0\\).",
+          "maxPoints": 2,
+          "answer": "For \\(x>0\\), \\(|x|=x\\), so \\(f(x)=2\\sin^3x\\). Therefore \\[\\boxed{f'(x)=6\\sin^2x\\cos x}.\\]",
+          "rubric": [
+            {
+              "criterionId": "A1",
+              "description": "1 point for the x>0 simplification.",
+              "points": null,
+              "evidenceRequired": "1 point for the x>0 simplification.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "A2",
+              "description": "1 point for the derivative.",
+              "points": null,
+              "evidenceRequired": "1 point for the derivative.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            }
+          ]
+        },
+        {
+          "label": "(b)",
+          "prompt": "Find \\(f'(x)\\) for \\(x<0\\).",
+          "maxPoints": 2,
+          "answer": "For \\(x<0\\), \\(|x|=-x\\), and \\(\\sin|x|=\\sin(-x)=-\\sin x\\). Hence \\[f(x)=\\sin^3x+(-\\sin x)^3=0,\\]so \\[\\boxed{f'(x)=0}.\\]",
+          "rubric": [
+            {
+              "criterionId": "B1",
+              "description": "1 point for showing f(x)=0 on x<0.",
+              "points": null,
+              "evidenceRequired": "1 point for showing f(x)=0 on x<0.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "B2",
+              "description": "1 point for f′(x)=0.",
+              "points": null,
+              "evidenceRequired": "1 point for f′(x)=0.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            }
+          ]
+        },
+        {
+          "label": "(c)",
+          "prompt": "Determine whether \\(f\\) is continuous at \\(x=0\\). Justify.",
+          "maxPoints": 3,
+          "answer": "\\(f(0)=0\\). For \\(x<0\\), \\(f(x)=0\\), while for \\(x>0\\), \\(f(x)=2\\sin^3x\\to0\\). Thus both one-sided limits equal \\(f(0)\\), and \\[\\boxed{f\\text{ is continuous at }0}.\\]",
+          "rubric": [
+            {
+              "criterionId": "C1",
+              "description": "1 point for f(0)=0.",
+              "points": null,
+              "evidenceRequired": "1 point for f(0)=0.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "C2",
+              "description": "1 point for both one-sided limits.",
+              "points": null,
+              "evidenceRequired": "1 point for both one-sided limits.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "C3",
+              "description": "1 point for the continuity conclusion.",
+              "points": null,
+              "evidenceRequired": "1 point for the continuity conclusion.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            }
+          ]
+        },
+        {
+          "label": "(d)",
+          "prompt": "Determine whether \\(f'(0)\\) exists. Justify.",
+          "maxPoints": 3,
+          "answer": "Using the definition, for \\(h<0\\), \\(f(h)/h=0\\). For \\(h>0\\), \\[\\frac{f(h)-f(0)}h=\\frac{2\\sin^3h}{h}=2\\left(\\frac{\\sin h}{h}\\right)\\sin^2h\\to0.\\]The one-sided derivative limits agree, so \\[\\boxed{f'(0)=0}.\\]",
+          "rubric": [
+            {
+              "criterionId": "D1",
+              "description": "1 point for the left derivative.",
+              "points": null,
+              "evidenceRequired": "1 point for the left derivative.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "D2",
+              "description": "1 point for the right derivative limit.",
+              "points": null,
+              "evidenceRequired": "1 point for the right derivative limit.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "D3",
+              "description": "1 point for existence and value 0.",
+              "points": null,
+              "evidenceRequired": "1 point for existence and value 0.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            }
+          ]
+        }
+      ],
+      "choices": [],
+      "media": [
+        {
+          "id": "MEDIA-APCALC-AB-FRQ-1977-07-PROMPT-01",
+          "path": "",
+          "mime": "application/vnd.echs.runtime-svg-descriptor+json",
+          "alt": "Interactive ECHS piecewise graph showing a flat left branch and a cubic-sine right branch meeting differentiably at the origin.",
+          "caption": "",
+          "cropStatus": "not-applicable",
+          "renderMode": "runtime-svg-descriptor",
+          "descriptor": {
+            "shape": "1977-frq7-cubic-sine",
+            "ariaLabel": "Interactive ECHS piecewise graph showing a flat left branch and a cubic-sine right branch meeting differentiably at the origin."
+          }
+        },
+        {
+          "id": "MEDIA-HISTORICAL-FRQ-1969-2010-P017-FA817C85FD",
+          "path": "media/source-pages/historical-frq-1969-2010/page-017-source-page-fa817c85fd.svg",
+          "mime": "image/svg+xml",
+          "alt": "Historical AP Calculus FRQ source page, 1977 question 5.",
+          "caption": "Source Page - ap_calculus_free_response_1969_2010(3).pdf, page 17",
+          "cropStatus": "full-page",
+          "renderMode": "svg-from-pdf-glyph-paths",
+          "descriptor": null
+        },
+        {
+          "id": "MEDIA-HISTORICAL-FRQ-1969-2010-P017-9510797579",
+          "path": "media/question-crops/historical-frq-1969-2010/page-017-question-crop-9510797579.svg",
+          "mime": "image/svg+xml",
+          "alt": "Historical AP Calculus FRQ 1977 AB 7.",
+          "caption": "Question Crop - ap_calculus_free_response_1969_2010(3).pdf, page 17",
+          "cropStatus": "question-region",
+          "renderMode": "svg-from-pdf-glyph-paths",
+          "descriptor": null
+        }
+      ],
+      "facsimileAuthority": "",
+      "machineExtractedText": "",
+      "answer": null,
+      "acceptedAnswers": [],
+      "answerFormat": "multipart-constructed-response",
+      "explanation": "See the part-level reference answers and ECHS analytic rubric.",
+      "workedSolution": "See the part-level reference answers and ECHS analytic rubric.",
+      "alternativeSolution": "",
+      "calculatorSolution": "",
+      "noncalculatorSolution": "See the part-level reference answers and ECHS analytic rubric.",
+      "studentExplanation": "See the part-level reference answers and ECHS analytic rubric.",
+      "teacherExplanation": "See the part-level reference answers and ECHS analytic rubric.",
+      "scoringGuideline": null,
+      "rubric": [
+        {
+          "part": "(a)",
+          "maxPoints": 2,
+          "criteria": [
+            {
+              "criterionId": "A1",
+              "description": "1 point for the x>0 simplification.",
+              "points": null,
+              "evidenceRequired": "1 point for the x>0 simplification.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "A2",
+              "description": "1 point for the derivative.",
+              "points": null,
+              "evidenceRequired": "1 point for the derivative.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            }
+          ]
+        },
+        {
+          "part": "(b)",
+          "maxPoints": 2,
+          "criteria": [
+            {
+              "criterionId": "B1",
+              "description": "1 point for showing f(x)=0 on x<0.",
+              "points": null,
+              "evidenceRequired": "1 point for showing f(x)=0 on x<0.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "B2",
+              "description": "1 point for f′(x)=0.",
+              "points": null,
+              "evidenceRequired": "1 point for f′(x)=0.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            }
+          ]
+        },
+        {
+          "part": "(c)",
+          "maxPoints": 3,
+          "criteria": [
+            {
+              "criterionId": "C1",
+              "description": "1 point for f(0)=0.",
+              "points": null,
+              "evidenceRequired": "1 point for f(0)=0.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "C2",
+              "description": "1 point for both one-sided limits.",
+              "points": null,
+              "evidenceRequired": "1 point for both one-sided limits.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "C3",
+              "description": "1 point for the continuity conclusion.",
+              "points": null,
+              "evidenceRequired": "1 point for the continuity conclusion.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            }
+          ]
+        },
+        {
+          "part": "(d)",
+          "maxPoints": 3,
+          "criteria": [
+            {
+              "criterionId": "D1",
+              "description": "1 point for the left derivative.",
+              "points": null,
+              "evidenceRequired": "1 point for the left derivative.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "D2",
+              "description": "1 point for the right derivative limit.",
+              "points": null,
+              "evidenceRequired": "1 point for the right derivative limit.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "D3",
+              "description": "1 point for existence and value 0.",
+              "points": null,
+              "evidenceRequired": "1 point for existence and value 0.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            }
+          ]
+        }
+      ],
+      "rubricStatus": "ECHS analytic rubric based on independent mathematical verification; not an official historical College Board point-by-point scoring guideline.",
+      "commonMistakes": [
+        "Assuming an absolute value automatically creates a corner.",
+        "Forgetting that the cube preserves the sign of sine.",
+        "Using the formulas for x>0 or x<0 at x=0 without a derivative-definition check."
+      ],
+      "verificationStatus": "independently-verified-licensed-student-practice",
+      "answerConfidence": 1.0,
+      "source": {
+        "organization": "College Board",
+        "publisher": "College Board",
+        "bankName": "AP Calculus historical archive",
+        "sourceType": "historical AP examination item / ECHS digital transcription",
+        "officialStatus": "legacy-ap",
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
+        "sourcePages": [
+          17
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
+      },
+      "classification": {
+        "primaryUnit": 2,
+        "primaryUnitLabel": "Unit 2: Differentiation—Definition and Fundamental Properties",
+        "primaryTopic": "Continuity and differentiability of an absolute-value composition",
+        "topicCode": "2.2 / 2.4",
+        "additionalTopics": [
+          "Piecewise definition",
+          "One-sided derivatives",
+          "Derivative at a point"
+        ],
+        "learningObjectives": [
+          "Rewrite an absolute-value trigonometric function piecewise and use one-sided reasoning to test continuity and differentiability."
+        ],
+        "bigIdeas": [],
+        "mathematicalPractices": [
+          "Reasoning and Justification"
+        ],
+        "skillCategories": [
+          "1.C / 2.C / 3.C"
+        ],
+        "concepts": [
+          "Continuity and differentiability of an absolute-value composition",
+          "absolute value",
+          "piecewise",
+          "continuity",
+          "differentiability",
+          "sine",
+          "derivative definition",
+          "Piecewise definition",
+          "One-sided derivatives",
+          "Derivative at a point"
+        ],
+        "prerequisites": [
+          "SKILL-FUNCTION-NOTATION",
+          "SKILL-ALGEBRAIC-SIMPLIFICATION"
+        ],
+        "functionFamilies": [
+          "absolute-value",
+          "piecewise",
+          "trigonometric"
+        ],
+        "representations": [
+          "symbolic",
+          "graphical"
+        ],
+        "reasoningActions": [
+          "compute",
+          "justify"
+        ],
+        "lessonIds": [
+          "APCALC-2.2",
+          "APCALC-2.4",
+          "APCALC-1.10"
+        ],
+        "keywords": [
+          "continuity-and-differentiability-of-an-absolute-value-composition",
+          "absolute-value",
+          "piecewise",
+          "continuity",
+          "differentiability",
+          "sine",
+          "derivative-definition",
+          "piecewise-definition",
+          "one-sided-derivatives",
+          "derivative-at-a-point",
+          "ap-calculus-ab"
+        ]
+      },
+      "pedagogy": {
+        "difficulty": 3,
+        "difficultyLabel": "Medium",
+        "cognitiveDemand": 3,
+        "hints": [
+          {
+            "level": 1,
+            "type": "orientation",
+            "text": "Identify what the question gives and what quantity or conclusion is required."
+          },
+          {
+            "level": 2,
+            "type": "concept",
+            "text": "Recall the key ideas connected to Continuity and differentiability of an absolute-value composition."
+          },
+          {
+            "level": 3,
+            "type": "strategy",
+            "text": "Choose a representation and procedure consistent with the classified topic and calculator policy."
+          },
+          {
+            "level": 4,
+            "type": "partial-setup",
+            "text": "Write the governing definition, equation, derivative, or integral before simplifying."
+          }
+        ],
+        "misconceptions": [
+          {
+            "code": "APCALC-AB-FRQ-1977-07-M01",
+            "title": "Assuming an absolute value automatically creates a corner.",
+            "triggerAnswers": [],
+            "diagnosis": "Assuming an absolute value automatically creates a corner.",
+            "feedback": "",
+            "recommendedPrerequisites": [
+              "SKILL-FUNCTION-NOTATION",
+              "SKILL-ALGEBRAIC-SIMPLIFICATION"
+            ],
+            "confidence": 0.75,
+            "source": "source-provided common-mistake note"
+          },
+          {
+            "code": "APCALC-AB-FRQ-1977-07-M02",
+            "title": "Forgetting that the cube preserves the sign of sine.",
+            "triggerAnswers": [],
+            "diagnosis": "Forgetting that the cube preserves the sign of sine.",
+            "feedback": "",
+            "recommendedPrerequisites": [
+              "SKILL-FUNCTION-NOTATION",
+              "SKILL-ALGEBRAIC-SIMPLIFICATION"
+            ],
+            "confidence": 0.75,
+            "source": "source-provided common-mistake note"
+          },
+          {
+            "code": "APCALC-AB-FRQ-1977-07-M03",
+            "title": "Using the formulas for x>0 or x<0 at x=0 without a derivative-definition check.",
+            "triggerAnswers": [],
+            "diagnosis": "Using the formulas for x>0 or x<0 at x=0 without a derivative-definition check.",
+            "feedback": "",
+            "recommendedPrerequisites": [
+              "SKILL-FUNCTION-NOTATION",
+              "SKILL-ALGEBRAIC-SIMPLIFICATION"
+            ],
+            "confidence": 0.75,
+            "source": "source-provided common-mistake note"
+          }
+        ],
+        "related": {
+          "easier": [],
+          "parallel": [],
+          "harder": [],
+          "prerequisite": [],
+          "sameOfficialTopic": [],
+          "relatedFRQ": [],
+          "relatedMCQ": []
+        }
+      },
+      "quality": {
+        "completeness": "complete-verified",
+        "productionStatus": "student-ready",
+        "productionReadiness": 1.0,
+        "tutoringReadiness": 0.98,
+        "needsReview": false,
+        "reviewReasons": [],
+        "transcriptionVerified": true,
+        "answerVerified": true,
+        "mediaVerified": true,
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": true,
+        "katexVerified": true,
+        "mappingVerified": true,
+        "studentReadyGatePassed": true
+      },
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-ready",
+      "contentStatus": "complete",
+      "audit": {
+        "sourceChecked": true,
+        "sourcePage": "17",
+        "transcriptionStatus": "verified",
+        "stemStatus": "verified",
+        "choicesStatus": "not_required",
+        "answerStatus": "verified",
+        "solutionStatus": "verified",
+        "katexStatus": "verified",
+        "mediaStatus": "verified",
+        "courseMappingStatus": "verified",
+        "unitMappingStatus": "verified",
+        "topicMappingStatus": "verified",
+        "lessonMappingStatus": "verified",
+        "calculatorStatus": "verified",
+        "overallStatus": "student-ready",
+        "correctionsMade": 0,
+        "reviewRequired": false,
+        "reviewerNotes": "Independently verified content gates passed. Licensed for student practice on the ECHS platform under Issue #56.",
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
+      },
+      "studentReady": true
+    },
+    {
+      "id": "APCALC-AB-FRQ-1979-03",
+      "course": "AP Calculus AB",
+      "courseId": "ap-calculus-ab",
+      "assessmentFamily": "AP historical archive",
+      "type": "frq",
+      "format": "multipart-free-response",
+      "year": 1979,
+      "form": "",
+      "questionNumber": "3",
+      "section": "II",
+      "calculator": "no-calculator",
+      "maxPoints": 10,
+      "estimatedTime": 900,
+      "prompt": "Find the maximum volume of an open-top box made by cutting equal squares from the corners of an \\(8\\)-inch by \\(15\\)-inch sheet and folding up the sides. Justify your answer.",
+      "directions": "",
+      "parts": [
+        {
+          "label": "(a)",
+          "prompt": "Find the maximum volume and justify.",
+          "maxPoints": 10,
+          "answer": "If each cut has side length \\(x\\), then\n\\[V(x)=x(8-2x)(15-2x),\\qquad 0\\le x\\le4.\\]\nDifferentiation gives\n\\[V^{\\prime}(x)=12x^2-92x+120=4(3x-5)(x-6).\\]\nThe only feasible interior critical point is \\(x=5/3\\). The derivative changes from positive to negative there, and the endpoint volumes are zero. Therefore\n\\[\\boxed{V_{\\max}=V\\left(\\frac53\\right)=\\frac{2450}{27}\\approx90.741\\text{ in}^3}.\\]",
+          "rubric": [
+            {
+              "criterionId": "11",
+              "description": "2 points for the volume model and feasible domain.",
+              "points": null,
+              "evidenceRequired": "2 points for the volume model and feasible domain.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "12",
+              "description": "2 points for the derivative.",
+              "points": null,
+              "evidenceRequired": "2 points for the derivative.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "13",
+              "description": "2 points for solving the critical equation and rejecting x=6.",
+              "points": null,
+              "evidenceRequired": "2 points for solving the critical equation and rejecting x=6.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "14",
+              "description": "2 points for a valid absolute-maximum justification.",
+              "points": null,
+              "evidenceRequired": "2 points for a valid absolute-maximum justification.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "15",
+              "description": "2 points for the maximum volume.",
+              "points": null,
+              "evidenceRequired": "2 points for the maximum volume.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            }
+          ]
+        }
+      ],
+      "choices": [],
+      "media": [
+        {
+          "id": "MEDIA-APCALC-AB-FRQ-1979-03-PROMPT-01",
+          "path": "",
+          "mime": "application/vnd.echs.runtime-svg-descriptor+json",
+          "alt": "Sheet and cut-square model for the open-top box.",
+          "caption": "",
+          "cropStatus": "not-applicable",
+          "renderMode": "runtime-svg-descriptor",
+          "descriptor": {
+            "shape": "1979-frq03-inline-svg",
+            "ariaLabel": "Sheet and cut-square model for the open-top box.",
+            "svg": "<svg viewBox=\"0 0 760 420\" role=\"img\" aria-label=\"Open-top box made by cutting equal squares from an 8 by 15 sheet\" xmlns=\"http://www.w3.org/2000/svg\">\n    <rect width=\"760\" height=\"420\" rx=\"22\" fill=\"#fffdf9\"/>\n    <rect x=\"1\" y=\"1\" width=\"758\" height=\"418\" rx=\"21\" fill=\"none\" stroke=\"#e7ddd1\"/>\n    <text x=\"36\" y=\"46\" font-family=\"Inter,Arial\" font-size=\"20\" font-weight=\"900\" fill=\"#78183f\">1979 Q3 · open-top box from an 8 × 15 sheet</text><rect x=\"70\" y=\"95\" width=\"430\" height=\"225\" rx=\"6\" fill=\"#fff\" stroke=\"#14213d\" stroke-width=\"3\"/><rect x=\"70\" y=\"95\" width=\"58\" height=\"58\" fill=\"rgba(217,169,40,.22)\" stroke=\"#d9a928\" stroke-width=\"2\"/><rect x=\"499\" y=\"95\" width=\"58\" height=\"58\" fill=\"rgba(217,169,40,.22)\" stroke=\"#d9a928\" stroke-width=\"2\"/><rect x=\"70\" y=\"319\" width=\"58\" height=\"58\" fill=\"rgba(217,169,40,.22)\" stroke=\"#d9a928\" stroke-width=\"2\"/><rect x=\"499\" y=\"319\" width=\"58\" height=\"58\" fill=\"rgba(217,169,40,.22)\" stroke=\"#d9a928\" stroke-width=\"2\"/><text x=\"285\" y=\"350\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"14\" fill=\"#14213d\">15</text><text x=\"42\" y=\"210\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"14\" fill=\"#14213d\" transform=\"rotate(-90 42 210)\">8</text><text x=\"101\" y=\"130\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"14\" font-weight=\"900\" fill=\"#d9a928\">x</text><rect x=\"560\" y=\"120\" width=\"150\" height=\"155\" rx=\"16\" fill=\"#fff\" stroke=\"#0f7c7b\" stroke-width=\"2\"/><text x=\"635\" y=\"158\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"15\" font-weight=\"900\" fill=\"#0f7c7b\">Volume model</text><text x=\"635\" y=\"194\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"15\" fill=\"#14213d\">V=x(8−2x)</text><text x=\"635\" y=\"220\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"15\" fill=\"#14213d\">(15−2x)</text><text x=\"635\" y=\"254\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"14\" font-weight=\"900\" fill=\"#d9a928\">x=5/3</text>\n    </svg>"
+          }
+        },
+        {
+          "id": "MEDIA-HISTORICAL-FRQ-1969-2010-P019-7A1590849F",
+          "path": "media/source-pages/historical-frq-1969-2010/page-019-source-page-7a1590849f.svg",
+          "mime": "image/svg+xml",
+          "alt": "Historical AP Calculus FRQ source page, 1978 question 7.",
+          "caption": "Source Page - ap_calculus_free_response_1969_2010(3).pdf, page 19",
+          "cropStatus": "full-page",
+          "renderMode": "svg-from-pdf-glyph-paths",
+          "descriptor": null
+        },
+        {
+          "id": "MEDIA-HISTORICAL-FRQ-1969-2010-P019-1742ABE65C",
+          "path": "media/question-crops/historical-frq-1969-2010/page-019-question-crop-1742abe65c.svg",
+          "mime": "image/svg+xml",
+          "alt": "Historical AP Calculus FRQ 1979 AB 3.",
+          "caption": "Question Crop - ap_calculus_free_response_1969_2010(3).pdf, page 19",
+          "cropStatus": "question-region",
+          "renderMode": "svg-from-pdf-glyph-paths",
+          "descriptor": null
+        }
+      ],
+      "facsimileAuthority": "",
+      "machineExtractedText": "",
+      "answer": null,
+      "acceptedAnswers": [],
+      "answerFormat": "multipart-constructed-response",
+      "explanation": "See the part-level reference answers and ECHS analytic rubric.",
+      "workedSolution": "See the part-level reference answers and ECHS analytic rubric.",
+      "alternativeSolution": "",
+      "calculatorSolution": "",
+      "noncalculatorSolution": "See the part-level reference answers and ECHS analytic rubric.",
+      "studentExplanation": "See the part-level reference answers and ECHS analytic rubric.",
+      "teacherExplanation": "See the part-level reference answers and ECHS analytic rubric.",
+      "scoringGuideline": null,
+      "rubric": [
+        {
+          "part": "(a)",
+          "maxPoints": 10,
+          "criteria": [
+            {
+              "criterionId": "11",
+              "description": "2 points for the volume model and feasible domain.",
+              "points": null,
+              "evidenceRequired": "2 points for the volume model and feasible domain.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "12",
+              "description": "2 points for the derivative.",
+              "points": null,
+              "evidenceRequired": "2 points for the derivative.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "13",
+              "description": "2 points for solving the critical equation and rejecting x=6.",
+              "points": null,
+              "evidenceRequired": "2 points for solving the critical equation and rejecting x=6.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "14",
+              "description": "2 points for a valid absolute-maximum justification.",
+              "points": null,
+              "evidenceRequired": "2 points for a valid absolute-maximum justification.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            },
+            {
+              "criterionId": "15",
+              "description": "2 points for the maximum volume.",
+              "points": null,
+              "evidenceRequired": "2 points for the maximum volume.",
+              "commonErrors": [],
+              "rubricType": "ECHS interpreted rubric"
+            }
+          ]
+        }
+      ],
+      "rubricStatus": "ECHS analytic rubric based on independent mathematical verification; not an official historical College Board point-by-point scoring guideline.",
+      "commonMistakes": [
+        "Using 8−x or 15−x instead of subtracting twice the cut size.",
+        "Keeping the infeasible critical point x=6.",
+        "Giving the maximizing x-value but not the volume."
+      ],
+      "verificationStatus": "independently-verified-licensed-student-practice",
+      "answerConfidence": 1.0,
+      "source": {
+        "organization": "College Board",
+        "publisher": "College Board",
+        "bankName": "AP Calculus historical archive",
+        "sourceType": "historical AP examination item / ECHS digital transcription",
+        "officialStatus": "legacy-ap",
+        "releaseStatus": "Licensed for ECHS platform student practice; authorization recorded in GitHub Issue #56.",
+        "accessLevel": "public",
+        "rightsStatus": "licensed-echs-platform",
+        "publicPublicationAllowed": true,
+        "sourcePages": [
+          19
+        ],
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28",
+        "licenseAuthorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+        "licensedUses": [
+          "student practice",
+          "student exam simulation",
+          "teacher instruction",
+          "teacher and administrator review"
+        ],
+        "externalSourceFileRedistributionAssumed": false
+      },
+      "classification": {
+        "primaryUnit": 5,
+        "primaryUnitLabel": "Unit 5: Analytical Applications of Differentiation",
+        "primaryTopic": "Open-box optimization",
+        "topicCode": "5.10",
+        "additionalTopics": [
+          "Geometric modeling",
+          "Absolute maximum"
+        ],
+        "learningObjectives": [
+          "Construct and optimize a volume function subject to geometric constraints."
+        ],
+        "bigIdeas": [],
+        "mathematicalPractices": [
+          "Modeling and Procedural"
+        ],
+        "skillCategories": [
+          "1.C / 2.C / 3.C"
+        ],
+        "concepts": [
+          "Open-box optimization",
+          "optimization",
+          "open box",
+          "volume",
+          "domain",
+          "geometric model",
+          "Geometric modeling",
+          "Absolute maximum"
+        ],
+        "prerequisites": [
+          "SKILL-ANTIDERIVATIVES",
+          "SKILL-DEFINITE-INTEGRAL"
+        ],
+        "functionFamilies": [],
+        "representations": [
+          "symbolic",
+          "graphical"
+        ],
+        "reasoningActions": [
+          "compute",
+          "justify"
+        ],
+        "lessonIds": [
+          "APCALC-5.10"
+        ],
+        "keywords": [
+          "open-box-optimization",
+          "optimization",
+          "open-box",
+          "volume",
+          "domain",
+          "geometric-model",
+          "geometric-modeling",
+          "absolute-maximum",
+          "ap-calculus-ab"
+        ]
+      },
+      "pedagogy": {
+        "difficulty": 3,
+        "difficultyLabel": "Medium",
+        "cognitiveDemand": 3,
+        "hints": [
+          {
+            "level": 1,
+            "type": "orientation",
+            "text": "Identify what the question gives and what quantity or conclusion is required."
+          },
+          {
+            "level": 2,
+            "type": "concept",
+            "text": "Recall the key ideas connected to Open-box optimization."
+          },
+          {
+            "level": 3,
+            "type": "strategy",
+            "text": "Choose a representation and procedure consistent with the classified topic and calculator policy."
+          },
+          {
+            "level": 4,
+            "type": "partial-setup",
+            "text": "Write the governing definition, equation, derivative, or integral before simplifying."
+          }
+        ],
+        "misconceptions": [
+          {
+            "code": "APCALC-AB-FRQ-1979-03-M01",
+            "title": "Using 8−x or 15−x instead of subtracting twice the cut size.",
+            "triggerAnswers": [],
+            "diagnosis": "Using 8−x or 15−x instead of subtracting twice the cut size.",
+            "feedback": "",
+            "recommendedPrerequisites": [
+              "SKILL-ANTIDERIVATIVES",
+              "SKILL-DEFINITE-INTEGRAL"
+            ],
+            "confidence": 0.75,
+            "source": "source-provided common-mistake note"
+          },
+          {
+            "code": "APCALC-AB-FRQ-1979-03-M02",
+            "title": "Keeping the infeasible critical point x=6.",
+            "triggerAnswers": [],
+            "diagnosis": "Keeping the infeasible critical point x=6.",
+            "feedback": "",
+            "recommendedPrerequisites": [
+              "SKILL-ANTIDERIVATIVES",
+              "SKILL-DEFINITE-INTEGRAL"
+            ],
+            "confidence": 0.75,
+            "source": "source-provided common-mistake note"
+          },
+          {
+            "code": "APCALC-AB-FRQ-1979-03-M03",
+            "title": "Giving the maximizing x-value but not the volume.",
+            "triggerAnswers": [],
+            "diagnosis": "Giving the maximizing x-value but not the volume.",
+            "feedback": "",
+            "recommendedPrerequisites": [
+              "SKILL-ANTIDERIVATIVES",
+              "SKILL-DEFINITE-INTEGRAL"
+            ],
+            "confidence": 0.75,
+            "source": "source-provided common-mistake note"
+          }
+        ],
+        "related": {
+          "easier": [],
+          "parallel": [],
+          "harder": [],
+          "prerequisite": [],
+          "sameOfficialTopic": [],
+          "relatedFRQ": [],
+          "relatedMCQ": []
+        }
+      },
+      "quality": {
+        "completeness": "complete-verified",
+        "productionStatus": "student-ready",
+        "productionReadiness": 1.0,
+        "tutoringReadiness": 0.98,
+        "needsReview": false,
+        "reviewReasons": [],
+        "transcriptionVerified": true,
+        "answerVerified": true,
+        "mediaVerified": true,
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": true,
+        "katexVerified": true,
+        "mappingVerified": true,
+        "studentReadyGatePassed": true
+      },
+      "studentEligible": true,
+      "studentAccessible": true,
+      "deploymentAccess": "student-ready",
+      "contentStatus": "complete",
+      "audit": {
+        "sourceChecked": true,
+        "sourcePage": "19",
+        "transcriptionStatus": "verified",
+        "stemStatus": "verified",
+        "choicesStatus": "not_required",
+        "answerStatus": "verified",
+        "solutionStatus": "verified",
+        "katexStatus": "verified",
+        "mediaStatus": "verified",
+        "courseMappingStatus": "verified",
+        "unitMappingStatus": "verified",
+        "topicMappingStatus": "verified",
+        "lessonMappingStatus": "verified",
+        "calculatorStatus": "verified",
+        "overallStatus": "student-ready",
+        "correctionsMade": 0,
+        "reviewRequired": false,
+        "reviewerNotes": "Independently verified content gates passed. Licensed for student practice on the ECHS platform under Issue #56.",
+        "auditedAt": "2026-07-28T03:13:39+00:00",
+        "licenseAuthorizationId": "echs-ap-official-student-practice-2026-07-28"
+      },
+      "studentReady": true
+    }
+  ]
 }

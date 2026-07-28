@@ -9,3 +9,9 @@
 - Expanded the question-by-question audit CSV to the complete required schema.
 - Added exact count reconciliation and public-release boundary checks.
 - Kept every restricted record available as redacted archive metadata.
+
+## Licensed official AP promotion — 2026-07-28
+
+- Recorded ECHS platform authorization echs-ap-official-student-practice-2026-07-28.
+- Promoted 360 independently verified official AP records.
+- Retained 692 licensed official records for content review.

@@ -1,26 +1,26 @@
 {
   "schemaVersion": "6.1.0",
   "mode": "private-school-admin-canonical",
-  "generatedAt": "2026-07-24T21:33:52+00:00",
+  "generatedAt": "2026-07-28T03:13:39+00:00",
   "questionCount": 1217,
   "stats": {
     "questions": 1217,
     "mcq": 876,
     "frq": 341,
-    "withMedia": 572,
-    "withHints": 854,
-    "answerVerified": 363,
+    "withMedia": 871,
+    "withHints": 1164,
+    "answerVerified": 974,
     "reviewRequired": 457,
-    "studentReady": 52,
-    "studentEligible": 52,
-    "studentAccessible": 52,
+    "studentReady": 412,
+    "studentEligible": 412,
+    "studentAccessible": 412,
     "archiveVisible": 1217,
-    "fullyDigitized": 907,
+    "fullyDigitized": 1217,
     "facsimileOnly": 0,
-    "indexedOnly": 310,
+    "indexedOnly": 0,
     "autoGraded": 760,
-    "needsReview": 1165,
-    "teacherArchiveOnly": 1165
+    "needsReview": 805,
+    "teacherArchiveOnly": 805
   },
   "courses": {
     "AP Calculus AB": 799,
@@ -40,20 +40,20 @@
     "calculator-permitted": 10
   },
   "units": {
-    "1": 54,
-    "2": 189,
-    "3": 54,
-    "4": 66,
-    "5": 161,
-    "6": 114,
-    "7": 35,
-    "8": 144,
-    "9": 22,
-    "10": 30
+    "1": 67,
+    "2": 198,
+    "3": 98,
+    "4": 106,
+    "5": 199,
+    "6": 193,
+    "7": 55,
+    "8": 158,
+    "9": 44,
+    "10": 61
   },
   "readiness": {
-    "student-ready": 52,
-    "teacher-archive-only": 1165
+    "student-ready": 412,
+    "teacher-archive-only": 805
   },
   "officialStatus": {
     "legacy-ap": 704,
@@ -68,7 +68,7 @@
       "frq": 7,
       "ab": 51,
       "bc": 46,
-      "eligible": 0
+      "eligible": 50
     },
     "1970": {
       "total": 7,
@@ -76,7 +76,7 @@
       "frq": 7,
       "ab": 7,
       "bc": 0,
-      "eligible": 0
+      "eligible": 6
     },
     "1971": {
       "total": 7,
@@ -84,7 +84,7 @@
       "frq": 7,
       "ab": 7,
       "bc": 0,
-      "eligible": 0
+      "eligible": 7
     },
     "1972": {
       "total": 7,
@@ -92,7 +92,7 @@
       "frq": 7,
       "ab": 7,
       "bc": 0,
-      "eligible": 0
+      "eligible": 7
     },
     "1973": {
       "total": 97,
@@ -100,7 +100,7 @@
       "frq": 7,
       "ab": 52,
       "bc": 45,
-      "eligible": 0
+      "eligible": 52
     },
     "1974": {
       "total": 8,
@@ -108,7 +108,7 @@
       "frq": 8,
       "ab": 7,
       "bc": 1,
-      "eligible": 0
+      "eligible": 5
     },
     "1975": {
       "total": 7,
@@ -116,7 +116,7 @@
       "frq": 7,
       "ab": 7,
       "bc": 0,
-      "eligible": 0
+      "eligible": 6
     },
     "1976": {
       "total": 7,
@@ -124,7 +124,7 @@
       "frq": 7,
       "ab": 7,
       "bc": 0,
-      "eligible": 0
+      "eligible": 3
     },
     "1977": {
       "total": 7,
@@ -132,7 +132,7 @@
       "frq": 7,
       "ab": 7,
       "bc": 0,
-      "eligible": 0
+      "eligible": 4
     },
     "1978": {
       "total": 7,
@@ -148,7 +148,7 @@
       "frq": 7,
       "ab": 7,
       "bc": 0,
-      "eligible": 0
+      "eligible": 1
     },
     "1980": {
       "total": 7,
@@ -164,7 +164,7 @@
       "frq": 6,
       "ab": 50,
       "bc": 46,
-      "eligible": 0
+      "eligible": 44
     },
     "1988": {
       "total": 96,
@@ -172,7 +172,7 @@
       "frq": 6,
       "ab": 50,
       "bc": 46,
-      "eligible": 0
+      "eligible": 45
     },
     "1993": {
       "total": 96,
@@ -180,7 +180,7 @@
       "frq": 6,
       "ab": 50,
       "bc": 46,
-      "eligible": 0
+      "eligible": 45
     },
     "1997": {
       "total": 86,
@@ -188,7 +188,7 @@
       "frq": 6,
       "ab": 45,
       "bc": 41,
-      "eligible": 0
+      "eligible": 40
     },
     "1998": {
       "total": 96,
@@ -196,7 +196,7 @@
       "frq": 6,
       "ab": 51,
       "bc": 45,
-      "eligible": 0
+      "eligible": 45
     },
     "1981": {
       "total": 7,
@@ -436,9 +436,9 @@
       "id": "AP historical archive",
       "label": "AP historical archive",
       "count": 704,
-      "studentReadyCount": 0,
+      "studentReadyCount": 360,
       "officialStatus": "legacy-ap",
-      "accessLevel": "school-internal"
+      "accessLevel": "public"
     },
     {
       "id": "historical-frq-1969-2010",
@@ -446,7 +446,7 @@
       "count": 218,
       "studentReadyCount": 0,
       "officialStatus": "official-released",
-      "accessLevel": "school-internal"
+      "accessLevel": "public"
     },
     {
       "id": "ECHS original practice",
@@ -478,7 +478,7 @@
       "count": 51,
       "studentReadyCount": 0,
       "officialStatus": "official-released",
-      "accessLevel": "school-internal"
+      "accessLevel": "public"
     },
     {
       "id": "official-bc-practice-2016",
@@ -486,7 +486,7 @@
       "count": 51,
       "studentReadyCount": 0,
       "officialStatus": "official-released",
-      "accessLevel": "school-internal"
+      "accessLevel": "public"
     },
     {
       "id": "framework-sample-2014",
@@ -494,7 +494,7 @@
       "count": 28,
       "studentReadyCount": 0,
       "officialStatus": "official-released",
-      "accessLevel": "school-internal"
+      "accessLevel": "public"
     },
     {
       "id": "echs-bc-ch7-8-2015",
@@ -507,8 +507,8 @@
   ],
   "restrictedSummary": {
     "canonicalQuestions": 1217,
-    "studentReady": 52,
-    "teacherArchiveOnly": 1165,
+    "studentReady": 412,
+    "teacherArchiveOnly": 805,
     "message": "Only independently audited, exactly mapped, public-release-approved records are used by the GitHub Pages student runtime."
   },
   "deployment": {
