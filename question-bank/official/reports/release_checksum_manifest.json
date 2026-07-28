@@ -124,8 +124,8 @@
     },
     {
       "path": "data/student/archive-index.json",
-      "bytes": 2220233,
-      "sha256": "0c67fa2c92170a8ea24f7768585a7da392bcf9855e59078867fd3c4d47f98a84"
+      "bytes": 2238261,
+      "sha256": "66cc10b110d092ae3d1318a3a5040e2e745cb427fb70ae7603b65620d43183f3"
     },
     {
       "path": "data/student/archive-questions/chunk-000.json",
@@ -375,7 +375,7 @@
     {
       "path": "reports/KATEX_AUDIT_REPORT.md",
       "bytes": 544,
-      "sha256": "6050a42f3afac9b6c840c30d091299e4d374f2cf031ffd296f2386a66ce30aa9"
+      "sha256": "c483b6c79256a4a43a64763165b567afd60523690cfa23619668303b23f79b66"
     },
     {
       "path": "reports/LESSON_MAPPING_AUDIT.md",
@@ -425,12 +425,12 @@
     {
       "path": "reports/katex_audit_results.json",
       "bytes": 239966,
-      "sha256": "29ddf5201bd9dc5c95cc91d819d276efb2bd9469755170f7448151e2d8ef58fb"
+      "sha256": "d86e96b708c5935c52fa9f3b22fc977b4072641ac50e9719428083c5aa1c4f03"
     },
     {
       "path": "reports/katex_error_log.json",
       "bytes": 114,
-      "sha256": "d77a899b2d4d606cb3209945b11c72be60ecfb6d66b54fb6f5893f53795c46f3"
+      "sha256": "f7e76536f2cc736cda0492e194ab4ef9e9a3b1703f87080f1ada88d844d40b87"
     },
     {
       "path": "tools/apply_strict_audit_gate.py",
