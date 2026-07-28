@@ -24,6 +24,10 @@
     }
   }
   const urls = [...new Set([...explicit, ...discovered].filter(Boolean))];
+  const manualRepairManifestUrl = window.ECHS_MANUAL_REPAIR_MANIFEST_URL
+    || "../data/manual-repairs/issue-3/manifest.json";
+  const manualRepairUrls = [];
+  let manualRepairManifest = null;
   let loaded = false;
   let loading = null;
   const overrides = new Map();
@@ -68,11 +72,36 @@
     return out;
   }
 
+  async function discoverManualRepairs() {
+    const response = await fetch(manualRepairManifestUrl, { cache: "no-store" });
+    if (response.status === 404) {
+      missingUrls.push(manualRepairManifestUrl);
+      return [];
+    }
+    if (!response.ok) {
+      throw new Error(`Could not load manual repair manifest ${manualRepairManifestUrl} (${response.status})`);
+    }
+    const manifest = await response.json();
+    if (!Array.isArray(manifest?.batches)) {
+      throw new Error(`Manual repair manifest ${manualRepairManifestUrl} must contain a batches array`);
+    }
+    manualRepairManifest = manifest;
+    for (const batch of manifest.batches) {
+      if (!batch?.url) {
+        throw new Error(`Manual repair manifest batch ${batch?.batchId || "(unnamed)"} is missing url`);
+      }
+      manualRepairUrls.push(String(batch.url));
+    }
+    return [...manualRepairUrls];
+  }
+
   async function load() {
     if (loaded) return;
     if (loading) return loading;
     loading = (async () => {
-      for (const url of urls) {
+      const repairUrls = await discoverManualRepairs();
+      const loadUrls = [...new Set([...urls, ...repairUrls].filter(Boolean))];
+      for (const url of loadUrls) {
         const response = await fetch(url, { cache: "no-store" });
         if (response.status === 404) {
           missingUrls.push(url);
@@ -136,6 +165,8 @@
     get count() { return overrides.size; },
     get loadedUrls() { return [...loadedUrls]; },
     get missingUrls() { return [...missingUrls]; },
-    urls
+    get urls() { return [...new Set([...urls, ...manualRepairUrls])]; },
+    get manualRepairManifest() { return manualRepairManifest; },
+    manualRepairManifestUrl
   };
 })();
