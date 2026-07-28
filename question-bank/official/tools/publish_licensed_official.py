@@ -573,6 +573,10 @@ def main() -> None:
         corrections_by_id[correction["question_id"]].append(correction)
     gate.write_audit_csv(effective, old_audit, corrections_by_id)
     gate.write_reports(effective, ready, corrections)
+    for csv_path in gate.REPORTS.glob("*.csv"):
+        csv_path.write_bytes(
+            csv_path.read_bytes().replace(b"\r\n", b"\n")
+        )
 
     licensed_remaining = EXPECTED_OFFICIAL - len(licensed_ready_ids)
     report = [
