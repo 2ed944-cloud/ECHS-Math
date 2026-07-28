@@ -433,6 +433,7 @@ def copy_reports_to_admin() -> None:
 
 def main() -> None:
     authorization = gate.load_json(AUTH_PATH)
+    gate.STAMP = str(authorization["recordedAt"])
     if authorization.get("publicationAllowed") is not True:
         raise SystemExit("ECHS AP publication authorization is not active.")
 
