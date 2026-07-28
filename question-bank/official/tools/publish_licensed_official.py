@@ -57,7 +57,11 @@ def merge_objects(base: Any, patch: Any) -> dict[str, Any]:
         out[key] = (
             merge_objects(out.get(key), value)
             if is_object(value)
-            else copy.deepcopy(value)
+            else (
+                value.replace("\\n", "\n")
+                if isinstance(value, str)
+                else copy.deepcopy(value)
+            )
         )
 
     def patch_array(
