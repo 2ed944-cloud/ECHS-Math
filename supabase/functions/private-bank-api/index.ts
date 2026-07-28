@@ -133,7 +133,7 @@ async function studentQuestions(req: Request, current: SessionAccount, url: URL)
     total: count ?? 0, limit, offset,
     verification_basis: "source-key-or-independent-package-evidence",
     independently_audited: false,
-    disclosure: "Each package preserves its own verification disclosure.",
+    disclosure: "Source-key practice; not independently audited. Each package preserves its own verification disclosure.",
     questions: (data ?? []).map((row) => ({ ...row, payload: row.payload })),
   });
 }
