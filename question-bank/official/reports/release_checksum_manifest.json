@@ -350,7 +350,7 @@
     {
       "path": "reports/KATEX_AUDIT_REPORT.md",
       "bytes": 544,
-      "sha256": "8a01d0df9b294dfd3b8eb04dcb320c03452015f50396ee1fb21778f1ac573805"
+      "sha256": "a842e5f742a38fb698839329ffbcb7a0651f97ffdd95aeabfeb9fb1633775747"
     },
     {
       "path": "reports/LESSON_MAPPING_AUDIT.md",
@@ -400,12 +400,12 @@
     {
       "path": "reports/katex_audit_results.json",
       "bytes": 239519,
-      "sha256": "82935d6dc55610e5e85743f197502821a9908bdba42eae85764245ecfb4a0138"
+      "sha256": "ebf03d30809f4ae9b2d492e045ffdfd8f544b18c95253de717233fc14e95d281"
     },
     {
       "path": "reports/katex_error_log.json",
       "bytes": 114,
-      "sha256": "249e3103b7cdacf34b39ea65a64d1ce14d5e10b7652d64f60b66fa57a4430529"
+      "sha256": "945020f724e403c02ee7b0e245c6529a1c9eb86a54a8f3cb475743e5e93a1c5d"
     },
     {
       "path": "tools/apply_strict_audit_gate.py",
