@@ -296,7 +296,7 @@ Warnings:
 ```json
 {
   "htmlFiles": 14,
-  "localReferencesChecked": 131,
+  "localReferencesChecked": 130,
   "javascriptFilesSyntaxChecked": 8
 }
 ```
@@ -487,7 +487,7 @@ Warnings:
 
 ```json
 {
-  "textFilesScanned": 2472,
+  "textFilesScanned": 2474,
   "secretPatternHits": 0
 }
 ```
@@ -498,7 +498,7 @@ Warnings:
 
 ```json
 {
-  "caseSensitiveReferencesChecked": 131,
+  "caseSensitiveReferencesChecked": 130,
   "errors": 0
 }
 ```
