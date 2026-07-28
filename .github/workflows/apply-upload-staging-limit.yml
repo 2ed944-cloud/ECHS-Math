@@ -1,0 +1,80 @@
+name: Apply Upload Staging Limit
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'supabase/migrations/202607282344_raise_teacher_upload_staging_limit.sql'
+      - '.github/workflows/apply-upload-staging-limit.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: institutional-production-upload-staging-limit
+  cancel-in-progress: false
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment: institutional-production
+    env:
+      SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+      SUPABASE_PROJECT_ID: ${{ secrets.SUPABASE_PROJECT_REF }}
+      SUPABASE_DB_PASSWORD: ${{ secrets.SUPABASE_DB_PASSWORD }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Confirm required encrypted secrets exist
+        shell: bash
+        run: |
+          set -euo pipefail
+          for name in SUPABASE_ACCESS_TOKEN SUPABASE_PROJECT_ID SUPABASE_DB_PASSWORD; do
+            if [ -z "${!name:-}" ]; then
+              echo "Missing required encrypted secret: $name" >&2
+              exit 1
+            fi
+          done
+
+      - name: Validate migration versions
+        run: python tools/validate_supabase_migration_versions.py
+
+      - name: Set up Supabase CLI
+        uses: supabase/setup-cli@v1
+        with:
+          version: latest
+
+      - name: Link production project
+        run: supabase link --project-ref "$SUPABASE_PROJECT_ID"
+
+      - name: Apply pending production migrations
+        run: supabase db push --linked
+
+      - name: Confirm migration contract in repository
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          path = Path('supabase/migrations/202607282344_raise_teacher_upload_staging_limit.sql')
+          text = path.read_text(encoding='utf-8')
+          required = [
+              "teacher-upload-staging",
+              "157286400",
+              "application/zip",
+              "application/octet-stream",
+              "public = false",
+          ]
+          missing = [value for value in required if value not in text]
+          if missing:
+              raise SystemExit(f"Upload staging migration contract is incomplete: {missing}")
+          print('Upload staging migration contract: PASS')
+          PY
+
+      - name: Deployment summary
+        run: |
+          echo "Applied pending Supabase migrations to institutional production."
+          echo "teacher-upload-staging is configured for private ZIP uploads up to 150 MiB."
