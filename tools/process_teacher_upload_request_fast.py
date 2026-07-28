@@ -43,6 +43,9 @@ def process_bank(row: dict, package: Path):
         "--request-id", row["id"],
         "--batch-size", "250",
     ]
+    expected_course = str(row.get("course_key") or "").strip()
+    if expected_course:
+        command.extend(["--expected-course", expected_course])
     print("Starting fast private-bank importer", flush=True)
     result_payload = {}
     process = subprocess.Popen(

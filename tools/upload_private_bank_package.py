@@ -3,13 +3,30 @@
 
 Run only from a trusted machine or protected CI environment with the service-role key.
 Source packages and media remain in a private bucket. Questions are available to
-signed-in students through deterministic lesson mappings and publisher answer keys;
-independent audit status remains explicit and is not claimed.
+signed-in students through verified lesson mappings and source answer keys.
 """
 from __future__ import annotations
-import argparse, hashlib, io, json, mimetypes, os, urllib.error, urllib.parse, urllib.request, zipfile
+
+import argparse
+import hashlib
+import io
+import json
+import mimetypes
+import os
+import urllib.error
+import urllib.parse
+import urllib.request
+import zipfile
 from datetime import datetime, timezone
 from pathlib import Path, PurePosixPath
+
+SUPPORTED_COURSES = {
+    "ap-precalculus",
+    "ib-math-ai",
+    "ap-calculus",
+    "algebra-2",
+    "grade-9",
+}
 
 
 def sha256(data: bytes) -> str:
@@ -27,7 +44,7 @@ class Supabase:
     def request(self, method: str, path: str, body: bytes | None = None, headers: dict[str, str] | None = None):
         if self.dry_run:
             return None
-        merged = {"apikey": self.key, "authorization": f"Bearer {self.key}", "user-agent": "ECHS-Private-Bank-Importer/1.1"}
+        merged = {"apikey": self.key, "authorization": f"Bearer {self.key}", "user-agent": "ECHS-Private-Bank-Importer/1.2"}
         merged.update(headers or {})
         request = urllib.request.Request(f"{self.url}{path}", data=body, method=method, headers=merged)
         try:
@@ -92,7 +109,7 @@ def skill_rows(graph: dict) -> list[dict]:
             "skill_key": str(skill["id"]), "course": course, "unit": str(skill.get("unit") or ""),
             "topic": topic or None, "title": str(skill.get("title") or skill["id"]),
             "description": str(skill.get("description") or skill.get("title") or skill["id"]),
-            "ap_topics": [topic] if course == "ap-precalculus" and topic else [], "lesson_ids": lesson_ids,
+            "ap_topics": [topic] if course in {"ap-precalculus", "ap-calculus"} and topic else [], "lesson_ids": lesson_ids,
             "prerequisites": [str(value) for value in skill.get("prerequisites") or []],
             "representations": [str(value) for value in skill.get("representations") or default_representations],
             "misconceptions": [str(value) for value in skill.get("misconceptions") or ["publisher-key-direct-independent-audit-not-claimed"]],
@@ -111,20 +128,38 @@ def seed_graphs(client: Supabase, graph_paths: list[Path], batch_size: int):
     print(f"Skill definitions registered: {len(rows)}")
 
 
-def direct_mappings(question: dict) -> tuple[list[str], list[str], list[str]]:
+def manifest_target_courses(manifest: dict) -> list[str]:
+    targets, seen = [], set()
+    for value in manifest.get("target_courses") or []:
+        course = str(value or "").strip()
+        if not course or course in seen:
+            raise RuntimeError("Manifest target_courses contains a blank or duplicate course")
+        if course not in SUPPORTED_COURSES:
+            raise RuntimeError(f"Manifest uses unsupported course {course!r}")
+        seen.add(course); targets.append(course)
+    return targets
+
+
+def direct_mappings(question: dict, target_courses: list[str] | tuple[str, ...] = ()) -> tuple[list[str], list[str], list[str]]:
     mappings = question.get("course_mappings") or []
-    by_course = {str(row.get("course") or ""): row for row in mappings}
-    if set(by_course) != {"ap-precalculus", "ib-math-ai"} or len(mappings) != 2:
-        raise RuntimeError(f"{question.get('id')} must have exactly one AP Precalculus and one IB mapping")
-    courses, lessons, skills = [], [], []
-    for course in ("ap-precalculus", "ib-math-ai"):
-        row = by_course[course]
-        lesson = str(row.get("lesson_key") or "").strip()
-        skill = str(row.get("skill_key") or "").strip()
+    if not mappings:
+        raise RuntimeError(f"{question.get('id')} must have at least one verified course mapping")
+    by_course, order = {}, []
+    for row in mappings:
+        course = str(row.get("course") or "").strip()
+        if not course or course in by_course:
+            raise RuntimeError(f"{question.get('id')} has a missing or duplicate course mapping")
+        if course not in SUPPORTED_COURSES:
+            raise RuntimeError(f"{question.get('id')} has unsupported course mapping {course!r}")
+        lesson, skill = str(row.get("lesson_key") or "").strip(), str(row.get("skill_key") or "").strip()
         if not lesson or not skill or row.get("mapping_verified") is not True:
             raise RuntimeError(f"{question.get('id')} has an incomplete direct mapping for {course}")
-        courses.append(course); lessons.append(f"{course}:{lesson}"); skills.append(skill)
-    return courses, lessons, skills
+        by_course[course] = row; order.append(course)
+    expected = list(target_courses)
+    if expected and set(by_course) != set(expected):
+        raise RuntimeError(f"{question.get('id')} mappings {sorted(by_course)} do not match package targets {sorted(expected)}")
+    ordered = expected or order
+    return ordered, [f"{course}:{str(by_course[course].get('lesson_key')).strip()}" for course in ordered], [str(by_course[course].get("skill_key")).strip() for course in ordered]
 
 
 def validate_direct_question(question: dict):
@@ -135,7 +170,7 @@ def validate_direct_question(question: dict):
         raise RuntimeError(f"{question.get('id')} is missing source, media, or mapping evidence")
     if trust.get("verification_basis") != "publisher-answer-key" or trust.get("manual_question_trust_required") is not False:
         raise RuntimeError(f"{question.get('id')} has an invalid direct-use verification contract")
-    if rights.get("student_publication_allowed") is not True or metadata.get("student_ready") is not True:
+    if rights.get("student_publication_allowed") is not True or rights.get("public_web_publication_allowed") is not False or metadata.get("student_ready") is not True:
         raise RuntimeError(f"{question.get('id')} is not enabled for authenticated student practice")
     if question.get("type") in {"mcq", "true_false"} and not question.get("correct_choice_ids"):
         raise RuntimeError(f"{question.get('id')} has no publisher answer key")
@@ -149,6 +184,7 @@ def main() -> int:
     parser.add_argument("--organization-id", default=os.getenv("ECHS_ORGANIZATION_ID", ""))
     parser.add_argument("--supabase-url", default=os.getenv("SUPABASE_URL", ""))
     parser.add_argument("--service-role-key", default=os.getenv("SUPABASE_SERVICE_ROLE_KEY", ""))
+    parser.add_argument("--expected-course", default="")
     parser.add_argument("--bucket", default="private-question-banks")
     parser.add_argument("--batch-size", type=int, default=100)
     parser.add_argument("--ap-graph", type=Path, default=Path("data/knowledge-graph/ap-precalculus-v1.json"))
@@ -161,15 +197,23 @@ def main() -> int:
     if not args.organization_id: raise SystemExit("--organization-id or ECHS_ORGANIZATION_ID is required")
     if not args.dry_run and (not args.supabase_url or not args.service_role_key): raise SystemExit("SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY are required")
     if args.batch_size < 1 or args.batch_size > 500: raise SystemExit("--batch-size must be between 1 and 500")
+    expected_course = str(args.expected_course or "").strip()
+    if expected_course and expected_course not in SUPPORTED_COURSES: raise SystemExit(f"Unsupported --expected-course {expected_course!r}")
 
     client = Supabase(args.supabase_url or "https://dry-run.invalid", args.service_role_key or "dry-run", args.dry_run)
     if not args.skip_skill_seed: seed_graphs(client, [args.ap_graph, args.ib_graph], args.batch_size)
     package_bytes, now = args.package.read_bytes(), datetime.now(timezone.utc).isoformat()
     package_hash = sha256(package_bytes)
     with zipfile.ZipFile(args.package) as archive:
+        bad=archive.testzip()
+        if bad: raise RuntimeError(f"ZIP CRC failure: {bad}")
         root = package_root(archive); manifest = json.loads(archive.read(f"{root}/bank-manifest.json"))
         if manifest.get("trust_default") != "publisher_key_direct" or manifest.get("student_visible") is not True or manifest.get("question_trust_review_required") is not False:
-            raise RuntimeError("The package was generated with the obsolete manual-Trust policy; regenerate it with the direct-link importer")
+            raise RuntimeError("The package was generated with an obsolete manual-Trust policy")
+        declared_targets=manifest_target_courses(manifest)
+        if expected_course and declared_targets and set(declared_targets)!={expected_course}:
+            raise RuntimeError(f"Selected course {expected_course!r} does not match package targets {sorted(declared_targets)}")
+        required_targets=declared_targets or ([expected_course] if expected_course else [])
         bank_code, bank_slug = manifest["bank_code"], manifest["bank_slug"]
         storage_path = f"{bank_slug}/imports/{package_hash}.zip"
         package_row = {
@@ -186,14 +230,16 @@ def main() -> int:
         if not args.dry_run: client.upload(args.bucket, storage_path, package_bytes, "application/zip")
         print(f"Package {bank_code}: {manifest.get('questions')} questions, {manifest.get('pools')} pools")
 
-        question_rows, seen_questions = [], set()
+        question_rows, seen_questions, inferred_targets = [], set(), []
         question_files = sorted(name for name in archive.namelist() if name.startswith(f"{root}/questions/") and name.endswith(".json"))
         for file_name in question_files:
             for question in json.loads(archive.read(file_name)).get("questions") or []:
                 question_id = str(question.get("id") or "")
                 if not question_id or question_id in seen_questions: raise RuntimeError(f"Missing or duplicate question ID: {question_id}")
                 seen_questions.add(question_id); validate_direct_question(question)
-                course_keys, lesson_keys, skill_candidates = direct_mappings(question); source = question.get("source") or {}
+                course_keys, lesson_keys, skill_candidates = direct_mappings(question, required_targets or inferred_targets)
+                if not required_targets and not inferred_targets: inferred_targets=list(course_keys)
+                source = question.get("source") or {}
                 question_rows.append({
                     "organization_id": args.organization_id, "question_id": question_id, "package_id": package_id,
                     "bank_code": bank_code, "pool_id": question.get("pool_id"), "chapter": source.get("chapter"), "section": source.get("section"),
@@ -214,6 +260,8 @@ def main() -> int:
                 chapter_token = PurePosixPath(media_archive_name).stem.replace("chapter_", "")
                 chapter = int(chapter_token) if chapter_token.isdigit() else None
                 with zipfile.ZipFile(io.BytesIO(archive.read(media_archive_name))) as media_archive:
+                    bad_media=media_archive.testzip()
+                    if bad_media: raise RuntimeError(f"Media ZIP {media_archive_name} CRC failure: {bad_media}")
                     for source_path in sorted(name for name in media_archive.namelist() if not name.endswith("/")):
                         data = media_archive.read(source_path); object_path = f"{bank_slug}/chapter_{(chapter or 0):02d}/{source_path.lstrip('/')}"
                         content_type = mimetypes.guess_type(source_path)[0] or "application/octet-stream"
@@ -230,7 +278,10 @@ def main() -> int:
         client.patch("private_bank_packages", {"organization_id": args.organization_id, "bank_code": bank_code}, {
             "deployment_state": state, "media_count": uploaded_media, "updated_at": datetime.now(timezone.utc).isoformat()
         })
-        print(json.dumps({"bank_code": bank_code, "questions": len(question_rows), "media_uploaded": uploaded_media,
+        effective_targets=required_targets or inferred_targets
+        aliases=manifest.get("display_aliases") or {}
+        print(json.dumps({"bank_code": bank_code, "display_name": aliases.get("teacher") or aliases.get("student") or bank_code,
+            "questions": len(question_rows), "media_uploaded": uploaded_media, "target_courses": effective_targets,
             "package_sha256": package_hash, "deployment_state": state, "trust_tier": "publisher_key_direct", "dry_run": args.dry_run}, indent=2))
     return 0
 
