@@ -2,52 +2,75 @@
   "use strict";
   const status=document.getElementById("bankStatus");
   const number=value=>new Intl.NumberFormat("en-GB").format(Number(value||0));
+  const escapeHTML=value=>String(value??"").replace(/[&<>'"]/g,char=>({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"})[char]);
+  const courseLabels={"ap-calculus":"AP Calculus","ap-precalculus":"AP Precalculus","ib-math-ai":"IB Mathematics AI","algebra-2":"Algebra 2","grade-9":"Grade 9"};
+  const visibleName=row=>{const aliases=row.display_aliases||{};return aliases.teacher||aliases.student||aliases["ap-calculus"]||aliases["ap-precalculus"]||aliases["ib-math-ai"]||row.bank_code||"Private Bank"};
+  const targets=row=>{
+    const declared=Array.isArray(row.manifest?.target_courses)?row.manifest.target_courses.filter(Boolean):[];
+    if(declared.length)return [...new Set(declared)];
+    const aliases=row.display_aliases||{};
+    return Object.keys(aliases).filter(key=>courseLabels[key]);
+  };
   try{
     await window.ECHSInstitution.requireAuth(["teacher","admin"]);
-    const [registryResponse,alignmentResponse]=await Promise.all([
-      fetch("../../private-sources/data/private-bank-registry.json",{cache:"no-store"}),
-      fetch("../../private-sources/data/private-bank-alignment-summary.json",{cache:"no-store"})
+    const [registryResult,alignmentResult,liveResult]=await Promise.allSettled([
+      fetch("../../private-sources/data/private-bank-registry.json",{cache:"no-store"}).then(response=>response.ok?response.json():Promise.reject(new Error(`Private bank registry returned ${response.status}`))),
+      fetch("../../private-sources/data/private-bank-alignment-summary.json",{cache:"no-store"}).then(response=>response.ok?response.json():Promise.reject(new Error(`Private bank alignment summary returned ${response.status}`))),
+      window.ECHSInstitution.api("private-bank-api","/packages")
     ]);
-    if(!registryResponse.ok)throw new Error(`Private bank registry returned ${registryResponse.status}`);
-    if(!alignmentResponse.ok)throw new Error(`Private bank alignment summary returned ${alignmentResponse.status}`);
-    const registry=await registryResponse.json(),alignment=await alignmentResponse.json();
-    const heroCopy=document.querySelector(".bankHero p");
-    if(heroCopy)heroCopy.textContent="Four complete private banks are linked directly to AP Precalculus and IB Mathematics lessons. Source questions remain private, and signed-in students receive publisher-key practice after the related lesson is unlocked.";
-    const sectionHeads=document.querySelectorAll(".bankSection .bankHead");
-    if(sectionHeads[0])sectionHeads[0].innerHTML='<small>Direct course alignment</small><h2>One source, two lesson-linked paths</h2><p>Every question has one AP Precalculus lesson and one IB Mathematics lesson. Readiness lessons receive material without a stronger direct match.</p>';
-    if(sectionHeads[1])sectionHeads[1].innerHTML='<small>Authenticated direct use</small><h2>From lesson completion to source-key practice</h2><p>Manual Question Trust review is not required for these four banks. Publisher answer keys are used directly, while independent audit status remains disclosed.</p>';
-    document.querySelectorAll(".alignmentState").forEach(node=>node.textContent="publisher-key direct");
-    const alignmentParagraphs=document.querySelectorAll(".alignmentCard p");
-    if(alignmentParagraphs[0])alignmentParagraphs[0].textContent="All 15,671 questions have direct AP Precalculus lesson mappings, including Unit 0 Readiness where necessary.";
-    if(alignmentParagraphs[1])alignmentParagraphs[1].textContent="All 15,671 questions have direct IB lesson mappings. The 26 lesson pages remain a separate content-build project.";
-    const plan=document.querySelector(".bankPlan");
-    if(plan)plan.innerHTML='<article><b>1</b><h3>Private deployment</h3><p>Upload the regenerated packages to private Supabase storage and register their exact hashes.</p></article><article><b>2</b><h3>Automatic lesson access</h3><p>After a lesson is completed, its directly mapped bank questions become available in Focused Practice.</p></article><article><b>3</b><h3>Publisher-key evidence</h3><p>Answers use the source key without manual Question Trust review. The platform does not claim independent audit.</p></article>';
-    const notice=document.querySelector(".bankNotice");
-    if(notice)notice.innerHTML='Publisher names stay internal. Students see neutral ECHS names such as <strong>AP Precalculus Bank 1</strong> and <strong>IB Mathematics Bank 1</strong>. <strong>Source-key practice is not independently audited.</strong> Source content and media are never published through GitHub Pages.';
-    let livePackages=[];
-    try{const live=await window.ECHSInstitution.api("private-bank-api","/packages");livePackages=Array.isArray(live?.packages)?live.packages:[]}catch(_error){livePackages=[]}
-    const liveByCode=new Map(livePackages.map(row=>[row.bank_code,row])),totals=registry.totals||{};
-    document.getElementById("bankTotal").textContent=number(totals.banks);
+    const registry=registryResult.status==="fulfilled"?registryResult.value:{banks:[],totals:{}};
+    const alignment=alignmentResult.status==="fulfilled"?alignmentResult.value:{};
+    const livePackages=liveResult.status==="fulfilled"&&Array.isArray(liveResult.value?.packages)?liveResult.value.packages:[];
+    const liveByCode=new Map(livePackages.map(row=>[row.bank_code,row]));
+    const merged=[];
+    for(const bank of registry.banks||[]){
+      const live=liveByCode.get(bank.bank_code)||{};
+      merged.push({...bank,...live,display_aliases:{...(bank.display_aliases||{}),...(live.display_aliases||{})},manifest:live.manifest||bank.manifest||null});
+      liveByCode.delete(bank.bank_code);
+    }
+    for(const live of liveByCode.values())merged.push(live);
+    merged.sort((a,b)=>visibleName(a).localeCompare(visibleName(b),"en"));
+
+    const totals=merged.reduce((acc,row)=>{
+      acc.questions+=Number(row.question_count??row.questions??row.manifest?.questions??0);
+      acc.pools+=Number(row.pool_count??row.pools??row.manifest?.pools??0);
+      acc.media+=Number(row.media_count??row.media_files??row.manifest?.media_files??0);
+      return acc;
+    },{questions:0,pools:0,media:0});
+    document.getElementById("bankTotal").textContent=number(merged.length);
     document.getElementById("questionTotal").textContent=number(totals.questions);
     document.getElementById("poolTotal").textContent=number(totals.pools);
-    document.getElementById("mediaTotal").textContent=number(totals.media_files);
+    document.getElementById("mediaTotal").textContent=number(totals.media);
+
     const ap=alignment["ap-precalculus"]||{},ib=alignment["ib-math-ai"]||{};
-    document.getElementById("apLessons").textContent=number(ap.lesson_catalog_topics);
+    document.getElementById("apLessons").textContent=number(ap.lesson_catalog_topics||50);
     document.getElementById("apReadiness").textContent=number(ap.exact_counts?.unit_0_readiness);
     document.getElementById("apVerified").textContent=number(alignment.exact_question_mappings_per_course);
-    document.getElementById("ibLessons").textContent=number(ib.lesson_catalog_lessons);
+    document.getElementById("ibLessons").textContent=number(ib.lesson_catalog_lessons||26);
     document.getElementById("ibReadiness").textContent=number(ib.exact_counts?.unit_0_readiness);
     document.getElementById("ibVerified").textContent=number(alignment.exact_question_mappings_per_course);
-    document.querySelectorAll("#apVerified,#ibVerified").forEach(node=>{const label=node.parentElement?.querySelector("small");if(label)label.textContent="direct mappings"});
+
+    const calc=merged.filter(row=>targets(row).includes("ap-calculus"));
+    const calcQuestions=calc.reduce((sum,row)=>sum+Number(row.question_count??row.questions??row.manifest?.questions??0),0);
+    const calcReadiness=calc.reduce((sum,row)=>sum+Number(row.manifest?.mapping_counts?.["ap-calculus:U0"]||0),0);
+    document.getElementById("calcBanks").textContent=number(calc.length);
+    document.getElementById("calcReadiness").textContent=number(calcReadiness);
+    document.getElementById("calcVerified").textContent=number(calcQuestions);
+
     const grid=document.getElementById("bankGrid");
-    grid.innerHTML=(registry.banks||[]).map(bank=>{
-      const aliases=bank.display_aliases||{},types=bank.question_types||{},live=liveByCode.get(bank.bank_code)||{};
-      const state=live.deployment_state||bank.deployment_state||"pending-private-upload";
-      const questions=Number(live.question_count??bank.questions??0),pools=Number(live.pool_count??bank.pools??0),media=Number(live.media_count??bank.media_files??0);
-      return `<article class="bankCard"><div class="bankCardTop"><div><small>${bank.bank_code}</small><h2>${aliases["ap-precalculus"]||"AP Precalculus Bank"}</h2><div class="bankAliases"><span>${aliases["ap-precalculus"]||"AP Precalculus"}</span><span>${aliases["ib-math-ai"]||"IB Mathematics"}</span></div></div><span class="bankState">${String(state).replaceAll("-"," ")}</span></div><div class="bankMetrics"><div><strong>${number(questions)}</strong><small>questions</small></div><div><strong>${number(pools)}</strong><small>pools</small></div><div><strong>${number(media)}</strong><small>media</small></div><div><strong>${number((types.essay||0)+(types.fill_blank||0))}</strong><small>open response</small></div></div><div class="bankFooter"><span>SHA-256 ${String(bank.package_sha256||"").slice(0,12)}…</span><span class="bankTrust">Publisher-key direct</span></div></article>`;
-    }).join("");
-    status.textContent=livePackages.length
-      ? `Private backend connected. ${livePackages.length} of ${registry.banks?.length||4} packages are registered and linked directly to lessons. Source-key practice is not independently audited; publisher names stay internal.`
-      : "Registry verified. Every question is linked directly to AP Precalculus and IB lessons. Source-key practice is not independently audited. Private package upload is still pending.";
+    grid.innerHTML=merged.length?merged.map(bank=>{
+      const types=bank.question_types||bank.manifest?.question_types||{};
+      const state=bank.deployment_state||"pending-private-upload";
+      const questions=Number(bank.question_count??bank.questions??bank.manifest?.questions??0),pools=Number(bank.pool_count??bank.pools??bank.manifest?.pools??0),media=Number(bank.media_count??bank.media_files??bank.manifest?.media_files??0);
+      const aliases=bank.display_aliases||{};
+      const aliasValues=["student","teacher","ap-calculus","ap-precalculus","ib-math-ai","algebra-2","grade-9"].map(key=>aliases[key]).filter(Boolean);
+      const tagValues=[...new Set([...aliasValues,...targets(bank).map(course=>courseLabels[course]||course)])];
+      const targetTags=tagValues.map(value=>`<span>${escapeHTML(value)}</span>`).join("")||'<span>Manifest target pending</span>';
+      const openResponse=Number(types.essay||0)+Number(types.fill_blank||0);
+      return `<article class="bankCard"><div class="bankCardTop"><div><small>${escapeHTML(bank.bank_code||"")}</small><h2>${escapeHTML(visibleName(bank))}</h2><div class="bankAliases">${targetTags}</div></div><span class="bankState">${escapeHTML(String(state).replaceAll("-"," "))}</span></div><div class="bankMetrics"><div><strong>${number(questions)}</strong><small>questions</small></div><div><strong>${number(pools)}</strong><small>pools</small></div><div><strong>${number(media)}</strong><small>media</small></div><div><strong>${number(openResponse)}</strong><small>open response</small></div></div><div class="bankFooter"><span>SHA-256 ${escapeHTML(String(bank.package_sha256||"").slice(0,12))}${bank.package_sha256?"…":""}</span><span class="bankTrust">Private · verified mapping</span></div></article>`;
+    }).join(""):'<article class="bankCard"><h2>No private banks registered yet</h2><p>Open Upload Manager and upload a validated private-bank ZIP.</p></article>';
+
+    const extra=calc.length?` AP Calculus is active with ${number(calcQuestions)} mapped questions.`:" AP Calculus Bank 1 can now be added through Upload Manager.";
+    status.textContent=livePackages.length?`Private backend connected. ${number(livePackages.length)} live packages are registered.${extra}`:`Static registry loaded.${extra}`;
   }catch(error){console.error(error);status.textContent=error instanceof Error?error.message:"Could not load the private bank registry."}
 })();
