@@ -10,3 +10,10 @@ structural verification requirements.
 The active AP Calculus authorization is linked to GitHub Issue #56. Records that
 do not pass every content gate remain excluded from student delivery even when
 their publication scope is authorized.
+
+## Completed licensed official release
+
+The completed release contains 1,052 official AP Calculus records, and all 1,052
+are available in student delivery. No official AP record remains archive-only.
+The remaining restricted records are non-official supplemental or ECHS-original
+material outside this authorization's official-AP scope.
