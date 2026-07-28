@@ -129,6 +129,8 @@ def process_course(row, package):
 
 def process_bank(row, package):
     command=[sys.executable,str(ROOT/"tools"/"upload_private_bank_package.py"),str(package),"--organization-id",row["organization_id"]]
+    expected_course=str(row.get("course_key") or "").strip()
+    if expected_course: command.extend(["--expected-course",expected_course])
     result=subprocess.run(command,cwd=ROOT,text=True,capture_output=True)
     if result.returncode: raise RuntimeError(f"Private bank import failed: {result.stderr[-3000:] or result.stdout[-3000:]}")
     match=re.findall(r"\{[\s\S]*?\}",result.stdout)
