@@ -1,7 +1,13 @@
 {
   "schemaVersion": "1.0",
   "issue": 3,
-  "updatedAt": "2026-07-28T07:00:00+03:00",
+  "updatedAt": "2026-07-28T08:00:00+03:00",
+  "completion": {
+    "indexedOnlyBcMcqTarget": 310,
+    "independentlyVerifiedRepairs": 310,
+    "remaining": 0,
+    "status": "complete"
+  },
   "policy": {
     "canonicalIdsPreserved": true,
     "canonicalProvenancePreserved": true,
@@ -167,6 +173,37 @@
         130
       ],
       "officialAnswerKeyAgreement": "40 of 40"
+    },
+    {
+      "batchId": "issue-3-batch-007-1998-bc-mcq",
+      "file": "batch-007-1998-bc-mcq.json",
+      "url": "../data/manual-repairs/issue-3/batch-007-1998-bc-mcq.json",
+      "course": "AP Calculus BC",
+      "year": 1998,
+      "type": "mcq",
+      "questionCount": 45,
+      "firstId": "APCALC-LEGACY-BC-MCQ-1998-001",
+      "lastId": "APCALC-LEGACY-BC-MCQ-1998-092",
+      "status": "independently-verified-source-compared",
+      "studentAccess": "teacher-archive-only",
+      "sourcePagesCompared": [
+        144,
+        145,
+        146,
+        147,
+        148,
+        149,
+        150,
+        151,
+        152,
+        153,
+        154,
+        155,
+        156,
+        157,
+        158
+      ],
+      "officialAnswerKeyAgreement": "45 of 45"
     }
   ]
 }
