@@ -80,7 +80,7 @@ jobs:
           if git diff --cached --quiet; then
             echo "No generated changes to commit."
           else
-            git commit -m "build: publish verified licensed AP records [skip ci]"
+            git commit -m "build: publish verified licensed AP records"
             target_branch='${{ github.event.pull_request.head.ref || github.ref_name }}'
             git push origin "HEAD:${target_branch}"
           fi
