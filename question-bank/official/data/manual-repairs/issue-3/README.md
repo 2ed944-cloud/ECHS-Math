@@ -25,3 +25,8 @@ Completed chronological batches:
 - Batch 004: 1988 AP Calculus BC Section I, 45 MCQs, source pages 73–83.
 - Batch 005: 1993 AP Calculus BC Section I, 45 MCQs, source pages 95–105.
 - Batch 006: 1997 AP Calculus BC Section I, 40 indexed-only MCQs (questions 1–25 and 76–90), source pages 119–130.
+- Batch 007: 1998 AP Calculus BC Section I, 45 indexed-only MCQs (questions 1–28 and 76–92), source pages 144–158.
+
+Issue #3 repair scope is complete: all 310 indexed-only AP Calculus BC
+multiple-choice records have source-compared transcriptions, independently
+verified solutions, and teacher/archive-only access controls.
