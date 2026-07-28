@@ -37,7 +37,7 @@ def process_bank(row: dict, package: Path):
     command = [
         sys.executable,
         "-u",
-        str(ROOT / "tools" / "upload_private_bank_package_fast.py"),
+        str(ROOT / "tools" / "upload_private_bank_package_verified_fast.py"),
         str(package),
         "--organization-id", row["organization_id"],
         "--request-id", row["id"],
@@ -46,7 +46,7 @@ def process_bank(row: dict, package: Path):
     expected_course = str(row.get("course_key") or "").strip()
     if expected_course:
         command.extend(["--expected-course", expected_course])
-    print("Starting fast private-bank importer", flush=True)
+    print("Starting verified private-bank importer", flush=True)
     result_payload = {}
     process = subprocess.Popen(
         command,
@@ -66,7 +66,7 @@ def process_bank(row: dict, package: Path):
                 pass
     return_code = process.wait()
     if return_code:
-        raise RuntimeError(f"Fast private-bank importer exited with code {return_code}")
+        raise RuntimeError(f"Verified private-bank importer exited with code {return_code}")
     return {"kind": "private-bank", **result_payload}
 
 
