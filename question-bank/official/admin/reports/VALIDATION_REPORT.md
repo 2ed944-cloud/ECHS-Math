@@ -391,7 +391,8 @@ Warnings:
 ```json
 {
   "restrictedArchiveRecords": 321,
-  "fullyRedactedRestrictedRecords": 321
+  "fullyRedactedRestrictedRecords": 321,
+  "deterministicArchiveIndexRows": 1217
 }
 ```
 
@@ -666,7 +667,7 @@ Warnings:
       "status": "PASS",
       "detail": {
         "lesson": "APCALC-PREREQUISITE",
-        "loadedId": "APCALC-LEGACY-MCQ-1988-035",
+        "loadedId": "APCALC-LEGACY-MCQ-1969-001",
         "eligibleQuestions": 33
       }
     },
@@ -788,7 +789,7 @@ Warnings:
       "status": "PASS",
       "detail": {
         "lesson": "APCALC-PREREQUISITE",
-        "loadedId": "APCALC-LEGACY-MCQ-1988-035",
+        "loadedId": "APCALC-LEGACY-MCQ-1969-001",
         "eligibleQuestions": 33
       }
     },

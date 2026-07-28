@@ -14,6 +14,7 @@ on:
       - question-bank/official/data/rights/**
       - question-bank/official/data/admin-audit-overrides*.json
       - question-bank/official/data/manual-repairs/**
+      - question-bank/official/tools/apply_strict_audit_gate.py
       - question-bank/official/tools/publish_licensed_official.py
       - question-bank/official/tools/validate_admin_overlays.mjs
       - question-bank/official/tools/browser_smoke.mjs

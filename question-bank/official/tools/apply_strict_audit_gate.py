@@ -709,11 +709,10 @@ def update_archive_artifacts(
                 else "Review Required"
             )
         )
+        canonical_index_row = canonical_index_by_id[row["id"]]
         row["search"] = (
-            str(row.get("search") or "").replace(
-                " student-ready", ""
-            )
-            + f" {row['archiveStatus'].lower()}"
+            f"{str(canonical_index_row.get('search') or '').strip()} "
+            f"{row['archiveStatus'].lower()}"
         ).strip()
     write_json(STUDENT / "archive-index.json", archive_index)
     archive_ids = {

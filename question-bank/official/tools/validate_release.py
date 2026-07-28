@@ -358,7 +358,27 @@ c.evidence={'gateFlagsChecked':len(student_questions)*len(flags),'studentReady':
 c=check('19','Archive filtering validation')
 restricted=0; redacted=0
 sensitive=['prompt','directions','parts','choices','media','answer','acceptedAnswers','explanation','workedSolution','scoringGuideline','rubric']
+canonical_index_by_id={row['id']:row for row in canonical_index}
+archive_index_by_id={row['id']:row for row in archive_index}
 for q in archive_questions:
+    archive_row=archive_index_by_id[q['id']]
+    expected_status=(
+        'Student Ready'
+        if q.get('studentReady')
+        else (
+            'Incomplete Source'
+            if q.get('contentStatus')!='complete'
+            else 'Review Required'
+        )
+    )
+    expected_search=(
+        f"{str(canonical_index_by_id[q['id']].get('search') or '').strip()} "
+        f"{expected_status.lower()}"
+    ).strip()
+    if archive_row.get('archiveStatus')!=expected_status:
+        c.errors.append(f"{q['id']}: archive status is not deterministic")
+    if archive_row.get('search')!=expected_search:
+        c.errors.append(f"{q['id']}: archive search text is stale or cumulative")
     if q.get('studentReady'):
         if q['id'] not in ready_by_id: c.errors.append(f"{q['id']}: archive says ready but absent from student pool")
     else:
@@ -369,7 +389,7 @@ for q in archive_questions:
             if v not in (None,'',[],{}): bad.append(k)
         if bad: c.errors.append(f"{q['id']}: restricted archive exposes {bad}")
         else: redacted+=1
-c.evidence={'restrictedArchiveRecords':restricted,'fullyRedactedRestrictedRecords':redacted}
+c.evidence={'restrictedArchiveRecords':restricted,'fullyRedactedRestrictedRecords':redacted,'deterministicArchiveIndexRows':len(archive_index)}
 
 # 20 practice
 c=check('20','Practice filtering validation')

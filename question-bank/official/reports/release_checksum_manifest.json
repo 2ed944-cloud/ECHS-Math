@@ -124,8 +124,8 @@
     },
     {
       "path": "data/student/archive-index.json",
-      "bytes": 2287503,
-      "sha256": "ca214c7d6639d06e8f8f080e6f9a0ae29e62ecc7639f7629f854e89640a07e2d"
+      "bytes": 2116805,
+      "sha256": "2dda90dc848e5d55f1fdd127583f44f7b96ba5ebe516261e09ec25cadc295c15"
     },
     {
       "path": "data/student/archive-questions/chunk-000.json",
@@ -449,8 +449,8 @@
     },
     {
       "path": "tools/apply_strict_audit_gate.py",
-      "bytes": 55139,
-      "sha256": "3855b48d92531dc9213b5031921df01ea59468aa4a9236bde4325a199769e697"
+      "bytes": 55169,
+      "sha256": "1158a66f84e9d260a44e3ae41c1834319605f2e6feb4db45be16575e231b7dff"
     },
     {
       "path": "tools/package-lock.json",
@@ -469,8 +469,8 @@
     },
     {
       "path": "tools/validate_release.py",
-      "bytes": 39253,
-      "sha256": "c4f71c1ed45a5b9bf3a13dc7258b8fc13eb4c80f09194823dff04dccd930370a"
+      "bytes": 40119,
+      "sha256": "9d16fbfb825fd1a44e82cf247e5d186043e8308af9ce86b7719082ca0ea59dca"
     }
   ]
 }

@@ -236,8 +236,11 @@ try {
   await runCase("Exact lesson filtering", async () => {
     const lesson = readyMcq.lessons[0];
     await page.goto(
-      `${baseUrl}/practice.html?lesson=${encodeURIComponent(lesson)}&autostart=1`,
+      `${baseUrl}/practice.html?lesson=${encodeURIComponent(lesson)}`,
     );
+    await page.locator("#filterStatus .pill.teal").waitFor();
+    await page.locator("#sessionMode").selectOption("ordered");
+    await page.locator("#start").click();
     await page.locator(".questionCard").waitFor();
     const loadedId = await page.evaluate(() => {
       const href = document
