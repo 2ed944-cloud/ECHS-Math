@@ -10,6 +10,7 @@ const ALLOWED_ORIGINS = (Deno.env.get("ALLOWED_ORIGINS") ?? "https://2ed944-clou
 const db = createClient(SUPABASE_URL, SERVICE_KEY, { auth: { persistSession: false, autoRefreshToken: false } });
 const BUCKET = "teacher-upload-staging";
 const MAX_BYTES = 150 * 1024 * 1024;
+const TERMINAL_STATUSES = ["completed", "failed", "cancelled"];
 
 function headers(req: Request): HeadersInit {
   const origin = req.headers.get("origin") ?? "";
@@ -17,7 +18,7 @@ function headers(req: Request): HeadersInit {
   return {
     "access-control-allow-origin": allowed,
     "access-control-allow-headers": "authorization, content-type, x-upsert",
-    "access-control-allow-methods": "GET, POST, PATCH, OPTIONS",
+    "access-control-allow-methods": "GET, POST, PATCH, DELETE, OPTIONS",
     "content-type": "application/json; charset=utf-8",
     "cache-control": "no-store",
     "x-content-type-options": "nosniff",
@@ -51,6 +52,11 @@ function cleanName(value: string) {
 function validSha(value: string) { return /^[0-9a-f]{64}$/.test(value); }
 function validKind(value: string) { return value === "private-bank" || value === "course-release"; }
 function validCourse(value: string) { return !value || ["ap-precalculus", "ib-math-ai", "ap-calculus", "algebra-2", "grade-9"].includes(value); }
+function terminalStatus(value: unknown) { return TERMINAL_STATUSES.includes(String(value ?? "")); }
+
+async function signedUploadFor(path: string) {
+  return await db.storage.from(BUCKET).createSignedUploadUrl(path, { upsert: true });
+}
 
 async function createUpload(req: Request, current: Account) {
   const body = await req.json() as { kind?: string; filename?: string; size?: number; sha256?: string; course_key?: string; unit_key?: string };
@@ -68,10 +74,47 @@ async function createUpload(req: Request, current: Account) {
   if (kind === "course-release" && (!courseKey || !unitKey)) return fail(req, "Course and unit are required for a course release", 400, "missing_release_scope");
 
   const { data: existing, error: existingError } = await db.from("teacher_upload_requests")
-    .select("id,status,progress,stage,github_pr_url,result,error_message,created_at,updated_at")
+    .select("id,requested_by,object_path,status,progress,stage,github_pr_url,result,error_message,created_at,updated_at")
     .eq("organization_id", current.organization_id).eq("sha256", sha256).eq("upload_kind", kind).maybeSingle();
   if (existingError) throw existingError;
-  if (existing) return reply(req, { ok: true, duplicate: true, request: existing });
+
+  if (existing && !["failed", "cancelled"].includes(String(existing.status))) {
+    return reply(req, { ok: true, duplicate: true, request: existing });
+  }
+
+  if (existing) {
+    const resetValues = {
+      requested_by: current.account_id,
+      course_key: courseKey || null,
+      unit_key: unitKey || null,
+      original_filename: filename,
+      file_size_bytes: Math.floor(size),
+      status: "created",
+      progress: 2,
+      stage: "Retry upload URL created",
+      result: {},
+      error_message: null,
+      github_pr_url: null,
+      started_at: null,
+      completed_at: null,
+      updated_at: new Date().toISOString(),
+    };
+    const { data: reset, error: resetError } = await db.from("teacher_upload_requests")
+      .update(resetValues).eq("id", existing.id).eq("organization_id", current.organization_id).select("*").single();
+    if (resetError) throw resetError;
+    const { data: signed, error: signError } = await signedUploadFor(String(reset.object_path));
+    if (signError) {
+      await db.from("teacher_upload_requests").update({
+        status: "failed", progress: 0, error_message: signError.message,
+        stage: "Could not create retry upload URL", completed_at: new Date().toISOString(),
+      }).eq("id", existing.id);
+      throw signError;
+    }
+    return reply(req, {
+      ok: true, duplicate: false, retry: true, request: reset,
+      upload: { token: signed.token, path: signed.path, signed_url: signed.signedUrl },
+    });
+  }
 
   const requestId = crypto.randomUUID();
   const objectPath = `${current.organization_id}/${requestId}/${filename}`;
@@ -92,9 +135,12 @@ async function createUpload(req: Request, current: Account) {
   };
   const { data: inserted, error: insertError } = await db.from("teacher_upload_requests").insert(row).select("*").single();
   if (insertError) throw insertError;
-  const { data: signed, error: signError } = await db.storage.from(BUCKET).createSignedUploadUrl(objectPath, { upsert: false });
+  const { data: signed, error: signError } = await signedUploadFor(objectPath);
   if (signError) {
-    await db.from("teacher_upload_requests").update({ status: "failed", error_message: signError.message, stage: "Could not create upload URL" }).eq("id", requestId);
+    await db.from("teacher_upload_requests").update({
+      status: "failed", progress: 0, error_message: signError.message,
+      stage: "Could not create upload URL", completed_at: new Date().toISOString(),
+    }).eq("id", requestId);
     throw signError;
   }
   return reply(req, { ok: true, duplicate: false, request: inserted, upload: { token: signed.token, path: signed.path, signed_url: signed.signedUrl } });
@@ -116,7 +162,8 @@ async function completeUpload(req: Request, current: Account, id: string) {
   const actualSize = Number(object.metadata?.size ?? 0);
   if (actualSize && actualSize !== Number(row.file_size_bytes)) return fail(req, "Uploaded file size does not match the selected ZIP", 409, "size_mismatch");
   const { data: updated, error: updateError } = await db.from("teacher_upload_requests").update({
-    status: "queued", progress: 12, stage: "Uploaded securely · waiting for automatic processing", updated_at: new Date().toISOString(), error_message: null,
+    status: "queued", progress: 12, stage: "Uploaded securely · waiting for automatic processing",
+    updated_at: new Date().toISOString(), error_message: null, completed_at: null,
   }).eq("id", id).eq("organization_id", current.organization_id).select("*").single();
   if (updateError) throw updateError;
   return reply(req, { ok: true, request: updated });
@@ -147,10 +194,48 @@ async function cancelRequest(req: Request, current: Account, id: string) {
   if (!row) return fail(req, "Upload request not found", 404, "not_found");
   if (["processing", "pr-opened", "completed"].includes(row.status)) return fail(req, "This request can no longer be cancelled", 409, "already_processing");
   await db.storage.from(BUCKET).remove([row.object_path]);
-  const { data, error: updateError } = await db.from("teacher_upload_requests").update({ status: "cancelled", progress: 0, stage: "Cancelled", completed_at: new Date().toISOString(), updated_at: new Date().toISOString() })
-    .eq("id", id).select("*").single();
+  const { data, error: updateError } = await db.from("teacher_upload_requests").update({
+    status: "cancelled", progress: 0, stage: "Cancelled",
+    completed_at: new Date().toISOString(), updated_at: new Date().toISOString(),
+  }).eq("id", id).select("*").single();
   if (updateError) throw updateError;
   return reply(req, { ok: true, request: data });
+}
+
+async function deleteTerminalRequest(req: Request, current: Account, id: string) {
+  const { data: row, error } = await db.from("teacher_upload_requests").select("id,status,object_path")
+    .eq("id", id).eq("organization_id", current.organization_id).maybeSingle();
+  if (error) throw error;
+  if (!row) return fail(req, "Upload request not found", 404, "not_found");
+  if (!terminalStatus(row.status)) {
+    return fail(req, "Only completed, failed, or cancelled requests can be removed", 409, "request_not_terminal");
+  }
+  if (row.object_path) {
+    const { error: storageError } = await db.storage.from(BUCKET).remove([row.object_path]);
+    if (storageError) throw storageError;
+  }
+  const { error: deleteError } = await db.from("teacher_upload_requests")
+    .delete().eq("id", id).eq("organization_id", current.organization_id);
+  if (deleteError) throw deleteError;
+  return reply(req, { ok: true, deleted: id });
+}
+
+async function clearTerminalRequests(req: Request, current: Account) {
+  const { data: rows, error } = await db.from("teacher_upload_requests").select("id,object_path,status")
+    .eq("organization_id", current.organization_id).in("status", TERMINAL_STATUSES);
+  if (error) throw error;
+  const objectPaths = (rows ?? []).map((row) => String(row.object_path ?? "")).filter(Boolean);
+  if (objectPaths.length) {
+    const { error: storageError } = await db.storage.from(BUCKET).remove(objectPaths);
+    if (storageError) throw storageError;
+  }
+  const ids = (rows ?? []).map((row) => String(row.id));
+  if (ids.length) {
+    const { error: deleteError } = await db.from("teacher_upload_requests")
+      .delete().eq("organization_id", current.organization_id).in("id", ids);
+    if (deleteError) throw deleteError;
+  }
+  return reply(req, { ok: true, deleted: ids.length });
 }
 
 Deno.serve(async (req) => {
@@ -158,13 +243,15 @@ Deno.serve(async (req) => {
   const url = new URL(req.url);
   const path = url.pathname.split("/upload-manager-api")[1] || "/";
   try {
-    if (path === "/health" && req.method === "GET") return reply(req, { ok: true, service: "echs-upload-manager-api", version: "1.0.0" });
+    if (path === "/health" && req.method === "GET") return reply(req, { ok: true, service: "echs-upload-manager-api", version: "1.1.0" });
     const current = await account(req);
     if (!staff(current)) return fail(req, "Teacher or administrator sign-in is required", 403, "forbidden");
     if (path === "/requests" && req.method === "GET") return await listRequests(req, current, url);
     if (path === "/requests" && req.method === "POST") return await createUpload(req, current);
+    if (path === "/requests/terminal" && req.method === "DELETE") return await clearTerminalRequests(req, current);
     const detail = path.match(/^\/requests\/([0-9a-f-]{36})$/);
     if (detail && req.method === "GET") return await requestDetail(req, current, detail[1]);
+    if (detail && req.method === "DELETE") return await deleteTerminalRequest(req, current, detail[1]);
     const complete = path.match(/^\/requests\/([0-9a-f-]{36})\/complete$/);
     if (complete && req.method === "POST") return await completeUpload(req, current, complete[1]);
     const cancel = path.match(/^\/requests\/([0-9a-f-]{36})\/cancel$/);
