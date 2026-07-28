@@ -19,7 +19,7 @@ require(migration,['teacher_upload_requests','teacher-upload-staging','file_size
 require(workflow,['schedule:','*/5 * * * *','SUPABASE_SERVICE_ROLE_KEY','process_teacher_upload_request_fast.py','timeout-minutes: 120','PYTHONUNBUFFERED','gh pr create','github_pr_url'],'Upload processor workflow')
 require(processor,['SHA-256 mismatch','safe_extract','ap-precalculus-unit-','pr_title'],'Base upload processor')
 require(fast_processor,['subprocess.Popen','stdout=subprocess.PIPE','status.eq.processing','upload_private_bank_package_fast.py'],'Fast upload processor')
-require(fast_uploader,['return=minimal','Questions imported:','Media archives uploaded:','IMPORT_RESULT='],'Fast bank uploader')
+require(fast_uploader,['return=minimal','Questions imported:','Media archives:','IMPORT_RESULT='],'Fast bank uploader')
 require(deploy,['upload-manager-api','setup-api/health','supabase functions deploy'],'Backend deployment health contract')
 require(supabase_config,['[functions.upload-manager-api]','verify_jwt = false'],'Supabase upload-manager function config')
 if 'SUPABASE_SERVICE_ROLE_KEY' in html+js:errors.append('Browser code must not contain the service-role secret name')
