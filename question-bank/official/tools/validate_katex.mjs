@@ -10,7 +10,15 @@ const officialDir = path.dirname(scriptDir);
 const questionsDir = path.join(officialDir, "data", "questions");
 const reportsDir = path.join(officialDir, "reports");
 const adminReportsDir = path.join(officialDir, "admin", "reports");
-const generatedAt = new Date().toISOString();
+const authorizationPath = path.join(
+  officialDir,
+  "data",
+  "rights",
+  "echs-ap-official-student-practice-2026-07-28.json",
+);
+const generatedAt = fs.existsSync(authorizationPath)
+  ? readJson(authorizationPath).recordedAt
+  : new Date().toISOString();
 
 function readJson(filePath) {
   return JSON.parse(fs.readFileSync(filePath, "utf8").replace(/^\uFEFF/, ""));

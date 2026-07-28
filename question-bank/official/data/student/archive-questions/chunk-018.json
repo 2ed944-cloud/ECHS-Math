@@ -2221,22 +2221,41 @@
       "courseId": "ap-calculus-bc",
       "assessmentFamily": "echs-bc-ch7-8-2015",
       "type": "frq",
+      "format": "multipart-free-response",
       "year": 2015,
       "form": "",
       "questionNumber": "14",
       "section": "Chapter Test",
       "calculator": "calculator-permitted",
+      "maxPoints": 9,
+      "estimatedTime": 900,
       "prompt": "",
       "directions": "",
       "parts": [],
       "choices": [],
       "media": [],
+      "facsimileAuthority": "The linked SVG facsimile is authoritative where machine-extracted text and mathematical typography differ.",
+      "machineExtractedText": "",
       "answer": null,
       "acceptedAnswers": [],
+      "answerFormat": "multipart-constructed-response",
       "explanation": "",
       "workedSolution": "",
+      "alternativeSolution": "",
+      "calculatorSolution": "",
+      "noncalculatorSolution": "",
+      "studentExplanation": "",
+      "teacherExplanation": "",
       "scoringGuideline": null,
       "rubric": [],
+      "rubricStatus": "official source guideline attached",
+      "commonMistakes": [
+        "Omitting justification required by the prompt.",
+        "Using calculator syntax instead of standard mathematical notation.",
+        "Reading a graph or table without attending to units and sign."
+      ],
+      "verificationStatus": "source-preserved-review-required",
+      "answerConfidence": 0.92,
       "source": {
         "organization": "echs-bc-ch7-8-2015",
         "publisher": "echs-bc-ch7-8-2015",
@@ -2305,17 +2324,42 @@
       "pedagogy": {
         "difficulty": 3,
         "difficultyLabel": "Medium",
-        "hints": []
+        "cognitiveDemand": 3,
+        "hints": [],
+        "misconceptions": [],
+        "related": {
+          "easier": [],
+          "parallel": [],
+          "harder": [],
+          "prerequisite": [],
+          "sameOfficialTopic": [],
+          "relatedFRQ": [],
+          "relatedMCQ": []
+        }
       },
       "quality": {
+        "completeness": "complete-source-facsimile",
         "productionStatus": "teacher-archive-only",
+        "productionReadiness": 0.82,
+        "tutoringReadiness": 0.85,
         "needsReview": true,
-        "studentReadyGatePassed": false,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
           "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
-        ]
+        ],
+        "transcriptionVerified": false,
+        "answerVerified": false,
+        "mediaVerified": true,
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "katexVerified": false,
+        "mappingVerified": false,
+        "studentReadyGatePassed": false
       },
+      "studentEligible": false,
+      "studentAccessible": true,
+      "deploymentAccess": "archive-metadata-only",
+      "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "4",
@@ -2337,11 +2381,7 @@
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
         "auditedAt": "2026-07-24T17:46:03+00:00"
       },
-      "studentEligible": false,
-      "studentAccessible": true,
       "studentReady": false,
-      "deploymentAccess": "archive-metadata-only",
-      "contentStatus": "indexed-only",
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
     },
     {
@@ -2350,22 +2390,41 @@
       "courseId": "ap-calculus-bc",
       "assessmentFamily": "echs-bc-ch7-8-2015",
       "type": "mcq",
+      "format": "single-select",
       "year": 2015,
       "form": "",
       "questionNumber": "1",
       "section": "Chapter Test",
       "calculator": "calculator-permitted",
+      "maxPoints": 1,
+      "estimatedTime": 75,
       "prompt": "",
       "directions": "",
       "parts": [],
       "choices": [],
       "media": [],
+      "facsimileAuthority": "The linked SVG facsimile is authoritative where machine-extracted text and mathematical typography differ.",
+      "machineExtractedText": "",
       "answer": null,
       "acceptedAnswers": [],
+      "answerFormat": "choice",
       "explanation": "",
       "workedSolution": "",
+      "alternativeSolution": "",
+      "calculatorSolution": "",
+      "noncalculatorSolution": "",
+      "studentExplanation": "",
+      "teacherExplanation": "",
       "scoringGuideline": null,
       "rubric": [],
+      "rubricStatus": "source guideline unavailable; review required",
+      "commonMistakes": [
+        "Omitting justification required by the prompt.",
+        "Using calculator syntax instead of standard mathematical notation.",
+        "Reading a graph or table without attending to units and sign."
+      ],
+      "verificationStatus": "source-preserved-review-required",
+      "answerConfidence": 0.65,
       "source": {
         "organization": "echs-bc-ch7-8-2015",
         "publisher": "echs-bc-ch7-8-2015",
@@ -2433,18 +2492,43 @@
       "pedagogy": {
         "difficulty": 3,
         "difficultyLabel": "Medium",
-        "hints": []
+        "cognitiveDemand": 3,
+        "hints": [],
+        "misconceptions": [],
+        "related": {
+          "easier": [],
+          "parallel": [],
+          "harder": [],
+          "prerequisite": [],
+          "sameOfficialTopic": [],
+          "relatedFRQ": [],
+          "relatedMCQ": []
+        }
       },
       "quality": {
+        "completeness": "complete-source-facsimile",
         "productionStatus": "teacher-archive-only",
+        "productionReadiness": 0.6,
+        "tutoringReadiness": 0.62,
         "needsReview": true,
-        "studentReadyGatePassed": false,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
           "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
-        ]
+        ],
+        "transcriptionVerified": false,
+        "answerVerified": false,
+        "mediaVerified": true,
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "katexVerified": false,
+        "mappingVerified": false,
+        "studentReadyGatePassed": false
       },
+      "studentEligible": false,
+      "studentAccessible": true,
+      "deploymentAccess": "archive-metadata-only",
+      "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "1",
@@ -2466,11 +2550,7 @@
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
         "auditedAt": "2026-07-24T17:46:03+00:00"
       },
-      "studentEligible": false,
-      "studentAccessible": true,
       "studentReady": false,
-      "deploymentAccess": "archive-metadata-only",
-      "contentStatus": "indexed-only",
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
     },
     {
@@ -2479,22 +2559,41 @@
       "courseId": "ap-calculus-bc",
       "assessmentFamily": "echs-bc-ch7-8-2015",
       "type": "mcq",
+      "format": "single-select",
       "year": 2015,
       "form": "",
       "questionNumber": "2",
       "section": "Chapter Test",
       "calculator": "calculator-permitted",
+      "maxPoints": 1,
+      "estimatedTime": 75,
       "prompt": "",
       "directions": "",
       "parts": [],
       "choices": [],
       "media": [],
+      "facsimileAuthority": "The linked SVG facsimile is authoritative where machine-extracted text and mathematical typography differ.",
+      "machineExtractedText": "",
       "answer": null,
       "acceptedAnswers": [],
+      "answerFormat": "choice",
       "explanation": "",
       "workedSolution": "",
+      "alternativeSolution": "",
+      "calculatorSolution": "",
+      "noncalculatorSolution": "",
+      "studentExplanation": "",
+      "teacherExplanation": "",
       "scoringGuideline": null,
       "rubric": [],
+      "rubricStatus": "source guideline unavailable; review required",
+      "commonMistakes": [
+        "Omitting justification required by the prompt.",
+        "Using calculator syntax instead of standard mathematical notation.",
+        "Reading a graph or table without attending to units and sign."
+      ],
+      "verificationStatus": "source-preserved-review-required",
+      "answerConfidence": 0.65,
       "source": {
         "organization": "echs-bc-ch7-8-2015",
         "publisher": "echs-bc-ch7-8-2015",
@@ -2563,18 +2662,43 @@
       "pedagogy": {
         "difficulty": 3,
         "difficultyLabel": "Medium",
-        "hints": []
+        "cognitiveDemand": 3,
+        "hints": [],
+        "misconceptions": [],
+        "related": {
+          "easier": [],
+          "parallel": [],
+          "harder": [],
+          "prerequisite": [],
+          "sameOfficialTopic": [],
+          "relatedFRQ": [],
+          "relatedMCQ": []
+        }
       },
       "quality": {
+        "completeness": "complete-source-facsimile",
         "productionStatus": "teacher-archive-only",
+        "productionReadiness": 0.6,
+        "tutoringReadiness": 0.62,
         "needsReview": true,
-        "studentReadyGatePassed": false,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
           "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
-        ]
+        ],
+        "transcriptionVerified": false,
+        "answerVerified": false,
+        "mediaVerified": true,
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "katexVerified": false,
+        "mappingVerified": false,
+        "studentReadyGatePassed": false
       },
+      "studentEligible": false,
+      "studentAccessible": true,
+      "deploymentAccess": "archive-metadata-only",
+      "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "1",
@@ -2596,11 +2720,7 @@
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
         "auditedAt": "2026-07-24T17:46:03+00:00"
       },
-      "studentEligible": false,
-      "studentAccessible": true,
       "studentReady": false,
-      "deploymentAccess": "archive-metadata-only",
-      "contentStatus": "indexed-only",
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
     },
     {
@@ -2609,22 +2729,41 @@
       "courseId": "ap-calculus-bc",
       "assessmentFamily": "echs-bc-ch7-8-2015",
       "type": "mcq",
+      "format": "single-select",
       "year": 2015,
       "form": "",
       "questionNumber": "3",
       "section": "Chapter Test",
       "calculator": "calculator-permitted",
+      "maxPoints": 1,
+      "estimatedTime": 75,
       "prompt": "",
       "directions": "",
       "parts": [],
       "choices": [],
       "media": [],
+      "facsimileAuthority": "The linked SVG facsimile is authoritative where machine-extracted text and mathematical typography differ.",
+      "machineExtractedText": "",
       "answer": null,
       "acceptedAnswers": [],
+      "answerFormat": "choice",
       "explanation": "",
       "workedSolution": "",
+      "alternativeSolution": "",
+      "calculatorSolution": "",
+      "noncalculatorSolution": "",
+      "studentExplanation": "",
+      "teacherExplanation": "",
       "scoringGuideline": null,
       "rubric": [],
+      "rubricStatus": "source guideline unavailable; review required",
+      "commonMistakes": [
+        "Omitting justification required by the prompt.",
+        "Using calculator syntax instead of standard mathematical notation.",
+        "Reading a graph or table without attending to units and sign."
+      ],
+      "verificationStatus": "source-preserved-review-required",
+      "answerConfidence": 0.65,
       "source": {
         "organization": "echs-bc-ch7-8-2015",
         "publisher": "echs-bc-ch7-8-2015",
@@ -2692,18 +2831,43 @@
       "pedagogy": {
         "difficulty": 3,
         "difficultyLabel": "Medium",
-        "hints": []
+        "cognitiveDemand": 3,
+        "hints": [],
+        "misconceptions": [],
+        "related": {
+          "easier": [],
+          "parallel": [],
+          "harder": [],
+          "prerequisite": [],
+          "sameOfficialTopic": [],
+          "relatedFRQ": [],
+          "relatedMCQ": []
+        }
       },
       "quality": {
+        "completeness": "complete-source-facsimile",
         "productionStatus": "teacher-archive-only",
+        "productionReadiness": 0.6,
+        "tutoringReadiness": 0.62,
         "needsReview": true,
-        "studentReadyGatePassed": false,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
           "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
-        ]
+        ],
+        "transcriptionVerified": false,
+        "answerVerified": false,
+        "mediaVerified": true,
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "katexVerified": false,
+        "mappingVerified": false,
+        "studentReadyGatePassed": false
       },
+      "studentEligible": false,
+      "studentAccessible": true,
+      "deploymentAccess": "archive-metadata-only",
+      "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "1",
@@ -2725,11 +2889,7 @@
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
         "auditedAt": "2026-07-24T17:46:03+00:00"
       },
-      "studentEligible": false,
-      "studentAccessible": true,
       "studentReady": false,
-      "deploymentAccess": "archive-metadata-only",
-      "contentStatus": "indexed-only",
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
     },
     {
@@ -2738,22 +2898,41 @@
       "courseId": "ap-calculus-bc",
       "assessmentFamily": "echs-bc-ch7-8-2015",
       "type": "mcq",
+      "format": "single-select",
       "year": 2015,
       "form": "",
       "questionNumber": "4",
       "section": "Chapter Test",
       "calculator": "calculator-permitted",
+      "maxPoints": 1,
+      "estimatedTime": 75,
       "prompt": "",
       "directions": "",
       "parts": [],
       "choices": [],
       "media": [],
+      "facsimileAuthority": "The linked SVG facsimile is authoritative where machine-extracted text and mathematical typography differ.",
+      "machineExtractedText": "",
       "answer": null,
       "acceptedAnswers": [],
+      "answerFormat": "choice",
       "explanation": "",
       "workedSolution": "",
+      "alternativeSolution": "",
+      "calculatorSolution": "",
+      "noncalculatorSolution": "",
+      "studentExplanation": "",
+      "teacherExplanation": "",
       "scoringGuideline": null,
       "rubric": [],
+      "rubricStatus": "source guideline unavailable; review required",
+      "commonMistakes": [
+        "Omitting justification required by the prompt.",
+        "Using calculator syntax instead of standard mathematical notation.",
+        "Reading a graph or table without attending to units and sign."
+      ],
+      "verificationStatus": "source-preserved-review-required",
+      "answerConfidence": 0.65,
       "source": {
         "organization": "echs-bc-ch7-8-2015",
         "publisher": "echs-bc-ch7-8-2015",
@@ -2821,18 +3000,43 @@
       "pedagogy": {
         "difficulty": 3,
         "difficultyLabel": "Medium",
-        "hints": []
+        "cognitiveDemand": 3,
+        "hints": [],
+        "misconceptions": [],
+        "related": {
+          "easier": [],
+          "parallel": [],
+          "harder": [],
+          "prerequisite": [],
+          "sameOfficialTopic": [],
+          "relatedFRQ": [],
+          "relatedMCQ": []
+        }
       },
       "quality": {
+        "completeness": "complete-source-facsimile",
         "productionStatus": "teacher-archive-only",
+        "productionReadiness": 0.6,
+        "tutoringReadiness": 0.62,
         "needsReview": true,
-        "studentReadyGatePassed": false,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
           "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
-        ]
+        ],
+        "transcriptionVerified": false,
+        "answerVerified": false,
+        "mediaVerified": true,
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "katexVerified": false,
+        "mappingVerified": false,
+        "studentReadyGatePassed": false
       },
+      "studentEligible": false,
+      "studentAccessible": true,
+      "deploymentAccess": "archive-metadata-only",
+      "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "2",
@@ -2854,11 +3058,7 @@
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
         "auditedAt": "2026-07-24T17:46:03+00:00"
       },
-      "studentEligible": false,
-      "studentAccessible": true,
       "studentReady": false,
-      "deploymentAccess": "archive-metadata-only",
-      "contentStatus": "indexed-only",
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
     },
     {
@@ -2867,22 +3067,41 @@
       "courseId": "ap-calculus-bc",
       "assessmentFamily": "echs-bc-ch7-8-2015",
       "type": "mcq",
+      "format": "single-select",
       "year": 2015,
       "form": "",
       "questionNumber": "5",
       "section": "Chapter Test",
       "calculator": "calculator-permitted",
+      "maxPoints": 1,
+      "estimatedTime": 75,
       "prompt": "",
       "directions": "",
       "parts": [],
       "choices": [],
       "media": [],
+      "facsimileAuthority": "The linked SVG facsimile is authoritative where machine-extracted text and mathematical typography differ.",
+      "machineExtractedText": "",
       "answer": null,
       "acceptedAnswers": [],
+      "answerFormat": "choice",
       "explanation": "",
       "workedSolution": "",
+      "alternativeSolution": "",
+      "calculatorSolution": "",
+      "noncalculatorSolution": "",
+      "studentExplanation": "",
+      "teacherExplanation": "",
       "scoringGuideline": null,
       "rubric": [],
+      "rubricStatus": "source guideline unavailable; review required",
+      "commonMistakes": [
+        "Omitting justification required by the prompt.",
+        "Using calculator syntax instead of standard mathematical notation.",
+        "Reading a graph or table without attending to units and sign."
+      ],
+      "verificationStatus": "source-preserved-review-required",
+      "answerConfidence": 0.65,
       "source": {
         "organization": "echs-bc-ch7-8-2015",
         "publisher": "echs-bc-ch7-8-2015",
@@ -2950,18 +3169,43 @@
       "pedagogy": {
         "difficulty": 3,
         "difficultyLabel": "Medium",
-        "hints": []
+        "cognitiveDemand": 3,
+        "hints": [],
+        "misconceptions": [],
+        "related": {
+          "easier": [],
+          "parallel": [],
+          "harder": [],
+          "prerequisite": [],
+          "sameOfficialTopic": [],
+          "relatedFRQ": [],
+          "relatedMCQ": []
+        }
       },
       "quality": {
+        "completeness": "complete-source-facsimile",
         "productionStatus": "teacher-archive-only",
+        "productionReadiness": 0.6,
+        "tutoringReadiness": 0.62,
         "needsReview": true,
-        "studentReadyGatePassed": false,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
           "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
-        ]
+        ],
+        "transcriptionVerified": false,
+        "answerVerified": false,
+        "mediaVerified": true,
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "katexVerified": false,
+        "mappingVerified": false,
+        "studentReadyGatePassed": false
       },
+      "studentEligible": false,
+      "studentAccessible": true,
+      "deploymentAccess": "archive-metadata-only",
+      "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "2",
@@ -2983,11 +3227,7 @@
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
         "auditedAt": "2026-07-24T17:46:03+00:00"
       },
-      "studentEligible": false,
-      "studentAccessible": true,
       "studentReady": false,
-      "deploymentAccess": "archive-metadata-only",
-      "contentStatus": "indexed-only",
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
     },
     {
@@ -2996,22 +3236,41 @@
       "courseId": "ap-calculus-bc",
       "assessmentFamily": "echs-bc-ch7-8-2015",
       "type": "mcq",
+      "format": "single-select",
       "year": 2015,
       "form": "",
       "questionNumber": "6",
       "section": "Chapter Test",
       "calculator": "calculator-permitted",
+      "maxPoints": 1,
+      "estimatedTime": 75,
       "prompt": "",
       "directions": "",
       "parts": [],
       "choices": [],
       "media": [],
+      "facsimileAuthority": "The linked SVG facsimile is authoritative where machine-extracted text and mathematical typography differ.",
+      "machineExtractedText": "",
       "answer": null,
       "acceptedAnswers": [],
+      "answerFormat": "choice",
       "explanation": "",
       "workedSolution": "",
+      "alternativeSolution": "",
+      "calculatorSolution": "",
+      "noncalculatorSolution": "",
+      "studentExplanation": "",
+      "teacherExplanation": "",
       "scoringGuideline": null,
       "rubric": [],
+      "rubricStatus": "source guideline unavailable; review required",
+      "commonMistakes": [
+        "Omitting justification required by the prompt.",
+        "Using calculator syntax instead of standard mathematical notation.",
+        "Reading a graph or table without attending to units and sign."
+      ],
+      "verificationStatus": "source-preserved-review-required",
+      "answerConfidence": 0.65,
       "source": {
         "organization": "echs-bc-ch7-8-2015",
         "publisher": "echs-bc-ch7-8-2015",
@@ -3080,18 +3339,43 @@
       "pedagogy": {
         "difficulty": 3,
         "difficultyLabel": "Medium",
-        "hints": []
+        "cognitiveDemand": 3,
+        "hints": [],
+        "misconceptions": [],
+        "related": {
+          "easier": [],
+          "parallel": [],
+          "harder": [],
+          "prerequisite": [],
+          "sameOfficialTopic": [],
+          "relatedFRQ": [],
+          "relatedMCQ": []
+        }
       },
       "quality": {
+        "completeness": "complete-source-facsimile",
         "productionStatus": "teacher-archive-only",
+        "productionReadiness": 0.6,
+        "tutoringReadiness": 0.62,
         "needsReview": true,
-        "studentReadyGatePassed": false,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
           "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
-        ]
+        ],
+        "transcriptionVerified": false,
+        "answerVerified": false,
+        "mediaVerified": true,
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "katexVerified": false,
+        "mappingVerified": false,
+        "studentReadyGatePassed": false
       },
+      "studentEligible": false,
+      "studentAccessible": true,
+      "deploymentAccess": "archive-metadata-only",
+      "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "2",
@@ -3113,11 +3397,7 @@
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
         "auditedAt": "2026-07-24T17:46:03+00:00"
       },
-      "studentEligible": false,
-      "studentAccessible": true,
       "studentReady": false,
-      "deploymentAccess": "archive-metadata-only",
-      "contentStatus": "indexed-only",
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
     },
     {
@@ -3126,22 +3406,41 @@
       "courseId": "ap-calculus-bc",
       "assessmentFamily": "echs-bc-ch7-8-2015",
       "type": "mcq",
+      "format": "single-select",
       "year": 2015,
       "form": "",
       "questionNumber": "7",
       "section": "Chapter Test",
       "calculator": "calculator-permitted",
+      "maxPoints": 1,
+      "estimatedTime": 75,
       "prompt": "",
       "directions": "",
       "parts": [],
       "choices": [],
       "media": [],
+      "facsimileAuthority": "The linked SVG facsimile is authoritative where machine-extracted text and mathematical typography differ.",
+      "machineExtractedText": "",
       "answer": null,
       "acceptedAnswers": [],
+      "answerFormat": "choice",
       "explanation": "",
       "workedSolution": "",
+      "alternativeSolution": "",
+      "calculatorSolution": "",
+      "noncalculatorSolution": "",
+      "studentExplanation": "",
+      "teacherExplanation": "",
       "scoringGuideline": null,
       "rubric": [],
+      "rubricStatus": "source guideline unavailable; review required",
+      "commonMistakes": [
+        "Omitting justification required by the prompt.",
+        "Using calculator syntax instead of standard mathematical notation.",
+        "Reading a graph or table without attending to units and sign."
+      ],
+      "verificationStatus": "source-preserved-review-required",
+      "answerConfidence": 0.65,
       "source": {
         "organization": "echs-bc-ch7-8-2015",
         "publisher": "echs-bc-ch7-8-2015",
@@ -3209,18 +3508,43 @@
       "pedagogy": {
         "difficulty": 3,
         "difficultyLabel": "Medium",
-        "hints": []
+        "cognitiveDemand": 3,
+        "hints": [],
+        "misconceptions": [],
+        "related": {
+          "easier": [],
+          "parallel": [],
+          "harder": [],
+          "prerequisite": [],
+          "sameOfficialTopic": [],
+          "relatedFRQ": [],
+          "relatedMCQ": []
+        }
       },
       "quality": {
+        "completeness": "complete-source-facsimile",
         "productionStatus": "teacher-archive-only",
+        "productionReadiness": 0.6,
+        "tutoringReadiness": 0.62,
         "needsReview": true,
-        "studentReadyGatePassed": false,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
           "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
-        ]
+        ],
+        "transcriptionVerified": false,
+        "answerVerified": false,
+        "mediaVerified": true,
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "katexVerified": false,
+        "mappingVerified": false,
+        "studentReadyGatePassed": false
       },
+      "studentEligible": false,
+      "studentAccessible": true,
+      "deploymentAccess": "archive-metadata-only",
+      "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "3",
@@ -3242,11 +3566,7 @@
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
         "auditedAt": "2026-07-24T17:46:03+00:00"
       },
-      "studentEligible": false,
-      "studentAccessible": true,
       "studentReady": false,
-      "deploymentAccess": "archive-metadata-only",
-      "contentStatus": "indexed-only",
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
     },
     {
@@ -3255,22 +3575,41 @@
       "courseId": "ap-calculus-bc",
       "assessmentFamily": "echs-bc-ch7-8-2015",
       "type": "mcq",
+      "format": "single-select",
       "year": 2015,
       "form": "",
       "questionNumber": "8",
       "section": "Chapter Test",
       "calculator": "calculator-permitted",
+      "maxPoints": 1,
+      "estimatedTime": 75,
       "prompt": "",
       "directions": "",
       "parts": [],
       "choices": [],
       "media": [],
+      "facsimileAuthority": "The linked SVG facsimile is authoritative where machine-extracted text and mathematical typography differ.",
+      "machineExtractedText": "_____ 8.  What is dy\ndx  for \n6cos4\nr\nθ\n=\n?",
       "answer": null,
       "acceptedAnswers": [],
+      "answerFormat": "choice",
       "explanation": "",
       "workedSolution": "",
+      "alternativeSolution": "",
+      "calculatorSolution": "",
+      "noncalculatorSolution": "",
+      "studentExplanation": "",
+      "teacherExplanation": "",
       "scoringGuideline": null,
       "rubric": [],
+      "rubricStatus": "source guideline unavailable; review required",
+      "commonMistakes": [
+        "Omitting justification required by the prompt.",
+        "Using calculator syntax instead of standard mathematical notation.",
+        "Reading a graph or table without attending to units and sign."
+      ],
+      "verificationStatus": "source-preserved-review-required",
+      "answerConfidence": 0.65,
       "source": {
         "organization": "echs-bc-ch7-8-2015",
         "publisher": "echs-bc-ch7-8-2015",
@@ -3335,18 +3674,43 @@
       "pedagogy": {
         "difficulty": 3,
         "difficultyLabel": "Medium",
-        "hints": []
+        "cognitiveDemand": 3,
+        "hints": [],
+        "misconceptions": [],
+        "related": {
+          "easier": [],
+          "parallel": [],
+          "harder": [],
+          "prerequisite": [],
+          "sameOfficialTopic": [],
+          "relatedFRQ": [],
+          "relatedMCQ": []
+        }
       },
       "quality": {
+        "completeness": "complete-source-facsimile",
         "productionStatus": "teacher-archive-only",
+        "productionReadiness": 0.6,
+        "tutoringReadiness": 0.62,
         "needsReview": true,
-        "studentReadyGatePassed": false,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
           "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
-        ]
+        ],
+        "transcriptionVerified": false,
+        "answerVerified": false,
+        "mediaVerified": true,
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "katexVerified": false,
+        "mappingVerified": false,
+        "studentReadyGatePassed": false
       },
+      "studentEligible": false,
+      "studentAccessible": true,
+      "deploymentAccess": "archive-metadata-only",
+      "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "3",
@@ -3368,11 +3732,7 @@
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
         "auditedAt": "2026-07-24T17:46:03+00:00"
       },
-      "studentEligible": false,
-      "studentAccessible": true,
       "studentReady": false,
-      "deploymentAccess": "archive-metadata-only",
-      "contentStatus": "indexed-only",
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
     },
     {
@@ -3381,22 +3741,41 @@
       "courseId": "ap-calculus-bc",
       "assessmentFamily": "echs-bc-ch7-8-2015",
       "type": "mcq",
+      "format": "single-select",
       "year": 2015,
       "form": "",
       "questionNumber": "9",
       "section": "Chapter Test",
       "calculator": "calculator-permitted",
+      "maxPoints": 1,
+      "estimatedTime": 75,
       "prompt": "",
       "directions": "",
       "parts": [],
       "choices": [],
       "media": [],
+      "facsimileAuthority": "The linked SVG facsimile is authoritative where machine-extracted text and mathematical typography differ.",
+      "machineExtractedText": "",
       "answer": null,
       "acceptedAnswers": [],
+      "answerFormat": "choice",
       "explanation": "",
       "workedSolution": "",
+      "alternativeSolution": "",
+      "calculatorSolution": "",
+      "noncalculatorSolution": "",
+      "studentExplanation": "",
+      "teacherExplanation": "",
       "scoringGuideline": null,
       "rubric": [],
+      "rubricStatus": "source guideline unavailable; review required",
+      "commonMistakes": [
+        "Omitting justification required by the prompt.",
+        "Using calculator syntax instead of standard mathematical notation.",
+        "Reading a graph or table without attending to units and sign."
+      ],
+      "verificationStatus": "source-preserved-review-required",
+      "answerConfidence": 0.65,
       "source": {
         "organization": "echs-bc-ch7-8-2015",
         "publisher": "echs-bc-ch7-8-2015",
@@ -3460,18 +3839,43 @@
       "pedagogy": {
         "difficulty": 3,
         "difficultyLabel": "Medium",
-        "hints": []
+        "cognitiveDemand": 3,
+        "hints": [],
+        "misconceptions": [],
+        "related": {
+          "easier": [],
+          "parallel": [],
+          "harder": [],
+          "prerequisite": [],
+          "sameOfficialTopic": [],
+          "relatedFRQ": [],
+          "relatedMCQ": []
+        }
       },
       "quality": {
+        "completeness": "complete-source-facsimile",
         "productionStatus": "teacher-archive-only",
+        "productionReadiness": 0.6,
+        "tutoringReadiness": 0.62,
         "needsReview": true,
-        "studentReadyGatePassed": false,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
           "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
-        ]
+        ],
+        "transcriptionVerified": false,
+        "answerVerified": false,
+        "mediaVerified": true,
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "katexVerified": false,
+        "mappingVerified": false,
+        "studentReadyGatePassed": false
       },
+      "studentEligible": false,
+      "studentAccessible": true,
+      "deploymentAccess": "archive-metadata-only",
+      "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "3",
@@ -3493,11 +3897,7 @@
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
         "auditedAt": "2026-07-24T17:46:03+00:00"
       },
-      "studentEligible": false,
-      "studentAccessible": true,
       "studentReady": false,
-      "deploymentAccess": "archive-metadata-only",
-      "contentStatus": "indexed-only",
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
     },
     {
@@ -3524,20 +3924,20 @@
           "answer": "\\(t=-b/(2a)=-20/(2(-5))=2\\) seconds.",
           "rubric": [
             {
-              "criterionId": "A1",
-              "description": "1 point for a valid vertex method.",
-              "points": null,
-              "evidenceRequired": "1 point for a valid vertex method.",
+              "criterionId": "A-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
               "commonErrors": [],
-              "rubricType": "ECHS interpreted rubric"
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
             },
             {
-              "criterionId": "A2",
-              "description": "1 point for 2 seconds.",
-              "points": null,
-              "evidenceRequired": "1 point for 2 seconds.",
+              "criterionId": "A-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 1,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
               "commonErrors": [],
-              "rubricType": "ECHS interpreted rubric"
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
             }
           ]
         },
@@ -3548,12 +3948,12 @@
           "answer": "\\(h(2)=21\\) meters.",
           "rubric": [
             {
-              "criterionId": "B1",
-              "description": "1 point for 21 meters.",
-              "points": null,
-              "evidenceRequired": "1 point for 21 meters.",
+              "criterionId": "B-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
               "commonErrors": [],
-              "rubricType": "ECHS interpreted rubric"
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
             }
           ]
         },
@@ -3564,20 +3964,20 @@
           "answer": "\\(-5t^2+20t=0\\Rightarrow t=0\\) or \\(t=4\\). The ball returns to its initial height after 4 seconds.",
           "rubric": [
             {
-              "criterionId": "C1",
-              "description": "1 point for the two solutions.",
-              "points": null,
-              "evidenceRequired": "1 point for the two solutions.",
+              "criterionId": "C-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
               "commonErrors": [],
-              "rubricType": "ECHS interpreted rubric"
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
             },
             {
-              "criterionId": "C2",
-              "description": "1 point for the contextual interpretation of 4 seconds.",
-              "points": null,
-              "evidenceRequired": "1 point for the contextual interpretation of 4 seconds.",
+              "criterionId": "C-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 1,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
               "commonErrors": [],
-              "rubricType": "ECHS interpreted rubric"
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
             }
           ]
         }
@@ -3603,20 +4003,20 @@
           "maxPoints": 2,
           "criteria": [
             {
-              "criterionId": "A1",
-              "description": "1 point for a valid vertex method.",
-              "points": null,
-              "evidenceRequired": "1 point for a valid vertex method.",
+              "criterionId": "A-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
               "commonErrors": [],
-              "rubricType": "ECHS interpreted rubric"
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
             },
             {
-              "criterionId": "A2",
-              "description": "1 point for 2 seconds.",
-              "points": null,
-              "evidenceRequired": "1 point for 2 seconds.",
+              "criterionId": "A-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 1,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
               "commonErrors": [],
-              "rubricType": "ECHS interpreted rubric"
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
             }
           ]
         },
@@ -3625,12 +4025,12 @@
           "maxPoints": 1,
           "criteria": [
             {
-              "criterionId": "B1",
-              "description": "1 point for 21 meters.",
-              "points": null,
-              "evidenceRequired": "1 point for 21 meters.",
+              "criterionId": "B-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
               "commonErrors": [],
-              "rubricType": "ECHS interpreted rubric"
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
             }
           ]
         },
@@ -3639,25 +4039,25 @@
           "maxPoints": 2,
           "criteria": [
             {
-              "criterionId": "C1",
-              "description": "1 point for the two solutions.",
-              "points": null,
-              "evidenceRequired": "1 point for the two solutions.",
+              "criterionId": "C-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
               "commonErrors": [],
-              "rubricType": "ECHS interpreted rubric"
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
             },
             {
-              "criterionId": "C2",
-              "description": "1 point for the contextual interpretation of 4 seconds.",
-              "points": null,
-              "evidenceRequired": "1 point for the contextual interpretation of 4 seconds.",
+              "criterionId": "C-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 1,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
               "commonErrors": [],
-              "rubricType": "ECHS interpreted rubric"
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
             }
           ]
         }
       ],
-      "rubricStatus": "ECHS analytic rubric; not official College Board scoring",
+      "rubricStatus": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline.",
       "commonMistakes": [],
       "verificationStatus": "independently-verified",
       "answerConfidence": 0.99,
@@ -3791,28 +4191,20 @@
           "answer": "Slope \\(m=(30-18)/(10-4)=2\\). Using \\(18=2(4)+b\\) gives \\(b=10\\). Thus \\(C(d)=2d+10\\).",
           "rubric": [
             {
-              "criterionId": "A1",
-              "description": "1 point for slope 2.",
-              "points": null,
-              "evidenceRequired": "1 point for slope 2.",
+              "criterionId": "A-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
               "commonErrors": [],
-              "rubricType": "ECHS interpreted rubric"
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
             },
             {
-              "criterionId": "A2",
-              "description": "1 point for intercept 10.",
-              "points": null,
-              "evidenceRequired": "1 point for intercept 10.",
+              "criterionId": "A-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
               "commonErrors": [],
-              "rubricType": "ECHS interpreted rubric"
-            },
-            {
-              "criterionId": "A3",
-              "description": "1 point for the complete model.",
-              "points": null,
-              "evidenceRequired": "1 point for the complete model.",
-              "commonErrors": [],
-              "rubricType": "ECHS interpreted rubric"
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
             }
           ]
         },
@@ -3823,20 +4215,20 @@
           "answer": "The fare increases 2 QAR per kilometer, and the fixed starting charge is 10 QAR.",
           "rubric": [
             {
-              "criterionId": "B1",
-              "description": "1 point for the slope interpretation with units.",
-              "points": null,
-              "evidenceRequired": "1 point for the slope interpretation with units.",
+              "criterionId": "B-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
               "commonErrors": [],
-              "rubricType": "ECHS interpreted rubric"
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
             },
             {
-              "criterionId": "B2",
-              "description": "1 point for the intercept interpretation.",
-              "points": null,
-              "evidenceRequired": "1 point for the intercept interpretation.",
+              "criterionId": "B-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 1,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
               "commonErrors": [],
-              "rubricType": "ECHS interpreted rubric"
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
             }
           ]
         }
@@ -3862,28 +4254,20 @@
           "maxPoints": 3,
           "criteria": [
             {
-              "criterionId": "A1",
-              "description": "1 point for slope 2.",
-              "points": null,
-              "evidenceRequired": "1 point for slope 2.",
+              "criterionId": "A-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
               "commonErrors": [],
-              "rubricType": "ECHS interpreted rubric"
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
             },
             {
-              "criterionId": "A2",
-              "description": "1 point for intercept 10.",
-              "points": null,
-              "evidenceRequired": "1 point for intercept 10.",
+              "criterionId": "A-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
               "commonErrors": [],
-              "rubricType": "ECHS interpreted rubric"
-            },
-            {
-              "criterionId": "A3",
-              "description": "1 point for the complete model.",
-              "points": null,
-              "evidenceRequired": "1 point for the complete model.",
-              "commonErrors": [],
-              "rubricType": "ECHS interpreted rubric"
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
             }
           ]
         },
@@ -3892,25 +4276,25 @@
           "maxPoints": 2,
           "criteria": [
             {
-              "criterionId": "B1",
-              "description": "1 point for the slope interpretation with units.",
-              "points": null,
-              "evidenceRequired": "1 point for the slope interpretation with units.",
+              "criterionId": "B-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
               "commonErrors": [],
-              "rubricType": "ECHS interpreted rubric"
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
             },
             {
-              "criterionId": "B2",
-              "description": "1 point for the intercept interpretation.",
-              "points": null,
-              "evidenceRequired": "1 point for the intercept interpretation.",
+              "criterionId": "B-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 1,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
               "commonErrors": [],
-              "rubricType": "ECHS interpreted rubric"
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
             }
           ]
         }
       ],
-      "rubricStatus": "ECHS analytic rubric; not official College Board scoring",
+      "rubricStatus": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline.",
       "commonMistakes": [],
       "verificationStatus": "independently-verified",
       "answerConfidence": 0.99,
@@ -5539,22 +5923,37 @@
       "courseId": "grade-9-pre-precalculus",
       "assessmentFamily": "ECHS original practice",
       "type": "mcq",
+      "format": "single-select",
       "year": null,
       "form": "",
       "questionNumber": "",
       "section": "",
       "calculator": "no-calculator",
+      "maxPoints": 1,
+      "estimatedTime": null,
       "prompt": "",
       "directions": "",
       "parts": [],
       "choices": [],
       "media": [],
+      "facsimileAuthority": "",
+      "machineExtractedText": "",
       "answer": null,
       "acceptedAnswers": [],
+      "answerFormat": "choice",
       "explanation": "",
       "workedSolution": "",
+      "alternativeSolution": "",
+      "calculatorSolution": "",
+      "noncalculatorSolution": "",
+      "studentExplanation": "",
+      "teacherExplanation": "",
       "scoringGuideline": null,
       "rubric": [],
+      "rubricStatus": "",
+      "commonMistakes": [],
+      "verificationStatus": "single-source-unverified",
+      "answerConfidence": 0.75,
       "source": {
         "organization": "Education City High School (ECHS)",
         "publisher": "ECHS Mathematics",
@@ -5598,17 +5997,42 @@
       "pedagogy": {
         "difficulty": 2,
         "difficultyLabel": "Easy",
-        "hints": []
+        "cognitiveDemand": 2,
+        "hints": [],
+        "misconceptions": [],
+        "related": {
+          "easier": [],
+          "parallel": [],
+          "harder": [],
+          "prerequisite": [],
+          "sameOfficialTopic": [],
+          "relatedFRQ": [],
+          "relatedMCQ": []
+        }
       },
       "quality": {
+        "completeness": "complete-unverified",
         "productionStatus": "teacher-archive-only",
+        "productionReadiness": 0.65,
+        "tutoringReadiness": 0.35,
         "needsReview": true,
-        "studentReadyGatePassed": false,
         "reviewReasons": [
           "Independent mathematical answer verification remains pending.",
           "Independent audit restriction: The current G9 portal has no exact distance-formula lesson. The record is mathematically verified but remains archive-only rather than being attached to a merely related coordinate-plane lesson."
-        ]
+        ],
+        "transcriptionVerified": true,
+        "answerVerified": true,
+        "mediaVerified": true,
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": true,
+        "katexVerified": true,
+        "mappingVerified": true,
+        "studentReadyGatePassed": false
       },
+      "studentEligible": false,
+      "studentAccessible": true,
+      "deploymentAccess": "archive-metadata-only",
+      "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "",
@@ -5630,11 +6054,7 @@
         "reviewerNotes": "The current G9 portal has no exact distance-formula lesson. The record is mathematically verified but remains archive-only rather than being attached to a merely related coordinate-plane lesson.",
         "auditedAt": "2026-07-24T17:46:03+00:00"
       },
-      "studentEligible": false,
-      "studentAccessible": true,
       "studentReady": false,
-      "deploymentAccess": "archive-metadata-only",
-      "contentStatus": "indexed-only",
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
     },
     {
@@ -5643,22 +6063,41 @@
       "courseId": "ap-calculus-ab",
       "assessmentFamily": "lucid-ab-practice-2015",
       "type": "frq",
+      "format": "free-response",
       "year": 2015,
       "form": "",
       "questionNumber": "1",
       "section": "II",
       "calculator": "mixed-by-part",
+      "maxPoints": 9,
+      "estimatedTime": 900,
       "prompt": "",
       "directions": "",
       "parts": [],
       "choices": [],
       "media": [],
+      "facsimileAuthority": "The linked SVG facsimile is authoritative where machine-extracted text and mathematical typography differ.",
+      "machineExtractedText": "",
       "answer": null,
       "acceptedAnswers": [],
+      "answerFormat": "multipart-constructed-response",
       "explanation": "",
       "workedSolution": "",
+      "alternativeSolution": "",
+      "calculatorSolution": "",
+      "noncalculatorSolution": "",
+      "studentExplanation": "",
+      "teacherExplanation": "",
       "scoringGuideline": null,
       "rubric": [],
+      "rubricStatus": "official source guideline attached",
+      "commonMistakes": [
+        "Omitting justification required by the prompt.",
+        "Using calculator syntax instead of standard mathematical notation.",
+        "Reading a graph or table without attending to units and sign."
+      ],
+      "verificationStatus": "source-preserved-review-required",
+      "answerConfidence": 0.92,
       "source": {
         "organization": "lucid-ab-practice-2015",
         "publisher": "lucid-ab-practice-2015",
@@ -5728,17 +6167,42 @@
       "pedagogy": {
         "difficulty": 3,
         "difficultyLabel": "Medium",
-        "hints": []
+        "cognitiveDemand": 3,
+        "hints": [],
+        "misconceptions": [],
+        "related": {
+          "easier": [],
+          "parallel": [],
+          "harder": [],
+          "prerequisite": [],
+          "sameOfficialTopic": [],
+          "relatedFRQ": [],
+          "relatedMCQ": []
+        }
       },
       "quality": {
+        "completeness": "complete-source-facsimile",
         "productionStatus": "teacher-archive-only",
+        "productionReadiness": 0.82,
+        "tutoringReadiness": 0.85,
         "needsReview": true,
-        "studentReadyGatePassed": false,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
           "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
-        ]
+        ],
+        "transcriptionVerified": false,
+        "answerVerified": false,
+        "mediaVerified": true,
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "katexVerified": false,
+        "mappingVerified": false,
+        "studentReadyGatePassed": false
       },
+      "studentEligible": false,
+      "studentAccessible": true,
+      "deploymentAccess": "archive-metadata-only",
+      "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "28; 39",
@@ -5760,11 +6224,7 @@
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
         "auditedAt": "2026-07-24T17:46:03+00:00"
       },
-      "studentEligible": false,
-      "studentAccessible": true,
       "studentReady": false,
-      "deploymentAccess": "archive-metadata-only",
-      "contentStatus": "indexed-only",
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
     },
     {
@@ -5773,22 +6233,41 @@
       "courseId": "ap-calculus-ab",
       "assessmentFamily": "lucid-ab-practice-2015",
       "type": "frq",
+      "format": "free-response",
       "year": 2015,
       "form": "",
       "questionNumber": "2",
       "section": "II",
       "calculator": "mixed-by-part",
+      "maxPoints": 9,
+      "estimatedTime": 900,
       "prompt": "",
       "directions": "",
       "parts": [],
       "choices": [],
       "media": [],
+      "facsimileAuthority": "The linked SVG facsimile is authoritative where machine-extracted text and mathematical typography differ.",
+      "machineExtractedText": "",
       "answer": null,
       "acceptedAnswers": [],
+      "answerFormat": "multipart-constructed-response",
       "explanation": "",
       "workedSolution": "",
+      "alternativeSolution": "",
+      "calculatorSolution": "",
+      "noncalculatorSolution": "",
+      "studentExplanation": "",
+      "teacherExplanation": "",
       "scoringGuideline": null,
       "rubric": [],
+      "rubricStatus": "official source guideline attached",
+      "commonMistakes": [
+        "Omitting justification required by the prompt.",
+        "Using calculator syntax instead of standard mathematical notation.",
+        "Reading a graph or table without attending to units and sign."
+      ],
+      "verificationStatus": "source-preserved-review-required",
+      "answerConfidence": 0.92,
       "source": {
         "organization": "lucid-ab-practice-2015",
         "publisher": "lucid-ab-practice-2015",
@@ -5862,17 +6341,42 @@
       "pedagogy": {
         "difficulty": 3,
         "difficultyLabel": "Medium",
-        "hints": []
+        "cognitiveDemand": 3,
+        "hints": [],
+        "misconceptions": [],
+        "related": {
+          "easier": [],
+          "parallel": [],
+          "harder": [],
+          "prerequisite": [],
+          "sameOfficialTopic": [],
+          "relatedFRQ": [],
+          "relatedMCQ": []
+        }
       },
       "quality": {
+        "completeness": "complete-source-facsimile",
         "productionStatus": "teacher-archive-only",
+        "productionReadiness": 0.82,
+        "tutoringReadiness": 0.85,
         "needsReview": true,
-        "studentReadyGatePassed": false,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
           "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
-        ]
+        ],
+        "transcriptionVerified": false,
+        "answerVerified": false,
+        "mediaVerified": true,
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "katexVerified": false,
+        "mappingVerified": false,
+        "studentReadyGatePassed": false
       },
+      "studentEligible": false,
+      "studentAccessible": true,
+      "deploymentAccess": "archive-metadata-only",
+      "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "29; 30; 31; 40",
@@ -5894,11 +6398,7 @@
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
         "auditedAt": "2026-07-24T17:46:03+00:00"
       },
-      "studentEligible": false,
-      "studentAccessible": true,
       "studentReady": false,
-      "deploymentAccess": "archive-metadata-only",
-      "contentStatus": "indexed-only",
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
     },
     {
@@ -5907,22 +6407,41 @@
       "courseId": "ap-calculus-ab",
       "assessmentFamily": "lucid-ab-practice-2015",
       "type": "frq",
+      "format": "free-response",
       "year": 2015,
       "form": "",
       "questionNumber": "3",
       "section": "II",
       "calculator": "mixed-by-part",
+      "maxPoints": 9,
+      "estimatedTime": 900,
       "prompt": "",
       "directions": "",
       "parts": [],
       "choices": [],
       "media": [],
+      "facsimileAuthority": "The linked SVG facsimile is authoritative where machine-extracted text and mathematical typography differ.",
+      "machineExtractedText": "",
       "answer": null,
       "acceptedAnswers": [],
+      "answerFormat": "multipart-constructed-response",
       "explanation": "",
       "workedSolution": "",
+      "alternativeSolution": "",
+      "calculatorSolution": "",
+      "noncalculatorSolution": "",
+      "studentExplanation": "",
+      "teacherExplanation": "",
       "scoringGuideline": null,
       "rubric": [],
+      "rubricStatus": "official source guideline attached",
+      "commonMistakes": [
+        "Omitting justification required by the prompt.",
+        "Using calculator syntax instead of standard mathematical notation.",
+        "Reading a graph or table without attending to units and sign."
+      ],
+      "verificationStatus": "source-preserved-review-required",
+      "answerConfidence": 0.92,
       "source": {
         "organization": "lucid-ab-practice-2015",
         "publisher": "lucid-ab-practice-2015",
@@ -5995,17 +6514,42 @@
       "pedagogy": {
         "difficulty": 3,
         "difficultyLabel": "Medium",
-        "hints": []
+        "cognitiveDemand": 3,
+        "hints": [],
+        "misconceptions": [],
+        "related": {
+          "easier": [],
+          "parallel": [],
+          "harder": [],
+          "prerequisite": [],
+          "sameOfficialTopic": [],
+          "relatedFRQ": [],
+          "relatedMCQ": []
+        }
       },
       "quality": {
+        "completeness": "complete-source-facsimile",
         "productionStatus": "teacher-archive-only",
+        "productionReadiness": 0.82,
+        "tutoringReadiness": 0.85,
         "needsReview": true,
-        "studentReadyGatePassed": false,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
           "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
-        ]
+        ],
+        "transcriptionVerified": false,
+        "answerVerified": false,
+        "mediaVerified": true,
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "katexVerified": false,
+        "mappingVerified": false,
+        "studentReadyGatePassed": false
       },
+      "studentEligible": false,
+      "studentAccessible": true,
+      "deploymentAccess": "archive-metadata-only",
+      "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "32; 41; 42",
@@ -6027,11 +6571,7 @@
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
         "auditedAt": "2026-07-24T17:46:03+00:00"
       },
-      "studentEligible": false,
-      "studentAccessible": true,
       "studentReady": false,
-      "deploymentAccess": "archive-metadata-only",
-      "contentStatus": "indexed-only",
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
     },
     {
@@ -6040,22 +6580,41 @@
       "courseId": "ap-calculus-ab",
       "assessmentFamily": "lucid-ab-practice-2015",
       "type": "frq",
+      "format": "free-response",
       "year": 2015,
       "form": "",
       "questionNumber": "4",
       "section": "II",
       "calculator": "mixed-by-part",
+      "maxPoints": 9,
+      "estimatedTime": 900,
       "prompt": "",
       "directions": "",
       "parts": [],
       "choices": [],
       "media": [],
+      "facsimileAuthority": "The linked SVG facsimile is authoritative where machine-extracted text and mathematical typography differ.",
+      "machineExtractedText": "",
       "answer": null,
       "acceptedAnswers": [],
+      "answerFormat": "multipart-constructed-response",
       "explanation": "",
       "workedSolution": "",
+      "alternativeSolution": "",
+      "calculatorSolution": "",
+      "noncalculatorSolution": "",
+      "studentExplanation": "",
+      "teacherExplanation": "",
       "scoringGuideline": null,
       "rubric": [],
+      "rubricStatus": "official source guideline attached",
+      "commonMistakes": [
+        "Omitting justification required by the prompt.",
+        "Using calculator syntax instead of standard mathematical notation.",
+        "Reading a graph or table without attending to units and sign."
+      ],
+      "verificationStatus": "source-preserved-review-required",
+      "answerConfidence": 0.92,
       "source": {
         "organization": "lucid-ab-practice-2015",
         "publisher": "lucid-ab-practice-2015",
@@ -6128,17 +6687,42 @@
       "pedagogy": {
         "difficulty": 3,
         "difficultyLabel": "Medium",
-        "hints": []
+        "cognitiveDemand": 3,
+        "hints": [],
+        "misconceptions": [],
+        "related": {
+          "easier": [],
+          "parallel": [],
+          "harder": [],
+          "prerequisite": [],
+          "sameOfficialTopic": [],
+          "relatedFRQ": [],
+          "relatedMCQ": []
+        }
       },
       "quality": {
+        "completeness": "complete-source-facsimile",
         "productionStatus": "teacher-archive-only",
+        "productionReadiness": 0.82,
+        "tutoringReadiness": 0.85,
         "needsReview": true,
-        "studentReadyGatePassed": false,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
           "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
-        ]
+        ],
+        "transcriptionVerified": false,
+        "answerVerified": false,
+        "mediaVerified": true,
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "katexVerified": false,
+        "mappingVerified": false,
+        "studentReadyGatePassed": false
       },
+      "studentEligible": false,
+      "studentAccessible": true,
+      "deploymentAccess": "archive-metadata-only",
+      "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "33; 43",
@@ -6160,11 +6744,7 @@
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
         "auditedAt": "2026-07-24T17:46:03+00:00"
       },
-      "studentEligible": false,
-      "studentAccessible": true,
       "studentReady": false,
-      "deploymentAccess": "archive-metadata-only",
-      "contentStatus": "indexed-only",
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
     },
     {
@@ -6173,22 +6753,41 @@
       "courseId": "ap-calculus-ab",
       "assessmentFamily": "lucid-ab-practice-2015",
       "type": "frq",
+      "format": "free-response",
       "year": 2015,
       "form": "",
       "questionNumber": "5",
       "section": "II",
       "calculator": "mixed-by-part",
+      "maxPoints": 9,
+      "estimatedTime": 900,
       "prompt": "",
       "directions": "",
       "parts": [],
       "choices": [],
       "media": [],
+      "facsimileAuthority": "The linked SVG facsimile is authoritative where machine-extracted text and mathematical typography differ.",
+      "machineExtractedText": "",
       "answer": null,
       "acceptedAnswers": [],
+      "answerFormat": "multipart-constructed-response",
       "explanation": "",
       "workedSolution": "",
+      "alternativeSolution": "",
+      "calculatorSolution": "",
+      "noncalculatorSolution": "",
+      "studentExplanation": "",
+      "teacherExplanation": "",
       "scoringGuideline": null,
       "rubric": [],
+      "rubricStatus": "official source guideline attached",
+      "commonMistakes": [
+        "Omitting justification required by the prompt.",
+        "Using calculator syntax instead of standard mathematical notation.",
+        "Reading a graph or table without attending to units and sign."
+      ],
+      "verificationStatus": "source-preserved-review-required",
+      "answerConfidence": 0.92,
       "source": {
         "organization": "lucid-ab-practice-2015",
         "publisher": "lucid-ab-practice-2015",
@@ -6254,17 +6853,42 @@
       "pedagogy": {
         "difficulty": 3,
         "difficultyLabel": "Medium",
-        "hints": []
+        "cognitiveDemand": 3,
+        "hints": [],
+        "misconceptions": [],
+        "related": {
+          "easier": [],
+          "parallel": [],
+          "harder": [],
+          "prerequisite": [],
+          "sameOfficialTopic": [],
+          "relatedFRQ": [],
+          "relatedMCQ": []
+        }
       },
       "quality": {
+        "completeness": "complete-source-facsimile",
         "productionStatus": "teacher-archive-only",
+        "productionReadiness": 0.82,
+        "tutoringReadiness": 0.85,
         "needsReview": true,
-        "studentReadyGatePassed": false,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
           "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
-        ]
+        ],
+        "transcriptionVerified": false,
+        "answerVerified": false,
+        "mediaVerified": true,
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "katexVerified": false,
+        "mappingVerified": false,
+        "studentReadyGatePassed": false
       },
+      "studentEligible": false,
+      "studentAccessible": true,
+      "deploymentAccess": "archive-metadata-only",
+      "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "34; 44; 45",
@@ -6286,11 +6910,7 @@
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
         "auditedAt": "2026-07-24T17:46:03+00:00"
       },
-      "studentEligible": false,
-      "studentAccessible": true,
       "studentReady": false,
-      "deploymentAccess": "archive-metadata-only",
-      "contentStatus": "indexed-only",
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
     },
     {
@@ -6299,22 +6919,41 @@
       "courseId": "ap-calculus-ab",
       "assessmentFamily": "lucid-ab-practice-2015",
       "type": "frq",
+      "format": "free-response",
       "year": 2015,
       "form": "",
       "questionNumber": "6",
       "section": "II",
       "calculator": "mixed-by-part",
+      "maxPoints": 9,
+      "estimatedTime": 900,
       "prompt": "",
       "directions": "",
       "parts": [],
       "choices": [],
       "media": [],
+      "facsimileAuthority": "The linked SVG facsimile is authoritative where machine-extracted text and mathematical typography differ.",
+      "machineExtractedText": "",
       "answer": null,
       "acceptedAnswers": [],
+      "answerFormat": "multipart-constructed-response",
       "explanation": "",
       "workedSolution": "",
+      "alternativeSolution": "",
+      "calculatorSolution": "",
+      "noncalculatorSolution": "",
+      "studentExplanation": "",
+      "teacherExplanation": "",
       "scoringGuideline": null,
       "rubric": [],
+      "rubricStatus": "official source guideline attached",
+      "commonMistakes": [
+        "Omitting justification required by the prompt.",
+        "Using calculator syntax instead of standard mathematical notation.",
+        "Reading a graph or table without attending to units and sign."
+      ],
+      "verificationStatus": "source-preserved-review-required",
+      "answerConfidence": 0.92,
       "source": {
         "organization": "lucid-ab-practice-2015",
         "publisher": "lucid-ab-practice-2015",
@@ -6387,17 +7026,42 @@
       "pedagogy": {
         "difficulty": 3,
         "difficultyLabel": "Medium",
-        "hints": []
+        "cognitiveDemand": 3,
+        "hints": [],
+        "misconceptions": [],
+        "related": {
+          "easier": [],
+          "parallel": [],
+          "harder": [],
+          "prerequisite": [],
+          "sameOfficialTopic": [],
+          "relatedFRQ": [],
+          "relatedMCQ": []
+        }
       },
       "quality": {
+        "completeness": "complete-source-facsimile",
         "productionStatus": "teacher-archive-only",
+        "productionReadiness": 0.82,
+        "tutoringReadiness": 0.85,
         "needsReview": true,
-        "studentReadyGatePassed": false,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
           "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
-        ]
+        ],
+        "transcriptionVerified": false,
+        "answerVerified": false,
+        "mediaVerified": true,
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "katexVerified": false,
+        "mappingVerified": false,
+        "studentReadyGatePassed": false
       },
+      "studentEligible": false,
+      "studentAccessible": true,
+      "deploymentAccess": "archive-metadata-only",
+      "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "35; 45; 46",
@@ -6419,11 +7083,7 @@
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
         "auditedAt": "2026-07-24T17:46:03+00:00"
       },
-      "studentEligible": false,
-      "studentAccessible": true,
       "studentReady": false,
-      "deploymentAccess": "archive-metadata-only",
-      "contentStatus": "indexed-only",
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
     },
     {
@@ -6432,22 +7092,41 @@
       "courseId": "ap-calculus-ab",
       "assessmentFamily": "lucid-ab-practice-2015",
       "type": "mcq",
+      "format": "single-select",
       "year": 2015,
       "form": "",
       "questionNumber": "1",
       "section": "I, Part A",
       "calculator": "no-calculator",
+      "maxPoints": 1,
+      "estimatedTime": 75,
       "prompt": "",
       "directions": "",
       "parts": [],
       "choices": [],
       "media": [],
+      "facsimileAuthority": "The linked SVG facsimile is authoritative where machine-extracted text and mathematical typography differ.",
+      "machineExtractedText": "",
       "answer": null,
       "acceptedAnswers": [],
+      "answerFormat": "choice",
       "explanation": "",
       "workedSolution": "",
+      "alternativeSolution": "",
+      "calculatorSolution": "",
+      "noncalculatorSolution": "",
+      "studentExplanation": "",
+      "teacherExplanation": "",
       "scoringGuideline": null,
       "rubric": [],
+      "rubricStatus": "source guideline unavailable; review required",
+      "commonMistakes": [
+        "Omitting justification required by the prompt.",
+        "Using calculator syntax instead of standard mathematical notation.",
+        "Reading a graph or table without attending to units and sign."
+      ],
+      "verificationStatus": "source-preserved-review-required",
+      "answerConfidence": 0.65,
       "source": {
         "organization": "lucid-ab-practice-2015",
         "publisher": "lucid-ab-practice-2015",
@@ -6515,18 +7194,43 @@
       "pedagogy": {
         "difficulty": 3,
         "difficultyLabel": "Medium",
-        "hints": []
+        "cognitiveDemand": 3,
+        "hints": [],
+        "misconceptions": [],
+        "related": {
+          "easier": [],
+          "parallel": [],
+          "harder": [],
+          "prerequisite": [],
+          "sameOfficialTopic": [],
+          "relatedFRQ": [],
+          "relatedMCQ": []
+        }
       },
       "quality": {
+        "completeness": "complete-source-facsimile",
         "productionStatus": "teacher-archive-only",
+        "productionReadiness": 0.6,
+        "tutoringReadiness": 0.62,
         "needsReview": true,
-        "studentReadyGatePassed": false,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
           "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
-        ]
+        ],
+        "transcriptionVerified": false,
+        "answerVerified": false,
+        "mediaVerified": true,
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "katexVerified": false,
+        "mappingVerified": false,
+        "studentReadyGatePassed": false
       },
+      "studentEligible": false,
+      "studentAccessible": true,
+      "deploymentAccess": "archive-metadata-only",
+      "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "3",
@@ -6548,11 +7252,7 @@
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
         "auditedAt": "2026-07-24T17:46:03+00:00"
       },
-      "studentEligible": false,
-      "studentAccessible": true,
       "studentReady": false,
-      "deploymentAccess": "archive-metadata-only",
-      "contentStatus": "indexed-only",
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
     },
     {
@@ -6561,22 +7261,41 @@
       "courseId": "ap-calculus-ab",
       "assessmentFamily": "lucid-ab-practice-2015",
       "type": "mcq",
+      "format": "single-select",
       "year": 2015,
       "form": "",
       "questionNumber": "2",
       "section": "I, Part A",
       "calculator": "no-calculator",
+      "maxPoints": 1,
+      "estimatedTime": 75,
       "prompt": "",
       "directions": "",
       "parts": [],
       "choices": [],
       "media": [],
+      "facsimileAuthority": "The linked SVG facsimile is authoritative where machine-extracted text and mathematical typography differ.",
+      "machineExtractedText": ".    Find \n.",
       "answer": null,
       "acceptedAnswers": [],
+      "answerFormat": "choice",
       "explanation": "",
       "workedSolution": "",
+      "alternativeSolution": "",
+      "calculatorSolution": "",
+      "noncalculatorSolution": "",
+      "studentExplanation": "",
+      "teacherExplanation": "",
       "scoringGuideline": null,
       "rubric": [],
+      "rubricStatus": "source guideline unavailable; review required",
+      "commonMistakes": [
+        "Omitting justification required by the prompt.",
+        "Using calculator syntax instead of standard mathematical notation.",
+        "Reading a graph or table without attending to units and sign."
+      ],
+      "verificationStatus": "source-preserved-review-required",
+      "answerConfidence": 0.65,
       "source": {
         "organization": "lucid-ab-practice-2015",
         "publisher": "lucid-ab-practice-2015",
@@ -6641,18 +7360,43 @@
       "pedagogy": {
         "difficulty": 3,
         "difficultyLabel": "Medium",
-        "hints": []
+        "cognitiveDemand": 3,
+        "hints": [],
+        "misconceptions": [],
+        "related": {
+          "easier": [],
+          "parallel": [],
+          "harder": [],
+          "prerequisite": [],
+          "sameOfficialTopic": [],
+          "relatedFRQ": [],
+          "relatedMCQ": []
+        }
       },
       "quality": {
+        "completeness": "complete-source-facsimile",
         "productionStatus": "teacher-archive-only",
+        "productionReadiness": 0.6,
+        "tutoringReadiness": 0.62,
         "needsReview": true,
-        "studentReadyGatePassed": false,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
           "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
-        ]
+        ],
+        "transcriptionVerified": false,
+        "answerVerified": false,
+        "mediaVerified": true,
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "katexVerified": false,
+        "mappingVerified": false,
+        "studentReadyGatePassed": false
       },
+      "studentEligible": false,
+      "studentAccessible": true,
+      "deploymentAccess": "archive-metadata-only",
+      "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "3",
@@ -6674,11 +7418,7 @@
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
         "auditedAt": "2026-07-24T17:46:03+00:00"
       },
-      "studentEligible": false,
-      "studentAccessible": true,
       "studentReady": false,
-      "deploymentAccess": "archive-metadata-only",
-      "contentStatus": "indexed-only",
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
     },
     {
@@ -6687,22 +7427,41 @@
       "courseId": "ap-calculus-ab",
       "assessmentFamily": "lucid-ab-practice-2015",
       "type": "mcq",
+      "format": "single-select",
       "year": 2015,
       "form": "",
       "questionNumber": "3",
       "section": "I, Part A",
       "calculator": "no-calculator",
+      "maxPoints": 1,
+      "estimatedTime": 75,
       "prompt": "",
       "directions": "",
       "parts": [],
       "choices": [],
       "media": [],
+      "facsimileAuthority": "The linked SVG facsimile is authoritative where machine-extracted text and mathematical typography differ.",
+      "machineExtractedText": "",
       "answer": null,
       "acceptedAnswers": [],
+      "answerFormat": "choice",
       "explanation": "",
       "workedSolution": "",
+      "alternativeSolution": "",
+      "calculatorSolution": "",
+      "noncalculatorSolution": "",
+      "studentExplanation": "",
+      "teacherExplanation": "",
       "scoringGuideline": null,
       "rubric": [],
+      "rubricStatus": "source guideline unavailable; review required",
+      "commonMistakes": [
+        "Omitting justification required by the prompt.",
+        "Using calculator syntax instead of standard mathematical notation.",
+        "Reading a graph or table without attending to units and sign."
+      ],
+      "verificationStatus": "source-preserved-review-required",
+      "answerConfidence": 0.65,
       "source": {
         "organization": "lucid-ab-practice-2015",
         "publisher": "lucid-ab-practice-2015",
@@ -6766,18 +7525,43 @@
       "pedagogy": {
         "difficulty": 3,
         "difficultyLabel": "Medium",
-        "hints": []
+        "cognitiveDemand": 3,
+        "hints": [],
+        "misconceptions": [],
+        "related": {
+          "easier": [],
+          "parallel": [],
+          "harder": [],
+          "prerequisite": [],
+          "sameOfficialTopic": [],
+          "relatedFRQ": [],
+          "relatedMCQ": []
+        }
       },
       "quality": {
+        "completeness": "complete-source-facsimile",
         "productionStatus": "teacher-archive-only",
+        "productionReadiness": 0.6,
+        "tutoringReadiness": 0.62,
         "needsReview": true,
-        "studentReadyGatePassed": false,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
           "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
-        ]
+        ],
+        "transcriptionVerified": false,
+        "answerVerified": false,
+        "mediaVerified": true,
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "katexVerified": false,
+        "mappingVerified": false,
+        "studentReadyGatePassed": false
       },
+      "studentEligible": false,
+      "studentAccessible": true,
+      "deploymentAccess": "archive-metadata-only",
+      "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "4",
@@ -6799,11 +7583,7 @@
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
         "auditedAt": "2026-07-24T17:46:03+00:00"
       },
-      "studentEligible": false,
-      "studentAccessible": true,
       "studentReady": false,
-      "deploymentAccess": "archive-metadata-only",
-      "contentStatus": "indexed-only",
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
     },
     {
@@ -6812,22 +7592,41 @@
       "courseId": "ap-calculus-ab",
       "assessmentFamily": "lucid-ab-practice-2015",
       "type": "mcq",
+      "format": "single-select",
       "year": 2015,
       "form": "",
       "questionNumber": "4",
       "section": "I, Part A",
       "calculator": "no-calculator",
+      "maxPoints": 1,
+      "estimatedTime": 75,
       "prompt": "",
       "directions": "",
       "parts": [],
       "choices": [],
       "media": [],
+      "facsimileAuthority": "The linked SVG facsimile is authoritative where machine-extracted text and mathematical typography differ.",
+      "machineExtractedText": "",
       "answer": null,
       "acceptedAnswers": [],
+      "answerFormat": "choice",
       "explanation": "",
       "workedSolution": "",
+      "alternativeSolution": "",
+      "calculatorSolution": "",
+      "noncalculatorSolution": "",
+      "studentExplanation": "",
+      "teacherExplanation": "",
       "scoringGuideline": null,
       "rubric": [],
+      "rubricStatus": "source guideline unavailable; review required",
+      "commonMistakes": [
+        "Omitting justification required by the prompt.",
+        "Using calculator syntax instead of standard mathematical notation.",
+        "Reading a graph or table without attending to units and sign."
+      ],
+      "verificationStatus": "source-preserved-review-required",
+      "answerConfidence": 0.65,
       "source": {
         "organization": "lucid-ab-practice-2015",
         "publisher": "lucid-ab-practice-2015",
@@ -6890,18 +7689,43 @@
       "pedagogy": {
         "difficulty": 3,
         "difficultyLabel": "Medium",
-        "hints": []
+        "cognitiveDemand": 3,
+        "hints": [],
+        "misconceptions": [],
+        "related": {
+          "easier": [],
+          "parallel": [],
+          "harder": [],
+          "prerequisite": [],
+          "sameOfficialTopic": [],
+          "relatedFRQ": [],
+          "relatedMCQ": []
+        }
       },
       "quality": {
+        "completeness": "complete-source-facsimile",
         "productionStatus": "teacher-archive-only",
+        "productionReadiness": 0.6,
+        "tutoringReadiness": 0.62,
         "needsReview": true,
-        "studentReadyGatePassed": false,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
           "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
-        ]
+        ],
+        "transcriptionVerified": false,
+        "answerVerified": false,
+        "mediaVerified": true,
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "katexVerified": false,
+        "mappingVerified": false,
+        "studentReadyGatePassed": false
       },
+      "studentEligible": false,
+      "studentAccessible": true,
+      "deploymentAccess": "archive-metadata-only",
+      "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "4",
@@ -6923,11 +7747,7 @@
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
         "auditedAt": "2026-07-24T17:46:03+00:00"
       },
-      "studentEligible": false,
-      "studentAccessible": true,
       "studentReady": false,
-      "deploymentAccess": "archive-metadata-only",
-      "contentStatus": "indexed-only",
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
     },
     {
@@ -6936,22 +7756,41 @@
       "courseId": "ap-calculus-ab",
       "assessmentFamily": "lucid-ab-practice-2015",
       "type": "mcq",
+      "format": "single-select",
       "year": 2015,
       "form": "",
       "questionNumber": "5",
       "section": "I, Part A",
       "calculator": "no-calculator",
+      "maxPoints": 1,
+      "estimatedTime": 75,
       "prompt": "",
       "directions": "",
       "parts": [],
       "choices": [],
       "media": [],
+      "facsimileAuthority": "The linked SVG facsimile is authoritative where machine-extracted text and mathematical typography differ.",
+      "machineExtractedText": "",
       "answer": null,
       "acceptedAnswers": [],
+      "answerFormat": "choice",
       "explanation": "",
       "workedSolution": "",
+      "alternativeSolution": "",
+      "calculatorSolution": "",
+      "noncalculatorSolution": "",
+      "studentExplanation": "",
+      "teacherExplanation": "",
       "scoringGuideline": null,
       "rubric": [],
+      "rubricStatus": "source guideline unavailable; review required",
+      "commonMistakes": [
+        "Omitting justification required by the prompt.",
+        "Using calculator syntax instead of standard mathematical notation.",
+        "Reading a graph or table without attending to units and sign."
+      ],
+      "verificationStatus": "source-preserved-review-required",
+      "answerConfidence": 0.65,
       "source": {
         "organization": "lucid-ab-practice-2015",
         "publisher": "lucid-ab-practice-2015",
@@ -7023,18 +7862,43 @@
       "pedagogy": {
         "difficulty": 3,
         "difficultyLabel": "Medium",
-        "hints": []
+        "cognitiveDemand": 3,
+        "hints": [],
+        "misconceptions": [],
+        "related": {
+          "easier": [],
+          "parallel": [],
+          "harder": [],
+          "prerequisite": [],
+          "sameOfficialTopic": [],
+          "relatedFRQ": [],
+          "relatedMCQ": []
+        }
       },
       "quality": {
+        "completeness": "complete-source-facsimile",
         "productionStatus": "teacher-archive-only",
+        "productionReadiness": 0.6,
+        "tutoringReadiness": 0.62,
         "needsReview": true,
-        "studentReadyGatePassed": false,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
           "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
-        ]
+        ],
+        "transcriptionVerified": false,
+        "answerVerified": false,
+        "mediaVerified": true,
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "katexVerified": false,
+        "mappingVerified": false,
+        "studentReadyGatePassed": false
       },
+      "studentEligible": false,
+      "studentAccessible": true,
+      "deploymentAccess": "archive-metadata-only",
+      "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "5",
@@ -7056,11 +7920,7 @@
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
         "auditedAt": "2026-07-24T17:46:03+00:00"
       },
-      "studentEligible": false,
-      "studentAccessible": true,
       "studentReady": false,
-      "deploymentAccess": "archive-metadata-only",
-      "contentStatus": "indexed-only",
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
     },
     {
@@ -7069,22 +7929,41 @@
       "courseId": "ap-calculus-ab",
       "assessmentFamily": "lucid-ab-practice-2015",
       "type": "mcq",
+      "format": "single-select",
       "year": 2015,
       "form": "",
       "questionNumber": "6",
       "section": "I, Part A",
       "calculator": "no-calculator",
+      "maxPoints": 1,
+      "estimatedTime": 75,
       "prompt": "",
       "directions": "",
       "parts": [],
       "choices": [],
       "media": [],
+      "facsimileAuthority": "The linked SVG facsimile is authoritative where machine-extracted text and mathematical typography differ.",
+      "machineExtractedText": "",
       "answer": null,
       "acceptedAnswers": [],
+      "answerFormat": "choice",
       "explanation": "",
       "workedSolution": "",
+      "alternativeSolution": "",
+      "calculatorSolution": "",
+      "noncalculatorSolution": "",
+      "studentExplanation": "",
+      "teacherExplanation": "",
       "scoringGuideline": null,
       "rubric": [],
+      "rubricStatus": "source guideline unavailable; review required",
+      "commonMistakes": [
+        "Omitting justification required by the prompt.",
+        "Using calculator syntax instead of standard mathematical notation.",
+        "Reading a graph or table without attending to units and sign."
+      ],
+      "verificationStatus": "source-preserved-review-required",
+      "answerConfidence": 0.65,
       "source": {
         "organization": "lucid-ab-practice-2015",
         "publisher": "lucid-ab-practice-2015",
@@ -7149,18 +8028,43 @@
       "pedagogy": {
         "difficulty": 3,
         "difficultyLabel": "Medium",
-        "hints": []
+        "cognitiveDemand": 3,
+        "hints": [],
+        "misconceptions": [],
+        "related": {
+          "easier": [],
+          "parallel": [],
+          "harder": [],
+          "prerequisite": [],
+          "sameOfficialTopic": [],
+          "relatedFRQ": [],
+          "relatedMCQ": []
+        }
       },
       "quality": {
+        "completeness": "complete-source-facsimile",
         "productionStatus": "teacher-archive-only",
+        "productionReadiness": 0.6,
+        "tutoringReadiness": 0.62,
         "needsReview": true,
-        "studentReadyGatePassed": false,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
           "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
-        ]
+        ],
+        "transcriptionVerified": false,
+        "answerVerified": false,
+        "mediaVerified": true,
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "katexVerified": false,
+        "mappingVerified": false,
+        "studentReadyGatePassed": false
       },
+      "studentEligible": false,
+      "studentAccessible": true,
+      "deploymentAccess": "archive-metadata-only",
+      "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "5",
@@ -7182,11 +8086,7 @@
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
         "auditedAt": "2026-07-24T17:46:03+00:00"
       },
-      "studentEligible": false,
-      "studentAccessible": true,
       "studentReady": false,
-      "deploymentAccess": "archive-metadata-only",
-      "contentStatus": "indexed-only",
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
     },
     {
@@ -7195,22 +8095,41 @@
       "courseId": "ap-calculus-ab",
       "assessmentFamily": "lucid-ab-practice-2015",
       "type": "mcq",
+      "format": "single-select",
       "year": 2015,
       "form": "",
       "questionNumber": "7",
       "section": "I, Part A",
       "calculator": "no-calculator",
+      "maxPoints": 1,
+      "estimatedTime": 75,
       "prompt": "",
       "directions": "",
       "parts": [],
       "choices": [],
       "media": [],
+      "facsimileAuthority": "The linked SVG facsimile is authoritative where machine-extracted text and mathematical typography differ.",
+      "machineExtractedText": "",
       "answer": null,
       "acceptedAnswers": [],
+      "answerFormat": "choice",
       "explanation": "",
       "workedSolution": "",
+      "alternativeSolution": "",
+      "calculatorSolution": "",
+      "noncalculatorSolution": "",
+      "studentExplanation": "",
+      "teacherExplanation": "",
       "scoringGuideline": null,
       "rubric": [],
+      "rubricStatus": "source guideline unavailable; review required",
+      "commonMistakes": [
+        "Omitting justification required by the prompt.",
+        "Using calculator syntax instead of standard mathematical notation.",
+        "Reading a graph or table without attending to units and sign."
+      ],
+      "verificationStatus": "source-preserved-review-required",
+      "answerConfidence": 0.65,
       "source": {
         "organization": "lucid-ab-practice-2015",
         "publisher": "lucid-ab-practice-2015",
@@ -7282,18 +8201,43 @@
       "pedagogy": {
         "difficulty": 3,
         "difficultyLabel": "Medium",
-        "hints": []
+        "cognitiveDemand": 3,
+        "hints": [],
+        "misconceptions": [],
+        "related": {
+          "easier": [],
+          "parallel": [],
+          "harder": [],
+          "prerequisite": [],
+          "sameOfficialTopic": [],
+          "relatedFRQ": [],
+          "relatedMCQ": []
+        }
       },
       "quality": {
+        "completeness": "complete-source-facsimile",
         "productionStatus": "teacher-archive-only",
+        "productionReadiness": 0.6,
+        "tutoringReadiness": 0.62,
         "needsReview": true,
-        "studentReadyGatePassed": false,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
           "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
-        ]
+        ],
+        "transcriptionVerified": false,
+        "answerVerified": false,
+        "mediaVerified": true,
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "katexVerified": false,
+        "mappingVerified": false,
+        "studentReadyGatePassed": false
       },
+      "studentEligible": false,
+      "studentAccessible": true,
+      "deploymentAccess": "archive-metadata-only",
+      "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "6",
@@ -7315,11 +8259,7 @@
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
         "auditedAt": "2026-07-24T17:46:03+00:00"
       },
-      "studentEligible": false,
-      "studentAccessible": true,
       "studentReady": false,
-      "deploymentAccess": "archive-metadata-only",
-      "contentStatus": "indexed-only",
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
     },
     {
@@ -7328,22 +8268,41 @@
       "courseId": "ap-calculus-ab",
       "assessmentFamily": "lucid-ab-practice-2015",
       "type": "mcq",
+      "format": "single-select",
       "year": 2015,
       "form": "",
       "questionNumber": "8",
       "section": "I, Part A",
       "calculator": "no-calculator",
+      "maxPoints": 1,
+      "estimatedTime": 75,
       "prompt": "",
       "directions": "",
       "parts": [],
       "choices": [],
       "media": [],
+      "facsimileAuthority": "The linked SVG facsimile is authoritative where machine-extracted text and mathematical typography differ.",
+      "machineExtractedText": ".",
       "answer": null,
       "acceptedAnswers": [],
+      "answerFormat": "choice",
       "explanation": "",
       "workedSolution": "",
+      "alternativeSolution": "",
+      "calculatorSolution": "",
+      "noncalculatorSolution": "",
+      "studentExplanation": "",
+      "teacherExplanation": "",
       "scoringGuideline": null,
       "rubric": [],
+      "rubricStatus": "source guideline unavailable; review required",
+      "commonMistakes": [
+        "Omitting justification required by the prompt.",
+        "Using calculator syntax instead of standard mathematical notation.",
+        "Reading a graph or table without attending to units and sign."
+      ],
+      "verificationStatus": "source-preserved-review-required",
+      "answerConfidence": 0.65,
       "source": {
         "organization": "lucid-ab-practice-2015",
         "publisher": "lucid-ab-practice-2015",
@@ -7408,18 +8367,43 @@
       "pedagogy": {
         "difficulty": 3,
         "difficultyLabel": "Medium",
-        "hints": []
+        "cognitiveDemand": 3,
+        "hints": [],
+        "misconceptions": [],
+        "related": {
+          "easier": [],
+          "parallel": [],
+          "harder": [],
+          "prerequisite": [],
+          "sameOfficialTopic": [],
+          "relatedFRQ": [],
+          "relatedMCQ": []
+        }
       },
       "quality": {
+        "completeness": "complete-source-facsimile",
         "productionStatus": "teacher-archive-only",
+        "productionReadiness": 0.6,
+        "tutoringReadiness": 0.62,
         "needsReview": true,
-        "studentReadyGatePassed": false,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
           "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
-        ]
+        ],
+        "transcriptionVerified": false,
+        "answerVerified": false,
+        "mediaVerified": true,
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "katexVerified": false,
+        "mappingVerified": false,
+        "studentReadyGatePassed": false
       },
+      "studentEligible": false,
+      "studentAccessible": true,
+      "deploymentAccess": "archive-metadata-only",
+      "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "6",
@@ -7441,11 +8425,7 @@
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
         "auditedAt": "2026-07-24T17:46:03+00:00"
       },
-      "studentEligible": false,
-      "studentAccessible": true,
       "studentReady": false,
-      "deploymentAccess": "archive-metadata-only",
-      "contentStatus": "indexed-only",
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
     },
     {
@@ -7454,22 +8434,41 @@
       "courseId": "ap-calculus-ab",
       "assessmentFamily": "lucid-ab-practice-2015",
       "type": "mcq",
+      "format": "single-select",
       "year": 2015,
       "form": "",
       "questionNumber": "9",
       "section": "I, Part A",
       "calculator": "no-calculator",
+      "maxPoints": 1,
+      "estimatedTime": 75,
       "prompt": "",
       "directions": "",
       "parts": [],
       "choices": [],
       "media": [],
+      "facsimileAuthority": "The linked SVG facsimile is authoritative where machine-extracted text and mathematical typography differ.",
+      "machineExtractedText": "",
       "answer": null,
       "acceptedAnswers": [],
+      "answerFormat": "choice",
       "explanation": "",
       "workedSolution": "",
+      "alternativeSolution": "",
+      "calculatorSolution": "",
+      "noncalculatorSolution": "",
+      "studentExplanation": "",
+      "teacherExplanation": "",
       "scoringGuideline": null,
       "rubric": [],
+      "rubricStatus": "source guideline unavailable; review required",
+      "commonMistakes": [
+        "Omitting justification required by the prompt.",
+        "Using calculator syntax instead of standard mathematical notation.",
+        "Reading a graph or table without attending to units and sign."
+      ],
+      "verificationStatus": "source-preserved-review-required",
+      "answerConfidence": 0.65,
       "source": {
         "organization": "lucid-ab-practice-2015",
         "publisher": "lucid-ab-practice-2015",
@@ -7534,18 +8533,43 @@
       "pedagogy": {
         "difficulty": 3,
         "difficultyLabel": "Medium",
-        "hints": []
+        "cognitiveDemand": 3,
+        "hints": [],
+        "misconceptions": [],
+        "related": {
+          "easier": [],
+          "parallel": [],
+          "harder": [],
+          "prerequisite": [],
+          "sameOfficialTopic": [],
+          "relatedFRQ": [],
+          "relatedMCQ": []
+        }
       },
       "quality": {
+        "completeness": "complete-source-facsimile",
         "productionStatus": "teacher-archive-only",
+        "productionReadiness": 0.6,
+        "tutoringReadiness": 0.62,
         "needsReview": true,
-        "studentReadyGatePassed": false,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
           "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
-        ]
+        ],
+        "transcriptionVerified": false,
+        "answerVerified": false,
+        "mediaVerified": true,
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "katexVerified": false,
+        "mappingVerified": false,
+        "studentReadyGatePassed": false
       },
+      "studentEligible": false,
+      "studentAccessible": true,
+      "deploymentAccess": "archive-metadata-only",
+      "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "7",
@@ -7567,11 +8591,7 @@
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
         "auditedAt": "2026-07-24T17:46:03+00:00"
       },
-      "studentEligible": false,
-      "studentAccessible": true,
       "studentReady": false,
-      "deploymentAccess": "archive-metadata-only",
-      "contentStatus": "indexed-only",
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
     },
     {
@@ -7580,22 +8600,41 @@
       "courseId": "ap-calculus-ab",
       "assessmentFamily": "lucid-ab-practice-2015",
       "type": "mcq",
+      "format": "single-select",
       "year": 2015,
       "form": "",
       "questionNumber": "10",
       "section": "I, Part A",
       "calculator": "no-calculator",
+      "maxPoints": 1,
+      "estimatedTime": 75,
       "prompt": "",
       "directions": "",
       "parts": [],
       "choices": [],
       "media": [],
+      "facsimileAuthority": "The linked SVG facsimile is authoritative where machine-extracted text and mathematical typography differ.",
+      "machineExtractedText": "",
       "answer": null,
       "acceptedAnswers": [],
+      "answerFormat": "choice",
       "explanation": "",
       "workedSolution": "",
+      "alternativeSolution": "",
+      "calculatorSolution": "",
+      "noncalculatorSolution": "",
+      "studentExplanation": "",
+      "teacherExplanation": "",
       "scoringGuideline": null,
       "rubric": [],
+      "rubricStatus": "source guideline unavailable; review required",
+      "commonMistakes": [
+        "Omitting justification required by the prompt.",
+        "Using calculator syntax instead of standard mathematical notation.",
+        "Reading a graph or table without attending to units and sign."
+      ],
+      "verificationStatus": "source-preserved-review-required",
+      "answerConfidence": 0.65,
       "source": {
         "organization": "lucid-ab-practice-2015",
         "publisher": "lucid-ab-practice-2015",
@@ -7666,18 +8705,43 @@
       "pedagogy": {
         "difficulty": 3,
         "difficultyLabel": "Medium",
-        "hints": []
+        "cognitiveDemand": 3,
+        "hints": [],
+        "misconceptions": [],
+        "related": {
+          "easier": [],
+          "parallel": [],
+          "harder": [],
+          "prerequisite": [],
+          "sameOfficialTopic": [],
+          "relatedFRQ": [],
+          "relatedMCQ": []
+        }
       },
       "quality": {
+        "completeness": "complete-source-facsimile",
         "productionStatus": "teacher-archive-only",
+        "productionReadiness": 0.6,
+        "tutoringReadiness": 0.62,
         "needsReview": true,
-        "studentReadyGatePassed": false,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
           "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
-        ]
+        ],
+        "transcriptionVerified": false,
+        "answerVerified": false,
+        "mediaVerified": true,
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "katexVerified": false,
+        "mappingVerified": false,
+        "studentReadyGatePassed": false
       },
+      "studentEligible": false,
+      "studentAccessible": true,
+      "deploymentAccess": "archive-metadata-only",
+      "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "7",
@@ -7699,11 +8763,7 @@
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
         "auditedAt": "2026-07-24T17:46:03+00:00"
       },
-      "studentEligible": false,
-      "studentAccessible": true,
       "studentReady": false,
-      "deploymentAccess": "archive-metadata-only",
-      "contentStatus": "indexed-only",
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
     },
     {
@@ -7712,22 +8772,41 @@
       "courseId": "ap-calculus-ab",
       "assessmentFamily": "lucid-ab-practice-2015",
       "type": "mcq",
+      "format": "single-select",
       "year": 2015,
       "form": "",
       "questionNumber": "11",
       "section": "I, Part A",
       "calculator": "no-calculator",
+      "maxPoints": 1,
+      "estimatedTime": 75,
       "prompt": "",
       "directions": "",
       "parts": [],
       "choices": [],
       "media": [],
+      "facsimileAuthority": "The linked SVG facsimile is authoritative where machine-extracted text and mathematical typography differ.",
+      "machineExtractedText": "",
       "answer": null,
       "acceptedAnswers": [],
+      "answerFormat": "choice",
       "explanation": "",
       "workedSolution": "",
+      "alternativeSolution": "",
+      "calculatorSolution": "",
+      "noncalculatorSolution": "",
+      "studentExplanation": "",
+      "teacherExplanation": "",
       "scoringGuideline": null,
       "rubric": [],
+      "rubricStatus": "source guideline unavailable; review required",
+      "commonMistakes": [
+        "Omitting justification required by the prompt.",
+        "Using calculator syntax instead of standard mathematical notation.",
+        "Reading a graph or table without attending to units and sign."
+      ],
+      "verificationStatus": "source-preserved-review-required",
+      "answerConfidence": 0.65,
       "source": {
         "organization": "lucid-ab-practice-2015",
         "publisher": "lucid-ab-practice-2015",
@@ -7791,18 +8870,43 @@
       "pedagogy": {
         "difficulty": 3,
         "difficultyLabel": "Medium",
-        "hints": []
+        "cognitiveDemand": 3,
+        "hints": [],
+        "misconceptions": [],
+        "related": {
+          "easier": [],
+          "parallel": [],
+          "harder": [],
+          "prerequisite": [],
+          "sameOfficialTopic": [],
+          "relatedFRQ": [],
+          "relatedMCQ": []
+        }
       },
       "quality": {
+        "completeness": "complete-source-facsimile",
         "productionStatus": "teacher-archive-only",
+        "productionReadiness": 0.6,
+        "tutoringReadiness": 0.62,
         "needsReview": true,
-        "studentReadyGatePassed": false,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
           "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
-        ]
+        ],
+        "transcriptionVerified": false,
+        "answerVerified": false,
+        "mediaVerified": true,
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "katexVerified": false,
+        "mappingVerified": false,
+        "studentReadyGatePassed": false
       },
+      "studentEligible": false,
+      "studentAccessible": true,
+      "deploymentAccess": "archive-metadata-only",
+      "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "8",
@@ -7824,11 +8928,7 @@
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
         "auditedAt": "2026-07-24T17:46:03+00:00"
       },
-      "studentEligible": false,
-      "studentAccessible": true,
       "studentReady": false,
-      "deploymentAccess": "archive-metadata-only",
-      "contentStatus": "indexed-only",
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
     },
     {
@@ -7837,22 +8937,41 @@
       "courseId": "ap-calculus-ab",
       "assessmentFamily": "lucid-ab-practice-2015",
       "type": "mcq",
+      "format": "single-select",
       "year": 2015,
       "form": "",
       "questionNumber": "12",
       "section": "I, Part A",
       "calculator": "no-calculator",
+      "maxPoints": 1,
+      "estimatedTime": 75,
       "prompt": "",
       "directions": "",
       "parts": [],
       "choices": [],
       "media": [],
+      "facsimileAuthority": "The linked SVG facsimile is authoritative where machine-extracted text and mathematical typography differ.",
+      "machineExtractedText": "",
       "answer": null,
       "acceptedAnswers": [],
+      "answerFormat": "choice",
       "explanation": "",
       "workedSolution": "",
+      "alternativeSolution": "",
+      "calculatorSolution": "",
+      "noncalculatorSolution": "",
+      "studentExplanation": "",
+      "teacherExplanation": "",
       "scoringGuideline": null,
       "rubric": [],
+      "rubricStatus": "source guideline unavailable; review required",
+      "commonMistakes": [
+        "Omitting justification required by the prompt.",
+        "Using calculator syntax instead of standard mathematical notation.",
+        "Reading a graph or table without attending to units and sign."
+      ],
+      "verificationStatus": "source-preserved-review-required",
+      "answerConfidence": 0.65,
       "source": {
         "organization": "lucid-ab-practice-2015",
         "publisher": "lucid-ab-practice-2015",
@@ -7917,18 +9036,43 @@
       "pedagogy": {
         "difficulty": 3,
         "difficultyLabel": "Medium",
-        "hints": []
+        "cognitiveDemand": 3,
+        "hints": [],
+        "misconceptions": [],
+        "related": {
+          "easier": [],
+          "parallel": [],
+          "harder": [],
+          "prerequisite": [],
+          "sameOfficialTopic": [],
+          "relatedFRQ": [],
+          "relatedMCQ": []
+        }
       },
       "quality": {
+        "completeness": "complete-source-facsimile",
         "productionStatus": "teacher-archive-only",
+        "productionReadiness": 0.6,
+        "tutoringReadiness": 0.62,
         "needsReview": true,
-        "studentReadyGatePassed": false,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
           "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
-        ]
+        ],
+        "transcriptionVerified": false,
+        "answerVerified": false,
+        "mediaVerified": true,
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "katexVerified": false,
+        "mappingVerified": false,
+        "studentReadyGatePassed": false
       },
+      "studentEligible": false,
+      "studentAccessible": true,
+      "deploymentAccess": "archive-metadata-only",
+      "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "8",
@@ -7950,11 +9094,7 @@
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
         "auditedAt": "2026-07-24T17:46:03+00:00"
       },
-      "studentEligible": false,
-      "studentAccessible": true,
       "studentReady": false,
-      "deploymentAccess": "archive-metadata-only",
-      "contentStatus": "indexed-only",
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
     },
     {
@@ -7963,22 +9103,41 @@
       "courseId": "ap-calculus-ab",
       "assessmentFamily": "lucid-ab-practice-2015",
       "type": "mcq",
+      "format": "single-select",
       "year": 2015,
       "form": "",
       "questionNumber": "13",
       "section": "I, Part A",
       "calculator": "no-calculator",
+      "maxPoints": 1,
+      "estimatedTime": 75,
       "prompt": "",
       "directions": "",
       "parts": [],
       "choices": [],
       "media": [],
+      "facsimileAuthority": "The linked SVG facsimile is authoritative where machine-extracted text and mathematical typography differ.",
+      "machineExtractedText": "",
       "answer": null,
       "acceptedAnswers": [],
+      "answerFormat": "choice",
       "explanation": "",
       "workedSolution": "",
+      "alternativeSolution": "",
+      "calculatorSolution": "",
+      "noncalculatorSolution": "",
+      "studentExplanation": "",
+      "teacherExplanation": "",
       "scoringGuideline": null,
       "rubric": [],
+      "rubricStatus": "source guideline unavailable; review required",
+      "commonMistakes": [
+        "Omitting justification required by the prompt.",
+        "Using calculator syntax instead of standard mathematical notation.",
+        "Reading a graph or table without attending to units and sign."
+      ],
+      "verificationStatus": "source-preserved-review-required",
+      "answerConfidence": 0.65,
       "source": {
         "organization": "lucid-ab-practice-2015",
         "publisher": "lucid-ab-practice-2015",
@@ -8050,18 +9209,43 @@
       "pedagogy": {
         "difficulty": 3,
         "difficultyLabel": "Medium",
-        "hints": []
+        "cognitiveDemand": 3,
+        "hints": [],
+        "misconceptions": [],
+        "related": {
+          "easier": [],
+          "parallel": [],
+          "harder": [],
+          "prerequisite": [],
+          "sameOfficialTopic": [],
+          "relatedFRQ": [],
+          "relatedMCQ": []
+        }
       },
       "quality": {
+        "completeness": "complete-source-facsimile",
         "productionStatus": "teacher-archive-only",
+        "productionReadiness": 0.6,
+        "tutoringReadiness": 0.62,
         "needsReview": true,
-        "studentReadyGatePassed": false,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
           "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
-        ]
+        ],
+        "transcriptionVerified": false,
+        "answerVerified": false,
+        "mediaVerified": true,
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "katexVerified": false,
+        "mappingVerified": false,
+        "studentReadyGatePassed": false
       },
+      "studentEligible": false,
+      "studentAccessible": true,
+      "deploymentAccess": "archive-metadata-only",
+      "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "9",
@@ -8083,11 +9267,7 @@
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
         "auditedAt": "2026-07-24T17:46:03+00:00"
       },
-      "studentEligible": false,
-      "studentAccessible": true,
       "studentReady": false,
-      "deploymentAccess": "archive-metadata-only",
-      "contentStatus": "indexed-only",
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
     },
     {
@@ -8096,22 +9276,41 @@
       "courseId": "ap-calculus-ab",
       "assessmentFamily": "lucid-ab-practice-2015",
       "type": "mcq",
+      "format": "single-select",
       "year": 2015,
       "form": "",
       "questionNumber": "14",
       "section": "I, Part A",
       "calculator": "no-calculator",
+      "maxPoints": 1,
+      "estimatedTime": 75,
       "prompt": "",
       "directions": "",
       "parts": [],
       "choices": [],
       "media": [],
+      "facsimileAuthority": "The linked SVG facsimile is authoritative where machine-extracted text and mathematical typography differ.",
+      "machineExtractedText": "",
       "answer": null,
       "acceptedAnswers": [],
+      "answerFormat": "choice",
       "explanation": "",
       "workedSolution": "",
+      "alternativeSolution": "",
+      "calculatorSolution": "",
+      "noncalculatorSolution": "",
+      "studentExplanation": "",
+      "teacherExplanation": "",
       "scoringGuideline": null,
       "rubric": [],
+      "rubricStatus": "source guideline unavailable; review required",
+      "commonMistakes": [
+        "Omitting justification required by the prompt.",
+        "Using calculator syntax instead of standard mathematical notation.",
+        "Reading a graph or table without attending to units and sign."
+      ],
+      "verificationStatus": "source-preserved-review-required",
+      "answerConfidence": 0.65,
       "source": {
         "organization": "lucid-ab-practice-2015",
         "publisher": "lucid-ab-practice-2015",
@@ -8179,18 +9378,43 @@
       "pedagogy": {
         "difficulty": 3,
         "difficultyLabel": "Medium",
-        "hints": []
+        "cognitiveDemand": 3,
+        "hints": [],
+        "misconceptions": [],
+        "related": {
+          "easier": [],
+          "parallel": [],
+          "harder": [],
+          "prerequisite": [],
+          "sameOfficialTopic": [],
+          "relatedFRQ": [],
+          "relatedMCQ": []
+        }
       },
       "quality": {
+        "completeness": "complete-source-facsimile",
         "productionStatus": "teacher-archive-only",
+        "productionReadiness": 0.6,
+        "tutoringReadiness": 0.62,
         "needsReview": true,
-        "studentReadyGatePassed": false,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
           "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
-        ]
+        ],
+        "transcriptionVerified": false,
+        "answerVerified": false,
+        "mediaVerified": true,
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "katexVerified": false,
+        "mappingVerified": false,
+        "studentReadyGatePassed": false
       },
+      "studentEligible": false,
+      "studentAccessible": true,
+      "deploymentAccess": "archive-metadata-only",
+      "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "9",
@@ -8212,11 +9436,7 @@
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
         "auditedAt": "2026-07-24T17:46:03+00:00"
       },
-      "studentEligible": false,
-      "studentAccessible": true,
       "studentReady": false,
-      "deploymentAccess": "archive-metadata-only",
-      "contentStatus": "indexed-only",
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
     },
     {
@@ -8225,22 +9445,41 @@
       "courseId": "ap-calculus-ab",
       "assessmentFamily": "lucid-ab-practice-2015",
       "type": "mcq",
+      "format": "single-select",
       "year": 2015,
       "form": "",
       "questionNumber": "15",
       "section": "I, Part A",
       "calculator": "no-calculator",
+      "maxPoints": 1,
+      "estimatedTime": 75,
       "prompt": "",
       "directions": "",
       "parts": [],
       "choices": [],
       "media": [],
+      "facsimileAuthority": "The linked SVG facsimile is authoritative where machine-extracted text and mathematical typography differ.",
+      "machineExtractedText": "",
       "answer": null,
       "acceptedAnswers": [],
+      "answerFormat": "choice",
       "explanation": "",
       "workedSolution": "",
+      "alternativeSolution": "",
+      "calculatorSolution": "",
+      "noncalculatorSolution": "",
+      "studentExplanation": "",
+      "teacherExplanation": "",
       "scoringGuideline": null,
       "rubric": [],
+      "rubricStatus": "source guideline unavailable; review required",
+      "commonMistakes": [
+        "Omitting justification required by the prompt.",
+        "Using calculator syntax instead of standard mathematical notation.",
+        "Reading a graph or table without attending to units and sign."
+      ],
+      "verificationStatus": "source-preserved-review-required",
+      "answerConfidence": 0.65,
       "source": {
         "organization": "lucid-ab-practice-2015",
         "publisher": "lucid-ab-practice-2015",
@@ -8305,18 +9544,43 @@
       "pedagogy": {
         "difficulty": 3,
         "difficultyLabel": "Medium",
-        "hints": []
+        "cognitiveDemand": 3,
+        "hints": [],
+        "misconceptions": [],
+        "related": {
+          "easier": [],
+          "parallel": [],
+          "harder": [],
+          "prerequisite": [],
+          "sameOfficialTopic": [],
+          "relatedFRQ": [],
+          "relatedMCQ": []
+        }
       },
       "quality": {
+        "completeness": "complete-source-facsimile",
         "productionStatus": "teacher-archive-only",
+        "productionReadiness": 0.6,
+        "tutoringReadiness": 0.62,
         "needsReview": true,
-        "studentReadyGatePassed": false,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
           "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
-        ]
+        ],
+        "transcriptionVerified": false,
+        "answerVerified": false,
+        "mediaVerified": true,
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "katexVerified": false,
+        "mappingVerified": false,
+        "studentReadyGatePassed": false
       },
+      "studentEligible": false,
+      "studentAccessible": true,
+      "deploymentAccess": "archive-metadata-only",
+      "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "10",
@@ -8338,11 +9602,7 @@
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
         "auditedAt": "2026-07-24T17:46:03+00:00"
       },
-      "studentEligible": false,
-      "studentAccessible": true,
       "studentReady": false,
-      "deploymentAccess": "archive-metadata-only",
-      "contentStatus": "indexed-only",
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
     },
     {
@@ -8351,22 +9611,41 @@
       "courseId": "ap-calculus-ab",
       "assessmentFamily": "lucid-ab-practice-2015",
       "type": "mcq",
+      "format": "single-select",
       "year": 2015,
       "form": "",
       "questionNumber": "16",
       "section": "I, Part A",
       "calculator": "no-calculator",
+      "maxPoints": 1,
+      "estimatedTime": 75,
       "prompt": "",
       "directions": "",
       "parts": [],
       "choices": [],
       "media": [],
+      "facsimileAuthority": "The linked SVG facsimile is authoritative where machine-extracted text and mathematical typography differ.",
+      "machineExtractedText": "",
       "answer": null,
       "acceptedAnswers": [],
+      "answerFormat": "choice",
       "explanation": "",
       "workedSolution": "",
+      "alternativeSolution": "",
+      "calculatorSolution": "",
+      "noncalculatorSolution": "",
+      "studentExplanation": "",
+      "teacherExplanation": "",
       "scoringGuideline": null,
       "rubric": [],
+      "rubricStatus": "source guideline unavailable; review required",
+      "commonMistakes": [
+        "Omitting justification required by the prompt.",
+        "Using calculator syntax instead of standard mathematical notation.",
+        "Reading a graph or table without attending to units and sign."
+      ],
+      "verificationStatus": "source-preserved-review-required",
+      "answerConfidence": 0.65,
       "source": {
         "organization": "lucid-ab-practice-2015",
         "publisher": "lucid-ab-practice-2015",
@@ -8431,18 +9710,43 @@
       "pedagogy": {
         "difficulty": 3,
         "difficultyLabel": "Medium",
-        "hints": []
+        "cognitiveDemand": 3,
+        "hints": [],
+        "misconceptions": [],
+        "related": {
+          "easier": [],
+          "parallel": [],
+          "harder": [],
+          "prerequisite": [],
+          "sameOfficialTopic": [],
+          "relatedFRQ": [],
+          "relatedMCQ": []
+        }
       },
       "quality": {
+        "completeness": "complete-source-facsimile",
         "productionStatus": "teacher-archive-only",
+        "productionReadiness": 0.6,
+        "tutoringReadiness": 0.62,
         "needsReview": true,
-        "studentReadyGatePassed": false,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
           "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
-        ]
+        ],
+        "transcriptionVerified": false,
+        "answerVerified": false,
+        "mediaVerified": true,
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "katexVerified": false,
+        "mappingVerified": false,
+        "studentReadyGatePassed": false
       },
+      "studentEligible": false,
+      "studentAccessible": true,
+      "deploymentAccess": "archive-metadata-only",
+      "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "10",
@@ -8464,11 +9768,7 @@
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
         "auditedAt": "2026-07-24T17:46:03+00:00"
       },
-      "studentEligible": false,
-      "studentAccessible": true,
       "studentReady": false,
-      "deploymentAccess": "archive-metadata-only",
-      "contentStatus": "indexed-only",
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
     },
     {
@@ -8477,22 +9777,41 @@
       "courseId": "ap-calculus-ab",
       "assessmentFamily": "lucid-ab-practice-2015",
       "type": "mcq",
+      "format": "single-select",
       "year": 2015,
       "form": "",
       "questionNumber": "17",
       "section": "I, Part A",
       "calculator": "no-calculator",
+      "maxPoints": 1,
+      "estimatedTime": 75,
       "prompt": "",
       "directions": "",
       "parts": [],
       "choices": [],
       "media": [],
+      "facsimileAuthority": "The linked SVG facsimile is authoritative where machine-extracted text and mathematical typography differ.",
+      "machineExtractedText": "",
       "answer": null,
       "acceptedAnswers": [],
+      "answerFormat": "choice",
       "explanation": "",
       "workedSolution": "",
+      "alternativeSolution": "",
+      "calculatorSolution": "",
+      "noncalculatorSolution": "",
+      "studentExplanation": "",
+      "teacherExplanation": "",
       "scoringGuideline": null,
       "rubric": [],
+      "rubricStatus": "source guideline unavailable; review required",
+      "commonMistakes": [
+        "Omitting justification required by the prompt.",
+        "Using calculator syntax instead of standard mathematical notation.",
+        "Reading a graph or table without attending to units and sign."
+      ],
+      "verificationStatus": "source-preserved-review-required",
+      "answerConfidence": 0.65,
       "source": {
         "organization": "lucid-ab-practice-2015",
         "publisher": "lucid-ab-practice-2015",
@@ -8557,18 +9876,43 @@
       "pedagogy": {
         "difficulty": 3,
         "difficultyLabel": "Medium",
-        "hints": []
+        "cognitiveDemand": 3,
+        "hints": [],
+        "misconceptions": [],
+        "related": {
+          "easier": [],
+          "parallel": [],
+          "harder": [],
+          "prerequisite": [],
+          "sameOfficialTopic": [],
+          "relatedFRQ": [],
+          "relatedMCQ": []
+        }
       },
       "quality": {
+        "completeness": "complete-source-facsimile",
         "productionStatus": "teacher-archive-only",
+        "productionReadiness": 0.6,
+        "tutoringReadiness": 0.62,
         "needsReview": true,
-        "studentReadyGatePassed": false,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
           "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
-        ]
+        ],
+        "transcriptionVerified": false,
+        "answerVerified": false,
+        "mediaVerified": true,
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "katexVerified": false,
+        "mappingVerified": false,
+        "studentReadyGatePassed": false
       },
+      "studentEligible": false,
+      "studentAccessible": true,
+      "deploymentAccess": "archive-metadata-only",
+      "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "11",
@@ -8590,11 +9934,7 @@
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
         "auditedAt": "2026-07-24T17:46:03+00:00"
       },
-      "studentEligible": false,
-      "studentAccessible": true,
       "studentReady": false,
-      "deploymentAccess": "archive-metadata-only",
-      "contentStatus": "indexed-only",
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
     },
     {
@@ -8603,22 +9943,41 @@
       "courseId": "ap-calculus-ab",
       "assessmentFamily": "lucid-ab-practice-2015",
       "type": "mcq",
+      "format": "single-select",
       "year": 2015,
       "form": "",
       "questionNumber": "18",
       "section": "I, Part A",
       "calculator": "no-calculator",
+      "maxPoints": 1,
+      "estimatedTime": 75,
       "prompt": "",
       "directions": "",
       "parts": [],
       "choices": [],
       "media": [],
+      "facsimileAuthority": "The linked SVG facsimile is authoritative where machine-extracted text and mathematical typography differ.",
+      "machineExtractedText": "",
       "answer": null,
       "acceptedAnswers": [],
+      "answerFormat": "choice",
       "explanation": "",
       "workedSolution": "",
+      "alternativeSolution": "",
+      "calculatorSolution": "",
+      "noncalculatorSolution": "",
+      "studentExplanation": "",
+      "teacherExplanation": "",
       "scoringGuideline": null,
       "rubric": [],
+      "rubricStatus": "source guideline unavailable; review required",
+      "commonMistakes": [
+        "Omitting justification required by the prompt.",
+        "Using calculator syntax instead of standard mathematical notation.",
+        "Reading a graph or table without attending to units and sign."
+      ],
+      "verificationStatus": "source-preserved-review-required",
+      "answerConfidence": 0.65,
       "source": {
         "organization": "lucid-ab-practice-2015",
         "publisher": "lucid-ab-practice-2015",
@@ -8683,18 +10042,43 @@
       "pedagogy": {
         "difficulty": 3,
         "difficultyLabel": "Medium",
-        "hints": []
+        "cognitiveDemand": 3,
+        "hints": [],
+        "misconceptions": [],
+        "related": {
+          "easier": [],
+          "parallel": [],
+          "harder": [],
+          "prerequisite": [],
+          "sameOfficialTopic": [],
+          "relatedFRQ": [],
+          "relatedMCQ": []
+        }
       },
       "quality": {
+        "completeness": "complete-source-facsimile",
         "productionStatus": "teacher-archive-only",
+        "productionReadiness": 0.6,
+        "tutoringReadiness": 0.62,
         "needsReview": true,
-        "studentReadyGatePassed": false,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
           "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
-        ]
+        ],
+        "transcriptionVerified": false,
+        "answerVerified": false,
+        "mediaVerified": true,
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "katexVerified": false,
+        "mappingVerified": false,
+        "studentReadyGatePassed": false
       },
+      "studentEligible": false,
+      "studentAccessible": true,
+      "deploymentAccess": "archive-metadata-only",
+      "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "11",
@@ -8716,11 +10100,7 @@
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
         "auditedAt": "2026-07-24T17:46:03+00:00"
       },
-      "studentEligible": false,
-      "studentAccessible": true,
       "studentReady": false,
-      "deploymentAccess": "archive-metadata-only",
-      "contentStatus": "indexed-only",
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
     },
     {
@@ -8729,22 +10109,41 @@
       "courseId": "ap-calculus-ab",
       "assessmentFamily": "lucid-ab-practice-2015",
       "type": "mcq",
+      "format": "single-select",
       "year": 2015,
       "form": "",
       "questionNumber": "19",
       "section": "I, Part A",
       "calculator": "no-calculator",
+      "maxPoints": 1,
+      "estimatedTime": 75,
       "prompt": "",
       "directions": "",
       "parts": [],
       "choices": [],
       "media": [],
+      "facsimileAuthority": "The linked SVG facsimile is authoritative where machine-extracted text and mathematical typography differ.",
+      "machineExtractedText": "",
       "answer": null,
       "acceptedAnswers": [],
+      "answerFormat": "choice",
       "explanation": "",
       "workedSolution": "",
+      "alternativeSolution": "",
+      "calculatorSolution": "",
+      "noncalculatorSolution": "",
+      "studentExplanation": "",
+      "teacherExplanation": "",
       "scoringGuideline": null,
       "rubric": [],
+      "rubricStatus": "source guideline unavailable; review required",
+      "commonMistakes": [
+        "Omitting justification required by the prompt.",
+        "Using calculator syntax instead of standard mathematical notation.",
+        "Reading a graph or table without attending to units and sign."
+      ],
+      "verificationStatus": "source-preserved-review-required",
+      "answerConfidence": 0.65,
       "source": {
         "organization": "lucid-ab-practice-2015",
         "publisher": "lucid-ab-practice-2015",
@@ -8809,18 +10208,43 @@
       "pedagogy": {
         "difficulty": 3,
         "difficultyLabel": "Medium",
-        "hints": []
+        "cognitiveDemand": 3,
+        "hints": [],
+        "misconceptions": [],
+        "related": {
+          "easier": [],
+          "parallel": [],
+          "harder": [],
+          "prerequisite": [],
+          "sameOfficialTopic": [],
+          "relatedFRQ": [],
+          "relatedMCQ": []
+        }
       },
       "quality": {
+        "completeness": "complete-source-facsimile",
         "productionStatus": "teacher-archive-only",
+        "productionReadiness": 0.6,
+        "tutoringReadiness": 0.62,
         "needsReview": true,
-        "studentReadyGatePassed": false,
         "reviewReasons": [
           "Rights/permission review required before public publication.",
           "No source-supplied line-by-line MCQ derivation was available; official answer key and facsimile are preserved.",
           "Independent audit restriction: Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification."
-        ]
+        ],
+        "transcriptionVerified": false,
+        "answerVerified": false,
+        "mediaVerified": true,
+        "privateStudentAccess": true,
+        "mathematicalVerificationPassed": false,
+        "katexVerified": false,
+        "mappingVerified": false,
+        "studentReadyGatePassed": false
       },
+      "studentEligible": false,
+      "studentAccessible": true,
+      "deploymentAccess": "archive-metadata-only",
+      "contentStatus": "complete",
       "audit": {
         "sourceChecked": true,
         "sourcePage": "12",
@@ -8842,11 +10266,7 @@
         "reviewerNotes": "Retained in the canonical/admin archive; excluded from student practice pending source, answer, KaTeX, and/or mapping verification.",
         "auditedAt": "2026-07-24T17:46:03+00:00"
       },
-      "studentEligible": false,
-      "studentAccessible": true,
       "studentReady": false,
-      "deploymentAccess": "archive-metadata-only",
-      "contentStatus": "indexed-only",
       "archiveMessage": "This official record is indexed, but the complete independently verified student-ready question is not yet available."
     }
   ]

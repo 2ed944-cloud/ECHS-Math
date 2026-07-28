@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-07-24T21:33:52+00:00",
-  "studentRuntimeQuestionCount": 52,
+  "generatedAt": "2026-07-28T03:03:45+03:00",
+  "studentRuntimeQuestionCount": 1104,
   "studentArchiveMetadataCount": 1217,
-  "studentReadyArchiveContentCount": 52,
-  "restrictedArchiveRecordCount": 1165,
+  "studentReadyArchiveContentCount": 1104,
+  "restrictedArchiveRecordCount": 113,
   "restrictedPromptsLeaked": 0,
   "restrictedChoicesLeaked": 0,
   "restrictedAnswersLeaked": 0,

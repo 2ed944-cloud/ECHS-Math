@@ -5567,7 +5567,7 @@
         },
         {
           "label": "B",
-          "text": "\\displaystyle \\int_2^4\\frac{1-u^2}{2u}\\,du",
+          "text": "\\displaystyle \\int_2^4\\frac{1-u^2}{u}\\,du",
           "mediaIds": []
         },
         {

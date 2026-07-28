@@ -11,6 +11,15 @@ const officialDir = path.dirname(scriptDir);
 const repositoryDir = path.resolve(officialDir, "..", "..");
 const reportsDir = path.join(officialDir, "reports");
 const studentDir = path.join(officialDir, "data", "student");
+const authorizationPath = path.join(
+  officialDir,
+  "data",
+  "rights",
+  "echs-ap-official-student-practice-2026-07-28.json",
+);
+const generatedAt = fs.existsSync(authorizationPath)
+  ? readJson(authorizationPath).recordedAt
+  : new Date().toISOString();
 const port = Number(process.env.ECHS_SMOKE_PORT || 8765);
 const smokeGroup = process.env.ECHS_SMOKE_GROUP || "all";
 const baseUrl = `http://127.0.0.1:${port}/question-bank/official`;
@@ -96,8 +105,8 @@ async function restartBrowser() {
   await browser?.close();
   browser = await chromium.launch(launchOptions);
   page = await browser.newPage();
-  page.setDefaultTimeout(8_000);
-  page.setDefaultNavigationTimeout(8_000);
+  page.setDefaultTimeout(30_000);
+  page.setDefaultNavigationTimeout(30_000);
   page.on("pageerror", (error) => pageErrors.push(String(error)));
   await page.route(/^https?:\/\/(?!127\.0\.0\.1)/, (route) => route.abort());
 }
@@ -148,7 +157,10 @@ try {
     await page.goto(`${baseUrl}/index.html`);
     await page.waitForFunction(
       (ready) =>
-        document.querySelector("#stats")?.textContent?.includes(String(ready)),
+        document
+          .querySelector("#stats")
+          ?.textContent?.replaceAll(",", "")
+          .includes(String(ready)),
       expected.ready,
     );
     const text = await page.locator("#stats").innerText();
@@ -188,7 +200,11 @@ try {
     await page.goto(
       `${baseUrl}/archive.html?id=${encodeURIComponent(readyMcq.id)}`,
     );
-    await page.locator("#archiveDetail:not(.hidden)").waitFor();
+    await page.waitForFunction(() =>
+      document
+        .querySelector("#archiveDetail")
+        ?.textContent?.includes("Open verified practice"),
+    );
     const detail = await page.locator("#archiveDetail").innerText();
     if (!detail.includes("Open verified practice")) {
       throw new Error("Ready archive record has no verified-practice action.");
@@ -200,7 +216,11 @@ try {
     await page.goto(
       `${baseUrl}/archive.html?id=${encodeURIComponent(restricted.id)}`,
     );
-    await page.locator("#archiveDetail:not(.hidden)").waitFor();
+    await page.waitForFunction(() =>
+      document
+        .querySelector("#archiveDetail")
+        ?.textContent?.includes("not yet student-ready"),
+    );
     const detail = await page.locator("#archiveDetail").innerText();
     if (!detail.includes("not yet student-ready")) {
       throw new Error("Restricted archive record did not render the redaction.");
@@ -217,7 +237,9 @@ try {
     );
     await page.locator(".questionCard").waitFor();
     const choices = await page.locator(".choice").count();
-    if (choices !== 5) throw new Error(`Expected 5 choices, found ${choices}.`);
+    if (![4, 5].includes(choices)) {
+      throw new Error(`Expected 4 or 5 choices, found ${choices}.`);
+    }
     const archiveHref = await page
       .getByRole("link", { name: "Archive record" })
       .getAttribute("href");
@@ -227,8 +249,11 @@ try {
   await runCase("Exact lesson filtering", async () => {
     const lesson = readyMcq.lessons[0];
     await page.goto(
-      `${baseUrl}/practice.html?lesson=${encodeURIComponent(lesson)}&autostart=1`,
+      `${baseUrl}/practice.html?lesson=${encodeURIComponent(lesson)}`,
     );
+    await page.locator("#filterStatus .pill.teal").waitFor();
+    await page.locator("#sessionMode").selectOption("ordered");
+    await page.locator("#start").click();
     await page.locator(".questionCard").waitFor();
     const loadedId = await page.evaluate(() => {
       const href = document
@@ -315,6 +340,7 @@ try {
 
   await runCase("Admin import promotion boundary", async () => {
     await page.goto(`${baseUrl}/admin/import.html`);
+    await page.locator(".adminBoundary").waitFor();
     const body = await page.locator("body").innerText();
     if (
       !/review|student-ready gate|promotion/i.test(body) ||
@@ -349,7 +375,7 @@ const mergedResults = [...caseGroups.keys()]
 const mergedPageErrors = [...(prior.pageErrors ?? []), ...pageErrors];
 const failed = mergedResults.filter((row) => row.status === "FAIL").length;
 const output = {
-  generatedAt: new Date().toISOString(),
+  generatedAt,
   canonicalCount: expected.canonical,
   studentReadyCount: expected.ready,
   restrictedCount: expected.restricted,

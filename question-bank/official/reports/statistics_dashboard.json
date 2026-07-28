@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-07-24T21:33:52+00:00",
+  "generatedAt": "2026-07-28T03:03:45+03:00",
   "canonicalQuestions": 1217,
   "mcq": 876,
   "frq": 341,
-  "studentReady": 52,
-  "teacherArchiveRestricted": 1165,
+  "studentReady": 1104,
+  "teacherArchiveRestricted": 113,
   "correctedQuestions": 360
 }

@@ -1,0 +1,578 @@
+{
+  "schemaVersion": "1.0.0",
+  "generatedAt": "2026-07-28T03:03:45+03:00",
+  "scope": "2014 AP Calculus Curriculum Framework sample questions, source-compared against the retained official SVG facsimiles and official answer/scoring pages.",
+  "defaults": {
+    "verificationStatus": "independently-verified-source-compared",
+    "answerConfidence": 1.0,
+    "quality": {
+      "completeness": "complete-verified",
+      "productionStatus": "teacher-review-only",
+      "productionReadiness": 1.0,
+      "tutoringReadiness": 1.0,
+      "needsReview": true,
+      "reviewReasons": [
+        "Rights/permission review required before public publication."
+      ],
+      "transcriptionVerified": true,
+      "answerVerified": true,
+      "mediaVerified": true,
+      "privateStudentAccess": true,
+      "mathematicalVerificationPassed": true,
+      "katexVerified": true,
+      "mappingVerified": true,
+      "studentReadyGatePassed": false
+    },
+    "studentEligible": false,
+    "studentAccessible": false,
+    "deploymentAccess": "teacher-review-only",
+    "contentStatus": "complete",
+    "studentReady": false,
+    "audit": {
+      "sourceChecked": true,
+      "transcriptionStatus": "corrected",
+      "stemStatus": "verified",
+      "choicesStatus": "corrected",
+      "answerStatus": "verified",
+      "solutionStatus": "verified",
+      "katexStatus": "verified",
+      "mediaStatus": "verified",
+      "courseMappingStatus": "verified",
+      "unitMappingStatus": "verified",
+      "topicMappingStatus": "verified",
+      "lessonMappingStatus": "verified",
+      "calculatorStatus": "verified",
+      "overallStatus": "teacher-review-only",
+      "correctionsMade": 8,
+      "reviewRequired": true,
+      "reviewerNotes": "The official SVG question facsimile and answer or scoring page were visually compared. Mathematical notation, choices, answers, and worked solutions were independently checked.",
+      "auditedAt": "2026-07-28T03:03:45+03:00"
+    }
+  },
+  "records": [
+    {
+      "id": "APCALC-AB-SAMPLE-2014-MCQ-001",
+      "prompt": "Evaluate \\(\\displaystyle \\lim_{x\\to\\pi}\\frac{\\cos x+\\sin(2x)+1}{x^2-\\pi^2}\\).",
+      "choices": [
+        {"label": "A", "text": "\\(\\frac{1}{2\\pi}\\)", "mediaIds": []},
+        {"label": "B", "text": "\\(\\frac{1}{\\pi}\\)", "mediaIds": []},
+        {"label": "C", "text": "\\(1\\)", "mediaIds": []},
+        {"label": "D", "text": "The limit does not exist.", "mediaIds": []}
+      ],
+      "answer": "B",
+      "acceptedAnswers": ["B"],
+      "explanation": "The expression is \\(0/0\\). L'Hospital's Rule gives numerator derivative \\(-\\sin x+2\\cos(2x)\\) and denominator derivative \\(2x\\), so the limit is \\(2/(2\\pi)=1/\\pi\\).",
+      "workedSolution": "\\[\\lim_{x\\to\\pi}\\frac{-\\sin x+2\\cos(2x)}{2x}=\\frac{2}{2\\pi}=\\boxed{\\frac1\\pi}.\\]",
+      "audit": {"sourcePage": "5"}
+    },
+    {
+      "id": "APCALC-AB-SAMPLE-2014-MCQ-002",
+      "prompt": "Evaluate \\(\\displaystyle \\lim_{x\\to\\infty}\\frac{\\sqrt{9x^4+1}}{x^2-3x+5}\\).",
+      "choices": [
+        {"label": "A", "text": "\\(1\\)", "mediaIds": []},
+        {"label": "B", "text": "\\(3\\)", "mediaIds": []},
+        {"label": "C", "text": "\\(9\\)", "mediaIds": []},
+        {"label": "D", "text": "The limit does not exist.", "mediaIds": []}
+      ],
+      "answer": "B",
+      "acceptedAnswers": ["B"],
+      "explanation": "Divide numerator and denominator by \\(x^2\\). The numerator tends to \\(3\\) and the denominator tends to \\(1\\).",
+      "workedSolution": "\\[\\frac{\\sqrt{9x^4+1}}{x^2-3x+5}=\\frac{\\sqrt{9+x^{-4}}}{1-3x^{-1}+5x^{-2}}\\longrightarrow\\boxed3.\\]",
+      "audit": {"sourcePage": "6"}
+    },
+    {
+      "id": "APCALC-AB-SAMPLE-2014-MCQ-003",
+      "prompt": "The graph of the piecewise-defined function \\(f\\) is shown in the official figure. The graph has a vertical tangent line at \\(x=-2\\) and horizontal tangent lines at \\(x=-3\\) and \\(x=-1\\). What are all values of \\(x\\), for \\(-4<x<3\\), at which \\(f\\) is continuous but not differentiable?",
+      "choices": [
+        {"label": "A", "text": "\\(x=1\\)", "mediaIds": []},
+        {"label": "B", "text": "\\(x=-2\\) and \\(x=0\\)", "mediaIds": []},
+        {"label": "C", "text": "\\(x=-2\\) and \\(x=1\\)", "mediaIds": []},
+        {"label": "D", "text": "\\(x=0\\) and \\(x=1\\)", "mediaIds": []}
+      ],
+      "answer": "C",
+      "acceptedAnswers": ["C"],
+      "explanation": "The vertical tangent at \\(x=-2\\) and the corner at \\(x=1\\) preserve continuity but prevent differentiability. The graph is discontinuous at \\(x=0\\).",
+      "workedSolution": "Reading the retained official graph gives the continuous nondifferentiable points \\(\\boxed{x=-2,1}\\).",
+      "audit": {"sourcePage": "7"}
+    },
+    {
+      "id": "APCALC-AB-SAMPLE-2014-MCQ-004",
+      "prompt": "The volume of a sphere is decreasing at a rate of \\(2\\pi\\) cubic meters per hour. At the instant when the radius is \\(5\\) meters, at what rate is the surface area decreasing?",
+      "choices": [
+        {"label": "A", "text": "\\(\\frac{4\\pi}{5}\\) square meters per hour", "mediaIds": []},
+        {"label": "B", "text": "\\(40\\pi\\) square meters per hour", "mediaIds": []},
+        {"label": "C", "text": "\\(80\\pi^2\\) square meters per hour", "mediaIds": []},
+        {"label": "D", "text": "\\(100\\pi\\) square meters per hour", "mediaIds": []}
+      ],
+      "answer": "A",
+      "acceptedAnswers": ["A"],
+      "explanation": "From \\(V=\\frac43\\pi r^3\\), \\(dr/dt=-1/50\\) when \\(r=5\\). Then \\(dS/dt=8\\pi r\\,dr/dt=-4\\pi/5\\), so the decreasing rate has magnitude \\(4\\pi/5\\).",
+      "workedSolution": "\\[\\frac{dV}{dt}=4\\pi r^2\\frac{dr}{dt}=-2\\pi\\Rightarrow\\frac{dr}{dt}=-\\frac1{50},\\qquad \\frac{dS}{dt}=8\\pi(5)\\left(-\\frac1{50}\\right)=-\\frac{4\\pi}{5}.\\]",
+      "audit": {"sourcePage": "8"}
+    },
+    {
+      "id": "APCALC-AB-SAMPLE-2014-MCQ-005",
+      "prompt": "Which differential equation could have the slope field shown in the official figure?",
+      "choices": [
+        {"label": "A", "text": "\\(\\frac{dy}{dx}=xy+x\\)", "mediaIds": []},
+        {"label": "B", "text": "\\(\\frac{dy}{dx}=xy+y\\)", "mediaIds": []},
+        {"label": "C", "text": "\\(\\frac{dy}{dx}=y+1\\)", "mediaIds": []},
+        {"label": "D", "text": "\\(\\frac{dy}{dx}=(x+1)^2\\)", "mediaIds": []}
+      ],
+      "answer": "A",
+      "acceptedAnswers": ["A"],
+      "explanation": "The field has zero slope on both \\(x=0\\) and \\(y=-1\\). That is exactly the zero set of \\(x(y+1)=xy+x\\).",
+      "workedSolution": "\\[xy+x=x(y+1)=0\\quad\\text{on}\\quad x=0\\ \\text{or}\\ y=-1,\\] matching the official slope field.",
+      "audit": {"sourcePage": "9"}
+    },
+    {
+      "id": "APCALC-AB-SAMPLE-2014-MCQ-006",
+      "prompt": "The official figure shows a piecewise-linear function \\(f\\). Consider: I. \\(\\displaystyle\\lim_{h\\to0^-}\\frac{f(3+h)-f(3)}h=2\\); II. \\(\\displaystyle\\lim_{h\\to0^+}\\frac{f(3+h)-f(3)}h=2\\); III. \\(f'(3)=2\\). Which statements are true?",
+      "choices": [
+        {"label": "A", "text": "None", "mediaIds": []},
+        {"label": "B", "text": "II only", "mediaIds": []},
+        {"label": "C", "text": "I and II only", "mediaIds": []},
+        {"label": "D", "text": "I, II, and III", "mediaIds": []}
+      ],
+      "answer": "B",
+      "acceptedAnswers": ["B"],
+      "explanation": "The segment to the right of \\(x=3\\) has slope \\(2\\), while the segment to the left has a different slope. Thus only the right-hand derivative statement is true.",
+      "workedSolution": "The official graph gives \\(f'_+(3)=2\\) but \\(f'_-(3)\\ne2\\); therefore \\(f'(3)\\) does not exist and \\(\\boxed{\\text{II only}}\\).",
+      "audit": {"sourcePage": "10"}
+    },
+    {
+      "id": "APCALC-AB-SAMPLE-2014-MCQ-007",
+      "prompt": "For \\(x\\ge1\\), let \\(\\displaystyle f(x)=\\int_1^{x^3}\\frac{1}{1+\\ln t}\\,dt\\). Find \\(f'(2)\\).",
+      "choices": [
+        {"label": "A", "text": "\\(\\frac1{1+\\ln2}\\)", "mediaIds": []},
+        {"label": "B", "text": "\\(\\frac{12}{1+\\ln2}\\)", "mediaIds": []},
+        {"label": "C", "text": "\\(\\frac1{1+\\ln8}\\)", "mediaIds": []},
+        {"label": "D", "text": "\\(\\frac{12}{1+\\ln8}\\)", "mediaIds": []}
+      ],
+      "answer": "D",
+      "acceptedAnswers": ["D"],
+      "explanation": "Apply the Fundamental Theorem of Calculus and the chain rule.",
+      "workedSolution": "\\[f'(x)=\\frac{3x^2}{1+\\ln(x^3)},\\qquad f'(2)=\\boxed{\\frac{12}{1+\\ln8}}.\\]",
+      "audit": {"sourcePage": "11"}
+    },
+    {
+      "id": "APCALC-AB-SAMPLE-2014-MCQ-008",
+      "prompt": "Which limit is equal to \\(\\displaystyle\\int_3^5x^4\\,dx\\)?",
+      "choices": [
+        {"label": "A", "text": "\\(\\displaystyle\\lim_{n\\to\\infty}\\sum_{k=1}^n\\left(3+\\frac{k}{n}\\right)^4\\frac1n\\)", "mediaIds": []},
+        {"label": "B", "text": "\\(\\displaystyle\\lim_{n\\to\\infty}\\sum_{k=1}^n\\left(3+\\frac{k}{n}\\right)^4\\frac2n\\)", "mediaIds": []},
+        {"label": "C", "text": "\\(\\displaystyle\\lim_{n\\to\\infty}\\sum_{k=1}^n\\left(3+\\frac{2k}{n}\\right)^4\\frac1n\\)", "mediaIds": []},
+        {"label": "D", "text": "\\(\\displaystyle\\lim_{n\\to\\infty}\\sum_{k=1}^n\\left(3+\\frac{2k}{n}\\right)^4\\frac2n\\)", "mediaIds": []}
+      ],
+      "answer": "D",
+      "acceptedAnswers": ["D"],
+      "explanation": "On \\([3,5]\\), \\(\\Delta x=2/n\\) and the right endpoints are \\(x_k=3+2k/n\\).",
+      "workedSolution": "\\[\\int_3^5x^4\\,dx=\\lim_{n\\to\\infty}\\sum_{k=1}^n\\left(3+\\frac{2k}{n}\\right)^4\\frac2n.\\]",
+      "audit": {"sourcePage": "12"}
+    },
+    {
+      "id": "APCALC-AB-SAMPLE-2014-MCQ-009",
+      "prompt": "The official graph shows a continuous piecewise-linear function \\(f\\) on \\([-4,4]\\). What is the average value of \\(f\\) on this interval?",
+      "choices": [
+        {"label": "A", "text": "\\(\\frac18\\)", "mediaIds": []},
+        {"label": "B", "text": "\\(\\frac3{16}\\)", "mediaIds": []},
+        {"label": "C", "text": "\\(\\frac{15}{16}\\)", "mediaIds": []},
+        {"label": "D", "text": "\\(\\frac32\\)", "mediaIds": []}
+      ],
+      "answer": "B",
+      "acceptedAnswers": ["B"],
+      "explanation": "The signed geometric area under the official graph is \\(3/2\\). Divide by the interval length \\(8\\).",
+      "workedSolution": "\\[f_{\\mathrm{avg}}=\\frac1{8}\\int_{-4}^{4}f(x)\\,dx=\\frac18\\left(\\frac32\\right)=\\boxed{\\frac3{16}}.\\]",
+      "audit": {"sourcePage": "13"}
+    },
+    {
+      "id": "APCALC-AB-SAMPLE-2014-MCQ-010",
+      "prompt": "The function \\(y=f(t)\\) satisfies \\(dy/dt=ky\\). The official table gives \\(f(0)=4\\) and \\(f(2)=12\\). Which expression could be \\(f(t)\\)?",
+      "choices": [
+        {"label": "A", "text": "\\(4e^{(t/2)\\ln3}\\)", "mediaIds": []},
+        {"label": "B", "text": "\\(e^{(t/2)\\ln9}+3\\)", "mediaIds": []},
+        {"label": "C", "text": "\\(2t^2+4\\)", "mediaIds": []},
+        {"label": "D", "text": "\\(4t+4\\)", "mediaIds": []}
+      ],
+      "answer": "A",
+      "acceptedAnswers": ["A"],
+      "explanation": "An exponential solution has form \\(Ce^{kt}\\). From \\(f(0)=4\\), \\(C=4\\); from \\(f(2)=12\\), \\(e^{2k}=3\\).",
+      "workedSolution": "\\[k=\\frac{\\ln3}{2},\\qquad f(t)=\\boxed{4e^{(t/2)\\ln3}}.\\]",
+      "audit": {"sourcePage": "14"}
+    },
+    {
+      "id": "APCALC-AB-SAMPLE-2014-MCQ-011",
+      "prompt": "The official figure shows the graph of \\(f'\\). Which of the four official answer-choice graphs could be the graph of \\(f\\)?",
+      "choices": [
+        {"label": "A", "text": "A smooth graph decreasing to a local minimum near \\(x=1\\), increasing through a horizontal inflection near \\(x=3\\), reaching a local maximum near \\(x=5\\), then decreasing.", "mediaIds": []},
+        {"label": "B", "text": "An oscillatory graph repeatedly crossing the horizontal axis.", "mediaIds": []},
+        {"label": "C", "text": "A graph made of disconnected parabolic arcs.", "mediaIds": []},
+        {"label": "D", "text": "A discontinuous piecewise-linear and horizontal graph.", "mediaIds": []}
+      ],
+      "answer": "A",
+      "acceptedAnswers": ["A"],
+      "explanation": "The derivative is negative before \\(1\\), positive from \\(1\\) to \\(5\\) with no sign change at \\(3\\), and negative after \\(5\\). Only graph A has that behavior.",
+      "workedSolution": "The signs of \\(f'\\) give a minimum at \\(x=1\\), a stationary non-extremum at \\(x=3\\), and a maximum at \\(x=5\\); hence \\(\\boxed{A}\\).",
+      "audit": {"sourcePage": "15"}
+    },
+    {
+      "id": "APCALC-AB-SAMPLE-2014-MCQ-012",
+      "prompt": "Let \\(f'(x)=e^{\\sin x}-\\cos x-1\\) for \\(0<x<9\\). On which intervals is \\(f\\) decreasing?",
+      "choices": [
+        {"label": "A", "text": "\\(0<x<0.633\\) and \\(4.115<x<6.916\\)", "mediaIds": []},
+        {"label": "B", "text": "\\(0<x<1.947\\) and \\(5.744<x<8.230\\)", "mediaIds": []},
+        {"label": "C", "text": "\\(0.633<x<4.115\\) and \\(6.916<x<9\\)", "mediaIds": []},
+        {"label": "D", "text": "\\(1.947<x<5.744\\) and \\(8.230<x<9\\)", "mediaIds": []}
+      ],
+      "answer": "A",
+      "acceptedAnswers": ["A"],
+      "explanation": "Numerically locating the zeros of \\(f'\\) and testing signs shows \\(f'<0\\) on the intervals in choice A.",
+      "workedSolution": "A calculator sign chart for \\(e^{\\sin x}-\\cos x-1\\) gives \\(\\boxed{(0,0.633)\\cup(4.115,6.916)}\\).",
+      "audit": {"sourcePage": "17"}
+    },
+    {
+      "id": "APCALC-AB-SAMPLE-2014-MCQ-013",
+      "prompt": "The temperature of a room is modeled by \\(H(t)\\), in degrees Fahrenheit, where \\(t\\) is minutes after the thermostat is adjusted. What is the best interpretation of \\(H'(5)=2\\)?",
+      "choices": [
+        {"label": "A", "text": "The room temperature is \\(2^\\circ\\mathrm F\\) at \\(t=5\\).", "mediaIds": []},
+        {"label": "B", "text": "The temperature increases by \\(2^\\circ\\mathrm F\\) during the first five minutes.", "mediaIds": []},
+        {"label": "C", "text": "The temperature is increasing at a constant rate of \\(\\frac25\\ ^\\circ\\mathrm F\\) per minute.", "mediaIds": []},
+        {"label": "D", "text": "Five minutes after the adjustment, the temperature is increasing at \\(2^\\circ\\mathrm F\\) per minute.", "mediaIds": []}
+      ],
+      "answer": "D",
+      "acceptedAnswers": ["D"],
+      "explanation": "A derivative gives an instantaneous rate of change, with units of degrees Fahrenheit per minute.",
+      "workedSolution": "\\(H'(5)=2\\) means the temperature is increasing at \\(\\boxed{2^\\circ\\mathrm F/\\mathrm{min}}\\) when \\(t=5\\).",
+      "audit": {"sourcePage": "18"}
+    },
+    {
+      "id": "APCALC-AB-SAMPLE-2014-MCQ-014",
+      "prompt": "A function \\(f\\) is continuous on \\([2,5]\\), with \\(f(2)=17\\) and \\(f(5)=17\\). Which additional condition guarantees a number \\(c\\in(2,5)\\) such that \\(f'(c)=0\\)?",
+      "choices": [
+        {"label": "A", "text": "No additional conditions are necessary.", "mediaIds": []},
+        {"label": "B", "text": "\\(f\\) has a relative extremum on \\((2,5)\\).", "mediaIds": []},
+        {"label": "C", "text": "\\(f\\) is differentiable on \\((2,5)\\).", "mediaIds": []},
+        {"label": "D", "text": "\\(\\int_2^5f(x)\\,dx\\) exists.", "mediaIds": []}
+      ],
+      "answer": "C",
+      "acceptedAnswers": ["C"],
+      "explanation": "Continuity on the closed interval, differentiability on the open interval, and equal endpoint values are the hypotheses of Rolle's Theorem.",
+      "workedSolution": "By Rolle's Theorem, differentiability on \\((2,5)\\) guarantees \\(\\boxed{f'(c)=0}\\) for some \\(c\\in(2,5)\\).",
+      "audit": {"sourcePage": "19"}
+    },
+    {
+      "id": "APCALC-AB-SAMPLE-2014-MCQ-015",
+      "prompt": "A rain barrel's water height increases at the rate \\(r(t)=4t^3e^{-1.5t}\\) feet per hour. At \\(t=1\\) hour the height is \\(0.75\\) foot. What is the height at \\(t=2\\) hours?",
+      "choices": [
+        {"label": "A", "text": "\\(1.361\\) ft", "mediaIds": []},
+        {"label": "B", "text": "\\(1.500\\) ft", "mediaIds": []},
+        {"label": "C", "text": "\\(1.672\\) ft", "mediaIds": []},
+        {"label": "D", "text": "\\(2.111\\) ft", "mediaIds": []}
+      ],
+      "answer": "D",
+      "acceptedAnswers": ["D"],
+      "explanation": "Add the accumulated change in height from \\(t=1\\) to \\(t=2\\) to the known height.",
+      "workedSolution": "\\[H(2)=0.75+\\int_1^2 4t^3e^{-1.5t}\\,dt\\approx\\boxed{2.111\\text{ ft}}.\\]",
+      "audit": {"sourcePage": "20"}
+    },
+    {
+      "id": "APCALC-AB-SAMPLE-2014-MCQ-016",
+      "prompt": "A race car has velocity \\(80\\) meters per second when the brakes are applied at \\(t=0\\). Until it stops, its acceleration is \\(a(t)=-6t^2-t\\). How far does it travel during this time?",
+      "choices": [
+        {"label": "A", "text": "\\(188.229\\) m", "mediaIds": []},
+        {"label": "B", "text": "\\(198.766\\) m", "mediaIds": []},
+        {"label": "C", "text": "\\(260.042\\) m", "mediaIds": []},
+        {"label": "D", "text": "\\(267.089\\) m", "mediaIds": []}
+      ],
+      "answer": "B",
+      "acceptedAnswers": ["B"],
+      "explanation": "Integrating acceleration gives \\(v(t)=80-2t^3-t^2/2\\). Its first positive zero is \\(t\\approx3.338616\\); integrate velocity to that time.",
+      "workedSolution": "\\[\\int_0^{3.338616}\\left(80-2t^3-\\frac12t^2\\right)dt\\approx\\boxed{198.766\\text{ m}}.\\]",
+      "audit": {"sourcePage": "21"}
+    },
+    {
+      "id": "APCALC-BC-SAMPLE-2014-MCQ-001",
+      "prompt": "A particle has parametric position \\(x(t)=\\frac{6t}{t+1}\\) and \\(y(t)=\\frac{-8}{t^2+4}\\). What is the slope of the tangent to its path at \\(t=2\\)?",
+      "choices": [
+        {"label": "A", "text": "\\(\\frac12\\)", "mediaIds": []},
+        {"label": "B", "text": "\\(\\frac23\\)", "mediaIds": []},
+        {"label": "C", "text": "\\(\\frac34\\)", "mediaIds": []},
+        {"label": "D", "text": "\\(\\frac43\\)", "mediaIds": []}
+      ],
+      "answer": "C",
+      "acceptedAnswers": ["C"],
+      "explanation": "The slope is \\((dy/dt)/(dx/dt)\\). At \\(t=2\\), \\(dy/dt=1/2\\) and \\(dx/dt=2/3\\).",
+      "workedSolution": "\\[\\frac{dy}{dx}=\\frac{16t/(t^2+4)^2}{6/(t+1)^2},\\qquad \\left.\\frac{dy}{dx}\\right|_{t=2}=\\frac{1/2}{2/3}=\\boxed{\\frac34}.\\]",
+      "audit": {"sourcePage": "29"}
+    },
+    {
+      "id": "APCALC-BC-SAMPLE-2014-MCQ-002",
+      "prompt": "Let \\(y=f(x)\\) solve \\(dy/dx=1+2y\\) with \\(f(0)=1\\). Approximate \\(f(1)\\) by Euler's method with step size \\(0.5\\).",
+      "choices": [
+        {"label": "A", "text": "\\(2.5\\)", "mediaIds": []},
+        {"label": "B", "text": "\\(3.5\\)", "mediaIds": []},
+        {"label": "C", "text": "\\(4.0\\)", "mediaIds": []},
+        {"label": "D", "text": "\\(5.5\\)", "mediaIds": []}
+      ],
+      "answer": "D",
+      "acceptedAnswers": ["D"],
+      "explanation": "Two Euler steps give \\(y_1=1+0.5(3)=2.5\\), then \\(y_2=2.5+0.5(6)=5.5\\).",
+      "workedSolution": "\\[(0,1)\\to(0.5,2.5)\\to(1,\\boxed{5.5}).\\]",
+      "audit": {"sourcePage": "30"}
+    },
+    {
+      "id": "APCALC-BC-SAMPLE-2014-MCQ-003",
+      "prompt": "For what value of \\(k\\), if any, is \\(\\displaystyle\\int_0^\\infty kxe^{-2x}\\,dx=1\\)?",
+      "choices": [
+        {"label": "A", "text": "\\(\\frac14\\)", "mediaIds": []},
+        {"label": "B", "text": "\\(1\\)", "mediaIds": []},
+        {"label": "C", "text": "\\(4\\)", "mediaIds": []},
+        {"label": "D", "text": "There is no such value of \\(k\\).", "mediaIds": []}
+      ],
+      "answer": "C",
+      "acceptedAnswers": ["C"],
+      "explanation": "Integration by parts gives \\(\\int_0^\\infty xe^{-2x}dx=1/4\\), so \\(k/4=1\\).",
+      "workedSolution": "\\[\\int_0^\\infty kxe^{-2x}\\,dx=\\frac{k}{4}=1\\Rightarrow\\boxed{k=4}.\\]",
+      "audit": {"sourcePage": "31"}
+    },
+    {
+      "id": "APCALC-BC-SAMPLE-2014-MCQ-004",
+      "prompt": "The Taylor polynomial \\(P_n(x)=\\sum_{k=1}^n(-1)^k\\frac{x^k}{k^2+k+1}\\) converges to \\(f\\) for \\(-1\\le x\\le1\\). What is the smallest \\(M\\) for which the alternating-series error bound guarantees \\(|f(1)-P_4(1)|\\le M\\)?",
+      "choices": [
+        {"label": "A", "text": "\\(\\frac1{5!}\\cdot\\frac1{31}\\)", "mediaIds": []},
+        {"label": "B", "text": "\\(\\frac1{4!}\\cdot\\frac1{21}\\)", "mediaIds": []},
+        {"label": "C", "text": "\\(\\frac1{31}\\)", "mediaIds": []},
+        {"label": "D", "text": "\\(\\frac1{21}\\)", "mediaIds": []}
+      ],
+      "answer": "C",
+      "acceptedAnswers": ["C"],
+      "explanation": "The alternating-series remainder after four terms is at most the magnitude of the fifth term.",
+      "workedSolution": "\\[|R_4|\\le\\frac{1}{5^2+5+1}=\\boxed{\\frac1{31}}.\\]",
+      "audit": {"sourcePage": "32"}
+    },
+    {
+      "id": "APCALC-BC-SAMPLE-2014-MCQ-005",
+      "prompt": "The official table gives \\(f(1)=2\\), \\(f'(1)=-3\\), \\(f''(1)=3\\), and \\(f'''(1)=-2\\). What is the third-degree Taylor polynomial for \\(f\\) about \\(x=1\\)?",
+      "choices": [
+        {"label": "A", "text": "\\(2-3x+\\frac32x^2-\\frac13x^3\\)", "mediaIds": []},
+        {"label": "B", "text": "\\(2-3(x-1)+\\frac32(x-1)^2-\\frac13(x-1)^3\\)", "mediaIds": []},
+        {"label": "C", "text": "\\(2-3(x-1)+\\frac32(x-1)^2-\\frac23(x-1)^3\\)", "mediaIds": []},
+        {"label": "D", "text": "\\(2-3(x-1)+3(x-1)^2-2(x-1)^3\\)", "mediaIds": []}
+      ],
+      "answer": "B",
+      "acceptedAnswers": ["B"],
+      "explanation": "Use \\(P_3(x)=\\sum_{k=0}^3 f^{(k)}(1)(x-1)^k/k!\\).",
+      "workedSolution": "\\[P_3(x)=\\boxed{2-3(x-1)+\\frac32(x-1)^2-\\frac13(x-1)^3}.\\]",
+      "audit": {"sourcePage": "33"}
+    },
+    {
+      "id": "APCALC-BC-SAMPLE-2014-MCQ-006",
+      "prompt": "Which statement about \\(\\displaystyle\\sum_{n=1}^{\\infty}\\frac{(-1)^n}{1+\\sqrt n}\\) is true?",
+      "choices": [
+        {"label": "A", "text": "The series converges absolutely.", "mediaIds": []},
+        {"label": "B", "text": "The series converges conditionally.", "mediaIds": []},
+        {"label": "C", "text": "The series converges but neither conditionally nor absolutely.", "mediaIds": []},
+        {"label": "D", "text": "The series diverges.", "mediaIds": []}
+      ],
+      "answer": "B",
+      "acceptedAnswers": ["B"],
+      "explanation": "The positive magnitudes decrease to zero, so the alternating series converges. The absolute series behaves like \\(\\sum n^{-1/2}\\), so it diverges.",
+      "workedSolution": "The alternating-series test gives convergence, while limit comparison with \\(1/\\sqrt n\\) rules out absolute convergence; hence it is \\(\\boxed{\\text{conditionally convergent}}\\).",
+      "audit": {"sourcePage": "34"}
+    },
+    {
+      "id": "APCALC-BC-SAMPLE-2014-MCQ-007",
+      "prompt": "A particle has velocity vector \\(v(t)=\\langle4e^{-t},\\sin(1+\\sqrt t)\\rangle\\). What total distance does it travel from \\(t=1\\) to \\(t=3\\)?",
+      "choices": [
+        {"label": "A", "text": "\\(1.861\\)", "mediaIds": []},
+        {"label": "B", "text": "\\(1.983\\)", "mediaIds": []},
+        {"label": "C", "text": "\\(2.236\\)", "mediaIds": []},
+        {"label": "D", "text": "\\(4.851\\)", "mediaIds": []}
+      ],
+      "answer": "A",
+      "acceptedAnswers": ["A"],
+      "explanation": "Integrate the magnitude of the velocity vector.",
+      "workedSolution": "\\[\\int_1^3\\sqrt{16e^{-2t}+\\sin^2(1+\\sqrt t)}\\,dt\\approx\\boxed{1.861}.\\]",
+      "audit": {"sourcePage": "35"}
+    },
+    {
+      "id": "APCALC-BC-SAMPLE-2014-MCQ-008",
+      "prompt": "For \\(x\\ge1\\), \\(g\\) is continuous, decreasing, and positive, and \\(a_n=g(n)\\). If \\(\\displaystyle\\int_1^\\infty g(x)\\,dx=8\\), which statement could be true?",
+      "choices": [
+        {"label": "A", "text": "\\(\\displaystyle\\sum_{n=1}^\\infty a_n=6\\)", "mediaIds": []},
+        {"label": "B", "text": "\\(\\displaystyle\\sum_{n=1}^\\infty a_n=8\\)", "mediaIds": []},
+        {"label": "C", "text": "\\(\\displaystyle\\sum_{n=1}^\\infty a_n=10\\)", "mediaIds": []},
+        {"label": "D", "text": "\\(\\displaystyle\\sum_{n=1}^\\infty a_n\\) diverges.", "mediaIds": []}
+      ],
+      "answer": "C",
+      "acceptedAnswers": ["C"],
+      "explanation": "The integral test guarantees convergence, and for a positive decreasing function the left-endpoint sum is greater than the integral. Thus the sum must exceed \\(8\\); only \\(10\\) could be true.",
+      "workedSolution": "\\[\\sum_{n=1}^\\infty g(n)>\\int_1^\\infty g(x)\\,dx=8,\\] and the series converges, so \\(\\boxed{10}\\) is the only possible listed value.",
+      "audit": {"sourcePage": "36"}
+    },
+    {
+      "id": "APCALC-AB-SAMPLE-2014-FRQ-01",
+      "prompt": "The height of water in a conical tank is \\(h(t)\\) meters, with \\(h(0)=25\\), and \\(h'(t)=2-\\frac{24e^{-0.025t}}{t+4}\\) meters per hour for \\(0\\le t\\le24\\). When the height is \\(h\\), the volume is \\(V=\\frac13\\pi h^3\\).",
+      "parts": [
+        {
+          "label": "(a)",
+          "prompt": "At what rate is the volume changing at \\(t=0\\)? Include units.",
+          "answer": "\\[\\frac{dV}{dt}=\\pi h^2\\frac{dh}{dt}.\\] At \\(t=0\\), \\(h=25\\) and \\(h'(0)=2-24/4=-4\\), so \\[\\boxed{\\frac{dV}{dt}=-2500\\pi\\ \\text{m}^3/\\text{hr}}\\approx-7853.982\\ \\text{m}^3/\\text{hr}.\\]",
+          "maxPoints": 2,
+          "rubric": [{"points": 2, "description": "Differentiates the volume relation and gives the correct signed rate with units."}]
+        },
+        {
+          "label": "(b)",
+          "prompt": "Find the minimum height during \\(0\\le t\\le24\\). Justify.",
+          "answer": "Solve \\(h'(t)=0\\) to get \\(t\\approx6.261\\). With \\(h(t)=25+\\int_0^t h'(x)\\,dx\\), the endpoint/critical values are \\(h(0)=25\\), \\(h(6.261)\\approx16.33873\\), and \\(h(24)\\approx34.56246\\). Therefore the absolute minimum is \\(\\boxed{16.339\\text{ m}}\\) (or \\(16.338\\text{ m}\\)) at \\(t\\approx6.261\\).",
+          "maxPoints": 4,
+          "rubric": [{"points": 4, "description": "Finds the critical point, uses accumulation, compares candidates, and justifies the absolute minimum."}]
+        },
+        {
+          "label": "(c)",
+          "prompt": "Use the tangent line to \\(h\\) at \\(t=16\\) to approximate the time when the height returns to \\(25\\) meters.",
+          "answer": "\\[h(16)=25+\\int_0^{16}h'(t)\\,dt\\approx23.49607,\\qquad h'(16)\\approx1.19562.\\] The tangent line is \\(L(t)=23.49607+1.19562(t-16)\\). Setting \\(L(t)=25\\) gives \\(\\boxed{t\\approx17.258\\text{ hr}}\\) (or \\(17.257\\)).",
+          "maxPoints": 3,
+          "rubric": [{"points": 3, "description": "Finds the point and slope at 16, writes the tangent line, and solves for the return time."}]
+        }
+      ],
+      "maxPoints": 9,
+      "rubric": [
+        {"part": "(a)", "maxPoints": 2},
+        {"part": "(b)", "maxPoints": 4},
+        {"part": "(c)", "maxPoints": 3}
+      ],
+      "workedSolution": "Differentiate \\(V=\\frac13\\pi h^3\\) for part (a), use the critical-point and endpoint test on the accumulation function \\(h\\) for part (b), and solve the linearization at \\(t=16\\) for part (c).",
+      "explanation": "The official scoring page confirms \\(-2500\\pi\\), a minimum height of about \\(16.339\\) meters, and a tangent-line return time of about \\(17.258\\) hours.",
+      "rubricStatus": "Official 2014 sample-question scoring guideline transcribed from the retained scoring facsimile.",
+      "audit": {"sourcePage": "22; 27", "choicesStatus": "not_applicable", "frqStructureStatus": "verified-official-parts-and-points"}
+    },
+    {
+      "id": "APCALC-AB-SAMPLE-2014-FRQ-02",
+      "prompt": "The official graph shows a differentiable function \\(f\\) on \\([-3,3]\\), with horizontal tangents at \\(x=-1,1,2\\). The signed regions have geometric areas \\(A=5\\), \\(B=4\\), \\(C=5\\), and \\(D=3\\). Let \\(g'=f\\) and \\(g(3)=7\\).",
+      "parts": [
+        {
+          "label": "(a)",
+          "prompt": "Find all \\(x\\in(-3,3)\\) where \\(g\\) has a relative maximum. Justify.",
+          "answer": "\\(g'=f\\) changes from positive to negative at \\(x=-2\\). Therefore \\(\\boxed{g\\text{ has a relative maximum at }x=-2}\\).",
+          "maxPoints": 1,
+          "rubric": [{"points": 1, "description": "Gives x = -2 with the correct sign-change justification."}]
+        },
+        {
+          "label": "(b)",
+          "prompt": "On what open intervals is \\(g\\) concave up? Give a reason.",
+          "answer": "Because \\(g''=f'\\), \\(g\\) is concave up where \\(f\\) is increasing: \\(\\boxed{(-1,1)\\text{ and }(2,3)}\\).",
+          "maxPoints": 2,
+          "rubric": [{"points": 2, "description": "Identifies both intervals and connects concavity of g to increasing f."}]
+        },
+        {
+          "label": "(c)",
+          "prompt": "Find \\(\\displaystyle\\lim_{x\\to0}\\frac{g(x)+1}{2x}\\), or state that it does not exist.",
+          "answer": "Since \\(g(0)=g(3)-\\int_0^3f(x)dx=7-(5+3)=-1\\), the quotient is \\(0/0\\). L'Hospital's Rule gives \\[\\lim_{x\\to0}\\frac{g'(x)}2=\\frac{f(0)}2=\\boxed0.\\]",
+          "maxPoints": 3,
+          "rubric": [{"points": 3, "description": "Finds g(0), applies L'Hospital's Rule, and obtains zero."}]
+        },
+        {
+          "label": "(d)",
+          "prompt": "Let \\(h(x)=3f(2x+1)+4\\). Find \\(\\displaystyle\\int_{-2}^1h(x)\\,dx\\).",
+          "answer": "With \\(u=2x+1\\), \\[\\int_{-2}^1h(x)dx=\\frac32\\int_{-3}^3f(u)du+12=\\frac32(5-4+5+3)+12=\\boxed{25.5}.\\]",
+          "maxPoints": 3,
+          "rubric": [{"points": 3, "description": "Uses the substitution and the four signed graph areas to obtain 25.5."}]
+        }
+      ],
+      "maxPoints": 9,
+      "rubric": [
+        {"part": "(a)", "maxPoints": 1},
+        {"part": "(b)", "maxPoints": 2},
+        {"part": "(c)", "maxPoints": 3},
+        {"part": "(d)", "maxPoints": 3}
+      ],
+      "workedSolution": "Use \\(g'=f\\), \\(g''=f'\\), signed areas under \\(f\\), L'Hospital's Rule, and a linear substitution as shown in the part answers.",
+      "explanation": "The official scoring page awards 1, 2, 3, and 3 points to parts (a) through (d).",
+      "rubricStatus": "Official 2014 sample-question scoring guideline transcribed from the retained scoring facsimile.",
+      "audit": {"sourcePage": "24; 28", "choicesStatus": "not_applicable", "frqStructureStatus": "verified-official-parts-and-points"}
+    },
+    {
+      "id": "APCALC-BC-SAMPLE-2014-FRQ-01",
+      "prompt": "For \\(t\\ge0\\), a particle has position \\((x(t),y(t))\\), where \\(dx/dt=t-5\\cos t\\) and \\(dy/dt=6\\cos(1+\\sin t)\\). At \\(t=3\\), its position is \\((-1,2)\\).",
+      "parts": [
+        {
+          "label": "(a)",
+          "prompt": "Write an equation of the tangent line to the path at \\(t=3\\).",
+          "answer": "\\[\\left.\\frac{dy}{dx}\\right|_{t=3}=\\left.\\frac{6\\cos(1+\\sin t)}{t-5\\cos t}\\right|_{t=3}\\approx0.314.\\] Thus \\(\\boxed{y=2+0.314(x+1)}\\).",
+          "maxPoints": 2,
+          "rubric": [{"points": 2, "description": "Computes dy/dx at t = 3 and writes the tangent line through (-1, 2)."}]
+        },
+        {
+          "label": "(b)",
+          "prompt": "Find when the tangent is vertical. Is the particle moving up or down then? Justify.",
+          "answer": "A vertical tangent requires \\(dx/dt=0\\) and \\(dy/dt\\ne0\\). Solving \\(t-5\\cos t=0\\) gives \\(t\\approx1.30644\\). Since \\(y'(1.30644)\\approx-2.305884<0\\), the particle is \\(\\boxed{\\text{moving down}}\\).",
+          "maxPoints": 3,
+          "rubric": [{"points": 3, "description": "Uses dx/dt = 0, finds the time, and determines the vertical direction from dy/dt."}]
+        },
+        {
+          "label": "(c)",
+          "prompt": "Find the particle's \\(y\\)-coordinate at \\(t=0\\).",
+          "answer": "\\[y(0)=y(3)-\\int_0^3y'(t)dt=2-\\int_0^3 6\\cos(1+\\sin t)dt\\approx\\boxed{3.634}\\] (or \\(3.633\\)).",
+          "maxPoints": 2,
+          "rubric": [{"points": 2, "description": "Uses the Fundamental Theorem of Calculus and gives the correct numerical coordinate."}]
+        },
+        {
+          "label": "(d)",
+          "prompt": "Find the total distance traveled for \\(0\\le t\\le3\\).",
+          "answer": "\\[\\int_0^3\\sqrt{(t-5\\cos t)^2+\\left(6\\cos(1+\\sin t)\\right)^2}\\,dt\\approx\\boxed{13.453}.\\]",
+          "maxPoints": 2,
+          "rubric": [{"points": 2, "description": "Integrates speed over the interval and gives the correct numerical distance."}]
+        }
+      ],
+      "maxPoints": 9,
+      "rubric": [
+        {"part": "(a)", "maxPoints": 2},
+        {"part": "(b)", "maxPoints": 3},
+        {"part": "(c)", "maxPoints": 2},
+        {"part": "(d)", "maxPoints": 2}
+      ],
+      "workedSolution": "Use parametric slope, the condition for a vertical tangent, accumulation of y-velocity, and the integral of speed.",
+      "explanation": "The retained official scoring page confirms the tangent slope, vertical-tangent time and direction, initial y-coordinate, and total distance.",
+      "rubricStatus": "Official 2014 sample-question scoring guideline transcribed from the retained scoring facsimile.",
+      "audit": {"sourcePage": "37; 43", "choicesStatus": "not_applicable", "frqStructureStatus": "verified-official-parts-and-points"}
+    },
+    {
+      "id": "APCALC-BC-SAMPLE-2014-FRQ-02",
+      "prompt": "The Maclaurin series for \\(f\\) is \\(\\displaystyle\\sum_{n=2}^{\\infty}\\frac{\\ln n}{3^n n^3}x^n\\).",
+      "parts": [
+        {
+          "label": "(a)",
+          "prompt": "Find \\(f'(0)\\) and \\(f^{(4)}(0)\\).",
+          "answer": "There is no linear term, so \\(\\boxed{f'(0)=0}\\). Also \\[\\frac{f^{(4)}(0)}{4!}=\\frac{\\ln4}{3^4 4^3}\\Rightarrow\\boxed{f^{(4)}(0)=\\frac{\\ln4}{216}}.\\]",
+          "maxPoints": 2,
+          "rubric": [{"points": 2, "description": "Correctly extracts both derivative values from the Maclaurin coefficients."}]
+        },
+        {
+          "label": "(b)",
+          "prompt": "Does \\(f\\) have a relative minimum, relative maximum, or neither at \\(x=0\\)? Justify.",
+          "answer": "\\(f'(0)=0\\), and \\[\\frac{f''(0)}{2!}=\\frac{\\ln2}{3^2 2^3}\\Rightarrow f''(0)=\\frac{\\ln2}{36}>0.\\] By the second derivative test, \\(\\boxed{f\\text{ has a relative minimum at }x=0}\\).",
+          "maxPoints": 2,
+          "rubric": [{"points": 2, "description": "Uses the second derivative at zero and gives the correct extremum with justification."}]
+        },
+        {
+          "label": "(c)",
+          "prompt": "Using the ratio test, determine and justify the interval of convergence.",
+          "answer": "The ratio of consecutive absolute terms tends to \\(|x|/3\\), so \\(|x|<3\\). At \\(x=3\\), the series is \\(\\sum\\ln n/n^3\\), which converges by comparison with \\(\\sum1/n^2\\); at \\(x=-3\\), it converges absolutely by the same comparison. Therefore the interval is \\(\\boxed{[-3,3]}\\).",
+          "maxPoints": 5,
+          "rubric": [{"points": 5, "description": "Sets up and evaluates the ratio, obtains radius 3, checks both endpoints, and states [-3, 3]."}]
+        }
+      ],
+      "maxPoints": 9,
+      "rubric": [
+        {"part": "(a)", "maxPoints": 2},
+        {"part": "(b)", "maxPoints": 2},
+        {"part": "(c)", "maxPoints": 5}
+      ],
+      "workedSolution": "Read derivatives from Maclaurin coefficients, apply the second derivative test, then use the ratio test and compare both endpoint series with a convergent p-series.",
+      "explanation": "The official scoring guideline allocates 2, 2, and 5 points and confirms the interval \\([-3,3]\\).",
+      "rubricStatus": "Official 2014 sample-question scoring guideline transcribed from the retained scoring facsimile.",
+      "audit": {"sourcePage": "39; 44; 45", "choicesStatus": "not_applicable", "frqStructureStatus": "verified-official-parts-and-points"}
+    }
+  ]
+}

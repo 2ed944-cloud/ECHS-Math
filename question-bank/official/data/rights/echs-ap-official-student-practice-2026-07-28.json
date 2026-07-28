@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "1.0",
+  "authorizationId": "echs-ap-official-student-practice-2026-07-28",
+  "recordedAt": "2026-07-28T03:03:45+03:00",
+  "authorizationBasis": "repository-owner-user-attestation",
+  "authorizationReference": "https://github.com/2ed944-cloud/ECHS-Math/issues/56",
+  "statement": "The repository owner confirmed that official AP questions may be published on the ECHS platform for student practice.",
+  "platform": "ECHS Mathematics Learning Platform",
+  "permittedUses": [
+    "student practice",
+    "student exam simulation",
+    "teacher instruction",
+    "teacher and administrator review"
+  ],
+  "courses": [
+    "AP Calculus AB",
+    "AP Calculus BC"
+  ],
+  "coveredOfficialStatuses": [
+    "legacy-ap",
+    "official-released"
+  ],
+  "publicationAllowed": true,
+  "externalSourceFileRedistributionAssumed": false,
+  "notes": [
+    "This record documents the user's stated license scope; it does not classify the source material as public domain.",
+    "A question is promoted only after every independent content, mathematics, KaTeX, media, calculator, and mapping gate passes."
+  ]
+}

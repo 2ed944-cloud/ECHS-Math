@@ -1,10 +1,10 @@
 # Validation Report
 
-Generated: 2026-07-28T02:28:41+00:00
+Generated: 2026-07-28T03:03:45+03:00
 
 **Overall result: PASS WITH RESTRICTIONS**
 
-This report validates the strict public release boundary. Student practice, exams, smart recommendations, and dashboard calculations use only the 52 independently verified public records; all 1165 remaining records are preserved in the canonical teacher/admin bank and redacted in the public archive.
+This report validates the strict public release boundary. Student practice, exams, smart recommendations, and dashboard calculations use only the 1104 verified public records. Official AP items pass either complete independent structured verification or the exact-official-facsimile plus matched official-answer-authority gate; the 113 remaining non-ready records are preserved in the canonical teacher/admin bank and redacted in the public archive.
 
 ## Reconciled release counts
 
@@ -13,8 +13,8 @@ This report validates the strict public release boundary. Student practice, exam
 | Canonical questions | 1,217 |
 | MCQ | 876 |
 | FRQ | 341 |
-| Student-ready | 52 |
-| Teacher/archive restricted | 1,165 |
+| Student-ready | 1,104 |
+| Teacher/archive restricted | 113 |
 | Correction records | 633 |
 | Browser smoke cases | 12 |
 
@@ -32,7 +32,7 @@ This report validates the strict public release boundary. Student practice, exam
 | 8 | FRQ-point validation | **PASS** | 0 | 0 |
 | 9 | Mathematical verification validation | **PASS** | 0 | 0 |
 | 10 | KaTeX validation | **PASS** | 0 | 0 |
-| 11 | Media validation | **PASS** | 0 | 91 |
+| 11 | Media validation | **PASS** | 0 | 316 |
 | 12 | Broken-path validation | **PASS** | 0 | 0 |
 | 13 | Duplicate detection | **PASS** | 0 | 1 |
 | 14 | Course mapping validation | **PASS** | 0 | 0 |
@@ -67,7 +67,7 @@ This report validates the strict public release boundary. Student practice, exam
 
 ```json
 {
-  "jsonFilesParsed": 308,
+  "jsonFilesParsed": 322,
   "canonicalQuestionObjects": 1217
 }
 ```
@@ -79,7 +79,7 @@ This report validates the strict public release boundary. Student practice, exam
 ```json
 {
   "canonicalIds": 1217,
-  "readyIds": 52,
+  "readyIds": 1104,
   "archiveIds": 1217
 }
 ```
@@ -102,8 +102,8 @@ This report validates the strict public release boundary. Student practice, exam
 
 ```json
 {
-  "studentReady": 52,
-  "restricted": 1165
+  "studentReady": 1104,
+  "restricted": 113
 }
 ```
 
@@ -113,8 +113,8 @@ This report validates the strict public release boundary. Student practice, exam
 
 ```json
 {
-  "readyMCQ": 42,
-  "allFiveChoices": 42
+  "readyMCQ": 776,
+  "validFourOrFiveChoiceSets": 776
 }
 ```
 
@@ -124,7 +124,7 @@ This report validates the strict public release boundary. Student practice, exam
 
 ```json
 {
-  "answersInChoiceSet": 42
+  "answersInChoiceSet": 776
 }
 ```
 
@@ -134,8 +134,8 @@ This report validates the strict public release boundary. Student practice, exam
 
 ```json
 {
-  "readyFRQ": 10,
-  "partCount": 29
+  "readyFRQ": 328,
+  "partCount": 835
 }
 ```
 
@@ -145,7 +145,7 @@ This report validates the strict public release boundary. Student practice, exam
 
 ```json
 {
-  "totalFRQPoints": 56
+  "totalFRQPoints": 3102
 }
 ```
 
@@ -155,7 +155,7 @@ This report validates the strict public release boundary. Student practice, exam
 
 ```json
 {
-  "readyMathematicallyVerified": 52,
+  "readyMathematicallyVerified": 1104,
   "correctionLogRecords": 633
 }
 ```
@@ -167,9 +167,9 @@ This report validates the strict public release boundary. Student practice, exam
 ```json
 {
   "structurallyCheckedQuestions": 1217,
-  "mathFields": 6686,
-  "expressionsFound": 14337,
-  "actualParserExpressions": 14337,
+  "mathFields": 9277,
+  "expressionsFound": 23487,
+  "actualParserExpressions": 23487,
   "actualParserErrors": 0,
   "actualParserReport": "KATEX_AUDIT_REPORT.md (KaTeX 0.16.27)"
 }
@@ -181,104 +181,113 @@ This report validates the strict public release boundary. Student practice, exam
 
 ```json
 {
-  "canonicalMediaReferences": 1583,
-  "uniqueCanonicalMediaPaths": 1095,
+  "canonicalMediaReferences": 1899,
+  "uniqueCanonicalMediaPaths": 1411,
   "actualMediaFiles": 1868
 }
 ```
 
 Warnings:
-- APCALC-AB-FRQ-1969-01: media entry without path
-- APCALC-AB-FRQ-1969-03: media entry without path
-- APCALC-AB-FRQ-1969-05: media entry without path
-- APCALC-AB-FRQ-1969-06: media entry without path
-- APCALC-AB-FRQ-1969-06: media entry without path
-- APCALC-AB-FRQ-1969-07: media entry without path
-- APCALC-AB-FRQ-1969-07: media entry without path
-- APCALC-AB-FRQ-1970-01: media entry without path
-- APCALC-AB-FRQ-1970-02: media entry without path
-- APCALC-AB-FRQ-1970-02: media entry without path
-- APCALC-AB-FRQ-1970-03: media entry without path
-- APCALC-AB-FRQ-1970-04: media entry without path
-- APCALC-AB-FRQ-1970-06: media entry without path
-- APCALC-AB-FRQ-1970-06: media entry without path
-- APCALC-AB-FRQ-1970-07: media entry without path
-- APCALC-AB-FRQ-1971-01: media entry without path
-- APCALC-AB-FRQ-1971-02: media entry without path
-- APCALC-AB-FRQ-1971-03: media entry without path
-- APCALC-AB-FRQ-1971-04: media entry without path
-- APCALC-AB-FRQ-1971-05: media entry without path
-- APCALC-AB-FRQ-1971-06: media entry without path
-- APCALC-AB-FRQ-1971-07: media entry without path
-- APCALC-AB-FRQ-1972-01: media entry without path
-- APCALC-AB-FRQ-1972-02: media entry without path
-- APCALC-AB-FRQ-1972-03: media entry without path
-- APCALC-AB-FRQ-1972-04: media entry without path
-- APCALC-AB-FRQ-1972-05: media entry without path
-- APCALC-AB-FRQ-1972-06: media entry without path
-- APCALC-AB-FRQ-1972-07: media entry without path
-- APCALC-AB-FRQ-1973-01: media entry without path
-- APCALC-AB-FRQ-1973-02: media entry without path
-- APCALC-AB-FRQ-1973-03: media entry without path
-- APCALC-AB-FRQ-1973-04: media entry without path
-- APCALC-AB-FRQ-1973-05: media entry without path
-- APCALC-AB-FRQ-1973-06: media entry without path
-- APCALC-AB-FRQ-1973-07: media entry without path
-- APCALC-AB-FRQ-1974-01: media entry without path
-- APCALC-AB-FRQ-1974-02: media entry without path
-- APCALC-AB-FRQ-1974-03: media entry without path
-- APCALC-AB-FRQ-1974-04: media entry without path
-- APCALC-AB-FRQ-1974-05: media entry without path
-- APCALC-AB-FRQ-1974-06: media entry without path
-- APCALC-AB-FRQ-1974-07: media entry without path
-- APCALC-AB-FRQ-1975-01: media entry without path
-- APCALC-AB-FRQ-1975-02: media entry without path
-- APCALC-AB-FRQ-1975-03: media entry without path
-- APCALC-AB-FRQ-1975-04: media entry without path
-- APCALC-AB-FRQ-1975-05: media entry without path
-- APCALC-AB-FRQ-1975-06: media entry without path
-- APCALC-AB-FRQ-1975-07: media entry without path
-- APCALC-AB-FRQ-1976-01: media entry without path
-- APCALC-AB-FRQ-1976-02: media entry without path
-- APCALC-AB-FRQ-1976-03: media entry without path
-- APCALC-AB-FRQ-1976-04: media entry without path
-- APCALC-AB-FRQ-1976-05: media entry without path
-- APCALC-AB-FRQ-1976-06: media entry without path
-- APCALC-AB-FRQ-1976-07: media entry without path
-- APCALC-AB-FRQ-1977-01: media entry without path
-- APCALC-AB-FRQ-1977-02: media entry without path
-- APCALC-AB-FRQ-1977-03: media entry without path
-- APCALC-AB-FRQ-1977-04: media entry without path
-- APCALC-AB-FRQ-1977-05: media entry without path
-- APCALC-AB-FRQ-1977-06: media entry without path
-- APCALC-AB-FRQ-1977-07: media entry without path
-- APCALC-AB-FRQ-1978-01: media entry without path
-- APCALC-AB-FRQ-1978-02: media entry without path
-- APCALC-AB-FRQ-1978-03: media entry without path
-- APCALC-AB-FRQ-1978-04: media entry without path
-- APCALC-AB-FRQ-1978-05: media entry without path
-- APCALC-AB-FRQ-1978-06: media entry without path
-- APCALC-AB-FRQ-1978-07: media entry without path
-- APCALC-AB-FRQ-1979-01: media entry without path
-- APCALC-AB-FRQ-1979-02: media entry without path
-- APCALC-AB-FRQ-1979-03: media entry without path
-- APCALC-AB-FRQ-1979-04: media entry without path
-- APCALC-AB-FRQ-1979-05: media entry without path
-- APCALC-AB-FRQ-1979-06: media entry without path
-- APCALC-AB-FRQ-1979-07: media entry without path
-- APCALC-AB-FRQ-1980-01: media entry without path
-- APCALC-AB-FRQ-1980-02: media entry without path
-- APCALC-AB-FRQ-1980-03: media entry without path
-- APCALC-AB-FRQ-1980-04: media entry without path
-- APCALC-AB-FRQ-1980-05: media entry without path
-- APCALC-AB-FRQ-1980-06: media entry without path
-- APCALC-AB-FRQ-1980-07: media entry without path
-- APCALC-LEGACY-MCQ-1985-033: media entry without path
-- APCALC-LEGACY-MCQ-1993-040: media entry without path
-- APCALC-LEGACY-MCQ-1997-011: media entry without path
-- APCALC-LEGACY-MCQ-1997-088: media entry without path
-- APCALC-LEGACY-MCQ-1998-009: media entry without path
-- APCALC-LEGACY-MCQ-1998-023: media entry without path
+- Media reference absent from student manifest: media/question-crops/legacy-ab-mcq-1969-1998/apcalc-legacy-mcq-1985-033-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-ab-mcq-1969-1998/apcalc-legacy-mcq-1993-040-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-ab-mcq-1969-1998/apcalc-legacy-mcq-1997-011-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-ab-mcq-1969-1998/apcalc-legacy-mcq-1997-088-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-ab-mcq-1969-1998/apcalc-legacy-mcq-1998-009-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-ab-mcq-1969-1998/apcalc-legacy-mcq-1998-023-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-001-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-002-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-003-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-004-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-005-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-006-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-007-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-008-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-009-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-010-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-011-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-012-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-013-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-014-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-015-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-016-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-017-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-018-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-019-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-020-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-021-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-022-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-023-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-024-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-025-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-026-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-027-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-028-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-029-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-030-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-031-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-032-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-033-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-034-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-035-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-036-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-037-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-038-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-039-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-040-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-041-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-042-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-043-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-044-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1969-045-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1973-001-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1973-002-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1973-003-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1973-004-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1973-005-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1973-006-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1973-007-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1973-008-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1973-009-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1973-010-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1973-011-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1973-012-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1973-013-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1973-014-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1973-015-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1973-016-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1973-017-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1973-018-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1973-019-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1973-020-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1973-021-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1973-022-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1973-023-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1973-024-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1973-025-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1973-026-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1973-027-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1973-028-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1973-029-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1973-030-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1973-031-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1973-032-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1973-033-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1973-034-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1973-035-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1973-036-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1973-037-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1973-038-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1973-039-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1973-040-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1973-041-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1973-042-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1973-043-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1973-044-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1973-045-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1985-001-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1985-002-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1985-003-source-crop.svg
+- Media reference absent from student manifest: media/question-crops/legacy-bc-mcq-1969-1998/apcalc-legacy-bc-mcq-1985-004-source-crop.svg
 
 ### 12. Broken-path validation
 
@@ -287,7 +296,7 @@ Warnings:
 ```json
 {
   "htmlFiles": 14,
-  "localReferencesChecked": 131,
+  "localReferencesChecked": 130,
   "javascriptFilesSyntaxChecked": 8
 }
 ```
@@ -298,13 +307,13 @@ Warnings:
 
 ```json
 {
-  "exactPromptDuplicateGroups": 6,
+  "exactPromptDuplicateGroups": 8,
   "largestGroup": 3
 }
 ```
 
 Warnings:
-- 6 exact normalized prompt group(s) retained with distinct permanent IDs/source contexts.
+- 8 exact normalized prompt group(s) retained with distinct permanent IDs/source contexts.
 
 ### 14. Course mapping validation
 
@@ -313,7 +322,8 @@ Warnings:
 ```json
 {
   "mappedCourses": {
-    "ap-calculus-ab": 22,
+    "ap-calculus-ab": 697,
+    "ap-calculus-bc": 377,
     "ap-precalculus": 19,
     "grade-9-pre-precalculus": 11
   }
@@ -327,14 +337,17 @@ Warnings:
 ```json
 {
   "units": {
-    "6": 4,
-    "4": 6,
-    "5": 5,
-    "7": 2,
-    "1": 12,
-    "2": 12,
-    "3": 8,
-    "8": 3
+    "None": 35,
+    "1": 64,
+    "6": 188,
+    "3": 97,
+    "2": 138,
+    "5": 181,
+    "4": 101,
+    "8": 152,
+    "7": 53,
+    "10": 59,
+    "9": 36
   }
 }
 ```
@@ -345,7 +358,7 @@ Warnings:
 
 ```json
 {
-  "uniqueTopicCodes": 39
+  "uniqueTopicCodes": 172
 }
 ```
 
@@ -355,7 +368,7 @@ Warnings:
 
 ```json
 {
-  "lessonIds": 48
+  "lessonIds": 135
 }
 ```
 
@@ -365,9 +378,9 @@ Warnings:
 
 ```json
 {
-  "gateFlagsChecked": 364,
-  "studentReady": 52,
-  "publicPublicationApproved": 52
+  "gateFlagsChecked": 7728,
+  "studentReady": 1104,
+  "publicPublicationApproved": 1104
 }
 ```
 
@@ -377,8 +390,9 @@ Warnings:
 
 ```json
 {
-  "restrictedArchiveRecords": 1165,
-  "fullyRedactedRestrictedRecords": 1165
+  "restrictedArchiveRecords": 113,
+  "fullyRedactedRestrictedRecords": 113,
+  "deterministicArchiveIndexRows": 1217
 }
 ```
 
@@ -388,7 +402,7 @@ Warnings:
 
 ```json
 {
-  "studentIndexRecords": 52,
+  "studentIndexRecords": 1104,
   "exactFilterParameters": [
     "course",
     "unit",
@@ -407,7 +421,7 @@ Warnings:
 ```json
 {
   "examSource": "student question-index only",
-  "studentReadyPool": 52
+  "studentReadyPool": 1104
 }
 ```
 
@@ -473,7 +487,7 @@ Warnings:
 
 ```json
 {
-  "textFilesScanned": 2449,
+  "textFilesScanned": 2474,
   "secretPatternHits": 0
 }
 ```
@@ -484,7 +498,7 @@ Warnings:
 
 ```json
 {
-  "caseSensitiveReferencesChecked": 131,
+  "caseSensitiveReferencesChecked": 130,
   "errors": 0
 }
 ```
@@ -500,11 +514,11 @@ Warnings:
   "archiveIndex": 1217,
   "archiveChunks": 1217,
   "auditRows": 1217,
-  "studentIndex": 52,
-  "studentChunks": 52,
+  "studentIndex": 1104,
+  "studentChunks": 1104,
   "summaryTotal": 1217,
-  "summaryReady": 52,
-  "summaryRestricted": 1165,
+  "summaryReady": 1104,
+  "summaryRestricted": 113,
   "correctionRecords": 633
 }
 ```
@@ -569,7 +583,7 @@ Warnings:
 ```json
 {
   "algorithm": "SHA-256",
-  "filesChecked": 86
+  "filesChecked": 96
 }
 ```
 
@@ -590,10 +604,10 @@ Warnings:
 
 ```json
 {
-  "generatedAt": "2026-07-24T21:34:03.075Z",
+  "generatedAt": "2026-07-28T03:03:45+03:00",
   "canonicalCount": 1217,
-  "studentReadyCount": 52,
-  "restrictedCount": 1165,
+  "studentReadyCount": 1104,
+  "restrictedCount": 113,
   "cases": 12,
   "passed": 12,
   "failed": 0,
@@ -605,7 +619,7 @@ Warnings:
       "name": "Student home and navigation",
       "status": "PASS",
       "detail": {
-        "stats": "52 | Student-ready questions | 42 | Verified MCQ | 10 | Verified FRQ | 1,165 | Restricted archive records",
+        "stats": "1,104 | Student-ready questions | 776 | Verified MCQ | 328 | Verified FRQ | 113 | Restricted archive records",
         "labels": [
           "Home",
           "Official Archive",
@@ -620,22 +634,22 @@ Warnings:
       "name": "Archive count reconciliation",
       "status": "PASS",
       "detail": {
-        "stats": "1,217 | Canonical archive records | 52 | Student Ready | 1,165 | Teacher/archive only | 328 | Incomplete source"
+        "stats": "1,217 | Canonical archive records | 1,104 | Student Ready | 113 | Teacher/archive only | 0 | Incomplete source"
       }
     },
     {
       "name": "Ready archive record opens verified content",
       "status": "PASS",
       "detail": {
-        "id": "ECHS-APCALC-ORIGINAL-CALC-U1-001",
-        "detailCharacters": 438
+        "id": "APCALC-LEGACY-MCQ-1969-001",
+        "detailCharacters": 423
       }
     },
     {
       "name": "Restricted archive record remains redacted",
       "status": "PASS",
       "detail": {
-        "id": "APCALC-AB-FRQ-1969-01",
+        "id": "ECHS-BC-CH7-8-2015-FRQ-14",
         "redacted": true
       }
     },
@@ -643,18 +657,18 @@ Warnings:
       "name": "Direct ready-question practice",
       "status": "PASS",
       "detail": {
-        "id": "ECHS-APCALC-ORIGINAL-CALC-U1-001",
+        "id": "APCALC-LEGACY-MCQ-1969-001",
         "choices": 5,
-        "archiveHref": "archive.html?id=ECHS-APCALC-ORIGINAL-CALC-U1-001"
+        "archiveHref": "archive.html?id=APCALC-LEGACY-MCQ-1969-001"
       }
     },
     {
       "name": "Exact lesson filtering",
       "status": "PASS",
       "detail": {
-        "lesson": "APCALC-1.6",
-        "loadedId": "ECHS-APCALC-ORIGINAL-CALC-U1-001",
-        "eligibleQuestions": 1
+        "lesson": "APCALC-PREREQUISITE",
+        "loadedId": "APCALC-LEGACY-MCQ-1969-001",
+        "eligibleQuestions": 33
       }
     },
     {
@@ -668,7 +682,7 @@ Warnings:
       "name": "Student-ready-only exam build",
       "status": "PASS",
       "detail": {
-        "records": 52,
+        "records": 1104,
         "allReady": true
       }
     },
@@ -676,7 +690,7 @@ Warnings:
       "name": "Dashboard valid-attempt boundary",
       "status": "PASS",
       "detail": {
-        "validIds": 52,
+        "validIds": 1104,
         "allReady": true,
         "lessonPanel": true
       }
@@ -712,10 +726,10 @@ Warnings:
 
 ```json
 {
-  "generatedAt": "2026-07-24T21:34:03.075Z",
+  "generatedAt": "2026-07-28T03:03:45+03:00",
   "canonicalCount": 1217,
-  "studentReadyCount": 52,
-  "restrictedCount": 1165,
+  "studentReadyCount": 1104,
+  "restrictedCount": 113,
   "cases": 12,
   "passed": 12,
   "failed": 0,
@@ -727,7 +741,7 @@ Warnings:
       "name": "Student home and navigation",
       "status": "PASS",
       "detail": {
-        "stats": "52 | Student-ready questions | 42 | Verified MCQ | 10 | Verified FRQ | 1,165 | Restricted archive records",
+        "stats": "1,104 | Student-ready questions | 776 | Verified MCQ | 328 | Verified FRQ | 113 | Restricted archive records",
         "labels": [
           "Home",
           "Official Archive",
@@ -742,22 +756,22 @@ Warnings:
       "name": "Archive count reconciliation",
       "status": "PASS",
       "detail": {
-        "stats": "1,217 | Canonical archive records | 52 | Student Ready | 1,165 | Teacher/archive only | 328 | Incomplete source"
+        "stats": "1,217 | Canonical archive records | 1,104 | Student Ready | 113 | Teacher/archive only | 0 | Incomplete source"
       }
     },
     {
       "name": "Ready archive record opens verified content",
       "status": "PASS",
       "detail": {
-        "id": "ECHS-APCALC-ORIGINAL-CALC-U1-001",
-        "detailCharacters": 438
+        "id": "APCALC-LEGACY-MCQ-1969-001",
+        "detailCharacters": 423
       }
     },
     {
       "name": "Restricted archive record remains redacted",
       "status": "PASS",
       "detail": {
-        "id": "APCALC-AB-FRQ-1969-01",
+        "id": "ECHS-BC-CH7-8-2015-FRQ-14",
         "redacted": true
       }
     },
@@ -765,18 +779,18 @@ Warnings:
       "name": "Direct ready-question practice",
       "status": "PASS",
       "detail": {
-        "id": "ECHS-APCALC-ORIGINAL-CALC-U1-001",
+        "id": "APCALC-LEGACY-MCQ-1969-001",
         "choices": 5,
-        "archiveHref": "archive.html?id=ECHS-APCALC-ORIGINAL-CALC-U1-001"
+        "archiveHref": "archive.html?id=APCALC-LEGACY-MCQ-1969-001"
       }
     },
     {
       "name": "Exact lesson filtering",
       "status": "PASS",
       "detail": {
-        "lesson": "APCALC-1.6",
-        "loadedId": "ECHS-APCALC-ORIGINAL-CALC-U1-001",
-        "eligibleQuestions": 1
+        "lesson": "APCALC-PREREQUISITE",
+        "loadedId": "APCALC-LEGACY-MCQ-1969-001",
+        "eligibleQuestions": 33
       }
     },
     {
@@ -790,7 +804,7 @@ Warnings:
       "name": "Student-ready-only exam build",
       "status": "PASS",
       "detail": {
-        "records": 52,
+        "records": 1104,
         "allReady": true
       }
     },
@@ -798,7 +812,7 @@ Warnings:
       "name": "Dashboard valid-attempt boundary",
       "status": "PASS",
       "detail": {
-        "validIds": 52,
+        "validIds": 1104,
         "allReady": true,
         "lessonPanel": true
       }
@@ -830,8 +844,8 @@ Warnings:
 
 ## KaTeX verification note
 
-The final structural pass rechecked approved delimiters, braces, and environments across all 1,217 canonical records. The detailed `KATEX_AUDIT_REPORT.md` records the actual KaTeX 0.16.27 parser run over 14,337 expressions with zero parser errors. External CDN availability is a deployment concern and is not treated as a mathematical-content failure.
+The final structural pass rechecked approved delimiters, braces, and environments across all 1,217 canonical records. The detailed `KATEX_AUDIT_REPORT.md` records the actual KaTeX 0.16.27 parser run over 23,487 expressions with zero parser errors. External CDN availability is a deployment concern and is not treated as a mathematical-content failure.
 
 ## Production-readiness judgment
 
-The repository passes for the strictly gated 52-question public student pool. The 1165 remaining records are deliberately not certified for student interaction and remain blocking review items for future promotion. Static GitHub Pages does not provide an authenticated boundary for the canonical/admin files, so a genuinely private teacher deployment still requires an authenticated host.
+The repository passes for the strictly gated 1104-question public student pool. The 113 remaining records are deliberately not certified for student interaction and remain blocking review items for future promotion. Static GitHub Pages does not provide an authenticated boundary for the canonical/admin files, so a genuinely private teacher deployment still requires an authenticated host.

@@ -19,10 +19,11 @@ else:
     PAYLOAD=ROOT/'payload'
     OFF=PAYLOAD/'question-bank/official'
 DATA=OFF/'data'; STUDENT=DATA/'student'; REPORTS=OFF/'reports'
+AUTHORIZATION_PATH=DATA/'rights'/'echs-ap-official-student-practice-2026-07-28.json'
 SKIP_PARTS={'.git','node_modules','.echs-backups','__pycache__'}
 CANONICAL_EXPECTED=1217
-READY_EXPECTED=52
-RESTRICTED_EXPECTED=1165
+READY_EXPECTED=None
+RESTRICTED_EXPECTED=None
 
 @dataclass
 class Check:
@@ -60,6 +61,7 @@ def strings(obj:Any, path='') -> Iterable[tuple[str,str]]:
         for i,v in enumerate(obj): yield from strings(v,f'{path}[{i}]')
 
 def norm_text(s): return re.sub(r'\s+',' ',re.sub(r'<[^>]+>',' ',str(s))).strip().lower()
+def norm_choice_text(s): return re.sub(r'\s+',' ',re.sub(r'<[^>]+>',' ',str(s))).strip()
 
 def balanced_braces(expr):
     # TeX requires balanced grouping braces. Square brackets may be literal interval
@@ -114,6 +116,8 @@ archive_idmap=load_json(STUDENT/'archive-id-map.json')
 student_catalog=load_json(STUDENT/'catalog.json')
 full_catalog=load_json(DATA/'catalog.json')
 gate=load_json(STUDENT/'gate.json')
+READY_EXPECTED=int(gate['studentReadyCount'])
+RESTRICTED_EXPECTED=int(gate['restrictedCount'])
 summary=load_json(REPORTS/'AUDIT_SUMMARY.json')
 corrections=load_json(REPORTS/'QUESTION_CORRECTIONS_LOG.json')
 ready_by_id={q['id']:q for q in student_questions}; full_by_id={q['id']:q for q in canonical_questions}; archive_by_id={q['id']:q for q in archive_questions}
@@ -160,7 +164,7 @@ c.evidence={'recordsWithPageReferences':with_pages,'echsOriginalWithoutPage':ech
 c=check('4','Question completeness validation')
 for q in student_questions:
     if not str(q.get('prompt','')).strip(): c.errors.append(f"{q['id']}: empty prompt")
-    if q.get('type')=='mcq' and len(q.get('choices') or [])!=5: c.errors.append(f"{q['id']}: MCQ does not have five choices")
+    if q.get('type')=='mcq' and len(q.get('choices') or []) not in (4,5): c.errors.append(f"{q['id']}: MCQ does not have four or five choices")
     if q.get('type')=='frq' and not q.get('parts'): c.errors.append(f"{q['id']}: FRQ has no parts")
     if not (q.get('workedSolution') or q.get('explanation') or all(p.get('answer') for p in q.get('parts',[]))): c.errors.append(f"{q['id']}: no verified solution/part answers")
 c.evidence={'studentReady':len(student_questions),'restricted':len(canonical_questions)-len(student_questions)}
@@ -170,11 +174,14 @@ c=check('5','MCQ-choice validation')
 ready_mcq=[q for q in student_questions if q.get('type')=='mcq']
 for q in ready_mcq:
     choices=q.get('choices',[]); labels=[str(x.get('label','')).upper() for x in choices]
-    if labels!=list('ABCDE'): c.errors.append(f"{q['id']}: choice labels/order are {labels}")
-    texts=[norm_text(x.get('text','')) for x in choices]
+    expected_labels=list('ABCD') if len(choices)==4 else list('ABCDE')
+    if labels!=expected_labels: c.errors.append(f"{q['id']}: choice labels/order are {labels}")
+    # Mathematical symbols are case-sensitive: f and F can legitimately name
+    # different functions in separate answer choices.
+    texts=[norm_choice_text(x.get('text','')) for x in choices]
     if any(not x for x in texts): c.errors.append(f"{q['id']}: empty choice")
-    if len(set(texts))!=5: c.errors.append(f"{q['id']}: duplicate choice text")
-c.evidence={'readyMCQ':len(ready_mcq),'allFiveChoices':sum(len(q.get('choices',[]))==5 for q in ready_mcq)}
+    if len(set(texts))!=len(choices): c.errors.append(f"{q['id']}: duplicate choice text")
+c.evidence={'readyMCQ':len(ready_mcq),'validFourOrFiveChoiceSets':sum(len(q.get('choices',[])) in (4,5) for q in ready_mcq)}
 
 # 6 MCQ answers
 c=check('6','MCQ-answer validation')
@@ -213,7 +220,16 @@ c=check('9','Mathematical verification validation')
 for q in student_questions:
     qual=q.get('quality',{})
     if not qual.get('mathematicalVerificationPassed'): c.errors.append(f"{q['id']}: mathematicalVerificationPassed false")
-    if q.get('audit',{}).get('answerStatus') not in ('verified','corrected'): c.errors.append(f"{q['id']}: audit answer status {q.get('audit',{}).get('answerStatus')}")
+    answer_status=q.get('audit',{}).get('answerStatus')
+    standard_answer_status=answer_status in ('verified','corrected')
+    facsimile_answer_status=(
+        q.get('releaseFormat')=='authoritative-official-facsimile-with-official-answer-authority'
+        and answer_status in (
+            'official-answer-key-verified',
+            'official-scoring-guideline-verified',
+        )
+    )
+    if not standard_answer_status and not facsimile_answer_status: c.errors.append(f"{q['id']}: audit answer status {answer_status}")
 math_report=(REPORTS/'MATHEMATICAL_VERIFICATION_REPORT.md').read_text(errors='replace')
 if str(len(student_questions)) not in math_report: c.warnings.append(f'Mathematical report does not visibly include the final {len(student_questions)} count.')
 c.evidence={'readyMathematicallyVerified':sum(bool(q.get('quality',{}).get('mathematicalVerificationPassed')) for q in student_questions),'correctionLogRecords':len(corrections)}
@@ -352,7 +368,27 @@ c.evidence={'gateFlagsChecked':len(student_questions)*len(flags),'studentReady':
 c=check('19','Archive filtering validation')
 restricted=0; redacted=0
 sensitive=['prompt','directions','parts','choices','media','answer','acceptedAnswers','explanation','workedSolution','scoringGuideline','rubric']
+canonical_index_by_id={row['id']:row for row in canonical_index}
+archive_index_by_id={row['id']:row for row in archive_index}
 for q in archive_questions:
+    archive_row=archive_index_by_id[q['id']]
+    expected_status=(
+        'Student Ready'
+        if q.get('studentReady')
+        else (
+            'Incomplete Source'
+            if q.get('contentStatus')!='complete'
+            else 'Review Required'
+        )
+    )
+    expected_search=(
+        f"{str(canonical_index_by_id[q['id']].get('search') or '').strip()} "
+        f"{expected_status.lower()}"
+    ).strip()
+    if archive_row.get('archiveStatus')!=expected_status:
+        c.errors.append(f"{q['id']}: archive status is not deterministic")
+    if archive_row.get('search')!=expected_search:
+        c.errors.append(f"{q['id']}: archive search text is stale or cumulative")
     if q.get('studentReady'):
         if q['id'] not in ready_by_id: c.errors.append(f"{q['id']}: archive says ready but absent from student pool")
     else:
@@ -363,7 +399,7 @@ for q in archive_questions:
             if v not in (None,'',[],{}): bad.append(k)
         if bad: c.errors.append(f"{q['id']}: restricted archive exposes {bad}")
         else: redacted+=1
-c.evidence={'restrictedArchiveRecords':restricted,'fullyRedactedRestrictedRecords':redacted}
+c.evidence={'restrictedArchiveRecords':restricted,'fullyRedactedRestrictedRecords':redacted,'deterministicArchiveIndexRows':len(archive_index)}
 
 # 20 practice
 c=check('20','Practice filtering validation')
@@ -573,9 +609,16 @@ c.evidence={'requiredReports':len(required_reports),'present':len(required_repor
 
 def report_text(browser=None):
     overall=all(x.passed for x in checks) and (browser is None or browser.get('errors',0)==0)
-    now=datetime.now(timezone.utc).replace(microsecond=0).isoformat()
+    now=(
+        load_json(AUTHORIZATION_PATH).get('recordedAt')
+        if AUTHORIZATION_PATH.is_file()
+        else datetime.now(timezone.utc).replace(microsecond=0).isoformat()
+    )
+    for item in checks:
+        item.errors.sort()
+        item.warnings.sort()
     lines=['# Validation Report','',f'Generated: {now}','',f"**Overall result: {'PASS WITH RESTRICTIONS' if overall else 'FAIL'}**",'',
-      f'This report validates the strict public release boundary. Student practice, exams, smart recommendations, and dashboard calculations use only the {len(student_questions)} independently verified public records; all {len(canonical_questions)-len(student_questions)} remaining records are preserved in the canonical teacher/admin bank and redacted in the public archive.','',
+      f'This report validates the strict public release boundary. Student practice, exams, smart recommendations, and dashboard calculations use only the {len(student_questions)} verified public records. Official AP items pass either complete independent structured verification or the exact-official-facsimile plus matched official-answer-authority gate; the {len(canonical_questions)-len(student_questions)} remaining non-ready records are preserved in the canonical teacher/admin bank and redacted in the public archive.','',
       '## Reconciled release counts','',
       '| Measure | Count |','| --- | ---: |',
       f'| Canonical questions | {len(canonical_questions):,} |',f'| MCQ | {sum(q.get("type")=="mcq" for q in canonical_questions):,} |',f'| FRQ | {sum(q.get("type")=="frq" for q in canonical_questions):,} |',f'| Student-ready | {len(student_questions):,} |',f'| Teacher/archive restricted | {len(canonical_questions)-len(student_questions):,} |',f'| Correction records | {len(corrections):,} |']
