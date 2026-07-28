@@ -2,18 +2,25 @@
 
 Generated: 2026-07-28T03:03:45+03:00
 
-- Records completed: **158**
+- Records completed: **223**
 - Every record already passed source, transcription, answer, independent mathematics, KaTeX, media, calculator, and mapping verification before this structure pass.
-- Every released part has a nonempty verified prompt and answer, positive points, and an explicit ECHS analytic practice rubric.
+- Every released part has a nonempty verified prompt and answer, positive points, and an explicit ECHS analytic practice rubric whose criterion points sum exactly to the part maximum.
 - ECHS rubrics are labeled as practice rubrics and are not represented as official College Board point-by-point scoring guidelines.
 
 | year | records |
 | --- | ---: |
-| 1969 | 1 |
-| 1970 | 1 |
-| 1978 | 6 |
-| 1979 | 6 |
-| 1980 | 3 |
+| 1969 | 6 |
+| 1970 | 6 |
+| 1971 | 7 |
+| 1972 | 7 |
+| 1973 | 7 |
+| 1974 | 7 |
+| 1975 | 7 |
+| 1976 | 7 |
+| 1977 | 7 |
+| 1978 | 7 |
+| 1979 | 7 |
+| 1980 | 7 |
 | 1981 | 7 |
 | 1982 | 7 |
 | 1983 | 6 |

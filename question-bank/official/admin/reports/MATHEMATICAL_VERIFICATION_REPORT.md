@@ -3,8 +3,8 @@
 Generated: 2026-07-28T03:03:45+03:00
 
 - Canonical questions with an audit disposition: **1217**
-- Strict public student-ready questions independently re-solved: **880**
-- Restricted pending review or release authorization: **337**
+- Strict public student-ready questions independently re-solved: **896**
+- Restricted pending review or release authorization: **321**
 
 | question_id | stored_answer | computed_answer | mathematical_status | student_ready |
 | --- | --- | --- | --- | --- |
@@ -59,7 +59,7 @@ Generated: 2026-07-28T03:03:45+03:00
 \[v\!\left(\frac23\right)=12\left(\frac23\right)\left(\frac23-2\right)^2=\frac{128}{9}.\] | \[v(t)=x'(t)=12t^3-48t^2+48t=12t(t-2)^2,\]
 \[a(t)=v'(t)=36t^2-96t+48=12(3t-2)(t-2).\]; Solve \(v(t)=12t(t-2)^2=0\). The particle is at rest at \(t=0\) and \(t=2\).; The factor \((t-2)^2\) never changes sign. Thus the sign of \(v\) is the sign of \(t\): negative for \(t<0\), positive for \(t>0\) except for the isolated zero at \(t=2\). The particle changes direction only at \(t=0\).; Acceleration is zero at \(t=\tfrac23\) and \(t=2\). The first is \(t=\tfrac23\). Therefore
 \[v\!\left(\frac23\right)=12\left(\frac23\right)\left(\frac23-2\right)^2=\frac{128}{9}.\] | verified | true |
-| `APCALC-AB-FRQ-1969-03` |  |  | verified | false |
+| `APCALC-AB-FRQ-1969-03` | Since \(f'(x)=\dfrac{x-1}{x^2}\), the function decreases on \([e^{-1},1]\) and increases on \([1,e)\). The absolute maximum is \(f(e^{-1})=e-1\), and the absolute minimum is \(f(1)=1\). The point \(x=e\) is excluded; \(\lim_{x\to e^-}f(x)=1+e^{-1}\) is not attained.; \(f''(x)=\dfrac{2-x}{x^3}\). The graph is concave up on \((e^{-1},2)\), concave down on \((2,e)\), and has an inflection point at \(\left(2,\tfrac12+\ln2\right)\).; The curve decreases from the closed point \((e^{-1},e-1)\) to the absolute minimum \((1,1)\), then increases toward the excluded endpoint \((e,1+e^{-1})\), which is drawn open. It is concave up until \(x=2\), has an inflection point at \(\left(2,\tfrac12+\ln2\right)\), and is concave down thereafter.; The horizontal line \(y=\dfrac{2}{e-1}\) is the height of a rectangle with base from \(x=e^{-1}\) to \(x=e\) whose area equals the area under the graph of \(f\). Excluding the single endpoint \(x=e\) does not change the definite integral or the average value. | Since \(f'(x)=\dfrac{x-1}{x^2}\), the function decreases on \([e^{-1},1]\) and increases on \([1,e)\). The absolute maximum is \(f(e^{-1})=e-1\), and the absolute minimum is \(f(1)=1\). The point \(x=e\) is excluded; \(\lim_{x\to e^-}f(x)=1+e^{-1}\) is not attained.; \(f''(x)=\dfrac{2-x}{x^3}\). The graph is concave up on \((e^{-1},2)\), concave down on \((2,e)\), and has an inflection point at \(\left(2,\tfrac12+\ln2\right)\).; The curve decreases from the closed point \((e^{-1},e-1)\) to the absolute minimum \((1,1)\), then increases toward the excluded endpoint \((e,1+e^{-1})\), which is drawn open. It is concave up until \(x=2\), has an inflection point at \(\left(2,\tfrac12+\ln2\right)\), and is concave down thereafter.; The horizontal line \(y=\dfrac{2}{e-1}\) is the height of a rectangle with base from \(x=e^{-1}\) to \(x=e\) whose area equals the area under the graph of \(f\). Excluding the single endpoint \(x=e\) does not change the definite integral or the average value. | verified | true |
 | `APCALC-AB-FRQ-1969-04` | \[N'(t)=1000e^{-t/20}\left(1-\frac{t}{20}\right).\]
 The only interior critical time is \(t=20\). Compare
 \[N(0)=25000,\quad N(20)=25000+\frac{20000}{e},\quad N(100)=25000+\frac{100000}{e^5}.\]
@@ -1675,7 +1675,49 @@ At \(k=1\),
 \boxed{\frac{dA}{dt}=\frac{\pi}{40}}
 \]
 square units per second. | verified | true |
-| `APCALC-AB-FRQ-1974-01` |  |  | verified | false |
+| `APCALC-AB-FRQ-1974-01` | On \([-\pi,0]\), \(\sin x\le0\), so \(f(x)=-\sin x\). On \([0,\pi]\), \(f(x)=\sin x\). Thus the graph consists of two nonnegative sine arches, with included zeros at \(x=-\pi,0,\pi\) and maxima \(1\) at \(x=\pm\frac{\pi}{2}\).; Because \(g(u)=u^2\),
+\[
+H(x)=g(f(x))=(&#124;\sin x&#124;)^2=\boxed{\sin^2x}.
+\]; The composition uses the same allowed inputs as \(f\), because \(g\) is defined for every real input. Hence
+\[
+\operatorname{Dom}(H)=\boxed{[-\pi,\pi]}.
+\]
+Since \(0\leq\sin^2x\leq1\), and both values are attained,
+\[
+\operatorname{Range}(H)=\boxed{[0,1]}.
+\]; Differentiate:
+\[
+H'(x)=2\sin x\cos x=\sin(2x).
+\]
+At \(x=\frac{\pi}{4}\),
+\[
+H\left(\frac{\pi}{4}\right)=\frac12,\qquad H'\left(\frac{\pi}{4}\right)=1.
+\]
+Therefore the tangent line is
+\[
+\boxed{y-\frac12=x-\frac{\pi}{4}}.
+\] | On \([-\pi,0]\), \(\sin x\le0\), so \(f(x)=-\sin x\). On \([0,\pi]\), \(f(x)=\sin x\). Thus the graph consists of two nonnegative sine arches, with included zeros at \(x=-\pi,0,\pi\) and maxima \(1\) at \(x=\pm\frac{\pi}{2}\).; Because \(g(u)=u^2\),
+\[
+H(x)=g(f(x))=(&#124;\sin x&#124;)^2=\boxed{\sin^2x}.
+\]; The composition uses the same allowed inputs as \(f\), because \(g\) is defined for every real input. Hence
+\[
+\operatorname{Dom}(H)=\boxed{[-\pi,\pi]}.
+\]
+Since \(0\leq\sin^2x\leq1\), and both values are attained,
+\[
+\operatorname{Range}(H)=\boxed{[0,1]}.
+\]; Differentiate:
+\[
+H'(x)=2\sin x\cos x=\sin(2x).
+\]
+At \(x=\frac{\pi}{4}\),
+\[
+H\left(\frac{\pi}{4}\right)=\frac12,\qquad H'\left(\frac{\pi}{4}\right)=1.
+\]
+Therefore the tangent line is
+\[
+\boxed{y-\frac12=x-\frac{\pi}{4}}.
+\] | verified | true |
 | `APCALC-AB-FRQ-1974-02` | Symmetry about the \(y\)-axis makes \(P\) even, so the odd-power coefficients vanish:
 \[
 a=0,\qquad c=0.
@@ -1721,7 +1763,69 @@ Substituting \(b=-2q^2\) gives \(1-q^4=-3\), hence \(q^4=4\), \(q^2=2\), and \(b
 \[
 \boxed{q=\pm\sqrt2}.
 \] | verified | true |
-| `APCALC-AB-FRQ-1974-03` |  |  | verified | false |
+| `APCALC-AB-FRQ-1974-03` | If \(k=0\), both tangent lines are horizontal, so no such perpendicular pair exists. For \(k
+e0\), since \(f'(x)=2kx\), the two slopes at \(x_0\) and \(-x_0\) are \(2kx_0\) and \(-2kx_0\). Their product must be \(-1\):
+\[
+(2kx_0)(-2kx_0)=-1.
+\]
+Thus \(4k^2x_0^2=1\). One convenient choice is
+\[
+\boxed{x_0=\frac1{2k}},
+\]
+and the opposite choice merely interchanges the two tangent points.; Using \(x_0=1/(2k)\),
+\[
+2kx_0=1,\qquad -2kx_0=-1.
+\]
+Thus the slopes are
+\[
+\boxed{1\text{ and }-1}.
+\]; At either tangent point,
+\[
+f(x_0)=kx_0^2+c=\frac1{4k}+c.
+\]
+With \(x_0=1/(2k)\), the two tangent lines simplify to
+\[
+y=x+c-\frac1{4k},\qquad y=-x+c-\frac1{4k}.
+\]
+Equating them gives \(x=0\), and then
+\[
+y=c-\frac1{4k}.
+\]
+Therefore the intersection is
+\[
+\boxed{\left(0,c-\frac1{4k}\right)}.
+\] | If \(k=0\), both tangent lines are horizontal, so no such perpendicular pair exists. For \(k
+e0\), since \(f'(x)=2kx\), the two slopes at \(x_0\) and \(-x_0\) are \(2kx_0\) and \(-2kx_0\). Their product must be \(-1\):
+\[
+(2kx_0)(-2kx_0)=-1.
+\]
+Thus \(4k^2x_0^2=1\). One convenient choice is
+\[
+\boxed{x_0=\frac1{2k}},
+\]
+and the opposite choice merely interchanges the two tangent points.; Using \(x_0=1/(2k)\),
+\[
+2kx_0=1,\qquad -2kx_0=-1.
+\]
+Thus the slopes are
+\[
+\boxed{1\text{ and }-1}.
+\]; At either tangent point,
+\[
+f(x_0)=kx_0^2+c=\frac1{4k}+c.
+\]
+With \(x_0=1/(2k)\), the two tangent lines simplify to
+\[
+y=x+c-\frac1{4k},\qquad y=-x+c-\frac1{4k}.
+\]
+Equating them gives \(x=0\), and then
+\[
+y=c-\frac1{4k}.
+\]
+Therefore the intersection is
+\[
+\boxed{\left(0,c-\frac1{4k}\right)}.
+\] | verified | true |
 | `APCALC-AB-FRQ-1974-04` | An inclination angle of \(45^\circ\) gives tangent slope
 \[
 f'(4)=\tan45^\circ=1.
@@ -1938,29 +2042,197 @@ Taking logarithms gives
 \] | verified | true |
 | `APCALC-AB-FRQ-1975-01` | Because\[f(-x)=\ln((-x)^2-9)=\ln(x^2-9)=f(x),\]the function is even. Therefore its graph is \boxed{\text{symmetric about the }y\text{-axis}}.; The logarithm requires \(x^2-9>0\). Thus \(&#124;x&#124;>3\), and\[\boxed{\operatorname{Dom}(f)=(-\infty,-3)\cup(3,\infty)}.\]; Solve\[\ln(x^2-9)=0\iff x^2-9=1\iff x^2=10.\]Both solutions lie in the domain, so\[\boxed{x=\pm\sqrt{10}}.\]; Let \(y=\ln(x^2-9)\) with \(x>3\). Then\[e^y=x^2-9,\qquad x=\sqrt{e^y+9}.\]The positive root is required by the restricted domain. Therefore\[\boxed{f^{-1}(x)=\sqrt{e^x+9}}.\]Its domain is all real numbers and its range is \((3,\infty)\). | Because\[f(-x)=\ln((-x)^2-9)=\ln(x^2-9)=f(x),\]the function is even. Therefore its graph is \boxed{\text{symmetric about the }y\text{-axis}}.; The logarithm requires \(x^2-9>0\). Thus \(&#124;x&#124;>3\), and\[\boxed{\operatorname{Dom}(f)=(-\infty,-3)\cup(3,\infty)}.\]; Solve\[\ln(x^2-9)=0\iff x^2-9=1\iff x^2=10.\]Both solutions lie in the domain, so\[\boxed{x=\pm\sqrt{10}}.\]; Let \(y=\ln(x^2-9)\) with \(x>3\). Then\[e^y=x^2-9,\qquad x=\sqrt{e^y+9}.\]The positive root is required by the restricted domain. Therefore\[\boxed{f^{-1}(x)=\sqrt{e^x+9}}.\]Its domain is all real numbers and its range is \((3,\infty)\). | verified | true |
 | `APCALC-AB-FRQ-1975-02` | The velocity is\[v(t)=s'(t)=t^2-6t+8=(t-2)(t-4).\]Hence \(v(0)=8>0\), so the particle is \boxed{\text{moving to the right at }t=0}.; The particle moves left when \(v(t)<0\). Since\[(t-2)(t-4)<0\]between its two zeros, the answer is\[\boxed{2<t<4}.\]; \[s(3)=\frac13(27)-3(9)+8(3)=9-27+24=\boxed6.\]; The particle changes direction at \(t=2\) before \(t=3\). Also\[s(0)=0,\qquad s(2)=\frac{20}{3},\qquad s(3)=6.\]Therefore\[D=\left&#124;\frac{20}{3}-0\right&#124;+\left&#124;6-\frac{20}{3}\right&#124;=\frac{20}{3}+\frac23=\boxed{\frac{22}{3}}.\] | The velocity is\[v(t)=s'(t)=t^2-6t+8=(t-2)(t-4).\]Hence \(v(0)=8>0\), so the particle is \boxed{\text{moving to the right at }t=0}.; The particle moves left when \(v(t)<0\). Since\[(t-2)(t-4)<0\]between its two zeros, the answer is\[\boxed{2<t<4}.\]; \[s(3)=\frac13(27)-3(9)+8(3)=9-27+24=\boxed6.\]; The particle changes direction at \(t=2\) before \(t=3\). Also\[s(0)=0,\qquad s(2)=\frac{20}{3},\qquad s(3)=6.\]Therefore\[D=\left&#124;\frac{20}{3}-0\right&#124;+\left&#124;6-\frac{20}{3}\right&#124;=\frac{20}{3}+\frac23=\boxed{\frac{22}{3}}.\] | verified | true |
-| `APCALC-AB-FRQ-1975-03` |  |  | verified | false |
+| `APCALC-AB-FRQ-1975-03` | Because \(2&#124;x-1&#124;x^2\ge0\), and it equals \(0\) at \(x=0\) and \(x=1\), the minimum value is \(0\). Also \(f(x)\to\infty\) as \(x\to\pm\infty\). Therefore
+\[
+\boxed{\operatorname{Range}(f)=[0,\infty)}.
+\]; Absolute-value and polynomial functions are continuous everywhere, and sums of continuous functions are continuous. Thus \(f\) is continuous for\[\boxed{\text{all real }x}.\]; Write the function piecewise:
+\[
+f(x)=\begin{cases}2x^2-2x^3,&x<1,\\2x^3-2x^2,&x\ge1.\end{cases}
+\]
+Thus
+\[
+f'(x)=\begin{cases}4x-6x^2,&x<1,\\6x^2-4x,&x>1.\end{cases}
+\]
+At \(x=1\), the one-sided derivatives are \(-2\) and \(2\), so \(f'\) does not exist there. Hence \(f'\) is continuous on
+\[
+\boxed{(-\infty,1)\cup(1,\infty)}.
+\]; On \([0,1]\), \(&#124;x-1&#124;=1-x\), so
+\[
+\int_0^1 f(x)\,dx=\int_0^1 2(1-x)x^2\,dx=\int_0^1(2x^2-2x^3)\,dx.
+\]
+Therefore
+\[
+\int_0^1 f(x)\,dx=\left[\frac{2x^3}{3}-\frac{x^4}{2}\right]_0^1=\boxed{\frac16}.
+\] | Because \(2&#124;x-1&#124;x^2\ge0\), and it equals \(0\) at \(x=0\) and \(x=1\), the minimum value is \(0\). Also \(f(x)\to\infty\) as \(x\to\pm\infty\). Therefore
+\[
+\boxed{\operatorname{Range}(f)=[0,\infty)}.
+\]; Absolute-value and polynomial functions are continuous everywhere, and sums of continuous functions are continuous. Thus \(f\) is continuous for\[\boxed{\text{all real }x}.\]; Write the function piecewise:
+\[
+f(x)=\begin{cases}2x^2-2x^3,&x<1,\\2x^3-2x^2,&x\ge1.\end{cases}
+\]
+Thus
+\[
+f'(x)=\begin{cases}4x-6x^2,&x<1,\\6x^2-4x,&x>1.\end{cases}
+\]
+At \(x=1\), the one-sided derivatives are \(-2\) and \(2\), so \(f'\) does not exist there. Hence \(f'\) is continuous on
+\[
+\boxed{(-\infty,1)\cup(1,\infty)}.
+\]; On \([0,1]\), \(&#124;x-1&#124;=1-x\), so
+\[
+\int_0^1 f(x)\,dx=\int_0^1 2(1-x)x^2\,dx=\int_0^1(2x^2-2x^3)\,dx.
+\]
+Therefore
+\[
+\int_0^1 f(x)\,dx=\left[\frac{2x^3}{3}-\frac{x^4}{2}\right]_0^1=\boxed{\frac16}.
+\] | verified | true |
 | `APCALC-AB-FRQ-1975-04` | \[y'=1+\cos x\ge0\]throughout the interval, with equality only at \(x=\pi\). The derivative does not change sign there, so the function is increasing across the entire interval. Hence the absolute minimum and maximum occur at the endpoints:\[\boxed{\left(-\frac\pi2,-\frac\pi2-1\right)}\quad\text{and}\quad\boxed{\left(\frac{3\pi}{2},\frac{3\pi}{2}-1\right)}.\]There is no interior relative extremum.; \[y''=-\sin x.\]Its sign changes at \(x=0\) and \(x=\pi\): concave up on \((-\pi/2,0)\), down on \((0,\pi)\), and up on \((\pi,3\pi/2)\). Therefore the inflection points are\[\boxed{(0,0)\text{ and }(\pi,\pi)}.\]The point \((\pi,\pi)\) is a stationary inflection point because \(y'(\pi)=0\).; The graph increases from the absolute minimum at \((-\pi/2,-\pi/2-1)\) to the absolute maximum at \((3\pi/2,3\pi/2-1)\). It passes through \((0,0)\), has a horizontal tangent and inflection at \((\pi,\pi)\), and changes concavity at both \(0\) and \(\pi\). | \[y'=1+\cos x\ge0\]throughout the interval, with equality only at \(x=\pi\). The derivative does not change sign there, so the function is increasing across the entire interval. Hence the absolute minimum and maximum occur at the endpoints:\[\boxed{\left(-\frac\pi2,-\frac\pi2-1\right)}\quad\text{and}\quad\boxed{\left(\frac{3\pi}{2},\frac{3\pi}{2}-1\right)}.\]There is no interior relative extremum.; \[y''=-\sin x.\]Its sign changes at \(x=0\) and \(x=\pi\): concave up on \((-\pi/2,0)\), down on \((0,\pi)\), and up on \((\pi,3\pi/2)\). Therefore the inflection points are\[\boxed{(0,0)\text{ and }(\pi,\pi)}.\]The point \((\pi,\pi)\) is a stationary inflection point because \(y'(\pi)=0\).; The graph increases from the absolute minimum at \((-\pi/2,-\pi/2-1)\) to the absolute maximum at \((3\pi/2,3\pi/2-1)\). It passes through \((0,0)\), has a horizontal tangent and inflection at \((\pi,\pi)\), and changes concavity at both \(0\) and \(\pi\). | verified | true |
 | `APCALC-AB-FRQ-1975-05` | The tangent slopes at \(x=c\) are\[m_P=6c^2+6c,\qquad m_Q=8c+4.\]Set them equal:\[6c^2+6c=8c+4\iff3c^2-c-2=0\iff(3c+2)(c-1)=0.\]Since \(c>0\),\[\boxed{c=1}.\]; At \(c=1\),\[P=(1,-4),\qquad Q=(1,13),\qquad m=12.\]Thus the tangent lines are\[\boxed{y+4=12(x-1)}\quad\text{or}\quad\boxed{y=12x-16},\]and\[\boxed{y-13=12(x-1)}\quad\text{or}\quad\boxed{y=12x+1}.\] | The tangent slopes at \(x=c\) are\[m_P=6c^2+6c,\qquad m_Q=8c+4.\]Set them equal:\[6c^2+6c=8c+4\iff3c^2-c-2=0\iff(3c+2)(c-1)=0.\]Since \(c>0\),\[\boxed{c=1}.\]; At \(c=1\),\[P=(1,-4),\qquad Q=(1,13),\qquad m=12.\]Thus the tangent lines are\[\boxed{y+4=12(x-1)}\quad\text{or}\quad\boxed{y=12x-16},\]and\[\boxed{y-13=12(x-1)}\quad\text{or}\quad\boxed{y=12x+1}.\] | verified | true |
 | `APCALC-AB-FRQ-1975-06` | The upper ellipse branch is \(y=3\sqrt{9-x^2}\), and the line is \(y=9-3x\). They meet at \(x=0\) and \(x=3\). Hence\[\boxed{A=\int_0^3\left[3\sqrt{9-x^2}-(9-3x)\right]dx}.\]; Using washers, the outer radius is \(3\sqrt{9-x^2}\) and the inner radius is \(9-3x\). Therefore\[\boxed{V_x=\pi\int_0^3\left(9(9-x^2)-(9-3x)^2\right)dx}.\]; Using cylindrical shells, the radius is \(x\) and the shell height is ellipse minus line. Thus\[\boxed{V_y=2\pi\int_0^3x\left[3\sqrt{9-x^2}-(9-3x)\right]dx}.\] | The upper ellipse branch is \(y=3\sqrt{9-x^2}\), and the line is \(y=9-3x\). They meet at \(x=0\) and \(x=3\). Hence\[\boxed{A=\int_0^3\left[3\sqrt{9-x^2}-(9-3x)\right]dx}.\]; Using washers, the outer radius is \(3\sqrt{9-x^2}\) and the inner radius is \(9-3x\). Therefore\[\boxed{V_x=\pi\int_0^3\left(9(9-x^2)-(9-3x)^2\right)dx}.\]; Using cylindrical shells, the radius is \(x\) and the shell height is ellipse minus line. Thus\[\boxed{V_y=2\pi\int_0^3x\left[3\sqrt{9-x^2}-(9-3x)\right]dx}.\] | verified | true |
 | `APCALC-AB-FRQ-1975-07` | Set \(h=0\):\[f(x)=f(x)+e^x f(0).\]Therefore \(e^x f(0)=0\) for every real \(x\), and since \(e^x>0\),\[\boxed{f(0)=0}.\]; Because \(f(0)=0\),\[f'(0)=\lim_{x\to0}\frac{f(x)-f(0)}{x}=\lim_{x\to0}\frac{f(x)}x.\]Given \(f'(0)=2\), the limit is \boxed2.; For fixed \(x\), subtract \(f(x)\), divide by \(h\), and use the functional equation:\[\frac{f(x+h)-f(x)}h=f(x)\frac{e^h-1}{h}+e^x\frac{f(h)}h.\]As \(h\to0\), the left side tends to \(f'(x)\), the first quotient tends to \(1\), and by part (b) the second quotient tends to \(2\). Hence\[f'(x)=f(x)+2e^x.\]This has the required form with a real constant \(p\).; Comparison with\[f'(x)=f(x)+pe^x\]gives\[\boxed{p=2}.\]Indeed, the function determined by the conditions is \(f(x)=2xe^x\). | Set \(h=0\):\[f(x)=f(x)+e^x f(0).\]Therefore \(e^x f(0)=0\) for every real \(x\), and since \(e^x>0\),\[\boxed{f(0)=0}.\]; Because \(f(0)=0\),\[f'(0)=\lim_{x\to0}\frac{f(x)-f(0)}{x}=\lim_{x\to0}\frac{f(x)}x.\]Given \(f'(0)=2\), the limit is \boxed2.; For fixed \(x\), subtract \(f(x)\), divide by \(h\), and use the functional equation:\[\frac{f(x+h)-f(x)}h=f(x)\frac{e^h-1}{h}+e^x\frac{f(h)}h.\]As \(h\to0\), the left side tends to \(f'(x)\), the first quotient tends to \(1\), and by part (b) the second quotient tends to \(2\). Hence\[f'(x)=f(x)+2e^x.\]This has the required form with a real constant \(p\).; Comparison with\[f'(x)=f(x)+pe^x\]gives\[\boxed{p=2}.\]Indeed, the function determined by the conditions is \(f(x)=2xe^x\). | verified | true |
-| `APCALC-AB-FRQ-1976-01` |  |  | verified | false |
+| `APCALC-AB-FRQ-1976-01` | The radicand must be nonnegative: \(1+6x\ge0\), so \(x\ge-\tfrac16\). The principal square root is nonnegative and assumes every nonnegative value. Therefore
+\[
+\boxed{\operatorname{Dom}(f)=\left[-\frac16,\infty\right),\qquad \operatorname{Range}(f)=[0,\infty)}.
+\]; \[
+f'(x)=\frac{3}{\sqrt{1+6x}},\qquad f'(4)=\frac3{\sqrt{25}}=\boxed{\frac35}.
+\]; At \(x=4\), \(f(4)=5\), so the tangent line is
+\[
+y-5=\frac35(x-4).
+\]
+Setting \(x=0\) gives \(y=5-\tfrac{12}{5}=\boxed{\tfrac{13}{5}}\).; Parallel to \(y=x+12\) means slope \(1\):
+\[
+\frac3{\sqrt{1+6x}}=1\Longrightarrow \sqrt{1+6x}=3\Longrightarrow x=\frac43.
+\]
+Then \(f(4/3)=3\), so the point is \(\boxed{(4/3,3)}\). | The radicand must be nonnegative: \(1+6x\ge0\), so \(x\ge-\tfrac16\). The principal square root is nonnegative and assumes every nonnegative value. Therefore
+\[
+\boxed{\operatorname{Dom}(f)=\left[-\frac16,\infty\right),\qquad \operatorname{Range}(f)=[0,\infty)}.
+\]; \[
+f'(x)=\frac{3}{\sqrt{1+6x}},\qquad f'(4)=\frac3{\sqrt{25}}=\boxed{\frac35}.
+\]; At \(x=4\), \(f(4)=5\), so the tangent line is
+\[
+y-5=\frac35(x-4).
+\]
+Setting \(x=0\) gives \(y=5-\tfrac{12}{5}=\boxed{\tfrac{13}{5}}\).; Parallel to \(y=x+12\) means slope \(1\):
+\[
+\frac3{\sqrt{1+6x}}=1\Longrightarrow \sqrt{1+6x}=3\Longrightarrow x=\frac43.
+\]
+Then \(f(4/3)=3\), so the point is \(\boxed{(4/3,3)}\). | verified | true |
 | `APCALC-AB-FRQ-1976-02` | \[f(x)=x^3-3x^2-4x+12=(x-3)(x-2)(x+2).\]Hence \[\boxed{x=-2,2,3}.\]; For \(x\ne3\), \[h(x)=\frac{(x-3)(x-2)(x+2)}{x-3}=x^2-4.\]Thus \[\lim_{x\to3}h(x)=9-4=5.\]Continuity requires \[\boxed{p=5}.\]; With \(p=5\), the piecewise definition agrees with \(h(x)=x^2-4\) at every real number, including \(x=3\). Therefore \[h(-x)=(-x)^2-4=h(x),\]so \(\boxed{h\text{ is even}}\). | \[f(x)=x^3-3x^2-4x+12=(x-3)(x-2)(x+2).\]Hence \[\boxed{x=-2,2,3}.\]; For \(x\ne3\), \[h(x)=\frac{(x-3)(x-2)(x+2)}{x-3}=x^2-4.\]Thus \[\lim_{x\to3}h(x)=9-4=5.\]Continuity requires \[\boxed{p=5}.\]; With \(p=5\), the piecewise definition agrees with \(h(x)=x^2-4\) at every real number, including \(x=3\). Therefore \[h(-x)=(-x)^2-4=h(x),\]so \(\boxed{h\text{ is even}}\). | verified | true |
 | `APCALC-AB-FRQ-1976-03` | The curves intersect at \(x=1\) and \(x=4\). On this interval, \(4/x\) is above \((x-3)^2\). Therefore \[A=\int_1^4\left(\frac4x-(x-3)^2\right)dx=4\ln4-3=\boxed{\ln256-3}.\]; Using washers, \[V=\pi\int_1^4\left[\left(\frac4x\right)^2-(x-3)^4\right]dx.\]Evaluation gives \[\boxed{V=\frac{27\pi}{5}}.\] | The curves intersect at \(x=1\) and \(x=4\). On this interval, \(4/x\) is above \((x-3)^2\). Therefore \[A=\int_1^4\left(\frac4x-(x-3)^2\right)dx=4\ln4-3=\boxed{\ln256-3}.\]; Using washers, \[V=\pi\int_1^4\left[\left(\frac4x\right)^2-(x-3)^4\right]dx.\]Evaluation gives \[\boxed{V=\frac{27\pi}{5}}.\] | verified | true |
-| `APCALC-AB-FRQ-1976-04` |  |  | verified | false |
-| `APCALC-AB-FRQ-1976-05` |  |  | verified | false |
+| `APCALC-AB-FRQ-1976-04` | Implicit differentiation gives
+\[
+6x\frac{dx}{dt}-2y\frac{dy}{dt}=0,\qquad \frac{dx}{dt}=\frac{y}{3x}\frac{dy}{dt}.
+\]
+At \(x=4\), the hyperbola has \(y=\pm5\). Since \(dy/dt=4\),
+\[
+\frac{dx}{dt}=\frac{y}{3(4)}(4)=\frac y3.
+\]
+Thus the rate is \(\boxed{5/3}\) at \((4,5)\) and \(\boxed{-5/3}\) at \((4,-5)\). The source does not identify the branch, so it does not determine a unique rate.; The line has slope \(-2/9\). For the hyperbola, \[y'=\frac{3x}{y},\qquad m_{\rm normal}=-\frac{y}{3x}.\]Set \(-y/(3x)=-2/9\), so \(y=2x/3\). Substitution gives \(x=\pm3\), \(y=\pm2\). Then \[k=-(2x+9y),\]so \[\boxed{k=-24\text{ or }k=24}.\] | Implicit differentiation gives
+\[
+6x\frac{dx}{dt}-2y\frac{dy}{dt}=0,\qquad \frac{dx}{dt}=\frac{y}{3x}\frac{dy}{dt}.
+\]
+At \(x=4\), the hyperbola has \(y=\pm5\). Since \(dy/dt=4\),
+\[
+\frac{dx}{dt}=\frac{y}{3(4)}(4)=\frac y3.
+\]
+Thus the rate is \(\boxed{5/3}\) at \((4,5)\) and \(\boxed{-5/3}\) at \((4,-5)\). The source does not identify the branch, so it does not determine a unique rate.; The line has slope \(-2/9\). For the hyperbola, \[y'=\frac{3x}{y},\qquad m_{\rm normal}=-\frac{y}{3x}.\]Set \(-y/(3x)=-2/9\), so \(y=2x/3\). Substitution gives \(x=\pm3\), \(y=\pm2\). Then \[k=-(2x+9y),\]so \[\boxed{k=-24\text{ or }k=24}.\] | verified | true |
+| `APCALC-AB-FRQ-1976-05` | \[
+y'=e^{\sin x}\cos x.
+\]
+The interior critical points are \(x=-\pi/2,\pi/2,3\pi/2\). Their values are \(e^{-1},e,e^{-1}\), respectively. Endpoint values are \(1\). Therefore the absolute maximum is
+\[
+\boxed{(\pi/2,e)},
+\]
+and the absolute minima are
+\[
+\boxed{(-\pi/2,e^{-1})\quad\text{and}\quad(3\pi/2,e^{-1})}.
+\]; The graph starts at \((-\pi,1)\), decreases to \((-\pi/2,e^{-1})\), rises to \((\pi/2,e)\), decreases to \((3\pi/2,e^{-1})\), and rises to \((2\pi,1)\). It remains positive and is symmetric about \(x=\pi/2\).; Because
+\[
+\sin\left(\frac\pi2+u\right)=\cos u=\sin\left(\frac\pi2-u\right),
+\]
+the graph is symmetric about
+\[
+\boxed{x=\frac\pi2}.
+\] | \[
+y'=e^{\sin x}\cos x.
+\]
+The interior critical points are \(x=-\pi/2,\pi/2,3\pi/2\). Their values are \(e^{-1},e,e^{-1}\), respectively. Endpoint values are \(1\). Therefore the absolute maximum is
+\[
+\boxed{(\pi/2,e)},
+\]
+and the absolute minima are
+\[
+\boxed{(-\pi/2,e^{-1})\quad\text{and}\quad(3\pi/2,e^{-1})}.
+\]; The graph starts at \((-\pi,1)\), decreases to \((-\pi/2,e^{-1})\), rises to \((\pi/2,e)\), decreases to \((3\pi/2,e^{-1})\), and rises to \((2\pi,1)\). It remains positive and is symmetric about \(x=\pi/2\).; Because
+\[
+\sin\left(\frac\pi2+u\right)=\cos u=\sin\left(\frac\pi2-u\right),
+\]
+the graph is symmetric about
+\[
+\boxed{x=\frac\pi2}.
+\] | verified | true |
 | `APCALC-AB-FRQ-1976-06` | Differentiate both sides with respect to \(x\): \[15x^2=f(x).\]Therefore \[\boxed{f(x)=15x^2}.\]; Set \(x=c\). The integral is zero, so \[5c^3+40=0\implies c^3=-8\implies\boxed{c=-2}.\]; A variable lower limit contributes a negative sign: \[\boxed{F'(x)=-\sqrt{1+x^{16}}}.\] | Differentiate both sides with respect to \(x\): \[15x^2=f(x).\]Therefore \[\boxed{f(x)=15x^2}.\]; Set \(x=c\). The integral is zero, so \[5c^3+40=0\implies c^3=-8\implies\boxed{c=-2}.\]; A variable lower limit contributes a negative sign: \[\boxed{F'(x)=-\sqrt{1+x^{16}}}.\] | verified | true |
-| `APCALC-AB-FRQ-1976-07` |  |  | verified | false |
-| `APCALC-AB-FRQ-1977-01` |  |  | verified | false |
+| `APCALC-AB-FRQ-1976-07` | \[
+f(x+h)-f(x-h)=4xh+2h.
+\]
+Therefore
+\[
+f^*(x)=\lim_{h\to0}\frac{4xh+2h}{h}=\boxed{4x+2}.
+\]; Using \(\cos(x+h)-\cos(x-h)=-2\sin x\sin h\),
+\[
+f^*(x)=-2\sin x\lim_{h\to0}\frac{\sin h}{h}=\boxed{-2\sin x}.
+\]; Rewrite the quotient as
+\[
+\frac{f(x+h)-f(x-h)}h=\frac{f(x+h)-f(x)}h+\frac{f(x)-f(x-h)}h.
+\]
+For differentiable \(f\), both terms tend to \(f'(x)\). Consequently
+\[
+\boxed{f^*(x)=2f'(x)}.
+\] | \[
+f(x+h)-f(x-h)=4xh+2h.
+\]
+Therefore
+\[
+f^*(x)=\lim_{h\to0}\frac{4xh+2h}{h}=\boxed{4x+2}.
+\]; Using \(\cos(x+h)-\cos(x-h)=-2\sin x\sin h\),
+\[
+f^*(x)=-2\sin x\lim_{h\to0}\frac{\sin h}{h}=\boxed{-2\sin x}.
+\]; Rewrite the quotient as
+\[
+\frac{f(x+h)-f(x-h)}h=\frac{f(x+h)-f(x)}h+\frac{f(x)-f(x-h)}h.
+\]
+For differentiable \(f\), both terms tend to \(f'(x)\). Consequently
+\[
+\boxed{f^*(x)=2f'(x)}.
+\] | verified | true |
+| `APCALC-AB-FRQ-1977-01` | The logarithm requires \(\cos x>0\). Within \([0,2\pi]\), this gives
+\[
+\boxed{\left[0,\frac\pi2\right)\cup\left(\frac{3\pi}{2},2\pi\right]}.
+\]; On the domain, \(0<\cos x\le1\). The value \(1\) is attained at \(x=0\) and \(x=2\pi\), while \(\cos x\to0^+\) at the inner boundaries. Hence
+\[
+\boxed{\operatorname{Range}(S)=(-\infty,0]}.
+\]; A zero requires \(\ln(\cos x)=0\), so \(\cos x=1\). On the stated interval this occurs at
+\[
+\boxed{x=0\quad\text{and}\quad x=2\pi}.
+\]; By the chain rule, \[S'(x)=\frac{-\sin x}{\cos x}=-\tan x.\]Thus \[\boxed{S'\!\left(\frac{\pi}{3}\right)=-\sqrt3}.\] | The logarithm requires \(\cos x>0\). Within \([0,2\pi]\), this gives
+\[
+\boxed{\left[0,\frac\pi2\right)\cup\left(\frac{3\pi}{2},2\pi\right]}.
+\]; On the domain, \(0<\cos x\le1\). The value \(1\) is attained at \(x=0\) and \(x=2\pi\), while \(\cos x\to0^+\) at the inner boundaries. Hence
+\[
+\boxed{\operatorname{Range}(S)=(-\infty,0]}.
+\]; A zero requires \(\ln(\cos x)=0\), so \(\cos x=1\). On the stated interval this occurs at
+\[
+\boxed{x=0\quad\text{and}\quad x=2\pi}.
+\]; By the chain rule, \[S'(x)=\frac{-\sin x}{\cos x}=-\tan x.\]Thus \[\boxed{S'\!\left(\frac{\pi}{3}\right)=-\sqrt3}.\] | verified | true |
 | `APCALC-AB-FRQ-1977-02` | \[f'(x)=6x(x^2-1)^2.\]Because \((x^2-1)^2\ge0\), the derivative is positive for \(x>0\) except for the isolated stationary point \(x=1\). The function is strictly increasing across that point, so \[\boxed{f\text{ is increasing on }(0,\infty)}.\]Equivalently, a derivative sign chart may list \((0,1)\cup(1,\infty)\) and then note that the monotonic behavior continues through \(x=1\).; The derivative is negative for \(x<0\) and positive for \(x>0\), so the sign changes from negative to positive at \(x=0\). Thus \[\boxed{(0,-1)\text{ is a relative minimum}.}\]At \(x=\pm1\), the derivative is zero but does not change sign. Therefore \[\boxed{\text{there is no relative maximum}.}\]; \[f''(x)=6(x^2-1)(5x^2-1).\]This product is positive when both factors have the same sign. Therefore the graph is concave upward on \[\boxed{(-\infty,-1)\cup\left(-\frac1{\sqrt5},\frac1{\sqrt5}\right)\cup(1,\infty)}.\]; The graph is even, has an absolute/relative minimum at \((0,-1)\), crosses the x-axis with horizontal tangents at \((\pm1,0)\), has inflection points at \(x=\pm1\) and \(x=\pm1/\sqrt5\), and rises to \(+\infty\) as \(x\to\pm\infty\). | \[f'(x)=6x(x^2-1)^2.\]Because \((x^2-1)^2\ge0\), the derivative is positive for \(x>0\) except for the isolated stationary point \(x=1\). The function is strictly increasing across that point, so \[\boxed{f\text{ is increasing on }(0,\infty)}.\]Equivalently, a derivative sign chart may list \((0,1)\cup(1,\infty)\) and then note that the monotonic behavior continues through \(x=1\).; The derivative is negative for \(x<0\) and positive for \(x>0\), so the sign changes from negative to positive at \(x=0\). Thus \[\boxed{(0,-1)\text{ is a relative minimum}.}\]At \(x=\pm1\), the derivative is zero but does not change sign. Therefore \[\boxed{\text{there is no relative maximum}.}\]; \[f''(x)=6(x^2-1)(5x^2-1).\]This product is positive when both factors have the same sign. Therefore the graph is concave upward on \[\boxed{(-\infty,-1)\cup\left(-\frac1{\sqrt5},\frac1{\sqrt5}\right)\cup(1,\infty)}.\]; The graph is even, has an absolute/relative minimum at \((0,-1)\), crosses the x-axis with horizontal tangents at \((\pm1,0)\), has inflection points at \(x=\pm1\) and \(x=\pm1/\sqrt5\), and rises to \(+\infty\) as \(x\to\pm\infty\). | verified | true |
 | `APCALC-AB-FRQ-1977-03` | The curves meet when \(e^{x/2}=e\), so \(x=2\). Hence \[A=\int_0^2\left(e-e^{x/2}\right)\,dx=\left[ex-2e^{x/2}\right]_0^2=\boxed{2}.\]; Using washers, the outer radius is \(e\) and the inner radius is \(e^{x/2}\): \[V=\pi\int_0^2\left(e^2-e^x\right)\,dx=\pi\left[ e^2x-e^x\right]_0^2=\boxed{\pi(e^2+1)}.\] | The curves meet when \(e^{x/2}=e\), so \(x=2\). Hence \[A=\int_0^2\left(e-e^{x/2}\right)\,dx=\left[ex-2e^{x/2}\right]_0^2=\boxed{2}.\]; Using washers, the outer radius is \(e\) and the inner radius is \(e^{x/2}\): \[V=\pi\int_0^2\left(e^2-e^x\right)\,dx=\pi\left[ e^2x-e^x\right]_0^2=\boxed{\pi(e^2+1)}.\] | verified | true |
-| `APCALC-AB-FRQ-1977-04` |  |  | verified | false |
-| `APCALC-AB-FRQ-1977-05` |  |  | verified | false |
+| `APCALC-AB-FRQ-1977-04` | \[(f+g)'(2)=f'(2)+g'(2)=6+7=\boxed{13}.\]; \[(fg)'(2)=f'(2)g(2)+f(2)g'(2)=6\pi+3(7)=\boxed{6\pi+21}.\]; \[\left(\frac fg\right)'(2)=\frac{f'(2)g(2)-f(2)g'(2)}{[g(2)]^2}=\boxed{\frac{6\pi-21}{\pi^2}}.\]; \[h'(1)=f'(g(1))g'(1)=f'(2)\cdot4=\boxed{24}.\]; Since \(g(1)=2\), \(g^{-1}(2)=1\). Therefore \[(g^{-1})'(2)=\frac1{g'(1)}=\boxed{\frac14}.\] | \[(f+g)'(2)=f'(2)+g'(2)=6+7=\boxed{13}.\]; \[(fg)'(2)=f'(2)g(2)+f(2)g'(2)=6\pi+3(7)=\boxed{6\pi+21}.\]; \[\left(\frac fg\right)'(2)=\frac{f'(2)g(2)-f(2)g'(2)}{[g(2)]^2}=\boxed{\frac{6\pi-21}{\pi^2}}.\]; \[h'(1)=f'(g(1))g'(1)=f'(2)\cdot4=\boxed{24}.\]; Since \(g(1)=2\), \(g^{-1}(2)=1\). Therefore \[(g^{-1})'(2)=\frac1{g'(1)}=\boxed{\frac14}.\] | verified | true |
+| `APCALC-AB-FRQ-1977-05` | Integrating acceleration gives \[v(t)=t^2-10t+12\ln t+C.\]Using \(v(1)=9\) gives \(C=18\). Thus \[\boxed{v(t)=t^2-10t+12\ln t+18}.\]; Because \(v'(t)=a(t)\), \[a(t)=\frac{2(t-2)(t-3)}{t}.\]On \((1,2)\), acceleration is positive; on \((2,3)\), it is negative. Therefore velocity changes from increasing to decreasing at \[\boxed{t=2}.\]; Integrating velocity, \[x(t)=\frac{t^3}{3}-5t^2+12t\ln t+6t+C.\]Since \(x(1)=-16\), \(C=-\frac{52}{3}\). Hence \[\boxed{x(t)=\frac{t^3}{3}-5t^2+12t\ln t+6t-\frac{52}{3}}.\] | Integrating acceleration gives \[v(t)=t^2-10t+12\ln t+C.\]Using \(v(1)=9\) gives \(C=18\). Thus \[\boxed{v(t)=t^2-10t+12\ln t+18}.\]; Because \(v'(t)=a(t)\), \[a(t)=\frac{2(t-2)(t-3)}{t}.\]On \((1,2)\), acceleration is positive; on \((2,3)\), it is negative. Therefore velocity changes from increasing to decreasing at \[\boxed{t=2}.\]; Integrating velocity, \[x(t)=\frac{t^3}{3}-5t^2+12t\ln t+6t+C.\]Since \(x(1)=-16\), \(C=-\frac{52}{3}\). Hence \[\boxed{x(t)=\frac{t^3}{3}-5t^2+12t\ln t+6t-\frac{52}{3}}.\] | verified | true |
 | `APCALC-AB-FRQ-1977-06` | From \(LW=200\), \[L\frac{dW}{dt}+W\frac{dL}{dt}=0.\]At the stated instant, \(dW/dt=-\frac12\) and \(dL/dt=4\), so \(-\frac12L+4W=0\), or \(L=8W\). Combining this with \(LW=200\) gives \(8W^2=200\), so \[\boxed{W=5\text{ m}}.\]; When \(W=10\), constant area gives \(L=20\). Also \[\frac{dW}{dt}=-\frac{W}{L}\frac{dL}{dt}=-2.\]Since \(D^2=L^2+W^2\), \[2D\frac{dD}{dt}=2L\frac{dL}{dt}+2W\frac{dW}{dt}.\]Here \(D=\sqrt{20^2+10^2}=10\sqrt5\), so \[\frac{dD}{dt}=\frac{20(4)+10(-2)}{10\sqrt5}=\boxed{\frac6{\sqrt5}=\frac{6\sqrt5}{5}\text{ m/s}}.\] | From \(LW=200\), \[L\frac{dW}{dt}+W\frac{dL}{dt}=0.\]At the stated instant, \(dW/dt=-\frac12\) and \(dL/dt=4\), so \(-\frac12L+4W=0\), or \(L=8W\). Combining this with \(LW=200\) gives \(8W^2=200\), so \[\boxed{W=5\text{ m}}.\]; When \(W=10\), constant area gives \(L=20\). Also \[\frac{dW}{dt}=-\frac{W}{L}\frac{dL}{dt}=-2.\]Since \(D^2=L^2+W^2\), \[2D\frac{dD}{dt}=2L\frac{dL}{dt}+2W\frac{dW}{dt}.\]Here \(D=\sqrt{20^2+10^2}=10\sqrt5\), so \[\frac{dD}{dt}=\frac{20(4)+10(-2)}{10\sqrt5}=\boxed{\frac6{\sqrt5}=\frac{6\sqrt5}{5}\text{ m/s}}.\] | verified | true |
 | `APCALC-AB-FRQ-1977-07` | For \(x>0\), \(&#124;x&#124;=x\), so \(f(x)=2\sin^3x\). Therefore \[\boxed{f'(x)=6\sin^2x\cos x}.\]; For \(x<0\), \(&#124;x&#124;=-x\), and \(\sin&#124;x&#124;=\sin(-x)=-\sin x\). Hence \[f(x)=\sin^3x+(-\sin x)^3=0,\]so \[\boxed{f'(x)=0}.\]; \(f(0)=0\). For \(x<0\), \(f(x)=0\), while for \(x>0\), \(f(x)=2\sin^3x\to0\). Thus both one-sided limits equal \(f(0)\), and \[\boxed{f\text{ is continuous at }0}.\]; Using the definition, for \(h<0\), \(f(h)/h=0\). For \(h>0\), \[\frac{f(h)-f(0)}h=\frac{2\sin^3h}{h}=2\left(\frac{\sin h}{h}\right)\sin^2h\to0.\]The one-sided derivative limits agree, so \[\boxed{f'(0)=0}.\] | For \(x>0\), \(&#124;x&#124;=x\), so \(f(x)=2\sin^3x\). Therefore \[\boxed{f'(x)=6\sin^2x\cos x}.\]; For \(x<0\), \(&#124;x&#124;=-x\), and \(\sin&#124;x&#124;=\sin(-x)=-\sin x\). Hence \[f(x)=\sin^3x+(-\sin x)^3=0,\]so \[\boxed{f'(x)=0}.\]; \(f(0)=0\). For \(x<0\), \(f(x)=0\), while for \(x>0\), \(f(x)=2\sin^3x\to0\). Thus both one-sided limits equal \(f(0)\), and \[\boxed{f\text{ is continuous at }0}.\]; Using the definition, for \(h<0\), \(f(h)/h=0\). For \(h>0\), \[\frac{f(h)-f(0)}h=\frac{2\sin^3h}{h}=2\left(\frac{\sin h}{h}\right)\sin^2h\to0.\]The one-sided derivative limits agree, so \[\boxed{f'(0)=0}.\] | verified | true |
 | `APCALC-AB-FRQ-1978-01` | Factor by grouping: \[f(x)=x^2(x-1)-4(x-1)=(x-1)(x-2)(x+2).\] Hence the zeros are \[\boxed{x=-2,\ 1,\ 2}.\]; \[f(-1)=6,\qquad f^{\prime}(x)=3x^2-2x-4,\qquad f^{\prime}(-1)=1.\] Therefore \[\boxed{y-6=x+1},\quad\text{or}\quad\boxed{y=x+7}.\]; The tangent at \(x=a\) gives \(-8=f(a)-af^{\prime}(a)\). Since \[f(a)-af^{\prime}(a)=-2a^3+a^2+4,\]we obtain \[2a^3-a^2-12=0=(a-2)(2a^2+3a+6).\]The quadratic has no real roots, so \(a=2\), and \(b=f(2)=0\). Thus \[\boxed{(a,b)=(2,0)}.\] | Factor by grouping: \[f(x)=x^2(x-1)-4(x-1)=(x-1)(x-2)(x+2).\] Hence the zeros are \[\boxed{x=-2,\ 1,\ 2}.\]; \[f(-1)=6,\qquad f^{\prime}(x)=3x^2-2x-4,\qquad f^{\prime}(-1)=1.\] Therefore \[\boxed{y-6=x+1},\quad\text{or}\quad\boxed{y=x+7}.\]; The tangent at \(x=a\) gives \(-8=f(a)-af^{\prime}(a)\). Since \[f(a)-af^{\prime}(a)=-2a^3+a^2+4,\]we obtain \[2a^3-a^2-12=0=(a-2)(2a^2+3a+6).\]The quadratic has no real roots, so \(a=2\), and \(b=f(2)=0\). Thus \[\boxed{(a,b)=(2,0)}.\] | verified | true |
 | `APCALC-AB-FRQ-1978-02` | \[f(g(x))=(1-\ln x)^2=h(x).\] Therefore \[\boxed{h=f\circ g}.\]; By the chain rule, \[h^{\prime}(x)=2(1-\ln x)\left(-\frac1x\right)=\boxed{\frac{2(\ln x-1)}{x}}.\]; Differentiate \(2(\ln x-1)x^{-1}\): \[h''(x)=2\left(\frac1{x^2}-\frac{\ln x-1}{x^2}\right)=\boxed{\frac{2(2-\ln x)}{x^2}}.\]; The domain is \(x>0\). The graph decreases on \((0,e)\), has absolute minimum \((e,0)\), and increases on \((e,\infty)\). It is concave up on \((0,e^2)\), concave down on \((e^2,\infty)\), and has an inflection point at \((e^2,1)\). Also \(h(x)\to\infty\) as \(x\to0^+\) and as \(x\to\infty\). | \[f(g(x))=(1-\ln x)^2=h(x).\] Therefore \[\boxed{h=f\circ g}.\]; By the chain rule, \[h^{\prime}(x)=2(1-\ln x)\left(-\frac1x\right)=\boxed{\frac{2(\ln x-1)}{x}}.\]; Differentiate \(2(\ln x-1)x^{-1}\): \[h''(x)=2\left(\frac1{x^2}-\frac{\ln x-1}{x^2}\right)=\boxed{\frac{2(2-\ln x)}{x^2}}.\]; The domain is \(x>0\). The graph decreases on \((0,e)\), has absolute minimum \((e,0)\), and increases on \((e,\infty)\). It is concave up on \((0,e^2)\), concave down on \((e^2,\infty)\), and has an inflection point at \((e^2,1)\). Also \(h(x)\to\infty\) as \(x\to0^+\) and as \(x\to\infty\). | verified | true |
 | `APCALC-AB-FRQ-1978-03` | \[x^2+x-2=(x-1)(x+2),\]so the denominator is zero at \(x=1\) and \(x=-2\). Thus \[\boxed{x=-2,\ 1}.\]; For \(x\ne1,-2\), \[f(x)=\frac{2(x-1)}{(x-1)(x+2)}=\frac2{x+2}.\] Therefore \[\boxed{\lim_{x\to1}f(x)=\frac23}.\]At \(x=-2\), the one-sided limits are opposite infinities, so the two-sided limit does not exist.; The noncanceled denominator gives the vertical asymptote \[\boxed{x=-2}.\]Because \(2/(x+2)\to0\) as \(&#124;x&#124;\to\infty\), the horizontal asymptote is \[\boxed{y=0}.\]The point \(x=1\) is a removable hole, not an asymptote.; Comparing \(g(x)=a/(x+b)\) with the simplified form \(2/(x+2)\) gives \[\boxed{a=2,\qquad b=2}.\] | \[x^2+x-2=(x-1)(x+2),\]so the denominator is zero at \(x=1\) and \(x=-2\). Thus \[\boxed{x=-2,\ 1}.\]; For \(x\ne1,-2\), \[f(x)=\frac{2(x-1)}{(x-1)(x+2)}=\frac2{x+2}.\] Therefore \[\boxed{\lim_{x\to1}f(x)=\frac23}.\]At \(x=-2\), the one-sided limits are opposite infinities, so the two-sided limit does not exist.; The noncanceled denominator gives the vertical asymptote \[\boxed{x=-2}.\]Because \(2/(x+2)\to0\) as \(&#124;x&#124;\to\infty\), the horizontal asymptote is \[\boxed{y=0}.\]The point \(x=1\) is a removable hole, not an asymptote.; Comparing \(g(x)=a/(x+b)\) with the simplified form \(2/(x+2)\) gives \[\boxed{a=2,\qquad b=2}.\] | verified | true |
-| `APCALC-AB-FRQ-1978-04` |  |  | verified | false |
+| `APCALC-AB-FRQ-1978-04` | The particle moves left when \(v(t)<0\). On \(0<t<\pi\), \(\sin(2t)<0\) exactly when \[\boxed{\frac\pi2<t<\pi}.\]; \[s(t)=s(0)+\int_0^t\sin(2u)\,du=\left[-\frac12\cos(2u)\right]_0^t.\]Thus \[\boxed{s(t)=\frac{1-\cos(2t)}2}.\]; The average value on \([0,\pi/2]\) is \[\frac{2}{\pi}\int_0^{\pi/2}\frac{1-\cos(2t)}2\,dt=\frac{1}{\pi}\left[t-\frac12\sin(2t)\right]_0^{\pi/2}=\boxed{\frac12}.\] | The particle moves left when \(v(t)<0\). On \(0<t<\pi\), \(\sin(2t)<0\) exactly when \[\boxed{\frac\pi2<t<\pi}.\]; \[s(t)=s(0)+\int_0^t\sin(2u)\,du=\left[-\frac12\cos(2u)\right]_0^t.\]Thus \[\boxed{s(t)=\frac{1-\cos(2t)}2}.\]; The average value on \([0,\pi/2]\) is \[\frac{2}{\pi}\int_0^{\pi/2}\frac{1-\cos(2t)}2\,dt=\frac{1}{\pi}\left[t-\frac12\sin(2t)\right]_0^{\pi/2}=\boxed{\frac12}.\] | verified | true |
 | `APCALC-AB-FRQ-1978-05` | Differentiating implicitly gives \[2x-(xy^{\prime}+y)+2yy^{\prime}=0.\]Therefore \[(2y-x)y^{\prime}=y-2x,\qquad\boxed{y^{\prime}=\frac{y-2x}{2y-x}}.\]; Vertical tangents occur when \(2y-x=0\), provided the numerator is nonzero. Set \(x=2y\): \[4y^2-2y^2+y^2=9\Rightarrow 3y^2=9.\]Thus \[\boxed{(2\sqrt3,\sqrt3)\quad\text{and}\quad(-2\sqrt3,-\sqrt3)}.\]; First, \(y^{\prime}(0,3)=1/2\). Differentiating \(2x-xy^{\prime}-y+2yy^{\prime}=0\) again gives \[(2y-x)y^{\prime\prime}+2-2y^{\prime}+2(y^{\prime})^2=0.\]At \((0,3)\), \[6y^{\prime\prime}+2-1+\frac12=0,\]so \[\boxed{y^{\prime\prime}=-\frac14}.\] | Differentiating implicitly gives \[2x-(xy^{\prime}+y)+2yy^{\prime}=0.\]Therefore \[(2y-x)y^{\prime}=y-2x,\qquad\boxed{y^{\prime}=\frac{y-2x}{2y-x}}.\]; Vertical tangents occur when \(2y-x=0\), provided the numerator is nonzero. Set \(x=2y\): \[4y^2-2y^2+y^2=9\Rightarrow 3y^2=9.\]Thus \[\boxed{(2\sqrt3,\sqrt3)\quad\text{and}\quad(-2\sqrt3,-\sqrt3)}.\]; First, \(y^{\prime}(0,3)=1/2\). Differentiating \(2x-xy^{\prime}-y+2yy^{\prime}=0\) again gives \[(2y-x)y^{\prime\prime}+2-2y^{\prime}+2(y^{\prime})^2=0.\]At \((0,3)\), \[6y^{\prime\prime}+2-1+\frac12=0,\]so \[\boxed{y^{\prime\prime}=-\frac14}.\] | verified | true |
 | `APCALC-AB-FRQ-1978-06` | Let the upper-right vertex be \((x,e^{-x^2})\), \(x>0\). Symmetry gives \[A(x)=2xe^{-x^2}.\]Then \[A^{\prime}(x)=2e^{-x^2}(1-2x^2),\]so the only positive critical point is \(x=1/\sqrt2\). The derivative changes from positive to negative there, so \[\boxed{A_{\max}=\sqrt{\frac2e}}.\]; Using cylindrical shells, \[V(k)=2\pi\int_0^k xe^{-x^2}\,dx=2\pi\left[-\frac12e^{-x^2}\right]_0^k.\]Thus \[\boxed{V(k)=\pi(1-e^{-k^2})}.\]; Because \(e^{-k^2}\to0\), \[\boxed{\lim_{k\to\infty}V(k)=\pi}.\] | Let the upper-right vertex be \((x,e^{-x^2})\), \(x>0\). Symmetry gives \[A(x)=2xe^{-x^2}.\]Then \[A^{\prime}(x)=2e^{-x^2}(1-2x^2),\]so the only positive critical point is \(x=1/\sqrt2\). The derivative changes from positive to negative there, so \[\boxed{A_{\max}=\sqrt{\frac2e}}.\]; Using cylindrical shells, \[V(k)=2\pi\int_0^k xe^{-x^2}\,dx=2\pi\left[-\frac12e^{-x^2}\right]_0^k.\]Thus \[\boxed{V(k)=\pi(1-e^{-k^2})}.\]; Because \(e^{-k^2}\to0\), \[\boxed{\lim_{k\to\infty}V(k)=\pi}.\] | verified | true |
 | `APCALC-AB-FRQ-1978-07` | Differentiate \(g^2+h^2=1\): \[2gg^{\prime}+2hh^{\prime}=0.\]Since \(g^{\prime}=h^2\) and \(h>0\), \[h^{\prime}=-\frac{gg^{\prime}}h=-\frac{gh^2}h=\boxed{-gh}.\]; From the identity and \(g(0)=0\), positivity gives \(h(0)=1\). Also \(h^{\prime}(0)=0\). Differentiating \(h^{\prime}=-gh\) gives \[h^{\prime\prime}=-g^{\prime}h-gh^{\prime}.\]Thus \(h^{\prime\prime}(0)=-(1)(1)-0=-1<0\), so \[\boxed{h\text{ has a relative maximum at }x=0}.\]; Because \(g^{\prime}=h^2>0\), \(g\) is strictly increasing. Since \(g(0)=0\), we have \(g(x)<0\) for \(x<0\) and \(g(x)>0\) for \(x>0\). Also \[g^{\prime\prime}=2hh^{\prime}=-2gh^2.\]Therefore \(g^{\prime\prime}>0\) to the left of 0 and \(g^{\prime\prime}<0\) to the right. Concavity changes at \(0\), so \[\boxed{(0,0)\text{ is an inflection point of }g}.\] | Differentiate \(g^2+h^2=1\): \[2gg^{\prime}+2hh^{\prime}=0.\]Since \(g^{\prime}=h^2\) and \(h>0\), \[h^{\prime}=-\frac{gg^{\prime}}h=-\frac{gh^2}h=\boxed{-gh}.\]; From the identity and \(g(0)=0\), positivity gives \(h(0)=1\). Also \(h^{\prime}(0)=0\). Differentiating \(h^{\prime}=-gh\) gives \[h^{\prime\prime}=-g^{\prime}h-gh^{\prime}.\]Thus \(h^{\prime\prime}(0)=-(1)(1)-0=-1<0\), so \[\boxed{h\text{ has a relative maximum at }x=0}.\]; Because \(g^{\prime}=h^2>0\), \(g\) is strictly increasing. Since \(g(0)=0\), we have \(g(x)<0\) for \(x<0\) and \(g(x)>0\) for \(x>0\). Also \[g^{\prime\prime}=2hh^{\prime}=-2gh^2.\]Therefore \(g^{\prime\prime}>0\) to the left of 0 and \(g^{\prime\prime}<0\) to the right. Concavity changes at \(0\), so \[\boxed{(0,0)\text{ is an inflection point of }g}.\] | verified | true |
@@ -2081,8 +2353,68 @@ Then \(A^{\prime}(x)=8-24x^2\), giving \(x=1/\sqrt3\). This is a maximum because
 \[\boxed{C=\left(\frac1{\sqrt3},\frac83\right)}.\]; \[\frac{dA}{dt}=(8-24x^2)\frac{dx}{dt}.\]
 At \(x=1/2\) and \(dx/dt=2\),
 \[\frac{dA}{dt}=(8-6)(2)=\boxed{4\text{ square units per second}}.\] | verified | true |
-| `APCALC-AB-FRQ-1980-03` |  |  | verified | false |
-| `APCALC-AB-FRQ-1980-04` |  |  | verified | false |
+| `APCALC-AB-FRQ-1980-03` | Because \(g\) is defined for \(x>0\) and always has positive output,
+\[
+H(x)=\ln\bigl((e^{2x})^2\bigr)=\ln(e^{4x})=4x.
+\]
+Thus
+\[
+\boxed{\operatorname{Dom}(H)=(0,\infty),\qquad H(x)=4x}.
+\]; For \(K(x)=g(f(x))\), the input to \(g\) must be strictly positive:
+\[
+\ln(x^2)>0\Longleftrightarrow x^2>1.
+\]
+Together with the original restriction \(x>0\), this gives \(x>1\). Also
+\[
+K(x)=e^{2\ln(x^2)}=x^4.
+\]
+Therefore
+\[
+\boxed{\operatorname{Dom}(K)=(1,\infty),\qquad K(x)=x^4}.
+\]; Let \(y=\ln(x^2)=2\ln x\) with \(x>0\). Solving for \(x\) gives
+\[x=e^{y/2}.\]
+Thus
+\[\boxed{f^{-1}(x)=e^{x/2}},\qquad \boxed{\operatorname{Dom}(f^{-1})=\mathbb R}.\] | Because \(g\) is defined for \(x>0\) and always has positive output,
+\[
+H(x)=\ln\bigl((e^{2x})^2\bigr)=\ln(e^{4x})=4x.
+\]
+Thus
+\[
+\boxed{\operatorname{Dom}(H)=(0,\infty),\qquad H(x)=4x}.
+\]; For \(K(x)=g(f(x))\), the input to \(g\) must be strictly positive:
+\[
+\ln(x^2)>0\Longleftrightarrow x^2>1.
+\]
+Together with the original restriction \(x>0\), this gives \(x>1\). Also
+\[
+K(x)=e^{2\ln(x^2)}=x^4.
+\]
+Therefore
+\[
+\boxed{\operatorname{Dom}(K)=(1,\infty),\qquad K(x)=x^4}.
+\]; Let \(y=\ln(x^2)=2\ln x\) with \(x>0\). Solving for \(x\) gives
+\[x=e^{y/2}.\]
+Thus
+\[\boxed{f^{-1}(x)=e^{x/2}},\qquad \boxed{\operatorname{Dom}(f^{-1})=\mathbb R}.\] | verified | true |
+| `APCALC-AB-FRQ-1980-04` | Integrating,
+\[v(t)=5e^{2t}+C.\]
+Since \(v(0)=5\), \(C=0\). Hence
+\[\boxed{v(t)=5e^{2t}}.\]; Velocity reaches 15 when \(5e^{2t}=15\), so \(t=\frac12\ln3\). Since velocity is positive, distance equals displacement:
+\[\int_0^{(1/2)\ln3}5e^{2t}dt
+=\frac52[e^{2t}]_0^{(1/2)\ln3}
+=\frac52(3-1)=\boxed{5}.\]; Integrating velocity,
+\[s(t)=\frac52e^{2t}+C.\]
+Using \(s(0)=0\) gives \(C=-5/2\). Therefore
+\[\boxed{s(t)=\frac52\left(e^{2t}-1\right)}.\] | Integrating,
+\[v(t)=5e^{2t}+C.\]
+Since \(v(0)=5\), \(C=0\). Hence
+\[\boxed{v(t)=5e^{2t}}.\]; Velocity reaches 15 when \(5e^{2t}=15\), so \(t=\frac12\ln3\). Since velocity is positive, distance equals displacement:
+\[\int_0^{(1/2)\ln3}5e^{2t}dt
+=\frac52[e^{2t}]_0^{(1/2)\ln3}
+=\frac52(3-1)=\boxed{5}.\]; Integrating velocity,
+\[s(t)=\frac52e^{2t}+C.\]
+Using \(s(0)=0\) gives \(C=-5/2\). Therefore
+\[\boxed{s(t)=\frac52\left(e^{2t}-1\right)}.\] | verified | true |
 | `APCALC-AB-FRQ-1980-05` | \[f(x)=\cos x(1-\cos x)=0.\]
 On the interval, this gives
 \[\boxed{x=-\frac\pi2,\ 0,\ \frac\pi2}.\]; \[f^{\prime}(x)=\sin x(2\cos x-1).\]
@@ -2094,8 +2426,44 @@ On the interval, this gives
 The derivative changes from positive to negative at \(x=\pm\pi/3\). Since \(f(\pm\pi/3)=1/4\), the relative maxima are
 \[\boxed{\left(-\frac\pi3,\frac14\right),\quad\left(\frac\pi3,\frac14\right)}.\]; A sign chart for \(\sin x(2\cos x-1)\) gives
 \[\boxed{(-\pi,-\pi/3)\cup(0,\pi/3)}.\]; The graph passes through the three intercepts, has the two relative maxima found above, is even, and reaches \(-2\) at both endpoints \(x=\pm\pi\). | verified | true |
-| `APCALC-AB-FRQ-1980-06` |  |  | verified | false |
-| `APCALC-AB-FRQ-1980-07` |  |  | verified | false |
+| `APCALC-AB-FRQ-1980-06` | Differentiating
+\[x^4-5x^2y^2+4y^4=0\]
+gives
+\[4x^3-10xy^2-10x^2yy^{\prime}+16y^3y^{\prime}=0.\]
+Therefore
+\[\boxed{y^{\prime}=\frac{2x^3-5xy^2}{5x^2y-8y^3}}.\]; Substitution gives
+\[y^{\prime}=\frac{16-10}{20-8}=\frac12.\]
+Hence
+\[\boxed{y-1=\frac12(x-2)},\qquad\boxed{y=\frac x2}.\]; The point \(\boxed{(-2,-2)}\) is on the graph of \(f\) by the given information. The tangent line is \(y=x/2\), and at \(x=-2\) that line has \(y=-1\), not \(-2\). Therefore \((-2,-2)\) is not on \(\ell\).; The point \(\boxed{(-2,-1)}\) lies on \(y=x/2\). Although it satisfies the full implicit algebraic relation, the selected continuous function has the given value \(f(-2)=-2\), so \((-2,-1)\) is not on the graph of \(f\). | Differentiating
+\[x^4-5x^2y^2+4y^4=0\]
+gives
+\[4x^3-10xy^2-10x^2yy^{\prime}+16y^3y^{\prime}=0.\]
+Therefore
+\[\boxed{y^{\prime}=\frac{2x^3-5xy^2}{5x^2y-8y^3}}.\]; Substitution gives
+\[y^{\prime}=\frac{16-10}{20-8}=\frac12.\]
+Hence
+\[\boxed{y-1=\frac12(x-2)},\qquad\boxed{y=\frac x2}.\]; The point \(\boxed{(-2,-2)}\) is on the graph of \(f\) by the given information. The tangent line is \(y=x/2\), and at \(x=-2\) that line has \(y=-1\), not \(-2\). Therefore \((-2,-2)\) is not on \(\ell\).; The point \(\boxed{(-2,-1)}\) lies on \(y=x/2\). Although it satisfies the full implicit algebraic relation, the selected continuous function has the given value \(f(-2)=-2\), so \((-2,-1)\) is not on the graph of \(f\). | verified | true |
+| `APCALC-AB-FRQ-1980-07` | The left value is \(f(1)=1\). The right-hand limit is \(q+p\). Continuity requires
+\[\boxed{p+q=1},\qquad\text{equivalently }\boxed{q=1-p}.\]; For \(f'\) to exist and be continuous at the join, \(f\) must first be continuous, so \(p+q=1\). The one-sided derivative values are \(2p\) and \(q\), so continuity of \(f'\) requires \(q=2p\). Solving
+\[
+p+q=1,\qquad q=2p
+\]
+gives
+\[
+\boxed{p=\frac13,\qquad q=\frac23}.
+\]; For \(x<1\), \(f^{\prime\prime}(x)=2\). For \(x>1\), \(f^{\prime\prime}(x)=0\). The first derivative is continuous at 1, but its one-sided slopes do not agree, so \(f^{\prime\prime}(1)\) does not exist. Hence
+\[\boxed{f^{\prime\prime}\text{ is not continuous on }\mathbb R}.\]
+Historical scoring sometimes treated “continuous on its domain” separately; the modern precise statement is that \(f^{\prime\prime}\) is undefined at the join. | The left value is \(f(1)=1\). The right-hand limit is \(q+p\). Continuity requires
+\[\boxed{p+q=1},\qquad\text{equivalently }\boxed{q=1-p}.\]; For \(f'\) to exist and be continuous at the join, \(f\) must first be continuous, so \(p+q=1\). The one-sided derivative values are \(2p\) and \(q\), so continuity of \(f'\) requires \(q=2p\). Solving
+\[
+p+q=1,\qquad q=2p
+\]
+gives
+\[
+\boxed{p=\frac13,\qquad q=\frac23}.
+\]; For \(x<1\), \(f^{\prime\prime}(x)=2\). For \(x>1\), \(f^{\prime\prime}(x)=0\). The first derivative is continuous at 1, but its one-sided slopes do not agree, so \(f^{\prime\prime}(1)\) does not exist. Hence
+\[\boxed{f^{\prime\prime}\text{ is not continuous on }\mathbb R}.\]
+Historical scoring sometimes treated “continuous on its domain” separately; the modern precise statement is that \(f^{\prime\prime}\) is undefined at the join. | verified | true |
 | `APCALC-LEGACY-MCQ-1985-001` | D | D | verified | true |
 | `APCALC-LEGACY-MCQ-1985-002` | E | E | verified | true |
 | `APCALC-LEGACY-MCQ-1985-003` | A | A | verified | true |

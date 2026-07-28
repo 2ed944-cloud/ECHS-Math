@@ -7,20 +7,20 @@
     "questions": 1217,
     "mcq": 876,
     "frq": 341,
-    "withMedia": 871,
+    "withMedia": 882,
     "withHints": 1164,
     "answerVerified": 974,
     "reviewRequired": 457,
-    "studentReady": 880,
-    "studentEligible": 880,
-    "studentAccessible": 880,
+    "studentReady": 896,
+    "studentEligible": 896,
+    "studentAccessible": 896,
     "archiveVisible": 1217,
     "fullyDigitized": 1217,
     "facsimileOnly": 0,
     "indexedOnly": 0,
     "autoGraded": 760,
-    "needsReview": 337,
-    "teacherArchiveOnly": 337
+    "needsReview": 321,
+    "teacherArchiveOnly": 321
   },
   "courses": {
     "AP Calculus AB": 799,
@@ -52,8 +52,8 @@
     "10": 61
   },
   "readiness": {
-    "student-ready": 880,
-    "teacher-archive-only": 337
+    "student-ready": 896,
+    "teacher-archive-only": 321
   },
   "officialStatus": {
     "legacy-ap": 704,
@@ -68,7 +68,7 @@
       "frq": 7,
       "ab": 51,
       "bc": 46,
-      "eligible": 96
+      "eligible": 97
     },
     "1970": {
       "total": 7,
@@ -108,7 +108,7 @@
       "frq": 8,
       "ab": 7,
       "bc": 1,
-      "eligible": 5
+      "eligible": 7
     },
     "1975": {
       "total": 7,
@@ -116,7 +116,7 @@
       "frq": 7,
       "ab": 7,
       "bc": 0,
-      "eligible": 6
+      "eligible": 7
     },
     "1976": {
       "total": 7,
@@ -124,7 +124,7 @@
       "frq": 7,
       "ab": 7,
       "bc": 0,
-      "eligible": 3
+      "eligible": 7
     },
     "1977": {
       "total": 7,
@@ -132,7 +132,7 @@
       "frq": 7,
       "ab": 7,
       "bc": 0,
-      "eligible": 4
+      "eligible": 7
     },
     "1978": {
       "total": 7,
@@ -140,7 +140,7 @@
       "frq": 7,
       "ab": 7,
       "bc": 0,
-      "eligible": 6
+      "eligible": 7
     },
     "1979": {
       "total": 7,
@@ -156,7 +156,7 @@
       "frq": 7,
       "ab": 7,
       "bc": 0,
-      "eligible": 3
+      "eligible": 7
     },
     "1985": {
       "total": 96,
@@ -436,7 +436,7 @@
       "id": "AP historical archive",
       "label": "AP historical archive",
       "count": 704,
-      "studentReadyCount": 687,
+      "studentReadyCount": 703,
       "officialStatus": "legacy-ap",
       "accessLevel": "public"
     },
@@ -507,8 +507,8 @@
   ],
   "restrictedSummary": {
     "canonicalQuestions": 1217,
-    "studentReady": 880,
-    "teacherArchiveOnly": 337,
+    "studentReady": 896,
+    "teacherArchiveOnly": 321,
     "message": "Only independently audited, exactly mapped, public-release-approved records are used by the GitHub Pages student runtime."
   },
   "deployment": {

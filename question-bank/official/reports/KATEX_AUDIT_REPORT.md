@@ -1,6 +1,6 @@
 # KaTeX Audit Report
 
-Generated: 2026-07-28T03:36:12.955Z
+Generated: 2026-07-28T03:03:45+03:00
 
 **Overall result: PASS**
 
@@ -8,8 +8,8 @@ Generated: 2026-07-28T03:36:12.955Z
 | --- | ---: |
 | Canonical questions checked | 1,217 |
 | Unique question IDs checked | 1,217 |
-| Math-bearing fields checked | 9,905 |
-| Expressions parsed | 23,773 |
+| Math-bearing fields checked | 9,080 |
+| Expressions parsed | 23,088 |
 | Remaining parser errors | 0 |
 
 Every delimited expression in every canonical record was parsed with KaTeX 0.16.27 using `throwOnError: true` and `strict: "error"`. Raw dollar delimiters and unmatched approved delimiters were also rejected.

@@ -3924,20 +3924,20 @@
           "answer": "\\(t=-b/(2a)=-20/(2(-5))=2\\) seconds.",
           "rubric": [
             {
-              "criterionId": "A1",
-              "description": "1 point for a valid vertex method.",
-              "points": null,
-              "evidenceRequired": "1 point for a valid vertex method.",
+              "criterionId": "A-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
               "commonErrors": [],
-              "rubricType": "ECHS interpreted rubric"
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
             },
             {
-              "criterionId": "A2",
-              "description": "1 point for 2 seconds.",
-              "points": null,
-              "evidenceRequired": "1 point for 2 seconds.",
+              "criterionId": "A-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 1,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
               "commonErrors": [],
-              "rubricType": "ECHS interpreted rubric"
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
             }
           ]
         },
@@ -3948,12 +3948,12 @@
           "answer": "\\(h(2)=21\\) meters.",
           "rubric": [
             {
-              "criterionId": "B1",
-              "description": "1 point for 21 meters.",
-              "points": null,
-              "evidenceRequired": "1 point for 21 meters.",
+              "criterionId": "B-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
               "commonErrors": [],
-              "rubricType": "ECHS interpreted rubric"
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
             }
           ]
         },
@@ -3964,20 +3964,20 @@
           "answer": "\\(-5t^2+20t=0\\Rightarrow t=0\\) or \\(t=4\\). The ball returns to its initial height after 4 seconds.",
           "rubric": [
             {
-              "criterionId": "C1",
-              "description": "1 point for the two solutions.",
-              "points": null,
-              "evidenceRequired": "1 point for the two solutions.",
+              "criterionId": "C-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
               "commonErrors": [],
-              "rubricType": "ECHS interpreted rubric"
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
             },
             {
-              "criterionId": "C2",
-              "description": "1 point for the contextual interpretation of 4 seconds.",
-              "points": null,
-              "evidenceRequired": "1 point for the contextual interpretation of 4 seconds.",
+              "criterionId": "C-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 1,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
               "commonErrors": [],
-              "rubricType": "ECHS interpreted rubric"
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
             }
           ]
         }
@@ -4003,20 +4003,20 @@
           "maxPoints": 2,
           "criteria": [
             {
-              "criterionId": "A1",
-              "description": "1 point for a valid vertex method.",
-              "points": null,
-              "evidenceRequired": "1 point for a valid vertex method.",
+              "criterionId": "A-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
               "commonErrors": [],
-              "rubricType": "ECHS interpreted rubric"
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
             },
             {
-              "criterionId": "A2",
-              "description": "1 point for 2 seconds.",
-              "points": null,
-              "evidenceRequired": "1 point for 2 seconds.",
+              "criterionId": "A-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 1,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
               "commonErrors": [],
-              "rubricType": "ECHS interpreted rubric"
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
             }
           ]
         },
@@ -4025,12 +4025,12 @@
           "maxPoints": 1,
           "criteria": [
             {
-              "criterionId": "B1",
-              "description": "1 point for 21 meters.",
-              "points": null,
-              "evidenceRequired": "1 point for 21 meters.",
+              "criterionId": "B-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
               "commonErrors": [],
-              "rubricType": "ECHS interpreted rubric"
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
             }
           ]
         },
@@ -4039,25 +4039,25 @@
           "maxPoints": 2,
           "criteria": [
             {
-              "criterionId": "C1",
-              "description": "1 point for the two solutions.",
-              "points": null,
-              "evidenceRequired": "1 point for the two solutions.",
+              "criterionId": "C-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
               "commonErrors": [],
-              "rubricType": "ECHS interpreted rubric"
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
             },
             {
-              "criterionId": "C2",
-              "description": "1 point for the contextual interpretation of 4 seconds.",
-              "points": null,
-              "evidenceRequired": "1 point for the contextual interpretation of 4 seconds.",
+              "criterionId": "C-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 1,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
               "commonErrors": [],
-              "rubricType": "ECHS interpreted rubric"
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
             }
           ]
         }
       ],
-      "rubricStatus": "ECHS analytic rubric; not official College Board scoring",
+      "rubricStatus": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline.",
       "commonMistakes": [],
       "verificationStatus": "independently-verified",
       "answerConfidence": 0.99,
@@ -4191,28 +4191,20 @@
           "answer": "Slope \\(m=(30-18)/(10-4)=2\\). Using \\(18=2(4)+b\\) gives \\(b=10\\). Thus \\(C(d)=2d+10\\).",
           "rubric": [
             {
-              "criterionId": "A1",
-              "description": "1 point for slope 2.",
-              "points": null,
-              "evidenceRequired": "1 point for slope 2.",
+              "criterionId": "A-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
               "commonErrors": [],
-              "rubricType": "ECHS interpreted rubric"
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
             },
             {
-              "criterionId": "A2",
-              "description": "1 point for intercept 10.",
-              "points": null,
-              "evidenceRequired": "1 point for intercept 10.",
+              "criterionId": "A-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
               "commonErrors": [],
-              "rubricType": "ECHS interpreted rubric"
-            },
-            {
-              "criterionId": "A3",
-              "description": "1 point for the complete model.",
-              "points": null,
-              "evidenceRequired": "1 point for the complete model.",
-              "commonErrors": [],
-              "rubricType": "ECHS interpreted rubric"
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
             }
           ]
         },
@@ -4223,20 +4215,20 @@
           "answer": "The fare increases 2 QAR per kilometer, and the fixed starting charge is 10 QAR.",
           "rubric": [
             {
-              "criterionId": "B1",
-              "description": "1 point for the slope interpretation with units.",
-              "points": null,
-              "evidenceRequired": "1 point for the slope interpretation with units.",
+              "criterionId": "B-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
               "commonErrors": [],
-              "rubricType": "ECHS interpreted rubric"
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
             },
             {
-              "criterionId": "B2",
-              "description": "1 point for the intercept interpretation.",
-              "points": null,
-              "evidenceRequired": "1 point for the intercept interpretation.",
+              "criterionId": "B-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 1,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
               "commonErrors": [],
-              "rubricType": "ECHS interpreted rubric"
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
             }
           ]
         }
@@ -4262,28 +4254,20 @@
           "maxPoints": 3,
           "criteria": [
             {
-              "criterionId": "A1",
-              "description": "1 point for slope 2.",
-              "points": null,
-              "evidenceRequired": "1 point for slope 2.",
+              "criterionId": "A-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
               "commonErrors": [],
-              "rubricType": "ECHS interpreted rubric"
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
             },
             {
-              "criterionId": "A2",
-              "description": "1 point for intercept 10.",
-              "points": null,
-              "evidenceRequired": "1 point for intercept 10.",
+              "criterionId": "A-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 2,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
               "commonErrors": [],
-              "rubricType": "ECHS interpreted rubric"
-            },
-            {
-              "criterionId": "A3",
-              "description": "1 point for the complete model.",
-              "points": null,
-              "evidenceRequired": "1 point for the complete model.",
-              "commonErrors": [],
-              "rubricType": "ECHS interpreted rubric"
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
             }
           ]
         },
@@ -4292,25 +4276,25 @@
           "maxPoints": 2,
           "criteria": [
             {
-              "criterionId": "B1",
-              "description": "1 point for the slope interpretation with units.",
-              "points": null,
-              "evidenceRequired": "1 point for the slope interpretation with units.",
+              "criterionId": "B-METHOD",
+              "description": "Establishes a mathematically valid setup, governing relationship, or justified method for this part.",
+              "points": 1,
+              "evidenceRequired": "Work consistent with the quantities, conditions, and request in the verified part prompt.",
               "commonErrors": [],
-              "rubricType": "ECHS interpreted rubric"
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
             },
             {
-              "criterionId": "B2",
-              "description": "1 point for the intercept interpretation.",
-              "points": null,
-              "evidenceRequired": "1 point for the intercept interpretation.",
+              "criterionId": "B-RESULT",
+              "description": "Executes the method correctly and reaches the verified result, including required reasoning, units, or justification.",
+              "points": 1,
+              "evidenceRequired": "A complete derivation or explanation agreeing with the independently verified part answer.",
               "commonErrors": [],
-              "rubricType": "ECHS interpreted rubric"
+              "rubricType": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline."
             }
           ]
         }
       ],
-      "rubricStatus": "ECHS analytic rubric; not official College Board scoring",
+      "rubricStatus": "ECHS analytic practice rubric based on independent mathematical verification; not an official College Board point-by-point scoring guideline.",
       "commonMistakes": [],
       "verificationStatus": "independently-verified",
       "answerConfidence": 0.99,

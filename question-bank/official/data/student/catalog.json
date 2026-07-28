@@ -2,44 +2,44 @@
   "schemaVersion": "5.0.0",
   "mode": "student-ready-public-gated",
   "generatedAt": "2026-07-28T03:03:45+03:00",
-  "questionCount": 880,
+  "questionCount": 896,
   "archiveQuestionCount": 1217,
   "stats": {
-    "questions": 880,
+    "questions": 896,
     "mcq": 661,
-    "frq": 219,
-    "withMedia": 540,
-    "withHints": 828,
-    "answerVerified": 880,
+    "frq": 235,
+    "withMedia": 562,
+    "withHints": 844,
+    "answerVerified": 896,
     "needsReview": 0,
-    "studentEligible": 880,
-    "studentAccessible": 880,
-    "studentReady": 880,
-    "teacherArchiveOnly": 337,
-    "fullyDigitized": 880,
+    "studentEligible": 896,
+    "studentAccessible": 896,
+    "studentReady": 896,
+    "teacherArchiveOnly": 321,
+    "fullyDigitized": 896,
     "indexedOnly": 0
   },
   "courses": {
-    "AP Calculus AB": 536,
+    "AP Calculus AB": 552,
     "AP Calculus BC": 314,
     "AP Precalculus": 19,
     "Grade 9 Pre-Precalculus": 11
   },
   "types": {
     "mcq": 661,
-    "frq": 219
+    "frq": 235
   },
   "calculator": {
-    "no-calculator": 704,
+    "no-calculator": 720,
     "calculator-allowed": 90,
     "calculator-required": 86
   },
   "units": {
-    "1": 56,
-    "2": 91,
-    "3": 91,
-    "4": 86,
-    "5": 138,
+    "1": 57,
+    "2": 95,
+    "3": 96,
+    "4": 90,
+    "5": 140,
     "6": 175,
     "7": 36,
     "8": 114,
@@ -47,21 +47,21 @@
     "10": 32
   },
   "readiness": {
-    "student-ready": 880
+    "student-ready": 896
   },
   "officialStatus": {
-    "legacy-ap": 687,
+    "legacy-ap": 703,
     "echs-original": 52,
     "official-released": 141
   },
   "years": {
     "1969": {
-      "total": 96,
+      "total": 97,
       "mcq": 90,
-      "frq": 6,
-      "ab": 50,
+      "frq": 7,
+      "ab": 51,
       "bc": 46,
-      "eligible": 96
+      "eligible": 97
     },
     "1970": {
       "total": 7,
@@ -96,44 +96,44 @@
       "eligible": 97
     },
     "1974": {
-      "total": 5,
+      "total": 7,
       "mcq": 0,
-      "frq": 5,
-      "ab": 5,
+      "frq": 7,
+      "ab": 7,
       "bc": 0,
-      "eligible": 5
+      "eligible": 7
     },
     "1975": {
-      "total": 6,
+      "total": 7,
       "mcq": 0,
-      "frq": 6,
-      "ab": 6,
+      "frq": 7,
+      "ab": 7,
       "bc": 0,
-      "eligible": 6
+      "eligible": 7
     },
     "1976": {
-      "total": 3,
+      "total": 7,
       "mcq": 0,
-      "frq": 3,
-      "ab": 3,
+      "frq": 7,
+      "ab": 7,
       "bc": 0,
-      "eligible": 3
+      "eligible": 7
     },
     "1977": {
-      "total": 4,
+      "total": 7,
       "mcq": 0,
-      "frq": 4,
-      "ab": 4,
+      "frq": 7,
+      "ab": 7,
       "bc": 0,
-      "eligible": 4
+      "eligible": 7
     },
     "1978": {
-      "total": 6,
+      "total": 7,
       "mcq": 0,
-      "frq": 6,
-      "ab": 6,
+      "frq": 7,
+      "ab": 7,
       "bc": 0,
-      "eligible": 6
+      "eligible": 7
     },
     "1979": {
       "total": 7,
@@ -144,12 +144,12 @@
       "eligible": 7
     },
     "1980": {
-      "total": 3,
+      "total": 7,
       "mcq": 0,
-      "frq": 3,
-      "ab": 3,
+      "frq": 7,
+      "ab": 7,
       "bc": 0,
-      "eligible": 3
+      "eligible": 7
     },
     "1985": {
       "total": 95,
@@ -348,8 +348,8 @@
     {
       "id": "AP historical archive",
       "label": "AP historical archive",
-      "count": 687,
-      "studentReadyCount": 687,
+      "count": 703,
+      "studentReadyCount": 703,
       "officialStatus": "legacy-ap",
       "accessLevel": "public"
     },
@@ -372,8 +372,8 @@
   ],
   "restrictedSummary": {
     "canonicalQuestions": 1217,
-    "studentReady": 880,
-    "teacherArchiveOnly": 337,
+    "studentReady": 896,
+    "teacherArchiveOnly": 321,
     "message": "Only independently audited, exactly mapped, public-release-approved records are used by the GitHub Pages student runtime."
   },
   "deployment": {

@@ -2,26 +2,10 @@
 
 Generated: 2026-07-28T03:03:45+03:00
 
-**337 canonical records remain teacher/archive-only.**
+**321 canonical records remain teacher/archive-only.**
 
 | question_id | issue_type | source_file | source_page | confidence | recommended_action |
 | --- | --- | --- | --- | --- | --- |
-| `APCALC-AB-FRQ-1969-03` | verification_or_mapping_incomplete | AP Calculus historical archive | 3; 4 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1974-01` | verification_or_mapping_incomplete | AP Calculus historical archive | 11 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1974-03` | verification_or_mapping_incomplete | AP Calculus historical archive | 11 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1975-03` | verification_or_mapping_incomplete | AP Calculus historical archive | 13 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1976-01` | verification_or_mapping_incomplete | AP Calculus historical archive | 14 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1976-04` | verification_or_mapping_incomplete | AP Calculus historical archive | 14 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1976-05` | verification_or_mapping_incomplete | AP Calculus historical archive | 15 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1976-07` | verification_or_mapping_incomplete | AP Calculus historical archive | 15 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1977-01` | verification_or_mapping_incomplete | AP Calculus historical archive | 15 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1977-04` | verification_or_mapping_incomplete | AP Calculus historical archive | 16 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1977-05` | verification_or_mapping_incomplete | AP Calculus historical archive | 16; 17 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1978-04` | verification_or_mapping_incomplete | AP Calculus historical archive | 18 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1980-03` | verification_or_mapping_incomplete | AP Calculus historical archive | 20 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1980-04` | verification_or_mapping_incomplete | AP Calculus historical archive | 21 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1980-06` | verification_or_mapping_incomplete | AP Calculus historical archive | 21 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
-| `APCALC-AB-FRQ-1980-07` | verification_or_mapping_incomplete | AP Calculus historical archive | 21 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
 | `APCALC-LEGACY-BC-MCQ-1985-040` | verification_or_mapping_incomplete | AP Calculus historical archive | 61 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
 | `ECHS-G9PRECALC-ORIGINAL-G9-U5-001` | verification_or_mapping_incomplete | ECHS Original Question Bank |  | low | Complete the outstanding source, mathematics, media, or exact mapping review. |
 | `APCALC-BC-FRQ-1974-03` | verification_or_mapping_incomplete | historical-frq-1969-2010 | 12 | low | Complete the outstanding source, mathematics, media, or exact mapping review. |

@@ -44,11 +44,42 @@ RIGHTS_REASON_TOKENS = (
 )
 EXPECTED_CANONICAL = 1217
 EXPECTED_OFFICIAL = 1052
-EXPECTED_LICENSED_READY = 828
+EXPECTED_LICENSED_READY = 844
 EXPECTED_LEGACY_AB_MCQ = 310
-EXPECTED_SOLVED_FRQ_STRUCTURE_READY = 158
+EXPECTED_SOLVED_FRQ_STRUCTURE_READY = 223
 LEGACY_AB_MCQ_PREFIX = "APCALC-LEGACY-MCQ-"
 HISTORICAL_AB_FRQ_PREFIX = "APCALC-AB-FRQ-"
+FRQ_PART_STRUCTURE_RECOVERY_IDS = {
+    "APCALC-AB-FRQ-1969-03",
+    "APCALC-AB-FRQ-1974-01",
+    "APCALC-AB-FRQ-1974-03",
+    "APCALC-AB-FRQ-1975-03",
+    "APCALC-AB-FRQ-1976-01",
+    "APCALC-AB-FRQ-1976-04",
+    "APCALC-AB-FRQ-1976-05",
+    "APCALC-AB-FRQ-1976-07",
+    "APCALC-AB-FRQ-1977-01",
+    "APCALC-AB-FRQ-1977-04",
+    "APCALC-AB-FRQ-1977-05",
+    "APCALC-AB-FRQ-1978-04",
+    "APCALC-AB-FRQ-1980-03",
+    "APCALC-AB-FRQ-1980-04",
+    "APCALC-AB-FRQ-1980-06",
+    "APCALC-AB-FRQ-1980-07",
+}
+FRQ_MEDIA_RECOVERY_IDS = {
+    "APCALC-AB-FRQ-1969-01",
+    "APCALC-AB-FRQ-1969-02",
+    "APCALC-AB-FRQ-1969-03",
+    "APCALC-AB-FRQ-1969-04",
+    "APCALC-AB-FRQ-1969-05",
+    "APCALC-AB-FRQ-1969-06",
+    "APCALC-AB-FRQ-1969-07",
+    "APCALC-AB-FRQ-1975-03",
+    "APCALC-AB-FRQ-1976-01",
+    "APCALC-AB-FRQ-1976-05",
+    "APCALC-AB-FRQ-1977-01",
+}
 LEGACY_AB_MCQ_GRAPH_MEDIA_IDS = {
     "APCALC-LEGACY-MCQ-1985-033",
     "APCALC-LEGACY-MCQ-1993-040",
@@ -176,7 +207,25 @@ def load_overlay_map() -> dict[str, dict[str, Any]]:
             question_id = str(row.get("id") or "")
             if not question_id:
                 raise SystemExit(f"Overlay record without ID in {path}")
-            expanded = merge_objects(defaults, row)
+            # Overlay directives must survive expansion. Calling merge_objects
+            # on defaults and the row used to execute partsPatches against the
+            # defaults (which have no parts), replacing the directive with an
+            # empty parts array before it ever reached the question. That
+            # silently removed the structure of every corrected multipart FRQ.
+            directives = {
+                key: copy.deepcopy(row[key])
+                for key in ("partsPatches", "mediaPatches")
+                if key in row
+            }
+            expanded = merge_objects(
+                defaults,
+                {
+                    key: value
+                    for key, value in row.items()
+                    if key not in directives
+                },
+            )
+            expanded.update(directives)
             if question_id in patches:
                 raise SystemExit(
                     f"Duplicate effective overlay for {question_id}: {path}"
@@ -481,6 +530,61 @@ def echs_analytic_part_rubric(
     return rows
 
 
+def normalize_frq_rubric_points(question: dict[str, Any]) -> bool:
+    """Make a complete FRQ rubric explicit without changing its mathematics."""
+
+    parts = question.get("parts") or []
+    if question.get("type") != "frq" or not parts:
+        return False
+    labels = [str(part.get("label") or "").strip() for part in parts]
+    if any(not label for label in labels) or len(labels) != len(set(labels)):
+        raise SystemExit(f"{question.get('id')} has invalid FRQ part labels.")
+    for part in parts:
+        if not str(part.get("prompt") or "").strip():
+            return False
+        if not str(part.get("answer") or "").strip():
+            return False
+        if not isinstance(part.get("maxPoints"), (int, float)):
+            return False
+        if part["maxPoints"] <= 0:
+            return False
+        rubric = part.get("rubric") or []
+        rubric_points = [
+            row.get("points")
+            for row in rubric
+            if isinstance(row, dict)
+        ]
+        if (
+            not rubric
+            or len(rubric_points) != len(rubric)
+            or any(
+                not isinstance(points, (int, float)) or points <= 0
+                for points in rubric_points
+            )
+            or sum(rubric_points) != part["maxPoints"]
+        ):
+            part["rubric"] = echs_analytic_part_rubric(
+                str(question["id"]),
+                part,
+            )
+
+    question["rubric"] = [
+        {
+            "part": part["label"],
+            "maxPoints": part["maxPoints"],
+            "criteria": copy.deepcopy(part["rubric"]),
+        }
+        for part in parts
+    ]
+    question["maxPoints"] = sum(part["maxPoints"] for part in parts)
+    question["rubricStatus"] = (
+        "ECHS analytic practice rubric based on independent mathematical "
+        "verification; not an official College Board point-by-point scoring "
+        "guideline."
+    )
+    return True
+
+
 def reconcile_solved_frq_structure(question: dict[str, Any]) -> bool:
     """Add release structure only to already independently verified FRQs."""
 
@@ -520,41 +624,8 @@ def reconcile_solved_frq_structure(question: dict[str, Any]) -> bool:
         elif actual is not expected:
             return False
 
-    parts = question.get("parts") or []
-    if not parts:
+    if not normalize_frq_rubric_points(question):
         return False
-    labels = [str(part.get("label") or "").strip() for part in parts]
-    if any(not label for label in labels) or len(labels) != len(set(labels)):
-        raise SystemExit(f"{question.get('id')} has invalid FRQ part labels.")
-    for part in parts:
-        if not str(part.get("prompt") or "").strip():
-            return False
-        if not str(part.get("answer") or "").strip():
-            return False
-        if not isinstance(part.get("maxPoints"), (int, float)):
-            return False
-        if part["maxPoints"] <= 0:
-            return False
-        if not part.get("rubric"):
-            part["rubric"] = echs_analytic_part_rubric(
-                str(question["id"]),
-                part,
-            )
-
-    question["rubric"] = [
-        {
-            "part": part["label"],
-            "maxPoints": part["maxPoints"],
-            "criteria": copy.deepcopy(part["rubric"]),
-        }
-        for part in parts
-    ]
-    question["maxPoints"] = sum(part["maxPoints"] for part in parts)
-    question["rubricStatus"] = (
-        "ECHS analytic practice rubric based on independent mathematical "
-        "verification; not an official College Board point-by-point scoring "
-        "guideline."
-    )
     audit["frqStructureStatus"] = "verified-parts-points-and-echs-rubric"
     return True
 
@@ -623,11 +694,25 @@ def valid_frq(question: dict[str, Any]) -> bool:
             return False
         if not str(part.get("answer") or "").strip():
             return False
-        if not part.get("rubric"):
-            return False
         if not isinstance(part.get("maxPoints"), (int, float)):
             return False
         if part["maxPoints"] <= 0:
+            return False
+        rubric = part.get("rubric") or []
+        rubric_points = [
+            row.get("points")
+            for row in rubric
+            if isinstance(row, dict)
+        ]
+        if (
+            not rubric
+            or len(rubric_points) != len(rubric)
+            or any(
+                not isinstance(points, (int, float)) or points <= 0
+                for points in rubric_points
+            )
+            or sum(rubric_points) != part["maxPoints"]
+        ):
             return False
     return True
 
@@ -909,8 +994,8 @@ def main() -> None:
     official_ids = set()
     legacy_ab_evidence: dict[str, str] = {}
     solved_frq_structure_ready_ids: set[str] = set()
+    ready_frq_structure_ids: set[str] = set()
     for original in canonical:
-        was_student_ready = original.get("studentReady") is True
         question = merge_objects(
             original,
             overlay_map.get(original["id"]) or {},
@@ -920,9 +1005,11 @@ def main() -> None:
                 reconcile_legacy_ab_mcq_evidence(question)
             )
         if (
-            reconcile_solved_frq_structure(question)
-            and not was_student_ready
+            original.get("studentReady") is True
+            and normalize_frq_rubric_points(question)
         ):
+            ready_frq_structure_ids.add(question["id"])
+        if reconcile_solved_frq_structure(question):
             solved_frq_structure_ready_ids.add(question["id"])
         official_status = (question.get("source") or {}).get("officialStatus")
         if official_status in OFFICIAL_STATUSES:
@@ -960,8 +1047,27 @@ def main() -> None:
             f"Expected {EXPECTED_LICENSED_READY} licensed content-ready records, "
             f"found {len(licensed_ready_ids)}."
         )
-
+    if not FRQ_PART_STRUCTURE_RECOVERY_IDS.issubset(licensed_ready_ids):
+        missing = sorted(FRQ_PART_STRUCTURE_RECOVERY_IDS - licensed_ready_ids)
+        raise SystemExit(
+            "Recovered multipart FRQs did not all reach student delivery: "
+            + ", ".join(missing)
+        )
     effective_by_id = {q["id"]: q for q in effective}
+    for question_id in sorted(FRQ_MEDIA_RECOVERY_IDS):
+        media_paths = [
+            str(row.get("path") or "")
+            for row in effective_by_id[question_id].get("media") or []
+            if str(row.get("path") or "")
+        ]
+        if not media_paths or not all(
+            (gate.OFFICIAL / media_path).is_file()
+            for media_path in media_paths
+        ):
+            raise SystemExit(
+                f"{question_id} did not retain resolvable source media."
+            )
+
     ready = [q for q in effective if gate.is_public_ready(q)]
     ready_ids = {q["id"] for q in ready}
     if not licensed_ready_ids.issubset(ready_ids):
@@ -980,7 +1086,9 @@ def main() -> None:
                 updated,
                 effective_by_id[updated["id"]],
             )
-        if updated["id"] in solved_frq_structure_ready_ids:
+        if updated["id"] in (
+            solved_frq_structure_ready_ids | ready_frq_structure_ids
+        ):
             sync_solved_frq_structure_to_admin(
                 updated,
                 effective_by_id[updated["id"]],
@@ -1090,6 +1198,17 @@ def main() -> None:
             "- Independently solved FRQs with completed part/points/ECHS "
             f"rubric structure: **{len(solved_frq_structure_ready_ids)}**"
         ),
+        (
+            "- Corrected-overlay FRQs with recovered verified multipart "
+            f"structure: **{len(FRQ_PART_STRUCTURE_RECOVERY_IDS)}** "
+            "(55 parts)."
+        ),
+        (
+            "- Corrected-overlay FRQs with restored file-backed source "
+            f"facsimiles: **{len(FRQ_MEDIA_RECOVERY_IDS)}**."
+        ),
+        "- The underdetermined 1976 FRQ 4 answer explicitly reports both "
+        "valid branch-dependent rates instead of inventing a missing condition.",
         "",
         "The license removes the publication blocker only. No record is delivered "
         "to students unless its independent content, mathematics, KaTeX, media, "
@@ -1155,7 +1274,8 @@ def main() -> None:
         "independent mathematics, KaTeX, media, calculator, and mapping "
         "verification before this structure pass.",
         "- Every released part has a nonempty verified prompt and answer, "
-        "positive points, and an explicit ECHS analytic practice rubric.",
+        "positive points, and an explicit ECHS analytic practice rubric whose "
+        "criterion points sum exactly to the part maximum.",
         "- ECHS rubrics are labeled as practice rubrics and are not represented "
         "as official College Board point-by-point scoring guidelines.",
         "",

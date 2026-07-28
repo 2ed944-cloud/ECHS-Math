@@ -2,7 +2,7 @@
 
 Generated: 2026-07-28T03:03:45+03:00
 
-**880 questions pass the strict public student-ready gate.**
+**896 questions pass the strict public student-ready gate.**
 
 All are ECHS-authored, independently re-solved, KaTeX-validated, and exactly mapped. School-internal and permission-restricted source records are excluded from the public runtime.
 
@@ -55,6 +55,7 @@ All are ECHS-authored, independently re-solved, KaTeX-validated, and exactly map
 - `APCALC-LEGACY-MCQ-1969-045`
 - `APCALC-AB-FRQ-1969-01`
 - `APCALC-AB-FRQ-1969-02`
+- `APCALC-AB-FRQ-1969-03`
 - `APCALC-AB-FRQ-1969-04`
 - `APCALC-AB-FRQ-1969-05`
 - `APCALC-AB-FRQ-1969-06`
@@ -132,27 +133,38 @@ All are ECHS-authored, independently re-solved, KaTeX-validated, and exactly map
 - `APCALC-AB-FRQ-1973-05`
 - `APCALC-AB-FRQ-1973-06`
 - `APCALC-AB-FRQ-1973-07`
+- `APCALC-AB-FRQ-1974-01`
 - `APCALC-AB-FRQ-1974-02`
+- `APCALC-AB-FRQ-1974-03`
 - `APCALC-AB-FRQ-1974-04`
 - `APCALC-AB-FRQ-1974-05`
 - `APCALC-AB-FRQ-1974-06`
 - `APCALC-AB-FRQ-1974-07`
 - `APCALC-AB-FRQ-1975-01`
 - `APCALC-AB-FRQ-1975-02`
+- `APCALC-AB-FRQ-1975-03`
 - `APCALC-AB-FRQ-1975-04`
 - `APCALC-AB-FRQ-1975-05`
 - `APCALC-AB-FRQ-1975-06`
 - `APCALC-AB-FRQ-1975-07`
+- `APCALC-AB-FRQ-1976-01`
 - `APCALC-AB-FRQ-1976-02`
 - `APCALC-AB-FRQ-1976-03`
+- `APCALC-AB-FRQ-1976-04`
+- `APCALC-AB-FRQ-1976-05`
 - `APCALC-AB-FRQ-1976-06`
+- `APCALC-AB-FRQ-1976-07`
+- `APCALC-AB-FRQ-1977-01`
 - `APCALC-AB-FRQ-1977-02`
 - `APCALC-AB-FRQ-1977-03`
+- `APCALC-AB-FRQ-1977-04`
+- `APCALC-AB-FRQ-1977-05`
 - `APCALC-AB-FRQ-1977-06`
 - `APCALC-AB-FRQ-1977-07`
 - `APCALC-AB-FRQ-1978-01`
 - `APCALC-AB-FRQ-1978-02`
 - `APCALC-AB-FRQ-1978-03`
+- `APCALC-AB-FRQ-1978-04`
 - `APCALC-AB-FRQ-1978-05`
 - `APCALC-AB-FRQ-1978-06`
 - `APCALC-AB-FRQ-1978-07`
@@ -165,7 +177,11 @@ All are ECHS-authored, independently re-solved, KaTeX-validated, and exactly map
 - `APCALC-AB-FRQ-1979-07`
 - `APCALC-AB-FRQ-1980-01`
 - `APCALC-AB-FRQ-1980-02`
+- `APCALC-AB-FRQ-1980-03`
+- `APCALC-AB-FRQ-1980-04`
 - `APCALC-AB-FRQ-1980-05`
+- `APCALC-AB-FRQ-1980-06`
+- `APCALC-AB-FRQ-1980-07`
 - `APCALC-LEGACY-MCQ-1985-001`
 - `APCALC-LEGACY-MCQ-1985-002`
 - `APCALC-LEGACY-MCQ-1985-003`
