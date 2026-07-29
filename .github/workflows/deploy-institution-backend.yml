@@ -1,6 +1,13 @@
 name: Deploy Institutional Backend
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - "supabase/migrations/**"
+      - "supabase/functions/**"
+      - ".github/workflows/deploy-institution-backend.yml"
   workflow_dispatch:
     inputs:
       confirmation:
@@ -11,9 +18,13 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: institutional-backend-production
+  cancel-in-progress: false
+
 jobs:
   deploy:
-    if: ${{ inputs.confirmation == 'DEPLOY' }}
+    if: ${{ github.event_name == 'push' || inputs.confirmation == 'DEPLOY' }}
     runs-on: ubuntu-latest
     timeout-minutes: 35
     environment: institutional-production
@@ -71,7 +82,6 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          # Explicit release-contract endpoint: setup-api/health
           for endpoint in account-api institution-api mastery-evidence private-bank-api private-bank-purge-api upload-manager-api setup-api; do
             curl --fail --silent --show-error \
               "https://${SUPABASE_PROJECT_ID}.supabase.co/functions/v1/${endpoint}/health" | python -m json.tool
@@ -107,5 +117,5 @@ jobs:
 
       - name: Deployment reminder
         run: |
-          echo "Backend deployed; Mastery 2.0, private banks, resumable bank purge, Teacher Upload Manager, bootstrap secret, and production login/session contracts passed."
+          echo "Backend deployed; migrations, private banks, Teacher Upload Manager, bootstrap secret, and production login/session contracts passed."
           echo "The scheduled Process Teacher Uploads workflow requires SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in the institutional-production environment."
