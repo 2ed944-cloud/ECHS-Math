@@ -23,14 +23,14 @@
     <a class="iButton secondary" href="../../teacher.html">← Teaching Command Center</a>
     <section class="bankHero">
       <div><small>Private teacher sources</small><h1>Private Bank Center</h1><p>Private question banks are stored in authenticated Supabase storage and linked to their declared courses. Use the Upload Manager to add validated packages without Terminal commands.</p></div>
-      <div class="bankHeroStats"><div><strong id="bankTotal">—</strong><span>private banks</span></div><div><strong id="questionTotal">—</strong><span>questions</span></div><div><strong id="poolTotal">—</strong><span>source pools</span></div><div><strong id="mediaTotal">—</strong><span>media files</span></div></div>
+      <div class="bankHeroStats"><div><strong id="bankTotal">—</strong><span>complete live banks</span></div><div><strong id="questionTotal">—</strong><span>live questions</span></div><div><strong id="poolTotal">—</strong><span>live source pools</span></div><div><strong id="mediaTotal">—</strong><span>live media files</span></div></div>
     </section>
     <section class="bankGrid" id="bankGrid" aria-label="Private bank packages"></section>
     <section class="bankSection">
-      <div class="bankHead"><small>Direct course alignment</small><h2>Verified private paths by course</h2><p>Package manifests declare their target courses, and every question mapping is checked against those targets before import.</p></div>
+      <div class="bankHead"><small>Direct course alignment</small><h2>Verified private paths by course</h2><p>Live question rows—not incomplete package declarations—are counted below. Every imported mapping is checked against its target course, unit, lesson key, and skill key.</p></div>
       <div class="alignmentGrid">
         <article class="alignmentCard"><div class="alignmentTop"><div><small>Existing lesson course</small><h3>AP Precalculus</h3></div><span class="alignmentState">publisher-key direct</span></div><div class="alignmentMetrics"><div><strong id="apLessons">50</strong><small>lesson topics</small></div><div><strong id="apReadiness">—</strong><small>Unit 0 mappings</small></div><div><strong id="apVerified">—</strong><small>direct mappings</small></div></div><p>Legacy private banks retain deterministic AP Precalculus mappings, including Readiness when no stronger source match exists.</p></article>
-        <article class="alignmentCard ib"><div class="alignmentTop"><div><small>Visible lesson pathway</small><h3>IB Mathematics AI</h3></div><span class="alignmentState">lesson-key direct</span></div><div class="alignmentMetrics"><div><strong id="ibLessons">30</strong><small>visible lessons</small></div><div><strong id="ibReadiness">—</strong><small>readiness mappings</small></div><div><strong id="ibVerified">—</strong><small>direct mappings</small></div></div><p>IB banks use the same numeric lesson keys shown by the Learning Path and Practice Studio.</p></article>
+        <article class="alignmentCard ib"><div class="alignmentTop"><div><small>Verified live pathway</small><h3>IB Mathematics AI</h3></div><span class="alignmentState">unit + lesson + skill checked</span></div><div class="alignmentMetrics"><div><strong id="ibLessons">—</strong><small>live lesson keys</small></div><div><strong id="ibReadiness">—</strong><small>live readiness rows</small></div><div><strong id="ibVerified">—</strong><small>live mapped questions</small></div></div><p>Every live IB row carries exactly one verified IB course mapping with a unit, lesson title, lesson key, and skill key. Incomplete zero-row uploads are excluded.</p></article>
         <article class="alignmentCard calc"><div class="alignmentTop"><div><small>Private course target</small><h3>AP Calculus</h3></div><span class="alignmentState">manifest validated</span></div><div class="alignmentMetrics"><div><strong id="calcBanks">0</strong><small>live banks</small></div><div><strong id="calcReadiness">0</strong><small>Unit 0 mappings</small></div><div><strong id="calcVerified">0</strong><small>mapped questions</small></div></div><p>AP Calculus packages use the same protected Manager workflow and verified course mappings.</p></article>
       </div>
     </section>
@@ -50,6 +50,6 @@
   </main>
   <script src="../../../js/institution-client.js?v=20260729-resumable-purge"></script>
   <script src="../../../js/institution-experience.js?v=20260729-resumable-purge"></script>
-  <script src="js/private-bank-center.js?v=20260729-resumable-purge"></script>
+  <script src="js/private-bank-center.js?v=20260730-ibmapped1"></script>
 </body>
 </html>

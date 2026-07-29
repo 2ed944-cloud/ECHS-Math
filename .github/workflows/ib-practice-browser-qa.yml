@@ -1,0 +1,100 @@
+name: IB Practice Browser QA
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/ib-practice-browser-qa.yml"
+      - "question-bank/practice.html"
+      - "question-bank/js/practice-global-bridge.js"
+      - "question-bank/js/private-bank-practice.js"
+      - "question-bank/js/ib-private-bank-lesson-aliases.js"
+      - "question-bank/js/ib-private-bank-stream-ui.js"
+      - "question-bank/js/practice.js"
+      - "tools/verify_ib_practice_browser.mjs"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment: institutional-production
+    env:
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+      CHROME_PATH: /usr/bin/google-chrome
+      ECHS_LIVE_URL: https://2ed944-cloud.github.io/ECHS-Math
+      ECHS_ROUTE_BRANCH: "1"
+      ECHS_DIAG_SESSION_FILE: /tmp/echs-ib-browser-session.json
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install browser driver
+        run: npm install --no-save --no-package-lock playwright-core@1.54.1
+
+      - name: Create ephemeral production staff session
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import datetime, hashlib, json, os, secrets, urllib.parse, urllib.request
+          base=os.environ['SUPABASE_URL'].rstrip('/')
+          key=os.environ['SUPABASE_SERVICE_ROLE_KEY']
+          headers={'apikey':key,'authorization':f'Bearer {key}','content-type':'application/json'}
+          def call(path,method='GET',body=None):
+              data=None if body is None else json.dumps(body).encode()
+              request=urllib.request.Request(base+path,headers=headers,method=method,data=data)
+              with urllib.request.urlopen(request,timeout=90) as response:
+                  raw=response.read().decode().strip()
+                  return json.loads(raw) if raw else None
+          packages=call('/rest/v1/private_bank_packages?select=organization_id,bank_code,manifest') or []
+          orgs={str(row.get('organization_id')) for row in packages if 'ib-math-ai' in set((row.get('manifest') or {}).get('target_courses') or []) or str(row.get('bank_code') or '').startswith('IBAI-')}
+          query=urllib.parse.urlencode({'select':'id,organization_id,role,status,username,display_name','role':'in.(admin,teacher)','status':'eq.active','order':'role.asc'},safe=',.()')
+          accounts=call('/rest/v1/accounts?'+query) or []
+          account=next((row for row in accounts if str(row.get('organization_id')) in orgs),None)
+          if not account: raise SystemExit('No staff account in IB package organization')
+          token='qa-'+secrets.token_urlsafe(40)
+          token_hash=hashlib.sha256(token.encode()).hexdigest()
+          expires=(datetime.datetime.now(datetime.timezone.utc)+datetime.timedelta(minutes=10)).isoformat()
+          result=call('/rest/v1/rpc/api_create_session','POST',{'p_account_id':account['id'],'p_token_hash':token_hash,'p_expires_at':expires,'p_user_agent_hash':'ib-browser-qa','p_ip_hash':'github-actions'})
+          if not result: raise SystemExit('Temporary staff session was not created')
+          safe_account={name:account.get(name) for name in ('id','organization_id','role','username','display_name')}
+          safe_account['organization_name']='ECHS Mathematics'
+          with open(os.environ['ECHS_DIAG_SESSION_FILE'],'w') as file: json.dump({'token':token,'token_hash':token_hash,'expires_at':expires,'account':safe_account},file)
+          PY
+
+      - name: Verify uploaded banks render in browser
+        run: node tools/verify_ib_practice_browser.mjs
+
+      - name: Revoke ephemeral session
+        if: always()
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json, os, urllib.request
+          path=os.environ['ECHS_DIAG_SESSION_FILE']
+          if not os.path.exists(path): raise SystemExit(0)
+          session=json.load(open(path))
+          base=os.environ['SUPABASE_URL'].rstrip('/')
+          key=os.environ['SUPABASE_SERVICE_ROLE_KEY']
+          body=json.dumps({'p_token_hash':session['token_hash']}).encode()
+          request=urllib.request.Request(base+'/rest/v1/rpc/api_revoke_session',headers={'apikey':key,'authorization':f'Bearer {key}','content-type':'application/json'},method='POST',data=body)
+          with urllib.request.urlopen(request,timeout=60) as response: response.read()
+          PY
+
+      - name: Upload browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ib-practice-browser-${{ github.run_number }}
+          path: /tmp/ib-live-practice.png
+          if-no-files-found: warn
+          retention-days: 3
