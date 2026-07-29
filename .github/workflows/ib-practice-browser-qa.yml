@@ -8,6 +8,7 @@ on:
       - "question-bank/js/practice-global-bridge.js"
       - "question-bank/js/private-bank-practice.js"
       - "question-bank/js/ib-private-bank-lesson-aliases.js"
+      - "question-bank/js/ib-private-bank-stream-ui.js"
       - "question-bank/js/practice.js"
       - "tools/verify_ib_practice_browser.mjs"
   workflow_dispatch:
