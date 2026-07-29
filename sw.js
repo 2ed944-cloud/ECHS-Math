@@ -1,4 +1,4 @@
-const VERSION = "echs-platform-school-control-v3-pathway2-landing1-builder1-hybrid2-mastery1-privatebanks2-direct-upload1-iblinks1-ibcourse1";
+const VERSION = "echs-platform-school-control-v3-pathway2-landing1-builder1-hybrid2-mastery1-privatebanks2-direct-upload1-iblinks1-ibcourse1-ibhardblock1";
 const STATIC_CACHE = `${VERSION}-static`;
 const RUNTIME_CACHE = `${VERSION}-runtime`;
 const SHELL = [
@@ -13,7 +13,7 @@ const SHELL = [
   "./assets/echs_logo.png","./assets/icon-192.png","./assets/icon-512.png"
 ];
 const AUTH_DOCUMENT = /\/(?:login\.html|question-bank\/(?:admin|school-control|teacher|student|parent)\.html|question-bank\/official\/admin\/(?:question-trust|private-bank-center|upload-manager)\.html)$/i;
-const AUTH_ASSET = /\/(?:css\/(?:institution[^/]*|learning-access|ib-lesson-platform-integration|gamification|mastery-evidence)\.css|js\/(?:institution[^/]*|login|portal-access|lesson-access-guard|ib-lesson-platform-integration|gamification-overlay)\.js|question-bank\/js\/(?:admin-accounts|student-cloud|teacher-cloud|teacher-evidence-heatmap|parent-cloud|role-entry|private-bank-assets|private-bank-practice|ib-private-bank-lesson-aliases)\.js|question-bank\/official\/admin\/(?:css\/upload-manager\.css|js\/(?:question-trust|private-bank-center|upload-manager)\.js))$/i;
+const AUTH_ASSET = /\/(?:css\/(?:institution[^/]*|learning-access|ib-lesson-platform-integration|gamification|mastery-evidence)\.css|js\/(?:institution[^/]*|login|portal-access|lesson-access-guard|ib-lesson-platform-integration|gamification-overlay)\.js|question-bank\/js\/(?:bank|practice|admin-accounts|student-cloud|teacher-cloud|teacher-evidence-heatmap|parent-cloud|role-entry|private-bank-assets|private-bank-practice|ib-private-bank-lesson-aliases)\.js|question-bank\/official\/admin\/(?:css\/upload-manager\.css|js\/(?:question-trust|private-bank-center|upload-manager)\.js))$/i;
 const privateApi = /\/functions\/v1\/(?:account-api|institution-api|learning-sync|mastery-evidence|private-bank-api|upload-manager-api|setup-api|login-diagnostics)(?:\/|$)/i;
 function reloadRequest(request){return new Request(request,{cache:"reload"});}
 async function validAuthShell(response){if(!response||!response.ok)return false;const type=response.headers.get("content-type")||"";if(!type.includes("text/html"))return false;const text=await response.clone().text();return text.length>1500&&/<!doctype html/i.test(text)&&/<body\b/i.test(text)&&/institutionBody/.test(text);}
