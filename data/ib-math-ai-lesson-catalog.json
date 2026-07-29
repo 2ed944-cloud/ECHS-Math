@@ -1,21 +1,21 @@
 {
-  "schema_version": "1.1.0",
+  "schema_version": "1.2.0",
   "course": "ib-math-ai",
   "title": "IB Mathematics: Applications and Interpretation Lesson Catalogue",
-  "student_visible": false,
-  "catalog_state": "curriculum-mapped-content-build-required",
+  "student_visible": true,
+  "catalog_state": "unit-1-ready-other-units-content-build-required",
   "implementation_window": "current-school-course-through-2028",
   "future_review": "Reconcile with the first-assessment-2029 guide before adoption for that cohort.",
   "units": [
     {"unit":0,"title":"IB Mathematics Readiness","lessons":[
       {"lesson_key":"u0-readiness","number":"0.1","title":"IB Mathematics Readiness","skill_id":"IBAI.U0.READINESS","status":"content-build-required","student_visible":false,"bank_alignment":"publisher-key-direct"}
     ]},
-    {"unit":1,"title":"Number and Algebra","lessons":[
-      {"lesson_key":"u1-number","number":"1.1","title":"Number Systems, Approximation, and Technology","skill_id":"IBAI.U1.NUMBER","status":"content-build-required","student_visible":false},
-      {"lesson_key":"u1-algebra","number":"1.2","title":"Algebraic Manipulation, Equations, and Inequalities","skill_id":"IBAI.U1.ALGEBRA","status":"content-build-required","student_visible":false},
-      {"lesson_key":"u1-sequences","number":"1.3","title":"Sequences, Series, and Financial Models","skill_id":"IBAI.U1.SEQUENCES","status":"content-build-required","student_visible":false},
-      {"lesson_key":"u1-matrices","number":"1.4","title":"Matrices, Systems, and Technology","skill_id":"IBAI.U1.MATRICES","status":"content-build-required","student_visible":false},
-      {"lesson_key":"u1-modeling","number":"1.5","title":"Number and Algebra Modeling","skill_id":"IBAI.U1.MODELING","status":"content-build-required","student_visible":false}
+    {"unit":1,"title":"Number and Algebra","status":"ready","student_visible":true,"delivery_catalog":"data/ib-math-ai-unit-1-delivery-catalog.json","unit_home":"lessons/ib-math-ai/unit-1/START_HERE.html","lessons":[
+      {"lesson_key":"u1-number","number":"1.1–1.6","title":"Number Systems, Approximation, and Technology","skill_id":"IBAI.U1.NUMBER","status":"ready","student_visible":true,"delivery_lesson_numbers":["1.1","1.6"]},
+      {"lesson_key":"u1-algebra","number":"1.5–1.8","title":"Algebraic Manipulation, Equations, and Inequalities","skill_id":"IBAI.U1.ALGEBRA","status":"ready","student_visible":true,"delivery_lesson_numbers":["1.5","1.8"]},
+      {"lesson_key":"u1-sequences","number":"1.2–1.7","title":"Sequences, Series, and Financial Models","skill_id":"IBAI.U1.SEQUENCES","status":"ready","student_visible":true,"delivery_lesson_numbers":["1.2","1.3","1.4","1.7"]},
+      {"lesson_key":"u1-matrices","number":"1.8","title":"Matrices, Systems, and Technology","skill_id":"IBAI.U1.MATRICES","status":"ready","student_visible":true,"delivery_lesson_numbers":["1.8"]},
+      {"lesson_key":"u1-modeling","number":"1.1–1.8","title":"Number and Algebra Modeling","skill_id":"IBAI.U1.MODELING","status":"ready","student_visible":true,"delivery_lesson_numbers":["1.1","1.2","1.3","1.4","1.5","1.6","1.7","1.8"]}
     ]},
     {"unit":2,"title":"Functions","lessons":[
       {"lesson_key":"u2-concept","number":"2.1","title":"Functions, Domain, Range, and Representations","skill_id":"IBAI.U2.CONCEPT","status":"content-build-required","student_visible":false},
