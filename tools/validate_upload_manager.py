@@ -31,9 +31,16 @@ require(free_tier_uploader,['PART_BYTES = 40 * 1024 * 1024','echs-chunked-source
 require(package_validator,['ALLOWED_COURSES','ap-calculus','target_courses','Question mappings'],'Private bank package validator')
 require(deploy,['upload-manager-api','setup-api/health','supabase functions deploy'],'Backend deployment health contract')
 require(supabase_config,['[functions.upload-manager-api]','verify_jwt = false'],'Supabase upload-manager function config')
-require(ib_update,['g11-ib-ai','window.ECHS_COURSES.filter','Scientific Notation and Orders of Magnitude','Technology for Equations and Systems','lesson.html?lesson=1.1'],'Canonical IB Unit 1 portal update')
+require(ib_update,['g11-ib-ai','window.ECHS_COURSES.filter','Scientific Notation and Orders of Magnitude','Technology for Equations and Systems','IB_AI_SL_1.1_standard_form_ECHS.html','IB_AI_SL_1.8_technology_equations_ECHS.html'],'Canonical IB Unit 1 portal update')
 require(ib_bootstrap,['ECHSCompleteIBLesson','echs_math_complete','DecompressionStream','Lesson assets could not be loaded','g11-ib-ai'],'IB lesson bootstrap')
 if 'window.ECHS_COURSES.push(course)' in ib_update:errors.append('IB Unit 1 update must not create a duplicate course card')
+if 'lesson.html?lesson=' in ib_update:errors.append('IB Unit 1 must use eight direct lesson HTML URLs')
+direct=[
+ ('1.1','IB_AI_SL_1.1_standard_form_ECHS.html'),('1.2','IB_AI_SL_1.2_arithmetic_sequences_ECHS.html'),('1.3','IB_AI_SL_1.3_geometric_sequences_ECHS.html'),('1.4','IB_AI_SL_1.4_financial_models_ECHS.html'),('1.5','IB_AI_SL_1.5_logarithms_ECHS.html'),('1.6','IB_AI_SL_1.6_approximation_error_ECHS.html'),('1.7','IB_AI_SL_1.7_loans_annuities_ECHS.html'),('1.8','IB_AI_SL_1.8_technology_equations_ECHS.html')]
+for number,name in direct:
+ text=read(f'lessons/ib-math-ai/unit-1/lessons/{name}')
+ require(text,['<html','</html>',f'data-lesson="{number}"','payload-dataA-1.js','payload-dataB-3.js','unit-1-bootstrap.js'],f'IB direct lesson {number}')
+if (ROOT/'lessons/ib-math-ai/unit-1/lessons/lesson.html').exists():errors.append('Superseded shared IB Unit 1 lesson shell must be removed')
 if 'SUPABASE_SERVICE_ROLE_KEY' in html+js:errors.append('Browser code must not contain the service-role secret name')
 if re.search(r"storage\.buckets.*public\s*=\s*true",migration,re.S):errors.append('Teacher upload bucket must not be public')
 for path in ['tools/process_teacher_upload_request.py','tools/process_teacher_upload_request_fast.py','tools/process_ib_lesson_release.py','tools/test_course_release_changed_file_selection.py','tools/upload_private_bank_package_verified_fast.py','tools/upload_private_bank_package_verified_free_tier.py','tools/test_private_bank_source_archive_chunking.py','tools/validate_upload_manager.py']:
