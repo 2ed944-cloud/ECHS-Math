@@ -4,6 +4,10 @@ on:
   pull_request:
     paths:
       - ".github/workflows/audit-ib-live-lesson-mappings.yml"
+      - ".github/workflows/repair-stale-ib-package-states.yml"
+      - "question-bank/js/private-bank-practice.js"
+      - "question-bank/official/admin/js/private-bank-center.js"
+      - "question-bank/private-sources/data/ib-live-mapping-summary.json"
   workflow_dispatch:
 
 permissions:
@@ -79,22 +83,38 @@ jobs:
                       issues['unit_lesson_mismatch']+=1
                       mismatch_combinations[(code,str(unit),lesson,title,skill)]+=1
 
-          package_rows=[]
+          package_rows=[]; complete_packages=0; incomplete_packages=0
           for code,meta in sorted(package_declared.items()):
-              actual=bank_rows.get(code,0)
-              package_rows.append({'bank_code':code,'declared':meta['declared'],'actual_live_rows':actual,'difference':meta['declared']-actual,'deployment_state':meta['state']})
-              if meta['declared']!=actual:issues['package_declared_actual_mismatch']+=1
+              actual=bank_rows.get(code,0); state=meta['state']; is_complete=state.startswith('complete')
+              package_rows.append({'bank_code':code,'declared':meta['declared'],'actual_live_rows':actual,'difference':meta['declared']-actual,'deployment_state':state,'counted_live':is_complete})
+              if is_complete:
+                  complete_packages+=1
+                  if meta['declared']!=actual:issues['complete_package_declared_actual_mismatch']+=1
+              else:
+                  incomplete_packages+=1
+                  if actual:issues['incomplete_package_has_live_rows']+=1
 
           mapping_rows=[]
-          for lesson,count in sorted(lesson_counts.items(),key=lambda item:(item[0])):
+          for lesson,count in sorted(lesson_counts.items(),key=lambda item:item[0]):
               skills=[{'skill_key':skill,'count':value} for (key,skill),value in lesson_skill.items() if key==lesson]
               titles=[{'lesson_title':title,'count':value} for (key,title),value in lesson_title.items() if key==lesson]
               mapping_rows.append({'lesson_key':lesson,'questions':count,'skills':sorted(skills,key=lambda row:(-row['count'],row['skill_key'])),'titles':sorted(titles,key=lambda row:(-row['count'],row['lesson_title']))[:5]})
 
+          live_questions=sum(bank_rows.values())
+          summary_path='question-bank/private-sources/data/ib-live-mapping-summary.json'
+          if os.path.exists(summary_path):
+              summary=json.load(open(summary_path,encoding='utf-8'))
+              if int(summary.get('live_question_rows') or -1)!=live_questions:issues['committed_live_question_summary_stale']+=1
+              if int(summary.get('live_lesson_keys') or -1)!=len(lesson_counts):issues['committed_lesson_key_summary_stale']+=1
+              expected_units={str(key):int(value) for key,value in (summary.get('unit_counts') or {}).items()}
+              actual_units={str(key):int(value) for key,value in sorted(unit_counts.items())}
+              if expected_units!=actual_units:issues['committed_unit_count_summary_stale']+=1
+
           mismatch_rows=[{'bank_code':code,'stored_unit':unit,'lesson_key':lesson,'lesson_title':title,'skill_key':skill,'questions':count} for (code,unit,lesson,title,skill),count in sorted(mismatch_combinations.items())]
-          output={'organizations':len([o for o in organizations if o]),'live_ib_questions':sum(bank_rows.values()),'unit_counts':dict(sorted(unit_counts.items())),'lesson_count':len(lesson_counts),'lesson_mappings':mapping_rows,'unit_lesson_mismatches':mismatch_rows,'packages':package_rows,'issues':dict(sorted(issues.items()))}
+          output={'organizations':len([o for o in organizations if o]),'live_ib_questions':live_questions,'unit_counts':dict(sorted(unit_counts.items())),'lesson_count':len(lesson_counts),'complete_packages':complete_packages,'incomplete_packages':incomplete_packages,'lesson_mappings':mapping_rows,'unit_lesson_mismatches':mismatch_rows,'packages':package_rows,'issues':dict(sorted(issues.items()))}
           print('IB_LIVE_LESSON_MAPPING_AUDIT=')
           print(json.dumps(output,indent=2,sort_keys=True))
-          fatal=sum(issues[key] for key in ('missing_lesson_key','missing_lesson_title','missing_skill_key','mapping_object_not_verified','missing_course_index','missing_lesson_index','missing_skill_index','unit_lesson_mismatch','multiple_ib_mappings_on_question'))
+          fatal_keys=('missing_lesson_key','missing_lesson_title','missing_skill_key','mapping_object_not_verified','missing_course_index','missing_lesson_index','missing_skill_index','unit_lesson_mismatch','multiple_ib_mappings_on_question','ib_mapping_not_student_eligible','complete_package_declared_actual_mismatch','incomplete_package_has_live_rows','committed_live_question_summary_stale','committed_lesson_key_summary_stale','committed_unit_count_summary_stale')
+          fatal=sum(issues[key] for key in fatal_keys)
           if fatal:raise SystemExit(f'Canonical IB mapping integrity failures: {fatal}')
           PY
