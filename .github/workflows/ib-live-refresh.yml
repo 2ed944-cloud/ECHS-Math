@@ -1,0 +1,26 @@
+name: Refresh Live IB Practice
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "question-bank/practice.html"
+      - "question-bank/js/private-bank-practice.js"
+      - "sw.js"
+      - ".deploy/ib-bank-browser-refresh-20260730.txt"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify live IB course browser source
+        run: |
+          grep -Fq 'IB Math AI · Uploaded Banks' question-bank/js/private-bank-practice.js
+          grep -Fq 'private-bank-practice.js?v=20260729-ibcourse1' question-bank/practice.html
+          grep -Fq 'direct-upload1-iblinks1-ibcourse1' sw.js
