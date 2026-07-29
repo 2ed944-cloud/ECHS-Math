@@ -23,7 +23,8 @@ jobs:
       SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
       SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
       CHROME_PATH: /usr/bin/google-chrome
-      ECHS_LIVE_URL: http://127.0.0.1:4173
+      ECHS_LIVE_URL: https://2ed944-cloud.github.io/ECHS-Math
+      ECHS_ROUTE_BRANCH: "1"
       ECHS_DIAG_SESSION_FILE: /tmp/echs-ib-browser-session.json
     steps:
       - name: Check out repository
@@ -36,18 +37,6 @@ jobs:
 
       - name: Install browser driver
         run: npm install --no-save --no-package-lock playwright-core@1.54.1
-
-      - name: Start exact branch client
-        shell: bash
-        run: |
-          set -euo pipefail
-          python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/ib-practice-server.log 2>&1 &
-          for attempt in $(seq 1 30); do
-            curl --fail --silent http://127.0.0.1:4173/question-bank/practice.html >/dev/null && exit 0
-            sleep 1
-          done
-          cat /tmp/ib-practice-server.log
-          exit 1
 
       - name: Create ephemeral production staff session
         shell: bash
