@@ -105,6 +105,12 @@
 
     const lessonKey=String(mapping.lesson_key||"");
     const lessonTitle=String(mapping.lesson_title||lessonKey);
+    const expectedUnit=courseUnit(lessonKey);
+    const mappedUnit=Number(mapping.unit);
+    if(courseKey==="ib-math-ai"&&Number.isFinite(expectedUnit)&&Number.isFinite(mappedUnit)&&expectedUnit!==mappedUnit){
+      console.error("Blocked an IB question with inconsistent unit and lesson mapping",{question_id:row?.question_id||question.id,unit:mapping.unit,lesson_key:lessonKey});
+      return null;
+    }
     question.classification={
       ...(question.classification||{}),
       course_scope:courseKey,
@@ -133,47 +139,72 @@
     return question;
   }
 
-  async function requestPage({courseKey,offset=0,limit=1000,lessonKey="",unit=""}={}){
+  const wait=milliseconds=>new Promise(resolve=>setTimeout(resolve,milliseconds));
+
+  async function requestPage({courseKey,offset=0,limit=500,lessonKey="",unit=""}={}){
     const query=new URLSearchParams({course:courseKey,limit:String(limit),offset:String(offset)});
     if(lessonKey)query.set("lesson",lessonKey);
     if(unit!==""&&Number.isFinite(Number(unit)))query.set("unit",String(unit));
-    return ECHSInstitution.api("private-bank-api",`/student-questions?${query}`);
-  }
-
-  async function collect(scope){
-    const rows=[];
-    const pageSize=1000;
-    const maximum=10000;
-    let offset=0,total=Infinity;
-    while(offset<total&&rows.length<maximum){
-      const page=await requestPage({...scope,offset,limit:pageSize});
-      const items=[...(page?.questions||[])];
-      rows.push(...items);
-      total=Number(page?.total||rows.length);
-      if(!items.length)break;
-      offset+=items.length;
+    let lastError;
+    for(let attempt=0;attempt<3;attempt+=1){
+      try{return await ECHSInstitution.api("private-bank-api",`/student-questions?${query}`)}
+      catch(error){lastError=error;if(attempt<2)await wait(350*(attempt+1));}
     }
-    if(total>maximum)console.warn(`Private practice capped at ${maximum} of ${total} questions for ${scope.courseKey}`);
-    return rows;
+    throw lastError;
   }
 
-  async function privateRows(source){
+  function emitProgress(completed,total){
+    if(typeof window.dispatchEvent!=="function"||typeof CustomEvent!=="function")return;
+    window.dispatchEvent(new CustomEvent("echs:bundle-progress",{detail:{completed,total}}));
+  }
+
+  async function collect(scope,onTotal){
+    const pageSize=500;
+    const maximum=10000;
+    const concurrency=3;
+    const probe=await requestPage({...scope,offset:0,limit:1});
+    const total=Math.max(0,Number(probe?.total||0));
+    if(typeof onTotal==="function")onTotal(total);
+    if(!total)return {rows:[],total:0};
+    const target=Math.min(total,maximum);
+    const pageCount=Math.ceil(target/pageSize);
+    const pages=new Array(pageCount);
+    let cursor=0,completed=0;
+    async function worker(){
+      while(true){
+        const index=cursor++;
+        if(index>=pageCount)return;
+        const offset=index*pageSize;
+        const page=await requestPage({...scope,offset,limit:Math.min(pageSize,target-offset)});
+        pages[index]=[...(page?.questions||[])];
+        completed+=1;
+        emitProgress(completed,pageCount);
+      }
+    }
+    await Promise.all(Array.from({length:Math.min(concurrency,pageCount)},()=>worker()));
+    const rows=pages.flat().slice(0,target);
+    if(total>maximum)console.warn(`Private practice capped at ${maximum} of ${total} questions for ${scope.courseKey}`);
+    if(rows.length<target)console.warn(`Private practice received ${rows.length} of ${target} requested rows for ${scope.courseKey}`);
+    return {rows,total};
+  }
+
+  async function privateRows(source,onTotal){
     const courseKey=sourceCourse(source);
     activeCourse=courseKey||activeCourse;
     const lessonKey=requestedLesson;
     const unit=sourceUnit(source,lessonKey);
-    if(!supported.has(courseKey)||!window.ECHSInstitution?.api)return[];
+    if(!supported.has(courseKey)||!window.ECHSInstitution?.api)return {questions:[],total:0};
     const access=await resolvedAccess();
-    let rows=[];
+    let result={rows:[],total:0};
     if(lessonKey){
-      rows=await collect({courseKey,lessonKey});
-      if(!rows.length&&courseKey==="ap-calculus"&&unit!=="")rows=await collect({courseKey,unit});
+      result=await collect({courseKey,lessonKey},onTotal);
+      if(!result.rows.length&&courseKey==="ap-calculus"&&unit!=="")result=await collect({courseKey,unit},onTotal);
     }else if(staff(access)){
-      if(unit!=="")rows=await collect({courseKey,unit});
-      else rows=await collect({courseKey});
+      if(unit!=="")result=await collect({courseKey,unit},onTotal);
+      else result=await collect({courseKey},onTotal);
     }
     const seen=new Set();
-    return rows.map(row=>normalise(row,courseKey)).filter(question=>{
+    const questions=result.rows.map(row=>normalise(row,courseKey)).filter(question=>{
       if(!question)return false;
       const fingerprint=question.source?.source_content_fingerprint||question.metadata?.source_content_fingerprint||question.id;
       const key=`${courseKey}|${fingerprint}`;
@@ -181,6 +212,7 @@
       seen.add(key);
       return true;
     });
+    return {questions,total:result.total};
   }
 
   function mergeUnique(courseKey,groups){
@@ -204,7 +236,8 @@
     const select=document.getElementById("bundle");
     const option=select?[...select.options].find(item=>item.value===String(source?.id||"")):null;
     if(option){
-      const suffix=state==="error"?"connection unavailable":`${Number(count||0).toLocaleString()} uploaded questions`;
+      const formatted=Number(count||0).toLocaleString();
+      const suffix=state==="error"?"connection unavailable":state==="loading"?(count?`${formatted} uploaded questions · loading…`:"checking uploaded banks…"):`${formatted} uploaded questions`;
       option.textContent=`IB Math AI · Uploaded Banks (${suffix})`;
     }
     document.documentElement.dataset.ibCourseBankSource="private-upload-manager";
@@ -218,12 +251,14 @@
     ECHSBank.loadBundle=async source=>{
       activeCourse=sourceCourse(source);
       if(activeCourse==="ib-math-ai"){
+        updateIBCourseOption(source,0,"loading");
         try{
-          const direct=await privateRows(source);
-          updateIBCourseOption(source,direct.length,"ready");
+          const result=await privateRows(source,total=>updateIBCourseOption(source,total,"loading"));
+          updateIBCourseOption(source,result.total,"ready");
           document.documentElement.dataset.privateLessonBanks=requestedLesson?"direct-lesson":"private-course";
           document.documentElement.dataset.privateLessonKey=requestedLesson||"course-browser";
-          return mergeUnique(activeCourse,[direct]);
+          document.documentElement.dataset.privateQuestionRows=String(result.questions.length);
+          return mergeUnique(activeCourse,[result.questions]);
         }catch(error){
           console.error("Uploaded IB private banks could not be loaded",error);
           updateIBCourseOption(source,0,"error");
@@ -232,11 +267,11 @@
         }
       }
 
-      const [base,direct]=await Promise.all([
+      const [base,result]=await Promise.all([
         originalLoad(source),
-        privateRows(source).catch(error=>{console.warn("Direct private practice unavailable",error);return[];})
+        privateRows(source).catch(error=>{console.warn("Direct private practice unavailable",error);return {questions:[],total:0};})
       ]);
-      return mergeUnique(activeCourse,[base,direct]);
+      return mergeUnique(activeCourse,[base,result.questions]);
     };
 
     const originalLabel=ECHSBank.bankLabel.bind(ECHSBank);
