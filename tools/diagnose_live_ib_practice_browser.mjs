@@ -11,9 +11,10 @@ await context.addInitScript(payload=>{
   localStorage.setItem('echs_institution_expires_v1',payload.expires_at);
 },session);
 const page=await context.newPage();
-const consoleErrors=[],pageErrors=[],apiResponses=[];
+const consoleErrors=[],pageErrors=[],apiResponses=[],failedRequests=[];
 page.on('console',message=>{if(['error','warning'].includes(message.type()))consoleErrors.push({type:message.type(),text:message.text().slice(0,500)})});
 page.on('pageerror',error=>pageErrors.push(String(error?.stack||error).slice(0,1000)));
+page.on('requestfailed',request=>failedRequests.push({url:request.url(),error:request.failure()?.errorText||'failed'}));
 page.on('response',async response=>{
   if(!response.url().includes('/private-bank-api/'))return;
   let payload={};try{payload=await response.json()}catch{}
@@ -21,27 +22,32 @@ page.on('response',async response=>{
 });
 const url=`${base}/question-bank/practice.html?course=ib-math-ai&diagnostic=${Date.now()}`;
 await page.goto(url,{waitUntil:'domcontentloaded',timeout:120000});
-await page.waitForSelector('#bundle option',{state:'attached',timeout:60000});
-await page.waitForTimeout(12000);
+await page.waitForTimeout(20000);
 const result=await page.evaluate(()=>({
   href:location.pathname+location.search,
+  title:document.title,
+  bodyClass:document.body?.className||null,
   role:window.ECHSPortalAccess?.current?.role||null,
   authenticated:window.ECHSPortalAccess?.current?.authenticated??null,
   courseKeys:window.ECHSPortalAccess?.current?.courseKeys||[],
+  bundleExists:Boolean(document.querySelector('#bundle')),
+  bundleOptions:document.querySelector('#bundle')?.options?.length||0,
   bundleValue:document.querySelector('#bundle')?.value||null,
   bundleText:document.querySelector('#bundle')?.selectedOptions?.[0]?.textContent||null,
   heroLoaded:document.querySelector('#heroLoaded')?.textContent||null,
   heroBanks:document.querySelector('#heroBanks')?.textContent||null,
   status:document.querySelector('#status')?.textContent?.replace(/\s+/g,' ').trim()||null,
+  shell:document.querySelector('#shell')?.textContent?.replace(/\s+/g,' ').trim().slice(0,500)||null,
   bankOptions:[...(document.querySelector('#bank')?.options||[])].map(option=>option.textContent),
   datasets:{...document.documentElement.dataset},
   privateScript:[...document.scripts].find(script=>script.src.includes('private-bank-practice.js'))?.src||null,
+  bridgeScript:[...document.scripts].find(script=>script.src.includes('practice-global-bridge.js'))?.src||null,
   bankScript:[...document.scripts].find(script=>/\/bank\.js/.test(script.src))?.src||null,
-  serviceWorker:document.documentElement.dataset.serviceWorker||null,
+  globals:{bank:Boolean(window.ECHSBank),learning:Boolean(window.ECHSLearning),institution:Boolean(window.ECHSInstitution)},
 }));
 await page.screenshot({path:'/tmp/ib-live-practice.png',fullPage:true});
 console.log('LIVE_IB_BROWSER_DIAGNOSTIC=');
-console.log(JSON.stringify({...result,apiResponses,consoleErrors,pageErrors},null,2));
+console.log(JSON.stringify({...result,apiResponses,consoleErrors,pageErrors,failedRequests:failedRequests.slice(0,20)},null,2));
 await browser.close();
 if(result.role!=='teacher'&&result.role!=='admin')throw new Error(`Diagnostic session resolved as ${result.role}`);
 if(!apiResponses.some(row=>Number(row.total)>0))throw new Error('Browser did not receive the non-empty IB private-bank API response');
