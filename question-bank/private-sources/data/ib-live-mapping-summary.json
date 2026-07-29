@@ -1,20 +1,21 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
   "course": "ib-math-ai",
-  "generated_at": "2026-07-29T22:40:41Z",
-  "verification_source": "protected production mapping audit",
-  "live_question_rows": 5913,
-  "live_lesson_keys": 56,
+  "generated_at": "2026-07-29T23:52:15Z",
+  "verification_source": "protected production catalogue repair and browser audit",
+  "live_question_rows": 5413,
+  "live_lesson_keys": 50,
   "unit_counts": {
     "0": 3,
     "1": 936,
     "2": 922,
     "3": 1094,
     "4": 1564,
-    "5": 1083,
-    "6": 311
+    "5": 894
   },
   "mapping_integrity": {
+    "lesson_not_in_official_catalogue": 0,
+    "unit_does_not_match_catalogue_lesson": 0,
     "missing_lesson_key": 0,
     "missing_lesson_title": 0,
     "missing_skill_key": 0,
@@ -22,8 +23,19 @@
     "missing_course_index": 0,
     "missing_lesson_index": 0,
     "missing_skill_index": 0,
-    "unit_lesson_mismatch": 0,
     "multiple_ib_mappings_on_question": 0
+  },
+  "withheld_for_source_remapping": {
+    "question_rows": 500,
+    "lesson_counts": {
+      "5.5": 189,
+      "6.1": 52,
+      "6.2": 50,
+      "6.3": 52,
+      "6.4": 105,
+      "6.5": 52
+    },
+    "policy": "Questions are preserved privately but are not student-visible until their IB unit and lesson are mapped to the official platform catalogue."
   },
   "packages": {
     "complete": 9,
