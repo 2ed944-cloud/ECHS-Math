@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """Static release gate for the ECHS one-time institutional setup wizard."""
 from __future__ import annotations
-
 import json
 import re
 import subprocess
@@ -116,7 +115,10 @@ if "[functions.setup-api]" not in supabase_config or "verify_jwt = false" not in
     fail("Supabase config must register setup-api with custom bootstrap authentication")
 
 deploy = read(".github/workflows/deploy-institution-backend.yml")
-for marker in ["setup-api/health", "supabase functions deploy", "ECHS_BOOTSTRAP_SECRET", "institutional-production"]:
+# The workflow verifies endpoints in a loop and appends /health dynamically, so
+# validate the endpoint name and suffix independently instead of requiring the
+# literal contiguous text setup-api/health.
+for marker in ["setup-api", "/health", "supabase functions deploy", "ECHS_BOOTSTRAP_SECRET", "institutional-production"]:
     if marker not in deploy:
         fail(f"Deployment workflow missing setup marker: {marker}")
 

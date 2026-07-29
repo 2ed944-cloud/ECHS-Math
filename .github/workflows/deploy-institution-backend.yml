@@ -1,6 +1,8 @@
 name: Deploy Institutional Backend
 
-on:
+# Automatic production deployment is intentionally limited to reviewed backend
+# migrations/functions merged to main; manual deployment remains available.
+"on":
   push:
     branches:
       - main
