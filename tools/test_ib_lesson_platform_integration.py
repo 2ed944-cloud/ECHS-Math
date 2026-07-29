@@ -95,9 +95,9 @@ def validate_source(root: Path, errors: list[str]) -> None:
         "ib-private-bank-lesson-aliases.js?v=20260729-iblinks1",
         "practice.js?v=20260729-iblinks1",
     ), "Focused practice page", errors)
-    private_index = practice.find("private-bank-practice.js")
-    alias_index = practice.find("ib-private-bank-lesson-aliases.js")
-    practice_index = practice.find("practice.js?v=20260729-iblinks1")
+    private_index = practice.find('src="js/private-bank-practice.js')
+    alias_index = practice.find('src="js/ib-private-bank-lesson-aliases.js')
+    practice_index = practice.find('src="js/practice.js?v=20260729-iblinks1')
     if not (0 <= private_index < alias_index < practice_index):
         errors.append("Focused practice scripts are not ordered private base → IB aliases → practice controller")
     require(injector, (
