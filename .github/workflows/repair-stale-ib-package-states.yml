@@ -1,0 +1,93 @@
+name: Repair Stale IB Package States
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/repair-stale-ib-package-states.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    environment: institutional-production
+    env:
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Mark abandoned zero-row IB uploads as incomplete
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import datetime
+          import json
+          import os
+          import urllib.parse
+          import urllib.request
+
+          base=os.environ['SUPABASE_URL'].rstrip('/')
+          key=os.environ['SUPABASE_SERVICE_ROLE_KEY']
+          headers={'apikey':key,'authorization':f'Bearer {key}','content-type':'application/json'}
+          targets={'ECHS-IBAI-CROSS-01','ECHS-IBAI-EXAMS-02'}
+
+          query=urllib.parse.urlencode({
+              'select':'id,bank_code,deployment_state,question_count,updated_at',
+              'bank_code':'in.('+','.join(sorted(targets))+')',
+              'order':'bank_code.asc'
+          },safe=',.()')
+          request=urllib.request.Request(f'{base}/rest/v1/private_bank_packages?{query}',headers=headers)
+          with urllib.request.urlopen(request,timeout=90) as response:
+              packages=json.load(response)
+
+          found={str(row.get('bank_code')) for row in packages}
+          missing=sorted(targets-found)
+          if missing:
+              raise SystemExit(f'Expected stale package records missing: {missing}')
+
+          now=datetime.datetime.now(datetime.timezone.utc)
+          results=[]
+          for row in packages:
+              code=str(row.get('bank_code'))
+              package_id=str(row.get('id'))
+              q=urllib.parse.urlencode({'select':'question_id','package_id':f'eq.{package_id}','limit':'1'},safe=',.*()')
+              count_request=urllib.request.Request(
+                  f'{base}/rest/v1/private_bank_questions?{q}',
+                  headers={**headers,'prefer':'count=exact','range':'0-0'}
+              )
+              with urllib.request.urlopen(count_request,timeout=90) as response:
+                  content_range=response.headers.get('content-range','*/0')
+                  response.read()
+              actual=int(content_range.rsplit('/',1)[-1] or 0)
+              state=str(row.get('deployment_state') or '')
+              updated_text=str(row.get('updated_at') or '')
+              updated=datetime.datetime.fromisoformat(updated_text.replace('Z','+00:00')) if updated_text else now-datetime.timedelta(days=1)
+              age_minutes=(now-updated).total_seconds()/60
+              action='unchanged'
+              if actual:
+                  raise SystemExit(f'{code} unexpectedly has {actual} question rows; refusing to change its state')
+              if state=='uploading':
+                  if age_minutes<30:
+                      raise SystemExit(f'{code} was updated only {age_minutes:.1f} minutes ago; refusing to interrupt a possible active upload')
+                  patch=json.dumps({'deployment_state':'failed-incomplete-upload','updated_at':now.isoformat()}).encode()
+                  patch_query=urllib.parse.urlencode({'id':f'eq.{package_id}'},safe=',.*()')
+                  patch_request=urllib.request.Request(
+                      f'{base}/rest/v1/private_bank_packages?{patch_query}',
+                      headers={**headers,'prefer':'return=minimal'},
+                      method='PATCH',data=patch
+                  )
+                  with urllib.request.urlopen(patch_request,timeout=90) as response:
+                      response.read()
+                  action='marked-failed-incomplete-upload'
+              elif state=='failed-incomplete-upload':
+                  action='already-quarantined'
+              else:
+                  raise SystemExit(f'{code} has unexpected zero-row state {state!r}; refusing automatic change')
+              results.append({'bank_code':code,'actual_question_rows':actual,'declared_question_count':int(row.get('question_count') or 0),'previous_state':state,'action':action})
+
+          print('STALE_IB_PACKAGE_REPAIR=')
+          print(json.dumps(results,indent=2,sort_keys=True))
+          PY
