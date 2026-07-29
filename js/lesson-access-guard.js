@@ -54,15 +54,17 @@
     if(!access.authenticated){const next=encodeURIComponent(location.href);location.replace(ECHSInstitution.root(`login.html?next=${next}`));return;}
     if(access.role==="parent"){location.replace(ECHSInstitution.root("question-bank/parent.html"));return;}
     const params=new URLSearchParams(location.search);
-    const course=params.get("course")||document.querySelector('meta[name="echs-course"]')?.content||"";
+    const rawCourse=params.get("course")||document.querySelector('meta[name="echs-course"]')?.content||"";
+    const course=ECHSPortalAccess.normaliseCourseKey?.(rawCourse)||rawCourse;
     const lessonKey=params.get("lessonKey")||"",unit=params.get("unit")||"",topic=params.get("topic")||"",title=params.get("title")||document.title||"Lesson";
     if(access.role==="student"&&!ECHSPortalAccess.courseAllowed(course,access)){location.replace(ECHSInstitution.root("question-bank/student.html?notice=course-not-assigned"));return;}
     const practiceParams=new URLSearchParams({course,unit,topic,from:lessonKey,title,mode:"adaptive",autostart:"1"});
     const practiceHref=ECHSInstitution.root(`question-bank/practice.html?${practiceParams}`),pathHref=ECHSInstitution.root("index.html#courses"),dashboardHref=ECHSPortalAccess.roleHome(access.current),isComplete=completed(lessonKey);
     document.documentElement.dataset.lessonGate="allowed";
     document.documentElement.dataset.echsLessonCourse=course||"unassigned";
-    const context={pathHref,dashboardHref,practiceHref,lessonKey,title,isComplete,role:access.role};
-    if(!installIntegratedAccess(context))installFallbackBar(context);
+    const context={course,pathHref,dashboardHref,practiceHref,lessonKey,title,isComplete,role:access.role};
+    if(course==="ib-math-ai"&&installIntegratedAccess(context))return;
+    installFallbackBar(context);
   }catch(error){
     console.error("Lesson access check failed",error);
     const next=encodeURIComponent(location.href);location.replace(ECHSInstitution.root(`login.html?next=${next}`));
