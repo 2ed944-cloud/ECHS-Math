@@ -1,9 +1,13 @@
-name: Diagnose Live IB Practice Browser
+name: Verify IB Practice Browser
 
 on:
   pull_request:
     paths:
       - ".github/workflows/diagnose-live-ib-practice-browser.yml"
+      - "question-bank/practice.html"
+      - "question-bank/js/practice-global-bridge.js"
+      - "question-bank/js/private-bank-practice.js"
+      - "question-bank/js/ib-private-bank-lesson-aliases.js"
       - "tools/diagnose_live_ib_practice_browser.mjs"
   workflow_dispatch:
 
@@ -11,7 +15,7 @@ permissions:
   contents: read
 
 jobs:
-  diagnose-browser:
+  verify-browser:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     environment: institutional-production
@@ -19,7 +23,7 @@ jobs:
       SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
       SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
       CHROME_PATH: /usr/bin/google-chrome
-      ECHS_LIVE_URL: https://2ed944-cloud.github.io/ECHS-Math
+      ECHS_LIVE_URL: http://127.0.0.1:4173
       ECHS_DIAG_SESSION_FILE: /tmp/echs-ib-browser-session.json
     steps:
       - name: Check out repository
@@ -32,6 +36,18 @@ jobs:
 
       - name: Install browser driver
         run: npm install --no-save --no-package-lock playwright-core@1.54.1
+
+      - name: Start exact branch client
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/ib-practice-server.log 2>&1 &
+          for attempt in $(seq 1 30); do
+            curl --fail --silent http://127.0.0.1:4173/question-bank/practice.html >/dev/null && exit 0
+            sleep 1
+          done
+          cat /tmp/ib-practice-server.log
+          exit 1
 
       - name: Create ephemeral production staff session
         shell: bash
@@ -57,14 +73,14 @@ jobs:
           token='diag-'+secrets.token_urlsafe(40)
           token_hash=hashlib.sha256(token.encode()).hexdigest()
           expires=(datetime.datetime.now(datetime.timezone.utc)+datetime.timedelta(minutes=10)).isoformat()
-          result=call('/rest/v1/rpc/api_create_session','POST',{'p_account_id':account['id'],'p_token_hash':token_hash,'p_expires_at':expires,'p_user_agent_hash':'ib-browser-diagnostic','p_ip_hash':'github-actions'})
+          result=call('/rest/v1/rpc/api_create_session','POST',{'p_account_id':account['id'],'p_token_hash':token_hash,'p_expires_at':expires,'p_user_agent_hash':'ib-browser-verification','p_ip_hash':'github-actions'})
           if not result: raise SystemExit('Temporary staff session was not created')
-          safe_account={key:account.get(key) for key in ('id','organization_id','role','username','display_name')}
+          safe_account={name:account.get(name) for name in ('id','organization_id','role','username','display_name')}
           safe_account['organization_name']='ECHS Mathematics'
           with open(os.environ['ECHS_DIAG_SESSION_FILE'],'w') as file: json.dump({'token':token,'token_hash':token_hash,'expires_at':expires,'account':safe_account},file)
           PY
 
-      - name: Inspect exact live browser behaviour
+      - name: Verify uploaded banks render in exact browser
         run: node tools/diagnose_live_ib_practice_browser.mjs
 
       - name: Revoke ephemeral session
@@ -87,7 +103,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: live-ib-practice-browser-${{ github.run_number }}
+          name: ib-practice-browser-${{ github.run_number }}
           path: /tmp/ib-live-practice.png
           if-no-files-found: warn
           retention-days: 3
