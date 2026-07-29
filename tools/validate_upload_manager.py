@@ -42,7 +42,7 @@ direct=[
  ('1.1','IB_AI_SL_1.1_standard_form_ECHS.html','lesson-1.1.js'),('1.2','IB_AI_SL_1.2_arithmetic_sequences_ECHS.html','lesson-1.2.js'),('1.3','IB_AI_SL_1.3_geometric_sequences_ECHS.html','lesson-1.3.js'),('1.4','IB_AI_SL_1.4_financial_models_ECHS.html','lesson-1.4.js'),('1.5','IB_AI_SL_1.5_logarithms_ECHS.html','lesson-1.5.js'),('1.6','IB_AI_SL_1.6_approximation_error_ECHS.html','lesson-1.6.js'),('1.7','IB_AI_SL_1.7_loans_annuities_ECHS.html','lesson-1.7.js'),('1.8','IB_AI_SL_1.8_technology_equations_ECHS.html','lesson-1.8.js')]
 for number,name,data_file in direct:
  text=read(f'lessons/ib-math-ai/unit-1/lessons/{name}')
- require(text,['<html','</html>',f'data-lesson="{number}"','../assets/vendor/katex.min.css','../assets/css/theme.css',f'../data/{data_file}','../assets/js/engine.js'],f'IB direct lesson {number}')
+ require(text,['<html','</html>','../assets/css/katex.css','../assets/css/theme.css',f'../data/{data_file}','../assets/js/katex-global.js','../assets/js/engine.js','class="topbar"','data-route="practice"'],f'IB direct lesson {number}')
  data=read(f'lessons/ib-math-ai/unit-1/data/{data_file}')
  require(data,['window.LESSON_DATA',f'"number":"{number}"','"practice"','"quiz"','"exam"'],f'IB lesson data {number}')
 if (ROOT/'lessons/ib-math-ai/unit-1/lessons/lesson.html').exists():errors.append('Superseded shared IB Unit 1 lesson shell must be removed')
