@@ -62,8 +62,10 @@ jobs:
           python -m py_compile tools/process_teacher_upload_request.py
           python -m py_compile tools/process_teacher_upload_request_fast.py
           python -m py_compile tools/process_ib_lesson_release.py
+          python -m py_compile tools/test_course_release_changed_file_selection.py
           python -m py_compile tools/upload_private_bank_package.py
           python -m py_compile tools/upload_private_bank_package_fast.py
+          python tools/test_course_release_changed_file_selection.py
 
       - name: Reconcile existing course release pull request
         id: reconcile
@@ -134,11 +136,22 @@ jobs:
         run: |
           set -euo pipefail
           git diff --check
-          changed_html="$(git status --porcelain --untracked-files=all | awk '{print $2}' | grep -E '^lessons/.+\.html$' || true)"
-          changed_js="$(git status --porcelain --untracked-files=all | awk '{print $2}' | grep -E '^data/(ap-precalculus|ib-math-ai)-unit-[0-9]+-update\.js$' || true)"
-          changed_runtime_js="$(git status --porcelain --untracked-files=all | awk '{print $2}' | grep -E '^lessons/.+\.js$' || true)"
+
+          # A lesson package may deliberately replace an older release layout. Deleted
+          # legacy paths are valid repository changes, but they are not files that can
+          # be opened by grep or node. Validate only existing added, copied, modified,
+          # renamed, and untracked files produced by the current processor run.
+          changed_files="$({
+            git diff --name-only --diff-filter=ACMR --
+            git ls-files --others --exclude-standard
+          } | sed '/^$/d' | sort -u)"
+          deleted_files="$(git diff --name-only --diff-filter=D -- | sed '/^$/d' | sort -u)"
+          changed_html="$(printf '%s\n' "$changed_files" | grep -E '^lessons/.+\.html$' || true)"
+          changed_js="$(printf '%s\n' "$changed_files" | grep -E '^data/(ap-precalculus|ib-math-ai)-unit-[0-9]+-update\.js$' || true)"
+          changed_runtime_js="$(printf '%s\n' "$changed_files" | grep -E '^lessons/.+\.js$' || true)"
+
           if [ -z "$changed_html" ]; then
-            echo "Course release produced no lesson HTML files" >&2
+            echo "Course release produced no existing lesson HTML files" >&2
             git status --short
             exit 1
           fi
@@ -149,17 +162,25 @@ jobs:
           fi
           while IFS= read -r file; do
             [ -n "$file" ] || continue
+            [ -f "$file" ] || continue
             grep -qi '<html' "$file"
             grep -qi '</html>' "$file"
           done <<< "$changed_html"
           while IFS= read -r file; do
             [ -n "$file" ] || continue
+            [ -f "$file" ] || continue
             node --check "$file"
           done <<< "$changed_js"
           while IFS= read -r file; do
             [ -n "$file" ] || continue
+            [ -f "$file" ] || continue
             node --check "$file"
           done <<< "$changed_runtime_js"
+
+          if [ -n "$deleted_files" ]; then
+            echo "Legacy release paths replaced by this package:"
+            printf '%s\n' "$deleted_files"
+          fi
 
       - name: Create release branch and pull request
         id: pr
