@@ -53,9 +53,13 @@
   }
 
   const wait=milliseconds=>new Promise(resolve=>setTimeout(resolve,milliseconds));
+  const rangeExhausted=error=>/range not satisfiable|requested range/i.test(String(error?.message||error||""));
   async function requestPage({courseKey,offset=0,limit=200,lessonKey="",unit=""}={}){
     const query=new URLSearchParams({course:courseKey,limit:String(limit),offset:String(offset)});if(lessonKey)query.set("lesson",lessonKey);if(unit!==""&&Number.isFinite(Number(unit)))query.set("unit",String(unit));let lastError;
-    for(let attempt=0;attempt<5;attempt+=1){try{return await window.ECHSInstitution.api("private-bank-api",`/student-questions?${query}`)}catch(error){lastError=error;if(attempt<4)await wait(900*(attempt+1));}}
+    for(let attempt=0;attempt<5;attempt+=1){
+      try{return await window.ECHSInstitution.api("private-bank-api",`/student-questions?${query}`)}
+      catch(error){if(rangeExhausted(error))return{total:offset,questions:[],range_exhausted:true};lastError=error;if(attempt<4)await wait(900*(attempt+1));}
+    }
     throw lastError;
   }
   function emit(name,detail){if(typeof window.dispatchEvent!=="function"||typeof CustomEvent!=="function")return;window.dispatchEvent(new CustomEvent(name,{detail}))}
@@ -79,24 +83,29 @@
   function fingerprint(question,courseKey){return`${courseKey}|${question.source?.source_content_fingerprint||question.metadata?.source_content_fingerprint||question.id}`}
   function addRows(rows,courseKey,questions,seen,bankCodes){
     let blocked=0,added=0;
-    for(const row of rows){
-      const question=normalise(row,courseKey);if(!question){blocked+=1;continue}
-      const key=fingerprint(question,courseKey);if(seen.has(key))continue;seen.add(key);questions.push(question);added+=1;if(question.bank_code)bankCodes.add(String(question.bank_code));
-    }
+    for(const row of rows){const question=normalise(row,courseKey);if(!question){blocked+=1;continue}const key=fingerprint(question,courseKey);if(seen.has(key))continue;seen.add(key);questions.push(question);added+=1;if(question.bank_code)bankCodes.add(String(question.bank_code));}
     return{blocked,added};
   }
 
   async function collect(scope,onTotal,{stream=false}={}){
-    const pageSize=200,maximum=10000,probe=await requestPage({...scope,offset:0,limit:1}),total=Math.max(0,Number(probe?.total||0));
-    if(typeof onTotal==="function")onTotal(total);
-    if(!total){emitSummary({course:scope.courseKey,total:0,loaded:0,completed:0,pages:0,complete:true,questions:[],bankCodes:[],blocked:0});return{questions:[],total:0,stream:null}}
-    const target=Math.min(total,maximum),pageCount=Math.ceil(target/pageSize),questions=[],seen=new Set(),bankCodes=new Set();let completed=0,blocked=0;
-    const loadPage=async index=>{const offset=index*pageSize,page=await requestPage({...scope,offset,limit:Math.min(pageSize,target-offset)}),items=[...(page?.questions||[])],result=addRows(items,scope.courseKey,questions,seen,bankCodes);blocked+=result.blocked;completed+=1;emitProgress(completed,pageCount);emitSummary({course:scope.courseKey,total,loaded:questions.length,completed,pages:pageCount,complete:completed>=pageCount,questions,bankCodes:[...bankCodes],blocked});return items.length};
-    await loadPage(0);
-    if(stream&&pageCount<=1)return{questions,total,stream:null};
-    if(!stream){for(let index=1;index<pageCount;index+=1)await loadPage(index);if(total>maximum)console.warn(`Private practice capped at ${maximum} of ${total} questions for ${scope.courseKey}`);return{questions,total,stream:null}}
-    const background=(async()=>{for(let index=1;index<pageCount;index+=1)await loadPage(index);if(total>maximum)console.warn(`Private practice capped at ${maximum} of ${total} questions for ${scope.courseKey}`);return{eligible:questions.length,total,blocked}})();
-    return{questions,total,stream:background};
+    const pageSize=200,maximum=10000,probe=await requestPage({...scope,offset:0,limit:1});let liveTotal=Math.max(0,Number(probe?.total||0));
+    if(typeof onTotal==="function")onTotal(liveTotal);
+    if(!liveTotal){emitSummary({course:scope.courseKey,total:0,loaded:0,completed:0,pages:0,complete:true,questions:[],bankCodes:[],blocked:0});return{questions:[],total:0,stream:null}}
+    const questions=[],seen=new Set(),bankCodes=new Set();let completed=0,blocked=0,nextOffset=0,done=false;
+    const target=()=>Math.min(liveTotal,maximum);
+    const loadNext=async()=>{
+      if(nextOffset>=target()){done=true;return 0}
+      const requested=Math.min(pageSize,Math.max(1,target()-nextOffset)),page=await requestPage({...scope,offset:nextOffset,limit:requested});
+      const reported=Number(page?.total);if(Number.isFinite(reported)&&reported>=0){liveTotal=reported;if(typeof onTotal==="function")onTotal(liveTotal)}
+      if(page?.range_exhausted||nextOffset>=target()){done=true;emitSummary({course:scope.courseKey,total:target(),loaded:questions.length,completed,pages:completed,complete:true,questions,bankCodes:[...bankCodes],blocked});return 0}
+      const items=[...(page?.questions||[])],result=addRows(items,scope.courseKey,questions,seen,bankCodes);blocked+=result.blocked;nextOffset+=items.length;completed+=1;
+      done=!items.length||items.length<requested||nextOffset>=target();const pages=Math.max(completed,Math.ceil(Math.max(target(),nextOffset)/pageSize));emitProgress(completed,pages);emitSummary({course:scope.courseKey,total:target(),loaded:questions.length,completed,pages,complete:done,questions,bankCodes:[...bankCodes],blocked});return items.length;
+    };
+    await loadNext();
+    if(done)return{questions,total:target(),stream:null};
+    if(!stream){while(!done)await loadNext();if(liveTotal>maximum)console.warn(`Private practice capped at ${maximum} of ${liveTotal} questions for ${scope.courseKey}`);return{questions,total:target(),stream:null}}
+    const background=(async()=>{while(!done)await loadNext();if(liveTotal>maximum)console.warn(`Private practice capped at ${maximum} of ${liveTotal} questions for ${scope.courseKey}`);return{eligible:questions.length,total:target(),blocked}})();
+    return{questions,total:target(),stream:background};
   }
 
   async function privateRows(source,onTotal){
