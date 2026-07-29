@@ -31,7 +31,7 @@ for text,label in [(uploader,'Private bank uploader'),(fast_uploader,'Fast bank 
 require(verified_uploader,['student_ready_verified','independent-solution-audit','question_trust_records','bank-manifest.json','IMPORT_RESULT='],'Verified bank uploader')
 require(free_tier_uploader,['PART_BYTES = 40 * 1024 * 1024','echs-chunked-source-archive-v1','part-','application/json'],'Free-tier source archive uploader')
 require(package_validator,['ALLOWED_COURSES','ap-calculus','target_courses','Question mappings'],'Private bank package validator')
-require(deploy,['upload-manager-api','setup-api/health','supabase functions deploy'],'Backend deployment health contract')
+require(deploy,['upload-manager-api','setup-api','supabase functions deploy','/health'],'Backend deployment health contract')
 require(supabase_config,['[functions.upload-manager-api]','verify_jwt = false'],'Supabase upload-manager function config')
 require(ib_update,['g11-ib-ai','window.ECHS_COURSES.filter','Scientific Notation and Orders of Magnitude','Technology for Equations and Systems','IB_AI_SL_1.1_standard_form_ECHS.html','IB_AI_SL_1.8_technology_equations_ECHS.html'],'Canonical IB Unit 1 portal update')
 require(ib_engine,['window.LESSON_DATA','renderPractice()','renderExam()','renderQuiz()','renderReview()','routeButtons.forEach'],'IB local lesson engine')
