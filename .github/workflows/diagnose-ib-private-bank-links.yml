@@ -1,0 +1,146 @@
+name: Diagnose IB Private Bank Lesson Links
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/diagnose-ib-private-bank-links.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    environment: institutional-production
+    env:
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Confirm protected diagnostics secrets
+        shell: bash
+        run: |
+          set -euo pipefail
+          for name in SUPABASE_URL SUPABASE_SERVICE_ROLE_KEY; do
+            test -n "${!name:-}" || { echo "Missing $name" >&2; exit 1; }
+          done
+
+      - name: Audit live IB package and lesson mappings
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import collections
+          import json
+          import os
+          import urllib.parse
+          import urllib.request
+
+          base = os.environ['SUPABASE_URL'].rstrip('/')
+          key = os.environ['SUPABASE_SERVICE_ROLE_KEY']
+          headers = {'apikey': key, 'authorization': f'Bearer {key}'}
+
+          def get_rows(table, params, page_size=1000):
+              rows = []
+              offset = 0
+              while True:
+                  query = urllib.parse.urlencode(params, safe=',.(){}[]:"')
+                  request = urllib.request.Request(
+                      f'{base}/rest/v1/{table}?{query}',
+                      headers={**headers, 'range': f'{offset}-{offset + page_size - 1}'},
+                  )
+                  with urllib.request.urlopen(request, timeout=90) as response:
+                      page = json.load(response)
+                  rows.extend(page)
+                  if len(page) < page_size:
+                      return rows
+                  offset += len(page)
+
+          packages = get_rows('private_bank_packages', {
+              'select': 'bank_code,deployment_state,question_count,manifest,display_aliases,updated_at',
+              'order': 'updated_at.desc',
+          })
+          ib_packages = []
+          for row in packages:
+              manifest = row.get('manifest') or {}
+              targets = set(manifest.get('target_courses') or [])
+              if 'ib-math-ai' in targets or str(row.get('bank_code') or '').startswith('IBAI-'):
+                  ib_packages.append({
+                      'bank_code': row.get('bank_code'),
+                      'deployment_state': row.get('deployment_state'),
+                      'declared_questions': row.get('question_count'),
+                      'target_courses': sorted(targets),
+                      'display_aliases': row.get('display_aliases') or {},
+                  })
+
+          questions = get_rows('private_bank_questions', {
+              'select': 'bank_code,question_id,course_keys,lesson_keys,course_mappings,student_visible,mapping_verified,trust_tier,updated_at',
+              'course_keys': 'cs.{ib-math-ai}',
+              'order': 'question_id.asc',
+          })
+
+          by_bank = collections.defaultdict(lambda: {
+              'questions': 0,
+              'student_visible': 0,
+              'mapping_verified': 0,
+              'trust_tiers': collections.Counter(),
+              'lessons': collections.Counter(),
+              'units': collections.Counter(),
+          })
+          for row in questions:
+              bank = str(row.get('bank_code') or 'UNKNOWN')
+              summary = by_bank[bank]
+              summary['questions'] += 1
+              summary['student_visible'] += int(row.get('student_visible') is True)
+              summary['mapping_verified'] += int(row.get('mapping_verified') is True)
+              summary['trust_tiers'][str(row.get('trust_tier') or 'missing')] += 1
+              for lesson_key in row.get('lesson_keys') or []:
+                  token = str(lesson_key)
+                  if token.startswith('ib-math-ai:'):
+                      summary['lessons'][token.split(':', 1)[1]] += 1
+              for mapping in row.get('course_mappings') or []:
+                  if str(mapping.get('course') or '') != 'ib-math-ai':
+                      continue
+                  lesson = str(mapping.get('lesson_key') or '')
+                  if lesson:
+                      summary['lessons'][lesson] += 0
+                  unit = str(mapping.get('unit') or '')
+                  if unit:
+                      summary['units'][unit] += 1
+
+          serialised = {}
+          lesson_numbers = [f'1.{index}' for index in range(1, 9)]
+          for bank, summary in sorted(by_bank.items()):
+              serialised[bank] = {
+                  'questions': summary['questions'],
+                  'student_visible': summary['student_visible'],
+                  'mapping_verified': summary['mapping_verified'],
+                  'trust_tiers': dict(summary['trust_tiers']),
+                  'lesson_counts': {lesson: summary['lessons'].get(lesson, 0) for lesson in lesson_numbers},
+                  'other_lessons': {key: value for key, value in sorted(summary['lessons'].items()) if key not in set(lesson_numbers)},
+                  'unit_counts': dict(summary['units']),
+              }
+
+          print('LIVE_IB_PRIVATE_BANK_DIAGNOSTIC=')
+          print(json.dumps({
+              'packages': ib_packages,
+              'total_ib_questions': len(questions),
+              'banks': serialised,
+          }, indent=2, sort_keys=True))
+
+          if not ib_packages:
+              raise SystemExit('No live IB private-bank package records were found')
+          if not questions:
+              raise SystemExit('IB packages exist, but no private questions carry course_keys=[ib-math-ai]')
+          if not any(
+              details['lesson_counts'][lesson] > 0
+              for details in serialised.values()
+              for lesson in lesson_numbers
+          ):
+              raise SystemExit('IB questions exist, but none are mapped to visible Unit 1 lesson keys 1.1–1.8')
+          PY
