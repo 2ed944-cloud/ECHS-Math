@@ -235,11 +235,16 @@ async function purgeCourse(req: Request, current: SessionAccount, course: string
     .select("id,bank_code,storage_bucket,storage_path,display_aliases,manifest")
     .eq("organization_id", current.organization_id);
   if (packageError) throw packageError;
-  const { data: questions, error: questionError } = await db.from("private_bank_questions")
-    .select("organization_id,question_id,package_id,bank_code,pool_id,chapter,section,question_type,course_keys,lesson_keys,skill_candidates,course_mappings,mapping_verified,trust_tier,student_visible,payload,payload_sha256")
-    .eq("organization_id", current.organization_id).contains("course_keys", [course]);
-  if (questionError) throw questionError;
-  const rows = questions ?? [];
+  const rows: Record<string, any>[] = [];
+  for (let offset = 0; ; offset += 1000) {
+    const { data: page, error: questionError } = await db.from("private_bank_questions")
+      .select("organization_id,question_id,package_id,bank_code,pool_id,chapter,section,question_type,course_keys,lesson_keys,skill_candidates,course_mappings,mapping_verified,trust_tier,student_visible,payload,payload_sha256")
+      .eq("organization_id", current.organization_id).contains("course_keys", [course])
+      .order("question_id").range(offset, offset + 999);
+    if (questionError) throw questionError;
+    rows.push(...(page ?? []));
+    if ((page ?? []).length < 1000) break;
+  }
   const rowsByPackage = new Map<string, typeof rows>();
   for (const row of rows) {
     const key = String(row.package_id);
@@ -296,10 +301,16 @@ async function purgeCourse(req: Request, current: SessionAccount, course: string
   let mediaRemoved = 0, sourceArchivesRemoved = 0;
   if (dedicatedIds.size) {
     const ids = [...dedicatedIds];
-    const { data: mediaRows, error: mediaError } = await db.from("private_bank_media_objects")
-      .select("package_id,object_path").eq("organization_id", current.organization_id).in("package_id", ids);
-    if (mediaError) throw mediaError;
-    mediaRemoved += await removeStorageObjects(PRIVATE_BUCKET, (mediaRows ?? []).map((row) => String(row.object_path ?? "")));
+    const mediaRows: Record<string, any>[] = [];
+    for (let offset = 0; ; offset += 1000) {
+      const { data: page, error: mediaError } = await db.from("private_bank_media_objects")
+        .select("package_id,object_path").eq("organization_id", current.organization_id).in("package_id", ids)
+        .order("object_path").range(offset, offset + 999);
+      if (mediaError) throw mediaError;
+      mediaRows.push(...(page ?? []));
+      if ((page ?? []).length < 1000) break;
+    }
+    mediaRemoved += await removeStorageObjects(PRIVATE_BUCKET, mediaRows.map((row) => String(row.object_path ?? "")));
     for (const packageRow of (packages ?? []).filter((row) => dedicatedIds.has(String(row.id)))) {
       const storagePath = String(packageRow.storage_path ?? "");
       if (storagePath) sourceArchivesRemoved += await removeStorageObjects(String(packageRow.storage_bucket || PRIVATE_BUCKET), [storagePath]);
