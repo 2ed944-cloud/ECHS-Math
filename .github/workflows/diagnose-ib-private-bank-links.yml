@@ -10,6 +10,8 @@ on:
 
 permissions:
   contents: read
+  pull-requests: write
+  issues: write
 
 jobs:
   diagnose:
@@ -18,6 +20,7 @@ jobs:
     env:
       SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
       SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+      GH_TOKEN: ${{ github.token }}
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -31,6 +34,7 @@ jobs:
           done
 
       - name: Audit live IB package and lesson mappings
+        id: audit
         shell: bash
         run: |
           set -euo pipefail
@@ -40,6 +44,7 @@ jobs:
           import os
           import urllib.parse
           import urllib.request
+          from pathlib import Path
 
           base = os.environ['SUPABASE_URL'].rstrip('/')
           key = os.environ['SUPABASE_SERVICE_ROLE_KEY']
@@ -126,12 +131,40 @@ jobs:
                   'unit_counts': dict(summary['units']),
               }
 
-          print('LIVE_IB_PRIVATE_BANK_DIAGNOSTIC=')
-          print(json.dumps({
+          diagnostic = {
               'packages': ib_packages,
               'total_ib_questions': len(questions),
               'banks': serialised,
-          }, indent=2, sort_keys=True))
+          }
+          print('LIVE_IB_PRIVATE_BANK_DIAGNOSTIC=')
+          print(json.dumps(diagnostic, indent=2, sort_keys=True))
+
+          package_by_code = {str(row.get('bank_code') or ''): row for row in ib_packages}
+          lines = [
+              '## Live IB private-bank lesson diagnostic',
+              '',
+              f'- Deployed IB packages: **{len(ib_packages)}**',
+              f'- Questions carrying `course_keys=[ib-math-ai]`: **{len(questions):,}**',
+              '',
+              '| Bank | State | Questions | Visible | Mapped | 1.1 | 1.2 | 1.3 | 1.4 | 1.5 | 1.6 | 1.7 | 1.8 |',
+              '|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|',
+          ]
+          for bank, details in sorted(serialised.items()):
+              package = package_by_code.get(bank, {})
+              counts = details['lesson_counts']
+              lines.append(
+                  f"| `{bank}` | {package.get('deployment_state') or 'question rows only'} | {details['questions']:,} | "
+                  f"{details['student_visible']:,} | {details['mapping_verified']:,} | "
+                  + ' | '.join(f"{counts[lesson]:,}" for lesson in lesson_numbers)
+                  + ' |'
+              )
+          if not serialised:
+              lines.append('| — | — | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |')
+          lines.extend([
+              '',
+              'The report contains aggregate routing metadata only; it does not expose prompts, answers, media, accounts, or secrets.',
+          ])
+          Path('/tmp/ib-bank-diagnostic.md').write_text('\n'.join(lines) + '\n', encoding='utf-8')
 
           if not ib_packages:
               raise SystemExit('No live IB private-bank package records were found')
@@ -144,3 +177,17 @@ jobs:
           ):
               raise SystemExit('IB questions exist, but none are mapped to visible Unit 1 lesson keys 1.1–1.8')
           PY
+
+      - name: Publish protected aggregate result
+        if: success()
+        run: gh pr comment 88 --repo "$GITHUB_REPOSITORY" --body-file /tmp/ib-bank-diagnostic.md
+
+      - name: Publish diagnostic failure
+        if: failure()
+        run: |
+          if [ -f /tmp/ib-bank-diagnostic.md ]; then
+            printf '\nDiagnostic run failed after generating the aggregate table: %s/%s/actions/runs/%s\n' "$GITHUB_SERVER_URL" "$GITHUB_REPOSITORY" "$GITHUB_RUN_ID" >> /tmp/ib-bank-diagnostic.md
+            gh pr comment 88 --repo "$GITHUB_REPOSITORY" --body-file /tmp/ib-bank-diagnostic.md
+          else
+            gh pr comment 88 --repo "$GITHUB_REPOSITORY" --body "IB private-bank diagnostic failed before a safe aggregate report was generated. Protected run: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+          fi
