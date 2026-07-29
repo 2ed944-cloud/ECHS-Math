@@ -47,20 +47,33 @@ def inject_lesson(root: Path, path: Path) -> bool:
     text = path.read_text(encoding="utf-8")
     if LESSON_MARKER in text:
         return False
+    resolved_course = course_key(path)
     prefix_css = rel_url(root, path.parent, "css/learning-access.css")
     institution = rel_url(root, path.parent, "js/institution-client.js")
     access = rel_url(root, path.parent, "js/portal-access.js")
     guard = rel_url(root, path.parent, "js/lesson-access-guard.js")
+    ib_css = rel_url(root, path.parent, "css/ib-lesson-platform-integration.css")
+    ib_bridge = rel_url(root, path.parent, "js/ib-lesson-platform-integration.js")
+    ib_head = (
+        f'  <link rel="stylesheet" href="{ib_css}?v=20260729-iblinks1">\n'
+        if resolved_course == "ib-math-ai" else ""
+    )
     head = (
-        f'\n  <meta name="echs-course" content="{course_key(path)}" {LESSON_MARKER}>\n'
+        f'\n  <meta name="echs-course" content="{resolved_course}" {LESSON_MARKER}>\n'
         '  <meta name="robots" content="noindex,nofollow">\n'
-        f'  <link rel="stylesheet" href="{prefix_css}?v=20260727-pathway">\n'
+        f'  <link rel="stylesheet" href="{prefix_css}?v=20260729-iblinks1">\n'
+        f'{ib_head}'
         '  <style id="echsLessonGateStyle">html:not([data-lesson-gate="allowed"]) body{visibility:hidden!important}</style>\n'
+    )
+    ib_script = (
+        f'<script defer src="{ib_bridge}?v=20260729-iblinks1"></script>'
+        if resolved_course == "ib-math-ai" else ""
     )
     scripts = (
         f'\n<script src="{institution}?v=20260727-pathway"></script>'
         f'<script src="{access}?v=20260727-pathway"></script>'
-        f'<script src="{guard}?v=20260727-pathway"></script>\n'
+        f'<script src="{guard}?v=20260729-iblinks1"></script>'
+        f'{ib_script}\n'
     )
     text = insert_before(text, "</head>", head)
     text = insert_before(text, "</body>", scripts)
@@ -104,7 +117,7 @@ def inject_learning_page(root: Path, path: Path, roles: str) -> bool:
         raise ValueError("Missing <body>")
     head = (
         '\n  <meta name="robots" content="noindex,nofollow">\n'
-        f'  <link rel="stylesheet" href="{css}?v=20260727-pathway">\n'
+        f'  <link rel="stylesheet" href="{css}?v=20260729-iblinks1">\n'
     )
     scripts = (
         f'\n<script src="{institution}?v=20260727-pathway"></script>'

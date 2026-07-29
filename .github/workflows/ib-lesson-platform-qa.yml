@@ -1,0 +1,56 @@
+name: IB Lesson Platform QA
+
+on:
+  pull_request:
+    paths:
+      - "lessons/ib-math-ai/**"
+      - "css/learning-access.css"
+      - "css/ib-lesson-platform-integration.css"
+      - "js/lesson-access-guard.js"
+      - "js/ib-lesson-platform-integration.js"
+      - "question-bank/practice.html"
+      - "question-bank/js/private-bank-practice.js"
+      - "question-bank/js/ib-private-bank-lesson-aliases.js"
+      - "question-bank/js/practice.js"
+      - "tools/inject_learning_access_guard.py"
+      - "tools/test_ib_lesson_platform_integration.py"
+      - "tools/test_ib_private_bank_lesson_aliases.mjs"
+      - "sw.js"
+      - ".github/workflows/ib-lesson-platform-qa.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Validate source integration
+        run: python tools/test_ib_lesson_platform_integration.py .
+
+      - name: Build guarded lesson artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf _ib_lesson_qa
+          mkdir -p _ib_lesson_qa
+          rsync -a --exclude='.git/' --exclude='_ib_lesson_qa/' ./ _ib_lesson_qa/
+          python tools/inject_learning_access_guard.py _ib_lesson_qa
+
+      - name: Validate exact guarded artifact
+        run: python tools/test_ib_lesson_platform_integration.py _ib_lesson_qa --artifact
