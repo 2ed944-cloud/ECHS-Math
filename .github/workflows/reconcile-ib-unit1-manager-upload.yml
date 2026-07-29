@@ -1,0 +1,126 @@
+name: Reconcile IB Unit 1 Manager Upload
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/ib-unit1-manager-reconcile-trigger"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+
+jobs:
+  reconcile:
+    runs-on: ubuntu-latest
+    environment: institutional-production
+    env:
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Check out published release
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Verify the published IB Unit 1 release
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f data/ib-math-ai-unit-1-update.js
+          test -f lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.1_standard_form_ECHS.html
+          test -f lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.8_technology_equations_ECHS.html
+          test ! -e lessons/ib-math-ai/unit-1/lessons/lesson.html
+          grep -q 'IB_AI_SL_1.1_standard_form_ECHS.html' data/ib-math-ai-unit-1-update.js
+          grep -q 'IB_AI_SL_1.8_technology_equations_ECHS.html' data/ib-math-ai-unit-1-update.js
+          node --check data/ib-math-ai-unit-1-update.js
+          merged_at="$(gh pr view 79 --repo "$GITHUB_REPOSITORY" --json mergedAt --jq '.mergedAt // empty')"
+          test -n "$merged_at"
+
+      - name: Mark the exact Manager request completed
+        id: reconcile
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json, os, subprocess, urllib.parse, urllib.request
+          from datetime import datetime, timezone
+
+          expected_sha = 'b029480943c6a3f7dda1d032b3a2f6527d257e517093662efd6c2f7f7a5114a0'
+          base = os.environ['SUPABASE_URL'].rstrip('/')
+          key = os.environ['SUPABASE_SERVICE_ROLE_KEY']
+          select = 'id,status,upload_kind,course_key,unit_key,sha256,github_pr_url'
+          query = urllib.parse.urlencode({
+              'select': select,
+              'sha256': f'eq.{expected_sha}',
+              'upload_kind': 'eq.course-release',
+              'course_key': 'eq.ib-math-ai',
+              'unit_key': 'eq.1',
+              'order': 'created_at.desc',
+              'limit': '1',
+          }, safe=',')
+          request = urllib.request.Request(
+              f'{base}/rest/v1/teacher_upload_requests?{query}',
+              headers={'apikey': key, 'authorization': f'Bearer {key}'},
+          )
+          with urllib.request.urlopen(request, timeout=60) as response:
+              rows = json.load(response)
+          if not rows:
+              raise SystemExit('No Teacher Upload Manager request matches the verified IB Unit 1 package SHA-256')
+
+          row = rows[0]
+          pr = json.loads(subprocess.run(
+              ['gh', 'pr', 'view', '79', '--repo', os.environ['GITHUB_REPOSITORY'], '--json', 'url,mergedAt'],
+              check=True, text=True, capture_output=True,
+          ).stdout)
+          if not pr.get('mergedAt'):
+              raise SystemExit('IB Unit 1 release PR #79 is not merged')
+
+          now = datetime.now(timezone.utc).isoformat()
+          values = {
+              'status': 'completed',
+              'progress': 100,
+              'stage': 'Course release merged and published',
+              'github_pr_url': pr['url'],
+              'error_message': None,
+              'completed_at': now,
+              'updated_at': now,
+          }
+          patch_query = urllib.parse.urlencode({'id': f"eq.{row['id']}"})
+          body = json.dumps(values).encode()
+          patch = urllib.request.Request(
+              f'{base}/rest/v1/teacher_upload_requests?{patch_query}',
+              data=body,
+              method='PATCH',
+              headers={
+                  'apikey': key,
+                  'authorization': f'Bearer {key}',
+                  'content-type': 'application/json',
+                  'prefer': 'return=minimal',
+              },
+          )
+          urllib.request.urlopen(patch, timeout=60).read()
+          output = os.environ['GITHUB_OUTPUT']
+          with open(output, 'a', encoding='utf-8') as handle:
+              handle.write(f"request_id={row['id']}\n")
+              handle.write(f"previous_status={row.get('status') or ''}\n")
+              handle.write(f"pr_url={pr['url']}\n")
+          print(f"Reconciled exact IB Unit 1 Manager request {row['id']} from {row.get('status')} to completed")
+          PY
+
+      - name: Record reconciliation on the release
+        env:
+          REQUEST_ID: ${{ steps.reconcile.outputs.request_id }}
+          PREVIOUS_STATUS: ${{ steps.reconcile.outputs.previous_status }}
+        run: |
+          gh pr comment 79 --repo "$GITHUB_REPOSITORY" --body "Teacher Upload Manager reconciliation completed. Exact IB Unit 1 package request \`$REQUEST_ID\` moved from \`$PREVIOUS_STATUS\` to \`completed\` after merged release verification."
+
+      - name: Summary
+        run: |
+          echo "Request: ${{ steps.reconcile.outputs.request_id }}"
+          echo "Previous status: ${{ steps.reconcile.outputs.previous_status }}"
+          echo "Release: ${{ steps.reconcile.outputs.pr_url }}"
