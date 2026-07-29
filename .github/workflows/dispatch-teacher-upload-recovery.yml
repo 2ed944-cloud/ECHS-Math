@@ -8,17 +8,25 @@ on:
       - main
     paths:
       - ".github/teacher-upload-recovery-trigger"
+      - ".github/ib-unit1-manager-reconcile-trigger"
 
 permissions:
   actions: write
   contents: read
+  pull-requests: write
+  issues: write
 
 jobs:
   dispatch:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
-      - name: Dispatch the protected upload processor
+      - name: Dispatch protected recovery workflows
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh workflow run process-teacher-uploads.yml --repo "${{ github.repository }}" --ref main
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          set -euo pipefail
+          gh workflow run process-teacher-uploads.yml --repo "${{ github.repository }}" --ref main
+          gh workflow run reconcile-ib-unit1-manager-upload.yml --repo "${{ github.repository }}" --ref main
+          gh pr comment "$PR_NUMBER" --repo "${{ github.repository }}" --body "Protected Teacher Upload recovery workflows dispatched on \`main\`: queue processor and exact IB Unit 1 Manager reconciliation."
