@@ -1,0 +1,131 @@
+name: Diagnose IB Private API Session
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/diagnose-ib-private-api-session.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose-api:
+    runs-on: ubuntu-latest
+    environment: institutional-production
+    env:
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Call production private-bank API through an ephemeral staff session
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import datetime
+          import hashlib
+          import json
+          import os
+          import secrets
+          import urllib.error
+          import urllib.parse
+          import urllib.request
+
+          base = os.environ['SUPABASE_URL'].rstrip('/')
+          service_key = os.environ['SUPABASE_SERVICE_ROLE_KEY']
+          service_headers = {
+              'apikey': service_key,
+              'authorization': f'Bearer {service_key}',
+              'content-type': 'application/json',
+          }
+
+          def request_json(url, *, headers=None, method='GET', body=None):
+              encoded = None if body is None else json.dumps(body).encode('utf-8')
+              request = urllib.request.Request(url, headers=headers or {}, method=method, data=encoded)
+              try:
+                  with urllib.request.urlopen(request, timeout=120) as response:
+                      return response.status, json.load(response)
+              except urllib.error.HTTPError as error:
+                  payload = json.loads(error.read().decode('utf-8', errors='replace') or '{}')
+                  return error.code, payload
+
+          account_query = urllib.parse.urlencode({
+              'select': 'id,organization_id,role,status',
+              'role': 'in.(admin,teacher)',
+              'status': 'eq.active',
+              'order': 'role.asc',
+              'limit': '20',
+          }, safe=',.()')
+          status, accounts = request_json(f'{base}/rest/v1/accounts?{account_query}', headers=service_headers)
+          if status != 200 or not accounts:
+              raise SystemExit(f'No active staff account available for protected API diagnostic (HTTP {status})')
+
+          package_query = urllib.parse.urlencode({
+              'select': 'organization_id,bank_code,manifest',
+              'order': 'bank_code.asc',
+          }, safe=',.()')
+          status, packages = request_json(f'{base}/rest/v1/private_bank_packages?{package_query}', headers=service_headers)
+          if status != 200:
+              raise SystemExit(f'Could not read private packages (HTTP {status})')
+          ib_orgs = {
+              str(row.get('organization_id'))
+              for row in packages
+              if 'ib-math-ai' in set((row.get('manifest') or {}).get('target_courses') or [])
+                 or str(row.get('bank_code') or '').startswith('IBAI-')
+          }
+          account = next((row for row in accounts if str(row.get('organization_id')) in ib_orgs), None)
+          if not account:
+              raise SystemExit('No active staff account belongs to the organization containing the IB packages')
+
+          raw_token = 'diag-' + secrets.token_urlsafe(40)
+          token_hash = hashlib.sha256(raw_token.encode('utf-8')).hexdigest()
+          expires = (datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(minutes=5)).isoformat()
+          created = False
+          try:
+              status, result = request_json(
+                  f'{base}/rest/v1/rpc/api_create_session',
+                  headers=service_headers,
+                  method='POST',
+                  body={
+                      'p_account_id': account['id'],
+                      'p_token_hash': token_hash,
+                      'p_expires_at': expires,
+                      'p_user_agent_hash': 'ib-private-api-diagnostic',
+                      'p_ip_hash': 'github-actions',
+                  },
+              )
+              if status not in (200, 201) or not result:
+                  raise SystemExit(f'Could not create temporary staff session (HTTP {status})')
+              created = True
+
+              api_headers = {'authorization': f'Bearer {raw_token}'}
+              query = urllib.parse.urlencode({'course': 'ib-math-ai', 'limit': '1', 'offset': '0'})
+              status, payload = request_json(
+                  f'{base}/functions/v1/private-bank-api/student-questions?{query}',
+                  headers=api_headers,
+              )
+              safe = {
+                  'http_status': status,
+                  'ok': payload.get('ok'),
+                  'course': payload.get('course'),
+                  'scope': payload.get('scope'),
+                  'total': payload.get('total'),
+                  'returned_rows': len(payload.get('questions') or []),
+                  'error_code': (payload.get('error') or {}).get('code'),
+              }
+              print('LIVE_IB_PRIVATE_API_DIAGNOSTIC=')
+              print(json.dumps(safe, indent=2, sort_keys=True))
+              if status != 200 or payload.get('ok') is not True or int(payload.get('total') or 0) <= 0:
+                  raise SystemExit('Production private-bank API did not return the live IB uploaded questions for a staff session')
+          finally:
+              if created:
+                  request_json(
+                      f'{base}/rest/v1/rpc/api_revoke_session',
+                      headers=service_headers,
+                      method='POST',
+                      body={'p_token_hash': token_hash},
+                  )
+          PY
