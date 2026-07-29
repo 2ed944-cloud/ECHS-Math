@@ -21,7 +21,7 @@ page.on('response',async response=>{
 });
 const url=`${base}/question-bank/practice.html?course=ib-math-ai&diagnostic=${Date.now()}`;
 await page.goto(url,{waitUntil:'domcontentloaded',timeout:120000});
-await page.waitForFunction(()=>document.querySelector('#bundle')?.options?.length>0,{timeout:60000});
+await page.waitForSelector('#bundle option',{state:'attached',timeout:60000});
 await page.waitForTimeout(12000);
 const result=await page.evaluate(()=>({
   href:location.pathname+location.search,
