@@ -42,7 +42,7 @@ jobs:
           packages=rows('private_bank_packages','organization_id,bank_code,question_count,deployment_state,manifest','bank_code.asc')
           allowed={'publisher_key_direct','student_ready_verified'}
           lesson_counts=collections.Counter(); unit_counts=collections.Counter(); lesson_skill=collections.Counter(); lesson_title=collections.Counter(); bank_rows=collections.Counter(); package_declared={}
-          issues=collections.Counter(); organizations=set()
+          issues=collections.Counter(); mismatch_combinations=collections.Counter(); organizations=set()
 
           for package in packages:
               manifest=package.get('manifest') or {}; code=str(package.get('bank_code') or '')
@@ -75,7 +75,9 @@ jobs:
                   elif lesson.startswith('u') and '-' in lesson:
                       token=lesson[1:].split('-',1)[0]
                       if token.isdigit():inferred=int(token)
-                  if inferred is not None and int(unit or -999)!=inferred:issues['unit_lesson_mismatch']+=1
+                  if inferred is not None and int(unit if unit is not None else -999)!=inferred:
+                      issues['unit_lesson_mismatch']+=1
+                      mismatch_combinations[(code,str(unit),lesson,title,skill)]+=1
 
           package_rows=[]
           for code,meta in sorted(package_declared.items()):
@@ -89,7 +91,8 @@ jobs:
               titles=[{'lesson_title':title,'count':value} for (key,title),value in lesson_title.items() if key==lesson]
               mapping_rows.append({'lesson_key':lesson,'questions':count,'skills':sorted(skills,key=lambda row:(-row['count'],row['skill_key'])),'titles':sorted(titles,key=lambda row:(-row['count'],row['lesson_title']))[:5]})
 
-          output={'organizations':len([o for o in organizations if o]),'live_ib_questions':sum(bank_rows.values()),'unit_counts':dict(sorted(unit_counts.items())),'lesson_count':len(lesson_counts),'lesson_mappings':mapping_rows,'packages':package_rows,'issues':dict(sorted(issues.items()))}
+          mismatch_rows=[{'bank_code':code,'stored_unit':unit,'lesson_key':lesson,'lesson_title':title,'skill_key':skill,'questions':count} for (code,unit,lesson,title,skill),count in sorted(mismatch_combinations.items())]
+          output={'organizations':len([o for o in organizations if o]),'live_ib_questions':sum(bank_rows.values()),'unit_counts':dict(sorted(unit_counts.items())),'lesson_count':len(lesson_counts),'lesson_mappings':mapping_rows,'unit_lesson_mismatches':mismatch_rows,'packages':package_rows,'issues':dict(sorted(issues.items()))}
           print('IB_LIVE_LESSON_MAPPING_AUDIT=')
           print(json.dumps(output,indent=2,sort_keys=True))
           fatal=sum(issues[key] for key in ('missing_lesson_key','missing_lesson_title','missing_skill_key','mapping_object_not_verified','missing_course_index','missing_lesson_index','missing_skill_index','unit_lesson_mismatch','multiple_ib_mappings_on_question'))
