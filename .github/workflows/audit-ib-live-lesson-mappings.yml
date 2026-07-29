@@ -1,0 +1,97 @@
+name: Audit Live IB Lesson Mappings
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/audit-ib-live-lesson-mappings.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    environment: institutional-production
+    env:
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Audit canonical IB unit and lesson links
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import collections, json, os, urllib.parse, urllib.request
+          base=os.environ['SUPABASE_URL'].rstrip('/')
+          key=os.environ['SUPABASE_SERVICE_ROLE_KEY']
+          headers={'apikey':key,'authorization':f'Bearer {key}'}
+
+          def rows(table,select,order,page_size=1000):
+              out=[]; offset=0
+              while True:
+                  q=urllib.parse.urlencode({'select':select,'order':order},safe=',.*()[]:{}"')
+                  req=urllib.request.Request(f'{base}/rest/v1/{table}?{q}',headers={**headers,'range':f'{offset}-{offset+page_size-1}'})
+                  with urllib.request.urlopen(req,timeout=180) as response: page=json.load(response)
+                  out.extend(page)
+                  if len(page)<page_size:return out
+                  offset+=len(page)
+
+          questions=rows('private_bank_questions','organization_id,question_id,bank_code,course_mappings,course_keys,lesson_keys,skill_candidates,student_visible,mapping_verified,trust_tier','question_id.asc')
+          packages=rows('private_bank_packages','organization_id,bank_code,question_count,deployment_state,manifest','bank_code.asc')
+          allowed={'publisher_key_direct','student_ready_verified'}
+          lesson_counts=collections.Counter(); unit_counts=collections.Counter(); lesson_skill=collections.Counter(); lesson_title=collections.Counter(); bank_rows=collections.Counter(); package_declared={}
+          issues=collections.Counter(); organizations=set()
+
+          for package in packages:
+              manifest=package.get('manifest') or {}; code=str(package.get('bank_code') or '')
+              targets=set(manifest.get('target_courses') or [])
+              if 'ib-math-ai' in targets or code.startswith('IBAI-') or 'IBAI' in code:
+                  package_declared[code]={'declared':int(package.get('question_count') or 0),'state':str(package.get('deployment_state') or '')}
+
+          for row in questions:
+              mappings=[m for m in (row.get('course_mappings') or []) if str((m or {}).get('course') or '')=='ib-math-ai']
+              if not mappings:continue
+              organizations.add(str(row.get('organization_id') or ''))
+              if len(mappings)!=1:issues['multiple_ib_mappings_on_question']+=1
+              eligible=row.get('student_visible') is True and row.get('mapping_verified') is True and str(row.get('trust_tier') or '') in allowed
+              if not eligible:issues['ib_mapping_not_student_eligible']+=1
+              code=str(row.get('bank_code') or 'UNKNOWN'); bank_rows[code]+=1
+              for mapping in mappings:
+                  lesson=str((mapping or {}).get('lesson_key') or '').strip(); title=str((mapping or {}).get('lesson_title') or '').strip(); skill=str((mapping or {}).get('skill_key') or '').strip(); unit=(mapping or {}).get('unit')
+                  lesson_counts[lesson or 'MISSING']+=1; unit_counts[str(unit)]+=1; lesson_skill[(lesson or 'MISSING',skill or 'MISSING')]+=1; lesson_title[(lesson or 'MISSING',title or 'MISSING')]+=1
+                  if not lesson:issues['missing_lesson_key']+=1
+                  if not title:issues['missing_lesson_title']+=1
+                  if not skill:issues['missing_skill_key']+=1
+                  if (mapping or {}).get('mapping_verified') is not True:issues['mapping_object_not_verified']+=1
+                  if 'ib-math-ai' not in (row.get('course_keys') or []):issues['missing_course_index']+=1
+                  if f'ib-math-ai:{lesson}' not in (row.get('lesson_keys') or []):issues['missing_lesson_index']+=1
+                  if skill and skill not in (row.get('skill_candidates') or []):issues['missing_skill_index']+=1
+                  inferred=None
+                  if lesson and lesson[0].isdigit() and '.' in lesson:
+                      try: inferred=int(lesson.split('.',1)[0])
+                      except ValueError: pass
+                  elif lesson.startswith('u') and '-' in lesson:
+                      token=lesson[1:].split('-',1)[0]
+                      if token.isdigit():inferred=int(token)
+                  if inferred is not None and int(unit or -999)!=inferred:issues['unit_lesson_mismatch']+=1
+
+          package_rows=[]
+          for code,meta in sorted(package_declared.items()):
+              actual=bank_rows.get(code,0)
+              package_rows.append({'bank_code':code,'declared':meta['declared'],'actual_live_rows':actual,'difference':meta['declared']-actual,'deployment_state':meta['state']})
+              if meta['declared']!=actual:issues['package_declared_actual_mismatch']+=1
+
+          mapping_rows=[]
+          for lesson,count in sorted(lesson_counts.items(),key=lambda item:(item[0])):
+              skills=[{'skill_key':skill,'count':value} for (key,skill),value in lesson_skill.items() if key==lesson]
+              titles=[{'lesson_title':title,'count':value} for (key,title),value in lesson_title.items() if key==lesson]
+              mapping_rows.append({'lesson_key':lesson,'questions':count,'skills':sorted(skills,key=lambda row:(-row['count'],row['skill_key'])),'titles':sorted(titles,key=lambda row:(-row['count'],row['lesson_title']))[:5]})
+
+          output={'organizations':len([o for o in organizations if o]),'live_ib_questions':sum(bank_rows.values()),'unit_counts':dict(sorted(unit_counts.items())),'lesson_count':len(lesson_counts),'lesson_mappings':mapping_rows,'packages':package_rows,'issues':dict(sorted(issues.items()))}
+          print('IB_LIVE_LESSON_MAPPING_AUDIT=')
+          print(json.dumps(output,indent=2,sort_keys=True))
+          fatal=sum(issues[key] for key in ('missing_lesson_key','missing_lesson_title','missing_skill_key','mapping_object_not_verified','missing_course_index','missing_lesson_index','missing_skill_index','unit_lesson_mismatch','multiple_ib_mappings_on_question'))
+          if fatal:raise SystemExit(f'Canonical IB mapping integrity failures: {fatal}')
+          PY
