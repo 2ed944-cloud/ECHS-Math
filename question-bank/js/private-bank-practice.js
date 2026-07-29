@@ -60,7 +60,22 @@
   }
   function emit(name,detail){if(typeof window.dispatchEvent!=="function"||typeof CustomEvent!=="function")return;window.dispatchEvent(new CustomEvent(name,{detail}))}
   function emitProgress(completed,total){emit("echs:bundle-progress",{completed,total})}
-  function emitSummary(detail){emit("echs:private-bank-summary",detail)}
+  const escapeHTML=value=>window.ECHSBank?.escape?.(value)||String(value||"").replace(/[&<>'"]/g,char=>({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"})[char]);
+  function updateSelect(select,options,allLabel,labelFor){if(!select)return;const wanted=select.value||"all";select.innerHTML=`<option value="all">${escapeHTML(allLabel)}</option>`+options.map(value=>`<option value="${escapeHTML(value)}">${escapeHTML(labelFor(value))}</option>`).join("");select.value=options.includes(wanted)?wanted:"all"}
+  function refreshInventory(detail){
+    if(detail.course!=="ib-math-ai"||!Array.isArray(detail.questions))return;
+    const questions=detail.questions,loaded=Number(detail.loaded??questions.length),total=Number(detail.total??loaded),complete=detail.complete===true;
+    const heroLoaded=document.getElementById("heroLoaded"),heroBanks=document.getElementById("heroBanks"),status=document.getElementById("status"),shell=document.getElementById("shell");
+    if(heroLoaded)heroLoaded.textContent=Number(loaded).toLocaleString();
+    const banks=[...new Set(questions.map(question=>question?.bank_code).filter(Boolean))].sort();if(heroBanks)heroBanks.textContent=Number(banks.length).toLocaleString();updateSelect(document.getElementById("bank"),banks,"All ECHS banks",code=>window.ECHSBank?.bankLabel?.(code)||code);
+    const sections=new Map();questions.forEach(question=>{const value=String(question?.source?.section||"unmapped"),title=question?.source?.section_title||question?.source?.skill_title||"";sections.set(value,value==="unmapped"?"General practice":`${value}${title?` · ${title}`:""}`)});const sectionValues=[...sections.keys()].sort((a,b)=>a.localeCompare(b,undefined,{numeric:true}));updateSelect(document.getElementById("section"),sectionValues,"All practice sections",value=>window.ECHSBank?.cleanStudentLabel?.(sections.get(value))||sections.get(value));
+    document.documentElement.dataset.ibCourseBankLoaded=String(loaded);document.documentElement.dataset.privateQuestionRows=String(loaded);if(!status||shell?.querySelector(".questionCard,.result"))return;
+    const blocked=Number(detail.blocked||0),formatted=Number(loaded).toLocaleString();
+    if(detail.partialError)status.innerHTML=`<span class="pill gold">${formatted} questions ready</span><span class="pill">Background loading will retry after refresh</span>`;
+    else if(complete)status.innerHTML=`<span class="pill teal">${formatted} questions available</span>${blocked?`<span class="pill gold">${Number(blocked).toLocaleString()} non-catalog mappings withheld</span>`:""}`;
+    else status.innerHTML=`<span class="pill teal">${formatted} questions ready now</span><span class="pill">Loading ${Number(total).toLocaleString()} mapped questions in the background…</span>`;
+  }
+  function emitSummary(detail){refreshInventory(detail);emit("echs:private-bank-summary",detail)}
   function fingerprint(question,courseKey){return`${courseKey}|${question.source?.source_content_fingerprint||question.metadata?.source_content_fingerprint||question.id}`}
   function addRows(rows,courseKey,questions,seen,bankCodes){
     let blocked=0,added=0;
@@ -80,11 +95,7 @@
     await loadPage(0);
     if(stream&&pageCount<=1)return{questions,total,stream:null};
     if(!stream){for(let index=1;index<pageCount;index+=1)await loadPage(index);if(total>maximum)console.warn(`Private practice capped at ${maximum} of ${total} questions for ${scope.courseKey}`);return{questions,total,stream:null}}
-    const background=(async()=>{
-      for(let index=1;index<pageCount;index+=1)await loadPage(index);
-      if(total>maximum)console.warn(`Private practice capped at ${maximum} of ${total} questions for ${scope.courseKey}`);
-      return{eligible:questions.length,total,blocked};
-    })();
+    const background=(async()=>{for(let index=1;index<pageCount;index+=1)await loadPage(index);if(total>maximum)console.warn(`Private practice capped at ${maximum} of ${total} questions for ${scope.courseKey}`);return{eligible:questions.length,total,blocked}})();
     return{questions,total,stream:background};
   }
 
