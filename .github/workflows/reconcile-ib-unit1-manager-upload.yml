@@ -60,10 +60,11 @@ jobs:
 
           EXPECTED_SHA = 'b029480943c6a3f7dda1d032b3a2f6527d257e517093662efd6c2f7f7a5114a0'
           EXPECTED_NAME_TOKEN = 'ib_ai_sl_unit_1_echs_complete_offline_fixed'
+          RECOVERABLE = {'created', 'queued', 'processing', 'failed', 'cancelled', 'pr-opened'}
           base = os.environ['SUPABASE_URL'].rstrip('/')
           key = os.environ['SUPABASE_SERVICE_ROLE_KEY']
           headers = {'apikey': key, 'authorization': f'Bearer {key}'}
-          select = 'id,status,upload_kind,course_key,unit_key,sha256,original_filename,github_pr_url,created_at'
+          select = 'id,status,upload_kind,course_key,unit_key,sha256,original_filename,github_pr_url,created_at,stage,result,error_message'
 
           def get_rows(params):
               query = urllib.parse.urlencode(params, safe=',().')
@@ -74,52 +75,65 @@ jobs:
               with urllib.request.urlopen(request, timeout=60) as response:
                   return json.load(response)
 
-          rows = get_rows({
+          def normalized(value):
+              return re.sub(r'[^a-z0-9]+', '_', str(value or '').lower()).strip('_')
+
+          def result_value(row, key):
+              result = row.get('result')
+              return result.get(key) if isinstance(result, dict) else None
+
+          def is_ib_unit1(row):
+              course = normalized(row.get('course_key'))
+              unit = str(row.get('unit_key') or '').strip()
+              result_course = normalized(result_value(row, 'course'))
+              result_unit = str(result_value(row, 'unit') or '').strip()
+              filename = normalized(row.get('original_filename'))
+              destination = normalized(result_value(row, 'destination'))
+              course_match = course in {'ib_math_ai', 'g11_ib_ai'} and unit == '1'
+              result_match = result_course in {'ib_math_ai', 'g11_ib_ai'} and result_unit == '1'
+              filename_match = EXPECTED_NAME_TOKEN in filename
+              destination_match = destination == 'lessons_ib_math_ai_unit_1'
+              return course_match or result_match or filename_match or destination_match
+
+          all_rows = get_rows({
               'select': select,
-              'sha256': f'eq.{EXPECTED_SHA}',
               'upload_kind': 'eq.course-release',
               'order': 'created_at.desc',
-              'limit': '5',
+              'limit': '50',
           })
-          candidates = [
-              row for row in rows
-              if str(row.get('course_key') or '') in {'ib-math-ai', 'g11-ib-ai'}
-              and str(row.get('unit_key') or '') == '1'
-          ]
-          match_mode = 'exact-sha'
+          print('Recent course-release request metadata:')
+          for item in all_rows:
+              safe = {
+                  'id': item.get('id'),
+                  'status': item.get('status'),
+                  'course_key': item.get('course_key'),
+                  'unit_key': item.get('unit_key'),
+                  'sha256': item.get('sha256'),
+                  'original_filename': item.get('original_filename'),
+                  'stage': item.get('stage'),
+                  'created_at': item.get('created_at'),
+                  'result_course': result_value(item, 'course'),
+                  'result_unit': result_value(item, 'unit'),
+                  'result_destination': result_value(item, 'destination'),
+              }
+              print(json.dumps(safe, ensure_ascii=False, sort_keys=True))
 
-          if not candidates:
-              rows = get_rows({
-                  'select': select,
-                  'upload_kind': 'eq.course-release',
-                  'unit_key': 'eq.1',
-                  'order': 'created_at.desc',
-                  'limit': '25',
-              })
-              def normalized_name(row):
-                  return re.sub(r'[^a-z0-9]+', '_', str(row.get('original_filename') or '').lower()).strip('_')
-              candidates = [
-                  row for row in rows
-                  if str(row.get('course_key') or '') in {'ib-math-ai', 'g11-ib-ai'}
-                  and EXPECTED_NAME_TOKEN in normalized_name(row)
-              ]
-              match_mode = 'course-unit-filename'
+          exact = [row for row in all_rows if row.get('sha256') == EXPECTED_SHA and is_ib_unit1(row)]
+          if exact:
+              candidates = exact
+              match_mode = 'exact-sha'
+          else:
+              candidates = [row for row in all_rows if is_ib_unit1(row)]
+              match_mode = 'verified-course-unit-result-or-filename'
 
           if not candidates:
               raise SystemExit(
-                  'No IB Mathematics AI Unit 1 Manager request matched the exact package SHA or the verified package filename.'
+                  'No course-release request matched IB Mathematics AI Unit 1 by exact SHA, Manager course/unit, materialized result, destination, or verified filename.'
               )
 
-          candidates.sort(
-              key=lambda row: (
-                  str(row.get('status') or '') == 'completed',
-                  str(row.get('created_at') or ''),
-              ),
-              reverse=False,
-          )
-          row = candidates[-1] if all(str(item.get('status') or '') == 'completed' for item in candidates) else next(
-              item for item in candidates if str(item.get('status') or '') != 'completed'
-          )
+          noncompleted = [row for row in candidates if str(row.get('status') or '') in RECOVERABLE]
+          pool = noncompleted or candidates
+          row = max(pool, key=lambda item: str(item.get('created_at') or ''))
 
           pr = json.loads(subprocess.run(
               ['gh', 'pr', 'view', '79', '--repo', os.environ['GITHUB_REPOSITORY'], '--json', 'url,mergedAt'],
