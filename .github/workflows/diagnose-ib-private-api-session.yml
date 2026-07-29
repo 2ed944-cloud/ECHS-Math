@@ -42,15 +42,16 @@ jobs:
               'content-type': 'application/json',
           }
 
-          def request_json(url, *, headers=None, method='GET', body=None):
+          def request_json(url, *, headers=None, method='GET', body=None, allow_empty=False):
               encoded = None if body is None else json.dumps(body).encode('utf-8')
               request = urllib.request.Request(url, headers=headers or {}, method=method, data=encoded)
               try:
                   with urllib.request.urlopen(request, timeout=120) as response:
-                      return response.status, json.load(response)
+                      raw = response.read().decode('utf-8', errors='replace')
+                      return response.status, (json.loads(raw) if raw.strip() else ({} if allow_empty else None))
               except urllib.error.HTTPError as error:
-                  payload = json.loads(error.read().decode('utf-8', errors='replace') or '{}')
-                  return error.code, payload
+                  raw = error.read().decode('utf-8', errors='replace')
+                  return error.code, (json.loads(raw) if raw.strip() else {})
 
           account_query = urllib.parse.urlencode({
               'select': 'id,organization_id,role,status',
@@ -102,19 +103,39 @@ jobs:
               created = True
 
               api_headers = {'authorization': f'Bearer {raw_token}'}
-              query = urllib.parse.urlencode({'course': 'ib-math-ai', 'limit': '1', 'offset': '0'})
+              query = urllib.parse.urlencode({'course': 'ib-math-ai', 'limit': '1000', 'offset': '0'})
               status, payload = request_json(
                   f'{base}/functions/v1/private-bank-api/student-questions?{query}',
                   headers=api_headers,
               )
+              rows = payload.get('questions') or []
+              shape = {
+                  'row_course_mapping_ib': 0,
+                  'payload_mappings_nonempty': 0,
+                  'payload_course_mapping_ib': 0,
+                  'adapter_selected_mapping_ib': 0,
+                  'payload_has_id': 0,
+              }
+              for row in rows:
+                  row_mappings = row.get('course_mappings') if isinstance(row.get('course_mappings'), list) else []
+                  payload_row = row.get('payload') if isinstance(row.get('payload'), dict) else {}
+                  payload_mappings = payload_row.get('course_mappings') if isinstance(payload_row.get('course_mappings'), list) else []
+                  selected = payload_mappings if payload_mappings else row_mappings
+                  shape['row_course_mapping_ib'] += int(any(str((item or {}).get('course') or '') == 'ib-math-ai' for item in row_mappings))
+                  shape['payload_mappings_nonempty'] += int(bool(payload_mappings))
+                  shape['payload_course_mapping_ib'] += int(any(str((item or {}).get('course') or '') == 'ib-math-ai' for item in payload_mappings))
+                  shape['adapter_selected_mapping_ib'] += int(any(str((item or {}).get('course') or '') == 'ib-math-ai' for item in selected))
+                  shape['payload_has_id'] += int(bool(payload_row.get('id')))
+
               safe = {
                   'http_status': status,
                   'ok': payload.get('ok'),
                   'course': payload.get('course'),
                   'scope': payload.get('scope'),
                   'total': payload.get('total'),
-                  'returned_rows': len(payload.get('questions') or []),
+                  'returned_rows': len(rows),
                   'error_code': (payload.get('error') or {}).get('code'),
+                  'shape': shape,
               }
               print('LIVE_IB_PRIVATE_API_DIAGNOSTIC=')
               print(json.dumps(safe, indent=2, sort_keys=True))
@@ -127,5 +148,6 @@ jobs:
                       headers=service_headers,
                       method='POST',
                       body={'p_token_hash': token_hash},
+                      allow_empty=True,
                   )
           PY
