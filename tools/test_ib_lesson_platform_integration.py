@@ -33,11 +33,22 @@ def require(text: str, markers: tuple[str, ...], label: str, errors: list[str]) 
             errors.append(f"{label} missing marker: {marker}")
 
 
+def run_node(root: Path, relative: str, label: str, errors: list[str]) -> None:
+    path = root / relative
+    if not path.is_file():
+        errors.append(f"Missing {label}: {relative}")
+        return
+    result = subprocess.run(["node", str(path)], cwd=root, text=True, capture_output=True)
+    if result.returncode:
+        errors.append(f"{label} failed: {result.stderr or result.stdout}")
+
+
 def validate_source(root: Path, errors: list[str]) -> None:
     access_css = read(root, "css/learning-access.css", errors)
     ib_css = read(root, "css/ib-lesson-platform-integration.css", errors)
     guard = read(root, "js/lesson-access-guard.js", errors)
     bridge = read(root, "js/ib-lesson-platform-integration.js", errors)
+    private_base = read(root, "question-bank/js/private-bank-practice.js", errors)
     aliases = read(root, "question-bank/js/ib-private-bank-lesson-aliases.js", errors)
     practice = read(root, "question-bank/practice.html", errors)
     injector = read(root, "tools/inject_learning_access_guard.py", errors)
@@ -77,6 +88,17 @@ def validate_source(root: Path, errors: list[str]) -> None:
         "u1-modeling",
         "data-platform-bank-link",
     ), "IB lesson platform bridge", errors)
+    require(private_base, (
+        "IB Mathematics AI Bank 1",
+        "IB Mathematics AI Bank 10",
+        "row?.course_mappings",
+        'activeCourse==="ib-math-ai"',
+        "IB Math AI · Uploaded Banks",
+        "private_bank_only",
+        "private-upload-manager",
+        "AP Calculus fallback banks were intentionally blocked",
+        "return mergeUnique(activeCourse,[direct])",
+    ), "IB private-bank course browser", errors)
     require(aliases, (
         "IB Mathematics AI Bank 1",
         "IB Mathematics AI Bank 10",
@@ -91,7 +113,7 @@ def validate_source(root: Path, errors: list[str]) -> None:
         "u1-modeling",
     ), "IB private-bank alias layer", errors)
     require(practice, (
-        "private-bank-practice.js?v=20260729-iblinks1",
+        "private-bank-practice.js?v=20260729-ibcourse1",
         "ib-private-bank-lesson-aliases.js?v=20260729-iblinks1",
         "practice.js?v=20260729-iblinks1",
     ), "Focused practice page", errors)
@@ -107,9 +129,10 @@ def validate_source(root: Path, errors: list[str]) -> None:
         "20260729-iblinks1",
     ), "Pages guard injector", errors)
     require(worker, (
-        "iblinks1",
+        "iblinks1-ibcourse1",
         "./css/ib-lesson-platform-integration.css",
         "./js/ib-lesson-platform-integration.js",
+        "./question-bank/js/private-bank-practice.js",
         "./question-bank/js/ib-private-bank-lesson-aliases.js",
         "ib-private-bank-lesson-aliases",
     ), "Service worker", errors)
@@ -133,17 +156,13 @@ def validate_source(root: Path, errors: list[str]) -> None:
     if old_shell.exists():
         errors.append("Legacy shared IB lesson.html shell must not return")
 
-    node_test = root / "tools/test_ib_private_bank_lesson_aliases.mjs"
-    if not node_test.is_file():
-        errors.append("Missing IB private-bank alias Node regression")
-    else:
-        result = subprocess.run(["node", str(node_test)], cwd=root, text=True, capture_output=True)
-        if result.returncode:
-            errors.append(f"IB private-bank alias Node regression failed: {result.stderr or result.stdout}")
+    run_node(root, "tools/test_ib_private_bank_lesson_aliases.mjs", "IB private-bank alias Node regression", errors)
+    run_node(root, "tools/test_ib_private_bank_course_browser.mjs", "IB private-bank course-browser Node regression", errors)
 
     for relative in (
         "js/lesson-access-guard.js",
         "js/ib-lesson-platform-integration.js",
+        "question-bank/js/private-bank-practice.js",
         "question-bank/js/ib-private-bank-lesson-aliases.js",
     ):
         result = subprocess.run(["node", "--check", str(root / relative)], cwd=root, text=True, capture_output=True)
