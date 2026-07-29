@@ -4,11 +4,12 @@ on:
   pull_request:
     paths:
       - ".github/workflows/ib-practice-browser-qa.yml"
+      - "data/ib-math-ai-lesson-catalog.json"
+      - "question-bank/private-sources/data/ib-live-mapping-summary.json"
       - "question-bank/practice.html"
       - "question-bank/js/practice-global-bridge.js"
       - "question-bank/js/private-bank-practice.js"
       - "question-bank/js/ib-private-bank-lesson-aliases.js"
-      - "question-bank/js/ib-private-bank-stream-ui.js"
       - "question-bank/js/practice.js"
       - "tools/verify_ib_practice_browser.mjs"
   workflow_dispatch:
@@ -31,6 +32,111 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+
+      - name: Verify every visible IB unit and lesson mapping
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import collections
+          import json
+          import os
+          import time
+          import urllib.error
+          import urllib.parse
+          import urllib.request
+
+          base=os.environ['SUPABASE_URL'].rstrip('/')
+          key=os.environ['SUPABASE_SERVICE_ROLE_KEY']
+          headers={'apikey':key,'authorization':f'Bearer {key}'}
+          allowed_trust={'publisher_key_direct','student_ready_verified'}
+
+          catalog=json.load(open('data/ib-math-ai-lesson-catalog.json',encoding='utf-8'))
+          expected={}
+          for unit in catalog.get('units',[]):
+              unit_number=int(unit['unit'])
+              for lesson in unit.get('lessons',[]):
+                  record={'unit':unit_number,'catalogue_skill':str(lesson.get('skill_id') or '')}
+                  expected[str(lesson['lesson_key'])]=record
+                  number=str(lesson.get('number') or '')
+                  if number and number!='0':expected[number]=record
+                  for delivery in lesson.get('delivery_lesson_numbers',[]):expected[str(delivery)]=record
+
+          def request_json(url,extra_headers=None,retries=6):
+              last=None
+              for attempt in range(retries):
+                  try:
+                      request=urllib.request.Request(url,headers={**headers,**(extra_headers or {})})
+                      with urllib.request.urlopen(request,timeout=180) as response:return json.load(response)
+                  except urllib.error.HTTPError as error:
+                      last=error
+                      if error.code not in (408,425,429,500,502,503,504) or attempt+1>=retries:
+                          detail=error.read().decode(errors='replace')[:1000]
+                          raise RuntimeError(f'HTTP {error.code}: {detail}') from error
+                  except (urllib.error.URLError,TimeoutError) as error:
+                      last=error
+                      if attempt+1>=retries:raise
+                  time.sleep(1.5*(attempt+1))
+              raise last
+
+          def rows(page_size=500):
+              output=[];offset=0
+              select='organization_id,question_id,bank_code,course_mappings,course_keys,lesson_keys,skill_candidates,student_visible,mapping_verified,trust_tier'
+              while True:
+                  query=urllib.parse.urlencode({'select':select,'order':'organization_id.asc,question_id.asc'},safe=',.*()[]:{}"')
+                  page=request_json(f'{base}/rest/v1/private_bank_questions?{query}',{'range':f'{offset}-{offset+page_size-1}'})
+                  output.extend(page)
+                  if len(page)<page_size:return output
+                  offset+=len(page)
+
+          issues=collections.Counter();units=collections.Counter();lessons=collections.Counter();banks=collections.Counter();organizations=set();eligible=0
+          for row in rows():
+              mappings=[mapping for mapping in (row.get('course_mappings') or []) if str((mapping or {}).get('course') or '')=='ib-math-ai']
+              if not mappings:continue
+              is_eligible=row.get('student_visible') is True and row.get('mapping_verified') is True and str(row.get('trust_tier') or '') in allowed_trust
+              if not is_eligible:
+                  issues['ib_mapping_present_but_not_student_eligible']+=1
+                  continue
+              eligible+=1;organizations.add(str(row.get('organization_id') or ''));banks[str(row.get('bank_code') or 'UNKNOWN')]+=1
+              if len(mappings)!=1:issues['multiple_ib_mappings_on_visible_question']+=1
+              for mapping in mappings:
+                  lesson=str((mapping or {}).get('lesson_key') or '')
+                  title=str((mapping or {}).get('lesson_title') or '')
+                  skill=str((mapping or {}).get('skill_key') or '')
+                  unit=(mapping or {}).get('unit')
+                  lesson_expected=expected.get(lesson)
+                  lessons[lesson or 'MISSING']+=1;units[str(unit)]+=1
+                  if not lesson_expected:
+                      issues['lesson_not_in_official_catalogue']+=1
+                      continue
+                  if int(unit if unit is not None else -999)!=lesson_expected['unit']:issues['unit_does_not_match_catalogue_lesson']+=1
+                  if not title:issues['missing_lesson_title']+=1
+                  if not skill:issues['missing_skill_key']+=1
+                  if (mapping or {}).get('mapping_verified') is not True:issues['mapping_object_not_verified']+=1
+                  if 'ib-math-ai' not in (row.get('course_keys') or []):issues['missing_course_index']+=1
+                  if f'ib-math-ai:{lesson}' not in (row.get('lesson_keys') or []):issues['missing_lesson_index']+=1
+                  if skill and skill not in (row.get('skill_candidates') or []):issues['missing_skill_index']+=1
+
+          summary=json.load(open('question-bank/private-sources/data/ib-live-mapping-summary.json',encoding='utf-8'))
+          actual_units={key:value for key,value in sorted(units.items(),key=lambda item:int(item[0]))}
+          expected_units={str(key):int(value) for key,value in (summary.get('unit_counts') or {}).items()}
+          if int(summary.get('live_question_rows') or -1)!=eligible:issues['committed_question_total_stale']+=1
+          if int(summary.get('live_lesson_keys') or -1)!=len(lessons):issues['committed_lesson_total_stale']+=1
+          if expected_units!=actual_units:issues['committed_unit_counts_stale']+=1
+
+          result={
+              'official_catalogue_keys':len(expected),
+              'organizations':len([value for value in organizations if value]),
+              'visible_verified_questions':eligible,
+              'live_lesson_keys':len(lessons),
+              'unit_counts':actual_units,
+              'bank_counts':dict(sorted(banks.items())),
+              'issues':dict(sorted(issues.items())),
+          }
+          print('IB_VISIBLE_MAPPING_AUDIT=')
+          print(json.dumps(result,indent=2,sort_keys=True))
+          if sum(issues.values()):raise SystemExit(f'IB catalogue mapping audit failed with {sum(issues.values())} issue(s)')
+          PY
 
       - name: Set up Node
         uses: actions/setup-node@v4
