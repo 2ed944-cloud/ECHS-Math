@@ -61,6 +61,7 @@ jobs:
         run: |
           python -m py_compile tools/process_teacher_upload_request.py
           python -m py_compile tools/process_teacher_upload_request_fast.py
+          python -m py_compile tools/process_ib_lesson_release.py
           python -m py_compile tools/upload_private_bank_package.py
           python -m py_compile tools/upload_private_bank_package_fast.py
 
@@ -80,53 +81,30 @@ jobs:
           if requested:
               query = urllib.parse.urlencode({'select': select, 'id': f'eq.{requested}', 'limit': '1'}, safe=',')
           else:
-              query = urllib.parse.urlencode({
-                  'select': select,
-                  'status': 'eq.processing',
-                  'upload_kind': 'eq.course-release',
-                  'order': 'created_at.asc',
-                  'limit': '1',
-              }, safe=',')
-          req = urllib.request.Request(
-              f'{base}/rest/v1/teacher_upload_requests?{query}',
-              headers={'apikey': key, 'authorization': f'Bearer {key}'},
-          )
+              query = urllib.parse.urlencode({'select': select, 'status': 'eq.processing', 'upload_kind': 'eq.course-release', 'order': 'created_at.asc', 'limit': '1'}, safe=',')
+          req = urllib.request.Request(f'{base}/rest/v1/teacher_upload_requests?{query}', headers={'apikey': key, 'authorization': f'Bearer {key}'})
           with urllib.request.urlopen(req, timeout=60) as response:
               rows = json.load(response)
           output = os.environ['GITHUB_OUTPUT']
           if not rows or rows[0].get('upload_kind') != 'course-release':
-              with open(output, 'a', encoding='utf-8') as handle:
-                  handle.write('reconciled=false\n')
+              with open(output, 'a', encoding='utf-8') as handle: handle.write('reconciled=false\n')
               raise SystemExit(0)
 
           row = rows[0]
           branch = f"teacher-release/{row['id']}"
-          command = ['gh', 'pr', 'list', '--head', branch, '--state', 'all', '--limit', '1', '--json', 'url,state,mergedAt']
-          result = subprocess.run(command, check=True, text=True, capture_output=True)
+          result = subprocess.run(['gh', 'pr', 'list', '--head', branch, '--state', 'all', '--limit', '1', '--json', 'url,state,mergedAt'], check=True, text=True, capture_output=True)
           prs = json.loads(result.stdout or '[]')
           if not prs:
-              with open(output, 'a', encoding='utf-8') as handle:
-                  handle.write('reconciled=false\n')
+              with open(output, 'a', encoding='utf-8') as handle: handle.write('reconciled=false\n')
               raise SystemExit(0)
 
           pr = prs[0]
           merged = bool(pr.get('mergedAt'))
-          values = {
-              'status': 'completed' if merged else 'pr-opened',
-              'progress': 100 if merged else 92,
-              'stage': 'Course release merged and published' if merged else 'Pull request opened · awaiting review and merge',
-              'github_pr_url': pr['url'],
-              'updated_at': datetime.now(timezone.utc).isoformat(),
-              'error_message': None,
-          }
-          if merged:
-              values['completed_at'] = datetime.now(timezone.utc).isoformat()
+          values = {'status': 'completed' if merged else 'pr-opened', 'progress': 100 if merged else 92, 'stage': 'Course release merged and published' if merged else 'Pull request opened · awaiting review and merge', 'github_pr_url': pr['url'], 'updated_at': datetime.now(timezone.utc).isoformat(), 'error_message': None}
+          if merged: values['completed_at'] = datetime.now(timezone.utc).isoformat()
           patch_query = urllib.parse.urlencode({'id': f"eq.{row['id']}"})
           body = json.dumps(values).encode()
-          patch = urllib.request.Request(
-              f'{base}/rest/v1/teacher_upload_requests?{patch_query}', data=body, method='PATCH',
-              headers={'apikey': key, 'authorization': f'Bearer {key}', 'content-type': 'application/json', 'prefer': 'return=minimal'},
-          )
+          patch = urllib.request.Request(f'{base}/rest/v1/teacher_upload_requests?{patch_query}', data=body, method='PATCH', headers={'apikey': key, 'authorization': f'Bearer {key}', 'content-type': 'application/json', 'prefer': 'return=minimal'})
           urllib.request.urlopen(patch, timeout=60).read()
           with open(output, 'a', encoding='utf-8') as handle:
               handle.write('reconciled=true\n')
@@ -150,21 +128,22 @@ jobs:
         if: steps.reconcile.outputs.reconciled != 'true' && steps.processor.outputs.found != 'true'
         run: echo "No queued teacher uploads."
 
-      - name: Validate generated course release
+      - name: Validate generated course or lesson release
         if: steps.processor.outputs.changed == 'true'
         shell: bash
         run: |
           set -euo pipefail
           git diff --check
           changed_html="$(git status --porcelain --untracked-files=all | awk '{print $2}' | grep -E '^lessons/.+\.html$' || true)"
-          changed_js="$(git status --porcelain --untracked-files=all | awk '{print $2}' | grep -E '^data/ap-precalculus-unit-[0-9]+-update\.js$' || true)"
+          changed_js="$(git status --porcelain --untracked-files=all | awk '{print $2}' | grep -E '^data/(ap-precalculus|ib-math-ai)-unit-[0-9]+-update\.js$' || true)"
+          changed_runtime_js="$(git status --porcelain --untracked-files=all | awk '{print $2}' | grep -E '^lessons/.+\.js$' || true)"
           if [ -z "$changed_html" ]; then
             echo "Course release produced no lesson HTML files" >&2
             git status --short
             exit 1
           fi
           if [ -z "$changed_js" ]; then
-            echo "Course release produced no portal update file" >&2
+            echo "Course release produced no AP Precalculus or IB Mathematics AI portal update file" >&2
             git status --short
             exit 1
           fi
@@ -177,6 +156,10 @@ jobs:
             [ -n "$file" ] || continue
             node --check "$file"
           done <<< "$changed_js"
+          while IFS= read -r file; do
+            [ -n "$file" ] || continue
+            node --check "$file"
+          done <<< "$changed_runtime_js"
 
       - name: Create release branch and pull request
         id: pr
@@ -192,7 +175,7 @@ jobs:
           git add lessons data index.html
           git commit -m "${{ steps.processor.outputs.pr_title }}"
           git push origin "$branch"
-          url="$(gh pr create --base main --head "$branch" --title "${{ steps.processor.outputs.pr_title }}" --body "Created automatically by Teacher Upload Manager.\n\nThe uploaded ZIP was kept private, verified by SHA-256, checked for unsafe paths, and converted into a reviewable course release.\n\nUpload request: \`${request}\`.\n\nThis pull request is not merged automatically.")"
+          url="$(gh pr create --base main --head "$branch" --title "${{ steps.processor.outputs.pr_title }}" --body "Created automatically by ECHS Lesson & Unit Release Manager.\n\nThe uploaded ZIP remained private, was verified by SHA-256, checked for unsafe paths and missing local assets, and converted into a reviewable course release.\n\nUpload request: \`${request}\`.\n\nThis pull request is never merged automatically.")"
           echo "url=$url" >> "$GITHUB_OUTPUT"
 
       - name: Record pull request in upload queue
@@ -207,7 +190,7 @@ jobs:
           url=os.environ['SUPABASE_URL'].rstrip('/')
           key=os.environ['SUPABASE_SERVICE_ROLE_KEY']
           rid=os.environ['UPLOAD_REQUEST_ID']
-          body=json.dumps({'status':'pr-opened','progress':92,'stage':'Pull request opened · awaiting review and merge','github_pr_url':os.environ['PR_URL']}).encode()
+          body=json.dumps({'status':'pr-opened','progress':92,'stage':'Lesson release pull request opened · awaiting review and merge','github_pr_url':os.environ['PR_URL']}).encode()
           query=urllib.parse.urlencode({'id':f'eq.{rid}'})
           request=urllib.request.Request(f'{url}/rest/v1/teacher_upload_requests?{query}',data=body,method='PATCH',headers={'apikey':key,'authorization':f'Bearer {key}','content-type':'application/json','prefer':'return=minimal'})
           urllib.request.urlopen(request,timeout=60).read()
