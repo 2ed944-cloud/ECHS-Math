@@ -1,19 +1,24 @@
 # Private question-bank integration
 
-The attached manager-ready banks were used to identify coverage and lesson routing, not to copy private prompts into public lesson HTML.
+The Manager-uploaded IB question banks remain in authenticated institutional storage. The public lesson files contain only original ECHS lesson questions and a protected bridge to the platform Practice Studio.
 
-## Mapping contract
+## Visible lesson routing
 
 - Course: `ib-math-ai`
 - Unit: `1`
-- Lesson: one of `1.1` through `1.8`
-- Skill keys preserved: `IBAI.U1.NUMBER`, `IBAI.U1.ALGEBRA`, `IBAI.U1.SEQUENCES`, `IBAI.U1.MATRICES`, `IBAI.U1.MODELING`
+- Visible lessons: `1.1` through `1.8`
+- Skill keys: `IBAI.U1.NUMBER`, `IBAI.U1.ALGEBRA`, `IBAI.U1.SEQUENCES`, `IBAI.U1.MATRICES`, `IBAI.U1.MODELING`
 
-Each lesson data file contains a `bankBridge` object. The final Learn slide opens the authenticated platform practice page with course, unit and lesson query parameters.
+Each lesson now provides two practice layers:
 
-## Rights boundary
+1. the lesson's built-in 40-question Practice Studio;
+2. an **Open linked IB banks** bridge to the authenticated platform Practice Studio.
 
-- Embedded lesson questions: original ECHS questions.
-- Attached private-bank prompts: remain in authenticated school access.
-- Stable bank IDs, provenance, rights metadata and canonical chunks: not modified.
-- Public lesson package: contains no private source PDF, facsimile or bank JSON.
+The platform first loads questions mapped directly to the visible numeric lesson. It then adds compatible legacy aggregate mappings such as `u1-number`, `u1-sequences`, `u1-algebra`, and `u1-matrices`, rescoping them to the current visible lesson before filtering and adaptive selection. Source-content fingerprints are preserved for deduplication.
+
+## Access and rights boundary
+
+- Students reach the protected banks after completing the lesson or through a teacher assignment.
+- Teachers and administrators retain full course access.
+- Private prompts, answers, media, provenance, rights metadata, and stable IDs remain outside public GitHub Pages lesson assets.
+- Bank labels are neutral student-facing ECHS labels; source identities remain internal for audit.
