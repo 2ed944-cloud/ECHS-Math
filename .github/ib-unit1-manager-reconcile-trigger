@@ -1,5 +1,5 @@
 IB Mathematics AI Unit 1 exact Manager reconciliation
 Package SHA-256: b029480943c6a3f7dda1d032b3a2f6527d257e517093662efd6c2f7f7a5114a0
 Release PR: 79
-Dispatch sequence: 2026-07-29T19:06:00Z
-Resilient exact-SHA plus verified-filename fallback.
+Dispatch sequence: 2026-07-29T19:12:00Z
+Match exact SHA, Manager metadata, materialized result, destination, or verified filename.
