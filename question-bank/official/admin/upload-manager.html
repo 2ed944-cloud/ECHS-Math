@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/upload-manager.css?v=20260729-zip-mime-fix">
+  <link rel="stylesheet" href="css/upload-manager.css?v=20260729-chunked-upload">
 </head>
 <body class="institutionBody uploadManagerBody" data-require-account="teacher admin">
   <div class="uploadShell">
@@ -21,34 +21,26 @@
     </header>
     <main class="uploadMain">
       <section class="uploadHero">
-        <div><small>No terminal required</small><h1>Drop the ZIP.<br>The platform handles the rest.</h1><p>Upload a private question bank or a reviewed course unit. The package stays private, enters an automatic processing queue and reports every stage back here.</p></div>
-        <div class="heroSteps"><div class="heroStep"><b>1</b><span>Select or drop the ZIP</span></div><div class="heroStep"><b>2</b><span>Secure upload and SHA-256 verification</span></div><div class="heroStep"><b>3</b><span>Automatic import or pull request</span></div></div>
+        <div><small>No terminal required</small><h1>Drop the ZIP.<br>The platform handles the rest.</h1><p>Upload a private question bank or a reviewed course unit. Large packages are split into safe private parts, verified, reassembled and processed automatically.</p></div>
+        <div class="heroSteps"><div class="heroStep"><b>1</b><span>Select or drop the ZIP</span></div><div class="heroStep"><b>2</b><span>Secure multipart upload and SHA-256 verification</span></div><div class="heroStep"><b>3</b><span>Automatic import or pull request</span></div></div>
       </section>
       <div class="managerTabs"><button class="managerTab active" data-upload-kind="private-bank" type="button">Private Bank Manager</button><button class="managerTab" data-upload-kind="course-release" type="button">Course Release Manager</button></div>
       <section class="managerGrid">
         <article class="uploadCard">
-          <div class="cardHead"><small>Protected teacher workflow</small><h2 id="managerTitle">Upload a private question bank</h2><p id="managerCopy">Choose one ECHS private-bank ZIP. The manifest, trust contract, mappings and media are validated before the bank is connected to private practice.</p></div>
-          <div id="privateBankFields" class="releaseFields">
-            <div class="field"><label for="bankCourseKey">Target course</label><select id="bankCourseKey"><option value="">Auto-detect from package manifest</option><option value="ap-calculus">AP Calculus</option><option value="ap-precalculus">AP Precalculus</option><option value="ib-math-ai">IB Mathematics AI</option><option value="algebra-2">Algebra 2</option><option value="grade-9">Grade 9</option></select></div>
-          </div>
-          <div id="releaseFields" class="releaseFields hidden">
-            <div class="field"><label for="courseKey">Course</label><select id="courseKey"><option value="ap-precalculus">AP Precalculus</option><option value="ib-math-ai">IB Mathematics AI</option><option value="ap-calculus">AP Calculus</option><option value="algebra-2">Algebra 2</option><option value="grade-9">Grade 9</option></select></div>
-            <div class="field"><label for="unitKey">Unit number / key</label><input id="unitKey" placeholder="4"></div>
-          </div>
+          <div class="cardHead"><small>Protected teacher workflow</small><h2 id="managerTitle">Upload a private question bank</h2><p id="managerCopy">Choose one ECHS private-bank ZIP. Large packages are uploaded automatically in free-tier-safe parts and reassembled before validation.</p></div>
+          <div id="privateBankFields" class="releaseFields"><div class="field"><label for="bankCourseKey">Target course</label><select id="bankCourseKey"><option value="">Auto-detect from package manifest</option><option value="ap-calculus">AP Calculus</option><option value="ap-precalculus">AP Precalculus</option><option value="ib-math-ai">IB Mathematics AI</option><option value="algebra-2">Algebra 2</option><option value="grade-9">Grade 9</option></select></div></div>
+          <div id="releaseFields" class="releaseFields hidden"><div class="field"><label for="courseKey">Course</label><select id="courseKey"><option value="ap-precalculus">AP Precalculus</option><option value="ib-math-ai">IB Mathematics AI</option><option value="ap-calculus">AP Calculus</option><option value="algebra-2">Algebra 2</option><option value="grade-9">Grade 9</option></select></div><div class="field"><label for="unitKey">Unit number / key</label><input id="unitKey" placeholder="4"></div></div>
           <div class="dropZone" id="dropZone"><input id="zipFile" type="file" accept=".zip,application/zip"><div><div class="dropIcon">⬆</div><h3>Drop a ZIP package here</h3><p>or click to choose a file · maximum 150 MB</p></div></div>
           <div class="fileSummary hidden" id="fileSummary"><strong id="fileName"></strong><small id="fileMeta"></small></div>
           <div class="uploadActions"><button class="button primary" id="startUpload" type="button" disabled>Validate and Upload</button><button class="button secondary" id="clearUpload" type="button">Clear</button></div>
           <div class="progressWrap"><div class="progressTrack"><div class="progressBar" id="progressBar"></div></div><div class="progressMeta"><span id="progressStage">Ready for a ZIP package</span><strong id="progressPercent">0%</strong></div></div>
-          <div class="notice">For private banks, the selected course is checked against <code>target_courses</code> in the package manifest. Windows ZIP files are normalised to <code>application/zip</code> before private storage upload. A package left at <strong>Created</strong> can be retried by pressing Validate and Upload again.</div>
+          <div class="notice">Packages larger than 40 MB are divided automatically into private parts below the Supabase Free-plan object limit. The processor reassembles the original ZIP, verifies its full SHA-256 fingerprint and size, then imports it normally. A package left at <strong>Created</strong> can be retried safely.</div>
         </article>
-        <aside class="historyCard">
-          <div class="historyHead"><div class="cardHead"><small>Live processing queue</small><h2>Recent uploads</h2><p>Keep this page open or return later. Progress is stored in the institutional database.</p></div><button class="button historyClear" id="clearTerminalRequests" type="button" disabled>Clear completed &amp; failed</button></div>
-          <div class="requestList" id="requestList"><div class="emptyHistory">Loading upload history…</div></div>
-        </aside>
+        <aside class="historyCard"><div class="historyHead"><div class="cardHead"><small>Live processing queue</small><h2>Recent uploads</h2><p>Keep this page open or return later. Progress is stored in the institutional database.</p></div><button class="button historyClear" id="clearTerminalRequests" type="button" disabled>Clear completed &amp; failed</button></div><div class="requestList" id="requestList"><div class="emptyHistory">Loading upload history…</div></div></aside>
       </section>
     </main>
   </div>
   <script src="../../../js/institution-client.js"></script>
-  <script src="js/upload-manager.js?v=20260729-zip-mime-fix"></script>
+  <script src="js/upload-manager.js?v=20260729-chunked-upload"></script>
 </body>
 </html>
