@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 """Streaming/recoverable Teacher Upload processor.
 
-It reuses the stable course-release implementation and replaces only queued-bank
-selection and bank importing with a resumable, visible fast path.
+It reuses the stable course-release implementation and replaces queued-bank
+selection, staged-package download, and bank importing with resumable paths.
 """
 from __future__ import annotations
 
+import hashlib
 import json
 import subprocess
 import sys
@@ -30,6 +31,43 @@ def queued(request_id: str = ""):
         }, safe=",().")
     rows = base.request("GET", f"/rest/v1/teacher_upload_requests?{query}") or []
     return rows[0] if rows else None
+
+
+def _download_object(path: str) -> bytes:
+    encoded = "/".join(urllib.parse.quote(part, safe="._+-") for part in path.split("/"))
+    return base.request("GET", f"/storage/v1/object/{base.BUCKET}/{encoded}")
+
+
+def download(row: dict, destination: Path):
+    """Download either a legacy single object or a chunked staged ZIP.
+
+    The browser always records a chunk plan, including one-part uploads. The
+    canonical ``object_path`` is only the base name; the stored objects are the
+    ``part_paths`` in ``result.staging``. Downloading ``object_path`` directly
+    therefore returns HTTP 400 for every newly uploaded package.
+    """
+    staging = (row.get("result") or {}).get("staging") or {}
+    part_paths = staging.get("part_paths") if staging.get("upload_mode") == "chunked" else None
+    paths = [str(path) for path in (part_paths or [row["object_path"]]) if str(path).strip()]
+    if not paths:
+        raise RuntimeError("The upload request does not contain any staged object paths")
+
+    digest = hashlib.sha256()
+    total = 0
+    with destination.open("wb") as handle:
+        for index, path in enumerate(paths, start=1):
+            data = _download_object(path)
+            handle.write(data)
+            digest.update(data)
+            total += len(data)
+            print(f"Reassembled staged part {index}/{len(paths)}: {path} ({len(data)} bytes)", flush=True)
+
+    expected_size = int(row["file_size_bytes"])
+    actual_sha = digest.hexdigest()
+    if total != expected_size:
+        raise RuntimeError(f"Reassembled ZIP size mismatch: expected {expected_size}, got {total}")
+    if actual_sha != row["sha256"]:
+        raise RuntimeError(f"SHA-256 mismatch: expected {row['sha256']}, got {actual_sha}")
 
 
 def process_bank(row: dict, package: Path):
@@ -70,6 +108,7 @@ def process_bank(row: dict, package: Path):
 
 
 base.queued = queued
+base.download = download
 base.process_bank = process_bank
 
 if __name__ == "__main__":
