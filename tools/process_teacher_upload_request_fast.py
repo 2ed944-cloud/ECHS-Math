@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Streaming/recoverable Teacher Upload processor.
 
-It reuses the stable course-release implementation and replaces queued-bank
-selection, staged-package download, and bank importing with resumable paths.
+It reuses the stable course-release implementation, adds validated IB Mathematics
+AI lesson releases, and replaces queued-bank selection, staged-package download,
+and bank importing with resumable paths.
 """
 from __future__ import annotations
 
@@ -14,8 +15,10 @@ import urllib.parse
 from pathlib import Path
 
 import process_teacher_upload_request as base
+import process_ib_lesson_release as ib_release
 
 ROOT = Path(__file__).resolve().parents[1]
+_stable_course_processor = base.process_course
 
 
 def queued(request_id: str = ""):
@@ -39,13 +42,7 @@ def _download_object(path: str) -> bytes:
 
 
 def download(row: dict, destination: Path):
-    """Download either a legacy single object or a chunked staged ZIP.
-
-    The browser always records a chunk plan, including one-part uploads. The
-    canonical ``object_path`` is only the base name; the stored objects are the
-    ``part_paths`` in ``result.staging``. Downloading ``object_path`` directly
-    therefore returns HTTP 400 for every newly uploaded package.
-    """
+    """Download either a legacy single object or a chunked staged ZIP."""
     staging = (row.get("result") or {}).get("staging") or {}
     part_paths = staging.get("part_paths") if staging.get("upload_mode") == "chunked" else None
     paths = [str(path) for path in (part_paths or [row["object_path"]]) if str(path).strip()]
@@ -68,6 +65,13 @@ def download(row: dict, destination: Path):
         raise RuntimeError(f"Reassembled ZIP size mismatch: expected {expected_size}, got {total}")
     if actual_sha != row["sha256"]:
         raise RuntimeError(f"SHA-256 mismatch: expected {row['sha256']}, got {actual_sha}")
+
+
+def process_course(row: dict, package: Path):
+    course = str(row.get("course_key") or "").strip()
+    if course == "ib-math-ai":
+        return ib_release.process_ib_ai_release(ROOT, row, package, base.safe_extract)
+    return _stable_course_processor(row, package)
 
 
 def process_bank(row: dict, package: Path):
@@ -109,6 +113,7 @@ def process_bank(row: dict, package: Path):
 
 base.queued = queued
 base.download = download
+base.process_course = process_course
 base.process_bank = process_bank
 
 if __name__ == "__main__":
