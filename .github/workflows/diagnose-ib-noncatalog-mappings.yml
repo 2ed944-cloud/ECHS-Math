@@ -28,6 +28,8 @@ jobs:
           import json
           import os
           import re
+          import time
+          import urllib.error
           import urllib.parse
           import urllib.request
 
@@ -46,16 +48,35 @@ jobs:
                   if re.fullmatch(r'\d+\.\d+',number):
                       allowed[number]=(unit_number,str(lesson['skill_id']))
 
-          def get_rows(page_size=500):
-              out=[]; offset=0
-              select='question_id,bank_code,course_mappings,payload,student_visible,mapping_verified,trust_tier'
+          def request_json(url,extra_headers=None,retries=5):
+              last=None
+              for attempt in range(retries):
+                  try:
+                      req=urllib.request.Request(url,headers={**headers,**(extra_headers or {})})
+                      with urllib.request.urlopen(req,timeout=180) as response:return json.load(response)
+                  except (urllib.error.HTTPError,urllib.error.URLError,TimeoutError) as error:
+                      last=error
+                      if attempt+1<retries:time.sleep(1.5*(attempt+1))
+              raise last
+
+          def get_mapping_rows(page_size=1000):
+              out=[]; offset=0; select='question_id,bank_code,course_mappings'
               while True:
                   query=urllib.parse.urlencode({'select':select,'order':'question_id.asc'},safe=',.*()[]:{}"')
-                  req=urllib.request.Request(f'{base}/rest/v1/private_bank_questions?{query}',headers={**headers,'range':f'{offset}-{offset+page_size-1}'})
-                  with urllib.request.urlopen(req,timeout=180) as response: page=json.load(response)
+                  page=request_json(f'{base}/rest/v1/private_bank_questions?{query}',{'range':f'{offset}-{offset+page_size-1}'})
                   out.extend(page)
                   if len(page)<page_size:return out
                   offset+=len(page)
+
+          def get_payloads(question_ids,chunk_size=40):
+              out={}
+              for start in range(0,len(question_ids),chunk_size):
+                  chunk=question_ids[start:start+chunk_size]
+                  values=','.join(json.dumps(str(value)) for value in chunk)
+                  query=urllib.parse.urlencode({'select':'question_id,payload','question_id':f'in.({values})'},safe=',.*()[]:{}"')
+                  for row in request_json(f'{base}/rest/v1/private_bank_questions?{query}'):
+                      out[str(row.get('question_id'))]=row.get('payload') if isinstance(row.get('payload'),dict) else {}
+              return out
 
           rules={
             'u1-number':[(r'\bstandard form\b|scientific notation',8),(r'significant figure|decimal place|round(?:ing|ed)?|upper bound|lower bound|percentage error|absolute error|approximation',6),(r'\bnumber system\b|surds?|radicals?',3)],
@@ -91,67 +112,39 @@ jobs:
               return re.sub(r'\s+',' ',text).lower()
 
           def classify(text):
-              scores={}
-              for lesson,patterns in rules.items():
-                  scores[lesson]=sum(weight for pattern,weight in patterns if re.search(pattern,text,re.I))
+              scores={lesson:sum(weight for pattern,weight in patterns if re.search(pattern,text,re.I)) for lesson,patterns in rules.items()}
               ranked=sorted(scores.items(),key=lambda item:(-item[1],item[0]))
-              best,score=ranked[0]
-              second=ranked[1][1]
+              best,score=ranked[0];second=ranked[1][1]
               return best,score,score-second
 
           def safe_topic_values(payload):
-              found=[]
-              containers=[payload,payload.get('classification') or {},payload.get('metadata') or {},payload.get('source') or {}]
+              found=[];containers=[payload,payload.get('classification') or {},payload.get('metadata') or {},payload.get('source') or {}]
               keys=('topic','topic_title','subtopic','category','strand','unit','lesson','lesson_key','skill_key','syllabus','objective','tags')
               for container in containers:
                   if not isinstance(container,dict):continue
                   for name in keys:
-                      value=container.get(name)
-                      values=value if isinstance(value,list) else [value]
+                      value=container.get(name);values=value if isinstance(value,list) else [value]
                       for item in values:
                           text=str(item or '').strip()
-                          if text and len(text)<=80 and '<' not in text and '\n' not in text:
-                              found.append(f'{name}={text}')
+                          if text and len(text)<=80 and '<' not in text and '\n' not in text:found.append(f'{name}={text}')
               return found
 
-          noncatalog=[]
-          for row in get_rows():
-              mappings=[m for m in (row.get('course_mappings') or []) if str((m or {}).get('course') or '')=='ib-math-ai']
-              for mapping in mappings:
-                  lesson=str((mapping or {}).get('lesson_key') or '')
-                  unit=int((mapping or {}).get('unit') or -1)
-                  canonical=allowed.get(lesson)
+          metadata=[]
+          for row in get_mapping_rows():
+              for mapping in [m for m in (row.get('course_mappings') or []) if str((m or {}).get('course') or '')=='ib-math-ai']:
+                  lesson=str((mapping or {}).get('lesson_key') or '');unit=int((mapping or {}).get('unit') if (mapping or {}).get('unit') is not None else -1);canonical=allowed.get(lesson)
                   if canonical and canonical[0]==unit:continue
-                  payload=row.get('payload') if isinstance(row.get('payload'),dict) else {}
-                  text=strip_prompt(payload)
-                  predicted,score,margin=classify(text)
-                  noncatalog.append({
-                    'bank_code':str(row.get('bank_code') or 'UNKNOWN'),
-                    'stored_unit':unit,
-                    'stored_lesson':lesson,
-                    'predicted_lesson':predicted,
-                    'score':score,
-                    'margin':margin,
-                    'question_type':str(payload.get('type') or payload.get('question_type') or 'unknown'),
-                    'hints':safe_topic_values(payload)
-                  })
+                  metadata.append({'question_id':str(row.get('question_id')),'bank_code':str(row.get('bank_code') or 'UNKNOWN'),'stored_unit':unit,'stored_lesson':lesson})
 
-          by_current=collections.Counter((r['stored_unit'],r['stored_lesson']) for r in noncatalog)
-          by_bank=collections.Counter(r['bank_code'] for r in noncatalog)
-          by_prediction=collections.Counter(r['predicted_lesson'] for r in noncatalog)
-          confidence=collections.Counter('high' if r['score']>=7 and r['margin']>=3 else 'medium' if r['score']>=4 and r['margin']>=1 else 'low' for r in noncatalog)
-          hints=collections.Counter(hint for row in noncatalog for hint in row['hints'])
-          cross=collections.Counter((r['stored_lesson'],r['predicted_lesson']) for r in noncatalog)
-          output={
-            'allowed_catalog_keys':len(allowed),
-            'noncatalog_rows':len(noncatalog),
-            'by_current_mapping':{f'{unit}:{lesson}':count for (unit,lesson),count in sorted(by_current.items())},
-            'by_bank':dict(by_bank.most_common()),
-            'predicted_lessons':dict(by_prediction.most_common()),
-            'confidence':dict(confidence),
-            'top_safe_metadata_hints':dict(hints.most_common(80)),
-            'current_to_prediction':{f'{current} -> {predicted}':count for (current,predicted),count in cross.most_common(80)}
-          }
+          payloads=get_payloads([row['question_id'] for row in metadata])
+          noncatalog=[]
+          for row in metadata:
+              payload=payloads.get(row['question_id'],{});predicted,score,margin=classify(strip_prompt(payload))
+              noncatalog.append({**row,'predicted_lesson':predicted,'score':score,'margin':margin,'question_type':str(payload.get('type') or payload.get('question_type') or 'unknown'),'hints':safe_topic_values(payload)})
+
+          by_current=collections.Counter((r['stored_unit'],r['stored_lesson']) for r in noncatalog);by_bank=collections.Counter(r['bank_code'] for r in noncatalog);by_prediction=collections.Counter(r['predicted_lesson'] for r in noncatalog)
+          confidence=collections.Counter('high' if r['score']>=7 and r['margin']>=3 else 'medium' if r['score']>=4 and r['margin']>=1 else 'low' for r in noncatalog);hints=collections.Counter(hint for row in noncatalog for hint in row['hints']);cross=collections.Counter((r['stored_lesson'],r['predicted_lesson']) for r in noncatalog)
+          output={'allowed_catalog_keys':len(allowed),'noncatalog_rows':len(noncatalog),'by_current_mapping':{f'{unit}:{lesson}':count for (unit,lesson),count in sorted(by_current.items())},'by_bank':dict(by_bank.most_common()),'predicted_lessons':dict(by_prediction.most_common()),'confidence':dict(confidence),'top_safe_metadata_hints':dict(hints.most_common(80)),'current_to_prediction':{f'{current} -> {predicted}':count for (current,predicted),count in cross.most_common(80)}}
           print('IB_NONCATALOG_MAPPING_DIAGNOSTIC=')
           print(json.dumps(output,indent=2,sort_keys=True))
           if not noncatalog:print('All IB mappings already resolve to the lesson catalogue.')
