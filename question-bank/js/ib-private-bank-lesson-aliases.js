@@ -41,8 +41,8 @@
   }
 
   function visibleLabel(question,row){
-    const aliases=question.display_bank_aliases||{};
-    return aliases.student||aliases[requestedCourse]||aliases.teacher||FALLBACK_LABELS[question.bank_code||row?.bank_code]||question.bank_code||row?.bank_code;
+    const aliases=question.display_bank_aliases||{},code=question.bank_code||row?.bank_code;
+    return aliases.student||aliases[requestedCourse]||FALLBACK_LABELS[code]||aliases.teacher||code;
   }
 
   function scopeQuestion(question,sourceLesson){
@@ -145,7 +145,7 @@
       window.dispatchEvent(new CustomEvent("echs:ib-private-banks-linked",{detail:{lesson:requestedLesson,total:out.filter(question=>question._private_bank).length}}));
       return out;
     };
-    ECHSBank.bankLabel=code=>dynamicLabels.get(code)||FALLBACK_LABELS[code]||originalLabel(code);
+    ECHSBank.bankLabel=code=>FALLBACK_LABELS[code]||dynamicLabels.get(code)||originalLabel(code);
     document.documentElement.dataset.ibLessonAliasLayer="ready";
     document.documentElement.dataset.ibVisibleLesson=requestedLesson;
   }
