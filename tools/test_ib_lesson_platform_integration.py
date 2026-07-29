@@ -116,7 +116,7 @@ def validate_source(root: Path, errors: list[str]) -> None:
     require(engine, (
         "renderPractice()",
         "routeButtons.forEach",
-        "data.route",
+        "button.dataset.route",
     ), "IB lesson engine", errors)
 
     lesson_root = root / "lessons/ib-math-ai/unit-1/lessons"
