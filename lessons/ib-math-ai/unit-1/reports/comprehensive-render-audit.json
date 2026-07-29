@@ -1,0 +1,229 @@
+{
+  "summary": {
+    "lessons": 8,
+    "passed": 8,
+    "learn_screens_checked": 392,
+    "practice_cards_checked": 320,
+    "quiz_cards_checked": 80,
+    "exam_tasks_checked": 16,
+    "failed": []
+  },
+  "results": [
+    {
+      "lesson": "IB_AI_SL_1.1_standard_form_ECHS.html",
+      "learn": {
+        "checked": 49,
+        "math_errors": [],
+        "overflow": []
+      },
+      "practice": {
+        "checked": 40,
+        "math_errors": [],
+        "overflow": []
+      },
+      "quiz": {
+        "checked": 10,
+        "math_errors": [],
+        "overflow": []
+      },
+      "exam": {
+        "tasks": 2,
+        "parts": 9,
+        "math_errors": 0,
+        "overflow": 0
+      },
+      "console": [],
+      "page_errors": [],
+      "pass": true
+    },
+    {
+      "lesson": "IB_AI_SL_1.2_arithmetic_sequences_ECHS.html",
+      "learn": {
+        "checked": 49,
+        "math_errors": [],
+        "overflow": []
+      },
+      "practice": {
+        "checked": 40,
+        "math_errors": [],
+        "overflow": []
+      },
+      "quiz": {
+        "checked": 10,
+        "math_errors": [],
+        "overflow": []
+      },
+      "exam": {
+        "tasks": 2,
+        "parts": 9,
+        "math_errors": 0,
+        "overflow": 0
+      },
+      "console": [],
+      "page_errors": [],
+      "pass": true
+    },
+    {
+      "lesson": "IB_AI_SL_1.3_geometric_sequences_ECHS.html",
+      "learn": {
+        "checked": 49,
+        "math_errors": [],
+        "overflow": []
+      },
+      "practice": {
+        "checked": 40,
+        "math_errors": [],
+        "overflow": []
+      },
+      "quiz": {
+        "checked": 10,
+        "math_errors": [],
+        "overflow": []
+      },
+      "exam": {
+        "tasks": 2,
+        "parts": 9,
+        "math_errors": 0,
+        "overflow": 0
+      },
+      "console": [],
+      "page_errors": [],
+      "pass": true
+    },
+    {
+      "lesson": "IB_AI_SL_1.4_financial_models_ECHS.html",
+      "learn": {
+        "checked": 49,
+        "math_errors": [],
+        "overflow": []
+      },
+      "practice": {
+        "checked": 40,
+        "math_errors": [],
+        "overflow": []
+      },
+      "quiz": {
+        "checked": 10,
+        "math_errors": [],
+        "overflow": []
+      },
+      "exam": {
+        "tasks": 2,
+        "parts": 9,
+        "math_errors": 0,
+        "overflow": 0
+      },
+      "console": [],
+      "page_errors": [],
+      "pass": true
+    },
+    {
+      "lesson": "IB_AI_SL_1.5_logarithms_ECHS.html",
+      "learn": {
+        "checked": 49,
+        "math_errors": [],
+        "overflow": []
+      },
+      "practice": {
+        "checked": 40,
+        "math_errors": [],
+        "overflow": []
+      },
+      "quiz": {
+        "checked": 10,
+        "math_errors": [],
+        "overflow": []
+      },
+      "exam": {
+        "tasks": 2,
+        "parts": 9,
+        "math_errors": 0,
+        "overflow": 0
+      },
+      "console": [],
+      "page_errors": [],
+      "pass": true
+    },
+    {
+      "lesson": "IB_AI_SL_1.6_approximation_error_ECHS.html",
+      "learn": {
+        "checked": 49,
+        "math_errors": [],
+        "overflow": []
+      },
+      "practice": {
+        "checked": 40,
+        "math_errors": [],
+        "overflow": []
+      },
+      "quiz": {
+        "checked": 10,
+        "math_errors": [],
+        "overflow": []
+      },
+      "exam": {
+        "tasks": 2,
+        "parts": 10,
+        "math_errors": 0,
+        "overflow": 0
+      },
+      "console": [],
+      "page_errors": [],
+      "pass": true
+    },
+    {
+      "lesson": "IB_AI_SL_1.7_loans_annuities_ECHS.html",
+      "learn": {
+        "checked": 49,
+        "math_errors": [],
+        "overflow": []
+      },
+      "practice": {
+        "checked": 40,
+        "math_errors": [],
+        "overflow": []
+      },
+      "quiz": {
+        "checked": 10,
+        "math_errors": [],
+        "overflow": []
+      },
+      "exam": {
+        "tasks": 2,
+        "parts": 10,
+        "math_errors": 0,
+        "overflow": 0
+      },
+      "console": [],
+      "page_errors": [],
+      "pass": true
+    },
+    {
+      "lesson": "IB_AI_SL_1.8_technology_equations_ECHS.html",
+      "learn": {
+        "checked": 49,
+        "math_errors": [],
+        "overflow": []
+      },
+      "practice": {
+        "checked": 40,
+        "math_errors": [],
+        "overflow": []
+      },
+      "quiz": {
+        "checked": 10,
+        "math_errors": [],
+        "overflow": []
+      },
+      "exam": {
+        "tasks": 2,
+        "parts": 10,
+        "math_errors": 0,
+        "overflow": 0
+      },
+      "console": [],
+      "page_errors": [],
+      "pass": true
+    }
+  ]
+}

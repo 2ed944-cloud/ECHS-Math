@@ -1,0 +1,58 @@
+{
+  "version": "1.0.1",
+  "build_date": "2026-07-29",
+  "release_state": "ready-for-platform-integration",
+  "curriculum_target": "Current IB Mathematics: Applications and Interpretation SL course, assessment sessions through 2028",
+  "counts": {
+    "lessons": 8,
+    "learn_screens": 392,
+    "practice_questions": 320,
+    "quiz_questions": 80,
+    "extended_tasks": 16,
+    "numeric_auto_checks": 385
+  },
+  "static_validation": {
+    "status": "passed",
+    "counts_and_level_balance": "passed",
+    "unique_ids": "passed",
+    "prompt_uniqueness": "passed",
+    "exam_mark_totals": "passed",
+    "no_packaged_fonts": "passed",
+    "private_prompts_embedded": false
+  },
+  "question_audit": {
+    "status": "passed",
+    "errors": 0,
+    "warnings": 0,
+    "numeric_checks_verified": 385
+  },
+  "browser_smoke_and_responsive_qa": {
+    "tests": 18,
+    "passed": 18,
+    "failed": [],
+    "viewports": [
+      "1440x900",
+      "390x844"
+    ],
+    "console_errors": 0,
+    "page_errors": 0
+  },
+  "comprehensive_render_audit": {
+    "lessons": 8,
+    "passed": 8,
+    "learn_screens_checked": 392,
+    "practice_cards_checked": 320,
+    "quiz_cards_checked": 80,
+    "exam_tasks_checked": 16,
+    "failed": []
+  },
+  "scientific_notation_input_tests": {
+    "unicode_multiplication_text_response": "passed",
+    "unicode_multiplication_numeric_response": "passed"
+  },
+  "javascript_syntax": {
+    "engine.js": "passed",
+    "katex.js": "passed"
+  },
+  "transition_note": "Lesson 1.5 is retained for the current course. Re-crosswalk before first-assessment-2029 use because logarithms are removed from revised AI SL."
+}

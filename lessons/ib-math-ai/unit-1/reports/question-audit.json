@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "totals": {
+    "lessons": 8,
+    "slides": 392,
+    "practice": 320,
+    "quiz": 80,
+    "exam": 16,
+    "numeric_checks": 385
+  },
+  "errors": [],
+  "warnings": []
+}
