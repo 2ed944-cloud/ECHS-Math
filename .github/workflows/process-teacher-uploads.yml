@@ -1,11 +1,6 @@
 name: Process Teacher Uploads
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - ".github/teacher-upload-recovery-trigger"
   schedule:
     - cron: "*/5 * * * *"
   workflow_dispatch:
