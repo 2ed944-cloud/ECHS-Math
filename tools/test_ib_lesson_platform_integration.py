@@ -71,26 +71,30 @@ def validate_source(root: Path, errors: list[str]) -> None:
         "checking uploaded banks",
         "echs:bundle-progress",
         "echs:private-bank-summary",
-        "const pageSize=500",
-        "for(let index=0;index<pageCount;index+=1)",
-        "expectedUnit!==mappedUnit",
+        "const pageSize=200",
+        "for(let index=1;index<pageCount;index+=1)",
+        "ibLessonUnits.get(lessonKey)!==mappedUnit",
+        "refreshInventory",
+        "questions ready now",
+        "non-catalog mappings withheld",
+        "result.stream.then",
         "private_bank_only",
         "private-upload-manager",
         "AP Calculus fallback banks were intentionally blocked",
-        "return mergeUnique(activeCourse,[result.questions])",
+        "return result.questions",
     ), "IB private-bank course browser", errors)
     require(bank, ('row.course_key==="ib-math-ai"', "static_compatibility_blocked", 'row?.course_key==="ib-math-ai"||row?.private_bank_only', 'dataset.ibStaticCompatibility="blocked"'), "Core IB static-bank block", errors)
     require(aliases, ("IB Mathematics AI Bank 1", "IB Mathematics AI Bank 10", '"1.1":["u1-number"', '"1.6":["u1-number"', '"1.7":["u1-sequences"', '"1.8":["u1-algebra","u1-matrices"', "classification.ap_topic=requestedLesson", "classification.ib_lesson=requestedLesson", "ECHSBank.loadBundle=async", "source_content_fingerprint", "u1-modeling"), "IB private-bank alias layer", errors)
-    require(practice, ("bank.js?v=20260730-ibhardblock1", "practice-global-bridge.js?v=20260730-ibmapped1", "private-bank-practice.js?v=20260730-ibmapped1", "ib-private-bank-lesson-aliases.js?v=20260730-ibmapped1", "practice.js?v=20260730-ibmapped1"), "Focused practice page", errors)
+    require(practice, ("bank.js?v=20260730-ibhardblock1", "practice-global-bridge.js?v=20260730-ibstream2", "private-bank-practice.js?v=20260730-ibstream2", "ib-private-bank-lesson-aliases.js?v=20260730-ibstream2", "practice.js?v=20260730-ibstream2"), "Focused practice page", errors)
     bank_index = practice.find('src="js/bank.js')
     global_index = practice.find('src="js/practice-global-bridge.js')
     private_index = practice.find('src="js/private-bank-practice.js')
     alias_index = practice.find('src="js/ib-private-bank-lesson-aliases.js')
-    practice_index = practice.find('src="js/practice.js?v=20260730-ibmapped1')
+    practice_index = practice.find('src="js/practice.js?v=20260730-ibstream2')
     if not (0 <= bank_index < global_index < private_index < alias_index < practice_index):
         errors.append("Focused practice scripts are not ordered bank → global bridge → private base → IB aliases → practice controller")
     require(injector, ("ib-lesson-platform-integration.css", "ib-lesson-platform-integration.js", 'resolved_course == "ib-math-ai"', "20260729-iblinks1"), "Pages guard injector", errors)
-    require(worker, ("ibmapped1", "./css/ib-lesson-platform-integration.css", "./js/ib-lesson-platform-integration.js", "./question-bank/js/practice-global-bridge.js", "./question-bank/js/private-bank-practice.js", "./question-bank/js/ib-private-bank-lesson-aliases.js", "question-bank\\/js\\/(?:bank|practice|"), "Service worker", errors)
+    require(worker, ("ibstream2", "./css/ib-lesson-platform-integration.css", "./js/ib-lesson-platform-integration.js", "./question-bank/js/practice-global-bridge.js", "./question-bank/js/private-bank-practice.js", "./question-bank/js/ib-private-bank-lesson-aliases.js", "question-bank\\/js\\/(?:bank|practice|"), "Service worker", errors)
     require(engine, ("renderPractice()", "routeButtons.forEach", "button.dataset.route"), "IB lesson engine", errors)
 
     lesson_root = root / "lessons/ib-math-ai/unit-1/lessons"
