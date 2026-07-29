@@ -12,10 +12,17 @@ await context.addInitScript(payload=>{
 },session);
 const page=await context.newPage();
 if(process.env.ECHS_ROUTE_BRANCH==='1'){
-  const practice=await readFile('question-bank/practice.html','utf8');
-  const bridge=await readFile('question-bank/js/practice-global-bridge.js','utf8');
-  await page.route('**/question-bank/practice.html*',route=>route.fulfill({status:200,contentType:'text/html; charset=utf-8',body:practice}));
-  await page.route('**/question-bank/js/practice-global-bridge.js*',route=>route.fulfill({status:200,contentType:'application/javascript; charset=utf-8',body:bridge}));
+  const routed=[
+    ['**/question-bank/practice.html*','question-bank/practice.html','text/html; charset=utf-8'],
+    ['**/question-bank/js/practice-global-bridge.js*','question-bank/js/practice-global-bridge.js','application/javascript; charset=utf-8'],
+    ['**/question-bank/js/private-bank-practice.js*','question-bank/js/private-bank-practice.js','application/javascript; charset=utf-8'],
+    ['**/question-bank/js/ib-private-bank-lesson-aliases.js*','question-bank/js/ib-private-bank-lesson-aliases.js','application/javascript; charset=utf-8'],
+    ['**/question-bank/js/practice.js*','question-bank/js/practice.js','application/javascript; charset=utf-8'],
+  ];
+  for(const [pattern,path,contentType] of routed){
+    const body=await readFile(path,'utf8');
+    await page.route(pattern,route=>route.fulfill({status:200,contentType,body}));
+  }
 }
 const consoleErrors=[],pageErrors=[],apiResponses=[],failedRequests=[];
 page.on('console',message=>{if(['error','warning'].includes(message.type()))consoleErrors.push({type:message.type(),text:message.text().slice(0,500)})});
@@ -28,7 +35,7 @@ page.on('response',async response=>{
 });
 const url=`${base}/question-bank/practice.html?course=ib-math-ai&diagnostic=${Date.now()}`;
 await page.goto(url,{waitUntil:'domcontentloaded',timeout:120000});
-await page.waitForTimeout(30000);
+await page.waitForTimeout(45000);
 const result=await page.evaluate(()=>({
   href:location.pathname+location.search,
   title:document.title,
