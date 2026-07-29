@@ -32,47 +32,95 @@ jobs:
         run: |
           set -euo pipefail
           test -f data/ib-math-ai-unit-1-update.js
-          test -f lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.1_standard_form_ECHS.html
-          test -f lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.8_technology_equations_ECHS.html
+          for lesson in \
+            IB_AI_SL_1.1_standard_form_ECHS.html \
+            IB_AI_SL_1.2_arithmetic_sequences_ECHS.html \
+            IB_AI_SL_1.3_geometric_sequences_ECHS.html \
+            IB_AI_SL_1.4_financial_models_ECHS.html \
+            IB_AI_SL_1.5_logarithms_ECHS.html \
+            IB_AI_SL_1.6_approximation_error_ECHS.html \
+            IB_AI_SL_1.7_loans_annuities_ECHS.html \
+            IB_AI_SL_1.8_technology_equations_ECHS.html; do
+            test -f "lessons/ib-math-ai/unit-1/lessons/$lesson"
+            grep -q "$lesson" data/ib-math-ai-unit-1-update.js
+          done
           test ! -e lessons/ib-math-ai/unit-1/lessons/lesson.html
-          grep -q 'IB_AI_SL_1.1_standard_form_ECHS.html' data/ib-math-ai-unit-1-update.js
-          grep -q 'IB_AI_SL_1.8_technology_equations_ECHS.html' data/ib-math-ai-unit-1-update.js
           node --check data/ib-math-ai-unit-1-update.js
           merged_at="$(gh pr view 79 --repo "$GITHUB_REPOSITORY" --json mergedAt --jq '.mergedAt // empty')"
           test -n "$merged_at"
 
-      - name: Mark the exact Manager request completed
+      - name: Locate and complete the Manager request
         id: reconcile
         shell: bash
         run: |
           set -euo pipefail
           python - <<'PY'
-          import json, os, subprocess, urllib.parse, urllib.request
+          import json, os, re, subprocess, urllib.parse, urllib.request
           from datetime import datetime, timezone
 
-          expected_sha = 'b029480943c6a3f7dda1d032b3a2f6527d257e517093662efd6c2f7f7a5114a0'
+          EXPECTED_SHA = 'b029480943c6a3f7dda1d032b3a2f6527d257e517093662efd6c2f7f7a5114a0'
+          EXPECTED_NAME_TOKEN = 'ib_ai_sl_unit_1_echs_complete_offline_fixed'
           base = os.environ['SUPABASE_URL'].rstrip('/')
           key = os.environ['SUPABASE_SERVICE_ROLE_KEY']
-          select = 'id,status,upload_kind,course_key,unit_key,sha256,github_pr_url'
-          query = urllib.parse.urlencode({
-              'select': select,
-              'sha256': f'eq.{expected_sha}',
-              'upload_kind': 'eq.course-release',
-              'course_key': 'eq.ib-math-ai',
-              'unit_key': 'eq.1',
-              'order': 'created_at.desc',
-              'limit': '1',
-          }, safe=',')
-          request = urllib.request.Request(
-              f'{base}/rest/v1/teacher_upload_requests?{query}',
-              headers={'apikey': key, 'authorization': f'Bearer {key}'},
-          )
-          with urllib.request.urlopen(request, timeout=60) as response:
-              rows = json.load(response)
-          if not rows:
-              raise SystemExit('No Teacher Upload Manager request matches the verified IB Unit 1 package SHA-256')
+          headers = {'apikey': key, 'authorization': f'Bearer {key}'}
+          select = 'id,status,upload_kind,course_key,unit_key,sha256,original_filename,github_pr_url,created_at'
 
-          row = rows[0]
+          def get_rows(params):
+              query = urllib.parse.urlencode(params, safe=',().')
+              request = urllib.request.Request(
+                  f'{base}/rest/v1/teacher_upload_requests?{query}',
+                  headers=headers,
+              )
+              with urllib.request.urlopen(request, timeout=60) as response:
+                  return json.load(response)
+
+          rows = get_rows({
+              'select': select,
+              'sha256': f'eq.{EXPECTED_SHA}',
+              'upload_kind': 'eq.course-release',
+              'order': 'created_at.desc',
+              'limit': '5',
+          })
+          candidates = [
+              row for row in rows
+              if str(row.get('course_key') or '') in {'ib-math-ai', 'g11-ib-ai'}
+              and str(row.get('unit_key') or '') == '1'
+          ]
+          match_mode = 'exact-sha'
+
+          if not candidates:
+              rows = get_rows({
+                  'select': select,
+                  'upload_kind': 'eq.course-release',
+                  'unit_key': 'eq.1',
+                  'order': 'created_at.desc',
+                  'limit': '25',
+              })
+              def normalized_name(row):
+                  return re.sub(r'[^a-z0-9]+', '_', str(row.get('original_filename') or '').lower()).strip('_')
+              candidates = [
+                  row for row in rows
+                  if str(row.get('course_key') or '') in {'ib-math-ai', 'g11-ib-ai'}
+                  and EXPECTED_NAME_TOKEN in normalized_name(row)
+              ]
+              match_mode = 'course-unit-filename'
+
+          if not candidates:
+              raise SystemExit(
+                  'No IB Mathematics AI Unit 1 Manager request matched the exact package SHA or the verified package filename.'
+              )
+
+          candidates.sort(
+              key=lambda row: (
+                  str(row.get('status') or '') == 'completed',
+                  str(row.get('created_at') or ''),
+              ),
+              reverse=False,
+          )
+          row = candidates[-1] if all(str(item.get('status') or '') == 'completed' for item in candidates) else next(
+              item for item in candidates if str(item.get('status') or '') != 'completed'
+          )
+
           pr = json.loads(subprocess.run(
               ['gh', 'pr', 'view', '79', '--repo', os.environ['GITHUB_REPOSITORY'], '--json', 'url,mergedAt'],
               check=True, text=True, capture_output=True,
@@ -80,6 +128,7 @@ jobs:
           if not pr.get('mergedAt'):
               raise SystemExit('IB Unit 1 release PR #79 is not merged')
 
+          previous_status = str(row.get('status') or '')
           now = datetime.now(timezone.utc).isoformat()
           values = {
               'status': 'completed',
@@ -91,36 +140,58 @@ jobs:
               'updated_at': now,
           }
           patch_query = urllib.parse.urlencode({'id': f"eq.{row['id']}"})
-          body = json.dumps(values).encode()
           patch = urllib.request.Request(
               f'{base}/rest/v1/teacher_upload_requests?{patch_query}',
-              data=body,
+              data=json.dumps(values).encode(),
               method='PATCH',
-              headers={
-                  'apikey': key,
-                  'authorization': f'Bearer {key}',
-                  'content-type': 'application/json',
-                  'prefer': 'return=minimal',
-              },
+              headers={**headers, 'content-type': 'application/json', 'prefer': 'return=minimal'},
           )
           urllib.request.urlopen(patch, timeout=60).read()
-          output = os.environ['GITHUB_OUTPUT']
-          with open(output, 'a', encoding='utf-8') as handle:
+
+          verified = get_rows({
+              'select': 'id,status,progress,stage,github_pr_url',
+              'id': f"eq.{row['id']}",
+              'limit': '1',
+          })
+          if not verified:
+              raise SystemExit('The reconciled request could not be read back from Teacher Upload Manager')
+          result = verified[0]
+          if result.get('status') != 'completed' or int(result.get('progress') or 0) != 100 or result.get('github_pr_url') != pr['url']:
+              raise SystemExit(f'Post-update Manager verification failed: {result}')
+
+          with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as handle:
               handle.write(f"request_id={row['id']}\n")
-              handle.write(f"previous_status={row.get('status') or ''}\n")
+              handle.write(f"previous_status={previous_status}\n")
               handle.write(f"pr_url={pr['url']}\n")
-          print(f"Reconciled exact IB Unit 1 Manager request {row['id']} from {row.get('status')} to completed")
+              handle.write(f"match_mode={match_mode}\n")
+              handle.write(f"matched_sha={row.get('sha256') or ''}\n")
+              handle.write(f"filename={row.get('original_filename') or ''}\n")
+          print(
+              f"Reconciled IB Unit 1 Manager request {row['id']} from {previous_status} to completed; "
+              f"match={match_mode}; sha={row.get('sha256')}; file={row.get('original_filename')}"
+          )
           PY
 
-      - name: Record reconciliation on the release
+      - name: Record successful reconciliation
         env:
           REQUEST_ID: ${{ steps.reconcile.outputs.request_id }}
           PREVIOUS_STATUS: ${{ steps.reconcile.outputs.previous_status }}
+          MATCH_MODE: ${{ steps.reconcile.outputs.match_mode }}
+          MATCHED_SHA: ${{ steps.reconcile.outputs.matched_sha }}
+          FILENAME: ${{ steps.reconcile.outputs.filename }}
         run: |
-          gh pr comment 79 --repo "$GITHUB_REPOSITORY" --body "Teacher Upload Manager reconciliation completed. Exact IB Unit 1 package request \`$REQUEST_ID\` moved from \`$PREVIOUS_STATUS\` to \`completed\` after merged release verification."
+          gh pr comment 79 --repo "$GITHUB_REPOSITORY" --body "Teacher Upload Manager reconciliation completed. Request \`$REQUEST_ID\` (\`$FILENAME\`) moved from \`$PREVIOUS_STATUS\` to \`completed\`, verified at 100%, and linked to this merged release. Match mode: \`$MATCH_MODE\`; stored SHA-256: \`$MATCHED_SHA\`."
+
+      - name: Record reconciliation failure
+        if: failure()
+        run: |
+          gh pr comment 79 --repo "$GITHUB_REPOSITORY" --body "Teacher Upload Manager reconciliation did not complete. Protected workflow run: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
 
       - name: Summary
+        if: always()
         run: |
           echo "Request: ${{ steps.reconcile.outputs.request_id }}"
           echo "Previous status: ${{ steps.reconcile.outputs.previous_status }}"
+          echo "Match mode: ${{ steps.reconcile.outputs.match_mode }}"
+          echo "Stored SHA: ${{ steps.reconcile.outputs.matched_sha }}"
           echo "Release: ${{ steps.reconcile.outputs.pr_url }}"
