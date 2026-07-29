@@ -76,18 +76,26 @@ require(upload,['SUPABASE_SERVICE_ROLE_KEY','private-school-authenticated','publ
 
 migration=read('supabase/migrations/202607272101_private_bank_foundation.sql')
 require(migration,["'publisher_key_direct'","private.enforce_private_bank_question_release","manual_question_trust_required","verification_basis}', '') <> 'publisher-answer-key'","'private-question-banks'",'public = false'],'Private bank migration')
+purge_migration=read('supabase/migrations/202607291900_resumable_private_bank_course_purge.sql')
+require(purge_migration,['private_bank_course_purge_jobs','purge_private_bank_course_mappings_batch','delete_private_bank_questions_batch','service_role','limit greatest(1, least','Resumable administrator course purge state'],'Resumable purge migration')
 api=read('supabase/functions/private-bank-api/index.ts')
 require(api,['current.role === "student"','/student-questions','publisher_key_direct','Source-key practice; not independently audited','createSignedUrl(path, 300)'],'Private bank API')
+purge_api=read('supabase/functions/private-bank-purge-api/index.ts')
+require(purge_api,['MIXED_BATCH = 100','QUESTION_BATCH = 250','MEDIA_BATCH = 100','purge_private_bank_course_mappings_batch','delete_private_bank_questions_batch','path.match(/^\\/jobs\\/','status: "completed"','Administrator access is required'],'Resumable purge API')
 practice=read('question-bank/js/private-bank-practice.js');assets=read('question-bank/js/private-bank-assets.js');practice_html=read('question-bank/practice.html')
 require(practice,['private-bank-api','publisher_key_direct','Source-key practice','ECHSBank.loadBundle','skill_key'],'Practice integration')
 require(assets,['data-private-src','media-url','MutationObserver'],'Private media integration')
 require(practice_html,['private-bank-assets.js','private-bank-practice.js'],'Practice HTML')
+center_html=read('question-bank/official/admin/private-bank-center.html');center_js=read('question-bank/official/admin/js/private-bank-center.js');config=read('supabase/config.toml')
+require(center_html,['small, resumable batches','purgeProgress','student attempt and mastery history is preserved','private-bank-center.js?v=20260729-resumable-purge'],'Private Bank Center purge UI')
+require(center_js,['private-bank-purge-api','/courses/ib-math-ai','/step','runPurge','Reset paused safely','DELETE IB AI'],'Private Bank Center purge client')
+require(config,['[functions.private-bank-api]','[functions.private-bank-purge-api]','verify_jwt = false'],'Supabase purge function config')
 
 for relative in ('question-bank/private-sources/tools/import_blackboard_qti_secure.py','tools/upload_private_bank_package.py','tools/validate_private_bank_packages.py'):
  if read(relative):
   result=subprocess.run([sys.executable,'-m','py_compile',str(ROOT/relative)],capture_output=True,text=True)
   if result.returncode:fail(f'Python syntax error for {relative}: {result.stderr.strip()}')
-for relative in ('question-bank/js/private-bank-assets.js','question-bank/js/private-bank-practice.js'):
+for relative in ('question-bank/js/private-bank-assets.js','question-bank/js/private-bank-practice.js','question-bank/official/admin/js/private-bank-center.js'):
  result=subprocess.run(['node','--check',str(ROOT/relative)],capture_output=True,text=True)
  if result.returncode:fail(f'JavaScript syntax error for {relative}: {result.stderr.strip()}')
 

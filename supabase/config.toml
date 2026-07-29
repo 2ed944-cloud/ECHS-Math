@@ -26,6 +26,9 @@ verify_jwt = false
 [functions.private-bank-api]
 verify_jwt = false
 
+[functions.private-bank-purge-api]
+verify_jwt = false
+
 [functions.upload-manager-api]
 verify_jwt = false
 

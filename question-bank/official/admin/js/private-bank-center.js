@@ -5,7 +5,9 @@
   const escapeHTML=value=>String(value??"").replace(/[&<>'"]/g,char=>({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"})[char]);
   const courseLabels={"ap-calculus":"AP Calculus","ap-precalculus":"AP Precalculus","ib-math-ai":"IB Mathematics AI","algebra-2":"Algebra 2","grade-9":"Grade 9"};
   const visibleName=row=>{const aliases=row.display_aliases||{};return aliases.teacher||aliases.student||aliases["ap-calculus"]||aliases["ap-precalculus"]||aliases["ib-math-ai"]||row.bank_code||"Private Bank"};
-  const targets=row=>{const declared=Array.isArray(row.manifest?.target_courses)?row.manifest.target_courses.filter(Boolean):[];if(declared.length)return[...new Set(declared)];const aliases=row.display_aliases||{};return Object.keys(aliases).filter(key=>courseLabels[key])};
+  const targets=row=>{const declared=Array.isArray(row.manifest?.target_courses)?row.manifest.target_courses.filter(Boolean):[];if(declared.length)return[...new Set(declared)];const aliases={...(row.display_aliases||{}),...(row.manifest?.display_aliases||{})};return Object.keys(aliases).filter(key=>courseLabels[key])};
+  const sleep=milliseconds=>new Promise(resolve=>setTimeout(resolve,milliseconds));
+
   async function load(){
     const [registryResult,alignmentResult,liveResult]=await Promise.allSettled([
       fetch("../../private-sources/data/private-bank-registry.json",{cache:"no-store"}).then(response=>response.ok?response.json():Promise.reject(new Error(`Private bank registry returned ${response.status}`))),
@@ -30,6 +32,40 @@
     status.textContent=livePackages.length?`Private backend connected. ${number(livePackages.length)} live packages are registered. ${number(ibPackages.length)} target IB Mathematics AI.`:"Static registry loaded. No live private packages were returned.";
     return {livePackages,ibPackages};
   }
+
+  function renderPurge(job,{retrying=false}={}){
+    const totals=job?.totals||{},progress=job?.progress||{},percent=Math.max(0,Math.min(100,Number(job?.percent||0)));
+    const phase=retrying?`Retrying ${job?.phase_label||"the current batch"}…`:(job?.phase_label||"Preparing the reset…");
+    const questionsDone=Number(progress.questions_processed||0),questionsTotal=Number(totals.questions||0),mediaDone=Number(progress.media_deleted||0),mediaTotal=Number(totals.media||0),packagesDone=Number(progress.packages_deleted||0)+Number(progress.mixed_packages_updated||0),packagesTotal=Number(totals.packages||0);
+    purgeResult.classList.remove("hidden");
+    purgeResult.innerHTML=`<div class="purgeResultHead"><strong>${escapeHTML(phase)}</strong><span>${percent}%</span></div><div class="purgeProgress" aria-label="IB reset progress"><i style="width:${percent}%"></i></div><div class="purgeMetrics"><span><b>${number(questionsDone)}</b> / ${number(questionsTotal)} questions</span><span><b>${number(mediaDone)}</b> / ${number(mediaTotal)} media</span><span><b>${number(packagesDone)}</b> / ${number(packagesTotal)} packages</span></div><small>Job ${escapeHTML(job?.id||"pending")} · safely resumable after refresh or temporary network interruption.</small>`;
+  }
+
+  function retryable(error){
+    const statusCode=Number(error?.status||0),message=String(error?.message||"").toLowerCase();
+    return !statusCode||[408,425,429,500,502,503,504,546].includes(statusCode)||/timeout|cpu time|temporar|network|fetch/.test(message);
+  }
+
+  async function runPurge(initialJob){
+    let job=initialJob,retries=0,steps=0;
+    while(job?.status!=="completed"){
+      if(++steps>10000)throw new Error("The reset exceeded its safety step limit. Click the button again to resume the same job.");
+      renderPurge(job);
+      try{
+        const result=await window.ECHSInstitution.api("private-bank-purge-api",`/jobs/${encodeURIComponent(job.id)}/step`,{method:"POST",body:{}});
+        job=result.job;retries=0;
+        await sleep(80);
+      }catch(error){
+        if(!retryable(error)||retries>=6)throw error;
+        retries+=1;renderPurge(job,{retrying:true});await sleep(Math.min(8000,750*(2**retries)));
+      }
+    }
+    renderPurge(job);
+    purgeResult.insertAdjacentHTML("beforeend",'<p class="purgeComplete"><strong>IB Mathematics AI reset completed.</strong> All remaining IB package links were verified as removed. Student attempt and mastery history was preserved.</p>');
+    await load();
+    return job;
+  }
+
   try{
     const current=await window.ECHSInstitution.requireAuth(["teacher","admin"]);if(!current)return;
     if(current.role==="admin")dangerZone.classList.remove("hidden");
@@ -37,12 +73,15 @@
     purgeButton?.addEventListener("click",async()=>{
       const confirmation=prompt('Type DELETE IB AI to remove every existing IB Mathematics AI private bank and question mapping for this school.');
       if(confirmation!=="DELETE IB AI")return;
-      purgeButton.disabled=true;purgeResult.classList.remove("hidden");purgeResult.textContent="Deleting IB Mathematics AI private banks, questions, and media…";
+      purgeButton.disabled=true;purgeButton.textContent="IB AI reset in progress…";purgeResult.classList.remove("hidden");purgeResult.textContent="Creating or resuming the protected IB Mathematics AI reset job…";
       try{
-        const result=await window.ECHSInstitution.api("private-bank-api","/courses/ib-math-ai",{method:"DELETE"}),deleted=result.deleted||{},updated=result.updated||{};
-        purgeResult.textContent=`Deleted ${number(deleted.packages)} packages, ${number(deleted.questions)} questions, ${number(deleted.media_objects)} media objects, and ${number(deleted.trust_records)} orphaned trust records. Removed ${number(updated.mappings_removed)} IB mappings from ${number(updated.mixed_packages)} mixed-course packages. Student history was preserved.`;
-        await load();
-      }catch(error){purgeResult.textContent=error instanceof Error?error.message:"Could not delete the IB Mathematics AI banks."}finally{purgeButton.disabled=false}
+        const startResult=await window.ECHSInstitution.api("private-bank-purge-api","/courses/ib-math-ai",{method:"DELETE"});
+        await runPurge(startResult.job);
+        purgeButton.textContent="IB AI banks and questions deleted";
+      }catch(error){
+        console.error(error);purgeResult.classList.remove("hidden");purgeResult.innerHTML=`<strong>Reset paused safely.</strong><br>${escapeHTML(error instanceof Error?error.message:"Could not continue the IB Mathematics AI reset.")}<br><small>Click the button again and enter DELETE IB AI to resume from the last completed batch.</small>`;
+        purgeButton.disabled=false;purgeButton.textContent="Resume deleting existing IB AI banks and questions";
+      }
     });
   }catch(error){console.error(error);status.textContent=error instanceof Error?error.message:"Could not load the private bank registry."}
 })();
