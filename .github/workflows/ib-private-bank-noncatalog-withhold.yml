@@ -1,0 +1,170 @@
+name: IB Private Bank Non-Catalogue Withhold
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/ib-private-bank-noncatalog-withhold.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  withhold:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    environment: institutional-production
+    env:
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Preserve questions and withhold non-catalogue lesson links
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import collections
+          import datetime
+          import hashlib
+          import json
+          import os
+          import time
+          import urllib.error
+          import urllib.parse
+          import urllib.request
+
+          base=os.environ['SUPABASE_URL'].rstrip('/')
+          key=os.environ['SUPABASE_SERVICE_ROLE_KEY']
+          headers={'apikey':key,'authorization':f'Bearer {key}','content-type':'application/json'}
+          now=datetime.datetime.now(datetime.timezone.utc).isoformat()
+
+          catalog=json.load(open('data/ib-math-ai-lesson-catalog.json',encoding='utf-8'))
+          expected={}
+          for unit in catalog.get('units',[]):
+              unit_number=int(unit['unit'])
+              for lesson in unit.get('lessons',[]):
+                  record={'unit':unit_number,'skill_key':str(lesson.get('skill_id') or '')}
+                  expected[str(lesson['lesson_key'])]=record
+                  number=str(lesson.get('number') or '')
+                  if number and number!='0':expected[number]=record
+                  for delivery in lesson.get('delivery_lesson_numbers',[]):expected[str(delivery)]=record
+
+          def request_json(url,*,method='GET',body=None,extra_headers=None,retries=6):
+              data=None if body is None else json.dumps(body,ensure_ascii=False,separators=(',',':')).encode()
+              last=None
+              for attempt in range(retries):
+                  try:
+                      request=urllib.request.Request(url,headers={**headers,**(extra_headers or {})},method=method,data=data)
+                      with urllib.request.urlopen(request,timeout=180) as response:
+                          raw=response.read()
+                          return json.loads(raw or b'null')
+                  except urllib.error.HTTPError as error:
+                      last=error
+                      if error.code not in (408,425,429,500,502,503,504) or attempt+1>=retries:
+                          detail=error.read().decode(errors='replace')[:1000]
+                          raise RuntimeError(f'HTTP {error.code}: {detail}') from error
+                  except (urllib.error.URLError,TimeoutError) as error:
+                      last=error
+                      if attempt+1>=retries:raise
+                  time.sleep(1.5*(attempt+1))
+              raise last
+
+          def catalogue_valid(mapping):
+              if str((mapping or {}).get('course') or '')!='ib-math-ai':return True
+              lesson=str((mapping or {}).get('lesson_key') or '')
+              lesson_expected=expected.get(lesson)
+              if not lesson_expected:return False
+              unit=int((mapping or {}).get('unit') if (mapping or {}).get('unit') is not None else -999)
+              return unit==lesson_expected['unit'] and (mapping or {}).get('mapping_verified') is True
+
+          def ib_rows(page_size=200):
+              rows=[];offset=0
+              while True:
+                  query=urllib.parse.urlencode({'select':'organization_id,question_id,bank_code,course_mappings,student_visible,mapping_verified','order':'organization_id.asc,question_id.asc'},safe=',.*()[]:{}"')
+                  page=request_json(f'{base}/rest/v1/private_bank_questions?{query}',extra_headers={'range':f'{offset}-{offset+page_size-1}'})
+                  for row in page:
+                      if any(str((mapping or {}).get('course') or '')=='ib-math-ai' for mapping in (row.get('course_mappings') or [])):
+                          rows.append(row)
+                  if len(page)<page_size:return rows
+                  offset+=len(page)
+
+          candidates=[]
+          for row in ib_rows():
+              invalid=[mapping for mapping in (row.get('course_mappings') or []) if str((mapping or {}).get('course') or '')=='ib-math-ai' and not catalogue_valid(mapping)]
+              if invalid:candidates.append((row,invalid))
+
+          lesson_counts=collections.Counter();bank_counts=collections.Counter();updated=0;preserved_other_courses=0
+          for meta,invalid in candidates:
+              organization_id=str(meta['organization_id']);question_id=str(meta['question_id'])
+              query=urllib.parse.urlencode({'select':'organization_id,question_id,bank_code,course_mappings,student_visible,payload','organization_id':f'eq.{organization_id}','question_id':f'eq.{question_id}'},safe=',.*()[]:{}"')
+              details=request_json(f'{base}/rest/v1/private_bank_questions?{query}')
+              if len(details)!=1:raise SystemExit(f'Could not resolve one private question row for {organization_id}:{question_id}')
+              row=details[0];mappings=list(row.get('course_mappings') or [])
+              invalid_ib=[mapping for mapping in mappings if str((mapping or {}).get('course') or '')=='ib-math-ai' and not catalogue_valid(mapping)]
+              if not invalid_ib:continue
+              for mapping in invalid_ib:lesson_counts[str((mapping or {}).get('lesson_key') or 'missing')]+=1
+              bank_counts[str(row.get('bank_code') or 'UNKNOWN')]+=1
+              remaining=[mapping for mapping in mappings if mapping not in invalid_ib]
+              if remaining:preserved_other_courses+=1
+              course_keys=sorted({str(mapping.get('course') or '') for mapping in remaining if str(mapping.get('course') or '')})
+              lesson_keys=sorted({f"{str(mapping.get('course') or '')}:{str(mapping.get('lesson_key') or '')}" for mapping in remaining if str(mapping.get('course') or '') and str(mapping.get('lesson_key') or '')})
+              skill_candidates=sorted({str(mapping.get('skill_key') or '') for mapping in remaining if str(mapping.get('skill_key') or '')})
+              verified=bool(remaining) and all(mapping.get('mapping_verified') is True for mapping in remaining)
+
+              payload=row.get('payload') if isinstance(row.get('payload'),dict) else {};payload=dict(payload);payload['course_mappings']=remaining
+              metadata=payload.get('metadata') if isinstance(payload.get('metadata'),dict) else {};metadata=dict(metadata)
+              metadata['student_ready']=bool(remaining and verified and row.get('student_visible') is True)
+              metadata['ib_catalog_mapping_review']={
+                  'status':'withheld-non-catalogue-lesson',
+                  'review_required':True,
+                  'withheld_at':now,
+                  'reason':'The IB lesson key or unit is not present in the official platform catalogue. The question and provenance are preserved privately for source-level remapping.',
+                  'original_ib_mappings':invalid_ib,
+              }
+              payload['metadata']=metadata
+              classification=payload.get('classification') if isinstance(payload.get('classification'),dict) else {};classification=dict(classification)
+              valid_ib=next((mapping for mapping in remaining if str(mapping.get('course') or '')=='ib-math-ai'),None)
+              if valid_ib:
+                  classification.update({'ib_unit':valid_ib.get('unit'),'ib_lesson':valid_ib.get('lesson_key'),'ib_lesson_title':valid_ib.get('lesson_title')})
+              else:
+                  for field in ('ib_unit','ib_lesson','ib_lesson_title'):classification.pop(field,None)
+                  if str(classification.get('course_scope') or '')=='ib-math-ai':
+                      for field in ('course_scope','primary_unit','primary_topic','primary_topic_title','topic','topic_title'):classification.pop(field,None)
+              payload['classification']=classification
+              canonical=json.dumps(payload,ensure_ascii=False,sort_keys=True,separators=(',',':'))
+              patch={
+                  'course_mappings':remaining,
+                  'course_keys':course_keys,
+                  'lesson_keys':lesson_keys,
+                  'skill_candidates':skill_candidates,
+                  'mapping_verified':verified,
+                  'student_visible':bool(row.get('student_visible') is True and remaining and verified),
+                  'payload':payload,
+                  'payload_sha256':hashlib.sha256(canonical.encode()).hexdigest(),
+                  'updated_at':now,
+              }
+              patch_query=urllib.parse.urlencode({'organization_id':f'eq.{organization_id}','question_id':f'eq.{question_id}'},safe=',.*()[]:{}"')
+              request_json(f'{base}/rest/v1/private_bank_questions?{patch_query}',method='PATCH',body=patch,extra_headers={'prefer':'return=minimal'})
+              updated+=1
+
+          remaining_invalid=[]
+          for row in ib_rows():
+              for mapping in (row.get('course_mappings') or []):
+                  if str((mapping or {}).get('course') or '')=='ib-math-ai' and not catalogue_valid(mapping):
+                      remaining_invalid.append(str((mapping or {}).get('lesson_key') or 'missing'))
+
+          result={
+              'official_catalogue_keys':len(expected),
+              'candidate_questions':len(candidates),
+              'questions_withheld':updated,
+              'questions_preserving_other_course_mappings':preserved_other_courses,
+              'withheld_lesson_counts':dict(sorted(lesson_counts.items())),
+              'withheld_bank_counts':dict(sorted(bank_counts.items())),
+              'remaining_invalid_ib_mappings':len(remaining_invalid),
+          }
+          print('IB_PRIVATE_BANK_NONCATALOGUE_WITHHOLD=')
+          print(json.dumps(result,indent=2,sort_keys=True))
+          if remaining_invalid:raise SystemExit(f'Non-catalogue IB mappings remain: {collections.Counter(remaining_invalid)}')
+          PY
