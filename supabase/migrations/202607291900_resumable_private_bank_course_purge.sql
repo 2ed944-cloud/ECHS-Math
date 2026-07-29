@@ -109,7 +109,7 @@ begin
 end;
 $$;
 
-create or replace function private.purge_private_bank_course_mappings_batch(
+create or replace function public.purge_private_bank_course_mappings_batch(
   p_organization_id uuid,
   p_course_key text,
   p_package_ids uuid[],
@@ -190,7 +190,7 @@ select jsonb_build_object(
 );
 $$;
 
-create or replace function private.delete_private_bank_questions_batch(
+create or replace function public.delete_private_bank_questions_batch(
   p_organization_id uuid,
   p_package_ids uuid[],
   p_limit integer default 250
@@ -221,15 +221,15 @@ select jsonb_build_object(
 $$;
 
 revoke all on function private.clean_private_bank_payload_for_course(jsonb, text, jsonb) from public, anon, authenticated;
-revoke all on function private.purge_private_bank_course_mappings_batch(uuid, text, uuid[], integer) from public, anon, authenticated;
-revoke all on function private.delete_private_bank_questions_batch(uuid, uuid[], integer) from public, anon, authenticated;
+revoke all on function public.purge_private_bank_course_mappings_batch(uuid, text, uuid[], integer) from public, anon, authenticated;
+revoke all on function public.delete_private_bank_questions_batch(uuid, uuid[], integer) from public, anon, authenticated;
 grant execute on function private.clean_private_bank_payload_for_course(jsonb, text, jsonb) to service_role;
-grant execute on function private.purge_private_bank_course_mappings_batch(uuid, text, uuid[], integer) to service_role;
-grant execute on function private.delete_private_bank_questions_batch(uuid, uuid[], integer) to service_role;
+grant execute on function public.purge_private_bank_course_mappings_batch(uuid, text, uuid[], integer) to service_role;
+grant execute on function public.delete_private_bank_questions_batch(uuid, uuid[], integer) to service_role;
 
 comment on table public.private_bank_course_purge_jobs is
   'Resumable administrator course purge state. Each API call removes only a bounded batch and can be safely retried.';
-comment on function private.purge_private_bank_course_mappings_batch(uuid, text, uuid[], integer) is
-  'Removes one bounded course-mapping batch from shared private-bank questions without loading the full bank into an Edge Function.';
-comment on function private.delete_private_bank_questions_batch(uuid, uuid[], integer) is
-  'Deletes one bounded dedicated private-bank question batch and returns IDs for orphaned trust cleanup.';
+comment on function public.purge_private_bank_course_mappings_batch(uuid, text, uuid[], integer) is
+  'Service-role-only RPC that removes one bounded course-mapping batch without loading the full bank into an Edge Function.';
+comment on function public.delete_private_bank_questions_batch(uuid, uuid[], integer) is
+  'Service-role-only RPC that deletes one bounded dedicated private-bank question batch and returns IDs for orphaned trust cleanup.';
