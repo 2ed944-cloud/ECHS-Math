@@ -13,7 +13,10 @@
     const rows=Array.isArray(window.ECHS_COURSES)?window.ECHS_COURSES:[];
     return rows.find(course=>String(course.id)===String(id))||rows.find(course=>courseKey(course)===normalise(id))||null;
   };
-  const eligibleLessons=unit=>(unit?.lessons||[]).filter(lesson=>Boolean(lesson?.url)&&lesson?.kind!=="assessment"&&!/assessment|review/i.test(String(lesson?.kind||"")));
+  const eligibleLessons=unit=>(unit?.lessons||[]).filter(lesson=>{
+    const descriptor=`${lesson?.kind||""} ${lesson?.title||""}`;
+    return Boolean(lesson?.url)&&!/assessment|review|exam|test/i.test(descriptor);
+  });
   const practiceHref=(course,unitNumber)=>{
     const query=new URLSearchParams({course:courseKey(course),unit:String(unitNumber),scope:"unit",mode:"adaptive"});
     return `question-bank/practice.html?${query}`;
@@ -34,6 +37,9 @@
       const unlocked=staff||complete,percent=lessons.length?Math.round(done/lessons.length*100):0;
       let panel=body.querySelector(":scope > .unitPracticeUnlock");
       if(!panel){panel=document.createElement("div");panel.className="unitPracticeUnlock";body.prepend(panel);}
+      const signature=[course.id,index,done,lessons.length,unlocked,staff].join("|");
+      if(panel.dataset.signature===signature)return;
+      panel.dataset.signature=signature;
       panel.dataset.unlocked=String(unlocked);
       panel.innerHTML=`<div class="unitPracticeProgress"><span class="unitPracticeIcon" aria-hidden="true">${unlocked?"✦":"○"}</span><div><small>${staff?"Staff unit access":"Unit practice pathway"}</small><strong>${unlocked?"Full-unit practice is available":`${done} of ${lessons.length} lessons completed`}</strong><div class="unitPracticeTrack"><i style="width:${staff?100:percent}%"></i></div><span>${staff?"Review every mapped question in this unit.":complete?"All available lessons are complete.":"Complete every available lesson to unlock the complete unit bank."}</span></div></div>${unlocked?`<a class="unitPracticeAction" href="${esc(practiceHref(course,index+1))}">${staff?"Open unit bank":"Practise the full unit"}<span aria-hidden="true">→</span></a>`:`<span class="unitPracticeAction locked" aria-disabled="true">Unit practice locked</span>`}`;
     });
