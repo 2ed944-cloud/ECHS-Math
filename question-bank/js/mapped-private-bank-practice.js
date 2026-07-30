@@ -54,37 +54,50 @@
     if(!String(question.prompt_html||"").includes("sourceKeyNotice"))question.prompt_html=`<div class="notice sourceKeyNotice"><strong>${studentReady?"Mapped private practice":"Staff quality review"}</strong> · ${note}</div>${question.prompt_html||""}`;
     question._private_bank=true;question._staff_only=!studentReady;return question;
   }
+  function queryFor(scope,offset,limit){
+    const query=new URLSearchParams({course:scope.course,offset:String(offset),limit:String(limit)});if(scope.lesson)query.set("lesson",scope.lesson);if(scope.unit!=="")query.set("unit",String(scope.unit));return query;
+  }
+  async function strictRequest(scope,offset,limit){
+    const query=queryFor(scope,offset,limit);query.set("view",scope.view);return await window.ECHSInstitution.api("practice-bank-api",`/questions?${query}`);
+  }
+  async function protectedCompatibilityRequest(scope,offset,limit){
+    const query=queryFor(scope,offset,limit);const result=await window.ECHSInstitution.api("private-bank-api",`/student-questions?${query}`);return{...result,compatibility_fallback:true};
+  }
   async function request(scope,offset,limit){
-    const query=new URLSearchParams({course:scope.course,offset:String(offset),limit:String(limit),view:scope.view});if(scope.lesson)query.set("lesson",scope.lesson);if(scope.unit!=="")query.set("unit",String(scope.unit));
-    let lastError;
-    for(let attempt=0;attempt<4;attempt++){
-      try{return await window.ECHSInstitution.api("practice-bank-api",`/questions?${query}`);}
-      catch(error){lastError=error;if(attempt<3)await wait(600*(attempt+1));}
+    let lastError;const access=await resolvedAccess(),staffAccess=staff(access),attempts=staffAccess?2:4;
+    for(let attempt=0;attempt<attempts;attempt++){
+      try{return await strictRequest(scope,offset,limit);}
+      catch(error){lastError=error;if(attempt<attempts-1)await wait(500*(attempt+1));}
+    }
+    if(staffAccess){
+      try{return await protectedCompatibilityRequest(scope,offset,limit);}
+      catch(error){lastError=error;}
     }
     throw lastError;
   }
   async function collect(scope,requestKey){
-    const pageSize=1500,maximum=20000,questions=[],seen=new Set();let blocked=0;
-    const probe=await request(scope,0,1),reported=Math.max(0,Number(probe?.total||0)),total=Math.min(reported,maximum);
-    if(!total){dispatch("echs:private-bank-summary",{requestKey,course:scope.course,total:0,loaded:0,complete:true,questions,blocked,view:scope.view});return questions;}
+    const pageSize=1500,maximum=20000,questions=[],seen=new Set();let blocked=0,fallback=false;
+    const probe=await request(scope,0,1);fallback=Boolean(probe?.compatibility_fallback);const reported=Math.max(0,Number(probe?.total||0)),total=Math.min(reported,maximum);
+    if(!total){dispatch("echs:private-bank-summary",{requestKey,course:scope.course,total:0,loaded:0,complete:true,questions,blocked,view:scope.view,fallback,transport:fallback?"protected-compatibility":"strict-api"});return{questions,fallback};}
     const offsets=[];for(let offset=0;offset<total;offset+=pageSize)offsets.push(offset);
     let cursor=0,completed=0;
     const worker=async()=>{
       while(cursor<offsets.length){
-        const index=cursor++,offset=offsets[index],page=await request(scope,offset,Math.min(pageSize,total-offset)),items=[...(page?.questions||[])];
-        for(const row of items){const q=normaliseRow(row,scope.course,scope,{allowAll:scope.view==="all"});if(!q){blocked++;continue;}const key=`${scope.course}|${fingerprint(q)}`;if(!seen.has(key)){seen.add(key);questions.push(q);}}
+        const index=cursor++,offset=offsets[index],page=await request(scope,offset,Math.min(pageSize,total-offset)),items=[...(page?.questions||[])];fallback=fallback||Boolean(page?.compatibility_fallback);
+        for(const row of items){const q=normaliseRow(row,scope.course,scope,{allowAll:scope.view==="all"&&!fallback});if(!q){blocked++;continue;}const key=`${scope.course}|${fingerprint(q)}`;if(!seen.has(key)){seen.add(key);questions.push(q);}}
         completed++;
         dispatch("echs:bundle-progress",{completed,total:offsets.length});
-        dispatch("echs:private-bank-summary",{requestKey,course:scope.course,total,loaded:questions.length,complete:completed===offsets.length,questions,blocked,view:scope.view});
+        dispatch("echs:private-bank-summary",{requestKey,course:scope.course,total,loaded:questions.length,complete:completed===offsets.length,questions,blocked,view:scope.view,fallback,transport:fallback?"protected-compatibility":"strict-api"});
       }
     };
     await Promise.all(Array.from({length:Math.min(3,offsets.length)},worker));
-    return questions;
+    return{questions,fallback};
   }
   function updateCourseOption(source,count,state="ready"){
     if(activeCourse!=="ib-math-ai")return;source.private_bank_only=true;source.count=count;source.bank_counts={};const option=[...(document.getElementById("bundle")?.options||[])].find(item=>item.value===String(source?.id||""));
-    if(option)option.textContent=`${source?.label||"IB Math AI · Uploaded Banks"} (${state==="error"?"connection unavailable":`${Number(count).toLocaleString()} uploaded questions`})`;
-    Object.assign(document.documentElement.dataset,{ibCourseBankSource:"private-upload-manager",ibCourseBankCount:String(count||0),ibCourseBankLoaded:String(count||0),ibCourseBankState:state,privateQuestionRows:String(count||0)});
+    const suffix=state==="error"?"connection unavailable":state==="fallback"?`${Number(count).toLocaleString()} questions · protected recovery`:`${Number(count).toLocaleString()} uploaded questions`;
+    if(option)option.textContent=`${source?.label||"IB Math AI · Uploaded Banks"} (${suffix})`;
+    Object.assign(document.documentElement.dataset,{ibCourseBankSource:"private-upload-manager",ibCourseBankCount:String(count||0),ibCourseBankLoaded:String(count||0),ibCourseBankState:state,privateQuestionRows:String(count||0),practiceBankTransport:state==="fallback"?"protected-compatibility":state==="ready"?"strict-api":"unavailable"});
   }
   function merge(course,groups){const out=[],seen=new Set();groups.flat().forEach(q=>{if(!q?.id)return;const key=`${course}|${fingerprint(q)}`;if(!seen.has(key)){seen.add(key);out.push(q);}});return out;}
   function install(){
@@ -95,8 +108,8 @@
       if(!activeCourse)return originalLoad(source);
       const scope={course:activeCourse,lesson,unit,view};
       try{
-        const [base,direct]=await Promise.all([activeCourse==="ib-math-ai"?Promise.resolve([]):originalLoad(source),collect(scope,requestKey)]),rows=merge(activeCourse,[base,direct]);
-        if(activeCourse==="ib-math-ai")updateCourseOption(source,rows.length,"ready");
+        const [base,direct]=await Promise.all([activeCourse==="ib-math-ai"?Promise.resolve([]):originalLoad(source),collect(scope,requestKey)]),rows=merge(activeCourse,[base,direct.questions]);
+        if(activeCourse==="ib-math-ai")updateCourseOption(source,rows.length,direct.fallback?"fallback":"ready");
         return rows;
       }catch(error){console.error("Mapped private practice could not be loaded",error);if(activeCourse==="ib-math-ai"){updateCourseOption(source,0,"error");return[];}return originalLoad(source);}
     };
