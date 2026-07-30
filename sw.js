@@ -1,4 +1,4 @@
-const VERSION = "echs-platform-school-control-v3-pathway2-landing1-builder1-hybrid2-mastery1-privatebanks2-direct-upload1-iblinks1-ibcourse1-ibhardblock1-ibstream2";
+const VERSION = "echs-platform-school-control-v3-pathway2-landing1-builder1-hybrid2-mastery1-privatebanks2-direct-upload1-iblinks1-ibcourse1-ibhardblock1-ibrestore1";
 const STATIC_CACHE = `${VERSION}-static`;
 const RUNTIME_CACHE = `${VERSION}-runtime`;
 const SHELL = [
