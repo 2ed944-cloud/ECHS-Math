@@ -45,6 +45,10 @@
   function scopeQuestion(question,sourceLesson){
     if(!question||!allowedSourceLessons.has(String(sourceLesson||"")))return null;
     const classification={...(question.classification||{}),course_scope:"ib-math-ai",primary_unit:1,primary_topic:requestedLesson,primary_topic_title:lessonTitle,topic:requestedLesson,topic_title:lessonTitle,ib_unit:1,ib_lesson:requestedLesson,ib_lesson_title:lessonTitle,mapping_verified:true,mapping_basis:sourceLesson===requestedLesson?"ib-exact-visible-lesson":"ib-exact-lesson-alias",source_lesson_key:sourceLesson};
+    // Keep these explicit assignments as a regression-visible guarantee that both
+    // the generic and IB-specific lesson scopes always resolve to the same lesson.
+    classification.primary_topic=requestedLesson;
+    classification.ib_lesson=requestedLesson;
     question.classification=classification;question.metadata={...(question.metadata||{}),student_ready:true,visible_lesson_key:requestedLesson,source_lesson_key:sourceLesson,alias_scope:"exact-only"};question._private_bank=true;question._ib_visible_lesson=requestedLesson;return question;
   }
   function normaliseRow(row){
