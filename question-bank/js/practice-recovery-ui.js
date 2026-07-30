@@ -79,10 +79,11 @@
   new MutationObserver(()=>{
     const next=`${document.documentElement.dataset.ibCourseBankState||""}|${document.documentElement.dataset.practiceBankTransport||""}`;
     if(next!==lastState)setTimeout(renderState,0);
-    fixAuthenticatedHeader();
-  }).observe(document.documentElement,{attributes:true,subtree:true,childList:true,attributeFilter:["data-ib-course-bank-state","data-practice-bank-transport"]});
+  }).observe(document.documentElement,{attributes:true,attributeFilter:["data-ib-course-bank-state","data-practice-bank-transport"]});
   (async()=>{
     try{access=await window.ECHSPortalAccess?.ready;}catch{}
-    fixAuthenticatedHeader();renderState();
+    fixAuthenticatedHeader();
+    [250,900,2200].forEach(delay=>setTimeout(fixAuthenticatedHeader,delay));
+    renderState();
   })();
 })();
