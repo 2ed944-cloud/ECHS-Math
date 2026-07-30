@@ -13,10 +13,7 @@
     const rows=Array.isArray(window.ECHS_COURSES)?window.ECHS_COURSES:[];
     return rows.find(course=>String(course.id)===String(id))||rows.find(course=>courseKey(course)===normalise(id))||null;
   };
-  const eligibleLessons=unit=>(unit?.lessons||[]).filter(lesson=>{
-    const descriptor=`${lesson?.kind||""} ${lesson?.title||""}`;
-    return Boolean(lesson?.url)&&!/assessment|review|exam|test/i.test(descriptor);
-  });
+  const eligibleLessons=unit=>(unit?.lessons||[]).filter(lesson=>Boolean(lesson?.url)&&lesson?.kind!=="assessment"&&!/assessment|review/i.test(String(lesson?.kind||"")));
   const practiceHref=(course,unitNumber)=>{
     const query=new URLSearchParams({course:courseKey(course),unit:String(unitNumber),scope:"unit",mode:"adaptive"});
     return `question-bank/practice.html?${query}`;
