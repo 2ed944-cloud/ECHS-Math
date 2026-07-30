@@ -39,10 +39,8 @@ jobs:
           node --check js/platform-foundation.js
           node --check question-bank/js/bank.js
           node --check question-bank/js/practice.js
-          node --check question-bank/js/precalculus-bank-audit.js
       - name: Validate core JSON files
         run: |
           python -m json.tool manifest.json >/dev/null
           python -m json.tool question-bank/data/catalog.json >/dev/null
           python -m json.tool question-bank/data/blackboard-addon.json >/dev/null
-          python -m json.tool question-bank/practice-sources/FULL_PRECALCULUS_BANK_VALIDATION.json >/dev/null
