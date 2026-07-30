@@ -42,6 +42,28 @@
 .practiceStudio .emptyState{padding:1.5rem 2rem}
 .practiceStudio .emptyStateIcon{width:64px;height:64px;border-radius:20px;font-size:1.65rem}
 .practiceStudio .emptyState h2{font-size:clamp(1.35rem,2vw,1.85rem)}
+.practiceStudio .scopeReadyPanel{
+  min-height:340px;padding:clamp(1.15rem,2.4vw,2rem);border-radius:1.35rem;
+  background:
+    radial-gradient(circle at 94% 10%,rgba(8,119,109,.11),transparent 31%),
+    linear-gradient(150deg,#fff 0%,#fbfdfd 64%,#f6faf9 100%);
+  border:1px solid rgba(16,47,77,.10);box-shadow:0 16px 42px rgba(16,47,77,.08)
+}
+.practiceStudio .scopeReadyLead{display:flex;align-items:flex-start;gap:1rem}
+.practiceStudio .scopeReadyIcon{display:grid;place-items:center;flex:0 0 54px;height:54px;border-radius:17px;background:linear-gradient(135deg,var(--practice-teal),#15a293);color:#fff;font-size:1.4rem;font-weight:900;box-shadow:0 12px 26px rgba(8,119,109,.2)}
+.practiceStudio .scopeReadyLead small{display:block;margin-bottom:.25rem;color:var(--practice-teal);font-size:.72rem;font-weight:900;text-transform:uppercase;letter-spacing:.075em}
+.practiceStudio .scopeReadyLead h2{margin:0;color:var(--practice-navy);font-size:clamp(1.35rem,2vw,1.9rem)}
+.practiceStudio .scopeReadyLead p{margin:.45rem 0 0;color:#5a6f81;line-height:1.55}
+.practiceStudio .scopeReadyMetrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.75rem;margin:1.3rem 0}
+.practiceStudio .scopeReadyMetrics article{padding:.95rem 1rem;border:1px solid #e0e8ed;border-radius:15px;background:rgba(255,255,255,.88)}
+.practiceStudio .scopeReadyMetrics b{display:block;color:var(--practice-navy);font-size:1.45rem;line-height:1.05}
+.practiceStudio .scopeReadyMetrics span{display:block;margin-top:.28rem;color:#6a7b8a;font-size:.72rem;font-weight:750}
+.practiceStudio .scopeReadyBanks{padding:1rem;border-radius:16px;background:#f6f9fa;border:1px solid #e0e8ec}
+.practiceStudio .scopeReadyBanks>strong{display:block;margin-bottom:.6rem;color:var(--practice-navy);font-size:.8rem}
+.practiceStudio .scopeReadyBanks>div{display:flex;gap:.45rem;flex-wrap:wrap}
+.practiceStudio .scopeReadyBanks span{padding:.36rem .58rem;border-radius:999px;background:#fff;color:#315269;border:1px solid #d8e2e7;font-size:.7rem;font-weight:800}
+.practiceStudio .scopeReadyActions{display:flex;gap:.65rem;flex-wrap:wrap;margin-top:1.15rem}
+.practiceStudio .scopeReadyActions .button{min-height:44px;padding:.65rem 1rem}
 .practiceStudio .connectionRecovery{
   max-width:760px;margin:1rem auto;padding:1rem 1.1rem;border-radius:18px;
   border:1px solid rgba(182,122,18,.28);background:linear-gradient(135deg,#fff8e9,#fff);
@@ -54,7 +76,7 @@
 .practiceStudio .transportPill{background:#fff4d8!important;color:#815b12!important;border-color:#ead29b!important}
 .practiceStudio .transportPill.strict{background:#e5f5f2!important;color:#096a62!important;border-color:#bfe5df!important}
 .practiceStudio .siteHeader{background:rgba(255,255,255,.96);backdrop-filter:blur(12px)}
-.practiceStudio .platformHeaderActions a[href*="login"]{display:none}
+.practiceStudio .platformHeaderActions a[href*="login"],.practiceStudio .platformNav a[href*="login"]{display:none}
 @media(max-width:1180px){
   .practiceStudio .studioHero{grid-template-columns:1fr}
   .practiceStudio .studioHeroStats{grid-template-columns:repeat(4,minmax(0,1fr))}
@@ -66,4 +88,8 @@
   .practiceStudio .studioHero h1 span{display:block}
   .practiceStudio .scopeIdentity{margin:.8rem .75rem .15rem}
   .practiceStudio .emptyState{padding:1.2rem}
+  .practiceStudio .scopeReadyMetrics{grid-template-columns:1fr}
+  .practiceStudio .scopeReadyLead{flex-direction:column}
+  .practiceStudio .scopeReadyActions{display:grid;grid-template-columns:1fr}
+  .practiceStudio .scopeReadyActions .button{width:100%}
 }
