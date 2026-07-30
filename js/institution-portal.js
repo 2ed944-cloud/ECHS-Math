@@ -15,6 +15,8 @@
   installScript("data-hybrid-landing-hero","js/landing-hybrid-hero.js?v=20260727-hybrid2");
   installStyle("data-unit-practice-unlock","css/unit-practice-unlock.css?v=20260730-scope1");
   installScript("data-unit-practice-unlock","js/unit-practice-unlock.js?v=20260730-scope1");
+  document.documentElement.dataset.hybridLandingHero="enabled";
+  document.documentElement.dataset.unitPracticeUnlock="enabled";
 })();
 
 (async()=>{
