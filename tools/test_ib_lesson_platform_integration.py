@@ -62,6 +62,8 @@ def validate_source(root: Path, errors: list[str]) -> None:
     aliases = read(root, "question-bank/js/ib-exact-lesson-bank-aliases.js", errors)
     practice_controller = read(root, "question-bank/js/mapped-practice.js", errors)
     single_bank = read(root, "question-bank/js/practice-single-bank.js", errors)
+    recovery_ui = read(root, "question-bank/js/practice-recovery-ui.js", errors)
+    recovery_css = read(root, "question-bank/css/practice-recovery-polish.css", errors)
     practice = read(root, "question-bank/practice.html", errors)
     practice_api = read(root, "supabase/functions/practice-bank-api/index.ts", errors)
     injector = read(root, "tools/inject_learning_access_guard.py", errors)
@@ -79,7 +81,7 @@ def validate_source(root: Path, errors: list[str]) -> None:
     require(private_base, (
         "IB Mathematics AI Bank 1", "IB Mathematics AI Bank 10", "row?.course_mappings",
         'activeCourse==="ib-math-ai"', "IB Math AI · Uploaded Banks", "practice-bank-api",
-        "echs:bundle-progress", "echs:private-bank-summary", "staff_review_only",
+        "protectedCompatibilityRequest", "protected-compatibility", "echs:bundle-progress", "echs:private-bank-summary", "staff_review_only",
         "source?.staff_view_all", "dedicated", "private-upload-manager", "return rows",
     ), "Mapped IB private-bank course browser", errors)
     require(bank, ('row.course_key==="ib-math-ai"', "static_compatibility_blocked", 'dataset.ibStaticCompatibility="blocked"'), "Core static IB compatibility block", errors)
@@ -87,8 +89,10 @@ def validate_source(root: Path, errors: list[str]) -> None:
     forbid(aliases, ('"u1-number"', '"u1-sequences"', '"u1-algebra"', '"u1-matrices"', '"u1-modeling"'), "IB private-bank exact alias layer", errors)
     require(practice_controller, ("unitCompleted", "lessonCompleted", "strictScopeInPlace", "mappingCompatible", "Staff view · includes withheld rows", "function buildTargets"), "Strict practice controller", errors)
     require(single_bank, ("practiceBankIsolation", "studentPracticeBank", "ECHSBank.filterQuestions"), "Student single-bank isolation", errors)
+    require(recovery_ui, ("Protected recovery", "practiceBankTransport", "data-retry-practice", "fixAuthenticatedHeader"), "Practice recovery controller", errors)
+    require(recovery_css, ("practiceStudio .studioHero h1", "connectionRecovery", "transportPill"), "Practice recovery stylesheet", errors)
     require(practice_api, ("assignedCourses", "course_not_assigned", "student_scope_required", '.containedBy("course_keys", [course])', "practice-bank-api", "media_course_mismatch"), "Strict practice API", errors)
-    require(practice, ("practice-scope-access.css", "bank.js?v=20260730-ibhardblock1", "practice-global-bridge.js?v=20260730-ibstream2", "practice-course-isolation.js?v=20260730-scope1", "mapped-private-bank-practice.js?v=20260730-scope1", "ib-exact-lesson-bank-aliases.js?v=20260730-scope1", "mapped-practice.js?v=20260730-scope1", "practice-single-bank.js?v=20260730-scope1", 'id="course"', 'id="scope"', 'id="visibility"'), "Focused practice page", errors)
+    require(practice, ("practice-scope-access.css", "practice-recovery-polish.css?v=20260730-recovery1", "bank.js?v=20260730-ibhardblock1", "practice-global-bridge.js?v=20260730-ibstream2", "practice-course-isolation.js?v=20260730-scope1", "mapped-private-bank-practice.js?v=20260730-recovery1", "ib-exact-lesson-bank-aliases.js?v=20260730-scope1", "mapped-practice.js?v=20260730-scope1", "practice-single-bank.js?v=20260730-scope1", "practice-recovery-ui.js?v=20260730-recovery1", 'id="course"', 'id="scope"', 'id="visibility"'), "Focused practice page", errors)
     forbid(practice, ('src="js/private-bank-practice.js', 'src="js/ib-private-bank-lesson-aliases.js', 'src="js/practice.js'), "Focused practice page", errors)
     bank_index = practice.find('src="js/bank.js')
     global_index = practice.find('src="js/practice-global-bridge.js')
@@ -97,10 +101,11 @@ def validate_source(root: Path, errors: list[str]) -> None:
     alias_index = practice.find('src="js/ib-exact-lesson-bank-aliases.js')
     practice_index = practice.find('src="js/mapped-practice.js')
     single_bank_index = practice.find('src="js/practice-single-bank.js')
-    if not (0 <= bank_index < global_index < isolation_index < private_index < alias_index < practice_index < single_bank_index):
-        errors.append("Focused practice scripts are not ordered bank → global bridge → isolation → mapped private banks → exact IB aliases → mapped controller → student bank isolation")
+    recovery_index = practice.find('src="js/practice-recovery-ui.js')
+    if not (0 <= bank_index < global_index < isolation_index < private_index < alias_index < practice_index < single_bank_index < recovery_index):
+        errors.append("Focused practice scripts are not ordered bank → global bridge → isolation → mapped private banks → exact IB aliases → mapped controller → student bank isolation → recovery UI")
     require(injector, ("ib-lesson-platform-integration.css", "ib-lesson-platform-integration.js", 'resolved_course == "ib-math-ai"', "20260729-iblinks1"), "Pages guard injector", errors)
-    require(worker, ("scope1", "./css/ib-lesson-platform-integration.css", "./js/ib-lesson-platform-integration.js", "./js/unit-practice-unlock.js", "./question-bank/css/practice-scope-access.css", "./question-bank/js/practice-global-bridge.js", "./question-bank/js/practice-course-isolation.js", "./question-bank/js/mapped-private-bank-practice.js", "./question-bank/js/ib-exact-lesson-bank-aliases.js", "./question-bank/js/mapped-practice.js", "./question-bank/js/practice-single-bank.js", "practice-bank-api"), "Service worker", errors)
+    require(worker, ("recovery1", "./css/ib-lesson-platform-integration.css", "./js/ib-lesson-platform-integration.js", "./js/unit-practice-unlock.js", "./question-bank/css/practice-scope-access.css", "./question-bank/css/practice-recovery-polish.css", "./question-bank/js/practice-global-bridge.js", "./question-bank/js/practice-course-isolation.js", "./question-bank/js/mapped-private-bank-practice.js", "./question-bank/js/ib-exact-lesson-bank-aliases.js", "./question-bank/js/mapped-practice.js", "./question-bank/js/practice-single-bank.js", "./question-bank/js/practice-recovery-ui.js", "practice-bank-api"), "Service worker", errors)
     require(engine, ("renderPractice()", "routeButtons.forEach", "button.dataset.route"), "IB lesson engine", errors)
 
     lesson_root = root / "lessons/ib-math-ai/unit-1/lessons"
@@ -114,6 +119,7 @@ def validate_source(root: Path, errors: list[str]) -> None:
     run_node(root, "tools/test_practice_global_bridge.mjs", "Practice global-bridge Node regression", errors)
     run_node(root, "tools/test_ib_private_bank_lesson_aliases.mjs", "IB exact lesson-alias Node regression", errors)
     run_node(root, "tools/test_ib_private_bank_course_browser.mjs", "IB private-bank course-browser Node regression", errors)
+    run_node(root, "tools/test_ib_private_bank_recovery.mjs", "IB protected recovery Node regression", errors)
     run_node(root, "tools/test_practice_course_isolation.mjs", "Practice course-isolation Node regression", errors)
     run_node(root, "tools/test_student_single_bank.mjs", "Student single-bank Node regression", errors)
 
@@ -121,7 +127,7 @@ def validate_source(root: Path, errors: list[str]) -> None:
         "js/lesson-access-guard.js", "js/ib-lesson-platform-integration.js", "js/unit-practice-unlock.js",
         "question-bank/js/bank.js", "question-bank/js/practice-global-bridge.js",
         "question-bank/js/practice-course-isolation.js", "question-bank/js/mapped-private-bank-practice.js",
-        "question-bank/js/ib-exact-lesson-bank-aliases.js", "question-bank/js/mapped-practice.js", "question-bank/js/practice-single-bank.js",
+        "question-bank/js/ib-exact-lesson-bank-aliases.js", "question-bank/js/mapped-practice.js", "question-bank/js/practice-single-bank.js", "question-bank/js/practice-recovery-ui.js",
     ):
         result = subprocess.run(["node", "--check", str(root / relative)], cwd=root, text=True, capture_output=True)
         if result.returncode:
