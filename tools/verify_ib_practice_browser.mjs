@@ -27,12 +27,13 @@ if(process.env.ECHS_ROUTE_BRANCH==='1'){
   ];
   for(const [pattern,path,contentType] of routed){const body=await readFile(path,'utf8');await page.route(pattern,route=>route.fulfill({status:200,contentType,body}));}
   // The branch-only function is deployed after merge. For pull-request browser QA,
-  // route its staff read requests through the existing protected read endpoint.
-  await page.route('**/functions/v1/practice-bank-api/**',route=>{
+  // proxy its staff read requests through the already deployed protected endpoint.
+  await page.route('**/functions/v1/practice-bank-api/**',async route=>{
     const url=new URL(route.request().url());
     if(url.pathname.endsWith('/practice-bank-api/questions'))url.pathname=url.pathname.replace('/practice-bank-api/questions','/private-bank-api/student-questions');
     else if(url.pathname.endsWith('/practice-bank-api/media-url'))url.pathname=url.pathname.replace('/practice-bank-api/media-url','/private-bank-api/media-url');
-    route.continue({url:url.href});
+    const response=await route.fetch({url:url.href});
+    await route.fulfill({response});
   });
 }
 const consoleErrors=[],pageErrors=[],apiResponses=[],failedRequests=[];
