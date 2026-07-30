@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Regression checks for native IB lesson chrome and uploaded private-bank routing."""
+"""Regression checks for native IB lesson chrome and exact private-bank routing."""
 from __future__ import annotations
 
 import argparse
@@ -33,6 +33,12 @@ def require(text: str, markers: tuple[str, ...], label: str, errors: list[str]) 
             errors.append(f"{label} missing marker: {marker}")
 
 
+def forbid(text: str, markers: tuple[str, ...], label: str, errors: list[str]) -> None:
+    for marker in markers:
+        if marker in text:
+            errors.append(f"{label} contains forbidden broad lesson mapping: {marker}")
+
+
 def run_node(root: Path, relative: str, label: str, errors: list[str]) -> None:
     path = root / relative
     if not path.is_file():
@@ -48,11 +54,15 @@ def validate_source(root: Path, errors: list[str]) -> None:
     ib_css = read(root, "css/ib-lesson-platform-integration.css", errors)
     guard = read(root, "js/lesson-access-guard.js", errors)
     bridge = read(root, "js/ib-lesson-platform-integration.js", errors)
+    unit_unlock = read(root, "js/unit-practice-unlock.js", errors)
     global_bridge = read(root, "question-bank/js/practice-global-bridge.js", errors)
-    private_base = read(root, "question-bank/js/private-bank-practice.js", errors)
+    isolation = read(root, "question-bank/js/practice-course-isolation.js", errors)
+    private_base = read(root, "question-bank/js/mapped-private-bank-practice.js", errors)
     bank = read(root, "question-bank/js/bank.js", errors)
-    aliases = read(root, "question-bank/js/ib-private-bank-lesson-aliases.js", errors)
+    aliases = read(root, "question-bank/js/ib-exact-lesson-bank-aliases.js", errors)
+    practice_controller = read(root, "question-bank/js/mapped-practice.js", errors)
     practice = read(root, "question-bank/practice.html", errors)
+    practice_api = read(root, "supabase/functions/practice-bank-api/index.ts", errors)
     injector = read(root, "tools/inject_learning_access_guard.py", errors)
     worker = read(root, "sw.js", errors)
     engine = read(root, "lessons/ib-math-ai/unit-1/assets/js/engine.js", errors)
@@ -60,42 +70,34 @@ def validate_source(root: Path, errors: list[str]) -> None:
     require(access_css, (".echsLessonInlineAccess", ".echsLessonNativeAccess", ".hasEchsLessonAccessBar .topbar", "--echs-access-bar-height"), "Learning access stylesheet", errors)
     require(ib_css, (".platformBankBridge", ".ibBankTabBadge", ".platformBankStatus", "[data-platform-bank-link]"), "IB lesson integration stylesheet", errors)
     require(guard, ("installIntegratedAccess", "nativeActions", "echsLessonInlineAccess", 'dataset.lessonAccessLayout="integrated"', "installFallbackBar", "Finish lesson & unlock practice", "echs:lesson-completed", "course-not-assigned"), "Lesson access guard", errors)
-    require(bridge, ("Linked IB question banks", "Open linked IB banks", "platformBankBridge", "/student-questions?", '"1.6":["u1-number"', '"1.7":["u1-sequences"', '"1.8":["u1-algebra","u1-matrices"', "u1-modeling", "data-platform-bank-link"), "IB lesson platform bridge", errors)
+    require(bridge, ("Linked IB question banks", "Open lesson practice", "platformBankBridge", "practice-bank-api", '"1.6":["u1-approximation-error"', '"1.7":["u1-loans-annuities"', '"1.8":["u1-technology-equations"', 'scope:"lesson"', "Exact lesson mapping", "data-platform-bank-link"), "IB lesson platform bridge", errors)
+    forbid(bridge, ('"u1-number"', '"u1-sequences"', '"u1-modeling"'), "IB lesson platform bridge", errors)
+    require(unit_unlock, ("unitPracticeUnlock", "eligibleLessons", "Practise the full unit", 'scope:"unit"'), "Completed-unit practice access", errors)
     require(global_bridge, ("window.ECHSBank=ECHSBank", "window.ECHSLearning=ECHSLearning", "practiceGlobalBridge", '"ready":"incomplete"'), "Practice lexical-global bridge", errors)
+    require(isolation, ("mappingCompatible", "courseCompatible", "scopeQuestion", "practiceCourseIsolation", "selectedBundleFromParams"), "Course isolation layer", errors)
     require(private_base, (
-        "IB Mathematics AI Bank 1",
-        "IB Mathematics AI Bank 10",
-        "row?.course_mappings",
-        'activeCourse==="ib-math-ai"',
-        "IB Math AI · Uploaded Banks",
-        "checking uploaded banks",
-        "echs:bundle-progress",
-        "echs:private-bank-summary",
-        "const pageSize=200",
-        "rangeExhausted",
-        "while(!done)await loadNext()",
-        "ibLessonUnits.get(lessonKey)!==mappedUnit",
-        "refreshInventory",
-        "questions ready now",
-        "non-catalog mappings withheld",
-        "result.stream.then",
-        "private_bank_only",
-        "private-upload-manager",
-        "AP Calculus fallback banks were intentionally blocked",
-        "return result.questions",
-    ), "IB private-bank course browser", errors)
-    require(bank, ('row.course_key==="ib-math-ai"', "static_compatibility_blocked", 'row?.course_key==="ib-math-ai"||row?.private_bank_only', 'dataset.ibStaticCompatibility="blocked"'), "Core IB static-bank block", errors)
-    require(aliases, ("IB Mathematics AI Bank 1", "IB Mathematics AI Bank 10", '"1.1":["u1-number"', '"1.6":["u1-number"', '"1.7":["u1-sequences"', '"1.8":["u1-algebra","u1-matrices"', "classification.ap_topic=requestedLesson", "classification.ib_lesson=requestedLesson", "ECHSBank.loadBundle=async", "source_content_fingerprint", "u1-modeling"), "IB private-bank alias layer", errors)
-    require(practice, ("bank.js?v=20260730-ibhardblock1", "practice-global-bridge.js?v=20260730-ibstream2", "private-bank-practice.js?v=20260730-ibstream2", "ib-private-bank-lesson-aliases.js?v=20260730-ibstream2", "practice.js?v=20260730-ibstream2"), "Focused practice page", errors)
+        "IB Mathematics AI Bank 1", "IB Mathematics AI Bank 10", "row?.course_mappings",
+        'activeCourse==="ib-math-ai"', "IB Math AI · Uploaded Banks", "practice-bank-api",
+        "echs:bundle-progress", "echs:private-bank-summary", "staff_review_only",
+        "source?.staff_view_all", "dedicated", "private-upload-manager", "return rows",
+    ), "Mapped IB private-bank course browser", errors)
+    require(bank, ('row.course_key==="ib-math-ai"', "static_compatibility_blocked", 'dataset.ibStaticCompatibility="blocked"'), "Core static IB compatibility block", errors)
+    require(aliases, ("IB Mathematics AI Bank 1", "IB Mathematics AI Bank 10", '"1.1":["u1-standard-form","u1-scientific-notation"', '"1.6":["u1-approximation-error"', '"1.7":["u1-loans-annuities"', '"1.8":["u1-technology-equations"', "classification.primary_topic", "classification.ib_lesson", "ECHSBank.loadBundle=async", "source_content_fingerprint", 'alias_scope:"exact-only"'), "IB private-bank exact alias layer", errors)
+    forbid(aliases, ('"u1-number"', '"u1-sequences"', '"u1-algebra"', '"u1-matrices"', '"u1-modeling"'), "IB private-bank exact alias layer", errors)
+    require(practice_controller, ("unitCompleted", "lessonCompleted", "strictScopeInPlace", "mappingCompatible", "Staff view · includes withheld rows", "function buildTargets"), "Strict practice controller", errors)
+    require(practice_api, ("assignedCourses", "course_not_assigned", "student_scope_required", '.containedBy("course_keys", [course])', "practice-bank-api", "media_course_mismatch"), "Strict practice API", errors)
+    require(practice, ("practice-scope-access.css", "bank.js?v=20260730-ibhardblock1", "practice-global-bridge.js?v=20260730-ibstream2", "practice-course-isolation.js?v=20260730-scope1", "mapped-private-bank-practice.js?v=20260730-scope1", "ib-exact-lesson-bank-aliases.js?v=20260730-scope1", "mapped-practice.js?v=20260730-scope1", 'id="course"', 'id="scope"', 'id="visibility"'), "Focused practice page", errors)
+    forbid(practice, ('src="js/private-bank-practice.js', 'src="js/ib-private-bank-lesson-aliases.js', 'src="js/practice.js'), "Focused practice page", errors)
     bank_index = practice.find('src="js/bank.js')
     global_index = practice.find('src="js/practice-global-bridge.js')
-    private_index = practice.find('src="js/private-bank-practice.js')
-    alias_index = practice.find('src="js/ib-private-bank-lesson-aliases.js')
-    practice_index = practice.find('src="js/practice.js?v=20260730-ibstream2')
-    if not (0 <= bank_index < global_index < private_index < alias_index < practice_index):
-        errors.append("Focused practice scripts are not ordered bank → global bridge → private base → IB aliases → practice controller")
+    isolation_index = practice.find('src="js/practice-course-isolation.js')
+    private_index = practice.find('src="js/mapped-private-bank-practice.js')
+    alias_index = practice.find('src="js/ib-exact-lesson-bank-aliases.js')
+    practice_index = practice.find('src="js/mapped-practice.js')
+    if not (0 <= bank_index < global_index < isolation_index < private_index < alias_index < practice_index):
+        errors.append("Focused practice scripts are not ordered bank → global bridge → isolation → mapped private banks → exact IB aliases → mapped controller")
     require(injector, ("ib-lesson-platform-integration.css", "ib-lesson-platform-integration.js", 'resolved_course == "ib-math-ai"', "20260729-iblinks1"), "Pages guard injector", errors)
-    require(worker, ("ibstream2", "./css/ib-lesson-platform-integration.css", "./js/ib-lesson-platform-integration.js", "./question-bank/js/practice-global-bridge.js", "./question-bank/js/private-bank-practice.js", "./question-bank/js/ib-private-bank-lesson-aliases.js", "question-bank\\/js\\/(?:bank|practice|"), "Service worker", errors)
+    require(worker, ("scope1", "./css/ib-lesson-platform-integration.css", "./js/ib-lesson-platform-integration.js", "./js/unit-practice-unlock.js", "./question-bank/css/practice-scope-access.css", "./question-bank/js/practice-global-bridge.js", "./question-bank/js/practice-course-isolation.js", "./question-bank/js/mapped-private-bank-practice.js", "./question-bank/js/ib-exact-lesson-bank-aliases.js", "./question-bank/js/mapped-practice.js", "practice-bank-api"), "Service worker", errors)
     require(engine, ("renderPractice()", "routeButtons.forEach", "button.dataset.route"), "IB lesson engine", errors)
 
     lesson_root = root / "lessons/ib-math-ai/unit-1/lessons"
@@ -107,10 +109,16 @@ def validate_source(root: Path, errors: list[str]) -> None:
         errors.append("Legacy shared IB lesson.html shell must not return")
 
     run_node(root, "tools/test_practice_global_bridge.mjs", "Practice global-bridge Node regression", errors)
-    run_node(root, "tools/test_ib_private_bank_lesson_aliases.mjs", "IB private-bank alias Node regression", errors)
+    run_node(root, "tools/test_ib_private_bank_lesson_aliases.mjs", "IB exact lesson-alias Node regression", errors)
     run_node(root, "tools/test_ib_private_bank_course_browser.mjs", "IB private-bank course-browser Node regression", errors)
+    run_node(root, "tools/test_practice_course_isolation.mjs", "Practice course-isolation Node regression", errors)
 
-    for relative in ("js/lesson-access-guard.js", "js/ib-lesson-platform-integration.js", "question-bank/js/bank.js", "question-bank/js/practice-global-bridge.js", "question-bank/js/private-bank-practice.js", "question-bank/js/ib-private-bank-lesson-aliases.js"):
+    for relative in (
+        "js/lesson-access-guard.js", "js/ib-lesson-platform-integration.js", "js/unit-practice-unlock.js",
+        "question-bank/js/bank.js", "question-bank/js/practice-global-bridge.js",
+        "question-bank/js/practice-course-isolation.js", "question-bank/js/mapped-private-bank-practice.js",
+        "question-bank/js/ib-exact-lesson-bank-aliases.js", "question-bank/js/mapped-practice.js",
+    ):
         result = subprocess.run(["node", "--check", str(root / relative)], cwd=root, text=True, capture_output=True)
         if result.returncode:
             errors.append(f"JavaScript syntax failure {relative}: {result.stderr}")
