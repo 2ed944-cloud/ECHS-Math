@@ -84,7 +84,7 @@
     const worker=async()=>{
       while(cursor<offsets.length){
         const index=cursor++,offset=offsets[index],page=await request(scope,offset,Math.min(pageSize,total-offset)),items=[...(page?.questions||[])];fallback=fallback||Boolean(page?.compatibility_fallback);
-        for(const row of items){const q=normaliseRow(row,scope.course,scope,{allowAll:scope.view==="all"&&!fallback});if(!q){blocked++;continue;}const key=`${scope.course}|${fingerprint(q)}`;if(!seen.has(key)){seen.add(key);questions.push(q);}}
+        for(const row of items){const q=normaliseRow(row,scope.course,scope,{allowAll:scope.view==="all"||fallback});if(!q){blocked++;continue;}const key=`${scope.course}|${fingerprint(q)}`;if(!seen.has(key)){seen.add(key);questions.push(q);}}
         completed++;
         dispatch("echs:bundle-progress",{completed,total:offsets.length});
         dispatch("echs:private-bank-summary",{requestKey,course:scope.course,total,loaded:questions.length,complete:completed===offsets.length,questions,blocked,view:scope.view,fallback,transport:fallback?"protected-compatibility":"strict-api"});
