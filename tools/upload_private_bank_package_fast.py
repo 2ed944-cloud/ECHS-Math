@@ -144,13 +144,15 @@ def manifest_target_courses(manifest: dict) -> list[str]:
             raise RuntimeError(f"Manifest uses unsupported course {course!r}")
         seen.add(course)
         targets.append(course)
+    if len(targets) != 1:
+        raise RuntimeError("Manifest must declare exactly one target course")
     return targets
 
 
 def direct_mappings(question: dict, target_courses: list[str] | tuple[str, ...] = ()) -> tuple[list[str], list[str], list[str]]:
     mappings = question.get("course_mappings") or []
-    if not mappings:
-        raise RuntimeError(f"{question.get('id')} must have at least one verified course mapping")
+    if len(mappings) != 1:
+        raise RuntimeError(f"{question.get('id')} must have exactly one verified course mapping")
     by_course: dict[str, dict] = {}
     input_order: list[str] = []
     for row in mappings:
@@ -160,8 +162,13 @@ def direct_mappings(question: dict, target_courses: list[str] | tuple[str, ...] 
         if course not in SUPPORTED_COURSES:
             raise RuntimeError(f"{question.get('id')} has unsupported course mapping {course!r}")
         lesson = str(row.get("lesson_key") or "").strip()
+        lesson_title = str(row.get("lesson_title") or "").strip()
         skill = str(row.get("skill_key") or "").strip()
-        if not lesson or not skill or row.get("mapping_verified") is not True:
+        try:
+            unit = int(row.get("unit"))
+        except (TypeError, ValueError):
+            unit = 0
+        if unit < 1 or not lesson or not lesson_title or not skill or row.get("mapping_verified") is not True:
             raise RuntimeError(f"{question.get('id')} has an incomplete mapping for {course}")
         by_course[course] = row
         input_order.append(course)
@@ -176,6 +183,18 @@ def direct_mappings(question: dict, target_courses: list[str] | tuple[str, ...] 
         [f"{course}:{str(by_course[course].get('lesson_key')).strip()}" for course in ordered],
         [str(by_course[course].get("skill_key")).strip() for course in ordered],
     )
+
+
+def routing_summary(prepared: list[tuple[dict, list[str], list[str], list[str]]], course: str) -> dict:
+    mappings = [(question.get("course_mappings") or [])[0] for question, *_ in prepared]
+    lesson_keys = sorted({str(row.get("lesson_key") or "").strip() for row in mappings})
+    return {
+        "course": course,
+        "units": sorted({int(row["unit"]) for row in mappings}),
+        "lessons": len(lesson_keys),
+        "lesson_keys": lesson_keys,
+        "question_mappings": len(mappings),
+    }
 
 
 def validate_question(question: dict) -> None:
@@ -218,7 +237,9 @@ def main() -> int:
     if args.batch_size < 1 or args.batch_size > 500:
         raise SystemExit("--batch-size must be between 1 and 500")
     expected_course = str(args.expected_course or "").strip()
-    if expected_course and expected_course not in SUPPORTED_COURSES:
+    if not expected_course:
+        raise SystemExit("--expected-course is required so one bank cannot mix courses")
+    if expected_course not in SUPPORTED_COURSES:
         raise SystemExit(f"Unsupported --expected-course {expected_course!r}")
 
     client = Supabase(args.supabase_url, args.service_role_key)
@@ -383,6 +404,7 @@ def main() -> int:
             "media_reused": skipped,
             "media_total": total_media,
             "target_courses": effective_targets,
+            "routing_summary": routing_summary(prepared, effective_targets[0]),
             "package_sha256": package_hash,
             "deployment_state": state,
             "trust_tier": "publisher_key_direct",

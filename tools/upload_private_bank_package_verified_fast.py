@@ -80,7 +80,9 @@ def verified_main() -> int:
     if args.batch_size < 1 or args.batch_size > 500:
         raise SystemExit("--batch-size must be between 1 and 500")
     expected_course = str(args.expected_course or "").strip()
-    if expected_course and expected_course not in base.SUPPORTED_COURSES:
+    if not expected_course:
+        raise SystemExit("--expected-course is required so one bank cannot mix courses")
+    if expected_course not in base.SUPPORTED_COURSES:
         raise SystemExit(f"Unsupported --expected-course {expected_course!r}")
 
     client = base.Supabase(args.supabase_url, args.service_role_key)
@@ -293,6 +295,7 @@ def verified_main() -> int:
             "media_reused": skipped,
             "media_total": uploaded + skipped,
             "target_courses": effective_targets,
+            "routing_summary": base.routing_summary(prepared, effective_targets[0]),
             "package_sha256": package_hash,
             "deployment_state": state,
             "trust_tier": VERIFIED_TIER,

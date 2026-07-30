@@ -67,8 +67,8 @@ def main() -> int:
             if manifest.get("trust_default") != "publisher_key_direct" or manifest.get("student_visible") is not True or manifest.get("question_trust_review_required") is not False:
                 error("Manifest does not use publisher-key direct lesson access", code)
             target_courses = [str(value or "").strip() for value in manifest.get("target_courses") or []]
-            if len(target_courses) != len(set(target_courses)) or any(not value for value in target_courses):
-                error("Manifest target_courses contains blank or duplicate values", code)
+            if len(target_courses) != 1:
+                error("Manifest must declare exactly one target course", code)
             unsupported_targets = sorted(set(target_courses) - ALLOWED_COURSES)
             if unsupported_targets:
                 error(f"Manifest contains unsupported courses {unsupported_targets}", code)
@@ -153,8 +153,8 @@ def main() -> int:
 
                     maps = question.get("course_mappings") or []
                     mapped_courses = [str(row.get("course") or "").strip() for row in maps]
-                    if not maps or len(mapped_courses) != len(set(mapped_courses)) or any(not course for course in mapped_courses):
-                        error("Question must have at least one unique course mapping", code, qid)
+                    if len(maps) != 1 or any(not course for course in mapped_courses):
+                        error("Question must have exactly one course mapping", code, qid)
                     unsupported = sorted(set(mapped_courses) - ALLOWED_COURSES)
                     if unsupported:
                         error(f"Question contains unsupported course mappings {unsupported}", code, qid)
@@ -167,10 +167,14 @@ def main() -> int:
                         error(f"Question mappings {sorted(mapped_set)} do not match inferred package targets {sorted(inferred_targets)}", code, qid)
                     for mapping in maps:
                         course = str(mapping.get("course") or "")
-                        unit = int(mapping.get("unit") or 0)
+                        try:
+                            unit = int(mapping.get("unit"))
+                        except (TypeError, ValueError):
+                            unit = 0
                         lesson = mapping.get("lesson_key")
+                        lesson_title = mapping.get("lesson_title")
                         skill = mapping.get("skill_key")
-                        if not lesson or not skill or mapping.get("mapping_verified") is not True:
+                        if unit < 1 or not lesson or not lesson_title or not skill or mapping.get("mapping_verified") is not True:
                             error(f"Incomplete direct mapping for {course}", code, qid)
                         mapping_counts[(course, unit)] += 1
                         if unit == 0:
@@ -239,7 +243,7 @@ def main() -> int:
         "",
         "## Use boundary",
         "",
-        "- Every question must have one or more verified mappings matching its package target courses.",
+        "- Every package targets exactly one course, and every question has exactly one verified unit/lesson mapping.",
         "- AP Calculus, AP Precalculus, IB Mathematics AI, Algebra 2, and Grade 9 private banks are supported.",
         "- Manual Question Trust review is not required for authenticated school practice when the package uses the direct source-key contract.",
         "- Source content and media remain private and are not published through GitHub Pages.",

@@ -3,27 +3,15 @@
   "use strict";
   const params=new URLSearchParams(location.search);
   const READY=new Set(["publisher_key_direct","student_ready_verified"]);
-  const IB_UNITS=new Map([
-    ["u0-readiness",0],
-    ["u1-number",1],["u1-algebra",1],["u1-sequences",1],["u1-matrices",1],["u1-modeling",1],
-    ["u1-standard-form",1],["u1-scientific-notation",1],["u1-arithmetic-sequences",1],["u1-geometric-sequences",1],["u1-financial-models",1],["u1-logarithms",1],["u1-approximation-error",1],["u1-loans-annuities",1],["u1-technology-equations",1],
-    ["u2-concept",2],["u2-linear_quadratic",2],["u2-poly_rational",2],["u2-exp_log",2],["u2-transform",2],["u2-regression",2],
-    ["u3-coordinate",3],["u3-trig",3],["u3-conics",3],["u3-vectors",3],["u3-polar",3],
-    ["u4-data",4],["u4-probability",4],["u4-distributions",4],["u4-correlation",4],["u4-inference",4],
-    ["u5-change",5],["u5-derivative",5],["u5-integral",5],["u5-optimization",5],
-    ...Array.from({length:8},(_,i)=>[`1.${i+1}`,1]),...Array.from({length:6},(_,i)=>[`2.${i+1}`,2]),...Array.from({length:5},(_,i)=>[`3.${i+1}`,3]),...Array.from({length:5},(_,i)=>[`4.${i+1}`,4]),...Array.from({length:4},(_,i)=>[`5.${i+1}`,5])
-  ]);
-  const LABELS={
-    "IBAI-SL-MASTERY-2026":"IB Mathematics AI Bank 1","IBAI-DP-COMPLETE":"IB Mathematics AI Bank 2","IBAI-CURRENT-02":"IB Mathematics AI Bank 3","IBAI-LEGACY-SL-03":"IB Mathematics AI Bank 4","ECHS-IBAI-CURATED-01":"IB Mathematics AI Bank 5","ECHS-IBAI-OXFORD-01":"IB Mathematics AI Bank 6","IBAI-RT24-CORE":"IB Mathematics AI Bank 7","IBAI-RT24-HL":"IB Mathematics AI Bank 8","IBAI-SIB23-SL":"IB Mathematics AI Bank 9","IBAI-SIB23-VERIFIED":"IB Mathematics AI Bank 10"
-  };
-  const dynamicLabels=new Map();let generated=11,activeCourse="";
+  const dynamicLabels=new Map(),courseNumbers=new Map();let activeCourse="";
   const normalise=value=>window.ECHSPortalAccess?.normaliseCourseKey?.(value||"")||String(value||"");
   const sourceCourse=source=>normalise(source?.course_key||source?.course||params.get("course")||"");
   const sourceLesson=source=>String(source?.topic||source?.lesson_key||params.get("topic")||params.get("lesson")||"").trim();
   const sourceUnit=(source,lesson)=>{const value=source?.unit??source?.course_unit??params.get("unit")??"";if(value!==""&&Number.isFinite(Number(value)))return Number(value);const m=String(lesson||"").match(/^(\d+)\./);return m?Number(m[1]):"";};
   const resolvedAccess=async()=>{try{return await window.ECHSPortalAccess?.ready;}catch{return window.ECHSPortalAccess?.current||null;}};
   const staff=access=>["teacher","admin"].includes(access?.role||window.ECHSPortalAccess?.current?.role||"");
-  const labelFor=code=>{if(!code)return"IB Mathematics AI Bank";if(LABELS[code])return LABELS[code];if(!dynamicLabels.has(code))dynamicLabels.set(code,`IB Mathematics AI Bank ${generated++}`);return dynamicLabels.get(code);};
+  const courseLabel=course=>window.ECHSLearning?.COURSE_LABELS?.[course]||String(course||"Course").replaceAll("-"," ");
+  const labelFor=(code,course=activeCourse)=>{if(!code)return`${courseLabel(course)} Bank`;if(!dynamicLabels.has(code)){const next=(courseNumbers.get(course)||0)+1;courseNumbers.set(course,next);dynamicLabels.set(code,`${courseLabel(course)} Bank ${next}`);}return dynamicLabels.get(code);};
   const fingerprint=q=>q?.source?.source_content_fingerprint||q?.metadata?.source_content_fingerprint||q?.id;
   const dispatch=(type,detail)=>window.dispatchEvent?.(new CustomEvent(type,{detail}));
   const wait=milliseconds=>new Promise(resolve=>setTimeout(resolve,milliseconds));
@@ -41,9 +29,9 @@
     const mappedCourses=[...new Set(mappings.map(item=>normalise(item?.course)).filter(Boolean))],dedicated=mappedCourses.length===1&&mappedCourses[0]===course;
     const lesson=String(mapping.lesson_key||""),title=String(mapping.lesson_title||lesson||"Mapped practice"),unit=Number(mapping.unit);
     const trust=String(row?.trust_tier||question.trust?.tier||"publisher_key_direct"),mapped=row?.mapping_verified!==false&&mapping.mapping_verified!==false,visible=row?.student_visible!==false;
-    const catalogue=course!=="ib-math-ai"||IB_UNITS.get(lesson)===unit,studentReady=visible&&mapped&&READY.has(trust)&&catalogue&&dedicated;
+    const exactRoute=unit>=1&&Boolean(lesson)&&Boolean(title),studentReady=visible&&mapped&&READY.has(trust)&&exactRoute&&dedicated;
     if(!studentReady&&!allowAll)return null;
-    const aliases=question.display_bank_aliases||{},visibleName=course==="ib-math-ai"?labelFor(question.bank_code):aliases.student||aliases[course]||aliases.teacher||question.bank_code;
+    const aliases=question.display_bank_aliases||{},visibleName=aliases.student||aliases[course]||aliases.teacher||labelFor(question.bank_code,course);
     if(question.bank_code&&visibleName)dynamicLabels.set(question.bank_code,visibleName);
     question.classification={...(question.classification||{}),course_scope:course,primary_unit:mapping.unit,primary_topic:lesson,primary_topic_title:title,topic:lesson,topic_title:title,mapping_verified:mapped,mapping_basis:mapping.basis||"verified-private-package"};
     if(course==="ib-math-ai")Object.assign(question.classification,{ib_unit:mapping.unit,ib_lesson:lesson,ib_lesson_title:title});
@@ -55,7 +43,7 @@
     question._private_bank=true;question._staff_only=!studentReady;return question;
   }
   function queryFor(scope,offset,limit){
-    const query=new URLSearchParams({course:scope.course,offset:String(offset),limit:String(limit)});if(scope.lesson)query.set("lesson",scope.lesson);if(scope.unit!=="")query.set("unit",String(scope.unit));return query;
+    const query=new URLSearchParams({course:scope.course,offset:String(offset),limit:String(limit)});if(scope.bank)query.set("bank",scope.bank);if(scope.lesson)query.set("lesson",scope.lesson);if(scope.unit!=="")query.set("unit",String(scope.unit));return query;
   }
   async function strictRequest(scope,offset,limit){
     const query=queryFor(scope,offset,limit);query.set("view",scope.view);return await window.ECHSInstitution.api("practice-bank-api",`/questions?${query}`);
@@ -93,12 +81,6 @@
     await Promise.all(Array.from({length:Math.min(3,offsets.length)},worker));
     return{questions,fallback};
   }
-  function updateCourseOption(source,count,state="ready"){
-    if(activeCourse!=="ib-math-ai")return;source.private_bank_only=true;source.count=count;source.bank_counts={};const option=[...(document.getElementById("bundle")?.options||[])].find(item=>item.value===String(source?.id||""));
-    const suffix=state==="error"?"connection unavailable":state==="fallback"?`${Number(count).toLocaleString()} questions · protected recovery`:`${Number(count).toLocaleString()} uploaded questions`;
-    if(option)option.textContent=`${source?.label||"IB Math AI · Uploaded Banks"} (${suffix})`;
-    Object.assign(document.documentElement.dataset,{ibCourseBankSource:"private-upload-manager",ibCourseBankCount:String(count||0),ibCourseBankLoaded:String(count||0),ibCourseBankState:state,privateQuestionRows:String(count||0),practiceBankTransport:state==="fallback"?"protected-compatibility":state==="ready"?"strict-api":"unavailable"});
-  }
   function merge(course,groups){const out=[],seen=new Set();groups.flat().forEach(q=>{if(!q?.id)return;const key=`${course}|${fingerprint(q)}`;if(!seen.has(key)){seen.add(key);out.push(q);}});return out;}
   function install(){
     if(!window.ECHSBank||!window.ECHSLearning||!window.ECHSInstitution?.api)return setTimeout(install,40);
@@ -106,14 +88,14 @@
     ECHSBank.loadBundle=async source=>{
       activeCourse=sourceCourse(source);const lesson=sourceLesson(source),unit=sourceUnit(source,lesson),access=await resolvedAccess(),view=staff(access)&&source?.staff_view_all===true?"all":"ready",requestKey=String(source?.id||`${activeCourse}:${unit}:${lesson}:${view}`);
       if(!activeCourse)return originalLoad(source);
-      const scope={course:activeCourse,lesson,unit,view};
+      const scope={course:activeCourse,bank:String(source?.bank_code||""),lesson,unit,view};
       try{
-        const [base,direct]=await Promise.all([activeCourse==="ib-math-ai"?Promise.resolve([]):originalLoad(source),collect(scope,requestKey)]),rows=merge(activeCourse,[base,direct.questions]);
-        if(activeCourse==="ib-math-ai")updateCourseOption(source,rows.length,direct.fallback?"fallback":"ready");
+        const [base,direct]=await Promise.all([source?.private_bank_only?Promise.resolve([]):originalLoad(source),collect(scope,requestKey)]),rows=merge(activeCourse,[base,direct.questions]);
+        document.documentElement.dataset.practiceBankTransport=direct.fallback?"protected-compatibility":"strict-api";
         return rows;
-      }catch(error){console.error("Mapped private practice could not be loaded",error);if(activeCourse==="ib-math-ai"){updateCourseOption(source,0,"error");return[];}return originalLoad(source);}
+      }catch(error){console.error("Mapped private practice could not be loaded",error);if(source?.private_bank_only)return[];return originalLoad(source);}
     };
-    ECHSBank.bankLabel=(code,course)=>normalise(course||activeCourse)==="ib-math-ai"?(dynamicLabels.get(code)||labelFor(code)):(dynamicLabels.get(code)||originalLabel(code,course));
+    ECHSBank.bankLabel=(code,course)=>{const fallback=originalLabel(code,course);return dynamicLabels.get(code)||(fallback&&fallback!=="ECHS Practice Bank"?fallback:labelFor(code,normalise(course||activeCourse)));};
     ECHSLearning.recordAttempt=payload=>{const result=originalRecord(payload),q=payload?.question;if(result&&q?._private_bank){try{const rows=JSON.parse(localStorage.getItem("echs_learning_events_v2")||"[]"),index=rows.findIndex(row=>row.id===result.id);if(index>=0){rows[index]={...rows[index],skill_key:q.skill_key,trust_tier:q.trust_tier||"publisher_key_direct",representation:"publisher-source",verification_basis:q.metadata?.alignment_status||"mapped-private-bank",staff_review_only:Boolean(q._staff_only)};localStorage.setItem("echs_learning_events_v2",JSON.stringify(rows));}}catch{}}return result;};
     document.documentElement.dataset.privateBankAdapter="ready";
   }

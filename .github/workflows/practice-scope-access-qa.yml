@@ -10,7 +10,6 @@ on:
       - "question-bank/js/private-bank-assets.js"
       - "question-bank/js/practice-course-isolation.js"
       - "question-bank/js/mapped-private-bank-practice.js"
-      - "question-bank/js/ib-exact-lesson-bank-aliases.js"
       - "question-bank/js/mapped-practice.js"
       - "question-bank/js/practice-single-bank.js"
       - "question-bank/js/practice-builder.js"
@@ -23,10 +22,8 @@ on:
       - "supabase/config.toml"
       - "sw.js"
       - "tools/test_practice_scope_access.py"
+      - "tools/test_calculus_only_practice.py"
       - "tools/test_practice_course_isolation.mjs"
-      - "tools/test_ib_private_bank_lesson_aliases.mjs"
-      - "tools/test_ib_private_bank_course_browser.mjs"
-      - "tools/test_ib_private_bank_recovery.mjs"
       - "tools/test_student_single_bank.mjs"
       - ".github/workflows/practice-scope-access-qa.yml"
   workflow_dispatch:
@@ -55,17 +52,11 @@ jobs:
       - name: Validate strict practice contracts
         run: python tools/test_practice_scope_access.py
 
+      - name: Validate Calculus-only bank boundary
+        run: python tools/test_calculus_only_practice.py
+
       - name: Verify course isolation
         run: node tools/test_practice_course_isolation.mjs
-
-      - name: Verify exact IB lesson aliases
-        run: node tools/test_ib_private_bank_lesson_aliases.mjs
-
-      - name: Verify IB staff course browser
-        run: node tools/test_ib_private_bank_course_browser.mjs
-
-      - name: Verify protected IB staff recovery
-        run: node tools/test_ib_private_bank_recovery.mjs
 
       - name: Verify student single-bank isolation
         run: node tools/test_student_single_bank.mjs

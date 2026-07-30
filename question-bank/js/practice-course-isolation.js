@@ -13,7 +13,6 @@
       if(direct)return direct;
       const mapped=mappings(question).map(item=>normalise(item?.course)).find(Boolean);
       if(mapped)return mapped;
-      if(["PCALRT5S","CAF5S"].includes(question?.bank_code))return"ap-precalculus";
       if(["CALCT3BC","ADAMS10","PEARSON_CH0"].includes(question?.bank_code))return"ap-calculus";
       return"";
     };

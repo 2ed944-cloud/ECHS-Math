@@ -1,102 +1,155 @@
 (async function(){
   "use strict";
-  const status=document.getElementById("bankStatus"),purgeButton=document.getElementById("purgeIbBanks"),purgeResult=document.getElementById("purgeIbResult"),dangerZone=document.getElementById("ibDangerZone");
+  const CALCULUS="ap-calculus";
+  const REMOVAL_ORDER=["ap-precalculus","ib-math-ai","algebra-2","grade-9"];
+  const courseLabels={
+    "ap-calculus":"AP Calculus",
+    "ap-precalculus":"AP Precalculus",
+    "ib-math-ai":"IB Mathematics AI",
+    "algebra-2":"Algebra 2",
+    "grade-9":"Grade 9"
+  };
+  const status=document.getElementById("bankStatus");
+  const cleanupButton=document.getElementById("keepCalculusOnly");
+  const cleanupResult=document.getElementById("cleanupResult");
+  const dangerZone=document.getElementById("cleanupDangerZone");
   const number=value=>new Intl.NumberFormat("en-GB").format(Number(value||0));
-  const escapeHTML=value=>String(value??"").replace(/[&<>'"]/g,char=>({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"})[char]);
-  const courseLabels={"ap-calculus":"AP Calculus","ap-precalculus":"AP Precalculus","ib-math-ai":"IB Mathematics AI","algebra-2":"Algebra 2","grade-9":"Grade 9"};
-  const visibleName=row=>{const aliases=row.display_aliases||{};return aliases.teacher||aliases.student||aliases["ap-calculus"]||aliases["ap-precalculus"]||aliases["ib-math-ai"]||row.bank_code||"Private Bank"};
-  const targets=row=>{const declared=Array.isArray(row.manifest?.target_courses)?row.manifest.target_courses.filter(Boolean):[];if(declared.length)return[...new Set(declared)];const aliases={...(row.display_aliases||{}),...(row.manifest?.display_aliases||{})};return Object.keys(aliases).filter(key=>courseLabels[key])};
+  const escapeHTML=value=>String(value??"").replace(/[&<>'"]/g,char=>({
+    "&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"
+  })[char]);
+  const sleep=milliseconds=>new Promise(resolve=>setTimeout(resolve,milliseconds));
   const complete=row=>/^complete(?:-|$)/i.test(String(row?.deployment_state||""));
   const declaredQuestions=row=>Number(row?.question_count??row?.questions??row?.manifest?.questions??0);
-  const sleep=milliseconds=>new Promise(resolve=>setTimeout(resolve,milliseconds));
+  const targets=row=>{
+    const declared=Array.isArray(row?.manifest?.target_courses)?row.manifest.target_courses.filter(Boolean):[];
+    if(declared.length)return[...new Set(declared)];
+    const aliases={...(row?.display_aliases||{}),...(row?.manifest?.display_aliases||{})};
+    return Object.keys(aliases).filter(key=>courseLabels[key]);
+  };
+  const visibleName=row=>{
+    const aliases=row?.display_aliases||{};
+    return aliases.teacher||aliases.student||aliases[CALCULUS]||row?.bank_code||"AP Calculus Bank";
+  };
 
   async function load(){
-    const [registryResult,alignmentResult,mappingSummaryResult,liveResult,ibCourseResult,ibReadinessResult]=await Promise.allSettled([
-      fetch("../../private-sources/data/private-bank-registry.json",{cache:"no-store"}).then(response=>response.ok?response.json():Promise.reject(new Error(`Private bank registry returned ${response.status}`))),
-      fetch("../../private-sources/data/private-bank-alignment-summary.json",{cache:"no-store"}).then(response=>response.ok?response.json():Promise.reject(new Error(`Private bank alignment summary returned ${response.status}`))),
-      fetch("../../private-sources/data/ib-live-mapping-summary.json",{cache:"no-store"}).then(response=>response.ok?response.json():Promise.reject(new Error(`IB live mapping summary returned ${response.status}`))),
-      window.ECHSInstitution.api("private-bank-api","/packages"),
-      window.ECHSInstitution.api("private-bank-api","/student-questions?course=ib-math-ai&limit=1&offset=0"),
-      window.ECHSInstitution.api("private-bank-api","/student-questions?course=ib-math-ai&unit=0&limit=1&offset=0")
-    ]);
-    const registry=registryResult.status==="fulfilled"?registryResult.value:{banks:[],totals:{}},alignment=alignmentResult.status==="fulfilled"?alignmentResult.value:{},mappingSummary=mappingSummaryResult.status==="fulfilled"?mappingSummaryResult.value:{},livePackages=liveResult.status==="fulfilled"&&Array.isArray(liveResult.value?.packages)?liveResult.value.packages:[];
-    const liveByCode=new Map(livePackages.map(row=>[row.bank_code,row])),merged=[];
-    for(const bank of registry.banks||[]){const live=liveByCode.get(bank.bank_code)||{};merged.push({...bank,...live,display_aliases:{...(bank.display_aliases||{}),...(live.display_aliases||{})},manifest:live.manifest||bank.manifest||null});liveByCode.delete(bank.bank_code)}
-    for(const live of liveByCode.values())merged.push(live);
-    merged.sort((a,b)=>visibleName(a).localeCompare(visibleName(b),"en"));
+    const result=await window.ECHSInstitution.api("private-bank-api","/packages");
+    const all=Array.isArray(result?.packages)?result.packages:[];
+    const calculus=all.filter(row=>targets(row).includes(CALCULUS));
+    const live=calculus.filter(complete);
+    const pendingRemoval=all.filter(row=>targets(row).some(course=>course!==CALCULUS));
+    const totals=live.reduce((acc,row)=>{
+      acc.questions+=declaredQuestions(row);
+      acc.pools+=Number(row.pool_count??row.manifest?.pools??0);
+      acc.media+=Number(row.media_count??row.manifest?.media_files??0);
+      return acc;
+    },{questions:0,pools:0,media:0});
 
-    const completePackages=livePackages.filter(complete);
-    const totals=completePackages.reduce((acc,row)=>{acc.questions+=declaredQuestions(row);acc.pools+=Number(row.pool_count??row.pools??row.manifest?.pools??0);acc.media+=Number(row.media_count??row.media_files??row.manifest?.media_files??0);return acc},{questions:0,pools:0,media:0});
-    document.getElementById("bankTotal").textContent=number(completePackages.length);document.getElementById("questionTotal").textContent=number(totals.questions);document.getElementById("poolTotal").textContent=number(totals.pools);document.getElementById("mediaTotal").textContent=number(totals.media);
-
-    const ap=alignment["ap-precalculus"]||{},ib=alignment["ib-math-ai"]||{};
-    document.getElementById("apLessons").textContent=number(ap.lesson_catalog_topics||50);document.getElementById("apReadiness").textContent=number(ap.exact_counts?.unit_0_readiness);document.getElementById("apVerified").textContent=number(alignment.exact_question_mappings_per_course);
-    const ibPackages=livePackages.filter(row=>targets(row).includes("ib-math-ai")),completeIbPackages=ibPackages.filter(complete),incompleteIbPackages=ibPackages.filter(row=>!complete(row));
-    const fallbackIbQuestions=completeIbPackages.reduce((sum,row)=>sum+declaredQuestions(row),0);
-    const ibQuestionTotal=ibCourseResult.status==="fulfilled"?Number(ibCourseResult.value?.total||0):Number(mappingSummary.live_question_rows||fallbackIbQuestions);
-    const ibReadinessTotal=ibReadinessResult.status==="fulfilled"?Number(ibReadinessResult.value?.total||0):Number(mappingSummary.unit_counts?.["0"]??ib.exact_counts?.unit_0_readiness??0);
-    document.getElementById("ibLessons").textContent=number(mappingSummary.live_lesson_keys||ib.lesson_catalog_lessons||0);document.getElementById("ibReadiness").textContent=number(ibReadinessTotal);document.getElementById("ibVerified").textContent=number(ibQuestionTotal);
-    const calc=completePackages.filter(row=>targets(row).includes("ap-calculus")),calcQuestions=calc.reduce((sum,row)=>sum+declaredQuestions(row),0),calcReadiness=calc.reduce((sum,row)=>sum+Number(row.manifest?.mapping_counts?.["ap-calculus:U0"]||0),0);
-    document.getElementById("calcBanks").textContent=number(calc.length);document.getElementById("calcReadiness").textContent=number(calcReadiness);document.getElementById("calcVerified").textContent=number(calcQuestions);
+    document.getElementById("bankTotal").textContent=number(live.length);
+    document.getElementById("questionTotal").textContent=number(totals.questions);
+    document.getElementById("poolTotal").textContent=number(totals.pools);
+    document.getElementById("mediaTotal").textContent=number(totals.media);
+    document.getElementById("calcBanks").textContent=number(live.length);
+    document.getElementById("calcReadiness").textContent=number(live.reduce((sum,row)=>
+      sum+Number(row?.manifest?.mapping_counts?.["ap-calculus:U0"]||0),0));
+    document.getElementById("calcVerified").textContent=number(totals.questions);
 
     const grid=document.getElementById("bankGrid");
-    grid.innerHTML=merged.length?merged.map(bank=>{const types=bank.question_types||bank.manifest?.question_types||{},state=bank.deployment_state||"pending-private-upload",isComplete=complete(bank),declared=declaredQuestions(bank),questions=isComplete?declared:0,pools=isComplete?Number(bank.pool_count??bank.pools??bank.manifest?.pools??0):0,media=isComplete?Number(bank.media_count??bank.media_files??bank.manifest?.media_files??0):0,aliases=bank.display_aliases||{},aliasValues=["student","teacher","ap-calculus","ap-precalculus","ib-math-ai","algebra-2","grade-9"].map(key=>aliases[key]).filter(Boolean),tagValues=[...new Set([...aliasValues,...targets(bank).map(course=>courseLabels[course]||course)])],targetTags=tagValues.map(value=>`<span>${escapeHTML(value)}</span>`).join("")||'<span>Manifest target pending</span>',openResponse=Number(types.essay||0)+Number(types.fill_blank||0),trustText=isComplete?"Private · verified mapping":"Not live · excluded from practice",declaredText=!isComplete&&declared?` · ${number(declared)} declared, 0 indexed`:"";return `<article class="bankCard"><div class="bankCardTop"><div><small>${escapeHTML(bank.bank_code||"")}</small><h2>${escapeHTML(visibleName(bank))}</h2><div class="bankAliases">${targetTags}</div></div><span class="bankState">${escapeHTML(String(state).replaceAll("-"," "))}</span></div><div class="bankMetrics"><div><strong>${number(questions)}</strong><small>live questions</small></div><div><strong>${number(pools)}</strong><small>live pools</small></div><div><strong>${number(media)}</strong><small>live media</small></div><div><strong>${number(isComplete?openResponse:0)}</strong><small>open response</small></div></div><div class="bankFooter"><span>SHA-256 ${escapeHTML(String(bank.package_sha256||"").slice(0,12))}${bank.package_sha256?"…":""}${escapeHTML(declaredText)}</span><span class="bankTrust">${escapeHTML(trustText)}</span></div></article>`}).join(""):'<article class="bankCard"><h2>No private banks registered yet</h2><p>Open Upload Manager and upload a validated private-bank ZIP.</p></article>';
-    status.textContent=livePackages.length?`Private backend connected. ${number(completePackages.length)} complete packages are live. IB Mathematics AI has ${number(completeIbPackages.length)} complete banks and ${number(ibQuestionTotal)} mapped questions. ${number(incompleteIbPackages.length)} incomplete zero-row upload records are excluded.`:"Static registry loaded. No live private packages were returned.";
-    document.documentElement.dataset.ibLiveMappedQuestions=String(ibQuestionTotal);
-    document.documentElement.dataset.ibLiveLessonKeys=String(mappingSummary.live_lesson_keys||0);
-    document.documentElement.dataset.ibIncompletePackages=String(incompleteIbPackages.length);
-    return {livePackages,ibPackages,completeIbPackages,incompleteIbPackages};
+    grid.innerHTML=calculus.length?calculus
+      .sort((a,b)=>visibleName(a).localeCompare(visibleName(b),"en"))
+      .map((bank,index)=>{
+        const state=bank.deployment_state||"pending-private-upload";
+        const isComplete=complete(bank);
+        const questions=isComplete?declaredQuestions(bank):0;
+        const pools=isComplete?Number(bank.pool_count??bank.manifest?.pools??0):0;
+        const media=isComplete?Number(bank.media_count??bank.manifest?.media_files??0):0;
+        const typeCounts=bank.manifest?.question_types||{};
+        const openResponse=Number(typeCounts.essay||0)+Number(typeCounts.fill_blank||0);
+        return `<article class="bankCard">
+          <div class="bankCardTop"><div><small>${escapeHTML(bank.bank_code||"")}</small>
+            <h2>${escapeHTML(visibleName(bank)||`AP Calculus Bank ${index+1}`)}</h2>
+            <div class="bankAliases"><span>AP Calculus only</span><span>Course-isolated</span></div>
+          </div><span class="bankState">${escapeHTML(String(state).replaceAll("-"," "))}</span></div>
+          <div class="bankMetrics"><div><strong>${number(questions)}</strong><small>live questions</small></div>
+            <div><strong>${number(pools)}</strong><small>source pools</small></div>
+            <div><strong>${number(media)}</strong><small>media</small></div>
+            <div><strong>${number(isComplete?openResponse:0)}</strong><small>open response</small></div></div>
+          <div class="bankFooter"><span>SHA-256 ${escapeHTML(String(bank.package_sha256||"").slice(0,12))}${bank.package_sha256?"…":""}</span><span class="bankTrust">Calculus preserved</span></div>
+        </article>`;
+      }).join("")
+      :'<article class="bankCard"><h2>No private AP Calculus package is registered</h2><p>The retained static AP Calculus banks remain available in Focused Practice.</p></article>';
+
+    status.textContent=pendingRemoval.length
+      ?`${number(live.length)} AP Calculus banks are protected. ${number(pendingRemoval.length)} non-calculus package records still require the administrator cleanup below.`
+      :`${number(live.length)} AP Calculus banks are protected. No non-calculus package mapping remains.`;
+    cleanupButton.disabled=pendingRemoval.length===0;
+    cleanupButton.textContent=pendingRemoval.length?"Keep AP Calculus only":"Calculus-only cleanup complete";
+    document.documentElement.dataset.nonCalculusPackages=String(pendingRemoval.length);
+    return{all,calculus,live,pendingRemoval};
   }
 
-  function renderPurge(job,{retrying=false}={}){
-    const totals=job?.totals||{},progress=job?.progress||{},percent=Math.max(0,Math.min(100,Number(job?.percent||0)));
-    const phase=retrying?`Retrying ${job?.phase_label||"the current batch"}…`:(job?.phase_label||"Preparing the reset…");
-    const questionsDone=Number(progress.questions_processed||0),questionsTotal=Number(totals.questions||0),mediaDone=Number(progress.media_deleted||0),mediaTotal=Number(totals.media||0),packagesDone=Number(progress.packages_deleted||0)+Number(progress.mixed_packages_updated||0),packagesTotal=Number(totals.packages||0);
-    purgeResult.classList.remove("hidden");
-    purgeResult.innerHTML=`<div class="purgeResultHead"><strong>${escapeHTML(phase)}</strong><span>${percent}%</span></div><div class="purgeProgress" aria-label="IB reset progress"><i style="width:${percent}%"></i></div><div class="purgeMetrics"><span><b>${number(questionsDone)}</b> / ${number(questionsTotal)} questions</span><span><b>${number(mediaDone)}</b> / ${number(mediaTotal)} media</span><span><b>${number(packagesDone)}</b> / ${number(packagesTotal)} packages</span></div><small>Job ${escapeHTML(job?.id||"pending")} · safely resumable after refresh or temporary network interruption.</small>`;
+  function aggregateSnapshot(courseIndex,job){
+    const progress=job?.progress||{},totals=job?.totals||{};
+    const coursePercent=Math.max(0,Math.min(100,Number(job?.percent||0)));
+    const overall=Math.round(((courseIndex+coursePercent/100)/REMOVAL_ORDER.length)*100);
+    return{progress,totals,coursePercent,overall};
   }
-
+  function renderPurge(course,courseIndex,job,{retrying=false}={}){
+    const{progress,totals,coursePercent,overall}=aggregateSnapshot(courseIndex,job);
+    cleanupResult.classList.remove("hidden");
+    cleanupResult.innerHTML=`<div class="purgeResultHead"><strong>${escapeHTML(retrying?"Retrying the current batch…":job?.phase_label||"Preparing cleanup…")}</strong><span>${overall}% overall</span></div>
+      <div class="purgeProgress" aria-label="Non-calculus cleanup progress"><i style="width:${overall}%"></i></div>
+      <div class="purgeMetrics"><span><b>${escapeHTML(courseLabels[course])}</b><br>${coursePercent}% course progress</span>
+        <span><b>${number(progress.questions_processed)}</b> / ${number(totals.questions)} questions</span>
+        <span><b>${number(Number(progress.packages_deleted||0)+Number(progress.mixed_packages_updated||0))}</b> / ${number(totals.packages)} packages</span></div>
+      <small>Course ${courseIndex+1} of ${REMOVAL_ORDER.length} · job ${escapeHTML(job?.id||"pending")} · safely resumable.</small>`;
+  }
   function retryable(error){
-    const statusCode=Number(error?.status||0),message=String(error?.message||"").toLowerCase();
-    return !statusCode||[408,425,429,500,502,503,504,546].includes(statusCode)||/timeout|cpu time|temporar|network|fetch/.test(message);
+    const code=Number(error?.status||0),message=String(error?.message||"").toLowerCase();
+    return!code||[408,425,429,500,502,503,504,546].includes(code)||/timeout|cpu time|temporar|network|fetch/.test(message);
   }
-
-  async function runPurge(initialJob){
-    let job=initialJob,retries=0,steps=0;
+  async function runCourse(course,courseIndex){
+    const started=await window.ECHSInstitution.api("private-bank-purge-api",`/courses/${encodeURIComponent(course)}`,{method:"DELETE"});
+    let job=started.job,retries=0,steps=0;
     while(job?.status!=="completed"){
-      if(++steps>10000)throw new Error("The reset exceeded its safety step limit. Click the button again to resume the same job.");
-      renderPurge(job);
+      if(++steps>10000)throw new Error(`Cleanup safety limit reached for ${courseLabels[course]}. Run the same action again to resume.`);
+      renderPurge(course,courseIndex,job);
       try{
         const result=await window.ECHSInstitution.api("private-bank-purge-api",`/jobs/${encodeURIComponent(job.id)}/step`,{method:"POST",body:{}});
-        job=result.job;retries=0;
-        await sleep(80);
+        job=result.job;retries=0;await sleep(80);
       }catch(error){
         if(!retryable(error)||retries>=6)throw error;
-        retries+=1;renderPurge(job,{retrying:true});await sleep(Math.min(8000,750*(2**retries)));
+        retries+=1;renderPurge(course,courseIndex,job,{retrying:true});
+        await sleep(Math.min(8000,750*(2**retries)));
       }
     }
-    renderPurge(job);
-    purgeResult.insertAdjacentHTML("beforeend",'<p class="purgeComplete"><strong>IB Mathematics AI reset completed.</strong> All remaining IB package links were verified as removed. Student attempt and mastery history was preserved.</p>');
-    await load();
-    return job;
+    renderPurge(course,courseIndex,job);
+  }
+  async function keepCalculusOnly(){
+    const confirmation=prompt("Type KEEP AP CALCULUS ONLY to remove every non-calculus question bank.");
+    if(confirmation!=="KEEP AP CALCULUS ONLY")return;
+    cleanupButton.disabled=true;
+    cleanupButton.textContent="Calculus-only cleanup in progress…";
+    try{
+      for(let index=0;index<REMOVAL_ORDER.length;index++)await runCourse(REMOVAL_ORDER[index],index);
+      cleanupResult.insertAdjacentHTML("beforeend",'<p class="purgeComplete"><strong>Calculus-only cleanup completed.</strong> AP Calculus packages and mappings were preserved; all other course-bank mappings were removed. Learning history was retained.</p>');
+      await load();
+    }catch(error){
+      console.error(error);
+      cleanupResult.classList.remove("hidden");
+      cleanupResult.insertAdjacentHTML("beforeend",`<p><strong>Cleanup paused safely.</strong><br>${escapeHTML(error instanceof Error?error.message:"Could not continue the cleanup.")}<br><small>Run the same action again to resume from the stored batch.</small></p>`);
+      cleanupButton.disabled=false;
+      cleanupButton.textContent="Resume calculus-only cleanup";
+    }
   }
 
   try{
-    const current=await window.ECHSInstitution.requireAuth(["teacher","admin"]);if(!current)return;
+    const current=await window.ECHSInstitution.requireAuth(["teacher","admin"]);
+    if(!current)return;
     if(current.role==="admin")dangerZone.classList.remove("hidden");
     await load();
-    purgeButton?.addEventListener("click",async()=>{
-      const confirmation=prompt('Type DELETE IB AI to remove every existing IB Mathematics AI private bank and question mapping for this school.');
-      if(confirmation!=="DELETE IB AI")return;
-      purgeButton.disabled=true;purgeButton.textContent="IB AI reset in progress…";purgeResult.classList.remove("hidden");purgeResult.textContent="Creating or resuming the protected IB Mathematics AI reset job…";
-      try{
-        const startResult=await window.ECHSInstitution.api("private-bank-purge-api","/courses/ib-math-ai",{method:"DELETE"});
-        await runPurge(startResult.job);
-        purgeButton.textContent="IB AI banks and questions deleted";
-      }catch(error){
-        console.error(error);purgeResult.classList.remove("hidden");purgeResult.innerHTML=`<strong>Reset paused safely.</strong><br>${escapeHTML(error instanceof Error?error.message:"Could not continue the IB Mathematics AI reset.")}<br><small>Click the button again and enter DELETE IB AI to resume from the last completed batch.</small>`;
-        purgeButton.disabled=false;purgeButton.textContent="Resume deleting existing IB AI banks and questions";
-      }
-    });
-  }catch(error){console.error(error);status.textContent=error instanceof Error?error.message:"Could not load the private bank registry."}
+    cleanupButton?.addEventListener("click",keepCalculusOnly);
+  }catch(error){
+    console.error(error);
+    status.textContent=error instanceof Error?error.message:"Could not load the private bank registry.";
+  }
 })();

@@ -12,6 +12,7 @@
   const shell=document.getElementById("shell");
   const mode=document.getElementById("mode");
   const course=document.getElementById("course");
+  const bank=document.getElementById("bank");
   const scope=document.getElementById("scope");
   const bundle=document.getElementById("bundle");
   const type=document.getElementById("type");
@@ -31,7 +32,7 @@
     compactTitle.textContent=modeLabels[mode?.value]||selectedText(mode)||"Focused practice";
     compactMeta.textContent=(question
       ?[questionLabel,skillLabel,typeLabel]
-      :[selectedText(course),selectedText(scope),selectedText(bundle),count?.value?`${count.value} questions`:"",selectedText(type)]
+      :[selectedText(course),selectedText(bank),selectedText(scope),selectedText(bundle),count?.value?`${count.value} questions`:"",selectedText(type)]
     ).filter(Boolean).join(" · ")||"Ready to adjust your mapped practice";
   }
 
@@ -50,7 +51,7 @@
 
   toggle.addEventListener("click",()=>setCollapsed(!isCollapsed(),{focus:true}));
   adjust?.addEventListener("click",()=>setCollapsed(false,{focus:true}));
-  [mode,course,scope,bundle,type,count].filter(Boolean).forEach(node=>node.addEventListener("change",updateSummary));
+  [mode,course,bank,scope,bundle,type,count].filter(Boolean).forEach(node=>node.addEventListener("change",updateSummary));
 
   const observer=new MutationObserver(()=>{
     const hasQuestion=Boolean(document.querySelector("#shell .questionCard"));

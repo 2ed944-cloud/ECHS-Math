@@ -104,6 +104,33 @@ async function authoriseStudentCourse(req: Request, current: SessionAccount, cou
   }
   return null;
 }
+async function inventory(req: Request, current: SessionAccount, url: URL) {
+  const requestedCourse = normaliseCourse(url.searchParams.get("course") ?? "");
+  if (requestedCourse && !safeCourse(requestedCourse)) {
+    return fail(req, "Invalid course", 400, "invalid_course_scope");
+  }
+  const allowed = await assignedCourses(current);
+  if (requestedCourse && !allowed.has(requestedCourse)) {
+    return fail(req, "This course is not available to the signed-in account", 403, "course_not_assigned");
+  }
+  const { data, error } = await db.rpc("private_bank_practice_inventory", {
+    p_organization_id: current.organization_id,
+    p_course_key: requestedCourse || null,
+  });
+  if (error) throw error;
+  const rows = (data ?? []).filter((row: JsonRecord) =>
+    allowed.has(normaliseCourse(row.course_key)) &&
+    (current.role !== "student" || Number(row.ready_count ?? 0) > 0)
+  );
+  return reply(req, {
+    ok: true,
+    private: true,
+    course: requestedCourse || null,
+    routing_order: ["course", "bank", "unit", "lesson"],
+    dedicated_course_required: true,
+    rows,
+  });
+}
 function packageTargets(row: JsonRecord): string[] {
   const manifest = asRecord(row.manifest);
   const declared = asStrings(manifest.target_courses).map(normaliseCourse).filter(safeCourse);
@@ -114,6 +141,7 @@ function packageTargets(row: JsonRecord): string[] {
 
 async function questions(req: Request, current: SessionAccount, url: URL) {
   const course = normaliseCourse(url.searchParams.get("course") ?? "");
+  const bank = url.searchParams.get("bank")?.trim() ?? "";
   const lesson = url.searchParams.get("lesson")?.trim() ?? "";
   const unit = url.searchParams.get("unit")?.trim() ?? "";
   const requestedView = url.searchParams.get("view")?.trim() ?? "ready";
@@ -121,6 +149,7 @@ async function questions(req: Request, current: SessionAccount, url: URL) {
   const offset = positiveInteger(url.searchParams.get("offset"), 0, 1000000);
 
   if (!safeCourse(course)) return fail(req, "A valid course is required", 400, "invalid_course_scope");
+  if (bank && !/^[A-Z0-9-]{3,64}$/.test(bank)) return fail(req, "Invalid bank", 400, "invalid_bank_scope");
   const denied = await authoriseStudentCourse(req, current, course);
   if (denied) return denied;
   if (current.role === "student" && !lesson && !unit) {
@@ -146,6 +175,7 @@ async function questions(req: Request, current: SessionAccount, url: URL) {
   }
   if (lessonKey) query = query.contains("lesson_keys", [lessonKey]);
   if (unit) query = query.contains("course_mappings", [{ course, unit: Number(unit) }]);
+  if (bank) query = query.eq("bank_code", bank);
 
   const { data, count, error } = await query.order("question_id")
     .range(offset, offset + Math.max(limit, 1) - 1);
@@ -155,6 +185,7 @@ async function questions(req: Request, current: SessionAccount, url: URL) {
     ok: true,
     private: true,
     course,
+    bank: bank || null,
     lesson: lesson || null,
     unit: unit ? Number(unit) : null,
     scope: lesson ? "lesson" : unit ? "unit" : "course",
@@ -215,10 +246,11 @@ Deno.serve(async (req) => {
   const path = url.pathname.split("/practice-bank-api")[1] || "/";
   try {
     if (path === "/health" && req.method === "GET") {
-      return reply(req, { ok: true, service: "echs-practice-bank-api", version: "1.0.0-course-isolation" });
+      return reply(req, { ok: true, service: "echs-practice-bank-api", version: "1.1.0-routing-inventory" });
     }
     const current = await session(req);
     if (!canPractise(current)) return fail(req, "Student, teacher, or administrator sign-in is required", 403, "forbidden");
+    if (path === "/inventory" && req.method === "GET") return await inventory(req, current, url);
     if (path === "/questions" && req.method === "GET") return await questions(req, current, url);
     if (path === "/media-url" && req.method === "GET") return await mediaUrl(req, current, url);
     return fail(req, "Route not found", 404, "not_found");
