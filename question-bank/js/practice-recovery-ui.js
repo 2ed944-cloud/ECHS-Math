@@ -19,9 +19,9 @@
     row.querySelectorAll("[data-practice-transport]").forEach(node=>node.remove());
     const pill=document.createElement("span");pill.dataset.practiceTransport="1";
     if(kind==="protected-compatibility"){
-      pill.className="pill transportPill";pill.textContent="Protected recovery route · student-ready rows";
+      pill.className="pill transportPill";pill.textContent="Protected recovery · staff mapped rows";
       const withheld=[...row.querySelectorAll(".pill")].find(node=>/withheld rows/i.test(node.textContent||""));
-      if(withheld)withheld.textContent="Staff view requested · withheld rows require strict API";
+      if(withheld)withheld.textContent="Recovery view · strict withheld audit temporarily unavailable";
     }else if(kind==="strict-api"){
       pill.className="pill transportPill strict";pill.textContent="Strict mapped connection";
     }else return;
@@ -29,7 +29,7 @@
   }
   function recoveryCard(message){
     const root=shell();if(!root||root.querySelector(".questionCard,.connectionRecovery"))return;
-    root.innerHTML=`<div class="empty"><div class="emptyState"><div class="emptyStateIcon">↻</div><h2>IB bank connection needs a retry</h2><div class="connectionRecovery"><strong>The mapped bank service did not answer.</strong><p>${escape(message||"The protected recovery route will be tried automatically for staff. Student course isolation remains enforced.")}</p><div class="connectionRecoveryActions"><button class="button wine" type="button" data-retry-practice>Retry this scope</button><a class="button ghost" href="official/admin/private-bank-center.html">Open bank diagnostics</a></div></div></div></div>`;
+    root.innerHTML=`<div class="empty"><div class="emptyState"><div class="emptyStateIcon">↻</div><h2>IB bank connection needs a retry</h2><div class="connectionRecovery"><strong>The strict mapped service did not answer.</strong><p>${escape(message||"A protected staff recovery route will be tried automatically. Student access remains blocked until strict course isolation is available.")}</p><div class="connectionRecoveryActions"><button class="button wine" type="button" data-retry-practice>Retry this scope</button><a class="button ghost" href="official/admin/private-bank-center.html">Open bank diagnostics</a></div></div></div></div>`;
     root.querySelector("[data-retry-practice]")?.addEventListener("click",()=>{
       const target=document.getElementById("bundle");
       if(target)target.dispatchEvent(new Event("change",{bubbles:true}));
