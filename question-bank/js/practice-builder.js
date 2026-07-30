@@ -1,4 +1,4 @@
-/* Compact Focused Practice Builder controller */
+/* Compact Focused Practice Builder controller — mapped scope edition. */
 (function(){
   "use strict";
   const builder=document.getElementById("practiceBuilder");
@@ -11,6 +11,9 @@
   const adjust=document.getElementById("builderAdjust");
   const shell=document.getElementById("shell");
   const mode=document.getElementById("mode");
+  const course=document.getElementById("course");
+  const scope=document.getElementById("scope");
+  const bundle=document.getElementById("bundle");
   const type=document.getElementById("type");
   const count=document.getElementById("count");
   if(!builder||!toggle||!controls||!compact||!shell)return;
@@ -28,8 +31,8 @@
     compactTitle.textContent=modeLabels[mode?.value]||selectedText(mode)||"Focused practice";
     compactMeta.textContent=(question
       ?[questionLabel,skillLabel,typeLabel]
-      :[count?.value?`${count.value} questions`:"",selectedText(type)]
-    ).filter(Boolean).join(" · ")||"Ready to adjust your practice";
+      :[selectedText(course),selectedText(scope),selectedText(bundle),count?.value?`${count.value} questions`:"",selectedText(type)]
+    ).filter(Boolean).join(" · ")||"Ready to adjust your mapped practice";
   }
 
   function setCollapsed(value,{focus=false}={}){
@@ -47,7 +50,7 @@
 
   toggle.addEventListener("click",()=>setCollapsed(!isCollapsed(),{focus:true}));
   adjust?.addEventListener("click",()=>setCollapsed(false,{focus:true}));
-  [mode,type,count].filter(Boolean).forEach(node=>node.addEventListener("change",updateSummary));
+  [mode,course,scope,bundle,type,count].filter(Boolean).forEach(node=>node.addEventListener("change",updateSummary));
 
   const observer=new MutationObserver(()=>{
     const hasQuestion=Boolean(document.querySelector("#shell .questionCard"));
@@ -55,6 +58,5 @@
     if(hasQuestion&&!isCollapsed())setCollapsed(true);
   });
   observer.observe(shell,{childList:true,subtree:true});
-
   setCollapsed(false);
 })();
