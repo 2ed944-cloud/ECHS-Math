@@ -13,6 +13,7 @@ on:
       - "question-bank/js/mapped-private-bank-practice.js"
       - "question-bank/js/ib-exact-lesson-bank-aliases.js"
       - "question-bank/js/mapped-practice.js"
+      - "question-bank/js/practice-single-bank.js"
       - "question-bank/js/practice-builder.js"
       - "supabase/functions/practice-bank-api/**"
       - "tools/verify_ib_practice_browser.mjs"
