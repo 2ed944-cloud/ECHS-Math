@@ -1,24 +1,20 @@
-/* ECHS landing entry and hybrid calculus artwork */
+/* ECHS landing entry, hybrid artwork, and completed-unit practice access. */
 (function(){
   "use strict";
   if(document.body?.dataset.platformPage!=="home")return;
   const root=path=>window.ECHSInstitution?.root?.(path)||new URL(path,location.href).href;
-  if(!document.querySelector('link[data-hybrid-landing-hero]')){
-    const link=document.createElement("link");
-    link.rel="stylesheet";
-    link.href=root("css/landing-calculus-motion.css?v=20260727-hybrid2");
-    link.dataset.hybridLandingHero="true";
-    link.setAttribute("data-hybrid-landing-hero","true");
-    document.head.append(link);
-  }
-  if(!document.querySelector('script[data-hybrid-landing-hero]')){
-    const script=document.createElement("script");
-    script.src=root("js/landing-hybrid-hero.js?v=20260727-hybrid2");
-    script.dataset.hybridLandingHero="true";
-    script.setAttribute("data-hybrid-landing-hero","true");
-    script.async=true;
-    document.head.append(script);
-  }
+  const installStyle=(marker,path)=>{
+    if(document.querySelector(`link[${marker}]`))return;
+    const link=document.createElement("link");link.rel="stylesheet";link.href=root(path);link.setAttribute(marker,"true");document.head.append(link);
+  };
+  const installScript=(marker,path)=>{
+    if(document.querySelector(`script[${marker}]`))return;
+    const script=document.createElement("script");script.src=root(path);script.setAttribute(marker,"true");script.async=true;document.head.append(script);
+  };
+  installStyle("data-hybrid-landing-hero","css/landing-calculus-motion.css?v=20260727-hybrid2");
+  installScript("data-hybrid-landing-hero","js/landing-hybrid-hero.js?v=20260727-hybrid2");
+  installStyle("data-unit-practice-unlock","css/unit-practice-unlock.css?v=20260730-scope1");
+  installScript("data-unit-practice-unlock","js/unit-practice-unlock.js?v=20260730-scope1");
 })();
 
 (async()=>{
@@ -28,10 +24,10 @@
   const current=cfg.enabled?await ECHSInstitution.me():null;
   if(current){
     const href=ECHSInstitution.root(ECHSInstitution.roleHome(current.role));
-    if(entry){entry.href=href;entry.textContent=`${current.display_name.split(/\s+/)[0]} · Dashboard`;entry.classList.add("institutionSignedIn")}
-    if(tile){tile.querySelector(".platformTileLabel").textContent=`${current.role} account`;tile.querySelector("h3").textContent=`Welcome back, ${current.display_name}`;tile.querySelector("p").textContent="Open your secure school dashboard, assignments and synchronized progress.";const link=tile.querySelector("a");link.href=href;link.textContent="Open my dashboard"}
+    if(entry){entry.href=href;entry.textContent=`${current.display_name.split(/\s+/)[0]} · Dashboard`;entry.classList.add("institutionSignedIn");}
+    if(tile){tile.querySelector(".platformTileLabel").textContent=`${current.role} account`;tile.querySelector("h3").textContent=`Welcome back, ${current.display_name}`;tile.querySelector("p").textContent="Open your secure school dashboard, assignments and synchronized progress.";const link=tile.querySelector("a");link.href=href;link.textContent="Open my dashboard";}
   }else{
-    if(entry){entry.href=ECHSInstitution.root("login.html");entry.textContent="Sign in"}
-    if(tile){const link=tile.querySelector("a");link.href=ECHSInstitution.root("login.html");if(!cfg.enabled){tile.querySelector("p").textContent="The secure institutional account system is prepared and awaiting backend activation."}}
+    if(entry){entry.href=ECHSInstitution.root("login.html");entry.textContent="Sign in";}
+    if(tile){const link=tile.querySelector("a");link.href=ECHSInstitution.root("login.html");if(!cfg.enabled)tile.querySelector("p").textContent="The secure institutional account system is prepared and awaiting backend activation.";}
   }
 })().catch(error=>console.warn("Institution portal entry was not updated",error));
