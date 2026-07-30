@@ -26,6 +26,7 @@
   const labelFor=code=>{if(!code)return"IB Mathematics AI Bank";if(LABELS[code])return LABELS[code];if(!dynamicLabels.has(code))dynamicLabels.set(code,`IB Mathematics AI Bank ${generated++}`);return dynamicLabels.get(code);};
   const fingerprint=q=>q?.source?.source_content_fingerprint||q?.metadata?.source_content_fingerprint||q?.id;
   const dispatch=(type,detail)=>window.dispatchEvent?.(new CustomEvent(type,{detail}));
+  const wait=milliseconds=>new Promise(resolve=>setTimeout(resolve,milliseconds));
 
   function selectMapping(mappings,course,{lesson="",unit=""}={}){
     const rows=(mappings||[]).filter(row=>normalise(row?.course)===course);
@@ -55,17 +56,29 @@
   }
   async function request(scope,offset,limit){
     const query=new URLSearchParams({course:scope.course,offset:String(offset),limit:String(limit),view:scope.view});if(scope.lesson)query.set("lesson",scope.lesson);if(scope.unit!=="")query.set("unit",String(scope.unit));
-    return window.ECHSInstitution.api("practice-bank-api",`/questions?${query}`);
+    let lastError;
+    for(let attempt=0;attempt<4;attempt++){
+      try{return await window.ECHSInstitution.api("practice-bank-api",`/questions?${query}`);}
+      catch(error){lastError=error;if(attempt<3)await wait(600*(attempt+1));}
+    }
+    throw lastError;
   }
   async function collect(scope,requestKey){
-    const pageSize=1000,maximum=20000,questions=[],seen=new Set();let offset=0,total=Infinity,blocked=0;
-    while(offset<total&&offset<maximum){
-      const page=await request(scope,offset,pageSize),items=[...(page?.questions||[])];total=Math.max(0,Number(page?.total||items.length));
-      for(const row of items){const q=normaliseRow(row,scope.course,scope,{allowAll:scope.view==="all"});if(!q){blocked++;continue;}const key=`${scope.course}|${fingerprint(q)}`;if(!seen.has(key)){seen.add(key);questions.push(q);}}
-      offset+=items.length;dispatch("echs:bundle-progress",{completed:Math.ceil(offset/pageSize),total:Math.max(1,Math.ceil(total/pageSize))});
-      dispatch("echs:private-bank-summary",{requestKey,course:scope.course,total,loaded:questions.length,complete:offset>=total||!items.length,questions,blocked,view:scope.view});
-      if(!items.length)break;
-    }
+    const pageSize=1500,maximum=20000,questions=[],seen=new Set();let blocked=0;
+    const probe=await request(scope,0,1),reported=Math.max(0,Number(probe?.total||0)),total=Math.min(reported,maximum);
+    if(!total){dispatch("echs:private-bank-summary",{requestKey,course:scope.course,total:0,loaded:0,complete:true,questions,blocked,view:scope.view});return questions;}
+    const offsets=[];for(let offset=0;offset<total;offset+=pageSize)offsets.push(offset);
+    let cursor=0,completed=0;
+    const worker=async()=>{
+      while(cursor<offsets.length){
+        const index=cursor++,offset=offsets[index],page=await request(scope,offset,Math.min(pageSize,total-offset)),items=[...(page?.questions||[])];
+        for(const row of items){const q=normaliseRow(row,scope.course,scope,{allowAll:scope.view==="all"});if(!q){blocked++;continue;}const key=`${scope.course}|${fingerprint(q)}`;if(!seen.has(key)){seen.add(key);questions.push(q);}}
+        completed++;
+        dispatch("echs:bundle-progress",{completed,total:offsets.length});
+        dispatch("echs:private-bank-summary",{requestKey,course:scope.course,total,loaded:questions.length,complete:completed===offsets.length,questions,blocked,view:scope.view});
+      }
+    };
+    await Promise.all(Array.from({length:Math.min(3,offsets.length)},worker));
     return questions;
   }
   function updateCourseOption(source,count,state="ready"){
