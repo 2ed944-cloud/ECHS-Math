@@ -82,7 +82,11 @@
       return row?.questionFilter?scoped.filter(question=>bank.matchesQuestionFilter(question,row.questionFilter)):scoped;
     };
     const originalFilter=bank.filterQuestions.bind(bank);
-    bank.filterQuestions=(questions,filters={})=>originalFilter(questions,filters).filter(question=>mappingCompatible(question,filters));
+    bank.filterQuestions=(questions,filters={})=>{
+      const legacyFilters={...filters};
+      delete legacyFilters.course;delete legacyFilters.unit;delete legacyFilters.topic;
+      return originalFilter(questions,legacyFilters).filter(question=>mappingCompatible(question,filters));
+    };
     const originalSave=bank.saveAttempt.bind(bank);
     bank.saveAttempt=(question,correct,response,context={})=>originalSave(question,correct,response,{...context,course:context.course||new URLSearchParams(location.search).get("course")||questionCourse(question),unit:context.unit??questionUnit(question),topic:context.topic??questionTopic(question)});
 
