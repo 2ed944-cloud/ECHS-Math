@@ -22,6 +22,11 @@ for(const device of devices){
   await page.route('**/config/institution.json*',route=>route.fulfill({status:200,contentType:'application/json',body:JSON.stringify(config)}));
   await page.route('**/functions/v1/account-api/me*',route=>route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({ok:true,account:teacher})}));
   await page.route('**/functions/v1/private-bank-api/packages*',route=>route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({ok:true,private:true,packages:livePackages})}));
+  await page.route('**/functions/v1/private-bank-api/student-questions*',route=>{
+    const url=new URL(route.request().url()),unit=url.searchParams.get('unit');
+    const total=unit==='0'?3:5913;
+    route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({ok:true,private:true,total,questions:[]})});
+  });
   const entry={device:device.key,errors:[]};
   try{
     const response=await page.goto(`${baseURL}/question-bank/official/admin/private-bank-center.html`,{waitUntil:'domcontentloaded',timeout:45000});entry.status=response?.status()??null;
@@ -39,7 +44,7 @@ for(const device of devices){
     if(state.complete!==5||!state.text.includes('complete direct upload'))entry.errors.push('Direct live package states did not render');
     if(state.questionTotal!=='18,690'||state.poolTotal!=='1,530'||state.mediaTotal!=='41,959')entry.errors.push('Private inventory totals did not render');
     if(state.alignmentCards!==3||state.apLessons!=='50'||state.apReadiness!=='6,695'||state.apVerified!=='15,671')entry.errors.push('AP Precalculus direct mapping metrics did not render');
-    if(state.ibLessons!=='26'||state.ibReadiness!=='122'||state.ibVerified!=='15,671')entry.errors.push('IB Mathematics direct mapping metrics did not render');
+    if(state.ibLessons!=='56'||state.ibReadiness!=='3'||state.ibVerified!=='5,913')entry.errors.push('IB Mathematics live mapping metrics did not render');
     if(state.calcBanks!=='1'||state.calcReadiness!=='822'||state.calcVerified!=='3,019')entry.errors.push('AP Calculus private-bank metrics did not render');
     if(!state.text.includes('Publisher-key direct')||!state.text.includes('not independently audited'))entry.errors.push('Direct-use disclosure is missing');
     for(const alias of ['AP Precalculus Bank 1','AP Precalculus Bank 4','IB Mathematics Bank 1','IB Mathematics Bank 4','AP Calculus Bank 1'])if(!state.text.includes(alias))entry.errors.push(`Missing alias ${alias}`);
