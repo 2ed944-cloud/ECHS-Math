@@ -120,3 +120,38 @@
 @media(prefers-reduced-motion:reduce){
   .builderToggle,.builderAdjust,.builderToggleIcon,.studentFocused .studioSidebar{transition:none}
 }
+
+/* ── Skills-aware Browse By enhancements (v20260730-skills1) ── */
+.builderCourseTag{
+  display:block;
+  margin-top:.4rem;
+  font-size:.72rem;
+  font-weight:800;
+  letter-spacing:.01em;
+  color:var(--studio-teal,#0d7a72);
+}
+.builderCourseTag:empty{display:none}
+.studioFilters .control select optgroup{
+  font-weight:900;
+  color:var(--studio-wine,#7d1845);
+  font-size:.82rem;
+}
+.studioFilters .control select option{
+  font-weight:600;
+  color:#182431;
+}
+/* Group the Browse-by and its dependent selects into a clear "source" block */
+.studioFilters .control.sourceAdvanced{
+  position:relative;
+}
+.studioFilters .control label{
+  display:flex;
+  align-items:center;
+  gap:.4rem;
+}
+.studioFilters .control label:after{
+  content:"";
+  flex:1;
+  height:1px;
+  background:linear-gradient(90deg,rgba(125,24,69,.14),transparent);
+}

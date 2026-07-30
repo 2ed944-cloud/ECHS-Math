@@ -13,3 +13,12 @@ main{max-width:1280px;margin:0 auto;padding:1.15rem}.hero{position:relative;over
 .source-task{margin:0 0 12px;padding:10px 12px;border-left:4px solid var(--wine,#7a1f3d);background:#f7f1f3;border-radius:8px}.source-task div{margin-top:4px;color:#4b5563}.source-crop{display:block;width:100%;height:auto;max-height:none;object-fit:contain;background:white;border:1px solid #e5e7eb;border-radius:8px}
 
 .pill.coverage{text-transform:capitalize}.pill.coverage.full{background:#e5f7f2;color:#075f51}.pill.coverage.strong{background:#fff5d9;color:#7a5612}.pill.coverage.initial{background:#f2eafe;color:#5a358a}.courseCard{display:flex;flex-direction:column}.courseCard>p:last-of-type{margin-top:auto}.unitLinkList{display:grid;gap:.35rem;margin-top:.75rem}.unitLinkList a{display:flex;align-items:center;justify-content:space-between;padding:.5rem .62rem;border-radius:.65rem;background:#f6f8fb;color:#102a43;text-decoration:none;font-weight:750}.unitLinkList a:hover{background:#eef7f5}.unitLinkList b{color:#0b7663}.coverageNote{font-size:.82rem;color:#667382}
+
+/* ── Global polish (v20260730-skills1): consistent focus + selects across all pages ── */
+.control select,.control input,.control textarea{transition:border-color .16s ease,box-shadow .16s ease}
+.control select:focus,.control input:focus,.control textarea:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px rgba(12,118,111,.16)}
+.button:focus-visible{outline:3px solid rgba(201,155,66,.55);outline-offset:2px}
+.navLink:focus-visible{outline:3px solid rgba(120,24,63,.35);outline-offset:2px}
+.card,.panel,.stat{transition:transform .16s ease,box-shadow .16s ease}
+.grid .card:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(16,42,67,.12)}
+select optgroup{font-weight:900;color:var(--wine)}
