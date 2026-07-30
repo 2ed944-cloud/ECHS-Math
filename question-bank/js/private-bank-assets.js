@@ -1,4 +1,4 @@
-/* Signed private Blackboard media loader for authenticated ECHS practice. */
+/* Signed private question media loader with course isolation. */
 (function(){
   "use strict";
   const cache=new Map();
@@ -6,13 +6,19 @@
     const match=String(value||"").match(/^private-bank:\/\/([^/]+)\/(.+)$/);
     return match?`${match[1]}/${match[2]}`:"";
   }
+  function activeCourse(){
+    return document.documentElement.dataset.practiceCourse||
+      new URLSearchParams(location.search).get("course")||"";
+  }
   async function signed(path){
-    const current=cache.get(path);
+    const course=activeCourse(),key=`${course}|${path}`,current=cache.get(key);
     if(current&&current.expires>Date.now()+30000)return current.url;
-    const result=await window.ECHSInstitution.api("private-bank-api",`/media-url?path=${encodeURIComponent(path)}`);
+    const query=new URLSearchParams({path});
+    if(course)query.set("course",course);
+    const result=await window.ECHSInstitution.api("practice-bank-api",`/media-url?${query}`);
     const url=result?.signed_url;
     if(!url)throw new Error("Private question media could not be authorised");
-    cache.set(path,{url,expires:Date.now()+Math.max(60,Number(result.expires_in||300))*1000});
+    cache.set(key,{url,expires:Date.now()+Math.max(60,Number(result.expires_in||300))*1000});
     return url;
   }
   async function hydrate(root=document){
@@ -21,8 +27,14 @@
       const path=objectPath(image.dataset.privateSrc);
       if(!path||image.dataset.privateHydrated==="true"||image.dataset.privateHydrated==="loading")return;
       image.dataset.privateHydrated="loading";
-      try{image.src=await signed(path);image.dataset.privateHydrated="true";image.classList.remove("private-bank-media-pending");}
-      catch(error){console.warn("Private bank media unavailable",error);image.dataset.privateHydrated="error";}
+      try{
+        image.src=await signed(path);
+        image.dataset.privateHydrated="true";
+        image.classList.remove("private-bank-media-pending");
+      }catch(error){
+        console.warn("Private bank media unavailable",error);
+        image.dataset.privateHydrated="error";
+      }
     }));
   }
   function observe(){

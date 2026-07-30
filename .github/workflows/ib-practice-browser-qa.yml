@@ -5,11 +5,17 @@ on:
     paths:
       - ".github/workflows/ib-practice-browser-qa.yml"
       - "question-bank/practice.html"
+      - "question-bank/css/practice-scope-access.css"
+      - "question-bank/js/bank.js"
       - "question-bank/js/practice-global-bridge.js"
-      - "question-bank/js/private-bank-practice.js"
-      - "question-bank/js/ib-private-bank-lesson-aliases.js"
-      - "question-bank/js/ib-private-bank-stream-ui.js"
-      - "question-bank/js/practice.js"
+      - "question-bank/js/private-bank-assets.js"
+      - "question-bank/js/practice-course-isolation.js"
+      - "question-bank/js/mapped-private-bank-practice.js"
+      - "question-bank/js/ib-exact-lesson-bank-aliases.js"
+      - "question-bank/js/mapped-practice.js"
+      - "question-bank/js/practice-single-bank.js"
+      - "question-bank/js/practice-builder.js"
+      - "supabase/functions/practice-bank-api/**"
       - "tools/verify_ib_practice_browser.mjs"
   workflow_dispatch:
 

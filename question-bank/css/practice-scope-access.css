@@ -1,0 +1,124 @@
+/* Strict mapped-practice controls and role-aware polish. */
+:root{
+  --practice-wine:#7d1845;
+  --practice-wine-dark:#5d1032;
+  --practice-navy:#102f4d;
+  --practice-teal:#08776d;
+  --practice-gold:#b67a12;
+  --practice-paper:#fffdf9;
+  --practice-line:#dbe4ea;
+  --practice-muted:#5d6e7e;
+  --practice-shadow:0 18px 48px rgba(16,47,77,.10);
+}
+.practiceStudio main{max-width:1760px;margin-inline:auto;padding-inline:clamp(12px,2vw,30px)}
+.practiceStudio .studioHero{
+  position:relative;overflow:hidden;
+  border:1px solid rgba(125,24,69,.14);
+  background:
+    radial-gradient(circle at 86% 12%,rgba(8,119,109,.12),transparent 28%),
+    radial-gradient(circle at 3% 92%,rgba(182,122,18,.10),transparent 30%),
+    linear-gradient(135deg,#fffdfb 0%,#f8fbfc 68%,#fff8f5 100%);
+  box-shadow:var(--practice-shadow);
+}
+.practiceStudio .studioHero::after{
+  content:"";position:absolute;inset:auto -8% -58% 48%;height:360px;
+  border:44px solid rgba(125,24,69,.035);border-radius:50%;pointer-events:none
+}
+.heroEyebrowRow{display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;margin-bottom:.8rem}
+.heroEyebrowRow .eyebrow{margin:0}
+.practiceRoleBadge{
+  display:inline-flex;align-items:center;gap:.38rem;padding:.42rem .72rem;border-radius:999px;
+  border:1px solid rgba(16,47,77,.13);background:rgba(255,255,255,.82);color:var(--practice-navy);
+  font-size:.75rem;font-weight:800;letter-spacing:.01em;box-shadow:0 6px 16px rgba(16,47,77,.06)
+}
+.roleStudent .practiceRoleBadge::before{content:"●";color:var(--practice-teal);font-size:.65rem}
+.roleStaff .practiceRoleBadge::before{content:"◆";color:var(--practice-gold);font-size:.62rem}
+.practiceStudio .studioHeroMeta span{background:rgba(255,255,255,.78);border-color:rgba(16,47,77,.10);backdrop-filter:blur(8px)}
+.practiceStudio .studioHeroStats{position:relative;z-index:1}
+.practiceStudio .studioHeroStat{background:rgba(255,255,255,.86);border:1px solid rgba(16,47,77,.09);box-shadow:0 9px 22px rgba(16,47,77,.06)}
+.practiceStudio .studioWorkspace{align-items:start;gap:clamp(14px,1.7vw,28px)}
+.practiceStudio .studioSidebar{position:sticky;top:82px}
+.practiceStudio .studioPanel{
+  border:1px solid rgba(16,47,77,.11);background:rgba(255,255,255,.96);
+  box-shadow:0 20px 46px rgba(16,47,77,.11);overflow:hidden
+}
+.practiceStudio .studioPanelHead{background:linear-gradient(135deg,#fff 0%,#fbf7f9 100%);border-bottom:1px solid rgba(125,24,69,.10)}
+.scopeIdentity{
+  display:flex;gap:.78rem;align-items:flex-start;margin:1rem 0 .4rem;padding:.9rem;border-radius:16px;
+  border:1px solid rgba(8,119,109,.17);background:linear-gradient(135deg,rgba(8,119,109,.075),rgba(255,255,255,.9));
+}
+.scopeIdentityIcon{
+  display:grid;place-items:center;flex:0 0 2.2rem;height:2.2rem;border-radius:12px;
+  color:#fff;background:linear-gradient(135deg,var(--practice-wine),var(--practice-teal));font-weight:900
+}
+.scopeIdentity strong{display:block;color:var(--practice-navy);font-size:.86rem;margin-bottom:.18rem}
+.scopeIdentity p{margin:0;color:var(--practice-muted);font-size:.76rem;line-height:1.45}
+.mappedFilters{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.82rem}
+.mappedFilters .full{grid-column:1/-1}
+.mappedFilters .control{margin:0}
+.mappedFilters label{display:flex;align-items:center;justify-content:space-between;gap:.5rem;margin-bottom:.38rem;color:var(--practice-navy);font-size:.72rem;font-weight:900;letter-spacing:.045em;text-transform:uppercase}
+.mappedFilters select{
+  min-height:48px;border-radius:13px;border:1px solid #cfdae2;background:#fff;color:#152f47;
+  font-weight:650;padding:.72rem 2.35rem .72rem .82rem;box-shadow:0 5px 14px rgba(16,47,77,.035);
+  transition:border-color .18s ease,box-shadow .18s ease,transform .18s ease
+}
+.mappedFilters select:hover{border-color:#aebfca}
+.mappedFilters select:focus{border-color:var(--practice-teal);box-shadow:0 0 0 4px rgba(8,119,109,.12);outline:0;transform:translateY(-1px)}
+.mappedFilters select:disabled{background:#f2f5f7;color:#7b8791;cursor:wait}
+.scopeDescription{
+  display:grid;grid-template-columns:auto 1fr;align-items:center;gap:.65rem;padding:.76rem .82rem;border-radius:13px;
+  border:1px dashed rgba(125,24,69,.22);background:#fffaf6;color:var(--practice-muted)
+}
+.scopeDescription::before{content:"↳";display:grid;place-items:center;width:1.75rem;height:1.75rem;border-radius:9px;background:#fff;color:var(--practice-wine);font-weight:900}
+.scopeDescription strong{color:var(--practice-wine);font-size:.78rem}
+.scopeDescription span{font-size:.75rem;line-height:1.42}
+.mappedFilters .adaptiveMode{margin:0;border-radius:14px;background:linear-gradient(135deg,#f7fafc,#fff);border:1px solid #e0e7ec}
+.staffOnly:not([hidden]){display:block}
+.roleStudent .staffOnly{display:none!important}
+.roleStaff .scopeIdentity{border-color:rgba(182,122,18,.23);background:linear-gradient(135deg,rgba(182,122,18,.08),rgba(255,255,255,.95))}
+.roleStaff .scopeIdentityIcon{background:linear-gradient(135deg,var(--practice-gold),var(--practice-wine))}
+.studioGenerate{margin-top:1rem;padding-top:1rem;border-top:1px solid #e8edf0}
+.studioGenerate .button{width:100%;min-height:51px;border-radius:14px;font-size:.92rem;box-shadow:0 12px 24px rgba(125,24,69,.18)}
+.studioGenerate small{display:block;text-align:center;margin-top:.55rem;color:var(--practice-muted);font-size:.7rem;line-height:1.4}
+.practiceStudio .studioContent{min-width:0}
+.practiceStudio .studioStatusBar{
+  position:sticky;top:73px;z-index:6;border:1px solid rgba(16,47,77,.10);background:rgba(255,255,255,.90);
+  backdrop-filter:blur(12px);box-shadow:0 9px 25px rgba(16,47,77,.07)
+}
+.practiceStudio .questionShell{border:1px solid rgba(16,47,77,.10);background:linear-gradient(180deg,rgba(255,255,255,.97),rgba(249,251,252,.98));box-shadow:var(--practice-shadow)}
+.practiceStudio .questionCard{max-width:1050px;margin-inline:auto}
+.practiceStudio .questionCard>h2{font-family:Inter,system-ui,sans-serif;color:var(--practice-navy);font-size:clamp(1.2rem,1.55vw,1.7rem)}
+.practiceStudio .prompt{font-size:clamp(1rem,1.1vw,1.14rem);line-height:1.72}
+.practiceStudio .choice{border-radius:15px;border-color:#d6e0e6;background:#fff;box-shadow:0 5px 14px rgba(16,47,77,.035);transition:transform .16s ease,border-color .16s ease,box-shadow .16s ease}
+.practiceStudio .choice:hover{transform:translateY(-2px);border-color:#aebfca;box-shadow:0 10px 22px rgba(16,47,77,.08)}
+.practiceStudio .choice.selected{border-color:var(--practice-wine);box-shadow:0 0 0 3px rgba(125,24,69,.10)}
+.practiceStudio .choiceLabel{background:#eff4f6;color:var(--practice-navy);border-radius:10px}
+.practiceStudio .pill.red{background:#fff1f1;color:#922b2b;border-color:#f0caca}
+.practiceStudio .lockedPractice,.practiceStudio .pathwayBanner,.practiceStudio .resumeBanner{border-radius:18px;box-shadow:0 10px 28px rgba(16,47,77,.07)}
+.practiceStudio .pathwayBanner{border-left:5px solid var(--practice-teal)}
+.practiceStudio .lockedPractice{border-left:5px solid var(--practice-gold)}
+.practiceStudio .emptyState{max-width:720px;margin-inline:auto}
+.practiceStudio .emptyStateIcon{background:linear-gradient(135deg,rgba(125,24,69,.10),rgba(8,119,109,.10));color:var(--practice-wine)}
+.builderCourseTag{display:block;margin-top:.35rem;color:var(--practice-teal);font-weight:800;line-height:1.35}
+.builderCompactSummary{border:1px solid rgba(8,119,109,.14);background:linear-gradient(135deg,#f6fbfa,#fff)}
+.builderCompactIcon{background:linear-gradient(135deg,var(--practice-wine),var(--practice-teal));color:#fff}
+@media(max-width:1180px){
+  .practiceStudio .studioSidebar{position:relative;top:auto}
+  .practiceStudio .studioWorkspace{grid-template-columns:1fr}
+  .practiceStudio .studioStatusBar{top:66px}
+}
+@media(max-width:680px){
+  .practiceStudio main{padding-inline:9px}
+  .mappedFilters{grid-template-columns:1fr}
+  .mappedFilters .full{grid-column:auto}
+  .scopeDescription{grid-template-columns:auto 1fr}
+  .practiceStudio .studioHero{padding:1.15rem}
+  .practiceStudio .studioHeroStats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .practiceStudio .studioPanelHead{align-items:flex-start}
+  .practiceStudio .questionFooter{align-items:stretch;gap:.7rem;flex-direction:column}
+  .practiceStudio .questionFooter>div{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
+  .practiceStudio .questionFooter button{width:100%}
+}
+@media(prefers-reduced-motion:reduce){
+  .mappedFilters select,.practiceStudio .choice{transition:none!important}
+}

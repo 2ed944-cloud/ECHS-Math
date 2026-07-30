@@ -84,7 +84,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          for endpoint in account-api institution-api mastery-evidence private-bank-api private-bank-purge-api upload-manager-api setup-api; do
+          for endpoint in account-api institution-api mastery-evidence private-bank-api practice-bank-api private-bank-purge-api upload-manager-api setup-api; do
             curl --fail --silent --show-error \
               "https://${SUPABASE_PROJECT_ID}.supabase.co/functions/v1/${endpoint}/health" | python -m json.tool
           done
@@ -119,5 +119,5 @@ jobs:
 
       - name: Deployment reminder
         run: |
-          echo "Backend deployed; migrations, private banks, Teacher Upload Manager, bootstrap secret, and production login/session contracts passed."
+          echo "Backend deployed; migrations, private banks, strict practice scopes, Teacher Upload Manager, bootstrap secret, and production login/session contracts passed."
           echo "The scheduled Process Teacher Uploads workflow requires SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in the institutional-production environment."

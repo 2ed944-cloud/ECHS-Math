@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """Regression contract for the authenticated ECHS learning pathway."""
 from __future__ import annotations
-
 import argparse
 import sys
 from pathlib import Path
@@ -37,128 +36,93 @@ def validate_source(root: Path, errors: list[str]) -> None:
     portal = read(root, "js/portal.js", errors)
     access = read(root, "js/portal-access.js", errors)
     lesson_guard = read(root, "js/lesson-access-guard.js", errors)
+    unit_unlock = read(root, "js/unit-practice-unlock.js", errors)
     learning_entry = read(root, "question-bank/index.html", errors)
     practice_shell = read(root, "question-bank/practice.html", errors)
-    practice = read(root, "question-bank/js/practice.js", errors)
+    practice = read(root, "question-bank/js/mapped-practice.js", errors)
+    course_isolation = read(root, "question-bank/js/practice-course-isolation.js", errors)
+    single_bank = read(root, "question-bank/js/practice-single-bank.js", errors)
     practice_builder = read(root, "question-bank/js/practice-builder.js", errors)
     practice_builder_css = read(root, "question-bank/css/practice-builder-compact.css", errors)
+    scope_css = read(root, "question-bank/css/practice-scope-access.css", errors)
     bank = read(root, "question-bank/js/bank.js", errors)
     experience = read(root, "js/institution-experience.js", errors)
     worker = read(root, "sw.js", errors)
 
     require(index, [
-        'data-auth-state="loading"',
-        "Lessons appear after sign-in.",
-        "Assigned learning pathway",
-        "js/portal-access.js",
-        "css/landing-premium.css",
-        "Education City High School",
-        "Learn with purpose.",
-        "Master with confidence.",
-        "Continue to secure sign in",
-        "Created and developed by",
-        "Mohammad Abu Ghuwaleh",
-        "schoolIdentityCard",
-        "roleGrid",
-        "journeyRail",
+        'data-auth-state="loading"', "Lessons appear after sign-in.", "Assigned learning pathway",
+        "js/portal-access.js", "css/landing-premium.css", "Education City High School",
+        "Learn with purpose.", "Master with confidence.", "Continue to secure sign in",
+        "Created and developed by", "Mohammad Abu Ghuwaleh", "schoolIdentityCard", "roleGrid", "journeyRail",
     ], "Public landing page", errors)
     forbid(index, ["Pearson", "Blackboard", "publisher questions", "Explore courses"], "Public landing page", errors)
     require(landing, [
-        ".premiumLandingHero",
-        ".schoolLockup",
-        ".identityLogoPlate",
-        ".roleGrid",
-        ".journeyRail",
-        ".creatorSection",
-        ".premiumLandingFooter",
-        "@media(max-width:680px)",
+        ".premiumLandingHero", ".schoolLockup", ".identityLogoPlate", ".roleGrid", ".journeyRail",
+        ".creatorSection", ".premiumLandingFooter", "@media(max-width:680px)",
     ], "Premium landing stylesheet", errors)
     require(institution_portal, [
-        "landing-calculus-motion.css",
-        "landing-hybrid-hero.js",
-        "data-hybrid-landing-hero",
-        "hybrid2",
-        'dataset.platformPage!=="home"',
+        "landing-calculus-motion.css", "landing-hybrid-hero.js", "data-hybrid-landing-hero", "hybrid2",
+        'dataset.platformPage!=="home"', "unit-practice-unlock.css", "unit-practice-unlock.js", "hybridLandingHero",
     ], "Landing asset loader", errors)
     require(landing_controller, [
-        "hybridHeroVisual",
-        "calculusMotionBoard",
-        "compactSchoolIdentityCard",
-        "heroCalculusCurve",
-        "heroTangentTraveller",
-        "requestAnimationFrame",
-        "getPointAtLength",
-        "setVisualPhase",
-        "window.ECHSLandingCalculus",
-        'data-extremum-callout="maximum"',
-        'data-extremum-callout="minimum"',
-        "f′(0) = 0",
-        "f′(a) = 0",
-        "HORIZONTAL TANGENT",
-        "LOCAL MAXIMUM",
-        "LOCAL MINIMUM",
+        "hybridHeroVisual", "calculusMotionBoard", "compactSchoolIdentityCard", "heroCalculusCurve",
+        "heroTangentTraveller", "requestAnimationFrame", "getPointAtLength", "setVisualPhase",
+        "window.ECHSLandingCalculus", 'data-extremum-callout="maximum"', 'data-extremum-callout="minimum"',
+        "f′(0) = 0", "f′(a) = 0", "HORIZONTAL TANGENT", "LOCAL MAXIMUM", "LOCAL MINIMUM",
         "assets/echs_logo.png",
     ], "Timed extrema landing controller", errors)
     require(landing_motion, [
-        ".hybridHeroVisual",
-        ".calculusMotionBoard",
-        ".calculusHeroCurve",
-        ".maximumTangentGuide",
-        ".minimumTangentGuide",
-        ".extremumCallout",
-        '.calculusMotionBoard[data-extremum-phase="maximum"]',
-        '.calculusMotionBoard[data-extremum-phase="minimum"]',
-        ".tangentTraveller",
-        ".compactSchoolIdentityCard",
-        "@media(max-width:680px)",
-        "@media(prefers-reduced-motion:reduce)",
+        ".hybridHeroVisual", ".calculusMotionBoard", ".calculusHeroCurve", ".maximumTangentGuide",
+        ".minimumTangentGuide", ".extremumCallout", '.calculusMotionBoard[data-extremum-phase="maximum"]',
+        '.calculusMotionBoard[data-extremum-phase="minimum"]', ".tangentTraveller", ".compactSchoolIdentityCard",
+        "@media(max-width:680px)", "@media(prefers-reduced-motion:reduce)",
     ], "Timed extrema landing stylesheet", errors)
     require(access, ['role==="student"', '"/dashboard/student"', "courseKeys", "courseAllowed"], "Access resolver", errors)
     require(portal, ["access.allCourses?ALL_COURSES", "lessonURL(", "Complete each lesson to unlock", "lessonPracticeBtn"], "Learning-path portal", errors)
     require(lesson_guard, ["data-finish-lesson", "Finish lesson & unlock practice", "echs:lesson-completed", "course-not-assigned"], "Lesson guard", errors)
+    require(unit_unlock, ["unitPracticeUnlock", "eligibleLessons", "Practise the full unit", 'scope:"unit"'], "Completed-unit practice unlock", errors)
     require(learning_entry, ['data-require-account="student teacher admin parent"', "Opening your workspace", "role-entry.js"], "Learning entry router", errors)
     forbid(learning_entry, ["ALEKS", "IXL", "Pearson", "publisher"], "Learning entry router", errors)
+
     require(practice_shell, [
-        'data-require-account="student teacher admin"',
-        "Learn → Practise → Master",
-        "ECHS practice bank",
-        "js/portal-access.js",
-        "practiceBuilder",
-        "builderCompactSummary",
-        "Adjust filters",
-        "practice-builder-compact.css",
-        "practice-builder.js",
+        'data-require-account="student teacher admin"', "Learn → Practise → Master", "Course-safe practice",
+        "Question bank", "Strict course isolation", "Exact lesson mapping", "Completed-unit practice",
+        "js/portal-access.js", "practiceBuilder", "builderCompactSummary", "Adjust filters",
+        "practice-builder-compact.css", "practice-scope-access.css", "practice-course-isolation.js",
+        "mapped-private-bank-practice.js", "ib-exact-lesson-bank-aliases.js", "mapped-practice.js",
+        "practice-single-bank.js", "practice-builder.js",
     ], "Practice shell", errors)
     forbid(practice_shell, ["ALEKS", "IXL", "Pearson", "publisher collection", "textbook"], "Practice shell", errors)
-    require(practice, ["access.courseKeys.includes", "unlockedTopics", "lessonLocked", "This course is not assigned", "studentFocused"], "Focused practice controller", errors)
+    require(practice, [
+        "access.courseKeys", "lessonCompleted", "unitCompleted", "strictScopeInPlace",
+        "This course is not assigned", "roleStudent", "roleStaff", "Staff view · includes withheld rows",
+        "function buildTargets", "completedUnits", "No unlocked targets yet",
+    ], "Mapped practice controller", errors)
+    require(course_isolation, [
+        "questionCourse", "mappingCompatible", "courseCompatible", "scopeQuestion", "practiceCourseIsolation",
+        'course==="ib-math-ai"?["ib_topics"]',
+    ], "Course isolation layer", errors)
+    require(single_bank, ["practiceBankIsolation", "studentPracticeBank", "ECHSBank.filterQuestions", 'option.value==="all"'], "Student single-bank isolation", errors)
     require(practice_builder, [
-        "MutationObserver",
-        "setCollapsed",
-        "builderAdjust",
-        "#shell .questionCard",
-        "isCollapsed",
+        "MutationObserver", "setCollapsed", "builderAdjust", "#shell .questionCard", "isCollapsed",
+        "selectedText(course)", "selectedText(scope)",
     ], "Compact practice-builder controller", errors)
     require(practice_builder_css, [
-        ".builderCompactSummary",
-        ".builderToggle",
-        ".studioSidebar.isCollapsed",
-        ".studentFocused .questionShell",
-        "@media(max-width:980px)",
+        ".builderCompactSummary", ".builderToggle", ".studioSidebar.isCollapsed",
+        ".studentFocused .questionShell", "@media(max-width:980px)",
     ], "Compact practice-builder stylesheet", errors)
+    require(scope_css, [
+        ".mappedFilters", ".scopeIdentity", ".practiceRoleBadge", ".roleStudent", ".roleStaff",
+        ".studioSidebar", "@media(max-width:680px)",
+    ], "Mapped practice stylesheet", errors)
     require(bank, ['PCALRT5S:"AP Precalculus Bank 1"', 'CAF5S:"AP Precalculus Bank 2"', 'CALCT3BC:"AP Calculus Bank 1"', 'ADAMS10:"AP Calculus Bank 2"', "sanitiseCatalog"], "Bank-label adapter", errors)
     require(experience, ["gamification.css", "gamification-overlay.js"], "Student experience loader", errors)
     require(worker, [
-        "learning-access.css",
-        "landing-premium.css",
-        "landing-calculus-motion.css",
-        "landing-hybrid-hero.js",
-        "practice-builder-compact.css",
-        "practice-builder.js",
-        "portal-access.js",
-        "lesson-access-guard.js",
-        "gamification-overlay.js",
-        "hybrid2",
-        "builder1",
+        "learning-access.css", "landing-premium.css", "landing-calculus-motion.css", "landing-hybrid-hero.js",
+        "unit-practice-unlock.css", "unit-practice-unlock.js", "practice-builder-compact.css",
+        "practice-scope-access.css", "practice-course-isolation", "mapped-private-bank-practice",
+        "ib-exact-lesson-bank-aliases", "mapped-practice", "practice-single-bank", "practice-builder.js",
+        "portal-access.js", "lesson-access-guard.js", "gamification-overlay.js", "hybrid2", "scope1",
     ], "Service worker", errors)
 
 

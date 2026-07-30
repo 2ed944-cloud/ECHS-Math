@@ -26,7 +26,7 @@ for(const device of devices){
     await page.locator('#requestList .requestItem').waitFor({state:'visible',timeout:15000});
     const text=await page.locator('body').innerText();
     const dimensions=await page.locator('html').evaluate(node=>({width:Math.max(document.body.scrollWidth,node.scrollWidth),viewport:node.clientWidth}));
-    if(!text.includes('Private Bank Manager')||!text.includes('Course Release Manager'))errors.push('Both upload modes are not visible');
+    if(!text.includes('Private Bank Manager')||!text.includes('Lesson & Unit Release Manager'))errors.push('Both upload modes are not visible');
     if(!text.includes('echs-bb-at9-private-import.zip')||!text.includes('4,945 questions'))errors.push('Upload history did not render');
     await page.locator('[data-upload-kind="course-release"]').click();
     if(!await page.locator('#releaseFields').isVisible())errors.push('Course release fields did not open');
