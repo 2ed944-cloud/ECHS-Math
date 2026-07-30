@@ -30,6 +30,7 @@ practice = read("question-bank/js/mapped-practice.js")
 isolation = read("question-bank/js/practice-course-isolation.js")
 private = read("question-bank/js/mapped-private-bank-practice.js")
 aliases = read("question-bank/js/ib-exact-lesson-bank-aliases.js")
+single_bank = read("question-bank/js/practice-single-bank.js")
 lesson_bridge = read("js/ib-lesson-platform-integration.js")
 unit_unlock = read("js/unit-practice-unlock.js")
 practice_html = read("question-bank/practice.html")
@@ -61,19 +62,20 @@ require(aliases, (
     'alias_scope:"exact-only"', 'ECHSInstitution.api("practice-bank-api"',
 ), "IB exact lesson aliases")
 forbid(aliases, ('"u1-number"', '"u1-sequences"', '"u1-algebra"', '"u1-matrices"', '"u1-modeling"'), "IB exact lesson aliases")
+require(single_bank, ("practiceBankIsolation", "studentPracticeBank", 'option.value==="all"', "ECHSBank.filterQuestions"), "Student single-bank isolation")
 require(lesson_bridge, ("practice-bank-api", '"1.6":["u1-approximation-error"]', 'scope:"lesson"', "Exact lesson mapping"), "IB lesson bridge")
 forbid(lesson_bridge, ('"u1-number"', '"u1-sequences"', '"u1-modeling"'), "IB lesson bridge")
 require(unit_unlock, ("unitPracticeUnlock", "eligibleLessons", "Practise the full unit", 'scope:"unit"'), "Unit practice unlock")
 require(practice_html, (
     "practice-scope-access.css", 'id="course"', 'id="scope"', 'id="visibility"', "../data/courses.js",
-    "practice-course-isolation.js", "mapped-private-bank-practice.js", "ib-exact-lesson-bank-aliases.js", "mapped-practice.js",
+    "practice-course-isolation.js", "mapped-private-bank-practice.js", "ib-exact-lesson-bank-aliases.js", "mapped-practice.js", "practice-single-bank.js",
 ), "Practice page")
 forbid(practice_html, (
     'src="js/private-bank-practice.js', 'src="js/ib-private-bank-lesson-aliases.js', 'src="js/practice.js',
 ), "Practice page script wiring")
 require(worker, (
     "scope1", "practice-bank-api", "practice-scope-access", "unit-practice-unlock",
-    "practice-course-isolation", "mapped-private-bank-practice", "ib-exact-lesson-bank-aliases", "mapped-practice",
+    "practice-course-isolation", "mapped-private-bank-practice", "ib-exact-lesson-bank-aliases", "mapped-practice", "practice-single-bank",
 ), "Service worker")
 require(config, ("[functions.practice-bank-api]", "verify_jwt = false"), "Supabase function registration")
 require(deploy, ("practice-bank-api", "supabase functions deploy"), "Backend deployment")
@@ -81,7 +83,7 @@ require(deploy, ("practice-bank-api", "supabase functions deploy"), "Backend dep
 for relative in (
     "question-bank/js/bank.js", "question-bank/js/private-bank-assets.js",
     "question-bank/js/practice-course-isolation.js", "question-bank/js/mapped-private-bank-practice.js",
-    "question-bank/js/ib-exact-lesson-bank-aliases.js", "question-bank/js/mapped-practice.js",
+    "question-bank/js/ib-exact-lesson-bank-aliases.js", "question-bank/js/mapped-practice.js", "question-bank/js/practice-single-bank.js",
     "question-bank/js/practice-builder.js", "js/ib-lesson-platform-integration.js",
     "js/unit-practice-unlock.js", "js/institution-portal.js", "sw.js",
 ):
@@ -95,6 +97,7 @@ for relative in (
     "tools/test_practice_course_isolation.mjs",
     "tools/test_ib_private_bank_lesson_aliases.mjs",
     "tools/test_ib_private_bank_course_browser.mjs",
+    "tools/test_student_single_bank.mjs",
 ):
     path = ROOT / relative
     if not path.is_file():
