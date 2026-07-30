@@ -1,0 +1,21 @@
+/* Completed-unit practice action in the learning pathway. */
+.unitPracticeUnlock{
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;margin:0 0 1rem;padding:1rem 1.05rem;
+  border:1px solid rgba(16,47,77,.11);border-radius:18px;background:linear-gradient(135deg,#f7fafc,#fff);
+  box-shadow:0 10px 26px rgba(16,47,77,.06)
+}
+.unitPracticeUnlock[data-unlocked="true"]{border-color:rgba(8,119,109,.22);background:linear-gradient(135deg,rgba(8,119,109,.075),#fff 62%)}
+.unitPracticeProgress{display:flex;align-items:flex-start;gap:.8rem;min-width:0;flex:1}
+.unitPracticeProgress>div{min-width:0;flex:1}
+.unitPracticeIcon{display:grid;place-items:center;flex:0 0 2.45rem;height:2.45rem;border-radius:13px;background:#edf2f5;color:#516779;font-weight:900}
+.unitPracticeUnlock[data-unlocked="true"] .unitPracticeIcon{color:#fff;background:linear-gradient(135deg,#7d1845,#08776d)}
+.unitPracticeProgress small{display:block;color:#7d1845;font-size:.67rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.15rem}
+.unitPracticeProgress strong{display:block;color:#102f4d;font-size:.93rem;line-height:1.3}
+.unitPracticeProgress span:last-child{display:block;color:#647586;font-size:.72rem;line-height:1.4;margin-top:.35rem}
+.unitPracticeTrack{height:6px;border-radius:999px;background:#e5ebef;overflow:hidden;margin-top:.55rem}
+.unitPracticeTrack i{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,#7d1845,#08776d);transition:width .25s ease}
+.unitPracticeAction{display:inline-flex;align-items:center;justify-content:center;gap:.45rem;flex:0 0 auto;padding:.72rem .92rem;border-radius:12px;background:#7d1845;color:#fff;text-decoration:none;font-size:.76rem;font-weight:850;box-shadow:0 9px 18px rgba(125,24,69,.17)}
+.unitPracticeAction:hover{background:#68113a;transform:translateY(-1px)}
+.unitPracticeAction.locked{background:#eef2f4;color:#75828c;box-shadow:none;cursor:not-allowed}
+@media(max-width:700px){.unitPracticeUnlock{align-items:stretch;flex-direction:column}.unitPracticeAction{width:100%}}
+@media(prefers-reduced-motion:reduce){.unitPracticeTrack i,.unitPracticeAction{transition:none!important}}
