@@ -6,6 +6,7 @@ on:
       - ".github/workflows/ib-practice-browser-qa.yml"
       - "question-bank/practice.html"
       - "question-bank/css/practice-scope-access.css"
+      - "question-bank/css/practice-recovery-polish.css"
       - "question-bank/js/bank.js"
       - "question-bank/js/practice-global-bridge.js"
       - "question-bank/js/private-bank-assets.js"
@@ -15,6 +16,7 @@ on:
       - "question-bank/js/mapped-practice.js"
       - "question-bank/js/practice-single-bank.js"
       - "question-bank/js/practice-builder.js"
+      - "question-bank/js/practice-recovery-ui.js"
       - "supabase/functions/practice-bank-api/**"
       - "tools/verify_ib_practice_browser.mjs"
   workflow_dispatch:

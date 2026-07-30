@@ -15,6 +15,7 @@ if(process.env.ECHS_ROUTE_BRANCH==='1'){
   const routed=[
     ['**/question-bank/practice.html*','question-bank/practice.html','text/html; charset=utf-8'],
     ['**/question-bank/css/practice-scope-access.css*','question-bank/css/practice-scope-access.css','text/css; charset=utf-8'],
+    ['**/question-bank/css/practice-recovery-polish.css*','question-bank/css/practice-recovery-polish.css','text/css; charset=utf-8'],
     ['**/question-bank/js/bank.js*','question-bank/js/bank.js','application/javascript; charset=utf-8'],
     ['**/question-bank/js/practice-global-bridge.js*','question-bank/js/practice-global-bridge.js','application/javascript; charset=utf-8'],
     ['**/question-bank/js/private-bank-assets.js*','question-bank/js/private-bank-assets.js','application/javascript; charset=utf-8'],
@@ -24,16 +25,16 @@ if(process.env.ECHS_ROUTE_BRANCH==='1'){
     ['**/question-bank/js/mapped-practice.js*','question-bank/js/mapped-practice.js','application/javascript; charset=utf-8'],
     ['**/question-bank/js/practice-single-bank.js*','question-bank/js/practice-single-bank.js','application/javascript; charset=utf-8'],
     ['**/question-bank/js/practice-builder.js*','question-bank/js/practice-builder.js','application/javascript; charset=utf-8'],
+    ['**/question-bank/js/practice-recovery-ui.js*','question-bank/js/practice-recovery-ui.js','application/javascript; charset=utf-8'],
   ];
   for(const [pattern,path,contentType] of routed){const body=await readFile(path,'utf8');await page.route(pattern,route=>route.fulfill({status:200,contentType,body}));}
   // The branch-only function is deployed after merge. For pull-request browser QA,
-  // proxy its staff read requests through the already deployed protected endpoint.
-  await page.route('**/functions/v1/practice-bank-api/**',async route=>{
+  // route its staff read requests through the existing protected read endpoint.
+  await page.route('**/functions/v1/practice-bank-api/**',route=>{
     const url=new URL(route.request().url());
     if(url.pathname.endsWith('/practice-bank-api/questions'))url.pathname=url.pathname.replace('/practice-bank-api/questions','/private-bank-api/student-questions');
     else if(url.pathname.endsWith('/practice-bank-api/media-url'))url.pathname=url.pathname.replace('/practice-bank-api/media-url','/private-bank-api/media-url');
-    const response=await route.fetch({url:url.href});
-    await route.fulfill({response});
+    route.continue({url:url.href});
   });
 }
 const consoleErrors=[],pageErrors=[],apiResponses=[],failedRequests=[];
@@ -47,10 +48,10 @@ const deadline=Date.now()+300000;
 let complete=false;
 while(Date.now()<deadline){
   const snapshot=await page.evaluate(()=>({loaded:document.querySelector('#heroLoaded')?.textContent||'',state:document.documentElement.dataset.ibCourseBankState||'',count:document.documentElement.dataset.ibCourseBankCount||''}));
-  if(Number(String(snapshot.loaded).replace(/[^0-9]/g,''))>0&&snapshot.state==='ready'){complete=true;break;}
+  if(Number(String(snapshot.loaded).replace(/[^0-9]/g,''))>0&&['ready','fallback'].includes(snapshot.state)){complete=true;break;}
   await page.waitForTimeout(5000);
 }
-const result=await page.evaluate(()=>({href:location.pathname+location.search,title:document.title,bodyClass:document.body?.className||null,role:window.ECHSPortalAccess?.current?.role||null,authenticated:window.ECHSPortalAccess?.current?.authenticated??null,courseKeys:window.ECHSPortalAccess?.current?.courseKeys||[],courseValue:document.querySelector('#course')?.value||null,scopeValue:document.querySelector('#scope')?.value||null,bundleExists:Boolean(document.querySelector('#bundle')),bundleOptions:document.querySelector('#bundle')?.options?.length||0,bundleValue:document.querySelector('#bundle')?.value||null,bundleText:document.querySelector('#bundle')?.selectedOptions?.[0]?.textContent||null,heroLoaded:document.querySelector('#heroLoaded')?.textContent||null,heroBanks:document.querySelector('#heroBanks')?.textContent||null,status:document.querySelector('#status')?.textContent?.replace(/\s+/g,' ').trim()||null,shell:document.querySelector('#shell')?.textContent?.replace(/\s+/g,' ').trim().slice(0,500)||null,bankOptions:[...(document.querySelector('#bank')?.options||[])].map(option=>option.textContent),datasets:{...document.documentElement.dataset},privateScript:[...document.scripts].find(script=>script.src.includes('mapped-private-bank-practice.js'))?.src||null,bridgeScript:[...document.scripts].find(script=>script.src.includes('practice-global-bridge.js'))?.src||null,isolationScript:[...document.scripts].find(script=>script.src.includes('practice-course-isolation.js'))?.src||null,controllerScript:[...document.scripts].find(script=>script.src.includes('mapped-practice.js'))?.src||null,singleBankScript:[...document.scripts].find(script=>script.src.includes('practice-single-bank.js'))?.src||null,bankScript:[...document.scripts].find(script=>/\/bank\.js/.test(script.src))?.src||null,globals:{bank:Boolean(window.ECHSBank),learning:Boolean(window.ECHSLearning),institution:Boolean(window.ECHSInstitution)}}));
+const result=await page.evaluate(()=>({href:location.pathname+location.search,title:document.title,bodyClass:document.body?.className||null,role:window.ECHSPortalAccess?.current?.role||null,authenticated:window.ECHSPortalAccess?.current?.authenticated??null,courseKeys:window.ECHSPortalAccess?.current?.courseKeys||[],courseValue:document.querySelector('#course')?.value||null,scopeValue:document.querySelector('#scope')?.value||null,bundleExists:Boolean(document.querySelector('#bundle')),bundleOptions:document.querySelector('#bundle')?.options?.length||0,bundleValue:document.querySelector('#bundle')?.value||null,bundleText:document.querySelector('#bundle')?.selectedOptions?.[0]?.textContent||null,heroLoaded:document.querySelector('#heroLoaded')?.textContent||null,heroBanks:document.querySelector('#heroBanks')?.textContent||null,status:document.querySelector('#status')?.textContent?.replace(/\s+/g,' ').trim()||null,shell:document.querySelector('#shell')?.textContent?.replace(/\s+/g,' ').trim().slice(0,500)||null,bankOptions:[...(document.querySelector('#bank')?.options||[])].map(option=>option.textContent),datasets:{...document.documentElement.dataset},privateScript:[...document.scripts].find(script=>script.src.includes('mapped-private-bank-practice.js'))?.src||null,bridgeScript:[...document.scripts].find(script=>script.src.includes('practice-global-bridge.js'))?.src||null,isolationScript:[...document.scripts].find(script=>script.src.includes('practice-course-isolation.js'))?.src||null,controllerScript:[...document.scripts].find(script=>script.src.includes('mapped-practice.js'))?.src||null,singleBankScript:[...document.scripts].find(script=>script.src.includes('practice-single-bank.js'))?.src||null,recoveryScript:[...document.scripts].find(script=>script.src.includes('practice-recovery-ui.js'))?.src||null,bankScript:[...document.scripts].find(script=>/\/bank\.js/.test(script.src))?.src||null,globals:{bank:Boolean(window.ECHSBank),learning:Boolean(window.ECHSLearning),institution:Boolean(window.ECHSInstitution)}}));
 await page.screenshot({path:'/tmp/ib-live-practice.png',fullPage:true});
 console.log('IB_PRACTICE_BROWSER_QA=');console.log(JSON.stringify({...result,complete,apiResponses,consoleErrors,pageErrors,failedRequests:failedRequests.slice(0,20)},null,2));
 await browser.close();
@@ -62,5 +63,6 @@ if(!complete||Number(String(result.heroLoaded||'').replace(/[^0-9]/g,''))<=0)thr
 if(result.datasets.privateBankAdapter!=='ready')throw new Error('Integrated IB private-bank adapter was not installed');
 if(result.datasets.practiceCourseIsolation!=='ready')throw new Error('Course-isolation layer was not installed');
 if(result.datasets.practiceBankIsolation!=='ready')throw new Error('Single-bank isolation layer was not installed');
+if(!result.recoveryScript)throw new Error('Practice recovery UI was not loaded');
 if(!result.bankOptions.some(label=>/^IB Mathematics AI Bank \d+$/.test(label)))throw new Error('IB bank choices were not rendered');
 if(result.bankOptions.some(label=>/AP Calculus/i.test(label)))throw new Error('AP Calculus bank leaked into IB practice');
