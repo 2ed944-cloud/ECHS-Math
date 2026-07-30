@@ -1,0 +1,69 @@
+/* Recovery and visual refinement for mapped practice. */
+.practiceStudio .studioHero{
+  grid-template-columns:minmax(0,1.15fr) minmax(330px,.85fr);
+  min-height:0;
+  padding:clamp(1.15rem,2vw,1.75rem);
+  margin-bottom:.8rem;
+  color:var(--practice-navy);
+  background:
+    radial-gradient(circle at 88% 8%,rgba(8,119,109,.16),transparent 31%),
+    radial-gradient(circle at 2% 100%,rgba(182,122,18,.14),transparent 32%),
+    linear-gradient(135deg,#fffaf5 0%,#f6fbfc 62%,#edf8f6 100%);
+}
+.practiceStudio .studioHero::before{background:rgba(125,24,69,.035)}
+.practiceStudio .studioHero::after{height:260px;border-width:34px;opacity:.8}
+.practiceStudio .studioHeroContent{align-self:center}
+.practiceStudio .studioHero h1{
+  margin:.35rem 0 .5rem;
+  color:var(--practice-navy);
+  font-size:clamp(2rem,3.15vw,3.25rem);
+  line-height:1.02;
+  letter-spacing:-.035em;
+}
+.practiceStudio .studioHero h1 span{display:inline;color:#c28418}
+.practiceStudio .studioHero p{color:#476176;font-size:clamp(.9rem,1vw,1.02rem);line-height:1.55}
+.practiceStudio .heroEyebrowRow .eyebrow{color:var(--practice-wine);font-weight:850}
+.practiceStudio .studioHeroMeta{margin-top:.8rem}
+.practiceStudio .studioHeroMeta span{color:#27465e;background:rgba(255,255,255,.84);border-color:rgba(16,47,77,.12)}
+.practiceStudio .studioHeroStat{padding:.85rem 1rem;background:rgba(255,255,255,.92)}
+.practiceStudio .studioHeroStat b{color:var(--practice-navy);font-size:1.55rem}
+.practiceStudio .studioHeroStat span{color:#607487;font-weight:700}
+.practiceStudio .studioWorkspace{grid-template-columns:minmax(360px,410px) minmax(0,1fr);gap:clamp(15px,1.5vw,24px)}
+.practiceStudio .studioPanelHead{padding:1.05rem 1.15rem}
+.practiceStudio .builderCourseTag{max-width:300px;font-size:.78rem}
+.practiceStudio .builderControls{background:linear-gradient(180deg,#fff,#fbfcfd)}
+.practiceStudio .mappedFilters{gap:.72rem}
+.practiceStudio .mappedFilters select{width:100%;min-width:0;font-size:.88rem;text-overflow:ellipsis;white-space:nowrap;overflow:hidden}
+.practiceStudio .scopeIdentity{margin:.95rem 1rem .2rem;padding:.8rem .85rem}
+.practiceStudio .scopeDescription{min-height:72px}
+.practiceStudio .studioStatusBar{margin-bottom:.75rem;padding:.72rem .9rem}
+.practiceStudio .questionShell{min-height:340px}
+.practiceStudio .empty{min-height:340px;background:linear-gradient(180deg,rgba(255,255,255,.96),rgba(248,251,252,.96))}
+.practiceStudio .emptyState{padding:1.5rem 2rem}
+.practiceStudio .emptyStateIcon{width:64px;height:64px;border-radius:20px;font-size:1.65rem}
+.practiceStudio .emptyState h2{font-size:clamp(1.35rem,2vw,1.85rem)}
+.practiceStudio .connectionRecovery{
+  max-width:760px;margin:1rem auto;padding:1rem 1.1rem;border-radius:18px;
+  border:1px solid rgba(182,122,18,.28);background:linear-gradient(135deg,#fff8e9,#fff);
+  box-shadow:0 12px 28px rgba(16,47,77,.08);text-align:left
+}
+.practiceStudio .connectionRecovery strong{display:block;color:#7e5510;margin-bottom:.25rem}
+.practiceStudio .connectionRecovery p{margin:.2rem 0 .75rem;color:#586d7e;line-height:1.5}
+.practiceStudio .connectionRecoveryActions{display:flex;gap:.55rem;flex-wrap:wrap}
+.practiceStudio .connectionRecovery .button{min-height:40px;padding:.6rem .9rem}
+.practiceStudio .transportPill{background:#fff4d8!important;color:#815b12!important;border-color:#ead29b!important}
+.practiceStudio .transportPill.strict{background:#e5f5f2!important;color:#096a62!important;border-color:#bfe5df!important}
+.practiceStudio .siteHeader{background:rgba(255,255,255,.96);backdrop-filter:blur(12px)}
+.practiceStudio .platformHeaderActions a[href*="login"]{display:none}
+@media(max-width:1180px){
+  .practiceStudio .studioHero{grid-template-columns:1fr}
+  .practiceStudio .studioHeroStats{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .practiceStudio .studioWorkspace{grid-template-columns:1fr}
+  .practiceStudio .builderCourseTag{max-width:none}
+}
+@media(max-width:720px){
+  .practiceStudio .studioHeroStats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .practiceStudio .studioHero h1 span{display:block}
+  .practiceStudio .scopeIdentity{margin:.8rem .75rem .15rem}
+  .practiceStudio .emptyState{padding:1.2rem}
+}
