@@ -6,7 +6,7 @@ const params=ECHSBank.params(),assignmentId=params.get("assignment"),assignmentT
 const modeCopy={manual:["Focused practice","Questions are selected from your unlocked learning pathway."],adaptive:["Adaptive practice","The next question responds to mastery, recent evidence and suitable difficulty."],review:["Spaced review","Questions due in your review schedule are selected."],mistakes:["Mistake recovery","Unresolved questions return until the evidence improves."]};
 const student=()=>access?.role==="student";
 function updateModeCopy(){const[title,description]=modeCopy[UI.mode.value]||modeCopy.manual;document.getElementById("modeTitle").textContent=title;document.getElementById("modeDescription").textContent=description;UI.difficulty.disabled=UI.mode.value==="adaptive"}
-function inferRowCourse(row){if(row.course_key)return ECHSPortalAccess.normaliseCourseKey(row.course_key);if(["PCALRT5S","CAF5S"].includes(row.bank_code))return"ap-precalculus";if(row.topic||row.unit||["CALCT3BC","ADAMS10","PEARSON_CH0"].includes(row.bank_code))return"ap-calculus";return""}
+function inferRowCourse(row){if(row.course_key)return ECHSPortalAccess.normaliseCourseKey(row.course_key);if(row.topic||row.unit||["CALCT3BC","ADAMS10","PEARSON_CH0"].includes(row.bank_code))return"ap-calculus";return""}
 function rowsForGroup(groupKey){const rows=catalog.bundles[groupKey]||[];if(!student())return rows;return rows.filter(row=>access.courseKeys.includes(inferRowCourse(row)))}
 function groupRows(){return ECHSBank.bundleGroups(catalog).filter(group=>!["blackboard_banks","source_chapters"].includes(group.key)||!student()).filter(group=>rowsForGroup(group.key).length)}
 function displayBundleLabel(row){return ECHSBank.cleanStudentLabel(row?.label||"ECHS practice collection")}

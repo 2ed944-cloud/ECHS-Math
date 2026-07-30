@@ -5,57 +5,56 @@
       "key": "ap-calculus",
       "label": "AP Calculus AB / BC",
       "short_label": "AP Calculus",
-      "aliases": ["ap-calculus-ab","ap-calculus-bc","g12 ap calculus ab","g12 ap calculus bc"],
+      "aliases": [
+        "ap-calculus-ab",
+        "ap-calculus-bc",
+        "g12 ap calculus ab",
+        "g12 ap calculus bc"
+      ],
       "coverage": "full",
       "coverage_note": "All AP Calculus units are connected to imported unit pools. Unit 1 also has exact topic-level bundles.",
       "units": [
-        {"unit":1,"label":"Limits and Continuity"},{"unit":2,"label":"Differentiation: Definition and Fundamental Properties"},{"unit":3,"label":"Differentiation: Composite, Implicit, and Inverse Functions"},{"unit":4,"label":"Contextual Applications of Differentiation"},{"unit":5,"label":"Analytical Applications of Differentiation"},{"unit":6,"label":"Integration and Accumulation of Change"},{"unit":7,"label":"Differential Equations"},{"unit":8,"label":"Applications of Integration"},{"unit":9,"label":"Parametric Equations, Polar Coordinates, and Vector-Valued Functions"},{"unit":10,"label":"Infinite Sequences and Series"}
+        {
+          "unit": 1,
+          "label": "Limits and Continuity"
+        },
+        {
+          "unit": 2,
+          "label": "Differentiation: Definition and Fundamental Properties"
+        },
+        {
+          "unit": 3,
+          "label": "Differentiation: Composite, Implicit, and Inverse Functions"
+        },
+        {
+          "unit": 4,
+          "label": "Contextual Applications of Differentiation"
+        },
+        {
+          "unit": 5,
+          "label": "Analytical Applications of Differentiation"
+        },
+        {
+          "unit": 6,
+          "label": "Integration and Accumulation of Change"
+        },
+        {
+          "unit": 7,
+          "label": "Differential Equations"
+        },
+        {
+          "unit": 8,
+          "label": "Applications of Integration"
+        },
+        {
+          "unit": 9,
+          "label": "Parametric Equations, Polar Coordinates, and Vector-Valued Functions"
+        },
+        {
+          "unit": 10,
+          "label": "Infinite Sequences and Series"
+        }
       ]
-    },
-    {
-      "key":"ap-precalculus",
-      "label":"AP Precalculus",
-      "short_label":"AP Precalculus",
-      "aliases":["ap-precalculus-g10-g11","ap-precalculus","g10–g11 ap precalculus"],
-      "coverage":"direct-private-banks",
-      "coverage_note":"Fifty lesson skills including Readiness are registered. All 15,671 private-bank questions have one direct AP Precalculus lesson mapping and use publisher-key authenticated practice without manual Question Trust review.",
-      "private_bank_policy":{"trust_tier":"publisher_key_direct","manual_question_trust_required":false,"verification_basis":"publisher-answer-key","independently_audited":false},
-      "readiness_unit":{"unit":0,"lesson_key":"0.1","label":"AP Precalculus Readiness","student_visible":true,"purpose":"Receive source material without a stronger AP lesson match."},
-      "private_banks":["AP Precalculus Bank 1","AP Precalculus Bank 2","AP Precalculus Bank 3","AP Precalculus Bank 4"],
-      "knowledge_graph":"../../data/knowledge-graph/ap-precalculus-v1.json",
-      "units":[{"unit":0,"label":"AP Precalculus Readiness"},{"unit":1,"label":"Polynomial and Rational Functions"},{"unit":2,"label":"Exponential and Logarithmic Functions"},{"unit":3,"label":"Trigonometric and Polar Functions"},{"unit":4,"label":"Functions Involving Parameters, Vectors, and Matrices"}]
-    },
-    {
-      "key":"algebra-2",
-      "label":"Algebra 2 Concepts",
-      "short_label":"Algebra 2",
-      "aliases":["algebra-2-concepts","algebra 2 concepts","algebra ii","algebra 2"],
-      "coverage":"strong",
-      "coverage_note":"Six thematic pools are prepared from the preliminary algebra/function test banks.",
-      "units":[{"unit":1,"label":"Foundations, Equations, and Inequalities"},{"unit":2,"label":"Functions and Linear Models"},{"unit":3,"label":"Quadratic and Polynomial Functions"},{"unit":4,"label":"Rational and Radical Functions"},{"unit":5,"label":"Exponential and Logarithmic Functions"},{"unit":6,"label":"Trigonometry, Sequences, and Modeling"}]
-    },
-    {
-      "key":"ib-math-ai",
-      "label":"IB Mathematics: Applications and Interpretation",
-      "short_label":"IB Math AI",
-      "aliases":["ib-mathematics-ai","ib math ai","ib mathematics ai","g11 ib ai"],
-      "coverage":"direct-private-banks-and-lesson-catalogue",
-      "coverage_note":"Twenty-six lesson skills including Readiness are registered. All 15,671 private-bank questions have one direct IB lesson mapping and use publisher-key authenticated practice without manual Question Trust review. Full IB teaching pages remain a separate content-build project.",
-      "private_bank_policy":{"trust_tier":"publisher_key_direct","manual_question_trust_required":false,"verification_basis":"publisher-answer-key","independently_audited":false},
-      "readiness_unit":{"unit":0,"lesson_key":"u0-readiness","label":"IB Mathematics Readiness","student_visible":true,"purpose":"Receive source material without a stronger IB lesson match."},
-      "private_banks":["IB Mathematics Bank 1","IB Mathematics Bank 2","IB Mathematics Bank 3","IB Mathematics Bank 4"],
-      "knowledge_graph":"../../data/knowledge-graph/ib-math-ai-v1.json",
-      "lesson_catalogue":"../../data/ib-math-ai-lesson-catalog.json",
-      "units":[{"unit":0,"label":"IB Mathematics Readiness"},{"unit":1,"label":"Number and Algebra"},{"unit":2,"label":"Functions"},{"unit":3,"label":"Geometry and Trigonometry"},{"unit":4,"label":"Statistics and Probability"},{"unit":5,"label":"Calculus"}]
-    },
-    {
-      "key":"grade-9",
-      "label":"Grade 9 Pre-Precalculus",
-      "short_label":"Grade 9",
-      "aliases":["grade-9-pre-precalculus","grade 9","g9","pre-precalculus","pre precalculus"],
-      "coverage":"strong",
-      "coverage_note":"Six foundational pools are prepared primarily from the preliminary-skills bank.",
-      "units":[{"unit":1,"label":"Number and Algebra Foundations"},{"unit":2,"label":"Equations and Inequalities"},{"unit":3,"label":"Functions and Graphs"},{"unit":4,"label":"Coordinate Geometry"},{"unit":5,"label":"Polynomials, Radicals, and Exponents"},{"unit":6,"label":"Data and Probability"}]
     }
   ]
 }

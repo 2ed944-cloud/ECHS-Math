@@ -86,21 +86,21 @@ def validate_source(root: Path, errors: list[str]) -> None:
 
     require(practice_shell, [
         'data-require-account="student teacher admin"', "Learn → Practise → Master", "Course-safe practice",
-        "Question bank", "Strict course isolation", "Exact lesson mapping", "Completed-unit practice",
+        "Verified question bank", "No cross-course mixing", "Exact lesson mapping", "routeSteps",
         "js/portal-access.js", "practiceBuilder", "builderCompactSummary", "Adjust filters",
         "practice-builder-compact.css", "practice-scope-access.css", "practice-course-isolation.js",
-        "mapped-private-bank-practice.js", "ib-exact-lesson-bank-aliases.js", "mapped-practice.js",
+        "mapped-private-bank-practice.js", "mapped-practice.js",
         "practice-single-bank.js", "practice-builder.js",
     ], "Practice shell", errors)
     forbid(practice_shell, ["ALEKS", "IXL", "Pearson", "publisher collection", "textbook"], "Practice shell", errors)
     require(practice, [
-        "access.courseKeys", "lessonCompleted", "unitCompleted", "strictScopeInPlace",
+        "access?.courseKeys", "lessonCompleted", "unitCompleted", "strictScopeInPlace",
         "This course is not assigned", "roleStudent", "roleStaff", "Staff view · includes withheld rows",
         "function buildTargets", "completedUnits", "No unlocked targets yet",
     ], "Mapped practice controller", errors)
     require(course_isolation, [
         "questionCourse", "mappingCompatible", "courseCompatible", "scopeQuestion", "practiceCourseIsolation",
-        'course==="ib-math-ai"?["ib_topics"]',
+        "selectedBundleFromParams",
     ], "Course isolation layer", errors)
     require(single_bank, ["practiceBankIsolation", "studentPracticeBank", "ECHSBank.filterQuestions", 'option.value==="all"'], "Student single-bank isolation", errors)
     require(practice_builder, [
@@ -115,14 +115,15 @@ def validate_source(root: Path, errors: list[str]) -> None:
         ".mappedFilters", ".scopeIdentity", ".practiceRoleBadge", ".roleStudent", ".roleStaff",
         ".studioSidebar", "@media(max-width:680px)",
     ], "Mapped practice stylesheet", errors)
-    require(bank, ['PCALRT5S:"AP Precalculus Bank 1"', 'CAF5S:"AP Precalculus Bank 2"', 'CALCT3BC:"AP Calculus Bank 1"', 'ADAMS10:"AP Calculus Bank 2"', "sanitiseCatalog"], "Bank-label adapter", errors)
+    require(bank, ['CALCT3BC:"AP Calculus Bank 1"', 'ADAMS10:"AP Calculus Bank 2"', 'PEARSON_CH0:"AP Calculus Bank 3"', "sanitiseCatalog"], "Bank-label adapter", errors)
+    forbid(bank, ["PCALRT5S", "CAF5S"], "Bank-label adapter", errors)
     require(experience, ["gamification.css", "gamification-overlay.js"], "Student experience loader", errors)
     require(worker, [
         "learning-access.css", "landing-premium.css", "landing-calculus-motion.css", "landing-hybrid-hero.js",
         "unit-practice-unlock.css", "unit-practice-unlock.js", "practice-builder-compact.css",
         "practice-scope-access.css", "practice-course-isolation", "mapped-private-bank-practice",
-        "ib-exact-lesson-bank-aliases", "mapped-practice", "practice-single-bank", "practice-builder.js",
-        "portal-access.js", "lesson-access-guard.js", "gamification-overlay.js", "hybrid2", "scope1",
+        "mapped-practice", "practice-single-bank", "practice-builder.js",
+        "portal-access.js", "lesson-access-guard.js", "gamification-overlay.js", "calculus-only-practice-routing-redesign",
     ], "Service worker", errors)
 
 

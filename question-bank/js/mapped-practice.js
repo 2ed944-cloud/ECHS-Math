@@ -20,7 +20,7 @@ heroMastery:document.getElementById("heroMastery"),
 scopeDescription:document.getElementById("scopeDescription"),
 roleBadge:document.getElementById("practiceRoleBadge")
 };
-let catalog,access=null,loaded=[],set=[],targets=[],loading=false,session=null,targetCount=10,lastResult=null,questionStartedAt=Date.now(),currentSourceKey="";
+let catalog,access=null,privateInventory=[],loaded=[],set=[],targets=[],loading=false,session=null,targetCount=10,lastResult=null,questionStartedAt=Date.now(),currentSourceKey="";
 let state={index:0,response:null,checked:false,correct:0,graded:0,answered:new Set()};
 const params=ECHSBank.params(),assignmentId=params.get("assignment"),assignmentTitle=params.get("title"),fromLesson=params.get("from"),requestedTopic=params.get("topic"),requestedUnit=params.get("unit");
 const modeCopy={
@@ -109,31 +109,79 @@ function courseUnitRow(courseKey,unit){
 return catalogRows("course_units",courseKey).find(row=>String(row.unit)===String(unit))||null;
 }
 function topicRow(courseKey,topic){
-const groups=normaliseCourse(courseKey)==="ap-calculus"?["topics"]:
-normaliseCourse(courseKey)==="ap-precalculus"?["precalc_topics"]:
-normaliseCourse(courseKey)==="ib-math-ai"?["ib_topics"]:[];
+const groups=normaliseCourse(courseKey)==="ap-calculus"?["topics"]:[];
 for(const group of groups){
 const row=catalogRows(group,courseKey).find(item=>[item.topic,item.lesson_key,item.id].some(value=>String(value??"")===String(topic)));
 if(row)return row;
 }
 return null;
 }
-function courseKeys(){
-const keys=new Set();
-if(student())access.courseKeys.forEach(key=>keys.add(normaliseCourse(key)));
-else{
-(catalog?.courses||[]).forEach(course=>keys.add(normaliseCourse(course.key)));
-["course_all","course_units"].forEach(group=>(catalog?.bundles?.[group]||[]).forEach(row=>{if(row.course_key)keys.add(normaliseCourse(row.course_key));}));
+function inventoryRows(courseKey=UI.course.value,bankCode=UI.bank.value){
+return privateInventory.filter(row=>
+normaliseCourse(row.course_key)===normaliseCourse(courseKey)&&
+(!bankCode||bankCode==="all"||String(row.bank_code)===String(bankCode))
+);
 }
-return[...keys].filter(Boolean);
+function bankCodesForCourse(courseKey){
+const codes=new Set(inventoryRows(courseKey,"all").map(row=>String(row.bank_code||"")).filter(Boolean));
+["course_all","course_units","topics"].forEach(group=>catalogRows(group,courseKey).forEach(row=>
+Object.keys(row.bank_counts||{}).forEach(code=>codes.add(code))
+));
+return[...codes].sort((a,b)=>a.localeCompare(b,undefined,{numeric:true}));
+}
+function bankCourse(bankCode){
+const privateRow=privateInventory.find(row=>String(row.bank_code)===String(bankCode));
+if(privateRow)return normaliseCourse(privateRow.course_key);
+for(const courseKey of courseKeys()){
+if(bankCodesForCourse(courseKey).includes(bankCode))return courseKey;
+}
+return"";
+}
+function privateSource(courseKey,bankCode,{unit="",lesson="",title=""}={}){
+const rows=inventoryRows(courseKey,bankCode).filter(row=>
+(unit===""||String(row.unit_number)===String(unit))&&
+(!lesson||String(row.lesson_key)===String(lesson))
+);
+if(!rows.length)return null;
+return{
+id:`private:${courseKey}:${bankCode}:${unit||"all"}:${lesson||"all"}`,
+label:title||`${courseLabel(courseKey)} · ${ECHSBank.bankLabel(bankCode,courseKey)}`,
+course_key:courseKey,bank_code:bankCode,unit,topic:lesson,lesson_key:lesson,
+lesson_title:title,private_bank_only:true,count:rows.reduce((sum,row)=>sum+Number(row.question_count||0),0),
+bank_counts:{[bankCode]:rows.reduce((sum,row)=>sum+Number(row.question_count||0),0)}
+};
+}
+function sourceHasBank(source,bankCode){
+return Boolean(source&&bankCode&&Number(source.bank_counts?.[bankCode]||0)>0);
+}
+function courseKeys(){
+const keys=new Set(privateInventory.map(row=>normaliseCourse(row.course_key)));
+["course_all","course_units"].forEach(group=>(catalog?.bundles?.[group]||[]).forEach(row=>{if(row.course_key)keys.add(normaliseCourse(row.course_key));}));
+const allowed=new Set(Array.from(access?.courseKeys||[]).map(normaliseCourse));
+return[...keys].filter(key=>key&&(!student()||allowed.has(key)));
 }
 function courseLabel(key){
 return ECHSBank.cleanStudentLabel(ECHSBank.courseLabel(catalog,key)||ECHSLearning.COURSE_LABELS?.[key]||key);
 }
 function populateCourses(){
-const keys=courseKeys(),requested=normaliseCourse(params.get("course")||""),chosen=keys.includes(requested)?requested:keys[0]||"";
+const keys=courseKeys(),requested=normaliseCourse(params.get("course")||bankCourse(params.get("bank")||"")||""),chosen=keys.includes(requested)?requested:keys[0]||"";
 UI.course.innerHTML=keys.map(key=>`<option value="${ECHSBank.escape(key)}">${ECHSBank.escape(courseLabel(key))}</option>`).join("");
 if(chosen)UI.course.value=chosen;
+}
+function populateBanks(preferred=""){
+const codes=bankCodesForCourse(UI.course.value),wanted=preferred||params.get("bank")||UI.bank.value;
+UI.bank.innerHTML=codes.length?codes.map((code,index)=>`<option value="${ECHSBank.escape(code)}">${ECHSBank.escape(`${courseLabel(UI.course.value)} · Bank ${index+1}`)}</option>`).join(""):'<option value="">No verified bank uploaded for this course</option>';
+UI.bank.value=codes.includes(wanted)?wanted:codes[0]||"";
+UI.bank.disabled=!codes.length;
+}
+async function loadPrivateInventory(){
+try{
+const result=await ECHSInstitution.api("practice-bank-api","/inventory");
+privateInventory=Array.isArray(result?.rows)?result.rows.filter(row=>row?.course_key&&row?.bank_code):[];
+}catch(error){
+privateInventory=[];
+console.warn("Private practice inventory is unavailable; using the calculus catalog only.",error);
+}
 }
 function scopeOptions(courseKey){
 const options=[];
@@ -155,23 +203,24 @@ const [title,text]=scopeCopy[UI.scope.value]||scopeCopy.lesson;
 if(UI.scopeDescription)UI.scopeDescription.innerHTML=`<strong>${ECHSBank.escape(title)}</strong><span>${ECHSBank.escape(text)}</span>`;
 }
 function sourceForLesson(courseKey,unit,topic){
-if(normaliseCourse(courseKey)==="ib-math-ai"){
-const source=courseUnitRow(courseKey,unit)||courseAllRow(courseKey);
-return source?{...source,course_key:courseKey,unit,topic,private_bank_only:true}:null;
-}
+const bankCode=UI.bank.value,privateExact=privateSource(courseKey,bankCode,{unit,lesson:topic});
+if(privateExact)return privateExact;
 const source=topicRow(courseKey,topic);
-return source?{...source,course_key:courseKey,unit,topic}:null;
+return sourceHasBank(source,bankCode)?{...source,course_key:courseKey,unit,topic}:null;
 }
 function buildTargets(){
-const courseKey=UI.course.value,scope=UI.scope.value,out=[];
+const courseKey=UI.course.value,bankCode=UI.bank.value,scope=UI.scope.value,out=[],privateRows=inventoryRows(courseKey,bankCode);
 if(scope==="course"&&staff()){
-const source=courseAllRow(courseKey);
+const privateCourse=privateSource(courseKey,bankCode),staticCourse=courseAllRow(courseKey);
+const source=privateCourse||(sourceHasBank(staticCourse,bankCode)?staticCourse:null);
 if(source)out.push({id:`course:${courseKey}`,label:`${courseLabel(courseKey)} · Full course`,course:courseKey,scope:"course",unit:"",topic:"",source,locked:false});
 }
 if(scope==="unit"){
-const unitCount=courseDefinition(courseKey)?.units?.length||catalogRows("course_units",courseKey).reduce((max,row)=>Math.max(max,Number(row.unit)||0),0);
-for(let unit=1;unit<=unitCount;unit++){
-const source=courseUnitRow(courseKey,unit);
+const units=privateRows.length?[...new Set(privateRows.map(row=>Number(row.unit_number)).filter(unit=>unit>0))].sort((a,b)=>a-b):
+catalogRows("course_units",courseKey).filter(row=>sourceHasBank(row,bankCode)).map(row=>Number(row.unit)).filter(unit=>unit>0).sort((a,b)=>a-b);
+for(const unit of units){
+const privateUnit=privateSource(courseKey,bankCode,{unit}),staticUnit=courseUnitRow(courseKey,unit);
+const source=privateUnit||(sourceHasBank(staticUnit,bankCode)?staticUnit:null);
 if(!source)continue;
 const complete=unitCompleted(courseKey,unit),direct=String(requestedUnit||"")===String(unit);
 if(student()&&!complete&&!direct)continue;
@@ -180,7 +229,10 @@ out.push({id:`unit:${courseKey}:${unit}`,label:`Unit ${unit} · ${title}`,course
 }
 }
 if(scope==="lesson"){
-const lessons=completedLessons(courseKey);
+const lessons=privateRows.length?[...new Map(privateRows.filter(row=>row.lesson_key).map(row=>[
+`${row.unit_number}:${row.lesson_key}`,
+{unit:Number(row.unit_number),topic:String(row.lesson_key),title:String(row.lesson_title||row.lesson_key),completed:lessonCompleted(courseKey,Number(row.unit_number),String(row.lesson_key))}
+])).values()]:completedLessons(courseKey);
 for(const lesson of lessons){
 const direct=String(requestedTopic||"")===String(lesson.topic)&&String(requestedUnit||lesson.unit)===String(lesson.unit);
 if(student()&&!lesson.completed&&!direct)continue;
@@ -227,19 +279,21 @@ function currentTarget(){
 return targets.find(target=>target.id===UI.bundle.value)||null;
 }
 function currentCourse(){return UI.course.value||currentTarget()?.course||"";}
+function selectedBankLabel(){return UI.bank.selectedOptions?.[0]?.textContent?.trim()||"No bank selected";}
 function currentScopeLabel(){
 const target=currentTarget();
 return target?.scope==="course"?"Full course":target?.scope==="unit"?`Unit ${target.unit}`:target?.topic?`Lesson ${target.topic}`:"Practice";
 }
 function updateBuilderContext(){
-const el=document.getElementById("builderCourseTag"),target=currentTarget();
+const el=document.getElementById("builderCourseTag"),route=document.getElementById("practiceRouteSummary"),target=currentTarget();
 if(!el)return;
 const role=student()?"Student pathway":"Staff course access";
 el.textContent=target?`${courseLabel(target.course)} · ${currentScopeLabel()} · ${role}`:`${courseLabel(currentCourse())} · No unlocked target`;
+if(route)route.innerHTML=`<span>${ECHSBank.escape(courseLabel(currentCourse()))}</span><b>→</b><span>${ECHSBank.escape(selectedBankLabel())}</span><b>→</b><span>${ECHSBank.escape(target?.label||"Choose a unit or lesson")}</span>`;
 }
 function prepareSource(target){
 if(!target)return null;
-const source={...target.source,id:target.id,course_key:target.course};
+const source={...target.source,id:target.id,course_key:target.course,bank_code:UI.bank.value,questionFilter:{...(target.source?.questionFilter||{}),bank_code:UI.bank.value}};
 if(target.unit!=="")source.unit=target.unit;
 if(target.topic)source.topic=target.topic;
 if(staff()&&UI.visibility?.value==="all")source.staff_view_all=true;
@@ -249,9 +303,9 @@ function targetLocked(){return Boolean(student()&&!assignmentId&&currentTarget()
 function setBusy(value){
 loading=value;
 UI.start.disabled=value||targetLocked()||!currentTarget();
-UI.course.disabled=value;UI.scope.disabled=value;UI.bundle.disabled=value;
+UI.course.disabled=value;UI.bank.disabled=value||!bankCodesForCourse(UI.course.value).length;UI.scope.disabled=value;UI.bundle.disabled=value;
 if(UI.visibility)UI.visibility.disabled=value;
-UI.start.textContent=value?"Loading mapped questions…":"Start practice";
+UI.start.textContent=value?"Loading exact route…":"Start focused session";
 }
 window.addEventListener("echs:bundle-progress",event=>{
 if(!loading)return;
@@ -265,6 +319,7 @@ for(const question of rows){
 if(!question?.id)continue;
 if(!ECHSBank.mappingCompatible(question,{course:target.course,unit:target.scope==="course"?"":target.unit,topic:target.scope==="lesson"?target.topic:""}))continue;
 if(student()&&question._staff_only)continue;
+if(UI.bank.value&&String(question.bank_code)!==String(UI.bank.value))continue;
 const fingerprint=question.source?.source_content_fingerprint||question.metadata?.source_content_fingerprint||question.id;
 const key=`${target.course}|${fingerprint}`;
 if(seen.has(key))continue;
@@ -276,10 +331,7 @@ return rows;
 function updateInventory({statusText=""}={}){
 UI.heroLoaded.textContent=loaded.length.toLocaleString();
 const banks=[...new Set(loaded.map(question=>question.bank_code).filter(Boolean))].sort();
-UI.heroBanks.textContent=banks.length.toLocaleString();
-const wanted=student()?"all":params.get("bank")||UI.bank.value;
-UI.bank.innerHTML='<option value="all">All course banks</option>'+banks.map(code=>`<option value="${ECHSBank.escape(code)}">${ECHSBank.escape(ECHSBank.bankLabel(code,currentCourse()))}</option>`).join("");
-UI.bank.value=!student()&&banks.includes(wanted)?wanted:"all";
+UI.heroBanks.textContent=(UI.bank.value?Math.max(1,banks.length):0).toLocaleString();
 const sections=new Map();
 loaded.forEach(question=>{
 const value=String(question.source?.section||"unmapped"),title=question.source?.section_title||question.source?.skill_title||"";
@@ -328,7 +380,7 @@ return{
 course:target?.course||currentCourse(),
 unit:target?.scope==="course"?"":target?.unit??"",
 topic:target?.scope==="lesson"?target?.topic||"":null,
-bank:student()?"all":UI.bank.value,
+bank:UI.bank.value,
 type:UI.type.value,
 difficulty:UI.mode.value==="adaptive"?"all":UI.difficulty.value,
 section:student()?"all":UI.section.value
@@ -372,6 +424,7 @@ function hydrateAssets(root){if(window.ECHSBlackboardAssets)ECHSBlackboardAssets
 function scrollQuestionIntoView(){UI.shell.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"});}
 function sessionURL(){
 const target=currentTarget(),query=new URLSearchParams({resume:"1",course:currentCourse(),scope:target?.scope||"lesson",target:target?.id||"",mode:UI.mode.value});
+if(UI.bank.value)query.set("bank",UI.bank.value);
 if(target?.unit!=="")query.set("unit",String(target.unit));
 if(target?.topic)query.set("topic",String(target.topic));
 if(staff()&&UI.visibility?.value==="all")query.set("visibility","all");
@@ -403,13 +456,14 @@ const responseHTML=["mcq","true_false"].includes(question.type)
 ?'<div class="control answerControl"><label for="answerInput">Your answer</label><input id="answerInput" autocomplete="off"></div>'
 :'<div class="control answerControl"><label for="answerInput">Your response</label><textarea id="answerInput" rows="7"></textarea></div>';
 const topic=ECHSBank.questionTopic(question),topicTitle=classification.primary_topic_title||classification.topic_title||classification.ib_lesson_title||classification.ap_topic_title||source.skill_title||source.section_title||question.pool_title||"Practice question";
-const bankPill=staff()?`<span class="pill teal">${ECHSBank.escape(ECHSBank.bankLabel(question.bank_code,currentCourse()))}</span>`:'<span class="pill teal">ECHS mapped practice</span>';
+const bankPill=`<span class="pill teal">${ECHSBank.escape(selectedBankLabel())}</span>`;
 UI.shell.innerHTML=`<article class="questionCard ${question._staff_only?"staffReviewQuestion":""}">
-<div class="pillRow"><span class="pill wine">Question ${state.index+1} of ${targetCount}</span>${bankPill}<span class="pill gold">${ECHSBank.escape(modeCopy[UI.mode.value]?.[0]||"Practice")}</span>${topic?`<span class="pill">Skill ${ECHSBank.escape(topic)}</span>`:""}<span class="pill">${ECHSBank.escape(ECHSBank.labelType(question.type))}</span>${question._staff_only?'<span class="pill red">Staff QA only</span>':""}</div>
-<div class="progressTrack"><i style="width:${((state.index+1)/Math.max(1,targetCount))*100}%"></i></div>
-<h2>${ECHSBank.escape(ECHSBank.cleanStudentLabel(topicTitle))}</h2>
-<div class="prompt">${question.prompt_html}</div>${responseHTML}
+<header class="questionHeader"><div><span class="questionEyebrow">${ECHSBank.escape(courseLabel(currentCourse()))} · ${ECHSBank.escape(currentScopeLabel())}</span><h2>${ECHSBank.escape(ECHSBank.cleanStudentLabel(topicTitle))}</h2></div><div class="questionCounter"><b>${state.index+1}</b><span>of ${targetCount}</span></div></header>
+<div class="progressTrack" aria-label="Session progress"><i style="width:${((state.index+1)/Math.max(1,targetCount))*100}%"></i></div>
+<div class="pillRow questionMeta">${bankPill}<span class="pill gold">${ECHSBank.escape(modeCopy[UI.mode.value]?.[0]||"Practice")}</span>${topic?`<span class="pill">Skill ${ECHSBank.escape(topic)}</span>`:""}<span class="pill">${ECHSBank.escape(ECHSBank.labelType(question.type))}</span>${question._staff_only?'<span class="pill red">Staff QA only</span>':""}</div>
+<div class="questionBody"><div class="prompt">${question.prompt_html}</div>${responseHTML}</div>
 <div id="feedback" class="feedback" aria-live="polite"></div>
+<div class="keyboardHint" aria-hidden="true"><span><kbd>A–D</kbd> choose</span><span><kbd>Enter</kbd> check / continue</span><span><kbd>←</kbd><kbd>→</kbd> navigate</span></div>
 <div class="questionFooter"><button class="button primary" id="check">${auto?"Check answer":"Reveal feedback"}</button><div><button class="button ghost" id="prev" ${state.index===0?"disabled":""}>Back</button> <button class="button wine" id="next">${state.index===targetCount-1?"Finish":"Next"}</button></div></div>
 </article>`;
 hydrateAssets(UI.shell);
@@ -486,6 +540,17 @@ state={index:Math.min(Number(saved.index)||0,set.length-1),response:null,checked
 session=ECHSLearning.activeSession(saved.sessionId)||ECHSLearning.startSession({type:"practice",mode:UI.mode.value,targetId:saved.targetId,questionIds:set.map(question=>question.id),targetCount,assignmentId:saved.assignmentId});
 render();scrollQuestionIntoView();return true;
 }
+function practiceKeyboard(event){
+if(!document.querySelector("#shell .questionCard")||event.metaKey||event.ctrlKey||event.altKey)return;
+if(event.target?.matches?.("input, textarea, select, [contenteditable='true']"))return;
+const key=event.key.toLowerCase(),choices=[...document.querySelectorAll(".choice")];
+const index="abcd".indexOf(key);
+if(index>=0&&choices[index]){event.preventDefault();choices[index].click();return;}
+if(event.key==="Enter"){event.preventDefault();(state.checked?document.getElementById("next"):document.getElementById("check"))?.click();return;}
+if(event.key==="ArrowLeft"){event.preventDefault();document.getElementById("prev")?.click();}
+if(event.key==="ArrowRight"){event.preventDefault();document.getElementById("next")?.click();}
+}
+document.addEventListener("keydown",practiceKeyboard);
 (async()=>{
 try{
 access=await ECHSPortalAccess.ready;
@@ -496,6 +561,7 @@ document.getElementById("practiceHeroText").textContent=student()
 ?"Choose a completed lesson or completed unit. Questions remain isolated to your assigned course."
 :"Browse every course, unit, lesson and bank. Staff QA view can include withheld questions without releasing them to students.";
 catalog=await ECHSBank.loadCatalog();
+await loadPrivateInventory();
 populateCourses();
 const requested=normaliseCourse(params.get("course")||"");
 if(student()&&requested&&!ECHSPortalAccess.courseAllowed(requested,access)){
@@ -510,6 +576,7 @@ UI.visibility.closest(".staffOnly")?.toggleAttribute("hidden",!staff());
 UI.mode.value=params.get("mode")||(student()?"adaptive":"manual");
 if(params.get("count"))UI.count.value=params.get("count");
 updateModeCopy();
+populateBanks();
 populateScopes();
 populateTargets();
 await loadCurrent();
@@ -517,7 +584,8 @@ assignmentBanner();resumeBanner();
 const learning=ECHSLearning.summary();
 UI.heroDue.textContent=learning.due.toLocaleString();
 UI.heroMastery.textContent=learning.mastered.toLocaleString();
-UI.course.onchange=async()=>{populateScopes(staff()?"course":"lesson");populateTargets();await loadCurrent();};
+UI.course.onchange=async()=>{populateBanks();populateScopes(staff()?"course":"lesson");populateTargets();await loadCurrent();};
+UI.bank.onchange=async()=>{populateScopes(UI.scope.value);populateTargets();await loadCurrent();};
 UI.scope.onchange=async()=>{updateScopeDescription();populateTargets();await loadCurrent();};
 UI.bundle.onchange=async()=>{updateBuilderContext();await loadCurrent();};
 if(UI.visibility)UI.visibility.onchange=loadCurrent;

@@ -80,9 +80,9 @@
       const [catalogResponse,addonResponse]=await Promise.all([fetch(rootLink("question-bank/data/catalog.json")),fetch(rootLink("question-bank/data/blackboard-addon.json"))]);
       const catalog=catalogResponse.ok?await catalogResponse.json():{banks:[]},addon=addonResponse.ok?await addonResponse.json():{banks:[]};
       const banks=new Map();[...(catalog.banks||[]),...(addon.banks||[])].forEach(bank=>banks.set(bank.code,bank));
-      const bankRows=[...banks.values()],total=bankRows.reduce((sum,bank)=>sum+(Number(bank.question_count)||0),0),precalc=bankRows.filter(bank=>["PCALRT5S","CAF5S"].includes(bank.code)).reduce((sum,bank)=>sum+(Number(bank.question_count)||0),0),calc=bankRows.filter(bank=>/CALC|ADAMS|PEARSON_CH0/.test(bank.code)).reduce((sum,bank)=>sum+(Number(bank.question_count)||0),0);
+      const bankRows=[...banks.values()],total=bankRows.reduce((sum,bank)=>sum+(Number(bank.question_count)||0),0),calc=bankRows.filter(bank=>/CALC|ADAMS|PEARSON_CH0/.test(bank.code)).reduce((sum,bank)=>sum+(Number(bank.question_count)||0),0);
       const stat=qs("#statQuestions");if(stat)stat.textContent=total.toLocaleString();
-      targets.forEach(target=>target.innerHTML=`<div class="platformInventoryItem"><b>${total.toLocaleString()}</b><span>publisher questions</span></div><div class="platformInventoryItem"><b>${bankRows.length}</b><span>source collections</span></div><div class="platformInventoryItem"><b>${precalc.toLocaleString()}</b><span>Precalculus questions</span></div><div class="platformInventoryItem"><b>${calc.toLocaleString()}</b><span>Calculus questions</span></div>`);
+      targets.forEach(target=>target.innerHTML=`<div class="platformInventoryItem"><b>${total.toLocaleString()}</b><span>Calculus questions</span></div><div class="platformInventoryItem"><b>${bankRows.length}</b><span>verified Calculus banks</span></div><div class="platformInventoryItem"><b>${calc.toLocaleString()}</b><span>course-routed questions</span></div><div class="platformInventoryItem"><b>0</b><span>cross-course banks</span></div>`);
     }catch(error){console.warn("Could not load platform bank snapshot",error);}
   }
   function populateLearningSnapshot(){

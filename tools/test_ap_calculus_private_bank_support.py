@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Regression checks for multi-course private-bank import support."""
+"""Regression checks for exact single-course private-bank import support."""
 from __future__ import annotations
 
 import importlib.util
@@ -59,11 +59,22 @@ except RuntimeError as error:
 else:
     raise AssertionError("Course mismatch was not rejected")
 
+try:
+    module.manifest_target_courses({"target_courses": ["ap-calculus", "ib-math-ai"]})
+except RuntimeError as error:
+    assert "exactly one target course" in str(error)
+else:
+    raise AssertionError("Multi-course manifest was not rejected")
+
 legacy = {**question, "id": "LEGACY-DUAL-001", "course_mappings": [
     {"course": "ap-precalculus", "unit": 0, "lesson_key": "0.1", "skill_key": "LEGACY.AP", "mapping_verified": True},
     {"course": "ib-math-ai", "unit": 0, "lesson_key": "u0-readiness", "skill_key": "LEGACY.IB", "mapping_verified": True},
 ]}
-legacy_courses, _, _ = module.direct_mappings(legacy)
-assert legacy_courses == ["ap-precalculus", "ib-math-ai"]
+try:
+    module.direct_mappings(legacy)
+except RuntimeError as error:
+    assert "exactly one verified course mapping" in str(error)
+else:
+    raise AssertionError("Legacy multi-course question was not rejected")
 
 print("AP Calculus private-bank support: PASS")

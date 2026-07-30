@@ -56,7 +56,6 @@ def validate_required_files() -> None:
         "question-bank/data/blackboard-addon.json",
         "question-bank/js/bank.js",
         "question-bank/js/practice.js",
-        "question-bank/js/precalculus-bank-audit.js",
         "platform/PHASE_1_FOUNDATION.md",
     ]
     for relative in required:
@@ -82,47 +81,30 @@ def validate_manifest() -> None:
         warning("manifest.json has fewer than three application shortcuts")
 
 
-def validate_precalculus_bank() -> None:
+def validate_calculus_only_banks() -> None:
+    catalog = load_json("question-bank/data/catalog.json")
     addon = load_json("question-bank/data/blackboard-addon.json")
-    bank = next((row for row in addon.get("banks", []) if row.get("code") == "PCALRT5S"), None)
-    if not bank:
-        error("PCALRT5S is not registered in blackboard-addon.json")
-        return
-    if int(bank.get("question_count", 0)) != 4528:
-        error(f"PCALRT5S must register 4,528 questions, found {bank.get('question_count')}")
-
-    chapter_dir = ROOT / "question-bank/data/imported/pcalrt5s"
-    media_dir = ROOT / "question-bank/assets/blackboard-packages/pcalrt5s"
-    chapter_files = sorted(chapter_dir.glob("chapter_*.json"))
-    media_files = sorted(media_dir.glob("chapter_*.zip"))
-    if len(chapter_files) != 16:
-        error(f"Expected 16 PCALRT5S chapter JSON files, found {len(chapter_files)}")
-    if len(media_files) != 16:
-        error(f"Expected 16 PCALRT5S media packages, found {len(media_files)}")
-
-    ids: set[str] = set()
-    total = 0
-    for chapter_path in chapter_files:
-        try:
-            payload = json.loads(chapter_path.read_text(encoding="utf-8"))
-        except Exception as exc:  # noqa: BLE001
-            error(f"Invalid chapter JSON {chapter_path.relative_to(ROOT)}: {exc}")
-            continue
-        questions = payload if isinstance(payload, list) else payload.get("questions", [])
-        if not isinstance(questions, list):
-            error(f"Invalid questions array in {chapter_path.relative_to(ROOT)}")
-            continue
-        total += len(questions)
-        for question in questions:
-            question_id = str(question.get("id", "")).strip()
-            if not question_id:
-                error(f"Question without ID in {chapter_path.relative_to(ROOT)}")
-            elif question_id in ids:
-                error(f"Duplicate PCALRT5S question ID: {question_id}")
-            else:
-                ids.add(question_id)
-    if total != 4528 or len(ids) != 4528:
-        error(f"PCALRT5S inventory mismatch: total={total}, unique IDs={len(ids)}")
+    expected = {"CALCT3BC", "ADAMS10", "PEARSON_CH0"}
+    actual = {str(row.get("code")) for row in catalog.get("banks", [])}
+    if actual != expected:
+        error(f"Static catalog must contain only Calculus banks: found {sorted(actual)}")
+    if addon.get("banks") or addon.get("bundles") or addon.get("courseAllAugments") or addon.get("courseUnitAugments"):
+        error("Blackboard add-on must be empty after the Calculus-only reset")
+    if {row.get("key") for row in catalog.get("courses", [])} != {"ap-calculus"}:
+        error("Practice catalog must expose only AP Calculus until curated banks are uploaded")
+    if {row.get("course_key") for row in catalog.get("coverage", [])} != {"ap-calculus"}:
+        error("Practice coverage must not advertise removed course banks")
+    removed = (
+        "question-bank/data/courses/ap-precalculus",
+        "question-bank/data/courses/ib-math-ai",
+        "question-bank/data/courses/algebra-2",
+        "question-bank/data/courses/grade-9",
+        "question-bank/data/imported/pcalrt5s",
+        "question-bank/data/imported/caf5s",
+    )
+    for relative in removed:
+        if (ROOT / relative).exists():
+            error(f"Removed non-Calculus bank data returned: {relative}")
 
 
 def validate_html_links() -> None:
@@ -194,7 +176,7 @@ def validate_discovery_files() -> None:
 def main() -> int:
     validate_required_files()
     validate_manifest()
-    validate_precalculus_bank()
+    validate_calculus_only_banks()
     validate_html_links()
     validate_discovery_files()
 

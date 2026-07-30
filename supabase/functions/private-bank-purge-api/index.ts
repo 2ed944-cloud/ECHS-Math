@@ -32,15 +32,15 @@ const MIXED_BATCH = 100;
 const QUESTION_BATCH = 250;
 const MEDIA_BATCH = 100;
 const PHASE_LABELS: Record<string, string> = {
-  "mixed-questions": "Removing IB mappings from shared questions",
-  "dedicated-questions": "Deleting dedicated IB questions",
-  "dedicated-media": "Deleting dedicated IB media",
-  "source-archives": "Deleting stored IB source archives",
+  "mixed-questions": "Removing course mappings from shared questions",
+  "dedicated-questions": "Deleting dedicated course questions",
+  "dedicated-media": "Deleting dedicated course media",
+  "source-archives": "Deleting stored source archives",
   "mixed-packages": "Cleaning shared package metadata",
-  "import-runs": "Cleaning IB import history",
-  "dedicated-packages": "Deleting empty IB packages",
-  "verify": "Verifying the IB reset",
-  "completed": "IB Mathematics AI reset complete",
+  "import-runs": "Cleaning course import history",
+  "dedicated-packages": "Deleting empty course packages",
+  "verify": "Verifying the course reset",
+  "completed": "Course bank reset complete",
 };
 
 function responseHeaders(req: Request): HeadersInit {
@@ -474,7 +474,7 @@ Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { status: 204, headers: responseHeaders(req) });
   const url = new URL(req.url); const path = url.pathname.split("/private-bank-purge-api")[1] || "/";
   try {
-    if (path === "/health" && req.method === "GET") return reply(req, { ok: true, service: "echs-private-bank-purge-api", version: "1.0.0-resumable-batches" });
+    if (path === "/health" && req.method === "GET") return reply(req, { ok: true, service: "echs-private-bank-purge-api", version: "1.1.0-generic-course-batches" });
     const current = await session(req);
     if (!current || current.role !== "admin") return fail(req, "Administrator access is required", 403, "forbidden");
     const courseMatch = path.match(/^\/courses\/([a-z0-9-]+)$/);

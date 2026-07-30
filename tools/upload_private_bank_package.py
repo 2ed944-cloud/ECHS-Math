@@ -137,13 +137,15 @@ def manifest_target_courses(manifest: dict) -> list[str]:
         if course not in SUPPORTED_COURSES:
             raise RuntimeError(f"Manifest uses unsupported course {course!r}")
         seen.add(course); targets.append(course)
+    if len(targets) != 1:
+        raise RuntimeError("Manifest must declare exactly one target course")
     return targets
 
 
 def direct_mappings(question: dict, target_courses: list[str] | tuple[str, ...] = ()) -> tuple[list[str], list[str], list[str]]:
     mappings = question.get("course_mappings") or []
-    if not mappings:
-        raise RuntimeError(f"{question.get('id')} must have at least one verified course mapping")
+    if len(mappings) != 1:
+        raise RuntimeError(f"{question.get('id')} must have exactly one verified course mapping")
     by_course, order = {}, []
     for row in mappings:
         course = str(row.get("course") or "").strip()
@@ -151,8 +153,14 @@ def direct_mappings(question: dict, target_courses: list[str] | tuple[str, ...] 
             raise RuntimeError(f"{question.get('id')} has a missing or duplicate course mapping")
         if course not in SUPPORTED_COURSES:
             raise RuntimeError(f"{question.get('id')} has unsupported course mapping {course!r}")
-        lesson, skill = str(row.get("lesson_key") or "").strip(), str(row.get("skill_key") or "").strip()
-        if not lesson or not skill or row.get("mapping_verified") is not True:
+        lesson = str(row.get("lesson_key") or "").strip()
+        lesson_title = str(row.get("lesson_title") or "").strip()
+        skill = str(row.get("skill_key") or "").strip()
+        try:
+            unit = int(row.get("unit"))
+        except (TypeError, ValueError):
+            unit = 0
+        if unit < 1 or not lesson or not lesson_title or not skill or row.get("mapping_verified") is not True:
             raise RuntimeError(f"{question.get('id')} has an incomplete direct mapping for {course}")
         by_course[course] = row; order.append(course)
     expected = list(target_courses)
@@ -198,7 +206,8 @@ def main() -> int:
     if not args.dry_run and (not args.supabase_url or not args.service_role_key): raise SystemExit("SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY are required")
     if args.batch_size < 1 or args.batch_size > 500: raise SystemExit("--batch-size must be between 1 and 500")
     expected_course = str(args.expected_course or "").strip()
-    if expected_course and expected_course not in SUPPORTED_COURSES: raise SystemExit(f"Unsupported --expected-course {expected_course!r}")
+    if not expected_course: raise SystemExit("--expected-course is required so one bank cannot mix courses")
+    if expected_course not in SUPPORTED_COURSES: raise SystemExit(f"Unsupported --expected-course {expected_course!r}")
 
     client = Supabase(args.supabase_url or "https://dry-run.invalid", args.service_role_key or "dry-run", args.dry_run)
     if not args.skip_skill_seed: seed_graphs(client, [args.ap_graph, args.ib_graph], args.batch_size)

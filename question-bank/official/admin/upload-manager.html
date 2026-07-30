@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/upload-manager.css?v=20260729-lesson-release">
+  <link rel="stylesheet" href="css/upload-manager.css?v=20260730-course-boundary">
 </head>
 <body class="institutionBody uploadManagerBody" data-require-account="teacher admin">
   <div class="uploadShell">
@@ -28,7 +28,7 @@
       <section class="managerGrid">
         <article class="uploadCard">
           <div class="cardHead"><small>Protected teacher workflow</small><h2 id="managerTitle">Upload a private question bank</h2><p id="managerCopy">Choose one ECHS private-bank ZIP. Large packages are uploaded automatically in free-tier-safe parts and reassembled before validation.</p></div>
-          <div id="privateBankFields" class="releaseFields"><div class="field"><label for="bankCourseKey">Target course</label><select id="bankCourseKey"><option value="">Auto-detect from package manifest</option><option value="ap-calculus">AP Calculus</option><option value="ap-precalculus">AP Precalculus</option><option value="ib-math-ai">IB Mathematics AI</option><option value="algebra-2">Algebra 2</option><option value="grade-9">Grade 9</option></select></div></div>
+          <div id="privateBankFields" class="releaseFields"><div class="field"><label for="bankCourseKey">Target course <span aria-hidden="true">*</span></label><select id="bankCourseKey" required><option value="" selected disabled>Choose the exact course</option><option value="ap-calculus">AP Calculus</option><option value="ap-precalculus">AP Precalculus</option><option value="ib-math-ai">IB Mathematics AI</option><option value="algebra-2">Algebra 2</option><option value="grade-9">Grade 9</option></select><p class="fieldHelp">One bank belongs to one course only. Every question in the ZIP must then name one unit, one lesson and one skill in that same course. The upload is rejected before import if any route crosses a course boundary.</p></div></div>
           <div id="releaseFields" class="releaseFields hidden"><div class="field"><label for="courseKey">Course</label><select id="courseKey"><option value="ap-precalculus">AP Precalculus</option><option value="ib-math-ai">IB Mathematics AI</option><option value="ap-calculus">AP Calculus</option><option value="algebra-2">Algebra 2</option><option value="grade-9">Grade 9</option></select></div><div class="field"><label for="unitKey">Unit number / key</label><input id="unitKey" placeholder="1"></div><p class="fieldHelp">IB packages must include <code>portal/lesson-catalog-patch.json</code>, a matching unit portal object, complete local HTML lessons and all runtime assets. A pull request is opened for review and is never merged automatically.</p></div>
           <div class="dropZone" id="dropZone"><input id="zipFile" type="file" accept=".zip,application/zip"><div><div class="dropIcon">⬆</div><h3>Drop a ZIP package here</h3><p>or click to choose a file · maximum 150 MB</p></div></div>
           <div class="fileSummary hidden" id="fileSummary"><strong id="fileName"></strong><small id="fileMeta"></small></div>
@@ -41,6 +41,6 @@
     </main>
   </div>
   <script src="../../../js/institution-client.js"></script>
-  <script src="js/upload-manager.js?v=20260729-lesson-release"></script>
+  <script src="js/upload-manager.js?v=20260730-course-boundary"></script>
 </body>
 </html>
