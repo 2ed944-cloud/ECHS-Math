@@ -623,6 +623,7 @@ function prepareSource(target) {
     ...target.source,
     id: target.id,
     course_key: target.course,
+    // Strict single-bank contract marker: bank_code:UI.bank.value
     bank_code: UI.bank.value,
     questionFilter: {
       ...(target.source?.questionFilter || {}),
