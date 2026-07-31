@@ -109,7 +109,8 @@ function courseUnitRow(courseKey,unit){
 return catalogRows("course_units",courseKey).find(row=>String(row.unit)===String(unit))||null;
 }
 function topicRow(courseKey,topic){
-const groups=normaliseCourse(courseKey)==="ap-calculus"?["topics"]:[];
+const course=normaliseCourse(courseKey);
+const groups=course==="ap-calculus"?["topics"]:course==="ap-precalculus"?["precalc_topics"]:course==="ib-math-ai"?["ib_topics"]:[];
 for(const group of groups){
 const row=catalogRows(group,courseKey).find(item=>[item.topic,item.lesson_key,item.id].some(value=>String(value??"")===String(topic)));
 if(row)return row;
@@ -124,7 +125,7 @@ normaliseCourse(row.course_key)===normaliseCourse(courseKey)&&
 }
 function bankCodesForCourse(courseKey){
 const codes=new Set(inventoryRows(courseKey,"all").map(row=>String(row.bank_code||"")).filter(Boolean));
-["course_all","course_units","topics"].forEach(group=>catalogRows(group,courseKey).forEach(row=>
+["course_all","course_units","topics","precalc_topics","ib_topics"].forEach(group=>catalogRows(group,courseKey).forEach(row=>
 Object.keys(row.bank_counts||{}).forEach(code=>codes.add(code))
 ));
 return[...codes].sort((a,b)=>a.localeCompare(b,undefined,{numeric:true}));
@@ -191,8 +192,8 @@ console.warn("Private practice inventory is unavailable; using the calculus cata
 function scopeOptions(courseKey){
 const options=[];
 if(staff())options.push({value:"course",label:"Full course"});
-options.push({value:"lesson",label:student()?"My completed lessons":"Specific lesson"});
-if(staff()||completedUnits(courseKey).length)options.push({value:"unit",label:student()?"My completed units":"Specific unit"});
+options.push({value:"lesson",label:"Specific lesson"});
+if(staff()||inventoryRows(courseKey,"all").length||completedUnits(courseKey).length)options.push({value:"unit",label:"Specific unit"});
 return options;
 }
 function populateScopes(preferred){
@@ -228,26 +229,27 @@ const privateUnit=privateSource(courseKey,bankCode,{unit}),staticUnit=courseUnit
 const source=privateUnit||(sourceHasBank(staticUnit,bankCode)?staticUnit:null);
 if(!source)continue;
 const complete=unitCompleted(courseKey,unit),direct=String(requestedUnit||"")===String(unit);
-if(student()&&!complete&&!direct)continue;
+const mappedDirectly=privateRows.some(row=>String(row.unit_number)===String(unit));
+if(student()&&!complete&&!direct&&!mappedDirectly)continue;
 const title=unitDefinition(courseKey,unit)?.title?.replace(/^Unit\s+\d+\s*:\s*/i,"")||`Unit ${unit}`;
-out.push({id:`unit:${courseKey}:${unit}`,label:`Unit ${unit} · ${title}`,course:courseKey,scope:"unit",unit,topic:"",source:{...source,course_key:courseKey,unit},locked:student()&&!complete});
+out.push({id:`unit:${courseKey}:${unit}`,label:`Unit ${unit} · ${title}`,course:courseKey,scope:"unit",unit,topic:"",source:{...source,course_key:courseKey,unit},locked:student()&&!complete&&!mappedDirectly});
 }
 }
 if(scope==="lesson"){
 const lessons=privateRows.length?[...new Map(privateRows.filter(row=>row.lesson_key).map(row=>[
 `${row.unit_number}:${row.lesson_key}`,
-{unit:Number(row.unit_number),topic:String(row.lesson_key),title:String(row.lesson_title||row.lesson_key),completed:lessonCompleted(courseKey,Number(row.unit_number),String(row.lesson_key))}
+{unit:Number(row.unit_number),topic:String(row.lesson_key),title:String(row.lesson_title||row.lesson_key),completed:lessonCompleted(courseKey,Number(row.unit_number),String(row.lesson_key)),mappedDirectly:true}
 ])).values()]:completedLessons(courseKey);
 for(const lesson of lessons){
 const direct=String(requestedTopic||"")===String(lesson.topic)&&String(requestedUnit||lesson.unit)===String(lesson.unit);
-if(student()&&!lesson.completed&&!direct)continue;
+if(student()&&!lesson.completed&&!direct&&!lesson.mappedDirectly)continue;
 const source=sourceForLesson(courseKey,lesson.unit,lesson.topic);
 if(!source)continue;
 out.push({
 id:`lesson:${courseKey}:${lesson.unit}:${lesson.topic}`,
 label:`${lesson.topic} · ${lesson.title}`,
 course:courseKey,scope:"lesson",unit:lesson.unit,topic:lesson.topic,source,
-locked:student()&&!lesson.completed
+locked:student()&&!lesson.completed&&!lesson.mappedDirectly
 });
 }
 if(requestedTopic&&!out.some(target=>String(target.topic)===String(requestedTopic))){
