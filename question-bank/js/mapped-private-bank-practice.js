@@ -3,7 +3,7 @@
   "use strict";
   const params=new URLSearchParams(location.search);
   const READY=new Set(["publisher_key_direct","student_ready_verified"]);
-  const dynamicLabels=new Map(),courseNumbers=new Map();let activeCourse="";
+  const dynamicLabels=new Map();let activeCourse="";
   const normalise=value=>window.ECHSPortalAccess?.normaliseCourseKey?.(value||"")||String(value||"");
   const sourceCourse=source=>normalise(source?.course_key||source?.course||params.get("course")||"");
   const sourceLesson=source=>String(source?.topic||source?.lesson_key||params.get("topic")||params.get("lesson")||"").trim();
@@ -11,7 +11,7 @@
   const resolvedAccess=async()=>{try{return await window.ECHSPortalAccess?.ready;}catch{return window.ECHSPortalAccess?.current||null;}};
   const staff=access=>["teacher","admin"].includes(access?.role||window.ECHSPortalAccess?.current?.role||"");
   const courseLabel=course=>window.ECHSLearning?.COURSE_LABELS?.[course]||String(course||"Course").replaceAll("-"," ");
-  const labelFor=(code,course=activeCourse)=>{if(!code)return`${courseLabel(course)} Bank`;if(!dynamicLabels.has(code)){const next=(courseNumbers.get(course)||0)+1;courseNumbers.set(course,next);dynamicLabels.set(code,`${courseLabel(course)} Bank ${next}`);}return dynamicLabels.get(code);};
+  const labelFor=(code,course=activeCourse)=>{if(!code)return`${courseLabel(course)} Bank`;if(!dynamicLabels.has(code))dynamicLabels.set(code,`${courseLabel(course)} · ${code}`);return dynamicLabels.get(code);};
   const fingerprint=q=>q?.source?.source_content_fingerprint||q?.metadata?.source_content_fingerprint||q?.id;
   const dispatch=(type,detail)=>window.dispatchEvent?.(new CustomEvent(type,{detail}));
   const wait=milliseconds=>new Promise(resolve=>setTimeout(resolve,milliseconds));
