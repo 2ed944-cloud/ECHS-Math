@@ -122,14 +122,60 @@ async function inventory(req: Request, current: SessionAccount, url: URL) {
     allowed.has(normaliseCourse(row.course_key)) &&
     (current.role !== "student" || Number(row.ready_count ?? 0) > 0)
   );
+  const bankCodes = [...new Set(rows.map((row: JsonRecord) => String(row.bank_code ?? "")).filter(Boolean))];
+  const packageNames = new Map<string, string>();
+  if (bankCodes.length) {
+    const { data: packages, error: packageError } = await db.from("private_bank_packages")
+      .select("bank_code,bank_slug,display_aliases,manifest")
+      .eq("organization_id", current.organization_id)
+      .in("bank_code", bankCodes);
+    if (packageError) throw packageError;
+    for (const packageRow of packages ?? []) {
+      const row = packageRow as JsonRecord;
+      const code = String(row.bank_code ?? "");
+      const course = normaliseCourse(
+        rows.find((inventoryRow: JsonRecord) => String(inventoryRow.bank_code ?? "") === code)?.course_key,
+      );
+      packageNames.set(code, packageDisplayName(row, course, code));
+    }
+  }
+  const identifiedRows = rows.map((row: JsonRecord) => {
+    const bankCode = String(row.bank_code ?? "");
+    return {
+      ...row,
+      bank_display_name: packageNames.get(bankCode) || bankCode,
+      bank_identity: bankCode,
+    };
+  });
   return reply(req, {
     ok: true,
     private: true,
     course: requestedCourse || null,
     routing_order: ["course", "bank", "unit", "lesson"],
     dedicated_course_required: true,
-    rows,
+    stable_bank_identity: true,
+    rows: identifiedRows,
   });
+}
+function cleanDisplayLabel(value: unknown): string {
+  const label = String(value ?? "").replace(/\\s+/g, " ").trim();
+  return label.length <= 160 ? label : "";
+}
+function packageDisplayName(row: JsonRecord, course: string, bankCode: string): string {
+  const manifest = asRecord(row.manifest);
+  const aliases = { ...asRecord(manifest.display_aliases), ...asRecord(row.display_aliases) };
+  const candidates = [
+    aliases[course],
+    aliases.student,
+    aliases.teacher,
+    aliases.admin,
+    manifest.display_name,
+    manifest.bank_name,
+    manifest.title,
+    manifest.name,
+    row.bank_slug,
+  ];
+  return candidates.map(cleanDisplayLabel).find(Boolean) || bankCode;
 }
 function packageTargets(row: JsonRecord): string[] {
   const manifest = asRecord(row.manifest);
@@ -246,7 +292,7 @@ Deno.serve(async (req) => {
   const path = url.pathname.split("/practice-bank-api")[1] || "/";
   try {
     if (path === "/health" && req.method === "GET") {
-      return reply(req, { ok: true, service: "echs-practice-bank-api", version: "1.1.0-routing-inventory" });
+      return reply(req, { ok: true, service: "echs-practice-bank-api", version: "1.2.0-stable-bank-identities" });
     }
     const current = await session(req);
     if (!canPractise(current)) return fail(req, "Student, teacher, or administrator sign-in is required", 403, "forbidden");
