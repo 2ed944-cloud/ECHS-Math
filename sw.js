@@ -1,4 +1,4 @@
-const VERSION = "echs-platform-school-control-v3-pathway2-landing1-builder1-hybrid2-mastery1-recovery1-calculus-only-practice-routing-redesign-specific-bank-delete-real-counts-stable-bank-identities-20260731";
+const VERSION = "echs-platform-ib-digital-routes-practice-redesign-20260801";
 const STATIC_CACHE = `${VERSION}-static`;
 const RUNTIME_CACHE = `${VERSION}-runtime`;
 const SHELL = [
