@@ -692,11 +692,69 @@ async function processPurgeStep(req: Request, current: SessionAccount, jobId: st
   }
 }
 
+
+async function deletePackageStep(req: Request, current: SessionAccount, bankCode: string) {
+  if (current.role !== "admin") return fail(req, "Administrator access is required", 403, "forbidden");
+  if (!safeBankCode(bankCode)) return fail(req, "Invalid bank code", 400, "invalid_bank_code");
+  const { data: packageRow, error: packageError } = await db.from("private_bank_packages")
+    .select("id,bank_code,bank_slug,display_aliases,storage_bucket,storage_path")
+    .eq("organization_id", current.organization_id).eq("bank_code", bankCode).maybeSingle();
+  if (packageError) throw packageError;
+  if (!packageRow) return reply(req, { ok: true, private: true, status: "completed", phase: "completed", bank_code: bankCode });
+
+  const { data: questionRows, error: questionError } = await db.from("private_bank_questions").select("question_id")
+    .eq("organization_id", current.organization_id).eq("package_id", packageRow.id)
+    .order("question_id").limit(DEDICATED_QUESTION_BATCH);
+  if (questionError) throw questionError;
+  const questionIds = (questionRows ?? []).map((row) => String(row.question_id ?? "")).filter(Boolean);
+  if (questionIds.length) {
+    const { error: deleteError } = await db.from("private_bank_questions").delete()
+      .eq("organization_id", current.organization_id).eq("package_id", packageRow.id).in("question_id", questionIds);
+    if (deleteError) throw deleteError;
+    const trustDeleted = await deleteOrphanTrustRecords(questionIds);
+    return reply(req, { ok: true, private: true, status: "running", phase: "questions", bank_code: bankCode,
+      deleted: { questions: questionIds.length, trust_records: trustDeleted } }, 202);
+  }
+
+  const { data: mediaRows, error: mediaError } = await db.from("private_bank_media_objects").select("object_path")
+    .eq("organization_id", current.organization_id).eq("package_id", packageRow.id)
+    .order("object_path").limit(MEDIA_BATCH);
+  if (mediaError) throw mediaError;
+  const mediaPaths = (mediaRows ?? []).map((row) => String(row.object_path ?? "")).filter(Boolean);
+  if (mediaPaths.length) {
+    const removed = await removeStorageObjects(String(packageRow.storage_bucket || PRIVATE_BUCKET), mediaPaths);
+    const { error: deleteError } = await db.from("private_bank_media_objects").delete()
+      .eq("organization_id", current.organization_id).eq("package_id", packageRow.id).in("object_path", mediaPaths);
+    if (deleteError) throw deleteError;
+    return reply(req, { ok: true, private: true, status: "running", phase: "media", bank_code: bankCode,
+      deleted: { media: removed } }, 202);
+  }
+
+  const archivePath = String(packageRow.storage_path ?? "");
+  if (archivePath) {
+    const removed = await removeStorageObjects(String(packageRow.storage_bucket || PRIVATE_BUCKET), [archivePath]);
+    const { error: updateError } = await db.from("private_bank_packages").update({ storage_path: null, updated_at: new Date().toISOString() })
+      .eq("organization_id", current.organization_id).eq("id", packageRow.id);
+    if (updateError) throw updateError;
+    return reply(req, { ok: true, private: true, status: "running", phase: "archive", bank_code: bankCode,
+      deleted: { archives: removed } }, 202);
+  }
+
+  const { data: runs, error: runError } = await db.from("private_bank_import_runs").delete()
+    .eq("organization_id", current.organization_id).eq("bank_code", bankCode).select("id");
+  if (runError) throw runError;
+  const { error: deletePackageError } = await db.from("private_bank_packages").delete()
+    .eq("organization_id", current.organization_id).eq("id", packageRow.id);
+  if (deletePackageError) throw deletePackageError;
+  return reply(req, { ok: true, private: true, status: "completed", phase: "completed", bank_code: bankCode,
+    deleted: { packages: 1, import_runs: (runs ?? []).length } });
+}
+
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { status: 204, headers: responseHeaders(req) });
   const url = new URL(req.url); const path = url.pathname.split("/private-bank-api")[1] || "/";
   try {
-    if (path === "/health" && req.method === "GET") return reply(req, { ok: true, service: "echs-private-bank-api", version: "1.4.0-resumable-course-purge" });
+    if (path === "/health" && req.method === "GET") return reply(req, { ok: true, service: "echs-private-bank-api", version: "1.5.0-specific-bank-delete" });
     const current = await session(req);
     if (!canPractise(current)) return fail(req, "Student, teacher, or administrator sign-in is required", 403, "forbidden");
     if (path === "/student-questions" && req.method === "GET") return await studentQuestions(req, current, url);
@@ -715,6 +773,7 @@ Deno.serve(async (req) => {
     const packageMatch = path.match(/^\/packages\/([A-Z0-9-]+)$/);
     if (packageMatch && req.method === "GET") return await packageDetail(req, current, packageMatch[1]);
     if (packageMatch && req.method === "PATCH") return await updatePackageState(req, current, packageMatch[1]);
+    if (packageMatch && req.method === "DELETE") return await deletePackageStep(req, current, packageMatch[1]);
     return fail(req, "Route not found", 404, "not_found");
   } catch (error) {
     console.error(error);
