@@ -1,1 +1,687 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' https://*.supabase.co; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self';"><meta name="referrer" content="same-origin"><meta name="theme-color" content="#102a43"><meta name="robots" content="noindex,nofollow"><title>Teaching Command Center | ECHS Mathematics</title><link rel="manifest" href="../manifest.json"><link rel="icon" href="../assets/icon-192.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;1,500&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet"><link rel="stylesheet" href="css/learning-system.css?v=20260726-phase2"><link rel="stylesheet" href="../css/institution.css?v=20260726-phase3"><link rel="stylesheet" href="../css/institution-premium.css?v=20260726-phase4"></head><body class="institutionBody" data-premium-page="teacher"><div class="hidden" aria-hidden="true"><div id="classList"></div><div id="classOverview"></div></div><div class="institutionShell"><aside class="institutionSidebar"><a class="institutionBrand" href="../index.html"><span class="institutionBrandMark">∑</span><div><strong>ECHS Mathematics</strong><span data-institution-org>Teacher Platform</span></div></a><div class="institutionUser"><strong data-institution-name>Teacher</strong><small>@<span data-institution-username></span></small><span class="roleBadge" data-institution-role>teacher</span></div><nav class="institutionNav"><div class="institutionNavSection">Teaching command</div><a class="active" href="teacher.html"><span class="institutionNavIcon">▦</span>Class Pulse</a><a href="#attentionSection"><span class="institutionNavIcon">!</span>Today’s Attention</a><a href="#studentsSection"><span class="institutionNavIcon">◉</span>Students</a><a href="#supportSection"><span class="institutionNavIcon">◎</span>Skill Analysis</a><a href="#assignmentsSection"><span class="institutionNavIcon">✓</span>Assignments</a><div class="institutionNavSection">Teaching tools</div><a href="practice.html"><span class="institutionNavIcon">✦</span>Practice Studio</a><a href="exam.html"><span class="institutionNavIcon">▤</span>Test Generator</a><a href="../index.html#courses"><span class="institutionNavIcon">∫</span>Lesson Portal</a><a href="parent.html"><span class="institutionNavIcon">⌂</span>Family Reports</a><a href="admin.html" id="adminNav" class="hidden"><span class="institutionNavIcon">◫</span>School Accounts</a></nav><div class="sidebarYear"><small>Teaching workspace</small><strong>2026–2027</strong><span>Class evidence, interventions and assignments in one place.</span></div><div class="institutionSidebarFooter"><button data-institution-logout type="button">Sign out</button></div></aside><section class="institutionWorkspace"><header class="institutionTopbar"><button class="iIconButton mobileMenu" data-institution-menu aria-label="Open navigation">☰</button><div class="topbarTitle"><div><span class="topbarBreadcrumb">Teacher experience</span><h1>Teaching Command Center</h1><p>See the class pulse, identify priorities and act without leaving the dashboard.</p></div></div><div class="institutionTopActions"><select id="classSelector" class="iButton secondary" aria-label="Select class"><option>Loading classes…</option></select><button class="iIconButton" type="button" data-experience-theme aria-label="Change appearance">☾</button><button class="iButton secondary" id="manageClass">Manage class</button><button class="iButton" id="newAssignment">Create assignment</button></div></header><main class="institutionMain"><section class="experienceHero"><div class="experienceHeroContent"><span class="experienceEyebrow">Live class intelligence</span><h2 id="classHeroTitle">Your class pulse.<span>Actionable evidence for every learner.</span></h2><p id="classHeroText">Monitor mastery, engagement, mistakes and assignments, then turn the evidence into the next teaching move.</p><div class="experienceActions"><button class="iButton gold" id="heroAssignment">Assign targeted practice</button><button class="iButton secondary" id="heroImport">Import student accounts</button></div></div><div class="experienceHeroPanel"><article class="missionPanel"><div class="missionTop"><small>Class readiness</small><b id="classReadinessLabel">0% on track</b></div><div class="missionBody"><div class="missionRing" id="classReadinessRing"><strong id="classReadinessValue">0%</strong><small>On track</small></div><div class="missionCopy"><h3 id="classReadinessTitle">Class evidence is loading</h3><p id="classReadinessText">Active students, mastery and support needs will appear here.</p><div class="missionSteps" id="classReadinessSteps"></div></div></div></article></div></section><section class="premiumMetrics"><article class="premiumMetric" style="--metric-color:var(--px-teal)"><div class="premiumMetricTop"><span class="premiumMetricLabel">Students</span><span class="premiumMetricIcon">◉</span></div><strong id="heroStudents" data-animate-number>0</strong><p>Students assigned to this class.</p><span class="miniTrend" id="rosterTrend">Roster ready</span></article><article class="premiumMetric" style="--metric-color:var(--px-gold)"><div class="premiumMetricTop"><span class="premiumMetricLabel">Active this week</span><span class="premiumMetricIcon">↗</span></div><strong id="heroActive" data-animate-number>0</strong><p>Learners with recent evidence.</p><span class="miniTrend warn" id="activeTrend">0% engagement</span></article><article class="premiumMetric" style="--metric-color:var(--px-navy-2)"><div class="premiumMetricTop"><span class="premiumMetricLabel">Average mastery</span><span class="premiumMetricIcon">◎</span></div><strong id="heroMastery" data-animate-number>0%</strong><p>Weighted skill mastery for the class.</p><span class="miniTrend" id="masteryTrend">Building evidence</span></article><article class="premiumMetric" style="--metric-color:var(--px-maroon)"><div class="premiumMetricTop"><span class="premiumMetricLabel">Need support</span><span class="premiumMetricIcon">!</span></div><strong id="heroSupport" data-animate-number>0</strong><p>Learners requiring a timely intervention.</p><span class="miniTrend danger" id="supportTrend">Review priorities</span></article></section><div class="premiumSectionHead" id="attentionSection"><div><small>Act first</small><h2>Today’s attention</h2><p>The highest-value interventions based on mastery, activity and open mistakes.</p></div><span class="cardBadge alert" id="attentionBadge">0 alerts</span></div><section class="premiumGrid"><article class="premiumCard span7"><div class="alertList" id="attentionList"></div></article><article class="premiumCard span5 tealAccent"><div class="premiumCardHeader"><div><small>Seven-day pulse</small><h3>Class engagement</h3><p>Recent learning activity across the class.</p></div><span class="cardBadge" id="engagementBadge">0 active</span></div><div class="weekBars" id="classPulseBars"></div></article></section><div class="premiumSectionHead"><div><small>Teaching snapshot</small><h2>Class performance</h2><p>Four operational indicators help you choose the next whole-class move.</p></div></div><section class="premiumMetrics"><article class="premiumMetric" style="--metric-color:var(--px-teal)"><div class="premiumMetricTop"><span class="premiumMetricLabel">Class accuracy</span><span class="premiumMetricIcon">✓</span></div><strong id="classAccuracy">0%</strong><p>Across all synchronized attempts.</p></article><article class="premiumMetric" style="--metric-color:var(--px-maroon)"><div class="premiumMetricTop"><span class="premiumMetricLabel">Assignments</span><span class="premiumMetricIcon">▤</span></div><strong id="assignmentCount">0</strong><p>Published and recent learning tasks.</p></article><article class="premiumMetric" style="--metric-color:var(--px-gold)"><div class="premiumMetricTop"><span class="premiumMetricLabel">Account roster</span><span class="premiumMetricIcon">◫</span></div><strong id="rosterCount">0</strong><p>Visible school-managed student accounts.</p></article><article class="premiumMetric" style="--metric-color:var(--px-navy-2)"><div class="premiumMetricTop"><span class="premiumMetricLabel">Evidence coverage</span><span class="premiumMetricIcon">◇</span></div><strong id="coverageMetric">0%</strong><p>Students with meaningful mastery evidence.</p></article></section><div class="premiumSectionHead" id="studentsSection"><div><small>Every learner</small><h2>Student performance and accounts</h2><p>Inspect learning evidence, open a report or reset an authorised student password.</p></div><div class="iFilters"><div class="iControl iSearch"><label for="studentSearch">Search students</label><input id="studentSearch" type="search" placeholder="Name, username, grade or ID"></div><button class="iButton secondary" id="importStudents">Import students</button></div></div><div class="iTableWrap"><table class="iTable"><thead><tr><th>Student</th><th>Username</th><th>Mastery</th><th>Accuracy</th><th>Attempts</th><th>Mistakes</th><th>Last activity</th><th></th></tr></thead><tbody id="studentRows"><tr><td colspan="8">Choose a class to load students.</td></tr></tbody></table></div><div class="premiumSectionHead" id="supportSection"><div><small>Whole-class planning</small><h2>Skill intelligence</h2><p>Find the topics that will produce the greatest teaching impact.</p></div></div><section class="premiumGrid"><article class="premiumCard span5"><div class="premiumCardHeader"><div><small>Highest-value interventions</small><h3>Support priorities</h3></div><span class="cardBadge alert">Action needed</span></div><div class="listStack" id="supportList"></div></article><article class="premiumCard span7"><div class="premiumCardHeader"><div><small>Cohort view</small><h3>Mastery distribution</h3></div><span class="cardBadge">Live data</span></div><div id="distributionChart"></div><div class="premiumCardHeader" style="margin-top:24px"><div><small>Skill-by-cohort</small><h3>Learning heatmap</h3></div></div><div class="heatmap" id="classHeatmap"></div></article></section><div class="premiumSectionHead" id="assignmentsSection"><div><small>Plan the next step</small><h2>Assignments</h2><p>Create adaptive practice, reviews, tests or lesson tasks with direct student links.</p></div><button class="iButton" id="sectionAssignment">New assignment</button></div><section class="premiumCard span12"><div class="listStack" id="assignmentList"><div class="emptyInstitution">No assignments yet.</div></div></section></main></section></div><dialog class="iDialog" id="classDialog"><form class="iDialogBody" id="classForm"><span class="iEyebrow">Class setup</span><h2 id="classDialogTitle">Create class</h2><p>Classes connect rosters, learning evidence and targeted assignments.</p><div class="iDialogGrid"><div class="iControl full"><label for="className">Class name</label><input id="className" required placeholder="AP Calculus BC · Period 1"></div><div class="iControl"><label for="classCourse">Course</label><select id="classCourse"><option value="ap-calculus">AP Calculus</option><option value="ap-precalculus">AP Precalculus</option><option value="algebra-2">Algebra 2 Concepts</option><option value="ib-math-ai">IB Mathematics AI</option><option value="grade-9">Grade 9 Pre-Precalculus</option></select></div><div class="iControl"><label for="academicYear">Academic year</label><input id="academicYear" value="2026–2027"></div><div class="iControl"><label for="classSection">Section</label><input id="classSection"></div></div><div class="iDialogFooter"><button type="button" class="iButton secondary" data-close-dialog>Cancel</button><button class="iButton" type="submit">Save class</button></div></form></dialog><dialog class="iDialog" id="membersDialog"><form class="iDialogBody" id="membersForm"><span class="iEyebrow">Class roster</span><h2>Manage class members</h2><p>Select the students and teachers who belong to this class.</p><div class="iControl"><label for="memberSearch">Find account</label><input id="memberSearch" type="search"></div><div id="memberList" style="max-height:420px;overflow:auto;margin-top:12px"></div><div class="iDialogFooter"><button type="button" class="iButton secondary" data-close-dialog>Cancel</button><button class="iButton" type="submit">Save roster</button></div></form></dialog><dialog class="iDialog" id="assignmentDialog"><form class="iDialogBody" id="assignmentForm"><span class="iEyebrow">Targeted learning</span><h2>Create assignment</h2><p>Choose the smallest task that produces the next meaningful piece of evidence.</p><div class="iDialogGrid"><div class="iControl full"><label for="assignmentTitle">Title</label><input id="assignmentTitle" required></div><div class="iControl"><label for="activityType">Activity</label><select id="activityType"><option value="adaptive">Adaptive practice</option><option value="review">Spaced review</option><option value="exam">Timed test</option><option value="practice">Manual practice</option><option value="lesson">Lesson</option></select></div><div class="iControl"><label for="assignmentUnit">Unit</label><input id="assignmentUnit"></div><div class="iControl"><label for="assignmentTopic">Topic</label><input id="assignmentTopic"></div><div class="iControl"><label for="assignmentCountInput">Questions</label><input id="assignmentCountInput" type="number" min="1" max="100" value="10"></div><div class="iControl"><label for="assignmentMinutes">Minutes</label><input id="assignmentMinutes" type="number" min="1" max="180" value="20"></div><div class="iControl"><label for="assignmentDue">Due date</label><input id="assignmentDue" type="datetime-local"></div><div class="iControl"><label for="assignmentDifficulty">Difficulty</label><select id="assignmentDifficulty"><option value="all">Adaptive / all</option><option value="1">Foundational</option><option value="2">Standard</option><option value="3">Advanced</option></select></div><div class="iControl full"><label for="assignmentDescription">Instructions</label><textarea id="assignmentDescription" rows="4"></textarea></div></div><div class="iDialogFooter"><button type="button" class="iButton secondary" data-close-dialog>Cancel</button><button class="iButton" type="submit">Publish assignment</button></div></form></dialog><dialog class="iDialog" id="resetDialog"><form class="iDialogBody" id="resetForm"><span class="iEyebrow">Teacher account support</span><h2>Reset student password</h2><input type="hidden" id="resetStudentId"><p id="resetStudentLabel"></p><div class="iControl"><label for="teacherNewPassword">New password</label><input id="teacherNewPassword" placeholder="Leave blank to generate"></div><div class="credentialPanel hidden" id="teacherCredential"></div><div class="iDialogFooter"><button type="button" class="iButton secondary" data-close-dialog>Cancel</button><button class="iButton" type="submit">Reset password</button></div></form></dialog><dialog class="iDialog" id="importDialog"><form class="iDialogBody" id="teacherImportForm"><span class="iEyebrow">Student provisioning</span><h2>Import student accounts</h2><p>CSV columns: display_name, email, username, password, grade, external_id, class_name.</p><label class="csvDrop" for="teacherCsv"><strong>Select a CSV file</strong><br><small>New passwords are returned once after import.</small><input id="teacherCsv" type="file" accept=".csv,text/csv" hidden></label><div id="teacherImportResult" style="margin-top:12px"></div><div class="iDialogFooter"><button type="button" class="iButton secondary" data-close-dialog>Cancel</button><button class="iButton" id="teacherRunImport" type="submit" disabled>Import students</button></div></form></dialog><script src="js/learning-system.js?v=20260726-phase2"></script><script src="../js/institution-client.js?v=20260726-phase3"></script><script src="../js/institution-experience.js?v=20260726-phase4"></script><script src="js/teacher-cloud.js?v=20260726-phase4"></script></body></html>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,viewport-fit=cover"
+    />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; connect-src 'self' https://*.supabase.co; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self';"
+    />
+    <meta name="referrer" content="same-origin" />
+    <meta name="theme-color" content="#102a43" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>Teaching Command Center | ECHS Mathematics</title>
+    <link rel="manifest" href="../manifest.json" />
+    <link rel="icon" href="../assets/icon-192.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;1,500&family=Inter:wght@400;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/learning-system.css?v=20260726-phase2" />
+    <link rel="stylesheet" href="../css/institution.css?v=20260726-phase3" />
+    <link
+      rel="stylesheet"
+      href="../css/institution-premium.css?v=20260726-phase4"
+    />
+    <link
+      rel="stylesheet"
+      href="css/teacher-assignment-studio.css?v=20260801-studio1"
+    />
+  </head>
+  <body class="institutionBody" data-premium-page="teacher">
+    <div class="hidden" aria-hidden="true">
+      <div id="classList"></div>
+      <div id="classOverview"></div>
+    </div>
+    <div class="institutionShell">
+      <aside class="institutionSidebar">
+        <a class="institutionBrand" href="../index.html"
+          ><span class="institutionBrandMark">∑</span>
+          <div>
+            <strong>ECHS Mathematics</strong
+            ><span data-institution-org>Teacher Platform</span>
+          </div></a
+        >
+        <div class="institutionUser">
+          <strong data-institution-name>Teacher</strong
+          ><small>@<span data-institution-username></span></small
+          ><span class="roleBadge" data-institution-role>teacher</span>
+        </div>
+        <nav class="institutionNav">
+          <div class="institutionNavSection">Teaching command</div>
+          <a class="active" href="teacher.html"
+            ><span class="institutionNavIcon">▦</span>Class Pulse</a
+          ><a href="#attentionSection"
+            ><span class="institutionNavIcon">!</span>Today’s Attention</a
+          ><a href="#studentsSection"
+            ><span class="institutionNavIcon">◉</span>Students</a
+          ><a href="#supportSection"
+            ><span class="institutionNavIcon">◎</span>Skill Analysis</a
+          ><a href="#assignmentsSection"
+            ><span class="institutionNavIcon">✓</span>Assignments</a
+          >
+          <div class="institutionNavSection">Teaching tools</div>
+          <a href="practice.html"
+            ><span class="institutionNavIcon">✦</span>Practice Studio</a
+          ><a href="exam.html"
+            ><span class="institutionNavIcon">▤</span>Test Generator</a
+          ><a href="../index.html#courses"
+            ><span class="institutionNavIcon">∫</span>Lesson Portal</a
+          ><a href="parent.html"
+            ><span class="institutionNavIcon">⌂</span>Family Reports</a
+          ><a href="admin.html" id="adminNav" class="hidden"
+            ><span class="institutionNavIcon">◫</span>School Accounts</a
+          >
+        </nav>
+        <div class="sidebarYear">
+          <small>Teaching workspace</small><strong>2026–2027</strong
+          ><span
+            >Class evidence, interventions and assignments in one place.</span
+          >
+        </div>
+        <div class="institutionSidebarFooter">
+          <button data-institution-logout type="button">Sign out</button>
+        </div>
+      </aside>
+      <section class="institutionWorkspace">
+        <header class="institutionTopbar">
+          <button
+            class="iIconButton mobileMenu"
+            data-institution-menu
+            aria-label="Open navigation"
+          >
+            ☰
+          </button>
+          <div class="topbarTitle">
+            <div>
+              <span class="topbarBreadcrumb">Teacher experience</span>
+              <h1>Teaching Command Center</h1>
+              <p>
+                See the class pulse, identify priorities and act without leaving
+                the dashboard.
+              </p>
+            </div>
+          </div>
+          <div class="institutionTopActions">
+            <select
+              id="classSelector"
+              class="iButton secondary"
+              aria-label="Select class"
+            >
+              <option>Loading classes…</option></select
+            ><button
+              class="iIconButton"
+              type="button"
+              data-experience-theme
+              aria-label="Change appearance"
+            >
+              ☾</button
+            ><button class="iButton secondary" id="manageClass">
+              Manage class</button
+            ><button class="iButton" id="newAssignment">
+              Create assignment
+            </button>
+          </div>
+        </header>
+        <main class="institutionMain">
+          <section class="experienceHero">
+            <div class="experienceHeroContent">
+              <span class="experienceEyebrow">Live class intelligence</span>
+              <h2 id="classHeroTitle">
+                Your class pulse.<span
+                  >Actionable evidence for every learner.</span
+                >
+              </h2>
+              <p id="classHeroText">
+                Monitor mastery, engagement, mistakes and assignments, then turn
+                the evidence into the next teaching move.
+              </p>
+              <div class="experienceActions">
+                <button class="iButton gold" id="heroAssignment">
+                  Assign targeted practice</button
+                ><button class="iButton secondary" id="heroImport">
+                  Import student accounts
+                </button>
+              </div>
+            </div>
+            <div class="experienceHeroPanel">
+              <article class="missionPanel">
+                <div class="missionTop">
+                  <small>Class readiness</small
+                  ><b id="classReadinessLabel">0% on track</b>
+                </div>
+                <div class="missionBody">
+                  <div class="missionRing" id="classReadinessRing">
+                    <strong id="classReadinessValue">0%</strong
+                    ><small>On track</small>
+                  </div>
+                  <div class="missionCopy">
+                    <h3 id="classReadinessTitle">Class evidence is loading</h3>
+                    <p id="classReadinessText">
+                      Active students, mastery and support needs will appear
+                      here.
+                    </p>
+                    <div class="missionSteps" id="classReadinessSteps"></div>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </section>
+          <section class="premiumMetrics">
+            <article
+              class="premiumMetric"
+              style="--metric-color: var(--px-teal)"
+            >
+              <div class="premiumMetricTop">
+                <span class="premiumMetricLabel">Students</span
+                ><span class="premiumMetricIcon">◉</span>
+              </div>
+              <strong id="heroStudents" data-animate-number>0</strong>
+              <p>Students assigned to this class.</p>
+              <span class="miniTrend" id="rosterTrend">Roster ready</span>
+            </article>
+            <article
+              class="premiumMetric"
+              style="--metric-color: var(--px-gold)"
+            >
+              <div class="premiumMetricTop">
+                <span class="premiumMetricLabel">Active this week</span
+                ><span class="premiumMetricIcon">↗</span>
+              </div>
+              <strong id="heroActive" data-animate-number>0</strong>
+              <p>Learners with recent evidence.</p>
+              <span class="miniTrend warn" id="activeTrend">0% engagement</span>
+            </article>
+            <article
+              class="premiumMetric"
+              style="--metric-color: var(--px-navy-2)"
+            >
+              <div class="premiumMetricTop">
+                <span class="premiumMetricLabel">Average mastery</span
+                ><span class="premiumMetricIcon">◎</span>
+              </div>
+              <strong id="heroMastery" data-animate-number>0%</strong>
+              <p>Weighted skill mastery for the class.</p>
+              <span class="miniTrend" id="masteryTrend">Building evidence</span>
+            </article>
+            <article
+              class="premiumMetric"
+              style="--metric-color: var(--px-maroon)"
+            >
+              <div class="premiumMetricTop">
+                <span class="premiumMetricLabel">Need support</span
+                ><span class="premiumMetricIcon">!</span>
+              </div>
+              <strong id="heroSupport" data-animate-number>0</strong>
+              <p>Learners requiring a timely intervention.</p>
+              <span class="miniTrend danger" id="supportTrend"
+                >Review priorities</span
+              >
+            </article>
+          </section>
+          <div class="premiumSectionHead" id="attentionSection">
+            <div>
+              <small>Act first</small>
+              <h2>Today’s attention</h2>
+              <p>
+                The highest-value interventions based on mastery, activity and
+                open mistakes.
+              </p>
+            </div>
+            <span class="cardBadge alert" id="attentionBadge">0 alerts</span>
+          </div>
+          <section class="premiumGrid">
+            <article class="premiumCard span7">
+              <div class="alertList" id="attentionList"></div>
+            </article>
+            <article class="premiumCard span5 tealAccent">
+              <div class="premiumCardHeader">
+                <div>
+                  <small>Seven-day pulse</small>
+                  <h3>Class engagement</h3>
+                  <p>Recent learning activity across the class.</p>
+                </div>
+                <span class="cardBadge" id="engagementBadge">0 active</span>
+              </div>
+              <div class="weekBars" id="classPulseBars"></div>
+            </article>
+          </section>
+          <div class="premiumSectionHead">
+            <div>
+              <small>Teaching snapshot</small>
+              <h2>Class performance</h2>
+              <p>
+                Four operational indicators help you choose the next whole-class
+                move.
+              </p>
+            </div>
+          </div>
+          <section class="premiumMetrics">
+            <article
+              class="premiumMetric"
+              style="--metric-color: var(--px-teal)"
+            >
+              <div class="premiumMetricTop">
+                <span class="premiumMetricLabel">Class accuracy</span
+                ><span class="premiumMetricIcon">✓</span>
+              </div>
+              <strong id="classAccuracy">0%</strong>
+              <p>Across all synchronized attempts.</p>
+            </article>
+            <article
+              class="premiumMetric"
+              style="--metric-color: var(--px-maroon)"
+            >
+              <div class="premiumMetricTop">
+                <span class="premiumMetricLabel">Assignments</span
+                ><span class="premiumMetricIcon">▤</span>
+              </div>
+              <strong id="assignmentCount">0</strong>
+              <p>Published and recent learning tasks.</p>
+            </article>
+            <article
+              class="premiumMetric"
+              style="--metric-color: var(--px-gold)"
+            >
+              <div class="premiumMetricTop">
+                <span class="premiumMetricLabel">Account roster</span
+                ><span class="premiumMetricIcon">◫</span>
+              </div>
+              <strong id="rosterCount">0</strong>
+              <p>Visible school-managed student accounts.</p>
+            </article>
+            <article
+              class="premiumMetric"
+              style="--metric-color: var(--px-navy-2)"
+            >
+              <div class="premiumMetricTop">
+                <span class="premiumMetricLabel">Evidence coverage</span
+                ><span class="premiumMetricIcon">◇</span>
+              </div>
+              <strong id="coverageMetric">0%</strong>
+              <p>Students with meaningful mastery evidence.</p>
+            </article>
+          </section>
+          <div class="premiumSectionHead" id="studentsSection">
+            <div>
+              <small>Every learner</small>
+              <h2>Student performance and accounts</h2>
+              <p>
+                Inspect learning evidence, open a report or reset an authorised
+                student password.
+              </p>
+            </div>
+            <div class="iFilters">
+              <div class="iControl iSearch">
+                <label for="studentSearch">Search students</label
+                ><input
+                  id="studentSearch"
+                  type="search"
+                  placeholder="Name, username, grade or ID"
+                />
+              </div>
+              <button class="iButton secondary" id="importStudents">
+                Import students
+              </button>
+            </div>
+          </div>
+          <div class="iTableWrap">
+            <table class="iTable">
+              <thead>
+                <tr>
+                  <th>Student</th>
+                  <th>Username</th>
+                  <th>Mastery</th>
+                  <th>Accuracy</th>
+                  <th>Attempts</th>
+                  <th>Mistakes</th>
+                  <th>Last activity</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="studentRows">
+                <tr>
+                  <td colspan="8">Choose a class to load students.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="premiumSectionHead" id="supportSection">
+            <div>
+              <small>Whole-class planning</small>
+              <h2>Skill intelligence</h2>
+              <p>
+                Find the topics that will produce the greatest teaching impact.
+              </p>
+            </div>
+          </div>
+          <section class="premiumGrid">
+            <article class="premiumCard span5">
+              <div class="premiumCardHeader">
+                <div>
+                  <small>Highest-value interventions</small>
+                  <h3>Support priorities</h3>
+                </div>
+                <span class="cardBadge alert">Action needed</span>
+              </div>
+              <div class="listStack" id="supportList"></div>
+            </article>
+            <article class="premiumCard span7">
+              <div class="premiumCardHeader">
+                <div>
+                  <small>Cohort view</small>
+                  <h3>Mastery distribution</h3>
+                </div>
+                <span class="cardBadge">Live data</span>
+              </div>
+              <div id="distributionChart"></div>
+              <div class="premiumCardHeader" style="margin-top: 24px">
+                <div>
+                  <small>Skill-by-cohort</small>
+                  <h3>Learning heatmap</h3>
+                </div>
+              </div>
+              <div class="heatmap" id="classHeatmap"></div>
+            </article>
+          </section>
+          <div class="premiumSectionHead" id="assignmentsSection">
+            <div>
+              <small>Plan the next step</small>
+              <h2>Assignments</h2>
+              <p>
+                Create adaptive practice, reviews, tests or lesson tasks with
+                direct student links.
+              </p>
+            </div>
+            <button class="iButton" id="sectionAssignment">
+              New assignment
+            </button>
+          </div>
+          <section class="premiumCard span12">
+            <div class="listStack" id="assignmentList">
+              <div class="emptyInstitution">No assignments yet.</div>
+            </div>
+          </section>
+        </main>
+      </section>
+    </div>
+    <dialog class="iDialog" id="classDialog">
+      <form class="iDialogBody" id="classForm">
+        <span class="iEyebrow">Class setup</span>
+        <h2 id="classDialogTitle">Create class</h2>
+        <p>
+          Classes connect rosters, learning evidence and targeted assignments.
+        </p>
+        <div class="iDialogGrid">
+          <div class="iControl full">
+            <label for="className">Class name</label
+            ><input
+              id="className"
+              required
+              placeholder="AP Calculus BC · Period 1"
+            />
+          </div>
+          <div class="iControl">
+            <label for="classCourse">Course</label
+            ><select id="classCourse">
+              <option value="ap-calculus">AP Calculus</option>
+              <option value="ap-precalculus">AP Precalculus</option>
+              <option value="algebra-2">Algebra 2 Concepts</option>
+              <option value="ib-math-ai">IB Mathematics AI</option>
+              <option value="grade-9">Grade 9 Pre-Precalculus</option>
+            </select>
+          </div>
+          <div class="iControl">
+            <label for="academicYear">Academic year</label
+            ><input id="academicYear" value="2026–2027" />
+          </div>
+          <div class="iControl">
+            <label for="classSection">Section</label><input id="classSection" />
+          </div>
+        </div>
+        <div class="iDialogFooter">
+          <button type="button" class="iButton secondary" data-close-dialog>
+            Cancel</button
+          ><button class="iButton" type="submit">Save class</button>
+        </div>
+      </form>
+    </dialog>
+    <dialog class="iDialog" id="membersDialog">
+      <form class="iDialogBody" id="membersForm">
+        <span class="iEyebrow">Class roster</span>
+        <h2>Manage class members</h2>
+        <p>Select the students and teachers who belong to this class.</p>
+        <div class="iControl">
+          <label for="memberSearch">Find account</label
+          ><input id="memberSearch" type="search" />
+        </div>
+        <div
+          id="memberList"
+          style="max-height: 420px; overflow: auto; margin-top: 12px"
+        ></div>
+        <div class="iDialogFooter">
+          <button type="button" class="iButton secondary" data-close-dialog>
+            Cancel</button
+          ><button class="iButton" type="submit">Save roster</button>
+        </div>
+      </form>
+    </dialog>
+    <dialog class="iDialog assignmentStudioDialog" id="assignmentDialog">
+      <form class="iDialogBody assignmentStudio" id="assignmentForm">
+        <header class="assignmentStudioHead">
+          <div>
+            <span class="iEyebrow">Targeted learning studio</span>
+            <h2>Build a beautiful, precise practice assignment</h2>
+            <p>
+              Choose a course route, use an entire mapped pool, or hand-pick the
+              exact questions students will receive.
+            </p>
+          </div>
+          <div class="assignmentStudioProgress">
+            <span class="active">1 · Route</span><span>2 · Questions</span
+            ><span>3 · Publish</span>
+          </div>
+        </header>
+        <div class="assignmentStudioLayout">
+          <section class="assignmentSetup">
+            <div class="iDialogGrid">
+              <div class="iControl full">
+                <label for="assignmentTitle">Title</label
+                ><input id="assignmentTitle" required />
+              </div>
+              <div class="iControl">
+                <label for="activityType">Activity</label
+                ><select id="activityType">
+                  <option value="adaptive">Adaptive practice</option>
+                  <option value="review">Spaced review</option>
+                  <option value="exam">Timed test</option>
+                  <option value="practice">Manual practice</option>
+                  <option value="lesson">Lesson</option>
+                </select>
+              </div>
+              <div class="iControl full">
+                <label>Question selection</label>
+                <div class="selectionMode" role="radiogroup">
+                  <label
+                    ><input
+                      type="radio"
+                      name="assignmentSelectionMode"
+                      value="curated"
+                      checked
+                    /><span>Hand-pick questions</span></label
+                  >
+                  <label
+                    ><input
+                      type="radio"
+                      name="assignmentSelectionMode"
+                      value="pool"
+                    /><span>Generate from mapped pool</span></label
+                  >
+                </div>
+              </div>
+              <div class="iControl full">
+                <label for="assignmentBank">Verified question bank</label
+                ><select id="assignmentBank">
+                  <option value="">Choose a bank…</option>
+                </select>
+              </div>
+              <div class="iControl">
+                <label for="assignmentScope">Practice scope</label
+                ><select id="assignmentScope">
+                  <option value="lesson">Specific lesson</option>
+                  <option value="unit">Whole unit</option>
+                  <option value="course">Full course</option>
+                </select>
+              </div>
+              <div class="iControl">
+                <label for="assignmentTarget">Unit / lesson</label
+                ><select id="assignmentTarget">
+                  <option value="">Choose a target…</option>
+                </select>
+              </div>
+              <input id="assignmentUnit" type="hidden" />
+              <input id="assignmentTopic" type="hidden" />
+              <div class="iControl full">
+                <div class="assignmentAvailability" id="assignmentAvailability">
+                  <strong>Choose a bank and target</strong
+                  ><span>The available question count will appear here.</span>
+                </div>
+              </div>
+              <div class="iControl">
+                <label for="assignmentCountInput">Questions</label
+                ><input
+                  id="assignmentCountInput"
+                  type="number"
+                  min="1"
+                  max="100"
+                  value="10"
+                />
+              </div>
+              <div class="iControl">
+                <label for="assignmentMinutes">Minutes</label
+                ><input
+                  id="assignmentMinutes"
+                  type="number"
+                  min="1"
+                  max="180"
+                  value="20"
+                />
+              </div>
+              <div class="iControl">
+                <label for="assignmentDue">Due date</label
+                ><input id="assignmentDue" type="datetime-local" />
+              </div>
+              <div class="iControl">
+                <label for="assignmentDifficulty">Difficulty</label
+                ><select id="assignmentDifficulty">
+                  <option value="all">Adaptive / all</option>
+                  <option value="1">Foundational</option>
+                  <option value="2">Standard</option>
+                  <option value="3">Advanced</option>
+                </select>
+              </div>
+              <div class="iControl full">
+                <label for="assignmentDescription">Instructions</label
+                ><textarea id="assignmentDescription" rows="4"></textarea>
+              </div>
+            </div>
+          </section>
+          <section class="questionPicker">
+            <div class="questionPickerHead">
+              <div>
+                <span class="iEyebrow">Question preview</span>
+                <h3>Select exact questions</h3>
+              </div>
+              <div>
+                <button
+                  class="iButton secondary small"
+                  type="button"
+                  id="selectAllQuestions"
+                >
+                  Select all</button
+                ><button
+                  class="iButton secondary small"
+                  type="button"
+                  id="clearQuestionSelection"
+                >
+                  Clear
+                </button>
+              </div>
+            </div>
+            <div class="questionPickerMeta" id="questionPickerMeta">
+              No questions loaded
+            </div>
+            <div class="questionPickerList" id="assignmentQuestionList">
+              <div class="assignmentPickerEmpty">
+                <span>∫</span
+                ><strong>Your mapped questions will appear here</strong>
+                <p>Select a verified bank and an exact unit or lesson.</p>
+              </div>
+            </div>
+          </section>
+        </div>
+        <div class="iDialogFooter">
+          <div class="assignmentPublishSummary" id="assignmentPublishSummary">
+            No questions selected yet.
+          </div>
+          <button type="button" class="iButton secondary" data-close-dialog>
+            Cancel</button
+          ><button class="iButton" type="submit">Publish assignment</button>
+        </div>
+      </form>
+    </dialog>
+    <dialog class="iDialog" id="resetDialog">
+      <form class="iDialogBody" id="resetForm">
+        <span class="iEyebrow">Teacher account support</span>
+        <h2>Reset student password</h2>
+        <input type="hidden" id="resetStudentId" />
+        <p id="resetStudentLabel"></p>
+        <div class="iControl">
+          <label for="teacherNewPassword">New password</label
+          ><input
+            id="teacherNewPassword"
+            placeholder="Leave blank to generate"
+          />
+        </div>
+        <div class="credentialPanel hidden" id="teacherCredential"></div>
+        <div class="iDialogFooter">
+          <button type="button" class="iButton secondary" data-close-dialog>
+            Cancel</button
+          ><button class="iButton" type="submit">Reset password</button>
+        </div>
+      </form>
+    </dialog>
+    <dialog class="iDialog" id="importDialog">
+      <form class="iDialogBody" id="teacherImportForm">
+        <span class="iEyebrow">Student provisioning</span>
+        <h2>Import student accounts</h2>
+        <p>
+          CSV columns: display_name, email, username, password, grade,
+          external_id, class_name.
+        </p>
+        <label class="csvDrop" for="teacherCsv"
+          ><strong>Select a CSV file</strong><br /><small
+            >New passwords are returned once after import.</small
+          ><input id="teacherCsv" type="file" accept=".csv,text/csv" hidden
+        /></label>
+        <div id="teacherImportResult" style="margin-top: 12px"></div>
+        <div class="iDialogFooter">
+          <button type="button" class="iButton secondary" data-close-dialog>
+            Cancel</button
+          ><button class="iButton" id="teacherRunImport" type="submit" disabled>
+            Import students
+          </button>
+        </div>
+      </form>
+    </dialog>
+    <script src="js/learning-system.js?v=20260726-phase2"></script>
+    <script src="../js/institution-client.js?v=20260726-phase3"></script>
+    <script src="../js/institution-experience.js?v=20260726-phase4"></script>
+    <script src="js/teacher-cloud.js?v=20260801-assignment-studio1"></script>
+  </body>
+</html>
