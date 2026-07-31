@@ -13,6 +13,7 @@
   const cleanupButton=document.getElementById("keepCalculusOnly");
   const cleanupResult=document.getElementById("cleanupResult");
   const dangerZone=document.getElementById("cleanupDangerZone");
+  let administrator=false;
   const number=value=>new Intl.NumberFormat("en-GB").format(Number(value||0));
   const escapeHTML=value=>String(value??"").replace(/[&<>'"]/g,char=>({
     "&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"
@@ -35,7 +36,7 @@
     const result=await window.ECHSInstitution.api("private-bank-api","/packages");
     const all=Array.isArray(result?.packages)?result.packages:[];
     const calculus=all.filter(row=>targets(row).includes(CALCULUS));
-    const live=calculus.filter(complete);
+    const live=all.filter(complete);
     const pendingRemoval=all.filter(row=>targets(row).some(course=>course!==CALCULUS));
     const totals=live.reduce((acc,row)=>{
       acc.questions+=declaredQuestions(row);
@@ -54,7 +55,7 @@
     document.getElementById("calcVerified").textContent=number(totals.questions);
 
     const grid=document.getElementById("bankGrid");
-    grid.innerHTML=calculus.length?calculus
+    grid.innerHTML=all.length?all
       .sort((a,b)=>visibleName(a).localeCompare(visibleName(b),"en"))
       .map((bank,index)=>{
         const state=bank.deployment_state||"pending-private-upload";
@@ -67,13 +68,14 @@
         return `<article class="bankCard">
           <div class="bankCardTop"><div><small>${escapeHTML(bank.bank_code||"")}</small>
             <h2>${escapeHTML(visibleName(bank)||`AP Calculus Bank ${index+1}`)}</h2>
-            <div class="bankAliases"><span>AP Calculus only</span><span>Course-isolated</span></div>
+            <div class="bankAliases">${targets(bank).map(course=>`<span>${escapeHTML(courseLabels[course]||course)}</span>`).join("")||"<span>Unassigned</span>"}</div>
           </div><span class="bankState">${escapeHTML(String(state).replaceAll("-"," "))}</span></div>
           <div class="bankMetrics"><div><strong>${number(questions)}</strong><small>live questions</small></div>
             <div><strong>${number(pools)}</strong><small>source pools</small></div>
             <div><strong>${number(media)}</strong><small>media</small></div>
             <div><strong>${number(isComplete?openResponse:0)}</strong><small>open response</small></div></div>
-          <div class="bankFooter"><span>SHA-256 ${escapeHTML(String(bank.package_sha256||"").slice(0,12))}${bank.package_sha256?"…":""}</span><span class="bankTrust">Calculus preserved</span></div>
+          <div class="bankFooter"><span>SHA-256 ${escapeHTML(String(bank.package_sha256||"").slice(0,12))}${bank.package_sha256?"…":""}</span><span class="bankTrust">${escapeHTML(targets(bank).map(course=>courseLabels[course]||course).join(", ")||"Private bank")}</span></div>
+          ${administrator?`<div class="bankActions"><button class="dangerButton deleteBankButton" type="button" data-delete-bank="${escapeHTML(bank.bank_code||"")}" data-delete-name="${escapeHTML(visibleName(bank))}">Delete this bank and package</button></div>`:""}
         </article>`;
       }).join("")
       :'<article class="bankCard"><h2>No private AP Calculus package is registered</h2><p>The retained static AP Calculus banks remain available in Focused Practice.</p></article>';
@@ -124,6 +126,30 @@
     }
     renderPurge(course,courseIndex,job);
   }
+
+  async function deleteSpecificBank(bankCode,bankName,button){
+    const confirmation=prompt(`Delete ${bankName} and its questions, media, stored ZIP, and import record. Student learning history is retained.\n\nType ${bankCode} to confirm.`);
+    if(confirmation!==bankCode)return;
+    button.disabled=true;button.textContent="Deleting bank…";
+    status.textContent=`Deleting ${bankName}. This operation is safely resumable.`;
+    let steps=0,deleted={questions:0,media:0,archives:0,packages:0,trust_records:0,import_runs:0};
+    try{
+      while(true){
+        if(++steps>10000)throw new Error("Bank deletion safety limit reached. Select the same bank again to resume.");
+        const result=await window.ECHSInstitution.api("private-bank-api",`/packages/${encodeURIComponent(bankCode)}`,{method:"DELETE"});
+        for(const[key,value]of Object.entries(result?.deleted||{}))deleted[key]=Number(deleted[key]||0)+Number(value||0);
+        status.textContent=`Deleting ${bankName}: ${number(deleted.questions)} questions, ${number(deleted.media)} media files, ${number(deleted.archives)} package archives removed.`;
+        if(result?.status==="completed")break;
+        await sleep(80);
+      }
+      status.textContent=`${bankName} was deleted completely: ${number(deleted.questions)} questions, ${number(deleted.media)} media files, the stored package, and related import records were removed. Student learning history was preserved.`;
+      await load();
+    }catch(error){
+      console.error(error);button.disabled=false;button.textContent="Resume deleting this bank";
+      status.textContent=`Deletion paused safely for ${bankName}: ${error instanceof Error?error.message:"Could not continue."}`;
+    }
+  }
+
   async function keepCalculusOnly(){
     const confirmation=prompt("Type KEEP AP CALCULUS ONLY to remove every non-calculus question bank.");
     if(confirmation!=="KEEP AP CALCULUS ONLY")return;
@@ -145,8 +171,14 @@
   try{
     const current=await window.ECHSInstitution.requireAuth(["teacher","admin"]);
     if(!current)return;
-    if(current.role==="admin")dangerZone.classList.remove("hidden");
+    administrator=current.role==="admin";
+    if(administrator)dangerZone.classList.remove("hidden");
     await load();
+    document.getElementById("bankGrid")?.addEventListener("click",event=>{
+      const button=event.target.closest("[data-delete-bank]");
+      if(!button||!administrator)return;
+      deleteSpecificBank(button.dataset.deleteBank,button.dataset.deleteName||button.dataset.deleteBank,button);
+    });
     cleanupButton?.addEventListener("click",keepCalculusOnly);
   }catch(error){
     console.error(error);
