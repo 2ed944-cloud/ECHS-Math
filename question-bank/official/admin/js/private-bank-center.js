@@ -49,10 +49,11 @@
     document.getElementById("questionTotal").textContent=number(totals.questions);
     document.getElementById("poolTotal").textContent=number(totals.pools);
     document.getElementById("mediaTotal").textContent=number(totals.media);
-    document.getElementById("calcBanks").textContent=number(live.length);
-    document.getElementById("calcReadiness").textContent=number(live.reduce((sum,row)=>
+    const liveCalculus=calculus.filter(complete);
+    document.getElementById("calcBanks").textContent=number(liveCalculus.length);
+    document.getElementById("calcReadiness").textContent=number(liveCalculus.reduce((sum,row)=>
       sum+Number(row?.manifest?.mapping_counts?.["ap-calculus:U0"]||0),0));
-    document.getElementById("calcVerified").textContent=number(totals.questions);
+    document.getElementById("calcVerified").textContent=number(liveCalculus.reduce((sum,row)=>sum+declaredQuestions(row),0));
 
     const grid=document.getElementById("bankGrid");
     grid.innerHTML=all.length?all
@@ -78,11 +79,11 @@
           ${administrator?`<div class="bankActions"><button class="dangerButton deleteBankButton" type="button" data-delete-bank="${escapeHTML(bank.bank_code||"")}" data-delete-name="${escapeHTML(visibleName(bank))}">Delete this bank and package</button></div>`:""}
         </article>`;
       }).join("")
-      :'<article class="bankCard"><h2>No private AP Calculus package is registered</h2><p>The retained static AP Calculus banks remain available in Focused Practice.</p></article>';
+      :'<article class="bankCard"><h2>No private bank package is registered</h2><p>Upload a validated single-course package from the Upload Manager.</p></article>';
 
     status.textContent=pendingRemoval.length
       ?`${number(live.length)} AP Calculus banks are protected. ${number(pendingRemoval.length)} non-calculus package records still require the administrator cleanup below.`
-      :`${number(live.length)} AP Calculus banks are protected. No non-calculus package mapping remains.`;
+      :`${number(live.length)} complete private banks are registered. No non-calculus package mapping remains.`;
     cleanupButton.disabled=pendingRemoval.length===0;
     cleanupButton.textContent=pendingRemoval.length?"Keep AP Calculus only":"Calculus-only cleanup complete";
     document.documentElement.dataset.nonCalculusPackages=String(pendingRemoval.length);
