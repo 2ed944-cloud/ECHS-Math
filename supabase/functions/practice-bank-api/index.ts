@@ -158,7 +158,7 @@ async function inventory(req: Request, current: SessionAccount, url: URL) {
   });
 }
 function cleanDisplayLabel(value: unknown): string {
-  const label = String(value ?? "").replace(/\\s+/g, " ").trim();
+  const label = String(value ?? "").replace(/\s+/g, " ").trim();
   return label.length <= 160 ? label : "";
 }
 function packageDisplayName(row: JsonRecord, course: string, bankCode: string): string {
