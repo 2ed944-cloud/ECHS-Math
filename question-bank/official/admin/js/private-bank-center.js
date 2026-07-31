@@ -20,7 +20,21 @@
   })[char]);
   const sleep=milliseconds=>new Promise(resolve=>setTimeout(resolve,milliseconds));
   const complete=row=>/^complete(?:-|$)/i.test(String(row?.deployment_state||""));
-  const declaredQuestions=row=>Number(row?.question_count??row?.questions??row?.manifest?.questions??0);
+  const largestMetric=values=>Math.max(0,...values.map(value=>Number(value||0)).filter(Number.isFinite));
+  const declaredQuestions=row=>largestMetric([row?.question_count,row?.questions,row?.manifest?.questions]);
+  const declaredPools=row=>largestMetric([row?.pool_count,row?.pools,row?.manifest?.pools]);
+  const declaredMedia=row=>largestMetric([row?.media_count,row?.media_files,row?.manifest?.media_files]);
+  const mappingTotal=(row,course)=>Object.entries(row?.manifest?.mapping_counts||{})
+    .filter(([key])=>key.startsWith(`${course}:`)).reduce((sum,[,value])=>sum+Number(value||0),0);
+  const courseSnapshot=(rows,course)=>{
+    const packages=rows.filter(row=>targets(row).includes(course));
+    return{
+      banks:packages.length,
+      questions:packages.reduce((sum,row)=>sum+declaredQuestions(row),0),
+      readiness:packages.reduce((sum,row)=>sum+Number(row?.manifest?.mapping_counts?.[`${course}:U0`]||0),0),
+      mappings:packages.reduce((sum,row)=>sum+mappingTotal(row,course),0)
+    };
+  };
   const targets=row=>{
     const declared=Array.isArray(row?.manifest?.target_courses)?row.manifest.target_courses.filter(Boolean):[];
     if(declared.length)return[...new Set(declared)];
@@ -38,22 +52,23 @@
     const calculus=all.filter(row=>targets(row).includes(CALCULUS));
     const live=all.filter(complete);
     const pendingRemoval=all.filter(row=>targets(row).some(course=>course!==CALCULUS));
-    const totals=live.reduce((acc,row)=>{
+    const totals=all.reduce((acc,row)=>{
       acc.questions+=declaredQuestions(row);
-      acc.pools+=Number(row.pool_count??row.manifest?.pools??0);
-      acc.media+=Number(row.media_count??row.manifest?.media_files??0);
+      acc.pools+=declaredPools(row);
+      acc.media+=declaredMedia(row);
       return acc;
     },{questions:0,pools:0,media:0});
 
-    document.getElementById("bankTotal").textContent=number(live.length);
+    document.getElementById("bankTotal").textContent=number(all.length);
     document.getElementById("questionTotal").textContent=number(totals.questions);
     document.getElementById("poolTotal").textContent=number(totals.pools);
     document.getElementById("mediaTotal").textContent=number(totals.media);
-    const liveCalculus=calculus.filter(complete);
-    document.getElementById("calcBanks").textContent=number(liveCalculus.length);
-    document.getElementById("calcReadiness").textContent=number(liveCalculus.reduce((sum,row)=>
-      sum+Number(row?.manifest?.mapping_counts?.["ap-calculus:U0"]||0),0));
-    document.getElementById("calcVerified").textContent=number(liveCalculus.reduce((sum,row)=>sum+declaredQuestions(row),0));
+    for(const[course,prefix]of [["ap-calculus","calc"],["ap-precalculus","precalc"],["ib-math-ai","ib"]]){
+      const snapshot=courseSnapshot(all,course);
+      document.getElementById(`${prefix}Banks`).textContent=number(snapshot.banks);
+      document.getElementById(`${prefix}Readiness`).textContent=number(snapshot.readiness);
+      document.getElementById(`${prefix}Verified`).textContent=number(snapshot.questions);
+    }
 
     const grid=document.getElementById("bankGrid");
     grid.innerHTML=all.length?all
@@ -61,9 +76,9 @@
       .map((bank,index)=>{
         const state=bank.deployment_state||"pending-private-upload";
         const isComplete=complete(bank);
-        const questions=isComplete?declaredQuestions(bank):0;
-        const pools=isComplete?Number(bank.pool_count??bank.manifest?.pools??0):0;
-        const media=isComplete?Number(bank.media_count??bank.manifest?.media_files??0):0;
+        const questions=declaredQuestions(bank);
+        const pools=declaredPools(bank);
+        const media=declaredMedia(bank);
         const typeCounts=bank.manifest?.question_types||{};
         const openResponse=Number(typeCounts.essay||0)+Number(typeCounts.fill_blank||0);
         return `<article class="bankCard">
@@ -74,7 +89,7 @@
           <div class="bankMetrics"><div><strong>${number(questions)}</strong><small>live questions</small></div>
             <div><strong>${number(pools)}</strong><small>source pools</small></div>
             <div><strong>${number(media)}</strong><small>media</small></div>
-            <div><strong>${number(isComplete?openResponse:0)}</strong><small>open response</small></div></div>
+            <div><strong>${number(openResponse)}</strong><small>open response</small></div></div>
           <div class="bankFooter"><span>SHA-256 ${escapeHTML(String(bank.package_sha256||"").slice(0,12))}${bank.package_sha256?"…":""}</span><span class="bankTrust">${escapeHTML(targets(bank).map(course=>courseLabels[course]||course).join(", ")||"Private bank")}</span></div>
           ${administrator?`<div class="bankActions"><button class="dangerButton deleteBankButton" type="button" data-delete-bank="${escapeHTML(bank.bank_code||"")}" data-delete-name="${escapeHTML(visibleName(bank))}">Delete this bank and package</button></div>`:""}
         </article>`;
@@ -82,8 +97,8 @@
       :'<article class="bankCard"><h2>No private bank package is registered</h2><p>Upload a validated single-course package from the Upload Manager.</p></article>';
 
     status.textContent=pendingRemoval.length
-      ?`${number(live.length)} AP Calculus banks are protected. ${number(pendingRemoval.length)} non-calculus package records still require the administrator cleanup below.`
-      :`${number(live.length)} complete private banks are registered. No non-calculus package mapping remains.`;
+      ?`${number(all.length)} private-bank packages are registered; ${number(live.length)} are complete and ${number(pendingRemoval.length)} include non-calculus courses.`
+      :`${number(all.length)} private-bank packages are registered; ${number(live.length)} are complete.`;
     cleanupButton.disabled=pendingRemoval.length===0;
     cleanupButton.textContent=pendingRemoval.length?"Keep AP Calculus only":"Calculus-only cleanup complete";
     document.documentElement.dataset.nonCalculusPackages=String(pendingRemoval.length);
