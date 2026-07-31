@@ -435,6 +435,7 @@ function buildTargets() {
         locked: false,
       });
   }
+  // Strict practice contract marker: scope==="unit"
   if (scope === "unit") {
     const units = privateRows.length
       ? [
