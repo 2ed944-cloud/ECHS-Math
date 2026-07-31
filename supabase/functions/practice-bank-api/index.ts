@@ -209,8 +209,7 @@ async function questions(req: Request, current: SessionAccount, url: URL) {
   let query = db.from("private_bank_questions")
     .select("question_id,bank_code,pool_id,chapter,section,question_type,course_keys,lesson_keys,skill_candidates,course_mappings,mapping_verified,trust_tier,student_visible,payload_sha256,payload,updated_at", { count: "exact" })
     .eq("organization_id", current.organization_id)
-    .contains("course_keys", [course])
-    .contains("course_mappings", [{ course }]);
+    .contains("course_keys", [course]);
 
   // Student practice uses dedicated course rows only. A shared question that is
   // mapped to another course remains visible to staff QA but cannot enter a
@@ -219,8 +218,11 @@ async function questions(req: Request, current: SessionAccount, url: URL) {
   if (!includeAll) {
     query = query.eq("student_visible", true).eq("mapping_verified", true).in("trust_tier", READY_TRUST);
   }
+  // A lesson key is the canonical exact-route index. Older imported banks can
+  // have a repaired lesson_keys array while retaining a legacy course_mappings
+  // JSON shape, so applying both predicates incorrectly returns zero rows.
   if (lessonKey) query = query.contains("lesson_keys", [lessonKey]);
-  if (unit) query = query.contains("course_mappings", [{ course, unit: Number(unit) }]);
+  if (unit && !lessonKey) query = query.contains("course_mappings", [{ course, unit: Number(unit) }]);
   if (bank) query = query.eq("bank_code", bank);
 
   const { data, count, error } = await query.order("question_id")
@@ -292,7 +294,7 @@ Deno.serve(async (req) => {
   const path = url.pathname.split("/practice-bank-api")[1] || "/";
   try {
     if (path === "/health" && req.method === "GET") {
-      return reply(req, { ok: true, service: "echs-practice-bank-api", version: "1.2.0-stable-bank-identities" });
+      return reply(req, { ok: true, service: "echs-practice-bank-api", version: "1.3.0-canonical-lesson-index" });
     }
     const current = await session(req);
     if (!canPractise(current)) return fail(req, "Student, teacher, or administrator sign-in is required", 403, "forbidden");
