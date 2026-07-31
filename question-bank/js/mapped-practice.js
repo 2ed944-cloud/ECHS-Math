@@ -145,7 +145,7 @@ const rows=inventoryRows(courseKey,bankCode).filter(row=>
 if(!rows.length)return null;
 return{
 id:`private:${courseKey}:${bankCode}:${unit||"all"}:${lesson||"all"}`,
-label:title||`${courseLabel(courseKey)} · ${ECHSBank.bankLabel(bankCode,courseKey)}`,
+label:title||bankOptionLabel(courseKey,bankCode),
 course_key:courseKey,bank_code:bankCode,unit,topic:lesson,lesson_key:lesson,
 lesson_title:title,private_bank_only:true,count:rows.reduce((sum,row)=>sum+Number(row.question_count||0),0),
 bank_counts:{[bankCode]:rows.reduce((sum,row)=>sum+Number(row.question_count||0),0)}
@@ -163,6 +163,11 @@ return[...keys].filter(key=>key&&(!student()||allowed.has(key)));
 function courseLabel(key){
 return ECHSBank.cleanStudentLabel(ECHSBank.courseLabel(catalog,key)||ECHSLearning.COURSE_LABELS?.[key]||key);
 }
+function bankOptionLabel(courseKey,bankCode){
+const row=inventoryRows(courseKey,bankCode)[0]||{};
+const name=ECHSBank.cleanStudentLabel(String(row.bank_display_name||"").trim());
+return name&&name!==bankCode?`${name} · ${bankCode}`:`${courseLabel(courseKey)} · ${bankCode}`;
+}
 function populateCourses(){
 const keys=courseKeys(),requested=normaliseCourse(params.get("course")||bankCourse(params.get("bank")||"")||""),chosen=keys.includes(requested)?requested:keys[0]||"";
 UI.course.innerHTML=keys.map(key=>`<option value="${ECHSBank.escape(key)}">${ECHSBank.escape(courseLabel(key))}</option>`).join("");
@@ -170,7 +175,7 @@ if(chosen)UI.course.value=chosen;
 }
 function populateBanks(preferred=""){
 const codes=bankCodesForCourse(UI.course.value),wanted=preferred||params.get("bank")||UI.bank.value;
-UI.bank.innerHTML=codes.length?codes.map((code,index)=>`<option value="${ECHSBank.escape(code)}">${ECHSBank.escape(`${courseLabel(UI.course.value)} · Bank ${index+1}`)}</option>`).join(""):'<option value="">No verified bank uploaded for this course</option>';
+UI.bank.innerHTML=codes.length?codes.map(code=>`<option value="${ECHSBank.escape(code)}">${ECHSBank.escape(bankOptionLabel(UI.course.value,code))}</option>`).join(""):'<option value="">No verified bank uploaded for this course</option>';
 UI.bank.value=codes.includes(wanted)?wanted:codes[0]||"";
 UI.bank.disabled=!codes.length;
 }
