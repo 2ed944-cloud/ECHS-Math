@@ -23,15 +23,15 @@
     <a class="iButton secondary" href="../../teacher.html">← Teaching Command Center</a>
     <section class="bankHero">
       <div><small>Administrator bank control</small><h1>Private Bank Center</h1><p>Inspect every private question bank, verify its exact course and package identity, or remove one selected bank together with its questions, media, stored ZIP, and import record.</p></div>
-      <div class="bankHeroStats"><div><strong id="bankTotal">—</strong><span>complete banks</span></div><div><strong id="questionTotal">—</strong><span>bank questions</span></div><div><strong id="poolTotal">—</strong><span>source pools</span></div><div><strong id="mediaTotal">—</strong><span>media files</span></div></div>
+      <div class="bankHeroStats"><div><strong id="bankTotal">—</strong><span>registered banks</span></div><div><strong id="questionTotal">—</strong><span>bank questions</span></div><div><strong id="poolTotal">—</strong><span>source pools</span></div><div><strong id="mediaTotal">—</strong><span>media files</span></div></div>
     </section>
     <section class="bankGrid" id="bankGrid" aria-label="Private bank packages"></section>
     <section class="bankSection">
-      <div class="bankHead"><small>Protected production scope</small><h2>AP Calculus is the only retained bank pathway</h2><p>Lessons for other courses remain in the portal, but their question banks stay absent until clean, single-course packages are uploaded with exact unit and lesson mappings.</p></div>
+      <div class="bankHead"><small>Live package inventory</small><h2>Real bank counts by course</h2><p>These counters include every registered package and its declared questions, including packages that are still uploading. The state badge on each card shows whether the import is complete.</p></div>
       <div class="alignmentGrid">
-        <article class="alignmentCard calc"><div class="alignmentTop"><div><small>Retained production course</small><h3>AP Calculus</h3></div><span class="alignmentState">protected</span></div><div class="alignmentMetrics"><div><strong id="calcBanks">0</strong><small>live banks</small></div><div><strong id="calcReadiness">0</strong><small>readiness mappings</small></div><div><strong id="calcVerified">0</strong><small>mapped questions</small></div></div><p>Calculus packages, questions, media, source archives and mappings are preserved throughout the cleanup.</p></article>
-        <article class="alignmentCard"><div class="alignmentTop"><div><small>Temporarily empty</small><h3>AP Precalculus</h3></div><span class="alignmentState">awaiting curated upload</span></div><p>No legacy Precalculus bank is released to practice. A future package appears automatically after exact course → unit → lesson validation succeeds.</p></article>
-        <article class="alignmentCard ib"><div class="alignmentTop"><div><small>Temporarily empty</small><h3>IB Mathematics AI</h3></div><span class="alignmentState">awaiting curated upload</span></div><p>No legacy IB bank is released to practice. Lessons stay available; practice returns only after a clean, dedicated IB package is imported.</p></article>
+        <article class="alignmentCard calc"><div class="alignmentTop"><div><small>Registered inventory</small><h3>AP Calculus</h3></div><span class="alignmentState">live data</span></div><div class="alignmentMetrics"><div><strong id="calcBanks">0</strong><small>registered banks</small></div><div><strong id="calcReadiness">0</strong><small>readiness mappings</small></div><div><strong id="calcVerified">0</strong><small>declared questions</small></div></div><p>Counts are read from the current package registry, not from a hard-coded course total.</p></article>
+        <article class="alignmentCard"><div class="alignmentTop"><div><small>Registered inventory</small><h3>AP Precalculus</h3></div><span class="alignmentState">live data</span></div><div class="alignmentMetrics"><div><strong id="precalcBanks">0</strong><small>registered banks</small></div><div><strong id="precalcReadiness">0</strong><small>readiness mappings</small></div><div><strong id="precalcVerified">0</strong><small>declared questions</small></div></div><p>Includes packages in uploading and completed states.</p></article>
+        <article class="alignmentCard ib"><div class="alignmentTop"><div><small>Registered inventory</small><h3>IB Mathematics AI</h3></div><span class="alignmentState">live data</span></div><div class="alignmentMetrics"><div><strong id="ibBanks">0</strong><small>registered banks</small></div><div><strong id="ibReadiness">0</strong><small>readiness mappings</small></div><div><strong id="ibVerified">0</strong><small>declared questions</small></div></div><p>Includes Bank 2, Bank 3, and every other package currently registered to IB Mathematics AI.</p></article>
       </div>
     </section>
     <section class="bankSection">
@@ -50,6 +50,6 @@
   </main>
   <script src="../../../js/institution-client.js?v=20260730-calculus-only"></script>
   <script src="../../../js/institution-experience.js?v=20260730-calculus-only"></script>
-  <script src="js/private-bank-center.js?v=20260731-specific-bank-delete"></script>
+  <script src="js/private-bank-center.js?v=20260731-real-bank-counts"></script>
 </body>
 </html>
