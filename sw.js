@@ -1,4 +1,4 @@
-const VERSION = "echs-platform-calculus-only-practice-routing-redesign-ib-lesson-query-premium-practice-20260801-v3";
+const VERSION = "echs-platform-school-control-v3-calculus-only-practice-routing-redesign-ib-lesson-query-premium-practice-20260801-v4";
 const STATIC_CACHE = `${VERSION}-static`;
 const RUNTIME_CACHE = `${VERSION}-runtime`;
 const SHELL = [
