@@ -117,7 +117,7 @@ as $$
     q.bank_code,
     mapping.value ->> 'course' as course_key,
     case
-      when coalesce(mapping.value ->> 'unit', '') ~ '^\\d{1,2}$'
+      when coalesce(mapping.value ->> 'unit', '') ~ '^[0-9]{1,2}$'
         then (mapping.value ->> 'unit')::integer
       else null
     end as unit_number,
@@ -128,7 +128,7 @@ as $$
       where q.student_visible = true
         and q.mapping_verified = true
         and q.trust_tier in ('publisher_key_direct', 'student_ready_verified')
-        and coalesce(mapping.value ->> 'unit', '') ~ '^\\d{1,2}$'
+        and coalesce(mapping.value ->> 'unit', '') ~ '^[0-9]{1,2}$'
         and (mapping.value ->> 'unit')::integer between 1 and 20
         and nullif(trim(mapping.value ->> 'lesson_key'), '') is not null
         and nullif(trim(mapping.value ->> 'lesson_title'), '') is not null
@@ -154,7 +154,7 @@ as $$
     q.bank_code,
     mapping.value ->> 'course',
     case
-      when coalesce(mapping.value ->> 'unit', '') ~ '^\\d{1,2}$'
+      when coalesce(mapping.value ->> 'unit', '') ~ '^[0-9]{1,2}$'
         then (mapping.value ->> 'unit')::integer
       else null
     end,
