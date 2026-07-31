@@ -561,6 +561,23 @@
   const selectionMode = () =>
     document.querySelector('[name="assignmentSelectionMode"]:checked')?.value ||
     "curated";
+  function canonicalCourse(value) {
+    const key = String(value || "")
+      .trim()
+      .toLowerCase()
+      .replace(/&/g, "and")
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-|-$/g, "");
+    if (["ap-calculus", "ap-calculus-ab", "ap-calculus-bc"].includes(key))
+      return "ap-calculus";
+    if (key.includes("precalculus")) return "ap-precalculus";
+    if (key.includes("ib") && key.includes("math")) return "ib-math-ai";
+    if (key.includes("algebra-2") || key.includes("algebra2"))
+      return "algebra-2";
+    if (key.includes("grade-9")) return "grade-9";
+    return key;
+  }
+  const assignmentCourse = () => canonicalCourse(selectedClass?.course_key);
   function selectedAssignmentTarget() {
     return assignmentInventory.find(
       (row) =>
@@ -645,12 +662,21 @@
       .join("");
   }
   async function loadAssignmentInventory() {
-    const course = selectedClass.course_key,
-      result = await ECHSInstitution.api(
+    const course = assignmentCourse();
+    let result = await ECHSInstitution.api(
         "practice-bank-api",
         `/inventory?course=${encodeURIComponent(course)}`,
       );
     assignmentInventory = result.rows || [];
+    // Older deployed inventory functions can return an empty course-filtered
+    // result while still exposing the same organization rows without a filter.
+    // Recover those rows, but retain strict client-side course isolation.
+    if (!assignmentInventory.length) {
+      result = await ECHSInstitution.api("practice-bank-api", "/inventory");
+      assignmentInventory = (result.rows || []).filter(
+        (row) => canonicalCourse(row.course_key) === course,
+      );
+    }
     const banks = [
       ...new Map(
         assignmentInventory.map((row) => [
@@ -676,7 +702,7 @@
       bank = $("assignmentBank").value;
     if (!bank) return renderAssignmentQuestions();
     const query = new URLSearchParams({
-      course: selectedClass.course_key,
+      course: assignmentCourse(),
       bank,
       limit: "2000",
     });
