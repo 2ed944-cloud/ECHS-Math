@@ -348,6 +348,14 @@ UI.section.innerHTML='<option value="all">All sections</option>'+[...sections].s
 if(statusText)UI.status.innerHTML=statusText;
 else UI.status.innerHTML=`<span class="pill teal">${loaded.length.toLocaleString()} questions available</span><span class="pill wine">${ECHSBank.escape(currentTarget()?.label||courseLabel(currentCourse()))}</span>${staff()&&UI.visibility?.value==="all"?'<span class="pill gold">Staff view · includes withheld rows</span>':""}`;
 }
+function renderScopeReadyState(){
+const target=currentTarget(),count=loaded.length;
+if(!target)return;
+UI.shell.innerHTML=count
+?`<div class="scopeReady"><div class="scopeReadyIcon">✓</div><div><span>Exact route ready</span><h2>${ECHSBank.escape(target.label)}</h2><p><strong>${count.toLocaleString()}</strong> mapped questions are available from ${ECHSBank.escape(selectedBankLabel())}.</p></div><button class="button wine" type="button" data-start-scope>Start practice</button></div>`
+:`<div class="scopeReady scopeEmpty"><div class="scopeReadyIcon">0</div><div><span>Mapping check required</span><h2>No questions in this exact lesson</h2><p>The selected bank has no rows indexed to ${ECHSBank.escape(target.label)}. Choose another bank or repair this bank's lesson index.</p></div></div>`;
+UI.shell.querySelector("[data-start-scope]")?.addEventListener("click",()=>start().catch(error=>UI.shell.innerHTML=`<div class="notice">${ECHSBank.escape(error.message)}</div>`));
+}
 async function loadCurrent(){
 const target=currentTarget();
 if(!target){loaded=[];updateInventory({statusText:'<span class="pill gold">Complete a lesson to unlock practice</span>'});pathwayBanner();return;}
@@ -361,6 +369,7 @@ try{
 loaded=await ECHSBank.loadBundle(source);
 strictScopeInPlace(loaded,target);
 updateInventory();
+renderScopeReadyState();
 }catch(error){
 UI.status.innerHTML='<span class="pill red">Practice unavailable</span>';
 UI.shell.innerHTML=`<div class="notice"><strong>Could not load this mapped practice set.</strong><br>${ECHSBank.escape(error.message)}</div>`;
@@ -565,7 +574,7 @@ if(!access?.authenticated)return;
 document.body.classList.add(student()?"roleStudent":"roleStaff");
 if(UI.roleBadge)UI.roleBadge.textContent=student()?"Student · completed pathway only":access.role==="admin"?"Administrator · all courses":"Teacher · all courses";
 document.getElementById("practiceHeroText").textContent=student()
-?"Choose a completed lesson or completed unit. Questions remain isolated to your assigned course."
+?"Choose an assigned lesson or mapped unit. Questions remain isolated to your assigned course and bank."
 :"Browse every course, unit, lesson and bank. Staff QA view can include withheld questions without releasing them to students.";
 catalog=await ECHSBank.loadCatalog();
 await loadPrivateInventory();
