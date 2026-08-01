@@ -76,7 +76,7 @@
 
         <g class="tangentTraveller" id="heroTangentTraveller" aria-hidden="true">
           <circle class="tangentTravellerGlow" cx="0" cy="0" r="12"/>
-          <line x1="-62" y1="0" x2="62" y2="0"/>
+          <line x1="-86" y1="0" x2="86" y2="0"/>
           <circle class="tangentTravellerPoint" cx="0" cy="0" r="5"/>
         </g>
       </svg>
@@ -144,8 +144,15 @@
     const delta=Math.max(1,totalLength*.004);
     const before=curve.getPointAtLength(clamp(totalLength*location-delta,0,totalLength));
     const after=curve.getPointAtLength(clamp(totalLength*location+delta,0,totalLength));
-    const angle=Math.atan2(after.y-before.y,after.x-before.x)*180/Math.PI;
+    const deltaX=after.x-before.x;
+    const deltaY=after.y-before.y;
+    const angle=Math.atan2(deltaY,deltaX)*180/Math.PI;
+    const slope=Math.abs(deltaX)<.001?null:-deltaY/deltaX;
     traveller.setAttribute("transform",`translate(${point.x.toFixed(2)} ${point.y.toFixed(2)}) rotate(${angle.toFixed(2)})`);
+    if(activePhase==="moving"){
+      const slopeText=slope===null?"undefined":Math.abs(slope)<.005?"0":slope.toFixed(2);
+      formula.textContent=`Moving tangent · m = ${slopeText}`;
+    }
   };
 
   let activePhase="";
@@ -195,8 +202,8 @@
     }else{
       fraction=.03;
     }
-    renderTangent(fraction);
     setVisualPhase(phase);
+    renderTangent(fraction);
     frameId=requestAnimationFrame(animate);
   };
 
