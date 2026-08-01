@@ -30,3 +30,15 @@ body.practiceStudio{--pe-ink:#102a43;--pe-wine:#8f194a;--pe-teal:#087f78;--pe-go
 @media(min-width:1100px){.practiceStudio .studioSidebar{position:sticky;top:92px;max-height:calc(100vh - 112px);overflow:auto;scrollbar-width:thin}}
 @media(max-width:900px){.practiceStudio .studioHero{border-radius:0 0 28px 28px}.practiceStudio .practiceWelcome,.practiceStudio .studioWorkspace{width:min(100% - 24px,1540px)}.practiceStudio .studioWorkspace{display:block}.practiceStudio .studioSidebar{margin-bottom:18px}.practiceStudio .studioHeroStats{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:560px){.practiceStudio .studioHero{padding-inline:16px}.practiceStudio .studioHeroStats{grid-template-columns:1fr 1fr}.practiceStudio .practiceWelcomeFlow{overflow:auto}.practiceStudio .studioPanel,.practiceStudio .practiceStage{border-radius:20px}}
+
+
+/* Hero contrast contract: protect text from legacy theme declarations. */
+.practiceStudio .studioHero :is(.eyebrow,#practiceHeroText){color:#e8f3f5!important}
+.practiceStudio .studioHero .eyebrow{border-color:rgba(255,255,255,.28)!important;background:rgba(255,255,255,.08)!important}
+.practiceStudio .studioHero .practiceRoleBadge{color:#17354b!important;background:rgba(255,255,255,.88)!important}
+.practiceStudio .studioHero h1{color:#f8fbfd!important;text-shadow:0 2px 22px rgba(0,0,0,.16)}
+.practiceStudio .studioHero h1 span{color:#f2b638!important}
+.practiceStudio .studioHero #practiceHeroText{max-width:860px;opacity:1!important}
+.practiceStudio .studioHeroStat b{color:#f9fcfd!important}
+.practiceStudio .studioHeroStat span{color:#dcecef!important;opacity:1!important}
+.practiceStudio .studioHeroMeta span{color:#17354b!important;background:rgba(255,255,255,.91)!important;border-color:rgba(255,255,255,.7)!important}
