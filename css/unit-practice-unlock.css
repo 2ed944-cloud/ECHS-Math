@@ -19,3 +19,17 @@
 .unitPracticeAction.locked{background:#eef2f4;color:#75828c;box-shadow:none;cursor:not-allowed}
 @media(max-width:700px){.unitPracticeUnlock{align-items:stretch;flex-direction:column}.unitPracticeAction{width:100%}}
 @media(prefers-reduced-motion:reduce){.unitPracticeTrack i,.unitPracticeAction{transition:none!important}}
+
+
+/* The injected unit-practice panel is a second grid child. Keep every child
+   clipped while the parent unit is collapsed, not only the lesson grid. */
+.unitBody{min-height:0;overflow:hidden}
+.unitBody>.unitPracticeUnlock{min-height:0}
+.unit:not(.open) .unitBody>.unitPracticeUnlock{
+  margin-block:0;
+  padding-block:0;
+  border-block-width:0;
+  opacity:0;
+  pointer-events:none;
+}
+.unit.open .unitBody>.unitPracticeUnlock{opacity:1}
