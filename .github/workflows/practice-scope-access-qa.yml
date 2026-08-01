@@ -25,6 +25,7 @@ on:
       - "tools/test_calculus_only_practice.py"
       - "tools/test_practice_course_isolation.mjs"
       - "tools/test_student_single_bank.mjs"
+      - "tools/test_private_practice_katex_runtime.py"
       - ".github/workflows/practice-scope-access-qa.yml"
   workflow_dispatch:
 
@@ -60,3 +61,6 @@ jobs:
 
       - name: Verify student single-bank isolation
         run: node tools/test_student_single_bank.mjs
+
+      - name: Verify mapped practice KaTeX runtime
+        run: python tools/test_private_practice_katex_runtime.py
