@@ -568,7 +568,7 @@
       .replace(/&/g, "and")
       .replace(/[^a-z0-9]+/g, "-")
       .replace(/^-|-$/g, "");
-    if (["ap-calculus", "ap-calculus-ab", "ap-calculus-bc"].includes(key))
+    if (/^ap-calculus(?:-(?:ab|bc|ab-bc|bc-ab))?$/.test(key))
       return "ap-calculus";
     if (key.includes("precalculus")) return "ap-precalculus";
     if (key.includes("ib") && key.includes("math")) return "ib-math-ai";
