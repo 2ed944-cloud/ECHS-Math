@@ -1,6 +1,132 @@
 /* Keep each student practice session inside one explicitly selected bank. */
 (function(){
   "use strict";
+  const KATEX_VERSION="0.16.27";
+  const KATEX_BASE=`https://cdn.jsdelivr.net/npm/katex@${KATEX_VERSION}/dist`;
+  let mathRuntimePromise=null;
+  let mathRenderQueued=false;
+
+  function ensureMathStyles(){
+    if(!document.getElementById("echs-practice-katex-css")){
+      const link=document.createElement("link");
+      link.id="echs-practice-katex-css";
+      link.rel="stylesheet";
+      link.href=`${KATEX_BASE}/katex.min.css`;
+      link.crossOrigin="anonymous";
+      document.head.append(link);
+    }
+    if(!document.getElementById("echs-practice-katex-overrides")){
+      const style=document.createElement("style");
+      style.id="echs-practice-katex-overrides";
+      style.textContent=`
+        .questionBody .katex,
+        .feedback .katex,
+        .solution .katex { font-size: 1.08em; }
+        .questionBody .katex-display,
+        .feedback .katex-display,
+        .solution .katex-display {
+          max-width: 100%;
+          margin: .75rem 0;
+          padding: .15rem 0;
+          overflow-x: auto;
+          overflow-y: hidden;
+        }
+        .choice .katex { font-size: 1.04em; }
+        .prompt .katex-html,
+        .choice .katex-html,
+        .solution .katex-html { white-space: nowrap; }
+        @media (max-width: 640px) {
+          .questionBody .katex,
+          .feedback .katex,
+          .solution .katex { font-size: 1em; }
+        }
+      `;
+      document.head.append(style);
+    }
+  }
+  function loadMathScript(id,src,ready){
+    if(ready())return Promise.resolve();
+    const existing=document.getElementById(id);
+    if(existing){
+      return new Promise((resolve,reject)=>{
+        if(ready()){resolve();return;}
+        existing.addEventListener("load",()=>ready()?resolve():reject(new Error(`Loaded ${src}, but the expected KaTeX API is unavailable.`)),{once:true});
+        existing.addEventListener("error",()=>{existing.remove();reject(new Error(`Could not load ${src}.`));},{once:true});
+      });
+    }
+    return new Promise((resolve,reject)=>{
+      const script=document.createElement("script");
+      script.id=id;
+      script.src=src;
+      script.async=true;
+      script.crossOrigin="anonymous";
+      script.addEventListener("load",()=>ready()?resolve():reject(new Error(`Loaded ${src}, but the expected KaTeX API is unavailable.`)),{once:true});
+      script.addEventListener("error",()=>{script.remove();reject(new Error(`Could not load ${src}.`));},{once:true});
+      document.head.append(script);
+    });
+  }
+  function ensureMathRuntime(){
+    ensureMathStyles();
+    if(window.katex&&typeof window.renderMathInElement==="function"){
+      document.documentElement.dataset.practiceKatex="ready";
+      return Promise.resolve();
+    }
+    if(mathRuntimePromise)return mathRuntimePromise;
+    document.documentElement.dataset.practiceKatex="loading";
+    mathRuntimePromise=loadMathScript(
+      "echs-practice-katex-js",
+      `${KATEX_BASE}/katex.min.js`,
+      ()=>Boolean(window.katex),
+    ).then(()=>loadMathScript(
+      "echs-practice-katex-auto-render-js",
+      `${KATEX_BASE}/contrib/auto-render.min.js`,
+      ()=>typeof window.renderMathInElement==="function",
+    )).then(()=>{
+      document.documentElement.dataset.practiceKatex="ready";
+    }).catch(error=>{
+      document.documentElement.dataset.practiceKatex="failed";
+      mathRuntimePromise=null;
+      document.getElementById("echs-practice-katex-js")?.remove();
+      document.getElementById("echs-practice-katex-auto-render-js")?.remove();
+      console.error("ECHS practice KaTeX runtime could not be loaded",error);
+      throw error;
+    });
+    return mathRuntimePromise;
+  }
+  function renderMath(root){
+    if(!root)return;
+    ensureMathRuntime().then(()=>{
+      if(typeof window.renderMathInElement!=="function")return;
+      try{
+        window.renderMathInElement(root,{
+          delimiters:[
+            {left:"\\[",right:"\\]",display:true},
+            {left:"\\(",right:"\\)",display:false},
+          ],
+          ignoredTags:["script","noscript","style","textarea","pre","code","option"],
+          ignoredClasses:["katex","katex-display","no-katex"],
+          throwOnError:false,
+          strict:"warn",
+          trust:false,
+          output:"htmlAndMathml",
+        });
+        root.querySelectorAll?.(".katex").forEach(node=>node.setAttribute("data-echs-math-rendered","true"));
+      }catch(error){
+        console.warn("ECHS practice KaTeX render warning",error);
+      }
+    }).catch(()=>{});
+  }
+  function scheduleMath(root){
+    if(!root||mathRenderQueued)return;
+    mathRenderQueued=true;
+    const run=()=>{
+      mathRenderQueued=false;
+      renderMath(root.isConnected===false?document.getElementById("shell"):root);
+    };
+    if(typeof window.requestAnimationFrame==="function")window.requestAnimationFrame(run);
+    else setTimeout(run,0);
+  }
+
   function install(){
     if(!window.ECHSBank||!window.ECHSLearning)return setTimeout(install,40);
     if(document.documentElement.dataset.practiceBankIsolation==="ready")return;
@@ -83,10 +209,15 @@
       new MutationObserver(()=>queueMicrotask(enforceSelection)).observe(bankSelect,{childList:true,subtree:true});
     }
     const shell=document.getElementById("shell");
-    if(shell)new MutationObserver(records=>{records.forEach(record=>record.addedNodes.forEach(node=>{if(node.nodeType===1)revealBankIdentity(node);}));syncSessionLock();}).observe(shell,{childList:true,subtree:true});
-    window.addEventListener?.("echs:private-bank-summary",()=>queueMicrotask(enforceSelection));
+    if(shell)new MutationObserver(records=>{
+      records.forEach(record=>record.addedNodes.forEach(node=>{if(node.nodeType===1)revealBankIdentity(node);}));
+      syncSessionLock();
+      scheduleMath(shell);
+    }).observe(shell,{childList:true,subtree:true});
+    window.addEventListener?.("echs:private-bank-summary",()=>queueMicrotask(()=>{enforceSelection();scheduleMath(shell);}));
     document.addEventListener?.("echs:portal-access",()=>queueMicrotask(enforceSelection));
-    queueMicrotask(()=>{enforceSelection();syncSessionLock();});
+    queueMicrotask(()=>{enforceSelection();syncSessionLock();scheduleMath(shell);});
+    ensureMathRuntime().then(()=>scheduleMath(shell)).catch(()=>{});
     document.documentElement.dataset.practiceBankIsolation="ready";
   }
   install();
