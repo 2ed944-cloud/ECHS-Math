@@ -1,0 +1,32 @@
+/* Focused Practice executive polish — keeps all application behaviour intact */
+body.practiceStudio{--pe-ink:#102a43;--pe-wine:#8f194a;--pe-teal:#087f78;--pe-gold:#e5b84e;--pe-line:#d9e4eb;--pe-paper:#f7f9fc;overflow-x:clip;background:radial-gradient(circle at 0 10%,rgba(143,25,74,.08),transparent 25rem),radial-gradient(circle at 100% 20%,rgba(8,127,120,.1),transparent 30rem),#f4f7fa;color:var(--pe-ink)}
+.practiceStudio .siteHeader{background:rgba(255,255,255,.88);border-bottom:1px solid rgba(16,42,67,.09);box-shadow:0 9px 30px rgba(16,42,67,.07);backdrop-filter:blur(18px) saturate(135%)}
+.practiceStudio .studioHero{position:relative;overflow:hidden;max-width:none;margin:0;border-radius:0 0 40px 40px;background:linear-gradient(120deg,#102a43 0%,#134b5d 54%,#087f78 100%);box-shadow:0 24px 60px rgba(16,42,67,.2)}
+.practiceStudio .studioHero:after{content:"∫";position:absolute;right:4vw;bottom:-.36em;color:rgba(255,255,255,.055);font:500 clamp(230px,28vw,520px)/1 Fraunces,serif;pointer-events:none}
+.practiceStudio .studioHeroContent,.practiceStudio .studioHeroStats{position:relative;z-index:1}
+.practiceStudio .studioHero h1{max-width:980px;letter-spacing:-.045em;text-wrap:balance}
+.practiceStudio .studioHeroStats{gap:10px;padding:10px;border:1px solid rgba(255,255,255,.16);border-radius:24px;background:rgba(255,255,255,.08);backdrop-filter:blur(12px)}
+.practiceStudio .studioHeroStat{border:0!important;border-radius:17px!important;background:rgba(255,255,255,.07)!important}
+.practiceStudio .practiceWelcome,.practiceStudio .studioWorkspace{width:min(1540px,calc(100% - clamp(24px,5vw,80px)));margin-inline:auto}
+.practiceStudio .practiceWelcome{margin-top:24px;border:1px solid rgba(16,42,67,.09);border-radius:24px;background:rgba(255,255,255,.78);box-shadow:0 12px 34px rgba(16,42,67,.07);backdrop-filter:blur(12px)}
+.practiceStudio .studioWorkspace{align-items:start;gap:22px;margin-top:22px}
+.practiceStudio .studioSidebar,.practiceStudio .practiceStage{min-width:0}
+.practiceStudio .studioPanel,.practiceStudio .practiceStage{overflow:hidden;border:1px solid var(--pe-line);border-radius:28px;background:rgba(255,255,255,.94);box-shadow:0 22px 62px rgba(16,42,67,.1)}
+.practiceStudio .studioPanelHead,.practiceStudio .practiceStageHead{border-bottom:1px solid var(--pe-line);background:linear-gradient(145deg,#fff,#f7fafc)}
+.practiceStudio .builderSteps{gap:8px;padding:8px;border-radius:18px;background:#f0f5f8}
+.practiceStudio .builderStep{border-radius:13px;transition:.2s ease}
+.practiceStudio .builderStep.active{background:#fff;box-shadow:0 7px 18px rgba(16,42,67,.1)}
+.practiceStudio :is(select,input,textarea){border:1px solid #cedde6;border-radius:15px;background:#fff;box-shadow:0 4px 12px rgba(16,42,67,.035);transition:border-color .2s,box-shadow .2s}
+.practiceStudio :is(select,input,textarea):focus{border-color:var(--pe-teal);box-shadow:0 0 0 4px rgba(8,127,120,.12);outline:0}
+.practiceStudio :is(button,.btn){transition:transform .18s ease,box-shadow .18s ease,background .18s ease}
+.practiceStudio :is(button,.btn):hover{transform:translateY(-1px)}
+.practiceStudio :is(button,.btn):focus-visible{outline:3px solid rgba(229,184,78,.75);outline-offset:3px}
+.practiceStudio .questionCard,.practiceStudio .questionShell,.practiceStudio .practiceQuestion{border-radius:22px!important;border-color:var(--pe-line)!important;box-shadow:0 13px 38px rgba(16,42,67,.08)!important}
+.practiceStudio .questionText{font-size:clamp(1.03rem,1.3vw,1.2rem);line-height:1.78}
+.practiceStudio .choice,.practiceStudio .answerChoice{border-radius:16px!important;transition:.18s ease}
+.practiceStudio .choice:hover,.practiceStudio .answerChoice:hover{border-color:var(--pe-teal)!important;background:#f1fbfa!important;transform:translateX(3px)}
+.practiceStudio .emptyState,.practiceStudio .practiceEmpty{min-height:350px;border:1px dashed #cbdbe5;border-radius:22px;background:linear-gradient(145deg,#fbfdfe,#f2f7f9)}
+.practiceStudio .sessionDock,.practiceStudio .practiceControls{border-top:1px solid rgba(16,42,67,.09);background:rgba(255,255,255,.92);backdrop-filter:blur(16px)}
+@media(min-width:1100px){.practiceStudio .studioSidebar{position:sticky;top:92px;max-height:calc(100vh - 112px);overflow:auto;scrollbar-width:thin}}
+@media(max-width:900px){.practiceStudio .studioHero{border-radius:0 0 28px 28px}.practiceStudio .practiceWelcome,.practiceStudio .studioWorkspace{width:min(100% - 24px,1540px)}.practiceStudio .studioWorkspace{display:block}.practiceStudio .studioSidebar{margin-bottom:18px}.practiceStudio .studioHeroStats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.practiceStudio .studioHero{padding-inline:16px}.practiceStudio .studioHeroStats{grid-template-columns:1fr 1fr}.practiceStudio .practiceWelcomeFlow{overflow:auto}.practiceStudio .studioPanel,.practiceStudio .practiceStage{border-radius:20px}}
