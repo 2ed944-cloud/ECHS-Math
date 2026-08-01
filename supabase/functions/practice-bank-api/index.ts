@@ -124,29 +124,57 @@ async function inventory(req: Request, current: SessionAccount, url: URL) {
   );
   const bankCodes = [...new Set(rows.map((row: JsonRecord) => String(row.bank_code ?? "")).filter(Boolean))];
   const packageNames = new Map<string, string>();
-  if (bankCodes.length) {
-    const { data: packages, error: packageError } = await db.from("private_bank_packages")
-      .select("bank_code,bank_slug,display_aliases,manifest")
-      .eq("organization_id", current.organization_id)
-      .in("bank_code", bankCodes);
-    if (packageError) throw packageError;
-    for (const packageRow of packages ?? []) {
-      const row = packageRow as JsonRecord;
-      const code = String(row.bank_code ?? "");
-      const course = normaliseCourse(
-        rows.find((inventoryRow: JsonRecord) => String(inventoryRow.bank_code ?? "") === code)?.course_key,
-      );
-      packageNames.set(code, packageDisplayName(row, course, code));
-    }
+  const { data: packages, error: packageError } = await db.from("private_bank_packages")
+    .select("bank_code,bank_slug,display_aliases,manifest")
+    .eq("organization_id", current.organization_id);
+  if (packageError) throw packageError;
+  for (const packageRow of packages ?? []) {
+    const row = packageRow as JsonRecord;
+    const code = String(row.bank_code ?? "");
+    const course = normaliseCourse(
+      rows.find((inventoryRow: JsonRecord) => String(inventoryRow.bank_code ?? "") === code)?.course_key ??
+        packageTargets(row)[0],
+    );
+    packageNames.set(code, packageDisplayName(row, course, code));
   }
-  const identifiedRows = rows.map((row: JsonRecord) => {
+  const identifiedRows: JsonRecord[] = rows.map((row: JsonRecord) => {
     const bankCode = String(row.bank_code ?? "");
     return {
       ...row,
       bank_display_name: packageNames.get(bankCode) || bankCode,
       bank_identity: bankCode,
+      package_only: false,
     };
   });
+  // A package must remain visible to staff even before its questions have valid
+  // lesson indexes. This makes an empty/unmapped bank diagnosable instead of
+  // incorrectly reporting that the organization has no verified bank.
+  if (isStaff(current)) {
+    for (const packageRow of packages ?? []) {
+      const row = packageRow as JsonRecord;
+      const code = String(row.bank_code ?? "");
+      const targets = packageTargets(row).filter((course) => allowed.has(course));
+      for (const course of targets) {
+        if (requestedCourse && course !== requestedCourse) continue;
+        if (identifiedRows.some((item) =>
+          String(item.bank_code ?? "") === code && normaliseCourse(item.course_key) === course
+        )) continue;
+        identifiedRows.push({
+          bank_code: code,
+          course_key: course,
+          unit_number: null,
+          lesson_key: "",
+          lesson_title: "",
+          question_count: 0,
+          ready_count: 0,
+          bank_display_name: packageNames.get(code) || code,
+          bank_identity: code,
+          package_only: true,
+          readiness_issue: "package_has_no_mapped_questions",
+        });
+      }
+    }
+  }
   return reply(req, {
     ok: true,
     private: true,
