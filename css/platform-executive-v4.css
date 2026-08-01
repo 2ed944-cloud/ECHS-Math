@@ -1,0 +1,25 @@
+/* ECHS Executive Learning visual system — presentation only */
+:root{--ex-ink:#102a43;--ex-ink-2:#173d58;--ex-wine:#8f194a;--ex-teal:#087f78;--ex-gold:#e5b84e;--ex-paper:#f7f9fc;--ex-line:#dbe5ec;--ex-shadow:0 24px 70px rgba(16,42,67,.12);--ex-soft-shadow:0 10px 32px rgba(16,42,67,.09);--ex-radius:28px}
+html{scroll-behavior:smooth}body[data-platform-page="home"]{background:radial-gradient(circle at 5% 12%,rgba(143,25,74,.08),transparent 24rem),radial-gradient(circle at 95% 24%,rgba(8,127,120,.1),transparent 28rem),linear-gradient(180deg,#fbfcfe,#f3f7fa 55%,#fff);color:var(--ex-ink)}
+body[data-platform-page="home"] .premiumLandingHeader{top:0;border-bottom:1px solid rgba(255,255,255,.72);background:rgba(250,252,254,.84);box-shadow:0 8px 28px rgba(16,42,67,.07);backdrop-filter:blur(20px) saturate(140%)}
+body[data-platform-page="home"] .premiumLandingHeader .top{max-width:1480px;margin:auto;padding-inline:clamp(18px,4vw,64px)}
+body[data-platform-page="home"] .brandMark{box-shadow:0 9px 25px rgba(143,25,74,.22)}
+body[data-platform-page="home"] .platformNav{padding:5px;border:1px solid rgba(16,42,67,.08);border-radius:999px;background:rgba(255,255,255,.7)}
+body[data-platform-page="home"] .platformNav a{border-radius:999px;transition:.22s ease}
+body[data-platform-page="home"] .platformNav a:hover{background:#fff;box-shadow:0 5px 16px rgba(16,42,67,.09);transform:translateY(-1px)}
+body[data-platform-page="home"] .premiumLandingHero{isolation:isolate;overflow:hidden;min-height:min(830px,calc(100svh - 80px));border-radius:0 0 48px 48px;box-shadow:var(--ex-shadow)}
+body[data-platform-page="home"] .premiumHeroGrid{max-width:1480px;margin:auto;padding-inline:clamp(22px,5vw,80px);gap:clamp(40px,7vw,110px)}
+body[data-platform-page="home"] #portalTitle{max-width:880px;letter-spacing:-.045em;text-wrap:balance}
+body[data-platform-page="home"] .lead{max-width:720px;font-size:clamp(1rem,1.4vw,1.22rem);line-height:1.8}
+body[data-platform-page="home"] .schoolIdentityCard{border:1px solid rgba(255,255,255,.28);box-shadow:0 34px 90px rgba(3,22,39,.32);transform:perspective(1200px) rotateY(-2deg)}
+body[data-platform-page="home"] .landingSection{max-width:1480px;margin-inline:auto;padding-inline:clamp(20px,4vw,64px)}
+body[data-platform-page="home"] .landingSectionHead h2{letter-spacing:-.035em;text-wrap:balance}
+body[data-platform-page="home"] .roleGrid{gap:20px}
+body[data-platform-page="home"] .roleCard,body[data-platform-page="home"] .accessGateCard,body[data-platform-page="home"] .journeyRail article{position:relative;overflow:hidden;border:1px solid rgba(16,42,67,.09);box-shadow:var(--ex-soft-shadow);transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+body[data-platform-page="home"] .roleCard:before,body[data-platform-page="home"] .journeyRail article:before{content:"";position:absolute;inset:0 auto 0 0;width:4px;background:linear-gradient(var(--ex-gold),var(--ex-wine))}
+body[data-platform-page="home"] .roleCard:hover,body[data-platform-page="home"] .journeyRail article:hover{transform:translateY(-6px);border-color:rgba(8,127,120,.28);box-shadow:0 22px 55px rgba(16,42,67,.14)}
+body[data-platform-page="home"] .btn{min-height:50px;border-radius:15px;box-shadow:0 9px 25px rgba(16,42,67,.12);transition:.2s ease}
+body[data-platform-page="home"] .btn:hover{transform:translateY(-2px);box-shadow:0 14px 32px rgba(16,42,67,.17)}
+body[data-platform-page="home"] :is(a,button,input):focus-visible{outline:3px solid rgba(229,184,78,.72);outline-offset:3px}
+@media(max-width:900px){body[data-platform-page="home"] .premiumLandingHero{border-radius:0 0 30px 30px}body[data-platform-page="home"] .platformNav{border:0;background:transparent}body[data-platform-page="home"] .schoolIdentityCard{transform:none}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important}}
