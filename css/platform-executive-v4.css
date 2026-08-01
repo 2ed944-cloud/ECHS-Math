@@ -130,3 +130,44 @@ body[data-platform-page="home"] .premiumLandingHero .premiumIdentityVisual{align
   body[data-platform-page="home"] .premiumLandingHeader .brandText span{display:none}
   body[data-platform-page="home"] .premiumLandingHeader .platformNav .institutionSignedIn{max-width:170px}
 }
+
+
+/* Final institutional header: larger logo and collision-free account/status controls. */
+@media(min-width:1501px){
+  body[data-platform-page="home"] .premiumLandingHeader .top{
+    grid-template-columns:340px minmax(330px,500px) minmax(0,1fr);
+  }
+  body[data-platform-page="home"] .premiumLandingHeader .brand{gap:12px}
+  body[data-platform-page="home"] .premiumLandingHeader .logo{
+    flex-basis:220px;
+    width:220px;
+    height:66px;
+    padding:6px 10px;
+  }
+  body[data-platform-page="home"] .premiumLandingHeader .brandText{display:none}
+  body[data-platform-page="home"] .premiumLandingHeader .platformNav a{
+    padding-inline:clamp(8px,.62vw,12px);
+    font-size:clamp(.76rem,.78vw,.9rem);
+  }
+  body[data-platform-page="home"] .premiumLandingHeader .platformNav .institutionSignedIn{
+    flex:1 1 155px;
+    min-width:105px;
+    max-width:190px;
+  }
+  body[data-platform-page="home"] .premiumLandingHeader .platformStatus{margin-left:2px}
+}
+@media(min-width:1121px) and (max-width:1500px){
+  body[data-platform-page="home"] .premiumLandingHeader .top{
+    grid-template-columns:300px minmax(220px,310px) minmax(0,1fr);
+  }
+  body[data-platform-page="home"] .premiumLandingHeader .logo{
+    width:175px;
+    flex-basis:175px;
+    height:58px;
+  }
+  body[data-platform-page="home"] .premiumLandingHeader .brandText{display:none}
+  body[data-platform-page="home"] .premiumLandingHeader .platformNav .institutionSignedIn{
+    min-width:90px;
+    max-width:145px;
+  }
+}

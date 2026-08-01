@@ -5,6 +5,30 @@
     if(!window.ECHSBank||!window.ECHSLearning)return setTimeout(install,40);
     if(document.documentElement.dataset.practiceBankIsolation==="ready")return;
     const query=new URLSearchParams(location.search);
+    const CALCULUS_PRACTICE_BANKS=new Set(["ADAMS10","CALCT3BC"]);
+    const courseSelect=()=>document.getElementById("course");
+    const selectedCourse=()=>String(courseSelect()?.value||query.get("course")||"").trim().toLowerCase();
+    const isCalculusCourse=()=>["ap-calculus","ap calculus","calculus"].includes(selectedCourse());
+    const optionCode=option=>{
+      const value=String(option?.value||"").trim().toUpperCase();
+      if(CALCULUS_PRACTICE_BANKS.has(value))return value;
+      const label=String(option?.textContent||"").toUpperCase();
+      return [...CALCULUS_PRACTICE_BANKS].find(code=>label.includes(code))||value;
+    };
+    function enforceCalculusSourceInventory(){
+      const bank=document.getElementById("bank");
+      if(!bank||!isCalculusCourse())return;
+      [...bank.options].forEach(option=>{
+        if(!option.value||option.value==="all")return;
+        if(!CALCULUS_PRACTICE_BANKS.has(optionCode(option)))option.remove();
+      });
+      const available=[...bank.options].filter(option=>option.value&&option.value!=="all");
+      if(available.length&&!available.includes(bank.selectedOptions?.[0])){
+        bank.value=available[0].value;
+        preferredBank=bank.value;
+      }
+      document.documentElement.dataset.calculusPracticeInventory="ADAMS10,CALCT3BC";
+    }
     const saved=query.get("resume")==="1"?ECHSLearning.getContinue?.():null;
     let preferredBank=query.get("bank")||(saved?.type==="practice"?saved.bankCode:"")||"";
     const originalFilter=ECHSBank.filterQuestions.bind(ECHSBank);
@@ -13,6 +37,7 @@
     const isStudent=()=>document.body?.classList?.contains("roleStudent")||window.ECHSPortalAccess?.current?.role==="student";
     const select=()=>document.getElementById("bank");
     function enforceSelection(){
+      enforceCalculusSourceInventory();
       const bank=select();
       if(!bank||!isStudent())return bank?.value||"all";
       const available=[...bank.options].filter(option=>option.value&&option.value!=="all");
@@ -52,6 +77,7 @@
       bank.title=bank.disabled?"The bank is fixed for the current session.":"Choose one mapped bank for this session.";
     }
     const bankSelect=select();
+    courseSelect()?.addEventListener("change",()=>queueMicrotask(enforceSelection));
     if(bankSelect){
       bankSelect.addEventListener("change",()=>{preferredBank=bankSelect.value;enforceSelection();document.documentElement.dataset.studentPracticeBank=bankSelect.value;});
       new MutationObserver(()=>queueMicrotask(enforceSelection)).observe(bankSelect,{childList:true,subtree:true});
