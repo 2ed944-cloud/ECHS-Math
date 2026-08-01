@@ -11,8 +11,8 @@
     if(document.querySelector(`script[${marker}]`))return;
     const script=document.createElement("script");script.src=root(path);script.setAttribute(marker,"true");script.async=true;document.head.append(script);
   };
-  installStyle("data-hybrid-landing-hero","css/landing-calculus-motion.css?v=20260801-tangent3");
-  installScript("data-hybrid-landing-hero","js/landing-hybrid-hero.js?v=20260801-tangent3");
+  installStyle("data-hybrid-landing-hero","css/landing-calculus-motion.css?v=20260801-hybrid2-tangent3");
+  installScript("data-hybrid-landing-hero","js/landing-hybrid-hero.js?v=20260801-hybrid2-tangent3");
   installStyle("data-unit-practice-unlock","css/unit-practice-unlock.css?v=20260801-collapse2");
   installScript("data-unit-practice-unlock","js/unit-practice-unlock.js?v=20260730-scope1");
   document.documentElement.dataset.hybridLandingHero="enabled";
