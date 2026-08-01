@@ -1,4 +1,4 @@
-const VERSION = "echs-platform-school-control-v3-hybrid2-mastery1-recovery1-calculus-only-practice-routing-redesign-ib-lesson-query-premium-practice-20260801-assignment-studio-v1-executive-visual-v4-calculus-source-allowlist1-teacher-source-assignment1-ab-bc-route1-practice-contrast1-landing-layout1-unit-collapse1-tangent-logo-collapse2-bank-export1";
+const VERSION = "echs-platform-school-control-v3-hybrid2-mastery1-recovery1-calculus-only-practice-routing-redesign-ib-lesson-query-premium-practice-20260801-assignment-studio-v1-executive-visual-v4-calculus-source-allowlist1-teacher-source-assignment1-ab-bc-route1-practice-contrast1-landing-layout1-unit-collapse1-tangent-logo-collapse2-bank-export1-dynamic-calculus-banks1";
 // Practice assignment studio assets are versioned with the authenticated shell.
 const STATIC_CACHE = `${VERSION}-static`;
 const RUNTIME_CACHE = `${VERSION}-runtime`;
