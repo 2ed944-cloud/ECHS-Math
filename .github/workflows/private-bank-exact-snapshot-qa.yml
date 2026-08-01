@@ -1,0 +1,41 @@
+name: Private Bank Exact Snapshot QA
+
+on:
+  pull_request:
+    paths:
+      - "tools/upload_private_bank_package_fast.py"
+      - "tools/upload_private_bank_package_verified_fast.py"
+      - "tools/upload_private_bank_package_verified_free_tier.py"
+      - "tools/test_ap_calculus_private_bank_support.py"
+      - "tools/test_private_bank_exact_snapshot.py"
+      - ".github/workflows/private-bank-exact-snapshot-qa.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Compile private-bank importers
+        run: |
+          python -m py_compile tools/upload_private_bank_package_fast.py
+          python -m py_compile tools/upload_private_bank_package_verified_fast.py
+          python -m py_compile tools/upload_private_bank_package_verified_free_tier.py
+          python -m py_compile tools/test_private_bank_exact_snapshot.py
+
+      - name: Verify AP Calculus single-course import contract
+        run: python tools/test_ap_calculus_private_bank_support.py
+
+      - name: Verify exact replacement cleanup
+        run: python tools/test_private_bank_exact_snapshot.py
