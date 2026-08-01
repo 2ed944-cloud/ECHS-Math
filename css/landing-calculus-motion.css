@@ -290,3 +290,57 @@
   .calculusMotionBoard[data-extremum-phase="overview"] .extremumCallout,
   .calculusMotionBoard[data-extremum-phase="overview"] .extremumConnector{opacity:.88}
 }
+
+/* Clear calculus story: the graph owns the upper stage and identity sits below. */
+.hybridHeroVisual{
+  justify-content:flex-start;
+  gap:16px;
+  min-height:720px;
+  padding-top:8px;
+}
+.calculusMotionBoard{
+  z-index:4;
+  width:min(100%,660px);
+  transform:none;
+  background:
+    radial-gradient(circle at 82% 12%,rgba(229,184,78,.2),transparent 31%),
+    radial-gradient(circle at 72% 78%,rgba(99,214,196,.15),transparent 34%),
+    linear-gradient(155deg,rgba(255,255,255,.14),rgba(255,255,255,.045));
+  box-shadow:0 26px 65px rgba(0,0,0,.24),inset 0 1px 0 rgba(255,255,255,.18);
+}
+.calculusMotionBoard svg{background:rgba(52,8,29,.12)}
+.calculusHeroCurve{stroke-width:6}
+.tangentTraveller line{
+  stroke:#ffe39a;
+  stroke-width:5;
+  filter:drop-shadow(0 0 7px rgba(255,227,154,.8));
+}
+.tangentTravellerPoint{r:7px;fill:#fff3c7;stroke:#7c1845;stroke-width:3}
+.tangentTravellerGlow{fill:rgba(255,227,154,.24);stroke:rgba(255,255,255,.46);stroke-width:1.7}
+.compactSchoolIdentityCard{
+  z-index:2;
+  width:min(92%,560px);
+  min-height:174px;
+  margin-top:0;
+  padding:18px 21px;
+  grid-template-columns:150px minmax(0,1fr);
+  gap:18px;
+  transform:none;
+}
+.compactSchoolIdentityCard .identityLogoPlate{height:88px;padding:10px}
+.compactIdentityCopy p{font-size:10px}
+.compactIdentityPath{padding:8px 10px}
+.hybridHeroVisual .evidenceA{left:-8px;top:auto;bottom:18px}
+.hybridHeroVisual .evidenceB{right:-8px;top:auto;bottom:108px}
+@media(max-width:1220px){
+  .hybridHeroVisual{min-height:690px}
+  .calculusMotionBoard{max-width:620px}
+}
+@media(max-width:900px){
+  .hybridHeroVisual{min-height:auto;gap:14px}
+  .compactSchoolIdentityCard{width:min(94%,540px)}
+}
+@media(max-width:680px){
+  .hybridHeroVisual{min-height:auto;padding-top:0}
+  .compactSchoolIdentityCard{margin-top:0}
+}

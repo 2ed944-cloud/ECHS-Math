@@ -70,3 +70,63 @@ body[data-platform-page="home"] .premiumLandingHero .premiumIdentityVisual{align
   body[data-platform-page="home"] .premiumLandingHeader .platformNav a{padding:9px 11px}
   body[data-platform-page="home"] .premiumLandingHero .heroContent{padding-block:40px}
 }
+
+
+/* Final header fit: readable institutional logo without horizontal overflow. */
+@media(min-width:1121px){
+  body[data-platform-page="home"] .premiumLandingHeader .top{
+    width:100%;
+    max-width:1920px;
+    grid-template-columns:minmax(420px,500px) minmax(260px,390px) minmax(0,1fr);
+    gap:clamp(12px,1.25vw,24px);
+    padding-inline:clamp(22px,2.5vw,48px)!important;
+  }
+  body[data-platform-page="home"] .premiumLandingHeader .brand{width:auto;gap:11px}
+  body[data-platform-page="home"] .premiumLandingHeader .brandMark{flex:0 0 72px}
+  body[data-platform-page="home"] .premiumLandingHeader .logo{
+    flex:0 0 188px;
+    width:188px;
+    height:52px;
+    padding:5px 8px;
+    border:1px solid rgba(16,42,67,.09);
+    border-radius:12px;
+    background:#fff;
+    box-shadow:0 7px 20px rgba(16,42,67,.07);
+  }
+  body[data-platform-page="home"] .premiumLandingHeader .brandText{flex:1 1 auto;min-width:0}
+  body[data-platform-page="home"] .premiumLandingHeader .brandText strong{
+    display:block;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    font-size:1.03rem;
+  }
+  body[data-platform-page="home"] .premiumLandingHeader .brandText span{font-size:.72rem}
+  body[data-platform-page="home"] .premiumLandingHeader .platformHeaderActions{
+    width:100%;
+    min-width:0!important;
+    gap:7px;
+  }
+  body[data-platform-page="home"] .premiumLandingHeader .platformNav{
+    flex:1 1 auto;
+    min-width:0!important;
+    padding:4px;
+  }
+  body[data-platform-page="home"] .premiumLandingHeader .platformNav a{
+    flex:0 1 auto;
+    padding:10px clamp(9px,.75vw,14px);
+    font-size:clamp(.78rem,.84vw,.94rem);
+  }
+  body[data-platform-page="home"] .premiumLandingHeader .platformNav .institutionSignedIn{
+    max-width:230px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+  body[data-platform-page="home"] .premiumLandingHeader .platformStatus{flex:0 0 auto}
+  body[data-platform-page="home"] .premiumLandingHeader .platformIconButton{flex:0 0 44px}
+}
+@media(min-width:1121px) and (max-width:1500px){
+  body[data-platform-page="home"] .premiumLandingHeader .top{grid-template-columns:320px minmax(230px,330px) minmax(0,1fr)}
+  body[data-platform-page="home"] .premiumLandingHeader .logo{width:140px;flex-basis:140px}
+  body[data-platform-page="home"] .premiumLandingHeader .brandText span{display:none}
+  body[data-platform-page="home"] .premiumLandingHeader .platformNav .institutionSignedIn{max-width:170px}
+}
