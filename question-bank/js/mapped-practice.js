@@ -341,7 +341,7 @@ function populateBanks(preferred = "") {
     ? codes
         .map(
           (code) =>
-            `<option value="${ECHSBank.escape(code)}">${ECHSBank.escape(bankOptionLabel(UI.course.value, code))}</option>`,
+            `<option value="${ECHSBank.escape(code)}" data-private-bank="${inventoryRows(UI.course.value, code).length ? "true" : "false"}">${ECHSBank.escape(bankOptionLabel(UI.course.value, code))}</option>`,
         )
         .join("")
     : '<option value="">No verified bank uploaded for this course</option>';

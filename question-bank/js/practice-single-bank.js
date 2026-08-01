@@ -20,14 +20,14 @@
       if(!bank||!isCalculusCourse())return;
       [...bank.options].forEach(option=>{
         if(!option.value||option.value==="all")return;
-        if(!CALCULUS_PRACTICE_BANKS.has(optionCode(option)))option.remove();
+        if(!CALCULUS_PRACTICE_BANKS.has(optionCode(option))&&option.dataset.privateBank!=="true")option.remove();
       });
       const available=[...bank.options].filter(option=>option.value&&option.value!=="all");
       if(available.length&&!available.includes(bank.selectedOptions?.[0])){
         bank.value=available[0].value;
         preferredBank=bank.value;
       }
-      document.documentElement.dataset.calculusPracticeInventory="ADAMS10,CALCT3BC";
+      document.documentElement.dataset.calculusPracticeInventory="bundled-and-private";
     }
     const saved=query.get("resume")==="1"?ECHSLearning.getContinue?.():null;
     let preferredBank=query.get("bank")||(saved?.type==="practice"?saved.bankCode:"")||"";

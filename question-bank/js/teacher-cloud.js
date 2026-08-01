@@ -709,27 +709,36 @@
   }
   async function loadAssignmentInventory() {
     const course = assignmentCourse();
-    if (course === "ap-calculus") {
-      assignmentInventory = await staticCalculusInventory();
-    } else {
-    let result = await ECHSInstitution.api(
+    let dynamicRows = [];
+    try {
+      let result = await ECHSInstitution.api(
         "practice-bank-api",
         `/inventory?course=${encodeURIComponent(course)}`,
       );
-    assignmentInventory = result.rows || [];
-    // Older deployed inventory functions can return an empty course-filtered
-    // result while still exposing the same organization rows without a filter.
-    // Recover those rows, but retain strict client-side course isolation.
-    if (!assignmentInventory.length) {
-      result = await ECHSInstitution.api("practice-bank-api", "/inventory");
-      assignmentInventory = (result.rows || []).filter(
-        (row) => canonicalCourse(row.course_key) === course,
-      );
+      dynamicRows = result.rows || [];
+      // Recover from older deployed inventory functions that only expose the
+      // organization-wide inventory, while retaining strict course isolation.
+      if (!dynamicRows.length) {
+        result = await ECHSInstitution.api("practice-bank-api", "/inventory");
+        dynamicRows = (result.rows || []).filter(
+          (row) => canonicalCourse(row.course_key) === course,
+        );
+      }
+    } catch (error) {
+      if (course !== "ap-calculus") throw error;
+      console.warn("Private Calculus inventory is unavailable; using bundled banks.", error);
     }
-    }
-    assignmentInventory = assignmentInventory.filter(
-      (row) => canonicalCourse(row.course_key) === course,
-    );
+    const bundledRows =
+      course === "ap-calculus" ? await staticCalculusInventory() : [];
+    // Database rows win when a newly uploaded package shares a route with a
+    // bundled source. Bundled ADAMS10/CALCT3BC remain available as fallback.
+    const rowsByRoute = new Map();
+    [...bundledRows, ...dynamicRows].forEach((row) => {
+      if (canonicalCourse(row.course_key) !== course) return;
+      const key = `${row.bank_code || ""}::${row.unit_number || ""}::${row.lesson_key || ""}`;
+      rowsByRoute.set(key, row);
+    });
+    assignmentInventory = [...rowsByRoute.values()];
     const banks = [
       ...new Map(
         assignmentInventory.map((row) => [

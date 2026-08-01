@@ -46,6 +46,7 @@ def validate_source(root: Path, errors: list[str]) -> None:
     practice_builder_css = read(root, "question-bank/css/practice-builder-compact.css", errors)
     scope_css = read(root, "question-bank/css/practice-scope-access.css", errors)
     bank = read(root, "question-bank/js/bank.js", errors)
+    teacher_cloud = read(root, "question-bank/js/teacher-cloud.js", errors)
     experience = read(root, "js/institution-experience.js", errors)
     worker = read(root, "sw.js", errors)
 
@@ -102,7 +103,9 @@ def validate_source(root: Path, errors: list[str]) -> None:
         "questionCourse", "mappingCompatible", "courseCompatible", "scopeQuestion", "practiceCourseIsolation",
         "selectedBundleFromParams",
     ], "Course isolation layer", errors)
-    require(single_bank, ["practiceBankIsolation", "studentPracticeBank", "ECHSBank.filterQuestions", 'option.value==="all"'], "Student single-bank isolation", errors)
+    require(single_bank, ["practiceBankIsolation", "studentPracticeBank", "ECHSBank.filterQuestions", 'option.value==="all"', 'option.dataset.privateBank!=="true"'], "Student single-bank isolation", errors)
+    require(practice, ["data-private-bank", "inventoryRows(UI.course.value, code)"], "Dynamic private-bank options", errors)
+    require(teacher_cloud, ["dynamicRows", "rowsByRoute", "Private Calculus inventory is unavailable", "staticCalculusInventory"], "Teacher dynamic-bank inventory", errors)
     require(practice_builder, [
         "MutationObserver", "setCollapsed", "builderAdjust", "#shell .questionCard", "isCollapsed",
         "selectedText(course)", "selectedText(scope)",
