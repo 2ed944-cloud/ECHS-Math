@@ -31,8 +31,8 @@ for(const device of devices){
     const response=await page.goto(`${baseURL}/question-bank/official/admin/private-bank-center.html`,{waitUntil:'domcontentloaded',timeout:45000});entry.status=response?.status()??null;
     const statusLocator=page.locator('#bankStatus');
     await statusLocator.waitFor({state:'visible',timeout:15000});
-    await page.waitForFunction(()=>document.documentElement.dataset.nonCalculusPackages==='0'
-      &&document.getElementById('bankStatus')?.textContent?.includes('No non-calculus package mapping remains.'),null,{timeout:15000});
+    await page.locator('html[data-non-calculus-packages="0"]').waitFor({state:'attached',timeout:15000});
+    await page.locator('#bankStatus').filter({hasText:'No non-calculus package mapping remains.'}).waitFor({state:'visible',timeout:15000});
     const state=await page.evaluate(()=>({banks:document.querySelectorAll('#bankGrid .bankCard').length,complete:document.querySelectorAll('#bankGrid .bankState').length,questionTotal:document.getElementById('questionTotal')?.textContent,poolTotal:document.getElementById('poolTotal')?.textContent,mediaTotal:document.getElementById('mediaTotal')?.textContent,calcBanks:document.getElementById('calcBanks')?.textContent,calcReadiness:document.getElementById('calcReadiness')?.textContent,calcVerified:document.getElementById('calcVerified')?.textContent,alignmentCards:document.querySelectorAll('.alignmentCard').length,cleanupDisabled:document.getElementById('keepCalculusOnly')?.disabled,dangerHidden:document.getElementById('cleanupDangerZone')?.classList.contains('hidden'),nonCalculusPackages:document.documentElement.dataset.nonCalculusPackages,text:document.body.innerText,width:Math.max(document.body.scrollWidth,document.documentElement.scrollWidth),viewport:document.documentElement.clientWidth}));
     Object.assign(entry,state);
     if(state.banks!==1)entry.errors.push(`Expected one AP Calculus bank card, found ${state.banks}`);
