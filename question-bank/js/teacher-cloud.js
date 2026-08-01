@@ -578,6 +578,52 @@
     return key;
   }
   const assignmentCourse = () => canonicalCourse(selectedClass?.course_key);
+  const CALCULUS_ASSIGNMENT_BANKS = ["ADAMS10", "CALCT3BC"];
+  const calculusBankLabel = (code) => `AP Calculus AB / BC · ${code}`;
+  async function staticCalculusInventory() {
+    if (!window.ECHSBank) throw new Error("The bundled AP Calculus catalogue is unavailable.");
+    const catalog = await ECHSBank.loadCatalog(),
+      topics = (catalog.bundles?.topics || []).filter(
+        (row) => Number(row.unit) > 0 && row.topic && row.file,
+      ),
+      rows = [];
+    for (const code of CALCULUS_ASSIGNMENT_BANKS) {
+      rows.push({
+        bank_code: code,
+        bank_display_name: calculusBankLabel(code),
+        course_key: "ap-calculus",
+        unit_number: "",
+        lesson_key: "",
+        static_catalogue: true,
+      });
+      const units = [...new Set(topics.filter((row) => Number(row.bank_counts?.[code] || 0) > 0).map((row) => String(row.unit)))];
+      units.forEach((unit) =>
+        rows.push({
+          bank_code: code,
+          bank_display_name: calculusBankLabel(code),
+          course_key: "ap-calculus",
+          unit_number: unit,
+          lesson_key: "",
+          static_catalogue: true,
+        }),
+      );
+      topics
+        .filter((row) => Number(row.bank_counts?.[code] || 0) > 0)
+        .forEach((row) =>
+          rows.push({
+            bank_code: code,
+            bank_display_name: calculusBankLabel(code),
+            course_key: "ap-calculus",
+            unit_number: String(row.unit),
+            lesson_key: String(row.topic),
+            lesson_title: String(row.label || "").replace(/^\s*\d+(?:\.\d+)?\s*·\s*/, ""),
+            static_catalogue: true,
+            static_bundle: row,
+          }),
+        );
+    }
+    return rows;
+  }
   function selectedAssignmentTarget() {
     return assignmentInventory.find(
       (row) =>
@@ -663,6 +709,9 @@
   }
   async function loadAssignmentInventory() {
     const course = assignmentCourse();
+    if (course === "ap-calculus") {
+      assignmentInventory = await staticCalculusInventory();
+    } else {
     let result = await ECHSInstitution.api(
         "practice-bank-api",
         `/inventory?course=${encodeURIComponent(course)}`,
@@ -677,6 +726,10 @@
         (row) => canonicalCourse(row.course_key) === course,
       );
     }
+    }
+    assignmentInventory = assignmentInventory.filter(
+      (row) => canonicalCourse(row.course_key) === course,
+    );
     const banks = [
       ...new Map(
         assignmentInventory.map((row) => [
@@ -710,6 +763,51 @@
       $("assignmentQuestionList").innerHTML =
         '<div class="assignmentPickerEmpty"><span>!</span><strong>This bank exists, but its questions are not lesson-mapped</strong><p>Complete the bank import or rebuild its course, unit, and lesson indexes before assigning it.</p></div>';
       syncAssignmentSummary();
+      return;
+    }
+    const staticRows = bankRows.filter((row) => row.static_bundle);
+    if (staticRows.length) {
+      const targetKey = selectedAssignmentTarget(),
+        matchingRows = staticRows.filter((row) => {
+          if (scope === "course") return true;
+          if (scope === "unit")
+            return String(row.unit_number) === String(targetKey?.unit_number || "");
+          return String(row.lesson_key) === String(targetKey?.lesson_key || "");
+        }),
+        bundles = [...new Map(matchingRows.map((row) => [row.static_bundle.file, row.static_bundle])).values()],
+        loaded = (await Promise.all(bundles.map((row) => ECHSBank.loadBundle(row)))).flat(),
+        seen = new Set();
+      assignmentQuestions = loaded
+        .filter((question) => question.bank_code === bank)
+        .filter((question) => {
+          const id = String(question.id || "");
+          if (!id || seen.has(id)) return false;
+          seen.add(id);
+          return true;
+        })
+        .map((question) => ({
+          question_id: question.id,
+          bank_code: question.bank_code,
+          question_type: question.type,
+          payload: {
+            type: question.type,
+            prompt_html: question.prompt_html,
+            prompt_text: question.prompt_text,
+            choices: question.choices,
+            source: question.source,
+            classification: question.classification,
+            metadata: question.metadata,
+            skill_key: question.classification?.ap_topic,
+          },
+        }));
+      selectedQuestionIds = new Set(
+        [...selectedQuestionIds].filter((id) =>
+          assignmentQuestions.some((row) => String(row.question_id) === id),
+        ),
+      );
+      $("assignmentAvailability").innerHTML =
+        `<strong>${assignmentQuestions.length.toLocaleString()} questions available</strong><span>${esc(calculusBankLabel(bank))} · ${esc(scope)}</span>`;
+      renderAssignmentQuestions();
       return;
     }
     const query = new URLSearchParams({
