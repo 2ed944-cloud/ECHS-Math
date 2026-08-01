@@ -7,6 +7,12 @@
   let mathRenderQueued=false;
 
   function ensureMathStyles(){
+    if(
+      typeof document==="undefined"||
+      typeof document.createElement!=="function"||
+      !document.head||
+      typeof document.head.append!=="function"
+    )return false;
     if(!document.getElementById("echs-practice-katex-css")){
       const link=document.createElement("link");
       link.id="echs-practice-katex-css";
@@ -43,6 +49,7 @@
       `;
       document.head.append(style);
     }
+    return true;
   }
   function loadMathScript(id,src,ready){
     if(ready())return Promise.resolve();
@@ -66,9 +73,13 @@
     });
   }
   function ensureMathRuntime(){
-    ensureMathStyles();
+    const canLoad=ensureMathStyles();
     if(window.katex&&typeof window.renderMathInElement==="function"){
       document.documentElement.dataset.practiceKatex="ready";
+      return Promise.resolve();
+    }
+    if(!canLoad){
+      document.documentElement.dataset.practiceKatex="unavailable";
       return Promise.resolve();
     }
     if(mathRuntimePromise)return mathRuntimePromise;
