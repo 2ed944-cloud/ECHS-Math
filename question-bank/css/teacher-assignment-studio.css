@@ -8,6 +8,7 @@
   border-radius: 28px;
   background: #f4f7f9;
   box-shadow: 0 36px 110px rgba(15, 42, 66, 0.28);
+  overflow: hidden !important;
 }
 .assignmentStudioDialog::backdrop {
   background: rgba(11, 31, 49, 0.62);
@@ -22,6 +23,9 @@
   overflow-y: auto;
 }
 .assignmentStudioHead {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
   position: sticky;
   top: 0;
   z-index: 5;
@@ -33,11 +37,15 @@
   background: linear-gradient(125deg, #102f4b, #16445a 58%, #087c75);
   color: #fff;
 }
+.assignmentStudioHead > div:first-child {
+  min-width: 0;
+}
 .assignmentStudioHead h2 {
   margin: 0.25rem 0 0.35rem;
   font-family: Fraunces, Georgia, serif;
   font-size: clamp(1.65rem, 3vw, 2.55rem);
   color: #fff !important;
+  overflow-wrap: anywhere;
 }
 .assignmentStudioHead p {
   max-width: 760px;
@@ -50,6 +58,7 @@
   gap: 0.45rem;
   align-self: center;
   white-space: nowrap;
+  flex: 0 0 auto;
 }
 .assignmentStudioProgress span {
   padding: 0.55rem 0.75rem;
@@ -64,6 +73,9 @@
   color: #5a4010;
 }
 .assignmentStudioLayout {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
   display: grid;
   grid-template-columns: minmax(380px, 0.78fr) minmax(480px, 1.22fr);
   gap: 1rem;
@@ -232,6 +244,9 @@
   margin: 0.35rem 0;
 }
 .assignmentStudio .iDialogFooter {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
   position: sticky;
   bottom: 0;
   z-index: 5;
