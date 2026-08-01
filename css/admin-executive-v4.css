@@ -1,0 +1,39 @@
+/* School Control Center executive polish */
+body.institutionBody[data-premium-page="admin"]{--ae-navy:#102a43;--ae-navy-2:#18455e;--ae-wine:#8f194a;--ae-teal:#087f78;--ae-gold:#e5b84e;--ae-line:#d9e4eb;overflow-x:clip;background:radial-gradient(circle at 100% 0,rgba(8,127,120,.1),transparent 32rem),radial-gradient(circle at 25% 100%,rgba(143,25,74,.07),transparent 28rem),#f4f7fa;color:var(--ae-navy)}
+.institutionBody .institutionSidebar{border-right:1px solid rgba(255,255,255,.12);background:linear-gradient(180deg,#0d263d 0%,#123e52 58%,#086c69 125%);box-shadow:18px 0 50px rgba(16,42,67,.13)}
+.institutionBody .institutionBrand{margin:12px;border:1px solid rgba(255,255,255,.13);border-radius:20px;background:rgba(255,255,255,.07)}
+.institutionBody .institutionBrandMark{box-shadow:0 12px 30px rgba(0,0,0,.2)}
+.institutionBody .institutionUser{margin-inline:12px;border:1px solid rgba(255,255,255,.1);border-radius:18px;background:rgba(255,255,255,.065)}
+.institutionBody .institutionNav{padding-inline:10px}
+.institutionBody .institutionNav a{margin:3px 0;border:1px solid transparent;border-radius:14px;transition:.2s ease}
+.institutionBody .institutionNav a:hover{border-color:rgba(255,255,255,.13);background:rgba(255,255,255,.09);transform:translateX(3px)}
+.institutionBody .institutionNav a.active{border-color:rgba(229,184,78,.28);background:linear-gradient(90deg,rgba(229,184,78,.18),rgba(255,255,255,.08));box-shadow:inset 3px 0 var(--ae-gold)}
+.institutionBody .institutionMain{min-width:0}
+.institutionBody .institutionTopbar{border-bottom:1px solid rgba(16,42,67,.08);background:rgba(248,251,253,.86);box-shadow:0 8px 28px rgba(16,42,67,.06);backdrop-filter:blur(18px)}
+.institutionBody .premiumHero{position:relative;isolation:isolate;overflow:hidden;border:1px solid rgba(255,255,255,.14);border-radius:28px;background:linear-gradient(125deg,#102a43 0%,#16495e 56%,#087f78 100%);box-shadow:0 25px 70px rgba(16,42,67,.19)}
+.institutionBody .premiumHero:after{content:"◫";position:absolute;z-index:-1;right:2%;bottom:-35%;color:rgba(255,255,255,.055);font-size:330px;line-height:1}
+.institutionBody .premiumHero h1{letter-spacing:-.042em;text-wrap:balance}
+.institutionBody .premiumMetrics{gap:16px}
+.institutionBody .premiumMetric,.institutionBody .premiumCard{position:relative;overflow:hidden;border:1px solid rgba(16,42,67,.09);border-radius:23px;background:rgba(255,255,255,.93);box-shadow:0 12px 38px rgba(16,42,67,.085);transition:transform .22s ease,box-shadow .22s ease}
+.institutionBody .premiumMetric:before{content:"";position:absolute;inset:0 0 auto;height:4px;background:var(--metric-color,var(--ae-teal))}
+.institutionBody .premiumMetric:hover,.institutionBody .premiumCard:hover{transform:translateY(-3px);box-shadow:0 20px 48px rgba(16,42,67,.12)}
+.institutionBody .premiumMetric strong{letter-spacing:-.045em}
+.institutionBody .premiumSectionHead{margin-top:34px;padding-bottom:12px;border-bottom:1px solid var(--ae-line)}
+.institutionBody .premiumSectionHead h2{letter-spacing:-.035em}
+.institutionBody .premiumCardHeader{border-bottom:1px solid #e5edf2}
+.institutionBody .iFilters{padding:10px;border:1px solid var(--ae-line);border-radius:18px;background:rgba(255,255,255,.82)}
+.institutionBody :is(input,select,textarea){border:1px solid #cbdbe5;border-radius:13px;background:#fff;transition:.18s ease}
+.institutionBody :is(input,select,textarea):focus{border-color:var(--ae-teal);box-shadow:0 0 0 4px rgba(8,127,120,.12);outline:0}
+.institutionBody .iTableWrap{overflow:auto;border:1px solid var(--ae-line);border-radius:22px;background:#fff;box-shadow:0 13px 40px rgba(16,42,67,.08)}
+.institutionBody .iTable{min-width:880px}
+.institutionBody .iTable thead{position:sticky;top:0;z-index:1;background:#edf4f7}
+.institutionBody .iTable th{color:#4b6579;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase}
+.institutionBody .iTable tbody tr{transition:.16s ease}
+.institutionBody .iTable tbody tr:hover{background:#f2faf9}
+.institutionBody .iButton{border-radius:13px;box-shadow:0 8px 20px rgba(16,42,67,.1);transition:.18s ease}
+.institutionBody .iButton:hover{transform:translateY(-1px);box-shadow:0 12px 27px rgba(16,42,67,.15)}
+.institutionBody :is(a,button,input,select):focus-visible{outline:3px solid rgba(229,184,78,.75);outline-offset:3px}
+.institutionBody .iDialog{border:0;border-radius:26px;box-shadow:0 35px 100px rgba(5,25,42,.35)}
+.institutionBody .iDialog::backdrop{background:rgba(5,25,42,.58);backdrop-filter:blur(5px)}
+@media(max-width:900px){.institutionBody .institutionSidebar{box-shadow:none}.institutionBody .premiumMetrics{grid-template-columns:repeat(2,minmax(0,1fr))}.institutionBody .premiumGrid{display:block}.institutionBody .premiumCard{margin-bottom:16px}}
+@media(max-width:560px){.institutionBody .premiumMetrics{grid-template-columns:1fr}.institutionBody .premiumHero{border-radius:21px}.institutionBody .iFilters{display:block}.institutionBody .iControl{margin-bottom:10px}}
