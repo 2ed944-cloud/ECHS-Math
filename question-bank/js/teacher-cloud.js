@@ -701,6 +701,17 @@
       scope = $("assignmentScope").value,
       bank = $("assignmentBank").value;
     if (!bank) return renderAssignmentQuestions();
+    const bankRows = assignmentInventory.filter((row) => row.bank_code === bank),
+      packageOnly = bankRows.length && bankRows.every((row) => row.package_only);
+    if (packageOnly) {
+      assignmentQuestions = [];
+      $("assignmentAvailability").innerHTML =
+        `<strong>Bank package found · 0 mapped questions</strong><span>${esc(bank)} · mapping required</span>`;
+      $("assignmentQuestionList").innerHTML =
+        '<div class="assignmentPickerEmpty"><span>!</span><strong>This bank exists, but its questions are not lesson-mapped</strong><p>Complete the bank import or rebuild its course, unit, and lesson indexes before assigning it.</p></div>';
+      syncAssignmentSummary();
+      return;
+    }
     const query = new URLSearchParams({
       course: assignmentCourse(),
       bank,
