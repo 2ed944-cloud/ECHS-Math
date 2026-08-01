@@ -91,3 +91,132 @@
   }
   install();
 })();
+
+/* Render KaTeX in dynamically inserted private-bank questions. */
+(function(){
+  "use strict";
+  const VERSION="0.16.27";
+  const DELIMITERS=[
+    {left:"\\[",right:"\\]",display:true},
+    {left:"\\(",right:"\\)",display:false},
+  ];
+  const SKIP_TAGS=new Set(["SCRIPT","NOSCRIPT","STYLE","TEXTAREA","PRE","CODE","OPTION"]);
+  let observer=null;
+  let rendering=false;
+  let queued=false;
+  let retries=0;
+
+  function ensureStyle(){
+    if(document.getElementById("echs-katex-css"))return;
+    const link=document.createElement("link");
+    link.id="echs-katex-css";
+    link.rel="stylesheet";
+    link.href=`https://cdn.jsdelivr.net/npm/katex@${VERSION}/dist/katex.min.css`;
+    document.head.append(link);
+  }
+  function loadScript(id,src){
+    const existing=document.getElementById(id);
+    if(existing){
+      if(existing.dataset.loaded==="true")return Promise.resolve();
+      return new Promise((resolve,reject)=>{
+        existing.addEventListener("load",resolve,{once:true});
+        existing.addEventListener("error",reject,{once:true});
+      });
+    }
+    return new Promise((resolve,reject)=>{
+      const script=document.createElement("script");
+      script.id=id;
+      script.src=src;
+      script.async=true;
+      script.addEventListener("load",()=>{script.dataset.loaded="true";resolve();},{once:true});
+      script.addEventListener("error",reject,{once:true});
+      document.head.append(script);
+    });
+  }
+  function containsMath(value){
+    return /\\(?:\(|\[)/.test(String(value||""))||/\\\\(?:\(|\[)/.test(String(value||""));
+  }
+  function normaliseEscapedDelimiters(root){
+    if(!root||!document.createTreeWalker)return;
+    const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode(node){
+      const parent=node.parentElement;
+      if(!parent||SKIP_TAGS.has(parent.tagName)||parent.closest(".katex,.katex-display,.no-katex"))return NodeFilter.FILTER_REJECT;
+      return /\\\\[()\[\]]/.test(node.nodeValue||"")?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_REJECT;
+    }});
+    const nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);
+    nodes.forEach(node=>{
+      node.nodeValue=String(node.nodeValue||"")
+        .replaceAll("\\\\(","\\(")
+        .replaceAll("\\\\)","\\)")
+        .replaceAll("\\\\[","\\[")
+        .replaceAll("\\\\]","\\]");
+    });
+  }
+  function observe(){
+    const shell=document.getElementById("shell");
+    if(!shell)return;
+    if(!observer)observer=new MutationObserver(records=>{
+      const relevant=records.some(record=>{
+        if(record.type==="characterData")return containsMath(record.target?.nodeValue);
+        return [...record.addedNodes].some(node=>{
+          if(node.nodeType===Node.TEXT_NODE)return containsMath(node.nodeValue);
+          if(node.nodeType!==Node.ELEMENT_NODE)return false;
+          if(node.matches?.(".katex,.katex-display"))return false;
+          return containsMath(node.textContent)||Boolean(node.querySelector?.(".prompt,.choice,.feedback,.solution"));
+        });
+      });
+      if(relevant)queue(shell);
+    });
+    observer.observe(shell,{childList:true,subtree:true,characterData:true});
+  }
+  function render(root=document.getElementById("shell")||document.body){
+    if(!root||rendering)return;
+    if(typeof window.renderMathInElement!=="function")return queue(root);
+    rendering=true;
+    observer?.disconnect();
+    try{
+      normaliseEscapedDelimiters(root);
+      window.renderMathInElement(root,{
+        delimiters:DELIMITERS,
+        throwOnError:false,
+        strict:"warn",
+        trust:false,
+        ignoredTags:["script","noscript","style","textarea","pre","code","option"],
+        ignoredClasses:["katex","katex-display","no-katex"],
+      });
+      document.documentElement.dataset.practiceMath="ready";
+      retries=0;
+    }catch(error){
+      console.warn("Practice KaTeX render warning",error);
+      document.documentElement.dataset.practiceMath="warning";
+    }finally{
+      rendering=false;
+      observe();
+    }
+  }
+  function queue(root=document.getElementById("shell")||document.body){
+    if(queued)return;
+    queued=true;
+    const run=()=>{
+      queued=false;
+      if(typeof window.renderMathInElement==="function")return render(root);
+      if(retries++<40)setTimeout(()=>queue(root),100);
+      else document.documentElement.dataset.practiceMath="unavailable";
+    };
+    if(typeof requestAnimationFrame==="function")requestAnimationFrame(run);else setTimeout(run,0);
+  }
+  function install(){
+    ensureStyle();
+    observe();
+    loadScript("echs-katex-js",`https://cdn.jsdelivr.net/npm/katex@${VERSION}/dist/katex.min.js`)
+      .then(()=>loadScript("echs-katex-auto-render",`https://cdn.jsdelivr.net/npm/katex@${VERSION}/dist/contrib/auto-render.min.js`))
+      .then(()=>queue())
+      .catch(error=>{
+        console.warn("Practice KaTeX assets could not be loaded",error);
+        document.documentElement.dataset.practiceMath="unavailable";
+      });
+    window.addEventListener?.("echs:private-bank-summary",()=>queue());
+    window.ECHSPracticeMath={render,queue};
+  }
+  if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",install,{once:true});else install();
+})();
