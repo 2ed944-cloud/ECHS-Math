@@ -56,7 +56,7 @@ class Supabase:
         merged = {
             "apikey": self.key,
             "authorization": f"Bearer {self.key}",
-            "user-agent": "ECHS-Private-Bank-Importer/2.2-resumable-multicourse",
+            "user-agent": "ECHS-Private-Bank-Importer/2.3-exact-replacement",
         }
         merged.update(headers or {})
         last_error: Exception | None = None
@@ -94,6 +94,58 @@ class Supabase:
         return self.request("PATCH", f"/rest/v1/{table}?{query}", canonical(values), {
             "content-type": "application/json", "prefer": "return=minimal",
         }, attempts=4)
+
+    def select_existing_question_ids(self, organization_id: str, bank_code: str) -> set[str]:
+        existing: set[str] = set()
+        offset, page_size = 0, 1000
+        while True:
+            query = urllib.parse.urlencode({
+                "select": "question_id",
+                "organization_id": f"eq.{organization_id}",
+                "bank_code": f"eq.{bank_code}",
+                "order": "question_id.asc",
+            }, safe=",")
+            rows = self.request("GET", f"/rest/v1/private_bank_questions?{query}", headers={
+                "range": f"{offset}-{offset + page_size - 1}",
+            }, attempts=4) or []
+            existing.update(str(row.get("question_id") or "") for row in rows if row.get("question_id"))
+            if len(rows) < page_size:
+                break
+            offset += page_size
+        return existing
+
+    def delete_question_ids(
+        self,
+        organization_id: str,
+        bank_code: str,
+        question_ids: set[str] | list[str] | tuple[str, ...],
+        *,
+        batch_size: int = 100,
+    ) -> int:
+        ordered = sorted({str(value or "").strip() for value in question_ids if str(value or "").strip()})
+        if not ordered:
+            return 0
+        if batch_size < 1 or batch_size > 200:
+            raise ValueError("delete batch_size must be between 1 and 200")
+        removed = 0
+        for start in range(0, len(ordered), batch_size):
+            group = ordered[start:start + batch_size]
+            # Question IDs in validated packages are stable opaque strings. Quote each
+            # PostgREST IN literal so punctuation cannot change the filter semantics.
+            literals = ",".join('"' + value.replace("\\", "\\\\").replace('"', '\\"') + '"' for value in group)
+            query = urllib.parse.urlencode({
+                "organization_id": f"eq.{organization_id}",
+                "bank_code": f"eq.{bank_code}",
+                "question_id": f"in.({literals})",
+            }, safe=",.()")
+            self.request(
+                "DELETE",
+                f"/rest/v1/private_bank_questions?{query}",
+                headers={"prefer": "return=minimal"},
+                attempts=4,
+            )
+            removed += len(group)
+        return removed
 
     def select_existing_media(self, organization_id: str, package_id: str) -> dict[str, str]:
         existing: dict[str, str] = {}
@@ -287,6 +339,7 @@ def main() -> int:
             raise RuntimeError(f"Question count mismatch: expected {expected}, parsed {len(prepared)}")
 
         bank_code, bank_slug = manifest["bank_code"], manifest["bank_slug"]
+        existing_question_ids = client.select_existing_question_ids(args.organization_id, bank_code)
         storage_path = f"{bank_slug}/imports/{package_hash}.zip"
         stored_manifest = {**manifest, "target_courses": effective_targets}
         package_row = {
@@ -342,8 +395,21 @@ def main() -> int:
         for index, group in enumerate(batches(rows, args.batch_size), 1):
             client.upsert("private_bank_questions", group, "organization_id,question_id")
             done = min(index * args.batch_size, len(rows))
-            percent = 45 + int(35 * index / total_batches)
+            percent = 45 + int(32 * index / total_batches)
             progress(client, args.request_id, percent, f"Questions imported: {done}/{len(rows)}")
+
+        stale_question_ids = existing_question_ids - seen
+        questions_removed = client.delete_question_ids(
+            args.organization_id,
+            bank_code,
+            stale_question_ids,
+        )
+        progress(
+            client,
+            args.request_id,
+            79,
+            f"Exact replacement complete: removed {questions_removed} stale questions",
+        )
 
         uploaded, skipped, media_rows = 0, 0, []
         media_archives = sorted(name for name in archive.namelist() if name.startswith(f"{root}/media/") and name.endswith(".zip"))
@@ -400,6 +466,7 @@ def main() -> int:
             "bank_code": bank_code,
             "display_name": aliases.get("teacher") or aliases.get("student") or bank_code,
             "questions": len(rows),
+            "questions_removed": questions_removed,
             "media_uploaded": uploaded,
             "media_reused": skipped,
             "media_total": total_media,
