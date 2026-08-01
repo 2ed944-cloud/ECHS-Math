@@ -33,3 +33,9 @@
   pointer-events:none;
 }
 .unit.open .unitBody>.unitPracticeUnlock{opacity:1}
+
+
+/* Reliable collapse contract for a unit body with multiple injected children.
+   The former one-row grid left the second child in an implicit visible row. */
+.unit:not(.open)>.unitBody{display:none!important}
+.unit.open>.unitBody{display:block!important}
