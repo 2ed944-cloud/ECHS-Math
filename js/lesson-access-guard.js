@@ -3,6 +3,16 @@
   "use strict";
   const STORE="echs_math_complete";
   const esc=value=>String(value??"").replace(/[&<>"']/g,char=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[char]));
+  function loadLessonTutor(){
+    if(window.__ECHS_LESSON_TUTOR_LOADER__)return;
+    window.__ECHS_LESSON_TUTOR_LOADER__=true;
+    const current=document.currentScript||[...document.scripts].find(node=>/lesson-access-guard\.js/.test(node.src));
+    const root=current?new URL("../",current.src):new URL("/ECHS-Math/",location.origin);
+    const node=document.createElement("script");
+    node.src=new URL("js/lesson-ai-loader.js?v=20260802-lesson2",root).href;
+    node.defer=true;
+    document.head.append(node);
+  }
   function completed(key){try{return JSON.parse(localStorage.getItem(STORE)||"[]").includes(String(key));}catch{return false;}}
   function markCompleted(key){
     if(!key)return;
@@ -62,6 +72,8 @@
     const practiceHref=ECHSInstitution.root(`question-bank/practice.html?${practiceParams}`),pathHref=ECHSInstitution.root("index.html#courses"),dashboardHref=ECHSPortalAccess.roleHome(access.current),isComplete=completed(lessonKey);
     document.documentElement.dataset.lessonGate="allowed";
     document.documentElement.dataset.echsLessonCourse=course||"unassigned";
+    document.documentElement.dataset.echsLessonTitle=title;
+    loadLessonTutor();
     const context={course,pathHref,dashboardHref,practiceHref,lessonKey,title,isComplete,role:access.role};
     if(course==="ib-math-ai"&&installIntegratedAccess(context))return;
     installFallbackBar(context);
