@@ -1,13 +1,13 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-27T13:00:00Z",
+  "generated_at": "2026-08-02T16:07:13Z",
   "canonical_scope": {
     "questions": 1217,
     "mcq": 876,
     "frq": 341,
-    "student_ready": 52,
-    "teacher_archive_restricted": 1165,
-    "media_warnings": 91,
+    "student_ready": 1104,
+    "teacher_archive_restricted": 113,
+    "media_warnings": 0,
     "correction_records": 633
   },
   "trust_tiers": [

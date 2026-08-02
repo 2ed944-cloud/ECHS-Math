@@ -1,7 +1,6 @@
 (async function(){
   "use strict";
   const CALCULUS="ap-calculus";
-  const REMOVAL_ORDER=["ap-precalculus","ib-math-ai","algebra-2","grade-9"];
   const courseLabels={
     "ap-calculus":"AP Calculus",
     "ap-precalculus":"AP Precalculus",
@@ -10,9 +9,6 @@
     "grade-9":"Grade 9"
   };
   const status=document.getElementById("bankStatus");
-  const cleanupButton=document.getElementById("keepCalculusOnly");
-  const cleanupResult=document.getElementById("cleanupResult");
-  const dangerZone=document.getElementById("cleanupDangerZone");
   let administrator=false;
   const number=value=>new Intl.NumberFormat("en-GB").format(Number(value||0));
   const escapeHTML=value=>String(value??"").replace(/[&<>'"]/g,char=>({
@@ -51,7 +47,6 @@
     const all=Array.isArray(result?.packages)?result.packages:[];
     const calculus=all.filter(row=>targets(row).includes(CALCULUS));
     const live=all.filter(complete);
-    const pendingRemoval=all.filter(row=>targets(row).some(course=>course!==CALCULUS));
     const totals=all.reduce((acc,row)=>{
       acc.questions+=declaredQuestions(row);
       acc.pools+=declaredPools(row);
@@ -96,51 +91,8 @@
       }).join("")
       :'<article class="bankCard"><h2>No private bank package is registered</h2><p>Upload a validated single-course package from the Upload Manager.</p></article>';
 
-    status.textContent=pendingRemoval.length
-      ?`${number(all.length)} private-bank packages are registered; ${number(live.length)} are complete and ${number(pendingRemoval.length)} include non-calculus courses.`
-      :`${number(all.length)} private-bank packages are registered; ${number(live.length)} are complete.`;
-    cleanupButton.disabled=pendingRemoval.length===0;
-    cleanupButton.textContent=pendingRemoval.length?"Keep AP Calculus only":"Calculus-only cleanup complete";
-    document.documentElement.dataset.nonCalculusPackages=String(pendingRemoval.length);
-    return{all,calculus,live,pendingRemoval};
-  }
-
-  function aggregateSnapshot(courseIndex,job){
-    const progress=job?.progress||{},totals=job?.totals||{};
-    const coursePercent=Math.max(0,Math.min(100,Number(job?.percent||0)));
-    const overall=Math.round(((courseIndex+coursePercent/100)/REMOVAL_ORDER.length)*100);
-    return{progress,totals,coursePercent,overall};
-  }
-  function renderPurge(course,courseIndex,job,{retrying=false}={}){
-    const{progress,totals,coursePercent,overall}=aggregateSnapshot(courseIndex,job);
-    cleanupResult.classList.remove("hidden");
-    cleanupResult.innerHTML=`<div class="purgeResultHead"><strong>${escapeHTML(retrying?"Retrying the current batch…":job?.phase_label||"Preparing cleanup…")}</strong><span>${overall}% overall</span></div>
-      <div class="purgeProgress" aria-label="Non-calculus cleanup progress"><i style="width:${overall}%"></i></div>
-      <div class="purgeMetrics"><span><b>${escapeHTML(courseLabels[course])}</b><br>${coursePercent}% course progress</span>
-        <span><b>${number(progress.questions_processed)}</b> / ${number(totals.questions)} questions</span>
-        <span><b>${number(Number(progress.packages_deleted||0)+Number(progress.mixed_packages_updated||0))}</b> / ${number(totals.packages)} packages</span></div>
-      <small>Course ${courseIndex+1} of ${REMOVAL_ORDER.length} · job ${escapeHTML(job?.id||"pending")} · safely resumable.</small>`;
-  }
-  function retryable(error){
-    const code=Number(error?.status||0),message=String(error?.message||"").toLowerCase();
-    return!code||[408,425,429,500,502,503,504,546].includes(code)||/timeout|cpu time|temporar|network|fetch/.test(message);
-  }
-  async function runCourse(course,courseIndex){
-    const started=await window.ECHSInstitution.api("private-bank-purge-api",`/courses/${encodeURIComponent(course)}`,{method:"DELETE"});
-    let job=started.job,retries=0,steps=0;
-    while(job?.status!=="completed"){
-      if(++steps>10000)throw new Error(`Cleanup safety limit reached for ${courseLabels[course]}. Run the same action again to resume.`);
-      renderPurge(course,courseIndex,job);
-      try{
-        const result=await window.ECHSInstitution.api("private-bank-purge-api",`/jobs/${encodeURIComponent(job.id)}/step`,{method:"POST",body:{}});
-        job=result.job;retries=0;await sleep(80);
-      }catch(error){
-        if(!retryable(error)||retries>=6)throw error;
-        retries+=1;renderPurge(course,courseIndex,job,{retrying:true});
-        await sleep(Math.min(8000,750*(2**retries)));
-      }
-    }
-    renderPurge(course,courseIndex,job);
+    status.textContent=`${number(all.length)} private-bank packages are registered across the ECHS courses; ${number(live.length)} are complete.`;
+    return{all,calculus,live};
   }
 
   async function deleteSpecificBank(bankCode,bankName,button){
@@ -166,36 +118,16 @@
     }
   }
 
-  async function keepCalculusOnly(){
-    const confirmation=prompt("Type KEEP AP CALCULUS ONLY to remove every non-calculus question bank.");
-    if(confirmation!=="KEEP AP CALCULUS ONLY")return;
-    cleanupButton.disabled=true;
-    cleanupButton.textContent="Calculus-only cleanup in progress…";
-    try{
-      for(let index=0;index<REMOVAL_ORDER.length;index++)await runCourse(REMOVAL_ORDER[index],index);
-      cleanupResult.insertAdjacentHTML("beforeend",'<p class="purgeComplete"><strong>Calculus-only cleanup completed.</strong> AP Calculus packages and mappings were preserved; all other course-bank mappings were removed. Learning history was retained.</p>');
-      await load();
-    }catch(error){
-      console.error(error);
-      cleanupResult.classList.remove("hidden");
-      cleanupResult.insertAdjacentHTML("beforeend",`<p><strong>Cleanup paused safely.</strong><br>${escapeHTML(error instanceof Error?error.message:"Could not continue the cleanup.")}<br><small>Run the same action again to resume from the stored batch.</small></p>`);
-      cleanupButton.disabled=false;
-      cleanupButton.textContent="Resume calculus-only cleanup";
-    }
-  }
-
   try{
     const current=await window.ECHSInstitution.requireAuth(["teacher","admin"]);
     if(!current)return;
     administrator=current.role==="admin";
-    if(administrator)dangerZone.classList.remove("hidden");
     await load();
     document.getElementById("bankGrid")?.addEventListener("click",event=>{
       const button=event.target.closest("[data-delete-bank]");
       if(!button||!administrator)return;
       deleteSpecificBank(button.dataset.deleteBank,button.dataset.deleteName||button.dataset.deleteBank,button);
     });
-    cleanupButton?.addEventListener("click",keepCalculusOnly);
   }catch(error){
     console.error(error);
     status.textContent=error instanceof Error?error.message:"Could not load the private bank registry.";

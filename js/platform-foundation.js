@@ -51,8 +51,18 @@
     main.prepend(band);
   }
   function enhanceFooter(){
-    const footer=qs("footer");if(!footer||qs(".platformPolicyLinks",footer))return;
+    const footer=qs("footer");if(!footer||qs(".platformPolicyLinks,.footerPolicyLinks",footer))return;
     const nav=document.createElement("nav");nav.className="platformPolicyLinks";nav.setAttribute("aria-label","Platform policies");nav.innerHTML=`<a href="${rootLink("privacy.html")}">Privacy</a><a href="${rootLink("accessibility.html")}">Accessibility</a><a href="${rootLink("sources-and-rights.html")}">Sources and rights</a>`;footer.append(nav);
+  }
+  function improveAccessibleNames(){
+    qsa("input:not([type='hidden']),select,textarea").forEach(control=>{
+      if(control.closest("[aria-hidden='true']")||control.getAttribute("aria-label")||control.getAttribute("aria-labelledby")||control.title)return;
+      const id=control.id;
+      if((id&&qs(`label[for="${CSS.escape(id)}"]`))||control.closest("label"))return;
+      const source=control.placeholder||control.name||id||control.tagName.toLowerCase();
+      const label=String(source).replace(/[-_]+/g," ").replace(/\b\w/g,char=>char.toUpperCase()).trim();
+      control.setAttribute("aria-label",label);
+    });
   }
   function ensureDiscoveryMetadata(){
     const noIndex=/\/(?:offline|dashboard|teacher|parent|student|admin|mistakes)\.html$/i.test(location.pathname);
@@ -104,7 +114,7 @@
     if(event.altKey&&event.key.toLowerCase()==="d")location.href=rootLink("question-bank/dashboard.html");
     if(event.altKey&&event.key.toLowerCase()==="r")location.href=rootLink("question-bank/mistakes.html");
   }
-  function init(){enhanceHeader();addPageBand();enhanceFooter();ensureDiscoveryMetadata();updateConnectivity();configureInstall();populateLearningSnapshot();loadBankSnapshot();registerServiceWorker();loadInstitutionClient();addEventListener("online",updateConnectivity);addEventListener("offline",updateConnectivity);addEventListener("keydown",keyboardShortcuts);}
+  function init(){enhanceHeader();addPageBand();enhanceFooter();improveAccessibleNames();ensureDiscoveryMetadata();updateConnectivity();configureInstall();populateLearningSnapshot();loadBankSnapshot();registerServiceWorker();loadInstitutionClient();addEventListener("online",updateConnectivity);addEventListener("offline",updateConnectivity);addEventListener("keydown",keyboardShortcuts);}
   if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init,{once:true});else init();
   window.ECHSPlatform={ROOT:ROOT.href,setTheme,toast,loadBankSnapshot,populateLearningSnapshot};
 })();

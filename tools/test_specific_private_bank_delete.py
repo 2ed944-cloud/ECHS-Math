@@ -31,7 +31,7 @@ for token in required_api:
 for token in required_ui:
     if token not in ui:
         errors.append(f"UI missing: {token}")
-if "specific-bank-delete" not in html or "specific-bank-delete" not in worker:
+if "multicourse-banks" not in html or "multicourse-banks" not in worker:
     errors.append("Cache-busting markers are incomplete")
 if errors:
     raise SystemExit("\n".join(errors))

@@ -29,6 +29,23 @@
       location.href=practiceHref;
     });
   }
+  function improveAccessibleNames(){
+    const controls=document.querySelectorAll("input:not([type=hidden]), select, textarea, button");
+    controls.forEach((control,index)=>{
+      if(control.closest('[aria-hidden="true"]')||control.hasAttribute("aria-label")||control.hasAttribute("aria-labelledby")||control.title)return;
+      const hasLabel=[...document.querySelectorAll("label")].some(label=>label.control===control||label.contains(control));
+      if(hasLabel)return;
+      if(control.tagName==="BUTTON"){
+        if(control.textContent.trim())return;
+        const expression=control.querySelector("[data-tex]")?.dataset.tex;
+        control.setAttribute("aria-label",expression?`Select mathematical expression: ${expression}`:`Lesson action ${index+1}`);
+        return;
+      }
+      const fallback=control.tagName==="SELECT"?"Choose an option":control.type==="range"?"Adjust value":"Written response";
+      const name=control.placeholder||control.name||control.id||fallback;
+      control.setAttribute("aria-label",String(name).replace(/[-_]+/g," ").trim());
+    });
+  }
   function installIntegratedAccess({pathHref,dashboardHref,practiceHref,lessonKey,isComplete}){
     const nativeActions=document.querySelector(".topbar .header-actions");
     if(!nativeActions||!document.querySelector(".routebar"))return false;
@@ -74,6 +91,8 @@
     document.documentElement.dataset.echsLessonCourse=course||"unassigned";
     document.documentElement.dataset.echsLessonTitle=title;
     loadLessonTutor();
+    improveAccessibleNames();
+    new MutationObserver(improveAccessibleNames).observe(document.body,{childList:true,subtree:true});
     const context={course,pathHref,dashboardHref,practiceHref,lessonKey,title,isComplete,role:access.role};
     if(course==="ib-math-ai"&&installIntegratedAccess(context))return;
     installFallbackBar(context);

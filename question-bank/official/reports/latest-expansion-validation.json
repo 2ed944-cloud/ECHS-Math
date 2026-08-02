@@ -1,11 +1,11 @@
 {
   "valid": true,
   "canonicalRecords": 1217,
-  "studentReadyRecords": 52,
+  "studentReadyRecords": 1104,
   "archiveRecords": 1217,
-  "teacherArchiveOnly": 1165,
+  "teacherArchiveOnly": 113,
   "expansionRecords": 0,
   "errors": [],
   "warnings": [],
-  "checkedAt": "2026-07-25"
+  "checkedAt": "2026-08-02"
 }
