@@ -33,7 +33,7 @@ function cors(origin: string): HeadersInit {
   return {
     "access-control-allow-origin": allowed,
     "access-control-allow-headers": "authorization, content-type, x-requested-with",
-    "access-control-allow-methods": "GET, POST, PATCH, DELETE, OPTIONS",
+    "access-control-allow-methods": "GET, POST, PUT, PATCH, DELETE, OPTIONS",
     "access-control-max-age": "86400",
     "vary": "Origin",
     "content-type": "application/json; charset=utf-8",
@@ -567,6 +567,98 @@ async function setMembers(session: SessionAccount, req: Request, classId: string
   return json(req, { ok: true, members: rows.length });
 }
 
+async function listTimetable(session: SessionAccount, req: Request): Promise<Response> {
+  const url = new URL(req.url);
+  let classIds: string[] = [];
+  let teacherId: string | null = null;
+  if (session.role === "admin") {
+    teacherId = url.searchParams.get("teacher_id");
+  } else if (session.role === "teacher") {
+    teacherId = session.account_id;
+    classIds = await accessibleClassIds(session);
+  } else if (session.role === "student") {
+    const { data: memberships, error } = await admin.from("class_memberships")
+      .select("class_id").eq("account_id", session.account_id).eq("membership_role", "student");
+    if (error) throw error;
+    classIds = (memberships ?? []).map((row) => row.class_id);
+    if (!classIds.length) return json(req, { ok: true, entries: [], editable: false });
+  } else {
+    return json(req, { ok: true, entries: [], editable: false });
+  }
+
+  let query = admin.from("timetable_entries")
+    .select("id,teacher_id,class_id,day_of_week,period_order,start_time,end_time,room,label,teacher:accounts!timetable_entries_teacher_id_fkey(id,display_name,username),class:classes!timetable_entries_class_id_fkey(id,name,course_key,section)")
+    .eq("organization_id", session.organization_id)
+    .order("day_of_week").order("period_order");
+  if (teacherId) query = query.eq("teacher_id", teacherId);
+  else if (classIds.length) query = query.in("class_id", classIds);
+  const { data: entries, error } = await query;
+  if (error) throw error;
+
+  if (session.role !== "admin")
+    return json(req, { ok: true, entries: entries ?? [], editable: false });
+  const [{ data: teachers, error: teacherError }, { data: classes, error: classError }] = await Promise.all([
+    admin.from("accounts").select("id,display_name,username").eq("organization_id", session.organization_id).eq("role", "teacher").eq("status", "active").order("display_name"),
+    admin.from("classes").select("id,name,course_key,section,academic_year").eq("organization_id", session.organization_id).eq("status", "active").order("name"),
+  ]);
+  if (teacherError) throw teacherError;
+  if (classError) throw classError;
+  return json(req, { ok: true, entries: entries ?? [], teachers: teachers ?? [], classes: classes ?? [], editable: true });
+}
+
+async function replaceTimetable(session: SessionAccount, req: Request): Promise<Response> {
+  requireRole(session, ["admin"]);
+  const payload = await body<{ teacher_id?: string; entries?: Record<string, unknown>[] }>(req);
+  const teacherId = String(payload.teacher_id ?? "");
+  const entries = Array.isArray(payload.entries) ? payload.entries.slice(0, 140) : [];
+  const { data: teacher, error: teacherError } = await admin.from("accounts")
+    .select("id").eq("id", teacherId).eq("organization_id", session.organization_id).eq("role", "teacher").single();
+  if (teacherError || !teacher) return fail(req, "Choose a valid teacher", 400, "invalid_teacher");
+
+  const classIds = [...new Set(entries.map((row) => String(row.class_id ?? "")).filter(Boolean))];
+  if (classIds.length) {
+    const { data: classes, error } = await admin.from("classes")
+      .select("id").eq("organization_id", session.organization_id).in("id", classIds);
+    if (error) throw error;
+    if ((classes ?? []).length !== classIds.length)
+      return fail(req, "One or more timetable classes are invalid", 400, "invalid_class");
+  }
+
+  const slots = new Set<string>(), rows = [];
+  for (const entry of entries) {
+    const day = Number(entry.day_of_week), period = Number(entry.period_order),
+      start = String(entry.start_time ?? ""), end = String(entry.end_time ?? ""),
+      classId = String(entry.class_id ?? ""), slot = `${day}:${period}`;
+    if (!Number.isInteger(day) || day < 1 || day > 7 || !Number.isInteger(period) || period < 1 || period > 20)
+      return fail(req, "Timetable day or period is invalid", 400, "invalid_slot");
+    if (!/^\d{2}:\d{2}$/.test(start) || !/^\d{2}:\d{2}$/.test(end) || end <= start)
+      return fail(req, "Timetable times are invalid", 400, "invalid_time");
+    if (!classId || slots.has(slot)) return fail(req, "Each teacher may have only one class in a period", 400, "duplicate_slot");
+    slots.add(slot);
+    rows.push({
+      organization_id: session.organization_id,
+      teacher_id: teacherId,
+      class_id: classId,
+      day_of_week: day,
+      period_order: period,
+      start_time: start,
+      end_time: end,
+      room: String(entry.room ?? "").trim() || null,
+      label: String(entry.label ?? "").trim() || null,
+      created_by: session.account_id,
+      updated_at: new Date().toISOString(),
+    });
+  }
+  const { data, error } = await admin.rpc("api_replace_timetable", {
+    p_organization_id: session.organization_id,
+    p_teacher_id: teacherId,
+    p_created_by: session.account_id,
+    p_entries: rows,
+  });
+  if (error) throw error;
+  return json(req, { ok: true, entries: data ?? [], teacher_id: teacherId });
+}
+
 async function listAssignments(session: SessionAccount, req: Request): Promise<Response> {
   const url = new URL(req.url);
   let query = admin.from("assignments")
@@ -642,6 +734,8 @@ Deno.serve(async (req: Request) => {
     if (dashboardMatch && req.method === "GET") return await classDashboard(session, req, dashboardMatch[1]);
     if (path === "/assignments" && req.method === "GET") return await listAssignments(session, req);
     if (path === "/assignments" && req.method === "POST") return await createAssignment(session, req);
+    if (path === "/timetable" && req.method === "GET") return await listTimetable(session, req);
+    if (path === "/timetable" && req.method === "PUT") return await replaceTimetable(session, req);
 
     return fail(req, "Route not found", 404, "not_found");
   } catch (error) {
