@@ -9,8 +9,10 @@
   <link rel="manifest" href="manifest.json">
   <link rel="icon" href="assets/icon-192.png">
   <link rel="stylesheet" href="css/portal.css">
+  <link rel="stylesheet" href="css/learning-access.css">
+  <link rel="stylesheet" href="css/lesson-portal-overhaul.css?v=20260802-portal1">
 </head>
-<body>
+<body class="previewPortal" data-preview-mode="true" data-auth-state="signed-in">
 <a class="skip" href="#content">Skip to lesson content</a>
 <header class="site">
   <div class="top">
@@ -29,7 +31,7 @@
 </header>
 
 <main id="content">
-  <section class="hero" aria-labelledby="portalTitle">
+  <section class="hero lessonPortalHero" aria-labelledby="portalTitle">
     <div class="heroCard">
       <div class="heroInner">
         <span class="portalBadge"><i></i> ECHS Mathematics</span>
@@ -49,6 +51,31 @@
       <div class="stat"><b id="statLessons">0</b><span>Lesson cards</span></div>
       <div class="stat wide"><b id="statReady">0</b><span>Open interactive lessons</span><div class="progressBar"><i id="readyBar"></i></div><span class="statNote">New AP Calculus lessons are organized by official topic numbering.</span></div>
     </div>
+  </section>
+
+
+  <section class="lessonCommand" id="lessonCommand" aria-labelledby="lessonCommandTitle">
+    <div class="lessonCommandMain">
+      <span class="lessonCommandEyebrow">ECHS Smart Learning Route</span>
+      <h2 id="lessonCommandTitle">Preparing your next meaningful lesson…</h2>
+      <p id="lessonCommandText">Your assigned course, lesson completion and mastery evidence determine the clearest next step.</p>
+      <div class="lessonCommandMeta" aria-label="Recommended learning context">
+        <span><b>Course</b><strong id="commandCourse">Assigned course</strong></span>
+        <span><b>Unit</b><strong id="commandUnit">Current unit</strong></span>
+        <span><b>Evidence</b><strong id="commandEvidence">Building</strong></span>
+      </div>
+      <div class="lessonCommandActions">
+        <a class="btn lessonCommandPrimary" id="commandPrimary" href="#courses">Open next lesson <span aria-hidden="true">→</span></a>
+        <a class="btn secondary" id="commandReview" href="question-bank/mistakes.html">Review due work <span id="commandReviewCount">0</span></a>
+      </div>
+    </div>
+    <aside class="lessonRoutePanel" aria-label="Recommended route">
+      <span>Recommended route</span>
+      <strong id="commandRoute">Core</strong>
+      <p id="commandRouteReason">Continue the assigned lesson and build varied evidence before mastery is awarded.</p>
+      <div class="routeScale" aria-hidden="true"><i></i><i class="active"></i><i></i></div>
+      <div class="routeLabels"><span>Support</span><span>Core</span><span>Challenge</span></div>
+    </aside>
   </section>
 
   <nav class="courseTabs" id="tabs" aria-label="Course tabs"></nav>
@@ -92,6 +119,8 @@
 <footer>© <span id="currentYear"></span> <strong>ECHS Mathematics</strong> · Teacher: Mohammad Abu Ghuwaleh · Built for GitHub Pages.</footer>
 <script src="preview/courses-preview.js"></script>
 <script src="data/ap-calculus-update.js"></script>
-<script src="js/portal.js"></script>
+<script src="js/preview-portal-access.js?v=20260802-portal1"></script>
+<script src="js/portal.js?v=20260802-portal1"></script>
+<script src="js/lesson-portal-overhaul.js?v=20260802-portal1"></script>
 </body>
 </html>
