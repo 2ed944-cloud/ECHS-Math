@@ -171,7 +171,7 @@
       const link=document.createElement("link");link.rel="stylesheet";link.href=root("css/smart-learning-route.css?v=20260802-route-design1");link.dataset.smartLearningRoute="true";document.head.append(link);
     }
     if(!document.querySelector('script[data-smart-learning-route]')){
-      const script=document.createElement("script");script.src=root("js/smart-learning-route.js?v=20260802-route-design1");script.defer=true;script.dataset.smartLearningRoute="true";document.body.append(script);
+      const script=document.createElement("script");script.src=root("js/smart-learning-route.js?v=20260802-route-design2");script.defer=true;script.dataset.smartLearningRoute="true";document.body.append(script);
     }
   }
   let syncTimer=null;

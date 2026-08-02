@@ -31,6 +31,8 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+      - name: Validate lesson-first portal structure
+        run: python3 tools/validate_lesson_portal_calm.py
       - name: Set up Node
         uses: actions/setup-node@v4
         with:

@@ -14,6 +14,118 @@
   --slr-core:#147b7b;
   --slr-challenge:#9a6a13;
 }
+
+/* On the Lesson Portal the route is a quiet next-step strip, not a second dashboard. */
+body[data-platform-page="home"] #smartRoute-lessons.slrShell{
+  width:min(1480px,calc(100% - 40px));
+  margin:0 auto 10px;
+  overflow:visible;
+  border:0;
+  border-radius:0;
+  background:transparent;
+  box-shadow:none;
+}
+body[data-platform-page="home"] #smartRoute-lessons.slrShell::before,
+body[data-platform-page="home"] #smartRoute-lessons .slrHeader,
+body[data-platform-page="home"] #smartRoute-lessons .slrEvidence,
+body[data-platform-page="home"] #smartRoute-lessons .slrDecisionCopy,
+body[data-platform-page="home"] #smartRoute-lessons .slrReasonList,
+body[data-platform-page="home"] #smartRoute-lessons .slrFreshness{
+  display:none!important;
+}
+body[data-platform-page="home"] #smartRoute-lessons .slrBody{
+  display:block;
+  padding:0;
+}
+body[data-platform-page="home"] #smartRoute-lessons .slrDecision{
+  display:grid;
+  grid-template-columns:auto minmax(0,1fr) auto;
+  grid-template-rows:auto auto;
+  align-items:center;
+  gap:3px 14px;
+  min-height:78px;
+  padding:13px 15px;
+  overflow:hidden;
+  border:1px solid #dce6eb;
+  border-radius:17px;
+  background:linear-gradient(115deg,#12344b,#164a58);
+  box-shadow:0 8px 24px rgba(13,43,69,.09);
+}
+body[data-platform-page="home"] #smartRoute-lessons .slrDecision::after{
+  right:18%;
+  bottom:-120px;
+  font-size:180px;
+}
+body[data-platform-page="home"] #smartRoute-lessons .slrDecisionTop{
+  grid-column:1;
+  grid-row:1/3;
+  align-self:center;
+}
+body[data-platform-page="home"] #smartRoute-lessons .slrPathBadge{
+  min-height:31px;
+  padding:7px 10px;
+  font-size:8px;
+}
+body[data-platform-page="home"] #smartRoute-lessons .slrDecisionLabel{
+  grid-column:2;
+  grid-row:1;
+  align-self:end;
+  margin:0;
+  color:#e8c66e;
+  font-size:8px;
+}
+body[data-platform-page="home"] #smartRoute-lessons .slrDecision h3{
+  grid-column:2;
+  grid-row:2;
+  align-self:start;
+  overflow:hidden;
+  margin:0;
+  color:#fff;
+  font:750 15px/1.25 Inter,sans-serif;
+  letter-spacing:0;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+body[data-platform-page="home"] #smartRoute-lessons .slrActions{
+  grid-column:3;
+  grid-row:1/3;
+  align-self:center;
+  margin:0;
+}
+body[data-platform-page="home"] #smartRoute-lessons .slrActions .slrAction:not(.primary){display:none}
+body[data-platform-page="home"] #smartRoute-lessons .slrAction.primary{
+  min-height:42px;
+  padding:9px 13px;
+  border-color:#e8c66e;
+  border-radius:11px;
+  background:#e8c66e;
+  color:#173148;
+  box-shadow:none;
+  font-size:9px;
+  white-space:nowrap;
+}
+
+@media(max-width:680px){
+  body[data-platform-page="home"] #smartRoute-lessons.slrShell{width:calc(100% - 24px)}
+  body[data-platform-page="home"] #smartRoute-lessons .slrDecision{
+    grid-template-columns:auto minmax(0,1fr);
+    min-height:0;
+    gap:5px 10px;
+    padding:12px;
+  }
+  body[data-platform-page="home"] #smartRoute-lessons .slrDecisionTop{grid-row:1/3}
+  body[data-platform-page="home"] #smartRoute-lessons .slrDecision h3{
+    font-size:13px;
+    white-space:normal;
+  }
+  body[data-platform-page="home"] #smartRoute-lessons .slrActions{
+    grid-column:1/-1;
+    grid-row:3;
+    width:100%;
+    margin-top:4px;
+  }
+  body[data-platform-page="home"] #smartRoute-lessons .slrAction.primary{width:100%}
+}
 .smartRouteEnhanced .premiumLandingHero,
 .smartRouteEnhanced .experienceHero{
   isolation:isolate;
