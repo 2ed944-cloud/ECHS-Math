@@ -997,10 +997,10 @@ html[data-theme="dark"] .lessonDrawerBody .star{background:#172a38;color:#c3ced7
   }
   body.lessonPortalCalm .calmIdentityBanner{
     grid-template-columns:1fr;
-    gap:12px;
+    gap:8px;
     min-height:0;
     margin-top:12px;
-    padding:16px;
+    padding:14px 16px;
     border-radius:18px;
   }
   body.lessonPortalCalm .calmIdentityBanner h1{
@@ -1011,7 +1011,7 @@ html[data-theme="dark"] .lessonDrawerBody .star{background:#172a38;color:#c3ced7
   body.lessonPortalCalm .calmIdentityCycle{
     justify-content:space-between;
     width:100%;
-    padding:8px 10px;
+    padding:6px 10px;
   }
   body.lessonPortalCalm .calmIdentityCycle>span{min-width:45px}
   body.lessonPortalCalm .calmIdentityCycle>i{flex:1 1 auto}
