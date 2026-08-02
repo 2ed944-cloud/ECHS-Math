@@ -34,16 +34,19 @@ jobs:
               m=re.search(r'\.push\((".*")\);?\s*$', text, re.S)
               if not m:
                   raise SystemExit(f'Could not parse {path}')
-              parts.append(json.loads(m.group(1)))
+              value=json.loads(m.group(1))
+              print(path, len(value), value[:8], value[-8:])
+              parts.append(value)
           encoded=''.join(parts)
-          print('encoded_chars',len(encoded))
+          print('encoded_chars',len(encoded),'mod4',len(encoded)%4)
+          encoded += '=' * (-len(encoded) % 4)
           raw=base64.b64decode(encoded)
           print('raw_bytes',len(raw),'magic',raw[:16].hex())
           Path('/tmp/u3-payload.bin').write_bytes(raw)
           try:
               dec=gzip.decompress(raw)
               print('gzip_bytes',len(dec),'gzip_magic',dec[:32].hex())
-              print('gzip_text_prefix',repr(dec[:200]))
+              print('gzip_text_prefix',repr(dec[:300]))
               Path('/tmp/u3-payload.dec').write_bytes(dec)
           except Exception as exc:
               print('gzip_error',repr(exc))
