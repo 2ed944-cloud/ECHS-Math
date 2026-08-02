@@ -1,123 +1,262 @@
-/* ECHS Lesson Portal — role-aware visual layer */
-(function(){
+/* ECHS Lesson Portal — calm lesson-first workspace and accessible details drawer. */
+(() => {
   "use strict";
-  const qs=(selector,root=document)=>root.querySelector(selector);
-  const qsa=(selector,root=document)=>Array.from(root.querySelectorAll(selector));
-  const text=(selector,value)=>{const node=qs(selector);if(node)node.textContent=value;};
-  const safeSummary=()=>{try{return window.ECHSLearning&&typeof ECHSLearning.summary==="function"?ECHSLearning.summary():{};}catch(_error){return{};}};
-  const role=()=>document.documentElement.dataset.platformRole||document.body.dataset.platformRole||"student";
 
-  function masteryScore(card){
-    const values=qsa(".pathStage small",card).map(node=>String(node.textContent||"").match(/(\d+)%/)).filter(Boolean);
-    return values.length?Number(values[0][1]):0;
-  }
-  function routeFrom(score,completed){
-    if(score>=80)return{name:"Challenge",reason:"Mastery evidence is strong. Use a short challenge set to deepen transfer and reasoning.",index:2};
-    if(score>0&&score<50)return{name:"Support",reason:"Recent evidence suggests a supported route with prerequisite review and shorter practice.",index:0};
-    if(completed)return{name:"Core",reason:"The lesson is complete. Continue with focused practice and spaced review before mastery.",index:1};
-    return{name:"Core",reason:"Continue the assigned lesson and build varied evidence before mastery is awarded.",index:1};
-  }
-  function enhanceLesson(card){
-    if(card.dataset.portalEnhanced==="1")return;
-    card.dataset.portalEnhanced="1";
-    const completed=card.dataset.completed==="true";
-    const ready=card.dataset.ready==="true";
-    const score=masteryScore(card);
-    const mastered=score>=80;
-    const row=document.createElement("div");
-    row.className="lessonStateRow";
-    const state=document.createElement("span");
-    state.className="lessonState "+(mastered?"mastered":completed?"complete":ready?"ready":"");
-    state.textContent=mastered?"Mastered":completed?"Lesson complete":score>0?"In progress":ready?"Ready to learn":"Coming soon";
-    const evidence=document.createElement("span");
-    evidence.className="lessonEvidence";
-    evidence.textContent=score?score+"% mastery":completed?"Practice unlocked":"No evidence yet";
-    row.append(state,evidence);
-    const summary=qs(".lessonSummary",card);
-    (summary||qs(".learningPathRail",card)||qs(".objectiveBlock",card))?.before(row);
-    qs(".learningPathRail",card)?.classList.add("compactRail");
-    const blocks=qsa(":scope > .objectiveBlock, :scope > .resourceBlock",card);
-    if(blocks.length){
-      const details=document.createElement("details");
-      details.className="lessonDetails";
-      const trigger=document.createElement("summary");
-      trigger.textContent="Objectives and resources";
-      details.append(trigger);
-      blocks[0].before(details);
-      blocks.forEach(block=>details.append(block));
+  const qs = (selector, root = document) => root.querySelector(selector);
+  const qsa = (selector, root = document) => [...root.querySelectorAll(selector)];
+  let activeCard = null;
+  let activeOpener = null;
+  let drawerStateWasPushed = false;
+  let closingFromHistory = false;
+  let updateQueued = false;
+
+  function prepareWorkspace() {
+    document.body.classList.add("lessonPortalCalm");
+    let intro = qs(".sectionIntro[data-auth-content]") || qs(".previewPortal .sectionIntro");
+    if (!intro && qs("#tabs")) {
+      intro = document.createElement("div");
+      intro.className = "sectionIntro calmSectionIntro";
+      intro.innerHTML = '<span class="sectionEyebrow">Lesson Portal</span><h1 class="sectionTitle">My lessons</h1><p class="sectionSub">Choose a course, open a unit and select a lesson.</p>';
+      qs("#tabs").before(intro);
     }
-    const lessonLink=qs(".linkBtn:not(.flow)",card);
-    if(lessonLink)lessonLink.setAttribute("aria-label","Open "+(qs("h4",card)?.textContent||"lesson"));
-  }
-  function enhanceUnit(unit){
-    const cards=qsa(".lesson",unit);
-    if(!cards.length)return;
-    cards.forEach(enhanceLesson);
-    const completed=cards.filter(card=>card.dataset.completed==="true").length;
-    const mastered=cards.filter(card=>masteryScore(card)>=80).length;
-    const metric=qs(".unitMetrics",unit);
-    const metricSignature=[completed,cards.length,mastered].join("|");
-    if(metric&&metric.dataset.portalMetric!==metricSignature){
-      metric.dataset.portalMetric=metricSignature;
-      metric.innerHTML="<b>"+completed+"/"+cards.length+"</b><small>complete · "+mastered+" mastered</small><span class=\"unitMiniTrack\"><i style=\"width:"+(cards.length?Math.round(completed/cards.length*100):0)+"%\"></i></span>";
+    if (intro) {
+      intro.classList.add("calmSectionIntro");
+      const eyebrow = qs(".sectionEyebrow", intro);
+      const title = qs(".sectionTitle", intro);
+      const copy = qs(".sectionSub", intro);
+      if (eyebrow) eyebrow.textContent = "Lesson Portal";
+      if (title) title.textContent = "My lessons";
+      if (copy) copy.textContent = "Choose a course, then select a lesson to see its objectives and resources.";
     }
   }
-  function renderCommand(){
-    const command=qs("#lessonCommand");
-    if(!command)return;
-    const course=qs("#courseHero h2")?.textContent?.trim()||qs(".tab.active")?.textContent?.trim()||"Assigned course";
-    const cards=qsa("#units .lesson");
-    const next=cards.find(card=>card.dataset.ready==="true"&&card.dataset.completed!=="true")||cards.find(card=>card.dataset.ready==="true")||cards[0];
-    const summary=safeSummary();
-    const due=Number(summary.due||0);
-    text("#commandCourse",course);
-    text("#commandReviewCount",String(due));
-    const review=qs("#commandReview");
-    if(review)review.setAttribute("aria-label",due?due+" review items due":"Open review queue");
-    if(!next){
-      text("#lessonCommandTitle","Your course roadmap is ready");
-      text("#lessonCommandText","Choose a unit below to review its lessons, objectives and available learning resources.");
-      text("#commandUnit","Choose a unit");
-      text("#commandEvidence",summary.mastered?summary.mastered+" mastered skills":"Building");
+
+  function statusFor(card) {
+    const score = Number(card.dataset.score || 0);
+    const completed = card.dataset.completed === "true";
+    const ready = card.dataset.ready === "true";
+    if (score >= 80) return { label: "Mastered", css: "mastered", icon: "★" };
+    if (completed) return { label: "Completed", css: "complete", icon: "✓" };
+    if (score > 0) return { label: "In progress", css: "progress", icon: "◐" };
+    if (ready) return { label: "Ready", css: "ready", icon: "●" };
+    return { label: "Coming soon", css: "locked", icon: "○" };
+  }
+
+  function enhanceLegacyCard(card) {
+    if (qs(".lessonCardOpen", card)) return;
+    const title = qs("h4", card)?.textContent?.trim() || "Lesson";
+    const number = qs(".lessonNo", card)?.textContent?.trim() || "—";
+    const courseTitle = qs("#courseHero h2")?.textContent?.trim() || "Current course";
+    const unit = card.closest(".unit");
+    const unitTitle = qs(".unitHeading strong", unit)?.textContent?.trim() || "Current unit";
+    const unitIndex = unit?.dataset.unitIndex || "0";
+    const key = card.dataset.key || `${courseTitle}::${unitIndex}::${number}::${title}`;
+    const payload = document.createElement("div");
+    payload.className = "lessonPayload";
+    payload.hidden = true;
+    while (card.firstChild) payload.append(card.firstChild);
+    const status = statusFor(card);
+    const button = document.createElement("button");
+    button.className = "lessonCardOpen";
+    button.type = "button";
+    button.setAttribute("aria-haspopup", "dialog");
+    button.setAttribute("aria-label", `View details for ${number} ${title}`);
+    button.innerHTML = `<span class="lessonCardNumber"></span><span class="lessonCardCopy"><strong></strong></span><span class="lessonCardStatus ${status.css}"><i aria-hidden="true">${status.icon}</i>${status.label}</span><span class="lessonCardChevron" aria-hidden="true">›</span>`;
+    qs(".lessonCardNumber", button).textContent = number;
+    qs(".lessonCardCopy strong", button).textContent = title;
+    card.dataset.key = key;
+    card.dataset.number = number;
+    card.dataset.title = title;
+    card.dataset.courseTitle = courseTitle;
+    card.dataset.unitTitle = unitTitle;
+    card.prepend(button);
+    card.append(payload);
+  }
+
+  function enhanceCard(card) {
+    if (card.dataset.calmEnhanced === "1") return;
+    enhanceLegacyCard(card);
+    card.dataset.calmEnhanced = "1";
+  }
+
+  function enhanceUnit(unit) {
+    const cards = qsa(":scope .lesson", unit);
+    cards.forEach(enhanceCard);
+    if (!cards.length) return;
+    const completed = cards.filter((card) => card.dataset.completed === "true").length;
+    const metric = qs(".unitMetrics", unit);
+    const signature = `${completed}|${cards.length}`;
+    if (metric && metric.dataset.calmMetric !== signature) {
+      metric.dataset.calmMetric = signature;
+      metric.innerHTML = `<b>${completed}/${cards.length}</b><small>completed</small>`;
+    }
+  }
+
+  function ensureDrawer() {
+    let drawer = qs("#lessonDetailDialog");
+    if (drawer) return drawer;
+    drawer = document.createElement("dialog");
+    drawer.id = "lessonDetailDialog";
+    drawer.className = "lessonDetailDialog";
+    drawer.setAttribute("aria-labelledby", "lessonDrawerTitle");
+    drawer.innerHTML = `
+      <aside class="lessonDrawerSurface">
+        <header class="lessonDrawerHeader">
+          <div class="lessonDrawerHeading">
+            <span class="lessonDrawerEyebrow" id="lessonDrawerEyebrow">Lesson details</span>
+            <div class="lessonDrawerTitleRow"><span id="lessonDrawerNumber">—</span><h2 id="lessonDrawerTitle">Lesson</h2></div>
+            <span class="lessonCardStatus ready" id="lessonDrawerStatus"><i aria-hidden="true">●</i>Ready</span>
+          </div>
+          <button class="lessonDrawerClose" type="button" aria-label="Close lesson details">×</button>
+        </header>
+        <div class="lessonDrawerBody" id="lessonDrawerBody"></div>
+      </aside>`;
+    document.body.append(drawer);
+    qs(".lessonDrawerClose", drawer).addEventListener("click", requestClose);
+    drawer.addEventListener("cancel", (event) => {
+      event.preventDefault();
+      requestClose();
+    });
+    drawer.addEventListener("click", (event) => {
+      if (event.target === drawer) requestClose();
+    });
+    drawer.addEventListener("close", () => {
+      document.documentElement.classList.remove("lessonDrawerOpen");
+      if (activeOpener?.isConnected) activeOpener.focus({ preventScroll: true });
+      activeCard = null;
+      activeOpener = null;
+    });
+    return drawer;
+  }
+
+  function cleanDrawerPayload(card) {
+    const payload = qs(".lessonPayload", card)?.cloneNode(true);
+    if (!payload) return document.createDocumentFragment();
+    payload.hidden = false;
+    payload.removeAttribute("hidden");
+    qsa(".lessonTop, .lessonStateRow, .completeBtn", payload).forEach((node) => node.remove());
+    qsa("details", payload).forEach((details) => {
+      const fragment = document.createDocumentFragment();
+      qsa(":scope > :not(summary)", details).forEach((node) => fragment.append(node));
+      details.replaceWith(fragment);
+    });
+    return payload;
+  }
+
+  function setDrawerURL(card, push) {
+    if (!card?.dataset.key) return;
+    const url = new URL(location.href);
+    url.searchParams.set("lesson", card.dataset.key);
+    if (card.dataset.courseId) url.searchParams.set("course", card.dataset.courseId);
+    if (push) {
+      history.pushState({ lessonDrawer: true }, "", url);
+      drawerStateWasPushed = true;
+    } else {
+      history.replaceState(history.state, "", url);
+    }
+  }
+
+  function openDrawer(card, { pushHistory = true } = {}) {
+    if (!card) return;
+    enhanceCard(card);
+    const drawer = ensureDrawer();
+    const status = statusFor(card);
+    const number = card.dataset.number || qs(".lessonCardNumber", card)?.textContent?.trim() || "—";
+    const title = card.dataset.title || qs(".lessonCardCopy strong", card)?.textContent?.trim() || "Lesson";
+    const course = card.dataset.courseTitle || qs("#courseHero h2")?.textContent?.trim() || "Current course";
+    const unit = card.dataset.unitTitle || qs(".unitHeading strong", card.closest(".unit"))?.textContent?.trim() || "Current unit";
+    qs("#lessonDrawerEyebrow", drawer).textContent = `${course} · ${unit}`;
+    qs("#lessonDrawerNumber", drawer).textContent = number;
+    qs("#lessonDrawerTitle", drawer).textContent = title;
+    const statusNode = qs("#lessonDrawerStatus", drawer);
+    statusNode.className = `lessonCardStatus ${status.css}`;
+    statusNode.innerHTML = `<i aria-hidden="true">${status.icon}</i>${status.label}`;
+    const body = qs("#lessonDrawerBody", drawer);
+    body.replaceChildren(cleanDrawerPayload(card));
+    activeCard = card;
+    activeOpener = qs(".lessonCardOpen", card);
+    if (!drawer.open) drawer.showModal();
+    document.documentElement.classList.add("lessonDrawerOpen");
+    requestAnimationFrame(() => qs(".lessonDrawerClose", drawer)?.focus({ preventScroll: true }));
+    if (pushHistory) setDrawerURL(card, true);
+  }
+
+  function removeDrawerURL() {
+    const url = new URL(location.href);
+    url.searchParams.delete("lesson");
+    history.replaceState(history.state, "", url);
+  }
+
+  function requestClose() {
+    const drawer = qs("#lessonDetailDialog");
+    if (!drawer?.open) return;
+    if (drawerStateWasPushed && !closingFromHistory) {
+      drawerStateWasPushed = false;
+      history.back();
       return;
     }
-    const title=qs("h4",next)?.textContent?.trim()||"Next lesson";
-    const unit=next.closest(".unit");
-    const unitTitle=qs(".unitHeading strong",unit)?.textContent?.trim()||"Current unit";
-    const score=masteryScore(next);
-    const completed=next.dataset.completed==="true";
-    const recommendation=routeFrom(score,completed);
-    const teacher=/teacher|admin/.test(role());
-    text("#lessonCommandTitle",teacher?"Plan or preview: "+title:"Continue: "+title);
-    text("#lessonCommandText",teacher?"Open the lesson for planning, preview it as a learner, or connect it to targeted practice.":"This is the clearest next step in your assigned course. Complete the lesson before focused practice is unlocked.");
-    text("#commandUnit",unitTitle);
-    text("#commandEvidence",score?score+"% mastery":completed?"Lesson complete":"Starting");
-    text("#commandRoute",teacher?"Complete access":recommendation.name);
-    text("#commandRouteReason",teacher?"Your role can preview every lesson and connect it to assignments, practice and class evidence.":recommendation.reason);
-    qsa(".routeScale i",command).forEach((node,index)=>node.classList.toggle("active",teacher?index===1:index===recommendation.index));
-    const primary=qs("#commandPrimary");
-    const lessonLink=qs(".linkBtn:not(.flow)",next);
-    const practiceLink=qs(".lessonPracticeBtn:not(.locked)",next);
-    const target=lessonLink||practiceLink;
-    if(primary&&target){
-      primary.href=target.href;
-      primary.innerHTML=(teacher?"Open lesson preview":"Continue lesson")+" <span aria-hidden=\"true\">→</span>";
-    }
+    removeDrawerURL();
+    drawer.close();
   }
-  function update(){
+
+  function syncFromURL() {
+    const key = new URL(location.href).searchParams.get("lesson");
+    const drawer = qs("#lessonDetailDialog");
+    if (!key) {
+      if (drawer?.open) {
+        closingFromHistory = true;
+        drawerStateWasPushed = false;
+        drawer.close();
+        closingFromHistory = false;
+      }
+      return;
+    }
+    const card = qsa("#units .lesson").find((row) => row.dataset.key === key);
+    if (card && (!drawer?.open || activeCard !== card)) openDrawer(card, { pushHistory: false });
+  }
+
+  function update() {
+    updateQueued = false;
     qsa("#units .unit").forEach(enhanceUnit);
-    renderCommand();
+    syncFromURL();
   }
-  function start(){
-    const units=qs("#units");
-    if(units){
-      new MutationObserver(()=>requestAnimationFrame(update)).observe(units,{childList:true,subtree:true});
-    }
-    const tabs=qs("#tabs");
-    if(tabs)new MutationObserver(()=>requestAnimationFrame(renderCommand)).observe(tabs,{childList:true,subtree:true,attributes:true});
+
+  function queueUpdate() {
+    if (updateQueued) return;
+    updateQueued = true;
+    requestAnimationFrame(update);
+  }
+
+  function start() {
+    prepareWorkspace();
+    ensureDrawer();
+    const units = qs("#units");
+    if (units) new MutationObserver(queueUpdate).observe(units, { childList: true, subtree: true });
+    document.addEventListener("click", (event) => {
+      const opener = event.target.closest(".lessonCardOpen");
+      if (opener) {
+        event.preventDefault();
+        openDrawer(opener.closest(".lesson"));
+        return;
+      }
+      const lockedPractice = event.target.closest('.lessonDetailDialog .lessonPracticeBtn[aria-disabled="true"]');
+      if (lockedPractice) {
+        event.preventDefault();
+        return;
+      }
+      const bookmark = event.target.closest(".lessonDetailDialog [data-action=bookmark]");
+      if (bookmark) {
+        event.preventDefault();
+        const original = qsa('#units [data-action="bookmark"]').find((button) => button.dataset.key === bookmark.dataset.key);
+        requestClose();
+        setTimeout(() => original?.click(), 0);
+      }
+    });
+    window.addEventListener("popstate", syncFromURL);
     update();
-    setTimeout(update,250);
-    setTimeout(update,900);
+    setTimeout(queueUpdate, 250);
+    setTimeout(queueUpdate, 900);
   }
-  if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",start,{once:true});else start();
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start, { once: true });
+  else start();
 })();

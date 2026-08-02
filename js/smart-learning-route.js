@@ -38,7 +38,7 @@
     if (document.querySelector('link[data-smart-learning-route]')) return;
     const link = document.createElement("link");
     link.rel = "stylesheet";
-    link.href = absolute("css/smart-learning-route.css?v=20260802-route-design1");
+    link.href = absolute("css/smart-learning-route.css?v=20260802-route-design2");
     link.dataset.smartLearningRoute = "true";
     document.head.append(link);
   }
@@ -53,7 +53,7 @@
     node.setAttribute("aria-live", "polite");
     if (page === "lessons") node.setAttribute("data-auth-content", "");
     const anchor = page === "lessons"
-      ? document.querySelector(".premiumLandingHero")
+      ? document.querySelector(".sectionIntro[data-auth-content]") || document.querySelector(".premiumLandingHero")
       : document.querySelector(".experienceHero");
     anchor?.insertAdjacentElement("afterend", node);
     node.innerHTML = '<div class="slrSkeleton"><div><span></span>Building the evidence-led route…</div></div>';
