@@ -1,0 +1,265 @@
+{
+  "schema_version": "1.0.0",
+  "course": "ib-math-ai",
+  "unit": 4,
+  "title": "Unit 4: Statistics and Probability",
+  "release": "IB_AI_SL_Unit_4_ECHS_Definitive_v1.0.0",
+  "build_date": "2026-08-02",
+  "lessons": [
+    {
+      "number": "4.1",
+      "title": "Data, Populations, Samples, and Bias",
+      "slug": "data_populations_samples_bias",
+      "lesson_key": "u4-data-sampling",
+      "skill_key": "IBAI.U4.DATA",
+      "url": "lessons/ib-math-ai/unit-4/lessons/IB_AI_SL_4.1_data_populations_samples_bias_ECHS.html",
+      "summary": "Design reliable statistical investigations by defining populations, variables, samples, and defensible sampling methods.",
+      "outcomes": [
+        "Distinguish a population, census, sample, parameter, and statistic in context.",
+        "Classify variables as categorical or numerical, and numerical data as discrete or continuous.",
+        "Apply simple random, systematic, stratified, quota, and convenience sampling appropriately.",
+        "Identify sources of bias and evaluate whether a statistical conclusion is trustworthy."
+      ],
+      "status": "ready",
+      "student_visible": true
+    },
+    {
+      "number": "4.2",
+      "title": "Measures of Centre, Spread, and Outliers",
+      "slug": "centre_spread_outliers",
+      "lesson_key": "u4-data-summary",
+      "skill_key": "IBAI.U4.DATA",
+      "url": "lessons/ib-math-ai/unit-4/lessons/IB_AI_SL_4.2_centre_spread_outliers_ECHS.html",
+      "summary": "Summarize and compare distributions using centre, spread, quartiles, standard deviation, box plots, and outlier criteria.",
+      "outcomes": [
+        "Calculate and interpret mean, median, and mode.",
+        "Determine quartiles, range, and interquartile range using ordered data.",
+        "Calculate and interpret variance and standard deviation with technology.",
+        "Use box plots and the 1.5-IQR rule to compare distributions and identify outliers."
+      ],
+      "status": "ready",
+      "student_visible": true
+    },
+    {
+      "number": "4.3",
+      "title": "Frequency Tables, Grouped Data, and Cumulative Frequency",
+      "slug": "frequency_grouped_cumulative_data",
+      "lesson_key": "u4-data-grouped",
+      "skill_key": "IBAI.U4.DATA",
+      "url": "lessons/ib-math-ai/unit-4/lessons/IB_AI_SL_4.3_frequency_grouped_cumulative_data_ECHS.html",
+      "summary": "Organize large data sets using frequencies, grouped intervals, histograms, cumulative frequency, and technology-based estimates.",
+      "outcomes": [
+        "Construct and interpret frequency and cumulative frequency tables.",
+        "Use midpoints to estimate the mean and standard deviation of grouped data.",
+        "Draw and interpret histograms, including unequal class widths when frequency density is required.",
+        "Estimate medians, quartiles, and percentiles from cumulative frequency information."
+      ],
+      "status": "ready",
+      "student_visible": true
+    },
+    {
+      "number": "4.4",
+      "title": "Correlation, Regression, and Interpretation",
+      "slug": "correlation_regression_interpretation",
+      "lesson_key": "u4-correlation",
+      "skill_key": "IBAI.U4.CORRELATION",
+      "url": "lessons/ib-math-ai/unit-4/lessons/IB_AI_SL_4.4_correlation_regression_interpretation_ECHS.html",
+      "summary": "Analyse bivariate data using scatter plots, Pearson and Spearman coefficients, regression models, residuals, and contextual judgment.",
+      "outcomes": [
+        "Describe scatter plots by form, direction, strength, and unusual features.",
+        "Calculate and interpret Pearson’s product-moment and Spearman’s rank correlation coefficients.",
+        "Find and interpret least-squares regression equations and predictions.",
+        "Evaluate interpolation, extrapolation, residuals, outliers, and the difference between association and causation."
+      ],
+      "status": "ready",
+      "student_visible": true
+    },
+    {
+      "number": "4.5",
+      "title": "Sets, Venn Diagrams, and Probability Language",
+      "slug": "sets_venn_probability_language",
+      "lesson_key": "u4-probability-sets",
+      "skill_key": "IBAI.U4.PROBABILITY",
+      "url": "lessons/ib-math-ai/unit-4/lessons/IB_AI_SL_4.5_sets_venn_probability_language_ECHS.html",
+      "summary": "Use precise set notation and Venn diagrams to describe events, complements, unions, intersections, and structured counting.",
+      "outcomes": [
+        "Use universal set, subset, complement, union, and intersection notation.",
+        "Translate verbal event descriptions into set notation and shaded regions.",
+        "Complete two-set and three-set Venn diagrams from counts or probabilities.",
+        "Apply complements and De Morgan’s laws to simplify event descriptions."
+      ],
+      "status": "ready",
+      "student_visible": true
+    },
+    {
+      "number": "4.6",
+      "title": "Probability Rules and Two-Way Tables",
+      "slug": "probability_rules_tables",
+      "lesson_key": "u4-probability-rules",
+      "skill_key": "IBAI.U4.PROBABILITY",
+      "url": "lessons/ib-math-ai/unit-4/lessons/IB_AI_SL_4.6_probability_rules_tables_ECHS.html",
+      "summary": "Calculate event probabilities using complements, addition rules, equally likely outcomes, relative frequency, and two-way tables.",
+      "outcomes": [
+        "Use the probability scale, complements, and equally likely sample spaces.",
+        "Apply the general addition rule and identify mutually exclusive events.",
+        "Calculate probabilities from frequencies, relative frequencies, and two-way tables.",
+        "Interpret probability answers in context and check whether they are reasonable."
+      ],
+      "status": "ready",
+      "student_visible": true
+    },
+    {
+      "number": "4.7",
+      "title": "Conditional Probability and Independent Events",
+      "slug": "conditional_probability_independence",
+      "lesson_key": "u4-probability-conditional",
+      "skill_key": "IBAI.U4.PROBABILITY",
+      "url": "lessons/ib-math-ai/unit-4/lessons/IB_AI_SL_4.7_conditional_probability_independence_ECHS.html",
+      "summary": "Use conditional probability, multiplication rules, and equivalent independence tests while distinguishing independence from mutual exclusivity.",
+      "outcomes": [
+        "Calculate and interpret conditional probability.",
+        "Use the multiplication rule to find intersections.",
+        "Test whether events are independent using equivalent probability conditions.",
+        "Distinguish independent events from mutually exclusive events."
+      ],
+      "status": "ready",
+      "student_visible": true
+    },
+    {
+      "number": "4.8",
+      "title": "Tree Diagrams, Bayes, and Sequential Events",
+      "slug": "tree_diagrams_bayes_sequential_events",
+      "lesson_key": "u4-probability-trees",
+      "skill_key": "IBAI.U4.PROBABILITY",
+      "url": "lessons/ib-math-ai/unit-4/lessons/IB_AI_SL_4.8_tree_diagrams_bayes_sequential_events_ECHS.html",
+      "summary": "Model multi-stage probability with trees, replacement rules, total probability, and reverse conditional reasoning.",
+      "outcomes": [
+        "Construct tree diagrams with valid branch probabilities.",
+        "Multiply probabilities along paths and add disjoint terminal paths.",
+        "Model sampling with and without replacement.",
+        "Use total probability and Bayes-style reasoning to calculate reverse conditional probabilities."
+      ],
+      "status": "ready",
+      "student_visible": true
+    },
+    {
+      "number": "4.9",
+      "title": "Discrete Random Variables and Expected Value",
+      "slug": "discrete_random_variables_expected_value",
+      "lesson_key": "u4-distributions-discrete",
+      "skill_key": "IBAI.U4.DISTRIBUTIONS",
+      "url": "lessons/ib-math-ai/unit-4/lessons/IB_AI_SL_4.9_discrete_random_variables_expected_value_ECHS.html",
+      "summary": "Construct discrete probability distributions, calculate event probabilities and expected values, and evaluate long-run decisions and fair games.",
+      "outcomes": [
+        "Define a discrete random variable and validate its probability distribution.",
+        "Calculate probabilities of events from a distribution table.",
+        "Find and interpret expected value, mode, median, and quartiles for discrete distributions.",
+        "Use expected value to evaluate games and long-run decisions."
+      ],
+      "status": "ready",
+      "student_visible": true
+    },
+    {
+      "number": "4.10",
+      "title": "Binomial Distribution and Repeated Trials",
+      "slug": "binomial_distribution_repeated_trials",
+      "lesson_key": "u4-distributions-binomial",
+      "skill_key": "IBAI.U4.DISTRIBUTIONS",
+      "url": "lessons/ib-math-ai/unit-4/lessons/IB_AI_SL_4.10_binomial_distribution_repeated_trials_ECHS.html",
+      "summary": "Recognize binomial settings, calculate exact and cumulative probabilities, and interpret the distribution’s mean, variance, and assumptions.",
+      "outcomes": [
+        "Verify the conditions for a binomial model.",
+        "Calculate exact, at-most, at-least, and interval probabilities.",
+        "Find and interpret the mean, variance, and standard deviation of a binomial distribution.",
+        "Evaluate assumptions and distinguish binomial counts from other repeated-trial questions."
+      ],
+      "status": "ready",
+      "student_visible": true
+    },
+    {
+      "number": "4.11",
+      "title": "Normal Distribution, Probabilities, and Quantiles",
+      "slug": "normal_distribution_probabilities_quantiles",
+      "lesson_key": "u4-distributions-normal",
+      "skill_key": "IBAI.U4.DISTRIBUTIONS",
+      "url": "lessons/ib-math-ai/unit-4/lessons/IB_AI_SL_4.11_normal_distribution_probabilities_quantiles_ECHS.html",
+      "summary": "Use the normal model to calculate areas, inverse quantiles, standardized positions, expected counts, and contextual probabilities.",
+      "outcomes": [
+        "Interpret \\(\\mu\\) and \\(\\sigma\\) in a normal model.",
+        "Calculate lower-tail, upper-tail, and interval probabilities.",
+        "Find quantiles and symmetric intervals using inverse normal calculations.",
+        "Apply normal probabilities to expected counts, repeated selections, and conditional contexts."
+      ],
+      "status": "ready",
+      "student_visible": true
+    },
+    {
+      "number": "4.12",
+      "title": "Inferential Statistics, Hypotheses, and Significance",
+      "slug": "inferential_statistics_hypotheses_significance",
+      "lesson_key": "u4-inference-foundations",
+      "skill_key": "IBAI.U4.INFERENCE",
+      "url": "lessons/ib-math-ai/unit-4/lessons/IB_AI_SL_4.12_inferential_statistics_hypotheses_significance_ECHS.html",
+      "summary": "Move from sample evidence to population conclusions using null and alternative hypotheses, significance levels, p-values, and disciplined decision language.",
+      "outcomes": [
+        "Distinguish population parameters from sample statistics in inference.",
+        "State appropriate null and alternative hypotheses.",
+        "Interpret significance level and p-value conceptually.",
+        "Make and communicate decisions using reject/do-not-reject language."
+      ],
+      "status": "ready",
+      "student_visible": true
+    },
+    {
+      "number": "4.13",
+      "title": "Two-Sample t-Tests for Comparing Means",
+      "slug": "two_sample_t_tests_means",
+      "lesson_key": "u4-inference-t-test",
+      "skill_key": "IBAI.U4.INFERENCE",
+      "url": "lessons/ib-math-ai/unit-4/lessons/IB_AI_SL_4.13_two_sample_t_tests_means_ECHS.html",
+      "summary": "Compare two population means with pooled two-sample t-tests, one- and two-tailed alternatives, GDC output, and contextual conclusions.",
+      "outcomes": [
+        "Recognize when a pooled two-sample t-test is appropriate and state its assumptions.",
+        "Form one-tailed and two-tailed hypotheses for two means.",
+        "Use GDC output to make decisions at stated significance levels.",
+        "Write precise contextual conclusions without overstating non-significant results."
+      ],
+      "status": "ready",
+      "student_visible": true
+    },
+    {
+      "number": "4.14",
+      "title": "Chi-Square Test for Independence",
+      "slug": "chi_square_independence",
+      "lesson_key": "u4-inference-chi-independence",
+      "skill_key": "IBAI.U4.INFERENCE",
+      "url": "lessons/ib-math-ai/unit-4/lessons/IB_AI_SL_4.14_chi_square_independence_ECHS.html",
+      "summary": "Test whether two categorical variables are independent using observed and expected frequencies, degrees of freedom, GDC output, and validity checks.",
+      "outcomes": [
+        "State hypotheses for a chi-square test of independence.",
+        "Calculate expected frequencies and degrees of freedom.",
+        "Use a GDC to obtain the chi-square statistic and p-value.",
+        "Check expected-frequency conditions, merge categories when required, and interpret the conclusion."
+      ],
+      "status": "ready",
+      "student_visible": true
+    },
+    {
+      "number": "4.15",
+      "title": "Chi-Square Goodness-of-Fit Test",
+      "slug": "chi_square_goodness_of_fit",
+      "lesson_key": "u4-inference-chi-gof",
+      "skill_key": "IBAI.U4.INFERENCE",
+      "url": "lessons/ib-math-ai/unit-4/lessons/IB_AI_SL_4.15_chi_square_goodness_of_fit_ECHS.html",
+      "summary": "Compare observed categorical frequencies with a claimed distribution, calculate expected counts, check conditions, and interpret goodness-of-fit evidence.",
+      "outcomes": [
+        "State hypotheses for a chi-square goodness-of-fit test.",
+        "Calculate expected frequencies from stated category probabilities.",
+        "Use \\(df=k-1\\), GDC output, and p-values to make a decision.",
+        "Merge low-expected-frequency categories appropriately and test discrete, binomial, or specified normal models."
+      ],
+      "status": "ready",
+      "student_visible": true
+    }
+  ]
+}
