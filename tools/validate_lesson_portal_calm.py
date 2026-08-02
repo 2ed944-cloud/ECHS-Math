@@ -30,13 +30,13 @@ worker = read("sw.js")
 
 requirements = [
     (portal, "portal renderer", ["courseTabList", "courseSelect", "lessonCardOpen", "lessonPayload", "What you will learn", "data-course-title", "completedCount"]),
-    (drawer, "lesson drawer", ["lessonPortalCalm", 'classList.add("lessonWorkspace")', "lessonDetailDialog", "showModal()", "history.pushState", "popstate", "aria-haspopup"]),
-    (styles, "calm portal styles", ['data-auth-state="signed-in"', ".lessonPortalHero", ".portalUtilityStrip", "grid-template-columns:repeat(3", ".lessonCardOpen", "dialog.lessonDetailDialog", ".lessonDrawerSurface", "@media(max-width:680px)", "@media(prefers-reduced-motion:reduce)"]),
-    (route_styles, "compact Smart Route", ["#smartRoute-lessons", ".slrEvidence", ".slrDecisionCopy", ".slrAction.primary"]),
-    (index, "lesson portal page", ["20260802-calm1", "lesson-portal-overhaul.css", "lesson-portal-overhaul.js"]),
-    (preview, "lesson portal preview", ["20260802-calm1", "data-preview-fallback"]),
-    (visual, "visual QA", ["lesson-portal", "lessonPortal:true", "firstLessonTop", "lessonDetailDialog", "lessonDrawerScreenshot"]),
-    (worker, "service worker", ["lesson-portal-calm1", "./css/lesson-portal-overhaul.css", "./js/lesson-portal-overhaul.js"]),
+    (drawer, "lesson drawer", ["lessonPortalCalm", 'classList.add("lessonWorkspace")', "calmIdentityBanner", "hasCalmIdentity", "lessonDetailDialog", "showModal()", "history.pushState", "popstate", "aria-haspopup"]),
+    (styles, "calm portal styles", ['data-auth-state="signed-in"', ".lessonPortalHero", ".portalUtilityStrip", ".calmIdentityBanner", ".calmIdentityCycle", "grid-template-columns:repeat(3", ".lessonCardOpen", "dialog.lessonDetailDialog", ".lessonDrawerSurface", "@media(max-width:680px)", "@media(prefers-reduced-motion:reduce)"]),
+    (route_styles, "compact Smart Route", ["#smartRoute-lessons", ".slrEvidence", ".slrDecisionCopy", ".slrMiniRoute", ".slrAction.primary"]),
+    (index, "lesson portal page", ["20260802-calm2", "lesson-portal-overhaul.css", "lesson-portal-overhaul.js"]),
+    (preview, "lesson portal preview", ["20260802-calm2", "20260802-route-design3", "data-preview-fallback"]),
+    (visual, "visual QA", ["lesson-portal", "lessonPortal:true", "identityBanner", "smartRouteHeight", "firstLessonTop", "lessonDetailDialog", "lessonDrawerScreenshot"]),
+    (worker, "service worker", ["lesson-portal-calm2", "./css/lesson-portal-overhaul.css", "./js/lesson-portal-overhaul.js"]),
 ]
 
 for body, label, markers in requirements:

@@ -29,11 +29,128 @@ body.previewPortal.lessonPortalCalm{
 }
 
 body.lessonPortalCalm .calmSectionIntro,
+body.lessonPortalCalm .calmIdentityBanner,
 body.lessonPortalCalm #tabs,
 body.lessonPortalCalm .lessonWorkspace{
   width:min(1480px,calc(100% - 40px));
   margin-inline:auto;
 }
+
+/* A compact maroon identity moment: branded, useful, and intentionally brief. */
+body.lessonPortalCalm .calmIdentityBanner{
+  position:relative;
+  isolation:isolate;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  align-items:center;
+  gap:24px;
+  min-height:132px;
+  margin-top:18px;
+  margin-bottom:10px;
+  padding:20px 24px;
+  overflow:hidden;
+  border:1px solid rgba(235,206,137,.28);
+  border-radius:22px;
+  background:
+    radial-gradient(circle at 91% 0%,rgba(211,156,77,.26),transparent 23rem),
+    linear-gradient(118deg,#681130 0%,#861842 58%,#9d3c53 100%);
+  box-shadow:0 16px 38px rgba(104,17,48,.16);
+  color:#fff;
+}
+body.lessonPortalCalm .calmIdentityBanner::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  opacity:.34;
+  background:
+    linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);
+  background-size:32px 32px;
+  mask-image:linear-gradient(90deg,#000,transparent 82%);
+}
+body.lessonPortalCalm .calmIdentityBanner::after{
+  content:"∫";
+  position:absolute;
+  right:2.5%;
+  bottom:-54px;
+  z-index:-1;
+  color:rgba(248,220,153,.11);
+  font:italic 180px/1 Fraunces,Georgia,serif;
+}
+body.lessonPortalCalm .calmIdentityCopy{min-width:0}
+body.lessonPortalCalm .calmIdentityEyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  color:#f2d88f;
+  font:900 9px/1 Inter,sans-serif;
+  letter-spacing:1.25px;
+  text-transform:uppercase;
+}
+body.lessonPortalCalm .calmIdentityEyebrow i{
+  width:20px;
+  height:2px;
+  border-radius:999px;
+  background:#f2d88f;
+}
+body.lessonPortalCalm .calmIdentityBanner h1{
+  margin:8px 0 0;
+  color:#fff;
+  font:580 clamp(27px,2.7vw,38px)/1.08 Fraunces,Georgia,serif;
+  letter-spacing:-.55px;
+  animation:none;
+}
+body.lessonPortalCalm .calmIdentityBanner h1 span{
+  display:inline;
+  margin:0;
+  color:#fff;
+  background:none;
+  -webkit-text-fill-color:currentColor;
+  font-style:normal;
+}
+body.lessonPortalCalm .calmIdentityBanner h1 em{
+  color:#f2d88f;
+  font-weight:480;
+}
+body.lessonPortalCalm .calmIdentityBanner p{
+  margin:7px 0 0;
+  color:rgba(255,255,255,.74);
+  font:600 11px/1.5 Inter,sans-serif;
+}
+body.lessonPortalCalm .calmIdentityCycle{
+  position:relative;
+  z-index:1;
+  display:flex;
+  align-items:center;
+  gap:7px;
+  padding:10px 12px;
+  border:1px solid rgba(255,255,255,.16);
+  border-radius:16px;
+  background:rgba(255,255,255,.09);
+  backdrop-filter:blur(12px);
+}
+body.lessonPortalCalm .calmIdentityCycle>span{
+  display:grid;
+  gap:3px;
+  min-width:48px;
+  color:rgba(255,255,255,.62);
+  text-align:center;
+}
+body.lessonPortalCalm .calmIdentityCycle>span.active{color:#f5db98}
+body.lessonPortalCalm .calmIdentityCycle b{
+  font:900 9px/1 Inter,sans-serif;
+  letter-spacing:.8px;
+}
+body.lessonPortalCalm .calmIdentityCycle small{
+  font:800 8px/1 Inter,sans-serif;
+}
+body.lessonPortalCalm .calmIdentityCycle>i{
+  width:16px;
+  height:1px;
+  background:rgba(255,255,255,.25);
+}
+body.lessonPortalCalm.hasCalmIdentity .calmSectionIntro{display:none!important}
 
 /* Keep the signed-in preview faithful to the compact production shell. */
 body.previewPortal.lessonPortalCalm header.site .top{
@@ -873,10 +990,31 @@ html[data-theme="dark"] .lessonDrawerBody .star{background:#172a38;color:#c3ced7
 
 @media(max-width:680px){
   body.lessonPortalCalm .calmSectionIntro,
+  body.lessonPortalCalm .calmIdentityBanner,
   body.lessonPortalCalm #tabs,
   body.lessonPortalCalm .lessonWorkspace{
     width:min(100% - 24px,1480px);
   }
+  body.lessonPortalCalm .calmIdentityBanner{
+    grid-template-columns:1fr;
+    gap:12px;
+    min-height:0;
+    margin-top:12px;
+    padding:16px;
+    border-radius:18px;
+  }
+  body.lessonPortalCalm .calmIdentityBanner h1{
+    max-width:330px;
+    font-size:27px;
+  }
+  body.lessonPortalCalm .calmIdentityBanner p{font-size:10px}
+  body.lessonPortalCalm .calmIdentityCycle{
+    justify-content:space-between;
+    width:100%;
+    padding:8px 10px;
+  }
+  body.lessonPortalCalm .calmIdentityCycle>span{min-width:45px}
+  body.lessonPortalCalm .calmIdentityCycle>i{flex:1 1 auto}
   body.lessonPortalCalm .calmSectionIntro .sectionTitle{font-size:29px}
   body.lessonPortalCalm .courseTabList{display:none}
   body.lessonPortalCalm .courseSelectLabel{

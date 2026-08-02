@@ -38,7 +38,7 @@
     if (document.querySelector('link[data-smart-learning-route]')) return;
     const link = document.createElement("link");
     link.rel = "stylesheet";
-    link.href = absolute("css/smart-learning-route.css?v=20260802-route-design2");
+    link.href = absolute("css/smart-learning-route.css?v=20260802-route-design3");
     link.dataset.smartLearningRoute = "true";
     document.head.append(link);
   }
@@ -71,6 +71,14 @@
       challenge: ["★", "Challenge route"],
     }[route] || ["→", "Core route"];
     return `<span class="slrPathBadge ${esc(route)}"><i>${meta[0]}</i>${meta[1]}</span>`;
+  }
+
+  function routeScale(route) {
+    return `<span class="slrMiniRoute" aria-label="Available routes: Support, Core, Challenge">${[
+      ["support", "Support"],
+      ["core", "Core"],
+      ["challenge", "Challenge"],
+    ].map(([key, label]) => `<span class="${key === route ? "active" : ""}">${label}</span>`).join("")}</span>`;
   }
 
   function timeLabel(value) {
@@ -195,14 +203,28 @@
   async function renderLessons(context) {
     const token = ++renderToken;
     const node = shell();
-    if (!context?.access?.authenticated || context.access.role !== "student") {
+    if (!context?.access?.authenticated) {
       node.hidden = true;
       return;
     }
     node.hidden = false;
+    const lessons = context.lessons || [];
+    if (context.access.role !== "student") {
+      const courseId = context.currentCourse?.id || context.state?.courseId || "";
+      const courseLessons = courseId ? lessons.filter((row) => row.courseId === courseId) : lessons;
+      const target = courseLessons.find((row) => !row.completed && row.url)
+        || courseLessons.find((row) => row.url)
+        || courseLessons[0]
+        || null;
+      const lesson = target?.lessonHref || absolute("index.html#courses");
+      const roleLabel = context.access.role === "admin" ? "Administration planning view" : "Teacher planning view";
+      node.dataset.routeAudience = "staff";
+      node.innerHTML = `<div class="slrBody"><article class="slrDecision"><div class="slrDecisionTop">${routeBadge("core")}${routeScale("core")}</div><span class="slrDecisionLabel">ECHS Smart Learning Route · ${roleLabel}</span><h3>Plan or preview: ${esc(target?.number ? `${target.number} · ${target.title}` : target?.title || context.currentCourse?.title || "the selected course")}</h3><div class="slrActions"><a class="slrAction primary" href="${esc(lesson)}">Open lesson preview <b>→</b></a></div></article></div>`;
+      return;
+    }
+    delete node.dataset.routeAudience;
     const dashboard = context.access.dashboard || {};
     const counters = { ...localEvidence(), ...(dashboard.counters || {}) };
-    const lessons = context.lessons || [];
     const openAssignments = (dashboard.assignments || [])
       .filter((row) => (row.result?.status || "not_started") !== "submitted")
       .sort((a, b) => new Date(a.due_at || "2999-12-31") - new Date(b.due_at || "2999-12-31"));
@@ -260,7 +282,7 @@
       "ECHS Smart Learning Route",
       "One clear next step, chosen from real learning evidence.",
       "The route combines today’s timetable, teacher assignments, prerequisite readiness, practice evidence and spaced review. Mastery remains controlled by the verified evidence engine.",
-    )}<div class="slrBody"><article class="slrDecision"><div class="slrDecisionTop">${routeBadge(route)}<span class="slrFreshness">${esc(schedule.detail)}</span></div><span class="slrDecisionLabel">Recommended now</span><h3>${esc(routeMeta.title)}</h3><p class="slrDecisionCopy">${esc(routeMeta.copy)}</p><div class="slrReasonList">${reasons.map((reason) => `<span>${esc(reason)}</span>`).join("")}</div><div class="slrActions"><a class="slrAction primary" href="${esc(practice)}">${esc(routeMeta.action)} <b>→</b></a><a class="slrAction" href="${esc(lesson)}">Open the lesson</a>${reviews ? `<a class="slrAction" href="${absolute("question-bank/mistakes.html")}">Clear spaced review</a>` : ""}</div></article><aside class="slrEvidence"><div class="slrEvidenceHead"><span>Evidence used in this decision</span><b>Updated now</b></div><div class="slrEvidenceGrid"><div class="slrMetric"><span>Prerequisite</span><strong>${prerequisite ? `${prerequisiteScore}%` : "Ready"}</strong><small>${prerequisite ? esc(prerequisite.title) : "First available target"}</small></div><div class="slrMetric"><span>Recent accuracy</span><strong>${accuracy ? `${accuracy}%` : "New"}</strong><small>${accuracy ? "Synchronized attempts" : "Route starts conservatively"}</small></div><div class="slrMetric"><span>Reviews due</span><strong>${reviews}</strong><small>${mistakes} open mistake${mistakes === 1 ? "" : "s"}</small></div><div class="slrMetric"><span>Target mastery</span><strong>${targetScore}%</strong><small>Verified evidence only</small></div></div><div class="slrRuleRail"><div class="slrRule"><i>1</i><span><strong>Schedule signal</strong><small>${esc(schedule.text)}</small></span><em>${schedule.entry ? "LIVE" : "CLEAR"}</em></div><div class="slrRule"><i>2</i><span><strong>Teacher priority</strong><small>${esc(assignment?.title || "No urgent assignment")}</small></span><em>${assignment ? "SET" : "OPEN"}</em></div><div class="slrRule"><i>3</i><span><strong>Trusted mastery gate</strong><small>Multiple suitable attempts and recovery remain required.</small></span><em>LOCKED</em></div></div></aside></div>`;
+    )}<div class="slrBody"><article class="slrDecision"><div class="slrDecisionTop">${routeBadge(route)}${routeScale(route)}<span class="slrFreshness">${esc(schedule.detail)}</span></div><span class="slrDecisionLabel">ECHS Smart Learning Route · Recommended now</span><h3>${esc(routeMeta.title)}</h3><p class="slrDecisionCopy">${esc(routeMeta.copy)}</p><div class="slrReasonList">${reasons.map((reason) => `<span>${esc(reason)}</span>`).join("")}</div><div class="slrActions"><a class="slrAction primary" href="${esc(practice)}">${esc(routeMeta.action)} <b>→</b></a><a class="slrAction" href="${esc(lesson)}">Open the lesson</a>${reviews ? `<a class="slrAction" href="${absolute("question-bank/mistakes.html")}">Clear spaced review</a>` : ""}</div></article><aside class="slrEvidence"><div class="slrEvidenceHead"><span>Evidence used in this decision</span><b>Updated now</b></div><div class="slrEvidenceGrid"><div class="slrMetric"><span>Prerequisite</span><strong>${prerequisite ? `${prerequisiteScore}%` : "Ready"}</strong><small>${prerequisite ? esc(prerequisite.title) : "First available target"}</small></div><div class="slrMetric"><span>Recent accuracy</span><strong>${accuracy ? `${accuracy}%` : "New"}</strong><small>${accuracy ? "Synchronized attempts" : "Route starts conservatively"}</small></div><div class="slrMetric"><span>Reviews due</span><strong>${reviews}</strong><small>${mistakes} open mistake${mistakes === 1 ? "" : "s"}</small></div><div class="slrMetric"><span>Target mastery</span><strong>${targetScore}%</strong><small>Verified evidence only</small></div></div><div class="slrRuleRail"><div class="slrRule"><i>1</i><span><strong>Schedule signal</strong><small>${esc(schedule.text)}</small></span><em>${schedule.entry ? "LIVE" : "CLEAR"}</em></div><div class="slrRule"><i>2</i><span><strong>Teacher priority</strong><small>${esc(assignment?.title || "No urgent assignment")}</small></span><em>${assignment ? "SET" : "OPEN"}</em></div><div class="slrRule"><i>3</i><span><strong>Trusted mastery gate</strong><small>Multiple suitable attempts and recovery remain required.</small></span><em>LOCKED</em></div></div></aside></div>`;
   }
 
   function renderTeacher(context) {
