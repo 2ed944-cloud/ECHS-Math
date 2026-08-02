@@ -56,7 +56,9 @@
     const completed=cards.filter(card=>card.dataset.completed==="true").length;
     const mastered=cards.filter(card=>masteryScore(card)>=80).length;
     const metric=qs(".unitMetrics",unit);
-    if(metric){
+    const metricSignature=[completed,cards.length,mastered].join("|");
+    if(metric&&metric.dataset.portalMetric!==metricSignature){
+      metric.dataset.portalMetric=metricSignature;
       metric.innerHTML="<b>"+completed+"/"+cards.length+"</b><small>complete · "+mastered+" mastered</small><span class=\"unitMiniTrack\"><i style=\"width:"+(cards.length?Math.round(completed/cards.length*100):0)+"%\"></i></span>";
     }
   }
