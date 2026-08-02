@@ -119,6 +119,20 @@
 <footer>© <span id="currentYear"></span> <strong>ECHS Mathematics</strong> · Teacher: Mohammad Abu Ghuwaleh · Built for GitHub Pages.</footer>
 <script src="preview/courses-preview.js"></script>
 <script src="data/ap-calculus-update.js"></script>
+<script>
+(function(){
+  "use strict";
+  const lesson=(number,title,summary,url)=>({number,title,summary,outcomes:[summary],videos:[],notes:[],resources:[],url,status:url?"ready":"flow",kind:"lesson",new:false});
+  if(!Array.isArray(window.ECHS_COURSES)||!window.ECHS_COURSES.length){window.ECHS_COURSES=[
+    {id:"ap-calculus-ab",grade:"G12",title:"G12 AP Calculus AB",shortTitle:"AP Calculus AB",subtitle:"Limits, derivatives, applications and accumulation.",units:[{title:"Unit 1: Limits and Continuity",lessons:[lesson("1.1","Introducing Calculus: Can Change Occur at an Instant?","Interpret instantaneous change in context.","lessons/ap-calculus/unit-1/index.html")]}]},
+    {id:"ap-precalculus-g10-g11",grade:"G10–G11",title:"AP Precalculus",shortTitle:"AP Precalculus",subtitle:"Functions, modelling and mathematical reasoning.",units:[{title:"Unit 1: Polynomial and Rational Functions",lessons:[lesson("1.1","Change in Tandem","Describe how input and output values vary together.","lessons/ap-precalculus/unit-1/index.html")]}]},
+    {id:"algebra-2-concepts",grade:"G10",title:"Algebra 2 Concepts",shortTitle:"Algebra 2",subtitle:"Algebraic structures, functions and modelling foundations.",units:[{title:"Unit 1: Function Foundations",lessons:[lesson("1.1","Relations and Functions","Identify functions from equations, tables and graphs.","")]}]},
+    {id:"ib-math-ai",grade:"G11–G12",title:"IB Mathematics: Applications and Interpretation",shortTitle:"IB Math AI",subtitle:"Conceptual reasoning, applications and mathematical communication.",units:[{title:"Unit 1: Number and Algebra",lessons:[lesson("1.1","Sequences and Financial Models","Use arithmetic and geometric sequences in context.","lessons/ib-math-ai/unit-1/index.html")]}]}
+  ];}
+  const normaliseCourseKey=value=>String(value||"").trim().toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"");
+  window.ECHSPortalAccess={normaliseCourseKey,courseAllowed:()=>true,roleHome:()=>new URL("preview.html",location.href).href,ready:Promise.resolve({authenticated:true,role:"teacher",courseKeys:[],allCourses:true,error:"",current:{display_name:"Preview Teacher",username:"preview.teacher",role:"teacher"}})};
+})();
+</script>
 <script src="js/preview-portal-access.js?v=20260802-portal1"></script>
 <script src="js/portal.js?v=20260802-portal2"></script>
 <script src="js/lesson-portal-overhaul.js?v=20260802-portal1"></script>
