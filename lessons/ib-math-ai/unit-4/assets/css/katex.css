@@ -1,0 +1,5 @@
+.katex{font-size:1.16em;line-height:1.25;font-family:"Cambria Math","STIX Two Math","Times New Roman",serif}
+.katex math{font-family:"Cambria Math","STIX Two Math","Times New Roman",serif;max-width:100%}
+.math-inline{display:inline-block;vertical-align:-.08em;max-width:100%}
+.math-display{display:block;margin:.85em 0;text-align:center;overflow-x:auto;overflow-y:hidden;padding:.25em 0}
+.math-display .katex,.math-display math[display="block"]{display:block;margin:.35em auto}
