@@ -9,120 +9,42 @@ permissions:
   contents: write
 
 jobs:
-  install:
-    if: github.actor != 'github-actions[bot]'
+  inspect:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 10
     steps:
-      - name: Check out deployment branch
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           ref: agent/publish-ib-ai-unit-3-geogebra
           fetch-depth: 0
-          persist-credentials: true
-
-      - name: Reassemble, expand, and validate Unit 3
+      - name: Inspect orphaned Unit 3 payload
         shell: bash
         run: |
           set -euo pipefail
-          cat staging/package.b64-* | base64 --decode > /tmp/echs-u3.zip
-          echo "390a10ee40b176cda708f516476705151e023bcbc6ac820b4cced9964d365c8d  /tmp/echs-u3.zip" | sha256sum --check
-          rm -rf /tmp/echs-u3
-          mkdir -p /tmp/echs-u3
-          unzip -q /tmp/echs-u3.zip -d /tmp/echs-u3
-          package="$(find /tmp/echs-u3 -mindepth 1 -maxdepth 1 -type d | head -n 1)"
-          test -n "$package"
-          test -d "$package/lessons/ib-math-ai/unit-3"
-          test -f "$package/data/ib-math-ai-unit-3-update.js"
-          test -f "$package/patches/ib-math-ai-lesson-catalog-unit-3.json"
-
-          rm -rf lessons/ib-math-ai/unit-3
-          cp -R "$package/lessons/ib-math-ai/unit-3" lessons/ib-math-ai/unit-3
-          cp "$package/data/ib-math-ai-unit-3-update.js" data/ib-math-ai-unit-3-update.js
-
-          PACKAGE="$package" python - <<'PY'
-          import json
-          import os
-          import re
+          python - <<'PY'
+          import base64, gzip, json, re, subprocess
           from pathlib import Path
-
-          registration_path = Path('data/ib-math-ai-unit-3-update.js')
-          registration = registration_path.read_text(encoding='utf-8').replace(
-              'lessons/ib-math-ai/unit-3/IB_AI_SL_',
-              'lessons/ib-math-ai/unit-3/lessons/IB_AI_SL_'
-          )
-          registration_path.write_text(registration, encoding='utf-8')
-
-          index_path = Path('index.html')
-          index = index_path.read_text(encoding='utf-8')
-          unit2 = '<script src="data/ib-math-ai-unit-2-update.js?v=20260802-unit2"></script>'
-          unit3 = '<script src="data/ib-math-ai-unit-3-update.js?v=20260802-unit3-geogebra310"></script>'
-          if unit3 not in index:
-              if unit2 not in index:
-                  raise SystemExit('Unit 2 script tag was not found in index.html')
-              index = index.replace(unit2, unit2 + '\n' + unit3, 1)
-          index_path.write_text(index, encoding='utf-8')
-
-          package = Path(os.environ['PACKAGE'])
-          patch = json.loads((package / 'patches/ib-math-ai-lesson-catalog-unit-3.json').read_text(encoding='utf-8'))
-          patch['unit_home'] = 'lessons/ib-math-ai/unit-3/index.html'
-          for lesson in patch.get('lessons', []):
-              lesson['url'] = lesson['url'].replace(
-                  'lessons/ib-math-ai/unit-3/IB_AI_SL_',
-                  'lessons/ib-math-ai/unit-3/lessons/IB_AI_SL_'
-              )
-          catalog_path = Path('data/ib-math-ai-lesson-catalog.json')
-          catalog = json.loads(catalog_path.read_text(encoding='utf-8'))
-          units = catalog.setdefault('units', [])
-          position = next((i for i, unit in enumerate(units) if unit.get('unit') == 3), None)
-          if position is None:
-              units.append(patch)
-          else:
-              units[position] = patch
-          catalog['catalog_state'] = 'units-1-to-3-ready-other-units-content-build-required'
-          catalog_path.write_text(json.dumps(catalog, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
-
-          sw_path = Path('sw.js')
-          if sw_path.is_file():
-              sw = sw_path.read_text(encoding='utf-8')
-              if 'ib-ai-u3-geogebra310' not in sw:
-                  sw, count = re.subn(
-                      r'(const\s+VERSION\s*=\s*["\'])([^"\']+)(["\'])',
-                      lambda m: m.group(1) + m.group(2) + '-ib-ai-u3-geogebra310' + m.group(3),
-                      sw,
-                      count=1,
-                  )
-                  if count:
-                      sw_path.write_text(sw, encoding='utf-8')
-
-          lessons = sorted(Path('lessons/ib-math-ai/unit-3/lessons').glob('IB_AI_SL_3.*_ECHS.html'))
-          if len(lessons) != 6:
-              raise SystemExit(f'Expected 6 Unit 3 lessons, found {len(lessons)}')
-          for lesson in lessons:
-              expected = 'lessons/ib-math-ai/unit-3/lessons/' + lesson.name
-              if expected not in registration:
-                  raise SystemExit(f'Missing registered URL: {expected}')
-          required = [
-              Path('lessons/ib-math-ai/unit-3/assets/js/engine.js'),
-              Path('lessons/ib-math-ai/unit-3/assets/js/geogebra-labs.js'),
-              Path('lessons/ib-math-ai/unit-3/assets/js/katex-global.js'),
-              Path('lessons/ib-math-ai/unit-3/assets/css/theme.css'),
-              Path('lessons/ib-math-ai/unit-3/assets/css/katex.css'),
-          ]
-          if not all(path.is_file() for path in required):
-              raise SystemExit('Required Unit 3 assets are missing')
-          print('IB AI Unit 3 integration validation: PASS')
+          branch='origin/agent/inspect-u3-orphan-tree'
+          parts=[]
+          for i in range(1,5):
+              path=f'lessons/ib-math-ai/unit-3/assets/js/payload-part-{i:02d}.js'
+              text=subprocess.check_output(['git','show',f'{branch}:{path}'], text=True)
+              m=re.search(r'\.push\((".*")\);?\s*$', text, re.S)
+              if not m:
+                  raise SystemExit(f'Could not parse {path}')
+              parts.append(json.loads(m.group(1)))
+          encoded=''.join(parts)
+          print('encoded_chars',len(encoded))
+          raw=base64.b64decode(encoded)
+          print('raw_bytes',len(raw),'magic',raw[:16].hex())
+          Path('/tmp/u3-payload.bin').write_bytes(raw)
+          try:
+              dec=gzip.decompress(raw)
+              print('gzip_bytes',len(dec),'gzip_magic',dec[:32].hex())
+              print('gzip_text_prefix',dec[:200])
+              Path('/tmp/u3-payload.dec').write_bytes(dec)
+          except Exception as exc:
+              print('gzip_error',repr(exc))
           PY
-
-      - name: Commit expanded deployment
-        shell: bash
-        run: |
-          set -euo pipefail
-          rm -f staging/package.b64-* staging/ready.txt staging/trigger-unit-3-install.txt staging/ib-ai-unit-3-geogebra-v3.1.0.zip
-          rmdir staging 2>/dev/null || true
-          rm -f .github/workflows/install-ib-ai-unit-3.yml
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -A
-          git commit -m 'Publish IB Mathematics AI Unit 3 GeoGebra lessons'
-          git push origin HEAD:agent/publish-ib-ai-unit-3-geogebra
+          file /tmp/u3-payload.bin || true
+          test -f /tmp/u3-payload.dec && file /tmp/u3-payload.dec || true
