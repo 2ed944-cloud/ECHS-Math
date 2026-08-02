@@ -1,95 +1,109 @@
-# IB Mathematics: Applications and Interpretation SL — Unit 1 Release QA
+# IB Mathematics: Applications and Interpretation SL — Unit 1 Definitive v3 QA
 
 ## Release decision
 
-**Ready for ECHS platform integration.** The package is complete, self-contained, responsive, and validated as a current-course **Number and Algebra** release. It has not been pushed to or deployed on the production website by this package build.
+**Ready for pull-request preview and independent browser sign-off.** The redesign is implemented as an additive, offline-safe enhancement layer over the already validated Unit 1 package. Stable lesson URLs, base lesson data, shared engine behaviour, mastery keys and private-bank routing are preserved.
 
-## Release 1.0.1 — direct offline opening correction
+The branch is not merged or deployed by this report.
 
-A direct Windows-style local opening exposed a release-blocking issue in 1.0.0: lesson pages loaded the runtime as an ES module. Chromium-based browsers apply stricter origin rules to module imports under `file://`, so the page could remain permanently on **Loading lesson…** even though the same bundle worked when served over HTTP.
+## Definitive v3 scope
 
-The 1.0.1 correction:
+Each of the eight lessons keeps its original validated baseline of 49 Learn slides, 40 Practice Studio questions, 10 quiz questions and 2 extended tasks. The v3 layer adds, per lesson:
 
-- replaces the module loader with ordered deferred classic scripts;
-- provides a browser-global KaTeX build isolated inside a closure;
-- isolates the lesson engine to prevent global identifier collisions;
-- guards all browser storage access and falls back to session memory if storage is denied;
-- updates all eight lesson entry pages consistently.
+- 12 source-informed Learn slides: four deep dives, four complete worked examples and four Student Transfer/misconception slides;
+- 12 new original Practice Studio questions, balanced as 3 Foundation, 3 Application, 3 Reasoning and 3 Challenge;
+- 4 new timed-quiz questions;
+- 1 new extended-response IB-style task;
+- lesson-specific original SVG diagrams and a premium responsive visual layer;
+- explicit source-basis metadata and transparent current-course/2029-transition wording.
 
-Post-fix validation passed for all eight lessons: initial rendering, removal of the loading state, Learn navigation, Slide Map, Practice Studio, hidden worked solutions, both extended tasks, markscheme reveal, Timed Quiz, Mastery view, and zero JavaScript errors. Machine-readable results are in `reports/offline-opening-fix-qa.json`.
+Final delivered totals:
 
-## Verified scope
+| Measure | Per lesson | Unit total |
+|---|---:|---:|
+| Learn slides | 61 | 488 |
+| Practice Studio questions | 52 | 416 |
+| Timed-quiz questions | 14 | 112 |
+| Extended IB-style tasks | 3 | 24 |
 
-- 8 standalone HTML lessons covering current-course SL 1.1–1.8
-- 392 Learn screens: 49 per lesson
-- 320 original Practice Studio questions: 40 per lesson
-- 80 independent timed-quiz questions: 10 per lesson
-- 16 extended-response IB-style tasks: 2 per lesson
-- 385 numerical auto-checks
-- 5 stable ECHS mastery keys preserved for authenticated-bank routing
+## Reference basis and rights boundary
 
-## Curriculum and pedagogy
+The supplied materials were used to strengthen terminology, sequencing, worked-example depth, technology use and assessment coverage:
 
-The lessons use the current IB Mathematics: Applications and Interpretation SL course structure and make technology, modelling, interpretation, assumptions, validation, and evaluation visible throughout. Each lesson includes five concept cycles, worked examples, Student Turns, misconception clinics, an inquiry prompt, a modelling cycle, a technology lab, an investigation, an exit ticket, and mastery review.
+- Pearson, *Mathematics: Applications and Interpretation for the IB Diploma — Standard Level*;
+- Haese Mathematics, *Mathematics: Applications and Interpretation SL 2*;
+- Christos Nikolaidis, Topic 1A notes and the supplied MAI exercise collections for rounding, exponents, systems, arithmetic sequences and geometric sequences.
 
-Lesson 1.5 intentionally retains logarithms for current-course cohorts. The revised course starts teaching in August 2027, has first assessment in May 2029, and removes logarithms from AI SL. See `docs/2029_TRANSITION_NOTE.md` before assigning this package to those cohorts.
+The implementation is an original ECHS adaptation. No textbook pages, screenshots, proprietary diagrams or verbatim exercise banks are embedded in the public lesson files.
 
-## Question and mathematical audit
+## Mathematical and assessment audit
 
-- All 416 assessment IDs are unique: 320 Practice + 80 Quiz + 16 extended tasks.
-- All Practice Studio levels contain exactly 10 questions per lesson.
-- No exact prompt duplication occurs within or across the packaged assessment set.
-- All extended-task part marks sum exactly to the stated task total.
-- All prompts, answers, solutions, and markschemes required by their item type are present.
-- All 385 numerical checks contain finite targets and positive tolerances.
-- Every displayed numerical answer is within its checker tolerance.
-- No non-zero target has a tolerance broad enough to accept zero.
-- Scientific-notation checkers accept `e` notation and forms using `×`, `x`, or `*` with powers of ten.
-- Context-dependent draft wording such as “the previous question” or “the same loan” was removed so cards remain valid when randomized.
+The v3 validator passed:
 
-Targeted corrections made during audit include arithmetic-sequence capacity/index calculations, inverse arithmetic-sequence data, geometric crossover and finite-sum values, context equations for three-variable systems, break-even revenue data, financial wording, bounds terminology, and precision handling for very small numbers.
+- 8/8 enhancement packs present;
+- 4/4 deep dives per lesson;
+- 12/12 added practice questions per lesson;
+- exact 3/3/3/3 level balance per lesson;
+- 4/4 added quiz questions per lesson;
+- 1/1 added extended task per lesson;
+- 136/136 added assessment IDs unique;
+- 128/128 added practice/quiz prompts unique;
+- every extended-task part mark sums to its stated total;
+- all numerical check targets are finite and all tolerances are positive;
+- final overlay counts resolve to 61/52/14/3 in all eight representative lesson tests.
 
-Detailed machine-readable results are in `reports/question-audit.json` and `reports/qa-results.json`.
+Machine-readable results are recorded in `reports/v3-enhancement-audit.json`.
 
-## Browser and rendering QA
+## Technical validation completed
 
-### Responsive functional run
+- `node --check` passed for:
+  - eight lesson-specific `data/lesson-1.x-v3.js` overlays;
+  - `data/unit-1-v3-enhancements.js`;
+  - the portal registration update.
+- All eight lesson wrappers load the scripts in offline-safe ordered classic-script form:
+  1. canonical lesson data;
+  2. v3 reference content;
+  3. v3 enhancement layer;
+  4. local KaTeX;
+  5. the existing lesson engine.
+- The representative overlay test was executed for lessons 1.1–1.8 and produced the expected final counts and 13 questions at each Practice Studio level.
+- The original baseline data remains unchanged, so the previous package validator and baseline browser evidence remain valid for the underlying 49/40/10/2 package.
+- No font files are introduced.
+- No question-bank IDs, provenance, rights metadata, canonical chunks or authenticated-bank records are changed.
 
-18 of 18 endpoint tests passed:
-
-- all 8 lessons at 1440×900
-- all 8 lessons at 390×844
-- unit home at both viewports
-
-The run verified route switching, Slide Map, local note persistence, Practice Studio, level filtering, hints, hidden solutions, timed quizzes, extended tasks, markscheme reveal, technology labs, KaTeX rendering, and horizontal-overflow protection. There were no browser console errors or page errors.
-
-### Comprehensive render run
-
-The exact generated HTML/CSS/data/runtime bundle was rendered in Chromium and traversed card by card:
-
-- 392 of 392 Learn screens
-- 320 of 320 Practice Studio cards
-- 80 of 80 Quiz cards
-- 16 of 16 extended tasks
-
-All eight lessons passed with zero KaTeX fallback errors and zero horizontal-overflow failures. Results are recorded in `reports/comprehensive-render-audit.json`.
-
-## Packaging and rights boundary
-
-- No font files are packaged.
-- KaTeX JavaScript is local; CSS uses system-font fallbacks.
-- Lesson teaching and assessment prompts are original ECHS content.
-- Attached private-bank prompts, source PDFs, and canonical bank JSON were not copied into public lesson files.
-- Existing bank IDs, provenance, rights metadata, canonical chunks, and private registries were not modified.
-- The authenticated bank bridge uses only course, unit, lesson, and existing mastery-skill keys.
-
-## Re-run checks
-
-From the package root:
+Run the new validator from the Unit 1 root:
 
 ```bash
-python tools/validate_package.py
-python tools/audit_questions.py
-node --check assets/js/engine.js
-node --check assets/js/katex.js
+python tools/validate_v3_enhancement.py
 ```
+
+## Visual redesign
+
+The v3 visual layer retains the ECHS maroon identity while adding a lesson-specific accent system. Repetitive concept illustrations are replaced at runtime with distinct, accessible SVG compositions using five visual grammars: nested sets, stepped processes, connected cards, graphs and scale lines.
+
+Additional improvements include:
+
+- a fully redesigned Unit 1 landing page;
+- clearer source-synthesis cards;
+- larger formula panels;
+- worked-example and Student Transfer separation;
+- revealable complete checks and misconception clinics;
+- dynamic route counts for the expanded Practice, Quiz and IB Task sets;
+- reduced-motion support, responsive layouts and print-safe fallbacks.
+
+## Curriculum-version note
+
+This release targets the current AI SL course used through the 2028 assessment sessions. Lesson 1.5 is upgraded to **Exponent Laws and Logarithms** and intentionally retains logarithms for the current cohort. The landing page and lesson metadata clearly mark the first-assessment-2029 transition, in which logarithms are removed from AI SL.
+
+## Remaining release gate
+
+Before merge, run a Chromium preview traversal on the pull-request branch at desktop and mobile widths and verify:
+
+- all 488 final Learn slides;
+- all 416 final Practice Studio cards;
+- all 112 final quiz cards;
+- all 24 final extended tasks;
+- KaTeX rendering and horizontal-overflow protection;
+- completion events and mastery records while signed in as student, teacher and administrator.
+
+The existing baseline browser audit is not silently relabelled as a v3 browser audit.

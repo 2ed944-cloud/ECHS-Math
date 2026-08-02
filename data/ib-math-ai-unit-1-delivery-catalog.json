@@ -1,17 +1,160 @@
 {
-  "schema_version": "1.2.0",
+  "schema_version": "1.3.0",
   "course": "ib-math-ai",
   "unit": 1,
   "title": "Number and Algebra",
+  "release": "3.0.0",
   "implementation_window": "current-school-course-through-2028",
+  "transition_note": "First-assessment-2029 AI SL removes logarithms; Lesson 1.5 remains active for the current cohort and is version-marked.",
+  "totals": {
+    "lessons": 8,
+    "learn_slides": 488,
+    "practice_questions": 416,
+    "timed_quiz_questions": 112,
+    "extended_tasks": 24
+  },
+  "reference_basis": [
+    "Mathematics: Applications and Interpretation SL — Pearson (2019/2020 edition supplied)",
+    "Mathematics: Applications and Interpretation SL 2 — Haese Mathematics (2019 edition supplied)",
+    "Christos Nikolaidis Topic 1A notes and supplied MAI exercise sets"
+  ],
   "lessons": [
-    {"lesson_key":"u1-standard-form","number":"1.1","title":"Scientific Notation and Orders of Magnitude","skill_ids":["IBAI.U1.NUMBER","IBAI.U1.MODELING"],"status":"ready","student_visible":true,"url":"lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.1_standard_form_ECHS.html"},
-    {"lesson_key":"u1-arithmetic-sequences","number":"1.2","title":"Arithmetic Sequences and Series","skill_ids":["IBAI.U1.SEQUENCES","IBAI.U1.MODELING"],"status":"ready","student_visible":true,"url":"lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.2_arithmetic_sequences_ECHS.html"},
-    {"lesson_key":"u1-geometric-sequences","number":"1.3","title":"Geometric Sequences and Series","skill_ids":["IBAI.U1.SEQUENCES","IBAI.U1.MODELING"],"status":"ready","student_visible":true,"url":"lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.3_geometric_sequences_ECHS.html"},
-    {"lesson_key":"u1-financial-models","number":"1.4","title":"Financial Applications of Sequences","skill_ids":["IBAI.U1.SEQUENCES","IBAI.U1.MODELING"],"status":"ready","student_visible":true,"url":"lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.4_financial_models_ECHS.html"},
-    {"lesson_key":"u1-logarithms","number":"1.5","title":"Introduction to Logarithms","skill_ids":["IBAI.U1.ALGEBRA","IBAI.U1.MODELING"],"status":"ready","student_visible":true,"url":"lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.5_logarithms_ECHS.html"},
-    {"lesson_key":"u1-approximation-error","number":"1.6","title":"Approximation, Bounds and Percentage Error","skill_ids":["IBAI.U1.NUMBER","IBAI.U1.MODELING"],"status":"ready","student_visible":true,"url":"lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.6_approximation_error_ECHS.html"},
-    {"lesson_key":"u1-loans-annuities","number":"1.7","title":"Loans, Annuities and Amortization","skill_ids":["IBAI.U1.SEQUENCES","IBAI.U1.MODELING"],"status":"ready","student_visible":true,"url":"lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.7_loans_annuities_ECHS.html"},
-    {"lesson_key":"u1-technology-equations","number":"1.8","title":"Technology for Equations and Systems","skill_ids":["IBAI.U1.ALGEBRA","IBAI.U1.MATRICES","IBAI.U1.MODELING"],"status":"ready","student_visible":true,"url":"lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.8_technology_equations_ECHS.html"}
+    {
+      "lesson_key": "u1-standard-form",
+      "number": "1.1",
+      "title": "Scientific Notation and Orders of Magnitude",
+      "skill_ids": [
+        "IBAI.U1.NUMBER",
+        "IBAI.U1.MODELING"
+      ],
+      "status": "ready",
+      "student_visible": true,
+      "url": "lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.1_standard_form_ECHS.html",
+      "release": "3.0.0",
+      "learn_slides": 61,
+      "practice_questions": 52,
+      "timed_quiz_questions": 14,
+      "extended_tasks": 3
+    },
+    {
+      "lesson_key": "u1-arithmetic-sequences",
+      "number": "1.2",
+      "title": "Arithmetic Sequences and Series",
+      "skill_ids": [
+        "IBAI.U1.SEQUENCES",
+        "IBAI.U1.MODELING"
+      ],
+      "status": "ready",
+      "student_visible": true,
+      "url": "lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.2_arithmetic_sequences_ECHS.html",
+      "release": "3.0.0",
+      "learn_slides": 61,
+      "practice_questions": 52,
+      "timed_quiz_questions": 14,
+      "extended_tasks": 3
+    },
+    {
+      "lesson_key": "u1-geometric-sequences",
+      "number": "1.3",
+      "title": "Geometric Sequences and Series",
+      "skill_ids": [
+        "IBAI.U1.SEQUENCES",
+        "IBAI.U1.MODELING"
+      ],
+      "status": "ready",
+      "student_visible": true,
+      "url": "lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.3_geometric_sequences_ECHS.html",
+      "release": "3.0.0",
+      "learn_slides": 61,
+      "practice_questions": 52,
+      "timed_quiz_questions": 14,
+      "extended_tasks": 3
+    },
+    {
+      "lesson_key": "u1-financial-models",
+      "number": "1.4",
+      "title": "Financial Applications of Sequences",
+      "skill_ids": [
+        "IBAI.U1.SEQUENCES",
+        "IBAI.U1.MODELING"
+      ],
+      "status": "ready",
+      "student_visible": true,
+      "url": "lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.4_financial_models_ECHS.html",
+      "release": "3.0.0",
+      "learn_slides": 61,
+      "practice_questions": 52,
+      "timed_quiz_questions": 14,
+      "extended_tasks": 3
+    },
+    {
+      "lesson_key": "u1-logarithms",
+      "number": "1.5",
+      "title": "Exponent Laws and Logarithms",
+      "skill_ids": [
+        "IBAI.U1.ALGEBRA",
+        "IBAI.U1.MODELING"
+      ],
+      "status": "ready",
+      "student_visible": true,
+      "url": "lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.5_logarithms_ECHS.html",
+      "release": "3.0.0",
+      "learn_slides": 61,
+      "practice_questions": 52,
+      "timed_quiz_questions": 14,
+      "extended_tasks": 3
+    },
+    {
+      "lesson_key": "u1-approximation-error",
+      "number": "1.6",
+      "title": "Approximation, Bounds and Percentage Error",
+      "skill_ids": [
+        "IBAI.U1.NUMBER",
+        "IBAI.U1.MODELING"
+      ],
+      "status": "ready",
+      "student_visible": true,
+      "url": "lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.6_approximation_error_ECHS.html",
+      "release": "3.0.0",
+      "learn_slides": 61,
+      "practice_questions": 52,
+      "timed_quiz_questions": 14,
+      "extended_tasks": 3
+    },
+    {
+      "lesson_key": "u1-loans-annuities",
+      "number": "1.7",
+      "title": "Loans, Annuities and Amortization",
+      "skill_ids": [
+        "IBAI.U1.SEQUENCES",
+        "IBAI.U1.MODELING"
+      ],
+      "status": "ready",
+      "student_visible": true,
+      "url": "lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.7_loans_annuities_ECHS.html",
+      "release": "3.0.0",
+      "learn_slides": 61,
+      "practice_questions": 52,
+      "timed_quiz_questions": 14,
+      "extended_tasks": 3
+    },
+    {
+      "lesson_key": "u1-technology-equations",
+      "number": "1.8",
+      "title": "Technology for Equations and Systems",
+      "skill_ids": [
+        "IBAI.U1.ALGEBRA",
+        "IBAI.U1.MATRICES",
+        "IBAI.U1.MODELING"
+      ],
+      "status": "ready",
+      "student_visible": true,
+      "url": "lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.8_technology_equations_ECHS.html",
+      "release": "3.0.0",
+      "learn_slides": 61,
+      "practice_questions": 52,
+      "timed_quiz_questions": 14,
+      "extended_tasks": 3
+    }
   ]
 }
