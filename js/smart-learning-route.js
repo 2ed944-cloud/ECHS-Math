@@ -386,6 +386,15 @@
   document.addEventListener("echs:smart-route-context", (event) => {
     Promise.resolve(render(event.detail)).catch(console.error);
   });
-  const context = initialContext();
-  if (context) Promise.resolve(render(context)).catch(console.error);
+  function renderInitial(attempt = 0) {
+    const context = initialContext();
+    if (context) {
+      Promise.resolve(render(context)).catch(console.error);
+      return;
+    }
+    if (page === "lessons" && attempt < 40) {
+      setTimeout(() => renderInitial(attempt + 1), 100);
+    }
+  }
+  renderInitial();
 })();
