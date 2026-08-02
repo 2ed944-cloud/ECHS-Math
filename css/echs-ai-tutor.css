@@ -50,8 +50,8 @@
   bottom: 0;
   display: grid;
   grid-template-rows: auto auto minmax(0, 1fr) auto;
-  width: min(460px, calc(100vw - 28px));
-  height: min(720px, calc(100dvh - 36px));
+  width: min(480px, calc(100vw - 28px));
+  height: min(760px, calc(100dvh - 36px));
   min-height: 520px;
   overflow: hidden;
   border: 1px solid rgba(120, 24, 63, 0.16);
@@ -170,7 +170,7 @@
 }
 
 .echsAiTutor__message {
-  max-width: 91%;
+  max-width: 94%;
   margin: 0 0 13px;
   border-radius: 18px;
   padding: 12px 14px;
@@ -187,6 +187,16 @@
   margin-left: auto;
   background: linear-gradient(135deg, #86174b, #70143f);
   color: #fff;
+}
+
+.echsAiTutor__messageImage {
+  display: block;
+  width: 100%;
+  max-height: 260px;
+  margin: 0 0 10px;
+  object-fit: contain;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.94);
 }
 
 .echsAiTutor__messageBody {
@@ -220,6 +230,13 @@
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 
+.echsAiTutor__mathSource {
+  margin: 10px 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  text-align: center;
+}
+
 .echsAiTutor__meta {
   display: flex;
   flex-wrap: wrap;
@@ -240,6 +257,11 @@
 .echsAiTutor__meta .is-verified {
   background: #e2f4ee;
   color: #14664f;
+}
+
+.echsAiTutor__meta .is-image {
+  background: #e7f0fb;
+  color: #23577d;
 }
 
 .echsAiTutor__quickActions {
@@ -273,11 +295,71 @@
   box-shadow: 0 -8px 20px rgba(31, 20, 30, 0.06);
 }
 
-.echsAiTutor__composer label {
+.echsAiTutor__composer > label {
   display: block;
   margin-bottom: 6px;
   font-size: 12px;
   font-weight: 850;
+}
+
+.echsAiTutor__imagePreview {
+  display: grid;
+  grid-template-columns: 58px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+  padding: 8px;
+  border: 1px solid #decbd4;
+  border-radius: 14px;
+  background: #fff8fb;
+}
+
+.echsAiTutor__imagePreview[hidden] {
+  display: none;
+}
+
+.echsAiTutor__imagePreview img {
+  width: 58px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 9px;
+  background: #fff;
+}
+
+.echsAiTutor__imagePreview > div {
+  min-width: 0;
+}
+
+.echsAiTutor__imagePreview strong,
+.echsAiTutor__imagePreview small {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.echsAiTutor__imagePreview strong {
+  color: #4d1732;
+  font-size: 11px;
+}
+
+.echsAiTutor__imagePreview small {
+  margin-top: 2px;
+  color: #75666f;
+  font-size: 9px;
+}
+
+.echsAiTutor__imagePreview > button {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border: 0;
+  border-radius: 50%;
+  background: #f0e2e8;
+  color: #78183f;
+  cursor: pointer;
+  font-size: 18px;
 }
 
 .echsAiTutor__composer textarea {
@@ -308,13 +390,50 @@
   margin-top: 8px;
 }
 
-.echsAiTutor__composerActions small {
+.echsAiTutor__inputTools {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 8px;
+}
+
+.echsAiTutor__inputTools > small {
   color: #716972;
   font-size: 9px;
 }
 
-.echsAiTutor__composerActions button {
+.echsAiTutor__attach {
   display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid #d8c4cd;
+  border-radius: 999px;
+  padding: 7px 10px;
+  background: #fff;
+  color: #6c1e46;
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: 850;
+}
+
+.echsAiTutor__attach:hover {
+  border-color: #78183f;
+  background: #fbf1f5;
+}
+
+.echsAiTutor__attach input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.echsAiTutor__composerActions > button {
+  display: inline-flex;
+  flex: 0 0 auto;
   align-items: center;
   gap: 7px;
   border: 0;
@@ -327,7 +446,7 @@
   font-weight: 850;
 }
 
-.echsAiTutor__composerActions button:disabled {
+.echsAiTutor__composerActions > button:disabled {
   opacity: 0.62;
   cursor: wait;
 }
@@ -336,6 +455,18 @@
   overflow-x: auto;
   overflow-y: hidden;
   padding: 3px 0;
+}
+
+.echsAiTutor .katex {
+  font-size: 1.05em;
+}
+
+.echsAiTutor__message.katex-unavailable .echsAiTutor__mathSource {
+  padding: 8px;
+  border-radius: 8px;
+  background: #f6edf1;
+  text-align: left;
+  white-space: pre-wrap;
 }
 
 @media (max-width: 700px) {
@@ -375,7 +506,11 @@
   }
 
   .echsAiTutor__composer textarea {
-    min-height: 74px;
+    min-height: 70px;
+  }
+
+  .echsAiTutor__inputTools > small {
+    display: none;
   }
 }
 
