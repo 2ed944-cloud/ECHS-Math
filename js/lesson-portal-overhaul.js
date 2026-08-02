@@ -51,6 +51,28 @@
       intro.before(identity);
     }
     if (identity) document.body.classList.add("hasCalmIdentity");
+    let smartRoute = qs("#smartRoute-lessons");
+    if (!smartRoute && intro) {
+      smartRoute = document.createElement("section");
+      smartRoute.id = "smartRoute-lessons";
+      smartRoute.className = "slrShell slrLessons";
+      smartRoute.setAttribute("data-auth-content", "");
+      smartRoute.setAttribute("aria-label", "ECHS Smart Learning Route");
+      smartRoute.setAttribute("aria-live", "polite");
+      smartRoute.innerHTML = `
+        <div class="slrBody">
+          <article class="slrDecision">
+            <div class="slrDecisionTop">
+              <span class="slrPathBadge core"><i aria-hidden="true">→</i>Core route</span>
+              <span class="slrMiniRoute" aria-label="Available routes: Support, Core, Challenge"><span>Support</span><span class="active">Core</span><span>Challenge</span></span>
+            </div>
+            <span class="slrDecisionLabel">ECHS Smart Learning Route</span>
+            <h3>Preparing your next evidence-led step…</h3>
+            <div class="slrActions"><a class="slrAction primary" href="#courses">Open lessons <b aria-hidden="true">→</b></a></div>
+          </article>
+        </div>`;
+      intro.after(smartRoute);
+    }
   }
 
   function statusFor(card) {

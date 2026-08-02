@@ -31,7 +31,7 @@ worker = read("sw.js")
 
 requirements = [
     (portal, "portal renderer", ["courseTabList", "courseSelect", "lessonCardOpen", "lessonPayload", "What you will learn", "data-course-title", "completedCount"]),
-    (drawer, "lesson drawer", ["lessonPortalCalm", 'classList.add("lessonWorkspace")', "calmIdentityBanner", "hasCalmIdentity", "lessonDetailDialog", "showModal()", "history.pushState", "popstate", "aria-haspopup"]),
+    (drawer, "lesson drawer", ["lessonPortalCalm", 'classList.add("lessonWorkspace")', "calmIdentityBanner", "hasCalmIdentity", "smartRoute-lessons", "Preparing your next evidence-led step", "lessonDetailDialog", "showModal()", "history.pushState", "popstate", "aria-haspopup"]),
     (styles, "calm portal styles", ['data-auth-state="signed-in"', ".lessonPortalHero", ".portalUtilityStrip", ".calmIdentityBanner", ".calmIdentityCycle", "grid-template-columns:repeat(3", ".lessonCardOpen", "dialog.lessonDetailDialog", ".lessonDrawerSurface", "@media(max-width:680px)", "@media(prefers-reduced-motion:reduce)"]),
     (route_styles, "compact Smart Route", ["#smartRoute-lessons", ".slrEvidence", ".slrDecisionCopy", ".slrMiniRoute", ".slrAction.primary"]),
     (route_script, "Smart Route loader", ["renderInitial", "attempt < 40", "setTimeout(() => renderInitial", "routeScale"]),
