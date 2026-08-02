@@ -1,0 +1,415 @@
+name: Validate IB Mathematics AI Unit 1 v3 browser release
+
+on:
+  push:
+    branches:
+      - agent/redesign-ib-ai-unit-1-definitive-v2
+    paths:
+      - .github/workflows/validate-ib-ai-unit-1-v3-browser.yml
+
+permissions:
+  contents: write
+
+jobs:
+  validate-and-certify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check out Unit 1 publication branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/redesign-ib-ai-unit-1-definitive-v2
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install pinned Playwright dependencies
+        run: npm ci --prefix question-bank/official/tools
+
+      - name: Install headless Chromium
+        run: npx --prefix question-bank/official/tools playwright install --with-deps chromium-headless-shell
+
+      - name: Run structural and platform integration checks
+        shell: bash
+        run: |
+          set -euo pipefail
+          python lessons/ib-math-ai/unit-1/tools/validate_v3_enhancement.py
+          python tools/test_ib_lesson_platform_integration.py .
+          python tools/validate_local_links.py .
+
+      - name: Create exhaustive Unit 1 v3 browser auditor
+        shell: bash
+        run: |
+          cat > question-bank/official/tools/unit1_v3_browser_qa.mjs <<'NODE'
+          import fs from 'node:fs';
+          import process from 'node:process';
+          import { chromium } from 'playwright';
+
+          const baseUrl = (process.env.UNIT1_BASE_URL || 'http://127.0.0.1:8765').replace(/\/$/, '');
+          const outputPath = 'lessons/ib-math-ai/unit-1/reports/v3-browser-audit.json';
+          const expected = { learn: 61, practice: 52, quiz: 14, exam: 3 };
+          const lessons = [
+            ['1.1', 'IB_AI_SL_1.1_standard_form_ECHS.html'],
+            ['1.2', 'IB_AI_SL_1.2_arithmetic_sequences_ECHS.html'],
+            ['1.3', 'IB_AI_SL_1.3_geometric_sequences_ECHS.html'],
+            ['1.4', 'IB_AI_SL_1.4_financial_models_ECHS.html'],
+            ['1.5', 'IB_AI_SL_1.5_logarithms_ECHS.html'],
+            ['1.6', 'IB_AI_SL_1.6_approximation_error_ECHS.html'],
+            ['1.7', 'IB_AI_SL_1.7_loans_annuities_ECHS.html'],
+            ['1.8', 'IB_AI_SL_1.8_technology_equations_ECHS.html'],
+          ];
+          const viewports = [
+            { name: 'desktop', width: 1440, height: 900 },
+            { name: 'mobile', width: 390, height: 844 },
+          ];
+          const report = {
+            schema_version: '1.0.0',
+            release: '3.0.0',
+            generated_at: new Date().toISOString(),
+            branch: 'agent/redesign-ib-ai-unit-1-definitive-v2',
+            expected,
+            viewports,
+            summary: {
+              unit_home_endpoints: 0,
+              lesson_endpoints: 0,
+              learn_slide_renders: 0,
+              practice_card_renders: 0,
+              quiz_card_renders: 0,
+              extended_task_renders: 0,
+              markscheme_reveals: 0,
+              slide_map_items_verified: 0,
+              technology_labs_exercised: 0,
+              mastery_routes_verified: 0,
+              local_http_failures: 0,
+              console_errors: 0,
+              page_errors: 0,
+              katex_errors: 0,
+              horizontal_overflow_failures: 0,
+            },
+            cases: [],
+            errors: [],
+          };
+          const errorKeys = new Set();
+
+          function recordError(kind, label, detail) {
+            const message = `${kind}: ${label}: ${detail}`;
+            if (errorKeys.has(message)) return;
+            errorKeys.add(message);
+            report.errors.push(message);
+            if (kind === 'http') report.summary.local_http_failures += 1;
+            if (kind === 'console') report.summary.console_errors += 1;
+            if (kind === 'page') report.summary.page_errors += 1;
+            if (kind === 'katex') report.summary.katex_errors += 1;
+            if (kind === 'overflow') report.summary.horizontal_overflow_failures += 1;
+          }
+
+          function requireCondition(condition, message) {
+            if (!condition) throw new Error(message);
+          }
+
+          function attachDiagnostics(page, label) {
+            page.on('pageerror', error => recordError('page', label, error.message));
+            page.on('console', message => {
+              if (message.type() === 'error') recordError('console', label, message.text());
+            });
+            page.on('requestfailed', request => {
+              if (request.url().startsWith(baseUrl)) {
+                recordError('http', label, `${request.method()} ${request.url()} ${request.failure()?.errorText || 'failed'}`);
+              }
+            });
+            page.on('response', response => {
+              if (response.url().startsWith(baseUrl) && response.status() >= 400) {
+                recordError('http', label, `${response.status()} ${response.url()}`);
+              }
+            });
+          }
+
+          async function inspectRenderedPage(page, label, requiredSelector = '#app') {
+            const metrics = await page.evaluate(selector => {
+              const root = document.documentElement;
+              const body = document.body;
+              const required = document.querySelector(selector);
+              return {
+                rendered: body?.dataset.rendered,
+                requiredPresent: Boolean(required),
+                requiredTextLength: required?.innerText?.trim().length || 0,
+                scrollWidth: Math.max(root?.scrollWidth || 0, body?.scrollWidth || 0),
+                viewportWidth: window.innerWidth,
+                dataMathErrors: document.querySelectorAll('[data-math-error="true"]').length,
+                katexErrors: document.querySelectorAll('.katex-error').length,
+              };
+            }, requiredSelector);
+            requireCondition(metrics.requiredPresent, `${label}: missing ${requiredSelector}`);
+            requireCondition(metrics.requiredTextLength > 0, `${label}: empty ${requiredSelector}`);
+            if (metrics.scrollWidth > metrics.viewportWidth + 2) {
+              recordError('overflow', label, `${metrics.scrollWidth}px content in ${metrics.viewportWidth}px viewport`);
+            }
+            if (metrics.dataMathErrors || metrics.katexErrors) {
+              recordError('katex', label, `${metrics.dataMathErrors} fallback errors; ${metrics.katexErrors} KaTeX error nodes`);
+            }
+          }
+
+          async function waitForLesson(page) {
+            await page.waitForFunction(() => document.body?.dataset.rendered === '1', null, { timeout: 20_000 });
+            await page.waitForSelector('#app .stage, #app .route-page', { timeout: 20_000 });
+          }
+
+          async function verifyHome(context, viewportName) {
+            const label = `${viewportName}:unit-home`;
+            const page = await context.newPage();
+            attachDiagnostics(page, label);
+            await page.goto(`${baseUrl}/lessons/ib-math-ai/unit-1/START_HERE.html`, { waitUntil: 'networkidle' });
+            const home = await page.evaluate(() => ({
+              cards: document.querySelectorAll('a.lesson-card').length,
+              brokenHrefs: [...document.querySelectorAll('a.lesson-card')].filter(link => !/IB_AI_SL_1\.[1-8].*_ECHS\.html$/.test(link.getAttribute('href') || '')).length,
+              text: document.body.innerText,
+            }));
+            requireCondition(home.cards === 8, `${label}: expected 8 lesson cards, found ${home.cards}`);
+            requireCondition(home.brokenHrefs === 0, `${label}: found ${home.brokenHrefs} malformed lesson links`);
+            for (const marker of ['488', '416', '112', '24']) {
+              requireCondition(home.text.includes(marker), `${label}: missing release total ${marker}`);
+            }
+            await inspectRenderedPage(page, label, 'main');
+            report.summary.unit_home_endpoints += 1;
+            await page.close();
+          }
+
+          async function verifyLesson(context, viewport, lessonNumber, filename) {
+            const label = `${viewport.name}:${lessonNumber}`;
+            const page = await context.newPage();
+            attachDiagnostics(page, label);
+            await page.goto(`${baseUrl}/lessons/ib-math-ai/unit-1/lessons/${filename}`, { waitUntil: 'networkidle' });
+            await waitForLesson(page);
+
+            const counts = await page.evaluate(() => ({
+              learn: window.LESSON_DATA?.slides?.length,
+              practice: window.LESSON_DATA?.practice?.length,
+              quiz: window.LESSON_DATA?.quiz?.length,
+              exam: window.LESSON_DATA?.exam?.length,
+              release: window.LESSON_DATA?.release || window.LESSON_DATA?.version,
+            }));
+            for (const [key, value] of Object.entries(expected)) {
+              requireCondition(counts[key] === value, `${label}: expected ${key}=${value}, found ${counts[key]}`);
+            }
+
+            await page.locator('#open-map').click();
+            await page.waitForSelector('#slide-drawer.open');
+            const mapItems = await page.locator('[data-slide-index]').count();
+            requireCondition(mapItems === expected.learn, `${label}: expected ${expected.learn} slide-map items, found ${mapItems}`);
+            report.summary.slide_map_items_verified += mapItems;
+            await page.locator('#close-map').click();
+
+            let labChecks = 0;
+            for (let index = 0; index < expected.learn; index += 1) {
+              if (index > 0) await page.locator('#next-slide').click();
+              await page.waitForFunction(({ current, total }) => {
+                return document.querySelector('#progress-label')?.textContent?.trim() === `${current} / ${total}`;
+              }, { current: index + 1, total: expected.learn });
+              await page.evaluate(() => document.querySelectorAll('#app details').forEach(node => { node.open = true; }));
+              if (await page.locator('#run-lab').count()) {
+                await page.locator('#run-lab').click();
+                const output = (await page.locator('#lab-output').innerText()).trim();
+                requireCondition(output.length > 10 && !output.includes('predict, then calculate'), `${label}: technology lab did not update`);
+                labChecks += 1;
+              }
+              await inspectRenderedPage(page, `${label}:learn:${index + 1}`, '#app .slide-body');
+              report.summary.learn_slide_renders += 1;
+            }
+            requireCondition(labChecks >= 1, `${label}: no technology lab was exercised`);
+            report.summary.technology_labs_exercised += labChecks;
+
+            await page.locator('[data-route="practice"]').click();
+            await page.waitForSelector('[data-practice-index="0"]');
+            const practiceButtons = await page.locator('[data-practice-index]').count();
+            requireCondition(practiceButtons === expected.practice, `${label}: expected ${expected.practice} practice index buttons, found ${practiceButtons}`);
+            for (let index = 0; index < expected.practice; index += 1) {
+              await page.locator(`[data-practice-index="${index}"]`).click();
+              await page.waitForFunction(({ current, total }) => {
+                return document.querySelector('.question-head')?.textContent?.includes(`Question ${current} of ${total}`);
+              }, { current: index + 1, total: expected.practice });
+              await inspectRenderedPage(page, `${label}:practice:${index + 1}`, '#app .question-prompt');
+              report.summary.practice_card_renders += 1;
+            }
+
+            await page.locator('[data-route="quiz"]').click();
+            await page.waitForSelector('[data-quiz-index="0"]');
+            const quizButtons = await page.locator('[data-quiz-index]').count();
+            requireCondition(quizButtons === expected.quiz, `${label}: expected ${expected.quiz} quiz index buttons, found ${quizButtons}`);
+            for (let index = 0; index < expected.quiz; index += 1) {
+              await page.locator(`[data-quiz-index="${index}"]`).click();
+              await page.waitForFunction(({ current, total }) => {
+                return document.querySelector('.question-head')?.textContent?.includes(`Question ${current} of ${total}`);
+              }, { current: index + 1, total: expected.quiz });
+              await inspectRenderedPage(page, `${label}:quiz:${index + 1}`, '#app .question-prompt');
+              report.summary.quiz_card_renders += 1;
+            }
+
+            await page.locator('[data-route="exam"]').click();
+            await page.waitForSelector('.exam-task');
+            const taskCount = await page.locator('.exam-task').count();
+            requireCondition(taskCount === expected.exam, `${label}: expected ${expected.exam} extended tasks, found ${taskCount}`);
+            report.summary.extended_task_renders += taskCount;
+            const revealButtons = page.locator('.reveal-markscheme');
+            const revealCount = await revealButtons.count();
+            for (let index = 0; index < revealCount; index += 1) {
+              await revealButtons.nth(index).click();
+            }
+            const shown = await page.locator('.markscheme.show').count();
+            requireCondition(shown === revealCount, `${label}: revealed ${shown}/${revealCount} markschemes`);
+            report.summary.markscheme_reveals += shown;
+            await inspectRenderedPage(page, `${label}:exam`, '#app .exam-task');
+
+            await page.locator('[data-route="review"]').click();
+            await page.waitForSelector('.review-grid .stat-card');
+            requireCondition(await page.locator('.review-grid .stat-card').count() >= 4, `${label}: mastery dashboard is incomplete`);
+            await inspectRenderedPage(page, `${label}:mastery`, '#app .review-grid');
+            report.summary.mastery_routes_verified += 1;
+
+            report.summary.lesson_endpoints += 1;
+            report.cases.push({
+              viewport: viewport.name,
+              lesson: lessonNumber,
+              counts,
+              slide_map_items: mapItems,
+              technology_labs_exercised: labChecks,
+              markscheme_reveals: shown,
+              status: 'passed',
+            });
+            await page.close();
+          }
+
+          let browser;
+          try {
+            browser = await chromium.launch({ headless: true });
+            for (const viewport of viewports) {
+              const context = await browser.newContext({
+                viewport: { width: viewport.width, height: viewport.height },
+                reducedMotion: 'reduce',
+              });
+              await context.addInitScript(() => {
+                try { localStorage.clear(); } catch {}
+                try { sessionStorage.clear(); } catch {}
+              });
+              await verifyHome(context, viewport.name);
+              for (const [lessonNumber, filename] of lessons) {
+                await verifyLesson(context, viewport, lessonNumber, filename);
+              }
+              await context.close();
+            }
+          } catch (error) {
+            recordError('page', 'browser-audit', error.stack || error.message || String(error));
+          } finally {
+            if (browser) await browser.close();
+          }
+
+          report.passed = report.errors.length === 0
+            && report.summary.unit_home_endpoints === 2
+            && report.summary.lesson_endpoints === 16
+            && report.summary.learn_slide_renders === 976
+            && report.summary.practice_card_renders === 832
+            && report.summary.quiz_card_renders === 224
+            && report.summary.extended_task_renders === 48
+            && report.summary.mastery_routes_verified === 16;
+          fs.writeFileSync(outputPath, `${JSON.stringify(report, null, 2)}\n`);
+          console.log(JSON.stringify(report.summary, null, 2));
+          if (!report.passed) {
+            console.error(report.errors.join('\n'));
+            process.exit(1);
+          }
+          console.log('PASS: exhaustive Unit 1 v3 desktop/mobile Chromium traversal');
+          NODE
+
+      - name: Run exhaustive desktop and mobile Chromium traversal
+        id: browser
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m http.server 8765 --bind 127.0.0.1 >/tmp/unit1-v3-server.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          for attempt in $(seq 1 30); do
+            if curl -fsS http://127.0.0.1:8765/lessons/ib-math-ai/unit-1/START_HERE.html >/dev/null; then
+              break
+            fi
+            sleep 1
+          done
+          curl -fsS http://127.0.0.1:8765/lessons/ib-math-ai/unit-1/START_HERE.html >/dev/null
+          UNIT1_BASE_URL=http://127.0.0.1:8765 node question-bank/official/tools/unit1_v3_browser_qa.mjs
+
+      - name: Upload browser audit evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ib-ai-unit-1-v3-browser-audit
+          path: |
+            lessons/ib-math-ai/unit-1/reports/v3-browser-audit.json
+            /tmp/unit1-v3-server.log
+          if-no-files-found: warn
+
+      - name: Enforce browser audit result
+        if: steps.browser.outcome == 'failure'
+        run: exit 1
+
+      - name: Certify the browser-audited release
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+
+          replacement = '''## Browser and responsive validation completed
+
+The exact pull-request branch was served locally and traversed in headless Chromium at **1440 × 900** and **390 × 844**. The run verified:
+
+- 2/2 Unit 1 landing-page endpoints;
+- 16/16 lesson endpoints across the two viewports;
+- 976/976 rendered Learn-slide cases (all 488 final slides at both widths);
+- 832/832 rendered Practice Studio cases (all 416 final cards at both widths);
+- 224/224 rendered timed-quiz cases (all 112 final cards at both widths);
+- 48/48 rendered extended-task cases (all 24 final tasks at both widths);
+- all slide-map entries, technology labs, markscheme reveals and Mastery routes;
+- zero local HTTP failures, browser page errors, console errors, KaTeX error nodes or horizontal-overflow failures.
+
+Machine-readable browser evidence is recorded in `reports/v3-browser-audit.json`.
+
+## Remaining production gate
+
+After merge and GitHub Pages deployment, complete a signed-in production smoke test as student, teacher and administrator. Confirm course visibility, lesson opening, completion recording and mastery-focused practice routing. This production-role smoke test is not substituted by the anonymous pull-request browser traversal.
+'''
+          for relative in [
+              'lessons/ib-math-ai/unit-1/QA_REPORT.md',
+              'lessons/ib-math-ai/unit-1/reports/QA_REPORT.md',
+          ]:
+              path = Path(relative)
+              text = path.read_text(encoding='utf-8')
+              text = text.replace(
+                  '**Ready for pull-request preview and independent browser sign-off.**',
+                  '**Ready for merge.**',
+                  1,
+              )
+              text = text.replace(
+                  'The branch is not merged or deployed by this report.',
+                  'The exact pull-request branch has passed structural, mathematical, platform-integration and exhaustive desktop/mobile browser validation. It is not yet deployed by this report.',
+                  1,
+              )
+              marker = '## Remaining release gate\n'
+              if marker not in text:
+                  raise SystemExit(f'Missing release-gate marker in {relative}')
+              text = text.split(marker, 1)[0].rstrip() + '\n\n' + replacement
+              path.write_text(text, encoding='utf-8')
+          PY
+          rm -f question-bank/official/tools/unit1_v3_browser_qa.mjs
+          rm -f .github/workflows/validate-ib-ai-unit-1-v3-browser.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --check
+          git commit -m "Certify IB Mathematics AI Unit 1 v3 browser release"
+          git push origin HEAD:agent/redesign-ib-ai-unit-1-definitive-v2
