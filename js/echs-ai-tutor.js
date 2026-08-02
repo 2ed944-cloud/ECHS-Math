@@ -13,13 +13,24 @@
     { id: "practice", label: "Similar practice", ar: "تدريب مشابه", icon: "✦" },
   ];
 
+  const KATEX = {
+    css: "https://cdn.jsdelivr.net/npm/katex@0.17.0/dist/katex.min.css",
+    cssIntegrity: "sha384-vlBdW0r3AcZO/HboRPznQNowvexd3fY8qHOWkBi5q7KGgqJ+F48+DceybYmrVbmB",
+    script: "https://cdn.jsdelivr.net/npm/katex@0.17.0/dist/katex.min.js",
+    scriptIntegrity: "sha384-AtrdNsnxl/75rvBneBVH7DtOvCxSVahR2zWqle1coBKd8DEmLoviqNeJSx64gNAs",
+    autoRender: "https://cdn.jsdelivr.net/npm/katex@0.17.0/dist/contrib/auto-render.min.js",
+    autoRenderIntegrity: "sha384-bjyGPfbij8/NDKJhSGZNP/khQVgtHUE5exjm4Ydllo42FwIgYsdLO2lXGmRBf5Mz",
+  };
+
   const state = {
     history: [],
     busy: false,
     mode: MODES.some((item) => item.id === cfg.defaultMode) ? cfg.defaultMode : "guide",
     healthChecked: false,
+    image: null,
   };
 
+  let katexPromise = null;
   const getURLParam = (name) => new URLSearchParams(location.search).get(name) || "";
 
   function textFrom(selectors) {
@@ -79,7 +90,14 @@
   }
 
   function safeMarkdown(text) {
-    const escaped = escapeHTML(text).replace(/\r\n?/g, "\n");
+    const mathBlocks = [];
+    const protectedText = String(text ?? "").replace(/\\\[[\s\S]*?\\\]|\$\$[\s\S]*?\$\$/g, (block) => {
+      const token = `ECHS_MATH_BLOCK_${mathBlocks.length}_TOKEN`;
+      mathBlocks.push(block);
+      return `\n${token}\n`;
+    });
+
+    const escaped = escapeHTML(protectedText).replace(/\r\n?/g, "\n");
     const lines = escaped.split("\n");
     const output = [];
     let list = [];
@@ -92,6 +110,14 @@
 
     for (const rawLine of lines) {
       const line = rawLine.trimEnd();
+      const mathToken = line.trim().match(/^ECHS_MATH_BLOCK_(\d+)_TOKEN$/);
+      if (mathToken) {
+        flushList();
+        const block = mathBlocks[Number(mathToken[1])] || "";
+        output.push(`<div class="echsAiTutor__mathSource">${escapeHTML(block)}</div>`);
+        continue;
+      }
+
       const bullet = line.match(/^\s*[-•]\s+(.+)/);
       if (bullet) {
         list.push(bullet[1]);
@@ -99,7 +125,6 @@
       }
 
       flushList();
-
       if (!line.trim()) {
         output.push("");
       } else if (/^###\s+/.test(line)) {
@@ -115,6 +140,124 @@
 
     flushList();
     return output.join("");
+  }
+
+  function loadScript(src, integrity) {
+    return new Promise((resolve, reject) => {
+      const existing = [...document.scripts].find((node) => node.src === src);
+      if (existing) {
+        if (existing.dataset.loaded === "1") resolve();
+        else {
+          existing.addEventListener("load", resolve, { once: true });
+          existing.addEventListener("error", reject, { once: true });
+        }
+        return;
+      }
+      const node = document.createElement("script");
+      node.src = src;
+      node.crossOrigin = "anonymous";
+      node.integrity = integrity;
+      node.addEventListener("load", () => {
+        node.dataset.loaded = "1";
+        resolve();
+      }, { once: true });
+      node.addEventListener("error", reject, { once: true });
+      document.head.append(node);
+    });
+  }
+
+  function ensureKaTeX() {
+    if (window.renderMathInElement && window.katex) return Promise.resolve();
+    if (katexPromise) return katexPromise;
+
+    const styleExists = [...document.styleSheets].some((sheet) => sheet.href === KATEX.css);
+    if (!styleExists) {
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = KATEX.css;
+      link.crossOrigin = "anonymous";
+      link.integrity = KATEX.cssIntegrity;
+      document.head.append(link);
+    }
+
+    katexPromise = loadScript(KATEX.script, KATEX.scriptIntegrity)
+      .then(() => loadScript(KATEX.autoRender, KATEX.autoRenderIntegrity))
+      .catch((error) => {
+        katexPromise = null;
+        console.warn("ECHS tutor could not load KaTeX", error);
+        throw error;
+      });
+    return katexPromise;
+  }
+
+  function renderMath(element) {
+    ensureKaTeX().then(() => {
+      window.renderMathInElement(element, {
+        delimiters: [
+          { left: "\\[", right: "\\]", display: true },
+          { left: "\\(", right: "\\)", display: false },
+          { left: "$$", right: "$$", display: true },
+          { left: "$", right: "$", display: false },
+        ],
+        throwOnError: false,
+        strict: "ignore",
+      });
+    }).catch(() => {
+      element.classList.add("katex-unavailable");
+    });
+  }
+
+  function fileToDataURL(blob) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.addEventListener("load", () => resolve(String(reader.result || "")), { once: true });
+      reader.addEventListener("error", reject, { once: true });
+      reader.readAsDataURL(blob);
+    });
+  }
+
+  function loadImageElement(file) {
+    return new Promise((resolve, reject) => {
+      const image = new Image();
+      const url = URL.createObjectURL(file);
+      image.addEventListener("load", () => {
+        URL.revokeObjectURL(url);
+        resolve(image);
+      }, { once: true });
+      image.addEventListener("error", () => {
+        URL.revokeObjectURL(url);
+        reject(new Error("Could not read the image."));
+      }, { once: true });
+      image.src = url;
+    });
+  }
+
+  async function prepareImage(file) {
+    const supported = ["image/png", "image/jpeg", "image/webp"];
+    if (!supported.includes(file.type)) throw new Error("Use a PNG, JPEG, or WebP image.");
+
+    const maxUploadBytes = Number(cfg.maxImageBytes || 4_000_000);
+    const maxDimension = Number(cfg.maxImageDimension || 1600);
+    if (file.size <= maxUploadBytes && file.size <= 1_800_000) {
+      return { dataUrl: await fileToDataURL(file), mimeType: file.type, name: file.name, bytes: file.size };
+    }
+
+    const image = await loadImageElement(file);
+    const scale = Math.min(1, maxDimension / Math.max(image.naturalWidth, image.naturalHeight));
+    const width = Math.max(1, Math.round(image.naturalWidth * scale));
+    const height = Math.max(1, Math.round(image.naturalHeight * scale));
+    const canvas = document.createElement("canvas");
+    canvas.width = width;
+    canvas.height = height;
+    const ctx = canvas.getContext("2d", { alpha: false });
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(0, 0, width, height);
+    ctx.drawImage(image, 0, 0, width, height);
+
+    const blob = await new Promise((resolve) => canvas.toBlob(resolve, "image/webp", 0.9));
+    if (!blob) throw new Error("Could not prepare the image.");
+    if (blob.size > maxUploadBytes) throw new Error("The image is still too large. Crop it and try again.");
+    return { dataUrl: await fileToDataURL(blob), mimeType: "image/webp", name: file.name, bytes: blob.size };
   }
 
   const root = document.createElement("section");
@@ -149,15 +292,25 @@
 
       <form class="echsAiTutor__composer">
         <label for="echsAiTutorInput">Ask about this lesson</label>
+        <div class="echsAiTutor__imagePreview" data-image-preview hidden>
+          <img alt="Selected mathematics image preview">
+          <div><strong data-image-name></strong><small data-image-size></small></div>
+          <button type="button" data-remove-image aria-label="Remove selected image">×</button>
+        </div>
         <textarea
           id="echsAiTutorInput"
           rows="3"
           maxlength="${Number(cfg.maxMessageChars || 3000)}"
           placeholder="اكتب سؤالك الرياضي أو ألصق حلك هنا…"
-          required
         ></textarea>
         <div class="echsAiTutor__composerActions">
-          <small>Ctrl + Enter to send · AI can make mistakes.</small>
+          <div class="echsAiTutor__inputTools">
+            <label class="echsAiTutor__attach" title="Attach a mathematics image">
+              <input type="file" accept="image/png,image/jpeg,image/webp" data-image-input>
+              <span aria-hidden="true">▧</span><b>Image</b>
+            </label>
+            <small>PNG, JPEG or WebP · Ctrl + Enter to send</small>
+          </div>
           <button type="submit"><span>Send</span><i aria-hidden="true">→</i></button>
         </div>
       </form>
@@ -174,30 +327,21 @@
   const sendText = send.querySelector("span");
   const status = root.querySelector("[data-status]");
   const modeButtons = [...root.querySelectorAll("[data-mode]")];
-
-  function renderMath(element) {
-    if (!window.renderMathInElement) return;
-    try {
-      window.renderMathInElement(element, {
-        delimiters: [
-          { left: "\\[", right: "\\]", display: true },
-          { left: "\\(", right: "\\)", display: false },
-          { left: "$$", right: "$$", display: true },
-          { left: "$", right: "$", display: false },
-        ],
-        throwOnError: false,
-      });
-    } catch (error) {
-      console.warn("ECHS tutor math rendering failed", error);
-    }
-  }
+  const imageInput = root.querySelector("[data-image-input]");
+  const imagePreview = root.querySelector("[data-image-preview]");
+  const imagePreviewElement = imagePreview.querySelector("img");
+  const imageName = imagePreview.querySelector("[data-image-name]");
+  const imageSize = imagePreview.querySelector("[data-image-size]");
+  const removeImageButton = imagePreview.querySelector("[data-remove-image]");
 
   function metadataHTML(meta) {
-    if (!meta || (!meta.topic && !meta.mode && !meta.verified)) return "";
+    if (!meta || (!meta.topic && !meta.mode && !meta.verified && !meta.imageUsed)) return "";
     const chips = [];
     if (meta.topic) chips.push(`<span>${escapeHTML(meta.topic)}</span>`);
     if (meta.mode) chips.push(`<span>${escapeHTML(meta.mode)}</span>`);
+    if (meta.imageUsed) chips.push('<span class="is-image">▧ image read</span>');
     if (meta.verified) chips.push('<span class="is-verified">✓ reviewed</span>');
+    if (meta.continued) chips.push("<span>complete response</span>");
     if (meta.fallbackUsed) chips.push("<span>backup model</span>");
     return `<div class="echsAiTutor__meta">${chips.join("")}</div>`;
   }
@@ -212,18 +356,37 @@
       </div>`;
   }
 
-  function addMessage(role, text, meta = null) {
+  function addMessage(role, text, meta = null, imageDataUrl = "") {
     const item = document.createElement("article");
     item.className = `echsAiTutor__message is-${role}`;
     item.innerHTML = `
+      ${imageDataUrl ? `<img class="echsAiTutor__messageImage" src="${imageDataUrl}" alt="Attached mathematics image">` : ""}
       <div class="echsAiTutor__messageBody">${safeMarkdown(text)}</div>
       ${role === "assistant" ? metadataHTML(meta) : ""}
       ${role === "assistant" && meta?.showActions !== false ? quickActionsHTML() : ""}
     `;
     messages.appendChild(item);
-    renderMath(item);
+    if (role === "assistant") renderMath(item);
     messages.scrollTop = messages.scrollHeight;
     return item;
+  }
+
+  function updateImagePreview() {
+    if (!state.image) {
+      imagePreview.hidden = true;
+      imagePreviewElement.removeAttribute("src");
+      imageInput.value = "";
+      return;
+    }
+    imagePreview.hidden = false;
+    imagePreviewElement.src = state.image.dataUrl;
+    imageName.textContent = state.image.name || "Mathematics image";
+    imageSize.textContent = `${Math.max(1, Math.round(state.image.bytes / 1024))} KB · ready for analysis`;
+  }
+
+  function clearImage() {
+    state.image = null;
+    updateImagePreview();
   }
 
   function setMode(mode) {
@@ -234,10 +397,10 @@
     const selected = MODES.find((item) => item.id === mode);
     status.textContent = `${selected.label} mode`;
     input.placeholder = mode === "check"
-      ? "ألصق السؤال ثم اكتب خطوات حلك ليتم التحقق منها…"
+      ? "ألصق السؤال أو أرفق صورة ثم اكتب خطوات حلك…"
       : mode === "practice"
         ? "اكتب المهارة التي تريد سؤالًا مشابهًا عنها…"
-        : "اكتب سؤالك الرياضي هنا…";
+        : "اكتب سؤالك أو أرفق صورة لمسألة رياضية…";
   }
 
   function toggle(open) {
@@ -247,6 +410,7 @@
     if (open) {
       input.focus({ preventScroll: true });
       checkHealth();
+      ensureKaTeX().catch(() => {});
     }
   }
 
@@ -258,7 +422,7 @@
       const response = await fetch(cfg.endpoint, { method: "GET", cache: "no-store" });
       const data = await response.json().catch(() => ({}));
       if (!response.ok || !data.ok || data.aiBinding === false) throw new Error("Backend is not ready");
-      status.textContent = `Ready · v${data.version || "3"}`;
+      status.textContent = `Ready · v${data.version || "4"}${data.visionEnabled ? " · Vision" : ""}`;
     } catch {
       status.textContent = "Backend unavailable";
       state.healthChecked = false;
@@ -274,30 +438,38 @@
   }
 
   async function ask(message, mode = state.mode) {
-    if (state.busy || !message.trim()) return;
+    const image = state.image;
+    const cleanMessage = message.trim();
+    if (state.busy || (!cleanMessage && !image)) return;
     setMode(mode);
-    addMessage("user", message, { showActions: false });
+    addMessage("user", cleanMessage || "Analyze this mathematics image.", { showActions: false }, image?.dataUrl || "");
     input.value = "";
     state.busy = true;
     send.disabled = true;
-    sendText.textContent = "Thinking…";
-    status.textContent = "Checking the mathematics…";
+    imageInput.disabled = true;
+    sendText.textContent = image ? "Reading image…" : "Thinking…";
+    status.textContent = image ? "Reading the mathematics image…" : "Checking the mathematics…";
 
     const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), Number(cfg.timeoutMs || 75_000));
+    const timeout = setTimeout(() => controller.abort(), Number(cfg.timeoutMs || 110_000));
 
     try {
       const response = await fetch(endpointURL(), {
         method: "POST",
         headers: {
           "content-type": "application/json",
-          "x-echs-client": "portal-tutor-v3",
+          "x-echs-client": "portal-tutor-v4",
         },
         body: JSON.stringify({
-          message,
+          message: cleanMessage,
           mode: state.mode,
           history: state.history,
           context: context(),
+          image: image ? {
+            dataUrl: image.dataUrl,
+            mimeType: image.mimeType,
+            name: image.name,
+          } : null,
         }),
         signal: controller.signal,
       });
@@ -314,18 +486,22 @@
         topic: data.topic,
         mode: data.mode,
         verified: data.verified,
+        continued: data.continued,
+        imageUsed: data.imageUsed,
         fallbackUsed: data.fallbackUsed,
       });
 
+      const historyMessage = cleanMessage || "[A mathematics image was attached and analyzed.]";
       state.history.push(
-        { role: "user", content: message },
+        { role: "user", content: historyMessage },
         { role: "assistant", content: data.answer },
       );
       state.history = state.history.slice(-(cfg.maxHistoryMessages || 10));
       status.textContent = data.verified ? "Answer reviewed" : "Ready";
+      clearImage();
     } catch (error) {
       const timeoutMessage = error.name === "AbortError"
-        ? "The tutor took too long to respond. Please try a shorter question."
+        ? "The tutor took too long to respond. Try a cropped image or a shorter question."
         : error.message || "The tutor is temporarily unavailable.";
       addMessage("assistant", timeoutMessage, { showActions: false });
       status.textContent = error.code || "Connection error";
@@ -338,6 +514,7 @@
       clearTimeout(timeout);
       state.busy = false;
       send.disabled = false;
+      imageInput.disabled = false;
       sendText.textContent = "Send";
       input.focus({ preventScroll: true });
     }
@@ -345,13 +522,32 @@
 
   addMessage(
     "assistant",
-    cfg.welcome || "Tell me what you are trying to understand. Choose a mode above and I will help you carefully.",
+    cfg.welcome || "Tell me what you are trying to understand. You can also attach a clear image of a problem, graph, table, or handwritten solution.",
     { showActions: false },
   );
 
   launcher.addEventListener("click", () => toggle(panel.hidden));
   closeButton.addEventListener("click", () => toggle(false));
   modeButtons.forEach((button) => button.addEventListener("click", () => setMode(button.dataset.mode)));
+  removeImageButton.addEventListener("click", clearImage);
+
+  imageInput.addEventListener("change", async () => {
+    const file = imageInput.files?.[0];
+    if (!file) return;
+    status.textContent = "Preparing image…";
+    imageInput.disabled = true;
+    try {
+      state.image = await prepareImage(file);
+      updateImagePreview();
+      status.textContent = "Image ready";
+    } catch (error) {
+      clearImage();
+      addMessage("assistant", error.message || "Could not attach this image.", { showActions: false });
+      status.textContent = "Image rejected";
+    } finally {
+      imageInput.disabled = false;
+    }
+  });
 
   root.addEventListener("click", (event) => {
     const followup = event.target.closest("[data-followup-mode]");
@@ -375,6 +571,23 @@
     if (event.key === "Enter" && (event.ctrlKey || event.metaKey)) {
       event.preventDefault();
       form.requestSubmit();
+    }
+  });
+
+  document.addEventListener("paste", async (event) => {
+    if (!root.classList.contains("is-open") || state.busy) return;
+    const imageItem = [...(event.clipboardData?.items || [])].find((item) => item.type.startsWith("image/"));
+    if (!imageItem) return;
+    const file = imageItem.getAsFile();
+    if (!file) return;
+    event.preventDefault();
+    status.textContent = "Preparing pasted image…";
+    try {
+      state.image = await prepareImage(file);
+      updateImagePreview();
+      status.textContent = "Image ready";
+    } catch (error) {
+      addMessage("assistant", error.message || "Could not attach the pasted image.", { showActions: false });
     }
   });
 
