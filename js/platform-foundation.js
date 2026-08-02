@@ -108,3 +108,28 @@
   if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init,{once:true});else init();
   window.ECHSPlatform={ROOT:ROOT.href,setTheme,toast,loadBankSnapshot,populateLearningSnapshot};
 })();
+
+/* Load the optional ECHS Math Tutor on the lesson portal. */
+(() => {
+  "use strict";
+  const current = document.currentScript;
+  const root = current ? new URL("../", current.src) : new URL("./", location.href);
+  const isLessonPortal = /\/ECHS-Math\/?(?:index\.html)?$/i.test(location.pathname);
+  if (!isLessonPortal || document.querySelector('script[data-echs-ai-tutor-loader]')) return;
+
+  const style = document.createElement("link");
+  style.rel = "stylesheet";
+  style.href = new URL("css/echs-ai-tutor.css?v=20260802-loader1", root).href;
+  document.head.append(style);
+
+  const config = document.createElement("script");
+  config.src = new URL("js/echs-ai-tutor-config.js?v=20260802-loader1", root).href;
+  config.dataset.echsAiTutorLoader = "config";
+  config.onload = () => {
+    const tutor = document.createElement("script");
+    tutor.src = new URL("js/echs-ai-tutor.js?v=20260802-loader1", root).href;
+    tutor.dataset.echsAiTutorLoader = "tutor";
+    document.head.append(tutor);
+  };
+  document.head.append(config);
+})();
