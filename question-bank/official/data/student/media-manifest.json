@@ -8542,13 +8542,13 @@
     "sourceFile": "ECHS_Math_Practice_Exams_Part_17_1978_1980_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1980-frq.json",
     "sourcePage": 108,
     "originalFilename": "",
-    "normalizedFilename": "apcalc-legacy-mcq-1997-009.svg",
+    "normalizedFilename": "apcalc-legacy-mcq-1997-008.svg",
     "mimeType": "image/svg+xml",
     "width": null,
     "height": null,
-    "checksum": "8609f6b2bc6a26dbb0958db11305fb6dbbcd62ee52a31e353efc1925f44e0344",
+    "checksum": "b94c7d0883e3eca966bf1f9bd249e0b57734bebc4c3f84a8ab51b9c02df993e2",
     "linkedQuestions": [
-      "APCALC-LEGACY-MCQ-1997-009"
+      "APCALC-LEGACY-MCQ-1997-008"
     ],
     "altText": "Piecewise-linear velocity graph through the points (0,0), (2,3), (4,3), (6,0), (7,-1), and (8,0).",
     "caption": "",
@@ -8576,16 +8576,16 @@
       "ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ.zip::ECHS_Math_Practice_Exams_Part_8_1969_AB_FRQ/private-banks/cumulative/ap-calculus-ab-1969-1998-mcq.json",
       "ECHS_Math_Practice_Exams_Part_9_1970_AB_FRQ/private-banks/ap-calculus-ab-archive-1969-1998-plus-1969-1970-frq.json"
     ],
-    "path": "media/audit-repairs/descriptor-svg/apcalc-legacy-mcq-1997-009.svg"
+    "path": "media/audit-repairs/descriptor-svg/apcalc-legacy-mcq-1997-008.svg"
   },
   {
-    "id": "MEDIA-APCALC-LEGACY-MCQ-1997-008-PROMPT-01-481D319972",
-    "path": "media/audit-repairs/descriptor-svg/apcalc-legacy-mcq-1997-008.svg",
-    "normalizedFilename": "apcalc-legacy-mcq-1997-008.svg",
+    "id": "MEDIA-APCALC-LEGACY-MCQ-1997-008-PROMPT-01-62B185C269",
+    "path": "media/audit-repairs/descriptor-svg/apcalc-legacy-mcq-1997-009.svg",
+    "normalizedFilename": "apcalc-legacy-mcq-1997-009.svg",
     "mimeType": "image/svg+xml",
-    "checksum": "b94c7d0883e3eca966bf1f9bd249e0b57734bebc4c3f84a8ab51b9c02df993e2",
+    "checksum": "8609f6b2bc6a26dbb0958db11305fb6dbbcd62ee52a31e353efc1925f44e0344",
     "linkedQuestions": [
-      "APCALC-LEGACY-MCQ-1997-008"
+      "APCALC-LEGACY-MCQ-1997-009"
     ],
     "altText": "Piecewise-linear velocity graph through the points (0,0), (2,3), (4,3), (6,0), (7,-1), and (8,0).",
     "caption": "",

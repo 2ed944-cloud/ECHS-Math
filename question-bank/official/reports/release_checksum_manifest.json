@@ -250,7 +250,7 @@
     {
       "path": "data/student/media-manifest.json",
       "bytes": 1759346,
-      "sha256": "64f41e6a555fa961a2ab27bc5e3be2565b7e62316db8bb58baf90def4f741fb2"
+      "sha256": "5095beeb7b123c7fd1eecfe93bd697b8645ca3cda4d640e4d0ef39c738e5281a"
     },
     {
       "path": "data/student/question-index.json",
