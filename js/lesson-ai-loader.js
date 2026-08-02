@@ -5,7 +5,7 @@
 
   const script = document.currentScript;
   const root = script ? new URL("../", script.src) : new URL("/ECHS-Math/", location.origin);
-  const version = "20260802-lesson2";
+  const version = "20260802-tutorpro3";
 
   const ensureStyle = () => {
     if (document.querySelector('link[data-echs-ai-tutor]')) return;

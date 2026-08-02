@@ -9,7 +9,7 @@
     const current=document.currentScript||[...document.scripts].find(node=>/lesson-access-guard\.js/.test(node.src));
     const root=current?new URL("../",current.src):new URL("/ECHS-Math/",location.origin);
     const node=document.createElement("script");
-    node.src=new URL("js/lesson-ai-loader.js?v=20260802-lesson2",root).href;
+    node.src=new URL("js/lesson-ai-loader.js?v=20260802-tutorpro3",root).href;
     node.defer=true;
     document.head.append(node);
   }
