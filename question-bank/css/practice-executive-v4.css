@@ -278,13 +278,14 @@ body.practiceStudio{--pe-ink:#102a43;--pe-wine:#8f194a;--pe-teal:#087f78;--pe-go
 @keyframes practiceBackdropIn{from{opacity:0}to{opacity:1}}
 @media(max-width:700px){
   .practiceStudio .studioSidebar.isCollapsed .builderCompactSummary{
-    grid-template-columns:auto minmax(0,1fr);
+    grid-template-columns:auto minmax(0,1fr) auto;
+    gap:9px;
     min-height:76px;
     padding:11px 12px;
   }
   .practiceStudio .builderCompactIcon{width:42px;height:42px;border-radius:13px}
-  .practiceStudio .builderCompactCopy span{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
-  .practiceStudio .builderAdjust{grid-column:1/-1;width:100%}
+  .practiceStudio .builderCompactCopy span{white-space:nowrap;display:block}
+  .practiceStudio .builderAdjust{grid-column:auto;width:auto;padding:.56rem .62rem;font-size:.68rem;white-space:nowrap}
   .practiceStudio .studioSidebar:not(.isCollapsed){width:100vw;padding:0}
   .practiceStudio .studioSidebar:not(.isCollapsed) .studioPanel{min-height:100dvh;border-radius:0!important}
   .practiceStudio .studioSidebar:not(.isCollapsed) .studioPanelHead{top:0}
