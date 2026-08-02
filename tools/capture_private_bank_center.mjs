@@ -9,7 +9,9 @@ const browser=await chromium.launch({executablePath:process.env.CHROME_PATH||'/u
 const config={enabled:true,api_base:`${baseURL}/functions/v1`,setup_api_base:`${baseURL}/functions/v1`,backend_deployed:true,platform_name:'ECHS Mathematics',institution_name:'Education City High School',session_storage:'local'};
 const teacher={id:'teacher-qa',display_name:'Mohammad Abu Ghuwaleh',username:'m.abughuwaleh',role:'teacher',organization_name:'ECHS Mathematics',can_manage_accounts:true};
 const calculusPackage={bank_code:'CALC-BANK-01',bank_slug:'ap-calculus-bank-1',display_aliases:{student:'AP Calculus Bank 1',teacher:'AP Calculus Bank 1'},deployment_state:'complete-direct-upload',question_count:3019,pool_count:46,media_count:3366,trust_default:'publisher_key_direct',manifest:{target_courses:['ap-calculus'],questions:3019,pools:46,mapping_counts:{'ap-calculus:U0':822},question_types:{essay:3019}}};
-const livePackages=[calculusPackage];
+const precalculusPackage={bank_code:'PRECALC-BANK-01',display_aliases:{student:'AP Precalculus Bank 1',teacher:'AP Precalculus Bank 1'},deployment_state:'complete-direct-upload',question_count:500,pool_count:5,media_count:100,manifest:{target_courses:['ap-precalculus'],questions:500,pools:5,mapping_counts:{'ap-precalculus:U0':120},question_types:{essay:300}}};
+const ibPackage={bank_code:'IB-AI-BANK-01',display_aliases:{student:'IB Mathematics Bank 1',teacher:'IB Mathematics Bank 1'},deployment_state:'complete-direct-upload',question_count:300,pool_count:4,media_count:60,manifest:{target_courses:['ib-math-ai'],questions:300,pools:4,mapping_counts:{'ib-math-ai:U0':80},question_types:{essay:180}}};
+const livePackages=[calculusPackage,precalculusPackage,ibPackage];
 const devices=[{key:'desktop',viewport:{width:1440,height:1000},isMobile:false},{key:'mobile',viewport:{width:390,height:844},isMobile:true}];
 const report={generatedAt:new Date().toISOString(),pages:[],errors:[]};
 for(const device of devices){
@@ -31,18 +33,18 @@ for(const device of devices){
     const response=await page.goto(`${baseURL}/question-bank/official/admin/private-bank-center.html`,{waitUntil:'domcontentloaded',timeout:45000});entry.status=response?.status()??null;
     const statusLocator=page.locator('#bankStatus');
     await statusLocator.waitFor({state:'visible',timeout:15000});
-    await page.locator('html[data-non-calculus-packages="0"]').waitFor({state:'attached',timeout:15000});
-    const state=await page.evaluate(()=>({banks:document.querySelectorAll('#bankGrid .bankCard').length,complete:document.querySelectorAll('#bankGrid .bankState').length,questionTotal:document.getElementById('questionTotal')?.textContent,poolTotal:document.getElementById('poolTotal')?.textContent,mediaTotal:document.getElementById('mediaTotal')?.textContent,calcBanks:document.getElementById('calcBanks')?.textContent,calcReadiness:document.getElementById('calcReadiness')?.textContent,calcVerified:document.getElementById('calcVerified')?.textContent,alignmentCards:document.querySelectorAll('.alignmentCard').length,cleanupDisabled:document.getElementById('keepCalculusOnly')?.disabled,dangerHidden:document.getElementById('cleanupDangerZone')?.classList.contains('hidden'),nonCalculusPackages:document.documentElement.dataset.nonCalculusPackages,text:document.body.innerText,width:Math.max(document.body.scrollWidth,document.documentElement.scrollWidth),viewport:document.documentElement.clientWidth}));
+    await page.waitForFunction(()=>document.getElementById('bankStatus')?.textContent.includes('3 private-bank packages'),null,{timeout:15000});
+    const state=await page.evaluate(()=>({banks:document.querySelectorAll('#bankGrid .bankCard').length,complete:document.querySelectorAll('#bankGrid .bankState').length,questionTotal:document.getElementById('questionTotal')?.textContent,poolTotal:document.getElementById('poolTotal')?.textContent,mediaTotal:document.getElementById('mediaTotal')?.textContent,calcBanks:document.getElementById('calcBanks')?.textContent,calcReadiness:document.getElementById('calcReadiness')?.textContent,calcVerified:document.getElementById('calcVerified')?.textContent,precalcBanks:document.getElementById('precalcBanks')?.textContent,ibBanks:document.getElementById('ibBanks')?.textContent,alignmentCards:document.querySelectorAll('.alignmentCard').length,bulkCleanupPresent:Boolean(document.getElementById('keepCalculusOnly')||document.getElementById('cleanupDangerZone')),text:document.body.innerText,width:Math.max(document.body.scrollWidth,document.documentElement.scrollWidth),viewport:document.documentElement.clientWidth}));
     Object.assign(entry,state);
-    if(state.banks!==1)entry.errors.push(`Expected one AP Calculus bank card, found ${state.banks}`);
-    if(state.complete!==1||!state.text.includes('complete direct upload'))entry.errors.push('AP Calculus live package state did not render');
-    if(state.questionTotal!=='3,019'||state.poolTotal!=='46'||state.mediaTotal!=='3,366')entry.errors.push('AP Calculus inventory totals did not render');
-    if(state.alignmentCards!==3||!state.text.includes('AP Precalculus')||!state.text.includes('IB Mathematics AI'))entry.errors.push('Calculus-only course boundary cards did not render');
+    if(state.banks!==3)entry.errors.push(`Expected three multi-course bank cards, found ${state.banks}`);
+    if(state.complete!==3||!state.text.includes('complete direct upload'))entry.errors.push('Multi-course live package states did not render');
+    if(state.questionTotal!=='3,819'||state.poolTotal!=='55'||state.mediaTotal!=='3,526')entry.errors.push('Multi-course inventory totals did not render');
+    if(state.alignmentCards!==3||!state.text.includes('AP Precalculus')||!state.text.includes('IB Mathematics AI'))entry.errors.push('Course inventory cards did not render');
     if(state.calcBanks!=='1'||state.calcReadiness!=='822'||state.calcVerified!=='3,019')entry.errors.push('AP Calculus private-bank metrics did not render');
-    if(state.nonCalculusPackages!=='0'||state.cleanupDisabled!==true||state.dangerHidden!==true)entry.errors.push('Completed calculus-only cleanup state or teacher-only safety boundary did not render');
+    if(state.precalcBanks!=='1'||state.ibBanks!=='1'||state.bulkCleanupPresent)entry.errors.push('Multi-course preservation boundary did not render');
     if(!state.text.includes('Publisher-key direct')||!state.text.includes('not independently audited'))entry.errors.push('Direct-use disclosure is missing');
     if(!state.text.includes('AP Calculus Bank 1'))entry.errors.push('Missing AP Calculus bank alias');
-    for(const legacyAlias of ['AP Precalculus Bank 1','IB Mathematics Bank 1'])if(state.text.includes(legacyAlias))entry.errors.push(`Removed bank alias leaked: ${legacyAlias}`);
+    for(const alias of ['AP Precalculus Bank 1','IB Mathematics Bank 1'])if(!state.text.includes(alias))entry.errors.push(`Registered bank alias is missing: ${alias}`);
     for(const publisher of ['Pearson','Blitzer','Addison-Wesley','ISBN'])if(state.text.includes(publisher))entry.errors.push(`Publisher-facing text leaked: ${publisher}`);
     if(state.width>state.viewport+2)entry.errors.push(`Horizontal overflow ${state.width}px > ${state.viewport}px`);
     if(entry.status&&entry.status>=400)entry.errors.push(`HTTP ${entry.status}`);if(consoleErrors.length)entry.errors.push(`Console: ${consoleErrors.join(' | ')}`);if(pageErrors.length)entry.errors.push(`Page: ${pageErrors.join(' | ')}`);

@@ -43,8 +43,8 @@ body[data-platform-page="home"] .premiumLandingHeader .searchBox{width:100%;min-
 body[data-platform-page="home"] .premiumLandingHeader .platformHeaderActions{display:flex!important;align-items:center;justify-content:flex-end;flex-wrap:nowrap!important;gap:10px;min-width:max-content}
 body[data-platform-page="home"] .premiumLandingHeader .platformNav{display:flex!important;align-items:center;flex-wrap:nowrap!important;gap:3px;min-width:max-content;white-space:nowrap}
 body[data-platform-page="home"] .premiumLandingHeader .platformNav a{padding:11px 15px;white-space:nowrap}
-body[data-platform-page="home"] .premiumLandingHero{min-height:clamp(640px,calc(100svh - 125px),760px)!important}
-body[data-platform-page="home"] .premiumLandingHero .heroContent{min-height:inherit;padding-block:clamp(48px,6vh,78px)}
+body[data-platform-page="home"] .premiumLandingHero{min-height:clamp(600px,calc(100svh - 125px),720px)!important}
+body[data-platform-page="home"] .premiumLandingHero .heroContent{min-height:inherit;padding-block:clamp(30px,4vh,54px)}
 body[data-platform-page="home"] .premiumLandingHero .premiumHeroCopy{align-self:center}
 body[data-platform-page="home"] .premiumLandingHero .premiumIdentityVisual{align-self:center;max-height:610px}
 

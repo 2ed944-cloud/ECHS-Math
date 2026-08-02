@@ -282,7 +282,7 @@ for q in canonical_questions:
 manifest=load_json(STUDENT/'media-manifest.json')
 manifest_text=json.dumps(manifest)
 for p in set(student_refs):
-    if p not in manifest_text: c.warnings.append(f'Media reference absent from student manifest: {p}')
+    if p not in manifest_text: c.errors.append(f'Media reference absent from student manifest: {p}')
 actual_media=[p for p in (OFF/'media').rglob('*') if p.is_file()]
 c.evidence={'canonicalMediaReferences':len(refs),'uniqueCanonicalMediaPaths':len(set(refs)),'actualMediaFiles':len(actual_media)}
 

@@ -26,13 +26,13 @@ required_html = (
     'id="ibReadiness"',
     'id="ibVerified"',
     "registered banks",
-    "real-bank-counts",
+    "multicourse-banks",
 )
 errors = [f"UI missing {token}" for token in required_ui if token not in ui]
 errors += [f"HTML missing {token}" for token in required_html if token not in html]
 if "isComplete?declaredQuestions(bank):0" in ui:
     errors.append("Uploading packages are still forced to zero")
-if "real-counts" not in worker:
+if "multicourse-banks" not in worker:
     errors.append("Service-worker cache version was not refreshed")
 if errors:
     raise SystemExit("\n".join(errors))

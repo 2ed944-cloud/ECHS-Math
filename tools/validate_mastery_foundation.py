@@ -87,12 +87,20 @@ def validate_graph() -> None:
 
 def validate_trust_manifest() -> None:
     manifest = load_json("question-bank/official/admin/data/question-trust-manifest.json")
+    student_catalog = load_json("question-bank/official/data/student/catalog.json")
     scope = manifest.get("canonical_scope") or {}
     canonical = int(scope.get("questions") or 0)
     ready = int(scope.get("student_ready") or 0)
     restricted = int(scope.get("teacher_archive_restricted") or 0)
-    if canonical != 1217 or ready != 52 or restricted != 1165:
-        fail(f"Question trust counts do not match audited baseline: {canonical}/{ready}/{restricted}")
+    expected_canonical = int(student_catalog.get("archiveQuestionCount") or 0)
+    expected_ready = int(student_catalog.get("questionCount") or 0)
+    expected_restricted = int((student_catalog.get("restrictedSummary") or {}).get("teacherArchiveOnly") or 0)
+    if (canonical, ready, restricted) != (expected_canonical, expected_ready, expected_restricted):
+        fail(
+            "Question trust counts do not match the generated student catalog: "
+            f"manifest={canonical}/{ready}/{restricted}, "
+            f"catalog={expected_canonical}/{expected_ready}/{expected_restricted}"
+        )
     if ready + restricted != canonical:
         fail("Question trust counts do not reconcile")
     tiers = {row.get("id"): row for row in manifest.get("trust_tiers") or []}
