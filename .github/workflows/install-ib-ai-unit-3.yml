@@ -1,12 +1,14 @@
 name: Install IB AI Unit 3 deployment package
 
 on:
-  push:
-    branches: [agent/publish-ib-ai-unit-3-geogebra]
-    paths: [staging/ready.txt]
+  pull_request:
+    branches: [main]
+    paths:
+      - .github/workflows/install-ib-ai-unit-3.yml
+      - staging/ready.txt
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   inspect:
@@ -41,7 +43,7 @@ jobs:
           try:
               dec=gzip.decompress(raw)
               print('gzip_bytes',len(dec),'gzip_magic',dec[:32].hex())
-              print('gzip_text_prefix',dec[:200])
+              print('gzip_text_prefix',repr(dec[:200]))
               Path('/tmp/u3-payload.dec').write_bytes(dec)
           except Exception as exc:
               print('gzip_error',repr(exc))
