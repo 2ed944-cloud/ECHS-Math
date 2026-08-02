@@ -3,11 +3,7 @@ name: Install IB AI Unit 3 deployment package
 on:
   push:
     branches: [agent/publish-ib-ai-unit-3-geogebra]
-  pull_request:
-    branches: [main]
-    paths:
-      - staging/ib-ai-unit-3-geogebra-v3.1.0.zip
-      - .github/workflows/install-ib-ai-unit-3.yml
+    paths: [staging/ready.txt]
 
 permissions:
   contents: write
@@ -25,13 +21,15 @@ jobs:
           fetch-depth: 0
           persist-credentials: true
 
-      - name: Expand and integrate Unit 3
+      - name: Reassemble, expand, and validate Unit 3
         shell: bash
         run: |
           set -euo pipefail
+          cat staging/package.b64-* | base64 --decode > /tmp/echs-u3.zip
+          echo "390a10ee40b176cda708f516476705151e023bcbc6ac820b4cced9964d365c8d  /tmp/echs-u3.zip" | sha256sum --check
           rm -rf /tmp/echs-u3
           mkdir -p /tmp/echs-u3
-          unzip -q staging/ib-ai-unit-3-geogebra-v3.1.0.zip -d /tmp/echs-u3
+          unzip -q /tmp/echs-u3.zip -d /tmp/echs-u3
           package="$(find /tmp/echs-u3 -mindepth 1 -maxdepth 1 -type d | head -n 1)"
           test -n "$package"
           test -d "$package/lessons/ib-math-ai/unit-3"
@@ -40,11 +38,11 @@ jobs:
 
           rm -rf lessons/ib-math-ai/unit-3
           cp -R "$package/lessons/ib-math-ai/unit-3" lessons/ib-math-ai/unit-3
-          rm -rf lessons/ib-math-ai/unit-3/reports/screenshots
           cp "$package/data/ib-math-ai-unit-3-update.js" data/ib-math-ai-unit-3-update.js
 
-          python - <<'PY'
+          PACKAGE="$package" python - <<'PY'
           import json
+          import os
           import re
           from pathlib import Path
 
@@ -65,7 +63,8 @@ jobs:
               index = index.replace(unit2, unit2 + '\n' + unit3, 1)
           index_path.write_text(index, encoding='utf-8')
 
-          patch = json.loads(Path('/tmp/echs-u3/ECHS_IB_AI_Unit_3_GeoGebra_GitHub_Deployment_Ready/patches/ib-math-ai-lesson-catalog-unit-3.json').read_text(encoding='utf-8'))
+          package = Path(os.environ['PACKAGE'])
+          patch = json.loads((package / 'patches/ib-math-ai-lesson-catalog-unit-3.json').read_text(encoding='utf-8'))
           patch['unit_home'] = 'lessons/ib-math-ai/unit-3/index.html'
           for lesson in patch.get('lessons', []):
               lesson['url'] = lesson['url'].replace(
@@ -119,7 +118,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          rm -f staging/ib-ai-unit-3-geogebra-v3.1.0.zip staging/trigger-unit-3-install.txt
+          rm -f staging/package.b64-* staging/ready.txt staging/trigger-unit-3-install.txt staging/ib-ai-unit-3-geogebra-v3.1.0.zip
           rmdir staging 2>/dev/null || true
           rm -f .github/workflows/install-ib-ai-unit-3.yml
           git config user.name 'github-actions[bot]'
