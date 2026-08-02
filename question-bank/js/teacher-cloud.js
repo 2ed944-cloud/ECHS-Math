@@ -9,10 +9,7 @@
     preview = false,
     assignmentInventory = [],
     assignmentQuestions = [],
-    selectedQuestionIds = new Set(),
-    selectedAssignmentBanks = new Set(),
-    selectedAssignmentTargets = new Set(),
-    assignmentLoadToken = 0;
+    selectedQuestionIds = new Set();
   const $ = (id) => document.getElementById(id),
     X = window.ECHSExperience,
     esc = X.escapeHTML;
@@ -627,149 +624,20 @@
     }
     return rows;
   }
-  const assignmentTargetKey = (row) =>
-    `${row?.unit_number || ""}::${row?.lesson_key || ""}`;
-  const selectedBanks = () => [...selectedAssignmentBanks];
-  function assignmentBankOptions() {
-    return [
-      ...new Map(
-        assignmentInventory.map((row) => [
-          String(row.bank_code || ""),
-          row.bank_display_name || row.bank_code,
-        ]),
-      ),
-    ].filter(([code]) => code);
-  }
-  function displayBankLabel(code) {
-    return (
-      assignmentBankOptions().find(([value]) => value === code)?.[1] || code
+  function selectedAssignmentTarget() {
+    return assignmentInventory.find(
+      (row) =>
+        `${row.unit_number || ""}::${row.lesson_key || ""}` ===
+        $("assignmentTarget").value,
     );
-  }
-  function assignmentTargetOptions() {
-    const scope = $("assignmentScope").value,
-      options = new Map();
-    if (scope === "course")
-      return new Map([["::", { unit_number: "", lesson_key: "", label: "Complete mapped course" }]]);
-    assignmentInventory
-      .filter((row) => selectedAssignmentBanks.has(String(row.bank_code)))
-      .forEach((row) => {
-        if (scope === "unit" && row.unit_number)
-          options.set(`${row.unit_number}::`, {
-            unit_number: String(row.unit_number),
-            lesson_key: "",
-            label: `Unit ${row.unit_number}`,
-          });
-        if (scope === "lesson" && row.lesson_key)
-          options.set(assignmentTargetKey(row), {
-            unit_number: String(row.unit_number || ""),
-            lesson_key: String(row.lesson_key),
-            lesson_title: row.lesson_title || "Mapped lesson",
-            label: `${row.lesson_key} · ${row.lesson_title || "Mapped lesson"}`,
-          });
-      });
-    return options;
-  }
-  function selectedAssignmentRoutes() {
-    const scope = $("assignmentScope").value,
-      options = assignmentTargetOptions(),
-      targetKeys = scope === "course" ? ["::"] : [...selectedAssignmentTargets],
-      routes = [];
-    selectedBanks().forEach((bank) => {
-      const bankRows = assignmentInventory.filter(
-        (row) => String(row.bank_code) === bank,
-      );
-      targetKeys.forEach((key) => {
-        const target = options.get(key);
-        if (!target) return;
-        const available =
-          scope === "course" ||
-          bankRows.some((row) =>
-            scope === "unit"
-              ? String(row.unit_number || "") === String(target.unit_number)
-              : String(row.unit_number || "") === String(target.unit_number) &&
-                String(row.lesson_key || "") === String(target.lesson_key),
-          );
-        if (!available) return;
-        routes.push({
-          bank,
-          scope,
-          unit: scope === "course" ? "" : target.unit_number || "",
-          topic: scope === "lesson" ? target.lesson_key || "" : "",
-          label: target.label,
-        });
-      });
-    });
-    return routes;
-  }
-  function renderAssignmentBanks() {
-    const banks = assignmentBankOptions();
-    selectedAssignmentBanks = new Set(
-      [...selectedAssignmentBanks].filter((code) =>
-        banks.some(([value]) => value === code),
-      ),
-    );
-    $("assignmentBanks").innerHTML = banks.length
-      ? banks
-          .map(
-            ([code, label]) =>
-              `<label class="multiChoice ${selectedAssignmentBanks.has(code) ? "selected" : ""}"><input type="checkbox" data-assignment-bank="${esc(code)}" ${selectedAssignmentBanks.has(code) ? "checked" : ""}><span><strong>${esc(label)}</strong><small>${assignmentInventory.filter((row) => String(row.bank_code) === code && row.lesson_key).length.toLocaleString()} mapped lessons</small></span><i>✓</i></label>`,
-          )
-          .join("")
-      : '<div class="multiPickerEmpty">No verified banks are available for this course.</div>';
-    document.querySelectorAll("[data-assignment-bank]").forEach((input) => {
-      input.onchange = async () => {
-        input.checked
-          ? selectedAssignmentBanks.add(input.dataset.assignmentBank)
-          : selectedAssignmentBanks.delete(input.dataset.assignmentBank);
-        renderAssignmentBanks();
-        renderAssignmentTargets();
-        await loadAssignmentQuestions();
-      };
-    });
-  }
-  function renderAssignmentTargets() {
-    const scope = $("assignmentScope").value,
-      control = $("assignmentTargetControl"),
-      options = assignmentTargetOptions(),
-      query = $("assignmentTargetSearch").value.trim().toLowerCase();
-    control.hidden = scope === "course";
-    if (scope === "course") {
-      selectedAssignmentTargets = new Set(["::"]);
-      return;
-    }
-    selectedAssignmentTargets = new Set(
-      [...selectedAssignmentTargets].filter((key) => options.has(key)),
-    );
-    const visible = [...options].filter(([, row]) =>
-      !query || `${row.label} ${row.unit_number}`.toLowerCase().includes(query),
-    );
-    $("assignmentTargets").innerHTML = visible.length
-      ? visible
-          .map(
-            ([key, row]) =>
-              `<label class="multiChoice targetChoice ${selectedAssignmentTargets.has(key) ? "selected" : ""}"><input type="checkbox" data-assignment-target="${esc(key)}" ${selectedAssignmentTargets.has(key) ? "checked" : ""}><span><strong>${esc(row.label)}</strong><small>${scope === "lesson" ? `Unit ${esc(row.unit_number || "—")}` : "Complete mapped unit"}</small></span><i>✓</i></label>`,
-          )
-          .join("")
-      : '<div class="multiPickerEmpty">No mapped targets match this selection.</div>';
-    document.querySelectorAll("[data-assignment-target]").forEach((input) => {
-      input.onchange = async () => {
-        input.checked
-          ? selectedAssignmentTargets.add(input.dataset.assignmentTarget)
-          : selectedAssignmentTargets.delete(input.dataset.assignmentTarget);
-        renderAssignmentTargets();
-        await loadAssignmentQuestions();
-      };
-    });
   }
   function syncAssignmentSummary() {
     const curated = selectionMode() === "curated",
       selected = selectedQuestionIds.size,
-      planned = Math.max(1, Number($("assignmentCountInput").value) || 10),
-      banks = selectedAssignmentBanks.size,
-      routes = selectedAssignmentRoutes().length;
+      planned = Math.max(1, Number($("assignmentCountInput").value) || 10);
     $("assignmentPublishSummary").textContent = curated
-      ? `${selected} exact question${selected === 1 ? "" : "s"} selected across ${banks} bank${banks === 1 ? "" : "s"} and ${routes} route${routes === 1 ? "" : "s"}.`
-      : `${Math.min(planned, assignmentQuestions.length || planned)} questions will be generated with ${$("assignmentDistribution").selectedOptions[0]?.textContent.toLowerCase() || "the selected distribution"}.`;
+      ? `${selected} exact question${selected === 1 ? "" : "s"} selected for ${selectedClass?.name || "this class"}.`
+      : `${Math.min(planned, assignmentQuestions.length || planned)} questions will be generated from the mapped pool.`;
     $("assignmentQuestionList").classList.toggle("poolMode", !curated);
   }
   function questionPrompt(row) {
@@ -783,7 +651,7 @@
     const list = $("assignmentQuestionList"),
       curated = selectionMode() === "curated";
     $("questionPickerMeta").textContent = assignmentQuestions.length
-      ? `${assignmentQuestions.length.toLocaleString()} mapped questions · ${selectedQuestionIds.size} selected · ${selectedAssignmentRoutes().length} routes`
+      ? `${assignmentQuestions.length.toLocaleString()} mapped questions · ${selectedQuestionIds.size} selected`
       : "No questions loaded";
     if (!assignmentQuestions.length) {
       list.innerHTML =
@@ -796,7 +664,7 @@
         const payload = row.payload || {},
           source = payload.source || {},
           checked = selectedQuestionIds.has(String(row.question_id));
-        return `<label class="assignmentQuestion ${checked ? "selected" : ""}"><input type="checkbox" data-assignment-question="${esc(row.question_id)}" ${checked ? "checked" : ""} ${curated ? "" : "disabled"}><span><span class="assignmentQuestionTop"><span>${esc(payload.type || row.question_type || "question")}</span><span>${esc(source.section || payload.skill_key || "mapped")}</span><span>${esc(displayBankLabel(String(row.bank_code || "bank")))}</span></span><span class="assignmentQuestionPrompt">${questionPrompt(row)}</span></span></label>`;
+        return `<label class="assignmentQuestion ${checked ? "selected" : ""}"><input type="checkbox" data-assignment-question="${esc(row.question_id)}" ${checked ? "checked" : ""} ${curated ? "" : "disabled"}><span><span class="assignmentQuestionTop"><span>${esc(payload.type || row.question_type || "question")}</span><span>${esc(source.section || payload.skill_key || "mapped")}</span><span>${esc(row.bank_code || "bank")}</span></span><span class="assignmentQuestionPrompt">${questionPrompt(row)}</span></span></label>`;
       })
       .join("");
     document.querySelectorAll("[data-assignment-question]").forEach((input) => {
@@ -811,6 +679,33 @@
       };
     });
     syncAssignmentSummary();
+  }
+  function fillAssignmentTargets() {
+    const scope = $("assignmentScope").value,
+      rows = assignmentInventory.filter(
+        (row) => row.bank_code === $("assignmentBank").value,
+      ),
+      options = new Map();
+    if (scope === "course") options.set("::", "Complete mapped course");
+    else if (scope === "unit")
+      rows.forEach((row) =>
+        options.set(`${row.unit_number || ""}::`, `Unit ${row.unit_number}`),
+      );
+    else
+      rows
+        .filter((row) => row.lesson_key)
+        .forEach((row) =>
+          options.set(
+            `${row.unit_number || ""}::${row.lesson_key}`,
+            `${row.lesson_key} · ${row.lesson_title || "Mapped lesson"}`,
+          ),
+        );
+    $("assignmentTarget").innerHTML = [...options]
+      .map(
+        ([value, label]) =>
+          `<option value="${esc(value)}">${esc(label)}</option>`,
+      )
+      .join("");
   }
   async function loadAssignmentInventory() {
     const course = assignmentCourse();
@@ -844,49 +739,61 @@
       rowsByRoute.set(key, row);
     });
     assignmentInventory = [...rowsByRoute.values()];
-    const firstBank = assignmentBankOptions()[0]?.[0];
-    if (firstBank && !selectedAssignmentBanks.size)
-      selectedAssignmentBanks.add(firstBank);
-    renderAssignmentBanks();
-    const firstTarget = assignmentTargetOptions().keys().next().value;
-    if (firstTarget) selectedAssignmentTargets.add(firstTarget);
-    renderAssignmentTargets();
+    const banks = [
+      ...new Map(
+        assignmentInventory.map((row) => [
+          row.bank_code,
+          row.bank_display_name || row.bank_code,
+        ]),
+      ),
+    ];
+    $("assignmentBank").innerHTML = banks.length
+      ? banks
+          .map(
+            ([code, label]) =>
+              `<option value="${esc(code)}">${esc(label)}</option>`,
+          )
+          .join("")
+      : '<option value="">No verified banks available</option>';
+    fillAssignmentTargets();
     await loadAssignmentQuestions();
   }
-  function questionMatchesAssignmentRoute(question, route) {
-    if (String(question.bank_code || "") !== String(route.bank)) return false;
-    if (window.ECHSBank?.mappingCompatible)
-      return ECHSBank.mappingCompatible(question, {
-        course: assignmentCourse(),
-        unit: route.scope === "course" ? "" : route.unit,
-        topic: route.scope === "lesson" ? route.topic : "",
-      });
-    return true;
-  }
-  async function loadAssignmentRoute(route) {
-    const rows = assignmentInventory.filter(
-        (row) => String(row.bank_code) === String(route.bank),
-      ),
-      staticRows = rows.filter(
-        (row) =>
-          row.static_bundle &&
-          (route.scope === "course" ||
-            (route.scope === "unit" &&
-              String(row.unit_number || "") === String(route.unit)) ||
-            (route.scope === "lesson" &&
-              String(row.unit_number || "") === String(route.unit) &&
-              String(row.lesson_key || "") === String(route.topic))),
-      );
-    const output = [];
+  async function loadAssignmentQuestions() {
+    const target = selectedAssignmentTarget(),
+      scope = $("assignmentScope").value,
+      bank = $("assignmentBank").value;
+    if (!bank) return renderAssignmentQuestions();
+    const bankRows = assignmentInventory.filter((row) => row.bank_code === bank),
+      packageOnly = bankRows.length && bankRows.every((row) => row.package_only);
+    if (packageOnly) {
+      assignmentQuestions = [];
+      $("assignmentAvailability").innerHTML =
+        `<strong>Bank package found · 0 mapped questions</strong><span>${esc(bank)} · mapping required</span>`;
+      $("assignmentQuestionList").innerHTML =
+        '<div class="assignmentPickerEmpty"><span>!</span><strong>This bank exists, but its questions are not lesson-mapped</strong><p>Complete the bank import or rebuild its course, unit, and lesson indexes before assigning it.</p></div>';
+      syncAssignmentSummary();
+      return;
+    }
+    const staticRows = bankRows.filter((row) => row.static_bundle);
     if (staticRows.length) {
-      const bundles = [
-          ...new Map(
-            staticRows.map((row) => [row.static_bundle.file, row.static_bundle]),
-          ).values(),
-        ],
-        loaded = (await Promise.all(bundles.map((row) => ECHSBank.loadBundle(row)))).flat();
-      output.push(...loaded
-        .filter((question) => questionMatchesAssignmentRoute(question, route))
+      const targetKey = selectedAssignmentTarget(),
+        matchingRows = staticRows.filter((row) => {
+          if (scope === "course") return true;
+          if (scope === "unit")
+            return String(row.unit_number) === String(targetKey?.unit_number || "");
+          return String(row.lesson_key) === String(targetKey?.lesson_key || "");
+        }),
+        bundles = [...new Map(matchingRows.map((row) => [row.static_bundle.file, row.static_bundle])).values()],
+        loaded = (await Promise.all(bundles.map((row) => ECHSBank.loadBundle(row)))).flat(),
+        seen = new Set();
+      assignmentQuestions = loaded
+        .filter((question) => question.bank_code === bank)
+        .filter((question) => {
+          const id = String(question.id || "");
+          if (!id || seen.has(id)) return false;
+          seen.add(id);
+          return true;
+        })
         .map((question) => ({
           question_id: question.id,
           bank_code: question.bank_code,
@@ -901,63 +808,45 @@
             metadata: question.metadata,
             skill_key: question.classification?.ap_topic,
           },
-        })));
+        }));
+      selectedQuestionIds = new Set(
+        [...selectedQuestionIds].filter((id) =>
+          assignmentQuestions.some((row) => String(row.question_id) === id),
+        ),
+      );
+      $("assignmentAvailability").innerHTML =
+        `<strong>${assignmentQuestions.length.toLocaleString()} questions available</strong><span>${esc(calculusBankLabel(bank))} · ${esc(scope)}</span>`;
+      renderAssignmentQuestions();
+      return;
     }
-    const hasDynamicRows = rows.some(
-      (row) => !row.static_catalogue && !row.package_only,
-    );
-    if (!hasDynamicRows) return output;
     const query = new URLSearchParams({
       course: assignmentCourse(),
-      bank: route.bank,
+      bank,
       limit: "2000",
     });
-    if (route.scope === "lesson" && route.topic)
-      query.set("lesson", route.topic);
-    if (route.scope === "unit" && route.unit) query.set("unit", route.unit);
+    if (scope === "lesson" && target?.lesson_key)
+      query.set("lesson", target.lesson_key);
+    if (scope === "unit" && target?.unit_number)
+      query.set("unit", target.unit_number);
+    $("assignmentQuestionList").innerHTML =
+      '<div class="assignmentPickerEmpty"><span>···</span><strong>Loading mapped questions</strong><p>Checking the selected bank and route.</p></div>';
     const result = await ECHSInstitution.api(
       "practice-bank-api",
       `/questions?${query}`,
     );
-    output.push(...(result.questions || []));
-    return output;
-  }
-  async function loadAssignmentQuestions() {
-    const loadToken = ++assignmentLoadToken,
-      routes = selectedAssignmentRoutes(),
-      banks = selectedBanks();
-    if (!banks.length || !routes.length) {
-      assignmentQuestions = [];
-      $("assignmentAvailability").innerHTML =
-        '<strong>Choose banks and targets</strong><span>Select at least one mapped route.</span>';
-      renderAssignmentQuestions();
-      return;
-    }
-    $("assignmentQuestionList").innerHTML =
-      '<div class="assignmentPickerEmpty"><span>···</span><strong>Building the combined question pool</strong><p>Checking every selected bank and lesson.</p></div>';
-    const loaded = (await Promise.all(routes.map(loadAssignmentRoute))).flat(),
-      unique = new Map();
-    if (loadToken !== assignmentLoadToken) return;
-    loaded.forEach((row) => {
-      const id = String(row.question_id || row.id || ""),
-        bank = String(row.bank_code || row.payload?.bank_code || "");
-      if (id && !unique.has(`${bank}::${id}`)) unique.set(`${bank}::${id}`, row);
-    });
-    assignmentQuestions = [...unique.values()];
+    assignmentQuestions = result.questions || [];
     selectedQuestionIds = new Set(
       [...selectedQuestionIds].filter((id) =>
         assignmentQuestions.some((row) => String(row.question_id) === id),
       ),
     );
     $("assignmentAvailability").innerHTML =
-      `<strong>${assignmentQuestions.length.toLocaleString()} questions available</strong><span>${banks.length} bank${banks.length === 1 ? "" : "s"} · ${routes.length} mapped route${routes.length === 1 ? "" : "s"}</span>`;
+      `<strong>${assignmentQuestions.length.toLocaleString()} questions available</strong><span>${esc(bank)} · ${esc(scope)}</span>`;
     renderAssignmentQuestions();
   }
   async function openAssignmentStudio() {
     $("assignmentForm").reset();
     selectedQuestionIds.clear();
-    selectedAssignmentBanks.clear();
-    selectedAssignmentTargets.clear();
     assignmentQuestions = [];
     $("assignmentDialog").showModal();
     try {
@@ -974,14 +863,7 @@
         "Assignment publishing becomes active after deployment.",
         "warning",
       );
-    const routes = selectedAssignmentRoutes(),
-      banks = selectedBanks(),
-      targets = [...new Map(routes.map((route) => [
-        `${route.unit}::${route.topic}`,
-        { unit: route.unit, topic: route.topic, label: route.label },
-      ])).values()],
-      firstRoute = routes[0],
-      payload = {
+    const payload = {
       class_id: selectedClass.id,
       title: $("assignmentTitle").value,
       description: $("assignmentDescription").value,
@@ -991,26 +873,18 @@
         : null,
       configuration: {
         course: selectedClass.course_key,
-        bank: banks[0] || "",
-        banks,
+        bank: $("assignmentBank").value,
         scope: $("assignmentScope").value,
-        unit: firstRoute?.unit || "",
-        topic: firstRoute?.topic || "",
-        targets,
-        routes,
+        unit: selectedAssignmentTarget()?.unit_number || "",
+        topic: selectedAssignmentTarget()?.lesson_key || "",
         question_ids:
           selectionMode() === "curated" ? [...selectedQuestionIds] : [],
         selection_mode: selectionMode(),
-        distribution: $("assignmentDistribution").value,
         count: Number($("assignmentCountInput").value),
         minutes: Number($("assignmentMinutes").value),
         difficulty: $("assignmentDifficulty").value,
       },
     };
-    if (!banks.length)
-      return X.toast("Select at least one verified question bank.", "warning");
-    if (!routes.length)
-      return X.toast("Select at least one mapped lesson or unit.", "warning");
     if (selectionMode() === "curated" && !selectedQuestionIds.size)
       return X.toast(
         "Select at least one question before publishing.",
@@ -1093,41 +967,16 @@
     $("membersForm").onsubmit = saveMembers;
     $("memberSearch").oninput = (event) => memberList(event.target.value);
     $("assignmentForm").onsubmit = createAssignment;
+    $("assignmentBank").onchange = async () => {
+      fillAssignmentTargets();
+      await loadAssignmentQuestions();
+    };
     $("assignmentScope").onchange = async () => {
-      selectedAssignmentTargets.clear();
-      const firstTarget = assignmentTargetOptions().keys().next().value;
-      if (firstTarget) selectedAssignmentTargets.add(firstTarget);
-      renderAssignmentTargets();
+      fillAssignmentTargets();
       await loadAssignmentQuestions();
     };
-    $("assignmentTargetSearch").oninput = renderAssignmentTargets;
+    $("assignmentTarget").onchange = loadAssignmentQuestions;
     $("assignmentCountInput").oninput = syncAssignmentSummary;
-    $("assignmentDistribution").onchange = syncAssignmentSummary;
-    $("selectAllAssignmentBanks").onclick = async () => {
-      selectedAssignmentBanks = new Set(
-        assignmentBankOptions().map(([code]) => code),
-      );
-      renderAssignmentBanks();
-      renderAssignmentTargets();
-      await loadAssignmentQuestions();
-    };
-    $("clearAssignmentBanks").onclick = async () => {
-      selectedAssignmentBanks.clear();
-      selectedAssignmentTargets.clear();
-      renderAssignmentBanks();
-      renderAssignmentTargets();
-      await loadAssignmentQuestions();
-    };
-    $("selectAllAssignmentTargets").onclick = async () => {
-      selectedAssignmentTargets = new Set(assignmentTargetOptions().keys());
-      renderAssignmentTargets();
-      await loadAssignmentQuestions();
-    };
-    $("clearAssignmentTargets").onclick = async () => {
-      selectedAssignmentTargets.clear();
-      renderAssignmentTargets();
-      await loadAssignmentQuestions();
-    };
     document
       .querySelectorAll('[name="assignmentSelectionMode"]')
       .forEach((input) => (input.onchange = renderAssignmentQuestions));

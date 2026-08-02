@@ -591,24 +591,11 @@ function currentCourse() {
   return UI.course.value || currentTarget()?.course || "";
 }
 function selectedBankLabel() {
-  if (student() && isMultiRouteAssignment()) return "Teacher-selected banks";
   return (
     UI.bank.selectedOptions?.[0]?.textContent?.trim() || "No bank selected"
   );
 }
-function questionBankLabel(question) {
-  if (!isMultiRouteAssignment()) return selectedBankLabel();
-  const banks = [...new Set(assignmentRoutes().map((route) => route.bank))],
-    index = Math.max(0, banks.indexOf(String(question?.bank_code || "")));
-  return student()
-    ? `Assigned bank ${index + 1}`
-    : bankOptionLabel(currentCourse(), banks[index] || question?.bank_code || "");
-}
 function currentScopeLabel() {
-  if (isMultiRouteAssignment()) {
-    const routes = assignmentRoutes();
-    return `${new Set(routes.map((route) => `${route.unit}::${route.topic}`)).size} selected lessons`;
-  }
   const target = currentTarget();
   return target?.scope === "course"
     ? "Full course"
@@ -653,13 +640,11 @@ function targetLocked() {
 }
 function setBusy(value) {
   loading = value;
-  const assignmentLocked = Boolean(assignmentId && assignmentConfig);
   UI.start.disabled = value || targetLocked() || !currentTarget();
-  UI.course.disabled = value || assignmentLocked;
-  UI.bank.disabled =
-    value || assignmentLocked || !bankCodesForCourse(UI.course.value).length;
-  UI.scope.disabled = value || assignmentLocked;
-  UI.bundle.disabled = value || assignmentLocked;
+  UI.course.disabled = value;
+  UI.bank.disabled = value || !bankCodesForCourse(UI.course.value).length;
+  UI.scope.disabled = value;
+  UI.bundle.disabled = value;
   if (UI.visibility) UI.visibility.disabled = value;
   UI.start.textContent = value
     ? "Loading exact route…"
@@ -781,99 +766,6 @@ async function loadCurrent() {
     pathwayBanner();
   }
 }
-function sourceForAssignmentRoute(route, index) {
-  const courseKey = normaliseCourse(assignmentConfig?.course || currentCourse()),
-    privateExact = privateSource(courseKey, route.bank, {
-      unit: route.scope === "course" ? "" : route.unit,
-      lesson: route.scope === "lesson" ? route.topic : "",
-      title: route.label,
-    });
-  let source = privateExact;
-  if (!source && route.scope === "lesson") {
-    const row = topicRow(courseKey, route.topic);
-    if (sourceHasBank(row, route.bank)) source = row;
-  }
-  if (!source && route.scope === "unit") {
-    const row = courseUnitRow(courseKey, route.unit);
-    if (sourceHasBank(row, route.bank)) source = row;
-  }
-  if (!source && route.scope === "course") {
-    const row = courseAllRow(courseKey);
-    if (sourceHasBank(row, route.bank)) source = row;
-  }
-  if (!source) return null;
-  return {
-    ...source,
-    id: `assignment:${assignmentId}:${index}:${route.bank}:${route.unit || "all"}:${route.topic || "all"}`,
-    course_key: courseKey,
-    bank_code: route.bank,
-    unit: route.scope === "course" ? "" : route.unit,
-    topic: route.scope === "lesson" ? route.topic : "",
-    questionFilter: {
-      ...(source.questionFilter || {}),
-      bank_code: route.bank,
-    },
-    ...(staff() && UI.visibility?.value === "all" ? { staff_view_all: true } : {}),
-  };
-}
-function questionMatchesAssignmentRoutes(question, routes) {
-  return routes.some(
-    (route) =>
-      String(question.bank_code || "") === String(route.bank) &&
-      ECHSBank.mappingCompatible(question, {
-        course: normaliseCourse(assignmentConfig?.course || currentCourse()),
-        unit: route.scope === "course" ? "" : route.unit,
-        topic: route.scope === "lesson" ? route.topic : "",
-      }),
-  );
-}
-function renderAssignmentReadyState() {
-  const routes = assignmentRoutes(),
-    bankCount = new Set(routes.map((route) => route.bank)).size,
-    targetCount = new Set(routes.map((route) => `${route.unit}::${route.topic}`)).size;
-  UI.shell.innerHTML = loaded.length
-    ? `<div class="scopeReady"><div class="scopeReadyIcon">✓</div><div><span>Assignment route ready</span><h2>${ECHSBank.escape(assignmentTitle || "Targeted practice")}</h2><p><strong>${loaded.length.toLocaleString()}</strong> mapped questions are ready across ${bankCount} bank${bankCount === 1 ? "" : "s"} and ${targetCount} lesson${targetCount === 1 ? "" : "s"}.</p></div><button class="button wine" type="button" data-start-scope>Start assignment</button></div>`
-    : '<div class="scopeReady scopeEmpty"><div class="scopeReadyIcon">0</div><div><span>Assignment mapping check required</span><h2>No questions are available</h2><p>Ask your teacher or administrator to review the selected bank and lesson mappings.</p></div></div>';
-  UI.shell
-    .querySelector("[data-start-scope]")
-    ?.addEventListener("click", () =>
-      start().catch(
-        (error) =>
-          (UI.shell.innerHTML = `<div class="notice">${ECHSBank.escape(error.message)}</div>`),
-      ),
-    );
-}
-async function loadAssignmentRouteSet() {
-  const routes = assignmentRoutes(),
-    sources = routes
-      .map((route, index) => sourceForAssignmentRoute(route, index))
-      .filter(Boolean);
-  if (!sources.length) return loadCurrent();
-  setBusy(true);
-  document.documentElement.dataset.assignmentMultiBank =
-    new Set(routes.map((route) => route.bank)).size > 1 ? "true" : "false";
-  UI.status.innerHTML =
-    '<span class="pill">Loading the complete assignment route…</span>';
-  try {
-    const rows = (await Promise.all(sources.map((source) => ECHSBank.loadBundle(source)))).flat(),
-      unique = new Map();
-    rows
-      .filter((question) => questionMatchesAssignmentRoutes(question, routes))
-      .filter((question) => !student() || !question._staff_only)
-      .forEach((question) => {
-        const key = `${question.bank_code || ""}::${question.id || ""}`;
-        if (question.id && !unique.has(key)) unique.set(key, question);
-      });
-    loaded = [...unique.values()];
-    updateInventory({
-      statusText: `<span class="pill teal">${loaded.length.toLocaleString()} assignment questions</span><span class="pill wine">${routes.length} mapped routes</span>`,
-    });
-    renderAssignmentReadyState();
-  } finally {
-    setBusy(false);
-    pathwayBanner();
-  }
-}
 window.addEventListener("echs:private-bank-summary", (event) => {
   const detail = event.detail || {};
   if (
@@ -892,50 +784,13 @@ window.addEventListener("echs:private-bank-summary", (event) => {
       : `<span class="pill teal">${loaded.length.toLocaleString()} questions ready</span><span class="pill">Loading remaining mapped questions…</span>`,
   });
 });
-function assignmentRoutes() {
-  if (!assignmentConfig) return [];
-  if (Array.isArray(assignmentConfig.routes) && assignmentConfig.routes.length)
-    return assignmentConfig.routes
-      .map((route) => ({
-        bank: String(route?.bank || ""),
-        scope: String(route?.scope || assignmentConfig.scope || "lesson"),
-        unit: String(route?.unit || ""),
-        topic: String(route?.topic || ""),
-        label: String(route?.label || route?.topic || route?.unit || "Assigned route"),
-      }))
-      .filter((route) => route.bank);
-  const banks = Array.isArray(assignmentConfig.banks)
-      ? assignmentConfig.banks.map(String).filter(Boolean)
-      : [assignmentConfig.bank].map(String).filter(Boolean),
-    targets = Array.isArray(assignmentConfig.targets) && assignmentConfig.targets.length
-      ? assignmentConfig.targets
-      : [{ unit: assignmentConfig.unit || "", topic: assignmentConfig.topic || "" }];
-  return banks.flatMap((bank) =>
-    targets.map((target) => ({
-      bank,
-      scope: String(assignmentConfig.scope || (target.topic ? "lesson" : target.unit ? "unit" : "course")),
-      unit: String(target.unit || ""),
-      topic: String(target.topic || ""),
-      label: String(target.label || target.topic || target.unit || "Assigned route"),
-    })),
-  );
-}
-function isMultiRouteAssignment() {
-  const routes = assignmentRoutes();
-  return Boolean(
-    assignmentId &&
-      (new Set(routes.map((route) => route.bank)).size > 1 ||
-        new Set(routes.map((route) => `${route.unit}::${route.topic}`)).size > 1),
-  );
-}
 function filters() {
   const target = currentTarget();
-  const multiRoute = isMultiRouteAssignment();
   return {
     course: target?.course || currentCourse(),
-    unit: multiRoute || target?.scope === "course" ? "" : (target?.unit ?? ""),
-    topic: multiRoute ? null : target?.scope === "lesson" ? target?.topic || "" : null,
-    bank: multiRoute ? "all" : UI.bank.value,
+    unit: target?.scope === "course" ? "" : (target?.unit ?? ""),
+    topic: target?.scope === "lesson" ? target?.topic || "" : null,
+    bank: UI.bank.value,
     type: UI.type.value,
     difficulty: UI.mode.value === "adaptive" ? "all" : UI.difficulty.value,
     section: student() ? "all" : UI.section.value,
@@ -998,15 +853,9 @@ function pathwayBanner() {
 }
 function assignmentBanner() {
   const target = document.getElementById("assignmentBanner");
-  const exactCount = assignmentConfig?.question_ids?.length || 0,
-    routes = assignmentRoutes(),
-    banks = new Set(routes.map((route) => route.bank)).size,
-    lessons = new Set(routes.map((route) => `${route.unit}::${route.topic}`)).size,
-    routeText = routes.length
-      ? ` · ${banks} assigned bank${banks === 1 ? "" : "s"} · ${lessons} lesson${lessons === 1 ? "" : "s"}`
-      : "";
+  const exactCount = assignmentConfig?.question_ids?.length || 0;
   target.innerHTML = assignmentId
-    ? `<div class="notice assignmentPracticeBanner"><strong>Teacher assignment:</strong> ${ECHSBank.escape(assignmentTitle || assignmentId)}${routeText}${exactCount ? ` · ${exactCount} teacher-selected questions` : ""}. Results will synchronise with your learning record.</div>`
+    ? `<div class="notice assignmentPracticeBanner"><strong>Teacher assignment:</strong> ${ECHSBank.escape(assignmentTitle || assignmentId)}${exactCount ? ` · ${exactCount} teacher-selected questions` : ""}. Results will synchronise with your learning record.</div>`
     : "";
 }
 function resumeBanner() {
@@ -1106,7 +955,7 @@ function render() {
       source.section_title ||
       question.pool_title ||
       "Practice question";
-  const bankPill = `<span class="pill teal">${ECHSBank.escape(questionBankLabel(question))}</span>`;
+  const bankPill = `<span class="pill teal">${ECHSBank.escape(selectedBankLabel())}</span>`;
   UI.shell.innerHTML = `<article class="questionCard ${question._staff_only ? "staffReviewQuestion" : ""}">
 <header class="questionHeader"><div><span class="questionEyebrow">${ECHSBank.escape(courseLabel(currentCourse()))} · ${ECHSBank.escape(currentScopeLabel())}</span><h2>${ECHSBank.escape(ECHSBank.cleanStudentLabel(topicTitle))}</h2></div><div class="questionCounter"><b>${state.index + 1}</b><span>of ${targetCount}</span></div></header>
 <div class="progressTrack" aria-label="Session progress"><i style="width:${((state.index + 1) / Math.max(1, targetCount)) * 100}%"></i></div>
@@ -1160,12 +1009,8 @@ function check(question) {
       assignmentId,
       durationMs: Date.now() - questionStartedAt,
       course: currentCourse(),
-      unit: isMultiRouteAssignment()
-        ? ECHSBank.questionUnit(question)
-        : target?.unit,
-      topic: isMultiRouteAssignment()
-        ? ECHSBank.questionTopic(question)
-        : target?.topic,
+      unit: target?.unit,
+      topic: target?.topic,
     });
   }
   if (["mcq", "true_false"].includes(question.type))
@@ -1229,35 +1074,6 @@ function finish() {
   UI.shell.innerHTML = `<div class="result"><div class="resultScore">${percentage == null ? "Practice complete" : `${state.correct} / ${state.graded} (${percentage}%)`}</div><p>Mastery evidence and review timing were updated for ${ECHSBank.escape(target?.label || courseLabel(currentCourse()))}.</p><div class="heroActions"><a class="button wine" href="../index.html#courses">Return to learning path</a><a class="button ghost" data-role-home href="student.html">Open dashboard</a><a class="button ghost" href="mistakes.html">Review mistakes</a></div></div>`;
   resumeBanner();
 }
-function balancedAssignmentSample(rows, count) {
-  const routes = assignmentRoutes(),
-    groups = routes
-      .map((route) => ({
-        route,
-        rows: ECHSBank.shuffle(
-          rows.filter((question) =>
-            questionMatchesAssignmentRoutes(question, [route]),
-          ),
-        ),
-      }))
-      .filter((group) => group.rows.length),
-    selected = [],
-    used = new Set();
-  while (selected.length < count && groups.some((group) => group.rows.length)) {
-    for (const group of groups) {
-      while (group.rows.length) {
-        const question = group.rows.shift(),
-          key = `${question.bank_code || ""}::${question.id}`;
-        if (used.has(key)) continue;
-        used.add(key);
-        selected.push(question);
-        break;
-      }
-      if (selected.length >= count) break;
-    }
-  }
-  return selected;
-}
 async function start() {
   if (targetLocked()) return;
   const rows = eligibleRows();
@@ -1266,20 +1082,12 @@ async function start() {
       '<div class="empty"><div class="emptyState"><div class="emptyStateIcon">0</div><h2>No questions match these choices</h2><p>Try all question types, all difficulties, or ask an administrator to check the lesson mapping.</p></div></div>';
     return;
   }
-  const exactAssignmentCount = Array.isArray(assignmentConfig?.question_ids)
-    ? assignmentConfig.question_ids.length
-    : 0;
-  targetCount = Math.min(
-    rows.length,
-    exactAssignmentCount || Number(UI.count.value) || 10,
-  );
+  targetCount = Math.min(rows.length, Number(UI.count.value) || 10);
   lastResult = null;
   set =
     UI.mode.value === "adaptive"
       ? ECHSLearning.selectAdaptive(rows, Math.min(1, targetCount))
-      : assignmentConfig?.distribution === "balanced" && assignmentRoutes().length > 1
-        ? balancedAssignmentSample(rows, targetCount)
-        : ECHSBank.shuffle(rows).slice(0, targetCount);
+      : ECHSBank.shuffle(rows).slice(0, targetCount);
   state = {
     index: 0,
     response: null,
@@ -1400,11 +1208,6 @@ document.addEventListener("keydown", practiceKeyboard);
           (result.assignments || []).find(
             (row) => String(row.id) === String(assignmentId),
           )?.configuration || null;
-        if (assignmentConfig)
-          document.documentElement.dataset.assignmentMultiBank =
-            new Set(assignmentRoutes().map((route) => route.bank)).size > 1
-              ? "true"
-              : "false";
       } catch (error) {
         console.warn("Assignment configuration could not be loaded", error);
       }
@@ -1442,21 +1245,16 @@ document.addEventListener("keydown", practiceKeyboard);
       UI.visibility.closest(".staffOnly")?.toggleAttribute("hidden", !staff());
     }
     UI.mode.value = params.get("mode") || (student() ? "adaptive" : "manual");
-    if (assignmentConfig?.count) UI.count.value = assignmentConfig.count;
-    else if (params.get("count")) UI.count.value = params.get("count");
+    if (params.get("count")) UI.count.value = params.get("count");
     updateModeCopy();
     populateBanks();
     if (
-      (assignmentConfig?.banks?.[0] || assignmentConfig?.bank) &&
+      assignmentConfig?.bank &&
       [...UI.bank.options].some(
-        (option) =>
-          option.value ===
-          String(assignmentConfig?.banks?.[0] || assignmentConfig?.bank),
+        (option) => option.value === assignmentConfig.bank,
       )
     )
-      UI.bank.value = String(
-        assignmentConfig?.banks?.[0] || assignmentConfig?.bank,
-      );
+      UI.bank.value = assignmentConfig.bank;
     populateScopes();
     if (
       assignmentConfig?.scope &&
@@ -1466,18 +1264,7 @@ document.addEventListener("keydown", practiceKeyboard);
     )
       UI.scope.value = assignmentConfig.scope;
     populateTargets();
-    const firstAssignmentRoute = assignmentRoutes()[0];
-    if (firstAssignmentRoute) {
-      const firstTarget = targets.find(
-        (target) =>
-          target.scope === firstAssignmentRoute.scope &&
-          String(target.unit || "") === String(firstAssignmentRoute.unit || "") &&
-          String(target.topic || "") === String(firstAssignmentRoute.topic || ""),
-      );
-      if (firstTarget) UI.bundle.value = firstTarget.id;
-    }
-    if (assignmentRoutes().length > 1) await loadAssignmentRouteSet();
-    else await loadCurrent();
+    await loadCurrent();
     assignmentBanner();
     resumeBanner();
     const learning = ECHSLearning.summary();

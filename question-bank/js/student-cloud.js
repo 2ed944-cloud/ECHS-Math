@@ -148,15 +148,13 @@
 
   function assignmentHref(row) {
     const c = row.configuration || {},
-      firstRoute = Array.isArray(c.routes) ? c.routes[0] : null,
       params = new URLSearchParams({ assignment: row.id || "" });
     if (row.title) params.set("title", row.title);
     if (c.course) params.set("course", c.course);
-    if (c.banks?.[0] || c.bank) params.set("bank", c.banks?.[0] || c.bank);
+    if (c.bank) params.set("bank", c.bank);
     if (c.scope) params.set("scope", c.scope);
-    if (firstRoute?.unit || c.unit) params.set("unit", firstRoute?.unit || c.unit);
-    if (firstRoute?.topic || c.topic)
-      params.set("topic", firstRoute?.topic || c.topic);
+    if (c.unit) params.set("unit", c.unit);
+    if (c.topic) params.set("topic", c.topic);
     if (c.count) params.set("count", c.count);
     if (row.activity_type === "exam")
       return `exam.html?${params}&minutes=${encodeURIComponent(c.minutes || 20)}`;
@@ -170,16 +168,6 @@
           : "manual",
     );
     return `practice.html?${params}`;
-  }
-  function assignmentRouteSummary(row) {
-    const c = row.configuration || {},
-      routes = Array.isArray(c.routes) ? c.routes : [],
-      banks = new Set(routes.map((route) => route.bank).filter(Boolean)),
-      targets = new Set(
-        routes.map((route) => `${route.unit || ""}::${route.topic || ""}`),
-      );
-    if (!routes.length) return "";
-    return `${banks.size} assigned bank${banks.size === 1 ? "" : "s"} · ${targets.size} lesson${targets.size === 1 ? "" : "s"}`;
   }
   function skillRows(rows, empty, color = "var(--px-teal)") {
     if (!rows?.length)
@@ -413,8 +401,7 @@
                 : status === "submitted"
                   ? "submitted"
                   : "";
-            const routeSummary = assignmentRouteSummary(row);
-            return `<div class="premiumListRow assignmentPremium ${style}"><span class="rowIcon">${X.icon(row.activity_type === "exam" ? "test" : row.activity_type === "lesson" ? "lesson" : "assignment")}</span><div><strong>${esc(row.title)}</strong><small>${esc((row.activity_type || "practice").replace("_", " ").toUpperCase())}${due ? ` · Due ${due.toLocaleDateString()}` : ""}${routeSummary ? ` · ${esc(routeSummary)}` : ""}${row.description ? ` · ${esc(row.description)}` : ""}</small><div class="progressMini"><i style="width:${status === "submitted" ? 100 : overdue ? 18 : 42}%"></i></div></div><div class="rowActions"><span class="cardBadge ${overdue ? "alert" : status === "submitted" ? "" : "gold"}">${overdue ? "Overdue" : status.replace("_", " ")}</span><a class="iButton small" href="${esc(assignmentHref(row))}">${status === "submitted" ? "Review" : "Open"}</a></div></div>`;
+            return `<div class="premiumListRow assignmentPremium ${style}"><span class="rowIcon">${X.icon(row.activity_type === "exam" ? "test" : row.activity_type === "lesson" ? "lesson" : "assignment")}</span><div><strong>${esc(row.title)}</strong><small>${esc((row.activity_type || "practice").replace("_", " ").toUpperCase())}${due ? ` · Due ${due.toLocaleDateString()}` : ""}${row.description ? ` · ${esc(row.description)}` : ""}</small><div class="progressMini"><i style="width:${status === "submitted" ? 100 : overdue ? 18 : 42}%"></i></div></div><div class="rowActions"><span class="cardBadge ${overdue ? "alert" : status === "submitted" ? "" : "gold"}">${overdue ? "Overdue" : status.replace("_", " ")}</span><a class="iButton small" href="${esc(assignmentHref(row))}">${status === "submitted" ? "Review" : "Open"}</a></div></div>`;
           })
           .join("")
       : `<div class="emptyInstitution"><h3>No assignments yet</h3><p>Continue your adaptive pathway or open an interactive lesson.</p></div>`;

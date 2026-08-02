@@ -209,7 +209,7 @@ jobs:
               'data-require-account="student teacher admin"' in text["practice"],
               'data-echs-lesson-guard="1"' in text["lesson"],
               "lesson-access-guard.js" in text["lesson"],
-              'const VERSION = "echs-platform-school-control-v3-' in text["worker"],
+              "echs-platform-school-control-v3-pathway2-landing1" in text["worker"],
           ]
           raise SystemExit(0 if all(checks) else 1)
           PY

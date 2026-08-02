@@ -38,14 +38,11 @@ REQUIRED = [
     "question-bank/js/student-cloud.js",
     "question-bank/js/teacher-cloud.js",
     "question-bank/js/parent-cloud.js",
-    "question-bank/js/institution-timetable.js",
-    "question-bank/css/institution-timetable.css",
     "config/institution.json",
     "config/institution.example.json",
     "templates/echs-account-import-template.csv",
     "supabase/config.toml",
     "supabase/migrations/202607260001_institutional_platform.sql",
-    "supabase/migrations/202608020002_assignment_routes_and_timetables.sql",
     "supabase/functions/account-api/index.ts",
     "supabase/functions/institution-api/index.ts",
     "supabase/functions/learning-sync/index.ts",
@@ -125,7 +122,6 @@ for marker in [
     "echs:learning-attempt",
     "Institutional accounts are not configured yet",
     "institution-polish.css",
-    "mountTimetableModule",
 ]:
     if marker not in client:
         fail(f"Institution client missing: {marker}")
@@ -139,7 +135,7 @@ page_requirements = {
     ],
     "question-bank/admin.html": ["accountRows", "createDialog", "importDialog", "passwordDialog"],
     "question-bank/student.html": ["masteryMeter", "topicsMeter", "goalMeter", "timeMeter", "assignmentList"],
-    "question-bank/teacher.html": ["classSelector", "studentRows", "assignmentDialog", "resetDialog", "importDialog", "teacherTimetable", "assignmentBanks", "assignmentTargets"],
+    "question-bank/teacher.html": ["classSelector", "studentRows", "assignmentDialog", "resetDialog", "importDialog"],
     "question-bank/parent.html": ["childSelector", "parentMasteryMeter", "familyAssignments", "familyPlan"],
 }
 for path, markers in page_requirements.items():
@@ -221,8 +217,6 @@ for asset in [
     "./css/institution-polish.css",
     "./question-bank/admin.html",
     "./question-bank/student.html",
-    "./question-bank/css/institution-timetable.css",
-    "./question-bank/js/institution-timetable.js",
 ]:
     if asset not in worker:
         fail(f"Service worker missing institutional shell asset {asset}")
@@ -231,28 +225,6 @@ if "privateApi" not in worker or "event.respondWith(fetch(request))" not in work
 for service in ["account-api", "institution-api", "learning-sync"]:
     if service not in worker:
         fail(f"Service worker private API bypass missing {service}")
-
-timetable_migration = text("supabase/migrations/202608020002_assignment_routes_and_timetables.sql")
-for marker in ["create table if not exists public.timetable_entries", "timetable_teacher_slot", "alter table public.timetable_entries enable row level security", "api_replace_timetable", "security definer"]:
-    if marker not in timetable_migration:
-        fail(f"Timetable migration missing: {marker}")
-institution_api = text("supabase/functions/institution-api/index.ts")
-for marker in ["listTimetable", "replaceTimetable", 'requireRole(session, ["admin"])', 'path === "/timetable"', 'req.method === "PUT"']:
-    if marker not in institution_api:
-        fail(f"Institution API timetable permission or route missing: {marker}")
-timetable_client = text("question-bank/js/institution-timetable.js")
-for marker in ["My mathematics timetable", "Only administrators can edit", 'method: "PUT"', "teacher_id", "class_id"]:
-    if marker not in timetable_client:
-        fail(f"Timetable client missing: {marker}")
-
-teacher_assignment = text("question-bank/js/teacher-cloud.js")
-for marker in ["selectedAssignmentBanks", "selectedAssignmentTargets", "selectedAssignmentRoutes", "banks,", "targets,", "routes,", "assignmentDistribution"]:
-    if marker not in teacher_assignment:
-        fail(f"Multi-route assignment studio missing: {marker}")
-mapped_practice = text("question-bank/js/mapped-practice.js")
-for marker in ["assignmentRoutes", "loadAssignmentRouteSet", "balancedAssignmentSample", "assignmentMultiBank", "Teacher-selected banks"]:
-    if marker not in mapped_practice:
-        fail(f"Multi-route student practice missing: {marker}")
 
 robots = text("robots.txt")
 for route in [

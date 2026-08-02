@@ -26,7 +26,6 @@
   <link rel="stylesheet" href="css/learning-access.css?v=20260727-pathway">
   <link rel="stylesheet" href="css/landing-premium.css?v=20260727-landing1">
   <link rel="stylesheet" href="css/platform-executive-v4.css?v=20260801-executive4-logo3">
-  <link rel="stylesheet" href="css/lesson-portal-overhaul.css?v=20260802-portal1">
 </head>
 <body data-platform-page="home" data-auth-state="loading">
 <a class="skip" href="#content">Skip to learning content</a>
@@ -52,7 +51,7 @@
 </header>
 
 <main id="content">
-  <section class="hero premiumLandingHero lessonPortalHero" aria-labelledby="portalTitle">
+  <section class="hero premiumLandingHero" aria-labelledby="portalTitle">
     <div class="heroScene" aria-hidden="true"><span class="glow glowGold"></span><span class="glow glowWine"></span><span class="glow glowTeal"></span><div class="heroGridLines"></div><div class="symbolField"><span style="--fx:3%;--fy:14%;--fd:16s;--fs:62px">∂</span><span style="--fx:10%;--fy:76%;--fd:21s;--fs:44px">Σ</span><span style="--fx:44%;--fy:6%;--fd:18s;--fs:38px">π</span><span style="--fx:90%;--fy:10%;--fd:24s;--fs:50px">∫</span><span style="--fx:68%;--fy:84%;--fd:19s;--fs:40px">dx</span><span style="--fx:28%;--fy:88%;--fd:23s;--fs:36px">∞</span></div></div>
     <div class="heroContent premiumHeroGrid">
       <div class="heroText premiumHeroCopy">
@@ -170,36 +169,11 @@
     <a class="creatorAction" href="login.html">Enter ECHS Mathematics <span aria-hidden="true">→</span></a>
   </section>
 
-
-  <section class="lessonCommand" id="lessonCommand" data-auth-content aria-labelledby="lessonCommandTitle">
-    <div class="lessonCommandMain">
-      <span class="lessonCommandEyebrow">ECHS Smart Learning Route</span>
-      <h2 id="lessonCommandTitle">Preparing your next meaningful lesson…</h2>
-      <p id="lessonCommandText">Your assigned course, lesson completion and mastery evidence determine the clearest next step.</p>
-      <div class="lessonCommandMeta" aria-label="Recommended learning context">
-        <span><b>Course</b><strong id="commandCourse">Assigned course</strong></span>
-        <span><b>Unit</b><strong id="commandUnit">Current unit</strong></span>
-        <span><b>Evidence</b><strong id="commandEvidence">Building</strong></span>
-      </div>
-      <div class="lessonCommandActions">
-        <a class="btn lessonCommandPrimary" id="commandPrimary" href="#courses">Open next lesson <span aria-hidden="true">→</span></a>
-        <a class="btn secondary" id="commandReview" href="question-bank/mistakes.html">Review due work <span id="commandReviewCount">0</span></a>
-      </div>
-    </div>
-    <aside class="lessonRoutePanel" aria-label="Recommended route">
-      <span>Recommended route</span>
-      <strong id="commandRoute">Core</strong>
-      <p id="commandRouteReason">Continue the assigned lesson and build varied evidence before mastery is awarded.</p>
-      <div class="routeScale" aria-hidden="true"><i></i><i class="active"></i><i></i></div>
-      <div class="routeLabels"><span>Support</span><span>Core</span><span>Challenge</span></div>
-    </aside>
-  </section>
-
-  <section class="platformDashboard portalUtilityStrip" data-auth-content aria-label="Learning dashboard"><article class="platformTile primary" data-platform-learning-snapshot><span class="platformTileLabel">Continue learning</span><h2>Your next meaningful step</h2><p>Return to the lesson, practice or review item with the highest priority.</p><a class="platformTileAction" data-role-home href="question-bank/student.html">Open dashboard</a></article><article class="platformTile"><span class="platformTileLabel">Focused practice</span><h3>Practice only what is available to you</h3><p>Students receive assigned-course practice and lesson-unlocked skills. Teachers and administrators can browse every course.</p><a class="platformTileAction" href="question-bank/practice.html">Open practice</a></article><article class="platformTile"><span class="platformTileLabel">Mastery skills</span><h3>Build durable mathematical knowledge</h3><p>Accuracy, recent evidence, review recovery and suitable difficulty determine the next skill.</p><a class="platformTileAction" href="question-bank/student.html#journeySection">View mastery map</a></article></section>
+  <section class="platformDashboard" data-auth-content aria-label="Learning dashboard"><article class="platformTile primary" data-platform-learning-snapshot><span class="platformTileLabel">Continue learning</span><h2>Your next meaningful step</h2><p>Return to the lesson, practice or review item with the highest priority.</p><a class="platformTileAction" data-role-home href="question-bank/student.html">Open dashboard</a></article><article class="platformTile"><span class="platformTileLabel">Focused practice</span><h3>Practice only what is available to you</h3><p>Students receive assigned-course practice and lesson-unlocked skills. Teachers and administrators can browse every course.</p><a class="platformTileAction" href="question-bank/practice.html">Open practice</a></article><article class="platformTile"><span class="platformTileLabel">Mastery skills</span><h3>Build durable mathematical knowledge</h3><p>Accuracy, recent evidence, review recovery and suitable difficulty determine the next skill.</p><a class="platformTileAction" href="question-bank/student.html#journeySection">View mastery map</a></article></section>
 
   <div class="sectionIntro" data-auth-content><span class="sectionEyebrow">My courses</span><h2 class="sectionTitle" id="courseSectionTitle">Assigned learning pathway</h2><p class="sectionSub" id="courseSectionSubtitle">Complete a lesson to unlock its focused practice and begin building mastery.</p></div>
   <nav class="courseTabs" id="tabs" data-auth-content aria-label="Course tabs"></nav>
-  <section class="layout lessonWorkspace" id="courses" data-auth-content><aside class="sidebar"><div class="panel coursePanel"><h2>My courses</h2><p class="panelIntro">Your available courses are controlled by your account role and class assignments.</p><div id="courseList"></div></div><div class="panel"><h3>Learning cycle</h3><div class="guideList"><div class="guideItem"><b>1</b><span>Open and complete the interactive lesson.</span></div><div class="guideItem"><b>2</b><span>Practise the skill unlocked by that lesson.</span></div><div class="guideItem"><b>3</b><span>Recover mistakes until the skill reaches mastery.</span></div></div></div></aside><section aria-live="polite"><article class="courseHero" id="courseHero"></article><div class="toolbar"><div class="filterGroup" aria-label="Lesson filters"><button class="chip active" data-filter="all">All lessons</button><button class="chip" data-filter="ready">Open lessons</button><button class="chip" data-filter="bookmarked">Bookmarked</button><button class="chip" data-filter="completed">Completed</button></div><div class="filterGroup"><button class="chip" id="expandAll">Expand all</button><button class="chip" id="collapseAll">Collapse all</button></div></div><div id="units"></div></section></section>
+  <section class="layout" id="courses" data-auth-content><aside class="sidebar"><div class="panel coursePanel"><h2>My courses</h2><p class="panelIntro">Your available courses are controlled by your account role and class assignments.</p><div id="courseList"></div></div><div class="panel"><h3>Learning cycle</h3><div class="guideList"><div class="guideItem"><b>1</b><span>Open and complete the interactive lesson.</span></div><div class="guideItem"><b>2</b><span>Practise the skill unlocked by that lesson.</span></div><div class="guideItem"><b>3</b><span>Recover mistakes until the skill reaches mastery.</span></div></div></div></aside><section aria-live="polite"><article class="courseHero" id="courseHero"></article><div class="toolbar"><div class="filterGroup" aria-label="Lesson filters"><button class="chip active" data-filter="all">All lessons</button><button class="chip" data-filter="ready">Open lessons</button><button class="chip" data-filter="bookmarked">Bookmarked</button><button class="chip" data-filter="completed">Completed</button></div><div class="filterGroup"><button class="chip" id="expandAll">Expand all</button><button class="chip" id="collapseAll">Collapse all</button></div></div><div id="units"></div></section></section>
 </main>
 <footer class="premiumLandingFooter"><div class="footerInner"><div class="footerSchool"><img src="assets/echs_logo.png" alt="" onerror="this.hidden=true"><span><strong>Education City High School</strong><small>ECHS Mathematics Learning Platform</small></span></div><div class="footerCreator"><span>Created and developed by</span><strong>Mohammad Abu Ghuwaleh</strong></div><nav class="footerPolicyLinks" aria-label="Platform policies"><a href="privacy.html">Privacy</a><a href="accessibility.html">Accessibility</a></nav><p class="footerCopyright">© <span id="currentYear"></span> ECHS Mathematics</p></div></footer>
 <script src="data/courses.js"></script>
@@ -212,9 +186,8 @@
 <script src="data/ap-precalculus-unit-4-update.js"></script>
 <script src="data/ib-math-ai-unit-1-update.js?v=20260729-unit1"></script>
 <script src="data/ib-math-ai-unit-2-update.js?v=20260802-unit2"></script>
-<script src="js/portal.js?v=20260802-portal2"></script>
+<script src="js/portal.js?v=20260727-pathway"></script>
 <script src="js/lesson-learning-bridge.js?v=20260727-pathway"></script>
-<script src="js/lesson-portal-overhaul.js?v=20260802-portal1"></script>
 <script src="js/platform-foundation.js?v=20260727-pathway"></script>
 <script src="js/institution-portal.js?v=20260727-pathway"></script>
 </body>
