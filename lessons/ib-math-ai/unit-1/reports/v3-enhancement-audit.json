@@ -1,0 +1,59 @@
+{
+  "release": "3.0.0",
+  "generated": "2026-08-02",
+  "status": "pass",
+  "validation": {
+    "node_syntax": [
+      "data/unit-1-v3-content.js",
+      "data/unit-1-v3-enhancements.js",
+      "data/ib-math-ai-unit-1-update.js"
+    ],
+    "lesson_packs": 8,
+    "added_slides": 96,
+    "added_practice": 96,
+    "added_quiz": 32,
+    "added_extended_tasks": 8,
+    "added_assessment_ids": 136,
+    "unique_added_ids": true,
+    "unique_added_prompts": true,
+    "added_level_balance": {
+      "Foundation": 24,
+      "Application": 24,
+      "Reasoning": 24,
+      "Challenge": 24
+    },
+    "numeric_checks": "finite targets and positive tolerances",
+    "representative_overlay_test": {
+      "lessons_tested": 8,
+      "final_counts_each": {
+        "slides": 61,
+        "practice": 52,
+        "quiz": 14,
+        "exam": 3
+      },
+      "practice_levels_each": {
+        "Foundation": 13,
+        "Application": 13,
+        "Reasoning": 13,
+        "Challenge": 13
+      }
+    }
+  },
+  "final_unit_counts": {
+    "lessons": 8,
+    "learn_slides": 488,
+    "practice_questions": 416,
+    "timed_quiz_questions": 112,
+    "extended_tasks": 24
+  },
+  "compatibility": {
+    "stable_lesson_urls": true,
+    "existing_lesson_data_preserved": true,
+    "existing_engine_preserved": true,
+    "offline_classic_script_order": true,
+    "existing_mastery_keys_preserved": true
+  },
+  "limitations": [
+    "A full Chromium traversal of the production repository should be rerun after the branch is checked out or deployed to preview."
+  ]
+}
