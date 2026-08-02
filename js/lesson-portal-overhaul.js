@@ -29,6 +29,50 @@
       if (title) title.textContent = "My lessons";
       if (copy) copy.textContent = "Choose a course, then select a lesson to see its objectives and resources.";
     }
+    let identity = qs(".calmIdentityBanner");
+    if (!identity && intro) {
+      identity = document.createElement("section");
+      identity.className = "calmIdentityBanner";
+      identity.setAttribute("data-auth-content", "");
+      identity.setAttribute("aria-labelledby", "calmIdentityTitle");
+      identity.innerHTML = `
+        <div class="calmIdentityCopy">
+          <span class="calmIdentityEyebrow"><i aria-hidden="true"></i>ECHS Mathematics · Lesson Portal</span>
+          <h1 id="calmIdentityTitle"><span>Learn with purpose.</span> <em>Master with confidence.</em></h1>
+          <p>Focused lessons, evidence-led practice, and verified mastery—one clear learning journey.</p>
+        </div>
+        <div class="calmIdentityCycle" aria-label="Learning cycle: learn, practise, master">
+          <span class="active"><b>01</b><small>Learn</small></span>
+          <i aria-hidden="true"></i>
+          <span><b>02</b><small>Practise</small></span>
+          <i aria-hidden="true"></i>
+          <span><b>03</b><small>Master</small></span>
+        </div>`;
+      intro.before(identity);
+    }
+    if (identity) document.body.classList.add("hasCalmIdentity");
+    let smartRoute = qs("#smartRoute-lessons");
+    if (!smartRoute && intro) {
+      smartRoute = document.createElement("section");
+      smartRoute.id = "smartRoute-lessons";
+      smartRoute.className = "slrShell slrLessons";
+      smartRoute.setAttribute("data-auth-content", "");
+      smartRoute.setAttribute("aria-label", "ECHS Smart Learning Route");
+      smartRoute.setAttribute("aria-live", "polite");
+      smartRoute.innerHTML = `
+        <div class="slrBody">
+          <article class="slrDecision">
+            <div class="slrDecisionTop">
+              <span class="slrPathBadge core"><i aria-hidden="true">→</i>Core route</span>
+              <span class="slrMiniRoute" aria-label="Available routes: Support, Core, Challenge"><span>Support</span><span class="active">Core</span><span>Challenge</span></span>
+            </div>
+            <span class="slrDecisionLabel">ECHS Smart Learning Route</span>
+            <h3>Preparing your next evidence-led step…</h3>
+            <div class="slrActions"><a class="slrAction primary" href="#courses">Open lessons <b aria-hidden="true">→</b></a></div>
+          </article>
+        </div>`;
+      intro.after(smartRoute);
+    }
   }
 
   function statusFor(card) {

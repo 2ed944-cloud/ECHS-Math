@@ -168,10 +168,10 @@
     const page=document.body?.dataset?.platformPage==="home"?"lessons":document.body?.dataset?.premiumPage;
     if(!["lessons","teacher","admin"].includes(page))return;
     if(!document.querySelector('link[data-smart-learning-route]')){
-      const link=document.createElement("link");link.rel="stylesheet";link.href=root("css/smart-learning-route.css?v=20260802-route-design1");link.dataset.smartLearningRoute="true";document.head.append(link);
+      const link=document.createElement("link");link.rel="stylesheet";link.href=root("css/smart-learning-route.css?v=20260802-route-design3");link.dataset.smartLearningRoute="true";document.head.append(link);
     }
     if(!document.querySelector('script[data-smart-learning-route]')){
-      const script=document.createElement("script");script.src=root("js/smart-learning-route.js?v=20260802-route-design2");script.defer=true;script.dataset.smartLearningRoute="true";document.body.append(script);
+      const script=document.createElement("script");script.src=root("js/smart-learning-route.js?v=20260802-route-design3");script.defer=true;script.dataset.smartLearningRoute="true";document.body.append(script);
     }
   }
   let syncTimer=null;
