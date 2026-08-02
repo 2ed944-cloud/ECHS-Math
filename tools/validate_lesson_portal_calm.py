@@ -30,7 +30,7 @@ worker = read("sw.js")
 
 requirements = [
     (portal, "portal renderer", ["courseTabList", "courseSelect", "lessonCardOpen", "lessonPayload", "What you will learn", "data-course-title", "completedCount"]),
-    (drawer, "lesson drawer", ["lessonPortalCalm", "lessonDetailDialog", "showModal()", "history.pushState", "popstate", "aria-haspopup"]),
+    (drawer, "lesson drawer", ["lessonPortalCalm", 'classList.add("lessonWorkspace")', "lessonDetailDialog", "showModal()", "history.pushState", "popstate", "aria-haspopup"]),
     (styles, "calm portal styles", ['data-auth-state="signed-in"', ".lessonPortalHero", ".portalUtilityStrip", "grid-template-columns:repeat(3", ".lessonCardOpen", "dialog.lessonDetailDialog", ".lessonDrawerSurface", "@media(max-width:680px)", "@media(prefers-reduced-motion:reduce)"]),
     (route_styles, "compact Smart Route", ["#smartRoute-lessons", ".slrEvidence", ".slrDecisionCopy", ".slrAction.primary"]),
     (index, "lesson portal page", ["20260802-calm1", "lesson-portal-overhaul.css", "lesson-portal-overhaul.js"]),

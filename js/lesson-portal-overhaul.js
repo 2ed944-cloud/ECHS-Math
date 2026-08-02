@@ -12,6 +12,7 @@
 
   function prepareWorkspace() {
     document.body.classList.add("lessonPortalCalm");
+    qs("#courses")?.classList.add("lessonWorkspace");
     let intro = qs(".sectionIntro[data-auth-content]") || qs(".previewPortal .sectionIntro");
     if (!intro && qs("#tabs")) {
       intro = document.createElement("div");
