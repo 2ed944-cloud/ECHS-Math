@@ -399,7 +399,7 @@
   .lessonDetails .objectiveBlock:first-of-type {
     border-top: 0;
   }
-  .lessonDetails .lesson li {
+  .lessonDetails li {
     font-size: 13px;
   }
   .lessonActions {
