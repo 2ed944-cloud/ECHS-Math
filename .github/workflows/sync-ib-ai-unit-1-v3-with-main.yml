@@ -1,0 +1,61 @@
+name: Sync IB Mathematics AI Unit 1 v3 with main
+
+on:
+  push:
+    branches:
+      - agent/redesign-ib-ai-unit-1-definitive-v2
+    paths:
+      - .github/workflows/sync-ib-ai-unit-1-v3-with-main.yml
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out Unit 1 publication branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/redesign-ib-ai-unit-1-definitive-v2
+          fetch-depth: 0
+
+      - name: Merge current main and preserve verified Unit 1 v3 files
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          set +e
+          git merge --no-commit --no-ff origin/main
+          merge_status=$?
+          set -e
+          if [ "$merge_status" -ne 0 ]; then
+            mapfile -t conflicts < <(git diff --name-only --diff-filter=U)
+            if [ "${#conflicts[@]}" -eq 0 ]; then
+              echo "Merge failed without resolvable file conflicts"
+              exit "$merge_status"
+            fi
+            for path in "${conflicts[@]}"; do
+              case "$path" in
+                data/ib-math-ai-unit-1-*|lessons/ib-math-ai/unit-1/*)
+                  git checkout --ours -- "$path"
+                  git add -- "$path"
+                  ;;
+                *)
+                  echo "Unexpected conflict outside Unit 1: $path"
+                  exit 1
+                  ;;
+              esac
+            done
+          fi
+          test -z "$(git diff --name-only --diff-filter=U)"
+          python lessons/ib-math-ai/unit-1/tools/validate_v3_enhancement.py
+          node --check data/ib-math-ai-unit-1-update.js
+          rm -f .github/workflows/sync-ib-ai-unit-1-v3-with-main.yml
+          git add -A
+          git diff --cached --check
+          git commit -m "Merge current main into definitive IB Mathematics AI Unit 1 v3"
+          git push origin HEAD:agent/redesign-ib-ai-unit-1-definitive-v2
