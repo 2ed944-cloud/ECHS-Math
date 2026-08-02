@@ -6,6 +6,12 @@ on:
       - agent/publish-ib-ai-unit-3-geogebra-v3-1
     paths:
       - .staging/ib-ai-unit-3/READY
+  pull_request:
+    branches:
+      - main
+    paths:
+      - .staging/ib-ai-unit-3/READY
+      - .github/workflows/materialize-ib-ai-unit-3.yml
 
 permissions:
   contents: write
