@@ -1,0 +1,98 @@
+name: Install definitive IB Mathematics AI Unit 5
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/install-ib-unit5-v2-final.yml'
+      - 'packages/ib-unit5-v2/**'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: install-ib-ai-unit-5-v2
+  cancel-in-progress: false
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Reassemble validated package
+        shell: bash
+        run: |
+          set -euo pipefail
+          mapfile -t parts < <(find packages/ib-unit5-v2 -maxdepth 1 -type f -name 'part-*.b64' -print | sort -V)
+          test "${#parts[@]}" -gt 0
+          cat "${parts[@]}" | tr -d '\r\n ' | base64 --decode > /tmp/ib-unit5-v2.zip
+          unzip -t /tmp/ib-unit5-v2.zip
+
+      - name: Install package into canonical platform
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/ib-unit5-v2
+          mkdir -p /tmp/ib-unit5-v2
+          unzip -q /tmp/ib-unit5-v2.zip -d /tmp/ib-unit5-v2
+          start_file="$(find /tmp/ib-unit5-v2 -type f -path '*/lessons/ib-math-ai/unit-5/START_HERE.html' -print -quit)"
+          test -n "$start_file"
+          package_root="${start_file%/lessons/ib-math-ai/unit-5/START_HERE.html}"
+          test -f "$package_root/data/ib-math-ai-unit-5-update.js"
+          rsync -a "$package_root/" ./
+
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('index.html')
+          text = p.read_text(encoding='utf-8')
+          tag = '<script src="data/ib-math-ai-unit-5-update.js?v=20260803-unit5-v2"></script>'
+          if tag not in text:
+              marker = '<script src="js/portal.js'
+              i = text.find(marker)
+              if i < 0:
+                  raise SystemExit('portal.js marker not found in index.html')
+              text = text[:i] + tag + '\n' + text[i:]
+              p.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Validate installed Unit 5
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f data/ib-math-ai-unit-5-update.js
+          test -f lessons/ib-math-ai/unit-5/START_HERE.html
+          count="$(find lessons/ib-math-ai/unit-5/lessons -maxdepth 1 -type f -name '*.html' | wc -l)"
+          test "$count" -eq 7
+          grep -q 'ib-math-ai-unit-5-update.js' index.html
+          grep -q '"unit": 5' data/ib-math-ai-lesson-catalog.json
+          node --check data/ib-math-ai-unit-5-update.js
+          find lessons/ib-math-ai/unit-5/data -maxdepth 1 -type f -name '*.js' -print0 | xargs -0 -n1 node --check
+          node --check lessons/ib-math-ai/unit-5/assets/js/engine.js
+          if test -f lessons/ib-math-ai/unit-5/tools/validate_unit5.py; then
+            python lessons/ib-math-ai/unit-5/tools/validate_unit5.py
+          fi
+          if test -f lessons/ib-math-ai/unit-5/tools/audit_unit5.py; then
+            python lessons/ib-math-ai/unit-5/tools/audit_unit5.py
+          fi
+
+      - name: Remove temporary staging and commit production files
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf packages/ib-unit5-v2
+          find .github/workflows -maxdepth 1 -type f \( -iname '*ib*unit5*' -o -iname '*unit-5*install*' \) -delete
+          git config user.name 'ECHS Mathematics Release Bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add -A
+          if git diff --cached --quiet; then
+            echo 'No installation changes were required.'
+            exit 0
+          fi
+          git commit -m 'Publish definitive IB Mathematics AI Unit 5 calculus'
+          git push origin HEAD:main
