@@ -1,0 +1,116 @@
+name: Repair and install IB Mathematics AI Unit 5
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/repair-install-ib-unit5-v2.yml'
+      - 'packages/ib-unit5-v2/**'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: repair-install-ib-ai-unit-5-v2
+  cancel-in-progress: false
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Recover a clean package archive
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          import base64, io, re, zipfile
+
+          folder = Path('packages/ib-unit5-v2')
+          def natural_key(path):
+              return [int(x) if x.isdigit() else x for x in re.split(r'(\d+)', path.name)]
+          parts = sorted(folder.glob('part-*.b64'), key=natural_key)
+          if not parts:
+              raise SystemExit('No Unit 5 package parts found')
+          encoded = ''.join(p.read_text(encoding='utf-8').split() for p in parts)
+          raw = base64.b64decode(encoded, validate=False)
+          source = io.BytesIO(raw)
+          with zipfile.ZipFile(source, 'r') as zin:
+              bad = zin.testzip()
+              if bad:
+                  raise SystemExit(f'Corrupt member: {bad}')
+              with zipfile.ZipFile('/tmp/ib-unit5-v2-clean.zip', 'w', zipfile.ZIP_DEFLATED) as zout:
+                  for info in zin.infolist():
+                      if info.is_dir():
+                          zout.writestr(info, b'')
+                      else:
+                          zout.writestr(info, zin.read(info.filename))
+          print(f'Recovered {len(parts)} chunks and {len(zipfile.ZipFile("/tmp/ib-unit5-v2-clean.zip").infolist())} files')
+          PY
+          unzip -t /tmp/ib-unit5-v2-clean.zip
+
+      - name: Materialize Unit 5
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/ib-unit5-v2
+          mkdir -p /tmp/ib-unit5-v2
+          unzip -q /tmp/ib-unit5-v2-clean.zip -d /tmp/ib-unit5-v2
+          start_file="$(find /tmp/ib-unit5-v2 -type f -path '*/lessons/ib-math-ai/unit-5/START_HERE.html' -print -quit)"
+          test -n "$start_file"
+          package_root="${start_file%/lessons/ib-math-ai/unit-5/START_HERE.html}"
+          test -f "$package_root/data/ib-math-ai-unit-5-update.js"
+          rsync -a "$package_root/" ./
+
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('index.html')
+          s = p.read_text(encoding='utf-8')
+          tag = '<script src="data/ib-math-ai-unit-5-update.js?v=20260803-unit5-v2"></script>'
+          if tag not in s:
+              marker = '<script src="js/portal.js'
+              i = s.find(marker)
+              if i < 0:
+                  raise SystemExit('portal.js marker missing')
+              s = s[:i] + tag + '\n' + s[i:]
+              p.write_text(s, encoding='utf-8')
+          PY
+
+      - name: Validate production payload
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f data/ib-math-ai-unit-5-update.js
+          test -f lessons/ib-math-ai/unit-5/START_HERE.html
+          test "$(find lessons/ib-math-ai/unit-5/lessons -maxdepth 1 -type f -name '*.html' | wc -l)" -eq 7
+          grep -q 'ib-math-ai-unit-5-update.js' index.html
+          grep -q '"unit": 5' data/ib-math-ai-lesson-catalog.json
+          node --check data/ib-math-ai-unit-5-update.js
+          find lessons/ib-math-ai/unit-5/data -maxdepth 1 -type f -name '*.js' -print0 | xargs -0 -n1 node --check
+          node --check lessons/ib-math-ai/unit-5/assets/js/engine.js
+          for tool in validate_unit5.py audit_unit5.py; do
+            f="lessons/ib-math-ai/unit-5/tools/$tool"
+            test ! -f "$f" || python "$f"
+          done
+
+      - name: Commit installed platform and remove staging
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf packages/ib-unit5-v2
+          find .github/workflows -maxdepth 1 -type f \( -iname '*ib*unit5*' -o -iname '*unit-5*install*' \) -delete
+          git config user.name 'ECHS Mathematics Release Bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add -A
+          if git diff --cached --quiet; then
+            echo 'Unit 5 already installed.'
+            exit 0
+          fi
+          git commit -m 'Publish definitive IB Mathematics AI Unit 5 calculus'
+          git push origin HEAD:main
