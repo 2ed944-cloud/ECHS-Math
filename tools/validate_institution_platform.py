@@ -219,6 +219,8 @@ for asset in [
     "./login.html",
     "./css/institution.css",
     "./css/institution-polish.css",
+    "./css/smart-learning-route.css",
+    "./js/smart-learning-route.js",
     "./question-bank/admin.html",
     "./question-bank/student.html",
     "./question-bank/css/institution-timetable.css",

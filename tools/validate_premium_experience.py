@@ -17,6 +17,7 @@ def read(path):
 
 required=[
  "css/institution-premium.css","css/institution-responsive.css","css/institution-completion.css",
+ "css/smart-learning-route.css","js/smart-learning-route.js",
  "js/institution-experience.js","js/institution-completion.js","login.html",
  "question-bank/student.html","question-bank/teacher.html","question-bank/parent.html","question-bank/admin.html",
  "question-bank/js/student-cloud.js","question-bank/js/teacher-cloud.js","question-bank/js/parent-cloud.js","question-bank/js/admin-accounts.js",
@@ -49,6 +50,10 @@ completion_css=read("css/institution-completion.css")
 for marker in [".premiumCommandDialog",".premiumDrawer","visibility:hidden",".premiumMobileDock",".guideTask",".premiumGoalsDialog",".offlineRibbon","@media print","@media(prefers-reduced-motion:reduce)"]:
     if marker not in completion_css: fail(f"Completion CSS missing {marker}")
 
+route_css=read("css/smart-learning-route.css")
+for marker in [".slrDecision",".slrEvidenceGrid",".slrLanes",".slrOpsGrid","@media(max-width:720px)","@media(prefers-reduced-motion:reduce)"]:
+    if marker not in route_css: fail(f"Smart Learning Route CSS missing {marker}")
+
 client=read("js/institution-experience.js")
 for marker in ["showPreview","renderWeekBars","setRing","bindTheme","bindGuideShortcutCompatibility","ECHSExperience","loadCompletionLayer","institution-responsive.css","institution-completion.css","institution-completion.js"]:
     if marker not in client: fail(f"Premium experience helper missing: {marker}")
@@ -58,7 +63,7 @@ for marker in ["openCommands","deriveNotifications","onboardingTasks","openGoals
 for forbidden in ["eval(","new Function(","innerHTML = password","localStorage.setItem(\"password"]:
     if forbidden.lower() in completion.lower(): fail(f"Completion layer contains forbidden pattern: {forbidden}")
 
-scripts=["js/institution-experience.js","js/institution-completion.js","js/login.js","question-bank/js/student-cloud.js","question-bank/js/teacher-cloud.js","question-bank/js/institution-timetable.js","question-bank/js/parent-cloud.js","question-bank/js/admin-accounts.js","sw.js"]
+scripts=["js/institution-experience.js","js/institution-completion.js","js/smart-learning-route.js","js/login.js","question-bank/js/student-cloud.js","question-bank/js/teacher-cloud.js","question-bank/js/institution-timetable.js","question-bank/js/parent-cloud.js","question-bank/js/admin-accounts.js","sw.js"]
 for path in scripts:
     result=subprocess.run(["node","--check",str(ROOT/path)],capture_output=True,text=True)
     if result.returncode: fail(f"JavaScript syntax failed in {path}: {result.stderr.strip()}")
@@ -72,7 +77,7 @@ for marker in ["canStatus","canReset","row.role===\"student\"","current?.role===
     if marker not in admin_js: fail(f"Restricted account UI missing permission marker: {marker}")
 
 worker=read("sw.js")
-for asset in ["./css/institution-premium.css","./css/institution-responsive.css","./css/institution-completion.css","./js/institution-experience.js","./js/institution-completion.js","./question-bank/css/institution-timetable.css","./question-bank/js/institution-timetable.js","./question-bank/student.html","./question-bank/teacher.html","./question-bank/parent.html","./question-bank/admin.html"]:
+for asset in ["./css/institution-premium.css","./css/institution-responsive.css","./css/institution-completion.css","./css/smart-learning-route.css","./js/institution-experience.js","./js/institution-completion.js","./js/smart-learning-route.js","./question-bank/css/institution-timetable.css","./question-bank/js/institution-timetable.js","./question-bank/student.html","./question-bank/teacher.html","./question-bank/parent.html","./question-bank/admin.html"]:
     if asset not in worker: fail(f"Service worker missing premium asset {asset}")
 if "learning-sync" not in worker or "event.respondWith(fetch(request))" not in worker: fail("Private institutional APIs must bypass caches")
 

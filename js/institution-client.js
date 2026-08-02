@@ -164,10 +164,20 @@
       const script=document.createElement("script");script.src=root("question-bank/js/institution-timetable.js?v=20260802-timetable1");script.defer=true;script.dataset.institutionTimetable="true";document.body.append(script);
     }
   }
+  function mountSmartLearningRoute(){
+    const page=document.body?.dataset?.platformPage==="home"?"lessons":document.body?.dataset?.premiumPage;
+    if(!["lessons","teacher","admin"].includes(page))return;
+    if(!document.querySelector('link[data-smart-learning-route]')){
+      const link=document.createElement("link");link.rel="stylesheet";link.href=root("css/smart-learning-route.css?v=20260802-route-design1");link.dataset.smartLearningRoute="true";document.head.append(link);
+    }
+    if(!document.querySelector('script[data-smart-learning-route]')){
+      const script=document.createElement("script");script.src=root("js/smart-learning-route.js?v=20260802-route-design1");script.defer=true;script.dataset.smartLearningRoute="true";document.body.append(script);
+    }
+  }
   let syncTimer=null;
   function scheduleLearningSync(){clearTimeout(syncTimer);syncTimer=setTimeout(()=>syncLearning().catch(error=>console.warn("Institution learning sync failed",error)),1200)}
   function bind(){
-    ensurePolish();setupMobileSidebar();mountUploadManagerLink();mountTimetableModule();
+    ensurePolish();setupMobileSidebar();mountUploadManagerLink();mountTimetableModule();mountSmartLearningRoute();
     addEventListener("online",flushPending);
     document.addEventListener("echs:learning-updated",scheduleLearningSync);
     window.addEventListener("echs:learning-attempt",scheduleLearningSync);
