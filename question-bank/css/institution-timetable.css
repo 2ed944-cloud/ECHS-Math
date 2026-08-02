@@ -1,0 +1,211 @@
+.timetableCard {
+  overflow: hidden;
+  padding: 0 !important;
+}
+.timetableMount {
+  min-height: 190px;
+}
+.timetableToolbar {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.15rem;
+  border-bottom: 1px solid var(--px-line, #dfe7ef);
+  background: linear-gradient(110deg, color-mix(in srgb, var(--px-teal, #087d72) 7%, var(--px-surface, #fff)), var(--px-surface, #fff));
+}
+.timetableToolbarCopy strong,
+.timetableToolbarCopy small {
+  display: block;
+}
+.timetableToolbarCopy strong {
+  color: var(--px-navy, #102a43);
+  font-size: 0.92rem;
+}
+.timetableToolbarCopy small {
+  margin-top: 0.25rem;
+  color: var(--px-muted, #64758a);
+  font-size: 0.68rem;
+}
+.timetableWeek {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(180px, 1fr));
+  gap: 0.7rem;
+  padding: 1rem;
+  overflow-x: auto;
+}
+.timetableDay {
+  min-width: 180px;
+  padding: 0.65rem;
+  border: 1px solid var(--px-line, #dfe7ef);
+  border-radius: 17px;
+  background: var(--px-surface-2, #f8fafc);
+}
+.timetableDay.today {
+  border-color: color-mix(in srgb, var(--px-gold, #d3a54f) 62%, var(--px-line, #dfe7ef));
+  box-shadow: inset 0 0 0 1px rgba(211, 165, 79, 0.18);
+}
+.timetableDayHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.55rem;
+  color: var(--px-navy, #102a43);
+}
+.timetableDayHead strong {
+  font-size: 0.76rem;
+}
+.timetableDayHead span {
+  padding: 0.22rem 0.42rem;
+  border-radius: 999px;
+  background: var(--px-surface, #fff);
+  color: var(--px-muted, #64758a);
+  font-size: 0.55rem;
+  font-weight: 900;
+}
+.timetableEntries {
+  display: grid;
+  gap: 0.48rem;
+}
+.timetableEntry {
+  position: relative;
+  overflow: hidden;
+  padding: 0.72rem 0.72rem 0.72rem 0.86rem;
+  border: 1px solid color-mix(in srgb, var(--entry-color, var(--px-teal, #087d72)) 18%, var(--px-line, #dfe7ef));
+  border-radius: 13px;
+  background: var(--px-surface, #fff);
+}
+.timetableEntry::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 4px;
+  background: var(--entry-color, var(--px-teal, #087d72));
+}
+.timetableEntry.current {
+  box-shadow: 0 8px 22px rgba(8, 125, 114, 0.14);
+}
+.timetableEntryTime {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem;
+  color: var(--entry-color, var(--px-teal, #087d72));
+  font-size: 0.58rem;
+  font-weight: 900;
+}
+.timetableEntry strong,
+.timetableEntry small {
+  display: block;
+}
+.timetableEntry strong {
+  margin-top: 0.38rem;
+  color: var(--px-navy, #102a43);
+  font-size: 0.7rem;
+  line-height: 1.35;
+}
+.timetableEntryAction {
+  display: inline-flex;
+  margin-top: 0.48rem;
+  color: var(--entry-color, var(--px-teal, #087d72));
+  font-size: 0.58rem;
+  font-weight: 900;
+  text-decoration: none;
+}
+.timetableEntryAction:hover,
+.timetableEntryAction:focus-visible {
+  text-decoration: underline;
+}
+.timetableEntry small {
+  margin-top: 0.24rem;
+  color: var(--px-muted, #64758a);
+  font-size: 0.58rem;
+  line-height: 1.35;
+}
+.timetableEmptyDay {
+  padding: 1.2rem 0.5rem;
+  color: var(--px-muted, #64758a);
+  text-align: center;
+  font-size: 0.6rem;
+}
+.timetableAdminControls {
+  display: flex;
+  align-items: end;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+}
+.timetableAdminControls .iControl {
+  min-width: 230px;
+}
+.timetableEditor {
+  display: grid;
+  gap: 0.55rem;
+  padding: 1rem;
+}
+.timetableEditorRow {
+  display: grid;
+  grid-template-columns: 0.8fr 0.62fr 1.5fr 0.8fr 0.8fr 0.75fr auto;
+  gap: 0.5rem;
+  align-items: end;
+  padding: 0.75rem;
+  border: 1px solid var(--px-line, #dfe7ef);
+  border-radius: 15px;
+  background: var(--px-surface-2, #f8fafc);
+}
+.timetableEditorRow label {
+  color: var(--px-muted, #64758a);
+  font-size: 0.55rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+.timetableEditorRow input,
+.timetableEditorRow select {
+  width: 100%;
+  min-height: 38px;
+  margin-top: 0.3rem;
+  padding: 0.42rem 0.5rem;
+  border: 1px solid var(--px-line, #dfe7ef);
+  border-radius: 10px;
+  background: var(--px-surface, #fff);
+  color: var(--px-ink, #132338);
+  font-size: 0.68rem;
+}
+.timetableEditorFooter {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0 1rem 1rem;
+}
+@media (max-width: 1150px) {
+  .timetableWeek {
+    grid-template-columns: repeat(5, minmax(210px, 1fr));
+  }
+  .timetableEditorRow {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (max-width: 680px) {
+  .timetableToolbar,
+  .timetableEditorFooter {
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .timetableAdminControls,
+  .timetableAdminControls .iControl {
+    width: 100%;
+  }
+  .timetableEditorRow {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media print {
+  .timetableAdminControls,
+  .timetableEditor,
+  .timetableEditorFooter {
+    display: none !important;
+  }
+  .timetableWeek {
+    grid-template-columns: repeat(5, 1fr);
+    overflow: visible;
+  }
+}

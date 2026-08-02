@@ -35,6 +35,7 @@
     const originalContinue=ECHSLearning.setContinue?.bind(ECHSLearning);
     const originalStart=ECHSLearning.startSession?.bind(ECHSLearning);
     const isStudent=()=>document.body?.classList?.contains("roleStudent")||window.ECHSPortalAccess?.current?.role==="student";
+    const isMultiBankAssignment=()=>query.has("assignment")&&document.documentElement.dataset.assignmentMultiBank==="true";
     const select=()=>document.getElementById("bank");
     function enforceSelection(){
       enforceCalculusSourceInventory();
@@ -50,7 +51,7 @@
       return bank.value;
     }
     ECHSBank.filterQuestions=(questions,filters={})=>{
-      const bank=isStudent()?enforceSelection():filters.bank;
+      const bank=isStudent()&&!isMultiBankAssignment()?enforceSelection():filters.bank;
       return originalFilter(questions,{...filters,bank:bank||filters.bank||"all"});
     };
     if(originalContinue)ECHSLearning.setContinue=payload=>{

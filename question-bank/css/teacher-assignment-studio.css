@@ -134,6 +134,131 @@
   color: #61778a;
   font-size: 0.76rem;
 }
+.assignmentMultiControl {
+  display: grid;
+  gap: 0.65rem;
+}
+.assignmentFieldHead {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.assignmentFieldHead label {
+  display: block;
+}
+.assignmentFieldHead small {
+  display: block;
+  margin-top: 0.28rem;
+  color: #6b7f90;
+  font-size: 0.7rem;
+  font-weight: 650;
+  text-transform: none;
+}
+.assignmentFieldHead > div:last-child {
+  display: flex;
+  gap: 0.35rem;
+}
+.multiLink {
+  padding: 0.35rem 0.55rem;
+  border: 0;
+  border-radius: 8px;
+  background: #edf4f6;
+  color: #31506a;
+  cursor: pointer;
+  font-size: 0.64rem;
+  font-weight: 850;
+}
+.multiLink:hover,
+.multiLink:focus-visible {
+  background: #e4f3f0;
+  color: #087c75;
+}
+.assignmentMultiPicker {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+  max-height: 230px;
+  padding: 0.55rem;
+  overflow: auto;
+  border: 1px solid #dce6ec;
+  border-radius: 16px;
+  background: #f7fafb;
+}
+.assignmentMultiPicker.lessonPicker {
+  grid-template-columns: 1fr;
+  max-height: 310px;
+}
+.multiChoice {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.55rem;
+  min-height: 62px;
+  padding: 0.7rem 0.75rem;
+  border: 1px solid #dbe5eb;
+  border-radius: 13px;
+  background: #fff;
+  cursor: pointer;
+  transition: 0.16s ease;
+}
+.multiChoice:hover {
+  transform: translateY(-1px);
+  border-color: #9fc9c5;
+}
+.multiChoice.selected {
+  border-color: #087c75;
+  background: linear-gradient(145deg, #eef9f7, #fff);
+  box-shadow: inset 0 0 0 1px rgba(8, 124, 117, 0.14);
+}
+.multiChoice input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.multiChoice strong,
+.multiChoice small {
+  display: block;
+}
+.multiChoice strong {
+  color: #173650;
+  font-size: 0.72rem;
+  line-height: 1.35;
+}
+.multiChoice small {
+  margin-top: 0.25rem;
+  color: #718495;
+  font-size: 0.62rem;
+}
+.multiChoice i {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border: 1px solid #d7e1e7;
+  border-radius: 8px;
+  color: transparent;
+  font-size: 0.7rem;
+  font-style: normal;
+  font-weight: 900;
+}
+.multiChoice.selected i {
+  border-color: #087c75;
+  background: #087c75;
+  color: #fff;
+}
+.assignmentPickerSearch {
+  width: 100%;
+}
+.multiPickerEmpty {
+  grid-column: 1 / -1;
+  padding: 1rem;
+  color: #6b7f90;
+  text-align: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
 .questionPicker {
   display: flex;
   min-height: 630px;
@@ -287,6 +412,13 @@
   }
   .selectionMode {
     grid-template-columns: 1fr;
+  }
+  .assignmentMultiPicker {
+    grid-template-columns: 1fr;
+  }
+  .assignmentFieldHead {
+    align-items: flex-start;
+    flex-direction: column;
   }
   .assignmentStudioHead {
     padding: 1.2rem;
