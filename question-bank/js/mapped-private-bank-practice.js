@@ -38,8 +38,10 @@
     if(["ap-calculus","ap-precalculus"].includes(course))Object.assign(question.classification,{ap_unit:mapping.unit,ap_topic:lesson,ap_topic_title:title});
     question.skill_key=mapping.skill_key||question.skill_key;question.skill_keys=[...new Set([mapping.skill_key,...(question.skill_keys||[])].filter(Boolean))];question.trust_tier=trust;
     question.metadata={...(question.metadata||{}),student_ready:studentReady,alignment_status:studentReady?"student-ready":"staff-review",dedicated_course_mapping:dedicated,staff_review_only:!studentReady};
-    const note=studentReady?"Source-key practice · mapped to this exact course and target.":"Staff quality review · withheld from student practice.";
-    if(!String(question.prompt_html||"").includes("sourceKeyNotice"))question.prompt_html=`<div class="notice sourceKeyNotice"><strong>${studentReady?"Mapped private practice":"Staff quality review"}</strong> · ${note}</div>${question.prompt_html||""}`;
+    // Trust and mapping metadata remain available to the platform, but the
+    // internal source-key disclosure does not belong inside the student prompt.
+    // Strip older persisted copies as well as avoiding any new injection.
+    question.prompt_html=String(question.prompt_html||"").replace(/<div\b[^>]*\bsourceKeyNotice\b[^>]*>[\s\S]*?<\/div>/gi,"");
     question._private_bank=true;question._staff_only=!studentReady;return question;
   }
   function queryFor(scope,offset,limit){

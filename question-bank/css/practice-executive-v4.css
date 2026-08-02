@@ -42,3 +42,260 @@ body.practiceStudio{--pe-ink:#102a43;--pe-wine:#8f194a;--pe-teal:#087f78;--pe-go
 .practiceStudio .studioHeroStat b{color:#f9fcfd!important}
 .practiceStudio .studioHeroStat span{color:#dcecef!important;opacity:1!important}
 .practiceStudio .studioHeroMeta span{color:#17354b!important;background:rgba(255,255,255,.91)!important;border-color:rgba(255,255,255,.7)!important}
+
+/* Full-width question canvas and filter drawer — August 2026 */
+.practiceStudio .studioWorkspace{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr)!important;
+  gap:16px!important;
+}
+.practiceStudio .studioSidebar{
+  position:static!important;
+  inset:auto!important;
+  width:100%;
+  max-height:none!important;
+  overflow:visible!important;
+  z-index:auto;
+}
+.practiceStudio .studioContent,
+.practiceStudio .questionShell,
+.practiceStudio .questionCard{
+  width:100%;
+  max-width:none!important;
+  min-width:0;
+}
+.practiceStudio .studioSidebar.isCollapsed .studioPanel{
+  overflow:hidden;
+  border:1px solid rgba(8,127,120,.2)!important;
+  border-radius:20px!important;
+  background:
+    radial-gradient(circle at 0 50%,rgba(143,25,74,.07),transparent 17rem),
+    linear-gradient(115deg,rgba(255,255,255,.98),rgba(241,249,248,.96))!important;
+  box-shadow:0 14px 38px rgba(16,42,67,.08)!important;
+}
+.practiceStudio .studioSidebar.isCollapsed .builderCompactSummary{
+  display:grid!important;
+  grid-template-columns:auto minmax(0,1fr) auto;
+  gap:14px;
+  min-height:82px;
+  padding:13px 16px;
+  border:0!important;
+  background:transparent!important;
+}
+.practiceStudio .builderCompactIcon{
+  width:48px;
+  height:48px;
+  border-radius:15px;
+  background:linear-gradient(145deg,#8f194a,#087f78)!important;
+  box-shadow:0 10px 22px rgba(16,42,67,.16),inset 0 1px 0 rgba(255,255,255,.25);
+}
+.practiceStudio .builderCompactCopy strong{
+  color:#102a43;
+  font-size:1rem;
+}
+.practiceStudio .builderCompactCopy span{
+  max-width:1100px;
+  color:#5f7385;
+  font-size:.78rem;
+}
+.practiceStudio .builderAdjust{
+  min-height:44px;
+  padding:.7rem 1rem;
+  border:1px solid rgba(143,25,74,.18);
+  background:#fff;
+  box-shadow:0 7px 18px rgba(16,42,67,.07);
+}
+.practiceStudio .builderBackdrop{
+  appearance:none;
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:1190;
+  width:100%;
+  height:100%;
+  padding:0;
+  border:0;
+  border-radius:0;
+  background:rgba(7,24,38,.58);
+  box-shadow:none;
+  cursor:default;
+  backdrop-filter:blur(7px) saturate(85%);
+}
+.practiceStudio.practiceFiltersOpen{
+  overflow:hidden;
+}
+.practiceStudio.practiceFiltersOpen .builderBackdrop{
+  display:block;
+  animation:practiceBackdropIn .2s ease both;
+}
+.practiceStudio .studioSidebar:not(.isCollapsed){
+  position:fixed!important;
+  inset:0 0 0 auto!important;
+  z-index:1200;
+  width:min(620px,calc(100vw - 28px));
+  height:100dvh;
+  max-height:100dvh!important;
+  padding:14px;
+  overflow-y:auto!important;
+  overscroll-behavior:contain;
+  scrollbar-width:thin;
+  filter:drop-shadow(-24px 0 55px rgba(4,22,35,.22));
+  animation:practiceDrawerIn .24s cubic-bezier(.2,.8,.2,1) both;
+}
+.practiceStudio .studioSidebar:not(.isCollapsed) .studioPanel{
+  min-height:calc(100dvh - 28px);
+  border:1px solid rgba(255,255,255,.72)!important;
+  border-radius:28px!important;
+  background:rgba(250,252,253,.98)!important;
+  box-shadow:0 30px 90px rgba(5,25,39,.28)!important;
+}
+.practiceStudio .studioSidebar:not(.isCollapsed) .studioPanelHead{
+  position:sticky;
+  top:-14px;
+  z-index:4;
+  padding:1.15rem 1.2rem!important;
+  border-bottom:1px solid rgba(16,42,67,.09)!important;
+  background:rgba(255,255,255,.94)!important;
+  backdrop-filter:blur(18px);
+}
+.practiceStudio .studioSidebar:not(.isCollapsed) .studioPanelHead small{
+  color:#087f78;
+}
+.practiceStudio .studioSidebar:not(.isCollapsed) .studioPanelHead h2{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.35rem;
+  letter-spacing:-.02em;
+}
+.practiceStudio .studioSidebar:not(.isCollapsed) .builderToggle{
+  width:42px;
+  height:42px;
+  justify-content:center;
+  padding:0;
+  border-color:#dbe5eb;
+  color:#102a43;
+  box-shadow:none;
+}
+.practiceStudio .studioSidebar:not(.isCollapsed) .builderToggleText{
+  position:absolute;
+  width:1px;
+  height:1px;
+  overflow:hidden;
+  clip:rect(0 0 0 0);
+}
+.practiceStudio .studioSidebar:not(.isCollapsed) .builderToggleIcon{
+  width:auto;
+  height:auto;
+  background:transparent;
+  font-size:1.35rem;
+}
+.practiceStudio .studioSidebar:not(.isCollapsed) .routeSteps{
+  padding:1.05rem 1.2rem .35rem!important;
+}
+.practiceStudio .studioSidebar:not(.isCollapsed) .scopeIdentity{
+  margin:.85rem 1.2rem!important;
+}
+.practiceStudio .studioSidebar:not(.isCollapsed) .studioFilters{
+  gap:.8rem!important;
+  padding:0 1.2rem 1rem!important;
+}
+.practiceStudio .studioSidebar:not(.isCollapsed) .studioGenerate{
+  padding:0 1.2rem 1.3rem!important;
+}
+.practiceStudio .practiceRouteSummary,
+.practiceStudio .studioStatusBar{
+  border-color:rgba(16,42,67,.1)!important;
+  background:rgba(255,255,255,.9)!important;
+  box-shadow:0 10px 30px rgba(16,42,67,.055)!important;
+  backdrop-filter:blur(14px);
+}
+.practiceStudio .questionShell{
+  overflow:visible!important;
+  border-radius:30px!important;
+}
+.practiceStudio .questionCard{
+  overflow:hidden;
+  border-radius:30px!important;
+  box-shadow:0 28px 80px rgba(16,42,67,.12)!important;
+}
+.practiceStudio .questionCard:before{display:none!important}
+.practiceStudio .questionHeader{
+  padding:clamp(1.5rem,3vw,2.7rem)!important;
+  background:
+    radial-gradient(circle at 92% -30%,rgba(255,255,255,.12),transparent 24rem),
+    linear-gradient(118deg,#112f4b 0%,#154d64 58%,#087f78 100%)!important;
+}
+.practiceStudio .questionCard .questionHeader h2{
+  max-width:1200px;
+  font-size:clamp(1.65rem,3vw,2.75rem)!important;
+  letter-spacing:-.025em;
+}
+.practiceStudio .questionCounter{
+  min-width:92px;
+  padding:.85rem 1rem!important;
+  border-radius:20px!important;
+  background:rgba(255,255,255,.92)!important;
+  color:#087f78!important;
+  box-shadow:0 12px 30px rgba(5,25,39,.12);
+}
+.practiceStudio .questionMeta,
+.practiceStudio .questionBody,
+.practiceStudio .questionFooter{
+  padding-inline:clamp(1.25rem,3.2vw,3.25rem)!important;
+}
+.practiceStudio .questionBody{
+  padding-top:clamp(1.1rem,2vw,2rem)!important;
+  padding-bottom:clamp(1.25rem,2.5vw,2.6rem)!important;
+}
+.practiceStudio .questionBody .prompt{
+  width:100%;
+  margin:0 0 1.4rem!important;
+  padding:clamp(1.3rem,2.7vw,2.5rem)!important;
+  border:1px solid #dde7ed!important;
+  border-radius:24px!important;
+  background:linear-gradient(145deg,#fff,#fffdf8)!important;
+  box-shadow:inset 5px 0 0 rgba(213,164,58,.58),0 14px 38px rgba(16,42,67,.045)!important;
+  font-size:clamp(1.05rem,1.35vw,1.25rem)!important;
+  line-height:1.82!important;
+}
+.practiceStudio .questionBody .prompt :is(img,svg,canvas),
+.practiceStudio .ib-question-figure img{
+  max-width:min(100%,1100px)!important;
+  max-height:none!important;
+}
+.practiceStudio .questionFooter{
+  bottom:12px!important;
+  margin:0 18px 18px!important;
+  padding-block:12px!important;
+  border:1px solid rgba(16,42,67,.1)!important;
+  border-radius:20px!important;
+  background:rgba(255,255,255,.94)!important;
+  box-shadow:0 16px 45px rgba(16,42,67,.12)!important;
+}
+.practiceStudio .sourceKeyNotice{
+  display:none!important;
+}
+@keyframes practiceDrawerIn{from{opacity:.3;transform:translateX(38px)}to{opacity:1;transform:translateX(0)}}
+@keyframes practiceBackdropIn{from{opacity:0}to{opacity:1}}
+@media(max-width:700px){
+  .practiceStudio .studioSidebar.isCollapsed .builderCompactSummary{
+    grid-template-columns:auto minmax(0,1fr) auto;
+    gap:9px;
+    min-height:76px;
+    padding:11px 12px;
+  }
+  .practiceStudio .builderCompactIcon{width:42px;height:42px;border-radius:13px}
+  .practiceStudio .builderCompactCopy span{white-space:nowrap;display:block}
+  .practiceStudio .builderAdjust{grid-column:auto;width:auto;padding:.56rem .62rem;font-size:.68rem;white-space:nowrap}
+  .practiceStudio .studioSidebar:not(.isCollapsed){width:100vw;padding:0}
+  .practiceStudio .studioSidebar:not(.isCollapsed) .studioPanel{min-height:100dvh;border-radius:0!important}
+  .practiceStudio .studioSidebar:not(.isCollapsed) .studioPanelHead{top:0}
+  .practiceStudio .questionHeader{align-items:flex-start!important}
+  .practiceStudio .questionCard .questionHeader h2{font-size:clamp(1.35rem,7vw,2rem)!important}
+  .practiceStudio .questionCounter{min-width:68px;padding:.62rem!important;border-radius:15px!important}
+  .practiceStudio .questionMeta,.practiceStudio .questionBody,.practiceStudio .questionFooter{padding-inline:14px!important}
+  .practiceStudio .questionFooter{position:sticky!important;margin:0 8px 8px!important}
+}
+@media(prefers-reduced-motion:reduce){
+  .practiceStudio .studioSidebar:not(.isCollapsed),
+  .practiceStudio.practiceFiltersOpen .builderBackdrop{animation:none}
+}

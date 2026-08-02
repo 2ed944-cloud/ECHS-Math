@@ -30,6 +30,8 @@ practice = read("question-bank/js/mapped-practice.js")
 isolation = read("question-bank/js/practice-course-isolation.js")
 private = read("question-bank/js/mapped-private-bank-practice.js")
 single_bank = read("question-bank/js/practice-single-bank.js")
+builder = read("question-bank/js/practice-builder.js")
+executive_css = read("question-bank/css/practice-executive-v4.css")
 recovery_ui = read("question-bank/js/practice-recovery-ui.js")
 recovery_css = read("question-bank/css/practice-recovery-polish.css")
 lesson_bridge = read("js/ib-lesson-platform-integration.js")
@@ -58,8 +60,18 @@ require(private, (
     "protectedCompatibilityRequest", "compatibility_fallback", "protected-compatibility",
     "source?.staff_view_all", "staff_review_only", "rowMappings.length?rowMappings:payloadMappings",
     "dedicated", "requestKey", 'allowAll:scope.view==="all"||fallback',
+    "Strip older persisted copies", "sourceKeyNotice", ".replace(",
 ), "Mapped private-bank adapter")
+forbid(private, ('question.prompt_html=`<div class="notice sourceKeyNotice"',), "Mapped private-bank adapter")
 require(single_bank, ("practiceBankIsolation", "studentPracticeBank", 'option.value==="all"', "ECHSBank.filterQuestions"), "Student single-bank isolation")
+require(builder, (
+    "builderBackdrop", "practiceFiltersOpen", 'aria-modal', 'event.key==="Escape"',
+    "focusableNodes", "setCollapsed(true)",
+), "Full-width practice filter drawer")
+require(executive_css, (
+    "Full-width question canvas and filter drawer", "grid-template-columns:minmax(0,1fr)!important",
+    ".studioSidebar:not(.isCollapsed)", "position:fixed!important", ".sourceKeyNotice",
+), "Full-width practice presentation")
 require(recovery_ui, ("Protected recovery", "data-retry-practice", "practiceBankTransport", "fixAuthenticatedHeader"), "Practice recovery UI")
 require(recovery_css, ("practiceStudio .studioHero h1", "connectionRecovery", "grid-template-columns:minmax(360px,410px)", "transportPill"), "Practice recovery polish")
 require(lesson_bridge, ("practice-bank-api", '"1.6":["u1-approximation-error"]', 'scope:"lesson"', "Exact lesson mapping"), "IB lesson bridge")
