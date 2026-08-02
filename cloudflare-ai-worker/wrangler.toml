@@ -1,0 +1,12 @@
+name = "echs-math-tutor"
+main = "src/index.js"
+compatibility_date = "2026-08-01"
+
+[ai]
+binding = "AI"
+
+[vars]
+ALLOWED_ORIGIN = "https://2ed944-cloud.github.io"
+MODEL = "@cf/meta/llama-3.1-8b-instruct-fast"
+MAX_MESSAGE_CHARS = "1800"
+MAX_HISTORY_MESSAGES = "8"
