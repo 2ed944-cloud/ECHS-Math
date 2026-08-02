@@ -1,1 +1,176 @@
-(function(){"use strict";const rows=[{"number":"2.1","title":"Lines and Coordinate Geometry","file":"IB_AI_SL_2.1_lines_coordinate_geometry_ECHS.html","data":"lesson-2.1.js","status":"Core SL","summary":"Use gradient, distance, midpoint and line equations to describe position and change.","outcomes":["Calculate gradient, distance and midpoint from coordinates.","Construct and interpret equations of lines.","Use parallel and perpendicular gradient conditions.","Interpret intercepts and rates in context."],"counts":{"slides":36,"practice":32,"quiz":10,"examTasks":3}},{"number":"2.2","title":"Quadratic Functions","file":"IB_AI_SL_2.2_quadratic_functions_ECHS.html","data":"lesson-2.2.js","status":"Core SL","summary":"Connect algebraic forms, roots, symmetry and vertices of parabolas.","outcomes":["Move among standard, factored and vertex forms.","Determine roots, intercepts, axis and vertex.","Interpret the discriminant and number of real roots.","Use technology to solve and validate quadratic problems."],"counts":{"slides":36,"practice":32,"quiz":10,"examTasks":3}},{"number":"2.3","title":"Functions, Domain, Range and Graphs","file":"IB_AI_SL_2.3_functions_domain_range_graphs_ECHS.html","data":"lesson-2.3.js","status":"Core SL","summary":"Coordinate mappings, notation, valid inputs, outputs and graphical behaviour.","outcomes":["Use function notation and evaluate images and preimages.","Distinguish functions from general relations.","State domain and range from formulas, graphs and contexts.","Interpret piecewise rules and endpoints accurately."],"counts":{"slides":36,"practice":32,"quiz":10,"examTasks":3}},{"number":"2.4","title":"Informal Inverse Functions and Graphical Solutions","file":"IB_AI_SL_2.4_informal_inverse_graphical_solutions_ECHS.html","data":"lesson-2.4.js","status":"Core SL","summary":"Reverse input-output processes and solve equations through intersections.","outcomes":["Interpret inverse notation as reversal, not reciprocal.","Read inverse values from tables and graphs.","Solve equations by graphical intersection.","Recognize when a domain restriction is required."],"counts":{"slides":36,"practice":32,"quiz":10,"examTasks":3}},{"number":"2.5","title":"Exponential Functions","file":"IB_AI_SL_2.5_exponential_functions_ECHS.html","data":"lesson-2.5.js","status":"Core SL","summary":"Model repeated multiplicative change and interpret growth or decay factors.","outcomes":["Evaluate and graph exponential functions.","Interpret initial value and growth or decay factor.","Convert between percentage rate and multiplier.","Identify asymptotic behaviour and contextual domains."],"counts":{"slides":36,"practice":32,"quiz":10,"examTasks":3}},{"number":"2.6","title":"Logarithms and Exponential Equations","file":"IB_AI_SL_2.6_logarithms_exponential_equations_ECHS.html","data":"lesson-2.6.js","status":"Core SL","summary":"Use logarithms to express exponents and solve multiplicative threshold problems.","outcomes":["Translate between exponential and logarithmic statements.","Evaluate common and natural logarithms.","Solve exponential equations using graphs or logarithms.","Check domain, units and rounding in threshold problems."],"counts":{"slides":36,"practice":32,"quiz":10,"examTasks":3}},{"number":"2.7","title":"Composition of Functions","file":"IB_AI_SL_2.7_composition_functions_ECHS.html","data":"lesson-2.7.js","status":"Extension · HL bridge","summary":"Represent multi-stage processes with ordered function composition.","outcomes":["Evaluate composite functions numerically and algebraically.","Respect the order in function composition.","Determine domain restrictions of composites.","Interpret multi-stage models in context."],"counts":{"slides":36,"practice":32,"quiz":10,"examTasks":3}},{"number":"2.8","title":"Inverse Functions Algebraically","file":"IB_AI_SL_2.8_inverse_functions_algebraic_ECHS.html","data":"lesson-2.8.js","status":"Extension · HL bridge","summary":"Find, verify and restrict inverse functions using algebra.","outcomes":["Find inverses by exchanging variables and solving.","State inverse domains and ranges.","Restrict non-one-to-one functions when appropriate.","Verify inverse relationships by composition."],"counts":{"slides":36,"practice":32,"quiz":10,"examTasks":3}},{"number":"2.9","title":"Transformations of Functions","file":"IB_AI_SL_2.9_transformations_functions_ECHS.html","data":"lesson-2.9.js","status":"Extension · HL bridge","summary":"Predict translations, reflections and stretches from transformed equations.","outcomes":["Identify horizontal and vertical transformations.","Map points under combined transformations.","Apply transformations in the correct order.","Explain effects on domain, range and key features."],"counts":{"slides":36,"practice":32,"quiz":10,"examTasks":3}},{"number":"2.10","title":"Asymptotes and Rational Behaviour","file":"IB_AI_SL_2.10_asymptotes_rational_behaviour_ECHS.html","data":"lesson-2.10.js","status":"Extension · HL bridge","summary":"Use excluded inputs and end behaviour to interpret rational models.","outcomes":["Identify vertical and horizontal asymptotes.","Distinguish asymptotes from removable discontinuities.","Analyze rational end behaviour.","Interpret excluded values and limitations contextually."],"counts":{"slides":36,"practice":32,"quiz":10,"examTasks":3}},{"number":"2.11","title":"Logarithms in Any Base","file":"IB_AI_SL_2.11_logarithms_any_base_ECHS.html","data":"lesson-2.11.js","status":"Extension · HL bridge","summary":"Apply logarithm laws and change of base with valid arguments.","outcomes":["Evaluate logarithms in arbitrary valid bases.","Apply product, quotient and power laws.","Use the change-of-base formula.","Solve logarithmic equations with domain checks."],"counts":{"slides":36,"practice":32,"quiz":10,"examTasks":3}},{"number":"2.12","title":"Exponential Equations and Thresholds","file":"IB_AI_SL_2.12_exponential_equations_thresholds_ECHS.html","data":"lesson-2.12.js","status":"Extension · HL bridge","summary":"Solve exact and approximate exponential equations and interpret first-passage times.","outcomes":["Solve equations with a common exponential base.","Use logarithms for unlike bases.","Solve exponential inequalities and thresholds.","Validate solutions graphically and contextually."],"counts":{"slides":36,"practice":32,"quiz":10,"examTasks":3}},{"number":"2.13","title":"Linear Models and Regression","file":"IB_AI_SL_2.13_linear_models_regression_ECHS.html","data":"lesson-2.13.js","status":"Core SL","summary":"Fit, interpret and evaluate linear models using residual evidence.","outcomes":["Construct exact and regression linear models.","Interpret slope and intercept in context.","Calculate and interpret residuals.","Distinguish interpolation from extrapolation."],"counts":{"slides":36,"practice":32,"quiz":10,"examTasks":3}},{"number":"2.14","title":"Quadratic and Cubic Models","file":"IB_AI_SL_2.14_quadratic_cubic_models_ECHS.html","data":"lesson-2.14.js","status":"Core SL","summary":"Select and interpret polynomial models from shape, differences and residuals.","outcomes":["Recognize quadratic and cubic behaviour.","Fit polynomial models with technology.","Interpret roots and turning points contextually.","Evaluate model domain and extrapolation risk."],"counts":{"slides":36,"practice":32,"quiz":10,"examTasks":3}},{"number":"2.15","title":"Power Functions, Direct and Inverse Variation","file":"IB_AI_SL_2.15_power_direct_inverse_variation_ECHS.html","data":"lesson-2.15.js","status":"Core SL","summary":"Use proportional structure and power exponents to model scaling.","outcomes":["Recognize direct and inverse variation.","Determine constants of proportionality.","Interpret power-law exponents.","Use units and domain restrictions to assess models."],"counts":{"slides":36,"practice":32,"quiz":10,"examTasks":3}},{"number":"2.16","title":"Exponential Models, Growth, Decay and Half-Life","file":"IB_AI_SL_2.16_exponential_models_growth_decay_ECHS.html","data":"lesson-2.16.js","status":"Core SL","summary":"Build and evaluate repeated-change models with characteristic times.","outcomes":["Construct exponential models from rates or data.","Interpret growth and decay parameters.","Calculate doubling time and half-life.","Evaluate interpolation, extrapolation and asymptotes."],"counts":{"slides":36,"practice":32,"quiz":10,"examTasks":3}},{"number":"2.17","title":"Sinusoidal Models","file":"IB_AI_SL_2.17_sinusoidal_models_ECHS.html","data":"lesson-2.17.js","status":"Core SL","summary":"Model periodic behaviour through amplitude, period, phase and midline.","outcomes":["Identify amplitude, midline and period.","Construct sine and cosine models.","Interpret phase shifts in context.","Use technology to solve periodic threshold problems."],"counts":{"slides":36,"practice":32,"quiz":10,"examTasks":3}},{"number":"2.18","title":"Voronoi Diagrams","file":"IB_AI_SL_2.18_voronoi_diagrams_ECHS.html","data":"lesson-2.18.js","status":"Core SL","summary":"Partition a region by nearest-site distance using perpendicular bisectors.","outcomes":["Construct perpendicular bisectors between sites.","Interpret Voronoi cells, edges and vertices.","Determine nearest sites and boundary points.","Evaluate Euclidean-distance assumptions in context."],"counts":{"slides":36,"practice":32,"quiz":10,"examTasks":3}},{"number":"2.19","title":"Percentage Change and Financial Applications","file":"IB_AI_SL_2.19_percentage_financial_applications_ECHS.html","data":"lesson-2.19.js","status":"Core SL","summary":"Model compound growth, depreciation, inflation, annuities and loans.","outcomes":["Calculate successive percentage change.","Use compound interest and depreciation models.","Interpret annuity and loan calculations with technology.","Distinguish nominal, real and effective values."],"counts":{"slides":36,"practice":32,"quiz":10,"examTasks":3}}];const base="lessons/ib-math-ai/unit-2/lessons/";const lessons=rows.map(row=>{const url=base+row.file;return{number:row.number,title:row.title,summary:row.summary,outcomes:row.outcomes,url,status:"ready",new:true,kind:"lesson",skill_keys:[`IBAI.U2.${row.number.replace(".","_")}`],lesson_key:`u2-${row.number.replace(".","-")}`,resources:[{label:"Complete interactive lesson",url,type:"resource"},{label:"Practice Studio",url:url+"#practice",type:"practice"},{label:"IB-style assessment tasks",url:url+"#exam",type:"assessment"}],keywords:["ib","mathematics","applications","interpretation","functions",row.number,row.title.toLowerCase()]}});const unit={title:"Unit 2: Functions and Mathematical Modelling",description:"Nineteen focused interactive IB Mathematics AI lessons with original visuals, technology laboratories, four-level practice, extended tasks and independent timed quizzes.",portalSummary:"19 lessons · 684 learn screens · 608 practice questions · 190 quiz questions · 57 extended tasks",essential_questions:["How do representations reveal function structure and restrictions?","How should technology support transparent mathematical reasoning?","How do assumptions, residuals and context determine whether a model is defensible?"],lessons,refreshed:true,release:"ECHS Unit 2 v3.0.0"};window.ECHS_IB_MATH_AI_UNIT_2=unit;if(!Array.isArray(window.ECHS_COURSES))return;const normalise=value=>String(value||"").toLowerCase().replace(/[–—−]/g,"-").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");const isIB=course=>course&&[course.id,course.course,course.title,course.shortTitle].map(normalise).some(value=>value==="g11-ib-ai"||value==="ib-math-ai"||value.includes("ib-mathematics-applications-and-interpretation"));let index=window.ECHS_COURSES.findIndex(course=>normalise(course?.id)==="g11-ib-ai");if(index<0)index=window.ECHS_COURSES.findIndex(isIB);if(index<0){console.error("Canonical G11 IB Mathematics AI course was not found");return}const course=window.ECHS_COURSES[index];window.ECHS_COURSES=window.ECHS_COURSES.filter((candidate,i)=>i===index||!isIB(candidate));course.id="g11-ib-ai";course.grade="G11";course.title="G11 IB Mathematics: Applications and Interpretation";course.shortTitle="IB Math AI";course.course=course.title;if(!Array.isArray(course.units))course.units=[];const unitIndex=course.units.findIndex(value=>/^unit\s*2(?:\s*:|\b)/i.test(String(value?.title||"")));if(unitIndex>=0)course.units[unitIndex]=unit;else{const u1=course.units.findIndex(value=>/^unit\s*1(?:\s*:|\b)/i.test(String(value?.title||"")));course.units.splice(u1>=0?u1+1:Math.min(1,course.units.length),0,unit)}course.unitCount=course.units.length;course.lessonCount=course.units.reduce((sum,value)=>sum+(Array.isArray(value?.lessons)?value.lessons.length:0),0);course.status="Started";course.updatedUnits=`Units 1–2 · ${lessons.length} complete Unit 2 lessons`;window.dispatchEvent(new CustomEvent("echs:ib-ai-unit-ready",{detail:{courseId:course.id,unit:2,lessons:lessons.length}}))})();
+(function () {
+  "use strict";
+
+  const base = "lessons/ib-math-ai/unit-2/lessons/";
+  const lesson = (number, slug, title, summary, outcomes, skillKey, lessonKey) => {
+    const url = `${base}IB_AI_SL_${number}_${slug}_ECHS.html`;
+    return {
+      number,
+      title,
+      summary,
+      outcomes,
+      url,
+      status: "ready",
+      new: true,
+      kind: "lesson",
+      skill_keys: [skillKey],
+      lesson_key: lessonKey,
+      resources: [
+        { label: "Complete interactive lesson", url, type: "resource" },
+        { label: "Practice Studio", url: `${url}#practice`, type: "practice" },
+        { label: "IB-style assessment tasks", url: `${url}#exam`, type: "assessment" }
+      ],
+      keywords: ["ib", "mathematics", "applications", "interpretation", "functions", number, slug]
+    };
+  };
+
+  const unit = {
+    title: "Unit 2: Functions",
+    description: "Six definitive interactive IB Mathematics: Applications and Interpretation SL lessons with technology laboratories, modelling cycles, original four-level practice, extended tasks and timed quizzes.",
+    portalSummary: "6 interactive lessons · 384 learn slides · 360 original practice questions · 72 quiz questions · 18 extended tasks",
+    essential_questions: [
+      "How do representations reveal the structure and restrictions of a function?",
+      "How can technology support, rather than replace, mathematical reasoning?",
+      "How do residuals, assumptions and context determine whether a model is defensible?"
+    ],
+    lessons: [
+      lesson(
+        "2.1",
+        "functions_domain_range_representations",
+        "Functions, Domain, Range, and Representations",
+        "Connect mappings, tables, formulas, graphs and contexts while controlling valid inputs and meaningful outputs.",
+        [
+          "Decide whether a relation defines a function and justify the decision.",
+          "Evaluate functions and find inputs that produce specified outputs.",
+          "Determine domain and range from formulas, graphs, tables and contexts.",
+          "Move fluently among representations and interpret each feature in context."
+        ],
+        "IBAI.U2.CONCEPT",
+        "u2-concept"
+      ),
+      lesson(
+        "2.2",
+        "linear_quadratic_models",
+        "Linear and Quadratic Models",
+        "Use rates of change and curvature to build, compare, solve and evaluate straight-line and parabolic models.",
+        [
+          "Construct and interpret linear models from points, rates and contexts.",
+          "Use parallel, perpendicular and simultaneous-line reasoning accurately.",
+          "Read and calculate roots, axis of symmetry, vertex and intercepts of quadratics.",
+          "Choose between linear and quadratic models and evaluate contextual validity."
+        ],
+        "IBAI.U2.LINEAR_QUADRATIC",
+        "u2-linear-quadratic"
+      ),
+      lesson(
+        "2.3",
+        "polynomial_rational_models",
+        "Polynomial and Rational Models",
+        "Use zeros, end behaviour, asymptotes and variation structure to interpret non-linear models and their limitations.",
+        [
+          "Interpret polynomial degree, zeros and end behaviour from equations and graphs.",
+          "Use factors and multiplicity to connect algebraic structure with graph behaviour.",
+          "Determine domains and asymptotes of rational models and interpret them contextually.",
+          "Recognize direct, inverse and power variation and use technology to estimate parameters."
+        ],
+        "IBAI.U2.POLY_RATIONAL",
+        "u2-poly-rational"
+      ),
+      lesson(
+        "2.4",
+        "exponential_logarithmic_models",
+        "Exponential and Logarithmic Models",
+        "Interpret repeated percentage change, solve threshold problems and connect logarithmic scales to inverse exponential reasoning.",
+        [
+          "Interpret parameters in exponential growth and decay models.",
+          "Solve exponential equations graphically and with logarithms where appropriate.",
+          "Use doubling time, half-life and asymptotic behaviour in context.",
+          "Interpret logarithmic scales and compare additive with multiplicative change."
+        ],
+        "IBAI.U2.EXP_LOG",
+        "u2-exp-log"
+      ),
+      lesson(
+        "2.5",
+        "transformations_composition_inverses",
+        "Transformations, Composition, and Inverses",
+        "Track how parameters move, stretch and reflect graphs, then connect reversible processes through inverse functions.",
+        [
+          "Describe and construct translations, reflections and stretches of familiar graphs.",
+          "Apply more than one transformation in the correct order.",
+          "Find and interpret inverse functions and domain restrictions.",
+          "Use composition to represent multi-stage processes and verify inverse relationships."
+        ],
+        "IBAI.U2.TRANSFORM",
+        "u2-transform"
+      ),
+      lesson(
+        "2.6",
+        "regression_technology_validation",
+        "Regression, Technology, and Model Validation",
+        "Use data, residuals, parameter meaning and contextual judgment to select and defend a model rather than merely fit a curve.",
+        [
+          "Calculate and interpret linear regression parameters and predictions.",
+          "Use residuals and residual plots to assess systematic model error.",
+          "Compare model families using fit, simplicity, parameter meaning and context.",
+          "Distinguish interpolation from extrapolation and communicate limitations responsibly."
+        ],
+        "IBAI.U2.REGRESSION",
+        "u2-regression"
+      )
+    ],
+    refreshed: true,
+    release: "ECHS Unit 2 v2.0.0"
+  };
+
+  window.ECHS_IB_MATH_AI_UNIT_2 = unit;
+  if (!Array.isArray(window.ECHS_COURSES)) return;
+
+  function normalise(value) {
+    return String(value || "")
+      .toLowerCase()
+      .replace(/[–—−]/g, "-")
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-|-$/g, "");
+  }
+
+  function isIBCourse(course) {
+    if (!course) return false;
+    const labels = [course.id, course.course, course.title, course.shortTitle].map(normalise);
+    return labels.includes("g11-ib-ai") ||
+      labels.includes("ib-math-ai") ||
+      labels.some(value => value.includes("ib-mathematics-applications-and-interpretation") || value.includes("ib-math-ai"));
+  }
+
+  let courseIndex = window.ECHS_COURSES.findIndex(course => normalise(course && course.id) === "g11-ib-ai");
+  if (courseIndex < 0) courseIndex = window.ECHS_COURSES.findIndex(isIBCourse);
+  if (courseIndex < 0) {
+    console.error("Canonical G11 IB Mathematics AI course was not found");
+    return;
+  }
+
+  const course = window.ECHS_COURSES[courseIndex];
+  window.ECHS_COURSES = window.ECHS_COURSES.filter((candidate, index) => index === courseIndex || !isIBCourse(candidate));
+  course.id = "g11-ib-ai";
+  course.grade = "G11";
+  course.title = "G11 IB Mathematics: Applications and Interpretation";
+  course.shortTitle = "IB Math AI";
+  course.course = course.title;
+  if (!Array.isArray(course.units)) course.units = [];
+
+  const unitIndex = course.units.findIndex(value => /^unit\s*2(?:\s*:|\b)/i.test(String(value && value.title || "")));
+  if (unitIndex >= 0) {
+    course.units[unitIndex] = unit;
+  } else {
+    const unitOneIndex = course.units.findIndex(value => /^unit\s*1(?:\s*:|\b)/i.test(String(value && value.title || "")));
+    course.units.splice(unitOneIndex >= 0 ? unitOneIndex + 1 : Math.min(1, course.units.length), 0, unit);
+  }
+
+  course.unitCount = course.units.length;
+  course.lessonCount = course.units.reduce((total, value) => total + (Array.isArray(value && value.lessons) ? value.lessons.length : 0), 0);
+  course.status = "Started";
+  course.updatedUnits = `Units 1–2 · ${unit.lessons.length} complete Unit 2 interactive lessons`;
+  window.dispatchEvent(new CustomEvent("echs:ib-ai-unit-ready", {
+    detail: { courseId: course.id, unit: 2, lessons: unit.lessons.length }
+  }));
+})();
