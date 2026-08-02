@@ -434,19 +434,44 @@ function initializeLab() {
   const lab = $('#lesson-lab', app);
   if (!lab) return;
   const number = lab.dataset.lab;
-  const graph = (points, linePath='', extra='') => `<svg class="lab-graph" viewBox="0 0 560 280" role="img" aria-label="Interactive model graph"><rect width="560" height="280" rx="18" fill="#fff"/><g stroke="#ded8cf" stroke-width="1">${Array.from({length:12},(_,i)=>`<line x1="${40+i*40}" y1="20" x2="${40+i*40}" y2="245"/>`).join('')}${Array.from({length:8},(_,i)=>`<line x1="35" y1="${35+i*28}" x2="530" y2="${35+i*28}"/>`).join('')}</g><line x1="35" y1="235" x2="530" y2="235" stroke="#17324d" stroke-width="2"/><line x1="60" y1="250" x2="60" y2="20" stroke="#17324d" stroke-width="2"/>${linePath?`<path d="${linePath}" fill="none" stroke="#7a1733" stroke-width="4"/>`:''}${points.map(p=>`<circle cx="${p[0]}" cy="${p[1]}" r="5" fill="#177e89"/>`).join('')}${extra}</svg>`;
-  const configs = {
-    '2.1': {fields:[['a','Lower-domain endpoint',0],['b','Upper-domain endpoint',12],['m','Gradient',2.4],['c','Intercept',5]], calculate(v){const lo=Math.min(v.a,v.b),hi=Math.max(v.a,v.b),y1=v.m*lo+v.c,y2=v.m*hi+v.c;return {text:`Domain [${formatNumber(lo)}, ${formatNumber(hi)}]; endpoint outputs ${formatNumber(y1)} and ${formatNumber(y2)}; range [${formatNumber(Math.min(y1,y2))}, ${formatNumber(Math.max(y1,y2))}] for this linear model.`,graph:graph([],`M60 ${215-(y1*3)} L500 ${215-(y2*3)}`)};}},
-    '2.2': {fields:[['m','Line gradient',1.5],['c','Line intercept',3],['a','Quadratic a',-0.35],['h','Quadratic h',6],['k','Quadratic k',14]], calculate(v){const A=v.a,B=-2*v.a*v.h-v.m,C=v.a*v.h*v.h+v.k-v.c,disc=B*B-4*A*C;let roots='No real intersections';if(Math.abs(A)<1e-12){roots='Quadratic coefficient must be non-zero.'}else if(disc>=0){const r1=(-B-Math.sqrt(disc))/(2*A),r2=(-B+Math.sqrt(disc))/(2*A);roots=`Intersections at x≈${formatNumber(r1,3)} and x≈${formatNumber(r2,3)}.`}return {text:`Line y=${formatNumber(v.m)}x+${formatNumber(v.c)}; quadratic y=${formatNumber(v.a)}(x−${formatNumber(v.h)})²+${formatNumber(v.k)}. ${roots}`,graph:graph([],`M60 ${220-v.c*5} L500 ${220-(v.m*14+v.c)*5} M60 210 Q280 ${30-v.k*2} 500 210`)};}},
-    '2.3': {fields:[['r1','Polynomial root 1',-2],['r2','Polynomial root 2',3],['r3','Polynomial root 3',7],['asymptote','Rational vertical asymptote',5]], calculate(v){const sum=v.r1+v.r2+v.r3,prod=v.r1*v.r2*v.r3;return {text:`For p(x)=(x−r₁)(x−r₂)(x−r₃), sum of roots=${formatNumber(sum)} and product=${formatNumber(prod)}. A separate rational model with denominator x−${formatNumber(v.asymptote)} excludes x=${formatNumber(v.asymptote)} and has a vertical asymptote unless the factor cancels.`,graph:graph([],`M40 210 C120 30 190 235 270 105 S410 45 520 205`,`<line x1="${60+v.asymptote*35}" y1="20" x2="${60+v.asymptote*35}" y2="245" stroke="#d4a72c" stroke-width="3" stroke-dasharray="8 6"/>`)};}},
-    '2.4': {fields:[['initial','Initial value',600],['factor','Growth/decay factor',1.08],['target','Threshold',1000],['shift','Horizontal asymptote',0]], calculate(v){if(v.initial<=0||v.factor<=0||v.factor===1||v.target<=v.shift)return {text:'Use positive values, a factor different from 1, and a target above the asymptote.'};const t=Math.log((v.target-v.shift)/v.initial)/Math.log(v.factor);return {text:`Model A(t)=${formatNumber(v.initial)}(${formatNumber(v.factor)})^t+${formatNumber(v.shift)}. Threshold time t≈${formatNumber(t,4)}. ${t>=0?'Interpret the first whole interval only when the context is discrete.':'The threshold occurred before t=0 for these inputs.'}`,graph:graph([],`M60 220 C180 215 310 170 500 45`,`<line x1="35" y1="${220-v.shift}" x2="530" y2="${220-v.shift}" stroke="#d4a72c" stroke-width="3" stroke-dasharray="8 6"/>`)};}},
-    '2.5': {fields:[['x','Original point x',6],['y','Original point y',-2],['b','Inside scale b',2],['h','Horizontal shift h',4],['a','Outside scale a',-3],['k','Vertical shift k',5]], calculate(v){if(v.b===0)return {text:'Inside scale b cannot be zero.'};const nx=v.x/v.b+v.h,ny=v.a*v.y+v.k;return {text:`Under g(x)=a f(b(x−h))+k, (${formatNumber(v.x)},${formatNumber(v.y)}) maps to (${formatNumber(nx)},${formatNumber(ny)}). The inverse-point reflection would instead swap coordinates.`,graph:graph([[60+v.x*28,210-v.y*10],[60+nx*28,210-ny*10]],'',`<line x1="45" y1="235" x2="490" y2="25" stroke="#177e89" stroke-width="2" stroke-dasharray="8 6"/>`)};}},
-    '2.6': {fields:[['x1','x₁',1],['y1','y₁',54],['x2','x₂',2],['y2','y₂',59],['x3','x₃',3],['y3','y₃',67],['x4','x₄',4],['y4','y₄',71],['x5','x₅',5],['y5','y₅',78]], calculate(v){const xs=[v.x1,v.x2,v.x3,v.x4,v.x5],ys=[v.y1,v.y2,v.y3,v.y4,v.y5],xm=xs.reduce((a,b)=>a+b,0)/xs.length,ym=ys.reduce((a,b)=>a+b,0)/ys.length,sxx=xs.reduce((s,x)=>s+(x-xm)**2,0),sxy=xs.reduce((s,x,i)=>s+(x-xm)*(ys[i]-ym),0),m=sxy/sxx,a=ym-m*xm,preds=xs.map(x=>a+m*x),sse=ys.reduce((s,y,i)=>s+(y-preds[i])**2,0),sst=ys.reduce((s,y)=>s+(y-ym)**2,0),r2=sst?1-sse/sst:1;const pts=xs.map((x,i)=>[60+(x-Math.min(...xs))*95,220-(ys[i]-Math.min(...ys))*7]);return {text:`Least-squares model ŷ=${formatNumber(a,4)}+${formatNumber(m,4)}x; R²=${formatNumber(r2,5)}. Inspect whether residuals are randomly scattered before accepting a linear model.`,graph:graph(pts,`M60 ${220-(a+m*Math.min(...xs)-Math.min(...ys))*7} L440 ${220-(a+m*Math.max(...xs)-Math.min(...ys))*7}`)};}},
+  const kind = data.lab?.kind || 'line';
+  const presets = {
+    line:[1.5,2,0], quadratic:[1,-2,-3], function:[1,1,0], inverse:[1.4,2,0], exponential:[1.3,1.25,0], log:[1,2,0], composition:[1.2,2,1], 'inverse-algebra':[1.5,2,0], transform:[1.4,2,-1], rational:[2,1,1], 'log-base':[1,3,0], threshold:[2,1.2,4], regression:[1.3,2,0], polynomial:[.15,-1,2], power:[1.2,2,0], decay:[12,.82,0], sinusoidal:[3,6,2], voronoi:[2,3,4], finance:[1000,.06,6]
   };
-  const config=configs[number]; if(!config)return;
-  lab.innerHTML=`<div class="lab-grid">${config.fields.map(([key,label,value])=>`<label>${label}<input type="number" step="any" data-lab-field="${key}" value="${value}"></label>`).join('')}</div><button class="primary-btn" id="run-lab">Calculate, graph and interpret</button><div class="lab-output" id="lab-output">Change inputs, predict, then calculate.</div><div id="lab-graph"></div>`;
-  const run=()=>{const values=Object.fromEntries($$('[data-lab-field]',lab).map(input=>[input.dataset.labField,Number(input.value)]));const result=config.calculate(values);$('#lab-output',lab).textContent=result.text||'';$('#lab-graph',lab).innerHTML=result.graph||'';};
-  $('#run-lab',lab).addEventListener('click',run);$$('[data-lab-field]',lab).forEach(input=>input.addEventListener('change',run));run();
+  const defaults=presets[kind]||presets.line;
+  const labels=kind==='finance'?['Principal','Annual rate','Periods']:kind==='sinusoidal'?['Amplitude','Period','Midline']:kind==='voronoi'?['Site A offset','Site B offset','Site C offset']:['Parameter a','Parameter b','Parameter c'];
+  lab.innerHTML=`<div class="lab-grid">${labels.map((label,index)=>`<label>${label}<input type="number" step="any" data-lab-field="p${index}" value="${defaults[index]}"></label>`).join('')}</div><button class="primary-btn" id="run-lab">Update model</button><div class="lab-output" id="lab-output">Change one parameter, predict the effect, then compare.</div><canvas class="topic-canvas" id="lab-canvas" width="760" height="360" aria-label="Interactive ${escapeHtml(data.lesson.title)} graph"></canvas>`;
+  const canvas=$('#lab-canvas',lab),ctx=canvas.getContext('2d');
+  const evaluate=(x,a,b,c)=>{
+    if(kind==='quadratic')return a*(x-b)**2+c;
+    if(kind==='polynomial')return a*x**3+b*x+c;
+    if(['exponential','threshold'].includes(kind))return a*b**x+c;
+    if(kind==='decay')return a*b**x+c;
+    if(['log','log-base'].includes(kind))return x>0?a*Math.log(x)/Math.log(Math.max(1.05,Math.abs(b)))+c:NaN;
+    if(kind==='rational')return Math.abs(x-b)<.03?NaN:a/(x-b)+c;
+    if(kind==='power')return x>=0?a*x**b+c:NaN;
+    if(kind==='sinusoidal')return a*Math.cos(2*Math.PI*x/Math.max(.2,Math.abs(b)))+c;
+    if(kind==='inverse'||kind==='inverse-algebra')return (x-c)/a-b;
+    if(kind==='composition')return a*(x+b)+c;
+    if(kind==='transform')return a*Math.abs(x-b)+c;
+    return a*x+b+c;
+  };
+  const run=()=>{
+    const [a,b,c]=[0,1,2].map(i=>Number($(`[data-lab-field="p${i}"]`,lab).value));
+    ctx.clearRect(0,0,canvas.width,canvas.height);ctx.fillStyle='#fff';ctx.fillRect(0,0,canvas.width,canvas.height);
+    ctx.strokeStyle='#ded8cf';ctx.lineWidth=1;for(let x=40;x<canvas.width;x+=40){ctx.beginPath();ctx.moveTo(x,20);ctx.lineTo(x,335);ctx.stroke()}for(let y=20;y<canvas.height;y+=30){ctx.beginPath();ctx.moveTo(25,y);ctx.lineTo(740,y);ctx.stroke()}
+    ctx.strokeStyle='#17324d';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(25,180);ctx.lineTo(740,180);ctx.moveTo(380,15);ctx.lineTo(380,345);ctx.stroke();
+    if(kind==='voronoi'){
+      const sites=[[170+a*8,95+b*5],[500-b*7,90+c*5],[350+c*8,265-a*5]];ctx.fillStyle='#7a1733';for(const [x,y] of sites){ctx.beginPath();ctx.arc(x,y,8,0,2*Math.PI);ctx.fill()}ctx.strokeStyle='#177e89';ctx.lineWidth=4;ctx.beginPath();ctx.moveTo(335,20);ctx.lineTo(340,170);ctx.lineTo(95,335);ctx.moveTo(340,170);ctx.lineTo(670,335);ctx.stroke();
+    }else if(kind==='finance'){
+      const rate=b,periods=Math.max(1,Math.min(10,Math.round(c)));for(let i=0;i<=periods;i++){const value=a*(1+rate)**i,height=Math.min(285,value/Math.max(1,a)*110);ctx.fillStyle=`rgba(122,23,51,${.35+.55*i/periods})`;ctx.fillRect(70+i*620/(periods+1),320-height,Math.max(24,500/(periods+1)),height)}
+    }else{
+      ctx.strokeStyle='#7a1733';ctx.lineWidth=5;ctx.beginPath();let active=false;for(let px=25;px<=740;px+=2){const x=(px-380)/45,y=evaluate(x,a,b,c),py=180-y*24;if(!Number.isFinite(y)||py<-800||py>1000){active=false;continue}if(!active){ctx.moveTo(px,py);active=true}else ctx.lineTo(px,py)}ctx.stroke();
+      if(kind==='inverse'||kind==='inverse-algebra'){ctx.strokeStyle='#d4a72c';ctx.lineWidth=2;ctx.setLineDash([8,7]);ctx.beginPath();ctx.moveTo(60,320);ctx.lineTo(700,40);ctx.stroke();ctx.setLineDash([])}
+    }
+    $('#lab-output',lab).textContent=`${data.lesson.title}: a=${formatNumber(a)}, b=${formatNumber(b)}, c=${formatNumber(c)}. Explain the parameter effect, domain and one invariant feature before accepting the display.`;
+  };
+  $('#run-lab',lab).addEventListener('click',run);$$('[data-lab-field]',lab).forEach(input=>input.addEventListener('input',run));run();
 }
 
 routeButtons.forEach(button => button.addEventListener('click', () => setRoute(button.dataset.route)));
