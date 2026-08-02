@@ -47,9 +47,9 @@
       <div class="mathMotif" aria-hidden="true"><span>lim f(x)</span><span>f′(x)</span><span>∫ f(x)dx</span></div>
     </div>
     <div class="statGrid" aria-label="Portal summary">
-      <div class="stat"><b id="statCourses">0</b><span>Courses</span></div>
-      <div class="stat"><b id="statLessons">0</b><span>Lesson cards</span></div>
-      <div class="stat wide"><b id="statReady">0</b><span>Open interactive lessons</span><div class="progressBar"><i id="readyBar"></i></div><span class="statNote">New AP Calculus lessons are organized by official topic numbering.</span></div>
+      <div class="stat"><b id="statCourses">4</b><span>Courses</span></div>
+      <div class="stat"><b id="statLessons">4</b><span>Lesson cards</span></div>
+      <div class="stat wide"><b id="statReady">3</b><span>Open interactive lessons</span><div class="progressBar"><i id="readyBar" style="width:75%"></i></div><span class="statNote">New AP Calculus lessons are organized by official topic numbering.</span></div>
     </div>
   </section>
 
@@ -78,7 +78,12 @@
     </aside>
   </section>
 
-  <nav class="courseTabs" id="tabs" aria-label="Course tabs"></nav>
+  <nav class="courseTabs" id="tabs" aria-label="Course tabs" data-preview-fallback>
+    <a class="tab active" href="#units"><span>G12</span>AP Calculus AB</a>
+    <a class="tab" href="#units"><span>G10–G11</span>AP Precalculus</a>
+    <a class="tab" href="#units"><span>G10</span>Algebra 2</a>
+    <a class="tab" href="#units"><span>G11–G12</span>IB Math AI</a>
+  </nav>
 
   <section class="layout" id="courses">
     <aside class="sidebar">
@@ -98,7 +103,20 @@
     </aside>
 
     <section aria-live="polite">
-      <article class="courseHero" id="courseHero"></article>
+      <article class="courseHero" id="courseHero" data-preview-fallback>
+        <div class="courseHeroMain">
+          <div class="kicker">G12</div>
+          <h2>G12 AP Calculus AB</h2>
+          <p class="courseSubtitle">Limits, derivatives, applications and accumulation.</p>
+          <div class="courseMeta"><span class="meta">8 units</span><span class="meta">4 featured lessons</span><span class="meta">0 completed</span><span class="meta">4 remaining</span></div>
+          <div class="courseAccessNote">Preview mode provides complete course access for planning and quality review.</div>
+        </div>
+        <div class="courseProgress" aria-label="Course completion">
+          <div><span>Learning path progress</span><strong>0%</strong></div>
+          <div class="courseProgressTrack"><i style="width:0%"></i></div>
+          <small>Complete each lesson to unlock its focused practice.</small>
+        </div>
+      </article>
       <div class="toolbar">
         <div class="filterGroup" aria-label="Lesson filters">
           <button class="chip active" data-filter="all">All lessons</button>
@@ -111,7 +129,46 @@
           <button class="chip" id="collapseAll">Collapse all</button>
         </div>
       </div>
-      <div id="units"></div>
+      <div id="units" data-preview-fallback>
+        <section class="unit open" style="--unit-accent:#7b1e46" data-unit-index="0">
+          <div class="unitHeader">
+            <span class="unitOrdinal">01</span>
+            <span class="unitHeading"><span class="unitEyebrow">Unit 1</span><strong>Limits and Continuity</strong><small>Build limit intuition through graphical, numerical and algebraic representations.</small></span>
+            <span class="unitMetrics"><b>0/4</b><small>complete · 0 mastered</small><span class="unitMiniTrack"><i style="width:0%"></i></span></span>
+            <span class="unitChevron">⌄</span>
+          </div>
+          <div class="unitBody"><div class="lessons">
+            <article class="lesson" style="--lesson-order:0" data-ready="true" data-bookmarked="false" data-completed="false" data-text="limits instantaneous change rate of change">
+              <div class="lessonTop"><div class="lessonIdentity"><div class="lessonBadgeRow"><span class="lessonNo">1.1</span><span class="newBadge">Featured</span></div><h4>Can Change Occur at an Instant?</h4></div><span class="star" aria-hidden="true">☆</span></div>
+              <p class="lessonSummary">Interpret instantaneous change using graphical, numerical and contextual representations.</p>
+              <div class="learningPathRail"><div class="pathStage available"><i>1</i><span><strong>Lesson</strong><small>Ready to learn</small></span></div><div class="pathStage locked"><i>2</i><span><strong>Practice</strong><small>Complete lesson first</small></span></div><div class="pathStage locked"><i>3</i><span><strong>Mastery</strong><small>Build evidence</small></span></div></div>
+              <div class="objectiveBlock"><div class="cardSectionLabel"><span>Learning objectives</span><b>2</b></div><ul><li>Interpret instantaneous change in context.</li><li>Connect average and instantaneous rates of change.</li></ul></div>
+              <div class="lessonActions"><a class="linkBtn" href="lessons/ap-calculus/unit-1/1-1-can-change-occur-at-an-instant.html">Open lesson <span>→</span></a><a class="lessonPracticeBtn locked" href="#" aria-disabled="true">Practice this lesson</a><span class="completeBtn"><span>○</span>Finish inside lesson</span></div>
+            </article>
+            <article class="lesson" style="--lesson-order:1" data-ready="true" data-bookmarked="false" data-completed="false" data-text="defining limits limit notation">
+              <div class="lessonTop"><div class="lessonIdentity"><div class="lessonBadgeRow"><span class="lessonNo">1.2</span></div><h4>Defining Limits and Limit Notation</h4></div><span class="star" aria-hidden="true">☆</span></div>
+              <p class="lessonSummary">Express limiting behavior precisely and interpret one-sided and two-sided notation.</p>
+              <div class="learningPathRail"><div class="pathStage available"><i>1</i><span><strong>Lesson</strong><small>Ready to learn</small></span></div><div class="pathStage locked"><i>2</i><span><strong>Practice</strong><small>Complete lesson first</small></span></div><div class="pathStage locked"><i>3</i><span><strong>Mastery</strong><small>Build evidence</small></span></div></div>
+              <div class="objectiveBlock"><div class="cardSectionLabel"><span>Learning objectives</span><b>2</b></div><ul><li>Interpret limits using correct notation.</li><li>Compare one-sided and two-sided limits.</li></ul></div>
+              <div class="lessonActions"><a class="linkBtn" href="lessons/ap-calculus/unit-1/1-2-defining-limits-and-using-limit-notation.html">Open lesson <span>→</span></a><a class="lessonPracticeBtn locked" href="#" aria-disabled="true">Practice this lesson</a><span class="completeBtn"><span>○</span>Finish inside lesson</span></div>
+            </article>
+            <article class="lesson" style="--lesson-order:2" data-ready="true" data-bookmarked="false" data-completed="false" data-text="estimating limits graphs">
+              <div class="lessonTop"><div class="lessonIdentity"><div class="lessonBadgeRow"><span class="lessonNo">1.3</span></div><h4>Estimating Limit Values from Graphs</h4></div><span class="star" aria-hidden="true">☆</span></div>
+              <p class="lessonSummary">Read local graphical behavior to estimate finite and infinite limit values.</p>
+              <div class="learningPathRail"><div class="pathStage available"><i>1</i><span><strong>Lesson</strong><small>Ready to learn</small></span></div><div class="pathStage locked"><i>2</i><span><strong>Practice</strong><small>Complete lesson first</small></span></div><div class="pathStage locked"><i>3</i><span><strong>Mastery</strong><small>Build evidence</small></span></div></div>
+              <div class="objectiveBlock"><div class="cardSectionLabel"><span>Learning objectives</span><b>2</b></div><ul><li>Estimate limits from a function graph.</li><li>Identify when a graphical limit does not exist.</li></ul></div>
+              <div class="lessonActions"><a class="linkBtn" href="lessons/ap-calculus/unit-1/1-3-estimating-limit-values-from-graphs.html">Open lesson <span>→</span></a><a class="lessonPracticeBtn locked" href="#" aria-disabled="true">Practice this lesson</a><span class="completeBtn"><span>○</span>Finish inside lesson</span></div>
+            </article>
+            <article class="lesson" style="--lesson-order:3" data-ready="false" data-bookmarked="false" data-completed="false" data-text="estimating limits tables">
+              <div class="lessonTop"><div class="lessonIdentity"><div class="lessonBadgeRow"><span class="lessonNo">1.4</span></div><h4>Estimating Limit Values from Tables</h4></div><span class="star" aria-hidden="true">☆</span></div>
+              <p class="lessonSummary">Use numerical evidence from both sides of an input to estimate a limit.</p>
+              <div class="learningPathRail"><div class="pathStage available"><i>1</i><span><strong>Lesson</strong><small>Preview pathway</small></span></div><div class="pathStage locked"><i>2</i><span><strong>Practice</strong><small>Complete lesson first</small></span></div><div class="pathStage locked"><i>3</i><span><strong>Mastery</strong><small>Build evidence</small></span></div></div>
+              <div class="objectiveBlock"><div class="cardSectionLabel"><span>Learning objectives</span><b>2</b></div><ul><li>Estimate limits from tabular values.</li><li>Judge whether numerical evidence is sufficient.</li></ul></div>
+              <div class="lessonActions"><span class="linkBtn flow">Lesson coming soon</span><a class="lessonPracticeBtn locked" href="#" aria-disabled="true">Practice this lesson</a><span class="completeBtn"><span>○</span>Finish inside lesson</span></div>
+            </article>
+          </div></div>
+        </section>
+      </div>
     </section>
   </section>
 </main>
@@ -134,7 +191,7 @@
 })();
 </script>
 <script src="js/preview-portal-access.js?v=20260802-portal1"></script>
-<script src="js/portal.js?v=20260802-portal2"></script>
+<script src="js/portal.js?v=20260802-portal4"></script>
 <script src="js/lesson-portal-overhaul.js?v=20260802-portal1"></script>
 </body>
 </html>
