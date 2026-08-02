@@ -260,6 +260,20 @@
         );
     renderClass();
   }
+  function publishSmartRouteContext() {
+    const context = {
+      page: "teacher",
+      current,
+      classes,
+      selectedClass,
+      classData,
+      preview,
+    };
+    window.ECHSTeacherRouteContext = context;
+    document.dispatchEvent(
+      new CustomEvent("echs:smart-route-context", { detail: context }),
+    );
+  }
   function renderEmpty() {
     $("studentRows").innerHTML =
       '<tr><td colspan="8"><div class="emptyInstitution"><h3>Create your first class</h3><p>Use Manage class to add a course and roster.</p></div></td></tr>';
@@ -273,6 +287,7 @@
     ["heroMastery", "classAccuracy", "coverageMetric"].forEach(
       (id) => ($(id).textContent = "0%"),
     );
+    publishSmartRouteContext();
   }
   function activityClass(value) {
     if (!value) return "inactive";
@@ -467,6 +482,7 @@
           )
           .join("")
       : '<div class="emptyInstitution">No assignments yet.</div>';
+    publishSmartRouteContext();
   }
   function renderStudents() {
     const query = $("studentSearch").value.trim().toLowerCase(),
