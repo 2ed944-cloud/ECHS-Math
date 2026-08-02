@@ -3,11 +3,16 @@
 This repository contains the ECHS lesson portal and the canonical educational
 question bank.
 
+Course-specific practice banks uploaded through the Private Bank Manager live
+in private Supabase Storage and database tables. They are intentionally not
+counted as missing when the public GitHub catalogue is audited, and they must
+not be removed merely because they do not appear in the Pages source tree.
+
 ## Strict audited question boundary
 
 - Canonical records preserved: **1,217** (**876 MCQ**, **341 FRQ**).
-- Public student-ready records: **52** (**42 MCQ**, **10 FRQ**).
-- Teacher/archive-restricted records: **1,165**.
+- Public student-ready records: **1,104** (**776 MCQ**, **328 FRQ**).
+- Teacher/archive-restricted records: **113**.
 - Canonical IDs, source references, provenance, stable routes, and redacted
   archive metadata are preserved.
 

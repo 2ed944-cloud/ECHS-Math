@@ -54,6 +54,23 @@ def validate(root: Path, expected_sha: str) -> list[str]:
     if not (root / ".nojekyll").is_file():
         fail(errors, "Pages artifact must include .nojekyll")
 
+    development_only = [
+        ".github",
+        "tools",
+        "supabase",
+        "cloudflare-ai-worker",
+        "integration",
+        "reviews",
+        "question-bank/official/tools",
+        "question-bank/official/reports",
+        "question-bank/official/admin/reports",
+        "question-bank/official/admin/tools",
+        "question-bank/prac.html",
+    ]
+    for relative in development_only:
+        if (root / relative).exists():
+            fail(errors, f"Pages artifact includes development-only path: {relative}")
+
     deployment_text = read(root, "deployment.json", errors)
     try:
         deployment = json.loads(deployment_text or "{}")
@@ -169,7 +186,7 @@ def validate(root: Path, expected_sha: str) -> list[str]:
         "20260727-school-control-v1",
         "question-bank/school-control.html",
         "role===\"admin\"",
-        "question-bank\/admin\.html",
+        r"question-bank\/admin\.html",
     ]:
         if marker not in login_controller:
             fail(errors, f"Login controller missing fresh administrator-route marker: {marker}")

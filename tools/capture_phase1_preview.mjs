@@ -55,7 +55,7 @@ for(const device of devices){
         await page.waitForFunction(()=>document.getElementById('trustStatus')?.textContent?.includes('Authorised as teacher'),null,{timeout:12000});
         const trust=await page.evaluate(()=>({canonical:document.getElementById('canonicalCount')?.textContent,ready:document.getElementById('readyCount')?.textContent,restricted:document.getElementById('restrictedCount')?.textContent,tiers:document.querySelectorAll('.trustTier').length,gates:document.querySelectorAll('#releaseGate>div').length}));
         Object.assign(entry.interactions,{questionTrust:true,...trust});
-        if(trust.canonical!=='1,217'||trust.ready!=='52'||trust.restricted!=='1,165'||trust.tiers<4||trust.gates<5)report.errors.push(`${route.key}/${device.key}: Question Trust Center did not render the audited boundary`);
+        if(trust.canonical!=='1,217'||trust.ready!=='1,104'||trust.restricted!=='113'||trust.tiers<4||trust.gates<5)report.errors.push(`${route.key}/${device.key}: Question Trust Center did not render the audited boundary`);
       }
       if(route.evidenceHeatmap){
         await page.waitForFunction(()=>window.ECHSMasteryEvidence?.classEvidence&&document.getElementById('classSelector')?.value,null,{timeout:12000});

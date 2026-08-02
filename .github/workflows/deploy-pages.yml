@@ -74,6 +74,9 @@ jobs:
       - name: Verify authenticated learning pathway source contract
         run: python tools/test_learning_access_contract.py .
 
+      - name: Verify all local HTML references
+        run: python tools/validate_local_links.py .
+
       - name: Prepare immutable Pages artifact
         shell: bash
         run: |
@@ -86,6 +89,20 @@ jobs:
             --exclude='.echs-backups/' \
             --exclude='node_modules/' \
             --exclude='supabase/.temp/' \
+            --exclude='.github/' \
+            --exclude='tools/' \
+            --exclude='supabase/' \
+            --exclude='cloudflare-ai-worker/' \
+            --exclude='integration/' \
+            --exclude='reviews/' \
+            --exclude='question-bank/official/tools/' \
+            --exclude='question-bank/official/reports/' \
+            --exclude='question-bank/official/admin/reports/' \
+            --exclude='question-bank/official/admin/tools/' \
+            --exclude='question-bank/prac.html' \
+            --exclude='*.bak' \
+            --exclude='*.bat' \
+            --exclude='QA_REPORT.md' \
             ./ _pages/
           touch _pages/.nojekyll
           python tools/inject_learning_access_guard.py _pages

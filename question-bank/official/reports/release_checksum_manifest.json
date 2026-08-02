@@ -249,8 +249,8 @@
     },
     {
       "path": "data/student/media-manifest.json",
-      "bytes": 1483167,
-      "sha256": "b1a57d2b5b1b7cb95f28fb4228fd47b8ffbb34ba3efa4db93c22ce65c2fa6f9a"
+      "bytes": 1759346,
+      "sha256": "64f41e6a555fa961a2ab27bc5e3be2565b7e62316db8bb58baf90def4f741fb2"
     },
     {
       "path": "data/student/question-index.json",
@@ -479,8 +479,8 @@
     },
     {
       "path": "tools/validate_release.py",
-      "bytes": 40746,
-      "sha256": "ae1eab45f7c0b6c6805f32d2804b62dcd68399616642f7ff1d60316eb19793c9"
+      "bytes": 40744,
+      "sha256": "3acaf52537a5d6c98d4f7be45db617c793214ea60adddab9046f26e0cd313c59"
     }
   ]
 }

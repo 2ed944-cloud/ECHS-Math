@@ -84,12 +84,15 @@ required = {
     "Upload API": (upload_api, ("missing_course", "1.4.0-single-course-routing")),
     "Fast uploader": (uploader, ("Manifest must declare exactly one target course", "must have exactly one verified course mapping", "lesson_title", "--expected-course is required")),
     "Package validator": (validator, ("Manifest must declare exactly one target course", "Question must have exactly one course mapping")),
-    "Cleanup control": (purge, ('REMOVAL_ORDER=["ap-precalculus","ib-math-ai","algebra-2","grade-9"]', "KEEP AP CALCULUS ONLY")),
+    "Multi-course private registry": (purge, ('"ap-precalculus":"AP Precalculus"', '"ib-math-ai":"IB Mathematics AI"', "across the ECHS courses")),
 }
 for label, (source, markers) in required.items():
     for marker in markers:
         if marker not in source:
             errors.append(f"{label} missing {marker}")
+for forbidden in ("KEEP AP CALCULUS ONLY", "REMOVAL_ORDER", "private-bank-purge-api"):
+    if forbidden in purge:
+        errors.append(f"Private Bank Center retains destructive bulk-cleanup marker {forbidden}")
 
 sys.path.insert(0, str(ROOT / "tools"))
 try:
