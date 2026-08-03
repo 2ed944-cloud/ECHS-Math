@@ -7,6 +7,12 @@ on:
     paths:
       - '.release-staging/ib-ai-unit1-v5.3.0.chunk-*'
       - '.github/workflows/materialize-ib-ai-unit1-v5.yml'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '.release-staging/ib-ai-unit1-v5.3.0.chunk-*'
+      - '.github/workflows/materialize-ib-ai-unit1-v5.yml'
 
 permissions:
   contents: write
