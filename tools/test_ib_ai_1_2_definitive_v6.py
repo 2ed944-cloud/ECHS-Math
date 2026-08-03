@@ -12,7 +12,12 @@ from pathlib import Path
 ROOT = Path(sys.argv[1] if len(sys.argv) > 1 else ".").resolve()
 LESSON = Path("lessons/ib-math-ai/unit-1")
 HTML = LESSON / "lessons/IB_AI_SL_1.2_arithmetic_sequences_ECHS.html"
-CSS = LESSON / "assets/css/lesson-1.2-arithmetic-definitive-v6.css"
+CSS_FILES = [
+    LESSON / "assets/css/lesson-1.2-arithmetic-v6-core.css",
+    LESSON / "assets/css/lesson-1.2-arithmetic-v6-concepts.css",
+    LESSON / "assets/css/lesson-1.2-arithmetic-v6-series.css",
+    LESSON / "assets/css/lesson-1.2-arithmetic-v6-interactive.css",
+]
 OVERLAY = LESSON / "data/lesson-1.2-arithmetic-definitive-v6.js"
 INTERACTIONS = LESSON / "data/lesson-1.2-arithmetic-v6-interactions.js"
 PAGER = LESSON / "data/lesson-1.2-exam-focus-v6.js"
@@ -27,7 +32,6 @@ DATA_FILES = [
 ]
 errors: list[str] = []
 
-
 def read(path: Path) -> str:
     full = ROOT / path
     if not full.is_file():
@@ -35,9 +39,8 @@ def read(path: Path) -> str:
         return ""
     return full.read_text(encoding="utf-8", errors="replace")
 
-
 html = read(HTML)
-css = read(CSS)
+css = "\n".join(read(path) for path in CSS_FILES)
 overlay = read(OVERLAY)
 interactions = read(INTERACTIONS)
 pager = read(PAGER)
@@ -48,7 +51,10 @@ for path in (*DATA_FILES, INTERACTIONS, PAGER):
         errors.append(f"JavaScript syntax failure in {path}: {result.stderr.strip()}")
 
 for marker in (
-    "lesson-1.2-arithmetic-definitive-v6.css?v=6.0.0",
+    "lesson-1.2-arithmetic-v6-core.css?v=6.0.0",
+    "lesson-1.2-arithmetic-v6-concepts.css?v=6.0.0",
+    "lesson-1.2-arithmetic-v6-series.css?v=6.0.0",
+    "lesson-1.2-arithmetic-v6-interactive.css?v=6.0.0",
     "lesson-1.2-arithmetic-definitive-v6.js?v=6.0.0",
     "lesson-1.2-arithmetic-v6-polish.js?v=6.0.0",
     "lesson-1.2-exam-focus-v6.js?v=6.0.0",
@@ -64,7 +70,7 @@ if not (
     < html.index("lesson-1.2-arithmetic-v6-interactions.js?v=6.0.0")
 ):
     errors.append("Lesson data must load before engine and interactions after engine")
-if html.index("lesson-1.2-arithmetic-definitive-v6.css?v=6.0.0") > html.index("katex.css"):
+if html.index("lesson-1.2-arithmetic-v6-interactive.css?v=6.0.0") > html.index("katex.css"):
     errors.append("Lesson CSS must load before canonical KaTeX CSS")
 
 for forbidden in (
@@ -179,8 +185,10 @@ if "<svg" in joined.lower():
 math_pattern = re.compile(r"\\\([\s\S]*?\\\)|\\\[[\s\S]*?\\\]")
 for slide in slides:
     for segment in math_pattern.findall(slide.get("html", "")):
-        if "<" in segment or ">" in segment:
-            errors.append(f"Raw comparison character remains in math: {slide['title']}")
+        if "<" in segment:
+            errors.append(f"Raw less-than sign remains in math: {slide['title']}")
+        if ">" in segment:
+            errors.append(f"Raw greater-than sign remains in math: {slide['title']}")
 
 for item in practice:
     prompt = item.get("prompt", "").lower()
@@ -232,6 +240,7 @@ for flag in ("htmlCssGraphics", "arithmeticExplorer", "generativeStudio", "sigma
     if audit.get(flag) is not True:
         errors.append(f"Audit flag not true: {flag}")
 
+# Independent numerical spot checks.
 spot_checks = {
     "ASV6-1.2-E01": (12, [2,2,2,3,2,1]),
     "ASV6-1.2-E02": (13, [2,3,2,3,2,1]),
