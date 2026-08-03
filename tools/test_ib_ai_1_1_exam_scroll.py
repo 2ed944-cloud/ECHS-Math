@@ -79,8 +79,8 @@ def main() -> int:
     try:
         catalog = json.loads(catalog_text)
         lesson = next(item for item in catalog["lessons"] if item["number"] == "1.1")
-        if lesson.get("release") != "5.2.3":
-            errors.append(f"Catalog release is {lesson.get('release')!r}; expected '5.2.3'")
+        if lesson.get("release") != "6.0.0":
+            errors.append(f"Catalog release is {lesson.get('release')!r}; expected '6.0.0'")
     except (json.JSONDecodeError, KeyError, StopIteration) as exc:
         errors.append(f"Could not validate delivery catalog: {exc}")
 

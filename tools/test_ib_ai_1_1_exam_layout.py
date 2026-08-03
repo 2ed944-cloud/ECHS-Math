@@ -19,6 +19,8 @@ DATA_FILES = [
     LESSON_ROOT / "data/lesson-1.1-v5-03.js",
     LESSON_ROOT / "data/lesson-1.1-v5-04.js",
     LESSON_ROOT / "data/lesson-1.1-v5-05.js",
+    LESSON_ROOT / "data/lesson-1.1-number-foundations-v6-content.js",
+    LESSON_ROOT / "data/lesson-1.1-number-foundations-v6-polish.js",
 ]
 
 
@@ -47,6 +49,7 @@ def validate(root: Path, errors: list[str]) -> None:
         (
             "lesson-1.1-exam-v5-2-1.css?v=5.2.2",
             "lesson-1.1-exam-v5-2-1.js?v=5.2.2",
+            "lesson-1.1-number-foundations-v6-content.js?v=6.0.0",
         ),
         "Lesson HTML",
         errors,
@@ -94,10 +97,10 @@ def validate(root: Path, errors: list[str]) -> None:
     try:
         catalog = json.loads(catalog_text)
         lesson = next(item for item in catalog["lessons"] if item["number"] == "1.1")
-        if lesson.get("release") != "5.2.3":
-            errors.append(f"Catalog release is {lesson.get('release')!r}; expected '5.2.3'")
-        if lesson.get("extended_tasks") != 3:
-            errors.append("Catalog must retain exactly 3 extended tasks")
+        if lesson.get("release") != "6.0.0":
+            errors.append(f"Catalog release is {lesson.get('release')!r}; expected '6.0.0'")
+        if lesson.get("extended_tasks") != 5:
+            errors.append("Catalog must declare exactly 5 extended tasks")
     except (json.JSONDecodeError, KeyError, StopIteration) as exc:
         errors.append(f"Could not validate delivery catalog: {exc}")
 
@@ -117,7 +120,9 @@ process.stdout.write(JSON.stringify({{
   parts:d.exam.map(task=>task.parts.length),
   marks:d.exam.map(task=>task.total_marks),
   ids:d.exam.map(task=>task.id),
-  labels:d.exam.map(task=>task.parts.map(part=>part.label))
+  titles:d.exam.map(task=>task.title),
+  labels:d.exam.map(task=>task.parts.map(part=>part.label)),
+  partMarks:d.exam.map(task=>task.parts.reduce((sum,part)=>sum+part.marks,0))
 }}));
 """
     assembled = subprocess.run(["node", "-e", node_program], cwd=root, text=True, capture_output=True)
@@ -129,15 +134,19 @@ process.stdout.write(JSON.stringify({{
     except json.JSONDecodeError as exc:
         errors.append(f"Assessment data output was not JSON: {exc}")
         return
-    if data.get("tasks") != 3:
-        errors.append(f"Expected 3 assessment tasks; found {data.get('tasks')}")
+    if data.get("tasks") != 5:
+        errors.append(f"Expected 5 assessment tasks; found {data.get('tasks')}")
     if any(parts < 3 for parts in data.get("parts", [])):
         errors.append(f"Every assessment task must contain at least 3 parts: {data.get('parts')}")
     if len(data.get("ids", [])) != len(set(data.get("ids", []))):
         errors.append("Assessment task IDs are not unique")
+    if len(data.get("titles", [])) != len(set(data.get("titles", []))):
+        errors.append("Assessment task titles are not unique")
     for task_labels in data.get("labels", []):
         if len(task_labels) != len(set(task_labels)):
             errors.append(f"Assessment part labels are not unique within a task: {task_labels}")
+    if data.get("marks") != data.get("partMarks"):
+        errors.append(f"Declared task marks do not match part totals: {data.get('marks')} vs {data.get('partMarks')}")
 
 
 def main() -> int:

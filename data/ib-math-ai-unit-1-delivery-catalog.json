@@ -3,24 +3,25 @@
   "course": "ib-math-ai",
   "unit": 1,
   "title": "Number and Algebra",
-  "release": "5.3.0",
+  "release": "5.3.1",
   "totals": {
     "lessons": 8,
-    "learn_slides": 288,
-    "practice_questions": 416,
+    "learn_slides": 331,
+    "practice_questions": 460,
     "timed_quiz_questions": 112,
-    "extended_tasks": 24
+    "extended_tasks": 26
   },
   "reference_basis": [
     "Mathematics: Applications and Interpretation SL — Pearson (supplied edition)",
+    "Mathematics: Applications and Interpretation SL 2 — Haese Mathematics (supplied edition)",
     "Christos Nikolaidis Topic 1A lecture notes",
-    "Supplied MAI exercise sets for numbers, exponents, systems, arithmetic and geometric sequences"
+    "Supplied MAI exercise sets for numbers, approximation, exponents, systems, arithmetic and geometric sequences"
   ],
   "lessons": [
     {
       "lesson_key": "u1-standard-form",
       "number": "1.1",
-      "title": "Scientific Notation and Orders of Magnitude",
+      "title": "Number Foundations, Scientific Notation and Approximation",
       "skill_ids": [
         "IBAI.U1.NUMBER",
         "IBAI.U1.MODELING"
@@ -28,11 +29,11 @@
       "status": "ready",
       "student_visible": true,
       "url": "lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.1_standard_form_ECHS.html",
-      "release": "5.2.3",
-      "learn_slides": 36,
-      "practice_questions": 52,
+      "release": "6.0.0",
+      "learn_slides": 79,
+      "practice_questions": 96,
       "timed_quiz_questions": 14,
-      "extended_tasks": 3
+      "extended_tasks": 5
     },
     {
       "lesson_key": "u1-arithmetic-sequences",
