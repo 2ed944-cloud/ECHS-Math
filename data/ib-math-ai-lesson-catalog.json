@@ -3,7 +3,7 @@
   "course": "ib-math-ai",
   "title": "IB Mathematics: Applications and Interpretation Lesson Catalogue",
   "student_visible": true,
-  "catalog_state": "unit-1-ready-other-units-content-build-required",
+  "catalog_state": "mixed-readiness-see-unit-records",
   "implementation_window": "current-school-course-through-2028",
   "future_review": "Reconcile with the first-assessment-2029 guide before adoption for that cohort.",
   "units": [
@@ -39,11 +39,11 @@
       {"lesson_key":"u4-correlation","number":"4.4","title":"Correlation, Regression, and Interpretation","skill_id":"IBAI.U4.CORRELATION","status":"content-build-required","student_visible":false},
       {"lesson_key":"u4-inference","number":"4.5","title":"Statistical Inference Readiness","skill_id":"IBAI.U4.INFERENCE","status":"content-build-required","student_visible":false}
     ]},
-    {"unit":5,"title":"Calculus","lessons":[
-      {"lesson_key":"u5-change","number":"5.1","title":"Rates of Change and Tangent Concepts","skill_id":"IBAI.U5.CHANGE","status":"content-build-required","student_visible":false},
-      {"lesson_key":"u5-derivative","number":"5.2","title":"Differentiation and Interpretation","skill_id":"IBAI.U5.DERIVATIVE","status":"content-build-required","student_visible":false},
-      {"lesson_key":"u5-integral","number":"5.3","title":"Integration and Accumulation","skill_id":"IBAI.U5.INTEGRAL","status":"content-build-required","student_visible":false},
-      {"lesson_key":"u5-optimization","number":"5.4","title":"Optimization and Contextual Applications","skill_id":"IBAI.U5.OPTIMIZATION","status":"content-build-required","student_visible":false}
+    {"unit":5,"title":"Calculus","status":"ready","student_visible":true,"delivery_catalog":"data/ib-math-ai-unit-5-delivery-catalog.json","unit_home":"lessons/ib-math-ai/unit-5/START_HERE.html","delivery_metrics":{"lessons":7,"learning_cards":360,"practice":340,"tasks":21,"quiz":84},"lessons":[
+      {"lesson_key":"u5-change","number":"5.1","title":"Limits and Rates of Change","skill_id":"IBAI.U5.CHANGE","status":"ready","student_visible":true,"delivery_lesson_numbers":["5.1"]},
+      {"lesson_key":"u5-derivative","number":"5.2–5.4","title":"Differentiation, Tangents, Normals, and Curve Behaviour","skill_id":"IBAI.U5.DERIVATIVE","status":"ready","student_visible":true,"delivery_lesson_numbers":["5.2","5.3","5.4"]},
+      {"lesson_key":"u5-optimization","number":"5.5","title":"Optimisation and Modelling","skill_id":"IBAI.U5.OPTIMIZATION","status":"ready","student_visible":true,"delivery_lesson_numbers":["5.5"]},
+      {"lesson_key":"u5-integral","number":"5.6–5.7","title":"Antidifferentiation, Accumulation, Area, and the Trapezoidal Rule","skill_id":"IBAI.U5.INTEGRAL","status":"ready","student_visible":true,"delivery_lesson_numbers":["5.6","5.7"]}
     ]}
   ]
 }

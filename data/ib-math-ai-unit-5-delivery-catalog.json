@@ -1,0 +1,103 @@
+{
+  "schema_version": "2.0.0",
+  "course_id": "g11-ib-ai",
+  "unit": 5,
+  "unit_title": "Calculus",
+  "status": "ready",
+  "student_visible": true,
+  "unit_home": "lessons/ib-math-ai/unit-5/START_HERE.html",
+  "metrics": {
+    "lessons": 7,
+    "learning_cards": 360,
+    "practice": 340,
+    "tasks": 21,
+    "quiz": 84
+  },
+  "lessons": [
+    {
+      "lesson_number": "5.1",
+      "title": "Limits and Rates of Change",
+      "lesson_key": "u5-limits-change",
+      "practice_lesson_keys": ["u5-change"],
+      "skill_keys": ["IBAI.U5.CHANGE"],
+      "url": "lessons/ib-math-ai/unit-5/lessons/IB_AI_SL_5.1_limits_rates_change_ECHS.html",
+      "learning_cards": 48,
+      "practice_questions": 48,
+      "extended_tasks": 3,
+      "quiz_questions": 12
+    },
+    {
+      "lesson_number": "5.2",
+      "title": "Differentiation Rules and Derivative Functions",
+      "lesson_key": "u5-derivative-rules",
+      "practice_lesson_keys": ["u5-derivative"],
+      "skill_keys": ["IBAI.U5.DERIVATIVE"],
+      "url": "lessons/ib-math-ai/unit-5/lessons/IB_AI_SL_5.2_derivatives_rules_functions_ECHS.html",
+      "learning_cards": 56,
+      "practice_questions": 52,
+      "extended_tasks": 3,
+      "quiz_questions": 12
+    },
+    {
+      "lesson_number": "5.3",
+      "title": "Tangents and Normals",
+      "lesson_key": "u5-tangents-normals",
+      "practice_lesson_keys": ["u5-derivative"],
+      "skill_keys": ["IBAI.U5.DERIVATIVE"],
+      "url": "lessons/ib-math-ai/unit-5/lessons/IB_AI_SL_5.3_tangents_normals_ECHS.html",
+      "learning_cards": 48,
+      "practice_questions": 48,
+      "extended_tasks": 3,
+      "quiz_questions": 12
+    },
+    {
+      "lesson_number": "5.4",
+      "title": "Curve Behaviour and Stationary Points",
+      "lesson_key": "u5-curve-behaviour",
+      "practice_lesson_keys": ["u5-derivative"],
+      "skill_keys": ["IBAI.U5.DERIVATIVE"],
+      "url": "lessons/ib-math-ai/unit-5/lessons/IB_AI_SL_5.4_curve_behaviour_stationary_points_ECHS.html",
+      "learning_cards": 48,
+      "practice_questions": 48,
+      "extended_tasks": 3,
+      "quiz_questions": 12
+    },
+    {
+      "lesson_number": "5.5",
+      "title": "Optimisation and Modelling",
+      "lesson_key": "u5-optimisation-modelling",
+      "practice_lesson_keys": ["u5-optimization"],
+      "skill_keys": ["IBAI.U5.OPTIMIZATION"],
+      "url": "lessons/ib-math-ai/unit-5/lessons/IB_AI_SL_5.5_optimisation_modelling_ECHS.html",
+      "learning_cards": 52,
+      "practice_questions": 48,
+      "extended_tasks": 3,
+      "quiz_questions": 12
+    },
+    {
+      "lesson_number": "5.6",
+      "title": "Antidifferentiation and Accumulation",
+      "lesson_key": "u5-antidifferentiation",
+      "practice_lesson_keys": ["u5-integral"],
+      "skill_keys": ["IBAI.U5.INTEGRAL"],
+      "url": "lessons/ib-math-ai/unit-5/lessons/IB_AI_SL_5.6_antidifferentiation_accumulation_ECHS.html",
+      "learning_cards": 48,
+      "practice_questions": 48,
+      "extended_tasks": 3,
+      "quiz_questions": 12
+    },
+    {
+      "lesson_number": "5.7",
+      "title": "Area and the Trapezoidal Rule",
+      "lesson_key": "u5-area-trapezoidal",
+      "practice_lesson_keys": ["u5-integral"],
+      "skill_keys": ["IBAI.U5.INTEGRAL"],
+      "url": "lessons/ib-math-ai/unit-5/lessons/IB_AI_SL_5.7_area_trapezoidal_rule_ECHS.html",
+      "learning_cards": 60,
+      "practice_questions": 48,
+      "extended_tasks": 3,
+      "quiz_questions": 12
+    }
+  ],
+  "release": "v2.0.0"
+}
