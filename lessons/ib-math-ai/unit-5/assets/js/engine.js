@@ -6,7 +6,7 @@
   const packageBase = new URL('../../../../packages/ib-unit5-v2/', document.baseURI);
   const chunkNames = [
     ...Array.from({ length: 9 }, (_, index) => `part-${String(index).padStart(2, '0')}.b64`),
-    ...Array.from({ length: 10 }, (_, index) => `part-09-${String(index).padStart(2, '0')}.b64`),
+    'part-09.b64',
     ...Array.from({ length: 10 }, (_, index) => `part-10-${String(index).padStart(2, '0')}.b64`),
     'part-11-00.b64'
   ];
@@ -34,7 +34,7 @@
 
   async function fetchChunks() {
     const responses = await Promise.all(chunkNames.map(async name => {
-      const response = await fetch(new URL(name, packageBase), { cache: 'force-cache' });
+      const response = await fetch(new URL(`${name}?v=20260803-zipfix1`, packageBase), { cache: 'no-store' });
       if (!response.ok) throw new Error(`Missing package chunk: ${name}`);
       return (await response.text()).replace(/\s+/g, '');
     }));
@@ -48,10 +48,11 @@
       await loadScript('https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js');
     }
     const encoded = await fetchChunks();
+    if (!encoded.startsWith('UEsD')) throw new Error('The Unit 5 package header is invalid.');
     const binary = atob(encoded);
     const bytes = new Uint8Array(binary.length);
     for (let index = 0; index < binary.length; index += 1) bytes[index] = binary.charCodeAt(index);
-    const zip = await window.JSZip.loadAsync(bytes);
+    const zip = await window.JSZip.loadAsync(bytes, { checkCRC32: true });
     const prefix = 'lessons/ib-math-ai/unit-5/';
     const cssEntry = zip.file(`${prefix}assets/css/theme.css`);
     const dataEntry = zip.file(`${prefix}data/lesson-${lessonNumber}.js`);
