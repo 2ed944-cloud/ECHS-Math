@@ -1,0 +1,57 @@
+name: QA IB Mathematics AI Unit 1 v5
+
+on:
+  push:
+    branches:
+      - agent/rebuild-ib-ai-unit1-teaching-v5
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+concurrency:
+  group: qa-ib-ai-unit1-v5-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/rebuild-ib-ai-unit1-teaching-v5
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Chromium QA dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install playwright
+          python -m playwright install --with-deps chromium
+
+      - name: Validate structure, mathematics and platform integration
+        run: |
+          set -euo pipefail
+          python3 tools/validate_ib_ai_unit1_v5.py .
+          node tools/validate_ib_ai_unit1_v5.mjs .
+          python3 tools/audit_ib_ai_unit1_v5_math.py .
+          python3 tools/test_ib_lesson_platform_integration.py .
+          node --check lessons/ib-math-ai/unit-1/data/unit-1-v5-content-data.js
+          node --check lessons/ib-math-ai/unit-1/data/unit-1-v5-apply.js
+          node --check lessons/ib-math-ai/unit-1/data/unit-1-v5-runtime.js
+          node --check data/ib-math-ai-unit-1-update.js
+
+      - name: Run complete desktop and mobile Chromium QA
+        run: |
+          set -euo pipefail
+          python3 tools/browser_qa_ib_ai_unit1_v5.py .
+
+      - name: Upload QA report
+        uses: actions/upload-artifact@v4
+        with:
+          name: ib-ai-unit1-v5-browser-qa
+          path: lessons/ib-math-ai/unit-1/reports/browser-qa-v5-3-0.json
