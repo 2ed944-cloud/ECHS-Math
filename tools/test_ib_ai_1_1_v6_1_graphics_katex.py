@@ -164,19 +164,21 @@ def box(selector: str) -> tuple[float, float, float, float] | None:
     pattern = re.compile(
         rf"{re.escape(selector)}\s*\{{(?P<body>[^}}]+)\}}", re.S
     )
-    match = pattern.search(css)
-    if not match:
+    matches = list(pattern.finditer(css))
+    if not matches:
         errors.append(f"Missing geometry selector: {selector}")
         return None
-    body = match.group("body")
-    values: dict[str, float] = {}
-    for key in ("left", "top", "width", "height"):
-        found = re.search(rf"{key}\s*:\s*([0-9.]+)%", body)
-        if not found:
-            errors.append(f"{selector} missing percentage {key}")
-            return None
-        values[key] = float(found.group(1))
-    return values["left"], values["top"], values["width"], values["height"]
+    for match in matches:
+        body = match.group("body")
+        values: dict[str, float] = {}
+        for key in ("left", "top", "width", "height"):
+            found = re.search(rf"{key}\s*:\s*([0-9.]+)%", body)
+            if found:
+                values[key] = float(found.group(1))
+        if len(values) == 4:
+            return values["left"], values["top"], values["width"], values["height"]
+    errors.append(f"{selector} has no complete percentage geometry rule")
+    return None
 
 
 def contains(outer: tuple[float, float, float, float], inner: tuple[float, float, float, float]) -> bool:
