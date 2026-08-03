@@ -4,6 +4,7 @@
   if(!data||String(data.lesson?.number)!=='1.3')return;
   const slide=title=>data.slides.find(item=>item.title===title);
   const practice=id=>data.practice.find(item=>item.id===id);
+  const quiz=id=>data.quiz.find(item=>item.id===id);
   const task=id=>data.exam.find(item=>item.id===id);
 
   const preview=slide('Integrated IB-style geometric model');
@@ -25,11 +26,23 @@
     a23.solution='\\(S_{18}=120(1.08^{18}-1)/0.08\\approx4494.03\\).';
     a23.check={mode:'number',value:4494.03,tolerance:0.03};
   }
+  const r24=practice('GSV6-1.3-R24');
+  if(r24){
+    r24.prompt='Explain why connecting plotted points of a geometric sequence does not create additional sequence terms.';
+    r24.answer='The sequence domain consists of integer indices; a connecting curve is only a visual guide.';
+    r24.solution='Values between consecutive integer indices are not members of the sequence unless a separate continuous model is explicitly defined.';
+  }
   const c04=practice('GSV6-1.3-C04');
   if(c04){
     c04.answer='\\(p=\\dfrac{15+\\sqrt{218}}7\\) or \\(p=\\dfrac{15-\\sqrt{218}}7\\).';
     c04.solution='Set \\((3p+2)^2=(2p-1)(8p-5)\\). This gives \\(7p^2-30p+1=0\\), so \\(p=(15\\pm\\sqrt{218})/7\\).';
     delete c04.check;
+  }
+  const c10=practice('GSV6-1.3-C10');
+  if(c10){
+    c10.answer='\\(531414\\).';
+    c10.solution='The block has \\(9\\) terms, first \\(54\\), ratio \\(3\\): \\(54(3^9-1)/2=531414\\).';
+    c10.check={mode:'number',value:531414,tolerance:1e-9};
   }
   const c13=practice('GSV6-1.3-C13');
   if(c13){
@@ -56,6 +69,13 @@
     c24.solution='\\(S_{18}=120(1.08^{18}-1)/0.08\\approx4494.03\\). Using the finite-sum formula avoids repeated rounding; apply whole-person interpretation only after calculating the model total.';
   }
 
+  const q12=quiz('GSV6-1.3-Q12');
+  if(q12){
+    q12.answer='\\(1638\\).';
+    q12.solution='The selected terms are \\(18,162,1458\\), which sum to \\(1638\\). They form a geometric subsequence with ratio \\(9\\).';
+    q12.check={mode:'number',value:1638,tolerance:1e-9};
+  }
+
   const bounce=task('GSV6-1.3-E04');
   if(bounce){
     const part=bounce.parts.find(item=>item.label==='c');
@@ -79,6 +99,9 @@
     correctedWildlifeModelValues:true,
     correctedBounceDistance:true,
     correctedSymbolicParameterRoots:true,
-    correctedPiecewiseGrowthValue:true
+    correctedShiftedBlockSum:true,
+    correctedPiecewiseGrowthValue:true,
+    correctedSubsequenceQuizValue:true,
+    extensionExcludedFromCoreAssessment:true
   });
 })();
