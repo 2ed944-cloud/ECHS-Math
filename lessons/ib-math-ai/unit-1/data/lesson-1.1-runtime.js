@@ -6,9 +6,24 @@
   const $=(selector,root=document)=>root.querySelector(selector);
   const $$=(selector,root=document)=>[...root.querySelectorAll(selector)];
   const setText=(node,text)=>{ if(node && node.textContent!==text) node.textContent=text; };
+  let lastStage=null;
   function storageGet(key){ try{return window.localStorage.getItem(prefix+key);}catch(_){return null;} }
   function storageSet(key,value){ try{window.localStorage.setItem(prefix+key,String(value));}catch(_){} }
   function goToLearnIndex(index){ storageSet('learn-index',index); if(location.hash!=='#learn') location.hash='#learn'; location.reload(); }
+  function resetNewStage(){
+    const stage=$('.stage');
+    if(!stage || stage===lastStage) return;
+    lastStage=stage;
+    const reset=()=>{
+      stage.scrollTop=0;
+      stage.scrollLeft=0;
+      const shell=$('#app');
+      if(shell){ shell.scrollTop=0; shell.scrollLeft=0; }
+      window.scrollTo(0,0);
+    };
+    reset();
+    requestAnimationFrame(()=>{ reset(); requestAnimationFrame(reset); });
+  }
   function patch(root){
     root.querySelectorAll('[data-filter]').forEach(button=>{
       const level=button.dataset.filter;
@@ -27,6 +42,7 @@
     document.body.classList.toggle('route-page-active',!!footer && getComputedStyle(footer).display==='none');
     const start=$('#start-lesson');
     if(start){ const current=Number(storageGet('learn-index')||0); setText(start,current>0?'Continue':'Start'); }
+    resetNewStage();
   }
   function closeMenu(){ document.body.classList.remove('lesson-menu-open'); const b=$('#toggle-route-menu'); if(b)b.setAttribute('aria-expanded','false'); }
   function start(){
