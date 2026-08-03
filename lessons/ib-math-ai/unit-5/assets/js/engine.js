@@ -8,7 +8,7 @@
     ...Array.from({ length: 9 }, (_, index) => `part-${String(index).padStart(2, '0')}.b64`),
     'part-09.b64',
     ...Array.from({ length: 10 }, (_, index) => `part-10-${String(index).padStart(2, '0')}.b64`),
-    'part-11-00.b64'
+    'part-11.b64'
   ];
 
   function setStatus(title, detail) {
@@ -34,7 +34,7 @@
 
   async function fetchChunks() {
     const responses = await Promise.all(chunkNames.map(async name => {
-      const response = await fetch(new URL(`${name}?v=20260803-zipfix1`, packageBase), { cache: 'no-store' });
+      const response = await fetch(new URL(`${name}?v=20260803-zipfix2`, packageBase), { cache: 'no-store' });
       if (!response.ok) throw new Error(`Missing package chunk: ${name}`);
       return (await response.text()).replace(/\s+/g, '');
     }));
