@@ -1,4 +1,4 @@
-/* IB AI SL 1.1 v5.1 — final visual hierarchy, KaTeX isolation and platform-shell geometry */
+/* IB AI SL 1.1 v5.2 — selector-safe typography, graphics and platform geometry */
 :root{
   --header:76px;
   --footer:64px;
@@ -7,19 +7,11 @@
   --lesson-top-pad:clamp(22px,2.7vw,40px);
 }
 
-/* Keep the authenticated pathway bar and the lesson header from occupying the same pixels. */
-html[data-lesson-access-layout="bar"] .topbar{
-  top:var(--echs-access-bar-height,52px)!important;
-}
-html[data-lesson-access-layout="bar"] .app-shell{
-  top:calc(var(--echs-access-bar-height,52px) + var(--header))!important;
-}
-html[data-lesson-access-layout="bar"] .routebar{
-  top:calc(var(--echs-access-bar-height,52px) + var(--header) - 8px)!important;
-}
-html:not([data-lesson-access-layout="bar"]) .routebar{
-  top:calc(var(--header) - 8px)!important;
-}
+/* Authenticated pathway bar and lesson shell must occupy separate rows. */
+html[data-lesson-access-layout="bar"] .topbar{top:var(--echs-access-bar-height,52px)!important}
+html[data-lesson-access-layout="bar"] .app-shell{top:calc(var(--echs-access-bar-height,52px) + var(--header))!important}
+html[data-lesson-access-layout="bar"] .routebar{top:calc(var(--echs-access-bar-height,52px) + var(--header) - 8px)!important}
+html:not([data-lesson-access-layout="bar"]) .routebar{top:calc(var(--header) - 8px)!important}
 
 /* Compact AP-style shell. */
 html.ap-screen-lesson .topbar{
@@ -28,37 +20,20 @@ html.ap-screen-lesson .topbar{
   gap:16px!important;
   padding:0 18px!important;
 }
-html.ap-screen-lesson .brand-block{
-  gap:11px!important;
-  padding-right:16px!important;
-}
-html.ap-screen-lesson .brand-mark{
-  width:44px!important;
-  height:44px!important;
-  font-size:14px!important;
-}
-html.ap-screen-lesson .brand-text b{font-size:14px!important}
-html.ap-screen-lesson .brand-text span{font-size:11px!important}
-html.ap-screen-lesson .header-title strong{font-size:16px!important}
-html.ap-screen-lesson .header-title small{font-size:11px!important}
+html.ap-screen-lesson .brand-block{gap:11px!important;padding-right:16px!important}
+html.ap-screen-lesson .brand-mark{width:44px!important;height:44px!important;font-size:14px!important}
+html.ap-screen-lesson .brand-text>b{font-size:14px!important}
+html.ap-screen-lesson .brand-text>span{font-size:11px!important}
+html.ap-screen-lesson .header-title>strong{font-size:16px!important}
+html.ap-screen-lesson .header-title>small{font-size:11px!important}
 html.ap-screen-lesson .header-primary{padding:9px 15px!important}
 html.ap-screen-lesson .header-tool{width:40px!important;height:40px!important}
-
 html.ap-screen-lesson .stage-inner{
   width:min(var(--lesson-content-max),100%)!important;
   padding:var(--lesson-top-pad) var(--lesson-side-pad) 34px!important;
 }
-html.ap-screen-lesson .slide-section{
-  margin-bottom:8px!important;
-  padding:6px 10px!important;
-  font-size:11px!important;
-}
-html.ap-screen-lesson .slide-eyebrow{
-  margin:8px 0 5px!important;
-  font-size:11.5px!important;
-  line-height:1.3!important;
-  letter-spacing:.105em!important;
-}
+html.ap-screen-lesson .slide-section{margin-bottom:8px!important;padding:6px 10px!important;font-size:11px!important}
+html.ap-screen-lesson .slide-eyebrow{margin:8px 0 5px!important;font-size:11.5px!important;line-height:1.3!important;letter-spacing:.105em!important}
 html.ap-screen-lesson .slide-title{
   max-width:1320px!important;
   margin:5px 0 20px!important;
@@ -67,340 +42,107 @@ html.ap-screen-lesson .slide-title{
   letter-spacing:-.037em!important;
   text-wrap:balance;
 }
-html.ap-screen-lesson .slide-body{
-  font-size:clamp(16px,1.08vw,19px)!important;
-  line-height:1.48!important;
-}
+html.ap-screen-lesson .slide-body{font-size:clamp(16px,1.08vw,19px)!important;line-height:1.48!important}
 html.ap-screen-lesson .slide-body p,
-html.ap-screen-lesson .slide-body li{
-  font-size:clamp(16px,1.08vw,19px)!important;
-  line-height:1.48!important;
-}
+html.ap-screen-lesson .slide-body li{font-size:clamp(16px,1.08vw,19px)!important;line-height:1.48!important}
 
-/* Cover: less oversized, more balanced, and mathematically coherent. */
-html.ap-screen-lesson .ap-cover{
-  grid-template-columns:minmax(0,1.06fr) minmax(380px,.94fr)!important;
-  gap:clamp(30px,4vw,62px)!important;
-}
-html.ap-screen-lesson .ap-cover h1{
-  max-width:790px!important;
-  margin:12px 0 15px!important;
-  font-size:clamp(50px,5vw,80px)!important;
-  line-height:.93!important;
-}
-html.ap-screen-lesson .cover-lead{
-  max-width:740px!important;
-  font-size:clamp(17px,1.32vw,22px)!important;
-  line-height:1.42!important;
-}
-html.ap-screen-lesson .meaning-callout{
-  max-width:720px!important;
-  margin-top:19px!important;
-  padding:14px 16px!important;
-}
+/* Cover. */
+html.ap-screen-lesson .ap-cover{grid-template-columns:minmax(0,1.06fr) minmax(380px,.94fr)!important;gap:clamp(30px,4vw,62px)!important}
+html.ap-screen-lesson .ap-cover h1{max-width:790px!important;margin:12px 0 15px!important;font-size:clamp(50px,5vw,80px)!important;line-height:.93!important}
+html.ap-screen-lesson .cover-lead{max-width:740px!important;font-size:clamp(17px,1.32vw,22px)!important;line-height:1.42!important}
+html.ap-screen-lesson .meaning-callout{max-width:720px!important;margin-top:19px!important;padding:14px 16px!important}
 html.ap-screen-lesson .cover-start{margin-top:18px!important}
-html.ap-screen-lesson .cover-visual{
-  padding:24px!important;
-  border-radius:24px!important;
-}
-.scale-spectrum{
-  position:relative;
-  display:grid;
-  grid-template-columns:repeat(5,minmax(0,1fr));
-  gap:0;
-  margin:42px 0 18px;
-  padding-top:20px;
-}
-.scale-spectrum::before{
-  content:"";
-  position:absolute;
-  left:5%;right:5%;top:5px;
-  height:5px;
-  border-radius:99px;
-  background:linear-gradient(90deg,#8b173e,#d4a72c,#177e89,#17324d);
-}
+html.ap-screen-lesson .cover-visual{padding:24px!important;border-radius:24px!important}
+.scale-spectrum{position:relative;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;margin:42px 0 18px;padding-top:20px}
+.scale-spectrum::before{content:"";position:absolute;left:5%;right:5%;top:5px;height:5px;border-radius:99px;background:linear-gradient(90deg,#8b173e,#d4a72c,#177e89,#17324d)}
 .scale-stop{position:relative;text-align:center;min-width:0}
-.scale-stop::before{
-  content:"";
-  position:absolute;
-  top:-24px;left:50%;
-  width:14px;height:14px;
-  transform:translateX(-50%);
-  border:4px solid #fff;
-  border-radius:50%;
-  background:#17324d;
-  box-shadow:0 0 0 2px #17324d;
-}
-.scale-stop strong{display:block;color:#17324d;font-size:17px;white-space:nowrap}
-.scale-stop strong sup{font-size:.62em;color:#8b173e}
-.scale-stop span{display:block;margin-top:8px;color:#5d6a75;font-size:11px;white-space:nowrap}
+.scale-stop::before{content:"";position:absolute;top:-24px;left:50%;width:14px;height:14px;transform:translateX(-50%);border:4px solid #fff;border-radius:50%;background:#17324d;box-shadow:0 0 0 2px #17324d}
+.scale-stop>strong{display:block;color:#17324d;font-size:17px;white-space:nowrap}
+.scale-stop>strong>sup{font-size:.62em;color:#8b173e}
+.scale-stop>span{display:block;margin-top:8px;color:#5d6a75;font-size:11px;white-space:nowrap}
 
-/* Component rhythm and card proportions. */
+/* Component rhythm. */
 html.ap-screen-lesson .goal-grid{gap:13px!important}
-html.ap-screen-lesson .goal-card{
-  min-height:135px!important;
-  padding:18px!important;
-  border-radius:17px!important;
-}
-html.ap-screen-lesson .check-card{
-  min-height:104px!important;
-  padding:17px 15px 14px 52px!important;
-}
+html.ap-screen-lesson .goal-card{min-height:135px!important;padding:18px!important;border-radius:17px!important}
+html.ap-screen-lesson .check-card{min-height:104px!important;padding:17px 15px 14px 52px!important}
 html.ap-screen-lesson .worked-box,
 html.ap-screen-lesson .student-box,
 html.ap-screen-lesson .application-box,
-html.ap-screen-lesson .ib-task{
-  border-radius:20px!important;
-}
+html.ap-screen-lesson .ib-task{border-radius:20px!important}
 html.ap-screen-lesson .worked-head,
-html.ap-screen-lesson .student-head{
-  gap:9px 15px!important;
-  padding:14px 18px!important;
-}
+html.ap-screen-lesson .student-head{gap:9px 15px!important;padding:14px 18px!important}
 html.ap-screen-lesson .worked-head>span,
-html.ap-screen-lesson .student-head>span{
-  flex:0 0 auto;
-  padding:5px 9px!important;
-  border-radius:999px!important;
-  background:var(--gold)!important;
-  color:var(--navy)!important;
-  font-size:11px!important;
-  font-weight:950!important;
-  letter-spacing:.08em!important;
-}
+html.ap-screen-lesson .student-head>span{flex:0 0 auto;padding:5px 9px!important;border-radius:999px!important;background:var(--gold)!important;color:var(--navy)!important;font-size:11px!important;font-weight:950!important;letter-spacing:.08em!important}
 html.ap-screen-lesson .worked-head>b,
-html.ap-screen-lesson .student-head>b{
-  min-width:0;
-  flex:1 1 520px;
-  font-size:clamp(16px,1.25vw,20px)!important;
-  line-height:1.42!important;
-}
-html.ap-screen-lesson .worked-steps{
-  gap:11px!important;
-  padding:17px!important;
-}
-html.ap-screen-lesson .worked-steps>div{
-  min-height:98px!important;
-  padding:14px 13px 11px 46px!important;
-}
+html.ap-screen-lesson .student-head>b{min-width:0;flex:1 1 520px;font-size:clamp(16px,1.25vw,20px)!important;line-height:1.42!important}
+html.ap-screen-lesson .worked-steps{gap:11px!important;padding:17px!important}
+html.ap-screen-lesson .worked-steps>div{min-height:98px!important;padding:14px 13px 11px 46px!important}
 html.ap-screen-lesson .worked-result,
-html.ap-screen-lesson .equation-chain{
-  margin:0 17px 14px!important;
-  padding:12px 16px!important;
-  font-size:clamp(18px,1.5vw,25px)!important;
-}
+html.ap-screen-lesson .equation-chain{margin:0 17px 14px!important;padding:12px 16px!important;font-size:clamp(18px,1.5vw,25px)!important}
 html.ap-screen-lesson .reason-check,
-html.ap-screen-lesson .interpret-box{
-  margin:0 17px 17px!important;
-  padding:12px 14px!important;
-}
-html.ap-screen-lesson .student-note{
-  min-height:108px!important;
-  margin-top:13px!important;
-}
+html.ap-screen-lesson .interpret-box{margin:0 17px 17px!important;padding:12px 14px!important}
+html.ap-screen-lesson .student-note{min-height:108px!important;margin-top:13px!important}
 html.ap-screen-lesson .student-note.tall{min-height:145px!important}
 
-/* Restore KaTeX after generic card selectors accidentally style every descendant span. */
-html.ap-screen-lesson .math-inline{
-  display:inline!important;
-  width:auto!important;
-  min-width:0!important;
-  height:auto!important;
-  min-height:0!important;
-  margin:0!important;
-  padding:0!important;
-  border:0!important;
-  border-radius:0!important;
-  background:transparent!important;
-  box-shadow:none!important;
-  color:inherit!important;
-  font-size:inherit!important;
-  font-weight:inherit!important;
-  letter-spacing:normal!important;
-  white-space:nowrap!important;
-}
-html.ap-screen-lesson .math-inline .katex span,
-html.ap-screen-lesson .math-display .katex span,
-html.ap-screen-lesson .katex-display .katex span{
-  display:revert;
-  width:auto;
-  min-width:0;
-  height:auto;
-  min-height:0;
-  margin:0;
-  padding:0;
-  border:0;
-  border-radius:0;
-  background:transparent;
-  box-shadow:none;
-  color:inherit;
-  letter-spacing:normal;
-}
-html.ap-screen-lesson .katex-display{
-  margin:.55em 0!important;
-  overflow-x:auto!important;
-  overflow-y:hidden!important;
-}
-html.ap-screen-lesson .worked-head .math-inline,
-html.ap-screen-lesson .student-head .math-inline,
-html.ap-screen-lesson .application-head .math-inline,
-html.ap-screen-lesson .ib-task-head .math-inline,
-html.ap-screen-lesson .validation-grid .math-inline,
-html.ap-screen-lesson .unit-grid .math-inline,
-html.ap-screen-lesson .status-row .math-inline,
-html.ap-screen-lesson .magnitude-lane .math-inline{
-  padding:0!important;
-  border:0!important;
-  background:transparent!important;
-  color:inherit!important;
-}
+/* KaTeX-safe sizing. Never override internal KaTeX spans, positions or transforms. */
+html.ap-screen-lesson .katex{max-width:100%;color:inherit}
+html.ap-screen-lesson .katex-display{margin:.55em 0!important;max-width:100%;overflow-x:auto!important;overflow-y:hidden!important}
+html.ap-screen-lesson .formula-hero>.katex-display,
+html.ap-screen-lesson .formula-panel>.katex-display,
+html.ap-screen-lesson .worked-result>.katex-display,
+html.ap-screen-lesson .equation-chain>.katex-display,
+html.ap-screen-lesson .normalization-rule>.katex-display,
+html.ap-screen-lesson .summary-formula>.katex-display{padding:.08em 0}
+html.ap-screen-lesson .worked-head .katex,
+html.ap-screen-lesson .student-head .katex,
+html.ap-screen-lesson .application-head .katex,
+html.ap-screen-lesson .ib-task-head .katex{font-size:1em;color:inherit}
+html.ap-screen-lesson .worked-steps .katex,
+html.ap-screen-lesson .check-card .katex,
+html.ap-screen-lesson .status-row .katex{font-size:1em}
+html.ap-screen-lesson .equation-chain.small>.katex-display>.katex{font-size:.92em}
+html.ap-screen-lesson .formula-panel>.katex-display>.katex,
+html.ap-screen-lesson .formula-hero>.katex-display>.katex{font-size:1em}
 
-/* Correct the few infographic components that were using descendant-wide selectors. */
-html.ap-screen-lesson .status-row>span,
-html.ap-screen-lesson .worked-mini>span,
-html.ap-screen-lesson .validation-grid>div>span,
-html.ap-screen-lesson .unit-grid>div>span{
-  display:block;
-}
-html.ap-screen-lesson .magnitude-lane{
-  min-height:300px!important;
-  margin:0!important;
-  border-left:4px solid var(--navy)!important;
-  border-radius:0 18px 18px 0!important;
-  background:linear-gradient(90deg,#fff,#f3f9f8)!important;
-  overflow:hidden;
-}
-html.ap-screen-lesson .magnitude-lane>div>span{
-  display:inline-flex!important;
-  align-items:center;
-  padding:7px 11px!important;
-  border-radius:10px!important;
-  background:var(--navy)!important;
-  color:#fff!important;
-  font-weight:850!important;
-  white-space:nowrap;
-}
-html.ap-screen-lesson .validation-grid{
-  gap:12px!important;
-  padding:17px!important;
-}
-html.ap-screen-lesson .validation-grid>div{
-  min-height:145px!important;
-  padding:15px!important;
-}
-.validation-math{
-  margin-top:13px;
-  color:var(--navy);
-  font-size:clamp(17px,1.25vw,22px);
-  line-height:1.45;
-}
+/* Stable infographics. */
+html.ap-screen-lesson .validation-grid{gap:12px!important;padding:17px!important}
+html.ap-screen-lesson .validation-grid>div{min-height:145px!important;padding:15px!important}
+.validation-math{margin-top:13px;color:var(--navy);font-size:clamp(17px,1.25vw,22px);line-height:1.45}
+.validation-math>.katex-display>.katex{font-size:.96em}
 html.ap-screen-lesson .unit-grid{gap:13px!important}
-html.ap-screen-lesson .unit-grid>div{
-  min-height:215px!important;
-  padding:19px!important;
-}
-.unit-equation{
-  display:grid;
-  place-items:center;
-  min-height:90px;
-  margin:12px 0 10px;
-  padding:13px;
-  border-radius:14px;
-  background:#f2f8f8;
-  color:var(--navy);
-  font-size:clamp(17px,1.35vw,23px);
-  overflow-x:auto;
-}
-
-/* More stable comparison graphic. */
-.order-ladder{
-  position:relative;
-  display:grid;
-  gap:11px;
-  padding:16px 18px 16px 52px;
-  border:1px solid #d4e1e4;
-  border-radius:20px;
-  background:linear-gradient(145deg,#fff,#edf7f6);
-}
-.order-ladder::before{
-  content:"smaller";
-  position:absolute;
-  left:17px;top:18px;bottom:18px;
-  width:4px;
-  border-radius:99px;
-  background:linear-gradient(180deg,var(--maroon),var(--gold),var(--teal),var(--navy));
-  color:transparent;
-}
-.order-item{
-  display:grid;
-  grid-template-columns:36px minmax(0,1fr) auto;
-  gap:12px;
-  align-items:center;
-  padding:12px 14px;
-  border:1px solid #dce4e7;
-  border-radius:14px;
-  background:#fff;
-}
-.order-item>span{
-  display:grid;
-  place-items:center;
-  width:30px;height:30px;
-  border-radius:50%;
-  background:var(--navy);
-  color:#fff;
-  font-size:12px;
-  font-weight:900;
-}
+html.ap-screen-lesson .unit-grid>div{min-height:215px!important;padding:19px!important}
+.unit-equation{display:grid;place-items:center;min-height:90px;margin:12px 0 10px;padding:13px;border-radius:14px;background:#f2f8f8;color:var(--navy);font-size:clamp(17px,1.35vw,23px);overflow-x:auto}
+.unit-equation>.katex-display>.katex{font-size:.95em}
+.order-ladder{position:relative;display:grid;gap:11px;padding:16px 18px 16px 52px;border:1px solid #d4e1e4;border-radius:20px;background:linear-gradient(145deg,#fff,#edf7f6)}
+.order-ladder::before{content:"";position:absolute;left:17px;top:18px;bottom:18px;width:4px;border-radius:99px;background:linear-gradient(180deg,var(--maroon),var(--gold),var(--teal),var(--navy))}
+.order-item{display:grid;grid-template-columns:36px minmax(0,1fr) auto;gap:12px;align-items:center;padding:12px 14px;border:1px solid #dce4e7;border-radius:14px;background:#fff}
+.order-item>span{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--navy);color:#fff;font-size:12px;font-weight:900}
 .order-item>b{color:var(--navy);font-size:clamp(17px,1.25vw,22px)}
 .order-item>small{color:var(--muted);font-size:12px;font-weight:800}
 
-/* Route pages and assessment view. */
-html.ap-screen-lesson .route-page{
-  width:min(1480px,calc(100% - 36px))!important;
-  max-width:none!important;
-  margin:0 auto!important;
-  padding:26px clamp(18px,3vw,44px) 42px!important;
-}
+/* Route pages and assessment. */
+html.ap-screen-lesson .route-page{width:min(1480px,calc(100% - 36px))!important;max-width:none!important;margin:0 auto!important;padding:26px clamp(18px,3vw,44px) 42px!important}
 html.ap-screen-lesson .route-header{margin-bottom:16px!important}
-html.ap-screen-lesson .route-header h1{
-  margin:4px 0 8px!important;
-  font-size:clamp(34px,3.5vw,54px)!important;
-  line-height:1.02!important;
-}
+html.ap-screen-lesson .route-header>h1{margin:4px 0 8px!important;font-size:clamp(34px,3.5vw,54px)!important;line-height:1.02!important}
 html.ap-screen-lesson .question-shell,
-html.ap-screen-lesson .exam-task{
-  border-radius:20px!important;
-}
+html.ap-screen-lesson .exam-task{border-radius:20px!important}
 html.ap-screen-lesson .exam-part textarea,
-html.ap-screen-lesson .response-input{
-  min-height:92px!important;
-}
+html.ap-screen-lesson .response-input{min-height:92px!important}
 
-/* Tutor no longer covers Next or the progress control. */
-html.ap-screen-lesson .echsAiTutor{
-  right:18px!important;
-  bottom:calc(var(--footer) + 12px)!important;
-}
-
-/* Footer proportions remain usable at 100% and high browser zoom. */
-html.ap-screen-lesson .footer{
-  height:var(--footer)!important;
-  grid-template-columns:auto minmax(180px,1fr) auto!important;
-  gap:14px!important;
-  padding:7px 18px!important;
-}
+/* Tutor and footer. */
+html.ap-screen-lesson .echsAiTutor{right:18px!important;bottom:calc(var(--footer) + 12px)!important}
+html.ap-screen-lesson .echsAiTutor__launcher{padding:10px 14px!important;font-size:14px!important}
+html.ap-screen-lesson .echsAiTutor__launcher>span{width:28px!important;height:28px!important;font-size:17px!important}
+html.ap-screen-lesson .footer{height:var(--footer)!important;grid-template-columns:auto minmax(180px,1fr) auto!important;gap:14px!important;padding:7px 18px!important}
 html.ap-screen-lesson .footer .icon-btn,
-html.ap-screen-lesson .footer .nav-btn{
-  min-height:42px!important;
-  padding:8px 14px!important;
-}
+html.ap-screen-lesson .footer .nav-btn{min-height:42px!important;padding:8px 14px!important}
 html.ap-screen-lesson .progress-track{max-width:760px!important}
 
 @media(max-width:1100px){
   :root{--header:70px;--footer:62px}
   html.ap-screen-lesson .topbar{grid-template-columns:auto minmax(0,1fr) auto!important}
-  html.ap-screen-lesson .brand-text span,
-  html.ap-screen-lesson .header-title small{display:none!important}
+  html.ap-screen-lesson .brand-text>span,
+  html.ap-screen-lesson .header-title>small{display:none!important}
   html.ap-screen-lesson .ap-cover{grid-template-columns:1fr!important}
   html.ap-screen-lesson .cover-visual{max-width:780px}
   html.ap-screen-lesson .slide-title{font-size:clamp(34px,4.6vw,52px)!important}
@@ -413,7 +155,7 @@ html.ap-screen-lesson .progress-track{max-width:760px!important}
   html.ap-screen-lesson .topbar{grid-template-columns:auto 1fr auto!important;padding:0 9px!important}
   html.ap-screen-lesson .brand-text{display:none!important}
   html.ap-screen-lesson .header-title{text-align:left!important}
-  html.ap-screen-lesson .header-title strong{font-size:13px!important}
+  html.ap-screen-lesson .header-title>strong{font-size:13px!important}
   html.ap-screen-lesson .header-primary{display:none!important}
   html.ap-screen-lesson .slide-title{font-size:clamp(31px,9vw,44px)!important}
   html.ap-screen-lesson .ap-cover h1{font-size:clamp(42px,12vw,61px)!important}
