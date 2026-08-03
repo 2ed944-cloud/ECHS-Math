@@ -1,0 +1,61 @@
+name: Materialize IB Mathematics AI Unit 1 v5
+
+on:
+  push:
+    branches:
+      - agent/rebuild-ib-ai-unit1-teaching-v5
+    paths:
+      - '.release-staging/ib-ai-unit1-v5.3.0.chunk-*'
+      - '.github/workflows/materialize-ib-ai-unit1-v5.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: materialize-ib-ai-unit1-v5
+  cancel-in-progress: false
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: agent/rebuild-ib-ai-unit1-teaching-v5
+
+      - name: Reconstruct verified release
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat .release-staging/ib-ai-unit1-v5.3.0.chunk-* | base64 --decode > /tmp/ib-ai-unit1-v5.3.0.tar.gz
+          echo '0373e7392d0c33b42dacfb82ace881e79a792453d1bd3df2d0c0faa9cb145fdc  /tmp/ib-ai-unit1-v5.3.0.tar.gz' | sha256sum --check --strict
+          mkdir -p /tmp/ib-ai-unit1-v5
+          tar -xzf /tmp/ib-ai-unit1-v5.3.0.tar.gz -C /tmp/ib-ai-unit1-v5
+          rsync -a /tmp/ib-ai-unit1-v5/ ./
+
+      - name: Validate release before commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 tools/validate_ib_ai_unit1_v5.py .
+          node tools/validate_ib_ai_unit1_v5.mjs .
+          python3 tools/audit_ib_ai_unit1_v5_math.py .
+          python3 tools/test_ib_lesson_platform_integration.py .
+          node --check lessons/ib-math-ai/unit-1/data/unit-1-v5-content-data.js
+          node --check lessons/ib-math-ai/unit-1/data/unit-1-v5-apply.js
+          node --check lessons/ib-math-ai/unit-1/data/unit-1-v5-runtime.js
+          node --check data/ib-math-ai-unit-1-update.js
+
+      - name: Commit materialized release
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf .release-staging
+          rm -f .github/workflows/materialize-ib-ai-unit1-v5.yml
+          git config user.name 'ECHS Release Automation'
+          git config user.email 'actions@users.noreply.github.com'
+          git add -A
+          git diff --cached --check
+          git commit -m 'Install complete IB Mathematics AI Unit 1 teaching release'
+          git push origin HEAD:agent/rebuild-ib-ai-unit1-teaching-v5
