@@ -20,6 +20,7 @@ on:
       - "tools/test_ib_lesson_platform_integration.py"
       - "tools/test_ib_ai_1_1_visual_integrity.py"
       - "tools/test_ib_ai_1_1_exam_layout.py"
+      - "tools/test_ib_ai_1_1_exam_scroll.py"
       - "tools/test_practice_course_isolation.mjs"
       - "tools/test_student_single_bank.mjs"
       - "sw.js"
@@ -52,6 +53,9 @@ jobs:
 
       - name: Validate Lesson 1.1 assessment layout
         run: python tools/test_ib_ai_1_1_exam_layout.py .
+
+      - name: Validate Lesson 1.1 assessment scrolling
+        run: python tools/test_ib_ai_1_1_exam_scroll.py .
 
       - name: Validate source integration
         run: python tools/test_ib_lesson_platform_integration.py .
