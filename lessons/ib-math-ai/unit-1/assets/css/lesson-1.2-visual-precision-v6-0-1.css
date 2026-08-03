@@ -1,0 +1,120 @@
+/* Lesson 1.2 visual precision hotfix v6.0.1
+   Keeps value and notation separate and makes the discrete linear guide
+   pass through all five plotted points at every responsive size. */
+
+.as-track-comparison{
+  align-items:stretch;
+}
+.as-track-columns{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:3px;
+  margin-top:13px;
+  color:var(--as-muted);
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:.08em;
+  text-align:center;
+  text-transform:uppercase;
+}
+.as-track-columns>small:first-child{
+  color:var(--as-maroon);
+}
+.as-track-precise{
+  margin-top:7px;
+}
+.as-track-precise>div{
+  min-width:0;
+  min-height:96px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  padding:12px 7px 10px;
+}
+.as-track-precise>div>strong{
+  display:block;
+  color:var(--as-navy);
+  font-size:clamp(24px,2.1vw,34px);
+  line-height:1;
+  font-variant-numeric:tabular-nums;
+}
+.as-track-precise>div>small{
+  display:block;
+  min-width:48px;
+  padding:5px 8px;
+  border-radius:999px;
+  background:rgba(255,255,255,.72);
+  color:var(--as-muted);
+  font-size:14px;
+  line-height:1.15;
+  text-align:center;
+}
+.as-term-track.as-track-precise>div>small{
+  border:1px solid rgba(23,126,137,.2);
+}
+.as-sum-track.as-track-precise>div>small{
+  border:1px solid rgba(212,167,44,.28);
+}
+
+.as-discrete-graph-precise>.as-exact-linear-guide{
+  position:absolute;
+  z-index:2;
+  inset:0;
+  width:auto;
+  height:auto;
+  transform:none;
+  transform-origin:initial;
+  opacity:.8;
+  background:linear-gradient(90deg,var(--as-teal),var(--as-gold));
+  clip-path:polygon(17.55% 78.75%,18.45% 77.25%,82.45% 21.25%,81.55% 22.75%);
+  pointer-events:none;
+}
+.as-discrete-graph-precise>i{
+  z-index:3;
+}
+.as-discrete-graph-precise>.as-graph-rule{
+  position:absolute;
+  z-index:4;
+  top:8%;
+  right:8%;
+  padding:7px 10px;
+  border:1px solid var(--as-line);
+  border-radius:11px;
+  background:rgba(255,255,255,.94);
+  color:var(--as-navy);
+  font-size:13px;
+  font-weight:900;
+  box-shadow:0 7px 18px rgba(23,50,77,.08);
+}
+.as-discrete-graph-precise>.as-discrete-domain{
+  position:absolute;
+  z-index:4;
+  right:8%;
+  bottom:4%;
+  color:var(--as-muted);
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+
+@media(max-width:700px){
+  .as-track-precise{
+    grid-template-columns:repeat(5,minmax(66px,1fr));
+    overflow-x:auto;
+    padding-bottom:4px;
+  }
+  .as-track-precise>div{
+    min-height:88px;
+  }
+  .as-discrete-graph-precise>.as-graph-rule{
+    top:6%;
+    right:5%;
+    font-size:11px;
+  }
+  .as-discrete-graph-precise>.as-discrete-domain{
+    right:5%;
+  }
+}
