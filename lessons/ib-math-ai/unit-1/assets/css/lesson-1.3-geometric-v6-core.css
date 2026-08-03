@@ -1,0 +1,70 @@
+/* IB Mathematics AI SL 1.3 — Geometric Sequences and Series v6.0.0
+   Component-scoped AP-style visual system; no KaTeX-internal selectors. */
+:root{
+  --gs-navy:#17324d;--gs-navy-2:#24557d;--gs-maroon:#7a1733;--gs-maroon-2:#9b2850;
+  --gs-teal:#177e89;--gs-gold:#d4a72c;--gs-paper:#fffdf9;--gs-warm:#f7f2eb;
+  --gs-mint:#edf8f7;--gs-blue:#eef4fa;--gs-rose:#fff2f5;--gs-line:#d8e2e7;
+  --gs-muted:#5d6a75;--gs-shadow:0 16px 42px rgba(23,50,77,.09)
+}
+html.ap-screen-lesson.unit1-lesson-1-3 .stage-inner{width:min(1540px,100%)!important}
+html.ap-screen-lesson.unit1-lesson-1-3 .slide-title{max-width:1420px}
+html.ap-screen-lesson.unit1-lesson-1-3 .slide-body{font-size:clamp(15px,1.25vw,19px)!important}
+html.ap-screen-lesson.unit1-lesson-1-3 .slide-body p{max-width:none}
+html.ap-screen-lesson.unit1-lesson-1-3 body:not(.route-page-active) .echsAiTutor{right:18px!important;bottom:84px!important}
+.gs-two,.gs-three,.gs-four{display:grid;gap:18px;align-items:stretch}
+.gs-two{grid-template-columns:repeat(2,minmax(0,1fr))}.gs-three{grid-template-columns:repeat(3,minmax(0,1fr))}.gs-four{grid-template-columns:repeat(4,minmax(0,1fr))}
+.gs-key,.gs-definition,.gs-definition-card,.gs-context-card,.gs-compare-card,.gs-track-card,.gs-diagnostic,
+.gs-opening,.gs-worked,.gs-student,.gs-explorer,.gs-generator,.gs-ib-preview,.gs-exit,.gs-sigma-anatomy{
+  min-width:0;border:1px solid var(--gs-line);border-radius:21px;background:#fff;box-shadow:var(--gs-shadow)
+}
+.gs-key,.gs-definition,.gs-definition-card,.gs-context-card,.gs-compare-card,.gs-track-card{padding:20px}
+.gs-key{border-left:6px solid var(--gs-teal)}
+.gs-definition{border-top:5px solid var(--gs-teal)}.gs-definition:nth-child(2){border-top-color:var(--gs-gold)}.gs-definition:nth-child(3){border-top-color:var(--gs-maroon)}.gs-definition:nth-child(4){border-top-color:var(--gs-navy)}
+.gs-key>b,.gs-definition>span,.gs-definition-card>span,.gs-context-card>span,.gs-compare-card>span,.gs-track-card>span{
+  display:block;color:var(--gs-maroon);font-size:10.5px;font-weight:950;letter-spacing:.11em;text-transform:uppercase
+}
+.gs-math,.gs-formula,.gs-big-math,.gs-result{max-width:100%;overflow-x:auto;overflow-y:hidden;color:var(--gs-navy);text-align:center}
+.gs-math,.gs-formula{margin-top:12px;padding:13px 15px;border-radius:14px;background:linear-gradient(135deg,var(--gs-mint),#f7fbfd);font-size:clamp(17px,1.35vw,24px)}
+.gs-big-math{margin:15px 0;font-size:clamp(22px,2vw,34px)}
+.gs-result{margin:0 17px 17px;padding:14px 16px;border-radius:15px;background:linear-gradient(135deg,var(--gs-mint),#f7fbfd);font-size:clamp(20px,1.65vw,28px)}
+.gs-list{margin:14px 0 0;padding-left:22px}.gs-list>li{margin:8px 0}
+.gs-note,.gs-warning,.gs-reason-check,.gs-visual-note,.gs-caption,.gs-success-strip{
+  margin-top:15px;padding:14px 17px;border-radius:15px;color:#304655;font-size:clamp(14px,1vw,17px);line-height:1.5
+}
+.gs-note,.gs-visual-note{border-left:5px solid var(--gs-teal);background:var(--gs-mint)}
+.gs-warning{border:1px solid #efc5cf;border-left:5px solid var(--gs-maroon);background:var(--gs-rose)}
+.gs-reason-check,.gs-success-strip{border-left:5px solid var(--gs-gold);background:#fff7df}
+.gs-caption{background:var(--gs-blue);text-align:center}
+.gs-primary,.gs-secondary{display:inline-flex;min-height:42px;align-items:center;justify-content:center;border-radius:12px;padding:9px 15px;font:inherit;font-weight:900;cursor:pointer}
+.gs-primary{border:0;background:linear-gradient(135deg,var(--gs-maroon),var(--gs-maroon-2));color:#fff;box-shadow:0 8px 18px rgba(122,23,51,.18)}
+.gs-secondary{border:1px solid var(--gs-line);background:#fff;color:var(--gs-navy)}
+.gs-primary:hover,.gs-secondary:hover{transform:translateY(-1px)}
+.gs-cover{min-height:calc(100dvh - var(--u1header) - var(--u1route) - var(--u1footer) - 70px);display:grid;grid-template-columns:minmax(0,1.05fr) minmax(520px,.95fr);gap:clamp(28px,4vw,58px);align-items:center}
+.gs-kicker{color:var(--gs-gold);font-size:12px;font-weight:950;letter-spacing:.14em}
+.gs-cover h1{margin:.45rem 0 1rem;color:var(--gs-navy);font-size:clamp(52px,5.7vw,88px);line-height:.91;letter-spacing:-.06em}
+.gs-cover h1>span{display:block;margin-bottom:11px;color:var(--gs-maroon);font-size:.3em;letter-spacing:.02em}
+.gs-lead{max-width:67ch;color:var(--gs-muted);font-size:clamp(18px,1.65vw,23px);line-height:1.52}
+.gs-central{display:grid;grid-template-columns:auto 1fr;gap:11px;align-items:start;margin-top:18px;padding:15px 17px;border-left:6px solid var(--gs-teal);border-radius:0 15px 15px 0;background:var(--gs-mint)}
+.gs-central>b{color:var(--gs-maroon)}
+.gs-cover .cover-start{margin-top:18px;border:0;border-radius:14px;padding:12px 18px;background:var(--gs-maroon);color:#fff;font:inherit;font-weight:900;cursor:pointer}
+.gs-cover-visual{min-width:0;padding:22px;border:1px solid #ded7ce;border-radius:28px;background:rgba(255,253,249,.96);box-shadow:0 22px 52px rgba(23,50,77,.12)}
+.gs-visual-title{color:var(--gs-navy);font-size:12px;font-weight:950;letter-spacing:.13em}
+.gs-route{display:grid;grid-template-columns:repeat(5,minmax(90px,1fr));gap:18px;margin-top:22px}
+.gs-route>div{position:relative;min-width:0;min-height:145px;padding:14px 10px;border:1px solid var(--gs-line);border-radius:18px;background:linear-gradient(145deg,#fff,var(--gs-mint));text-align:center}
+.gs-route>div:nth-child(2){background:linear-gradient(145deg,#fff,#fff7df)}.gs-route>div:nth-child(3){background:linear-gradient(145deg,#fff,var(--gs-blue))}.gs-route>div:nth-child(4){background:linear-gradient(145deg,#fff,var(--gs-rose))}
+.gs-route>div>b{display:grid;width:33px;height:33px;place-items:center;margin:0 auto 10px;border-radius:10px;background:var(--gs-maroon);color:#fff}
+.gs-route>div>span{display:block;color:var(--gs-navy);font-size:13px;font-weight:950;line-height:1.25}.gs-route>div>small{display:block;margin-top:8px;color:var(--gs-muted);font-size:9.5px;line-height:1.32}
+.gs-route>div:not(:last-child)::after{content:'→';position:absolute;top:50%;right:-18px;transform:translateY(-50%);color:var(--gs-gold);font-size:20px;font-weight:950}
+.gs-cover-visual>.gs-caption{margin-top:18px}
+.gs-problem-banner{display:inline-flex;padding:6px 10px;border-radius:999px;background:var(--gs-maroon);color:#fff;font-size:11px;font-weight:950;letter-spacing:.1em}
+.gs-opening{padding:24px;background:linear-gradient(145deg,#fff,var(--gs-warm))}.gs-opening-layout{margin-top:15px}
+.gs-question-stack{display:grid;gap:9px;margin-top:14px}.gs-question-stack>div{display:grid;grid-template-columns:33px 1fr;gap:10px;align-items:center;padding:11px 12px;border:1px solid var(--gs-line);border-radius:13px;background:#fff}
+.gs-question-stack>div>b{display:grid;width:30px;height:30px;place-items:center;border-radius:9px;background:var(--gs-maroon);color:#fff}
+.gs-growth-visual{display:flex;min-height:360px;align-items:end;justify-content:center;gap:12px;padding:28px 20px 70px;border-radius:22px;background:linear-gradient(180deg,#eef6f8,#fff);position:relative}
+.gs-growth-stage{width:16%;height:var(--h);min-height:55px;display:flex;flex-direction:column;align-items:center;justify-content:end;padding:10px 5px;border-radius:12px 12px 3px 3px;background:linear-gradient(180deg,var(--gs-gold),var(--gs-teal));color:#fff}
+.gs-growth-stage>b,.gs-growth-stage>small{display:block}.gs-growth-stage>small{font-size:9px}.gs-growth-visual>i{align-self:center;color:var(--gs-maroon);font-style:normal;font-weight:950}
+.gs-growth-visual>.gs-visual-note{position:absolute;left:18px;right:18px;bottom:15px;margin:0}
+.gs-goal-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
+.gs-goal-grid>article{position:relative;min-height:140px;padding:18px 16px 15px 57px;border:1px solid var(--gs-line);border-radius:18px;background:#fff;box-shadow:0 10px 25px rgba(23,50,77,.05)}
+.gs-goal-grid>article>b{position:absolute;top:15px;left:15px;display:grid;width:31px;height:31px;place-items:center;border-radius:10px;background:var(--gs-maroon);color:#fff}.gs-goal-grid>article>h3{margin:0 0 8px;font-size:17px}.gs-goal-grid>article>p{margin:0}
+.gs-diagnostic{padding:23px}.gs-diagnostic-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.gs-diagnostic-grid>div{min-height:105px;padding:15px;border:1px solid var(--gs-line);border-radius:15px;background:#fbfaf7}.gs-diagnostic-grid>div>b{display:block;margin-bottom:7px;color:var(--gs-maroon)}
