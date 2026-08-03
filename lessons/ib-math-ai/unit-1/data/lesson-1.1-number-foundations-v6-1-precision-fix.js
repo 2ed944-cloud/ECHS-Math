@@ -155,7 +155,7 @@
      of a tag. Convert it to a KaTeX command in every lesson string before the
      engine builds DOM nodes. */
   const mathSegment=/(\\\([\s\S]*?\\\)|\\\[[\s\S]*?\\\])/g;
-  const sanitizeMath=value=>value.replace(mathSegment,segment=>segment.replace(/</g,'\\\\lt '));
+  const sanitizeMath=value=>value.replace(mathSegment,segment=>segment.replace(/</g,'\\lt '));
   const visited=new WeakSet();
   const sanitizeDeep=value=>{
     if(typeof value==='string')return sanitizeMath(value);
