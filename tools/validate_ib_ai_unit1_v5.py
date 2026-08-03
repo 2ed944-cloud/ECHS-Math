@@ -39,19 +39,20 @@ for n,name in wrapper_names.items():
     if 'unit-1-v3-enhancements.js' in text: errors.append(f'{n} still loads old slide enhancement layer')
 
 catalog=json.loads(req('data/ib-math-ai-unit-1-delivery-catalog.json') or '{}')
-if catalog.get('release')!='5.3.0': errors.append('Catalog release mismatch')
-if catalog.get('totals')!={'lessons':8,'learn_slides':288,'practice_questions':416,'timed_quiz_questions':112,'extended_tasks':24}: errors.append('Catalog totals mismatch')
+if catalog.get('release')!='5.3.1': errors.append('Catalog release mismatch')
+if catalog.get('totals')!={'lessons':8,'learn_slides':331,'practice_questions':460,'timed_quiz_questions':112,'extended_tasks':26}: errors.append('Catalog totals mismatch')
+lesson11=next((lesson for lesson in catalog.get('lessons',[]) if lesson.get('number')=='1.1'),{})
+if {key:lesson11.get(key) for key in ('release','learn_slides','practice_questions','timed_quiz_questions','extended_tasks')}!={'release':'6.0.0','learn_slides':79,'practice_questions':96,'timed_quiz_questions':14,'extended_tasks':5}: errors.append('Lesson 1.1 v6 metadata mismatch')
 for rel in ('lessons/ib-math-ai/unit-1/assets/css/unit1-teaching-v5.css','lessons/ib-math-ai/unit-1/data/unit-1-v5-apply.js','lessons/ib-math-ai/unit-1/data/unit-1-v5-runtime.js','lessons/ib-math-ai/unit-1/START_HERE.html','lessons/ib-math-ai/unit-1/TEACHER_GUIDE.html','data/ib-math-ai-unit-1-update.js'):
     req(rel)
 
-# Fixed mathematical facts explicitly checked in the teaching content.
 checks={'1.2':['S_{27}=1971','S_{28}=2114'],'1.4':['22538.81','14095.04','16161.42','22779.99','31999.73','11.09'],'1.5':['11.672'],'1.6':['21.010','21.282'],'1.7':['61452.78','1726.40','6185.41','1376.82','1253.59','234214.17'],'1.8':['x=4.2','y=3.2','P=2,Q=3,R=4']}
 for n,needles in checks.items():
     body=json.dumps(packs.get(n,{}),ensure_ascii=False)
     for needle in needles:
         if needle not in body: errors.append(f'{n}: missing audited value {needle}')
 
-print('IB Mathematics AI Unit 1 v5 structural validator')
+print('IB Mathematics AI Unit 1 v5/v6 structural validator')
 print('Errors:',len(errors))
 for e in errors: print(' ERROR:',e)
 if errors: raise SystemExit(1)
