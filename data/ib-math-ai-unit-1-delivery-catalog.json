@@ -3,15 +3,15 @@
   "course": "ib-math-ai",
   "unit": 1,
   "title": "Number and Algebra",
-  "release": "3.0.1",
+  "release": "3.0.2",
   "implementation_window": "current-school-course-through-2028",
   "transition_note": "First-assessment-2029 AI SL removes logarithms; Lesson 1.5 remains active for the current cohort and is version-marked.",
   "totals": {
     "lessons": 8,
-    "learn_slides": 463,
-    "practice_questions": 416,
+    "learn_slides": 506,
+    "practice_questions": 460,
     "timed_quiz_questions": 112,
-    "extended_tasks": 24
+    "extended_tasks": 26
   },
   "reference_basis": [
     "Mathematics: Applications and Interpretation SL — Pearson (2019/2020 edition supplied)",
@@ -22,7 +22,7 @@
     {
       "lesson_key": "u1-standard-form",
       "number": "1.1",
-      "title": "Scientific Notation and Orders of Magnitude",
+      "title": "Number Foundations, Scientific Notation and Approximation",
       "skill_ids": [
         "IBAI.U1.NUMBER",
         "IBAI.U1.MODELING"
@@ -30,11 +30,11 @@
       "status": "ready",
       "student_visible": true,
       "url": "lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.1_standard_form_ECHS.html",
-      "release": "5.2.3",
-      "learn_slides": 36,
-      "practice_questions": 52,
+      "release": "6.0.0",
+      "learn_slides": 79,
+      "practice_questions": 96,
       "timed_quiz_questions": 14,
-      "extended_tasks": 3
+      "extended_tasks": 5
     },
     {
       "lesson_key": "u1-arithmetic-sequences",
