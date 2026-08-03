@@ -18,6 +18,7 @@ on:
       - "supabase/functions/practice-bank-api/**"
       - "tools/inject_learning_access_guard.py"
       - "tools/test_ib_lesson_platform_integration.py"
+      - "tools/test_ib_ai_1_1_visual_integrity.py"
       - "tools/test_practice_course_isolation.mjs"
       - "tools/test_student_single_bank.mjs"
       - "sw.js"
@@ -44,6 +45,9 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "22"
+
+      - name: Validate Lesson 1.1 visual integrity
+        run: python tools/test_ib_ai_1_1_visual_integrity.py .
 
       - name: Validate source integration
         run: python tools/test_ib_lesson_platform_integration.py .
