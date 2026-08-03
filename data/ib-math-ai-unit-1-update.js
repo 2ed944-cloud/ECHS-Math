@@ -23,8 +23,8 @@
   const unit={
     title:"Unit 1: Number and Algebra",
     description:"Eight classroom-ready IB Mathematics: Applications and Interpretation SL lessons with coherent AP-style teaching screens, transparent technology, four-level practice, IB tasks and mastery evidence.",
-    portalSummary:"8 lessons · 331 purposeful Learn screens · 460 studio questions · 112 quiz questions · 26 extended tasks",
-    release:"5.3.1",
+    portalSummary:"8 lessons · 368 purposeful Learn screens · 504 studio questions · 112 quiz questions · 28 extended tasks",
+    release:"5.3.2",
     essential_questions:[
       "How can number and algebra models communicate scale, change, finance and uncertainty?",
       "How do additive and multiplicative structures support prediction and decision-making?",
@@ -40,8 +40,13 @@
         "Validate technology output with estimation, uncertainty and contextual interpretation."
       ],"6.0.0",79,96,14,5),
       makeLesson("1.2","Arithmetic Sequences and Series","arithmetic_sequences",[
-        "Use sequence, series and sigma notation.","Move between recursive and explicit arithmetic rules.","Find terms, parameters and finite sums.","Evaluate additive models and thresholds."
-      ]),
+        "Distinguish sequence terms, series and partial sums using precise notation.",
+        "Recognize and prove arithmetic structure through constant first differences.",
+        "Move among recursive, explicit, tabular, graphical and contextual representations.",
+        "Find terms, indices, parameters and finite arithmetic sums, including shifted sigma notation.",
+        "Solve threshold and inverse problems with integer-domain checks.",
+        "Evaluate assumptions, limitations and technology output in discrete linear models."
+      ],"6.0.0",73,96,14,5),
       makeLesson("1.3","Geometric Sequences and Series","geometric_sequences",[
         "Recognize positive, fractional and negative ratios.","Use explicit geometric rules.","Find finite sums and inverse parameters.","Model growth, decay and thresholds."
       ]),
@@ -90,6 +95,6 @@
   course.unitCount=course.units.length;
   course.lessonCount=course.units.reduce((total,value)=>total+(Array.isArray(value?.lessons)?value.lessons.length:0),0);
   course.status="Started";
-  course.updatedUnits="Unit 1 · 8 coherent teaching lessons · Lesson 1.1 v6.0.0";
+  course.updatedUnits="Unit 1 · Lessons 1.1 and 1.2 definitive v6";
   window.dispatchEvent(new CustomEvent("echs:ib-ai-unit-ready",{detail:{courseId:course.id,unit:1,lessons:unit.lessons.length,release:unit.release}}));
 })();

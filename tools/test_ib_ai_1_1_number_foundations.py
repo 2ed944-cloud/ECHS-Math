@@ -59,6 +59,37 @@ process.stdout.write(JSON.stringify({{version:d.version,slides:d.slides,practice
         return {}
 
 
+def validate_catalog(catalog_text: str, errors: list[str]) -> None:
+    try:
+        catalog = json.loads(catalog_text)
+        lessons = catalog["lessons"]
+        lesson = next(item for item in lessons if item["number"] == "1.1")
+        expected_lesson = {
+            "release": "6.0.0",
+            "learn_slides": 79,
+            "practice_questions": 96,
+            "timed_quiz_questions": 14,
+            "extended_tasks": 5,
+        }
+        for key, expected_value in expected_lesson.items():
+            if lesson.get(key) != expected_value:
+                errors.append(f"Catalog {key} is {lesson.get(key)!r}; expected {expected_value!r}")
+
+        computed_totals = {
+            "lessons": len(lessons),
+            "learn_slides": sum(item.get("learn_slides", 0) for item in lessons),
+            "practice_questions": sum(item.get("practice_questions", 0) for item in lessons),
+            "timed_quiz_questions": sum(item.get("timed_quiz_questions", 0) for item in lessons),
+            "extended_tasks": sum(item.get("extended_tasks", 0) for item in lessons),
+        }
+        if catalog.get("totals") != computed_totals:
+            errors.append(
+                f"Catalog totals {catalog.get('totals')} do not equal the sum of lesson metadata {computed_totals}"
+            )
+    except (json.JSONDecodeError, KeyError, StopIteration) as exc:
+        errors.append(f"Catalog validation failed: {exc}")
+
+
 def validate(root: Path, errors: list[str]) -> None:
     html = read(root, HTML, errors)
     catalog_text = read(root, CATALOG, errors)
@@ -93,7 +124,7 @@ def validate(root: Path, errors: list[str]) -> None:
     data = assemble(root, errors)
     if not data:
         return
-    expected = {"version":"6.0.0", "slides":79, "practice":96, "quiz":14, "exam":5}
+    expected = {"version": "6.0.0", "slides": 79, "practice": 96, "quiz": 14, "exam": 5}
     if data.get("version") != expected["version"]:
         errors.append(f"Version {data.get('version')!r}; expected 6.0.0")
     for key in ("slides", "practice", "quiz", "exam"):
@@ -125,7 +156,7 @@ def validate(root: Path, errors: list[str]) -> None:
         errors.append("Assembled slides contain inline SVG")
 
     levels = Counter(item["level"] for item in data["practice"])
-    if levels != Counter({"Foundation":24,"Application":24,"Reasoning":24,"Challenge":24}):
+    if levels != Counter({"Foundation": 24, "Application": 24, "Reasoning": 24, "Challenge": 24}):
         errors.append(f"Practice distribution is {dict(levels)}")
     for key in ("practice", "quiz", "exam"):
         ids = [item["id"] for item in data[key]]
@@ -139,8 +170,8 @@ def validate(root: Path, errors: list[str]) -> None:
     for flag in ("numberSetMap", "boundsExplorer", "generatedQuestionStudio", "coverAlignedToFullScope", "learningGoalsAligned"):
         if audit.get(flag) is not True:
             errors.append(f"Audit flag is not true: {flag}")
-    expected_water = [math.pi*2.395**2*5.75, math.pi*2.405**2*5.85]
-    expected_optical = [math.pi*4.195**2/4, math.pi*4.205**2/4]
+    expected_water = [math.pi * 2.395**2 * 5.75, math.pi * 2.405**2 * 5.85]
+    expected_optical = [math.pi * 4.195**2 / 4, math.pi * 4.205**2 / 4]
     for actual, expected_value in zip(audit.get("waterBounds", []), expected_water):
         if not math.isclose(actual, expected_value, rel_tol=1e-10):
             errors.append("Water bound audit failed")
@@ -148,18 +179,7 @@ def validate(root: Path, errors: list[str]) -> None:
         if not math.isclose(actual, expected_value, rel_tol=1e-10):
             errors.append("Optical bound audit failed")
 
-    try:
-        catalog = json.loads(catalog_text)
-        lesson = next(item for item in catalog["lessons"] if item["number"] == "1.1")
-        expected_lesson = {"release":"6.0.0","learn_slides":79,"practice_questions":96,"timed_quiz_questions":14,"extended_tasks":5}
-        for key, expected_value in expected_lesson.items():
-            if lesson.get(key) != expected_value:
-                errors.append(f"Catalog {key} is {lesson.get(key)!r}; expected {expected_value!r}")
-        expected_totals = {"lessons":8,"learn_slides":331,"practice_questions":460,"timed_quiz_questions":112,"extended_tasks":26}
-        if catalog.get("totals") != expected_totals:
-            errors.append(f"Catalog totals are incorrect: {catalog.get('totals')}")
-    except (json.JSONDecodeError, KeyError, StopIteration) as exc:
-        errors.append(f"Catalog validation failed: {exc}")
+    validate_catalog(catalog_text, errors)
 
 
 def main() -> int:
