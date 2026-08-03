@@ -51,13 +51,27 @@ for marker in (
 ):
     if marker not in lesson12_wrapper: errors.append(f'Lesson 1.2 wrapper missing {marker}')
 
+lesson13_wrapper=req('lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.3_geometric_sequences_ECHS.html')
+for marker in (
+    'lesson-1.3-geometric-definitive-v6.js?v=6.0.0',
+    'lesson-1.3-geometric-v6-polish.js?v=6.0.0',
+    'lesson-1.3-geometric-v6-core.css?v=6.0.0',
+    'lesson-1.3-geometric-v6-concepts.css?v=6.0.0',
+    'lesson-1.3-geometric-v6-interactive.css?v=6.0.0',
+    'lesson-1.3-geometric-v6-interactions.js?v=6.0.0',
+    'lesson-1.2-exam-focus-v6.js?v=6.0.0',
+):
+    if marker not in lesson13_wrapper: errors.append(f'Lesson 1.3 wrapper missing {marker}')
+
 catalog=json.loads(req('data/ib-math-ai-unit-1-delivery-catalog.json') or '{}')
-if catalog.get('release')!='5.3.2': errors.append('Catalog release mismatch')
-if catalog.get('totals')!={'lessons':8,'learn_slides':368,'practice_questions':504,'timed_quiz_questions':112,'extended_tasks':28}: errors.append('Catalog totals mismatch')
+if catalog.get('release')!='5.3.3': errors.append('Catalog release mismatch')
+if catalog.get('totals')!={'lessons':8,'learn_slides':405,'practice_questions':548,'timed_quiz_questions':112,'extended_tasks':30}: errors.append('Catalog totals mismatch')
 lesson11=next((lesson for lesson in catalog.get('lessons',[]) if lesson.get('number')=='1.1'),{})
 if {key:lesson11.get(key) for key in ('release','learn_slides','practice_questions','timed_quiz_questions','extended_tasks')}!={'release':'6.0.0','learn_slides':79,'practice_questions':96,'timed_quiz_questions':14,'extended_tasks':5}: errors.append('Lesson 1.1 v6 metadata mismatch')
 lesson12=next((lesson for lesson in catalog.get('lessons',[]) if lesson.get('number')=='1.2'),{})
 if {key:lesson12.get(key) for key in ('release','learn_slides','practice_questions','timed_quiz_questions','extended_tasks')}!={'release':'6.0.0','learn_slides':73,'practice_questions':96,'timed_quiz_questions':14,'extended_tasks':5}: errors.append('Lesson 1.2 v6 metadata mismatch')
+lesson13=next((lesson for lesson in catalog.get('lessons',[]) if lesson.get('number')=='1.3'),{})
+if {key:lesson13.get(key) for key in ('release','learn_slides','practice_questions','timed_quiz_questions','extended_tasks')}!={'release':'6.0.0','learn_slides':73,'practice_questions':96,'timed_quiz_questions':14,'extended_tasks':5}: errors.append('Lesson 1.3 v6 metadata mismatch')
 
 for rel in (
 'lessons/ib-math-ai/unit-1/assets/css/unit1-teaching-v5.css',
@@ -65,12 +79,18 @@ for rel in (
 'lessons/ib-math-ai/unit-1/assets/css/lesson-1.2-arithmetic-v6-concepts.css',
 'lessons/ib-math-ai/unit-1/assets/css/lesson-1.2-arithmetic-v6-series.css',
 'lessons/ib-math-ai/unit-1/assets/css/lesson-1.2-arithmetic-v6-interactive.css',
+'lessons/ib-math-ai/unit-1/assets/css/lesson-1.3-geometric-v6-core.css',
+'lessons/ib-math-ai/unit-1/assets/css/lesson-1.3-geometric-v6-concepts.css',
+'lessons/ib-math-ai/unit-1/assets/css/lesson-1.3-geometric-v6-interactive.css',
 'lessons/ib-math-ai/unit-1/data/unit-1-v5-apply.js',
 'lessons/ib-math-ai/unit-1/data/unit-1-v5-runtime.js',
 'lessons/ib-math-ai/unit-1/data/lesson-1.2-arithmetic-definitive-v6.js',
 'lessons/ib-math-ai/unit-1/data/lesson-1.2-arithmetic-v6-polish.js',
 'lessons/ib-math-ai/unit-1/data/lesson-1.2-arithmetic-v6-interactions.js',
 'lessons/ib-math-ai/unit-1/data/lesson-1.2-exam-focus-v6.js',
+'lessons/ib-math-ai/unit-1/data/lesson-1.3-geometric-definitive-v6.js',
+'lessons/ib-math-ai/unit-1/data/lesson-1.3-geometric-v6-polish.js',
+'lessons/ib-math-ai/unit-1/data/lesson-1.3-geometric-v6-interactions.js',
 'lessons/ib-math-ai/unit-1/START_HERE.html',
 'lessons/ib-math-ai/unit-1/TEACHER_GUIDE.html',
 'data/ib-math-ai-unit-1-update.js'):
