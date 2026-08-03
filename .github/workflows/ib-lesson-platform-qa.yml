@@ -26,6 +26,7 @@ on:
       - "tools/test_ib_ai_1_1_number_foundations.py"
       - "tools/test_ib_ai_1_1_v6_1_graphics_katex.py"
       - "tools/test_ib_ai_1_2_definitive_v6.py"
+      - "tools/test_ib_ai_1_2_visual_precision_v6_0_1.py"
       - "tools/test_ib_unit1_portal_update.mjs"
       - "tools/validate_ib_ai_unit1_v5.py"
       - "tools/test_practice_course_isolation.mjs"
@@ -72,6 +73,9 @@ jobs:
 
       - name: Validate Lesson 1.2 definitive v6
         run: python tools/test_ib_ai_1_2_definitive_v6.py .
+
+      - name: Validate Lesson 1.2 visual precision hotfix
+        run: python tools/test_ib_ai_1_2_visual_precision_v6_0_1.py .
 
       - name: Validate Unit 1 release metadata
         run: python tools/validate_ib_ai_unit1_v5.py .
