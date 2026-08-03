@@ -123,7 +123,6 @@ const out={{
  slides:d.slides.length,
  practice:d.practice.length,
  quiz:d.quiz.length,
- exam:d.exam.length,
  titles:d.slides.map(s=>s.title),
  html:d.slides.map(s=>s.html),
  practiceIds:d.practice.map(q=>q.id),
@@ -145,10 +144,12 @@ process.stdout.write(JSON.stringify(out));
         errors.append(f"Lesson data output was not valid JSON: {exc}")
         return
 
-    expected = {"version": "6.0.0", "slides": 79, "practice": 96, "quiz": 14, "exam": 5}
+    expected = {"version": "6.0.0", "slides": 79, "practice": 96, "quiz": 14}
     for key, value in expected.items():
         if data.get(key) != value:
             errors.append(f"Unexpected {key}: {data.get(key)!r}; expected {value!r}")
+    if len(data.get("exam", [])) != 5:
+        errors.append(f"Unexpected exam task count: {len(data.get('exam', []))}; expected 5")
 
     titles = data.get("titles", [])
     if len(titles) != len(set(titles)):
