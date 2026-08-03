@@ -18,7 +18,7 @@ CSS_FILES = [
 DATA_FILES = [
     LESSON_ROOT / "data/lesson-1.1.js",
     LESSON_ROOT / "data/lesson-1.1-v5-01.js",
-    LESON_ROOT / "data/lesson-1.1-v5-02.js" if False else LESSON_ROOT / "data/lesson-1.1-v5-02.js",
+    LESSON_ROOT / "data/lesson-1.1-v5-02.js",
     LESSON_ROOT / "data/lesson-1.1-v5-03.js",
     LESSON_ROOT / "data/lesson-1.1-v5-04.js",
     LESSON_ROOT / "data/lesson-1.1-v5-05.js",
@@ -134,7 +134,7 @@ process.stdout.write(JSON.stringify(out));
 
     html_blocks = data.get("html", [])
     for index, block in enumerate(html_blocks, start=1):
-        for left, right, label in ((r"\\(", r"\\)", "inline math"), (r"\\[", r"\\]", "display math")):
+        for left, right, label in (("\\(", "\\)", "inline math"), ("\\[", "\\]", "display math")):
             if block.count(left) != block.count(right):
                 errors.append(f"Slide {index} has unbalanced {label} delimiters")
         if "<svg" in block.lower():
@@ -142,14 +142,14 @@ process.stdout.write(JSON.stringify(out));
 
     joined = "\n".join(html_blocks)
     required_math = (
-        r"N=a\\times10^k",
-        r"10^m10^n=10^{m+n}",
-        r"72\\,900\\,000=7.29\\times10^7",
-        r"0.000000438=4.38\\times10^{-7}",
-        r"1.17\\times10^6\\text{ m}^2",
-        r"2.4\\times10^6",
-        r"4.26\\times10^{-3}",
-        r"1\\text{ km}^2=(10^3\\text{ m})^2=10^6\\text{ m}^2",
+        "N=a\\times10^k",
+        "10^m10^n=10^{m+n}",
+        "72\\,900\\,000=7.29\\times10^7",
+        "0.000000438=4.38\\times10^{-7}",
+        "1.17\\times10^6\\text{ m}^2",
+        "2.4\\times10^6",
+        "4.26\\times10^{-3}",
+        "1\\text{ km}^2=(10^3\\text{ m})^2=10^6\\text{ m}^2",
     )
     for marker in required_math:
         if marker not in joined:
