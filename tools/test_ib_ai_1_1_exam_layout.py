@@ -45,8 +45,8 @@ def validate(root: Path, errors: list[str]) -> None:
     require(
         html,
         (
-            "lesson-1.1-exam-v5-2-1.css?v=5.2.1",
-            "lesson-1.1-exam-v5-2-1.js?v=5.2.1",
+            "lesson-1.1-exam-v5-2-1.css?v=5.2.2",
+            "lesson-1.1-exam-v5-2-1.js?v=5.2.2",
         ),
         "Lesson HTML",
         errors,
@@ -54,12 +54,16 @@ def validate(root: Path, errors: list[str]) -> None:
     require(
         css,
         (
+            "body.exam-assessment-active .footer",
             ".exam-task-tabs",
-            ".exam-task-tab[aria-selected=\"true\"]",
+            ".exam-part-tabs",
+            ".exam-part-tab[aria-selected=\"true\"]",
             ".exam-task-panel[hidden]",
-            ".exam-parts-grid",
-            ".exam-task-footer-nav",
-            "grid-template-columns:repeat(2,minmax(0,1fr))",
+            ".exam-part-card[hidden]",
+            ".exam-part-stage",
+            ".exam-step-footer-nav",
+            "grid-template-areas:",
+            '"prompt response"',
         ),
         "Assessment stylesheet",
         errors,
@@ -67,13 +71,17 @@ def validate(root: Path, errors: list[str]) -> None:
     require(
         script,
         (
+            "exam-route-part-paged",
             "data-exam-task-tab",
-            "exam-task-panel",
-            "exam-parts-grid",
-            "exam-task-footer-nav",
+            "data-exam-part-tab",
+            "exam-part-stage",
+            "exam-step-footer-nav",
+            "showTaskPart",
+            "moveStep",
+            "part.hidden = !active",
+            "document.body.classList.toggle('exam-assessment-active'",
             "MutationObserver",
-            "task.hidden = !active",
-            "Responses are saved automatically on this device.",
+            "This response is saved automatically.",
         ),
         "Assessment controller",
         errors,
@@ -86,8 +94,8 @@ def validate(root: Path, errors: list[str]) -> None:
     try:
         catalog = json.loads(catalog_text)
         lesson = next(item for item in catalog["lessons"] if item["number"] == "1.1")
-        if lesson.get("release") != "5.2.1":
-            errors.append(f"Catalog release is {lesson.get('release')!r}; expected '5.2.1'")
+        if lesson.get("release") != "5.2.2":
+            errors.append(f"Catalog release is {lesson.get('release')!r}; expected '5.2.2'")
         if lesson.get("extended_tasks") != 3:
             errors.append("Catalog must retain exactly 3 extended tasks")
     except (json.JSONDecodeError, KeyError, StopIteration) as exc:
@@ -108,7 +116,8 @@ process.stdout.write(JSON.stringify({{
   tasks:d.exam.length,
   parts:d.exam.map(task=>task.parts.length),
   marks:d.exam.map(task=>task.total_marks),
-  ids:d.exam.map(task=>task.id)
+  ids:d.exam.map(task=>task.id),
+  labels:d.exam.map(task=>task.parts.map(part=>part.label))
 }}));
 """
     assembled = subprocess.run(["node", "-e", node_program], cwd=root, text=True, capture_output=True)
@@ -126,6 +135,9 @@ process.stdout.write(JSON.stringify({{
         errors.append(f"Every assessment task must contain at least 3 parts: {data.get('parts')}")
     if len(data.get("ids", [])) != len(set(data.get("ids", []))):
         errors.append("Assessment task IDs are not unique")
+    for task_labels in data.get("labels", []):
+        if len(task_labels) != len(set(task_labels)):
+            errors.append(f"Assessment part labels are not unique within a task: {task_labels}")
 
 
 def main() -> int:
