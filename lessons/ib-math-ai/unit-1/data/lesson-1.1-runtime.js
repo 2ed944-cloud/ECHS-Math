@@ -37,6 +37,7 @@
     menuButton?.addEventListener('click',event=>{event.stopPropagation();const open=document.body.classList.toggle('lesson-menu-open');menuButton.setAttribute('aria-expanded',String(open));});
     $('#lesson-route-menu')?.addEventListener('click',event=>event.stopPropagation());
     $$('.route-btn').forEach(button=>button.addEventListener('click',closeMenu));
+    $('#lesson-home')?.addEventListener('click',()=>{window.location.href='../START_HERE.html';});
     document.addEventListener('click',closeMenu);
     document.addEventListener('keydown',event=>{if(event.key==='Escape')closeMenu();});
     $('#start-lesson')?.addEventListener('click',()=>{const current=Number(storageGet('learn-index')||0);goToLearnIndex(current>0?current:1);});
