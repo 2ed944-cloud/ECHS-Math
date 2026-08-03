@@ -3,12 +3,12 @@
   "course": "ib-math-ai",
   "unit": 1,
   "title": "Number and Algebra",
-  "release": "3.0.0",
+  "release": "3.0.1",
   "implementation_window": "current-school-course-through-2028",
   "transition_note": "First-assessment-2029 AI SL removes logarithms; Lesson 1.5 remains active for the current cohort and is version-marked.",
   "totals": {
     "lessons": 8,
-    "learn_slides": 488,
+    "learn_slides": 463,
     "practice_questions": 416,
     "timed_quiz_questions": 112,
     "extended_tasks": 24
@@ -30,8 +30,8 @@
       "status": "ready",
       "student_visible": true,
       "url": "lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.1_standard_form_ECHS.html",
-      "release": "3.0.0",
-      "learn_slides": 61,
+      "release": "5.0.0",
+      "learn_slides": 36,
       "practice_questions": 52,
       "timed_quiz_questions": 14,
       "extended_tasks": 3
