@@ -1,0 +1,57 @@
+/* IB AI SL 1.1 v5.2.3 — explicit assessment scroll surface */
+html.ap-screen-lesson body.exam-assessment-active .app-shell{
+  overflow-x:hidden!important;
+  overflow-y:scroll!important;
+  overscroll-behavior-y:contain;
+  scrollbar-gutter:stable;
+  scrollbar-width:auto;
+  scrollbar-color:#7a1733 #ece6df;
+  -webkit-overflow-scrolling:touch;
+  touch-action:pan-y;
+}
+
+html.ap-screen-lesson body.exam-assessment-active .exam-route{
+  min-height:max-content!important;
+  padding-bottom:54px!important;
+}
+
+html.ap-screen-lesson body.exam-assessment-active .app-shell::-webkit-scrollbar{
+  width:14px;
+}
+html.ap-screen-lesson body.exam-assessment-active .app-shell::-webkit-scrollbar-track{
+  background:#ece6df;
+  border-left:1px solid #ddd5cc;
+}
+html.ap-screen-lesson body.exam-assessment-active .app-shell::-webkit-scrollbar-thumb{
+  min-height:56px;
+  border:3px solid #ece6df;
+  border-radius:999px;
+  background:linear-gradient(180deg,#7a1733,#177e89);
+}
+html.ap-screen-lesson body.exam-assessment-active .app-shell::-webkit-scrollbar-thumb:hover{
+  background:linear-gradient(180deg,#541022,#116b74);
+}
+html.ap-screen-lesson body.exam-assessment-active .app-shell::-webkit-scrollbar-corner{
+  background:#ece6df;
+}
+
+/* Keep the final navigation row reachable above the viewport edge. */
+html.ap-screen-lesson body.exam-assessment-active .exam-step-footer-nav{
+  scroll-margin-bottom:28px;
+}
+
+@media(max-width:760px){
+  html.ap-screen-lesson body.exam-assessment-active .app-shell::-webkit-scrollbar{
+    width:10px;
+  }
+  html.ap-screen-lesson body.exam-assessment-active .exam-route{
+    padding-bottom:42px!important;
+  }
+}
+
+@media print{
+  html.ap-screen-lesson body.exam-assessment-active .app-shell{
+    overflow:visible!important;
+    scrollbar-width:none;
+  }
+}
