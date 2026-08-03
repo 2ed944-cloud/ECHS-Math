@@ -1,22 +1,21 @@
 {
-  "schema_version": "1.3.0",
+  "schema_version": "1.4.0",
   "course": "ib-math-ai",
   "unit": 1,
   "title": "Number and Algebra",
-  "release": "3.0.2",
-  "implementation_window": "current-school-course-through-2028",
-  "transition_note": "First-assessment-2029 AI SL removes logarithms; Lesson 1.5 remains active for the current cohort and is version-marked.",
+  "release": "5.3.1",
   "totals": {
     "lessons": 8,
-    "learn_slides": 506,
+    "learn_slides": 331,
     "practice_questions": 460,
     "timed_quiz_questions": 112,
     "extended_tasks": 26
   },
   "reference_basis": [
-    "Mathematics: Applications and Interpretation SL — Pearson (2019/2020 edition supplied)",
-    "Mathematics: Applications and Interpretation SL 2 — Haese Mathematics (2019 edition supplied)",
-    "Christos Nikolaidis Topic 1A notes and supplied MAI exercise sets"
+    "Mathematics: Applications and Interpretation SL — Pearson (supplied edition)",
+    "Mathematics: Applications and Interpretation SL 2 — Haese Mathematics (supplied edition)",
+    "Christos Nikolaidis Topic 1A lecture notes",
+    "Supplied MAI exercise sets for numbers, approximation, exponents, systems, arithmetic and geometric sequences"
   ],
   "lessons": [
     {
@@ -47,8 +46,8 @@
       "status": "ready",
       "student_visible": true,
       "url": "lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.2_arithmetic_sequences_ECHS.html",
-      "release": "3.0.0",
-      "learn_slides": 61,
+      "release": "5.3.0",
+      "learn_slides": 36,
       "practice_questions": 52,
       "timed_quiz_questions": 14,
       "extended_tasks": 3
@@ -64,8 +63,8 @@
       "status": "ready",
       "student_visible": true,
       "url": "lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.3_geometric_sequences_ECHS.html",
-      "release": "3.0.0",
-      "learn_slides": 61,
+      "release": "5.3.0",
+      "learn_slides": 36,
       "practice_questions": 52,
       "timed_quiz_questions": 14,
       "extended_tasks": 3
@@ -81,8 +80,8 @@
       "status": "ready",
       "student_visible": true,
       "url": "lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.4_financial_models_ECHS.html",
-      "release": "3.0.0",
-      "learn_slides": 61,
+      "release": "5.3.0",
+      "learn_slides": 36,
       "practice_questions": 52,
       "timed_quiz_questions": 14,
       "extended_tasks": 3
@@ -98,8 +97,8 @@
       "status": "ready",
       "student_visible": true,
       "url": "lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.5_logarithms_ECHS.html",
-      "release": "3.0.0",
-      "learn_slides": 61,
+      "release": "5.3.0",
+      "learn_slides": 36,
       "practice_questions": 52,
       "timed_quiz_questions": 14,
       "extended_tasks": 3
@@ -115,8 +114,8 @@
       "status": "ready",
       "student_visible": true,
       "url": "lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.6_approximation_error_ECHS.html",
-      "release": "3.0.0",
-      "learn_slides": 61,
+      "release": "5.3.0",
+      "learn_slides": 36,
       "practice_questions": 52,
       "timed_quiz_questions": 14,
       "extended_tasks": 3
@@ -132,8 +131,8 @@
       "status": "ready",
       "student_visible": true,
       "url": "lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.7_loans_annuities_ECHS.html",
-      "release": "3.0.0",
-      "learn_slides": 61,
+      "release": "5.3.0",
+      "learn_slides": 36,
       "practice_questions": 52,
       "timed_quiz_questions": 14,
       "extended_tasks": 3
@@ -150,8 +149,8 @@
       "status": "ready",
       "student_visible": true,
       "url": "lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.8_technology_equations_ECHS.html",
-      "release": "3.0.0",
-      "learn_slides": 61,
+      "release": "5.3.0",
+      "learn_slides": 36,
       "practice_questions": 52,
       "timed_quiz_questions": 14,
       "extended_tasks": 3
