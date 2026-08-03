@@ -59,6 +59,7 @@ jobs:
           set -euo pipefail
           rm -rf .release-staging
           rm -f .github/workflows/materialize-ib-ai-unit1-v5.yml
+          rm -f .github/workflows/validate-ib-ai-unit1-v5.yml
           git config user.name 'ECHS Release Automation'
           git config user.email 'actions@users.noreply.github.com'
           git add -A
