@@ -3,7 +3,7 @@
   const data=window.LESSON_DATA;
   if(!data||!data.lesson||data.lesson.number!=='1.1'||!Array.isArray(data.slides))return;
 
-  data.version='5.1.0';
+  data.version='5.2.0';
   data.buildDate='2026-08-03';
 
   const byTitle=title=>data.slides.find(slide=>slide.title===title);
@@ -72,8 +72,9 @@
   }
 
   data.v5Audit=Object.assign({},data.v5Audit,{
-    visualPolishVersion:'5.1.0',
-    correctedKatexIsolation:true,
+    visualPolishVersion:'5.2.0',
+    correctedKatexSelectorScoping:true,
+    removedDestructiveKatexSpanReset:true,
     correctedCoverScale:true,
     correctedComparisonGraphic:true,
     correctedUnitGraphic:true,
