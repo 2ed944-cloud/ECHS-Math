@@ -148,14 +148,16 @@ for flag in (
  'nominalPeriodicEffectiveRates','compoundInterest','depreciationInflationRealValue','ordinaryAnnuity','annuityDue',
  'withdrawalAnnuity','loanPayments','amortization','outstandingBalances','extraPaymentStrategies',
  'interactiveCompoundExplorer','interactiveCashFlowExplorer','generativeStudio','focusedAssessmentPager','noInlineSvg',
- 'growingAnnuityExtensionExcludedFromCore','independentNumericalReaudit','correctedPeriodConversionExamples',
- 'correctedDepreciationExamples','correctedRealValueExamples','correctedAnnuityExamples',
- 'correctedSavingsThresholdValues','correctedOutstandingBalanceExamples','correctedExitTicketValues'
+ 'growingAnnuityExtensionExcludedFromCore','independentNumericalReaudit','removedNonInstructionalUnitMap',
+ 'correctedPeriodConversionExamples','correctedCompoundThresholdValues','correctedDepreciationExamples',
+ 'correctedRealValueExamples','correctedAnnuityExamples','correctedSavingsThresholdValues',
+ 'correctedOutstandingBalanceExamples','correctedExitTicketValues','correctedPracticeCurrencies'
 ):
     if audit.get(flag) is not True:errors.append(f'Audit flag not true: {flag}')
 
 spot_slides={
  'Student turn · match rates to periods':['10145.04','31084.63'],
+ 'Worked example · first whole year above a target':['29093.58','30693.73'],
  'Worked example · replacement threshold':['17795.51','14592.32'],
  'Student turn · inflation-adjusted decisions':['23,651.79','20,691.02'],
  'Student turn · ordinary annuity future value':['33,545.60'],
@@ -168,6 +170,11 @@ for title,needles in spot_slides.items():
     body=str(by_title.get(title,{}).get('html',''))
     for needle in needles:
         if needle not in body:errors.append(f'Numerical spot check failed in {title}: {needle}')
+
+by_practice={item.get('id'):item for item in practice}
+for item_id in ('FINV6-1.4-A29','FINV6-1.4-A30'):
+    if not str(by_practice.get(item_id,{}).get('answer','')).startswith('€'):
+        errors.append(f'Currency audit failed for {item_id}')
 
 redirects={
  U1/'lessons/IB_AI_SL_1.6_approximation_error_ECHS.html':'IB_AI_SL_1.1_standard_form_ECHS.html',
