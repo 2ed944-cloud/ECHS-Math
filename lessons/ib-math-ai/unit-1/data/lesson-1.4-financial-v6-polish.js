@@ -9,6 +9,7 @@
 
   const get=title=>data.slides.find(item=>item.title===title);
   const replace=(title,pairs)=>{const item=get(title);if(!item)return;for(const [from,to] of pairs)item.html=item.html.replace(from,to);};
+  const practice=id=>data.practice.find(item=>item.id===id);
 
   replace('Student turn · annual compound growth',[
     ['QAR \\(37,555.71\\)','QAR \\(37,547.37\\)']
@@ -16,6 +17,10 @@
   replace('Student turn · match rates to periods',[
     ['QAR \\(10143.53\\)','QAR \\(10145.04\\)'],
     ['QAR \\(31108.35\\)','QAR \\(31084.63\\)']
+  ]);
+  replace('Worked example · first whole year above a target',[
+    ['QAR \\(29093.04\\)','QAR \\(29093.58\\)'],
+    ['QAR \\(30693.16\\)','QAR \\(30693.73\\)']
   ]);
   replace('Student turn · value and loss',[
     ['QAR \\(2,425.34\\)','QAR \\(2,426.11\\)'],
@@ -48,15 +53,23 @@
     ['QAR \\(1,421.98\\)','QAR \\(1,422.22\\)']
   ]);
 
+  // Preserve the currency stated in the two euro-denominated withdrawal questions.
+  for(const id of ['FINV6-1.4-A29','FINV6-1.4-A30']){
+    const item=practice(id);
+    if(item)item.answer=item.answer.replace(/^QAR /,'€');
+  }
+
   data.v6Audit=Object.assign({},data.v6Audit,{
     independentNumericalReaudit:true,
     removedNonInstructionalUnitMap:true,
     correctedPeriodConversionExamples:true,
+    correctedCompoundThresholdValues:true,
     correctedDepreciationExamples:true,
     correctedRealValueExamples:true,
     correctedAnnuityExamples:true,
     correctedSavingsThresholdValues:true,
     correctedOutstandingBalanceExamples:true,
-    correctedExitTicketValues:true
+    correctedExitTicketValues:true,
+    correctedPracticeCurrencies:true
   });
 })();
