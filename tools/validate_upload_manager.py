@@ -13,7 +13,34 @@ def require(text,items,label):
 def forbid(text,items,label):
  for item in items:
   if item in text:errors.append(f'{label} contains forbidden {item}')
-html=read('question-bank/official/admin/upload-manager.html');js=read('question-bank/official/admin/js/upload-manager.js');css=read('question-bank/official/admin/css/upload-manager.css');api=read('supabase/functions/upload-manager-api/index.ts');private_api=read('supabase/functions/private-bank-api/index.ts');practice_api=read('supabase/functions/practice-bank-api/index.ts');practice=read('question-bank/js/mapped-private-bank-practice.js');ib_bridge=read('js/ib-lesson-platform-integration.js');center_html=read('question-bank/official/admin/private-bank-center.html');center_js=read('question-bank/official/admin/js/private-bank-center.js');migration=read('supabase/migrations/202607272201_teacher_upload_manager.sql');workflow=read('.github/workflows/process-teacher-uploads.yml');chunk_deploy=read('.github/workflows/deploy-upload-manager-chunking.yml');fast_processor=read('tools/process_teacher_upload_request_fast.py');ib_processor=read('tools/process_ib_lesson_release.py');uploader=read('tools/upload_private_bank_package.py');fast_uploader=read('tools/upload_private_bank_package_fast.py');verified_uploader=read('tools/upload_private_bank_package_verified_fast.py');free_tier_uploader=read('tools/upload_private_bank_package_verified_free_tier.py');package_validator=read('tools/validate_private_bank_packages.py');deploy=read('.github/workflows/deploy-institution-backend.yml');supabase_config=read('supabase/config.toml');ib_update=read('data/ib-math-ai-unit-1-update.js');ib_engine=read('lessons/ib-math-ai/unit-1/assets/js/engine.js');ib_theme=read('lessons/ib-math-ai/unit-1/assets/css/theme.css');release_selection_test=read('tools/test_course_release_changed_file_selection.py')
+
+html=read('question-bank/official/admin/upload-manager.html')
+js=read('question-bank/official/admin/js/upload-manager.js')
+css=read('question-bank/official/admin/css/upload-manager.css')
+api=read('supabase/functions/upload-manager-api/index.ts')
+private_api=read('supabase/functions/private-bank-api/index.ts')
+practice_api=read('supabase/functions/practice-bank-api/index.ts')
+practice=read('question-bank/js/mapped-private-bank-practice.js')
+ib_bridge=read('js/ib-lesson-platform-integration.js')
+center_html=read('question-bank/official/admin/private-bank-center.html')
+center_js=read('question-bank/official/admin/js/private-bank-center.js')
+migration=read('supabase/migrations/202607272201_teacher_upload_manager.sql')
+workflow=read('.github/workflows/process-teacher-uploads.yml')
+chunk_deploy=read('.github/workflows/deploy-upload-manager-chunking.yml')
+fast_processor=read('tools/process_teacher_upload_request_fast.py')
+ib_processor=read('tools/process_ib_lesson_release.py')
+uploader=read('tools/upload_private_bank_package.py')
+fast_uploader=read('tools/upload_private_bank_package_fast.py')
+verified_uploader=read('tools/upload_private_bank_package_verified_fast.py')
+free_tier_uploader=read('tools/upload_private_bank_package_verified_free_tier.py')
+package_validator=read('tools/validate_private_bank_packages.py')
+deploy=read('.github/workflows/deploy-institution-backend.yml')
+supabase_config=read('supabase/config.toml')
+ib_update=read('data/ib-math-ai-unit-1-update.js')
+ib_engine=read('lessons/ib-math-ai/unit-1/assets/js/engine.js')
+ib_theme=read('lessons/ib-math-ai/unit-1/assets/css/theme.css')
+release_selection_test=read('tools/test_course_release_changed_file_selection.py')
+
 require(html,['Private Bank Manager','Lesson &amp; Unit Release Manager','zipFile','upload-manager.js','data-require-account="teacher admin"','bankCourseKey','Choose the exact course','one unit, one lesson and one skill','lesson-catalog-patch.json','never merged automatically','free-tier-safe parts'],'Upload manager page')
 require(js,['crypto.subtle.digest','XMLHttpRequest','FormData','application/octet-stream','uploadPlan','file.slice','part ${Number(item.index','/complete','requireAuth(["teacher","admin"])'],'Upload manager client')
 require(css,['.dropZone','.progressBar','.requestItem','.historyDelete','.historyClear','@media'],'Upload manager styles')
@@ -21,7 +48,12 @@ require(api,['createSignedUploadUrl','teacher-upload-staging','CHUNK_BYTES=40*10
 require(private_api,['SUPPORTED_COURSES','"ap-calculus"','/student-questions','manifest','course_mappings','unit'],'Private bank API')
 require(practice_api,['assignedCourses','course_not_assigned','student_scope_required','.containedBy("course_keys", [course])','private_bank_practice_inventory','query.eq("bank_code", bank)','practice-bank-api'],'Course-isolated practice API')
 require(practice,['dynamicLabels','practice-bank-api','staff_review_only','dedicated','exactRoute','scope.bank'],'Mapped private practice integration')
-require(ib_bridge,['Linked IB question banks','Open lesson practice','practice-bank-api','Exact lesson mapping','u1-approximation-error'],'IB lesson bank bridge')
+require(ib_bridge,[
+ 'Linked IB question banks','Open lesson practice','practice-bank-api','Exact lesson mapping',
+ '"1.1":["u1-standard-form","u1-scientific-notation","u1-approximation-error"]',
+ '"1.4":["u1-financial-models","u1-loans-annuities"]',
+ '"1.6":["u1-technology-equations"]','bankTopicMap={"1.6":"u1-technology-equations"'
+],'IB lesson bank bridge')
 forbid(ib_bridge,['"u1-number"','"u1-modeling"'],'IB lesson bank bridge')
 require(center_html,['AP Calculus','AP Precalculus','IB Mathematics AI','calcBanks','precalcBanks','ibBanks','Open Upload Manager','Live package inventory'],'Private bank center page')
 require(center_js,['ap-precalculus','ib-math-ai','algebra-2','grade-9','across the ECHS courses'],'Private bank center client')
@@ -32,31 +64,60 @@ require(fast_processor,['part_paths','Reassembled staged part','hashlib.sha256',
 require(ib_processor,['lesson-catalog-patch.json','unit-{unit_number}-portal-object.json','g11-ib-ai','ECHS Lesson Release Manager','echs_course_release_bridge_v1','External runtime asset'],'IB lesson release processor')
 require(release_selection_test,['--diff-filter=ACMR','git ls-files','legacy_path not in selected','lesson_path in selected','selection contains a missing file'],'Course release selection regression')
 require(chunk_deploy,['supabase functions deploy upload-manager-api','SUPABASE_PROJECT_REF','institutional-production'],'Chunk deployment workflow')
-for text,label in [(uploader,'Private bank uploader'),(fast_uploader,'Fast bank uploader')]:require(text,['SUPPORTED_COURSES','ap-calculus','target_courses','--expected-course','exactly one target course','exactly one verified course mapping','lesson_title'],label)
+for text,label in [(uploader,'Private bank uploader'),(fast_uploader,'Fast bank uploader')]:
+ require(text,['SUPPORTED_COURSES','ap-calculus','target_courses','--expected-course','exactly one target course','exactly one verified course mapping','lesson_title'],label)
 require(verified_uploader,['student_ready_verified','independent-solution-audit','question_trust_records','bank-manifest.json','IMPORT_RESULT='],'Verified bank uploader')
 require(free_tier_uploader,['PART_BYTES = 40 * 1024 * 1024','echs-chunked-source-archive-v1','part-','application/json'],'Free-tier source archive uploader')
 require(package_validator,['ALLOWED_COURSES','ap-calculus','target_courses','exactly one target course','exactly one course mapping'],'Private bank package validator')
 require(deploy,['upload-manager-api','practice-bank-api','setup-api','supabase functions deploy','/health'],'Backend deployment health contract')
 require(supabase_config,['[functions.upload-manager-api]','[functions.practice-bank-api]','verify_jwt = false'],'Supabase upload-manager function config')
-require(ib_update,['g11-ib-ai','window.ECHS_COURSES.filter','Scientific Notation and Orders of Magnitude','Technology for Equations and Systems','IB_AI_SL_1.1_standard_form_ECHS.html','IB_AI_SL_1.8_technology_equations_ECHS.html'],'Canonical IB Unit 1 portal update')
+require(ib_update,[
+ 'g11-ib-ai','window.ECHS_COURSES.filter','6 lessons · 397 purposeful Learn screens',
+ 'Number Foundations, Scientific Notation and Approximation','Financial Applications','Technology for Equations and Systems',
+ 'IB_AI_SL_1.1_standard_form_ECHS.html','IB_AI_SL_1.4_financial_models_ECHS.html','IB_AI_SL_1.6_technology_equations_ECHS.html'
+],'Canonical IB Unit 1 portal update')
 require(ib_engine,['window.LESSON_DATA','renderPractice()','renderExam()','renderQuiz()','renderReview()','routeButtons.forEach'],'IB local lesson engine')
 require(ib_theme,['.topbar','.routebar','.question-shell','.unit-home','@media(max-width:580px)'],'IB local lesson theme')
 if 'window.ECHS_COURSES.push(course)' in ib_update:errors.append('IB Unit 1 update must not create a duplicate course card')
-if 'lesson.html?lesson=' in ib_update:errors.append('IB Unit 1 must use eight direct lesson HTML URLs')
-direct=[
- ('1.1','IB_AI_SL_1.1_standard_form_ECHS.html','lesson-1.1.js'),('1.2','IB_AI_SL_1.2_arithmetic_sequences_ECHS.html','lesson-1.2.js'),('1.3','IB_AI_SL_1.3_geometric_sequences_ECHS.html','lesson-1.3.js'),('1.4','IB_AI_SL_1.4_financial_models_ECHS.html','lesson-1.4.js'),('1.5','IB_AI_SL_1.5_logarithms_ECHS.html','lesson-1.5.js'),('1.6','IB_AI_SL_1.6_approximation_error_ECHS.html','lesson-1.6.js'),('1.7','IB_AI_SL_1.7_loans_annuities_ECHS.html','lesson-1.7.js'),('1.8','IB_AI_SL_1.8_technology_equations_ECHS.html','lesson-1.8.js')]
-for number,name,data_file in direct:
+if 'lesson.html?lesson=' in ib_update:errors.append('IB Unit 1 must use six direct canonical lesson HTML URLs')
+
+active=[
+ ('1.1','IB_AI_SL_1.1_standard_form_ECHS.html',['lesson-1.1.js']),
+ ('1.2','IB_AI_SL_1.2_arithmetic_sequences_ECHS.html',['lesson-1.2.js','lesson-1.2-arithmetic-definitive-v6.js']),
+ ('1.3','IB_AI_SL_1.3_geometric_sequences_ECHS.html',['lesson-1.3.js','lesson-1.3-geometric-definitive-v6.js']),
+ ('1.4','IB_AI_SL_1.4_financial_models_ECHS.html',['lesson-1.4.js','lesson-1.4-financial-v6-foundations.js','lesson-1.4-financial-v6-assessment.js']),
+ ('1.5','IB_AI_SL_1.5_logarithms_ECHS.html',['lesson-1.5.js']),
+ ('1.6','IB_AI_SL_1.6_technology_equations_ECHS.html',['lesson-1.8.js','lesson-1.6-technology-renumber-v6.js'])
+]
+for number,name,data_files in active:
  text=read(f'lessons/ib-math-ai/unit-1/lessons/{name}')
- require(text,['<html','</html>','../assets/css/katex.css','../assets/css/theme.css',f'../data/{data_file}','../assets/js/katex-global.js','../assets/js/engine.js','class="topbar"','data-route="practice"'],f'IB direct lesson {number}')
- data=read(f'lessons/ib-math-ai/unit-1/data/{data_file}')
- require(data,['window.LESSON_DATA',f'"number":"{number}"','"practice"','"quiz"','"exam"'],f'IB lesson data {number}')
+ require(text,['<html','</html>','../assets/css/katex.css','../assets/css/theme.css','../assets/js/katex-global.js','../assets/js/engine.js','class="topbar"','data-route="practice"'],f'IB active lesson {number}')
+ for data_file in data_files:
+  require(text,[f'../data/{data_file}'],f'IB active lesson {number}')
+  data_text=read(f'lessons/ib-math-ai/unit-1/data/{data_file}')
+  if data_file in {'lesson-1.1.js','lesson-1.2.js','lesson-1.3.js','lesson-1.4.js','lesson-1.5.js','lesson-1.8.js'}:
+   require(data_text,['window.LESSON_DATA','"practice"','"quiz"','"exam"'],f'IB base lesson data {data_file}')
+
+redirects={
+ 'IB_AI_SL_1.6_approximation_error_ECHS.html':'IB_AI_SL_1.1_standard_form_ECHS.html',
+ 'IB_AI_SL_1.7_loans_annuities_ECHS.html':'IB_AI_SL_1.4_financial_models_ECHS.html',
+ 'IB_AI_SL_1.8_technology_equations_ECHS.html':'IB_AI_SL_1.6_technology_equations_ECHS.html'
+}
+for name,target in redirects.items():
+ text=read(f'lessons/ib-math-ai/unit-1/lessons/{name}')
+ require(text,['<html','</html>',target,'location.replace','rel="canonical"'],f'IB legacy redirect {name}')
+
 if (ROOT/'lessons/ib-math-ai/unit-1/lessons/lesson.html').exists():errors.append('Superseded shared IB Unit 1 lesson shell must be removed')
 if 'SUPABASE_SERVICE_ROLE_KEY' in html+js:errors.append('Browser code must not contain the service-role secret name')
 if re.search(r"storage\.buckets.*public\s*=\s*true",migration,re.S):errors.append('Teacher upload bucket must not be public')
 for path in ['tools/process_teacher_upload_request.py','tools/process_teacher_upload_request_fast.py','tools/process_ib_lesson_release.py','tools/test_course_release_changed_file_selection.py','tools/test_ib_lesson_platform_integration.py','tools/upload_private_bank_package_verified_fast.py','tools/upload_private_bank_package_verified_free_tier.py','tools/test_private_bank_source_archive_chunking.py','tools/validate_upload_manager.py']:
  result=subprocess.run([sys.executable,'-m','py_compile',str(ROOT/path)],capture_output=True,text=True)
  if result.returncode:errors.append(f'Python syntax failure {path}: {result.stderr}')
-for command,label in [([sys.executable,str(ROOT/'tools/test_private_bank_source_archive_chunking.py')],'Source archive chunking regression'),([sys.executable,str(ROOT/'tools/test_course_release_changed_file_selection.py')],'Course release file selection regression'),(['node',str(ROOT/'tools/test_ib_unit1_portal_update.mjs')],'IB Unit 1 portal regression')]:
+for command,label in [
+ ([sys.executable,str(ROOT/'tools/test_private_bank_source_archive_chunking.py')],'Source archive chunking regression'),
+ ([sys.executable,str(ROOT/'tools/test_course_release_changed_file_selection.py')],'Course release file selection regression'),
+ (['node',str(ROOT/'tools/test_ib_unit1_portal_update.mjs')],'IB Unit 1 portal regression')
+]:
  result=subprocess.run(command,capture_output=True,text=True,cwd=ROOT)
  if result.returncode:errors.append(f'{label} failure: {result.stderr or result.stdout}')
 for path in ['question-bank/official/admin/js/upload-manager.js','question-bank/official/admin/js/private-bank-center.js','question-bank/js/mapped-private-bank-practice.js','question-bank/js/practice-course-isolation.js','question-bank/js/mapped-practice.js','question-bank/js/practice-single-bank.js','js/ib-lesson-platform-integration.js','js/lesson-access-guard.js','data/ib-math-ai-unit-1-update.js','lessons/ib-math-ai/unit-1/assets/js/engine.js']:
