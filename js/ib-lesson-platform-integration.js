@@ -13,20 +13,22 @@
   const lessonKey=params.get("lessonKey")||"";
   const title=params.get("title")||`${lesson} · ${data.lesson?.title||"IB Mathematics AI"}`;
   const aliasMap={
-    "1.1":["u1-standard-form","u1-scientific-notation"],
+    "1.1":["u1-standard-form","u1-scientific-notation","u1-approximation-error"],
     "1.2":["u1-arithmetic-sequences"],
     "1.3":["u1-geometric-sequences"],
-    "1.4":["u1-financial-models"],
+    "1.4":["u1-financial-models","u1-loans-annuities"],
     "1.5":["u1-logarithms"],
-    "1.6":["u1-approximation-error"],
-    "1.7":["u1-loans-annuities"],
-    "1.8":["u1-technology-equations"]
+    "1.6":["u1-technology-equations"]
   };
+  const bankTopicMap={"1.6":"u1-technology-equations"};
 
   function platformPracticeURL(){
     const url=new URL("../../../../question-bank/practice.html",location.href);
-    const query=new URLSearchParams({course:"ib-math-ai",unit,topic:lesson,scope:"lesson",title,mode:"adaptive",autostart:"1"});
+    const bankTopic=lessonKey||bankTopicMap[lesson]||lesson;
+    const query=new URLSearchParams({course:"ib-math-ai",unit,topic:bankTopic,scope:"lesson",title,mode:"adaptive",autostart:"1"});
     if(lessonKey)query.set("from",lessonKey);
+    const aliases=aliasMap[lesson]||[];
+    if(aliases.length)query.set("aliases",aliases.join(","));
     url.search=query.toString();
     return url.href;
   }
@@ -79,7 +81,7 @@
     return`<section class="platformBankBridge" data-platform-bank-bridge="1">
       <div>
         <h2>Linked IB question banks</h2>
-        <p>Only questions mapped directly to Lesson ${lesson} are included. Broad Unit 1 skill pools are not copied into unrelated lessons.</p>
+        <p>Only questions mapped directly to Lesson ${lesson} or one of its explicitly consolidated legacy lesson keys are included. Broad Unit 1 skill pools are not copied into unrelated lessons.</p>
         <div class="platformBankMeta"><span>Lesson ${lesson}</span><span>Exact lesson mapping</span><span class="platformBankStatus" data-bank-status data-state="loading">Checking linked questions…</span></div>
         <div class="ibBankSourceNote">Original lesson questions remain below. Uploaded prompts stay in protected institutional storage and retain their bank identity.</div>
       </div>

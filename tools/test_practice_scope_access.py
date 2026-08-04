@@ -74,7 +74,14 @@ require(executive_css, (
 ), "Full-width practice presentation")
 require(recovery_ui, ("Protected recovery", "data-retry-practice", "practiceBankTransport", "fixAuthenticatedHeader"), "Practice recovery UI")
 require(recovery_css, ("practiceStudio .studioHero h1", "connectionRecovery", "grid-template-columns:minmax(360px,410px)", "transportPill"), "Practice recovery polish")
-require(lesson_bridge, ("practice-bank-api", '"1.6":["u1-approximation-error"]', 'scope:"lesson"', "Exact lesson mapping"), "IB lesson bridge")
+require(lesson_bridge, (
+    "practice-bank-api",
+    '"1.1":["u1-standard-form","u1-scientific-notation","u1-approximation-error"]',
+    '"1.4":["u1-financial-models","u1-loans-annuities"]',
+    '"1.6":["u1-technology-equations"]',
+    'bankTopicMap={"1.6":"u1-technology-equations"}',
+    'scope:"lesson"', "Exact lesson mapping", 'query.set("aliases"',
+), "IB lesson bridge")
 forbid(lesson_bridge, ('"u1-number"', '"u1-sequences"', '"u1-modeling"'), "IB lesson bridge")
 require(unit_unlock, ("unitPracticeUnlock", "eligibleLessons", "Practise the full unit", 'scope:"unit"'), "Unit practice unlock")
 require(practice_html, (

@@ -2,16 +2,14 @@
   "use strict";
 
   const base="lessons/ib-math-ai/unit-1/lessons/";
-  const makeLesson=(number,title,slug,outcomes,release="5.3.0",learnSlides=36,practiceQuestions=52,quizQuestions=14,extendedTasks=3)=>{
+  const makeLesson=(number,title,slug,outcomes,release="5.3.0",learnSlides=36,practiceQuestions=52,quizQuestions=14,extendedTasks=3,skillKeys=["IBAI.U1.SEQUENCES","IBAI.U1.MODELING"])=>{
     const url=`${base}IB_AI_SL_${number}_${slug}_ECHS.html`;
     return {
       number,title,outcomes,url,status:"ready",new:true,
       lesson_key:`u1-${slug.replaceAll("_","-")}`,
       release,learnSlides,practiceQuestions,quizQuestions,extendedTasks,
       keywords:["ib","mathematics","applications","interpretation","number","algebra",number,slug.replaceAll("_","-")],
-      skill_keys:number==="1.1"||number==="1.6"?["IBAI.U1.NUMBER","IBAI.U1.MODELING"]:
-        number==="1.8"?["IBAI.U1.ALGEBRA","IBAI.U1.MATRICES","IBAI.U1.MODELING"]:
-        number==="1.5"?["IBAI.U1.ALGEBRA","IBAI.U1.MODELING"]:["IBAI.U1.SEQUENCES","IBAI.U1.MODELING"],
+      skill_keys:skillKeys,
       resources:[
         {label:`Complete interactive lesson · v${release}`,url,type:"resource"},
         {label:`Practice Studio · ${practiceQuestions} questions`,url:`${url}#practice`,type:"practice"},
@@ -22,14 +20,19 @@
 
   const unit={
     title:"Unit 1: Number and Algebra",
-    description:"Eight classroom-ready IB Mathematics: Applications and Interpretation SL lessons with coherent AP-style teaching screens, transparent technology, four-level practice, IB tasks and mastery evidence.",
-    portalSummary:"8 lessons · 405 purposeful Learn screens · 548 studio questions · 112 quiz questions · 30 extended tasks",
-    release:"5.3.3",
+    description:"Six consolidated IB Mathematics: Applications and Interpretation SL lessons with coherent AP-style teaching screens, transparent technology, four-level practice, IB tasks and mastery evidence.",
+    portalSummary:"6 lessons · 397 purposeful Learn screens · 512 studio questions · 86 quiz questions · 27 extended tasks",
+    release:"6.0.0",
+    architectureNotes:[
+      "Approximation, bounds and percentage error are consolidated in Lesson 1.1.",
+      "Financial applications, loans, annuities and amortization are consolidated in Lesson 1.4.",
+      "Technology for Equations and Systems is renumbered as Lesson 1.6."
+    ],
     essential_questions:[
       "How can number and algebra models communicate scale, change, finance and uncertainty?",
       "How do additive and multiplicative structures support prediction and decision-making?",
       "How should technology be used transparently to solve, verify and interpret models?",
-      "How do precision, assumptions and constraints affect the reliability of a conclusion?"
+      "How do precision, timing, assumptions and constraints affect the reliability of a conclusion?"
     ],
     lessons:[
       makeLesson("1.1","Number Foundations, Scientific Notation and Approximation","standard_form",[
@@ -38,7 +41,7 @@
         "Construct direct and calculated bounds and quantify absolute and percentage error.",
         "Calculate with normalized scientific notation, units and orders of magnitude.",
         "Validate technology output with estimation, uncertainty and contextual interpretation."
-      ],"6.0.0",79,96,14,5),
+      ],"6.0.0",79,96,14,5,["IBAI.U1.NUMBER","IBAI.U1.MODELING"]),
       makeLesson("1.2","Arithmetic Sequences and Series","arithmetic_sequences",[
         "Distinguish sequence terms, series and partial sums using precise notation.",
         "Recognize and prove arithmetic structure through constant first differences.",
@@ -56,21 +59,27 @@
         "Solve growth, decay, inverse and threshold problems with adjacent-stage verification.",
         "Evaluate assumptions, saturation, precision and technology output in geometric models."
       ],"6.0.0",73,96,14,5),
-      makeLesson("1.4","Financial Applications of Sequences","financial_models",[
-        "Distinguish additive and compound financial change.","Use periodic and effective rates.","Model depreciation, inflation and real return.","Compare net outcomes and assumptions."
-      ]),
+      makeLesson("1.4","Financial Applications","financial_models",[
+        "Distinguish fixed monetary change from fixed percentage change.",
+        "Use nominal, periodic and effective rates with consistent time units.",
+        "Calculate compound growth, depreciation, inflation and real value.",
+        "Model ordinary annuities, annuities due, mixed deposits and withdrawal funds.",
+        "Calculate loan payments, total interest and outstanding balances.",
+        "Construct amortization evidence and compare repayment strategies.",
+        "Evaluate financial decisions using timing, fees, inflation, sensitivity and risk."
+      ],"6.0.0",100,120,16,6),
       makeLesson("1.5","Exponent Laws and Logarithms","logarithms",[
-        "Simplify zero, negative and rational exponents.","Solve exponential equations exactly or logarithmically.","Interpret logarithms as inverse exponents.","Apply domain and model checks."
-      ]),
-      makeLesson("1.6","Approximation, Bounds and Percentage Error","approximation_error",[
-        "Round and report suitable precision.","Construct measurement bounds.","Propagate bounds through calculations.","Evaluate absolute and percentage error."
-      ]),
-      makeLesson("1.7","Loans, Annuities and Amortization","loans_annuities",[
-        "Interpret cash-flow timing and TVM variables.","Calculate annuity values and loan payments.","Construct amortization evidence.","Compare repayment strategies."
-      ]),
-      makeLesson("1.8","Technology for Equations and Systems","technology_equations",[
-        "Model and solve two- and three-variable systems.","Classify unique, inconsistent and dependent systems.","Determine model parameters from conditions.","Verify numerical roots and intersections."
-      ])
+        "Simplify zero, negative and rational exponents.",
+        "Solve exponential equations exactly or logarithmically.",
+        "Interpret logarithms as inverse exponents.",
+        "Apply domain and model checks."
+      ],"5.3.0",36,52,14,3,["IBAI.U1.ALGEBRA","IBAI.U1.MODELING"]),
+      makeLesson("1.6","Technology for Equations and Systems","technology_equations",[
+        "Model and solve two- and three-variable systems.",
+        "Classify unique, inconsistent and dependent systems.",
+        "Determine model parameters from conditions.",
+        "Verify numerical roots and intersections using substitution, residuals and constraints."
+      ],"5.3.3-renumbered",36,52,14,3,["IBAI.U1.ALGEBRA","IBAI.U1.MATRICES","IBAI.U1.MODELING"])
     ]
   };
 
@@ -101,6 +110,6 @@
   course.unitCount=course.units.length;
   course.lessonCount=course.units.reduce((total,value)=>total+(Array.isArray(value?.lessons)?value.lessons.length:0),0);
   course.status="Started";
-  course.updatedUnits="Unit 1 · Lessons 1.1–1.3 definitive v6";
+  course.updatedUnits="Unit 1 · six-lesson architecture · Lessons 1.1–1.4 definitive v6";
   window.dispatchEvent(new CustomEvent("echs:ib-ai-unit-ready",{detail:{courseId:course.id,unit:1,lessons:unit.lessons.length,release:unit.release}}));
 })();
