@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Regression checks for native IB lesson chrome and future exact-bank routing."""
+"""Regression checks for native IB lesson chrome, redirects and exact-bank routing."""
 from __future__ import annotations
 
 import argparse
@@ -13,10 +13,13 @@ LESSONS = (
     "IB_AI_SL_1.3_geometric_sequences_ECHS.html",
     "IB_AI_SL_1.4_financial_models_ECHS.html",
     "IB_AI_SL_1.5_logarithms_ECHS.html",
-    "IB_AI_SL_1.6_approximation_error_ECHS.html",
-    "IB_AI_SL_1.7_loans_annuities_ECHS.html",
-    "IB_AI_SL_1.8_technology_equations_ECHS.html",
+    "IB_AI_SL_1.6_technology_equations_ECHS.html",
 )
+REDIRECTS = {
+    "IB_AI_SL_1.6_approximation_error_ECHS.html": "IB_AI_SL_1.1_standard_form_ECHS.html",
+    "IB_AI_SL_1.7_loans_annuities_ECHS.html": "IB_AI_SL_1.4_financial_models_ECHS.html",
+    "IB_AI_SL_1.8_technology_equations_ECHS.html": "IB_AI_SL_1.6_technology_equations_ECHS.html",
+}
 
 
 def read(root: Path, relative: str, errors: list[str]) -> str:
@@ -72,7 +75,14 @@ def validate_source(root: Path, errors: list[str]) -> None:
     require(access_css, (".echsLessonInlineAccess", ".echsLessonNativeAccess", ".hasEchsLessonAccessBar .topbar", "--echs-access-bar-height"), "Learning access stylesheet", errors)
     require(ib_css, (".platformBankBridge", ".ibBankTabBadge", ".platformBankStatus", "[data-platform-bank-link]"), "IB lesson integration stylesheet", errors)
     require(guard, ("installIntegratedAccess", "nativeActions", "echsLessonInlineAccess", 'dataset.lessonAccessLayout="integrated"', "installFallbackBar", "Finish lesson & unlock practice", "echs:lesson-completed", "course-not-assigned"), "Lesson access guard", errors)
-    require(bridge, ("Linked IB question banks", "Open lesson practice", "platformBankBridge", "practice-bank-api", '"1.6":["u1-approximation-error"', '"1.7":["u1-loans-annuities"', '"1.8":["u1-technology-equations"', 'scope:"lesson"', "Exact lesson mapping", "data-platform-bank-link"), "IB lesson platform bridge", errors)
+    require(bridge, (
+        "Linked IB question banks", "Open lesson practice", "platformBankBridge", "practice-bank-api",
+        '"1.1":["u1-standard-form","u1-scientific-notation","u1-approximation-error"',
+        '"1.4":["u1-financial-models","u1-loans-annuities"',
+        '"1.6":["u1-technology-equations"',
+        'bankTopicMap={"1.6":"u1-technology-equations"',
+        'scope:"lesson"', "Exact lesson mapping", "data-platform-bank-link", 'query.set("aliases"'
+    ), "IB lesson platform bridge", errors)
     forbid(bridge, ('"u1-number"', '"u1-sequences"', '"u1-modeling"'), "IB lesson platform bridge", errors)
     require(unit_unlock, ("unitPracticeUnlock", "eligibleLessons", "Practise the full unit", 'scope:"unit"'), "Completed-unit practice access", errors)
     require(global_bridge, ("window.ECHSBank=ECHSBank", "window.ECHSLearning=ECHSLearning", "practiceGlobalBridge", '"ready":"incomplete"'), "Practice lexical-global bridge", errors)
@@ -108,6 +118,9 @@ def validate_source(root: Path, errors: list[str]) -> None:
     for name in LESSONS:
         text = read(root, f"lessons/ib-math-ai/unit-1/lessons/{name}", errors)
         require(text, ('class="topbar"', 'class="header-actions"', 'class="routebar"', 'data-route="practice"', "../assets/js/engine.js"), name, errors)
+    for name, target in REDIRECTS.items():
+        text = read(root, f"lessons/ib-math-ai/unit-1/lessons/{name}", errors)
+        require(text, (target, "location.replace", 'rel="canonical"'), name, errors)
     old_shell = lesson_root / "lesson.html"
     if old_shell.exists():
         errors.append("Legacy shared IB lesson.html shell must not return")
@@ -133,6 +146,10 @@ def validate_artifact(root: Path, errors: list[str]) -> None:
         relative = f"lessons/ib-math-ai/unit-1/lessons/{name}"
         text = read(root, relative, errors)
         require(text, ('data-echs-lesson-guard="1"', 'name="echs-course" content="ib-math-ai"', "css/learning-access.css?v=20260729-iblinks1", "css/ib-lesson-platform-integration.css?v=20260729-iblinks1", "js/lesson-access-guard.js?v=20260729-iblinks1", "js/ib-lesson-platform-integration.js?v=20260729-iblinks1"), relative, errors)
+    for name, target in REDIRECTS.items():
+        relative = f"lessons/ib-math-ai/unit-1/lessons/{name}"
+        text = read(root, relative, errors)
+        require(text, (target, "location.replace"), relative, errors)
 
 
 def main() -> int:
