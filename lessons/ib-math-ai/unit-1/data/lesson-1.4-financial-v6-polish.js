@@ -2,6 +2,11 @@
   'use strict';
   const data=window.LESSON_DATA;
   if(!data||String(data.lesson?.number)!=='1.4')return;
+
+  // The revised six-lesson map belongs on the Unit landing page and teacher guide.
+  // Removing it here keeps every Learn screen mathematically or pedagogically necessary.
+  data.slides=data.slides.filter(item=>item.title!=='A six-lesson Number and Algebra route');
+
   const get=title=>data.slides.find(item=>item.title===title);
   const replace=(title,pairs)=>{const item=get(title);if(!item)return;for(const [from,to] of pairs)item.html=item.html.replace(from,to);};
 
@@ -45,6 +50,7 @@
 
   data.v6Audit=Object.assign({},data.v6Audit,{
     independentNumericalReaudit:true,
+    removedNonInstructionalUnitMap:true,
     correctedPeriodConversionExamples:true,
     correctedDepreciationExamples:true,
     correctedRealValueExamples:true,
