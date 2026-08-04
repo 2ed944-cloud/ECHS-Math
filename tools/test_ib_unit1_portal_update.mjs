@@ -12,31 +12,36 @@ const course=ib[0];
 if(course.id!=='g11-ib-ai')throw new Error(`Canonical ID changed to ${course.id}`);
 if(course.units.length!==6)throw new Error(`Expected six canonical units, found ${course.units.length}`);
 const unit=course.units[0];
-if(unit.lessons.length!==8)throw new Error('Unit 1 was not replaced by eight lessons');
-if(course.lessonCount!==33)throw new Error(`Expected 33 total lessons, found ${course.lessonCount}`);
-if(unit.release!=='5.3.3')throw new Error(`Expected Unit 1 release 5.3.3, found ${unit.release}`);
-if(unit.portalSummary!=='8 lessons · 405 purposeful Learn screens · 548 studio questions · 112 quiz questions · 30 extended tasks')throw new Error(`Unexpected portal summary: ${unit.portalSummary}`);
+if(unit.lessons.length!==6)throw new Error(`Unit 1 must contain six consolidated lessons, found ${unit.lessons.length}`);
+if(course.lessonCount!==31)throw new Error(`Expected 31 total lessons after consolidation, found ${course.lessonCount}`);
+if(unit.release!=='6.0.0')throw new Error(`Expected Unit 1 release 6.0.0, found ${unit.release}`);
+if(unit.portalSummary!=='6 lessons · 397 purposeful Learn screens · 512 studio questions · 86 quiz questions · 27 extended tasks')throw new Error(`Unexpected portal summary: ${unit.portalSummary}`);
+if(!unit.architectureNotes.some(note=>note.includes('Approximation')))throw new Error('Approximation consolidation note is missing');
+if(!unit.architectureNotes.some(note=>note.includes('loans')))throw new Error('Financial consolidation note is missing');
 
-const lesson11=unit.lessons[0];
-if(lesson11.title!=='Number Foundations, Scientific Notation and Approximation')throw new Error('Lesson 1.1 title was not synchronized');
-if(lesson11.release!=='6.0.0'||lesson11.learnSlides!==79||lesson11.practiceQuestions!==96||lesson11.quizQuestions!==14||lesson11.extendedTasks!==5)throw new Error(`Lesson 1.1 totals are incorrect: ${JSON.stringify(lesson11)}`);
-
-const lesson12=unit.lessons[1];
-if(lesson12.title!=='Arithmetic Sequences and Series')throw new Error('Lesson 1.2 title was not synchronized');
-if(lesson12.release!=='6.0.0'||lesson12.learnSlides!==73||lesson12.practiceQuestions!==96||lesson12.quizQuestions!==14||lesson12.extendedTasks!==5)throw new Error(`Lesson 1.2 totals are incorrect: ${JSON.stringify(lesson12)}`);
-if(!lesson12.resources.some(resource=>resource.label==='Practice Studio · 96 questions'))throw new Error('Lesson 1.2 practice resource count is stale');
-if(!lesson12.resources.some(resource=>resource.label==='IB-style assessment tasks · 5'))throw new Error('Lesson 1.2 assessment resource count is stale');
-
-const lesson13=unit.lessons[2];
-if(lesson13.title!=='Geometric Sequences and Series')throw new Error('Lesson 1.3 title was not synchronized');
-if(lesson13.release!=='6.0.0'||lesson13.learnSlides!==73||lesson13.practiceQuestions!==96||lesson13.quizQuestions!==14||lesson13.extendedTasks!==5)throw new Error(`Lesson 1.3 totals are incorrect: ${JSON.stringify(lesson13)}`);
-if(!lesson13.resources.some(resource=>resource.label==='Practice Studio · 96 questions'))throw new Error('Lesson 1.3 practice resource count is stale');
-if(!lesson13.resources.some(resource=>resource.label==='IB-style assessment tasks · 5'))throw new Error('Lesson 1.3 assessment resource count is stale');
-if(!lesson13.outcomes.some(outcome=>outcome.includes('negative common ratios')))throw new Error('Lesson 1.3 negative-ratio outcome is missing');
-if(!lesson13.outcomes.some(outcome=>outcome.includes('finite geometric-series')))throw new Error('Lesson 1.3 finite-series outcome is missing');
+const expected=[
+ ['Number Foundations, Scientific Notation and Approximation','6.0.0',79,96,14,5],
+ ['Arithmetic Sequences and Series','6.0.0',73,96,14,5],
+ ['Geometric Sequences and Series','6.0.0',73,96,14,5],
+ ['Financial Applications','6.0.0',100,120,16,6],
+ ['Exponent Laws and Logarithms','5.3.0',36,52,14,3],
+ ['Technology for Equations and Systems','5.3.3-renumbered',36,52,14,3]
+];
+unit.lessons.forEach((lesson,index)=>{
+  const [title,release,slides,practice,quiz,tasks]=expected[index];
+  if(lesson.number!==`1.${index+1}`)throw new Error(`Unexpected lesson number at index ${index}: ${lesson.number}`);
+  if(lesson.title!==title||lesson.release!==release||lesson.learnSlides!==slides||lesson.practiceQuestions!==practice||lesson.quizQuestions!==quiz||lesson.extendedTasks!==tasks)throw new Error(`Lesson ${lesson.number} metadata mismatch: ${JSON.stringify(lesson)}`);
+});
+const lesson14=unit.lessons[3];
+if(!lesson14.outcomes.some(outcome=>outcome.includes('annuities')))throw new Error('Lesson 1.4 annuity outcome is missing');
+if(!lesson14.outcomes.some(outcome=>outcome.includes('amortization')))throw new Error('Lesson 1.4 amortization outcome is missing');
+if(!lesson14.resources.some(resource=>resource.label==='Practice Studio · 120 questions'))throw new Error('Lesson 1.4 practice count is stale');
+if(!lesson14.resources.some(resource=>resource.label==='IB-style assessment tasks · 6'))throw new Error('Lesson 1.4 task count is stale');
+const lesson16=unit.lessons[5];
+if(!lesson16.url.endsWith('IB_AI_SL_1.6_technology_equations_ECHS.html'))throw new Error(`Lesson 1.6 canonical URL is incorrect: ${lesson16.url}`);
 
 const urls=unit.lessons.map(item=>item.url);
-if(new Set(urls).size!==8)throw new Error('Every Unit 1 lesson must have a unique direct URL');
-if(urls.some(url=>!/^lessons\/ib-math-ai\/unit-1\/lessons\/IB_AI_SL_1\.[1-8]_.+_ECHS\.html$/.test(url)))throw new Error(`Unit 1 contains a non-direct lesson URL: ${urls.join(', ')}`);
-if(urls.some(url=>url.includes('?')))throw new Error('Direct IB Unit 1 lesson URLs must not depend on a query-string lesson selector');
-console.log('IB Unit 1 canonical course-card and Lessons 1.1–1.3 v6 portal update: PASS');
+if(new Set(urls).size!==6)throw new Error('Every Unit 1 lesson must have a unique direct URL');
+if(urls.some(url=>!/^lessons\/ib-math-ai\/unit-1\/lessons\/IB_AI_SL_1\.[1-6]_.+_ECHS\.html$/.test(url)))throw new Error(`Unit 1 contains a non-direct lesson URL: ${urls.join(', ')}`);
+if(urls.some(url=>url.includes('?')))throw new Error('Direct Unit 1 lesson URLs must not depend on a query-string selector');
+console.log('IB Unit 1 six-lesson portal update and Financial Applications v6: PASS');
