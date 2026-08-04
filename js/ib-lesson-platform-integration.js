@@ -13,20 +13,19 @@
   const lessonKey=params.get("lessonKey")||"";
   const title=params.get("title")||`${lesson} · ${data.lesson?.title||"IB Mathematics AI"}`;
   const aliasMap={
-    // Lesson 1.1 now also owns the former standalone approximation route.
     "1.1":["u1-standard-form","u1-scientific-notation","u1-approximation-error"],
     "1.2":["u1-arithmetic-sequences"],
     "1.3":["u1-geometric-sequences"],
-    // Lesson 1.4 unifies the former financial-models and loans/annuities routes.
     "1.4":["u1-financial-models","u1-loans-annuities"],
     "1.5":["u1-logarithms"],
-    // Technology for Equations and Systems is renumbered from 1.8 to 1.6.
     "1.6":["u1-technology-equations"]
   };
+  const bankTopicMap={"1.6":"u1-technology-equations"};
 
   function platformPracticeURL(){
     const url=new URL("../../../../question-bank/practice.html",location.href);
-    const query=new URLSearchParams({course:"ib-math-ai",unit,topic:lesson,scope:"lesson",title,mode:"adaptive",autostart:"1"});
+    const bankTopic=lessonKey||bankTopicMap[lesson]||lesson;
+    const query=new URLSearchParams({course:"ib-math-ai",unit,topic:bankTopic,scope:"lesson",title,mode:"adaptive",autostart:"1"});
     if(lessonKey)query.set("from",lessonKey);
     const aliases=aliasMap[lesson]||[];
     if(aliases.length)query.set("aliases",aliases.join(","));
