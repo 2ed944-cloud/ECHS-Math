@@ -47,9 +47,7 @@ const mobileTitles=new Set([
 ]);
 
 function slug(value){return String(value).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,80);}
-function filteredConsoleError(text){
-  return !/favicon|ERR_BLOCKED_BY_CLIENT|Failed to load resource.*404/i.test(text);
-}
+function filteredConsoleError(text){return !/favicon|ERR_BLOCKED_BY_CLIENT|Failed to load resource.*404/i.test(text);}
 
 async function openLesson(viewport,label){
   const context=await browser.newContext({viewport,deviceScaleFactor:1,reducedMotion:'reduce',serviceWorkers:'block'});
@@ -58,7 +56,6 @@ async function openLesson(viewport,label){
   page.on('console',message=>{if(message.type()==='error'&&filteredConsoleError(message.text()))consoleErrors.push(message.text());});
   page.on('pageerror',error=>pageErrors.push(error.message));
   page.on('requestfailed',request=>failedRequests.push(`${request.method()} ${request.url()} :: ${request.failure()?.errorText||'failed'}`));
-  await page.addInitScript(()=>{try{localStorage.clear();sessionStorage.clear();}catch{}});
   const response=await page.goto(`${lessonURL}#learn`,{waitUntil:'domcontentloaded',timeout:45000});
   if(!response||response.status()>=400)report.errors.push(`${label}: lesson request returned ${response?.status()??'no response'}`);
   await page.waitForFunction(()=>document.body.dataset.rendered==='1'&&window.LESSON_DATA?.slides?.length===100,null,{timeout:30000});
@@ -71,9 +68,11 @@ async function currentSlideState(page){
     const app=document.getElementById('app');
     const stage=document.querySelector('.stage');
     const stageInner=document.querySelector('.stage-inner');
-    const title=document.querySelector('.slide-title')||document.querySelector('.fin-cover h1');
-    const titleRect=title?.getBoundingClientRect();
+    const titleNode=document.querySelector('.slide-title')||document.querySelector('.fin-cover h1');
+    const titleRect=titleNode?.getBoundingClientRect();
     const progress=document.getElementById('progress-label')?.textContent?.trim()||'';
+    const slideIndex=Math.max(0,(Number(progress.match(/^\d+/)?.[0]||1)-1));
+    const dataTitle=window.LESSON_DATA?.slides?.[slideIndex]?.title||'';
     const text=app?.innerText?.replace(/\s+/g,' ').trim()||'';
     const rawMath=(text.match(/\\\(|\\\[|\\\)|\\\]/g)||[]).length;
     const mathErrors=document.querySelectorAll('[data-math-error="true"],.katex-error,.katex .merror').length;
@@ -82,13 +81,12 @@ async function currentSlideState(page){
     const stageOverflowY=stage?Math.max(0,stage.scrollHeight-stage.clientHeight):0;
     const titleClipped=Boolean(titleRect&&(titleRect.left<-2||titleRect.right>innerWidth+2||titleRect.top<-2));
     const empty=text.length<28;
-    const titleText=(document.querySelector('.slide-title')?.textContent||document.querySelector('.fin-cover h1')?.textContent||'').replace(/\s+/g,' ').trim();
     const interactive={
       compound:Boolean(document.querySelector('[data-fin-compound-explorer]')),
       cashflow:Boolean(document.querySelector('[data-fin-cashflow-explorer]')),
       generator:Boolean(document.querySelector('[data-fin-generator]'))
     };
-    return{title:titleText,progress,rawMath,mathErrors,bodyOverflow,stageOverflowX,stageOverflowY,titleClipped,empty,textLength:text.length,stageInnerWidth:Math.round(stageInner?.getBoundingClientRect().width||0),interactive};
+    return{title:dataTitle,progress,rawMath,mathErrors,bodyOverflow,stageOverflowX,stageOverflowY,titleClipped,empty,textLength:text.length,stageInnerWidth:Math.round(stageInner?.getBoundingClientRect().width||0),interactive};
   });
 }
 
@@ -190,7 +188,6 @@ async function auditRoute(hash,viewport,device,ready,screenshotName){
   const consoleErrors=[],pageErrors=[];
   page.on('console',message=>{if(message.type()==='error'&&filteredConsoleError(message.text()))consoleErrors.push(message.text());});
   page.on('pageerror',error=>pageErrors.push(error.message));
-  await page.addInitScript(()=>{try{localStorage.clear();sessionStorage.clear();}catch{}});
   await page.goto(`${lessonURL}${hash}`,{waitUntil:'domcontentloaded',timeout:45000});
   await page.waitForFunction(()=>document.body.dataset.rendered==='1'&&window.LESSON_DATA?.lesson?.number==='1.4',null,{timeout:30000});
   await page.locator(ready).first().waitFor({state:'attached',timeout:20000});
@@ -203,7 +200,7 @@ async function auditRoute(hash,viewport,device,ready,screenshotName){
     routeText:(document.querySelector('.route-page')?.innerText||'').replace(/\s+/g,' ').trim(),
     taskTabs:document.querySelectorAll('.exam-task-tabs button').length,
     partTabs:document.querySelectorAll('.exam-part-tabs button').length,
-    visibleTaskCards:[...document.querySelectorAll('.exam-task-card')].filter(node=>getComputedStyle(node).display!=='none').length,
+    visibleTaskCards:[...document.querySelectorAll('.exam-task')].filter(node=>getComputedStyle(node).display!=='none').length,
     visibleParts:[...document.querySelectorAll('.exam-part')].filter(node=>getComputedStyle(node).display!=='none').length,
     practiceFilters:[...document.querySelectorAll('[data-filter]')].map(node=>node.textContent.trim())
   }));
@@ -239,9 +236,8 @@ try{
   await browser.close();
 }
 
-const uniqueErrors=[...new Set(report.errors)];
-const uniqueWarnings=[...new Set(report.warnings)];
-report.errors=uniqueErrors;report.warnings=uniqueWarnings;
+report.errors=[...new Set(report.errors)];
+report.warnings=[...new Set(report.warnings)];
 await writeFile(path.join(outputDir,'report.json'),JSON.stringify(report,null,2));
 console.log(JSON.stringify({slidesDesktop:report.desktopSlides.length,slidesMobile:report.mobileSlides.length,routes:report.routes.length,screenshots:report.screenshots.length,warnings:report.warnings.length,errors:report.errors.length},null,2));
 if(report.errors.length){
