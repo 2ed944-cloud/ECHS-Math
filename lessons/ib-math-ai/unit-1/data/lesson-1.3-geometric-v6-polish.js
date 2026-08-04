@@ -58,9 +58,9 @@
   }
   const c21=practice('GSV6-1.3-C21');
   if(c21){
-    c21.prompt='A geometric sequence has \\(u_1=4\\) and \\(r=1.5\\). Find the first \\(n\\geq3\\) for which \\(S_{n-2}>u_n\\).';
+    c21.prompt='A geometric sequence has \\(u_1=4\\) and \\(r=1.5\\). Find the first \\(n\\geq3\\) for which \\(S_{n-2}\\gt u_n\\).';
     c21.answer='\\(n=6\\).';
-    c21.solution='At \\(n=5\\), \\(S_3=19<20.25=u_5\\). At \\(n=6\\), \\(S_4=32.5>30.375=u_6\\), so \\(6\\) is the first valid index.';
+    c21.solution='At \\(n=5\\), \\(S_3=19\\lt20.25=u_5\\). At \\(n=6\\), \\(S_4=32.5\\gt30.375=u_6\\), so \\(6\\) is the first valid index.';
     c21.check={mode:'number',value:6,tolerance:1e-9};
   }
   const c24=practice('GSV6-1.3-C24');
@@ -69,6 +69,11 @@
     c24.solution='\\(S_{18}=120(1.08^{18}-1)/0.08\\approx4494.03\\). Using the finite-sum formula avoids repeated rounding; apply whole-person interpretation only after calculating the model total.';
   }
 
+  const q01=quiz('GSV6-1.3-Q01');
+  if(q01){
+    q01.prompt='Which listed sequence has the constant ratio \\(-\\frac12\\)?';
+    q01.solution='For \\(6,-3,1.5,-0.75,\\ldots\\), every term is the previous term multiplied by \\(-1/2\\).';
+  }
   const q12=quiz('GSV6-1.3-Q12');
   if(q12){
     q12.answer='\\(1638\\).';
@@ -102,6 +107,8 @@
     correctedShiftedBlockSum:true,
     correctedPiecewiseGrowthValue:true,
     correctedSubsequenceQuizValue:true,
-    extensionExcludedFromCoreAssessment:true
+    extensionExcludedFromCoreAssessment:true,
+    katexSafePostOverlayCorrections:true,
+    independentQuizPrompts:true
   });
 })();
