@@ -3,19 +3,20 @@
   "course": "ib-math-ai",
   "unit": 1,
   "title": "Number and Algebra",
-  "release": "5.3.2",
+  "release": "5.3.3",
   "totals": {
     "lessons": 8,
-    "learn_slides": 368,
-    "practice_questions": 504,
+    "learn_slides": 405,
+    "practice_questions": 548,
     "timed_quiz_questions": 112,
-    "extended_tasks": 28
+    "extended_tasks": 30
   },
   "reference_basis": [
     "Mathematics: Applications and Interpretation SL — Pearson (supplied edition)",
     "Mathematics: Applications and Interpretation SL 2 — Haese Mathematics (supplied edition)",
-    "Haese Mathematics Core Topics SL 1 — sequences and series",
-    "Christos Nikolaidis Topic 1A and MAI 1.4–1.5 arithmetic-sequence materials",
+    "Haese Mathematics Core Topics SL 1 — sequences, growth and decay, and finite geometric series",
+    "Christos Nikolaidis Topic 1A and supplied MAI arithmetic-sequence materials",
+    "Christos Nikolaidis MAI 1.6 — geometric sequences, finite sums, inverse problems and thresholds",
     "Supplied MAI exercise sets for numbers, approximation, exponents, systems, arithmetic and geometric sequences"
   ],
   "lessons": [
@@ -55,11 +56,11 @@
       "status": "ready",
       "student_visible": true,
       "url": "lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.3_geometric_sequences_ECHS.html",
-      "release": "5.3.0",
-      "learn_slides": 36,
-      "practice_questions": 52,
+      "release": "6.0.0",
+      "learn_slides": 73,
+      "practice_questions": 96,
       "timed_quiz_questions": 14,
-      "extended_tasks": 3
+      "extended_tasks": 5
     },
     {
       "lesson_key": "u1-financial-models",

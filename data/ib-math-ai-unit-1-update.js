@@ -23,8 +23,8 @@
   const unit={
     title:"Unit 1: Number and Algebra",
     description:"Eight classroom-ready IB Mathematics: Applications and Interpretation SL lessons with coherent AP-style teaching screens, transparent technology, four-level practice, IB tasks and mastery evidence.",
-    portalSummary:"8 lessons · 368 purposeful Learn screens · 504 studio questions · 112 quiz questions · 28 extended tasks",
-    release:"5.3.2",
+    portalSummary:"8 lessons · 405 purposeful Learn screens · 548 studio questions · 112 quiz questions · 30 extended tasks",
+    release:"5.3.3",
     essential_questions:[
       "How can number and algebra models communicate scale, change, finance and uncertainty?",
       "How do additive and multiplicative structures support prediction and decision-making?",
@@ -48,8 +48,14 @@
         "Evaluate assumptions, limitations and technology output in discrete linear models."
       ],"6.0.0",73,96,14,5),
       makeLesson("1.3","Geometric Sequences and Series","geometric_sequences",[
-        "Recognize positive, fractional and negative ratios.","Use explicit geometric rules.","Find finite sums and inverse parameters.","Model growth, decay and thresholds."
-      ]),
+        "Distinguish additive change from multiplicative change using differences and ratios.",
+        "Recognize positive, fractional and negative common ratios and describe their behaviour.",
+        "Move among recursive, explicit, tabular, graphical and contextual representations.",
+        "Find terms, indices, first terms and common ratios, including separated-term ambiguity.",
+        "Use sigma notation and finite geometric-series formulas, including shifted sums.",
+        "Solve growth, decay, inverse and threshold problems with adjacent-stage verification.",
+        "Evaluate assumptions, saturation, precision and technology output in geometric models."
+      ],"6.0.0",73,96,14,5),
       makeLesson("1.4","Financial Applications of Sequences","financial_models",[
         "Distinguish additive and compound financial change.","Use periodic and effective rates.","Model depreciation, inflation and real return.","Compare net outcomes and assumptions."
       ]),
@@ -95,6 +101,6 @@
   course.unitCount=course.units.length;
   course.lessonCount=course.units.reduce((total,value)=>total+(Array.isArray(value?.lessons)?value.lessons.length:0),0);
   course.status="Started";
-  course.updatedUnits="Unit 1 · Lessons 1.1 and 1.2 definitive v6";
+  course.updatedUnits="Unit 1 · Lessons 1.1–1.3 definitive v6";
   window.dispatchEvent(new CustomEvent("echs:ib-ai-unit-ready",{detail:{courseId:course.id,unit:1,lessons:unit.lessons.length,release:unit.release}}));
 })();
