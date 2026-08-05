@@ -10,7 +10,7 @@ function panel(){
   const aside=document.createElement('aside');
   aside.id='ti84-inline-dock';aside.className='ti84-inline-dock';aside.setAttribute('aria-hidden','true');
   aside.innerHTML=`<header class="ti84-inline-head"><div><span>TI‑84 PLUS CE · LIVE CLASSROOM VIEW</span><h2>Simulator beside the slide</h2></div><button type="button" id="ti84-inline-close" aria-label="Close TI-84 simulator">×</button></header>
-  <div class="ti84-inline-guidance"><p><b>Classroom routine:</b> keep the worked example visible, demonstrate one calculator step, then students repeat it on the TI‑84 in their hands.</p><a href="${URL}" target="_blank" rel="noopener noreferrer">Open separately ↗</a></div>
+  <div class="ti84-inline-guidance"><p><b>Classroom routine:</b> keep the worked example visible, demonstrate one calculator step, then students repeat it on the TI‑84 in their hands.</p><a href="${URL}" target="_blank" rel="noopener noreferrer" aria-label="Open TI-84 simulator in a separate tab">Open ↗</a></div>
   <div class="ti84-inline-frame-shell" id="ti84-inline-frame-shell"><div class="ti84-inline-placeholder"><span>TI‑84</span><h3>Ready for the projected example</h3><p>The third-party simulator loads only after the teacher opens it. Do not enter personal information.</p><button type="button" id="ti84-inline-load">Load simulator</button></div><iframe title="TI-84 Plus CE online practice simulator beside the lesson slide" src="about:blank" data-src="${URL}" loading="lazy" sandbox="allow-scripts allow-same-origin allow-forms allow-pointer-lock allow-popups allow-modals allow-downloads" allow="fullscreen; clipboard-read; clipboard-write" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>`;
   return aside;
 }
@@ -54,7 +54,7 @@ function init(){
   new ResizeObserver(geometry).observe($('.routebar')||document.body);
   document.addEventListener('keydown',event=>{if(event.key==='Escape'&&host.classList.contains('open'))close();});
   document.addEventListener('click',event=>{const routeButton=event.target.closest?.('[data-route]');if(routeButton&&routeButton.dataset.route!=='learn')close();});
-  data.ti84InlineSimulator={release:'6.3.0',provider:'ti84calc.com',layout:'docked beside slide',lazy:true,sandboxed:true};
+  data.ti84InlineSimulator={release:'6.3.1',provider:'ti84calc.com',layout:'docked beside slide',lazy:true,sandboxed:true};
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })();
