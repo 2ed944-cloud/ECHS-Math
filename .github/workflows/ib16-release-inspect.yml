@@ -1,0 +1,84 @@
+name: Inspect IB AI 1.6 staged release
+
+on:
+  push:
+    branches:
+      - feature/ib-ai-1-6-technology-equations-definitive-v6
+    paths:
+      - ".github/workflows/ib16-release-inspect.yml"
+      - "tools/_ib16_release/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+
+      - name: Reassemble and inspect staged release
+        run: |
+          set -euo pipefail
+          mkdir -p _ib16_inspection/extracted
+          cat tools/_ib16_release/part-*.txt | tr -d '\r\n' | base64 --decode > _ib16_inspection/payload.bin
+          python3 - <<'PY'
+          from __future__ import annotations
+          import gzip
+          import io
+          import json
+          import pathlib
+          import tarfile
+
+          root = pathlib.Path('_ib16_inspection')
+          raw = (root / 'payload.bin').read_bytes()
+          layers = []
+          data = raw
+          for index in range(4):
+              layers.append({'layer': index, 'size': len(data), 'magic': data[:16].hex()})
+              if data.startswith(b'\x1f\x8b'):
+                  data = gzip.decompress(data)
+                  (root / f'layer-{index + 1}.bin').write_bytes(data)
+                  continue
+              break
+
+          listing = []
+          archive_kind = 'unknown'
+          try:
+              with tarfile.open(fileobj=io.BytesIO(data), mode='r:*') as archive:
+                  archive_kind = 'tar'
+                  for member in archive.getmembers():
+                      path = pathlib.PurePosixPath(member.name)
+                      if path.is_absolute() or '..' in path.parts:
+                          raise SystemExit(f'Unsafe archive path: {member.name}')
+                      listing.append({
+                          'name': member.name,
+                          'size': member.size,
+                          'type': 'dir' if member.isdir() else 'file' if member.isfile() else str(member.type),
+                      })
+                  archive.extractall(root / 'extracted', filter='data')
+          except tarfile.ReadError:
+              (root / 'decoded.bin').write_bytes(data)
+
+          (root / 'report.json').write_text(json.dumps({
+              'layers': layers,
+              'decoded_size': len(data),
+              'archive_kind': archive_kind,
+              'members': listing,
+          }, indent=2), encoding='utf-8')
+          (root / 'listing.txt').write_text('\n'.join(item['name'] for item in listing), encoding='utf-8')
+          print(json.dumps({'layers': layers, 'archive_kind': archive_kind, 'members': len(listing)}, indent=2))
+          PY
+          find _ib16_inspection -maxdepth 4 -type f -printf '%p %s bytes\n' | sort
+          cat _ib16_inspection/listing.txt
+
+      - name: Upload inspection evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: ib16-staged-release-inspection-${{ github.run_number }}
+          path: _ib16_inspection
+          if-no-files-found: error
+          retention-days: 7
