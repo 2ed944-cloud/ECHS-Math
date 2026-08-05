@@ -8,10 +8,10 @@ const replace=(title,html)=>{const slide=find(title);if(slide)slide.html=html;el
 replace('Three equations as three planes',String.raw`<div class="te63-planes-layout">
   <div class="te63-planes-copy">
     <p>Each linear equation in three variables represents a plane. A triple \((x,y,z)\) solves the system only when its point lies on <b>all three planes at once</b>.</p>
-    <div class="te63-planes-equations">
-      <span>\(a_1x+b_1y+c_1z=d_1\)</span>
-      <span>\(a_2x+b_2y+c_2z=d_2\)</span>
-      <span>\(a_3x+b_3y+c_3z=d_3\)</span>
+    <div class="te63-planes-equations" aria-label="Three equations in the common variable order x y z">
+      <div><b>Plane 1</b><span>a₁x + b₁y + c₁z = d₁</span></div>
+      <div><b>Plane 2</b><span>a₂x + b₂y + c₂z = d₂</span></div>
+      <div><b>Plane 3</b><span>a₃x + b₃y + c₃z = d₃</span></div>
     </div>
     <div class="te63-accuracy-note"><b>Unique solution:</b> three independent planes meet at one common point. Other systems may meet along a line, have infinitely many common points, or have no common point.</div>
   </div>
@@ -52,15 +52,20 @@ replace('Multiplicity changes how a graph meets the axis',String.raw`<div class=
 <div class="te63-accuracy-note"><b>General rule:</b> even multiplicity touches and turns; odd multiplicity crosses. Greater multiplicity makes the graph flatter near the root.</div>`);
 
 replace('Intersections solve an equation in two equivalent ways',String.raw`<div class="te63-intersection-layout">
-  <div class="te63-intersection-copy"><p>To solve \(f(x)=g(x)\), graph both functions or create one zero function.</p><div class="te63-display">\[f(x)=g(x)\quad\Longleftrightarrow\quad f(x)-g(x)=0.\]</div><div class="te63-accuracy-note"><b>Complete point:</b> when the question asks for intersections, report both coordinates—not only the x-values.</div></div>
+  <div class="te63-intersection-copy">
+    <p>To solve \(f(x)=g(x)\), graph both functions or create one zero function.</p>
+    <div class="te63-equation-pair"><span>\(f(x)=g(x)\)</span><strong>⇔</strong><span>\(f(x)-g(x)=0\)</span></div>
+    <div class="te63-intersection-values"><b>Exact intersection points</b><span>\(P_1=(1-\sqrt5,\,3-2\sqrt5)\)</span><span>\(P_2=(1+\sqrt5,\,3+2\sqrt5)\)</span></div>
+    <div class="te63-accuracy-note"><b>Complete point:</b> when the question asks for intersections, report both coordinates—not only the x-values.</div>
+  </div>
   <figure class="te63-intersection-figure" role="img" aria-label="The line y equals 2x plus 1 intersects the parabola y equals x squared minus 3 at two accurately plotted points">
-    <svg viewBox="0 0 640 360" aria-hidden="true">
-      <defs><clipPath id="te63-graph-clip"><rect x="58" y="25" width="535" height="286" rx="14"/></clipPath></defs>
-      <g class="grid"><line x1="58" y1="282" x2="593" y2="282"/><line x1="259" y1="25" x2="259" y2="311"/></g>
-      <g clip-path="url(#te63-graph-clip)"><path class="line-graph" d="M58 266 L593 43"/><path class="parabola-graph" d="M58 116 L91 155 L125 188 L158 214 L192 235 L225 249 L259 254 L292 249 L326 235 L359 214 L393 188 L426 155 L460 116 L493 69 L527 16"/></g>
-      <circle class="intersection-dot" cx="176" cy="219" r="8"/><circle class="intersection-dot" cx="476" cy="99" r="8"/>
-      <text x="190" y="211">\((1-\sqrt5,\,3-2\sqrt5)\)</text><text x="332" y="84">\((1+\sqrt5,\,3+2\sqrt5)\)</text>
-      <text class="graph-label line" x="478" y="60">\(y=2x+1\)</text><text class="graph-label parabola" x="75" y="104">\(y=x^2-3\)</text>
+    <div class="te63-function-legend"><span class="line">\(y=2x+1\)</span><span class="parabola">\(y=x^2-3\)</span></div>
+    <svg viewBox="0 0 640 340" aria-hidden="true">
+      <defs><clipPath id="te63-graph-clip"><rect x="58" y="25" width="535" height="270" rx="14"/></clipPath></defs>
+      <g class="grid"><line x1="58" y1="266" x2="593" y2="266"/><line x1="259" y1="25" x2="259" y2="296"/></g>
+      <g clip-path="url(#te63-graph-clip)"><path class="line-graph" d="M58 250 L593 43"/><path class="parabola-graph" d="M58 104 L91 141 L125 172 L158 197 L192 217 L225 230 L259 235 L292 230 L326 217 L359 197 L393 172 L426 141 L460 104 L493 60 L527 10"/></g>
+      <circle class="intersection-dot" cx="176" cy="202" r="8"/><circle class="intersection-dot" cx="476" cy="95" r="8"/>
+      <text class="point-label" x="190" y="194">P₁</text><text class="point-label" x="487" y="88">P₂</text>
     </svg>
     <figcaption>Each common point satisfies both equations.</figcaption>
   </figure>
@@ -74,7 +79,7 @@ replace('Context can reject mathematically valid roots',String.raw`<div class="t
 <p>For \(h(t)=-4.9t^2+18t+1.5\), technology may correctly return two algebraic roots. The context decides which root answers the question.</p>
 <div class="te63-accuracy-note"><b>Exam language:</b> write “reject \(t\approx-0.0815\) because \(t&lt;0\)” rather than “ignore the negative answer.”</div>`);
 
-data.version='6.3.0';
-data.visualAccuracyRelease='6.3.0';
-data.visualAccuracyAudit={planes:'three distinct surfaces share one point',rootEquivalence:'horizontal unambiguous equivalence',multiplicity:'m=1, m=2 and m=3 plotted accurately',intersections:'line and parabola markers match exact points',domainRoots:'values recomputed from the stated quadratic'};
+data.version='6.3.1';
+data.visualAccuracyRelease='6.3.1';
+data.visualAccuracyAudit={planes:'three distinct surfaces share one point with compact plain-text equations',rootEquivalence:'horizontal unambiguous equivalence',multiplicity:'m=1, m=2 and m=3 plotted accurately',intersections:'line and parabola markers and exact point labels agree',domainRoots:'values recomputed from the stated quadratic'};
 })();
