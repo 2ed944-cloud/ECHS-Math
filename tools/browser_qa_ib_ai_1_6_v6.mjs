@@ -129,7 +129,7 @@ try{
   await routes.page.click('[data-route="practice"]');await routes.page.waitForSelector('.question-shell');
   let routeState=await state(routes.page);add('Practice Studio exposes 96 questions',/96 original questions/.test(await routes.page.locator('.route-header p').innerText()),await routes.page.locator('.route-header p').innerText());add('Practice route avoids horizontal overflow',routeState.bodyOverflow<=2&&routeState.stageOverflow<=2,JSON.stringify(routeState));
   await routes.page.click('[data-route="quiz"]');await routes.page.waitForSelector('.question-shell');add('Timed Quiz exposes 14 independent questions',/14-question checkpoint/.test(await routes.page.locator('.route-header h1').innerText()),await routes.page.locator('.route-header h1').innerText());
-  await routes.page.click('[data-route="exam"]');await routes.page.waitForSelector('.exam-shell');add('IB Tasks route exposes five tasks',(await routes.page.locator('[data-exam-index]').count())===5,`task buttons ${await routes.page.locator('[data-exam-index]').count()}`);
+  await routes.page.click('[data-route="exam"]');await routes.page.waitForSelector('.exam-task');add('IB Tasks route exposes five tasks',(await routes.page.locator('.exam-task').count())===5,`task cards ${await routes.page.locator('.exam-task').count()}`);
   add('assessment routes have no console errors',routes.consoleErrors.length===0,routes.consoleErrors.join('\n'));
   await routes.context.close();
 }finally{
