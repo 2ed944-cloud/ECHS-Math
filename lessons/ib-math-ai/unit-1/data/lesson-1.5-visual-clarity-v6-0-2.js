@@ -22,9 +22,9 @@ if(logarithmSlide){
     <div class="el-log-question-v602">WHAT EXPONENT?</div>
     <div class="el-log-equation-v602">\\[\\log_b(x)=y\\]</div>
     <div class="el-log-role-grid-v602">
-      <article class="base"><span>\\(b\\)</span><b>base</b><small>the repeated multiplier</small></article>
-      <article class="argument"><span>\\(x\\)</span><b>argument</b><small>the positive result</small></article>
-      <article class="exponent"><span>\\(y\\)</span><b>exponent</b><small>the answer returned</small></article>
+      <article class="role-base-v602"><span>\\(b\\)</span><b>base</b><small>the repeated multiplier</small></article>
+      <article class="role-argument-v602"><span>\\(x\\)</span><b>argument</b><small>the positive result</small></article>
+      <article class="role-exponent-v602"><span>\\(y\\)</span><b>exponent</b><small>the answer returned</small></article>
     </div>
     <div class="el-log-inverse-strip-v602">
       <span>\\(\\log_b(x)=y\\)</span><strong>means exactly</strong><span>\\(b^y=x\\)</span>
