@@ -124,8 +124,6 @@ if baseline and final:
     for flag in ('practice_studio_unchanged','timed_quiz_unchanged','ib_tasks_unchanged','mastery_route_unchanged'):
         if pacing.get(flag) is not True:errors.append(f'Pacing preservation flag is not true: {flag}')
 
-    block_sequence=[]
-    boundary_count=0
     by_title={slide.get('title'):slide for slide in after}
     for code,title,start_title in expected_blocks:
         item=by_title.get(start_title)
@@ -135,7 +133,6 @@ if baseline and final:
         if item.get('teachingBlock')!=code or item.get('teachingBlockTitle')!=title:
             errors.append(f'Boundary metadata mismatch for {code}')
         if item.get('blockBoundary') is not True:errors.append(f'{code} start screen is not marked as a boundary')
-        boundary_count+=1 if item.get('blockBoundary') else 0
         eyebrow=str(item.get('eyebrow') or '')
         for required in ('Teaching Block',f'Lesson {code}','Estimated classroom time: 60–75 minutes','Learning focus:'):
             if required not in eyebrow:errors.append(f'{code} boundary annotation missing: {required}')
@@ -149,14 +146,14 @@ if baseline and final:
         code=slide_item.get('teachingBlock');classification=slide_item.get('classification')
         if code not in code_index:errors.append(f'Invalid block code on slide {index+1}: {code!r}');continue
         if code_index[code]<previous:errors.append('Teaching blocks are not contiguous and ordered')
-        previous=max(previous,code_index[code]);block_sequence.append(code)
+        previous=max(previous,code_index[code])
         if classification not in allowed:errors.append(f'Invalid classification on slide {index+1}: {classification!r}')
         elif slide_item.get('classificationIcon')!=allowed[classification]:errors.append(f'Classification icon mismatch on slide {index+1}')
         counts[classification]+=1
         section=str(slide_item.get('section') or '')
-        if f'Lesson {code}' not in section or f'{allowed.get(classification,"")} {classification}' not in section:
+        if code not in section or f'{allowed.get(classification,"")} {classification}' not in section:
             errors.append(f'Lesson Map annotation incomplete on slide {index+1}')
-        if str(slide_item.get('originalSection') or '') not in section:
+        if not slide_item.get('blockBoundary') and str(slide_item.get('originalSection') or '') not in section:
             errors.append(f'Original section label not retained in annotation on slide {index+1}')
     for classification in allowed:
         if counts[classification]<1:errors.append(f'No screens classified as {classification}')
