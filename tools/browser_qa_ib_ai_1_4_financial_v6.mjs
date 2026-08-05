@@ -27,7 +27,7 @@ function lessonURL(scope,hash='#learn'){
 }
 
 async function openLesson(scope,viewport,label,hash='#learn'){
-  const context=await browser.newContext({viewport,deviceScaleFactor:1,reducedMotion:'reduce',serviceWorkers:'block'});
+  const context=await browser.newContext({viewport,deviceScaleFactor:1,reducedMotion:'reduce',serviceWorkers:'block',bypassCSP:true});
   const page=await context.newPage();
   const consoleErrors=[],pageErrors=[],failedRequests=[];
   page.on('console',message=>{if(message.type()==='error'&&filteredConsoleError(message.text()))consoleErrors.push(message.text());});
