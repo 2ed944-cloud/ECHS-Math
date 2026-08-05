@@ -185,8 +185,16 @@ for path,target in redirects.items():
     body=read(path)
     if target not in body or 'location.replace' not in body:errors.append(f'Legacy redirect invalid: {path}')
 tech=read(U1/'lessons/IB_AI_SL_1.6_technology_equations_ECHS.html')
-for marker in ('lesson-1.8.js','lesson-1.8-v3.js','lesson-1.6-technology-renumber-v6.js','1.6 · Technology for Equations and Systems'):
-    if marker not in tech:errors.append(f'Canonical renumbered technology wrapper missing: {marker}')
+for marker in (
+ 'lesson-1.8.js','lesson-1.8-v3.js',
+ 'lesson-1.6-technology-v6-foundations.js','lesson-1.6-technology-v6-systems.js',
+ 'lesson-1.6-technology-v6-polynomials.js','lesson-1.6-technology-v6-practice.js',
+ 'lesson-1.6-technology-v6-assessment.js','lesson-1.6-technology-v6-corrections.js',
+ 'lesson-1.6-technology-v6-interactions.js','1.6 · Technology for Equations and Systems'
+):
+    if marker not in tech:errors.append(f'Canonical definitive technology wrapper missing: {marker}')
+if 'lesson-1.6-technology-renumber-v6.js' in tech:
+    errors.append('Canonical Lesson 1.6 wrapper still loads the legacy renumber-only patch')
 
 print('IB AI SL Lesson 1.4 Financial Applications v6 validation')
 print(f'Root: {ROOT}')

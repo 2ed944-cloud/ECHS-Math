@@ -21,13 +21,13 @@
   const unit={
     title:"Unit 1: Number and Algebra",
     description:"Six consolidated IB Mathematics: Applications and Interpretation SL lessons with coherent AP-style teaching screens, transparent technology, four-level practice, IB tasks and mastery evidence.",
-    portalSummary:"6 lessons · 434 purposeful Learn screens · 556 studio questions · 86 quiz questions · 29 extended tasks",
+    portalSummary:"6 lessons · 471 purposeful Learn screens · 600 studio questions · 86 quiz questions · 31 extended tasks",
     release:"6.0.0",
     architectureNotes:[
       "Approximation, bounds and percentage error are consolidated in Lesson 1.1.",
       "Financial applications, loans, annuities and amortization remain consolidated in Lesson 1.4, with the current IB SL core shown by default and broader reference-supported applications available as extension.",
       "Lesson 1.5 is expanded into a definitive exponent-laws and logarithms pathway.",
-      "Technology for Equations and Systems is renumbered as Lesson 1.6."
+      "Lesson 1.6 is rebuilt as a definitive technology, equations, systems, verification and modelling pathway."
     ],
     essential_questions:[
       "How can number and algebra models communicate scale, change, finance and uncertainty?",
@@ -77,11 +77,13 @@
         "Verify technology output and interpret domain, units, discrete timing and model limitations."
       ],"6.0.0",73,96,14,5,["IBAI.U1.ALGEBRA","IBAI.U1.MODELING"]),
       makeLesson("1.6","Technology for Equations and Systems","technology_equations",[
-        "Model and solve two- and three-variable systems.",
-        "Classify unique, inconsistent and dependent systems.",
-        "Determine model parameters from conditions.",
-        "Verify numerical roots and intersections using substitution, residuals and constraints."
-      ],"5.3.3-renumbered",36,52,14,3,["IBAI.U1.ALGEBRA","IBAI.U1.MATRICES","IBAI.U1.MODELING"])
+        "Use polynomial-root, graph-intersection and numerical-solver technology to find all relevant real solutions.",
+        "Solve and classify two-variable systems and connect common solutions with graph intersections.",
+        "Solve three-variable systems while preserving variable order and zero coefficients.",
+        "Determine model parameters from independent data conditions.",
+        "Verify roots and system solutions using substitution, residuals, factorization or a second representation.",
+        "Interpret domain, units, precision, integrality, non-negativity and model limitations."
+      ],"6.0.0",73,96,14,5,["IBAI.U1.ALGEBRA","IBAI.U1.MATRICES","IBAI.U1.MODELING"])
     ]
   };
 
@@ -120,6 +122,19 @@
     ];
   }
 
+  const technologyLesson=unit.lessons.find(lesson=>lesson.number==="1.6");
+  if(technologyLesson){
+    technologyLesson.organization_release="6.1.0";
+    technologyLesson.organization="one lesson with four internal teaching blocks";
+    technologyLesson.officialSection={code:"SL 1.8",title:"Use of technology to solve systems of linear equations in up to three variables and polynomial equations"};
+    technologyLesson.teachingBlocks=[
+      {code:"1.6A",title:"Two-Variable Systems and Classification",estimatedClassroomTime:"60–75 minutes"},
+      {code:"1.6B",title:"Three Variables, Parameter Fitting and Feasibility",estimatedClassroomTime:"60–75 minutes"},
+      {code:"1.6C",title:"Polynomial Roots, Intersections and Numerical Solving",estimatedClassroomTime:"60–75 minutes"},
+      {code:"1.6D",title:"Verification, Constraints, Modelling and Mastery",estimatedClassroomTime:"60–75 minutes"}
+    ];
+  }
+
   window.ECHS_IB_MATH_AI_UNIT_1=unit;
   if(!Array.isArray(window.ECHS_COURSES))return;
 
@@ -147,6 +162,6 @@
   course.unitCount=course.units.length;
   course.lessonCount=course.units.reduce((total,value)=>total+(Array.isArray(value?.lessons)?value.lessons.length:0),0);
   course.status="Started";
-  course.updatedUnits="Unit 1 · Lesson 1.4 IB SL core-first scope · Lesson 1.5 internal teaching blocks";
+  course.updatedUnits="Unit 1 · Lesson 1.4 IB SL core-first scope · Lessons 1.5 and 1.6 definitive multi-day pathways";
   window.dispatchEvent(new CustomEvent("echs:ib-ai-unit-ready",{detail:{courseId:course.id,unit:1,lessons:unit.lessons.length,release:unit.release}}));
 })();
