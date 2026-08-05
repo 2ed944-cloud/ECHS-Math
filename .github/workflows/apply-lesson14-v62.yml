@@ -72,9 +72,9 @@ jobs:
           node tools/test_ib_unit1_portal_update.mjs
           python tools/validate_ib_ai_unit1_v5.py .
 
-      - name: Commit production files and remove installer
+      - name: Commit production files without workflow changes
         run: |
-          rm -f .github/workflows/apply-lesson14-v62.yml
+          git checkout HEAD -- .github/workflows/apply-lesson14-v62.yml .github/workflows/ib-lesson-platform-qa.yml
           git config user.name 'ECHS Production Automation'
           git config user.email 'actions@users.noreply.github.com'
           git add -A
