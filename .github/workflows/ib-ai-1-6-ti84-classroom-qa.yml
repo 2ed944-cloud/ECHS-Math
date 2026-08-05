@@ -29,8 +29,7 @@ jobs:
 
       - name: Validate JavaScript syntax
         run: |
-          node --check lessons/ib-math-ai/unit-1/data/lesson-1.6-ti84-classroom-data-guard-v6-2-1.js
-          node --check lessons/ib-math-ai/unit-1/data/lesson-1.6-ti84-classroom-coach-v6-2.js
+          node --check lessons/ib-math-ai/unit-1/data/lesson-1.6-ti84-classroom-workflows-v6-2-2.js
           node --check lessons/ib-math-ai/unit-1/data/lesson-1.6-ti84-classroom-runtime-v6-2-1.js
           node --check tools/test_ib_ai_1_6_ti84_classroom_v6_2.mjs
           node --check tools/browser_qa_ib_ai_1_6_ti84_classroom_v6_2.mjs
