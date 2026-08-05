@@ -15,7 +15,7 @@ slide.html=`<div class="el-two">
     <p>Because the two powers are <b>multiplied</b> and have the <b>same base</b>, their groups of equal factors join:</p>
     <div class="el-display">\\[a^3\\cdot a^4=(aaa)(aaaa)=a^{3+4}=a^7.\\]</div>
     <p>The exponents are added only to count how many factors of \\(a\\) occur in the product.</p>
-    <div class="el-warning"><b>Do not confuse the operations:</b> the powers are multiplied. We are not adding \\(a^3\\) and \\(a^4\\); in general, \\(a^3+a^4\\ne a^7\\).</div>
+    <div class="el-warning"><b>Do not confuse the operations:</b> the powers are multiplied, while the exponents add only because they count the factors in that product. We are not adding \\(a^3\\) and \\(a^4\\); in general, \\(a^3+a^4\\ne a^7\\).</div>
   </div>
   <div>
     <div class="el-step-visual" role="img" aria-label="a cubed multiplied by a to the fourth equals a to the power three plus four, which equals a to the seventh">
