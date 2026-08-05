@@ -38,7 +38,16 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          cat tools/_ib15_release/part-*.txt | tr -d '\r\n' | base64 --decode > /tmp/ib15-release.tgz
+          cat \
+            tools/_ib15_release/part-000.txt \
+            tools/_ib15_release/part-001-0.txt \
+            tools/_ib15_release/part-001-1.txt \
+            tools/_ib15_release/part-001-2.txt \
+            tools/_ib15_release/part-001-3.txt \
+            tools/_ib15_release/part-001-4.txt \
+            tools/_ib15_release/part-002.txt \
+            tools/_ib15_release/part-003.txt \
+            | tr -d '\r\n' | base64 --decode > /tmp/ib15-release.tgz
           echo "be4086c35e86cde6f796d928097b3a967a985a71480094f55a8046f5b9effa81  /tmp/ib15-release.tgz" | sha256sum -c -
           tar -xzf /tmp/ib15-release.tgz -C .
 
