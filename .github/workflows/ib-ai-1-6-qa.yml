@@ -17,7 +17,7 @@ permissions:
 jobs:
   validate:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -29,9 +29,40 @@ jobs:
 
       - name: Validate release JavaScript syntax
         run: |
-          for file in lessons/ib-math-ai/unit-1/data/lesson-1.6-technology-v6-*.js tools/test_ib_ai_1_6_definitive_v6.mjs; do
+          for file in lessons/ib-math-ai/unit-1/data/lesson-1.6-technology-v6-*.js tools/test_ib_ai_1_6_definitive_v6.mjs tools/browser_qa_ib_ai_1_6_v6.mjs; do
             node --check "$file"
           done
 
       - name: Validate structure, mathematics and assessment contracts
         run: node tools/test_ib_ai_1_6_definitive_v6.mjs
+
+      - name: Install browser driver
+        run: npm install --no-save --no-package-lock playwright-core@1.54.1
+
+      - name: Start local lesson server
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/ib16-preview.log 2>&1 &
+          for attempt in {1..30}; do
+            if curl --fail --silent http://127.0.0.1:4173/lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.6_technology_equations_ECHS.html >/dev/null; then
+              exit 0
+            fi
+            sleep 1
+          done
+          cat /tmp/ib16-preview.log
+          exit 1
+
+      - name: Run desktop, short-screen and mobile Chromium QA
+        env:
+          ECHS_PREVIEW_URL: http://127.0.0.1:4173
+          ECHS_PREVIEW_OUTPUT: artifacts/ib-ai-1-6-v6
+          CHROME_PATH: /usr/bin/google-chrome
+        run: node tools/browser_qa_ib_ai_1_6_v6.mjs
+
+      - name: Upload visual evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ib-ai-1-6-definitive-v6-${{ github.run_number }}
+          path: artifacts/ib-ai-1-6-v6
+          if-no-files-found: error
+          retention-days: 14
