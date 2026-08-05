@@ -25,7 +25,7 @@ slide.html=`<div class="el-two">
       <strong aria-label="equals">=</strong>
       <div class="accent"><b>\\(a^{3+4}=a^7\\)</b><span>7 factors of \\(a\\)</span></div>
     </div>
-    <div class="el-note"><b>Product law:</b> multiply powers with the same base, then add their factor counts: \\(a^m\\cdot a^n=a^{m+n}\\).</div>
+    <div class="el-note"><b>Product law:</b> the powers are multiplied, while the exponents add as factor counts: \\(3+4=7\\). In general, \\(a^m\\cdot a^n=a^{m+n}\\).</div>
   </div>
 </div>`;
 
@@ -34,6 +34,6 @@ data.visualPatchVersion='6.0.1';
 data.visualAudit=Object.assign({},data.visualAudit,{
   productLawOperator:'multiplication sign shown between powers',
   productLawNonExample:'a^3 + a^4 is explicitly distinguished from a^3 multiplied by a^4',
-  factorCountClarification:'the intermediate exponent m+n is shown as a count of factors in the product'
+  factorCountClarification:'the separate equality 3 + 4 = 7 is shown as a count of factors in the product'
 });
 })();
