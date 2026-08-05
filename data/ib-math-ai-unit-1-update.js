@@ -83,6 +83,21 @@
     ]
   };
 
+  const financialLesson=unit.lessons.find(lesson=>lesson.number==="1.4");
+  if(financialLesson){
+    financialLesson.organization_release="6.1.0";
+    financialLesson.organization="one lesson with seven internal teaching blocks";
+    financialLesson.teachingBlocks=[
+      {code:"1.4A",title:"Percentage Change and Financial Growth",estimatedClassroomTime:"60–75 minutes"},
+      {code:"1.4B",title:"Compounding and Rate Conventions",estimatedClassroomTime:"60–75 minutes"},
+      {code:"1.4C",title:"Depreciation, Inflation and Real Value",estimatedClassroomTime:"60–75 minutes"},
+      {code:"1.4D",title:"Regular Deposits and Savings",estimatedClassroomTime:"60–75 minutes"},
+      {code:"1.4E",title:"Loans and Repayment",estimatedClassroomTime:"60–75 minutes"},
+      {code:"1.4F",title:"Financial Decision Making",estimatedClassroomTime:"60–75 minutes"},
+      {code:"1.4G",title:"Mastery and Mixed Financial Applications",estimatedClassroomTime:"60–75 minutes"}
+    ];
+  }
+
   window.ECHS_IB_MATH_AI_UNIT_1=unit;
   if(!Array.isArray(window.ECHS_COURSES))return;
 
@@ -110,6 +125,6 @@
   course.unitCount=course.units.length;
   course.lessonCount=course.units.reduce((total,value)=>total+(Array.isArray(value?.lessons)?value.lessons.length:0),0);
   course.status="Started";
-  course.updatedUnits="Unit 1 · six-lesson architecture · Lessons 1.1–1.4 definitive v6";
+  course.updatedUnits="Unit 1 · six-lesson architecture · Lesson 1.4 organized into teaching blocks 1.4A–1.4G";
   window.dispatchEvent(new CustomEvent("echs:ib-ai-unit-ready",{detail:{courseId:course.id,unit:1,lessons:unit.lessons.length,release:unit.release}}));
 })();
