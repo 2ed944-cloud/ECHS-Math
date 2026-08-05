@@ -82,7 +82,7 @@ for(const task of data.exam){
 
 const q8=data.quiz.find(item=>item.id==='IBAI-1.6-Q08');
 expect(Math.abs(q8.check.value-4.61012765154382)<1e-12,'Q08 independently recomputed root');
-const cosine=data.practice.find(item=>String(item.prompt).includes('x=8\\cos x'));
+const cosine=data.practice.find(item=>String(item.prompt).includes('cos x'));
 expect(cosine&&Math.abs(cosine.check.value-1.395466143871871)<1e-12,'first positive x=8 cos(x) root');
 expect(Math.abs((52*400-0.04*400**2)-(900+18*400)-6300)<1e-9,'break-even profit check');
 expect(Math.abs((-0.04*425**2+34*425-900)-6325)<1e-9,'profit maximum check');
