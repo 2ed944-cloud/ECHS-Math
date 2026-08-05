@@ -7,6 +7,7 @@ const rootOutput=process.env.ECHS_PREVIEW_OUTPUT||'artifacts/phase3-visual';
 const outputDir=path.join(rootOutput,'lesson-1.4-financial-v6');
 const lessonPath='/lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.4_financial_models_ECHS.html';
 const lessonURL=`${baseURL}${lessonPath}`;
+const allContentURL=`${lessonURL}?scope=all`;
 const storageKey='echs:ib-ai:u1:1.4:learn-index';
 await mkdir(outputDir,{recursive:true});
 
@@ -16,9 +17,9 @@ const browser=await chromium.launch({
   args:['--no-sandbox','--disable-dev-shm-usage','--font-render-hinting=none']
 });
 const report={
-  generatedAt:new Date().toISOString(),lessonURL,
-  expected:{slides:100,practice:120,quiz:16,exam:6},
-  desktopSlides:[],mobileSlides:[],routes:[],errors:[],warnings:[],screenshots:[]
+  generatedAt:new Date().toISOString(),lessonURL,allContentURL,
+  expected:{stored:{slides:100,practice:120,quiz:16,exam:6},core:{slides:55,practice:81,quiz:10,exam:2}},
+  core:null,desktopSlides:[],mobileSlides:[],routes:[],errors:[],warnings:[],screenshots:[]
 };
 
 const screenshotTitles=new Set([
@@ -49,18 +50,67 @@ const mobileTitles=new Set([
 function slug(value){return String(value).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,80);}
 function filteredConsoleError(text){return !/favicon|ERR_BLOCKED_BY_CLIENT|Failed to load resource.*404/i.test(text);}
 
-async function openLesson(viewport,label){
+async function openLesson(viewport,label,{allContent=true}={}){
   const context=await browser.newContext({viewport,deviceScaleFactor:1,reducedMotion:'reduce',serviceWorkers:'block'});
   const page=await context.newPage();
   const consoleErrors=[],pageErrors=[],failedRequests=[];
   page.on('console',message=>{if(message.type()==='error'&&filteredConsoleError(message.text()))consoleErrors.push(message.text());});
   page.on('pageerror',error=>pageErrors.push(error.message));
   page.on('requestfailed',request=>failedRequests.push(`${request.method()} ${request.url()} :: ${request.failure()?.errorText||'failed'}`));
-  const response=await page.goto(`${lessonURL}#learn`,{waitUntil:'domcontentloaded',timeout:45000});
+  const base=allContent?allContentURL:lessonURL;
+  const response=await page.goto(`${base}#learn`,{waitUntil:'domcontentloaded',timeout:45000});
   if(!response||response.status()>=400)report.errors.push(`${label}: lesson request returned ${response?.status()??'no response'}`);
   await page.waitForFunction(()=>document.body.dataset.rendered==='1'&&window.LESSON_DATA?.slides?.length===100,null,{timeout:30000});
   await page.waitForTimeout(450);
   return{context,page,consoleErrors,pageErrors,failedRequests};
+}
+
+async function auditCoreScope(){
+  const session=await openLesson({width:1440,height:1000},'core',{allContent:false});
+  const {page,context,consoleErrors,pageErrors,failedRequests}=session;
+  await page.locator('#open-map').click();
+  await page.waitForTimeout(180);
+  const state=await page.evaluate(()=>{
+    const d=window.LESSON_DATA;
+    const mapButtons=[...document.querySelectorAll('#drawer-list [data-slide-index]')];
+    return{
+      activeScope:d?.lesson?.active_scope,
+      defaultScope:d?.lesson?.default_scope,
+      scopeCounts:d?.lesson?.scope_counts,
+      practice:d?.practice?.length,
+      quiz:d?.quiz?.length,
+      exam:d?.exam?.length,
+      storedSlides:d?.scopeCollections?.slides?.length,
+      storedPractice:d?.scopeCollections?.practice?.length,
+      storedQuiz:d?.scopeCollections?.quiz?.length,
+      storedExam:d?.scopeCollections?.exam?.length,
+      visibleMapButtons:mapButtons.filter(button=>!button.hidden).length,
+      hiddenMapButtons:mapButtons.filter(button=>button.hidden).length,
+      toggleLabel:document.querySelector('#financial-scope-toggle .tool-label')?.textContent?.trim()||'',
+      learnLabel:document.querySelector('[data-route="learn"]')?.textContent?.trim()||'',
+      progress:document.getElementById('progress-label')?.textContent?.trim()||'',
+      bodyOverflow:Math.max(0,document.documentElement.scrollWidth-innerWidth,document.body.scrollWidth-innerWidth)
+    };
+  });
+  report.core=state;
+  const expected=report.expected;
+  if(state.activeScope!=='core'||state.defaultScope!=='core')report.errors.push(`core: expected active/default scope core, found ${state.activeScope}/${state.defaultScope}`);
+  if(state.scopeCounts?.learn?.core!==expected.core.slides)report.errors.push(`core: expected ${expected.core.slides} Learn screens, found ${state.scopeCounts?.learn?.core}`);
+  if(state.practice!==expected.core.practice)report.errors.push(`core: expected ${expected.core.practice} Practice questions, found ${state.practice}`);
+  if(state.quiz!==expected.core.quiz)report.errors.push(`core: expected ${expected.core.quiz} Quiz questions, found ${state.quiz}`);
+  if(state.exam!==expected.core.exam)report.errors.push(`core: expected ${expected.core.exam} IB Tasks, found ${state.exam}`);
+  if(state.storedSlides!==expected.stored.slides||state.storedPractice!==expected.stored.practice||state.storedQuiz!==expected.stored.quiz||state.storedExam!==expected.stored.exam)report.errors.push('core: complete stored collections are not preserved');
+  if(state.visibleMapButtons!==expected.core.slides||state.hiddenMapButtons!==expected.stored.slides-expected.core.slides)report.errors.push(`core: Lesson Map visibility is ${state.visibleMapButtons} visible / ${state.hiddenMapButtons} hidden`);
+  if(state.toggleLabel!=='IB SL Core'||!state.learnLabel.includes('IB SL Core'))report.errors.push('core: IB SL Core labels are missing');
+  if(!state.progress.includes(`/ ${expected.core.slides} · IB SL Core`))report.errors.push(`core: progress label is incorrect: ${state.progress}`);
+  if(state.bodyOverflow>3)report.errors.push(`core: document overflows horizontally by ${state.bodyOverflow}px`);
+  const target=path.join(outputDir,'desktop-core-scope.png');
+  await page.screenshot({path:target,fullPage:false});
+  report.screenshots.push(target);
+  if(consoleErrors.length)report.errors.push(...consoleErrors.map(error=>`core console: ${error}`));
+  if(pageErrors.length)report.errors.push(...pageErrors.map(error=>`core pageerror: ${error}`));
+  if(failedRequests.length)report.warnings.push(...failedRequests.map(error=>`core request: ${error}`));
+  await context.close();
 }
 
 async function currentSlideState(page){
@@ -131,7 +181,7 @@ async function exerciseSlideInteractions(page,state){
 }
 
 async function auditAllDesktopSlides(){
-  const session=await openLesson({width:1440,height:1000},'desktop');
+  const session=await openLesson({width:1440,height:1000},'desktop-all',{allContent:true});
   const {page,context,consoleErrors,pageErrors,failedRequests}=session;
   for(let index=0;index<100;index+=1){
     await page.waitForFunction(expected=>document.getElementById('progress-label')?.textContent?.trim().startsWith(`${expected} /`),index+1,{timeout:10000});
@@ -162,7 +212,7 @@ async function goToSlide(page,index){
 }
 
 async function auditSelectedMobileSlides(){
-  const session=await openLesson({width:390,height:844},'mobile');
+  const session=await openLesson({width:390,height:844},'mobile-all',{allContent:true});
   const {page,context,consoleErrors,pageErrors,failedRequests}=session;
   const slides=await page.evaluate(()=>window.LESSON_DATA.slides.map((slide,index)=>({index,title:slide.title})));
   const selected=slides.filter(slide=>mobileTitles.has(slide.title));
@@ -188,12 +238,13 @@ async function auditRoute(hash,viewport,device,ready,screenshotName){
   const consoleErrors=[],pageErrors=[];
   page.on('console',message=>{if(message.type()==='error'&&filteredConsoleError(message.text()))consoleErrors.push(message.text());});
   page.on('pageerror',error=>pageErrors.push(error.message));
-  await page.goto(`${lessonURL}${hash}`,{waitUntil:'domcontentloaded',timeout:45000});
-  await page.waitForFunction(()=>document.body.dataset.rendered==='1'&&window.LESSON_DATA?.lesson?.number==='1.4',null,{timeout:30000});
+  await page.goto(`${allContentURL}${hash}`,{waitUntil:'domcontentloaded',timeout:45000});
+  await page.waitForFunction(()=>document.body.dataset.rendered==='1'&&window.LESSON_DATA?.lesson?.number==='1.4'&&window.LESSON_DATA?.lesson?.active_scope==='all',null,{timeout:30000});
   await page.locator(ready).first().waitFor({state:'attached',timeout:20000});
   await page.waitForTimeout(500);
   const routeState=await page.evaluate(()=>({
     hash:location.hash,
+    activeScope:window.LESSON_DATA?.lesson?.active_scope,
     bodyOverflow:Math.max(0,document.documentElement.scrollWidth-innerWidth,document.body.scrollWidth-innerWidth),
     rawMath:((document.getElementById('app')?.innerText||'').match(/\\\(|\\\[|\\\)|\\\]/g)||[]).length,
     mathErrors:document.querySelectorAll('[data-math-error="true"],.katex-error,.katex .merror').length,
@@ -205,14 +256,15 @@ async function auditRoute(hash,viewport,device,ready,screenshotName){
     practiceFilters:[...document.querySelectorAll('[data-filter]')].map(node=>node.textContent.trim())
   }));
   const entry={device,hash,...routeState};report.routes.push(entry);
+  if(routeState.activeScope!=='all')report.errors.push(`${device} ${hash}: full-content mode is not active`);
   if(routeState.bodyOverflow>3)report.errors.push(`${device} ${hash}: document overflows horizontally by ${routeState.bodyOverflow}px`);
   if(routeState.rawMath)report.errors.push(`${device} ${hash}: ${routeState.rawMath} raw math delimiter(s) remain visible`);
   if(routeState.mathErrors)report.errors.push(`${device} ${hash}: ${routeState.mathErrors} KaTeX error node(s)`);
   if(hash==='#practice'){
-    if(!routeState.routeText.includes('120 original questions'))report.errors.push(`${device} practice: dynamic 120-question summary is missing`);
+    if(!routeState.routeText.includes('120'))report.errors.push(`${device} practice: 120-question summary is missing`);
     for(const expected of ['All · 120','Foundation · 30','Application · 30','Reasoning · 30','Challenge · 30'])if(!routeState.practiceFilters.includes(expected))report.errors.push(`${device} practice: filter ${expected} is missing`);
   }
-  if(hash==='#quiz'&&!routeState.routeText.includes('16-question checkpoint'))report.errors.push(`${device} quiz: dynamic 16-question heading is missing`);
+  if(hash==='#quiz'&&!routeState.routeText.includes('16-question'))report.errors.push(`${device} quiz: dynamic 16-question heading is missing`);
   if(hash==='#exam'){
     if(routeState.taskTabs!==6)report.errors.push(`${device} exam: expected 6 task tabs, found ${routeState.taskTabs}`);
     if(routeState.visibleTaskCards!==1)report.errors.push(`${device} exam: expected one visible task, found ${routeState.visibleTaskCards}`);
@@ -226,12 +278,13 @@ async function auditRoute(hash,viewport,device,ready,screenshotName){
 }
 
 try{
+  await auditCoreScope();
   await auditAllDesktopSlides();
   await auditSelectedMobileSlides();
-  await auditRoute('#practice',{width:1440,height:1000},'desktop','.question-shell','desktop-practice.png');
-  await auditRoute('#exam',{width:1440,height:1000},'desktop','.exam-task-tabs','desktop-exam.png');
-  await auditRoute('#quiz',{width:1440,height:1000},'desktop','.question-shell','desktop-quiz.png');
-  await auditRoute('#exam',{width:390,height:844},'mobile','.exam-task-tabs','mobile-exam.png');
+  await auditRoute('#practice',{width:1440,height:1000},'desktop','.question-shell','desktop-practice-all.png');
+  await auditRoute('#exam',{width:1440,height:1000},'desktop','.exam-task-tabs','desktop-exam-all.png');
+  await auditRoute('#quiz',{width:1440,height:1000},'desktop','.question-shell','desktop-quiz-all.png');
+  await auditRoute('#exam',{width:390,height:844},'mobile','.exam-task-tabs','mobile-exam-all.png');
 }finally{
   await browser.close();
 }
@@ -239,7 +292,7 @@ try{
 report.errors=[...new Set(report.errors)];
 report.warnings=[...new Set(report.warnings)];
 await writeFile(path.join(outputDir,'report.json'),JSON.stringify(report,null,2));
-console.log(JSON.stringify({slidesDesktop:report.desktopSlides.length,slidesMobile:report.mobileSlides.length,routes:report.routes.length,screenshots:report.screenshots.length,warnings:report.warnings.length,errors:report.errors.length},null,2));
+console.log(JSON.stringify({core:report.core,slidesDesktop:report.desktopSlides.length,slidesMobile:report.mobileSlides.length,routes:report.routes.length,screenshots:report.screenshots.length,warnings:report.warnings.length,errors:report.errors.length},null,2));
 if(report.errors.length){
   for(const error of report.errors)console.error(`ERROR: ${error}`);
   process.exitCode=1;

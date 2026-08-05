@@ -25,7 +25,7 @@
     release:"6.0.0",
     architectureNotes:[
       "Approximation, bounds and percentage error are consolidated in Lesson 1.1.",
-      "Financial applications, loans, annuities and amortization are consolidated in Lesson 1.4.",
+      "Financial applications, loans, annuities and amortization remain consolidated in Lesson 1.4, with the current IB SL core shown by default and broader reference-supported applications available as extension.",
       "Lesson 1.5 is expanded into a definitive exponent-laws and logarithms pathway.",
       "Technology for Equations and Systems is renumbered as Lesson 1.6."
     ],
@@ -62,13 +62,12 @@
         "Evaluate assumptions, saturation, precision and technology output in geometric models."
       ],"6.0.0",73,96,14,5),
       makeLesson("1.4","Financial Applications","financial_models",[
-        "Distinguish fixed monetary change from fixed percentage change.",
-        "Use nominal, periodic and effective rates with consistent time units.",
-        "Calculate compound growth, depreciation, inflation and real value.",
-        "Model ordinary annuities, annuities due, mixed deposits and withdrawal funds.",
-        "Calculate loan payments, total interest and outstanding balances.",
-        "Construct amortization evidence and compare repayment strategies.",
-        "Evaluate financial decisions using timing, fees, inflation, sensitivity and risk."
+        "Use repeated percentage change for compound interest and annual reducing-balance depreciation.",
+        "Convert nominal annual rates to the periodic rate and number of periods required by a financial model.",
+        "Use financial technology transparently to calculate loan repayments, total repayment and total interest.",
+        "Interpret amortization by separating the interest and principal portions of each repayment.",
+        "Compare loan options using payment size, total interest and affordability.",
+        "Access annuities, mixed deposits, withdrawal funds, inflation, real value and advanced balances as clearly labelled extensions after core mastery."
       ],"6.0.0",100,120,16,6),
       makeLesson("1.5","Exponent Laws and Logarithms","logarithms",[
         "Simplify integer, zero, negative and rational exponents exactly and state necessary restrictions.",
@@ -90,6 +89,14 @@
   if(financialLesson){
     financialLesson.organization_release="6.1.0";
     financialLesson.organization="one lesson with seven internal teaching blocks";
+    financialLesson.scope_release="6.2.0";
+    financialLesson.defaultScope="IB SL Core";
+    financialLesson.allContentAvailable=true;
+    financialLesson.officialCoreSections=[
+      {code:"SL 1.4",title:"Financial applications of geometric sequences and series — compound interest and annual depreciation"},
+      {code:"SL 1.7",title:"Loan repayments and amortization"}
+    ];
+    financialLesson.scopeNote="The complete 100-screen collection remains available; the default route skips clearly labelled reference-supported extensions until the learner selects All content.";
     financialLesson.teachingBlocks=[
       {code:"1.4A",title:"Percentage Change and Financial Growth",estimatedClassroomTime:"60–75 minutes"},
       {code:"1.4B",title:"Compounding and Rate Conventions",estimatedClassroomTime:"60–75 minutes"},
@@ -140,6 +147,6 @@
   course.unitCount=course.units.length;
   course.lessonCount=course.units.reduce((total,value)=>total+(Array.isArray(value?.lessons)?value.lessons.length:0),0);
   course.status="Started";
-  course.updatedUnits="Unit 1 · six-lesson architecture · Lessons 1.4 and 1.5 organized into internal teaching blocks";
+  course.updatedUnits="Unit 1 · Lesson 1.4 IB SL core-first scope · Lesson 1.5 internal teaching blocks";
   window.dispatchEvent(new CustomEvent("echs:ib-ai-unit-ready",{detail:{courseId:course.id,unit:1,lessons:unit.lessons.length,release:unit.release}}));
 })();
