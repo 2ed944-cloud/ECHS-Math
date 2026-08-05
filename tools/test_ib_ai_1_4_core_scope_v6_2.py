@@ -159,7 +159,7 @@ if baseline and core and all_content:
         if audit.get(flag) is not True:errors.append(f'Core-scope audit flag is not true: {flag}')
 
 for marker in (
- 'scope=all','financial-scope-toggle','visibleIndices','stopImmediatePropagation','IB SL Core',
+ "searchParams.set('scope','all')",'financial-scope-toggle','visibleIndices','stopImmediatePropagation','IB SL Core',
  'syncPracticeToolbar','scope_counts','core-only weighted learning evidence','data-financial-scope-summary'
 ):
     if marker not in runtime_source:errors.append(f'Scope runtime missing marker: {marker}')
