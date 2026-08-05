@@ -25,7 +25,7 @@
     release:"6.0.0",
     architectureNotes:[
       "Approximation, bounds and percentage error are consolidated in Lesson 1.1.",
-      "Lesson 1.4 defaults to the current IB SL core in sections SL 1.4 and SL 1.7; broader reference-supported financial applications remain available as optional extension.",
+      "Financial applications, loans, annuities and amortization remain consolidated in Lesson 1.4, with the current IB SL core shown by default and broader reference-supported applications available as extension.",
       "Lesson 1.5 is expanded into a definitive exponent-laws and logarithms pathway.",
       "Technology for Equations and Systems is renumbered as Lesson 1.6."
     ],
@@ -63,12 +63,12 @@
       ],"6.0.0",73,96,14,5),
       makeLesson("1.4","Financial Applications","financial_models",[
         "Use repeated percentage change for compound interest and annual reducing-balance depreciation.",
-        "Convert nominal annual rates to the periodic rate and number of periods required by the financial model.",
+        "Convert nominal annual rates to the periodic rate and number of periods required by a financial model.",
         "Use financial technology transparently to calculate loan repayments, total repayment and total interest.",
-        "Interpret an amortization schedule by separating interest from principal and tracking the reducing balance.",
-        "Compare financial options using consistent timing, payment size, total interest and affordability.",
-        "Access annuity timing, mixed deposits, withdrawal funds, real-value analysis and advanced balances as clearly labelled extensions after core mastery."
-      ],"6.2.0",100,120,16,6),
+        "Interpret amortization by separating the interest and principal portions of each repayment.",
+        "Compare loan options using payment size, total interest and affordability.",
+        "Access annuities, mixed deposits, withdrawal funds, inflation, real value and advanced balances as clearly labelled extensions after core mastery."
+      ],"6.0.0",100,120,16,6),
       makeLesson("1.5","Exponent Laws and Logarithms","logarithms",[
         "Simplify integer, zero, negative and rational exponents exactly and state necessary restrictions.",
         "Solve exponential equations using common bases, substitution, logarithms or graph intersection.",
@@ -87,8 +87,9 @@
 
   const financialLesson=unit.lessons.find(lesson=>lesson.number==="1.4");
   if(financialLesson){
-    financialLesson.organization_release="6.2.0";
-    financialLesson.organization="one lesson with seven internal teaching blocks and a default IB SL core path";
+    financialLesson.organization_release="6.1.0";
+    financialLesson.organization="one lesson with seven internal teaching blocks";
+    financialLesson.scope_release="6.2.0";
     financialLesson.defaultScope="IB SL Core";
     financialLesson.allContentAvailable=true;
     financialLesson.officialCoreSections=[
