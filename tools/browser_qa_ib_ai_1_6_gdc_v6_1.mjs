@@ -43,7 +43,7 @@ try{
 
   await page.click('#gdc-system-solve');
   const systemText=(await page.locator('#gdc-system-output').innerText()).replace(/\s+/g,' ');
-  add('default system solves to x=2 and y=3',/Unique solution/.test(systemText)&&/x=2/.test(systemText)&&/y=3/.test(systemText),systemText);
+  add('default system solves to x=2 and y=3',/unique solution/i.test(systemText)&&/x=2/.test(systemText)&&/y=3/.test(systemText),systemText);
   const evidence=await page.locator('[data-evidence-field]').evaluateAll(nodes=>Object.fromEntries(nodes.map(node=>[node.dataset.evidenceField,node.value])));
   add('system result populates six-field IB evidence',Object.keys(evidence).length===6&&evidence.entry.includes('Augmented matrix')&&evidence.check.includes('Substitute'),JSON.stringify(evidence));
 
@@ -97,7 +97,7 @@ try{
   add('mobile ECHS GDC fits the viewport',mobileOverflow.horizontal<=2,JSON.stringify(mobileOverflow));
   await mobile.page.click('[data-gdc-mode="systems"]');
   await mobile.page.click('#gdc-system-solve');
-  add('mobile system solve remains operable',/Unique solution/.test(await mobile.page.locator('#gdc-system-output').innerText()),await mobile.page.locator('#gdc-system-output').innerText());
+  add('mobile system solve remains operable',/unique solution/i.test(await mobile.page.locator('#gdc-system-output').innerText()),await mobile.page.locator('#gdc-system-output').innerText());
   await mobile.page.click('.gdc-connected-resources');
   await mobile.page.waitForSelector('#gdc-external-tools.open');
   mobileOverflow=await overflow(mobile.page,'.gdc-external-dialog');
