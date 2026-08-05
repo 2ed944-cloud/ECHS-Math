@@ -7,7 +7,7 @@ if(quiz){
   quiz.solution='Graph both sides or solve their difference. A broad scan followed by numerical refinement gives \\(x\\approx4.61013\\); substitution makes both sides approximately equal.';
   quiz.check={mode:'number',value:4.61012765154382,tolerance:0.01};
 }
-const cosine=data.practice?.find(item=>String(item.prompt).includes('x=8\\cos x'));
+const cosine=data.practice?.find(item=>String(item.prompt).includes('cos x'));
 if(cosine){
   cosine.answer='\\(1.39547\\)';
   cosine.solution='A broad graph scan shows several positive intersections. The first positive solution is \\(x\\approx1.39547\\); use additional initial guesses to confirm later intersections are not being confused with the requested first one.';
