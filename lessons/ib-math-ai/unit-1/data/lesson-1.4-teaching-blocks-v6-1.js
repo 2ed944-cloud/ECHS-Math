@@ -93,7 +93,9 @@
     slide.classification=classification;
     slide.classificationIcon=icon;
     slide.blockBoundary=isBoundary;
-    slide.section=`${isBoundary?'Teaching Block · ':''}Lesson ${block.code} · ${icon} ${classification} · ${slide.originalSection}`;
+    slide.section=isBoundary
+      ?`Teaching Block · ${block.code} · ${icon} ${classification}`
+      :`${block.code} · ${icon} ${classification} · ${slide.originalSection}`;
     if(isBoundary){
       const boundaryText=`Teaching Block · Lesson ${block.code} · Estimated classroom time: ${block.time} · Learning focus: ${block.focus}`;
       slide.eyebrow=slide.originalEyebrow?`${boundaryText} · ${slide.originalEyebrow}`:boundaryText;
