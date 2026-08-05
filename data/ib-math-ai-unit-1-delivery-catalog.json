@@ -6,27 +6,29 @@
   "release": "6.0.0",
   "totals": {
     "lessons": 6,
-    "learn_slides": 434,
-    "practice_questions": 556,
+    "learn_slides": 471,
+    "practice_questions": 600,
     "timed_quiz_questions": 86,
-    "extended_tasks": 29
+    "extended_tasks": 31
   },
   "reference_basis": [
     "Current IB Mathematics: Applications and Interpretation guide — SL 1.4 compound interest and annual depreciation",
     "Current IB Mathematics: Applications and Interpretation guide — SL 1.7 loan repayments and amortization",
+    "Current IB Mathematics: Applications and Interpretation guide — SL 1.8 technology for polynomial equations and systems of linear equations",
     "Mathematics: Applications and Interpretation SL — Pearson (supplied edition)",
     "Haese Mathematics Core Topics SL 1 — number foundations, sequences, financial growth, inflation and depreciation",
     "Haese Mathematics: Applications and Interpretation SL 2 — loans, annuities, withdrawal funds and outstanding balances",
-    "Christos Nikolaidis MAI 1.2–1.6 — exponents, equations, arithmetic and geometric sequences and finite series",
+    "Christos Nikolaidis MAI 1.2–1.6 — exponents, systems, arithmetic and geometric sequences and finite series",
     "Christos Nikolaidis MAI 2.19 — percentage change, investments, regular deposits, loans, inflation and financial decisions",
+    "Supplied Topic 1A Basic Algebra — simultaneous-equation and GDC workflows",
     "Supplied IB Mathematics AI curriculum-mapping and question-bank resources"
   ],
   "architecture_changes": {
     "approximation_bounds_percentage_error": "consolidated into Lesson 1.1",
     "financial_core_scope": "Lesson 1.4 defaults to current IB AI SL sections 1.4 and 1.7",
     "financial_extensions": "reference-supported annuity timing, mixed deposits, withdrawal funds, real-value analysis, advanced balances and sensitivity remain accessible through All content",
-    "technology_equations_systems": "renumbered from Lesson 1.8 to Lesson 1.6",
     "lesson_1_5": "expanded into a definitive four-block exponent and logarithm pathway",
+    "lesson_1_6": "rebuilt as a definitive four-block technology, equations, systems, verification and modelling pathway",
     "legacy_urls": "preserved through redirects"
   },
   "lessons": [
@@ -135,11 +137,20 @@
       "status": "ready",
       "student_visible": true,
       "url": "lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.6_technology_equations_ECHS.html",
-      "release": "5.3.3-renumbered",
-      "learn_slides": 36,
-      "practice_questions": 52,
+      "release": "6.0.0",
+      "organization_release": "6.1.0",
+      "organization": "one lesson with four internal teaching blocks",
+      "official_section": {"code": "SL 1.8", "title": "Use of technology to solve systems of linear equations in up to three variables and polynomial equations"},
+      "teaching_blocks": [
+        {"code": "1.6A", "title": "Two-Variable Systems and Classification", "estimated_classroom_time": "60–75 minutes"},
+        {"code": "1.6B", "title": "Three Variables, Parameter Fitting and Feasibility", "estimated_classroom_time": "60–75 minutes"},
+        {"code": "1.6C", "title": "Polynomial Roots, Intersections and Numerical Solving", "estimated_classroom_time": "60–75 minutes"},
+        {"code": "1.6D", "title": "Verification, Constraints, Modelling and Mastery", "estimated_classroom_time": "60–75 minutes"}
+      ],
+      "learn_slides": 73,
+      "practice_questions": 96,
       "timed_quiz_questions": 14,
-      "extended_tasks": 3
+      "extended_tasks": 5
     }
   ]
 }
