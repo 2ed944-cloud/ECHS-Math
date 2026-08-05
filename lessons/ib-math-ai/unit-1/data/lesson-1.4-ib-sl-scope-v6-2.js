@@ -7,6 +7,53 @@
   const search=String(window.location&&window.location.search||'');
   const requestedAll=/(?:^|[?&])scope=all(?:&|$)/i.test(search);
   const icons={Core:'🟢',Practice:'🔵',Extension:'🟠',Revision:'🟣'};
+  const blockFocus={
+    '1.4A':'Connect percentage change to simple and compound financial growth while reading cash flows on a common valuation date.',
+    '1.4B':'Use nominal and periodic rates consistently, apply non-annual compounding and verify completed-period growth questions.',
+    '1.4C':'Secure annual reducing-balance depreciation first; inflation and real-value analysis remain clearly marked reference-supported extension material.',
+    '1.4D':'Explore regular deposits, payment timing and withdrawal funds as reference-supported extension after the required growth foundations.',
+    '1.4E':'Use financial technology to calculate loan repayments and interpret the interest–principal structure of amortization.',
+    '1.4F':'Compare payment size, total interest and affordability only after the core loan calculations are secure.',
+    '1.4G':'Consolidate the IB SL core through synthesis, revision and independent mastery evidence.'
+  };
+
+  const blocks=Array.isArray(data.lesson.teaching_blocks)?data.lesson.teaching_blocks:[];
+  const byCode=Object.fromEntries(blocks.map(block=>[block.code,block]));
+  blocks.forEach(block=>{if(blockFocus[block.code])block.learning_focus=blockFocus[block.code];});
+  data.slides.forEach(slide=>{
+    if(blockFocus[slide.teachingBlock])slide.learningFocus=blockFocus[slide.teachingBlock];
+  });
+
+  function moveBoundary(code,previousCode,startTitle){
+    const oldIndex=data.slides.findIndex(slide=>slide.teachingBlock===code&&slide.blockBoundary);
+    const newIndex=data.slides.findIndex(slide=>slide.title===startTitle);
+    if(oldIndex<0||newIndex<oldIndex)return;
+    const block=byCode[code];
+    const previousBlock=byCode[previousCode];
+    for(let index=oldIndex;index<newIndex;index+=1){
+      const slide=data.slides[index];
+      slide.teachingBlock=previousCode;
+      slide.teachingBlockTitle=previousBlock.title;
+      slide.learningFocus=blockFocus[previousCode];
+      slide.blockBoundary=false;
+      slide.eyebrow=slide.originalEyebrow;
+    }
+    const newBoundary=data.slides[newIndex];
+    newBoundary.teachingBlock=code;
+    newBoundary.teachingBlockTitle=block.title;
+    newBoundary.learningFocus=blockFocus[code];
+    newBoundary.blockBoundary=true;
+    const boundaryText=`Teaching Block · Lesson ${code} · Estimated classroom time: ${newBoundary.estimatedClassroomTime} · Learning focus: ${blockFocus[code]}`;
+    newBoundary.eyebrow=newBoundary.originalEyebrow?`${boundaryText} · ${newBoundary.originalEyebrow}`:boundaryText;
+    previousBlock.end_slide=newIndex;
+    previousBlock.screen_count=previousBlock.end_slide-previousBlock.start_slide+1;
+    block.start_slide=newIndex+1;
+    block.screen_count=block.end_slide-block.start_slide+1;
+  }
+
+  moveBoundary('1.4F','1.4E','Loan term trades payment size against total interest');
+  moveBoundary('1.4G','1.4F','One financial structure, many applications');
+  data.teachingBlocks=blocks;
 
   const extensionSections=new Set([
     'Effective rates','Inflation','Real value','Financial comparison','Regular deposits',
