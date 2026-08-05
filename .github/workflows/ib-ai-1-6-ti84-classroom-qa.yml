@@ -1,0 +1,72 @@
+name: IB AI 1.6 TI-84 Classroom QA
+
+on:
+  pull_request:
+    paths:
+      - "lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.6_technology_equations_ECHS.html"
+      - "lessons/ib-math-ai/unit-1/data/lesson-1.6-ti84-classroom-coach-v6-2.js"
+      - "lessons/ib-math-ai/unit-1/assets/css/lesson-1.6-ti84-classroom-coach-v6-2.css"
+      - "tools/test_ib_ai_1_6_ti84_classroom_v6_2.mjs"
+      - "tools/browser_qa_ib_ai_1_6_ti84_classroom_v6_2.mjs"
+      - ".github/workflows/ib-ai-1-6-ti84-classroom-qa.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Validate JavaScript syntax
+        run: |
+          node --check lessons/ib-math-ai/unit-1/data/lesson-1.6-ti84-classroom-coach-v6-2.js
+          node --check tools/test_ib_ai_1_6_ti84_classroom_v6_2.mjs
+          node --check tools/browser_qa_ib_ai_1_6_ti84_classroom_v6_2.mjs
+
+      - name: Validate paired manual and TI-84 contracts
+        run: |
+          node tools/test_ib_ai_1_6_ti84_classroom_v6_2.mjs
+          node tools/test_ib_ai_1_6_gdc_lab_v6_1.mjs
+          node tools/test_ib_ai_1_6_gdc_external_v6_1_1.mjs
+          node tools/test_ib_ai_1_6_definitive_v6.mjs
+
+      - name: Install browser driver
+        run: npm install --no-save --no-package-lock playwright-core@1.54.1
+
+      - name: Start local lesson server
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/ib16-ti84-preview.log 2>&1 &
+          for attempt in {1..30}; do
+            if curl --fail --silent http://127.0.0.1:4173/lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.6_technology_equations_ECHS.html >/dev/null; then
+              exit 0
+            fi
+            sleep 1
+          done
+          cat /tmp/ib16-ti84-preview.log
+          exit 1
+
+      - name: Run desktop and mobile TI-84 classroom QA
+        env:
+          ECHS_PREVIEW_URL: http://127.0.0.1:4173
+          ECHS_PREVIEW_OUTPUT: artifacts/ib-ai-1-6-ti84-v6-2
+          CHROME_PATH: /usr/bin/google-chrome
+        run: node tools/browser_qa_ib_ai_1_6_ti84_classroom_v6_2.mjs
+
+      - name: Upload TI-84 classroom evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ib-ai-1-6-ti84-classroom-v6-2-${{ github.run_number }}
+          path: artifacts/ib-ai-1-6-ti84-v6-2
+          if-no-files-found: error
+          retention-days: 14
