@@ -1,28 +1,29 @@
 {
-  "schema_version": "1.6.1",
+  "schema_version": "1.7.0",
   "course": "ib-math-ai",
   "unit": 1,
   "title": "Number and Algebra",
   "release": "6.0.0",
   "totals": {
     "lessons": 6,
-    "learn_slides": 397,
-    "practice_questions": 512,
+    "learn_slides": 434,
+    "practice_questions": 556,
     "timed_quiz_questions": 86,
-    "extended_tasks": 27
+    "extended_tasks": 29
   },
   "reference_basis": [
     "Mathematics: Applications and Interpretation SL — Pearson (supplied edition)",
     "Haese Mathematics Core Topics SL 1 — number foundations, sequences, financial growth, inflation and depreciation",
     "Haese Mathematics: Applications and Interpretation SL 2 — loans, annuities, withdrawal funds and outstanding balances",
-    "Christos Nikolaidis MAI 1.4–1.6 — arithmetic and geometric sequences and finite series",
+    "Christos Nikolaidis MAI 1.2–1.6 — exponents, equations, arithmetic and geometric sequences and finite series",
     "Christos Nikolaidis MAI 2.19 — percentage change, investments, regular deposits, loans, inflation and financial decisions",
-    "Supplied IB Mathematics AI financial question-bank and curriculum-mapping resources"
+    "Supplied IB Mathematics AI curriculum-mapping and question-bank resources"
   ],
   "architecture_changes": {
     "approximation_bounds_percentage_error": "consolidated into Lesson 1.1",
     "loans_annuities_amortization": "consolidated into Lesson 1.4 Financial Applications",
     "technology_equations_systems": "renumbered from Lesson 1.8 to Lesson 1.6",
+    "lesson_1_5": "expanded into a definitive four-block exponent and logarithm pathway",
     "legacy_urls": "preserved through redirects"
   },
   "lessons": [
@@ -30,7 +31,10 @@
       "lesson_key": "u1-standard-form",
       "number": "1.1",
       "title": "Number Foundations, Scientific Notation and Approximation",
-      "skill_ids": ["IBAI.U1.NUMBER", "IBAI.U1.MODELING"],
+      "skill_ids": [
+        "IBAI.U1.NUMBER",
+        "IBAI.U1.MODELING"
+      ],
       "status": "ready",
       "student_visible": true,
       "url": "lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.1_standard_form_ECHS.html",
@@ -44,7 +48,10 @@
       "lesson_key": "u1-arithmetic-sequences",
       "number": "1.2",
       "title": "Arithmetic Sequences and Series",
-      "skill_ids": ["IBAI.U1.SEQUENCES", "IBAI.U1.MODELING"],
+      "skill_ids": [
+        "IBAI.U1.SEQUENCES",
+        "IBAI.U1.MODELING"
+      ],
       "status": "ready",
       "student_visible": true,
       "url": "lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.2_arithmetic_sequences_ECHS.html",
@@ -58,7 +65,10 @@
       "lesson_key": "u1-geometric-sequences",
       "number": "1.3",
       "title": "Geometric Sequences and Series",
-      "skill_ids": ["IBAI.U1.SEQUENCES", "IBAI.U1.MODELING"],
+      "skill_ids": [
+        "IBAI.U1.SEQUENCES",
+        "IBAI.U1.MODELING"
+      ],
       "status": "ready",
       "student_visible": true,
       "url": "lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.3_geometric_sequences_ECHS.html",
@@ -72,7 +82,10 @@
       "lesson_key": "u1-financial-models",
       "number": "1.4",
       "title": "Financial Applications",
-      "skill_ids": ["IBAI.U1.SEQUENCES", "IBAI.U1.MODELING"],
+      "skill_ids": [
+        "IBAI.U1.SEQUENCES",
+        "IBAI.U1.MODELING"
+      ],
       "status": "ready",
       "student_visible": true,
       "url": "lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.4_financial_models_ECHS.html",
@@ -80,13 +93,41 @@
       "organization_release": "6.1.0",
       "organization": "one lesson with seven internal teaching blocks",
       "teaching_blocks": [
-        {"code": "1.4A", "title": "Percentage Change and Financial Growth", "estimated_classroom_time": "60–75 minutes"},
-        {"code": "1.4B", "title": "Compounding and Rate Conventions", "estimated_classroom_time": "60–75 minutes"},
-        {"code": "1.4C", "title": "Depreciation, Inflation and Real Value", "estimated_classroom_time": "60–75 minutes"},
-        {"code": "1.4D", "title": "Regular Deposits and Savings", "estimated_classroom_time": "60–75 minutes"},
-        {"code": "1.4E", "title": "Loans and Repayment", "estimated_classroom_time": "60–75 minutes"},
-        {"code": "1.4F", "title": "Financial Decision Making", "estimated_classroom_time": "60–75 minutes"},
-        {"code": "1.4G", "title": "Mastery and Mixed Financial Applications", "estimated_classroom_time": "60–75 minutes"}
+        {
+          "code": "1.4A",
+          "title": "Percentage Change and Financial Growth",
+          "estimated_classroom_time": "60–75 minutes"
+        },
+        {
+          "code": "1.4B",
+          "title": "Compounding and Rate Conventions",
+          "estimated_classroom_time": "60–75 minutes"
+        },
+        {
+          "code": "1.4C",
+          "title": "Depreciation, Inflation and Real Value",
+          "estimated_classroom_time": "60–75 minutes"
+        },
+        {
+          "code": "1.4D",
+          "title": "Regular Deposits and Savings",
+          "estimated_classroom_time": "60–75 minutes"
+        },
+        {
+          "code": "1.4E",
+          "title": "Loans and Repayment",
+          "estimated_classroom_time": "60–75 minutes"
+        },
+        {
+          "code": "1.4F",
+          "title": "Financial Decision Making",
+          "estimated_classroom_time": "60–75 minutes"
+        },
+        {
+          "code": "1.4G",
+          "title": "Mastery and Mixed Financial Applications",
+          "estimated_classroom_time": "60–75 minutes"
+        }
       ],
       "learn_slides": 100,
       "practice_questions": 120,
@@ -97,21 +138,52 @@
       "lesson_key": "u1-logarithms",
       "number": "1.5",
       "title": "Exponent Laws and Logarithms",
-      "skill_ids": ["IBAI.U1.ALGEBRA", "IBAI.U1.MODELING"],
+      "skill_ids": [
+        "IBAI.U1.ALGEBRA",
+        "IBAI.U1.MODELING"
+      ],
       "status": "ready",
       "student_visible": true,
       "url": "lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.5_logarithms_ECHS.html",
-      "release": "5.3.0",
-      "learn_slides": 36,
-      "practice_questions": 52,
+      "release": "6.0.0",
+      "organization_release": "6.1.0",
+      "organization": "one lesson with four internal teaching blocks",
+      "teaching_blocks": [
+        {
+          "code": "1.5A",
+          "title": "Exponent Laws and Exact Powers",
+          "estimated_classroom_time": "60–75 minutes"
+        },
+        {
+          "code": "1.5B",
+          "title": "Exponential Equations and Common Bases",
+          "estimated_classroom_time": "60–75 minutes"
+        },
+        {
+          "code": "1.5C",
+          "title": "Logarithms and Model Inversion",
+          "estimated_classroom_time": "60–75 minutes"
+        },
+        {
+          "code": "1.5D",
+          "title": "Logarithmic Scales, Modelling and Mastery",
+          "estimated_classroom_time": "60–75 minutes"
+        }
+      ],
+      "learn_slides": 73,
+      "practice_questions": 96,
       "timed_quiz_questions": 14,
-      "extended_tasks": 3
+      "extended_tasks": 5
     },
     {
       "lesson_key": "u1-technology-equations",
       "number": "1.6",
       "title": "Technology for Equations and Systems",
-      "skill_ids": ["IBAI.U1.ALGEBRA", "IBAI.U1.MATRICES", "IBAI.U1.MODELING"],
+      "skill_ids": [
+        "IBAI.U1.ALGEBRA",
+        "IBAI.U1.MATRICES",
+        "IBAI.U1.MODELING"
+      ],
       "status": "ready",
       "student_visible": true,
       "url": "lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.6_technology_equations_ECHS.html",

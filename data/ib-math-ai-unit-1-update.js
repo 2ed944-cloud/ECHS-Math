@@ -21,16 +21,18 @@
   const unit={
     title:"Unit 1: Number and Algebra",
     description:"Six consolidated IB Mathematics: Applications and Interpretation SL lessons with coherent AP-style teaching screens, transparent technology, four-level practice, IB tasks and mastery evidence.",
-    portalSummary:"6 lessons · 397 purposeful Learn screens · 512 studio questions · 86 quiz questions · 27 extended tasks",
+    portalSummary:"6 lessons · 434 purposeful Learn screens · 556 studio questions · 86 quiz questions · 29 extended tasks",
     release:"6.0.0",
     architectureNotes:[
       "Approximation, bounds and percentage error are consolidated in Lesson 1.1.",
       "Financial applications, loans, annuities and amortization are consolidated in Lesson 1.4.",
+      "Lesson 1.5 is expanded into a definitive exponent-laws and logarithms pathway.",
       "Technology for Equations and Systems is renumbered as Lesson 1.6."
     ],
     essential_questions:[
       "How can number and algebra models communicate scale, change, finance and uncertainty?",
       "How do additive and multiplicative structures support prediction and decision-making?",
+      "How do logarithms invert multiplicative change and compress wide numerical scales?",
       "How should technology be used transparently to solve, verify and interpret models?",
       "How do precision, timing, assumptions and constraints affect the reliability of a conclusion?"
     ],
@@ -69,11 +71,12 @@
         "Evaluate financial decisions using timing, fees, inflation, sensitivity and risk."
       ],"6.0.0",100,120,16,6),
       makeLesson("1.5","Exponent Laws and Logarithms","logarithms",[
-        "Simplify zero, negative and rational exponents.",
-        "Solve exponential equations exactly or logarithmically.",
-        "Interpret logarithms as inverse exponents.",
-        "Apply domain and model checks."
-      ],"5.3.0",36,52,14,3,["IBAI.U1.ALGEBRA","IBAI.U1.MODELING"]),
+        "Simplify integer, zero, negative and rational exponents exactly and state necessary restrictions.",
+        "Solve exponential equations using common bases, substitution, logarithms or graph intersection.",
+        "Interpret logarithms as inverse exponents and use change of base.",
+        "Apply logarithms to growth, decay, threshold and logarithmic-scale contexts.",
+        "Verify technology output and interpret domain, units, discrete timing and model limitations."
+      ],"6.0.0",73,96,14,5,["IBAI.U1.ALGEBRA","IBAI.U1.MODELING"]),
       makeLesson("1.6","Technology for Equations and Systems","technology_equations",[
         "Model and solve two- and three-variable systems.",
         "Classify unique, inconsistent and dependent systems.",
@@ -95,6 +98,18 @@
       {code:"1.4E",title:"Loans and Repayment",estimatedClassroomTime:"60–75 minutes"},
       {code:"1.4F",title:"Financial Decision Making",estimatedClassroomTime:"60–75 minutes"},
       {code:"1.4G",title:"Mastery and Mixed Financial Applications",estimatedClassroomTime:"60–75 minutes"}
+    ];
+  }
+
+  const logarithmLesson=unit.lessons.find(lesson=>lesson.number==="1.5");
+  if(logarithmLesson){
+    logarithmLesson.organization_release="6.1.0";
+    logarithmLesson.organization="one lesson with four internal teaching blocks";
+    logarithmLesson.teachingBlocks=[
+      {code:"1.5A",title:"Exponent Laws and Exact Powers",estimatedClassroomTime:"60–75 minutes"},
+      {code:"1.5B",title:"Exponential Equations and Common Bases",estimatedClassroomTime:"60–75 minutes"},
+      {code:"1.5C",title:"Logarithms and Model Inversion",estimatedClassroomTime:"60–75 minutes"},
+      {code:"1.5D",title:"Logarithmic Scales, Modelling and Mastery",estimatedClassroomTime:"60–75 minutes"}
     ];
   }
 
@@ -125,6 +140,6 @@
   course.unitCount=course.units.length;
   course.lessonCount=course.units.reduce((total,value)=>total+(Array.isArray(value?.lessons)?value.lessons.length:0),0);
   course.status="Started";
-  course.updatedUnits="Unit 1 · six-lesson architecture · Lesson 1.4 organized into teaching blocks 1.4A–1.4G";
+  course.updatedUnits="Unit 1 · six-lesson architecture · Lessons 1.4 and 1.5 organized into internal teaching blocks";
   window.dispatchEvent(new CustomEvent("echs:ib-ai-unit-ready",{detail:{courseId:course.id,unit:1,lessons:unit.lessons.length,release:unit.release}}));
 })();
