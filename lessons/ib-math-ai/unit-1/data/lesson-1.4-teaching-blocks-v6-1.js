@@ -111,10 +111,9 @@
     block.endSlideNumber=end+1;
   });
 
-  data.schemaVersion='1.4.1';
-  data.version='6.1.0';
-  data.buildDate='2026-08-05';
-  data.lesson.release='6.1.0';
+  data.organizationSchemaVersion='1.0.0';
+  data.organizationBuildDate='2026-08-05';
+  data.lesson.organization_release='6.1.0';
   data.lesson.organization='Seven internal teaching blocks within one unchanged lesson route';
   data.lesson.teaching_blocks=blocks.map(block=>({
     code:block.code,
