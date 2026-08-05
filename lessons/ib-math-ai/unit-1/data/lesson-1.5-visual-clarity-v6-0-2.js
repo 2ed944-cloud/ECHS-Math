@@ -14,8 +14,8 @@ if(logarithmSlide){
     <div class="el-display">\\[b^y=x\\quad\\Longleftrightarrow\\quad\\log_b(x)=y.\\]</div>
     <p>A logarithm returns the exponent: \\(\\log_b(x)\\) asks which power of \\(b\\) produces \\(x\\).</p>
     <div class="el-log-condition-grid-v602">
-      <div><b>Base</b><span>\\(b\\gt0\\) and \\(b\\ne1\\)</span></div>
-      <div><b>Argument</b><span>\\(x\\gt0\\)</span></div>
+      <div><b>Base</b><span><var>b</var> &gt; 0 and <var>b</var> &ne; 1</span></div>
+      <div><b>Argument</b><span><var>x</var> &gt; 0</span></div>
     </div>
   </div>
   <div class="el-log-definition-visual-v602" role="img" aria-label="A logarithm identifies the exponent y for which b to the power y equals x">
@@ -69,6 +69,7 @@ data.version='6.0.2';
 data.visualPatchVersion='6.0.2';
 data.visualAudit=Object.assign({},data.visualAudit,{
   logarithmDefinition:'single correctly typeset logarithm with separate role cards and inverse equivalence',
+  logarithmDomain:'base and argument conditions use unambiguous HTML inequality symbols',
   thresholdTimeline:'three-stage decision journey with non-overlapping labels and independently recomputed model values',
   authenticatedViewport:'lesson geometry reserves the measured Learning Pathway bar height'
 });
