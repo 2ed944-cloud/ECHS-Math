@@ -37,6 +37,11 @@ if(!lesson14.outcomes.some(outcome=>outcome.includes('annuities')))throw new Err
 if(!lesson14.outcomes.some(outcome=>outcome.includes('amortization')))throw new Error('Lesson 1.4 amortization outcome is missing');
 if(!lesson14.resources.some(resource=>resource.label==='Practice Studio · 120 questions'))throw new Error('Lesson 1.4 practice count is stale');
 if(!lesson14.resources.some(resource=>resource.label==='IB-style assessment tasks · 6'))throw new Error('Lesson 1.4 task count is stale');
+if(lesson14.organization_release!=='6.1.0')throw new Error('Lesson 1.4 organization release is missing');
+if(lesson14.organization!=='one lesson with seven internal teaching blocks')throw new Error('Lesson 1.4 organization description is missing');
+if(!Array.isArray(lesson14.teachingBlocks)||lesson14.teachingBlocks.length!==7)throw new Error('Lesson 1.4 must expose seven teaching blocks');
+if(lesson14.teachingBlocks.map(block=>block.code).join(',')!=='1.4A,1.4B,1.4C,1.4D,1.4E,1.4F,1.4G')throw new Error('Lesson 1.4 teaching-block sequence is incorrect');
+if(lesson14.teachingBlocks.some(block=>block.estimatedClassroomTime!=='60–75 minutes'))throw new Error('Lesson 1.4 teaching-block pacing metadata is incomplete');
 const lesson16=unit.lessons[5];
 if(!lesson16.url.endsWith('IB_AI_SL_1.6_technology_equations_ECHS.html'))throw new Error(`Lesson 1.6 canonical URL is incorrect: ${lesson16.url}`);
 
@@ -44,4 +49,4 @@ const urls=unit.lessons.map(item=>item.url);
 if(new Set(urls).size!==6)throw new Error('Every Unit 1 lesson must have a unique direct URL');
 if(urls.some(url=>!/^lessons\/ib-math-ai\/unit-1\/lessons\/IB_AI_SL_1\.[1-6]_.+_ECHS\.html$/.test(url)))throw new Error(`Unit 1 contains a non-direct lesson URL: ${urls.join(', ')}`);
 if(urls.some(url=>url.includes('?')))throw new Error('Direct Unit 1 lesson URLs must not depend on a query-string selector');
-console.log('IB Unit 1 six-lesson portal update and Financial Applications v6: PASS');
+console.log('IB Unit 1 six-lesson portal update and Financial Applications teaching blocks: PASS');
