@@ -74,7 +74,7 @@ try{
   add('desktop classroom coach has no horizontal overflow',desktopOverflow.horizontal<=2,JSON.stringify(desktopOverflow));
   const desktopShot=path.join(outputDir,'desktop-ti84-classroom-intersection.png');await page.screenshot({path:desktopShot,fullPage:false});report.screenshots.push(desktopShot);
 
-  await page.click('[data-ti84-close]');
+  await page.click('.ti84-coach-head [data-ti84-close]');
   const mappedTitle='Worked example · solve and verify a 2×2 system';
   const mappedIndex=await page.evaluate(title=>window.LESSON_DATA.slides.findIndex(slide=>slide.title===title),mappedTitle);
   await page.evaluate(({key,index})=>localStorage.setItem(key,String(index)),{key:storageKey,index:mappedIndex});
