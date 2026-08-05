@@ -3,7 +3,6 @@
 
   const data=window.LESSON_DATA;
   const app=document.getElementById('app');
-  const drawer=document.getElementById('slide-drawer');
   const drawerList=document.getElementById('drawer-list');
   const progressFill=document.getElementById('progress-fill');
   const progressLabel=document.getElementById('progress-label');
@@ -22,6 +21,9 @@
   let correcting=false;
   let scheduled=false;
 
+  function setText(node,value){
+    if(node&&node.textContent!==value)node.textContent=value;
+  }
   function learnIsActive(){
     return document.querySelector('.route-btn[data-route="learn"]')?.classList.contains('active')===true;
   }
@@ -74,21 +76,23 @@
   }
 
   function syncDrawer(){
-    const existing=drawerList.querySelector('[data-financial-scope-summary]');
-    if(existing)existing.remove();
-    const summary=document.createElement('div');
-    summary.dataset.financialScopeSummary='true';
-    summary.className='empty-state';
+    let summary=drawerList.querySelector('[data-financial-scope-summary]');
+    if(!summary){
+      summary=document.createElement('div');
+      summary.dataset.financialScopeSummary='true';
+      summary.className='empty-state';
+      drawerList.prepend(summary);
+    }
     const counts=data.lesson.scope_counts;
-    summary.innerHTML=allMode
+    const content=allMode
       ?`<b>All content</b><br>${counts.learn.total} screens: ${counts.learn.core} IB SL core + ${counts.learn.extension} extension.`
       :`<b>IB SL Core</b><br>${counts.learn.core} recommended screens. ${counts.learn.extension} extension screens remain available from the header switch.`;
-    drawerList.prepend(summary);
+    if(summary.innerHTML!==content)summary.innerHTML=content;
 
     drawerList.querySelectorAll('[data-slide-index]').forEach(button=>{
       const index=Number(button.dataset.slideIndex);
-      const slide=allSlides[index];
-      button.hidden=!allMode&&slide?.scope==='extension';
+      const shouldHide=!allMode&&allSlides[index]?.scope==='extension';
+      if(button.hidden!==shouldHide)button.hidden=shouldHide;
     });
   }
 
@@ -108,30 +112,44 @@
     const position=visibleIndices.indexOf(current);
     if(position<0)return;
     const percent=((position+1)/visibleIndices.length)*100;
-    if(progressFill)progressFill.style.width=`${percent}%`;
-    if(progressLabel)progressLabel.textContent=allMode
+    if(progressFill&&progressFill.style.width!==`${percent}%`)progressFill.style.width=`${percent}%`;
+    setText(progressLabel,allMode
       ?`${current+1} / ${allSlides.length} · All content`
-      :`${position+1} / ${visibleIndices.length} · IB SL Core`;
+      :`${position+1} / ${visibleIndices.length} · IB SL Core`);
     if(previous)previous.disabled=position===0;
     if(next)next.disabled=position===visibleIndices.length-1;
   }
 
+  function syncPracticeToolbar(){
+    if(!document.querySelector('.route-btn[data-route="practice"]')?.classList.contains('active'))return;
+    const counts={All:data.practice.length};
+    ['Foundation','Application','Reasoning','Challenge'].forEach(level=>{
+      counts[level]=data.practice.filter(item=>item.level===level).length;
+    });
+    app.querySelectorAll('[data-filter]').forEach(button=>{
+      const level=button.dataset.filter;
+      setText(button,`${level} · ${counts[level]??0}`);
+      if(level!=='All')button.disabled=(counts[level]??0)===0;
+    });
+    if(!app.querySelector('.question-shell')){
+      const allButton=app.querySelector('[data-filter="All"]');
+      if(allButton&&!allButton.classList.contains('active'))requestAnimationFrame(()=>allButton.click());
+    }
+  }
+
   function syncRouteLabels(){
     const learnButton=document.querySelector('.route-btn[data-route="learn"]');
-    if(learnButton)learnButton.textContent=allMode?'Learn · All content':'Learn · IB SL Core';
+    setText(learnButton,allMode?'Learn · All content':'Learn · IB SL Core');
     if(document.querySelector('.route-btn[data-route="practice"]')?.classList.contains('active')){
-      const paragraph=app.querySelector('.route-header p');
-      if(paragraph)paragraph.textContent=`${data.practice.length} ${allMode?'core and extension':'IB SL core'} questions are available in this scope. Work is saved locally on this device.`;
+      setText(app.querySelector('.route-header p'),`${data.practice.length} ${allMode?'core and extension':'IB SL core'} questions are available in this scope. Work is saved locally on this device.`);
+      syncPracticeToolbar();
     }
     if(document.querySelector('.route-btn[data-route="quiz"]')?.classList.contains('active')){
-      const heading=app.querySelector('.route-header h1');
-      const paragraph=app.querySelector('.route-header h1 + p');
-      if(heading)heading.textContent=`${data.quiz.length}-question ${allMode?'complete':'IB SL core'} checkpoint`;
-      if(paragraph)paragraph.textContent='Suggested time: 25 minutes. Questions are distinct from Practice Studio.';
+      setText(app.querySelector('.route-header h1'),`${data.quiz.length}-question ${allMode?'complete':'IB SL core'} checkpoint`);
+      setText(app.querySelector('.route-header h1 + p'),'Suggested time: 25 minutes. Questions are distinct from Practice Studio.');
     }
     if(document.querySelector('.route-btn[data-route="exam"]')?.classList.contains('active')){
-      const paragraph=app.querySelector('.route-header p');
-      if(paragraph)paragraph.textContent=`${data.exam.length} ${allMode?'core and extension':'IB SL core'} extended-response tasks are available in this scope.`;
+      setText(app.querySelector('.route-header p'),`${data.exam.length} ${allMode?'core and extension':'IB SL core'} extended-response tasks are available in this scope.`);
     }
   }
 
@@ -154,10 +172,10 @@
     const practicePercent=practiceAttempted?Math.round(100*practiceCorrect/practiceAttempted):0;
     const quizPercent=data.quiz.length?Math.round(100*quizCorrect/data.quiz.length):0;
     const mastery=Math.round(.25*learningPercent+.45*practicePercent+.30*quizPercent);
-    cards[0].querySelector('b').textContent=`${coreVisited}/${visibleIndices.length}`;
-    cards[0].querySelector('small').textContent=`${learningPercent}% of IB SL core viewed`;
-    cards[3].querySelector('b').textContent=`${mastery}%`;
-    cards[3].querySelector('small').textContent='core-only weighted learning evidence';
+    setText(cards[0].querySelector('b'),`${coreVisited}/${visibleIndices.length}`);
+    setText(cards[0].querySelector('small'),`${learningPercent}% of IB SL core viewed`);
+    setText(cards[3].querySelector('b'),`${mastery}%`);
+    setText(cards[3].querySelector('small'),'core-only weighted learning evidence');
   }
 
   function sync(){
