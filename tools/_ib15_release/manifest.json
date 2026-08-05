@@ -1,0 +1,19 @@
+{
+  "release": "IB AI SL Lesson 1.5 Exponent Laws and Logarithms v6.0.0",
+  "archive_sha256": "be4086c35e86cde6f796d928097b3a967a985a71480094f55a8046f5b9effa81",
+  "archive_bytes": 48206,
+  "base64_chars": 64276,
+  "parts": 4,
+  "files": [
+    "lessons/ib-math-ai/unit-1/data/lesson-1.5-exponents-logarithms-definitive-v6.js",
+    "lessons/ib-math-ai/unit-1/assets/css/lesson-1.5-exponents-logarithms-v6.css",
+    "lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.5_logarithms_ECHS.html",
+    "data/ib-math-ai-unit-1-delivery-catalog.json",
+    "data/ib-math-ai-unit-1-update.js",
+    "lessons/ib-math-ai/unit-1/START_HERE.html",
+    "lessons/ib-math-ai/unit-1/TEACHER_GUIDE.html",
+    "tools/validate_ib_ai_unit1_v5.py",
+    "tools/test_ib_unit1_portal_update.mjs",
+    "docs/releases/ib-ai-1-5-exponent-laws-logarithms-v6.md"
+  ]
+}
