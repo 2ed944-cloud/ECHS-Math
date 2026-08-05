@@ -55,8 +55,9 @@ try{
   const shot3=path.join(out,'03-multiplicity-accurate.png');await page.screenshot({path:shot3});report.screenshots.push(shot3);
 
   await openTitle(page,'Intersections solve an equation in two equivalent ways');
-  const inter=await page.evaluate(()=>({dots:document.querySelectorAll('.te63-intersection-figure .intersection-dot').length,labels:document.querySelector('.te63-intersection-values')?.innerText||'',pair:document.querySelector('.te63-equation-pair')?.getBoundingClientRect().toJSON(),copy:document.querySelector('.te63-intersection-copy')?.getBoundingClientRect().toJSON(),figure:!!document.querySelector('.te63-intersection-figure')}));
-  check('intersection diagram has two accurately labelled common points',inter.figure&&inter.dots===2&&inter.labels.includes('1−√5')&&inter.labels.includes('1+√5')&&inter.labels.includes('3−2√5')&&inter.labels.includes('3+2√5'),JSON.stringify(inter));
+  const inter=await page.evaluate(()=>{const pointBoxes=[...document.querySelectorAll('[data-exact-point]')].map(n=>{const r=n.getBoundingClientRect();return{id:n.dataset.exactPoint,width:r.width,height:r.height,left:r.left,right:r.right,top:r.top,bottom:r.bottom};});return{dots:document.querySelectorAll('.te63-intersection-figure .intersection-dot').length,pointBoxes,legend:[...document.querySelectorAll('.te63-function-legend span')].map(n=>n.textContent.trim()),pair:document.querySelector('.te63-equation-pair')?.getBoundingClientRect().toJSON(),copy:document.querySelector('.te63-intersection-copy')?.getBoundingClientRect().toJSON(),figure:!!document.querySelector('.te63-intersection-figure')};});
+  check('intersection diagram has two accurate point cards and graph markers',inter.figure&&inter.dots===2&&inter.pointBoxes.length===2&&inter.pointBoxes.map(p=>p.id).join(',')==='P1,P2'&&inter.pointBoxes.every(p=>p.width>220&&p.height<70),JSON.stringify(inter));
+  check('intersection function legend is clear and horizontal',inter.legend.length===2&&inter.legend[0]==='y = 2x + 1'&&inter.legend[1]==='y = x² − 3',JSON.stringify(inter.legend));
   check('intersection equivalence fits inside its card',inter.pair&&inter.copy&&inter.pair.right<=inter.copy.right-12&&inter.pair.left>=inter.copy.left+12,JSON.stringify(inter));
   const shot4=path.join(out,'04-intersections-accurate.png');await page.screenshot({path:shot4});report.screenshots.push(shot4);
 
