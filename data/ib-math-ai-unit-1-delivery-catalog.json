@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.8.0",
+  "schema_version": "1.7.0",
   "course": "ib-math-ai",
   "unit": 1,
   "title": "Number and Algebra",
@@ -80,19 +80,14 @@
       "status": "ready",
       "student_visible": true,
       "url": "lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.4_financial_models_ECHS.html",
-      "release": "6.2.0",
-      "organization_release": "6.2.0",
-      "organization": "one lesson with seven internal teaching blocks and an IB SL core-first progression",
+      "release": "6.0.0",
+      "organization_release": "6.1.0",
+      "organization": "one lesson with seven internal teaching blocks",
+      "scope_release": "6.2.0",
       "default_scope": "IB SL Core",
       "official_core_sections": [
-        {
-          "code": "SL 1.4",
-          "title": "Financial applications of geometric sequences and series — compound interest and annual depreciation"
-        },
-        {
-          "code": "SL 1.7",
-          "title": "Loan repayments and amortization"
-        }
+        {"code": "SL 1.4", "title": "Financial applications of geometric sequences and series — compound interest and annual depreciation"},
+        {"code": "SL 1.7", "title": "Loan repayments and amortization"}
       ],
       "all_content_available": true,
       "extension_access": "Select All content in the lesson header",
