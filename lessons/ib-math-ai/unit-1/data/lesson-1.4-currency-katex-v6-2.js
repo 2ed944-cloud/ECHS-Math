@@ -7,6 +7,12 @@
   let replacements=0;
   data.slides.forEach(slide=>{
     if(typeof slide.html!=='string')return;
+
+    slide.html=slide.html.replace(/([€£$])\(([\d,.\s]+)\\\)/g,(_,symbol,amount)=>{
+      replacements+=1;
+      return`${symbol} \\(${amount}\\)`;
+    });
+
     slide.html=slide.html.replace(/([€£$])\\\(/g,(_,symbol)=>{
       replacements+=1;
       return`${symbol} \\(`;
