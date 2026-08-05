@@ -55,11 +55,11 @@ replace('Intersections solve an equation in two equivalent ways',String.raw`<div
   <div class="te63-intersection-copy">
     <p>To solve \(f(x)=g(x)\), graph both functions or create one zero function.</p>
     <div class="te63-equation-pair"><span>\(f(x)=g(x)\)</span><strong>⇔</strong><span>\(f(x)-g(x)=0\)</span></div>
-    <div class="te63-intersection-values"><b>Exact intersection points</b><span>\(P_1=(1-\sqrt5,\,3-2\sqrt5)\)</span><span>\(P_2=(1+\sqrt5,\,3+2\sqrt5)\)</span></div>
+    <div class="te63-intersection-values"><b>Exact intersection points</b><span data-exact-point="P1">\(P_1=(1-\sqrt5,\,3-2\sqrt5)\)</span><span data-exact-point="P2">\(P_2=(1+\sqrt5,\,3+2\sqrt5)\)</span></div>
     <div class="te63-accuracy-note"><b>Complete point:</b> when the question asks for intersections, report both coordinates—not only the x-values.</div>
   </div>
   <figure class="te63-intersection-figure" role="img" aria-label="The line y equals 2x plus 1 intersects the parabola y equals x squared minus 3 at two accurately plotted points">
-    <div class="te63-function-legend"><span class="line">\(y=2x+1\)</span><span class="parabola">\(y=x^2-3\)</span></div>
+    <div class="te63-function-legend"><span class="line">y = 2x + 1</span><span class="parabola">y = x² − 3</span></div>
     <svg viewBox="0 0 640 340" aria-hidden="true">
       <defs><clipPath id="te63-graph-clip"><rect x="58" y="25" width="535" height="270" rx="14"/></clipPath></defs>
       <g class="grid"><line x1="58" y1="266" x2="593" y2="266"/><line x1="259" y1="25" x2="259" y2="296"/></g>
@@ -79,7 +79,7 @@ replace('Context can reject mathematically valid roots',String.raw`<div class="t
 <p>For \(h(t)=-4.9t^2+18t+1.5\), technology may correctly return two algebraic roots. The context decides which root answers the question.</p>
 <div class="te63-accuracy-note"><b>Exam language:</b> write “reject \(t\approx-0.0815\) because \(t&lt;0\)” rather than “ignore the negative answer.”</div>`);
 
-data.version='6.3.1';
-data.visualAccuracyRelease='6.3.1';
-data.visualAccuracyAudit={planes:'three distinct surfaces share one point with compact plain-text equations',rootEquivalence:'horizontal unambiguous equivalence',multiplicity:'m=1, m=2 and m=3 plotted accurately',intersections:'line and parabola markers and exact point labels agree',domainRoots:'values recomputed from the stated quadratic'};
+data.version='6.3.2';
+data.visualAccuracyRelease='6.3.2';
+data.visualAccuracyAudit={planes:'three distinct surfaces share one point with compact plain-text equations',rootEquivalence:'horizontal unambiguous equivalence',multiplicity:'m=1, m=2 and m=3 plotted accurately',intersections:'line and parabola markers and exact point cards agree',domainRoots:'values recomputed from the stated quadratic'};
 })();
