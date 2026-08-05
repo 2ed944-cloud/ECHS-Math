@@ -28,32 +28,23 @@ async function openTitle(page,title){
   await page.waitForTimeout(250);
   return index;
 }
-async function common(page){
-  return page.evaluate(()=>({
-    bodyOverflow:Math.max(document.documentElement.scrollWidth,document.body.scrollWidth)-innerWidth,
-    stageOverflow:(document.querySelector('.stage')?.scrollWidth||0)-(document.querySelector('.stage')?.clientWidth||0),
-    rawMath:((document.querySelector('#app')?.innerText||'').match(/\\\(|\\\[|\\\)|\\\]/g)||[]).length,
-    mathErrors:document.querySelectorAll('[data-math-error="true"],.katex-error,.katex .merror').length,
-    gdcElements:document.querySelectorAll('#echs-gdc-launch,.echs-gdc-dialog,.gdc-route-resource,.gdc-callout,[data-gdc-launch]').length
-  }));
-}
+async function common(page){return page.evaluate(()=>({bodyOverflow:Math.max(document.documentElement.scrollWidth,document.body.scrollWidth)-innerWidth,stageOverflow:(document.querySelector('.stage')?.scrollWidth||0)-(document.querySelector('.stage')?.clientWidth||0),rawMath:((document.querySelector('#app')?.innerText||'').match(/\\\(|\\\[|\\\)|\\\]/g)||[]).length,mathErrors:document.querySelectorAll('[data-math-error="true"],.katex-error,.katex .merror').length,gdcElements:document.querySelectorAll('#echs-gdc-launch,.echs-gdc-dialog,.gdc-route-resource,.gdc-callout,[data-gdc-launch]').length}));}
 try{
-  const ctx=await context();
-  const page=await ctx.newPage();
-  const consoleErrors=[];page.on('pageerror',e=>consoleErrors.push(e.message));page.on('console',m=>{if(m.type()==='error'&&!/favicon|404/i.test(m.text()))consoleErrors.push(m.text());});
+  const ctx=await context();const page=await ctx.newPage();const consoleErrors=[];page.on('pageerror',e=>consoleErrors.push(e.message));page.on('console',m=>{if(m.type()==='error'&&!/favicon|404/i.test(m.text()))consoleErrors.push(m.text());});
 
   await openTitle(page,'Three equations as three planes');
   let state=await common(page);
-  const planes=await page.evaluate(()=>({figure:!!document.querySelector('.te63-planes-figure'),planes:document.querySelectorAll('.te63-planes-figure polygon.plane').length,point:!!document.querySelector('.te63-common-point'),text:document.querySelector('.slide-body')?.innerText||''}));
+  const planes=await page.evaluate(()=>{const box=n=>{const r=n.getBoundingClientRect();return{left:r.left,right:r.right,top:r.top,bottom:r.bottom,width:r.width,height:r.height};};return{figure:!!document.querySelector('.te63-planes-figure'),planes:document.querySelectorAll('.te63-planes-figure polygon.plane').length,point:!!document.querySelector('.te63-common-point'),text:document.querySelector('.slide-body')?.innerText||'',equations:[...document.querySelectorAll('.te63-planes-equations>div')].map(box),figureBox:box(document.querySelector('.te63-planes-figure'))};});
   check('ECHS GDC is absent from Lesson 1.6',state.gdcElements===0,JSON.stringify(state));
   check('three-plane visual contains three planes and one common point',planes.figure&&planes.planes===3&&planes.point,JSON.stringify(planes));
+  check('three-plane equations remain compact inside their own column',planes.equations.length===3&&planes.equations.every(e=>e.height<65&&e.right<=planes.figureBox.left-10),JSON.stringify(planes));
   check('three-plane explanation includes non-unique alternatives',/line|infinitely|no common point/i.test(planes.text),planes.text);
   const shot1=path.join(out,'01-three-planes-accurate.png');await page.screenshot({path:shot1});report.screenshots.push(shot1);
 
   await openTitle(page,'Root, zero and x-intercept are the same condition');
-  const eq=await page.evaluate(()=>({cards:[...document.querySelectorAll('.te63-equivalence article')].map(n=>{const r=n.getBoundingClientRect();return{left:r.left,right:r.right,top:r.top,bottom:r.bottom,width:r.width,height:r.height};}),math:[...document.querySelectorAll('.te63-equivalence-math')].map(n=>{const r=n.getBoundingClientRect();return{width:r.width,height:r.height,text:n.innerText};})}));
+  const eq=await page.evaluate(()=>({cards:[...document.querySelectorAll('.te63-equivalence article')].map(n=>{const r=n.getBoundingClientRect();return{left:r.left,right:r.right,top:r.top,bottom:r.bottom,width:r.width,height:r.height};}),math:[...document.querySelectorAll('.te63-equivalence-math')].map(n=>{const r=n.getBoundingClientRect();return{width:r.width,height:r.height};})}));
   check('root equivalence has three horizontal cards',eq.cards.length===3&&eq.cards.every(card=>card.width>250&&card.height<280),JSON.stringify(eq));
-  check('root equivalence mathematics is not vertically stacked',eq.math.length===3&&eq.math.every(box=>box.width>90&&box.height<80),JSON.stringify(eq.math));
+  check('root equivalence mathematics has horizontal geometry',eq.math.length===3&&eq.math.every(box=>box.width>75&&box.height<80),JSON.stringify(eq.math));
   check('root equivalence cards do not overlap',eq.cards.every((a,i)=>eq.cards.slice(i+1).every(b=>!rectOverlap(a,b))),JSON.stringify(eq.cards));
   const shot2=path.join(out,'02-root-zero-intercept-accurate.png');await page.screenshot({path:shot2});report.screenshots.push(shot2);
 
@@ -64,8 +55,9 @@ try{
   const shot3=path.join(out,'03-multiplicity-accurate.png');await page.screenshot({path:shot3});report.screenshots.push(shot3);
 
   await openTitle(page,'Intersections solve an equation in two equivalent ways');
-  const inter=await page.evaluate(()=>({dots:document.querySelectorAll('.te63-intersection-figure .intersection-dot').length,text:document.querySelector('.slide-body')?.innerText||'',figure:!!document.querySelector('.te63-intersection-figure')}));
-  check('intersection diagram has two accurately labelled common points',inter.figure&&inter.dots===2&&inter.text.includes('1−√5')&&inter.text.includes('1+√5'),JSON.stringify(inter));
+  const inter=await page.evaluate(()=>({dots:document.querySelectorAll('.te63-intersection-figure .intersection-dot').length,labels:document.querySelector('.te63-intersection-values')?.innerText||'',pair:document.querySelector('.te63-equation-pair')?.getBoundingClientRect().toJSON(),copy:document.querySelector('.te63-intersection-copy')?.getBoundingClientRect().toJSON(),figure:!!document.querySelector('.te63-intersection-figure')}));
+  check('intersection diagram has two accurately labelled common points',inter.figure&&inter.dots===2&&inter.labels.includes('1−√5')&&inter.labels.includes('1+√5')&&inter.labels.includes('3−2√5')&&inter.labels.includes('3+2√5'),JSON.stringify(inter));
+  check('intersection equivalence fits inside its card',inter.pair&&inter.copy&&inter.pair.right<=inter.copy.right-12&&inter.pair.left>=inter.copy.left+12,JSON.stringify(inter));
   const shot4=path.join(out,'04-intersections-accurate.png');await page.screenshot({path:shot4});report.screenshots.push(shot4);
 
   await openTitle(page,'Context can reject mathematically valid roots');
@@ -75,29 +67,20 @@ try{
   const shot5=path.join(out,'05-domain-roots-accurate.png');await page.screenshot({path:shot5});report.screenshots.push(shot5);
 
   await openTitle(page,'Worked example · exact intersections');
-  const official=await page.evaluate(()=>{
-    const w=window.ECHS_TI84_CLASSROOM_WORKFLOWS;
-    return {zero:w['cubic-roots'].tiSteps.flatMap(s=>s.keys).join(' '),intersect:w['exact-intersections'].tiSteps.flatMap(s=>s.keys).join(' '),rref:w['system-2x2'].tiSteps.flatMap(s=>s.keys).join(' '),audit:window.LESSON_DATA.ti84Classroom?.officialPathAudit};
-  });
-  check('official Zero route is installed',official.zero.includes('2nd')&&official.zero.includes('TRACE (CALC)')&&official.zero.includes('2:zero')&&official.zero.includes('Left Bound')===false,official.zero);
-  check('official Intersect route is installed',official.intersect.includes('2nd')&&official.intersect.includes('TRACE (CALC)')&&official.intersect.includes('5:intersect'),official.intersect);
-  check('official matrix rref route is installed',official.rref.includes('x⁻¹ (MATRIX)')&&official.rref.includes('→ (MATH)')&&official.rref.includes('rref('),official.rref);
+  const official=await page.evaluate(()=>{const w=window.ECHS_TI84_CLASSROOM_WORKFLOWS;const pack=id=>({keys:w[id].tiSteps.flatMap(s=>s.keys).join(' '),labels:w[id].tiSteps.map(s=>s.label).join(' | '),details:w[id].tiSteps.map(s=>s.detail).join(' | ')});return{zero:pack('cubic-roots'),intersect:pack('exact-intersections'),rref:pack('system-2x2'),audit:window.LESSON_DATA.ti84Classroom?.officialPathAudit};});
+  check('official Zero route is installed',official.zero.keys.includes('2nd')&&official.zero.keys.includes('TRACE (CALC)')&&official.zero.keys.includes('2:zero')&&official.zero.labels.includes('Left Bound')&&official.zero.labels.includes('Right Bound')&&official.zero.labels.includes('Guess'),JSON.stringify(official.zero));
+  check('official Intersect route is installed',official.intersect.keys.includes('2nd')&&official.intersect.keys.includes('TRACE (CALC)')&&official.intersect.keys.includes('5:intersect')&&official.intersect.labels.includes('First curve')&&official.intersect.labels.includes('Second curve')&&official.intersect.labels.includes('Guess'),JSON.stringify(official.intersect));
+  check('official matrix rref route is installed',official.rref.keys.includes('x⁻¹ (MATRIX)')&&official.rref.keys.includes('→ (MATH)')&&official.rref.keys.includes('rref(')&&official.rref.details.includes('last column'),JSON.stringify(official.rref));
   check('official TI audit metadata is active',official.audit==='6.3.0',JSON.stringify(official));
 
-  await page.waitForSelector('.ti84-inline-launch');
-  await page.click('.ti84-inline-launch');
-  await page.waitForSelector('.ti84-inline-dock.open');
-  await page.frameLocator('.ti84-inline-dock iframe').locator('[data-qa-ti84]').waitFor({timeout:15000});
-  const dock=await page.evaluate(()=>{const app=document.querySelector('.app-shell').getBoundingClientRect(),panel=document.querySelector('.ti84-inline-dock').getBoundingClientRect(),title=document.querySelector('.slide-title')?.getBoundingClientRect();return{bodyClass:document.body.classList.contains('ti84-inline-open'),appRight:app.right,panelLeft:panel.left,panelWidth:panel.width,titleVisible:!!title&&title.width>300&&title.top>=app.top,iframeSrc:document.querySelector('.ti84-inline-dock iframe')?.src,sandbox:document.querySelector('.ti84-inline-dock iframe')?.getAttribute('sandbox'),oldModal:document.querySelectorAll('.gdc-external-tools').length};});
-  check('TI-84 simulator opens beside rather than over the slide',dock.bodyClass&&Math.abs(dock.appRight-dock.panelLeft)<3&&dock.titleVisible,JSON.stringify(dock));
+  await page.waitForSelector('.ti84-inline-launch');await page.click('.ti84-inline-launch');await page.waitForSelector('.ti84-inline-dock.open');await page.frameLocator('.ti84-inline-dock iframe').locator('[data-qa-ti84]').waitFor({timeout:15000});
+  const dock=await page.evaluate(()=>{const app=document.querySelector('.app-shell').getBoundingClientRect(),panel=document.querySelector('.ti84-inline-dock').getBoundingClientRect(),title=document.querySelector('.slide-title')?.getBoundingClientRect();return{bodyClass:document.body.classList.contains('ti84-inline-open'),appRight:app.right,panelLeft:panel.left,gap:panel.left-app.right,panelWidth:panel.width,titleVisible:!!title&&title.width>300&&title.top>=app.top,iframeSrc:document.querySelector('.ti84-inline-dock iframe')?.src,sandbox:document.querySelector('.ti84-inline-dock iframe')?.getAttribute('sandbox'),oldModal:document.querySelectorAll('.gdc-external-tools').length};});
+  check('TI-84 simulator opens beside rather than over the slide',dock.bodyClass&&dock.gap>=-2&&dock.gap<=12&&dock.titleVisible,JSON.stringify(dock));
   check('inline simulator is lazy, sandboxed and uses requested provider',dock.iframeSrc.includes('ti84calc.com/ti84calc')&&dock.sandbox.includes('allow-scripts')&&dock.oldModal===0,JSON.stringify(dock));
   state=await common(page);check('slide and dock have no horizontal page overflow',state.bodyOverflow<=2&&state.stageOverflow<=2,JSON.stringify(state));
   const shot6=path.join(out,'06-slide-with-ti84-beside.png');await page.screenshot({path:shot6});report.screenshots.push(shot6);
-  check('no browser console errors',consoleErrors.length===0,consoleErrors.join('\n'));
-  await ctx.close();
+  check('no browser console errors',consoleErrors.length===0,consoleErrors.join('\n'));await ctx.close();
 
   const mobileCtx=await context({width:390,height:844});const mobile=await mobileCtx.newPage();await openTitle(mobile,'Worked example · exact intersections');await mobile.click('.ti84-inline-launch');await mobile.waitForSelector('.ti84-inline-dock.open');const mobileState=await common(mobile);check('mobile simulator fallback has no horizontal overflow',mobileState.bodyOverflow<=2,JSON.stringify(mobileState));const shot7=path.join(out,'07-mobile-ti84-dock.png');await mobile.screenshot({path:shot7});report.screenshots.push(shot7);await mobileCtx.close();
 }finally{await browser.close();}
-await writeFile(path.join(out,'report.json'),JSON.stringify(report,null,2));
-console.log(JSON.stringify({checks:report.checks.length,errors:report.errors.length,screenshots:report.screenshots.length},null,2));
-if(report.errors.length){for(const error of report.errors)console.error(`ERROR: ${error}`);process.exit(1);}
+await writeFile(path.join(out,'report.json'),JSON.stringify(report,null,2));console.log(JSON.stringify({checks:report.checks.length,errors:report.errors.length,screenshots:report.screenshots.length},null,2));if(report.errors.length){for(const error of report.errors)console.error(`ERROR: ${error}`);process.exit(1);}
