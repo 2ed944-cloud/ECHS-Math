@@ -27,6 +27,9 @@ async function openPage(viewport){
 async function overflow(page,selector){
   return page.evaluate(sel=>{const node=document.querySelector(sel);if(!node)return{missing:true};return{width:node.clientWidth,scrollWidth:node.scrollWidth,height:node.clientHeight,scrollHeight:node.scrollHeight,horizontal:Math.max(0,node.scrollWidth-node.clientWidth)};},selector);
 }
+async function advanceKeySteps(page,count){
+  for(let index=0;index<count;index++)await page.click('#ti84-ti-next');
+}
 
 try{
   const desktop=await openPage({width:1754,height:877});
@@ -59,9 +62,11 @@ try{
 
   await page.selectOption('#ti84-workflow-select','cubic-roots');
   await page.click('[data-ti84-mode="follow"]');
+  await advanceKeySteps(page,5);
   const cubicKeys=(await page.locator('.ti84-key-sequence').innerText()).replace(/\s+/g,' ');
   add('cubic workflow teaches the graph-zero route',cubicKeys.includes('Y=')&&cubicKeys.includes('2:zero')&&cubicKeys.includes('ZOOM'),cubicKeys);
   await page.selectOption('#ti84-workflow-select','exact-intersections');
+  await advanceKeySteps(page,4);
   const intersectionKeys=(await page.locator('.ti84-key-sequence').innerText()).replace(/\s+/g,' ');
   add('intersection workflow teaches 2nd TRACE Intersect',intersectionKeys.includes('2nd')&&intersectionKeys.includes('TRACE')&&intersectionKeys.includes('5:intersect'),intersectionKeys);
 
