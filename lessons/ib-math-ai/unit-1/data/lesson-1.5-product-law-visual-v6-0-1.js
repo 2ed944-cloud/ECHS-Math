@@ -18,7 +18,7 @@ slide.html=`<div class="el-two">
     <div class="el-warning"><b>Do not confuse the operations:</b> the powers are multiplied, while the exponents add only because they count the factors in that product. We are not adding \\(a^3\\) and \\(a^4\\); in general, \\(a^3+a^4\\ne a^7\\).</div>
   </div>
   <div>
-    <div class="el-step-visual" role="img" aria-label="a cubed multiplied by a to the fourth equals a to the power three plus four, which equals a to the seventh">
+    <div class="el-step-visual" role="img" aria-label="a cubed multiplied by a to the fourth equals a to the seventh; the factor counts are three plus four equals seven">
       <div><b>\\(a^3\\)</b><span>3 factors of \\(a\\)</span></div>
       <strong aria-label="multiplied by">×</strong>
       <div><b>\\(a^4\\)</b><span>4 factors of \\(a\\)</span></div>
