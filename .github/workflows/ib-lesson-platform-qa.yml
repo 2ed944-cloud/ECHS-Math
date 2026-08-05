@@ -31,6 +31,7 @@ on:
       - "tools/test_ib_ai_1_4_definitive_v6.py"
       - "tools/test_ib_ai_1_4_teaching_blocks_v6_1.py"
       - "tools/test_ib_ai_1_4_core_scope_v6_2.py"
+      - "tools/test_ib_ai_1_4_currency_katex_v6_2.py"
       - "tools/test_ib_ai_1_5_product_law_visual_v6_0_1.mjs"
       - "tools/test_ib_unit1_portal_update.mjs"
       - "tools/validate_ib_ai_unit1_v5.py"
@@ -93,6 +94,9 @@ jobs:
 
       - name: Validate Lesson 1.4 official IB SL scope
         run: python tools/test_ib_ai_1_4_core_scope_v6_2.py .
+
+      - name: Validate Lesson 1.4 currency KaTeX
+        run: python tools/test_ib_ai_1_4_currency_katex_v6_2.py .
 
       - name: Validate Lesson 1.5 product-law visual
         run: node tools/test_ib_ai_1_5_product_law_visual_v6_0_1.mjs
