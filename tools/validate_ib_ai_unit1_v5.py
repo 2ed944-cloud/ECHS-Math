@@ -40,7 +40,7 @@ lesson13=req('lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.3_geometric_sequences
 for marker in ('lesson-1.3-geometric-definitive-v6.js?v=6.0.0','lesson-1.3-geometric-v6-interactions.js?v=6.0.0','lesson-1.2-exam-focus-v6.js?v=6.0.0'):
     if marker not in lesson13:errors.append(f'Lesson 1.3 wrapper missing {marker}')
 lesson14=req('lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.4_financial_models_ECHS.html')
-for marker in ('lesson-1.4-financial-v6-foundations.js?v=6.0.0','lesson-1.4-financial-v6-cashflows.js?v=6.0.0','lesson-1.4-financial-v6-practice.js?v=6.0.0','lesson-1.4-financial-v6-assessment.js?v=6.0.0','lesson-1.4-financial-v6-polish.js?v=6.0.0','lesson-1.4-financial-v6-interactions.js?v=6.0.0'):
+for marker in ('lesson-1.4-financial-v6-foundations.js?v=6.0.0','lesson-1.4-financial-v6-cashflows.js?v=6.0.0','lesson-1.4-financial-v6-practice.js?v=6.0.0','lesson-1.4-financial-v6-assessment.js?v=6.0.0','lesson-1.4-financial-v6-polish.js?v=6.0.0','lesson-1.4-teaching-blocks-v6-1.js?v=6.1.0','lesson-1.4-financial-v6-interactions.js?v=6.0.0'):
     if marker not in lesson14:errors.append(f'Lesson 1.4 wrapper missing {marker}')
 lesson16=req('lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.6_technology_equations_ECHS.html')
 for marker in ('lesson-1.8.js','lesson-1.8-v3.js','lesson-1.6-technology-renumber-v6.js','1.6 · Technology for Equations and Systems'):
@@ -58,6 +58,7 @@ for source,target in redirects.items():
 catalog=json.loads(req('data/ib-math-ai-unit-1-delivery-catalog.json') or '{}')
 expected_totals={'lessons':6,'learn_slides':397,'practice_questions':512,'timed_quiz_questions':86,'extended_tasks':27}
 if catalog.get('release')!='6.0.0':errors.append('Catalog release mismatch')
+if catalog.get('schema_version')!='1.6.1':errors.append('Catalog organization schema is stale')
 if catalog.get('totals')!=expected_totals:errors.append(f"Catalog totals mismatch: {catalog.get('totals')}")
 lessons=catalog.get('lessons',[])
 if [item.get('number') for item in lessons]!=['1.1','1.2','1.3','1.4','1.5','1.6']:errors.append('Catalog does not use the revised six-lesson sequence')
@@ -73,6 +74,10 @@ for number,expected in expected_meta.items():
     item=next((entry for entry in lessons if entry.get('number')==number),{})
     actual=(item.get('title'),item.get('release'),item.get('learn_slides'),item.get('practice_questions'),item.get('timed_quiz_questions'),item.get('extended_tasks'))
     if actual!=expected:errors.append(f'Lesson {number} metadata mismatch: {actual}')
+lesson14_meta=next((entry for entry in lessons if entry.get('number')=='1.4'),{})
+if lesson14_meta.get('organization_release')!='6.1.0':errors.append('Lesson 1.4 organization release is missing from catalog')
+if [block.get('code') for block in lesson14_meta.get('teaching_blocks',[])]!=['1.4A','1.4B','1.4C','1.4D','1.4E','1.4F','1.4G']:errors.append('Lesson 1.4 catalog teaching-block sequence is invalid')
+if any(block.get('estimated_classroom_time')!='60–75 minutes' for block in lesson14_meta.get('teaching_blocks',[])):errors.append('Lesson 1.4 catalog pacing metadata is incomplete')
 if sum(item.get('learn_slides',0) for item in lessons)!=397:errors.append('Catalog lesson slide sum mismatch')
 if sum(item.get('practice_questions',0) for item in lessons)!=512:errors.append('Catalog practice sum mismatch')
 
@@ -86,6 +91,7 @@ required_files=(
  'lessons/ib-math-ai/unit-1/data/lesson-1.4-financial-v6-practice.js',
  'lessons/ib-math-ai/unit-1/data/lesson-1.4-financial-v6-assessment.js',
  'lessons/ib-math-ai/unit-1/data/lesson-1.4-financial-v6-polish.js',
+ 'lessons/ib-math-ai/unit-1/data/lesson-1.4-teaching-blocks-v6-1.js',
  'lessons/ib-math-ai/unit-1/data/lesson-1.4-financial-v6-interactions.js',
  'lessons/ib-math-ai/unit-1/data/lesson-1.6-technology-renumber-v6.js',
  'lessons/ib-math-ai/unit-1/START_HERE.html','lessons/ib-math-ai/unit-1/TEACHER_GUIDE.html','data/ib-math-ai-unit-1-update.js'
