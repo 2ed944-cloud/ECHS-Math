@@ -27,30 +27,39 @@ jobs:
           cat tools/_ib16_release/part-*.txt | tr -d '\r\n' | base64 --decode > _ib16_inspection/payload.bin
           python3 - <<'PY'
           from __future__ import annotations
-          import gzip
           import io
           import json
           import pathlib
           import tarfile
+          import zlib
 
           root = pathlib.Path('_ib16_inspection')
           raw = (root / 'payload.bin').read_bytes()
           layers = []
           data = raw
+          complete = True
           for index in range(4):
               layers.append({'layer': index, 'size': len(data), 'magic': data[:16].hex()})
-              if data.startswith(b'\x1f\x8b'):
-                  data = gzip.decompress(data)
-                  (root / f'layer-{index + 1}.bin').write_bytes(data)
-                  continue
-              break
+              if not data.startswith(b'\x1f\x8b'):
+                  break
+              stream = zlib.decompressobj(16 + zlib.MAX_WBITS)
+              decoded = stream.decompress(data)
+              try:
+                  decoded += stream.flush()
+              except zlib.error:
+                  complete = False
+              if not stream.eof:
+                  complete = False
+              data = decoded
+              (root / f'layer-{index + 1}.bin').write_bytes(data)
 
           listing = []
           archive_kind = 'unknown'
+          archive_error = None
           try:
-              with tarfile.open(fileobj=io.BytesIO(data), mode='r:*') as archive:
+              with tarfile.open(fileobj=io.BytesIO(data), mode='r:', ignore_zeros=True) as archive:
                   archive_kind = 'tar'
-                  for member in archive.getmembers():
+                  for member in archive:
                       path = pathlib.PurePosixPath(member.name)
                       if path.is_absolute() or '..' in path.parts:
                           raise SystemExit(f'Unsafe archive path: {member.name}')
@@ -59,23 +68,38 @@ jobs:
                           'size': member.size,
                           'type': 'dir' if member.isdir() else 'file' if member.isfile() else str(member.type),
                       })
-                  archive.extractall(root / 'extracted', filter='data')
-          except tarfile.ReadError:
+                      if member.isfile():
+                          source = archive.extractfile(member)
+                          if source is None:
+                              continue
+                          target = root / 'extracted' / path
+                          target.parent.mkdir(parents=True, exist_ok=True)
+                          target.write_bytes(source.read())
+                      elif member.isdir():
+                          (root / 'extracted' / path).mkdir(parents=True, exist_ok=True)
+          except (tarfile.ReadError, EOFError, OSError) as exc:
+              archive_error = repr(exc)
               (root / 'decoded.bin').write_bytes(data)
 
-          (root / 'report.json').write_text(json.dumps({
+          report = {
+              'payload_size': len(raw),
               'layers': layers,
+              'gzip_complete': complete,
               'decoded_size': len(data),
               'archive_kind': archive_kind,
+              'archive_error': archive_error,
               'members': listing,
-          }, indent=2), encoding='utf-8')
+          }
+          (root / 'report.json').write_text(json.dumps(report, indent=2), encoding='utf-8')
           (root / 'listing.txt').write_text('\n'.join(item['name'] for item in listing), encoding='utf-8')
-          print(json.dumps({'layers': layers, 'archive_kind': archive_kind, 'members': len(listing)}, indent=2))
+          print(json.dumps({key: report[key] for key in ('payload_size','layers','gzip_complete','decoded_size','archive_kind','archive_error')}, indent=2))
+          print(f"Recovered members: {len(listing)}")
           PY
-          find _ib16_inspection -maxdepth 4 -type f -printf '%p %s bytes\n' | sort
+          find _ib16_inspection -maxdepth 6 -type f -printf '%p %s bytes\n' | sort
           cat _ib16_inspection/listing.txt
 
       - name: Upload inspection evidence
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: ib16-staged-release-inspection-${{ github.run_number }}
