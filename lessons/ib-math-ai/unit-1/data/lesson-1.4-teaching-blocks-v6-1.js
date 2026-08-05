@@ -16,42 +16,42 @@
       code:'1.4B',
       title:'Compounding and Rate Conventions',
       time:'60–75 minutes',
-      focus:'Use nominal, periodic and effective rates consistently and solve completed-period growth questions.',
+      focus:'Use nominal and periodic rates consistently, apply non-annual compounding and verify completed-period growth questions.',
       startTitle:'Nominal annual rate is not the periodic rate'
     },
     {
       code:'1.4C',
       title:'Depreciation, Inflation and Real Value',
       time:'60–75 minutes',
-      focus:'Model depreciation and inflation, then distinguish nominal value from real purchasing power.',
+      focus:'Secure annual reducing-balance depreciation first; inflation and real-value analysis remain clearly marked reference-supported extension material.',
       startTitle:'Reducing-balance depreciation is compound decay'
     },
     {
       code:'1.4D',
       title:'Regular Deposits and Savings',
       time:'60–75 minutes',
-      focus:'Build ordinary-annuity savings models before exploring timing shifts, mixed deposits and withdrawal funds.',
+      focus:'Build the ordinary regular-deposit model before accessing annuity-due, mixed-deposit and withdrawal-fund extensions.',
       startTitle:'Regular deposits accumulate as a geometric sum'
     },
     {
       code:'1.4E',
       title:'Loans and Repayment',
       time:'60–75 minutes',
-      focus:'Model loan repayments and amortization from cash-flow equivalence, then interpret balances and repayment evidence.',
+      focus:'Use financial technology to calculate loan repayments and interpret the interest–principal structure of amortization.',
       startTitle:'TVM variables encode a cash-flow equation'
     },
     {
       code:'1.4F',
       title:'Financial Decision Making',
       time:'60–75 minutes',
-      focus:'Compare financial strategies only after computational fluency, using total cost, timing, implementation and sensitivity.',
-      startTitle:'Extra principal paid early reduces many future interest charges'
+      focus:'Compare payment size, total interest and affordability only after the core loan calculations are secure.',
+      startTitle:'Loan term trades payment size against total interest'
     },
     {
       code:'1.4G',
       title:'Mastery and Mixed Financial Applications',
       time:'60–75 minutes',
-      focus:'Consolidate the entire lesson through mixed applications, synthesis, revision and mastery evidence.',
+      focus:'Consolidate the IB SL core through mixed applications, synthesis, revision and independent mastery evidence.',
       startTitle:'Integrated IB-style financial decision'
     }
   ];
@@ -113,10 +113,10 @@
     block.endSlideNumber=end+1;
   });
 
-  data.organizationSchemaVersion='1.0.0';
+  data.organizationSchemaVersion='1.1.0';
   data.organizationBuildDate='2026-08-05';
-  data.lesson.organization_release='6.1.0';
-  data.lesson.organization='Seven internal teaching blocks within one unchanged lesson route';
+  data.lesson.organization_release='6.2.0';
+  data.lesson.organization='Seven internal teaching blocks with an IB SL core-first progression';
   data.lesson.teaching_blocks=blocks.map(block=>({
     code:block.code,
     title:block.title,
@@ -127,28 +127,26 @@
     screen_count:block.screenCount
   }));
   data.lesson.pacing={
-    format:'single lesson with internal teaching blocks',
+    format:'single lesson with internal teaching blocks and a default IB SL core scope',
     total_teaching_blocks:blocks.length,
     total_learn_screens:data.slides.length,
     block_sequence:blocks.map(block=>block.code),
-    practice_studio_unchanged:true,
-    timed_quiz_unchanged:true,
-    ib_tasks_unchanged:true,
-    mastery_route_unchanged:true
+    extension_content_retained:true,
+    practice_studio_retained:true,
+    timed_quiz_retained:true,
+    ib_tasks_retained:true,
+    mastery_route_retained:true
   };
   data.teachingBlocks=data.lesson.teaching_blocks;
   data.v6Audit=Object.assign({},data.v6Audit,{
     organizationOnlyRefactor:true,
-    teachingBlockRelease:'6.1.0',
+    teachingBlockRelease:'6.2.0',
     teachingBlockCount:7,
     learnScreenCountPreserved:data.slides.length===100,
     originalLearnOrderPreserved:true,
     existingSlideHtmlPreserved:true,
     existingSlideTitlesPreserved:true,
-    practiceStudioPreserved:true,
-    timedQuizPreserved:true,
-    ibTasksPreserved:true,
-    masteryRoutePreserved:true,
+    extensionContentRetained:true,
     legacyRoutesPreserved:true
   });
 })();
