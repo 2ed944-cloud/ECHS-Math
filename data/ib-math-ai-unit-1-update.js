@@ -20,12 +20,12 @@
 
   const unit={
     title:"Unit 1: Number and Algebra",
-    description:"Six consolidated IB Mathematics: Applications and Interpretation SL lessons with coherent AP-style teaching screens, transparent technology, four-level practice, IB tasks and mastery evidence.",
-    portalSummary:"6 lessons · 397 purposeful Learn screens · 512 studio questions · 86 quiz questions · 27 extended tasks",
-    release:"6.0.0",
+    description:"Six consolidated IB Mathematics: Applications and Interpretation SL lessons with a core-first learning path, transparent technology, levelled practice, IB tasks and optional extensions.",
+    portalSummary:"6 lessons · 328 core Learn screens · 432 core studio questions · 80 core quiz questions · 24 core tasks",
+    release:"6.2.0",
     architectureNotes:[
       "Approximation, bounds and percentage error are consolidated in Lesson 1.1.",
-      "Financial applications, loans, annuities and amortization are consolidated in Lesson 1.4.",
+      "Lesson 1.4 opens with the current IB SL core—compound interest and annual depreciation—while broader financial applications remain optional in the same lesson.",
       "Technology for Equations and Systems is renumbered as Lesson 1.6."
     ],
     essential_questions:[
@@ -60,14 +60,13 @@
         "Evaluate assumptions, saturation, precision and technology output in geometric models."
       ],"6.0.0",73,96,14,5),
       makeLesson("1.4","Financial Applications","financial_models",[
-        "Distinguish fixed monetary change from fixed percentage change.",
-        "Use nominal, periodic and effective rates with consistent time units.",
-        "Calculate compound growth, depreciation, inflation and real value.",
-        "Model ordinary annuities, annuities due, mixed deposits and withdrawal funds.",
-        "Calculate loan payments, total interest and outstanding balances.",
-        "Construct amortization evidence and compare repayment strategies.",
-        "Evaluate financial decisions using timing, fees, inflation, sensitivity and risk."
-      ],"6.0.0",100,120,16,6),
+        "Translate percentage increase and decrease into multiplicative factors.",
+        "Model annual and non-annual compound interest with consistent periods.",
+        "Use technology transparently after identifying the model and settings.",
+        "Solve first-completed-period growth questions with adjacent-period checks.",
+        "Model annual reducing-balance depreciation and replacement thresholds.",
+        "Interpret currency, time, assumptions and reasonableness in context."
+      ],"6.2.0",31,40,10,3),
       makeLesson("1.5","Exponent Laws and Logarithms","logarithms",[
         "Simplify zero, negative and rational exponents.",
         "Solve exponential equations exactly or logarithmically.",
@@ -85,16 +84,33 @@
 
   const financialLesson=unit.lessons.find(lesson=>lesson.number==="1.4");
   if(financialLesson){
-    financialLesson.organization_release="6.1.0";
-    financialLesson.organization="one lesson with seven internal teaching blocks";
+    financialLesson.organizationRelease="6.2.0";
+    financialLesson.organization="IB SL core-first path with optional broader financial applications";
+    financialLesson.syllabusCore="SL 1.4 — financial applications: compound interest and annual depreciation";
+    financialLesson.coreLearnSlides=31;
+    financialLesson.corePracticeQuestions=40;
+    financialLesson.coreQuizQuestions=10;
+    financialLesson.coreExtendedTasks=3;
+    financialLesson.preservedUniqueLearnSlides=100;
+    financialLesson.extensionLearnSlides=71;
+    financialLesson.extensionPracticeQuestions=80;
+    financialLesson.extensionQuizQuestions=12;
+    financialLesson.extensionExtendedTasks=6;
+    financialLesson.extensionUrl=`${financialLesson.url}?scope=extension#learn`;
     financialLesson.teachingBlocks=[
-      {code:"1.4A",title:"Percentage Change and Financial Growth",estimatedClassroomTime:"60–75 minutes"},
-      {code:"1.4B",title:"Compounding and Rate Conventions",estimatedClassroomTime:"60–75 minutes"},
-      {code:"1.4C",title:"Depreciation, Inflation and Real Value",estimatedClassroomTime:"60–75 minutes"},
-      {code:"1.4D",title:"Regular Deposits and Savings",estimatedClassroomTime:"60–75 minutes"},
-      {code:"1.4E",title:"Loans and Repayment",estimatedClassroomTime:"60–75 minutes"},
-      {code:"1.4F",title:"Financial Decision Making",estimatedClassroomTime:"60–75 minutes"},
-      {code:"1.4G",title:"Mastery and Mixed Financial Applications",estimatedClassroomTime:"60–75 minutes"}
+      {code:"1.4A",title:"Percentage Change and Compound Growth",estimatedClassroomTime:"60–75 minutes",scope:"core"},
+      {code:"1.4B",title:"Compounding Conventions and Completed Periods",estimatedClassroomTime:"60–75 minutes",scope:"core"},
+      {code:"1.4C",title:"Annual Depreciation",estimatedClassroomTime:"60–75 minutes",scope:"core"},
+      {code:"1.4D",title:"Technology and Core Mastery",estimatedClassroomTime:"45–60 minutes",scope:"core"},
+      {code:"1.4E",title:"Broader Financial Context and Real Value",estimatedClassroomTime:"Optional · 60–75 minutes",scope:"extension"},
+      {code:"1.4F",title:"Savings, Annuities and Loans",estimatedClassroomTime:"Optional · 75–90 minutes",scope:"extension"},
+      {code:"1.4G",title:"Amortization, Decisions and Enrichment",estimatedClassroomTime:"Optional · 75–90 minutes",scope:"extension"}
+    ];
+    financialLesson.resources=[
+      {label:"IB SL Core lesson · 31 screens",url:financialLesson.url,type:"resource"},
+      {label:"IB SL Core Practice · 40 questions",url:`${financialLesson.url}#practice`,type:"practice"},
+      {label:"IB SL Core assessment tasks · 3",url:`${financialLesson.url}#exam`,type:"assessment"},
+      {label:"Optional broader financial applications",url:financialLesson.extensionUrl,type:"resource"}
     ];
   }
 
@@ -125,6 +141,6 @@
   course.unitCount=course.units.length;
   course.lessonCount=course.units.reduce((total,value)=>total+(Array.isArray(value?.lessons)?value.lessons.length:0),0);
   course.status="Started";
-  course.updatedUnits="Unit 1 · six-lesson architecture · Lesson 1.4 organized into teaching blocks 1.4A–1.4G";
+  course.updatedUnits="Unit 1 · six-lesson architecture · Lesson 1.4 aligned to the current IB SL core with optional extensions";
   window.dispatchEvent(new CustomEvent("echs:ib-ai-unit-ready",{detail:{courseId:course.id,unit:1,lessons:unit.lessons.length,release:unit.release}}));
 })();
