@@ -61,9 +61,8 @@ for number, pack in packs.items():
     if len(slides) != 36:
         errors.append(f"{number}: expected 36 retained base slides, got {len(slides)}")
 
-# Stable production wrappers and definitive overlays.
+# Stable production wrappers and definitive overlays. Lesson 1.1 uses its own dedicated runtime contract.
 wrappers = {
-    "1.1": "IB_AI_SL_1.1_standard_form_ECHS.html",
     "1.2": "IB_AI_SL_1.2_arithmetic_sequences_ECHS.html",
     "1.3": "IB_AI_SL_1.3_geometric_sequences_ECHS.html",
     "1.4": "IB_AI_SL_1.4_financial_models_ECHS.html",
@@ -76,6 +75,9 @@ for number, filename in wrappers.items():
     wrapper_text[number] = text
     for marker in ("ap-screen-lesson", 'class="topbar"', 'class="routebar"', 'data-route="practice"', "../assets/js/engine.js", "unit-1-v5-runtime.js"):
         require(text, marker, f"Lesson {number} wrapper")
+lesson11 = req("lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.1_standard_form_ECHS.html")
+for marker in ("ap-screen-lesson", 'class="topbar"', 'class="routebar"', 'data-route="practice"', "../assets/js/engine.js"):
+    require(lesson11, marker, "Lesson 1.1 wrapper")
 
 for marker in (
     "lesson-1.5-exponents-logarithms-v6.css?v=6.0.0",
@@ -175,8 +177,10 @@ for marker in (
 start = req("lessons/ib-math-ai/unit-1/START_HERE.html")
 guide = req("lessons/ib-math-ai/unit-1/TEACHER_GUIDE.html")
 for text, label in ((start, "START_HERE"), (guide, "Teacher Guide")):
-    for marker in ("471", "600", "31", "1.6", "73", "96", "5 IB tasks"):
+    for marker in ("471", "600", "31", "1.6", "73", "96"):
         require(text, marker, label)
+require(start, "5 IB tasks", "START_HERE")
+require(guide, "Lesson 1.6 · 73 / 96 / 14 / 5", "Teacher Guide")
 
 # Preserve the independent definitive Lesson 1.5 contract.
 overlay = ROOT / "lessons/ib-math-ai/unit-1/data/lesson-1.5-exponents-logarithms-definitive-v6.js"
