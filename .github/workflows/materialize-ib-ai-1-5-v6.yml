@@ -42,7 +42,10 @@ jobs:
             tools/_ib15_release/part-000.txt \
             tools/_ib15_release/part-001-0.txt \
             tools/_ib15_release/part-001-1.txt \
-            tools/_ib15_release/part-001-2.txt \
+            tools/_ib15_release/part-001-2-0.txt \
+            tools/_ib15_release/part-001-2-1.txt \
+            tools/_ib15_release/part-001-2-2.txt \
+            tools/_ib15_release/part-001-2-3.txt \
             tools/_ib15_release/part-001-3.txt \
             tools/_ib15_release/part-001-4.txt \
             tools/_ib15_release/part-002.txt \
