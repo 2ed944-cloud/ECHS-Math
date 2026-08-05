@@ -9,10 +9,11 @@
   const icons={Core:'🟢',Practice:'🔵',Extension:'🟠',Revision:'🟣'};
 
   const extensionSections=new Set([
-    'Effective rates','Inflation','Real value','Financial comparison','Payment timing',
-    'Mixed savings','Withdrawal annuities','Outstanding balance','Decision modelling','Extension'
+    'Effective rates','Inflation','Real value','Financial comparison','Regular deposits',
+    'Payment timing','Mixed savings','Savings targets','Withdrawal annuities',
+    'Outstanding balance','Decision modelling','Extension'
   ]);
-  const extensionTitle=/(effective annual rate|advertised rates|frequent compounding|nominal return versus purchasing power|real value|inflation|annuity due|beginning of each|ordinary versus due|mixed future value|initial deposit plus|combine cash-flow components|withdrawal fund|retirement income|retirement scenarios|retrospective balance|prospective balance|outstanding balance|extra principal|extra monthly repayment|sensitivity|risk analysis|growing annuit|derive the future value of an ordinary annuity|derive the loan-payment formula|generative financial studio)/i;
+  const extensionTitle=/(effective annual rate|advertised rates|frequent compounding|nominal return versus purchasing power|real value|inflation|ordinary annuity|annuity due|beginning of each|ordinary versus due|mixed future value|initial deposit plus|combine cash-flow components|savings and annuities|withdrawal fund|retirement income|retirement scenarios|retrospective balance|prospective balance|outstanding balance|extra principal|extra monthly repayment|sensitivity|risk analysis|growing annuit|derive the future value of an ordinary annuity|derive the loan-payment formula|annuity and loan explorer|generative financial studio|integrated ib-style financial decision)/i;
   const revisionSections=new Set(['Learning route','Diagnostic','Checkpoint','Synthesis','Exit ticket','Mastery','Simple interest']);
   const revisionTitle=/(learning intentions|six-lesson number and algebra route|readiness check|checkpoint|misconception clinic|independent exit ticket|mastery routes|transition to logarithms)/i;
 
@@ -42,15 +43,16 @@
       :`${slide.teachingBlock} · ${icons[classification]} ${classification} · ${slide.originalSection||slide.section}`;
   });
 
-  const extensionQuestionPattern=/(effective annual|\bEAR\b|inflation|real value|purchasing power|annuity due|beginning[- ]of[- ](?:period|month|year)|mixed deposit|initial deposit.*regular|lump sum.*regular|withdrawal|retirement fund|retirement income|retrospective|prospective|outstanding balance|extra payment|extra repayment|prepayment|sensitivity|risk analysis|growing annuit)/i;
+  const extensionQuestionPattern=/(effective annual|\bEAR\b|inflation|real value|purchasing power|regular deposit|savings plan|savings balance|annuit|beginning[- ]of[- ](?:period|month|year)|mixed deposit|initial deposit.*regular|lump sum.*regular|withdrawal|retirement fund|retirement income|retrospective|prospective|outstanding balance|extra payment|extra repayment|prepayment|sensitivity|risk analysis|growing annuit)/i;
   function assessmentScope(item){
-    const text=[item.title,item.context,item.prompt,item.answer,item.solution,item.tags&&item.tags.join(' ')].filter(Boolean).join(' ');
+    const tags=Array.isArray(item.tags)?item.tags.join(' '):String(item.tags||'');
+    const text=[item.title,item.context,item.prompt,item.answer,item.solution,tags].filter(Boolean).join(' ');
     return extensionQuestionPattern.test(text)?'extension':'core';
   }
 
   const taskScopeById={
     'FINV6-1.4-E01':'extension',
-    'FINV6-1.4-E02':'core',
+    'FINV6-1.4-E02':'extension',
     'FINV6-1.4-E03':'core',
     'FINV6-1.4-E04':'extension',
     'FINV6-1.4-E05':'extension',
@@ -64,12 +66,7 @@
   const allPractice=data.practice.slice();
   const allQuiz=data.quiz.slice();
   const allExam=data.exam.slice();
-  data.scopeCollections={
-    slides:data.slides,
-    practice:allPractice,
-    quiz:allQuiz,
-    exam:allExam
-  };
+  data.scopeCollections={slides:data.slides,practice:allPractice,quiz:allQuiz,exam:allExam};
 
   if(!requestedAll){
     data.practice=allPractice.filter(item=>item.scope==='core');
