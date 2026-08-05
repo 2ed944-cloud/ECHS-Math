@@ -58,6 +58,7 @@ try{
   add('exam-drill output can be revealed for self-check',/unique solution/i.test(await page.locator('#ti84-evidence-content').innerText()),await page.locator('#ti84-evidence-content').innerText());
 
   await page.selectOption('#ti84-workflow-select','cubic-roots');
+  await page.click('[data-ti84-mode="follow"]');
   const cubicKeys=(await page.locator('.ti84-key-sequence').innerText()).replace(/\s+/g,' ');
   add('cubic workflow teaches the graph-zero route',cubicKeys.includes('Y=')&&cubicKeys.includes('2:zero')&&cubicKeys.includes('ZOOM'),cubicKeys);
   await page.selectOption('#ti84-workflow-select','exact-intersections');
