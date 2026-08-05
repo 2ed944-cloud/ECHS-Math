@@ -25,8 +25,10 @@ async function contextPage(viewport){
 async function gotoTitle(page,title){
   const index=await page.evaluate(wanted=>window.LESSON_DATA.slides.findIndex(slide=>slide.title===wanted),title);
   if(index<0)throw new Error(`Missing slide: ${title}`);
-  await page.evaluate(({key,index})=>localStorage.setItem(key,String(index)),{key:storageKey,index});
-  if(location.hash!=='#learn')await page.evaluate(()=>location.hash='#learn');
+  await page.evaluate(({key,index})=>{
+    localStorage.setItem(key,String(index));
+    if(location.hash!=='#learn')location.hash='#learn';
+  },{key:storageKey,index});
   await page.reload({waitUntil:'domcontentloaded'});
   await page.waitForFunction(expected=>document.body.dataset.rendered==='1'&&document.getElementById('progress-label')?.textContent?.trim().startsWith(`${expected} /`),index+1,{timeout:30000});
   await page.waitForTimeout(180);
