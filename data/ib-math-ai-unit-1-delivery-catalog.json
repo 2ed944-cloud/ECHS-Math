@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.6.0",
+  "schema_version": "1.6.1",
   "course": "ib-math-ai",
   "unit": 1,
   "title": "Number and Algebra",
@@ -77,6 +77,17 @@
       "student_visible": true,
       "url": "lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.4_financial_models_ECHS.html",
       "release": "6.0.0",
+      "organization_release": "6.1.0",
+      "organization": "one lesson with seven internal teaching blocks",
+      "teaching_blocks": [
+        {"code": "1.4A", "title": "Percentage Change and Financial Growth", "estimated_classroom_time": "60–75 minutes"},
+        {"code": "1.4B", "title": "Compounding and Rate Conventions", "estimated_classroom_time": "60–75 minutes"},
+        {"code": "1.4C", "title": "Depreciation, Inflation and Real Value", "estimated_classroom_time": "60–75 minutes"},
+        {"code": "1.4D", "title": "Regular Deposits and Savings", "estimated_classroom_time": "60–75 minutes"},
+        {"code": "1.4E", "title": "Loans and Repayment", "estimated_classroom_time": "60–75 minutes"},
+        {"code": "1.4F", "title": "Financial Decision Making", "estimated_classroom_time": "60–75 minutes"},
+        {"code": "1.4G", "title": "Mastery and Mixed Financial Applications", "estimated_classroom_time": "60–75 minutes"}
+      ],
       "learn_slides": 100,
       "practice_questions": 120,
       "timed_quiz_questions": 16,
