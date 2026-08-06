@@ -1,0 +1,16 @@
+/* Lesson 1.4 TI-84 Finance mobile dock and guidance wrap · v6.3.1 */
+.fin84-inline-guidance p{white-space:normal!important;overflow-wrap:anywhere;word-break:normal}
+@media(max-width:820px){
+  html.unit1-lesson-1-4 .fin84-inline-dock{
+    left:0!important;
+    right:0!important;
+    width:100vw!important;
+    min-width:100vw!important;
+    max-width:none!important;
+    transform:translateX(105%)!important;
+    border-left:0!important;
+  }
+  html.unit1-lesson-1-4 .fin84-inline-dock.open{transform:translateX(0)!important}
+  html.unit1-lesson-1-4 .fin84-inline-head{padding-right:max(14px,env(safe-area-inset-right));padding-left:max(14px,env(safe-area-inset-left))}
+  html.unit1-lesson-1-4 .fin84-inline-guidance{padding-right:max(12px,env(safe-area-inset-right));padding-left:max(12px,env(safe-area-inset-left))}
+}
