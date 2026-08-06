@@ -1,5 +1,6 @@
-/* Lesson 1.4 TI-84 Finance stable dock and guidance wrap · v6.3.3 */
+/* Lesson 1.4 TI-84 Finance stable dock and guidance wrap · v6.3.4 */
 .fin84-inline-dock{transition:none!important}
+body.fin84-inline-open .app-shell,body.fin84-inline-open .footer{transition:none!important}
 .fin84-inline-guidance{min-width:0;overflow:hidden}
 .fin84-inline-guidance p{min-width:0;max-width:100%;white-space:normal!important;overflow-wrap:anywhere;word-break:normal}
 @media(max-width:820px){
