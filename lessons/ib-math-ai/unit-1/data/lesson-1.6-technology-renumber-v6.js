@@ -14,7 +14,7 @@
   const route=(data.slides||[]).find(item=>item.title==='Your place in Unit 1');
   if(route){
     route.title='A six-lesson Number and Algebra route';
-    route.html='<div class="unit-map"><div class="map-node"><b>1.1</b><span>Number Foundations, Scientific Notation and Approximation</span></div><div class="map-node"><b>1.2</b><span>Arithmetic Sequences and Series</span></div><div class="map-node"><b>1.3</b><span>Geometric Sequences and Series</span></div><div class="map-node"><b>1.4</b><span>Financial Applications</span></div><div class="map-node"><b>1.5</b><span>Exponent Laws and Logarithms</span></div><div class="map-node active"><b>1.6</b><span>Technology for Equations and Systems</span></div></div><p class="callout">Approximation is consolidated in Lesson 1.1, while loans and annuities are consolidated in Lesson 1.4.</p>';
+    route.html='<div class="unit-map"><div class="map-node"><b>1.1</b><span>Scientific Notation, Approximation and Error</span></div><div class="map-node"><b>1.2</b><span>Arithmetic Sequences and Series</span></div><div class="map-node"><b>1.3</b><span>Geometric Sequences and Series</span></div><div class="map-node"><b>1.4</b><span>Financial Applications</span></div><div class="map-node"><b>1.5</b><span>Exponent Laws and Logarithms</span></div><div class="map-node active"><b>1.6</b><span>Technology for Equations and Systems</span></div></div><p class="callout">Approximation is consolidated in Lesson 1.1, while loans and annuities are consolidated in Lesson 1.4.</p>';
   }
   data.version='5.3.3-renumbered';
 })();

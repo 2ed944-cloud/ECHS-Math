@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Definitive regression checks for IB AI SL Lesson 1.1 Number Foundations v6."""
+"""Regression checks for the retained IB AI SL Lesson 1.1 content foundation."""
 from __future__ import annotations
 
 import json
@@ -65,7 +65,7 @@ def validate_catalog(catalog_text: str, errors: list[str]) -> None:
         lessons = catalog["lessons"]
         lesson = next(item for item in lessons if item["number"] == "1.1")
         expected_lesson = {
-            "release": "6.0.0",
+            "release": "6.8.0",
             "learn_slides": 79,
             "practice_questions": 96,
             "timed_quiz_questions": 14,
@@ -74,6 +74,10 @@ def validate_catalog(catalog_text: str, errors: list[str]) -> None:
         for key, expected_value in expected_lesson.items():
             if lesson.get(key) != expected_value:
                 errors.append(f"Catalog {key} is {lesson.get(key)!r}; expected {expected_value!r}")
+        if lesson.get("title") != "Scientific Notation, Approximation and Error":
+            errors.append(f"Catalog title is {lesson.get('title')!r}")
+        if lesson.get("calculator", {}).get("external_dependency") is not False:
+            errors.append("Catalog local calculator dependency flag is incorrect")
 
         computed_totals = {
             "lessons": len(lessons),
@@ -103,9 +107,11 @@ def validate(root: Path, errors: list[str]) -> None:
         "lesson-1.1-number-foundations-v6-content.js?v=6.0.0",
         "lesson-1.1-number-foundations-v6-polish.js?v=6.0.0",
         "lesson-1.1-number-foundations-v6-interactions.js?v=6.0.0",
+        "lesson-1.1-ti84-local-v6-8.js?v=6.8.0",
+        "lesson-1.1-ti84-local-input-v6-8-1.js?v=6.8.1",
     ):
         if marker not in html:
-            errors.append(f"HTML missing v6 asset: {marker}")
+            errors.append(f"HTML missing Lesson 1.1 asset: {marker}")
 
     for path in (*DATA, INTERACTIONS):
         result = subprocess.run(["node", "--check", str(root / path)], text=True, capture_output=True)
@@ -186,7 +192,7 @@ def main() -> int:
     root = Path(sys.argv[1] if len(sys.argv) > 1 else ".").resolve()
     errors: list[str] = []
     validate(root, errors)
-    print("IB AI SL Lesson 1.1 Number Foundations v6")
+    print("IB AI SL Lesson 1.1 retained content foundation")
     print(f"Errors: {len(errors)}")
     for error in errors:
         print(f"  ERROR: {error}")
