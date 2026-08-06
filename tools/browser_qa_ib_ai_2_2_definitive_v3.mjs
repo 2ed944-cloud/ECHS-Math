@@ -1,0 +1,39 @@
+import {chromium} from 'playwright-core';
+import {mkdir,writeFile} from 'node:fs/promises';
+import path from 'node:path';
+const base=process.env.ECHS_PREVIEW_URL||'http://127.0.0.1:4173';
+const out=process.env.ECHS_PREVIEW_OUTPUT||'artifacts/ib-ai-2-2-v3';
+const lesson=`${base}/lessons/ib-math-ai/unit-2/lessons/IB_AI_SL_2.2_linear_quadratic_models_ECHS.html`;
+await mkdir(out,{recursive:true});
+const browser=await chromium.launch({executablePath:process.env.CHROME_PATH||'/usr/bin/google-chrome',headless:true,args:['--no-sandbox','--disable-dev-shm-usage']});
+const report={checks:[],errors:[],screenshots:[]};const check=(name,pass,details='')=>{report.checks.push({name,pass,details});if(!pass)report.errors.push(`${name}: ${details}`);};
+async function open(viewport,query=''){
+ const context=await browser.newContext({viewport,deviceScaleFactor:1,serviceWorkers:'block',reducedMotion:'reduce'});const page=await context.newPage();
+ await page.route('https://ti84calc.com/**',route=>route.fulfill({status:200,contentType:'text/html',body:'<!doctype html><html><body style="font-family:system-ui"><h1>TI-84 simulator fixture</h1><div id="calc">Y= GRAPH TRACE TABLE</div></body></html>'}));
+ const errors=[];page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error'&&!/favicon|404/i.test(m.text()))errors.push(m.text());});
+ await page.goto(`${lesson}${query}`,{waitUntil:'domcontentloaded',timeout:45000});await page.waitForFunction(()=>document.body.dataset.rendered==='1'&&window.LESSON_DATA?.slides?.length>0,null,{timeout:30000});await page.waitForTimeout(250);return{context,page,errors};
+}
+async function slideState(page){return page.evaluate(()=>({bodyOverflow:Math.max(0,document.documentElement.scrollWidth-innerWidth),stageOverflow:Math.max(0,(document.querySelector('.stage')?.scrollWidth||0)-(document.querySelector('.stage')?.clientWidth||0)),raw:((document.getElementById('app')?.innerText||'').match(/\\\(|\\\[|\\\)|\\\]/g)||[]).length,mathErrors:document.querySelectorAll('[data-math-error="true"],.katex-error,.katex .merror').length,title:document.querySelector('.slide-title')?.textContent||document.querySelector('.l22-block-cover h1')?.textContent||''}));}
+async function gotoTitle(page,title){const index=await page.evaluate(t=>window.LESSON_DATA.slides.findIndex(s=>String(s.title||'').includes(t)),title);if(index<0)throw new Error(`missing title ${title}`);await page.evaluate(i=>localStorage.setItem('echs:ib-ai:u2:2.2:learn-index',String(i)),index);await page.reload({waitUntil:'domcontentloaded'});await page.waitForFunction(i=>document.body.dataset.rendered==='1'&&document.getElementById('progress-label')?.textContent?.startsWith(`${i+1} /`),index,{timeout:30000});await page.waitForTimeout(120);return index;}
+try{
+ const {context,page,errors}=await open({width:1920,height:1080});
+ const counts=await page.evaluate(()=>({slides:window.LESSON_DATA.slides.length,practice:window.LESSON_DATA.practice.length,quiz:window.LESSON_DATA.quiz.length,exam:window.LESSON_DATA.exam.length}));
+ check('default required counts',JSON.stringify(counts)===JSON.stringify({slides:72,practice:72,quiz:12,exam:3}),JSON.stringify(counts));
+ const allTitles=await page.evaluate(()=>window.LESSON_DATA.slides.map(s=>s.title));
+ for(let i=0;i<allTitles.length;i++){
+   if(i){await page.click('#next-slide');await page.waitForFunction(n=>document.getElementById('progress-label')?.textContent?.startsWith(`${n} /`),i+1,{timeout:10000});}
+   const s=await slideState(page);check(`required slide ${i+1} visual`,s.bodyOverflow<=2&&s.stageOverflow<=2&&s.raw===0&&s.mathErrors===0,JSON.stringify(s));
+ }
+ await gotoTitle(page,'Meaning of y=mx+c');await page.locator('[data-linear-m]').evaluate(el=>{el.value='-3';el.dispatchEvent(new Event('input',{bubbles:true}));});await page.locator('[data-linear-c]').evaluate(el=>{el.value='5';el.dispatchEvent(new Event('input',{bubbles:true}));});check('linear lab updates',(await page.locator('[data-linear-equation]').innerText()).includes('-3'),await page.locator('[data-linear-equation]').innerText());
+ await gotoTitle(page,'Move the vertex and curvature');await page.locator('[data-quadratic-a]').evaluate(el=>{el.value='-2';el.dispatchEvent(new Event('input',{bubbles:true}));});await page.locator('[data-quadratic-h]').evaluate(el=>{el.value='-1';el.dispatchEvent(new Event('input',{bubbles:true}));});check('quadratic lab draws',await page.locator('[data-quadratic-svg] path').count()>0,'path count');
+ await gotoTitle(page,'Compare difference structures');await page.click('[data-model-set="quadratic"]');check('model lab quadratic verdict',(await page.locator('[data-model-verdict]').innerText()).includes('second difference'),await page.locator('[data-model-verdict]').innerText());
+ await gotoTitle(page,'Find a zero');await page.click('[data-ti84-workflow="zero"]');await page.waitForSelector('#l22-ti84-overlay.open');check('TI-84 classroom contextual launch',await page.locator('#l22-ti84-overlay.open').count()===1,'overlay');check('TI-84 zero route visible',(await page.locator('[data-ti84-coach-body]').innerText()).includes('2:zero'),await page.locator('[data-ti84-coach-body]').innerText());
+ await page.click('[data-ti84-mode="follow"]');await page.click('[data-next-key]');check('Students follow mode active',await page.locator('[data-ti84-mode="follow"].active').count()===1,'mode');await page.click('[data-ti84-modal-close]');
+ await page.click('#l22-ti84-simulator-btn');await page.waitForSelector('#l22-ti84-dock.open iframe[src]');await page.waitForTimeout(300);const geom=await page.evaluate(()=>{const app=document.querySelector('.app-shell').getBoundingClientRect(),dock=document.querySelector('#l22-ti84-dock').getBoundingClientRect();return{appRight:app.right,dockLeft:dock.left,dockRight:dock.right,width:innerWidth};});check('simulator dock beside slide',Math.abs(geom.appRight-geom.dockLeft)<=2&&Math.abs(geom.dockRight-geom.width)<=2,JSON.stringify(geom));
+ const shot=path.join(out,'desktop-ti84-beside-linear-quadratic.png');await page.screenshot({path:shot});report.screenshots.push(shot);check('desktop console errors',errors.length===0,errors.join('\n'));await context.close();
+
+ const all=await open({width:1600,height:1000},'?scope=all');const allCounts=await all.page.evaluate(()=>({slides:window.LESSON_DATA.slides.length,practice:window.LESSON_DATA.practice.length,quiz:window.LESSON_DATA.quiz.length,exam:window.LESSON_DATA.exam.length}));check('all-content counts',JSON.stringify(allCounts)===JSON.stringify({slides:80,practice:80,quiz:14,exam:4}),JSON.stringify(allCounts));check('all-content console errors',all.errors.length===0,all.errors.join('\n'));await all.context.close();
+
+ const mobile=await open({width:390,height:844});await mobile.page.click('#l22-ti84-simulator-btn');await mobile.page.waitForSelector('#l22-ti84-dock.open');const mg=await mobile.page.evaluate(()=>{const d=document.querySelector('#l22-ti84-dock').getBoundingClientRect();return{left:d.left,right:d.right,width:d.width,viewport:innerWidth,overflow:document.documentElement.scrollWidth-innerWidth};});check('mobile TI-84 full width',Math.abs(mg.left)<=1&&Math.abs(mg.right-mg.viewport)<=1&&Math.abs(mg.width-mg.viewport)<=1&&mg.overflow<=2,JSON.stringify(mg));const mshot=path.join(out,'mobile-ti84-linear-quadratic.png');await mobile.page.screenshot({path:mshot});report.screenshots.push(mshot);check('mobile console errors',mobile.errors.length===0,mobile.errors.join('\n'));await mobile.context.close();
+}finally{await browser.close();}
+await writeFile(path.join(out,'report.json'),JSON.stringify(report,null,2));console.log(JSON.stringify({checks:report.checks.length,errors:report.errors.length,screenshots:report.screenshots.length},null,2));if(report.errors.length){report.errors.forEach(e=>console.error(`ERROR: ${e}`));process.exit(1);}
