@@ -1,0 +1,12 @@
+{
+  "release": "ti84-finance-and-technology",
+  "source_merge": "c376b1749553e64abe146a31f575d3f175f6c1e9",
+  "deployment_recovery": "fresh-pages-build-version",
+  "required_live_assets": [
+    "lesson-1.4-ti84-finance-classroom-v6-3.js",
+    "lesson-1.4-ti84-finance-inline-v6-3.js",
+    "lesson-1.4-ti84-finance-v6-3.css",
+    "lesson-1.6-multiplicity-2-fix-v6-3-3.js",
+    "lesson-1.6-ti84-inline-dock-v6-3.js"
+  ]
+}
