@@ -1,0 +1,41 @@
+/* IB AI SL Lesson 1.1 · TI-84 simulator presentation repair v6.7.0 */
+body.ti84-inline-open .app-shell,
+body.l11-ti84-simulator-open .app-shell{margin-right:0!important;width:auto!important;max-width:none!important}
+#ti84-inline-dock,.ti84-inline-launch{display:none!important}
+
+.l11-ti84-sim-launch{font-weight:950!important;letter-spacing:-.04em}
+.l11-ti84-sim-launch.active{background:#17324d!important;color:#fff!important}
+
+#l11-ti84-simulator{position:fixed;top:var(--l11-sim-top,160px);right:14px;bottom:var(--l11-sim-bottom,78px);z-index:32000;display:grid;grid-template-rows:auto auto minmax(0,1fr);width:min(620px,calc(100vw - 28px));min-height:420px;overflow:hidden;border:1px solid rgba(23,50,77,.24);border-radius:22px;background:#fff;box-shadow:0 30px 90px rgba(4,16,27,.38);opacity:0;pointer-events:none;transform:translateX(calc(100% + 34px));transition:transform .22s ease,opacity .18s ease}
+#l11-ti84-simulator.open{opacity:1;pointer-events:auto;transform:none}
+#l11-ti84-simulator .l11-sim-head{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px 14px;background:linear-gradient(112deg,#102a43,#17324d 68%,#7a1733);color:#fff}
+#l11-ti84-simulator .l11-sim-head span{display:block;color:#f1ca62;font-size:9px;font-weight:950;letter-spacing:.12em}
+#l11-ti84-simulator .l11-sim-head h2{margin:2px 0 0;color:#fff;font-size:20px;letter-spacing:-.025em}
+#l11-ti84-simulator .l11-sim-head-actions{display:flex;align-items:center;gap:8px;flex:0 0 auto}
+#l11-ti84-simulator .l11-sim-head-actions a{padding:8px 10px;border:1px solid rgba(255,255,255,.25);border-radius:9px;color:#fff;text-decoration:none;font-size:10px;font-weight:900;white-space:nowrap}
+#l11-ti84-simulator .l11-sim-head-actions button{display:grid;place-items:center;width:38px;height:38px;border:0;border-radius:50%;background:#fff;color:#17324d;font-size:24px;cursor:pointer}
+#l11-ti84-simulator .l11-sim-guide{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:9px 13px;border-bottom:1px solid #d8e0e4;background:#f4f8f8}
+#l11-ti84-simulator .l11-sim-guide p{margin:0;color:#405665;font-size:11px;line-height:1.4}
+#l11-ti84-simulator .l11-sim-guide span{flex:0 0 auto;padding:5px 8px;border-radius:999px;background:#e4efed;color:#177e89;font-size:9px;font-weight:900;white-space:nowrap}
+#l11-ti84-simulator.is-loading .l11-sim-guide span{background:#fff2cf;color:#7a1733}
+#l11-ti84-simulator .l11-sim-stage{position:relative;min-height:0;overflow:auto;overscroll-behavior:contain;padding:12px;background:linear-gradient(145deg,#e6ded3,#f6f8f9)}
+#l11-ti84-simulator .l11-sim-placeholder{position:absolute;inset:12px;display:grid;place-content:center;justify-items:center;gap:8px;padding:28px;border:1px dashed #b9c7cf;border-radius:16px;background:rgba(255,255,255,.92);text-align:center;z-index:2}
+#l11-ti84-simulator .l11-sim-placeholder[hidden]{display:none!important}
+#l11-ti84-simulator .l11-sim-mark{display:grid;place-items:center;width:68px;height:68px;border-radius:20px;background:linear-gradient(135deg,#17324d,#7a1733);color:#f1ca62;font-size:27px;font-weight:950}
+#l11-ti84-simulator .l11-sim-placeholder h3,#l11-ti84-simulator .l11-sim-placeholder p{margin:0}
+#l11-ti84-simulator .l11-sim-placeholder p{max-width:42ch;color:#5b6c76;font-size:12px;line-height:1.5}
+#l11-ti84-simulator .l11-sim-placeholder button{margin-top:4px;padding:10px 14px;border:0;border-radius:10px;background:#7a1733;color:#fff;font-weight:900;cursor:pointer}
+#l11-ti84-simulator .l11-sim-placeholder small{color:#7a1733;font-size:9px}
+#l11-ti84-simulator .l11-sim-canvas{position:relative;margin:0 auto;background:#fff;box-shadow:0 10px 30px rgba(23,50,77,.13)}
+#l11-ti84-simulator .l11-sim-canvas[hidden]{display:none!important}
+#l11-ti84-simulator iframe{position:absolute;inset:0 auto auto 0;display:block;border:0;background:#fff;transform-origin:top left}
+#l11-ti84-simulator button:focus-visible,#l11-ti84-simulator a:focus-visible,.l11-ti84-sim-launch:focus-visible{outline:3px solid #d4a72c;outline-offset:2px}
+
+@media(max-width:900px){
+ #l11-ti84-simulator{top:0;right:0;bottom:0;width:100vw;min-height:100vh;border-radius:0}
+ #l11-ti84-simulator .l11-sim-head{padding:11px 12px}
+ #l11-ti84-simulator .l11-sim-head h2{font-size:17px}
+ #l11-ti84-simulator .l11-sim-head-actions a{display:none}
+ #l11-ti84-simulator .l11-sim-guide{display:block}
+ #l11-ti84-simulator .l11-sim-guide span{display:inline-block;margin-top:6px}
+}
