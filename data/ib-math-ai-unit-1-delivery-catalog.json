@@ -25,6 +25,8 @@
   ],
   "architecture_changes": {
     "approximation_bounds_percentage_error": "consolidated into Lesson 1.1",
+    "lesson_1_1_core_route": "scientific notation, scale, precision, bounds and error are the recommended route; number-set review remains available without being presented as required core content",
+    "lesson_1_1_calculator": "self-contained ECHS lesson simulator for EE entry, SCI/NORMAL display and guard-digit calculations; no external iframe dependency",
     "financial_core_scope": "Lesson 1.4 defaults to current IB AI SL sections 1.4 and 1.7",
     "financial_extensions": "reference-supported annuity timing, mixed deposits, withdrawal funds, real-value analysis, advanced balances and sensitivity remain accessible through All content",
     "lesson_1_5": "expanded into a definitive four-block exponent and logarithm pathway",
@@ -35,12 +37,27 @@
     {
       "lesson_key": "u1-standard-form",
       "number": "1.1",
-      "title": "Number Foundations, Scientific Notation and Approximation",
+      "title": "Scientific Notation, Approximation and Error",
       "skill_ids": ["IBAI.U1.NUMBER", "IBAI.U1.MODELING"],
       "status": "ready",
       "student_visible": true,
       "url": "lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.1_standard_form_ECHS.html",
-      "release": "6.0.0",
+      "release": "6.8.0",
+      "organization_release": "6.8.0",
+      "default_scope": "IB SL Core",
+      "all_content_available": true,
+      "scope_counts": {
+        "learn": {"core": 70, "all": 79},
+        "practice": {"core": 88, "all": 96},
+        "quiz": {"core": 12, "all": 14},
+        "tasks": {"core": 4, "all": 5}
+      },
+      "calculator": {
+        "classroom": true,
+        "simulator": "ECHS local lesson simulator",
+        "external_dependency": false,
+        "workflows": ["EE entry", "SCI/NORMAL", "brackets and guard digits"]
+      },
       "learn_slides": 79,
       "practice_questions": 96,
       "timed_quiz_questions": 14,
