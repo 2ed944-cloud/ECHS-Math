@@ -1,0 +1,9 @@
+Deploy the complete IB AI SL Lesson 1.1 local TI-84 release.
+
+Source merge: a8265bf48337eb7406604e121d54585514e14646
+Lesson title: Scientific Notation, Approximation and Error
+Simulator: self-contained ECHS TI-84 lesson simulator
+Legacy dock: removed
+External iframe dependency: removed
+Service-worker cache: advanced
+Live verification: .github/workflows/verify-live-ib-ai-1-1.yml
