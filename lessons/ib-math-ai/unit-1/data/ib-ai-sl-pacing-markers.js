@@ -51,7 +51,12 @@
 
   const classify=slide=>{
     const text=normalize([slide.section,slide.title,slide.kind,slide.eyebrow].join(' '));
+    if(slide.scope==='extension')return 'extension';
     if(revisionPattern.test(text))return 'revision';
+    if(slide.scope==='core'){
+      if(slide.kind==='student'||slide.kind==='inquiry'||slide.kind==='lab'||/student turn|your turn|opening problem/.test(text))return 'practice';
+      return 'core';
+    }
     if(extensionPattern.test(text))return 'extension';
     if(slide.kind==='student'||slide.kind==='inquiry'||slide.kind==='lab'||/student turn|your turn|opening problem/.test(text))return 'practice';
     return 'core';
@@ -73,10 +78,13 @@
       assignments[candidate].category=category;
       present.add(category);
     };
-    choose('core',(slide,current)=>current!=='revision'&&(slide.kind==='content'||slide.kind==='worked'||slide.kind==='cover'));
-    choose('practice',(slide,current)=>current!=='revision'&&(slide.kind==='student'||slide.kind==='inquiry'||slide.kind==='lab'));
-    choose('extension',(slide,current)=>current==='core'&&(slide.kind==='content'||slide.kind==='worked'||slide.kind==='lab'));
-    choose('revision',(slide,current)=>current==='practice'&&slide.kind==='student');
+    const explicitScope=indices.some(index=>data.slides[index].scope==='core'||data.slides[index].scope==='extension');
+    if(!explicitScope){
+      choose('core',(slide,current)=>current!=='revision'&&(slide.kind==='content'||slide.kind==='worked'||slide.kind==='cover'));
+      choose('practice',(slide,current)=>current!=='revision'&&(slide.kind==='student'||slide.kind==='inquiry'||slide.kind==='lab'));
+      choose('extension',(slide,current)=>current==='core'&&(slide.kind==='content'||slide.kind==='worked'||slide.kind==='lab'));
+      choose('revision',(slide,current)=>current==='practice'&&slide.kind==='student');
+    }
   });
 
   const manifestBlocks=blocks.map((block,blockIndex)=>({
@@ -111,11 +119,12 @@
   });
 
   data.ibPacing={
-    version:'1.0.0',
+    version:'1.1.0',
     course:'IB Mathematics: Applications and Interpretation SL',
     lesson:lessonNumber,
     categories:labels,
-    blocks:manifestBlocks
+    blocks:manifestBlocks,
+    explicitScopePrecedence:true
   };
   data.__ibAiSlPacingMarkersApplied=true;
 })();
