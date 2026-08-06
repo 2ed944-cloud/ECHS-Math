@@ -86,6 +86,7 @@ jobs:
         run: |
           node --check lessons/ib-math-ai/unit-1/data/lesson-1.1-ti84-local-v6-8.js
           node --check lessons/ib-math-ai/unit-1/data/lesson-1.1-ti84-local-input-v6-8-1.js
+          node --check lessons/ib-math-ai/unit-1/data/lesson-1.1-ti84-local-bridge-v6-8-2.js
           node tools/test_ib_ai_1_1_local_ti84_v6_8.mjs .
 
       - name: Validate Lesson 1.2 definitive v6
