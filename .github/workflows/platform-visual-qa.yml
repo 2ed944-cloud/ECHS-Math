@@ -20,6 +20,7 @@ on:
       - "tools/capture_private_bank_center.mjs"
       - "tools/capture_upload_manager.mjs"
       - "tools/browser_qa_ib_ai_1_4_financial_v6.mjs"
+      - "tools/browser_qa_ib_ai_2_1_definitive_v3.mjs"
       - ".github/workflows/platform-visual-qa.yml"
   workflow_dispatch:
 
@@ -59,6 +60,12 @@ jobs:
           ECHS_PREVIEW_OUTPUT: artifacts/phase3-visual
           CHROME_PATH: /usr/bin/google-chrome
         run: node tools/browser_qa_ib_ai_1_4_financial_v6.mjs
+      - name: Validate and capture Functions Lesson 2.1 v3
+        env:
+          ECHS_PREVIEW_URL: http://127.0.0.1:4173
+          ECHS_PREVIEW_OUTPUT: artifacts/phase3-visual
+          CHROME_PATH: /usr/bin/google-chrome
+        run: node tools/browser_qa_ib_ai_2_1_definitive_v3.mjs
       - name: Capture desktop and mobile pages
         env:
           ECHS_PREVIEW_URL: http://127.0.0.1:4173
