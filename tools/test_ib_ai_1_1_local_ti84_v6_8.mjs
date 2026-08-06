@@ -2,7 +2,7 @@ import {readFile} from 'node:fs/promises';
 import path from 'node:path';
 import vm from 'node:vm';
 
-const root=path.resolve(process.argv[2]||process.argv[1]||'.');
+const root=path.resolve(process.argv[2]||'.');
 const read=relative=>readFile(path.join(root,relative),'utf8');
 const lessonPath='lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.1_standard_form_ECHS.html';
 const runtimePath='lessons/ib-math-ai/unit-1/data/lesson-1.1-ti84-local-v6-8.js';
@@ -34,19 +34,16 @@ for(const legacy of [
 
 for(const marker of [
   'ECHS_TI84_LOCAL_ENGINE_1_1',
-  "externalDependency:false",
-  "iframe:false",
+  'externalDependency:false',
+  'iframe:false',
   "'ee-entry'",
   "'sci-normal'",
   "'guard-digits'",
-  "id='l11-ti84-local'".replaceAll("'",'\''),
+  'l11-ti84-local',
   'l11-ti84-local-launch'
-]){
-  const normalized=marker.includes("id='")?'l11-ti84-local':marker;
-  requireText(runtime,normalized,'Local TI-84 runtime');
-}
-for(const forbidden of ['ti84calc.com','<iframe','data-src="http','provider:\'ti84calc.com\''])forbidText(runtime,forbidden,'Local TI-84 runtime');
-for(const marker of ['currentNumberSegment','multiOperandEE:true','stopImmediatePropagation','lesson-1.1-ti84-local'])requireText(inputFix,marker,'Local TI-84 input controller');
+])requireText(runtime,marker,'Local TI-84 runtime');
+for(const forbidden of ['ti84calc.com','<iframe','data-src="http',"provider:'ti84calc.com'"])forbidText(runtime,forbidden,'Local TI-84 runtime');
+for(const marker of ['currentNumberSegment','multiOperandEE:true','stopImmediatePropagation','l11-ti84-local'])requireText(inputFix,marker,'Local TI-84 input controller');
 for(const marker of ['#ti84-inline-dock','#l11-ti84-simulator','margin-right:0!important','#l11-ti84-local.open','grid-template-columns:minmax(340px','.l11-ti84-keypad'])requireText(css,marker,'Local TI-84 styles');
 
 for(const marker of ['core (teach in class)','estimated teaching time:','extension','practice','revision'])requireText(learner,marker,'Learner-label cleanup');
