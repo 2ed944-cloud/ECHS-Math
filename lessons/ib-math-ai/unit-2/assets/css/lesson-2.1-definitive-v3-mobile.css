@@ -1,0 +1,54 @@
+/* Lesson 2.1 v3.0.1 · narrow-viewport precision */
+@media(max-width:760px){
+  html.unit2-lesson-2-1,
+  html.unit2-lesson-2-1 body,
+  html.unit2-lesson-2-1 .app-shell,
+  html.unit2-lesson-2-1 .stage,
+  html.unit2-lesson-2-1 .stage-inner{
+    max-width:100%;
+    min-width:0;
+  }
+  html.unit2-lesson-2-1 .stage-inner{
+    width:100%;
+    box-sizing:border-box;
+    overflow-x:clip;
+    padding-inline:16px;
+  }
+  html.unit2-lesson-2-1 .fn21-cover,
+  html.unit2-lesson-2-1 .fn21-cover>*{
+    width:100%;
+    max-width:100%;
+    min-width:0;
+    box-sizing:border-box;
+  }
+  html.unit2-lesson-2-1 .fn21-cover{
+    overflow:hidden;
+    padding-top:10px;
+  }
+  html.unit2-lesson-2-1 .fn21-cover h1{
+    width:100%;
+    max-width:100%;
+    margin-top:8px;
+    font-size:clamp(31px,9.6vw,38px);
+    line-height:1.03;
+    overflow-wrap:anywhere;
+    word-break:normal;
+    hyphens:auto;
+  }
+  html.unit2-lesson-2-1 .fn21-cover .cover-kicker{
+    max-width:100%;
+    white-space:normal;
+    overflow-wrap:anywhere;
+    line-height:1.35;
+  }
+  html.unit2-lesson-2-1 .fn21-cover-visual{
+    display:block;
+    width:100%;
+    max-width:100%;
+    height:auto;
+    margin-inline:auto;
+  }
+  html.unit2-lesson-2-1 .fn21-pill-row{
+    max-width:100%;
+  }
+}
