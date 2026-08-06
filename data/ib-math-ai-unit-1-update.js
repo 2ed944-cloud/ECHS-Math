@@ -11,7 +11,7 @@
       keywords:["ib","mathematics","applications","interpretation","number","algebra",number,slug.replaceAll("_","-")],
       skill_keys:skillKeys,
       resources:[
-        {label:`Complete interactive lesson · v${release}`,url,type:"resource"},
+        {label:"Complete interactive lesson",url,type:"resource"},
         {label:`Practice Studio · ${practiceQuestions} questions`,url:`${url}#practice`,type:"practice"},
         {label:`IB-style assessment tasks · ${extendedTasks}`,url:`${url}#exam`,type:"assessment"}
       ]
