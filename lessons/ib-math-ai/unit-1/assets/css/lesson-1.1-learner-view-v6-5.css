@@ -1,0 +1,6 @@
+/* Lesson 1.1 learner-facing presentation v6.5.0 */
+.ib-slide-color{display:block;width:10px;height:10px;margin:0 0 12px 2px;border-radius:50%;box-shadow:0 0 0 3px rgba(23,50,77,.06)}
+.ib-slide-color-core{background:#2fa968}.ib-slide-color-practice{background:#2f72b8}.ib-slide-color-extension{background:#e08a26}
+.l11-scope-summary,.l11-scope-banner{display:none!important}.l11-scope-toggle.l11-icon-only{min-width:42px!important;width:42px;padding:0!important;justify-content:center}.l11-scope-toggle.l11-icon-only>.tool-label{display:none!important}
+#drawer-list [data-slide-index].is-extension::after{content:""!important;display:inline-block;float:right;width:7px;height:7px;margin:.38rem .1rem 0 .5rem;padding:0;border-radius:50%;background:#e08a26}
+@media(max-width:700px){.ib-slide-color{width:8px;height:8px;margin-bottom:8px}.l11-scope-toggle.l11-icon-only{width:38px;min-width:38px!important}}
