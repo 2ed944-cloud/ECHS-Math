@@ -14,7 +14,7 @@
 
   const deliveryTask=tasks?.find(task=>task.id==='U2-2.1-T1');
   if(deliveryTask){
-    deliveryTask.context='A delivery service models the fee \\(C\\), in QAR, for a trip of \\(d\\) kilometres. For \\(0\\le d\\le10\\), \\(C(d)=12+1.8d\\). For \\(10<d\\le30\\), \\(C(d)=30+0.9(d-10)\\).';
+    deliveryTask.context='A delivery service models the fee \\(C\\), in QAR, for a trip of \\(d\\) kilometres. For \\(0\\le d\\le10\\), \\(C(d)=12+1.8d\\). For \\(10\\lt d\\le30\\), \\(C(d)=30+0.9(d-10)\\).';
   }
 
   const solarTask=tasks?.find(task=>task.id==='U2-2.1-V3-T4');
@@ -23,8 +23,9 @@
   }
 
   data.audit=Object.assign({},data.audit,{
-    assessmentMathPolishRelease:'3.0.1',
+    assessmentMathPolishRelease:'3.0.2',
     malformedNotEqualDelimiterRepaired:true,
-    taskContextsUseStableInlineMath:true
+    taskContextsUseStableInlineMath:true,
+    htmlSensitiveInequalityEscaped:true
   });
 })();
