@@ -111,9 +111,9 @@ try{
   await page.frameLocator('.fin84-simulator-stage iframe').locator('[data-qa-ti84]').waitFor({timeout:15000});
   const modalState=await page.evaluate(()=>{
     const dialog=document.querySelector('.fin84-dialog').getBoundingClientRect();
-    return{width:dialog.width,height:dialog.height,overflow:Math.max(document.documentElement.scrollWidth,document.body.scrollWidth)-innerWidth};
+    return{width:dialog.width,height:dialog.height,viewportWidth:innerWidth,viewportHeight:innerHeight,overflow:Math.max(document.documentElement.scrollWidth,document.body.scrollWidth)-innerWidth};
   });
-  check('Finance classroom fits the desktop viewport',modalState.width<=innerWidth&&modalState.height<=innerHeight&&modalState.overflow<=2,JSON.stringify(modalState));
+  check('Finance classroom fits the desktop viewport',modalState.width<=modalState.viewportWidth&&modalState.height<=modalState.viewportHeight&&modalState.overflow<=2,JSON.stringify(modalState));
   const classroomShot=path.join(out,'02-ti84-finance-classroom-loan.png');
   await page.screenshot({path:classroomShot,fullPage:false});report.screenshots.push(classroomShot);
   await page.click('.fin84-head [data-fin84-close]');
