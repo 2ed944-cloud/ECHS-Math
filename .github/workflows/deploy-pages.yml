@@ -46,8 +46,10 @@ permissions:
   pages: write
   id-token: write
 
+# Production pushes and pull-request artifact checks must never cancel each other.
+# New main pushes may replace an older main deployment; each PR keeps its own group.
 concurrency:
-  group: github-pages
+  group: ${{ github.workflow }}-${{ github.event_name == 'push' && 'production' || github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -150,7 +152,7 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
-      - name: Verify live premium landing pathway and School Control Center
+      - name: Verify live premium pathway and TI-84 lesson release
         shell: bash
         env:
           PAGE_URL: ${{ steps.deployment.outputs.page_url }}
@@ -161,9 +163,11 @@ jobs:
           runtime_path="question-bank/js/school-control.${short}.js"
           client_path="js/institution-client.${short}.js"
           lesson_path="lessons/ap-calculus/unit-1/1-1-can-change-occur-at-an-instant.html"
+          finance_lesson_path="lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.4_financial_models_ECHS.html"
+          technology_lesson_path="lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.6_technology_equations_ECHS.html"
           for attempt in $(seq 1 40); do
             echo "Live verification attempt ${attempt}/40"
-            rm -f /tmp/echs-deployment.json /tmp/echs-school-control-assets.json /tmp/echs-school-control.html /tmp/echs-school-control.js /tmp/echs-institution-client.js /tmp/echs-index.html /tmp/echs-landing.css /tmp/echs-practice.html /tmp/echs-lesson.html /tmp/echs-sw.js
+            rm -f /tmp/echs-deployment.json /tmp/echs-school-control-assets.json /tmp/echs-school-control.html /tmp/echs-school-control.js /tmp/echs-institution-client.js /tmp/echs-index.html /tmp/echs-landing.css /tmp/echs-practice.html /tmp/echs-lesson.html /tmp/echs-finance.html /tmp/echs-technology.html /tmp/echs-sw.js
             curl --fail --silent --show-error --header 'Cache-Control: no-cache' "${base}/deployment.json?sha=${GITHUB_SHA}" --output /tmp/echs-deployment.json || true
             curl --fail --silent --show-error --header 'Cache-Control: no-cache' "${base}/school-control-assets.json?sha=${GITHUB_SHA}" --output /tmp/echs-school-control-assets.json || true
             curl --fail --silent --show-error --header 'Cache-Control: no-cache' "${base}/question-bank/school-control.html?sha=${GITHUB_SHA}" --output /tmp/echs-school-control.html || true
@@ -173,6 +177,8 @@ jobs:
             curl --fail --silent --show-error --header 'Cache-Control: no-cache' "${base}/css/landing-premium.css?sha=${GITHUB_SHA}" --output /tmp/echs-landing.css || true
             curl --fail --silent --show-error --header 'Cache-Control: no-cache' "${base}/question-bank/practice.html?sha=${GITHUB_SHA}" --output /tmp/echs-practice.html || true
             curl --fail --silent --show-error --header 'Cache-Control: no-cache' "${base}/${lesson_path}?sha=${GITHUB_SHA}" --output /tmp/echs-lesson.html || true
+            curl --fail --silent --show-error --header 'Cache-Control: no-cache' "${base}/${finance_lesson_path}?scope=all&sha=${GITHUB_SHA}" --output /tmp/echs-finance.html || true
+            curl --fail --silent --show-error --header 'Cache-Control: no-cache' "${base}/${technology_lesson_path}?sha=${GITHUB_SHA}" --output /tmp/echs-technology.html || true
             curl --fail --silent --show-error --header 'Cache-Control: no-cache' "${base}/sw.js?sha=${GITHUB_SHA}" --output /tmp/echs-sw.js || true
             if python - <<'PY'
           import json
@@ -191,6 +197,8 @@ jobs:
               "landing": Path("/tmp/echs-landing.css"),
               "practice": Path("/tmp/echs-practice.html"),
               "lesson": Path("/tmp/echs-lesson.html"),
+              "finance": Path("/tmp/echs-finance.html"),
+              "technology": Path("/tmp/echs-technology.html"),
               "worker": Path("/tmp/echs-sw.js"),
           }
           if not all(path.is_file() for path in paths.values()):
@@ -226,15 +234,21 @@ jobs:
               'data-require-account="student teacher admin"' in text["practice"],
               'data-echs-lesson-guard="1"' in text["lesson"],
               "lesson-access-guard.js" in text["lesson"],
+              "lesson-1.4-ti84-finance-v6-3.css" in text["finance"],
+              "lesson-1.4-ti84-finance-mobile-fix-v6-3-1.css" in text["finance"],
+              "lesson-1.4-ti84-finance-classroom-v6-3.js" in text["finance"],
+              "lesson-1.4-ti84-finance-inline-v6-3.js" in text["finance"],
+              "lesson-1.6-multiplicity-2-fix-v6-3-3.js" in text["technology"],
+              "lesson-1.6-ti84-inline-dock-v6-3.js" in text["technology"],
               'const VERSION = "echs-platform-school-control-v3-' in text["worker"],
           ]
           raise SystemExit(0 if all(checks) else 1)
           PY
             then
-              echo "GitHub Pages premium landing pathway verification: PASS"
+              echo "GitHub Pages premium and TI-84 lesson verification: PASS"
               exit 0
             fi
             sleep 15
           done
-          echo "GitHub Pages did not publish the premium protected learning pathway for ${GITHUB_SHA}" >&2
+          echo "GitHub Pages did not publish the protected platform and TI-84 lesson assets for ${GITHUB_SHA}" >&2
           exit 1
