@@ -13,12 +13,12 @@
 
   const task4={
     id:'U2-2.1-V3-T4',style:'Paper 2 · graph features and technology',title:'Solar-output function',calculator:'GDC expected',scope:'core',total_marks:12,
-    context:`The electrical output of a school solar array is modelled by \\[P(t)=-0.8(t-6)^2+28,\qquad 0\le t\le12,\\] where \\(t\\) is hours after 6:00 and \\(P(t)\\) is measured in kilowatts.`,
+    context:`The electrical output of a school solar array is modelled by \\[P(t)=-0.5(t-6)^2+24,\qquad 0\le t\le12,\\] where \\(t\\) is hours after 6:00 and \\(P(t)\\) is measured in kilowatts.`,
     parts:[
-      {label:'a',prompt:'Calculate \\(P(2)\\) and interpret the result.',marks:3,answer:'\\(P(2)=15.2\\) kW. At 8:00, the model predicts an electrical output of 15.2 kW.',markscheme:'M1 substitution; A1 15.2; A1 interpretation with time and units.'},
-      {label:'b',prompt:'State the contextual domain and range of \\(P\\).',marks:2,answer:'Domain \\(0\le t\le12\\); range \\(-0.8\le P\le28\\) kW.',markscheme:'A1 domain; A1 range from vertex and endpoints.'},
-      {label:'c',prompt:'Use technology to find the two times at which the model predicts \\(P(t)=20\\). Give the clock times to the nearest minute.',marks:4,answer:'\\(t=6\\pm\\sqrt{10}\\), so \\(t\\approx2.838\\) and \\(9.162\\). The clock times are approximately 08:50 and 15:10.',markscheme:'M1 graph/solve equation; A1 two t-values; A1 convert first time; A1 convert second time.'},
-      {label:'d',prompt:'Identify the maximum output and state one limitation of the model.',marks:3,answer:'The maximum is 28 kW at \\(t=6\\), corresponding to 12:00. A limitation is that cloud cover, shading or changing weather is not represented.',markscheme:'A1 maximum value; A1 time; R1 relevant limitation.'}
+      {label:'a',prompt:'Calculate \\(P(2)\\) and interpret the result.',marks:3,answer:'\\(P(2)=16\\) kW. At 8:00, the model predicts an electrical output of 16 kW.',markscheme:'M1 substitution; A1 16; A1 interpretation with time and units.'},
+      {label:'b',prompt:'State the contextual domain and range of \\(P\\).',marks:2,answer:'Domain \\(0\le t\le12\\); range \\(6\le P\le24\\) kW.',markscheme:'A1 domain; A1 range from vertex and endpoints.'},
+      {label:'c',prompt:'Use technology to find the two times at which the model predicts \\(P(t)=20\\). Give the clock times to the nearest minute.',marks:4,answer:'\\(t=6\\pm\\sqrt8\\), so \\(t\\approx3.172\\) and \\(8.828\\). The clock times are approximately 09:10 and 14:50.',markscheme:'M1 graph/solve equation; A1 two t-values; A1 convert first time; A1 convert second time.'},
+      {label:'d',prompt:'Identify the maximum output and state one limitation of the model.',marks:3,answer:'The maximum is 24 kW at \\(t=6\\), corresponding to 12:00. A limitation is that cloud cover, shading or changing weather is not represented.',markscheme:'A1 maximum value; A1 time; R1 relevant limitation.'}
     ]
   };
   if(!data.exam.some(task=>task.id===task4.id))data.exam.push(task4);
