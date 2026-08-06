@@ -1,0 +1,19 @@
+{
+  "lesson": "2.2",
+  "release": "3.1.0",
+  "title": "Linear and Quadratic Models",
+  "default_scope": {
+    "learn": 72,
+    "practice": 72,
+    "quiz": 12,
+    "tasks": 3
+  },
+  "all_content": {
+    "learn": 80,
+    "practice": 80,
+    "quiz": 14,
+    "tasks": 4
+  },
+  "ti84_workflows": ["zero", "maximum", "intersect", "table"],
+  "calculator_decision": "required where graphing technology adds evidence; manual structure remains mandatory"
+}
