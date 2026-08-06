@@ -1,0 +1,58 @@
+/* IB AI SL Lesson 1.1 · learner labels and TI-84 layout repair v6.6.0 */
+.ib-slide-color{display:block;width:10px;height:10px;margin:0 0 12px 2px;border-radius:50%;box-shadow:0 0 0 3px rgba(23,50,77,.06)}
+.ib-slide-color-core{background:#2fa968}.ib-slide-color-practice{background:#2f72b8}.ib-slide-color-extension{background:#e08a26}
+.l11-scope-summary,.l11-scope-banner,.l11-legacy-label{display:none!important}
+.l11-scope-toggle.l11-icon-only{min-width:42px!important;width:42px!important;padding:0!important;justify-content:center!important}
+.l11-scope-toggle.l11-icon-only>.tool-label{display:none!important}
+#drawer-list [data-slide-index].is-extension::after{content:""!important;display:inline-block!important;float:right!important;width:7px!important;height:7px!important;margin:.38rem .1rem 0 .5rem!important;padding:0!important;border-radius:50%!important;background:#e08a26!important}
+
+/* Lesson 1.1 calculator practice strip */
+.ti84-paired-strip{display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;gap:14px!important;align-items:center!important;margin-top:18px!important;padding:14px 16px!important;border:1px solid #b9deda!important;border-left:6px solid #177e89!important;border-radius:0 15px 15px 0!important;background:linear-gradient(135deg,#eef8f7,#fff)!important}
+.ti84-paired-strip span{display:block!important;color:#177e89!important;font-size:10px!important;font-weight:950!important;letter-spacing:.1em!important}
+.ti84-paired-strip b{display:block!important;color:#17324d!important;font-size:16px!important}.ti84-paired-strip small{display:block!important;margin-top:3px!important;color:#596b78!important;line-height:1.4!important}
+.ti84-paired-strip button{display:inline-flex!important;align-items:center!important;gap:8px!important;padding:10px 13px!important;border:0!important;border-radius:10px!important;background:#7a1733!important;color:#fff!important;font-weight:900!important;cursor:pointer!important;white-space:nowrap!important}
+
+/* Classroom modal: the simulator is opened separately, so the training stays readable. */
+#ti84-classroom-coach-1-1{padding:14px!important}
+#ti84-classroom-coach-1-1 .ti84-coach-dialog{width:min(1480px,calc(100vw - 28px))!important;height:min(930px,calc(100vh - 28px))!important;grid-template-rows:auto auto minmax(0,1fr)!important;overflow:hidden!important}
+#ti84-classroom-coach-1-1 .ti84-coach-toolbar{grid-template-columns:minmax(300px,1.35fr) minmax(360px,1fr) auto auto!important;align-items:end!important}
+#ti84-classroom-coach-1-1 .ti84-open-separate-simulator{min-height:40px!important;padding:9px 12px!important;border:1px solid #17324d!important;border-radius:10px!important;background:#17324d!important;color:#fff!important;font-weight:900!important;cursor:pointer!important;white-space:nowrap!important}
+#ti84-classroom-coach-1-1 .ti84-coach-grid{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;grid-template-rows:minmax(0,1fr) auto!important;gap:11px!important;min-height:0!important;padding:11px!important;overflow:hidden!important}
+#ti84-classroom-coach-1-1 .ti84-method-panel,#ti84-classroom-coach-1-1 .ti84-procedure-panel{grid-row:1!important;min-width:0!important;min-height:0!important;overflow:auto!important}
+#ti84-classroom-coach-1-1 .ti84-simulator-panel{display:none!important}
+#ti84-classroom-coach-1-1 .ti84-evidence-panel{display:block!important;grid-column:1/-1!important;grid-row:2!important;max-height:205px!important;overflow:auto!important;padding:12px 14px!important}
+#ti84-classroom-coach-1-1 .ti84-evidence-flow{grid-template-columns:.85fr 1.05fr 1.35fr!important}
+#ti84-classroom-coach-1-1 .ti84-manual-steps article,#ti84-classroom-coach-1-1 .ti84-key-sequence article{min-width:0!important}
+#ti84-classroom-coach-1-1 .ti84-display-math{max-width:100%!important;overflow:auto!important}
+#ti84-classroom-coach-1-1 iframe{display:none!important}
+
+/* The simulator is an overlay drawer and never creates a blank half-page. */
+body.ti84-inline-open .app-shell{margin-right:0!important}
+#ti84-inline-dock{position:fixed!important;top:var(--ti84-inline-top,168px)!important;right:14px!important;bottom:74px!important;z-index:30000!important;width:min(540px,calc(100vw - 28px))!important;display:grid!important;grid-template-rows:auto auto minmax(0,1fr)!important;overflow:hidden!important;border:1px solid rgba(23,50,77,.22)!important;border-radius:20px!important;background:#fff!important;box-shadow:0 26px 80px rgba(0,0,0,.32)!important;transform:translateX(calc(100% + 30px))!important;transition:transform .22s ease!important}
+#ti84-inline-dock.open{transform:none!important}
+#ti84-inline-dock .ti84-inline-head{position:relative!important;top:auto!important;display:flex!important;align-items:center!important;padding:12px 14px!important;background:linear-gradient(110deg,#102a43,#17324d)!important}
+#ti84-inline-dock .ti84-inline-guidance{padding:9px 13px!important}
+#ti84-inline-dock .ti84-inline-frame-shell{position:relative!important;min-height:0!important;height:100%!important;overflow:auto!important;background:linear-gradient(145deg,#e8e0d5,#f7f9fa)!important}
+#ti84-inline-dock .ti84-inline-placeholder{position:absolute!important;inset:0!important;z-index:2!important}
+#ti84-inline-dock .ti84-inline-frame-shell.loaded .ti84-inline-placeholder{display:none!important}
+#ti84-inline-dock iframe{display:block!important;width:600px!important;height:850px!important;border:0!important;background:#fff!important;transform:scale(var(--ti84-inline-scale,.84))!important;transform-origin:top left!important;margin:0 auto!important}
+#ti84-inline-dock .ti84-inline-frame-shell.loaded{display:block!important}
+
+@media(max-width:1100px){
+ #ti84-classroom-coach-1-1 .ti84-coach-toolbar{grid-template-columns:1fr 1fr!important}
+ #ti84-classroom-coach-1-1 .ti84-open-separate-simulator{width:100%!important}
+ #ti84-classroom-coach-1-1 .ti84-coach-grid{overflow:auto!important}
+}
+@media(max-width:760px){
+ .ib-slide-color{width:8px;height:8px;margin-bottom:8px}.l11-scope-toggle.l11-icon-only{width:38px!important;min-width:38px!important}
+ .ti84-paired-strip{grid-template-columns:1fr!important}.ti84-paired-strip button{justify-self:start!important}
+ #ti84-classroom-coach-1-1{padding:0!important}
+ #ti84-classroom-coach-1-1 .ti84-coach-dialog{width:100vw!important;height:100vh!important;border-radius:0!important}
+ #ti84-classroom-coach-1-1 .ti84-coach-toolbar{grid-template-columns:1fr!important;max-height:230px!important;overflow:auto!important}
+ #ti84-classroom-coach-1-1 .ti84-coach-grid{grid-template-columns:1fr!important;grid-template-rows:auto auto auto!important;overflow:auto!important}
+ #ti84-classroom-coach-1-1 .ti84-method-panel{grid-column:1!important;grid-row:1!important}
+ #ti84-classroom-coach-1-1 .ti84-procedure-panel{grid-column:1!important;grid-row:2!important}
+ #ti84-classroom-coach-1-1 .ti84-evidence-panel{grid-column:1!important;grid-row:3!important;max-height:none!important}
+ #ti84-classroom-coach-1-1 .ti84-evidence-flow{grid-template-columns:1fr!important}
+ #ti84-inline-dock{top:0!important;right:0!important;bottom:0!important;width:100vw!important;border-radius:0!important}
+}
