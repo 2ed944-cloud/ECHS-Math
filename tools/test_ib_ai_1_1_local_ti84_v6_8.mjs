@@ -7,13 +7,14 @@ const read=relative=>readFile(path.join(root,relative),'utf8');
 const lessonPath='lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.1_standard_form_ECHS.html';
 const runtimePath='lessons/ib-math-ai/unit-1/data/lesson-1.1-ti84-local-v6-8.js';
 const inputPath='lessons/ib-math-ai/unit-1/data/lesson-1.1-ti84-local-input-v6-8-1.js';
+const bridgePath='lessons/ib-math-ai/unit-1/data/lesson-1.1-ti84-local-bridge-v6-8-2.js';
 const cssPath='lessons/ib-math-ai/unit-1/assets/css/lesson-1.1-ti84-local-v6-8.css';
 const learnerPath='lessons/ib-math-ai/unit-1/data/lesson-1.1-learner-view-v6-6.js';
 const catalogPath='data/ib-math-ai-unit-1-delivery-catalog.json';
 const portalPath='data/ib-math-ai-unit-1-update.js';
 
-const [html,runtime,inputFix,css,learner,catalogRaw,portal]=await Promise.all([
-  read(lessonPath),read(runtimePath),read(inputPath),read(cssPath),read(learnerPath),read(catalogPath),read(portalPath)
+const [html,runtime,inputFix,bridge,css,learner,catalogRaw,portal]=await Promise.all([
+  read(lessonPath),read(runtimePath),read(inputPath),read(bridgePath),read(cssPath),read(learnerPath),read(catalogPath),read(portalPath)
 ]);
 const failures=[];
 const requireText=(text,needle,label)=>{if(!text.includes(needle))failures.push(`${label} missing ${needle}`);};
@@ -23,6 +24,7 @@ for(const marker of [
   'lesson-1.1-ti84-local-v6-8.css?v=6.8.0',
   'lesson-1.1-ti84-local-v6-8.js?v=6.8.0',
   'lesson-1.1-ti84-local-input-v6-8-1.js?v=6.8.1',
+  'lesson-1.1-ti84-local-bridge-v6-8-2.js?v=6.8.2',
   '1.1 · Scientific Notation, Approximation and Error'
 ])requireText(html,marker,'Lesson 1.1 HTML');
 for(const legacy of [
@@ -44,6 +46,7 @@ for(const marker of [
 ])requireText(runtime,marker,'Local TI-84 runtime');
 for(const forbidden of ['ti84calc.com','<iframe','data-src="http',"provider:'ti84calc.com'"])forbidText(runtime,forbidden,'Local TI-84 runtime');
 for(const marker of ['currentNumberSegment','multiOperandEE:true','stopImmediatePropagation','l11-ti84-local'])requireText(inputFix,marker,'Local TI-84 input controller');
+for(const marker of ['echs:ti84:open','echs:ti84:simulator','pairedPracticeConnected:true','.ti84-paired-strip button'])requireText(bridge,marker,'Local TI-84 bridge');
 for(const marker of ['#ti84-inline-dock','#l11-ti84-simulator','margin-right:0!important','#l11-ti84-local.open','grid-template-columns:minmax(340px','.l11-ti84-keypad'])requireText(css,marker,'Local TI-84 styles');
 
 for(const marker of ['core (teach in class)','estimated teaching time:','extension','practice','revision'])requireText(learner,marker,'Learner-label cleanup');
@@ -61,9 +64,11 @@ for(const marker of [
   '"1.1","Scientific Notation, Approximation and Error"',
   '"6.8.0",79,96,14,5',
   'simulator:"ECHS local lesson simulator"',
-  'externalDependency:false'
+  'externalDependency:false',
+  '{label:"Complete interactive lesson",url,type:"resource"}'
 ])requireText(portal,marker,'Unit 1 portal metadata');
 forbidText(portal,'"1.1","Number Foundations, Scientific Notation and Approximation"','Unit 1 portal metadata');
+forbidText(portal,'Complete interactive lesson · v${release}','Unit 1 portal metadata');
 
 const sandbox={window:{LESSON_DATA:{lesson:{number:'1.1'}}},console};
 vm.createContext(sandbox);
