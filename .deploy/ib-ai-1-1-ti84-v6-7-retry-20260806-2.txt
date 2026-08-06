@@ -1,0 +1,3 @@
+Second independent GitHub Pages retry for IB AI SL Lesson 1.1 TI-84 simulator v6.7.
+
+The prior runs failed before checkout during the GitHub Actions partial outage. This marker creates a fresh deployment SHA without changing lesson content.
