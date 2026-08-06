@@ -27,15 +27,15 @@
   const unit = {
     title: "Unit 2: Functions",
     description: "Six definitive interactive IB Mathematics: Applications and Interpretation SL lessons with technology laboratories, modelling cycles, original four-level practice, extended tasks and timed quizzes.",
-    portalSummary: "6 interactive lessons · 399 Learn screens · 380 original Practice questions · 74 Quiz questions · 19 extended tasks",
+    portalSummary: "6 interactive lessons · 401 Learn screens · 396 original Practice questions · 76 Quiz questions · 21 extended tasks",
     essential_questions: [
       "How do representations reveal the structure and restrictions of a function?",
       "How can technology support, rather than replace, mathematical reasoning?",
       "How do residuals, assumptions and context determine whether a model is defensible?"
     ],
     architectureNotes: [
-      "Lesson 2.1 is rebuilt as a five-block IB SL core-first pathway aligned to current function notation, domain, range, graph and technology requirements.",
-      "Lesson 2.1 retains optional extension and future-lesson bridges without making them prerequisites for core mastery.",
+      "Lesson 2.1 develops relations, function notation, domain, range, graph features, TI-84 workflows and inverse reflection through six teachable sections.",
+      "All Lesson 2.1 explanations, visuals, practice questions, quizzes and extended-response tasks are original and self-contained.",
       "The remaining Unit 2 lesson sequence is unchanged."
     ],
     lessons: [
@@ -127,38 +127,32 @@
       )
     ],
     refreshed: true,
-    release: "ECHS Unit 2 v3.0.0"
+    release: "ECHS Unit 2 v4.0.0"
   };
 
   const lesson21 = unit.lessons.find(value => value.number === "2.1");
   if (lesson21) {
-    lesson21.release = "3.0.0";
-    lesson21.organization_release = "3.0.0";
-    lesson21.organization = "five classroom teaching blocks with a default IB SL core route";
-    lesson21.defaultScope = "IB SL Core";
-    lesson21.allContentAvailable = true;
-    lesson21.scopeCounts = {
-      learn: { core: 67, all: 79 },
-      practice: { core: 72, all: 80 },
-      quiz: { core: 12, all: 14 },
-      tasks: { core: 3, all: 4 }
-    };
-    lesson21.officialCoreSections = [
+    lesson21.release = "4.0.0";
+    lesson21.organization_release = "4.0.0";
+    lesson21.organization = "six classroom-ready instructional sections with integrated TI-84 workflows";
+    lesson21.counts = { learn: 81, practice: 96, quiz: 16, tasks: 6 };
+    lesson21.syllabusSections = [
       { code: "SL 2.2", title: "Functions, notation, domain, range and inverse as reflection" },
       { code: "SL 2.3", title: "Graph of a function" },
       { code: "SL 2.4", title: "Key features of graphs and intersections using technology" }
     ];
-    lesson21.teachingBlocks = [
-      { code: "2.1A", title: "Relations and the Function Rule", estimatedClassroomTime: "60–75 minutes" },
-      { code: "2.1B", title: "Function Notation, Images and Preimages", estimatedClassroomTime: "60–75 minutes" },
-      { code: "2.1C", title: "Domain and Range", estimatedClassroomTime: "60–75 minutes" },
-      { code: "2.1D", title: "Reading Features of Graphs", estimatedClassroomTime: "60–75 minutes" },
-      { code: "2.1E", title: "Technology, Inverse Reflection and Modelling", estimatedClassroomTime: "60–75 minutes" }
+    lesson21.teachingSections = [
+      { title: "Relations and Functions", estimatedClassroomTime: "60–75 minutes" },
+      { title: "Function Notation, Images and Preimages", estimatedClassroomTime: "60–75 minutes" },
+      { title: "Domain and Range", estimatedClassroomTime: "75–90 minutes" },
+      { title: "Graph Features and Intersections", estimatedClassroomTime: "75–90 minutes" },
+      { title: "TI-84 Graphing Workflows", estimatedClassroomTime: "45–60 minutes" },
+      { title: "Inverse Relations and Synthesis", estimatedClassroomTime: "45–60 minutes" }
     ];
     lesson21.resources = [
-      { label: "Complete interactive lesson · IB SL Core", url: lesson21.url, type: "resource" },
-      { label: "Practice Studio · 72 core / 80 all", url: `${lesson21.url}#practice`, type: "practice" },
-      { label: "IB-style assessment tasks · 3 core / 4 all", url: `${lesson21.url}#exam`, type: "assessment" }
+      { label: "Complete interactive lesson", url: lesson21.url, type: "resource" },
+      { label: "Practice Studio · four levels", url: `${lesson21.url}#practice`, type: "practice" },
+      { label: "IB-style extended-response tasks", url: `${lesson21.url}#exam`, type: "assessment" }
     ];
   }
 
@@ -208,7 +202,7 @@
   course.unitCount = course.units.length;
   course.lessonCount = course.units.reduce((total, value) => total + (Array.isArray(value && value.lessons) ? value.lessons.length : 0), 0);
   course.status = "Started";
-  course.updatedUnits = "Units 1–2 · Lesson 2.1 definitive IB SL core-first release · six complete Unit 2 lessons";
+  course.updatedUnits = "Units 1–2 · Lesson 2.1 rebuilt as a classroom-ready functions foundation · six complete Unit 2 lessons";
   window.dispatchEvent(new CustomEvent("echs:ib-ai-unit-ready", {
     detail: { courseId: course.id, unit: 2, lessons: unit.lessons.length, release: unit.release }
   }));
