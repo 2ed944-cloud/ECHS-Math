@@ -1,0 +1,85 @@
+name: Verify live IB AI Lesson 1.1
+
+on:
+  workflow_run:
+    workflows:
+      - Deploy ECHS Mathematics to GitHub Pages
+    types:
+      - completed
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-live-lesson:
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      EXPECTED_SHA: ${{ github.event.workflow_run.head_sha || github.sha }}
+      SITE_ROOT: https://2ed944-cloud.github.io/ECHS-Math
+    steps:
+      - name: Verify exact Lesson 1.1 deployment
+        shell: bash
+        run: |
+          set -euo pipefail
+          for attempt in $(seq 1 36); do
+            echo "Lesson 1.1 live verification attempt ${attempt}/36"
+            rm -f /tmp/echs-deployment.json /tmp/echs-l11.html /tmp/echs-l11-runtime.js /tmp/echs-l11-input.js /tmp/echs-l11.css /tmp/echs-u1.js
+            curl --fail --silent --show-error --header 'Cache-Control: no-cache' "${SITE_ROOT}/deployment.json?sha=${EXPECTED_SHA}" --output /tmp/echs-deployment.json || true
+            curl --fail --silent --show-error --header 'Cache-Control: no-cache' "${SITE_ROOT}/lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.1_standard_form_ECHS.html?sha=${EXPECTED_SHA}" --output /tmp/echs-l11.html || true
+            curl --fail --silent --show-error --header 'Cache-Control: no-cache' "${SITE_ROOT}/lessons/ib-math-ai/unit-1/data/lesson-1.1-ti84-local-v6-8.js?sha=${EXPECTED_SHA}" --output /tmp/echs-l11-runtime.js || true
+            curl --fail --silent --show-error --header 'Cache-Control: no-cache' "${SITE_ROOT}/lessons/ib-math-ai/unit-1/data/lesson-1.1-ti84-local-input-v6-8-1.js?sha=${EXPECTED_SHA}" --output /tmp/echs-l11-input.js || true
+            curl --fail --silent --show-error --header 'Cache-Control: no-cache' "${SITE_ROOT}/lessons/ib-math-ai/unit-1/assets/css/lesson-1.1-ti84-local-v6-8.css?sha=${EXPECTED_SHA}" --output /tmp/echs-l11.css || true
+            curl --fail --silent --show-error --header 'Cache-Control: no-cache' "${SITE_ROOT}/data/ib-math-ai-unit-1-update.js?sha=${EXPECTED_SHA}" --output /tmp/echs-u1.js || true
+            if python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          expected = os.environ["EXPECTED_SHA"]
+          files = {
+              "deployment": Path("/tmp/echs-deployment.json"),
+              "html": Path("/tmp/echs-l11.html"),
+              "runtime": Path("/tmp/echs-l11-runtime.js"),
+              "input": Path("/tmp/echs-l11-input.js"),
+              "css": Path("/tmp/echs-l11.css"),
+              "portal": Path("/tmp/echs-u1.js"),
+          }
+          if not all(path.is_file() and path.stat().st_size > 20 for path in files.values()):
+              raise SystemExit(1)
+          try:
+              deployment = json.loads(files["deployment"].read_text(encoding="utf-8"))
+          except Exception:
+              raise SystemExit(1)
+          text = {key: path.read_text(encoding="utf-8", errors="replace") for key, path in files.items() if key != "deployment"}
+          checks = [
+              deployment.get("sha") == expected,
+              "1.1 · Scientific Notation, Approximation and Error" in text["html"],
+              "lesson-1.1-ti84-local-v6-8.css?v=6.8.0" in text["html"],
+              "lesson-1.1-ti84-local-v6-8.js?v=6.8.0" in text["html"],
+              "lesson-1.1-ti84-local-input-v6-8-1.js?v=6.8.1" in text["html"],
+              "lesson-1.1-ti84-inline-dock-v6-4.js" not in text["html"],
+              "lesson-1.1-ti84-simulator-v6-7.js" not in text["html"],
+              "ECHS_TI84_LOCAL_ENGINE_1_1" in text["runtime"],
+              "externalDependency:false" in text["runtime"],
+              "iframe:false" in text["runtime"],
+              "ti84calc.com" not in text["runtime"],
+              "multiOperandEE:true" in text["input"],
+              "currentNumberSegment" in text["input"],
+              "#l11-ti84-local.open" in text["css"],
+              "margin-right:0!important" in text["css"],
+              '"1.1","Scientific Notation, Approximation and Error"' in text["portal"],
+              '"1.1","Number Foundations, Scientific Notation and Approximation"' not in text["portal"],
+          ]
+          raise SystemExit(0 if all(checks) else 1)
+          PY
+            then
+              echo "Live IB AI Lesson 1.1 local TI-84 verification: PASS"
+              exit 0
+            fi
+            sleep 15
+          done
+          echo "The exact Lesson 1.1 release was not visible on GitHub Pages for ${EXPECTED_SHA}" >&2
+          exit 1
