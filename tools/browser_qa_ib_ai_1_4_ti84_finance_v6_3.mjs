@@ -4,7 +4,7 @@ import path from 'node:path';
 
 const base=process.env.ECHS_PREVIEW_URL||'http://127.0.0.1:4173';
 const out=process.env.ECHS_PREVIEW_OUTPUT||'artifacts/ib-ai-1-4-ti84-finance-v6-3';
-const financialURL=`${base}/lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.4_financial_models_ECHS.html#learn`;
+const financialURL=`${base}/lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.4_financial_models_ECHS.html?scope=all#learn`;
 const technologyURL=`${base}/lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.6_technology_equations_ECHS.html#learn`;
 const financialKey='echs:ib-ai:u1:1.4:learn-index';
 const technologyKey='echs:ib-ai:u1:1.6:learn-index';
