@@ -6,6 +6,7 @@ on:
       - "lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.4_financial_models_ECHS.html"
       - "lessons/ib-math-ai/unit-1/data/lesson-1.4-ti84-finance-*.js"
       - "lessons/ib-math-ai/unit-1/assets/css/lesson-1.4-ti84-finance-v6-3.css"
+      - "lessons/ib-math-ai/unit-1/assets/css/lesson-1.4-ti84-finance-mobile-fix-v6-3-1.css"
       - "lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.6_technology_equations_ECHS.html"
       - "lessons/ib-math-ai/unit-1/data/lesson-1.6-multiplicity-2-fix-v6-3-3.js"
       - "tools/test_ib_ai_1_4_ti84_finance_v6_3.mjs"
