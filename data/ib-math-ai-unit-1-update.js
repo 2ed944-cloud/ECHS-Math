@@ -25,6 +25,7 @@
     release:"6.0.0",
     architectureNotes:[
       "Approximation, bounds and percentage error are consolidated in Lesson 1.1.",
+      "Lesson 1.1 uses a scientific-notation-first core route; number-set review remains available without being presented as required classroom content.",
       "Financial applications, loans, annuities and amortization remain consolidated in Lesson 1.4, with the current IB SL core shown by default and broader reference-supported applications available as extension.",
       "Lesson 1.5 is expanded into a definitive exponent-laws and logarithms pathway.",
       "Lesson 1.6 is rebuilt as a definitive technology, equations, systems, verification and modelling pathway."
@@ -37,13 +38,13 @@
       "How do precision, timing, assumptions and constraints affect the reliability of a conclusion?"
     ],
     lessons:[
-      makeLesson("1.1","Number Foundations, Scientific Notation and Approximation","standard_form",[
-        "Classify exact values in the smallest appropriate number set from natural to complex numbers.",
-        "Round to decimal places and significant figures while preserving meaningful zeros.",
+      makeLesson("1.1","Scientific Notation, Approximation and Error","standard_form",[
+        "Write, interpret and compare quantities in normalized scientific notation and across orders of magnitude.",
+        "Calculate with powers of ten and units, using estimation and the TI-84 only where technology adds value.",
+        "Round to decimal places and significant figures while preserving meaningful zeros and guard digits.",
         "Construct direct and calculated bounds and quantify absolute and percentage error.",
-        "Calculate with normalized scientific notation, units and orders of magnitude.",
-        "Validate technology output with estimation, uncertainty and contextual interpretation."
-      ],"6.0.0",79,96,14,5,["IBAI.U1.NUMBER","IBAI.U1.MODELING"]),
+        "Validate technology output and communicate scale, precision and uncertainty in context."
+      ],"6.8.0",79,96,14,5,["IBAI.U1.NUMBER","IBAI.U1.MODELING"]),
       makeLesson("1.2","Arithmetic Sequences and Series","arithmetic_sequences",[
         "Distinguish sequence terms, series and partial sums using precise notation.",
         "Recognize and prove arithmetic structure through constant first differences.",
@@ -86,6 +87,15 @@
       ],"6.0.0",73,96,14,5,["IBAI.U1.ALGEBRA","IBAI.U1.MATRICES","IBAI.U1.MODELING"])
     ]
   };
+
+  const lesson11=unit.lessons.find(lesson=>lesson.number==="1.1");
+  if(lesson11){
+    lesson11.organization_release="6.8.0";
+    lesson11.defaultScope="IB SL Core";
+    lesson11.allContentAvailable=true;
+    lesson11.scopeCounts={learn:{core:70,all:79},practice:{core:88,all:96},quiz:{core:12,all:14},tasks:{core:4,all:5}};
+    lesson11.calculator={classroom:true,simulator:"ECHS local lesson simulator",externalDependency:false,workflows:["EE entry","SCI/NORMAL","brackets and guard digits"]};
+  }
 
   const financialLesson=unit.lessons.find(lesson=>lesson.number==="1.4");
   if(financialLesson){
@@ -162,6 +172,6 @@
   course.unitCount=course.units.length;
   course.lessonCount=course.units.reduce((total,value)=>total+(Array.isArray(value?.lessons)?value.lessons.length:0),0);
   course.status="Started";
-  course.updatedUnits="Unit 1 · Lesson 1.4 IB SL core-first scope · Lessons 1.5 and 1.6 definitive multi-day pathways";
+  course.updatedUnits="Unit 1 · Lesson 1.1 scientific notation and local TI-84 simulator · Lesson 1.4 core-first finance · Lessons 1.5 and 1.6 definitive pathways";
   window.dispatchEvent(new CustomEvent("echs:ib-ai-unit-ready",{detail:{courseId:course.id,unit:1,lessons:unit.lessons.length,release:unit.release}}));
 })();
