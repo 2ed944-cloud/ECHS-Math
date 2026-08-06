@@ -27,14 +27,14 @@ html=read(HTML);polish=read(POLISH);mobile=read(MOBILE)
 for path in (POLISH,):
     result=subprocess.run(['node','--check',str(ROOT/path)],cwd=ROOT,text=True,capture_output=True)
     if result.returncode:errors.append(f'JavaScript syntax failure: {result.stderr.strip()}')
-markers=['lesson-2.1-definitive-v3-mobile.css?v=3.0.1','lesson-2.1-definitive-v3-assessment.js?v=3.0.0','lesson-2.1-definitive-v3-polish.js?v=3.0.1','../assets/js/katex-global.js']
+markers=['lesson-2.1-definitive-v3-mobile.css?v=3.0.1','lesson-2.1-definitive-v3-assessment.js?v=3.0.0','lesson-2.1-definitive-v3-polish.js?v=3.0.2','../assets/js/katex-global.js']
 for marker in markers:
     if marker not in html:errors.append(f'Wrapper missing {marker}')
 if all(marker in html for marker in markers):
     if not (html.index(markers[0])<html.index(markers[1])<html.index(markers[2])<html.index(markers[3])):errors.append('Precision assets load in the wrong order')
 for marker in ('overflow-wrap:anywhere','max-width:100%','overflow-x:clip','fn21-cover h1','font-size:clamp(31px'):
     if marker not in mobile:errors.append(f'Mobile CSS missing {marker}')
-for marker in ('IBAI-2.1-P05','U2-2.1-T1','U2-2.1-V3-T4','malformedNotEqualDelimiterRepaired','taskContextsUseStableInlineMath'):
+for marker in ('IBAI-2.1-P05','U2-2.1-T1','U2-2.1-V3-T4','malformedNotEqualDelimiterRepaired','taskContextsUseStableInlineMath','htmlSensitiveInequalityEscaped','10\\\\lt d'):
     if marker not in polish:errors.append(f'Polish layer missing {marker}')
 
 files=[BASE,FOUNDATIONS,PRACTICE,ASSESSMENT,POLISH]
@@ -61,9 +61,12 @@ else:
         context=str(task.get('context',''))
         if not context or context.count('\\(')!=context.count('\\)'):errors.append(f"Unbalanced task context: {task.get('id')}")
         if '\\[' in context or '\\]' in context:errors.append(f"Task context still uses fragile display delimiters: {task.get('id')}")
-    if audit.get('malformedNotEqualDelimiterRepaired') is not True or audit.get('taskContextsUseStableInlineMath') is not True:errors.append('Precision audit flags are missing')
+    delivery_context=str(t1.get('context',''))
+    if '<d' in delivery_context or '10<d' in delivery_context:errors.append('Delivery interval still contains an HTML-sensitive less-than sign')
+    if '\\(10\\lt d\\le30\\)' not in delivery_context:errors.append(f'Delivery interval is not encoded with \\lt: {delivery_context!r}')
+    if audit.get('malformedNotEqualDelimiterRepaired') is not True or audit.get('taskContextsUseStableInlineMath') is not True or audit.get('htmlSensitiveInequalityEscaped') is not True:errors.append('Precision audit flags are missing')
 
-print('IB AI SL Lesson 2.1 v3.0.1 precision validation')
+print('IB AI SL Lesson 2.1 v3.0.2 precision validation')
 print(f'Errors: {len(errors)}')
 for error in errors:print(f'  ERROR: {error}')
 if errors:raise SystemExit(1)
