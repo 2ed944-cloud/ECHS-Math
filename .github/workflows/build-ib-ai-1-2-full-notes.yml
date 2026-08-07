@@ -1,0 +1,49 @@
+name: Build IB AI 1.2 Full Notes
+
+on:
+  push:
+    branches:
+      - agent/ib-ai-1-2-full-notes
+    paths:
+      - 'notes/ib-math-ai/unit-1/1.2/*.part-*'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-ib-ai-1-2-full-notes
+  cancel-in-progress: true
+
+jobs:
+  assemble:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Assemble verified PDF
+        shell: bash
+        run: |
+          set -euo pipefail
+          part_dir='notes/ib-math-ai/unit-1/1.2'
+          output='notes/ib-math-ai/unit-1/IB_AI_SL_1.2_Arithmetic_Sequences_Full_Notes_Student.pdf'
+          expected=10
+          count=$(find "$part_dir" -maxdepth 1 -type f -name '*.part-*' | wc -l | tr -d ' ')
+          if [ "$count" -ne "$expected" ]; then
+            echo "Waiting for all $expected parts; currently have $count."
+            exit 0
+          fi
+          mkdir -p "$(dirname "$output")"
+          cat "$part_dir"/*.part-* > "$output"
+          echo '93a73dc7c34315e24656ffe078b9a216c75c88a466b04a12cef5cd2c9c297b88  '"$output" | sha256sum -c -
+          head -c 8 "$output" | grep -q '%PDF-1.5'
+          rm -f "$part_dir"/*.part-*
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A "$part_dir" "$output"
+          if git diff --cached --quiet; then
+            echo 'Nothing to commit.'
+            exit 0
+          fi
+          git commit -m 'Build Lesson 1.2 full notes PDF [skip ci]'
+          git push
