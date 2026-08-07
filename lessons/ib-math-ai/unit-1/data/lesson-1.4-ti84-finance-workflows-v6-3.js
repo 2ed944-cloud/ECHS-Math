@@ -178,7 +178,7 @@ const workflows={
 window.ECHS_TI84_FINANCE_WORKFLOWS=workflows;
 data.ti84FinanceClassroom={
   release:'6.3.0',
-  simulator:'https://ti84calc.com/ti84calc',
+  simulator:'local-echs-gdc-v7',
   pairedMethod:'manual → TI-84 Finance → verify → IB conclusion',
   modes:['teacher','follow','drill'],
   workflowIds:Object.keys(workflows),
