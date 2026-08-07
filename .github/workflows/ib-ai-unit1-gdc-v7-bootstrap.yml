@@ -1,0 +1,46 @@
+name: Apply IB AI Unit 1 GDC v7 integration
+
+on:
+  push:
+    branches:
+      - agent/ib-ai-unit1-gdc-integration-v7
+    paths:
+      - 'tools/install_ib_ai_unit1_gdc_v7.py'
+      - '.github/workflows/ib-ai-unit1-gdc-v7-bootstrap.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out integration branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/ib-ai-unit1-gdc-integration-v7
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Generate the final integration
+        run: python tools/install_ib_ai_unit1_gdc_v7.py
+
+      - name: Remove one-time transport files
+        run: |
+          rm -f .gdc-v7-*
+          rm -f tools/install_ib_ai_unit1_gdc_v7.py
+          rm -f .github/workflows/ib-ai-unit1-gdc-v7-bootstrap.yml
+
+      - name: Commit the generated integration
+        run: |
+          git config user.name "ECHS Math Integration Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A
+          git status --short
+          git commit -m "Integrate IB AI Unit 1 local TI-84/GDC workflows"
+          git push origin HEAD:agent/ib-ai-unit1-gdc-integration-v7
