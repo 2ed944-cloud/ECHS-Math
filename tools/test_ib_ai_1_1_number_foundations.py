@@ -110,8 +110,8 @@ def validate(root: Path, errors: list[str]) -> None:
         "lesson-1.1-number-foundations-v6-content.js?v=6.0.0",
         "lesson-1.1-number-foundations-v6-polish.js?v=6.0.0",
         "lesson-1.1-number-foundations-v6-interactions.js?v=6.0.0",
-        "lesson-1.1-ti84-real-v6-9.css?v=6.9.0",
-        "lesson-1.1-ti84-real-inline-v6-9.js?v=6.9.0",
+        "lesson-1.1-ti84-real-v6-9.css?v=6.9.1",
+        "lesson-1.1-ti84-real-inline-v6-9.js?v=6.9.1",
     ):
         if marker not in html:
             errors.append(f"HTML missing Lesson 1.1 asset: {marker}")
