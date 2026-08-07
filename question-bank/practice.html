@@ -46,7 +46,8 @@
       href="css/practice-premium.css?v=20260801-premium3"
     />
     <link rel="stylesheet" href="css/practice-executive-v4.css?v=20260802-fullwidth-drawer2" />
-  </head>
+  <link rel="stylesheet" href="../css/echs-design-system-v5.css?v=20260807-v5">
+</head>
   <body
     class="practiceStudio"
     data-platform-page="practice"
@@ -57,7 +58,7 @@
         ><span class="brandMark">∫</span
         ><span class="brandText"
           ><strong>ECHS Focused Practice</strong
-          ><span>Exact course mapping · adaptive evidence · mastery</span></span
+          ><span>Focused practice · clear progress · mastery</span></span
         ></a
       >
       <nav class="platformNav" id="platformNav">
@@ -87,8 +88,8 @@
             multipart question stays inside that route for the whole session.
           </p>
           <div class="studioHeroMeta">
-            <span>One course per bank</span><span>Exact lesson mapping</span
-            ><span>No cross-course mixing</span><span>Focused feedback</span>
+            <span>One course per bank</span><span>Focused lesson practice</span
+            ><span>One clear learning route</span><span>Focused feedback</span>
           </div>
         </div>
         <div class="studioHeroStats">
@@ -128,7 +129,7 @@
           <div class="studioPanel">
             <div class="studioPanelHead">
               <div class="studioPanelHeading">
-                <small>Mapped practice builder</small>
+                <small>Practice setup</small>
                 <h2 id="builderTitle">Choose exactly what to practise</h2>
                 <span class="builderCourseTag" id="builderCourseTag"></span>
               </div>
@@ -169,7 +170,7 @@
               <div class="scopeIdentity">
                 <span class="scopeIdentityIcon" aria-hidden="true">◎</span>
                 <div>
-                  <strong>Course-safe practice</strong>
+                  <strong>Focused practice</strong>
                   <p>
                     A question must match the selected course and target. Each
                     student session uses one selected bank at a time.
@@ -182,9 +183,9 @@
                   ><select id="course"></select>
                 </div>
                 <div class="control full routeControl">
-                  <label for="bank"><span>2</span> Verified question bank</label
+                  <label for="bank"><span>2</span> Question bank</label
                   ><select id="bank">
-                    <option value="">Loading verified banks…</option></select
+                    <option value="">Loading question banks…</option></select
                   ><small class="controlHelp"
                     >Only banks assigned to the selected course appear
                     here.</small
@@ -335,5 +336,6 @@
     <script src="js/practice-recovery-ui.js?v=20260730-recovery1"></script>
     <script src="../js/platform-foundation.js?v=20260727-pathway"></script>
     <!-- Official AP remains a separately verified boundary and is not mixed into focused practice. -->
-  </body>
+  <script src="../js/visible-copy-guard-v5.js?v=20260807-v5"></script>
+</body>
 </html>
