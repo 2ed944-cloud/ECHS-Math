@@ -1,4 +1,4 @@
-/* Final visual polish for IB AI SL Lesson 2.2 v5.0.5 */
+/* Final visual polish for IB AI SL Lesson 2.2 v5.0.6 */
 .lq5-formula-map{
   grid-template-columns:repeat(3,minmax(0,1fr))!important;
   align-items:stretch;
@@ -12,33 +12,44 @@
 .lq5-formula-map .formula{
   grid-column:1/-1!important;
   display:grid;
-  grid-template-columns:minmax(0,1fr) auto minmax(0,1fr) auto minmax(0,1fr) auto minmax(0,1fr);
+  grid-template-columns:repeat(2,minmax(0,1fr));
   align-items:stretch;
-  gap:7px;
+  gap:8px;
   min-width:0;
   max-width:100%;
-  padding:13px 10px;
-  font-size:clamp(11px,.9vw,15px)!important;
+  padding:0;
+  background:transparent!important;
+  color:var(--lq5-navy)!important;
+  font-size:clamp(12px,1vw,15px)!important;
   line-height:1.25;
   overflow:hidden;
 }
 .lq5-formula-map .formula span{
   min-width:0;
   display:grid;
-  place-items:center;
-  padding:7px 6px;
-  border-radius:9px;
-  background:rgba(255,255,255,.1);
+  grid-template-columns:28px minmax(0,1fr);
+  gap:8px;
+  align-items:center;
+  padding:10px 11px;
+  border:1px solid var(--lq5-line);
+  border-radius:11px;
+  background:#f7f2eb;
   white-space:normal;
-  text-align:center;
+  text-align:left;
+  font-weight:800;
 }
-.lq5-formula-map .formula i{
+.lq5-formula-map .formula span b{
   display:grid;
   place-items:center;
-  color:var(--lq5-gold);
-  font-style:normal;
-  font-weight:950;
+  width:28px;
+  height:28px;
+  border-radius:9px;
+  background:var(--lq5-navy);
+  color:#fff;
+  font-size:12px;
 }
+.lq5-formula-map .formula span em{font-family:Georgia,serif;font-weight:700}
+.lq5-formula-map .formula i{display:none!important}
 .lq5-form-list article{padding:11px 13px}
 .lq5-form-list article .lq5-math{margin:7px 0;padding:9px 11px}
 .lq5-form-list article>p{font-size:14px}
@@ -63,6 +74,5 @@ body.lq5-ti-docked .stage-inner{max-width:100%}
 }
 @media(max-width:620px){
   .lq5-formula-map{grid-template-columns:1fr!important}
-  .lq5-formula-map .formula{grid-column:auto!important;display:grid;grid-template-columns:1fr;text-align:center;overflow:visible}
-  .lq5-formula-map .formula i{transform:rotate(90deg)}
+  .lq5-formula-map .formula{grid-column:auto!important;grid-template-columns:1fr;overflow:visible}
 }
