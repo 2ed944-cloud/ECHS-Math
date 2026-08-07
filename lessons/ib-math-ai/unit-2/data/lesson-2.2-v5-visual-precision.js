@@ -11,6 +11,18 @@
   }
   const cover=()=>{const x=6.32474432449077,y=1.5*x+1;return exactGraph({xmin:-2,xmax:10,ymin:-5,ymax:20,curves:[{fn:x=>1.5*x+1,color:C.teal},{fn:x=>-.65*(x-4)**2+14,color:C.maroon}],points:[{x,y,label:'intersection'}],labels:[{x:7.2,y:13.3,text:'constant rate',color:C.teal},{x:2.3,y:15.2,text:'changing rate',color:C.maroon}],label:'A line and a parabola with an accurately plotted intersection'});};
   const lines=()=>{const x=5/1.7,y=.8*x+2;return exactGraph({xmin:-5,xmax:8,ymin:-6,ymax:12,curves:[{fn:x=>.8*x+2,color:C.teal},{fn:x=>-.9*x+7,color:C.maroon}],points:[{x,y,label:'common point'}],labels:[],label:'Two lines with an accurately plotted common point'});};
-  function patch(){document.querySelectorAll('[data-lq5-visual="cover-models"]').forEach(node=>{node.innerHTML=cover();node.dataset.precision='5.0.1';});document.querySelectorAll('[data-lq5-visual="section-lines"]').forEach(node=>{node.innerHTML=lines();node.dataset.precision='5.0.1';});}
-  const app=document.getElementById('app');if(app)new MutationObserver(patch).observe(app,{childList:true,subtree:true});patch();
+  function replaceOnce(selector,markup){
+    document.querySelectorAll(selector).forEach(node=>{
+      if(node.dataset.precision==='5.0.1')return;
+      node.dataset.precision='5.0.1';
+      node.innerHTML=markup();
+    });
+  }
+  function patch(){
+    replaceOnce('[data-lq5-visual="cover-models"]',cover);
+    replaceOnce('[data-lq5-visual="section-lines"]',lines);
+  }
+  const app=document.getElementById('app');
+  if(app)new MutationObserver(patch).observe(app,{childList:true,subtree:true});
+  patch();
 })();
