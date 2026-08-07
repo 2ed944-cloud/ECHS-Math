@@ -19,6 +19,9 @@ function markup(){
   aside.id='u1-ti84-simulator';
   aside.className='u1-ti84-sim';
   aside.setAttribute('aria-hidden','true');
+  aside.setAttribute('role','dialog');
+  aside.setAttribute('aria-modal','true');
+  aside.setAttribute('aria-label',`TI-84 Plus CE simulator for Lesson ${lesson}`);
   aside.innerHTML=`
     <header class="u1-ti84-sim-head">
       <div><span>ECHS · TI‑84 PLUS CE</span><h2>Interactive calculator simulator · Lesson ${lesson}</h2></div>
@@ -39,6 +42,10 @@ function markup(){
       <iframe title="TI-84 Plus CE interactive calculator simulator for IB Mathematics AI SL Unit 1" src="about:blank" data-src="${URL}" loading="lazy" sandbox="allow-scripts allow-same-origin allow-forms allow-pointer-lock allow-popups allow-modals allow-downloads" allow="fullscreen; clipboard-read; clipboard-write" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </div>`;
   return aside;
+}
+function focusables(){
+  if(!panel)return[];
+  return [...panel.querySelectorAll('button,a[href],select,input,[tabindex]:not([tabindex="-1"])')].filter(el=>!el.disabled&&!el.hidden&&el.getClientRects().length);
 }
 function setButtons(active){
   [routeButton,headerButton].forEach(b=>{if(!b)return;b.classList.toggle('is-active',active);b.setAttribute('aria-pressed',String(active));});
@@ -90,10 +97,19 @@ function installLaunchers(){
 function init(){
   build();installLaunchers();updateContext();
   const app=$('#app');if(app)new MutationObserver(()=>{installLaunchers();updateContext();}).observe(app,{childList:true,subtree:true});
-  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&panel?.classList.contains('is-open')){e.preventDefault();close();}});
+  document.addEventListener('keydown',e=>{
+    if(!panel?.classList.contains('is-open'))return;
+    if(e.key==='Escape'){e.preventDefault();close();return;}
+    if(e.key==='Tab'){
+      const items=focusables();if(!items.length)return;
+      const first=items[0],last=items[items.length-1];
+      if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}
+      else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}
+    }
+  });
   document.addEventListener('click',e=>{if(e.target.closest?.('.gdc-v7-simulator')){e.preventDefault();document.querySelector('.gdc-v7-close')?.click();setTimeout(open,20);}const route=e.target.closest?.('[data-route]');if(route&&route.dataset.route!=='learn')close();});
   document.addEventListener('echs:ti84:simulator',open);
-  data.ti84Simulator={release:'7.1.0',provider:'ti84calc.com',model:'TI-84 Plus CE',lessons:['1.2','1.3','1.4','1.5','1.6'],embedded:true,lazy:true};
+  data.ti84Simulator={release:'7.1.1',provider:'ti84calc.com',model:'TI-84 Plus CE',lessons:['1.2','1.3','1.4','1.5','1.6'],embedded:true,lazy:true,keyboardFocusTrap:true};
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })();
