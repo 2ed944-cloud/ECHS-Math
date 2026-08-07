@@ -37,7 +37,7 @@ function plotCard({cfg,curves=[],points=[],guides=[],labels=[]}){
   const cfg={xmin:-3,xmax:3,ymin:-3,ymax:5,w:430,h:300,p:42};
   const x0=1,yPar=3,yCirc=Math.sqrt(3);
   const left=plotCard({cfg,curves:[{fn:x=>4-x*x,color:COLORS.teal}],guides:[`<line x1="${sx(x0,cfg)}" y1="${cfg.p}" x2="${sx(x0,cfg)}" y2="${cfg.h-cfg.p}" stroke="${COLORS.gold}" stroke-width="4" stroke-dasharray="10 8"/>`],points:[{x:x0,y:yPar}],labels:[{x:-2.6,y:4.45,text:'y = 4 − x²',fill:COLORS.teal,size:15}]});
-  const upper=x=>Math.sqrt(Math.max(0,4-x*x)),lower=x=>-Math.sqrt(Math.max(0,4-x*x));
+  const upper=x=>Math.abs(x)<=2?Math.sqrt(4-x*x):NaN,lower=x=>Math.abs(x)<=2?-Math.sqrt(4-x*x):NaN;
   const right=plotCard({cfg,curves:[{fn:upper,color:COLORS.maroon},{fn:lower,color:COLORS.maroon}],guides:[`<line x1="${sx(x0,cfg)}" y1="${cfg.p}" x2="${sx(x0,cfg)}" y2="${cfg.h-cfg.p}" stroke="${COLORS.gold}" stroke-width="4" stroke-dasharray="10 8"/>`],points:[{x:x0,y:yCirc},{x:x0,y:-yCirc}],labels:[{x:-2.65,y:4.45,text:'x² + y² = 4',fill:COLORS.maroon,size:15}]});
   replaceSlide('The vertical-line test',`<div class="v5-compare v5-vlt-exact" data-v5-math-graph="vertical-line"><section>${left}<p class="v5-graph-verdict good"><b>At x=1:</b> one intersection, (1,3). This relation gives one y-value for that input.</p></section><section>${right}<p class="v5-graph-verdict bad"><b>At x=1:</b> two intersections, (1,±√3). The circle is not y as a function of x.</p></section></div><div class="v5-note"><b>Vertical-line test:</b> a relation is a function of x only when every vertical line meets it at most once.</div>`);
 }
@@ -76,5 +76,5 @@ replaceSlide('Enter functions in Y=',`<div class="v5-ti-slide precision-ti84"><s
   replaceSlide('Graphs reflect in y=x',`<div class="v5-inverse-exact" data-v5-math-graph="inverse-reflection">${preview}<div class="v5-note"><b>Coordinate check:</b> the point \\((2,4)\\) on \\(f\\) reflects to \\((4,2)\\) on \\(f^{-1}\\). Reflection in \\(y=x\\) swaps every coordinate pair.</div></div>`);
 }
 
-data.precisionRepair={release:'5.1.0',exactGraphSlides:['The vertical-line test','Read an image and preimages from a graph','TI‑84 Zero workflow','TI‑84 Intersect workflow','Graphs reflect in y=x'],sharedTi84Simulator:true};
+data.precisionRepair=Object.assign({},data.precisionRepair,{release:'5.1.0',exactGraphSlides:['The vertical-line test','Read an image and preimages from a graph','TI‑84 Zero workflow','TI‑84 Intersect workflow','Graphs reflect in y=x'],sharedTi84Simulator:true});
 })();
