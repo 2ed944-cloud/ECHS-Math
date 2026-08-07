@@ -86,9 +86,11 @@ def validate_source(root: Path, errors: list[str]) -> None:
     forbid(learning_entry, ["ALEKS", "IXL", "Pearson", "publisher"], "Learning entry router", errors)
 
     require(practice_shell, [
-        'data-require-account="student teacher admin"', "Learn → Practise → Master", "Course-safe practice",
-        "Verified question bank", "No cross-course mixing", "Exact lesson mapping", "routeSteps",
-        "js/portal-access.js", "practiceBuilder", "builderCompactSummary", "Adjust filters",
+        'data-require-account="student teacher admin"', "Learn → Practise → Master",
+        "Choose the course, verified bank, unit and lesson.", "One course per bank",
+        "A question must match the selected course and target.",
+        "Only banks assigned to the selected course appear", "Only targets that contain mapped questions in this bank are",
+        "routeSteps", "js/portal-access.js", "practiceBuilder", "builderCompactSummary", "Adjust filters",
         "practice-builder-compact.css", "practice-scope-access.css", "practice-course-isolation.js",
         "mapped-private-bank-practice.js", "mapped-practice.js",
         "practice-single-bank.js", "practice-builder.js",
