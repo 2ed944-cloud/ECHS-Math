@@ -23,83 +23,69 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          python - <<'PY'
-          from pathlib import Path
+          if ! grep -q 'V5.1 mobile geometry hotfix' css/echs-design-system-v5-1.css; then
+            cat >> css/echs-design-system-v5-1.css <<'CSS'
 
-          path = Path('css/echs-design-system-v5-1.css')
-          text = path.read_text(encoding='utf-8')
-          marker = '/* V5.1 mobile geometry hotfix */'
-          if marker not in text:
-              text += r'''
-
-/* V5.1 mobile geometry hotfix */
-@media(max-width:860px){
-  html,
-  body.institutionBody{max-width:100%!important;overflow-x:clip!important}
-  body.institutionBody .institutionShell,
-  body.institutionBody .institutionWorkspace,
-  body.institutionBody .institutionMain,
-  body.institutionBody .premiumCard,
-  body.institutionBody .timetableCard,
-  body.institutionBody .timetableMount{
-    min-width:0!important;max-width:100%!important;box-sizing:border-box!important;
-  }
-  body.institutionBody .timetableCard,
-  body.institutionBody .timetableMount{overflow:hidden!important}
-  body.institutionBody .timetableWeek{
-    display:flex!important;width:100%!important;max-width:100%!important;min-width:0!important;
-    box-sizing:border-box!important;overflow-x:auto!important;overflow-y:hidden!important;
-    overscroll-behavior-inline:contain!important;scroll-snap-type:x proximity!important;
-    padding:12px!important;gap:10px!important;
-    -webkit-overflow-scrolling:touch!important;
-  }
-  body.institutionBody .timetableDay{
-    flex:0 0 min(78vw,280px)!important;width:min(78vw,280px)!important;
-    min-width:0!important;max-width:280px!important;scroll-snap-align:start!important;
-  }
-  body.institutionBody .timetableDayHead,
-  body.institutionBody .timetableEntries,
-  body.institutionBody .timetableEntry,
-  body.institutionBody .timetableEntryTime{min-width:0!important;max-width:100%!important}
-}
-@media(max-width:560px){
-  body.practiceStudio .studioSidebar.isCollapsed .studioPanel{
-    min-height:0!important;border-radius:18px!important;
-  }
-  body.practiceStudio .studioSidebar.isCollapsed .builderCompactSummary{
-    display:grid!important;grid-template-columns:42px minmax(0,1fr) auto!important;
-    align-items:center!important;gap:8px!important;min-height:84px!important;
-    height:auto!important;padding:10px 11px!important;
-  }
-  body.practiceStudio .studioSidebar.isCollapsed .builderCompactIcon{
-    width:42px!important;height:42px!important;border-radius:13px!important;
-  }
-  body.practiceStudio .studioSidebar.isCollapsed .builderCompactCopy{
-    min-width:0!important;overflow:hidden!important;
-  }
-  body.practiceStudio .studioSidebar.isCollapsed .builderCompactCopy strong{
-    font-size:13.5px!important;line-height:1.15!important;white-space:nowrap!important;
-    overflow:hidden!important;text-overflow:ellipsis!important;
-  }
-  body.practiceStudio .studioSidebar.isCollapsed .builderCompactCopy span{
-    display:block!important;margin-top:3px!important;font-size:9.5px!important;line-height:1.2!important;
-    white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;
-  }
-  body.practiceStudio .studioSidebar.isCollapsed .builderAdjust{
-    grid-column:auto!important;width:auto!important;min-width:0!important;min-height:36px!important;
-    padding:7px 9px!important;border-radius:11px!important;font-size:9.5px!important;
-    line-height:1!important;white-space:nowrap!important;
-  }
-  body.practiceStudio .studioHero{
-    grid-template-columns:minmax(0,1fr)!important;max-width:100%!important;
-  }
-  body.practiceStudio .studioHeroContent,
-  body.practiceStudio .studioHeroStats{min-width:0!important;max-width:100%!important}
-  body.practiceStudio .studioHero::after{font-size:220px!important;right:-45px!important}
-}
-'''
-              path.write_text(text, encoding='utf-8')
-          PY
+          /* V5.1 mobile geometry hotfix */
+          @media(max-width:860px){
+            html,
+            body.institutionBody{max-width:100%!important;overflow-x:clip!important}
+            body.institutionBody .institutionShell,
+            body.institutionBody .institutionWorkspace,
+            body.institutionBody .institutionMain,
+            body.institutionBody .premiumCard,
+            body.institutionBody .timetableCard,
+            body.institutionBody .timetableMount{
+              min-width:0!important;max-width:100%!important;box-sizing:border-box!important;
+            }
+            body.institutionBody .timetableCard,
+            body.institutionBody .timetableMount{overflow:hidden!important}
+            body.institutionBody .timetableWeek{
+              display:flex!important;width:100%!important;max-width:100%!important;min-width:0!important;
+              box-sizing:border-box!important;overflow-x:auto!important;overflow-y:hidden!important;
+              overscroll-behavior-inline:contain!important;scroll-snap-type:x proximity!important;
+              padding:12px!important;gap:10px!important;-webkit-overflow-scrolling:touch!important;
+            }
+            body.institutionBody .timetableDay{
+              flex:0 0 min(78vw,280px)!important;width:min(78vw,280px)!important;
+              min-width:0!important;max-width:280px!important;scroll-snap-align:start!important;
+            }
+            body.institutionBody .timetableDayHead,
+            body.institutionBody .timetableEntries,
+            body.institutionBody .timetableEntry,
+            body.institutionBody .timetableEntryTime{min-width:0!important;max-width:100%!important}
+          }
+          @media(max-width:560px){
+            body.practiceStudio .studioSidebar.isCollapsed .studioPanel{min-height:0!important;border-radius:18px!important}
+            body.practiceStudio .studioSidebar.isCollapsed .builderCompactSummary{
+              display:grid!important;grid-template-columns:42px minmax(0,1fr) auto!important;
+              align-items:center!important;gap:8px!important;min-height:84px!important;height:auto!important;
+              padding:10px 11px!important;
+            }
+            body.practiceStudio .studioSidebar.isCollapsed .builderCompactIcon{
+              width:42px!important;height:42px!important;border-radius:13px!important;
+            }
+            body.practiceStudio .studioSidebar.isCollapsed .builderCompactCopy{min-width:0!important;overflow:hidden!important}
+            body.practiceStudio .studioSidebar.isCollapsed .builderCompactCopy strong{
+              font-size:13.5px!important;line-height:1.15!important;white-space:nowrap!important;
+              overflow:hidden!important;text-overflow:ellipsis!important;
+            }
+            body.practiceStudio .studioSidebar.isCollapsed .builderCompactCopy span{
+              display:block!important;margin-top:3px!important;font-size:9.5px!important;line-height:1.2!important;
+              white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;
+            }
+            body.practiceStudio .studioSidebar.isCollapsed .builderAdjust{
+              grid-column:auto!important;width:auto!important;min-width:0!important;min-height:36px!important;
+              padding:7px 9px!important;border-radius:11px!important;font-size:9.5px!important;
+              line-height:1!important;white-space:nowrap!important;
+            }
+            body.practiceStudio .studioHero{grid-template-columns:minmax(0,1fr)!important;max-width:100%!important}
+            body.practiceStudio .studioHeroContent,
+            body.practiceStudio .studioHeroStats{min-width:0!important;max-width:100%!important}
+            body.practiceStudio .studioHero::after{font-size:220px!important;right:-45px!important}
+          }
+          CSS
+          fi
 
       - name: Validate core contracts
         shell: bash
@@ -107,19 +93,10 @@ jobs:
           set -euo pipefail
           python tools/test_learning_access_contract.py .
           python tools/validate_local_links.py .
-          python - <<'PY'
-          from pathlib import Path
-          css=Path('css/echs-design-system-v5-1.css').read_text(encoding='utf-8')
-          for marker in [
-              'V5.1 mobile geometry hotfix',
-              'grid-template-columns:42px minmax(0,1fr) auto!important',
-              'overflow-x:clip!important',
-              'scroll-snap-type:x proximity!important',
-          ]:
-              if marker not in css:
-                  raise SystemExit('Missing mobile geometry marker: '+marker)
-          print('V5.1 mobile geometry contract: PASS')
-          PY
+          grep -q 'grid-template-columns:42px minmax(0,1fr) auto!important' css/echs-design-system-v5-1.css
+          grep -q 'overflow-x:clip!important' css/echs-design-system-v5-1.css
+          grep -q 'scroll-snap-type:x proximity!important' css/echs-design-system-v5-1.css
+          echo 'V5.1 mobile geometry contract: PASS'
 
       - name: Commit mobile refinements
         shell: bash
@@ -130,8 +107,8 @@ jobs:
           git config user.email "actions@users.noreply.github.com"
           git add css/echs-design-system-v5-1.css .github/workflows/echs-v51-mobile-qa-fix.yml
           if git diff --cached --quiet; then
-            echo "No changes required"
+            echo 'No changes required'
             exit 0
           fi
-          git commit -m "Polish V5.1 mobile geometry"
+          git commit -m 'Polish V5.1 mobile geometry'
           git push origin HEAD:agent/echs-visual-refinement-v5-1
