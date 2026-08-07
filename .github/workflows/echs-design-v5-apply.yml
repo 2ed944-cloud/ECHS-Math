@@ -24,10 +24,7 @@ jobs:
           from pathlib import Path
           import re
 
-          root = Path('.')
-          root_pages = [
-              Path('index.html'),
-          ]
+          root_pages = [Path('index.html')]
           qb_pages = [
               Path('question-bank/student.html'),
               Path('question-bank/teacher.html'),
@@ -130,7 +127,6 @@ jobs:
           for p in qb_pages:
               if patch(p, css_qb, js_qb): changed.append(str(p))
 
-          # Audit only application chrome pages, not lesson/question content.
           audit_pages = [
               Path('index.html'),
               Path('question-bank/student.html'),
@@ -150,9 +146,13 @@ jobs:
               if not p.exists():
                   continue
               raw = p.read_text(encoding='utf-8')
-              # Ignore script/style source because implementation words are allowed in code.
-              visible = re.sub(r'<script\b[^>]*>.*?</script>', ' ', raw, flags=re.I|re.S)
+              # Audit rendered body copy only. Head metadata, attributes, scripts and styles
+              # can legitimately contain implementation details that are never shown to users.
+              visible = re.sub(r'<head\b[^>]*>.*?</head>', ' ', raw, flags=re.I|re.S)
+              visible = re.sub(r'<script\b[^>]*>.*?</script>', ' ', visible, flags=re.I|re.S)
               visible = re.sub(r'<style\b[^>]*>.*?</style>', ' ', visible, flags=re.I|re.S)
+              visible = re.sub(r'<[^>]+>', ' ', visible)
+              visible = re.sub(r'\s+', ' ', visible)
               lower = visible.lower()
               for term in banned:
                   if term in lower:
@@ -171,7 +171,6 @@ jobs:
           if findings:
               raise SystemExit('Visible implementation/release terminology remains: ' + '; '.join(findings))
 
-          # Basic integration checks.
           for p in audit_pages:
               if not p.exists():
                   continue
