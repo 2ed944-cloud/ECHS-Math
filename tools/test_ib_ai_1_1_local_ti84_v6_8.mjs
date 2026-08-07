@@ -53,15 +53,15 @@ for(const marker of [
 
 for(const marker of [
   ':root{--ti84-inline-width:clamp(500px,36vw,640px)',
-  '.ti84-inline-dock.open',
+  '#ti84-inline-dock.ti84-inline-dock.open',
   'body.ti84-inline-open .app-shell',
   'body.ti84-inline-open .footer',
-  '.ti84-inline-frame-shell{position:relative;min-width:0;min-height:0;overflow:hidden',
-  '.ti84-inline-frame-shell iframe{display:none;width:100%;height:100%;min-width:0;min-height:0',
+  '#ti84-inline-dock .ti84-inline-frame-shell{position:relative!important;min-width:0!important;min-height:0!important;height:auto!important;overflow:hidden!important',
+  '#ti84-inline-dock .ti84-inline-frame-shell iframe{position:relative!important;inset:auto!important;display:none!important;width:100%!important;height:100%!important;min-width:0!important;min-height:0!important',
   '@media(max-width:980px)'
 ])requireText(css,marker,'Real TI-84 styles');
 for(const forbidden of [
-  '.ti84-inline-frame-shell{position:relative;min-height:0;overflow:auto',
+  '#ti84-inline-dock .ti84-inline-frame-shell{position:relative;min-height:0;overflow:auto',
   'min-height:900px'
 ])forbidText(css,forbidden,'Real TI-84 styles');
 
