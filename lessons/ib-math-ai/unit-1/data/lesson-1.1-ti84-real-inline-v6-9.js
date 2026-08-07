@@ -39,16 +39,38 @@ function panel(){
   return aside;
 }
 
+function visibleRouteBottom(topbarBottom){
+  const route=$('.routebar');
+  if(!route)return 0;
+  const style=getComputedStyle(route);
+  const rect=route.getBoundingClientRect();
+  const visible=style.display!=='none'
+    &&style.visibility!=='hidden'
+    &&Number.parseFloat(style.opacity||'1')>0
+    &&rect.width>20
+    &&rect.height>2
+    &&rect.bottom>topbarBottom-6
+    &&rect.top>=topbarBottom-10
+    &&rect.top<=topbarBottom+90
+    &&rect.bottom<=topbarBottom+190;
+  return visible?Math.round(rect.bottom):0;
+}
+
 function geometry(){
   if(!host)return;
   const topbar=$('.topbar');
-  const route=$('.routebar');
-  const top=Math.max(
-    Math.round(topbar?.getBoundingClientRect().bottom||0),
-    Math.round(route?.getBoundingClientRect().bottom||0),
-    90
-  );
+  const topbarBottom=Math.round(topbar?.getBoundingClientRect().bottom||0);
+  const routeBottom=visibleRouteBottom(topbarBottom);
+  const top=Math.max(routeBottom,topbarBottom||90);
   document.documentElement.style.setProperty('--ti84-inline-top',`${top}px`);
+}
+
+function settleGeometry(){
+  geometry();
+  requestAnimationFrame(()=>{
+    geometry();
+    requestAnimationFrame(geometry);
+  });
 }
 
 function updateContext(){
@@ -63,6 +85,7 @@ function markLoaded(){
   shell?.classList.remove('loading');
   shell?.classList.add('loaded');
   if(loadTimer){clearTimeout(loadTimer);loadTimer=null;}
+  settleGeometry();
 }
 
 function load(){
@@ -84,7 +107,6 @@ function open(){
   build();
   retireLocalSimulator();
   closeClassroom();
-  geometry();
   updateContext();
   lastFocus=document.activeElement;
   host.classList.add('open');
@@ -94,6 +116,7 @@ function open(){
   routeButton?.setAttribute('aria-pressed','true');
   headerButton?.classList.add('active');
   headerButton?.setAttribute('aria-pressed','true');
+  settleGeometry();
   load();
   $('#ti84-inline-close',host)?.focus();
 }
@@ -177,12 +200,17 @@ function init(){
   attachRouteButton();
   attachHeaderButton();
   wireClassroomButton();
-  geometry();
+  settleGeometry();
   updateContext();
-  window.addEventListener('resize',geometry,{passive:true});
-  if(window.ResizeObserver)new ResizeObserver(geometry).observe($('.routebar')||document.body);
+  window.addEventListener('resize',settleGeometry,{passive:true});
+  if(window.ResizeObserver){
+    const observer=new ResizeObserver(settleGeometry);
+    observer.observe($('.topbar')||document.body);
+    const route=$('.routebar');
+    if(route)observer.observe(route);
+  }
   const app=$('#app');
-  if(app)new MutationObserver(()=>{updateContext();wireClassroomButton();}).observe(app,{childList:true,subtree:true});
+  if(app)new MutationObserver(()=>{updateContext();wireClassroomButton();if(host?.classList.contains('open'))settleGeometry();}).observe(app,{childList:true,subtree:true});
   const coach=$('#ti84-classroom-coach-1-1');
   if(coach)new MutationObserver(()=>{wireClassroomButton();if(coach.classList.contains('open'))close();}).observe(coach,{attributes:true,attributeFilter:['class'],childList:true,subtree:true});
   document.addEventListener('keydown',event=>{if(event.key==='Escape'&&host?.classList.contains('open'))close();});
@@ -192,10 +220,13 @@ function init(){
   document.addEventListener('echs:ti84:inline-close',close);
   data.ti84InlineSimulator={
     release:'6.9.0',
+    layoutRelease:'6.9.1',
     provider:'ti84calc.com',
     model:'TI-84 Plus CE',
     layout:'docked beside slide',
     realCalculatorInterface:true,
+    horizontalShellScroll:false,
+    visibleHeaderAnchoring:true,
     lazy:true,
     sandboxed:true,
     workflows:['EE entry','SCI/NORMAL','brackets and guard digits']

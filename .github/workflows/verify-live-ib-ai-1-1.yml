@@ -57,8 +57,8 @@ jobs:
           checks = [
               deployment.get("sha") == expected,
               "1.1 · Scientific Notation, Approximation and Error" in text["html"],
-              "lesson-1.1-ti84-real-v6-9.css?v=6.9.0" in text["html"],
-              "lesson-1.1-ti84-real-inline-v6-9.js?v=6.9.0" in text["html"],
+              "lesson-1.1-ti84-real-v6-9.css?v=6.9.1" in text["html"],
+              "lesson-1.1-ti84-real-inline-v6-9.js?v=6.9.1" in text["html"],
               "lesson-1.1-ti84-local-bridge-v6-8-2.js?v=6.8.2" in text["html"],
               "lesson-1.1-ti84-local-v6-8.css?v=6.8.0" not in text["html"],
               "lesson-1.1-ti84-local-v6-8.js?v=6.8.0" not in text["html"],
@@ -67,11 +67,19 @@ jobs:
               "model:'TI-84 Plus CE'" in text["runtime"],
               "provider:'ti84calc.com'" in text["runtime"],
               "realCalculatorInterface:true" in text["runtime"],
+              "layoutRelease:'6.9.1'" in text["runtime"],
+              "visibleHeaderAnchoring:true" in text["runtime"],
+              "horizontalShellScroll:false" in text["runtime"],
+              "function visibleRouteBottom(topbarBottom)" in text["runtime"],
               "sandbox=\"allow-scripts allow-same-origin allow-forms allow-pointer-lock allow-popups allow-modals allow-downloads\"" in text["runtime"],
               "pairedPracticeConnected:true" in text["bridge"],
               "echs:ti84:simulator" in text["bridge"],
-              ".ti84-inline-dock.open" in text["css"],
+              "#ti84-inline-dock.ti84-inline-dock.open" in text["css"],
               "body.ti84-inline-open .app-shell" in text["css"],
+              ":root{--ti84-inline-width:clamp(500px,36vw,640px)" in text["css"],
+              "#ti84-inline-dock .ti84-inline-frame-shell{position:relative!important;min-width:0!important;min-height:0!important;height:auto!important;overflow:hidden!important" in text["css"],
+              "#ti84-inline-dock .ti84-inline-frame-shell iframe{position:relative!important;inset:auto!important;display:none!important;width:100%!important;height:100%!important;min-width:0!important;min-height:0!important" in text["css"],
+              "min-height:900px" not in text["css"],
               '"1.1","Scientific Notation, Approximation and Error"' in text["portal"],
               '"6.9.0",79,96,14,5' in text["portal"],
               'model:"TI-84 Plus CE"' in text["portal"],
@@ -82,10 +90,10 @@ jobs:
           raise SystemExit(0 if all(checks) else 1)
           PY
             then
-              echo "Live IB AI Lesson 1.1 real TI-84 Plus CE verification: PASS"
+              echo "Live IB AI Lesson 1.1 TI-84 Plus CE dimensions verification: PASS"
               exit 0
             fi
             sleep 15
           done
-          echo "The exact Lesson 1.1 real TI-84 release was not visible on GitHub Pages for ${EXPECTED_SHA}" >&2
+          echo "The exact Lesson 1.1 TI-84 dimension fix was not visible on GitHub Pages for ${EXPECTED_SHA}" >&2
           exit 1

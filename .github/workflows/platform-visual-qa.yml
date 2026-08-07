@@ -19,6 +19,7 @@ on:
       - "tools/capture_phase1_preview.mjs"
       - "tools/capture_private_bank_center.mjs"
       - "tools/capture_upload_manager.mjs"
+      - "tools/browser_qa_ib_ai_1_1_ti84_dimensions_v6_9_1.mjs"
       - "tools/browser_qa_ib_ai_1_4_financial_v6.mjs"
       - "tools/browser_qa_ib_ai_2_1_definitive_v4.mjs"
       - ".github/workflows/platform-visual-qa.yml"
@@ -54,6 +55,12 @@ jobs:
           done
           cat /tmp/echs-preview-server.log
           exit 1
+      - name: Validate and capture Lesson 1.1 TI-84 dimensions
+        env:
+          ECHS_PREVIEW_URL: http://127.0.0.1:4173
+          ECHS_PREVIEW_OUTPUT: artifacts/phase3-visual
+          CHROME_PATH: /usr/bin/google-chrome
+        run: node tools/browser_qa_ib_ai_1_1_ti84_dimensions_v6_9_1.mjs
       - name: Validate and capture Financial Applications v6
         env:
           ECHS_PREVIEW_URL: http://127.0.0.1:4173
