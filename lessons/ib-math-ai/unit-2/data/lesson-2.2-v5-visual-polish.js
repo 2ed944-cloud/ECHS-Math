@@ -36,9 +36,15 @@
 
   function patch(){
     document.querySelectorAll('[data-lq5-visual="gradient-triangle"]').forEach(node=>{
-      if(node.dataset.polished==='5.0.2')return;
-      node.dataset.polished='5.0.2';
+      if(node.dataset.polished==='5.0.3')return;
+      node.dataset.polished='5.0.3';
       node.innerHTML=gradientTriangle();
+    });
+    document.querySelectorAll('.lq5-formula-map .formula').forEach(node=>{
+      if(node.dataset.polished==='5.0.3')return;
+      node.dataset.polished='5.0.3';
+      node.setAttribute('aria-label','Identify a, b and c; substitute with brackets; retain the exact form; round once at the end.');
+      node.innerHTML='<span>identify a, b, c</span><i>→</i><span>substitute with brackets</span><i>→</i><span>retain exact form</span><i>→</i><span>round once</span>';
     });
   }
 
