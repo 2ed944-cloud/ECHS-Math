@@ -4,10 +4,14 @@ on:
   pull_request:
     paths:
       - "lessons/ib-math-ai/unit-2/lessons/IB_AI_SL_2.2_linear_quadratic_models_ECHS.html"
-      - "lessons/ib-math-ai/unit-2/data/lesson-2.2*.js"
-      - "lessons/ib-math-ai/unit-2/assets/css/lesson-2.2*.css"
-      - "tools/test_ib_ai_2_2_definitive_v3.mjs"
-      - "tools/browser_qa_ib_ai_2_2_definitive_v3.mjs"
+      - "lessons/ib-math-ai/unit-2/data/lesson-2.2-v5-*.js"
+      - "lessons/ib-math-ai/unit-2/assets/css/lesson-2.2-v5-*.css"
+      - "lessons/ib-math-ai/unit-2/START_HERE.html"
+      - "lessons/ib-math-ai/unit-2/index.html"
+      - "data/ib-math-ai-unit-2-update.js"
+      - "tools/test_ib_ai_2_2_definitive_v5.mjs"
+      - "tools/browser_qa_ib_ai_2_2_definitive_v5.mjs"
+      - ".github/workflows/ib-ai-2-2-definitive-qa.yml"
   workflow_dispatch:
 
 permissions:
@@ -16,7 +20,7 @@ permissions:
 jobs:
   validate:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 35
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -28,46 +32,42 @@ jobs:
 
       - name: Validate JavaScript syntax
         run: |
-          node --check lessons/ib-math-ai/unit-2/data/lesson-2.2-definitive-v3-foundations.js
-          node --check lessons/ib-math-ai/unit-2/data/lesson-2.2-definitive-v3-practice.js
-          node --check lessons/ib-math-ai/unit-2/data/lesson-2.2-definitive-v3-assessment.js
-          node --check lessons/ib-math-ai/unit-2/data/lesson-2.2-definitive-v3-interactions.js
-          node --check lessons/ib-math-ai/unit-2/data/lesson-2.2-definitive-v3-scope-runtime.js
-          node --check lessons/ib-math-ai/unit-2/data/lesson-2.2-ti84-workflows-v3.js
-          node --check lessons/ib-math-ai/unit-2/data/lesson-2.2-ti84-classroom-ui-v3.js
-          node --check tools/test_ib_ai_2_2_definitive_v3.mjs
-          node --check tools/browser_qa_ib_ai_2_2_definitive_v3.mjs
+          for file in lessons/ib-math-ai/unit-2/data/lesson-2.2-v5-*.js; do
+            node --check "$file"
+          done
+          node --check tools/test_ib_ai_2_2_definitive_v5.mjs
+          node --check tools/browser_qa_ib_ai_2_2_definitive_v5.mjs
 
       - name: Validate lesson structure, mathematics and assessment contracts
-        run: node tools/test_ib_ai_2_2_definitive_v3.mjs .
+        run: node tools/test_ib_ai_2_2_definitive_v5.mjs .
 
       - name: Install browser driver
         run: npm install --no-save --no-package-lock playwright-core@1.54.1
 
       - name: Start local lesson server
         run: |
-          python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/ib22-preview.log 2>&1 &
+          python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/ib22-v5-preview.log 2>&1 &
           for attempt in {1..30}; do
             if curl --fail --silent http://127.0.0.1:4173/lessons/ib-math-ai/unit-2/lessons/IB_AI_SL_2.2_linear_quadratic_models_ECHS.html >/dev/null; then
               exit 0
             fi
             sleep 1
           done
-          cat /tmp/ib22-preview.log
+          cat /tmp/ib22-v5-preview.log
           exit 1
 
-      - name: Run desktop, all-content and mobile Chromium QA
+      - name: Run complete desktop, short-screen and mobile Chromium QA
         env:
           ECHS_PREVIEW_URL: http://127.0.0.1:4173
-          ECHS_PREVIEW_OUTPUT: artifacts/ib-ai-2-2-v3
+          ECHS_PREVIEW_OUTPUT: artifacts/ib-ai-2-2-v5
           CHROME_PATH: /usr/bin/google-chrome
-        run: node tools/browser_qa_ib_ai_2_2_definitive_v3.mjs
+        run: node tools/browser_qa_ib_ai_2_2_definitive_v5.mjs
 
       - name: Upload exact visual evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: ib-ai-2-2-definitive-v3-${{ github.run_number }}
-          path: artifacts/ib-ai-2-2-v3
+          name: ib-ai-2-2-definitive-v5-${{ github.run_number }}
+          path: artifacts/ib-ai-2-2-v5
           if-no-files-found: error
           retention-days: 14

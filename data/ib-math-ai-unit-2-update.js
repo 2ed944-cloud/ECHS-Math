@@ -19,16 +19,17 @@
 
   const unit = {
     title: "Unit 2: Functions",
-    description: "Six complete interactive IB Mathematics: Applications and Interpretation SL lessons with technology laboratories, modelling cycles, four-level practice, extended tasks and timed quizzes.",
-    portalSummary: "6 interactive lessons · 408 Learn screens · 400 Practice questions · 78 Quiz questions · 22 extended tasks",
+    description: "Six complete interactive IB Mathematics: Applications and Interpretation SL lessons with precise mathematical graphics, technology laboratories, modelling cycles, four-level practice, extended tasks and timed quizzes.",
+    portalSummary: "6 interactive lessons · 408 Learn screens · 400 Practice questions · 80 Quiz questions · 24 extended tasks",
     essential_questions: [
       "How do representations reveal the structure and restrictions of a function?",
+      "When is a constant-rate line sufficient and when does curvature require a quadratic model?",
       "How can technology support, rather than replace, mathematical reasoning?",
-      "How do assumptions, domains and context determine whether a model is defensible?"
+      "How do residuals, assumptions, domains and context determine whether a model is defensible?"
     ],
     architectureNotes: [
       "Lesson 2.1 develops relations, notation, domains, ranges, graph features, graphing technology and inverse reflection in one coherent six-part pathway.",
-      "Lesson 2.2 applies this function language to linear and quadratic modelling with concise TI-84 Plus CE training where graphing technology adds mathematical value.",
+      "Lesson 2.2 is rebuilt as a six-part linear and quadratic modelling pathway with exact purpose-built graphics and TI-84 Plus CE training connected directly to worked examples.",
       "The remaining Unit 2 lesson sequence is unchanged."
     ],
     lessons: [
@@ -47,14 +48,14 @@
       ),
       lesson(
         "2.2", "linear_quadratic_models", "Linear and Quadratic Models",
-        "Build, solve and evaluate straight-line and parabolic models through manual mathematics, concise TI-84 evidence, validation and contextual judgment.",
+        "Build, solve and evaluate straight-line and parabolic models through exact mathematics, precise diagrams, transparent TI-84 evidence and contextual judgment.",
         [
           "Construct and interpret linear models from rates, points, tables and contexts.",
           "Use parallel, perpendicular and intersection reasoning with contextual restrictions.",
           "Connect standard, factored and vertex forms to roots, intercepts, symmetry and extrema.",
-          "Use TI-84 Zero, Maximum, Intersect and TABLE transparently and verify each output independently.",
-          "Choose linear or quadratic models using differences, graph shape, residual evidence and parameter meaning.",
-          "Evaluate domains, assumptions, limitations, interpolation and extrapolation."
+          "Construct quadratic models from roots, a vertex, points and applied contexts.",
+          "Use TI-84 Zero, Minimum, Maximum, Intersect and TABLE transparently and verify each output independently.",
+          "Choose and evaluate a model using differences, residuals, assumptions, domain and extrapolation risk."
         ],
         "IBAI.U2.LINEAR_QUADRATIC", "u2-linear-quadratic"
       ),
@@ -104,7 +105,7 @@
       )
     ],
     refreshed: true,
-    release: "ECHS Unit 2 v4.0.0"
+    release: "ECHS Unit 2 v5.0.0"
   };
 
   const lesson21 = unit.lessons.find(value => value.number === "2.1");
@@ -143,10 +144,10 @@
   const lesson22 = unit.lessons.find(value => value.number === "2.2");
   if (lesson22) {
     Object.assign(lesson22, {
-      release: "3.1.0", organization_release: "3.1.0",
-      organization: "five classroom teaching blocks with a focused recommended route and lesson-specific TI-84 training",
-      defaultScope: "Recommended lesson path", allContentAvailable: true,
-      scopeCounts: { learn: { core: 72, all: 80 }, practice: { core: 72, all: 80 }, quiz: { core: 12, all: 14 }, tasks: { core: 3, all: 4 } },
+      release: "5.0.0",
+      organization_release: "5.0.0",
+      organization: "six classroom teaching blocks with exact purpose-built graphics and lesson-specific TI-84 training",
+      scopeCounts: { learn: 80, practice: 80, quiz: 16, tasks: 6 },
       officialCoreSections: [
         { code: "SL 2.1", title: "Equations of straight lines, gradients, intercepts, parallel and perpendicular lines" },
         { code: "SL 2.4", title: "Key graph features and intersections using technology" },
@@ -154,18 +155,25 @@
         { code: "SL 2.6", title: "Create, fit, use and evaluate models with a reasonable domain" }
       ],
       teachingBlocks: [
-        { code: "2.2A", title: "Linear Models: Rate, Intercept and Equation", estimatedClassroomTime: "60–75 minutes" },
-        { code: "2.2B", title: "Line Relationships, Intersections and Constraints", estimatedClassroomTime: "60–75 minutes" },
-        { code: "2.2C", title: "Quadratic Structure and Features", estimatedClassroomTime: "60–75 minutes" },
-        { code: "2.2D", title: "Solving, Intersections and TI-84 Evidence", estimatedClassroomTime: "60–75 minutes" },
-        { code: "2.2E", title: "Model Choice, Validation and IB Synthesis", estimatedClassroomTime: "60–75 minutes" }
+        { code: "2.2A", title: "Linear Models and Constant Rate", estimatedClassroomTime: "75–90 minutes" },
+        { code: "2.2B", title: "Line Relationships and Decisions", estimatedClassroomTime: "60–75 minutes" },
+        { code: "2.2C", title: "Quadratic Structure and Exact Features", estimatedClassroomTime: "75–90 minutes" },
+        { code: "2.2D", title: "Constructing Quadratic Models", estimatedClassroomTime: "75–90 minutes" },
+        { code: "2.2E", title: "Solving and TI-84 Evidence", estimatedClassroomTime: "75–90 minutes" },
+        { code: "2.2F", title: "Model Choice, Validation and IB Synthesis", estimatedClassroomTime: "75–90 minutes" }
       ],
-      ti84: { required: true, reason: "Zeros, extrema, intersections, graph-window decisions and whole-number table thresholds are part of the lesson evidence.", workflows: ["Zero", "Maximum", "Intersect", "TABLE"] }
+      ti84: {
+        required: true,
+        reason: "Zeros, extrema, intersections, graph-window decisions and whole-number table thresholds require calculator fluency in this modelling lesson.",
+        workflows: ["Zero", "Minimum", "Maximum", "Intersect", "TABLE"],
+        classroomModes: ["Teacher Demo", "Students Follow", "Exam Drill"],
+        simulator: "TI-84 Plus CE practice beside the active slide"
+      }
     });
     lesson22.resources = [
-      { label: "Complete interactive lesson · recommended path", url: lesson22.url, type: "resource" },
-      { label: "Practice Studio · 72 required / 80 all", url: `${lesson22.url}#practice`, type: "practice" },
-      { label: "IB-style assessment tasks · 3 required / 4 all", url: `${lesson22.url}#exam`, type: "assessment" }
+      { label: "Complete interactive lesson", url: lesson22.url, type: "resource" },
+      { label: "Practice Studio · 80 questions", url: `${lesson22.url}#practice`, type: "practice" },
+      { label: "IB-style assessment tasks · 6", url: `${lesson22.url}#exam`, type: "assessment" }
     ];
   }
 
@@ -204,6 +212,6 @@
   course.unitCount = course.units.length;
   course.lessonCount = course.units.reduce((total, value) => total + (Array.isArray(value && value.lessons) ? value.lessons.length : 0), 0);
   course.status = "Started";
-  course.updatedUnits = "Units 1–2 · Lesson 2.1 complete functions pathway · Lesson 2.2 modelling pathway · six complete Unit 2 lessons";
+  course.updatedUnits = "Units 1–2 · Lessons 2.1 and 2.2 complete definitive pathways · six complete Unit 2 lessons";
   window.dispatchEvent(new CustomEvent("echs:ib-ai-unit-ready", { detail: { courseId: course.id, unit: 2, lessons: unit.lessons.length, release: unit.release } }));
 })();
