@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="ECHS IB Mathematics AI SL Lesson 1.2 student full notes on arithmetic sequences and series.">
+  <meta name="theme-color" content="#7a1733">
+  <title>1.2 Full Notes · Arithmetic Sequences and Series | ECHS Mathematics</title>
+  <link rel="stylesheet" href="../../../lessons/ib-math-ai/unit-1/assets/css/theme.css?v=5.0.0">
+  <link rel="stylesheet" href="../../../lessons/ib-math-ai/unit-1/assets/css/unit1-premium.css?v=5.0.0">
+  <link rel="stylesheet" href="../../../lessons/ib-math-ai/unit-1/assets/css/unit1-teaching-v5.css?v=5.3.0">
+  <link rel="stylesheet" href="../../../lessons/ib-math-ai/unit-1/assets/css/lesson-1.2-arithmetic-v6-core.css?v=6.0.0">
+  <link rel="stylesheet" href="../../../lessons/ib-math-ai/unit-1/assets/css/lesson-1.2-arithmetic-v6-concepts.css?v=6.0.0">
+  <link rel="stylesheet" href="../../../lessons/ib-math-ai/unit-1/assets/css/lesson-1.2-arithmetic-v6-series.css?v=6.0.0">
+  <link rel="stylesheet" href="../../../lessons/ib-math-ai/unit-1/assets/css/lesson-1.2-arithmetic-v6-interactive.css?v=6.0.0">
+  <link rel="stylesheet" href="../../../lessons/ib-math-ai/unit-1/assets/css/lesson-1.2-visual-precision-v6-0-1.css?v=6.0.1">
+  <link rel="stylesheet" href="../../../lessons/ib-math-ai/unit-1/assets/css/katex.css?v=5.2.0">
+  <style>
+    :root{--maroon:#7a1733;--navy:#17324d;--teal:#0f766e;--gold:#c49a34;--paper:#fff;--ink:#17324d;--muted:#617082;--line:#d8dee5}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#eeeae4;color:var(--ink);font-family:Inter,Arial,sans-serif;line-height:1.55;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .notes-toolbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:.7rem;padding:.72rem max(1rem,calc((100vw - 1060px)/2));background:rgba(23,50,77,.96);color:#fff;box-shadow:0 8px 24px rgba(23,50,77,.16)}
+    .notes-toolbar strong{margin-right:auto}.notes-toolbar a,.notes-toolbar button{border:1px solid rgba(255,255,255,.25);background:#fff;color:var(--navy);border-radius:.7rem;padding:.62rem .85rem;font:800 .78rem/1 inherit;text-decoration:none;cursor:pointer}.notes-toolbar .primary{background:#f3d989;color:#4d3510;border-color:#f3d989}
+    .notes-shell{width:min(210mm,calc(100% - 24px));margin:24px auto 60px}.paper{background:var(--paper);box-shadow:0 18px 55px rgba(23,50,77,.12);border-radius:8px;overflow:hidden}
+    .notes-cover{min-height:252mm;padding:18mm 16mm 14mm;display:grid;align-content:space-between;background:linear-gradient(135deg,#fff 0 62%,#f7f1ed 62% 100%);border-top:8px solid var(--maroon)}
+    .cover-kicker{font-weight:900;letter-spacing:.13em;font-size:.75rem;color:var(--maroon)}.notes-cover h1{font-size:clamp(2.15rem,6vw,4.8rem);line-height:.96;margin:18px 0 16px;color:var(--navy);max-width:820px}.notes-cover h1 span{display:block;color:var(--maroon)}
+    .cover-lead{max-width:720px;font-size:1.15rem;color:#42566a}.cover-badges{display:flex;flex-wrap:wrap;gap:.55rem;margin:22px 0}.cover-badges span{border:1px solid #e3d6ce;border-radius:999px;padding:.45rem .7rem;background:#fff;font-weight:800;font-size:.75rem}
+    .student-fields{display:grid;grid-template-columns:2fr 1fr 1fr;gap:12px;margin-top:26px}.student-fields div{border-bottom:1.5px solid #8794a1;padding:8px 2px;color:#66788a;font-size:.78rem;font-weight:800}
+    .edition-note{border-left:5px solid var(--teal);background:#edf8f6;padding:14px 16px;border-radius:8px;color:#315c58;font-size:.86rem}.cover-foot{display:flex;justify-content:space-between;align-items:end;border-top:1px solid #e0e5e9;padding-top:14px;font-size:.72rem;color:#6b7885}.cover-foot b{color:var(--maroon)}
+    #notes-content{padding:0 14mm 18mm}.section-break{margin:16mm -14mm 8mm;padding:9mm 14mm 7mm;background:linear-gradient(90deg,var(--navy),#254c70);color:#fff;break-after:avoid}.section-break small{display:block;color:#f3d989;font-weight:900;letter-spacing:.12em}.section-break h2{margin:.2rem 0 0;font-size:1.65rem}
+    .note-card{position:relative;margin:0 0 8mm;padding:7mm 7mm 6mm;border:1px solid #dfe4e8;border-radius:12px;background:#fff;break-inside:avoid;box-shadow:0 5px 16px rgba(23,50,77,.05)}.note-card::before{content:"";position:absolute;left:-1px;top:12px;bottom:12px;width:5px;border-radius:0 5px 5px 0;background:#8190a0}.note-card[data-kind="content"]::before{background:var(--navy)}.note-card[data-kind="worked"]::before{background:var(--maroon)}.note-card[data-kind="student"]::before,.note-card[data-kind="inquiry"]::before{background:var(--teal)}.note-card[data-kind="misconception"]::before{background:var(--gold)}
+    .note-meta{display:flex;gap:.55rem;align-items:center;margin-bottom:12px}.note-index{display:grid;place-items:center;min-width:28px;height:28px;border-radius:50%;background:#eef2f6;font-weight:900;font-size:.72rem}.note-kind{font-size:.65rem;font-weight:900;letter-spacing:.1em;color:#788695;text-transform:uppercase}.note-title{margin:0 0 14px;font-size:1.2rem;color:var(--navy)}
+    .note-body{font-size:.94rem}.note-body h1,.note-body h2{font-size:1.4rem}.note-body h3{font-size:1rem}.note-body .as-cover,.note-body .cover-start,.note-body button{display:none!important}.note-body textarea,.note-body input,.note-body select{display:none!important}.note-body details.solution-reveal,.note-body .solution-reveal{display:none!important}.note-body .as-worked-steps,.note-body .as-result{display:none!important}.note-body canvas,.note-body iframe{display:none!important}
+    .workspace{margin-top:14px;min-height:104px;border:1px solid #cfd8df;border-radius:10px;background:repeating-linear-gradient(to bottom,#fff 0,#fff 27px,#dce4e9 28px);position:relative}.workspace.tall{min-height:162px}.workspace::before{content:"WORKING / ANNOTATIONS";position:absolute;right:9px;top:7px;background:#fff;padding:0 4px;font-size:.58rem;font-weight:900;letter-spacing:.08em;color:#8c99a4}
+    .interactive-note{margin-top:10px;padding:10px 12px;border:1px dashed #c4ccd3;border-radius:8px;background:#fafbfc;color:#677786;font-size:.76rem}.interactive-note b{color:var(--navy)}
+    .formula-strip{margin:7mm 0;padding:5mm;border-radius:12px;background:#f8f3f0;border:1px solid #e8d9d0}.formula-strip h3{margin:0 0 7px;color:var(--maroon)}.formula-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.formula-grid div{padding:10px;border-radius:8px;background:#fff;border:1px solid #e0e5e9}
+    .page-foot{padding:8mm 14mm 10mm;border-top:1px solid #e1e6ea;color:#6c7985;font-size:.72rem;display:flex;justify-content:space-between}.page-foot b{color:var(--maroon)}
+    .print-only{display:none}
+    @media(max-width:700px){.notes-toolbar strong{display:none}.notes-shell{width:calc(100% - 12px);margin-top:8px}.notes-cover{padding:38px 24px;min-height:760px}.student-fields{grid-template-columns:1fr}.formula-grid{grid-template-columns:1fr}#notes-content{padding:0 18px 30px}.section-break{margin-left:-18px;margin-right:-18px;padding-left:18px;padding-right:18px}.note-card{padding:22px 18px}}
+    @page{size:A4;margin:11mm}
+    @media print{body{background:#fff}.notes-toolbar{display:none}.notes-shell{width:auto;margin:0}.paper{box-shadow:none;border-radius:0;overflow:visible}.notes-cover{min-height:270mm;border-radius:0;break-after:page;padding:16mm 13mm}.print-only{display:block}.section-break{margin-left:-11mm;margin-right:-11mm;padding-left:11mm;padding-right:11mm}.note-card{box-shadow:none;margin-bottom:5mm;padding:5mm 5.5mm}.workspace{min-height:88px}.workspace.tall{min-height:132px}.page-foot{display:none}}
+  </style>
+  <script defer src="../../../lessons/ib-math-ai/unit-1/data/lesson-1.2.js?v=3.0.0"></script>
+  <script defer src="../../../lessons/ib-math-ai/unit-1/data/lesson-1.2-v3.js?v=3.0.0"></script>
+  <script defer src="../../../lessons/ib-math-ai/unit-1/data/unit-1-v5-content-data.js?v=5.3.0"></script>
+  <script defer src="../../../lessons/ib-math-ai/unit-1/data/unit-1-v5-apply.js?v=5.3.0"></script>
+  <script defer src="../../../lessons/ib-math-ai/unit-1/data/lesson-1.2-arithmetic-definitive-v6.js?v=6.0.0"></script>
+  <script defer src="../../../lessons/ib-math-ai/unit-1/data/lesson-1.2-arithmetic-v6-polish.js?v=6.0.0"></script>
+  <script defer src="../../../lessons/ib-math-ai/unit-1/data/lesson-1.2-visual-precision-v6-0-1.js?v=6.0.1"></script>
+  <script defer src="../../../lessons/ib-math-ai/unit-1/assets/js/katex-global.js"></script>
+</head>
+<body>
+  <div class="notes-toolbar">
+    <strong>ECHS · IB Mathematics AI SL · Full Notes</strong>
+    <a href="../../../lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.2_arithmetic_sequences_ECHS.html">Open lesson</a>
+    <button class="primary" type="button" onclick="window.print()">Print / Save PDF</button>
+  </div>
+  <main class="notes-shell paper">
+    <section class="notes-cover">
+      <div>
+        <div class="cover-kicker">ECHS MATHEMATICS · IB DIPLOMA PROGRAMME · STUDENT FULL NOTES</div>
+        <h1><span>1.2</span> Arithmetic Sequences and Series</h1>
+        <p class="cover-lead">A complete classroom companion for the ECHS lesson: definitions, notation, formulas, worked-example prompts, Your Turn questions, IB-style reasoning, modelling and calculator-aware practice — all on paper before the lesson begins.</p>
+        <div class="cover-badges"><span>Arithmetic sequences</span><span>Series & partial sums</span><span>Sigma notation</span><span>Inverse problems</span><span>Thresholds</span><span>Discrete models</span></div>
+        <div class="student-fields"><div>Name</div><div>Class</div><div>Date</div></div>
+      </div>
+      <div>
+        <div class="edition-note"><b>Student edition:</b> core notes and every classroom prompt are visible. Worked-example solutions and Reveal Answers are intentionally omitted so the teacher can build the mathematics live and students have space to work.</div>
+        <div class="cover-foot"><span><b>ECHS</b> · Mathematics Department</span><span>Lesson-synchronised printable edition</span></div>
+      </div>
+    </section>
+    <section id="notes-content" aria-live="polite">
+      <div class="formula-strip">
+        <h3>Core formula reference</h3>
+        <div class="formula-grid">
+          <div>Arithmetic structure: \(u_{n+1}-u_n=d\)</div>
+          <div>Nth term: \(u_n=u_1+(n-1)d\)</div>
+          <div>Finite sum: \(S_n=\frac n2(u_1+u_n)\)</div>
+          <div>Equivalent form: \(S_n=\frac n2[2u_1+(n-1)d]\)</div>
+          <div>Recover a term: \(u_n=S_n-S_{n-1}\)</div>
+          <div>Shifted-index count: \(n-m+1\)</div>
+        </div>
+      </div>
+      <p id="loading-notes">Building the lesson-synchronised notes…</p>
+    </section>
+    <footer class="page-foot"><span><b>ECHS Mathematics</b> · IB Mathematics: Applications and Interpretation SL</span><span>1.2 · Arithmetic Sequences and Series</span></footer>
+  </main>
+  <noscript><p style="padding:30px">JavaScript is required to assemble the lesson-synchronised notes.</p></noscript>
+  <script>
+    (function(){
+      'use strict';
+      const interactiveSelector='canvas,iframe,.as-slider,.as-interactive,.as-graph-interactive,[data-action],[data-drag]';
+      const solutionSelector='details.solution-reveal,.solution-reveal,.as-result,.answer-reveal,.markscheme-reveal';
+      const workedSelector='.as-worked-steps,.worked-steps,.solution-steps';
+      function workspace(tall=false){const div=document.createElement('div');div.className='workspace'+(tall?' tall':'');return div;}
+      function clean(slide){
+        const host=document.createElement('div');host.className='note-body';host.innerHTML=slide.html||'';
+        host.querySelectorAll('script,button,'+solutionSelector).forEach(el=>el.remove());
+        const worked=String(slide.kind||'').toLowerCase()==='worked';
+        if(worked)host.querySelectorAll(workedSelector).forEach(el=>el.remove());
+        let needsWorkspace=worked||['student','inquiry','checkpoint'].includes(String(slide.kind||'').toLowerCase());
+        host.querySelectorAll('textarea,input,select').forEach(el=>{needsWorkspace=true;el.remove();});
+        let hadInteractive=false;host.querySelectorAll(interactiveSelector).forEach(el=>{hadInteractive=true;el.remove();});
+        if(hadInteractive){const msg=document.createElement('div');msg.className='interactive-note';msg.innerHTML='<b>Interactive companion:</b> use the matching lesson screen for the dynamic graph, slider or GDC interaction; record the mathematical conclusion here.';host.append(msg);needsWorkspace=true;}
+        if(needsWorkspace)host.append(workspace(worked||String(slide.kind||'').toLowerCase()==='inquiry'));
+        return host;
+      }
+      function render(){
+        const data=window.LESSON_DATA;const target=document.getElementById('notes-content');const loading=document.getElementById('loading-notes');
+        if(!data||!Array.isArray(data.slides)){if(loading)loading.textContent='The notes data could not be loaded. Open the interactive lesson and refresh this page.';return;}
+        if(loading)loading.remove();
+        const skipTitle=/^(solution|answers?|teacher key)/i;let previousSection='';let count=0;
+        data.slides.forEach((slide,index)=>{
+          const kind=String(slide.kind||'content').toLowerCase();const title=String(slide.title||'');
+          if(kind==='cover'||kind==='solution'||skipTitle.test(title))return;
+          const section=String(slide.section||'Lesson notes');
+          if(section!==previousSection){const head=document.createElement('div');head.className='section-break';head.innerHTML='<small>LESSON 1.2 · FULL NOTES</small><h2>'+section+'</h2>';target.append(head);previousSection=section;}
+          const card=document.createElement('article');card.className='note-card';card.dataset.kind=kind;count+=1;
+          const meta=document.createElement('div');meta.className='note-meta';meta.innerHTML='<span class="note-index">'+count+'</span><span class="note-kind">'+kind+'</span>';
+          const h=document.createElement('h3');h.className='note-title';h.textContent=title||('Lesson note '+count);
+          card.append(meta,h,clean(slide));target.append(card);
+        });
+        document.title='1.2 Full Notes · Arithmetic Sequences and Series | ECHS Mathematics';
+        document.body.dataset.notesReady='1';
+      }
+      window.addEventListener('DOMContentLoaded',render,{once:true});
+    })();
+  </script>
+</body>
+</html>
