@@ -9,6 +9,7 @@ const rel={
   a:'lessons/ib-math-ai/unit-2/data/lesson-2.2-v5-content-a.js',
   b:'lessons/ib-math-ai/unit-2/data/lesson-2.2-v5-content-b.js',
   c:'lessons/ib-math-ai/unit-2/data/lesson-2.2-v5-content-c.js',
+  prune:'lessons/ib-math-ai/unit-2/data/lesson-2.2-v5-prune.js',
   finalize:'lessons/ib-math-ai/unit-2/data/lesson-2.2-v5-finalize.js',
   practiceA:'lessons/ib-math-ai/unit-2/data/lesson-2.2-v5-practice-a.js',
   practiceB:'lessons/ib-math-ai/unit-2/data/lesson-2.2-v5-practice-b.js',
@@ -23,7 +24,7 @@ const rel={
 };
 const read=key=>fs.readFileSync(path.join(root,rel[key]),'utf8');
 const context={window:{},console};context.window.window=context.window;vm.createContext(context);
-for(const key of ['build','compat','a','b','c','finalize','practiceA','practiceB','assessment','precision'])vm.runInContext(read(key),context,{filename:rel[key]});
+for(const key of ['build','compat','a','b','c','prune','finalize','practiceA','practiceB','assessment','precision'])vm.runInContext(read(key),context,{filename:rel[key]});
 const data=context.window.LESSON_DATA;
 const fail=(condition,message)=>{if(!condition)throw new Error(message);};
 const unique=(values,label)=>fail(new Set(values).size===values.length,`${label} contains duplicates`);
@@ -80,7 +81,7 @@ for(const token of ['2:zero','4:maximum','3:minimum','5:intersect','TBLSET','Lef
 fail(!ti.includes('ECHS GDC'),'TI file contains ECHS GDC');
 
 const html=read('html');
-for(const key of ['build','compat','a','b','c','finalize','practiceA','practiceB','assessment','precision','graphics','visualPrecision','interactions','ti84','autoload'])fail(html.includes(path.basename(rel[key])),`HTML does not load ${path.basename(rel[key])}`);
+for(const key of ['build','compat','a','b','c','prune','finalize','practiceA','practiceB','assessment','precision','graphics','visualPrecision','interactions','ti84','autoload'])fail(html.includes(path.basename(rel[key])),`HTML does not load ${path.basename(rel[key])}`);
 fail(!/lesson-2\.2-definitive-v3|lesson-2\.2-ti84-workflows-v3|lesson-2\.2-ti84-classroom-ui-v3/.test(html),'old v3 runtime remains loaded');
 
 console.log(JSON.stringify({release:data.version,slides:data.slides.length,practice:data.practice.length,levels:Object.fromEntries(['Foundation','Application','Reasoning','Challenge'].map(level=>[level,data.practice.filter(item=>item.level===level).length])),quiz:data.quiz.length,tasks:data.exam.length,visuals:visualIds.length,ti84:['zero','minimum','maximum','intersect','table']},null,2));
