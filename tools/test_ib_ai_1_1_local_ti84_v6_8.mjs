@@ -19,8 +19,8 @@ const requireText=(text,needle,label)=>{if(!text.includes(needle))failures.push(
 const forbidText=(text,needle,label)=>{if(text.includes(needle))failures.push(`${label} still contains ${needle}`);};
 
 for(const marker of [
-  'lesson-1.1-ti84-real-v6-9.css?v=6.9.0',
-  'lesson-1.1-ti84-real-inline-v6-9.js?v=6.9.0',
+  'lesson-1.1-ti84-real-v6-9.css?v=6.9.1',
+  'lesson-1.1-ti84-real-inline-v6-9.js?v=6.9.1',
   'lesson-1.1-ti84-local-bridge-v6-8-2.js?v=6.8.2',
   '1.1 · Scientific Notation, Approximation and Error'
 ])requireText(html,marker,'Lesson 1.1 HTML');
@@ -37,6 +37,12 @@ for(const marker of [
   "model:'TI-84 Plus CE'",
   "provider:'ti84calc.com'",
   'realCalculatorInterface:true',
+  "layoutRelease:'6.9.1'",
+  'horizontalShellScroll:false',
+  'visibleHeaderAnchoring:true',
+  'function visibleRouteBottom(topbarBottom)',
+  'rect.top<=topbarBottom+90',
+  'settleGeometry()',
   'sandbox="allow-scripts allow-same-origin allow-forms allow-pointer-lock allow-popups allow-modals allow-downloads"',
   "document.addEventListener('echs:ti84:simulator',open)",
   "document.body.classList.add('ti84-inline-open')",
@@ -46,13 +52,18 @@ for(const marker of [
 ])requireText(runtime,marker,'Real TI-84 runtime');
 
 for(const marker of [
-  ':root{--ti84-inline-width:',
+  ':root{--ti84-inline-width:clamp(500px,36vw,640px)',
   '.ti84-inline-dock.open',
   'body.ti84-inline-open .app-shell',
   'body.ti84-inline-open .footer',
-  '.ti84-inline-frame-shell iframe',
-  '@media(max-width:820px)'
+  '.ti84-inline-frame-shell{position:relative;min-width:0;min-height:0;overflow:hidden',
+  '.ti84-inline-frame-shell iframe{display:none;width:100%;height:100%;min-width:0;min-height:0',
+  '@media(max-width:980px)'
 ])requireText(css,marker,'Real TI-84 styles');
+for(const forbidden of [
+  '.ti84-inline-frame-shell{position:relative;min-height:0;overflow:auto',
+  'min-height:900px'
+])forbidText(css,forbidden,'Real TI-84 styles');
 
 for(const marker of ['echs:ti84:open','echs:ti84:simulator','pairedPracticeConnected:true','.ti84-paired-strip button'])requireText(bridge,marker,'TI-84 bridge');
 for(const marker of ['core (teach in class)','estimated teaching time:','extension','practice','revision'])requireText(learner,marker,'Learner-label cleanup');
@@ -81,7 +92,7 @@ for(const marker of [
 forbidText(portal,'simulator:"ECHS local lesson simulator"','Unit 1 portal metadata');
 forbidText(portal,'externalDependency:false','Unit 1 portal metadata');
 
-console.log('IB AI SL Lesson 1.1 real TI-84 Plus CE v6.9 validation');
+console.log('IB AI SL Lesson 1.1 real TI-84 Plus CE v6.9.1 layout validation');
 console.log(`Root: ${root}`);
 console.log(`Failures: ${failures.length}`);
 for(const failure of failures)console.log(`- ${failure}`);
