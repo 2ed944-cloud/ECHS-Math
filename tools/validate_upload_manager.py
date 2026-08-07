@@ -72,9 +72,9 @@ require(package_validator,['ALLOWED_COURSES','ap-calculus','target_courses','exa
 require(deploy,['upload-manager-api','practice-bank-api','setup-api','supabase functions deploy','/health'],'Backend deployment health contract')
 require(supabase_config,['[functions.upload-manager-api]','[functions.practice-bank-api]','verify_jwt = false'],'Supabase upload-manager function config')
 require(ib_update,[
- 'g11-ib-ai','window.ECHS_COURSES.filter','6 lessons · 397 purposeful Learn screens',
- 'Number Foundations, Scientific Notation and Approximation','Financial Applications','Technology for Equations and Systems',
- 'IB_AI_SL_1.1_standard_form_ECHS.html','IB_AI_SL_1.4_financial_models_ECHS.html','IB_AI_SL_1.6_technology_equations_ECHS.html'
+ 'g11-ib-ai','window.ECHS_COURSES.filter','6 lessons · 471 purposeful Learn screens',
+ 'Scientific Notation, Approximation and Error','Financial Applications','Technology for Equations and Systems',
+ 'standard_form','financial_models','technology_equations'
 ],'Canonical IB Unit 1 portal update')
 require(ib_engine,['window.LESSON_DATA','renderPractice()','renderExam()','renderQuiz()','renderReview()','routeButtons.forEach'],'IB local lesson engine')
 require(ib_theme,['.topbar','.routebar','.question-shell','.unit-home','@media(max-width:580px)'],'IB local lesson theme')
@@ -87,7 +87,7 @@ active=[
  ('1.3','IB_AI_SL_1.3_geometric_sequences_ECHS.html',['lesson-1.3.js','lesson-1.3-geometric-definitive-v6.js']),
  ('1.4','IB_AI_SL_1.4_financial_models_ECHS.html',['lesson-1.4.js','lesson-1.4-financial-v6-foundations.js','lesson-1.4-financial-v6-assessment.js']),
  ('1.5','IB_AI_SL_1.5_logarithms_ECHS.html',['lesson-1.5.js']),
- ('1.6','IB_AI_SL_1.6_technology_equations_ECHS.html',['lesson-1.8.js','lesson-1.6-technology-renumber-v6.js'])
+ ('1.6','IB_AI_SL_1.6_technology_equations_ECHS.html',['lesson-1.8.js','lesson-1.6-technology-v6-foundations.js','lesson-1.6-technology-v6-assessment.js'])
 ]
 for number,name,data_files in active:
  text=read(f'lessons/ib-math-ai/unit-1/lessons/{name}')
