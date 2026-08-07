@@ -79,15 +79,17 @@ lesson11 = req("lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.1_standard_form_ECH
 for marker in ("ap-screen-lesson", 'class="topbar"', 'class="routebar"', 'data-route="practice"', "../assets/js/engine.js"):
     require(lesson11, marker, "Lesson 1.1 wrapper")
 for marker in (
+    "lesson-1.1-ti84-real-v6-9.css?v=6.9.0",
+    "lesson-1.1-ti84-real-inline-v6-9.js?v=6.9.0",
+    "lesson-1.1-ti84-local-bridge-v6-8-2.js?v=6.8.2",
+    "1.1 · Scientific Notation, Approximation and Error",
+):
+    require(lesson11, marker, "Lesson 1.1 real TI-84 wrapper")
+for obsolete in (
     "lesson-1.1-ti84-local-v6-8.css?v=6.8.0",
     "lesson-1.1-ti84-local-v6-8.js?v=6.8.0",
     "lesson-1.1-ti84-local-input-v6-8-1.js?v=6.8.1",
-    "1.1 · Scientific Notation, Approximation and Error",
-):
-    require(lesson11, marker, "Lesson 1.1 local TI-84 wrapper")
-for obsolete in (
     "lesson-1.1-ti84-inline-dock-v6-4.js",
-    "lesson-1.6-ti84-inline-dock-v6-3.css",
     "lesson-1.1-ti84-simulator-v6-7.js",
     "lesson-1.1-ti84-simulator-v6-7.css",
 ):
@@ -149,7 +151,7 @@ lessons = catalog.get("lessons", [])
 if [item.get("number") for item in lessons] != ["1.1", "1.2", "1.3", "1.4", "1.5", "1.6"]:
     errors.append("Catalog does not expose the six-lesson sequence")
 expected_meta = {
-    "1.1": ("Scientific Notation, Approximation and Error", "6.8.0", 79, 96, 14, 5),
+    "1.1": ("Scientific Notation, Approximation and Error", "6.9.0", 79, 96, 14, 5),
     "1.2": ("Arithmetic Sequences and Series", "6.0.0", 73, 96, 14, 5),
     "1.3": ("Geometric Sequences and Series", "6.0.0", 73, 96, 14, 5),
     "1.4": ("Financial Applications", "6.0.0", 100, 120, 16, 6),
@@ -164,10 +166,15 @@ for number, expected in expected_meta.items():
 lesson11_catalog = next((entry for entry in lessons if entry.get("number") == "1.1"), {})
 if lesson11_catalog.get("default_scope") != "IB SL Core":
     errors.append("Lesson 1.1 catalog default scope is missing")
-if lesson11_catalog.get("calculator", {}).get("external_dependency") is not False:
-    errors.append("Lesson 1.1 catalog still depends on an external calculator")
-if lesson11_catalog.get("calculator", {}).get("simulator") != "ECHS local lesson simulator":
-    errors.append("Lesson 1.1 local simulator metadata is missing")
+calculator = lesson11_catalog.get("calculator", {})
+if calculator.get("external_dependency") is not True:
+    errors.append("Lesson 1.1 catalog real calculator dependency flag is missing")
+if calculator.get("model") != "TI-84 Plus CE" or calculator.get("provider") != "ti84calc.com":
+    errors.append("Lesson 1.1 real TI-84 model/provider metadata is missing")
+if calculator.get("simulator") != "real TI-84 Plus CE online simulator":
+    errors.append("Lesson 1.1 real simulator metadata is missing")
+if calculator.get("lazy_loaded") is not True or calculator.get("sandboxed") is not True:
+    errors.append("Lesson 1.1 simulator loading/sandbox metadata is missing")
 for number, codes in {
     "1.4": ["1.4A", "1.4B", "1.4C", "1.4D", "1.4E", "1.4F", "1.4G"],
     "1.5": ["1.5A", "1.5B", "1.5C", "1.5D"],
@@ -191,9 +198,11 @@ for marker in (
     "600 studio questions",
     "31 extended tasks",
     '"1.1","Scientific Notation, Approximation and Error"',
-    '"6.8.0",79,96,14,5',
-    'simulator:"ECHS local lesson simulator"',
-    'externalDependency:false',
+    '"6.9.0",79,96,14,5',
+    'model:"TI-84 Plus CE"',
+    'simulator:"real TI-84 Plus CE online simulator"',
+    'provider:"ti84calc.com"',
+    'externalDependency:true',
     '"1.6","Technology for Equations and Systems"',
     '"6.0.0",73,96,14,5',
     'code:"1.6A"',
@@ -208,10 +217,10 @@ for text, label in ((start, "START_HERE"), (guide, "Teacher Guide")):
 require(start, "5 IB tasks", "START_HERE")
 require(guide, "Lesson 1.6 · 73 / 96 / 14 / 5", "Teacher Guide")
 
-# Validate the local Lesson 1.1 simulator and the independent definitive lesson contracts.
-run(["node", "--check", "lessons/ib-math-ai/unit-1/data/lesson-1.1-ti84-local-v6-8.js"], "Lesson 1.1 local TI-84 syntax")
-run(["node", "--check", "lessons/ib-math-ai/unit-1/data/lesson-1.1-ti84-local-input-v6-8-1.js"], "Lesson 1.1 local TI-84 input syntax")
-run(["node", "tools/test_ib_ai_1_1_local_ti84_v6_8.mjs", "."], "Lesson 1.1 local TI-84 validation")
+# Validate the real Lesson 1.1 TI-84 simulator and the independent definitive lesson contracts.
+run(["node", "--check", "lessons/ib-math-ai/unit-1/data/lesson-1.1-ti84-real-inline-v6-9.js"], "Lesson 1.1 real TI-84 syntax")
+run(["node", "--check", "lessons/ib-math-ai/unit-1/data/lesson-1.1-ti84-local-bridge-v6-8-2.js"], "Lesson 1.1 TI-84 bridge syntax")
+run(["node", "tools/test_ib_ai_1_1_local_ti84_v6_8.mjs", "."], "Lesson 1.1 real TI-84 validation")
 
 overlay = ROOT / "lessons/ib-math-ai/unit-1/data/lesson-1.5-exponents-logarithms-definitive-v6.js"
 run(["node", "--check", str(overlay)], "Lesson 1.5 JavaScript syntax")

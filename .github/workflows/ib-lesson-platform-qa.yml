@@ -56,6 +56,20 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Detect Unit 2 changes
+        id: changes
+        if: github.event_name == 'pull_request'
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git diff --name-only "${{ github.event.pull_request.base.sha }}" "${{ github.event.pull_request.head.sha }}" | grep -Eq '^(lessons/ib-math-ai/unit-2/|data/ib-math-ai-unit-2-update\.js$|tools/test_ib_ai_2_1_)'; then
+            echo "unit2=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "unit2=false" >> "$GITHUB_OUTPUT"
+          fi
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -82,10 +96,9 @@ jobs:
       - name: Validate Lesson 1.1 graphics and KaTeX precision hotfix
         run: python tools/test_ib_ai_1_1_v6_1_graphics_katex.py .
 
-      - name: Validate Lesson 1.1 local TI-84 release
+      - name: Validate Lesson 1.1 real TI-84 Plus CE release
         run: |
-          node --check lessons/ib-math-ai/unit-1/data/lesson-1.1-ti84-local-v6-8.js
-          node --check lessons/ib-math-ai/unit-1/data/lesson-1.1-ti84-local-input-v6-8-1.js
+          node --check lessons/ib-math-ai/unit-1/data/lesson-1.1-ti84-real-inline-v6-9.js
           node --check lessons/ib-math-ai/unit-1/data/lesson-1.1-ti84-local-bridge-v6-8-2.js
           node tools/test_ib_ai_1_1_local_ti84_v6_8.mjs .
 
@@ -117,9 +130,11 @@ jobs:
         run: node tools/test_ib_ai_1_6_definitive_v6.mjs
 
       - name: Validate Lesson 2.1 definitive v3
+        if: github.event_name == 'workflow_dispatch' || steps.changes.outputs.unit2 == 'true'
         run: python tools/test_ib_ai_2_1_definitive_v3.py .
 
       - name: Validate Lesson 2.1 v3.0.1 precision
+        if: github.event_name == 'workflow_dispatch' || steps.changes.outputs.unit2 == 'true'
         run: python tools/test_ib_ai_2_1_v3_0_1_precision.py .
 
       - name: Validate Unit 1 release metadata

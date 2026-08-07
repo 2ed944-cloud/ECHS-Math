@@ -26,13 +26,12 @@ jobs:
           set -euo pipefail
           for attempt in $(seq 1 36); do
             echo "Lesson 1.1 live verification attempt ${attempt}/36"
-            rm -f /tmp/echs-deployment.json /tmp/echs-l11.html /tmp/echs-l11-runtime.js /tmp/echs-l11-input.js /tmp/echs-l11-bridge.js /tmp/echs-l11.css /tmp/echs-u1.js
+            rm -f /tmp/echs-deployment.json /tmp/echs-l11.html /tmp/echs-l11-runtime.js /tmp/echs-l11-bridge.js /tmp/echs-l11.css /tmp/echs-u1.js
             curl --fail --silent --show-error --header 'Cache-Control: no-cache' "${SITE_ROOT}/deployment.json?sha=${EXPECTED_SHA}" --output /tmp/echs-deployment.json || true
             curl --fail --silent --show-error --header 'Cache-Control: no-cache' "${SITE_ROOT}/lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.1_standard_form_ECHS.html?sha=${EXPECTED_SHA}" --output /tmp/echs-l11.html || true
-            curl --fail --silent --show-error --header 'Cache-Control: no-cache' "${SITE_ROOT}/lessons/ib-math-ai/unit-1/data/lesson-1.1-ti84-local-v6-8.js?sha=${EXPECTED_SHA}" --output /tmp/echs-l11-runtime.js || true
-            curl --fail --silent --show-error --header 'Cache-Control: no-cache' "${SITE_ROOT}/lessons/ib-math-ai/unit-1/data/lesson-1.1-ti84-local-input-v6-8-1.js?sha=${EXPECTED_SHA}" --output /tmp/echs-l11-input.js || true
+            curl --fail --silent --show-error --header 'Cache-Control: no-cache' "${SITE_ROOT}/lessons/ib-math-ai/unit-1/data/lesson-1.1-ti84-real-inline-v6-9.js?sha=${EXPECTED_SHA}" --output /tmp/echs-l11-runtime.js || true
             curl --fail --silent --show-error --header 'Cache-Control: no-cache' "${SITE_ROOT}/lessons/ib-math-ai/unit-1/data/lesson-1.1-ti84-local-bridge-v6-8-2.js?sha=${EXPECTED_SHA}" --output /tmp/echs-l11-bridge.js || true
-            curl --fail --silent --show-error --header 'Cache-Control: no-cache' "${SITE_ROOT}/lessons/ib-math-ai/unit-1/assets/css/lesson-1.1-ti84-local-v6-8.css?sha=${EXPECTED_SHA}" --output /tmp/echs-l11.css || true
+            curl --fail --silent --show-error --header 'Cache-Control: no-cache' "${SITE_ROOT}/lessons/ib-math-ai/unit-1/assets/css/lesson-1.1-ti84-real-v6-9.css?sha=${EXPECTED_SHA}" --output /tmp/echs-l11.css || true
             curl --fail --silent --show-error --header 'Cache-Control: no-cache' "${SITE_ROOT}/data/ib-math-ai-unit-1-update.js?sha=${EXPECTED_SHA}" --output /tmp/echs-u1.js || true
             if python - <<'PY'
           import json
@@ -44,7 +43,6 @@ jobs:
               "deployment": Path("/tmp/echs-deployment.json"),
               "html": Path("/tmp/echs-l11.html"),
               "runtime": Path("/tmp/echs-l11-runtime.js"),
-              "input": Path("/tmp/echs-l11-input.js"),
               "bridge": Path("/tmp/echs-l11-bridge.js"),
               "css": Path("/tmp/echs-l11.css"),
               "portal": Path("/tmp/echs-u1.js"),
@@ -59,34 +57,35 @@ jobs:
           checks = [
               deployment.get("sha") == expected,
               "1.1 · Scientific Notation, Approximation and Error" in text["html"],
-              "lesson-1.1-ti84-local-v6-8.css?v=6.8.0" in text["html"],
-              "lesson-1.1-ti84-local-v6-8.js?v=6.8.0" in text["html"],
-              "lesson-1.1-ti84-local-input-v6-8-1.js?v=6.8.1" in text["html"],
+              "lesson-1.1-ti84-real-v6-9.css?v=6.9.0" in text["html"],
+              "lesson-1.1-ti84-real-inline-v6-9.js?v=6.9.0" in text["html"],
               "lesson-1.1-ti84-local-bridge-v6-8-2.js?v=6.8.2" in text["html"],
-              "lesson-1.1-ti84-inline-dock-v6-4.js" not in text["html"],
-              "lesson-1.1-ti84-simulator-v6-7.js" not in text["html"],
-              "ECHS_TI84_LOCAL_ENGINE_1_1" in text["runtime"],
-              "externalDependency:false" in text["runtime"],
-              "iframe:false" in text["runtime"],
-              "ti84calc.com" not in text["runtime"],
-              "multiOperandEE:true" in text["input"],
-              "currentNumberSegment" in text["input"],
+              "lesson-1.1-ti84-local-v6-8.css?v=6.8.0" not in text["html"],
+              "lesson-1.1-ti84-local-v6-8.js?v=6.8.0" not in text["html"],
+              "lesson-1.1-ti84-local-input-v6-8-1.js?v=6.8.1" not in text["html"],
+              "const URL='https://ti84calc.com/ti84calc'" in text["runtime"],
+              "model:'TI-84 Plus CE'" in text["runtime"],
+              "provider:'ti84calc.com'" in text["runtime"],
+              "realCalculatorInterface:true" in text["runtime"],
+              "sandbox=\"allow-scripts allow-same-origin allow-forms allow-pointer-lock allow-popups allow-modals allow-downloads\"" in text["runtime"],
               "pairedPracticeConnected:true" in text["bridge"],
               "echs:ti84:simulator" in text["bridge"],
-              "#l11-ti84-local.open" in text["css"],
-              "margin-right:0!important" in text["css"],
+              ".ti84-inline-dock.open" in text["css"],
+              "body.ti84-inline-open .app-shell" in text["css"],
               '"1.1","Scientific Notation, Approximation and Error"' in text["portal"],
+              '"6.9.0",79,96,14,5' in text["portal"],
+              'model:"TI-84 Plus CE"' in text["portal"],
+              'provider:"ti84calc.com"' in text["portal"],
+              'externalDependency:true' in text["portal"],
               '{label:"Complete interactive lesson",url,type:"resource"}' in text["portal"],
-              '"1.1","Number Foundations, Scientific Notation and Approximation"' not in text["portal"],
-              "Complete interactive lesson · v${release}" not in text["portal"],
           ]
           raise SystemExit(0 if all(checks) else 1)
           PY
             then
-              echo "Live IB AI Lesson 1.1 local TI-84 verification: PASS"
+              echo "Live IB AI Lesson 1.1 real TI-84 Plus CE verification: PASS"
               exit 0
             fi
             sleep 15
           done
-          echo "The exact Lesson 1.1 release was not visible on GitHub Pages for ${EXPECTED_SHA}" >&2
+          echo "The exact Lesson 1.1 real TI-84 release was not visible on GitHub Pages for ${EXPECTED_SHA}" >&2
           exit 1
