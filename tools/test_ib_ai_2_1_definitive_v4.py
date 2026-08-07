@@ -161,7 +161,7 @@ for marker in ('cover-parking','mapping-types','vertical-test','complete-feature
     if marker not in graphics:errors.append(f'Graphics runtime missing marker: {marker}')
 for marker in ('data-cover-next','data-inverse-x','route-jump','MutationObserver'):
     if marker not in interactions:errors.append(f'Interaction runtime missing marker: {marker}')
-for marker in ('408','400','100','72 Learn screens','80 Practice Studio questions','16-question quiz','6 IB tasks'):
+for marker in ('408','400','104','72 Learn screens','80 Practice Studio questions','16-question quiz','6 IB tasks'):
     if marker not in start+portal:errors.append(f'Unit 2 metadata missing marker: {marker}')
 
 print('IB Mathematics AI SL Lesson 2.1 v4 validation')
