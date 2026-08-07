@@ -28,26 +28,25 @@ jobs:
           from pathlib import Path
           p = Path('.github/workflows/deploy-pages.yml')
           text = p.read_text(encoding='utf-8')
-          old = '''              "lesson-1.4-ti84-finance-classroom-v6-3.js" in text["finance"],
-              "lesson-1.4-ti84-finance-inline-v6-3.js" in text["finance"],
-              "lesson-1.6-multiplicity-2-fix-v6-3-3.js" in text["technology"],
-              "lesson-1.6-ti84-inline-dock-v6-3.js" in text["technology"],'''
-          new = '''              "unit-1-gdc-integration-v7.css" in text["finance"],
+          replacements = {
+              '              "lesson-1.4-ti84-finance-classroom-v6-3.js" in text["finance"],': '''              "unit-1-gdc-integration-v7.css" in text["finance"],
               "unit-1-gdc-integration-v7.js" in text["finance"],
-              "lesson-1.4-ti84-finance-classroom-v6-3.js" not in text["finance"],
-              "lesson-1.4-ti84-finance-inline-v6-3.js" not in text["finance"],
-              "lesson-1.6-multiplicity-2-fix-v6-3-3.js" in text["technology"],
+              "lesson-1.4-ti84-finance-classroom-v6-3.js" not in text["finance"],''',
+              '              "lesson-1.4-ti84-finance-inline-v6-3.js" in text["finance"],': '              "lesson-1.4-ti84-finance-inline-v6-3.js" not in text["finance"],',
+              '              "lesson-1.6-multiplicity-2-fix-v6-3-3.js" in text["technology"],': '''              "lesson-1.6-multiplicity-2-fix-v6-3-3.js" in text["technology"],
               "unit-1-gdc-integration-v7.css" in text["technology"],
               "unit-1-gdc-integration-v7.js" in text["technology"],
-              "lesson-1.6-ti84-classroom-runtime-v6-2-1.js" not in text["technology"],
-              "lesson-1.6-ti84-inline-dock-v6-3.js" not in text["technology"],'''
-          if old not in text:
-              raise SystemExit('Expected legacy TI-84 live verification block not found')
-          text = text.replace(old, new, 1)
+              "lesson-1.6-ti84-classroom-runtime-v6-2-1.js" not in text["technology"],''',
+              '              "lesson-1.6-ti84-inline-dock-v6-3.js" in text["technology"],': '              "lesson-1.6-ti84-inline-dock-v6-3.js" not in text["technology"],',
+          }
+          for old, new in replacements.items():
+              if old not in text:
+                  raise SystemExit(f'Expected verification line not found: {old.strip()}')
+              text = text.replace(old, new, 1)
           p.write_text(text, encoding='utf-8', newline='\n')
           PY
           git diff --check -- .github/workflows/deploy-pages.yml
-          grep -n "unit-1-gdc-integration-v7" .github/workflows/deploy-pages.yml
+          grep -n "unit-1-gdc-integration-v7\|ti84-finance-classroom-v6-3\|ti84-inline-dock-v6-3" .github/workflows/deploy-pages.yml | tail -20
       - name: Commit verification update
         run: |
           git config user.name "ECHS Math Integration Bot"
