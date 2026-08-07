@@ -236,10 +236,15 @@ jobs:
               "lesson-access-guard.js" in text["lesson"],
               "lesson-1.4-ti84-finance-v6-3.css" in text["finance"],
               "lesson-1.4-ti84-finance-mobile-fix-v6-3-1.css" in text["finance"],
-              "lesson-1.4-ti84-finance-classroom-v6-3.js" in text["finance"],
-              "lesson-1.4-ti84-finance-inline-v6-3.js" in text["finance"],
+              "unit-1-gdc-integration-v7.css" in text["finance"],
+              "unit-1-gdc-integration-v7.js" in text["finance"],
+              "lesson-1.4-ti84-finance-classroom-v6-3.js" not in text["finance"],
+              "lesson-1.4-ti84-finance-inline-v6-3.js" not in text["finance"],
               "lesson-1.6-multiplicity-2-fix-v6-3-3.js" in text["technology"],
-              "lesson-1.6-ti84-inline-dock-v6-3.js" in text["technology"],
+              "unit-1-gdc-integration-v7.css" in text["technology"],
+              "unit-1-gdc-integration-v7.js" in text["technology"],
+              "lesson-1.6-ti84-classroom-runtime-v6-2-1.js" not in text["technology"],
+              "lesson-1.6-ti84-inline-dock-v6-3.js" not in text["technology"],
               'const VERSION = "echs-platform-school-control-v3-' in text["worker"],
           ]
           raise SystemExit(0 if all(checks) else 1)
