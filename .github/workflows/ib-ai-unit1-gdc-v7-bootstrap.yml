@@ -44,3 +44,5 @@ jobs:
           git status --short
           git commit -m "Integrate IB AI Unit 1 local TI-84/GDC workflows"
           git push origin HEAD:agent/ib-ai-unit1-gdc-integration-v7
+
+# retrigger: verify and apply integration before merge
