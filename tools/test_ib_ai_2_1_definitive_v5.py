@@ -76,7 +76,6 @@ if data:
    for k in ('prompt','answer','markscheme'):
     if not p.get(k):errors.append(f'Incomplete {t.get("id")} {p.get("label")} {k}')
     check_string(p.get(k),f'{t.get("id")} {p.get("label")} {k}')
- # numerical audited values
  expected={'A18':2.115,'A20':10,'C09':0.390,'C10':2.214,'C11':14,'C12':7.77}
  byid={q['id']:q for q in practice}
  for key,value in expected.items():
@@ -98,7 +97,7 @@ for marker in ('Zero','Maximum','Intersect','TABLE','externalService:false','v5-
  if marker not in read(JS[1]):errors.append(f'TI-84 layer missing {marker}')
 
 portal=read(PORTAL);start=read(START);index=read(INDEX);ib_workflow=read(IB_WORKFLOW);visual_workflow=read(VISUAL_WORKFLOW);browser=read(BROWSER)
-for marker in ('424 Learn screens','416 Practice questions','82 Quiz questions','24 extended tasks',"release:'5.0.0'",'learn:88','practice:96','quiz:18','tasks:6'):
+for marker in ('424 Learn screens','416 Practice questions','82 Quiz questions','24 extended tasks','release: "5.0.0"','learn: 88','practice: 96','quiz: 18','tasks: 6'):
  if marker not in portal:errors.append(f'Unit 2 portal metadata missing {marker}')
 for page,label in ((start,'START_HERE'),(index,'Unit 2 index')):
  for marker in ('424','416','106','88 Learn screens','96 Practice Studio questions','18-question quiz','6 IB tasks'):
