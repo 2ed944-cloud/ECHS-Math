@@ -27,15 +27,15 @@ jobs:
           set -euo pipefail
           part_dir='notes/ib-math-ai/unit-1/1.2'
           output='notes/ib-math-ai/unit-1/IB_AI_SL_1.2_Arithmetic_Sequences_Full_Notes_Student.pdf'
-          expected=10
+          expected=18
           count=$(find "$part_dir" -maxdepth 1 -type f -name '*.part-*' | wc -l | tr -d ' ')
           if [ "$count" -ne "$expected" ]; then
             echo "Waiting for all $expected parts; currently have $count."
             exit 0
           fi
           mkdir -p "$(dirname "$output")"
-          cat "$part_dir"/*.part-* > "$output"
-          echo '93a73dc7c34315e24656ffe078b9a216c75c88a466b04a12cef5cd2c9c297b88  '"$output" | sha256sum -c -
+          cat "$part_dir"/*.part-* | base64 --decode > "$output"
+          echo 'd53336db0ded99824629decbfd4b53afa938b8479b31fa07e93841fc46dcaa63  '"$output" | sha256sum -c -
           head -c 8 "$output" | grep -q '%PDF-1.5'
           rm -f "$part_dir"/*.part-*
           git config user.name 'github-actions[bot]'
