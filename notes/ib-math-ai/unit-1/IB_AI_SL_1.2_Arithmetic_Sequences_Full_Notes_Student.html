@@ -31,13 +31,12 @@
     .note-meta{display:flex;gap:.55rem;align-items:center;margin-bottom:12px}.note-index{display:grid;place-items:center;min-width:28px;height:28px;border-radius:50%;background:#eef2f6;font-weight:900;font-size:.72rem}.note-kind{font-size:.65rem;font-weight:900;letter-spacing:.1em;color:#788695;text-transform:uppercase}.note-title{margin:0 0 14px;font-size:1.2rem;color:var(--navy)}
     .note-body{font-size:.94rem}.note-body h1,.note-body h2{font-size:1.4rem}.note-body h3{font-size:1rem}.note-body .as-cover,.note-body .cover-start,.note-body button{display:none!important}.note-body textarea,.note-body input,.note-body select{display:none!important}.note-body details.solution-reveal,.note-body .solution-reveal{display:none!important}.note-body .as-worked-steps,.note-body .as-result{display:none!important}.note-body canvas,.note-body iframe{display:none!important}
     .workspace{margin-top:14px;min-height:104px;border:1px solid #cfd8df;border-radius:10px;background:repeating-linear-gradient(to bottom,#fff 0,#fff 27px,#dce4e9 28px);position:relative}.workspace.tall{min-height:162px}.workspace::before{content:"WORKING / ANNOTATIONS";position:absolute;right:9px;top:7px;background:#fff;padding:0 4px;font-size:.58rem;font-weight:900;letter-spacing:.08em;color:#8c99a4}
-    .interactive-note{margin-top:10px;padding:10px 12px;border:1px dashed #c4ccd3;border-radius:8px;background:#fafbfc;color:#677786;font-size:.76rem}.interactive-note b{color:var(--navy)}
+    .interactive-note{margin-top:10px;padding:10px 12px;border:1px dashed #c4ccd3;border-radius:8px;background:#fafbfc;color:#677786;font-size:.76rem}.interactive-note b{color:var(--navy)}.notes-math-display{display:block;text-align:center;margin:.45rem 0}
     .formula-strip{margin:7mm 0;padding:5mm;border-radius:12px;background:#f8f3f0;border:1px solid #e8d9d0}.formula-strip h3{margin:0 0 7px;color:var(--maroon)}.formula-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.formula-grid div{padding:10px;border-radius:8px;background:#fff;border:1px solid #e0e5e9}
     .page-foot{padding:8mm 14mm 10mm;border-top:1px solid #e1e6ea;color:#6c7985;font-size:.72rem;display:flex;justify-content:space-between}.page-foot b{color:var(--maroon)}
-    .print-only{display:none}
     @media(max-width:700px){.notes-toolbar strong{display:none}.notes-shell{width:calc(100% - 12px);margin-top:8px}.notes-cover{padding:38px 24px;min-height:760px}.student-fields{grid-template-columns:1fr}.formula-grid{grid-template-columns:1fr}#notes-content{padding:0 18px 30px}.section-break{margin-left:-18px;margin-right:-18px;padding-left:18px;padding-right:18px}.note-card{padding:22px 18px}}
     @page{size:A4;margin:11mm}
-    @media print{body{background:#fff}.notes-toolbar{display:none}.notes-shell{width:auto;margin:0}.paper{box-shadow:none;border-radius:0;overflow:visible}.notes-cover{min-height:270mm;border-radius:0;break-after:page;padding:16mm 13mm}.print-only{display:block}.section-break{margin-left:-11mm;margin-right:-11mm;padding-left:11mm;padding-right:11mm}.note-card{box-shadow:none;margin-bottom:5mm;padding:5mm 5.5mm}.workspace{min-height:88px}.workspace.tall{min-height:132px}.page-foot{display:none}}
+    @media print{body{background:#fff}.notes-toolbar{display:none}.notes-shell{width:auto;margin:0}.paper{box-shadow:none;border-radius:0;overflow:visible}.notes-cover{min-height:270mm;border-radius:0;break-after:page;padding:16mm 13mm}.section-break{margin-left:-11mm;margin-right:-11mm;padding-left:11mm;padding-right:11mm}.note-card{box-shadow:none;margin-bottom:5mm;padding:5mm 5.5mm}.workspace{min-height:88px}.workspace.tall{min-height:132px}.page-foot{display:none}}
   </style>
   <script defer src="../../../lessons/ib-math-ai/unit-1/data/lesson-1.2.js?v=3.0.0"></script>
   <script defer src="../../../lessons/ib-math-ai/unit-1/data/lesson-1.2-v3.js?v=3.0.0"></script>
@@ -104,12 +103,32 @@
         if(needsWorkspace)host.append(workspace(worked||String(slide.kind||'').toLowerCase()==='inquiry'));
         return host;
       }
+      function renderInjectedMath(root){
+        const katex=window.katex;if(!root||!katex)return;
+        const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);const nodes=[];
+        while(walker.nextNode()){
+          const node=walker.currentNode;const parent=node.parentElement;
+          if(parent&&!parent.closest('script,style,.katex')&&/\\\(|\\\[/.test(node.nodeValue||''))nodes.push(node);
+        }
+        nodes.forEach(node=>{
+          const text=String(node.nodeValue||'');const pattern=/\\\[([\s\S]*?)\\\]|\\\(([\s\S]*?)\\\)/g;
+          const fragment=document.createDocumentFragment();let match,last=0,changed=false;
+          while((match=pattern.exec(text))!==null){
+            changed=true;if(match.index>last)fragment.append(document.createTextNode(text.slice(last,match.index)));
+            const display=match[1]!=null;const expression=display?match[1]:match[2];const holder=document.createElement('span');
+            holder.className=display?'notes-math notes-math-display':'notes-math';
+            try{holder.innerHTML=katex.renderToString(expression,{displayMode:display,throwOnError:false,strict:'ignore',trust:false});}catch{holder.textContent=match[0];}
+            fragment.append(holder);last=pattern.lastIndex;
+          }
+          if(changed){if(last<text.length)fragment.append(document.createTextNode(text.slice(last)));node.replaceWith(fragment);}
+        });
+      }
       function render(){
         const data=window.LESSON_DATA;const target=document.getElementById('notes-content');const loading=document.getElementById('loading-notes');
         if(!data||!Array.isArray(data.slides)){if(loading)loading.textContent='The notes data could not be loaded. Open the interactive lesson and refresh this page.';return;}
         if(loading)loading.remove();
         const skipTitle=/^(solution|answers?|teacher key)/i;let previousSection='';let count=0;
-        data.slides.forEach((slide,index)=>{
+        data.slides.forEach(slide=>{
           const kind=String(slide.kind||'content').toLowerCase();const title=String(slide.title||'');
           if(kind==='cover'||kind==='solution'||skipTitle.test(title))return;
           const section=String(slide.section||'Lesson notes');
@@ -119,6 +138,7 @@
           const h=document.createElement('h3');h.className='note-title';h.textContent=title||('Lesson note '+count);
           card.append(meta,h,clean(slide));target.append(card);
         });
+        renderInjectedMath(target);
         document.title='1.2 Full Notes · Arithmetic Sequences and Series | ECHS Mathematics';
         document.body.dataset.notesReady='1';
       }
