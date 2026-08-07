@@ -1,4 +1,4 @@
-/* Final visual polish for IB AI SL Lesson 2.2 v5.0.2 */
+/* Final visual polish for IB AI SL Lesson 2.2 v5.0.3 */
 .lq5-formula-map{
   grid-template-columns:repeat(3,minmax(0,1fr))!important;
   align-items:stretch;
@@ -9,11 +9,27 @@
 .lq5-formula-map>div{min-width:0}
 .lq5-formula-map .formula{
   grid-column:1/-1!important;
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
   min-width:0;
-  padding:17px 14px;
-  font-size:clamp(16px,1.35vw,21px)!important;
-  line-height:1.35;
+  padding:15px 13px;
+  font-size:clamp(12px,1vw,16px)!important;
+  line-height:1.3;
   overflow-wrap:anywhere;
+}
+.lq5-formula-map .formula span{
+  padding:7px 10px;
+  border-radius:9px;
+  background:rgba(255,255,255,.1);
+  white-space:nowrap;
+}
+.lq5-formula-map .formula i{
+  color:var(--lq5-gold);
+  font-style:normal;
+  font-weight:950;
 }
 .lq5-form-list article{padding:11px 13px}
 .lq5-form-list article .lq5-math{margin:7px 0;padding:9px 11px}
@@ -39,5 +55,6 @@ body.lq5-ti-docked .stage-inner{max-width:100%}
 }
 @media(max-width:620px){
   .lq5-formula-map{grid-template-columns:1fr!important}
-  .lq5-formula-map .formula{grid-column:auto!important}
+  .lq5-formula-map .formula{grid-column:auto!important;display:grid;grid-template-columns:1fr;text-align:center}
+  .lq5-formula-map .formula i{transform:rotate(90deg)}
 }
