@@ -3,10 +3,15 @@
   if(String(window.LESSON_DATA?.lesson?.number)!=='2.2')return;
   function revealWhenLoaded(frame,loading){
     if(!frame)return;
-    frame.addEventListener('load',()=>{
+    let revealed=false;
+    const reveal=()=>{
+      if(revealed)return;
+      revealed=true;
       if(loading)loading.hidden=true;
       frame.classList.add('ready');
-    },{once:true});
+    };
+    frame.addEventListener('load',reveal,{once:true});
+    window.setTimeout(reveal,1500);
   }
   function autoload(){
     const dock=document.querySelector('#lq5-ti-dock.open');
