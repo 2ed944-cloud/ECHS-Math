@@ -163,10 +163,11 @@ def validate(root: Path, expected_sha: str) -> list[str]:
         if marker not in fingerprinted_experience:
             fail(errors, f"Fingerprint-protected experience layer missing marker: {marker}")
 
+    # Validate role pages using stable shell attributes/IDs rather than visible headings.
     role_pages = {
-        "question-bank/teacher.html": ["Teaching Command Center", "studentRows", "teacher-cloud.js"],
-        "question-bank/student.html": ["My Learning Journey", "masteryMeter", "student-cloud.js"],
-        "question-bank/parent.html": ["Family Progress Center", "parentMasteryMeter", "parent-cloud.js"],
+        "question-bank/teacher.html": ['data-premium-page="teacher"', "studentRows", "teacher-cloud.js"],
+        "question-bank/student.html": ['data-premium-page="student"', "masteryMeter", "student-cloud.js"],
+        "question-bank/parent.html": ['data-premium-page="parent"', "parentMasteryMeter", "parent-cloud.js"],
     }
     for relative, markers in role_pages.items():
         body = read(root, relative, errors)
