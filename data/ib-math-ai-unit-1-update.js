@@ -89,6 +89,15 @@
     ]
   };
 
+  const lesson12=unit.lessons.find(lesson=>lesson.number==="1.2");
+if(lesson12){
+  const fullNotesUrl="notes/ib-math-ai/unit-1/IB_AI_SL_1.2_Arithmetic_Sequences_Full_Notes_Student.html";
+  lesson12.resources=Array.isArray(lesson12.resources)?lesson12.resources:[];
+  if(!lesson12.resources.some(resource=>resource&&resource.url===fullNotesUrl)){
+    lesson12.resources.splice(1,0,{label:"Full Notes 1.2 · Coloured LaTeX",url:fullNotesUrl,type:"notes"});
+  }
+}
+
   const lesson11=unit.lessons.find(lesson=>lesson.number==="1.1");
   if(lesson11){
     lesson11.organization_release="6.9.0";
