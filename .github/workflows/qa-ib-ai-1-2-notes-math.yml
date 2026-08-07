@@ -1,0 +1,75 @@
+name: Ensure IB AI 1.2 Notes Math Rendering
+
+on:
+  push:
+    branches:
+      - agent/ib-ai-1-2-notes-resource
+    paths:
+      - '.github/workflows/qa-ib-ai-1-2-notes-math.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Add post-injection KaTeX rendering
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('notes/ib-math-ai/unit-1/IB_AI_SL_1.2_Arithmetic_Sequences_Full_Notes_Student.html')
+          text = path.read_text(encoding='utf-8')
+          if '.notes-math-display' not in text:
+              text = text.replace(
+                  '.interactive-note b{color:var(--navy)}',
+                  '.interactive-note b{color:var(--navy)}.notes-math-display{display:block;text-align:center;margin:.45rem 0}',
+                  1,
+              )
+          if 'function renderInjectedMath(root)' not in text:
+              needle = '      function render(){'
+              block = r'''      function renderInjectedMath(root){
+        const katex=window.katex;if(!root||!katex)return;
+        const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);const nodes=[];
+        while(walker.nextNode()){
+          const node=walker.currentNode;const parent=node.parentElement;
+          if(parent&&!parent.closest('script,style,.katex')&&/\\\(|\\\[/.test(node.nodeValue||''))nodes.push(node);
+        }
+        nodes.forEach(node=>{
+          const text=String(node.nodeValue||'');const pattern=/\\\[([\s\S]*?)\\\]|\\\(([\s\S]*?)\\\)/g;
+          const fragment=document.createDocumentFragment();let match,last=0,changed=false;
+          while((match=pattern.exec(text))!==null){
+            changed=true;if(match.index>last)fragment.append(document.createTextNode(text.slice(last,match.index)));
+            const display=match[1]!=null;const expression=display?match[1]:match[2];const holder=document.createElement('span');
+            holder.className=display?'notes-math notes-math-display':'notes-math';
+            try{holder.innerHTML=katex.renderToString(expression,{displayMode:display,throwOnError:false,strict:'ignore',trust:false});}
+            catch{holder.textContent=match[0];}
+            fragment.append(holder);last=pattern.lastIndex;
+          }
+          if(changed){if(last<text.length)fragment.append(document.createTextNode(text.slice(last)));node.replaceWith(fragment);}
+        });
+      }
+'''
+              if needle not in text:
+                  raise SystemExit('Render insertion point not found.')
+              text = text.replace(needle, block + needle, 1)
+          marker = "        document.title='1.2 Full Notes · Arithmetic Sequences and Series | ECHS Mathematics';"
+          call = '        renderInjectedMath(target);\n'
+          if call not in text:
+              if marker not in text:
+                  raise SystemExit('Post-render insertion point not found.')
+              text = text.replace(marker, call + marker, 1)
+          path.write_text(text, encoding='utf-8')
+          PY
+          rm -f .github/workflows/qa-ib-ai-1-2-notes-math.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add notes/ib-math-ai/unit-1/IB_AI_SL_1.2_Arithmetic_Sequences_Full_Notes_Student.html .github/workflows/qa-ib-ai-1-2-notes-math.yml
+          git commit -m 'Ensure Lesson 1.2 full notes render KaTeX [skip ci]'
+          git push
