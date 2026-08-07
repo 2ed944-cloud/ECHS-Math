@@ -29,10 +29,10 @@ jobs:
           text = path.read_text(encoding='utf-8')
           url = 'notes/ib-math-ai/unit-1/IB_AI_SL_1.2_Arithmetic_Sequences_Full_Notes_Student.html'
           if url not in text:
-              needle = 'unit.lessons.push(lesson11);'
+              needle = '  const lesson11=unit.lessons.find(lesson=>lesson.number==="1.1");'
               if needle not in text:
-                  raise SystemExit('Expected Unit 1 insertion point was not found.')
-              block = '''const lesson12=unit.lessons.find(lesson=>lesson.number==="1.2");
+                  raise SystemExit('Expected Unit 1 lesson metadata insertion point was not found.')
+              block = '''  const lesson12=unit.lessons.find(lesson=>lesson.number==="1.2");
           if(lesson12){
             const fullNotesUrl="notes/ib-math-ai/unit-1/IB_AI_SL_1.2_Arithmetic_Sequences_Full_Notes_Student.html";
             lesson12.resources=Array.isArray(lesson12.resources)?lesson12.resources:[];
