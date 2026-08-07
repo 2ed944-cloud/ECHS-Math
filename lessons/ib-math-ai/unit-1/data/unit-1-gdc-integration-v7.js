@@ -55,10 +55,10 @@
     <header><div><span class="gdc-v7-kicker">ECHS LOCAL • ${esc(pack.intensity)}</span><h2 id="gdc-v7-title">TI-84 / GDC Lab — ${esc(pack.name)}</h2></div><button class="gdc-v7-close" type="button" aria-label="Close GDC lab">×</button></header>
     <div class="gdc-v7-toolbar"><label>Workflow <select class="gdc-v7-select">${pack.workflows.map((w,i)=>`<option value="${i}">${i+1}. ${esc(w.title)}</option>`).join('')}</select></label>
     <div class="gdc-v7-modes" role="group" aria-label="Learning mode"><button type="button" data-mode="teacher" class="is-active">Teacher</button><button type="button" data-mode="follow">Follow</button><button type="button" data-mode="drill">Drill</button></div></div>
-    <main class="gdc-v7-workspace"></main><footer><span>No iframe • no paid API • static/offline-safe</span><button class="gdc-v7-reveal" type="button">Reveal next stage</button></footer>
+    <main class="gdc-v7-workspace"></main><footer><span>GDC reasoning lab • TI‑84 simulator available</span><button class="gdc-v7-simulator" type="button">Open TI‑84 Simulator</button><button class="gdc-v7-reveal" type="button">Reveal next stage</button></footer>
   </div>`;
   let overlay, opener, mode='teacher', reveal=5;
-  const focusables = () => overlay ? [...overlay.querySelectorAll('button,select,[href],[tabindex]:not([tabindex="-1"])')].filter(x=>!x.disabled) : [];
+  const focusables = () => overlay ? [...overlay.querySelectorAll('button,select,[href],[tabindex]:not([tabindex="-1"])')].filter(x=>!x.disabled&&!x.hidden&&x.getClientRects().length) : [];
   const renderWorkflow = () => {
     if (!overlay) return; const i=Number(overlay.querySelector('.gdc-v7-select').value||0); const w=pack.workflows[i];
     const stages=[['MODEL',w.model],['ENTER',w.enter],['READ',w.read],['INTERPRET',w.interpret],['VERIFY',w.verify]];
