@@ -1,0 +1,22 @@
+/* Lesson 2.1 v5.1 — mathematical graphics, contrast and simulator precision */
+html.unit2-lesson-2-1-v5 .v5-block-open h2,
+html.unit2-lesson-2-1-v5 .v5-block-open h3{color:#fff!important;text-shadow:0 1px 0 rgba(0,0,0,.08)}
+html.unit2-lesson-2-1-v5 .v5-block-open p{color:#f4f8fb!important}
+html.unit2-lesson-2-1-v5 .v5-block-open>b{color:#dff7f4!important}
+html.unit2-lesson-2-1-v5 .v5-math-plot{display:block;width:100%;height:auto;max-height:430px;background:#fff;border:1px solid #ded5ca;border-radius:20px}
+html.unit2-lesson-2-1-v5 .v5-math-plot .math-grid{stroke:#e8e1d8;stroke-width:1}
+html.unit2-lesson-2-1-v5 .v5-math-plot .axis{stroke:#17324d;stroke-width:2.6}
+html.unit2-lesson-2-1-v5 .v5-vlt-exact>section{padding:14px;background:#fff}
+html.unit2-lesson-2-1-v5 .v5-graph-verdict{margin:10px 4px 0;padding:11px 13px;border-radius:12px;font-weight:800;line-height:1.4}
+html.unit2-lesson-2-1-v5 .v5-graph-verdict.good{background:#edf8f2;color:#145f3b}
+html.unit2-lesson-2-1-v5 .v5-graph-verdict.bad{background:#fff0f2;color:#8b2136}
+html.unit2-lesson-2-1-v5 .v5-plot-card{min-width:0;padding:16px;border:1px solid #ded5ca;border-radius:20px;background:#fff;box-shadow:0 10px 26px rgba(23,50,77,.06)}
+html.unit2-lesson-2-1-v5 .v5-plot-card>span{display:block;margin-bottom:10px;color:#7a1733;font-size:.68rem;font-weight:950;letter-spacing:.11em}
+html.unit2-lesson-2-1-v5 .precision-ti84{align-items:stretch}
+html.unit2-lesson-2-1-v5 .precision-ti84>section:first-child{padding:22px;border:1px solid #ded5ca;border-radius:20px;background:#fff}
+html.unit2-lesson-2-1-v5 .precision-ti84 h3{margin-top:0;color:#7a1733;font-size:1.45rem}
+html.unit2-lesson-2-1-v5 .v5-precision-table td,html.unit2-lesson-2-1-v5 .v5-precision-table th{white-space:nowrap}
+html.unit2-lesson-2-1-v5 .question-prompt{font-size:clamp(1.15rem,1.5vw,1.35rem);line-height:1.6;color:#17212b;font-weight:650}
+html.unit2-lesson-2-1-v5 .question-body code{font-size:.9em}
+@media(max-width:820px){html.unit2-lesson-2-1-v5 .v5-vlt-exact{grid-template-columns:1fr}html.unit2-lesson-2-1-v5 .v5-math-plot{max-height:none}html.unit2-lesson-2-1-v5 .precision-ti84>section:first-child{padding:16px}}
+@media(max-width:580px){html.unit2-lesson-2-1-v5 .v5-math-plot text{font-size:13px}html.unit2-lesson-2-1-v5 .v5-graph-verdict{font-size:.88rem}html.unit2-lesson-2-1-v5 .v5-plot-card{padding:11px}html.unit2-lesson-2-1-v5 .question-prompt{font-size:1.05rem}}
