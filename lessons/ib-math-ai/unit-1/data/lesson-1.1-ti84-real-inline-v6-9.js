@@ -61,7 +61,7 @@ function geometry(){
   const topbar=$('.topbar');
   const topbarBottom=Math.round(topbar?.getBoundingClientRect().bottom||0);
   const routeBottom=visibleRouteBottom(topbarBottom);
-  const top=Math.max(topbarBottom,routeBottom,90);
+  const top=Math.max(routeBottom,topbarBottom||90);
   document.documentElement.style.setProperty('--ti84-inline-top',`${top}px`);
 }
 
