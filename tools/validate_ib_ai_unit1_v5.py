@@ -79,8 +79,8 @@ lesson11 = req("lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.1_standard_form_ECH
 for marker in ("ap-screen-lesson", 'class="topbar"', 'class="routebar"', 'data-route="practice"', "../assets/js/engine.js"):
     require(lesson11, marker, "Lesson 1.1 wrapper")
 for marker in (
-    "lesson-1.1-ti84-real-v6-9.css?v=6.9.0",
-    "lesson-1.1-ti84-real-inline-v6-9.js?v=6.9.0",
+    "lesson-1.1-ti84-real-v6-9.css?v=6.9.1",
+    "lesson-1.1-ti84-real-inline-v6-9.js?v=6.9.1",
     "lesson-1.1-ti84-local-bridge-v6-8-2.js?v=6.8.2",
     "1.1 · Scientific Notation, Approximation and Error",
 ):
