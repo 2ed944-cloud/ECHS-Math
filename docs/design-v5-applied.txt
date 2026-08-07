@@ -1,0 +1,4 @@
+ECHS Design System V5 applied to the public portal and school workspaces.
+Application commit: 5a3d6a21c4e16d407c5a06e7e241c79ff7d9874b
+Visible learner/teacher UI copy audit: PASS
+Date: 2026-08-07
