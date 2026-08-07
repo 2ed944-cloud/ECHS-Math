@@ -36,15 +36,15 @@
 
   function patch(){
     document.querySelectorAll('[data-lq5-visual="gradient-triangle"]').forEach(node=>{
-      if(node.dataset.polished==='5.0.3')return;
-      node.dataset.polished='5.0.3';
+      if(node.dataset.polished==='5.0.6')return;
+      node.dataset.polished='5.0.6';
       node.innerHTML=gradientTriangle();
     });
     document.querySelectorAll('.lq5-formula-map .formula').forEach(node=>{
-      if(node.dataset.polished==='5.0.3')return;
-      node.dataset.polished='5.0.3';
-      node.setAttribute('aria-label','Identify a, b and c; substitute with brackets; retain the exact form; round once at the end.');
-      node.innerHTML='<span>identify a, b, c</span><i>→</i><span>substitute with brackets</span><i>→</i><span>retain exact form</span><i>→</i><span>round once</span>';
+      if(node.dataset.polished==='5.0.6')return;
+      node.dataset.polished='5.0.6';
+      node.setAttribute('aria-label','Four-step quadratic formula workflow: identify coefficients, substitute with brackets, retain the exact form, then round once.');
+      node.innerHTML='<span><b>1</b>Identify <em>a, b, c</em></span><span><b>2</b>Substitute with brackets</span><span><b>3</b>Retain the exact form</span><span><b>4</b>Round once at the end</span>';
     });
   }
 
