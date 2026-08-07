@@ -1,0 +1,142 @@
+name: Apply ECHS Visual Refinement V5.1
+
+on:
+  push:
+    branches:
+      - agent/echs-visual-refinement-v5-1
+    paths:
+      - '.github/workflows/echs-v51-apply.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/echs-visual-refinement-v5-1
+          fetch-depth: 0
+
+      - name: Link V5.1 across core platform shells
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          pages = [
+              Path('index.html'),
+              Path('login.html'),
+              Path('question-bank/index.html'),
+              Path('question-bank/index-v2.html'),
+              Path('question-bank/dashboard.html'),
+              Path('question-bank/student.html'),
+              Path('question-bank/teacher.html'),
+              Path('question-bank/admin.html'),
+              Path('question-bank/parent.html'),
+              Path('question-bank/practice.html'),
+              Path('question-bank/mistakes.html'),
+              Path('question-bank/exam.html'),
+              Path('question-bank/school-control.html'),
+          ]
+
+          root_link = '<link rel="stylesheet" href="css/echs-design-system-v5-1.css?v=20260807-v51">'
+          qb_link = '<link rel="stylesheet" href="../css/echs-design-system-v5-1.css?v=20260807-v51">'
+
+          changed = []
+          for path in pages:
+              if not path.is_file():
+                  continue
+              text = path.read_text(encoding='utf-8')
+              original = text
+              link = root_link if path.parent == Path('.') else qb_link
+              if 'echs-design-system-v5-1.css' not in text:
+                  # Prefer placing the refinement immediately after V5.
+                  m = re.search(r'(<link\s+rel=["\']stylesheet["\'][^>]*echs-design-system-v5\.css[^>]*>)', text, flags=re.I)
+                  if m:
+                      text = text[:m.end()] + '\n' + link + text[m.end():]
+                  else:
+                      pos = text.lower().rfind('</head>')
+                      if pos >= 0:
+                          text = text[:pos] + link + '\n' + text[pos:]
+              if text != original:
+                  path.write_text(text, encoding='utf-8')
+                  changed.append(str(path))
+
+          sw = Path('sw.js')
+          if sw.is_file():
+              text = sw.read_text(encoding='utf-8')
+              text = re.sub(r'const VERSION = "([^"]+)";', lambda m: f'const VERSION = "{m.group(1)}-design-v51";' if not m.group(1).endswith('-design-v51') else m.group(0), text, count=1)
+              if './css/echs-design-system-v5-1.css' not in text:
+                  text = text.replace('"./css/platform-executive-v4.css",', '"./css/platform-executive-v4.css","./css/echs-design-system-v5-1.css",')
+              # Treat the refinement as a fresh authenticated UI asset.
+              text = text.replace('admin-executive-v4|learning-access', 'admin-executive-v4|echs-design-system-v5-1|learning-access')
+              sw.write_text(text, encoding='utf-8')
+              changed.append('sw.js')
+
+          print('Updated:', ', '.join(changed))
+          PY
+
+      - name: Validate interface structure and contrast contracts
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/test_learning_access_contract.py .
+          python tools/validate_local_links.py .
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          css = Path('css/echs-design-system-v5-1.css').read_text(encoding='utf-8')
+          required_css = [
+              'body.institutionBody .missionRing strong',
+              'color:var(--echs51-navy)!important',
+              'body.institutionBody .premiumMetric strong',
+              'font-size:clamp(34px,3vw,44px)!important',
+              'body.practiceStudio .studioHero :is(.eyebrow,#practiceHeroText)',
+              'body.practiceStudio .studioHero h1',
+              'body.practiceStudio .studioHeroStat b',
+              'body.practiceStudio .questionShell',
+          ]
+          missing = [x for x in required_css if x not in css]
+          if missing:
+              raise SystemExit('Missing V5.1 contrast rules: ' + ', '.join(missing))
+
+          pages = [
+              Path('index.html'), Path('question-bank/student.html'),
+              Path('question-bank/teacher.html'), Path('question-bank/admin.html'),
+              Path('question-bank/parent.html'), Path('question-bank/practice.html'),
+              Path('question-bank/mistakes.html'), Path('question-bank/exam.html')
+          ]
+          for p in pages:
+              if p.is_file() and 'echs-design-system-v5-1.css' not in p.read_text(encoding='utf-8'):
+                  raise SystemExit(f'Missing V5.1 stylesheet in {p}')
+
+          # CSS-only regression checks for the two screenshot failures.
+          practice_hero = re.search(r'body\.practiceStudio \.studioHero h1\{(.*?)\}', css, flags=re.S)
+          if not practice_hero or 'color:var(--echs51-navy)!important' not in practice_hero.group(1):
+              raise SystemExit('Practice hero heading is not explicitly high contrast')
+          mission = re.search(r'body\.institutionBody \.missionRing strong\{(.*?)\}', css, flags=re.S)
+          if not mission or 'opacity:1!important' not in mission.group(1):
+              raise SystemExit('Mission percentage contrast contract missing')
+
+          print('V5.1 interface contrast contract: PASS')
+          PY
+
+      - name: Commit V5.1 integration
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/echs-v51-apply.yml
+          git config user.name "ECHS Design System"
+          git config user.email "actions@users.noreply.github.com"
+          git add css/echs-design-system-v5-1.css index.html login.html question-bank sw.js .github/workflows/echs-v51-apply.yml
+          if git diff --cached --quiet; then
+            echo "No integration changes required"
+            exit 0
+          fi
+          git commit -m "Apply ECHS visual refinement v5.1"
+          git push origin HEAD:agent/echs-visual-refinement-v5-1
