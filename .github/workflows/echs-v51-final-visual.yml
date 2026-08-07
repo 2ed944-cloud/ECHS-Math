@@ -1,0 +1,54 @@
+name: ECHS V5.1 Final Chromium QA
+
+on:
+  push:
+    branches:
+      - agent/echs-visual-refinement-v5-1
+    paths:
+      - '.github/workflows/echs-v51-final-visual.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  chromium-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Check out final V5.1 branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/echs-visual-refinement-v5-1
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install browser driver
+        run: npm install --no-save --no-package-lock playwright-core@1.54.1
+      - name: Start preview server
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/echs-v51-server.log 2>&1 &
+          for attempt in {1..30}; do
+            if curl --fail --silent http://127.0.0.1:4173/index.html >/dev/null; then
+              exit 0
+            fi
+            sleep 1
+          done
+          cat /tmp/echs-v51-server.log
+          exit 1
+      - name: Capture complete desktop and mobile platform
+        env:
+          ECHS_PREVIEW_URL: http://127.0.0.1:4173
+          ECHS_PREVIEW_OUTPUT: artifacts/v51-final-visual
+          CHROME_PATH: /usr/bin/google-chrome
+        run: node tools/capture_phase1_preview.mjs
+      - name: Upload final visual evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: echs-v51-final-visual-${{ github.run_number }}
+          path: artifacts/v51-final-visual
+          if-no-files-found: error
+          retention-days: 14
