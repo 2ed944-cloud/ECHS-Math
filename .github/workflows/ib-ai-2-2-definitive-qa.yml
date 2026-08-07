@@ -6,12 +6,8 @@ on:
       - "lessons/ib-math-ai/unit-2/lessons/IB_AI_SL_2.2_linear_quadratic_models_ECHS.html"
       - "lessons/ib-math-ai/unit-2/data/lesson-2.2*.js"
       - "lessons/ib-math-ai/unit-2/assets/css/lesson-2.2*.css"
-      - "lessons/ib-math-ai/unit-2/START_HERE.html"
-      - "lessons/ib-math-ai/unit-2/index.html"
-      - "data/ib-math-ai-unit-2-update.js"
       - "tools/test_ib_ai_2_2_definitive_v3.mjs"
       - "tools/browser_qa_ib_ai_2_2_definitive_v3.mjs"
-      - ".github/workflows/ib-ai-2-2-definitive-qa.yml"
   workflow_dispatch:
 
 permissions:

@@ -19,30 +19,29 @@
 
   const unit = {
     title: "Unit 2: Functions",
-    description: "Six definitive interactive IB Mathematics: Applications and Interpretation SL lessons with technology laboratories, modelling cycles, original four-level practice, extended tasks and timed quizzes.",
-    portalSummary: "6 interactive lessons · 415 Learn screens · 400 original Practice questions · 76 Quiz questions · 20 extended tasks",
+    description: "Six complete interactive IB Mathematics: Applications and Interpretation SL lessons with technology laboratories, modelling cycles, four-level practice, extended tasks and timed quizzes.",
+    portalSummary: "6 interactive lessons · 408 Learn screens · 400 Practice questions · 78 Quiz questions · 22 extended tasks",
     essential_questions: [
       "How do representations reveal the structure and restrictions of a function?",
       "How can technology support, rather than replace, mathematical reasoning?",
-      "How do residuals, assumptions and context determine whether a model is defensible?"
+      "How do assumptions, domains and context determine whether a model is defensible?"
     ],
     architectureNotes: [
-      "Lesson 2.1 is rebuilt as a five-block function-language pathway with a focused recommended route.",
-      "Lesson 2.2 is rebuilt as a five-block linear and quadratic modelling pathway with brief verified TI-84 Plus CE training where graphing technology adds mathematical value.",
-      "Optional enrichment remains available without replacing the required learning sequence.",
+      "Lesson 2.1 develops relations, notation, domains, ranges, graph features, graphing technology and inverse reflection in one coherent six-part pathway.",
+      "Lesson 2.2 applies this function language to linear and quadratic modelling with concise TI-84 Plus CE training where graphing technology adds mathematical value.",
       "The remaining Unit 2 lesson sequence is unchanged."
     ],
     lessons: [
       lesson(
         "2.1", "functions_domain_range_representations", "Functions, Domain, Range, and Representations",
-        "Build function language through mappings, notation, mathematical and contextual domains, ranges, graph features, inverse reflection, transparent technology and model evaluation.",
+        "Build function language through precise mappings, notation, mathematical and contextual domains, ranges, graph features, inverse reflection, graphing technology and contextual interpretation.",
         [
           "Decide whether a relation defines a function and justify the decision from a mapping, table, equation, graph or context.",
           "Evaluate function values, identify images and determine all relevant preimages.",
           "Determine mathematical and contextual domains and ranges using correct set or interval notation.",
-          "Read and interpret intercepts, extrema, sign, direction of change, endpoints and discontinuities.",
-          "Use graph, table, trace and intersection technology transparently and reject outputs outside the model.",
-          "Connect inverse relations to reflection in y=x and explain when an inverse relation is also a function."
+          "Read and interpret intercepts, extrema, sign, direction of change, endpoints, holes, jumps and asymptotes.",
+          "Use graph, table, Zero, Minimum, Maximum and Intersect technology transparently.",
+          "Connect inverse relations to reflection in y=x and explain one-to-one behaviour."
         ],
         "IBAI.U2.CONCEPT", "u2-concept"
       ),
@@ -105,33 +104,39 @@
       )
     ],
     refreshed: true,
-    release: "ECHS Unit 2 v3.1.0"
+    release: "ECHS Unit 2 v4.0.0"
   };
 
   const lesson21 = unit.lessons.find(value => value.number === "2.1");
   if (lesson21) {
     Object.assign(lesson21, {
-      release: "3.0.0", organization_release: "3.0.0",
-      organization: "five classroom teaching blocks with a default IB SL core route",
-      defaultScope: "IB SL Core", allContentAvailable: true,
-      scopeCounts: { learn: { core: 67, all: 79 }, practice: { core: 72, all: 80 }, quiz: { core: 12, all: 14 }, tasks: { core: 3, all: 4 } },
+      release: "4.0.0",
+      organization_release: "4.0.0",
+      organization: "six classroom teaching blocks",
+      scopeCounts: { learn: 72, practice: 80, quiz: 16, tasks: 6 },
       officialCoreSections: [
         { code: "SL 2.2", title: "Functions, notation, domain, range and inverse as reflection" },
         { code: "SL 2.3", title: "Graph of a function" },
-        { code: "SL 2.4", title: "Key features of graphs and intersections using technology" }
+        { code: "SL 2.4", title: "Key graph features and intersections using technology" }
       ],
       teachingBlocks: [
-        { code: "2.1A", title: "Relations and the Function Rule", estimatedClassroomTime: "60–75 minutes" },
-        { code: "2.1B", title: "Function Notation, Images and Preimages", estimatedClassroomTime: "60–75 minutes" },
-        { code: "2.1C", title: "Domain and Range", estimatedClassroomTime: "60–75 minutes" },
-        { code: "2.1D", title: "Reading Features of Graphs", estimatedClassroomTime: "60–75 minutes" },
-        { code: "2.1E", title: "Technology, Inverse Reflection and Modelling", estimatedClassroomTime: "60–75 minutes" }
-      ]
+        { code: "2.1A", title: "Relations and Functions", estimatedClassroomTime: "60–75 minutes" },
+        { code: "2.1B", title: "Function Notation", estimatedClassroomTime: "60–75 minutes" },
+        { code: "2.1C", title: "Domain and Range", estimatedClassroomTime: "75–90 minutes" },
+        { code: "2.1D", title: "Graph Features", estimatedClassroomTime: "60–75 minutes" },
+        { code: "2.1E", title: "Graphing Technology", estimatedClassroomTime: "60–75 minutes" },
+        { code: "2.1F", title: "Inverse Relations and Synthesis", estimatedClassroomTime: "60–75 minutes" }
+      ],
+      ti84: {
+        required: true,
+        reason: "Zeros, extrema and intersections are part of the lesson evidence.",
+        workflows: ["Zero", "Minimum", "Maximum", "Intersect"]
+      }
     });
     lesson21.resources = [
-      { label: "Complete interactive lesson · IB SL Core", url: lesson21.url, type: "resource" },
-      { label: "Practice Studio · 72 core / 80 all", url: `${lesson21.url}#practice`, type: "practice" },
-      { label: "IB-style assessment tasks · 3 core / 4 all", url: `${lesson21.url}#exam`, type: "assessment" }
+      { label: "Complete interactive lesson", url: lesson21.url, type: "resource" },
+      { label: "Practice Studio · 80 questions", url: `${lesson21.url}#practice`, type: "practice" },
+      { label: "IB-style assessment tasks · 6", url: `${lesson21.url}#exam`, type: "assessment" }
     ];
   }
 
@@ -155,11 +160,7 @@
         { code: "2.2D", title: "Solving, Intersections and TI-84 Evidence", estimatedClassroomTime: "60–75 minutes" },
         { code: "2.2E", title: "Model Choice, Validation and IB Synthesis", estimatedClassroomTime: "60–75 minutes" }
       ],
-      ti84: {
-        required: true,
-        reason: "Zeros, extrema, intersections, graph-window decisions and whole-number table thresholds are part of the lesson evidence.",
-        workflows: ["Zero", "Maximum", "Intersect", "TABLE"]
-      }
+      ti84: { required: true, reason: "Zeros, extrema, intersections, graph-window decisions and whole-number table thresholds are part of the lesson evidence.", workflows: ["Zero", "Maximum", "Intersect", "TABLE"] }
     });
     lesson22.resources = [
       { label: "Complete interactive lesson · recommended path", url: lesson22.url, type: "resource" },
@@ -203,6 +204,6 @@
   course.unitCount = course.units.length;
   course.lessonCount = course.units.reduce((total, value) => total + (Array.isArray(value && value.lessons) ? value.lessons.length : 0), 0);
   course.status = "Started";
-  course.updatedUnits = "Units 1–2 · Lessons 2.1 and 2.2 definitive recommended-path releases · six complete Unit 2 lessons";
+  course.updatedUnits = "Units 1–2 · Lesson 2.1 complete functions pathway · Lesson 2.2 modelling pathway · six complete Unit 2 lessons";
   window.dispatchEvent(new CustomEvent("echs:ib-ai-unit-ready", { detail: { courseId: course.id, unit: 2, lessons: unit.lessons.length, release: unit.release } }));
 })();

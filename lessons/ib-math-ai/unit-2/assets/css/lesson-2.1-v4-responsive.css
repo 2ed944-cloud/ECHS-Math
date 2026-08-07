@@ -1,0 +1,51 @@
+/* Lesson 2.1 · responsive precision */
+.fn4-ti84,.fn4-inverse-lab{width:100%;max-width:100%;min-width:0}
+@media(max-width:1180px){
+  .fn4-cover,.fn4-section-open,.fn4-opening,.fn4-concept.with-visual{grid-template-columns:1fr}
+  .fn4-cover .fn4-visual,.fn4-section-open .fn4-visual{max-width:920px;margin:0 auto}
+  .fn4-representation-grid,.fn4-symbol-grid,.fn4-synthesis{grid-template-columns:repeat(2,1fr)}
+  .fn4-protocol{grid-template-columns:repeat(3,1fr)}
+  .fn4-workflow{grid-template-columns:repeat(5,minmax(130px,1fr));overflow-x:auto;padding-bottom:5px}
+  .fn4-interactive{grid-template-columns:1fr}
+}
+@media(max-width:860px){
+  html.unit2-lesson-2-1-v4 .stage-inner{padding:26px 20px 50px}
+  html.unit2-lesson-2-1-v4 .slide-title{font-size:clamp(31px,7.5vw,49px)}
+  .fn4-goals,.fn4-question-strip,.fn4-card-grid,.fn4-two,.fn4-compare,.fn4-worked,.fn4-behaviour{grid-template-columns:1fr}
+  .fn4-representation-grid,.fn4-symbol-grid,.fn4-synthesis{grid-template-columns:1fr 1fr}
+  .fn4-checkpoint{grid-template-columns:1fr}
+  .fn4-checkpoint textarea,.fn4-checkpoint details{grid-column:auto}
+  .fn4-image-preimage{grid-template-columns:1fr}.fn4-image-preimage i{transform:rotate(90deg);text-align:center}
+  .fn4-opening .fn4-visual svg,.fn4-cover .fn4-visual svg{max-height:420px}
+  .fn4-section-open{min-height:360px;padding:28px}.fn4-section-open h2{font-size:clamp(39px,8vw,61px)}
+  .fn4-protocol{grid-template-columns:repeat(2,1fr)}
+  .fn4-workflow{grid-template-columns:repeat(3,minmax(150px,1fr))}
+}
+@media(max-width:760px){
+  .fn4-ti84,.fn4-inverse-lab{overflow-x:auto;overflow-y:hidden}
+}
+@media(max-width:600px){
+  html.unit2-lesson-2-1-v4,html.unit2-lesson-2-1-v4 body,html.unit2-lesson-2-1-v4 .app-shell,html.unit2-lesson-2-1-v4 .stage,html.unit2-lesson-2-1-v4 .stage-inner{max-width:100%;min-width:0}
+  html.unit2-lesson-2-1-v4 .stage-inner{width:100%;box-sizing:border-box;overflow-x:clip;padding:22px 15px 46px}
+  html.unit2-lesson-2-1-v4 .slide-title{font-size:clamp(29px,9vw,39px);line-height:1.02;overflow-wrap:anywhere}
+  .fn4-cover,.fn4-cover>*{width:100%;max-width:100%;min-width:0;box-sizing:border-box}.fn4-cover{min-height:auto;gap:20px;overflow:hidden}.fn4-cover h1{font-size:clamp(36px,11.5vw,50px);line-height:.96;overflow-wrap:anywhere}.fn4-cover p{font-size:16px}.fn4-kicker{white-space:normal;line-height:1.4}.fn4-central{grid-template-columns:1fr}.fn4-cover .fn4-visual svg{max-height:300px}
+  .fn4-representation-grid,.fn4-symbol-grid,.fn4-synthesis,.fn4-protocol,.fn4-workflow{grid-template-columns:1fr}
+  .fn4-workflow{overflow:visible}.fn4-workflow>div{min-height:auto}
+  .fn4-section-open{min-height:330px;padding:24px}.fn4-section-open h2{font-size:clamp(35px,10vw,48px)}.fn4-section-open p{font-size:17px}.fn4-section-open .fn4-visual svg{max-height:250px}
+  .fn4-question,.fn4-method,.fn4-student,.fn4-card-grid>article,.fn4-key,.fn4-opening>div:first-child,.fn4-context{padding:17px}
+  .fn4-question h2,.fn4-student h2{font-size:clamp(23px,7vw,32px)}
+  .fn4-opening h2{font-size:clamp(27px,8vw,38px)}
+  .fn4-table{display:block;overflow-x:auto;white-space:nowrap}.fn4-table th,.fn4-table td{min-width:58px}
+  .fn4-misconception{grid-template-columns:1fr;text-align:center}.fn4-misconception>div{width:58px;height:58px;margin:0 auto;font-size:34px}.fn4-misconception h2{font-size:25px}
+  .fn4-symbol-grid>article{min-height:auto}.fn4-behaviour>article{min-height:155px}
+  .fn4-interactive{padding:16px}.fn4-interactive svg{min-width:0}
+  .fn4-visual svg{max-height:330px}.fn4-note,.fn4-caption{font-size:14px}
+  .fn4-next{display:grid}.fn4-next button{width:100%}
+  .fn4-question-strip{gap:9px}.fn4-question-strip>div{padding:13px}
+}
+@media(max-width:420px){
+  html.unit2-lesson-2-1-v4 .stage-inner{padding-inline:12px}
+  .fn4-cover h1{font-size:35px}.fn4-section-open h2{font-size:34px}.fn4-visual svg{max-height:285px}
+  .fn4-card-grid>article,.fn4-key,.fn4-question,.fn4-method,.fn4-student{border-radius:17px}
+}
+@media(prefers-reduced-motion:reduce){html.unit2-lesson-2-1-v4{scroll-behavior:auto}.fn4-choice,.route-btn,.nav-btn{transition:none!important}}
