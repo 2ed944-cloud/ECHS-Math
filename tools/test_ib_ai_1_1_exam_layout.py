@@ -97,8 +97,8 @@ def validate(root: Path, errors: list[str]) -> None:
     try:
         catalog = json.loads(catalog_text)
         lesson = next(item for item in catalog["lessons"] if item["number"] == "1.1")
-        if lesson.get("release") != "6.0.0":
-            errors.append(f"Catalog release is {lesson.get('release')!r}; expected '6.0.0'")
+        if lesson.get("release") != "6.9.0":
+            errors.append(f"Catalog release is {lesson.get('release')!r}; expected '6.9.0'")
         if lesson.get("extended_tasks") != 5:
             errors.append("Catalog must declare exactly 5 extended tasks")
     except (json.JSONDecodeError, KeyError, StopIteration) as exc:
