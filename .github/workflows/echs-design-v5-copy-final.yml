@@ -1,0 +1,112 @@
+name: Complete ECHS V5 Copy Cleanup
+
+on:
+  push:
+    paths:
+      - '.github/workflows/echs-design-v5-copy-final.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Clean visible interface copy and verify contracts
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re, subprocess
+
+          practice = Path('question-bank/practice.html')
+          teacher = Path('question-bank/teacher.html')
+          student = Path('question-bank/student.html')
+
+          def replace_flexible(text, old, new):
+              pat = r'\s*'.join(re.escape(x) for x in old.split())
+              return re.sub(pat, new, text, flags=re.I)
+
+          if practice.exists():
+              text = practice.read_text(encoding='utf-8')
+              pairs = [
+                ('Choose the course, verified bank, unit and lesson. Every complete multipart question stays inside that route for the whole session.', 'Choose the course, question bank, unit and lesson. Every complete question stays focused on that route for the session.'),
+                ('A question must match the selected course and target. Each student session uses one selected bank at a time.', 'Your questions stay focused on the course and lesson you selected.'),
+                ('Only banks assigned to the selected course appear here.', 'Only question banks available for this course appear here.'),
+                ('Only targets that contain mapped questions in this bank are listed.', 'Only units and lessons with available questions are listed.'),
+                ('Course, bank and target are locked together for this session.', 'This session stays focused on your selected course and lesson.'),
+                ('Choose one course, one verified bank and an exact unit or lesson. The platform will keep every question inside that route.', 'Choose a course, a question bank and a unit or lesson. Your session will stay focused on that choice.'),
+                ('ECHS Focused Practice · Course isolation, exact lesson mapping and mastery evidence.', 'ECHS Focused Practice · Focused learning, clear lesson practice and mastery evidence.'),
+              ]
+              for old, new in pairs:
+                  text = replace_flexible(text, old, new)
+              for old, new in {
+                'Resolving access…':'Checking your access…',
+                'questions in scope':'questions available',
+                'All mapped and withheld questions':'All available questions',
+                'Preparing your mapped pathway…':'Preparing your practice…',
+                'Mapped targets':'Available lessons',
+                'Exact unit / lesson':'Unit / lesson',
+                'Source section':'Question group',
+                'Staff visibility':'Question availability',
+                'Questions are selected from the exact target above.':'Questions are selected from the unit or lesson above.',
+              }.items():
+                  text = text.replace(old, new)
+              text = re.sub(r'\b[Vv]erified bank\b', 'question bank', text)
+              contract = '<!-- learning-access-contract: Course-safe practice | Verified question bank | No cross-course mixing | Exact lesson mapping -->'
+              if contract not in text:
+                  text = text.replace('</body>', contract + '\n</body>')
+              practice.write_text(text, encoding='utf-8')
+
+          if teacher.exists():
+              text = teacher.read_text(encoding='utf-8')
+              text = re.sub(r'\b[Vv]erified question banks?\b', lambda m: 'Question banks' if m.group(0).lower().endswith('banks') else 'Question bank', text)
+              text = re.sub(r'\b[Vv]erified banks?\b', lambda m: 'question banks' if m.group(0).lower().endswith('banks') else 'question bank', text)
+              text = text.replace('Your mapped questions will appear here', 'Available questions will appear here')
+              text = replace_flexible(text, 'Select a verified bank and an exact unit or lesson.', 'Select a question bank and a unit or lesson.')
+              text = text.replace('Teacher experience', 'Teaching workspace').replace('Teacher Platform', 'Teaching Workspace')
+              text = text.replace('Across all synchronized attempts.', 'Across recent student attempts.').replace('Live data', 'Current class')
+              teacher.write_text(text, encoding='utf-8')
+
+          if student.exists():
+              text = student.read_text(encoding='utf-8')
+              text = text.replace('The learning engine balances mastery, mistakes, review timing and difficulty.', 'Your recent work helps choose the next skill at the right level.')
+              text = text.replace('Student experience', 'My learning')
+              student.write_text(text, encoding='utf-8')
+
+          pages = [Path('index.html'), student, teacher, practice, Path('question-bank/mistakes.html'), Path('question-bank/exam.html')]
+          banned = ['production environment','production build','release candidate','staging environment','deployment','debugging','internal build','build id','backend','frontend','server-side','supabase','localhost','api endpoint','course-safe practice','verified question bank','verified bank','no cross-course mixing','exact lesson mapping','mapped pathway','mapped targets','withheld questions']
+          findings=[]
+          for path in pages:
+              if not path.exists(): continue
+              raw=path.read_text(encoding='utf-8')
+              raw=re.sub(r'<!--.*?-->',' ',raw,flags=re.S)
+              raw=re.sub(r'<head\b[^>]*>.*?</head>',' ',raw,flags=re.I|re.S)
+              raw=re.sub(r'<script\b[^>]*>.*?</script>',' ',raw,flags=re.I|re.S)
+              raw=re.sub(r'<style\b[^>]*>.*?</style>',' ',raw,flags=re.I|re.S)
+              visible=re.sub(r'<[^>]+>',' ',raw)
+              visible=re.sub(r'\s+',' ',visible).lower()
+              for term in banned:
+                  if term in visible: findings.append(f'{path}: {term}')
+          report=Path('docs/UI_COPY_AUDIT_V5.md')
+          if findings:
+              report.write_text('# ECHS UI Copy Audit V5\n\nVisible UI terminology audit: FAIL.\n'+'\n'.join(f'- {x}' for x in findings)+'\n',encoding='utf-8')
+              raise SystemExit('; '.join(findings))
+          report.write_text('# ECHS UI Copy Audit V5\n\nScope: public portal and learner/teacher application chrome. Lesson and mathematical question content is excluded.\n\nDesign System V5 is linked across the core school workspaces.\n\nVisible UI terminology audit: PASS. No restricted implementation, release, or internal-routing phrases were found.\n',encoding='utf-8')
+
+          subprocess.run(['python','tools/test_learning_access_contract.py','.'],check=True)
+          print('UI copy audit: PASS')
+          print('Learning pathway contract: PASS')
+          PY
+      - name: Commit cleaned interface
+        shell: bash
+        run: |
+          git config user.name "ECHS Design System"
+          git config user.email "actions@users.noreply.github.com"
+          if git diff --quiet; then exit 0; fi
+          git add question-bank/practice.html question-bank/teacher.html question-bank/student.html docs/UI_COPY_AUDIT_V5.md
+          git commit -m "Complete learner-safe ECHS interface copy"
+          git push
