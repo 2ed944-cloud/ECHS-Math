@@ -85,14 +85,15 @@ def validate_source(root: Path, errors: list[str]) -> None:
     require(learning_entry, ['data-require-account="student teacher admin parent"', "Opening your workspace", "role-entry.js"], "Learning entry router", errors)
     forbid(learning_entry, ["ALEKS", "IXL", "Pearson", "publisher"], "Learning entry router", errors)
 
+    # Validate stable practice structure and routing, not user-facing wording. This keeps
+    # deployment checks independent from instructional copy and design refinements.
     require(practice_shell, [
         'data-require-account="student teacher admin"', "Learn → Practise → Master",
-        "Choose the course, verified bank, unit and lesson.", "One course per bank",
-        "A question must match the selected course and target.",
-        "Only banks assigned to the selected course appear", "Only targets that contain mapped questions in this bank are",
-        "routeSteps", "js/portal-access.js", "practiceBuilder", "builderCompactSummary", "Adjust filters",
-        "practice-builder-compact.css", "practice-scope-access.css", "practice-course-isolation.js",
-        "mapped-private-bank-practice.js", "mapped-practice.js",
+        'id="practiceRoleBadge"', 'id="practiceBuilder"', 'id="builderControls"',
+        'id="course"', 'id="bank"', 'id="scope"', 'id="bundle"', 'id="mode"', 'id="start"',
+        "routeSteps", "builderCompactSummary", "Adjust filters",
+        "js/portal-access.js", "practice-builder-compact.css", "practice-scope-access.css",
+        "practice-course-isolation.js", "mapped-private-bank-practice.js", "mapped-practice.js",
         "practice-single-bank.js", "practice-builder.js",
     ], "Practice shell", errors)
     forbid(practice_shell, ["ALEKS", "IXL", "Pearson", "publisher collection", "textbook"], "Practice shell", errors)
