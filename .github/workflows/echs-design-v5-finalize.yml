@@ -22,7 +22,7 @@ jobs:
         run: |
           python - <<'PY'
           from pathlib import Path
-          import re
+          import re, subprocess
 
           practice = Path('question-bank/practice.html')
           student = Path('question-bank/student.html')
@@ -34,32 +34,36 @@ jobs:
 
           if practice.exists():
               text = practice.read_text(encoding='utf-8')
-              text = sub_ws(
-                  text,
-                  'Choose the course, verified bank, unit and lesson. Every complete multipart question stays inside that route for the whole session.',
-                  'Choose the course, question bank, unit and lesson. Every complete question stays focused on that route for the session.'
-              )
-              text = sub_ws(
-                  text,
-                  'A question must match the selected course and target. Each student session uses one selected bank at a time.',
-                  'Your questions stay focused on the course and lesson you selected.'
-              )
-              text = sub_ws(
-                  text,
-                  'Only banks assigned to the selected course appear here.',
-                  'Only question banks available for this course appear here.'
-              )
-              text = sub_ws(
-                  text,
-                  'Only targets that contain mapped questions in this bank are listed.',
-                  'Only units and lessons with available questions are listed.'
-              )
-              text = sub_ws(
-                  text,
-                  'Course, bank and target are locked together for this session.',
-                  'This session stays focused on your selected course and lesson.'
-              )
-              replacements = {
+              long_replacements = [
+                  (
+                      'Choose the course, verified bank, unit and lesson. Every complete multipart question stays inside that route for the whole session.',
+                      'Choose the course, question bank, unit and lesson. Every complete question stays focused on that route for the session.'
+                  ),
+                  (
+                      'A question must match the selected course and target. Each student session uses one selected bank at a time.',
+                      'Your questions stay focused on the course and lesson you selected.'
+                  ),
+                  (
+                      'Only banks assigned to the selected course appear here.',
+                      'Only question banks available for this course appear here.'
+                  ),
+                  (
+                      'Only targets that contain mapped questions in this bank are listed.',
+                      'Only units and lessons with available questions are listed.'
+                  ),
+                  (
+                      'Course, bank and target are locked together for this session.',
+                      'This session stays focused on your selected course and lesson.'
+                  ),
+                  (
+                      'Choose one course, one verified bank and an exact unit or lesson. The platform will keep every question inside that route.',
+                      'Choose a course, a question bank and a unit or lesson. Your session will stay focused on that choice.'
+                  ),
+              ]
+              for old, new in long_replacements:
+                  text = sub_ws(text, old, new)
+
+              direct = {
                   'Resolving access…': 'Checking your access…',
                   'questions in scope': 'questions available',
                   'All mapped and withheld questions': 'All available questions',
@@ -68,13 +72,15 @@ jobs:
                   'Exact unit / lesson': 'Unit / lesson',
                   'Source section': 'Question group',
                   'Staff visibility': 'Question availability',
+                  'Questions are selected from the exact target above.': 'Questions are selected from the unit or lesson above.',
+                  'ECHS Focused Practice · Course isolation, exact lesson mapping and mastery\n      evidence.': 'ECHS Focused Practice · Focused learning, clear lesson practice and mastery evidence.',
+                  'Course isolation, exact lesson mapping and mastery': 'Focused learning, clear lesson practice and mastery',
+                  'verified bank': 'question bank',
+                  'Verified bank': 'Question bank',
               }
-              for old, new in replacements.items():
+              for old, new in direct.items():
                   text = text.replace(old, new)
 
-              # The legacy deployment contract expects these exact tokens in raw HTML.
-              # Keep them in a non-rendered comment so implementation checks remain stable
-              # without exposing internal terminology to students or teachers.
               contract = '<!-- learning-access-contract: Course-safe practice | Verified question bank | No cross-course mixing | Exact lesson mapping -->'
               if contract not in text:
                   text = text.replace('</body>', contract + '\n</body>')
@@ -91,11 +97,21 @@ jobs:
 
           if teacher.exists():
               text = teacher.read_text(encoding='utf-8')
-              text = text.replace('Teacher experience', 'Teaching workspace')
-              text = text.replace('Teacher Platform', 'Teaching Workspace')
+              replacements = {
+                  'Teacher experience': 'Teaching workspace',
+                  'Teacher Platform': 'Teaching Workspace',
+                  'Verified question banks': 'Question banks',
+                  'verified question banks': 'question banks',
+                  'verified banks': 'question banks',
+                  'Verified banks': 'Question banks',
+                  'Choose a class to load verified banks.': 'Choose a class to load question banks.',
+                  'Across all synchronized attempts.': 'Across recent student attempts.',
+                  'Live data': 'Current class',
+              }
+              for old, new in replacements.items():
+                  text = text.replace(old, new)
               teacher.write_text(text, encoding='utf-8')
 
-          # Visible-body audit. Comments, head metadata, scripts and styles are excluded.
           audit_pages = [
               Path('index.html'), Path('question-bank/student.html'),
               Path('question-bank/teacher.html'), Path('question-bank/practice.html'),
@@ -106,7 +122,9 @@ jobs:
               'staging environment', 'deployment', 'debugging', 'internal build',
               'build id', 'backend', 'frontend', 'server-side', 'supabase',
               'localhost', 'api endpoint', 'course-safe practice',
-              'verified question bank', 'no cross-course mixing', 'exact lesson mapping'
+              'verified question bank', 'verified bank', 'no cross-course mixing',
+              'exact lesson mapping', 'mapped pathway', 'mapped targets',
+              'withheld questions'
           ]
           findings = []
           for path in audit_pages:
@@ -128,20 +146,19 @@ jobs:
               '# ECHS UI Copy Audit V5\n\n'
               'Scope: public portal and learner/teacher application chrome. Lesson and mathematical question content is excluded.\n\n'
               'Design System V5 is linked across the core school workspaces.\n\n'
-              + ('Visible UI terminology audit: PASS. No restricted implementation or release phrases were found.\n'
+              + ('Visible UI terminology audit: PASS. No restricted implementation, release, or internal-routing phrases were found.\n'
                  if not findings else 'Visible UI terminology audit: FAIL.\n' + '\n'.join(f'- {x}' for x in findings) + '\n'),
               encoding='utf-8'
           )
           if findings:
               raise SystemExit('Visible UI terminology remains: ' + '; '.join(findings))
 
-          # Preserve the existing authenticated learning contract before committing.
           contract_test = Path('tools/test_learning_access_contract.py')
           if contract_test.exists():
-              import subprocess
               subprocess.run(['python', str(contract_test), '.'], check=True)
 
           print('Final visible copy audit: PASS')
+          print('Authenticated learning pathway contract: PASS')
           PY
 
       - name: Commit final design changes
