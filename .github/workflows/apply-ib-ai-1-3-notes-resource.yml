@@ -24,7 +24,6 @@ jobs:
           test -s notes/ib-math-ai/unit-1/IB_AI_SL_1.3_Geometric_Sequences_Full_Notes_Student.html
           python - <<'PY'
           from pathlib import Path
-
           path = Path('data/ib-math-ai-unit-1-update.js')
           text = path.read_text(encoding='utf-8')
           url = 'notes/ib-math-ai/unit-1/IB_AI_SL_1.3_Geometric_Sequences_Full_Notes_Student.html'
@@ -32,16 +31,7 @@ jobs:
               needle = '  const lesson11=unit.lessons.find(lesson=>lesson.number==="1.1");'
               if needle not in text:
                   raise SystemExit('Expected Unit 1 resource insertion point was not found.')
-              block = '''  const lesson13=unit.lessons.find(lesson=>lesson.number==="1.3");
-  if(lesson13){
-    const fullNotesUrl="notes/ib-math-ai/unit-1/IB_AI_SL_1.3_Geometric_Sequences_Full_Notes_Student.html";
-    lesson13.resources=Array.isArray(lesson13.resources)?lesson13.resources:[];
-    if(!lesson13.resources.some(resource=>resource&&resource.url===fullNotesUrl)){
-      lesson13.resources.splice(1,0,{label:"Full Notes 1.3 · Coloured LaTeX",url:fullNotesUrl,type:"notes"});
-    }
-  }
-
-'''
+              block = '  const lesson13=unit.lessons.find(lesson=>lesson.number==="1.3");\n  if(lesson13){\n    const fullNotesUrl="notes/ib-math-ai/unit-1/IB_AI_SL_1.3_Geometric_Sequences_Full_Notes_Student.html";\n    lesson13.resources=Array.isArray(lesson13.resources)?lesson13.resources:[];\n    if(!lesson13.resources.some(resource=>resource&&resource.url===fullNotesUrl)){\n      lesson13.resources.splice(1,0,{label:"Full Notes 1.3 · Coloured LaTeX",url:fullNotesUrl,type:"notes"});\n    }\n  }\n\n'
               text = text.replace(needle, block + needle, 1)
               path.write_text(text, encoding='utf-8')
           PY
@@ -49,9 +39,6 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add data/ib-math-ai-unit-1-update.js .github/workflows/apply-ib-ai-1-3-notes-resource.yml
-          if git diff --cached --quiet; then
-            echo 'Nothing to commit.'
-            exit 0
-          fi
+          git diff --cached --check
           git commit -m 'Add Lesson 1.3 full notes resource [skip ci]'
           git push
