@@ -10,6 +10,7 @@ on:
       - "lessons/ib-math-ai/unit-2/index.html"
       - "data/ib-math-ai-unit-2-update.js"
       - "tools/test_ib_ai_2_2_definitive_v5.mjs"
+      - "tools/test_ib_ai_2_2_v5_precision.mjs"
       - "tools/browser_qa_ib_ai_2_2_definitive_v5.mjs"
       - ".github/workflows/ib-ai-2-2-definitive-qa.yml"
   workflow_dispatch:
@@ -36,10 +37,14 @@ jobs:
             node --check "$file"
           done
           node --check tools/test_ib_ai_2_2_definitive_v5.mjs
+          node --check tools/test_ib_ai_2_2_v5_precision.mjs
           node --check tools/browser_qa_ib_ai_2_2_definitive_v5.mjs
 
       - name: Validate lesson structure, mathematics and assessment contracts
         run: node tools/test_ib_ai_2_2_definitive_v5.mjs .
+
+      - name: Validate high-risk mathematical precision
+        run: node tools/test_ib_ai_2_2_v5_precision.mjs
 
       - name: Install browser driver
         run: npm install --no-save --no-package-lock playwright-core@1.54.1
