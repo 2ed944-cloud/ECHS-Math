@@ -151,7 +151,7 @@ const workflows={
 
 window.ECHS_TI84_CLASSROOM_WORKFLOWS=workflows;
 data.ti84Classroom={
-  release:'6.2.2',simulator:'https://ti84calc.com/ti84calc',workflowCount:Object.keys(workflows).length,
+  release:'6.2.2',simulator:'local-echs-gdc-v7',workflowCount:Object.keys(workflows).length,
   modes:['teacher','follow','drill'],pairedMethod:'manual → TI-84 → verify → IB conclusion',
   mappedSlides:[
     'Opening problem · can every calculator answer be trusted?',
@@ -162,7 +162,7 @@ data.ti84Classroom={
     'Student turn · numerical intersection and graph window',
     'Worked example · verify a rounded system solution'
   ],
-  thirdPartySimulator:true,physicalCalculatorPractice:true,
+  thirdPartySimulator:false,physicalCalculatorPractice:true,
   officialBasis:['TI-84 Plus CE eGuide','PlySmlt2 example activities','TI-84 graph and matrix workflows']
 };
 })();
