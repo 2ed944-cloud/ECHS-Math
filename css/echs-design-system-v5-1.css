@@ -610,3 +610,59 @@ html[data-theme="dark"] body.practiceStudio .studioHero #practiceHeroText{color:
   body.practiceStudio .studioHeroStats{min-width:0!important;max-width:100%!important}
   body.practiceStudio .studioHero::after{font-size:220px!important;right:-45px!important}
 }
+
+/* V5.1 student mobile timetable containment */
+@media(max-width:860px){
+  body.institutionBody[data-premium-page="student"]{
+    width:100%!important;
+    min-width:0!important;
+    max-width:100%!important;
+    overflow-x:hidden!important;
+  }
+  body.institutionBody[data-premium-page="student"] .institutionShell,
+  body.institutionBody[data-premium-page="student"] .institutionWorkspace,
+  body.institutionBody[data-premium-page="student"] .institutionMain{
+    width:100%!important;
+    min-width:0!important;
+    max-width:100%!important;
+    box-sizing:border-box!important;
+    overflow-x:hidden!important;
+  }
+  body.institutionBody[data-premium-page="student"] .timetableCard,
+  body.institutionBody[data-premium-page="student"] .timetableMount{
+    width:100%!important;
+    min-width:0!important;
+    max-width:100%!important;
+    box-sizing:border-box!important;
+    overflow:hidden!important;
+  }
+  body.institutionBody[data-premium-page="student"] .timetableWeek{
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr)!important;
+    width:100%!important;
+    min-width:0!important;
+    max-width:100%!important;
+    box-sizing:border-box!important;
+    overflow:hidden!important;
+    padding:10px!important;
+    gap:10px!important;
+    scroll-snap-type:none!important;
+  }
+  body.institutionBody[data-premium-page="student"] .timetableDay{
+    display:block!important;
+    width:100%!important;
+    min-width:0!important;
+    max-width:100%!important;
+    flex:none!important;
+    box-sizing:border-box!important;
+  }
+  body.institutionBody[data-premium-page="student"] .timetableDayHead,
+  body.institutionBody[data-premium-page="student"] .timetableEntries,
+  body.institutionBody[data-premium-page="student"] .timetableEntry,
+  body.institutionBody[data-premium-page="student"] .timetableEntryTime{
+    width:100%!important;
+    min-width:0!important;
+    max-width:100%!important;
+    box-sizing:border-box!important;
+  }
+}
