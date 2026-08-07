@@ -1,5 +1,6 @@
 ECHS Design System V5 applied to the public portal and school workspaces.
-Final interface commit: ae339d1296d054fa82ec1a65a589d70129ed3309
+Final interface commit: 27f15e31f9e1930738c70811125b53625087d74d
 Visible learner/teacher UI copy audit: PASS
 Authenticated learning pathway contract: PASS
+Pages compatibility markers are hidden from users.
 Date: 2026-08-07
