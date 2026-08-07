@@ -21,7 +21,7 @@ on:
       - "tools/capture_upload_manager.mjs"
       - "tools/browser_qa_ib_ai_1_1_ti84_dimensions_v6_9_1.mjs"
       - "tools/browser_qa_ib_ai_1_4_financial_v6.mjs"
-      - "tools/browser_qa_ib_ai_2_1_definitive_v4.mjs"
+      - "tools/browser_qa_ib_ai_2_1_definitive_v5.mjs"
       - "tools/browser_qa_ib_ai_2_2_definitive_v5.mjs"
       - ".github/workflows/platform-visual-qa.yml"
   workflow_dispatch:
@@ -68,12 +68,12 @@ jobs:
           ECHS_PREVIEW_OUTPUT: artifacts/phase3-visual
           CHROME_PATH: /usr/bin/google-chrome
         run: node tools/browser_qa_ib_ai_1_4_financial_v6.mjs
-      - name: Validate and capture Functions Lesson 2.1 v4
+      - name: Validate and capture Functions Lesson 2.1 v5
         env:
           ECHS_PREVIEW_URL: http://127.0.0.1:4173
           ECHS_PREVIEW_OUTPUT: artifacts/phase3-visual
           CHROME_PATH: /usr/bin/google-chrome
-        run: node tools/browser_qa_ib_ai_2_1_definitive_v4.mjs
+        run: node tools/browser_qa_ib_ai_2_1_definitive_v5.mjs
       - name: Validate and capture Linear and Quadratic Models Lesson 2.2 v5
         env:
           ECHS_PREVIEW_URL: http://127.0.0.1:4173

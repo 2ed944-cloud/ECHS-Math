@@ -28,7 +28,7 @@ for path in required: read(path)
 
 page_markers={
  "question-bank/student.html":["My Learning Journey","missionProgress","weeklyActivity","journeyUnits","achievementList","masteryMeter","topicsMeter","goalMeter","timeMeter","assignmentList"],
- "question-bank/teacher.html":["Teaching Command Center","classReadinessRing","attentionList","classPulseBars","studentRows","supportList","distributionChart","classHeatmap","assignmentDialog","resetDialog","importDialog"],
+ "question-bank/teacher.html":["Teacher Dashboard","classReadinessRing","attentionList","classPulseBars","studentRows","supportList","distributionChart","classHeatmap","assignmentDialog","resetDialog","importDialog"],
  "question-bank/parent.html":["Family Progress Center","familyProgressRing","familyNarrativeScore","familyWeeklyActivity","parentMasteryMeter","familyAssignments","familyPlan"],
  "question-bank/admin.html":["School Control Center","schoolHealthRing","roleMix","recentAccountActivity","securityChecks","accountRows","createDialog","importDialog","passwordDialog"],
  "login.html":["A complete learning journey","Public self-registration and Google sign-in are disabled","Student preview","Teacher preview","Family preview","Admin preview"]

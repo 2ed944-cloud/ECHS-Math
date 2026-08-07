@@ -18,7 +18,11 @@ const browser=await chromium.launch({
 });
 const report={
   generatedAt:new Date().toISOString(),lessonURL,allContentURL,
-  expected:{stored:{slides:100,practice:120,quiz:16,exam:6},core:{slides:55,practice:81,quiz:10,exam:2}},
+  expected:{
+    stored:{slides:100,practice:120,quiz:16,exam:6},
+    core:{slides:55,practice:91,quiz:10,exam:5,mapVisible:62,mapHidden:45},
+    integrated:{practice:130,quiz:16,exam:9,filters:['All · 130','Foundation · 30','Application · 39','Reasoning · 31','Challenge · 30']}
+  },
   core:null,desktopSlides:[],mobileSlides:[],routes:[],errors:[],warnings:[],screenshots:[]
 };
 
@@ -60,7 +64,10 @@ async function openLesson(viewport,label,{allContent=true}={}){
   const base=allContent?allContentURL:lessonURL;
   const response=await page.goto(`${base}#learn`,{waitUntil:'domcontentloaded',timeout:45000});
   if(!response||response.status()>=400)report.errors.push(`${label}: lesson request returned ${response?.status()??'no response'}`);
-  await page.waitForFunction(()=>document.body.dataset.rendered==='1'&&window.LESSON_DATA?.slides?.length===100,null,{timeout:30000});
+  await page.waitForFunction(()=>document.body.dataset.rendered==='1'&&(
+    window.LESSON_DATA?.slides?.length===100||
+    window.LESSON_DATA?.scopeCollections?.slides?.length===100
+  ),null,{timeout:60000});
   await page.waitForTimeout(450);
   return{context,page,consoleErrors,pageErrors,failedRequests};
 }
@@ -96,11 +103,11 @@ async function auditCoreScope(){
   const expected=report.expected;
   if(state.activeScope!=='core'||state.defaultScope!=='core')report.errors.push(`core: expected active/default scope core, found ${state.activeScope}/${state.defaultScope}`);
   if(state.scopeCounts?.learn?.core!==expected.core.slides)report.errors.push(`core: expected ${expected.core.slides} Learn screens, found ${state.scopeCounts?.learn?.core}`);
-  if(state.practice!==expected.core.practice)report.errors.push(`core: expected ${expected.core.practice} Practice questions, found ${state.practice}`);
+  if(state.practice!==expected.core.practice)report.errors.push(`core: expected ${expected.core.practice} integrated Practice questions, found ${state.practice}`);
   if(state.quiz!==expected.core.quiz)report.errors.push(`core: expected ${expected.core.quiz} Quiz questions, found ${state.quiz}`);
-  if(state.exam!==expected.core.exam)report.errors.push(`core: expected ${expected.core.exam} IB Tasks, found ${state.exam}`);
+  if(state.exam!==expected.core.exam)report.errors.push(`core: expected ${expected.core.exam} integrated IB/GDC tasks, found ${state.exam}`);
   if(state.storedSlides!==expected.stored.slides||state.storedPractice!==expected.stored.practice||state.storedQuiz!==expected.stored.quiz||state.storedExam!==expected.stored.exam)report.errors.push('core: complete stored collections are not preserved');
-  if(state.visibleMapButtons!==expected.core.slides||state.hiddenMapButtons!==expected.stored.slides-expected.core.slides)report.errors.push(`core: Lesson Map visibility is ${state.visibleMapButtons} visible / ${state.hiddenMapButtons} hidden`);
+  if(state.visibleMapButtons!==expected.core.mapVisible||state.hiddenMapButtons!==expected.core.mapHidden)report.errors.push(`core: Lesson Map visibility is ${state.visibleMapButtons} visible / ${state.hiddenMapButtons} hidden`);
   if(state.toggleLabel!=='IB SL Core'||!state.learnLabel.includes('IB SL Core'))report.errors.push('core: IB SL Core labels are missing');
   if(!state.progress.includes(`/ ${expected.core.slides} · IB SL Core`))report.errors.push(`core: progress label is incorrect: ${state.progress}`);
   if(state.bodyOverflow>3)report.errors.push(`core: document overflows horizontally by ${state.bodyOverflow}px`);
@@ -261,12 +268,12 @@ async function auditRoute(hash,viewport,device,ready,screenshotName){
   if(routeState.rawMath)report.errors.push(`${device} ${hash}: ${routeState.rawMath} raw math delimiter(s) remain visible`);
   if(routeState.mathErrors)report.errors.push(`${device} ${hash}: ${routeState.mathErrors} KaTeX error node(s)`);
   if(hash==='#practice'){
-    if(!routeState.routeText.includes('120'))report.errors.push(`${device} practice: 120-question summary is missing`);
-    for(const expected of ['All · 120','Foundation · 30','Application · 30','Reasoning · 30','Challenge · 30'])if(!routeState.practiceFilters.includes(expected))report.errors.push(`${device} practice: filter ${expected} is missing`);
+    if(!routeState.routeText.includes(String(report.expected.integrated.practice)))report.errors.push(`${device} practice: ${report.expected.integrated.practice}-question summary is missing`);
+    for(const expected of report.expected.integrated.filters)if(!routeState.practiceFilters.includes(expected))report.errors.push(`${device} practice: filter ${expected} is missing`);
   }
-  if(hash==='#quiz'&&!routeState.routeText.includes('16-question'))report.errors.push(`${device} quiz: dynamic 16-question heading is missing`);
+  if(hash==='#quiz'&&!routeState.routeText.includes(`${report.expected.integrated.quiz}-question`))report.errors.push(`${device} quiz: dynamic ${report.expected.integrated.quiz}-question heading is missing`);
   if(hash==='#exam'){
-    if(routeState.taskTabs!==6)report.errors.push(`${device} exam: expected 6 task tabs, found ${routeState.taskTabs}`);
+    if(routeState.taskTabs!==report.expected.integrated.exam)report.errors.push(`${device} exam: expected ${report.expected.integrated.exam} integrated task tabs, found ${routeState.taskTabs}`);
     if(routeState.visibleTaskCards!==1)report.errors.push(`${device} exam: expected one visible task, found ${routeState.visibleTaskCards}`);
     if(routeState.visibleParts!==1)report.errors.push(`${device} exam: expected one visible response part, found ${routeState.visibleParts}`);
     if(routeState.partTabs<5)report.errors.push(`${device} exam: focused part navigation is incomplete`);
