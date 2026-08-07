@@ -1,0 +1,25 @@
+/* Final visual polish for IB AI SL Lesson 2.2 v5.0.2 */
+.lq5-formula-map{
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  align-items:stretch;
+  gap:12px;
+  max-width:100%;
+}
+.lq5-formula-map>strong{display:none!important}
+.lq5-formula-map>div{min-width:0}
+.lq5-formula-map .formula{
+  grid-column:1/-1!important;
+  min-width:0;
+  padding:17px 14px;
+  font-size:clamp(16px,1.35vw,21px)!important;
+  line-height:1.35;
+  overflow-wrap:anywhere;
+}
+.lq5-form-list article{padding:11px 13px}
+.lq5-form-list article .lq5-math{margin:7px 0;padding:9px 11px}
+.lq5-form-list article>p{font-size:14px}
+.lq5-gradient-precise text{font-family:Inter,system-ui,sans-serif}
+@media(max-width:620px){
+  .lq5-formula-map{grid-template-columns:1fr!important}
+  .lq5-formula-map .formula{grid-column:auto!important}
+}
