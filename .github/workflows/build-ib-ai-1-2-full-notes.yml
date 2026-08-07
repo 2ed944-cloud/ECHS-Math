@@ -27,7 +27,7 @@ jobs:
           set -euo pipefail
           part_dir='notes/ib-math-ai/unit-1/1.2'
           output='notes/ib-math-ai/unit-1/IB_AI_SL_1.2_Arithmetic_Sequences_Full_Notes_Student.pdf'
-          expected=18
+          expected=23
           count=$(find "$part_dir" -maxdepth 1 -type f -name '*.part-*' | wc -l | tr -d ' ')
           if [ "$count" -ne "$expected" ]; then
             echo "Waiting for all $expected parts; currently have $count."
