@@ -1,0 +1,199 @@
+name: Apply ECHS Design System V5
+
+on:
+  push:
+    paths:
+      - '.github/workflows/echs-design-v5-apply.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  apply-design:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Apply unified design and learner-safe copy
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          root = Path('.')
+          root_pages = [
+              Path('index.html'),
+          ]
+          qb_pages = [
+              Path('question-bank/student.html'),
+              Path('question-bank/teacher.html'),
+              Path('question-bank/admin.html'),
+              Path('question-bank/parent.html'),
+              Path('question-bank/practice.html'),
+              Path('question-bank/mistakes.html'),
+              Path('question-bank/exam.html'),
+              Path('question-bank/index.html'),
+          ]
+
+          css_root = '<link rel="stylesheet" href="css/echs-design-system-v5.css?v=20260807-v5">'
+          css_qb = '<link rel="stylesheet" href="../css/echs-design-system-v5.css?v=20260807-v5">'
+          js_root = '<script src="js/visible-copy-guard-v5.js?v=20260807-v5"></script>'
+          js_qb = '<script src="../js/visible-copy-guard-v5.js?v=20260807-v5"></script>'
+
+          shared_copy = {
+              'Production environment': 'School system',
+              'production environment': 'school system',
+              'Production build': 'Current version',
+              'production build': 'current version',
+              'Release candidate': 'Preview',
+              'release candidate': 'preview',
+              'Staging environment': 'Preview area',
+              'staging environment': 'preview area',
+              'Deployment': 'Update',
+              'deployment': 'update',
+              'Debugging': 'Support',
+              'debugging': 'support',
+              'Internal build': 'Version',
+              'internal build': 'version',
+              'Build ID': 'Version',
+              'build ID': 'version',
+              'Backend': 'School service',
+              'backend': 'school service',
+              'Frontend': 'Page',
+              'frontend': 'page',
+              'Server-side': 'Secure',
+              'server-side': 'secure',
+          }
+
+          practice_copy = {
+              'Exact course mapping · adaptive evidence · mastery': 'Focused practice · clear progress · mastery',
+              'Choose the course, verified bank, unit and lesson. Every complete multipart question stays inside that route for the whole session.': 'Choose the course, question bank, unit and lesson. Every complete multipart question stays focused on that route for the whole session.',
+              'Mapped practice builder': 'Practice setup',
+              'Verified question bank': 'Question bank',
+              'Loading verified banks…': 'Loading question banks…',
+              'Only banks assigned to the selected course appear here.': 'Only question banks available for the selected course appear here.',
+              'Course-safe practice': 'Focused practice',
+              'A question must match the selected course and target. Each student session uses one selected bank at a time.': 'Your questions stay focused on the course and lesson you selected.',
+              'Exact lesson mapping': 'Focused lesson practice',
+              'No cross-course mixing': 'One clear learning route',
+          }
+
+          student_copy = {
+              'Ready to sync': 'Progress ready',
+              'Sync progress': 'Refresh progress',
+          }
+
+          teacher_copy = {
+              'Live class intelligence': 'Today’s class picture',
+              'Teaching Command Center': 'Teacher Dashboard',
+              'Teaching command': 'Teaching overview',
+          }
+
+          def inject_before(text: str, marker: str, snippet: str) -> str:
+              if snippet in text:
+                  return text
+              pos = text.lower().rfind(marker.lower())
+              if pos < 0:
+                  return text
+              return text[:pos] + snippet + '\n' + text[pos:]
+
+          def patch(path: Path, css: str, script: str):
+              if not path.exists():
+                  return False
+              text = path.read_text(encoding='utf-8')
+              original = text
+              text = inject_before(text, '</head>', css)
+              text = inject_before(text, '</body>', script)
+              for old, new in shared_copy.items():
+                  text = text.replace(old, new)
+              if path.name == 'practice.html':
+                  for old, new in practice_copy.items():
+                      text = text.replace(old, new)
+              if path.name == 'student.html':
+                  for old, new in student_copy.items():
+                      text = text.replace(old, new)
+              if path.name == 'teacher.html':
+                  for old, new in teacher_copy.items():
+                      text = text.replace(old, new)
+              if text != original:
+                  path.write_text(text, encoding='utf-8')
+                  return True
+              return False
+
+          changed = []
+          for p in root_pages:
+              if patch(p, css_root, js_root): changed.append(str(p))
+          for p in qb_pages:
+              if patch(p, css_qb, js_qb): changed.append(str(p))
+
+          # Audit only application chrome pages, not lesson/question content.
+          audit_pages = [
+              Path('index.html'),
+              Path('question-bank/student.html'),
+              Path('question-bank/teacher.html'),
+              Path('question-bank/practice.html'),
+              Path('question-bank/mistakes.html'),
+              Path('question-bank/exam.html'),
+          ]
+          banned = [
+              'production environment', 'production build', 'release candidate',
+              'staging environment', 'deployment', 'debugging', 'internal build',
+              'build id', 'backend', 'frontend', 'server-side', 'supabase',
+              'localhost', 'api endpoint'
+          ]
+          findings = []
+          for p in audit_pages:
+              if not p.exists():
+                  continue
+              raw = p.read_text(encoding='utf-8')
+              # Ignore script/style source because implementation words are allowed in code.
+              visible = re.sub(r'<script\b[^>]*>.*?</script>', ' ', raw, flags=re.I|re.S)
+              visible = re.sub(r'<style\b[^>]*>.*?</style>', ' ', visible, flags=re.I|re.S)
+              lower = visible.lower()
+              for term in banned:
+                  if term in lower:
+                      findings.append(f'{p}: {term}')
+
+          report = Path('docs/UI_COPY_AUDIT_V5.md')
+          report.parent.mkdir(parents=True, exist_ok=True)
+          report.write_text(
+              '# ECHS UI Copy Audit V5\n\n'
+              'Scope: public portal and learner/teacher application chrome. Lesson and question content is excluded.\n\n'
+              f'Patched pages: {len(changed)}\n\n'
+              + ('No restricted implementation/release phrases were found in the audited visible UI.\n' if not findings else 'Findings:\n' + '\n'.join(f'- {x}' for x in findings) + '\n'),
+              encoding='utf-8'
+          )
+
+          if findings:
+              raise SystemExit('Visible implementation/release terminology remains: ' + '; '.join(findings))
+
+          # Basic integration checks.
+          for p in audit_pages:
+              if not p.exists():
+                  continue
+              text = p.read_text(encoding='utf-8')
+              if 'echs-design-system-v5.css' not in text:
+                  raise SystemExit(f'Missing V5 design stylesheet in {p}')
+              if 'visible-copy-guard-v5.js' not in text:
+                  raise SystemExit(f'Missing visible copy guard in {p}')
+
+          print('Patched:', ', '.join(changed) if changed else 'no page changes required')
+          print('Visible copy audit: PASS')
+          PY
+
+      - name: Commit applied interface changes
+        shell: bash
+        run: |
+          if git diff --quiet; then
+            echo "No changes required"
+            exit 0
+          fi
+          git config user.name "ECHS Design System"
+          git config user.email "actions@users.noreply.github.com"
+          git add index.html question-bank css js docs
+          git commit -m "Apply unified ECHS design system v5"
+          git push
