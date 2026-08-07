@@ -106,6 +106,11 @@
     {label:"Full Notes 1.3 · Lesson-Synchronised Edition",url:"notes/ib-math-ai/unit-1/IB_AI_SL_1.3_Geometric_Sequences_Full_Notes_Student.html",type:"notes"},
     {label:"Full Notes 1.3 · Original Coloured LaTeX PDF",url:"notes/ib-math-ai/unit-1/IB_AI_SL_1.3_Geometric_Sequences_Full_Notes_Student.pdf",type:"notes"}
   ]);
+  upsertFullNotes("1.4",[
+    {label:"Full Notes 1.4 · Lesson-Synchronised Edition",url:"notes/ib-math-ai/unit-1/IB_AI_SL_1.4_Financial_Applications_Full_Notes_Student.html",type:"notes"},
+    {label:"Full Notes 1.4 · Original Coloured LaTeX PDF",url:"notes/ib-math-ai/unit-1/IB_AI_SL_1.4_Financial_Applications_Full_Notes_Student.pdf",type:"notes"}
+  ]);
+
 
   const lesson11=unit.lessons.find(lesson=>lesson.number==="1.1");
   if(lesson11){
