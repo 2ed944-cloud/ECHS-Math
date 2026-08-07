@@ -8,7 +8,7 @@ on:
       - '.github/workflows/patch-gdc-pages-verification.yml'
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   patch:
@@ -18,7 +18,6 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: agent/fix-unit1-gdc-pages-verification
-          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -47,10 +46,9 @@ jobs:
           PY
           git diff --check -- .github/workflows/deploy-pages.yml
           grep -n "unit-1-gdc-integration-v7\|ti84-finance-classroom-v6-3\|ti84-inline-dock-v6-3" .github/workflows/deploy-pages.yml | tail -20
-      - name: Commit verification update
-        run: |
-          git config user.name "ECHS Math Integration Bot"
-          git config user.email "actions@users.noreply.github.com"
-          git add .github/workflows/deploy-pages.yml
-          git commit -m "Verify local Unit 1 GDC assets on Pages"
-          git push origin HEAD:agent/fix-unit1-gdc-pages-verification
+      - name: Upload patched workflow
+        uses: actions/upload-artifact@v4
+        with:
+          name: patched-deploy-pages-yml
+          path: .github/workflows/deploy-pages.yml
+          if-no-files-found: error
