@@ -60,7 +60,10 @@ async function openLesson(viewport,label,{allContent=true}={}){
   const base=allContent?allContentURL:lessonURL;
   const response=await page.goto(`${base}#learn`,{waitUntil:'domcontentloaded',timeout:45000});
   if(!response||response.status()>=400)report.errors.push(`${label}: lesson request returned ${response?.status()??'no response'}`);
-  await page.waitForFunction(()=>document.body.dataset.rendered==='1'&&window.LESSON_DATA?.slides?.length===100,null,{timeout:30000});
+  await page.waitForFunction(()=>document.body.dataset.rendered==='1'&&(
+    window.LESSON_DATA?.slides?.length===100||
+    window.LESSON_DATA?.scopeCollections?.slides?.length===100
+  ),null,{timeout:60000});
   await page.waitForTimeout(450);
   return{context,page,consoleErrors,pageErrors,failedRequests};
 }
