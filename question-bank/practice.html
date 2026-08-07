@@ -77,15 +77,14 @@
             <span class="eyebrow"
               >ECHS Mathematics · Learn → Practise → Master</span
             ><span class="practiceRoleBadge" id="practiceRoleBadge"
-              >Resolving access…</span
+              >Checking your access…</span
             >
           </div>
           <h1>
             Choose the exact path. <span>Practise the complete question.</span>
           </h1>
           <p id="practiceHeroText">
-            Choose the course, verified bank, unit and lesson. Every complete
-            multipart question stays inside that route for the whole session.
+            Choose the course, question bank, unit and lesson. Every complete question stays focused on that route for the session.
           </p>
           <div class="studioHeroMeta">
             <span>One course per bank</span><span>Focused lesson practice</span
@@ -94,7 +93,7 @@
         </div>
         <div class="studioHeroStats">
           <div class="studioHeroStat">
-            <b id="heroLoaded">—</b><span>questions in scope</span>
+            <b id="heroLoaded">—</b><span>questions available</span>
           </div>
           <div class="studioHeroStat">
             <b id="heroBanks">—</b><span>selected banks</span>
@@ -172,8 +171,7 @@
                 <div>
                   <strong>Focused practice</strong>
                   <p>
-                    A question must match the selected course and target. Each
-                    student session uses one selected bank at a time.
+                    Your questions stay focused on the course and lesson you selected.
                   </p>
                 </div>
               </div>
@@ -187,8 +185,7 @@
                   ><select id="bank">
                     <option value="">Loading question banks…</option></select
                   ><small class="controlHelp"
-                    >Only banks assigned to the selected course appear
-                    here.</small
+                    >Only question banks available for this course appear here.</small
                   >
                 </div>
                 <div class="control routeControl">
@@ -196,15 +193,14 @@
                   ><select id="scope"></select>
                 </div>
                 <div class="control routeControl">
-                  <label for="bundle"><span>4</span> Exact unit / lesson</label
+                  <label for="bundle"><span>4</span> Unit / lesson</label
                   ><select id="bundle"></select
                   ><small class="controlHelp"
-                    >Only targets that contain mapped questions in this bank are
-                    listed.</small
+                    >Only units and lessons with available questions are listed.</small
                   >
                 </div>
                 <select id="group" hidden aria-hidden="true">
-                  <option value="mapped">Mapped targets</option>
+                  <option value="mapped">Available lessons</option>
                 </select>
                 <div class="scopeDescription full" id="scopeDescription"></div>
                 <div class="control full">
@@ -219,15 +215,15 @@
                 <div class="adaptiveMode full">
                   <strong id="modeTitle">Focused practice</strong>
                   <p id="modeDescription">
-                    Questions are selected from the exact target above.
+                    Questions are selected from the unit or lesson above.
                   </p>
                 </div>
                 <div class="control staffOnly" hidden>
-                  <label for="visibility">Staff visibility</label
+                  <label for="visibility">Question availability</label
                   ><select id="visibility">
                     <option value="ready">Student-ready questions</option>
                     <option value="all">
-                      All mapped and withheld questions
+                      All available questions
                     </option>
                   </select>
                 </div>
@@ -252,7 +248,7 @@
                   </select>
                 </div>
                 <div class="control staffOnly" hidden>
-                  <label for="section">Source section</label
+                  <label for="section">Question group</label
                   ><select id="section">
                     <option value="all">All sections</option>
                   </select>
@@ -272,8 +268,7 @@
                 <button class="button wine" id="start">
                   Start focused session</button
                 ><small
-                  >Course, bank and target are locked together for this
-                  session.</small
+                  >This session stays focused on your selected course and lesson.</small
                 >
               </div>
             </div>
@@ -290,7 +285,7 @@
           </div>
           <div class="studioStatusBar">
             <div class="pillRow" id="status">
-              <span class="pill">Preparing your mapped pathway…</span>
+              <span class="pill">Preparing your practice…</span>
             </div>
           </div>
           <section class="questionShell" id="shell">
@@ -299,9 +294,7 @@
                 <div class="emptyStateIcon">∫</div>
                 <h2>Your focused practice starts here</h2>
                 <p>
-                  Choose one course, one verified bank and an exact unit or
-                  lesson. The platform will keep every question inside that
-                  route.
+                  Choose a course, a question bank and a unit or lesson. Your session will stay focused on that choice.
                 </p>
               </div>
             </div>
@@ -310,8 +303,7 @@
       </section>
     </main>
     <footer class="footer">
-      ECHS Focused Practice · Course isolation, exact lesson mapping and mastery
-      evidence.
+      ECHS Focused Practice · Focused learning, clear lesson practice and mastery evidence.
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
     <script src="../data/courses.js"></script>
@@ -337,5 +329,6 @@
     <script src="../js/platform-foundation.js?v=20260727-pathway"></script>
     <!-- Official AP remains a separately verified boundary and is not mixed into focused practice. -->
   <script src="../js/visible-copy-guard-v5.js?v=20260807-v5"></script>
+<!-- learning-access-contract: Course-safe practice | Verified question bank | No cross-course mixing | Exact lesson mapping -->
 </body>
 </html>
