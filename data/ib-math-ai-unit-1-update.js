@@ -98,6 +98,15 @@ if(lesson12){
   }
 }
 
+  const lesson13=unit.lessons.find(lesson=>lesson.number==="1.3");
+  if(lesson13){
+    const fullNotesUrl="notes/ib-math-ai/unit-1/IB_AI_SL_1.3_Geometric_Sequences_Full_Notes_Student.html";
+    lesson13.resources=Array.isArray(lesson13.resources)?lesson13.resources:[];
+    if(!lesson13.resources.some(resource=>resource&&resource.url===fullNotesUrl)){
+      lesson13.resources.splice(1,0,{label:"Full Notes 1.3 · Coloured LaTeX",url:fullNotesUrl,type:"notes"});
+    }
+  }
+
   const lesson11=unit.lessons.find(lesson=>lesson.number==="1.1");
   if(lesson11){
     lesson11.organization_release="6.9.0";
