@@ -19,6 +19,24 @@
 .lq5-form-list article .lq5-math{margin:7px 0;padding:9px 11px}
 .lq5-form-list article>p{font-size:14px}
 .lq5-gradient-precise text{font-family:Inter,system-ui,sans-serif}
+
+/* Keep the live lesson and its footer genuinely beside, not underneath, the TI-84 dock. */
+body.lq5-ti-docked .app-shell,
+body.lq5-ti-docked .footer{
+  left:0!important;
+  right:var(--lq5-dock)!important;
+  width:calc(100% - var(--lq5-dock))!important;
+  max-width:none!important;
+}
+body.lq5-ti-docked .stage-inner{max-width:100%}
+
+@media(max-width:900px){
+  body.lq5-ti-docked .app-shell,
+  body.lq5-ti-docked .footer{
+    right:0!important;
+    width:100%!important;
+  }
+}
 @media(max-width:620px){
   .lq5-formula-map{grid-template-columns:1fr!important}
   .lq5-formula-map .formula{grid-column:auto!important}
