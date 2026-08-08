@@ -1,0 +1,45 @@
+name: TEMP Fresh Unit 2 Course Asset
+on:
+  push:
+    branches: [agent/ib-ai-unit2-notes-cache-fresh]
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/ib-ai-unit2-notes-cache-fresh
+          fetch-depth: 0
+      - name: Make Unit 2 course update network-first
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('sw.js')
+          s=p.read_text()
+          old="const FRESH_COURSE_ASSET = /\\/data\\/ib-math-ai-unit-1-update\\.js$/i;"
+          new="const FRESH_COURSE_ASSET = /\\/data\\/ib-math-ai-unit-[12]-update\\.js$/i;"
+          assert old in s
+          p.write_text(s.replace(old,new,1))
+          PY
+          grep -F "ib-math-ai-unit-[12]-update" sw.js
+      - name: Validate
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check sw.js
+          grep -F "Full Notes 2.1 · Lesson-Synchronised Edition" data/ib-math-ai-unit-2-update.js
+          grep -F "Full Notes 2.2 · Lesson-Synchronised Edition" data/ib-math-ai-unit-2-update.js
+      - name: Commit clean patch
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm .github/workflows/temp-fresh-unit2-course-asset.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add sw.js .github/workflows/temp-fresh-unit2-course-asset.yml
+          git commit -m "Make IB AI Unit 2 course metadata network-first"
+          git push origin HEAD:agent/ib-ai-unit2-notes-cache-fresh
