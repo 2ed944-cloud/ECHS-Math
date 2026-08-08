@@ -26,7 +26,9 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          echo "54a8f17ff648da22d3eebc8b495635a621c4f6c4994f30c8e2bd3c0e4132b6d6  .lesson25-v5-e.tar.xz" | sha256sum -c -
+          test "$(git hash-object .lesson25-v5-e.tar.xz)" = "99ce99066a19fa9897cc2364fce7afa43feb418f"
+          xz -t .lesson25-v5-e.tar.xz
+          test "$(tar -tJf .lesson25-v5-e.tar.xz | grep -vc '/$')" -eq 17
           tar -xJf .lesson25-v5-e.tar.xz
 
       - name: Validate JavaScript and lesson data
