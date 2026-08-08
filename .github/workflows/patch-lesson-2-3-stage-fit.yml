@@ -43,7 +43,7 @@ jobs:
           source=content.read_text(encoding='utf-8')
           pattern=dec('ICBTXCgnMlwuM0QnLCdBIGhvbGUgaXMgbm90IGEgdmVydGljYWwgYXN5bXB0b3RlJywnY29udGVudCcsJ0NhbmNlbGxhdGlvbiBwcmVzZXJ2ZXMgdGhlIGV4Y2x1c2lvbicsYFtcc1xTXSo/XCk7XG5cbiAgY29uY2VwdFwoJzJcLjNEJywnU2lnbnMgZGV0ZXJtaW5lIHJhdGlvbmFsIGJyYW5jaGVzJw==')
           replacement=dec('ICBTKCcyLjNEJywnQSBob2xlIGlzIG5vdCBhIHZlcnRpY2FsIGFzeW1wdG90ZScsJ2NvbnRlbnQnLCdDYW5jZWxsYXRpb24gcHJlc2VydmVzIHRoZSBleGNsdXNpb24nLFJgPGRpdiBjbGFzcz0icHI1LWhvbGUtY29tcGFyaXNvbiI+PGRpdiBjbGFzcz0icHI1LXR3byI+PGFydGljbGUgY2xhc3M9InByNS1wYW5lbCI+PGgyPlJlbW92YWJsZSBob2xlPC9oMj48ZGl2IGNsYXNzPSJwcjUtbWF0aCI+XFtnKHgpPVxmcmFje3heMi0xfXt4LTF9PXgrMSxccXVhZCB4XG5lMVxdPC9kaXY+PHA+VGhlIGdyYXBoIGlzIHRoZSBsaW5lIFwoeT14KzFcKSB3aXRoIHRoZSBwb2ludCBcKCgxLDIpXCkgcmVtb3ZlZC48L3A+PC9hcnRpY2xlPjxhcnRpY2xlIGNsYXNzPSJwcjUtcGFuZWwiPjxoMj5WZXJ0aWNhbCBhc3ltcHRvdGU8L2gyPjxkaXYgY2xhc3M9InByNS1tYXRoIj5cW2goeCk9XGZyYWMxe3gtMX1cXTwvZGl2PjxwPk5vIGZhY3RvciBjYW5jZWxzOyB2YWx1ZXMgYmVjb21lIHVuYm91bmRlZCBhcyBcKHhcdG8xXlxwbVwpLjwvcD48L2FydGljbGU+PC9kaXY+JHtWKCdob2xlLXZzLWFzeW1wdG90ZScsJ0EgcmVtb3ZhYmxlIGhvbGUgY29tcGFyZWQgd2l0aCBhIHZlcnRpY2FsIGFzeW1wdG90ZScpfTwvZGl2PmApOwoKICBjb25jZXB0KCcyLjNEJywnU2lnbnMgZGV0ZXJtaW5lIHJhdGlvbmFsIGJyYW5jaGVzJw==')
-          source,count=re.subn(pattern,replacement,source,count=1)
+          source,count=re.subn(pattern,lambda _match:replacement,source,count=1)
           if count!=1: raise SystemExit(f'hole slide replacement count={count}')
           content.write_text(source,encoding='utf-8')
 
