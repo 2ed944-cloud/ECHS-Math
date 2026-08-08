@@ -1,0 +1,42 @@
+name: Patch Lesson 2.1 portal QA after Lesson 2.3 totals update
+
+on:
+  push:
+    branches:
+      - feature/ib-ai-2-3-definitive-v5
+    paths:
+      - ".github/workflows/patch-lesson-2-1-portal-qa.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out feature branch
+        uses: actions/checkout@v4
+        with:
+          ref: feature/ib-ai-2-3-definitive-v5
+
+      - name: Make Lesson 2.1 QA validate its own metadata, not stale Unit 2 totals
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('tools/test_ib_ai_2_1_definitive_v5.py')
+          s=p.read_text(encoding='utf-8')
+          old="""for marker in ('424 Learn screens','416 Practice questions','82 Quiz questions','24 extended tasks','release: \"5.0.0\"','learn: 88','practice: 96','quiz: 18','tasks: 6'):\n if marker not in portal:errors.append(f'Unit 2 portal metadata missing {marker}')\nfor page,label in ((start,'START_HERE'),(index,'Unit 2 index')):\n for marker in ('424','416','106','88 Learn screens','96 Practice Studio questions','18-question quiz','6 IB tasks'):\n  if marker not in page:errors.append(f'{label} missing {marker}')\n"""
+          new="""for marker in (\"configure('2.1'\",\"release:'5.0.0'\",\"scopeCounts:{learn:88,practice:96,quiz:18,tasks:6}\",\"Functions, Domain, Range, and Representations\"):\n if marker not in portal:errors.append(f'Lesson 2.1 portal metadata missing {marker}')\nfor page,label in ((start,'START_HERE'),(index,'Unit 2 index')):\n for marker in ('Functions, Domain, Range, and Representations','88 Learn screens','96 Practice Studio questions','18-question quiz','6 IB tasks'):\n  if marker not in page:errors.append(f'{label} missing Lesson 2.1 marker {marker}')\n"""
+          if old not in s:
+              raise SystemExit('stale Lesson 2.1 portal assertion block not found')
+          p.write_text(s.replace(old,new),encoding='utf-8')
+          PY
+          python -m py_compile tools/test_ib_ai_2_1_definitive_v5.py
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add tools/test_ib_ai_2_1_definitive_v5.py
+          git commit -m "Make Lesson 2.1 QA independent of Unit 2 aggregate totals"
+          git push origin HEAD:feature/ib-ai-2-3-definitive-v5
