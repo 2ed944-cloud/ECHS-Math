@@ -19,7 +19,7 @@
     M('Foundation','Describe',R`At a zero of even multiplicity, a polynomial graph usually:`,['crosses and changes sign','touches and turns without changing sign','has a vertical asymptote','has a hole'],1,'Even multiplicity produces no sign change.'),
     N('Foundation','Calculate',R`Find the y-intercept of \(f(x)=0.12(x+3)(x-1)^2(x-4)\).`,-1.44,R`\(-1.44\)`,R`Evaluate f(0)=0.12(3)(1)(−4)=−1.44.`),
     X('Foundation','State',R`If \(x=7\) is a zero of a polynomial, state a corresponding factor.`,['x-7','(x-7)'],R`\((x-7)\)`,R`The factor theorem gives \(f(7)=0\iff(x-7)\) is a factor.`),
-    X('Foundation','State',R`State the domain of \(r(x)=\dfrac{x+1}{x-4}\).`,['x≠4','all real except 4','R\\{4}'],R`\(x\ne4\)`,R`The denominator must not equal zero.`),
+    X('Foundation','State',R`State the domain of \(r(x)=\dfrac{x+1}{x-4}\).`,['x≠4','all real except 4','R\\{4}'],R`\(x≠4\)`,R`The denominator must not equal zero.`),
     X('Foundation','State',R`State the vertical and horizontal asymptotes of \(f(x)=\dfrac6{x+3}-2\).`,['x=-3 y=-2','vertical x=-3 horizontal y=-2'],R`\(x=-3\) and \(y=-2\).`,R`In \(a/(x-h)+k\), the asymptotes are x=h and y=k.`),
     X('Foundation','Identify',R`For \(g(x)=\dfrac{x^2-9}{x-3}\), identify the discontinuity at \(x=3\).`,['hole at (3,6)','removable hole (3,6)','hole'],R`A removable hole at \((3,6)\).`,R`The factor x−3 cancels, leaving x+3 with x=3 still excluded.`),
     N('Foundation','Determine',R`Find the x-intercept of \(r(x)=\dfrac{2x-7}{x+4}\).`,3.5,R`\(x=\frac72\)`,R`A rational zero occurs when the numerator is zero and the denominator is non-zero.`),
