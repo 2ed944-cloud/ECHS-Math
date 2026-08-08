@@ -1,0 +1,41 @@
+name: Export IB AI 2.3 audit source
+
+on:
+  push:
+    branches:
+      - fix/ib-ai-2-3-graphics-layout-v5-1
+    paths:
+      - ".github/workflows/export-ib-ai-2-3-audit-source.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+
+      - name: Prepare focused source bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p audit-source/lessons/ib-math-ai audit-source/tools audit-source/data audit-source/css audit-source/js
+          cp -a lessons/ib-math-ai/unit-2 audit-source/lessons/ib-math-ai/
+          cp -a lessons/ib-math-ai/unit-1 audit-source/lessons/ib-math-ai/
+          cp tools/test_ib_ai_2_3_definitive_v5.mjs audit-source/tools/
+          cp tools/browser_qa_ib_ai_2_3_definitive_v5.mjs audit-source/tools/
+          cp data/ib-math-ai-unit-2-update.js audit-source/data/
+          cp -a css/. audit-source/css/
+          cp -a js/. audit-source/js/
+          cp index.html audit-source/
+
+      - name: Upload focused source bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: ib-ai-2-3-audit-source
+          path: audit-source
+          if-no-files-found: error
+          retention-days: 2
