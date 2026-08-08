@@ -1,0 +1,63 @@
+/* IB Mathematics AI SL · Lesson 2.4 definitive v5 */
+:root{--el5-maroon:#7a1733;--el5-navy:#17324d;--el5-teal:#177e89;--el5-gold:#d4a72c;--el5-paper:#fffdf9;--el5-soft:#f6f1ea;--el5-line:#ded5ca;--el5-muted:#5d6a75;--el5-green:#1f7a4d;--el5-red:#a83246;--el5-blue:#2f72b8;--el5-purple:#6c4aa1}
+html.unit2-lesson-2-4-v5{scroll-behavior:smooth}
+html.unit2-lesson-2-4-v5 body{background:#f1ebe3;color:var(--el5-navy)}
+html.unit2-lesson-2-4-v5 .stage{background:radial-gradient(circle at 84% 8%,rgba(23,126,137,.09),transparent 34%),radial-gradient(circle at 12% 90%,rgba(212,167,44,.08),transparent 33%),linear-gradient(145deg,#fffdf9,#f6f0e8)}
+html.unit2-lesson-2-4-v5 .stage-inner{max-width:1540px;margin:0 auto;padding:34px 58px 72px}
+html.unit2-lesson-2-4-v5 .slide-title{max-width:1360px;color:var(--el5-navy);letter-spacing:-.045em;line-height:.97}
+html.unit2-lesson-2-4-v5 .slide-section{display:inline-flex;padding:8px 15px;border:1px solid rgba(122,23,51,.18);border-radius:999px;background:#fff4f7;color:var(--el5-maroon);font-weight:900}
+html.unit2-lesson-2-4-v5 .slide-eyebrow{color:var(--el5-teal);font-weight:950;letter-spacing:.14em;text-transform:uppercase}
+html.unit2-lesson-2-4-v5 .math-display,html.unit2-lesson-2-4-v5 .katex-display{overflow-x:auto;overflow-y:hidden;padding-bottom:3px}
+html.unit2-lesson-2-4-v5 .katex{white-space:nowrap}
+.el5-visual{min-width:0}
+.el5-visual>svg,.el5-visual svg{display:block;width:100%;height:auto}
+.el5-visual-placeholder{display:grid;place-content:center;min-height:260px;border:2px dashed var(--el5-line);border-radius:24px;background:#fff;color:var(--el5-muted);text-align:center}
+.el5-cover{display:grid;grid-template-columns:minmax(0,.91fr) minmax(520px,1.09fr);gap:42px;align-items:center;min-height:590px}
+.el5-cover h1{display:grid;margin:10px 0 22px;color:var(--el5-navy);font-size:clamp(52px,6.05vw,92px);line-height:.87;letter-spacing:-.06em}
+.el5-cover h1>span{margin-bottom:12px;color:var(--el5-gold);font-size:.3em;letter-spacing:.08em}
+.el5-cover p{max-width:730px;color:var(--el5-muted);font-size:clamp(18px,1.55vw,23px);line-height:1.55}
+.el5-kicker{color:var(--el5-teal);font-size:12px;font-weight:950;letter-spacing:.16em}
+.el5-central{display:grid;gap:4px;margin:25px 0;padding:17px 20px;border-left:7px solid var(--el5-gold);border-radius:0 16px 16px 0;background:#fff7df}
+.el5-central b{color:var(--el5-maroon)}
+.el5-central span{color:var(--el5-navy);font-weight:750;line-height:1.45}
+.el5-cover .primary-btn,.el5-ti-card button,.el5-lab button{padding:14px 22px;border:0;border-radius:14px;background:var(--el5-maroon);color:#fff;font:inherit;font-weight:900;cursor:pointer;box-shadow:0 12px 25px rgba(122,23,51,.2)}
+.el5-opening{display:grid;grid-template-columns:minmax(0,.9fr) minmax(520px,1.1fr);gap:28px;align-items:center}
+.el5-opening>div:first-child{padding:29px;border:1px solid var(--el5-line);border-radius:26px;background:#fff;box-shadow:0 18px 45px rgba(23,50,77,.08)}
+.el5-opening>div:first-child>span{color:var(--el5-teal);font-size:11px;font-weight:950;letter-spacing:.13em}
+.el5-opening h2{margin:9px 0;color:var(--el5-navy);font-size:clamp(28px,3vw,45px)}
+.el5-plan-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:20px 0}
+.el5-plan-grid article{padding:16px;border-radius:16px;background:var(--el5-soft)}
+.el5-plan-grid article>b{color:var(--el5-maroon)}
+.el5-question-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px}
+.el5-question-strip>div{display:grid;grid-template-columns:auto 1fr;gap:11px;align-items:center;padding:14px;border:1px solid var(--el5-line);border-radius:15px;background:#fff}
+.el5-question-strip b{display:grid;place-items:center;width:33px;height:33px;border-radius:50%;background:var(--el5-navy);color:#fff}
+.el5-question-strip span{color:var(--el5-navy);font-weight:750;line-height:1.35}
+.el5-goals{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.el5-goals label{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start;padding:19px;border:1px solid var(--el5-line);border-radius:18px;background:#fff}
+.el5-goals input{margin-top:4px;accent-color:var(--el5-teal)}
+.el5-goals span{font-weight:760;line-height:1.45}
+.el5-vocab{display:flex;flex-wrap:wrap;gap:9px;margin-top:18px}
+.el5-vocab span{padding:9px 13px;border:1px solid rgba(23,126,137,.24);border-radius:999px;background:#edf8f7;color:var(--el5-teal);font-size:13px;font-weight:850}
+.el5-contract{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.el5-contract article{padding:21px;border:1px solid var(--el5-line);border-radius:20px;background:#fff}
+.el5-contract article>span{display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:var(--el5-navy);color:#fff;font-weight:950}
+.el5-contract h2{margin:12px 0 5px}
+.el5-contract p{color:var(--el5-muted);line-height:1.5}
+.el5-section-open{display:grid;grid-template-columns:minmax(0,.88fr) minmax(500px,1.12fr);gap:35px;align-items:center;min-height:540px}
+.el5-section-open>div:first-child>span{color:var(--el5-teal);font-size:12px;font-weight:950;letter-spacing:.15em}
+.el5-section-open h2{margin:12px 0 20px;color:var(--el5-navy);font-size:clamp(45px,5.3vw,80px);line-height:.94;letter-spacing:-.05em}
+.el5-section-open p{max-width:700px;color:var(--el5-muted);font-size:clamp(18px,1.6vw,23px);line-height:1.55}
+.el5-concept{display:grid;grid-template-columns:1fr;gap:22px}
+.el5-concept.with-visual{grid-template-columns:minmax(0,.95fr) minmax(480px,1.05fr);align-items:center}
+.el5-lead{margin:0 0 18px;color:var(--el5-muted);font-size:18px;line-height:1.55}
+.el5-card-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+.el5-card-grid>article{min-width:0;padding:21px;border:1px solid var(--el5-line);border-radius:20px;background:#fff;box-shadow:0 10px 26px rgba(23,50,77,.05)}
+.el5-card-grid>article.accent{background:#edf8f7;border-color:rgba(23,126,137,.28)}
+.el5-card-grid>article>span{display:block;color:var(--el5-maroon);font-size:11px;font-weight:950;letter-spacing:.11em}
+.el5-card-grid>article>h2{margin:8px 0;font-size:23px}
+.el5-card-grid>article>p,.el5-card-grid>article>li{color:var(--el5-muted);font-size:15px;line-height:1.5}
+.el5-card-grid ul{padding-left:20px}
+.el5-math{min-width:0;margin:12px 0;padding:13px 15px;border-radius:15px;background:var(--el5-soft);color:var(--el5-navy);font-size:clamp(17px,1.55vw,25px);text-align:center;overflow-x:auto}
+.el5-math.hero{font-size:clamp(24px,2.8vw,42px)}
+.el5-note{margin-top:16px;padding:15px 18px;border-left:6px solid var(--el5-teal);border-radius:0 14px 14px 0;background:#eaf5f4;color:var(--el5-navy);line-height:1.5}
+.el5-two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:23px;align-items:stretch}
