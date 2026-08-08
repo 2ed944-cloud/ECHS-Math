@@ -1,0 +1,62 @@
+name: Install Lesson 2.3 graphics precision patch
+
+on:
+  push:
+    branches:
+      - fix/ib-ai-2-3-graphics-layout-v5-2
+    paths:
+      - ".lesson23-graphics-patch/**"
+      - ".github/workflows/install-lesson-2-3-graphics-patch.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out repair branch
+        uses: actions/checkout@v4
+        with:
+          ref: fix/ib-ai-2-3-graphics-layout-v5-2
+          fetch-depth: 0
+
+      - name: Apply and validate graphics repair
+        shell: bash
+        run: |
+          set -euo pipefail
+          if ! compgen -G ".lesson23-graphics-patch/part-*" > /dev/null; then
+            echo "Lesson 2.3 graphics patch has already been installed."
+            exit 0
+          fi
+          cat .lesson23-graphics-patch/part-* > /tmp/lesson23-patch.z.b64
+          python3 - <<'PY'
+          from pathlib import Path
+          import base64, zlib
+          encoded=Path('/tmp/lesson23-patch.z.b64').read_bytes()
+          patch=zlib.decompress(base64.b64decode(encoded))
+          Path('/tmp/lesson23-graphics.patch').write_bytes(patch)
+          PY
+          patch -p1 --forward < /tmp/lesson23-graphics.patch
+          node --check lessons/ib-math-ai/unit-2/data/lesson-2.3-v5-graphics.js
+          node --check lessons/ib-math-ai/unit-2/data/lesson-2.3-v5-content-a.js
+          node --check lessons/ib-math-ai/unit-2/data/lesson-2.3-v5-finalize.js
+          node --check tools/test_ib_ai_2_3_definitive_v5.mjs
+          node --check tools/browser_qa_ib_ai_2_3_definitive_v5.mjs
+          node tools/test_ib_ai_2_3_definitive_v5.mjs .
+          rm -rf .lesson23-graphics-patch
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add -A -- \
+            lessons/ib-math-ai/unit-2/data/lesson-2.3-v5-graphics.js \
+            lessons/ib-math-ai/unit-2/data/lesson-2.3-v5-content-a.js \
+            lessons/ib-math-ai/unit-2/data/lesson-2.3-v5-finalize.js \
+            lessons/ib-math-ai/unit-2/assets/css/lesson-2.3-v5-graphics-layout-fix.css \
+            lessons/ib-math-ai/unit-2/lessons/IB_AI_SL_2.3_polynomial_rational_models_ECHS.html \
+            tools/test_ib_ai_2_3_definitive_v5.mjs \
+            tools/browser_qa_ib_ai_2_3_definitive_v5.mjs \
+            data/ib-math-ai-unit-2-update.js \
+            .lesson23-graphics-patch
+          git commit -m "Repair Lesson 2.3 graphics and viewport precision"
+          git push origin HEAD:fix/ib-ai-2-3-graphics-layout-v5-2
