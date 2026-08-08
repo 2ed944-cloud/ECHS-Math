@@ -1,0 +1,122 @@
+name: Patch Lesson 2.3 final mathematical display
+
+on:
+  push:
+    branches:
+      - fix/ib-ai-2-3-graphics-layout-v5-2
+    paths:
+      - ".github/workflows/patch-lesson-2-3-final-math-visual.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Check out repair branch
+        uses: actions/checkout@v4
+        with:
+          ref: fix/ib-ai-2-3-graphics-layout-v5-2
+
+      - name: Repair compact expressions and not-equal relations
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          content=Path('lessons/ib-math-ai/unit-2/data/lesson-2.3-v5-content-a.js')
+          source=content.read_text(encoding='utf-8')
+          replacements={
+            r'<strong>\(4x^5-3x^2+7\)</strong>':'<strong class="pr5-rule-expression">4<i>x</i><sup>5</sup>−3<i>x</i><sup>2</sup>+7</strong>',
+            r'<strong>\(x^{-1}+2\)</strong>':'<strong class="pr5-rule-expression"><i>x</i><sup>−1</sup>+2</strong>',
+            r'<strong>\(\sqrt{x}+x\)</strong>':'<strong class="pr5-rule-expression">√<i>x</i>+<i>x</i></strong>'
+          }
+          for old,new in replacements.items():
+            if old not in source: raise SystemExit(f'missing polynomial expression contract: {old}')
+            source=source.replace(old,new,1)
+          content.write_text(source,encoding='utf-8')
+
+          data_dir=Path('lessons/ib-math-ai/unit-2/data')
+          changed=0
+          for path in sorted(data_dir.glob('lesson-2.3-v5-*.js')):
+            text=path.read_text(encoding='utf-8')
+            updated,count=re.subn(r'\\ne(?!q)', '≠', text)
+            if count:
+              path.write_text(updated,encoding='utf-8')
+              changed+=count
+          if changed < 10: raise SystemExit(f'expected at least 10 unsupported not-equal macros, repaired {changed}')
+
+          css=Path('lessons/ib-math-ai/unit-2/assets/css/lesson-2.3-v5-graphics-layout-fix.css')
+          source=css.read_text(encoding='utf-8')
+          marker='/* Lesson 2.3 v5.1.2 · mathematical display precision */'
+          if marker not in source:
+            source += r'''
+
+/* Lesson 2.3 v5.1.2 · mathematical display precision */
+.pr5-rule-expression{display:block;min-width:0;max-width:100%;overflow:visible;color:var(--pr5-navy);font-family:"Cambria Math","STIX Two Math","Times New Roman",serif;font-size:clamp(1.08rem,1.45vw,1.38rem);font-style:normal;font-weight:500;line-height:1.2;letter-spacing:0;white-space:nowrap;text-align:left}
+.pr5-rule-expression i{font-family:inherit;font-style:italic;font-weight:500}
+.pr5-rule-expression sup{position:relative;top:-.15em;font-size:.66em;line-height:0;vertical-align:super}
+@media(min-width:1101px) and (max-height:950px){.pr5-definition-layout .pr5-rule-list .pr5-rule-expression{font-size:1.16rem}}
+@media(max-width:620px){.pr5-rule-expression{font-size:1.15rem}}
+'''
+          css.write_text(source,encoding='utf-8')
+
+          html=Path('lessons/ib-math-ai/unit-2/lessons/IB_AI_SL_2.3_polynomial_rational_models_ECHS.html')
+          text=html.read_text(encoding='utf-8').replace('v=5.1.1','v=5.1.2')
+          if 'v=5.1.2' not in text: raise SystemExit('asset cache version was not updated')
+          html.write_text(text,encoding='utf-8')
+
+          for name in [
+            'lessons/ib-math-ai/unit-2/data/lesson-2.3-v5-finalize.js',
+            'lessons/ib-math-ai/unit-2/data/lesson-2.3-v5-graphics.js',
+            'tools/test_ib_ai_2_3_definitive_v5.mjs'
+          ]:
+            path=Path(name); text=path.read_text(encoding='utf-8').replace('5.1.0','5.1.2')
+            path.write_text(text,encoding='utf-8')
+
+          metadata=Path('data/ib-math-ai-unit-2-update.js')
+          text=metadata.read_text(encoding='utf-8')
+          old="configure('2.3',{release:'5.1.0',organization_release:'5.1.0'"
+          new="configure('2.3',{release:'5.1.2',organization_release:'5.1.2'"
+          if old not in text: raise SystemExit('Lesson 2.3 metadata version contract missing')
+          metadata.write_text(text.replace(old,new,1),encoding='utf-8')
+
+          test=Path('tools/test_ib_ai_2_3_definitive_v5.mjs')
+          source=test.read_text(encoding='utf-8')
+          needle='const d=context.window.LESSON_DATA;'
+          assertion="const serializedRelease=JSON.stringify({slides:d.slides,practice:d.practice,quiz:d.quiz,exam:d.exam});fail(!serializedRelease.includes('\\\\ne'),'unsupported \\\\ne relation macro remains in Lesson 2.3 data');"
+          if assertion not in source:
+            if needle not in source: raise SystemExit('deterministic test insertion point missing')
+            source=source.replace(needle,needle+assertion,1)
+          test.write_text(source,encoding='utf-8')
+
+          browser=Path('tools/browser_qa_ib_ai_2_3_definitive_v5.mjs')
+          source=browser.read_text(encoding='utf-8')
+          marker=" await gotoTitle(page,'End-behaviour laboratory');"
+          checks=""" await gotoTitle(page,'What makes a function polynomial?');const ruleExpressions=await page.evaluate(()=>[...document.querySelectorAll('.pr5-rule-expression')].map(el=>({text:el.innerText.trim(),width:el.getBoundingClientRect().width,height:el.getBoundingClientRect().height,scrollWidth:el.scrollWidth,clientWidth:el.clientWidth})));check('polynomial expressions remain horizontal',ruleExpressions.length===3&&ruleExpressions.every(item=>item.height<34&&item.scrollWidth<=item.clientWidth+2&&item.width>70),JSON.stringify(ruleExpressions));
+ await gotoTitle(page,'Asymptotes describe limiting behaviour');const asymptoteRelations=await page.locator('.pr5-concept-rational-asymptotes .pr5-math').allInnerTexts();check('domain and range display not-equal relations',asymptoteRelations.filter(text=>text.includes('≠')).length>=2,JSON.stringify(asymptoteRelations));
+ await gotoTitle(page,'A hole is not a vertical asymptote');const holeRelation=await page.locator('.pr5-hole-comparison .pr5-math').first().innerText();check('removable hole preserves excluded input',holeRelation.includes('≠'),holeRelation);
+"""
+          if 'polynomial expressions remain horizontal' not in source:
+            if marker not in source: raise SystemExit('browser QA insertion point missing')
+            source=source.replace(marker,checks+marker,1)
+          browser.write_text(source,encoding='utf-8')
+          PY
+          for file in lessons/ib-math-ai/unit-2/data/lesson-2.3-v5-*.js; do node --check "$file"; done
+          node --check tools/test_ib_ai_2_3_definitive_v5.mjs
+          node --check tools/browser_qa_ib_ai_2_3_definitive_v5.mjs
+          node tools/test_ib_ai_2_3_definitive_v5.mjs .
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add lessons/ib-math-ai/unit-2/data/lesson-2.3-v5-*.js \
+                  lessons/ib-math-ai/unit-2/assets/css/lesson-2.3-v5-graphics-layout-fix.css \
+                  lessons/ib-math-ai/unit-2/lessons/IB_AI_SL_2.3_polynomial_rational_models_ECHS.html \
+                  tools/test_ib_ai_2_3_definitive_v5.mjs \
+                  tools/browser_qa_ib_ai_2_3_definitive_v5.mjs \
+                  data/ib-math-ai-unit-2-update.js
+          git commit -m "Correct Lesson 2.3 mathematical display and relation symbols"
+          git push origin HEAD:fix/ib-ai-2-3-graphics-layout-v5-2
