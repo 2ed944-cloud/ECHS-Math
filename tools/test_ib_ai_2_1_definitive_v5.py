@@ -155,11 +155,11 @@ for marker in ("https://ti84calc.com/ti84calc","2\\.1","[data-open-ti84]","TI‑
  if marker not in simulator:errors.append(f'Shared TI-84 simulator missing {marker}')
 
 portal=read(PORTAL);start=read(START);index=read(INDEX);ib_workflow=read(IB_WORKFLOW);visual_workflow=read(VISUAL_WORKFLOW);browser=read(BROWSER)
-for marker in ('424 Learn screens','416 Practice questions','82 Quiz questions','24 extended tasks','release: "5.0.0"','learn: 88','practice: 96','quiz: 18','tasks: 6'):
- if marker not in portal:errors.append(f'Unit 2 portal metadata missing {marker}')
+for marker in ("configure('2.1'","release:'5.0.0'","scopeCounts:{learn:88,practice:96,quiz:18,tasks:6}","Functions, Domain, Range, and Representations"):
+ if marker not in portal:errors.append(f'Lesson 2.1 portal metadata missing {marker}')
 for page,label in ((start,'START_HERE'),(index,'Unit 2 index')):
- for marker in ('424','416','106','88 Learn screens','96 Practice Studio questions','18-question quiz','6 IB tasks'):
-  if marker not in page:errors.append(f'{label} missing {marker}')
+ for marker in ('Functions, Domain, Range, and Representations','88 Learn screens','96 Practice Studio questions','18-question quiz','6 IB tasks'):
+  if marker not in page:errors.append(f'{label} missing Lesson 2.1 marker {marker}')
 for marker in ('tools/test_ib_ai_2_1_definitive_v5.py','Validate Lesson 2.1 definitive v5'):
  if marker not in ib_workflow:errors.append(f'IB QA workflow missing {marker}')
 for marker in ('tools/browser_qa_ib_ai_2_1_definitive_v5.mjs','Functions Lesson 2.1 v5'):
