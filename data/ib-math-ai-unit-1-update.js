@@ -114,6 +114,10 @@
     {label:"Full Notes 1.5 · Lesson-Synchronised Edition",url:"notes/ib-math-ai/unit-1/IB_AI_SL_1.5_Exponent_Laws_and_Logarithms_Full_Notes_Student.html",type:"notes"},
     {label:"Full Notes 1.5 · Original Coloured LaTeX PDF",url:"notes/ib-math-ai/unit-1/IB_AI_SL_1.5_Exponent_Laws_and_Logarithms_Full_Notes_Student.pdf",type:"notes"}
   ]);
+  upsertFullNotes("1.6",[
+    {label:"Full Notes 1.6 · Lesson-Synchronised Edition",url:"notes/ib-math-ai/unit-1/IB_AI_SL_1.6_Technology_for_Equations_and_Systems_Full_Notes_Student.html",type:"notes"},
+    {label:"Full Notes 1.6 · Original Coloured LaTeX PDF",url:"notes/ib-math-ai/unit-1/IB_AI_SL_1.6_Technology_for_Equations_and_Systems_Full_Notes_Student.pdf",type:"notes"}
+  ]);
 
 
   const lesson11=unit.lessons.find(lesson=>lesson.number==="1.1");
