@@ -1,0 +1,54 @@
+name: TEMP Add IB AI 2.1 and 2.2 notes cards
+on:
+  push:
+    branches: [agent/ib-ai-2-1-2-2-dual-notes-cards]
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/ib-ai-2-1-2-2-dual-notes-cards
+          fetch-depth: 0
+      - name: Register Lesson 2.1 and 2.2 dual notes
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('data/ib-math-ai-unit-2-update.js')
+          s=p.read_text()
+          marker="  window.ECHS_IB_MATH_AI_UNIT_2=unit;"
+          assert marker in s
+          assert "upsertFullNotes('2.1'" not in s
+          block="""  const upsertFullNotes=(number,items)=>{\n    const target=unit.lessons.find(value=>value.number===number);\n    if(!target)return;\n    target.resources=Array.isArray(target.resources)?target.resources:[];\n    const urls=new Set(items.map(item=>item.url));\n    target.resources=target.resources.filter(resource=>!resource||!urls.has(resource.url));\n    target.resources.splice(1,0,...items);\n  };\n  upsertFullNotes('2.1',[\n    {label:'Full Notes 2.1 · Lesson-Synchronised Edition',url:'notes/ib-math-ai/unit-2/IB_AI_SL_2.1_Functions_Domain_Range_and_Representations_Full_Notes_Student.html',type:'notes'},\n    {label:'Full Notes 2.1 · Original Coloured LaTeX PDF',url:'notes/ib-math-ai/unit-2/IB_AI_SL_2.1_Functions_Domain_Range_and_Representations_Full_Notes_Student.pdf',type:'notes'}\n  ]);\n  upsertFullNotes('2.2',[\n    {label:'Full Notes 2.2 · Lesson-Synchronised Edition',url:'notes/ib-math-ai/unit-2/IB_AI_SL_2.2_Linear_and_Quadratic_Models_Full_Notes_Student.html',type:'notes'},\n    {label:'Full Notes 2.2 · Original Coloured LaTeX PDF',url:'notes/ib-math-ai/unit-2/IB_AI_SL_2.2_Linear_and_Quadratic_Models_Full_Notes_Student.pdf',type:'notes'}\n  ]);\n"""
+          p.write_text(s.replace(marker,block+marker,1))
+          PY
+      - name: Validate exact resource contract
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f notes/ib-math-ai/unit-2/IB_AI_SL_2.1_Functions_Domain_Range_and_Representations_Full_Notes_Student.html
+          test -f notes/ib-math-ai/unit-2/IB_AI_SL_2.1_Functions_Domain_Range_and_Representations_Full_Notes_Student.pdf
+          test -f notes/ib-math-ai/unit-2/IB_AI_SL_2.2_Linear_and_Quadratic_Models_Full_Notes_Student.html
+          test -f notes/ib-math-ai/unit-2/IB_AI_SL_2.2_Linear_and_Quadratic_Models_Full_Notes_Student.pdf
+          test "$(git hash-object notes/ib-math-ai/unit-2/IB_AI_SL_2.1_Functions_Domain_Range_and_Representations_Full_Notes_Student.html)" = a18fa7d175017171a97ba90cfaf53ce336266fe5
+          test "$(git hash-object notes/ib-math-ai/unit-2/IB_AI_SL_2.1_Functions_Domain_Range_and_Representations_Full_Notes_Student.pdf)" = c1458ef672dc6e7eaa5ccefe80b595f49e0f6d6e
+          test "$(git hash-object notes/ib-math-ai/unit-2/IB_AI_SL_2.2_Linear_and_Quadratic_Models_Full_Notes_Student.html)" = e541095e1a37573bc11e53096ef3bea59a5ea054
+          test "$(git hash-object notes/ib-math-ai/unit-2/IB_AI_SL_2.2_Linear_and_Quadratic_Models_Full_Notes_Student.pdf)" = f3c185dc8c28dd908a2687c5dc16d5dd6af5b574
+          grep -F "Full Notes 2.1 · Lesson-Synchronised Edition" data/ib-math-ai-unit-2-update.js
+          grep -F "Full Notes 2.2 · Original Coloured LaTeX PDF" data/ib-math-ai-unit-2-update.js
+          ! grep -qi "Teacher Key" data/ib-math-ai-unit-2-update.js
+          node --check data/ib-math-ai-unit-2-update.js
+      - name: Commit clean patch
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm .github/workflows/temp-add-ib-ai-2-1-2-2-notes-cards.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/ib-math-ai-unit-2-update.js .github/workflows/temp-add-ib-ai-2-1-2-2-notes-cards.yml
+          git commit -m "Add Lesson 2.1 and 2.2 dual Full Notes resources"
+          git push origin HEAD:agent/ib-ai-2-1-2-2-dual-notes-cards
