@@ -1,0 +1,120 @@
+/* Lesson 2.3 v5.1 · mathematical graphics and viewport precision repair */
+:root{--pr5-safe-gap:18px;--pr5-content-width:1500px}
+html.unit2-lesson-2-3-v5,html.unit2-lesson-2-3-v5 body{overflow-x:hidden}
+html.unit2-lesson-2-3-v5 .app-shell{place-items:start center;padding-top:calc(var(--header-h) + var(--route-h) + var(--pr5-safe-gap));padding-bottom:calc(var(--footer-h) + var(--pr5-safe-gap));padding-inline:clamp(12px,2vw,28px)}
+html.unit2-lesson-2-3-v5[data-lesson-access-layout="bar"] .app-shell,
+html.unit2-lesson-2-3-v5 body.hasEchsLessonAccessBar .app-shell{padding-top:calc(var(--echs-access-bar-height,60px) + var(--header-h) + var(--route-h) + var(--pr5-safe-gap))!important}
+html.unit2-lesson-2-3-v5 .stage{width:min(var(--pr5-content-width),100%);min-height:calc(100dvh - var(--header-h) - var(--route-h) - var(--footer-h) - 2*var(--pr5-safe-gap));height:auto;overflow:hidden}
+html.unit2-lesson-2-3-v5 .stage-inner{min-height:0;padding:clamp(22px,3.1vh,34px) clamp(24px,3.4vw,52px) clamp(28px,4vh,48px)}
+html.unit2-lesson-2-3-v5 .slide-section{margin-bottom:10px}
+html.unit2-lesson-2-3-v5 .slide-title{font-size:clamp(2.1rem,3.65vw,3.6rem);line-height:1;margin:.28rem 0 clamp(.8rem,1.7vh,1.15rem)}
+html.unit2-lesson-2-3-v5 .slide-body{line-height:1.5}
+.pr5-visual{min-height:0;overflow:hidden;border-radius:26px;isolation:isolate}
+.pr5-visual>.pr5-svg{width:100%;height:auto;max-height:min(46vh,440px);overflow:hidden;filter:drop-shadow(0 13px 25px rgba(23,50,77,.075))}
+.pr5-svg{overflow:hidden}
+.pr5-wide-visual{width:min(1280px,100%);margin:auto}
+.pr5-wide-visual .pr5-visual{min-height:0}
+.pr5-wide-visual .pr5-svg{max-height:min(45vh,420px)}
+.pr5-section-open{grid-template-columns:minmax(0,.86fr) minmax(470px,1.14fr);gap:clamp(22px,3vw,38px);min-height:clamp(390px,49vh,510px)}
+.pr5-section-open h2{font-size:clamp(2.65rem,4.55vw,4.35rem);line-height:.96;margin:8px 0 16px}
+.pr5-section-open p{font-size:clamp(1.05rem,1.35vw,1.35rem);line-height:1.48}
+.pr5-section-open .pr5-svg{max-height:min(43vh,410px)}
+.pr5-concept{gap:18px}
+.pr5-concept.with-visual{grid-template-columns:minmax(0,1fr) minmax(430px,.88fr);gap:clamp(18px,2.5vw,30px)}
+.pr5-card-grid{gap:12px}
+.pr5-card-grid article{padding:17px;border-radius:18px}
+.pr5-card-grid h2{font-size:19px}
+.pr5-card-grid p,.pr5-card-grid li{font-size:13.5px;line-height:1.42}
+.pr5-math{padding:9px;margin:7px 0;font-size:clamp(1rem,1.35vw,1.35rem)}
+.pr5-note{margin-top:14px;padding:13px 17px;line-height:1.42}
+.pr5-definition-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(460px,.88fr);gap:clamp(20px,3vw,38px);align-items:center}
+.pr5-rule-list{display:grid;gap:10px}
+.pr5-rule-list article{display:grid;grid-template-columns:42px minmax(0,1fr);gap:12px;align-items:center;padding:12px 15px;border:1px solid #edc3cb;border-radius:16px;background:#fff5f6}
+.pr5-rule-list article.valid{border-color:#bfe2cc;background:#edf8f2}
+.pr5-rule-list article>b{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--pr5-red);color:#fff;font-size:20px}
+.pr5-rule-list article.valid>b{background:var(--pr5-green)}
+.pr5-rule-list span{display:block;color:var(--pr5-maroon);font-size:11px;font-weight:950;letter-spacing:.08em;text-transform:uppercase}
+.pr5-rule-list strong{display:inline-block;margin-top:2px;color:var(--pr5-navy);font-size:clamp(1.05rem,1.45vw,1.35rem)}
+.pr5-rule-list small{display:block;margin-top:3px;color:var(--pr5-muted);font-size:12px}
+.pr5-worked{gap:18px}
+.pr5-question,.pr5-method{padding:clamp(19px,2.3vw,27px)}
+.pr5-question h2,.pr5-student h2{font-size:clamp(1.55rem,2.25vw,2.35rem)}
+.pr5-method ol{font-size:16px;line-height:1.48}
+.pr5-method li+li{margin-top:7px}
+.pr5-result{padding:13px;font-size:clamp(1.05rem,1.55vw,1.45rem)}
+.pr5-two{gap:16px}
+.pr5-panel{padding:19px}
+.pr5-difference-board{gap:16px}
+.pr5-method-board{gap:12px}
+.pr5-ti-card{padding:20px 24px}
+.pr5-ti-dock{top:calc(var(--header-h) + var(--route-h))}
+html[data-lesson-access-layout="bar"] .pr5-ti-dock,body.hasEchsLessonAccessBar .pr5-ti-dock{top:calc(var(--echs-access-bar-height,60px) + var(--header-h) + var(--route-h))}
+
+@media(max-height:860px) and (min-width:901px){
+  :root{--pr5-safe-gap:12px}
+  html.unit2-lesson-2-3-v5 .stage-inner{padding:18px 38px 26px}
+  html.unit2-lesson-2-3-v5 .slide-section{padding:5px 10px;margin-bottom:7px}
+  html.unit2-lesson-2-3-v5 .slide-eyebrow{font-size:.7rem}
+  html.unit2-lesson-2-3-v5 .slide-title{font-size:clamp(2rem,3.2vw,3rem);margin:.2rem 0 .7rem}
+  .pr5-section-open{min-height:390px;gap:24px}
+  .pr5-section-open h2{font-size:clamp(2.5rem,4vw,3.7rem);margin:6px 0 12px}
+  .pr5-section-open p{font-size:1.04rem;line-height:1.42}
+  .pr5-section-open .pr5-svg{max-height:350px}
+  .pr5-visual>.pr5-svg{max-height:350px}
+  .pr5-wide-visual .pr5-svg{max-height:355px}
+  .pr5-card-grid article{padding:14px}
+  .pr5-card-grid p,.pr5-card-grid li{font-size:12.75px}
+  .pr5-definition-layout{grid-template-columns:minmax(0,1fr) minmax(430px,.86fr);gap:24px}
+  .pr5-rule-list{gap:7px}
+  .pr5-rule-list article{padding:8px 12px}
+  .pr5-note{margin-top:10px;padding:10px 14px;font-size:13px}
+  .pr5-question,.pr5-method{padding:18px}
+  .pr5-method ol{font-size:14.5px}
+  .pr5-student{padding:20px}
+  .pr5-student .student-note.tall{min-height:135px}
+}
+
+@media(max-height:760px) and (min-width:1101px){
+  html.unit2-lesson-2-3-v5 .stage-inner{padding:14px 32px 20px}
+  html.unit2-lesson-2-3-v5 .slide-title{font-size:clamp(1.85rem,2.85vw,2.65rem);margin:.15rem 0 .55rem}
+  .pr5-section-open{min-height:330px;grid-template-columns:minmax(0,.9fr) minmax(420px,1.1fr)}
+  .pr5-section-open h2{font-size:clamp(2.2rem,3.5vw,3.25rem)}
+  .pr5-section-open .pr5-svg,.pr5-visual>.pr5-svg,.pr5-wide-visual .pr5-svg{max-height:300px}
+  .pr5-lead{font-size:16px;margin-bottom:10px}
+  .pr5-definition-layout{grid-template-columns:minmax(0,1fr) minmax(390px,.78fr);gap:18px}
+  .pr5-rule-list article{grid-template-columns:34px 1fr;padding:6px 10px}
+  .pr5-rule-list article>b{width:29px;height:29px;font-size:17px}
+  .pr5-rule-list small{display:none}
+  .pr5-card-grid{gap:9px}
+  .pr5-card-grid article{padding:11px}
+  .pr5-card-grid h2{font-size:16px}
+  .pr5-card-grid p,.pr5-card-grid li{font-size:11.8px}
+  .pr5-question h2,.pr5-student h2{font-size:1.45rem}
+  .pr5-method ol{font-size:13.5px;line-height:1.38}
+  .pr5-result{margin-top:10px;padding:10px}
+}
+
+@media(max-width:1100px){
+  .pr5-section-open,.pr5-concept.with-visual,.pr5-definition-layout{grid-template-columns:1fr}
+  .pr5-section-open{min-height:0}
+  .pr5-section-open .pr5-visual,.pr5-definition-layout .pr5-visual{max-width:900px;margin:auto}
+  .pr5-definition-layout .pr5-visual{order:-1}
+}
+@media(max-width:900px){
+  html.unit2-lesson-2-3-v5 .app-shell{padding-top:calc(var(--header-h) + var(--route-h) + 10px);padding-bottom:calc(var(--footer-h) + 12px);padding-inline:10px}
+  html.unit2-lesson-2-3-v5[data-lesson-access-layout="bar"] .app-shell,
+  html.unit2-lesson-2-3-v5 body.hasEchsLessonAccessBar .app-shell{padding-top:calc(var(--echs-access-bar-height,60px) + var(--header-h) + var(--route-h) + 10px)!important}
+  html.unit2-lesson-2-3-v5 .stage{min-height:0;border-radius:22px}
+  html.unit2-lesson-2-3-v5 .stage-inner{padding:20px 17px 34px}
+  .pr5-visual>.pr5-svg,.pr5-wide-visual .pr5-svg{max-height:none}
+  .pr5-definition-layout .pr5-visual{order:0}
+  .pr5-ti-dock{top:0!important}
+}
+@media(max-width:620px){
+  html.unit2-lesson-2-3-v5 .slide-title{font-size:1.9rem}
+  .pr5-section-open h2{font-size:2.25rem}
+  .pr5-rule-list article{grid-template-columns:34px 1fr;padding:10px}
+  .pr5-rule-list article>b{width:29px;height:29px;font-size:17px}
+  .pr5-card-grid{grid-template-columns:1fr}
+  .pr5-svg text{font-size:12px}
+}

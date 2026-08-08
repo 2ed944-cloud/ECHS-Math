@@ -5,7 +5,7 @@
   const {slides}=build;
   if(slides.length!==80)throw new Error(`Lesson 2.3 v5 expected 80 Learn screens, received ${slides.length}.`);
   window.LESSON_DATA={
-    schemaVersion:'5.0.0',version:'5.0.0',buildDate:'2026-08-08',
+    schemaVersion:'5.1.0',version:'5.1.0',buildDate:'2026-08-08',
     course:'IB Mathematics: Applications and Interpretation SL',
     unit:{number:2,title:'Functions'},
     lesson:{
@@ -48,7 +48,7 @@
     },
     counts:{slides:slides.length,practice:0,quiz:0,exam:0},
     rights:{student_content:'Original ECHS-authored instructional and assessment content informed by the IB Mathematics AI curriculum, supplied reference scope and official calculator guidance.'},
-    audit:{release:'5.0.0',learnScreenCount:slides.length,allVisualsPurposeBuilt:true,manualFirstTechnology:true,sourceScopeReviewed:true,studentFacingDevelopmentLabels:false}
+    audit:{release:'5.1.0',learnScreenCount:slides.length,allVisualsPurposeBuilt:true,manualFirstTechnology:true,sourceScopeReviewed:true,studentFacingDevelopmentLabels:false}
   };
   delete window.__ECHS_PR5_BUILD;
 })();

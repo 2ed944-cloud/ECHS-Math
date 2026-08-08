@@ -3,14 +3,9 @@
   const b=window.__ECHS_PR5_BUILD;if(!b)throw new Error('Lesson 2.3 v5 builder missing.');
   const {R,S,V,cards,concept,W,T,Q,Section,TI}=b;
 
-  Section('2.3A','Polynomial Structure and End Behaviour','Read a polynomial as a connected system: degree limits its possible turns, the leading term controls the distant ends, and the contextual domain decides which part of the graph is meaningful.','poly-rational-overview');
+  Section('2.3A','Polynomial Structure and End Behaviour','Read a polynomial as one connected system: degree limits possible turns, the leading term controls the distant ends, and context selects the meaningful interval.','poly-rational-overview');
 
-  concept('2.3A','What makes a function polynomial?','Structure before graphing',
-    'A polynomial uses non-negative integer powers of the variable, finite addition, subtraction and multiplication, and real coefficients.',[
-      {label:'POLYNOMIAL',math:R`\[4x^5-3x^2+7\]`,text:'Every exponent is a non-negative integer.'},
-      {label:'NOT POLYNOMIAL',math:R`\[x^{-1}+2\]`,text:'A negative exponent places the variable in a denominator.'},
-      {label:'NOT POLYNOMIAL',math:R`\[\sqrt{x}+x\]`,text:'The exponent \(\tfrac12\) is not a non-negative integer.'}
-    ],'polynomial-check',R`<b>Domain:</b> an unrestricted polynomial has domain \(\mathbb R\); a model may use only a contextual interval.`);
+  S('2.3A','What makes a function polynomial?','content','Structure before graphing',R`<div class="pr5-definition-layout"><div><p class="pr5-lead">A polynomial is a finite sum of terms \(a_kx^k\), where every exponent \(k\) is a non-negative integer and every coefficient is real.</p><div class="pr5-rule-list"><article class="valid"><b>✓</b><div><span>Polynomial</span><strong>\(4x^5-3x^2+7\)</strong><small>exponents 5, 2 and 0</small></div></article><article><b>×</b><div><span>Not polynomial</span><strong>\(x^{-1}+2\)</strong><small>negative exponent</small></div></article><article><b>×</b><div><span>Not polynomial</span><strong>\(\sqrt{x}+x\)</strong><small>fractional exponent \(1/2\)</small></div></article></div><div class="pr5-note"><b>Domain:</b> an unrestricted polynomial has domain \(\mathbb R\); a contextual model may use only a validated interval.</div></div>${V('polynomial-definition-flow','Decision test for polynomial structure')}</div>`);
 
   concept('2.3A','Degree and leading coefficient','Two pieces control the global skeleton',
     R`For \(f(x)=a_nx^n+\cdots+a_1x+a_0\), the largest exponent \(n\) is the degree and \(a_n\) is the leading coefficient.`,[
