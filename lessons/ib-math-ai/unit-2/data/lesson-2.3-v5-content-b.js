@@ -85,9 +85,9 @@
   Section('2.3D','Rational Structure, Domain and Asymptotes','A rational model is governed by numerator and denominator structure. Excluded inputs, zeros, holes and asymptotes must be distinguished algebraically before technology is trusted.','rational-overview');
 
   concept('2.3D','Rational functions begin with domain restrictions','The denominator may not be zero',
-    R`A rational function is a quotient of polynomials: \(f(x)=\dfrac{P(x)}{Q(x)}\), with \(Q(x)\ne0\).`,[
-      {math:R`\[f(x)=\frac{x+1}{x-3}\]`,text:'Domain: \(x\ne3\).'},
-      {math:R`\[g(x)=\frac{x^2-4}{x^2-x-6}\]`,text:'Factor the denominator before stating restrictions: \(x\ne3,-2\).'}
+    R`A rational function is a quotient of polynomials: \(f(x)=\dfrac{P(x)}{Q(x)}\), with \(Q(x)≠0\).`,[
+      {math:R`\[f(x)=\frac{x+1}{x-3}\]`,text:'Domain: \(x≠3\).'},
+      {math:R`\[g(x)=\frac{x^2-4}{x^2-x-6}\]`,text:'Factor the denominator before stating restrictions: \(x≠3,-2\).'}
     ],'rational-domain',R`Simplifying an expression does not restore an input excluded by the original denominator.`);
 
   S('2.3D','Reciprocal parent and transformations','content','Shift, stretch and reflect',`<div class="pr5-two"><article class="pr5-panel"><div class="pr5-math">\[y=\frac1x\]</div><p>Parent asymptotes: \(x=0\) and \(y=0\).</p></article><article class="pr5-panel"><div class="pr5-math">\[y=\frac{a}{x-h}+k\]</div><p>Vertical asymptote \(x=h\); horizontal asymptote \(y=k\). The sign of \(a\) determines branch orientation.</p></article></div>${V('reciprocal-transform','Reciprocal parent and transformed rational graph')}`);
@@ -96,18 +96,18 @@
     R`For \(f(x)=\dfrac8{x-2}+3\):`,[
       {label:'VERTICAL',math:R`\[x=2\]`,text:'The denominator is zero and the function grows without bound nearby.'},
       {label:'HORIZONTAL',math:R`\[y=3\]`,text:'As \(|x|\to\infty\), \(8/(x-2)\to0\).'},
-      {label:'DOMAIN',math:R`\[x\ne2\]`,text:'The forbidden input must be stated.'},
-      {label:'RANGE',math:R`\[y\ne3\]`,text:'This transformed reciprocal never equals its horizontal asymptote.'}
+      {label:'DOMAIN',math:R`\[x≠2\]`,text:'The forbidden input must be stated.'},
+      {label:'RANGE',math:R`\[y≠3\]`,text:'This transformed reciprocal never equals its horizontal asymptote.'}
     ],'rational-asymptotes');
 
   W('2.3D','Determine a rational model from asymptotes and a point',
     R`A calibration curve has vertical asymptote \(x=2\), horizontal asymptote \(y=3\), and passes through \((4,7)\). Find a model of the form \(f(x)=\dfrac a{x-2}+3\).`,[
       R`Substitute the point: \(7=\dfrac a{4-2}+3\).`,
       R`Thus \(4=a/2\), so \(a=8\).`,
-      R`State the excluded input \(x\ne2\).`
-    ],R`\[\boxed{f(x)=\frac8{x-2}+3,\qquad x\ne2}\]`,'The asymptotes locate the transformed reciprocal; the point determines the scale and branch orientation.','rational-calibration');
+      R`State the excluded input \(x≠2\).`
+    ],R`\[\boxed{f(x)=\frac8{x-2}+3,\qquad x≠2}\]`,'The asymptotes locate the transformed reciprocal; the point determines the scale and branch orientation.','rational-calibration');
 
-  S('2.3D','A hole is not a vertical asymptote','content','Cancellation preserves the exclusion',R`<div class="pr5-hole-comparison"><div class="pr5-two"><article class="pr5-panel"><h2>Removable hole</h2><div class="pr5-math">\[g(x)=\frac{x^2-1}{x-1}=x+1,\quad x\ne1\]</div><p>The graph is the line \(y=x+1\) with the point \((1,2)\) removed.</p></article><article class="pr5-panel"><h2>Vertical asymptote</h2><div class="pr5-math">\[h(x)=\frac1{x-1}\]</div><p>No factor cancels; values become unbounded as \(x\to1^\pm\).</p></article></div>${V('hole-vs-asymptote','A removable hole compared with a vertical asymptote')}</div>`);
+  S('2.3D','A hole is not a vertical asymptote','content','Cancellation preserves the exclusion',R`<div class="pr5-hole-comparison"><div class="pr5-two"><article class="pr5-panel"><h2>Removable hole</h2><div class="pr5-math">\[g(x)=\frac{x^2-1}{x-1}=x+1,\quad x≠1\]</div><p>The graph is the line \(y=x+1\) with the point \((1,2)\) removed.</p></article><article class="pr5-panel"><h2>Vertical asymptote</h2><div class="pr5-math">\[h(x)=\frac1{x-1}\]</div><p>No factor cancels; values become unbounded as \(x\to1^\pm\).</p></article></div>${V('hole-vs-asymptote','A removable hole compared with a vertical asymptote')}</div>`);
 
   concept('2.3D','Signs determine rational branches','Factor numerator and denominator',
     R`For \(r(x)=\dfrac{(x+2)(x-4)}{x-1}\), the critical inputs are \(-2,1,4\).`,[
@@ -135,13 +135,13 @@
     R`Find the intersections of \(f(x)=\dfrac8{x-2}+3\) and \(g(x)=\tfrac12x+2\).`,[
       R`Set \(\dfrac8{x-2}+3=\tfrac12x+2\).`,
       R`Then \(\dfrac8{x-2}=\tfrac12(x-2)\).`,
-      R`Multiply by \(x-2\), noting \(x\ne2\): \((x-2)^2=16\).`,
+      R`Multiply by \(x-2\), noting \(x≠2\): \((x-2)^2=16\).`,
       R`Thus \(x=-2\) or \(x=6\); substitute into the line.`
     ],R`\[\boxed{(-2,1)\quad\text{and}\quad(6,5)}\]`,'If the practical domain is \(x>2\), only \((6,5)\) is admissible.','line-rational-intersections');
 
   concept('2.3D','Context can exclude an entire branch','The formula may be broader than the model',
     R`Suppose \(x\) represents a concentration above a critical value \(2\). Then \(x>2\), even though the algebraic rational function also has a branch for \(x<2\).`,[
-      {label:'MATHEMATICAL DOMAIN',math:R`\[x\ne2\]`,text:'Both branches exist.'},
+      {label:'MATHEMATICAL DOMAIN',math:R`\[x≠2\]`,text:'Both branches exist.'},
       {label:'CONTEXTUAL DOMAIN',math:R`\[x>2\]`,text:'Only the right branch represents the experiment.'},
       {label:'MODEL LIMIT',text:'Predictions extremely close to \(x=2\) may be physically impossible even when the formula becomes very large.'}
     ],'context-rational');
@@ -153,5 +153,5 @@
     R`Explain why \(\dfrac{x^2-9}{x-3}\) has a hole rather than a vertical asymptote at \(x=3\).`,
     R`Find the x-intercept of \(\dfrac{2x-7}{x+4}\).`,
     'State one independent check after using TI-84 Intersect on a rational model.'
-  ],'pr5-check-d',R`Domain \(x\ne-3\); asymptotes \(x=-3\), \(y=2\). The common factor cancels, but \(x=3\) remains excluded, producing a hole at \((3,6)\). The x-intercept is \(x=7/2\). Substitute each reported coordinate into both original equations and check the contextual domain.`);
+  ],'pr5-check-d',R`Domain \(x≠-3\); asymptotes \(x=-3\), \(y=2\). The common factor cancels, but \(x=3\) remains excluded, producing a hole at \((3,6)\). The x-intercept is \(x=7/2\). Substitute each reported coordinate into both original equations and check the contextual domain.`);
 })();
