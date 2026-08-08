@@ -1,4 +1,4 @@
-const VERSION = "echs-platform-school-control-v3-hybrid2-mastery1-recovery1-calculus-only-practice-routing-redesign-ib-lesson-query-premium-practice-20260802-fullwidth-filter-drawer2-landing-layout1-unit-collapse1-tangent-logo-collapse2-bank-export1-dynamic-calculus-banks1-multi-route-timetable2-lesson-portal-calm2-multicourse-banks1-ib-ai-1-1-local-ti84-v68-design-v51";
+const VERSION = "echs-platform-school-control-v3-hybrid2-mastery1-recovery1-calculus-only-practice-routing-redesign-ib-lesson-query-premium-practice-20260802-fullwidth-filter-drawer2-landing-layout1-unit-collapse1-tangent-logo-collapse2-bank-export1-dynamic-calculus-banks1-multi-route-timetable2-lesson-portal-calm2-multicourse-banks1-ib-ai-1-1-local-ti84-v68-design-v51-ib-ai-u6-61-v1";
 // Practice assignment studio assets are versioned with the authenticated shell.
 const STATIC_CACHE = `${VERSION}-static`;
 const RUNTIME_CACHE = `${VERSION}-runtime`;
@@ -15,7 +15,7 @@ const SHELL = [
 ];
 const AUTH_DOCUMENT = /\/(?:login\.html|question-bank\/(?:admin|school-control|teacher|student|parent)\.html|question-bank\/official\/admin\/(?:question-trust|private-bank-center|upload-manager)\.html)$/i;
 const AUTH_ASSET = /\/(?:css\/(?:institution[^/]*|admin-executive-v4|echs-design-system-v5-1|learning-access|ib-lesson-platform-integration|gamification|mastery-evidence|unit-practice-unlock|smart-learning-route)\.css|js\/(?:institution[^/]*|login|portal-access|lesson-access-guard|ib-lesson-platform-integration|gamification-overlay|unit-practice-unlock|smart-learning-route)\.js|question-bank\/css\/(?:teacher-assignment-studio|institution-timetable|practice-scope-access|practice-recovery-polish|practice-executive-v4)\.css|question-bank\/js\/(?:bank|practice-global-bridge|practice-course-isolation|mapped-practice|practice-single-bank|practice-recovery-ui|admin-accounts|student-cloud|teacher-cloud|institution-timetable|teacher-evidence-heatmap|parent-cloud|role-entry|private-bank-assets|mapped-private-bank-practice)\.js|question-bank\/official\/admin\/(?:css\/upload-manager\.css|js\/(?:question-trust|private-bank-center|upload-manager)\.js))$/i;
-const FRESH_COURSE_ASSET = /\/data\/ib-math-ai-unit-[12]-update\.js$/i;
+const FRESH_COURSE_ASSET = /\/data\/ib-math-ai-unit-[126]-update\.js$/i;
 const privateApi = /\/functions\/v1\/(?:account-api|institution-api|learning-sync|mastery-evidence|private-bank-api|practice-bank-api|upload-manager-api|setup-api|login-diagnostics)(?:\/|$)/i;
 function reloadRequest(request){return new Request(request,{cache:"reload"});}
 async function validAuthShell(response){if(!response||!response.ok)return false;const type=response.headers.get("content-type")||"";if(!type.includes("text/html"))return false;const text=await response.clone().text();return text.length>1500&&/<!doctype html/i.test(text)&&/<body\b/i.test(text)&&/institutionBody/.test(text);}
