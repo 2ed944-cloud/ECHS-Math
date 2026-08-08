@@ -80,7 +80,7 @@ jobs:
           test=Path('tools/test_ib_ai_2_3_definitive_v5.mjs')
           source=test.read_text(encoding='utf-8')
           needle='const d=context.window.LESSON_DATA;'
-          assertion="const serializedRelease=JSON.stringify({slides:d.slides,practice:d.practice,quiz:d.quiz,exam:d.exam});fail(!serializedRelease.includes('\\\\ne'),'unsupported \\\\ne relation macro remains in Lesson 2.3 data');"
+          assertion="const serializedRelease=JSON.stringify({slides:d.slides,practice:d.practice,quiz:d.quiz,exam:d.exam});if(serializedRelease.includes('\\\\ne'))throw new Error('unsupported \\\\ne relation macro remains in Lesson 2.3 data');"
           if assertion not in source:
             if needle not in source: raise SystemExit('deterministic test insertion point missing')
             source=source.replace(needle,needle+assertion,1)
