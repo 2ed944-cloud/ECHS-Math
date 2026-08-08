@@ -98,6 +98,10 @@
     lesson.resources.splice(1,0,...items);
   };
 
+  upsertFullNotes("1.1",[
+    {label:"Full Notes 1.1 · Lesson-Synchronised Edition",url:"notes/ib-math-ai/unit-1/IB_AI_SL_1.1_Scientific_Notation_Approximation_and_Error_Full_Notes_Student.html",type:"notes"},
+    {label:"Full Notes 1.1 · Original Coloured LaTeX PDF",url:"notes/ib-math-ai/unit-1/IB_AI_SL_1.1_Scientific_Notation_Approximation_and_Error_Full_Notes_Student.pdf",type:"notes"}
+  ]);
   upsertFullNotes("1.2",[
     {label:"Full Notes 1.2 · Lesson-Synchronised Edition",url:"notes/ib-math-ai/unit-1/IB_AI_SL_1.2_Arithmetic_Sequences_Full_Notes_Student.html",type:"notes"},
     {label:"Full Notes 1.2 · Original Coloured LaTeX PDF",url:"notes/ib-math-ai/unit-1/IB_AI_SL_1.2_Arithmetic_Sequences_Full_Notes_Student.pdf",type:"notes"}
