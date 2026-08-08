@@ -1,0 +1,11 @@
+{
+  "chunkCount": 11,
+  "chunkSize": 7000,
+  "compressedBytes": 56425,
+  "compressedSha256": "72640fcce67752ea95cd9b7d40ad8ee4fbb4ec73c8fc824907a46cff6f4c2a95",
+  "encodedLength": 75236,
+  "format": "echs-ib-ai-2.6-v5-source-pack",
+  "payloadSha256": "874781b6a79a80a32522b667d461229f31921275c482e9ad38e218afff28cb38",
+  "uncompressedBytes": 198527,
+  "version": "5.0.0"
+}
