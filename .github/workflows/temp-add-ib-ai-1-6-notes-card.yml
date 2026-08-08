@@ -1,0 +1,63 @@
+name: TEMP Add IB AI 1.6 notes card
+
+on:
+  push:
+    branches:
+      - agent/ib-ai-1-6-dual-notes-card
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/ib-ai-1-6-dual-notes-card
+          fetch-depth: 0
+
+      - name: Register Lesson 1.6 dual notes
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('data/ib-math-ai-unit-1-update.js')
+          text = path.read_text(encoding='utf-8')
+
+          if 'Full Notes 1.6 · Lesson-Synchronised Edition' in text or 'Full Notes 1.6 · Original Coloured LaTeX PDF' in text:
+              raise SystemExit('Lesson 1.6 Full Notes already registered; refusing duplicate patch')
+
+          anchor = '''  upsertFullNotes("1.5",[\n    {label:"Full Notes 1.5 · Lesson-Synchronised Edition",url:"notes/ib-math-ai/unit-1/IB_AI_SL_1.5_Exponent_Laws_and_Logarithms_Full_Notes_Student.html",type:"notes"},\n    {label:"Full Notes 1.5 · Original Coloured LaTeX PDF",url:"notes/ib-math-ai/unit-1/IB_AI_SL_1.5_Exponent_Laws_and_Logarithms_Full_Notes_Student.pdf",type:"notes"}\n  ]);\n'''
+          block = '''  upsertFullNotes("1.6",[\n    {label:"Full Notes 1.6 · Lesson-Synchronised Edition",url:"notes/ib-math-ai/unit-1/IB_AI_SL_1.6_Technology_for_Equations_and_Systems_Full_Notes_Student.html",type:"notes"},\n    {label:"Full Notes 1.6 · Original Coloured LaTeX PDF",url:"notes/ib-math-ai/unit-1/IB_AI_SL_1.6_Technology_for_Equations_and_Systems_Full_Notes_Student.pdf",type:"notes"}\n  ]);\n'''
+
+          if text.count(anchor) != 1:
+              raise SystemExit(f'Expected exactly one Lesson 1.5 anchor, found {text.count(anchor)}')
+
+          text = text.replace(anchor, anchor + block, 1)
+          path.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Validate exact resource contract
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f notes/ib-math-ai/unit-1/IB_AI_SL_1.6_Technology_for_Equations_and_Systems_Full_Notes_Student.html
+          test -f notes/ib-math-ai/unit-1/IB_AI_SL_1.6_Technology_for_Equations_and_Systems_Full_Notes_Student.pdf
+          grep -Fq 'Full Notes 1.6 · Lesson-Synchronised Edition' data/ib-math-ai-unit-1-update.js
+          grep -Fq 'Full Notes 1.6 · Original Coloured LaTeX PDF' data/ib-math-ai-unit-1-update.js
+          ! grep -Fq 'Teacher_Key' data/ib-math-ai-unit-1-update.js
+          node --check data/ib-math-ai-unit-1-update.js
+
+      - name: Commit clean patch
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/temp-add-ib-ai-1-6-notes-card.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/ib-math-ai-unit-1-update.js .github/workflows/temp-add-ib-ai-1-6-notes-card.yml
+          git commit -m 'Register Lesson 1.6 dual Full Notes resources'
+          git push origin HEAD:agent/ib-ai-1-6-dual-notes-card
