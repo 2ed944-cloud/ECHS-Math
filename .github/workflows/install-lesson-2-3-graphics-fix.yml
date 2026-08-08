@@ -5,7 +5,7 @@ on:
     branches:
       - fix/ib-ai-2-3-graphics-layout-v5-1
     paths:
-      - ".lesson23-graphics-fix/**"
+      - ".lesson23-graphics-fix/package.zip"
       - ".github/workflows/install-lesson-2-3-graphics-fix.yml"
 
 permissions:
@@ -14,41 +14,38 @@ permissions:
 jobs:
   install:
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 15
     steps:
       - name: Check out repair branch
         uses: actions/checkout@v4
         with:
           ref: fix/ib-ai-2-3-graphics-layout-v5-1
+          fetch-depth: 0
 
       - name: Install and validate complete repair
         shell: bash
         run: |
           set -euo pipefail
-          package=.lesson23-graphics-fix/package.zip
-          if [[ ! -f "$package" ]]; then
-            echo "Graphics repair package has already been installed."
-            exit 0
-          fi
-          unzip -o "$package" -d .
+          unzip -o .lesson23-graphics-fix/package.zip -d .
           node --check lessons/ib-math-ai/unit-2/data/lesson-2.3-v5-graphics.js
-          node --check lessons/ib-math-ai/unit-2/data/lesson-2.3-v5-content-a.js
-          node --check lessons/ib-math-ai/unit-2/data/lesson-2.3-v5-finalize.js
+          node --check lessons/ib-math-ai/unit-2/data/lesson-2.3-v5-1-repair.js
+          node --check data/ib-math-ai-unit-2-update.js
           node --check tools/test_ib_ai_2_3_definitive_v5.mjs
           node --check tools/browser_qa_ib_ai_2_3_definitive_v5.mjs
           node tools/test_ib_ai_2_3_definitive_v5.mjs .
-          rm -rf .lesson23-graphics-fix
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add -A -- \
+          git add -- \
             lessons/ib-math-ai/unit-2/data/lesson-2.3-v5-graphics.js \
-            lessons/ib-math-ai/unit-2/data/lesson-2.3-v5-content-a.js \
-            lessons/ib-math-ai/unit-2/data/lesson-2.3-v5-finalize.js \
-            lessons/ib-math-ai/unit-2/assets/css/lesson-2.3-v5-graphics-layout-fix.css \
+            lessons/ib-math-ai/unit-2/data/lesson-2.3-v5-1-repair.js \
+            lessons/ib-math-ai/unit-2/assets/css/lesson-2.3-v5-1-graphics-layout.css \
             lessons/ib-math-ai/unit-2/lessons/IB_AI_SL_2.3_polynomial_rational_models_ECHS.html \
             tools/test_ib_ai_2_3_definitive_v5.mjs \
             tools/browser_qa_ib_ai_2_3_definitive_v5.mjs \
-            data/ib-math-ai-unit-2-update.js \
-            .lesson23-graphics-fix
+            data/ib-math-ai-unit-2-update.js
+          if git diff --cached --quiet; then
+            echo "Repair is already installed."
+            exit 0
+          fi
           git commit -m "Repair Lesson 2.3 graphics and viewport precision"
           git push origin HEAD:fix/ib-ai-2-3-graphics-layout-v5-1
