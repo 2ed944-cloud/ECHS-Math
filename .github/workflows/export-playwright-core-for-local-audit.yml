@@ -1,0 +1,28 @@
+name: Export Playwright core for local audit
+
+on:
+  push:
+    branches:
+      - fix/ib-ai-2-3-graphics-layout-v5-1
+    paths:
+      - ".github/workflows/export-playwright-core-for-local-audit.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+      - name: Install Playwright core
+        run: npm install --no-save --no-package-lock playwright-core@1.54.1
+      - name: Upload module
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-core-1.54.1
+          path: node_modules/playwright-core
+          if-no-files-found: error
+          retention-days: 2
