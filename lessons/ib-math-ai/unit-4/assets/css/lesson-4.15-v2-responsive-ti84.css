@@ -1,0 +1,40 @@
+/* Responsive and TI-84 dock layer for lesson 4.15 */
+@media (max-width:1100px){
+  body.unit4-lesson-4-15-v2 .cover-grid,body.unit4-lesson-4-15-v2 .concept-grid,body.unit4-lesson-4-15-v2 .visual-grid,body.unit4-lesson-4-15-v2 .worked-grid,body.unit4-lesson-4-15-v2 .technology-grid,body.unit4-lesson-4-15-v2 .mastery-exit{grid-template-columns:1fr}
+  body.unit4-lesson-4-15-v2 .worked-grid.wide{grid-template-columns:1fr}
+  .gof-workflow{grid-template-columns:repeat(4,minmax(160px,1fr))}
+  .gof-audit-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .gof-custom-lab{grid-template-columns:1fr}
+  .gof-ti-step{grid-template-columns:1fr}
+}
+@media (max-width:760px){
+  body.unit4-lesson-4-15-v2{--header-h:64px;--route-h:56px;--footer-h:68px}
+  body.unit4-lesson-4-15-v2 .brand-block{min-width:0;padding:0 14px}.brand-text{display:none}
+  body.unit4-lesson-4-15-v2 .header-title small{display:none}
+  body.unit4-lesson-4-15-v2 .header-actions .icon-btn span{display:none}
+  body.unit4-lesson-4-15-v2 .app-shell{padding-left:10px;padding-right:10px}
+  body.unit4-lesson-4-15-v2 .stage{border-radius:22px}.stage-inner{padding:26px 19px}
+  .gof-choice-grid,.gof-hypothesis-pair,.gof-decision-rule,.gof-error-grid,.gof-boundary-grid,.gof-evidence-grid,.gof-ti-output-grid,.gof-three-reasons{grid-template-columns:1fr}
+  .gof-audit-grid{grid-template-columns:1fr}
+  .gof-workflow{grid-template-columns:repeat(7,minmax(155px,1fr))}
+  .gof-merge-visual{grid-template-columns:1fr}.merge-arrow{transform:rotate(90deg);text-align:center}.merge-before{grid-template-columns:1fr}.merge-after{grid-template-columns:1fr}
+  .gof-lab-controls{grid-template-columns:1fr}.gof-lab-controls label.full{grid-column:auto}
+  .gof-key-route span{font-size:.78rem;padding:10px 12px}
+  .gof-paired-bars text,.gof-contribution-chart text,.gof-chi-curve text{font-size:11px}
+  .variant-context{align-items:flex-start;flex-direction:column}
+}
+@media (max-width:470px){
+  .gof-cover .cover-copy h1{font-size:2.9rem}.gof-cover .launch-actions{align-items:stretch;flex-direction:column}.gof-cover .launch-actions button{width:100%}
+  .gof-table{min-width:480px}.gof-workflow article{min-width:145px}
+}
+
+/* Dock */
+.ti84-gof-dock{position:fixed;z-index:85;right:18px;top:calc(var(--header-h) + var(--route-h) + 16px);bottom:calc(var(--footer-h) + 16px);width:min(520px,calc(100vw - 36px));display:none;grid-template-rows:auto 1fr;background:#111a16;border:1px solid #516158;border-radius:24px;box-shadow:0 28px 75px rgba(5,14,9,.4);overflow:hidden}
+.ti84-gof-dock.open{display:grid}.ti84-gof-dock-head{display:flex;align-items:center;gap:10px;padding:13px 15px;background:linear-gradient(135deg,#25332c,#17231c);color:#fff;border-bottom:1px solid #516158}.ti84-gof-dock-head strong{flex:1}.ti84-gof-dock-head small{color:#bcd3c5}.ti84-gof-dock-head button{border:1px solid #66796e;background:#293c31;color:#fff;border-radius:10px;padding:8px 10px;cursor:pointer}.ti84-gof-dock-body{position:relative;min-height:0;background:#e6ece8}.ti84-gof-dock iframe{width:100%;height:100%;border:0;background:#fff}.ti84-gof-placeholder{position:absolute;inset:0;display:grid;place-items:center;padding:28px;text-align:center;background:radial-gradient(circle at 50% 22%,#f4f8f5,#dce6df);color:#23342b}.ti84-gof-placeholder>div{max-width:360px}.ti84-gof-placeholder h3{margin:8px 0;color:#17251d}.ti84-gof-placeholder p{font-size:.9rem;color:#516158}.ti84-gof-placeholder button{border:0;border-radius:13px;padding:12px 16px;background:#78183f;color:#fff;font-weight:900;cursor:pointer}
+body.ti84-gof-dock-open .app-shell{padding-right:min(565px,43vw)}
+
+/* Classroom workflow modal */
+.ti84-gof-modal{position:fixed;z-index:100;inset:0;display:none;place-items:center;padding:24px;background:rgba(10,20,28,.72);backdrop-filter:blur(9px)}.ti84-gof-modal.open{display:grid}.ti84-gof-dialog{width:min(1120px,100%);max-height:min(880px,94vh);overflow:auto;border-radius:28px;background:#fffdf9;box-shadow:0 35px 95px rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.4)}.ti84-gof-dialog-head{position:sticky;top:0;z-index:2;display:flex;align-items:center;gap:12px;padding:17px 20px;background:linear-gradient(135deg,#78183f,#4f1028);color:#fff}.ti84-gof-dialog-head strong{flex:1;font-size:1.1rem}.ti84-gof-dialog-head button{border:1px solid rgba(255,255,255,.42);background:rgba(255,255,255,.12);color:#fff;border-radius:11px;padding:8px 11px;cursor:pointer}.ti84-gof-dialog-body{padding:24px}.ti84-gof-workflow-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}.ti84-gof-workflow-tabs button{border:1px solid #d8dde2;background:#fff;border-radius:999px;padding:10px 14px;color:#17324d;font-weight:850;cursor:pointer}.ti84-gof-workflow-tabs button.active{background:#17324d;color:#fff;border-color:#17324d}.ti84-gof-workflow-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:20px}.ti84-gof-workflow-grid>article{border:1px solid #d8dde2;border-radius:21px;padding:20px;background:#fff}.ti84-gof-workflow-grid h3{color:#17324d;margin-top:0}.ti84-gof-keyline{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}.ti84-gof-keyline span{padding:9px 11px;border-radius:10px;background:#eef1f3;border:1px solid #d2d8dd;color:#17324d;font-weight:900;font-size:.78rem}.ti84-gof-listbox{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;background:#1c2922;color:#b9efc4;border-radius:15px;padding:16px;white-space:pre-wrap;line-height:1.55}.ti84-gof-proof{border-left:5px solid #177e89;background:#ecf8f6;border-radius:14px;padding:14px 16px}.ti84-gof-caution{border-left:5px solid #d4a72c;background:#fff8e4;border-radius:14px;padding:14px 16px;margin-top:14px}.ti84-gof-modal-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:19px}.ti84-gof-modal-actions button{border:0;border-radius:13px;padding:11px 15px;font-weight:900;cursor:pointer}.ti84-gof-modal-actions .primary{background:#78183f;color:#fff}.ti84-gof-modal-actions .secondary{background:#e9eef1;color:#17324d}
+
+@media (max-width:1100px){body.ti84-gof-dock-open .app-shell{padding-right:24px}.ti84-gof-dock{inset:calc(var(--header-h) + var(--route-h) + 8px) 8px calc(var(--footer-h) + 8px);width:auto}.ti84-gof-workflow-grid{grid-template-columns:1fr}}
+@media (max-width:620px){.ti84-gof-modal{padding:8px}.ti84-gof-dialog{max-height:96vh;border-radius:20px}.ti84-gof-dialog-body{padding:16px}.ti84-gof-dialog-head small{display:none}}
