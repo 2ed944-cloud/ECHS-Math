@@ -1,0 +1,60 @@
+{
+  "unit": "6",
+  "title": "Exploration, Technology, and Exam Practice",
+  "course": "IB Mathematics: Applications and Interpretation SL",
+  "version": "6.1.0",
+  "buildDate": "2026-08-08",
+  "lessons": [
+    {
+      "number": "6.1",
+      "title": "Technology Fluency Routines",
+      "status": "ready",
+      "url": "lessons/IB_AI_SL_6.1_technology_fluency_routines_ECHS.html",
+      "slides": 48,
+      "practice": 48,
+      "examTasks": 3,
+      "quiz": 12,
+      "calculator": "TI-84 Plus CE simulator embedded"
+    }
+  ],
+  "futureLessons": [
+    {
+      "number": "6.2",
+      "title": "IA Question Design"
+    },
+    {
+      "number": "6.3",
+      "title": "Modelling Investigation"
+    },
+    {
+      "number": "6.4",
+      "title": "Mixed Exam Practice"
+    },
+    {
+      "number": "6.5",
+      "title": "Reflection and Error Analysis"
+    }
+  ],
+  "assets": {
+    "engine": "assets/js/engine.js",
+    "katex": "assets/js/katex-global.js",
+    "theme": "assets/css/theme.css",
+    "lessonCss": "assets/css/lesson-6.1-v1.css",
+    "simulator": "data/lesson-6.1-ti84-simulator.js",
+    "lessonData": [
+      "data/lesson-6.1-v1-core.js",
+      "data/lesson-6.1-v1-content-a.js",
+      "data/lesson-6.1-v1-content-b.js",
+      "data/lesson-6.1-v1-content-c.js",
+      "data/lesson-6.1-v1-content-d.js",
+      "data/lesson-6.1-v1-practice.js",
+      "data/lesson-6.1-v1-assessment.js"
+    ]
+  },
+  "quality": {
+    "mathematicalAudit": "required and automated",
+    "svgGraphics": true,
+    "offlineLessonCore": true,
+    "externalSimulatorLazyLoaded": true
+  }
+}
