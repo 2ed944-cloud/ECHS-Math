@@ -38,9 +38,9 @@
       {label:'d',prompt:'The model predicts about 143.6 at x=9. Evaluate this prediction.',marks:3,answer:'This is extrapolation beyond x=7. The value is far beyond the observed range and is driven by the cubic tail, so it is not defensible without further data or a mechanism.',markscheme:'R1 extrapolation; R1 compare with observed evidence; R1 relevant model limitation.'}
     ]),
     task(3,'Calibration curve: rational structure and intersection','Paper 2 · rational modelling',R`A calibration curve has vertical asymptote \(x=2\), horizontal asymptote \(y=3\), and passes through \((4,7)\). It is modelled by \(f(x)=a/(x-2)+3\).`,[
-      {label:'a',prompt:'Determine a and state the mathematical domain.',marks:3,answer:R`\(a=8\), so \(f(x)=8/(x-2)+3\), with \(x\ne2\).`,markscheme:'M1 substitute point; A1 a=8; A1 domain.'},
+      {label:'a',prompt:'Determine a and state the mathematical domain.',marks:3,answer:R`\(a=8\), so \(f(x)=8/(x-2)+3\), with \(x≠2\).`,markscheme:'M1 substitute point; A1 a=8; A1 domain.'},
       {label:'b',prompt:'Find both intercepts.',marks:3,answer:R`x-intercept \((-2/3,0)\); y-intercept \((0,-1)\).`,markscheme:'M1 numerator/equation zero; A1 x-intercept; A1 y-intercept.'},
-      {label:'c',prompt:'Find the inverse function and state its domain.',marks:4,answer:R`\(f^{-1}(x)=2+8/(x-3)\), domain \(x\ne3\).`,markscheme:'M1 swap variables; M1 rearrange; A1 inverse; A1 domain.'},
+      {label:'c',prompt:'Find the inverse function and state its domain.',marks:4,answer:R`\(f^{-1}(x)=2+8/(x-3)\), domain \(x≠3\).`,markscheme:'M1 swap variables; M1 rearrange; A1 inverse; A1 domain.'},
       {label:'d',prompt:R`Find the intersections with \(g(x)=0.5x+2\). If the practical domain is \(x>2\), state the valid point.`,marks:5,answer:R`Mathematical intersections \((-2,1)\) and \((6,5)\); valid point \((6,5)\).`,markscheme:'M1 set equations equal; M1 obtain quadratic/square equation; A2 both points; A1 contextual selection.'}
     ]),
     task(4,'Bearing mass: power regression and mechanism','Paper 2 · power model',R`Bearing radii r (mm) are 4,6,8,10,12,16 and measured masses M (g) are 2.10,7.00,16.8,32.1,56.9,134.0.`,[

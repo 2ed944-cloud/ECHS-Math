@@ -6,7 +6,7 @@
   Section('2.3E','Direct, Inverse and Power Variation','Recognise a power relationship from scaling, tables, graphs and regression. Interpret the exponent as a multiplicative rate, and restrict the model to physically meaningful inputs.','variation-overview');
 
   concept('2.3E','Direct power variation','One percentage scale controls another',
-    R`A power model has the form \(y=kx^n\), where \(k\ne0\).`,[
+    R`A power model has the form \(y=kx^n\), where \(k≠0\).`,[
       {label:'DIRECT',math:R`\[n=1:\ y=kx\]`,text:'Doubling x doubles y.'},
       {label:'SQUARE',math:R`\[n=2:\ y=kx^2\]`,text:'Doubling x multiplies y by 4.'},
       {label:'CUBE',math:R`\[n=3:\ y=kx^3\]`,text:'Doubling x multiplies y by 8.'},
@@ -126,5 +126,5 @@
     R`A power model is \(y=3.2x^{1.5}\). State the factor by which y changes when x is multiplied by 4.`,
     'Give the TI-84 route for CubicReg and one residual check.',
     'Explain why model validity is not guaranteed by a large \(R^2\).'
-  ],'pr5-exit',R`Degree 3, positive left end and negative right end; touch at −1, cross at 4. Domain \(x\ne5\), asymptotes \(x=5\), \(y=-2\). Multiplying x by 4 multiplies y by \(4^{1.5}=8\). Use STAT EDIT → lists, STAT CALC → CubicReg, then inspect residuals (observed−predicted) for size and pattern. \(R^2\) measures in-sample association/fit, not mechanism, domain, stability or extrapolation validity.`);
+  ],'pr5-exit',R`Degree 3, positive left end and negative right end; touch at −1, cross at 4. Domain \(x≠5\), asymptotes \(x=5\), \(y=-2\). Multiplying x by 4 multiplies y by \(4^{1.5}=8\). Use STAT EDIT → lists, STAT CALC → CubicReg, then inspect residuals (observed−predicted) for size and pattern. \(R^2\) measures in-sample association/fit, not mechanism, domain, stability or extrapolation validity.`);
 })();
