@@ -38,7 +38,34 @@ jobs:
           patch=zlib.decompress(base64.b64decode(encoded))
           Path('/tmp/lesson23-graphics.patch').write_bytes(patch)
           PY
+          set +e
           patch -p1 --forward < /tmp/lesson23-graphics.patch
+          patch_status=$?
+          set -e
+          mapfile -t rejects < <(find . -name '*.rej' -print)
+          if (( ${#rejects[@]} )); then
+            for reject in "${rejects[@]}"; do
+              if [[ "$reject" != "./data/ib-math-ai-unit-2-update.js.rej" ]]; then
+                echo "Unexpected rejected hunk: $reject"
+                cat "$reject"
+                exit 1
+              fi
+            done
+          elif (( patch_status != 0 )); then
+            echo "Patch returned $patch_status without a known metadata reject."
+            exit "$patch_status"
+          fi
+          rm -f data/ib-math-ai-unit-2-update.js.rej data/ib-math-ai-unit-2-update.js.orig
+          python3 - <<'PY'
+          from pathlib import Path
+          path=Path('data/ib-math-ai-unit-2-update.js')
+          source=path.read_text(encoding='utf-8')
+          source=source.replace("configure('2.3',{release:'5.0.0',organization_release:'5.0.0'", "configure('2.3',{release:'5.1.0',organization_release:'5.1.0'")
+          source=source.replace("visualAudit:{purposeBuiltVisuals:59,interactiveLabs:2,mathGenerated:true}", "visualAudit:{purposeBuiltVisuals:59,uniqueRenderers:59,interactiveLabs:2,mathGenerated:true,clipSafe:true,discontinuitiesSegmented:true,shortViewportAudited:true}")
+          if "configure('2.3',{release:'5.1.0'" not in source or 'discontinuitiesSegmented:true' not in source:
+              raise SystemExit('Lesson 2.3 release metadata update failed')
+          path.write_text(source,encoding='utf-8')
+          PY
           node --check lessons/ib-math-ai/unit-2/data/lesson-2.3-v5-graphics.js
           node --check lessons/ib-math-ai/unit-2/data/lesson-2.3-v5-content-a.js
           node --check lessons/ib-math-ai/unit-2/data/lesson-2.3-v5-finalize.js
