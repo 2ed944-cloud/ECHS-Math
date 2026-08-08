@@ -107,7 +107,7 @@
       R`State the excluded input \(x\ne2\).`
     ],R`\[\boxed{f(x)=\frac8{x-2}+3,\qquad x\ne2}\]`,'The asymptotes locate the transformed reciprocal; the point determines the scale and branch orientation.','rational-calibration');
 
-  S('2.3D','A hole is not a vertical asymptote','content','Cancellation preserves the exclusion',`<div class="pr5-two"><article class="pr5-panel"><h2>Removable hole</h2><div class="pr5-math">\[g(x)=\frac{x^2-1}{x-1}=x+1,\quad x\ne1\]</div><p>The graph is the line \(y=x+1\) with the point \((1,2)\) removed.</p></article><article class="pr5-panel"><h2>Vertical asymptote</h2><div class="pr5-math">\[h(x)=\frac1{x-1}\]</div><p>No factor cancels; values become unbounded as \(x\to1^\pm\).</p></article></div>${V('hole-vs-asymptote','A removable hole compared with a vertical asymptote')}`);
+  S('2.3D','A hole is not a vertical asymptote','content','Cancellation preserves the exclusion',R`<div class="pr5-hole-comparison"><div class="pr5-two"><article class="pr5-panel"><h2>Removable hole</h2><div class="pr5-math">\[g(x)=\frac{x^2-1}{x-1}=x+1,\quad x\ne1\]</div><p>The graph is the line \(y=x+1\) with the point \((1,2)\) removed.</p></article><article class="pr5-panel"><h2>Vertical asymptote</h2><div class="pr5-math">\[h(x)=\frac1{x-1}\]</div><p>No factor cancels; values become unbounded as \(x\to1^\pm\).</p></article></div>${V('hole-vs-asymptote','A removable hole compared with a vertical asymptote')}</div>`);
 
   concept('2.3D','Signs determine rational branches','Factor numerator and denominator',
     R`For \(r(x)=\dfrac{(x+2)(x-4)}{x-1}\), the critical inputs are \(-2,1,4\).`,[
