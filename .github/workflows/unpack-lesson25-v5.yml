@@ -1,0 +1,95 @@
+name: Unpack IB AI 2.5 V5
+
+on:
+  push:
+    branches:
+      - agent/ib-ai-lesson-2-5-v5
+    paths:
+      - .lesson25-v5-e.tar.xz
+      - .github/workflows/unpack-lesson25-v5.yml
+
+permissions:
+  contents: write
+
+jobs:
+  unpack:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out lesson branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/ib-ai-lesson-2-5-v5
+          fetch-depth: 0
+
+      - name: Verify and extract lesson package
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "54a8f17ff648da22d3eebc8b495635a621c4f6c4994f30c8e2bd3c0e4132b6d6  .lesson25-v5-e.tar.xz" | sha256sum -c -
+          tar -xJf .lesson25-v5-e.tar.xz
+
+      - name: Validate JavaScript and lesson data
+        shell: bash
+        run: |
+          set -euo pipefail
+          for file in lessons/ib-math-ai/unit-2/data/lesson-2.5-v5-*.js lessons/ib-math-ai/unit-1/data/unit-1-ti84-simulator-v7.js; do
+            node --check "$file"
+          done
+          node <<'NODE'
+          const fs = require('fs');
+          const vm = require('vm');
+          const root = 'lessons/ib-math-ai/unit-2/data';
+          const files = [
+            'lesson-2.5-v5-content-a.js',
+            'lesson-2.5-v5-content-b.js',
+            'lesson-2.5-v5-content-c.js',
+            'lesson-2.5-v5-finalize.js',
+            'lesson-2.5-v5-practice-a.js',
+            'lesson-2.5-v5-practice-b.js',
+            'lesson-2.5-v5-practice-c.js',
+            'lesson-2.5-v5-practice-d.js',
+            'lesson-2.5-v5-practice-finalize.js',
+            'lesson-2.5-v5-assessment.js'
+          ];
+          const context = { window: {} };
+          context.window.window = context.window;
+          vm.createContext(context);
+          for (const name of files) {
+            vm.runInContext(fs.readFileSync(`${root}/${name}`, 'utf8'), context, { filename: name });
+          }
+          const data = context.window.LESSON_DATA;
+          if (!data || data.lesson.number !== '2.5') throw new Error('Lesson data did not finalize.');
+          if (data.slides.length !== 80) throw new Error(`Expected 80 slides, found ${data.slides.length}.`);
+          if (data.practice.length !== 80) throw new Error(`Expected 80 practice questions, found ${data.practice.length}.`);
+          if (data.quiz.length !== 10) throw new Error(`Expected 10 quiz questions, found ${data.quiz.length}.`);
+          if (data.examTasks.length !== 2) throw new Error(`Expected 2 exam tasks, found ${data.examTasks.length}.`);
+          const levels = data.practice.reduce((memo, item) => {
+            memo[item.level] = (memo[item.level] || 0) + 1;
+            return memo;
+          }, {});
+          for (const level of ['Foundation', 'Application', 'Reasoning', 'Challenge']) {
+            if (levels[level] !== 20) throw new Error(`${level}: expected 20, found ${levels[level] || 0}.`);
+          }
+          console.log(JSON.stringify({
+            slides: data.slides.length,
+            practice: data.practice.length,
+            quiz: data.quiz.length,
+            examTasks: data.examTasks.length,
+            levels
+          }));
+          NODE
+
+      - name: Commit generated lesson files
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add lessons/ib-math-ai/unit-2/lessons/IB_AI_SL_2.5_transformations_composition_inverses_ECHS.html
+          git add lessons/ib-math-ai/unit-2/assets/css/lesson-2.5-v5-core.css
+          git add lessons/ib-math-ai/unit-2/assets/css/lesson-2.5-v5-responsive.css
+          git add lessons/ib-math-ai/unit-2/data/lesson-2.5-v5-*.js
+          git add lessons/ib-math-ai/unit-1/data/unit-1-ti84-simulator-v7.js
+          git commit -m "Upgrade IB AI lesson 2.5 to V5 [skip ci]"
+          git push origin HEAD:agent/ib-ai-lesson-2-5-v5
