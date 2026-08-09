@@ -1,0 +1,88 @@
+/* IB Mathematics AI SL · Lesson 6.2 IA Question Design */
+:root{
+  --u62-maroon:#7a1733;--u62-maroon-dark:#541024;--u62-navy:#17324d;--u62-teal:#177e89;
+  --u62-gold:#d4a72c;--u62-paper:#fffdf9;--u62-line:#ded5ca;--u62-muted:#596977;
+  --u62-good:#1f7a4d;--u62-bad:#ae3149;--u62-ink:#182a3a;--u62-shadow:0 22px 56px rgba(23,50,77,.12)
+}
+html.unit6-lesson-6-2-v1 body{
+  background:
+    radial-gradient(circle at 92% 3%,rgba(23,126,137,.13),transparent 34rem),
+    radial-gradient(circle at 4% 86%,rgba(212,167,44,.09),transparent 29rem),
+    linear-gradient(180deg,#fff,#efe8df)
+}
+html.unit6-lesson-6-2-v1 .stage{
+  width:min(1500px,100%);min-height:min(735px,calc(100vh - 185px));
+  background:linear-gradient(145deg,#fffdf9,#f6f0e8);
+  border-color:rgba(122,23,51,.13);box-shadow:var(--u62-shadow)
+}
+html.unit6-lesson-6-2-v1 .stage-inner{max-width:1500px;margin:0 auto;padding:34px 48px 76px}
+html.unit6-lesson-6-2-v1 .slide-section{margin-bottom:10px;background:#fff5f7;border-color:#e8cbd3;font-size:.72rem;letter-spacing:.08em}
+html.unit6-lesson-6-2-v1 .slide-eyebrow{font-size:.74rem;letter-spacing:.14em}
+html.unit6-lesson-6-2-v1 .slide-title{max-width:1370px;margin:.25rem 0 1rem;font-size:clamp(2.2rem,4vw,4.25rem);line-height:.98}
+html.unit6-lesson-6-2-v1 .slide-body{font-size:clamp(1rem,1.25vw,1.17rem);line-height:1.52}
+html.unit6-lesson-6-2-v1 .slide-body p{max-width:none}
+html.unit6-lesson-6-2-v1 .math-display,
+html.unit6-lesson-6-2-v1 .u62-formula{overflow-x:auto;overflow-y:hidden}
+html.unit6-lesson-6-2-v1 textarea{resize:vertical}
+html.unit6-lesson-6-2-v1 button:focus-visible,
+html.unit6-lesson-6-2-v1 input:focus-visible,
+html.unit6-lesson-6-2-v1 textarea:focus-visible,
+html.unit6-lesson-6-2-v1 select:focus-visible{outline:3px solid rgba(23,126,137,.35);outline-offset:2px}
+
+/* Cover */
+.u62-cover-copy{min-width:0}.u62-misconception{margin-top:18px;padding:17px;border:1px solid #f0ced5;border-radius:16px;background:#fff4f6;color:var(--u62-maroon)}
+
+.u62-cover{display:grid;grid-template-columns:minmax(0,1.03fr) minmax(500px,.97fr);gap:40px;align-items:center;min-height:575px}
+.u62-cover h1{margin:.28rem 0 1rem;color:var(--u62-navy);font-size:clamp(3.25rem,5.8vw,6.4rem);line-height:.88;letter-spacing:-.065em}
+.u62-cover p{max-width:750px;color:var(--u62-muted);font-size:clamp(1.08rem,1.55vw,1.4rem);line-height:1.52}
+.u62-kicker{color:var(--u62-teal);font-size:.78rem;font-weight:950;letter-spacing:.16em}
+.u62-number{display:inline-grid;place-items:center;min-width:96px;height:47px;margin:13px 0 8px;border-radius:999px;background:var(--u62-maroon);color:#fff;font-size:1.28rem;font-weight:950}
+.u62-pills{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 22px}
+.u62-pills span,.u62-tag{padding:7px 10px;border:1px solid rgba(23,126,137,.28);border-radius:999px;background:#edf8f7;color:var(--u62-teal);font-size:.72rem;font-weight:900}
+.u62-cover-visual svg,.u62-svg{display:block;width:100%;height:auto;filter:drop-shadow(0 18px 28px rgba(23,50,77,.13))}
+.u62-ti84-open,.u62-ti84-open:visited,.u62-complete{
+  display:inline-flex;align-items:center;justify-content:center;margin:10px 0 0;padding:12px 18px;border:0;border-radius:14px;
+  background:var(--u62-gold);color:#162838;font-weight:950;cursor:pointer;text-decoration:none
+}
+.u62-complete{background:var(--u62-maroon);color:#fff}
+
+/* Shared cards and grids */
+.u62-two,.u62-four,.u62-six,.u62-cards,.u62-route,.u62-template-grid,.u62-evidence-plan,.u62-metric-grid,
+.u62-validation-grid,.u62-source-ladder,.u62-sampling-grid,.u62-protocol-grid,.u62-ethics-grid,.u62-pilot-grid,
+.u62-red-flags,.u62-communication-grid,.u62-peer-review,.u62-reflection-cycle,.u62-evidence-protocol{
+  display:grid;gap:15px
+}
+.u62-two{grid-template-columns:repeat(2,minmax(0,1fr))}
+.u62-four{grid-template-columns:repeat(4,minmax(0,1fr))}
+.u62-six{grid-template-columns:repeat(3,minmax(0,1fr))}
+.u62-route{grid-template-columns:repeat(7,minmax(0,1fr))}
+.u62-route article,.u62-six article,.u62-four article,.u62-two>article,.u62-cards article,.u62-template-grid article,
+.u62-evidence-plan article,.u62-metric-grid article,.u62-validation-grid article,.u62-source-ladder article,
+.u62-sampling-grid article,.u62-protocol-grid article,.u62-ethics-grid article,.u62-pilot-grid article,
+.u62-red-flags article,.u62-communication-grid article,.u62-peer-review article,.u62-reflection-cycle article,
+.u62-evidence-protocol article{
+  min-width:0;padding:20px;border:1px solid var(--u62-line);border-radius:20px;background:#fff;
+  box-shadow:0 11px 27px rgba(23,50,77,.055)
+}
+.u62-route{gap:10px}.u62-route article{position:relative;min-height:160px;padding:16px}
+.u62-route article:not(:last-child):after{content:'→';position:absolute;right:-14px;top:50%;z-index:3;color:var(--u62-gold);font-size:1.6rem;font-weight:950}
+.u62-route b,.u62-evidence-plan b{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--u62-maroon);color:#fff}
+.u62-route h3,.u62-six h3,.u62-four h3,.u62-two h3,.u62-cards h3,.u62-template-grid h3,
+.u62-evidence-plan h3,.u62-metric-grid h3,.u62-validation-grid h3,.u62-source-ladder h3,
+.u62-sampling-grid h3,.u62-ethics-grid h3,.u62-pilot-grid h3,.u62-communication-grid h3,
+.u62-peer-review h3,.u62-reflection-cycle h3{margin:.35rem 0;color:var(--u62-navy)}
+.u62-route p,.u62-six p,.u62-four p,.u62-two p,.u62-cards p,.u62-template-grid p,
+.u62-evidence-plan p,.u62-metric-grid p,.u62-validation-grid p,.u62-source-ladder p,
+.u62-sampling-grid p,.u62-protocol-grid p,.u62-ethics-grid p,.u62-pilot-grid p,
+.u62-red-flags p,.u62-communication-grid p,.u62-peer-review p,.u62-reflection-cycle p,
+.u62-evidence-protocol p{margin:.35rem 0;color:var(--u62-muted);line-height:1.48}
+.u62-four article>span,.u62-two article>span,.u62-cards span,.u62-template-grid span,.u62-metric-grid span,
+.u62-validation-grid span,.u62-source-ladder span,.u62-sampling-grid span,.u62-ethics-grid span,
+.u62-pilot-grid span,.u62-red-flags span,.u62-communication-grid span,.u62-surgery span{
+  color:var(--u62-maroon);font-size:.7rem;font-weight:950;letter-spacing:.12em
+}
+.u62-note{margin-top:17px;padding:15px 18px;border-left:6px solid var(--u62-teal);border-radius:0 15px 15px 0;background:#eaf6f5;color:var(--u62-navy);line-height:1.48}
+.u62-muted{color:var(--u62-muted);font-size:.88rem}
+.u62-formula{margin:13px 0;padding:14px;border:1px solid #cfe2e0;border-radius:14px;background:#eef8f7;color:var(--u62-navy);font-size:1.08rem;text-align:center}
+.u62-equation-banner{margin-bottom:16px;padding:18px 22px;border-radius:20px;background:linear-gradient(135deg,var(--u62-navy),#285c7e);color:#fff;text-align:center;font-size:1.2rem;font-weight:900}
+

@@ -2,8 +2,8 @@
   "unit": "6",
   "title": "Exploration, Technology, and Exam Practice",
   "course": "IB Mathematics: Applications and Interpretation SL",
-  "version": "6.1.0",
-  "buildDate": "2026-08-08",
+  "version": "6.2.0",
+  "buildDate": "2026-08-09",
   "lessons": [
     {
       "number": "6.1",
@@ -15,13 +15,20 @@
       "examTasks": 3,
       "quiz": 12,
       "calculator": "TI-84 Plus CE simulator embedded"
+    },
+    {
+      "number": "6.2",
+      "title": "IA Question Design",
+      "status": "ready",
+      "url": "lessons/IB_AI_SL_6.2_ia_question_design_ECHS.html",
+      "slides": 57,
+      "practice": 64,
+      "examTasks": 4,
+      "quiz": 14,
+      "calculator": "TI-84 Plus CE simulator embedded for pilot-model feasibility"
     }
   ],
   "futureLessons": [
-    {
-      "number": "6.2",
-      "title": "IA Question Design"
-    },
     {
       "number": "6.3",
       "title": "Modelling Investigation"
@@ -40,7 +47,15 @@
     "katex": "assets/js/katex-global.js",
     "theme": "assets/css/theme.css",
     "lessonCss": "assets/css/lesson-6.1-v1.css",
+    "lessonCssByLesson": {
+      "6.1": "assets/css/lesson-6.1-v1.css",
+      "6.2": "assets/css/lesson-6.2-v1-1.css"
+    },
     "simulator": "data/lesson-6.1-ti84-simulator.js",
+    "simulatorsByLesson": {
+      "6.1": "data/lesson-6.1-ti84-simulator.js",
+      "6.2": "data/lesson-6.2-ti84-simulator.js"
+    },
     "lessonData": [
       "data/lesson-6.1-v1-core.js",
       "data/lesson-6.1-v1-content-a.js",
@@ -48,11 +63,48 @@
       "data/lesson-6.1-v1-content-c.js",
       "data/lesson-6.1-v1-content-d.js",
       "data/lesson-6.1-v1-practice.js",
-      "data/lesson-6.1-v1-assessment.js"
-    ]
+      "data/lesson-6.1-v1-assessment.js",
+      "data/lesson-6.2-v1-core.js",
+      "data/lesson-6.2-v1-slides-01.js",
+      "data/lesson-6.2-v1-slides-02.js",
+      "data/lesson-6.2-v1-slides-03.js",
+      "data/lesson-6.2-v1-slides-04.js",
+      "data/lesson-6.2-v1-slides-05.js",
+      "data/lesson-6.2-v1-slides-06.js",
+      "data/lesson-6.2-v1-slides-07.js",
+      "data/lesson-6.2-v1-slides-08.js",
+      "data/lesson-6.2-v1-slides-09.js",
+      "data/lesson-6.2-v1-slides-10.js",
+      "data/lesson-6.2-v1-slides-11.js",
+      "data/lesson-6.2-v1-slides-12.js",
+      "data/lesson-6.2-v1-practice-01.js",
+      "data/lesson-6.2-v1-practice-02.js",
+      "data/lesson-6.2-v1-practice-03.js",
+      "data/lesson-6.2-v1-practice-04.js",
+      "data/lesson-6.2-v1-practice-05.js",
+      "data/lesson-6.2-v1-practice-06.js",
+      "data/lesson-6.2-v1-exam-01.js",
+      "data/lesson-6.2-v1-exam-02.js",
+      "data/lesson-6.2-v1-quiz-01.js",
+      "data/lesson-6.2-v1-quiz-02.js"
+    ],
+    "lessonCssFilesByLesson": {
+      "6.1": [
+        "assets/css/lesson-6.1-v1.css"
+      ],
+      "6.2": [
+        "assets/css/lesson-6.2-v1-1.css",
+        "assets/css/lesson-6.2-v1-2.css",
+        "assets/css/lesson-6.2-v1-3.css",
+        "assets/css/lesson-6.2-v1-4.css"
+      ]
+    }
   },
   "quality": {
     "mathematicalAudit": "required and automated",
+    "questionDesignAudit": "interactive and automated",
+    "assessmentVersionGate": true,
+    "ethicsAndProvenance": true,
     "svgGraphics": true,
     "offlineLessonCore": true,
     "externalSimulatorLazyLoaded": true
