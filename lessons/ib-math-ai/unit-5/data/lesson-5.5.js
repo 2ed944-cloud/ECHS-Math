@@ -2,7 +2,7 @@
 'use strict';
 const root=document.querySelector('.empty-state')||document.body;
 const base=new URL('../data/lesson-5.5-package/',document.baseURI);
-const parts=["chunk-00.b64","chunk-01.b64","chunk-02.b64","chunk-03.b64"];
+const parts=["chunk-00.b64","chunk-01.b64","chunk-02-00.b64","chunk-02-01.b64","chunk-02-02.b64","chunk-03-00.b64","chunk-03-01.b64","chunk-03-02.b64"];
 function status(title,detail){root.innerHTML=`<div class="opt5-package-status"><strong>${title}</strong><span>${detail}</span></div>`;}
 function loadScript(url){return new Promise((resolve,reject)=>{const script=document.createElement('script');script.src=url;script.onload=resolve;script.onerror=()=>reject(new Error(`Could not load ${url}`));document.head.append(script);});}
 function evaluate(source,name){const script=document.createElement('script');script.textContent=`${source}
