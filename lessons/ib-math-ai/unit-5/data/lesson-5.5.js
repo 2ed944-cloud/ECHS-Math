@@ -20,6 +20,7 @@ async function boot(){
  if(pack.schema!=='echs-ib-ai-5.5-package-v1'||pack.version!=='5.5.0'||!Array.isArray(pack.preEngine)||pack.preEngine.length!==7||!Array.isArray(pack.postEngine)||pack.postEngine.length!==3)throw new Error('Lesson package validation failed.');
  const style=document.createElement('style');style.dataset.lesson55='definitive';style.textContent=pack.css;document.head.append(style);
  pack.preEngine.forEach((source,index)=>evaluate(source,`unit5/lesson-5.5/pre-${index+1}.js`));
+ await loadScript(new URL('../data/lesson-5.5-runtime-fixes.js?v=5.5.1',document.baseURI));
  await loadScript(new URL('../../unit-2/assets/js/katex-global.js?v=5.2.0',document.baseURI));
  await loadScript(new URL('../../unit-2/assets/js/engine.js?v=5.5.0',document.baseURI));
  pack.postEngine.forEach((source,index)=>evaluate(source,`unit5/lesson-5.5/post-${index+1}.js`));
