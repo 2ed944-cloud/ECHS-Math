@@ -12,13 +12,12 @@ const dataDir=path.join(unit,'data');
 const lessonPath=path.join(unit,'lessons/IB_AI_SL_5.5_optimisation_modelling_ECHS.html');
 const loaderPath=path.join(dataDir,'lesson-5.5.js');
 const packageDir=path.join(dataDir,'lesson-5.5-package');
-const chunkFiles=fs.readdirSync(packageDir).filter(name=>/^chunk-\d+\.b64$/.test(name)).sort();
+const chunkFiles=['chunk-00.b64','chunk-01.b64','chunk-02-00.b64','chunk-02-01.b64','chunk-02-02.b64','chunk-03-00.b64','chunk-03-01.b64','chunk-03-02.b64'];
 
 for(const file of [lessonPath,loaderPath,...chunkFiles.map(file=>path.join(packageDir,file))]){
   assert.ok(fs.existsSync(file),`Missing required file: ${path.relative(root,file)}`);
   assert.ok(fs.statSync(file).size>100,`Unexpectedly small required file: ${path.relative(root,file)}`);
 }
-assert.deepEqual(chunkFiles,['chunk-00.b64','chunk-01.b64','chunk-02.b64','chunk-03.b64']);
 const encoded=chunkFiles.map(file=>fs.readFileSync(path.join(packageDir,file),'utf8').replace(/\s+/g,'')).join('');
 const pack=JSON.parse(zlib.gunzipSync(Buffer.from(encoded,'base64')).toString('utf8'));
 assert.equal(pack.schema,'echs-ib-ai-5.5-package-v1');
@@ -73,7 +72,7 @@ allQuestions.forEach((q,index)=>{
 
 const ids=[...allQuestions.map(q=>q.id),...d.exam.map(t=>t.id)];
 assert.equal(new Set(ids).size,ids.length,'Assessment IDs must be globally unique inside Lesson 5.5.');
-const normalizedPrompt=value=>String(value).toLowerCase().replace(/<[^>]+>/g,' ').replace(/\[()[\]]/g,' ').replace(/\s+/g,' ').trim();
+const normalizedPrompt=value=>String(value).toLowerCase().replace(/<[^>]+>/g,' ').replace(/\\[()[\]]/g,' ').replace(/\s+/g,' ').trim();
 const promptKeys=allQuestions.map(q=>normalizedPrompt(q.prompt));
 assert.equal(new Set(promptKeys).size,promptKeys.length,'Practice and quiz prompts must not be duplicated.');
 
