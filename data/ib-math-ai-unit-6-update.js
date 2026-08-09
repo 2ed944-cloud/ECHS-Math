@@ -2,7 +2,8 @@
   "use strict";
 
   const base = "lessons/ib-math-ai/unit-6/lessons/";
-  const readyUrl = `${base}IB_AI_SL_6.1_technology_fluency_routines_ECHS.html`;
+  const readyUrl61 = `${base}IB_AI_SL_6.1_technology_fluency_routines_ECHS.html`;
+  const readyUrl62 = `${base}IB_AI_SL_6.2_ia_question_design_ECHS.html`;
   const lessons = [
     {
       number: "6.1",
@@ -14,7 +15,7 @@
         "Verify outputs using a second representation, residual evidence, substitution, estimation or units.",
         "Explain every output using mathematical language, context, units, domain and appropriate rounding."
       ],
-      url: readyUrl,
+      url: readyUrl61,
       status: "ready",
       new: true,
       kind: "lesson",
@@ -26,23 +27,44 @@
       extended_tasks: 3,
       quiz_questions: 12,
       resources: [
-        { label: "Complete interactive lesson", url: readyUrl, type: "resource" },
-        { label: "Practice Studio", url: `${readyUrl}#practice`, type: "practice" },
-        { label: "IB-style assessment tasks", url: `${readyUrl}#exam`, type: "assessment" },
-        { label: "TI-84 simulator", url: `${readyUrl}#learn`, type: "technology" }
+        { label: "Complete interactive lesson", url: readyUrl61, type: "resource" },
+        { label: "Practice Studio", url: `${readyUrl61}#practice`, type: "practice" },
+        { label: "IB-style assessment tasks", url: `${readyUrl61}#exam`, type: "assessment" },
+        { label: "TI-84 simulator", url: `${readyUrl61}#learn`, type: "technology" }
       ],
       keywords: ["ib", "mathematics", "applications", "interpretation", "technology", "ti-84", "gdc", "graphing", "regression", "residuals", "statistics", "probability", "numerical calculus", "6.1"]
     },
     {
       number: "6.2",
       title: "IA Question Design",
-      summary: "How can a broad interest become a focused, mathematically viable exploration question?",
-      outcomes: ["Refine a research question.", "Choose mathematics suitable for an exploration."],
-      url: "",
-      status: "flow",
+      summary: "How can a broad interest become a focused, feasible, ethical and mathematically defensible exploration question?",
+      outcomes: [
+        "Distinguish a topic, research question, mathematical method and conclusion.",
+        "Define variables, units, domains, constraints, populations and decision evidence precisely.",
+        "Build a connected mathematical architecture with validation, sensitivity and reflection.",
+        "Audit data access, sampling, measurement, provenance, ethics and pilot feasibility.",
+        "Use TI-84 pilot graphs and regressions only where technology adds genuine design evidence.",
+        "Prepare and critique a one-page exploration proposal using the correct assessment-session framework."
+      ],
+      url: readyUrl62,
+      status: "ready",
+      new: true,
       kind: "lesson",
-      resources: [],
-      keywords: ["ia", "research question", "exploration"]
+      lesson_key: "u6-ia-question-design",
+      practice_lesson_keys: ["u6-ia-design"],
+      skill_keys: ["IBAI.IA.QUESTION", "IBAI.IA.DATA", "IBAI.IA.MODELLING", "IBAI.IA.REFLECTION", "IBAI.U4.CORRELATION"],
+      learning_cards: 57,
+      practice_questions: 64,
+      extended_tasks: 4,
+      quiz_questions: 14,
+      resources: [
+        { label: "Complete interactive lesson", url: readyUrl62, type: "resource" },
+        { label: "Practice Studio", url: `${readyUrl62}#practice`, type: "practice" },
+        { label: "IB-style proposal tasks", url: `${readyUrl62}#exam`, type: "assessment" },
+        { label: "Timed question-design checkpoint", url: `${readyUrl62}#quiz`, type: "assessment" },
+        { label: "TI-84 pilot-model simulator", url: `${readyUrl62}#learn`, type: "technology" }
+      ],
+      keywords: ["ib", "mathematics", "applications", "interpretation", "ia", "internal assessment", "mathematical exploration", "research question", "variables", "domain", "data ethics", "sampling", "validation", "residuals", "ti-84", "6.2"]
     },
     {
       number: "6.3",
@@ -81,18 +103,18 @@
 
   const unit = {
     title: "Unit 6: Exploration, Technology, and Exam Practice",
-    description: "A technology-rich sequence beginning with rigorous TI-84/GDC fluency, then moving into exploration design, modelling, mixed examination practice and disciplined error analysis.",
-    portalSummary: "1 complete interactive lesson · 48 learning cards · 48 practice questions · 12 timed questions · 3 extended tasks · 4 planned lessons",
+    description: "A technology-rich sequence beginning with rigorous TI-84/GDC fluency, then moving into precise exploration design, responsible data work, modelling, mixed examination practice and disciplined reflection.",
+    portalSummary: "2 complete interactive lessons · 105 learning screens · 112 practice questions · 26 timed questions · 7 extended tasks · 3 planned lessons",
     essential_questions: [
       "How can technology provide transparent mathematical evidence rather than unexplained answers?",
-      "How do settings, precision, domain, residuals and assumptions affect the validity of a result?",
-      "How should calculator output be verified and communicated in IB mathematical language?",
-      "How can technology-rich exploration lead to defensible modelling and reflection?"
+      "How can a broad interest become a focused, feasible and mathematically defensible exploration question?",
+      "How do settings, precision, sampling, domain, residuals, assumptions and ethics affect the validity of a result?",
+      "How should calculator output, data provenance, model evidence and reflection be communicated in IB mathematical language?"
     ],
     unit_home: "lessons/ib-math-ai/unit-6/START_HERE.html",
     lessons,
     refreshed: true,
-    release: "ECHS Unit 6 · Lesson 6.1 v6.1.0"
+    release: "ECHS Unit 6 · Lessons 6.1–6.2 · v6.2.0"
   };
 
   window.ECHS_IB_MATH_AI_UNIT_6 = unit;
@@ -145,8 +167,8 @@
   course.unitCount = course.units.length;
   course.lessonCount = course.units.reduce((total, value) => total + (Array.isArray(value && value.lessons) ? value.lessons.length : 0), 0);
   course.status = "Started";
-  course.updatedUnits = "Unit 6 · Technology Fluency Routines complete";
+  course.updatedUnits = "Unit 6 · Technology Fluency and IA Question Design complete";
   window.dispatchEvent(new CustomEvent("echs:ib-ai-unit-ready", {
-    detail: { courseId: course.id, unit: 6, lessons: unit.lessons.length, readyLessons: 1 }
+    detail: { courseId: course.id, unit: 6, lessons: unit.lessons.length, readyLessons: 2 }
   }));
 })();
