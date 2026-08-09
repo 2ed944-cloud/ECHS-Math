@@ -106,10 +106,10 @@
       "status": "ready",
       "student_visible": true,
       "url": "lessons/ib-math-ai/unit-4/lessons/IB_AI_SL_4.8_tree_diagrams_bayes_sequential_events_ECHS.html",
-      "slides": 50,
+      "slides": 96,
       "practice_questions": 80,
-      "quiz_questions": 10,
-      "exam_tasks": 3
+      "quiz_questions": 18,
+      "exam_tasks": 6
     },
     {
       "number": "4.9",

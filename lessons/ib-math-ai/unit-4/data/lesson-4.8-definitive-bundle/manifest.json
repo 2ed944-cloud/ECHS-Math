@@ -1,0 +1,20 @@
+{
+  "release": "2.0.0",
+  "lesson": "4.8",
+  "parts": [
+    "part-01.txt",
+    "part-02.txt",
+    "part-03.txt",
+    "part-04.txt"
+  ],
+  "encoded_bytes": 70980,
+  "compressed_bytes": 53233,
+  "uncompressed_bytes": 257688,
+  "sha256": "09052d5a1f998735e3684dd4278dcaeee891366485360bb92c2d9a3b03e6e3fe",
+  "contents": [
+    "lesson-4.8-definitive.css",
+    "lesson-4.8-definitive-data.js",
+    "lesson-4.8-definitive-app.js",
+    "lesson-4.8-definitive-ti84.js"
+  ]
+}
