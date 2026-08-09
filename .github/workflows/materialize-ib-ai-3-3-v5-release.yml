@@ -1,0 +1,144 @@
+name: Materialize IB AI Lesson 3.3 v5 release
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - .github/workflows/materialize-ib-ai-3-3-v5-release.yml
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      HEAD_BRANCH: ${{ github.head_ref }}
+    steps:
+      - name: Check out PR branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+
+      - name: Reassemble shared Unit 3 foundation
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin agent/inspect-u3-orphan-tree:refs/remotes/origin/agent/inspect-u3-orphan-tree
+          rm -rf /tmp/u3-payload /tmp/u3-extracted
+          mkdir -p /tmp/u3-payload /tmp/u3-extracted
+          node <<'NODE'
+          const fs = require('fs');
+          const cp = require('child_process');
+          const zlib = require('zlib');
+          const strings = [];
+          for (const part of ['01','02','03','04']) {
+            const p = `lessons/ib-math-ai/unit-3/assets/js/payload-part-${part}.js`;
+            const source = cp.execFileSync('git', ['show', `origin/agent/inspect-u3-orphan-tree:${p}`], { encoding: 'utf8' });
+            const match = source.match(/\.push\((".*")\);?\s*$/s);
+            if (!match) throw new Error(`Cannot parse ${p}`);
+            strings.push(JSON.parse(match[1]));
+          }
+          const decoded = zlib.gunzipSync(Buffer.from(strings.join(''), 'base64'));
+          fs.writeFileSync('/tmp/u3-payload/decoded.bin', decoded);
+          NODE
+          if unzip -tq /tmp/u3-payload/decoded.bin >/dev/null 2>&1; then
+            unzip -q /tmp/u3-payload/decoded.bin -d /tmp/u3-extracted
+          elif tar -tf /tmp/u3-payload/decoded.bin >/dev/null 2>&1; then
+            tar -xf /tmp/u3-payload/decoded.bin -C /tmp/u3-extracted
+          else
+            echo 'Unsupported Unit 3 foundation payload' >&2
+            exit 1
+          fi
+
+      - name: Reassemble definitive Lesson 3.3 overlay
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat \
+            .staging/ib-ai-3-3-v5/chunk-000 \
+            .staging/ib-ai-3-3-v5/chunk-001 \
+            .staging/ib-ai-3-3-v5/chunk-002 \
+            .staging/ib-ai-3-3-v5/chunk-003 \
+            .staging/ib-ai-3-3-v5/chunk-0045 \
+            .staging/ib-ai-3-3-v5/chunk-0067 \
+            .staging/ib-ai-3-3-v5/chunk-0089 \
+            .staging/ib-ai-3-3-v5/chunk-01011 \
+            .staging/ib-ai-3-3-v5/chunk-01213 \
+            .staging/ib-ai-3-3-v5/chunk-01415 \
+            | base64 -d > /tmp/lesson33-overlay.zip
+          echo '0270d306eec6a5fda4cd11dc13b652b67dc61ac43037ba41b31a484ba08ac4eb  /tmp/lesson33-overlay.zip' | sha256sum -c -
+          rm -rf /tmp/lesson33-overlay
+          mkdir -p /tmp/lesson33-overlay
+          unzip -q /tmp/lesson33-overlay.zip -d /tmp/lesson33-overlay
+
+      - name: Materialize publication tree
+        shell: bash
+        run: |
+          set -euo pipefail
+          root='/tmp/u3-extracted'
+          for candidate in \
+            "$root/ECHS_IB_AI_Unit_3_GeoGebra_GitHub_Deployment_Ready" \
+            "$root/ECHS_IB_AI_Unit_3_GeoGebra_GitHub_Deployment_Ready_v3.1.0" \
+            "$root"; do
+            if [ -f "$candidate/data/ib-math-ai-unit-3-update.js" ] && [ -d "$candidate/lessons/ib-math-ai/unit-3" ]; then
+              root="$candidate"
+              break
+            fi
+          done
+          test -f "$root/data/ib-math-ai-unit-3-update.js"
+          test -f "$root/lessons/ib-math-ai/unit-3/assets/js/engine.js"
+          test -f "$root/lessons/ib-math-ai/unit-3/assets/js/geogebra-labs.js"
+
+          rm -rf lessons/ib-math-ai/unit-3
+          mkdir -p lessons/ib-math-ai
+          cp -a "$root/lessons/ib-math-ai/unit-3" lessons/ib-math-ai/unit-3
+          cp "$root/data/ib-math-ai-unit-3-update.js" data/ib-math-ai-unit-3-update.js
+          cp -a /tmp/lesson33-overlay/. .
+
+          python3 <<'PY'
+          from pathlib import Path
+          import re
+          p = Path('index.html')
+          s = p.read_text(encoding='utf-8')
+          s = re.sub(r'(?m)^[ \t]*<script src="data/ib-math-ai-unit-3-update\.js[^"]*"></script>[ \t]*\n?', '', s)
+          m = re.search(r'(?m)^(?P<indent>[ \t]*)<script src="data/ib-math-ai-unit-2-update\.js[^"]*"></script>[ \t]*$', s)
+          if not m:
+              raise SystemExit('Unit 2 loader insertion point not found')
+          tag = f'{m.group("indent")}<script src="data/ib-math-ai-unit-3-update.js?v=20260809-unit3-v5"></script>'
+          s = s[:m.end()] + '\n' + tag + s[m.end():]
+          p.write_text(s, encoding='utf-8')
+          PY
+
+          test -f lessons/ib-math-ai/unit-3/lessons/IB_AI_SL_3.3_bearings_elevation_depression_3d_applications_ECHS.html
+          test -f lessons/ib-math-ai/unit-3/data/lesson-3.3.js
+          grep -Fq 'data/ib-math-ai-unit-3-update.js?v=20260809-unit3-v5' index.html
+
+      - name: Run pre-publication audits
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check data/ib-math-ai-unit-3-update.js
+          node --check lessons/ib-math-ai/unit-3/assets/js/engine.js
+          node --check lessons/ib-math-ai/unit-3/assets/js/geogebra-labs.js
+          node --check lessons/ib-math-ai/unit-3/data/lesson-3.3.js
+          node --check lessons/ib-math-ai/unit-3/data/lesson-3.3-v5-graphics.js
+          node --check lessons/ib-math-ai/unit-3/data/lesson-3.3-v5-interactions.js
+          node --check lessons/ib-math-ai/unit-3/data/lesson-3.3-v5-ti84.js
+          python3 lessons/ib-math-ai/unit-3/tools/validate_package.py
+          python3 lessons/ib-math-ai/unit-3/tools/audit_questions.py
+          python3 lessons/ib-math-ai/unit-3/tools/check_local_links.py
+
+      - name: Commit clean publication tree
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf .staging/ib-ai-3-3-v5
+          rm -f .github/workflows/materialize-ib-ai-3-3-v5-release.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'feat(ib-ai): publish definitive Lesson 3.3 geometry release'
+          git push origin HEAD:"$HEAD_BRANCH"
