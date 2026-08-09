@@ -7,6 +7,7 @@ on:
       - "lessons/ib-math-ai/unit-6/**"
       - "data/ib-math-ai-unit-6-update.js"
       - "tools/test_ib_unit6_2_release.mjs"
+      - "tools/browser_qa_ib_ai_6_2_ia_question_design.mjs"
   push:
     branches:
       - main
@@ -14,6 +15,7 @@ on:
       - "lessons/ib-math-ai/unit-6/**"
       - "data/ib-math-ai-unit-6-update.js"
       - "tools/test_ib_unit6_2_release.mjs"
+      - "tools/browser_qa_ib_ai_6_2_ia_question_design.mjs"
   workflow_dispatch:
 
 permissions:
@@ -26,7 +28,7 @@ concurrency:
 jobs:
   validate:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
       - name: Check out exact revision
         uses: actions/checkout@v6
@@ -38,3 +40,35 @@ jobs:
 
       - name: Validate Lesson 6.2 structure, mathematics, links, and portal registration
         run: node tools/test_ib_unit6_2_release.mjs
+
+      - name: Install browser driver
+        run: npm install --no-save --no-package-lock playwright-core@1.54.1
+
+      - name: Start local platform server
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/echs-unit6-preview.log 2>&1 &
+          echo $! > /tmp/echs-unit6-preview.pid
+          for attempt in {1..30}; do
+            if curl --fail --silent http://127.0.0.1:4173/index.html >/dev/null; then
+              exit 0
+            fi
+            sleep 1
+          done
+          cat /tmp/echs-unit6-preview.log
+          exit 1
+
+      - name: Browser-audit all Lesson 6.2 screens, routes, graphics, and interactions
+        env:
+          ECHS_PREVIEW_URL: http://127.0.0.1:4173
+          ECHS_PREVIEW_OUTPUT: artifacts/ib-ai-unit6-2
+          CHROME_PATH: /usr/bin/google-chrome
+        run: node tools/browser_qa_ib_ai_6_2_ia_question_design.mjs
+
+      - name: Upload Lesson 6.2 visual evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ib-ai-lesson-6-2-visual-qa-${{ github.run_number }}
+          path: artifacts/ib-ai-unit6-2
+          if-no-files-found: error
+          retention-days: 14
