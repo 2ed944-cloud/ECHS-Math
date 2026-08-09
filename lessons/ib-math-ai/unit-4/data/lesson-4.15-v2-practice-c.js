@@ -1,0 +1,24 @@
+(function(){'use strict';const B=window.U415_ASSESS;if(!B)return;const {data,U,D,qs,mcq,num,short}=B;
+num('Challenge','Find','Enter the 1% critical value for df=4.',U.critical(.01,4),.004,'Approximately 13.277.',{calculator:'GDC/table allowed'});
+mcq('Challenge','Determine','p=.073. Which decision pair?',['Reject at 5% and 10%','Reject at 10% only','Reject at 5% only','Reject at neither'],1,'.073<.10 but >.05.');
+mcq('Challenge','Solve','E=25 and contribution=.64. Possible O values?',['21 or 29','9 or 41','24 or 26','20 only'],0,'(O−25)²=16.');
+num('Challenge','Find','Combined sparse model O=(91,9), P=(.90,.10): enter p.',U.gof([91,9],[.9,.1]).p,.001,'χ²=.1111, df=1, p≈.7389.',{calculator:'GDC required'});
+mcq('Challenge','Compare','Same χ²=8 is evaluated with df=3 and df=6. Which p is larger?',['df=3','df=6','Equal','Undefined'],1,'The df=6 distribution is shifted right.');
+short('Challenge','Construct','Uniform model: eight categories, n=200. State E and df.','25 each; df=7.','200/8=25, and 8−1=7.');
+num('Challenge','Find','Strong mismatch O=(62,18,11,9), P=(.35,.30,.20,.15): enter χ².',D.strong.r.stat,.002,'χ²≈32.0786.',{calculator:'GDC allowed'});
+mcq('Challenge','Audit','Observed total is 100 but E=(50,30,15). What must happen?',['Proceed with df=2','Add 5 to O','Correct E so it totals 100','Convert O to percentages'],2,'Expected and observed totals must match n.');
+num('Challenge','Find','Enter the 5% critical value for df=4.',U.critical(.05,4),.004,'Approximately 9.488.',{calculator:'GDC/table allowed'});
+// HOT 12
+mcq('HOT','Critique','Student: “p=.08<.05, so accept H₀ and prove the model.” Best audit?',['Only “prove” is wrong','Comparison reversed; do not reject, and no proof','Divide p by two','Use lower tail'],1,'.08>.05 and non-rejection is not acceptance.');
+mcq('HOT','Evaluate','After p=.042, α is changed from .01 to .05 to claim significance. Concern?',['α should be chosen before evidence','α must be .10','p changes with α','df increases'],0,'Post-result threshold selection undermines the stated error rule.');
+mcq('HOT','Evaluate','A rejected GOF test has one dominant contribution. Best follow-up?',['Declare sole cause','Report global rejection, describe discrepancy, investigate context','Delete category automatically','Replace p by contribution'],1,'Contribution is diagnostic.');
+mcq('HOT','Predict','True proportions differ slightly. As independent n grows, power generally?',['Increases','Becomes zero','χ² must decrease','df negative'],0,'Larger n makes fixed proportional departures easier to detect.');
+mcq('HOT','Audit','Categories “uses bus,” “uses metro,” “uses both” may invalidate GOF because',['Labels are short','Categories overlap','Only three categories','Probabilities are decimals'],1,'Each observation must enter exactly one category.');
+mcq('HOT','Audit','A survey omits “Other” although some responses fit no listed category. Which condition fails?',['Exhaustive categories','df=k','Two tails','Equal O'],0,'All outcomes must be represented.');
+mcq('HOT','Extend','In an advanced model, probabilities are estimated from fitted parameters. Safest statement?',['Always df=k−1','df may need adjustment; do not apply the SL rule blindly outside a fully specified model','df=n','GOF impossible'],1,'Estimated parameters can consume degrees of freedom.');
+mcq('HOT','Evaluate','A significant transport GOF result is said to prove a timetable caused change. Missing?',['Larger χ²','Causal design or evidence controlling alternatives','Lower α','Uniform H₀'],1,'GOF tests mismatch, not cause.');
+mcq('HOT','Design','Repeated daily responses from the same people: best improvement?',['Pretend independent','Account for clustering or select one independent response per person','Increase α','Merge categories'],1,'The design must address within-person dependence.');
+mcq('HOT','Evaluate','Categories are merged only after a non-significant result to seek smaller p. Concern?',['Totals fail','Outcome-driven grouping changes the question','df always rises','E=O'],1,'This is selective analysis.');
+short('HOT','Audit','TI setup: O=L1={60,32,18,10}; E=L2={.40,.25,.20,.15}; df=4. Identify two errors.','L2 should be 48,30,24,18; df=3.','Expected input is counts, and k=4 gives df=3.',{calculator:'GDC workflow'});
+mcq('HOT','Evaluate','A student sets expected proportions equal to sample proportions and gets χ²=0. Core flaw?',['χ² cannot be zero','The model was built from the same data, so no independent claim is tested','n too large','Test should be two-tailed'],1,'The procedure is tautological.');
+})();
