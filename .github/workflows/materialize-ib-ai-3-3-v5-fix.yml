@@ -1,0 +1,175 @@
+name: Materialize IB AI Lesson 3.3 v5 fixed
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - .github/workflows/materialize-ib-ai-3-3-v5-fix.yml
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      HEAD_BRANCH: ${{ github.head_ref }}
+    steps:
+      - name: Check out PR branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+
+      - name: Reassemble shared Unit 3 foundation robustly
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin agent/inspect-u3-orphan-tree:refs/remotes/origin/agent/inspect-u3-orphan-tree
+          rm -rf /tmp/u3-extracted
+          mkdir -p /tmp/u3-extracted
+          python3 <<'PY'
+          import ast, base64, gzip, io, json, re, subprocess, tarfile, zipfile
+          from pathlib import Path
+
+          chunks = []
+          for part in ('01','02','03','04'):
+              repo_path = f'lessons/ib-math-ai/unit-3/assets/js/payload-part-{part}.js'
+              src = subprocess.check_output(
+                  ['git','show',f'origin/agent/inspect-u3-orphan-tree:{repo_path}'],
+                  text=True
+              )
+              candidates = re.findall(r'[A-Za-z0-9+/=]{1000,}', src)
+              if not candidates:
+                  raise SystemExit(f'No base64 payload found in {repo_path}')
+              chunks.append(max(candidates, key=len))
+
+          raw = base64.b64decode(''.join(chunks))
+          decoded = gzip.decompress(raw)
+          out = Path('/tmp/u3-extracted')
+
+          bio = io.BytesIO(decoded)
+          if zipfile.is_zipfile(bio):
+              bio.seek(0)
+              with zipfile.ZipFile(bio) as zf:
+                  zf.extractall(out)
+          else:
+              bio.seek(0)
+              try:
+                  with tarfile.open(fileobj=bio, mode='r:*') as tf:
+                      tf.extractall(out)
+              except tarfile.TarError:
+                  payload = json.loads(decoded.decode('utf-8'))
+                  files = payload.get('files', payload) if isinstance(payload, dict) else payload
+                  if isinstance(files, dict):
+                      items = files.items()
+                  elif isinstance(files, list):
+                      items = []
+                      for item in files:
+                          if not isinstance(item, dict):
+                              raise SystemExit('Unsupported file list item')
+                          name = item.get('path') or item.get('name')
+                          if not name:
+                              raise SystemExit('Payload file has no path')
+                          items.append((name, item))
+                  else:
+                      raise SystemExit('Unsupported decoded payload format')
+                  for name, value in items:
+                      target = out / name
+                      target.parent.mkdir(parents=True, exist_ok=True)
+                      if isinstance(value, dict):
+                          if value.get('base64') is not None:
+                              target.write_bytes(base64.b64decode(value['base64']))
+                          elif value.get('encoding') == 'base64' and value.get('content') is not None:
+                              target.write_bytes(base64.b64decode(value['content']))
+                          else:
+                              target.write_text(str(value.get('content','')), encoding='utf-8')
+                      else:
+                          target.write_text(str(value), encoding='utf-8')
+          PY
+
+      - name: Reassemble and verify Lesson 3.3 overlay
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat \
+            .staging/ib-ai-3-3-v5/chunk-000 \
+            .staging/ib-ai-3-3-v5/chunk-001 \
+            .staging/ib-ai-3-3-v5/chunk-002 \
+            .staging/ib-ai-3-3-v5/chunk-003 \
+            .staging/ib-ai-3-3-v5/chunk-0045 \
+            .staging/ib-ai-3-3-v5/chunk-0067 \
+            .staging/ib-ai-3-3-v5/chunk-0089 \
+            .staging/ib-ai-3-3-v5/chunk-01011 \
+            .staging/ib-ai-3-3-v5/chunk-01213 \
+            .staging/ib-ai-3-3-v5/chunk-01415 \
+            | base64 -d > /tmp/lesson33-overlay.zip
+          echo '0270d306eec6a5fda4cd11dc13b652b67dc61ac43037ba41b31a484ba08ac4eb  /tmp/lesson33-overlay.zip' | sha256sum -c -
+          rm -rf /tmp/lesson33-overlay
+          mkdir -p /tmp/lesson33-overlay
+          unzip -q /tmp/lesson33-overlay.zip -d /tmp/lesson33-overlay
+          test -f /tmp/lesson33-overlay/lessons/ib-math-ai/unit-3/data/lesson-3.3.js
+
+      - name: Materialize publication files
+        shell: bash
+        run: |
+          set -euo pipefail
+          loader=$(find /tmp/u3-extracted -type f -path '*/data/ib-math-ai-unit-3-update.js' | head -n 1)
+          test -n "$loader"
+          root=${loader%/data/ib-math-ai-unit-3-update.js}
+          test -f "$root/lessons/ib-math-ai/unit-3/assets/js/engine.js"
+          test -f "$root/lessons/ib-math-ai/unit-3/assets/js/geogebra-labs.js"
+          test -f "$root/lessons/ib-math-ai/unit-3/data/lesson-3.1.js"
+          test -f "$root/lessons/ib-math-ai/unit-3/data/lesson-3.6.js"
+
+          rm -rf lessons/ib-math-ai/unit-3
+          mkdir -p lessons/ib-math-ai data
+          cp -a "$root/lessons/ib-math-ai/unit-3" lessons/ib-math-ai/unit-3
+          cp "$root/data/ib-math-ai-unit-3-update.js" data/ib-math-ai-unit-3-update.js
+          cp -a /tmp/lesson33-overlay/. .
+
+          python3 <<'PY'
+          from pathlib import Path
+          import re
+          p = Path('index.html')
+          s = p.read_text(encoding='utf-8')
+          s = re.sub(r'(?m)^[ \t]*<script src="data/ib-math-ai-unit-3-update\.js[^"]*"></script>[ \t]*\n?', '', s)
+          m = re.search(r'(?m)^(?P<indent>[ \t]*)<script src="data/ib-math-ai-unit-2-update\.js[^"]*"></script>[ \t]*$', s)
+          if not m:
+              raise SystemExit('Unit 2 loader insertion point not found')
+          tag = f'{m.group("indent")}<script src="data/ib-math-ai-unit-3-update.js?v=20260809-unit3-v5"></script>'
+          s = s[:m.end()] + '\n' + tag + s[m.end():]
+          p.write_text(s, encoding='utf-8')
+          PY
+
+          test -f lessons/ib-math-ai/unit-3/lessons/IB_AI_SL_3.3_bearings_elevation_depression_3d_applications_ECHS.html
+          grep -Fq 'data/ib-math-ai-unit-3-update.js?v=20260809-unit3-v5' index.html
+
+      - name: Run pre-publication audits
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check data/ib-math-ai-unit-3-update.js
+          node --check lessons/ib-math-ai/unit-3/assets/js/engine.js
+          node --check lessons/ib-math-ai/unit-3/assets/js/geogebra-labs.js
+          node --check lessons/ib-math-ai/unit-3/data/lesson-3.3.js
+          node --check lessons/ib-math-ai/unit-3/data/lesson-3.3-v5-graphics.js
+          node --check lessons/ib-math-ai/unit-3/data/lesson-3.3-v5-interactions.js
+          node --check lessons/ib-math-ai/unit-3/data/lesson-3.3-v5-ti84.js
+          python3 lessons/ib-math-ai/unit-3/tools/validate_package.py
+          python3 lessons/ib-math-ai/unit-3/tools/audit_questions.py
+          python3 lessons/ib-math-ai/unit-3/tools/check_local_links.py
+
+      - name: Commit clean publication tree
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf .staging/ib-ai-3-3-v5
+          rm -f .github/workflows/materialize-ib-ai-3-3-v5-release.yml
+          rm -f .github/workflows/materialize-ib-ai-3-3-v5-fix.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'feat(ib-ai): publish definitive Lesson 3.3 geometry release'
+          git push origin HEAD:"$HEAD_BRANCH"
