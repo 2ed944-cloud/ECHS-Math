@@ -1,0 +1,228 @@
+name: Install definitive IB Mathematics AI Lesson 3.2
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/install-ib-unit3-lesson3-2.yml'
+      - 'packages/ib-unit3-lesson3-2/**'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/install-ib-unit3-lesson3-2.yml'
+      - 'packages/ib-unit3-lesson3-2/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: echs-ib-ai-production-installer
+  cancel-in-progress: false
+
+jobs:
+  validate-and-install:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Check out exact revision
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Reassemble and verify release package
+        shell: bash
+        run: |
+          set -euo pipefail
+          mapfile -t parts < <(find packages/ib-unit3-lesson3-2 -maxdepth 1 -type f -name 'part-*.b64' -print | sort -V)
+          test "${#parts[@]}" -eq 10
+          cat "${parts[@]}" | tr -d '\r\n ' | base64 --decode > /tmp/ib-unit3-lesson3-2.zip
+          echo '0d8d8527cd260256bb2fcffc014d07a1f4705163c97f123a281f4a474eb05078  /tmp/ib-unit3-lesson3-2.zip' | sha256sum -c -
+          unzip -t /tmp/ib-unit3-lesson3-2.zip
+          rm -rf /tmp/ib-unit3-lesson3-2
+          mkdir -p /tmp/ib-unit3-lesson3-2
+          unzip -q /tmp/ib-unit3-lesson3-2.zip -d /tmp/ib-unit3-lesson3-2
+          test -f /tmp/ib-unit3-lesson3-2/lessons/ib-math-ai/unit-3/manifest.json
+
+      - name: Install package and patch the live portal model
+        shell: bash
+        run: |
+          set -euo pipefail
+          rsync -a /tmp/ib-unit3-lesson3-2/ ./
+          cat > /tmp/patch-ib-unit3-lesson3-2.py <<'PY'
+          from pathlib import Path
+          import json
+
+          root = Path.cwd()
+
+          index_path = root / 'index.html'
+          text = index_path.read_text(encoding='utf-8')
+          tag = '<script src="data/ib-math-ai-unit-3-update.js?v=20260809-unit3-3-2-v1"></script>'
+          if tag not in text:
+              marker = '<script src="data/ib-math-ai-unit-2-update.js'
+              start = text.find(marker)
+              if start < 0:
+                  raise SystemExit('Unit 2 portal-script marker was not found in index.html')
+              line_end = text.find('\n', start)
+              if line_end < 0:
+                  line_end = len(text)
+                  text = text + '\n'
+              text = text[:line_end + 1] + tag + '\n' + text[line_end + 1:]
+              index_path.write_text(text, encoding='utf-8')
+
+          catalog_path = root / 'data/ib-math-ai-lesson-catalog.json'
+          catalog = json.loads(catalog_path.read_text(encoding='utf-8'))
+          unit = next((row for row in catalog.get('units', []) if row.get('unit') == 3), None)
+          if unit is None:
+              raise SystemExit('Unit 3 record was not found in the IB Mathematics AI catalogue')
+          unit.update({
+              'status': 'partial-ready',
+              'student_visible': True,
+              'delivery_catalog': 'data/ib-math-ai-unit-3-delivery-catalog.json',
+              'unit_home': 'lessons/ib-math-ai/unit-3/START_HERE.html',
+              'release': 'ECHS Unit 3 · Lesson 3.2 v1.0.0'
+          })
+          lesson = next((row for row in unit.get('lessons', []) if str(row.get('number')) == '3.2'), None)
+          if lesson is None:
+              raise SystemExit('Lesson 3.2 record was not found in the IB Mathematics AI catalogue')
+          lesson.update({
+              'lesson_key': 'u3-trig',
+              'number': '3.2',
+              'title': 'Trigonometric Relationships and Models',
+              'skill_id': 'IBAI.U3.TRIG',
+              'status': 'ready',
+              'student_visible': True,
+              'delivery_lesson_numbers': ['3.2'],
+              'url': 'lessons/ib-math-ai/unit-3/lessons/IB_AI_SL_3.2_trigonometric_relationships_models_ECHS.html',
+              'release': '1.0.0',
+              'delivery_metrics': {
+                  'learn': 80,
+                  'practice': 80,
+                  'quiz': 16,
+                  'tasks': 6,
+                  'task_marks': 77,
+                  'math_expressions': 696,
+                  'offline_ti84': True,
+                  'interactive_labs': 2
+              }
+          })
+          catalog_path.write_text(json.dumps(catalog, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          PY
+          python3 /tmp/patch-ib-unit3-lesson3-2.py
+
+      - name: Verify package manifest and static release invariants
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import hashlib, json
+          root = Path.cwd()
+          manifest_path = root / 'lessons/ib-math-ai/unit-3/manifest.json'
+          manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
+          assert manifest['counts'] == {
+              'learn': 80,
+              'practice': 80,
+              'quiz': 16,
+              'tasks': 6,
+              'taskMarks': 77,
+              'mathExpressions': 696,
+              'interactiveLabs': 2
+          }
+          for row in manifest['files']:
+              path = root / row['path']
+              if not path.is_file():
+                  raise SystemExit(f"manifest file missing: {row['path']}")
+              payload = path.read_bytes()
+              if len(payload) != row['bytes']:
+                  raise SystemExit(f"manifest byte mismatch: {row['path']}")
+              if hashlib.sha256(payload).hexdigest() != row['sha256']:
+                  raise SystemExit(f"manifest hash mismatch: {row['path']}")
+          print(f"Verified {len(manifest['files'])} release-file hashes")
+          PY
+          node --check data/ib-math-ai-unit-3-update.js
+          node --check lessons/ib-math-ai/unit-3/assets/js/engine-3.2.js
+          node --check lessons/ib-math-ai/unit-3/data/lesson-3.2-core.js
+          node --check lessons/ib-math-ai/unit-3/data/lesson-3.2-practice.js
+          node --check lessons/ib-math-ai/unit-3/data/lesson-3.2-assessment.js
+          node --check tools/browser_qa_ib_ai_3_2_trigonometric_models.mjs
+          node tools/test_ib_unit3_lesson_3_2.mjs
+          grep -q 'ib-math-ai-unit-3-update.js?v=20260809-unit3-3-2-v1' index.html
+          grep -q '"status": "partial-ready"' data/ib-math-ai-lesson-catalog.json
+          grep -q 'IB_AI_SL_3.2_trigonometric_relationships_models_ECHS.html' data/ib-math-ai-lesson-catalog.json
+
+      - name: Install browser driver
+        run: npm install --no-save --no-package-lock playwright-core@1.54.1
+
+      - name: Start local platform server
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/echs-unit3-preview.log 2>&1 &
+          echo $! > /tmp/echs-unit3-preview.pid
+          for attempt in {1..30}; do
+            if curl --fail --silent http://127.0.0.1:4173/index.html >/dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/echs-unit3-preview.log
+          exit 1
+
+      - name: Browser-audit all screens, routes, precision diagrams and TI-84 interactions
+        env:
+          ECHS_PREVIEW_URL: http://127.0.0.1:4173
+          ECHS_PREVIEW_OUTPUT: artifacts/ib-ai-unit3-2
+          CHROME_PATH: /usr/bin/google-chrome
+        run: node tools/browser_qa_ib_ai_3_2_trigonometric_models.mjs
+
+      - name: Upload Lesson 3.2 visual evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ib-ai-lesson-3-2-install-qa-${{ github.run_number }}
+          path: artifacts/ib-ai-unit3-2
+          if-no-files-found: warn
+          retention-days: 14
+
+      - name: Publish validated production files to main
+        if: github.event_name == 'push'
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'ECHS Mathematics Release Bot'
+          git config user.email 'actions@users.noreply.github.com'
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git reset --hard origin/main
+            rsync -a /tmp/ib-unit3-lesson3-2/ ./
+            python3 /tmp/patch-ib-unit3-lesson3-2.py
+            rm -rf packages/ib-unit3-lesson3-2
+            rm -f .github/workflows/install-ib-unit3-lesson3-2.yml
+            rm -rf artifacts/ib-ai-unit3-2 node_modules
+            node tools/test_ib_unit3_lesson_3_2.mjs
+            python3 - <<'PY'
+          from pathlib import Path
+          import hashlib, json
+          root = Path.cwd()
+          manifest = json.loads((root / 'lessons/ib-math-ai/unit-3/manifest.json').read_text(encoding='utf-8'))
+          for row in manifest['files']:
+              payload = (root / row['path']).read_bytes()
+              assert len(payload) == row['bytes'], row['path']
+              assert hashlib.sha256(payload).hexdigest() == row['sha256'], row['path']
+          PY
+            git add -A
+            if git diff --cached --quiet; then
+              echo 'No production changes were required.'
+              exit 0
+            fi
+            git commit -m 'feat(ib-ai): publish definitive Lesson 3.2 trigonometric models'
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            echo "Push race detected; rebuilding on the latest main (attempt ${attempt}/3)."
+          done
+          echo 'Unable to publish Lesson 3.2 after three race-safe attempts.' >&2
+          exit 1
