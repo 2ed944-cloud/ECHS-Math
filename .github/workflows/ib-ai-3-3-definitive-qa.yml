@@ -1,0 +1,72 @@
+name: IB AI Lesson 3.3 Definitive QA
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - .github/workflows/ib-ai-3-3-definitive-qa.yml
+      - index.html
+      - data/ib-math-ai-unit-3-update.js
+      - lessons/ib-math-ai/unit-3/**
+  push:
+    branches: [main]
+    paths:
+      - index.html
+      - data/ib-math-ai-unit-3-update.js
+      - lessons/ib-math-ai/unit-3/**
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install QA dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install beautifulsoup4 playwright
+          python -m playwright install --with-deps chromium
+
+      - name: Verify platform loader order
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          text = Path('index.html').read_text(encoding='utf-8')
+          u2 = 'data/ib-math-ai-unit-2-update.js'
+          u3 = 'data/ib-math-ai-unit-3-update.js?v=20260809-unit3-v5'
+          u4 = 'data/ib-math-ai-unit-4-update.js'
+          assert text.count('data/ib-math-ai-unit-3-update.js') == 1
+          assert u2 in text and u3 in text and u4 in text
+          assert text.index(u2) < text.index(u3) < text.index(u4)
+          PY
+
+      - name: JavaScript syntax
+        run: |
+          node --check data/ib-math-ai-unit-3-update.js
+          node --check lessons/ib-math-ai/unit-3/assets/js/engine.js
+          node --check lessons/ib-math-ai/unit-3/assets/js/geogebra-labs.js
+          node --check lessons/ib-math-ai/unit-3/data/lesson-3.3.js
+          node --check lessons/ib-math-ai/unit-3/data/lesson-3.3-v5-graphics.js
+          node --check lessons/ib-math-ai/unit-3/data/lesson-3.3-v5-interactions.js
+          node --check lessons/ib-math-ai/unit-3/data/lesson-3.3-v5-ti84.js
+
+      - name: Structural and mathematical audits
+        run: |
+          python lessons/ib-math-ai/unit-3/tools/validate_package.py
+          python lessons/ib-math-ai/unit-3/tools/audit_questions.py
+          python lessons/ib-math-ai/unit-3/tools/audit_lesson_3_3_v5.py
+          python lessons/ib-math-ai/unit-3/tools/check_local_links.py
+
+      - name: Chromium browser QA
+        run: python lessons/ib-math-ai/unit-3/tools/browser_qa_lesson_3_3_v5.py
