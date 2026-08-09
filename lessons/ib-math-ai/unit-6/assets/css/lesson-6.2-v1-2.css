@@ -1,0 +1,72 @@
+/* Launch, comparisons, versions */
+.u62-launch{display:grid;grid-template-columns:minmax(0,1.18fr) minmax(340px,.82fr);gap:22px}
+.u62-rq-stack{display:grid;gap:13px}.u62-rq-stack article,.u62-launch-prompts{padding:22px;border:1px solid var(--u62-line);border-radius:22px;background:#fff;box-shadow:0 12px 30px rgba(23,50,77,.06)}
+.u62-rq-stack article{border-left:7px solid var(--u62-maroon)}.u62-rq-stack article.mid{border-left-color:var(--u62-gold)}.u62-rq-stack article.good{border-left-color:var(--u62-teal)}
+.u62-rq-stack h2{margin:.35rem 0;color:var(--u62-navy);font-size:clamp(1.25rem,2vw,2.25rem)}
+.u62-rq-stack span,.u62-label{color:var(--u62-teal);font-size:.7rem;font-weight:950;letter-spacing:.13em}
+.u62-launch-prompts{border-top:7px solid var(--u62-gold)}
+.student-note,.u62-audit textarea,.u62-builder input,.u62-builder select,.u62-model-lab textarea,.u62-scope-lab input,
+.u62-proposal-grid textarea{
+  width:100%;padding:12px 13px;border:1px solid #cfc6ba;border-radius:12px;background:#fff;color:var(--u62-ink);
+  font:inherit
+}
+.student-note{min-height:90px}.student-note.tall{min-height:165px}
+.u62-compare{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.u62-compare>section{padding:23px;border:2px solid rgba(31,122,77,.25);border-radius:21px;background:#f3faf6}
+.u62-compare>section.bad{border-color:rgba(174,49,73,.25);background:#fff3f5}
+.u62-compare>section>span{color:var(--u62-good);font-size:.72rem;font-weight:950;letter-spacing:.12em}
+.u62-compare>section.bad>span{color:var(--u62-bad)}
+.u62-process-line{display:flex;gap:9px;align-items:center;justify-content:center;flex-wrap:wrap;margin-top:18px;padding:14px;border-radius:16px;background:#edf8f7}
+.u62-process-line span{font-weight:900;color:var(--u62-navy)}.u62-process-line i{color:var(--u62-gold);font-weight:950}
+.u62-version-grid,.u62-version-gate{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.u62-version-grid>section,.u62-version-gate>section{padding:24px;border:1px solid var(--u62-line);border-radius:23px;background:#fff;box-shadow:0 12px 30px rgba(23,50,77,.06)}
+.u62-version-grid>section.current,.u62-version-gate>section:first-child{border-top:7px solid var(--u62-maroon)}
+.u62-version-grid>section.future,.u62-version-gate>section:last-child{border-top:7px solid var(--u62-teal)}
+.u62-version-grid span,.u62-version-gate span{color:var(--u62-teal);font-size:.7rem;font-weight:950;letter-spacing:.12em}
+.u62-version-grid h2,.u62-version-gate h2{color:var(--u62-navy)}
+.u62-version-warning{margin-top:16px;padding:16px;border-radius:15px;background:#fff4dc;color:#5d4310}
+.u62-criteria-mini,.u62-criteria{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin-top:14px}
+.u62-criteria-mini div,.u62-criteria div{display:grid;gap:4px;place-items:center;padding:12px 7px;border:1px solid var(--u62-line);border-radius:14px;background:#faf7f2;text-align:center}
+.u62-criteria-mini b,.u62-criteria b{display:grid;place-items:center;width:31px;height:31px;border-radius:50%;background:var(--u62-maroon);color:#fff}
+.u62-criteria strong{font-size:.78rem;color:var(--u62-navy)}.u62-criteria small{color:var(--u62-muted)}
+
+/* Question anatomy and surgery */
+.u62-anatomy{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(350px,.9fr);gap:22px;align-items:center}
+.u62-anatomy>section{padding:22px;border:1px solid var(--u62-line);border-radius:22px;background:#fff}
+.u62-anatomy svg{width:100%;height:auto}
+.u62-verb-ladder{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px}
+.u62-verb-ladder>section{padding:22px;border:1px solid var(--u62-line);border-radius:21px;background:#fff}
+.u62-verb-ladder>section.low{border-top:7px solid var(--u62-bad)}.u62-verb-ladder>section.mid{border-top:7px solid var(--u62-gold)}.u62-verb-ladder>section.high{border-top:7px solid var(--u62-teal)}
+.u62-redflags{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.u62-redflags article{padding:21px;border:1px solid #f0ced5;border-radius:20px;background:#fff5f7}
+.u62-redflags h3{color:var(--u62-maroon)}
+.u62-surgery{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:20px}
+.u62-surgery>section{padding:23px;border:2px solid rgba(31,122,77,.23);border-radius:22px;background:#f4faf6}
+.u62-surgery>section.bad{border-color:rgba(174,49,73,.25);background:#fff4f6}
+.u62-surgery h2{color:var(--u62-navy);font-size:clamp(1.35rem,2vw,2.15rem);line-height:1.2}
+.u62-surgery-arrow{display:grid;place-items:center;color:var(--u62-gold);font-size:2rem;font-weight:950}
+.u62-diagnosis,.u62-math-plan{padding:20px;border:1px solid var(--u62-line);border-radius:20px;background:#fff}
+.u62-math-plan{margin-top:16px}
+.u62-student{padding:24px;border:2px solid rgba(212,167,44,.42);border-radius:23px;background:linear-gradient(145deg,#fffdf7,#fff7e6)}
+.u62-student>div>span{color:var(--u62-teal);font-size:.72rem;font-weight:950;letter-spacing:.13em}
+.u62-student h2{margin:8px 0 15px;color:var(--u62-navy);font-size:clamp(1.45rem,2.35vw,2.75rem)}
+.u62-student details{margin-top:14px}
+.u62-funnel-layout{display:grid;grid-template-columns:minmax(450px,1.05fr) minmax(350px,.95fr);gap:24px;align-items:center}
+.u62-funnel-questions{padding:22px;border:1px solid var(--u62-line);border-radius:21px;background:#fff}
+
+/* Audits and interactive labs */
+.u62-audit,.u62-scope-lab,.u62-model-lab,.u62-builder{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.u62-audit>section,.u62-scope-lab>section,.u62-model-lab>section,.u62-builder>section{
+  padding:23px;border:1px solid var(--u62-line);border-radius:22px;background:#fff;box-shadow:0 12px 30px rgba(23,50,77,.055)
+}
+.u62-audit h2,.u62-scope-lab h2,.u62-model-lab h2,.u62-builder h2{color:var(--u62-navy)}
+.u62-audit-checks{display:grid;gap:9px;margin:15px 0}
+.u62-audit-checks label,.u62-checkline,.u62-final-checks label{display:flex;gap:10px;align-items:flex-start;padding:10px;border:1px solid #e4ddd4;border-radius:12px;background:#faf8f4}
+.u62-audit-output,.u62-lab-output{min-height:145px;padding:18px;border-radius:17px;background:#edf8f7;color:var(--u62-navy);line-height:1.55}
+.u62-audit-output strong,.u62-lab-output strong{display:block;margin-bottom:8px;font-size:1.2rem}
+.u62-scope-lab label,.u62-model-lab label,.u62-builder label{display:grid;gap:6px;margin:10px 0;color:var(--u62-navy);font-weight:800}
+.u62-scope-lab input[type=number]{max-width:190px}
+.u62-builder-warning{margin-top:14px;padding:13px;border-radius:13px;background:#fff4dc;color:#5b4210}
+.u62-model-plot{margin-top:14px;min-height:240px;border:1px solid var(--u62-line);border-radius:16px;background:#fff;overflow:hidden}
+.u62-model-plot svg{display:block;width:100%;height:auto}
+
