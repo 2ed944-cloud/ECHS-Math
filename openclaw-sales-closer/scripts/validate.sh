@@ -11,7 +11,7 @@ import pathlib
 import re
 import sys
 
-root = pathlib.Path('.')
+root = pathlib.Path.cwd()
 repo = root.parent
 errors = []
 
