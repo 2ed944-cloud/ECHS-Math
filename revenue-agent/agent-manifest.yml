@@ -1,6 +1,6 @@
 agent:
   name: ECHS Autonomous Revenue Executive
-  version: 2.0
+  version: 2.1
   market_priority:
     - Qatar
     - UAE
@@ -21,7 +21,7 @@ agent:
     crm_primary: HubSpot
     email: Gmail
     calendar: Google Calendar + Google Meet
-    payment: Stripe when available
+    payment: Stripe ECHS live account
     audit_fallback:
       - Gmail label: ECHS Revenue Outreach
       - GitHub branch: echs-revenue-agent
@@ -59,6 +59,14 @@ agent:
     conditional_discount_autonomy_pct: 15
     strategic_discount_autonomy_pct: 20
     commercial_floor_pct_of_standard_quote: 80
+  pricing_baseline_qatari_riyal:
+    teacher_annual: 900
+    department_core_annual: 7500
+    department_pro_annual: 12500
+    school_advanced_math_annual: 22500
+    tutoring_center_annual: 10000
+    enterprise_starting_annual: 40000
+    extended_pilot_reference: 2500
   prohibited_auto_commitments:
     - IP ownership transfer
     - source-code ownership transfer
@@ -71,6 +79,7 @@ agent:
   playbooks:
     operating_system: AUTONOMOUS_REVENUE_EXECUTIVE.md
     authority: COMMERCIAL_AUTHORITY_MATRIX.md
+    pricing: PRICING_ENGINE.md
     demo: DEMO_ENGINE.md
     negotiation: NEGOTIATION_CLOSING_PLAYBOOK.md
     payment_renewal: PAYMENT_RENEWAL_ENGINE.md
