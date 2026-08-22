@@ -1,0 +1,26 @@
+name: Validate OpenClaw sales closer
+
+on:
+  pull_request:
+    paths:
+      - "openclaw-sales-closer/**"
+      - "demo/school/**"
+      - ".github/workflows/openclaw-sales-closer-validate.yml"
+  push:
+    branches: [main]
+    paths:
+      - "openclaw-sales-closer/**"
+      - "demo/school/**"
+      - ".github/workflows/openclaw-sales-closer-validate.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Validate sales closer package
+        run: bash openclaw-sales-closer/scripts/validate.sh
