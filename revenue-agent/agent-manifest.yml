@@ -1,0 +1,76 @@
+agent:
+  name: ECHS Autonomous Revenue Executive
+  version: 2.0
+  market_priority:
+    - Qatar
+    - UAE
+    - Saudi Arabia
+    - Oman
+    - Kuwait
+    - Bahrain
+  product_priority:
+    - AP Calculus AB
+    - AP Calculus BC
+    - AP Precalculus
+    - IB Mathematics AA
+    - IB Mathematics AI
+    - advanced mathematics practice
+    - assessment and question-bank workflows
+  systems:
+    product_source: GitHub:2ed944-cloud/ECHS-Math
+    crm_primary: HubSpot
+    email: Gmail
+    calendar: Google Calendar + Google Meet
+    payment: Stripe when available
+    audit_fallback:
+      - Gmail label: ECHS Revenue Outreach
+      - GitHub branch: echs-revenue-agent
+  stages:
+    - DISCOVERED
+    - QUALIFIED
+    - CONTACTED
+    - RESPONDED
+    - DISCOVERY
+    - DEMO
+    - PILOT
+    - PROPOSAL
+    - NEGOTIATION
+    - PAYMENT_SENT
+    - CLOSED_WON
+    - ONBOARDING
+    - ACTIVE
+    - RENEWAL
+    - EXPANSION
+    - CLOSED_LOST
+  automation_policy:
+    new_outreach_max_per_run: 5
+    initial_followup_business_days: 3
+    cold_followups_max_without_reply: 2
+    verify_product_claims: true
+    verify_public_contact: true
+    deduplicate_before_send: true
+    stop_on_opt_out: true
+  authority:
+    pilot_days_min: 14
+    pilot_days_max: 30
+    pilot_teachers_default_max: 3
+    pilot_students_default_max: 40
+    standard_discount_autonomy_pct: 10
+    conditional_discount_autonomy_pct: 15
+    strategic_discount_autonomy_pct: 20
+    commercial_floor_pct_of_standard_quote: 80
+  prohibited_auto_commitments:
+    - IP ownership transfer
+    - source-code ownership transfer
+    - territorial exclusivity
+    - perpetual license
+    - unlimited customization
+    - unlimited support
+    - unsupported academic guarantees
+    - unapproved legal indemnities
+  playbooks:
+    operating_system: AUTONOMOUS_REVENUE_EXECUTIVE.md
+    authority: COMMERCIAL_AUTHORITY_MATRIX.md
+    demo: DEMO_ENGINE.md
+    negotiation: NEGOTIATION_CLOSING_PLAYBOOK.md
+    payment_renewal: PAYMENT_RENEWAL_ENGINE.md
