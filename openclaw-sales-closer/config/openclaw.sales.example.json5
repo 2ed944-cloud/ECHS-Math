@@ -1,5 +1,5 @@
 // Merge this into ~/.openclaw/openclaw.json.
-// Do not store API keys in this repository.
+// Keep API keys, OAuth tokens and phone-provider credentials in environment/secret stores.
 {
   agents: {
     entries: {
@@ -7,12 +7,18 @@
         name: "ECHS AI Sales Closer",
         workspace: "~/.openclaw/workspace-echs-sales",
         identity: {
-          name: "ECHS Platform AI Sales Specialist",
+          name: "Platform AI Sales Specialist",
           theme: "precise consultative school sales",
           emoji: "∫",
         },
+        // The sales agent does not need arbitrary host execution or self-modification.
+        tools: {
+          deny: ["exec", "process", "write", "edit", "apply_patch"],
+        },
         heartbeat: {
           every: "30m",
+          target: "none",
+          prompt: "Review only actionable sales state: meetings in the next 24 hours that lack preparation; promised follow-ups due for consented active deals; proposals past an explicitly agreed decision date; closed-won onboarding handoffs; unresolved factual or technical questions; and channel/integration failures. Do not create marketing contact merely because a lead is idle. Never contact DO_NOT_MARKET. Recurring schedules belong in automations. If nothing is actionable, reply HEARTBEAT_OK.",
         },
       },
     },
@@ -31,12 +37,15 @@
       defaultAccount: "biz",
       accounts: {
         biz: {
-          // Keep the dedicated sales number isolated from personal WhatsApp.
-          dmPolicy: "pairing",
+          // Public business inbox: new prospects can message without manual pairing.
+          // Sales policy still forbids unsolicited outbound marketing without consent.
+          dmPolicy: "open",
+          allowFrom: ["*"],
           sendReadReceipts: true,
         },
       },
-      groupPolicy: "allowlist",
+      // Sales happens in 1:1 conversations; fail closed for groups.
+      groupPolicy: "disabled",
     },
   },
 
@@ -45,6 +54,8 @@
       "google-meet": {
         enabled: true,
         config: {
+          // Local Chrome requires a supported macOS/Linux desktop audio environment.
+          // For a remote Gateway, use a paired chrome-node instead.
           defaultTransport: "chrome",
           defaultMode: "agent",
           chrome: {
@@ -52,25 +63,20 @@
             autoJoin: true,
           },
           realtime: {
+            transcriptionProvider: "openai",
             agentId: "echs-sales-closer",
             toolPolicy: "safe-read-only",
+            instructions: "Speak concisely and answer the buyer's question first. You are an AI sales specialist. Use the configured OpenClaw agent for factual, product and commercial reasoning.",
+            introMessage: "Say exactly: Hello. I'm the AI sales specialist for the mathematics learning platform. I use live transcription so I can participate accurately in this meeting. If anyone is not comfortable with transcription, please tell me before we continue.",
           },
-        },
-      },
-
-      // Optional. Configure only after choosing Twilio/Telnyx/Plivo
-      // and provisioning a suitable business number.
-      "voice-call": {
-        enabled: false,
-        config: {
-          provider: "mock",
         },
       },
     },
   },
 
+  // Critical for a customer-facing inbox: no prospect can see another prospect's context.
   session: {
-    scope: "per-sender",
+    dmScope: "per-account-channel-peer",
     resetByType: {
       direct: { mode: "idle", idleMinutes: 720 },
     },
