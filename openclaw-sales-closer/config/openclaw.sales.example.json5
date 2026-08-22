@@ -6,6 +6,9 @@
       "echs-sales-closer": {
         name: "ECHS AI Sales Closer",
         workspace: "~/.openclaw/workspace-echs-sales",
+        model: {
+          primary: "openai/gpt-5.6-sol",
+        },
         identity: {
           name: "Platform AI Sales Specialist",
           theme: "precise consultative school sales",
@@ -49,18 +52,33 @@
     },
   },
 
+  // Spoken replies for meetings. OPENAI_API_KEY is read from the environment.
+  tts: {
+    provider: "openai",
+    providers: {
+      openai: {
+        model: "gpt-4o-mini-tts",
+        speakerVoice: "cedar",
+        instructions: "Professional school-sales voice. Calm, concise, confident, never theatrical. Speak clear international English unless the buyer uses Arabic, then respond naturally in Arabic.",
+      },
+    },
+  },
+
   plugins: {
     entries: {
       "google-meet": {
         enabled: true,
         config: {
-          // Local Chrome requires a supported macOS/Linux desktop audio environment.
-          // For a remote Gateway, use a paired chrome-node instead.
-          defaultTransport: "chrome",
+          // Production layout: Gateway on a locked-down VPS; Chrome/audio on a paired desktop node.
+          defaultTransport: "chrome-node",
           defaultMode: "agent",
+          chromeNode: {
+            node: "sales-meet-node",
+          },
           chrome: {
             guestName: "Platform AI Sales Specialist",
             autoJoin: true,
+            reuseExistingTab: true,
           },
           realtime: {
             transcriptionProvider: "openai",
@@ -70,6 +88,15 @@
             introMessage: "Say exactly: Hello. I'm the AI sales specialist for the mathematics learning platform. I use live transcription so I can participate accurately in this meeting. If anyone is not comfortable with transcription, please tell me before we continue.",
           },
         },
+      },
+    },
+  },
+
+  // Permit only the two remote-node commands needed for the meeting path.
+  gateway: {
+    nodes: {
+      commands: {
+        allow: ["browser.proxy", "googlemeet.chrome"],
       },
     },
   },
