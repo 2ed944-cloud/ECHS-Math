@@ -12,18 +12,28 @@ fi
 mkdir -p "$WORKSPACE"
 cp -R "$ROOT/workspace/." "$WORKSPACE/"
 
-echo "Installing/updating sales channel and meeting plugins..."
-openclaw plugins install clawhub:@openclaw/whatsapp || true
-openclaw plugins install npm:@openclaw/google-meet || true
-openclaw plugins install @openclaw/voice-call || true
+echo "Installing required customer-channel and meeting plugins..."
+openclaw plugins install clawhub:@openclaw/whatsapp
+openclaw plugins install npm:@openclaw/google-meet
 
 echo
 echo "Workspace copied to: $WORKSPACE"
-echo "Next:"
+echo "Required activation steps:"
 echo "1) Merge config/openclaw.sales.example.json5 into ~/.openclaw/openclaw.json"
-echo "2) Link the dedicated WhatsApp account:"
+echo "2) Validate and audit the Gateway configuration:"
+echo "   openclaw config validate"
+echo "   openclaw security audit"
+echo "3) Link the dedicated WhatsApp business account:"
 echo "   openclaw channels login --channel whatsapp --account biz"
-echo "3) Configure realtime transcription + TTS credentials."
-echo "4) Run: openclaw googlemeet setup"
-echo "5) Fill commercial/pricing.json and set configured=true."
-echo "6) Restart: openclaw gateway restart"
+echo "4) Configure a supported Google Meet audio host plus realtime transcription and TTS credentials."
+echo "5) Run the meeting preflight:"
+echo "   openclaw googlemeet setup --mode agent"
+echo "6) Fill workspace/commercial/pricing.json and set configured=true only after commercial approval."
+echo "7) Restart and probe:"
+echo "   openclaw gateway restart"
+echo "   openclaw channels status --probe"
+echo "   openclaw agents list --bindings"
+echo
+echo "Optional PSTN voice calls can be added later with:"
+echo "   openclaw plugins install @openclaw/voice-call"
+echo "   openclaw voicecall setup"
