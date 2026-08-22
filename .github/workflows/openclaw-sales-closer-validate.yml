@@ -24,3 +24,5 @@ jobs:
         uses: actions/checkout@v4
       - name: Validate sales closer package
         run: bash openclaw-sales-closer/scripts/validate.sh
+      - name: Validate production deployment package
+        run: bash openclaw-sales-closer/scripts/validate-production.sh
