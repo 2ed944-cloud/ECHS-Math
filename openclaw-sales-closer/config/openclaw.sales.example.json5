@@ -1,0 +1,78 @@
+// Merge this into ~/.openclaw/openclaw.json.
+// Do not store API keys in this repository.
+{
+  agents: {
+    entries: {
+      "echs-sales-closer": {
+        name: "ECHS AI Sales Closer",
+        workspace: "~/.openclaw/workspace-echs-sales",
+        identity: {
+          name: "ECHS Platform AI Sales Specialist",
+          theme: "precise consultative school sales",
+          emoji: "∫",
+        },
+        heartbeat: {
+          every: "30m",
+        },
+      },
+    },
+  },
+
+  bindings: [
+    {
+      agentId: "echs-sales-closer",
+      match: { channel: "whatsapp", accountId: "biz" },
+    },
+  ],
+
+  channels: {
+    whatsapp: {
+      enabled: true,
+      defaultAccount: "biz",
+      accounts: {
+        biz: {
+          // Keep the dedicated sales number isolated from personal WhatsApp.
+          dmPolicy: "pairing",
+          sendReadReceipts: true,
+        },
+      },
+      groupPolicy: "allowlist",
+    },
+  },
+
+  plugins: {
+    entries: {
+      "google-meet": {
+        enabled: true,
+        config: {
+          defaultTransport: "chrome",
+          defaultMode: "agent",
+          chrome: {
+            guestName: "Platform AI Sales Specialist",
+            autoJoin: true,
+          },
+          realtime: {
+            agentId: "echs-sales-closer",
+            toolPolicy: "safe-read-only",
+          },
+        },
+      },
+
+      // Optional. Configure only after choosing Twilio/Telnyx/Plivo
+      // and provisioning a suitable business number.
+      "voice-call": {
+        enabled: false,
+        config: {
+          provider: "mock",
+        },
+      },
+    },
+  },
+
+  session: {
+    scope: "per-sender",
+    resetByType: {
+      direct: { mode: "idle", idleMinutes: 720 },
+    },
+  },
+}
