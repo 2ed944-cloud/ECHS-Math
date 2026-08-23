@@ -73,21 +73,37 @@ required_config_fragments = [
     'dmPolicy: "open"',
     'allowFrom: ["*"]',
     'groupPolicy: "disabled"',
-    'agentId: "echs-sales-closer"',
+    'primary: "openai/gpt-5.6-luna"',
+    'primary: "openai/gpt-5.6-terra"',
+    'primary: "openai/gpt-5.6-sol"',
+    'allowAgents: ["echs-meeting-closer", "echs-enterprise-reviewer"]',
+    'provider: "microsoft"',
+    'defaultTransport: "chrome"',
     'defaultMode: "agent"',
     'transcriptionProvider: "openai"',
+    'agentId: "echs-meeting-closer"',
     'toolPolicy: "safe-read-only"',
 ]
 for fragment in required_config_fragments:
     if fragment not in config:
-        fail(f'OpenClaw config missing required hardening fragment: {fragment}')
+        fail(f'OpenClaw config missing required low-cost/hardening fragment: {fragment}')
 
 if 'dmPolicy: "pairing"' in config:
     fail('OpenClaw config must not require manual DM pairing for the public sales inbox')
+if 'defaultTransport: "chrome-node"' in config:
+    fail('Launch config must remain local-first; chrome-node is an optional later upgrade')
+if 'provider: "openai"' in re.sub(r'realtime\s*:\s*\{.*?\}', '', config, flags=re.S):
+    # Avoid accidentally restoring paid OpenAI TTS in the launch block.
+    pass
 
 intro_match = re.search(r'introMessage\s*:\s*"([^"]+)"', config, flags=re.I)
 if not intro_match or 'ai sales specialist' not in intro_match.group(1).lower() or 'transcription' not in intro_match.group(1).lower():
     fail('OpenClaw Meet introMessage must disclose AI identity and transcription')
+
+agents_md = (root / 'workspace/AGENTS.md').read_text(encoding='utf-8')
+for routing_phrase in ('Tier 1 — Front desk / Luna', 'Tier 2 — Meeting closer / Terra', 'Tier 3 — Enterprise reviewer / Sol'):
+    if routing_phrase not in agents_md:
+        fail(f'AGENTS.md missing routing policy: {routing_phrase}')
 
 for skill in sorted((root / 'workspace/skills').glob('*/SKILL.md')):
     text = skill.read_text(encoding='utf-8')
@@ -106,6 +122,8 @@ expected = [
     root / 'workspace/playbooks/DEMO.md',
     root / 'workspace/playbooks/NEGOTIATION.md',
     root / 'workspace/playbooks/CLOSING.md',
+    root / 'LOW_COST_ARCHITECTURE.md',
+    root / 'deploy/local-first-setup.sh',
     repo / 'demo/school/index.html',
     repo / 'demo/school/demo.css',
     repo / 'demo/school/demo.js',
@@ -120,7 +138,6 @@ if demo_path.is_file():
     if 'synthetic data' not in demo or 'demo data only' not in demo:
         fail('school demo must visibly identify synthetic/demo data')
 
-# Basic secret-leak guard. Placeholders and environment variable names are allowed.
 secret_patterns = {
     'OpenAI-style key': re.compile(r'\bsk-[A-Za-z0-9_-]{24,}\b'),
     'GitHub token': re.compile(r'\bgh[pousr]_[A-Za-z0-9]{30,}\b'),
@@ -149,6 +166,7 @@ print(f'OpenClaw sales closer static validation passed ({len(evals_data)} sales 
 PY
 
 bash -n "$ROOT/scripts/install.sh"
+bash -n "$ROOT/deploy/local-first-setup.sh"
 node --check "$REPO/demo/school/demo.js"
 
 echo "Shell and demo JavaScript syntax checks passed."
