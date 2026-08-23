@@ -1,27 +1,74 @@
 // Merge this into ~/.openclaw/openclaw.json.
-// Keep API keys, OAuth tokens and phone-provider credentials in environment/secret stores.
+// LOW-COST DEFAULT: run Gateway + Chrome on one macOS/Linux desktop.
+// Model turns should prefer ChatGPT/Codex OAuth subscription auth when available.
+// OPENAI_API_KEY is only required here for realtime Meet transcription unless you intentionally choose API-key inference.
 {
   agents: {
     entries: {
       "echs-sales-closer": {
-        name: "ECHS AI Sales Closer",
+        name: "ECHS AI Sales Front Desk",
         workspace: "~/.openclaw/workspace-echs-sales",
         model: {
-          primary: "openai/gpt-5.6-sol",
+          primary: "openai/gpt-5.6-luna",
+          fallbacks: ["openai/gpt-5.6-terra"],
         },
+        utilityModel: "openai/gpt-5.6-luna",
         identity: {
           name: "Platform AI Sales Specialist",
           theme: "precise consultative school sales",
           emoji: "∫",
         },
-        // The sales agent does not need arbitrary host execution or self-modification.
         tools: {
+          alsoAllow: ["sessions_spawn", "sessions_yield", "subagents"],
           deny: ["exec", "process", "write", "edit", "apply_patch"],
+        },
+        subagents: {
+          allowAgents: ["echs-meeting-closer", "echs-enterprise-reviewer"],
+          requireAgentId: true,
+          maxChildrenPerAgent: 2,
         },
         heartbeat: {
           every: "30m",
           target: "none",
-          prompt: "Review only actionable sales state: meetings in the next 24 hours that lack preparation; promised follow-ups due for consented active deals; proposals past an explicitly agreed decision date; closed-won onboarding handoffs; unresolved factual or technical questions; and channel/integration failures. Do not create marketing contact merely because a lead is idle. Never contact DO_NOT_MARKET. Recurring schedules belong in automations. If nothing is actionable, reply HEARTBEAT_OK.",
+          prompt: "Review only actionable sales state: meetings in the next 24 hours that lack preparation; promised follow-ups due for consented active deals; proposals past an explicitly agreed decision date; closed-won onboarding handoffs; unresolved factual or technical questions; and channel/integration failures. Do not create marketing contact merely because a lead is idle. Never contact DO_NOT_MARKET. If nothing is actionable, reply HEARTBEAT_OK.",
+        },
+      },
+
+      // Terra is the normal live-meeting / complex-sales tier.
+      "echs-meeting-closer": {
+        name: "ECHS AI Meeting Closer",
+        workspace: "~/.openclaw/workspace-echs-sales",
+        model: {
+          primary: "openai/gpt-5.6-terra",
+          fallbacks: ["openai/gpt-5.6-luna"],
+        },
+        utilityModel: "openai/gpt-5.6-luna",
+        identity: {
+          name: "Platform AI Sales Specialist",
+          theme: "concise consultative meeting closer",
+          emoji: "∫",
+        },
+        tools: {
+          deny: ["exec", "process", "write", "edit", "apply_patch"],
+        },
+      },
+
+      // Sol is deliberately unbound from customer channels. It is an internal reviewer only.
+      "echs-enterprise-reviewer": {
+        name: "ECHS Enterprise Deal Reviewer",
+        workspace: "~/.openclaw/workspace-echs-sales",
+        model: {
+          primary: "openai/gpt-5.6-sol",
+          fallbacks: ["openai/gpt-5.6-terra"],
+        },
+        utilityModel: "openai/gpt-5.6-luna",
+        identity: {
+          name: "Enterprise Deal Reviewer",
+          theme: "high-stakes deal and claims review",
+          emoji: "◆",
+        },
+        tools: {
+          deny: ["exec", "process", "write", "edit", "apply_patch"],
         },
       },
     },
@@ -47,19 +94,21 @@
           sendReadReceipts: true,
         },
       },
-      // Sales happens in 1:1 conversations; fail closed for groups.
       groupPolicy: "disabled",
     },
   },
 
-  // Spoken replies for meetings. OPENAI_API_KEY is read from the environment.
+  // Free/no-key TTS for the launch configuration. Upgrade later only if conversion data justifies it.
   tts: {
-    provider: "openai",
+    provider: "microsoft",
     providers: {
-      openai: {
-        model: "gpt-4o-mini-tts",
-        speakerVoice: "cedar",
-        instructions: "Professional school-sales voice. Calm, concise, confident, never theatrical. Speak clear international English unless the buyer uses Arabic, then respond naturally in Arabic.",
+      microsoft: {
+        enabled: true,
+        speakerVoice: "en-US-MichelleNeural",
+        lang: "en-US",
+        outputFormat: "audio-24khz-48kbitrate-mono-mp3",
+        rate: "+0%",
+        pitch: "+0%",
       },
     },
   },
@@ -69,22 +118,21 @@
       "google-meet": {
         enabled: true,
         config: {
-          // Production layout: Gateway on a locked-down VPS; Chrome/audio on a paired desktop node.
-          defaultTransport: "chrome-node",
+          // Local-first: Chrome/audio and Gateway run as the same desktop user.
+          // macOS needs BlackHole 2ch + SoX; Linux Desktop needs PipeWire-Pulse tools.
+          defaultTransport: "chrome",
           defaultMode: "agent",
-          chromeNode: {
-            node: "sales-meet-node",
-          },
           chrome: {
             guestName: "Platform AI Sales Specialist",
             autoJoin: true,
             reuseExistingTab: true,
           },
           realtime: {
+            // Realtime transcription still needs a provider key. OpenAI is the reliable launch path.
             transcriptionProvider: "openai",
-            agentId: "echs-sales-closer",
+            agentId: "echs-meeting-closer",
             toolPolicy: "safe-read-only",
-            instructions: "Speak concisely and answer the buyer's question first. You are an AI sales specialist. Use the configured OpenClaw agent for factual, product and commercial reasoning.",
+            instructions: "Speak concisely and answer the buyer's question first. You are an AI sales specialist. Ground claims in the sales knowledge base and do not invent commercial, licensing, security, or product facts.",
             introMessage: "Say exactly: Hello. I'm the AI sales specialist for the mathematics learning platform. I use live transcription so I can participate accurately in this meeting. If anyone is not comfortable with transcription, please tell me before we continue.",
           },
         },
@@ -92,16 +140,6 @@
     },
   },
 
-  // Permit only the two remote-node commands needed for the meeting path.
-  gateway: {
-    nodes: {
-      commands: {
-        allow: ["browser.proxy", "googlemeet.chrome"],
-      },
-    },
-  },
-
-  // Critical for a customer-facing inbox: no prospect can see another prospect's context.
   session: {
     dmScope: "per-account-channel-peer",
     resetByType: {
