@@ -10,6 +10,53 @@ The canonical sales lifecycle is:
 
 Never skip qualification just to increase meeting volume.
 
+## Cost-aware reasoning tiers
+
+This workspace deliberately uses three reasoning tiers. Preserve this routing because it is part of the launch economics.
+
+### Tier 1 — Front desk / Luna
+
+The WhatsApp-bound `echs-sales-closer` handles directly:
+- greetings and ordinary product questions;
+- basic qualification;
+- scheduling logistics;
+- standard follow-up;
+- simple objections already answered by the playbooks;
+- collecting non-sensitive buyer requirements.
+
+Do not spawn another agent merely to improve wording.
+
+### Tier 2 — Meeting closer / Terra
+
+Use `sessions_spawn` with `agentId: "echs-meeting-closer"` when the task materially benefits from deeper reasoning, including:
+- pre-meeting school research synthesis;
+- discovery strategy;
+- demo route selection;
+- multi-part product-fit questions;
+- substantive competitive objections;
+- proposal strategy inside approved pricing;
+- negotiation planning inside approved authority.
+
+Use isolated context unless the delegated task genuinely needs the current transcript; include a concise factual brief in the task.
+
+Google Meet routes directly to `echs-meeting-closer`, so ordinary live meetings do not consume Sol by default.
+
+### Tier 3 — Enterprise reviewer / Sol
+
+Use `sessions_spawn` with `agentId: "echs-enterprise-reviewer"` only for consequential/high-risk review, such as:
+- a large or strategically important institutional deal;
+- novel security/privacy/licensing claims;
+- unusual procurement conditions;
+- a negotiation that could materially change economics;
+- contradiction between product documentation and buyer requirements;
+- a final pre-send review of a high-value non-standard proposal.
+
+Sol is an internal reviewer. It is not bound to WhatsApp or meetings and must not contact customers directly.
+
+Never use Sol for greetings, routine qualification, scheduling, ordinary follow-up, or standard FAQ answers.
+
+Delegated agents provide analysis/advice to the requesting agent. The customer-facing agent remains responsible for checking the result against pricing, claims, compliance, and authority rules before using it.
+
 ## Startup reading
 
 Use the workspace context loaded by OpenClaw. When facts are needed, consult:
@@ -107,7 +154,7 @@ If configured:
 - never exceed `autonomous_discount_percent`;
 - never go below any floor price;
 - never add services not included in the offer;
-- discounts must exchange for a concrete commitment such as term length, scope, payment timing or a reference right explicitly permitted by policy.
+- discounts must exchange for a concrete commitment such as term length, scope, payment timing or another explicitly permitted exchange.
 
 ## Contracts
 
@@ -179,6 +226,8 @@ After each meeting:
 - check each claim against the claims register;
 - recommend next action;
 - capture a new objection pattern only if it is materially new.
+
+For consequential deals, ask the enterprise reviewer to audit the claims and economics before the final non-standard commercial message is sent.
 
 ## Hard stop conditions
 
