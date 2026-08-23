@@ -1,8 +1,18 @@
-# Final activation inputs
+# Final activation inputs — local-first launch
 
-Fill these only with verified operator information. Do not put API secrets in this file; secrets belong in the VPS secret/env store.
+Fill these only with verified operator information. Do not put API secrets in this file; secrets belong in the local machine secret/env store.
 
-## A. Seller identity — required before binding Qatar sales
+## A. Launch computer — required now
+
+- Operating system (macOS / Linux Desktop / Windows): `PENDING`
+- Computer can stay powered on and connected during sales availability hours: `PENDING`
+- Sleep can be disabled during those hours: `PENDING`
+- `deploy/local-first-setup.sh` completed if macOS/Linux Desktop: `PENDING`
+- OpenClaw config validation/doctor healthy: `PENDING`
+
+A VPS and a second meeting computer are **not required for launch**. They remain optional upgrades after revenue or reliability data justifies them.
+
+## B. Seller identity — required before binding live Qatar school sales
 
 - Legal seller name: `PENDING`
 - Commercial registration / licensed activity checked for platform/software/education sales: `PENDING`
@@ -10,7 +20,7 @@ Fill these only with verified operator information. Do not put API secrets in th
 - Seller address / invoice details: `PENDING`
 - Arabic invoice identity/text reviewed: `PENDING`
 
-## B. Commercial terms — required before the agent may quote
+## C. Commercial terms — required before the agent may quote
 
 Recommended launch schedule awaiting approval:
 
@@ -28,45 +38,55 @@ Recommended launch schedule awaiting approval:
 - Refund/cancellation terms: `PENDING`
 - Governing contract / standard order-form terms reviewed: `PENDING`
 
-## C. Sales number — required for WhatsApp
+## D. Dedicated sales number — required for WhatsApp
 
-- Dedicated Qatar business number acquired: `PENDING`
-- Number is not a personal WhatsApp identity: `PENDING`
+- Dedicated Qatar business number: `PENDING`
+- Number is separate from the owner's personal WhatsApp identity: `PENDING`
 - WhatsApp/WhatsApp Business activated: `PENDING`
 - OpenClaw `biz` account QR paired: `PENDING`
 
-## D. OpenAI API — required for model, transcription and TTS
+Never commit the phone's WhatsApp auth directory to Git.
 
-Do **not** paste the key here.
+## E. Model authentication — prefer subscription OAuth
 
-- Dedicated OpenAI API project created: `PENDING`
-- Billing / monthly spend limit configured: `PENDING`
-- Project-scoped API key stored on VPS only: `PENDING`
+Preferred low-cost path:
 
-## E. Infrastructure — required for 24/7 operation
+```bash
+openclaw models auth login --provider openai
+openclaw models list --provider openai
+```
 
-- VPS provisioned (Ubuntu 24.04 / Debian 12, 4 GB RAM recommended): `PENDING`
-- SSH key login works: `PENDING`
-- Gateway 18789 not public: `PENDING`
-- `vps-bootstrap.sh` completed: `PENDING`
-- OpenClaw config validation/doctor healthy: `PENDING`
+- ChatGPT/Codex OAuth completed on the launch computer: `PENDING`
+- `openai/gpt-5.6-luna` visible: `PENDING`
+- `openai/gpt-5.6-terra` visible: `PENDING`
+- `openai/gpt-5.6-sol` visible: `PENDING`
 
-## F. Meet node — required for autonomous voice meetings
+Do not assume a tier is available. If the signed-in account exposes a different set, update the config to the verified model list.
 
-- Always-on macOS or Linux Desktop available: `PENDING`
-- Node paired as `sales-meet-node`: `PENDING`
-- Dedicated Google sales account/profile: `PENDING`
+## F. Voice meetings — small variable cost only
+
+Reasoning should use subscription OAuth when available. The launch config uses no-key Microsoft TTS.
+
+Google Meet agent-mode realtime transcription still needs a provider key for reliable talk-back:
+- dedicated OpenAI API project for transcription created: `PENDING`
+- small monthly budget/alert configured: `PENDING`
+- project-scoped API key stored locally, never committed: `PENDING`
+- macOS: BlackHole 2ch + SoX ready; or Linux Desktop: PipeWire-Pulse ready: `PENDING`
+- signed-in Google/Chrome sales profile ready: `PENDING`
+- `openclaw googlemeet setup --transport chrome --mode agent` passes: `PENDING`
 - `googlemeet test-listen` passes: `PENDING`
 - `googlemeet test-speech` passes: `PENDING`
 
 ## G. Payments / CRM
 
-- Stripe account selected and usable: `CONNECTED — product/price creation deliberately deferred until pricing approval`
+- Stripe account: `CONNECTED — product/price creation deliberately deferred until pricing approval`
 - Approved Stripe products/prices created: `PENDING`
 - Payment/Invoice/PO flow smoke-tested: `PENDING`
-- HubSpot connection present: `CONNECTED — portal onboarding not completed`
-- HubSpot sales pipeline/properties created: `PENDING`
+- HubSpot: `OPTIONAL FOR LAUNCH — connected in ChatGPT, portal onboarding not completed`
+- HubSpot sales pipeline/properties: `DEFER UNTIL REQUESTED/ONBOARDED`
 - Payment -> CLOSED_WON event path tested: `PENDING`
+
+OpenClaw session memory plus structured meeting summaries are sufficient for the first controlled smoke tests; HubSpot is not a launch blocker.
 
 ## H. School data deployment
 
@@ -77,4 +97,4 @@ Do **not** paste the key here.
 
 ## Release rule
 
-The AI may perform safe product conversations and internal simulation before all fields are complete. It must not autonomously accept live binding school sales until the legal seller, commercial terms, payment path and applicable data/privacy gates are verified.
+The AI may perform safe product conversations and internal simulation before all fields are complete. It must not autonomously accept binding live school sales until the legal seller, commercial terms, payment path and applicable data/privacy gates are verified.
