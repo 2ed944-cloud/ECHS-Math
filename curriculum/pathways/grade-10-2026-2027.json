@@ -1,3299 +1,1292 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "academicYear": "2026-2027",
   "grade": 10,
-  "sourceDocument": "Grade_10_Mathematics_Detailed_Course_Outline_Two_AP_Precalculus_Pathways_2026-2027(1).docx",
+  "sourceDocument": "Grade_10_Mathematics_Full_Year_at_a_Glance_and_Detailed_Course_Outline_Two_AP_Precalculus_Pathways_2026-2027(1).docx",
+  "authoritativeScope": {
+    "apCoreScope": "AP Precalculus Units 1-3 before the AP examination; Unit 4 remains optional supplemental enrichment.",
+    "transferProtocol": {
+      "preferredGate": "End of Week 9",
+      "exceptionalGate": "End of Week 17 with AP Unit 1-2 catch-up evidence and AP-pace independence",
+      "criteria": [
+        {
+          "Checkpoint": "Gate 0 - Start of year / Week 1",
+          "Evidence": "Grade 9 readiness evidence + common Grade 10 diagnostic.",
+          "Recommended Decision": "Correct obvious misplacements immediately before substantive AP content accumulates."
+        },
+        {
+          "Checkpoint": "Gate 1 - End of Week 9 (preferred)",
+          "Evidence": "Readiness Gateway 1 about 85%+ overall, about 80%+ on AP-extension items, all critical prerequisites secure, strong independent work; complete a short AP Unit 1 catch-up check if needed.",
+          "Recommended Decision": "Transfer to Path A at the start of AP Unit 2. This is the cleanest in-year movement point."
+        },
+        {
+          "Checkpoint": "Gate 2 - End of Week 17 (exceptional)",
+          "Evidence": "Very high cumulative mastery; AP-extension performance at AP pace; completion of AP Unit 1-2 catch-up modules; scheduling/AP exam implications resolved.",
+          "Recommended Decision": "Transfer only when evidence shows the student can enter AP Unit 3 without sacrificing understanding. Otherwise remain in Path B and target Grade 11 AP."
+        },
+        {
+          "Checkpoint": "After Week 17",
+          "Evidence": "Continue common stretch tasks and AP-style benchmarks, but normally avoid changing sections late.",
+          "Recommended Decision": "Protect continuity. A strong Path B student should finish the year as an exceptionally well-prepared Grade 11 AP Precalculus student."
+        }
+      ],
+      "note": "Important: Transfer decisions should use strand evidence, AP-pace independence, and completion of catch-up content—not only a course average. A student with a high average but unresolved factoring, function, or trigonometry gaps is likely to struggle after transfer."
+    }
+  },
   "paths": {
     "pathA": {
       "id": "g10-ap-precalculus-path-a",
       "title": "Grade 10 Path A - AP Precalculus",
-      "destination": "Complete AP Precalculus Units 1-3 before AP review; Unit 4 is a post-exam/local extension.",
+      "destination": "Complete AP Precalculus Units 1-3, the cumulative AP review/mock package, and selected calculus-bridge extensions E.1-E.4.",
       "units": [
         {
           "code": "AP Unit 1",
           "title": "Polynomial and Rational Functions",
-          "pacing": "Weeks 3-10",
-          "intent": "Develop covariation, rates of change, polynomial/rational behavior, transformations, and function modeling. Local pacing follows the Grade 10 pathway plan while preserving all required AP topics.",
+          "pacing": "1-9",
+          "intent": "Develop covariational reasoning and polynomial/rational function analysis through graphical, numerical, analytical, and contextual representations.",
+          "phaseFocus": "AP Topics 1.1-1.14; covariation and rates of change; polynomial/rational structure; zeros, end behavior, asymptotes/holes; transformations; model selection/construction.",
+          "implementationEvidence": "Common Gateway A1 at end of unit; prerequisite micro-repair embedded, not a separate slow unit.",
           "lessons": [
             {
               "id": "1.1",
               "title": "Change in Tandem",
               "subtopics": [
-                "Covariation of input/output",
-                "Domain and range",
-                "Intervals of increase/decrease/constant",
-                "Intercepts and contextual graphs"
+                "Covariation; input/output quantities; increasing/decreasing behavior; contextual change; representation matching."
               ],
               "learningOutcomes": [
-                "Describe how output values vary as input values change",
-                "Construct and interpret a graph of two covarying quantities",
-                "Use multiple representations to identify important function behavior"
+                "Describe how two quantities vary together; identify intervals of increase/decrease from multiple representations; communicate covariation precisely."
               ],
-              "alignment": "AP Topic 1.1",
-              "pacing": "2 periods",
               "deliveryStatus": "ready",
+              "alignment": "AP Precalculus Topic 1.1",
               "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.1_Change_in_Tandem_ECHS_Refined.html"
             },
             {
               "id": "1.2",
               "title": "Rates of Change",
               "subtopics": [
-                "Average rate of change",
-                "Secant slope",
-                "Local rate from nearby intervals",
-                "Units and contextual interpretation"
+                "Average rate of change; secant slope; units; interval comparison; estimating local change from data/graphs."
               ],
               "learningOutcomes": [
-                "Compute and compare average rates of change over intervals",
-                "Estimate change near a point using sufficiently small intervals",
-                "Interpret the sign, magnitude, and units of a rate of change"
+                "Calculate and interpret average rates of change; compare rates across intervals; connect numerical rates to graph steepness and context."
               ],
-              "alignment": "AP Topic 1.2",
-              "pacing": "2 periods",
               "deliveryStatus": "ready",
+              "alignment": "AP Precalculus Topic 1.2",
               "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.2_Rates_of_Change_ECHS_Refined.html"
             },
             {
               "id": "1.3",
               "title": "Rates of Change in Linear and Quadratic Functions",
               "subtopics": [
-                "Constant linear rate",
-                "Quadratic average rates",
-                "Change in rates over equal intervals",
-                "Concavity from rate patterns"
+                "Constant vs changing rate; first/second differences; linear vs quadratic behavior; contextual interpretation."
               ],
               "learningOutcomes": [
-                "Determine average rates for linear and quadratic functions",
-                "Distinguish constant rate from changing rate behavior",
-                "Use changes in average rate to reason about quadratic behavior"
+                "Distinguish constant and changing rates; use first/second differences to classify behavior; justify a model family from rate structure."
               ],
-              "alignment": "AP Topic 1.3",
-              "pacing": "2 periods",
               "deliveryStatus": "ready",
+              "alignment": "AP Precalculus Topic 1.3",
               "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.3_Rates_of_Change_in_Linear_and_Quadratic_Functions_ECHS_Refined.html"
             },
             {
               "id": "1.4",
               "title": "Polynomial Functions and Rates of Change",
               "subtopics": [
-                "Turning points",
-                "Relative/absolute extrema",
-                "Concavity",
-                "Inflection behavior"
+                "Polynomial degree and rate patterns; local/global behavior; tables/graphs; regression-supported exploration."
               ],
               "learningOutcomes": [
-                "Connect polynomial graph features to changing rates of change",
-                "Identify extrema and changes in concavity",
-                "Describe polynomial behavior precisely from a graph or table"
+                "Describe how rates change for polynomial functions; connect degree to qualitative behavior; interpret polynomial change in context."
               ],
-              "alignment": "AP Topic 1.4",
-              "pacing": "3 periods",
               "deliveryStatus": "ready",
+              "alignment": "AP Precalculus Topic 1.4",
               "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.4_Polynomial_Functions_and_Rates_of_Change_ECHS_Refined.html"
             },
             {
               "id": "1.5",
               "title": "Polynomial Functions and Complex Zeros",
               "subtopics": [
-                "Factor-zero relationship",
-                "Multiplicity",
-                "Complex conjugate zeros",
-                "Polynomial division",
-                "Even/odd symmetry"
+                "Real/complex zeros; conjugate pairs; factor form; multiplicity; graph connection."
               ],
               "learningOutcomes": [
-                "Determine real and complex zeros using algebra and technology",
-                "Factor polynomials over real and complex numbers when appropriate",
-                "Connect zeros and multiplicity to graph behavior"
+                "Determine zeros from polynomial structure; use complex conjugate relationships for real-coefficient polynomials; connect real zeros/multiplicity to graph behavior."
               ],
-              "alignment": "AP Topic 1.5",
-              "pacing": "3 periods",
               "deliveryStatus": "ready",
+              "alignment": "AP Precalculus Topic 1.5",
               "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.5_Polynomial_Functions_and_Complex_Zeros_ECHS_Refined.html"
             },
             {
               "id": "1.6",
               "title": "Polynomial Functions and End Behavior",
               "subtopics": [
-                "Degree and leading coefficient",
-                "End behavior",
-                "Multiplicity at zeros",
-                "Limit notation for end behavior"
+                "Leading term; degree parity; sign of leading coefficient; end behavior notation; global graph shape."
               ],
               "learningOutcomes": [
-                "Predict polynomial end behavior from degree and leading coefficient",
-                "Describe how a graph behaves at zeros of different multiplicities",
-                "Sketch a polynomial using zeros, multiplicities, and end behavior"
+                "Determine end behavior analytically and graphically; use the leading term to predict behavior; connect equivalent forms to end behavior."
               ],
-              "alignment": "AP Topic 1.6",
-              "pacing": "2 periods",
               "deliveryStatus": "ready",
+              "alignment": "AP Precalculus Topic 1.6",
               "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.6_Polynomial_Functions_and_End_Behavior_ECHS_Refined.html"
             },
             {
               "id": "1.7",
               "title": "Rational Functions and End Behavior",
               "subtopics": [
-                "Degree comparison",
-                "Horizontal asymptotes",
-                "Slant/oblique asymptotes",
-                "Polynomial division",
-                "End-behavior limits"
+                "Degree comparison; horizontal/oblique end behavior; quotient interpretation; long-run model behavior."
               ],
               "learningOutcomes": [
-                "Determine the end behavior of a rational function",
-                "Use polynomial division to reveal slant behavior when needed",
-                "Describe end behavior graphically and analytically"
+                "Determine rational end behavior; identify an appropriate end-behavior model/asymptote; explain how numerator/denominator degree controls long-run behavior."
               ],
-              "alignment": "AP Topic 1.7",
-              "pacing": "3 periods",
               "deliveryStatus": "ready",
+              "alignment": "AP Precalculus Topic 1.7",
               "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.7_Rational_Functions_and_End_Behavior_ECHS_Refined.html"
             },
             {
               "id": "1.8",
               "title": "Rational Functions and Zeros",
               "subtopics": [
-                "Numerator zeros",
-                "Domain restrictions",
-                "Factored form",
-                "Multiplicity and sign"
+                "Zeros from numerator; domain restrictions; canceled factors; sign behavior."
               ],
               "learningOutcomes": [
-                "Determine zeros of rational functions while respecting domain restrictions",
-                "Connect factored structure to intercept behavior",
-                "Solve selected rational equations or inequalities using sign reasoning"
+                "Identify zeros of rational functions correctly; distinguish a zero from an excluded value; solve rational equations with domain awareness."
               ],
-              "alignment": "AP Topic 1.8",
-              "pacing": "2 periods",
               "deliveryStatus": "ready",
+              "alignment": "AP Precalculus Topic 1.8",
               "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.8_Rational_Functions_and_Zeros_ECHS_Refined.html"
             },
             {
               "id": "1.9",
               "title": "Rational Functions and Vertical Asymptotes",
               "subtopics": [
-                "Denominator zeros",
-                "Canceled vs. uncanceled factors",
-                "One-sided behavior",
-                "Multiplicity and sign near an asymptote"
+                "Denominator zeros after simplification; one-sided behavior; sign charts; graphical/numerical evidence."
               ],
               "learningOutcomes": [
-                "Determine vertical asymptotes from algebraic structure",
-                "Describe one-sided unbounded behavior near a vertical asymptote",
-                "Connect factor multiplicity to the sign pattern on either side"
+                "Locate vertical asymptotes; describe one-sided behavior; justify asymptotes using simplified structure and nearby values."
               ],
-              "alignment": "AP Topic 1.9",
-              "pacing": "3 periods",
               "deliveryStatus": "ready",
+              "alignment": "AP Precalculus Topic 1.9",
               "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.9_Rational_Functions_and_Vertical_Asymptotes_ECHS_Refined.html"
             },
             {
               "id": "1.10",
               "title": "Rational Functions and Holes",
               "subtopics": [
-                "Common factors",
-                "Removable discontinuities",
-                "Hole coordinates",
-                "Limit behavior at a hole"
+                "Common factors; removable discontinuities; hole coordinates; equivalent expressions vs functions."
               ],
               "learningOutcomes": [
-                "Identify and locate holes in rational-function graphs",
-                "Distinguish a hole from a vertical asymptote",
-                "Determine the missing output value approached near a removable discontinuity"
+                "Identify holes and their coordinates; explain why cancellation does not restore the excluded input; distinguish holes from asymptotes."
               ],
-              "alignment": "AP Topic 1.10",
-              "pacing": "2 periods",
               "deliveryStatus": "ready",
+              "alignment": "AP Precalculus Topic 1.10",
               "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.10_Rational_Functions_and_Holes_ECHS_Refined.html"
             },
             {
               "id": "1.11",
               "title": "Equivalent Representations of Polynomial and Rational Expressions",
               "subtopics": [
-                "Factored/expanded forms",
-                "Polynomial division algorithm",
-                "Binomial theorem",
-                "Forms that reveal graph features"
+                "Expanded/factored forms; polynomial division; partial structural rewriting where useful; information revealed by form."
               ],
               "learningOutcomes": [
-                "Rewrite expressions in equivalent forms suited to a purpose",
-                "Use division to reveal quotient, remainder, and asymptotic structure",
-                "Use the binomial theorem for efficient expansion when appropriate"
+                "Rewrite expressions into strategically useful equivalent forms; select a form that reveals zeros, end behavior, or local features; verify equivalence and restrictions."
               ],
-              "alignment": "AP Topic 1.11",
-              "pacing": "3 periods",
               "deliveryStatus": "ready",
+              "alignment": "AP Precalculus Topic 1.11",
               "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.11_Equivalent_Representations_of_Polynomial_and_Rational_Expressions_ECHS_Refined.html"
             },
             {
               "id": "1.12",
               "title": "Transformations of Functions",
               "subtopics": [
-                "Translations",
-                "Reflections",
-                "Horizontal/vertical scaling",
-                "Combined parameter effects"
+                "Translations; reflections; vertical/horizontal scaling; parameter effects; transformations across function families."
               ],
               "learningOutcomes": [
-                "Construct additive and multiplicative transformations of a function",
-                "Predict graph changes from an analytical representation",
-                "Recover a transformed formula from graph information"
+                "Construct transformed functions; predict graph changes from parameters; recover an equation from a transformed graph or contextual condition."
               ],
-              "alignment": "AP Topic 1.12",
-              "pacing": "2 periods",
               "deliveryStatus": "ready",
+              "alignment": "AP Precalculus Topic 1.12",
               "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.12_Transformations_of_Functions_ECHS_Refined.html"
             },
             {
               "id": "1.13",
               "title": "Function Model Selection and Assumption Articulation",
               "subtopics": [
-                "Linear/quadratic/polynomial/rational/piecewise models",
-                "Differences and graph clues",
-                "Context restrictions",
-                "Assumptions and domain/range limits"
+                "Regression candidates; residuals; data window; assumptions; interpolation/extrapolation; model limitations."
               ],
               "learningOutcomes": [
-                "Select an appropriate function family for data or a contextual situation",
-                "Justify model selection using mathematical and contextual evidence",
-                "State assumptions and restrictions that limit a model"
+                "Select a defensible polynomial/rational model; use residual/context evidence; articulate assumptions and limitations with precise language."
               ],
-              "alignment": "AP Topic 1.13",
-              "pacing": "2 periods",
               "deliveryStatus": "ready",
+              "alignment": "AP Precalculus Topic 1.13",
               "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.13_Function_Model_Selection_and_Assumption_Articulation_ECHS_Refined.html"
             },
             {
               "id": "1.14",
               "title": "Function Model Construction and Application",
               "subtopics": [
-                "Regression and transformations",
-                "Piecewise construction",
-                "Rational inverse-variation models",
-                "Prediction and interpretation"
+                "Build models from conditions/data; regression; parameter interpretation; solve and apply model outputs."
               ],
               "learningOutcomes": [
-                "Construct a polynomial, rational, or piecewise model from information or data",
-                "Interpret model parameters and restrictions",
-                "Apply a model to answer contextual questions and evaluate prediction reasonableness"
+                "Construct a function model; interpret parameters and numerical results; use the model to answer contextual questions and assess reasonableness."
               ],
-              "alignment": "AP Topic 1.14",
-              "pacing": "3 periods",
               "deliveryStatus": "ready",
+              "alignment": "AP Precalculus Topic 1.14",
               "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.14_Function_Model_Construction_and_Application_ECHS_Refined.html"
-            },
-            {
-              "id": "U1-R",
-              "title": "Unit 1 synthesis, Progress Checks, and assessment",
-              "subtopics": [
-                "Topics 1.1-1.14",
-                "MCQ and FRQ reasoning",
-                "Calculator/no-calculator fluency",
-                "Error analysis"
-              ],
-              "learningOutcomes": [
-                "Integrate polynomial and rational function ideas across representations",
-                "Demonstrate AP-level procedural fluency, reasoning, and modeling",
-                "Use assessment evidence to target specific gaps before Unit 2"
-              ],
-              "alignment": "AP Unit 1",
-              "pacing": "4-5 periods - Assessment",
-              "deliveryStatus": "curriculum_ready"
             }
           ]
         },
         {
           "code": "AP Unit 2",
           "title": "Exponential and Logarithmic Functions",
-          "pacing": "Weeks 11-18",
-          "intent": "Develop additive vs. multiplicative change, exponential/logarithmic models, composition/inverse reasoning, residual validation, and semi-log linearization.",
+          "pacing": "10-17",
+          "intent": "Develop multiplicative-change reasoning, inverse/composition fluency, and data-modeling skills with exponential and logarithmic functions.",
+          "phaseFocus": "AP Topics 2.1-2.15; sequences; exponential change; composition/inverses; logarithms; equations/inequalities; context/data modeling; semi-log plots.",
+          "implementationEvidence": "Common Gateway A2; cumulative AP-style FRQ and calculator/non-calculator practice.",
           "lessons": [
             {
               "id": "2.1",
               "title": "Change in Arithmetic and Geometric Sequences",
               "subtopics": [
-                "Common difference/ratio",
-                "Explicit and recursive forms",
-                "Sequences as functions of natural numbers"
+                "Discrete functions; common difference/ratio; explicit forms; additive vs multiplicative change."
               ],
               "learningOutcomes": [
-                "Represent arithmetic and geometric sequences with explicit and recursive rules",
-                "Interpret common difference or ratio as a pattern of change",
-                "Model contextual discrete change with an appropriate sequence"
+                "Represent arithmetic/geometric sequences as functions of whole-number inputs; interpret common difference/ratio; compare additive and multiplicative change."
               ],
-              "alignment": "AP Topic 2.1",
-              "pacing": "2 periods",
               "deliveryStatus": "ready",
+              "alignment": "AP Precalculus Topic 2.1",
               "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.1_Change_in_Arithmetic_and_Geometric_Sequences_ECHS_Refined.html"
             },
             {
               "id": "2.2",
               "title": "Change in Linear and Exponential Functions",
               "subtopics": [
-                "Additive vs. multiplicative change",
-                "Continuous extensions of sequences",
-                "Equal input intervals",
-                "Rate comparisons"
+                "Continuous extensions of sequences; constant difference vs constant ratio; growth factor; rate patterns."
               ],
               "learningOutcomes": [
-                "Construct linear and exponential functions related to arithmetic/geometric patterns",
-                "Compare additive and multiplicative change across representations",
-                "Explain why equal input steps produce different output patterns"
+                "Compare linear and exponential change; construct continuous function models related to sequences; explain why multiplicative change produces exponential behavior."
               ],
-              "alignment": "AP Topic 2.2",
-              "pacing": "2 periods",
               "deliveryStatus": "ready",
+              "alignment": "AP Precalculus Topic 2.2",
               "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.2_Change_in_Linear_and_Exponential_Functions_ECHS_Refined.html"
             },
             {
               "id": "2.3",
               "title": "Exponential Functions",
               "subtopics": [
-                "Initial value and base",
-                "Domain/range",
-                "Horizontal asymptote",
-                "Growth/decay",
-                "End behavior"
+                "Initial value; base/growth factor; domain/range; asymptote; monotonicity; transformations."
               ],
               "learningOutcomes": [
-                "Identify key characteristics of exponential functions",
-                "Interpret how the base controls growth or decay",
-                "Describe exponential end behavior graphically and analytically"
+                "Describe key characteristics of exponential functions; construct an exponential function from conditions; interpret parameters in context."
               ],
-              "alignment": "AP Topic 2.3",
-              "pacing": "2 periods",
               "deliveryStatus": "ready",
+              "alignment": "AP Precalculus Topic 2.3",
               "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.3_Exponential_Functions_ECHS_Refined.html"
             },
             {
               "id": "2.4",
               "title": "Exponential Function Manipulation",
               "subtopics": [
-                "Exponent laws",
-                "Equivalent exponential forms",
-                "Parameter effects",
-                "Transformations"
+                "Exponent laws; equivalent bases; rational exponents; isolating parameters; strategically equivalent forms."
               ],
               "learningOutcomes": [
-                "Rewrite exponential expressions in useful equivalent forms",
-                "Connect algebraic parameter changes to graph transformations",
-                "Evaluate expressions exactly or numerically as appropriate"
+                "Rewrite exponential expressions into useful equivalent forms; apply exponent laws fluently; reveal growth factor, initial value, or comparison structure."
               ],
-              "alignment": "AP Topic 2.4",
-              "pacing": "2 periods",
               "deliveryStatus": "ready",
+              "alignment": "AP Precalculus Topic 2.4",
               "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.4_Exponential_Function_Manipulation_ECHS_Refined.html"
             },
             {
               "id": "2.5",
               "title": "Exponential Function Context and Data Modeling",
               "subtopics": [
-                "Percent growth/decay",
-                "Doubling/half-life",
-                "Regression",
-                "Parameter interpretation"
+                "Exponential regression; growth/decay; percent rate; doubling/halving interpretation; residuals."
               ],
               "learningOutcomes": [
-                "Construct exponential models from contextual information or data",
-                "Interpret initial value and growth factor/rate in context",
-                "Use an exponential model to answer questions and assess reasonableness"
+                "Fit and interpret exponential models; convert between growth factor and percent rate; apply the model and evaluate fit."
               ],
-              "alignment": "AP Topic 2.5",
-              "pacing": "3 periods",
               "deliveryStatus": "ready",
+              "alignment": "AP Precalculus Topic 2.5",
               "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.5_Exponential_Function_Context_and_Data_Modeling_ECHS_Refined.html"
             },
             {
               "id": "2.6",
               "title": "Competing Function Model Validation",
               "subtopics": [
-                "Linear/quadratic/exponential regression",
-                "Residuals",
-                "Model comparison",
-                "Context evidence"
+                "Compare linear/quadratic/exponential models; residual plots; contextual plausibility; model selection."
               ],
               "learningOutcomes": [
-                "Construct competing models for the same data set",
-                "Use residual behavior and context to validate or reject a model",
-                "Explain overestimation and underestimation using residuals"
+                "Compare competing models using data, residuals, and context; justify a choice; identify when a model should be rejected."
               ],
-              "alignment": "AP Topic 2.6",
-              "pacing": "3 periods",
               "deliveryStatus": "ready",
+              "alignment": "AP Precalculus Topic 2.6",
               "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.6_Competing_Function_Model_Validation_ECHS_Refined.html"
             },
             {
               "id": "2.7",
               "title": "Composition of Functions",
               "subtopics": [
-                "Composition notation",
-                "Domain restrictions",
-                "Multiple composition",
-                "Decomposing a formula"
+                "Composition notation; domains; process interpretation; multiple representations; modeling chains."
               ],
               "learningOutcomes": [
-                "Evaluate compositions from formulas, tables, or graphs",
-                "Construct a composite function and determine its domain",
-                "Rewrite a function as a composition when useful"
+                "Evaluate and construct compositions; determine valid domains; interpret a composition as sequential processes in context."
               ],
-              "alignment": "AP Topic 2.7",
-              "pacing": "2 periods",
               "deliveryStatus": "ready",
+              "alignment": "AP Precalculus Topic 2.7",
               "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.7_Composition_of_Functions_ECHS_Refined.html"
             },
             {
               "id": "2.8",
               "title": "Inverse Functions",
               "subtopics": [
-                "One-to-one behavior",
-                "Restricted domains",
-                "Horizontal line test",
-                "Inverse verification",
-                "Domain/range exchange"
+                "One-to-one behavior; inverse notation; graph reflection; domain/range exchange; verification by composition."
               ],
               "learningOutcomes": [
-                "Determine when a function has an inverse on a given domain",
-                "Construct and verify an inverse analytically or graphically",
-                "Interpret inverse functions in context"
+                "Determine and verify inverses; restrict domains when needed; connect inverse graphs and swapped domain/range."
               ],
-              "alignment": "AP Topic 2.8",
-              "pacing": "3 periods",
               "deliveryStatus": "ready",
+              "alignment": "AP Precalculus Topic 2.8",
               "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.8_Inverse_Functions_ECHS_Refined.html"
             },
             {
               "id": "2.9",
               "title": "Logarithmic Expressions",
               "subtopics": [
-                "Definition of logarithm",
-                "Exponential-log equivalence",
-                "Exact evaluation",
-                "Logarithmic scales"
+                "Definition of logarithm; convert exponential/log forms; common/natural logs; exact values."
               ],
               "learningOutcomes": [
-                "Evaluate logarithmic expressions with and without technology",
-                "Rewrite between logarithmic and exponential forms",
-                "Interpret one-unit changes on a logarithmic scale as multiplicative changes"
+                "Rewrite between exponential and logarithmic forms; evaluate logarithms from known powers; interpret a logarithm as an exponent."
               ],
-              "alignment": "AP Topic 2.9",
-              "pacing": "2 periods",
               "deliveryStatus": "ready",
+              "alignment": "AP Precalculus Topic 2.9",
               "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.9_Logarithmic_Expressions_ECHS_Refined.html"
             },
             {
               "id": "2.10",
               "title": "Inverses of Exponential Functions",
               "subtopics": [
-                "Logarithms as inverse functions",
-                "Reflection across y=x",
-                "Inverse domain/range",
-                "Base correspondence"
+                "Logarithms as inverse functions; inverse graphs; domain/range/asymptotes; composition identities."
               ],
               "learningOutcomes": [
-                "Construct the inverse of an exponential function on its natural domain",
-                "Connect exponential and logarithmic equations as inverse statements",
-                "Use graph symmetry to compare a function and its inverse"
+                "Construct inverse relationships for exponential functions; use logarithms to undo exponential processes; connect graphs and domains."
               ],
-              "alignment": "AP Topic 2.10",
-              "pacing": "2 periods",
               "deliveryStatus": "ready",
+              "alignment": "AP Precalculus Topic 2.10",
               "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.10_Inverses_of_Exponential_Functions_ECHS_Refined.html"
             },
             {
               "id": "2.11",
               "title": "Logarithmic Functions",
               "subtopics": [
-                "Domain/range",
-                "Vertical asymptote",
-                "Increasing/decreasing behavior",
-                "Concavity and end behavior",
-                "Transformations"
+                "Characteristics; transformations; vertical asymptote; increasing/decreasing behavior; multiple representations."
               ],
               "learningOutcomes": [
-                "Identify key characteristics of logarithmic functions",
-                "Graph and interpret transformed logarithmic functions",
-                "Use domain and asymptotic behavior to evaluate solutions and models"
+                "Describe and graph logarithmic functions; interpret parameters; identify domain, range, intercept behavior, and asymptote."
               ],
-              "alignment": "AP Topic 2.11",
-              "pacing": "2 periods",
               "deliveryStatus": "ready",
+              "alignment": "AP Precalculus Topic 2.11",
               "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.11_Logarithmic_Functions_ECHS_Refined.html"
             },
             {
               "id": "2.12",
               "title": "Logarithmic Function Manipulation",
               "subtopics": [
-                "Product, quotient, power laws",
-                "Change of base",
-                "Equivalent forms",
-                "Graph implications"
+                "Product/quotient/power properties; change of base; equivalent forms; restrictions."
               ],
               "learningOutcomes": [
-                "Rewrite logarithmic expressions using log properties",
-                "Expand or condense logarithmic expressions strategically",
-                "Use change of base appropriately with technology"
+                "Expand/condense logarithmic expressions; use change of base; preserve domain restrictions while rewriting."
               ],
-              "alignment": "AP Topic 2.12",
-              "pacing": "2 periods",
               "deliveryStatus": "ready",
+              "alignment": "AP Precalculus Topic 2.12",
               "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.12_Logarithmic_Function_Manipulation_ECHS_Refined.html"
             },
             {
               "id": "2.13",
               "title": "Exponential and Logarithmic Equations and Inequalities",
               "subtopics": [
-                "Common-base method",
-                "Taking logarithms",
-                "Domain restrictions",
-                "Numerical solutions",
-                "Inequalities"
+                "Common-base methods; logarithms; exact/numerical solutions; inequality reasoning; extraneous/domain checks."
               ],
               "learningOutcomes": [
-                "Solve exponential and logarithmic equations analytically when possible",
-                "Use technology for numerical solutions when algebra is insufficient",
-                "Check domain restrictions and interpret solutions in context"
+                "Solve exponential/logarithmic equations and inequalities analytically or numerically; check domain conditions; interpret solutions in context."
               ],
-              "alignment": "AP Topic 2.13",
-              "pacing": "3 periods",
               "deliveryStatus": "ready",
+              "alignment": "AP Precalculus Topic 2.13",
               "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.13_Exponential_and_Logarithmic_Equations_and_Inequalities_ECHS_Refined.html"
             },
             {
               "id": "2.14",
               "title": "Logarithmic Function Context and Data Modeling",
               "subtopics": [
-                "Logarithmic regression",
-                "Slow growth contexts",
-                "Inverse relationships",
-                "Model application"
+                "Logarithmic regression; diminishing growth contexts; parameter interpretation; residuals."
               ],
               "learningOutcomes": [
-                "Construct and apply a logarithmic model from context or data",
-                "Interpret model parameters and domain restrictions",
-                "Compare logarithmic behavior with competing function families"
+                "Fit and interpret logarithmic models; compare with alternative models; use the model to make and qualify predictions."
               ],
-              "alignment": "AP Topic 2.14",
-              "pacing": "2 periods",
               "deliveryStatus": "ready",
+              "alignment": "AP Precalculus Topic 2.14",
               "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.14_Logarithmic_Function_Context_and_Data_Modeling_ECHS_Refined.html"
             },
             {
               "id": "2.15",
               "title": "Semi-log Plots",
               "subtopics": [
-                "Log-scaled axis",
-                "Exponential linearization",
-                "Slope/intercept meaning",
-                "Model appropriateness"
+                "Log-scaled axis; exponential linearization; slope/intercept meaning in transformed scale; model validation."
               ],
               "learningOutcomes": [
-                "Determine whether an exponential model is appropriate from a semi-log plot",
-                "Construct and interpret a linearized representation of exponential data",
-                "Relate the line parameters on a semi-log plot to the exponential model"
+                "Determine whether exponential behavior is plausible from a semi-log plot; construct/interpret linearization; connect transformed slope/intercept to exponential parameters."
               ],
-              "alignment": "AP Topic 2.15",
-              "pacing": "2 periods",
               "deliveryStatus": "ready",
+              "alignment": "AP Precalculus Topic 2.15",
               "url": "lessons/ap-precalculus/unit-2/AP_Precalculus_2.15_Semi_log_Plots_ECHS_Refined.html"
-            },
-            {
-              "id": "U2-R",
-              "title": "Unit 2 synthesis, Progress Checks, and assessment",
-              "subtopics": [
-                "Topics 2.1-2.15",
-                "Model validation",
-                "No-calculator log/exponent fluency",
-                "AP-style multi-part tasks"
-              ],
-              "learningOutcomes": [
-                "Integrate sequence, exponential, logarithmic, composition, and inverse concepts",
-                "Demonstrate accurate model selection and validation",
-                "Use assessment evidence to target readiness for trigonometric modeling"
-              ],
-              "alignment": "AP Unit 2",
-              "pacing": "4-5 periods - Assessment",
-              "deliveryStatus": "curriculum_ready"
             }
           ]
         },
         {
           "code": "AP Unit 3",
           "title": "Trigonometric and Polar Functions",
-          "pacing": "Weeks 19-27",
-          "intent": "Develop trigonometric functions as models of periodic change, then extend representation and rate reasoning to polar coordinates and polar functions.",
+          "pacing": "18-27",
+          "intent": "Develop periodic-function, trigonometric-identity, and polar-function reasoning with strong modeling and multiple-representation fluency.",
+          "phaseFocus": "AP Topics 3.1-3.15; periodic phenomena; trig functions/graphs; sinusoidal modeling; inverse trig; equations/identities; polar coordinates/functions/rates.",
+          "implementationEvidence": "Common Gateway A3; full Units 1-3 cumulative benchmark.",
           "lessons": [
             {
               "id": "3.1",
               "title": "Periodic Phenomena",
               "subtopics": [
-                "Periodic data",
-                "Cycle length/period",
-                "Amplitude and midline",
-                "Contextual repeating behavior"
+                "Periodicity in context; cycles; period; repeated patterns; graphing a cycle; input/output interpretation."
               ],
               "learningOutcomes": [
-                "Recognize periodic behavior in graphs, tables, and contexts",
-                "Identify cycle length and key features of periodic data",
-                "Explain what periodic parameters mean in context"
+                "Recognize periodic relationships; construct a graph from one cycle; interpret period and repeated behavior in context."
               ],
-              "alignment": "AP Topic 3.1",
-              "pacing": "2 periods",
               "deliveryStatus": "ready",
+              "alignment": "AP Precalculus Topic 3.1",
               "url": "lessons/ap-precalculus/unit-3/AP_Precalculus_3.1_Periodic_Phenomena_ECHS_Refined.html"
             },
             {
               "id": "3.2",
               "title": "Sine, Cosine, and Tangent",
               "subtopics": [
-                "Radians",
-                "Unit-circle definitions",
-                "Coordinate ratios",
-                "Quadrant signs"
+                "Angles in standard position; radian measure; unit-circle definitions; signs by quadrant; tangent as ratio."
               ],
               "learningOutcomes": [
-                "Define sine, cosine, and tangent using the unit circle",
-                "Evaluate trigonometric ratios from coordinates or geometry",
-                "Connect angle measure to periodic function input"
+                "Define sine/cosine/tangent for angles; connect right-triangle and unit-circle meanings; determine signs and basic characteristics."
               ],
-              "alignment": "AP Topic 3.2",
-              "pacing": "2 periods",
               "deliveryStatus": "ready",
+              "alignment": "AP Precalculus Topic 3.2",
               "url": "lessons/ap-precalculus/unit-3/AP_Precalculus_3.2_Sine_Cosine_and_Tangent_ECHS_Refined.html"
             },
             {
               "id": "3.3",
               "title": "Sine and Cosine Function Values",
               "subtopics": [
-                "Special angles",
-                "Reference angles",
-                "Symmetry",
-                "Exact values"
+                "Exact unit-circle values; reference angles; symmetry; degrees/radians; technology-supported values."
               ],
               "learningOutcomes": [
-                "Determine exact sine and cosine values at key angles",
-                "Use reference angles and symmetry to evaluate additional angles",
-                "Reason from the unit circle rather than relying only on memorization"
+                "Determine exact or approximate sine/cosine values; use symmetry/reference angles; move accurately between degree and radian measures."
               ],
-              "alignment": "AP Topic 3.3",
-              "pacing": "2 periods",
               "deliveryStatus": "ready",
+              "alignment": "AP Precalculus Topic 3.3",
               "url": "lessons/ap-precalculus/unit-3/AP_Precalculus_3.3_Sine_and_Cosine_Function_Values_ECHS_Refined.html"
             },
             {
               "id": "3.4",
               "title": "Sine and Cosine Function Graphs",
               "subtopics": [
-                "Key points",
-                "Period",
-                "Amplitude",
-                "Midline",
-                "Zeros and extrema"
+                "Domain/range; period; zeros; extrema; midline; graph from unit-circle behavior."
               ],
               "learningOutcomes": [
-                "Construct sine and cosine graphs from unit-circle behavior",
-                "Identify and interpret key characteristics over intervals",
-                "Connect exact angle values to graph coordinates"
+                "Construct and interpret sine/cosine graphs; identify key features; connect graph locations to unit-circle coordinates."
               ],
-              "alignment": "AP Topic 3.4",
-              "pacing": "2 periods",
               "deliveryStatus": "ready",
+              "alignment": "AP Precalculus Topic 3.4",
               "url": "lessons/ap-precalculus/unit-3/AP_Precalculus_3.4_Sine_and_Cosine_Function_Graphs_ECHS_Refined.html"
             },
             {
               "id": "3.5",
               "title": "Sinusoidal Functions",
               "subtopics": [
-                "General sinusoidal form",
-                "Amplitude",
-                "Period/frequency",
-                "Phase shift",
-                "Midline"
+                "Amplitude; period; midline; phase/shift ideas; parameter interpretation; equivalent sinusoidal descriptions."
               ],
               "learningOutcomes": [
-                "Identify parameters of a sinusoidal function",
-                "Construct a sinusoidal function from graph features",
-                "Interpret parameters in a periodic context"
+                "Analyze sinusoidal functions from equations/graphs; determine key parameters; write a sinusoidal function from features."
               ],
-              "alignment": "AP Topic 3.5",
-              "pacing": "3 periods",
               "deliveryStatus": "ready",
+              "alignment": "AP Precalculus Topic 3.5",
               "url": "lessons/ap-precalculus/unit-3/AP_Precalculus_3.5_Sinusoidal_Functions_ECHS_Refined.html"
             },
             {
               "id": "3.6",
               "title": "Sinusoidal Function Transformations",
               "subtopics": [
-                "Horizontal/vertical shifts",
-                "Stretch/compression",
-                "Reflection",
-                "Parameter equivalence"
+                "Horizontal/vertical shifts; amplitude/period changes; reflections; parameter effects."
               ],
               "learningOutcomes": [
-                "Construct transformed sinusoidal functions",
-                "Predict graph effects from parameter changes",
-                "Recognize equivalent sinusoidal representations when applicable"
+                "Construct transformed sinusoidal functions; recover equations from graphs; explain parameter effects precisely."
               ],
-              "alignment": "AP Topic 3.6",
-              "pacing": "2 periods",
               "deliveryStatus": "ready",
+              "alignment": "AP Precalculus Topic 3.6",
               "url": "lessons/ap-precalculus/unit-3/AP_Precalculus_3.6_Sinusoidal_Function_Transformations_ECHS_Refined.html"
             },
             {
               "id": "3.7",
               "title": "Sinusoidal Function Context and Data Modeling",
               "subtopics": [
-                "Periodic regression",
-                "Max/min information",
-                "Midline/amplitude from context",
-                "Prediction and validation"
+                "Periodic data; sinusoidal regression; parameter meaning; assumptions; residuals."
               ],
               "learningOutcomes": [
-                "Construct a sinusoidal model from key values or data",
-                "Interpret parameters and make contextual predictions",
-                "Use residual/context evidence to assess model fit"
+                "Build a sinusoidal model from context/data; interpret amplitude, midline, period, and shift; judge fit and limitations."
               ],
-              "alignment": "AP Topic 3.7",
-              "pacing": "3 periods",
               "deliveryStatus": "ready",
+              "alignment": "AP Precalculus Topic 3.7",
               "url": "lessons/ap-precalculus/unit-3/AP_Precalculus_3.7_Sinusoidal_Function_Context_and_Data_Modeling_ECHS_Refined.html"
             },
             {
               "id": "3.8",
               "title": "The Tangent Function",
               "subtopics": [
-                "Unit-circle construction",
-                "Period",
-                "Vertical asymptotes",
-                "Zeros",
-                "Transformations"
+                "Graph; period; zeros; vertical asymptotes; transformations; contextual angle relationships."
               ],
               "learningOutcomes": [
-                "Construct and analyze the tangent function",
-                "Determine period, zeros, and vertical asymptotes",
-                "Graph transformed tangent functions and describe parameter effects"
+                "Describe and graph tangent functions; identify asymptotes/period; solve or model accessible tangent relationships."
               ],
-              "alignment": "AP Topic 3.8",
-              "pacing": "2 periods",
               "deliveryStatus": "ready",
+              "alignment": "AP Precalculus Topic 3.8",
               "url": "lessons/ap-precalculus/unit-3/AP_Precalculus_3.8_The_Tangent_Function_ECHS_Refined.html"
             },
             {
               "id": "3.9",
               "title": "Inverse Trigonometric Functions",
               "subtopics": [
-                "Restricted domains",
-                "Principal values",
-                "Exact evaluation",
-                "Calculator evaluation",
-                "Compositions"
+                "Principal-value domains/ranges; arcsin/arccos/arctan; inverse graphs; compositions."
               ],
               "learningOutcomes": [
-                "Construct and interpret inverse sine, cosine, and tangent functions",
-                "Evaluate inverse trigonometric expressions exactly or numerically",
-                "Use domain/range restrictions correctly in compositions"
+                "Evaluate inverse trig functions; use principal-value restrictions correctly; solve for angles and interpret inverse-trig outputs."
               ],
-              "alignment": "AP Topic 3.9",
-              "pacing": "2 periods",
               "deliveryStatus": "ready",
+              "alignment": "AP Precalculus Topic 3.9",
               "url": "lessons/ap-precalculus/unit-3/AP_Precalculus_3.9_Inverse_Trigonometric_Functions_ECHS_Refined.html"
             },
             {
               "id": "3.10",
               "title": "Trigonometric Equations and Inequalities",
               "subtopics": [
-                "Exact solutions",
-                "General solutions",
-                "Quadratic-form equations",
-                "Multiple angles",
-                "Technology-supported inequalities"
+                "General solutions over intervals; graph/algebra methods; inverse trig; periodic solution sets; inequalities."
               ],
               "learningOutcomes": [
-                "Solve trigonometric equations over specified or general domains",
-                "Solve selected trigonometric inequalities",
-                "Verify solutions graphically or with technology when appropriate"
+                "Solve trig equations/inequalities on specified domains; use periodicity to generate solutions; verify graphically/numerically."
               ],
-              "alignment": "AP Topic 3.10",
-              "pacing": "3 periods",
               "deliveryStatus": "ready",
+              "alignment": "AP Precalculus Topic 3.10",
               "url": "lessons/ap-precalculus/unit-3/AP_Precalculus_3.10_Trigonometric_Equations_and_Inequalities_ECHS_Refined.html"
             },
             {
               "id": "3.11",
-              "title": "Secant, Cosecant, and Cotangent Functions",
+              "title": "The Secant, Cosecant, and Cotangent Functions",
               "subtopics": [
-                "Reciprocal relationships",
-                "Zeros/asymptotes",
-                "Periods",
-                "Graph transformations"
+                "Reciprocal definitions; domains; asymptotes; graphs; relationships to sine/cosine/tangent."
               ],
               "learningOutcomes": [
-                "Identify key characteristics of reciprocal trigonometric functions",
-                "Construct secant, cosecant, and cotangent graphs from sine/cosine/tangent",
-                "Relate undefined values to vertical asymptotes"
+                "Construct and analyze reciprocal trig functions; locate zeros/asymptotes; connect their graphs to the primary trig functions."
               ],
-              "alignment": "AP Topic 3.11",
-              "pacing": "2 periods",
               "deliveryStatus": "ready",
+              "alignment": "AP Precalculus Topic 3.11",
               "url": "lessons/ap-precalculus/unit-3/AP_Precalculus_3.11_The_Secant_Cosecant_and_Cotangent_Functions_ECHS_Refined.html"
             },
             {
               "id": "3.12",
               "title": "Equivalent Representations of Trigonometric Functions",
               "subtopics": [
-                "Pythagorean identity",
-                "Sum/difference identities",
-                "Equivalent forms",
-                "Equation solving with identities"
+                "Pythagorean identities; sine/cosine sum identities; difference/double-angle consequences; identity verification; solving with equivalent forms."
               ],
               "learningOutcomes": [
-                "Rewrite trigonometric expressions in equivalent forms",
-                "Use identities to evaluate expressions or solve equations",
-                "Justify equivalence using established relationships rather than numerical evidence only"
+                "Rewrite trigonometric expressions using required identities; verify identities; choose an equivalent form that simplifies an equation or reveals information."
               ],
-              "alignment": "AP Topic 3.12",
-              "pacing": "3 periods",
               "deliveryStatus": "ready",
+              "alignment": "AP Precalculus Topic 3.12",
               "url": "lessons/ap-precalculus/unit-3/AP_Precalculus_3.12_Equivalent_Representations_of_Trigonometric_Functions_ECHS_Refined.html"
             },
             {
               "id": "3.13",
               "title": "Trigonometry and Polar Coordinates",
               "subtopics": [
-                "Polar coordinates",
-                "Rectangular-polar conversion",
-                "Complex plane connection",
-                "Angle/radius interpretation"
+                "Polar system; multiple representations of a point; rectangular-polar conversion; complex numbers in polar form."
               ],
               "learningOutcomes": [
-                "Locate points using polar and rectangular coordinates",
-                "Convert points and simple equations between coordinate systems",
-                "Interpret negative radius and coterminal polar representations"
+                "Locate points in both systems; convert coordinates accurately; explain nonuniqueness of polar coordinates; connect complex-plane and polar representations."
               ],
-              "alignment": "AP Topic 3.13",
-              "pacing": "2 periods",
               "deliveryStatus": "ready",
+              "alignment": "AP Precalculus Topic 3.13",
               "url": "lessons/ap-precalculus/unit-3/AP_Precalculus_3.13_Trigonometry_and_Polar_Coordinates_ECHS_Refined.html"
             },
             {
               "id": "3.14",
               "title": "Polar Function Graphs",
               "subtopics": [
-                "Polar graph construction",
-                "Symmetry",
-                "Zeros",
-                "Negative r",
-                "Intersections"
+                "r=f(theta); signed radius; domain restrictions; tables/technology; common polar behavior."
               ],
               "learningOutcomes": [
-                "Construct polar graphs from tables, equations, and technology",
-                "Analyze key features including zeros, symmetry, and intersections",
-                "Explain the effect of negative radial values on plotted points"
+                "Construct and interpret polar graphs; connect changes in theta and r to motion in the plane; use domain restrictions to display intended portions."
               ],
-              "alignment": "AP Topic 3.14",
-              "pacing": "3 periods",
               "deliveryStatus": "ready",
+              "alignment": "AP Precalculus Topic 3.14",
               "url": "lessons/ap-precalculus/unit-3/AP_Precalculus_3.14_Polar_Function_Graphs_ECHS_Refined.html"
             },
             {
               "id": "3.15",
               "title": "Rates of Change in Polar Functions",
               "subtopics": [
-                "Average change of r with respect to angle",
-                "Radial distance",
-                "Increasing/decreasing intervals",
-                "Relative extrema"
+                "Increasing/decreasing signed radius; distance from origin; relative extrema; average rate of change of r with respect to theta."
               ],
               "learningOutcomes": [
-                "Describe polar graph behavior using rates of change",
-                "Compute and interpret average radial rate of change",
-                "Use rate information to justify conclusions about distance from the origin"
+                "Describe polar graph characteristics; compute/interpret average rate of change in radius per radian; connect extrema to relative distance from the origin."
               ],
-              "alignment": "AP Topic 3.15",
-              "pacing": "2 periods",
               "deliveryStatus": "ready",
+              "alignment": "AP Precalculus Topic 3.15",
               "url": "lessons/ap-precalculus/unit-3/AP_Precalculus_3.15_Rates_of_Change_in_Polar_Functions_ECHS_Refined.html"
-            },
-            {
-              "id": "U3-R",
-              "title": "Unit 3 synthesis, Progress Checks, and assessment",
-              "subtopics": [
-                "Topics 3.1-3.15",
-                "Calculator/non-calculator trigonometry",
-                "Modeling FRQ",
-                "Polar reasoning"
-              ],
-              "learningOutcomes": [
-                "Integrate trigonometric, sinusoidal, inverse, identity, and polar concepts",
-                "Demonstrate precise periodic modeling and communication",
-                "Use unit evidence to create an individual AP-review plan"
-              ],
-              "alignment": "AP Unit 3",
-              "pacing": "4-5 periods - Assessment",
-              "deliveryStatus": "curriculum_ready"
             }
           ]
         },
         {
-          "code": "AP Review",
-          "title": "Cumulative AP Review and Mock Exams",
-          "pacing": "Weeks 28-30",
-          "intent": "Spiral all exam-assessed content with timed practice, error analysis, and targeted intervention before the AP exam.",
+          "code": "Calculus Bridge",
+          "title": "Selected Post-Exam Calculus Bridge",
+          "pacing": "33-36",
+          "intent": "Use remaining instructional time on content with direct value for later calculus, rather than on low-priority topics.",
+          "phaseFocus": "Selected parametric functions, planar motion, implicit relations, vector-valued thinking, advanced function analysis; no matrix-heavy core unless locally required.",
+          "implementationEvidence": "Prepares later AP Calculus AB/BC without displacing tested AP Precalculus content.",
           "lessons": [
             {
-              "id": "R.1",
-              "title": "Cumulative function behavior review",
+              "id": "E.1",
+              "title": "Parametric Functions",
               "subtopics": [
-                "Rates of change",
-                "Zeros/extrema",
-                "Asymptotes/holes",
-                "Transformations",
-                "Domain/range"
+                "x(t), y(t); parameter domain; eliminating parameter when appropriate; orientation."
               ],
               "learningOutcomes": [
-                "Compare function families through common behavioral features",
-                "Move efficiently among analytical, graphical, numerical, and verbal representations"
+                "Represent planar curves parametrically; move between parametric and Cartesian descriptions when feasible; interpret the parameter."
               ],
-              "alignment": "AP Units 1-3",
-              "pacing": "2 periods",
-              "deliveryStatus": "curriculum_ready"
+              "deliveryStatus": "curriculum_ready",
+              "alignment": "Selected post-exam calculus bridge"
             },
             {
-              "id": "R.2",
-              "title": "Polynomial/rational AP problem set",
+              "id": "E.2",
+              "title": "Planar Motion with Parametric Functions",
               "subtopics": [
-                "Equivalent forms",
-                "Complex zeros",
-                "End behavior",
-                "Rational discontinuities",
-                "Model selection"
+                "Position components; tables/graphs; direction and time; contextual motion."
               ],
               "learningOutcomes": [
-                "Solve mixed AP-style polynomial/rational tasks under time constraints",
-                "Explain why a chosen representation is useful"
+                "Interpret parametric position models; describe motion and orientation; connect component changes to overall movement."
               ],
-              "alignment": "AP Unit 1",
-              "pacing": "2 periods",
-              "deliveryStatus": "curriculum_ready"
+              "deliveryStatus": "curriculum_ready",
+              "alignment": "Selected post-exam calculus bridge"
             },
             {
-              "id": "R.3",
-              "title": "Exponential/logarithmic AP problem set",
+              "id": "E.3",
+              "title": "Implicit Relations and Function Restrictions",
               "subtopics": [
-                "Model validation",
-                "Inverse/composition",
-                "Equations",
-                "Semi-log plots"
+                "Implicitly defined curves; local function behavior; solving for branches; domain restrictions."
               ],
               "learningOutcomes": [
-                "Solve mixed AP-style exponential/logarithmic tasks",
-                "Use model evidence and residual reasoning to support conclusions"
+                "Interpret implicit relations; determine when a relation can represent y as a function locally; identify branches and restrictions."
               ],
-              "alignment": "AP Unit 2",
-              "pacing": "2 periods",
-              "deliveryStatus": "curriculum_ready"
+              "deliveryStatus": "curriculum_ready",
+              "alignment": "Selected post-exam calculus bridge"
             },
             {
-              "id": "R.4",
-              "title": "Trigonometric/polar AP problem set",
+              "id": "E.4",
+              "title": "Vector-Valued Function Preview",
               "subtopics": [
-                "Periodic models",
-                "Identities",
-                "Equations",
-                "Polar graphs/rates"
+                "2D vectors; magnitude/direction; component form; r(t)=<x(t),y(t)>; connection to BC calculus vocabulary."
               ],
               "learningOutcomes": [
-                "Solve mixed AP-style trigonometric and polar tasks",
-                "Communicate exact and numerical reasoning appropriately"
+                "Represent motion with vectors; connect parametric and vector-valued notation; interpret components, magnitude, and direction conceptually."
               ],
-              "alignment": "AP Unit 3",
-              "pacing": "2 periods",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "R.5",
-              "title": "Mock Exam Cycle 1",
-              "subtopics": [
-                "Timed mixed MCQ",
-                "Timed FRQ",
-                "Calculator management",
-                "Pacing"
-              ],
-              "learningOutcomes": [
-                "Complete a full or representative mock under exam conditions",
-                "Classify errors by content, representation, and reasoning type"
-              ],
-              "alignment": "AP exam preparation",
-              "pacing": "2-3 periods",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "R.6",
-              "title": "Targeted intervention and re-assessment",
-              "subtopics": [
-                "Item analysis",
-                "Micro-groups",
-                "Retrieval practice",
-                "FRQ revision"
-              ],
-              "learningOutcomes": [
-                "Repair high-impact gaps from mock evidence",
-                "Rewrite a weak response to meet precision and justification expectations"
-              ],
-              "alignment": "AP exam preparation",
-              "pacing": "2 periods",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "R.7",
-              "title": "Mock Exam Cycle 2 and final strategy",
-              "subtopics": [
-                "Timed sections",
-                "Decision rules",
-                "Checking routines",
-                "Individual action plan"
-              ],
-              "learningOutcomes": [
-                "Demonstrate improved performance under timed conditions",
-                "Apply an individual exam strategy grounded in evidence"
-              ],
-              "alignment": "AP exam preparation",
-              "pacing": "2-3 periods",
-              "deliveryStatus": "curriculum_ready"
+              "deliveryStatus": "curriculum_ready",
+              "alignment": "Selected post-exam calculus bridge"
             }
           ]
-        },
+        }
+      ],
+      "requiredPackages": [
+        {
+          "id": "AP-REVIEW",
+          "title": "Cumulative AP Review & Exam Preparation",
+          "weeks": "28-32",
+          "focus": "Spiral review by skill and representation; timed mixed MCQ/FRQ; regression/modeling; calculator fluency; error-driven reteaching.",
+          "evidence": "At least two full mock cycles plus targeted re-teach by strand.",
+          "deliveryStatus": "curriculum_ready"
+        }
+      ],
+      "supplementalUnits": [
         {
           "code": "AP Unit 4",
           "title": "Functions Involving Parameters, Vectors, and Matrices",
-          "pacing": "Weeks 31-36",
-          "intent": "Post-exam/local extension. These topics deepen the function concept through parametric, implicit, vector-valued, and matrix-based representations; Unit 4 is not assessed on the AP Precalculus Exam.",
-          "lessons": [
-            {
-              "id": "4.1",
-              "title": "Parametric Functions",
-              "subtopics": [
-                "Parameter as input",
-                "Tables and graphs",
-                "Direction of tracing",
-                "Eliminating a parameter"
-              ],
-              "learningOutcomes": [
-                "Construct a graph or table for a parametric function",
-                "Interpret how the parameter traces a curve",
-                "Convert selected parametric relationships to an implicit/rectangular relation"
-              ],
-              "alignment": "AP Topic 4.1",
-              "pacing": "2 periods",
-              "deliveryStatus": "ready",
-              "url": "lessons/ap-precalculus/unit-4/AP_Precalculus_4.1_Parametric_Functions_ECHS_Refined.html"
-            },
-            {
-              "id": "4.2",
-              "title": "Parametric Functions Modeling Planar Motion",
-              "subtopics": [
-                "Position as (x(t),y(t))",
-                "Intercepts",
-                "Horizontal/vertical extrema",
-                "Time interpretation"
-              ],
-              "learningOutcomes": [
-                "Interpret parametric coordinates as planar position",
-                "Determine when a moving point reaches axes or extrema",
-                "Connect parameter values to events in a motion context"
-              ],
-              "alignment": "AP Topic 4.2",
-              "pacing": "2 periods",
-              "deliveryStatus": "ready",
-              "url": "lessons/ap-precalculus/unit-4/AP_Precalculus_4.2_Parametric_Functions_Modeling_Planar_Motion_ECHS_Refined.html"
-            },
-            {
-              "id": "4.3",
-              "title": "Parametric Functions and Rates of Change",
-              "subtopics": [
-                "Average horizontal/vertical rate",
-                "Direction of motion",
-                "Rate vectors preview"
-              ],
-              "learningOutcomes": [
-                "Compute average rates of horizontal and vertical change",
-                "Use signs of rates to describe direction of motion",
-                "Interpret rates with units in a planar-motion context"
-              ],
-              "alignment": "AP Topic 4.3",
-              "pacing": "2 periods",
-              "deliveryStatus": "ready",
-              "url": "lessons/ap-precalculus/unit-4/AP_Precalculus_4.3_Parametric_Functions_and_Rates_of_Change_ECHS_Refined.html"
-            },
-            {
-              "id": "4.4",
-              "title": "Parametrically Defined Circles and Lines",
-              "subtopics": [
-                "Circle parametrization",
-                "Line-segment parametrization",
-                "Initial position and rate",
-                "Transformations"
-              ],
-              "learningOutcomes": [
-                "Write parametric equations for circles and lines",
-                "Control starting point, direction, and rate through parameters",
-                "Interpret geometric transformations parametrically"
-              ],
-              "alignment": "AP Topic 4.4",
-              "pacing": "2 periods",
-              "deliveryStatus": "ready",
-              "url": "lessons/ap-precalculus/unit-4/AP_Precalculus_4.4_Parametrically_Defined_Circles_and_Lines_ECHS_Refined.html"
-            },
-            {
-              "id": "4.5",
-              "title": "Implicitly Defined Functions",
-              "subtopics": [
-                "Implicit equations",
-                "Graphing solution sets",
-                "Solving for one variable locally",
-                "Covariation"
-              ],
-              "learningOutcomes": [
-                "Construct or analyze a graph defined implicitly",
-                "Determine how two quantities vary together when neither is globally isolated",
-                "Recognize when an implicit relation fails the vertical-line test"
-              ],
-              "alignment": "AP Topic 4.5",
-              "pacing": "2 periods",
-              "deliveryStatus": "ready",
-              "url": "lessons/ap-precalculus/unit-4/AP_Precalculus_4.5_Implicitly_Defined_Functions_ECHS_Refined.html"
-            },
-            {
-              "id": "4.6",
-              "title": "Conic Sections",
-              "subtopics": [
-                "Parabolas",
-                "Ellipses",
-                "Hyperbolas",
-                "Completing the square",
-                "Standard forms"
-              ],
-              "learningOutcomes": [
-                "Rewrite conic equations in standard form",
-                "Identify key geometric features from an equation",
-                "Construct equations for conics from given features"
-              ],
-              "alignment": "AP Topic 4.6",
-              "pacing": "3 periods",
-              "deliveryStatus": "ready",
-              "url": "lessons/ap-precalculus/unit-4/AP_Precalculus_4.6_Conic_Sections_ECHS_Refined.html"
-            },
-            {
-              "id": "4.7",
-              "title": "Parametrization of Implicitly Defined Functions",
-              "subtopics": [
-                "Parametrizing curves",
-                "Trigonometric parametrization of conics",
-                "Equivalent curve representations"
-              ],
-              "learningOutcomes": [
-                "Represent an implicit curve parametrically",
-                "Construct trigonometric parametrizations of selected conic sections",
-                "Compare parametric and implicit representations of the same curve"
-              ],
-              "alignment": "AP Topic 4.7",
-              "pacing": "2 periods",
-              "deliveryStatus": "ready",
-              "url": "lessons/ap-precalculus/unit-4/AP_Precalculus_4.7_Parametrization_of_Implicitly_Defined_Functions_ECHS_Refined.html"
-            },
-            {
-              "id": "4.8",
-              "title": "Vectors",
-              "subtopics": [
-                "Components",
-                "Magnitude/direction",
-                "Vector addition/scalar multiplication",
-                "Unit vectors",
-                "Dot product and angle"
-              ],
-              "learningOutcomes": [
-                "Represent vectors component-wise and geometrically",
-                "Perform vector operations and find unit vectors",
-                "Use the dot product to determine angles or relationships between vectors"
-              ],
-              "alignment": "AP Topic 4.8",
-              "pacing": "3 periods",
-              "deliveryStatus": "ready",
-              "url": "lessons/ap-precalculus/unit-4/AP_Precalculus_4.8_Vectors_ECHS_Refined.html"
-            },
-            {
-              "id": "4.9",
-              "title": "Vector-Valued Functions",
-              "subtopics": [
-                "Position vector",
-                "Domain",
-                "Displacement",
-                "Distance from origin",
-                "Average rate of change"
-              ],
-              "learningOutcomes": [
-                "Represent planar motion with a vector-valued function",
-                "Determine displacement and distance information",
-                "Interpret average change of a position vector over an interval"
-              ],
-              "alignment": "AP Topic 4.9",
-              "pacing": "2 periods",
-              "deliveryStatus": "ready",
-              "url": "lessons/ap-precalculus/unit-4/AP_Precalculus_4.9_Vector_Valued_Functions_ECHS_Refined.html"
-            },
-            {
-              "id": "4.10",
-              "title": "Matrices",
-              "subtopics": [
-                "Dimensions",
-                "Addition/subtraction",
-                "Scalar multiplication",
-                "Matrix multiplication",
-                "Context models"
-              ],
-              "learningOutcomes": [
-                "Perform valid matrix operations",
-                "Determine when a product is defined and interpret dimensions",
-                "Use matrix multiplication to represent a transformation or context"
-              ],
-              "alignment": "AP Topic 4.10",
-              "pacing": "2 periods",
-              "deliveryStatus": "ready",
-              "url": "lessons/ap-precalculus/unit-4/AP_Precalculus_4.10_Matrices_ECHS_Refined.html"
-            },
-            {
-              "id": "4.11",
-              "title": "Inverse and Determinant of a Matrix",
-              "subtopics": [
-                "2x2 determinant",
-                "Invertibility",
-                "Inverse matrix",
-                "Technology",
-                "Geometric meaning"
-              ],
-              "learningOutcomes": [
-                "Compute determinants and inverses of 2x2 matrices",
-                "Use determinant information to decide invertibility",
-                "Solve simple matrix equations using an inverse when appropriate"
-              ],
-              "alignment": "AP Topic 4.11",
-              "pacing": "2 periods",
-              "deliveryStatus": "ready",
-              "url": "lessons/ap-precalculus/unit-4/AP_Precalculus_4.11_The_Inverse_and_Determinant_of_a_Matrix_ECHS_Refined.html"
-            },
-            {
-              "id": "4.12",
-              "title": "Linear Transformations and Matrices",
-              "subtopics": [
-                "Input/output vectors",
-                "Geometric transformations",
-                "Standard matrix",
-                "Linearity"
-              ],
-              "learningOutcomes": [
-                "Determine the output of a linear transformation using a matrix",
-                "Connect matrices to geometric transformations",
-                "Test whether a transformation satisfies linearity conditions"
-              ],
-              "alignment": "AP Topic 4.12",
-              "pacing": "2 periods",
-              "deliveryStatus": "ready",
-              "url": "lessons/ap-precalculus/unit-4/AP_Precalculus_4.12_Linear_Transformations_and_Matrices_ECHS_Refined.html"
-            },
-            {
-              "id": "4.13",
-              "title": "Matrices as Functions",
-              "subtopics": [
-                "Standard matrix from basis vectors",
-                "Composition",
-                "Matrix products",
-                "Inverse transformation",
-                "Rotations"
-              ],
-              "learningOutcomes": [
-                "Associate a linear transformation with its matrix representation",
-                "Compose transformations using matrix multiplication",
-                "Determine or interpret an inverse linear transformation"
-              ],
-              "alignment": "AP Topic 4.13",
-              "pacing": "2 periods",
-              "deliveryStatus": "ready",
-              "url": "lessons/ap-precalculus/unit-4/AP_Precalculus_4.13_Matrices_as_Functions_ECHS_Refined.html"
-            },
-            {
-              "id": "4.14",
-              "title": "Matrices Modeling Contexts",
-              "subtopics": [
-                "Transition matrices",
-                "Discrete state changes",
-                "Matrix powers",
-                "Steady-state behavior",
-                "Backward prediction"
-              ],
-              "learningOutcomes": [
-                "Construct a transition-matrix model from a contextual scenario",
-                "Use matrix powers to predict future states",
-                "Analyze stable/steady behavior and use an inverse for backward reasoning when valid"
-              ],
-              "alignment": "AP Topic 4.14",
-              "pacing": "3 periods",
-              "deliveryStatus": "ready",
-              "url": "lessons/ap-precalculus/unit-4/AP_Precalculus_4.14_Matrices_Modeling_Contexts_ECHS_Refined.html"
-            },
-            {
-              "id": "U4-P",
-              "title": "Unit 4 application project and course reflection",
-              "subtopics": [
-                "Parametric/vector/matrix modeling",
-                "Technology",
-                "Written justification",
-                "Connection to future calculus/data science"
-              ],
-              "learningOutcomes": [
-                "Integrate Unit 4 tools in a multi-representation application",
-                "Explain how parametric, vector, and matrix representations extend the function concept"
-              ],
-              "alignment": "AP Unit 4 - local extension",
-              "pacing": "2 periods - Project",
-              "deliveryStatus": "curriculum_ready"
-            }
-          ]
+          "required": false,
+          "classification": "Supplemental/enrichment; not part of the required Path A lesson count"
         }
       ],
-      "unitCount": 5,
-      "lessonCount": 69
+      "unitCount": 4,
+      "lessonCount": 48
     },
     "pathB": {
       "id": "g10-algebra2-ap-readiness-path-b",
-      "title": "Grade 10 Path B - Algebra 2 / AP Precalculus Readiness",
-      "destination": "Full readiness to enter AP Precalculus in Grade 11, with evidence-based transfer windows into Path A.",
+      "title": "Grade 10 Path B - AP Readiness / Transition",
+      "destination": "Full readiness to enter AP Precalculus in Grade 11, with evidence-based transfer gates into Path A.",
       "units": [
         {
-          "code": "B0",
-          "title": "Common Launch and Individual Prerequisite Plan",
-          "pacing": "Weeks 1-2",
-          "intent": "Use the same diagnostic language and common evidence as the AP section so early movement remains possible and support starts immediately.",
+          "code": "R0",
+          "title": "Diagnostic & Precision Repair",
+          "pacing": "1-2",
+          "intent": "Create an evidence-based starting point and repair only the prerequisite skills that would block progress.",
+          "phaseFocus": "Common diagnostic; algebra repair; function notation; calculator/non-calculator habits; individualized flex groups.",
+          "implementationEvidence": "Entry profile + targeted intervention/extension plan.",
           "lessons": [
             {
-              "id": "B0.1",
-              "title": "No-calculator prerequisite diagnostic",
+              "id": "R0.1",
+              "title": "Common Entry Diagnostic",
               "subtopics": [
-                "Linear/quadratic algebra",
-                "Factoring",
-                "Exponents/radicals",
-                "Equation solving"
+                "Linear/quadratic fluency; functions; factoring; exponents/radicals; systems; right-triangle trig; graph reading."
               ],
               "learningOutcomes": [
-                "Demonstrate prerequisite symbolic fluency",
-                "Identify the highest-impact algebra gaps for immediate repair"
+                "Identify strand-level strengths/gaps; demonstrate calculator/non-calculator fluency; set targeted mastery goals."
               ],
-              "alignment": "AP prerequisite inventory",
-              "pacing": "1 period - Diagnostic",
-              "deliveryStatus": "curriculum_ready"
+              "deliveryStatus": "curriculum_ready",
+              "alignment": "AP Precalculus readiness bridge"
             },
             {
-              "id": "B0.2",
-              "title": "Functions and graph diagnostic",
+              "id": "R0.2",
+              "title": "Algebra Precision Repair",
               "subtopics": [
-                "Function notation",
-                "Domain/range",
-                "Slope/rate",
-                "Transformations",
-                "Multiple representations"
+                "Fractions; signs; exponent laws; equation steps; factoring basics; notation."
               ],
               "learningOutcomes": [
-                "Interpret functions from graph, table, formula, and context",
-                "Identify specific representation gaps that could block AP success"
+                "Execute core algebra accurately; identify and correct common errors; explain why algebraic transformations preserve equivalence."
               ],
-              "alignment": "F.IF / AP prerequisite",
-              "pacing": "1 period - Diagnostic",
-              "deliveryStatus": "curriculum_ready"
+              "deliveryStatus": "curriculum_ready",
+              "alignment": "AP Precalculus readiness bridge"
             },
             {
-              "id": "B0.3",
-              "title": "Technology diagnostic and calculator routines",
+              "id": "R0.3",
+              "title": "Function Notation & Representation Repair",
               "subtopics": [
-                "Graphing",
-                "Tables",
-                "Roots/intersections",
-                "Regression",
-                "Window/scale"
+                "f(x); domain/range; graph/table/formula/context; interval notation; rate language."
               ],
               "learningOutcomes": [
-                "Use a graphing calculator to obtain meaningful function information",
-                "Explain what a calculator result means mathematically and contextually"
+                "Interpret function notation and domains; move among representations; use correct interval and rate-of-change language."
               ],
-              "alignment": "MP5 / AP technology",
-              "pacing": "1 period - Diagnostic",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B0.4",
-              "title": "Rapid repair: exponents, radicals, and expression structure",
-              "subtopics": [
-                "Exponent laws",
-                "Surds/radicals",
-                "Expansion",
-                "Factoring"
-              ],
-              "learningOutcomes": [
-                "Repair identified symbolic gaps quickly",
-                "Choose efficient equivalent forms for later function work"
-              ],
-              "alignment": "A.SSE.3c; N.RN; 8.A.2",
-              "pacing": "2 periods - Targeted",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B0.5",
-              "title": "Rapid repair: equations and literal formulas",
-              "subtopics": [
-                "Linear equations",
-                "Inequalities",
-                "Rearranging formulae",
-                "Checking"
-              ],
-              "learningOutcomes": [
-                "Solve multi-step equations/inequalities",
-                "Rearrange formulas accurately and verify results"
-              ],
-              "alignment": "A.CED.4; A.REI.3",
-              "pacing": "2 periods - Targeted",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B0.6",
-              "title": "Placement confirmation and readiness plan",
-              "subtopics": [
-                "Evidence conference",
-                "AP bridge assignment",
-                "FLEX grouping",
-                "Goal setting"
-              ],
-              "learningOutcomes": [
-                "Explain the evidence supporting current placement",
-                "Identify the exact requirements for a Week 6 or Week 10 transfer opportunity"
-              ],
-              "alignment": "Local pathway protocol",
-              "pacing": "1 period - Decision point",
-              "deliveryStatus": "curriculum_ready"
+              "deliveryStatus": "curriculum_ready",
+              "alignment": "AP Precalculus readiness bridge"
             }
           ]
         },
         {
-          "code": "B1",
-          "title": "Functions, Linear Models, and Rates of Change",
-          "pacing": "Weeks 3-4",
-          "intent": "Synchronize the language of functions and rates of change with AP Unit 1 while strengthening prerequisite fluency.",
+          "code": "R1",
+          "title": "Polynomial & Rational Foundations",
+          "pacing": "3-9",
+          "intent": "Develop the same function families as AP Unit 1, but with more time for prerequisite algebra and guided reasoning.",
+          "phaseFocus": "Rates of change; quadratic mastery; polynomial operations/factoring/zeros/end behavior; rational expressions/functions; zeros/asymptotes/holes; transformations/modeling.",
+          "implementationEvidence": "Parallel to AP Unit 1 at scaffolded depth. Transfer Gate 1 at end of Week 9.",
           "lessons": [
             {
-              "id": "B1.1",
-              "title": "Relations, functions, domain, and range",
+              "id": "R1.1",
+              "title": "Linear and Quadratic Rates of Change",
               "subtopics": [
-                "Function test",
-                "Domain/range notation",
-                "Restrictions",
-                "Discrete/continuous"
+                "Slope; average rate of change; first/second differences; quadratic forms."
               ],
               "learningOutcomes": [
-                "Determine whether a relation is a function",
-                "State domain and range and explain restrictions"
+                "Compare constant/changing rates; compute average rates; identify linear vs quadratic behavior from representations."
               ],
-              "alignment": "F.IF.1-2",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
+              "deliveryStatus": "curriculum_ready",
+              "alignment": "AP Precalculus readiness bridge"
             },
             {
-              "id": "B1.2",
-              "title": "Function notation and multiple representations",
+              "id": "R1.2",
+              "title": "Quadratic Mastery Check & Repair",
               "subtopics": [
-                "Evaluation",
-                "Graph/table/formula/context",
-                "Intercepts and intervals"
+                "Factoring; completing square; quadratic formula; discriminant; inequalities."
               ],
               "learningOutcomes": [
-                "Evaluate functions from multiple representations",
-                "Translate key information between representations"
+                "Solve quadratics by multiple methods; choose an efficient method; solve quadratic inequalities and classify roots."
               ],
-              "alignment": "F.IF.2-4",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
+              "deliveryStatus": "curriculum_ready",
+              "alignment": "AP Precalculus readiness bridge"
             },
             {
-              "id": "B1.3",
-              "title": "Slope and average rate of change",
+              "id": "R1.3",
+              "title": "Polynomial Operations and Factoring",
               "subtopics": [
-                "Slope formula",
-                "Difference quotient",
-                "Units",
-                "Secant interpretation"
+                "Operations; special products; grouping; cubes; structure."
               ],
               "learningOutcomes": [
-                "Compute and interpret average rate of change",
-                "Connect linear slope to the broader concept of rate of change"
+                "Perform polynomial operations; factor strategically; verify factorization and use it to solve equations."
               ],
-              "alignment": "F.IF.6 / AP bridge",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
+              "deliveryStatus": "curriculum_ready",
+              "alignment": "AP Precalculus readiness bridge"
             },
             {
-              "id": "B1.4",
-              "title": "Linear equations in multiple forms",
+              "id": "R1.4",
+              "title": "Polynomial Zeros, Multiplicity & Complex Numbers",
               "subtopics": [
-                "Slope-intercept",
-                "Point-slope",
-                "Standard form",
-                "Conversions"
+                "Real/complex roots; conjugates; factor form; multiplicity; graph behavior."
               ],
               "learningOutcomes": [
-                "Write linear equations from varied information",
-                "Choose the representation that reveals needed information"
+                "Connect zeros/factors/intercepts; use complex conjugates; predict crossing/touching behavior from multiplicity."
               ],
-              "alignment": "A.CED.2; F.IF.7a",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
+              "deliveryStatus": "curriculum_ready",
+              "alignment": "AP Precalculus readiness bridge"
             },
             {
-              "id": "B1.5",
-              "title": "Linear modeling and regression",
+              "id": "R1.5",
+              "title": "Polynomial End Behavior & Graph Construction",
               "subtopics": [
-                "Data fit",
-                "Residuals",
-                "Initial value and rate",
-                "Prediction"
+                "Degree; leading term; end behavior; intercepts; turning behavior; regression preview."
               ],
               "learningOutcomes": [
-                "Construct a linear model from data or context",
-                "Interpret parameters and residuals",
-                "State contextual restrictions"
+                "Predict end behavior; sketch graphs from algebraic structure; interpret features in context."
               ],
-              "alignment": "F.LE; MP5",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
+              "deliveryStatus": "curriculum_ready",
+              "alignment": "AP Precalculus readiness bridge"
             },
             {
-              "id": "B1.6",
-              "title": "Transformations of functions",
+              "id": "R1.6",
+              "title": "Rational Expressions and Equations",
               "subtopics": [
-                "Translations",
-                "Reflections",
-                "Stretches",
-                "Parent graphs"
+                "Restrictions; simplification; operations; rational equations; excluded values."
               ],
               "learningOutcomes": [
-                "Predict and graph basic function transformations",
-                "Write transformed formulas from verbal or graphical information"
+                "Simplify and solve rational expressions/equations with domain control; detect invalid/extraneous values."
               ],
-              "alignment": "F.BF.3",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
+              "deliveryStatus": "curriculum_ready",
+              "alignment": "AP Precalculus readiness bridge"
             },
             {
-              "id": "B1.7",
-              "title": "Piecewise and absolute-value functions",
+              "id": "R1.7",
+              "title": "Rational Functions: Zeros, Asymptotes and Holes",
               "subtopics": [
-                "Piecewise notation",
-                "Boundaries",
-                "Absolute value",
-                "Context models"
+                "Zeros; vertical/horizontal end behavior; holes; sign behavior; multiple representations."
               ],
               "learningOutcomes": [
-                "Evaluate and graph piecewise functions",
-                "Construct a simple piecewise rule",
-                "Interpret changes in rate across intervals"
+                "Identify zeros/asymptotes/holes; explain each from algebraic structure; sketch and interpret rational graphs."
               ],
-              "alignment": "F.IF.7b / AP prerequisite",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
+              "deliveryStatus": "curriculum_ready",
+              "alignment": "AP Precalculus readiness bridge"
             },
             {
-              "id": "B1.8",
-              "title": "Common function/rate benchmark",
+              "id": "R1.8",
+              "title": "Transformations and Model Selection",
               "subtopics": [
-                "Shared AP/readiness items",
-                "Reasoning response",
-                "Technology/no-technology"
+                "Function transformations; polynomial/rational models; regression/residual idea; assumptions."
               ],
               "learningOutcomes": [
-                "Demonstrate transfer-ready function language and rate reasoning",
-                "Use benchmark evidence to identify Week 6 readiness priorities"
+                "Construct transformed functions; select a plausible model; state assumptions and limitations using evidence."
               ],
-              "alignment": "Common benchmark",
-              "pacing": "1-2 periods - Assessment",
-              "deliveryStatus": "curriculum_ready"
+              "deliveryStatus": "curriculum_ready",
+              "alignment": "AP Precalculus readiness bridge"
             }
           ]
         },
         {
-          "code": "B2",
-          "title": "Quadratics and Polynomial Foundations",
-          "pacing": "Weeks 5-6",
-          "intent": "Complete the most important AP entry barrier - quadratics - and establish polynomial behavior before Transfer Window 1.",
+          "code": "R2",
+          "title": "Exponential & Logarithmic Foundations",
+          "pacing": "10-17",
+          "intent": "Build full Algebra 2-level exponential/logarithmic fluency while mirroring the AP Unit 2 sequence.",
+          "phaseFocus": "Sequences; exponent laws; exponential functions/modeling; composition/inverses; logarithms; exp/log equations; model comparison; regression.",
+          "implementationEvidence": "Parallel to AP Unit 2. Transfer Gate 2 at end of Week 17 for exceptional candidates.",
           "lessons": [
             {
-              "id": "B2.1",
-              "title": "Factoring quadratics: structure",
+              "id": "R2.1",
+              "title": "Arithmetic and Geometric Sequences",
               "subtopics": [
-                "GCF",
-                "Monic trinomials",
-                "Difference of squares"
+                "Explicit/recursive rules; difference/ratio; discrete domains; sequence-to-function connection."
               ],
               "learningOutcomes": [
-                "Factor common quadratic forms accurately",
-                "Check factors by expansion"
+                "Write and interpret sequence rules; distinguish additive/multiplicative change; connect sequences to linear/exponential functions."
               ],
-              "alignment": "8.A.3",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
+              "deliveryStatus": "curriculum_ready",
+              "alignment": "AP Precalculus readiness bridge"
             },
             {
-              "id": "B2.2",
-              "title": "Factoring non-monic and special quadratics",
+              "id": "R2.2",
+              "title": "Exponent Laws and Rational Exponents",
               "subtopics": [
-                "AC/structure methods",
-                "Perfect squares",
-                "Special products"
+                "Integer/rational exponents; radicals; equivalent forms; scientific notation as needed."
               ],
               "learningOutcomes": [
-                "Factor non-monic trinomials and special products",
-                "Select an efficient factoring strategy"
+                "Apply exponent laws fluently; rewrite radicals and rational exponents; simplify expressions without sign/domain errors."
               ],
-              "alignment": "8.A.3",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
+              "deliveryStatus": "curriculum_ready",
+              "alignment": "AP Precalculus readiness bridge"
             },
             {
-              "id": "B2.3",
-              "title": "Solving quadratics by factoring and square roots",
+              "id": "R2.3",
+              "title": "Exponential Functions and Transformations",
               "subtopics": [
-                "Zero-product property",
-                "Square-root method",
-                "Exact forms"
+                "Initial value; growth factor; asymptote; domain/range; transformations."
               ],
               "learningOutcomes": [
-                "Solve quadratic equations using factoring or square roots",
-                "Verify solutions"
+                "Construct, graph, and interpret exponential functions; connect parameters to features; compare transformations."
               ],
-              "alignment": "A.REI.4",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
+              "deliveryStatus": "curriculum_ready",
+              "alignment": "AP Precalculus readiness bridge"
             },
             {
-              "id": "B2.4",
-              "title": "Completing the square",
+              "id": "R2.4",
+              "title": "Exponential Modeling",
               "subtopics": [
-                "Perfect-square construction",
-                "Vertex form",
-                "Equation solving"
+                "Percent growth/decay; compound contexts; regression; residuals; doubling/halving."
               ],
               "learningOutcomes": [
-                "Complete the square",
-                "Use completed-square form to solve and reveal graph features"
+                "Build exponential models; interpret growth factors/rates; evaluate model fit and make contextual predictions."
               ],
-              "alignment": "A.REI.4a",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
+              "deliveryStatus": "curriculum_ready",
+              "alignment": "AP Precalculus readiness bridge"
             },
             {
-              "id": "B2.5",
-              "title": "Quadratic formula and discriminant",
+              "id": "R2.5",
+              "title": "Composition and Inverse Functions",
               "subtopics": [
-                "Formula",
-                "Discriminant",
-                "Solution type",
-                "Method selection"
+                "Composition; one-to-one idea; inverse notation; graph reflection; domain restriction."
               ],
               "learningOutcomes": [
-                "Solve quadratics with the formula",
-                "Use the discriminant to classify roots",
-                "Choose an efficient solution method"
+                "Evaluate compositions; determine/verify inverses; restrict domains when required; interpret inverse processes."
               ],
-              "alignment": "A.REI.4b",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
+              "deliveryStatus": "curriculum_ready",
+              "alignment": "AP Precalculus readiness bridge"
             },
             {
-              "id": "B2.6",
-              "title": "Complex numbers and nonreal roots",
+              "id": "R2.6",
+              "title": "Logarithms as Inverses",
               "subtopics": [
-                "i",
-                "Operations",
-                "Conjugates",
-                "Quadratic roots"
+                "Exponential-log equivalence; common/natural logs; graphs; domain/range; asymptote."
               ],
               "learningOutcomes": [
-                "Perform basic complex-number operations",
-                "Express nonreal roots in a+bi form",
-                "Connect conjugate roots to real coefficients"
+                "Rewrite between forms; evaluate logarithms; connect log graphs to exponential inverses; identify domain restrictions."
               ],
-              "alignment": "N.CN / AP prerequisite",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
+              "deliveryStatus": "curriculum_ready",
+              "alignment": "AP Precalculus readiness bridge"
             },
             {
-              "id": "B2.7",
-              "title": "Quadratic graphs and equivalent forms",
+              "id": "R2.7",
+              "title": "Logarithm Properties",
               "subtopics": [
-                "Standard/factored/vertex forms",
-                "Zeros",
-                "Vertex",
-                "Axis of symmetry"
+                "Product/quotient/power properties; change of base; expanding/condensing."
               ],
               "learningOutcomes": [
-                "Connect equivalent forms to graph features",
-                "Convert forms when useful",
-                "Sketch and interpret a quadratic model"
+                "Manipulate logarithmic expressions accurately; use change of base; preserve valid domains."
               ],
-              "alignment": "F.IF.7a; F.IF.8",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
+              "deliveryStatus": "curriculum_ready",
+              "alignment": "AP Precalculus readiness bridge"
             },
             {
-              "id": "B2.8",
-              "title": "Quadratic inequalities",
+              "id": "R2.8",
+              "title": "Exponential and Log Equations",
               "subtopics": [
-                "Critical values",
-                "Sign intervals",
-                "Graph solution"
+                "Common-base solving; logs; numerical methods; inequalities; checking."
               ],
               "learningOutcomes": [
-                "Solve and represent quadratic inequalities",
-                "Connect algebraic sign analysis to the graph"
+                "Solve exponential/logarithmic equations; check domain; use technology appropriately when an exact algebraic solution is unavailable."
               ],
-              "alignment": "A.REI.3 extension",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
+              "deliveryStatus": "curriculum_ready",
+              "alignment": "AP Precalculus readiness bridge"
             },
             {
-              "id": "B2.9",
-              "title": "Polynomial operations and zeros preview",
+              "id": "R2.9",
+              "title": "Comparing and Validating Models",
               "subtopics": [
-                "Addition/multiplication",
-                "Degree",
-                "Factors and zeros",
-                "Multiplicity preview"
+                "Linear/quadratic/exponential/log models; regression; residuals; informal semi-log interpretation."
               ],
               "learningOutcomes": [
-                "Perform core polynomial operations",
-                "Connect a factor to a zero and x-intercept"
+                "Choose a model from evidence; compare residual behavior; explain why a model is plausible or not."
               ],
-              "alignment": "A.APR.1,3",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B2.10",
-              "title": "Transfer Window 1 benchmark and bridge decision",
-              "subtopics": [
-                "Common polynomial items",
-                "Quadratic mastery",
-                "Rate/function reasoning",
-                "Independent work sample"
-              ],
-              "learningOutcomes": [
-                "Demonstrate evidence for possible entry into AP at Week 7",
-                "Identify any bridge topics that must be completed before transfer"
-              ],
-              "alignment": "Local transfer protocol",
-              "pacing": "1-2 periods - Decision point",
-              "deliveryStatus": "curriculum_ready"
+              "deliveryStatus": "curriculum_ready",
+              "alignment": "AP Precalculus readiness bridge"
             }
           ]
         },
         {
-          "code": "B3",
-          "title": "Polynomial and Rational Foundations",
-          "pacing": "Weeks 7-8",
-          "intent": "Keep broad alignment with AP Unit 1 while ensuring students master algebraic operations and discontinuity language at an accessible depth.",
+          "code": "R3",
+          "title": "Trigonometric & Polar Foundations",
+          "pacing": "18-27",
+          "intent": "Build a strong trigonometric foundation so AP Unit 3 can be learned conceptually rather than as a first exposure.",
+          "phaseFocus": "Radians/unit circle; sine/cosine/tangent values and graphs; sinusoidal models; inverse trig; equations; core identities; polar coordinates/graphs.",
+          "implementationEvidence": "Builds complete entry readiness for AP Unit 3; end-of-unit readiness benchmark.",
           "lessons": [
             {
-              "id": "B3.1",
-              "title": "Higher-degree factorization",
+              "id": "R3.1",
+              "title": "Radians, Standard Position & Unit Circle",
               "subtopics": [
-                "Grouping",
-                "Quadratic form",
-                "Repeated factors",
-                "Special products"
+                "Degree-radian conversion; arc length concept; unit-circle coordinates; quadrants/reference angles."
               ],
               "learningOutcomes": [
-                "Factor selected higher-degree polynomials",
-                "Use factors to identify zeros"
+                "Convert angle measures; locate angles in standard position; determine unit-circle coordinates and reference angles."
               ],
-              "alignment": "A.APR.3",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
+              "deliveryStatus": "curriculum_ready",
+              "alignment": "AP Precalculus readiness bridge"
             },
             {
-              "id": "B3.2",
-              "title": "Polynomial graph features and end behavior",
+              "id": "R3.2",
+              "title": "Sine, Cosine and Tangent Values",
               "subtopics": [
-                "Degree parity",
-                "Leading coefficient",
-                "Zeros/multiplicity",
-                "Turning points"
+                "Unit-circle definitions; exact values; signs; right-triangle connection; calculator values."
               ],
               "learningOutcomes": [
-                "Predict end behavior",
-                "Sketch a polynomial from key features",
-                "Verify the sketch with technology"
+                "Evaluate trig functions exactly or approximately; connect right-triangle and unit-circle definitions; use quadrant reasoning."
               ],
-              "alignment": "F.IF.7c; MP5",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
+              "deliveryStatus": "curriculum_ready",
+              "alignment": "AP Precalculus readiness bridge"
             },
             {
-              "id": "B3.3",
-              "title": "Rational expressions and restrictions",
+              "id": "R3.3",
+              "title": "Sine and Cosine Graphs",
               "subtopics": [
-                "Domain exclusions",
-                "Factor before canceling",
-                "Equivalent forms"
+                "Period; amplitude; midline; zeros/extrema; graph construction."
               ],
               "learningOutcomes": [
-                "Simplify rational expressions while preserving restrictions",
-                "Explain why a canceled factor may still matter to the original function"
+                "Graph and analyze sine/cosine; identify key features; connect graph behavior to the unit circle."
               ],
-              "alignment": "A.APR.6",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
+              "deliveryStatus": "curriculum_ready",
+              "alignment": "AP Precalculus readiness bridge"
             },
             {
-              "id": "B3.4",
-              "title": "Multiply and divide algebraic fractions",
+              "id": "R3.4",
+              "title": "Sinusoidal Transformations and Modeling",
               "subtopics": [
-                "Factoring",
-                "Cancellation",
-                "Reciprocal",
-                "Restrictions"
+                "A sin(B(x-C))+D; parameter effects; periodic data; regression."
               ],
               "learningOutcomes": [
-                "Multiply/divide rational expressions accurately",
-                "State all restrictions"
+                "Write sinusoidal equations from features/data; interpret parameters; assess model reasonableness."
               ],
-              "alignment": "A.APR.6",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
+              "deliveryStatus": "curriculum_ready",
+              "alignment": "AP Precalculus readiness bridge"
             },
             {
-              "id": "B3.5",
-              "title": "Add and subtract algebraic fractions",
+              "id": "R3.5",
+              "title": "Tangent, Secant, Cosecant and Cotangent",
               "subtopics": [
-                "LCD",
-                "Equivalent denominators",
-                "Simplification"
+                "Definitions; graphs; periods; zeros; asymptotes; reciprocal relationships."
               ],
               "learningOutcomes": [
-                "Add/subtract rational expressions",
-                "Choose and construct a least common denominator"
+                "Analyze reciprocal and tangent-family functions; identify domains/asymptotes; connect graphs to sine/cosine."
               ],
-              "alignment": "A.APR.6",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
+              "deliveryStatus": "curriculum_ready",
+              "alignment": "AP Precalculus readiness bridge"
             },
             {
-              "id": "B3.6",
-              "title": "Rational zeros, holes, and vertical asymptotes",
+              "id": "R3.6",
+              "title": "Inverse Trigonometric Functions",
               "subtopics": [
-                "Numerator/denominator zeros",
-                "Common factors",
-                "Discontinuities"
+                "Principal values; inverse notation; solving right/general angle problems."
               ],
               "learningOutcomes": [
-                "Distinguish zeros, holes, and vertical asymptotes from factored form",
-                "Connect each algebraic feature to the graph"
+                "Evaluate inverse trig functions; solve for angles; use correct principal-value ranges."
               ],
-              "alignment": "A.REI.11 / AP bridge",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
+              "deliveryStatus": "curriculum_ready",
+              "alignment": "AP Precalculus readiness bridge"
             },
             {
-              "id": "B3.7",
-              "title": "Rational end behavior and transformations",
+              "id": "R3.7",
+              "title": "Trigonometric Equations",
               "subtopics": [
-                "Degree comparison",
-                "Horizontal behavior",
-                "Basic transformations",
-                "Technology"
+                "Solve on intervals; periodic solutions; graph/algebra methods."
               ],
               "learningOutcomes": [
-                "Describe basic rational end behavior",
-                "Graph transformed rational functions using algebra and technology"
+                "Solve basic and transformed trig equations; generate all solutions on an interval; verify solutions."
               ],
-              "alignment": "F.IF / AP bridge",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
+              "deliveryStatus": "curriculum_ready",
+              "alignment": "AP Precalculus readiness bridge"
             },
             {
-              "id": "B3.8",
-              "title": "Polynomial/rational assessment",
+              "id": "R3.8",
+              "title": "Core Trigonometric Identities",
               "subtopics": [
-                "Equivalent forms",
-                "Graph analysis",
-                "Calculator verification"
+                "Reciprocal/quotient/Pythagorean; sine/cosine sum identities; simple verification."
               ],
               "learningOutcomes": [
-                "Demonstrate integrated polynomial/rational readiness",
-                "Explain graph features using algebraic evidence"
+                "Rewrite trig expressions; verify identities; use equivalent forms to support equation solving."
               ],
-              "alignment": "Unit B3 evidence",
-              "pacing": "1-2 periods - Assessment",
-              "deliveryStatus": "curriculum_ready"
+              "deliveryStatus": "curriculum_ready",
+              "alignment": "AP Precalculus readiness bridge"
+            },
+            {
+              "id": "R3.9",
+              "title": "Polar Coordinates",
+              "subtopics": [
+                "Polar grid; multiple coordinates; rectangular-polar conversion; complex-plane connection."
+              ],
+              "learningOutcomes": [
+                "Plot and convert coordinates; explain multiple polar representations; connect coordinate systems."
+              ],
+              "deliveryStatus": "curriculum_ready",
+              "alignment": "AP Precalculus readiness bridge"
+            },
+            {
+              "id": "R3.10",
+              "title": "Polar Graphs and Rate Language",
+              "subtopics": [
+                "r=f(theta); signed radius; graphing with tables/technology; average rate of r with respect to theta."
+              ],
+              "learningOutcomes": [
+                "Construct basic polar graphs; interpret signed radius; describe increasing/decreasing radius and average rate per radian."
+              ],
+              "deliveryStatus": "curriculum_ready",
+              "alignment": "AP Precalculus readiness bridge"
             }
           ]
         },
         {
-          "code": "B4",
-          "title": "Modeling and Function Synthesis",
-          "pacing": "Weeks 9-10",
-          "intent": "Mirror the end of AP Unit 1 through model choice, assumptions, and multiple representations; this is the final routine transfer window.",
+          "code": "R4",
+          "title": "Function Synthesis & AP Transition",
+          "pacing": "28-32",
+          "intent": "Consolidate the cross-cutting skills that distinguish students who survive AP Precalculus from students who can reason fluently in it.",
+          "phaseFocus": "Transformations/composition/inverses; rates/covariation; model selection; regression/residuals; mixed multiple-representation reasoning.",
+          "implementationEvidence": "Closes gaps that most often cause difficulty in AP Precalculus.",
           "lessons": [
             {
-              "id": "B4.1",
-              "title": "Model selection: linear vs. quadratic",
+              "id": "R4.1",
+              "title": "Transformations, Composition & Inverses Synthesis",
               "subtopics": [
-                "Difference patterns",
-                "Graph shape",
-                "Context clues",
-                "Residuals"
+                "Mixed function families; nested functions; domain restrictions; inverse verification."
               ],
               "learningOutcomes": [
-                "Choose between linear and quadratic models using evidence",
-                "Justify a model choice from data and context"
+                "Use transformations/compositions/inverses flexibly across function families; determine valid domains; choose efficient representations."
               ],
-              "alignment": "F.LE; MP4",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
+              "deliveryStatus": "curriculum_ready",
+              "alignment": "AP Precalculus readiness bridge"
             },
             {
-              "id": "B4.2",
-              "title": "Polynomial and rational models",
+              "id": "R4.2",
+              "title": "Covariation and Rates Across Families",
               "subtopics": [
-                "Zeros/extrema",
-                "Inverse variation",
-                "Domain restrictions"
+                "Average rate; additive/multiplicative change; increasing/decreasing; extrema; comparison of families."
               ],
               "learningOutcomes": [
-                "Recognize contexts that can be modeled by polynomial or rational functions",
-                "Interpret key features in context"
+                "Describe how quantities change together; compare rate behavior across families; justify conclusions from multiple representations."
               ],
-              "alignment": "F.IF / AP bridge",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
+              "deliveryStatus": "curriculum_ready",
+              "alignment": "AP Precalculus readiness bridge"
             },
             {
-              "id": "B4.3",
-              "title": "Regression and residual analysis",
+              "id": "R4.3",
+              "title": "Model Selection and Regression",
               "subtopics": [
-                "Linear/quadratic/polynomial regressions",
-                "Residual plots",
-                "Fit vs. overfit"
+                "Linear/quadratic/polynomial/exponential/log/sinusoidal candidates; residuals; assumptions."
               ],
               "learningOutcomes": [
-                "Use technology to build competing regression models",
-                "Use residual evidence to compare models"
+                "Select and validate a model; interpret parameters; use residual and contextual evidence; articulate limitations."
               ],
-              "alignment": "MP5; AP bridge",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
+              "deliveryStatus": "curriculum_ready",
+              "alignment": "AP Precalculus readiness bridge"
             },
             {
-              "id": "B4.4",
-              "title": "Assumptions, domain, and range restrictions",
+              "id": "R4.4",
+              "title": "AP-Style Multiple Representations",
               "subtopics": [
-                "Context boundaries",
-                "Interpolation/extrapolation",
-                "Discrete constraints",
-                "Rounding"
+                "Graph/table/formula/context translation; calculator and non-calculator tasks; concise justification."
               ],
               "learningOutcomes": [
-                "State assumptions behind a model",
-                "Set a defensible domain/range",
-                "Explain risks of extrapolation"
+                "Translate representations; sustain multi-step reasoning; communicate a mathematically valid rationale."
               ],
-              "alignment": "AP Practice 3 bridge",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
+              "deliveryStatus": "curriculum_ready",
+              "alignment": "AP Precalculus readiness bridge"
             },
             {
-              "id": "B4.5",
-              "title": "Composition and inverse review",
+              "id": "R4.5",
+              "title": "Cumulative Readiness Studio",
               "subtopics": [
-                "Function operations",
-                "Composition",
-                "One-to-one",
-                "Inverse verification"
+                "Mixed problems; retrieval; error analysis; targeted mini-lessons; independent practice planning."
               ],
               "learningOutcomes": [
-                "Evaluate and construct compositions",
-                "Find/verify simple inverse functions",
-                "Track domain restrictions through operations"
+                "Demonstrate durable mastery; diagnose own errors; select targeted practice rather than repeating mastered content."
               ],
-              "alignment": "F.BF.4; AP prerequisite",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B4.6",
-              "title": "AP-style representation translation",
-              "subtopics": [
-                "Graph-table-formula-context",
-                "Rates",
-                "Behavior",
-                "Written justification"
-              ],
-              "learningOutcomes": [
-                "Translate function information among representations",
-                "Support a conclusion with relevant mathematical evidence"
-              ],
-              "alignment": "AP Practices 2-3 bridge",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B4.7",
-              "title": "Common Transfer Window 2 benchmark",
-              "subtopics": [
-                "Shared items with AP Unit 1",
-                "Modeling response",
-                "No-calculator algebra",
-                "Technology task"
-              ],
-              "learningOutcomes": [
-                "Demonstrate readiness for the final routine Grade 10 AP transfer",
-                "Identify any remaining prerequisite gaps if staying in Path B"
-              ],
-              "alignment": "Common benchmark",
-              "pacing": "1-2 periods - Assessment",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B4.8",
-              "title": "AP Unit 1 bridge for transferring students",
-              "subtopics": [
-                "Rates of change depth",
-                "Asymptotes/holes",
-                "Equivalent representations",
-                "Model assumptions"
-              ],
-              "learningOutcomes": [
-                "Close the specific AP Unit 1 gaps identified by the transfer benchmark",
-                "Complete a bridge assessment before entering AP Unit 2"
-              ],
-              "alignment": "Local bridge module",
-              "pacing": "Up to 8-10 focused periods - Transfer only",
-              "deliveryStatus": "curriculum_ready"
+              "deliveryStatus": "curriculum_ready",
+              "alignment": "AP Precalculus readiness bridge"
             }
           ]
         },
         {
-          "code": "B5",
-          "title": "Equations, Systems, and Inequalities",
-          "pacing": "Weeks 11-14",
-          "intent": "After the final routine AP transfer window, complete the algebraic prerequisite set deeply enough that Grade 11 AP begins from strength.",
+          "code": "R5",
+          "title": "AP Precalculus Launch",
+          "pacing": "33-36",
+          "intent": "End Grade 10 by making the opening weeks of Grade 11 AP Precalculus familiar and manageable.",
+          "phaseFocus": "Preview AP Topics 1.1, 1.2, 2.1, 2.2, 3.1; AP-style routines; cumulative benchmark; summer bridge plan.",
+          "implementationEvidence": "Successful completers enter Grade 11 AP Precalculus ready to begin at AP pace.",
           "lessons": [
             {
-              "id": "B5.1",
-              "title": "Systems by graphing and substitution",
+              "id": "R5.1",
+              "title": "AP Preview: Change in Tandem & Rates",
               "subtopics": [
-                "Intersections",
-                "Substitution",
-                "Exact vs. approximate"
+                "Preview AP 1.1-1.3; covariation; rates; multiple representations."
               ],
               "learningOutcomes": [
-                "Solve two-variable systems graphically and algebraically",
-                "Interpret solutions as simultaneous conditions"
+                "Enter AP Precalculus able to discuss covariation and rates precisely; solve opening-unit tasks independently."
               ],
-              "alignment": "A.REI.6",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
+              "deliveryStatus": "curriculum_ready",
+              "alignment": "AP Precalculus readiness bridge"
             },
             {
-              "id": "B5.2",
-              "title": "Systems by elimination",
+              "id": "R5.2",
+              "title": "AP Preview: Polynomial/Rational Reasoning",
               "subtopics": [
-                "Equivalent equations",
-                "Scaling",
-                "Elimination strategy"
+                "Preview AP 1.5-1.12; zeros; end behavior; asymptotes/holes; transformations."
               ],
               "learningOutcomes": [
-                "Solve systems by elimination",
-                "Choose substitution or elimination strategically"
+                "Connect algebraic structure to graph features; distinguish zeros/asymptotes/holes; apply transformations fluently."
               ],
-              "alignment": "A.REI.5-6",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
+              "deliveryStatus": "curriculum_ready",
+              "alignment": "AP Precalculus readiness bridge"
             },
             {
-              "id": "B5.3",
-              "title": "Special systems",
+              "id": "R5.3",
+              "title": "AP Preview: Exponential/Log and Trig Thinking",
               "subtopics": [
-                "No solution",
-                "Infinitely many solutions",
-                "Dependent equations"
+                "Preview AP 2.1-2.2 and 3.1; additive vs multiplicative change; periodic phenomena."
               ],
               "learningOutcomes": [
-                "Classify systems from algebraic or graphical evidence",
-                "Explain what special solution cases mean"
+                "Recognize the core organizing ideas of AP Units 2 and 3; compare change patterns and periodic behavior."
               ],
-              "alignment": "A.REI.6",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
+              "deliveryStatus": "curriculum_ready",
+              "alignment": "AP Precalculus readiness bridge"
             },
             {
-              "id": "B5.4",
-              "title": "Systems in three variables",
+              "id": "R5.4",
+              "title": "Final AP Readiness Benchmark & Summer Bridge",
               "subtopics": [
-                "Ordered triples",
-                "Sequential elimination",
-                "Verification"
+                "Cumulative benchmark; strand report; personalized bridge; study/technology routines."
               ],
               "learningOutcomes": [
-                "Solve selected systems in three variables",
-                "Verify an ordered-triple solution"
+                "Demonstrate readiness for Grade 11 AP Precalculus; identify any summer priorities; enter the course with a concrete preparation plan."
               ],
-              "alignment": "AP prerequisite / A.REI",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B5.5",
-              "title": "Systems in context",
-              "subtopics": [
-                "Mixtures",
-                "Finance",
-                "Rates",
-                "Geometry"
-              ],
-              "learningOutcomes": [
-                "Construct systems from contextual constraints",
-                "Interpret each solution coordinate with units"
-              ],
-              "alignment": "A.CED.2",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B5.6",
-              "title": "Linear and compound inequalities",
-              "subtopics": [
-                "Interval notation",
-                "AND/OR",
-                "Graphing"
-              ],
-              "learningOutcomes": [
-                "Solve linear and compound inequalities",
-                "Represent solution sets clearly"
-              ],
-              "alignment": "A.REI.3",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B5.7",
-              "title": "Quadratic inequalities",
-              "subtopics": [
-                "Factoring",
-                "Critical values",
-                "Sign charts",
-                "Graphs"
-              ],
-              "learningOutcomes": [
-                "Solve quadratic inequalities using algebraic and graphical reasoning"
-              ],
-              "alignment": "A.REI.3 extension",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B5.8",
-              "title": "Rational inequalities",
-              "subtopics": [
-                "Zeros and exclusions",
-                "Sign charts",
-                "Intervals"
-              ],
-              "learningOutcomes": [
-                "Solve selected rational inequalities",
-                "Distinguish zeros from excluded values"
-              ],
-              "alignment": "A.REI; A.APR",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B5.9",
-              "title": "Rearranging formulae in context",
-              "subtopics": [
-                "Literal equations",
-                "Multi-variable formulas",
-                "Physics/geometry applications"
-              ],
-              "learningOutcomes": [
-                "Solve formulas for a specified variable",
-                "State restrictions and interpret units"
-              ],
-              "alignment": "A.CED.4",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B5.10",
-              "title": "Rational equations and extraneous solutions",
-              "subtopics": [
-                "LCD strategy",
-                "Restrictions",
-                "Checking"
-              ],
-              "learningOutcomes": [
-                "Solve rational equations",
-                "Identify and reject extraneous/excluded solutions"
-              ],
-              "alignment": "A.REI",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B5.11",
-              "title": "Algebra benchmark",
-              "subtopics": [
-                "Systems",
-                "Inequalities",
-                "Literal/rational equations",
-                "Reasoning"
-              ],
-              "learningOutcomes": [
-                "Demonstrate complete prerequisite algebraic solving skills",
-                "Choose methods efficiently and justify restrictions"
-              ],
-              "alignment": "Unit B5 evidence",
-              "pacing": "1-2 periods - Assessment",
-              "deliveryStatus": "curriculum_ready"
-            }
-          ]
-        },
-        {
-          "code": "B6",
-          "title": "Sequences, Exponential Functions, and Logarithms",
-          "pacing": "Weeks 15-18",
-          "intent": "Build the multiplicative-change and inverse-function fluency that students will need immediately in AP Unit 2.",
-          "lessons": [
-            {
-              "id": "B6.1",
-              "title": "Arithmetic sequences",
-              "subtopics": [
-                "Common difference",
-                "Explicit rule",
-                "Contexts"
-              ],
-              "learningOutcomes": [
-                "Write and use arithmetic sequence rules",
-                "Interpret common difference as additive change"
-              ],
-              "alignment": "F.BF.2",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B6.2",
-              "title": "Geometric sequences",
-              "subtopics": [
-                "Common ratio",
-                "Explicit rule",
-                "Contexts"
-              ],
-              "learningOutcomes": [
-                "Write and use geometric sequence rules",
-                "Interpret common ratio as multiplicative change"
-              ],
-              "alignment": "F.BF.2",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B6.3",
-              "title": "Recursive vs. explicit rules",
-              "subtopics": [
-                "Recursion",
-                "Initial condition",
-                "Representation conversion"
-              ],
-              "learningOutcomes": [
-                "Construct recursive and explicit representations",
-                "Explain advantages of each form"
-              ],
-              "alignment": "F.BF.2",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B6.4",
-              "title": "Linear vs. exponential change",
-              "subtopics": [
-                "Differences/ratios",
-                "Tables/graphs",
-                "Continuous extension"
-              ],
-              "learningOutcomes": [
-                "Distinguish linear and exponential models",
-                "Justify model family from patterns of change"
-              ],
-              "alignment": "F.LE.1",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B6.5",
-              "title": "Exponential function features",
-              "subtopics": [
-                "Initial value",
-                "Base",
-                "Asymptote",
-                "Domain/range",
-                "Transformations"
-              ],
-              "learningOutcomes": [
-                "Analyze and graph exponential functions",
-                "Interpret parameters as initial value and growth/decay factors"
-              ],
-              "alignment": "F.LE.2; F.IF.7e",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B6.6",
-              "title": "Growth and decay modeling",
-              "subtopics": [
-                "Percent rate",
-                "Doubling/half-life",
-                "Context restrictions"
-              ],
-              "learningOutcomes": [
-                "Construct and apply growth/decay models",
-                "Interpret predictions and limitations"
-              ],
-              "alignment": "F.LE.2",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B6.7",
-              "title": "Exponential expression manipulation",
-              "subtopics": [
-                "Exponent rules",
-                "Equivalent bases",
-                "Solving by common base"
-              ],
-              "learningOutcomes": [
-                "Rewrite exponential expressions strategically",
-                "Solve equations when a common base can be created"
-              ],
-              "alignment": "A.SSE.3c",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B6.8",
-              "title": "Logarithms as inverse functions",
-              "subtopics": [
-                "Definition",
-                "Exponential-log equivalence",
-                "Graphs",
-                "Domain"
-              ],
-              "learningOutcomes": [
-                "Rewrite between exponential and logarithmic form",
-                "Explain logs as inverses of exponentials"
-              ],
-              "alignment": "F.LE.4",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B6.9",
-              "title": "Logarithm laws",
-              "subtopics": [
-                "Product",
-                "Quotient",
-                "Power",
-                "Change of base"
-              ],
-              "learningOutcomes": [
-                "Expand and condense logarithmic expressions",
-                "Apply change of base with technology"
-              ],
-              "alignment": "F.LE.4",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B6.10",
-              "title": "Exponential and logarithmic equations",
-              "subtopics": [
-                "Taking logs",
-                "Exact/numerical solutions",
-                "Domain checks"
-              ],
-              "learningOutcomes": [
-                "Solve exponential and logarithmic equations",
-                "Check domain restrictions and interpret solutions"
-              ],
-              "alignment": "F.LE.4; A.REI",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B6.11",
-              "title": "Regression and model comparison",
-              "subtopics": [
-                "Exponential/log regression",
-                "Residuals",
-                "Competing models"
-              ],
-              "learningOutcomes": [
-                "Use technology to construct and compare models",
-                "Use residuals and context to justify a choice"
-              ],
-              "alignment": "MP5",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B6.12",
-              "title": "Exponential/logarithmic benchmark",
-              "subtopics": [
-                "No-calculator exact work",
-                "Calculator modeling",
-                "Inverse reasoning"
-              ],
-              "learningOutcomes": [
-                "Demonstrate the Unit 2 prerequisite profile expected before AP Precalculus",
-                "Integrate symbolic, graphical, and contextual reasoning"
-              ],
-              "alignment": "Unit B6 evidence",
-              "pacing": "1-2 periods - Assessment",
-              "deliveryStatus": "curriculum_ready"
-            }
-          ]
-        },
-        {
-          "code": "B7",
-          "title": "Advanced Polynomial Functions",
-          "pacing": "Weeks 19-21",
-          "intent": "Finish the advanced polynomial tools from the Pre-AP/Algebra 2 checklist, including division, theorems, complex zeros, and graph behavior.",
-          "lessons": [
-            {
-              "id": "B7.1",
-              "title": "Polynomial long division",
-              "subtopics": [
-                "Division algorithm",
-                "Quotient/remainder",
-                "Checking"
-              ],
-              "learningOutcomes": [
-                "Divide polynomials using long division",
-                "Write the result in quotient-remainder form"
-              ],
-              "alignment": "A.APR.6",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B7.2",
-              "title": "Synthetic division",
-              "subtopics": [
-                "Linear divisors",
-                "Synthetic setup",
-                "Efficiency"
-              ],
-              "learningOutcomes": [
-                "Use synthetic division accurately",
-                "Explain when synthetic division is applicable"
-              ],
-              "alignment": "A.APR.6",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B7.3",
-              "title": "Remainder and factor theorems",
-              "subtopics": [
-                "P(a)",
-                "Remainders",
-                "Testing factors"
-              ],
-              "learningOutcomes": [
-                "Apply the remainder theorem to evaluate a polynomial",
-                "Use the factor theorem to test candidate factors"
-              ],
-              "alignment": "A.APR.2",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B7.4",
-              "title": "Complex zeros and conjugates",
-              "subtopics": [
-                "Complex roots",
-                "Conjugate root theorem",
-                "Factoring over C"
-              ],
-              "learningOutcomes": [
-                "Determine missing complex zeros of real-coefficient polynomials",
-                "Build factors from complex zeros"
-              ],
-              "alignment": "N.CN; A.APR",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B7.5",
-              "title": "Multiplicity and polynomial graphs",
-              "subtopics": [
-                "Cross/touch behavior",
-                "End behavior",
-                "Extrema",
-                "Graph sketching"
-              ],
-              "learningOutcomes": [
-                "Sketch polynomial graphs from zeros, multiplicities, and end behavior",
-                "Check reasonableness using technology"
-              ],
-              "alignment": "F.IF.7c",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B7.6",
-              "title": "Polynomial inequalities",
-              "subtopics": [
-                "Zeros",
-                "Sign intervals",
-                "Multiplicity effects"
-              ],
-              "learningOutcomes": [
-                "Solve polynomial inequalities using sign analysis",
-                "Represent solutions in interval notation"
-              ],
-              "alignment": "A.REI extension",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B7.7",
-              "title": "Binomial theorem and equivalent forms",
-              "subtopics": [
-                "Binomial coefficients",
-                "Expansion",
-                "Strategic form selection"
-              ],
-              "learningOutcomes": [
-                "Expand selected powers of binomials efficiently",
-                "Choose an equivalent polynomial form based on purpose"
-              ],
-              "alignment": "A.APR; A.SSE",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B7.8",
-              "title": "Advanced polynomial assessment",
-              "subtopics": [
-                "Division/theorems",
-                "Complex zeros",
-                "Graph behavior",
-                "Inequalities"
-              ],
-              "learningOutcomes": [
-                "Demonstrate advanced polynomial readiness for AP Unit 1",
-                "Explain connections among factors, zeros, multiplicity, and graph behavior"
-              ],
-              "alignment": "Unit B7 evidence",
-              "pacing": "1-2 periods - Assessment",
-              "deliveryStatus": "curriculum_ready"
-            }
-          ]
-        },
-        {
-          "code": "B8",
-          "title": "Rational Functions and Algebraic Fractions",
-          "pacing": "Weeks 22-24",
-          "intent": "Build a complete rational-function foundation so students enter Grade 11 AP able to focus on covariation and modeling rather than basic algebra.",
-          "lessons": [
-            {
-              "id": "B8.1",
-              "title": "Rational expression structure and restrictions",
-              "subtopics": [
-                "Factoring",
-                "Excluded values",
-                "Equivalent forms"
-              ],
-              "learningOutcomes": [
-                "Simplify rational expressions without losing original restrictions",
-                "Identify where a rational expression is undefined"
-              ],
-              "alignment": "A.APR.6",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B8.2",
-              "title": "Operations on algebraic fractions",
-              "subtopics": [
-                "Multiply/divide",
-                "Add/subtract",
-                "LCD",
-                "Complex fractions preview"
-              ],
-              "learningOutcomes": [
-                "Perform all four operations with rational expressions",
-                "Simplify and state restrictions"
-              ],
-              "alignment": "A.APR.6",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B8.3",
-              "title": "Zeros, holes, and vertical asymptotes",
-              "subtopics": [
-                "Factor cancellation",
-                "Numerator/denominator zeros",
-                "Multiplicity"
-              ],
-              "learningOutcomes": [
-                "Determine zeros, holes, and vertical asymptotes",
-                "Explain each feature from factored form"
-              ],
-              "alignment": "A.REI.11 / AP bridge",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B8.4",
-              "title": "Rational end behavior",
-              "subtopics": [
-                "Degree comparison",
-                "Horizontal asymptotes",
-                "Slant asymptotes",
-                "Long division"
-              ],
-              "learningOutcomes": [
-                "Determine horizontal or slant end behavior",
-                "Use division to identify oblique asymptotes when appropriate"
-              ],
-              "alignment": "A.APR.6; F.IF",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B8.5",
-              "title": "Rational equations and inequalities",
-              "subtopics": [
-                "Restrictions",
-                "Extraneous solutions",
-                "Sign charts"
-              ],
-              "learningOutcomes": [
-                "Solve rational equations and inequalities",
-                "Verify solutions against excluded values"
-              ],
-              "alignment": "A.REI",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B8.6",
-              "title": "Transformations of rational functions",
-              "subtopics": [
-                "Parent reciprocal functions",
-                "Translations",
-                "Stretches/reflections",
-                "Asymptote movement"
-              ],
-              "learningOutcomes": [
-                "Graph transformed rational functions",
-                "Predict asymptote movement from parameters"
-              ],
-              "alignment": "F.BF.3",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B8.7",
-              "title": "Rational models in context",
-              "subtopics": [
-                "Inverse variation",
-                "Rate/work contexts",
-                "Domain restrictions"
-              ],
-              "learningOutcomes": [
-                "Construct or interpret a rational model",
-                "Explain contextual restrictions and asymptotic behavior"
-              ],
-              "alignment": "MP4 / AP bridge",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B8.8",
-              "title": "Rational-function benchmark",
-              "subtopics": [
-                "Symbolic fluency",
-                "Graph analysis",
-                "Modeling",
-                "Technology"
-              ],
-              "learningOutcomes": [
-                "Demonstrate the rational-function foundation required for AP Unit 1",
-                "Connect algebraic structure to all major graph features"
-              ],
-              "alignment": "Unit B8 evidence",
-              "pacing": "1-2 periods - Assessment",
-              "deliveryStatus": "curriculum_ready"
-            }
-          ]
-        },
-        {
-          "code": "B9",
-          "title": "Trigonometry Foundations, Graphs, Identities, and Equations",
-          "pacing": "Weeks 25-30",
-          "intent": "Complete both the official right-triangle prerequisite and the additional trigonometric fluency that will make AP Unit 3 manageable in Grade 11.",
-          "lessons": [
-            {
-              "id": "B9.1",
-              "title": "Similarity and Pythagoras review",
-              "subtopics": [
-                "Similar triangles",
-                "Scale factor",
-                "2D/3D Pythagoras"
-              ],
-              "learningOutcomes": [
-                "Use similarity and Pythagoras accurately in multi-step problems"
-              ],
-              "alignment": "G.SRT.8",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B9.2",
-              "title": "Right-triangle trigonometric ratios",
-              "subtopics": [
-                "SOHCAHTOA",
-                "Reference angle",
-                "Exact/approximate values"
-              ],
-              "learningOutcomes": [
-                "Select and use sine, cosine, or tangent for a right triangle"
-              ],
-              "alignment": "G.SRT.6-8",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B9.3",
-              "title": "Solving right triangles",
-              "subtopics": [
-                "Missing sides/angles",
-                "Inverse trig",
-                "Precision"
-              ],
-              "learningOutcomes": [
-                "Solve complete right triangles",
-                "Report and interpret results with appropriate precision"
-              ],
-              "alignment": "G.SRT.8",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B9.4",
-              "title": "Elevation, depression, and 3D applications",
-              "subtopics": [
-                "Diagram construction",
-                "Line of sight",
-                "Composite triangles"
-              ],
-              "learningOutcomes": [
-                "Model and solve contextual trigonometry problems",
-                "Justify the geometry used"
-              ],
-              "alignment": "G.SRT.8",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B9.5",
-              "title": "Radian measure",
-              "subtopics": [
-                "Degree-radian conversion",
-                "Arc interpretation",
-                "Coterminal angles"
-              ],
-              "learningOutcomes": [
-                "Convert angle measures",
-                "Interpret radians geometrically"
-              ],
-              "alignment": "F.TF.1",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B9.6",
-              "title": "Unit circle coordinates",
-              "subtopics": [
-                "(cos theta, sin theta)",
-                "Quadrants",
-                "Reference angles"
-              ],
-              "learningOutcomes": [
-                "Use the unit circle to determine sine and cosine values",
-                "Identify signs by quadrant"
-              ],
-              "alignment": "F.TF.2",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B9.7",
-              "title": "Exact trigonometric values",
-              "subtopics": [
-                "Special triangles",
-                "Key angles",
-                "Tangent values"
-              ],
-              "learningOutcomes": [
-                "Determine exact trig values for standard angles",
-                "Use symmetry/reference angles to extend exact values"
-              ],
-              "alignment": "F.TF.3",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B9.8",
-              "title": "Sine and cosine graphs",
-              "subtopics": [
-                "Amplitude",
-                "Period",
-                "Midline",
-                "Key points"
-              ],
-              "learningOutcomes": [
-                "Sketch and analyze sine/cosine graphs",
-                "Connect graph features to function parameters"
-              ],
-              "alignment": "F.TF.5",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B9.9",
-              "title": "Tangent graph",
-              "subtopics": [
-                "Period",
-                "Zeros",
-                "Vertical asymptotes",
-                "Unit-circle connection"
-              ],
-              "learningOutcomes": [
-                "Sketch tangent and identify key characteristics",
-                "Explain vertical asymptotes using undefined tangent values"
-              ],
-              "alignment": "F.TF.5",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B9.10",
-              "title": "Trigonometric transformations",
-              "subtopics": [
-                "Phase shift",
-                "Vertical shift",
-                "Stretch/compression",
-                "Reflection"
-              ],
-              "learningOutcomes": [
-                "Graph transformed trigonometric functions",
-                "Write a function from specified graph features"
-              ],
-              "alignment": "F.BF.3; F.TF",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B9.11",
-              "title": "Basic trigonometric identities",
-              "subtopics": [
-                "Pythagorean identity",
-                "Reciprocal/quotient identities",
-                "Equivalent forms"
-              ],
-              "learningOutcomes": [
-                "Simplify expressions using fundamental identities",
-                "Verify simple identities analytically"
-              ],
-              "alignment": "F.TF.8",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B9.12",
-              "title": "Trigonometric equations",
-              "subtopics": [
-                "Exact solutions",
-                "Restricted intervals",
-                "Factoring/identity use"
-              ],
-              "learningOutcomes": [
-                "Solve selected trigonometric equations",
-                "State all solutions on a specified interval"
-              ],
-              "alignment": "F.TF",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B9.13",
-              "title": "Periodic modeling",
-              "subtopics": [
-                "Amplitude/period/midline from context",
-                "Sinusoidal model",
-                "Regression preview"
-              ],
-              "learningOutcomes": [
-                "Construct and interpret a simple sinusoidal model",
-                "Use model parameters to answer contextual questions"
-              ],
-              "alignment": "F.TF; MP5",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B9.14",
-              "title": "Inverse trigonometric functions",
-              "subtopics": [
-                "Principal values",
-                "Restricted domains",
-                "Calculator evaluation"
-              ],
-              "learningOutcomes": [
-                "Use inverse trig functions to find angles",
-                "Interpret principal-value restrictions"
-              ],
-              "alignment": "F.TF / AP bridge",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B9.15",
-              "title": "Trigonometry benchmark",
-              "subtopics": [
-                "Right triangle",
-                "Unit circle",
-                "Graphs",
-                "Identities/equations",
-                "Modeling"
-              ],
-              "learningOutcomes": [
-                "Demonstrate the trigonometric readiness needed for AP Unit 3",
-                "Integrate exact, graphical, and contextual reasoning"
-              ],
-              "alignment": "Unit B9 evidence",
-              "pacing": "1-2 periods - Assessment",
-              "deliveryStatus": "curriculum_ready"
-            }
-          ]
-        },
-        {
-          "code": "B10",
-          "title": "Advanced Functions and Model Comparison",
-          "pacing": "Weeks 31-33",
-          "intent": "Integrate function operations, transformations, regression, residuals, and multiple representations before the final AP bridge.",
-          "lessons": [
-            {
-              "id": "B10.1",
-              "title": "Composition at AP-readiness depth",
-              "subtopics": [
-                "Nested functions",
-                "Domains",
-                "Decomposition",
-                "Context chains"
-              ],
-              "learningOutcomes": [
-                "Evaluate and construct compositions",
-                "Determine domain restrictions",
-                "Decompose a function into meaningful components"
-              ],
-              "alignment": "F.BF / AP bridge",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B10.2",
-              "title": "Inverse functions with restrictions",
-              "subtopics": [
-                "One-to-one",
-                "Restricted domains",
-                "Verification",
-                "Context"
-              ],
-              "learningOutcomes": [
-                "Find and verify inverse functions",
-                "Restrict a domain to obtain invertibility when appropriate"
-              ],
-              "alignment": "F.BF.4",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B10.3",
-              "title": "Piecewise functions and changing rules",
-              "subtopics": [
-                "Boundary behavior",
-                "Multiple formulas",
-                "Contextual tariffs/rates"
-              ],
-              "learningOutcomes": [
-                "Construct, evaluate, and graph piecewise models",
-                "Interpret changes in behavior across intervals"
-              ],
-              "alignment": "F.IF.7b",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B10.4",
-              "title": "Transformations across function families",
-              "subtopics": [
-                "Polynomial",
-                "Rational",
-                "Exponential",
-                "Logarithmic",
-                "Trigonometric"
-              ],
-              "learningOutcomes": [
-                "Apply a common transformation language across major function families",
-                "Recover parameters from graph behavior"
-              ],
-              "alignment": "F.BF.3",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B10.5",
-              "title": "Regression across model families",
-              "subtopics": [
-                "Linear/quadratic/polynomial",
-                "Exponential/logarithmic",
-                "Sinusoidal"
-              ],
-              "learningOutcomes": [
-                "Fit multiple candidate models using technology",
-                "Compare parameter meaning across families"
-              ],
-              "alignment": "MP5",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B10.6",
-              "title": "Residuals, assumptions, and model limitations",
-              "subtopics": [
-                "Residual plots",
-                "Over/underprediction",
-                "Domain restrictions",
-                "Extrapolation"
-              ],
-              "learningOutcomes": [
-                "Use residuals to validate models",
-                "State assumptions and limitations precisely"
-              ],
-              "alignment": "AP Practices 2-3 bridge",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B10.7",
-              "title": "Multiple-representation reasoning",
-              "subtopics": [
-                "Graph-table-formula-context",
-                "Rates and behavior",
-                "Written justification"
-              ],
-              "learningOutcomes": [
-                "Translate between representations efficiently",
-                "Support conclusions using evidence from the most useful representation"
-              ],
-              "alignment": "AP Practices 2-3 bridge",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B10.8",
-              "title": "Advanced-functions benchmark",
-              "subtopics": [
-                "Composition/inverse",
-                "Transformations",
-                "Regression",
-                "Reasoning"
-              ],
-              "learningOutcomes": [
-                "Demonstrate integrated function fluency before the final AP bridge"
-              ],
-              "alignment": "Unit B10 evidence",
-              "pacing": "1-2 periods - Assessment",
-              "deliveryStatus": "curriculum_ready"
-            }
-          ]
-        },
-        {
-          "code": "B11",
-          "title": "AP Precalculus Bridge Studio and Final Grade 11 Readiness",
-          "pacing": "Weeks 34-36",
-          "intent": "Convert prerequisite mastery into AP-style performance: covariation, rates, model choice, representation translation, technology judgment, and written reasoning.",
-          "lessons": [
-            {
-              "id": "B11.1",
-              "title": "AP bridge: change in tandem and rates",
-              "subtopics": [
-                "Covariation",
-                "Average rate of change",
-                "Local rate reasoning",
-                "Units"
-              ],
-              "learningOutcomes": [
-                "Describe how quantities change together",
-                "Compute and interpret rates using AP-style representations"
-              ],
-              "alignment": "AP 1.1-1.3 bridge",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B11.2",
-              "title": "AP bridge: polynomial and rational behavior",
-              "subtopics": [
-                "Zeros/multiplicity",
-                "End behavior",
-                "Asymptotes/holes",
-                "Equivalent forms"
-              ],
-              "learningOutcomes": [
-                "Analyze polynomial/rational functions at AP-entry depth",
-                "Select equivalent forms that reveal key behavior"
-              ],
-              "alignment": "AP Unit 1 bridge",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B11.3",
-              "title": "AP bridge: exponential/logarithmic modeling",
-              "subtopics": [
-                "Additive vs. multiplicative change",
-                "Inverse relationship",
-                "Regression",
-                "Residuals"
-              ],
-              "learningOutcomes": [
-                "Choose, construct, and validate exponential/log models",
-                "Connect exponential and logarithmic representations"
-              ],
-              "alignment": "AP Unit 2 bridge",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B11.4",
-              "title": "AP bridge: periodic modeling",
-              "subtopics": [
-                "Radians/unit circle",
-                "Sinusoidal graphs",
-                "Parameter interpretation",
-                "Modeling"
-              ],
-              "learningOutcomes": [
-                "Construct and interpret a sinusoidal model",
-                "Use exact and technology-supported trig reasoning appropriately"
-              ],
-              "alignment": "AP Unit 3 bridge",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B11.5",
-              "title": "Paired calculator/no-calculator performance",
-              "subtopics": [
-                "Symbolic fluency",
-                "Graph/table tools",
-                "Roots/intersections",
-                "Regression"
-              ],
-              "learningOutcomes": [
-                "Decide when technology is appropriate",
-                "Complete accessible algebraic tasks without unnecessary technology",
-                "Interpret calculator output with mathematical language"
-              ],
-              "alignment": "AP technology expectations",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B11.6",
-              "title": "AP-style multi-part communication",
-              "subtopics": [
-                "Precise notation",
-                "Justification",
-                "Assumptions",
-                "Contextual conclusions"
-              ],
-              "learningOutcomes": [
-                "Write complete multi-part responses",
-                "Support conclusions with logical rationale or relevant data"
-              ],
-              "alignment": "AP Practice 3",
-              "pacing": "1-2 periods",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B11.7",
-              "title": "Final AP-readiness examination",
-              "subtopics": [
-                "Cumulative prerequisites",
-                "Multiple representations",
-                "Calculator/no-calculator",
-                "Modeling"
-              ],
-              "learningOutcomes": [
-                "Demonstrate a complete Grade 11 AP Precalculus entry profile",
-                "Identify any final summer-repair needs"
-              ],
-              "alignment": "Local readiness protocol",
-              "pacing": "2 periods - Summative",
-              "deliveryStatus": "curriculum_ready"
-            },
-            {
-              "id": "B11.8",
-              "title": "Capstone conference and transition plan",
-              "subtopics": [
-                "Portfolio evidence",
-                "Goal setting",
-                "Summer bridge",
-                "AP Week 1 preparation"
-              ],
-              "learningOutcomes": [
-                "Explain readiness using a portfolio of evidence",
-                "Create a focused transition plan for Grade 11 AP Precalculus"
-              ],
-              "alignment": "Local pathway protocol",
-              "pacing": "1 period - Conference",
-              "deliveryStatus": "curriculum_ready"
+              "deliveryStatus": "curriculum_ready",
+              "alignment": "AP Precalculus readiness bridge"
             }
           ]
         }
       ],
-      "unitCount": 12,
-      "lessonCount": 110
+      "requiredPackages": [
+        {
+          "id": "R1.G",
+          "title": "Gateway 1 - AP Transition Assessment",
+          "subtopics": [
+            "Common core + AP-extension items; non-calculator algebra; representation translation; written rationale."
+          ],
+          "learningOutcomes": [
+            "Demonstrate readiness to enter AP Unit 2 pace; identify any catch-up requirements; produce clear mathematical justification."
+          ],
+          "deliveryStatus": "curriculum_ready",
+          "alignment": "AP Precalculus readiness bridge",
+          "packageType": "transfer-gateway assessment",
+          "unit": "R1"
+        },
+        {
+          "id": "R2.G",
+          "title": "Gateway 2 - AP Transition Assessment",
+          "subtopics": [
+            "Cumulative R1-R2 + AP-extension items; composition/inverses; modeling; written communication."
+          ],
+          "learningOutcomes": [
+            "Demonstrate exceptional readiness for a midyear AP transfer or identify the exact strands to strengthen before Grade 11 AP."
+          ],
+          "deliveryStatus": "curriculum_ready",
+          "alignment": "AP Precalculus readiness bridge",
+          "packageType": "transfer-gateway assessment",
+          "unit": "R2"
+        }
+      ],
+      "unitCount": 6,
+      "lessonCount": 39
     }
   }
 }
