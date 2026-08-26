@@ -1,0 +1,864 @@
+{
+  "errors": [],
+  "warnings": [
+    "g10-ap-precalculus-path-a 1.1: quality signals missing: learning objective",
+    "g10-ap-precalculus-path-a 1.3: quality signals missing: learning objective",
+    "g10-ap-precalculus-path-a 1.4: quality signals missing: learning objective",
+    "g10-ap-precalculus-path-a 1.5: quality signals missing: learning objective",
+    "g10-ap-precalculus-path-a 1.6: quality signals missing: learning objective",
+    "g10-ap-precalculus-path-a 1.7: quality signals missing: learning objective",
+    "g10-ap-precalculus-path-a 1.8: quality signals missing: learning objective",
+    "g10-ap-precalculus-path-a 1.9: quality signals missing: learning objective",
+    "g10-ap-precalculus-path-a 1.10: quality signals missing: learning objective",
+    "g10-ap-precalculus-path-a 1.11: quality signals missing: learning objective",
+    "g10-ap-precalculus-path-a 1.12: quality signals missing: learning objective",
+    "g10-ap-precalculus-path-a 1.13: quality signals missing: learning objective",
+    "g10-ap-precalculus-path-a 1.14: quality signals missing: learning objective",
+    "g10-ap-precalculus-path-a 3.1: quality signals missing: worked example",
+    "g10-ap-precalculus-path-a 3.2: quality signals missing: worked example",
+    "g10-ap-precalculus-path-a 3.3: quality signals missing: worked example",
+    "g10-ap-precalculus-path-a 3.4: quality signals missing: worked example",
+    "g10-ap-precalculus-path-a 3.5: quality signals missing: worked example",
+    "g10-ap-precalculus-path-a 3.6: quality signals missing: worked example",
+    "g10-ap-precalculus-path-a 3.7: quality signals missing: worked example",
+    "g10-ap-precalculus-path-a 3.8: quality signals missing: worked example",
+    "g10-ap-precalculus-path-a 3.9: quality signals missing: worked example",
+    "g10-ap-precalculus-path-a 3.10: quality signals missing: worked example",
+    "g10-ap-precalculus-path-a 3.11: quality signals missing: worked example",
+    "g10-ap-precalculus-path-a 3.12: quality signals missing: worked example",
+    "g10-ap-precalculus-path-a 3.13: quality signals missing: worked example",
+    "g10-ap-precalculus-path-a 3.14: quality signals missing: worked example",
+    "AP core `lessons/ap-precalculus/unit-1/AP_Precalculus_1.10_Rational_Functions_and_Holes_ECHS_Refined.html`: missing automated quality signals: learning objective",
+    "AP core `lessons/ap-precalculus/unit-1/AP_Precalculus_1.11_Equivalent_Representations_of_Polynomial_and_Rational_Expressions_ECHS_Refined.html`: missing automated quality signals: learning objective",
+    "AP core `lessons/ap-precalculus/unit-1/AP_Precalculus_1.12_Transformations_of_Functions_ECHS_Refined.html`: missing automated quality signals: learning objective",
+    "AP core `lessons/ap-precalculus/unit-1/AP_Precalculus_1.13_Function_Model_Selection_and_Assumption_Articulation_ECHS_Refined.html`: missing automated quality signals: learning objective",
+    "AP core `lessons/ap-precalculus/unit-1/AP_Precalculus_1.14_Function_Model_Construction_and_Application_ECHS_Refined.html`: missing automated quality signals: learning objective",
+    "AP core `lessons/ap-precalculus/unit-1/AP_Precalculus_1.1_Change_in_Tandem_ECHS_Refined.html`: missing automated quality signals: learning objective",
+    "AP core `lessons/ap-precalculus/unit-1/AP_Precalculus_1.3_Rates_of_Change_in_Linear_and_Quadratic_Functions_ECHS_Refined.html`: missing automated quality signals: learning objective",
+    "AP core `lessons/ap-precalculus/unit-1/AP_Precalculus_1.4_Polynomial_Functions_and_Rates_of_Change_ECHS_Refined.html`: missing automated quality signals: learning objective",
+    "AP core `lessons/ap-precalculus/unit-1/AP_Precalculus_1.5_Polynomial_Functions_and_Complex_Zeros_ECHS_Refined.html`: missing automated quality signals: learning objective",
+    "AP core `lessons/ap-precalculus/unit-1/AP_Precalculus_1.6_Polynomial_Functions_and_End_Behavior_ECHS_Refined.html`: missing automated quality signals: learning objective",
+    "AP core `lessons/ap-precalculus/unit-1/AP_Precalculus_1.7_Rational_Functions_and_End_Behavior_ECHS_Refined.html`: missing automated quality signals: learning objective",
+    "AP core `lessons/ap-precalculus/unit-1/AP_Precalculus_1.8_Rational_Functions_and_Zeros_ECHS_Refined.html`: missing automated quality signals: learning objective",
+    "AP core `lessons/ap-precalculus/unit-1/AP_Precalculus_1.9_Rational_Functions_and_Vertical_Asymptotes_ECHS_Refined.html`: missing automated quality signals: learning objective",
+    "AP core `lessons/ap-precalculus/unit-3/AP_Precalculus_3.10_Trigonometric_Equations_and_Inequalities_ECHS_Refined.html`: missing automated quality signals: worked example",
+    "AP core `lessons/ap-precalculus/unit-3/AP_Precalculus_3.11_The_Secant_Cosecant_and_Cotangent_Functions_ECHS_Refined.html`: missing automated quality signals: worked example",
+    "AP core `lessons/ap-precalculus/unit-3/AP_Precalculus_3.12_Equivalent_Representations_of_Trigonometric_Functions_ECHS_Refined.html`: missing automated quality signals: worked example",
+    "AP core `lessons/ap-precalculus/unit-3/AP_Precalculus_3.13_Trigonometry_and_Polar_Coordinates_ECHS_Refined.html`: missing automated quality signals: worked example",
+    "AP core `lessons/ap-precalculus/unit-3/AP_Precalculus_3.14_Polar_Function_Graphs_ECHS_Refined.html`: missing automated quality signals: worked example",
+    "AP core `lessons/ap-precalculus/unit-3/AP_Precalculus_3.1_Periodic_Phenomena_ECHS_Refined.html`: missing automated quality signals: worked example",
+    "AP core `lessons/ap-precalculus/unit-3/AP_Precalculus_3.2_Sine_Cosine_and_Tangent_ECHS_Refined.html`: missing automated quality signals: worked example",
+    "AP core `lessons/ap-precalculus/unit-3/AP_Precalculus_3.3_Sine_and_Cosine_Function_Values_ECHS_Refined.html`: missing automated quality signals: worked example",
+    "AP core `lessons/ap-precalculus/unit-3/AP_Precalculus_3.4_Sine_and_Cosine_Function_Graphs_ECHS_Refined.html`: missing automated quality signals: worked example",
+    "AP core `lessons/ap-precalculus/unit-3/AP_Precalculus_3.5_Sinusoidal_Functions_ECHS_Refined.html`: missing automated quality signals: worked example",
+    "AP core `lessons/ap-precalculus/unit-3/AP_Precalculus_3.6_Sinusoidal_Function_Transformations_ECHS_Refined.html`: missing automated quality signals: worked example",
+    "AP core `lessons/ap-precalculus/unit-3/AP_Precalculus_3.7_Sinusoidal_Function_Context_and_Data_Modeling_ECHS_Refined.html`: missing automated quality signals: worked example",
+    "AP core `lessons/ap-precalculus/unit-3/AP_Precalculus_3.8_The_Tangent_Function_ECHS_Refined.html`: missing automated quality signals: worked example",
+    "AP core `lessons/ap-precalculus/unit-3/AP_Precalculus_3.9_Inverse_Trigonometric_Functions_ECHS_Refined.html`: missing automated quality signals: worked example"
+  ],
+  "queue": [
+    {
+      "kind": "lesson",
+      "pathway": "g9-ap-precalculus-readiness",
+      "unit": "Unit 0",
+      "lesson": "0.1",
+      "title": "Entry Diagnostic & Mathematical Profile",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g9-ap-precalculus-readiness",
+      "unit": "Unit 0",
+      "lesson": "0.2",
+      "title": "Number and Expression Fluency",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g9-ap-precalculus-readiness",
+      "unit": "Unit 0",
+      "lesson": "0.3",
+      "title": "Exponent and Equation Repair",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g9-ap-precalculus-readiness",
+      "unit": "Unit 1",
+      "lesson": "1.1",
+      "title": "Algebraic Expressions & Multi-Step Equations",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g9-ap-precalculus-readiness",
+      "unit": "Unit 1",
+      "lesson": "1.2",
+      "title": "Literal Equations & Formula Rearrangement",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g9-ap-precalculus-readiness",
+      "unit": "Unit 1",
+      "lesson": "1.3",
+      "title": "Slope and Rate of Change",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g9-ap-precalculus-readiness",
+      "unit": "Unit 1",
+      "lesson": "1.4",
+      "title": "Representations of Linear Functions",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g9-ap-precalculus-readiness",
+      "unit": "Unit 1",
+      "lesson": "1.5",
+      "title": "Linear Inequalities",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g9-ap-precalculus-readiness",
+      "unit": "Unit 1",
+      "lesson": "1.6",
+      "title": "Linear Modeling & Residual Thinking",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g9-ap-precalculus-readiness",
+      "unit": "Unit 2",
+      "lesson": "2.1",
+      "title": "Systems by Graphing and Substitution",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g9-ap-precalculus-readiness",
+      "unit": "Unit 2",
+      "lesson": "2.2",
+      "title": "Systems by Elimination",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g9-ap-precalculus-readiness",
+      "unit": "Unit 2",
+      "lesson": "2.3",
+      "title": "Systems in Three Variables",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g9-ap-precalculus-readiness",
+      "unit": "Unit 2",
+      "lesson": "2.4",
+      "title": "Systems of Inequalities",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g9-ap-precalculus-readiness",
+      "unit": "Unit 2",
+      "lesson": "2.5",
+      "title": "Absolute Value Equations & Inequalities",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g9-ap-precalculus-readiness",
+      "unit": "Unit 2",
+      "lesson": "2.6",
+      "title": "Piecewise-Defined Functions",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g9-ap-precalculus-readiness",
+      "unit": "Unit 3",
+      "lesson": "3.1",
+      "title": "Relations, Functions & Function Notation",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g9-ap-precalculus-readiness",
+      "unit": "Unit 3",
+      "lesson": "3.2",
+      "title": "Domain, Range & Interval Notation",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g9-ap-precalculus-readiness",
+      "unit": "Unit 3",
+      "lesson": "3.3",
+      "title": "Increasing, Decreasing, Extrema & Intercepts",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g9-ap-precalculus-readiness",
+      "unit": "Unit 3",
+      "lesson": "3.4",
+      "title": "Transformations of Parent Functions",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g9-ap-precalculus-readiness",
+      "unit": "Unit 3",
+      "lesson": "3.5",
+      "title": "Average Rate of Change",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g9-ap-precalculus-readiness",
+      "unit": "Unit 3",
+      "lesson": "3.6",
+      "title": "Composition and Inverse Concepts",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g9-ap-precalculus-readiness",
+      "unit": "Unit 4",
+      "lesson": "4.1",
+      "title": "Quadratic Patterns & Graph Features",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g9-ap-precalculus-readiness",
+      "unit": "Unit 4",
+      "lesson": "4.2",
+      "title": "Three Forms of a Quadratic",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g9-ap-precalculus-readiness",
+      "unit": "Unit 4",
+      "lesson": "4.3",
+      "title": "Factoring Quadratics",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g9-ap-precalculus-readiness",
+      "unit": "Unit 4",
+      "lesson": "4.4",
+      "title": "Completing the Square",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g9-ap-precalculus-readiness",
+      "unit": "Unit 4",
+      "lesson": "4.5",
+      "title": "Quadratic Formula, Discriminant & Complex Numbers",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g9-ap-precalculus-readiness",
+      "unit": "Unit 4",
+      "lesson": "4.6",
+      "title": "Quadratic Inequalities",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g9-ap-precalculus-readiness",
+      "unit": "Unit 4",
+      "lesson": "4.7",
+      "title": "Quadratic Modeling & Optimization",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g9-ap-precalculus-readiness",
+      "unit": "Unit 5",
+      "lesson": "5.1",
+      "title": "Polynomial Operations",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g9-ap-precalculus-readiness",
+      "unit": "Unit 5",
+      "lesson": "5.2",
+      "title": "Factoring Beyond Quadratics",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g9-ap-precalculus-readiness",
+      "unit": "Unit 5",
+      "lesson": "5.3",
+      "title": "Zeros, Factors & Multiplicity",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g9-ap-precalculus-readiness",
+      "unit": "Unit 5",
+      "lesson": "5.4",
+      "title": "Polynomial Division & Theorems",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g9-ap-precalculus-readiness",
+      "unit": "Unit 5",
+      "lesson": "5.5",
+      "title": "Polynomial Graphs & End Behavior",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g9-ap-precalculus-readiness",
+      "unit": "Unit 6",
+      "lesson": "6.1",
+      "title": "Rational Expressions & Restrictions",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g9-ap-precalculus-readiness",
+      "unit": "Unit 6",
+      "lesson": "6.2",
+      "title": "Rational Equations",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g9-ap-precalculus-readiness",
+      "unit": "Unit 6",
+      "lesson": "6.3",
+      "title": "Radicals & Rational Exponents",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g9-ap-precalculus-readiness",
+      "unit": "Unit 6",
+      "lesson": "6.4",
+      "title": "Radical Equations",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g9-ap-precalculus-readiness",
+      "unit": "Unit 7",
+      "lesson": "7.1",
+      "title": "Arithmetic and Geometric Sequences",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g9-ap-precalculus-readiness",
+      "unit": "Unit 7",
+      "lesson": "7.2",
+      "title": "Exponential Functions",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g9-ap-precalculus-readiness",
+      "unit": "Unit 7",
+      "lesson": "7.3",
+      "title": "Equivalent Exponential Forms",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g9-ap-precalculus-readiness",
+      "unit": "Unit 7",
+      "lesson": "7.4",
+      "title": "Growth/Decay Modeling & Family Comparison",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g9-ap-precalculus-readiness",
+      "unit": "Unit 8",
+      "lesson": "8.1",
+      "title": "Right Triangles, Similarity & Pythagorean Relationships",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g9-ap-precalculus-readiness",
+      "unit": "Unit 8",
+      "lesson": "8.2",
+      "title": "Sine, Cosine & Tangent Ratios",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g9-ap-precalculus-readiness",
+      "unit": "Unit 8",
+      "lesson": "8.3",
+      "title": "Inverse Trigonometry",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g9-ap-precalculus-readiness",
+      "unit": "Unit 8",
+      "lesson": "8.4",
+      "title": "Applied Trigonometry",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g9-ap-precalculus-readiness",
+      "unit": "Unit 9",
+      "lesson": "9.1",
+      "title": "Function Toolkit Synthesis",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g9-ap-precalculus-readiness",
+      "unit": "Unit 9",
+      "lesson": "9.2",
+      "title": "Model Selection Across Families",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g9-ap-precalculus-readiness",
+      "unit": "Unit 9",
+      "lesson": "9.3",
+      "title": "AP-Style Multiple Representations",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g9-ap-precalculus-readiness",
+      "unit": "Unit 9",
+      "lesson": "9.4",
+      "title": "Cumulative AP Readiness Capstone",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g10-ap-precalculus-path-a",
+      "unit": "Calculus Bridge",
+      "lesson": "E.1",
+      "title": "Parametric Functions",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g10-ap-precalculus-path-a",
+      "unit": "Calculus Bridge",
+      "lesson": "E.2",
+      "title": "Planar Motion with Parametric Functions",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g10-ap-precalculus-path-a",
+      "unit": "Calculus Bridge",
+      "lesson": "E.3",
+      "title": "Implicit Relations and Function Restrictions",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g10-ap-precalculus-path-a",
+      "unit": "Calculus Bridge",
+      "lesson": "E.4",
+      "title": "Vector-Valued Function Preview",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "course package",
+      "pathway": "g10-ap-precalculus-path-a",
+      "unit": "Course level",
+      "lesson": "AP-REVIEW",
+      "title": "Cumulative AP Review & Exam Preparation",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g10-algebra2-ap-readiness-path-b",
+      "unit": "R0",
+      "lesson": "R0.1",
+      "title": "Common Entry Diagnostic",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g10-algebra2-ap-readiness-path-b",
+      "unit": "R0",
+      "lesson": "R0.2",
+      "title": "Algebra Precision Repair",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g10-algebra2-ap-readiness-path-b",
+      "unit": "R0",
+      "lesson": "R0.3",
+      "title": "Function Notation & Representation Repair",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g10-algebra2-ap-readiness-path-b",
+      "unit": "R1",
+      "lesson": "R1.1",
+      "title": "Linear and Quadratic Rates of Change",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g10-algebra2-ap-readiness-path-b",
+      "unit": "R1",
+      "lesson": "R1.2",
+      "title": "Quadratic Mastery Check & Repair",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g10-algebra2-ap-readiness-path-b",
+      "unit": "R1",
+      "lesson": "R1.3",
+      "title": "Polynomial Operations and Factoring",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g10-algebra2-ap-readiness-path-b",
+      "unit": "R1",
+      "lesson": "R1.4",
+      "title": "Polynomial Zeros, Multiplicity & Complex Numbers",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g10-algebra2-ap-readiness-path-b",
+      "unit": "R1",
+      "lesson": "R1.5",
+      "title": "Polynomial End Behavior & Graph Construction",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g10-algebra2-ap-readiness-path-b",
+      "unit": "R1",
+      "lesson": "R1.6",
+      "title": "Rational Expressions and Equations",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g10-algebra2-ap-readiness-path-b",
+      "unit": "R1",
+      "lesson": "R1.7",
+      "title": "Rational Functions: Zeros, Asymptotes and Holes",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g10-algebra2-ap-readiness-path-b",
+      "unit": "R1",
+      "lesson": "R1.8",
+      "title": "Transformations and Model Selection",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g10-algebra2-ap-readiness-path-b",
+      "unit": "R2",
+      "lesson": "R2.1",
+      "title": "Arithmetic and Geometric Sequences",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g10-algebra2-ap-readiness-path-b",
+      "unit": "R2",
+      "lesson": "R2.2",
+      "title": "Exponent Laws and Rational Exponents",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g10-algebra2-ap-readiness-path-b",
+      "unit": "R2",
+      "lesson": "R2.3",
+      "title": "Exponential Functions and Transformations",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g10-algebra2-ap-readiness-path-b",
+      "unit": "R2",
+      "lesson": "R2.4",
+      "title": "Exponential Modeling",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g10-algebra2-ap-readiness-path-b",
+      "unit": "R2",
+      "lesson": "R2.5",
+      "title": "Composition and Inverse Functions",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g10-algebra2-ap-readiness-path-b",
+      "unit": "R2",
+      "lesson": "R2.6",
+      "title": "Logarithms as Inverses",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g10-algebra2-ap-readiness-path-b",
+      "unit": "R2",
+      "lesson": "R2.7",
+      "title": "Logarithm Properties",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g10-algebra2-ap-readiness-path-b",
+      "unit": "R2",
+      "lesson": "R2.8",
+      "title": "Exponential and Log Equations",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g10-algebra2-ap-readiness-path-b",
+      "unit": "R2",
+      "lesson": "R2.9",
+      "title": "Comparing and Validating Models",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g10-algebra2-ap-readiness-path-b",
+      "unit": "R3",
+      "lesson": "R3.1",
+      "title": "Radians, Standard Position & Unit Circle",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g10-algebra2-ap-readiness-path-b",
+      "unit": "R3",
+      "lesson": "R3.2",
+      "title": "Sine, Cosine and Tangent Values",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g10-algebra2-ap-readiness-path-b",
+      "unit": "R3",
+      "lesson": "R3.3",
+      "title": "Sine and Cosine Graphs",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g10-algebra2-ap-readiness-path-b",
+      "unit": "R3",
+      "lesson": "R3.4",
+      "title": "Sinusoidal Transformations and Modeling",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g10-algebra2-ap-readiness-path-b",
+      "unit": "R3",
+      "lesson": "R3.5",
+      "title": "Tangent, Secant, Cosecant and Cotangent",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g10-algebra2-ap-readiness-path-b",
+      "unit": "R3",
+      "lesson": "R3.6",
+      "title": "Inverse Trigonometric Functions",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g10-algebra2-ap-readiness-path-b",
+      "unit": "R3",
+      "lesson": "R3.7",
+      "title": "Trigonometric Equations",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g10-algebra2-ap-readiness-path-b",
+      "unit": "R3",
+      "lesson": "R3.8",
+      "title": "Core Trigonometric Identities",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g10-algebra2-ap-readiness-path-b",
+      "unit": "R3",
+      "lesson": "R3.9",
+      "title": "Polar Coordinates",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g10-algebra2-ap-readiness-path-b",
+      "unit": "R3",
+      "lesson": "R3.10",
+      "title": "Polar Graphs and Rate Language",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g10-algebra2-ap-readiness-path-b",
+      "unit": "R4",
+      "lesson": "R4.1",
+      "title": "Transformations, Composition & Inverses Synthesis",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g10-algebra2-ap-readiness-path-b",
+      "unit": "R4",
+      "lesson": "R4.2",
+      "title": "Covariation and Rates Across Families",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g10-algebra2-ap-readiness-path-b",
+      "unit": "R4",
+      "lesson": "R4.3",
+      "title": "Model Selection and Regression",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g10-algebra2-ap-readiness-path-b",
+      "unit": "R4",
+      "lesson": "R4.4",
+      "title": "AP-Style Multiple Representations",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g10-algebra2-ap-readiness-path-b",
+      "unit": "R4",
+      "lesson": "R4.5",
+      "title": "Cumulative Readiness Studio",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g10-algebra2-ap-readiness-path-b",
+      "unit": "R5",
+      "lesson": "R5.1",
+      "title": "AP Preview: Change in Tandem & Rates",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g10-algebra2-ap-readiness-path-b",
+      "unit": "R5",
+      "lesson": "R5.2",
+      "title": "AP Preview: Polynomial/Rational Reasoning",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g10-algebra2-ap-readiness-path-b",
+      "unit": "R5",
+      "lesson": "R5.3",
+      "title": "AP Preview: Exponential/Log and Trig Thinking",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "lesson",
+      "pathway": "g10-algebra2-ap-readiness-path-b",
+      "unit": "R5",
+      "lesson": "R5.4",
+      "title": "Final AP Readiness Benchmark & Summer Bridge",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "course package",
+      "pathway": "g10-algebra2-ap-readiness-path-b",
+      "unit": "R1",
+      "lesson": "R1.G",
+      "title": "Gateway 1 - AP Transition Assessment",
+      "status": "curriculum_ready"
+    },
+    {
+      "kind": "course package",
+      "pathway": "g10-algebra2-ap-readiness-path-b",
+      "unit": "R2",
+      "lesson": "R2.G",
+      "title": "Gateway 2 - AP Transition Assessment",
+      "status": "curriculum_ready"
+    }
+  ],
+  "coverage": [
+    {
+      "pathway": "g9-ap-precalculus-readiness",
+      "units": 10,
+      "lessons": 49,
+      "ready": 0,
+      "remaining": 49,
+      "required_packages": 0,
+      "packages_ready": 0
+    },
+    {
+      "pathway": "g10-ap-precalculus-path-a",
+      "units": 4,
+      "lessons": 48,
+      "ready": 44,
+      "remaining": 4,
+      "required_packages": 1,
+      "packages_ready": 0
+    },
+    {
+      "pathway": "g10-algebra2-ap-readiness-path-b",
+      "units": 6,
+      "lessons": 39,
+      "ready": 0,
+      "remaining": 39,
+      "required_packages": 2,
+      "packages_ready": 0
+    },
+    {
+      "pathway": "ap-precalculus-core-runtime",
+      "units": 3,
+      "lessons": 44,
+      "ready": 44,
+      "remaining": 0,
+      "required_packages": 0,
+      "packages_ready": 0,
+      "average_signal_score": 87.7
+    }
+  ],
+  "summary": {
+    "remainingLessons": 92,
+    "remainingPackages": 3
+  }
+}
