@@ -198,8 +198,10 @@
               "learningOutcomes": [
                 "Solve systems graphically and algebraically; connect a solution to an intersection; classify consistent/inconsistent/dependent systems."
               ],
-              "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus prerequisite profile"
+              "deliveryStatus": "ready",
+              "alignment": "AP Precalculus prerequisite profile",
+              "url": "lessons/pathways/grade-9/unit-2/g9-2.1-systems-graphing-substitution.html",
+              "screenCount": 64
             },
             {
               "id": "2.2",

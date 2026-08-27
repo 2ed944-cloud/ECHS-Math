@@ -61,14 +61,6 @@
       "kind": "lesson",
       "pathway": "g9-ap-precalculus-readiness",
       "unit": "Unit 2",
-      "lesson": "2.1",
-      "title": "Systems by Graphing and Substitution",
-      "status": "curriculum_ready"
-    },
-    {
-      "kind": "lesson",
-      "pathway": "g9-ap-precalculus-readiness",
-      "unit": "Unit 2",
       "lesson": "2.2",
       "title": "Systems by Elimination",
       "status": "curriculum_ready"
@@ -847,8 +839,8 @@
       "pathway": "g9-ap-precalculus-readiness",
       "units": 10,
       "lessons": 49,
-      "ready": 9,
-      "remaining": 40,
+      "ready": 10,
+      "remaining": 39,
       "required_packages": 0,
       "packages_ready": 0
     },
@@ -882,9 +874,9 @@
     }
   ],
   "summary": {
-    "remainingLessons": 95,
+    "remainingLessons": 94,
     "remainingPackages": 3,
-    "productionRemainingLessons": 91,
+    "productionRemainingLessons": 90,
     "productionRemainingPackages": 2
   }
 }
