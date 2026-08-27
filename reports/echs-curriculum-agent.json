@@ -61,14 +61,6 @@
       "kind": "lesson",
       "pathway": "g9-ap-precalculus-readiness",
       "unit": "Unit 3",
-      "lesson": "3.2",
-      "title": "Domain, Range & Interval Notation",
-      "status": "curriculum_ready"
-    },
-    {
-      "kind": "lesson",
-      "pathway": "g9-ap-precalculus-readiness",
-      "unit": "Unit 3",
       "lesson": "3.3",
       "title": "Increasing, Decreasing, Extrema & Intercepts",
       "status": "curriculum_ready"
@@ -791,8 +783,8 @@
       "pathway": "g9-ap-precalculus-readiness",
       "units": 10,
       "lessons": 49,
-      "ready": 16,
-      "remaining": 33,
+      "ready": 17,
+      "remaining": 32,
       "required_packages": 0,
       "packages_ready": 0
     },
@@ -826,9 +818,9 @@
     }
   ],
   "summary": {
-    "remainingLessons": 88,
+    "remainingLessons": 87,
     "remainingPackages": 3,
-    "productionRemainingLessons": 84,
+    "productionRemainingLessons": 83,
     "productionRemainingPackages": 2
   }
 }

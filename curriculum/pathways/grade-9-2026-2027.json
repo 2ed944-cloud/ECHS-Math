@@ -325,10 +325,17 @@
                 "Domain/range from graphs, tables, formulas, contexts; restrictions; set/interval notation."
               ],
               "learningOutcomes": [
-                "Determine domain and range from multiple representations; apply meaningful contextual restrictions; express intervals precisely."
+                "Determine and communicate domain/range from multiple representations."
               ],
-              "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus prerequisite profile"
+              "deliveryStatus": "ready",
+              "alignment": "AP Precalculus prerequisite profile",
+              "depth": "M Prerequisite Mastery",
+              "requiredGrade9Coverage": "Find domain/range for linear, quadratic, simple radical/rational examples and contexts; state restrictions clearly.",
+              "coverageBoundary": "Outside current course scope: AP-level domain analysis of composed/transformed rational/log functions not yet taught.",
+              "targetPeriods": 3,
+              "maximumPeriods": 3,
+              "url": "lessons/pathways/grade-9/unit-3/g9-3.2-domain-range-interval-notation.html",
+              "screenCount": 64
             },
             {
               "id": "3.3",
