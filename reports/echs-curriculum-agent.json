@@ -60,14 +60,6 @@
     {
       "kind": "lesson",
       "pathway": "g9-ap-precalculus-readiness",
-      "unit": "Unit 0",
-      "lesson": "0.3",
-      "title": "Exponent and Equation Repair",
-      "status": "curriculum_ready"
-    },
-    {
-      "kind": "lesson",
-      "pathway": "g9-ap-precalculus-readiness",
       "unit": "Unit 1",
       "lesson": "1.1",
       "title": "Algebraic Expressions & Multi-Step Equations",
@@ -903,8 +895,8 @@
       "pathway": "g9-ap-precalculus-readiness",
       "units": 10,
       "lessons": 49,
-      "ready": 2,
-      "remaining": 47,
+      "ready": 3,
+      "remaining": 46,
       "required_packages": 0,
       "packages_ready": 0
     },
@@ -938,9 +930,9 @@
     }
   ],
   "summary": {
-    "remainingLessons": 102,
+    "remainingLessons": 101,
     "remainingPackages": 3,
-    "productionRemainingLessons": 98,
+    "productionRemainingLessons": 97,
     "productionRemainingPackages": 2
   }
 }
