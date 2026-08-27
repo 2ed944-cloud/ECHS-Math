@@ -273,13 +273,20 @@
               "id": "2.6",
               "title": "Piecewise-Defined Functions",
               "subtopics": [
-                "Reading/writing piecewise rules; evaluating at breakpoints; domain conditions; context models."
+                "Reading/writing simple piecewise rules; evaluating at breakpoints; endpoint inclusion; context models."
               ],
               "learningOutcomes": [
-                "Evaluate and graph piecewise functions; construct a piecewise model from rules or context; communicate endpoint inclusion precisely."
+                "Evaluate and graph simple piecewise functions and communicate domain conditions precisely."
               ],
-              "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus prerequisite profile"
+              "deliveryStatus": "ready",
+              "alignment": "AP Precalculus prerequisite profile",
+              "depth": "B Bridge Depth",
+              "requiredGrade9Coverage": "Read, evaluate, and graph 2-3 piece functions, mainly linear/simple quadratic pieces; construct a simple rule from context.",
+              "coverageBoundary": "Deferred: AP-style rates across intervals, continuity-style analysis, complex nested pieces, and advanced modeling for later.",
+              "targetPeriods": 2,
+              "maximumPeriods": 2,
+              "url": "lessons/pathways/grade-9/unit-2/g9-2.6-piecewise-defined-functions.html",
+              "screenCount": 64
             }
           ]
         },
