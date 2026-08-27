@@ -20,7 +20,7 @@ MANIFESTS = {
 EXPECTED = {
     "g9-ap-precalculus-readiness": (10, 49),
     "g10-ap-precalculus-path-a": (4, 48),
-    "g10-algebra2-ap-readiness-path-b": (6, 39),
+    "g10-algebra2-ap-readiness-path-b": (6, 51),
 }
 EXPECTED_PACKAGES = {
     "g9-ap-precalculus-readiness": 0,
@@ -32,6 +32,10 @@ AP_SUPPLEMENTAL_UNIT_COUNTS = {4: 14}
 REQUIRED_FIELDS = ("id", "title", "subtopics", "learningOutcomes", "deliveryStatus")
 VALID_STATES = {"curriculum_ready", "ready", "blocked"}
 GENERIC_VIEWER = "lessons/pathways/lesson.html"
+PRODUCTION_PATHWAYS = {
+    "g9-ap-precalculus-readiness",
+    "g10-algebra2-ap-readiness-path-b",
+}
 HTML_SIGNALS = {
     "viewport": re.compile(r'name=["\']viewport["\']', re.I),
     "learning objective": re.compile(r"learning\s+objective|learning\s+outcome", re.I),
@@ -114,8 +118,8 @@ def audit_manifest(label: str, path: Path, audit: Audit) -> None:
         return
     if data.get("schemaVersion") != 2:
         audit.error(f"{label}: expected authoritative manifest schemaVersion 2")
-    if "Full_Year_at_a_Glance_and_Detailed_Course_Outline" not in data.get("sourceDocument", ""):
-        audit.error(f"{label}: sourceDocument is not an authoritative combined pathway document")
+    if "Final_Share_Ready_2026-2027" not in data.get("sourceDocument", ""):
+        audit.error(f"{label}: sourceDocument is not the final share-ready pathway source")
 
     for pathway in data.get("paths", {}).values():
         pathway_id = pathway.get("id", "unknown")
@@ -201,6 +205,8 @@ def audit_ap_runtime(audit: Audit) -> None:
 def render_report(audit: Audit) -> str:
     lesson_queue = [item for item in audit.queue if item["kind"] == "lesson"]
     package_queue = [item for item in audit.queue if item["kind"] == "course package"]
+    production_lessons = [item for item in lesson_queue if item["pathway"] in PRODUCTION_PATHWAYS]
+    production_packages = [item for item in package_queue if item["pathway"] in PRODUCTION_PATHWAYS]
     lines = [
         "# ECHS Curriculum Agent Report", "",
         f"Generated: {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}", "",
@@ -209,7 +215,8 @@ def render_report(audit: Audit) -> str:
         f"- Quality warnings: **{len(audit.warnings)}**",
         f"- Required lesson blocks awaiting dedicated completion: **{len(lesson_queue)}**",
         f"- Required course-level packages awaiting dedicated completion: **{len(package_queue)}**", "",
-        "The authoritative scope is Grade 9 (49 blocks), Grade 10 Path A (48 blocks plus the cumulative AP review/mock package), and Grade 10 Path B (39 blocks plus two transfer-gateway assessments). AP Unit 4 remains supplemental enrichment.", "",
+        f"- Current Grade 9 + Path B production backlog: **{len(production_lessons)} lessons + {len(production_packages)} gateway packages**", "",
+        "The authoritative scope is Grade 9 (49 blocks), Grade 10 Path A (48 blocks plus the cumulative AP review/mock package), and Grade 10 Path B (51 blocks plus two transfer-gateway assessments). AP Unit 4 remains supplemental enrichment.", "",
         "A course card, catalog row, generic pathway route, or unmapped older file does not count as completion.", "",
         "## Coverage", "",
         "| Pathway | Units | Required lessons | Ready | Remaining | Packages ready | Signal score |",
@@ -258,10 +265,17 @@ def main() -> int:
     json_path.parent.mkdir(parents=True, exist_ok=True)
     lesson_queue = [item for item in audit.queue if item["kind"] == "lesson"]
     package_queue = [item for item in audit.queue if item["kind"] == "course package"]
+    production_lessons = [item for item in lesson_queue if item["pathway"] in PRODUCTION_PATHWAYS]
+    production_packages = [item for item in package_queue if item["pathway"] in PRODUCTION_PATHWAYS]
     json_path.write_text(json.dumps({
         "errors": audit.errors, "warnings": audit.warnings, "queue": audit.queue,
         "coverage": audit.rows,
-        "summary": {"remainingLessons": len(lesson_queue), "remainingPackages": len(package_queue)},
+        "summary": {
+            "remainingLessons": len(lesson_queue),
+            "remainingPackages": len(package_queue),
+            "productionRemainingLessons": len(production_lessons),
+            "productionRemainingPackages": len(production_packages),
+        },
     }, indent=2) + "\n", encoding="utf-8")
     print(report_path.relative_to(ROOT))
     if audit.errors:

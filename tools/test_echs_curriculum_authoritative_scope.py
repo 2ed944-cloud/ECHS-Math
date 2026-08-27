@@ -20,8 +20,8 @@ def main() -> None:
     path_b = G10["paths"]["pathB"]
 
     assert G9["schemaVersion"] == G10["schemaVersion"] == 2
-    assert "Full_Year_at_a_Glance_and_Detailed_Course_Outline" in G9["sourceDocument"]
-    assert "Full_Year_at_a_Glance_and_Detailed_Course_Outline" in G10["sourceDocument"]
+    assert G9["sourceDocument"] == "Grade_9_Mathematics_AP_Precalculus_Readiness_Final_Share_Ready_2026-2027(1).pdf"
+    assert G10["sourceDocument"] == "Grade_10_AP_Readiness_Transition_Pathway_Final_Share_Ready_2026-2027(1).docx"
 
     assert [len(ids) for ids in lesson_ids(g9)] == [3, 6, 6, 6, 7, 5, 4, 4, 4, 4]
     assert [unit["code"] for unit in g9["units"]] == [f"Unit {i}" for i in range(10)]
@@ -38,9 +38,82 @@ def main() -> None:
     assert path_a["supplementalUnits"][0]["code"] == "AP Unit 4"
     assert path_a["supplementalUnits"][0]["required"] is False
 
-    assert [len(ids) for ids in lesson_ids(path_b)] == [3, 8, 9, 10, 5, 4]
+    assert [len(ids) for ids in lesson_ids(path_b)] == [4, 10, 11, 13, 7, 6]
     assert [unit["code"] for unit in path_b["units"]] == [f"R{i}" for i in range(6)]
-    assert path_b["unitCount"] == 6 and path_b["lessonCount"] == 39
+    assert lesson_ids(path_b) == [
+        [f"R0.{i}" for i in range(1, 5)],
+        [f"R1.{i}" for i in range(1, 11)],
+        [f"R2.{i}" for i in range(1, 12)],
+        [f"R3.{i}" for i in range(1, 14)],
+        [f"R4.{i}" for i in range(1, 7)] + ["R4.B"],
+        [f"R5.{i}" for i in range(1, 7)],
+    ]
+    assert [[lesson["title"] for lesson in unit["lessons"]] for unit in path_b["units"]] == [
+        [
+            "Common Entry Diagnostic",
+            "Algebra Precision Repair",
+            "Function Notation, Domain & Representations",
+            "Systems & Right-Triangle Trig Spot Repair",
+        ],
+        [
+            "Rates of Change Foundations",
+            "Quadratic Equation Mastery",
+            "Quadratic Functions, Forms & Inequalities",
+            "Polynomial Operations & Factoring",
+            "Polynomial Division & Theorems",
+            "Polynomial Zeros, Multiplicity & Complex Roots",
+            "Polynomial End Behavior & Standard Graph Construction",
+            "Rational Expressions & Equations",
+            "Rational Functions: Zeros, Holes & Asymptotes",
+            "Transformations & Introductory Model Choice",
+        ],
+        [
+            "Arithmetic & Geometric Sequences",
+            "Exponent Laws, Radicals & Rational Exponents",
+            "Exponential Functions & Transformations",
+            "Exponential Modeling",
+            "Composition of Functions",
+            "Inverse Functions",
+            "Logarithms as Inverses",
+            "Logarithm Properties & Change of Base",
+            "Exponential & Logarithmic Equations",
+            "Comparing Models & Regression",
+            "Semi-Log Plot Preview",
+        ],
+        [
+            "Radians & Standard Position",
+            "Unit Circle Coordinates & Special Angles",
+            "Sine, Cosine & Tangent Values",
+            "Parent Sine & Cosine Graphs",
+            "Sinusoidal Transformations",
+            "Sinusoidal Modeling",
+            "The Tangent Function",
+            "Secant, Cosecant & Cotangent",
+            "Inverse Trigonometric Functions",
+            "Trigonometric Equations",
+            "Core Trigonometric Identities",
+            "Polar Coordinates",
+            "Polar Graphs & Rate Language Preview",
+        ],
+        [
+            "Transformations Across Families",
+            "Composition & Inverse Synthesis",
+            "Covariation & Rates Across Families",
+            "Model Selection, Regression & Limitations",
+            "Multiple Representations & AP Habits",
+            "Cumulative Readiness Studio",
+            "Grade 11 AP Readiness Benchmark",
+        ],
+        [
+            "AP Preview: Change in Tandem & Rates",
+            "AP Preview: Polynomial/Rational Reasoning",
+            "AP Preview: Exponential & Logarithmic Thinking",
+            "AP Preview: Trigonometric & Polar Thinking",
+            "AP Mathematical Practices Familiarization",
+            "Final AP Readiness Benchmark & Summer Bridge",
+        ],
+    ]
+    assert path_b["unitCount"] == 6 and path_b["lessonCount"] == 51
     assert [package["id"] for package in path_b["requiredPackages"]] == ["R1.G", "R2.G"]
 
     placement = json.dumps(G9["authoritativeScope"]["placementGuidance"])

@@ -1,15 +1,17 @@
 # ECHS Curriculum Agent Report
 
-Generated: 2026-08-26 02:53 UTC
+Generated: 2026-08-27 05:49 UTC
 
 ## Release decision
 
 - Structural errors: **0**
 - Quality warnings: **54**
-- Required lesson blocks awaiting dedicated completion: **92**
+- Required lesson blocks awaiting dedicated completion: **103**
 - Required course-level packages awaiting dedicated completion: **3**
 
-The authoritative scope is Grade 9 (49 blocks), Grade 10 Path A (48 blocks plus the cumulative AP review/mock package), and Grade 10 Path B (39 blocks plus two transfer-gateway assessments). AP Unit 4 remains supplemental enrichment.
+- Current Grade 9 + Path B production backlog: **99 lessons + 2 gateway packages**
+
+The authoritative scope is Grade 9 (49 blocks), Grade 10 Path A (48 blocks plus the cumulative AP review/mock package), and Grade 10 Path B (51 blocks plus two transfer-gateway assessments). AP Unit 4 remains supplemental enrichment.
 
 A course card, catalog row, generic pathway route, or unmapped older file does not count as completion.
 
@@ -17,9 +19,9 @@ A course card, catalog row, generic pathway route, or unmapped older file does n
 
 | Pathway | Units | Required lessons | Ready | Remaining | Packages ready | Signal score |
 |---|---:|---:|---:|---:|---:|---:|
-| g9-ap-precalculus-readiness | 10 | 49 | 0 | 49 | 0/0 | — |
+| g9-ap-precalculus-readiness | 10 | 49 | 1 | 48 | 0/0 | — |
 | g10-ap-precalculus-path-a | 4 | 48 | 44 | 4 | 0/1 | — |
-| g10-algebra2-ap-readiness-path-b | 6 | 39 | 0 | 39 | 0/2 | — |
+| g10-algebra2-ap-readiness-path-b | 6 | 51 | 0 | 51 | 0/2 | — |
 | ap-precalculus-core-runtime | 3 | 44 | 44 | 0 | 0/0 | 87.7 |
 
 ## Structural errors
@@ -28,7 +30,6 @@ A course card, catalog row, generic pathway route, or unmapped older file does n
 
 ## Priority production queue
 
-- `g9-ap-precalculus-readiness` · `Unit 0` · **0.1 Entry Diagnostic & Mathematical Profile** (lesson; curriculum_ready)
 - `g9-ap-precalculus-readiness` · `Unit 0` · **0.2 Number and Expression Fluency** (lesson; curriculum_ready)
 - `g9-ap-precalculus-readiness` · `Unit 0` · **0.3 Exponent and Equation Repair** (lesson; curriculum_ready)
 - `g9-ap-precalculus-readiness` · `Unit 1` · **1.1 Algebraic Expressions & Multi-Step Equations** (lesson; curriculum_ready)
@@ -53,7 +54,8 @@ A course card, catalog row, generic pathway route, or unmapped older file does n
 - `g9-ap-precalculus-readiness` · `Unit 4` · **4.2 Three Forms of a Quadratic** (lesson; curriculum_ready)
 - `g9-ap-precalculus-readiness` · `Unit 4` · **4.3 Factoring Quadratics** (lesson; curriculum_ready)
 - `g9-ap-precalculus-readiness` · `Unit 4` · **4.4 Completing the Square** (lesson; curriculum_ready)
-- …and 70 more required items in authoritative order.
+- `g9-ap-precalculus-readiness` · `Unit 4` · **4.5 Quadratic Formula, Discriminant & Complex Numbers** (lesson; curriculum_ready)
+- …and 81 more required items in authoritative order.
 
 ## Quality warnings (first 50)
 
