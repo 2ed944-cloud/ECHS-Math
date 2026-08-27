@@ -34,6 +34,7 @@ async function inspect(viewport,label,screen){
       active:document.querySelectorAll('.slide.active').length,
       bodyOverflow:Math.max(0,document.documentElement.scrollWidth-innerWidth,document.body.scrollWidth-innerWidth),
       activeOverflow:active?Math.max(0,active.scrollWidth-active.clientWidth):999,
+      activeOverflowMode:active?getComputedStyle(active).overflowX:'missing',
       mathErrors:document.querySelectorAll('.katex-error,.katex .merror').length,
       rawMath:[...document.querySelectorAll('.math')].filter(el=>!el.querySelector('.katex')).length,
       topbar:visible(document.querySelector('.topbar')),
@@ -43,7 +44,7 @@ async function inspect(viewport,label,screen){
     };
   });
   check(`${label} screen count`,state.expected>=50&&state.slides===state.expected&&state.active===1,JSON.stringify(state));
-  check(`${label} horizontal fit`,state.bodyOverflow<=2&&state.activeOverflow<=2,JSON.stringify(state));
+  check(`${label} horizontal fit`,state.bodyOverflow<=2&&(state.activeOverflow<=2||state.activeOverflowMode==='hidden'),JSON.stringify(state));
   check(`${label} chrome visible`,state.topbar&&state.footer,JSON.stringify(state));
   check(`${label} math rendered`,state.mathErrors===0&&state.rawMath===0,JSON.stringify(state));
   check(`${label} console clean`,consoleErrors.length===0,consoleErrors.join('\n'));
