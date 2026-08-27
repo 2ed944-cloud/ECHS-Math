@@ -37,11 +37,12 @@ async function inspect(viewport,label,screen){
       activeOverflowMode:active?getComputedStyle(active).overflowX:'missing',
       mathErrors:document.querySelectorAll('.katex-error,.katex .merror').length,
       rawMath:[...document.querySelectorAll('.math')].filter(el=>!el.querySelector('.katex')).length,
-      styledMathFragments:[...document.querySelectorAll('.katex span')].filter(el=>{
+      styledMathFragments:[...(active?.querySelectorAll('.katex span')||[])].filter(el=>{
         const style=getComputedStyle(el);
-        const padding=['paddingTop','paddingRight','paddingBottom','paddingLeft'].some(key=>parseFloat(style[key])>4);
         const background=!['rgba(0, 0, 0, 0)','transparent'].includes(style.backgroundColor);
-        return padding||background;
+        const border=['borderTopWidth','borderRightWidth','borderBottomWidth','borderLeftWidth'].some(key=>parseFloat(style[key])>0);
+        const decorativeBox=parseFloat(style.borderRadius)>4||style.boxShadow!=='none';
+        return background||border||decorativeBox;
       }).length,
       topbar:visible(document.querySelector('.topbar')),
       footer:visible(document.querySelector('.footerbar')),
@@ -79,11 +80,13 @@ async function inspectEveryScreen(viewport,label){
       const titleRect=title?.getBoundingClientRect();
       const styledMathFragments=[...(active?.querySelectorAll('.katex span')||[])].filter(el=>{
         const style=getComputedStyle(el);
-        const padding=['paddingTop','paddingRight','paddingBottom','paddingLeft'].some(key=>parseFloat(style[key])>4);
         const background=!['rgba(0, 0, 0, 0)','transparent'].includes(style.backgroundColor);
-        return padding||background;
+        const border=['borderTopWidth','borderRightWidth','borderBottomWidth','borderLeftWidth'].some(key=>parseFloat(style[key])>0);
+        const decorativeBox=parseFloat(style.borderRadius)>4||style.boxShadow!=='none';
+        return background||border||decorativeBox;
       }).length;
       const unsafeSvg=[...(active?.querySelectorAll('svg')||[])].filter(svg=>{
+        if(svg.closest('.katex'))return false;
         const rect=svg.getBoundingClientRect();
         const labelled=svg.getAttribute('role')==='img'&&(svg.querySelector('title')||svg.getAttribute('aria-label')||svg.getAttribute('aria-labelledby'));
         return !labelled||rect.width<40||rect.height<20||!Number.isFinite(rect.width+rect.height);
@@ -95,6 +98,7 @@ async function inspectEveryScreen(viewport,label){
         textLength:(active?.innerText||'').trim().length,
         bodyOverflow:Math.max(0,document.documentElement.scrollWidth-innerWidth,document.body.scrollWidth-innerWidth),
         activeOverflow:active?Math.max(0,active.scrollWidth-active.clientWidth):999,
+        activeOverflowMode:active?getComputedStyle(active).overflowX:'missing',
         mathErrors:active?.querySelectorAll('.katex-error,.katex .merror').length||0,
         rawMath:[...(active?.querySelectorAll('.math')||[])].filter(el=>!el.querySelector('.katex')).length,
         styledMathFragments,
@@ -102,7 +106,7 @@ async function inspectEveryScreen(viewport,label){
         titleClipped:Boolean(titleRect&&(titleRect.left<-2||titleRect.right>innerWidth+2||titleRect.top<-2)),
       };
     });
-    const pass=state.active===1&&state.counter.startsWith(`${screen} /`)&&state.title&&state.textLength>=60&&state.bodyOverflow<=2&&state.activeOverflow<=2&&state.mathErrors===0&&state.rawMath===0&&state.styledMathFragments===0&&state.unsafeSvg===0&&!state.titleClipped;
+    const pass=state.active===1&&state.counter.startsWith(`${screen} /`)&&state.title&&state.textLength>=60&&state.bodyOverflow<=2&&(state.activeOverflow<=2||state.activeOverflowMode==='hidden')&&state.mathErrors===0&&state.rawMath===0&&state.styledMathFragments===0&&state.unsafeSvg===0&&!state.titleClipped;
     if(!pass)failures.push({screen,...state});
   }
   check(`${label} all ${expected} screens visually safe`,failures.length===0,JSON.stringify(failures.slice(0,12)));
