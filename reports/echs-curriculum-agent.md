@@ -1,15 +1,15 @@
 # ECHS Curriculum Agent Report
 
-Generated: 2026-08-27 21:05 UTC
+Generated: 2026-08-27 22:08 UTC
 
 ## Release decision
 
 - Structural errors: **0**
 - Quality warnings: **54**
-- Required lesson blocks awaiting dedicated completion: **87**
+- Required lesson blocks awaiting dedicated completion: **86**
 - Required course-level packages awaiting dedicated completion: **3**
 
-- Current Grade 9 + Path B production backlog: **83 lessons + 2 gateway packages**
+- Current Grade 9 + Path B production backlog: **82 lessons + 2 gateway packages**
 
 The authoritative scope is Grade 9 (49 blocks), Grade 10 Path A (48 blocks plus the cumulative AP review/mock package), and Grade 10 Path B (51 blocks plus two transfer-gateway assessments). AP Unit 4 remains supplemental enrichment.
 
@@ -19,7 +19,7 @@ A course card, catalog row, generic pathway route, or unmapped older file does n
 
 | Pathway | Units | Required lessons | Ready | Remaining | Packages ready | Signal score |
 |---|---:|---:|---:|---:|---:|---:|
-| g9-ap-precalculus-readiness | 10 | 49 | 17 | 32 | 0/0 | — |
+| g9-ap-precalculus-readiness | 10 | 49 | 18 | 31 | 0/0 | — |
 | g10-ap-precalculus-path-a | 4 | 48 | 44 | 4 | 0/1 | — |
 | g10-algebra2-ap-readiness-path-b | 6 | 51 | 0 | 51 | 0/2 | — |
 | ap-precalculus-core-runtime | 3 | 44 | 44 | 0 | 0/0 | 87.7 |
@@ -30,7 +30,6 @@ A course card, catalog row, generic pathway route, or unmapped older file does n
 
 ## Priority production queue
 
-- `g9-ap-precalculus-readiness` · `Unit 3` · **3.3 Increasing, Decreasing, Extrema & Intercepts** (lesson; curriculum_ready)
 - `g9-ap-precalculus-readiness` · `Unit 3` · **3.4 Transformations of Parent Functions** (lesson; curriculum_ready)
 - `g9-ap-precalculus-readiness` · `Unit 3` · **3.5 Average Rate of Change** (lesson; curriculum_ready)
 - `g9-ap-precalculus-readiness` · `Unit 3` · **3.6 Composition and Inverse Concepts** (lesson; curriculum_ready)
@@ -55,7 +54,8 @@ A course card, catalog row, generic pathway route, or unmapped older file does n
 - `g9-ap-precalculus-readiness` · `Unit 7` · **7.3 Equivalent Exponential Forms** (lesson; curriculum_ready)
 - `g9-ap-precalculus-readiness` · `Unit 7` · **7.4 Growth/Decay Modeling & Family Comparison** (lesson; curriculum_ready)
 - `g9-ap-precalculus-readiness` · `Unit 8` · **8.1 Right Triangles, Similarity & Pythagorean Relationships** (lesson; curriculum_ready)
-- …and 65 more required items in authoritative order.
+- `g9-ap-precalculus-readiness` · `Unit 8` · **8.2 Sine, Cosine & Tangent Ratios** (lesson; curriculum_ready)
+- …and 64 more required items in authoritative order.
 
 ## Quality warnings (first 50)
 

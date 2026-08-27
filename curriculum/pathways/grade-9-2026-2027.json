@@ -344,10 +344,17 @@
                 "Intervals of increase/decrease; zeros; y-intercepts; relative extrema; sign of a function."
               ],
               "learningOutcomes": [
-                "Describe key graph characteristics using interval language; connect zeros to equations; interpret extrema and intercepts in context."
+                "Describe key function features and interpret them in context."
               ],
-              "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus prerequisite profile"
+              "deliveryStatus": "ready",
+              "alignment": "AP Precalculus prerequisite profile",
+              "depth": "B Bridge Depth",
+              "requiredGrade9Coverage": "Read these features accurately from graphs and simple formulas; use interval language.",
+              "coverageBoundary": "Not introduced within this course: calculus language, derivative reasoning, or AP-level polynomial/rational feature synthesis.",
+              "targetPeriods": 2,
+              "maximumPeriods": 3,
+              "url": "lessons/pathways/grade-9/unit-3/g9-3.3-increasing-decreasing-extrema-intercepts.html",
+              "screenCount": 64
             },
             {
               "id": "3.4",
