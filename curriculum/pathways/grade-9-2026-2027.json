@@ -117,8 +117,10 @@
               "learningOutcomes": [
                 "Rearrange formulas algebraically; substitute with units; interpret the meaning of a solved-for quantity."
               ],
-              "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus prerequisite profile"
+              "deliveryStatus": "ready",
+              "alignment": "AP Precalculus prerequisite profile",
+              "url": "lessons/pathways/grade-9/unit-1/g9-1.2-literal-equations-formula-rearrangement.html",
+              "screenCount": 64
             },
             {
               "id": "1.3",
