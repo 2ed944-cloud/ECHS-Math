@@ -61,14 +61,6 @@
       "kind": "lesson",
       "pathway": "g9-ap-precalculus-readiness",
       "unit": "Unit 3",
-      "lesson": "3.3",
-      "title": "Increasing, Decreasing, Extrema & Intercepts",
-      "status": "curriculum_ready"
-    },
-    {
-      "kind": "lesson",
-      "pathway": "g9-ap-precalculus-readiness",
-      "unit": "Unit 3",
       "lesson": "3.4",
       "title": "Transformations of Parent Functions",
       "status": "curriculum_ready"
@@ -783,8 +775,8 @@
       "pathway": "g9-ap-precalculus-readiness",
       "units": 10,
       "lessons": 49,
-      "ready": 17,
-      "remaining": 32,
+      "ready": 18,
+      "remaining": 31,
       "required_packages": 0,
       "packages_ready": 0
     },
@@ -818,9 +810,9 @@
     }
   ],
   "summary": {
-    "remainingLessons": 87,
+    "remainingLessons": 86,
     "remainingPackages": 3,
-    "productionRemainingLessons": 83,
+    "productionRemainingLessons": 82,
     "productionRemainingPackages": 2
   }
 }
