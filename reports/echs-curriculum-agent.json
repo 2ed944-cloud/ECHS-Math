@@ -61,14 +61,6 @@
       "kind": "lesson",
       "pathway": "g9-ap-precalculus-readiness",
       "unit": "Unit 0",
-      "lesson": "0.2",
-      "title": "Number and Expression Fluency",
-      "status": "curriculum_ready"
-    },
-    {
-      "kind": "lesson",
-      "pathway": "g9-ap-precalculus-readiness",
-      "unit": "Unit 0",
       "lesson": "0.3",
       "title": "Exponent and Equation Repair",
       "status": "curriculum_ready"
@@ -911,8 +903,8 @@
       "pathway": "g9-ap-precalculus-readiness",
       "units": 10,
       "lessons": 49,
-      "ready": 1,
-      "remaining": 48,
+      "ready": 2,
+      "remaining": 47,
       "required_packages": 0,
       "packages_ready": 0
     },
@@ -946,9 +938,9 @@
     }
   ],
   "summary": {
-    "remainingLessons": 103,
+    "remainingLessons": 102,
     "remainingPackages": 3,
-    "productionRemainingLessons": 99,
+    "productionRemainingLessons": 98,
     "productionRemainingPackages": 2
   }
 }

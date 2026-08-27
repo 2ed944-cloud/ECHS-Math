@@ -64,8 +64,10 @@
               "learningOutcomes": [
                 "Evaluate numerical and algebraic expressions accurately; move fluently among fraction, decimal, and percent forms; simplify expressions using structure."
               ],
-              "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus prerequisite profile"
+              "deliveryStatus": "ready",
+              "alignment": "AP Precalculus prerequisite profile",
+              "url": "lessons/pathways/grade-9/unit-0/g9-0.2-number-expression-fluency.html",
+              "screenCount": 64
             },
             {
               "id": "0.3",
