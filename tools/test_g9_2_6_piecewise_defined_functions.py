@@ -148,6 +148,23 @@ class GradeNinePiecewiseFunctionsTests(unittest.TestCase):
             [],
             "KaTeX commands in JavaScript strings need doubled backslashes",
         )
+        case_values = [value for value in tex_values if "\\\\begin{cases}" in value]
+        self.assertGreaterEqual(len(case_values), 20)
+        unsafe_case_breaks = [
+            value
+            for value in case_values
+            if re.search(
+                r"(?<!\\)\\\\(?!begin|end|ge|le|cup|frac)(?=[-0-9A-Za-z])",
+                value,
+            )
+        ]
+        self.assertEqual(
+            unsafe_case_breaks,
+            [],
+            "Piecewise row separators need four source backslashes so the "
+            "JavaScript runtime passes two to KaTeX",
+        )
+        self.assertTrue(all("\\\\\\\\" in value for value in case_values))
         for signal in (
             "localStorage", "exportWork", "ArrowRight",
             'data-check="', 'aria-live="polite"',
