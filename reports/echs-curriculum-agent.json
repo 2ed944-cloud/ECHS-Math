@@ -61,14 +61,6 @@
       "kind": "lesson",
       "pathway": "g9-ap-precalculus-readiness",
       "unit": "Unit 2",
-      "lesson": "2.4",
-      "title": "Systems of Inequalities",
-      "status": "curriculum_ready"
-    },
-    {
-      "kind": "lesson",
-      "pathway": "g9-ap-precalculus-readiness",
-      "unit": "Unit 2",
       "lesson": "2.5",
       "title": "Absolute Value Equations & Inequalities",
       "status": "curriculum_ready"
@@ -823,8 +815,8 @@
       "pathway": "g9-ap-precalculus-readiness",
       "units": 10,
       "lessons": 49,
-      "ready": 12,
-      "remaining": 37,
+      "ready": 13,
+      "remaining": 36,
       "required_packages": 0,
       "packages_ready": 0
     },
@@ -858,9 +850,9 @@
     }
   ],
   "summary": {
-    "remainingLessons": 92,
+    "remainingLessons": 91,
     "remainingPackages": 3,
-    "productionRemainingLessons": 88,
+    "productionRemainingLessons": 87,
     "productionRemainingPackages": 2
   }
 }

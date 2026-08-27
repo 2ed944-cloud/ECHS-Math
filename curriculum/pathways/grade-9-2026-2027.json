@@ -235,13 +235,20 @@
               "id": "2.4",
               "title": "Systems of Inequalities",
               "subtopics": [
-                "Half-planes; boundary lines; feasible region; optimization language without formal linear programming."
+                "Half-planes; boundary lines; feasible region; constraint interpretation."
               ],
               "learningOutcomes": [
-                "Graph systems of inequalities; identify feasible regions; test points and interpret constraints."
+                "Represent simultaneous inequality constraints graphically and contextually."
               ],
-              "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus prerequisite profile"
+              "deliveryStatus": "ready",
+              "alignment": "AP Precalculus prerequisite profile",
+              "depth": "B Bridge Depth",
+              "requiredGrade9Coverage": "Graph 2-variable systems of linear inequalities and identify/test feasible regions.",
+              "coverageBoundary": "Deferred beyond this course: formal linear-programming optimization algorithms.",
+              "targetPeriods": 2,
+              "maximumPeriods": 3,
+              "url": "lessons/pathways/grade-9/unit-2/g9-2.4-systems-of-inequalities.html",
+              "screenCount": 64
             },
             {
               "id": "2.5",
