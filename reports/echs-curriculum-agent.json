@@ -61,14 +61,6 @@
       "kind": "lesson",
       "pathway": "g9-ap-precalculus-readiness",
       "unit": "Unit 1",
-      "lesson": "1.3",
-      "title": "Slope and Rate of Change",
-      "status": "curriculum_ready"
-    },
-    {
-      "kind": "lesson",
-      "pathway": "g9-ap-precalculus-readiness",
-      "unit": "Unit 1",
       "lesson": "1.4",
       "title": "Representations of Linear Functions",
       "status": "curriculum_ready"
@@ -879,8 +871,8 @@
       "pathway": "g9-ap-precalculus-readiness",
       "units": 10,
       "lessons": 49,
-      "ready": 5,
-      "remaining": 44,
+      "ready": 6,
+      "remaining": 43,
       "required_packages": 0,
       "packages_ready": 0
     },
@@ -914,9 +906,9 @@
     }
   ],
   "summary": {
-    "remainingLessons": 99,
+    "remainingLessons": 98,
     "remainingPackages": 3,
-    "productionRemainingLessons": 95,
+    "productionRemainingLessons": 94,
     "productionRemainingPackages": 2
   }
 }
