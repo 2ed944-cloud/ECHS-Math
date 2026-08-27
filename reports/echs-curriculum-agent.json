@@ -61,14 +61,6 @@
       "kind": "lesson",
       "pathway": "g9-ap-precalculus-readiness",
       "unit": "Unit 2",
-      "lesson": "2.3",
-      "title": "Systems in Three Variables",
-      "status": "curriculum_ready"
-    },
-    {
-      "kind": "lesson",
-      "pathway": "g9-ap-precalculus-readiness",
-      "unit": "Unit 2",
       "lesson": "2.4",
       "title": "Systems of Inequalities",
       "status": "curriculum_ready"
@@ -831,8 +823,8 @@
       "pathway": "g9-ap-precalculus-readiness",
       "units": 10,
       "lessons": 49,
-      "ready": 11,
-      "remaining": 38,
+      "ready": 12,
+      "remaining": 37,
       "required_packages": 0,
       "packages_ready": 0
     },
@@ -866,9 +858,9 @@
     }
   ],
   "summary": {
-    "remainingLessons": 93,
+    "remainingLessons": 92,
     "remainingPackages": 3,
-    "productionRemainingLessons": 89,
+    "productionRemainingLessons": 88,
     "productionRemainingPackages": 2
   }
 }

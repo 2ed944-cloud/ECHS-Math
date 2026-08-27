@@ -226,8 +226,10 @@
               "learningOutcomes": [
                 "Solve accessible 3-variable systems; organize elimination logically; interpret the resulting triple in context."
               ],
-              "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus prerequisite profile"
+              "deliveryStatus": "ready",
+              "alignment": "AP Precalculus prerequisite profile",
+              "url": "lessons/pathways/grade-9/unit-2/g9-2.3-systems-three-variables.html",
+              "screenCount": 64
             },
             {
               "id": "2.4",
