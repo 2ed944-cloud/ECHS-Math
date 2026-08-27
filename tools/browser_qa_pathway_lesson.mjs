@@ -37,6 +37,12 @@ async function inspect(viewport,label,screen){
       activeOverflowMode:active?getComputedStyle(active).overflowX:'missing',
       mathErrors:document.querySelectorAll('.katex-error,.katex .merror').length,
       rawMath:[...document.querySelectorAll('.math')].filter(el=>!el.querySelector('.katex')).length,
+      styledMathFragments:[...(active?.querySelectorAll('.katex span')||[])].filter(el=>{
+        const style=getComputedStyle(el);
+        const background=!['rgba(0, 0, 0, 0)','transparent'].includes(style.backgroundColor);
+        const decorativeBox=parseFloat(style.borderRadius)>4||style.boxShadow!=='none';
+        return background||decorativeBox;
+      }).length,
       topbar:visible(document.querySelector('.topbar')),
       footer:visible(document.querySelector('.footerbar')),
       title:(active?.querySelector('h1,h2')?.textContent||'').trim(),
@@ -47,34 +53,112 @@ async function inspect(viewport,label,screen){
   check(`${label} horizontal fit`,state.bodyOverflow<=2&&(state.activeOverflow<=2||state.activeOverflowMode==='hidden'),JSON.stringify(state));
   check(`${label} chrome visible`,state.topbar&&state.footer,JSON.stringify(state));
   check(`${label} math rendered`,state.mathErrors===0&&state.rawMath===0,JSON.stringify(state));
+  check(`${label} math styling isolated`,state.styledMathFragments===0,JSON.stringify(state));
   check(`${label} console clean`,consoleErrors.length===0,consoleErrors.join('\n'));
   const shot=path.join(outputDir,`${label}-screen-${screen}.png`);
   await page.screenshot({path:shot,fullPage:false});report.screenshots.push(shot);
   await context.close();
 }
 
+async function inspectEveryScreen(viewport,label){
+  const context=await browser.newContext({viewport,deviceScaleFactor:1,reducedMotion:'reduce',serviceWorkers:'block'});
+  const page=await context.newPage();
+  const consoleErrors=[];
+  page.on('console',message=>{if(message.type()==='error'&&!/favicon|404/i.test(message.text()))consoleErrors.push(message.text());});
+  page.on('pageerror',error=>consoleErrors.push(error.message));
+  await page.goto(`${baseURL}/${lessonPath}#s1`,{waitUntil:'domcontentloaded',timeout:45000});
+  await page.waitForFunction(()=>document.documentElement.dataset.lessonReady==='true',null,{timeout:20000});
+  await page.waitForTimeout(600);
+  const expected=Number(await page.locator('meta[name="echs-screen-count"]').getAttribute('content'));
+  const failures=[];
+  for(let screen=1;screen<=expected;screen+=1){
+    if(screen>1){await page.keyboard.press('ArrowRight');await page.waitForTimeout(15);}
+    const state=await page.evaluate(()=>{
+      const active=document.querySelector('.slide.active');
+      const title=active?.querySelector('h1,h2');
+      const titleRect=title?.getBoundingClientRect();
+      const styledMathFragments=[...(active?.querySelectorAll('.katex span')||[])].filter(el=>{
+        const style=getComputedStyle(el);
+        const background=!['rgba(0, 0, 0, 0)','transparent'].includes(style.backgroundColor);
+        const decorativeBox=parseFloat(style.borderRadius)>4||style.boxShadow!=='none';
+        return background||decorativeBox;
+      }).length;
+      const unsafeSvg=[...(active?.querySelectorAll('svg')||[])].filter(svg=>{
+        if(svg.closest('.katex'))return false;
+        const rect=svg.getBoundingClientRect();
+        const labelled=svg.getAttribute('role')==='img'&&(svg.querySelector('title')||svg.getAttribute('aria-label')||svg.getAttribute('aria-labelledby'));
+        return !labelled||rect.width<40||rect.height<20||!Number.isFinite(rect.width+rect.height);
+      }).length;
+      return{
+        active:document.querySelectorAll('.slide.active').length,
+        counter:(document.querySelector('#counter')?.textContent||'').trim(),
+        title:(title?.textContent||'').trim(),
+        textLength:(active?.innerText||'').trim().length,
+        bodyOverflow:Math.max(0,document.documentElement.scrollWidth-innerWidth,document.body.scrollWidth-innerWidth),
+        activeOverflow:active?Math.max(0,active.scrollWidth-active.clientWidth):999,
+        activeOverflowMode:active?getComputedStyle(active).overflowX:'missing',
+        mathErrors:active?.querySelectorAll('.katex-error,.katex .merror').length||0,
+        rawMath:[...(active?.querySelectorAll('.math')||[])].filter(el=>!el.querySelector('.katex')).length,
+        styledMathFragments,
+        unsafeSvg,
+        titleClipped:Boolean(titleRect&&(titleRect.left<-2||titleRect.right>innerWidth+2||titleRect.top<-2)),
+      };
+    });
+    const pass=state.active===1&&state.counter.startsWith(`${screen} /`)&&state.title&&state.textLength>=60&&state.bodyOverflow<=2&&(state.activeOverflow<=2||state.activeOverflowMode==='hidden')&&state.mathErrors===0&&state.rawMath===0&&state.styledMathFragments===0&&state.unsafeSvg===0&&!state.titleClipped;
+    if(!pass)failures.push({screen,...state});
+  }
+  check(`${label} all ${expected} screens visually safe`,failures.length===0,JSON.stringify(failures.slice(0,12)));
+  check(`${label} all-screen console clean`,consoleErrors.length===0,consoleErrors.join('\n'));
+  await context.close();
+}
+
 async function inspectInteraction(){
   const context=await browser.newContext({viewport:{width:1280,height:850},deviceScaleFactor:1,reducedMotion:'reduce'});
   const page=await context.newPage();
-  await page.goto(`${baseURL}/${lessonPath}#s39`,{waitUntil:'domcontentloaded',timeout:45000});
+  await page.goto(`${baseURL}/${lessonPath}#s1`,{waitUntil:'domcontentloaded',timeout:45000});
+  await page.waitForFunction(()=>document.documentElement.dataset.lessonReady==='true',null,{timeout:20000});
+  const practiceScreen=await page.evaluate(()=>{
+    const slides=[...document.querySelectorAll('.slide')];
+    const scored=slides.findIndex(slide=>slide.querySelector('input[type="radio"]')&&slide.querySelector('[data-check]'));
+    if(scored>=0)return scored+1;
+    const diagnostic=slides.findIndex(slide=>slide.querySelector('input[type="radio"]')&&slide.querySelector('[data-answer-key]'));
+    if(diagnostic>=0)return diagnostic+1;
+    return slides.findIndex(slide=>slide.querySelector('input[type="radio"]'))+1;
+  });
+  check('practice screen discovered',practiceScreen>0,`screen ${practiceScreen}`);
+  if(practiceScreen<=0){await context.close();return;}
+  await page.evaluate(screen=>{location.hash=`s${screen}`;},practiceScreen);
+  await page.reload({waitUntil:'domcontentloaded',timeout:45000});
   await page.waitForFunction(()=>document.documentElement.dataset.lessonReady==='true',null,{timeout:20000});
   const option=page.locator('.slide.active input[type="radio"]').first();
   check('practice control available',await option.isVisible(),'first practice radio');
   await option.check();
-  await page.locator('.slide.active [data-check]').click();
-  const feedback=(await page.locator('.slide.active .feedback').innerText()).trim();
-  check('practice response is interactive',feedback.length>0,feedback);
+  check('practice selection works',await option.isChecked(),`screen ${practiceScreen}`);
+  const checkButton=page.locator('.slide.active [data-check]');
+  if(await checkButton.count()){
+    await checkButton.click();
+    const feedback=(await page.locator('.slide.active .feedback').innerText()).trim();
+    check('practice response is interactive',feedback.length>0,feedback);
+  }else{
+    await page.reload({waitUntil:'domcontentloaded',timeout:45000});
+    await page.waitForFunction(()=>document.documentElement.dataset.lessonReady==='true',null,{timeout:20000});
+    check('diagnostic response persists',await page.locator('.slide.active input[type="radio"]:checked').count()===1,`screen ${practiceScreen}`);
+  }
+  await page.evaluate(()=>document.activeElement?.blur());
   await page.keyboard.press('ArrowRight');
   await page.waitForTimeout(150);
-  check('keyboard navigation works',(await page.locator('#counter').innerText()).startsWith('40 /'),'counter after ArrowRight');
+  check('keyboard navigation works',(await page.locator('#counter').innerText()).startsWith(`${practiceScreen+1} /`),'counter after ArrowRight');
   await context.close();
 }
 
 try{
   await inspect({width:1440,height:900},'desktop-cover',1);
   await inspect({width:1440,height:900},'desktop-concept',12);
+  await inspect({width:1440,height:900},'desktop-rational-form',16);
   await inspect({width:390,height:844},'mobile-practice',39);
   await inspect({width:390,height:844},'mobile-exit',62);
+  await inspectEveryScreen({width:1440,height:900},'desktop');
+  await inspectEveryScreen({width:390,height:844},'mobile');
   await inspectInteraction();
 }finally{
   await browser.close();

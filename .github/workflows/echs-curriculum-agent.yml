@@ -7,6 +7,7 @@ on:
       - "data/**"
       - "lessons/**"
       - "tools/echs_curriculum_agent.py"
+      - "tools/test_pathway_lesson_style_safety.py"
       - ".github/workflows/echs-curriculum-agent.yml"
   push:
     branches: [main]
@@ -15,6 +16,7 @@ on:
       - "data/**"
       - "lessons/**"
       - "tools/echs_curriculum_agent.py"
+      - "tools/test_pathway_lesson_style_safety.py"
   schedule:
     - cron: "17 1 * * *"
   workflow_dispatch:
@@ -48,6 +50,7 @@ jobs:
         run: |
           set -euo pipefail
           python tools/test_echs_curriculum_authoritative_scope.py
+          python tools/test_pathway_lesson_style_safety.py
           args=()
           if [[ "${{ inputs.require_complete || 'false' }}" == "true" ]]; then
             args+=(--require-complete)

@@ -36,9 +36,9 @@
           "code": "Unit 0",
           "title": "Diagnostic & Algebra Bridge",
           "pacing": "1-2",
-          "intent": "Identify prerequisite gaps quickly, then repair only what is necessary so all students can access a rigorous common course.",
+          "intent": "Identify prerequisite gaps quickly, then address only what is necessary so all students can access a rigorous common course.",
           "coreFocus": "Entry diagnostic; number fluency; fractions/decimals/percent; signed numbers; order of operations; exponent rules; equation basics.",
-          "apReadinessPurpose": "Build a common baseline without lowering the ceiling; create individual repair/extension plans.",
+          "apReadinessPurpose": "Build a common baseline without lowering the ceiling; create individual targeted-review and extension plans.",
           "majorEvidence": "Diagnostic + mastery checks",
           "lessons": [
             {
@@ -71,7 +71,7 @@
             },
             {
               "id": "0.3",
-              "title": "Exponent and Equation Repair",
+              "title": "Exponent Rules & Equation Solving",
               "subtopics": [
                 "Integer exponents; zero/negative exponents; one- and two-step equations; checking solutions."
               ],

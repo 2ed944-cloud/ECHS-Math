@@ -32,21 +32,28 @@ jobs:
         with:
           node-version: "22"
 
-      - name: Resolve changed pathway lesson
+      - name: Resolve changed pathway lessons
         env:
           DISPATCH_PATH: ${{ inputs.lesson_path }}
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
         run: |
           if [ -n "$DISPATCH_PATH" ]; then
-            lesson_path="$DISPATCH_PATH"
+            lesson_paths="$DISPATCH_PATH"
           else
-            lesson_path=$(git diff --name-only "$BASE_SHA" "$GITHUB_SHA" | grep -E '^lessons/pathways/(grade-9|grade-10)/.*\.html$' | head -n 1)
+            lesson_paths=$(git diff --name-only "$BASE_SHA" "$GITHUB_SHA" | grep -E '^lessons/pathways/(grade-9|grade-10)/.*\.html$' | paste -sd: -)
           fi
-          if [ -z "$lesson_path" ] || [ ! -f "$lesson_path" ]; then
+          if [ -z "$lesson_paths" ]; then
             echo "No changed pathway lesson HTML was found."
             exit 1
           fi
-          echo "ECHS_LESSON_PATH=$lesson_path" >> "$GITHUB_ENV"
+          IFS=: read -ra paths <<< "$lesson_paths"
+          for lesson_path in "${paths[@]}"; do
+            if [ ! -f "$lesson_path" ]; then
+              echo "Missing changed pathway lesson: $lesson_path"
+              exit 1
+            fi
+          done
+          echo "ECHS_LESSON_PATHS=$lesson_paths" >> "$GITHUB_ENV"
 
       - name: Validate browser QA syntax
         run: node --check tools/browser_qa_pathway_lesson.mjs
@@ -58,7 +65,7 @@ jobs:
         run: |
           python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/pathway-preview.log 2>&1 &
           for attempt in {1..30}; do
-            if curl --fail --silent "http://127.0.0.1:4173/$ECHS_LESSON_PATH" >/dev/null; then
+            if curl --fail --silent "http://127.0.0.1:4173/" >/dev/null; then
               exit 0
             fi
             sleep 1
@@ -71,7 +78,14 @@ jobs:
           ECHS_PREVIEW_URL: http://127.0.0.1:4173
           ECHS_PREVIEW_OUTPUT: artifacts/pathway-lesson-qa
           CHROME_PATH: /usr/bin/google-chrome
-        run: node tools/browser_qa_pathway_lesson.mjs
+        run: |
+          IFS=: read -ra lessons <<< "$ECHS_LESSON_PATHS"
+          for lesson_path in "${lessons[@]}"; do
+            lesson_key=$(basename "$lesson_path" .html)
+            ECHS_LESSON_PATH="$lesson_path" \
+            ECHS_PREVIEW_OUTPUT="artifacts/pathway-lesson-qa/$lesson_key" \
+            node tools/browser_qa_pathway_lesson.mjs
+          done
 
       - name: Upload visual evidence
         if: always()
