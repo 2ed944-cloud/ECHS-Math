@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "academicYear": "2026-2027",
   "grade": 10,
-  "sourceDocument": "Grade_10_Mathematics_Full_Year_at_a_Glance_and_Detailed_Course_Outline_Two_AP_Precalculus_Pathways_2026-2027(1).docx",
+  "sourceDocument": "Grade_10_AP_Readiness_Transition_Pathway_Final_Share_Ready_2026-2027(1).docx",
   "authoritativeScope": {
     "apCoreScope": "AP Precalculus Units 1-3 before the AP examination; Unit 4 remains optional supplemental enrichment.",
     "transferProtocol": {
@@ -724,51 +724,83 @@
     "pathB": {
       "id": "g10-algebra2-ap-readiness-path-b",
       "title": "Grade 10 Path B - AP Readiness / Transition",
-      "destination": "Full readiness to enter AP Precalculus in Grade 11, with evidence-based transfer gates into Path A.",
+      "destination": "A rigorous prerequisite-and-bridge course leading directly to Grade 11 AP Precalculus, with evidence-based transfer eligibility into Path A.",
       "units": [
         {
           "code": "R0",
           "title": "Diagnostic & Precision Repair",
           "pacing": "1-2",
-          "intent": "Create an evidence-based starting point and repair only the prerequisite skills that would block progress.",
-          "phaseFocus": "Common diagnostic; algebra repair; function notation; calculator/non-calculator habits; individualized flex groups.",
-          "implementationEvidence": "Entry profile + targeted intervention/extension plan.",
+          "intent": "Create an evidence-based starting point and repair only the prerequisite skills that would otherwise block polynomial/rational, exponential/logarithmic, and trigonometric work.",
+          "phaseFocus": "Entry diagnostic; algebra precision; function notation/domain; spot repair in systems and right-triangle trigonometry.",
+          "implementationEvidence": "Targeted repair is limited to structural gaps that would block access to the bridge course.",
           "lessons": [
             {
               "id": "R0.1",
               "title": "Common Entry Diagnostic",
               "subtopics": [
-                "Linear/quadratic fluency; functions; factoring; exponents/radicals; systems; right-triangle trig; graph reading."
+                "Linear/quadratic fluency; factoring; exponents/radicals; systems; function notation/domain/range; graph reading; right-triangle trig; calculator/non-calculator habits."
               ],
               "learningOutcomes": [
-                "Identify strand-level strengths/gaps; demonstrate calculator/non-calculator fluency; set targeted mastery goals."
+                "Identify strand-level strengths/gaps and establish an individual readiness profile."
               ],
               "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus readiness bridge"
+              "alignment": "AP Precalculus prerequisite evidence",
+              "depth": "D Diagnostic / Repair",
+              "requiredPathBCoverage": "Evidence is collected for each strand, including a small amount of written error analysis to distinguish conceptual gaps from carelessness or notation problems.",
+              "coverageBoundary": "Coverage boundary: the diagnostic remains an assessment rather than a teaching or whole-class review period. Evidence from the diagnostic informs short-term flex groups.",
+              "targetPeriods": 2,
+              "maximumPeriods": 2
             },
             {
               "id": "R0.2",
               "title": "Algebra Precision Repair",
               "subtopics": [
-                "Fractions; signs; exponent laws; equation steps; factoring basics; notation."
+                "Signs/fractions; exponent laws; equation transformations; factoring basics; radicals; notation; checking equivalence."
               ],
               "learningOutcomes": [
-                "Execute core algebra accurately; identify and correct common errors; explain why algebraic transformations preserve equivalence."
+                "Execute core algebra accurately and explain why valid transformations preserve equivalence."
               ],
               "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus readiness bridge"
+              "alignment": "AP Precalculus prerequisites to Units 1-2",
+              "depth": "D Diagnostic / Repair",
+              "requiredPathBCoverage": "Expected endpoint: routine symbolic work is reliable, supported by mixed practice, error analysis, and non-calculator checks.",
+              "coverageBoundary": "Coverage boundary: instruction returns to the core sequence once routine fluency is demonstrated. Multi-week Algebra 1 review and new AP modeling content are outside this phase.",
+              "targetPeriods": 3,
+              "maximumPeriods": 4
             },
             {
               "id": "R0.3",
-              "title": "Function Notation & Representation Repair",
+              "title": "Function Notation, Domain & Representations",
               "subtopics": [
-                "f(x); domain/range; graph/table/formula/context; interval notation; rate language."
+                "f(x); input/output; image/preimage; domain/range; interval notation; graph/table/formula/context; simple AROC language."
               ],
               "learningOutcomes": [
-                "Interpret function notation and domains; move among representations; use correct interval and rate-of-change language."
+                "Interpret function notation/domains and move confidently among standard representations."
               ],
               "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus readiness bridge"
+              "alignment": "AP Precalculus supports 1.1-1.2",
+              "depth": "M Prerequisite Mastery",
+              "requiredPathBCoverage": "Students independently evaluate functions, interpret domain/range, read key graph/table information, and translate standard information among representations.",
+              "coverageBoundary": "Deferred content: full AP covariation, concavity-as-rate language, open graph construction from verbal scenarios, and dense multi-representation tasks.",
+              "targetPeriods": 2,
+              "maximumPeriods": 2
+            },
+            {
+              "id": "R0.4",
+              "title": "Systems & Right-Triangle Trig Spot Repair",
+              "subtopics": [
+                "2x2 systems; accessible 3x3 elimination; Pythagorean theorem; sin/cos/tan; inverse trig in degrees."
+              ],
+              "learningOutcomes": [
+                "Demonstrate usable systems and right-triangle trig fluency for later modeling and trig work."
+              ],
+              "deliveryStatus": "curriculum_ready",
+              "alignment": "AP Precalculus stated AP prerequisites",
+              "depth": "D Diagnostic / Repair",
+              "requiredPathBCoverage": "Focused repair is provided only where gaps are identified; the class benchmark confirms that these Grade 9 prerequisites are usable without scaffolding.",
+              "coverageBoundary": "Coverage boundary: no new systems or unit-circle/trigonometric-function unit is included here. Radians and unit-circle work begin in R3.",
+              "targetPeriods": 2,
+              "maximumPeriods": 2
             }
           ]
         },
@@ -776,105 +808,179 @@
           "code": "R1",
           "title": "Polynomial & Rational Foundations",
           "pacing": "3-9",
-          "intent": "Develop the same function families as AP Unit 1, but with more time for prerequisite algebra and guided reasoning.",
-          "phaseFocus": "Rates of change; quadratic mastery; polynomial operations/factoring/zeros/end behavior; rational expressions/functions; zeros/asymptotes/holes; transformations/modeling.",
-          "implementationEvidence": "Parallel to AP Unit 1 at scaffolded depth. Transfer Gate 1 at end of Week 9.",
+          "intent": "Develop the Algebra 2/precalculus foundations behind AP Unit 1 while explicitly reserving full AP covariation, equivalent-representation strategy, and open model construction.",
+          "phaseFocus": "Rates; quadratic mastery; polynomial algebra, zeros, and end behavior; rational algebra/functions; transformations and model choice.",
+          "implementationEvidence": "AP Unit 1 prerequisites and bridge foundations are established without completing AP Unit 1.",
           "lessons": [
             {
               "id": "R1.1",
-              "title": "Linear and Quadratic Rates of Change",
+              "title": "Rates of Change Foundations",
               "subtopics": [
-                "Slope; average rate of change; first/second differences; quadratic forms."
+                "Slope/AROC; units; first differences; second differences; classify linear vs quadratic behavior from clear tables/graphs/formulas."
               ],
               "learningOutcomes": [
-                "Compare constant/changing rates; compute average rates; identify linear vs quadratic behavior from representations."
+                "Compute and interpret average rates and recognize linear versus quadratic change patterns."
               ],
               "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus readiness bridge"
+              "alignment": "AP Precalculus 1.2-1.3",
+              "depth": "B Bridge Depth",
+              "requiredPathBCoverage": "Compute and interpret AROC over intervals and use first/second differences to distinguish constant vs linearly changing rates in standard cases.",
+              "coverageBoundary": "Deferred to AP Precalculus: sustained change-in-tandem investigations, concavity from changing rates, polynomial rate-pattern analysis, and unfamiliar AP justification associated with Topics 1.1-1.4.",
+              "targetPeriods": 2,
+              "maximumPeriods": 3
             },
             {
               "id": "R1.2",
-              "title": "Quadratic Mastery Check & Repair",
+              "title": "Quadratic Equation Mastery",
               "subtopics": [
-                "Factoring; completing square; quadratic formula; discriminant; inequalities."
+                "Factoring; completing square; quadratic formula; discriminant; real/complex solutions; checking."
               ],
               "learningOutcomes": [
-                "Solve quadratics by multiple methods; choose an efficient method; solve quadratic inequalities and classify roots."
+                "Solve quadratic equations independently by an appropriate method and classify roots."
               ],
               "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus readiness bridge"
+              "alignment": "AP Precalculus prerequisite to 1.3-1.5",
+              "depth": "M Prerequisite Mastery",
+              "requiredPathBCoverage": "Choose an efficient solving method, solve accurately, classify roots, and connect discriminant information to the number/type of roots.",
+              "coverageBoundary": "Outside current scope: AP-style open contextual model construction. This lesson emphasizes prerequisite fluency.",
+              "targetPeriods": 4,
+              "maximumPeriods": 4
             },
             {
               "id": "R1.3",
-              "title": "Polynomial Operations and Factoring",
+              "title": "Quadratic Functions, Forms & Inequalities",
               "subtopics": [
-                "Operations; special products; grouping; cubes; structure."
+                "Standard/vertex/factored forms; vertex/intercepts; transformations; quadratic inequalities; basic model interpretation."
               ],
               "learningOutcomes": [
-                "Perform polynomial operations; factor strategically; verify factorization and use it to solve equations."
+                "Analyze quadratic functions fluently and solve associated inequalities."
               ],
               "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus readiness bridge"
+              "alignment": "AP Precalculus prerequisite/bridge to 1.3",
+              "depth": "M Prerequisite Mastery",
+              "requiredPathBCoverage": "Move among forms, identify key features, solve quadratic inequalities, and connect algebraic form to graph behavior.",
+              "coverageBoundary": "Deferred: AP-style rates-of-change arguments, complex model validation, and unfamiliar multi-representation tasks for AP.",
+              "targetPeriods": 3,
+              "maximumPeriods": 3
             },
             {
               "id": "R1.4",
-              "title": "Polynomial Zeros, Multiplicity & Complex Numbers",
+              "title": "Polynomial Operations & Factoring",
               "subtopics": [
-                "Real/complex roots; conjugates; factor form; multiplicity; graph behavior."
+                "Add/subtract/multiply; special products; GCF; trinomials; grouping; sum/difference of cubes; solve factored equations."
               ],
               "learningOutcomes": [
-                "Connect zeros/factors/intercepts; use complex conjugates; predict crossing/touching behavior from multiplicity."
+                "Manipulate and factor polynomials accurately and use factored structure to solve equations."
               ],
               "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus readiness bridge"
+              "alignment": "AP Precalculus prerequisite to 1.4-1.6",
+              "depth": "M Prerequisite Mastery",
+              "requiredPathBCoverage": "Polynomial algebra is expected to be sufficiently fluent that later function analysis is not slowed by manipulation errors.",
+              "coverageBoundary": "Outside current scope: the binomial theorem as a required topic and exotic contest-style factoring.",
+              "targetPeriods": 4,
+              "maximumPeriods": 4
             },
             {
               "id": "R1.5",
-              "title": "Polynomial End Behavior & Graph Construction",
+              "title": "Polynomial Division & Theorems",
               "subtopics": [
-                "Degree; leading term; end behavior; intercepts; turning behavior; regression preview."
+                "Long division; synthetic division; Remainder Theorem; Factor Theorem; quotient/remainder interpretation."
               ],
               "learningOutcomes": [
-                "Predict end behavior; sketch graphs from algebraic structure; interpret features in context."
+                "Use polynomial division and factor/remainder relationships accurately in standard cases."
               ],
               "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus readiness bridge"
+              "alignment": "AP Precalculus supports 1.11",
+              "depth": "M Prerequisite Mastery",
+              "requiredPathBCoverage": "Divide standard polynomials, evaluate remainders efficiently, and use the Factor Theorem to test/confirm zeros.",
+              "coverageBoundary": "Full AP equivalent-representation strategy and slant-asymptote analysis are deferred; polynomial division remains a prerequisite tool.",
+              "targetPeriods": 2,
+              "maximumPeriods": 2
             },
             {
               "id": "R1.6",
-              "title": "Rational Expressions and Equations",
+              "title": "Polynomial Zeros, Multiplicity & Complex Roots",
               "subtopics": [
-                "Restrictions; simplification; operations; rational equations; excluded values."
+                "Factor-zero link; x-intercepts; multiplicity; crossing/touching; complex roots; conjugate pairs; degree/root count."
               ],
               "learningOutcomes": [
-                "Simplify and solve rational expressions/equations with domain control; detect invalid/extraneous values."
+                "Determine zeros/multiplicities and predict crossing/touching behavior from algebraic structure."
               ],
               "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus readiness bridge"
+              "alignment": "AP Precalculus 1.5",
+              "depth": "B Bridge Depth",
+              "requiredPathBCoverage": "Determine real/complex zeros in standard cases, interpret multiplicity, and predict local x-axis behavior from factor form.",
+              "coverageBoundary": "Deferred beyond this course: nonroutine AP tasks combining unknown coefficients, complex-zero constraints, multiple representations, and extended rationale.",
+              "targetPeriods": 3,
+              "maximumPeriods": 3
             },
             {
               "id": "R1.7",
-              "title": "Rational Functions: Zeros, Asymptotes and Holes",
+              "title": "Polynomial End Behavior & Standard Graph Construction",
               "subtopics": [
-                "Zeros; vertical/horizontal end behavior; holes; sign behavior; multiple representations."
+                "Degree; leading coefficient; parity; end behavior; intercepts; multiplicity; rough graph; technology check."
               ],
               "learningOutcomes": [
-                "Identify zeros/asymptotes/holes; explain each from algebraic structure; sketch and interpret rational graphs."
+                "Predict polynomial end behavior and build a defensible graph from algebraic features."
               ],
               "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus readiness bridge"
+              "alignment": "AP Precalculus 1.6",
+              "depth": "B Bridge Depth",
+              "requiredPathBCoverage": "Predict end behavior and construct a reasonable sketch from major algebraic features, then use technology to verify rather than replace reasoning.",
+              "coverageBoundary": "Not required within this course: formal limit notation, full AP polynomial rate-of-change analysis, and open model construction.",
+              "targetPeriods": 3,
+              "maximumPeriods": 3
             },
             {
               "id": "R1.8",
-              "title": "Transformations and Model Selection",
+              "title": "Rational Expressions & Equations",
               "subtopics": [
-                "Function transformations; polynomial/rational models; regression/residual idea; assumptions."
+                "Restrictions; simplification; operations; complex fractions at routine level; rational equations; excluded values; extraneous checks."
               ],
               "learningOutcomes": [
-                "Construct transformed functions; select a plausible model; state assumptions and limitations using evidence."
+                "Manipulate rational expressions and solve rational equations without losing domain restrictions."
               ],
               "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus readiness bridge"
+              "alignment": "AP Precalculus prerequisite to 1.7-1.10",
+              "depth": "M Prerequisite Mastery",
+              "requiredPathBCoverage": "Manipulate rational expressions and solve rational equations with explicit domain control and solution checking.",
+              "coverageBoundary": "Course focus: algebraic fluency. Full rational-function AP analysis remains deferred to the AP course.",
+              "targetPeriods": 4,
+              "maximumPeriods": 4
+            },
+            {
+              "id": "R1.9",
+              "title": "Rational Functions: Zeros, Holes & Asymptotes",
+              "subtopics": [
+                "Factor/simplify; zeros; holes; vertical asymptotes; horizontal end behavior; intercepts; sign samples; standard sketch."
+              ],
+              "learningOutcomes": [
+                "Analyze the essential algebraic and graphical features of standard rational functions."
+              ],
+              "deliveryStatus": "curriculum_ready",
+              "alignment": "AP Precalculus 1.7-1.10",
+              "depth": "B Bridge Depth",
+              "requiredPathBCoverage": "Distinguish canceled vs noncanceled factors, find standard asymptotes/holes/zeros, and sketch typical rational graphs from structure.",
+              "coverageBoundary": "Deferred to AP Precalculus: one-sided limit notation, required oblique/slant asymptotes, subtle end-behavior models, AP model construction, and dense multi-representation reasoning.",
+              "targetPeriods": 3,
+              "maximumPeriods": 4
+            },
+            {
+              "id": "R1.10",
+              "title": "Transformations & Introductory Model Choice",
+              "subtopics": [
+                "Translations/reflections/scaling; polynomial/rational parent structures; choose plausible family from clear graph/data/context; basic limitations."
+              ],
+              "learningOutcomes": [
+                "Use transformations and make a defensible preliminary model choice from clear evidence."
+              ],
+              "deliveryStatus": "curriculum_ready",
+              "alignment": "AP Precalculus 1.12-1.14",
+              "depth": "B Bridge Depth",
+              "requiredPathBCoverage": "Apply transformations and make a first-pass model-family choice when evidence is clear and the choice is structured.",
+              "coverageBoundary": "Deferred beyond this course: AP open model construction, cubic/quartic regression depth, piecewise model design, sophisticated residual validation, or extended written rationale.",
+              "targetPeriods": 3,
+              "maximumPeriods": 3
             }
           ]
         },
@@ -882,117 +988,196 @@
           "code": "R2",
           "title": "Exponential & Logarithmic Foundations",
           "pacing": "10-17",
-          "intent": "Build full Algebra 2-level exponential/logarithmic fluency while mirroring the AP Unit 2 sequence.",
-          "phaseFocus": "Sequences; exponent laws; exponential functions/modeling; composition/inverses; logarithms; exp/log equations; model comparison; regression.",
-          "implementationEvidence": "Parallel to AP Unit 2. Transfer Gate 2 at end of Week 17 for exceptional candidates.",
+          "intent": "Build Algebra 2-to-precalculus fluency with multiplicative change, exponential and logarithmic functions, composition, inverses, and standard models while reserving full AP covariation and modeling depth.",
+          "phaseFocus": "Sequences; exponent/radical fluency; exponential functions/models; composition/inverses; logarithms; equations; model comparison; semi-log preview.",
+          "implementationEvidence": "AP Unit 2 prerequisites and bridge foundations are established while AP covariation and modeling depth remain reserved.",
           "lessons": [
             {
               "id": "R2.1",
-              "title": "Arithmetic and Geometric Sequences",
+              "title": "Arithmetic & Geometric Sequences",
               "subtopics": [
-                "Explicit/recursive rules; difference/ratio; discrete domains; sequence-to-function connection."
+                "Explicit/recursive rules; common difference/ratio; discrete domain; additive vs multiplicative change; sequence-function connection."
               ],
               "learningOutcomes": [
-                "Write and interpret sequence rules; distinguish additive/multiplicative change; connect sequences to linear/exponential functions."
+                "Represent sequences and distinguish additive from multiplicative change."
               ],
               "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus readiness bridge"
+              "alignment": "AP Precalculus 2.1",
+              "depth": "B Bridge Depth",
+              "requiredPathBCoverage": "Write/interpret arithmetic and geometric rules and connect them to linear/exponential behavior in clear tables and contexts.",
+              "coverageBoundary": "Not required within this course: AP-style change-in-tandem arguments, unfamiliar sequence modeling, series/sigma notation, or proof-heavy recurrence work.",
+              "targetPeriods": 3,
+              "maximumPeriods": 3
             },
             {
               "id": "R2.2",
-              "title": "Exponent Laws and Rational Exponents",
+              "title": "Exponent Laws, Radicals & Rational Exponents",
               "subtopics": [
-                "Integer/rational exponents; radicals; equivalent forms; scientific notation as needed."
+                "Integer/rational exponents; radicals; equivalent forms; domain/sign awareness; simplifying and evaluating."
               ],
               "learningOutcomes": [
-                "Apply exponent laws fluently; rewrite radicals and rational exponents; simplify expressions without sign/domain errors."
+                "Rewrite and simplify radical/exponential expressions accurately and efficiently."
               ],
               "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus readiness bridge"
+              "alignment": "AP Precalculus prerequisite to 2.2-2.4",
+              "depth": "M Prerequisite Mastery",
+              "requiredPathBCoverage": "Students simplify/rewrite standard exponential/radical expressions accurately and move between radical and rational-exponent forms.",
+              "coverageBoundary": "Outside current scope: AP parameter-inference and modeling tasks. This lesson emphasizes prerequisite fluency.",
+              "targetPeriods": 3,
+              "maximumPeriods": 4
             },
             {
               "id": "R2.3",
-              "title": "Exponential Functions and Transformations",
+              "title": "Exponential Functions & Transformations",
               "subtopics": [
-                "Initial value; growth factor; asymptote; domain/range; transformations."
+                "y=ab^x; initial value; base/factor; domain/range; horizontal asymptote; growth/decay; transformations; solve for simple parameters."
               ],
               "learningOutcomes": [
-                "Construct, graph, and interpret exponential functions; connect parameters to features; compare transformations."
+                "Construct and interpret standard exponential functions and transformations."
               ],
               "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus readiness bridge"
+              "alignment": "AP Precalculus 2.2-2.4",
+              "depth": "B Bridge Depth",
+              "requiredPathBCoverage": "Construct, graph, and interpret standard exponential functions; identify parameter effects from familiar forms and clear conditions.",
+              "coverageBoundary": "Deferred: AP-level parameter inference from dense tables/graphs, extended equivalent-form strategy, and multi-step model construction to AP.",
+              "targetPeriods": 4,
+              "maximumPeriods": 4
             },
             {
               "id": "R2.4",
               "title": "Exponential Modeling",
               "subtopics": [
-                "Percent growth/decay; compound contexts; regression; residuals; doubling/halving."
+                "Percent growth/decay; compound contexts; doubling/halving; regression; parameter interpretation; predictions; basic residual check."
               ],
               "learningOutcomes": [
-                "Build exponential models; interpret growth factors/rates; evaluate model fit and make contextual predictions."
+                "Build and interpret standard exponential models and make reasonable predictions."
               ],
               "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus readiness bridge"
+              "alignment": "AP Precalculus 2.5-2.6",
+              "depth": "B Bridge Depth",
+              "requiredPathBCoverage": "Build standard exponential models from clear contexts/data and interpret initial value, factor, rate, and prediction limits.",
+              "coverageBoundary": "Not required within this course: full competing-model validation, sophisticated residual arguments, or open AP data-model construction.",
+              "targetPeriods": 4,
+              "maximumPeriods": 5
             },
             {
               "id": "R2.5",
-              "title": "Composition and Inverse Functions",
+              "title": "Composition of Functions",
               "subtopics": [
-                "Composition; one-to-one idea; inverse notation; graph reflection; domain restriction."
+                "Evaluate f(g(x)); symbolic/numeric composition; process chaining; standard domain restrictions; context interpretation."
               ],
               "learningOutcomes": [
-                "Evaluate compositions; determine/verify inverses; restrict domains when required; interpret inverse processes."
+                "Evaluate and construct standard compositions and interpret chained processes."
               ],
               "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus readiness bridge"
+              "alignment": "AP Precalculus 2.7",
+              "depth": "M Prerequisite Mastery",
+              "requiredPathBCoverage": "Students evaluate and construct routine compositions and identify obvious domain restrictions.",
+              "coverageBoundary": "Deferred: complex contextual chains, nested compositions of unfamiliar functions, and AP representation switching for AP.",
+              "targetPeriods": 3,
+              "maximumPeriods": 3
             },
             {
               "id": "R2.6",
-              "title": "Logarithms as Inverses",
+              "title": "Inverse Functions",
               "subtopics": [
-                "Exponential-log equivalence; common/natural logs; graphs; domain/range; asymptote."
+                "One-to-one concept; horizontal line test; inverse notation; graph reflection; algebraic inverse; verify by composition; domain restriction when needed."
               ],
               "learningOutcomes": [
-                "Rewrite between forms; evaluate logarithms; connect log graphs to exponential inverses; identify domain restrictions."
+                "Determine, construct, and verify inverse functions in standard cases."
               ],
               "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus readiness bridge"
+              "alignment": "AP Precalculus 2.8",
+              "depth": "M Prerequisite Mastery",
+              "requiredPathBCoverage": "Find and verify inverses for linear, simple quadratic-with-restriction, exponential/log, and other standard one-to-one cases.",
+              "coverageBoundary": "Not required within this course: subtle inverse domain/range analysis across unfamiliar representations or difficult contextual inverse modeling.",
+              "targetPeriods": 3,
+              "maximumPeriods": 3
             },
             {
               "id": "R2.7",
-              "title": "Logarithm Properties",
+              "title": "Logarithms as Inverses",
               "subtopics": [
-                "Product/quotient/power properties; change of base; expanding/condensing."
+                "Exponential-log equivalence; common/natural logs; exact values; graphs; domain/range; vertical asymptote; basic transformations."
               ],
               "learningOutcomes": [
-                "Manipulate logarithmic expressions accurately; use change of base; preserve valid domains."
+                "Use logarithms as inverse functions and interpret standard logarithmic graphs."
               ],
               "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus readiness bridge"
+              "alignment": "AP Precalculus 2.9-2.11",
+              "depth": "M Prerequisite Mastery",
+              "requiredPathBCoverage": "Rewrite between forms, evaluate common exact values, and graph/interpret standard logarithmic functions as inverses of exponentials.",
+              "coverageBoundary": "Deferred beyond this course: nonroutine AP logarithmic-function interpretation from unfamiliar representations and advanced model reasoning.",
+              "targetPeriods": 4,
+              "maximumPeriods": 4
             },
             {
               "id": "R2.8",
-              "title": "Exponential and Log Equations",
+              "title": "Logarithm Properties & Change of Base",
               "subtopics": [
-                "Common-base solving; logs; numerical methods; inequalities; checking."
+                "Product/quotient/power properties; expand/condense; change of base; domain restrictions."
               ],
               "learningOutcomes": [
-                "Solve exponential/logarithmic equations; check domain; use technology appropriately when an exact algebraic solution is unavailable."
+                "Manipulate logarithmic expressions accurately while respecting domains."
               ],
               "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus readiness bridge"
+              "alignment": "AP Precalculus 2.12",
+              "depth": "M Prerequisite Mastery",
+              "requiredPathBCoverage": "Apply properties fluently and preserve valid domains; use change of base for numerical evaluation when appropriate.",
+              "coverageBoundary": "Outside current scope: proof-heavy property derivations and symbolic drill beyond the needs of equations and modeling.",
+              "targetPeriods": 3,
+              "maximumPeriods": 3
             },
             {
               "id": "R2.9",
-              "title": "Comparing and Validating Models",
+              "title": "Exponential & Logarithmic Equations",
               "subtopics": [
-                "Linear/quadratic/exponential/log models; regression; residuals; informal semi-log interpretation."
+                "Common-base solving; isolate exponent; logs; exact/numerical solutions; extraneous/domain checks; straightforward contexts."
               ],
               "learningOutcomes": [
-                "Choose a model from evidence; compare residual behavior; explain why a model is plausible or not."
+                "Solve exponential/logarithmic equations accurately and validate solutions."
               ],
               "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus readiness bridge"
+              "alignment": "AP Precalculus 2.13",
+              "depth": "M Prerequisite Mastery",
+              "requiredPathBCoverage": "Solve standard exponential/log equations and interpret solutions in context, using technology when algebraic isolation does not yield a simple exact value.",
+              "coverageBoundary": "Deferred: nonroutine inequalities and long AP multi-step contextual justification for AP.",
+              "targetPeriods": 4,
+              "maximumPeriods": 4
+            },
+            {
+              "id": "R2.10",
+              "title": "Comparing Models & Regression",
+              "subtopics": [
+                "Linear/quadratic/exponential/log comparison; rate pattern; regression; residual idea; parameter meaning; assumptions/limitations."
+              ],
+              "learningOutcomes": [
+                "Select and justify a plausible model from structured evidence."
+              ],
+              "deliveryStatus": "curriculum_ready",
+              "alignment": "AP Precalculus 2.6, 2.14",
+              "depth": "B Bridge Depth",
+              "requiredPathBCoverage": "Choose a plausible family from structured evidence and use basic residual/graph/context evidence to justify a choice briefly.",
+              "coverageBoundary": "Not required within this course: full AP competing-model validation, open model construction, or extended written argumentation.",
+              "targetPeriods": 3,
+              "maximumPeriods": 3
+            },
+            {
+              "id": "R2.11",
+              "title": "Semi-Log Plot Preview",
+              "subtopics": [
+                "Meaning of logarithmic scale; observe that exponential data can appear linear on semi-log display; technology demonstration."
+              ],
+              "learningOutcomes": [
+                "Recognize why a semi-log plot can reveal exponential structure."
+              ],
+              "deliveryStatus": "curriculum_ready",
+              "alignment": "AP Precalculus preview 2.15",
+              "depth": "P Preview Only",
+              "requiredPathBCoverage": "Students recognize the purpose of a semi-log display and identify the qualitative linearization idea from a prepared graph.",
+              "coverageBoundary": "Not required within this course: construction of the transformed linear model, slope/intercept parameter recovery, proofs, or AP Topic 2.15 mastery.",
+              "targetPeriods": 2,
+              "maximumPeriods": 2
             }
           ]
         },
@@ -1000,129 +1185,230 @@
           "code": "R3",
           "title": "Trigonometric & Polar Foundations",
           "pacing": "18-27",
-          "intent": "Build a strong trigonometric foundation so AP Unit 3 can be learned conceptually rather than as a first exposure.",
-          "phaseFocus": "Radians/unit circle; sine/cosine/tangent values and graphs; sinusoidal models; inverse trig; equations; core identities; polar coordinates/graphs.",
-          "implementationEvidence": "Builds complete entry readiness for AP Unit 3; end-of-unit readiness benchmark.",
+          "intent": "Build the complete prerequisite and bridge structure needed to enter AP Unit 3 ready for conceptual trigonometric and polar reasoning.",
+          "phaseFocus": "Radians; unit circle; trig values/graphs; sinusoidal models; tangent and reciprocal trig; inverse trig; equations; identities; polar foundations.",
+          "implementationEvidence": "Entry readiness for AP Unit 3 is established; polar-rate work remains at preview depth.",
           "lessons": [
             {
               "id": "R3.1",
-              "title": "Radians, Standard Position & Unit Circle",
+              "title": "Radians & Standard Position",
               "subtopics": [
-                "Degree-radian conversion; arc length concept; unit-circle coordinates; quadrants/reference angles."
+                "Degree-radian conversion; coterminal angles; standard position; quadrants; reference angles; arc-length concept."
               ],
               "learningOutcomes": [
-                "Convert angle measures; locate angles in standard position; determine unit-circle coordinates and reference angles."
+                "Use radians and standard-position angle language confidently."
               ],
               "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus readiness bridge"
+              "alignment": "AP Precalculus 3.1",
+              "depth": "M Prerequisite Mastery",
+              "requiredPathBCoverage": "Use radians naturally, convert accurately, and determine standard-position/reference-angle information for common angles.",
+              "coverageBoundary": "Deferred content: full periodic-function covariation and unfamiliar AP contexts.",
+              "targetPeriods": 3,
+              "maximumPeriods": 4
             },
             {
               "id": "R3.2",
-              "title": "Sine, Cosine and Tangent Values",
+              "title": "Unit Circle Coordinates & Special Angles",
               "subtopics": [
-                "Unit-circle definitions; exact values; signs; right-triangle connection; calculator values."
+                "Unit-circle coordinates; special angles; symmetry; signs by quadrant; exact values."
               ],
               "learningOutcomes": [
-                "Evaluate trig functions exactly or approximately; connect right-triangle and unit-circle definitions; use quadrant reasoning."
+                "Determine exact unit-circle coordinates and trig values for standard angles."
               ],
               "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus readiness bridge"
+              "alignment": "AP Precalculus 3.2-3.3",
+              "depth": "M Prerequisite Mastery",
+              "requiredPathBCoverage": "Memorize/derive the special-angle coordinates and connect them to sine/cosine values without dependence on a calculator.",
+              "coverageBoundary": "Full AP multiple-representation modeling is deferred; this lesson emphasizes prerequisite exact-value fluency.",
+              "targetPeriods": 4,
+              "maximumPeriods": 4
             },
             {
               "id": "R3.3",
-              "title": "Sine and Cosine Graphs",
+              "title": "Sine, Cosine & Tangent Values",
               "subtopics": [
-                "Period; amplitude; midline; zeros/extrema; graph construction."
+                "Unit-circle definitions; right-triangle connection; reference angles; exact/approximate values; tangent as ratio; signs."
               ],
               "learningOutcomes": [
-                "Graph and analyze sine/cosine; identify key features; connect graph behavior to the unit circle."
+                "Evaluate primary trig functions exactly or approximately and justify values/signs."
               ],
               "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus readiness bridge"
+              "alignment": "AP Precalculus 3.2-3.3",
+              "depth": "M Prerequisite Mastery",
+              "requiredPathBCoverage": "Evaluate sin/cos/tan for standard and calculator-supported angles and explain signs using quadrant/reference-angle reasoning.",
+              "coverageBoundary": "Deferred: unfamiliar AP representation tasks and broader covariation interpretation for AP.",
+              "targetPeriods": 4,
+              "maximumPeriods": 4
             },
             {
               "id": "R3.4",
-              "title": "Sinusoidal Transformations and Modeling",
+              "title": "Parent Sine & Cosine Graphs",
               "subtopics": [
-                "A sin(B(x-C))+D; parameter effects; periodic data; regression."
+                "Domain/range; period; zeros; extrema; midline; key points; unit-circle-to-graph connection."
               ],
               "learningOutcomes": [
-                "Write sinusoidal equations from features/data; interpret parameters; assess model reasonableness."
+                "Graph and analyze parent sine/cosine functions and connect them to unit-circle values."
               ],
               "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus readiness bridge"
+              "alignment": "AP Precalculus 3.4",
+              "depth": "B Bridge Depth",
+              "requiredPathBCoverage": "Graph the parent functions from key values and identify essential periodic features.",
+              "coverageBoundary": "Deferred beyond this course: complex parameter recovery, open data modeling, and AP multi-representation graph analysis.",
+              "targetPeriods": 4,
+              "maximumPeriods": 4
             },
             {
               "id": "R3.5",
-              "title": "Tangent, Secant, Cosecant and Cotangent",
+              "title": "Sinusoidal Transformations",
               "subtopics": [
-                "Definitions; graphs; periods; zeros; asymptotes; reciprocal relationships."
+                "A sin(B(x-C))+D / cosine; amplitude; period; midline; horizontal shift; reflections; write equation from clear graph features."
               ],
               "learningOutcomes": [
-                "Analyze reciprocal and tangent-family functions; identify domains/asymptotes; connect graphs to sine/cosine."
+                "Construct and interpret transformed sinusoidal functions from clear information."
               ],
               "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus readiness bridge"
+              "alignment": "AP Precalculus 3.5-3.6",
+              "depth": "B Bridge Depth",
+              "requiredPathBCoverage": "Interpret parameters and construct transformed graphs/equations when features are clearly specified.",
+              "coverageBoundary": "Deferred: difficult phase-shift conventions, ambiguous parameter recovery, and dense AP reasoning for AP.",
+              "targetPeriods": 4,
+              "maximumPeriods": 4
             },
             {
               "id": "R3.6",
-              "title": "Inverse Trigonometric Functions",
+              "title": "Sinusoidal Modeling",
               "subtopics": [
-                "Principal values; inverse notation; solving right/general angle problems."
+                "Periodic contexts/data; choose sine/cosine; parameter meaning; simple regression; prediction; limitations."
               ],
               "learningOutcomes": [
-                "Evaluate inverse trig functions; solve for angles; use correct principal-value ranges."
+                "Build and interpret standard sinusoidal models from structured evidence."
               ],
               "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus readiness bridge"
+              "alignment": "AP Precalculus 3.7",
+              "depth": "B Bridge Depth",
+              "requiredPathBCoverage": "Build sinusoidal models from structured contexts or clearly periodic data and interpret parameters in context.",
+              "coverageBoundary": "Not required within this course: open modeling from sparse/ambiguous data, residual-based model validation depth, or AP FRQ-style extended justification.",
+              "targetPeriods": 4,
+              "maximumPeriods": 5
             },
             {
               "id": "R3.7",
-              "title": "Trigonometric Equations",
+              "title": "The Tangent Function",
               "subtopics": [
-                "Solve on intervals; periodic solutions; graph/algebra methods."
+                "Definition; period; zeros; vertical asymptotes; domain/range; parent graph; simple transformations."
               ],
               "learningOutcomes": [
-                "Solve basic and transformed trig equations; generate all solutions on an interval; verify solutions."
+                "Analyze the tangent function and its basic transformed graphs."
               ],
               "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus readiness bridge"
+              "alignment": "AP Precalculus 3.8",
+              "depth": "B Bridge Depth",
+              "requiredPathBCoverage": "Graph and interpret the parent tangent function and simple transformations using unit-circle understanding.",
+              "coverageBoundary": "Not allocated instructional time: elaborate tangent modeling or difficult transformation recovery.",
+              "targetPeriods": 3,
+              "maximumPeriods": 3
             },
             {
               "id": "R3.8",
-              "title": "Core Trigonometric Identities",
+              "title": "Secant, Cosecant & Cotangent",
               "subtopics": [
-                "Reciprocal/quotient/Pythagorean; sine/cosine sum identities; simple verification."
+                "Reciprocal/quotient relationships; parent graph features; asymptotes; domains/ranges; simple connections."
               ],
               "learningOutcomes": [
-                "Rewrite trig expressions; verify identities; use equivalent forms to support equation solving."
+                "Recognize basic reciprocal trig functions and connect their features to primary trig functions."
               ],
               "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus readiness bridge"
+              "alignment": "AP Precalculus 3.11",
+              "depth": "B Bridge Depth",
+              "requiredPathBCoverage": "Recognize and sketch basic reciprocal trig graphs using sine/cosine/tangent structure.",
+              "coverageBoundary": "Outside current scope: extended transformation/modeling treatment and high-complexity AP equivalent-representation tasks.",
+              "targetPeriods": 2,
+              "maximumPeriods": 2
             },
             {
               "id": "R3.9",
-              "title": "Polar Coordinates",
+              "title": "Inverse Trigonometric Functions",
               "subtopics": [
-                "Polar grid; multiple coordinates; rectangular-polar conversion; complex-plane connection."
+                "Principal-value ranges; inverse notation; exact/simple approximate values; graph idea; solving for angles; compositions in standard cases."
               ],
               "learningOutcomes": [
-                "Plot and convert coordinates; explain multiple polar representations; connect coordinate systems."
+                "Evaluate inverse trig functions correctly and use them to recover angles."
               ],
               "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus readiness bridge"
+              "alignment": "AP Precalculus 3.9",
+              "depth": "M Prerequisite Mastery",
+              "requiredPathBCoverage": "Use principal-value conventions correctly and evaluate inverse trig functions in exact/approximate standard cases.",
+              "coverageBoundary": "Deferred: difficult inverse-trig compositions and dense domain/range reasoning across unfamiliar representations for AP.",
+              "targetPeriods": 3,
+              "maximumPeriods": 4
             },
             {
               "id": "R3.10",
-              "title": "Polar Graphs and Rate Language",
+              "title": "Trigonometric Equations",
               "subtopics": [
-                "r=f(theta); signed radius; graphing with tables/technology; average rate of r with respect to theta."
+                "Basic/transformed sine/cosine/tangent equations; specified intervals; periodic solutions; graph/numeric verification."
               ],
               "learningOutcomes": [
-                "Construct basic polar graphs; interpret signed radius; describe increasing/decreasing radius and average rate per radian."
+                "Solve standard trigonometric equations and verify solutions."
               ],
               "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus readiness bridge"
+              "alignment": "AP Precalculus 3.10",
+              "depth": "B Bridge Depth",
+              "requiredPathBCoverage": "Solve standard trig equations on given intervals and state general periodic solutions in accessible cases.",
+              "coverageBoundary": "Not required within this course: a broad trig-inequalities unit or long identity transformations embedded in difficult equations.",
+              "targetPeriods": 4,
+              "maximumPeriods": 5
+            },
+            {
+              "id": "R3.11",
+              "title": "Core Trigonometric Identities",
+              "subtopics": [
+                "Reciprocal; quotient; Pythagorean identities; equivalent forms; simplification; use in equations; brief sum-identity exposure only if locally needed."
+              ],
+              "learningOutcomes": [
+                "Use core identities to create equivalent forms and support standard solving."
+              ],
+              "deliveryStatus": "curriculum_ready",
+              "alignment": "AP Precalculus 3.12",
+              "depth": "B Bridge Depth",
+              "requiredPathBCoverage": "Use the core identities as tools to rewrite expressions and support standard equation solving.",
+              "coverageBoundary": "Not included within this course: a proof-heavy identity unit; product-to-sum, half-angle, and lengthy identity proofs are outside the Path B priority unless locally mandated.",
+              "targetPeriods": 4,
+              "maximumPeriods": 5
+            },
+            {
+              "id": "R3.12",
+              "title": "Polar Coordinates",
+              "subtopics": [
+                "Polar grid; plot points; multiple equivalent coordinates; signed radius; rectangular-polar conversion; calculator entry."
+              ],
+              "learningOutcomes": [
+                "Plot and convert polar/rectangular coordinates and interpret signed radius."
+              ],
+              "deliveryStatus": "curriculum_ready",
+              "alignment": "AP Precalculus 3.13",
+              "depth": "B Bridge Depth",
+              "requiredPathBCoverage": "Plot and convert coordinates fluently and explain why multiple coordinate pairs can represent the same point.",
+              "coverageBoundary": "Deferred content: full polar-function family analysis and rates of change.",
+              "targetPeriods": 2,
+              "maximumPeriods": 3
+            },
+            {
+              "id": "R3.13",
+              "title": "Polar Graphs & Rate Language Preview",
+              "subtopics": [
+                "Use tables/technology for a few r=f(theta) graphs; signed radius; simple Δr/Δtheta from table; radial increase/decrease idea."
+              ],
+              "learningOutcomes": [
+                "Enter AP able to recognize basic polar-function behavior and the meaning of average radial change per radian."
+              ],
+              "deliveryStatus": "curriculum_ready",
+              "alignment": "AP Precalculus preview 3.14-3.15",
+              "depth": "P Preview Only",
+              "requiredPathBCoverage": "Recognize how a polar function generates points and understand average radial change at an intuitive/table level.",
+              "coverageBoundary": "Deferred beyond this course: AP polar graph analysis, model construction, relative extrema reasoning, and full Topic 3.15 rate-of-change requirements.",
+              "targetPeriods": 3,
+              "maximumPeriods": 3
             }
           ]
         },
@@ -1130,69 +1416,128 @@
           "code": "R4",
           "title": "Function Synthesis & AP Transition",
           "pacing": "28-32",
-          "intent": "Consolidate the cross-cutting skills that distinguish students who survive AP Precalculus from students who can reason fluently in it.",
-          "phaseFocus": "Transformations/composition/inverses; rates/covariation; model selection; regression/residuals; mixed multiple-representation reasoning.",
-          "implementationEvidence": "Closes gaps that most often cause difficulty in AP Precalculus.",
+          "intent": "Integrate the separate strands into the habits of thought AP Precalculus requires while introducing no new AP content.",
+          "phaseFocus": "Transformations; composition/inverses; covariation; model selection; representations; cumulative readiness.",
+          "implementationEvidence": "Prerequisite strands are integrated and common gaps that block AP pace are addressed.",
           "lessons": [
             {
               "id": "R4.1",
-              "title": "Transformations, Composition & Inverses Synthesis",
+              "title": "Transformations Across Families",
               "subtopics": [
-                "Mixed function families; nested functions; domain restrictions; inverse verification."
+                "Linear/quadratic/polynomial/rational/exponential/log/sinusoidal transformations; parameter effects; efficient graph construction."
               ],
               "learningOutcomes": [
-                "Use transformations/compositions/inverses flexibly across function families; determine valid domains; choose efficient representations."
+                "Apply transformation reasoning flexibly across familiar function families."
               ],
               "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus readiness bridge"
+              "alignment": "AP Precalculus mathematical practices / Units 1-3",
+              "depth": "B Bridge Depth",
+              "requiredPathBCoverage": "Use transformation language flexibly and compare parameter effects across already-learned families.",
+              "coverageBoundary": "Outside current scope: new function families and AP-only transformation cases. The synthesis uses familiar mathematics at moderate complexity.",
+              "targetPeriods": 3,
+              "maximumPeriods": 3
             },
             {
               "id": "R4.2",
-              "title": "Covariation and Rates Across Families",
+              "title": "Composition & Inverse Synthesis",
               "subtopics": [
-                "Average rate; additive/multiplicative change; increasing/decreasing; extrema; comparison of families."
+                "Nested but standard compositions; inverse verification; domain/range correspondence; choose useful form."
               ],
               "learningOutcomes": [
-                "Describe how quantities change together; compare rate behavior across families; justify conclusions from multiple representations."
+                "Use compositions and inverses efficiently across familiar function families."
               ],
               "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus readiness bridge"
+              "alignment": "AP Precalculus 2.7-2.8 / practices",
+              "depth": "B Bridge Depth",
+              "requiredPathBCoverage": "Integrate composition/inverse skills across familiar function families and select an efficient approach.",
+              "coverageBoundary": "Deferred beyond this course: difficult contextual chains, subtle domains, or AP-level representation switching.",
+              "targetPeriods": 3,
+              "maximumPeriods": 4
             },
             {
               "id": "R4.3",
-              "title": "Model Selection and Regression",
+              "title": "Covariation & Rates Across Families",
               "subtopics": [
-                "Linear/quadratic/polynomial/exponential/log/sinusoidal candidates; residuals; assumptions."
+                "AROC; additive vs multiplicative change; periodic change; increasing/decreasing; extrema; compare rate behavior."
               ],
               "learningOutcomes": [
-                "Select and validate a model; interpret parameters; use residual and contextual evidence; articulate limitations."
+                "Compare how different function families change and communicate rate behavior clearly."
               ],
               "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus readiness bridge"
+              "alignment": "AP Precalculus 1.1-1.3, 2.1-2.2, 3.1",
+              "depth": "B Bridge Depth",
+              "requiredPathBCoverage": "Describe how quantities change together in clear representations and compare rate structures across families.",
+              "coverageBoundary": "Deferred to the AP course: full AP Topic 1.1-1.3 covariation/concavity depth or dense unfamiliar-data reasoning.",
+              "targetPeriods": 4,
+              "maximumPeriods": 5
             },
             {
               "id": "R4.4",
-              "title": "AP-Style Multiple Representations",
+              "title": "Model Selection, Regression & Limitations",
               "subtopics": [
-                "Graph/table/formula/context translation; calculator and non-calculator tasks; concise justification."
+                "Linear/quadratic/polynomial/exponential/log/sinusoidal models; regression; basic residuals; parameters; assumptions/limitations."
               ],
               "learningOutcomes": [
-                "Translate representations; sustain multi-step reasoning; communicate a mathematically valid rationale."
+                "Select and defend a reasonable model and interpret its parameters/limitations."
               ],
               "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus readiness bridge"
+              "alignment": "AP Precalculus 1.13-1.14, 2.5-2.6/2.14, 3.7",
+              "depth": "B Bridge Depth",
+              "requiredPathBCoverage": "Choose among familiar model families using structured data/context evidence and give a concise justification including limitations.",
+              "coverageBoundary": "Not required within this course: full AP open model construction/validation, piecewise model design, or long written argumentation.",
+              "targetPeriods": 4,
+              "maximumPeriods": 5
             },
             {
               "id": "R4.5",
-              "title": "Cumulative Readiness Studio",
+              "title": "Multiple Representations & AP Habits",
               "subtopics": [
-                "Mixed problems; retrieval; error analysis; targeted mini-lessons; independent practice planning."
+                "Graph/table/formula/context translation; calculator vs non-calculator; concise rationale; timed mini-sets; notation precision."
               ],
               "learningOutcomes": [
-                "Demonstrate durable mastery; diagnose own errors; select targeted practice rather than repeating mastered content."
+                "Sustain multi-step reasoning across representations and communicate a concise rationale."
               ],
               "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus readiness bridge"
+              "alignment": "AP Precalculus mathematical practices",
+              "depth": "B Bridge Depth",
+              "requiredPathBCoverage": "AP-like formats are practiced using Path B mathematics, including short valid rationales and purposeful technology use.",
+              "coverageBoundary": "Format familiarity is the goal rather than full AP difficulty. Extended instruction using released-AP complexity is reserved for the AP course.",
+              "targetPeriods": 3,
+              "maximumPeriods": 3
+            },
+            {
+              "id": "R4.6",
+              "title": "Cumulative Readiness Studio",
+              "subtopics": [
+                "Mixed retrieval; error analysis; targeted mini-lessons; student-selected practice; strand tracking."
+              ],
+              "learningOutcomes": [
+                "Demonstrate durable prerequisite mastery and select targeted practice independently."
+              ],
+              "deliveryStatus": "curriculum_ready",
+              "alignment": "AP Precalculus cumulative",
+              "depth": "M Prerequisite Mastery",
+              "requiredPathBCoverage": "Critical prerequisite strands are reassessed with independent error correction; reteaching is targeted to evidence of readiness-blocking gaps.",
+              "coverageBoundary": "No new content is introduced. Isolated gaps are addressed through targeted support rather than reopening an entire unit.",
+              "targetPeriods": 3,
+              "maximumPeriods": 3
+            },
+            {
+              "id": "R4.B",
+              "title": "Grade 11 AP Readiness Benchmark",
+              "subtopics": [
+                "Common cumulative benchmark; non-calculator algebra; function reasoning; trig/log skills; representations; short rationale."
+              ],
+              "learningOutcomes": [
+                "Demonstrate that the prerequisite base is strong enough for Grade 11 AP Precalculus."
+              ],
+              "deliveryStatus": "curriculum_ready",
+              "alignment": "AP Precalculus readiness decision",
+              "depth": "B Bridge Depth",
+              "requiredPathBCoverage": "Produce a strand-level readiness report and identify any precise summer priorities before the AP launch preview.",
+              "coverageBoundary": "This phase is limited to assessment and diagnosis; benchmark time does not add missing AP content.",
+              "targetPeriods": 2,
+              "maximumPeriods": 2
             }
           ]
         },
@@ -1200,57 +1545,111 @@
           "code": "R5",
           "title": "AP Precalculus Launch",
           "pacing": "33-36",
-          "intent": "End Grade 10 by making the opening weeks of Grade 11 AP Precalculus familiar and manageable.",
-          "phaseFocus": "Preview AP Topics 1.1, 1.2, 2.1, 2.2, 3.1; AP-style routines; cumulative benchmark; summer bridge plan.",
-          "implementationEvidence": "Successful completers enter Grade 11 AP Precalculus ready to begin at AP pace.",
+          "intent": "Provide controlled familiarity with the organizing language and routines of AP Precalculus so Grade 11 begins smoothly, without duplicating the AP course.",
+          "phaseFocus": "Controlled previews of AP Units 1-3; AP routines; final benchmark; summer bridge.",
+          "implementationEvidence": "Familiarity with AP language and habits is established without pre-teaching the AP course.",
           "lessons": [
             {
               "id": "R5.1",
               "title": "AP Preview: Change in Tandem & Rates",
               "subtopics": [
-                "Preview AP 1.1-1.3; covariation; rates; multiple representations."
+                "Covariation vocabulary; image/preimage; increasing/decreasing; AROC; graph-table-context translation; a few accessible opening-style tasks."
               ],
               "learningOutcomes": [
-                "Enter AP Precalculus able to discuss covariation and rates precisely; solve opening-unit tasks independently."
+                "Understand the language and structure of the opening AP function/rate lessons."
               ],
               "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus readiness bridge"
+              "alignment": "AP Precalculus preview 1.1-1.3",
+              "depth": "P Preview Only",
+              "requiredPathBCoverage": "Coverage includes AP language and problem structure through familiar functions and guided examples.",
+              "coverageBoundary": "Deferred to the AP course: the AP learning objectives, concavity/rate-development depth, or an AP Progress Check.",
+              "targetPeriods": 3,
+              "maximumPeriods": 4
             },
             {
               "id": "R5.2",
               "title": "AP Preview: Polynomial/Rational Reasoning",
               "subtopics": [
-                "Preview AP 1.5-1.12; zeros; end behavior; asymptotes/holes; transformations."
+                "Integrated zeros/multiplicity/end behavior/asymptotes/holes/equivalent forms/transformations; one guided model discussion."
               ],
               "learningOutcomes": [
-                "Connect algebraic structure to graph features; distinguish zeros/asymptotes/holes; apply transformations fluently."
+                "Recognize the structural questions AP asks about polynomial/rational functions."
               ],
               "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus readiness bridge"
+              "alignment": "AP Precalculus preview 1.4-1.14",
+              "depth": "P Preview Only",
+              "requiredPathBCoverage": "Known ideas are revisited through an AP-like integrated investigation connecting algebraic structure to function behavior.",
+              "coverageBoundary": "Deferred content: slant-asymptote depth, full equivalent-representation strategy, open model construction, or FRQ complexity.",
+              "targetPeriods": 3,
+              "maximumPeriods": 4
             },
             {
               "id": "R5.3",
-              "title": "AP Preview: Exponential/Log and Trig Thinking",
+              "title": "AP Preview: Exponential & Logarithmic Thinking",
               "subtopics": [
-                "Preview AP 2.1-2.2 and 3.1; additive vs multiplicative change; periodic phenomena."
+                "Additive vs multiplicative change; equivalent exponential/log forms; model language; prepared semi-log visualization."
               ],
               "learningOutcomes": [
-                "Recognize the core organizing ideas of AP Units 2 and 3; compare change patterns and periodic behavior."
+                "Recognize the organizing ideas that anchor AP Unit 2."
               ],
               "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus readiness bridge"
+              "alignment": "AP Precalculus preview 2.1-2.15",
+              "depth": "P Preview Only",
+              "requiredPathBCoverage": "Familiar functions provide a preview of how AP organizes multiplicative change and representations.",
+              "coverageBoundary": "Deferred to AP Precalculus: new parameter-inference tasks, semi-log linearization mastery, and full model validation.",
+              "targetPeriods": 2,
+              "maximumPeriods": 3
             },
             {
               "id": "R5.4",
-              "title": "Final AP Readiness Benchmark & Summer Bridge",
+              "title": "AP Preview: Trigonometric & Polar Thinking",
               "subtopics": [
-                "Cumulative benchmark; strand report; personalized bridge; study/technology routines."
+                "Periodic change; trig graph behavior; polar signed radius; one accessible rate comparison."
               ],
               "learningOutcomes": [
-                "Demonstrate readiness for Grade 11 AP Precalculus; identify any summer priorities; enter the course with a concrete preparation plan."
+                "Recognize the organizing ideas and representations that anchor AP Unit 3."
               ],
               "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus readiness bridge"
+              "alignment": "AP Precalculus preview 3.1-3.15",
+              "depth": "P Preview Only",
+              "requiredPathBCoverage": "Previously learned trigonometric and polar foundations are connected to AP language and multiple representations.",
+              "coverageBoundary": "Deferred to AP Precalculus: additional sinusoidal-modeling depth, polar model construction, and full polar-rate analysis.",
+              "targetPeriods": 2,
+              "maximumPeriods": 3
+            },
+            {
+              "id": "R5.5",
+              "title": "AP Mathematical Practices Familiarization",
+              "subtopics": [
+                "Procedural/symbolic fluency; multiple representations; communication/reasoning; calculator selection; short timed sets."
+              ],
+              "learningOutcomes": [
+                "Approach AP-style tasks with appropriate notation, representation choices, and concise reasoning."
+              ],
+              "deliveryStatus": "curriculum_ready",
+              "alignment": "AP Precalculus practices 1-3",
+              "depth": "P Preview Only",
+              "requiredPathBCoverage": "Familiarization includes AP conventions for presenting known mathematics: precise notation, representation switching, brief rationale, and efficient technology use.",
+              "coverageBoundary": "Outside current scope: full AP exam simulation and advanced content beyond the Path B curriculum.",
+              "targetPeriods": 2,
+              "maximumPeriods": 2
+            },
+            {
+              "id": "R5.6",
+              "title": "Final AP Readiness Benchmark & Summer Bridge",
+              "subtopics": [
+                "Cumulative benchmark; corrections; strand report; technology/non-calculator routines; personalized summer bridge."
+              ],
+              "learningOutcomes": [
+                "Enter Grade 11 AP Precalculus with a clear readiness profile and no unidentified prerequisite gaps."
+              ],
+              "deliveryStatus": "curriculum_ready",
+              "alignment": "AP Precalculus transition decision",
+              "depth": "M Prerequisite Mastery",
+              "requiredPathBCoverage": "Durable mastery is confirmed through corrections/explanations, with a precise summer plan limited to remaining gaps.",
+              "coverageBoundary": "No new content follows the final benchmark. Remaining time is used for consolidation, targeted support, and transition planning rather than AP topics scheduled for the subsequent course.",
+              "targetPeriods": 4,
+              "maximumPeriods": 4
             }
           ]
         }
@@ -1260,13 +1659,18 @@
           "id": "R1.G",
           "title": "Gateway 1 - AP Transition Assessment",
           "subtopics": [
-            "Common core + AP-extension items; non-calculator algebra; representation translation; written rationale."
+            "Cumulative non-calculator algebra; graph/table/formula translation; polynomial/rational reasoning; short rationale; limited AP-extension section."
           ],
           "learningOutcomes": [
-            "Demonstrate readiness to enter AP Unit 2 pace; identify any catch-up requirements; produce clear mathematical justification."
+            "The evidence determines whether a student can enter the AP section at Unit 2 pace and identifies any catch-up requirements."
           ],
           "deliveryStatus": "curriculum_ready",
-          "alignment": "AP Precalculus readiness bridge",
+          "alignment": "AP Precalculus transfer checkpoint",
+          "depth": "B Bridge Depth",
+          "requiredPathBCoverage": "Evidence includes a common assessment plus independence and pace indicators. A strand report identifies the exact AP Unit 1 catch-up needed for transfer candidates.",
+          "coverageBoundary": "This is an assessment and decision point rather than an additional teaching week. A high average without structural fluency is not sufficient evidence for transfer.",
+          "targetPeriods": 2,
+          "maximumPeriods": 2,
           "packageType": "transfer-gateway assessment",
           "unit": "R1"
         },
@@ -1274,19 +1678,24 @@
           "id": "R2.G",
           "title": "Gateway 2 - AP Transition Assessment",
           "subtopics": [
-            "Cumulative R1-R2 + AP-extension items; composition/inverses; modeling; written communication."
+            "Cumulative R1-R2; algebra; exponential/log functions; composition/inverses; modeling; limited AP-extension section."
           ],
           "learningOutcomes": [
-            "Demonstrate exceptional readiness for a midyear AP transfer or identify the exact strands to strengthen before Grade 11 AP."
+            "Determine exceptional readiness for an AP Unit 3 entry or identify the strands to strengthen for Grade 11 AP."
           ],
           "deliveryStatus": "curriculum_ready",
-          "alignment": "AP Precalculus readiness bridge",
+          "alignment": "AP Precalculus transfer checkpoint",
+          "depth": "B Bridge Depth",
+          "requiredPathBCoverage": "Cumulative strand evidence is considered together with AP-pace independence. Transfer eligibility includes completion of AP Unit 1-2 catch-up requirements in addition to success in Path B material.",
+          "coverageBoundary": "This is an assessment point. Midyear transfer is reserved for exceptional cases in which catch-up does not compromise understanding or exam readiness.",
+          "targetPeriods": 2,
+          "maximumPeriods": 2,
           "packageType": "transfer-gateway assessment",
           "unit": "R2"
         }
       ],
       "unitCount": 6,
-      "lessonCount": 39
+      "lessonCount": 51
     }
   }
 }
