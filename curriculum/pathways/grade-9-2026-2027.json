@@ -257,10 +257,17 @@
                 "Distance interpretation; two-case equations; compound inequalities; graphical interpretation."
               ],
               "learningOutcomes": [
-                "Solve absolute-value equations/inequalities; connect |x-a| to distance; represent solution sets algebraically and graphically."
+                "Connect absolute value to distance and solve standard equations/inequalities."
               ],
-              "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus prerequisite profile"
+              "deliveryStatus": "ready",
+              "alignment": "AP Precalculus prerequisite profile",
+              "depth": "B Bridge Depth",
+              "requiredGrade9Coverage": "Solve standard absolute-value equations/inequalities using distance and case reasoning.",
+              "coverageBoundary": "Not developed within this course: a full transformed absolute-value function unit or parameter analysis.",
+              "targetPeriods": 3,
+              "maximumPeriods": 3,
+              "url": "lessons/pathways/grade-9/unit-2/g9-2.5-absolute-value-equations-inequalities.html",
+              "screenCount": 64
             },
             {
               "id": "2.6",

@@ -61,14 +61,6 @@
       "kind": "lesson",
       "pathway": "g9-ap-precalculus-readiness",
       "unit": "Unit 2",
-      "lesson": "2.5",
-      "title": "Absolute Value Equations & Inequalities",
-      "status": "curriculum_ready"
-    },
-    {
-      "kind": "lesson",
-      "pathway": "g9-ap-precalculus-readiness",
-      "unit": "Unit 2",
       "lesson": "2.6",
       "title": "Piecewise-Defined Functions",
       "status": "curriculum_ready"
@@ -815,8 +807,8 @@
       "pathway": "g9-ap-precalculus-readiness",
       "units": 10,
       "lessons": 49,
-      "ready": 13,
-      "remaining": 36,
+      "ready": 14,
+      "remaining": 35,
       "required_packages": 0,
       "packages_ready": 0
     },
@@ -850,9 +842,9 @@
     }
   ],
   "summary": {
-    "remainingLessons": 91,
+    "remainingLessons": 90,
     "remainingPackages": 3,
-    "productionRemainingLessons": 87,
+    "productionRemainingLessons": 86,
     "productionRemainingPackages": 2
   }
 }
