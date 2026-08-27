@@ -113,17 +113,38 @@ async function inspectEveryScreen(viewport,label){
 async function inspectInteraction(){
   const context=await browser.newContext({viewport:{width:1280,height:850},deviceScaleFactor:1,reducedMotion:'reduce'});
   const page=await context.newPage();
-  await page.goto(`${baseURL}/${lessonPath}#s39`,{waitUntil:'domcontentloaded',timeout:45000});
+  await page.goto(`${baseURL}/${lessonPath}#s1`,{waitUntil:'domcontentloaded',timeout:45000});
+  await page.waitForFunction(()=>document.documentElement.dataset.lessonReady==='true',null,{timeout:20000});
+  const practiceScreen=await page.evaluate(()=>{
+    const slides=[...document.querySelectorAll('.slide')];
+    const scored=slides.findIndex(slide=>slide.querySelector('input[type="radio"]')&&slide.querySelector('[data-check]'));
+    if(scored>=0)return scored+1;
+    const diagnostic=slides.findIndex(slide=>slide.querySelector('input[type="radio"]')&&slide.querySelector('[data-answer-key]'));
+    if(diagnostic>=0)return diagnostic+1;
+    return slides.findIndex(slide=>slide.querySelector('input[type="radio"]'))+1;
+  });
+  check('practice screen discovered',practiceScreen>0,`screen ${practiceScreen}`);
+  if(practiceScreen<=0){await context.close();return;}
+  await page.goto(`${baseURL}/${lessonPath}#s${practiceScreen}`,{waitUntil:'domcontentloaded',timeout:45000});
   await page.waitForFunction(()=>document.documentElement.dataset.lessonReady==='true',null,{timeout:20000});
   const option=page.locator('.slide.active input[type="radio"]').first();
   check('practice control available',await option.isVisible(),'first practice radio');
   await option.check();
-  await page.locator('.slide.active [data-check]').click();
-  const feedback=(await page.locator('.slide.active .feedback').innerText()).trim();
-  check('practice response is interactive',feedback.length>0,feedback);
+  check('practice selection works',await option.isChecked(),`screen ${practiceScreen}`);
+  const checkButton=page.locator('.slide.active [data-check]');
+  if(await checkButton.count()){
+    await checkButton.click();
+    const feedback=(await page.locator('.slide.active .feedback').innerText()).trim();
+    check('practice response is interactive',feedback.length>0,feedback);
+  }else{
+    await page.reload({waitUntil:'domcontentloaded',timeout:45000});
+    await page.waitForFunction(()=>document.documentElement.dataset.lessonReady==='true',null,{timeout:20000});
+    check('diagnostic response persists',await page.locator('.slide.active input[type="radio"]:checked').count()===1,`screen ${practiceScreen}`);
+  }
+  await page.evaluate(()=>document.activeElement?.blur());
   await page.keyboard.press('ArrowRight');
   await page.waitForTimeout(150);
-  check('keyboard navigation works',(await page.locator('#counter').innerText()).startsWith('40 /'),'counter after ArrowRight');
+  check('keyboard navigation works',(await page.locator('#counter').innerText()).startsWith(`${practiceScreen+1} /`),'counter after ArrowRight');
   await context.close();
 }
 
