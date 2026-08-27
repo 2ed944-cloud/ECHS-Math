@@ -173,8 +173,10 @@
               "learningOutcomes": [
                 "Build and interpret a linear model; use residuals informally to judge fit; state assumptions and limitations of a model."
               ],
-              "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus prerequisite profile"
+              "deliveryStatus": "ready",
+              "alignment": "AP Precalculus prerequisite profile",
+              "url": "lessons/pathways/grade-9/unit-1/g9-1.6-linear-modeling-residual-thinking.html",
+              "screenCount": 64
             }
           ]
         },
