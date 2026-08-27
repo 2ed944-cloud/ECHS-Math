@@ -61,14 +61,6 @@
       "kind": "lesson",
       "pathway": "g9-ap-precalculus-readiness",
       "unit": "Unit 3",
-      "lesson": "3.1",
-      "title": "Relations, Functions & Function Notation",
-      "status": "curriculum_ready"
-    },
-    {
-      "kind": "lesson",
-      "pathway": "g9-ap-precalculus-readiness",
-      "unit": "Unit 3",
       "lesson": "3.2",
       "title": "Domain, Range & Interval Notation",
       "status": "curriculum_ready"
@@ -799,8 +791,8 @@
       "pathway": "g9-ap-precalculus-readiness",
       "units": 10,
       "lessons": 49,
-      "ready": 15,
-      "remaining": 34,
+      "ready": 16,
+      "remaining": 33,
       "required_packages": 0,
       "packages_ready": 0
     },
@@ -834,9 +826,9 @@
     }
   ],
   "summary": {
-    "remainingLessons": 89,
+    "remainingLessons": 88,
     "remainingPackages": 3,
-    "productionRemainingLessons": 85,
+    "productionRemainingLessons": 84,
     "productionRemainingPackages": 2
   }
 }

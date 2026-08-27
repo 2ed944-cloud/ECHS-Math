@@ -306,10 +306,17 @@
                 "Input/output; vertical line test; f(x); independent/dependent variables; discrete vs continuous."
               ],
               "learningOutcomes": [
-                "Determine whether a relation is a function; evaluate function notation; identify independent/dependent quantities and relevant domains."
+                "Use function notation and distinguish functions from nonfunctions across common representations."
               ],
-              "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus prerequisite profile"
+              "deliveryStatus": "ready",
+              "alignment": "AP Precalculus prerequisite profile",
+              "depth": "M Prerequisite Mastery",
+              "requiredGrade9Coverage": "Determine function status; evaluate notation; identify meaningful input/output quantities and domains.",
+              "coverageBoundary": "Not included within this course: advanced implicit-function or parametric-function treatment.",
+              "targetPeriods": 3,
+              "maximumPeriods": 3,
+              "url": "lessons/pathways/grade-9/unit-3/g9-3.1-relations-functions-function-notation.html",
+              "screenCount": 64
             },
             {
               "id": "3.2",
