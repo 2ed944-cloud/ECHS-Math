@@ -125,7 +125,8 @@ async function inspectInteraction(){
   });
   check('practice screen discovered',practiceScreen>0,`screen ${practiceScreen}`);
   if(practiceScreen<=0){await context.close();return;}
-  await page.goto(`${baseURL}/${lessonPath}#s${practiceScreen}`,{waitUntil:'domcontentloaded',timeout:45000});
+  await page.evaluate(screen=>{location.hash=`s${screen}`;},practiceScreen);
+  await page.reload({waitUntil:'domcontentloaded',timeout:45000});
   await page.waitForFunction(()=>document.documentElement.dataset.lessonReady==='true',null,{timeout:20000});
   const option=page.locator('.slide.active input[type="radio"]').first();
   check('practice control available',await option.isVisible(),'first practice radio');
