@@ -25,7 +25,7 @@ class GradeNineExponentEquationRepairTests(unittest.TestCase):
 
     def test_authoritative_manifest_row_is_truthfully_ready(self) -> None:
         self.assertEqual(self.lesson["id"], "0.3")
-        self.assertEqual(self.lesson["title"], "Exponent and Equation Repair")
+        self.assertEqual(self.lesson["title"], "Exponent Rules & Equation Solving")
         self.assertEqual(self.lesson["deliveryStatus"], "ready")
         self.assertEqual(self.lesson["url"], LESSON_URL)
         self.assertEqual(self.lesson["screenCount"], 64)
@@ -41,7 +41,7 @@ class GradeNineExponentEquationRepairTests(unittest.TestCase):
             "Checking solutions and invalid steps",
             "Apply core integer exponent laws",
             "Solve foundational one- and two-step equations",
-            "Diagnostic / repair depth",
+            "Prerequisite mastery",
             "Rational exponents are deferred to Units 6–7",
             "identity/contradiction cases are deferred to Unit 1",
             "Three-period learning sequence",

@@ -37,6 +37,12 @@ async function inspect(viewport,label,screen){
       activeOverflowMode:active?getComputedStyle(active).overflowX:'missing',
       mathErrors:document.querySelectorAll('.katex-error,.katex .merror').length,
       rawMath:[...document.querySelectorAll('.math')].filter(el=>!el.querySelector('.katex')).length,
+      styledMathFragments:[...document.querySelectorAll('.katex span')].filter(el=>{
+        const style=getComputedStyle(el);
+        const padding=['paddingTop','paddingRight','paddingBottom','paddingLeft'].some(key=>parseFloat(style[key])>4);
+        const background=!['rgba(0, 0, 0, 0)','transparent'].includes(style.backgroundColor);
+        return padding||background;
+      }).length,
       topbar:visible(document.querySelector('.topbar')),
       footer:visible(document.querySelector('.footerbar')),
       title:(active?.querySelector('h1,h2')?.textContent||'').trim(),
@@ -47,9 +53,60 @@ async function inspect(viewport,label,screen){
   check(`${label} horizontal fit`,state.bodyOverflow<=2&&(state.activeOverflow<=2||state.activeOverflowMode==='hidden'),JSON.stringify(state));
   check(`${label} chrome visible`,state.topbar&&state.footer,JSON.stringify(state));
   check(`${label} math rendered`,state.mathErrors===0&&state.rawMath===0,JSON.stringify(state));
+  check(`${label} math styling isolated`,state.styledMathFragments===0,JSON.stringify(state));
   check(`${label} console clean`,consoleErrors.length===0,consoleErrors.join('\n'));
   const shot=path.join(outputDir,`${label}-screen-${screen}.png`);
   await page.screenshot({path:shot,fullPage:false});report.screenshots.push(shot);
+  await context.close();
+}
+
+async function inspectEveryScreen(viewport,label){
+  const context=await browser.newContext({viewport,deviceScaleFactor:1,reducedMotion:'reduce',serviceWorkers:'block'});
+  const page=await context.newPage();
+  const consoleErrors=[];
+  page.on('console',message=>{if(message.type()==='error'&&!/favicon|404/i.test(message.text()))consoleErrors.push(message.text());});
+  page.on('pageerror',error=>consoleErrors.push(error.message));
+  await page.goto(`${baseURL}/${lessonPath}#s1`,{waitUntil:'domcontentloaded',timeout:45000});
+  await page.waitForFunction(()=>document.documentElement.dataset.lessonReady==='true',null,{timeout:20000});
+  await page.waitForTimeout(600);
+  const expected=Number(await page.locator('meta[name="echs-screen-count"]').getAttribute('content'));
+  const failures=[];
+  for(let screen=1;screen<=expected;screen+=1){
+    if(screen>1){await page.keyboard.press('ArrowRight');await page.waitForTimeout(15);}
+    const state=await page.evaluate(()=>{
+      const active=document.querySelector('.slide.active');
+      const title=active?.querySelector('h1,h2');
+      const titleRect=title?.getBoundingClientRect();
+      const styledMathFragments=[...(active?.querySelectorAll('.katex span')||[])].filter(el=>{
+        const style=getComputedStyle(el);
+        const padding=['paddingTop','paddingRight','paddingBottom','paddingLeft'].some(key=>parseFloat(style[key])>4);
+        const background=!['rgba(0, 0, 0, 0)','transparent'].includes(style.backgroundColor);
+        return padding||background;
+      }).length;
+      const unsafeSvg=[...(active?.querySelectorAll('svg')||[])].filter(svg=>{
+        const rect=svg.getBoundingClientRect();
+        const labelled=svg.getAttribute('role')==='img'&&(svg.querySelector('title')||svg.getAttribute('aria-label')||svg.getAttribute('aria-labelledby'));
+        return !labelled||rect.width<40||rect.height<20||!Number.isFinite(rect.width+rect.height);
+      }).length;
+      return{
+        active:document.querySelectorAll('.slide.active').length,
+        counter:(document.querySelector('#counter')?.textContent||'').trim(),
+        title:(title?.textContent||'').trim(),
+        textLength:(active?.innerText||'').trim().length,
+        bodyOverflow:Math.max(0,document.documentElement.scrollWidth-innerWidth,document.body.scrollWidth-innerWidth),
+        activeOverflow:active?Math.max(0,active.scrollWidth-active.clientWidth):999,
+        mathErrors:active?.querySelectorAll('.katex-error,.katex .merror').length||0,
+        rawMath:[...(active?.querySelectorAll('.math')||[])].filter(el=>!el.querySelector('.katex')).length,
+        styledMathFragments,
+        unsafeSvg,
+        titleClipped:Boolean(titleRect&&(titleRect.left<-2||titleRect.right>innerWidth+2||titleRect.top<-2)),
+      };
+    });
+    const pass=state.active===1&&state.counter.startsWith(`${screen} /`)&&state.title&&state.textLength>=60&&state.bodyOverflow<=2&&state.activeOverflow<=2&&state.mathErrors===0&&state.rawMath===0&&state.styledMathFragments===0&&state.unsafeSvg===0&&!state.titleClipped;
+    if(!pass)failures.push({screen,...state});
+  }
+  check(`${label} all ${expected} screens visually safe`,failures.length===0,JSON.stringify(failures.slice(0,12)));
+  check(`${label} all-screen console clean`,consoleErrors.length===0,consoleErrors.join('\n'));
   await context.close();
 }
 
@@ -73,8 +130,11 @@ async function inspectInteraction(){
 try{
   await inspect({width:1440,height:900},'desktop-cover',1);
   await inspect({width:1440,height:900},'desktop-concept',12);
+  await inspect({width:1440,height:900},'desktop-rational-form',16);
   await inspect({width:390,height:844},'mobile-practice',39);
   await inspect({width:390,height:844},'mobile-exit',62);
+  await inspectEveryScreen({width:1440,height:900},'desktop');
+  await inspectEveryScreen({width:390,height:844},'mobile');
   await inspectInteraction();
 }finally{
   await browser.close();

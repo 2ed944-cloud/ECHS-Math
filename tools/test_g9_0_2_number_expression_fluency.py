@@ -42,7 +42,7 @@ class GradeNineNumberExpressionFluencyTests(unittest.TestCase):
             "Evaluate numerical and algebraic expressions accurately",
             "Move fluently among fraction, decimal, and percent forms",
             "standalone number-theory or recurring-decimal unit",
-            "Diagnostic / repair depth",
+            "Prerequisite mastery",
             "Three-period learning sequence",
         ):
             self.assertIn(phrase, self.html)
