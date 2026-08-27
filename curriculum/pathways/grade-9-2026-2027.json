@@ -103,8 +103,10 @@
               "learningOutcomes": [
                 "Simplify expressions; solve multi-step linear equations; classify one/no/infinitely-many-solution cases and justify the result."
               ],
-              "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus prerequisite profile"
+              "deliveryStatus": "ready",
+              "alignment": "AP Precalculus prerequisite profile",
+              "url": "lessons/pathways/grade-9/unit-1/g9-1.1-algebraic-expressions-multi-step-equations.html",
+              "screenCount": 64
             },
             {
               "id": "1.2",
