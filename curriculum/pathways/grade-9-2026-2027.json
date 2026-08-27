@@ -78,8 +78,10 @@
               "learningOutcomes": [
                 "Apply core exponent laws; solve foundational equations; verify solutions by substitution and explain invalid steps."
               ],
-              "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus prerequisite profile"
+              "deliveryStatus": "ready",
+              "alignment": "AP Precalculus prerequisite profile",
+              "url": "lessons/pathways/grade-9/unit-0/g9-0.3-exponent-equation-repair.html",
+              "screenCount": 64
             }
           ]
         },
