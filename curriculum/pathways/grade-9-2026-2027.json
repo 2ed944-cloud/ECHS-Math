@@ -145,8 +145,10 @@
               "learningOutcomes": [
                 "Move among linear representations; construct an equation from data or conditions; identify intercepts and explain their contextual meaning."
               ],
-              "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus prerequisite profile"
+              "deliveryStatus": "ready",
+              "alignment": "AP Precalculus prerequisite profile",
+              "url": "lessons/pathways/grade-9/unit-1/g9-1.4-representations-of-linear-functions.html",
+              "screenCount": 64
             },
             {
               "id": "1.5",
