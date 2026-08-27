@@ -212,8 +212,10 @@
               "learningOutcomes": [
                 "Solve 2x2 systems efficiently using elimination; select a method based on structure; verify ordered-pair solutions."
               ],
-              "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus prerequisite profile"
+              "deliveryStatus": "ready",
+              "alignment": "AP Precalculus prerequisite profile",
+              "url": "lessons/pathways/grade-9/unit-2/g9-2.2-systems-elimination.html",
+              "screenCount": 64
             },
             {
               "id": "2.3",

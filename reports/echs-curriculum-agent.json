@@ -61,14 +61,6 @@
       "kind": "lesson",
       "pathway": "g9-ap-precalculus-readiness",
       "unit": "Unit 2",
-      "lesson": "2.2",
-      "title": "Systems by Elimination",
-      "status": "curriculum_ready"
-    },
-    {
-      "kind": "lesson",
-      "pathway": "g9-ap-precalculus-readiness",
-      "unit": "Unit 2",
       "lesson": "2.3",
       "title": "Systems in Three Variables",
       "status": "curriculum_ready"
@@ -839,8 +831,8 @@
       "pathway": "g9-ap-precalculus-readiness",
       "units": 10,
       "lessons": 49,
-      "ready": 10,
-      "remaining": 39,
+      "ready": 11,
+      "remaining": 38,
       "required_packages": 0,
       "packages_ready": 0
     },
@@ -874,9 +866,9 @@
     }
   ],
   "summary": {
-    "remainingLessons": 94,
+    "remainingLessons": 93,
     "remainingPackages": 3,
-    "productionRemainingLessons": 90,
+    "productionRemainingLessons": 89,
     "productionRemainingPackages": 2
   }
 }
