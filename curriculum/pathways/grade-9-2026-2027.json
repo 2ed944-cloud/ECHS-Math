@@ -131,8 +131,10 @@
               "learningOutcomes": [
                 "Calculate and interpret slope; connect slope to constant rate of change; distinguish input and output units."
               ],
-              "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus prerequisite profile"
+              "deliveryStatus": "ready",
+              "alignment": "AP Precalculus prerequisite profile",
+              "url": "lessons/pathways/grade-9/unit-1/g9-1.3-slope-rate-of-change.html",
+              "screenCount": 64
             },
             {
               "id": "1.4",
