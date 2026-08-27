@@ -13,7 +13,7 @@
 
 - **Qatar Foundation and every Qatar Foundation affiliate:** absolute do-not-contact and excluded from qualification. No first contact, follow-up, reply, proposal, demo invitation, calendar invitation, or other outbound action, including any `qf.org.qa` route.
 - **Al Hussan:** manual approval only; never send automatically.
-- A second initial message to an organization is prohibited. Gmail organization/domain/contact searches remain the duplicate-control source shared with the other KSA-QA-KW-BH outbound workflow.
+- A second initial message to an organization is prohibited. Network/parent-group relationships count for duplicate suppression when the existing message already addressed a group-wide pilot. Gmail organization/domain/contact searches remain the duplicate-control source shared with the other KSA-QA-KW-BH outbound workflow.
 
 ## Repository-grounded ECHS claims allowed in future outreach
 
@@ -27,26 +27,7 @@ The repository-validated IB Mathematics: Applications and Interpretation SL Unit
 
 ## Ranked NEW qualified queue
 
-### 1. Saudi International School for the Sciences and Arts (SISSA) — Dhahran/Dammam, Saudi Arabia
-
-**Status:** READY_HOLD  
-**Priority:** 9.2/10  
-**Gmail duplicate result:** clean in the last 30 days for school name/domain variants.
-
-**Why qualified**
-- Current official school materials describe a KG1–Grade 12 American curriculum and an active High School Advanced Placement pathway.
-- Current leadership pages list a named academic decision maker and secondary-school leadership.
-- The school publishes AP planning as part of Grade 9–11 college-advisement progression, giving a current 2026–27 advanced-course timing fit.
-
-**Verified public academic contact**
-- Dr. Ayanna Jones — Academic Director — `a.jones@sissa.sa`
-- Secondary alternative: Ms. Reem AlShamsi — Middle & High School Principal — `r.alshamsi1@sissa.sa`
-
-**Tailored pilot angle**
-- 14–30 day AP mathematics readiness/practice pilot with 1–3 high-school math teachers and a small cohort.
-- Focus on diagnostic-to-practice progression, AP-style assessment, calculator/no-calculator judgment, and Precalculus-to-Calculus readiness without claiming that SISSA currently offers AP Precalculus specifically.
-
-### 2. American School of Doha (ASD) — Doha, Qatar
+### 1. American School of Doha (ASD) — Doha, Qatar
 
 **Status:** READY_HOLD — verify a direct decision-maker email before any send  
 **Priority:** 9.1/10  
@@ -54,7 +35,7 @@ The repository-validated IB Mathematics: Applications and Interpretation SL Unit
 
 **Why qualified**
 - Current official AP program lists **AP Precalculus, AP Calculus AB, and AP Calculus BC**.
-- Large secondary-school environment with AP and IB pathways and strong digital-learning/1:1 fit.
+- Large secondary-school environment with AP and IB pathways and strong digital-learning fit.
 - Current 2026–27 program-of-studies/handbook timing is directly aligned to a controlled mathematics evaluation.
 
 **Named academic target**
@@ -64,7 +45,7 @@ The repository-validated IB Mathematics: Applications and Interpretation SL Unit
 **Tailored pilot angle**
 - 15-minute demonstration followed by a 14–30 day AP Precalculus → Calculus AB/BC readiness and assessment pilot for 1–3 teachers and a small student cohort.
 
-### 3. Arabian Pearl Gulf School (APG School) — Bahrain
+### 2. Arabian Pearl Gulf School (APG School) — Bahrain
 
 **Status:** READY_HOLD — academic decision maker named; generic institutional route verified  
 **Priority:** 9.0/10  
@@ -83,16 +64,16 @@ The repository-validated IB Mathematics: Applications and Interpretation SL Unit
 **Tailored pilot angle**
 - 14–30 day IB Math AI SL Unit 1 pilot with 1–3 DP mathematics teachers and a small cohort, using the repository-validated Learn / Practice Studio / timed quiz / extended IB-style task workflow.
 
-### 4. Northview International School — Qatar
+### 3. Northview International School — Qatar
 
-**Status:** READY_HOLD — contact enrichment required  
-**Priority:** 7.6/10  
+**Status:** READY_HOLD — contact enrichment preferred  
+**Priority:** 7.8/10  
 **Gmail duplicate result:** clean in the last 30 days.
 
 **Why qualified**
-- Current official High School materials include AP/Honors and AP Calculus.
+- Current official High School materials include AP/Honors and AP Calculus, with Pre-Calculus, AP Calculus, and AP Statistics in the math progression.
 - School is in an active secondary expansion cycle toward Grade 12, with 2026 admissions and a technology-forward positioning.
-- Current scale is below the preferred 1,000+ threshold, but expansion timing raises the opportunity score.
+- Current scale is 700+, below the preferred 1,000+ threshold, but expansion timing raises the opportunity score.
 
 **Named academic target**
 - Jennifer Madla — Head of Upper School.
@@ -101,6 +82,26 @@ The repository-validated IB Mathematics: Applications and Interpretation SL Unit
 
 **Tailored pilot angle**
 - AP Calculus readiness/diagnostic pilot positioned as a low-risk support layer while the high-school program expands.
+
+### 4. Inspire International Academy — Al Khobar, Saudi Arabia
+
+**Status:** CONDITIONAL_HOLD — current AP-specific evidence needs authoritative confirmation  
+**Priority:** 7.0/10  
+**Gmail duplicate result:** clean in the last 30 days.
+
+**Why interesting**
+- Current official school site shows 650 students, British and American tracks, Cognia accreditation, Grade 1–12 American program, SAT test-center status, and 2026–27 classes beginning August 23, 2026.
+- Recent public teacher/course signals indicate AP Precalculus and Calculus activity, but the current official school curriculum page does not itself publish the AP math offering.
+
+**Verified institutional route**
+- `administrator@inspire.edu.sa`
+
+**Required before promotion to READY_HOLD**
+- Confirm AP Precalculus/AP Calculus from an authoritative current school source or current academic leader.
+- Enrich to a named current High School/Math/Curriculum decision-maker if a public institutional route exists.
+
+**Tailored pilot angle if confirmed**
+- 14–30 day AP Precalculus/Calculus readiness and practice pilot with a small cohort.
 
 ### 5. Bahrain School — Bahrain
 
@@ -129,16 +130,24 @@ The repository-validated IB Mathematics: Applications and Interpretation SL Unit
 - Reconcile the current academic decision maker and verify an institutional address.
 - Rerun Gmail duplicate/bounce/opt-out checks immediately before any future send.
 
+## Network-level duplicate discovered during verification
+
+### Saudi International School for the Sciences and Arts (SISSA) — Saudi Arabia
+
+SISSA is **not a new organization for outbound purposes**. Current official sources identify SISSA as a **Maarif Education** school. Gmail confirms a group-wide message was already sent to `info@maarif.sa` on 2026-08-24 with subject **“Controlled AP mathematics pilot across Maarif.”** Because that outreach explicitly addressed a pilot across the Maarif network, SISSA is duplicate-suppressed despite its separate `sissa.sa` domain and its excellent current AP fit. Do not send a separate initial message to Dr. Ayanna Jones or any SISSA route unless the existing Maarif thread later creates a legitimate handoff.
+
 ## Duplicate-suppressed / already touched organizations
 
-Do not treat the following as new: GEMS American Academy Qatar; Universal American School Kuwait; American International School of Jeddah; AlManar International School Qatar; Modern Knowledge Schools Bahrain; Al Hekma International School; Maarif/Manarat Riyadh; American International School Riyadh; American Baccalaureate School Kuwait; American United School Kuwait; American School of Kuwait; American International School Kuwait; American School of Bahrain (existing draft); Naseem International School; St Christopher's School Bahrain; Ibn Khuldoon National School; Dar Jana International Schools; Arab International Academy Lusail; Al Faris International School; Hartford American School; Makers Learning School International; Al Raja School.
+Do not treat the following as new: Maarif Education and its schools (including SISSA and Manarat schools); GEMS American Academy Qatar; Universal American School Kuwait; American International School of Jeddah; AlManar International School Qatar; Modern Knowledge Schools Bahrain; Al Hekma International School; American International School Riyadh; American Baccalaureate School Kuwait; American United School Kuwait; American School of Kuwait; American International School Kuwait; American School of Bahrain (existing draft); Naseem International School; St Christopher's School Bahrain; Ibn Khuldoon National School; Riyadh Najed Schools; Middle East International School; One World International School Riyadh; Dar Jana International Schools; Arab International Academy Lusail; Al Faris International School; Hartford American School; Makers Learning School International; Al Raja School.
 
 ## Next-safe-wave order
 
 Once Gmail pressure and delivery health normalize, rerun exact duplicate/bounce/opt-out checks immediately before any action. Preferred order is:
 
-1. SISSA — named Academic Director route.
-2. ASD — only after a current direct academic route is verified; otherwise keep on hold rather than defaulting immediately to a generic inbox.
-3. APG School — prefer verified direct IBDP/secondary route; use the generic institutional route only if no direct public route can be verified.
+1. ASD — only after a current direct academic route is verified; otherwise keep on hold rather than defaulting immediately to a generic inbox.
+2. APG School — prefer verified direct IBDP/secondary route; use the generic institutional route only if no direct public route can be verified.
+3. Northview — prefer a direct Upper School/academic route; generic route is verified but lower-confidence for conversion.
+
+No KSA prospect is currently promoted into the top three: the strongest fresh KSA fit (SISSA) is network-duplicate suppressed, while Inspire remains conditional pending authoritative AP-math confirmation.
 
 Maximum remains three new organizations in a safe run, one initial message per organization.
