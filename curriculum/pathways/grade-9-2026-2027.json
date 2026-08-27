@@ -159,8 +159,10 @@
               "learningOutcomes": [
                 "Solve and represent linear/compound inequalities; reverse inequality signs correctly when required; express solution sets in interval notation."
               ],
-              "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus prerequisite profile"
+              "deliveryStatus": "ready",
+              "alignment": "AP Precalculus prerequisite profile",
+              "url": "lessons/pathways/grade-9/unit-1/g9-1.5-linear-inequalities.html",
+              "screenCount": 64
             },
             {
               "id": "1.6",
