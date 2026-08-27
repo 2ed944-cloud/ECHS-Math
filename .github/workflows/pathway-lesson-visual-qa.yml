@@ -1,0 +1,83 @@
+name: Pathway Lesson Visual QA
+
+on:
+  pull_request:
+    paths:
+      - "lessons/pathways/grade-9/**/*.html"
+      - "lessons/pathways/grade-10/**/*.html"
+      - "tools/browser_qa_pathway_lesson.mjs"
+      - ".github/workflows/pathway-lesson-visual-qa.yml"
+  workflow_dispatch:
+    inputs:
+      lesson_path:
+        description: "Repository-relative lesson HTML path"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  visual:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Resolve changed pathway lesson
+        env:
+          DISPATCH_PATH: ${{ inputs.lesson_path }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          if [ -n "$DISPATCH_PATH" ]; then
+            lesson_path="$DISPATCH_PATH"
+          else
+            lesson_path=$(git diff --name-only "$BASE_SHA" "$GITHUB_SHA" | grep -E '^lessons/pathways/(grade-9|grade-10)/.*\.html$' | head -n 1)
+          fi
+          if [ -z "$lesson_path" ] || [ ! -f "$lesson_path" ]; then
+            echo "No changed pathway lesson HTML was found."
+            exit 1
+          fi
+          echo "ECHS_LESSON_PATH=$lesson_path" >> "$GITHUB_ENV"
+
+      - name: Validate browser QA syntax
+        run: node --check tools/browser_qa_pathway_lesson.mjs
+
+      - name: Install browser driver
+        run: npm install --no-save --no-package-lock playwright-core@1.54.1
+
+      - name: Start local lesson server
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/pathway-preview.log 2>&1 &
+          for attempt in {1..30}; do
+            if curl --fail --silent "http://127.0.0.1:4173/$ECHS_LESSON_PATH" >/dev/null; then
+              exit 0
+            fi
+            sleep 1
+          done
+          cat /tmp/pathway-preview.log
+          exit 1
+
+      - name: Run desktop and mobile visual QA
+        env:
+          ECHS_PREVIEW_URL: http://127.0.0.1:4173
+          ECHS_PREVIEW_OUTPUT: artifacts/pathway-lesson-qa
+          CHROME_PATH: /usr/bin/google-chrome
+        run: node tools/browser_qa_pathway_lesson.mjs
+
+      - name: Upload visual evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pathway-lesson-visual-${{ github.run_number }}
+          path: artifacts/pathway-lesson-qa
+          if-no-files-found: error
+          retention-days: 30
