@@ -40,9 +40,8 @@ async function inspect(viewport,label,screen){
       styledMathFragments:[...(active?.querySelectorAll('.katex span')||[])].filter(el=>{
         const style=getComputedStyle(el);
         const background=!['rgba(0, 0, 0, 0)','transparent'].includes(style.backgroundColor);
-        const border=['borderTopWidth','borderRightWidth','borderBottomWidth','borderLeftWidth'].some(key=>parseFloat(style[key])>0);
         const decorativeBox=parseFloat(style.borderRadius)>4||style.boxShadow!=='none';
-        return background||border||decorativeBox;
+        return background||decorativeBox;
       }).length,
       topbar:visible(document.querySelector('.topbar')),
       footer:visible(document.querySelector('.footerbar')),
@@ -81,9 +80,8 @@ async function inspectEveryScreen(viewport,label){
       const styledMathFragments=[...(active?.querySelectorAll('.katex span')||[])].filter(el=>{
         const style=getComputedStyle(el);
         const background=!['rgba(0, 0, 0, 0)','transparent'].includes(style.backgroundColor);
-        const border=['borderTopWidth','borderRightWidth','borderBottomWidth','borderLeftWidth'].some(key=>parseFloat(style[key])>0);
         const decorativeBox=parseFloat(style.borderRadius)>4||style.boxShadow!=='none';
-        return background||border||decorativeBox;
+        return background||decorativeBox;
       }).length;
       const unsafeSvg=[...(active?.querySelectorAll('svg')||[])].filter(svg=>{
         if(svg.closest('.katex'))return false;
