@@ -94,8 +94,10 @@ The repository-validated IB Mathematics: Applications and Interpretation SL Unit
 - School is in an active secondary expansion cycle toward Grade 12, with 2026 admissions and a technology-forward positioning.
 - Current scale is below the preferred 1,000+ threshold, but expansion timing raises the opportunity score.
 
-**Next qualification step**
-- Verify a current High School Principal, curriculum/AP coordinator, or Head of Mathematics institutional email before any outreach.
+**Named academic target**
+- Jennifer Madla — Head of Upper School.
+- Verified institutional fallback: `info@northview.school`.
+- Prefer a current direct institutional academic route if one can be verified before future outreach.
 
 **Tailored pilot angle**
 - AP Calculus readiness/diagnostic pilot positioned as a low-risk support layer while the high-school program expands.
@@ -114,7 +116,8 @@ The repository-validated IB Mathematics: Applications and Interpretation SL Unit
 ### 6. Kuwait Bilingual School — Kuwait
 
 **Status:** WATCHLIST — NOT SEND-READY  
-**Priority:** 6.2/10
+**Priority:** 6.2/10  
+**Gmail duplicate result:** clean in the last 30 days.
 
 **Why held**
 - Current IB authorization and recent DP expansion are positive institutional signals.
@@ -124,11 +127,11 @@ The repository-validated IB Mathematics: Applications and Interpretation SL Unit
 **Required before promotion to READY_HOLD**
 - Verify current Mathematics AI/Applications or equivalent advanced-math provision from authoritative school/IB material.
 - Reconcile the current academic decision maker and verify an institutional address.
-- Complete the Gmail 30-day duplicate check at promotion time.
+- Rerun Gmail duplicate/bounce/opt-out checks immediately before any future send.
 
 ## Duplicate-suppressed / already touched organizations
 
-Do not treat the following as new: GEMS American Academy Qatar; Universal American School Kuwait; American International School of Jeddah; AlManar International School Qatar; Modern Knowledge Schools Bahrain; Al Hekma International School; Maarif/Manarat Riyadh; American International School Riyadh; American Baccalaureate School Kuwait; American United School Kuwait; American School of Kuwait; American International School Kuwait; American School of Bahrain (existing draft); Naseem International School; St Christopher's School Bahrain; Dar Jana International Schools; Arab International Academy Lusail; Al Faris International School; Hartford American School; Makers Learning School International; Al Raja School.
+Do not treat the following as new: GEMS American Academy Qatar; Universal American School Kuwait; American International School of Jeddah; AlManar International School Qatar; Modern Knowledge Schools Bahrain; Al Hekma International School; Maarif/Manarat Riyadh; American International School Riyadh; American Baccalaureate School Kuwait; American United School Kuwait; American School of Kuwait; American International School Kuwait; American School of Bahrain (existing draft); Naseem International School; St Christopher's School Bahrain; Ibn Khuldoon National School; Dar Jana International Schools; Arab International Academy Lusail; Al Faris International School; Hartford American School; Makers Learning School International; Al Raja School.
 
 ## Next-safe-wave order
 
