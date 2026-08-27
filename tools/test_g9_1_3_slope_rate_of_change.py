@@ -74,14 +74,14 @@ class GradeNineSlopeRateTests(unittest.TestCase):
         required = (
             r"m=(11-3)/(6-2)=8/4=2",
             r"m=(-8-4)/(5-(-3))=-12/8=-3/2",
-            r"(19-7)/(3-1)=12/2=6\text{ km/h}",
-            r"(390-150)/(7-2)=240/5=48\text{ people/min}",
+            r"(19-7)/(3-1)=12/2=6\\text{ km/h}",
+            r"(390-150)/(7-2)=240/5=48\\text{ people/min}",
             r"-12/(k+4)=-2",
             r"(f(b)-f(a))/(b-a)",
         )
         for expression in required:
             self.assertIn(expression, self.html)
-        for unit in (r"\text{ QAR/kg}", r"\text{ km/h}", r"\text{ people/min}", r"\text{ °F/min}"):
+        for unit in (r"\\text{ QAR/kg}", r"\\text{ km/h}", r"\\text{ people/min}", r"\\text{ °F/min}"):
             self.assertIn(unit, self.html)
 
     def test_screen_plan_is_64_meaningful_screens(self) -> None:
@@ -97,6 +97,12 @@ class GradeNineSlopeRateTests(unittest.TestCase):
     def test_math_interaction_and_persistence_contracts(self) -> None:
         self.assertIn("katex@0.16.11", self.html)
         self.assertGreaterEqual(self.html.count('class="math" data-tex='), 120)
+        tex_values = re.findall(r'data-tex="(.*?)"', self.html)
+        unsafe_commands = [
+            value for value in tex_values
+            if re.search(r'(?<!\\)\\(?:Delta|Rightarrow|frac|ne|text)\b', value)
+        ]
+        self.assertEqual(unsafe_commands, [], "KaTeX commands inside JavaScript strings need doubled backslashes")
         self.assertIn("localStorage", self.html)
         self.assertIn("exportWork", self.html)
         self.assertIn("ArrowRight", self.html)
