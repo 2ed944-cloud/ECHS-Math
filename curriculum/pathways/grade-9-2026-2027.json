@@ -50,8 +50,10 @@
               "learningOutcomes": [
                 "Demonstrate current prerequisite knowledge; classify errors as conceptual, procedural, or attention-based; set 2-3 personal mastery targets."
               ],
-              "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus prerequisite profile"
+              "deliveryStatus": "ready",
+              "alignment": "AP Precalculus prerequisite profile",
+              "url": "lessons/pathways/grade-9/unit-0/g9-0.1-entry-diagnostic-mathematical-profile.html",
+              "screenCount": 64
             },
             {
               "id": "0.2",
