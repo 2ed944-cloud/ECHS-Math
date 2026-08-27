@@ -51,6 +51,9 @@ jobs:
           set -euo pipefail
           python tools/test_echs_curriculum_authoritative_scope.py
           python tools/test_pathway_lesson_style_safety.py
+          for lesson_check in tools/test_g9_*.py; do
+            python "$lesson_check"
+          done
           args=()
           if [[ "${{ inputs.require_complete || 'false' }}" == "true" ]]; then
             args+=(--require-complete)

@@ -1,15 +1,15 @@
 # ECHS Curriculum Agent Report
 
-Generated: 2026-08-27 08:04 UTC
+Generated: 2026-08-27 10:10 UTC
 
 ## Release decision
 
 - Structural errors: **0**
 - Quality warnings: **54**
-- Required lesson blocks awaiting dedicated completion: **100**
+- Required lesson blocks awaiting dedicated completion: **99**
 - Required course-level packages awaiting dedicated completion: **3**
 
-- Current Grade 9 + Path B production backlog: **96 lessons + 2 gateway packages**
+- Current Grade 9 + Path B production backlog: **95 lessons + 2 gateway packages**
 
 The authoritative scope is Grade 9 (49 blocks), Grade 10 Path A (48 blocks plus the cumulative AP review/mock package), and Grade 10 Path B (51 blocks plus two transfer-gateway assessments). AP Unit 4 remains supplemental enrichment.
 
@@ -19,7 +19,7 @@ A course card, catalog row, generic pathway route, or unmapped older file does n
 
 | Pathway | Units | Required lessons | Ready | Remaining | Packages ready | Signal score |
 |---|---:|---:|---:|---:|---:|---:|
-| g9-ap-precalculus-readiness | 10 | 49 | 4 | 45 | 0/0 | — |
+| g9-ap-precalculus-readiness | 10 | 49 | 5 | 44 | 0/0 | — |
 | g10-ap-precalculus-path-a | 4 | 48 | 44 | 4 | 0/1 | — |
 | g10-algebra2-ap-readiness-path-b | 6 | 51 | 0 | 51 | 0/2 | — |
 | ap-precalculus-core-runtime | 3 | 44 | 44 | 0 | 0/0 | 87.7 |
@@ -30,7 +30,6 @@ A course card, catalog row, generic pathway route, or unmapped older file does n
 
 ## Priority production queue
 
-- `g9-ap-precalculus-readiness` · `Unit 1` · **1.2 Literal Equations & Formula Rearrangement** (lesson; curriculum_ready)
 - `g9-ap-precalculus-readiness` · `Unit 1` · **1.3 Slope and Rate of Change** (lesson; curriculum_ready)
 - `g9-ap-precalculus-readiness` · `Unit 1` · **1.4 Representations of Linear Functions** (lesson; curriculum_ready)
 - `g9-ap-precalculus-readiness` · `Unit 1` · **1.5 Linear Inequalities** (lesson; curriculum_ready)
@@ -55,7 +54,8 @@ A course card, catalog row, generic pathway route, or unmapped older file does n
 - `g9-ap-precalculus-readiness` · `Unit 4` · **4.6 Quadratic Inequalities** (lesson; curriculum_ready)
 - `g9-ap-precalculus-readiness` · `Unit 4` · **4.7 Quadratic Modeling & Optimization** (lesson; curriculum_ready)
 - `g9-ap-precalculus-readiness` · `Unit 5` · **5.1 Polynomial Operations** (lesson; curriculum_ready)
-- …and 78 more required items in authoritative order.
+- `g9-ap-precalculus-readiness` · `Unit 5` · **5.2 Factoring Beyond Quadratics** (lesson; curriculum_ready)
+- …and 77 more required items in authoritative order.
 
 ## Quality warnings (first 50)
 
