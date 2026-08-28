@@ -64,14 +64,6 @@
       "kind": "lesson",
       "pathway": "g9-ap-precalculus-readiness",
       "unit": "Unit 7",
-      "lesson": "7.3",
-      "title": "Equivalent Exponential Forms",
-      "status": "curriculum_ready"
-    },
-    {
-      "kind": "lesson",
-      "pathway": "g9-ap-precalculus-readiness",
-      "unit": "Unit 7",
       "lesson": "7.4",
       "title": "Growth/Decay Modeling & Family Comparison",
       "status": "curriculum_ready"
@@ -610,8 +602,8 @@
       "pathway": "g9-ap-precalculus-readiness",
       "units": 10,
       "lessons": 49,
-      "ready": 39,
-      "remaining": 10,
+      "ready": 40,
+      "remaining": 9,
       "required_packages": 0,
       "packages_ready": 0
     },
@@ -645,9 +637,9 @@
     }
   ],
   "summary": {
-    "remainingLessons": 65,
+    "remainingLessons": 64,
     "remainingPackages": 3,
-    "productionRemainingLessons": 61,
+    "productionRemainingLessons": 60,
     "productionRemainingPackages": 2
   }
 }

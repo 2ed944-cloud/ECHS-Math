@@ -778,8 +778,10 @@
               "learningOutcomes": [
                 "Rewrite exponential expressions usefully; convert between percent rate and factor; explain how equivalent forms reveal different information."
               ],
-              "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus prerequisite profile"
+              "deliveryStatus": "ready",
+              "alignment": "AP Precalculus prerequisite profile",
+              "url": "lessons/pathways/grade-9/unit-7/g9-7.3-equivalent-exponential-forms.html",
+              "screenCount": 64
             },
             {
               "id": "7.4",
