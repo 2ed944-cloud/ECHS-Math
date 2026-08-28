@@ -63,14 +63,6 @@
     {
       "kind": "lesson",
       "pathway": "g9-ap-precalculus-readiness",
-      "unit": "Unit 6",
-      "lesson": "6.4",
-      "title": "Radical Equations",
-      "status": "curriculum_ready"
-    },
-    {
-      "kind": "lesson",
-      "pathway": "g9-ap-precalculus-readiness",
       "unit": "Unit 7",
       "lesson": "7.1",
       "title": "Arithmetic and Geometric Sequences",
@@ -634,8 +626,8 @@
       "pathway": "g9-ap-precalculus-readiness",
       "units": 10,
       "lessons": 49,
-      "ready": 36,
-      "remaining": 13,
+      "ready": 37,
+      "remaining": 12,
       "required_packages": 0,
       "packages_ready": 0
     },
@@ -669,9 +661,9 @@
     }
   ],
   "summary": {
-    "remainingLessons": 68,
+    "remainingLessons": 67,
     "remainingPackages": 3,
-    "productionRemainingLessons": 64,
+    "productionRemainingLessons": 63,
     "productionRemainingPackages": 2
   }
 }

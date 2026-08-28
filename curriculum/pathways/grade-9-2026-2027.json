@@ -725,8 +725,10 @@
               "learningOutcomes": [
                 "Solve radical equations; identify why extraneous solutions arise; verify solutions in the original equation."
               ],
-              "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus prerequisite profile"
+              "deliveryStatus": "ready",
+              "alignment": "AP Precalculus prerequisite profile",
+              "url": "lessons/pathways/grade-9/unit-6/g9-6.4-radical-equations.html",
+              "screenCount": 64
             }
           ]
         },
