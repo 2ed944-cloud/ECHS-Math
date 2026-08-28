@@ -62,14 +62,6 @@
       "kind": "lesson",
       "pathway": "g9-ap-precalculus-readiness",
       "unit": "Unit 5",
-      "lesson": "5.1",
-      "title": "Polynomial Operations",
-      "status": "curriculum_ready"
-    },
-    {
-      "kind": "lesson",
-      "pathway": "g9-ap-precalculus-readiness",
-      "unit": "Unit 5",
       "lesson": "5.2",
       "title": "Factoring Beyond Quadratics",
       "status": "curriculum_ready"
@@ -696,8 +688,8 @@
       "pathway": "g9-ap-precalculus-readiness",
       "units": 10,
       "lessons": 49,
-      "ready": 28,
-      "remaining": 21,
+      "ready": 29,
+      "remaining": 20,
       "required_packages": 0,
       "packages_ready": 0
     },
@@ -731,9 +723,9 @@
     }
   ],
   "summary": {
-    "remainingLessons": 76,
+    "remainingLessons": 75,
     "remainingPackages": 3,
-    "productionRemainingLessons": 72,
+    "productionRemainingLessons": 71,
     "productionRemainingPackages": 2
   }
 }
