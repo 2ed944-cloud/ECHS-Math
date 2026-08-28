@@ -485,13 +485,20 @@
               "id": "4.4",
               "title": "Completing the Square",
               "subtopics": [
-                "Perfect-square trinomials; deriving vertex form; solving equations."
+                "Perfect-square trinomials; vertex form; solving."
               ],
               "learningOutcomes": [
-                "Complete the square accurately; use it to rewrite quadratics in vertex form; solve quadratic equations by square-root methods."
+                "Complete the square and use the result strategically."
               ],
-              "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus prerequisite profile"
+              "deliveryStatus": "ready",
+              "alignment": "AP Precalculus prerequisite profile",
+              "depth": "M Prerequisite Mastery",
+              "requiredGrade9Coverage": "Complete the square with integer/rational coefficients at reasonable complexity; use it for vertex form and solving.",
+              "coverageBoundary": "Not included within this course: proof-heavy conic-section derivations.",
+              "targetPeriods": 4,
+              "maximumPeriods": 4,
+              "url": "lessons/pathways/grade-9/unit-4/g9-4.4-completing-the-square.html",
+              "screenCount": 64
             },
             {
               "id": "4.5",
