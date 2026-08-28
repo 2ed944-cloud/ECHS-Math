@@ -697,8 +697,10 @@
               "learningOutcomes": [
                 "Solve rational equations; reject invalid values; explain how domain restrictions affect the solution set."
               ],
-              "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus prerequisite profile"
+              "deliveryStatus": "ready",
+              "alignment": "AP Precalculus prerequisite profile",
+              "url": "lessons/pathways/grade-9/unit-6/g9-6.2-rational-equations.html",
+              "screenCount": 64
             },
             {
               "id": "6.3",
