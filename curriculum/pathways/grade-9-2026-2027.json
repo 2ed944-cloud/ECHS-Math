@@ -764,8 +764,10 @@
               "learningOutcomes": [
                 "Construct and interpret exponential functions; identify initial value and growth factor; compare exponential graphs."
               ],
-              "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus prerequisite profile"
+              "deliveryStatus": "ready",
+              "alignment": "AP Precalculus prerequisite profile",
+              "url": "lessons/pathways/grade-9/unit-7/g9-7.2-exponential-functions.html",
+              "screenCount": 64
             },
             {
               "id": "7.3",

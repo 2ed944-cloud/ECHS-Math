@@ -64,14 +64,6 @@
       "kind": "lesson",
       "pathway": "g9-ap-precalculus-readiness",
       "unit": "Unit 7",
-      "lesson": "7.2",
-      "title": "Exponential Functions",
-      "status": "curriculum_ready"
-    },
-    {
-      "kind": "lesson",
-      "pathway": "g9-ap-precalculus-readiness",
-      "unit": "Unit 7",
       "lesson": "7.3",
       "title": "Equivalent Exponential Forms",
       "status": "curriculum_ready"
@@ -618,8 +610,8 @@
       "pathway": "g9-ap-precalculus-readiness",
       "units": 10,
       "lessons": 49,
-      "ready": 38,
-      "remaining": 11,
+      "ready": 39,
+      "remaining": 10,
       "required_packages": 0,
       "packages_ready": 0
     },
@@ -653,9 +645,9 @@
     }
   ],
   "summary": {
-    "remainingLessons": 66,
+    "remainingLessons": 65,
     "remainingPackages": 3,
-    "productionRemainingLessons": 62,
+    "productionRemainingLessons": 61,
     "productionRemainingPackages": 2
   }
 }
