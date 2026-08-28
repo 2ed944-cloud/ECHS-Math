@@ -711,8 +711,10 @@
               "learningOutcomes": [
                 "Rewrite between radical and rational-exponent forms; simplify radical expressions; apply exponent rules consistently."
               ],
-              "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus prerequisite profile"
+              "deliveryStatus": "ready",
+              "alignment": "AP Precalculus prerequisite profile",
+              "url": "lessons/pathways/grade-9/unit-6/g9-6.3-radicals-rational-exponents.html",
+              "screenCount": 64
             },
             {
               "id": "6.4",

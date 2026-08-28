@@ -64,14 +64,6 @@
       "kind": "lesson",
       "pathway": "g9-ap-precalculus-readiness",
       "unit": "Unit 6",
-      "lesson": "6.3",
-      "title": "Radicals & Rational Exponents",
-      "status": "curriculum_ready"
-    },
-    {
-      "kind": "lesson",
-      "pathway": "g9-ap-precalculus-readiness",
-      "unit": "Unit 6",
       "lesson": "6.4",
       "title": "Radical Equations",
       "status": "curriculum_ready"
@@ -642,8 +634,8 @@
       "pathway": "g9-ap-precalculus-readiness",
       "units": 10,
       "lessons": 49,
-      "ready": 35,
-      "remaining": 14,
+      "ready": 36,
+      "remaining": 13,
       "required_packages": 0,
       "packages_ready": 0
     },
@@ -677,9 +669,9 @@
     }
   ],
   "summary": {
-    "remainingLessons": 69,
+    "remainingLessons": 68,
     "remainingPackages": 3,
-    "productionRemainingLessons": 65,
+    "productionRemainingLessons": 64,
     "productionRemainingPackages": 2
   }
 }
