@@ -591,13 +591,20 @@
               "id": "5.2",
               "title": "Factoring Beyond Quadratics",
               "subtopics": [
-                "Grouping; sum/difference of cubes; repeated factors; substitution patterns."
+                "Grouping; sum/difference of cubes; repeated factors; simple substitution patterns."
               ],
               "learningOutcomes": [
-                "Factor a range of polynomial expressions; select a productive factoring strategy; verify by multiplication."
+                "Select and apply productive factoring strategies for common higher-degree expressions."
               ],
-              "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus prerequisite profile"
+              "deliveryStatus": "ready",
+              "alignment": "AP Precalculus prerequisite profile",
+              "depth": "B Bridge Depth",
+              "requiredGrade9Coverage": "Factor common higher-degree patterns likely to appear in later polynomial work; verify by multiplication.",
+              "coverageBoundary": "Not required within this course: exhaustive olympiad-style factoring or obscure identities.",
+              "targetPeriods": 4,
+              "maximumPeriods": 4,
+              "url": "lessons/pathways/grade-9/unit-5/g9-5.2-factoring-beyond-quadratics.html",
+              "screenCount": 64
             },
             {
               "id": "5.3",
