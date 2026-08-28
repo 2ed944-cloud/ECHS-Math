@@ -629,13 +629,20 @@
               "id": "5.4",
               "title": "Polynomial Division & Theorems",
               "subtopics": [
-                "Long division; synthetic division; remainder theorem; factor theorem."
+                "Long division; synthetic division by x-c; remainder theorem; factor theorem."
               ],
               "learningOutcomes": [
-                "Divide polynomials; evaluate efficiently with the remainder theorem; determine whether a binomial is a factor."
+                "Use polynomial division and factor/remainder theorems in standard cases."
               ],
-              "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus prerequisite profile"
+              "deliveryStatus": "ready",
+              "alignment": "AP Precalculus prerequisite profile",
+              "depth": "B Bridge Depth",
+              "requiredGrade9Coverage": "Divide by linear divisors, use synthetic division for x-c, and apply factor/remainder theorem in direct cases.",
+              "coverageBoundary": "Not required within this course: advanced transformed divisors, repeated strategic division, or AP-level functional interpretation.",
+              "targetPeriods": 3,
+              "maximumPeriods": 4,
+              "url": "lessons/pathways/grade-9/unit-5/g9-5.4-polynomial-division-theorems.html",
+              "screenCount": 64
             },
             {
               "id": "5.5",

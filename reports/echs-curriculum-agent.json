@@ -64,14 +64,6 @@
       "kind": "lesson",
       "pathway": "g9-ap-precalculus-readiness",
       "unit": "Unit 5",
-      "lesson": "5.4",
-      "title": "Polynomial Division & Theorems",
-      "status": "curriculum_ready"
-    },
-    {
-      "kind": "lesson",
-      "pathway": "g9-ap-precalculus-readiness",
-      "unit": "Unit 5",
       "lesson": "5.5",
       "title": "Polynomial Graphs & End Behavior",
       "status": "curriculum_ready"
@@ -674,8 +666,8 @@
       "pathway": "g9-ap-precalculus-readiness",
       "units": 10,
       "lessons": 49,
-      "ready": 31,
-      "remaining": 18,
+      "ready": 32,
+      "remaining": 17,
       "required_packages": 0,
       "packages_ready": 0
     },
@@ -709,9 +701,9 @@
     }
   ],
   "summary": {
-    "remainingLessons": 73,
+    "remainingLessons": 72,
     "remainingPackages": 3,
-    "productionRemainingLessons": 69,
+    "productionRemainingLessons": 68,
     "productionRemainingPackages": 2
   }
 }
