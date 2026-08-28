@@ -575,10 +575,17 @@
                 "Degree; leading coefficient; addition/subtraction/multiplication; special products."
               ],
               "learningOutcomes": [
-                "Perform polynomial operations accurately; identify degree/leading term; use structure to simplify calculations."
+                "Operate on polynomial expressions accurately and interpret degree/leading term."
               ],
-              "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus prerequisite profile"
+              "deliveryStatus": "ready",
+              "alignment": "AP Precalculus prerequisite profile",
+              "depth": "M Prerequisite Mastery",
+              "requiredGrade9Coverage": "Perform polynomial addition/subtraction/multiplication and identify degree/leading term fluently.",
+              "coverageBoundary": "Scope boundary: symbolic manipulation remains connected to function meaning; arbitrary manipulation is outside the course emphasis.",
+              "targetPeriods": 3,
+              "maximumPeriods": 3,
+              "url": "lessons/pathways/grade-9/unit-5/g9-5.1-polynomial-operations.html",
+              "screenCount": 64
             },
             {
               "id": "5.2",
