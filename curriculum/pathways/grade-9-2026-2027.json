@@ -466,13 +466,20 @@
               "id": "4.3",
               "title": "Factoring Quadratics",
               "subtopics": [
-                "GCF; trinomial factoring; difference of squares; zero-product property."
+                "GCF; trinomials; difference of squares; zero-product property."
               ],
               "learningOutcomes": [
-                "Factor quadratic expressions completely; solve equations using factoring; connect factors, zeros, and x-intercepts."
+                "Factor quadratics and connect factors to zeros/intercepts."
               ],
-              "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus prerequisite profile"
+              "deliveryStatus": "ready",
+              "alignment": "AP Precalculus prerequisite profile",
+              "depth": "M Prerequisite Mastery",
+              "requiredGrade9Coverage": "Factor routine and moderately complex quadratics completely and solve by zero product.",
+              "coverageBoundary": "Deferred: advanced higher-degree factoring patterns for Unit 5.",
+              "targetPeriods": 4,
+              "maximumPeriods": 5,
+              "url": "lessons/pathways/grade-9/unit-4/g9-4.3-factoring-quadratics.html",
+              "screenCount": 64
             },
             {
               "id": "4.4",
