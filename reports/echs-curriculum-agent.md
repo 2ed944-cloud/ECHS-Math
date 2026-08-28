@@ -1,15 +1,15 @@
 # ECHS Curriculum Agent Report
 
-Generated: 2026-08-28 00:08 UTC
+Generated: 2026-08-28 00:40 UTC
 
 ## Release decision
 
 - Structural errors: **0**
-- Quality warnings: **54**
-- Required lesson blocks awaiting dedicated completion: **85**
+- Quality warnings: **55**
+- Required lesson blocks awaiting dedicated completion: **84**
 - Required course-level packages awaiting dedicated completion: **3**
 
-- Current Grade 9 + Path B production backlog: **81 lessons + 2 gateway packages**
+- Current Grade 9 + Path B production backlog: **80 lessons + 2 gateway packages**
 
 The authoritative scope is Grade 9 (49 blocks), Grade 10 Path A (48 blocks plus the cumulative AP review/mock package), and Grade 10 Path B (51 blocks plus two transfer-gateway assessments). AP Unit 4 remains supplemental enrichment.
 
@@ -19,7 +19,7 @@ A course card, catalog row, generic pathway route, or unmapped older file does n
 
 | Pathway | Units | Required lessons | Ready | Remaining | Packages ready | Signal score |
 |---|---:|---:|---:|---:|---:|---:|
-| g9-ap-precalculus-readiness | 10 | 49 | 19 | 30 | 0/0 | — |
+| g9-ap-precalculus-readiness | 10 | 49 | 20 | 29 | 0/0 | — |
 | g10-ap-precalculus-path-a | 4 | 48 | 44 | 4 | 0/1 | — |
 | g10-algebra2-ap-readiness-path-b | 6 | 51 | 0 | 51 | 0/2 | — |
 | ap-precalculus-core-runtime | 3 | 44 | 44 | 0 | 0/0 | 87.7 |
@@ -30,7 +30,6 @@ A course card, catalog row, generic pathway route, or unmapped older file does n
 
 ## Priority production queue
 
-- `g9-ap-precalculus-readiness` · `Unit 3` · **3.5 Average Rate of Change** (lesson; curriculum_ready)
 - `g9-ap-precalculus-readiness` · `Unit 3` · **3.6 Composition and Inverse Concepts** (lesson; curriculum_ready)
 - `g9-ap-precalculus-readiness` · `Unit 4` · **4.1 Quadratic Patterns & Graph Features** (lesson; curriculum_ready)
 - `g9-ap-precalculus-readiness` · `Unit 4` · **4.2 Three Forms of a Quadratic** (lesson; curriculum_ready)
@@ -54,10 +53,13 @@ A course card, catalog row, generic pathway route, or unmapped older file does n
 - `g9-ap-precalculus-readiness` · `Unit 7` · **7.4 Growth/Decay Modeling & Family Comparison** (lesson; curriculum_ready)
 - `g9-ap-precalculus-readiness` · `Unit 8` · **8.1 Right Triangles, Similarity & Pythagorean Relationships** (lesson; curriculum_ready)
 - `g9-ap-precalculus-readiness` · `Unit 8` · **8.2 Sine, Cosine & Tangent Ratios** (lesson; curriculum_ready)
-- …and 63 more required items in authoritative order.
+- `g9-ap-precalculus-readiness` · `Unit 8` · **8.3 Inverse Trigonometry** (lesson; curriculum_ready)
+- `g9-ap-precalculus-readiness` · `Unit 8` · **8.4 Applied Trigonometry** (lesson; curriculum_ready)
+- …and 62 more required items in authoritative order.
 
 ## Quality warnings (first 50)
 
+- g9-ap-precalculus-readiness 3.4: quality signals missing: learning objective
 - g10-ap-precalculus-path-a 1.1: quality signals missing: learning objective
 - g10-ap-precalculus-path-a 1.3: quality signals missing: learning objective
 - g10-ap-precalculus-path-a 1.4: quality signals missing: learning objective
@@ -107,8 +109,7 @@ A course card, catalog row, generic pathway route, or unmapped older file does n
 - AP core `lessons/ap-precalculus/unit-3/AP_Precalculus_3.2_Sine_Cosine_and_Tangent_ECHS_Refined.html`: missing automated quality signals: worked example
 - AP core `lessons/ap-precalculus/unit-3/AP_Precalculus_3.3_Sine_and_Cosine_Function_Values_ECHS_Refined.html`: missing automated quality signals: worked example
 - AP core `lessons/ap-precalculus/unit-3/AP_Precalculus_3.4_Sine_and_Cosine_Function_Graphs_ECHS_Refined.html`: missing automated quality signals: worked example
-- AP core `lessons/ap-precalculus/unit-3/AP_Precalculus_3.5_Sinusoidal_Functions_ECHS_Refined.html`: missing automated quality signals: worked example
-- …and 4 more warnings.
+- …and 5 more warnings.
 
 ## Definition of done
 

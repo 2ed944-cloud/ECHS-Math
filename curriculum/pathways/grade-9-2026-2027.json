@@ -382,10 +382,17 @@
                 "Difference quotient over an interval; secant slope; units; comparison across intervals."
               ],
               "learningOutcomes": [
-                "Compute average rate of change; interpret it contextually; compare changing behavior across intervals and representations."
+                "Compute and interpret average rate of change over an interval."
               ],
-              "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus prerequisite profile"
+              "deliveryStatus": "ready",
+              "alignment": "AP Precalculus prerequisite profile",
+              "depth": "B Bridge Depth",
+              "requiredGrade9Coverage": "Compute AROC for linear/quadratic/simple polynomial/exponential examples and interpret units.",
+              "coverageBoundary": "Deferred beyond this course: sustained covariation investigations, instantaneous-rate language, and complex multi-representation AP tasks associated with AP Topic 1.2 depth.",
+              "targetPeriods": 3,
+              "maximumPeriods": 3,
+              "url": "lessons/pathways/grade-9/unit-3/g9-3.5-average-rate-of-change.html",
+              "screenCount": 64
             },
             {
               "id": "3.6",
