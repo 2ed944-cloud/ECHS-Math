@@ -683,8 +683,10 @@
               "learningOutcomes": [
                 "Simplify rational expressions while preserving restrictions; perform operations; distinguish equivalent expressions from equivalent functions with domain restrictions."
               ],
-              "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus prerequisite profile"
+              "deliveryStatus": "ready",
+              "alignment": "AP Precalculus prerequisite profile",
+              "url": "lessons/pathways/grade-9/unit-6/g9-6.1-rational-expressions-restrictions.html",
+              "screenCount": 64
             },
             {
               "id": "6.2",

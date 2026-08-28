@@ -64,14 +64,6 @@
       "kind": "lesson",
       "pathway": "g9-ap-precalculus-readiness",
       "unit": "Unit 6",
-      "lesson": "6.1",
-      "title": "Rational Expressions & Restrictions",
-      "status": "curriculum_ready"
-    },
-    {
-      "kind": "lesson",
-      "pathway": "g9-ap-precalculus-readiness",
-      "unit": "Unit 6",
       "lesson": "6.2",
       "title": "Rational Equations",
       "status": "curriculum_ready"
@@ -658,8 +650,8 @@
       "pathway": "g9-ap-precalculus-readiness",
       "units": 10,
       "lessons": 49,
-      "ready": 33,
-      "remaining": 16,
+      "ready": 34,
+      "remaining": 15,
       "required_packages": 0,
       "packages_ready": 0
     },
@@ -693,9 +685,9 @@
     }
   ],
   "summary": {
-    "remainingLessons": 71,
+    "remainingLessons": 70,
     "remainingPackages": 3,
-    "productionRemainingLessons": 67,
+    "productionRemainingLessons": 66,
     "productionRemainingPackages": 2
   }
 }
