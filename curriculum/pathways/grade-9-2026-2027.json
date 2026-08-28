@@ -447,13 +447,20 @@
               "id": "4.2",
               "title": "Three Forms of a Quadratic",
               "subtopics": [
-                "Standard, factored, vertex forms; information revealed by each form; converting when efficient."
+                "Standard, factored, vertex forms; information revealed; strategic conversion."
               ],
               "learningOutcomes": [
-                "Interpret coefficients/parameters in each form; choose the most useful form for a task; convert among forms strategically."
+                "Choose and use the most informative quadratic form for a task."
               ],
-              "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus prerequisite profile"
+              "deliveryStatus": "ready",
+              "alignment": "AP Precalculus prerequisite profile",
+              "depth": "M Prerequisite Mastery",
+              "requiredGrade9Coverage": "Interpret each form and convert among forms efficiently when useful.",
+              "coverageBoundary": "Limited emphasis: tedious expansion beyond what supports interpretation and solving.",
+              "targetPeriods": 4,
+              "maximumPeriods": 4,
+              "url": "lessons/pathways/grade-9/unit-4/g9-4.2-three-forms-quadratic.html",
+              "screenCount": 64
             },
             {
               "id": "4.3",
