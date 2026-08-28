@@ -61,14 +61,6 @@
       "kind": "lesson",
       "pathway": "g9-ap-precalculus-readiness",
       "unit": "Unit 3",
-      "lesson": "3.4",
-      "title": "Transformations of Parent Functions",
-      "status": "curriculum_ready"
-    },
-    {
-      "kind": "lesson",
-      "pathway": "g9-ap-precalculus-readiness",
-      "unit": "Unit 3",
       "lesson": "3.5",
       "title": "Average Rate of Change",
       "status": "curriculum_ready"
@@ -775,8 +767,8 @@
       "pathway": "g9-ap-precalculus-readiness",
       "units": 10,
       "lessons": 49,
-      "ready": 18,
-      "remaining": 31,
+      "ready": 19,
+      "remaining": 30,
       "required_packages": 0,
       "packages_ready": 0
     },
@@ -810,9 +802,9 @@
     }
   ],
   "summary": {
-    "remainingLessons": 86,
+    "remainingLessons": 85,
     "remainingPackages": 3,
-    "productionRemainingLessons": 82,
+    "productionRemainingLessons": 81,
     "productionRemainingPackages": 2
   }
 }

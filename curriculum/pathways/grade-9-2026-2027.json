@@ -363,10 +363,17 @@
                 "Translations; reflections; vertical/horizontal scaling; order of transformations."
               ],
               "learningOutcomes": [
-                "Predict and construct transformed graphs; write transformed equations; explain how parameters affect graph features."
+                "Predict and construct common parent-function transformations."
               ],
-              "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus prerequisite profile"
+              "deliveryStatus": "ready",
+              "alignment": "AP Precalculus prerequisite profile",
+              "depth": "B Bridge Depth",
+              "requiredGrade9Coverage": "Transform linear, quadratic, absolute-value, radical, and basic exponential parent graphs using parameter effects.",
+              "coverageBoundary": "Not required within this course: AP-level transformation chains of rational/log/trig functions or detailed covariation justifications.",
+              "targetPeriods": 3,
+              "maximumPeriods": 3,
+              "url": "lessons/pathways/grade-9/unit-3/g9-3.4-transformations-parent-functions.html",
+              "screenCount": 64
             },
             {
               "id": "3.5",
