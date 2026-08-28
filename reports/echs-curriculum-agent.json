@@ -62,14 +62,6 @@
       "kind": "lesson",
       "pathway": "g9-ap-precalculus-readiness",
       "unit": "Unit 4",
-      "lesson": "4.3",
-      "title": "Factoring Quadratics",
-      "status": "curriculum_ready"
-    },
-    {
-      "kind": "lesson",
-      "pathway": "g9-ap-precalculus-readiness",
-      "unit": "Unit 4",
       "lesson": "4.4",
       "title": "Completing the Square",
       "status": "curriculum_ready"
@@ -736,8 +728,8 @@
       "pathway": "g9-ap-precalculus-readiness",
       "units": 10,
       "lessons": 49,
-      "ready": 23,
-      "remaining": 26,
+      "ready": 24,
+      "remaining": 25,
       "required_packages": 0,
       "packages_ready": 0
     },
@@ -771,9 +763,9 @@
     }
   ],
   "summary": {
-    "remainingLessons": 81,
+    "remainingLessons": 80,
     "remainingPackages": 3,
-    "productionRemainingLessons": 77,
+    "productionRemainingLessons": 76,
     "productionRemainingPackages": 2
   }
 }
