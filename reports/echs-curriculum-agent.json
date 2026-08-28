@@ -62,14 +62,6 @@
       "kind": "lesson",
       "pathway": "g9-ap-precalculus-readiness",
       "unit": "Unit 4",
-      "lesson": "4.6",
-      "title": "Quadratic Inequalities",
-      "status": "curriculum_ready"
-    },
-    {
-      "kind": "lesson",
-      "pathway": "g9-ap-precalculus-readiness",
-      "unit": "Unit 4",
       "lesson": "4.7",
       "title": "Quadratic Modeling & Optimization",
       "status": "curriculum_ready"
@@ -712,8 +704,8 @@
       "pathway": "g9-ap-precalculus-readiness",
       "units": 10,
       "lessons": 49,
-      "ready": 26,
-      "remaining": 23,
+      "ready": 27,
+      "remaining": 22,
       "required_packages": 0,
       "packages_ready": 0
     },
@@ -747,9 +739,9 @@
     }
   ],
   "summary": {
-    "remainingLessons": 78,
+    "remainingLessons": 77,
     "remainingPackages": 3,
-    "productionRemainingLessons": 74,
+    "productionRemainingLessons": 73,
     "productionRemainingPackages": 2
   }
 }
