@@ -62,14 +62,6 @@
       "kind": "lesson",
       "pathway": "g9-ap-precalculus-readiness",
       "unit": "Unit 4",
-      "lesson": "4.2",
-      "title": "Three Forms of a Quadratic",
-      "status": "curriculum_ready"
-    },
-    {
-      "kind": "lesson",
-      "pathway": "g9-ap-precalculus-readiness",
-      "unit": "Unit 4",
       "lesson": "4.3",
       "title": "Factoring Quadratics",
       "status": "curriculum_ready"
@@ -744,8 +736,8 @@
       "pathway": "g9-ap-precalculus-readiness",
       "units": 10,
       "lessons": 49,
-      "ready": 22,
-      "remaining": 27,
+      "ready": 23,
+      "remaining": 26,
       "required_packages": 0,
       "packages_ready": 0
     },
@@ -779,9 +771,9 @@
     }
   ],
   "summary": {
-    "remainingLessons": 82,
+    "remainingLessons": 81,
     "remainingPackages": 3,
-    "productionRemainingLessons": 78,
+    "productionRemainingLessons": 77,
     "productionRemainingPackages": 2
   }
 }
