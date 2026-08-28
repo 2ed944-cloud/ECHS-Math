@@ -123,9 +123,10 @@ class GradeNineQuadraticPatternsTests(unittest.TestCase):
             "Learning goals", "Prerequisite retrieval", "Worked example",
             "Student Turn", "Build a difference table", "Parabola anatomy",
             "Axis of symmetry", "Differentiated practice", "AP-readiness transfer",
-            "Exit ticket", "Mastery reflection",
+            "Exit ticket", "Mastery reflection", "Record difference tables",
         ):
             self.assertIn(signal, self.html)
+        self.assertNotIn("difference quotients", self.html.lower())
 
     def test_math_interaction_and_persistence_contracts(self) -> None:
         self.assertIn("katex@0.16.11", self.html)
