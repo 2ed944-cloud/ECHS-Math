@@ -542,13 +542,20 @@
               "id": "4.7",
               "title": "Quadratic Modeling & Optimization",
               "subtopics": [
-                "Projectile/area/revenue-style models; vertex interpretation; regression; model limitations."
+                "Projectile/area/revenue-style models; vertex interpretation; technology regression; limitations."
               ],
               "learningOutcomes": [
-                "Construct or fit quadratic models; use the vertex to optimize a contextual quantity; state reasonable domain and limitations."
+                "Use quadratics to model and optimize familiar contexts with reasonable domain restrictions."
               ],
-              "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus prerequisite profile"
+              "deliveryStatus": "ready",
+              "alignment": "AP Precalculus prerequisite profile",
+              "depth": "B Bridge Depth",
+              "requiredGrade9Coverage": "Construct/use simple quadratic models; interpret vertex and domain; fit quadratic regression with technology when data warrant it.",
+              "coverageBoundary": "Not required within this course: AP-level model comparison, residual analysis, or complex covariation arguments.",
+              "targetPeriods": 3,
+              "maximumPeriods": 4,
+              "url": "lessons/pathways/grade-9/unit-4/g9-4.7-quadratic-modeling-optimization.html",
+              "screenCount": 64
             }
           ]
         },

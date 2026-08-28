@@ -1,15 +1,15 @@
 # ECHS Curriculum Agent Report
 
-Generated: 2026-08-28 07:09 UTC
+Generated: 2026-08-28 08:11 UTC
 
 ## Release decision
 
 - Structural errors: **0**
 - Quality warnings: **55**
-- Required lesson blocks awaiting dedicated completion: **77**
+- Required lesson blocks awaiting dedicated completion: **76**
 - Required course-level packages awaiting dedicated completion: **3**
 
-- Current Grade 9 + Path B production backlog: **73 lessons + 2 gateway packages**
+- Current Grade 9 + Path B production backlog: **72 lessons + 2 gateway packages**
 
 The authoritative scope is Grade 9 (49 blocks), Grade 10 Path A (48 blocks plus the cumulative AP review/mock package), and Grade 10 Path B (51 blocks plus two transfer-gateway assessments). AP Unit 4 remains supplemental enrichment.
 
@@ -19,7 +19,7 @@ A course card, catalog row, generic pathway route, or unmapped older file does n
 
 | Pathway | Units | Required lessons | Ready | Remaining | Packages ready | Signal score |
 |---|---:|---:|---:|---:|---:|---:|
-| g9-ap-precalculus-readiness | 10 | 49 | 27 | 22 | 0/0 | — |
+| g9-ap-precalculus-readiness | 10 | 49 | 28 | 21 | 0/0 | — |
 | g10-ap-precalculus-path-a | 4 | 48 | 44 | 4 | 0/1 | — |
 | g10-algebra2-ap-readiness-path-b | 6 | 51 | 0 | 51 | 0/2 | — |
 | ap-precalculus-core-runtime | 3 | 44 | 44 | 0 | 0/0 | 87.7 |
@@ -30,7 +30,6 @@ A course card, catalog row, generic pathway route, or unmapped older file does n
 
 ## Priority production queue
 
-- `g9-ap-precalculus-readiness` · `Unit 4` · **4.7 Quadratic Modeling & Optimization** (lesson; curriculum_ready)
 - `g9-ap-precalculus-readiness` · `Unit 5` · **5.1 Polynomial Operations** (lesson; curriculum_ready)
 - `g9-ap-precalculus-readiness` · `Unit 5` · **5.2 Factoring Beyond Quadratics** (lesson; curriculum_ready)
 - `g9-ap-precalculus-readiness` · `Unit 5` · **5.3 Zeros, Factors & Multiplicity** (lesson; curriculum_ready)
@@ -55,7 +54,8 @@ A course card, catalog row, generic pathway route, or unmapped older file does n
 - `g10-ap-precalculus-path-a` · `Calculus Bridge` · **E.1 Parametric Functions** (lesson; curriculum_ready)
 - `g10-ap-precalculus-path-a` · `Calculus Bridge` · **E.2 Planar Motion with Parametric Functions** (lesson; curriculum_ready)
 - `g10-ap-precalculus-path-a` · `Calculus Bridge` · **E.3 Implicit Relations and Function Restrictions** (lesson; curriculum_ready)
-- …and 55 more required items in authoritative order.
+- `g10-ap-precalculus-path-a` · `Calculus Bridge` · **E.4 Vector-Valued Function Preview** (lesson; curriculum_ready)
+- …and 54 more required items in authoritative order.
 
 ## Quality warnings (first 50)
 
