@@ -62,14 +62,6 @@
       "kind": "lesson",
       "pathway": "g9-ap-precalculus-readiness",
       "unit": "Unit 4",
-      "lesson": "4.5",
-      "title": "Quadratic Formula, Discriminant & Complex Numbers",
-      "status": "curriculum_ready"
-    },
-    {
-      "kind": "lesson",
-      "pathway": "g9-ap-precalculus-readiness",
-      "unit": "Unit 4",
       "lesson": "4.6",
       "title": "Quadratic Inequalities",
       "status": "curriculum_ready"
@@ -720,8 +712,8 @@
       "pathway": "g9-ap-precalculus-readiness",
       "units": 10,
       "lessons": 49,
-      "ready": 25,
-      "remaining": 24,
+      "ready": 26,
+      "remaining": 23,
       "required_packages": 0,
       "packages_ready": 0
     },
@@ -755,9 +747,9 @@
     }
   ],
   "summary": {
-    "remainingLessons": 79,
+    "remainingLessons": 78,
     "remainingPackages": 3,
-    "productionRemainingLessons": 75,
+    "productionRemainingLessons": 74,
     "productionRemainingPackages": 2
   }
 }

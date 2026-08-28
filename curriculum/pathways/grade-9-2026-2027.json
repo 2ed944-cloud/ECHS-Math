@@ -504,13 +504,20 @@
               "id": "4.5",
               "title": "Quadratic Formula, Discriminant & Complex Numbers",
               "subtopics": [
-                "Quadratic formula; discriminant; i; complex conjugates; exact vs approximate roots."
+                "Quadratic formula; discriminant; i; nonreal conjugate roots; exact/approximate roots."
               ],
               "learningOutcomes": [
-                "Solve any quadratic equation; predict number/type of roots from the discriminant; express nonreal solutions using complex numbers."
+                "Solve any quadratic and classify real/nonreal roots; express basic complex solutions correctly."
               ],
-              "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus prerequisite profile"
+              "deliveryStatus": "ready",
+              "alignment": "AP Precalculus prerequisite profile",
+              "depth": "M Prerequisite Mastery",
+              "requiredGrade9Coverage": "Students use the quadratic formula independently and use the discriminant to classify roots. Complex-number coverage is limited to familiarity with basic powers of i and roots written in a+bi form.",
+              "coverageBoundary": "Deferred content: a full complex-number algebra unit, polar complex form, De Moivre, or complex-function analysis.",
+              "targetPeriods": 4,
+              "maximumPeriods": 5,
+              "url": "lessons/pathways/grade-9/unit-4/g9-4.5-quadratic-formula-discriminant-complex-numbers.html",
+              "screenCount": 64
             },
             {
               "id": "4.6",
