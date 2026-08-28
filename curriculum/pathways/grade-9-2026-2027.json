@@ -792,8 +792,10 @@
               "learningOutcomes": [
                 "Select an appropriate model family from data/context; fit and interpret an exponential model; justify model choice using rate patterns/residual evidence."
               ],
-              "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus prerequisite profile"
+              "deliveryStatus": "ready",
+              "alignment": "AP Precalculus prerequisite profile",
+              "url": "lessons/pathways/grade-9/unit-7/g9-7.4-growth-decay-modeling-family-comparison.html",
+              "screenCount": 64
             }
           ]
         },
