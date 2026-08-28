@@ -523,13 +523,20 @@
               "id": "4.6",
               "title": "Quadratic Inequalities",
               "subtopics": [
-                "Sign intervals; graph-based solution; test intervals; compound solution sets."
+                "Sign intervals; graph-based solution; test intervals; interval notation."
               ],
               "learningOutcomes": [
-                "Solve quadratic inequalities algebraically and graphically; use zeros to partition the number line; express final sets in interval notation."
+                "Solve and represent quadratic inequality solution sets."
               ],
-              "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus prerequisite profile"
+              "deliveryStatus": "ready",
+              "alignment": "AP Precalculus prerequisite profile",
+              "depth": "M Prerequisite Mastery",
+              "requiredGrade9Coverage": "Solve quadratic inequalities algebraically and graphically and communicate solution intervals.",
+              "coverageBoundary": "Deferred: rational/polynomial inequalities of higher degree for later.",
+              "targetPeriods": 3,
+              "maximumPeriods": 3,
+              "url": "lessons/pathways/grade-9/unit-4/g9-4.6-quadratic-inequalities.html",
+              "screenCount": 64
             },
             {
               "id": "4.7",
