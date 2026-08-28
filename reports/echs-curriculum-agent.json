@@ -61,14 +61,6 @@
     {
       "kind": "lesson",
       "pathway": "g9-ap-precalculus-readiness",
-      "unit": "Unit 4",
-      "lesson": "4.7",
-      "title": "Quadratic Modeling & Optimization",
-      "status": "curriculum_ready"
-    },
-    {
-      "kind": "lesson",
-      "pathway": "g9-ap-precalculus-readiness",
       "unit": "Unit 5",
       "lesson": "5.1",
       "title": "Polynomial Operations",
@@ -704,8 +696,8 @@
       "pathway": "g9-ap-precalculus-readiness",
       "units": 10,
       "lessons": 49,
-      "ready": 27,
-      "remaining": 22,
+      "ready": 28,
+      "remaining": 21,
       "required_packages": 0,
       "packages_ready": 0
     },
@@ -739,9 +731,9 @@
     }
   ],
   "summary": {
-    "remainingLessons": 77,
+    "remainingLessons": 76,
     "remainingPackages": 3,
-    "productionRemainingLessons": 73,
+    "productionRemainingLessons": 72,
     "productionRemainingPackages": 2
   }
 }
