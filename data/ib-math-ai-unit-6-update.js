@@ -172,3 +172,19 @@
     detail: { courseId: course.id, unit: 6, lessons: unit.lessons.length, readyLessons: 2 }
   }));
 })();
+
+(function(){"use strict";
+if(!Array.isArray(window.ECHS_COURSES))return;
+function norm(v){return String(v||"").toLowerCase().replace(/[–—−]/g,"-").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"")}
+var course=window.ECHS_COURSES.find(function(c){if(!c)return false;var labels=[c.id,c.course,c.title,c.shortTitle].map(norm);return labels.includes("g11-ib-ai")||labels.includes("ib-math-ai")||labels.some(function(x){return x.includes("ib-mathematics-applications-and-interpretation")||x.includes("ib-math-ai")})});
+if(!course||!Array.isArray(course.units)||!course.units.length)return;
+var unitOne=course.units.find(function(u){return /^unit\s*1(?:\s*:|\b)/i.test(String(u&&u.title||"").trim())})||course.units[0];
+if(!unitOne)return;if(!Array.isArray(unitOne.lessons))unitOne.lessons=[];
+unitOne.lessons=unitOne.lessons.filter(function(l){return String(l&&l.number||"").trim()!=="0"&&String(l&&l.title||"").indexOf("First Day, Diagnostic")<0});
+var url="lessons/ib-math-ai/course-launch/IB_Math_AI_Lesson_0_First_Day_Diagnostic_ECHS.html";
+var lessonZero={number:"0",title:"Welcome to IB Math AI · First Day, Diagnostic & Success Plan",summary:"First-class launch for IB Mathematics: Applications and Interpretation SL/HL: interactive icebreakers, current course and assessment orientation, classroom agreements, technology and exploration workflow, a 36-item common prerequisite diagnostic, and an optional 6-item HL readiness extension.",outcomes:["Explain the five IB Math AI topics, current SL/HL assessment structure, technology expectations and mathematical exploration role.","Establish classroom norms, platform workflow, calculator evidence habits, modelling routines and a sustainable IB study system.","Complete the prerequisite diagnostic and use the strand profile to identify targeted first-week repair priorities."],resources:[{label:"Complete interactive Lesson 0",url:url,type:"resource"},{label:"Official IB Mathematics curriculum page",url:"https://www.ibo.org/programmes/diploma-programme/curriculum/mathematics/",type:"document"},{label:"Official IB Mathematics AI course update page",url:"https://www.ibo.org/university-admission/latest-curriculum-updates/dp-mathematics-applications-and-interpretation-updates/",type:"document"},{label:"Official IB mathematics sample papers",url:"https://www.ibo.org/programmes/diploma-programme/assessment-and-exams/sample-exam-papers/",type:"document"}],url:url,status:"ready",new:true,kind:"orientation",openLabel:"Open first-day lesson",keywords:["lesson 0","first day","diagnostic","orientation","icebreaker","ib math ai","applications and interpretation","sl","hl","internal assessment","exploration","gdc","study plan","readiness"]};
+unitOne.lessons.unshift(lessonZero);
+unitOne.portalSummary="Course Launch + "+Math.max(0,unitOne.lessons.length-1)+" Unit 1 lessons · first-day diagnostic · SL/HL readiness pathway";
+if(!document.getElementById("ib-math-ai-lesson-zero-style")){var st=document.createElement("style");st.id="ib-math-ai-lesson-zero-style";st.textContent='.lesson[data-number="0"] .learningPathRail,.lesson[data-number="0"] .lessonPracticeBtn{display:none!important}.lesson[data-number="0"] .lessonCardNumber{background:linear-gradient(135deg,#6f1532,#087b72)!important;color:#fff!important}.lesson[data-number="0"] .lessonCardCopy small{background:#efe4a6;color:#5d4510}';document.head.appendChild(st);}
+course.unitCount=course.units.length;course.lessonCount=course.units.reduce(function(t,u){return t+(Array.isArray(u&&u.lessons)?u.lessons.length:0)},0);course.updatedUnits="Course Launch + IB Math AI Units 1–6 · Lesson 0 diagnostic compatible with SL/HL";
+})();
