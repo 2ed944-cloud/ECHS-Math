@@ -1,15 +1,15 @@
 # ECHS Curriculum Agent Report
 
-Generated: 2026-08-28 16:18 UTC
+Generated: 2026-08-28 17:11 UTC
 
 ## Release decision
 
 - Structural errors: **0**
 - Quality warnings: **57**
-- Required lesson blocks awaiting dedicated completion: **70**
+- Required lesson blocks awaiting dedicated completion: **69**
 - Required course-level packages awaiting dedicated completion: **3**
 
-- Current Grade 9 + Path B production backlog: **66 lessons + 2 gateway packages**
+- Current Grade 9 + Path B production backlog: **65 lessons + 2 gateway packages**
 
 The authoritative scope is Grade 9 (49 blocks), Grade 10 Path A (48 blocks plus the cumulative AP review/mock package), and Grade 10 Path B (51 blocks plus two transfer-gateway assessments). AP Unit 4 remains supplemental enrichment.
 
@@ -19,7 +19,7 @@ A course card, catalog row, generic pathway route, or unmapped older file does n
 
 | Pathway | Units | Required lessons | Ready | Remaining | Packages ready | Signal score |
 |---|---:|---:|---:|---:|---:|---:|
-| g9-ap-precalculus-readiness | 10 | 49 | 34 | 15 | 0/0 | — |
+| g9-ap-precalculus-readiness | 10 | 49 | 35 | 14 | 0/0 | — |
 | g10-ap-precalculus-path-a | 4 | 48 | 44 | 4 | 0/1 | — |
 | g10-algebra2-ap-readiness-path-b | 6 | 51 | 0 | 51 | 0/2 | — |
 | ap-precalculus-core-runtime | 3 | 44 | 44 | 0 | 0/0 | 85.0 |
@@ -30,7 +30,6 @@ A course card, catalog row, generic pathway route, or unmapped older file does n
 
 ## Priority production queue
 
-- `g9-ap-precalculus-readiness` · `Unit 6` · **6.2 Rational Equations** (lesson; curriculum_ready)
 - `g9-ap-precalculus-readiness` · `Unit 6` · **6.3 Radicals & Rational Exponents** (lesson; curriculum_ready)
 - `g9-ap-precalculus-readiness` · `Unit 6` · **6.4 Radical Equations** (lesson; curriculum_ready)
 - `g9-ap-precalculus-readiness` · `Unit 7` · **7.1 Arithmetic and Geometric Sequences** (lesson; curriculum_ready)
@@ -55,7 +54,8 @@ A course card, catalog row, generic pathway route, or unmapped older file does n
 - `g10-algebra2-ap-readiness-path-b` · `R0` · **R0.3 Function Notation, Domain & Representations** (lesson; curriculum_ready)
 - `g10-algebra2-ap-readiness-path-b` · `R0` · **R0.4 Systems & Right-Triangle Trig Spot Repair** (lesson; curriculum_ready)
 - `g10-algebra2-ap-readiness-path-b` · `R1` · **R1.1 Rates of Change Foundations** (lesson; curriculum_ready)
-- …and 48 more required items in authoritative order.
+- `g10-algebra2-ap-readiness-path-b` · `R1` · **R1.2 Quadratic Equation Mastery** (lesson; curriculum_ready)
+- …and 47 more required items in authoritative order.
 
 ## Quality warnings (first 50)
 
