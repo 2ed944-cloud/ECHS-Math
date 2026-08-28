@@ -651,10 +651,17 @@
                 "Leading-term test; odd/even degree; end behavior; turning points as qualitative feature."
               ],
               "learningOutcomes": [
-                "Predict end behavior; sketch a reasonable graph from structure; connect algebraic form to global and local graph features."
+                "Relate polynomial structure to end behavior and a qualitative graph."
               ],
-              "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus prerequisite profile"
+              "deliveryStatus": "ready",
+              "alignment": "AP Precalculus prerequisite profile",
+              "depth": "B Bridge Depth",
+              "requiredGrade9Coverage": "Predict end behavior from degree/leading coefficient and sketch reasonable low-degree graphs using known zeros/multiplicity.",
+              "coverageBoundary": "Deferred content: complete AP polynomial modeling, difference quotients, regression, or all local/global behavior requirements.",
+              "targetPeriods": 3,
+              "maximumPeriods": 3,
+              "url": "lessons/pathways/grade-9/unit-5/g9-5.5-polynomial-graphs-end-behavior.html",
+              "screenCount": 64
             }
           ]
         },
