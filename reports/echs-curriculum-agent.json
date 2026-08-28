@@ -62,14 +62,6 @@
       "kind": "lesson",
       "pathway": "g9-ap-precalculus-readiness",
       "unit": "Unit 4",
-      "lesson": "4.1",
-      "title": "Quadratic Patterns & Graph Features",
-      "status": "curriculum_ready"
-    },
-    {
-      "kind": "lesson",
-      "pathway": "g9-ap-precalculus-readiness",
-      "unit": "Unit 4",
       "lesson": "4.2",
       "title": "Three Forms of a Quadratic",
       "status": "curriculum_ready"
@@ -752,8 +744,8 @@
       "pathway": "g9-ap-precalculus-readiness",
       "units": 10,
       "lessons": 49,
-      "ready": 21,
-      "remaining": 28,
+      "ready": 22,
+      "remaining": 27,
       "required_packages": 0,
       "packages_ready": 0
     },
@@ -787,9 +779,9 @@
     }
   ],
   "summary": {
-    "remainingLessons": 83,
+    "remainingLessons": 82,
     "remainingPackages": 3,
-    "productionRemainingLessons": 79,
+    "productionRemainingLessons": 78,
     "productionRemainingPackages": 2
   }
 }

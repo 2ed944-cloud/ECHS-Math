@@ -428,13 +428,20 @@
               "id": "4.1",
               "title": "Quadratic Patterns & Graph Features",
               "subtopics": [
-                "Second differences; parabola; vertex; axis of symmetry; intercepts; opening direction."
+                "Second differences; parabola; vertex; axis; intercepts; opening direction."
               ],
               "learningOutcomes": [
-                "Recognize quadratic behavior from tables/graphs; identify key graph features; connect second differences to quadratic change."
+                "Recognize and interpret quadratic behavior across representations."
               ],
-              "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus prerequisite profile"
+              "deliveryStatus": "ready",
+              "alignment": "AP Precalculus prerequisite profile",
+              "depth": "M Prerequisite Mastery",
+              "requiredGrade9Coverage": "Recognize quadratic patterns and identify/interpret graph features from table, graph, and formula.",
+              "coverageBoundary": "Deferred content: AP-style covariation and high-complexity parameter families.",
+              "targetPeriods": 3,
+              "maximumPeriods": 3,
+              "url": "lessons/pathways/grade-9/unit-4/g9-4.1-quadratic-patterns-graph-features.html",
+              "screenCount": 64
             },
             {
               "id": "4.2",
