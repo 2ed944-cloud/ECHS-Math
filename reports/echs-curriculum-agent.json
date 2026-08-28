@@ -64,14 +64,6 @@
       "kind": "lesson",
       "pathway": "g9-ap-precalculus-readiness",
       "unit": "Unit 7",
-      "lesson": "7.1",
-      "title": "Arithmetic and Geometric Sequences",
-      "status": "curriculum_ready"
-    },
-    {
-      "kind": "lesson",
-      "pathway": "g9-ap-precalculus-readiness",
-      "unit": "Unit 7",
       "lesson": "7.2",
       "title": "Exponential Functions",
       "status": "curriculum_ready"
@@ -626,8 +618,8 @@
       "pathway": "g9-ap-precalculus-readiness",
       "units": 10,
       "lessons": 49,
-      "ready": 37,
-      "remaining": 12,
+      "ready": 38,
+      "remaining": 11,
       "required_packages": 0,
       "packages_ready": 0
     },
@@ -661,9 +653,9 @@
     }
   ],
   "summary": {
-    "remainingLessons": 67,
+    "remainingLessons": 66,
     "remainingPackages": 3,
-    "productionRemainingLessons": 63,
+    "productionRemainingLessons": 62,
     "productionRemainingPackages": 2
   }
 }
