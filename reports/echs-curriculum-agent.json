@@ -2,7 +2,8 @@
   "errors": [],
   "warnings": [
     "g9-ap-precalculus-readiness 3.4: quality signals missing: learning objective",
-    "g10-ap-precalculus-path-a 1.1: quality signals missing: learning objective",
+    "g10-ap-precalculus-path-a 1.1: quality signals missing: learning objective, worked example, student practice, exit evidence",
+    "g10-ap-precalculus-path-a 1.2: quality signals missing: learning objective, worked example, exit evidence",
     "g10-ap-precalculus-path-a 1.3: quality signals missing: learning objective",
     "g10-ap-precalculus-path-a 1.4: quality signals missing: learning objective",
     "g10-ap-precalculus-path-a 1.5: quality signals missing: learning objective",
@@ -34,7 +35,8 @@
     "AP core `lessons/ap-precalculus/unit-1/AP_Precalculus_1.12_Transformations_of_Functions_ECHS_Refined.html`: missing automated quality signals: learning objective",
     "AP core `lessons/ap-precalculus/unit-1/AP_Precalculus_1.13_Function_Model_Selection_and_Assumption_Articulation_ECHS_Refined.html`: missing automated quality signals: learning objective",
     "AP core `lessons/ap-precalculus/unit-1/AP_Precalculus_1.14_Function_Model_Construction_and_Application_ECHS_Refined.html`: missing automated quality signals: learning objective",
-    "AP core `lessons/ap-precalculus/unit-1/AP_Precalculus_1.1_Change_in_Tandem_ECHS_Refined.html`: missing automated quality signals: learning objective",
+    "AP core `lessons/ap-precalculus/unit-1/AP_Precalculus_1.1_Change_in_Tandem_ECHS_Refined.html`: missing automated quality signals: learning objective, worked example, student practice, exit evidence",
+    "AP core `lessons/ap-precalculus/unit-1/AP_Precalculus_1.2_Rates_of_Change_ECHS_Refined.html`: missing automated quality signals: learning objective, worked example, exit evidence",
     "AP core `lessons/ap-precalculus/unit-1/AP_Precalculus_1.3_Rates_of_Change_in_Linear_and_Quadratic_Functions_ECHS_Refined.html`: missing automated quality signals: learning objective",
     "AP core `lessons/ap-precalculus/unit-1/AP_Precalculus_1.4_Polynomial_Functions_and_Rates_of_Change_ECHS_Refined.html`: missing automated quality signals: learning objective",
     "AP core `lessons/ap-precalculus/unit-1/AP_Precalculus_1.5_Polynomial_Functions_and_Complex_Zeros_ECHS_Refined.html`: missing automated quality signals: learning objective",
@@ -58,14 +60,6 @@
     "AP core `lessons/ap-precalculus/unit-3/AP_Precalculus_3.9_Inverse_Trigonometric_Functions_ECHS_Refined.html`: missing automated quality signals: worked example"
   ],
   "queue": [
-    {
-      "kind": "lesson",
-      "pathway": "g9-ap-precalculus-readiness",
-      "unit": "Unit 5",
-      "lesson": "5.2",
-      "title": "Factoring Beyond Quadratics",
-      "status": "curriculum_ready"
-    },
     {
       "kind": "lesson",
       "pathway": "g9-ap-precalculus-readiness",
@@ -688,8 +682,8 @@
       "pathway": "g9-ap-precalculus-readiness",
       "units": 10,
       "lessons": 49,
-      "ready": 29,
-      "remaining": 20,
+      "ready": 30,
+      "remaining": 19,
       "required_packages": 0,
       "packages_ready": 0
     },
@@ -719,13 +713,13 @@
       "remaining": 0,
       "required_packages": 0,
       "packages_ready": 0,
-      "average_signal_score": 87.7
+      "average_signal_score": 85.0
     }
   ],
   "summary": {
-    "remainingLessons": 75,
+    "remainingLessons": 74,
     "remainingPackages": 3,
-    "productionRemainingLessons": 71,
+    "productionRemainingLessons": 70,
     "productionRemainingPackages": 2
   }
 }
