@@ -750,8 +750,10 @@
               "learningOutcomes": [
                 "Identify arithmetic vs geometric change; write explicit/recursive rules; interpret parameters and domain."
               ],
-              "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus prerequisite profile"
+              "deliveryStatus": "ready",
+              "alignment": "AP Precalculus prerequisite profile",
+              "url": "lessons/pathways/grade-9/unit-7/g9-7.1-arithmetic-geometric-sequences.html",
+              "screenCount": 64
             },
             {
               "id": "7.2",
