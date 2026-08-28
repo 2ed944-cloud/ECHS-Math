@@ -610,13 +610,20 @@
               "id": "5.3",
               "title": "Zeros, Factors & Multiplicity",
               "subtopics": [
-                "Factor-zero connection; multiplicity; graph crossing/touching; real vs complex zeros."
+                "Factor-zero connection; repeated factors; crossing/touching; real vs complex zeros."
               ],
               "learningOutcomes": [
-                "Connect zeros, factors, and intercepts; infer graph behavior from multiplicity; represent a polynomial from given zeros."
+                "Connect zeros, factors, multiplicity, and basic graph behavior."
               ],
-              "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus prerequisite profile"
+              "deliveryStatus": "ready",
+              "alignment": "AP Precalculus prerequisite profile",
+              "depth": "B Bridge Depth",
+              "requiredGrade9Coverage": "Connect factored form to real zeros/intercepts and recognize simple even/odd multiplicity behavior; construct low-degree polynomials from given real zeros.",
+              "coverageBoundary": "Deferred: full AP Topic 1.6/1.7-style polynomial behavior synthesis, complex-zero structure, and advanced multi-representation reasoning for AP.",
+              "targetPeriods": 4,
+              "maximumPeriods": 5,
+              "url": "lessons/pathways/grade-9/unit-5/g9-5.3-zeros-factors-multiplicity.html",
+              "screenCount": 64
             },
             {
               "id": "5.4",
