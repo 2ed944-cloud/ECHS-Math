@@ -398,13 +398,20 @@
               "id": "3.6",
               "title": "Composition and Inverse Concepts",
               "subtopics": [
-                "Composition as process chaining; input restrictions; one-to-one idea; inverse as reversing a process."
+                "Composition as process chaining; simple input restrictions; one-to-one idea; inverse as reversing a process."
               ],
               "learningOutcomes": [
-                "Evaluate simple compositions; interpret composition in context; determine when an inverse relationship is reasonable and verify by reversal."
+                "Use simple compositions and explain the inverse idea as reversing a process."
               ],
-              "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus prerequisite profile"
+              "deliveryStatus": "ready",
+              "alignment": "AP Precalculus prerequisite profile",
+              "depth": "P Preview Only",
+              "requiredGrade9Coverage": "Evaluate simple f(g(x)) numerically/algebraically; recognize inverse relationships in familiar one-to-one cases.",
+              "coverageBoundary": "Deferred: formal inverse-function domain restriction, algebraic inverse construction across many families, nested compositions, and AP modeling for Grade 10/AP.",
+              "targetPeriods": 2,
+              "maximumPeriods": 3,
+              "url": "lessons/pathways/grade-9/unit-3/g9-3.6-composition-inverse-concepts.html",
+              "screenCount": 64
             }
           ]
         },
