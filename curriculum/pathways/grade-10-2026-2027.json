@@ -905,13 +905,15 @@
               "learningOutcomes": [
                 "Use polynomial division and factor/remainder relationships accurately in standard cases."
               ],
-              "deliveryStatus": "curriculum_ready",
+              "deliveryStatus": "ready",
               "alignment": "AP Precalculus supports 1.11",
               "depth": "M Prerequisite Mastery",
               "requiredPathBCoverage": "Divide standard polynomials, evaluate remainders efficiently, and use the Factor Theorem to test/confirm zeros.",
               "coverageBoundary": "Full AP equivalent-representation strategy and slant-asymptote analysis are deferred; polynomial division remains a prerequisite tool.",
               "targetPeriods": 2,
-              "maximumPeriods": 2
+              "maximumPeriods": 2,
+              "url": "lessons/pathways/grade-10/path-b/unit-r1/g10b-r1.5-polynomial-division-theorems.html",
+              "screenCount": 64
             },
             {
               "id": "R1.6",
