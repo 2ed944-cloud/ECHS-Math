@@ -848,13 +848,15 @@
               "learningOutcomes": [
                 "Solve quadratic equations independently by an appropriate method and classify roots."
               ],
-              "deliveryStatus": "curriculum_ready",
+              "deliveryStatus": "ready",
               "alignment": "AP Precalculus prerequisite to 1.3-1.5",
               "depth": "M Prerequisite Mastery",
               "requiredPathBCoverage": "Choose an efficient solving method, solve accurately, classify roots, and connect discriminant information to the number/type of roots.",
               "coverageBoundary": "Outside current scope: AP-style open contextual model construction. This lesson emphasizes prerequisite fluency.",
               "targetPeriods": 4,
-              "maximumPeriods": 4
+              "maximumPeriods": 4,
+              "url": "lessons/pathways/grade-10/path-b/unit-r1/g10b-r1.2-quadratic-equation-mastery.html",
+              "screenCount": 64
             },
             {
               "id": "R1.3",
