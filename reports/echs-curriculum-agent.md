@@ -1,15 +1,15 @@
 # ECHS Curriculum Agent Report
 
-Generated: 2026-08-29 15:11 UTC
+Generated: 2026-08-29 23:21 UTC
 
 ## Release decision
 
 - Structural errors: **0**
 - Quality warnings: **58**
-- Required lesson blocks awaiting dedicated completion: **47**
+- Required lesson blocks awaiting dedicated completion: **46**
 - Required course-level packages awaiting dedicated completion: **3**
 
-- Current Grade 9 + Path B production backlog: **43 lessons + 2 gateway packages**
+- Current Grade 9 + Path B production backlog: **42 lessons + 2 gateway packages**
 
 The authoritative scope is Grade 9 (49 blocks), Grade 10 Path A (48 blocks plus the cumulative AP review/mock package), and Grade 10 Path B (51 blocks plus two transfer-gateway assessments). AP Unit 4 remains supplemental enrichment.
 
@@ -21,7 +21,7 @@ A course card, catalog row, generic pathway route, or unmapped older file does n
 |---|---:|---:|---:|---:|---:|---:|
 | g9-ap-precalculus-readiness | 10 | 49 | 49 | 0 | 0/0 | — |
 | g10-ap-precalculus-path-a | 4 | 48 | 44 | 4 | 0/1 | — |
-| g10-algebra2-ap-readiness-path-b | 6 | 51 | 8 | 43 | 0/2 | — |
+| g10-algebra2-ap-readiness-path-b | 6 | 51 | 9 | 42 | 0/2 | — |
 | ap-precalculus-core-runtime | 3 | 44 | 44 | 0 | 0/0 | 85.0 |
 
 ## Structural errors
@@ -35,7 +35,6 @@ A course card, catalog row, generic pathway route, or unmapped older file does n
 - `g10-ap-precalculus-path-a` · `Calculus Bridge` · **E.3 Implicit Relations and Function Restrictions** (lesson; curriculum_ready)
 - `g10-ap-precalculus-path-a` · `Calculus Bridge` · **E.4 Vector-Valued Function Preview** (lesson; curriculum_ready)
 - `g10-ap-precalculus-path-a` · `Course level` · **AP-REVIEW Cumulative AP Review & Exam Preparation** (course package; curriculum_ready)
-- `g10-algebra2-ap-readiness-path-b` · `R1` · **R1.5 Polynomial Division & Theorems** (lesson; curriculum_ready)
 - `g10-algebra2-ap-readiness-path-b` · `R1` · **R1.6 Polynomial Zeros, Multiplicity & Complex Roots** (lesson; curriculum_ready)
 - `g10-algebra2-ap-readiness-path-b` · `R1` · **R1.7 Polynomial End Behavior & Standard Graph Construction** (lesson; curriculum_ready)
 - `g10-algebra2-ap-readiness-path-b` · `R1` · **R1.8 Rational Expressions & Equations** (lesson; curriculum_ready)
@@ -55,7 +54,8 @@ A course card, catalog row, generic pathway route, or unmapped older file does n
 - `g10-algebra2-ap-readiness-path-b` · `R3` · **R3.1 Radians & Standard Position** (lesson; curriculum_ready)
 - `g10-algebra2-ap-readiness-path-b` · `R3` · **R3.2 Unit Circle Coordinates & Special Angles** (lesson; curriculum_ready)
 - `g10-algebra2-ap-readiness-path-b` · `R3` · **R3.3 Sine, Cosine & Tangent Values** (lesson; curriculum_ready)
-- …and 25 more required items in authoritative order.
+- `g10-algebra2-ap-readiness-path-b` · `R3` · **R3.4 Parent Sine & Cosine Graphs** (lesson; curriculum_ready)
+- …and 24 more required items in authoritative order.
 
 ## Quality warnings (first 50)
 
