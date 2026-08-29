@@ -762,13 +762,15 @@
               "learningOutcomes": [
                 "Execute core algebra accurately and explain why valid transformations preserve equivalence."
               ],
-              "deliveryStatus": "curriculum_ready",
+              "deliveryStatus": "ready",
               "alignment": "AP Precalculus prerequisites to Units 1-2",
               "depth": "D Diagnostic / Repair",
               "requiredPathBCoverage": "Expected endpoint: routine symbolic work is reliable, supported by mixed practice, error analysis, and non-calculator checks.",
               "coverageBoundary": "Coverage boundary: instruction returns to the core sequence once routine fluency is demonstrated. Multi-week Algebra 1 review and new AP modeling content are outside this phase.",
               "targetPeriods": 3,
-              "maximumPeriods": 4
+              "maximumPeriods": 4,
+              "url": "lessons/pathways/grade-10/path-b/unit-r0/g10b-r0.2-algebra-precision-repair.html",
+              "screenCount": 64
             },
             {
               "id": "R0.3",
