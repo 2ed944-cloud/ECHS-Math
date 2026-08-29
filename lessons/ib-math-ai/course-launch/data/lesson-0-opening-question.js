@@ -10,7 +10,7 @@
   slide.stage='Icebreaker';
   slide.title='Opening Question · Is the average enough?';
   slide.subtitle='Use data, variation, and context to make a defensible decision.';
-  slide.body=`<div class="ibai-opening-scene">
+  slide.body=String.raw`<div class="ibai-opening-scene">
     <section class="ibai-question-copy">
       <p class="ibai-opening-kicker">First question · Data-informed decision</p>
       <h3>Two school shuttle routes have the same average travel time.</h3>
