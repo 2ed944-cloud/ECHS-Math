@@ -105,14 +105,6 @@
       "kind": "lesson",
       "pathway": "g10-algebra2-ap-readiness-path-b",
       "unit": "R1",
-      "lesson": "R1.1",
-      "title": "Rates of Change Foundations",
-      "status": "curriculum_ready"
-    },
-    {
-      "kind": "lesson",
-      "pathway": "g10-algebra2-ap-readiness-path-b",
-      "unit": "R1",
       "lesson": "R1.2",
       "title": "Quadratic Equation Mastery",
       "status": "curriculum_ready"
@@ -517,8 +509,8 @@
       "pathway": "g10-algebra2-ap-readiness-path-b",
       "units": 6,
       "lessons": 51,
-      "ready": 4,
-      "remaining": 47,
+      "ready": 5,
+      "remaining": 46,
       "required_packages": 2,
       "packages_ready": 0
     },
@@ -534,9 +526,9 @@
     }
   ],
   "summary": {
-    "remainingLessons": 51,
+    "remainingLessons": 50,
     "remainingPackages": 3,
-    "productionRemainingLessons": 47,
+    "productionRemainingLessons": 46,
     "productionRemainingPackages": 2
   }
 }
