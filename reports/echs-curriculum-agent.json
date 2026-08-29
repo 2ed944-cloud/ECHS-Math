@@ -105,14 +105,6 @@
       "kind": "lesson",
       "pathway": "g10-algebra2-ap-readiness-path-b",
       "unit": "R1",
-      "lesson": "R1.4",
-      "title": "Polynomial Operations & Factoring",
-      "status": "curriculum_ready"
-    },
-    {
-      "kind": "lesson",
-      "pathway": "g10-algebra2-ap-readiness-path-b",
-      "unit": "R1",
       "lesson": "R1.5",
       "title": "Polynomial Division & Theorems",
       "status": "curriculum_ready"
@@ -493,8 +485,8 @@
       "pathway": "g10-algebra2-ap-readiness-path-b",
       "units": 6,
       "lessons": 51,
-      "ready": 7,
-      "remaining": 44,
+      "ready": 8,
+      "remaining": 43,
       "required_packages": 2,
       "packages_ready": 0
     },
@@ -510,9 +502,9 @@
     }
   ],
   "summary": {
-    "remainingLessons": 48,
+    "remainingLessons": 47,
     "remainingPackages": 3,
-    "productionRemainingLessons": 44,
+    "productionRemainingLessons": 43,
     "productionRemainingPackages": 2
   }
 }

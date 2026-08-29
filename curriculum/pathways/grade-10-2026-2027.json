@@ -886,13 +886,15 @@
               "learningOutcomes": [
                 "Manipulate and factor polynomials accurately and use factored structure to solve equations."
               ],
-              "deliveryStatus": "curriculum_ready",
+              "deliveryStatus": "ready",
               "alignment": "AP Precalculus prerequisite to 1.4-1.6",
               "depth": "M Prerequisite Mastery",
               "requiredPathBCoverage": "Polynomial algebra is expected to be sufficiently fluent that later function analysis is not slowed by manipulation errors.",
               "coverageBoundary": "Outside current scope: the binomial theorem as a required topic and exotic contest-style factoring.",
               "targetPeriods": 4,
-              "maximumPeriods": 4
+              "maximumPeriods": 4,
+              "url": "lessons/pathways/grade-10/path-b/unit-r1/g10b-r1.4-polynomial-operations-factoring.html",
+              "screenCount": 64
             },
             {
               "id": "R1.5",
