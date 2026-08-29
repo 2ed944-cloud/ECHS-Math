@@ -884,8 +884,10 @@
               "learningOutcomes": [
                 "Use multiple function tools in one task; choose a representation strategically; explain reasoning with precise notation."
               ],
-              "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus prerequisite profile"
+              "deliveryStatus": "ready",
+              "alignment": "AP Precalculus prerequisite profile",
+              "url": "lessons/pathways/grade-9/unit-9/g9-9.1-function-toolkit-synthesis.html",
+              "screenCount": 64
             },
             {
               "id": "9.2",
