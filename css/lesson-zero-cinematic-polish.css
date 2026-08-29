@@ -1,0 +1,6 @@
+/* Final cinematic interaction polish */
+body.cinematic-lesson .quest-status{flex:1;min-width:260px}
+body.cinematic-lesson .quest-reset{padding:9px 12px;border-radius:11px;border:1px solid rgba(255,255,255,.15);color:#fff;background:rgba(255,255,255,.055);font-weight:800;cursor:pointer;white-space:nowrap}
+body.cinematic-lesson .quest-reset:hover,body.cinematic-lesson .quest-reset:focus-visible{border-color:var(--cinema-gold);color:#ffe29a;background:rgba(228,184,79,.09)}
+body.cinematic-lesson .title-slide .slide-inner{background:radial-gradient(circle at 78% 22%,rgba(228,184,79,.12),transparent 32%),linear-gradient(145deg,rgba(11,24,41,.98),rgba(2,7,14,.99))}
+@media(max-width:720px){body.cinematic-lesson .quest-status{min-width:100%}body.cinematic-lesson .quest-reset{width:100%}}
