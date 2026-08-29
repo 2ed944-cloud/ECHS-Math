@@ -867,13 +867,15 @@
               "learningOutcomes": [
                 "Analyze quadratic functions fluently and solve associated inequalities."
               ],
-              "deliveryStatus": "curriculum_ready",
+              "deliveryStatus": "ready",
               "alignment": "AP Precalculus prerequisite/bridge to 1.3",
               "depth": "M Prerequisite Mastery",
               "requiredPathBCoverage": "Move among forms, identify key features, solve quadratic inequalities, and connect algebraic form to graph behavior.",
               "coverageBoundary": "Deferred: AP-style rates-of-change arguments, complex model validation, and unfamiliar multi-representation tasks for AP.",
               "targetPeriods": 3,
-              "maximumPeriods": 3
+              "maximumPeriods": 3,
+              "url": "lessons/pathways/grade-10/path-b/unit-r1/g10b-r1.3-quadratic-functions-forms-inequalities.html",
+              "screenCount": 64
             },
             {
               "id": "R1.4",
