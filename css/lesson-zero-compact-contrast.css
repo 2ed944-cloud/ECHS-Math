@@ -1,0 +1,408 @@
+/* AP Lesson 0 — compact classroom route, single logo, and full light-theme contrast audit */
+
+/* --------------------------------------------------------------------------
+   School identity: exactly one visible logo
+   -------------------------------------------------------------------------- */
+body.cinematic-lesson.light-cinematic .school-network-lockup{
+  background:#fff!important;
+  background-image:none!important;
+  overflow:hidden!important;
+}
+body.cinematic-lesson.light-cinematic .school-network-picture{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  width:100%!important;
+  height:100%!important;
+  overflow:hidden!important;
+}
+body.cinematic-lesson.light-cinematic .school-network-logo{
+  display:block!important;
+  visibility:visible!important;
+  opacity:1!important;
+  width:100%!important;
+  height:auto!important;
+  max-width:100%!important;
+  max-height:100%!important;
+  object-fit:contain!important;
+  object-position:center!important;
+}
+
+/* --------------------------------------------------------------------------
+   Global light-theme text audit. These elements inherited white text from the
+   earlier dark presentation layer and could disappear on white cards.
+   -------------------------------------------------------------------------- */
+body.cinematic-lesson.light-cinematic .slide-body :is(
+  label,
+  .skill-bars span,
+  .skill-bars b,
+  .tech-check label,
+  .tech-check label span,
+  .identity-form label,
+  .identity-grid label,
+  .confidence-grid label,
+  .workspace>span,
+  .exit-grid label,
+  .study-cycle span,
+  .workflow span,
+  .flow-rail span,
+  .unit-head span,
+  .exam-hero span,
+  .split-percent span,
+  .frq-grid span,
+  .diagnostic-item header strong,
+  .diagnostic-item header span,
+  .diag-head span,
+  .scene-route span,
+  .compact-unit-row span,
+  .compact-unit-row small,
+  .teacher-profile span,
+  .teacher-profile p
+){
+  color:#29445a!important;
+  opacity:1!important;
+  text-shadow:none!important;
+}
+body.cinematic-lesson.light-cinematic .slide-body :is(
+  .skill-bars strong,
+  .tech-check strong,
+  .identity-form strong,
+  .identity-grid strong,
+  .confidence-grid strong,
+  .workspace strong,
+  .exam-hero strong,
+  .split-percent strong,
+  .frq-grid strong
+){
+  color:#183249!important;
+  opacity:1!important;
+}
+body.cinematic-lesson.light-cinematic .slide-body :is(p,li,small){opacity:1!important}
+
+/* Skill-weighting bars: stronger labels and stronger line colours. */
+body.cinematic-lesson.light-cinematic .skill-bars{display:grid;gap:16px!important}
+body.cinematic-lesson.light-cinematic .skill-bars>div{
+  position:relative!important;
+  min-height:72px!important;
+  padding:18px 20px 25px!important;
+  overflow:hidden!important;
+  color:#183249!important;
+  background:#fff!important;
+  border:1px solid #d3dee8!important;
+  border-radius:17px!important;
+  box-shadow:0 10px 24px rgba(30,55,80,.06)!important;
+}
+body.cinematic-lesson.light-cinematic .skill-bars span{
+  color:#203b52!important;
+  font-weight:850!important;
+}
+body.cinematic-lesson.light-cinematic .skill-bars b{
+  color:#78183f!important;
+  font-weight:950!important;
+}
+body.cinematic-lesson.light-cinematic .skill-bars i{
+  left:0!important;
+  bottom:0!important;
+  height:10px!important;
+  min-width:8px!important;
+  background:linear-gradient(90deg,#78183f 0%,#334c5f 42%,#08796f 100%)!important;
+  box-shadow:none!important;
+  opacity:1!important;
+}
+
+/* Calculator/technology checklist and other checkbox lines. */
+body.cinematic-lesson.light-cinematic .tech-check{
+  display:grid!important;
+  gap:11px!important;
+}
+body.cinematic-lesson.light-cinematic .tech-check label{
+  display:flex!important;
+  align-items:flex-start!important;
+  gap:10px!important;
+  color:#29445a!important;
+  background:#fff!important;
+  border:1px solid #d3dee8!important;
+  box-shadow:0 8px 20px rgba(30,55,80,.05)!important;
+}
+body.cinematic-lesson.light-cinematic .tech-check input[type="checkbox"]{
+  flex:0 0 auto!important;
+  margin-top:2px!important;
+  accent-color:#78183f!important;
+}
+
+/* Additional bars and lines used throughout the two lessons. */
+body.cinematic-lesson.light-cinematic :is(.weight-bar .bar,.strand-bar,.bar,.progress-track){
+  background:#e2eaf0!important;
+}
+body.cinematic-lesson.light-cinematic :is(.weight-bar .bar i,.strand-bar i,.bar i,.diagnostic-progress i){
+  background:linear-gradient(90deg,#78183f 0%,#b88928 48%,#08796f 100%)!important;
+  opacity:1!important;
+}
+body.cinematic-lesson.light-cinematic .weight-bar :is(strong,span){opacity:1!important}
+
+/* --------------------------------------------------------------------------
+   Compact first-class slides
+   -------------------------------------------------------------------------- */
+body.cinematic-lesson.light-cinematic .teacher-welcome{
+  display:grid;
+  grid-template-columns:minmax(0,1.22fr) minmax(280px,.78fr);
+  gap:clamp(24px,4vw,56px);
+  align-items:center;
+  min-height:calc(100dvh - var(--header) - var(--footer) - 60px);
+}
+body.cinematic-lesson.light-cinematic .teacher-welcome-copy h1{
+  margin:0;
+  max-width:880px;
+  color:#10283e!important;
+  font-size:clamp(44px,6.5vw,92px);
+  line-height:.95;
+  letter-spacing:-.055em;
+}
+body.cinematic-lesson.light-cinematic .teacher-welcome-copy h1 em{
+  color:#78183f!important;
+  font-style:normal;
+}
+body.cinematic-lesson.light-cinematic .teacher-welcome-copy>.lead{
+  max-width:760px;
+  margin:20px 0;
+  font-size:clamp(17px,1.8vw,23px);
+}
+body.cinematic-lesson.light-cinematic .teacher-profile{
+  display:grid;
+  gap:7px;
+  margin-top:20px;
+  padding:18px 20px;
+  border-left:5px solid #c69025;
+  border-radius:0 18px 18px 0;
+  background:linear-gradient(90deg,#fff7df,#fff);
+  box-shadow:inset 0 0 0 1px rgba(198,144,37,.20);
+}
+body.cinematic-lesson.light-cinematic .teacher-profile span{
+  color:#795718!important;
+  font-size:11px;
+  font-weight:950;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+body.cinematic-lesson.light-cinematic .teacher-profile strong{
+  color:#6f1739!important;
+  font-size:clamp(22px,2.3vw,34px);
+}
+body.cinematic-lesson.light-cinematic .teacher-profile p{
+  margin:0;
+  max-width:720px;
+  line-height:1.55;
+}
+body.cinematic-lesson.light-cinematic .welcome-course-mark{
+  position:relative;
+  display:grid;
+  place-items:center;
+  align-content:center;
+  min-height:360px;
+  padding:30px;
+  border:1px solid #d2dee8;
+  border-radius:34px;
+  background:
+    radial-gradient(circle at 35% 25%,rgba(198,144,37,.20),transparent 31%),
+    radial-gradient(circle at 72% 70%,rgba(8,121,111,.13),transparent 34%),
+    linear-gradient(145deg,#fff,#eef4f8);
+  box-shadow:0 22px 55px rgba(28,53,78,.11);
+  text-align:center;
+  overflow:hidden;
+}
+body.cinematic-lesson.light-cinematic .welcome-course-mark strong{
+  color:#78183f!important;
+  font-size:clamp(76px,10vw,145px);
+  line-height:.78;
+}
+body.cinematic-lesson.light-cinematic .welcome-course-mark span{
+  margin-top:18px;
+  color:#203c54!important;
+  font-size:15px;
+  font-weight:950;
+  letter-spacing:.11em;
+  text-transform:uppercase;
+}
+body.cinematic-lesson.light-cinematic .welcome-course-mark small{
+  margin-top:8px;
+  color:#5a6f82!important;
+  font-weight:750;
+}
+
+body.cinematic-lesson.light-cinematic .compact-unit-columns{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:18px;
+}
+body.cinematic-lesson.light-cinematic .compact-unit-panel{
+  padding:20px;
+  border:1px solid #d3dee8;
+  border-radius:22px;
+  background:linear-gradient(145deg,#fff,#f6f9fc);
+  box-shadow:0 12px 28px rgba(28,53,78,.07);
+}
+body.cinematic-lesson.light-cinematic .compact-unit-panel>header{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:14px;
+  margin-bottom:12px;
+  padding-bottom:12px;
+  border-bottom:1px solid #dce5ec;
+}
+body.cinematic-lesson.light-cinematic .compact-unit-panel h3{
+  margin:0;
+  color:#6f1739!important;
+  font-size:23px;
+}
+body.cinematic-lesson.light-cinematic .compact-unit-panel>header span{
+  color:#fff!important;
+  background:#78183f;
+  padding:6px 9px;
+  border-radius:999px;
+  font-size:11px;
+  font-weight:900;
+  white-space:nowrap;
+}
+body.cinematic-lesson.light-cinematic .compact-unit-list{display:grid;gap:6px}
+body.cinematic-lesson.light-cinematic .compact-unit-row{
+  display:grid;
+  grid-template-columns:42px minmax(0,1fr) auto;
+  gap:9px;
+  align-items:center;
+  padding:7px 9px;
+  border:1px solid #e0e7ed;
+  border-radius:10px;
+  background:#fff;
+}
+body.cinematic-lesson.light-cinematic .compact-unit-row b{
+  color:#fff!important;
+  background:#2f6fa5;
+  border-radius:8px;
+  padding:5px 6px;
+  text-align:center;
+  font-size:11px;
+}
+body.cinematic-lesson.light-cinematic .compact-unit-row span{
+  color:#29445a!important;
+  font-size:12px;
+  font-weight:780;
+}
+body.cinematic-lesson.light-cinematic .compact-unit-row small{
+  color:#78183f!important;
+  font-size:11px;
+  font-weight:900;
+  white-space:nowrap;
+}
+body.cinematic-lesson.light-cinematic .compact-unit-row.extension b{background:#08796f}
+body.cinematic-lesson.light-cinematic .compact-unit-row.extension{background:#eef9f7;border-color:#b8ddd7}
+
+body.cinematic-lesson.light-cinematic .study-compact{
+  display:grid;
+  grid-template-columns:minmax(0,1.15fr) minmax(270px,.85fr);
+  gap:18px;
+}
+body.cinematic-lesson.light-cinematic .study-compact .study-cycle{grid-template-columns:repeat(3,1fr)!important}
+body.cinematic-lesson.light-cinematic .study-compact aside{
+  display:grid;
+  gap:10px;
+  align-content:start;
+  padding:20px;
+  border:1px solid #d5e0e9;
+  border-radius:20px;
+  background:#fff;
+}
+body.cinematic-lesson.light-cinematic .study-compact aside h3{margin:0;color:#6f1739!important}
+body.cinematic-lesson.light-cinematic .study-compact aside div{
+  display:grid;
+  grid-template-columns:34px 1fr;
+  gap:10px;
+  align-items:start;
+}
+body.cinematic-lesson.light-cinematic .study-compact aside b{
+  display:grid;
+  place-items:center;
+  width:32px;
+  height:32px;
+  border-radius:9px;
+  color:#fff!important;
+  background:#08796f;
+}
+body.cinematic-lesson.light-cinematic .study-compact aside span{color:#40596f!important;font-size:13px;line-height:1.45}
+
+body.cinematic-lesson.light-cinematic .compact-rules{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:12px;
+}
+body.cinematic-lesson.light-cinematic .compact-rules article{
+  min-height:150px;
+  padding:17px;
+  border:1px solid #d4dfe8;
+  border-radius:18px;
+  background:#fff;
+  box-shadow:0 9px 22px rgba(28,53,78,.055);
+}
+body.cinematic-lesson.light-cinematic .compact-rules b{
+  display:grid;
+  place-items:center;
+  width:34px;
+  height:34px;
+  border-radius:10px;
+  color:#fff!important;
+  background:#78183f;
+}
+body.cinematic-lesson.light-cinematic .compact-rules h3{margin:12px 0 7px;color:#183249!important;font-size:17px}
+body.cinematic-lesson.light-cinematic .compact-rules p{margin:0;color:#4d6276!important;font-size:13px;line-height:1.45}
+
+body.cinematic-lesson.light-cinematic .compact-diagnostic-intro{
+  display:grid;
+  grid-template-columns:minmax(0,1.1fr) minmax(300px,.9fr);
+  gap:18px;
+  align-items:start;
+}
+body.cinematic-lesson.light-cinematic .diagnostic-facts{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:11px;
+}
+body.cinematic-lesson.light-cinematic .diagnostic-facts article{
+  padding:17px;
+  border:1px solid #d4dfe8;
+  border-radius:17px;
+  background:#fff;
+}
+body.cinematic-lesson.light-cinematic .diagnostic-facts strong{display:block;color:#6f1739!important;font-size:22px}
+body.cinematic-lesson.light-cinematic .diagnostic-facts span{display:block;margin-top:5px;color:#50667a!important;font-size:12px}
+body.cinematic-lesson.light-cinematic .diagnostic-strands-compact{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:8px;
+}
+body.cinematic-lesson.light-cinematic .diagnostic-strands-compact span{
+  padding:9px 10px;
+  color:#29445a!important;
+  background:#f6f9fb;
+  border:1px solid #d9e2ea;
+  border-radius:10px;
+  font-size:12px;
+  font-weight:820;
+}
+
+@media(max-width:1080px){
+  body.cinematic-lesson.light-cinematic .teacher-welcome{grid-template-columns:1fr}
+  body.cinematic-lesson.light-cinematic .welcome-course-mark{min-height:230px}
+  body.cinematic-lesson.light-cinematic .compact-unit-columns{grid-template-columns:1fr}
+  body.cinematic-lesson.light-cinematic .study-compact{grid-template-columns:1fr}
+  body.cinematic-lesson.light-cinematic .compact-rules{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:680px){
+  body.cinematic-lesson.light-cinematic .teacher-welcome-copy h1{font-size:46px}
+  body.cinematic-lesson.light-cinematic .compact-unit-row{grid-template-columns:38px 1fr}
+  body.cinematic-lesson.light-cinematic .compact-unit-row small{grid-column:2;white-space:normal}
+  body.cinematic-lesson.light-cinematic .compact-rules{grid-template-columns:1fr}
+  body.cinematic-lesson.light-cinematic .compact-diagnostic-intro{grid-template-columns:1fr}
+  body.cinematic-lesson.light-cinematic .diagnostic-facts,
+  body.cinematic-lesson.light-cinematic .diagnostic-strands-compact{grid-template-columns:1fr}
+  body.cinematic-lesson.light-cinematic .study-compact .study-cycle{grid-template-columns:repeat(2,1fr)!important}
+}
