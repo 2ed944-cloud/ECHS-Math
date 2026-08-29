@@ -1,15 +1,15 @@
 # ECHS Curriculum Agent Report
 
-Generated: 2026-08-29 07:03 UTC
+Generated: 2026-08-29 08:05 UTC
 
 ## Release decision
 
 - Structural errors: **0**
 - Quality warnings: **58**
-- Required lesson blocks awaiting dedicated completion: **55**
+- Required lesson blocks awaiting dedicated completion: **54**
 - Required course-level packages awaiting dedicated completion: **3**
 
-- Current Grade 9 + Path B production backlog: **51 lessons + 2 gateway packages**
+- Current Grade 9 + Path B production backlog: **50 lessons + 2 gateway packages**
 
 The authoritative scope is Grade 9 (49 blocks), Grade 10 Path A (48 blocks plus the cumulative AP review/mock package), and Grade 10 Path B (51 blocks plus two transfer-gateway assessments). AP Unit 4 remains supplemental enrichment.
 
@@ -21,7 +21,7 @@ A course card, catalog row, generic pathway route, or unmapped older file does n
 |---|---:|---:|---:|---:|---:|---:|
 | g9-ap-precalculus-readiness | 10 | 49 | 49 | 0 | 0/0 | — |
 | g10-ap-precalculus-path-a | 4 | 48 | 44 | 4 | 0/1 | — |
-| g10-algebra2-ap-readiness-path-b | 6 | 51 | 0 | 51 | 0/2 | — |
+| g10-algebra2-ap-readiness-path-b | 6 | 51 | 1 | 50 | 0/2 | — |
 | ap-precalculus-core-runtime | 3 | 44 | 44 | 0 | 0/0 | 85.0 |
 
 ## Structural errors
@@ -35,7 +35,6 @@ A course card, catalog row, generic pathway route, or unmapped older file does n
 - `g10-ap-precalculus-path-a` · `Calculus Bridge` · **E.3 Implicit Relations and Function Restrictions** (lesson; curriculum_ready)
 - `g10-ap-precalculus-path-a` · `Calculus Bridge` · **E.4 Vector-Valued Function Preview** (lesson; curriculum_ready)
 - `g10-ap-precalculus-path-a` · `Course level` · **AP-REVIEW Cumulative AP Review & Exam Preparation** (course package; curriculum_ready)
-- `g10-algebra2-ap-readiness-path-b` · `R0` · **R0.1 Common Entry Diagnostic** (lesson; curriculum_ready)
 - `g10-algebra2-ap-readiness-path-b` · `R0` · **R0.2 Algebra Precision Repair** (lesson; curriculum_ready)
 - `g10-algebra2-ap-readiness-path-b` · `R0` · **R0.3 Function Notation, Domain & Representations** (lesson; curriculum_ready)
 - `g10-algebra2-ap-readiness-path-b` · `R0` · **R0.4 Systems & Right-Triangle Trig Spot Repair** (lesson; curriculum_ready)
@@ -55,7 +54,8 @@ A course card, catalog row, generic pathway route, or unmapped older file does n
 - `g10-algebra2-ap-readiness-path-b` · `R2` · **R2.4 Exponential Modeling** (lesson; curriculum_ready)
 - `g10-algebra2-ap-readiness-path-b` · `R2` · **R2.5 Composition of Functions** (lesson; curriculum_ready)
 - `g10-algebra2-ap-readiness-path-b` · `R2` · **R2.6 Inverse Functions** (lesson; curriculum_ready)
-- …and 33 more required items in authoritative order.
+- `g10-algebra2-ap-readiness-path-b` · `R2` · **R2.7 Logarithms as Inverses** (lesson; curriculum_ready)
+- …and 32 more required items in authoritative order.
 
 ## Quality warnings (first 50)
 
