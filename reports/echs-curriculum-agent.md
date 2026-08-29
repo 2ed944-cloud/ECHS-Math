@@ -1,15 +1,15 @@
 # ECHS Curriculum Agent Report
 
-Generated: 2026-08-29 06:08 UTC
+Generated: 2026-08-29 07:03 UTC
 
 ## Release decision
 
 - Structural errors: **0**
-- Quality warnings: **57**
-- Required lesson blocks awaiting dedicated completion: **56**
+- Quality warnings: **58**
+- Required lesson blocks awaiting dedicated completion: **55**
 - Required course-level packages awaiting dedicated completion: **3**
 
-- Current Grade 9 + Path B production backlog: **52 lessons + 2 gateway packages**
+- Current Grade 9 + Path B production backlog: **51 lessons + 2 gateway packages**
 
 The authoritative scope is Grade 9 (49 blocks), Grade 10 Path A (48 blocks plus the cumulative AP review/mock package), and Grade 10 Path B (51 blocks plus two transfer-gateway assessments). AP Unit 4 remains supplemental enrichment.
 
@@ -19,7 +19,7 @@ A course card, catalog row, generic pathway route, or unmapped older file does n
 
 | Pathway | Units | Required lessons | Ready | Remaining | Packages ready | Signal score |
 |---|---:|---:|---:|---:|---:|---:|
-| g9-ap-precalculus-readiness | 10 | 49 | 48 | 1 | 0/0 | — |
+| g9-ap-precalculus-readiness | 10 | 49 | 49 | 0 | 0/0 | — |
 | g10-ap-precalculus-path-a | 4 | 48 | 44 | 4 | 0/1 | — |
 | g10-algebra2-ap-readiness-path-b | 6 | 51 | 0 | 51 | 0/2 | — |
 | ap-precalculus-core-runtime | 3 | 44 | 44 | 0 | 0/0 | 85.0 |
@@ -30,7 +30,6 @@ A course card, catalog row, generic pathway route, or unmapped older file does n
 
 ## Priority production queue
 
-- `g9-ap-precalculus-readiness` · `Unit 9` · **9.4 Cumulative AP Readiness Capstone** (lesson; curriculum_ready)
 - `g10-ap-precalculus-path-a` · `Calculus Bridge` · **E.1 Parametric Functions** (lesson; curriculum_ready)
 - `g10-ap-precalculus-path-a` · `Calculus Bridge` · **E.2 Planar Motion with Parametric Functions** (lesson; curriculum_ready)
 - `g10-ap-precalculus-path-a` · `Calculus Bridge` · **E.3 Implicit Relations and Function Restrictions** (lesson; curriculum_ready)
@@ -55,11 +54,13 @@ A course card, catalog row, generic pathway route, or unmapped older file does n
 - `g10-algebra2-ap-readiness-path-b` · `R2` · **R2.3 Exponential Functions & Transformations** (lesson; curriculum_ready)
 - `g10-algebra2-ap-readiness-path-b` · `R2` · **R2.4 Exponential Modeling** (lesson; curriculum_ready)
 - `g10-algebra2-ap-readiness-path-b` · `R2` · **R2.5 Composition of Functions** (lesson; curriculum_ready)
-- …and 34 more required items in authoritative order.
+- `g10-algebra2-ap-readiness-path-b` · `R2` · **R2.6 Inverse Functions** (lesson; curriculum_ready)
+- …and 33 more required items in authoritative order.
 
 ## Quality warnings (first 50)
 
 - g9-ap-precalculus-readiness 3.4: quality signals missing: learning objective
+- g9-ap-precalculus-readiness 9.4: quality signals missing: worked example
 - g10-ap-precalculus-path-a 1.1: quality signals missing: learning objective, worked example, student practice, exit evidence
 - g10-ap-precalculus-path-a 1.2: quality signals missing: learning objective, worked example, exit evidence
 - g10-ap-precalculus-path-a 1.3: quality signals missing: learning objective
@@ -108,8 +109,7 @@ A course card, catalog row, generic pathway route, or unmapped older file does n
 - AP core `lessons/ap-precalculus/unit-3/AP_Precalculus_3.13_Trigonometry_and_Polar_Coordinates_ECHS_Refined.html`: missing automated quality signals: worked example
 - AP core `lessons/ap-precalculus/unit-3/AP_Precalculus_3.14_Polar_Function_Graphs_ECHS_Refined.html`: missing automated quality signals: worked example
 - AP core `lessons/ap-precalculus/unit-3/AP_Precalculus_3.1_Periodic_Phenomena_ECHS_Refined.html`: missing automated quality signals: worked example
-- AP core `lessons/ap-precalculus/unit-3/AP_Precalculus_3.2_Sine_Cosine_and_Tangent_ECHS_Refined.html`: missing automated quality signals: worked example
-- …and 7 more warnings.
+- …and 8 more warnings.
 
 ## Definition of done
 

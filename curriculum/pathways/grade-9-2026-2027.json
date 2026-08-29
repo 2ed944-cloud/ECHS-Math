@@ -926,8 +926,10 @@
               "learningOutcomes": [
                 "Demonstrate mastery across all prerequisite strands; correct and explain errors; identify the appropriate next pathway and targeted summer actions."
               ],
-              "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus prerequisite profile"
+              "deliveryStatus": "ready",
+              "alignment": "AP Precalculus prerequisite profile",
+              "url": "lessons/pathways/grade-9/unit-9/g9-9.4-cumulative-ap-readiness-capstone.html",
+              "screenCount": 64
             }
           ]
         }
