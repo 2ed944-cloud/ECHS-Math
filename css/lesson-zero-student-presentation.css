@@ -1,0 +1,132 @@
+/* AP Lesson 0 — student-facing presentation controls and final display cleanup */
+body.cinematic-lesson.light-cinematic .brand-topic::after{
+  content:none!important;
+  display:none!important;
+}
+
+body.cinematic-lesson.light-cinematic .school-network-picture{
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  min-width:0!important;
+}
+body.cinematic-lesson.light-cinematic .school-network-logo{
+  display:block!important;
+  visibility:visible!important;
+  opacity:1!important;
+  width:100%!important;
+  height:100%!important;
+  max-width:none!important;
+  max-height:none!important;
+  object-fit:contain!important;
+  object-position:left center!important;
+}
+
+body.cinematic-lesson.light-cinematic .header-tools{
+  grid-area:stage;
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:9px;
+  min-width:0;
+}
+body.cinematic-lesson.light-cinematic .header-tools .header-stage{
+  grid-area:auto!important;
+  flex:0 1 auto;
+}
+body.cinematic-lesson.light-cinematic .fullscreen-toggle{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  min-height:38px;
+  padding:8px 12px;
+  border:1px solid #c9d6e1;
+  border-radius:999px;
+  color:#243f56;
+  background:#fff;
+  box-shadow:0 5px 14px rgba(27,52,77,.07);
+  font:850 12px/1 Inter,ui-sans-serif,system-ui,sans-serif;
+  white-space:nowrap;
+  cursor:pointer;
+  transition:transform .16s ease,border-color .16s ease,background .16s ease,color .16s ease;
+}
+body.cinematic-lesson.light-cinematic .fullscreen-toggle:hover,
+body.cinematic-lesson.light-cinematic .fullscreen-toggle:focus-visible{
+  transform:translateY(-1px);
+  color:#6f1739;
+  background:#fff8e8;
+  border-color:#d2a446;
+  outline:none;
+}
+body.cinematic-lesson.light-cinematic .fullscreen-toggle[aria-pressed="true"]{
+  color:#fff;
+  background:#78183f;
+  border-color:#78183f;
+}
+body.cinematic-lesson.light-cinematic .fullscreen-icon{
+  font-size:17px;
+  line-height:1;
+}
+
+/* Fullscreen API and browser-fallback presentation mode */
+html:fullscreen,
+html:-webkit-full-screen{
+  width:100%;
+  height:100%;
+  background:#eef3f8;
+}
+html:fullscreen body.cinematic-lesson.light-cinematic,
+html:-webkit-full-screen body.cinematic-lesson.light-cinematic,
+body.cinematic-lesson.light-cinematic.presentation-mode{
+  width:100vw;
+  min-height:100vh;
+  background:#eef3f8!important;
+}
+body.cinematic-lesson.light-cinematic.presentation-mode{
+  position:fixed;
+  inset:0;
+  z-index:2147483000;
+  overflow:auto;
+}
+html:fullscreen body.cinematic-lesson.light-cinematic .deck-header,
+html:-webkit-full-screen body.cinematic-lesson.light-cinematic .deck-header,
+body.cinematic-lesson.light-cinematic.presentation-mode .deck-header{
+  top:0!important;
+}
+html:fullscreen body.cinematic-lesson.light-cinematic .deck-footer,
+html:-webkit-full-screen body.cinematic-lesson.light-cinematic .deck-footer,
+body.cinematic-lesson.light-cinematic.presentation-mode .deck-footer{
+  bottom:0!important;
+}
+
+/* Student-facing pages must never reveal internal release language. */
+body.cinematic-lesson.light-cinematic [data-production-label],
+body.cinematic-lesson.light-cinematic .production-label{
+  display:none!important;
+}
+
+@media(max-width:1250px){
+  body.cinematic-lesson.light-cinematic .header-tools{
+    align-self:center;
+  }
+}
+@media(max-width:900px){
+  body.cinematic-lesson.light-cinematic .header-tools{
+    justify-self:end;
+  }
+  body.cinematic-lesson.light-cinematic .school-network-logo{
+    object-position:center;
+  }
+}
+@media(max-width:620px){
+  body.cinematic-lesson.light-cinematic .fullscreen-label{display:none}
+  body.cinematic-lesson.light-cinematic .fullscreen-toggle{
+    width:38px;
+    padding:7px;
+  }
+}
+
+@media print{
+  body.cinematic-lesson.light-cinematic .fullscreen-toggle{display:none!important}
+}
