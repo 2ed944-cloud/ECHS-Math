@@ -898,8 +898,10 @@
               "learningOutcomes": [
                 "Select and justify a model; interpret parameters; use residual/context evidence; identify unsafe extrapolation."
               ],
-              "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus prerequisite profile"
+              "deliveryStatus": "ready",
+              "alignment": "AP Precalculus prerequisite profile",
+              "url": "lessons/pathways/grade-9/unit-9/g9-9.2-model-selection-across-families.html",
+              "screenCount": 64
             },
             {
               "id": "9.3",
