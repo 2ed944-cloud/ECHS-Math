@@ -859,8 +859,10 @@
               "learningOutcomes": [
                 "Model and solve contextual right-triangle problems; draw a valid diagram; state assumptions and units."
               ],
-              "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus prerequisite profile"
+              "deliveryStatus": "ready",
+              "alignment": "AP Precalculus prerequisite profile",
+              "url": "lessons/pathways/grade-9/unit-8/g9-8.4-applied-trigonometry.html",
+              "screenCount": 64
             }
           ]
         },
