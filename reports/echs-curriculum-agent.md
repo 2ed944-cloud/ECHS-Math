@@ -1,15 +1,15 @@
 # ECHS Curriculum Agent Report
 
-Generated: 2026-08-29 02:01 UTC
+Generated: 2026-08-29 03:02 UTC
 
 ## Release decision
 
 - Structural errors: **0**
 - Quality warnings: **57**
-- Required lesson blocks awaiting dedicated completion: **60**
+- Required lesson blocks awaiting dedicated completion: **59**
 - Required course-level packages awaiting dedicated completion: **3**
 
-- Current Grade 9 + Path B production backlog: **56 lessons + 2 gateway packages**
+- Current Grade 9 + Path B production backlog: **55 lessons + 2 gateway packages**
 
 The authoritative scope is Grade 9 (49 blocks), Grade 10 Path A (48 blocks plus the cumulative AP review/mock package), and Grade 10 Path B (51 blocks plus two transfer-gateway assessments). AP Unit 4 remains supplemental enrichment.
 
@@ -19,7 +19,7 @@ A course card, catalog row, generic pathway route, or unmapped older file does n
 
 | Pathway | Units | Required lessons | Ready | Remaining | Packages ready | Signal score |
 |---|---:|---:|---:|---:|---:|---:|
-| g9-ap-precalculus-readiness | 10 | 49 | 44 | 5 | 0/0 | — |
+| g9-ap-precalculus-readiness | 10 | 49 | 45 | 4 | 0/0 | — |
 | g10-ap-precalculus-path-a | 4 | 48 | 44 | 4 | 0/1 | — |
 | g10-algebra2-ap-readiness-path-b | 6 | 51 | 0 | 51 | 0/2 | — |
 | ap-precalculus-core-runtime | 3 | 44 | 44 | 0 | 0/0 | 85.0 |
@@ -30,7 +30,6 @@ A course card, catalog row, generic pathway route, or unmapped older file does n
 
 ## Priority production queue
 
-- `g9-ap-precalculus-readiness` · `Unit 8` · **8.4 Applied Trigonometry** (lesson; curriculum_ready)
 - `g9-ap-precalculus-readiness` · `Unit 9` · **9.1 Function Toolkit Synthesis** (lesson; curriculum_ready)
 - `g9-ap-precalculus-readiness` · `Unit 9` · **9.2 Model Selection Across Families** (lesson; curriculum_ready)
 - `g9-ap-precalculus-readiness` · `Unit 9` · **9.3 AP-Style Multiple Representations** (lesson; curriculum_ready)
@@ -55,7 +54,8 @@ A course card, catalog row, generic pathway route, or unmapped older file does n
 - `g10-algebra2-ap-readiness-path-b` · `R1` · **R1.9 Rational Functions: Zeros, Holes & Asymptotes** (lesson; curriculum_ready)
 - `g10-algebra2-ap-readiness-path-b` · `R1` · **R1.10 Transformations & Introductory Model Choice** (lesson; curriculum_ready)
 - `g10-algebra2-ap-readiness-path-b` · `R2` · **R2.1 Arithmetic & Geometric Sequences** (lesson; curriculum_ready)
-- …and 38 more required items in authoritative order.
+- `g10-algebra2-ap-readiness-path-b` · `R2` · **R2.2 Exponent Laws, Radicals & Rational Exponents** (lesson; curriculum_ready)
+- …and 37 more required items in authoritative order.
 
 ## Quality warnings (first 50)
 
