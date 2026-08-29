@@ -64,14 +64,6 @@
       "kind": "lesson",
       "pathway": "g9-ap-precalculus-readiness",
       "unit": "Unit 8",
-      "lesson": "8.2",
-      "title": "Sine, Cosine & Tangent Ratios",
-      "status": "curriculum_ready"
-    },
-    {
-      "kind": "lesson",
-      "pathway": "g9-ap-precalculus-readiness",
-      "unit": "Unit 8",
       "lesson": "8.3",
       "title": "Inverse Trigonometry",
       "status": "curriculum_ready"
@@ -586,8 +578,8 @@
       "pathway": "g9-ap-precalculus-readiness",
       "units": 10,
       "lessons": 49,
-      "ready": 42,
-      "remaining": 7,
+      "ready": 43,
+      "remaining": 6,
       "required_packages": 0,
       "packages_ready": 0
     },
@@ -621,9 +613,9 @@
     }
   ],
   "summary": {
-    "remainingLessons": 62,
+    "remainingLessons": 61,
     "remainingPackages": 3,
-    "productionRemainingLessons": 58,
+    "productionRemainingLessons": 57,
     "productionRemainingPackages": 2
   }
 }
