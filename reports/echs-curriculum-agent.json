@@ -64,14 +64,6 @@
       "kind": "lesson",
       "pathway": "g9-ap-precalculus-readiness",
       "unit": "Unit 9",
-      "lesson": "9.2",
-      "title": "Model Selection Across Families",
-      "status": "curriculum_ready"
-    },
-    {
-      "kind": "lesson",
-      "pathway": "g9-ap-precalculus-readiness",
-      "unit": "Unit 9",
       "lesson": "9.3",
       "title": "AP-Style Multiple Representations",
       "status": "curriculum_ready"
@@ -554,8 +546,8 @@
       "pathway": "g9-ap-precalculus-readiness",
       "units": 10,
       "lessons": 49,
-      "ready": 46,
-      "remaining": 3,
+      "ready": 47,
+      "remaining": 2,
       "required_packages": 0,
       "packages_ready": 0
     },
@@ -589,9 +581,9 @@
     }
   ],
   "summary": {
-    "remainingLessons": 58,
+    "remainingLessons": 57,
     "remainingPackages": 3,
-    "productionRemainingLessons": 54,
+    "productionRemainingLessons": 53,
     "productionRemainingPackages": 2
   }
 }
