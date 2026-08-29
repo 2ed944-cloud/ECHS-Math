@@ -1,0 +1,14 @@
+/* Final IB Math AI Lesson 0 contrast and component polish */
+body.cinematic-ibai.light-cinematic .ibai-same-mean :is(strong,span){color:#fff!important}
+body.cinematic-ibai.light-cinematic .ibai-same-mean small{color:#f8dfa1!important}
+body.cinematic-ibai.light-cinematic .ibai-route-versus{color:#fff!important}
+body.cinematic-ibai.light-cinematic .primary-button{color:#fff!important;background:#78183f!important;border-color:#78183f!important}
+body.cinematic-ibai.light-cinematic .secondary-button{color:#29445a!important;background:#fff!important;border:1px solid #cbd7e1!important}
+body.cinematic-ibai.light-cinematic .result-card :is(h3,h4,strong){color:#173149!important}
+body.cinematic-ibai.light-cinematic .result-card p,
+body.cinematic-ibai.light-cinematic .missed p{color:#40586e!important}
+body.cinematic-ibai.light-cinematic .two-column{display:grid!important;grid-template-columns:1fr 1fr!important;gap:16px!important}
+body.cinematic-ibai.light-cinematic .two-column>section{padding:18px!important;background:#fff!important;border:1px solid #d5e0e9!important;border-radius:18px!important}
+body.cinematic-ibai.light-cinematic .confidence-controls{display:grid!important;gap:10px!important}
+body.cinematic-ibai.light-cinematic .confidence-controls label{display:grid!important;gap:6px!important;color:#29445a!important;font-weight:800!important}
+@media(max-width:760px){body.cinematic-ibai.light-cinematic .two-column{grid-template-columns:1fr!important}}
