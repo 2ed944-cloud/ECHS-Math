@@ -3,44 +3,87 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="description" content="ECHS AP Calculus Lesson 0 — cinematic first-day orientation, AB/BC course and exam overview, classroom norms, study system, and prerequisite diagnostic.">
-<meta name="author" content="Mohammad Abu-Ghuwaleh">
-<meta name="release-validation" content="ap-calculus-lesson-zero-cinematic-v2-2026-08-29">
-<meta name="theme-color" content="#030812">
-<title>AP Calculus Lesson 0 | Cinematic First Day & Diagnostic | ECHS</title>
+<meta name="description" content="ECHS AP Calculus Lesson 0 — light cinematic first-day orientation, AB/BC course and exam overview, classroom norms, study system, and prerequisite diagnostic.">
+<meta name="author" content="Mohammad Abu Ghuwaleh — Math Teacher">
+<meta name="release-validation" content="ap-calculus-lesson-zero-light-cinematic-v3-2026-08-29">
+<meta name="theme-color" content="#f4f7fb">
+<title>AP Calculus Lesson 0 | Light Cinematic First Day & Diagnostic | ECHS</title>
+<link rel="preload" href="../../../assets/echs-school-network-lockup.webp" as="image" type="image/webp">
 <link rel="stylesheet" href="assets/lesson-0-style-01.css">
 <link rel="stylesheet" href="assets/lesson-0-style-02.css">
 <link rel="stylesheet" href="../../../css/lesson-zero-cinematic-core.css?v=20260829">
 <link rel="stylesheet" href="../../../css/lesson-zero-cinematic-scenes.css?v=20260829">
 <link rel="stylesheet" href="../../../css/lesson-zero-cinematic-polish.css?v=20260829">
+<link rel="stylesheet" href="../../../css/lesson-zero-light-foundation.css?v=20260829-light3">
+<link rel="stylesheet" href="../../../css/lesson-zero-light-scenes.css?v=20260829-light3">
+<link rel="stylesheet" href="../../../css/lesson-zero-light-components.css?v=20260829-light3">
+<link rel="stylesheet" href="../../../css/lesson-zero-light-activities.css?v=20260829-light3">
+<link rel="stylesheet" href="../../../css/lesson-zero-light-responsive.css?v=20260829-light3">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']}};</script>
+<style>
+html{--echs-access-bar-height:0px!important}
+.echsLessonAccessBar,[data-echs-lesson-access="bar"]{display:none!important;visibility:hidden!important;height:0!important;min-height:0!important;padding:0!important;margin:0!important;overflow:hidden!important}
+</style>
+<script>
+window.__ECHS_LESSON_ZERO_HIDE_ACCESS_BAR__=true;
+(function(){
+  function removeDuplicateAccessBar(){
+    document.documentElement.style.setProperty('--echs-access-bar-height','0px','important');
+    if(document.documentElement.dataset.lessonAccessLayout==='bar') delete document.documentElement.dataset.lessonAccessLayout;
+    if(document.body) document.body.classList.remove('hasEchsLessonAccessBar');
+    document.querySelectorAll('.echsLessonAccessBar,[data-echs-lesson-access="bar"]').forEach(function(node){node.remove();});
+  }
+  removeDuplicateAccessBar();
+  new MutationObserver(removeDuplicateAccessBar).observe(document.documentElement,{childList:true,subtree:true});
+  document.addEventListener('DOMContentLoaded',removeDuplicateAccessBar,{once:true});
+  window.addEventListener('load',removeDuplicateAccessBar,{once:true});
+})();
+window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']}};
+</script>
 <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
 </head>
-<body class="cinematic-lesson cinematic-calculus" data-cinematic-version="2.0.0">
+<body class="cinematic-lesson cinematic-calculus light-cinematic" data-cinematic-version="3.0.0-light">
 <a class="skip-link" href="#slideViewport">Skip to lesson</a>
 <div class="deck-shell">
 <header class="deck-header">
-<div class="brand"><div class="brand-mark">ECHS</div><div><p class="brand-course">AP Calculus AB / BC</p><p class="brand-topic">Lesson 0 · First Day, Diagnostic & Success Plan</p></div></div>
-<nav class="route-pills" aria-label="Lesson routes">
-<button class="route-pill" data-go="welcome">Welcome</button>
-<button class="route-pill" data-go="course-map">Course</button>
-<button class="route-pill" data-go="exam-overview">AP Exam</button>
-<button class="route-pill" data-go="rules-1">Class Norms</button>
-<button class="route-pill" data-go="study-system">How to Study</button>
-<button class="route-pill" data-go="diagnostic-purpose">Diagnostic</button>
-<button class="route-pill" data-go="overall-result">Results</button>
-</nav><div id="currentStage" class="header-stage">Welcome</div></header>
+  <div class="school-network-lockup">
+    <img class="school-network-logo" src="../../../assets/echs-school-network-lockup.webp" width="1000" height="165" alt="Education City High School, Qatar Academy, Qatar Academy Sidra, and Qatar Academy for Science and Technology">
+  </div>
+  <div class="course-lockup">
+    <p class="brand-course">AP Calculus AB / BC</p>
+    <p class="brand-topic">Lesson 0 · First Day, Diagnostic &amp; Success Plan</p>
+  </div>
+  <div class="teacher-credit" aria-label="Course teacher">
+    <span>Math Teacher</span>
+    <strong>Mohammad Abu Ghuwaleh</strong>
+  </div>
+  <div id="currentStage" class="header-stage">Welcome</div>
+  <nav class="route-pills" aria-label="Lesson routes">
+    <button class="route-pill" data-go="welcome">Welcome</button>
+    <button class="route-pill" data-go="course-map">Course</button>
+    <button class="route-pill" data-go="exam-overview">AP Exam</button>
+    <button class="route-pill" data-go="rules-1">Class Norms</button>
+    <button class="route-pill" data-go="study-system">How to Study</button>
+    <button class="route-pill" data-go="diagnostic-purpose">Diagnostic</button>
+    <button class="route-pill" data-go="overall-result">Results</button>
+  </nav>
+</header>
 <main id="slideViewport" class="slide-viewport" tabindex="-1"></main>
-<footer class="deck-footer"><div class="progress-cluster"><span id="slideCounter">1 / 56</span><div class="progress-track"><div id="progressFill" class="progress-fill"></div></div></div><div class="nav-cluster"><button id="prevBtn" class="nav-button">← Back</button><button id="nextBtn" class="nav-button primary">Next →</button></div><span class="footer-hint">← → navigate · progress saves locally</span></footer>
-</div><div id="toast" class="toast" role="status" aria-live="polite"></div>
+<footer class="deck-footer">
+  <div class="progress-cluster"><span id="slideCounter" class="progress-text">1 / 56</span><div class="progress-track"><div id="progressFill" class="progress-fill"></div></div></div>
+  <div class="nav-cluster"><button id="prevBtn" class="nav-button">← <span>Back</span></button><button id="nextBtn" class="nav-button primary"><span>Next</span> →</button></div>
+  <span class="footer-hint">← → navigate · progress saves locally</span>
+</footer>
+</div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
 <script src="data/lesson-0-data-01.js"></script>
 <script src="data/lesson-0-data-02.js"></script>
 <script src="data/lesson-0-data-03.js"></script>
 <script src="data/lesson-0-diagnostic.js"></script>
-<script src="../../../js/lesson-zero-cinematic.js?v=20260829"></script>
+<script src="../../../js/lesson-zero-cinematic.js?v=20260829-light3"></script>
 <script src="data/lesson-0-engine.js"></script>
-<script src="../../../js/lesson-zero-cinematic-post.js?v=20260829"></script>
-</body></html>
+<script src="../../../js/lesson-zero-cinematic-post.js?v=20260829-light3"></script>
+</body>
+</html>
