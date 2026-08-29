@@ -64,14 +64,6 @@
       "kind": "lesson",
       "pathway": "g9-ap-precalculus-readiness",
       "unit": "Unit 9",
-      "lesson": "9.3",
-      "title": "AP-Style Multiple Representations",
-      "status": "curriculum_ready"
-    },
-    {
-      "kind": "lesson",
-      "pathway": "g9-ap-precalculus-readiness",
-      "unit": "Unit 9",
       "lesson": "9.4",
       "title": "Cumulative AP Readiness Capstone",
       "status": "curriculum_ready"
@@ -546,8 +538,8 @@
       "pathway": "g9-ap-precalculus-readiness",
       "units": 10,
       "lessons": 49,
-      "ready": 47,
-      "remaining": 2,
+      "ready": 48,
+      "remaining": 1,
       "required_packages": 0,
       "packages_ready": 0
     },
@@ -581,9 +573,9 @@
     }
   ],
   "summary": {
-    "remainingLessons": 57,
+    "remainingLessons": 56,
     "remainingPackages": 3,
-    "productionRemainingLessons": 53,
+    "productionRemainingLessons": 52,
     "productionRemainingPackages": 2
   }
 }
