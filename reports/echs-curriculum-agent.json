@@ -105,14 +105,6 @@
       "kind": "lesson",
       "pathway": "g10-algebra2-ap-readiness-path-b",
       "unit": "R1",
-      "lesson": "R1.3",
-      "title": "Quadratic Functions, Forms & Inequalities",
-      "status": "curriculum_ready"
-    },
-    {
-      "kind": "lesson",
-      "pathway": "g10-algebra2-ap-readiness-path-b",
-      "unit": "R1",
       "lesson": "R1.4",
       "title": "Polynomial Operations & Factoring",
       "status": "curriculum_ready"
@@ -501,8 +493,8 @@
       "pathway": "g10-algebra2-ap-readiness-path-b",
       "units": 6,
       "lessons": 51,
-      "ready": 6,
-      "remaining": 45,
+      "ready": 7,
+      "remaining": 44,
       "required_packages": 2,
       "packages_ready": 0
     },
@@ -518,9 +510,9 @@
     }
   ],
   "summary": {
-    "remainingLessons": 49,
+    "remainingLessons": 48,
     "remainingPackages": 3,
-    "productionRemainingLessons": 45,
+    "productionRemainingLessons": 44,
     "productionRemainingPackages": 2
   }
 }
