@@ -912,8 +912,10 @@
               "learningOutcomes": [
                 "Translate among representations; sustain multi-step reasoning; provide a concise rationale for conclusions."
               ],
-              "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus prerequisite profile"
+              "deliveryStatus": "ready",
+              "alignment": "AP Precalculus prerequisite profile",
+              "url": "lessons/pathways/grade-9/unit-9/g9-9.3-ap-style-multiple-representations.html",
+              "screenCount": 64
             },
             {
               "id": "9.4",

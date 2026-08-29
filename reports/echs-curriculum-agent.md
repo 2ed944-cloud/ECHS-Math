@@ -1,15 +1,15 @@
 # ECHS Curriculum Agent Report
 
-Generated: 2026-08-29 05:12 UTC
+Generated: 2026-08-29 06:08 UTC
 
 ## Release decision
 
 - Structural errors: **0**
 - Quality warnings: **57**
-- Required lesson blocks awaiting dedicated completion: **57**
+- Required lesson blocks awaiting dedicated completion: **56**
 - Required course-level packages awaiting dedicated completion: **3**
 
-- Current Grade 9 + Path B production backlog: **53 lessons + 2 gateway packages**
+- Current Grade 9 + Path B production backlog: **52 lessons + 2 gateway packages**
 
 The authoritative scope is Grade 9 (49 blocks), Grade 10 Path A (48 blocks plus the cumulative AP review/mock package), and Grade 10 Path B (51 blocks plus two transfer-gateway assessments). AP Unit 4 remains supplemental enrichment.
 
@@ -19,7 +19,7 @@ A course card, catalog row, generic pathway route, or unmapped older file does n
 
 | Pathway | Units | Required lessons | Ready | Remaining | Packages ready | Signal score |
 |---|---:|---:|---:|---:|---:|---:|
-| g9-ap-precalculus-readiness | 10 | 49 | 47 | 2 | 0/0 | — |
+| g9-ap-precalculus-readiness | 10 | 49 | 48 | 1 | 0/0 | — |
 | g10-ap-precalculus-path-a | 4 | 48 | 44 | 4 | 0/1 | — |
 | g10-algebra2-ap-readiness-path-b | 6 | 51 | 0 | 51 | 0/2 | — |
 | ap-precalculus-core-runtime | 3 | 44 | 44 | 0 | 0/0 | 85.0 |
@@ -30,7 +30,6 @@ A course card, catalog row, generic pathway route, or unmapped older file does n
 
 ## Priority production queue
 
-- `g9-ap-precalculus-readiness` · `Unit 9` · **9.3 AP-Style Multiple Representations** (lesson; curriculum_ready)
 - `g9-ap-precalculus-readiness` · `Unit 9` · **9.4 Cumulative AP Readiness Capstone** (lesson; curriculum_ready)
 - `g10-ap-precalculus-path-a` · `Calculus Bridge` · **E.1 Parametric Functions** (lesson; curriculum_ready)
 - `g10-ap-precalculus-path-a` · `Calculus Bridge` · **E.2 Planar Motion with Parametric Functions** (lesson; curriculum_ready)
@@ -55,7 +54,8 @@ A course card, catalog row, generic pathway route, or unmapped older file does n
 - `g10-algebra2-ap-readiness-path-b` · `R2` · **R2.2 Exponent Laws, Radicals & Rational Exponents** (lesson; curriculum_ready)
 - `g10-algebra2-ap-readiness-path-b` · `R2` · **R2.3 Exponential Functions & Transformations** (lesson; curriculum_ready)
 - `g10-algebra2-ap-readiness-path-b` · `R2` · **R2.4 Exponential Modeling** (lesson; curriculum_ready)
-- …and 35 more required items in authoritative order.
+- `g10-algebra2-ap-readiness-path-b` · `R2` · **R2.5 Composition of Functions** (lesson; curriculum_ready)
+- …and 34 more required items in authoritative order.
 
 ## Quality warnings (first 50)
 
