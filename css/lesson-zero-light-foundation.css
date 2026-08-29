@@ -1,0 +1,189 @@
+/*
+ * ECHS AP Lesson 0 — Light Cinematic Branding v3
+ * Shared by AP Precalculus and AP Calculus AB/BC.
+ * Loaded after the dark cinematic layer so every visible element has
+ * a deliberate, high-contrast light-theme treatment.
+ */
+
+html{
+  --echs-access-bar-height:0px!important;
+  background:#eef3f8!important;
+}
+
+body.cinematic-lesson.light-cinematic{
+  --cinema-bg:#eef3f8;
+  --cinema-bg-2:#f8fafc;
+  --cinema-panel:#ffffff;
+  --cinema-panel-strong:#ffffff;
+  --cinema-line:#d7e0e9;
+  --cinema-text:#14283b;
+  --cinema-muted:#52677b;
+  --cinema-wine:#8a1f47;
+  --cinema-wine-deep:#641530;
+  --cinema-gold:#c69025;
+  --cinema-teal:#08796f;
+  --cinema-blue:#2f6fa5;
+  --cinema-green:#20764f;
+  --cinema-red:#b43a49;
+  --cinema-shadow:0 24px 70px rgba(29,52,76,.14);
+  --header:146px;
+  --footer:68px;
+  color:var(--cinema-text)!important;
+  background:
+    radial-gradient(circle at 10% 8%,rgba(138,31,71,.09),transparent 28%),
+    radial-gradient(circle at 88% 14%,rgba(8,121,111,.09),transparent 27%),
+    radial-gradient(circle at 55% 112%,rgba(198,144,37,.10),transparent 36%),
+    linear-gradient(145deg,#eef3f8 0%,#f8fafc 48%,#edf4f5 100%)!important;
+  overflow-x:hidden;
+}
+
+/* The platform access guard may inject this banner after page load. Lesson 0
+   uses its own complete navigation, so suppress the duplicate banner. */
+body.cinematic-lesson.light-cinematic .echsLessonAccessBar,
+body.cinematic-lesson.light-cinematic [data-echs-lesson-access="bar"]{
+  display:none!important;
+  visibility:hidden!important;
+  position:absolute!important;
+  width:0!important;
+  height:0!important;
+  min-height:0!important;
+  max-height:0!important;
+  margin:0!important;
+  padding:0!important;
+  overflow:hidden!important;
+  pointer-events:none!important;
+}
+body.cinematic-lesson.light-cinematic.hasEchsLessonAccessBar{padding-top:0!important}
+
+body.cinematic-lesson.light-cinematic::before{
+  opacity:.72!important;
+  background-image:
+    linear-gradient(rgba(47,111,165,.045) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(47,111,165,.045) 1px,transparent 1px)!important;
+  background-size:64px 64px!important;
+  mask-image:linear-gradient(to bottom,rgba(0,0,0,.50),transparent 90%)!important;
+}
+body.cinematic-lesson.light-cinematic::after{display:none!important}
+body.cinematic-lesson.light-cinematic .cinema-atmosphere{opacity:.58!important}
+body.cinematic-lesson.light-cinematic .cinema-atmosphere span{filter:blur(92px)!important;opacity:.14!important}
+body.cinematic-lesson.light-cinematic .cinema-atmosphere svg{opacity:.15!important}
+body.cinematic-lesson.light-cinematic .cinema-atmosphere path{stroke-width:2.2!important}
+
+/* ---------- Persistent school identity header ---------- */
+body.cinematic-lesson.light-cinematic .deck-header{
+  height:var(--header)!important;
+  display:grid!important;
+  grid-template-columns:minmax(300px,420px) minmax(260px,1fr) minmax(220px,285px) auto!important;
+  grid-template-rows:80px 56px!important;
+  grid-template-areas:
+    "school course teacher stage"
+    "routes routes routes routes"!important;
+  align-items:center!important;
+  gap:0 24px!important;
+  padding:0 30px 9px!important;
+  background:rgba(255,255,255,.97)!important;
+  border-top:6px solid var(--cinema-wine)!important;
+  border-bottom:1px solid #d8e1ea!important;
+  box-shadow:0 10px 34px rgba(24,48,72,.11)!important;
+  backdrop-filter:blur(18px) saturate(118%)!important;
+  color:#14283b!important;
+}
+body.cinematic-lesson.light-cinematic .school-network-lockup{
+  grid-area:school;
+  display:flex;
+  align-items:center;
+  min-width:0;
+  height:72px;
+  padding:7px 12px;
+  border:1px solid #dbe3eb;
+  border-radius:15px;
+  background:#fff;
+  box-shadow:0 7px 22px rgba(25,50,74,.07);
+}
+body.cinematic-lesson.light-cinematic .school-network-logo{
+  display:block;
+  width:100%;
+  max-width:390px;
+  max-height:57px;
+  object-fit:contain;
+  object-position:left center;
+}
+body.cinematic-lesson.light-cinematic .course-lockup{grid-area:course;min-width:0}
+body.cinematic-lesson.light-cinematic .course-lockup .brand-course{
+  margin:0 0 5px!important;
+  color:var(--cinema-wine)!important;
+  font-size:clamp(17px,1.45vw,23px)!important;
+  font-weight:950!important;
+  letter-spacing:.045em!important;
+  line-height:1.1!important;
+  text-transform:uppercase!important;
+  white-space:normal!important;
+}
+body.cinematic-lesson.light-cinematic .course-lockup .brand-topic{
+  margin:0!important;
+  color:#53677b!important;
+  font-size:12.5px!important;
+  font-weight:650!important;
+  line-height:1.4!important;
+  white-space:normal!important;
+}
+body.cinematic-lesson.light-cinematic .course-lockup .brand-topic::after{
+  content:" · LIGHT CINEMATIC EDITION"!important;
+  color:#966916!important;
+  font-weight:900!important;
+  letter-spacing:.065em!important;
+}
+body.cinematic-lesson.light-cinematic .teacher-credit{
+  grid-area:teacher;
+  display:grid;
+  gap:3px;
+  justify-items:start;
+  padding:11px 15px;
+  border-left:4px solid var(--cinema-gold);
+  border-radius:0 13px 13px 0;
+  background:linear-gradient(90deg,#fff8e6,#fff);
+  box-shadow:inset 0 0 0 1px rgba(198,144,37,.20);
+}
+body.cinematic-lesson.light-cinematic .teacher-credit span{
+  color:#735319!important;
+  font-size:10.5px!important;
+  font-weight:900!important;
+  letter-spacing:.13em!important;
+  text-transform:uppercase!important;
+}
+body.cinematic-lesson.light-cinematic .teacher-credit strong{
+  color:#6f1739!important;
+  font-size:14px!important;
+  font-weight:900!important;
+  line-height:1.25!important;
+}
+body.cinematic-lesson.light-cinematic .route-pills{
+  grid-area:routes!important;
+  align-self:center!important;
+  display:flex!important;
+  justify-content:center!important;
+  gap:8px!important;
+  min-width:0!important;
+}
+body.cinematic-lesson.light-cinematic .route-pill{
+  color:#284258!important;
+  background:#f7f9fb!important;
+  border:1px solid #cfdae4!important;
+  box-shadow:0 3px 10px rgba(30,55,80,.05)!important;
+}
+body.cinematic-lesson.light-cinematic .route-pill:hover,
+body.cinematic-lesson.light-cinematic .route-pill:focus-visible{
+  transform:translateY(-2px)!important;
+  color:#6f1739!important;
+  background:#fff8e8!important;
+  border-color:#d4a94e!important;
+}
+body.cinematic-lesson.light-cinematic .header-stage{
+  grid-area:stage;
+  justify-self:end;
+  color:#fff!important;
+  background:linear-gradient(135deg,var(--cinema-wine),#a83962)!important;
+  border:0!important;
+  box-shadow:0 7px 18px rgba(138,31,71,.18)!important;
+  padding:9px 13px!important;
+}

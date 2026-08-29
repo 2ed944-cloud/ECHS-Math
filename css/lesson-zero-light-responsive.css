@@ -1,0 +1,100 @@
+/* ---------- Controls and footer ---------- */
+body.cinematic-lesson.light-cinematic .ack-button,
+body.cinematic-lesson.light-cinematic .timer-button{color:#fff!important;background:linear-gradient(135deg,#0a8a7f,#08796f)!important}
+body.cinematic-lesson.light-cinematic .status-line{color:#176d65!important}
+body.cinematic-lesson.light-cinematic .next-lesson{color:#fff!important;background:linear-gradient(135deg,#8a1f47,#6f1739)!important}
+body.cinematic-lesson.light-cinematic .source-note{color:#66798b!important}
+body.cinematic-lesson.light-cinematic .source-note a{color:#78183f!important}
+body.cinematic-lesson.light-cinematic .deck-footer{
+  height:var(--footer)!important;
+  color:#20374d!important;
+  background:rgba(255,255,255,.97)!important;
+  border-top:1px solid #d5dfe8!important;
+  box-shadow:0 -8px 25px rgba(25,50,74,.08)!important;
+  backdrop-filter:blur(18px)!important;
+}
+body.cinematic-lesson.light-cinematic .progress-text{color:#20374d!important}
+body.cinematic-lesson.light-cinematic .progress-track{background:#e3e9ee!important}
+body.cinematic-lesson.light-cinematic .progress-fill,
+body.cinematic-lesson.light-cinematic .progress-track i{background:linear-gradient(90deg,#8a1f47,#c69025,#08796f)!important;box-shadow:none!important}
+body.cinematic-lesson.light-cinematic .nav-button{
+  color:#29445a!important;
+  background:#fff!important;
+  border:1px solid #cbd7e1!important;
+  box-shadow:0 5px 14px rgba(25,50,74,.06)!important;
+}
+body.cinematic-lesson.light-cinematic .nav-button.primary,
+body.cinematic-lesson.light-cinematic .primary-action,
+body.cinematic-lesson.light-cinematic .route-button{
+  color:#fff!important;
+  background:linear-gradient(135deg,#8a1f47,#6f1739)!important;
+  border-color:#6f1739!important;
+  box-shadow:0 9px 22px rgba(111,23,57,.18)!important;
+}
+
+/* ---------- Responsive school header ---------- */
+@media(max-width:1250px){
+  body.cinematic-lesson.light-cinematic{--header:184px}
+  body.cinematic-lesson.light-cinematic .deck-header{
+    grid-template-columns:minmax(270px,380px) minmax(260px,1fr) minmax(210px,250px)!important;
+    grid-template-rows:72px 48px 54px!important;
+    grid-template-areas:
+      "school course teacher"
+      "school course stage"
+      "routes routes routes"!important;
+    gap:0 18px!important;
+  }
+  body.cinematic-lesson.light-cinematic .header-stage{align-self:center}
+  body.cinematic-lesson.light-cinematic .school-network-lockup{height:106px}
+}
+@media(max-width:900px){
+  body.cinematic-lesson.light-cinematic{--header:238px}
+  body.cinematic-lesson.light-cinematic .deck-header{
+    grid-template-columns:1fr auto!important;
+    grid-template-rows:76px 55px 50px 48px!important;
+    grid-template-areas:
+      "school school"
+      "course stage"
+      "teacher teacher"
+      "routes routes"!important;
+    padding:4px 16px 8px!important;
+    gap:0 12px!important;
+  }
+  body.cinematic-lesson.light-cinematic .school-network-lockup{height:68px;justify-content:center}
+  body.cinematic-lesson.light-cinematic .school-network-logo{max-width:520px;object-position:center}
+  body.cinematic-lesson.light-cinematic .teacher-credit{display:flex;align-items:center;gap:10px;padding:8px 12px}
+  body.cinematic-lesson.light-cinematic .route-pills{overflow-x:auto!important;justify-content:flex-start!important;flex-wrap:nowrap!important;width:100%!important}
+}
+@media(max-width:620px){
+  body.cinematic-lesson.light-cinematic{--header:224px;--footer:72px}
+  body.cinematic-lesson.light-cinematic .deck-header{
+    grid-template-rows:67px 52px 47px 49px!important;
+    padding-inline:9px!important;
+  }
+  body.cinematic-lesson.light-cinematic .school-network-lockup{height:60px;padding:5px 7px}
+  body.cinematic-lesson.light-cinematic .course-lockup .brand-course{font-size:14px!important}
+  body.cinematic-lesson.light-cinematic .course-lockup .brand-topic{font-size:10.5px!important}
+  body.cinematic-lesson.light-cinematic .course-lockup .brand-topic::after{display:none!important}
+  body.cinematic-lesson.light-cinematic .teacher-credit strong{font-size:12px!important}
+  body.cinematic-lesson.light-cinematic .header-stage{font-size:10px!important;padding:7px 9px!important}
+  body.cinematic-lesson.light-cinematic .cinema-title{font-size:48px!important}
+}
+
+@media(prefers-reduced-motion:reduce){
+  body.cinematic-lesson.light-cinematic *,
+  body.cinematic-lesson.light-cinematic *::before,
+  body.cinematic-lesson.light-cinematic *::after{
+    animation-duration:.001ms!important;
+    animation-iteration-count:1!important;
+    transition-duration:.001ms!important;
+  }
+}
+
+@media print{
+  body.cinematic-lesson.light-cinematic .deck-header,
+  body.cinematic-lesson.light-cinematic .deck-footer,
+  body.cinematic-lesson.light-cinematic .cinema-atmosphere{display:none!important}
+  body.cinematic-lesson.light-cinematic{background:#fff!important;color:#111!important}
+  body.cinematic-lesson.light-cinematic .slide-viewport{padding:0!important}
+  body.cinematic-lesson.light-cinematic .slide-inner{background:#fff!important;color:#111!important;border:0!important;box-shadow:none!important}
+}
