@@ -800,13 +800,15 @@
               "learningOutcomes": [
                 "Demonstrate usable systems and right-triangle trig fluency for later modeling and trig work."
               ],
-              "deliveryStatus": "curriculum_ready",
+              "deliveryStatus": "ready",
               "alignment": "AP Precalculus stated AP prerequisites",
               "depth": "D Diagnostic / Repair",
               "requiredPathBCoverage": "Focused repair is provided only where gaps are identified; the class benchmark confirms that these Grade 9 prerequisites are usable without scaffolding.",
               "coverageBoundary": "Coverage boundary: no new systems or unit-circle/trigonometric-function unit is included here. Radians and unit-circle work begin in R3.",
               "targetPeriods": 2,
-              "maximumPeriods": 2
+              "maximumPeriods": 2,
+              "url": "lessons/pathways/grade-10/path-b/unit-r0/g10b-r0.4-systems-right-triangle-trig-spot-repair.html",
+              "screenCount": 64
             }
           ]
         },

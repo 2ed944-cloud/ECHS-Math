@@ -104,14 +104,6 @@
     {
       "kind": "lesson",
       "pathway": "g10-algebra2-ap-readiness-path-b",
-      "unit": "R0",
-      "lesson": "R0.4",
-      "title": "Systems & Right-Triangle Trig Spot Repair",
-      "status": "curriculum_ready"
-    },
-    {
-      "kind": "lesson",
-      "pathway": "g10-algebra2-ap-readiness-path-b",
       "unit": "R1",
       "lesson": "R1.1",
       "title": "Rates of Change Foundations",
@@ -525,8 +517,8 @@
       "pathway": "g10-algebra2-ap-readiness-path-b",
       "units": 6,
       "lessons": 51,
-      "ready": 3,
-      "remaining": 48,
+      "ready": 4,
+      "remaining": 47,
       "required_packages": 2,
       "packages_ready": 0
     },
@@ -542,9 +534,9 @@
     }
   ],
   "summary": {
-    "remainingLessons": 52,
+    "remainingLessons": 51,
     "remainingPackages": 3,
-    "productionRemainingLessons": 48,
+    "productionRemainingLessons": 47,
     "productionRemainingPackages": 2
   }
 }
