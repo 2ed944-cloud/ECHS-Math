@@ -1,0 +1,76 @@
+/* ---------- Clear 3×3 Connection Quest ---------- */
+body.cinematic-lesson.light-cinematic .quest-instructions div{background:#f7fafc!important;border-color:#d5e0e9!important}
+body.cinematic-lesson.light-cinematic .quest-instructions b{color:#fff!important;background:#78183f!important}
+body.cinematic-lesson.light-cinematic .quest-instructions span,
+body.cinematic-lesson.light-cinematic .quest-instructions strong{color:#29445a!important}
+body.cinematic-lesson.light-cinematic .quest-cell{
+  background:linear-gradient(155deg,#fff,#f7fafc)!important;
+  border-color:#d3dee8!important;
+}
+body.cinematic-lesson.light-cinematic .quest-cell:hover{border-color:#c69a3a!important}
+body.cinematic-lesson.light-cinematic .quest-cell.done{border-color:#49a99f!important;background:#effaf8!important;box-shadow:0 0 0 2px rgba(8,121,111,.12),0 14px 28px rgba(28,53,78,.08)!important}
+body.cinematic-lesson.light-cinematic .quest-cell.quest-line{border-color:#c48b1b!important;background:#fff9e8!important;box-shadow:0 0 0 3px rgba(198,144,37,.16),0 14px 30px rgba(28,53,78,.09)!important}
+body.cinematic-lesson.light-cinematic .quest-number{color:#9aaaba!important}
+body.cinematic-lesson.light-cinematic .quest-prompt{color:#172f45!important}
+body.cinematic-lesson.light-cinematic .quest-question{color:#536b80!important}
+body.cinematic-lesson.light-cinematic .quest-confirm,
+body.cinematic-lesson.light-cinematic .quest-reset{
+  color:#fff!important;
+  background:#78183f!important;
+  border:1px solid #78183f!important;
+}
+body.cinematic-lesson.light-cinematic .quest-cell.done .quest-confirm{color:#fff!important;background:#08796f!important;border-color:#08796f!important}
+body.cinematic-lesson.light-cinematic .quest-footer{background:#f7fafc!important;border-color:#d5e0e9!important}
+body.cinematic-lesson.light-cinematic .quest-meter{color:#6f1739!important}
+body.cinematic-lesson.light-cinematic .quest-status{color:#40586e!important}
+body.cinematic-lesson.light-cinematic .quest-status.success{color:#176d4c!important}
+body.cinematic-lesson.light-cinematic .quest-status.warning{color:#a22f3e!important}
+
+/* ---------- Calculus motion scene ---------- */
+body.cinematic-lesson.light-cinematic .instant-copy h3{color:#10283e!important}
+body.cinematic-lesson.light-cinematic .motion-visual{
+  background:radial-gradient(circle at 50% 14%,rgba(76,150,210,.20),transparent 40%),linear-gradient(#dcecf7,#f8fbfd)!important;
+  border-color:#cbd9e4!important;
+  box-shadow:inset 0 -40px 80px rgba(47,111,165,.06)!important;
+}
+body.cinematic-lesson.light-cinematic .road{background:linear-gradient(#41566a,#263a4d)!important}
+body.cinematic-lesson.light-cinematic .speedometer{background:radial-gradient(circle,#fff 0 54%,#e6edf3 55%)!important;border-color:#c8d4df!important;box-shadow:0 12px 35px rgba(47,111,165,.15)!important}
+body.cinematic-lesson.light-cinematic .speedometer strong{color:#78183f!important}
+body.cinematic-lesson.light-cinematic .speedometer span{color:#53687b!important}
+body.cinematic-lesson.light-cinematic .freeze-badge{color:#78203f!important;background:#faeaf0!important;border-color:#dcaec0!important}
+
+/* ---------- Diagnostic, results, and mathematical rendering ---------- */
+body.cinematic-lesson.light-cinematic .diagnostic-intro strong{color:#6f1739!important;background:#f8eaf0!important}
+body.cinematic-lesson.light-cinematic .strand-grid b,
+body.cinematic-lesson.light-cinematic .diag-id{color:#fff!important;background:#78183f!important}
+body.cinematic-lesson.light-cinematic .strand-grid h3{color:#17334a!important}
+body.cinematic-lesson.light-cinematic .diag-strand{color:#5a6e82!important}
+body.cinematic-lesson.light-cinematic .diag-prompt,
+body.cinematic-lesson.light-cinematic .diagnostic-item>p{color:#1c354b!important}
+body.cinematic-lesson.light-cinematic .diag-choice,
+body.cinematic-lesson.light-cinematic .choice-btn{
+  color:#253f56!important;
+  background:#fff!important;
+  border-color:#cfdae4!important;
+}
+body.cinematic-lesson.light-cinematic .diag-choice:has(input:checked),
+body.cinematic-lesson.light-cinematic .choice-btn.selected{background:#edf9f7!important;border-color:#429a91!important;color:#174e4a!important}
+body.cinematic-lesson.light-cinematic .choice-btn.correct{background:#eaf8ef!important;border-color:#47a16e!important;color:#185938!important}
+body.cinematic-lesson.light-cinematic .choice-btn.incorrect{background:#fff0f2!important;border-color:#d35f6d!important;color:#8f2634!important}
+body.cinematic-lesson.light-cinematic .diagnostic-progress span{color:#6f1739!important}
+body.cinematic-lesson.light-cinematic .diagnostic-progress i,
+body.cinematic-lesson.light-cinematic .strand-bar i{background:linear-gradient(90deg,#8a1f47,#c69025,#08796f)!important}
+body.cinematic-lesson.light-cinematic .submit-panel h3,
+body.cinematic-lesson.light-cinematic .readiness-label{color:#6f1739!important}
+body.cinematic-lesson.light-cinematic .score-ring{color:#17334a!important;background:conic-gradient(#08796f var(--p,var(--score)),#e3eaf0 0)!important}
+body.cinematic-lesson.light-cinematic .score-ring strong,
+body.cinematic-lesson.light-cinematic .score-ring span{color:#17334a!important}
+body.cinematic-lesson.light-cinematic .strand-result{border-bottom-color:#dfe6ec!important}
+body.cinematic-lesson.light-cinematic .strand-result :is(strong,b){color:#20384f!important}
+body.cinematic-lesson.light-cinematic .strand-result small{color:#5a6e82!important}
+body.cinematic-lesson.light-cinematic .repair-item>span:first-child{color:#6f1739!important;background:#f8eaf0!important}
+body.cinematic-lesson.light-cinematic .repair-item em{color:#694b12!important;background:#fff3cf!important}
+body.cinematic-lesson.light-cinematic .correct-answer{color:#176d4b!important}
+body.cinematic-lesson.light-cinematic mjx-container,
+body.cinematic-lesson.light-cinematic .katex,
+body.cinematic-lesson.light-cinematic .katex *{color:#14283b!important}
