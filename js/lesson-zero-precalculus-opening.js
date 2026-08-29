@@ -90,6 +90,8 @@
     }
 
     buttons.forEach(button=>{
+      if(button.dataset.openingBound==='1')return;
+      button.dataset.openingBound='1';
       button.setAttribute('aria-pressed','false');
       button.addEventListener('click',()=>select(button,true));
     });
