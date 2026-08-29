@@ -845,8 +845,10 @@
               "learningOutcomes": [
                 "Determine unknown angles using inverse trig; check reasonableness; communicate angle units and precision."
               ],
-              "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus prerequisite profile"
+              "deliveryStatus": "ready",
+              "alignment": "AP Precalculus prerequisite profile",
+              "url": "lessons/pathways/grade-9/unit-8/g9-8.3-inverse-trigonometry.html",
+              "screenCount": 64
             },
             {
               "id": "8.4",
