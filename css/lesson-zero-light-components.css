@@ -1,0 +1,140 @@
+/* ---------- Generic light cards: force readable headings and copy ---------- */
+body.cinematic-lesson.light-cinematic :is(
+  .card-grid article,.concept-card,.success-card,.warning-card,.export-card,.commitment-card,.submit-panel,
+  .unit-map article,.timeline>div,.timeline>article,.split-percent article,.frq-grid article,.rule-grid article,
+  .study-cycle>div,.flow-rail>div,.workflow>div,.first-week-grid>div,.exam-hero>div,.exam-card,.unit-card,
+  .scene-route article,.relay-panel,.passport-shell,.quest-cell,.quest-instructions div,.quest-footer,
+  .two-column>section,.result-card,.missed,.missed-item,.repair-item,.strand-grid article,.diag-item,.diagnostic-item
+){
+  color:#172d42!important;
+  background:linear-gradient(145deg,#ffffff,#f7fafc)!important;
+  border-color:#d5e0e9!important;
+  box-shadow:0 13px 30px rgba(28,53,78,.07)!important;
+}
+body.cinematic-lesson.light-cinematic :is(
+  .card-grid article,.concept-card,.unit-map article,.timeline>div,.timeline>article,.split-percent article,
+  .frq-grid article,.rule-grid article,.study-cycle>div,.flow-rail>div,.workflow>div,.first-week-grid>div,
+  .exam-hero>div,.exam-card,.unit-card,.scene-route article,.relay-panel,.passport-shell,.quest-cell,
+  .strand-grid article,.diag-item,.diagnostic-item
+) :is(h2,h3,h4,strong,b){
+  color:#172d42!important;
+  opacity:1!important;
+}
+body.cinematic-lesson.light-cinematic :is(
+  .card-grid article,.two-column>section,.timeline>div,.timeline>article,.first-week-grid>div,.rule-grid article,
+  .unit-card,.exam-card,.scene-route article,.relay-panel,.passport-shell,.quest-cell,.strand-grid article,
+  .diag-item,.diagnostic-item
+) :is(p,li,span,small){opacity:1}
+body.cinematic-lesson.light-cinematic .card-grid p,
+body.cinematic-lesson.light-cinematic .two-column p,
+body.cinematic-lesson.light-cinematic .timeline p,
+body.cinematic-lesson.light-cinematic .first-week-grid span,
+body.cinematic-lesson.light-cinematic .rule-grid p{color:#4b6074!important}
+body.cinematic-lesson.light-cinematic .success-card{background:#f2fbf7!important;border-color:#abd9c3!important}
+body.cinematic-lesson.light-cinematic .warning-card{background:#fff5f6!important;border-color:#e3b9c0!important}
+body.cinematic-lesson.light-cinematic .callout,
+body.cinematic-lesson.light-cinematic .notice{
+  color:#334b5f!important;
+  background:linear-gradient(90deg,#fff7e2,#ffffff)!important;
+  border:1px solid #ead7a8!important;
+  border-left:5px solid var(--cinema-gold)!important;
+}
+body.cinematic-lesson.light-cinematic .callout :is(p,strong,span),
+body.cinematic-lesson.light-cinematic .notice :is(p,strong,span,h3){color:#334b5f!important}
+body.cinematic-lesson.light-cinematic .big-idea{background:linear-gradient(145deg,#f9ecf2,#edf8f7)!important;border:1px solid #d4dee7!important}
+body.cinematic-lesson.light-cinematic .big-idea strong,
+body.cinematic-lesson.light-cinematic .unit-map strong,
+body.cinematic-lesson.light-cinematic .flow-rail b,
+body.cinematic-lesson.light-cinematic .workflow b,
+body.cinematic-lesson.light-cinematic .study-cycle b{color:#78183f!important}
+body.cinematic-lesson.light-cinematic .unit-head{background:#f8eaf0!important;color:#78183f!important;border:1px solid #e1bdcb!important}
+body.cinematic-lesson.light-cinematic .unit-head.optional{background:#fff7e1!important;color:#745416!important;border-color:#ead49c!important}
+body.cinematic-lesson.light-cinematic .topic-list li{color:#32495f!important;background:#fff!important;border-color:#dce4eb!important}
+
+/* Fix the exact low-contrast unit labels seen in the original dark version. */
+body.cinematic-lesson.light-cinematic .unit-card h3,
+body.cinematic-lesson.light-cinematic .unit-map h3{
+  color:#6f1739!important;
+  opacity:1!important;
+  text-shadow:none!important;
+}
+body.cinematic-lesson.light-cinematic .unit-card p,
+body.cinematic-lesson.light-cinematic .unit-card p strong,
+body.cinematic-lesson.light-cinematic .unit-map p{
+  color:#2f465b!important;
+  opacity:1!important;
+}
+body.cinematic-lesson.light-cinematic .unit-card .chip,
+body.cinematic-lesson.light-cinematic .unit-map .chip{
+  color:#751c40!important;
+  background:#f8e9ef!important;
+  border:1px solid #e4c2cf!important;
+}
+body.cinematic-lesson.light-cinematic .weight-bar{color:#20384e!important;background:#fff!important;border:1px solid #d7e1e9!important}
+body.cinematic-lesson.light-cinematic .weight-bar strong{color:#20384e!important}
+body.cinematic-lesson.light-cinematic .weight-bar span{color:#6f1739!important}
+body.cinematic-lesson.light-cinematic .weight-bar .bar{background:#e8eef3!important}
+
+/* ---------- Choice scenes ---------- */
+body.cinematic-lesson.light-cinematic .lens-grid button,
+body.cinematic-lesson.light-cinematic .move-grid button,
+body.cinematic-lesson.light-cinematic .choice-poll button{
+  color:#1c344a!important;
+  background:linear-gradient(155deg,#fff,#f6f9fc)!important;
+  border:1px solid #d3dee8!important;
+  box-shadow:0 14px 28px rgba(28,53,78,.07)!important;
+}
+body.cinematic-lesson.light-cinematic .lens-grid button:hover,
+body.cinematic-lesson.light-cinematic .move-grid button:hover,
+body.cinematic-lesson.light-cinematic .choice-poll button:hover{
+  border-color:var(--card-accent,var(--cinema-gold))!important;
+  box-shadow:0 20px 40px rgba(28,53,78,.12)!important;
+}
+body.cinematic-lesson.light-cinematic .lens-grid button.selected,
+body.cinematic-lesson.light-cinematic .move-grid button.selected,
+body.cinematic-lesson.light-cinematic .choice-poll button.selected{
+  color:#143a39!important;
+  background:linear-gradient(155deg,#eefaf8,#fff)!important;
+  border-color:var(--card-accent,var(--cinema-teal))!important;
+  box-shadow:0 0 0 2px color-mix(in srgb,var(--card-accent,var(--cinema-teal)) 23%,transparent),0 17px 36px rgba(28,53,78,.11)!important;
+}
+body.cinematic-lesson.light-cinematic .lens-grid strong,
+body.cinematic-lesson.light-cinematic .move-grid strong{color:#193148!important}
+body.cinematic-lesson.light-cinematic .lens-grid small,
+body.cinematic-lesson.light-cinematic .move-grid small{color:#536a7f!important}
+body.cinematic-lesson.light-cinematic .lens-icon{color:#214159!important;background:color-mix(in srgb,var(--card-accent,var(--cinema-gold)) 11%,#fff)!important}
+body.cinematic-lesson.light-cinematic .poll-feedback{color:#176d65!important}
+
+/* ---------- Passport and partner relay ---------- */
+body.cinematic-lesson.light-cinematic .passport-shell{background:linear-gradient(145deg,#fff,#f6f9fc)!important}
+body.cinematic-lesson.light-cinematic .passport-head{border-bottom:1px solid #dce4ec!important}
+body.cinematic-lesson.light-cinematic .passport-head span{color:#7e5b18!important}
+body.cinematic-lesson.light-cinematic .passport-head strong{color:#6f1739!important}
+body.cinematic-lesson.light-cinematic .passport-head small{color:#53687b!important}
+body.cinematic-lesson.light-cinematic .passport-field{color:#2b455c!important}
+body.cinematic-lesson.light-cinematic :is(input,select,textarea){
+  color:#152d43!important;
+  background:#fff!important;
+  border-color:#bfcdd9!important;
+  caret-color:#78183f!important;
+}
+body.cinematic-lesson.light-cinematic :is(input,select,textarea)::placeholder{color:#7a8a99!important;opacity:1!important}
+body.cinematic-lesson.light-cinematic :is(input,select,textarea):focus{
+  outline:3px solid rgba(47,111,165,.18)!important;
+  border-color:#3c79a9!important;
+}
+body.cinematic-lesson.light-cinematic .passport-stamp{
+  background:radial-gradient(circle,#fff8e5,#fff 72%)!important;
+  border-color:#d4a94e!important;
+}
+body.cinematic-lesson.light-cinematic .passport-stamp strong{color:#78183f!important}
+body.cinematic-lesson.light-cinematic .passport-stamp span{color:#6b4d14!important}
+body.cinematic-lesson.light-cinematic .passport-stamp small{color:#53687b!important}
+body.cinematic-lesson.light-cinematic .relay-panel{background:linear-gradient(145deg,#fff,#f5f8fb)!important}
+body.cinematic-lesson.light-cinematic .relay-panel .relay-role{color:#7d5a17!important}
+body.cinematic-lesson.light-cinematic .relay-panel h3{color:#6f1739!important}
+body.cinematic-lesson.light-cinematic .relay-center .mini-timer,
+body.cinematic-lesson.light-cinematic .relay-center .timer{color:#6f1739!important;text-shadow:none!important}
+body.cinematic-lesson.light-cinematic .relay-center .secondary-button{
+  color:#29445a!important;background:#fff!important;border-color:#cbd7e1!important;
+}
