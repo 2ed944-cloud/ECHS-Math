@@ -781,13 +781,15 @@
               "learningOutcomes": [
                 "Interpret function notation/domains and move confidently among standard representations."
               ],
-              "deliveryStatus": "curriculum_ready",
+              "deliveryStatus": "ready",
               "alignment": "AP Precalculus supports 1.1-1.2",
               "depth": "M Prerequisite Mastery",
               "requiredPathBCoverage": "Students independently evaluate functions, interpret domain/range, read key graph/table information, and translate standard information among representations.",
               "coverageBoundary": "Deferred content: full AP covariation, concavity-as-rate language, open graph construction from verbal scenarios, and dense multi-representation tasks.",
               "targetPeriods": 2,
-              "maximumPeriods": 2
+              "maximumPeriods": 2,
+              "url": "lessons/pathways/grade-10/path-b/unit-r0/g10b-r0.3-function-notation-domain-representations.html",
+              "screenCount": 64
             },
             {
               "id": "R0.4",
