@@ -831,8 +831,10 @@
               "learningOutcomes": [
                 "Choose and use an appropriate trig ratio; solve for missing sides; interpret ratios as relationships, not memorized labels only."
               ],
-              "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus prerequisite profile"
+              "deliveryStatus": "ready",
+              "alignment": "AP Precalculus prerequisite profile",
+              "url": "lessons/pathways/grade-9/unit-8/g9-8.2-sine-cosine-tangent-ratios.html",
+              "screenCount": 64
             },
             {
               "id": "8.3",
