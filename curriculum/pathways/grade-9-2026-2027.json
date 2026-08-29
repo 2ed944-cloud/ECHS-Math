@@ -817,8 +817,10 @@
               "learningOutcomes": [
                 "Solve missing-side problems; use similarity to justify constant trig ratios; connect distance formula to right-triangle structure."
               ],
-              "deliveryStatus": "curriculum_ready",
-              "alignment": "AP Precalculus prerequisite profile"
+              "deliveryStatus": "ready",
+              "alignment": "AP Precalculus prerequisite profile",
+              "url": "lessons/pathways/grade-9/unit-8/g9-8.1-right-triangles-similarity-pythagorean-relationships.html",
+              "screenCount": 64
             },
             {
               "id": "8.2",
