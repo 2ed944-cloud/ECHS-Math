@@ -1,0 +1,81 @@
+/* AP Lesson 0 — logo reliability and compact slide spacing */
+
+/* Use the supplied PNG as a CSS-level fallback as well as the visible image.
+   This keeps the identity visible even if an image element is blocked or late. */
+body.cinematic-lesson.light-cinematic .school-network-lockup{
+  background-color:#fff!important;
+  background-image:url("../assets/echs_logo.png?v=20260829-logo5")!important;
+  background-repeat:no-repeat!important;
+  background-position:center!important;
+  background-size:calc(100% - 18px) auto!important;
+}
+body.cinematic-lesson.light-cinematic .school-network-picture{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  width:100%!important;
+  height:100%!important;
+  min-width:0!important;
+  overflow:hidden!important;
+}
+body.cinematic-lesson.light-cinematic .school-network-logo{
+  display:block!important;
+  visibility:visible!important;
+  opacity:1!important;
+  width:100%!important;
+  height:auto!important;
+  max-width:100%!important;
+  max-height:100%!important;
+  object-fit:contain!important;
+  object-position:center!important;
+}
+
+/* AP Calculus uses a grid header that already occupies its own row. The old
+   shared padding counted the header a second time and created the large grey
+   band shown above the slide. Keep the internal scrollbar, but remove that
+   duplicate offset. */
+body.cinematic-calculus.light-cinematic .slide-viewport{
+  padding:12px 18px 14px!important;
+  overflow-x:hidden!important;
+  overflow-y:scroll!important;
+  scrollbar-gutter:stable!important;
+  scroll-padding-top:12px!important;
+}
+body.cinematic-calculus.light-cinematic .slide{
+  min-height:0!important;
+  margin-top:0!important;
+}
+body.cinematic-calculus.light-cinematic .slide-inner{
+  min-height:calc(100dvh - var(--header) - var(--footer) - 26px)!important;
+}
+
+/* AP Precalculus has a fixed header, so retain its offset but tighten the
+   visual gap underneath it. Its page scrollbar remains available. */
+body.cinematic-precalculus.light-cinematic .slide-viewport{
+  padding-top:calc(var(--header) + 10px)!important;
+  overflow-y:scroll!important;
+  scrollbar-gutter:stable!important;
+}
+
+/* The same compact geometry must hold in native fullscreen and fallback
+   presentation mode. */
+html:fullscreen body.cinematic-calculus.light-cinematic .slide-viewport,
+html:-webkit-full-screen body.cinematic-calculus.light-cinematic .slide-viewport,
+body.cinematic-calculus.light-cinematic.presentation-mode .slide-viewport{
+  padding-top:12px!important;
+  overflow-y:scroll!important;
+}
+
+@media(max-width:900px){
+  body.cinematic-calculus.light-cinematic .slide-viewport{padding:10px 10px 12px!important}
+  body.cinematic-calculus.light-cinematic .slide-inner{
+    min-height:calc(100dvh - var(--header) - var(--footer) - 22px)!important;
+  }
+  body.cinematic-lesson.light-cinematic .school-network-lockup{
+    background-size:calc(100% - 12px) auto!important;
+  }
+}
+
+@media print{
+  body.cinematic-lesson.light-cinematic .school-network-lockup{background-image:none!important}
+}
