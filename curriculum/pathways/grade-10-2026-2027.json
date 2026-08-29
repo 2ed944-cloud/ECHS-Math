@@ -743,13 +743,15 @@
               "learningOutcomes": [
                 "Identify strand-level strengths/gaps and establish an individual readiness profile."
               ],
-              "deliveryStatus": "curriculum_ready",
+              "deliveryStatus": "ready",
               "alignment": "AP Precalculus prerequisite evidence",
               "depth": "D Diagnostic / Repair",
               "requiredPathBCoverage": "Evidence is collected for each strand, including a small amount of written error analysis to distinguish conceptual gaps from carelessness or notation problems.",
               "coverageBoundary": "Coverage boundary: the diagnostic remains an assessment rather than a teaching or whole-class review period. Evidence from the diagnostic informs short-term flex groups.",
               "targetPeriods": 2,
-              "maximumPeriods": 2
+              "maximumPeriods": 2,
+              "url": "lessons/pathways/grade-10/path-b/unit-r0/g10b-r0.1-common-entry-diagnostic.html",
+              "screenCount": 64
             },
             {
               "id": "R0.2",
