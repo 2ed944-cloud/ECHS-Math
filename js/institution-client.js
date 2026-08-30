@@ -124,14 +124,24 @@
       if(adminLink)nav.insertBefore(link,adminLink);else nav.append(link);
     });
   }
+  function normaliseCourse(value){
+    const key=String(value||"").trim().toLowerCase().replace(/&/g,"and").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
+    const aliases={"ap-calculus-ab":"ap-calculus","ap-calculus-bc":"ap-calculus","g12-ap-calculus-ab":"ap-calculus","ap-precalculus-g10-g11":"ap-precalculus","g11-ib-ai":"ib-math-ai","ib-mathematics-ai":"ib-math-ai","g9-pre-precalculus":"grade-9","grade-9-pre-precalculus":"grade-9","g10-algebra2-ap-readiness":"algebra-2","algebra-2-concepts":"algebra-2"};
+    if(aliases[key])return aliases[key];if(key.includes("precalculus"))return"ap-precalculus";if(key.includes("calculus"))return"ap-calculus";if(key.includes("algebra-2")||key.includes("algebra2"))return"algebra-2";if((key.includes("ib")&&key.includes("math"))||key==="g11-ib-ai")return"ib-math-ai";if(key.includes("grade-9")||key.includes("pre-precalculus"))return"grade-9";return key;
+  }
+  function localLessonCompletions(){
+    const completed=safeJSON(localStorage.getItem("echs_math_complete"),[]);
+    if(!Array.isArray(completed))return[];
+    return completed.map(value=>{const parts=String(value||"").split("::");if(parts.length<4)return null;const course=normaliseCourse(parts[0]),unitIndex=Number(parts[1]),topic=String(parts[2]||"").trim();if(!course||!Number.isInteger(unitIndex)||unitIndex<0||!topic)return null;return{access_key:`${course}::${unitIndex}::${topic}`,course_key:course,unit_index:unitIndex,topic,title:parts.slice(3).join("::"),completed_at:new Date().toISOString(),source:"authenticated-lesson-pathway"}}).filter(Boolean);
+  }
   function localLearningPayload(){
     if(window.ECHSLearning&&typeof window.ECHSLearning.exportStudentReport==="function"){
       const report=window.ECHSLearning.exportStudentReport();
-      return {attempts:report.attempts||[],sessions:report.sessions||[],mastery:report.mastery||[],review:report.review||report.mistakes||[]};
+      return {attempts:report.attempts||[],sessions:report.sessions||report.recentSessions||[],mastery:report.mastery||[],review:report.review||report.mistakes||[],lessons:localLessonCompletions()};
     }
     const attemptKeys=["echs_learning_attempts_v2","echs_qbank_attempts_v20"];
     const attempts=attemptKeys.flatMap(key=>safeJSON(localStorage.getItem(key),[]));
-    return {attempts,sessions:safeJSON(localStorage.getItem("echs_learning_sessions_v2"),[]),mastery:Object.values(safeJSON(localStorage.getItem("echs_learning_mastery_v2"),{})),review:Object.values(safeJSON(localStorage.getItem("echs_learning_review_v2"),{}))};
+    return {attempts,sessions:safeJSON(localStorage.getItem("echs_learning_sessions_v2"),[]),mastery:Object.values(safeJSON(localStorage.getItem("echs_learning_mastery_v2"),{})),review:Object.values(safeJSON(localStorage.getItem("echs_learning_review_v2"),{})),lessons:localLessonCompletions()};
   }
   async function syncLearning(){
     const current=await me();if(!current||current.role!=="student")return{skipped:true};
@@ -182,6 +192,7 @@
     document.addEventListener("echs:learning-updated",scheduleLearningSync);
     window.addEventListener("echs:learning-attempt",scheduleLearningSync);
     window.addEventListener("echs:learning-session",scheduleLearningSync);
+    window.addEventListener("echs:lesson-completed",scheduleLearningSync);
   }
   if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",bind,{once:true});else bind();
 

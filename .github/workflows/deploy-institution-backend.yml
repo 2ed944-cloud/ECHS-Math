@@ -58,6 +58,7 @@ jobs:
         run: |
           python tools/validate_private_bank_foundation.py
           python tools/validate_upload_manager.py
+          python tools/test_lesson_visibility_contract.py .
 
       - name: Set up Supabase CLI
         uses: supabase/setup-cli@v1

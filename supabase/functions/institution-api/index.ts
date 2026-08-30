@@ -1,4 +1,10 @@
 import { createClient } from "npm:@supabase/supabase-js@2";
+import {
+  anyClassAllows,
+  canonicalCourseKey,
+  decideLessonVisibility,
+  lessonAccessKey,
+} from "./lesson-access-policy.js";
 
 type Role = "admin" | "teacher" | "student" | "parent";
 type SessionAccount = {
@@ -153,6 +159,277 @@ async function canAccessStudent(session: SessionAccount, studentId: string): Pro
     return Boolean(count);
   }
   return false;
+}
+
+type LessonCatalogRow = {
+  access_key: string;
+  course_key: string;
+  unit_index: number;
+  unit_title: string;
+  topic: string;
+  title: string;
+  position: number;
+  url: string;
+  is_ready: boolean;
+};
+
+type LessonAccessDecision = LessonCatalogRow & {
+  allowed: boolean;
+  reason: string;
+  override_state: "auto" | "shown" | "hidden";
+};
+
+async function catalogForCourse(session: SessionAccount, rawCourseKey: string): Promise<LessonCatalogRow[]> {
+  const courseKey = canonicalCourseKey(rawCourseKey);
+  const { data, error } = await admin.from("lesson_catalog")
+    .select("access_key,course_key,unit_index,unit_title,topic,title,position,url,is_ready")
+    .eq("organization_id", session.organization_id)
+    .eq("course_key", courseKey)
+    .eq("is_ready", true)
+    .order("position")
+    .order("access_key");
+  if (error) throw error;
+  return (data ?? []) as LessonCatalogRow[];
+}
+
+function nestedClass(row: Record<string, unknown>): Record<string, unknown> {
+  const value = row.classes;
+  if (Array.isArray(value)) return (value[0] ?? {}) as Record<string, unknown>;
+  return (value ?? {}) as Record<string, unknown>;
+}
+
+async function studentClassIdsForCourse(session: SessionAccount, courseKey: string): Promise<string[]> {
+  const { data, error } = await admin.from("class_memberships")
+    .select("class_id,classes(id,course_key,status,organization_id)")
+    .eq("account_id", session.account_id)
+    .eq("membership_role", "student");
+  if (error) throw error;
+  return (data ?? []).filter((row) => {
+    const classRow = nestedClass(row as unknown as Record<string, unknown>);
+    return classRow.organization_id === session.organization_id &&
+      classRow.status === "active" &&
+      canonicalCourseKey(classRow.course_key) === courseKey;
+  }).map((row) => row.class_id);
+}
+
+async function studentLessonDecisions(
+  session: SessionAccount,
+  rawCourseKey: string,
+): Promise<LessonAccessDecision[]> {
+  const courseKey = canonicalCourseKey(rawCourseKey);
+  const catalog = await catalogForCourse(session, courseKey);
+  if (["teacher", "admin"].includes(session.role)) {
+    return catalog.map((row) => ({
+      ...row,
+      allowed: true,
+      reason: "staff_full_access",
+      override_state: "auto",
+    }));
+  }
+  if (session.role !== "student" || !catalog.length) return [];
+  const classIds = await studentClassIdsForCourse(session, courseKey);
+  if (!classIds.length) return catalog.map((row) => ({
+    ...row,
+    allowed: false,
+    reason: "course_not_assigned",
+    override_state: "auto",
+  }));
+
+  const [overrideResult, completionResult, sessionResult] = await Promise.all([
+    admin.from("lesson_access_overrides")
+      .select("class_id,access_key,state")
+      .eq("organization_id", session.organization_id)
+      .in("class_id", classIds),
+    admin.from("lesson_completions")
+      .select("access_key")
+      .eq("account_id", session.account_id)
+      .eq("course_key", courseKey),
+    admin.from("learning_sessions")
+      .select("course,unit,topic,total,completed_at")
+      .eq("account_id", session.account_id)
+      .not("completed_at", "is", null)
+      .gt("total", 0),
+  ]);
+  for (const result of [overrideResult, completionResult, sessionResult]) {
+    if (result.error) throw result.error;
+  }
+  const overrides = new Map<string, "shown" | "hidden">(
+    (overrideResult.data ?? []).map((row) => [`${row.class_id}::${row.access_key}`, row.state as "shown" | "hidden"]),
+  );
+  const completed = new Set((completionResult.data ?? []).map((row) => row.access_key));
+  const practiceSessions = sessionResult.data ?? [];
+
+  return catalog.map((row, index) => {
+    const previous = index > 0 ? catalog[index - 1] : null;
+    const previousLessonComplete = previous ? completed.has(previous.access_key) : false;
+    const previousPracticeComplete = previous ? practiceSessions.some((practice) =>
+      canonicalCourseKey(practice.course) === courseKey &&
+      String(practice.unit ?? "") === String(previous.unit_index + 1) &&
+      String(practice.topic ?? "") === String(previous.topic) &&
+      Number(practice.total ?? 0) > 0
+    ) : false;
+    const classDecisions = classIds.map((classId) => decideLessonVisibility({
+      ready: row.is_ready,
+      overrideState: overrides.get(`${classId}::${row.access_key}`) ?? "auto",
+      position: row.position,
+      previousLessonComplete,
+      previousPracticeComplete,
+    }));
+    const allowed = anyClassAllows(classDecisions);
+    const winning = classDecisions.find((decision) => decision.allowed) ?? classDecisions[0];
+    const states = classIds.map((classId) => overrides.get(`${classId}::${row.access_key}`)).filter(Boolean);
+    return {
+      ...row,
+      allowed,
+      reason: winning?.reason ?? "course_not_assigned",
+      override_state: (states.includes("shown") ? "shown" : states.every((state) => state === "hidden") && states.length === classIds.length ? "hidden" : "auto") as "auto" | "shown" | "hidden",
+    };
+  });
+}
+
+async function listLessonAccess(session: SessionAccount, req: Request): Promise<Response> {
+  if (!["student", "teacher", "admin"].includes(session.role)) {
+    return fail(req, "Lesson access is not available for this role", 403, "forbidden");
+  }
+  const courseKey = new URL(req.url).searchParams.get("course_key") ?? "";
+  if (!courseKey) return fail(req, "Course is required");
+  const lessons = await studentLessonDecisions(session, courseKey);
+  return json(req, {
+    ok: true,
+    course_key: canonicalCourseKey(courseKey),
+    lessons,
+    visible_lesson_keys: lessons.filter((row) => row.allowed).map((row) => row.access_key),
+  });
+}
+
+async function checkLessonAccess(session: SessionAccount, req: Request): Promise<Response> {
+  if (["teacher", "admin"].includes(session.role)) {
+    return json(req, { ok: true, allowed: true, reason: "staff_full_access" });
+  }
+  if (session.role !== "student") return fail(req, "Lesson access is not permitted", 403, "forbidden");
+  const payload = await body<{ course_key?: string; access_key?: string }>(req);
+  const courseKey = canonicalCourseKey(payload.course_key ?? "");
+  const accessKey = String(payload.access_key ?? "");
+  if (!courseKey || !accessKey) return json(req, { ok: true, allowed: false, reason: "missing_lesson_route" });
+  const lessons = await studentLessonDecisions(session, courseKey);
+  const decision = lessons.find((row) => row.access_key === accessKey);
+  return json(req, {
+    ok: true,
+    allowed: Boolean(decision?.allowed),
+    reason: decision?.reason ?? "lesson_not_found",
+  });
+}
+
+async function syncLessonCatalog(session: SessionAccount, req: Request): Promise<Response> {
+  requireRole(session, ["admin"]);
+  const payload = await body<{ lessons?: Record<string, unknown>[] }>(req);
+  const lessons = Array.isArray(payload.lessons) ? payload.lessons.slice(0, 2000) : [];
+  const rows = lessons.map((row) => {
+    const courseKey = canonicalCourseKey(row.course_key);
+    const unitIndex = Number(row.unit_index);
+    const topic = String(row.topic ?? "").trim();
+    const accessKey = lessonAccessKey(courseKey, unitIndex, topic);
+    if (!courseKey || !Number.isInteger(unitIndex) || unitIndex < 0 || !topic || accessKey !== row.access_key) {
+      throw new Error("Lesson catalog contains an invalid route");
+    }
+    return {
+      organization_id: session.organization_id,
+      access_key: accessKey,
+      course_key: courseKey,
+      unit_index: unitIndex,
+      unit_title: String(row.unit_title ?? "").slice(0, 300),
+      topic,
+      title: String(row.title ?? topic).slice(0, 500),
+      position: Math.max(0, Number(row.position) || 0),
+      url: String(row.url ?? "").slice(0, 2000),
+      is_ready: Boolean(row.is_ready ?? true),
+      updated_at: new Date().toISOString(),
+    };
+  });
+  if (rows.length) {
+    const { error } = await admin.from("lesson_catalog").upsert(rows, { onConflict: "organization_id,access_key" });
+    if (error) throw error;
+  }
+  return json(req, { ok: true, synced: rows.length });
+}
+
+async function classLessonAccess(session: SessionAccount, req: Request, classId: string): Promise<Response> {
+  requireRole(session, ["admin", "teacher"]);
+  const classIds = await accessibleClassIds(session);
+  if (!classIds.includes(classId)) return fail(req, "Class access is not permitted", 403, "forbidden");
+  const { data: classRow, error: classError } = await admin.from("classes")
+    .select("id,name,course_key,status")
+    .eq("id", classId)
+    .eq("organization_id", session.organization_id)
+    .single();
+  if (classError) throw classError;
+  const courseKey = canonicalCourseKey(classRow.course_key);
+  const [catalog, overrideResult] = await Promise.all([
+    catalogForCourse(session, courseKey),
+    admin.from("lesson_access_overrides")
+      .select("access_key,state,updated_at")
+      .eq("organization_id", session.organization_id)
+      .eq("class_id", classId),
+  ]);
+  if (overrideResult.error) throw overrideResult.error;
+  const overrideMap = new Map((overrideResult.data ?? []).map((row) => [row.access_key, row]));
+  return json(req, {
+    ok: true,
+    class: classRow,
+    course_key: courseKey,
+    lessons: catalog.map((row) => ({
+      ...row,
+      override_state: overrideMap.get(row.access_key)?.state ?? "auto",
+      default_state: row.position < 2 ? "shown" : "progression",
+      updated_at: overrideMap.get(row.access_key)?.updated_at ?? null,
+    })),
+  });
+}
+
+async function updateClassLessonAccess(session: SessionAccount, req: Request, classId: string): Promise<Response> {
+  requireRole(session, ["admin", "teacher"]);
+  const classIds = await accessibleClassIds(session);
+  if (!classIds.includes(classId)) return fail(req, "Class access is not permitted", 403, "forbidden");
+  const payload = await body<{ access_key?: string; state?: string }>(req);
+  const accessKey = String(payload.access_key ?? "");
+  const state = String(payload.state ?? "auto");
+  if (!["auto", "shown", "hidden"].includes(state)) return fail(req, "Choose Automatic, Show, or Hide");
+  const { data: classRow, error: classError } = await admin.from("classes")
+    .select("id,course_key")
+    .eq("id", classId)
+    .eq("organization_id", session.organization_id)
+    .single();
+  if (classError) throw classError;
+  const { data: lesson, error: lessonError } = await admin.from("lesson_catalog")
+    .select("access_key,course_key,title")
+    .eq("organization_id", session.organization_id)
+    .eq("access_key", accessKey)
+    .eq("course_key", canonicalCourseKey(classRow.course_key))
+    .eq("is_ready", true)
+    .single();
+  if (lessonError || !lesson) return fail(req, "Lesson is not part of this class course", 400, "invalid_lesson");
+  if (state === "auto") {
+    const { error } = await admin.from("lesson_access_overrides")
+      .delete().eq("class_id", classId).eq("access_key", accessKey);
+    if (error) throw error;
+  } else {
+    const { error } = await admin.from("lesson_access_overrides").upsert({
+      organization_id: session.organization_id,
+      class_id: classId,
+      access_key: accessKey,
+      state,
+      updated_by: session.account_id,
+      updated_at: new Date().toISOString(),
+    }, { onConflict: "class_id,access_key" });
+    if (error) throw error;
+  }
+  await admin.from("account_audit_log").insert({
+    organization_id: session.organization_id,
+    actor_id: session.account_id,
+    action: "lesson_access_updated",
+    details: { class_id: classId, access_key: accessKey, lesson_title: lesson.title, state },
+  });
+  return json(req, { ok: true, access_key: accessKey, state });
 }
 
 async function studentDashboard(session: SessionAccount, req: Request, requestedId?: string): Promise<Response> {
@@ -428,11 +705,13 @@ async function syncLearning(session: SessionAccount, req: Request): Promise<Resp
     sessions?: Record<string, unknown>[];
     mastery?: Record<string, unknown>[];
     review?: Record<string, unknown>[];
+    lessons?: Record<string, unknown>[];
   }>(req);
   const attempts = (payload.attempts ?? []).slice(-10000);
   const sessions = (payload.sessions ?? []).slice(-1000);
   const mastery = (payload.mastery ?? []).slice(-5000);
   const review = (payload.review ?? []).slice(-5000);
+  const lessons = (payload.lessons ?? []).slice(-2000);
 
   const attemptRows = await Promise.all(attempts.map(async (row, index) => {
     const seed = JSON.stringify([row.id, row.question_id, row.at, row.occurred_at, row.response, index]);
@@ -502,11 +781,31 @@ async function syncLearning(session: SessionAccount, req: Request): Promise<Resp
     updated_at: new Date().toISOString(),
   })).filter((row) => row.question_id);
 
+  const lessonRows = lessons.map((row) => {
+    const courseKey = canonicalCourseKey(row.course_key ?? row.course);
+    const unitIndex = Number(row.unit_index ?? (Number(row.unit ?? 1) - 1));
+    const topic = String(row.topic ?? "").trim();
+    const accessKey = String(row.access_key ?? lessonAccessKey(courseKey, unitIndex, topic));
+    return {
+      organization_id: session.organization_id,
+      account_id: session.account_id,
+      access_key: accessKey,
+      course_key: courseKey,
+      unit_index: unitIndex,
+      topic,
+      title: String(row.title ?? ""),
+      completed_at: String(row.completed_at ?? row.completedAt ?? new Date().toISOString()),
+      payload: row,
+      updated_at: new Date().toISOString(),
+    };
+  }).filter((row) => row.course_key && Number.isInteger(row.unit_index) && row.unit_index >= 0 && row.topic && row.access_key === lessonAccessKey(row.course_key, row.unit_index, row.topic));
+
   const operations = [];
   if (attemptRows.length) operations.push(admin.from("learning_attempts").upsert(attemptRows, { onConflict: "account_id,client_event_id", ignoreDuplicates: true }));
   if (sessionRows.length) operations.push(admin.from("learning_sessions").upsert(sessionRows, { onConflict: "account_id,client_session_id" }));
   if (masteryRows.length) operations.push(admin.from("mastery_records").upsert(masteryRows, { onConflict: "account_id,skill_key" }));
   if (reviewRows.length) operations.push(admin.from("review_items").upsert(reviewRows, { onConflict: "account_id,question_id" }));
+  if (lessonRows.length) operations.push(admin.from("lesson_completions").upsert(lessonRows, { onConflict: "account_id,access_key" }));
   const results = await Promise.all(operations);
   const failed = results.find((result) => result.error);
   if (failed?.error) throw failed.error;
@@ -518,6 +817,7 @@ async function syncLearning(session: SessionAccount, req: Request): Promise<Resp
       sessions: sessionRows.length,
       mastery: masteryRows.length,
       review: reviewRows.length,
+      lessons: lessonRows.length,
     },
   });
 }
@@ -716,7 +1016,7 @@ Deno.serve(async (req: Request) => {
   const path = new URL(req.url).pathname.split("/institution-api")[1] || "/";
   try {
     if (path === "/health" && req.method === "GET") {
-      return json(req, { ok: true, service: "echs-institution-api", version: "3.0.0" });
+      return json(req, { ok: true, service: "echs-institution-api", version: "4.0.0" });
     }
     const session = await sessionFromRequest(req);
     if (!session) return fail(req, "Sign in is required", 401, "unauthenticated");
@@ -728,10 +1028,16 @@ Deno.serve(async (req: Request) => {
     }
     if (path === "/classes" && req.method === "GET") return await listClasses(session, req);
     if (path === "/classes" && req.method === "POST") return await createClass(session, req);
+    if (path === "/lesson-access" && req.method === "GET") return await listLessonAccess(session, req);
+    if (path === "/lesson-access/check" && req.method === "POST") return await checkLessonAccess(session, req);
+    if (path === "/lesson-access/catalog" && req.method === "POST") return await syncLessonCatalog(session, req);
     const memberMatch = path.match(/^\/classes\/([0-9a-f-]{36})\/members$/i);
     if (memberMatch && req.method === "POST") return await setMembers(session, req, memberMatch[1]);
     const dashboardMatch = path.match(/^\/classes\/([0-9a-f-]{36})\/dashboard$/i);
     if (dashboardMatch && req.method === "GET") return await classDashboard(session, req, dashboardMatch[1]);
+    const lessonAccessMatch = path.match(/^\/classes\/([0-9a-f-]{36})\/lesson-access$/i);
+    if (lessonAccessMatch && req.method === "GET") return await classLessonAccess(session, req, lessonAccessMatch[1]);
+    if (lessonAccessMatch && req.method === "PUT") return await updateClassLessonAccess(session, req, lessonAccessMatch[1]);
     if (path === "/assignments" && req.method === "GET") return await listAssignments(session, req);
     if (path === "/assignments" && req.method === "POST") return await createAssignment(session, req);
     if (path === "/timetable" && req.method === "GET") return await listTimetable(session, req);

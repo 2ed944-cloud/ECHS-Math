@@ -99,7 +99,7 @@ def validate_source(root: Path, errors: list[str]) -> None:
     require(recovery_ui, ("Protected recovery", "practiceBankTransport", "data-retry-practice", "fixAuthenticatedHeader"), "Practice recovery controller", errors)
     require(recovery_css, ("practiceStudio .studioHero h1", "connectionRecovery", "transportPill"), "Practice recovery stylesheet", errors)
     require(practice_api, ("assignedCourses", "course_not_assigned", "student_scope_required", '.containedBy("course_keys", [course])', "practice-bank-api", "media_course_mismatch"), "Strict practice API", errors)
-    require(practice, ("practice-scope-access.css?v=20260730-redesign", "practice-recovery-polish.css?v=20260730-recovery1", "bank.js?v=20260730-calculus-only", "practice-global-bridge.js?v=20260730-redesign", "practice-course-isolation.js?v=20260730-redesign", "mapped-private-bank-practice.js?v=20260802-remove-source-notice1", "mapped-practice.js?v=20260802-multi-route2", "practice-single-bank.js?v=20260802-multi-route2", "practice-recovery-ui.js?v=20260730-recovery1", 'id="course"', 'id="bank"', 'id="scope"', 'id="visibility"'), "Focused practice page", errors)
+    require(practice, ("practice-scope-access.css?v=20260730-redesign", "practice-recovery-polish.css?v=20260730-recovery1", "bank.js?v=20260730-calculus-only", "practice-global-bridge.js?v=20260730-redesign", "practice-course-isolation.js?v=20260730-redesign", "mapped-private-bank-practice.js?v=20260802-remove-source-notice1", "mapped-practice.js?v=20260830-lesson-visibility1", "practice-single-bank.js?v=20260802-multi-route2", "practice-recovery-ui.js?v=20260730-recovery1", 'id="course"', 'id="bank"', 'id="scope"', 'id="visibility"'), "Focused practice page", errors)
     forbid(practice, ('src="js/private-bank-practice.js', 'src="js/ib-private-bank-lesson-aliases.js', 'src="js/ib-exact-lesson-bank-aliases.js', 'src="js/practice.js'), "Focused practice page", errors)
     bank_index = practice.find('src="js/bank.js')
     global_index = practice.find('src="js/practice-global-bridge.js')
@@ -145,7 +145,7 @@ def validate_artifact(root: Path, errors: list[str]) -> None:
     for name in LESSONS:
         relative = f"lessons/ib-math-ai/unit-1/lessons/{name}"
         text = read(root, relative, errors)
-        require(text, ('data-echs-lesson-guard="1"', 'name="echs-course" content="ib-math-ai"', "css/learning-access.css?v=20260729-iblinks1", "css/ib-lesson-platform-integration.css?v=20260729-iblinks1", "js/lesson-access-guard.js?v=20260729-iblinks1", "js/ib-lesson-platform-integration.js?v=20260729-iblinks1"), relative, errors)
+        require(text, ('data-echs-lesson-guard="1"', 'name="echs-course" content="ib-math-ai"', "css/learning-access.css?v=20260729-iblinks1", "css/ib-lesson-platform-integration.css?v=20260729-iblinks1", "js/lesson-access-guard.js?v=20260830-lesson-visibility1", "js/ib-lesson-platform-integration.js?v=20260729-iblinks1"), relative, errors)
     for name, target in REDIRECTS.items():
         relative = f"lessons/ib-math-ai/unit-1/lessons/{name}"
         text = read(root, relative, errors)

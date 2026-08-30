@@ -70,9 +70,9 @@ def inject_lesson(root: Path, path: Path) -> bool:
         if resolved_course == "ib-math-ai" else ""
     )
     scripts = (
-        f'\n<script src="{institution}?v=20260727-pathway"></script>'
-        f'<script src="{access}?v=20260727-pathway"></script>'
-        f'<script src="{guard}?v=20260729-iblinks1"></script>'
+        f'\n<script src="{institution}?v=20260830-lesson-visibility1"></script>'
+        f'<script src="{access}?v=20260830-lesson-visibility1"></script>'
+        f'<script src="{guard}?v=20260830-lesson-visibility1"></script>'
         f'{ib_script}\n'
     )
     text = insert_before(text, "</head>", head)
@@ -120,8 +120,8 @@ def inject_learning_page(root: Path, path: Path, roles: str) -> bool:
         f'  <link rel="stylesheet" href="{css}?v=20260729-iblinks1">\n'
     )
     scripts = (
-        f'\n<script src="{institution}?v=20260727-pathway"></script>'
-        f'<script src="{access}?v=20260727-pathway"></script>\n'
+        f'\n<script src="{institution}?v=20260830-lesson-visibility1"></script>'
+        f'<script src="{access}?v=20260830-lesson-visibility1"></script>\n'
     )
     text = insert_before(text, "</head>", head)
     text = insert_before(text, "</body>", scripts)

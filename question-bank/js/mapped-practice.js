@@ -45,6 +45,7 @@ const params = ECHSBank.params(),
   assignmentId = params.get("assignment"),
   assignmentTitle = params.get("title"),
   fromLesson = params.get("from"),
+  requestedAccessKey = params.get("accessKey"),
   requestedTopic = params.get("topic"),
   requestedUnit = params.get("unit");
 const modeCopy = {
@@ -1433,6 +1434,23 @@ document.addEventListener("keydown", practiceKeyboard);
       UI.shell.innerHTML =
         '<div class="lockedPractice"><h2>This course is not assigned to your account</h2><p>Return to your dashboard or ask your teacher to update the class roster.</p></div>';
       return;
+    }
+    if (student() && fromLesson && !assignmentId) {
+      const routeKey = requestedAccessKey || (
+        requested && requestedUnit && requestedTopic
+          ? `${requested}::${Math.max(0, Number(requestedUnit) - 1)}::${requestedTopic}`
+          : ""
+      );
+      const decision = await ECHSInstitution.api(
+        "institution-api",
+        "/lesson-access/check",
+        { method: "POST", body: { course_key: requested, access_key: routeKey } },
+      );
+      if (!decision.allowed) {
+        UI.shell.innerHTML =
+          '<div class="lockedPractice"><h2>This lesson is not available yet</h2><p>Complete the previous lesson and its practice, or ask your teacher to show this lesson.</p><a class="button wine" href="../index.html#courses">Return to learning path</a></div>';
+        return;
+      }
     }
     if (requested && courseKeys().includes(requested))
       UI.course.value = requested;

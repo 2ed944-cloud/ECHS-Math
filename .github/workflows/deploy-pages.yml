@@ -37,6 +37,8 @@ on:
       - "tools/fingerprint_school_control.py"
       - "tools/inject_learning_access_guard.py"
       - "tools/test_learning_access_contract.py"
+      - "tools/test_lesson_visibility_contract.py"
+      - "tools/test_lesson_visibility_progression.mjs"
       - "tools/test_institution_identity_mount.mjs"
       - "tools/validate_pages_artifact.py"
   workflow_dispatch:
@@ -74,7 +76,9 @@ jobs:
         run: node tools/test_institution_identity_mount.mjs
 
       - name: Verify authenticated learning pathway source contract
-        run: python tools/test_learning_access_contract.py .
+        run: |
+          python tools/test_learning_access_contract.py .
+          python tools/test_lesson_visibility_contract.py .
 
       - name: Verify all local HTML references
         run: python tools/validate_local_links.py .

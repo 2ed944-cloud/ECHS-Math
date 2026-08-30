@@ -12,7 +12,8 @@
     selectedQuestionIds = new Set(),
     selectedAssignmentBanks = new Set(),
     selectedAssignmentTargets = new Set(),
-    assignmentLoadToken = 0;
+    assignmentLoadToken = 0,
+    lessonAccess = [];
   const $ = (id) => document.getElementById(id),
     X = window.ECHSExperience,
     esc = X.escapeHTML;
@@ -252,13 +253,23 @@
       renderEmpty();
       return;
     }
-    classData = preview
-      ? previewClassData
-      : await ECHSInstitution.api(
-          "institution-api",
-          `/classes/${selectedClass.id}/dashboard`,
-        );
+    if (preview) {
+      classData = previewClassData;
+      lessonAccess = [
+        { access_key: "ap-precalculus::0::0", topic: "0", title: "Course Launch and Diagnostic", unit_title: "Unit 1", position: 0, override_state: "auto", default_state: "shown" },
+        { access_key: "ap-precalculus::0::1.1", topic: "1.1", title: "Change in Tandem", unit_title: "Unit 1", position: 1, override_state: "auto", default_state: "shown" },
+        { access_key: "ap-precalculus::0::1.2", topic: "1.2", title: "Rates of Change", unit_title: "Unit 1", position: 2, override_state: "auto", default_state: "progression" },
+      ];
+    } else {
+      const [dashboard, visibility] = await Promise.all([
+        ECHSInstitution.api("institution-api", `/classes/${selectedClass.id}/dashboard`),
+        ECHSInstitution.api("institution-api", `/classes/${selectedClass.id}/lesson-access`),
+      ]);
+      classData = dashboard;
+      lessonAccess = visibility.lessons || [];
+    }
     renderClass();
+    renderLessonAccess();
   }
   function publishSmartRouteContext() {
     const context = {
@@ -287,6 +298,9 @@
     ["heroMastery", "classAccuracy", "coverageMetric"].forEach(
       (id) => ($(id).textContent = "0%"),
     );
+    lessonAccess = [];
+    if ($("lessonAccessBadge")) $("lessonAccessBadge").textContent = "No class selected";
+    if ($("lessonAccessList")) $("lessonAccessList").innerHTML = '<div class="emptyInstitution">Choose a class to manage lesson visibility.</div>';
     publishSmartRouteContext();
   }
   function activityClass(value) {
@@ -385,6 +399,55 @@
     $("classHeatmap").innerHTML = skills.length
       ? html
       : '<div class="emptyInstitution" style="grid-column:1/-1">Heatmap appears after topic evidence is available.</div>';
+  }
+  function lessonAccessCopy(row) {
+    if (row.override_state === "shown") return "Shown by teacher or administrator";
+    if (row.override_state === "hidden") return "Hidden by teacher or administrator";
+    return row.position < 2
+      ? "Shown automatically as an opening lesson"
+      : "Automatic after the previous lesson and practice are complete";
+  }
+  function renderLessonAccess() {
+    if (!$("lessonAccessList")) return;
+    const query = $("lessonAccessSearch")?.value.trim().toLowerCase() || "";
+    const rows = lessonAccess.filter((row) =>
+      !query || [row.topic, row.title, row.unit_title].some((value) =>
+        String(value || "").toLowerCase().includes(query),
+      ),
+    );
+    const shown = lessonAccess.filter((row) => row.override_state === "shown").length;
+    const hidden = lessonAccess.filter((row) => row.override_state === "hidden").length;
+    $("lessonAccessBadge").textContent = `${lessonAccess.length} ready · ${shown} shown · ${hidden} hidden`;
+    $("lessonAccessList").innerHTML = rows.length
+      ? rows.map((row) => {
+          const automaticLabel = row.position < 2 ? "Automatic · opening lesson" : "Automatic · progress unlock";
+          return `<div class="lessonAccessRow" data-state="${esc(row.override_state || "auto")}"><span class="lessonAccessNumber">${esc(row.topic)}</span><div class="lessonAccessCopy"><strong>${esc(row.title)}</strong><small>${esc(row.unit_title)}</small><b>${esc(lessonAccessCopy(row))}</b></div><select class="lessonAccessSelect" data-lesson-access="${esc(row.access_key)}" aria-label="Visibility for ${esc(row.topic)} ${esc(row.title)}"><option value="auto" ${row.override_state === "auto" ? "selected" : ""}>${esc(automaticLabel)}</option><option value="shown" ${row.override_state === "shown" ? "selected" : ""}>Show to students</option><option value="hidden" ${row.override_state === "hidden" ? "selected" : ""}>Hide from students</option></select></div>`;
+        }).join("")
+      : '<div class="emptyInstitution">No ready lessons match this search.</div>';
+    document.querySelectorAll("[data-lesson-access]").forEach((select) => {
+      select.onchange = async () => {
+        const row = lessonAccess.find((item) => item.access_key === select.dataset.lessonAccess);
+        if (!row || preview) {
+          if (preview) X.toast("Lesson visibility controls become active after deployment.", "warning");
+          renderLessonAccess();
+          return;
+        }
+        select.disabled = true;
+        try {
+          const result = await ECHSInstitution.api(
+            "institution-api",
+            `/classes/${selectedClass.id}/lesson-access`,
+            { method: "PUT", body: { access_key: row.access_key, state: select.value } },
+          );
+          row.override_state = result.state;
+          renderLessonAccess();
+          X.toast(result.state === "shown" ? "Lesson shown to this class." : result.state === "hidden" ? "Lesson hidden from this class." : "Automatic lesson progression restored.");
+        } catch (error) {
+          renderLessonAccess();
+          X.toast(error.message || "Lesson visibility could not be updated.", "warning");
+        }
+      };
+    });
   }
   function renderClass() {
     const summary = classData.summary || {},
@@ -1081,6 +1144,7 @@
       await loadClass();
     };
     $("studentSearch").oninput = renderStudents;
+    $("lessonAccessSearch").oninput = renderLessonAccess;
     $("manageClass").onclick = () => {
       if (!selectedClass) {
         $("classForm").reset();

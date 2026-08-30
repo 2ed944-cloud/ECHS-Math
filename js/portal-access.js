@@ -5,8 +5,9 @@
     "ap-calculus":"ap-calculus","ap-calculus-ab":"ap-calculus","ap-calculus-bc":"ap-calculus",
     "ap-precalculus":"ap-precalculus","ap-precalculus-g10-g11":"ap-precalculus",
     "algebra-2":"algebra-2","algebra-2-concepts":"algebra-2","g10-algebra2-ap-readiness":"algebra-2",
-    "ib-math-ai":"ib-math-ai","ib-mathematics-ai":"ib-math-ai",
-    "grade-9":"grade-9","grade-9-pre-precalculus":"grade-9","g9-pre-precalculus":"grade-9"
+    "ib-math-ai":"ib-math-ai","ib-mathematics-ai":"ib-math-ai","g11-ib-ai":"ib-math-ai",
+    "grade-9":"grade-9","grade-9-pre-precalculus":"grade-9","g9-pre-precalculus":"grade-9",
+    "g12-ap-calculus-ab":"ap-calculus"
   };
   const normalise=value=>{
     const key=String(value||"").trim().toLowerCase().replace(/&/g,"and").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");

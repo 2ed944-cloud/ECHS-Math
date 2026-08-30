@@ -83,9 +83,13 @@
     const params=new URLSearchParams(location.search);
     const rawCourse=params.get("course")||document.querySelector('meta[name="echs-course"]')?.content||"";
     const course=ECHSPortalAccess.normaliseCourseKey?.(rawCourse)||rawCourse;
-    const lessonKey=params.get("lessonKey")||"",unit=params.get("unit")||"",topic=params.get("topic")||"",title=params.get("title")||document.title||"Lesson";
+    const lessonKey=params.get("lessonKey")||"",accessKey=params.get("accessKey")||"",unit=params.get("unit")||"",topic=params.get("topic")||"",title=params.get("title")||document.title||"Lesson";
     if(access.role==="student"&&!ECHSPortalAccess.courseAllowed(course,access)){location.replace(ECHSInstitution.root("question-bank/student.html?notice=course-not-assigned"));return;}
-    const practiceParams=new URLSearchParams({course,unit,topic,from:lessonKey,title,mode:"adaptive",autostart:"1"});
+    if(access.role==="student"){
+      const decision=await ECHSInstitution.api("institution-api","/lesson-access/check",{method:"POST",body:{course_key:course,access_key:accessKey}});
+      if(!decision.allowed){location.replace(ECHSInstitution.root(`question-bank/student.html?notice=${encodeURIComponent(decision.reason||"lesson-not-available")}`));return;}
+    }
+    const practiceParams=new URLSearchParams({course,unit,topic,from:lessonKey,accessKey,title,mode:"adaptive",autostart:"1"});
     const practiceHref=ECHSInstitution.root(`question-bank/practice.html?${practiceParams}`),pathHref=ECHSInstitution.root("index.html#courses"),dashboardHref=ECHSPortalAccess.roleHome(access.current),isComplete=completed(lessonKey);
     document.documentElement.dataset.lessonGate="allowed";
     document.documentElement.dataset.echsLessonCourse=course||"unassigned";

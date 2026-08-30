@@ -32,6 +32,7 @@
       rel="stylesheet"
       href="css/teacher-assignment-studio.css?v=20260802-multi-route2"
     />
+    <link rel="stylesheet" href="css/lesson-visibility-controls.css?v=20260830-visibility1" />
   <link rel="stylesheet" href="../css/echs-design-system-v5.css?v=20260807-v5">
 <link rel="stylesheet" href="../css/echs-design-system-v5-1.css?v=20260807-v51">
 </head>
@@ -66,6 +67,8 @@
             ><span class="institutionNavIcon">◎</span>Skill Analysis</a
           ><a href="#assignmentsSection"
             ><span class="institutionNavIcon">✓</span>Assignments</a
+          ><a href="#lessonAccessSection"
+            ><span class="institutionNavIcon">◉</span>Lesson Visibility</a
           ><a href="#timetableSection"
             ><span class="institutionNavIcon">◷</span>My Timetable</a
           >
@@ -409,6 +412,34 @@
               <div class="emptyInstitution">Loading your timetable…</div>
             </div>
           </section>
+          <div class="premiumSectionHead" id="lessonAccessSection">
+            <div>
+              <small>Student access</small>
+              <h2>Lesson visibility</h2>
+              <p>
+                The first two ready lessons appear automatically. Later lessons
+                unlock after the previous lesson and its practice are complete.
+                Show or hide any lesson for the selected class when needed.
+              </p>
+            </div>
+            <span class="cardBadge" id="lessonAccessBadge">Loading lessons</span>
+          </div>
+          <section class="premiumCard span12 lessonAccessCard">
+            <div class="lessonAccessToolbar">
+              <div class="lessonAccessLegend" aria-label="Lesson visibility rules">
+                <span><i class="automatic"></i> Automatic</span>
+                <span><i class="shown"></i> Shown by staff</span>
+                <span><i class="hidden"></i> Hidden by staff</span>
+              </div>
+              <div class="iControl lessonAccessSearch">
+                <label for="lessonAccessSearch">Find lesson</label>
+                <input id="lessonAccessSearch" type="search" placeholder="Number, unit, or title" />
+              </div>
+            </div>
+            <div class="lessonAccessList" id="lessonAccessList">
+              <div class="emptyInstitution">Choose a class to manage lesson visibility.</div>
+            </div>
+          </section>
           <div class="premiumSectionHead" id="assignmentsSection">
             <div>
               <small>Plan the next step</small>
@@ -730,7 +761,7 @@
     <script src="js/bank.js?v=20260801-echs-bank-export1"></script>
     <script src="../js/institution-client.js?v=20260726-phase3"></script>
     <script src="../js/institution-experience.js?v=20260726-phase4"></script>
-    <script src="js/teacher-cloud.js?v=20260802-multi-route2"></script>
+    <script src="js/teacher-cloud.js?v=20260830-lesson-visibility1"></script>
   <script src="../js/visible-copy-guard-v5.js?v=20260807-v5"></script>
 <!-- pages-artifact-contract: Teacher Dashboard -->
 </body>
