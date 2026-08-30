@@ -1,0 +1,146 @@
+name: Temporary AP Precalculus Provisioning Session
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/temp-ap-pre-session.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: temporary-ap-precalculus-provisioning
+  cancel-in-progress: false
+
+jobs:
+  issue-session:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment: institutional-production
+    env:
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+      SESSION_PUBLIC_KEY_B64: "LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUlJQ0lqQU5CZ2txaGtpRzl3MEJBUUVGQUFPQ0FnOEFNSUlDQ2dLQ0FnRUFueStLUjQvSDFOYTdzMHYyVjcyVgpEMWJuSDJZM21oM3M2NjVialU3ekI5RWUvcmMvd2NWbWZvWmF3ZWFGRUJwbmk4YUNMYUR1Rzl3MFdCa2lUa29HCjR1TmpOOEIycTRhdUM1QmgrVmpvYlFTM3poTk1KSG8rbGhYY2Z1ODVlQXQ1dFAwekk3UHBXc1d2emJzYjR4aUoKNnczRko2MVZlWWdFeVJWS2NFUkpobEZWNTEybnprYTMrcFdnQk5UUit0MTlRVXRvbzVSZXVVT3dER29laGd4UApaRGVOWWVXYWU3YzZDZ25FWk5sS1lxRWZkOVF2K09yNTFnL29OcmxoTEp5LzlSWnJhSWtFR3NNZUZ5NjBDTnV6ClpsMkNhL0tYZVByR0dFYkRnWE0yc2ZrRVRwMVZiYVhjMTNHa1ZBWG8xUjByOU95c3haN25DemVqUTZqazl6VE4KUXVFbVpkd2YyRkhCSW9sVktVdk5rMGpEc2FnRE9OTVdzY0pucUtncU4vcDhDMUxZVlFHR0hXT2NZeFpMT2ZlVApLQjl1N0dmR0NPYlU2YWhCblZlaGlJSzJ3eWE2aDcvU0JIaGhRVDBYQnk1ZmVGNExuaXJmUWZPbTliS2I3WTMrClBCVEhlM25GWEhTbDlva1FTTTZxeFFNeGVnTHRSVnJhTjJ4bUo4anAvWlEwRHdXQlJiSzd0cEtDY2ZVRWVPdWQKMk1uNUxDQ0hCNUp0anNDOG13OU1aSDNUcmVUSUNtNEcyZXdEaWExdUNWQ1dFVjArcHladi84QXpSY3hxQ3pwNgpabDh5S0NqK2FTY1cySzVwdmYyVlJOZ1NwR0dDNE96TnhoaGoyK1hDaXhRUG5JeW1hU0dib1NPM3RrenNQWlQ1ClhpYTR0MWRPcngzOFlBOExLc2JVQVlVQ0F3RUFBUT09Ci0tLS0tRU5EIFBVQkxJQyBLRVktLS0tLQo="
+    steps:
+      - name: Confirm protected credentials
+        shell: bash
+        run: |
+          set -euo pipefail
+          for name in SUPABASE_URL SUPABASE_SERVICE_ROLE_KEY SESSION_PUBLIC_KEY_B64; do
+            if [ -z "${!name:-}" ]; then
+              echo "Required protected value is unavailable: $name" >&2
+              exit 1
+            fi
+          done
+
+      - name: Issue encrypted 30-minute session and resolve class
+        shell: bash
+        run: |
+          set -euo pipefail
+          umask 077
+          printf '%s' "$SESSION_PUBLIC_KEY_B64" | base64 --decode > recipient.pem
+          python - <<'PY'
+          import datetime
+          import hashlib
+          import json
+          import os
+          import secrets
+          import urllib.parse
+          import urllib.request
+
+          base = os.environ["SUPABASE_URL"].rstrip("/")
+          key = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
+          headers = {
+              "apikey": key,
+              "authorization": f"Bearer {key}",
+              "content-type": "application/json",
+          }
+
+          account_query = urllib.parse.urlencode(
+              {
+                  "select": "id",
+                  "role": "eq.admin",
+                  "status": "eq.active",
+                  "order": "created_at.asc",
+                  "limit": "1",
+              },
+              safe=",",
+          )
+          request = urllib.request.Request(
+              f"{base}/rest/v1/accounts?{account_query}",
+              headers=headers,
+          )
+          with urllib.request.urlopen(request, timeout=60) as response:
+              accounts = json.load(response)
+          if not accounts:
+              raise SystemExit("No active administrator account is available")
+
+          class_query = urllib.parse.urlencode(
+              {
+                  "select": "name,course_key,section",
+                  "status": "eq.active",
+                  "order": "name.asc",
+              },
+              safe=",",
+          )
+          request = urllib.request.Request(
+              f"{base}/rest/v1/classes?{class_query}",
+              headers=headers,
+          )
+          with urllib.request.urlopen(request, timeout=60) as response:
+              classes = json.load(response)
+          candidates = [
+              row for row in classes
+              if "precalculus" in str(row.get("name", "")).lower()
+              or "precalculus" in str(row.get("course_key", "")).lower()
+          ]
+
+          token = secrets.token_urlsafe(48)
+          token_hash = hashlib.sha256(token.encode("utf-8")).hexdigest()
+          expires = datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(minutes=30)
+          rpc_body = json.dumps(
+              {
+                  "p_account_id": accounts[0]["id"],
+                  "p_token_hash": token_hash,
+                  "p_expires_at": expires.isoformat(),
+                  "p_user_agent_hash": hashlib.sha256(b"codex-ap-precalculus-provisioner").hexdigest(),
+                  "p_ip_hash": hashlib.sha256(b"github-actions").hexdigest(),
+              }
+          ).encode("utf-8")
+          rpc_request = urllib.request.Request(
+              f"{base}/rest/v1/rpc/api_create_session",
+              data=rpc_body,
+              method="POST",
+              headers=headers,
+          )
+          with urllib.request.urlopen(rpc_request, timeout=60) as response:
+              response.read()
+
+          payload = {
+              "token": token,
+              "expires_at": expires.isoformat(),
+              "class_match_count": len(candidates),
+              "candidate_names": [str(row.get("name", ""))[:100] for row in candidates[:5]],
+          }
+          if len(candidates) == 1:
+              payload["class_name"] = str(candidates[0].get("name", ""))
+          with open("session.json", "w", encoding="utf-8") as handle:
+              json.dump(payload, handle, separators=(",", ":"))
+          PY
+          gzip -9 -c session.json > session.json.gz
+          openssl pkeyutl -encrypt             -pubin             -inkey recipient.pem             -in session.json.gz             -out secure-session.bin             -pkeyopt rsa_padding_mode:oaep             -pkeyopt rsa_oaep_md:sha256
+          shred -u session.json session.json.gz
+          unlink recipient.pem
+          test -s secure-session.bin
+          echo "Encrypted temporary session issued."
+
+      - name: Upload encrypted session
+        uses: actions/upload-artifact@v4
+        with:
+          name: temporary-ap-pre-session-${{ github.run_id }}
+          path: secure-session.bin
+          if-no-files-found: error
+          retention-days: 1
+
