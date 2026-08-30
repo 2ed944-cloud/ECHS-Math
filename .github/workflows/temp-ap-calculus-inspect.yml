@@ -1,0 +1,98 @@
+name: Temporary AP Calculus Class Inspection
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/temp-ap-calculus-inspect.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  inspect-classes:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment: institutional-production
+    env:
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+    steps:
+      - name: Inspect active AP Calculus classes
+        shell: bash
+        run: |
+          set -euo pipefail
+          umask 077
+          python - <<'PY'
+          import json
+          import os
+          import urllib.parse
+          import urllib.request
+
+          base = os.environ["SUPABASE_URL"].rstrip("/")
+          key = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
+          headers = {
+              "apikey": key,
+              "authorization": f"Bearer {key}",
+              "content-type": "application/json",
+          }
+
+          query = urllib.parse.urlencode(
+              {
+                  "select": "id,name,course_key,academic_year,section,status",
+                  "status": "eq.active",
+                  "order": "name.asc",
+              },
+              safe=",",
+          )
+          request = urllib.request.Request(
+              f"{base}/rest/v1/classes?{query}",
+              headers=headers,
+          )
+          with urllib.request.urlopen(request, timeout=60) as response:
+              classes = json.load(response)
+
+          matches = []
+          for row in classes:
+              haystack = f"{row.get('name', '')} {row.get('course_key', '')}".lower()
+              if "calculus" not in haystack or "precalculus" in haystack:
+                  continue
+              membership_query = urllib.parse.urlencode(
+                  {
+                      "select": "account_id",
+                      "class_id": f"eq.{row['id']}",
+                      "membership_role": "eq.student",
+                  },
+                  safe=",",
+              )
+              membership_request = urllib.request.Request(
+                  f"{base}/rest/v1/class_memberships?{membership_query}",
+                  headers=headers,
+              )
+              with urllib.request.urlopen(membership_request, timeout=60) as response:
+                  memberships = json.load(response)
+              matches.append(
+                  {
+                      "id": row["id"],
+                      "name": row["name"],
+                      "course_key": row["course_key"],
+                      "academic_year": row.get("academic_year"),
+                      "section": row.get("section"),
+                      "student_members": len(memberships),
+                  }
+              )
+
+          with open("inspection-result.json", "w", encoding="utf-8") as handle:
+              json.dump({"ok": True, "matches": matches}, handle)
+          print(f"Found {len(matches)} active AP Calculus class(es).")
+          PY
+
+      - name: Upload inspection result
+        uses: actions/upload-artifact@v4
+        with:
+          name: temporary-ap-calculus-inspection-${{ github.run_id }}
+          path: inspection-result.json
+          if-no-files-found: error
+          retention-days: 1
+
