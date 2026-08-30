@@ -62,7 +62,7 @@ jobs:
 
           account_query = urllib.parse.urlencode(
               {
-                  "select": "id",
+                  "select": "id,username",
                   "role": "eq.student",
                   "status": "eq.active",
                   "grade": "eq.12",
@@ -75,9 +75,16 @@ jobs:
               headers=headers,
           )
           with urllib.request.urlopen(request, timeout=60) as response:
-              grade12 = json.load(response)
+              all_grade12 = json.load(response)
+          grade12 = [
+              row
+              for row in all_grade12
+              if str(row.get("username", "")).lower().startswith("g12.")
+          ]
           if len(grade12) != 19:
-              raise SystemExit(f"Expected 19 active Grade 12 accounts, found {len(grade12)}")
+              raise SystemExit(
+                  f"Expected 19 managed Grade 12 accounts, found {len(grade12)}"
+              )
           target_ids = {row["id"] for row in grade12}
 
           results = []
@@ -167,4 +174,3 @@ jobs:
           path: enrollment-result.json
           if-no-files-found: error
           retention-days: 1
-
