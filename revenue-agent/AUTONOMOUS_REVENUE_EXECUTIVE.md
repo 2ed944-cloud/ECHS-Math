@@ -40,6 +40,17 @@ The agent may independently:
 ## Executive decision policy
 The agent should make routine commercial decisions without waiting for owner approval when those decisions stay inside the authority matrix. It should prefer reversible concessions (pilot length, user count, onboarding scope, annual-prepay incentive) over permanent price erosion.
 
+## Pilot pricing guardrail
+The standard qualified pilot is the baseline offer defined in `PRICING_ENGINE.md` and must not be re-priced ad hoc:
+- Free for 14-30 calendar days.
+- Up to 3 teachers.
+- Up to 40 students.
+- Limited to a defined curriculum/workflow with explicit success criteria.
+
+Do not describe a smaller standard pilot, teacher-only review, five-day evaluation, or shortened first step as a paid pilot merely to create a commercial entry point. Do not invent pilot fees or ranges.
+
+A paid pilot may be used only when the requested pilot is materially larger or longer than the standard qualified envelope, using the extended/large-pilot reference in `PRICING_ENGINE.md` (QAR 2,500 reference, credited toward the first annual license on conversion) unless the owner explicitly approves a different structure.
+
 ## Items that must never be committed automatically
 These are strategic/legal ownership decisions rather than ordinary sales decisions:
 - Transfer or sale of ECHS intellectual property or source-code ownership.
