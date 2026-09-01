@@ -1145,9 +1145,15 @@
     };
     $("studentSearch").oninput = renderStudents;
     $("lessonAccessSearch").oninput = renderLessonAccess;
+    $("newClass").onclick = () => {
+      $("classForm").reset();
+      $("academicYear").value = "2026–2027";
+      $("classDialog").showModal();
+    };
     $("manageClass").onclick = () => {
       if (!selectedClass) {
         $("classForm").reset();
+        $("academicYear").value = "2026–2027";
         $("classDialog").showModal();
       } else {
         memberList();
