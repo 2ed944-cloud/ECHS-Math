@@ -1,179 +1,2835 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>AP Precalculus 1.1 | Change in Tandem | ECHS</title>
-<style>
-:root{--navy:#0c2747;--blue:#0f77b7;--gold:#c89b2c;--ink:#172033;--muted:#5d6a7d;--line:#d8e0e8;--soft:#f4f8fb;--green:#126b50;--red:#aa2934;--purple:#6b3ea0;--white:#fff}
-*{box-sizing:border-box}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Arial,sans-serif;color:var(--ink);background:#eef3f7;line-height:1.55}.top{position:sticky;top:0;z-index:20;background:rgba(12,39,71,.97);color:#fff;border-bottom:4px solid var(--gold)}.top-inner{max-width:1180px;margin:auto;padding:14px 22px;display:flex;align-items:center;gap:18px}.brand{font-weight:900;letter-spacing:.08em}.top a{color:#fff;text-decoration:none}.nav{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}.nav a{padding:7px 10px;border-radius:999px;background:rgba(255,255,255,.09);font-size:.88rem}.page{max-width:1180px;margin:24px auto;padding:0 20px 60px}.hero{background:linear-gradient(135deg,var(--navy),#164d7b);color:#fff;border-radius:26px;padding:40px;box-shadow:0 20px 48px rgba(20,40,70,.16)}.eyebrow{color:#f3c95c;font-weight:800;letter-spacing:.08em;text-transform:uppercase;font-size:.85rem}.hero h1{font-size:clamp(2.3rem,6vw,4.7rem);line-height:1;margin:.15em 0}.hero p{font-size:1.15rem;max-width:850px}.pill-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.pill{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.28);padding:8px 12px;border-radius:999px;font-size:.92rem}.section{background:#fff;border:1px solid var(--line);border-radius:22px;margin-top:20px;padding:28px;box-shadow:0 10px 30px rgba(25,50,80,.07)}h2{color:var(--navy);font-size:1.8rem;margin:.1em 0 .5em}h3{color:var(--navy);margin:1.1em 0 .35em}.grid2,.grid3,.grid4{display:grid;gap:16px}.grid2{grid-template-columns:repeat(2,minmax(0,1fr))}.grid3{grid-template-columns:repeat(3,minmax(0,1fr))}.grid4{grid-template-columns:repeat(4,minmax(0,1fr))}.card{border:1px solid var(--line);background:var(--soft);border-radius:16px;padding:18px}.card strong{color:var(--navy)}.lo{border-left:6px solid var(--blue)}.ek{border-left:6px solid var(--gold)}.warn{border-left:6px solid var(--red);background:#fff5f6}.success{border-left:6px solid var(--green);background:#f2fbf7}.challenge{border-left:6px solid var(--purple);background:#f8f4fc}.math{font-family:Cambria Math,STIX Two Math,serif;font-size:1.03em}.formula{display:inline-block;padding:7px 11px;background:#eef5fb;border:1px solid #c9dae8;border-radius:10px}.table-wrap{overflow:auto}table{border-collapse:collapse;width:100%;margin:12px 0}th,td{border:1px solid #cfd9e4;padding:10px 12px;text-align:left}th{background:#edf4f9;color:var(--navy)}.steps{counter-reset:s}.steps li{margin:.55em 0}.mini{font-size:.92rem;color:var(--muted)}.ap-tag{display:inline-block;background:#e8f3fb;color:#075a8e;border:1px solid #b9d8ed;padding:3px 8px;border-radius:999px;font-size:.8rem;font-weight:800}.trap{color:var(--red);font-weight:800}.q{border:1px solid #d8d1e5;border-radius:16px;padding:18px;margin:14px 0;background:#fff}.q-title{display:flex;gap:8px;align-items:center;font-weight:900;color:var(--navy)}details{border:1px solid var(--line);border-radius:12px;padding:10px 14px;margin-top:10px;background:#fbfdff}summary{cursor:pointer;font-weight:800;color:var(--green)}.graphbox{border:1px dashed #9db3c7;border-radius:14px;background:linear-gradient(#f8fbfd 1px,transparent 1px),linear-gradient(90deg,#f8fbfd 1px,transparent 1px);background-size:28px 28px;padding:18px;min-height:150px}.axis-demo{width:100%;height:220px}.footer{color:var(--muted);text-align:center;margin-top:28px}.answer-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}.choice{border:1px solid var(--line);border-radius:10px;padding:10px;background:#fafcfe}@media(max-width:850px){.grid2,.grid3,.grid4,.answer-grid{grid-template-columns:1fr}.nav{display:none}.hero{padding:28px}.section{padding:20px}}
-@media print{.top{display:none}.page{max-width:none;margin:0}.section,.hero{box-shadow:none;break-inside:avoid}details>div{display:block!important}}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="description" content="ECHS AP Precalculus Topic 1.1 interactive slide lesson: Change in Tandem">
+  <title>AP Precalculus 1.1 | Change in Tandem | ECHS</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.27/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.27/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.27/dist/contrib/auto-render.min.js"></script>
+  <style>
+:root{
+  --navy:#082f55;
+  --navy-2:#0c416f;
+  --teal:#087f8c;
+  --teal-soft:#e8f7f8;
+  --gold:#d3a126;
+  --gold-soft:#fff8e5;
+  --maroon:#7b1f3b;
+  --maroon-soft:#fff1f5;
+  --green:#137153;
+  --green-soft:#eefaf5;
+  --red:#b52b3a;
+  --red-soft:#fff2f3;
+  --purple:#6c3da3;
+  --purple-soft:#f7f0ff;
+  --ink:#172333;
+  --muted:#617083;
+  --line:#d6e0e8;
+  --line-strong:#b9c8d5;
+  --paper:#ffffff;
+  --surface:#f3f7fa;
+  --shadow:0 22px 55px rgba(16,42,70,.14);
+  --shadow-soft:0 10px 30px rgba(16,42,70,.09);
+  --radius:24px;
+  --header-h:76px;
+  --footer-h:66px;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{
+  font-family:Inter,Aptos,"Segoe UI",Arial,sans-serif;
+  color:var(--ink);
+  background:#eaf0f5;
+  overflow:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+button,input,textarea,select{font:inherit}
+button{touch-action:manipulation}
+a{color:inherit}
+.deck{
+  height:100dvh;
+  display:grid;
+  grid-template-rows:var(--header-h) 5px minmax(0,1fr) var(--footer-h);
+  background:
+    radial-gradient(circle at 12% 15%,rgba(8,127,140,.09),transparent 28%),
+    radial-gradient(circle at 87% 82%,rgba(211,161,38,.10),transparent 26%),
+    #eaf0f5;
+}
+.topbar{
+  background:rgba(255,255,255,.96);
+  border-bottom:1px solid rgba(185,200,213,.9);
+  display:flex;
+  align-items:center;
+  gap:18px;
+  padding:10px 20px;
+  box-shadow:0 4px 22px rgba(8,47,85,.08);
+  z-index:20;
+  min-width:0;
+}
+.brand-link{
+  display:flex;
+  align-items:center;
+  gap:13px;
+  text-decoration:none;
+  min-width:0;
+}
+.brand-logo{height:50px;width:auto;max-width:240px;object-fit:contain}
+.brand-fallback{
+  display:none;
+  width:54px;height:46px;border-radius:12px;
+  align-items:center;justify-content:center;
+  background:linear-gradient(135deg,var(--navy),var(--teal));
+  color:#fff;font-weight:950;letter-spacing:.05em
+}
+.brand-copy{min-width:0;line-height:1.08}
+.brand-copy strong{display:block;color:var(--navy);font-size:1rem;white-space:nowrap}
+.brand-copy span{display:block;color:var(--muted);font-size:.78rem;margin-top:4px;white-space:nowrap}
+.top-divider{height:42px;width:1px;background:var(--line)}
+.lesson-status{
+  min-width:0;display:flex;align-items:center;gap:9px;flex:1
+}
+#sectionLabel{
+  color:#fff;background:var(--navy);
+  border-radius:999px;padding:6px 10px;
+  font-size:.76rem;font-weight:850;white-space:nowrap
+}
+#calcLabel{
+  color:var(--navy);background:#eef4f8;border:1px solid var(--line);
+  border-radius:999px;padding:6px 10px;
+  font-size:.76rem;font-weight:750;white-space:nowrap
+}
+.top-title{
+  color:var(--navy);font-weight:850;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  font-size:.94rem
+}
+.top-actions{display:flex;align-items:center;gap:8px}
+.icon-button{
+  border:1px solid var(--line);background:#fff;color:var(--navy);
+  min-width:42px;height:42px;border-radius:13px;
+  display:inline-flex;align-items:center;justify-content:center;
+  font-weight:850;cursor:pointer;transition:.2s ease;
+}
+.icon-button:hover,.icon-button:focus-visible{border-color:var(--teal);background:var(--teal-soft);transform:translateY(-1px)}
+.icon-button.text{padding:0 13px;min-width:auto;font-size:.82rem}
+.score-chip{
+  border:1px solid var(--line);background:#fbfdff;border-radius:13px;padding:7px 11px;
+  color:var(--muted);font-size:.76rem;line-height:1.1;text-align:center;min-width:88px
+}
+.score-chip strong{display:block;color:var(--navy);font-size:.94rem;margin-top:2px}
+.progress-track{background:#dce5ec;position:relative;z-index:19}
+.progress-bar{
+  height:100%;width:0;background:linear-gradient(90deg,var(--teal),var(--gold));
+  transition:width .28s ease
+}
+.slide-viewport{position:relative;overflow:hidden;min-height:0}
+.slide{
+  display:none;
+  position:absolute;inset:0;
+  overflow:auto;
+  padding:22px clamp(18px,3vw,46px) 32px;
+  scrollbar-color:#adc1d0 transparent;
+  background:
+    linear-gradient(135deg,rgba(255,255,255,.74),rgba(245,249,252,.83)),
+    radial-gradient(circle at 88% 12%,rgba(8,127,140,.08),transparent 28%);
+}
+.slide.active{
+  display:block;
+  animation:slideIn .28s ease both;
+}
+@keyframes slideIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.slide-inner{
+  width:min(1420px,100%);
+  min-height:100%;
+  margin:0 auto;
+  background:rgba(255,255,255,.94);
+  border:1px solid rgba(197,210,221,.92);
+  border-radius:30px;
+  padding:clamp(24px,3vw,42px);
+  box-shadow:var(--shadow);
+  position:relative;
+  overflow:hidden;
+}
+.slide-inner:before{
+  content:"";position:absolute;inset:0 0 auto;height:7px;
+  background:linear-gradient(90deg,var(--navy),var(--teal),var(--gold));
+}
+.slide[data-section="Challenge"]{
+  background:linear-gradient(135deg,#f3eefb,#edf5fb);
+}
+.slide[data-section="Challenge"] .slide-inner:before{
+  background:linear-gradient(90deg,var(--purple),var(--maroon),var(--gold));
+}
+.slide[data-section="AP-style practice"]{
+  background:linear-gradient(135deg,#eef6fb,#f7f4ff);
+}
+.slide[data-section="AP-style practice"] .slide-inner:before{
+  background:linear-gradient(90deg,var(--navy),var(--purple),var(--teal));
+}
+.slide[data-section="Exit"]{
+  background:linear-gradient(135deg,#ecf8f4,#fff8e8);
+}
+.slide-meta{
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+  margin-bottom:12px;padding-top:2px
+}
+.section-chip,.calc-chip,.kicker{
+  display:inline-flex;align-items:center;min-height:30px;border-radius:999px;
+  padding:5px 10px;font-size:.76rem;font-weight:850;letter-spacing:.02em
+}
+.section-chip{background:var(--navy);color:#fff}
+.calc-chip{margin-left:auto;background:#eff5f8;color:var(--navy);border:1px solid var(--line)}
+.kicker{color:var(--teal);background:var(--teal-soft)}
+.slide h1{
+  margin:0;
+  color:var(--navy);
+  font-size:clamp(2rem,4.3vw,4.15rem);
+  line-height:1.03;
+  letter-spacing:-.035em;
+  max-width:1200px
+}
+.subtitle{
+  color:var(--muted);
+  font-size:clamp(1rem,1.6vw,1.28rem);
+  margin:10px 0 24px;
+  max-width:1050px
+}
+.slide-body{font-size:clamp(1rem,1.35vw,1.18rem)}
+.slide-body p{margin:.55em 0;line-height:1.55}
+.slide-body li{line-height:1.48;margin:.34em 0}
+.slide-body h3{color:var(--navy);font-size:1.22em;margin:.1em 0 .55em}
+.cover-slide{
+  background:
+    radial-gradient(circle at 18% 20%,rgba(30,180,190,.20),transparent 28%),
+    radial-gradient(circle at 86% 82%,rgba(211,161,38,.22),transparent 25%),
+    linear-gradient(135deg,#061f3a,#0c4672 60%,#087f8c);
+}
+.cover-slide .slide-inner{
+  color:#fff;
+  border-color:rgba(255,255,255,.16);
+  background:linear-gradient(135deg,rgba(5,30,56,.72),rgba(10,79,105,.55));
+  box-shadow:0 30px 80px rgba(0,18,40,.35);
+}
+.cover-slide .slide-inner:before{background:linear-gradient(90deg,#fff0,#e8c65b,#fff0)}
+.cover-slide h1{color:#fff;font-size:clamp(3.1rem,7.5vw,7rem);max-width:900px}
+.cover-slide .subtitle,.cover-slide .kicker{color:#dff9fb}
+.cover-slide .section-chip{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.25)}
+.cover-slide .calc-chip{background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.25)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(340px,.8fr);gap:38px;align-items:center}
+.lead{font-size:clamp(1.15rem,2vw,1.48rem)!important;max-width:820px;color:#eafcff}
+.objective-strip{display:flex;gap:8px;flex-wrap:wrap;margin:4px 0 14px}
+.objective-strip span{border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.11);padding:7px 11px;border-radius:999px;font-size:.8rem;font-weight:800}
+.route-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:24px}
+.route-card{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.18);border-radius:18px;padding:16px}
+.route-card strong{display:block;color:#ffd874;margin-bottom:4px}
+.route-card span{font-size:.9rem;color:#effbff;line-height:1.35}
+.hero-art{height:390px;position:relative;display:grid;place-items:center}
+.orbit{
+  position:absolute;border:2px solid rgba(255,255,255,.38);border-radius:50%;
+  display:grid;place-items:center;animation:float 5s ease-in-out infinite
+}
+.orbit span{background:#fff;color:var(--navy);font-weight:900;padding:9px 13px;border-radius:999px;box-shadow:0 10px 25px rgba(0,0,0,.18)}
+.orbit-a{width:260px;height:260px;transform:translate(-55px,-30px)}
+.orbit-b{width:230px;height:230px;transform:translate(75px,45px);animation-delay:-2s}
+.tandem-link{font-size:4.5rem;color:#ffd874;z-index:2;text-shadow:0 8px 25px rgba(0,0,0,.25)}
+.hero-equation{position:absolute;bottom:14px;font-size:1.45rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);padding:10px 18px;border-radius:16px}
+.teacher-line{margin-top:24px;color:#d8eff4;font-size:.9rem;font-weight:700}
+@keyframes float{50%{margin-top:-12px}}
+.grid-2,.grid-3,.grid-4{display:grid;gap:18px}
+.grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.grid-4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.compact-grid{gap:12px;margin-top:17px}
+.card,.worked-example,.question-card,.challenge-panel,.graph-card,.big-definition{
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  background:#fff;
+  box-shadow:var(--shadow-soft)
+}
+.card{padding:20px}
+.objective-card{position:relative;padding-left:92px;min-height:145px}
+.lo-code{
+  position:absolute;left:20px;top:22px;
+  width:55px;height:55px;border-radius:16px;
+  display:grid;place-items:center;
+  background:linear-gradient(135deg,var(--navy),var(--teal));
+  color:#fff;font-weight:950;font-size:.86rem
+}
+.mini-card{
+  border:1px solid var(--line);background:#f8fbfd;border-radius:16px;padding:13px 14px;
+  display:flex;gap:8px;align-items:flex-start
+}
+.mini-card strong{color:var(--navy);white-space:nowrap}
+.mini-card span{color:var(--muted);font-size:.89em;line-height:1.34}
+.callout{
+  margin-top:16px;border-radius:16px;padding:14px 17px;border-left:6px solid;
+  background:#f8fbfd;display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start
+}
+.callout strong{color:var(--navy)}
+.callout p{margin:0}
+.callout.warning{background:var(--red-soft);border-color:var(--red)}
+.callout.info{background:#eef6fb;border-color:var(--navy-2)}
+.callout.success{background:var(--green-soft);border-color:var(--green)}
+.callout.tight{padding:11px 14px;margin-top:12px;font-size:.93em}
+.check-list{padding-left:1.35em}
+.check-list li::marker{color:var(--teal)}
+.big-idea{
+  margin-top:20px;padding:22px;border-radius:20px;
+  background:linear-gradient(135deg,var(--navy),var(--navy-2));
+  color:#fff;display:flex;align-items:center;gap:18px;justify-content:center;text-align:center
+}
+.big-idea-label{font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;color:#bdeff0}
+.big-idea strong{font-size:1.3em}
+.graph-layout{align-items:stretch}
+.graph-card{padding:14px;margin:0;min-width:0;background:linear-gradient(180deg,#fff,#f9fcfe)}
+.graph-card figcaption{font-size:.83em;color:var(--muted);text-align:center;margin-top:7px}
+.interactive-graph,.static-graph,.wide-graph svg{width:100%;height:auto;display:block}
+.plot-grid line,.simple-grid line{stroke:#dce5ec;stroke-width:1}
+.plot-axes line,.axis-line{stroke:var(--navy);stroke-width:2}
+.plot-axes text{fill:#5d6f82;font-size:13px}
+.graph-curve{fill:none;stroke:var(--maroon);stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
+.focus-point{fill:var(--gold);stroke:#fff;stroke-width:3;filter:drop-shadow(0 3px 5px rgba(0,0,0,.2))}
+.zero-point{fill:var(--red);stroke:#fff;stroke-width:3}
+.guide{stroke:var(--teal);stroke-width:2;stroke-dasharray:7 6;opacity:.75}
+.horizontal-target{stroke:var(--gold);stroke-width:4;stroke-dasharray:10 8}
+.point-label{fill:var(--navy);font-size:16px;font-weight:850}
+.axis-label{fill:var(--navy);font-size:15px;font-weight:750}
+.graph-note{fill:var(--teal);font-size:17px;font-weight:850}
+.constant-highlight{stroke:var(--teal);stroke-width:10;stroke-linecap:round}
+.data-points circle{fill:var(--gold);stroke:#fff;stroke-width:2}
+.range-label{display:block;color:var(--navy);font-weight:850;margin:9px 0}
+.range{width:100%;accent-color:var(--teal)}
+.live-value,.live-summary{
+  display:grid;grid-template-columns:1fr auto;gap:8px 14px;
+  margin:17px 0;padding:15px;border-radius:16px;background:#f1f7fa;border:1px solid var(--line)
+}
+.live-value span,.live-summary span{color:var(--muted);font-size:.88em}
+.live-value strong,.live-summary strong{color:var(--navy);text-align:right}
+.live-value.stacked{grid-template-columns:1fr}
+.live-value.stacked strong{text-align:left;font-size:1.1em}
+.prompt{background:var(--gold-soft);border:1px solid #ead69d;border-radius:14px;padding:12px;margin-top:12px}
+.prompt-list{font-size:.9em}
+.small-button{
+  border:1px solid var(--line-strong);background:#fff;color:var(--navy);
+  border-radius:12px;padding:9px 13px;font-weight:850;cursor:pointer
+}
+.small-button:hover,.small-button:focus-visible{background:#eff7fa;border-color:var(--teal)}
+.small-button.accent{background:var(--navy);border-color:var(--navy);color:#fff}
+.mapping{display:grid;grid-template-columns:110px 1fr 110px;align-items:center;min-height:205px}
+.mapping>div{display:flex;flex-direction:column;gap:10px;align-items:center}
+.mapping>div strong{color:var(--navy)}
+.mapping>div span{display:grid;place-items:center;width:44px;height:34px;border-radius:10px;background:#eef5f8;border:1px solid var(--line);font-weight:850}
+.mapping svg{width:100%;height:190px}
+.mapping path{fill:none;stroke:var(--teal);stroke-width:3}
+.mapping marker path{fill:var(--teal);stroke:none}
+.mapping-bad path{stroke:var(--red)}
+.mapping-bad marker path{fill:var(--red)}
+.note{color:var(--muted);font-size:.9em}
+.worked-example{padding:19px;margin-top:17px;background:linear-gradient(135deg,#fff,#f6fafc)}
+.worked-title{
+  color:#fff;background:var(--navy);display:inline-block;
+  border-radius:10px;padding:5px 9px;font-size:.78em;font-weight:850;margin-bottom:8px
+}
+.success-panel{border-color:#b7dece;background:var(--green-soft)}
+.warning-panel{border-color:#efc5ca;background:var(--red-soft)}
+.answer-row{display:grid;grid-template-columns:auto 1fr;gap:8px 18px;padding:12px;background:#fff;border:1px solid var(--line);border-radius:14px}
+.answer-row span{color:var(--muted)}
+.answer-row strong{color:var(--navy)}
+.display-math{
+  overflow:auto;text-align:center;padding:11px;
+  background:#f8fbfd;border:1px solid var(--line);border-radius:14px
+}
+.interactive-card{background:linear-gradient(135deg,#f4fbfb,#fff)}
+.input-row{display:flex;gap:9px;margin-top:10px}
+.input-row input{
+  min-width:0;flex:1;border:2px solid var(--line);border-radius:12px;padding:11px 13px;
+  color:var(--navy);font-weight:850;background:#fff
+}
+.input-row button,.question-card .options button{
+  border:1px solid var(--line-strong);background:#fff;color:var(--navy);
+  border-radius:13px;padding:11px 14px;cursor:pointer;text-align:left;
+  font-weight:750;line-height:1.35;transition:.18s ease
+}
+.input-row button{background:var(--navy);color:#fff;text-align:center}
+.input-row input:focus,.student-response:focus{outline:3px solid rgba(8,127,140,.2);border-color:var(--teal)}
+details{margin-top:12px;border:1px solid var(--line);border-radius:14px;background:#fff}
+summary{cursor:pointer;padding:11px 14px;color:var(--navy);font-weight:850}
+details>div{padding:0 14px 14px}
+.solution,.rubric{color:var(--ink);line-height:1.5}
+.question-card{padding:17px;margin-top:18px;background:#fff}
+.question-head{display:grid;gap:6px;margin-bottom:12px}
+.question-head span{color:var(--teal);font-size:.76em;text-transform:uppercase;letter-spacing:.06em;font-weight:900}
+.question-head strong{color:var(--navy);font-size:1.05em;line-height:1.4}
+.options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.options button:hover,.options button:focus-visible{border-color:var(--teal);background:var(--teal-soft);transform:translateY(-1px)}
+.options button.selected{border-color:var(--navy);box-shadow:0 0 0 2px rgba(8,47,85,.12)}
+.options button.correct{border-color:var(--green);background:var(--green-soft);color:#07583f}
+.options button.incorrect{border-color:var(--red);background:var(--red-soft);color:#8b1726}
+.feedback{min-height:0;margin-top:0;border-radius:12px;padding:0;transition:.2s ease}
+.feedback:not(:empty){margin-top:11px;padding:10px 12px}
+.feedback.good{background:var(--green-soft);border:1px solid #b8dfd0;color:#0c5e46}
+.feedback.bad{background:var(--red-soft);border:1px solid #efc0c6;color:#8d1e2d}
+.large-question{padding:22px}
+.sentence-frame{border:2px dashed #b6cad6;background:#f8fbfd;border-radius:16px;padding:16px;color:var(--navy)}
+.large-frame{margin-top:18px;font-size:1.1em}
+.concept-card{text-align:center;position:relative;overflow:hidden}
+.concept-icon{width:56px;height:56px;margin:0 auto 10px;border-radius:18px;background:var(--navy);color:#fff;display:grid;place-items:center;font-size:2rem}
+.preimage-card .concept-icon{background:var(--purple)}
+.question-call{display:inline-block;margin-top:9px;padding:8px 12px;border-radius:999px;background:#f0f5f8;color:var(--navy);font-weight:800;font-size:.9em}
+.table-wrap{overflow:auto}
+.math-table{border-collapse:collapse;width:100%;background:#fff}
+.math-table th,.math-table td{border:1px solid var(--line);padding:10px 12px;text-align:center}
+.math-table th{background:#eef5f8;color:var(--navy);font-weight:850}
+.big-definition{
+  padding:22px;text-align:center;font-size:1.17em;background:linear-gradient(135deg,#eff7fb,#fff);
+  border-left:7px solid var(--teal)
+}
+.mini-proof{margin-top:16px;padding:15px 17px;border-radius:16px;background:var(--gold-soft);border:1px solid #ead69d}
+.representation-wheel{
+  min-height:360px;display:grid;
+  grid-template-columns:1fr 80px 1fr;
+  grid-template-rows:1fr 60px 1fr;
+  gap:8px;align-items:center;justify-items:stretch
+}
+.rep-card{height:100%;min-height:125px;border-radius:22px;padding:20px;display:grid;place-content:center;text-align:center;border:1px solid var(--line);box-shadow:var(--shadow-soft)}
+.rep-card span{font-size:.85em;color:var(--muted)}
+.rep-card strong{font-size:1.35em;color:var(--navy)}
+.rep-graph{grid-column:1;grid-row:1;background:#eaf7fb}
+.rep-table{grid-column:3;grid-row:1;background:#fff8e5}
+.rep-formula{grid-column:1;grid-row:3;background:#eefaf5}
+.rep-verbal{grid-column:3;grid-row:3;background:#f7f0ff}
+.rep-arrow{font-size:2.2rem;color:var(--teal);font-weight:900;text-align:center}
+.a1{grid-column:2;grid-row:1}.a2{grid-column:3;grid-row:2}.a3{grid-column:2;grid-row:3}.a4{grid-column:1;grid-row:2}
+.diagram-strip{margin-top:16px;border:1px solid var(--line);border-radius:18px;padding:10px;background:#f8fbfd}
+.diagram-strip svg{width:100%;height:200px}
+.diagram-strip p{text-align:center;margin:4px 0}
+.segmented{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}
+.segmented button{
+  border:1px solid var(--line);background:#fff;border-radius:14px;padding:12px;
+  color:var(--navy);font-weight:850;cursor:pointer
+}
+.segmented button span{font-size:.82em;color:var(--muted)}
+.segmented button.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+.segmented button.active span{color:#d9eff7}
+.translation-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:16px}
+.translation-grid div{border:1px solid var(--line);border-radius:14px;padding:12px;text-align:center;background:#f8fbfd}
+.translation-grid strong,.translation-grid span{display:block}
+.translation-grid strong{color:var(--navy)}
+.translation-grid span{font-size:.82em;color:var(--muted);margin-top:4px}
+.two-question{display:grid;grid-template-columns:1fr 1fr;text-align:left}
+.two-question>div{padding:4px 18px}
+.two-question>div+div{border-left:1px solid rgba(255,255,255,.25)}
+.two-question span,.two-question strong,.two-question em{display:block}
+.two-question span{font-size:.74em;color:#bdeff0;text-transform:uppercase;letter-spacing:.08em}
+.two-question em{font-size:.86em;color:#d8eff5}
+.wide-graph{margin:16px 0 0;border:1px solid var(--line);border-radius:18px;background:#f8fbfd;padding:8px}
+.zero-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:12px 0}
+.zero-steps div{border:1px solid var(--line);border-radius:14px;padding:12px;text-align:center;background:#fff}
+.zero-steps strong{display:block;color:var(--maroon);font-size:1.12em;margin-top:5px}
+.process-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
+.process-grid>div{
+  border:1px solid var(--line);border-radius:18px;padding:16px;background:#f8fbfd;
+  display:grid;grid-template-columns:42px 1fr;column-gap:10px;align-items:start
+}
+.process-grid span{
+  grid-row:1/3;width:38px;height:38px;border-radius:12px;background:var(--navy);color:#fff;display:grid;place-items:center;font-weight:950
+}
+.process-grid strong{color:var(--navy)}
+.process-grid small{color:var(--muted);line-height:1.35;margin-top:3px}
+.sketch-layout{align-items:stretch}
+.canvas-wrap{
+  position:relative;border:1px solid var(--line);border-radius:20px;background:#fff;overflow:hidden;
+  min-height:350px;box-shadow:var(--shadow-soft)
+}
+.sketch-canvas{display:block;width:100%;height:auto;min-height:340px;touch-action:none;cursor:crosshair}
+.canvas-label{position:absolute;color:var(--navy);font-weight:800;font-size:.85em;pointer-events:none}
+.x-label{right:20px;bottom:10px}.y-label{left:12px;top:12px}
+.sketch-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}
+.numbered-list{padding-left:1.4em}
+.student-response{
+  width:100%;resize:vertical;min-height:90px;border:2px solid var(--line);border-radius:14px;padding:12px 13px;
+  background:#fff;color:var(--ink);line-height:1.45
+}
+.student-response.tall{min-height:330px}
+.question-stack{display:grid;gap:14px}
+.question-stack .question-card{margin:0}
+.compact-options{grid-template-columns:repeat(2,minmax(0,1fr))}
+.frq-layout{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(320px,.85fr);gap:18px;align-items:start}
+.frq-prompt,.frq-response{border:1px solid var(--line);border-radius:20px;padding:18px;background:#fff}
+.letter-list{list-style:lower-alpha;padding-left:1.4em}
+.rubric p{padding:7px 9px;border-radius:9px;background:#f3faf7}
+.challenge-panel{padding:20px;background:linear-gradient(135deg,var(--purple-soft),#fff);border-color:#d8c3ec}
+.challenge-panel h3{color:var(--purple)}
+.small-canvas-wrap{min-height:300px}
+.mini-graph svg{width:100%;height:auto}
+.summary-flow{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:18px}
+.summary-flow>div{border:1px solid var(--line);border-radius:16px;padding:13px;background:#f8fbfd;text-align:center}
+.summary-flow span{width:34px;height:34px;border-radius:11px;background:var(--navy);color:#fff;display:grid;place-items:center;margin:0 auto 8px;font-weight:950}
+.summary-flow strong,.summary-flow small{display:block}
+.summary-flow strong{color:var(--navy);font-size:.93em}
+.summary-flow small{color:var(--muted);font-size:.76em;margin-top:4px}
+.mastery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.mastery-grid label{
+  border:1px solid var(--line);border-radius:14px;padding:12px;background:#f8fbfd;cursor:pointer;
+  display:flex;gap:9px;align-items:flex-start;line-height:1.35
+}
+.mastery-grid input{accent-color:var(--green);width:19px;height:19px;flex:none}
+.mastery-status{display:flex;gap:18px;align-items:center;margin-top:18px;padding:16px;border-radius:18px;background:var(--green-soft);border:1px solid #b8dfd0}
+.mastery-ring{
+  width:78px;height:78px;border-radius:50%;display:grid;place-items:center;flex:none;
+  background:conic-gradient(var(--green) 0%,#dcece5 0);
+  position:relative
+}
+.mastery-ring:before{content:"";position:absolute;inset:8px;border-radius:50%;background:#fff}
+.mastery-ring span{position:relative;color:var(--green);font-weight:950}
+.exit-grid .card{position:relative;padding-top:50px}
+.exit-number{position:absolute;top:12px;left:16px;width:34px;height:34px;border-radius:11px;background:var(--navy);color:#fff;display:grid;place-items:center;font-weight:950}
+.final-banner{margin-top:18px;padding:18px;border-radius:18px;background:linear-gradient(90deg,var(--navy),var(--teal));color:#fff;display:flex;justify-content:space-between;gap:14px;align-items:center}
+.final-banner span{color:#d8f4f5}
+.footer{
+  background:rgba(255,255,255,.97);
+  border-top:1px solid var(--line);
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+  padding:9px 18px;z-index:20;box-shadow:0 -4px 22px rgba(8,47,85,.07)
+}
+.footer-left,.footer-right{display:flex;align-items:center;gap:9px;min-width:0}
+.jump-select{
+  max-width:min(520px,42vw);height:44px;border:1px solid var(--line);border-radius:13px;padding:0 12px;
+  color:var(--navy);font-weight:800;background:#fff
+}
+.nav-button{
+  border:1px solid var(--line);height:44px;border-radius:13px;padding:0 16px;
+  background:#fff;color:var(--navy);font-weight:850;cursor:pointer
+}
+.nav-button.primary{background:var(--navy);color:#fff;border-color:var(--navy)}
+.nav-button:hover,.nav-button:focus-visible{transform:translateY(-1px);box-shadow:0 6px 16px rgba(8,47,85,.12)}
+#counter{color:var(--muted);font-size:.82rem;font-weight:800;white-space:nowrap}
+dialog{
+  width:min(920px,92vw);max-height:84vh;border:0;border-radius:24px;padding:0;box-shadow:0 30px 90px rgba(0,20,40,.34)
+}
+dialog::backdrop{background:rgba(5,24,43,.62);backdrop-filter:blur(4px)}
+.dialog-head{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--line);padding:18px 20px;display:flex;justify-content:space-between;align-items:center;z-index:2}
+.dialog-head h2{margin:0;color:var(--navy)}
+.dialog-body{padding:16px 20px 24px;background:#f5f8fb}
+.map-section{margin:14px 0}
+.map-section h3{color:var(--maroon);margin:0 0 8px;font-size:1rem}
+.map-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.map-button{
+  border:1px solid var(--line);background:#fff;border-radius:13px;padding:10px 12px;text-align:left;color:var(--navy);font-weight:750;cursor:pointer
+}
+.map-button.active{border-color:var(--teal);background:var(--teal-soft)}
+.map-button.visited:after{content:"Viewed";float:right;color:var(--green);font-size:.72em}
+.dialog-close{border:1px solid var(--line);border-radius:11px;background:#fff;color:var(--navy);padding:8px 11px;font-weight:850;cursor:pointer}
+.sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+.katex-display{overflow:auto hidden;padding:2px}
+@media(max-width:1050px){
+  .hero-grid{grid-template-columns:1fr}.hero-art{display:none}
+  .route-grid{grid-template-columns:1fr 1fr 1fr}
+  .summary-flow{grid-template-columns:repeat(3,1fr)}
+  .mastery-grid{grid-template-columns:repeat(2,1fr)}
+  .frq-layout{grid-template-columns:1fr}
+}
+@media(max-width:760px){
+  :root{--header-h:68px;--footer-h:64px}
+  .topbar{padding:8px 10px;gap:9px}
+  .brand-logo{height:42px;max-width:125px}.brand-copy{display:none}.top-divider{display:none}
+  #calcLabel,.top-title,.score-chip{display:none}
+  .lesson-status{flex:0}.top-actions{margin-left:auto}
+  .icon-button.text{display:none}
+  .slide{padding:12px 10px 18px}
+  .slide-inner{border-radius:20px;padding:21px 17px}
+  .slide h1{font-size:clamp(1.85rem,9vw,3rem)}
+  .subtitle{margin-bottom:16px}
+  .grid-2,.grid-3,.grid-4,.options,.compact-options,.translation-grid,.process-grid,.mastery-grid,.exit-grid{grid-template-columns:1fr}
+  .route-grid{grid-template-columns:1fr}
+  .objective-card{padding-left:20px;padding-top:84px}.lo-code{top:18px}
+  .mapping{grid-template-columns:78px 1fr 78px}
+  .representation-wheel{min-height:300px;grid-template-columns:1fr 46px 1fr}
+  .two-question{grid-template-columns:1fr}.two-question>div+div{border-left:0;border-top:1px solid rgba(255,255,255,.25)}
+  .zero-steps{grid-template-columns:1fr}
+  .summary-flow{grid-template-columns:repeat(2,1fr)}
+  .final-banner{align-items:flex-start;flex-direction:column}
+  .jump-select{max-width:44vw;font-size:.76rem}
+  .nav-button{padding:0 11px}
+  .footer{padding:8px}
+  .map-grid{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+  .brand-logo{display:none}.brand-fallback{display:flex}
+  #sectionLabel{font-size:.68rem;padding:5px 8px}
+  .icon-button{min-width:38px;height:38px}
+  .footer-left{display:none}
+  .footer{justify-content:flex-end}
+  .summary-flow{grid-template-columns:1fr}
+}
+@media print{
+  body{overflow:visible;background:#fff}
+  .deck{height:auto;display:block}
+  .topbar,.progress-track,.footer,dialog{display:none!important}
+  .slide{display:block!important;position:relative;inset:auto;overflow:visible;padding:0;background:#fff;page-break-after:always}
+  .slide-inner{box-shadow:none;border-radius:0;border:0;min-height:95vh;padding:28px}
+  .student-response{min-height:110px}
+}
 </style>
 </head>
 <body>
-<header class="top"><div class="top-inner"><a class="brand" href="../../../index.html">ECHS MATHEMATICS</a><span>AP Precalculus · Unit 1</span><nav class="nav"><a href="#scope">AP Scope</a><a href="#core">Core Lesson</a><a href="#representations">Representations</a><a href="#practice">AP Practice</a><a href="#challenge">Challenge</a></nav></div></header>
-<main class="page">
-<section class="hero">
-<div class="eyebrow">AP Precalculus · Topic 1.1 · 2 instructional periods</div>
-<h1>Change in Tandem</h1>
-<p>How does an output respond as an input changes? In this lesson you will read, describe, compare, and construct relationships using verbal, numerical, graphical, and analytical representations.</p>
-<div class="pill-row"><span class="pill">Learning Objective 1.1.A</span><span class="pill">Learning Objective 1.1.B</span><span class="pill">Skills 2.B & 3.A</span><span class="pill">No formal average-rate-of-change calculation</span></div>
-</section>
-
-<section class="section" id="scope">
-<h2>1. Exact AP Scope for Topic 1.1</h2>
-<div class="grid2">
-<div class="card lo"><h3>1.1.A</h3><p><strong>Describe how the input and output values of a function vary together by comparing function values.</strong></p></div>
-<div class="card lo"><h3>1.1.B</h3><p><strong>Construct a graph representing two quantities that vary with respect to each other in a contextual scenario.</strong></p></div>
+  <noscript><div style="padding:2rem;font-family:sans-serif">This interactive lesson requires JavaScript.</div></noscript>
+  <div class="deck">
+    <header class="topbar">
+      <a class="brand-link" href="../../../index.html" aria-label="Return to ECHS Mathematics portal">
+        <img class="brand-logo" src="../../../assets/echs_logo.png" alt="ECHS Mathematics" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="brand-fallback" aria-hidden="true">ECHS</span>
+        <span class="brand-copy"><strong>ECHS Mathematics</strong><span>AP Precalculus · Unit 1 · Lesson 1.1</span></span>
+      </a>
+      <span class="top-divider" aria-hidden="true"></span>
+      <div class="lesson-status">
+        <span id="sectionLabel">Launch</span>
+        <span id="calcLabel">No calculator</span>
+        <span class="top-title" id="topTitle">Change in Tandem</span>
+      </div>
+      <div class="top-actions">
+        <div class="score-chip">Checks correct<strong id="scoreText">0/0</strong></div>
+        <button class="icon-button text" id="mapButton" type="button">Contents</button>
+        <button class="icon-button" id="fullscreenButton" type="button" title="Full screen" aria-label="Enter full screen">⛶</button>
+        <button class="icon-button" id="resetButton" type="button" title="Reset lesson progress" aria-label="Reset lesson progress">↺</button>
+      </div>
+    </header>
+    <div class="progress-track" aria-hidden="true"><div class="progress-bar" id="progressBar"></div></div>
+    <main class="slide-viewport" id="slideViewport">
+      
+    <section class="slide cover-slide" id="cover" data-slide-id="cover" data-section="Launch" data-title="Change in Tandem" data-calc="No calculator" aria-hidden="true">
+      <div class="slide-inner">
+        <div class="slide-meta">
+          <span class="section-chip">Launch</span>
+          <span class="kicker">AP Precalculus · Unit 1 · Topic 1.1</span>
+          <span class="calc-chip">No calculator</span>
+        </div>
+        <h1>Change in Tandem</h1>
+        <p class="subtitle">Two quantities. One function. A precise story of how change happens.</p>
+        <div class="slide-body">
+          <div class="hero-grid">
+  <div class="hero-copy">
+    <div class="objective-strip">
+      <span>LO 1.1.A</span><span>LO 1.1.B</span><span>Skills 2.B &amp; 3.A</span>
+    </div>
+    <p class="lead">Read, compare, describe, and construct relationships using verbal, numerical, graphical, and analytical representations.</p>
+    <div class="route-grid">
+      <div class="route-card"><strong>Period 1</strong><span>Function language, representations, image/preimage, and comparison.</span></div>
+      <div class="route-card"><strong>Period 2</strong><span>Increasing/decreasing behavior, concavity, zeros, and contextual graphs.</span></div>
+      <div class="route-card"><strong>Finish</strong><span>Original AP-style practice, FRQ reasoning, and challenge problems.</span></div>
+    </div>
+  </div>
+  <div class="hero-art" aria-hidden="true">
+    <div class="orbit orbit-a"><span>input</span></div>
+    <div class="orbit orbit-b"><span>output</span></div>
+    <div class="tandem-link">↔</div>
+    <div class="hero-equation">\(x \longmapsto f(x)\)</div>
+  </div>
 </div>
-<h3>Required knowledge in this lesson</h3>
-<div class="grid3">
-<div class="card ek"><strong>1.1.A.1</strong><p>Function, domain, range, independent/dependent variables, and equality of functions.</p></div>
-<div class="card ek"><strong>1.1.A.2</strong><p>Function rule in four representations; image and preimage.</p></div>
-<div class="card ek"><strong>1.1.A.3–A.4</strong><p>Increasing and decreasing behavior through comparisons of function values.</p></div>
-<div class="card ek"><strong>1.1.B.1–B.2</strong><p>Graphs as input-output pairs and graphs built from verbal descriptions.</p></div>
-<div class="card ek"><strong>1.1.B.3–B.4</strong><p>Concave up when rate of change is increasing; concave down when rate of change is decreasing.</p></div>
-<div class="card ek"><strong>1.1.B.5</strong><p>Zeros and x-intercepts: output 0 and corresponding input values.</p></div>
+<div class="teacher-line">ECHS Mathematics · Mohammad Abu Ghuwaleh</div>
+        </div>
+      </div>
+    </section>
+    
+
+    <section class="slide" id="ap-scope" data-slide-id="ap-scope" data-section="Launch" data-title="What Topic 1.1 Includes—and What It Does Not" data-calc="No calculator" aria-hidden="true">
+      <div class="slide-inner">
+        <div class="slide-meta">
+          <span class="section-chip">Launch</span>
+          <span class="kicker">Exact College Board scope</span>
+          <span class="calc-chip">No calculator</span>
+        </div>
+        <h1>What Topic 1.1 Includes—and What It Does Not</h1>
+        <p class="subtitle">The lesson stays inside the required content for Change in Tandem.</p>
+        <div class="slide-body">
+          <div class="grid-2">
+  <article class="card objective-card">
+    <div class="lo-code">1.1.A</div>
+    <h3>Compare function values</h3>
+    <p>Describe how input and output values vary together by comparing function values.</p>
+  </article>
+  <article class="card objective-card">
+    <div class="lo-code">1.1.B</div>
+    <h3>Construct contextual graphs</h3>
+    <p>Construct a graph representing two quantities that vary with respect to each other in a contextual scenario.</p>
+  </article>
 </div>
-<div class="card warn"><h3>Boundary with Topic 1.2</h3><p>Topic 1.1 is qualitative. We may describe a rate of change as increasing or decreasing, but we do <strong>not</strong> develop the average-rate-of-change quotient here. That calculation begins in Topic 1.2.</p></div>
-<div class="card warn"><h3>AP exclusion statement</h3><p>Do not spend instructional time distinguishing open versus closed interval notation when stating where a function is increasing or decreasing. That distinction is outside the AP Precalculus scope for this concept.</p></div>
-</section>
-
-<section class="section" id="core">
-<h2>2. The Big Idea: Two Quantities Change Together</h2>
-<p>A function connects an <strong>input</strong> quantity to an <strong>output</strong> quantity. As the input changes, the output responds according to the function rule. That linked behavior is <em>change in tandem</em>.</p>
-<div class="grid4">
-<div class="card"><strong>1. Identify</strong><p>What is the input? What are its units?</p></div>
-<div class="card"><strong>2. Identify</strong><p>What is the output? What are its units?</p></div>
-<div class="card"><strong>3. Describe</strong><p>As input increases, does output rise, fall, or stay constant?</p></div>
-<div class="card"><strong>4. Refine</strong><p>Is the change becoming faster, slower, or approximately steady?</p></div>
+<div class="grid-3 compact-grid">
+  <div class="mini-card"><strong>1.1.A.1</strong><span>Function, domain, range, variables, equal functions</span></div>
+  <div class="mini-card"><strong>1.1.A.2</strong><span>Four representations, image, preimage</span></div>
+  <div class="mini-card"><strong>1.1.A.3–4</strong><span>Increasing and decreasing</span></div>
+  <div class="mini-card"><strong>1.1.B.1–2</strong><span>Graphs as input-output pairs; story → graph</span></div>
+  <div class="mini-card"><strong>1.1.B.3–4</strong><span>Concave up/down qualitatively</span></div>
+  <div class="mini-card"><strong>1.1.B.5</strong><span>Zeros and \(x\)-intercepts</span></div>
 </div>
-
-<h3>2.1 What makes a relation a function?</h3>
-<p>A function assigns <strong>each allowable input exactly one output</strong>. Different inputs may share the same output; one input may not have two different outputs in the same function.</p>
-<div class="grid2">
-<div class="card success"><strong>Allowed</strong><p><span class="math">f(2)=9</span> and <span class="math">f(5)=9</span>. Two inputs can have the same image.</p></div>
-<div class="card warn"><strong>Not a function</strong><p><span class="math">g(3)=4</span> and <span class="math">g(3)=10</span>. One input cannot map to two outputs.</p></div>
+<div class="callout warning">
+  <strong>Boundary with Topic 1.2</strong>
+  <p>We may say a rate of change is increasing or decreasing, but we do not calculate an average-rate-of-change quotient in this lesson.</p>
 </div>
-<p><span class="formula"><strong>Domain</strong> = allowable input values</span> &nbsp; <span class="formula"><strong>Range</strong> = output values actually produced</span></p>
-
-<h3>2.2 Independent and dependent variables</h3>
-<div class="card"><p>The amount of fuel <span class="math">F</span> remaining in a generator is a function of operating time <span class="math">h</span>.</p><p><strong>Independent variable:</strong> <span class="math">h</span> (hours). <strong>Dependent variable:</strong> <span class="math">F</span> (fuel amount).</p><p>If <span class="math">F(6)=18</span>, then after 6 hours of operation, 18 units of fuel remain.</p></div>
-
-<h3>2.3 Function notation</h3>
-<p>If <span class="math">y=f(x)</span>, then <span class="math">x</span> is the input and <span class="math">f(x)</span> is its output.</p>
-<div class="card"><p>Let <span class="math">p(x)=2x²-5x+1</span>.</p><div class="table-wrap"><table><tr><th>Input</th><th>Output</th></tr><tr><td><span class="math">x=-2</span></td><td><span class="math">p(-2)=19</span></td></tr><tr><td><span class="math">x=0</span></td><td><span class="math">p(0)=1</span></td></tr><tr><td><span class="math">x=3</span></td><td><span class="math">p(3)=4</span></td></tr></table></div><p>Thus <span class="math">p(0)&lt;p(3)&lt;p(-2)</span>.</p></div>
-
-<h3>2.4 Image and preimage</h3>
-<div class="grid2">
-<div class="card"><strong>Image</strong><p>The image of input <span class="math">a</span> is the single output <span class="math">f(a)</span>.</p><p>Ask: “Where does this input go?”</p></div>
-<div class="card"><strong>Preimage</strong><p>The preimage of output <span class="math">L</span> is the set of all inputs satisfying <span class="math">f(x)=L</span>.</p><p>Ask: “Which input value(s) create this output?”</p></div>
+<div class="callout info">
+  <strong>AP exclusion</strong>
+  <p>Do not spend time distinguishing open versus closed interval notation when reporting increasing or decreasing behavior.</p>
 </div>
-<div class="card"><p>For <span class="math">f(x)=x²-4</span> on <span class="math">-3≤x≤3</span>:</p><ul><li>image of 2: <span class="math">f(2)=0</span>;</li><li>preimage of 0: <span class="math">{-2,2}</span>;</li><li>preimage of 5: <span class="math">{-3,3}</span>.</li></ul></div>
+        </div>
+      </div>
+    </section>
+    
 
-<h3>2.5 Equal functions</h3>
-<p>Two functions are equal only when they have the <strong>same domain</strong> and the <strong>same output for every input</strong> in that domain.</p>
-<div class="grid2">
-<div class="card success"><p><span class="math">f(x)=5(x-2)+7</span> and <span class="math">g(x)=5x-3</span>, both on all real numbers.</p><p>Because <span class="math">5(x-2)+7=5x-3</span> for every real input, <strong>f=g</strong>.</p></div>
-<div class="card warn"><p><span class="math">p(x)=x²+1</span> on all reals and <span class="math">q(x)=x²+1</span> on <span class="math">x≥0</span>.</p><p>Same formula, different domains, so <strong>p≠q</strong>.</p></div>
+    <section class="slide" id="success-criteria" data-slide-id="success-criteria" data-section="Launch" data-title="What Success Looks Like" data-calc="No calculator" aria-hidden="true">
+      <div class="slide-inner">
+        <div class="slide-meta">
+          <span class="section-chip">Launch</span>
+          <span class="kicker">Learning targets</span>
+          <span class="calc-chip">No calculator</span>
+        </div>
+        <h1>What Success Looks Like</h1>
+        <p class="subtitle">Topic 1.1 is introductory: notice, describe, construct, and justify.</p>
+        <div class="slide-body">
+          <div class="grid-2">
+  <div class="card">
+    <h3>I can identify and interpret</h3>
+    <ul class="check-list">
+      <li>input, output, domain, range, independent variable, dependent variable;</li>
+      <li>function notation, image, preimage, and equality of functions;</li>
+      <li>increasing, decreasing, and constant behavior;</li>
+      <li>concave up, concave down, zeros, and \(x\)-intercepts.</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3>I can move among representations</h3>
+    <ul class="check-list">
+      <li>table ↔ graph ↔ formula ↔ verbal description;</li>
+      <li>compare values with correct notation and units;</li>
+      <li>construct a qualitative graph from a context;</li>
+      <li>state only what the evidence supports.</li>
+    </ul>
+  </div>
 </div>
-</section>
-
-<section class="section">
-<h2>3. Comparing Function Values: The Core of Covariation</h2>
-<p>Suppose <span class="math">a&lt;b</span>. Comparing <span class="math">f(a)</span> and <span class="math">f(b)</span> tells us how the outputs at those two inputs compare.</p>
-<table><tr><th>Comparison</th><th>Meaning</th></tr><tr><td><span class="math">f(a)&lt;f(b)</span></td><td>The output at the larger input <span class="math">b</span> is greater.</td></tr><tr><td><span class="math">f(a)&gt;f(b)</span></td><td>The output at <span class="math">b</span> is smaller.</td></tr><tr><td><span class="math">f(a)=f(b)</span></td><td>The two inputs have the same output; behavior between them is still unknown.</td></tr></table>
-<div class="card warn"><p><span class="trap">AP Trap:</span> From <span class="math">f(a)&lt;f(b)</span> alone, you cannot conclude that <span class="math">f</span> is increasing at every input between <span class="math">a</span> and <span class="math">b</span>. The function could rise, fall, and rise again.</p></div>
-<h3>Example: numerical representation</h3>
-<table><tr><th><span class="math">t</span> (hours)</th><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr><tr><th><span class="math">B(t)</span> (%)</th><td>100</td><td>91</td><td>83</td><td>76</td><td>70</td><td>65</td></tr></table>
-<p>For the listed values, battery charge decreases as time increases. Also, the successive decreases become smaller in magnitude. A careful AP statement is: <strong>“At the listed input values, increasing time corresponds to decreasing battery charge.”</strong></p>
-<div class="card warn"><p>A finite table does not prove behavior at every input between the listed data points unless additional information is given.</p></div>
-</section>
-
-<section class="section">
-<h2>4. Increasing, Decreasing, and Constant Behavior</h2>
-<div class="grid3">
-<div class="card"><h3>Increasing</h3><p>For all <span class="math">a&lt;b</span> in the region, <span class="math">f(a)&lt;f(b)</span>.</p></div>
-<div class="card"><h3>Decreasing</h3><p>For all <span class="math">a&lt;b</span> in the region, <span class="math">f(a)&gt;f(b)</span>.</p></div>
-<div class="card"><h3>Constant</h3><p>Outputs stay the same. A horizontal segment is neither strictly increasing nor strictly decreasing.</p></div>
+<div class="big-idea">
+  <span class="big-idea-label">One sentence for the whole lesson</span>
+  <strong>A function tells a story about how an output responds as an input changes.</strong>
 </div>
-<h3>How to read a graph</h3><ol class="steps"><li>Read from left to right as input increases.</li><li>Locate where the output rises, falls, or stays level.</li><li>State the regions with appropriate precision.</li><li>If the graph is approximate, use “about” or “approximately.”</li></ol>
-<div class="card warn"><p><span class="trap">Do not confuse height with direction.</span> A high point is not “increasing.” At a turning point, the graph changes from increasing to decreasing or vice versa.</p></div>
-</section>
+        </div>
+      </div>
+    </section>
+    
 
-<section class="section">
-<h2>5. Concavity: How the Rate of Change Is Changing</h2>
-<p>Concavity is different from increasing/decreasing behavior. It describes what happens to the <strong>rate of change</strong> as the input increases.</p>
-<div class="grid2">
-<div class="card"><h3>Concave up</h3><p>The rate of change is <strong>increasing</strong>. Slopes become more positive or less negative.</p></div>
-<div class="card"><h3>Concave down</h3><p>The rate of change is <strong>decreasing</strong>. Slopes become less positive or more negative.</p></div>
+    <section class="slide" id="launch-lab" data-slide-id="launch-lab" data-section="Launch" data-title="A Reservoir Changes Over Time" data-calc="Technology exploration" aria-hidden="true">
+      <div class="slide-inner">
+        <div class="slide-meta">
+          <span class="section-chip">Launch</span>
+          <span class="kicker">Interactive launch</span>
+          <span class="calc-chip">Technology exploration</span>
+        </div>
+        <h1>A Reservoir Changes Over Time</h1>
+        <p class="subtitle">Move the time slider. Watch the highlighted input-output pair move in tandem.</p>
+        <div class="slide-body">
+          <div class="grid-2 graph-layout">
+  <div class="card">
+    <h3>The situation</h3>
+    <p>A reservoir begins with 10 liters, fills for three minutes, stays unchanged for two minutes, and then drains.</p>
+    <label class="range-label" for="launchSlider">Time: <output id="launchTime">0</output> min</label>
+    <input id="launchSlider" class="range" type="range" min="0" max="8" step="1" value="0">
+    <div class="live-value">
+      <span>Input \(t\)</span><strong id="launchInput">0 min</strong>
+      <span>Output \(V(t)\)</span><strong id="launchOutput">10 L</strong>
+    </div>
+    <div class="prompt"><strong>Describe:</strong> What happens to volume as time increases through each stage?</div>
+  </div>
+  <figure class="graph-card">
+    <svg id="launchGraph" class="interactive-graph" viewBox="0 0 720 430" role="img" aria-label="Reservoir volume increases, remains constant, then decreases">
+      <g class="plot-grid"></g>
+      <g class="plot-axes"></g>
+      <polyline id="launchCurve" class="graph-curve" fill="none"></polyline>
+      <line id="launchVGuide" class="guide" x1="0" y1="0" x2="0" y2="0"></line>
+      <line id="launchHGuide" class="guide" x1="0" y1="0" x2="0" y2="0"></line>
+      <circle id="launchPoint" class="focus-point" r="8"></circle>
+      <text id="launchPointLabel" class="point-label"></text>
+      <text x="690" y="405" text-anchor="end" class="axis-label">time t (min)</text>
+      <text x="24" y="34" class="axis-label">volume V(t) (L)</text>
+    </svg>
+    <figcaption>The graph is not a picture of a reservoir; its shape describes the relationship between time and volume.</figcaption>
+  </figure>
 </div>
-<table><tr><th>Behavior</th><th>What the output does</th><th>What happens to steepness</th></tr><tr><td>Increasing, concave up</td><td>Rises</td><td>Rises faster and faster</td></tr><tr><td>Increasing, concave down</td><td>Rises</td><td>Rises more slowly</td></tr><tr><td>Decreasing, concave up</td><td>Falls</td><td>Falls more slowly</td></tr><tr><td>Decreasing, concave down</td><td>Falls</td><td>Falls faster and faster</td></tr></table>
-<div class="card success"><p><strong>Context example:</strong> A tank drains quickly at first, then more slowly. Volume is decreasing, but its rate of change is becoming less negative, so the graph is <strong>decreasing and concave up</strong>.</p></div>
-<div class="card warn"><p><span class="trap">Major misconception:</span> concave up does not mean “going up,” and concave down does not mean “going down.” Direction and concavity answer different questions.</p></div>
-</section>
+        </div>
+      </div>
+    </section>
+    
 
-<section class="section">
-<h2>6. Zeros and x-Intercepts</h2>
-<p>A <strong>zero</strong> is an input value <span class="math">c</span> such that <span class="math">f(c)=0</span>. The corresponding graph point is the <strong>x-intercept</strong> <span class="math">(c,0)</span>.</p>
-<div class="card"><p>For <span class="math">f(x)=2(x+4)(x-1)(x-5)</span>, the zeros are <span class="math">-4,1,5</span>, and the x-intercepts are <span class="math">(-4,0),(1,0),(5,0)</span>.</p></div>
-<div class="card warn"><p><span class="trap">Precision:</span> a zero is an input value; an x-intercept is a coordinate point.</p></div>
-<div class="card"><p>If <span class="math">H(t)</span> is a drone's height above launch level, then a zero of <span class="math">H</span> represents a time when the drone is at launch level. A zero does not automatically tell you that the function changes sign there.</p></div>
-</section>
+    <section class="slide" id="function-definition" data-slide-id="function-definition" data-section="Foundations" data-title="What Makes a Relation a Function?" data-calc="No calculator" aria-hidden="true">
+      <div class="slide-inner">
+        <div class="slide-meta">
+          <span class="section-chip">Foundations</span>
+          <span class="kicker">Essential Knowledge 1.1.A.1</span>
+          <span class="calc-chip">No calculator</span>
+        </div>
+        <h1>What Makes a Relation a Function?</h1>
+        <p class="subtitle">Every allowable input must be assigned exactly one output.</p>
+        <div class="slide-body">
+          <div class="grid-2">
+  <div class="card">
+    <h3>Allowed</h3>
+    <div class="mapping mapping-good" aria-label="Mapping where each input has exactly one output">
+      <div><strong>Domain</strong><span>−2</span><span>0</span><span>3</span></div>
+      <svg viewBox="0 0 180 190" aria-hidden="true">
+        <defs><marker id="arrowGood" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z"></path></marker></defs>
+        <path d="M8 55 C70 55 105 45 170 45" marker-end="url(#arrowGood)"></path>
+        <path d="M8 95 C70 95 105 95 170 95" marker-end="url(#arrowGood)"></path>
+        <path d="M8 135 C70 135 105 95 170 95" marker-end="url(#arrowGood)"></path>
+      </svg>
+      <div><strong>Range</strong><span>1</span><span>4</span><span>7</span></div>
+    </div>
+    <p class="note">Different inputs may have the same output.</p>
+  </div>
+  <div class="card">
+    <h3>Not allowed</h3>
+    <div class="mapping mapping-bad" aria-label="Mapping where one input has two outputs">
+      <div><strong>Input</strong><span>1</span><span>2</span></div>
+      <svg viewBox="0 0 180 190" aria-hidden="true">
+        <defs><marker id="arrowBad" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z"></path></marker></defs>
+        <path d="M8 70 C70 70 105 45 170 45" marker-end="url(#arrowBad)"></path>
+        <path d="M8 70 C70 70 105 105 170 105" marker-end="url(#arrowBad)"></path>
+        <path d="M8 130 C70 130 105 150 170 150" marker-end="url(#arrowBad)"></path>
+      </svg>
+      <div><strong>Output</strong><span>4</span><span>6</span><span>5</span></div>
+    </div>
+    <p class="note">Input 1 produces two outputs, so this is not a function.</p>
+  </div>
+</div>
+<div class="question-card mcq assessable" data-qid="foundation-function" data-answer="C">
+  <div class="question-head"><span>Interactive check</span><strong>Which statement is always true for a function?</strong></div>
+  <div class="options">
+    <button data-choice="A">Every output has exactly one input.</button>
+    <button data-choice="B">Every function has a zero.</button>
+    <button data-choice="C">Every input in the domain has exactly one output.</button>
+    <button data-choice="D">Every function is increasing or decreasing everywhere.</button>
+  </div>
+  <div class="feedback" aria-live="polite"></div>
+</div>
+        </div>
+      </div>
+    </section>
+    
 
-<section class="section" id="representations">
-<h2>7. Four Representations of One Function</h2>
-<div class="grid4"><div class="card"><h3>Graphical</h3><p>Graph / curve / plotted points</p></div><div class="card"><h3>Numerical</h3><p>Table / listed values</p></div><div class="card"><h3>Analytical</h3><p>Formula / function rule</p></div><div class="card"><h3>Verbal</h3><p>Context / description</p></div></div>
-<p>AP questions often ask you to move between representations. Your conclusion should match the precision of the representation provided.</p>
-<div class="card warn"><p>If a graph is low resolution, do not report an exact transition value that the graph does not support. If a table gives only selected points, do not assume unseen behavior between rows.</p></div>
-</section>
+    <section class="slide" id="domain-range-context" data-slide-id="domain-range-context" data-section="Foundations" data-title="Domain, Range, and the Two Variables" data-calc="No calculator" aria-hidden="true">
+      <div class="slide-inner">
+        <div class="slide-meta">
+          <span class="section-chip">Foundations</span>
+          <span class="kicker">Language and context</span>
+          <span class="calc-chip">No calculator</span>
+        </div>
+        <h1>Domain, Range, and the Two Variables</h1>
+        <p class="subtitle">Name the quantities before interpreting the mathematics.</p>
+        <div class="slide-body">
+          <div class="grid-2">
+  <div class="card definition-card">
+    <h3>Domain</h3>
+    <p>The set of allowable <strong>input</strong> values.</p>
+    <h3>Independent variable</h3>
+    <p>The variable representing the input quantity.</p>
+  </div>
+  <div class="card definition-card">
+    <h3>Range</h3>
+    <p>The set of output values actually produced.</p>
+    <h3>Dependent variable</h3>
+    <p>The output quantity whose value depends on the input.</p>
+  </div>
+</div>
+<div class="worked-example">
+  <div class="worked-title">Context example</div>
+  <p>The volume \(V\), in liters, of water in a tank is a function of elapsed time \(t\), in minutes.</p>
+  <div class="answer-row">
+    <span>Independent variable</span><strong>\(t\), measured in minutes</strong>
+    <span>Dependent variable</span><strong>\(V(t)\), measured in liters</strong>
+  </div>
+  <p>The point \((12,450)\) means: <strong>after 12 minutes, the tank contains 450 liters.</strong></p>
+</div>
+<div class="callout warning"><strong>AP writing habit</strong><p>Include variable names and units. Avoid saying only “the graph goes up.”</p></div>
+        </div>
+      </div>
+    </section>
+    
 
-<section class="section">
-<h2>8. Constructing a Graph from a Context</h2>
-<ol><li>Put the independent variable and units on the horizontal axis.</li><li>Put the dependent variable and units on the vertical axis.</li><li>Mark the starting output if given.</li><li>Translate each verbal stage into increasing, decreasing, or constant behavior.</li><li>Use concavity only when the description tells how the rate is changing.</li><li>Show a zero only when the output is stated to become 0.</li></ol>
-<div class="card"><h3>Worked story</h3><p>A machine starts cool. Its temperature increases slowly at first, then faster; later it keeps rising but begins to level off near a stable temperature.</p><p><strong>Stage 1:</strong> increasing and concave up. <strong>Stage 2:</strong> increasing and concave down. The graph should approach an approximately constant level.</p></div>
-<div class="graphbox"><svg class="axis-demo" viewBox="0 0 650 220" role="img" aria-label="Qualitative temperature versus time graph"><line x1="50" y1="185" x2="625" y2="185" stroke="#263a4d" stroke-width="2"/><line x1="50" y1="185" x2="50" y2="20" stroke="#263a4d" stroke-width="2"/><path d="M55 170 C130 170,150 150,210 110 C280 60,390 35,605 33" fill="none" stroke="#0f77b7" stroke-width="5"/><text x="560" y="210" font-size="16">time</text><text x="8" y="28" font-size="16">temperature</text></svg></div>
-<div class="card warn"><p>A context graph is not a picture of the physical object. Its shape represents how two quantities vary together.</p></div>
-</section>
+    <section class="slide" id="function-notation" data-slide-id="function-notation" data-section="Foundations" data-title="Input Goes In; Output Comes Out" data-calc="No calculator" aria-hidden="true">
+      <div class="slide-inner">
+        <div class="slide-meta">
+          <span class="section-chip">Foundations</span>
+          <span class="kicker">Function notation</span>
+          <span class="calc-chip">No calculator</span>
+        </div>
+        <h1>Input Goes In; Output Comes Out</h1>
+        <p class="subtitle">Evaluate a function, then interpret the result.</p>
+        <div class="slide-body">
+          <div class="grid-2">
+  <div class="card">
+    <h3>Rule</h3>
+    <div class="display-math">\[
+      T(h)=18+3h-h^2,\qquad 0\le h\le 4
+    \]</div>
+    <p>\(T(h)\) models a temperature index \(h\) hours after noon.</p>
+    <ul>
+      <li>\(h\) is the input.</li>
+      <li>\(T(h)\) is the corresponding output.</li>
+    </ul>
+  </div>
+  <div class="card interactive-card">
+    <h3>Try it</h3>
+    <form class="short-check assessable" data-qid="notation-value" data-answer="20" data-tolerance="0.001">
+      <label for="notationAnswer">Find \(T(2)\).</label>
+      <div class="input-row"><input id="notationAnswer" inputmode="decimal" autocomplete="off" aria-label="Value of T of 2"><button type="submit">Check</button></div>
+      <div class="feedback" aria-live="polite"></div>
+    </form>
+    <details>
+      <summary>Show the full comparison</summary>
+      <div class="solution">
+        \(T(0)=18,\;T(2)=20,\;T(4)=14\), so
+        \[
+          T(2)>T(0)>T(4).
+        \]
+        The output rises from \(h=0\) to \(h=2\), then is lower by \(h=4\).
+      </div>
+    </details>
+  </div>
+</div>
+        </div>
+      </div>
+    </section>
+    
 
-<section class="section">
-<h2>9. Complete AP Reading Routine</h2>
-<ol><li><strong>Variables:</strong> identify input/output and units.</li><li><strong>Values:</strong> read or evaluate requested function values.</li><li><strong>Zeros:</strong> locate them if relevant.</li><li><strong>Direction:</strong> identify increasing/decreasing/constant regions.</li><li><strong>Concavity:</strong> describe how rate of change behaves when supported.</li><li><strong>Context:</strong> interpret the mathematics in the situation.</li></ol>
-<div class="card success"><strong>AP-quality sentence frame</strong><p>“As the input <em>_____</em> increases from/about <em>_____</em> to <em>_____</em>, the output <em>_____</em> [increases/decreases/remains approximately constant], and the rate of change [increases/decreases] when that conclusion is supported.”</p></div>
-</section>
+    <section class="slide" id="point-meaning" data-slide-id="point-meaning" data-section="Foundations" data-title="A Point Is an Input-Output Statement" data-calc="No calculator" aria-hidden="true">
+      <div class="slide-inner">
+        <div class="slide-meta">
+          <span class="section-chip">Foundations</span>
+          <span class="kicker">Graph language</span>
+          <span class="calc-chip">No calculator</span>
+        </div>
+        <h1>A Point Is an Input-Output Statement</h1>
+        <p class="subtitle">Read horizontal coordinate first, then vertical coordinate.</p>
+        <div class="slide-body">
+          <div class="grid-2 graph-layout">
+  <figure class="graph-card">
+    <svg class="static-graph" viewBox="0 0 620 380" role="img" aria-label="Graph with a highlighted point at time 7 seconds and height 24 meters">
+      <g class="simple-grid"></g>
+      <line class="axis-line" x1="70" y1="320" x2="580" y2="320"></line>
+      <line class="axis-line" x1="70" y1="320" x2="70" y2="35"></line>
+      <circle cx="420" cy="92" r="10" class="focus-point"></circle>
+      <line x1="420" y1="92" x2="420" y2="320" class="guide"></line>
+      <line x1="70" y1="92" x2="420" y2="92" class="guide"></line>
+      <text x="420" y="344" text-anchor="middle">7</text>
+      <text x="58" y="98" text-anchor="end">24</text>
+      <text x="575" y="365" text-anchor="end" class="axis-label">time (seconds)</text>
+      <text x="22" y="45" class="axis-label">height (meters)</text>
+    </svg>
+  </figure>
+  <div class="card">
+    <h3>Interpret \((7,24)\)</h3>
+    <p class="sentence-frame">At an input of <strong>___</strong> <em>input units</em>, the output is <strong>___</strong> <em>output units</em>.</p>
+    <div class="question-card mcq assessable" data-qid="point-context" data-answer="B">
+      <div class="options">
+        <button data-choice="A">The object is 7 meters high after 24 seconds.</button>
+        <button data-choice="B">After 7 seconds, the object is 24 meters high.</button>
+        <button data-choice="C">The height changes by 24 meters every 7 seconds.</button>
+        <button data-choice="D">The object reaches its maximum height at 7 seconds.</button>
+      </div>
+      <div class="feedback" aria-live="polite"></div>
+    </div>
+  </div>
+</div>
+        </div>
+      </div>
+    </section>
+    
 
-<section class="section" id="practice">
-<h2>10. AP-Style Practice</h2>
-<p class="mini">Original ECHS questions aligned to Topic 1.1. Reveal checks only after committing to an answer.</p>
-<div class="q"><div class="q-title"><span class="ap-tag">MCQ 1 · 1.1.A</span> Function language</div><p>A function <span class="math">C(n)</span> gives the total cost of purchasing <span class="math">n</span> identical notebooks. Which statement is correct?</p><div class="answer-grid"><div class="choice">A. C is the input and n is the output.</div><div class="choice">B. n is dependent because cost depends on it.</div><div class="choice">C. n is independent and C(n) is dependent.</div><div class="choice">D. The variables cannot be identified.</div></div><details><summary>Check answer</summary><div><strong>C.</strong> The number of notebooks is the input; total cost depends on it.</div></details></div>
+    <section class="slide" id="image-preimage" data-slide-id="image-preimage" data-section="Images and preimages" data-title="Image and Preimage Ask Opposite Questions" data-calc="No calculator" aria-hidden="true">
+      <div class="slide-inner">
+        <div class="slide-meta">
+          <span class="section-chip">Images and preimages</span>
+          <span class="kicker">Essential Knowledge 1.1.A.2</span>
+          <span class="calc-chip">No calculator</span>
+        </div>
+        <h1>Image and Preimage Ask Opposite Questions</h1>
+        <p class="subtitle">One starts with an input; the other starts with an output.</p>
+        <div class="slide-body">
+          <div class="grid-2">
+  <div class="card concept-card image-card">
+    <div class="concept-icon">→</div>
+    <h3>Image of an input \(a\)</h3>
+    <p>The single output \(f(a)\).</p>
+    <div class="question-call">“Where does this input go?”</div>
+  </div>
+  <div class="card concept-card preimage-card">
+    <div class="concept-icon">←</div>
+    <h3>Preimage of an output \(L\)</h3>
+    <p>The set of all inputs satisfying \(f(x)=L\).</p>
+    <div class="question-call">“Which input value or values produce this output?”</div>
+  </div>
+</div>
+<div class="worked-example">
+  <div class="worked-title">From a table</div>
+  <div class="table-wrap">
+    <table class="math-table">
+      <tr><th>\(x\)</th><td>−3</td><td>−1</td><td>0</td><td>2</td><td>4</td><td>6</td></tr>
+      <tr><th>\(f(x)\)</th><td>5</td><td>1</td><td>−2</td><td>1</td><td>5</td><td>9</td></tr>
+    </table>
+  </div>
+  <p>The image of 2 is <strong>1</strong>. The preimage of 5 is <strong>\(\{-3,4\}\)</strong>.</p>
+</div>
+        </div>
+      </div>
+    </section>
+    
 
-<div class="q"><div class="q-title"><span class="ap-tag">MCQ 2 · 1.1.A</span> Precision of conclusions</div><p>Suppose <span class="math">f(2)=7</span> and <span class="math">f(8)=12</span>. Which conclusion is guaranteed?</p><div class="answer-grid"><div class="choice">A. f is increasing on the entire interval.</div><div class="choice">B. f(2)&lt;f(8).</div><div class="choice">C. f is concave up.</div><div class="choice">D. f has no zeros.</div></div><details><summary>Check answer</summary><div><strong>B.</strong> The two known values justify only the direct comparison.</div></details></div>
+    <section class="slide" id="preimage-explorer" data-slide-id="preimage-explorer" data-section="Images and preimages" data-title="How Many Preimages Can One Output Have?" data-calc="Technology exploration" aria-hidden="true">
+      <div class="slide-inner">
+        <div class="slide-meta">
+          <span class="section-chip">Images and preimages</span>
+          <span class="kicker">Interactive graph explorer</span>
+          <span class="calc-chip">Technology exploration</span>
+        </div>
+        <h1>How Many Preimages Can One Output Have?</h1>
+        <p class="subtitle">Move the horizontal line. The intersection inputs form the preimage.</p>
+        <div class="slide-body">
+          <div class="grid-2 graph-layout">
+  <div class="card">
+    <label class="range-label" for="preimageSlider">Target output \(L=\)<output id="preimageLevel">4</output></label>
+    <input id="preimageSlider" class="range" type="range" min="-2" max="10" step="0.5" value="4">
+    <div class="live-summary">
+      <span>Approximate preimage</span>
+      <strong id="preimageResult">\(\{-3,0,3\}\)</strong>
+    </div>
+    <p class="note">The graph can still represent a function: every input has one output, even when one output has several preimages.</p>
+    <button class="small-button" id="preimageReset" type="button">Set \(L=4\)</button>
+  </div>
+  <figure class="graph-card">
+    <svg id="preimageGraph" class="interactive-graph" viewBox="0 0 720 430" role="img" aria-label="Cubic function and movable horizontal line showing preimages">
+      <g class="plot-grid"></g>
+      <g class="plot-axes"></g>
+      <path id="preimageCurve" class="graph-curve"></path>
+      <line id="preimageLine" class="horizontal-target"></line>
+      <g id="preimageDots"></g>
+      <text x="690" y="405" text-anchor="end" class="axis-label">input x</text>
+      <text x="24" y="34" class="axis-label">output f(x)</text>
+    </svg>
+  </figure>
+</div>
+        </div>
+      </div>
+    </section>
+    
 
-<div class="q"><div class="q-title"><span class="ap-tag">MCQ 3 · 1.1.B</span> Concavity</div><p>A population is increasing, but the number added each year is getting smaller. Which description best fits the graph?</p><div class="answer-grid"><div class="choice">A. Increasing, concave up</div><div class="choice">B. Increasing, concave down</div><div class="choice">C. Decreasing, concave up</div><div class="choice">D. Decreasing, concave down</div></div><details><summary>Check answer</summary><div><strong>B.</strong> The output rises while its rate of change decreases.</div></details></div>
+    <section class="slide" id="equal-functions" data-slide-id="equal-functions" data-section="Images and preimages" data-title="When Are Two Functions Equal?" data-calc="No calculator" aria-hidden="true">
+      <div class="slide-inner">
+        <div class="slide-meta">
+          <span class="section-chip">Images and preimages</span>
+          <span class="kicker">Essential Knowledge 1.1.A.1</span>
+          <span class="calc-chip">No calculator</span>
+        </div>
+        <h1>When Are Two Functions Equal?</h1>
+        <p class="subtitle">The formula is not the whole function.</p>
+        <div class="slide-body">
+          <div class="big-definition">
+  Two functions \(f\) and \(g\) are equal only when they have the <strong>same domain</strong> and
+  \[
+    f(x)=g(x)
+  \]
+  for every input in that domain.
+</div>
+<div class="grid-2">
+  <div class="worked-example success-panel">
+    <div class="worked-title">Equivalent expressions</div>
+    <p>\(f(x)=2(x+3)\) and \(g(x)=2x+6\), both on \(\mathbb R\).</p>
+    <p>Because \(2(x+3)=2x+6\) for every real \(x\), <strong>\(f=g\)</strong>.</p>
+  </div>
+  <div class="worked-example warning-panel">
+    <div class="worked-title">Same formula, different domain</div>
+    <p>\(p(x)=x^2\) on \(\mathbb R\), while \(q(x)=x^2\) on \(x\ge0\).</p>
+    <p>\(p(-2)\) exists but \(q(-2)\) does not, so <strong>\(p\ne q\)</strong>.</p>
+  </div>
+</div>
+<div class="callout warning"><strong>AP trap</strong><p>Same range, one shared point, or the same variable name is not enough to prove two functions are equal.</p></div>
+        </div>
+      </div>
+    </section>
+    
 
-<div class="q"><div class="q-title"><span class="ap-tag">MCQ 4 · 1.1.A</span> Equal functions</div><p>Two functions use the formula <span class="math">x²+3</span>, but one has domain all real numbers and the other has domain <span class="math">x≥0</span>. Which is correct?</p><div class="answer-grid"><div class="choice">A. Equal because formulas match.</div><div class="choice">B. Not equal because domains differ.</div><div class="choice">C. Equal only if ranges differ.</div><div class="choice">D. Not enough information.</div></div><details><summary>Check answer</summary><div><strong>B.</strong> Equal functions require equal domains and equal outputs on that domain.</div></details></div>
+    <section class="slide" id="equal-functions-check" data-slide-id="equal-functions-check" data-section="Images and preimages" data-title="Same Rule Does Not Always Mean Same Function" data-calc="No calculator" aria-hidden="true">
+      <div class="slide-inner">
+        <div class="slide-meta">
+          <span class="section-chip">Images and preimages</span>
+          <span class="kicker">Interactive misconception check</span>
+          <span class="calc-chip">No calculator</span>
+        </div>
+        <h1>Same Rule Does Not Always Mean Same Function</h1>
+        <p class="subtitle">Check both the outputs and the domain.</p>
+        <div class="slide-body">
+          <div class="question-card mcq assessable large-question" data-qid="equal-functions-check" data-answer="B">
+  <div class="question-head">
+    <span>Original AP-style question</span>
+    <strong>Two functions use the formula \(x^2+3\). One has domain \(\mathbb R\), and the other has domain \(x\ge0\). Which statement is correct?</strong>
+  </div>
+  <div class="options">
+    <button data-choice="A">They are equal because the formulas match.</button>
+    <button data-choice="B">They are not equal because their domains differ.</button>
+    <button data-choice="C">They are equal only if their ranges differ.</button>
+    <button data-choice="D">There is not enough information because no graph is shown.</button>
+  </div>
+  <div class="feedback" aria-live="polite"></div>
+</div>
+<div class="mini-proof">
+  <strong>A fast proof:</strong> choose \(x=-1\). The first function is defined there; the second is not.
+</div>
+        </div>
+      </div>
+    </section>
+    
 
-<div class="q"><div class="q-title"><span class="ap-tag">FRQ · Skills 2.B & 3.A</span> Battery performance</div><p>A rechargeable battery's remaining energy <span class="math">E(t)</span>, in watt-hours, is measured at selected times.</p><table><tr><th><span class="math">t</span> (h)</th><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr><tr><th><span class="math">E(t)</span></th><td>80</td><td>68</td><td>58</td><td>50</td><td>44</td><td>40</td></tr></table><ol type="a"><li>Identify the independent and dependent variables and units.</li><li>Compare <span class="math">E(1)</span> and <span class="math">E(4)</span> and interpret the comparison.</li><li>Describe the covariation shown by the listed values.</li><li>The successive decreases become less negative. What qualitative concavity does the data suggest?</li><li>State one limitation of using only this table to describe behavior between the listed times.</li></ol><details><summary>Scoring check</summary><div><p>(a) <span class="math">t</span> is independent in hours; <span class="math">E</span> is dependent in watt-hours. (b) <span class="math">E(1)=68&gt;44=E(4)</span>; at 1 hour the battery has 24 Wh more energy than at 4 hours. (c) At listed times energy decreases as time increases. (d) Decreasing, concave up is suggested because the decreases become smaller in magnitude. (e) The table does not determine every value or behavior between sampled times.</p></div></details></div>
-</section>
+    <section class="slide" id="four-representations" data-slide-id="four-representations" data-section="Representations" data-title="One Function, Four Representations" data-calc="No calculator" aria-hidden="true">
+      <div class="slide-inner">
+        <div class="slide-meta">
+          <span class="section-chip">Representations</span>
+          <span class="kicker">Essential Knowledge 1.1.A.2</span>
+          <span class="calc-chip">No calculator</span>
+        </div>
+        <h1>One Function, Four Representations</h1>
+        <p class="subtitle">Each representation must tell the same input-output story.</p>
+        <div class="slide-body">
+          <div class="representation-wheel">
+  <div class="rep-card rep-graph"><span>Graphical</span><strong>graph</strong></div>
+  <div class="rep-arrow a1">↔</div>
+  <div class="rep-card rep-table"><span>Numerical</span><strong>table / values</strong></div>
+  <div class="rep-arrow a2">↕</div>
+  <div class="rep-card rep-formula"><span>Analytical</span><strong>formula / rule</strong></div>
+  <div class="rep-arrow a3">↔</div>
+  <div class="rep-card rep-verbal"><span>Verbal</span><strong>context / description</strong></div>
+  <div class="rep-arrow a4">↕</div>
+</div>
+<div class="callout info">
+  <strong>Skill 2.B</strong>
+  <p>Construct equivalent representations that are useful for the mathematical or applied context, with and without technology.</p>
+</div>
+        </div>
+      </div>
+    </section>
+    
 
-<section class="section" id="challenge">
-<h2>11. Challenge & Tricky Questions</h2>
-<p>These questions stay inside Topic 1.1 but force careful reasoning about what the evidence does—and does not—justify.</p>
-<div class="q challenge"><div class="q-title">Challenge 1 · Endpoint trap</div><p>Construct a function with <span class="math">f(0)=1</span> and <span class="math">f(6)=9</span> that is <strong>not</strong> increasing on the entire interval from 0 to 6. Explain why your example disproves the claim that endpoint comparison determines monotonicity.</p></div>
-<div class="q challenge"><div class="q-title">Challenge 2 · Same range, different functions</div><p>Give two different functions with the same domain and the same range that are not equal functions. Provide enough information to verify all three claims.</p></div>
-<div class="q challenge"><div class="q-title">Challenge 3 · Multiple preimages</div><p>Construct a function graph for which the output 4 has exactly three preimages. Explain why the graph can still represent a function.</p></div>
-<div class="q challenge"><div class="q-title">Challenge 4 · A zero with no sign change</div><p>Sketch a function with a zero at <span class="math">x=3</span> whose output is positive immediately on both sides of <span class="math">x=3</span>. What does this show about what a zero does and does not imply?</p></div>
-<div class="q challenge"><div class="q-title">Challenge 5 · Data ambiguity</div><p>A table gives <span class="math">f(0)=0, f(1)=1, f(2)=4, f(3)=9</span>. Draw two qualitatively different graphs through all four points: one increasing throughout and one that is not increasing everywhere between the listed inputs. Explain why the table alone cannot distinguish them.</p></div>
-<div class="q challenge"><div class="q-title">Challenge 6 · Construct from constraints</div><p>Sketch a function satisfying all of these conditions in one window: <span class="math">f(-2)=0</span> and <span class="math">f(4)=0</span>; the function is increasing, then decreasing, then increasing; one increasing region is concave down; the final increasing region is concave up; and the output 3 has at least two preimages.</p></div>
-<div class="q challenge"><div class="q-title">Challenge 7 · Precision</div><p>A low-resolution graph appears to flatten near <span class="math">x=5</span>. Write one mathematically responsible conclusion and one statement that is too strong to justify from the visual alone. Explain the difference.</p></div>
-</section>
+    <section class="slide" id="compare-table" data-slide-id="compare-table" data-section="Comparing values" data-title="Compare Outputs Before Making a Bigger Claim" data-calc="No calculator" aria-hidden="true">
+      <div class="slide-inner">
+        <div class="slide-meta">
+          <span class="section-chip">Comparing values</span>
+          <span class="kicker">Change in tandem</span>
+          <span class="calc-chip">No calculator</span>
+        </div>
+        <h1>Compare Outputs Before Making a Bigger Claim</h1>
+        <p class="subtitle">A table gives exact values only at the listed inputs.</p>
+        <div class="slide-body">
+          <div class="grid-2">
+  <div class="card">
+    <h3>Battery charge</h3>
+    <div class="table-wrap">
+      <table class="math-table">
+        <tr><th>t (hours)</th><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr>
+        <tr><th>\(B(t)\) (%)</th><td>100</td><td>91</td><td>83</td><td>76</td><td>70</td><td>65</td></tr>
+      </table>
+    </div>
+    <p>\[
+      B(1)=91>70=B(4).
+    \]</p>
+  </div>
+  <div class="card">
+    <h3>AP-quality description</h3>
+    <p>For the listed times, battery charge decreases as time increases.</p>
+    <p>The successive decreases are \(-9,-8,-7,-6,-5\), so the decreases become smaller in magnitude.</p>
+    <div class="callout warning tight"><strong>Precision</strong><p>Say “for the listed input values.” The table does not show every value between the rows.</p></div>
+  </div>
+</div>
+        </div>
+      </div>
+    </section>
+    
 
-<section class="section">
-<h2>12. Final Self-Check</h2>
-<div class="grid2"><div class="card"><ul><li>I can identify input/output, domain/range, and independent/dependent variables.</li><li>I can evaluate and interpret function notation.</li><li>I can identify images and preimages.</li><li>I can decide whether two functions are equal.</li><li>I can compare function values without overclaiming.</li></ul></div><div class="card"><ul><li>I can identify increasing, decreasing, and constant behavior.</li><li>I can distinguish monotonicity from concavity.</li><li>I can interpret zeros and x-intercepts.</li><li>I can construct a graph from a contextual description.</li><li>I can move among verbal, numerical, graphical, and analytical representations.</li></ul></div></div>
-<div class="card success"><h3>Ready for Topic 1.2?</h3><p>Topic 1.2 turns the qualitative idea of “how fast the output changes” into a quantitative rate-of-change calculation. Before moving on, make sure you can already describe change accurately from values, graphs, formulas, and contexts.</p></div>
-</section>
-<div class="footer">ECHS Mathematics · AP Precalculus · Unit 1 · Topic 1.1 Change in Tandem</div>
-</main>
+    <section class="slide" id="endpoint-trap" data-slide-id="endpoint-trap" data-section="Comparing values" data-title="Endpoint Comparison Is Not Monotonicity" data-calc="No calculator" aria-hidden="true">
+      <div class="slide-inner">
+        <div class="slide-meta">
+          <span class="section-chip">Comparing values</span>
+          <span class="kicker">Reasoning trap</span>
+          <span class="calc-chip">No calculator</span>
+        </div>
+        <h1>Endpoint Comparison Is Not Monotonicity</h1>
+        <p class="subtitle">Comparing two outputs does not reveal everything between them.</p>
+        <div class="slide-body">
+          <div class="question-card mcq assessable large-question" data-qid="endpoint-trap" data-answer="A">
+  <div class="question-head">
+    <span>What must be true?</span>
+    <strong>Suppose \(a&lt;b\) and \(f(a)&gt;f(b)\). Which conclusion is guaranteed?</strong>
+  </div>
+  <div class="options">
+    <button data-choice="A">The output at \(b\) is smaller than the output at \(a\).</button>
+    <button data-choice="B">The function is decreasing at every input between \(a\) and \(b\).</button>
+    <button data-choice="C">The graph is concave down between \(a\) and \(b\).</button>
+    <button data-choice="D">The function has a zero between \(a\) and \(b\).</button>
+  </div>
+  <div class="feedback" aria-live="polite"></div>
+</div>
+<div class="diagram-strip">
+  <svg viewBox="0 0 900 210" role="img" aria-label="A curve that ends higher while rising, falling, and rising between endpoints">
+    <line class="axis-line" x1="55" y1="170" x2="850" y2="170"></line>
+    <line class="axis-line" x1="55" y1="170" x2="55" y2="25"></line>
+    <path d="M80 145 C180 35 275 175 390 90 S620 180 805 45" class="graph-curve"></path>
+    <circle cx="80" cy="145" r="7" class="focus-point"></circle>
+    <circle cx="805" cy="45" r="7" class="focus-point"></circle>
+    <text x="80" y="195" text-anchor="middle">a</text>
+    <text x="805" y="195" text-anchor="middle">b</text>
+  </svg>
+  <p>The graph can end higher while not being increasing on the entire region.</p>
+</div>
+        </div>
+      </div>
+    </section>
+    
+
+    <section class="slide" id="increasing-decreasing" data-slide-id="increasing-decreasing" data-section="Behavior" data-title="Increasing and Decreasing Are Pairwise Statements" data-calc="No calculator" aria-hidden="true">
+      <div class="slide-inner">
+        <div class="slide-meta">
+          <span class="section-chip">Behavior</span>
+          <span class="kicker">Essential Knowledge 1.1.A.3–4</span>
+          <span class="calc-chip">No calculator</span>
+        </div>
+        <h1>Increasing and Decreasing Are Pairwise Statements</h1>
+        <p class="subtitle">Read from left to right as the input increases.</p>
+        <div class="slide-body">
+          <div class="grid-2">
+  <div class="card success-panel">
+    <h3>Increasing on a region</h3>
+    <p>Whenever \(a&lt;b\) in that region,</p>
+    <div class="display-math">\[
+      f(a)&lt;f(b).
+    \]</div>
+    <p>Larger inputs correspond to larger outputs.</p>
+  </div>
+  <div class="card warning-panel">
+    <h3>Decreasing on a region</h3>
+    <p>Whenever \(a&lt;b\) in that region,</p>
+    <div class="display-math">\[
+      f(a)&gt;f(b).
+    \]</div>
+    <p>Larger inputs correspond to smaller outputs.</p>
+  </div>
+</div>
+<div class="callout info">
+  <strong>AP interval note</strong>
+  <p>Focus on identifying where the behavior occurs. Topic 1.1 does not assess the distinction between open and closed endpoint notation for these intervals.</p>
+</div>
+        </div>
+      </div>
+    </section>
+    
+
+    <section class="slide" id="graph-reader" data-slide-id="graph-reader" data-section="Behavior" data-title="Read Many Characteristics from One Graph" data-calc="Technology exploration" aria-hidden="true">
+      <div class="slide-inner">
+        <div class="slide-meta">
+          <span class="section-chip">Behavior</span>
+          <span class="kicker">Interactive graph reading</span>
+          <span class="calc-chip">Technology exploration</span>
+        </div>
+        <h1>Read Many Characteristics from One Graph</h1>
+        <p class="subtitle">Move the input marker, then describe the graph globally.</p>
+        <div class="slide-body">
+          <div class="grid-2 graph-layout">
+  <div class="card">
+    <label class="range-label" for="readerSlider">Input \(x=\)<output id="readerX">−3.0</output></label>
+    <input id="readerSlider" class="range" type="range" min="-5" max="6" step="0.1" value="-3">
+    <div class="live-value stacked">
+      <span>Approximate output</span><strong id="readerY">\(f(-3)\approx 3.8\)</strong>
+      <span>Local visual direction</span><strong id="readerDirection">increasing</strong>
+    </div>
+    <div class="prompt-list">
+      <p><strong>Increasing:</strong> approximately \(x&lt;-1.9\) and \(x&gt;3.3\)</p>
+      <p><strong>Decreasing:</strong> approximately \(-1.9&lt;x&lt;3.3\)</p>
+      <p><strong>Zeros:</strong> \(x=-4,1,5\)</p>
+    </div>
+  </div>
+  <figure class="graph-card">
+    <svg id="readerGraph" class="interactive-graph" viewBox="0 0 720 430" role="img" aria-label="Cubic graph with movable point">
+      <g class="plot-grid"></g>
+      <g class="plot-axes"></g>
+      <path id="readerCurve" class="graph-curve"></path>
+      <line id="readerVGuide" class="guide"></line>
+      <line id="readerHGuide" class="guide"></line>
+      <circle id="readerPoint" class="focus-point" r="8"></circle>
+      <text id="readerLabel" class="point-label"></text>
+      <g id="readerZeros"></g>
+      <text x="690" y="405" text-anchor="end" class="axis-label">input x</text>
+      <text x="24" y="34" class="axis-label">output f(x)</text>
+    </svg>
+    <figcaption>Use “approximately” when a graph supports only an estimate.</figcaption>
+  </figure>
+</div>
+        </div>
+      </div>
+    </section>
+    
+
+    <section class="slide" id="constant-segment" data-slide-id="constant-segment" data-section="Behavior" data-title="A Horizontal Segment Is Neither Strictly Increasing nor Strictly Decreasing" data-calc="No calculator" aria-hidden="true">
+      <div class="slide-inner">
+        <div class="slide-meta">
+          <span class="section-chip">Behavior</span>
+          <span class="kicker">Constant behavior</span>
+          <span class="calc-chip">No calculator</span>
+        </div>
+        <h1>A Horizontal Segment Is Neither Strictly Increasing nor Strictly Decreasing</h1>
+        <p class="subtitle">Larger inputs produce the same output on that segment.</p>
+        <div class="slide-body">
+          <div class="grid-2 graph-layout">
+  <figure class="graph-card">
+    <svg viewBox="0 0 700 390" role="img" aria-label="Piecewise linear graph increasing, constant, decreasing, then increasing">
+      <g class="simple-grid"></g>
+      <line class="axis-line" x1="65" y1="330" x2="650" y2="330"></line>
+      <line class="axis-line" x1="65" y1="330" x2="65" y2="30"></line>
+      <polyline points="65,275 280,120 400,120 520,220 650,155" class="graph-curve"></polyline>
+      <line x1="280" y1="120" x2="400" y2="120" class="constant-highlight"></line>
+      <text x="340" y="96" text-anchor="middle" class="graph-note">constant</text>
+      <text x="650" y="365" text-anchor="end" class="axis-label">t</text>
+      <text x="24" y="34" class="axis-label">g(t)</text>
+    </svg>
+  </figure>
+  <div class="card">
+    <h3>From \(t=4\) to \(t=6\)</h3>
+    <p>For any \(a,b\) in the region,</p>
+    <div class="display-math">\[
+      g(a)=g(b).
+    \]</div>
+    <div class="question-card mcq assessable" data-qid="constant-check" data-answer="C">
+      <div class="question-head"><strong>Which comparison must hold?</strong></div>
+      <div class="options compact-options">
+        <button data-choice="A">\(g(a)&lt;g(b)\)</button>
+        <button data-choice="B">\(g(a)&gt;g(b)\)</button>
+        <button data-choice="C">\(g(a)=g(b)\)</button>
+        <button data-choice="D">\(g(a)=a\)</button>
+      </div>
+      <div class="feedback" aria-live="polite"></div>
+    </div>
+  </div>
+</div>
+        </div>
+      </div>
+    </section>
+    
+
+    <section class="slide" id="concavity-intro" data-slide-id="concavity-intro" data-section="Shape" data-title="Concavity Describes How the Rate of Change Is Changing" data-calc="No calculator" aria-hidden="true">
+      <div class="slide-inner">
+        <div class="slide-meta">
+          <span class="section-chip">Shape</span>
+          <span class="kicker">Essential Knowledge 1.1.B.3–4</span>
+          <span class="calc-chip">No calculator</span>
+        </div>
+        <h1>Concavity Describes How the Rate of Change Is Changing</h1>
+        <p class="subtitle">Direction and concavity answer different questions.</p>
+        <div class="slide-body">
+          <div class="grid-2">
+  <div class="card success-panel">
+    <h3>Concave up</h3>
+    <p>The rate of change is <strong>increasing</strong>.</p>
+    <p>Slopes become more positive—or less negative—as input increases.</p>
+  </div>
+  <div class="card warning-panel">
+    <h3>Concave down</h3>
+    <p>The rate of change is <strong>decreasing</strong>.</p>
+    <p>Slopes become less positive—or more negative—as input increases.</p>
+  </div>
+</div>
+<div class="big-idea two-question">
+  <div><span>Question 1</span><strong>Does the output rise or fall?</strong><em>Increasing / decreasing</em></div>
+  <div><span>Question 2</span><strong>Does the graph become steeper or flatter?</strong><em>Concavity</em></div>
+</div>
+<div class="callout warning"><strong>Major misconception</strong><p>A graph can be increasing and concave down, or decreasing and concave up.</p></div>
+        </div>
+      </div>
+    </section>
+    
+
+    <section class="slide" id="concavity-lab" data-slide-id="concavity-lab" data-section="Shape" data-title="Separate Direction from Steepness" data-calc="Technology exploration" aria-hidden="true">
+      <div class="slide-inner">
+        <div class="slide-meta">
+          <span class="section-chip">Shape</span>
+          <span class="kicker">Interactive concavity lab</span>
+          <span class="calc-chip">Technology exploration</span>
+        </div>
+        <h1>Separate Direction from Steepness</h1>
+        <p class="subtitle">Choose a behavior and watch the qualitative graph change.</p>
+        <div class="slide-body">
+          <div class="grid-2 graph-layout">
+  <div class="card">
+    <div class="segmented" id="concavityButtons" role="group" aria-label="Choose graph behavior">
+      <button class="active" data-curve="inc-up">Increasing<br><span>concave up</span></button>
+      <button data-curve="inc-down">Increasing<br><span>concave down</span></button>
+      <button data-curve="dec-up">Decreasing<br><span>concave up</span></button>
+      <button data-curve="dec-down">Decreasing<br><span>concave down</span></button>
+    </div>
+    <div class="live-summary">
+      <span>Output direction</span><strong id="concavityDirection">rises</strong>
+      <span>Steepness description</span><strong id="concavitySteepness">rises faster and faster</strong>
+      <span>Rate of change</span><strong id="concavityRate">increasing</strong>
+    </div>
+  </div>
+  <figure class="graph-card">
+    <svg id="concavityGraph" class="interactive-graph" viewBox="0 0 720 430" role="img" aria-label="Interactive qualitative concavity graph">
+      <g class="plot-grid"></g>
+      <g class="plot-axes"></g>
+      <path id="concavityCurve" class="graph-curve"></path>
+      <g id="slopeMarkers"></g>
+      <text x="690" y="405" text-anchor="end" class="axis-label">input</text>
+      <text x="24" y="34" class="axis-label">output</text>
+    </svg>
+  </figure>
+</div>
+        </div>
+      </div>
+    </section>
+    
+
+    <section class="slide" id="four-combinations-check" data-slide-id="four-combinations-check" data-section="Shape" data-title="Can You Identify the Four Combinations?" data-calc="No calculator" aria-hidden="true">
+      <div class="slide-inner">
+        <div class="slide-meta">
+          <span class="section-chip">Shape</span>
+          <span class="kicker">Interactive classification</span>
+          <span class="calc-chip">No calculator</span>
+        </div>
+        <h1>Can You Identify the Four Combinations?</h1>
+        <p class="subtitle">Translate verbal change into direction and concavity.</p>
+        <div class="slide-body">
+          <div class="question-card mcq assessable large-question" data-qid="concavity-check" data-answer="B">
+  <div class="question-head">
+    <span>Original AP-style question</span>
+    <strong>A population is increasing, but the number added each year is getting smaller. Which description best fits the graph?</strong>
+  </div>
+  <div class="options">
+    <button data-choice="A">Increasing and concave up</button>
+    <button data-choice="B">Increasing and concave down</button>
+    <button data-choice="C">Decreasing and concave up</button>
+    <button data-choice="D">Decreasing and concave down</button>
+  </div>
+  <div class="feedback" aria-live="polite"></div>
+</div>
+<div class="translation-grid">
+  <div><strong>rises faster</strong><span>increasing + concave up</span></div>
+  <div><strong>rises more slowly</strong><span>increasing + concave down</span></div>
+  <div><strong>falls more slowly</strong><span>decreasing + concave up</span></div>
+  <div><strong>falls faster</strong><span>decreasing + concave down</span></div>
+</div>
+        </div>
+      </div>
+    </section>
+    
+
+    <section class="slide" id="data-concavity" data-slide-id="data-concavity" data-section="Shape" data-title="A Numerical Pattern Can Suggest Concavity" data-calc="No calculator" aria-hidden="true">
+      <div class="slide-inner">
+        <div class="slide-meta">
+          <span class="section-chip">Shape</span>
+          <span class="kicker">Evidence and precision</span>
+          <span class="calc-chip">No calculator</span>
+        </div>
+        <h1>A Numerical Pattern Can Suggest Concavity</h1>
+        <p class="subtitle">A finite table does not prove what happens between sampled inputs.</p>
+        <div class="slide-body">
+          <div class="grid-2">
+  <div class="card">
+    <h3>Concentration data</h3>
+    <table class="math-table">
+      <tr><th>\(t\)</th><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td></tr>
+      <tr><th>\(C(t)\)</th><td>12</td><td>9</td><td>7</td><td>6</td><td>5.5</td></tr>
+    </table>
+    <p>Successive changes: \(-3,-2,-1,-0.5\).</p>
+  </div>
+  <div class="card">
+    <h3>Responsible conclusion</h3>
+    <p>The listed outputs decrease, and the decreases become smaller in magnitude.</p>
+    <p>The pattern <strong>suggests</strong> decreasing, concave-up behavior.</p>
+    <div class="callout warning tight"><strong>Do not overclaim</strong><p>The table alone does not prove the behavior at every point between rows.</p></div>
+  </div>
+</div>
+        </div>
+      </div>
+    </section>
+    
+
+    <section class="slide" id="zeros" data-slide-id="zeros" data-section="Zeros" data-title="A Zero Is an Input; an x-Intercept Is a Point" data-calc="No calculator" aria-hidden="true">
+      <div class="slide-inner">
+        <div class="slide-meta">
+          <span class="section-chip">Zeros</span>
+          <span class="kicker">Essential Knowledge 1.1.B.5</span>
+          <span class="calc-chip">No calculator</span>
+        </div>
+        <h1>A Zero Is an Input; an \(x\)-Intercept Is a Point</h1>
+        <p class="subtitle">Both describe where the output equals zero.</p>
+        <div class="slide-body">
+          <div class="grid-2">
+  <div class="card">
+    <h3>Zero</h3>
+    <div class="display-math">\[
+      f(c)=0
+      \quad\Longleftrightarrow\quad
+      c\text{ is a zero of }f.
+    \]</div>
+    <p>The zero is the <strong>input value</strong> \(c\).</p>
+  </div>
+  <div class="card">
+    <h3>\(x\)-intercept</h3>
+    <div class="display-math">\[
+      (c,0)
+    \]</div>
+    <p>The intercept is the corresponding <strong>coordinate point</strong>.</p>
+  </div>
+</div>
+<figure class="wide-graph">
+  <svg viewBox="0 0 950 250" role="img" aria-label="Cubic graph with x-intercepts at negative 2, 1, and 3">
+    <line class="axis-line" x1="55" y1="145" x2="900" y2="145"></line>
+    <line class="axis-line" x1="480" y1="220" x2="480" y2="25"></line>
+    <path d="M90 220 C180 35 310 45 480 105 S690 230 860 25" class="graph-curve"></path>
+    <circle cx="230" cy="145" r="8" class="zero-point"></circle>
+    <circle cx="570" cy="145" r="8" class="zero-point"></circle>
+    <circle cx="755" cy="145" r="8" class="zero-point"></circle>
+    <text x="230" y="172" text-anchor="middle">−2</text>
+    <text x="570" y="172" text-anchor="middle">1</text>
+    <text x="755" y="172" text-anchor="middle">3</text>
+  </svg>
+</figure>
+        </div>
+      </div>
+    </section>
+    
+
+    <section class="slide" id="zeros-analytical" data-slide-id="zeros-analytical" data-section="Zeros" data-title="Find Zeros from a Factored Rule" data-calc="No calculator" aria-hidden="true">
+      <div class="slide-inner">
+        <div class="slide-meta">
+          <span class="section-chip">Zeros</span>
+          <span class="kicker">Analytical representation</span>
+          <span class="calc-chip">No calculator</span>
+        </div>
+        <h1>Find Zeros from a Factored Rule</h1>
+        <p class="subtitle">Each factor can make the output zero.</p>
+        <div class="slide-body">
+          <div class="worked-example">
+  <div class="worked-title">Example</div>
+  <div class="display-math">\[
+    g(x)=(x+2)(x-1)(x-3)
+  \]</div>
+  <div class="zero-steps">
+    <div>\(x+2=0\)<strong>\(x=-2\)</strong></div>
+    <div>\(x-1=0\)<strong>\(x=1\)</strong></div>
+    <div>\(x-3=0\)<strong>\(x=3\)</strong></div>
+  </div>
+  <p>Zeros: \(\{-2,1,3\}\)</p>
+  <p>\(x\)-intercepts: \((-2,0),(1,0),(3,0)\)</p>
+</div>
+<div class="callout warning"><strong>Language check</strong><p>Do not report the point \((3,0)\) when the question asks for the zero. The zero is \(3\).</p></div>
+        </div>
+      </div>
+    </section>
+    
+
+    <section class="slide" id="zero-context" data-slide-id="zero-context" data-section="Zeros" data-title="The Meaning of Zero Depends on the Output Quantity" data-calc="No calculator" aria-hidden="true">
+      <div class="slide-inner">
+        <div class="slide-meta">
+          <span class="section-chip">Zeros</span>
+          <span class="kicker">Contextual interpretation</span>
+          <span class="calc-chip">No calculator</span>
+        </div>
+        <h1>The Meaning of Zero Depends on the Output Quantity</h1>
+        <p class="subtitle">Interpret the statement—not only the symbol.</p>
+        <div class="slide-body">
+          <div class="question-card mcq assessable large-question" data-qid="zero-context" data-answer="B">
+  <div class="question-head">
+    <span>Original AP-style question</span>
+    <strong>A function \(H(t)\) gives the height of a drone above its launch level. What does a zero of \(H\) represent?</strong>
+  </div>
+  <div class="options">
+    <button data-choice="A">A time when the drone has maximum speed.</button>
+    <button data-choice="B">A time when the drone is at its launch level.</button>
+    <button data-choice="C">A time when the drone stops moving.</button>
+    <button data-choice="D">The total flight duration necessarily.</button>
+  </div>
+  <div class="feedback" aria-live="polite"></div>
+</div>
+<div class="sentence-frame large-frame">
+  At input \(t=\_\_\_\), the output quantity is \(0\) <em>output units</em>; therefore, in context, …
+</div>
+        </div>
+      </div>
+    </section>
+    
+
+    <section class="slide" id="context-to-graph" data-slide-id="context-to-graph" data-section="Contextual graphs" data-title="Translate the Story Before Drawing" data-calc="No calculator" aria-hidden="true">
+      <div class="slide-inner">
+        <div class="slide-meta">
+          <span class="section-chip">Contextual graphs</span>
+          <span class="kicker">Essential Knowledge 1.1.B.1–2</span>
+          <span class="calc-chip">No calculator</span>
+        </div>
+        <h1>Translate the Story Before Drawing</h1>
+        <p class="subtitle">Do not begin by guessing a familiar formula.</p>
+        <div class="slide-body">
+          <div class="process-grid">
+  <div><span>1</span><strong>Label axes</strong><small>Input on horizontal; output on vertical, with units.</small></div>
+  <div><span>2</span><strong>Mark the start</strong><small>Use any stated initial value.</small></div>
+  <div><span>3</span><strong>Set direction</strong><small>Increasing, decreasing, or constant.</small></div>
+  <div><span>4</span><strong>Set concavity</strong><small>Faster/slower only when the story provides it.</small></div>
+  <div><span>5</span><strong>Mark zeros</strong><small>Only when the output becomes 0.</small></div>
+  <div><span>6</span><strong>Check the story</strong><small>Every graph feature must have contextual meaning.</small></div>
+</div>
+<div class="callout info"><strong>Many sketches may be correct</strong><p>Qualitative features—not exact coordinates—determine correctness unless values are specified.</p></div>
+        </div>
+      </div>
+    </section>
+    
+
+    <section class="slide" id="sketch-lab" data-slide-id="sketch-lab" data-section="Contextual graphs" data-title="Sketch a Heating Process" data-calc="Interactive graphing" aria-hidden="true">
+      <div class="slide-inner">
+        <div class="slide-meta">
+          <span class="section-chip">Contextual graphs</span>
+          <span class="kicker">Interactive construction</span>
+          <span class="calc-chip">Interactive graphing</span>
+        </div>
+        <h1>Sketch a Heating Process</h1>
+        <p class="subtitle">Draw directly on the graph, then compare with one valid model.</p>
+        <div class="slide-body">
+          <div class="grid-2 sketch-layout">
+  <div class="card">
+    <h3>Oven temperature \(T\) versus time \(t\)</h3>
+    <ol class="numbered-list">
+      <li>At first, temperature rises slowly, then faster.</li>
+      <li>Later it continues to rise, but more slowly.</li>
+      <li>Finally it stays approximately constant.</li>
+    </ol>
+    <div class="sketch-actions">
+      <button type="button" class="small-button" data-sketch-clear="heatingCanvas">Clear sketch</button>
+      <button type="button" class="small-button accent" data-sketch-model="heatingCanvas">Show one valid model</button>
+    </div>
+    <div class="callout success tight"><strong>Required sequence</strong><p>Increasing &amp; concave up → increasing &amp; concave down → approximately constant.</p></div>
+  </div>
+  <div class="canvas-wrap">
+    <canvas id="heatingCanvas" class="sketch-canvas" width="900" height="520" aria-label="Drawing canvas for temperature versus time graph"></canvas>
+    <div class="canvas-label x-label">time \(t\)</div>
+    <div class="canvas-label y-label">temperature \(T\)</div>
+  </div>
+</div>
+        </div>
+      </div>
+    </section>
+    
+
+    <section class="slide" id="graph-to-story" data-slide-id="graph-to-story" data-section="Contextual graphs" data-title="Tell the Story of a Graph" data-calc="No calculator" aria-hidden="true">
+      <div class="slide-inner">
+        <div class="slide-meta">
+          <span class="section-chip">Contextual graphs</span>
+          <span class="kicker">Graphical → verbal</span>
+          <span class="calc-chip">No calculator</span>
+        </div>
+        <h1>Tell the Story of a Graph</h1>
+        <p class="subtitle">Describe each major stage with variables and units.</p>
+        <div class="slide-body">
+          <div class="grid-2 graph-layout">
+  <figure class="graph-card">
+    <svg viewBox="0 0 720 430" role="img" aria-label="Stored water rises, stays constant, then falls">
+      <g class="simple-grid"></g>
+      <line class="axis-line" x1="70" y1="350" x2="670" y2="350"></line>
+      <line class="axis-line" x1="70" y1="350" x2="70" y2="40"></line>
+      <polyline points="70,285 170,235 270,145 370,105 470,105 570,190 670,300" class="graph-curve"></polyline>
+      <text x="655" y="390" text-anchor="end" class="axis-label">time (hours)</text>
+      <text x="20" y="35" class="axis-label">stored water (thousand L)</text>
+    </svg>
+  </figure>
+  <div class="card">
+    <h3>A precise contextual description</h3>
+    <p>Stored water increases during the first part of the observation, remains approximately constant for a period, and then decreases during the final part.</p>
+    <div class="callout warning tight"><strong>Not a physical picture</strong><p>The curve need not look like a reservoir. It describes how water amount changes with time.</p></div>
+    <textarea class="student-response" data-response-id="graph-story" rows="5" placeholder="Write your own complete contextual story here..."></textarea>
+  </div>
+</div>
+        </div>
+      </div>
+    </section>
+    
+
+    <section class="slide" id="synthesis" data-slide-id="synthesis" data-section="Representations" data-title="Make All Four Representations Agree" data-calc="No calculator" aria-hidden="true">
+      <div class="slide-inner">
+        <div class="slide-meta">
+          <span class="section-chip">Representations</span>
+          <span class="kicker">Skill 2.B synthesis</span>
+          <span class="calc-chip">No calculator</span>
+        </div>
+        <h1>Make All Four Representations Agree</h1>
+        <p class="subtitle">A single relationship should survive every translation.</p>
+        <div class="slide-body">
+          <div class="grid-2">
+  <div class="card">
+    <h3>Analytical</h3>
+    <div class="display-math">\[
+      P(x)=4(x-5)(x+1)
+    \]</div>
+    <h3>Guaranteed graphical features</h3>
+    <p>The output is zero at \(x=5\) and \(x=-1\), so every graph must contain \((5,0)\) and \((-1,0)\).</p>
+  </div>
+  <div class="card">
+    <h3>Numerical and verbal</h3>
+    <table class="math-table">
+      <tr><th>\(x\)</th><td>−1</td><td>0</td><td>5</td></tr>
+      <tr><th>\(P(x)\)</th><td>0</td><td>−20</td><td>0</td></tr>
+    </table>
+    <p>As input moves from −1 to 0, output decreases; by input 5, the output returns to 0.</p>
+  </div>
+</div>
+<div class="callout info"><strong>Representation check</strong><p>A graph or table that does not pass through both \(x\)-intercepts cannot represent this function.</p></div>
+        </div>
+      </div>
+    </section>
+    
+
+    <section class="slide" id="ap-mcq-1" data-slide-id="ap-mcq-1" data-section="AP-style practice" data-title="AP Practice Set A" data-calc="No calculator" aria-hidden="true">
+      <div class="slide-inner">
+        <div class="slide-meta">
+          <span class="section-chip">AP-style practice</span>
+          <span class="kicker">Original AP-style multiple choice</span>
+          <span class="calc-chip">No calculator</span>
+        </div>
+        <h1>AP Practice Set A</h1>
+        <p class="subtitle">Answer before reading the feedback.</p>
+        <div class="slide-body">
+          <div class="question-stack">
+  <div class="question-card mcq assessable" data-qid="ap1" data-answer="B">
+    <div class="question-head"><span>Question 1</span><strong>A function \(M(t)\) gives mass in grams \(t\) minutes after an experiment begins. What is the image of \(t=8\)?</strong></div>
+    <div class="options compact-options">
+      <button data-choice="A">The input 8 minutes</button>
+      <button data-choice="B">The output \(M(8)\), in grams</button>
+      <button data-choice="C">All inputs that produce 8 grams</button>
+      <button data-choice="D">The domain of \(M\)</button>
+    </div><div class="feedback" aria-live="polite"></div>
+  </div>
+  <div class="question-card mcq assessable" data-qid="ap2" data-answer="B">
+    <div class="question-head"><span>Question 2</span><strong>A function is decreasing on a region containing \(a&lt;b\). Which must be true?</strong></div>
+    <div class="options compact-options">
+      <button data-choice="A">\(f(a)&lt;f(b)\)</button>
+      <button data-choice="B">\(f(a)&gt;f(b)\)</button>
+      <button data-choice="C">\(f(a)=f(b)\)</button>
+      <button data-choice="D">\(f(a)=a\)</button>
+    </div><div class="feedback" aria-live="polite"></div>
+  </div>
+</div>
+        </div>
+      </div>
+    </section>
+    
+
+    <section class="slide" id="ap-mcq-2" data-slide-id="ap-mcq-2" data-section="AP-style practice" data-title="AP Practice Set B" data-calc="No calculator" aria-hidden="true">
+      <div class="slide-inner">
+        <div class="slide-meta">
+          <span class="section-chip">AP-style practice</span>
+          <span class="kicker">Original AP-style multiple choice</span>
+          <span class="calc-chip">No calculator</span>
+        </div>
+        <h1>AP Practice Set B</h1>
+        <p class="subtitle">Distinguish direction, concavity, and evidence strength.</p>
+        <div class="slide-body">
+          <div class="question-stack">
+  <div class="question-card mcq assessable" data-qid="ap3" data-answer="D">
+    <div class="question-head"><span>Question 3</span><strong>An output decreases, and the decreases become smaller in magnitude. Which description is correct?</strong></div>
+    <div class="options compact-options">
+      <button data-choice="A">Increasing, concave up</button>
+      <button data-choice="B">Increasing, concave down</button>
+      <button data-choice="C">Decreasing, concave down</button>
+      <button data-choice="D">Decreasing, concave up</button>
+    </div><div class="feedback" aria-live="polite"></div>
+  </div>
+  <div class="question-card mcq assessable" data-qid="ap4" data-answer="B">
+    <div class="question-head"><span>Question 4</span><strong>A table shows outputs \(3,5,8,12\) at increasing input values. What is the strongest justified statement?</strong></div>
+    <div class="options compact-options">
+      <button data-choice="A">The function is strictly increasing at every point between the first and last input.</button>
+      <button data-choice="B">At the listed inputs, outputs increase as inputs increase.</button>
+      <button data-choice="C">The graph must be concave up.</button>
+      <button data-choice="D">The function must be linear.</button>
+    </div><div class="feedback" aria-live="polite"></div>
+  </div>
+</div>
+        </div>
+      </div>
+    </section>
+    
+
+    <section class="slide" id="ap-mcq-3" data-slide-id="ap-mcq-3" data-section="AP-style practice" data-title="AP Practice Set C" data-calc="No calculator" aria-hidden="true">
+      <div class="slide-inner">
+        <div class="slide-meta">
+          <span class="section-chip">AP-style practice</span>
+          <span class="kicker">Original AP-style multiple choice</span>
+          <span class="calc-chip">No calculator</span>
+        </div>
+        <h1>AP Practice Set C</h1>
+        <p class="subtitle">Connect zeros and equality of functions to their definitions.</p>
+        <div class="slide-body">
+          <div class="question-stack">
+  <div class="question-card mcq assessable" data-qid="ap5" data-answer="B">
+    <div class="question-head"><span>Question 5</span><strong>If \(f(-3)=0\), which point lies on the graph of \(f\)?</strong></div>
+    <div class="options compact-options">
+      <button data-choice="A">\((0,-3)\)</button>
+      <button data-choice="B">\((-3,0)\)</button>
+      <button data-choice="C">\((-3,-3)\)</button>
+      <button data-choice="D">\((3,0)\)</button>
+    </div><div class="feedback" aria-live="polite"></div>
+  </div>
+  <div class="question-card mcq assessable" data-qid="ap6" data-answer="C">
+    <div class="question-head"><span>Question 6</span><strong>Which condition is sufficient to conclude that functions \(f\) and \(g\) are equal?</strong></div>
+    <div class="options compact-options">
+      <button data-choice="A">They have the same range.</button>
+      <button data-choice="B">Their graphs cross at least once.</button>
+      <button data-choice="C">They have the same domain and \(f(x)=g(x)\) for every input in it.</button>
+      <button data-choice="D">They use the same variable name.</button>
+    </div><div class="feedback" aria-live="polite"></div>
+  </div>
+</div>
+        </div>
+      </div>
+    </section>
+    
+
+    <section class="slide" id="ap-frq-table" data-slide-id="ap-frq-table" data-section="AP-style practice" data-title="FRQ 1: Battery Performance" data-calc="No calculator" aria-hidden="true">
+      <div class="slide-inner">
+        <div class="slide-meta">
+          <span class="section-chip">AP-style practice</span>
+          <span class="kicker">Original AP-style free response</span>
+          <span class="calc-chip">No calculator</span>
+        </div>
+        <h1>FRQ 1: Battery Performance</h1>
+        <p class="subtitle">Use numerical and contextual representations without calculating average rate of change.</p>
+        <div class="slide-body">
+          <div class="frq-layout">
+  <div class="frq-prompt">
+    <p>A rechargeable battery’s remaining energy \(E(t)\), in watt-hours, is measured at selected times \(t\), in hours.</p>
+    <table class="math-table">
+      <tr><th>\(t\)</th><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr>
+      <tr><th>\(E(t)\)</th><td>80</td><td>68</td><td>58</td><td>50</td><td>44</td><td>40</td></tr>
+    </table>
+    <ol class="letter-list">
+      <li>Identify the independent and dependent variables and their units.</li>
+      <li>Compare \(E(1)\) and \(E(4)\), then interpret the comparison.</li>
+      <li>Describe the change in tandem shown by the listed values.</li>
+      <li>The successive changes become less negative. What concavity does the data suggest?</li>
+      <li>State one limitation of using only the six table entries.</li>
+    </ol>
+  </div>
+  <div class="frq-response">
+    <textarea class="student-response tall" data-response-id="frq-battery" placeholder="Write a complete AP-quality response..."></textarea>
+    <details>
+      <summary>Reveal scoring checkpoints</summary>
+      <div class="rubric">
+        <p>✓ t (hours) is independent; \(E(t)\) (watt-hours) is dependent.</p>
+        <p>✓ \(E(1)=68&gt;44=E(4)\); 24 more watt-hours remain at hour 1.</p>
+        <p>✓ For listed times, energy decreases as time increases.</p>
+        <p>✓ Decreases become smaller in magnitude, suggesting concave up.</p>
+        <p>✓ The table does not show every value between recorded times.</p>
+      </div>
+    </details>
+  </div>
+</div>
+        </div>
+      </div>
+    </section>
+    
+
+    <section class="slide" id="ap-frq-graph" data-slide-id="ap-frq-graph" data-section="AP-style practice" data-title="FRQ 2: Reservoir Level" data-calc="No calculator" aria-hidden="true">
+      <div class="slide-inner">
+        <div class="slide-meta">
+          <span class="section-chip">AP-style practice</span>
+          <span class="kicker">Original AP-style free response</span>
+          <span class="calc-chip">No calculator</span>
+        </div>
+        <h1>FRQ 2: Reservoir Level</h1>
+        <p class="subtitle">Interpret a graph with appropriate precision and units.</p>
+        <div class="slide-body">
+          <div class="frq-layout">
+  <figure class="graph-card">
+    <svg viewBox="0 0 720 430" role="img" aria-label="Reservoir volume increases to a peak and then decreases">
+      <g class="simple-grid"></g>
+      <line class="axis-line" x1="70" y1="350" x2="670" y2="350"></line>
+      <line class="axis-line" x1="70" y1="350" x2="70" y2="40"></line>
+      <path d="M70 300 C145 295 205 260 270 205 S410 90 470 92 S585 145 670 285" class="graph-curve"></path>
+      <text x="655" y="390" text-anchor="end" class="axis-label">t (hours)</text>
+      <text x="18" y="34" class="axis-label">V(t) (thousand L)</text>
+    </svg>
+  </figure>
+  <div class="frq-prompt">
+    <ol class="letter-list">
+      <li>Estimate \(V(4)\) and interpret it.</li>
+      <li>Compare \(V(2)\) and \(V(10)\).</li>
+      <li>State where \(V\) appears increasing and decreasing.</li>
+      <li>Describe the early and later concavity on the increasing portion.</li>
+      <li>Write a realistic story explaining the transition to decreasing behavior.</li>
+    </ol>
+    <textarea class="student-response" data-response-id="frq-reservoir" rows="7" placeholder="Write your response..."></textarea>
+    <details><summary>Reveal response guidance</summary><div class="rubric"><p>Use approximate language because the graph is read visually. Carry “thousands of liters” into numerical interpretations. A valid story must explain both the initial gain and later loss of water.</p></div></details>
+  </div>
+</div>
+        </div>
+      </div>
+    </section>
+    
+
+    <section class="slide" id="challenge-endpoints" data-slide-id="challenge-endpoints" data-section="Challenge" data-title="Challenge: Endpoints Do Not Determine the Whole Interval" data-calc="Interactive graphing" aria-hidden="true">
+      <div class="slide-inner">
+        <div class="slide-meta">
+          <span class="section-chip">Challenge</span>
+          <span class="kicker">Tricky reasoning 1</span>
+          <span class="calc-chip">Interactive graphing</span>
+        </div>
+        <h1>Challenge: Endpoints Do Not Determine the Whole Interval</h1>
+        <p class="subtitle">Construct a counterexample, then explain what it disproves.</p>
+        <div class="slide-body">
+          <div class="challenge-panel">
+  <p>Sketch a function with \(f(0)=1\) and \(f(6)=9\) that is <strong>not increasing</strong> on the entire region from 0 to 6.</p>
+  <div class="grid-2 sketch-layout">
+    <div class="canvas-wrap small-canvas-wrap">
+      <canvas id="endpointCanvas" class="sketch-canvas" width="900" height="440" aria-label="Drawing canvas for endpoint comparison counterexample"></canvas>
+      <div class="canvas-label x-label">input</div><div class="canvas-label y-label">output</div>
+    </div>
+    <div>
+      <textarea class="student-response" data-response-id="challenge-endpoint" rows="7" placeholder="Explain why your graph disproves the claim..."></textarea>
+      <div class="sketch-actions">
+        <button type="button" class="small-button" data-sketch-clear="endpointCanvas">Clear sketch</button>
+        <button type="button" class="small-button accent" data-sketch-model="endpointCanvas">Show one counterexample</button>
+      </div>
+    </div>
+  </div>
+</div>
+        </div>
+      </div>
+    </section>
+    
+
+    <section class="slide" id="challenge-equality" data-slide-id="challenge-equality" data-section="Challenge" data-title="Challenge: Equal-Looking Is Not Equal" data-calc="No calculator" aria-hidden="true">
+      <div class="slide-inner">
+        <div class="slide-meta">
+          <span class="section-chip">Challenge</span>
+          <span class="kicker">Tricky reasoning 2</span>
+          <span class="calc-chip">No calculator</span>
+        </div>
+        <h1>Challenge: Equal-Looking Is Not Equal</h1>
+        <p class="subtitle">Build examples that separate range, formula, and domain.</p>
+        <div class="slide-body">
+          <div class="grid-2">
+  <div class="challenge-panel">
+    <h3>Same domain and same range</h3>
+    <p>Give two different functions with domain \(\{-1,1\}\) and range \(\{0,2\}\) that are not equal.</p>
+    <textarea class="student-response" data-response-id="challenge-same-range" rows="5" placeholder="Define both functions and verify the claim..."></textarea>
+    <details><summary>Reveal one construction</summary><div class="solution"><p>Let \(f(-1)=0,f(1)=2\), but \(g(-1)=2,g(1)=0\). Same domain and range; different output at each input.</p></div></details>
+  </div>
+  <div class="challenge-panel">
+    <h3>Same formula, different domain</h3>
+    <p>Create two functions using the same analytical rule but different domains. Identify an input belonging to only one domain.</p>
+    <textarea class="student-response" data-response-id="challenge-domain" rows="5" placeholder="Write your two functions..."></textarea>
+    <details><summary>Reveal one construction</summary><div class="solution"><p>\(p(x)=x^2\) on \(\mathbb R\), \(q(x)=x^2\) on \(x\ge0\). The input \(-2\) belongs only to the domain of \(p\).</p></div></details>
+  </div>
+</div>
+        </div>
+      </div>
+    </section>
+    
+
+    <section class="slide" id="challenge-preimages" data-slide-id="challenge-preimages" data-section="Challenge" data-title="Challenge: Exactly Three Preimages" data-calc="No calculator" aria-hidden="true">
+      <div class="slide-inner">
+        <div class="slide-meta">
+          <span class="section-chip">Challenge</span>
+          <span class="kicker">Tricky reasoning 3</span>
+          <span class="calc-chip">No calculator</span>
+        </div>
+        <h1>Challenge: Exactly Three Preimages</h1>
+        <p class="subtitle">A function may assign one output to several different inputs.</p>
+        <div class="slide-body">
+          <div class="grid-2">
+  <div class="challenge-panel">
+    <p>Construct or describe a function whose output \(4\) has exactly three preimages.</p>
+    <p>Then explain why the graph can still pass the vertical-line test.</p>
+    <textarea class="student-response" data-response-id="challenge-preimages" rows="7" placeholder="Write the three inputs and your explanation..."></textarea>
+  </div>
+  <div class="card">
+    <h3>Use the explorer</h3>
+    <p>Return to the preimage explorer and set \(L=4\). The displayed cubic gives the preimage</p>
+    <div class="display-math">\[
+      \{-3,0,3\}.
+    \]</div>
+    <p>Three inputs share one output; no input has more than one output.</p>
+    <button class="small-button accent" type="button" data-go-to="preimage-explorer">Open preimage explorer</button>
+  </div>
+</div>
+        </div>
+      </div>
+    </section>
+    
+
+    <section class="slide" id="challenge-data" data-slide-id="challenge-data" data-section="Challenge" data-title="Challenge: One Table, Different Possible Graphs" data-calc="No calculator" aria-hidden="true">
+      <div class="slide-inner">
+        <div class="slide-meta">
+          <span class="section-chip">Challenge</span>
+          <span class="kicker">Tricky reasoning 4</span>
+          <span class="calc-chip">No calculator</span>
+        </div>
+        <h1>Challenge: One Table, Different Possible Graphs</h1>
+        <p class="subtitle">Sampled points do not determine all behavior between them.</p>
+        <div class="slide-body">
+          <div class="challenge-panel">
+  <p>A table gives \(f(0)=0,\;f(1)=1,\;f(2)=4,\;f(3)=9\).</p>
+  <div class="grid-2">
+    <figure class="graph-card mini-graph">
+      <svg viewBox="0 0 500 300" role="img" aria-label="Smooth increasing graph through four points">
+        <line class="axis-line" x1="55" y1="250" x2="460" y2="250"></line><line class="axis-line" x1="55" y1="250" x2="55" y2="25"></line>
+        <path d="M55 250 C130 246 190 230 240 190 S355 95 445 35" class="graph-curve"></path>
+        <g class="data-points"><circle cx="55" cy="250" r="6"></circle><circle cx="185" cy="225" r="6"></circle><circle cx="315" cy="150" r="6"></circle><circle cx="445" cy="35" r="6"></circle></g>
+      </svg><figcaption>One smooth increasing possibility</figcaption>
+    </figure>
+    <figure class="graph-card mini-graph">
+      <svg viewBox="0 0 500 300" role="img" aria-label="Graph through the same four points that decreases between samples">
+        <line class="axis-line" x1="55" y1="250" x2="460" y2="250"></line><line class="axis-line" x1="55" y1="250" x2="55" y2="25"></line>
+        <path d="M55 250 C95 120 145 285 185 225 S270 270 315 150 S390 180 445 35" class="graph-curve"></path>
+        <g class="data-points"><circle cx="55" cy="250" r="6"></circle><circle cx="185" cy="225" r="6"></circle><circle cx="315" cy="150" r="6"></circle><circle cx="445" cy="35" r="6"></circle></g>
+      </svg><figcaption>A different possibility through the same points</figcaption>
+    </figure>
+  </div>
+  <textarea class="student-response" data-response-id="challenge-data" rows="4" placeholder="Explain why the table alone cannot distinguish the graphs..."></textarea>
+</div>
+        </div>
+      </div>
+    </section>
+    
+
+    <section class="slide" id="challenge-constraints" data-slide-id="challenge-constraints" data-section="Challenge" data-title="Challenge: Construct from Multiple Constraints" data-calc="Interactive graphing" aria-hidden="true">
+      <div class="slide-inner">
+        <div class="slide-meta">
+          <span class="section-chip">Challenge</span>
+          <span class="kicker">Tricky reasoning 5</span>
+          <span class="calc-chip">Interactive graphing</span>
+        </div>
+        <h1>Challenge: Construct from Multiple Constraints</h1>
+        <p class="subtitle">Satisfy every condition without introducing unsupported features.</p>
+        <div class="slide-body">
+          <div class="grid-2 sketch-layout">
+  <div class="challenge-panel">
+    <p>Sketch a function on the displayed window such that:</p>
+    <ul class="check-list">
+      <li>\(f(-2)=0\) and \(f(4)=0\);</li>
+      <li>it increases, then decreases, then increases again;</li>
+      <li>one increasing region is concave down;</li>
+      <li>the final increasing region is concave up;</li>
+      <li>the output 3 has at least two preimages.</li>
+    </ul>
+    <div class="sketch-actions"><button type="button" class="small-button" data-sketch-clear="constraintCanvas">Clear</button><button type="button" class="small-button accent" data-sketch-model="constraintCanvas">Show one valid shape</button></div>
+  </div>
+  <div class="canvas-wrap">
+    <canvas id="constraintCanvas" class="sketch-canvas" width="900" height="520" aria-label="Drawing canvas for function constraints"></canvas>
+    <div class="canvas-label x-label">input x</div><div class="canvas-label y-label">output f(x)</div>
+  </div>
+</div>
+        </div>
+      </div>
+    </section>
+    
+
+    <section class="slide" id="precision-challenge" data-slide-id="precision-challenge" data-section="Challenge" data-title="Challenge: State Only What the Visual Evidence Supports" data-calc="No calculator" aria-hidden="true">
+      <div class="slide-inner">
+        <div class="slide-meta">
+          <span class="section-chip">Challenge</span>
+          <span class="kicker">Tricky reasoning 6</span>
+          <span class="calc-chip">No calculator</span>
+        </div>
+        <h1>Challenge: State Only What the Visual Evidence Supports</h1>
+        <p class="subtitle">Precision is part of mathematical correctness.</p>
+        <div class="slide-body">
+          <div class="grid-2">
+  <div class="card success-panel">
+    <h3>Responsible statement</h3>
+    <p>“The graph appears to become nearly horizontal around \(x=5\).”</p>
+    <p class="note">This respects the low resolution and uses approximate language.</p>
+  </div>
+  <div class="card warning-panel">
+    <h3>Too strong without better evidence</h3>
+    <p>“The function is exactly constant for every \(x\ge5\).”</p>
+    <p class="note">A blurry or partial graph cannot establish exact long-term behavior.</p>
+  </div>
+</div>
+<div class="question-card mcq assessable" data-qid="precision-check" data-answer="C">
+  <div class="question-head"><strong>Which phrase is most appropriate when reading an approximate graph?</strong></div>
+  <div class="options compact-options">
+    <button data-choice="A">must equal</button><button data-choice="B">is exactly</button><button data-choice="C">appears to be approximately</button><button data-choice="D">proves forever</button>
+  </div><div class="feedback" aria-live="polite"></div>
+</div>
+        </div>
+      </div>
+    </section>
+    
+
+    <section class="slide" id="master-summary" data-slide-id="master-summary" data-section="Exit" data-title="Topic 1.1 in One Screen" data-calc="No calculator" aria-hidden="true">
+      <div class="slide-inner">
+        <div class="slide-meta">
+          <span class="section-chip">Exit</span>
+          <span class="kicker">Master summary</span>
+          <span class="calc-chip">No calculator</span>
+        </div>
+        <h1>Topic 1.1 in One Screen</h1>
+        <p class="subtitle">Use this order whenever you read or construct a relationship.</p>
+        <div class="slide-body">
+          <div class="summary-flow">
+  <div><span>1</span><strong>Identify quantities</strong><small>input, output, variables, units</small></div>
+  <div><span>2</span><strong>Read values</strong><small>images, preimages, comparisons</small></div>
+  <div><span>3</span><strong>Read direction</strong><small>increasing, decreasing, constant</small></div>
+  <div><span>4</span><strong>Read steepness</strong><small>concave up or down, when supported</small></div>
+  <div><span>5</span><strong>Locate zeros</strong><small>input where output is 0</small></div>
+  <div><span>6</span><strong>Interpret</strong><small>complete statement in context</small></div>
+</div>
+<div class="grid-3 compact-grid">
+  <div class="mini-card"><strong>Function</strong><span>Each input has exactly one output.</span></div>
+  <div class="mini-card"><strong>Image</strong><span>Output from a specified input.</span></div>
+  <div class="mini-card"><strong>Preimage</strong><span>Input(s) producing a specified output.</span></div>
+  <div class="mini-card"><strong>Equal functions</strong><span>Same domain and same output at every input.</span></div>
+  <div class="mini-card"><strong>Concave up</strong><span>Rate of change increasing.</span></div>
+  <div class="mini-card"><strong>Concave down</strong><span>Rate of change decreasing.</span></div>
+</div>
+        </div>
+      </div>
+    </section>
+    
+
+    <section class="slide" id="mastery-check" data-slide-id="mastery-check" data-section="Exit" data-title="Are You Ready for Topic 1.2?" data-calc="No calculator" aria-hidden="true">
+      <div class="slide-inner">
+        <div class="slide-meta">
+          <span class="section-chip">Exit</span>
+          <span class="kicker">Final self-check</span>
+          <span class="calc-chip">No calculator</span>
+        </div>
+        <h1>Are You Ready for Topic 1.2?</h1>
+        <p class="subtitle">Topic 1.2 makes rate of change quantitative. Topic 1.1 prepares the language.</p>
+        <div class="slide-body">
+          <div class="mastery-grid" id="masteryGrid">
+  <label><input type="checkbox" data-mastery="variables"> I can identify variables, units, domain, and range.</label>
+  <label><input type="checkbox" data-mastery="notation"> I can evaluate and interpret function notation.</label>
+  <label><input type="checkbox" data-mastery="image"> I can identify images and preimages.</label>
+  <label><input type="checkbox" data-mastery="equality"> I can decide whether two functions are equal.</label>
+  <label><input type="checkbox" data-mastery="compare"> I can compare function values responsibly.</label>
+  <label><input type="checkbox" data-mastery="direction"> I can identify increasing, decreasing, and constant behavior.</label>
+  <label><input type="checkbox" data-mastery="concavity"> I can separate monotonicity from concavity.</label>
+  <label><input type="checkbox" data-mastery="zeros"> I can interpret zeros and \(x\)-intercepts.</label>
+  <label><input type="checkbox" data-mastery="graph"> I can construct and interpret a contextual graph.</label>
+</div>
+<div class="mastery-status">
+  <div class="mastery-ring"><span id="masteryPercent">0%</span></div>
+  <div><strong id="masteryMessage">Start checking the skills you can demonstrate.</strong><p>Your choices are saved on this device.</p></div>
+</div>
+        </div>
+      </div>
+    </section>
+    
+
+    <section class="slide" id="exit-ticket" data-slide-id="exit-ticket" data-section="Exit" data-title="Finish the Lesson with Evidence" data-calc="No calculator" aria-hidden="true">
+      <div class="slide-inner">
+        <div class="slide-meta">
+          <span class="section-chip">Exit</span>
+          <span class="kicker">3–2–1 reflection</span>
+          <span class="calc-chip">No calculator</span>
+        </div>
+        <h1>Finish the Lesson with Evidence</h1>
+        <p class="subtitle">Write responses that could be checked by another mathematician.</p>
+        <div class="slide-body">
+          <div class="grid-3 exit-grid">
+  <div class="card"><div class="exit-number">3</div><h3>Representations</h3><p>Name three ways a function rule can be represented.</p><textarea class="student-response" data-response-id="exit-3" rows="4"></textarea></div>
+  <div class="card"><div class="exit-number">2</div><h3>Distinctions</h3><p>State two important pairs students often confuse.</p><textarea class="student-response" data-response-id="exit-2" rows="4"></textarea></div>
+  <div class="card"><div class="exit-number">1</div><h3>Context</h3><p>Write one complete sentence interpreting a function value with units.</p><textarea class="student-response" data-response-id="exit-1" rows="4"></textarea></div>
+</div>
+<div class="final-banner">
+  <strong>Next: Topic 1.2 — Rates of Change</strong>
+  <span>From qualitative description to quantitative comparison.</span>
+</div>
+        </div>
+      </div>
+    </section>
+    
+    </main>
+    <footer class="footer">
+      <div class="footer-left">
+        <select class="jump-select" id="jumpSelect" aria-label="Jump to a slide"></select>
+        <span id="counter">1 / 43</span>
+      </div>
+      <div class="footer-right">
+        <button class="nav-button" id="printButton" type="button">Print</button>
+        <button class="nav-button" id="prevButton" type="button">Previous</button>
+        <button class="nav-button primary" id="nextButton" type="button">Next</button>
+      </div>
+    </footer>
+  </div>
+
+  <dialog id="mapDialog" aria-labelledby="mapTitle">
+    <div class="dialog-head"><h2 id="mapTitle">Lesson contents</h2><button class="dialog-close" id="closeMap" type="button">Close</button></div>
+    <div class="dialog-body" id="mapBody"></div>
+  </dialog>
+
+  <script>
+(() => {
+  "use strict";
+
+  const STORAGE_KEY = "echs-ap-precalculus-1.1-slide-deck-v2";
+  const slides = [...document.querySelectorAll(".slide")];
+  const viewport = document.getElementById("slideViewport");
+  const counter = document.getElementById("counter");
+  const progressBar = document.getElementById("progressBar");
+  const sectionLabel = document.getElementById("sectionLabel");
+  const calcLabel = document.getElementById("calcLabel");
+  const topTitle = document.getElementById("topTitle");
+  const jump = document.getElementById("jumpSelect");
+  const scoreText = document.getElementById("scoreText");
+  const mapDialog = document.getElementById("mapDialog");
+  const mapBody = document.getElementById("mapBody");
+
+  const defaultState = { index: 0, answers: {}, responses: {}, mastery: {}, visited: {} };
+  let state = loadState();
+  let current = 0;
+
+  function loadState() {
+    try {
+      const parsed = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+      return { ...defaultState, ...parsed, answers: parsed.answers || {}, responses: parsed.responses || {}, mastery: parsed.mastery || {}, visited: parsed.visited || {} };
+    } catch (_) {
+      return typeof structuredClone === "function" ? structuredClone(defaultState) : JSON.parse(JSON.stringify(defaultState));
+    }
+  }
+
+  function saveState() {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (_) {}
+  }
+
+  function escapeCss(value) {
+    if (window.CSS && CSS.escape) return CSS.escape(value);
+    return String(value).replace(/[^a-zA-Z0-9_-]/g, "\\$&");
+  }
+
+  function indexFromHash() {
+    const id = decodeURIComponent(location.hash.replace(/^#/, ""));
+    if (!id) return -1;
+    return slides.findIndex(s => s.dataset.slideId === id || s.id === id);
+  }
+
+  function showSlide(index, options = {}) {
+    const next = Math.max(0, Math.min(slides.length - 1, Number(index) || 0));
+    current = next;
+    slides.forEach((slide, i) => {
+      const active = i === current;
+      slide.classList.toggle("active", active);
+      slide.setAttribute("aria-hidden", active ? "false" : "true");
+      if (active) slide.scrollTop = 0;
+    });
+    const slide = slides[current];
+    state.index = current;
+    state.visited[slide.dataset.slideId] = true;
+    saveState();
+    counter.textContent = `${current + 1} / ${slides.length}`;
+    progressBar.style.width = `${((current + 1) / slides.length) * 100}%`;
+    sectionLabel.textContent = slide.dataset.section;
+    calcLabel.textContent = slide.dataset.calc;
+    topTitle.textContent = slide.dataset.title;
+    jump.value = String(current);
+    document.title = `${slide.dataset.title} | AP Precalculus 1.1 | ECHS`;
+    if (!options.skipHash) history.replaceState(null, "", `#${encodeURIComponent(slide.dataset.slideId)}`);
+    updateMapStates();
+    requestAnimationFrame(() => renderMath(slide));
+  }
+
+  function nextSlide() { showSlide(current + 1); }
+  function previousSlide() { showSlide(current - 1); }
+
+  function buildJump() {
+    const seen = new Set();
+    slides.forEach((slide, i) => {
+      if (!seen.has(slide.dataset.section)) {
+        const group = document.createElement("optgroup");
+        group.label = slide.dataset.section;
+        group.dataset.section = slide.dataset.section;
+        jump.appendChild(group);
+        seen.add(slide.dataset.section);
+      }
+      const group = [...jump.querySelectorAll("optgroup")].find(g => g.dataset.section === slide.dataset.section);
+      const option = document.createElement("option");
+      option.value = String(i);
+      option.textContent = `${i + 1}. ${slide.dataset.title}`;
+      group.appendChild(option);
+    });
+  }
+
+  function buildMap() {
+    mapBody.innerHTML = "";
+    const sections = [...new Set(slides.map(s => s.dataset.section))];
+    sections.forEach(section => {
+      const block = document.createElement("section");
+      block.className = "map-section";
+      const heading = document.createElement("h3");
+      heading.textContent = section;
+      const grid = document.createElement("div");
+      grid.className = "map-grid";
+      slides.forEach((slide, i) => {
+        if (slide.dataset.section !== section) return;
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "map-button";
+        button.dataset.index = String(i);
+        button.dataset.slideId = slide.dataset.slideId;
+        button.textContent = `${i + 1}. ${slide.dataset.title}`;
+        button.addEventListener("click", () => {
+          showSlide(i);
+          mapDialog.close();
+        });
+        grid.appendChild(button);
+      });
+      block.append(heading, grid);
+      mapBody.appendChild(block);
+    });
+    updateMapStates();
+  }
+
+  function updateMapStates() {
+    document.querySelectorAll(".map-button").forEach(button => {
+      const i = Number(button.dataset.index);
+      button.classList.toggle("active", i === current);
+      button.classList.toggle("visited", Boolean(state.visited[button.dataset.slideId]));
+    });
+  }
+
+  function renderMath(root = document.body) {
+    if (!window.renderMathInElement) return;
+    try {
+      renderMathInElement(root, {
+        delimiters: [
+          { left: "$$", right: "$$", display: true },
+          { left: "\\[", right: "\\]", display: true },
+          { left: "\\(", right: "\\)", display: false }
+        ],
+        throwOnError: false,
+        strict: false
+      });
+    } catch (_) {}
+  }
+
+  const rationales = {
+    "foundation-function": "A function assigns every input in its domain exactly one output. Outputs may have more than one preimage.",
+    "point-context": "The horizontal coordinate is the input time and the vertical coordinate is the output height: after 7 seconds, the height is 24 meters.",
+    "equal-functions-check": "Equal functions require identical domains and equal outputs at every input. The input −1 belongs to only one of the two domains.",
+    "endpoint-trap": "The inequality compares only two outputs. It does not determine the behavior at every input between the endpoints.",
+    "constant-check": "On a constant segment, all inputs in the region produce the same output.",
+    "concavity-check": "The output still rises, so the function is increasing. The added amount gets smaller, so the rate of change decreases and the graph is concave down.",
+    "zero-context": "A zero means the output height above the launch level is 0, so the drone is at the launch level at that time.",
+    "ap1": "The image of an input is the single output produced by that input, so the image of 8 is M(8) grams.",
+    "ap2": "For a decreasing function, larger inputs correspond to smaller outputs. Since a<b, f(a)>f(b).",
+    "ap3": "The output falls, but the negative changes move closer to zero. The rate of change increases, so the graph is concave up.",
+    "ap4": "The table supports a comparison at the listed inputs only. It does not determine every value between rows, concavity, or linearity.",
+    "ap5": "The statement f(−3)=0 gives the input-output pair (−3,0).",
+    "ap6": "Equality requires the same domain and equal output for every input in that domain.",
+    "precision-check": "Approximate visual evidence supports language such as “appears” and “approximately,” not exact or permanent claims."
+  };
+
+  function applyMcqState(question, choice, persist = true) {
+    const answer = question.dataset.answer;
+    const qid = question.dataset.qid;
+    const correct = choice === answer;
+    question.querySelectorAll(".options button").forEach(button => {
+      const selected = button.dataset.choice === choice;
+      button.classList.toggle("selected", selected);
+      button.classList.toggle("correct", selected && correct);
+      button.classList.toggle("incorrect", selected && !correct);
+      button.setAttribute("aria-pressed", selected ? "true" : "false");
+    });
+    const feedback = question.querySelector(".feedback");
+    if (choice) {
+      feedback.textContent = `${correct ? "Correct. " : "Not yet. "}${rationales[qid] || ""}`;
+      feedback.className = `feedback ${correct ? "good" : "bad"}`;
+    } else {
+      feedback.textContent = "";
+      feedback.className = "feedback";
+    }
+    if (persist) {
+      state.answers[qid] = { choice, correct };
+      saveState();
+      updateScore();
+    }
+  }
+
+  function initQuestions() {
+    document.querySelectorAll(".mcq").forEach(question => {
+      question.querySelectorAll(".options button").forEach(button => {
+        button.type = "button";
+        button.setAttribute("aria-pressed", "false");
+        button.addEventListener("click", () => applyMcqState(question, button.dataset.choice, true));
+      });
+      const saved = state.answers[question.dataset.qid];
+      if (saved?.choice) applyMcqState(question, saved.choice, false);
+    });
+
+    document.querySelectorAll(".short-check").forEach(form => {
+      const qid = form.dataset.qid;
+      const input = form.querySelector("input");
+      const feedback = form.querySelector(".feedback");
+      const saved = state.answers[qid];
+      if (saved?.value !== undefined) input.value = saved.value;
+      if (saved?.checked) {
+        feedback.textContent = saved.correct ? "Correct. T(2)=18+3(2)−2²=20." : "Not yet. Substitute h=2 into every occurrence of h.";
+        feedback.className = `feedback ${saved.correct ? "good" : "bad"}`;
+      }
+      form.addEventListener("submit", event => {
+        event.preventDefault();
+        const expected = Number(form.dataset.answer);
+        const tolerance = Number(form.dataset.tolerance || 0);
+        const value = Number(String(input.value).trim());
+        const correct = Number.isFinite(value) && Math.abs(value - expected) <= tolerance;
+        state.answers[qid] = { value: input.value, checked: true, correct };
+        feedback.textContent = correct ? "Correct. T(2)=18+3(2)−2²=20." : "Not yet. Substitute h=2 into every occurrence of h.";
+        feedback.className = `feedback ${correct ? "good" : "bad"}`;
+        saveState();
+        updateScore();
+      });
+    });
+    updateScore();
+  }
+
+  function updateScore() {
+    const assessables = [...document.querySelectorAll(".assessable")];
+    let answered = 0;
+    let correct = 0;
+    assessables.forEach(item => {
+      const result = state.answers[item.dataset.qid];
+      if (result && (result.choice || result.checked)) {
+        answered++;
+        if (result.correct) correct++;
+      }
+    });
+    scoreText.textContent = `${correct}/${assessables.length}`;
+    scoreText.title = `${answered} of ${assessables.length} checks attempted; ${correct} currently correct`;
+  }
+
+  function initResponses() {
+    document.querySelectorAll(".student-response").forEach(field => {
+      const id = field.dataset.responseId;
+      if (state.responses[id] !== undefined) field.value = state.responses[id];
+      field.addEventListener("input", () => {
+        state.responses[id] = field.value;
+        saveState();
+      });
+    });
+  }
+
+  function initMastery() {
+    const checks = [...document.querySelectorAll("[data-mastery]")];
+    checks.forEach(check => {
+      check.checked = Boolean(state.mastery[check.dataset.mastery]);
+      check.addEventListener("change", () => {
+        state.mastery[check.dataset.mastery] = check.checked;
+        saveState();
+        updateMastery();
+      });
+    });
+    updateMastery();
+  }
+
+  function updateMastery() {
+    const checks = [...document.querySelectorAll("[data-mastery]")];
+    const completed = checks.filter(c => c.checked).length;
+    const percent = checks.length ? Math.round((completed / checks.length) * 100) : 0;
+    document.getElementById("masteryPercent").textContent = `${percent}%`;
+    const ring = document.querySelector(".mastery-ring");
+    if (ring) ring.style.background = `conic-gradient(var(--green) ${percent}%, #dcece5 ${percent}% 100%)`;
+    const message = document.getElementById("masteryMessage");
+    if (!message) return;
+    message.textContent =
+      percent === 100 ? "All Topic 1.1 skills are checked. Verify them with the AP-style questions." :
+      percent >= 70 ? "Most skills are secure. Revisit the unchecked ideas before Topic 1.2." :
+      "Use the slide map to revisit unchecked skills.";
+  }
+
+  const SVG_NS = "http://www.w3.org/2000/svg";
+  function svgEl(tag, attrs = {}, text = "") {
+    const element = document.createElementNS(SVG_NS, tag);
+    Object.entries(attrs).forEach(([key, value]) => element.setAttribute(key, value));
+    if (text) element.textContent = text;
+    return element;
+  }
+
+  function viewBox(svg) {
+    const parts = (svg.getAttribute("viewBox") || "0 0 720 430").split(/\s+/).map(Number);
+    return { x: parts[0], y: parts[1], w: parts[2], h: parts[3] };
+  }
+
+  function drawSimpleGrids() {
+    document.querySelectorAll(".simple-grid").forEach(group => {
+      if (group.childNodes.length) return;
+      const svg = group.closest("svg");
+      const box = viewBox(svg);
+      for (let x = 70; x < box.w - 35; x += 55) group.appendChild(svgEl("line", { x1: x, y1: 35, x2: x, y2: box.h - 40 }));
+      for (let y = 45; y < box.h - 35; y += 45) group.appendChild(svgEl("line", { x1: 55, y1: y, x2: box.w - 35, y2: y }));
+    });
+  }
+
+  function setupPlot(svg, bounds, ticks = { x: 1, y: 2 }) {
+    const box = viewBox(svg);
+    const m = { left: 62, right: 32, top: 28, bottom: 58 };
+    const plotW = box.w - m.left - m.right;
+    const plotH = box.h - m.top - m.bottom;
+    const sx = x => m.left + ((x - bounds.xMin) / (bounds.xMax - bounds.xMin)) * plotW;
+    const sy = y => m.top + ((bounds.yMax - y) / (bounds.yMax - bounds.yMin)) * plotH;
+    const grid = svg.querySelector(".plot-grid");
+    const axes = svg.querySelector(".plot-axes");
+    grid.innerHTML = "";
+    axes.innerHTML = "";
+
+    const firstX = Math.ceil(bounds.xMin / ticks.x) * ticks.x;
+    for (let x = firstX; x <= bounds.xMax + 1e-9; x += ticks.x) {
+      grid.appendChild(svgEl("line", { x1: sx(x), y1: m.top, x2: sx(x), y2: m.top + plotH }));
+      axes.appendChild(svgEl("text", { x: sx(x), y: m.top + plotH + 22, "text-anchor": "middle" }, Number.isInteger(x) ? String(x) : x.toFixed(1)));
+    }
+    const firstY = Math.ceil(bounds.yMin / ticks.y) * ticks.y;
+    for (let y = firstY; y <= bounds.yMax + 1e-9; y += ticks.y) {
+      grid.appendChild(svgEl("line", { x1: m.left, y1: sy(y), x2: m.left + plotW, y2: sy(y) }));
+      axes.appendChild(svgEl("text", { x: m.left - 10, y: sy(y) + 4, "text-anchor": "end" }, Number.isInteger(y) ? String(y) : y.toFixed(1)));
+    }
+    const xAxisY = (bounds.yMin <= 0 && bounds.yMax >= 0) ? sy(0) : m.top + plotH;
+    const yAxisX = (bounds.xMin <= 0 && bounds.xMax >= 0) ? sx(0) : m.left;
+    axes.appendChild(svgEl("line", { x1: m.left, y1: xAxisY, x2: m.left + plotW, y2: xAxisY }));
+    axes.appendChild(svgEl("line", { x1: yAxisX, y1: m.top, x2: yAxisX, y2: m.top + plotH }));
+    return { sx, sy, m, plotW, plotH };
+  }
+
+  function pathForFunction(fn, xMin, xMax, sx, sy, steps = 320) {
+    let d = "";
+    for (let i = 0; i <= steps; i++) {
+      const x = xMin + (i / steps) * (xMax - xMin);
+      const y = fn(x);
+      if (!Number.isFinite(y)) continue;
+      d += `${d ? " L" : "M"}${sx(x).toFixed(2)},${sy(y).toFixed(2)}`;
+    }
+    return d;
+  }
+
+  function initLaunchGraph() {
+    const svg = document.getElementById("launchGraph");
+    if (!svg) return;
+    const bounds = { xMin: 0, xMax: 8, yMin: 0, yMax: 60 };
+    const frame = setupPlot(svg, bounds, { x: 1, y: 10 });
+    const values = [10, 22, 38, 52, 52, 52, 39, 23, 12];
+    const polyline = document.getElementById("launchCurve");
+    polyline.setAttribute("points", values.map((y, x) => `${frame.sx(x)},${frame.sy(y)}`).join(" "));
+    const slider = document.getElementById("launchSlider");
+    const point = document.getElementById("launchPoint");
+    const vGuide = document.getElementById("launchVGuide");
+    const hGuide = document.getElementById("launchHGuide");
+    const label = document.getElementById("launchPointLabel");
+    const update = () => {
+      const t = Number(slider.value);
+      const v = values[t];
+      const px = frame.sx(t), py = frame.sy(v);
+      point.setAttribute("cx", px); point.setAttribute("cy", py);
+      vGuide.setAttribute("x1", px); vGuide.setAttribute("x2", px); vGuide.setAttribute("y1", py); vGuide.setAttribute("y2", frame.sy(0));
+      hGuide.setAttribute("x1", frame.sx(0)); hGuide.setAttribute("x2", px); hGuide.setAttribute("y1", py); hGuide.setAttribute("y2", py);
+      label.setAttribute("x", px + 12); label.setAttribute("y", py - 12); label.textContent = `(${t}, ${v})`;
+      document.getElementById("launchTime").textContent = t;
+      document.getElementById("launchInput").textContent = `${t} min`;
+      document.getElementById("launchOutput").textContent = `${v} L`;
+    };
+    slider.addEventListener("input", update);
+    update();
+  }
+
+  function findRoots(fn, xMin, xMax, steps = 1600) {
+    const roots = [];
+    let x0 = xMin, y0 = fn(x0);
+    const dx = (xMax - xMin) / steps;
+    for (let i = 1; i <= steps; i++) {
+      const x1 = xMin + i * dx;
+      const y1 = fn(x1);
+      if (Math.abs(y0) < 0.005) roots.push(x0);
+      if (y0 * y1 < 0) {
+        let a = x0, b = x1, fa = y0;
+        for (let k = 0; k < 35; k++) {
+          const mid = (a + b) / 2;
+          const fm = fn(mid);
+          if (fa * fm <= 0) b = mid;
+          else { a = mid; fa = fm; }
+        }
+        roots.push((a + b) / 2);
+      }
+      x0 = x1; y0 = y1;
+    }
+    return roots.sort((a,b) => a-b).filter((x, i, arr) => i === 0 || Math.abs(x - arr[i-1]) > 0.04);
+  }
+
+  function formatSet(values) {
+    if (!values.length) return "∅";
+    return `{${values.map(v => Math.abs(v) < .005 ? "0" : v.toFixed(2).replace(/\.00$/, "")).join(", ")}}`;
+  }
+
+  function initPreimageGraph() {
+    const svg = document.getElementById("preimageGraph");
+    if (!svg) return;
+    const bounds = { xMin: -5, xMax: 5, yMin: -6, yMax: 14 };
+    const frame = setupPlot(svg, bounds, { x: 1, y: 2 });
+    const f = x => 0.12 * (x + 3) * x * (x - 3) + 4;
+    document.getElementById("preimageCurve").setAttribute("d", pathForFunction(f, bounds.xMin, bounds.xMax, frame.sx, frame.sy));
+    const slider = document.getElementById("preimageSlider");
+    const line = document.getElementById("preimageLine");
+    const dots = document.getElementById("preimageDots");
+    const update = () => {
+      const L = Number(slider.value);
+      const y = frame.sy(L);
+      line.setAttribute("x1", frame.sx(bounds.xMin)); line.setAttribute("x2", frame.sx(bounds.xMax));
+      line.setAttribute("y1", y); line.setAttribute("y2", y);
+      const roots = findRoots(x => f(x) - L, bounds.xMin, bounds.xMax);
+      dots.innerHTML = "";
+      roots.forEach(root => dots.appendChild(svgEl("circle", { cx: frame.sx(root), cy: y, r: 7, class: "focus-point" })));
+      document.getElementById("preimageLevel").textContent = L.toFixed(1).replace(/\.0$/, "");
+      document.getElementById("preimageResult").textContent = formatSet(roots);
+    };
+    slider.addEventListener("input", update);
+    document.getElementById("preimageReset").addEventListener("click", () => { slider.value = "4"; update(); });
+    update();
+  }
+
+  function initReaderGraph() {
+    const svg = document.getElementById("readerGraph");
+    if (!svg) return;
+    const bounds = { xMin: -5, xMax: 6, yMin: -6, yMax: 6 };
+    const frame = setupPlot(svg, bounds, { x: 1, y: 2 });
+    const f = x => 0.08 * (x + 4) * (x - 1) * (x - 5);
+    document.getElementById("readerCurve").setAttribute("d", pathForFunction(f, bounds.xMin, bounds.xMax, frame.sx, frame.sy));
+    const zeros = document.getElementById("readerZeros");
+    [-4, 1, 5].forEach(x => {
+      zeros.appendChild(svgEl("circle", { cx: frame.sx(x), cy: frame.sy(0), r: 6, class: "zero-point" }));
+    });
+    const slider = document.getElementById("readerSlider");
+    const point = document.getElementById("readerPoint");
+    const vg = document.getElementById("readerVGuide");
+    const hg = document.getElementById("readerHGuide");
+    const label = document.getElementById("readerLabel");
+    const turnA = -1.9367, turnB = 3.2700;
+    const update = () => {
+      const x = Number(slider.value);
+      const y = f(x);
+      const px = frame.sx(x), py = frame.sy(y);
+      point.setAttribute("cx", px); point.setAttribute("cy", py);
+      vg.setAttribute("x1", px); vg.setAttribute("x2", px); vg.setAttribute("y1", py); vg.setAttribute("y2", frame.sy(0));
+      hg.setAttribute("x1", frame.sx(0)); hg.setAttribute("x2", px); hg.setAttribute("y1", py); hg.setAttribute("y2", py);
+      label.setAttribute("x", px + 10); label.setAttribute("y", py - 12);
+      label.textContent = `(${x.toFixed(1)}, ${y.toFixed(2)})`;
+      document.getElementById("readerX").textContent = x.toFixed(1).replace("-", "−");
+      document.getElementById("readerY").textContent = `f(${x.toFixed(1)}) ≈ ${y.toFixed(2)}`;
+      const direction = Math.abs(x - turnA) < .15 || Math.abs(x - turnB) < .15 ? "near a turning point" : (x < turnA || x > turnB ? "increasing" : "decreasing");
+      document.getElementById("readerDirection").textContent = direction;
+    };
+    slider.addEventListener("input", update);
+    update();
+  }
+
+  const concavityConfigs = {
+    "inc-up": { fn: x => 1 + 0.08*x*x, d: x => 0.16*x, direction: "rises", steepness: "rises faster and faster", rate: "increasing" },
+    "inc-down": { fn: x => 1 + 2.53*Math.sqrt(x), d: x => x <= .01 ? 4 : 1.265/Math.sqrt(x), direction: "rises", steepness: "rises more slowly", rate: "decreasing" },
+    "dec-up": { fn: x => 1 + 0.08*(10-x)*(10-x), d: x => -0.16*(10-x), direction: "falls", steepness: "falls more slowly", rate: "increasing" },
+    "dec-down": { fn: x => 9 - 0.08*x*x, d: x => -0.16*x, direction: "falls", steepness: "falls faster and faster", rate: "decreasing" }
+  };
+
+  function initConcavityGraph() {
+    const svg = document.getElementById("concavityGraph");
+    if (!svg) return;
+    const bounds = { xMin: 0, xMax: 10, yMin: 0, yMax: 10 };
+    const frame = setupPlot(svg, bounds, { x: 1, y: 1 });
+    const curve = document.getElementById("concavityCurve");
+    const markers = document.getElementById("slopeMarkers");
+    const buttons = [...document.querySelectorAll("#concavityButtons button")];
+    const show = key => {
+      const cfg = concavityConfigs[key];
+      curve.setAttribute("d", pathForFunction(cfg.fn, 0, 10, frame.sx, frame.sy));
+      markers.innerHTML = "";
+      [2,5,8].forEach(x => {
+        const y = cfg.fn(x);
+        const slope = cfg.d(x);
+        const halfMathX = .7;
+        const x1 = x-halfMathX, x2=x+halfMathX;
+        const y1 = y-slope*halfMathX, y2=y+slope*halfMathX;
+        markers.appendChild(svgEl("line", { x1:frame.sx(x1), y1:frame.sy(y1), x2:frame.sx(x2), y2:frame.sy(y2), class:"slope-marker" }));
+      });
+      document.getElementById("concavityDirection").textContent = cfg.direction;
+      document.getElementById("concavitySteepness").textContent = cfg.steepness;
+      document.getElementById("concavityRate").textContent = cfg.rate;
+      buttons.forEach(b => b.classList.toggle("active", b.dataset.curve === key));
+    };
+    buttons.forEach(button => button.addEventListener("click", () => show(button.dataset.curve)));
+    show("inc-up");
+  }
+
+  const sketchConfigs = {
+    heatingCanvas: {
+      model(ctx) {
+        ctx.beginPath(); ctx.moveTo(95,410);
+        ctx.bezierCurveTo(190,410,245,350,330,250);
+        ctx.bezierCurveTo(440,125,590,90,690,90);
+        ctx.lineTo(815,90); ctx.stroke();
+      }
+    },
+    endpointCanvas: {
+      model(ctx) {
+        ctx.beginPath(); ctx.moveTo(110,355);
+        ctx.bezierCurveTo(225,80,330,395,455,225);
+        ctx.bezierCurveTo(565,85,680,300,810,75); ctx.stroke();
+        drawEndpoint(ctx,110,355,"(0,1)"); drawEndpoint(ctx,810,75,"(6,9)");
+      }
+    },
+    constraintCanvas: {
+      model(ctx) {
+        const axisY = 455;
+        ctx.beginPath(); ctx.moveTo(82,500);
+        ctx.bezierCurveTo(135,500,175,475,230,axisY);
+        ctx.bezierCurveTo(310,420,360,105,465,95);
+        ctx.bezierCurveTo(545,88,615,390,674,axisY);
+        ctx.bezierCurveTo(704,487,728,495,748,488);
+        ctx.bezierCurveTo(776,478,798,315,828,75); ctx.stroke();
+        drawEndpoint(ctx,230,axisY,"x=−2"); drawEndpoint(ctx,674,axisY,"x=4");
+        ctx.save();ctx.setLineDash([8,7]);ctx.strokeStyle="#087f8c";ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(72,300);ctx.lineTo(840,300);ctx.stroke();ctx.restore();
+      }
+    }
+  };
+
+  function drawEndpoint(ctx,x,y,label){
+    ctx.save();ctx.fillStyle="#d3a126";ctx.strokeStyle="#fff";ctx.lineWidth=3;ctx.beginPath();ctx.arc(x,y,7,0,Math.PI*2);ctx.fill();ctx.stroke();ctx.fillStyle="#082f55";ctx.font="700 16px sans-serif";ctx.fillText(label,x+10,y-10);ctx.restore();
+  }
+
+  function initSketchCanvas(canvas) {
+    const ctx = canvas.getContext("2d");
+    const strokes = [];
+    let activeStroke = null;
+    let showModel = false;
+    const cfg = sketchConfigs[canvas.id];
+
+    function position(event) {
+      const rect = canvas.getBoundingClientRect();
+      return {
+        x: (event.clientX - rect.left) * (canvas.width / rect.width),
+        y: (event.clientY - rect.top) * (canvas.height / rect.height)
+      };
+    }
+    function drawBase() {
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      ctx.fillStyle="#fff";ctx.fillRect(0,0,canvas.width,canvas.height);
+      ctx.strokeStyle="#e0e7ed";ctx.lineWidth=1;
+      for(let x=80;x<canvas.width-45;x+=70){ctx.beginPath();ctx.moveTo(x,35);ctx.lineTo(x,canvas.height-70);ctx.stroke();}
+      for(let y=55;y<canvas.height-60;y+=55){ctx.beginPath();ctx.moveTo(70,y);ctx.lineTo(canvas.width-45,y);ctx.stroke();}
+      ctx.strokeStyle="#082f55";ctx.lineWidth=3;
+      ctx.beginPath();ctx.moveTo(70,canvas.height-65);ctx.lineTo(canvas.width-40,canvas.height-65);ctx.stroke();
+      ctx.beginPath();ctx.moveTo(70,canvas.height-65);ctx.lineTo(70,35);ctx.stroke();
+    }
+    function redraw() {
+      drawBase();
+      if(showModel && cfg){
+        ctx.save();ctx.strokeStyle="#137153";ctx.lineWidth=6;ctx.lineCap="round";ctx.lineJoin="round";ctx.setLineDash([13,9]);cfg.model(ctx);ctx.restore();
+      }
+      ctx.save();ctx.strokeStyle="#7b1f3b";ctx.lineWidth=5;ctx.lineCap="round";ctx.lineJoin="round";ctx.setLineDash([]);
+      strokes.forEach(stroke => {
+        if(stroke.length<2)return;
+        ctx.beginPath();ctx.moveTo(stroke[0].x,stroke[0].y);
+        stroke.slice(1).forEach(p=>ctx.lineTo(p.x,p.y));ctx.stroke();
+      });
+      ctx.restore();
+    }
+    canvas.addEventListener("pointerdown", event => {
+      event.preventDefault(); canvas.setPointerCapture(event.pointerId);
+      activeStroke = [position(event)];strokes.push(activeStroke);redraw();
+    });
+    canvas.addEventListener("pointermove", event => {
+      if(!activeStroke)return;activeStroke.push(position(event));redraw();
+    });
+    const end = event => { if(activeStroke){activeStroke=null;try{canvas.releasePointerCapture(event.pointerId)}catch(_){}} };
+    canvas.addEventListener("pointerup",end);canvas.addEventListener("pointercancel",end);canvas.addEventListener("pointerleave",event=>{if(event.buttons===0)end(event)});
+    document.querySelectorAll(`[data-sketch-clear="${canvas.id}"]`).forEach(button => button.addEventListener("click",()=>{strokes.length=0;showModel=false;redraw();}));
+    document.querySelectorAll(`[data-sketch-model="${canvas.id}"]`).forEach(button => button.addEventListener("click",()=>{
+      showModel=!showModel;button.textContent=showModel?"Hide model":"Show one valid model";redraw();
+    }));
+    redraw();
+  }
+
+  function initSketches() {
+    document.querySelectorAll(".sketch-canvas").forEach(initSketchCanvas);
+  }
+
+  function initGoToButtons() {
+    document.querySelectorAll("[data-go-to]").forEach(button => {
+      button.addEventListener("click", () => {
+        const id = button.dataset.goTo;
+        const index = slides.findIndex(slide => slide.dataset.slideId === id);
+        if (index >= 0) showSlide(index);
+      });
+    });
+  }
+
+  function initNavigation() {
+    buildJump();
+    buildMap();
+    document.getElementById("nextButton").addEventListener("click", nextSlide);
+    document.getElementById("prevButton").addEventListener("click", previousSlide);
+    jump.addEventListener("change", () => showSlide(Number(jump.value)));
+    document.getElementById("mapButton").addEventListener("click", () => mapDialog.showModal());
+    document.getElementById("closeMap").addEventListener("click", () => mapDialog.close());
+    document.getElementById("fullscreenButton").addEventListener("click", async () => {
+      try {
+        if (!document.fullscreenElement) await document.documentElement.requestFullscreen();
+        else await document.exitFullscreen();
+      } catch (_) {}
+    });
+    document.getElementById("printButton").addEventListener("click", () => window.print());
+    document.getElementById("resetButton").addEventListener("click", () => {
+      if (!confirm("Reset saved answers, written responses, mastery checks, and slide progress for this lesson?")) return;
+      localStorage.removeItem(STORAGE_KEY);
+      location.replace(location.pathname + "#cover");
+      location.reload();
+    });
+
+    document.addEventListener("keydown", event => {
+      const tag = event.target?.tagName;
+      const editing = ["INPUT","TEXTAREA","SELECT","BUTTON","SUMMARY"].includes(tag) || event.target?.isContentEditable;
+      if (editing) return;
+      if (["ArrowRight","PageDown"," "].includes(event.key)) { event.preventDefault(); nextSlide(); }
+      if (["ArrowLeft","PageUp"].includes(event.key)) { event.preventDefault(); previousSlide(); }
+      if (event.key === "Home") { event.preventDefault(); showSlide(0); }
+      if (event.key === "End") { event.preventDefault(); showSlide(slides.length - 1); }
+    });
+
+    let touchStartX = null;
+    viewport.addEventListener("touchstart", event => {
+      if (event.target.closest("input,textarea,button,select,canvas,details")) return;
+      touchStartX = event.changedTouches[0].clientX;
+    }, { passive: true });
+    viewport.addEventListener("touchend", event => {
+      if (touchStartX === null) return;
+      const dx = event.changedTouches[0].clientX - touchStartX;
+      touchStartX = null;
+      if (Math.abs(dx) < 70) return;
+      dx < 0 ? nextSlide() : previousSlide();
+    }, { passive: true });
+  }
+
+  function init() {
+    drawSimpleGrids();
+    initNavigation();
+    initQuestions();
+    initResponses();
+    initMastery();
+    initLaunchGraph();
+    initPreimageGraph();
+    initReaderGraph();
+    initConcavityGraph();
+    initSketches();
+    initGoToButtons();
+    renderMath(document.body);
+    const hashIndex = indexFromHash();
+    showSlide(hashIndex >= 0 ? hashIndex : Number.isFinite(state.index) ? state.index : 0, { skipHash: hashIndex >= 0 });
+  }
+
+  window.addEventListener("DOMContentLoaded", init);
+})();
+</script>
 </body>
 </html>
