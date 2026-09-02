@@ -1,73 +1,46 @@
-name: Bootstrap IB AI 1.1 v7 release
+name: Bootstrap IB AI Lesson 1.1 v7
 
 on:
   push:
     branches:
       - codex/ib-ai-1-1-v7-ti-nspire
     paths:
-      - .github/ib-ai-v7-payload.part*
-      - .github/workflows/bootstrap-ib-ai-v7.yml
+      - ".github/ib-ai-v7-payload.part*"
+      - ".github/workflows/bootstrap-ib-ai-v7.yml"
 
 permissions:
   contents: write
 
-env:
-  EXPECTED_B64_BYTES: "57928"
-  EXPECTED_B64_SHA256: "429d61f8248ffd902e18ee8d3ff507e29ade81fb6847efc2be57648921c78e38"
-  EXPECTED_TAR_SHA256: "500fd6e42536259ab122013e733759181cb7eecc95cf754e8608127c4ecd0405"
-
 jobs:
-  unpack-validate-commit:
+  release:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out staging branch
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Reassemble and verify release package
+      - name: Verify, install, test and commit the lesson release
         shell: bash
+        env:
+          EXPECTED_B64_BYTES: "57928"
+          EXPECTED_B64_SHA256: "429d61f8248ffd902e18ee8d3ff507e29ade81fb6847efc2be57648921c78e38"
+          EXPECTED_TAR_SHA256: "500fd6e42536259ab122013e733759181cb7eecc95cf754e8608127c4ecd0405"
         run: |
           set -euo pipefail
-          cat .github/ib-ai-v7-payload.part* > /tmp/ib-ai-v7-payload.b64
-          test "$(wc -c < /tmp/ib-ai-v7-payload.b64)" -eq "$EXPECTED_B64_BYTES"
-          echo "$EXPECTED_B64_SHA256  /tmp/ib-ai-v7-payload.b64" | sha256sum --check --strict
-          base64 --decode /tmp/ib-ai-v7-payload.b64 > /tmp/ib-ai-v7-payload.tar.gz
-          echo "$EXPECTED_TAR_SHA256  /tmp/ib-ai-v7-payload.tar.gz" | sha256sum --check --strict
-          tar -tzf /tmp/ib-ai-v7-payload.tar.gz
-
-      - name: Install lesson and validation files
-        shell: bash
-        run: |
-          set -euo pipefail
-          tar --exclude='.github/workflows/*' -xzf /tmp/ib-ai-v7-payload.tar.gz
-
-      - name: Run definitive Lesson 1.1 checks
-        shell: bash
-        run: |
-          set -euo pipefail
+          cat .github/ib-ai-v7-payload.part* > /tmp/payload.b64
+          test "$(wc -c < /tmp/payload.b64)" -eq "$EXPECTED_B64_BYTES"
+          echo "$EXPECTED_B64_SHA256  /tmp/payload.b64" | sha256sum --check --strict
+          base64 --decode /tmp/payload.b64 > /tmp/payload.tar.gz
+          echo "$EXPECTED_TAR_SHA256  /tmp/payload.tar.gz" | sha256sum --check --strict
+          tar --exclude=".github/workflows/*" -xzf /tmp/payload.tar.gz
           node --check lessons/ib-math-ai/unit-1/data/lesson-1.1-ib-ai-sl-definitive-v7.js
           node --check lessons/ib-math-ai/unit-1/data/lesson-1.1-ti-nspire-simulator-v7.js
           node --check data/ib-math-ai-unit-1-update.js
           node tools/test_ib_ai_1_1_definitive_v7.mjs .
           node tools/test_ib_unit1_portal_update.mjs
           python tools/validate_ib_ai_unit1_v7.py .
-
-      - name: Commit lesson release to the staging branch
-        shell: bash
-        run: |
-          set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add \
-            data/ib-math-ai-unit-1-delivery-catalog.json \
-            data/ib-math-ai-unit-1-update.js \
-            lessons/ib-math-ai/unit-1/assets/css/lesson-1.1-ti-nspire-v7.css \
-            lessons/ib-math-ai/unit-1/data/lesson-1.1-ib-ai-sl-definitive-v7.js \
-            lessons/ib-math-ai/unit-1/data/lesson-1.1-ti-nspire-simulator-v7.js \
-            lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.1_standard_form_ECHS.html \
-            tools/test_ib_ai_1_1_definitive_v7.mjs \
-            tools/test_ib_unit1_portal_update.mjs \
-            tools/validate_ib_ai_unit1_v7.py
+          git add data/ib-math-ai-unit-1-delivery-catalog.json data/ib-math-ai-unit-1-update.js lessons/ib-math-ai/unit-1/assets/css/lesson-1.1-ti-nspire-v7.css lessons/ib-math-ai/unit-1/data/lesson-1.1-ib-ai-sl-definitive-v7.js lessons/ib-math-ai/unit-1/data/lesson-1.1-ti-nspire-simulator-v7.js lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.1_standard_form_ECHS.html tools/test_ib_ai_1_1_definitive_v7.mjs tools/test_ib_unit1_portal_update.mjs tools/validate_ib_ai_unit1_v7.py
           git commit -m "Rebuild IB AI SL 1.1 and 1.6 with TI-Nspire CX II"
           git push origin HEAD:codex/ib-ai-1-1-v7-ti-nspire
