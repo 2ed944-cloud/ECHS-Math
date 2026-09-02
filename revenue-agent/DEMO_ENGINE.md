@@ -38,6 +38,16 @@ Possible flows include, when verified:
 
 Do not show irrelevant features simply to make the demo longer.
 
+## Prospect-requested demo accounts
+When a qualified institution asks for temporary reviewer/demo accounts:
+- Treat the request as a positive buying signal and move it into an active demo evaluation rather than continuing generic follow-up.
+- Verify that secure account provisioning is actually available before promising credentials or a delivery date. Never invent usernames/passwords, expose secrets, or use placeholder credentials that are not backed by the authenticated account service.
+- Current institutional roles are `admin`, `teacher`, `student`, and `parent`. There is no separate `coordinator` role. A coordinator who only needs to review the product should normally receive non-privileged teacher/reviewer access rather than administrator rights.
+- Keep the first review time-limited and least-privilege. Prefer synthetic/demo learner data and no SIS/LMS/SSO connection unless a later approved pilot requires it.
+- Show only repository-verified content/capabilities. If an operational production smoke test remains outstanding, describe the capability as repository-validated rather than claiming exhaustive production acceptance.
+- The structured demo/reviewer access is not an excuse to invent a fee. The standard qualified pilot in `PRICING_ENGINE.md` remains free for 14-30 days, up to 3 teachers and 40 students. A paid pilot is only for materially larger/longer scope under the pricing engine.
+- If provisioning is blocked because no authenticated platform-admin session or provisioning capability is available, do not fabricate access. Record the blocker and surface it for secure owner/admin action.
+
 ## Async Demo Mode
 Preferred for cold/warm institutional sales when a live meeting is not yet necessary.
 
