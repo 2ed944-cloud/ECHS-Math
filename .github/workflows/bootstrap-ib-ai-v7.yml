@@ -1,0 +1,66 @@
+name: Bootstrap IB AI 1.1 v7 release
+
+on:
+  push:
+    branches:
+      - codex/ib-ai-1-1-v7-ti-nspire
+    paths:
+      - .github/ib-ai-v7-payload.part*
+      - .github/workflows/bootstrap-ib-ai-v7.yml
+
+permissions:
+  contents: write
+
+env:
+  EXPECTED_B64_BYTES: "57928"
+  EXPECTED_B64_SHA256: "429d61f8248ffd902e18ee8d3ff507e29ade81fb6847efc2be57648921c78e38"
+  EXPECTED_TAR_SHA256: "500fd6e42536259ab122013e733759181cb7eecc95cf754e8608127c4ecd0405"
+
+jobs:
+  unpack-validate-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out staging branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Reassemble and verify release package
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat .github/ib-ai-v7-payload.part* > /tmp/ib-ai-v7-payload.b64
+          test "$(wc -c < /tmp/ib-ai-v7-payload.b64)" -eq "$EXPECTED_B64_BYTES"
+          echo "$EXPECTED_B64_SHA256  /tmp/ib-ai-v7-payload.b64" | sha256sum --check --strict
+          base64 --decode /tmp/ib-ai-v7-payload.b64 > /tmp/ib-ai-v7-payload.tar.gz
+          echo "$EXPECTED_TAR_SHA256  /tmp/ib-ai-v7-payload.tar.gz" | sha256sum --check --strict
+          tar -tzf /tmp/ib-ai-v7-payload.tar.gz
+
+      - name: Install the validated release
+        shell: bash
+        run: |
+          set -euo pipefail
+          tar -xzf /tmp/ib-ai-v7-payload.tar.gz
+          rm -f .github/ib-ai-v7-payload.part*
+          rm -f .github/workflows/bootstrap-ib-ai-v7.yml
+
+      - name: Run definitive Lesson 1.1 checks
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check lessons/ib-math-ai/unit-1/data/lesson-1.1-ib-ai-sl-definitive-v7.js
+          node --check lessons/ib-math-ai/unit-1/data/lesson-1.1-ti-nspire-simulator-v7.js
+          node --check data/ib-math-ai-unit-1-update.js
+          node tools/test_ib_ai_1_1_definitive_v7.mjs .
+          node tools/test_ib_unit1_portal_update.mjs
+          python tools/validate_ib_ai_unit1_v7.py .
+
+      - name: Commit the complete release to the staging branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Rebuild IB AI SL 1.1 and 1.6 with TI-Nspire CX II"
+          git push origin HEAD:codex/ib-ai-1-1-v7-ti-nspire
