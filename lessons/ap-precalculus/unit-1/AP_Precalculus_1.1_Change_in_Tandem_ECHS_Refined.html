@@ -1,9 +1,179 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AP Precalculus 1.1 | Change in Tandem | ECHS</title></head><body><noscript>This interactive lesson requires JavaScript.</noscript>
-<script src="data/lesson-1.1-gzip-01.js"></script>
-<script src="data/lesson-1.1-gzip-02.js"></script>
-<script src="data/lesson-1.1-gzip-03.js"></script>
-<script src="data/lesson-1.1-gzip-04.js"></script>
-<script src="data/lesson-1.1-gzip-05.js"></script>
-<script src="data/lesson-1.1-gzip-loader.js"></script>
-</body></html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AP Precalculus 1.1 | Change in Tandem | ECHS</title>
+<style>
+:root{--navy:#0c2747;--blue:#0f77b7;--gold:#c89b2c;--ink:#172033;--muted:#5d6a7d;--line:#d8e0e8;--soft:#f4f8fb;--green:#126b50;--red:#aa2934;--purple:#6b3ea0;--white:#fff}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Arial,sans-serif;color:var(--ink);background:#eef3f7;line-height:1.55}.top{position:sticky;top:0;z-index:20;background:rgba(12,39,71,.97);color:#fff;border-bottom:4px solid var(--gold)}.top-inner{max-width:1180px;margin:auto;padding:14px 22px;display:flex;align-items:center;gap:18px}.brand{font-weight:900;letter-spacing:.08em}.top a{color:#fff;text-decoration:none}.nav{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}.nav a{padding:7px 10px;border-radius:999px;background:rgba(255,255,255,.09);font-size:.88rem}.page{max-width:1180px;margin:24px auto;padding:0 20px 60px}.hero{background:linear-gradient(135deg,var(--navy),#164d7b);color:#fff;border-radius:26px;padding:40px;box-shadow:0 20px 48px rgba(20,40,70,.16)}.eyebrow{color:#f3c95c;font-weight:800;letter-spacing:.08em;text-transform:uppercase;font-size:.85rem}.hero h1{font-size:clamp(2.3rem,6vw,4.7rem);line-height:1;margin:.15em 0}.hero p{font-size:1.15rem;max-width:850px}.pill-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.pill{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.28);padding:8px 12px;border-radius:999px;font-size:.92rem}.section{background:#fff;border:1px solid var(--line);border-radius:22px;margin-top:20px;padding:28px;box-shadow:0 10px 30px rgba(25,50,80,.07)}h2{color:var(--navy);font-size:1.8rem;margin:.1em 0 .5em}h3{color:var(--navy);margin:1.1em 0 .35em}.grid2,.grid3,.grid4{display:grid;gap:16px}.grid2{grid-template-columns:repeat(2,minmax(0,1fr))}.grid3{grid-template-columns:repeat(3,minmax(0,1fr))}.grid4{grid-template-columns:repeat(4,minmax(0,1fr))}.card{border:1px solid var(--line);background:var(--soft);border-radius:16px;padding:18px}.card strong{color:var(--navy)}.lo{border-left:6px solid var(--blue)}.ek{border-left:6px solid var(--gold)}.warn{border-left:6px solid var(--red);background:#fff5f6}.success{border-left:6px solid var(--green);background:#f2fbf7}.challenge{border-left:6px solid var(--purple);background:#f8f4fc}.math{font-family:Cambria Math,STIX Two Math,serif;font-size:1.03em}.formula{display:inline-block;padding:7px 11px;background:#eef5fb;border:1px solid #c9dae8;border-radius:10px}.table-wrap{overflow:auto}table{border-collapse:collapse;width:100%;margin:12px 0}th,td{border:1px solid #cfd9e4;padding:10px 12px;text-align:left}th{background:#edf4f9;color:var(--navy)}.steps{counter-reset:s}.steps li{margin:.55em 0}.mini{font-size:.92rem;color:var(--muted)}.ap-tag{display:inline-block;background:#e8f3fb;color:#075a8e;border:1px solid #b9d8ed;padding:3px 8px;border-radius:999px;font-size:.8rem;font-weight:800}.trap{color:var(--red);font-weight:800}.q{border:1px solid #d8d1e5;border-radius:16px;padding:18px;margin:14px 0;background:#fff}.q-title{display:flex;gap:8px;align-items:center;font-weight:900;color:var(--navy)}details{border:1px solid var(--line);border-radius:12px;padding:10px 14px;margin-top:10px;background:#fbfdff}summary{cursor:pointer;font-weight:800;color:var(--green)}.graphbox{border:1px dashed #9db3c7;border-radius:14px;background:linear-gradient(#f8fbfd 1px,transparent 1px),linear-gradient(90deg,#f8fbfd 1px,transparent 1px);background-size:28px 28px;padding:18px;min-height:150px}.axis-demo{width:100%;height:220px}.footer{color:var(--muted);text-align:center;margin-top:28px}.answer-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}.choice{border:1px solid var(--line);border-radius:10px;padding:10px;background:#fafcfe}@media(max-width:850px){.grid2,.grid3,.grid4,.answer-grid{grid-template-columns:1fr}.nav{display:none}.hero{padding:28px}.section{padding:20px}}
+@media print{.top{display:none}.page{max-width:none;margin:0}.section,.hero{box-shadow:none;break-inside:avoid}details>div{display:block!important}}
+</style>
+</head>
+<body>
+<header class="top"><div class="top-inner"><a class="brand" href="../../../index.html">ECHS MATHEMATICS</a><span>AP Precalculus · Unit 1</span><nav class="nav"><a href="#scope">AP Scope</a><a href="#core">Core Lesson</a><a href="#representations">Representations</a><a href="#practice">AP Practice</a><a href="#challenge">Challenge</a></nav></div></header>
+<main class="page">
+<section class="hero">
+<div class="eyebrow">AP Precalculus · Topic 1.1 · 2 instructional periods</div>
+<h1>Change in Tandem</h1>
+<p>How does an output respond as an input changes? In this lesson you will read, describe, compare, and construct relationships using verbal, numerical, graphical, and analytical representations.</p>
+<div class="pill-row"><span class="pill">Learning Objective 1.1.A</span><span class="pill">Learning Objective 1.1.B</span><span class="pill">Skills 2.B & 3.A</span><span class="pill">No formal average-rate-of-change calculation</span></div>
+</section>
+
+<section class="section" id="scope">
+<h2>1. Exact AP Scope for Topic 1.1</h2>
+<div class="grid2">
+<div class="card lo"><h3>1.1.A</h3><p><strong>Describe how the input and output values of a function vary together by comparing function values.</strong></p></div>
+<div class="card lo"><h3>1.1.B</h3><p><strong>Construct a graph representing two quantities that vary with respect to each other in a contextual scenario.</strong></p></div>
+</div>
+<h3>Required knowledge in this lesson</h3>
+<div class="grid3">
+<div class="card ek"><strong>1.1.A.1</strong><p>Function, domain, range, independent/dependent variables, and equality of functions.</p></div>
+<div class="card ek"><strong>1.1.A.2</strong><p>Function rule in four representations; image and preimage.</p></div>
+<div class="card ek"><strong>1.1.A.3–A.4</strong><p>Increasing and decreasing behavior through comparisons of function values.</p></div>
+<div class="card ek"><strong>1.1.B.1–B.2</strong><p>Graphs as input-output pairs and graphs built from verbal descriptions.</p></div>
+<div class="card ek"><strong>1.1.B.3–B.4</strong><p>Concave up when rate of change is increasing; concave down when rate of change is decreasing.</p></div>
+<div class="card ek"><strong>1.1.B.5</strong><p>Zeros and x-intercepts: output 0 and corresponding input values.</p></div>
+</div>
+<div class="card warn"><h3>Boundary with Topic 1.2</h3><p>Topic 1.1 is qualitative. We may describe a rate of change as increasing or decreasing, but we do <strong>not</strong> develop the average-rate-of-change quotient here. That calculation begins in Topic 1.2.</p></div>
+<div class="card warn"><h3>AP exclusion statement</h3><p>Do not spend instructional time distinguishing open versus closed interval notation when stating where a function is increasing or decreasing. That distinction is outside the AP Precalculus scope for this concept.</p></div>
+</section>
+
+<section class="section" id="core">
+<h2>2. The Big Idea: Two Quantities Change Together</h2>
+<p>A function connects an <strong>input</strong> quantity to an <strong>output</strong> quantity. As the input changes, the output responds according to the function rule. That linked behavior is <em>change in tandem</em>.</p>
+<div class="grid4">
+<div class="card"><strong>1. Identify</strong><p>What is the input? What are its units?</p></div>
+<div class="card"><strong>2. Identify</strong><p>What is the output? What are its units?</p></div>
+<div class="card"><strong>3. Describe</strong><p>As input increases, does output rise, fall, or stay constant?</p></div>
+<div class="card"><strong>4. Refine</strong><p>Is the change becoming faster, slower, or approximately steady?</p></div>
+</div>
+
+<h3>2.1 What makes a relation a function?</h3>
+<p>A function assigns <strong>each allowable input exactly one output</strong>. Different inputs may share the same output; one input may not have two different outputs in the same function.</p>
+<div class="grid2">
+<div class="card success"><strong>Allowed</strong><p><span class="math">f(2)=9</span> and <span class="math">f(5)=9</span>. Two inputs can have the same image.</p></div>
+<div class="card warn"><strong>Not a function</strong><p><span class="math">g(3)=4</span> and <span class="math">g(3)=10</span>. One input cannot map to two outputs.</p></div>
+</div>
+<p><span class="formula"><strong>Domain</strong> = allowable input values</span> &nbsp; <span class="formula"><strong>Range</strong> = output values actually produced</span></p>
+
+<h3>2.2 Independent and dependent variables</h3>
+<div class="card"><p>The amount of fuel <span class="math">F</span> remaining in a generator is a function of operating time <span class="math">h</span>.</p><p><strong>Independent variable:</strong> <span class="math">h</span> (hours). <strong>Dependent variable:</strong> <span class="math">F</span> (fuel amount).</p><p>If <span class="math">F(6)=18</span>, then after 6 hours of operation, 18 units of fuel remain.</p></div>
+
+<h3>2.3 Function notation</h3>
+<p>If <span class="math">y=f(x)</span>, then <span class="math">x</span> is the input and <span class="math">f(x)</span> is its output.</p>
+<div class="card"><p>Let <span class="math">p(x)=2x²-5x+1</span>.</p><div class="table-wrap"><table><tr><th>Input</th><th>Output</th></tr><tr><td><span class="math">x=-2</span></td><td><span class="math">p(-2)=19</span></td></tr><tr><td><span class="math">x=0</span></td><td><span class="math">p(0)=1</span></td></tr><tr><td><span class="math">x=3</span></td><td><span class="math">p(3)=4</span></td></tr></table></div><p>Thus <span class="math">p(0)&lt;p(3)&lt;p(-2)</span>.</p></div>
+
+<h3>2.4 Image and preimage</h3>
+<div class="grid2">
+<div class="card"><strong>Image</strong><p>The image of input <span class="math">a</span> is the single output <span class="math">f(a)</span>.</p><p>Ask: “Where does this input go?”</p></div>
+<div class="card"><strong>Preimage</strong><p>The preimage of output <span class="math">L</span> is the set of all inputs satisfying <span class="math">f(x)=L</span>.</p><p>Ask: “Which input value(s) create this output?”</p></div>
+</div>
+<div class="card"><p>For <span class="math">f(x)=x²-4</span> on <span class="math">-3≤x≤3</span>:</p><ul><li>image of 2: <span class="math">f(2)=0</span>;</li><li>preimage of 0: <span class="math">{-2,2}</span>;</li><li>preimage of 5: <span class="math">{-3,3}</span>.</li></ul></div>
+
+<h3>2.5 Equal functions</h3>
+<p>Two functions are equal only when they have the <strong>same domain</strong> and the <strong>same output for every input</strong> in that domain.</p>
+<div class="grid2">
+<div class="card success"><p><span class="math">f(x)=5(x-2)+7</span> and <span class="math">g(x)=5x-3</span>, both on all real numbers.</p><p>Because <span class="math">5(x-2)+7=5x-3</span> for every real input, <strong>f=g</strong>.</p></div>
+<div class="card warn"><p><span class="math">p(x)=x²+1</span> on all reals and <span class="math">q(x)=x²+1</span> on <span class="math">x≥0</span>.</p><p>Same formula, different domains, so <strong>p≠q</strong>.</p></div>
+</div>
+</section>
+
+<section class="section">
+<h2>3. Comparing Function Values: The Core of Covariation</h2>
+<p>Suppose <span class="math">a&lt;b</span>. Comparing <span class="math">f(a)</span> and <span class="math">f(b)</span> tells us how the outputs at those two inputs compare.</p>
+<table><tr><th>Comparison</th><th>Meaning</th></tr><tr><td><span class="math">f(a)&lt;f(b)</span></td><td>The output at the larger input <span class="math">b</span> is greater.</td></tr><tr><td><span class="math">f(a)&gt;f(b)</span></td><td>The output at <span class="math">b</span> is smaller.</td></tr><tr><td><span class="math">f(a)=f(b)</span></td><td>The two inputs have the same output; behavior between them is still unknown.</td></tr></table>
+<div class="card warn"><p><span class="trap">AP Trap:</span> From <span class="math">f(a)&lt;f(b)</span> alone, you cannot conclude that <span class="math">f</span> is increasing at every input between <span class="math">a</span> and <span class="math">b</span>. The function could rise, fall, and rise again.</p></div>
+<h3>Example: numerical representation</h3>
+<table><tr><th><span class="math">t</span> (hours)</th><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr><tr><th><span class="math">B(t)</span> (%)</th><td>100</td><td>91</td><td>83</td><td>76</td><td>70</td><td>65</td></tr></table>
+<p>For the listed values, battery charge decreases as time increases. Also, the successive decreases become smaller in magnitude. A careful AP statement is: <strong>“At the listed input values, increasing time corresponds to decreasing battery charge.”</strong></p>
+<div class="card warn"><p>A finite table does not prove behavior at every input between the listed data points unless additional information is given.</p></div>
+</section>
+
+<section class="section">
+<h2>4. Increasing, Decreasing, and Constant Behavior</h2>
+<div class="grid3">
+<div class="card"><h3>Increasing</h3><p>For all <span class="math">a&lt;b</span> in the region, <span class="math">f(a)&lt;f(b)</span>.</p></div>
+<div class="card"><h3>Decreasing</h3><p>For all <span class="math">a&lt;b</span> in the region, <span class="math">f(a)&gt;f(b)</span>.</p></div>
+<div class="card"><h3>Constant</h3><p>Outputs stay the same. A horizontal segment is neither strictly increasing nor strictly decreasing.</p></div>
+</div>
+<h3>How to read a graph</h3><ol class="steps"><li>Read from left to right as input increases.</li><li>Locate where the output rises, falls, or stays level.</li><li>State the regions with appropriate precision.</li><li>If the graph is approximate, use “about” or “approximately.”</li></ol>
+<div class="card warn"><p><span class="trap">Do not confuse height with direction.</span> A high point is not “increasing.” At a turning point, the graph changes from increasing to decreasing or vice versa.</p></div>
+</section>
+
+<section class="section">
+<h2>5. Concavity: How the Rate of Change Is Changing</h2>
+<p>Concavity is different from increasing/decreasing behavior. It describes what happens to the <strong>rate of change</strong> as the input increases.</p>
+<div class="grid2">
+<div class="card"><h3>Concave up</h3><p>The rate of change is <strong>increasing</strong>. Slopes become more positive or less negative.</p></div>
+<div class="card"><h3>Concave down</h3><p>The rate of change is <strong>decreasing</strong>. Slopes become less positive or more negative.</p></div>
+</div>
+<table><tr><th>Behavior</th><th>What the output does</th><th>What happens to steepness</th></tr><tr><td>Increasing, concave up</td><td>Rises</td><td>Rises faster and faster</td></tr><tr><td>Increasing, concave down</td><td>Rises</td><td>Rises more slowly</td></tr><tr><td>Decreasing, concave up</td><td>Falls</td><td>Falls more slowly</td></tr><tr><td>Decreasing, concave down</td><td>Falls</td><td>Falls faster and faster</td></tr></table>
+<div class="card success"><p><strong>Context example:</strong> A tank drains quickly at first, then more slowly. Volume is decreasing, but its rate of change is becoming less negative, so the graph is <strong>decreasing and concave up</strong>.</p></div>
+<div class="card warn"><p><span class="trap">Major misconception:</span> concave up does not mean “going up,” and concave down does not mean “going down.” Direction and concavity answer different questions.</p></div>
+</section>
+
+<section class="section">
+<h2>6. Zeros and x-Intercepts</h2>
+<p>A <strong>zero</strong> is an input value <span class="math">c</span> such that <span class="math">f(c)=0</span>. The corresponding graph point is the <strong>x-intercept</strong> <span class="math">(c,0)</span>.</p>
+<div class="card"><p>For <span class="math">f(x)=2(x+4)(x-1)(x-5)</span>, the zeros are <span class="math">-4,1,5</span>, and the x-intercepts are <span class="math">(-4,0),(1,0),(5,0)</span>.</p></div>
+<div class="card warn"><p><span class="trap">Precision:</span> a zero is an input value; an x-intercept is a coordinate point.</p></div>
+<div class="card"><p>If <span class="math">H(t)</span> is a drone's height above launch level, then a zero of <span class="math">H</span> represents a time when the drone is at launch level. A zero does not automatically tell you that the function changes sign there.</p></div>
+</section>
+
+<section class="section" id="representations">
+<h2>7. Four Representations of One Function</h2>
+<div class="grid4"><div class="card"><h3>Graphical</h3><p>Graph / curve / plotted points</p></div><div class="card"><h3>Numerical</h3><p>Table / listed values</p></div><div class="card"><h3>Analytical</h3><p>Formula / function rule</p></div><div class="card"><h3>Verbal</h3><p>Context / description</p></div></div>
+<p>AP questions often ask you to move between representations. Your conclusion should match the precision of the representation provided.</p>
+<div class="card warn"><p>If a graph is low resolution, do not report an exact transition value that the graph does not support. If a table gives only selected points, do not assume unseen behavior between rows.</p></div>
+</section>
+
+<section class="section">
+<h2>8. Constructing a Graph from a Context</h2>
+<ol><li>Put the independent variable and units on the horizontal axis.</li><li>Put the dependent variable and units on the vertical axis.</li><li>Mark the starting output if given.</li><li>Translate each verbal stage into increasing, decreasing, or constant behavior.</li><li>Use concavity only when the description tells how the rate is changing.</li><li>Show a zero only when the output is stated to become 0.</li></ol>
+<div class="card"><h3>Worked story</h3><p>A machine starts cool. Its temperature increases slowly at first, then faster; later it keeps rising but begins to level off near a stable temperature.</p><p><strong>Stage 1:</strong> increasing and concave up. <strong>Stage 2:</strong> increasing and concave down. The graph should approach an approximately constant level.</p></div>
+<div class="graphbox"><svg class="axis-demo" viewBox="0 0 650 220" role="img" aria-label="Qualitative temperature versus time graph"><line x1="50" y1="185" x2="625" y2="185" stroke="#263a4d" stroke-width="2"/><line x1="50" y1="185" x2="50" y2="20" stroke="#263a4d" stroke-width="2"/><path d="M55 170 C130 170,150 150,210 110 C280 60,390 35,605 33" fill="none" stroke="#0f77b7" stroke-width="5"/><text x="560" y="210" font-size="16">time</text><text x="8" y="28" font-size="16">temperature</text></svg></div>
+<div class="card warn"><p>A context graph is not a picture of the physical object. Its shape represents how two quantities vary together.</p></div>
+</section>
+
+<section class="section">
+<h2>9. Complete AP Reading Routine</h2>
+<ol><li><strong>Variables:</strong> identify input/output and units.</li><li><strong>Values:</strong> read or evaluate requested function values.</li><li><strong>Zeros:</strong> locate them if relevant.</li><li><strong>Direction:</strong> identify increasing/decreasing/constant regions.</li><li><strong>Concavity:</strong> describe how rate of change behaves when supported.</li><li><strong>Context:</strong> interpret the mathematics in the situation.</li></ol>
+<div class="card success"><strong>AP-quality sentence frame</strong><p>“As the input <em>_____</em> increases from/about <em>_____</em> to <em>_____</em>, the output <em>_____</em> [increases/decreases/remains approximately constant], and the rate of change [increases/decreases] when that conclusion is supported.”</p></div>
+</section>
+
+<section class="section" id="practice">
+<h2>10. AP-Style Practice</h2>
+<p class="mini">Original ECHS questions aligned to Topic 1.1. Reveal checks only after committing to an answer.</p>
+<div class="q"><div class="q-title"><span class="ap-tag">MCQ 1 · 1.1.A</span> Function language</div><p>A function <span class="math">C(n)</span> gives the total cost of purchasing <span class="math">n</span> identical notebooks. Which statement is correct?</p><div class="answer-grid"><div class="choice">A. C is the input and n is the output.</div><div class="choice">B. n is dependent because cost depends on it.</div><div class="choice">C. n is independent and C(n) is dependent.</div><div class="choice">D. The variables cannot be identified.</div></div><details><summary>Check answer</summary><div><strong>C.</strong> The number of notebooks is the input; total cost depends on it.</div></details></div>
+
+<div class="q"><div class="q-title"><span class="ap-tag">MCQ 2 · 1.1.A</span> Precision of conclusions</div><p>Suppose <span class="math">f(2)=7</span> and <span class="math">f(8)=12</span>. Which conclusion is guaranteed?</p><div class="answer-grid"><div class="choice">A. f is increasing on the entire interval.</div><div class="choice">B. f(2)&lt;f(8).</div><div class="choice">C. f is concave up.</div><div class="choice">D. f has no zeros.</div></div><details><summary>Check answer</summary><div><strong>B.</strong> The two known values justify only the direct comparison.</div></details></div>
+
+<div class="q"><div class="q-title"><span class="ap-tag">MCQ 3 · 1.1.B</span> Concavity</div><p>A population is increasing, but the number added each year is getting smaller. Which description best fits the graph?</p><div class="answer-grid"><div class="choice">A. Increasing, concave up</div><div class="choice">B. Increasing, concave down</div><div class="choice">C. Decreasing, concave up</div><div class="choice">D. Decreasing, concave down</div></div><details><summary>Check answer</summary><div><strong>B.</strong> The output rises while its rate of change decreases.</div></details></div>
+
+<div class="q"><div class="q-title"><span class="ap-tag">MCQ 4 · 1.1.A</span> Equal functions</div><p>Two functions use the formula <span class="math">x²+3</span>, but one has domain all real numbers and the other has domain <span class="math">x≥0</span>. Which is correct?</p><div class="answer-grid"><div class="choice">A. Equal because formulas match.</div><div class="choice">B. Not equal because domains differ.</div><div class="choice">C. Equal only if ranges differ.</div><div class="choice">D. Not enough information.</div></div><details><summary>Check answer</summary><div><strong>B.</strong> Equal functions require equal domains and equal outputs on that domain.</div></details></div>
+
+<div class="q"><div class="q-title"><span class="ap-tag">FRQ · Skills 2.B & 3.A</span> Battery performance</div><p>A rechargeable battery's remaining energy <span class="math">E(t)</span>, in watt-hours, is measured at selected times.</p><table><tr><th><span class="math">t</span> (h)</th><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr><tr><th><span class="math">E(t)</span></th><td>80</td><td>68</td><td>58</td><td>50</td><td>44</td><td>40</td></tr></table><ol type="a"><li>Identify the independent and dependent variables and units.</li><li>Compare <span class="math">E(1)</span> and <span class="math">E(4)</span> and interpret the comparison.</li><li>Describe the covariation shown by the listed values.</li><li>The successive decreases become less negative. What qualitative concavity does the data suggest?</li><li>State one limitation of using only this table to describe behavior between the listed times.</li></ol><details><summary>Scoring check</summary><div><p>(a) <span class="math">t</span> is independent in hours; <span class="math">E</span> is dependent in watt-hours. (b) <span class="math">E(1)=68&gt;44=E(4)</span>; at 1 hour the battery has 24 Wh more energy than at 4 hours. (c) At listed times energy decreases as time increases. (d) Decreasing, concave up is suggested because the decreases become smaller in magnitude. (e) The table does not determine every value or behavior between sampled times.</p></div></details></div>
+</section>
+
+<section class="section" id="challenge">
+<h2>11. Challenge & Tricky Questions</h2>
+<p>These questions stay inside Topic 1.1 but force careful reasoning about what the evidence does—and does not—justify.</p>
+<div class="q challenge"><div class="q-title">Challenge 1 · Endpoint trap</div><p>Construct a function with <span class="math">f(0)=1</span> and <span class="math">f(6)=9</span> that is <strong>not</strong> increasing on the entire interval from 0 to 6. Explain why your example disproves the claim that endpoint comparison determines monotonicity.</p></div>
+<div class="q challenge"><div class="q-title">Challenge 2 · Same range, different functions</div><p>Give two different functions with the same domain and the same range that are not equal functions. Provide enough information to verify all three claims.</p></div>
+<div class="q challenge"><div class="q-title">Challenge 3 · Multiple preimages</div><p>Construct a function graph for which the output 4 has exactly three preimages. Explain why the graph can still represent a function.</p></div>
+<div class="q challenge"><div class="q-title">Challenge 4 · A zero with no sign change</div><p>Sketch a function with a zero at <span class="math">x=3</span> whose output is positive immediately on both sides of <span class="math">x=3</span>. What does this show about what a zero does and does not imply?</p></div>
+<div class="q challenge"><div class="q-title">Challenge 5 · Data ambiguity</div><p>A table gives <span class="math">f(0)=0, f(1)=1, f(2)=4, f(3)=9</span>. Draw two qualitatively different graphs through all four points: one increasing throughout and one that is not increasing everywhere between the listed inputs. Explain why the table alone cannot distinguish them.</p></div>
+<div class="q challenge"><div class="q-title">Challenge 6 · Construct from constraints</div><p>Sketch a function satisfying all of these conditions in one window: <span class="math">f(-2)=0</span> and <span class="math">f(4)=0</span>; the function is increasing, then decreasing, then increasing; one increasing region is concave down; the final increasing region is concave up; and the output 3 has at least two preimages.</p></div>
+<div class="q challenge"><div class="q-title">Challenge 7 · Precision</div><p>A low-resolution graph appears to flatten near <span class="math">x=5</span>. Write one mathematically responsible conclusion and one statement that is too strong to justify from the visual alone. Explain the difference.</p></div>
+</section>
+
+<section class="section">
+<h2>12. Final Self-Check</h2>
+<div class="grid2"><div class="card"><ul><li>I can identify input/output, domain/range, and independent/dependent variables.</li><li>I can evaluate and interpret function notation.</li><li>I can identify images and preimages.</li><li>I can decide whether two functions are equal.</li><li>I can compare function values without overclaiming.</li></ul></div><div class="card"><ul><li>I can identify increasing, decreasing, and constant behavior.</li><li>I can distinguish monotonicity from concavity.</li><li>I can interpret zeros and x-intercepts.</li><li>I can construct a graph from a contextual description.</li><li>I can move among verbal, numerical, graphical, and analytical representations.</li></ul></div></div>
+<div class="card success"><h3>Ready for Topic 1.2?</h3><p>Topic 1.2 turns the qualitative idea of “how fast the output changes” into a quantitative rate-of-change calculation. Before moving on, make sure you can already describe change accurately from values, graphs, formulas, and contexts.</p></div>
+</section>
+<div class="footer">ECHS Mathematics · AP Precalculus · Unit 1 · Topic 1.1 Change in Tandem</div>
+</main>
+</body>
+</html>
