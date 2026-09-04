@@ -79,7 +79,7 @@ for marker in ["canStatus","canReset","row.role===\"student\"","current?.role===
 worker=read("sw.js")
 for asset in ["./css/institution-premium.css","./css/institution-responsive.css","./css/institution-completion.css","./css/smart-learning-route.css","./js/institution-experience.js","./js/institution-completion.js","./js/smart-learning-route.js","./question-bank/css/institution-timetable.css","./question-bank/js/institution-timetable.js","./question-bank/student.html","./question-bank/teacher.html","./question-bank/parent.html","./question-bank/admin.html"]:
     if asset not in worker: fail(f"Service worker missing premium asset {asset}")
-if "learning-sync" not in worker or "event.respondWith(fetch(request))" not in worker: fail("Private institutional APIs must bypass caches")
+if "learning-sync" not in worker or 'event.respondWith(fetch(request,{cache:"no-store"}))' not in worker: fail("Private institutional APIs must bypass caches")
 
 config=json.loads(read("config/institution.json") or "{}")
 if config.get("enabled") is True:

@@ -1,0 +1,28 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import vm from 'node:vm';
+const source=fs.readFileSync(new URL('../js/portal.js',import.meta.url),'utf8');
+const nodes=new Map();
+function node(){return{innerHTML:'',textContent:'',value:'',style:{},dataset:{},setAttribute(){},toggleAttribute(){},addEventListener(){},focus(){},querySelectorAll:()=>[],querySelector:()=>null,scrollIntoView(){}}}
+for(const id of ['tabs','courseList','courseHero','units','heroLead','currentYear','statCourses','statLessons','statReady','readyBar','statQuestions','lessonResultsStatus','lessonWorkspacePanel','clearLessonSearch','search','courses'])nodes.set('#'+id,node());
+const course=(id,title)=>({id,title,shortTitle:title,grade:'G11',units:[{title:'Unit 1: Functions',lessons:[{number:'1.1',title:'Quadratic model',summary:'Reason with a graph and table',url:'lessons/example.html',outcomes:Array.from({length:7},(_,i)=>`Outcome ${i+1}`),resources:Array.from({length:9},(_,i)=>({label:`Resource ${i+1}`,url:`resources/${i+1}.pdf`}))},{number:'1.2',title:'Hidden lesson',url:'lessons/hidden.html'}]}]});
+const courses=[course('course-a','Course A'),course('course-b','Course B')];let masteryReads=0;
+const document={body:{dataset:{}},querySelector:s=>nodes.get(s)||null,querySelectorAll:()=>[],getElementById:id=>nodes.get('#'+id)||null,addEventListener(){},dispatchEvent(){}};
+const access={authenticated:true,role:'teacher',allCourses:true,courseKeys:[],current:{display_name:'Teacher'}};
+const location={href:'https://example.test/ECHS-Math/?course=course-b'};
+const window={ECHS_COURSES:courses,ECHSLearning:{masteryRows:()=>{masteryReads++;return[]},summary:()=>({mastered:3})},addEventListener(){}};
+const localStorage={getItem:()=>null,setItem(){}};
+const context=vm.createContext({document,window,location,localStorage,URL,URLSearchParams,history:{state:null,replaceState:(_s,_t,url)=>{location.href=String(url)}},ECHSPortalAccess:{normaliseCourseKey:v=>v,courseAllowed:()=>true,ready:Promise.resolve(access)},ECHSInstitution:{syncLearning:async()=>{},api:async()=>({})},CustomEvent:class{},matchMedia:()=>({matches:false}),setTimeout,clearTimeout,console});
+await vm.runInContext(source,context);await new Promise(resolve=>setImmediate(resolve));
+assert.equal(vm.runInContext('state.courseId',context),'course-b','A lesson deep link overrides a previously selected course');
+assert.equal(nodes.get('#statQuestions').textContent,3,'Mastery total is a mastery count');
+assert.equal(masteryReads,2,'Build each course mastery index once per render');
+assert.match(nodes.get('#tabs').innerHTML,/tabindex="0"/);assert.match(nodes.get('#tabs').innerHTML,/aria-controls="lessonWorkspacePanel"/);
+vm.runInContext('state.search="table quadratic";renderUnits()',context);assert.match(nodes.get('#lessonResultsStatus').textContent,/2 lessons/,'Search matches words in any order across available courses');assert.match(nodes.get('#units').innerHTML,/Course A/);assert.match(nodes.get('#units').innerHTML,/Outcome 7/,'All objectives remain available');assert.match(nodes.get('#units').innerHTML,/Resource 9/,'All resources remain available');
+vm.runInContext('state.searchScope="current";renderUnits()',context);assert.match(nodes.get('#lessonResultsStatus').textContent,/1 lesson/);
+vm.runInContext('access={...access,role:"student"};lessonAccessByCourse=new Map([["course-a",new Set(["course-a::0::1.1"])],["course-b",new Set()]]);state.searchScope="all";renderUnits()',context);
+assert.match(nodes.get('#lessonResultsStatus').textContent,/1 lesson/);assert.doesNotMatch(nodes.get('#units').innerHTML,/Hidden lesson|Course B/,'Search never reveals unreleased lessons');
+vm.runInContext('state.search="no-such-topic";renderUnits()',context);assert.match(nodes.get('#units').innerHTML,/resetLessonFilters/,'Empty results offer a concrete recovery action');
+vm.runInContext('state.search="";state.filter="all";state.courseId="course-b";renderUnits()',context);assert.match(nodes.get('#units').innerHTML,/No lessons released yet/,'An empty assigned course is distinct from a failed search');
+vm.runInContext('state.courseId="course-a";state.filter="not-started";state.complete=[lessonKey(available[0],0,available[0].units[0].lessons[0])];renderUnits()',context);assert.match(nodes.get('#lessonResultsStatus').textContent,/0 lessons/);
+console.log('Portal workspace: PASS (course links, access-safe search, complete resources, filters, mastery indexing)');

@@ -228,7 +228,7 @@ for asset in [
 ]:
     if asset not in worker:
         fail(f"Service worker missing institutional shell asset {asset}")
-if "privateApi" not in worker or "event.respondWith(fetch(request))" not in worker:
+if "privateApi" not in worker or 'event.respondWith(fetch(request,{cache:"no-store"}))' not in worker:
     fail("Service worker must bypass caches for institutional API responses")
 for service in ["account-api", "institution-api", "learning-sync"]:
     if service not in worker:

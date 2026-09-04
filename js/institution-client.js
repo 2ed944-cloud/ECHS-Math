@@ -12,7 +12,7 @@
   function token(){return storage().getItem(KEYS.token)||sessionStorage.getItem(KEYS.token)||""}
   function account(){return safeJSON(storage().getItem(KEYS.account)||sessionStorage.getItem(KEYS.account),"")}
   function expiresAt(){return storage().getItem(KEYS.expires)||sessionStorage.getItem(KEYS.expires)||""}
-  function isExpired(){const value=expiresAt();return !value||new Date(value)<=new Date()}
+  function isExpired(){const value=Date.parse(expiresAt());return !Number.isFinite(value)||value<=Date.now()}
   function clearSession(){[storage(),sessionStorage].forEach(store=>{store.removeItem(KEYS.token);store.removeItem(KEYS.account);store.removeItem(KEYS.expires)});mePromise=null}
   function setSession(data,remember){
     clearSession();
@@ -27,24 +27,40 @@
     error.code=code;
     return error;
   }
+  async function request(url,options={}){
+    const {timeoutMs=20000,...init}=options;
+    const controller=typeof AbortController!=="undefined"?new AbortController():null;
+    let timedOut=false;
+    const abort=()=>controller?.abort(init.signal?.reason);
+    if(init.signal?.aborted)abort();else init.signal?.addEventListener("abort",abort,{once:true});
+    const timer=controller?setTimeout(()=>{timedOut=true;controller.abort()},timeoutMs):null;
+    try{return await fetch(url,{...init,signal:controller?.signal||init.signal})}
+    catch(error){
+      if(timedOut)throw requestError("The connection took too long. Please try again.",0,"timeout");
+      if(init.signal?.aborted)throw error;
+      throw requestError("Could not connect to ECHS. Check your connection and try again.",0,"network_error");
+    }finally{if(timer)clearTimeout(timer);init.signal?.removeEventListener("abort",abort)}
+  }
   async function config(){
-    if(!configPromise)configPromise=fetch(root("config/institution.json"),{cache:"no-store"})
+    if(!configPromise)configPromise=request(root("config/institution.json"),{cache:"no-store",timeoutMs:12000})
       .then(response=>{if(!response.ok)throw new Error("Institution configuration could not be loaded");return response.json()})
-      .catch(error=>({enabled:false,configuration_error:error.message,api_base:""}));
+      .catch(error=>{configPromise=null;return{enabled:false,configuration_error:error.message,api_base:""}});
     return configPromise;
   }
   async function api(service,path,options={}){
     const cfg=await config();
+    if(cfg.configuration_error)throw requestError(cfg.configuration_error,0,"configuration_unavailable");
     if(!cfg.enabled)throw requestError("Institutional accounts are not configured yet",503,"unconfigured");
     const base=String(cfg.api_base||"").replace(/\/$/,"");
     const headers=new Headers(options.headers||{});
     if(options.body&&!headers.has("content-type"))headers.set("content-type","application/json");
     const currentToken=token();if(currentToken)headers.set("authorization",`Bearer ${currentToken}`);
     const body=options.body&&typeof options.body!=="string"&&!(options.body instanceof FormData)&&!(options.body instanceof Blob)?JSON.stringify(options.body):options.body;
-    const response=await fetch(`${base}/${service}${path}`,{...options,body,headers});
+    const response=await request(`${base}/${service}${path}`,{timeoutMs:options.method&&options.method!=="GET"?45000:20000,...options,cache:"no-store",body,headers});
     const payload=await response.json().catch(()=>({ok:false,error:{message:`HTTP ${response.status}`}}));
-    if(response.status===401){clearSession();document.dispatchEvent(new CustomEvent("echs:institution-signed-out"))}
+    if(response.status===401&&currentToken&&token()===currentToken){clearSession();document.dispatchEvent(new CustomEvent("echs:institution-signed-out"))}
     if(!response.ok&&response.status!==207)throw requestError(payload?.error?.message||`Request failed (${response.status})`,response.status,payload?.error?.code||"request_error");
+    if(payload?.ok===false&&response.status!==207)throw requestError(payload?.error?.message||"The request could not be completed. Please try again.",response.status,payload?.error?.code||"request_error");
     return payload;
   }
   async function login(username,password,remember=false){
@@ -57,14 +73,16 @@
   }
   async function me(force=false){
     if(!token()||isExpired()){clearSession();return null}
+    const requestedToken=token();
     if(force||!mePromise)mePromise=api("account-api","/me").then(payload=>{
+      if(token()!==requestedToken)throw requestError("Your session changed. Please reload this page.",409,"session_changed");
       const current=payload.account;
       const store=storage().getItem(KEYS.token)?storage():sessionStorage;
       store.setItem(KEYS.account,JSON.stringify(current));
       return current;
     }).catch(error=>{
       mePromise=null;
-      if(error?.status===401){clearSession();return null}
+      if(error?.status===401){if(token()===requestedToken)clearSession();return null}
       throw error;
     });
     return mePromise;
@@ -76,7 +94,8 @@
     notice.id="institutionAuthUnavailable";
     notice.setAttribute("role","alert");
     notice.style.cssText="position:relative;z-index:9999;margin:12px;padding:14px 16px;border:1px solid #e7b2bd;border-radius:14px;background:#fff1f3;color:#7b1835;font:600 14px/1.45 system-ui,sans-serif";
-    notice.innerHTML=`<strong>Account session could not be verified.</strong><br>${String(error?.message||"The account service is temporarily unavailable.")} <button type="button" style="margin-left:8px;padding:6px 10px;border:0;border-radius:8px;background:#7b1835;color:white;cursor:pointer">Retry</button>`;
+    notice.innerHTML='<strong>Account session could not be verified.</strong><br><span></span> <button type="button" style="margin-left:8px;padding:6px 10px;border:0;border-radius:8px;background:#7b1835;color:white;cursor:pointer">Retry</button>';
+    notice.querySelector("span").textContent=String(error?.message||"The account service is temporarily unavailable.");
     notice.querySelector("button").addEventListener("click",()=>location.reload());
     document.body.prepend(notice);
   }
@@ -136,33 +155,56 @@
   }
   function localLearningPayload(){
     if(window.ECHSLearning&&typeof window.ECHSLearning.exportStudentReport==="function"){
-      const report=window.ECHSLearning.exportStudentReport();
-      return {attempts:report.attempts||[],sessions:report.sessions||report.recentSessions||[],mastery:report.mastery||[],review:report.review||report.mistakes||[],lessons:localLessonCompletions()};
+      const learning=window.ECHSLearning;
+      // The downloadable summary intentionally omits raw events. Sync the engine's
+      // stable event/session IDs so the server can deduplicate repeated uploads.
+      return {attempts:learning.attempts(),sessions:learning.sessions(),mastery:learning.masteryRows(),review:Object.values(learning.reviewMap()),lessons:localLessonCompletions()};
     }
-    const attemptKeys=["echs_learning_attempts_v2","echs_qbank_attempts_v20"];
-    const attempts=attemptKeys.flatMap(key=>safeJSON(localStorage.getItem(key),[]));
-    return {attempts,sessions:safeJSON(localStorage.getItem("echs_learning_sessions_v2"),[]),mastery:Object.values(safeJSON(localStorage.getItem("echs_learning_mastery_v2"),{})),review:Object.values(safeJSON(localStorage.getItem("echs_learning_review_v2"),{})),lessons:localLessonCompletions()};
+    const attempts=safeJSON(localStorage.getItem("echs_learning_events_v2"),[]);
+    return {attempts,sessions:safeJSON(localStorage.getItem("echs_learning_sessions_v2"),[]),mastery:Object.values(safeJSON(localStorage.getItem("echs_learning_mastery_v2"),{})),review:Object.values(safeJSON(localStorage.getItem("echs_learning_reviews_v2"),{})),lessons:localLessonCompletions()};
   }
   async function syncLearning(){
-    const current=await me();if(!current||current.role!=="student")return{skipped:true};
+    // An offline reload may queue local work; the server still verifies the
+    // account when this queue is flushed after reconnecting.
+    const current=navigator.onLine?await me():token()&&!isExpired()?account():null;
+    if(!current||current.role!=="student")return{skipped:true};
     const payload=localLearningPayload();
-    if(!navigator.onLine){localStorage.setItem(KEYS.pending,JSON.stringify(payload));return{queued:true}}
+    const pendingKey=`${KEYS.pending}:${current.id}`;
+    if(!navigator.onLine){localStorage.setItem(pendingKey,JSON.stringify({accountId:current.id,payload}));return{queued:true}}
+    const pendingBefore=localStorage.getItem(pendingKey);
     const result=await api("learning-sync","/sync",{method:"POST",body:payload});
-    localStorage.removeItem(KEYS.pending);return result;
+    if(token()&&account()?.id===current.id&&localStorage.getItem(pendingKey)===pendingBefore)localStorage.removeItem(pendingKey);return result;
   }
   async function flushPending(){
-    const pending=safeJSON(localStorage.getItem(KEYS.pending),null);
-    if(!pending||!navigator.onLine)return;
-    try{await api("learning-sync","/sync",{method:"POST",body:pending});localStorage.removeItem(KEYS.pending)}catch(error){console.warn("Pending learning sync failed",error)}
+    if(!navigator.onLine)return;
+    try{
+      const current=await me();
+      if(!current||current.role!=="student")return;
+      const ownedKey=`${KEYS.pending}:${current.id}`,pendingKey=localStorage.getItem(ownedKey)?ownedKey:KEYS.pending;
+      const serialized=localStorage.getItem(pendingKey),pending=safeJSON(serialized,null);
+      // Legacy unowned queues are preserved, but never sent under a different school account.
+      if(!pending?.accountId||pending.accountId!==current.id||!pending.payload)return;
+      await api("learning-sync","/sync",{method:"POST",body:pending.payload});
+      if(localStorage.getItem(pendingKey)===serialized)localStorage.removeItem(pendingKey);
+    }catch(error){console.warn("Pending learning sync failed",error)}
   }
   function ensurePolish(){
+    if(document.body.classList.contains("institutionBody")&&!document.querySelector('link[href*="platform-usability.css"]')){
+      const usability=document.createElement("link");usability.rel="stylesheet";usability.href=root("css/platform-usability.css?v=20260904");document.head.append(usability);
+    }
     if(!document.body.classList.contains("institutionBody")||document.querySelector('link[data-institution-polish]'))return;
     const link=document.createElement("link");link.rel="stylesheet";link.href=root("css/institution-polish.css?v=20260726-phase3");link.dataset.institutionPolish="true";document.head.append(link);
   }
   function setupMobileSidebar(){
     const toggle=document.querySelector("[data-institution-menu]"),sidebar=document.querySelector(".institutionSidebar");
-    if(toggle&&sidebar)toggle.addEventListener("click",()=>sidebar.classList.toggle("open"));
-    document.addEventListener("click",event=>{if(innerWidth>950||!sidebar?.classList.contains("open"))return;if(!sidebar.contains(event.target)&&event.target!==toggle)sidebar.classList.remove("open")});
+    if(!toggle||!sidebar)return;
+    if(!sidebar.id)sidebar.id="institutionSidebar";
+    toggle.setAttribute("aria-controls",sidebar.id);toggle.setAttribute("aria-label","Toggle navigation");
+    const setOpen=open=>{sidebar.classList.toggle("open",open);toggle.setAttribute("aria-expanded",String(open))};
+    setOpen(false);
+    toggle.addEventListener("click",()=>setOpen(!sidebar.classList.contains("open")));
+    document.addEventListener("click",event=>{if(innerWidth>950||!sidebar.classList.contains("open"))return;if(!sidebar.contains(event.target)&&!toggle.contains(event.target))setOpen(false);else if(event.target.closest("a")&&sidebar.contains(event.target))setOpen(false)});
+    document.addEventListener("keydown",event=>{if(event.key==="Escape"&&sidebar.classList.contains("open")){setOpen(false);toggle.focus()}});
   }
   function mountTimetableModule(){
     const page=document.body?.dataset?.premiumPage;

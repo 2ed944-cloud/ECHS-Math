@@ -1,5 +1,14 @@
 (function(){
 
+// The lesson restores its own slide index. Restoring the previous document's
+// scroll offset after that render can hide the new slide's heading on mobile.
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+window.addEventListener('pageshow', () => {
+  if (!location.hash || location.hash === '#learn') {
+    window.scrollTo({top: 0, behavior: 'instant'});
+  }
+});
+
 const katex = window.katex;
 if (!katex) {
   document.body.innerHTML = '<main style="padding:40px;font-family:system-ui"><h1>Math renderer could not be loaded.</h1><p>Extract the complete ZIP folder before opening the lesson.</p></main>';
