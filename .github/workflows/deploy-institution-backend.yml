@@ -54,11 +54,12 @@ jobs:
       - name: Reject duplicate Supabase migration versions
         run: python tools/validate_supabase_migration_versions.py
 
-      - name: Validate private bank and upload manager foundations
+      - name: Validate institutional backend foundations
         run: |
           python tools/validate_private_bank_foundation.py
           python tools/validate_upload_manager.py
           python tools/test_lesson_visibility_contract.py .
+          python tools/validate_readiness_system.py
 
       - name: Set up Supabase CLI
         uses: supabase/setup-cli@v1
@@ -85,7 +86,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          for endpoint in account-api institution-api mastery-evidence private-bank-api practice-bank-api private-bank-purge-api upload-manager-api setup-api; do
+          for endpoint in account-api institution-api mastery-evidence private-bank-api practice-bank-api private-bank-purge-api upload-manager-api setup-api readiness-api; do
             curl --fail --silent --show-error \
               "https://${SUPABASE_PROJECT_ID}.supabase.co/functions/v1/${endpoint}/health" | python -m json.tool
           done
@@ -120,5 +121,5 @@ jobs:
 
       - name: Deployment reminder
         run: |
-          echo "Backend deployed; migrations, private banks, strict practice scopes, Teacher Upload Manager, bootstrap secret, and production login/session contracts passed."
+          echo "Backend deployed; migrations, private banks, strict practice scopes, Teacher Upload Manager, IB readiness intelligence, bootstrap secret, and production login/session contracts passed."
           echo "The scheduled Process Teacher Uploads workflow requires SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in the institutional-production environment."
