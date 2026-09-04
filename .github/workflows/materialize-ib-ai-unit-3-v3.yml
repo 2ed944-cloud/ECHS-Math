@@ -1,0 +1,139 @@
+name: Materialize IB AI Unit 3 correctly
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - .github/workflows/materialize-ib-ai-unit-3-v3.yml
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out publication branch
+        uses: actions/checkout@v6
+        with:
+          ref: agent/publish-ib-ai-unit-3-geogebra-v3-1
+          fetch-depth: 0
+
+      - name: Reassemble verified Unit 3 payload
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin agent/inspect-u3-orphan-tree:refs/remotes/origin/agent/inspect-u3-orphan-tree
+          rm -rf /tmp/u3-payload /tmp/u3-extracted
+          mkdir -p /tmp/u3-payload /tmp/u3-extracted
+          node <<'NODE'
+          const fs = require('fs');
+          const cp = require('child_process');
+          const zlib = require('zlib');
+          const strings = [];
+          for (const part of ['01','02','03','04']) {
+            const path = `lessons/ib-math-ai/unit-3/assets/js/payload-part-${part}.js`;
+            const source = cp.execFileSync('git', ['show', `origin/agent/inspect-u3-orphan-tree:${path}`], { encoding: 'utf8' });
+            const match = source.match(/\.push\((".*")\);?\s*$/s);
+            if (!match) throw new Error(`Cannot parse ${path}`);
+            strings.push(JSON.parse(match[1]));
+          }
+          const encoded = strings.join('');
+          const raw = Buffer.from(encoded, 'base64');
+          const decoded = zlib.gunzipSync(raw);
+          fs.writeFileSync('/tmp/u3-payload/decoded.bin', decoded);
+          console.log(JSON.stringify({ encoded: encoded.length, raw: raw.length, decoded: decoded.length, prefix: decoded.subarray(0,16).toString('hex') }));
+          NODE
+          file /tmp/u3-payload/decoded.bin
+          if unzip -tq /tmp/u3-payload/decoded.bin >/dev/null 2>&1; then
+            unzip -q /tmp/u3-payload/decoded.bin -d /tmp/u3-extracted
+          elif tar -tf /tmp/u3-payload/decoded.bin >/dev/null 2>&1; then
+            tar -xf /tmp/u3-payload/decoded.bin -C /tmp/u3-extracted
+          else
+            node <<'NODE'
+            const fs = require('fs');
+            const path = require('path');
+            const payload = JSON.parse(fs.readFileSync('/tmp/u3-payload/decoded.bin', 'utf8'));
+            const files = payload.files || payload;
+            if (!files || typeof files !== 'object' || Array.isArray(files)) throw new Error('Unsupported decoded payload format');
+            for (const [name, value] of Object.entries(files)) {
+              const target = path.join('/tmp/u3-extracted', name);
+              fs.mkdirSync(path.dirname(target), { recursive: true });
+              if (value && typeof value === 'object' && value.base64) fs.writeFileSync(target, Buffer.from(value.base64, 'base64'));
+              else fs.writeFileSync(target, String(value && value.content !== undefined ? value.content : value));
+            }
+            NODE
+          fi
+
+      - name: Install canonical Unit 3 files
+        shell: bash
+        run: |
+          set -euo pipefail
+          root="/tmp/u3-extracted"
+          for candidate in \
+            "$root/ECHS_IB_AI_Unit_3_GeoGebra_GitHub_Deployment_Ready" \
+            "$root/ECHS_IB_AI_Unit_3_GeoGebra_GitHub_Deployment_Ready_v3.1.0" \
+            "$root"; do
+            if [ -f "$candidate/data/ib-math-ai-unit-3-update.js" ] && [ -d "$candidate/lessons/ib-math-ai/unit-3" ]; then root="$candidate"; break; fi
+          done
+          test -f "$root/data/ib-math-ai-unit-3-update.js"
+          test -f "$root/lessons/ib-math-ai/unit-3/index.html"
+          test -f "$root/lessons/ib-math-ai/unit-3/assets/js/engine.js"
+          test -f "$root/lessons/ib-math-ai/unit-3/assets/js/geogebra-labs.js"
+          test -f "$root/lessons/ib-math-ai/unit-3/data/lesson-3.1.js"
+          test -f "$root/lessons/ib-math-ai/unit-3/data/lesson-3.6.js"
+          rm -rf lessons/ib-math-ai/unit-3
+          mkdir -p lessons/ib-math-ai
+          cp -a "$root/lessons/ib-math-ai/unit-3" lessons/ib-math-ai/unit-3
+          cp "$root/data/ib-math-ai-unit-3-update.js" data/ib-math-ai-unit-3-update.js
+          python <<'PY'
+          from pathlib import Path
+          p = Path('index.html')
+          s = p.read_text(encoding='utf-8')
+          tag = '<script src="data/ib-math-ai-unit-3-update.js"></script>'
+          if tag not in s:
+              unit2 = '<script src="data/ib-math-ai-unit-2-update.js"></script>'
+              if unit2 in s:
+                  s = s.replace(unit2, unit2 + '\n  ' + tag, 1)
+              else:
+                  marker = '<script src="js/portal.js'
+                  at = s.find(marker)
+                  if at < 0: raise SystemExit('Safe script insertion point not found')
+                  s = s[:at] + tag + '\n  ' + s[at:]
+              p.write_text(s, encoding='utf-8')
+          PY
+          rm -rf .staging/ib-ai-unit-3
+          rm -f .github/workflows/materialize-ib-ai-unit-3.yml
+          rm -f .github/workflows/materialize-ib-ai-unit-3-v2.yml
+          rm -f .github/workflows/materialize-ib-ai-unit-3-v3.yml
+
+      - name: Validate publication tree
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -Fq 'data/ib-math-ai-unit-3-update.js' index.html
+          node --check data/ib-math-ai-unit-3-update.js
+          node --check lessons/ib-math-ai/unit-3/assets/js/engine.js
+          node --check lessons/ib-math-ai/unit-3/assets/js/geogebra-labs.js
+          for lesson in \
+            IB_AI_SL_3.1_space_measurement_3d_geometry_ECHS.html \
+            IB_AI_SL_3.2_triangle_trigonometry_ECHS.html \
+            IB_AI_SL_3.3_bearings_elevation_depression_3d_applications_ECHS.html \
+            IB_AI_SL_3.4_circles_arcs_sectors_ECHS.html \
+            IB_AI_SL_3.5_perpendicular_bisectors_coordinate_geometry_ECHS.html \
+            IB_AI_SL_3.6_voronoi_nearest_neighbour_modelling_ECHS.html; do
+            test -f "lessons/ib-math-ai/unit-3/lessons/$lesson"
+          done
+          python lessons/ib-math-ai/unit-3/tools/check_local_links.py lessons/ib-math-ai/unit-3
+
+      - name: Commit publication files
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Publish IB Mathematics AI Unit 3 GeoGebra lessons"
+          git push origin HEAD:agent/publish-ib-ai-unit-3-geogebra-v3-1
