@@ -14,11 +14,12 @@
       {
         "number": "1.1",
         "title": "Can Change Occur at an Instant?",
-        "summary": "Average rate, instantaneous rate, secant slopes, tangent slopes, and the limit idea.",
+        "summary": "Explore change at an instant through six interactive investigations, graph and table reasoning, 12 original AP-style MCQs, and three free-response tasks.",
         "outcomes": [
-          "Interpret an instantaneous rate of change as the limit of average rates over shrinking intervals.",
-          "Connect secant-line slopes with the slope of a tangent line.",
-          "Explain why change at a single instant is defined through a limiting process."
+          "Interpret instantaneous change through average rates on shrinking nonzero intervals (CHA-1.A).",
+          "Connect graphs, tables, formulas and context using secant and tangent slopes (practice 2.B).",
+          "Distinguish average speed from average velocity and interpret rate units.",
+          "Justify estimates and explain why finite data or a zero-width quotient do not determine an exact instantaneous rate."
         ],
         "videos": [
           {

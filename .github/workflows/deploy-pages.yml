@@ -25,6 +25,8 @@ on:
       - "js/institution-client.js"
       - "js/institution-experience.js"
       - "js/institution-completion.js"
+      - "data/ap-calculus-update.js"
+      - "tools/test_ap_calculus_1_1*.mjs"
       - "question-bank/*.html"
       - "question-bank/official/**/*.html"
       - "question-bank/js/**"
@@ -81,6 +83,12 @@ jobs:
 
       - name: Verify identity rendering preserves the document root
         run: node tools/test_institution_identity_mount.mjs
+
+      - name: Verify interactive AP Calculus 1.1 mathematics and controls
+        run: |
+          node tools/test_ap_calculus_1_1.mjs
+          npm install --prefix "$RUNNER_TEMP/calculus11-dom" --no-save --ignore-scripts --no-audit --no-fund linkedom@0.18.12
+          ECHS_TEST_DOM_MODULE="$RUNNER_TEMP/calculus11-dom/node_modules/linkedom" node tools/test_ap_calculus_1_1_ui.mjs
 
       - name: Verify authenticated learning pathway source contract
         run: |
