@@ -32,6 +32,7 @@
     if(next){
       try{
         const candidate=new URL(next,location.href);
+        if(candidate.origin!==location.origin)return versionedRoleHome(role);
         if(candidate.origin===platformRoot.origin&&candidate.pathname.startsWith(platformRoot.pathname)&&!candidate.username&&!candidate.password&&!/\/(?:login|setup)\.html$/i.test(candidate.pathname)){
           if(role==="admin"&&/\/question-bank\/admin\.html$/i.test(candidate.pathname))candidate.pathname=new URL(ECHSInstitution.root("question-bank/school-control.html")).pathname;
           candidate.searchParams.set("shell",AUTH_SHELL_VERSION);return candidate.href;
@@ -40,17 +41,29 @@
     }
     return versionedRoleHome(role);
   }
+  async function showSetupState(cfg){
+    warning.classList.remove("hidden");
+    warning.textContent="School sign-in is not available yet. Please contact your platform administrator.";
+    const base=String(cfg.setup_api_base||cfg.api_base||"").replace(/\/$/,"");
+    if(!cfg.setup_enabled||!/^https:\/\/[a-z0-9]+\.supabase\.co\/functions\/v1$/i.test(base))return;
+    const link=document.createElement("a");link.href=ECHSInstitution.root("setup.html");link.textContent=" Open Initial Setup";
+    if(["localhost","127.0.0.1"].includes(location.hostname)){link.href+="?preview=1";warning.append(link);return}
+    const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),12000);
+    try{
+      const response=await fetch(`${base}/setup-api/status`,{cache:"no-store",signal:controller.signal}),status=await response.json();
+      if(!response.ok||!status.ok)throw new Error("Setup status unavailable");
+      warning.textContent=status.complete?"Your school account service is set up. Your administrator needs to finish activating sign-in.":"An administrator must complete the initial school setup before sign-in opens.";
+      if(!status.complete)warning.append(link);
+    }catch{warning.textContent="School setup status could not be checked. Your administrator can open setup or retry shortly.";warning.append(link)}
+    finally{clearTimeout(timer)}
+  }
   async function initialize(){
     ready=false;retry.hidden=true;errorBox.classList.remove("show");setBusy(true,"Connecting…");
     try{
       const cfg=await ECHSInstitution.config();
       if(cfg.configuration_error)throw new Error(cfg.configuration_error);
       if(!cfg.enabled){
-        warning.classList.remove("hidden");
-        warning.textContent="School sign-in is not available yet. Please contact your platform administrator.";
-        if(cfg.setup_enabled){
-          const setupLink=document.createElement("a");setupLink.href=ECHSInstitution.root("setup.html");setupLink.textContent=" Open initial setup";warning.append(setupLink);
-        }
+        await showSetupState(cfg);
         return;
       }
       warning.classList.add("hidden");ready=true;

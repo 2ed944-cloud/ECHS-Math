@@ -62,7 +62,8 @@ self.addEventListener("fetch",event=>{
   const sensitive=request.headers.has("authorization")||privateApi.test(url.pathname)||/\.supabase\.co$/i.test(url.hostname)||[...url.searchParams.keys()].some(key=>/^(?:token|access_token|refresh_token|signature|apikey)$/i.test(key));
   if(sensitive){event.respondWith(fetch(request,{cache:"no-store"}));return}
   if(sameOrigin&&AUTH_DOCUMENT.test(url.pathname)){event.respondWith(freshAuthDocument(request));return}
-  if(sameOrigin&&/\/setup\.html$/i.test(url.pathname)){event.respondWith(fetch(request,{cache:"no-store"}));return}
+  const setupPage=sameOrigin&&/\/setup\.html$/i.test(url.pathname);
+  if(setupPage){event.respondWith(fetch(request,{cache:"no-store"}));return}
   if(request.mode==="navigate"){if(sameOrigin)event.respondWith(networkFirst(request,"./offline.html",{reload:true}));return}
   if(!sameOrigin){
     const publicCDN=["cdn.jsdelivr.net","cdnjs.cloudflare.com","fonts.googleapis.com","fonts.gstatic.com"].includes(url.hostname);

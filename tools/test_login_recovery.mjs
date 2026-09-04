@@ -9,7 +9,7 @@ async function loginHarness({next='',existing=null,failMe=false,configurationErr
   }
   let configFailed=configurationError,meFailed=failMe,loginCalls=0,resolveLogin;
   const client={root:path=>new URL(path,'https://example.test/ECHS-Math/').href,roleHome:role=>`question-bank/${role}.html`,config:async()=>configFailed?{configuration_error:'No connection'}:{enabled:true},me:async()=>{if(meFailed)throw new Error('Session temporarily unavailable');return existing},login:()=>{loginCalls++;return new Promise(resolve=>resolveLogin=resolve)}};
-  const context=vm.createContext({document:{getElementById:id=>nodes.get(id)},window:{},ECHSInstitution:client,location:{search:next?'?next='+encodeURIComponent(next):'',href:'https://example.test/ECHS-Math/login.html'+(next?'?next='+encodeURIComponent(next):''),replace:url=>redirects.push(url)},localStorage:{getItem:()=>"20260727-school-control-v1"},navigator:{},URL,URLSearchParams,console});
+  const context=vm.createContext({document:{getElementById:id=>nodes.get(id)},window:{},ECHSInstitution:client,location:{origin:'https://example.test',search:next?'?next='+encodeURIComponent(next):'',href:'https://example.test/ECHS-Math/login.html'+(next?'?next='+encodeURIComponent(next):''),replace:url=>redirects.push(url)},localStorage:{getItem:()=>"20260727-school-control-v1"},navigator:{},URL,URLSearchParams,console});
   await vm.runInContext(source,context);
   return{nodes,redirects,client,recover:()=>{configFailed=false;meFailed=false},loginCalls:()=>loginCalls,finishLogin:()=>resolveLogin({role:'student'})};
 }
