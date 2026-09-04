@@ -19,6 +19,7 @@ This release improves the shared platform around the existing courses and banks.
 - Preserve valid sessions during temporary failures and protect a new session from stale responses.
 - Keep safe lesson return URLs for both existing sessions and new logins.
 - Add password visibility, Caps Lock feedback, accessible busy/error states, and duplicate-submit protection.
+- Keep the restored IB Unit 2 slide at the top after reload so mobile headings remain visible.
 - Improve keyboard course tabs, mobile navigation dismissal, focus visibility, touch targets, wrapping and reduced-motion behavior.
 
 ## Practice and progress
