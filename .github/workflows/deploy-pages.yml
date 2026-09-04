@@ -72,6 +72,13 @@ jobs:
         with:
           node-version: "22"
 
+      - name: Verify platform search, sign-in, sync, and practice regressions
+        run: |
+          node tools/test_platform_resilience.mjs
+          node tools/test_portal_workspace.mjs
+          node tools/test_login_recovery.mjs
+          node tools/test_practice_interactions.mjs
+
       - name: Verify identity rendering preserves the document root
         run: node tools/test_institution_identity_mount.mjs
 

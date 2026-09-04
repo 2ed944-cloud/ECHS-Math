@@ -28,8 +28,24 @@
   backdrop.setAttribute("aria-label","Close practice filters");
   document.body.append(backdrop);
   let returnFocus=null;
+  let lastQuestion=null;
+  const inertBackground=new Map();
 
-  function hasQuestion(){return Boolean(document.querySelector("#shell .questionCard"));}
+  function setBackgroundInert(open){
+    if(!open){inertBackground.forEach((wasInert,node)=>{node.inert=wasInert});inertBackground.clear();return}
+    let branch=builder;
+    while(branch.parentElement){
+      [...branch.parentElement.children].forEach(node=>{
+        if(node!==branch&&node!==backdrop&&!node.matches("script,style,link")){
+          if(!inertBackground.has(node))inertBackground.set(node,node.inert);
+          node.inert=true;
+        }
+      });
+      if(branch.parentElement===document.body)break;
+      branch=branch.parentElement;
+    }
+  }
+
   function updateSummary(){
     const question=document.querySelector("#shell .questionCard");
     const pills=question?[...question.querySelectorAll(".pill")].map(node=>node.textContent.trim()):[];
@@ -53,6 +69,7 @@
     if(opening&&isCollapsed())returnFocus=document.activeElement;
     builder.classList.toggle("isCollapsed",collapsed);
     document.body.classList.toggle("practiceFiltersOpen",opening);
+    setBackgroundInert(opening);
     toggle.setAttribute("aria-expanded",String(opening));
     controls.hidden=collapsed;
     compact.hidden=opening;
@@ -99,8 +116,11 @@
 
   const observer=new MutationObserver(()=>{
     updateSummary();
-    if(hasQuestion()&&!isCollapsed())setCollapsed(true);
+    const question=shell.querySelector(".questionCard");
+    if(question&&question!==lastQuestion&&!isCollapsed())setCollapsed(true,{focus:true});
+    lastQuestion=question;
   });
   observer.observe(shell,{childList:true,subtree:true});
   setCollapsed(true);
+  lastQuestion=shell.querySelector(".questionCard");
 })();

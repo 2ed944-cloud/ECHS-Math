@@ -5,15 +5,16 @@
   const lessonEventsKey="echs_learning_lesson_events_v2";
   function lessonContext(target){
     const card=target.closest(".lesson"),unit=target.closest(".unit");
-    if(!card)return null;
-    const number=card.querySelector(".lessonNo")?.textContent?.trim()||"Lesson";
-    const title=card.querySelector("h4")?.textContent?.trim()||"Mathematics lesson";
-    const unitTitle=unit?.querySelector(".unitHeading strong")?.textContent?.trim()||"";
-    const course=localStorage.getItem("echs_math_selected_course")||"unassigned";
+    const params=target.href?new URL(target.href,location.href).searchParams:new URLSearchParams();
+    const number=card?.dataset.number||card?.querySelector(".lessonNo")?.textContent?.trim()||params.get("topic")||"Lesson";
+    const fullTitle=params.get("title")||"";
+    const title=card?.dataset.title||card?.querySelector("h4")?.textContent?.trim()||fullTitle.replace(/^.*? · /,"")||"Mathematics lesson";
+    const unitTitle=card?.dataset.unitTitle||unit?.querySelector(".unitHeading strong")?.textContent?.trim()||"";
+    const course=params.get("course")||card?.dataset.courseId||"unassigned";
     return{number,title,unitTitle,course,label:`${number} · ${title}`};
   }
   document.addEventListener("click",event=>{
-    const open=event.target.closest("#units .linkBtn[href]");
+    const open=event.target.closest("#units .linkBtn[href], .lessonDetailDialog .linkBtn[href]");
     if(open){
       const context=lessonContext(open);if(!context)return;
       ECHSLearning.setContinue({type:"lesson",label:context.label,url:open.href,course:context.course,unitTitle:context.unitTitle});

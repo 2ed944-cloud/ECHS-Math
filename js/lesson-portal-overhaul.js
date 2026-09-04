@@ -130,7 +130,7 @@
     const completed = cards.filter((card) => card.dataset.completed === "true").length;
     const metric = qs(".unitMetrics", unit);
     const signature = `${completed}|${cards.length}`;
-    if (metric && metric.dataset.calmMetric !== signature) {
+    if (metric && !metric.hasAttribute("data-portal-metric") && metric.dataset.calmMetric !== signature) {
       metric.dataset.calmMetric = signature;
       metric.innerHTML = `<b>${completed}/${cards.length}</b><small>completed</small>`;
     }
@@ -219,6 +219,13 @@
     body.replaceChildren(cleanDrawerPayload(card));
     activeCard = card;
     activeOpener = qs(".lessonCardOpen", card);
+    const unitContainer = card.closest(".unit");
+    if (unitContainer) {
+      unitContainer.classList.add("open");
+      qs(".unitHeader", unitContainer)?.setAttribute("aria-expanded", "true");
+      const unitBody = qs(".unitBody", unitContainer);
+      if (unitBody) unitBody.hidden = false;
+    }
     if (!drawer.open) drawer.showModal();
     document.documentElement.classList.add("lessonDrawerOpen");
     requestAnimationFrame(() => qs(".lessonDrawerClose", drawer)?.focus({ preventScroll: true }));
@@ -292,8 +299,13 @@
       if (bookmark) {
         event.preventDefault();
         const original = qsa('#units [data-action="bookmark"]').find((button) => button.dataset.key === bookmark.dataset.key);
-        requestClose();
-        setTimeout(() => original?.click(), 0);
+        if (original) {
+          original.click();
+          bookmark.className = original.className;
+          bookmark.textContent = original.textContent;
+          bookmark.setAttribute("aria-label", original.getAttribute("aria-label"));
+          bookmark.setAttribute("aria-pressed", original.getAttribute("aria-pressed"));
+        }
       }
     });
     window.addEventListener("popstate", syncFromURL);

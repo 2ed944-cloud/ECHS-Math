@@ -1093,7 +1093,7 @@ function render() {
     source = question.source || {},
     auto = ECHSBank.isAutoGradable(question);
   const responseHTML = ["mcq", "true_false"].includes(question.type)
-    ? `<div class="choices">${choices.map((choice, index) => `<button class="choice" data-id="${ECHSBank.escape(choice.id)}"><span class="choiceLabel">${String.fromCharCode(65 + index)}</span><span>${choice.html}</span></button>`).join("")}</div>`
+    ? `<div class="choices" role="group" aria-label="Answer choices">${choices.map((choice, index) => `<button class="choice" type="button" aria-pressed="false" data-id="${ECHSBank.escape(choice.id)}"><span class="choiceLabel">${String.fromCharCode(65 + index)}</span><span>${choice.html}</span></button>`).join("")}</div>`
     : question.type === "fill_blank"
       ? '<div class="control answerControl"><label for="answerInput">Your answer</label><input id="answerInput" autocomplete="off"></div>'
       : '<div class="control answerControl"><label for="answerInput">Your response</label><textarea id="answerInput" rows="7"></textarea></div>';
@@ -1125,8 +1125,9 @@ function render() {
           if (state.checked) return;
           document
             .querySelectorAll(".choice")
-            .forEach((item) => item.classList.remove("selected"));
+            .forEach((item) => {item.classList.remove("selected");item.setAttribute("aria-pressed","false")});
           button.classList.add("selected");
+          button.setAttribute("aria-pressed","true");
           state.response = button.dataset.id;
         }),
     );
@@ -1146,6 +1147,15 @@ function check(question) {
   if (state.checked) return;
   if (!["mcq", "true_false"].includes(question.type))
     state.response = document.getElementById("answerInput")?.value || "";
+  if (!String(state.response ?? "").trim()) {
+    const feedback = document.getElementById("feedback");
+    feedback.className = "feedback show";
+    feedback.textContent = ["mcq", "true_false"].includes(question.type)
+      ? "Choose an answer before checking."
+      : "Write your response before checking.";
+    (document.getElementById("answerInput") || document.querySelector(".choice"))?.focus();
+    return;
+  }
   const auto = ECHSBank.isAutoGradable(question),
     correct = auto ? ECHSBank.answerIsCorrect(question, state.response) : null;
   state.checked = true;
@@ -1351,6 +1361,9 @@ function restore() {
 }
 function practiceKeyboard(event) {
   if (
+    event.defaultPrevented ||
+    document.body.classList.contains("practiceFiltersOpen") ||
+    document.querySelector('dialog[open], [role="dialog"][aria-modal="true"]') ||
     !document.querySelector("#shell .questionCard") ||
     event.metaKey ||
     event.ctrlKey ||
@@ -1358,7 +1371,7 @@ function practiceKeyboard(event) {
   )
     return;
   if (
-    event.target?.matches?.("input, textarea, select, [contenteditable='true']")
+    event.target?.closest?.("input, textarea, select, button, a, [contenteditable='true']")
   )
     return;
   const key = event.key.toLowerCase(),

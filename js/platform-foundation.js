@@ -8,8 +8,8 @@
   const safeJSON=(value,fallback)=>{try{const parsed=JSON.parse(value);return parsed??fallback}catch{return fallback}};
   const rootLink=(path="")=>new URL(path,ROOT).href;
 
-  function preferredTheme(){const saved=localStorage.getItem(STORE.theme);if(saved==="light"||saved==="dark")return saved;return matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}
-  function setTheme(theme){document.documentElement.dataset.theme=theme;localStorage.setItem(STORE.theme,theme);qsa("[data-platform-theme]").forEach(button=>{button.textContent=theme==="dark"?"☀":"☾";button.title=theme==="dark"?"Use light appearance":"Use dark appearance";button.setAttribute("aria-label",button.title);});}
+  function preferredTheme(){let saved;try{saved=localStorage.getItem(STORE.theme)}catch{}if(saved==="light"||saved==="dark")return saved;return matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}
+  function setTheme(theme){document.documentElement.dataset.theme=theme;try{localStorage.setItem(STORE.theme,theme)}catch{}qsa("[data-platform-theme]").forEach(button=>{button.textContent=theme==="dark"?"☀":"☾";button.title=theme==="dark"?"Use light appearance":"Use dark appearance";button.setAttribute("aria-label",button.title);});}
   setTheme(preferredTheme());
 
   function toast(message,actionLabel,action){
@@ -31,6 +31,7 @@
     </nav>`;
   }
   function enhanceHeader(){
+    if(!qs('link[href*="platform-usability.css"]')){const style=document.createElement("link");style.rel="stylesheet";style.href=rootLink("css/platform-usability.css?v=20260904");document.head.append(style)}
     const header=qs("header.site")||qs(".siteHeader");if(!header)return;
     const top=qs(".top",header)||header;let nav=qs(".platformNav",header);
     if(!nav){const oldNav=qs("nav",header);if(oldNav)oldNav.classList.add("platformNav");else top.insertAdjacentHTML("beforeend",navigationHTML());nav=qs(".platformNav",header);}
@@ -42,7 +43,11 @@
     if(!qs("[data-platform-menu]",actions))actions.insertAdjacentHTML("beforeend",'<button class="platformIconButton platformMenuButton" type="button" data-platform-menu aria-controls="platformNav" aria-expanded="false" title="Open navigation" aria-label="Open navigation">☰</button>');
     setTheme(document.documentElement.dataset.theme||preferredTheme());
     qsa("[data-platform-theme]").forEach(button=>button.addEventListener("click",()=>setTheme(document.documentElement.dataset.theme==="dark"?"light":"dark")));
-    qsa("[data-platform-menu]").forEach(button=>button.addEventListener("click",()=>{const target=qs(".platformNav",header),open=target?.classList.toggle("open");button.setAttribute("aria-expanded",String(Boolean(open)));}));
+    const menuButton=qs("[data-platform-menu]",header);
+    const closeMenu=()=>{nav?.classList.remove("open");menuButton?.setAttribute("aria-expanded","false")};
+    menuButton?.addEventListener("click",()=>{const open=nav?.classList.toggle("open");menuButton.setAttribute("aria-expanded",String(Boolean(open)))});
+    header.addEventListener("keydown",event=>{if(event.key==="Escape"&&nav?.classList.contains("open")){closeMenu();menuButton?.focus()}});
+    document.addEventListener("click",event=>{if(!header.contains(event.target)||event.target.closest(".platformNav a"))closeMenu()});
   }
   function addPageBand(){
     if(qs(".platformPageBand")||!document.body.classList.contains("practiceStudio"))return;
@@ -85,13 +90,12 @@
     const node=document.createElement("script");node.src=rootLink("js/institution-client.js?v=20260726-phase3");node.defer=true;document.head.append(node);
   }
   async function loadBankSnapshot(){
-    const targets=qsa("[data-platform-bank-snapshot]");if(!targets.length&&!qs("#statQuestions"))return;
+    const targets=qsa("[data-platform-bank-snapshot]");if(!targets.length)return;
     try{
       const [catalogResponse,addonResponse]=await Promise.all([fetch(rootLink("question-bank/data/catalog.json")),fetch(rootLink("question-bank/data/blackboard-addon.json"))]);
       const catalog=catalogResponse.ok?await catalogResponse.json():{banks:[]},addon=addonResponse.ok?await addonResponse.json():{banks:[]};
       const banks=new Map();[...(catalog.banks||[]),...(addon.banks||[])].forEach(bank=>banks.set(bank.code,bank));
       const bankRows=[...banks.values()],total=bankRows.reduce((sum,bank)=>sum+(Number(bank.question_count)||0),0),calc=bankRows.filter(bank=>/CALC|ADAMS|PEARSON_CH0/.test(bank.code)).reduce((sum,bank)=>sum+(Number(bank.question_count)||0),0);
-      const stat=qs("#statQuestions");if(stat)stat.textContent=total.toLocaleString();
       targets.forEach(target=>target.innerHTML=`<div class="platformInventoryItem"><b>${total.toLocaleString()}</b><span>Calculus questions</span></div><div class="platformInventoryItem"><b>${bankRows.length}</b><span>verified Calculus banks</span></div><div class="platformInventoryItem"><b>${calc.toLocaleString()}</b><span>course-routed questions</span></div><div class="platformInventoryItem"><b>0</b><span>cross-course banks</span></div>`);
     }catch(error){console.warn("Could not load platform bank snapshot",error);}
   }
@@ -109,6 +113,7 @@
     qsa("[data-platform-bookmarks]").forEach(node=>node.textContent=bookmarks.length.toLocaleString());qsa("[data-platform-completed]").forEach(node=>node.textContent=completed.length.toLocaleString());
   }
   function keyboardShortcuts(event){
+    if(event.defaultPrevented||event.ctrlKey||event.metaKey||document.activeElement?.isContentEditable||qs("dialog[open]"))return;
     const tag=document.activeElement?.tagName;if(event.key==="/"&&!/INPUT|TEXTAREA|SELECT/.test(tag||"")){const search=qs("#search");if(search){event.preventDefault();search.focus();}}
     if(event.altKey&&event.key.toLowerCase()==="p")location.href=rootLink("question-bank/practice.html");
     if(event.altKey&&event.key.toLowerCase()==="d")location.href=rootLink("question-bank/dashboard.html");
