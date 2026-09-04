@@ -11,7 +11,9 @@ body.lessonPortalCalm .lessonSearchTools label{display:flex;align-items:center;g
 body.lessonPortalCalm .lessonSearchTools select{min-height:44px;max-width:100%;padding:8px 28px 8px 10px;border:1px solid var(--echs-ui-border);border-radius:9px;background:var(--echs-ui-surface);color:var(--echs-ui-ink);font:inherit}
 body.lessonPortalCalm .searchCourseHeading{padding:10px 0 4px;border-top:1px solid var(--echs-ui-border);margin-top:24px}
 body.lessonPortalCalm .searchCourseHeading h3{color:var(--echs-ui-ink);font-size:1.125rem;line-height:1.45;margin:0 0 8px}
-body.lessonPortalCalm .filterGroup{flex-wrap:wrap}
+body.lessonPortalCalm .toolbar .filterGroup{min-width:0;max-width:100%}
+body.lessonPortalCalm #lessonWorkspacePanel .toolbar .filterGroup{flex-wrap:wrap;overflow:visible}
+body.lessonPortalCalm #lessonWorkspacePanel .toolbar .chip{min-height:44px;font-size:.875rem;line-height:1.45}
 body.lessonPortalCalm :is(.chip,.tab,.resourceChip,.star){min-height:44px;font-size:.875rem;line-height:1.45}
 body.lessonPortalCalm .lessonCardCopy strong{font-size:1rem;line-height:1.55;overflow-wrap:anywhere}
 body.lessonPortalCalm .lessonCardStatus{font-size:.8125rem;white-space:normal;line-height:1.4}
