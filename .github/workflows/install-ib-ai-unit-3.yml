@@ -1,0 +1,55 @@
+name: Install IB AI Unit 3 deployment package
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - .github/workflows/install-ib-ai-unit-3.yml
+      - staging/ready.txt
+
+permissions:
+  contents: read
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/publish-ib-ai-unit-3-geogebra
+          fetch-depth: 0
+      - name: Inspect orphaned Unit 3 payload
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import base64, gzip, json, re, subprocess
+          from pathlib import Path
+          branch='origin/agent/inspect-u3-orphan-tree'
+          parts=[]
+          for i in range(1,5):
+              path=f'lessons/ib-math-ai/unit-3/assets/js/payload-part-{i:02d}.js'
+              text=subprocess.check_output(['git','show',f'{branch}:{path}'], text=True)
+              m=re.search(r'\.push\((".*")\);?\s*$', text, re.S)
+              if not m:
+                  raise SystemExit(f'Could not parse {path}')
+              value=json.loads(m.group(1))
+              print(path, len(value), value[:8], value[-8:])
+              parts.append(value)
+          encoded=''.join(parts)
+          print('encoded_chars',len(encoded),'mod4',len(encoded)%4)
+          encoded += '=' * (-len(encoded) % 4)
+          raw=base64.b64decode(encoded)
+          print('raw_bytes',len(raw),'magic',raw[:16].hex())
+          Path('/tmp/u3-payload.bin').write_bytes(raw)
+          try:
+              dec=gzip.decompress(raw)
+              print('gzip_bytes',len(dec),'gzip_magic',dec[:32].hex())
+              print('gzip_text_prefix',repr(dec[:300]))
+              Path('/tmp/u3-payload.dec').write_bytes(dec)
+          except Exception as exc:
+              print('gzip_error',repr(exc))
+          PY
+          file /tmp/u3-payload.bin || true
+          test -f /tmp/u3-payload.dec && file /tmp/u3-payload.dec || true
