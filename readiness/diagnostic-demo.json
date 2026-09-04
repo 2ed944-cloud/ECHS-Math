@@ -1,0 +1,338 @@
+{
+  "ok": true,
+  "synthetic_demo": true,
+  "version": "2026.1",
+  "questions": [
+    {
+      "id": "N1",
+      "skill": "number",
+      "prompt": "Evaluate (3.6 × 10^5)(2 × 10^-3).",
+      "options": [
+        "7.2 × 10^8",
+        "7.2 × 10^2",
+        "5.6 × 10^2",
+        "7.2 × 10^-8"
+      ]
+    },
+    {
+      "id": "N2",
+      "skill": "number",
+      "prompt": "A quantity increases from 240 to 276. What is the percentage increase?",
+      "options": [
+        "12%",
+        "15%",
+        "18%",
+        "36%"
+      ]
+    },
+    {
+      "id": "N3",
+      "skill": "number",
+      "prompt": "A length is recorded as 8.4 cm correct to the nearest 0.1 cm. Which interval contains the true length L?",
+      "options": [
+        "8.30 ≤ L < 8.40",
+        "8.35 ≤ L < 8.45",
+        "8.40 ≤ L < 8.50",
+        "8.39 ≤ L ≤ 8.41"
+      ]
+    },
+    {
+      "id": "A1",
+      "skill": "algebra",
+      "prompt": "Factor 2x² − 5x − 3 completely.",
+      "options": [
+        "(2x − 1)(x + 3)",
+        "(2x + 1)(x − 3)",
+        "(x − 1)(2x + 3)",
+        "(2x − 3)(x + 1)"
+      ]
+    },
+    {
+      "id": "A2",
+      "skill": "algebra",
+      "prompt": "Solve 3/(x − 1) = 2.",
+      "options": [
+        "x = 1.5",
+        "x = 2",
+        "x = 2.5",
+        "x = 4"
+      ]
+    },
+    {
+      "id": "A3",
+      "skill": "algebra",
+      "prompt": "Solve 4^(x+1) = 32.",
+      "options": [
+        "x = 1",
+        "x = 1.5",
+        "x = 2",
+        "x = 2.5"
+      ]
+    },
+    {
+      "id": "F1",
+      "skill": "functions",
+      "prompt": "Let f(x)=2x−3 and g(x)=x². Find (g∘f)(2).",
+      "options": [
+        "1",
+        "2",
+        "4",
+        "9"
+      ]
+    },
+    {
+      "id": "F2",
+      "skill": "functions",
+      "prompt": "If f(x)=(x−4)/3, which expression is f⁻¹(x)?",
+      "options": [
+        "3x−4",
+        "(x+4)/3",
+        "3x+4",
+        "(x−3)/4"
+      ]
+    },
+    {
+      "id": "F3",
+      "skill": "functions",
+      "prompt": "Relative to y=x², what transformation produces y=(x−2)²+5?",
+      "options": [
+        "Left 2, up 5",
+        "Right 2, up 5",
+        "Right 5, up 2",
+        "Left 5, down 2"
+      ]
+    },
+    {
+      "id": "T1",
+      "skill": "trigonometry",
+      "prompt": "Convert 150° to radians.",
+      "options": [
+        "3π/4",
+        "5π/6",
+        "4π/5",
+        "5π/4"
+      ]
+    },
+    {
+      "id": "T2",
+      "skill": "trigonometry",
+      "prompt": "For an acute angle θ, sin θ = 3/5. Find cos θ.",
+      "options": [
+        "2/5",
+        "3/4",
+        "4/5",
+        "5/4"
+      ]
+    },
+    {
+      "id": "T3",
+      "skill": "trigonometry",
+      "prompt": "Solve 2 sin x = 1 for 0 ≤ x ≤ 2π.",
+      "options": [
+        "π/6 only",
+        "π/6 and 5π/6",
+        "5π/6 and 7π/6",
+        "π/3 and 2π/3"
+      ]
+    },
+    {
+      "id": "G1",
+      "skill": "geometry",
+      "prompt": "Find the distance between (−1,2) and (3,5).",
+      "options": [
+        "4",
+        "5",
+        "√13",
+        "7"
+      ]
+    },
+    {
+      "id": "G2",
+      "skill": "geometry",
+      "prompt": "Which equation is the line with gradient −2 passing through (1,4)?",
+      "options": [
+        "y=−2x+2",
+        "y=−2x+6",
+        "y=2x+2",
+        "y=2x+6"
+      ]
+    },
+    {
+      "id": "G3",
+      "skill": "geometry",
+      "prompt": "The circle x²+y²−6x+4y−12=0 has which centre and radius?",
+      "options": [
+        "(−3,2), 5",
+        "(3,−2), 5",
+        "(3,2), √25",
+        "(−3,−2), 4"
+      ]
+    },
+    {
+      "id": "S1",
+      "skill": "statistics",
+      "prompt": "Five values have mean 12. A sixth value, 18, is added. What is the new mean?",
+      "options": [
+        "12.5",
+        "13",
+        "13.5",
+        "15"
+      ]
+    },
+    {
+      "id": "S2",
+      "skill": "statistics",
+      "prompt": "A data set has correlation coefficient r = −0.82. Which statement is best?",
+      "options": [
+        "Strong negative linear association",
+        "Weak negative linear association",
+        "Strong positive association",
+        "No association"
+      ]
+    },
+    {
+      "id": "S3",
+      "skill": "statistics",
+      "prompt": "For the ordered data 2,3,4,7,9,10,14,16, what is the interquartile range using median-of-halves quartiles?",
+      "options": [
+        "6.5",
+        "7.5",
+        "8.5",
+        "10.5"
+      ]
+    },
+    {
+      "id": "P1",
+      "skill": "probability",
+      "prompt": "Of 40 students, 24 play sport, 18 study music, and 10 do both. If a music student is chosen, what is P(sport | music)?",
+      "options": [
+        "1/4",
+        "5/9",
+        "5/12",
+        "3/5"
+      ]
+    },
+    {
+      "id": "P2",
+      "skill": "probability",
+      "prompt": "Independent events A and B satisfy P(A)=0.4 and P(B)=0.3. Find P(A∩B).",
+      "options": [
+        "0.07",
+        "0.10",
+        "0.12",
+        "0.70"
+      ]
+    },
+    {
+      "id": "P3",
+      "skill": "probability",
+      "prompt": "A game pays 10 points with probability 0.2 and loses 2 points otherwise. What is the expected score per play?",
+      "options": [
+        "0.4",
+        "1.0",
+        "1.6",
+        "2.0"
+      ]
+    },
+    {
+      "id": "M1",
+      "skill": "modelling",
+      "prompt": "A population is modelled by P(t)=500(1.08)^t. What does 1.08 represent?",
+      "options": [
+        "An 8% decrease per time unit",
+        "An 8% increase per time unit",
+        "An increase of 1.08 people per time unit",
+        "An initial population of 1.08"
+      ]
+    },
+    {
+      "id": "M2",
+      "skill": "modelling",
+      "prompt": "A taxi cost is modelled by C=7+2.5d, where d is distance in km. Interpret 7.",
+      "options": [
+        "Cost per kilometre",
+        "Maximum distance",
+        "Fixed starting charge",
+        "Average cost"
+      ]
+    },
+    {
+      "id": "M3",
+      "skill": "modelling",
+      "prompt": "A linear model predicts 92 when the observed value is 80. Which is the most useful immediate modelling response?",
+      "options": [
+        "Declare the model correct",
+        "Check the residual and whether the model assumptions remain reasonable",
+        "Delete the observation automatically",
+        "Replace the model with an exponential model without checking"
+      ]
+    },
+    {
+      "id": "R1",
+      "skill": "reasoning",
+      "prompt": "Which pair provides a counterexample to √(a+b)=√a+√b for non-negative a,b?",
+      "options": [
+        "a=0,b=4",
+        "a=1,b=1",
+        "a=0,b=0",
+        "a=9,b=0"
+      ]
+    },
+    {
+      "id": "R2",
+      "skill": "reasoning",
+      "prompt": "Why is n(n+1) even for every integer n?",
+      "options": [
+        "Every integer n is even",
+        "Consecutive integers include one even number",
+        "n+1 is always prime",
+        "The product of any two integers is even"
+      ]
+    },
+    {
+      "id": "R3",
+      "skill": "reasoning",
+      "prompt": "A student claims that if f(2)=5 then lim(x→2) f(x)=5. What is the best evaluation?",
+      "options": [
+        "Always true",
+        "False: the limit depends on nearby values, not only f(2)",
+        "True only for polynomials and no other functions",
+        "False because limits never equal function values"
+      ]
+    },
+    {
+      "id": "C1",
+      "skill": "communication",
+      "prompt": "A model gives r=0.91 between study time and score. Which conclusion is mathematically responsible?",
+      "options": [
+        "Study time causes higher scores",
+        "There is a strong positive linear association, but correlation alone does not establish causation",
+        "The variables are independent",
+        "Every student who studies more must score higher"
+      ]
+    },
+    {
+      "id": "C2",
+      "skill": "communication",
+      "prompt": "A calculated probability is 0.0347. Which sentence communicates it most clearly in context?",
+      "options": [
+        "The answer is 0.0347.",
+        "There is about a 3.47% chance of the stated event under the model assumptions.",
+        "The event will happen 3.47 times.",
+        "The event is impossible."
+      ]
+    },
+    {
+      "id": "C3",
+      "skill": "communication",
+      "prompt": "Which response best justifies solving x²=16?",
+      "options": [
+        "x=4 because square roots are positive",
+        "x=±4 because both 4² and (−4)² equal 16",
+        "x=16/2=8",
+        "x=√16 only"
+      ]
+    }
+  ],
+  "question_count": 30
+}

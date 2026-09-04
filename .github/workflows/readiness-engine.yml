@@ -1,0 +1,57 @@
+name: IB Mathematics Readiness QA
+
+on:
+  pull_request:
+    paths:
+      - "readiness/**"
+      - "docs/IB_READINESS_PATHWAY_SYSTEM.md"
+      - "supabase/functions/readiness-api/**"
+      - "supabase/migrations/202609050100_ib_readiness_pathway_engine.sql"
+      - "supabase/config.toml"
+      - "tools/validate_readiness_system.py"
+      - ".github/workflows/readiness-engine.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  readiness-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Set up Deno
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+
+      - name: Run readiness engine tests
+        run: node supabase/functions/readiness-api/readiness-engine.test.mjs
+
+      - name: Syntax-check browser and shared JavaScript
+        run: |
+          node --check readiness/readiness.js
+          node --check supabase/functions/readiness-api/readiness-engine.js
+          node --check supabase/functions/readiness-api/diagnostic-bank.js
+
+      - name: Type-check readiness Edge Function
+        run: deno check supabase/functions/readiness-api/index.ts
+
+      - name: Validate readiness subsystem contracts
+        run: python tools/validate_readiness_system.py
+
+      - name: Reject duplicate Supabase migration versions
+        run: python tools/validate_supabase_migration_versions.py
