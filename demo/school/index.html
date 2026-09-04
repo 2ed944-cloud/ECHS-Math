@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Mathematics Learning Platform — Guided School Demo</title>
+  <link rel="stylesheet" href="demo.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="mark">∫</span>
+      <div><strong>Mathematics Learning Platform</strong><small>Guided school demo · synthetic data</small></div>
+    </div>
+    <div class="demoBadge">DEMO DATA ONLY</div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <span class="eyebrow">Reference implementation</span>
+        <h1>From lesson to intervention.<span>One connected mathematics journey.</span></h1>
+        <p>This guided environment is designed for external product conversations. It mirrors key workflows from the current repository using synthetic school data only.</p>
+        <div class="flow">
+          <b>Learn</b><i>→</i><b>Practise</b><i>→</i><b>Recover</b><i>→</i><b>Master</b>
+        </div>
+      </div>
+      <div class="heroCard">
+        <small>Demo School · Grade 11 Mathematics</small>
+        <strong>78%</strong>
+        <span>class readiness</span>
+        <div class="meter"><i style="width:78%"></i></div>
+        <p>6 students need timely support before the next assessment.</p>
+      </div>
+    </section>
+
+    <nav class="tabs" aria-label="Demo sections">
+      <button class="active" data-tab="teacher">Teacher</button>
+      <button data-tab="student">Student</button>
+      <button data-tab="practice">Practice</button>
+      <button data-tab="assessment">Assessment</button>
+      <button data-tab="family">Family</button>
+      <button data-tab="admin">Administration</button>
+    </nav>
+
+    <section class="panel active" id="teacher">
+      <div class="sectionHead"><div><small>Teaching command center</small><h2>See the class picture. Act on the evidence.</h2></div><span class="talk">Demo point: intervention workflow</span></div>
+      <div class="metrics">
+        <article><small>Students</small><strong>24</strong><span>current class</span></article>
+        <article><small>Active this week</small><strong>21</strong><span>88% engagement</span></article>
+        <article><small>Average mastery</small><strong>74%</strong><span>+6 pts this month</span></article>
+        <article><small>Need support</small><strong>6</strong><span>priority learners</span></article>
+      </div>
+      <div class="grid two">
+        <article class="card">
+          <small>Today's attention</small><h3>Highest-value interventions</h3>
+          <div class="row"><span class="dot danger"></span><div><b>Functions · composition</b><small>5 learners below 55% mastery</small></div><button>Assign practice</button></div>
+          <div class="row"><span class="dot warn"></span><div><b>Exponential models</b><small>3 learners with repeated errors</small></div><button>Review</button></div>
+          <div class="row"><span class="dot ok"></span><div><b>Polynomial behavior</b><small>Class is on track</small></div><button>Open evidence</button></div>
+        </article>
+        <article class="card">
+          <small>Seven-day pulse</small><h3>Class engagement</h3>
+          <div class="bars" aria-label="Weekly engagement chart">
+            <i style="height:48%"></i><i style="height:66%"></i><i style="height:82%"></i><i style="height:72%"></i><i style="height:91%"></i><i style="height:57%"></i><i style="height:70%"></i>
+          </div>
+          <p>Use engagement together with mastery and open mistakes rather than one score alone.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel" id="student">
+      <div class="sectionHead"><div><small>Student learning journey</small><h2>One clear next step.</h2></div><span class="talk">Demo point: student clarity + recovery</span></div>
+      <div class="grid two">
+        <article class="card mission">
+          <small>Today's mission</small><h3>Strengthen exponential models</h3>
+          <strong class="big">60%</strong>
+          <p>6 of 10 focused questions complete · 2 review items due.</p>
+          <button>Continue learning</button>
+        </article>
+        <article class="card">
+          <small>Knowledge map</small><h3>Progress by unit</h3>
+          <div class="skill"><span>Functions</span><b>Mastered</b><i><em style="width:92%"></em></i></div>
+          <div class="skill"><span>Polynomial models</span><b>Proficient</b><i><em style="width:78%"></em></i></div>
+          <div class="skill"><span>Exponential models</span><b>Developing</b><i><em style="width:61%"></em></i></div>
+          <div class="skill"><span>Trigonometry</span><b>Starting</b><i><em style="width:32%"></em></i></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel" id="practice">
+      <div class="sectionHead"><div><small>Practice Studio</small><h2>Choose the exact learning route.</h2></div><span class="talk">Demo point: targeted practice</span></div>
+      <div class="builder">
+        <label>Course<select><option>AP Precalculus</option></select></label>
+        <label>Question bank<select><option>Course Practice</option></select></label>
+        <label>Unit<select><option>Unit 2 · Exponential & Logarithmic Functions</option></select></label>
+        <label>Lesson<select><option>2.3 · Exponential Models</option></select></label>
+        <label>Mode<select><option>Adaptive practice</option><option>Focused practice</option><option>Due review</option><option>Mistake recovery</option></select></label>
+      </div>
+      <article class="question">
+        <span>Adaptive practice · synthetic example</span>
+        <h3>A population is modeled by P(t)=1200(1.08)^t. Which statement best interprets the factor 1.08?</h3>
+        <div class="choices"><button>A · Initial population is 1.08</button><button>B · Population increases 8% per time unit</button><button>C · Population increases by 8 people</button><button>D · Population decreases 8%</button></div>
+      </article>
+    </section>
+
+    <section class="panel" id="assessment">
+      <div class="sectionHead"><div><small>Test Generator</small><h2>Build a focused timed assessment.</h2></div><span class="talk">Demo point: teacher assessment workflow</span></div>
+      <div class="builder">
+        <label>Scope<select><option>Unit 2</option></select></label>
+        <label>Difficulty<select><option>Standard + Advanced</option></select></label>
+        <label>Questions<select><option>15</option></select></label>
+        <label>Minutes<input value="30"></label>
+      </div>
+      <div class="grid three">
+        <article class="card"><small>Assessment</small><strong>15</strong><span>questions</span></article>
+        <article class="card"><small>Time</small><strong>30</strong><span>minutes</span></article>
+        <article class="card"><small>Learning loop</small><strong>↻</strong><span>results feed review/mastery</span></article>
+      </div>
+    </section>
+
+    <section class="panel" id="family">
+      <div class="sectionHead"><div><small>Family progress</small><h2>Clarity without exposing unnecessary response data.</h2></div><span class="talk">Demo point: family partnership</span></div>
+      <div class="metrics">
+        <article><small>Mastery</small><strong>76%</strong><span>overall</span></article>
+        <article><small>Accuracy</small><strong>81%</strong><span>recent work</span></article>
+        <article><small>Learning streak</small><strong>6</strong><span>days</span></article>
+        <article><small>Review due</small><strong>3</strong><span>items</span></article>
+      </div>
+      <article class="card"><small>Seven-day support plan</small><h3>Three small actions this week</h3><ol><li>Complete one 15-minute exponential-model session.</li><li>Recover two due mistakes.</li><li>Review the teacher-assigned lesson before Friday.</li></ol></article>
+    </section>
+
+    <section class="panel" id="admin">
+      <div class="sectionHead"><div><small>School control</small><h2>Role-based account operations.</h2></div><span class="talk">Demo point: institutional control</span></div>
+      <div class="metrics">
+        <article><small>All accounts</small><strong>482</strong><span>synthetic</span></article>
+        <article><small>Active</small><strong>461</strong><span>96%</span></article>
+        <article><small>Students</small><strong>428</strong><span>school managed</span></article>
+        <article><small>Teachers</small><strong>31</strong><span>educators</span></article>
+      </div>
+      <article class="card"><small>Operational features represented in current repository</small><h3>Account directory</h3><p>Create accounts, import CSV rosters, assign roles, manage status and use role-specific experiences. Formal security/compliance claims require separate verification.</p></article>
+    </section>
+
+    <section class="closeCard">
+      <small>Close the demo</small>
+      <h2>Which workflow would create the most value in your school?</h2>
+      <p>The AI sales specialist should now return to discovery, confirm implementation/commercial requirements, and ask for a decision or concrete next step.</p>
+    </section>
+  </main>
+
+  <footer>Guided demo · synthetic data only · not a production student environment</footer>
+  <script src="demo.js"></script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+{
+  "configured": false,
+  "currency": "QAR",
+  "seller_legal_name": "",
+  "commercial_product_name": "",
+  "payment_terms": "",
+  "autonomous_discount_percent": 0,
+  "offers": [
+    {
+      "sku": "PILOT",
+      "name": "School Pilot",
+      "price": null,
+      "term_months": null,
+      "student_limit": null,
+      "teacher_limit": null,
+      "included_courses": [],
+      "included_services": [],
+      "floor_price": null
+    },
+    {
+      "sku": "SCHOOL-ANNUAL",
+      "name": "Annual School License",
+      "price": null,
+      "term_months": 12,
+      "student_limit": null,
+      "teacher_limit": null,
+      "included_courses": [],
+      "included_services": [],
+      "floor_price": null
+    }
+  ],
+  "rules": {
+    "quote_when_unconfigured": false,
+    "accept_custom_legal_terms": false,
+    "promise_custom_development": false,
+    "discount_requires_exchange": true,
+    "allowed_discount_exchanges": [
+      "annual commitment",
+      "prepayment",
+      "narrower scope",
+      "approved multi-school volume"
+    ]
+  }
+}
