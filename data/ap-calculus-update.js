@@ -79,11 +79,11 @@
       {
         "number": "1.2",
         "title": "Defining Limits and Using Limit Notation",
-        "summary": "Read every symbol in a limit statement and separate “near” from “at.”",
+        "summary": "Explore six interactive investigations, build precise limit notation, and explain nearby behavior through 16 AP-style MCQs and three free-response tasks.",
         "outcomes": [
-          "Interpret two-sided and one-sided limit notation in words.",
+          "Represent and interpret finite limits with correct variables, input targets, limiting outputs and contextual units.",
           "Distinguish nearby function behavior from the value of the function at the target input.",
-          "Write precise analytic limit statements from verbal information."
+          "Connect verbal, analytic, graphical and numerical representations; use simple one-sided notation and justify AP-style conclusions."
         ],
         "videos": [],
         "notes": [
