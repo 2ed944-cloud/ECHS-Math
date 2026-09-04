@@ -20,7 +20,14 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          cat .readiness-payload/part-* > /tmp/readiness.b64
+          # Two transport chunks contain one connector-added trailing character.
+          # Trim every full chunk to its reviewed 12,000-byte boundary before reassembly.
+          : > /tmp/readiness.b64
+          for part in .readiness-payload/part-0{0..6}; do
+            head -c 12000 "$part" >> /tmp/readiness.b64
+          done
+          cat .readiness-payload/part-07 >> /tmp/readiness.b64
+          test "$(wc -c < /tmp/readiness.b64)" -eq 84164
           base64 --decode /tmp/readiness.b64 > /tmp/readiness.tar.gz
           echo "212babe566c6cb7b82ebf43408d440c359f61b499e163e3e3cea52127091c687  /tmp/readiness.tar.gz" | sha256sum -c -
           tar -xzf /tmp/readiness.tar.gz -C .
