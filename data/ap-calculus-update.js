@@ -139,11 +139,11 @@
       {
         "number": "1.3",
         "title": "Estimating Limit Values from Graphs",
-        "summary": "Estimate limits visually while keeping the point value separate from the limit.",
+        "summary": "Trace, construct and inspect graphs through six investigations, 16 AP-style MCQs and three free-response tasks.",
         "outcomes": [
           "Estimate one-sided and two-sided limits from a graph.",
-          "Use open and closed points correctly when interpreting nearby behavior.",
-          "Identify graph evidence for a limit that does not exist."
+          "Distinguish point values from nearby limits, including holes, corners and domain endpoints.",
+          "Explain unequal sides, unbounded behavior, persistent oscillation and the limits of graphical scale."
         ],
         "videos": [
           {
@@ -205,11 +205,11 @@
       {
         "number": "1.4",
         "title": "Estimating Limit Values from Tables",
-        "summary": "Design and read numerical evidence approaching a target from the left and right.",
+        "summary": "Design and explore numerical evidence through six investigations, 16 AP-style MCQs and three free-response tasks.",
         "outcomes": [
           "Choose input values that approach a target from both sides.",
           "Estimate one-sided and two-sided limits from numerical trends.",
-          "State only the precision supported by the table."
+          "Use appropriate precision, recognize misleading sampling, and distinguish numerical estimates from proofs."
         ],
         "videos": [
           {
