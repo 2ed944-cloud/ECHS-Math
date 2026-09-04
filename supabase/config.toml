@@ -40,3 +40,6 @@ verify_jwt = false
 
 [functions.login-diagnostics]
 verify_jwt = false
+
+[functions.readiness-api]
+verify_jwt = false

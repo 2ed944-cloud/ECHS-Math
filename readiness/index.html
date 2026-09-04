@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' https://*.supabase.co; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self';">
+  <meta name="referrer" content="same-origin">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#102a43">
+  <title>IB Mathematics Readiness & Pathway Intelligence | ECHS Mathematics</title>
+  <link rel="icon" href="../assets/icon-192.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;1,500&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/institution.css?v=20260726-phase3">
+  <link rel="stylesheet" href="../css/institution-premium.css?v=20260726-phase4">
+  <link rel="stylesheet" href="../css/echs-design-system-v5-1.css?v=20260807-v51">
+  <link rel="stylesheet" href="readiness.css?v=20260905-v1">
+</head>
+<body class="institutionBody readinessBody" data-readiness-page="true">
+  <div id="appLoading" class="readinessLoading" role="status" aria-live="polite">
+    <div class="readinessLoader"></div>
+    <strong>Loading IB Mathematics readiness evidence…</strong>
+  </div>
+
+  <div id="demoBanner" class="demoBanner hidden" role="status">
+    <strong>Synthetic demonstration data.</strong>
+    <span>No real student, MAP, MYP or IB outcome data is used in this view.</span>
+    <a href="index.html">Return to secure institutional view</a>
+  </div>
+
+  <div class="institutionShell readinessShell" id="readinessApp" hidden>
+    <aside class="institutionSidebar readinessSidebar" id="institutionSidebar">
+      <a class="institutionBrand" href="../index.html">
+        <span class="institutionBrandMark">∫</span>
+        <div><strong>ECHS Mathematics</strong><span data-institution-org>Institutional Platform</span></div>
+      </a>
+      <div class="institutionUser">
+        <strong data-institution-name>Readiness User</strong>
+        <small>@<span data-institution-username>demo</span></small>
+        <span class="roleBadge" data-institution-role>demo</span>
+      </div>
+      <nav class="institutionNav readinessNav" aria-label="Readiness system">
+        <div class="institutionNavSection">Readiness intelligence</div>
+        <button class="readinessNavButton active" type="button" data-view="overview"><span class="institutionNavIcon">◫</span>Network Overview</button>
+        <button class="readinessNavButton" type="button" data-view="student"><span class="institutionNavIcon">◎</span>Student Profile</button>
+        <button class="readinessNavButton" type="button" data-view="diagnostic"><span class="institutionNavIcon">◆</span>IB Diagnostic</button>
+        <button class="readinessNavButton staffOnly" type="button" data-view="evidence"><span class="institutionNavIcon">↥</span>Evidence & Imports</button>
+        <button class="readinessNavButton adminOnly" type="button" data-view="model"><span class="institutionNavIcon">∑</span>Model & Validation</button>
+        <div class="institutionNavSection">Institution platform</div>
+        <a href="../question-bank/student.html" data-role-home><span class="institutionNavIcon">⌂</span>Role Home</a>
+        <a href="../index.html"><span class="institutionNavIcon">∫</span>Lessons Portal</a>
+      </nav>
+      <div class="sidebarYear readinessSidebarNote">
+        <small>Decision-support status</small>
+        <strong>Locally validated pathway intelligence</strong>
+        <span>Readiness scores are evidence-based indices, not official IB or NWEA probability claims.</span>
+      </div>
+      <div class="institutionSidebarFooter secureOnly"><button type="button" data-institution-logout>Sign out</button></div>
+    </aside>
+
+    <section class="institutionWorkspace readinessWorkspace">
+      <header class="institutionTopbar readinessTopbar">
+        <button class="iIconButton mobileMenu" data-readiness-menu aria-label="Open navigation" aria-controls="institutionSidebar" aria-expanded="false">☰</button>
+        <div class="topbarTitle">
+          <div>
+            <span class="topbarBreadcrumb">IB Mathematics continuum intelligence</span>
+            <h1 id="pageTitle">Readiness & Pathway Intelligence</h1>
+            <p id="pageSubtitle">MAP + MYP evidence + IB-specific diagnostic → pathway readiness → targeted action.</p>
+          </div>
+        </div>
+        <div class="institutionTopActions">
+          <span class="dateChip" id="evidenceModeChip">Evidence index</span>
+          <button class="iButton secondary staffOnly" type="button" id="recomputeVisible">Recompute visible students</button>
+          <button class="iButton" type="button" id="openMethodology">Methodology</button>
+        </div>
+      </header>
+
+      <main class="institutionMain readinessMain">
+        <section id="noticeRegion" aria-live="polite"></section>
+
+        <section class="readinessView active" data-view-panel="overview">
+          <section class="experienceHero readinessHero">
+            <div class="experienceHeroContent">
+              <span class="experienceEyebrow">One common evidence architecture</span>
+              <h2>See readiness.<span>Then act on the reason.</span></h2>
+              <p>Combine external MAP evidence, MYP Mathematics criteria and a focused IB prerequisite diagnostic without reducing a student to one test score.</p>
+              <div class="experienceActions">
+                <button class="iButton gold" id="jumpCohort" type="button">Explore cohort</button>
+                <button class="iButton secondary" id="jumpGaps" type="button">View system-wide gaps</button>
+              </div>
+            </div>
+            <div class="experienceHeroPanel">
+              <article class="readinessPrinciple">
+                <small>Decision rule</small>
+                <strong>Evidence informs pathways. It does not close them.</strong>
+                <p>A developing AA HL profile generates a preparation route; it is not an automatic exclusion from the course.</p>
+                <div class="principleFlow"><span>MAP</span><b>+</b><span>MYP</span><b>+</b><span>Diagnostic</span><b>→</b><span>Action</span></div>
+              </article>
+            </div>
+          </section>
+
+          <section class="premiumMetrics readinessMetrics" id="overviewMetrics">
+            <article class="premiumMetric"><div class="premiumMetricTop"><span class="premiumMetricLabel">Learners in scope</span><span class="premiumMetricIcon">◉</span></div><strong id="metricStudents">—</strong><p>Students visible to your current role.</p><span class="miniTrend" id="metricStudentsNote">Loading</span></article>
+            <article class="premiumMetric"><div class="premiumMetricTop"><span class="premiumMetricLabel">Full evidence profiles</span><span class="premiumMetricIcon">✓</span></div><strong id="metricFull">—</strong><p>MAP + MYP + diagnostic available.</p><span class="miniTrend" id="metricFullRate">—</span></article>
+            <article class="premiumMetric"><div class="premiumMetricTop"><span class="premiumMetricLabel">Partial / screening</span><span class="premiumMetricIcon">◫</span></div><strong id="metricPartial">—</strong><p>Profiles that need additional evidence.</p><span class="miniTrend warn" id="metricPartialNote">—</span></article>
+            <article class="premiumMetric"><div class="premiumMetricTop"><span class="premiumMetricLabel">Open preparation gaps</span><span class="premiumMetricIcon">↗</span></div><strong id="metricGaps">—</strong><p>Active prerequisite interventions.</p><span class="miniTrend" id="metricGapNote">Actionable, not exclusionary</span></article>
+          </section>
+
+          <div class="premiumSectionHead"><div><small>Pathway landscape</small><h2>Where current evidence points</h2><p>This is the strongest current index among the four DP Mathematics pathways—not an enrollment recommendation by itself.</p></div><span class="cardBadge">Latest snapshot</span></div>
+          <section class="readinessPathwayLandscape" id="pathwayLandscape"></section>
+
+          <div class="premiumSectionHead"><div><small>Institution network lens</small><h2>School readiness comparison</h2><p>Compare evidence coverage and average target-pathway readiness without turning the dashboard into a school league table.</p></div></div>
+          <section class="schoolComparison" id="schoolComparison"></section>
+
+          <div class="premiumSectionHead" id="cohortSection"><div><small>Student evidence matrix</small><h2>Cohort readiness view</h2><p>Filter, compare and open each student’s evidence trail, pathway profile and preparation route.</p></div><div class="readinessActions"><button class="iButton secondary" id="exportCohort" type="button">Export CSV</button></div></div>
+          <section class="readinessFilters" aria-label="Cohort filters">
+            <div class="iControl iSearch"><label for="studentSearch">Search</label><input id="studentSearch" type="search" placeholder="Student, username, ID or class"></div>
+            <div class="iControl"><label for="evidenceFilter">Evidence</label><select id="evidenceFilter"><option value="">All evidence profiles</option><option value="full_profile">Full profile</option><option value="partial_profile">Partial profile</option><option value="screening_only">Screening only</option><option value="none">No readiness index</option></select></div>
+            <div class="iControl"><label for="pathwayFilter">Target pathway</label><select id="pathwayFilter"><option value="">All pathways</option><option value="AA_HL">AA HL</option><option value="AA_SL">AA SL</option><option value="AI_HL">AI HL</option><option value="AI_SL">AI SL</option><option value="unset">Not set</option></select></div>
+            <div class="iControl"><label for="schoolFilter">School</label><select id="schoolFilter"><option value="">All schools</option></select></div>
+            <div class="iControl"><label for="classFilter">Class</label><select id="classFilter"><option value="">All classes</option></select></div>
+          </section>
+          <div class="iTableWrap readinessTableWrap">
+            <table class="iTable readinessTable"><thead><tr><th>Student</th><th>Evidence</th><th>AA HL</th><th>AA SL</th><th>AI HL</th><th>AI SL</th><th>Target</th><th></th></tr></thead><tbody id="cohortRows"><tr><td colspan="8">Loading cohort…</td></tr></tbody></table>
+          </div>
+
+          <div class="premiumSectionHead" id="gapSection"><div><small>System improvement lens</small><h2>Most frequent active gaps</h2><p>Use shared patterns to plan intervention, curriculum review and professional learning across classes or schools.</p></div></div>
+          <section class="readinessGapGrid" id="systemGaps"></section>
+        </section>
+
+        <section class="readinessView" data-view-panel="student">
+          <div class="readinessEmptyState" id="studentEmpty">
+            <span>◎</span><h2>Select a student</h2><p>Open a learner from the cohort table to inspect evidence, trajectory, gaps and pathway preparation.</p>
+            <button class="iButton" type="button" data-go-view="overview">Return to cohort</button>
+          </div>
+          <div id="studentProfile" hidden>
+            <section class="studentIdentityBar">
+              <div><span class="experienceEyebrow">Student readiness passport</span><h2 id="studentName">Student</h2><p id="studentMeta"></p></div>
+              <div class="studentIdentityActions"><div class="iControl"><label for="preferredPathway">Target pathway</label><select id="preferredPathway"><option value="">Not set</option><option value="AA_HL">AA HL</option><option value="AA_SL">AA SL</option><option value="AI_HL">AI HL</option><option value="AI_SL">AI SL</option></select></div><button class="iButton staffOnly" id="recomputeStudent" type="button">Recompute</button></div>
+            </section>
+            <section class="evidenceTriad" id="evidenceTriad"></section>
+            <div class="premiumSectionHead"><div><small>Four independent pathway lenses</small><h2>IB Mathematics readiness</h2><p>Each index uses pathway-specific evidence weights and explains its limiting prerequisites.</p></div></div>
+            <section class="pathwayCards" id="studentPathways"></section>
+            <section class="premiumGrid readinessStudentGrid">
+              <article class="premiumCard span7"><div class="premiumCardHeader"><div><small>Longitudinal evidence</small><h3>Readiness trajectory</h3><p>Track how the selected pathway index changes after additional evidence and intervention.</p></div><select id="trajectoryPathway" class="compactSelect"><option value="AA_HL">AA HL</option><option value="AA_SL">AA SL</option><option value="AI_HL">AI HL</option><option value="AI_SL">AI SL</option></select></div><div id="trajectoryChart" class="trajectoryChart"></div></article>
+              <article class="premiumCard span5"><div class="premiumCardHeader"><div><small>Prerequisite evidence</small><h3>Skill profile</h3><p>Combined evidence with source provenance.</p></div></div><div id="skillProfile" class="skillProfile"></div></article>
+            </section>
+            <div class="premiumSectionHead"><div><small>From diagnosis to action</small><h2>Preparation route</h2><p>Active gaps are targets for learning and reassessment, not permanent labels.</p></div></div>
+            <section id="studentInterventions" class="interventionList"></section>
+            <section class="staffOnly staffEvidenceEditor">
+              <div><small>MYP evidence</small><h3>Add criterion evidence</h3><p>Record a dated MYP Mathematics evidence point. Saving it automatically recalculates all four pathway indices.</p></div>
+              <button class="iButton" id="openMypEvidence" type="button">Add MYP evidence</button>
+            </section>
+          </div>
+        </section>
+
+        <section class="readinessView" data-view-panel="diagnostic">
+          <section class="diagnosticIntro">
+            <div><span class="experienceEyebrow">IB-specific prerequisite evidence</span><h2>Mathematics Pathway Diagnostic</h2><p>This focused diagnostic complements MAP and MYP evidence in areas such as symbolic fluency, trigonometry, modelling, reasoning and mathematical communication.</p></div>
+            <div class="diagnosticRules"><strong>30 original items · 10 skill clusters</strong><span>At least 75% must be answered before submission.</span><span>Answer choices are graded server-side; raw responses are not stored.</span></div>
+          </section>
+          <div id="diagnosticStudentChooser" class="staffOnly readinessFilters"><div class="iControl"><label for="diagnosticStudent">Student</label><select id="diagnosticStudent"><option value="">Choose a student</option></select></div></div>
+          <form id="diagnosticForm" class="diagnosticForm"><div id="diagnosticQuestions" class="diagnosticQuestions"><div class="readinessEmptyState"><span>◆</span><h3>Diagnostic not loaded</h3><p>Select “Start diagnostic” to load the current secure item set.</p></div></div><div class="diagnosticSubmitBar"><div id="diagnosticProgress">0 of 30 answered</div><button class="iButton" id="loadDiagnostic" type="button">Start diagnostic</button><button class="iButton gold" id="submitDiagnostic" type="submit" disabled>Submit & update readiness</button></div></form>
+          <section id="diagnosticResult" class="diagnosticResult hidden" aria-live="polite"></section>
+        </section>
+
+        <section class="readinessView staffOnly" data-view-panel="evidence">
+          <section class="evidenceImportHero"><div><span class="experienceEyebrow">Controlled evidence ingestion</span><h2>MAP, MYP and outcome evidence</h2><p>Import files are matched against the school-managed student directory. Unmatched rows are rejected and reported; no new student account is silently created.</p></div><div class="importGuard"><strong>Privacy guard</strong><span>Use approved exports only. Avoid unnecessary personal data fields.</span></div></section>
+          <section class="importCard adminOnly schoolNetworkCard">
+            <div class="importCardHeader"><div><small>Institution network structure</small><h3>Schools & learner assignment</h3><p>Create the IB schools that sit inside this institutional readiness network, then assign the currently filtered learner set to a school for the academic year.</p></div><span class="cardBadge">Network-ready</span></div>
+            <div class="schoolManagement">
+              <div class="schoolCreateRow"><div class="iControl"><label for="newSchoolName">School name</label><input id="newSchoolName" placeholder="Education City High School"></div><div class="iControl"><label for="newSchoolCode">Code</label><input id="newSchoolCode" placeholder="ECHS"></div><button class="iButton" id="createSchool" type="button">Create school</button></div>
+              <div class="schoolAssignRow"><div class="iControl"><label for="assignmentSchool">Assign filtered learners to</label><select id="assignmentSchool"><option value="">Choose school</option></select></div><div class="iControl"><label for="assignmentYear">Academic year</label><input id="assignmentYear" value="2026-2027"></div><button class="iButton secondary" id="assignFilteredSchool" type="button">Assign filtered cohort</button></div>
+              <div id="schoolDirectory" class="schoolDirectory"></div>
+            </div>
+          </section>
+          <section class="importCard adminOnly" data-import-type="map">
+            <div class="importCardHeader"><div><small>Administrator import</small><h3>MAP Growth mathematics evidence</h3><p>Upload CSV, review automatic header mapping, normalize fields, then import and recompute matched students.</p></div><a class="iButton secondary" href="templates/map-import-template.csv" download>Template</a></div>
+            <div class="csvUpload"><input type="file" id="mapFile" accept=".csv,text/csv"><button class="iButton" id="prepareMap" type="button">Prepare MAP file</button></div><div id="mapImportWorkspace"></div>
+          </section>
+          <section class="importCard adminOnly" data-import-type="myp">
+            <div class="importCardHeader"><div><small>Administrator bulk import</small><h3>MYP Mathematics criteria</h3><p>Import criterion A–D evidence from an approved school export.</p></div><a class="iButton secondary" href="templates/myp-evidence-template.csv" download>Template</a></div>
+            <div class="csvUpload"><input type="file" id="mypFile" accept=".csv,text/csv"><button class="iButton" id="prepareMyp" type="button">Prepare MYP file</button></div><div id="mypImportWorkspace"></div>
+          </section>
+          <section class="importCard adminOnly" data-import-type="outcomes">
+            <div class="importCardHeader"><div><small>Validation evidence</small><h3>Completed DP Mathematics outcomes</h3><p>Import final course outcomes only when governance permits. These records test whether the local readiness index is actually associated with later performance.</p></div><a class="iButton secondary" href="templates/ib-outcomes-template.csv" download>Template</a></div>
+            <div class="csvUpload"><input type="file" id="outcomeFile" accept=".csv,text/csv"><button class="iButton" id="prepareOutcomes" type="button">Prepare outcome file</button></div><div id="outcomeImportWorkspace"></div>
+          </section>
+          <section class="teacherEvidencePanel teacherOnly"><div><span class="experienceEyebrow">Teacher evidence entry</span><h2>Add MYP Mathematics evidence</h2><p>Teachers can enter criterion evidence for students in their assigned classes from the Student Profile view.</p></div><button class="iButton" type="button" data-go-view="overview">Choose a student</button></section>
+        </section>
+
+        <section class="readinessView adminOnly" data-view-panel="model">
+          <section class="modelWarning"><strong>Calibration, not branding.</strong><p>Do not publish this readiness index as a probability of IB success until local outcome data support calibration. Model changes create a versioned configuration and should be reviewed academically.</p></section>
+          <section class="premiumGrid modelGrid">
+            <article class="premiumCard span6"><div class="premiumCardHeader"><div><small>Evidence architecture</small><h3>Layer weights</h3><p>Weights are re-normalized across available evidence, while evidence completeness remains visible.</p></div><span class="cardBadge" id="modelVersion">Version —</span></div><div class="weightEditor"><label>MAP <input id="weightMap" type="number" step="0.01" min="0" max="1"></label><label>MYP criteria <input id="weightMyp" type="number" step="0.01" min="0" max="1"></label><label>IB diagnostic <input id="weightDiagnostic" type="number" step="0.01" min="0" max="1"></label></div><div class="weightTotal" id="weightTotal">Total: —</div></article>
+            <article class="premiumCard span6"><div class="premiumCardHeader"><div><small>Interpretation bands</small><h3>Readiness thresholds</h3><p>Bands guide intervention; they are not automatic course-entry cutoffs.</p></div></div><div class="weightEditor"><label>Strong ≥ <input id="thresholdStrong" type="number" min="0" max="100"></label><label>On track ≥ <input id="thresholdOnTrack" type="number" min="0" max="100"></label><label>Developing ≥ <input id="thresholdDeveloping" type="number" min="0" max="100"></label></div></article>
+          </section>
+          <section class="modelAdvanced"><div><small>Advanced configuration</small><h3>Versioned model JSON</h3><p>Pathway-specific MAP, MYP and diagnostic skill weights can be reviewed here. Invalid configurations are rejected server-side.</p></div><textarea id="modelJson" spellcheck="false" aria-label="Readiness model JSON"></textarea><div class="modelActions"><input id="modelName" placeholder="Model name"><input id="modelNotes" placeholder="Academic review note"><button class="iButton" id="saveModel" type="button">Activate new model version</button></div></section>
+          <div class="premiumSectionHead"><div><small>Local empirical check</small><h2>Outcome validation</h2><p>Compare prior readiness snapshots with later completed DP Mathematics outcomes.</p></div><button class="iButton secondary" id="refreshValidation" type="button">Refresh validation</button></div>
+          <section class="validationMetrics" id="validationMetrics"></section>
+          <section class="validationBands" id="validationBands"></section>
+        </section>
+      </main>
+    </section>
+  </div>
+
+  <dialog class="iDialog readinessDialog" id="methodologyDialog">
+    <div class="iDialogBody methodologyBody">
+      <span class="iEyebrow">Methodology guardrails</span><h2>What this system means—and what it does not</h2>
+      <div class="methodologyGrid">
+        <article><strong>1. External evidence</strong><p>MAP mathematics provides standardized achievement/growth evidence. The system does not claim NWEA officially maps a RIT score to an IB course.</p></article>
+        <article><strong>2. Programme evidence</strong><p>MYP Mathematics criteria add evidence of knowing, investigating, communicating and applying mathematics in context.</p></article>
+        <article><strong>3. Pathway-specific evidence</strong><p>An original diagnostic fills prerequisite gaps that one external score does not capture sufficiently for AA/AI pathway decisions.</p></article>
+        <article><strong>4. Explainable index</strong><p>The V1 result is a 0–100 readiness index with visible component scores, evidence completeness, confidence and limiting skills—not a predicted probability.</p></article>
+        <article><strong>5. Action loop</strong><p>Gaps create targeted preparation tasks. New evidence can move the readiness trajectory, so the system avoids permanent labels.</p></article>
+        <article><strong>6. Validation</strong><p>Completed local DP outcomes can later test correlation, classification performance and observed success by readiness band before predictive claims are considered.</p></article>
+      </div>
+      <div class="iDialogFooter"><button class="iButton" type="button" data-close-dialog>Close</button></div>
+    </div>
+  </dialog>
+
+  <dialog class="iDialog readinessDialog" id="mypEvidenceDialog">
+    <form class="iDialogBody" id="mypEvidenceForm">
+      <span class="iEyebrow">MYP Mathematics evidence</span><h2 id="mypEvidenceTitle">Add criterion evidence</h2><p>Record evidence from an appropriate MYP Mathematics assessment. Missing criteria may be left blank.</p>
+      <div class="iDialogGrid"><div class="iControl"><label for="mypDate">Evidence date</label><input id="mypDate" type="date" required></div><div class="iControl"><label for="mypSource">Source title</label><input id="mypSource" placeholder="Unit assessment / task"></div><div class="iControl"><label for="criterionA">Criterion A (0–8)</label><input id="criterionA" type="number" min="0" max="8" step="1"></div><div class="iControl"><label for="criterionB">Criterion B (0–8)</label><input id="criterionB" type="number" min="0" max="8" step="1"></div><div class="iControl"><label for="criterionC">Criterion C (0–8)</label><input id="criterionC" type="number" min="0" max="8" step="1"></div><div class="iControl"><label for="criterionD">Criterion D (0–8)</label><input id="criterionD" type="number" min="0" max="8" step="1"></div><div class="iControl full"><label for="mypNotes">Notes</label><textarea id="mypNotes" rows="3" placeholder="Optional evidence context"></textarea></div></div>
+      <div class="iDialogFooter"><button class="iButton secondary" type="button" data-close-dialog>Cancel</button><button class="iButton" type="submit">Save evidence & recompute</button></div>
+    </form>
+  </dialog>
+
+  <script src="../js/institution-client.js?v=20260726-phase3"></script>
+  <script src="readiness.js?v=20260905-v1"></script>
+</body>
+</html>
