@@ -18,6 +18,7 @@ REQUIRED = [
     "readiness/templates/myp-evidence-template.csv",
     "readiness/templates/ib-outcomes-template.csv",
     "docs/IB_READINESS_PATHWAY_SYSTEM.md",
+    "js/institution-experience.js",
     "supabase/functions/readiness-api/index.ts",
     "supabase/functions/readiness-api/readiness-engine.js",
     "supabase/functions/readiness-api/readiness-engine.test.mjs",
@@ -39,6 +40,7 @@ def read(rel: str) -> str:
 if not errors:
     html = read("readiness/index.html")
     js = read("readiness/readiness.js")
+    experience = read("js/institution-experience.js")
     api = read("supabase/functions/readiness-api/index.ts")
     engine = read("supabase/functions/readiness-api/readiness-engine.js")
     bank = read("supabase/functions/readiness-api/diagnostic-bank.js")
@@ -58,6 +60,8 @@ if not errors:
         errors.append("frontend is not wired to the institutional readiness-api client")
     if "?demo=1" not in docs or 'new URLSearchParams(location.search).get("demo")' not in js:
         errors.append("synthetic demo mode is not documented/wired")
+    if "bindReadinessEntry" not in experience or 'new URL("readiness/index.html",ROOT)' not in experience:
+        errors.append("institutional dashboards do not surface the IB readiness entry")
 
     if 'admin.rpc("api_session_lookup"' not in api:
         errors.append("readiness-api does not validate the custom institutional bearer session")
