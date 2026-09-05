@@ -72,7 +72,7 @@ require(package_validator,['ALLOWED_COURSES','ap-calculus','target_courses','exa
 require(deploy,['upload-manager-api','practice-bank-api','setup-api','supabase functions deploy','/health'],'Backend deployment health contract')
 require(supabase_config,['[functions.upload-manager-api]','[functions.practice-bank-api]','verify_jwt = false'],'Supabase upload-manager function config')
 require(ib_update,[
- 'g11-ib-ai','window.ECHS_COURSES.filter','6 lessons · 435 purposeful Learn screens',
+ 'g11-ib-ai','window.ECHS_COURSES.filter','6 lessons · 402 purposeful Learn screens',
  'Scientific Notation, Approximation and Error','Financial Applications','Technology for Equations and Systems',
  'standard_form','financial_models','technology_equations'
 ],'Canonical IB Unit 1 portal update')
@@ -85,7 +85,7 @@ active=[
  ('1.1','IB_AI_SL_1.1_standard_form_ECHS.html',['lesson-1.1-merged-model-v7.js','lesson-1.1-merged-questions-v7.js','lesson-1.1-merged-labs-v7.js','lesson-1.1-merged-core-v7.js']),
  ('1.2','IB_AI_SL_1.2_arithmetic_sequences_ECHS.html',['lesson-1.2.js','lesson-1.2-arithmetic-definitive-v6.js']),
  ('1.3','IB_AI_SL_1.3_geometric_sequences_ECHS.html',['lesson-1.3.js','lesson-1.3-geometric-definitive-v6.js']),
- ('1.4','IB_AI_SL_1.4_financial_models_ECHS.html',['lesson-1.4.js','lesson-1.4-financial-v6-foundations.js','lesson-1.4-financial-v6-assessment.js']),
+ ('1.4','IB_AI_SL_1.4_financial_models_ECHS.html',['lesson-1.4-finance-model-v8.js','lesson-1.4-finance-questions-v8.js','lesson-1.4-finance-labs-v8.js','lesson-1.4-finance-core-v8.js']),
  ('1.5','IB_AI_SL_1.5_logarithms_ECHS.html',['lesson-1.5.js']),
  ('1.6','IB_AI_SL_1.6_technology_equations_ECHS.html',['lesson-1.8.js','lesson-1.6-technology-v6-foundations.js','lesson-1.6-technology-v6-assessment.js'])
 ]
@@ -96,6 +96,10 @@ for number,name,data_files in active:
   require(text,['data-merged-sections="SL 1.1 + SL 1.6"','../assets/css/lesson-1.1-merged-v7.css','id="continuePractice"','data-go="practice-guide"'],f'IB merged lesson {number}')
   core=read('lessons/ib-math-ai/unit-1/data/lesson-1.1-merged-core-v7.js')
   require(core,['[data-finish-lesson]','finish.click()','echs:ib-math-ai:'],f'IB merged lesson protected progression {number}')
+ elif number=='1.4':
+  require(text,['data-merged-sections="SL 1.4 + SL 1.7"','../assets/css/lesson-1.4-finance-v8.css','id="continuePractice"','data-go="practice-guide"'],f'IB merged lesson {number}')
+  core=read('lessons/ib-math-ai/unit-1/data/lesson-1.4-finance-core-v8.js')
+  require(core,['[data-finish-lesson]','finish.click()','echs:ib-math-ai:','location.search'],f'IB merged lesson protected progression {number}')
  else:
   require(text,['../assets/css/theme.css','../assets/js/engine.js','data-route="practice"'],f'IB active lesson {number}')
  for data_file in data_files:

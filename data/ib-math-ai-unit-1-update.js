@@ -21,13 +21,13 @@
   const unit={
     title:"Unit 1: Number and Algebra",
     description:"Six consolidated IB Mathematics: Applications and Interpretation SL lessons with coherent interactive teaching screens, transparent technology, four-level practice, IB tasks and mastery evidence.",
-    portalSummary:"6 lessons · 435 purposeful Learn screens · 516 learning and practice questions · 72 quiz questions · 40 written tasks",
+    portalSummary:"6 lessons · 402 purposeful Learn screens · 424 learning and practice questions · 56 quiz questions · 58 written tasks",
     release:"6.0.0",
     architectureNotes:[
       "Approximation, bounds and percentage error are consolidated in Lesson 1.1.",
       "Lesson 1.1 uses a scientific-notation-first merged route covering official SL 1.1 + SL 1.6, with relevant SL challenges after IB-style written tasks.",
       "Lesson 1.1 uses TI-Nspire CX / CX II procedures and guided calculator practice for scientific notation, accurate entry and guard digits.",
-      "Financial applications, loans, annuities and amortization remain consolidated in Lesson 1.4, with the current IB SL core shown by default and broader reference-supported applications available as extension.",
+      "Lesson 1.4 remains merged with official SL 1.7: compound interest, depreciation, real value, loans, amortization and end-of-period annuities, with TI-Nspire guidance and IB-style written tasks.",
       "Lesson 1.5 is expanded into a definitive exponent-laws and logarithms pathway.",
       "Lesson 1.6 is rebuilt as a definitive technology, equations, systems, verification and modelling pathway."
     ],
@@ -64,13 +64,13 @@
         "Evaluate assumptions, saturation, precision and technology output in geometric models."
       ],"6.0.0",73,96,14,5),
       makeLesson("1.4","Financial Applications","financial_models",[
-        "Use repeated percentage change for compound interest and annual reducing-balance depreciation.",
-        "Convert nominal annual rates to the periodic rate and number of periods required by a financial model.",
-        "Use financial technology transparently to calculate loan repayments, total repayment and total interest.",
-        "Interpret amortization by separating the interest and principal portions of each repayment.",
-        "Compare loan options using payment size, total interest and affordability.",
-        "Access annuities, mixed deposits, withdrawal funds, inflation, real value and advanced balances as clearly labelled extensions after core mastery."
-      ],"6.0.0",100,120,16,6),
+        "Model compound interest, annual depreciation and inflation-adjusted real value within SL 1.4.",
+        "Match annual rates, compounding periods, payment timing and cash-flow signs in TI-Nspire Finance Solver.",
+        "Use technology to solve for present value, future value, rate, duration and regular payments.",
+        "Interpret amortization schedules, outstanding balances, total interest and final repayments.",
+        "Model end-of-period savings and withdrawal annuities within SL 1.7.",
+        "Communicate and justify solutions to original IB-style short, extended and challenging written questions."
+],"8.0.0",67,28,0,24),
       makeLesson("1.5","Exponent Laws and Logarithms","logarithms",[
         "Simplify integer, zero, negative and rational exponents exactly and state necessary restrictions.",
         "Solve exponential equations using common bases, substitution, logarithms or graph intersection.",
@@ -110,10 +110,6 @@
     {label:"Full Notes 1.3 · Lesson-Synchronised Edition",url:"notes/ib-math-ai/unit-1/IB_AI_SL_1.3_Geometric_Sequences_Full_Notes_Student.html",type:"notes"},
     {label:"Full Notes 1.3 · Original Coloured LaTeX PDF",url:"notes/ib-math-ai/unit-1/IB_AI_SL_1.3_Geometric_Sequences_Full_Notes_Student.pdf",type:"notes"}
   ]);
-  upsertFullNotes("1.4",[
-    {label:"Full Notes 1.4 · Lesson-Synchronised Edition",url:"notes/ib-math-ai/unit-1/IB_AI_SL_1.4_Financial_Applications_Full_Notes_Student.html",type:"notes"},
-    {label:"Full Notes 1.4 · Original Coloured LaTeX PDF",url:"notes/ib-math-ai/unit-1/IB_AI_SL_1.4_Financial_Applications_Full_Notes_Student.pdf",type:"notes"}
-  ]);
   upsertFullNotes("1.5",[
     {label:"Full Notes 1.5 · Lesson-Synchronised Edition",url:"notes/ib-math-ai/unit-1/IB_AI_SL_1.5_Exponent_Laws_and_Logarithms_Full_Notes_Student.html",type:"notes"},
     {label:"Full Notes 1.5 · Original Coloured LaTeX PDF",url:"notes/ib-math-ai/unit-1/IB_AI_SL_1.5_Exponent_Laws_and_Logarithms_Full_Notes_Student.pdf",type:"notes"}
@@ -139,25 +135,29 @@
 
   const financialLesson=unit.lessons.find(lesson=>lesson.number==="1.4");
   if(financialLesson){
-    financialLesson.organization_release="6.1.0";
-    financialLesson.organization="one lesson with seven internal teaching blocks";
-    financialLesson.scope_release="6.2.0";
+    financialLesson.organization_release="8.0.0";
+    financialLesson.organization="one merged lesson with seven teaching blocks";
+    financialLesson.scope_release="8.0.0";
     financialLesson.defaultScope="IB SL Core";
-    financialLesson.allContentAvailable=true;
-    financialLesson.officialCoreSections=[
-      {code:"SL 1.4",title:"Financial applications of geometric sequences and series — compound interest and annual depreciation"},
-      {code:"SL 1.7",title:"Loan repayments and amortization"}
+    financialLesson.allContentAvailable=false;
+    financialLesson.officialCoreSections=[{code:"SL 1.4",title:"Compound interest, annual depreciation and real value"},{code:"SL 1.7",title:"Amortization and annuities using technology"}];
+    financialLesson.scopeNote="Merged SL 1.4 + SL 1.7 with end-of-period payments; all challenges stay within the combined SL scope.";
+    financialLesson.scopeCounts={learn:{core:67,all:67},practice:{core:28,all:28},quiz:{core:0,all:0},tasks:{core:24,all:24}};
+    financialLesson.calculator={model:"TI-Nspire CX / CX II",mode:"guided calculator practice",externalDependency:false};
+    financialLesson.assessment={learningChecks:28,shortResponseTasks:12,extendedResponseTasks:8,challengeTasks:4,writtenParts:60,writtenMarks:139};
+    financialLesson.resources=[
+      {label:"Complete interactive lesson · SL 1.4 + SL 1.7",url:financialLesson.url,type:"resource"},
+      {label:"Student notes · print the merged lesson",url:financialLesson.url,type:"notes"},
+      {label:"Learning checks and IB-style written practice",url:financialLesson.url+"#practice",type:"practice"},
+      {label:"IB-style written tasks · 24",url:financialLesson.url+"#exam",type:"assessment"}
     ];
-    financialLesson.scopeNote="The complete 100-screen collection remains available; the default route skips clearly labelled reference-supported extensions until the learner selects All content.";
-    financialLesson.teachingBlocks=[
-      {code:"1.4A",title:"Percentage Change and Financial Growth",estimatedClassroomTime:"60–75 minutes"},
-      {code:"1.4B",title:"Compounding and Rate Conventions",estimatedClassroomTime:"60–75 minutes"},
-      {code:"1.4C",title:"Depreciation, Inflation and Real Value",estimatedClassroomTime:"60–75 minutes"},
-      {code:"1.4D",title:"Regular Deposits and Savings",estimatedClassroomTime:"60–75 minutes"},
-      {code:"1.4E",title:"Loans and Repayment",estimatedClassroomTime:"60–75 minutes"},
-      {code:"1.4F",title:"Financial Decision Making",estimatedClassroomTime:"60–75 minutes"},
-      {code:"1.4G",title:"Mastery and Mixed Financial Applications",estimatedClassroomTime:"60–75 minutes"}
-    ];
+    financialLesson.teachingBlocks=[{code:"1.4A",title:"Percentage Factors and Compound Growth",estimatedClassroomTime:"60–75 minutes"},
+{code:"1.4B",title:"Compounding, Missing Values and Thresholds",estimatedClassroomTime:"60–75 minutes"},
+{code:"1.4C",title:"Depreciation, Inflation and Real Value",estimatedClassroomTime:"60–75 minutes"},
+{code:"1.4D",title:"Loan Repayments and Total Interest",estimatedClassroomTime:"60–75 minutes"},
+{code:"1.4E",title:"Amortization and Outstanding Balances",estimatedClassroomTime:"60–75 minutes"},
+{code:"1.4F",title:"End-of-Period Annuities",estimatedClassroomTime:"60–75 minutes"},
+{code:"1.4G",title:"IB-Style Written Practice and Review",estimatedClassroomTime:"60–75 minutes"}];
   }
 
   const logarithmLesson=unit.lessons.find(lesson=>lesson.number==="1.5");
@@ -212,6 +212,6 @@
   course.unitCount=course.units.length;
   course.lessonCount=course.units.reduce((total,value)=>total+(Array.isArray(value?.lessons)?value.lessons.length:0),0);
   course.status="Started";
-  course.updatedUnits="Unit 1 · Lesson 1.1 merged SL 1.1 + SL 1.6 with TI-Nspire guidance · Lesson 1.4 core-first finance · Lessons 1.5 and 1.6 definitive pathways";
+  course.updatedUnits="Unit 1 · Lesson 1.1 merged SL 1.1 + SL 1.6 with TI-Nspire guidance · Lesson 1.4 + 1.7 merged financial applications · Lessons 1.5 and 1.6 definitive pathways";
   window.dispatchEvent(new CustomEvent("echs:ib-ai-unit-ready",{detail:{courseId:course.id,unit:1,lessons:unit.lessons.length,release:unit.release}}));
 })();

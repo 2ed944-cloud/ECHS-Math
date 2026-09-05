@@ -6,10 +6,10 @@
   "release": "6.0.0",
   "totals": {
     "lessons": 6,
-    "learn_slides": 435,
-    "practice_questions": 516,
-    "timed_quiz_questions": 72,
-    "extended_tasks": 40
+    "learn_slides": 402,
+    "practice_questions": 424,
+    "timed_quiz_questions": 56,
+    "extended_tasks": 58
   },
   "reference_basis": [
     "Current IB Mathematics: Applications and Interpretation guide — SL 1.1 scientific notation and SL 1.6 approximation, bounds, percentage error and estimation",
@@ -28,8 +28,8 @@
     "approximation_bounds_percentage_error": "consolidated into Lesson 1.1",
     "lesson_1_1_core_route": "Scientific notation and approximation remain merged as official SL 1.1 + SL 1.6; all included challenges stay within the merged scope.",
     "lesson_1_1_calculator": "TI-Nspire CX / CX II procedures and local guided practice with no external simulator dependency.",
-    "financial_core_scope": "Lesson 1.4 defaults to current IB AI SL sections 1.4 and 1.7",
-    "financial_extensions": "reference-supported annuity timing, mixed deposits, withdrawal funds, real-value analysis, advanced balances and sensitivity remain accessible through All content",
+    "financial_core_scope": "Merged current IB AI SL sections 1.4 and 1.7, including inflation and real value",
+    "financial_extensions": "All active challenge tasks remain within SL 1.4 + SL 1.7; no beginning-of-period or growing annuity assessment.",
     "lesson_1_5": "expanded into a definitive four-block exponent and logarithm pathway",
     "lesson_1_6": "rebuilt as a definitive four-block technology, equations, systems, verification and modelling pathway",
     "legacy_urls": "preserved through redirects"
@@ -150,32 +150,31 @@
       "status": "ready",
       "student_visible": true,
       "url": "lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.4_financial_models_ECHS.html",
-      "release": "6.0.0",
-      "organization_release": "6.1.0",
-      "organization": "one lesson with seven internal teaching blocks",
-      "scope_release": "6.2.0",
+      "release": "8.0.0",
+      "organization_release": "8.0.0",
+      "organization": "one merged lesson with seven teaching blocks",
+      "scope_release": "8.0.0",
       "default_scope": "IB SL Core",
       "official_core_sections": [
         {
           "code": "SL 1.4",
-          "title": "Financial applications of geometric sequences and series — compound interest and annual depreciation"
+          "title": "Compound interest, annual depreciation and real value"
         },
         {
           "code": "SL 1.7",
-          "title": "Loan repayments and amortization"
+          "title": "Amortization and annuities using technology"
         }
       ],
-      "all_content_available": true,
-      "extension_access": "Select All content in the lesson header",
+      "all_content_available": false,
       "teaching_blocks": [
         {
           "code": "1.4A",
-          "title": "Percentage Change and Financial Growth",
+          "title": "Percentage Factors and Compound Growth",
           "estimated_classroom_time": "60–75 minutes"
         },
         {
           "code": "1.4B",
-          "title": "Compounding and Rate Conventions",
+          "title": "Compounding, Missing Values and Thresholds",
           "estimated_classroom_time": "60–75 minutes"
         },
         {
@@ -185,29 +184,50 @@
         },
         {
           "code": "1.4D",
-          "title": "Regular Deposits and Savings",
+          "title": "Loan Repayments and Total Interest",
           "estimated_classroom_time": "60–75 minutes"
         },
         {
           "code": "1.4E",
-          "title": "Loans and Repayment",
+          "title": "Amortization and Outstanding Balances",
           "estimated_classroom_time": "60–75 minutes"
         },
         {
           "code": "1.4F",
-          "title": "Financial Decision Making",
+          "title": "End-of-Period Annuities",
           "estimated_classroom_time": "60–75 minutes"
         },
         {
           "code": "1.4G",
-          "title": "Mastery and Mixed Financial Applications",
+          "title": "IB-Style Written Practice and Review",
           "estimated_classroom_time": "60–75 minutes"
         }
       ],
-      "learn_slides": 100,
-      "practice_questions": 120,
-      "timed_quiz_questions": 16,
-      "extended_tasks": 6
+      "learn_slides": 67,
+      "practice_questions": 28,
+      "timed_quiz_questions": 0,
+      "extended_tasks": 24,
+      "assessment": {
+        "learning_checks": 28,
+        "short_response_tasks": 12,
+        "extended_response_tasks": 8,
+        "challenge_tasks": 4,
+        "written_parts": 60,
+        "written_marks": 139
+      },
+      "calculator": {
+        "model": "TI-Nspire CX / CX II",
+        "mode": "guided calculator practice",
+        "external_dependency": false
+      },
+      "outcomes": [
+        "Model compound interest, annual depreciation and inflation-adjusted real value within SL 1.4.",
+        "Match annual rates, compounding periods, payment timing and cash-flow signs in TI-Nspire Finance Solver.",
+        "Use technology to solve for present value, future value, rate, duration and regular payments.",
+        "Interpret amortization schedules, outstanding balances, total interest and final repayments.",
+        "Model end-of-period savings and withdrawal annuities within SL 1.7.",
+        "Communicate and justify solutions to original IB-style short, extended and challenging written questions."
+      ]
     },
     {
       "lesson_key": "u1-logarithms",

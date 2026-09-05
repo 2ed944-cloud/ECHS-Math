@@ -65,7 +65,6 @@ for number, pack in packs.items():
 wrappers = {
     "1.2": "IB_AI_SL_1.2_arithmetic_sequences_ECHS.html",
     "1.3": "IB_AI_SL_1.3_geometric_sequences_ECHS.html",
-    "1.4": "IB_AI_SL_1.4_financial_models_ECHS.html",
     "1.5": "IB_AI_SL_1.5_logarithms_ECHS.html",
     "1.6": "IB_AI_SL_1.6_technology_equations_ECHS.html",
 }
@@ -81,6 +80,14 @@ for marker in ('data-merged-sections="SL 1.1 + SL 1.6"', 'class="topbar"', 'id="
 for obsolete in ("engine.js", "ti84-real", "number-foundations-v6", "scope=all"):
     if obsolete in lesson11:
         errors.append(f"Lesson 1.1 wrapper loads an obsolete runtime: {obsolete}")
+
+lesson14 = req("lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.4_financial_models_ECHS.html")
+for marker in ('data-merged-sections="SL 1.4 + SL 1.7"', 'class="topbar"', 'id="slideSelect"', 'data-go="practice-guide"', 'lesson-1.4-finance-core-v8.js', 'lesson-1.4-finance-labs-v8.js', 'TI-Nspire CX / CX II'):
+    require(lesson14, marker, "Lesson 1.4 merged wrapper")
+for obsolete in ("engine.js", "ti84-finance", "scope=all"):
+    if obsolete in lesson14:
+        errors.append(f"Lesson 1.4 loads an obsolete runtime: {obsolete}")
+run(["node", "tools/test_ib_ai_1_4_finance_v8.mjs"], "Merged Lesson 1.4 + 1.7 mathematics")
 
 for marker in (
     "lesson-1.5-exponents-logarithms-v6.css?v=6.0.0",
@@ -122,10 +129,10 @@ except Exception as exc:
     errors.append(f"Catalog JSON parse: {exc}")
 expected_totals = {
     "lessons": 6,
-    "learn_slides": 435,
-    "practice_questions": 516,
-    "timed_quiz_questions": 72,
-    "extended_tasks": 40,
+    "learn_slides": 402,
+    "practice_questions": 424,
+    "timed_quiz_questions": 56,
+    "extended_tasks": 58,
 }
 if catalog.get("schema_version") != "1.7.0":
     errors.append("Catalog schema version mismatch")
@@ -140,7 +147,7 @@ expected_meta = {
     "1.1": ("Scientific Notation, Approximation and Error", "7.0.0", 43, 12, 0, 14),
     "1.2": ("Arithmetic Sequences and Series", "6.0.0", 73, 96, 14, 5),
     "1.3": ("Geometric Sequences and Series", "6.0.0", 73, 96, 14, 5),
-    "1.4": ("Financial Applications", "6.0.0", 100, 120, 16, 6),
+    "1.4": ("Financial Applications", "8.0.0", 67, 28, 0, 24),
     "1.5": ("Exponent Laws and Logarithms", "6.0.0", 73, 96, 14, 5),
     "1.6": ("Technology for Equations and Systems", "6.0.0", 73, 96, 14, 5),
 }
@@ -180,9 +187,9 @@ for field in ("learn_slides", "practice_questions", "timed_quiz_questions", "ext
 
 portal = req("data/ib-math-ai-unit-1-update.js")
 for marker in (
-    "435 purposeful Learn screens",
-    "516 learning and practice questions",
-    "40 written tasks",
+    "402 purposeful Learn screens",
+    "424 learning and practice questions",
+    "58 written tasks",
     '"1.1","Scientific Notation, Approximation and Error"',
     '"7.0.0",43,12,0,14',
     'model:"TI-Nspire CX / CX II"',
@@ -197,7 +204,7 @@ for marker in (
 start = req("lessons/ib-math-ai/unit-1/START_HERE.html")
 guide = req("lessons/ib-math-ai/unit-1/TEACHER_GUIDE.html")
 for text, label in ((start, "START_HERE"), (guide, "Teacher Guide")):
-    for marker in ("435", "516", "40", "1.6", "73", "96"):
+    for marker in ("402", "424", "58", "1.6", "73", "96"):
         require(text, marker, label)
 require(start, "5 IB tasks", "START_HERE")
 require(guide, "Lesson 1.6 · 73 / 96 / 14 / 5", "Teacher Guide")
