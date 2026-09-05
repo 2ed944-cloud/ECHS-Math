@@ -271,11 +271,11 @@
       {
         "number": "1.5",
         "title": "Determining Limits Using Algebraic Properties of Limits",
-        "summary": "Explore limit laws through eight investigations, AP-style practice, and preserved challenge MCQs and FRQs.",
+        "summary": "Explore AP Topic 1.5 through seven investigations, explicit limit notation, composite graphs, and focused AP-style and challenge questions.",
         "outcomes": [
           "Apply AP Topic 1.5 (LIM-1.D.1–2): finite limit laws, one-sided reasoning, and composite limits.",
           "Justify direct substitution and check nonzero-denominator, real-domain, and outer-continuity conditions.",
-          "Use graphs and tables, then extend through reverse laws, parameters, counterexamples, directional composition, and optional proofs."
+          "Compare both sides of a jumping inner function to decide whether a composite limit exists; apply the same laws to relevant graph, table, and parameter challenges."
         ],
         "videos": [
           {
