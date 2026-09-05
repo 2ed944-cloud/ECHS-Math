@@ -29,6 +29,8 @@ click(document.querySelector('[data-solution="q01"]'));assert.equal($('solution-
 const answers=['7.25 x 10^-5','3080000','1.92 x 10^3','4.95 x 10^6','6.20','0.00451','4','8.35','3.605','2.4','10','210'];
 for(const [i,q] of Q.questions.entries()){input($('answer-'+q.id),answers[i]);click(document.querySelector('[data-check="'+q.id+'"]'));assert.match($('feedback-'+q.id).textContent,/Correct/);}
 assert.equal($('correctCount').textContent,'12');
+input($('answer-q02'),'3.08e6');click(document.querySelector('[data-check="q02"]'));assert.match($('feedback-q02').textContent,/ordinary decimal number/);
+input($('answer-q02'),'3080000');click(document.querySelector('[data-check="q02"]'));
 input($('answer-q05'),'6.2');click(document.querySelector('[data-check="q05"]'));assert.match($('feedback-q05').textContent,/exactly 2 decimal places/);assert.equal($('correctCount').textContent,'11');
 input($('answer-q05'),'6.20');click(document.querySelector('[data-check="q05"]'));
 click(document.querySelector('[data-solution="q01"]'));assert.equal($('solution-q01').hidden,false);

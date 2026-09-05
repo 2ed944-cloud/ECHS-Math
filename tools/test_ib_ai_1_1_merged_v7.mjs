@@ -20,6 +20,8 @@ assert.equal(M.parseNumber('3/4'),.75);assert.equal(M.parseNumber('3.2E-6'),3.2e
 assert.ok(!M.checkAnswer('0',{answer:1e-15}).correct,'Tiny nonzero numbers are not equal to zero');
 assert.ok(!M.checkAnswer('72.5 x 10^-6',Q.questions[0]).correct,'Normalized form is required');
 assert.ok(!M.checkAnswer('7.25e-5',Q.questions[0]).correct,'Require mathematical notation when requested');
+assert.ok(!M.checkAnswer('3.08e6',Q.questions[1]).correct,'Ordinary notation is required when requested');
+assert.ok(!M.checkAnswer('3080000/1',Q.questions[1]).correct,'An equivalent fraction is not an ordinary number');
 assert.ok(!M.checkAnswer('6.2',Q.questions[4]).correct,'Required trailing zero');
 assert.ok(!M.checkAnswer('0.004510',Q.questions[5]).correct,'Requested significant figures');
 const near=(a,b)=>assert.ok(Math.abs(a-b)<1e-10,a+' versus '+b);

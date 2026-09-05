@@ -50,6 +50,7 @@
     if(q.format==='scientific'){
       const s=scientific(value);if(!s||Math.abs(s.coefficient)<1||Math.abs(s.coefficient)>=10)return{correct:false,message:'The value is correct. Write normalized mathematical form a x 10^k with 1 ≤ a < 10 for these positive quantities.'};
     }
+    if(q.format==='ordinary'&&decimalPlaces(value)===null)return{correct:false,message:'The value is correct. Write it as an ordinary decimal number, without a power of ten or a fraction.'};
     if(q.dp!==undefined&&decimalPlaces(value)!==q.dp)return{correct:false,message:'The value is correct. Show exactly '+q.dp+' decimal places, including any required trailing zeros.'};
     if(q.sf!==undefined&&significantFigures(value)!==q.sf)return{correct:false,message:'The value is correct. Show exactly '+q.sf+' significant figures; use scientific form if integer zeros are ambiguous.'};
     return{correct:true,message:'Correct. The value and requested notation agree.'};

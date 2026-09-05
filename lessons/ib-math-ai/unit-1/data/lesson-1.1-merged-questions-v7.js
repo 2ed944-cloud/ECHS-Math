@@ -15,6 +15,7 @@
     },
     {
       "id": "q02",
+      "format": "ordinary",
       "type": "number",
       "group": "Learning check",
       "prompt": "Write \\(3.08\\times10^6\\) as an ordinary number.",
