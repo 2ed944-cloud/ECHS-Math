@@ -20,24 +20,52 @@
     {
       "number": "1",
       "title": "1.1 Change in Tandem",
+      "release": "3.0.0",
+      "officialTopic": "1.1 Change in Tandem",
+      "framework": "College Board CED effective Fall 2026",
+      "learningObjectives": [
+        "1.1.A",
+        "1.1.B"
+      ],
+      "interactiveSlides": 48,
+      "interactiveInvestigations": 8,
+      "assessment": {
+        "learning_checks": 6,
+        "ap_style_mcq": 24,
+        "ap_style_frq": 4,
+        "challenge_mcq": 4,
+        "challenge_frq": 2,
+        "written_points": 36
+      },
       "outcomes": [
-        "Decide whether a relation defines an output as a function of an input.",
-        "Interpret domain, range, images, preimages, direction, and concavity across representations.",
-        "Defend conclusions about covariation with numerical or graphical evidence."
+        "Identify functions, domain and range, independent and dependent variables, images, preimages, and equality of functions.",
+        "Compare values across verbal, analytical, numerical and graphical representations (1.1.A).",
+        "Describe increasing/decreasing behavior, qualitative concavity, zeros and contextual meaning with appropriate precision.",
+        "Construct graphs from descriptions of quantities changing together (1.1.B)."
       ],
       "resources": [
         {
-          "label": "Complete interactive lesson",
+          "label": "Complete interactive lesson · 48 slides and 8 investigations",
           "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.1_Change_in_Tandem_ECHS_Refined.html",
           "type": "resource"
         },
         {
-          "label": "Strengthened guided notes",
+          "label": "Revised AP-style MCQs and Topic 1.1 challenges",
+          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.1_Change_in_Tandem_ECHS_Refined.html#practice",
+          "type": "practice"
+        },
+        {
+          "label": "Six-point AP-style FRQs with classroom scoring guidelines",
+          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.1_Change_in_Tandem_ECHS_Refined.html#exam",
+          "type": "practice"
+        },
+        {
+          "label": "Existing companion guided notes",
           "url": "resources/ap-precalculus/unit-1/notes/AP_Precalculus_1.1_Guided_Notes.pdf",
           "type": "notes"
         },
         {
-          "label": "Power practice worksheet with AP-style questions",
+          "label": "Existing companion practice worksheet",
           "url": "resources/ap-precalculus/unit-1/worksheets/AP_Precalculus_1.1_Practice_Worksheet.pdf",
           "type": "practice"
         }
