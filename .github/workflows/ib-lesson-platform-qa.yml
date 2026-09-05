@@ -22,6 +22,7 @@ on:
       - "tools/inject_learning_access_guard.py"
       - "tools/test_ib_lesson_platform_integration.py"
       - "tools/test_ib_ai_1_1_merged_v7*.mjs"
+      - "tools/test_ib_ai_1_4_finance_v8*.mjs"
       - "tools/test_ib_ai_1_2_definitive_v6.py"
       - "tools/test_ib_ai_1_2_visual_precision_v6_0_1.py"
       - "tools/test_ib_ai_1_3_definitive_v6.py"
@@ -92,17 +93,10 @@ jobs:
       - name: Validate Lesson 1.3 definitive v6
         run: python tools/test_ib_ai_1_3_definitive_v6.py .
 
-      - name: Validate Lesson 1.4 Financial Applications v6
-        run: python tools/test_ib_ai_1_4_definitive_v6.py .
-
-      - name: Validate Lesson 1.4 teaching blocks
-        run: python tools/test_ib_ai_1_4_teaching_blocks_v6_1.py .
-
-      - name: Validate Lesson 1.4 official IB SL scope
-        run: python tools/test_ib_ai_1_4_core_scope_v6_2.py .
-
-      - name: Validate Lesson 1.4 currency KaTeX
-        run: python tools/test_ib_ai_1_4_currency_katex_v6_2.py .
+      - name: Validate merged SL 1.4 and SL 1.7 financial applications
+        run: |
+          node tools/test_ib_ai_1_4_finance_v8.mjs
+          ECHS_TEST_DOM_MODULE="$RUNNER_TEMP/ib11-dom/node_modules/linkedom" node tools/test_ib_ai_1_4_finance_v8_ui.mjs
 
       - name: Validate Lesson 1.5 product-law visual
         run: node tools/test_ib_ai_1_5_product_law_visual_v6_0_1.mjs

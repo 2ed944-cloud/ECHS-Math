@@ -30,6 +30,7 @@ on:
       - "tools/test_ap_precalculus_1_1*.mjs"
       - "tools/test_ap_precalculus_1_2*.mjs"
       - "tools/test_ib_ai_1_1_merged_v7*.mjs"
+      - "tools/test_ib_ai_1_4_finance_v8*.mjs"
       - "tools/test_ap_calculus_1_1*.mjs"
       - "tools/test_ap_calculus_1_2*.mjs"
       - "tools/test_ap_calculus_1_3_1_4*.mjs"
@@ -97,6 +98,7 @@ jobs:
           node tools/test_ap_precalculus_1_1.mjs
           node tools/test_ap_precalculus_1_2.mjs
           node tools/test_ib_ai_1_1_merged_v7.mjs
+          node tools/test_ib_ai_1_4_finance_v8.mjs
           node tools/test_ap_calculus_1_1.mjs
           node tools/test_ap_calculus_1_2.mjs
           node tools/test_ap_calculus_1_3_1_4.mjs
@@ -106,6 +108,7 @@ jobs:
           ECHS_TEST_DOM_MODULE="$RUNNER_TEMP/calculus11-dom/node_modules/linkedom" node tools/test_ap_precalculus_1_1_ui.mjs
           ECHS_TEST_DOM_MODULE="$RUNNER_TEMP/calculus11-dom/node_modules/linkedom" node tools/test_ap_precalculus_1_2_ui.mjs
           ECHS_TEST_DOM_MODULE="$RUNNER_TEMP/calculus11-dom/node_modules/linkedom" node tools/test_ib_ai_1_1_merged_v7_ui.mjs
+          ECHS_TEST_DOM_MODULE="$RUNNER_TEMP/calculus11-dom/node_modules/linkedom" node tools/test_ib_ai_1_4_finance_v8_ui.mjs
           ECHS_TEST_DOM_MODULE="$RUNNER_TEMP/calculus11-dom/node_modules/linkedom" node tools/test_ap_calculus_1_1_ui.mjs
           ECHS_TEST_DOM_MODULE="$RUNNER_TEMP/calculus11-dom/node_modules/linkedom" node tools/test_ap_calculus_1_2_ui.mjs
           ECHS_TEST_DOM_MODULE="$RUNNER_TEMP/calculus11-dom/node_modules/linkedom" node tools/test_ap_calculus_1_3_1_4_ui.mjs
@@ -275,10 +278,10 @@ jobs:
               'data-require-account="student teacher admin"' in text["practice"],
               'data-echs-lesson-guard="1"' in text["lesson"],
               "lesson-access-guard.js" in text["lesson"],
-              "lesson-1.4-ti84-finance-v6-3.css" in text["finance"],
-              "lesson-1.4-ti84-finance-mobile-fix-v6-3-1.css" in text["finance"],
-              "unit-1-gdc-integration-v7.css" in text["finance"],
-              "unit-1-gdc-integration-v7.js" in text["finance"],
+              "lesson-1.4-finance-v8.css" in text["finance"],
+              'data-merged-sections="SL 1.4 + SL 1.7"' in text["finance"],
+              "lesson-1.4-finance-model-v8.js" in text["finance"],
+              "lesson-1.4-finance-core-v8.js" in text["finance"],
               "lesson-1.4-ti84-finance-classroom-v6-3.js" not in text["finance"],
               "lesson-1.4-ti84-finance-inline-v6-3.js" not in text["finance"],
               "lesson-1.6-multiplicity-2-fix-v6-3-3.js" in text["technology"],

@@ -21,7 +21,7 @@ const unit=course.units[0];
 if(unit.lessons.length!==6)throw new Error(`Unit 1 must contain six consolidated lessons, found ${unit.lessons.length}`);
 if(course.lessonCount!==31)throw new Error(`Expected 31 total lessons after consolidation, found ${course.lessonCount}`);
 if(unit.release!=='6.0.0')throw new Error(`Expected Unit 1 release 6.0.0, found ${unit.release}`);
-const summary='6 lessons · 435 purposeful Learn screens · 516 learning and practice questions · 72 quiz questions · 40 written tasks';
+const summary='6 lessons · 402 purposeful Learn screens · 424 learning and practice questions · 56 quiz questions · 58 written tasks';
 if(unit.portalSummary!==summary)throw new Error(`Unexpected portal summary: ${unit.portalSummary}`);
 if(!unit.architectureNotes.some(note=>note.includes('Approximation')))throw new Error('Approximation consolidation note is missing');
 if(!unit.architectureNotes.some(note=>note.includes('scientific-notation-first')))throw new Error('Lesson 1.1 core-route note is missing');
@@ -34,7 +34,7 @@ const expected=[
  ['Scientific Notation, Approximation and Error','7.0.0',43,12,0,14],
  ['Arithmetic Sequences and Series','6.0.0',73,96,14,5],
  ['Geometric Sequences and Series','6.0.0',73,96,14,5],
- ['Financial Applications','6.0.0',100,120,16,6],
+ ['Financial Applications','8.0.0',67,28,0,24],
  ['Exponent Laws and Logarithms','6.0.0',73,96,14,5],
  ['Technology for Equations and Systems','6.0.0',73,96,14,5]
 ];
@@ -42,8 +42,8 @@ unit.lessons.forEach((lesson,index)=>{
   const [title,release,slides,practice,quiz,tasks]=expected[index];
   if(lesson.number!==`1.${index+1}`)throw new Error(`Unexpected lesson number at index ${index}: ${lesson.number}`);
   if(lesson.title!==title||lesson.release!==release||lesson.learnSlides!==slides||lesson.practiceQuestions!==practice||lesson.quizQuestions!==quiz||lesson.extendedTasks!==tasks)throw new Error(`Lesson ${lesson.number} metadata mismatch: ${JSON.stringify(lesson)}`);
-  if(!lesson.resources.some(resource=>resource.label===`Practice Studio · ${practice} questions`))throw new Error(`Lesson ${lesson.number} practice resource count is stale`);
-  if(!lesson.resources.some(resource=>resource.label===`IB-style assessment tasks · ${tasks}`))throw new Error(`Lesson ${lesson.number} task resource count is stale`);
+  if(!lesson.resources.some(resource=>resource.label===(lesson.number==='1.4'?'Learning checks and IB-style written practice':`Practice Studio · ${practice} questions`)))throw new Error(`Lesson ${lesson.number} practice resource count is stale`);
+  if(!lesson.resources.some(resource=>resource.label===(lesson.number==='1.4'?'IB-style written tasks · 24':`IB-style assessment tasks · ${tasks}`)))throw new Error(`Lesson ${lesson.number} task resource count is stale`);
 });
 
 const lesson11=unit.lessons[0];
@@ -56,9 +56,11 @@ for(const required of ['scientific notation','guard digits','percentage error'])
 if(lesson11.outcomes.some(outcome=>outcome.toLowerCase().includes('complex numbers')))throw new Error('Complex-number classification must not be a core Lesson 1.1 outcome');
 
 const lesson14=unit.lessons[3];
+if(lesson14.resources[0].url!==lesson14.url||lesson14.resources[0].type!=='resource')throw new Error('Merged finance lesson entry is missing');
+if(lesson14.assessment.writtenParts!==60||lesson14.assessment.writtenMarks!==139||lesson14.allContentAvailable!==false)throw new Error('Merged finance scope or marks are stale');
 if(!lesson14.outcomes.some(outcome=>outcome.includes('annuities')))throw new Error('Lesson 1.4 annuity outcome is missing');
 if(!lesson14.outcomes.some(outcome=>outcome.includes('amortization')))throw new Error('Lesson 1.4 amortization outcome is missing');
-if(lesson14.organization_release!=='6.1.0'||lesson14.organization!=='one lesson with seven internal teaching blocks')throw new Error('Lesson 1.4 organization metadata is incomplete');
+if(lesson14.organization_release!=='8.0.0'||lesson14.organization!=='one merged lesson with seven teaching blocks')throw new Error('Lesson 1.4 organization metadata is incomplete');
 if(lesson14.teachingBlocks?.map(block=>block.code).join(',')!=='1.4A,1.4B,1.4C,1.4D,1.4E,1.4F,1.4G')throw new Error('Lesson 1.4 teaching-block sequence is incorrect');
 if(lesson14.teachingBlocks.some(block=>block.estimatedClassroomTime!=='60–75 minutes'))throw new Error('Lesson 1.4 pacing metadata is incomplete');
 
@@ -77,7 +79,7 @@ if(lesson16.teachingBlocks?.map(block=>block.code).join(',')!=='1.6A,1.6B,1.6C,1
 if(lesson16.teachingBlocks.some(block=>block.estimatedClassroomTime!=='60–75 minutes'))throw new Error('Lesson 1.6 pacing metadata is incomplete');
 
 const totals=unit.lessons.reduce((acc,lesson)=>{acc.slides+=lesson.learnSlides;acc.practice+=lesson.practiceQuestions;acc.quiz+=lesson.quizQuestions;acc.tasks+=lesson.extendedTasks;return acc;},{slides:0,practice:0,quiz:0,tasks:0});
-if(JSON.stringify(totals)!==JSON.stringify({slides:435,practice:516,quiz:72,tasks:40}))throw new Error(`Unit totals are inconsistent: ${JSON.stringify(totals)}`);
+if(JSON.stringify(totals)!==JSON.stringify({slides:402,practice:424,quiz:56,tasks:58}))throw new Error(`Unit totals are inconsistent: ${JSON.stringify(totals)}`);
 const urls=unit.lessons.map(item=>item.url);
 if(new Set(urls).size!==6)throw new Error('Every Unit 1 lesson must have a unique direct URL');
 if(urls.some(url=>!/^lessons\/ib-math-ai\/unit-1\/lessons\/IB_AI_SL_1\.[1-6]_.+_ECHS\.html$/.test(url)))throw new Error(`Unit 1 contains a non-direct lesson URL: ${urls.join(', ')}`);

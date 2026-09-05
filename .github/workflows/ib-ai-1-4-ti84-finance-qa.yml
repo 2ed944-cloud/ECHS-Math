@@ -1,17 +1,13 @@
-name: IB AI 1.4 TI-84 Finance QA
+name: IB AI SL 1.4 and 1.7 Finance QA
 
 on:
   pull_request:
     paths:
       - "lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.4_financial_models_ECHS.html"
-      - "lessons/ib-math-ai/unit-1/data/lesson-1.4-ti84-finance-*.js"
-      - "lessons/ib-math-ai/unit-1/assets/css/lesson-1.4-ti84-finance-v6-3.css"
-      - "lessons/ib-math-ai/unit-1/assets/css/lesson-1.4-ti84-finance-mobile-fix-v6-3-1.css"
-      - "lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.6_technology_equations_ECHS.html"
-      - "lessons/ib-math-ai/unit-1/data/lesson-1.6-multiplicity-2-fix-v6-3-3.js"
-      - "tools/test_ib_ai_1_4_ti84_finance_v6_3.mjs"
-      - "tools/browser_qa_ib_ai_1_4_ti84_finance_v6_3.mjs"
-      - "tools/browser_qa_ib_ai_1_4_ti84_finance_edges_v6_3.mjs"
+      - "lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.7_loans_annuities_ECHS.html"
+      - "lessons/ib-math-ai/unit-1/data/lesson-1.4-finance-*-v8.js"
+      - "lessons/ib-math-ai/unit-1/assets/css/lesson-1.4-finance-v8.css"
+      - "tools/test_ib_ai_1_4_finance_v8*.mjs"
       - ".github/workflows/ib-ai-1-4-ti84-finance-qa.yml"
   workflow_dispatch:
 
@@ -21,67 +17,19 @@ permissions:
 jobs:
   validate:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 12
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v4
-
-      - name: Set up Node
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: "22"
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-
-      - name: Validate JavaScript syntax
+      - name: Validate finance mathematics and original IB-style markschemes
         run: |
-          node --check lessons/ib-math-ai/unit-1/data/lesson-1.4-ti84-finance-workflows-v6-3.js
-          node --check lessons/ib-math-ai/unit-1/data/lesson-1.4-ti84-finance-classroom-v6-3.js
-          node --check lessons/ib-math-ai/unit-1/data/lesson-1.4-ti84-finance-inline-v6-3.js
-          node --check lessons/ib-math-ai/unit-1/data/lesson-1.6-multiplicity-2-fix-v6-3-3.js
-          node --check tools/test_ib_ai_1_4_ti84_finance_v6_3.mjs
-          node --check tools/browser_qa_ib_ai_1_4_ti84_finance_v6_3.mjs
-          node --check tools/browser_qa_ib_ai_1_4_ti84_finance_edges_v6_3.mjs
-
-      - name: Validate finance workflows and existing lesson contracts
-        run: |
-          node tools/test_ib_ai_1_4_ti84_finance_v6_3.mjs
-          python tools/test_ib_ai_1_4_definitive_v6.py
-          python tools/test_ib_ai_1_4_core_scope_v6_2.py
-          python tools/test_ib_ai_1_4_teaching_blocks_v6_1.py
-
-      - name: Install browser driver
-        run: npm install --no-save --no-package-lock playwright-core@1.54.1
-
-      - name: Start local lesson server
-        run: |
-          python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/ib14-ti84-preview.log 2>&1 &
-          for attempt in {1..30}; do
-            if curl --fail --silent http://127.0.0.1:4173/lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.4_financial_models_ECHS.html >/dev/null; then
-              exit 0
-            fi
-            sleep 1
+          for part in model questions labs core; do
+            node --check "lessons/ib-math-ai/unit-1/data/lesson-1.4-finance-$part-v8.js"
           done
-          cat /tmp/ib14-ti84-preview.log
-          exit 1
-
-      - name: Run desktop and mobile TI-84 Finance QA
-        env:
-          ECHS_PREVIEW_URL: http://127.0.0.1:4173
-          ECHS_PREVIEW_OUTPUT: artifacts/ib-ai-1-4-ti84-finance-v6-3
-          CHROME_PATH: /usr/bin/google-chrome
+          node tools/test_ib_ai_1_4_finance_v8.mjs
+      - name: Validate investigations, calculator entries and student response behavior
         run: |
-          node tools/browser_qa_ib_ai_1_4_ti84_finance_v6_3.mjs
-          node tools/browser_qa_ib_ai_1_4_ti84_finance_edges_v6_3.mjs
-
-      - name: Upload visual evidence
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: ib-ai-1-4-ti84-finance-v6-3-${{ github.run_number }}
-          path: artifacts/ib-ai-1-4-ti84-finance-v6-3
-          if-no-files-found: error
-          retention-days: 14
+          npm install --prefix "$RUNNER_TEMP/ib14-dom" --no-save --ignore-scripts --no-audit --no-fund linkedom@0.18.12
+          ECHS_TEST_DOM_MODULE="$RUNNER_TEMP/ib14-dom/node_modules/linkedom" node tools/test_ib_ai_1_4_finance_v8_ui.mjs

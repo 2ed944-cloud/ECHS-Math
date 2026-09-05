@@ -1,0 +1,38 @@
+name: Verify live IB AI Lesson 1.4 and 1.7
+
+on:
+  workflow_run:
+    workflows:
+      - Deploy ECHS Mathematics to GitHub Pages
+    types:
+      - completed
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-live-lesson:
+    if: github.event_name == 'workflow_dispatch' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push' && github.event.workflow_run.head_branch == 'main')
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      EXPECTED_SHA: ${{ github.event.workflow_run.head_sha || github.sha }}
+      SITE_ROOT: https://2ed944-cloud.github.io/ECHS-Math
+    steps:
+      - name: Check out the deployed revision
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+      - name: Verify exact merged Lesson 1.4 and 1.7 deployment
+        shell: bash
+        run: |
+          set -euo pipefail
+          for attempt in $(seq 1 12); do
+            if python tools/verify_live_ib_ai_1_4_finance_v8.py; then
+              exit 0
+            fi
+            sleep 15
+          done
+          echo "The merged IB lesson did not match the deployed revision." >&2
+          exit 1
