@@ -102,24 +102,52 @@
     {
       "number": "2",
       "title": "1.2 Rates of Change",
+      "release": "3.0.0",
+      "officialTopic": "1.2 Rates of Change",
+      "framework": "College Board CED effective Fall 2026",
+      "learningObjectives": [
+        "1.2.A",
+        "1.2.B"
+      ],
+      "interactiveSlides": 55,
+      "interactiveInvestigations": 10,
+      "assessment": {
+        "learning_checks": 8,
+        "ap_style_mcq": 24,
+        "ap_style_frq": 4,
+        "challenge_mcq": 6,
+        "challenge_frq": 2,
+        "written_points": 36
+      },
       "outcomes": [
-        "Compute average rate of change from formulas, tables, graphs, and contexts.",
-        "Attach correct units and interpret the sign and magnitude of a rate.",
-        "Use shrinking intervals to estimate rate at a point without overclaiming."
+        "Compute and interpret average rate as output change divided by input change and as an equivalent constant rate.",
+        "Estimate and compare rates at points using average rates on sufficiently small nearby intervals (1.2.A).",
+        "Describe covariation through signs, magnitudes and output units per input unit (1.2.B).",
+        "Use graphical, numerical, analytical and verbal evidence with appropriate precision, including calculator-supported estimates."
       ],
       "resources": [
         {
-          "label": "Complete interactive lesson",
+          "label": "Complete interactive lesson · 55 slides and 10 investigations",
           "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.2_Rates_of_Change_ECHS_Refined.html",
           "type": "resource"
         },
         {
-          "label": "Strengthened guided notes",
+          "label": "Revised AP-style MCQs and Topic 1.2 challenges",
+          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.2_Rates_of_Change_ECHS_Refined.html#practice",
+          "type": "practice"
+        },
+        {
+          "label": "Six-point AP-style FRQs with classroom scoring guidelines",
+          "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.2_Rates_of_Change_ECHS_Refined.html#exam",
+          "type": "practice"
+        },
+        {
+          "label": "Existing companion guided notes",
           "url": "resources/ap-precalculus/unit-1/notes/AP_Precalculus_1.2_Guided_Notes.pdf",
           "type": "notes"
         },
         {
-          "label": "Power practice worksheet with AP-style questions",
+          "label": "Existing companion practice worksheet",
           "url": "resources/ap-precalculus/unit-1/worksheets/AP_Precalculus_1.2_Practice_Worksheet.pdf",
           "type": "practice"
         }
