@@ -271,11 +271,11 @@
       {
         "number": "1.5",
         "title": "Determining Limits Using Algebraic Properties of Limits",
-        "summary": "Evaluate limits efficiently using the algebra of limits.",
+        "summary": "Explore limit laws through eight investigations, AP-style practice, and preserved challenge MCQs and FRQs.",
         "outcomes": [
-          "Apply sum, difference, constant multiple, product, quotient, and power limit laws.",
-          "Determine when direct substitution is justified.",
-          "Use limit properties to justify each step of an evaluation."
+          "Apply AP Topic 1.5 (LIM-1.D.1–2): finite limit laws, one-sided reasoning, and composite limits.",
+          "Justify direct substitution and check nonzero-denominator, real-domain, and outer-continuity conditions.",
+          "Use graphs and tables, then extend through reverse laws, parameters, counterexamples, directional composition, and optional proofs."
         ],
         "videos": [
           {
