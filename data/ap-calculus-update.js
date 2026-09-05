@@ -334,11 +334,11 @@
       {
         "number": "1.6",
         "title": "Determining Limits Using Algebraic Manipulation",
-        "summary": "Factor, rationalize, and simplify without changing nearby behavior.",
+        "summary": "Explore equivalent algebraic expressions through nine investigations, AP-style MCQs and FRQs, then separate challenge and extra questions.",
         "outcomes": [
-          "Rewrite indeterminate expressions into equivalent forms before evaluating a limit.",
-          "Use factoring, rationalizing, and common denominators to remove removable barriers.",
-          "State domain restrictions while using an equivalent nearby expression."
+          "Apply AP Topic 1.6 (LIM-1.E.1): use equivalent expressions to determine limits.",
+          "Factor, use square-root conjugates, combine fractions, and apply exact trigonometric identities.",
+          "Justify nearby equivalence with domain restrictions; extend through optional power, synthetic-division, radical, trigonometric, parameter, and inequality MCQs and FRQs."
         ],
         "videos": [
           {
