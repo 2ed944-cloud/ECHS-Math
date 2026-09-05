@@ -21,12 +21,7 @@ on:
       - "supabase/functions/practice-bank-api/**"
       - "tools/inject_learning_access_guard.py"
       - "tools/test_ib_lesson_platform_integration.py"
-      - "tools/test_ib_ai_1_1_visual_integrity.py"
-      - "tools/test_ib_ai_1_1_exam_layout.py"
-      - "tools/test_ib_ai_1_1_exam_scroll.py"
-      - "tools/test_ib_ai_1_1_number_foundations.py"
-      - "tools/test_ib_ai_1_1_v6_1_graphics_katex.py"
-      - "tools/test_ib_ai_1_1_local_ti84_v6_8.mjs"
+      - "tools/test_ib_ai_1_1_merged_v7*.mjs"
       - "tools/test_ib_ai_1_2_definitive_v6.py"
       - "tools/test_ib_ai_1_2_visual_precision_v6_0_1.py"
       - "tools/test_ib_ai_1_3_definitive_v6.py"
@@ -82,26 +77,11 @@ jobs:
         with:
           node-version: "22"
 
-      - name: Validate Lesson 1.1 visual integrity
-        run: python tools/test_ib_ai_1_1_visual_integrity.py .
-
-      - name: Validate Lesson 1.1 assessment layout
-        run: python tools/test_ib_ai_1_1_exam_layout.py .
-
-      - name: Validate Lesson 1.1 assessment scrolling
-        run: python tools/test_ib_ai_1_1_exam_scroll.py .
-
-      - name: Validate Lesson 1.1 retained content foundation
-        run: python tools/test_ib_ai_1_1_number_foundations.py .
-
-      - name: Validate Lesson 1.1 graphics and KaTeX precision hotfix
-        run: python tools/test_ib_ai_1_1_v6_1_graphics_katex.py .
-
-      - name: Validate Lesson 1.1 real TI-84 Plus CE release
+      - name: Validate merged Lesson 1.1 mathematics and interactions
         run: |
-          node --check lessons/ib-math-ai/unit-1/data/lesson-1.1-ti84-real-inline-v6-9.js
-          node --check lessons/ib-math-ai/unit-1/data/lesson-1.1-ti84-local-bridge-v6-8-2.js
-          node tools/test_ib_ai_1_1_local_ti84_v6_8.mjs .
+          npm install --prefix "$RUNNER_TEMP/ib11-dom" --no-save --ignore-scripts --no-audit --no-fund linkedom@0.18.12
+          node tools/test_ib_ai_1_1_merged_v7.mjs
+          ECHS_TEST_DOM_MODULE="$RUNNER_TEMP/ib11-dom/node_modules/linkedom" node tools/test_ib_ai_1_1_merged_v7_ui.mjs
 
       - name: Validate Lesson 1.2 definitive v6
         run: python tools/test_ib_ai_1_2_definitive_v6.py .

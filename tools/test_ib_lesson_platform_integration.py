@@ -117,7 +117,12 @@ def validate_source(root: Path, errors: list[str]) -> None:
     lesson_root = root / "lessons/ib-math-ai/unit-1/lessons"
     for name in LESSONS:
         text = read(root, f"lessons/ib-math-ai/unit-1/lessons/{name}", errors)
-        require(text, ('class="topbar"', 'class="header-actions"', 'class="routebar"', 'data-route="practice"', "../assets/js/engine.js"), name, errors)
+        if name == "IB_AI_SL_1.1_standard_form_ECHS.html":
+            require(text, ('class="topbar"', 'class="header-actions"', 'data-merged-sections="SL 1.1 + SL 1.6"', 'id="continuePractice"', 'lesson-1.1-merged-core-v7.js'), name, errors)
+            core = read(root, "lessons/ib-math-ai/unit-1/data/lesson-1.1-merged-core-v7.js", errors)
+            require(core, ("[data-finish-lesson]", "finish.click()", "location.search", "echs:ib-math-ai:"), "Merged lesson protected progression", errors)
+        else:
+            require(text, ('class="topbar"', 'class="header-actions"', 'class="routebar"', 'data-route="practice"', "../assets/js/engine.js"), name, errors)
     for name, target in REDIRECTS.items():
         text = read(root, f"lessons/ib-math-ai/unit-1/lessons/{name}", errors)
         require(text, (target, "location.replace", 'rel="canonical"'), name, errors)

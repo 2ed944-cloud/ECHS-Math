@@ -76,25 +76,11 @@ for number, filename in wrappers.items():
     for marker in ("ap-screen-lesson", 'class="topbar"', 'class="routebar"', 'data-route="practice"', "../assets/js/engine.js", "unit-1-v5-runtime.js"):
         require(text, marker, f"Lesson {number} wrapper")
 lesson11 = req("lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.1_standard_form_ECHS.html")
-for marker in ("ap-screen-lesson", 'class="topbar"', 'class="routebar"', 'data-route="practice"', "../assets/js/engine.js"):
-    require(lesson11, marker, "Lesson 1.1 wrapper")
-for marker in (
-    "lesson-1.1-ti84-real-v6-9.css?v=6.9.1",
-    "lesson-1.1-ti84-real-inline-v6-9.js?v=6.9.1",
-    "lesson-1.1-ti84-local-bridge-v6-8-2.js?v=6.8.2",
-    "1.1 · Scientific Notation, Approximation and Error",
-):
-    require(lesson11, marker, "Lesson 1.1 real TI-84 wrapper")
-for obsolete in (
-    "lesson-1.1-ti84-local-v6-8.css?v=6.8.0",
-    "lesson-1.1-ti84-local-v6-8.js?v=6.8.0",
-    "lesson-1.1-ti84-local-input-v6-8-1.js?v=6.8.1",
-    "lesson-1.1-ti84-inline-dock-v6-4.js",
-    "lesson-1.1-ti84-simulator-v6-7.js",
-    "lesson-1.1-ti84-simulator-v6-7.css",
-):
+for marker in ('data-merged-sections="SL 1.1 + SL 1.6"', 'class="topbar"', 'id="slideSelect"', 'data-go="practice-guide"', 'lesson-1.1-merged-core-v7.js', 'lesson-1.1-merged-labs-v7.js', 'TI-Nspire CX / CX II'):
+    require(lesson11, marker, "Lesson 1.1 merged wrapper")
+for obsolete in ("engine.js", "ti84-real", "number-foundations-v6", "scope=all"):
     if obsolete in lesson11:
-        errors.append(f"Lesson 1.1 wrapper still loads obsolete simulator asset {obsolete}")
+        errors.append(f"Lesson 1.1 wrapper loads an obsolete runtime: {obsolete}")
 
 for marker in (
     "lesson-1.5-exponents-logarithms-v6.css?v=6.0.0",
@@ -136,10 +122,10 @@ except Exception as exc:
     errors.append(f"Catalog JSON parse: {exc}")
 expected_totals = {
     "lessons": 6,
-    "learn_slides": 471,
-    "practice_questions": 600,
-    "timed_quiz_questions": 86,
-    "extended_tasks": 31,
+    "learn_slides": 435,
+    "practice_questions": 516,
+    "timed_quiz_questions": 72,
+    "extended_tasks": 40,
 }
 if catalog.get("schema_version") != "1.7.0":
     errors.append("Catalog schema version mismatch")
@@ -151,7 +137,7 @@ lessons = catalog.get("lessons", [])
 if [item.get("number") for item in lessons] != ["1.1", "1.2", "1.3", "1.4", "1.5", "1.6"]:
     errors.append("Catalog does not expose the six-lesson sequence")
 expected_meta = {
-    "1.1": ("Scientific Notation, Approximation and Error", "6.9.0", 79, 96, 14, 5),
+    "1.1": ("Scientific Notation, Approximation and Error", "7.0.0", 43, 12, 0, 14),
     "1.2": ("Arithmetic Sequences and Series", "6.0.0", 73, 96, 14, 5),
     "1.3": ("Geometric Sequences and Series", "6.0.0", 73, 96, 14, 5),
     "1.4": ("Financial Applications", "6.0.0", 100, 120, 16, 6),
@@ -167,14 +153,14 @@ lesson11_catalog = next((entry for entry in lessons if entry.get("number") == "1
 if lesson11_catalog.get("default_scope") != "IB SL Core":
     errors.append("Lesson 1.1 catalog default scope is missing")
 calculator = lesson11_catalog.get("calculator", {})
-if calculator.get("external_dependency") is not True:
-    errors.append("Lesson 1.1 catalog real calculator dependency flag is missing")
-if calculator.get("model") != "TI-84 Plus CE" or calculator.get("provider") != "ti84calc.com":
-    errors.append("Lesson 1.1 real TI-84 model/provider metadata is missing")
-if calculator.get("simulator") != "real TI-84 Plus CE online simulator":
-    errors.append("Lesson 1.1 real simulator metadata is missing")
-if calculator.get("lazy_loaded") is not True or calculator.get("sandboxed") is not True:
-    errors.append("Lesson 1.1 simulator loading/sandbox metadata is missing")
+if calculator.get("external_dependency") is not False:
+    errors.append("Lesson 1.1 guided calculator dependency flag is incorrect")
+if calculator.get("model") != "TI-Nspire CX / CX II" or calculator.get("mode") != "guided calculator practice":
+    errors.append("Lesson 1.1 TI-Nspire guidance metadata is missing")
+if [section.get("code") for section in lesson11_catalog.get("official_core_sections", [])] != ["SL 1.1", "SL 1.6"]:
+    errors.append("Lesson 1.1 merged official sections are incorrect")
+if lesson11_catalog.get("assessment", {}).get("written_marks") != 82:
+    errors.append("Lesson 1.1 written marks mismatch")
 for number, codes in {
     "1.4": ["1.4A", "1.4B", "1.4C", "1.4D", "1.4E", "1.4F", "1.4G"],
     "1.5": ["1.5A", "1.5B", "1.5C", "1.5D"],
@@ -194,15 +180,14 @@ for field in ("learn_slides", "practice_questions", "timed_quiz_questions", "ext
 
 portal = req("data/ib-math-ai-unit-1-update.js")
 for marker in (
-    "471 purposeful Learn screens",
-    "600 studio questions",
-    "31 extended tasks",
+    "435 purposeful Learn screens",
+    "516 learning and practice questions",
+    "40 written tasks",
     '"1.1","Scientific Notation, Approximation and Error"',
-    '"6.9.0",79,96,14,5',
-    'model:"TI-84 Plus CE"',
-    'simulator:"real TI-84 Plus CE online simulator"',
-    'provider:"ti84calc.com"',
-    'externalDependency:true',
+    '"7.0.0",43,12,0,14',
+    'model:"TI-Nspire CX / CX II"',
+    'mode:"guided calculator practice"',
+    'externalDependency:false',
     '"1.6","Technology for Equations and Systems"',
     '"6.0.0",73,96,14,5',
     'code:"1.6A"',
@@ -212,15 +197,15 @@ for marker in (
 start = req("lessons/ib-math-ai/unit-1/START_HERE.html")
 guide = req("lessons/ib-math-ai/unit-1/TEACHER_GUIDE.html")
 for text, label in ((start, "START_HERE"), (guide, "Teacher Guide")):
-    for marker in ("471", "600", "31", "1.6", "73", "96"):
+    for marker in ("435", "516", "40", "1.6", "73", "96"):
         require(text, marker, label)
 require(start, "5 IB tasks", "START_HERE")
 require(guide, "Lesson 1.6 · 73 / 96 / 14 / 5", "Teacher Guide")
 
-# Validate the real Lesson 1.1 TI-84 simulator and the independent definitive lesson contracts.
-run(["node", "--check", "lessons/ib-math-ai/unit-1/data/lesson-1.1-ti84-real-inline-v6-9.js"], "Lesson 1.1 real TI-84 syntax")
-run(["node", "--check", "lessons/ib-math-ai/unit-1/data/lesson-1.1-ti84-local-bridge-v6-8-2.js"], "Lesson 1.1 TI-84 bridge syntax")
-run(["node", "tools/test_ib_ai_1_1_local_ti84_v6_8.mjs", "."], "Lesson 1.1 real TI-84 validation")
+# Validate the active merged Lesson 1.1 mathematical contract.
+run(["node", "tools/test_ib_ai_1_1_merged_v7.mjs"], "Lesson 1.1 merged mathematics")
+for asset in ("model", "questions", "labs", "core"):
+    run(["node", "--check", f"lessons/ib-math-ai/unit-1/data/lesson-1.1-merged-{asset}-v7.js"], f"Lesson 1.1 {asset} syntax")
 
 overlay = ROOT / "lessons/ib-math-ai/unit-1/data/lesson-1.5-exponents-logarithms-definitive-v6.js"
 run(["node", "--check", str(overlay)], "Lesson 1.5 JavaScript syntax")

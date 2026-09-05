@@ -26,6 +26,7 @@ on:
       - "js/institution-experience.js"
       - "js/institution-completion.js"
       - "data/ap-calculus-update.js"
+      - "tools/test_ib_ai_1_1_merged_v7*.mjs"
       - "tools/test_ap_calculus_1_1*.mjs"
       - "tools/test_ap_calculus_1_2*.mjs"
       - "tools/test_ap_calculus_1_3_1_4*.mjs"
@@ -90,12 +91,14 @@ jobs:
 
       - name: Verify interactive AP Calculus lessons mathematics and controls
         run: |
+          node tools/test_ib_ai_1_1_merged_v7.mjs
           node tools/test_ap_calculus_1_1.mjs
           node tools/test_ap_calculus_1_2.mjs
           node tools/test_ap_calculus_1_3_1_4.mjs
           node tools/test_ap_calculus_1_5.mjs
           node tools/test_ap_calculus_1_6.mjs
           npm install --prefix "$RUNNER_TEMP/calculus11-dom" --no-save --ignore-scripts --no-audit --no-fund linkedom@0.18.12
+          ECHS_TEST_DOM_MODULE="$RUNNER_TEMP/calculus11-dom/node_modules/linkedom" node tools/test_ib_ai_1_1_merged_v7_ui.mjs
           ECHS_TEST_DOM_MODULE="$RUNNER_TEMP/calculus11-dom/node_modules/linkedom" node tools/test_ap_calculus_1_1_ui.mjs
           ECHS_TEST_DOM_MODULE="$RUNNER_TEMP/calculus11-dom/node_modules/linkedom" node tools/test_ap_calculus_1_2_ui.mjs
           ECHS_TEST_DOM_MODULE="$RUNNER_TEMP/calculus11-dom/node_modules/linkedom" node tools/test_ap_calculus_1_3_1_4_ui.mjs
