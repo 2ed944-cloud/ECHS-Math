@@ -72,7 +72,7 @@ require(package_validator,['ALLOWED_COURSES','ap-calculus','target_courses','exa
 require(deploy,['upload-manager-api','practice-bank-api','setup-api','supabase functions deploy','/health'],'Backend deployment health contract')
 require(supabase_config,['[functions.upload-manager-api]','[functions.practice-bank-api]','verify_jwt = false'],'Supabase upload-manager function config')
 require(ib_update,[
- 'g11-ib-ai','window.ECHS_COURSES.filter','6 lessons · 471 purposeful Learn screens',
+ 'g11-ib-ai','window.ECHS_COURSES.filter','6 lessons · 435 purposeful Learn screens',
  'Scientific Notation, Approximation and Error','Financial Applications','Technology for Equations and Systems',
  'standard_form','financial_models','technology_equations'
 ],'Canonical IB Unit 1 portal update')
@@ -82,7 +82,7 @@ if 'window.ECHS_COURSES.push(course)' in ib_update:errors.append('IB Unit 1 upda
 if 'lesson.html?lesson=' in ib_update:errors.append('IB Unit 1 must use six direct canonical lesson HTML URLs')
 
 active=[
- ('1.1','IB_AI_SL_1.1_standard_form_ECHS.html',['lesson-1.1.js']),
+ ('1.1','IB_AI_SL_1.1_standard_form_ECHS.html',['lesson-1.1-merged-model-v7.js','lesson-1.1-merged-questions-v7.js','lesson-1.1-merged-labs-v7.js','lesson-1.1-merged-core-v7.js']),
  ('1.2','IB_AI_SL_1.2_arithmetic_sequences_ECHS.html',['lesson-1.2.js','lesson-1.2-arithmetic-definitive-v6.js']),
  ('1.3','IB_AI_SL_1.3_geometric_sequences_ECHS.html',['lesson-1.3.js','lesson-1.3-geometric-definitive-v6.js']),
  ('1.4','IB_AI_SL_1.4_financial_models_ECHS.html',['lesson-1.4.js','lesson-1.4-financial-v6-foundations.js','lesson-1.4-financial-v6-assessment.js']),
@@ -91,7 +91,13 @@ active=[
 ]
 for number,name,data_files in active:
  text=read(f'lessons/ib-math-ai/unit-1/lessons/{name}')
- require(text,['<html','</html>','../assets/css/katex.css','../assets/css/theme.css','../assets/js/katex-global.js','../assets/js/engine.js','class="topbar"','data-route="practice"'],f'IB active lesson {number}')
+ require(text,['<html','</html>','../assets/css/katex.css','../assets/js/katex-global.js','class="topbar"'],f'IB active lesson {number}')
+ if number=='1.1':
+  require(text,['data-merged-sections="SL 1.1 + SL 1.6"','../assets/css/lesson-1.1-merged-v7.css','id="continuePractice"','data-go="practice-guide"'],f'IB merged lesson {number}')
+  core=read('lessons/ib-math-ai/unit-1/data/lesson-1.1-merged-core-v7.js')
+  require(core,['[data-finish-lesson]','finish.click()','echs:ib-math-ai:'],f'IB merged lesson protected progression {number}')
+ else:
+  require(text,['../assets/css/theme.css','../assets/js/engine.js','data-route="practice"'],f'IB active lesson {number}')
  for data_file in data_files:
   require(text,[f'../data/{data_file}'],f'IB active lesson {number}')
   data_text=read(f'lessons/ib-math-ai/unit-1/data/{data_file}')

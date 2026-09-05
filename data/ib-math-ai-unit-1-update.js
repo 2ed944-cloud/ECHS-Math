@@ -20,13 +20,13 @@
 
   const unit={
     title:"Unit 1: Number and Algebra",
-    description:"Six consolidated IB Mathematics: Applications and Interpretation SL lessons with coherent AP-style teaching screens, transparent technology, four-level practice, IB tasks and mastery evidence.",
-    portalSummary:"6 lessons · 471 purposeful Learn screens · 600 studio questions · 86 quiz questions · 31 extended tasks",
+    description:"Six consolidated IB Mathematics: Applications and Interpretation SL lessons with coherent interactive teaching screens, transparent technology, four-level practice, IB tasks and mastery evidence.",
+    portalSummary:"6 lessons · 435 purposeful Learn screens · 516 learning and practice questions · 72 quiz questions · 40 written tasks",
     release:"6.0.0",
     architectureNotes:[
       "Approximation, bounds and percentage error are consolidated in Lesson 1.1.",
-      "Lesson 1.1 uses a scientific-notation-first core route; number-set review remains available without being presented as required classroom content.",
-      "Lesson 1.1 uses the same real TI-84 Plus CE online simulator pattern as Lesson 1.4, paired with lesson-specific EE, SCI/NORMAL and guard-digit training.",
+      "Lesson 1.1 uses a scientific-notation-first merged route covering official SL 1.1 + SL 1.6, with relevant SL challenges after IB-style written tasks.",
+      "Lesson 1.1 uses TI-Nspire CX / CX II procedures and guided calculator practice for scientific notation, accurate entry and guard digits.",
       "Financial applications, loans, annuities and amortization remain consolidated in Lesson 1.4, with the current IB SL core shown by default and broader reference-supported applications available as extension.",
       "Lesson 1.5 is expanded into a definitive exponent-laws and logarithms pathway.",
       "Lesson 1.6 is rebuilt as a definitive technology, equations, systems, verification and modelling pathway."
@@ -41,11 +41,11 @@
     lessons:[
       makeLesson("1.1","Scientific Notation, Approximation and Error","standard_form",[
         "Write, interpret and compare quantities in normalized scientific notation and across orders of magnitude.",
-        "Calculate with powers of ten and units, using estimation and the TI-84 only where technology adds value.",
+        "Calculate with powers of ten and units, using estimation and TI-Nspire procedures where technology adds value.",
         "Round to decimal places and significant figures while preserving meaningful zeros and guard digits.",
         "Construct direct and calculated bounds and quantify absolute and percentage error.",
         "Validate technology output and communicate scale, precision and uncertainty in context."
-      ],"6.9.0",79,96,14,5,["IBAI.U1.NUMBER","IBAI.U1.MODELING"]),
+      ],"7.0.0",43,12,0,14,["IBAI.U1.NUMBER","IBAI.U1.MODELING"]),
       makeLesson("1.2","Arithmetic Sequences and Series","arithmetic_sequences",[
         "Distinguish sequence terms, series and partial sums using precise notation.",
         "Recognize and prove arithmetic structure through constant first differences.",
@@ -99,8 +99,8 @@
   };
 
   upsertFullNotes("1.1",[
-    {label:"Full Notes 1.1 · Lesson-Synchronised Edition",url:"notes/ib-math-ai/unit-1/IB_AI_SL_1.1_Scientific_Notation_Approximation_and_Error_Full_Notes_Student.html",type:"notes"},
-    {label:"Full Notes 1.1 · Original Coloured LaTeX PDF",url:"notes/ib-math-ai/unit-1/IB_AI_SL_1.1_Scientific_Notation_Approximation_and_Error_Full_Notes_Student.pdf",type:"notes"}
+    {label:"Companion Notes 1.1 · Earlier Edition",url:"notes/ib-math-ai/unit-1/IB_AI_SL_1.1_Scientific_Notation_Approximation_and_Error_Full_Notes_Student.html",type:"notes"},
+    {label:"Companion Notes 1.1 · Earlier PDF Edition",url:"notes/ib-math-ai/unit-1/IB_AI_SL_1.1_Scientific_Notation_Approximation_and_Error_Full_Notes_Student.pdf",type:"notes"}
   ]);
   upsertFullNotes("1.2",[
     {label:"Full Notes 1.2 · Lesson-Synchronised Edition",url:"notes/ib-math-ai/unit-1/IB_AI_SL_1.2_Arithmetic_Sequences_Full_Notes_Student.html",type:"notes"},
@@ -126,11 +126,15 @@
 
   const lesson11=unit.lessons.find(lesson=>lesson.number==="1.1");
   if(lesson11){
-    lesson11.organization_release="6.9.0";
+    lesson11.organization_release="7.0.0";
     lesson11.defaultScope="IB SL Core";
-    lesson11.allContentAvailable=true;
-    lesson11.scopeCounts={learn:{core:70,all:79},practice:{core:88,all:96},quiz:{core:12,all:14},tasks:{core:4,all:5}};
-    lesson11.calculator={classroom:true,model:"TI-84 Plus CE",simulator:"real TI-84 Plus CE online simulator",provider:"ti84calc.com",externalDependency:true,lazyLoaded:true,sandboxed:true,workflows:["EE entry","SCI/NORMAL","brackets and guard digits"]};
+    lesson11.allContentAvailable=false;
+    lesson11.officialCoreSections=[{code:"SL 1.1",title:"Scientific notation"},{code:"SL 1.6",title:"Approximation, bounds, percentage error and estimation"}];
+    lesson11.scopeCounts={learn:{core:43,all:43},practice:{core:12,all:12},quiz:{core:0,all:0},tasks:{core:14,all:14}};
+    lesson11.calculator={classroom:true,model:"TI-Nspire CX / CX II",mode:"guided calculator practice",externalDependency:false,workflows:["scientific entry","Auto and decimal approximation","brackets and guard digits","percentage error"]};
+    lesson11.assessment={learningChecks:12,shortResponseTasks:8,extendedResponseTasks:3,challengeTasks:3,writtenParts:46,writtenMarks:82};
+    lesson11.resources[1].label="Learning checks and IB-style written practice";
+    lesson11.resources[2].label="IB-style written tasks · 14";
   }
 
   const financialLesson=unit.lessons.find(lesson=>lesson.number==="1.4");
@@ -208,6 +212,6 @@
   course.unitCount=course.units.length;
   course.lessonCount=course.units.reduce((total,value)=>total+(Array.isArray(value?.lessons)?value.lessons.length:0),0);
   course.status="Started";
-  course.updatedUnits="Unit 1 · Lesson 1.1 scientific notation with real TI-84 Plus CE simulator · Lesson 1.4 core-first finance · Lessons 1.5 and 1.6 definitive pathways";
+  course.updatedUnits="Unit 1 · Lesson 1.1 merged SL 1.1 + SL 1.6 with TI-Nspire guidance · Lesson 1.4 core-first finance · Lessons 1.5 and 1.6 definitive pathways";
   window.dispatchEvent(new CustomEvent("echs:ib-ai-unit-ready",{detail:{courseId:course.id,unit:1,lessons:unit.lessons.length,release:unit.release}}));
 })();

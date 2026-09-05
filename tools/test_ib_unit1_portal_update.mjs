@@ -21,17 +21,17 @@ const unit=course.units[0];
 if(unit.lessons.length!==6)throw new Error(`Unit 1 must contain six consolidated lessons, found ${unit.lessons.length}`);
 if(course.lessonCount!==31)throw new Error(`Expected 31 total lessons after consolidation, found ${course.lessonCount}`);
 if(unit.release!=='6.0.0')throw new Error(`Expected Unit 1 release 6.0.0, found ${unit.release}`);
-const summary='6 lessons · 471 purposeful Learn screens · 600 studio questions · 86 quiz questions · 31 extended tasks';
+const summary='6 lessons · 435 purposeful Learn screens · 516 learning and practice questions · 72 quiz questions · 40 written tasks';
 if(unit.portalSummary!==summary)throw new Error(`Unexpected portal summary: ${unit.portalSummary}`);
 if(!unit.architectureNotes.some(note=>note.includes('Approximation')))throw new Error('Approximation consolidation note is missing');
 if(!unit.architectureNotes.some(note=>note.includes('scientific-notation-first')))throw new Error('Lesson 1.1 core-route note is missing');
-if(!unit.architectureNotes.some(note=>note.includes('real TI-84 Plus CE')))throw new Error('Lesson 1.1 real TI-84 note is missing');
+if(!unit.architectureNotes.some(note=>note.includes('TI-Nspire CX / CX II')))throw new Error('Lesson 1.1 real TI-84 note is missing');
 if(!unit.architectureNotes.some(note=>note.includes('loans')))throw new Error('Financial consolidation note is missing');
 if(!unit.architectureNotes.some(note=>note.includes('Lesson 1.5')))throw new Error('Lesson 1.5 definitive-release note is missing');
 if(!unit.architectureNotes.some(note=>note.includes('Lesson 1.6')))throw new Error('Lesson 1.6 definitive-release note is missing');
 
 const expected=[
- ['Scientific Notation, Approximation and Error','6.9.0',79,96,14,5],
+ ['Scientific Notation, Approximation and Error','7.0.0',43,12,0,14],
  ['Arithmetic Sequences and Series','6.0.0',73,96,14,5],
  ['Geometric Sequences and Series','6.0.0',73,96,14,5],
  ['Financial Applications','6.0.0',100,120,16,6],
@@ -47,10 +47,11 @@ unit.lessons.forEach((lesson,index)=>{
 });
 
 const lesson11=unit.lessons[0];
-if(lesson11.defaultScope!=='IB SL Core'||lesson11.allContentAvailable!==true)throw new Error('Lesson 1.1 scope metadata is incomplete');
-if(JSON.stringify(lesson11.scopeCounts)!==JSON.stringify({learn:{core:70,all:79},practice:{core:88,all:96},quiz:{core:12,all:14},tasks:{core:4,all:5}}))throw new Error(`Lesson 1.1 scope counts are incorrect: ${JSON.stringify(lesson11.scopeCounts)}`);
-if(lesson11.calculator?.model!=='TI-84 Plus CE'||lesson11.calculator?.simulator!=='real TI-84 Plus CE online simulator')throw new Error('Lesson 1.1 real calculator metadata is incomplete');
-if(lesson11.calculator?.provider!=='ti84calc.com'||lesson11.calculator?.externalDependency!==true||lesson11.calculator?.lazyLoaded!==true||lesson11.calculator?.sandboxed!==true)throw new Error('Lesson 1.1 real simulator dependency metadata is incomplete');
+if(lesson11.defaultScope!=='IB SL Core'||lesson11.allContentAvailable!==false)throw new Error('Lesson 1.1 scope metadata is incomplete');
+if(JSON.stringify(lesson11.scopeCounts)!==JSON.stringify({learn:{core:43,all:43},practice:{core:12,all:12},quiz:{core:0,all:0},tasks:{core:14,all:14}}))throw new Error(`Lesson 1.1 scope counts are incorrect: ${JSON.stringify(lesson11.scopeCounts)}`);
+if(lesson11.calculator?.model!=='TI-Nspire CX / CX II'||lesson11.calculator?.mode!=='guided calculator practice'||lesson11.calculator?.externalDependency!==false)throw new Error('Lesson 1.1 TI-Nspire guidance metadata is incomplete');
+if(lesson11.officialCoreSections?.map(s=>s.code).join(',')!=='SL 1.1,SL 1.6')throw new Error('Merged official sections are missing');
+if(lesson11.assessment?.writtenParts!==46||lesson11.assessment?.writtenMarks!==82)throw new Error('Written assessment totals are incorrect');
 for(const required of ['scientific notation','guard digits','percentage error'])if(!lesson11.outcomes.some(outcome=>outcome.toLowerCase().includes(required)))throw new Error(`Lesson 1.1 outcome missing ${required}`);
 if(lesson11.outcomes.some(outcome=>outcome.toLowerCase().includes('complex numbers')))throw new Error('Complex-number classification must not be a core Lesson 1.1 outcome');
 
@@ -76,11 +77,11 @@ if(lesson16.teachingBlocks?.map(block=>block.code).join(',')!=='1.6A,1.6B,1.6C,1
 if(lesson16.teachingBlocks.some(block=>block.estimatedClassroomTime!=='60–75 minutes'))throw new Error('Lesson 1.6 pacing metadata is incomplete');
 
 const totals=unit.lessons.reduce((acc,lesson)=>{acc.slides+=lesson.learnSlides;acc.practice+=lesson.practiceQuestions;acc.quiz+=lesson.quizQuestions;acc.tasks+=lesson.extendedTasks;return acc;},{slides:0,practice:0,quiz:0,tasks:0});
-if(JSON.stringify(totals)!==JSON.stringify({slides:471,practice:600,quiz:86,tasks:31}))throw new Error(`Unit totals are inconsistent: ${JSON.stringify(totals)}`);
+if(JSON.stringify(totals)!==JSON.stringify({slides:435,practice:516,quiz:72,tasks:40}))throw new Error(`Unit totals are inconsistent: ${JSON.stringify(totals)}`);
 const urls=unit.lessons.map(item=>item.url);
 if(new Set(urls).size!==6)throw new Error('Every Unit 1 lesson must have a unique direct URL');
 if(urls.some(url=>!/^lessons\/ib-math-ai\/unit-1\/lessons\/IB_AI_SL_1\.[1-6]_.+_ECHS\.html$/.test(url)))throw new Error(`Unit 1 contains a non-direct lesson URL: ${urls.join(', ')}`);
 if(urls.some(url=>url.includes('?')))throw new Error('Direct Unit 1 lesson URLs must not depend on a query-string selector');
 if(!events.some(event=>event.type==='echs:ib-ai-unit-ready'&&event.detail?.lessons===6&&event.detail?.release==='6.0.0'))throw new Error('Unit-ready event was not dispatched correctly');
 
-console.log('IB Unit 1 six-lesson portal update with Lesson 1.1 real TI-84 Plus CE release: PASS');
+console.log('IB Unit 1 six-lesson portal update with Lesson 1.1 TI-Nspire CX / CX II release: PASS');
