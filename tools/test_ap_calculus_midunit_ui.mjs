@@ -5,7 +5,7 @@ import {createRequire} from 'node:module';
 const require=createRequire(import.meta.url),{parseHTML}=require(process.env.ECHS_TEST_DOM_MODULE||'linkedom');
 const root=new URL('../',import.meta.url),base=new URL('lessons/ap-calculus/unit-1/',root),html=fs.readFileSync(new URL('middle-unit-important-checking-questions.html',base),'utf8');
 const Q=require(new URL('assets/midunit-questions.js',base).pathname),G=require(new URL('assets/midunit-graphs.js',base).pathname);
-const storage=new Map();
+const storage=new Map(),N=Q.questions.length;
 function fixture(data=Q){
   const {window:dom,document}=parseHTML(html);let account={id:'student-a'},failStorage=false;
   Object.defineProperty(dom.HTMLSelectElement.prototype,'value',{configurable:true,get(){return this.querySelector('option[selected]')?.value??this.querySelector('option')?.value??'';},set(v){for(const o of this.querySelectorAll('option'))o.toggleAttribute('selected',o.value===String(v));}});
@@ -18,23 +18,27 @@ function fixture(data=Q){
   function answer(id,index){const r=$('question-'+id).querySelector(`input[value="${index}"]`);r.checked=true;r.dispatchEvent(new dom.Event('change',{bubbles:true}));}
   return {dom,document,$,click,answer,location,account(v){account=v;target.dispatchEvent(new dom.Event('focus'));},fail(){failStorage=true;},goHash(hash){location.hash=hash;target.dispatchEvent(new dom.Event('hashchange'));},key(node,key){const e=new dom.Event('keydown',{bubbles:true,cancelable:true});Object.defineProperty(e,'key',{value:key});node.dispatchEvent(e);}};
 }
+// Load work saved by the original 24-question release into the expanded lesson.
+const legacy=fixture({...Q,questions:Q.questions.slice(0,24)});legacy.answer('q02',Q.questions[1].answer);legacy.click(legacy.document.querySelector('[data-check="q02"]'));legacy.click(legacy.document.querySelector('[data-flag="q03"]'));
+const restored=fixture();assert.equal(restored.$('correctCount').textContent,'1');assert.equal(restored.$('flaggedCount').textContent,'1');assert.equal(restored.$('status-q25').textContent,'Not attempted');storage.clear();
 const f=fixture(),{$,click,answer,document}=f;
-assert.equal(document.documentElement.dataset.checkpointReady,'true');assert.equal(document.querySelectorAll('[data-question]').length,Q.questions.length);assert.equal(document.querySelectorAll('.slide:not([hidden])').length,1);assert.equal(document.querySelectorAll('svg').length,14);
+assert.equal(document.documentElement.dataset.checkpointReady,'true');assert.equal(document.querySelectorAll('[data-question]').length,Q.questions.length);assert.equal(document.querySelectorAll('.slide:not([hidden])').length,1);assert.equal(document.querySelectorAll('svg').length,Q.questions.reduce((n,q)=>n+(q.graph?1:0)+(q.graphs?.length||0)+(q.choiceGraphs?.length||0),0));
 const current=()=>document.querySelector('.slide:not([hidden])').id;
 click($('nextSlide'));assert.equal(current(),'route');f.key(document,'ArrowRight');assert.equal(current(),'question-q01');f.key($('question-q01').querySelector('input'),'ArrowRight');assert.equal(current(),'question-q01');
-click(document.querySelector('[data-check="q01"]'));assert.match($('feedback-q01').textContent,/Select an answer/);assert.equal($('attemptedCount').textContent,'0 / 24');
+click(document.querySelector('[data-check="q01"]'));assert.match($('feedback-q01').textContent,/Select an answer/);assert.equal($('attemptedCount').textContent,`0 / ${N}`);
 click(document.querySelector('[data-solution="q01"]'));assert.ok($('solution-q01').hidden);click(document.querySelector('[data-hint="q01"]'));assert.equal($('hint-q01').hidden,false);
 answer('q01',0);click(document.querySelector('[data-check="q01"]'));assert.match($('feedback-q01').textContent,/Not yet/);click(document.querySelector('[data-solution="q01"]'));assert.equal($('solution-q01').hidden,false);
 answer('q01',Q.questions[0].answer);assert.ok($('solution-q01').hidden);assert.equal($('feedback-q01').textContent,'');click(document.querySelector('[data-check="q01"]'));assert.match($('feedback-q01').textContent,/Correct after review/);assert.equal($('firstCount').textContent,'0');
 for(const q of Q.questions.slice(1)){answer(q.id,(q.answer+1)%4);click(document.querySelector(`[data-check="${q.id}"]`));assert.match($('feedback-'+q.id).textContent,/Not yet/);answer(q.id,q.answer);click(document.querySelector(`[data-check="${q.id}"]`));assert.match($('feedback-'+q.id).textContent,/Correct/);}
-assert.equal($('correctCount').textContent,'24');answer('q03',0);assert.equal($('correctCount').textContent,'23');assert.match($('status-q03').textContent,/check again/);
-click(document.querySelector('[data-flag="q03"]'));assert.equal($('flaggedCount').textContent,'1');f.goHash('#question=q03');assert.equal(current(),'question-q03');
+assert.equal($('correctCount').textContent,String(N));answer('q03',0);assert.equal($('correctCount').textContent,String(N-1));assert.match($('status-q03').textContent,/check again/);
+click(document.querySelector('[data-flag="q03"]'));assert.equal($('flaggedCount').textContent,'1');f.goHash('#question=q44');assert.equal(current(),'question-q44');click(document.querySelector('[data-go="question-q25"]'));assert.equal(current(),'question-q25');f.goHash('#question=q03');assert.equal(current(),'question-q03');
+f.goHash('#slide=27');assert.equal(current(),'review');assert.equal(f.location.hash,'#section=review');f.goHash('#slide=28');assert.equal(current(),'reference');f.goHash('#section=review');assert.equal(current(),'review');f.goHash('#question=q03');
 const key='echs:ap-calculus:1.M:midunit-v1:student-a';assert.ok(storage.has(key));assert.equal(JSON.parse(storage.get(key)).slide,'question-q03');
 // Appending questions preserves the old account's answers and flags using stable IDs.
-const extended={...Q,questions:[...Q.questions,{...Q.questions[0],id:'q25',title:'Additional check'}]},next=fixture(extended);assert.equal(next.$('correctCount').textContent,'23');assert.equal(next.$('flaggedCount').textContent,'1');assert.equal(next.$('attemptedCount').textContent,'24 / 25');
+const extended={...Q,questions:[...Q.questions,{...Q.questions[0],id:'future-question',title:'Additional check'}]},next=fixture(extended);assert.equal(next.$('correctCount').textContent,String(N-1));assert.equal(next.$('flaggedCount').textContent,'1');assert.equal(next.$('attemptedCount').textContent,`${N} / ${N+1}`);
 f.account({id:'student-b'});assert.equal($('correctCount').textContent,'0');assert.equal($('flaggedCount').textContent,'0');assert.ok($('hint-q01').hidden);assert.equal(current(),'start');
-answer('q02',Q.questions[1].answer);click(document.querySelector('[data-check="q02"]'));assert.equal($('firstCount').textContent,'1');f.account({id:'student-a'});assert.equal($('correctCount').textContent,'23');
-click($('resetWork'));assert.equal($('resetConfirmation').hidden,false);click($('cancelReset'));assert.equal($('correctCount').textContent,'23');click($('resetWork'));click($('confirmReset'));assert.equal($('correctCount').textContent,'0');assert.equal($('flaggedCount').textContent,'0');assert.ok($('solution-q01').hidden);
+answer('q02',Q.questions[1].answer);click(document.querySelector('[data-check="q02"]'));assert.equal($('firstCount').textContent,'1');f.account({id:'student-a'});assert.equal($('correctCount').textContent,String(N-1));
+click($('resetWork'));assert.equal($('resetConfirmation').hidden,false);click($('cancelReset'));assert.equal($('correctCount').textContent,String(N-1));click($('resetWork'));click($('confirmReset'));assert.equal($('correctCount').textContent,'0');assert.equal($('flaggedCount').textContent,'0');assert.ok($('solution-q01').hidden);
 f.fail();answer('q02',1);assert.match(document.querySelector('.checkpoint-save-note').textContent,/storage is unavailable/);
 f.account(null);const saved=JSON.stringify([...storage]);answer('q02',0);assert.equal(JSON.stringify([...storage]),saved,'Anonymous answers do not write another account’s storage');
 // Exercise the deployed access guard: embedded routing remains behind both course and lesson checks.

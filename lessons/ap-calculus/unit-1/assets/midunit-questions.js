@@ -1421,8 +1421,883 @@
         "at": 8,
         "result": "insufficient"
       }
+    },
+    {
+      "id": "q25",
+      "family": "piecewise-analytic",
+      "title": "Approach a pump’s switching time",
+      "topic": "1.5",
+      "batch": "batch-2",
+      "prompt": "A pump’s flow setting is modeled by \\(R(t)=\\begin{cases}2t+1,&t<3,\\\\12-t,&t>3.\\end{cases}\\) What is \\(\\lim_{t\\to3^-}R(t)\\)?",
+      "choices": [
+        "9",
+        "7",
+        "The limit does not exist.",
+        "6"
+      ],
+      "answer": 1,
+      "hint": "For a left-hand limit at 3, use the rule that applies when t < 3.",
+      "solution": "For inputs just below 3, \\(R(t)=2t+1\\). Therefore \\(\\lim_{t\\to3^-}R(t)=2(3)+1=7\\). The other branch approaches 9, but that does not affect this left-hand limit. No value at exactly 3 is required.",
+      "check": {
+        "target": 3,
+        "side": "left",
+        "leftCoefficients": [
+          2,
+          1
+        ],
+        "rightCoefficients": [
+          -1,
+          12
+        ],
+        "at": null,
+        "result": 7
+      }
+    },
+    {
+      "id": "q26",
+      "family": "piecewise-analytic",
+      "title": "A calibration rule from the right",
+      "topic": "1.5",
+      "batch": "batch-2",
+      "prompt": "A device uses \\(H(x)=\\begin{cases}x^2+1,&x<-2,\\\\12,&x=-2,\\\\3x+10,&x>-2.\\end{cases}\\) Find \\(\\lim_{x\\to-2^+}H(x)\\).",
+      "choices": [
+        "12",
+        "5",
+        "4",
+        "The limit does not exist."
+      ],
+      "answer": 2,
+      "hint": "Inputs approaching −2 from the right are greater than −2.",
+      "solution": "The relevant rule is \\(3x+10\\). Its limit at −2 is \\(3(-2)+10=4\\). The value \\(H(-2)=12\\) and the left-hand limit 5 are different pieces of information; neither replaces the right-hand limit.",
+      "check": {
+        "target": -2,
+        "side": "right",
+        "leftCoefficients": [
+          1,
+          0,
+          1
+        ],
+        "rightCoefficients": [
+          3,
+          10
+        ],
+        "at": 12,
+        "result": 4
+      }
+    },
+    {
+      "id": "q27",
+      "family": "graph-limit-laws",
+      "title": "Combine two graphical limits",
+      "topic": "1.5",
+      "batch": "batch-2",
+      "prompt": "The graphs show \\(f\\) and \\(g\\). Find \\(\\displaystyle\\lim_{x\\to2}\\frac{f(x)+3}{g(x)}\\).",
+      "choices": [
+        "1",
+        "\\(\\frac54\\)",
+        "2",
+        "The limit does not exist."
+      ],
+      "answer": 2,
+      "hint": "Read the approaching value of each graph. Then check that the denominator’s limit is nonzero.",
+      "solution": "The hole shows \\(\\lim_{x\\to2}f(x)=5\\), while the line gives \\(\\lim_{x\\to2}g(x)=4\\). Since 4 is nonzero, the quotient law gives \\((5+3)/4=2\\). Using the filled value \\(f(2)=1\\) would give the distractor 1.",
+      "graphs": [
+        {
+          "label": "Graph of f: a parabola has a hole at (2,5) and a filled point at (2,1).",
+          "domain": [
+            -1,
+            4
+          ],
+          "range": [
+            0,
+            10
+          ],
+          "branches": [
+            {
+              "domain": [
+                -1,
+                2
+              ],
+              "coefficients": [
+                0.5,
+                -1,
+                5
+              ]
+            },
+            {
+              "domain": [
+                2,
+                4
+              ],
+              "coefficients": [
+                0.5,
+                -1,
+                5
+              ]
+            }
+          ],
+          "marks": [
+            {
+              "x": 2,
+              "y": 5,
+              "open": true
+            },
+            {
+              "x": 2,
+              "y": 1,
+              "open": false
+            }
+          ],
+          "xLabel": "x",
+          "yLabel": "f(x)",
+          "step": 1
+        },
+        {
+          "label": "Graph of g: the line g(x) = x + 2 passes through the filled point (2,4).",
+          "domain": [
+            -1,
+            4
+          ],
+          "range": [
+            0,
+            7
+          ],
+          "branches": [
+            {
+              "domain": [
+                -1,
+                4
+              ],
+              "coefficients": [
+                1,
+                2
+              ]
+            }
+          ],
+          "marks": [
+            {
+              "x": 2,
+              "y": 4,
+              "open": false
+            }
+          ],
+          "xLabel": "x",
+          "yLabel": "g(x)",
+          "step": 1
+        }
+      ],
+      "check": {
+        "target": 2,
+        "fLimit": 5,
+        "gLimit": 4,
+        "scale": 1,
+        "offset": 3,
+        "result": 2
+      }
+    },
+    {
+      "id": "q28",
+      "family": "graph-limit-laws",
+      "title": "A negative denominator limit",
+      "topic": "1.5",
+      "batch": "batch-2",
+      "prompt": "Using the two graphs, evaluate \\(\\displaystyle\\lim_{x\\to-1}\\frac{2f(x)-1}{g(x)}\\).",
+      "choices": [
+        "−1",
+        "\\(-\\frac{11}{3}\\)",
+        "\\(-\\frac23\\)",
+        "The limit does not exist."
+      ],
+      "answer": 0,
+      "hint": "A denominator approaching a negative number is allowed. It must be nonzero.",
+      "solution": "The nearby values give \\(\\lim_{x\\to-1}f(x)=2\\) and \\(\\lim_{x\\to-1}g(x)=-3\\). Thus the limit is \\((2\\cdot2-1)/(-3)=-1\\). The point value \\(f(-1)=6\\) would incorrectly produce \\(-11/3\\).",
+      "graphs": [
+        {
+          "label": "Graph of f: a parabola has a hole at (-1,2) and a filled point at (-1,6).",
+          "domain": [
+            -3,
+            1
+          ],
+          "range": [
+            0,
+            8
+          ],
+          "branches": [
+            {
+              "domain": [
+                -3,
+                -1
+              ],
+              "coefficients": [
+                0.5,
+                1,
+                2.5
+              ]
+            },
+            {
+              "domain": [
+                -1,
+                1
+              ],
+              "coefficients": [
+                0.5,
+                1,
+                2.5
+              ]
+            }
+          ],
+          "marks": [
+            {
+              "x": -1,
+              "y": 2,
+              "open": true
+            },
+            {
+              "x": -1,
+              "y": 6,
+              "open": false
+            }
+          ],
+          "xLabel": "x",
+          "yLabel": "f(x)",
+          "step": 1
+        },
+        {
+          "label": "Graph of g: the line g(x) = -x - 4 passes through (-1,-3).",
+          "domain": [
+            -3,
+            1
+          ],
+          "range": [
+            -6,
+            1
+          ],
+          "branches": [
+            {
+              "domain": [
+                -3,
+                1
+              ],
+              "coefficients": [
+                -1,
+                -4
+              ]
+            }
+          ],
+          "marks": [
+            {
+              "x": -1,
+              "y": -3,
+              "open": false
+            }
+          ],
+          "xLabel": "x",
+          "yLabel": "g(x)",
+          "step": 1
+        }
+      ],
+      "check": {
+        "target": -1,
+        "fLimit": 2,
+        "gLimit": -3,
+        "scale": 2,
+        "offset": -1,
+        "result": -1
+      }
+    },
+    {
+      "id": "q29",
+      "family": "direct-substitution",
+      "title": "A sensor’s response near zero",
+      "topic": "1.5",
+      "batch": "batch-2",
+      "prompt": "A sensor response is modeled near zero by \\(S(t)=\\dfrac{2\\cos t+5e^{2t}}{4e^t}\\). Angles are in radians. Find \\(\\lim_{t\\to0}S(t)\\).",
+      "choices": [
+        "\\(\\frac54\\)",
+        "\\(\\frac74\\)",
+        "\\(\\frac78\\)",
+        "The limit does not exist."
+      ],
+      "answer": 1,
+      "hint": "At t = 0, cosine and every displayed exponential equal 1.",
+      "solution": "Cosine and exponential functions permit direct substitution here. The denominator approaches \\(4e^0=4\\ne0\\), so \\(\\lim_{t\\to0}S(t)=(2\\cdot1+5\\cdot1)/(4\\cdot1)=7/4\\). There is no indeterminate form.",
+      "check": {
+        "target": 0,
+        "cosCoefficient": 2,
+        "cosFrequency": 1,
+        "expCoefficient": 5,
+        "numeratorExpRate": 2,
+        "denominatorCoefficient": 4,
+        "denominatorExpRate": 1,
+        "result": 1.75
+      }
+    },
+    {
+      "id": "q30",
+      "family": "direct-substitution",
+      "title": "A compensation factor",
+      "topic": "1.5",
+      "batch": "batch-2",
+      "prompt": "A compensation factor is \\(K(x)=\\dfrac{3\\cos(2x)-2e^x}{5e^{-x}}\\), with angles in radians. Evaluate \\(\\lim_{x\\to0}K(x)\\).",
+      "choices": [
+        "1",
+        "5",
+        "\\(-\\frac15\\)",
+        "\\(\\frac15\\)"
+      ],
+      "answer": 3,
+      "hint": "Substitute before choosing an algebraic manipulation.",
+      "solution": "At zero, the numerator approaches \\(3-2=1\\), and the denominator approaches \\(5\\ne0\\). Therefore the quotient approaches \\(1/5\\). The negative exponent does not make \\(e^0\\) negative.",
+      "check": {
+        "target": 0,
+        "cosCoefficient": 3,
+        "cosFrequency": 2,
+        "expCoefficient": -2,
+        "numeratorExpRate": 1,
+        "denominatorCoefficient": 5,
+        "denominatorExpRate": -1,
+        "result": 0.2
+      }
+    },
+    {
+      "id": "q31",
+      "family": "radical-equivalence",
+      "title": "Replace a removable radical quotient",
+      "topic": "1.6",
+      "batch": "batch-2",
+      "prompt": "For \\(F(x)=\\dfrac{x-16}{\\sqrt{x}-4}\\), which expression is equivalent to \\(\\lim_{x\\to16}F(x)\\) and can be evaluated by direct substitution?",
+      "choices": [
+        "\\(\\lim_{x\\to16}(\\sqrt{x}-4)\\)",
+        "\\(\\lim_{x\\to16}(\\sqrt{x}+4)\\)",
+        "\\(\\lim_{x\\to16}\\frac{x^2-256}{x-16}\\)",
+        "\\(\\dfrac{\\lim_{x\\to16}(x-16)}{\\lim_{x\\to16}(\\sqrt{x}-4)}\\)"
+      ],
+      "answer": 1,
+      "hint": "Use the difference of squares: x − 16 = (√x − 4)(√x + 4).",
+      "solution": "For nearby \\(x\\ne16\\), cancel the common factor \\(\\sqrt{x}-4\\), giving \\(F(x)=\\sqrt{x}+4\\). Hence the equivalent limit is \\(\\lim_{x\\to16}(\\sqrt{x}+4)=8\\). The quotient of the separate limits is \\(0/0\\), so the quotient law does not justify the last choice.",
+      "check": {
+        "target": 16,
+        "mode": "radical-denominator",
+        "result": 8
+      }
+    },
+    {
+      "id": "q32",
+      "family": "radical-equivalence",
+      "title": "A radical in the numerator",
+      "topic": "1.6",
+      "batch": "batch-2",
+      "prompt": "Which expression rewrites \\(\\displaystyle\\lim_{x\\to16}\\frac{\\sqrt{x+9}-5}{x-16}\\) so that direct substitution is valid?",
+      "choices": [
+        "\\(\\lim_{x\\to16}\\frac{1}{\\sqrt{x+9}-5}\\)",
+        "\\(\\lim_{x\\to16}(\\sqrt{x+9}+5)\\)",
+        "\\(\\lim_{x\\to16}\\frac{1}{\\sqrt{x+9}+5}\\)",
+        "\\(\\dfrac{\\lim_{x\\to16}(\\sqrt{x+9}-5)}{\\lim_{x\\to16}(x-16)}\\)"
+      ],
+      "answer": 2,
+      "hint": "Multiply the numerator and denominator by the numerator’s conjugate.",
+      "solution": "For nearby \\(x\\ne16\\), rationalization gives \\(\\frac{\\sqrt{x+9}-5}{x-16}=\\frac{(x+9)-25}{(x-16)(\\sqrt{x+9}+5)}=\\frac1{\\sqrt{x+9}+5}\\). The denominator now approaches 10, so the limit is \\(1/10\\). The rewritten expression agrees nearby, although the original is undefined at 16.",
+      "check": {
+        "target": 16,
+        "mode": "radical-numerator",
+        "result": 0.1
+      }
+    },
+    {
+      "id": "q33",
+      "family": "factor-zero",
+      "title": "Cancel the common factor first",
+      "topic": "1.6",
+      "batch": "batch-2",
+      "prompt": "Find \\(\\displaystyle\\lim_{x\\to0}\\frac{5x^6+4x^3-18x}{2x^5+6x}\\).",
+      "choices": [
+        "\\(\\frac52\\)",
+        "0",
+        "−3",
+        "The limit does not exist."
+      ],
+      "answer": 2,
+      "hint": "Every term has a factor of x. The limit is at zero, so leading coefficients do not determine it.",
+      "solution": "For \\(x\\ne0\\), divide numerator and denominator by x: \\(\\frac{5x^5+4x^2-18}{2x^4+6}\\). Substitution now gives \\(-18/6=-3\\). The initial form \\(0/0\\) signals a needed rewrite; it does not mean the limit is zero or nonexistent.",
+      "check": {
+        "target": 0,
+        "numerator": [
+          5,
+          0,
+          0,
+          4,
+          0,
+          -18,
+          0
+        ],
+        "denominator": [
+          2,
+          0,
+          0,
+          0,
+          6,
+          0
+        ],
+        "cancelPower": 1,
+        "result": -3
+      }
+    },
+    {
+      "id": "q34",
+      "family": "factor-zero",
+      "title": "Cancel the full shared power",
+      "topic": "1.6",
+      "batch": "batch-2",
+      "prompt": "Evaluate \\(\\displaystyle\\lim_{x\\to0}\\frac{12x^4-7x^2}{3x^5+2x^2}\\).",
+      "choices": [
+        "\\(-\\frac72\\)",
+        "4",
+        "0",
+        "The limit does not exist."
+      ],
+      "answer": 0,
+      "hint": "Both numerator and denominator have a factor of x².",
+      "solution": "For \\(x\\ne0\\), the quotient equals \\(\\frac{12x^2-7}{3x^3+2}\\). Its denominator approaches 2, so direct substitution gives \\(-7/2\\). Cancelling only one factor of x would leave another removable common factor.",
+      "check": {
+        "target": 0,
+        "numerator": [
+          12,
+          0,
+          -7,
+          0,
+          0
+        ],
+        "denominator": [
+          3,
+          0,
+          0,
+          2,
+          0,
+          0
+        ],
+        "cancelPower": 2,
+        "result": -3.5
+      }
+    },
+    {
+      "id": "q35",
+      "family": "trig-equivalence",
+      "title": "Rewrite with a trigonometric identity",
+      "topic": "1.6",
+      "batch": "batch-2",
+      "prompt": "Which expression is equivalent to \\(\\displaystyle\\lim_{x\\to0}\\frac{\\cos(2x)-1}{\\sin^2(2x)}\\) and has a nonzero denominator at the target?",
+      "choices": [
+        "\\(\\lim_{x\\to0}\\frac{1}{1+\\cos(2x)}\\)",
+        "\\(\\lim_{x\\to0}\\frac{-1}{1+\\cos(2x)}\\)",
+        "\\(\\lim_{x\\to0}\\cot(2x)\\)",
+        "\\(\\lim_{x\\to0}\\bigl(\\cos(2x)-1\\bigr)\\)"
+      ],
+      "answer": 1,
+      "hint": "Factor sin²(2x) as (1 − cos(2x))(1 + cos(2x)).",
+      "solution": "Use \\(\\cos(2x)-1=-(1-\\cos(2x))\\) and \\(\\sin^2(2x)=(1-\\cos(2x))(1+\\cos(2x))\\). At sufficiently close nonzero inputs, cancellation gives \\(-1/(1+\\cos(2x))\\). Its limit is \\(-1/2\\). This uses an exact identity and direct substitution.",
+      "check": {
+        "target": 0,
+        "mode": "cosine-difference",
+        "frequency": 2,
+        "result": -0.5
+      }
+    },
+    {
+      "id": "q36",
+      "family": "trig-equivalence",
+      "title": "Choose the correct sign",
+      "topic": "1.6",
+      "batch": "batch-2",
+      "prompt": "Which expression rewrites \\(\\displaystyle\\lim_{x\\to-\\pi/6}\\frac{1+\\sin(3x)}{\\cos^2(3x)}\\) so that it can be evaluated directly?",
+      "choices": [
+        "\\(\\lim_{x\\to-\\pi/6}\\frac{-1}{1-\\sin(3x)}\\)",
+        "\\(\\lim_{x\\to-\\pi/6}\\frac{1}{1+\\sin(3x)}\\)",
+        "\\(\\lim_{x\\to-\\pi/6}\\sec^2(3x)\\)",
+        "\\(\\lim_{x\\to-\\pi/6}\\frac{1}{1-\\sin(3x)}\\)"
+      ],
+      "answer": 3,
+      "hint": "Factor cos²(3x) as (1 − sin(3x))(1 + sin(3x)).",
+      "solution": "For sufficiently close inputs other than the target, cancel \\(1+\\sin(3x)\\), leaving \\(1/(1-\\sin(3x))\\). Since \\(\\sin(-\\pi/2)=-1\\), the remaining denominator approaches 2 and the limit is \\(1/2\\). The exact identity makes direct substitution valid.",
+      "check": {
+        "target": -0.5235987755982988,
+        "mode": "sine-sum",
+        "frequency": 3,
+        "result": 0.5
+      }
+    },
+    {
+      "id": "q37",
+      "family": "complex-fraction",
+      "title": "Combine the fractions",
+      "topic": "1.6",
+      "batch": "batch-2",
+      "prompt": "Which limit has the same value as \\(\\displaystyle\\lim_{x\\to3}\\frac{1/x-1/3}{x-3}\\) and follows from a valid algebraic rewrite?",
+      "choices": [
+        "\\(\\lim_{x\\to3}\\frac{-1}{x}\\)",
+        "\\(\\lim_{x\\to3}\\frac{1}{3x}\\)",
+        "\\(\\lim_{x\\to3}\\frac{-1}{3x}\\)",
+        "\\(\\dfrac{\\lim_{x\\to3}(1/x-1/3)}{\\lim_{x\\to3}(x-3)}\\)"
+      ],
+      "answer": 2,
+      "hint": "Write 1/x − 1/3 over the common denominator 3x.",
+      "solution": "For \\(x\\ne0,3\\), \\(1/x-1/3=(3-x)/(3x)=-(x-3)/(3x)\\). After cancelling \\(x-3\\), the quotient becomes \\(-1/(3x)\\). Therefore its limit is \\(-1/9\\). Writing a quotient of zero limits is not a valid application of the quotient law.",
+      "check": {
+        "target": 3,
+        "numeratorConstant": 1,
+        "shift": 0,
+        "subtract": 0.3333333333333333,
+        "result": -0.1111111111111111
+      }
+    },
+    {
+      "id": "q38",
+      "family": "complex-fraction",
+      "title": "A shifted reciprocal model",
+      "topic": "1.6",
+      "batch": "batch-2",
+      "prompt": "A comparison model is \\(M(t)=\\dfrac{2/(t+1)-1/2}{t-3}\\). Which expression is equivalent to \\(\\lim_{t\\to3}M(t)\\) and can be evaluated directly?",
+      "choices": [
+        "\\(\\lim_{t\\to3}\\frac{-1}{2(t+1)}\\)",
+        "\\(\\lim_{t\\to3}\\frac{2}{t+1}\\)",
+        "\\(\\lim_{t\\to3}\\frac{1}{2(t+1)}\\)",
+        "\\(\\lim_{t\\to3}\\left(\\frac{2}{t+1}-\\frac12\\right)\\)"
+      ],
+      "answer": 0,
+      "hint": "The numerator becomes (3 − t)/(2(t + 1)) after combining fractions.",
+      "solution": "For \\(t\\ne-1,3\\), \\(\\frac{2}{t+1}-\\frac12=\\frac{4-(t+1)}{2(t+1)}=-\\frac{t-3}{2(t+1)}\\). Divide by \\(t-3\\) to obtain \\(-1/[2(t+1)]\\). Its limit at 3 is \\(-1/8\\).",
+      "check": {
+        "target": 3,
+        "numeratorConstant": 2,
+        "shift": 1,
+        "subtract": 0.5,
+        "result": -0.125
+      }
+    },
+    {
+      "id": "q39",
+      "family": "recover-limit",
+      "title": "Recover the numerator’s limit",
+      "topic": "1.5",
+      "batch": "batch-2",
+      "prompt": "Functions \\(f\\) and \\(g\\) satisfy \\(\\lim_{x\\to-2}g(x)=-4\\) and \\(\\lim_{x\\to-2}\\frac{f(x)}{g(x)}=\\frac32\\). What is \\(\\lim_{x\\to-2}f(x)\\)?",
+      "choices": [
+        "\\(-\\frac83\\)",
+        "\\(-\\frac52\\)",
+        "6",
+        "−6"
+      ],
+      "answer": 3,
+      "hint": "Rewrite f as the product (f/g)g near the target.",
+      "solution": "Since \\(g(x)\\) approaches the nonzero number −4, it is nonzero sufficiently near −2. Write \\(f(x)=[f(x)/g(x)]g(x)\\). The product law then gives \\(\\lim_{x\\to-2}f(x)=(3/2)(-4)=-6\\). This argument also establishes that the limit of f exists.",
+      "check": {
+        "target": -2,
+        "gLimit": -4,
+        "ratioLimit": 1.5,
+        "scale": 1,
+        "offset": 0,
+        "result": -6
+      }
+    },
+    {
+      "id": "q40",
+      "family": "recover-limit",
+      "title": "Recover a transformed limit",
+      "topic": "1.5",
+      "batch": "batch-2",
+      "prompt": "It is known that \\(\\lim_{x\\to3}g(x)=5\\) and \\(\\lim_{x\\to3}\\frac{2f(x)+1}{g(x)}=4\\). Determine \\(\\lim_{x\\to3}f(x)\\).",
+      "choices": [
+        "\\(\\frac{19}{2}\\)",
+        "10",
+        "\\(\\frac45\\)",
+        "The limit cannot be determined."
+      ],
+      "answer": 0,
+      "hint": "First recover the limit of 2f(x) + 1, then undo the transformation.",
+      "solution": "Near 3, the nonzero limit of g permits \\(f(x)=\\tfrac12\\left[g(x)\\frac{2f(x)+1}{g(x)}-1\\right]\\). Apply the product and difference laws to get \\(\\lim_{x\\to3}f(x)=\\tfrac12(5\\cdot4-1)=19/2\\).",
+      "check": {
+        "target": 3,
+        "gLimit": 5,
+        "ratioLimit": 4,
+        "scale": 2,
+        "offset": 1,
+        "result": 9.5
+      }
+    },
+    {
+      "id": "q41",
+      "family": "absolute-value",
+      "title": "A directional signal",
+      "topic": "1.6",
+      "batch": "batch-2",
+      "prompt": "A directional signal is modeled by \\(D(x)=\\begin{cases}\\dfrac{2(x-3)}{|x-3|},&x\\ne3,\\\\7,&x=3.\\end{cases}\\) Find \\(\\lim_{x\\to3}D(x)\\).",
+      "choices": [
+        "−2",
+        "7",
+        "2",
+        "The limit does not exist."
+      ],
+      "answer": 3,
+      "hint": "On each side of 3, replace |x − 3| with the appropriate signed expression.",
+      "solution": "For \\(x<3\\), \\(|x-3|=-(x-3)\\), so \\(D(x)=-2\\). For \\(x>3\\), \\(|x-3|=x-3\\), so \\(D(x)=2\\). The one-sided limits disagree, so the two-sided limit does not exist. The assigned value 7 does not change the nearby behavior.",
+      "check": {
+        "target": 3,
+        "offset": 0,
+        "scale": 2,
+        "at": 7,
+        "left": -2,
+        "right": 2,
+        "result": "DNE"
+      }
+    },
+    {
+      "id": "q42",
+      "family": "absolute-value",
+      "title": "A shifted switching signal",
+      "topic": "1.6",
+      "batch": "batch-2",
+      "prompt": "A switching signal is \\(P(t)=\\begin{cases}4-\\dfrac{t+1}{|t+1|},&t\\ne-1,\\\\9,&t=-1.\\end{cases}\\) What is \\(\\lim_{t\\to-1}P(t)\\)?",
+      "choices": [
+        "5",
+        "The limit does not exist.",
+        "3",
+        "9"
+      ],
+      "answer": 1,
+      "hint": "The ratio (t + 1)/|t + 1| equals −1 on the left and +1 on the right.",
+      "solution": "The left-hand limit is \\(4-(-1)=5\\), while the right-hand limit is \\(4-1=3\\). Since these differ, the two-sided limit does not exist. Neither their average nor \\(P(-1)=9\\) gives the requested limit.",
+      "check": {
+        "target": -1,
+        "offset": 4,
+        "scale": -1,
+        "at": 9,
+        "left": 5,
+        "right": 3,
+        "result": "DNE"
+      }
+    },
+    {
+      "id": "q43",
+      "family": "composite-limit",
+      "title": "Apply a rule twice",
+      "topic": "1.5",
+      "batch": "batch-2",
+      "prompt": "Let \\(f(x)=\\begin{cases}-x^2+4x+1,&x<1,\\\\6,&x=1,\\\\5-x,&x>1.\\end{cases}\\) A portion of its graph is shown. Find \\(\\displaystyle\\lim_{x\\to1}f(f(x))\\).",
+      "choices": [
+        "6",
+        "−1",
+        "4",
+        "1"
+      ],
+      "answer": 3,
+      "hint": "First find the limit of the inner f(x). Then choose the outer rule for inputs near that approaching value.",
+      "solution": "Both inner branches approach 4: \\(-1+4+1=4\\) and \\(5-1=4\\). For x sufficiently close to 1, the inner output is greater than 1, so the outer function uses its rule \\(f(u)=5-u\\). Thus \\(f(f(x))=5-f(x)\\) nearby and the limit is \\(5-4=1\\). The isolated value \\(f(1)=6\\) does not control the inner limit; \\(f(f(1))=-1\\) is a different quantity.",
+      "graph": {
+        "label": "A piecewise graph: the left parabola and right line share a hole at (1,4); the filled value is (1,6). The right line passes through (4,1).",
+        "domain": [
+          0,
+          6
+        ],
+        "range": [
+          -2,
+          7
+        ],
+        "branches": [
+          {
+            "domain": [
+              0,
+              1
+            ],
+            "coefficients": [
+              -1,
+              4,
+              1
+            ]
+          },
+          {
+            "domain": [
+              1,
+              6
+            ],
+            "coefficients": [
+              -1,
+              5
+            ]
+          }
+        ],
+        "marks": [
+          {
+            "x": 1,
+            "y": 4,
+            "open": true
+          },
+          {
+            "x": 1,
+            "y": 6,
+            "open": false
+          },
+          {
+            "x": 4,
+            "y": 1,
+            "open": false
+          }
+        ],
+        "xLabel": "x",
+        "yLabel": "f(x)",
+        "step": 1
+      },
+      "check": {
+        "target": 1,
+        "leftCoefficients": [
+          -1,
+          4,
+          1
+        ],
+        "rightCoefficients": [
+          -1,
+          5
+        ],
+        "at": 6,
+        "innerLimit": 4,
+        "outerSide": "right",
+        "result": 1
+      }
+    },
+    {
+      "id": "q44",
+      "family": "composite-limit",
+      "title": "Track the inner output",
+      "topic": "1.5",
+      "batch": "batch-2",
+      "prompt": "An adjustment rule is \\(f(x)=\\begin{cases}2x+4,&x<-1,\\\\8,&x=-1,\\\\x^2+1,&x>-1.\\end{cases}\\) When the rule is applied twice, what is \\(\\displaystyle\\lim_{x\\to-1}f(f(x))\\)?",
+      "choices": [
+        "2",
+        "5",
+        "8",
+        "65"
+      ],
+      "answer": 1,
+      "hint": "The outer function receives numbers close to the inner limit, not numbers close to −1.",
+      "solution": "The inner limit is 2 from both sides: \\(2(-1)+4=2\\) and \\((-1)^2+1=2\\). Nearby inner outputs therefore exceed −1, where the outer rule is \\(f(u)=u^2+1\\). The power and sum laws give \\(\\lim_{x\\to-1}f(f(x))=2^2+1=5\\). Using the point value instead would give \\(f(f(-1))=f(8)=65\\), which is not the requested limit.",
+      "graph": {
+        "label": "A piecewise graph: the left line and right parabola share a hole at (-1,2); the filled value is (-1,8). The parabola passes through (2,5).",
+        "domain": [
+          -3,
+          2.5
+        ],
+        "range": [
+          -3,
+          9
+        ],
+        "branches": [
+          {
+            "domain": [
+              -3,
+              -1
+            ],
+            "coefficients": [
+              2,
+              4
+            ]
+          },
+          {
+            "domain": [
+              -1,
+              2.5
+            ],
+            "coefficients": [
+              1,
+              0,
+              1
+            ]
+          }
+        ],
+        "marks": [
+          {
+            "x": -1,
+            "y": 2,
+            "open": true
+          },
+          {
+            "x": -1,
+            "y": 8,
+            "open": false
+          },
+          {
+            "x": 2,
+            "y": 5,
+            "open": false
+          }
+        ],
+        "xLabel": "x",
+        "yLabel": "f(x)",
+        "step": 1
+      },
+      "check": {
+        "target": -1,
+        "leftCoefficients": [
+          2,
+          4
+        ],
+        "rightCoefficients": [
+          1,
+          0,
+          1
+        ],
+        "at": 8,
+        "innerLimit": 2,
+        "outerSide": "right",
+        "result": 5
+      }
     }
-  ]
+  ],
+  "scopeReview": {
+    "batch": "batch-2",
+    "allowedTopics": [
+      "1.1",
+      "1.2",
+      "1.3",
+      "1.4",
+      "1.5",
+      "1.6"
+    ],
+    "includedReferenceTypes": 10,
+    "addedQuestionIds": [
+      "q25",
+      "q26",
+      "q27",
+      "q28",
+      "q29",
+      "q30",
+      "q31",
+      "q32",
+      "q33",
+      "q34",
+      "q35",
+      "q36",
+      "q37",
+      "q38",
+      "q39",
+      "q40",
+      "q41",
+      "q42",
+      "q43",
+      "q44"
+    ],
+    "excludedReferenceTypes": [
+      {
+        "reference": "Second set, questions 4–6",
+        "topic": "1.8",
+        "reason": "Squeeze theorem: statement, algebraic bounds, and graph selection."
+      },
+      {
+        "reference": "Second set, question 7",
+        "topic": "1.9",
+        "reason": "Matching a numerical table to alternative graphs across representations."
+      }
+    ],
+    "framework": "https://apcentral.collegeboard.org/media/pdf/ap-calculus-ab-and-bc-course-and-exam-description.pdf",
+    "notes": "Composite limits belong to Topic 1.5, LIM-1.D.2. Stable existing question IDs and storage revision are preserved."
+  }
 };
   if(typeof module==="object"&&module.exports)module.exports=data;
   else root.ECHSMidunitQuestions=data;
