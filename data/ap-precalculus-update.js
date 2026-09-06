@@ -20,18 +20,18 @@
     {
       "number": "1",
       "title": "1.1 Change in Tandem",
-      "release": "3.0.0",
+      "release": "4.0.0",
       "officialTopic": "1.1 Change in Tandem",
       "framework": "College Board CED effective Fall 2026",
       "learningObjectives": [
         "1.1.A",
         "1.1.B"
       ],
-      "interactiveSlides": 48,
-      "interactiveInvestigations": 8,
+      "interactiveSlides": 82,
+      "interactiveInvestigations": 12,
       "assessment": {
         "learning_checks": 6,
-        "ap_style_mcq": 24,
+        "ap_style_mcq": 72,
         "ap_style_frq": 4,
         "challenge_mcq": 4,
         "challenge_frq": 2,
@@ -45,7 +45,7 @@
       ],
       "resources": [
         {
-          "label": "Complete interactive lesson · 48 slides and 8 investigations",
+          "label": "Complete interactive lesson · 82 slides and 12 investigations",
           "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.1_Change_in_Tandem_ECHS_Refined.html",
           "type": "resource"
         },

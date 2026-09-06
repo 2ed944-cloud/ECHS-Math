@@ -38,15 +38,15 @@ assert.equal(M.turns[0].toFixed(2),'-1.94');assert.equal(M.turns[1].toFixed(2),'
 for(const [i,t] of M.turns.entries())for(const h of [.01,.1]){assert.ok(i?M.polynomial(t)<M.polynomial(t-h):M.polynomial(t)>M.polynomial(t-h));assert.ok(i?M.polynomial(t)<M.polynomial(t+h):M.polynomial(t)>M.polynomial(t+h));}
 for(const x of ['', 'abc', '1/0', '1e309', '1e308/1e-308', '2/3/4', '20x', 'Math.random()', 'Infinity'])assert.equal(M.parseNumber(x),null,x);
 near(M.parseNumber('−3/4'),-.75);near(M.parseNumber('2e1'),20);assert.ok(M.sameSet('3,0,-3',[-3,0,3]));assert.ok(!M.sameSet('-3,3',[-3,0,3]));assert.ok(M.sameSet('empty',[]));
-assert.equal(Q.revision,'ap-precalculus-topic-1-1-v3');assert.equal(Q.questions.length,34);
+assert.equal(Q.revision,'ap-precalculus-topic-1-1-v4');assert.equal(Q.questions.length,82);
 assert.deepEqual(Q.questions.slice(0,6).map(q=>q.answer),[2,20,1,3,0,2]);
 assert.deepEqual(Q.questions.filter(q=>q.id.startsWith('ap')).map(q=>q.answer),[1,3,2,0,1,0,3,1,2,2,3,0,1,2,1,3,0,1,2,3,0,1,2,2]);
 assert.deepEqual(Q.questions.filter(q=>q.id.startsWith('ch')).map(q=>q.answer),[1,0,2,3]);
-assert.equal(Q.questions.filter(q=>q.calculator).length,1);
+assert.equal(Q.questions.filter(q=>q.calculator).length,5);
 for(const q of Q.questions){assert.ok(q.prompt&&q.hint&&q.solution&&q.ek,q.id);if(q.type==='mcq'){assert.equal(q.choices.length,4);assert.equal(new Set(q.choices).size,4);assert.ok(Number.isInteger(q.answer)&&q.answer>=0&&q.answer<4);}}
 assert.equal(Q.frqs.length,6);assert.equal(Q.frqs.filter(f=>f.calculator).length,1);
 for(const f of Q.frqs){assert.equal(f.totalMarks,6);assert.equal(f.parts.length,3);assert.equal(f.parts.reduce((s,p)=>s+p.marks,0),6);for(const p of f.parts){assert.equal(p.marks,2);assert.equal((p.rubric.match(/<li>/g)||[]).length,2);}}
-assert.equal((html.match(/class="slide"/g)||[]).length,48);assert.equal((html.match(/data-tandem-lab=/g)||[]).length,8);
+assert.equal((html.match(/class="slide"/g)||[]).length,82);assert.equal((html.match(/data-tandem-lab=/g)||[]).length,8);
 for(const q of Q.questions)assert.ok(html.includes('data-question="'+q.id+'"'));
 for(const f of Q.frqs)assert.ok(html.includes('data-frq="'+f.id+'"'));
 assert.ok(html.indexOf('id="challenge-mcq-1"')>html.indexOf('id="frq04"'));
@@ -55,5 +55,6 @@ assert.match(html,/original AP-style MCQs/);assert.match(html,/Original ECHS que
 assert.doesNotMatch(html,/<script[^>]*src="https?:|engine\.js|\.gz["?]/);
 const ctx=vm.createContext({window:{}});vm.runInContext(fs.readFileSync(new URL('../../../data/ap-precalculus-update.js',base),'utf8'),ctx);
 const course=ctx.window.ECHS_COURSES.find(c=>c.id==='ap-precalculus-g10-g11');assert.ok(course);
-const lesson=course.units[0].lessons[0];assert.equal(lesson.release,'3.0.0');assert.equal(lesson.interactiveSlides,48);assert.equal(lesson.assessment.written_points,36);
-console.log('AP Precalculus 1.1 mathematics and content: PASS (48 slides, 8 models, 34 independently keyed checks, 6 six-point FRQs, framework and metadata).');
+const lesson=course.units[0].lessons[0];assert.equal(lesson.release,'4.0.0');assert.equal(lesson.interactiveSlides,82);assert.equal(lesson.assessment.written_points,36);
+await import('./test_ap_precalculus_1_1_contexts.mjs');
+console.log('AP Precalculus 1.1 mathematics and content: PASS (82 slides, 12 models, 82 checks, 6 six-point FRQs, framework and metadata).');

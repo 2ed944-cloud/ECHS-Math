@@ -1,6 +1,6 @@
-/* Original ECHS AP Precalculus Topic 1.1 practice, aligned to the Fall 2026 framework. */
+/* Original ECHS AP-style questions. User references inform skills; all new items are independently authored. */
 (function(root){const data={
-  "revision": "ap-precalculus-topic-1-1-v3",
+  "revision": "ap-precalculus-topic-1-1-v4",
   "questions": [
     {
       "id": "q01",
@@ -574,6 +574,1198 @@
       "solution": "The graphs share the sampled values, but the gold graph decreases between some of them. Finite agreement leaves other inputs unspecified.",
       "ek": "1.1.A.2",
       "calculator": false
+    },
+    {
+      "id": "ex01",
+      "type": "mcq",
+      "group": "Rate tables",
+      "prompt": "<div class=\"table-wrap\"><table><caption>Rate of change of f throughout each interval</caption><thead><tr><th scope=\"col\">Input interval</th><th scope=\"col\">-5 &lt; x &lt; -2</th><th scope=\"col\">-2 &lt; x &lt; 1</th><th scope=\"col\">1 &lt; x &lt; 4</th><th scope=\"col\">4 &lt; x &lt; 7</th></tr></thead><tbody><tr><th scope=\"row\">Rate behavior</th><td>Increasing</td><td>Positive and constant</td><td>Decreasing</td><td>Negative and constant</td></tr></tbody></table></div><p>On which interval is the graph of f concave down?</p>",
+      "choices": [
+        "-5 &lt; x &lt; -2",
+        "-2 &lt; x &lt; 1",
+        "1 &lt; x &lt; 4",
+        "4 &lt; x &lt; 7"
+      ],
+      "answer": 2,
+      "hint": "Ignore the sign initially. Ask whether the rate itself increases or decreases.",
+      "solution": "The rate is decreasing on 1 &lt; x &lt; 4, so the graph is concave down. A constant rate gives a straight segment. The sign of the rate describes output direction, not concavity.",
+      "ek": "1.1.B.3–4",
+      "calculator": false,
+      "family": "Rate tables",
+      "audit": {
+        "bounds": [
+          -5,
+          -2,
+          1,
+          4,
+          7
+        ],
+        "behaviors": [
+          "Increasing",
+          "Positive and constant",
+          "Decreasing",
+          "Negative and constant"
+        ],
+        "target": "down",
+        "originalAnswer": 2
+      }
+    },
+    {
+      "id": "ex02",
+      "type": "mcq",
+      "group": "Rate tables",
+      "prompt": "<div class=\"table-wrap\"><table><caption>Rate of change of f throughout each interval</caption><thead><tr><th scope=\"col\">Input interval</th><th scope=\"col\">2 &lt; x &lt; 5</th><th scope=\"col\">5 &lt; x &lt; 8</th><th scope=\"col\">8 &lt; x &lt; 11</th><th scope=\"col\">11 &lt; x &lt; 14</th></tr></thead><tbody><tr><th scope=\"row\">Rate behavior</th><td>Negative and constant</td><td>Decreasing</td><td>Positive and constant</td><td>Increasing</td></tr></tbody></table></div><p>On which interval is the graph of f concave up?</p>",
+      "choices": [
+        "11 &lt; x &lt; 14",
+        "2 &lt; x &lt; 5",
+        "5 &lt; x &lt; 8",
+        "8 &lt; x &lt; 11"
+      ],
+      "answer": 0,
+      "hint": "Ignore the sign initially. Ask whether the rate itself increases or decreases.",
+      "solution": "The rate is increasing on 11 &lt; x &lt; 14, so the graph is concave up. A constant rate gives a straight segment. The sign of the rate describes output direction, not concavity.",
+      "ek": "1.1.B.3–4",
+      "calculator": false,
+      "family": "Rate tables",
+      "audit": {
+        "bounds": [
+          2,
+          5,
+          8,
+          11,
+          14
+        ],
+        "behaviors": [
+          "Negative and constant",
+          "Decreasing",
+          "Positive and constant",
+          "Increasing"
+        ],
+        "target": "up",
+        "originalAnswer": 3
+      }
+    },
+    {
+      "id": "ex03",
+      "type": "mcq",
+      "group": "Rate tables",
+      "prompt": "<div class=\"table-wrap\"><table><caption>Rate of change of f throughout each interval</caption><thead><tr><th scope=\"col\">Input interval</th><th scope=\"col\">-8 &lt; x &lt; -4</th><th scope=\"col\">-4 &lt; x &lt; 0</th><th scope=\"col\">0 &lt; x &lt; 4</th><th scope=\"col\">4 &lt; x &lt; 8</th></tr></thead><tbody><tr><th scope=\"row\">Rate behavior</th><td>Positive and constant</td><td>Increasing</td><td>Negative and constant</td><td>Decreasing</td></tr></tbody></table></div><p>On which interval is the graph of f concave down?</p>",
+      "choices": [
+        "0 &lt; x &lt; 4",
+        "4 &lt; x &lt; 8",
+        "-8 &lt; x &lt; -4",
+        "-4 &lt; x &lt; 0"
+      ],
+      "answer": 1,
+      "hint": "Ignore the sign initially. Ask whether the rate itself increases or decreases.",
+      "solution": "The rate is decreasing on 4 &lt; x &lt; 8, so the graph is concave down. A constant rate gives a straight segment. The sign of the rate describes output direction, not concavity.",
+      "ek": "1.1.B.3–4",
+      "calculator": false,
+      "family": "Rate tables",
+      "audit": {
+        "bounds": [
+          -8,
+          -4,
+          0,
+          4,
+          8
+        ],
+        "behaviors": [
+          "Positive and constant",
+          "Increasing",
+          "Negative and constant",
+          "Decreasing"
+        ],
+        "target": "down",
+        "originalAnswer": 3
+      }
+    },
+    {
+      "id": "ex04",
+      "type": "mcq",
+      "group": "Rate tables",
+      "prompt": "<div class=\"table-wrap\"><table><caption>Rate of change of f throughout each interval</caption><thead><tr><th scope=\"col\">Input interval</th><th scope=\"col\">1 &lt; x &lt; 3</th><th scope=\"col\">3 &lt; x &lt; 5</th><th scope=\"col\">5 &lt; x &lt; 7</th><th scope=\"col\">7 &lt; x &lt; 9</th></tr></thead><tbody><tr><th scope=\"row\">Rate behavior</th><td>Decreasing</td><td>Negative and constant</td><td>Increasing</td><td>Positive and constant</td></tr></tbody></table></div><p>On which interval is the graph of f concave up?</p>",
+      "choices": [
+        "3 &lt; x &lt; 5",
+        "5 &lt; x &lt; 7",
+        "7 &lt; x &lt; 9",
+        "1 &lt; x &lt; 3"
+      ],
+      "answer": 1,
+      "hint": "Ignore the sign initially. Ask whether the rate itself increases or decreases.",
+      "solution": "The rate is increasing on 5 &lt; x &lt; 7, so the graph is concave up. A constant rate gives a straight segment. The sign of the rate describes output direction, not concavity.",
+      "ek": "1.1.B.3–4",
+      "calculator": false,
+      "family": "Rate tables",
+      "audit": {
+        "bounds": [
+          1,
+          3,
+          5,
+          7,
+          9
+        ],
+        "behaviors": [
+          "Decreasing",
+          "Negative and constant",
+          "Increasing",
+          "Positive and constant"
+        ],
+        "target": "up",
+        "originalAnswer": 2
+      }
+    },
+    {
+      "id": "ex05",
+      "type": "mcq",
+      "group": "Rate tables",
+      "prompt": "<div class=\"table-wrap\"><table><caption>Rate of change of f throughout each interval</caption><thead><tr><th scope=\"col\">Input interval</th><th scope=\"col\">-6 &lt; x &lt; -3</th><th scope=\"col\">-3 &lt; x &lt; 0</th><th scope=\"col\">0 &lt; x &lt; 3</th><th scope=\"col\">3 &lt; x &lt; 6</th></tr></thead><tbody><tr><th scope=\"row\">Rate behavior</th><td>Negative and increasing</td><td>Negative and constant</td><td>Positive and decreasing</td><td>Positive and constant</td></tr></tbody></table></div><p>On which interval is the graph of f concave up?</p>",
+      "choices": [
+        "-6 &lt; x &lt; -3",
+        "-3 &lt; x &lt; 0",
+        "0 &lt; x &lt; 3",
+        "3 &lt; x &lt; 6"
+      ],
+      "answer": 0,
+      "hint": "Ignore the sign initially. Ask whether the rate itself increases or decreases.",
+      "solution": "The rate is increasing on -6 &lt; x &lt; -3, so the graph is concave up. A constant rate gives a straight segment. The sign of the rate describes output direction, not concavity.",
+      "ek": "1.1.B.3–4",
+      "calculator": false,
+      "family": "Rate tables",
+      "audit": {
+        "bounds": [
+          -6,
+          -3,
+          0,
+          3,
+          6
+        ],
+        "behaviors": [
+          "Negative and increasing",
+          "Negative and constant",
+          "Positive and decreasing",
+          "Positive and constant"
+        ],
+        "target": "up",
+        "originalAnswer": 0
+      }
+    },
+    {
+      "id": "ex06",
+      "type": "mcq",
+      "group": "Rate tables",
+      "prompt": "<div class=\"table-wrap\"><table><caption>Rate of change of f throughout each interval</caption><thead><tr><th scope=\"col\">Input interval</th><th scope=\"col\">0 &lt; x &lt; 4</th><th scope=\"col\">4 &lt; x &lt; 8</th><th scope=\"col\">8 &lt; x &lt; 12</th><th scope=\"col\">12 &lt; x &lt; 16</th></tr></thead><tbody><tr><th scope=\"row\">Rate behavior</th><td>Negative and decreasing</td><td>Positive and constant</td><td>Negative and constant</td><td>Positive and increasing</td></tr></tbody></table></div><p>On which interval is the graph of f concave down?</p>",
+      "choices": [
+        "12 &lt; x &lt; 16",
+        "0 &lt; x &lt; 4",
+        "4 &lt; x &lt; 8",
+        "8 &lt; x &lt; 12"
+      ],
+      "answer": 1,
+      "hint": "Ignore the sign initially. Ask whether the rate itself increases or decreases.",
+      "solution": "The rate is decreasing on 0 &lt; x &lt; 4, so the graph is concave down. A constant rate gives a straight segment. The sign of the rate describes output direction, not concavity.",
+      "ek": "1.1.B.3–4",
+      "calculator": false,
+      "family": "Rate tables",
+      "audit": {
+        "bounds": [
+          0,
+          4,
+          8,
+          12,
+          16
+        ],
+        "behaviors": [
+          "Negative and decreasing",
+          "Positive and constant",
+          "Negative and constant",
+          "Positive and increasing"
+        ],
+        "target": "down",
+        "originalAnswer": 0
+      }
+    },
+    {
+      "id": "ex07",
+      "type": "mcq",
+      "group": "Rate tables",
+      "prompt": "<p>Throughout −7 &lt; x &lt; −1, a function has a negative, constant rate of change. Which description is correct?</p>",
+      "choices": [
+        "Increasing and concave up",
+        "Constant output",
+        "Decreasing and linear",
+        "Decreasing and concave down"
+      ],
+      "answer": 2,
+      "hint": "A constant rate is not necessarily a zero rate.",
+      "solution": "A negative rate makes f decrease. Because the rate stays constant, the graph is a straight descending segment; it has no upward or downward bend.",
+      "ek": "1.1.B.3–4",
+      "calculator": false,
+      "family": "Rate tables"
+    },
+    {
+      "id": "ex08",
+      "type": "mcq",
+      "group": "Rate tables",
+      "prompt": "<p>A table reports only that the rate of change increases throughout 4 &lt; x &lt; 10. Which statement must be true?</p>",
+      "choices": [
+        "The output is positive.",
+        "The output increases throughout the interval.",
+        "The rate is positive throughout the interval.",
+        "The graph is concave up."
+      ],
+      "answer": 3,
+      "hint": "An increasing rate might still be negative.",
+      "solution": "Concavity follows from how the rate changes. Rates such as −9, −5 and −2 increase while remaining negative. The sign of f and the direction of f are not determined.",
+      "ek": "1.1.B.3–4",
+      "calculator": false,
+      "family": "Rate tables"
+    },
+    {
+      "id": "ex09",
+      "type": "mcq",
+      "group": "Direction and concavity",
+      "prompt": "<div class=\"table-wrap\"><table><caption>Rate of change of f throughout each interval</caption><thead><tr><th scope=\"col\">Input interval</th><th scope=\"col\">-9 &lt; x &lt; -6</th><th scope=\"col\">-6 &lt; x &lt; -3</th><th scope=\"col\">-3 &lt; x &lt; 0</th><th scope=\"col\">0 &lt; x &lt; 3</th></tr></thead><tbody><tr><th scope=\"row\">Rate behavior</th><td>Positive and increasing</td><td>Negative and increasing</td><td>Positive and decreasing</td><td>Negative and decreasing</td></tr></tbody></table></div><p>Which statement describes f on -6 &lt; x &lt; -3?</p>",
+      "choices": [
+        "f is increasing, and its graph is concave up.",
+        "f is increasing, and its graph is concave down.",
+        "f is decreasing, and its graph is concave up.",
+        "f is decreasing, and its graph is concave down."
+      ],
+      "answer": 2,
+      "hint": "Read the description twice: the sign tells direction; increasing/decreasing tells concavity.",
+      "solution": "The rate is negative and increasing. Its sign means f is decreasing. The change in the rate means the graph is concave up.",
+      "ek": "1.1.B.3–4",
+      "calculator": false,
+      "family": "Direction and concavity",
+      "audit": {
+        "behavior": "Negative and increasing",
+        "direction": "decreasing",
+        "concavity": "up"
+      }
+    },
+    {
+      "id": "ex10",
+      "type": "mcq",
+      "group": "Direction and concavity",
+      "prompt": "<div class=\"table-wrap\"><table><caption>Rate of change of f throughout each interval</caption><thead><tr><th scope=\"col\">Input interval</th><th scope=\"col\">-7 &lt; x &lt; -4</th><th scope=\"col\">-4 &lt; x &lt; -1</th><th scope=\"col\">-1 &lt; x &lt; 2</th><th scope=\"col\">2 &lt; x &lt; 5</th></tr></thead><tbody><tr><th scope=\"row\">Rate behavior</th><td>Negative and increasing</td><td>Positive and decreasing</td><td>Negative and decreasing</td><td>Positive and increasing</td></tr></tbody></table></div><p>Which statement describes f on 2 &lt; x &lt; 5?</p>",
+      "choices": [
+        "f is decreasing, and its graph is concave down.",
+        "f is increasing, and its graph is concave up.",
+        "f is increasing, and its graph is concave down.",
+        "f is decreasing, and its graph is concave up."
+      ],
+      "answer": 1,
+      "hint": "Read the description twice: the sign tells direction; increasing/decreasing tells concavity.",
+      "solution": "The rate is positive and increasing. Its sign means f is increasing. The change in the rate means the graph is concave up.",
+      "ek": "1.1.B.3–4",
+      "calculator": false,
+      "family": "Direction and concavity",
+      "audit": {
+        "behavior": "Positive and increasing",
+        "direction": "increasing",
+        "concavity": "up"
+      }
+    },
+    {
+      "id": "ex11",
+      "type": "mcq",
+      "group": "Direction and concavity",
+      "prompt": "<div class=\"table-wrap\"><table><caption>Rate of change of f throughout each interval</caption><thead><tr><th scope=\"col\">Input interval</th><th scope=\"col\">-5 &lt; x &lt; -2</th><th scope=\"col\">-2 &lt; x &lt; 1</th><th scope=\"col\">1 &lt; x &lt; 4</th><th scope=\"col\">4 &lt; x &lt; 7</th></tr></thead><tbody><tr><th scope=\"row\">Rate behavior</th><td>Positive and decreasing</td><td>Negative and decreasing</td><td>Positive and increasing</td><td>Negative and increasing</td></tr></tbody></table></div><p>Which statement describes f on -2 &lt; x &lt; 1?</p>",
+      "choices": [
+        "f is decreasing, and its graph is concave up.",
+        "f is decreasing, and its graph is concave down.",
+        "f is increasing, and its graph is concave up.",
+        "f is increasing, and its graph is concave down."
+      ],
+      "answer": 1,
+      "hint": "Read the description twice: the sign tells direction; increasing/decreasing tells concavity.",
+      "solution": "The rate is negative and decreasing. Its sign means f is decreasing. The change in the rate means the graph is concave down.",
+      "ek": "1.1.B.3–4",
+      "calculator": false,
+      "family": "Direction and concavity",
+      "audit": {
+        "behavior": "Negative and decreasing",
+        "direction": "decreasing",
+        "concavity": "down"
+      }
+    },
+    {
+      "id": "ex12",
+      "type": "mcq",
+      "group": "Direction and concavity",
+      "prompt": "<div class=\"table-wrap\"><table><caption>Rate of change of f throughout each interval</caption><thead><tr><th scope=\"col\">Input interval</th><th scope=\"col\">-3 &lt; x &lt; 0</th><th scope=\"col\">0 &lt; x &lt; 3</th><th scope=\"col\">3 &lt; x &lt; 6</th><th scope=\"col\">6 &lt; x &lt; 9</th></tr></thead><tbody><tr><th scope=\"row\">Rate behavior</th><td>Negative and decreasing</td><td>Positive and increasing</td><td>Negative and increasing</td><td>Positive and decreasing</td></tr></tbody></table></div><p>Which statement describes f on 6 &lt; x &lt; 9?</p>",
+      "choices": [
+        "f is increasing, and its graph is concave down.",
+        "f is decreasing, and its graph is concave up.",
+        "f is decreasing, and its graph is concave down.",
+        "f is increasing, and its graph is concave up."
+      ],
+      "answer": 0,
+      "hint": "Read the description twice: the sign tells direction; increasing/decreasing tells concavity.",
+      "solution": "The rate is positive and decreasing. Its sign means f is increasing. The change in the rate means the graph is concave down.",
+      "ek": "1.1.B.3–4",
+      "calculator": false,
+      "family": "Direction and concavity",
+      "audit": {
+        "behavior": "Positive and decreasing",
+        "direction": "increasing",
+        "concavity": "down"
+      }
+    },
+    {
+      "id": "ex13",
+      "type": "mcq",
+      "group": "Direction and concavity",
+      "prompt": "<div class=\"table-wrap\"><table><caption>Rate of change of f throughout each interval</caption><thead><tr><th scope=\"col\">Input interval</th><th scope=\"col\">-1 &lt; x &lt; 2</th><th scope=\"col\">2 &lt; x &lt; 5</th><th scope=\"col\">5 &lt; x &lt; 8</th><th scope=\"col\">8 &lt; x &lt; 11</th></tr></thead><tbody><tr><th scope=\"row\">Rate behavior</th><td>Positive and increasing</td><td>Negative and increasing</td><td>Positive and decreasing</td><td>Negative and decreasing</td></tr></tbody></table></div><p>Which statement describes f on 2 &lt; x &lt; 5?</p>",
+      "choices": [
+        "f is increasing, and its graph is concave up.",
+        "f is increasing, and its graph is concave down.",
+        "f is decreasing, and its graph is concave up.",
+        "f is decreasing, and its graph is concave down."
+      ],
+      "answer": 2,
+      "hint": "Read the description twice: the sign tells direction; increasing/decreasing tells concavity.",
+      "solution": "The rate is negative and increasing. Its sign means f is decreasing. The change in the rate means the graph is concave up.",
+      "ek": "1.1.B.3–4",
+      "calculator": false,
+      "family": "Direction and concavity",
+      "audit": {
+        "behavior": "Negative and increasing",
+        "direction": "decreasing",
+        "concavity": "up"
+      }
+    },
+    {
+      "id": "ex14",
+      "type": "mcq",
+      "group": "Direction and concavity",
+      "prompt": "<div class=\"table-wrap\"><table><caption>Rate of change of f throughout each interval</caption><thead><tr><th scope=\"col\">Input interval</th><th scope=\"col\">1 &lt; x &lt; 4</th><th scope=\"col\">4 &lt; x &lt; 7</th><th scope=\"col\">7 &lt; x &lt; 10</th><th scope=\"col\">10 &lt; x &lt; 13</th></tr></thead><tbody><tr><th scope=\"row\">Rate behavior</th><td>Negative and increasing</td><td>Positive and decreasing</td><td>Negative and decreasing</td><td>Positive and increasing</td></tr></tbody></table></div><p>Which statement describes f on 10 &lt; x &lt; 13?</p>",
+      "choices": [
+        "f is decreasing, and its graph is concave down.",
+        "f is increasing, and its graph is concave up.",
+        "f is increasing, and its graph is concave down.",
+        "f is decreasing, and its graph is concave up."
+      ],
+      "answer": 1,
+      "hint": "Read the description twice: the sign tells direction; increasing/decreasing tells concavity.",
+      "solution": "The rate is positive and increasing. Its sign means f is increasing. The change in the rate means the graph is concave up.",
+      "ek": "1.1.B.3–4",
+      "calculator": false,
+      "family": "Direction and concavity",
+      "audit": {
+        "behavior": "Positive and increasing",
+        "direction": "increasing",
+        "concavity": "up"
+      }
+    },
+    {
+      "id": "ex15",
+      "type": "mcq",
+      "group": "Direction and concavity",
+      "prompt": "<p>A sensor reading is below zero. Over 6 &lt; t &lt; 12, it falls, but each equal time step produces a smaller drop. Which description fits the reading?</p>",
+      "choices": [
+        "f is decreasing, and its graph is concave up.",
+        "f is decreasing, and its graph is concave down.",
+        "f is increasing, and its graph is concave up.",
+        "f is increasing, and its graph is concave down."
+      ],
+      "answer": 0,
+      "hint": "Compare the signed changes: for example −8, then −5, then −2.",
+      "solution": "The reading decreases. Its negative changes become less negative, so the rate increases and the graph is concave up. A negative reading is separate information about its height on the graph.",
+      "ek": "1.1.B.3–4",
+      "calculator": false,
+      "family": "Direction and concavity"
+    },
+    {
+      "id": "ex16",
+      "type": "mcq",
+      "group": "Direction and concavity",
+      "prompt": "<p>A student says, “The graph bends downward, so the function must decrease.” Which is a counterexample?</p>",
+      "choices": [
+        "A function whose negative rate decreases from −3 to −9",
+        "A constant function with output 9",
+        "A function whose positive rate increases from 3 to 9",
+        "A function whose positive rate decreases from 9 to 3"
+      ],
+      "answer": 3,
+      "hint": "Find a graph that rises while flattening.",
+      "solution": "A positive but decreasing rate produces increasing outputs and concave-down behavior. Thus downward concavity alone does not imply decreasing outputs.",
+      "ek": "1.1.B.3–4",
+      "calculator": false,
+      "family": "Direction and concavity"
+    },
+    {
+      "id": "ex17",
+      "type": "mcq",
+      "group": "Rate from a graph",
+      "prompt": "<div data-context-plot=\"cubic\" data-spec=\"{&quot;center&quot;:1,&quot;width&quot;:2,&quot;sign&quot;:-1,&quot;scale&quot;:2,&quot;shift&quot;:4,&quot;lo&quot;:1,&quot;hi&quot;:5}\"></div><p>The highlighted interval is 1 &lt; x &lt; 5. Which statement is true throughout that interval?</p>",
+      "choices": [
+        "The rate of change is positive.",
+        "The rate of change is negative.",
+        "The rate of change is increasing.",
+        "The rate of change is decreasing."
+      ],
+      "answer": 3,
+      "hint": "Read the steepness from left to right. Include the portion after the turning point.",
+      "solution": "The graph is concave down throughout the highlighted interval, so the rate of change is decreasing. The interval contains a turning point, so the rate changes sign; it is not positive throughout or negative throughout.",
+      "ek": "1.1.B.3–4",
+      "calculator": false,
+      "family": "Rate from a graph",
+      "audit": {
+        "center": 1,
+        "width": 2,
+        "sign": -1,
+        "scale": 2,
+        "shift": 4,
+        "lo": 1,
+        "hi": 5
+      }
+    },
+    {
+      "id": "ex18",
+      "type": "mcq",
+      "group": "Rate from a graph",
+      "prompt": "<div data-context-plot=\"cubic\" data-spec=\"{&quot;center&quot;:-2,&quot;width&quot;:2,&quot;sign&quot;:1,&quot;scale&quot;:2,&quot;shift&quot;:5,&quot;lo&quot;:-6,&quot;hi&quot;:-2}\"></div><p>The highlighted interval is -6 &lt; x &lt; -2. Which statement is true throughout that interval?</p>",
+      "choices": [
+        "The rate of change is decreasing.",
+        "The rate of change is positive.",
+        "The rate of change is negative.",
+        "The rate of change is increasing."
+      ],
+      "answer": 0,
+      "hint": "Read the steepness from left to right. Include the portion after the turning point.",
+      "solution": "The graph is concave down throughout the highlighted interval, so the rate of change is decreasing. The interval contains a turning point, so the rate changes sign; it is not positive throughout or negative throughout.",
+      "ek": "1.1.B.3–4",
+      "calculator": false,
+      "family": "Rate from a graph",
+      "audit": {
+        "center": -2,
+        "width": 2,
+        "sign": 1,
+        "scale": 2,
+        "shift": 5,
+        "lo": -6,
+        "hi": -2
+      }
+    },
+    {
+      "id": "ex19",
+      "type": "mcq",
+      "group": "Rate from a graph",
+      "prompt": "<div data-context-plot=\"cubic\" data-spec=\"{&quot;center&quot;:3,&quot;width&quot;:1.5,&quot;sign&quot;:-1,&quot;scale&quot;:1.5,&quot;shift&quot;:6,&quot;lo&quot;:0.0,&quot;hi&quot;:3}\"></div><p>The highlighted interval is 0 &lt; x &lt; 3. Which statement is true throughout that interval?</p>",
+      "choices": [
+        "The rate of change is increasing.",
+        "The rate of change is decreasing.",
+        "The rate of change is positive.",
+        "The rate of change is negative."
+      ],
+      "answer": 0,
+      "hint": "Read the steepness from left to right. Include the portion after the turning point.",
+      "solution": "The graph is concave up throughout the highlighted interval, so the rate of change is increasing. The interval contains a turning point, so the rate changes sign; it is not positive throughout or negative throughout.",
+      "ek": "1.1.B.3–4",
+      "calculator": false,
+      "family": "Rate from a graph",
+      "audit": {
+        "center": 3,
+        "width": 1.5,
+        "sign": -1,
+        "scale": 1.5,
+        "shift": 6,
+        "lo": 0.0,
+        "hi": 3
+      }
+    },
+    {
+      "id": "ex20",
+      "type": "mcq",
+      "group": "Rate from a graph",
+      "prompt": "<div data-context-plot=\"cubic\" data-spec=\"{&quot;center&quot;:0,&quot;width&quot;:3,&quot;sign&quot;:1,&quot;scale&quot;:3,&quot;shift&quot;:7,&quot;lo&quot;:0,&quot;hi&quot;:6}\"></div><p>The highlighted interval is 0 &lt; x &lt; 6. Which statement is true throughout that interval?</p>",
+      "choices": [
+        "The rate of change is negative.",
+        "The rate of change is increasing.",
+        "The rate of change is decreasing.",
+        "The rate of change is positive."
+      ],
+      "answer": 1,
+      "hint": "Read the steepness from left to right. Include the portion after the turning point.",
+      "solution": "The graph is concave up throughout the highlighted interval, so the rate of change is increasing. The interval contains a turning point, so the rate changes sign; it is not positive throughout or negative throughout.",
+      "ek": "1.1.B.3–4",
+      "calculator": false,
+      "family": "Rate from a graph",
+      "audit": {
+        "center": 0,
+        "width": 3,
+        "sign": 1,
+        "scale": 3,
+        "shift": 7,
+        "lo": 0,
+        "hi": 6
+      }
+    },
+    {
+      "id": "ex21",
+      "type": "mcq",
+      "group": "Rate from a graph",
+      "prompt": "<div data-context-plot=\"cubic\" data-spec=\"{&quot;center&quot;:-1,&quot;width&quot;:2,&quot;sign&quot;:-1,&quot;scale&quot;:2,&quot;shift&quot;:8,&quot;lo&quot;:-1,&quot;hi&quot;:3}\"></div><p>The highlighted interval is -1 &lt; x &lt; 3. Which statement is true throughout that interval?</p>",
+      "choices": [
+        "The rate of change is positive.",
+        "The rate of change is negative.",
+        "The rate of change is increasing.",
+        "The rate of change is decreasing."
+      ],
+      "answer": 3,
+      "hint": "Read the steepness from left to right. Include the portion after the turning point.",
+      "solution": "The graph is concave down throughout the highlighted interval, so the rate of change is decreasing. The interval contains a turning point, so the rate changes sign; it is not positive throughout or negative throughout.",
+      "ek": "1.1.B.3–4",
+      "calculator": false,
+      "family": "Rate from a graph",
+      "audit": {
+        "center": -1,
+        "width": 2,
+        "sign": -1,
+        "scale": 2,
+        "shift": 8,
+        "lo": -1,
+        "hi": 3
+      }
+    },
+    {
+      "id": "ex22",
+      "type": "mcq",
+      "group": "Rate from a graph",
+      "prompt": "<div data-context-plot=\"cubic\" data-spec=\"{&quot;center&quot;:2,&quot;width&quot;:2,&quot;sign&quot;:1,&quot;scale&quot;:2,&quot;shift&quot;:9,&quot;lo&quot;:-2,&quot;hi&quot;:2}\"></div><p>The highlighted interval is -2 &lt; x &lt; 2. Which statement is true throughout that interval?</p>",
+      "choices": [
+        "The rate of change is decreasing.",
+        "The rate of change is positive.",
+        "The rate of change is negative.",
+        "The rate of change is increasing."
+      ],
+      "answer": 0,
+      "hint": "Read the steepness from left to right. Include the portion after the turning point.",
+      "solution": "The graph is concave down throughout the highlighted interval, so the rate of change is decreasing. The interval contains a turning point, so the rate changes sign; it is not positive throughout or negative throughout.",
+      "ek": "1.1.B.3–4",
+      "calculator": false,
+      "family": "Rate from a graph",
+      "audit": {
+        "center": 2,
+        "width": 2,
+        "sign": 1,
+        "scale": 2,
+        "shift": 9,
+        "lo": -2,
+        "hi": 2
+      }
+    },
+    {
+      "id": "ex23",
+      "type": "mcq",
+      "group": "Rate from a graph",
+      "prompt": "<div data-context-plot=\"cubic\" data-spec=\"{&quot;center&quot;:2,&quot;width&quot;:2,&quot;sign&quot;:-1,&quot;scale&quot;:2,&quot;shift&quot;:6,&quot;lo&quot;:0,&quot;hi&quot;:4}\"></div><p>Between the marked local minimum at x = 0 and local maximum at x = 4, which description is correct?</p>",
+      "choices": [
+        "f increases throughout; its rate is constant.",
+        "f increases throughout; its rate decreases throughout.",
+        "f increases throughout; its rate first increases, then decreases.",
+        "f decreases throughout; its rate first increases, then decreases."
+      ],
+      "answer": 2,
+      "hint": "Direction can stay the same while the bend changes.",
+      "solution": "The graph rises from the local minimum to the local maximum. It steepens up to x = 2 and flattens after x = 2, so the rate first increases and then decreases.",
+      "ek": "1.1.B.3–4",
+      "calculator": false,
+      "family": "Rate from a graph",
+      "audit": {
+        "center": 2,
+        "width": 2,
+        "sign": -1,
+        "scale": 2,
+        "shift": 6,
+        "lo": 0,
+        "hi": 4
+      }
+    },
+    {
+      "id": "ex24",
+      "type": "mcq",
+      "group": "Rate from a graph",
+      "prompt": "<div data-context-plot=\"cubic\" data-spec=\"{&quot;center&quot;:-1,&quot;width&quot;:2,&quot;sign&quot;:1,&quot;scale&quot;:2,&quot;shift&quot;:-3,&quot;lo&quot;:-1,&quot;hi&quot;:3}\"></div><p>A student says the rate must decrease wherever f decreases. Which feature refutes the claim?</p>",
+      "choices": [
+        "From x = −1 to x = 1, f decreases at a constant rate.",
+        "Every point with a negative output has a negative rate.",
+        "At a turning point the output must be zero.",
+        "From x = −1 to x = 1, f decreases while the graph flattens and the rate increases."
+      ],
+      "answer": 3,
+      "hint": "A descending graph can become less steep.",
+      "solution": "From −1 to 1 the curve descends but becomes flatter toward its minimum. The rate is negative and increasing toward zero.",
+      "ek": "1.1.B.3–4",
+      "calculator": false,
+      "family": "Rate from a graph",
+      "audit": {
+        "center": -1,
+        "width": 2,
+        "sign": 1,
+        "scale": 2,
+        "shift": -3,
+        "lo": -1,
+        "hi": 3
+      }
+    },
+    {
+      "id": "ex25",
+      "type": "mcq",
+      "group": "Circular motion",
+      "prompt": "<p>A toy car moves at constant speed around a circular track of radius 2 m. One lap takes 8 s. The nearest point of the track is 0 m from a straight wall. The car starts at the nearest point and completes 2 laps without stopping.</p><p>Which graph represents the shortest distance from the car to the wall, in meters, versus elapsed time, in seconds?</p><div data-context-plot=\"car-options\" data-spec=\"{&quot;radius&quot;:2,&quot;period&quot;:8,&quot;gap&quot;:0,&quot;start&quot;:&quot;near&quot;,&quot;laps&quot;:2,&quot;order&quot;:[&quot;correct&quot;,&quot;signed&quot;,&quot;cumulative&quot;,&quot;triangle&quot;]}\"></div>",
+      "choices": [
+        "Graph A",
+        "Graph B",
+        "Graph C",
+        "Graph D"
+      ],
+      "answer": 0,
+      "hint": "Check the initial distance, nonnegative distance, number of repetitions and smooth turning behavior.",
+      "solution": "Graph A. The distance repeats once per lap, ranges from 0 to 4 m and begins at 0 m. Each of the 2 smooth cycles takes 8 s. Total distance traveled would accumulate; distance to a fixed wall returns to its starting value.",
+      "ek": "1.1.B.1–2",
+      "calculator": false,
+      "family": "Circular motion",
+      "audit": {
+        "radius": 2,
+        "period": 8,
+        "gap": 0,
+        "start": "near",
+        "laps": 2,
+        "order": [
+          "correct",
+          "signed",
+          "cumulative",
+          "triangle"
+        ]
+      }
+    },
+    {
+      "id": "ex26",
+      "type": "mcq",
+      "group": "Circular motion",
+      "prompt": "<p>A toy car moves at constant speed around a circular track of radius 4 m. One lap takes 12 s. The nearest point of the track is 1 m from a straight wall. The car starts at the nearest point and completes 3 laps without stopping.</p><p>Which graph represents the shortest distance from the car to the wall, in meters, versus elapsed time, in seconds?</p><div data-context-plot=\"car-options\" data-spec=\"{&quot;radius&quot;:4,&quot;period&quot;:12,&quot;gap&quot;:1,&quot;start&quot;:&quot;near&quot;,&quot;laps&quot;:3,&quot;order&quot;:[&quot;triangle&quot;,&quot;correct&quot;,&quot;signed&quot;,&quot;cumulative&quot;]}\"></div>",
+      "choices": [
+        "Graph A",
+        "Graph B",
+        "Graph C",
+        "Graph D"
+      ],
+      "answer": 1,
+      "hint": "Check the initial distance, nonnegative distance, number of repetitions and smooth turning behavior.",
+      "solution": "Graph B. The distance repeats once per lap, ranges from 1 to 9 m and begins at 1 m. Each of the 3 smooth cycles takes 12 s. Total distance traveled would accumulate; distance to a fixed wall returns to its starting value.",
+      "ek": "1.1.B.1–2",
+      "calculator": false,
+      "family": "Circular motion",
+      "audit": {
+        "radius": 4,
+        "period": 12,
+        "gap": 1,
+        "start": "near",
+        "laps": 3,
+        "order": [
+          "triangle",
+          "correct",
+          "signed",
+          "cumulative"
+        ]
+      }
+    },
+    {
+      "id": "ex27",
+      "type": "mcq",
+      "group": "Circular motion",
+      "prompt": "<p>A toy car moves at constant speed around a circular track of radius 3 m. One lap takes 10 s. The nearest point of the track is 2 m from a straight wall. The car starts at the farthest point and completes 2 laps without stopping.</p><p>Which graph represents the shortest distance from the car to the wall, in meters, versus elapsed time, in seconds?</p><div data-context-plot=\"car-options\" data-spec=\"{&quot;radius&quot;:3,&quot;period&quot;:10,&quot;gap&quot;:2,&quot;start&quot;:&quot;far&quot;,&quot;laps&quot;:2,&quot;order&quot;:[&quot;cumulative&quot;,&quot;triangle&quot;,&quot;correct&quot;,&quot;signed&quot;]}\"></div>",
+      "choices": [
+        "Graph A",
+        "Graph B",
+        "Graph C",
+        "Graph D"
+      ],
+      "answer": 2,
+      "hint": "Check the initial distance, nonnegative distance, number of repetitions and smooth turning behavior.",
+      "solution": "Graph C. The distance repeats once per lap, ranges from 2 to 8 m and begins at 8 m. Each of the 2 smooth cycles takes 10 s. Total distance traveled would accumulate; distance to a fixed wall returns to its starting value.",
+      "ek": "1.1.B.1–2",
+      "calculator": false,
+      "family": "Circular motion",
+      "audit": {
+        "radius": 3,
+        "period": 10,
+        "gap": 2,
+        "start": "far",
+        "laps": 2,
+        "order": [
+          "cumulative",
+          "triangle",
+          "correct",
+          "signed"
+        ]
+      }
+    },
+    {
+      "id": "ex28",
+      "type": "mcq",
+      "group": "Circular motion",
+      "prompt": "<p>A toy car moves at constant speed around a circular track of radius 5 m. One lap takes 16 s. The nearest point of the track is 0 m from a straight wall. The car starts at the farthest point and completes 4 laps without stopping.</p><p>Which graph represents the shortest distance from the car to the wall, in meters, versus elapsed time, in seconds?</p><div data-context-plot=\"car-options\" data-spec=\"{&quot;radius&quot;:5,&quot;period&quot;:16,&quot;gap&quot;:0,&quot;start&quot;:&quot;far&quot;,&quot;laps&quot;:4,&quot;order&quot;:[&quot;signed&quot;,&quot;cumulative&quot;,&quot;triangle&quot;,&quot;correct&quot;]}\"></div>",
+      "choices": [
+        "Graph A",
+        "Graph B",
+        "Graph C",
+        "Graph D"
+      ],
+      "answer": 3,
+      "hint": "Check the initial distance, nonnegative distance, number of repetitions and smooth turning behavior.",
+      "solution": "Graph D. The distance repeats once per lap, ranges from 0 to 10 m and begins at 10 m. Each of the 4 smooth cycles takes 16 s. Total distance traveled would accumulate; distance to a fixed wall returns to its starting value.",
+      "ek": "1.1.B.1–2",
+      "calculator": false,
+      "family": "Circular motion",
+      "audit": {
+        "radius": 5,
+        "period": 16,
+        "gap": 0,
+        "start": "far",
+        "laps": 4,
+        "order": [
+          "signed",
+          "cumulative",
+          "triangle",
+          "correct"
+        ]
+      }
+    },
+    {
+      "id": "ex29",
+      "type": "mcq",
+      "group": "Circular motion",
+      "prompt": "<p>A car moves at constant speed around a circular track of radius 3.5 m, starting at the closest point to a wall 1.5 m from the track. One lap takes 14 s. Which pair gives its smallest and largest wall distances?</p>",
+      "choices": [
+        "1.5 m and 8.5 m",
+        "0 m and 7 m",
+        "1.5 m and 5 m",
+        "0 m and 8.5 m"
+      ],
+      "answer": 0,
+      "hint": "The maximum adds the full diameter to the gap.",
+      "solution": "The closest distance is the gap, 1.5 m. The farthest is 1.5 + 2(3.5) = 8.5 m.",
+      "ek": "1.1.B.1–2",
+      "calculator": false,
+      "family": "Circular motion"
+    },
+    {
+      "id": "ex30",
+      "type": "mcq",
+      "group": "Circular motion",
+      "prompt": "<p>A car completes each circular lap in 20 s at constant speed. It starts nearest to a straight wall. During which interval in the first lap is its wall distance decreasing?</p>",
+      "choices": [
+        "5 &lt; t &lt; 15",
+        "10 &lt; t &lt; 20",
+        "0 &lt; t &lt; 10",
+        "0 &lt; t &lt; 20"
+      ],
+      "answer": 1,
+      "hint": "The opposite side is reached after half a lap.",
+      "solution": "Distance increases on the outward half, 0 to 10 s, then decreases on the returning half, 10 to 20 s.",
+      "ek": "1.1.A.3–4",
+      "calculator": false,
+      "family": "Circular motion"
+    },
+    {
+      "id": "ex31",
+      "type": "mcq",
+      "group": "Circular motion",
+      "prompt": "<p>A car starts nearest a wall on a circular track of radius 2.5 m, with a gap of 0.8 m. A lap takes 12 s at constant speed. What is its distance from the wall after 9 s?</p>",
+      "choices": [
+        "5.8 m",
+        "2.5 m",
+        "3.3 m",
+        "0.8 m"
+      ],
+      "answer": 2,
+      "hint": "At three quarters of a lap the car is horizontally level with the center of the track.",
+      "solution": "At one quarter and three quarters of a lap, the perpendicular distance is gap + radius = 0.8 + 2.5 = 3.3 m.",
+      "ek": "1.1.A.2",
+      "calculator": false,
+      "family": "Circular motion"
+    },
+    {
+      "id": "ex32",
+      "type": "mcq",
+      "group": "Circular motion",
+      "prompt": "<p>The radius of a circular track and its gap from a wall remain fixed. A car now travels at twice its previous constant speed. What changes in its wall-distance graph?</p>",
+      "choices": [
+        "The maximum distance doubles; the repetition time stays the same.",
+        "Both the minimum and maximum distances halve.",
+        "The time between successive minima doubles.",
+        "The time between successive minima is halved; minimum and maximum distances stay the same."
+      ],
+      "answer": 3,
+      "hint": "Separate horizontal timing from vertical distance.",
+      "solution": "The car covers the same track in half the time. Geometry fixes the distances, so only the time scale changes.",
+      "ek": "1.1.B.1–2",
+      "calculator": false,
+      "family": "Circular motion"
+    },
+    {
+      "id": "ex33",
+      "type": "mcq",
+      "group": "Filling vessels",
+      "prompt": "<p>Water enters an empty vessel at a constant 24 cm³/s, with no leakage. Depth increases at an increasing rate until 8 cm, then rises steadily and steeply through a narrow upper section. Which cross-sectional diagram is consistent with this depth–time graph?</p><div data-context-plot=\"vessel-options\" data-spec=\"{&quot;order&quot;:[&quot;neck&quot;,&quot;widening&quot;,&quot;cylinder&quot;,&quot;hourglass&quot;]}\"></div>",
+      "choices": [
+        "Vessel A",
+        "Vessel B",
+        "Vessel C",
+        "Vessel D"
+      ],
+      "answer": 0,
+      "hint": "The same added volume makes a greater rise in a narrower horizontal cross-section. Read each vessel from the bottom upward.",
+      "solution": "Vessel A. At constant volume inflow, narrowing makes depth rise faster, widening makes it rise more slowly, and constant area makes depth rise steadily. Match those stages from the bottom upward.",
+      "ek": "1.1.B.1–4",
+      "calculator": false,
+      "family": "Filling vessels",
+      "audit": {
+        "target": "neck",
+        "order": [
+          "neck",
+          "widening",
+          "cylinder",
+          "hourglass"
+        ]
+      }
+    },
+    {
+      "id": "ex34",
+      "type": "mcq",
+      "group": "Filling vessels",
+      "prompt": "<p>Water enters an empty vessel at a constant 30 cm³/s, with no leakage. Depth increases at a decreasing rate until 8 cm, then rises steadily through a wide upper section. Which cross-sectional diagram is consistent with this depth–time graph?</p><div data-context-plot=\"vessel-options\" data-spec=\"{&quot;order&quot;:[&quot;hourglass&quot;,&quot;neck&quot;,&quot;widening&quot;,&quot;cylinder&quot;]}\"></div>",
+      "choices": [
+        "Vessel A",
+        "Vessel B",
+        "Vessel C",
+        "Vessel D"
+      ],
+      "answer": 2,
+      "hint": "The same added volume makes a greater rise in a narrower horizontal cross-section. Read each vessel from the bottom upward.",
+      "solution": "Vessel C. At constant volume inflow, narrowing makes depth rise faster, widening makes it rise more slowly, and constant area makes depth rise steadily. Match those stages from the bottom upward.",
+      "ek": "1.1.B.1–4",
+      "calculator": false,
+      "family": "Filling vessels",
+      "audit": {
+        "target": "widening",
+        "order": [
+          "hourglass",
+          "neck",
+          "widening",
+          "cylinder"
+        ]
+      }
+    },
+    {
+      "id": "ex35",
+      "type": "mcq",
+      "group": "Filling vessels",
+      "prompt": "<p>Water enters an empty vessel at a constant 36 cm³/s, with no leakage. Depth increases at the same rate throughout filling. Which cross-sectional diagram is consistent with this depth–time graph?</p><div data-context-plot=\"vessel-options\" data-spec=\"{&quot;order&quot;:[&quot;cylinder&quot;,&quot;hourglass&quot;,&quot;neck&quot;,&quot;widening&quot;]}\"></div>",
+      "choices": [
+        "Vessel A",
+        "Vessel B",
+        "Vessel C",
+        "Vessel D"
+      ],
+      "answer": 0,
+      "hint": "The same added volume makes a greater rise in a narrower horizontal cross-section. Read each vessel from the bottom upward.",
+      "solution": "Vessel A. At constant volume inflow, narrowing makes depth rise faster, widening makes it rise more slowly, and constant area makes depth rise steadily. Match those stages from the bottom upward.",
+      "ek": "1.1.B.1–4",
+      "calculator": false,
+      "family": "Filling vessels",
+      "audit": {
+        "target": "cylinder",
+        "order": [
+          "cylinder",
+          "hourglass",
+          "neck",
+          "widening"
+        ]
+      }
+    },
+    {
+      "id": "ex36",
+      "type": "mcq",
+      "group": "Filling vessels",
+      "prompt": "<p>Water enters an empty vessel at a constant 42 cm³/s, with no leakage. Depth first rises at an increasing rate, then at a decreasing rate. Which cross-sectional diagram is consistent with this depth–time graph?</p><div data-context-plot=\"vessel-options\" data-spec=\"{&quot;order&quot;:[&quot;widening&quot;,&quot;cylinder&quot;,&quot;hourglass&quot;,&quot;neck&quot;]}\"></div>",
+      "choices": [
+        "Vessel A",
+        "Vessel B",
+        "Vessel C",
+        "Vessel D"
+      ],
+      "answer": 2,
+      "hint": "The same added volume makes a greater rise in a narrower horizontal cross-section. Read each vessel from the bottom upward.",
+      "solution": "Vessel C. At constant volume inflow, narrowing makes depth rise faster, widening makes it rise more slowly, and constant area makes depth rise steadily. Match those stages from the bottom upward.",
+      "ek": "1.1.B.1–4",
+      "calculator": false,
+      "family": "Filling vessels",
+      "audit": {
+        "target": "hourglass",
+        "order": [
+          "widening",
+          "cylinder",
+          "hourglass",
+          "neck"
+        ]
+      }
+    },
+    {
+      "id": "ex37",
+      "type": "mcq",
+      "group": "Filling vessels",
+      "prompt": "<p>Water enters at 36 cm³/s. Two straight sections of a vessel have horizontal cross-sectional areas 12 cm² and 48 cm². For the same small added volume, which statement compares the depth increases?</p>",
+      "choices": [
+        "The depth increase in the 12 cm² section is four times that in the 48 cm² section.",
+        "The depth increases are equal.",
+        "The depth increase in the 48 cm² section is four times that in the 12 cm² section.",
+        "The depth increase in the 12 cm² section is twice that in the 48 cm² section."
+      ],
+      "answer": 0,
+      "hint": "For a straight section, added volume = area × depth increase.",
+      "solution": "The same added volume spread over one quarter of the area produces four times the height increase. For example, 48 cm³ raises depth by 4 cm in the narrow section and by 1 cm in the wide section.",
+      "ek": "1.1.B.1–2",
+      "calculator": false,
+      "family": "Filling vessels"
+    },
+    {
+      "id": "ex38",
+      "type": "mcq",
+      "group": "Filling vessels",
+      "prompt": "<p>A vessel narrows upward and then has a straight narrow neck. Water enters at constant volume per second. A student draws a depth–time graph shaped like the vessel’s outline. Which correction is appropriate?</p>",
+      "choices": [
+        "Draw the height constant until water enters the neck.",
+        "Draw a rising concave-up portion followed by a steep straight rise.",
+        "Draw a decreasing concave-up portion followed by a flat line.",
+        "Draw a rising concave-down portion followed by a flat line."
+      ],
+      "answer": 1,
+      "hint": "The graph records depth against time, not width against height.",
+      "solution": "Water keeps accumulating, so depth keeps increasing. Narrower sections produce a faster rise; the constant-area neck produces a constant positive rate.",
+      "ek": "1.1.B.1–4",
+      "calculator": false,
+      "family": "Filling vessels"
+    },
+    {
+      "id": "ex39",
+      "type": "mcq",
+      "group": "Filling vessels",
+      "prompt": "<p>A tank’s depth–time graph bends upward while water enters. The inflow is not known to be constant. What can be concluded about the tank?</p>",
+      "choices": [
+        "The tank must widen upward.",
+        "The tank must have constant cross-sectional area.",
+        "The graph alone does not establish that the tank narrows upward.",
+        "The tank must narrow upward."
+      ],
+      "answer": 2,
+      "hint": "A changing pump setting can also change how fast the level rises.",
+      "solution": "Concave-up depth means depth rises at an increasing rate. That may result from increasing inflow, narrowing cross-sections, or both. The constant-inflow assumption is needed to infer shape.",
+      "ek": "1.1.B.1–4",
+      "calculator": false,
+      "family": "Filling vessels"
+    },
+    {
+      "id": "ex40",
+      "type": "mcq",
+      "group": "Filling vessels",
+      "prompt": "<p>A vessel has constant horizontal cross-sectional area. Its inflow changes instantly from 20 cm³/s to 40 cm³/s at t = 6 s and then stays constant. Which depth–time graph is appropriate?</p>",
+      "choices": [
+        "A vertical jump in depth at t = 6",
+        "A decreasing graph after t = 6",
+        "A smooth concave-up graph throughout both time intervals",
+        "A continuous increasing graph with a steeper straight segment after t = 6"
+      ],
+      "answer": 3,
+      "hint": "The water level cannot jump when no volume is added instantaneously.",
+      "solution": "Each constant inflow gives a constant positive depth rate. Doubling inflow doubles the steepness after 6 s, but the level remains continuous at the change.",
+      "ek": "1.1.B.1–2",
+      "calculator": false,
+      "family": "Filling vessels"
+    },
+    {
+      "id": "ex41",
+      "type": "mcq",
+      "group": "Projectile height",
+      "prompt": "<p>A ball is thrown upward from a balcony. Its height above the ground is modeled by \\(h(t)=-4.9t^2+6.2t+18\\), where t is seconds after release and h(t) is meters. Use the model only until the first ground contact. Which description is correct? Round to three decimal places.</p>",
+      "choices": [
+        "The height first increases to 19.961 m, then decreases. The ball reaches the ground 2.018 s after reaching its maximum height.",
+        "The ball starts at its maximum height of 18.000 m and hits the ground 2.651 s after release.",
+        "The height first increases to 19.961 m, then decreases. The ball reaches the ground 2.651 s after reaching its maximum height.",
+        "The height first increases to 19.961 m, then decreases. The ball reaches the ground 2.018 s after release."
+      ],
+      "answer": 0,
+      "hint": "Use maximum and zero on a graphing calculator. Then subtract the time of maximum height from the time of ground contact.",
+      "solution": "The graph’s maximum occurs at t ≈ 0.632653 s with height ≈ 19.961224 m. The positive zero is t ≈ 2.650999 s after release. The descent lasts 2.650999 − 0.632653 ≈ 2.018 s. Keep full calculator values until the final rounding.",
+      "ek": "1.1.A.2; 1.1.B.5",
+      "calculator": true,
+      "family": "Projectile height",
+      "audit": {
+        "a": 4.9,
+        "v": 6.2,
+        "h": 18,
+        "peak": 0.6326530612244897,
+        "height": 19.961224489795917,
+        "impact": 2.650998741139558,
+        "fall": 2.0183456799150683
+      }
+    },
+    {
+      "id": "ex42",
+      "type": "mcq",
+      "group": "Projectile height",
+      "prompt": "<p>A ball is thrown upward from a balcony. Its height above the ground is modeled by \\(h(t)=-4.9t^2+8.4t+21\\), where t is seconds after release and h(t) is meters. Use the model only until the first ground contact. Which description is correct? Round to three decimal places.</p>",
+      "choices": [
+        "The height first increases to 24.600 m, then decreases. The ball reaches the ground 2.241 s after release.",
+        "The height first increases to 24.600 m, then decreases. The ball reaches the ground 2.241 s after reaching its maximum height.",
+        "The ball starts at its maximum height of 21.000 m and hits the ground 3.098 s after release.",
+        "The height first increases to 24.600 m, then decreases. The ball reaches the ground 3.098 s after reaching its maximum height."
+      ],
+      "answer": 1,
+      "hint": "Use maximum and zero on a graphing calculator. Then subtract the time of maximum height from the time of ground contact.",
+      "solution": "The graph’s maximum occurs at t ≈ 0.857143 s with height ≈ 24.600000 m. The positive zero is t ≈ 3.097770 s after release. The descent lasts 3.097770 − 0.857143 ≈ 2.241 s. Keep full calculator values until the final rounding.",
+      "ek": "1.1.A.2; 1.1.B.5",
+      "calculator": true,
+      "family": "Projectile height",
+      "audit": {
+        "a": 4.9,
+        "v": 8.4,
+        "h": 21,
+        "peak": 0.8571428571428571,
+        "height": 24.6,
+        "impact": 3.0977695916225887,
+        "fall": 2.2406267344797315
+      }
+    },
+    {
+      "id": "ex43",
+      "type": "mcq",
+      "group": "Projectile height",
+      "prompt": "<p>A ball is thrown upward from a balcony. Its height above the ground is modeled by \\(h(t)=-4.9t^2+4.8t+13\\), where t is seconds after release and h(t) is meters. Use the model only until the first ground contact. Which description is correct? Round to three decimal places.</p>",
+      "choices": [
+        "The height first increases to 14.176 m, then decreases. The ball reaches the ground 2.191 s after reaching its maximum height.",
+        "The height first increases to 14.176 m, then decreases. The ball reaches the ground 1.701 s after release.",
+        "The height first increases to 14.176 m, then decreases. The ball reaches the ground 1.701 s after reaching its maximum height.",
+        "The ball starts at its maximum height of 13.000 m and hits the ground 2.191 s after release."
+      ],
+      "answer": 2,
+      "hint": "Use maximum and zero on a graphing calculator. Then subtract the time of maximum height from the time of ground contact.",
+      "solution": "The graph’s maximum occurs at t ≈ 0.489796 s with height ≈ 14.175510 m. The positive zero is t ≈ 2.190667 s after release. The descent lasts 2.190667 − 0.489796 ≈ 1.701 s. Keep full calculator values until the final rounding.",
+      "ek": "1.1.A.2; 1.1.B.5",
+      "calculator": true,
+      "family": "Projectile height",
+      "audit": {
+        "a": 4.9,
+        "v": 4.8,
+        "h": 13,
+        "peak": 0.48979591836734687,
+        "height": 14.175510204081633,
+        "impact": 2.1906666560011945,
+        "fall": 1.7008707376338477
+      }
+    },
+    {
+      "id": "ex44",
+      "type": "mcq",
+      "group": "Projectile height",
+      "prompt": "<p>A ball is thrown upward from a balcony. Its height above the ground is modeled by \\(h(t)=-4.9t^2+7.6t+16\\), where t is seconds after release and h(t) is meters. Use the model only until the first ground contact. Which description is correct? Round to three decimal places.</p>",
+      "choices": [
+        "The ball starts at its maximum height of 16.000 m and hits the ground 2.742 s after release.",
+        "The height first increases to 18.947 m, then decreases. The ball reaches the ground 2.742 s after reaching its maximum height.",
+        "The height first increases to 18.947 m, then decreases. The ball reaches the ground 1.966 s after release.",
+        "The height first increases to 18.947 m, then decreases. The ball reaches the ground 1.966 s after reaching its maximum height."
+      ],
+      "answer": 3,
+      "hint": "Use maximum and zero on a graphing calculator. Then subtract the time of maximum height from the time of ground contact.",
+      "solution": "The graph’s maximum occurs at t ≈ 0.775510 s with height ≈ 18.946939 m. The positive zero is t ≈ 2.741908 s after release. The descent lasts 2.741908 − 0.775510 ≈ 1.966 s. Keep full calculator values until the final rounding.",
+      "ek": "1.1.A.2; 1.1.B.5",
+      "calculator": true,
+      "family": "Projectile height",
+      "audit": {
+        "a": 4.9,
+        "v": 7.6,
+        "h": 16,
+        "peak": 0.7755102040816325,
+        "height": 18.946938775510205,
+        "impact": 2.7419084849707596,
+        "fall": 1.966398280889127
+      }
+    },
+    {
+      "id": "ex45",
+      "type": "mcq",
+      "group": "Projectile height",
+      "prompt": "<p>A calculator shows that a ball reaches maximum height 0.735 s after release and hits the ground 3.218 s after release. How long is the descent from maximum height to the ground?</p>",
+      "choices": [
+        "2.483 s",
+        "3.218 s",
+        "3.953 s",
+        "0.735 s"
+      ],
+      "answer": 0,
+      "hint": "Both displayed times are measured from the same starting event.",
+      "solution": "The descent duration is 3.218 − 0.735 = 2.483 s. The ground-contact time is a timestamp after release, not the duration after the peak.",
+      "ek": "1.1.A.2",
+      "calculator": false,
+      "family": "Projectile height"
+    },
+    {
+      "id": "ex46",
+      "type": "mcq",
+      "group": "Projectile height",
+      "prompt": "<p>A ball is released from rest above the ground. Its height is \\(h(t)=24-4.9t^2\\), for t from release until ground contact. Which statement is correct?</p>",
+      "choices": [
+        "Its rate of change is constant because 4.9 is constant.",
+        "Its maximum height is 24 m at release; it then decreases with concave-down behavior.",
+        "It first rises above 24 m, then decreases.",
+        "Its graph is concave up because height stays positive before impact."
+      ],
+      "answer": 1,
+      "hint": "A downward-opening height graph may start at its highest point.",
+      "solution": "For positive time, subtracting 4.9t² makes the height decrease. Equal time steps produce larger drops, so its rate decreases and the graph is concave down.",
+      "ek": "1.1.A.3–4; 1.1.B.4",
+      "calculator": false,
+      "family": "Projectile height"
+    },
+    {
+      "id": "ex47",
+      "type": "mcq",
+      "group": "Projectile height",
+      "prompt": "<p>A ball’s physical height model is used for 0 ≤ t ≤ 2.7. It reaches a maximum of 19.6 m at t = 0.6 and reaches the ground at t = 2.7. What is the range of this physical model?</p>",
+      "choices": [
+        "[0.6, 2.7] seconds",
+        "All real numbers less than or equal to 19.6 meters",
+        "[0, 19.6] meters",
+        "[0, 2.7] seconds"
+      ],
+      "answer": 2,
+      "hint": "The range consists of heights actually reached before the model ends.",
+      "solution": "The lowest physical height is 0 m and the greatest is 19.6 m; continuity includes all intervening heights. Negative values on the continued parabola lie outside this physical model.",
+      "ek": "1.1.A.1",
+      "calculator": false,
+      "family": "Projectile height"
+    },
+    {
+      "id": "ex48",
+      "type": "mcq",
+      "group": "Projectile height",
+      "prompt": "<p>A ball rises to a maximum and then falls. Its height–time graph is concave down throughout the flight. Which statement describes its rate of change?</p>",
+      "choices": [
+        "The rate is negative throughout because the graph is concave down.",
+        "The rate first increases, then decreases.",
+        "The rate is zero throughout because the ball returns toward the ground.",
+        "The rate decreases throughout, changing from positive to zero to negative."
+      ],
+      "answer": 3,
+      "hint": "The direction of the height and the direction of its rate are different questions.",
+      "solution": "The positive rate during ascent becomes smaller, reaches zero at the maximum, and then becomes more negative during descent. Thus it decreases through both stages.",
+      "ek": "1.1.B.4",
+      "calculator": false,
+      "family": "Projectile height"
     }
   ],
   "frqs": [

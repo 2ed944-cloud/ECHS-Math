@@ -15,7 +15,7 @@ let equations=0;
 const win={document,ECHSInstitution:{account:()=>account},TandemModels:require(new URL('assets/tandem-1-1-model-v3.js',base).pathname),TandemQuestions:require(new URL('assets/tandem-1-1-questions-v3.js',base).pathname),katex:{render(tex,node){math.window.katex.renderToString(tex,{throwOnError:true,strict:'ignore'});node.textContent=tex;equations++;}},addEventListener:events.addEventListener.bind(events),dispatchEvent:events.dispatchEvent.bind(events),print(){printed=true;}};
 const scheduled=new Map();let timer=0;
 const ctx=vm.createContext({window:win,document,location,history:{replaceState(_s,_t,url){const u=new URL(url,'https://example.test');assert.equal(u.search,location.search);location.hash=u.hash;}},localStorage:{getItem(k){if(failStorage)throw Error('Denied');return storage.get(k)||null;},setItem(k,v){if(failStorage)throw Error('Denied');storage.set(k,v);}},setTimeout:fn=>{scheduled.set(++timer,fn);return timer;},clearTimeout:id=>scheduled.delete(id),console});
-for(const file of ['graphs','labs','core'])vm.runInContext(fs.readFileSync(new URL('assets/tandem-1-1-'+file+'-v3.js',base),'utf8'),ctx);
+for(const file of ['tandem-1-1-graphs-v3.js','tandem-1-1-labs-v3.js','tandem-context-models-v4.js','tandem-contexts-v4.js','tandem-1-1-core-v3.js'])vm.runInContext(fs.readFileSync(new URL('assets/'+file,base),'utf8'),ctx);
 const $=id=>document.getElementById(id),click=n=>{assert.ok(n,'Missing click target');n.dispatchEvent(new dom.Event('click',{bubbles:true}));};
 const input=(n,v,event='input')=>{assert.ok(n,'Missing input');n.value=String(v);n.dispatchEvent(new dom.Event(event,{bubbles:true}));};
 const choose=(id,value)=>{const n=document.querySelector('input[name="answer-'+id+'"][value="'+value+'"]');for(const r of document.querySelectorAll('input[name="answer-'+id+'"]')){r.checked=r===n;r.toggleAttribute('checked',r===n);}input(n,value);};
@@ -29,9 +29,9 @@ key(document,'ArrowRight');assert.equal(current(),'roadmap');
 for(const target of [$('answer-q02'),$('slideSelect'),$('lab-reservoir-time'),$('draft-frq01-0'),$('nextSlide')]){key(target,'ArrowRight');assert.equal(current(),'roadmap');}
 click(document.querySelector('[data-solution="q01"]'));assert.equal($('solution-q01').hidden,true);
 for(const q of Q.questions){if(q.type==='number')input($('answer-'+q.id),20);else choose(q.id,q.answer);click(document.querySelector('[data-check="'+q.id+'"]'));assert.match($('feedback-'+q.id).textContent,/Correct/,q.id);}
-assert.equal($('correctCount').textContent,'34');assert.equal($('attemptedCount').textContent,'34 / 34');
+assert.equal($('correctCount').textContent,'82');assert.equal($('attemptedCount').textContent,'82 / 82');
 click(document.querySelector('[data-solution="q01"]'));assert.equal($('solution-q01').hidden,false);
-choose('q01',0);assert.equal($('solution-q01').hidden,true);assert.equal($('correctCount').textContent,'33');
+choose('q01',0);assert.equal($('solution-q01').hidden,true);assert.equal($('correctCount').textContent,'81');
 click(document.querySelector('[data-solution="q01"]'));assert.equal($('solution-q01').hidden,true);
 click(document.querySelector('[data-check="q01"]'));assert.doesNotMatch($('feedback-q01').textContent,/Correct/);
 choose('q01',2);click(document.querySelector('[data-check="q01"]'));
@@ -62,11 +62,32 @@ for(const [story,keys] of Object.entries({heating:['inc-up','inc-down','constant
 for(const view of ['samples','blue','gold','both']){setting('evidence','view',view);prediction('evidence','answer','no');correct('evidence');}
 for(const window of ['full','cropped'])for(const [x,y] of [[-2.4,'3.220'],[1.7,'-1.053'],[-4,'0.000'],[5,'0.000'],[6,'4.000']]){setting('calculator','window',window);setting('calculator','x',x);prediction('calculator','answer',y);correct('calculator');}
 prediction('calculator','answer','999');assert.doesNotMatch($('lab-calculator-feedback').textContent,/Correct/);assert.equal($('lab-calculator-work').hidden,true);
-for(const el of document.querySelectorAll('[data-tandem-plot]'))assert.ok(el.querySelector('svg'),'Unrendered graph: '+el.dataset.tandemPlot);
+// New context models: controls, answer gating, graph refresh and invalidation.
+const cs=(kind,suffix,value,event='change')=>input($('context-'+kind+'-'+suffix),value,event);
+const cp=(kind,suffix,value)=>input($('context-'+kind+'-'+suffix),value,'input');
+const checkContext=kind=>{click($('context-'+kind+'-check'));assert.match($('context-'+kind+'-feedback').textContent,/Correct/);click($('context-'+kind+'-reveal'));assert.equal($('context-'+kind+'-work').hidden,false);};
+click($('context-car-reveal'));assert.equal($('context-car-work').hidden,true);
+for(const radius of [2,5])for(const period of [8,16])for(const gap of [0,2])for(const start of ['near','far']){
+ cs('car','radius',radius);cs('car','period',period);cs('car','gap',gap);cs('car','start',start);cp('car','max',gap+2*radius);cp('car','repeat',period);checkContext('car');
+ cs('car','time',period/2,'input');assert.equal($('context-car-work').hidden,true);assert.match($('context-car-display').textContent,new RegExp('Wall distance: '+(start==='near'?gap+2*radius:gap)+' m'));
+}
+click($('context-car-reset'));assert.equal(Number($('context-car-time').value),0);click($('context-car-step'));assert.equal(Number($('context-car-time').value),4);
+location.hash='#toy-car-lab';win.dispatchEvent(new dom.Event('hashchange'));click($('context-car-play'));assert.equal($('context-car-play').textContent,'Pause');flush();assert.ok(Number($('context-car-time').value)>4);click($('context-car-play'));assert.equal($('context-car-play').textContent,'Play');
+click($('context-car-play'));location.hash='#start';win.dispatchEvent(new dom.Event('hashchange'));flush();assert.equal($('context-car-play').textContent,'Play');
+for(const [shape,pred] of Object.entries({neck:'up-linear',widening:'down-linear',cylinder:'linear',hourglass:'up-down',bulb:'down-up-linear'})){
+ cs('vessel','shape',shape);cs('vessel','fill',100,'input');assert.match($('context-vessel-display').textContent,/Depth: 12 cm/);cs('vessel','prediction',pred);checkContext('vessel');cs('vessel','flow',40);assert.equal($('context-vessel-work').hidden,true);
+}
+for(const sign of [-1,1])for(const interval of ['left','right']){cs('curve','shape',sign);cs('curve','interval',interval);cs('curve','prediction',(sign===1)===(interval==='right')?'increasing':'decreasing');checkContext('curve');}
+for(const model of [0,1,2]){
+ cs('ball','model',model);const p=[{a:4.9,v:6.2,h:18},{a:4.9,v:8.4,h:21},{a:4.9,v:0,h:24}][model];cp('ball','fall',win.TandemContexts.flight(p).fallTime.toFixed(3));checkContext('ball');cs('ball','time',100,'input');assert.match($('context-ball-display').textContent,/Height: 0 m/);
+}
+cp('ball','fall','abc');click($('context-ball-check'));assert.match($('context-ball-feedback').textContent,/Complete/);cp('ball','fall','999');click($('context-ball-check'));assert.match($('context-ball-feedback').textContent,/Not yet/);
+for(const el of document.querySelectorAll('[data-context-plot]'))assert.ok(el.querySelector('svg'),'Missing context figure');
+for(const el of document.querySelectorAll('[data-tandem-plot],[data-context-plot]'))assert.ok(el.querySelector('svg'),'Unrendered graph: '+el.dataset.tandemPlot);
 for(const svg of document.querySelectorAll('svg')){assert.ok(svg.getAttribute('aria-label'));assert.doesNotMatch(svg.outerHTML,/NaN|Infinity/);}
 assert.ok(document.querySelector('[data-tandem-plot="evidence"] path.curve[style="stroke:#a26714"][stroke-dasharray]'),'Gold counterexample must retain its color despite shared CSS');
 assert.equal(document.querySelectorAll('.math-fallback').length,0);assert.ok(equations>100);
-flush();assert.equal(storage.get(legacy),'old progress');assert.ok(storage.has('echs:ap-precalculus:1.1:ap-precalculus-topic-1-1-v3:test-a'));
+flush();assert.equal(storage.get(legacy),'old progress');assert.ok(storage.has('echs:ap-precalculus:1.1:ap-precalculus-topic-1-1-v4:test-a'));
 account={id:'test-b'};win.dispatchEvent(new dom.Event('focus'));assert.equal($('answer-q02').value,'');assert.equal($('draft-frq01-0').value,'');
 account={id:'test-a'};win.dispatchEvent(new dom.Event('focus'));assert.equal($('answer-q02').value,'20');assert.equal($('draft-frq01-0').value,'Revised comparison.');
 failStorage=true;input($('answer-q02'),'20');click(document.querySelector('[data-check="q02"]'));assert.match(document.querySelector('.save-note').textContent,/unavailable/);failStorage=false;
@@ -75,4 +96,4 @@ key(document,'End');assert.equal(current(),'alignment');key(document,'Home');ass
 let continued=false;const finish=document.createElement('button');finish.dataset.finishLesson='';finish.addEventListener('click',()=>continued=true);document.body.append(finish);click($('continuePractice'));assert.ok(continued);
 const ids=[...document.querySelectorAll('[id]')].map(n=>n.id);assert.equal(new Set(ids).size,ids.length);for(const n of document.querySelectorAll('[aria-controls]'))assert.ok($(n.getAttribute('aria-controls')));
 const css=fs.readFileSync(new URL('assets/tandem-1-1-v3.css',base),'utf8');assert.match(css,/@media print\{\.solution,\.rubric,\.hint,\.feedback/);assert.match(css,/@media\(max-width:650px\)/);
-console.log('AP Precalculus 1.1 UI: PASS (8 labs, 34 checks, 18 scored parts, mathematical rendering, account isolation, edit invalidation, storage denial, legacy navigation and protected progression).');
+console.log('AP Precalculus 1.1 UI: PASS (12 labs, 82 checks, 18 scored parts, mathematical rendering, account isolation, edit invalidation, storage denial, legacy navigation and protected progression).');
