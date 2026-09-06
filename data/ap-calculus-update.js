@@ -402,6 +402,33 @@
         ]
       },
       {
+        "number": "1.M",
+        "title": "Middle Unit Important Checking Questions",
+        "summary": "A checkpoint after Lesson 1.6 with 24 original questions on motion, limit notation, graphs, and tables. Includes new contexts, hints, worked solutions, and review flags.",
+        "outcomes": [
+          "Interpret speed using position graphs and local table estimates.",
+          "Distinguish function values, one-sided limits, and two-sided limits.",
+          "Read limit notation and separate numerical evidence from conclusions that must be true."
+        ],
+        "url": "lessons/ap-calculus/unit-1/middle-unit-important-checking-questions.html",
+        "status": "ready",
+        "kind": "review",
+        "openLabel": "Open checkpoint",
+        "practice": "embedded",
+        "practiceHash": "question=q01",
+        "new": true,
+        "keywords": [
+          "middle unit",
+          "checkpoint",
+          "checking questions",
+          "limits",
+          "motion",
+          "graphs",
+          "tables",
+          "review"
+        ]
+      },
+      {
         "number": "1.7",
         "title": "Selecting Procedures for Determining Limits",
         "summary": "Choose the method from the mathematical structure rather than from habit.",
