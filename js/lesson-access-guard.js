@@ -90,7 +90,10 @@
       if(!decision.allowed){location.replace(ECHSInstitution.root(`question-bank/student.html?notice=${encodeURIComponent(decision.reason||"lesson-not-available")}`));return;}
     }
     const practiceParams=new URLSearchParams({course,unit,topic,from:lessonKey,accessKey,title,mode:"adaptive",autostart:"1"});
-    const practiceHref=ECHSInstitution.root(`question-bank/practice.html?${practiceParams}`),pathHref=ECHSInstitution.root("index.html#courses"),dashboardHref=ECHSPortalAccess.roleHome(access.current),isComplete=completed(lessonKey);
+    const embeddedPractice=document.documentElement.dataset.practice==="embedded";
+    const embeddedURL=new URL(location.href);
+    embeddedURL.hash=document.documentElement.dataset.practiceStart||"";
+    const practiceHref=embeddedPractice?embeddedURL.href:ECHSInstitution.root(`question-bank/practice.html?${practiceParams}`),pathHref=ECHSInstitution.root("index.html#courses"),dashboardHref=ECHSPortalAccess.roleHome(access.current),isComplete=completed(lessonKey);
     document.documentElement.dataset.lessonGate="allowed";
     document.documentElement.dataset.echsLessonCourse=course||"unassigned";
     document.documentElement.dataset.echsLessonTitle=title;
