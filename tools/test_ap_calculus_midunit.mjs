@@ -6,7 +6,7 @@ const require=createRequire(import.meta.url),root=new URL('../',import.meta.url)
 const Q=require(new URL('assets/midunit-questions.js',base).pathname),G=require(new URL('assets/midunit-graphs.js',base).pathname);
 const close=(a,b)=>assert.ok(Math.abs(a-b)<1e-8,`${a} differs from ${b}`);
 assert.ok(Q.questions.length>=44);assert.equal(new Set(Q.questions.map(q=>q.id)).size,Q.questions.length);
-assert.equal(new Set(Q.questions.map(q=>q.family)).size,22);
+assert.equal(new Set(Q.questions.map(q=>q.family)).size,25);
 const mathContext=vm.createContext({window:{},console});vm.runInContext(fs.readFileSync(new URL('lessons/ib-math-ai/unit-1/assets/js/katex-global.js',root),'utf8'),mathContext);
 const side=(g,c,left)=>{const b=g.branches.find(b=>b.domain&&(left?b.domain[0]<c&&b.domain[1]>=c:b.domain[0]<=c&&b.domain[1]>c));assert.ok(b);return G.evaluate(b.coefficients,c);};
 for(const q of Q.questions){
@@ -56,6 +56,8 @@ for(const name of ['lessonURL','practiceURL'])vm.runInContext(portal.split('\n')
 const href=vm.runInContext('practiceURL',routing)(course,0,ls[index],'checkpoint-key'),url=new URL(href);
 assert.ok(url.pathname.endsWith(ls[index].url));assert.equal(url.hash,'#question=q01');assert.equal(url.searchParams.get('lessonKey'),'checkpoint-key');assert.equal(url.searchParams.get('accessKey'),'ap-calculus::0::1.M');
 assert.match(vm.runInContext('practiceURL',routing)(course,0,ls[index-1],'ordinary-key'),/question-bank\/practice.html/);
-console.log(`AP Calculus middle-unit content: PASS (${Q.questions.length} questions, 22 families, exact graph data, polynomial roots, speed estimates, KaTeX, finite-data counterexamples, card order and practice routing)`);
+console.log(`AP Calculus middle-unit content: PASS (${Q.questions.length} questions, 25 families, exact graph data, polynomial roots, speed estimates, KaTeX, finite-data counterexamples, card order and practice routing)`);
 
 await import("./test_ap_calculus_midunit_batch2.mjs");
+
+await import("./test_ap_calculus_midunit_batch3.mjs");
