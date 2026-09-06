@@ -56,5 +56,5 @@ assert.doesNotMatch(html,/<script[^>]*src="https?:|lesson-1\.2-engine|lesson-1\.
 const ids=new Set([...html.matchAll(/<section class="slide" id="([^"]+)"/g)].map(m=>m[1]));
 const aliases=JSON.parse(core.match(/const aliases=(\{.*?\});/)[1]);for(const [old,target] of Object.entries(aliases))assert.ok(ids.has(target),old+' -> '+target);
 const ctx=vm.createContext({window:{}});vm.runInContext(fs.readFileSync(new URL('../../../data/ap-precalculus-update.js',base),'utf8'),ctx);
-const lessons=ctx.window.ECHS_COURSES[0].units[0].lessons;assert.equal(lessons[0].interactiveSlides,48);assert.equal(lessons[1].interactiveSlides,55);assert.equal(lessons[1].assessment.written_points,36);assert.equal(lessons[1].interactiveInvestigations,10);
+const lessons=ctx.window.ECHS_COURSES[0].units[0].lessons;assert.equal(lessons[0].interactiveSlides,(fs.readFileSync(new URL('AP_Precalculus_1.1_Change_in_Tandem_ECHS_Refined.html',base),'utf8').match(/class="slide"/g)||[]).length);assert.equal(lessons[1].interactiveSlides,55);assert.equal(lessons[1].assessment.written_points,36);assert.equal(lessons[1].interactiveInvestigations,10);
 console.log('AP Precalculus 1.2 mathematics: PASS (10 models, 38 independent answer keys, 6 six-point FRQs, scope, legacy links and portal metadata).');
