@@ -2248,6 +2248,847 @@
         "outerSide": "right",
         "result": 5
       }
+    },
+    {
+      "id": "q45",
+      "family": "tangent-secant",
+      "title": "Water collected during a storm",
+      "prompt": "A rainwater tank contains \\(V(t)\\) liters, \\(t\\) hours after monitoring begins. The curve and its tangent at \\(t=4\\) are shown. Which expression gives the best estimate of the instantaneous rate of change there?",
+      "choices": [
+        "\\(V(4)\\)",
+        "\\(\\frac{V(4)-V(0)}{4-0}\\)",
+        "\\(\\frac{V(5)-V(3)}{5-3}\\)",
+        "\\(\\frac{V(4.1)-V(3.9)}{4.1-3.9}\\)"
+      ],
+      "answer": 3,
+      "hint": "An instantaneous rate is a tangent slope. Compare it with a secant through two nearby points on opposite sides of the time of interest.",
+      "solution": "The nearest pair of times bracketing \\(4\\) is \\(3.9\\) and \\(4.1\\). The best estimate is \\(\\frac{V(4.1)-V(3.9)}{4.1-3.9}\\), measured in L/h. This quotient measures change in the quantity per unit time. The wider intervals describe average rates over longer periods, and \\(V(4)\\) is an amount, not a rate.",
+      "topic": "1.1",
+      "batch": "batch-3",
+      "graph": {
+        "label": "V(t) rises on 0 to 8. The solid blue curve is the quantity; the dashed maroon line is tangent at t=4.",
+        "domain": [
+          0,
+          8
+        ],
+        "range": [
+          0,
+          300
+        ],
+        "branches": [
+          {
+            "domain": [
+              0,
+              8
+            ],
+            "coefficients": [
+              0.5,
+              0,
+              0,
+              20
+            ]
+          },
+          {
+            "domain": [
+              2,
+              6
+            ],
+            "coefficients": [
+              24.0,
+              -44.0
+            ],
+            "kind": "tangent"
+          }
+        ],
+        "marks": [
+          {
+            "x": 4,
+            "y": 52.0,
+            "open": false
+          }
+        ],
+        "xLabel": "t",
+        "yLabel": "V(t)",
+        "step": 1
+      },
+      "graphCaption": "Solid blue: V(t). Dashed maroon: tangent at t = 4.",
+      "check": {
+        "coefficients": [
+          0.5,
+          0,
+          0,
+          20
+        ],
+        "target": 4,
+        "candidates": [
+          {
+            "kind": "value"
+          },
+          {
+            "kind": "secant",
+            "interval": [
+              0,
+              4
+            ]
+          },
+          {
+            "kind": "secant",
+            "interval": [
+              3,
+              5
+            ]
+          },
+          {
+            "kind": "secant",
+            "interval": [
+              3.9,
+              4.1
+            ]
+          }
+        ],
+        "tangentSlope": 24.0
+      }
+    },
+    {
+      "id": "q46",
+      "family": "tangent-secant",
+      "title": "Energy used by a greenhouse",
+      "prompt": "A greenhouse has used \\(E(t)\\) kilowatt-hours, \\(t\\) hours after midnight. The curve and its tangent at \\(t=6\\) are shown. Which expression gives the best estimate of the instantaneous rate of change there?",
+      "choices": [
+        "\\(\\frac{E(6)-E(0)}{6-0}\\)",
+        "\\(\\frac{E(6.2)-E(5.8)}{6.2-5.8}\\)",
+        "\\(E(6)\\)",
+        "\\(\\frac{E(7)-E(5)}{7-5}\\)"
+      ],
+      "answer": 1,
+      "hint": "An instantaneous rate is a tangent slope. Compare it with a secant through two nearby points on opposite sides of the time of interest.",
+      "solution": "The nearest pair of times bracketing \\(6\\) is \\(5.8\\) and \\(6.2\\). The best estimate is \\(\\frac{E(6.2)-E(5.8)}{6.2-5.8}\\), measured in kWh/h. This quotient measures change in the quantity per unit time. The wider intervals describe average rates over longer periods, and \\(E(6)\\) is an amount, not a rate.",
+      "topic": "1.1",
+      "batch": "batch-3",
+      "graph": {
+        "label": "E(t) rises on 0 to 10. The solid blue curve is the quantity; the dashed maroon line is tangent at t=6.",
+        "domain": [
+          0,
+          10
+        ],
+        "range": [
+          0,
+          400
+        ],
+        "branches": [
+          {
+            "domain": [
+              0,
+              10
+            ],
+            "coefficients": [
+              0.2,
+              0,
+              10,
+              40
+            ]
+          },
+          {
+            "domain": [
+              4,
+              8
+            ],
+            "coefficients": [
+              31.6,
+              -46.400000000000006
+            ],
+            "kind": "tangent"
+          }
+        ],
+        "marks": [
+          {
+            "x": 6,
+            "y": 143.20000000000002,
+            "open": false
+          }
+        ],
+        "xLabel": "t",
+        "yLabel": "E(t)",
+        "step": 1
+      },
+      "graphCaption": "Solid blue: E(t). Dashed maroon: tangent at t = 6.",
+      "check": {
+        "coefficients": [
+          0.2,
+          0,
+          10,
+          40
+        ],
+        "target": 6,
+        "candidates": [
+          {
+            "kind": "secant",
+            "interval": [
+              0,
+              6
+            ]
+          },
+          {
+            "kind": "secant",
+            "interval": [
+              5.8,
+              6.2
+            ]
+          },
+          {
+            "kind": "value"
+          },
+          {
+            "kind": "secant",
+            "interval": [
+              5,
+              7
+            ]
+          }
+        ],
+        "tangentSlope": 31.6
+      }
+    },
+    {
+      "id": "q47",
+      "family": "tangent-secant",
+      "title": "Pages indexed in an archive",
+      "prompt": "An archive has indexed \\(N(t)\\) pages, \\(t\\) minutes after an indexing task begins. The curve and its tangent at \\(t=3\\) are shown. Which expression gives the best estimate of the instantaneous rate of change there?",
+      "choices": [
+        "\\(\\frac{N(3.05)-N(2.95)}{3.05-2.95}\\)",
+        "\\(\\frac{N(4)-N(2)}{4-2}\\)",
+        "\\(\\frac{N(3)-N(0)}{3-0}\\)",
+        "\\(N(3)\\)"
+      ],
+      "answer": 0,
+      "hint": "An instantaneous rate is a tangent slope. Compare it with a secant through two nearby points on opposite sides of the time of interest.",
+      "solution": "The nearest pair of times bracketing \\(3\\) is \\(2.95\\) and \\(3.05\\). The best estimate is \\(\\frac{N(3.05)-N(2.95)}{3.05-2.95}\\), measured in pages/min. This quotient measures change in the quantity per unit time. The wider intervals describe average rates over longer periods, and \\(N(3)\\) is an amount, not a rate.",
+      "topic": "1.1",
+      "batch": "batch-3",
+      "graph": {
+        "label": "N(t) rises on 0 to 6. The solid blue curve is the quantity; the dashed maroon line is tangent at t=3.",
+        "domain": [
+          0,
+          6
+        ],
+        "range": [
+          0,
+          500
+        ],
+        "branches": [
+          {
+            "domain": [
+              0,
+              6
+            ],
+            "coefficients": [
+              2,
+              0,
+              0,
+              50
+            ]
+          },
+          {
+            "domain": [
+              1,
+              5
+            ],
+            "coefficients": [
+              54,
+              -58
+            ],
+            "kind": "tangent"
+          }
+        ],
+        "marks": [
+          {
+            "x": 3,
+            "y": 104,
+            "open": false
+          }
+        ],
+        "xLabel": "t",
+        "yLabel": "N(t)",
+        "step": 1
+      },
+      "graphCaption": "Solid blue: N(t). Dashed maroon: tangent at t = 3.",
+      "check": {
+        "coefficients": [
+          2,
+          0,
+          0,
+          50
+        ],
+        "target": 3,
+        "candidates": [
+          {
+            "kind": "secant",
+            "interval": [
+              2.95,
+              3.05
+            ]
+          },
+          {
+            "kind": "secant",
+            "interval": [
+              2,
+              4
+            ]
+          },
+          {
+            "kind": "secant",
+            "interval": [
+              0,
+              3
+            ]
+          },
+          {
+            "kind": "value"
+          }
+        ],
+        "tangentSlope": 54
+      }
+    },
+    {
+      "id": "q48",
+      "family": "tangent-secant",
+      "title": "Admissions scanned at a museum",
+      "prompt": "A museum has scanned \\(C(t)\\) admissions, \\(t\\) minutes after opening. The curve and its tangent at \\(t=5\\) are shown. Which expression gives the best estimate of the instantaneous rate of change there?",
+      "choices": [
+        "\\(\\frac{C(6)-C(4)}{6-4}\\)",
+        "\\(C(5)\\)",
+        "\\(\\frac{C(5.1)-C(4.9)}{5.1-4.9}\\)",
+        "\\(\\frac{C(5)-C(0)}{5-0}\\)"
+      ],
+      "answer": 2,
+      "hint": "An instantaneous rate is a tangent slope. Compare it with a secant through two nearby points on opposite sides of the time of interest.",
+      "solution": "The nearest pair of times bracketing \\(5\\) is \\(4.9\\) and \\(5.1\\). The best estimate is \\(\\frac{C(5.1)-C(4.9)}{5.1-4.9}\\), measured in admissions/min. This quotient measures change in the quantity per unit time. The wider intervals describe average rates over longer periods, and \\(C(5)\\) is an amount, not a rate.",
+      "topic": "1.1",
+      "batch": "batch-3",
+      "graph": {
+        "label": "C(t) rises on 0 to 10. The solid blue curve is the quantity; the dashed maroon line is tangent at t=5.",
+        "domain": [
+          0,
+          10
+        ],
+        "range": [
+          0,
+          1000
+        ],
+        "branches": [
+          {
+            "domain": [
+              0,
+              10
+            ],
+            "coefficients": [
+              -0.25,
+              12,
+              0,
+              20
+            ]
+          },
+          {
+            "domain": [
+              3,
+              7
+            ],
+            "coefficients": [
+              101.25,
+              -217.5
+            ],
+            "kind": "tangent"
+          }
+        ],
+        "marks": [
+          {
+            "x": 5,
+            "y": 288.75,
+            "open": false
+          }
+        ],
+        "xLabel": "t",
+        "yLabel": "C(t)",
+        "step": 1
+      },
+      "graphCaption": "Solid blue: C(t). Dashed maroon: tangent at t = 5.",
+      "check": {
+        "coefficients": [
+          -0.25,
+          12,
+          0,
+          20
+        ],
+        "target": 5,
+        "candidates": [
+          {
+            "kind": "secant",
+            "interval": [
+              4,
+              6
+            ]
+          },
+          {
+            "kind": "value"
+          },
+          {
+            "kind": "secant",
+            "interval": [
+              4.9,
+              5.1
+            ]
+          },
+          {
+            "kind": "secant",
+            "interval": [
+              0,
+              5
+            ]
+          }
+        ],
+        "tangentSlope": 101.25
+      }
+    },
+    {
+      "id": "q49",
+      "family": "segment-speed",
+      "title": "An inspection robot on a rail",
+      "prompt": "An inspection robot moves along a straight rail. Its position \\(x(t)\\) is measured in meters and time in seconds. The graph consists of line segments. What is the speed at \\(t=3\\) seconds?",
+      "choices": [
+        "\\(0\\) m/s",
+        "\\(12\\) m/s",
+        "\\(6\\) m/s",
+        "\\(-6\\) m/s"
+      ],
+      "answer": 2,
+      "hint": "Locate the straight segment containing the requested time. Its slope is velocity; speed is the absolute value of that slope.",
+      "solution": "The requested time lies on the segment joining \\((0,18)\\) and \\((5,48)\\). Its slope is \\(\\frac{48-18}{5-0}=6.0\\) m/s. Speed is the magnitude, \\(|6.0|=6.0\\) m/s. Dividing the position by the time ignores the starting position; a negative velocity still gives a positive speed.",
+      "topic": "1.1",
+      "batch": "batch-3",
+      "graph": {
+        "label": "Position versus time is piecewise linear through [[0, 18], [5, 48], [8, 48], [12, 24]].",
+        "domain": [
+          0,
+          12
+        ],
+        "range": [
+          0,
+          50
+        ],
+        "branches": [
+          {
+            "points": [
+              [
+                0,
+                18
+              ],
+              [
+                5,
+                48
+              ],
+              [
+                8,
+                48
+              ],
+              [
+                12,
+                24
+              ]
+            ]
+          }
+        ],
+        "marks": [],
+        "xLabel": "t (s)",
+        "yLabel": "position",
+        "step": 2
+      },
+      "graphCaption": "Height or position is on the vertical axis; time in seconds is on the horizontal axis.",
+      "check": {
+        "target": 3,
+        "speed": 6.0,
+        "values": [
+          0,
+          12,
+          6,
+          -6
+        ]
+      }
+    },
+    {
+      "id": "q50",
+      "family": "segment-speed",
+      "title": "A stage curtain changes height",
+      "prompt": "A stage curtain moves vertically. Its height \\(h(t)\\) is measured in feet and time in seconds. The graph consists of line segments. What is the speed at \\(t=4\\) seconds?",
+      "choices": [
+        "\\(0\\) ft/s",
+        "\\(3.5\\) ft/s",
+        "\\(4\\) ft/s",
+        "\\(2.5\\) ft/s"
+      ],
+      "answer": 3,
+      "hint": "Locate the straight segment containing the requested time. Its slope is velocity; speed is the absolute value of that slope.",
+      "solution": "The requested time lies on the segment joining \\((0,4)\\) and \\((6,19)\\). Its slope is \\(\\frac{19-4}{6-0}=2.5\\) ft/s. Speed is the magnitude, \\(|2.5|=2.5\\) ft/s. Dividing the position by the time ignores the starting position; a negative velocity still gives a positive speed.",
+      "topic": "1.1",
+      "batch": "batch-3",
+      "graph": {
+        "label": "Position versus time is piecewise linear through [[0, 4], [6, 19], [9, 19], [12, 7]].",
+        "domain": [
+          0,
+          12
+        ],
+        "range": [
+          0,
+          20
+        ],
+        "branches": [
+          {
+            "points": [
+              [
+                0,
+                4
+              ],
+              [
+                6,
+                19
+              ],
+              [
+                9,
+                19
+              ],
+              [
+                12,
+                7
+              ]
+            ]
+          }
+        ],
+        "marks": [],
+        "xLabel": "t (s)",
+        "yLabel": "position",
+        "step": 2
+      },
+      "graphCaption": "Height or position is on the vertical axis; time in seconds is on the horizontal axis.",
+      "check": {
+        "target": 4,
+        "speed": 2.5,
+        "values": [
+          0,
+          3.5,
+          4,
+          2.5
+        ]
+      }
+    },
+    {
+      "id": "q51",
+      "family": "segment-speed",
+      "title": "A cart returns toward a station",
+      "prompt": "A cart travels along a straight track. Its signed position \\(x(t)\\) is measured in meters relative to a station, and time in seconds. The graph consists of line segments. What is the speed at \\(t=2\\) seconds?",
+      "choices": [
+        "\\(0\\) m/s",
+        "\\(-7\\) m/s",
+        "\\(7\\) m/s",
+        "\\(14\\) m/s"
+      ],
+      "answer": 2,
+      "hint": "Locate the straight segment containing the requested time. Its slope is velocity; speed is the absolute value of that slope.",
+      "solution": "The requested time lies on the segment joining \\((0,42)\\) and \\((4,14)\\). Its slope is \\(\\frac{14-42}{4-0}=-7.0\\) m/s. Speed is the magnitude, \\(|-7.0|=7.0\\) m/s. Dividing the position by the time ignores the starting position; a negative velocity still gives a positive speed.",
+      "topic": "1.1",
+      "batch": "batch-3",
+      "graph": {
+        "label": "Position versus time is piecewise linear through [[0, 42], [4, 14], [7, 14], [10, 35]].",
+        "domain": [
+          0,
+          10
+        ],
+        "range": [
+          0,
+          50
+        ],
+        "branches": [
+          {
+            "points": [
+              [
+                0,
+                42
+              ],
+              [
+                4,
+                14
+              ],
+              [
+                7,
+                14
+              ],
+              [
+                10,
+                35
+              ]
+            ]
+          }
+        ],
+        "marks": [],
+        "xLabel": "t (s)",
+        "yLabel": "position",
+        "step": 2
+      },
+      "graphCaption": "Height or position is on the vertical axis; time in seconds is on the horizontal axis.",
+      "check": {
+        "target": 2,
+        "speed": 7.0,
+        "values": [
+          0,
+          -7,
+          7,
+          14
+        ]
+      }
+    },
+    {
+      "id": "q52",
+      "family": "segment-speed",
+      "title": "A platform lowers a load",
+      "prompt": "A lifting platform moves vertically. Its height \\(h(t)\\) is measured in meters and time in seconds. The graph consists of line segments. What is the speed at \\(t=6\\) seconds?",
+      "choices": [
+        "\\(-1.5\\) m/s",
+        "\\(1.5\\) m/s",
+        "\\(3.5\\) m/s",
+        "\\(4\\) m/s"
+      ],
+      "answer": 1,
+      "hint": "Locate the straight segment containing the requested time. Its slope is velocity; speed is the absolute value of that slope.",
+      "solution": "The requested time lies on the segment joining \\((0,30)\\) and \\((8,18)\\). Its slope is \\(\\frac{18-30}{8-0}=-1.5\\) m/s. Speed is the magnitude, \\(|-1.5|=1.5\\) m/s. Dividing the position by the time ignores the starting position; a negative velocity still gives a positive speed.",
+      "topic": "1.1",
+      "batch": "batch-3",
+      "graph": {
+        "label": "Position versus time is piecewise linear through [[0, 30], [8, 18], [10, 18], [12, 26]].",
+        "domain": [
+          0,
+          12
+        ],
+        "range": [
+          0,
+          30
+        ],
+        "branches": [
+          {
+            "points": [
+              [
+                0,
+                30
+              ],
+              [
+                8,
+                18
+              ],
+              [
+                10,
+                18
+              ],
+              [
+                12,
+                26
+              ]
+            ]
+          }
+        ],
+        "marks": [],
+        "xLabel": "t (s)",
+        "yLabel": "position",
+        "step": 2
+      },
+      "graphCaption": "Height or position is on the vertical axis; time in seconds is on the horizontal axis.",
+      "check": {
+        "target": 6,
+        "speed": 1.5,
+        "values": [
+          -1.5,
+          1.5,
+          3.5,
+          4
+        ]
+      }
+    },
+    {
+      "id": "q53",
+      "family": "quadratic-secant",
+      "title": "A shuttle approaches a terminal",
+      "prompt": "A shuttle moves along a straight guideway. Its position \\(s(t)\\) in meters is a nonlinear quadratic function of time \\(t\\) in seconds. For \\(0\\le t\\le 14\\), which expression gives the best estimate of velocity at \\(t=5\\)?",
+      "choices": [
+        "\\(s(5)\\)",
+        "\\(\\frac{s(5)}{5}\\)",
+        "\\(\\frac{s(9)-s(3)}{9-3}\\)",
+        "\\(\\frac{s(6)-s(4)}{6-4}\\)"
+      ],
+      "answer": 3,
+      "hint": "Use change in position divided by change in time. For a quadratic, the secant through equally spaced times on either side gives the tangent slope at the midpoint.",
+      "solution": "The interval from \\(4\\) to \\(6\\) is centered at \\(5\\), so \\(\\frac{s(6)-s(4)}{6-4}\\) gives the velocity in position units per second. In fact this centered quotient is exact for a quadratic. The other secant is centered at \\(6.0\\), and the remaining choices are a position or a quotient that does not subtract the starting position.",
+      "topic": "1.1",
+      "batch": "batch-3",
+      "check": {
+        "target": 5,
+        "coefficients": [
+          2,
+          3,
+          5
+        ],
+        "candidates": [
+          {
+            "kind": "value"
+          },
+          {
+            "kind": "ratio"
+          },
+          {
+            "kind": "secant",
+            "interval": [
+              3,
+              9
+            ]
+          },
+          {
+            "kind": "secant",
+            "interval": [
+              4,
+              6
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "q54",
+      "family": "quadratic-secant",
+      "title": "A robotic arm slides along a bench",
+      "prompt": "The horizontal position \\(p(t)\\) of a robotic arm, in centimeters, is a nonlinear quadratic function of time \\(t\\) in seconds. For \\(0\\le t\\le 16\\), which expression gives the best estimate of velocity at \\(t=9\\)?",
+      "choices": [
+        "\\(\\frac{p(9.5)-p(8.5)}{9.5-8.5}\\)",
+        "\\(p(9)\\)",
+        "\\(\\frac{p(13)-p(3)}{13-3}\\)",
+        "\\(\\frac{p(9)}{9}\\)"
+      ],
+      "answer": 0,
+      "hint": "Use change in position divided by change in time. For a quadratic, the secant through equally spaced times on either side gives the tangent slope at the midpoint.",
+      "solution": "The interval from \\(8.5\\) to \\(9.5\\) is centered at \\(9\\), so \\(\\frac{p(9.5)-p(8.5)}{9.5-8.5}\\) gives the velocity in position units per second. In fact this centered quotient is exact for a quadratic. The other secant is centered at \\(8.0\\), and the remaining choices are a position or a quotient that does not subtract the starting position.",
+      "topic": "1.1",
+      "batch": "batch-3",
+      "check": {
+        "target": 9,
+        "coefficients": [
+          2,
+          3,
+          5
+        ],
+        "candidates": [
+          {
+            "kind": "secant",
+            "interval": [
+              8.5,
+              9.5
+            ]
+          },
+          {
+            "kind": "value"
+          },
+          {
+            "kind": "secant",
+            "interval": [
+              3,
+              13
+            ]
+          },
+          {
+            "kind": "ratio"
+          }
+        ]
+      }
+    },
+    {
+      "id": "q55",
+      "family": "quadratic-secant",
+      "title": "Two valid measurements of velocity",
+      "prompt": "A test vehicle has a nonlinear quadratic position model \\(s(t)\\). For a quadratic, a secant slope equals the tangent slope at the midpoint of its time interval. Which statement correctly identifies expressions for the velocity at \\(t=6\\)? Let \\(A=\\frac{s(8)-s(4)}{8-4}\\) and \\(B=\\frac{s(7)-s(5)}{7-5}\\).",
+      "choices": [
+        "Only A is exact.",
+        "Only B is exact.",
+        "Both A and B are exact.",
+        "Neither A nor B is exact."
+      ],
+      "answer": 2,
+      "hint": "Find the midpoint of each interval. A shorter interval is not automatically more accurate when the model is quadratic.",
+      "solution": "Both intervals have midpoint \\(6\\): \\((8+4)/2=6\\) and \\((7+5)/2=6\\). Therefore both slopes equal the instantaneous velocity at that time. For \\(s(t)=at^2+bt+c\\), direct expansion gives \\(\\frac{s(t+h)-s(t-h)}{2h}=2at+b\\), independently of the nonzero spacing \\(h\\). Choosing only the narrower interval would miss this exact equality.",
+      "topic": "1.1",
+      "batch": "batch-3",
+      "check": {
+        "target": 6,
+        "coefficients": [
+          2,
+          3,
+          5
+        ],
+        "intervals": [
+          [
+            4,
+            8
+          ],
+          [
+            5,
+            7
+          ]
+        ],
+        "mode": "both"
+      }
+    },
+    {
+      "id": "q56",
+      "family": "quadratic-secant",
+      "title": "Centered versus merely close",
+      "prompt": "A camera dolly has a nonlinear quadratic position model \\(d(t)\\). For this model, a secant slope equals the tangent slope at its interval midpoint. Which quotient gives the exact velocity at \\(t=7\\) seconds?",
+      "choices": [
+        "\\(\\frac{d(7.3)-d(6.9)}{7.3-6.9}\\)",
+        "\\(\\frac{d(12)-d(2)}{12-2}\\)",
+        "\\(\\frac{d(7)-d(6)}{7-6}\\)",
+        "\\(\\frac{d(7)}7\\)"
+      ],
+      "answer": 1,
+      "hint": "Check the midpoint of each interval, even when its endpoints look very close to the target time.",
+      "solution": "The interval \\([2,12]\\) has midpoint \\((2+12)/2=7\\), so \\(\\frac{d(12)-d(2)}{12-2}\\) gives the exact velocity. The closer interval \\([6.9,7.3]\\) has midpoint \\(7.1\\) and therefore gives the velocity at a different time. The interval \\([6,7]\\) has midpoint \\(6.5\\). For a nonlinear quadratic, different midpoints have different tangent slopes.",
+      "topic": "1.1",
+      "batch": "batch-3",
+      "check": {
+        "target": 7,
+        "coefficients": [
+          2,
+          3,
+          5
+        ],
+        "candidates": [
+          {
+            "kind": "secant",
+            "interval": [
+              6.9,
+              7.3
+            ]
+          },
+          {
+            "kind": "secant",
+            "interval": [
+              2,
+              12
+            ]
+          },
+          {
+            "kind": "secant",
+            "interval": [
+              6,
+              7
+            ]
+          },
+          {
+            "kind": "ratio"
+          }
+        ]
+      }
     }
   ],
   "scopeReview": {
@@ -2297,6 +3138,452 @@
     ],
     "framework": "https://apcentral.collegeboard.org/media/pdf/ap-calculus-ab-and-bc-course-and-exam-description.pdf",
     "notes": "Composite limits belong to Topic 1.5, LIM-1.D.2. Stable existing question IDs and storage revision are preserved."
+  },
+  "frqs": [
+    {
+      "id": "frq01",
+      "title": "Calibration signals near a reset",
+      "batch": "batch-3",
+      "prompt": "Two calibration signals f and g are measured in volts. The input x is time in seconds relative to a reference event. Use the graph of f and the table for g. Assume g has a finite limit and an instantaneous rate of change at \\(x=0\\). Show your reasoning; plain-text notation such as lim x->0 is accepted.",
+      "graph": {
+        "label": "Graph of f: the left and right limits at 0 are 3. At 1 the left branch ends at a filled point (1,2) and the right branch starts at an open point (1,0). Both branches approach an open point (2,1), with a separate filled point (2,4). The branches meet at (4,-1). There is an open point (-2,2) and a filled point (-2,5).",
+        "domain": [
+          -4,
+          7
+        ],
+        "range": [
+          -3,
+          7
+        ],
+        "branches": [
+          {
+            "domain": [
+              -4,
+              -2
+            ],
+            "coefficients": [
+              1,
+              4
+            ]
+          },
+          {
+            "domain": [
+              -2,
+              0
+            ],
+            "coefficients": [
+              0.5,
+              3
+            ]
+          },
+          {
+            "domain": [
+              0,
+              1
+            ],
+            "coefficients": [
+              -1,
+              3
+            ]
+          },
+          {
+            "domain": [
+              1,
+              2
+            ],
+            "coefficients": [
+              1,
+              -1
+            ]
+          },
+          {
+            "domain": [
+              2,
+              4
+            ],
+            "coefficients": [
+              -1,
+              3
+            ]
+          },
+          {
+            "domain": [
+              4,
+              7
+            ],
+            "coefficients": [
+              0.5,
+              -4,
+              7
+            ]
+          }
+        ],
+        "marks": [
+          {
+            "x": -2,
+            "y": 2,
+            "open": true
+          },
+          {
+            "x": -2,
+            "y": 5,
+            "open": false
+          },
+          {
+            "x": 1,
+            "y": 2,
+            "open": false
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "open": true
+          },
+          {
+            "x": 2,
+            "y": 1,
+            "open": true
+          },
+          {
+            "x": 2,
+            "y": 4,
+            "open": false
+          }
+        ],
+        "xLabel": "x (s)",
+        "yLabel": "f(x)",
+        "step": 1
+      },
+      "table": {
+        "caption": "Selected values of g near x = 0; outputs in volts",
+        "headers": [
+          "x (s)",
+          "-0.2",
+          "-0.02",
+          "-0.002",
+          "0.002",
+          "0.02",
+          "0.2"
+        ],
+        "rows": [
+          [
+            "g(x) (V)",
+            "4.88",
+            "4.988",
+            "4.9988",
+            "5.0012",
+            "5.012",
+            "5.12"
+          ]
+        ]
+      },
+      "parts": [
+        {
+          "id": "a",
+          "topic": "1.5",
+          "prompt": "Use the graph and table to estimate \\(\\lim_{x\\to 0}(f(x)-g(x))\\). Show the separate limiting values and the limit law used.",
+          "hint": "Read the value approached by f from both sides, estimate the value approached by g, then combine them using the indicated operation.",
+          "solution": "\\(\\lim_{x\\to 0}f(x)=3\\) from the graph. The table suggests \\(\\lim_{x\\to 0}g(x)\\approx 5\\). The difference law gives \\(\\lim_{x\\to 0}(f(x)-g(x))\\approx 3-5=-2\\). This is an estimate based on sampled values of g, not a proof of its exact limit.",
+          "rubric": [
+            "1 point: correctly identifies the graphical limit of f and the estimated limit of g.",
+            "1 point: applies the appropriate limit law and reports the resulting estimate."
+          ]
+        },
+        {
+          "id": "b",
+          "topic": "1.3",
+          "prompt": "For each of \\(a=1\\), \\(a=2\\), \\(a=4\\), find \\(\\lim_{x\\to a}f(x)\\) or explain why it does not exist. Give one-sided limits when needed.",
+          "hint": "Trace each branch toward the target without jumping to an isolated filled point. A two-sided limit exists only if the two one-sided limits agree.",
+          "solution": "\\(\\lim_{x\\to 1^-}f(x)=2\\) and \\(\\lim_{x\\to 1^+}f(x)=0\\) are unequal, so the two-sided limit there does not exist. At \\(a=2\\), both sides approach \\(1\\), so the limit is \\(1\\), regardless of the separate filled point. At \\(a=4\\), both sides approach \\(-1\\), so the limit is \\(-1\\).",
+          "rubric": [
+            "1 point: states both correct one-sided limits at the first target.",
+            "1 point: concludes that the first two-sided limit does not exist because those values differ.",
+            "1 point: gives the limit at the second target with agreement from both sides.",
+            "1 point: gives the limit at the third target with agreement from both sides."
+          ]
+        },
+        {
+          "id": "c",
+          "topic": "1.1",
+          "prompt": "Write a difference quotient using the table that best estimates the instantaneous rate of change of g at \\(x=0\\). Evaluate it and include units.",
+          "hint": "Use the nearest sampled inputs on opposite sides of the target. Divide the change in voltage by the change in time.",
+          "solution": "The nearest inputs bracketing \\(0\\) are \\(-0.002\\) and \\(0.002\\). Use \\(\\frac{g(0.002)-g(-0.002)}{0.002-(-0.002)}\\) = \\(\\frac{5.0012-4.9988}{0.002-(-0.002)}=0.6\\) volts per second. This is a local secant estimate of the instantaneous rate; the finite table does not establish the exact rate.",
+          "rubric": [
+            "1 point: writes the correct difference quotient using the closest bracketing inputs.",
+            "1 point: evaluates the quotient correctly and gives volts per second."
+          ]
+        }
+      ],
+      "check": {
+        "target": 0,
+        "fLimit": 3,
+        "gEstimate": 5,
+        "scale": 1,
+        "operation": "difference",
+        "result": -2,
+        "targets": [
+          1,
+          2,
+          4
+        ],
+        "oneSided": [
+          2,
+          0
+        ],
+        "limits": [
+          null,
+          1,
+          -1
+        ],
+        "rate": 0.6
+      }
+    },
+    {
+      "id": "frq02",
+      "title": "Comparing two sensor outputs",
+      "batch": "batch-3",
+      "prompt": "Two calibration signals f and g are measured in volts. The input x is time in seconds relative to a reference event. Use the graph of f and the table for g. Assume g has a finite limit and an instantaneous rate of change at \\(x=1\\). Show your reasoning; plain-text notation such as lim x->0 is accepted.",
+      "graph": {
+        "label": "Graph of f: both sides approach -1 at x=1. At x=2 the left limit is 0 and the right limit is 2. Both sides approach the open point (3,1), with a filled point (3,-2). The branches meet at (5,3). There is an open point (-1,0) and a filled point (-1,-3).",
+        "domain": [
+          -3,
+          8
+        ],
+        "range": [
+          -5,
+          5
+        ],
+        "branches": [
+          {
+            "domain": [
+              -3,
+              -1
+            ],
+            "coefficients": [
+              -1,
+              -1
+            ]
+          },
+          {
+            "domain": [
+              -1,
+              1
+            ],
+            "coefficients": [
+              -0.5,
+              -0.5
+            ]
+          },
+          {
+            "domain": [
+              1,
+              2
+            ],
+            "coefficients": [
+              1,
+              -2
+            ]
+          },
+          {
+            "domain": [
+              2,
+              3
+            ],
+            "coefficients": [
+              -1,
+              4
+            ]
+          },
+          {
+            "domain": [
+              3,
+              5
+            ],
+            "coefficients": [
+              1,
+              -2
+            ]
+          },
+          {
+            "domain": [
+              5,
+              8
+            ],
+            "coefficients": [
+              -0.5,
+              5.0,
+              -9.5
+            ]
+          }
+        ],
+        "marks": [
+          {
+            "x": -1,
+            "y": 0,
+            "open": true
+          },
+          {
+            "x": -1,
+            "y": -3,
+            "open": false
+          },
+          {
+            "x": 2,
+            "y": 0,
+            "open": false
+          },
+          {
+            "x": 2,
+            "y": 2,
+            "open": true
+          },
+          {
+            "x": 3,
+            "y": 1,
+            "open": true
+          },
+          {
+            "x": 3,
+            "y": -2,
+            "open": false
+          }
+        ],
+        "xLabel": "x (s)",
+        "yLabel": "f(x)",
+        "step": 1
+      },
+      "table": {
+        "caption": "Selected values of g near x = 1; outputs in volts",
+        "headers": [
+          "x (s)",
+          "0.8",
+          "0.98",
+          "0.998",
+          "1.002",
+          "1.02",
+          "1.2"
+        ],
+        "rows": [
+          [
+            "g(x) (V)",
+            "4.28",
+            "4.028",
+            "4.0028",
+            "3.9972",
+            "3.972",
+            "3.72"
+          ]
+        ]
+      },
+      "parts": [
+        {
+          "id": "a",
+          "topic": "1.5",
+          "prompt": "Use the graph and table to estimate \\(\\lim_{x\\to 1}(2f(x)+g(x))\\). Show the separate limiting values and the limit law used.",
+          "hint": "Read the value approached by f from both sides, estimate the value approached by g, then combine them using the indicated operation.",
+          "solution": "\\(\\lim_{x\\to 1}f(x)=-1\\) from the graph. The table suggests \\(\\lim_{x\\to 1}g(x)\\approx 4\\). The constant-multiple and sum law gives \\(\\lim_{x\\to 1}(2f(x)+g(x))\\approx 2(-1)+4=2\\). This is an estimate based on sampled values of g, not a proof of its exact limit.",
+          "rubric": [
+            "1 point: correctly identifies the graphical limit of f and the estimated limit of g.",
+            "1 point: applies the appropriate limit law and reports the resulting estimate."
+          ]
+        },
+        {
+          "id": "b",
+          "topic": "1.3",
+          "prompt": "For each of \\(a=2\\), \\(a=3\\), \\(a=5\\), find \\(\\lim_{x\\to a}f(x)\\) or explain why it does not exist. Give one-sided limits when needed.",
+          "hint": "Trace each branch toward the target without jumping to an isolated filled point. A two-sided limit exists only if the two one-sided limits agree.",
+          "solution": "\\(\\lim_{x\\to 2^-}f(x)=0\\) and \\(\\lim_{x\\to 2^+}f(x)=2\\) are unequal, so the two-sided limit there does not exist. At \\(a=3\\), both sides approach \\(1\\), so the limit is \\(1\\), regardless of the separate filled point. At \\(a=5\\), both sides approach \\(3\\), so the limit is \\(3\\).",
+          "rubric": [
+            "1 point: states both correct one-sided limits at the first target.",
+            "1 point: concludes that the first two-sided limit does not exist because those values differ.",
+            "1 point: gives the limit at the second target with agreement from both sides.",
+            "1 point: gives the limit at the third target with agreement from both sides."
+          ]
+        },
+        {
+          "id": "c",
+          "topic": "1.1",
+          "prompt": "Write a difference quotient using the table that best estimates the instantaneous rate of change of g at \\(x=1\\). Evaluate it and include units.",
+          "hint": "Use the nearest sampled inputs on opposite sides of the target. Divide the change in voltage by the change in time.",
+          "solution": "The nearest inputs bracketing \\(1\\) are \\(0.998\\) and \\(1.002\\). Use \\(\\frac{g(1.002)-g(0.998)}{1.002-0.998}\\) = \\(\\frac{3.9972-4.0028}{1.002-0.998}=-1.4\\) volts per second. This is a local secant estimate of the instantaneous rate; the finite table does not establish the exact rate.",
+          "rubric": [
+            "1 point: writes the correct difference quotient using the closest bracketing inputs.",
+            "1 point: evaluates the quotient correctly and gives volts per second."
+          ]
+        }
+      ],
+      "check": {
+        "target": 1,
+        "fLimit": -1,
+        "gEstimate": 4,
+        "scale": 2,
+        "operation": "sum",
+        "result": 2,
+        "targets": [
+          2,
+          3,
+          5
+        ],
+        "oneSided": [
+          0,
+          2
+        ],
+        "limits": [
+          null,
+          1,
+          3
+        ],
+        "rate": -1.4
+      }
+    }
+  ],
+  "scopeReviewBatch3": {
+    "batch": "batch-3",
+    "allowedTopics": [
+      "1.1",
+      "1.2",
+      "1.3",
+      "1.4",
+      "1.5",
+      "1.6"
+    ],
+    "addedQuestionIds": [
+      "q45",
+      "q46",
+      "q47",
+      "q48",
+      "q49",
+      "q50",
+      "q51",
+      "q52",
+      "q53",
+      "q54",
+      "q55",
+      "q56"
+    ],
+    "addedFrqIds": [
+      "frq01",
+      "frq02"
+    ],
+    "excludedReferenceTypes": [
+      {
+        "reference": "Third set, question 9",
+        "topic": "1.9",
+        "reason": "Combining the table and graph of one function as the primary skill."
+      },
+      {
+        "reference": "Third set, written response part (b), x=6",
+        "topic": "1.14",
+        "reason": "Infinite limits and vertical asymptotes."
+      },
+      {
+        "reference": "Third set, written response part (c)",
+        "topic": "1.11",
+        "reason": "Determining continuity at a point."
+      }
+    ],
+    "notes": "Retained written-response limit laws (1.5), finite graphical limits (1.3), and local difference quotients (1.1). The table supplies numerical estimates, not proof. Repaired the source quadratic question at t=6: both centered intervals yield the exact velocity, so choosing only the shorter interval would be ambiguous.",
+    "framework": "https://apcentral.collegeboard.org/media/pdf/ap-calculus-ab-and-bc-course-and-exam-description.pdf"
   }
 };
   if(typeof module==="object"&&module.exports)module.exports=data;

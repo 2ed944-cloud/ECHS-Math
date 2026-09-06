@@ -404,7 +404,7 @@
       {
         "number": "1.M",
         "title": "Middle Unit Important Checking Questions",
-        "summary": "A checkpoint after Lesson 1.6 with 44 original questions on motion, limit notation, graphs, tables, limit laws, and algebraic manipulation. Includes new contexts, hints, worked solutions, and review flags.",
+        "summary": "A checkpoint after Lesson 1.6 with 56 original multiple-choice questions and two written-response sets on motion, limit notation, graphs, tables, limit laws, and algebraic manipulation. Includes new contexts, hints, worked solutions, saved written drafts, self-check rubrics, and review flags.",
         "outcomes": [
           "Interpret speed using position graphs and local table estimates.",
           "Distinguish function values, one-sided limits, and two-sided limits.",
