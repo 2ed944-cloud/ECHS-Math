@@ -38,6 +38,6 @@ for path in ASSETS:
 catalog = files["data/ap-calculus-update.js"].decode()
 assert catalog.index('"number": "1.6"') < catalog.index('"number": "1.M"') < catalog.index('"number": "1.7"')
 questions = files[BASE + "assets/midunit-questions.js"].decode()
-assert questions.count('"id": "q') >= 24
-assert "ap-calculus-midunit-v1" in files["sw.js"].decode()
-print("Live AP Calculus checkpoint: PASS — exact deployed revision, protected lesson, card after 1.6, 24 initial questions, and eight matching assets.")
+assert questions.count('"id": "q') >= 44
+assert "midunit-batch2" in files["sw.js"].decode()
+print("Live AP Calculus checkpoint: PASS — exact deployed revision, protected lesson, card after 1.6, 44 questions, and eight matching assets.")

@@ -5,8 +5,8 @@ import {createRequire} from 'node:module';
 const require=createRequire(import.meta.url),root=new URL('../',import.meta.url),base=new URL('lessons/ap-calculus/unit-1/',root);
 const Q=require(new URL('assets/midunit-questions.js',base).pathname),G=require(new URL('assets/midunit-graphs.js',base).pathname);
 const close=(a,b)=>assert.ok(Math.abs(a-b)<1e-8,`${a} differs from ${b}`);
-assert.ok(Q.questions.length>=24);assert.equal(new Set(Q.questions.map(q=>q.id)).size,Q.questions.length);
-assert.equal(new Set(Q.questions.map(q=>q.family)).size,12);
+assert.ok(Q.questions.length>=44);assert.equal(new Set(Q.questions.map(q=>q.id)).size,Q.questions.length);
+assert.equal(new Set(Q.questions.map(q=>q.family)).size,22);
 const mathContext=vm.createContext({window:{},console});vm.runInContext(fs.readFileSync(new URL('lessons/ib-math-ai/unit-1/assets/js/katex-global.js',root),'utf8'),mathContext);
 const side=(g,c,left)=>{const b=g.branches.find(b=>b.domain&&(left?b.domain[0]<c&&b.domain[1]>=c:b.domain[0]<=c&&b.domain[1]>c));assert.ok(b);return G.evaluate(b.coefficients,c);};
 for(const q of Q.questions){
@@ -35,7 +35,7 @@ for(const q of Q.questions){
     const filled=q.graph.marks.filter(m=>m.x===c.target&&!m.open);assert.equal(filled.length,1);close(filled[0].y,c.at);
     if(q.family==='jump-limit'){assert.notEqual(c.left,c.right);assert.match(q.choices[q.answer],/does not exist/);}
   }
-  for(const g of [q.graph,...(q.choiceGraphs||[])].filter(Boolean)){
+  for(const g of [q.graph,...(q.graphs||[]),...(q.choiceGraphs||[])].filter(Boolean)){
     const svg=G.svg(g);assert.match(svg,/<title /);assert.doesNotMatch(svg,/NaN|Infinity|undefined/);
     for(const m of g.marks)assert.ok(m.x>=g.domain[0]&&m.x<=g.domain[1]&&m.y>=g.range[0]&&m.y<=g.range[1]);
   }
@@ -56,4 +56,6 @@ for(const name of ['lessonURL','practiceURL'])vm.runInContext(portal.split('\n')
 const href=vm.runInContext('practiceURL',routing)(course,0,ls[index],'checkpoint-key'),url=new URL(href);
 assert.ok(url.pathname.endsWith(ls[index].url));assert.equal(url.hash,'#question=q01');assert.equal(url.searchParams.get('lessonKey'),'checkpoint-key');assert.equal(url.searchParams.get('accessKey'),'ap-calculus::0::1.M');
 assert.match(vm.runInContext('practiceURL',routing)(course,0,ls[index-1],'ordinary-key'),/question-bank\/practice.html/);
-console.log(`AP Calculus middle-unit content: PASS (${Q.questions.length} questions, 12 families, exact graph data, polynomial roots, speed estimates, KaTeX, finite-data counterexamples, card order and practice routing)`);
+console.log(`AP Calculus middle-unit content: PASS (${Q.questions.length} questions, 22 families, exact graph data, polynomial roots, speed estimates, KaTeX, finite-data counterexamples, card order and practice routing)`);
+
+await import("./test_ap_calculus_midunit_batch2.mjs");
