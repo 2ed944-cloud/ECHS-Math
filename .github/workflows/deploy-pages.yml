@@ -36,6 +36,7 @@ on:
       - "tools/test_ap_calculus_1_2*.mjs"
       - "tools/test_ap_calculus_1_3_1_4*.mjs"
       - "tools/test_ap_calculus_1_6*.mjs"
+      - "tools/test_ap_calculus_unit1_continuation*.mjs"
       - "tools/test_ap_calculus_midunit*.mjs"
       - "tools/test_ap_calculus_1_5*.mjs"
       - "question-bank/*.html"
@@ -106,6 +107,7 @@ jobs:
           node tools/test_ap_calculus_1_2.mjs
           node tools/test_ap_calculus_1_3_1_4.mjs
           node tools/test_ap_calculus_1_5.mjs
+          node tools/test_ap_calculus_unit1_continuation.mjs
           node tools/test_ap_calculus_1_6.mjs
           node tools/test_ap_calculus_midunit.mjs
           npm install --prefix "$RUNNER_TEMP/calculus11-dom" --no-save --ignore-scripts --no-audit --no-fund linkedom@0.18.12
@@ -118,6 +120,7 @@ jobs:
           ECHS_TEST_DOM_MODULE="$RUNNER_TEMP/calculus11-dom/node_modules/linkedom" node tools/test_ap_calculus_1_2_ui.mjs
           ECHS_TEST_DOM_MODULE="$RUNNER_TEMP/calculus11-dom/node_modules/linkedom" node tools/test_ap_calculus_1_3_1_4_ui.mjs
           ECHS_TEST_DOM_MODULE="$RUNNER_TEMP/calculus11-dom/node_modules/linkedom" node tools/test_ap_calculus_1_5_ui.mjs
+          ECHS_TEST_DOM_MODULE="$RUNNER_TEMP/calculus11-dom/node_modules/linkedom" node tools/test_ap_calculus_unit1_continuation_ui.mjs
           ECHS_TEST_DOM_MODULE="$RUNNER_TEMP/calculus11-dom/node_modules/linkedom" node tools/test_ap_calculus_1_6_ui.mjs
           ECHS_TEST_DOM_MODULE="$RUNNER_TEMP/calculus11-dom/node_modules/linkedom" node tools/test_ap_calculus_midunit_ui.mjs
 
