@@ -61,9 +61,8 @@ for number, pack in packs.items():
     if len(slides) != 36:
         errors.append(f"{number}: expected 36 retained base slides, got {len(slides)}")
 
-# Stable production wrappers and definitive overlays. Lesson 1.1 uses its own dedicated runtime contract.
+# Stable production wrappers and definitive overlays. Lessons 1.1, 1.2 and 1.4 use dedicated runtime contracts.
 wrappers = {
-    "1.2": "IB_AI_SL_1.2_arithmetic_sequences_ECHS.html",
     "1.3": "IB_AI_SL_1.3_geometric_sequences_ECHS.html",
     "1.5": "IB_AI_SL_1.5_logarithms_ECHS.html",
     "1.6": "IB_AI_SL_1.6_technology_equations_ECHS.html",
@@ -80,6 +79,13 @@ for marker in ('data-merged-sections="SL 1.1 + SL 1.6"', 'class="topbar"', 'id="
 for obsolete in ("engine.js", "ti84-real", "number-foundations-v6", "scope=all"):
     if obsolete in lesson11:
         errors.append(f"Lesson 1.1 wrapper loads an obsolete runtime: {obsolete}")
+
+lesson12 = req("lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.2_arithmetic_sequences_ECHS.html")
+for marker in ('data-official-section="SL 1.2"', 'class="topbar"', 'id="slideSelect"', 'data-go="practice-guide"', 'lesson-1.2-arithmetic-core-v7.js', 'lesson-1.2-arithmetic-labs-v7.js', 'TI-Nspire CX / CX II'):
+    require(lesson12, marker, "Lesson 1.2 arithmetic wrapper")
+for obsolete in ("engine.js", "ti84-real", "number-foundations-v6", "scope=all"):
+    if obsolete in lesson12:
+        errors.append(f"Lesson 1.2 wrapper loads an obsolete runtime: {obsolete}")
 
 lesson14 = req("lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.4_financial_models_ECHS.html")
 for marker in ('data-merged-sections="SL 1.4 + SL 1.7"', 'class="topbar"', 'id="slideSelect"', 'data-go="practice-guide"', 'lesson-1.4-finance-core-v8.js', 'lesson-1.4-finance-labs-v8.js', 'TI-Nspire CX / CX II'):
@@ -129,10 +135,10 @@ except Exception as exc:
     errors.append(f"Catalog JSON parse: {exc}")
 expected_totals = {
     "lessons": 6,
-    "learn_slides": 402,
-    "practice_questions": 424,
-    "timed_quiz_questions": 56,
-    "extended_tasks": 58,
+    "learn_slides": 376,
+    "practice_questions": 340,
+    "timed_quiz_questions": 42,
+    "extended_tasks": 67,
 }
 if catalog.get("schema_version") != "1.7.0":
     errors.append("Catalog schema version mismatch")
@@ -145,7 +151,7 @@ if [item.get("number") for item in lessons] != ["1.1", "1.2", "1.3", "1.4", "1.5
     errors.append("Catalog does not expose the six-lesson sequence")
 expected_meta = {
     "1.1": ("Scientific Notation, Approximation and Error", "7.0.0", 43, 12, 0, 14),
-    "1.2": ("Arithmetic Sequences and Series", "6.0.0", 73, 96, 14, 5),
+    "1.2": ("Arithmetic Sequences and Series", "7.0.0", 47, 12, 0, 14),
     "1.3": ("Geometric Sequences and Series", "6.0.0", 73, 96, 14, 5),
     "1.4": ("Financial Applications", "8.0.0", 67, 28, 0, 24),
     "1.5": ("Exponent Laws and Logarithms", "6.0.0", 73, 96, 14, 5),
@@ -187,9 +193,9 @@ for field in ("learn_slides", "practice_questions", "timed_quiz_questions", "ext
 
 portal = req("data/ib-math-ai-unit-1-update.js")
 for marker in (
-    "402 purposeful Learn screens",
-    "424 learning and practice questions",
-    "58 written tasks",
+    "376 purposeful Learn screens",
+    "340 learning and practice questions",
+    "67 written tasks",
     '"1.1","Scientific Notation, Approximation and Error"',
     '"7.0.0",43,12,0,14',
     'model:"TI-Nspire CX / CX II"',
@@ -204,12 +210,13 @@ for marker in (
 start = req("lessons/ib-math-ai/unit-1/START_HERE.html")
 guide = req("lessons/ib-math-ai/unit-1/TEACHER_GUIDE.html")
 for text, label in ((start, "START_HERE"), (guide, "Teacher Guide")):
-    for marker in ("402", "424", "58", "1.6", "73", "96"):
+    for marker in ("376", "340", "67", "1.6", "73", "96"):
         require(text, marker, label)
 require(start, "5 IB tasks", "START_HERE")
 require(guide, "Lesson 1.6 · 73 / 96 / 14 / 5", "Teacher Guide")
 
-# Validate the active merged Lesson 1.1 mathematical contract.
+# Validate the active dedicated lesson mathematical contracts.
+run(["node", "tools/test_ib_ai_1_2_arithmetic_v7.mjs"], "Lesson 1.2 arithmetic mathematics")
 run(["node", "tools/test_ib_ai_1_1_merged_v7.mjs"], "Lesson 1.1 merged mathematics")
 for asset in ("model", "questions", "labs", "core"):
     run(["node", "--check", f"lessons/ib-math-ai/unit-1/data/lesson-1.1-merged-{asset}-v7.js"], f"Lesson 1.1 {asset} syntax")
