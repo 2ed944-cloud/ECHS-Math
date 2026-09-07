@@ -121,6 +121,10 @@ def validate_source(root: Path, errors: list[str]) -> None:
             require(text, ('class="topbar"', 'class="header-actions"', 'data-merged-sections="SL 1.1 + SL 1.6"', 'id="continuePractice"', 'lesson-1.1-merged-core-v7.js'), name, errors)
             core = read(root, "lessons/ib-math-ai/unit-1/data/lesson-1.1-merged-core-v7.js", errors)
             require(core, ("[data-finish-lesson]", "finish.click()", "location.search", "echs:ib-math-ai:"), "Merged lesson protected progression", errors)
+        elif name == "IB_AI_SL_1.2_arithmetic_sequences_ECHS.html":
+            require(text, ('class="topbar"', 'class="header-actions"', 'data-official-section="SL 1.2"', 'id="continuePractice"', 'lesson-1.2-arithmetic-core-v7.js'), name, errors)
+            core = read(root, "lessons/ib-math-ai/unit-1/data/lesson-1.2-arithmetic-core-v7.js", errors)
+            require(core, ("[data-finish-lesson]", "finish.click()", "location.search", "echs:ib-math-ai:"), "Arithmetic lesson protected progression", errors)
         elif name == "IB_AI_SL_1.4_financial_models_ECHS.html":
             require(text, ('class="topbar"', 'class="header-actions"', 'data-merged-sections="SL 1.4 + SL 1.7"', 'id="continuePractice"', 'lesson-1.4-finance-core-v8.js'), name, errors)
             core = read(root, "lessons/ib-math-ai/unit-1/data/lesson-1.4-finance-core-v8.js", errors)

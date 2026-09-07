@@ -30,6 +30,7 @@ on:
       - "tools/test_ap_precalculus_1_1*.mjs"
       - "tools/test_ap_precalculus_1_2*.mjs"
       - "tools/test_ib_ai_1_1_merged_v7*.mjs"
+      - "tools/test_ib_ai_1_2_arithmetic_v7*.mjs"
       - "tools/test_ib_ai_1_4_finance_v8*.mjs"
       - "tools/test_ap_calculus_1_1*.mjs"
       - "tools/test_ap_calculus_1_2*.mjs"
@@ -99,6 +100,7 @@ jobs:
           node tools/test_ap_precalculus_1_1.mjs
           node tools/test_ap_precalculus_1_2.mjs
           node tools/test_ib_ai_1_1_merged_v7.mjs
+          node tools/test_ib_ai_1_2_arithmetic_v7.mjs
           node tools/test_ib_ai_1_4_finance_v8.mjs
           node tools/test_ap_calculus_1_1.mjs
           node tools/test_ap_calculus_1_2.mjs
@@ -110,6 +112,7 @@ jobs:
           ECHS_TEST_DOM_MODULE="$RUNNER_TEMP/calculus11-dom/node_modules/linkedom" node tools/test_ap_precalculus_1_1_ui.mjs
           ECHS_TEST_DOM_MODULE="$RUNNER_TEMP/calculus11-dom/node_modules/linkedom" node tools/test_ap_precalculus_1_2_ui.mjs
           ECHS_TEST_DOM_MODULE="$RUNNER_TEMP/calculus11-dom/node_modules/linkedom" node tools/test_ib_ai_1_1_merged_v7_ui.mjs
+          ECHS_TEST_DOM_MODULE="$RUNNER_TEMP/calculus11-dom/node_modules/linkedom" node tools/test_ib_ai_1_2_arithmetic_v7_ui.mjs
           ECHS_TEST_DOM_MODULE="$RUNNER_TEMP/calculus11-dom/node_modules/linkedom" node tools/test_ib_ai_1_4_finance_v8_ui.mjs
           ECHS_TEST_DOM_MODULE="$RUNNER_TEMP/calculus11-dom/node_modules/linkedom" node tools/test_ap_calculus_1_1_ui.mjs
           ECHS_TEST_DOM_MODULE="$RUNNER_TEMP/calculus11-dom/node_modules/linkedom" node tools/test_ap_calculus_1_2_ui.mjs

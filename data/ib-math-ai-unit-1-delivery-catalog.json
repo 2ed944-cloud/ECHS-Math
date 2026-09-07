@@ -6,13 +6,14 @@
   "release": "6.0.0",
   "totals": {
     "lessons": 6,
-    "learn_slides": 402,
-    "practice_questions": 424,
-    "timed_quiz_questions": 56,
-    "extended_tasks": 58
+    "learn_slides": 376,
+    "practice_questions": 340,
+    "timed_quiz_questions": 42,
+    "extended_tasks": 67
   },
   "reference_basis": [
     "Current IB Mathematics: Applications and Interpretation guide — SL 1.1 scientific notation and SL 1.6 approximation, bounds, percentage error and estimation",
+    "Current IB Mathematics: Applications and Interpretation guide — SL 1.2 arithmetic sequences and finite series, sigma notation, simple interest and approximate models",
     "Current IB Mathematics: Applications and Interpretation guide — SL 1.4 compound interest and annual depreciation",
     "Current IB Mathematics: Applications and Interpretation guide — SL 1.7 loan repayments and amortization",
     "Current IB Mathematics: Applications and Interpretation guide — SL 1.8 technology for polynomial equations and systems of linear equations",
@@ -32,7 +33,8 @@
     "financial_extensions": "All active challenge tasks remain within SL 1.4 + SL 1.7; no beginning-of-period or growing annuity assessment.",
     "lesson_1_5": "expanded into a definitive four-block exponent and logarithm pathway",
     "lesson_1_6": "rebuilt as a definitive four-block technology, equations, systems, verification and modelling pathway",
-    "legacy_urls": "preserved through redirects"
+    "legacy_urls": "preserved through redirects",
+    "lesson_1_2": "Official SL 1.2 in two teaching blocks, with eight investigations, TI-Nspire guidance and original IB-style written practice."
   },
   "lessons": [
     {
@@ -116,11 +118,73 @@
       "status": "ready",
       "student_visible": true,
       "url": "lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.2_arithmetic_sequences_ECHS.html",
-      "release": "6.0.0",
-      "learn_slides": 73,
-      "practice_questions": 96,
-      "timed_quiz_questions": 14,
-      "extended_tasks": 5
+      "release": "7.0.0",
+      "learn_slides": 47,
+      "practice_questions": 12,
+      "timed_quiz_questions": 0,
+      "extended_tasks": 14,
+      "organization_release": "7.0.0",
+      "organization": "one lesson with two internal teaching blocks",
+      "default_scope": "IB SL Core",
+      "all_content_available": false,
+      "scope_counts": {
+        "learn": {
+          "core": 47,
+          "all": 47
+        },
+        "practice": {
+          "core": 12,
+          "all": 12
+        },
+        "quiz": {
+          "core": 0,
+          "all": 0
+        },
+        "tasks": {
+          "core": 14,
+          "all": 14
+        }
+      },
+      "official_core_sections": [
+        {
+          "code": "SL 1.2",
+          "title": "Arithmetic sequences and finite series"
+        }
+      ],
+      "calculator": {
+        "classroom": true,
+        "model": "TI-Nspire CX / CX II",
+        "mode": "guided calculator practice",
+        "external_dependency": false,
+        "workflows": [
+          "nth term",
+          "seq and sum",
+          "threshold tables",
+          "simple interest"
+        ]
+      },
+      "assessment": {
+        "learning_checks": 12,
+        "short_response_tasks": 8,
+        "extended_response_tasks": 3,
+        "challenge_tasks": 3,
+        "written_parts": 49,
+        "written_marks": 100,
+        "marking": "self-assessed original classroom markschemes",
+        "compatibility_note": "extended_tasks retains the existing catalog field for all written tasks"
+      },
+      "teaching_blocks": [
+        {
+          "code": "1.2A",
+          "title": "Arithmetic Sequences",
+          "estimated_classroom_time": "60–70 minutes"
+        },
+        {
+          "code": "1.2B",
+          "title": "Arithmetic Series and Applications",
+          "estimated_classroom_time": "60–70 minutes"
+        }
+      ]
     },
     {
       "lesson_key": "u1-geometric-sequences",

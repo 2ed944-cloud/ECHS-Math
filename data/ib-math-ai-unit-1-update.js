@@ -21,12 +21,13 @@
   const unit={
     title:"Unit 1: Number and Algebra",
     description:"Six consolidated IB Mathematics: Applications and Interpretation SL lessons with coherent interactive teaching screens, transparent technology, four-level practice, IB tasks and mastery evidence.",
-    portalSummary:"6 lessons · 402 purposeful Learn screens · 424 learning and practice questions · 56 quiz questions · 58 written tasks",
+    portalSummary:"6 lessons · 376 purposeful Learn screens · 340 learning and practice questions · 42 quiz questions · 67 written tasks",
     release:"6.0.0",
     architectureNotes:[
       "Approximation, bounds and percentage error are consolidated in Lesson 1.1.",
       "Lesson 1.1 uses a scientific-notation-first merged route covering official SL 1.1 + SL 1.6, with relevant SL challenges after IB-style written tasks.",
       "Lesson 1.1 uses TI-Nspire CX / CX II procedures and guided calculator practice for scientific notation, accurate entry and guard digits.",
+      "Lesson 1.2 follows official SL 1.2 in two teaching blocks: arithmetic sequences, finite series, simple interest and approximate models, with TI-Nspire guidance and original written tasks.",
       "Lesson 1.4 remains merged with official SL 1.7: compound interest, depreciation, real value, loans, amortization and end-of-period annuities, with TI-Nspire guidance and IB-style written tasks.",
       "Lesson 1.5 is expanded into a definitive exponent-laws and logarithms pathway.",
       "Lesson 1.6 is rebuilt as a definitive technology, equations, systems, verification and modelling pathway."
@@ -48,12 +49,12 @@
       ],"7.0.0",43,12,0,14,["IBAI.U1.NUMBER","IBAI.U1.MODELING"]),
       makeLesson("1.2","Arithmetic Sequences and Series","arithmetic_sequences",[
         "Distinguish sequence terms, series and partial sums using precise notation.",
-        "Recognize and prove arithmetic structure through constant first differences.",
+        "Identify and explain arithmetic structure through constant first differences.",
         "Move among recursive, explicit, tabular, graphical and contextual representations.",
         "Find terms, indices, parameters and finite arithmetic sums, including shifted sigma notation.",
         "Solve threshold and inverse problems with integer-domain checks.",
-        "Evaluate assumptions, limitations and technology output in discrete linear models."
-      ],"6.0.0",73,96,14,5),
+        "Model simple interest and interpret approximate common differences, predictions and contextual limitations."
+      ],"7.0.0",47,12,0,14),
       makeLesson("1.3","Geometric Sequences and Series","geometric_sequences",[
         "Distinguish additive change from multiplicative change using differences and ratios.",
         "Recognize positive, fractional and negative common ratios and describe their behaviour.",
@@ -103,8 +104,8 @@
     {label:"Companion Notes 1.1 · Earlier PDF Edition",url:"notes/ib-math-ai/unit-1/IB_AI_SL_1.1_Scientific_Notation_Approximation_and_Error_Full_Notes_Student.pdf",type:"notes"}
   ]);
   upsertFullNotes("1.2",[
-    {label:"Full Notes 1.2 · Lesson-Synchronised Edition",url:"notes/ib-math-ai/unit-1/IB_AI_SL_1.2_Arithmetic_Sequences_Full_Notes_Student.html",type:"notes"},
-    {label:"Full Notes 1.2 · Original Coloured LaTeX PDF",url:"notes/ib-math-ai/unit-1/IB_AI_SL_1.2_Arithmetic_Sequences_Full_Notes_Student.pdf",type:"notes"}
+    {label:"Companion Notes 1.2 · Earlier Edition",url:"notes/ib-math-ai/unit-1/IB_AI_SL_1.2_Arithmetic_Sequences_Full_Notes_Student.html",type:"notes"},
+    {label:"Companion Notes 1.2 · Earlier PDF Edition",url:"notes/ib-math-ai/unit-1/IB_AI_SL_1.2_Arithmetic_Sequences_Full_Notes_Student.pdf",type:"notes"}
   ]);
   upsertFullNotes("1.3",[
     {label:"Full Notes 1.3 · Lesson-Synchronised Edition",url:"notes/ib-math-ai/unit-1/IB_AI_SL_1.3_Geometric_Sequences_Full_Notes_Student.html",type:"notes"},
@@ -131,6 +132,21 @@
     lesson11.assessment={learningChecks:12,shortResponseTasks:8,extendedResponseTasks:3,challengeTasks:3,writtenParts:46,writtenMarks:82};
     lesson11.resources[1].label="Learning checks and IB-style written practice";
     lesson11.resources[2].label="IB-style written tasks · 14";
+  }
+
+  const lesson12=unit.lessons.find(lesson=>lesson.number==="1.2");
+  if(lesson12){
+    lesson12.organization_release="7.0.0";
+    lesson12.organization="one lesson with two internal teaching blocks";
+    lesson12.defaultScope="IB SL Core";
+    lesson12.allContentAvailable=false;
+    lesson12.officialCoreSections=[{code:"SL 1.2",title:"Arithmetic sequences and finite series"}];
+    lesson12.scopeCounts={learn:{core:47,all:47},practice:{core:12,all:12},quiz:{core:0,all:0},tasks:{core:14,all:14}};
+    lesson12.calculator={classroom:true,model:"TI-Nspire CX / CX II",mode:"guided calculator practice",externalDependency:false,workflows:["nth term","seq and sum","threshold tables","simple interest"]};
+    lesson12.assessment={learningChecks:12,shortResponseTasks:8,extendedResponseTasks:3,challengeTasks:3,writtenParts:49,writtenMarks:100};
+    lesson12.teachingBlocks=[{code:"1.2A",title:"Arithmetic Sequences",estimatedClassroomTime:"60–70 minutes"},{code:"1.2B",title:"Arithmetic Series and Applications",estimatedClassroomTime:"60–70 minutes"}];
+    lesson12.resources.find(resource=>resource.type==="practice").label="Learning checks and IB-style written practice";
+    lesson12.resources.find(resource=>resource.type==="assessment").label="IB-style written tasks · 14";
   }
 
   const financialLesson=unit.lessons.find(lesson=>lesson.number==="1.4");
