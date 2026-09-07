@@ -1,0 +1,126 @@
+{
+  "revision": "20260907-ab1",
+  "framework": "2026–27 AP Calculus AB CED",
+  "lessons": [
+    {
+      "topic": "1.7",
+      "title": "Selecting Procedures for Determining Limits",
+      "url": "lessons/ap-calculus/unit-1/1-7-selecting-limit-procedures.html",
+      "learningObjective": "LIM-1.C, LIM-1.D, LIM-1.E (synthesis)",
+      "essentialKnowledge": "Cumulative limit knowledge from Topics 1.2–1.6",
+      "skill": "1.C",
+      "checks": 16,
+      "frqs": 2,
+      "slides": 18,
+      "source": "Original ECHS practice; AP Classroom resources linked, not reproduced."
+    },
+    {
+      "topic": "1.8",
+      "title": "Determining Limits Using the Squeeze Theorem",
+      "url": "lessons/ap-calculus/unit-1/1-8-squeeze-theorem.html",
+      "learningObjective": "LIM-1.E",
+      "essentialKnowledge": "LIM-1.E.2",
+      "skill": "3.C",
+      "checks": 16,
+      "frqs": 2,
+      "slides": 18,
+      "source": "Original ECHS practice; AP Classroom resources linked, not reproduced."
+    },
+    {
+      "topic": "1.9",
+      "title": "Connecting Multiple Representations of Limits",
+      "url": "lessons/ap-calculus/unit-1/1-9-multiple-representations-of-limits.html",
+      "learningObjective": "LIM-1.B, LIM-1.C, LIM-1.D, LIM-1.E (synthesis)",
+      "essentialKnowledge": "Cumulative limit representations and limit laws",
+      "skill": "2.C",
+      "checks": 16,
+      "frqs": 2,
+      "slides": 18,
+      "source": "Original ECHS practice; AP Classroom resources linked, not reproduced."
+    },
+    {
+      "topic": "1.10",
+      "title": "Exploring Types of Discontinuities",
+      "url": "lessons/ap-calculus/unit-1/1-10-types-of-discontinuities.html",
+      "learningObjective": "LIM-2.A",
+      "essentialKnowledge": "LIM-2.A.1",
+      "skill": "3.B",
+      "checks": 16,
+      "frqs": 2,
+      "slides": 18,
+      "source": "Original ECHS practice; AP Classroom resources linked, not reproduced."
+    },
+    {
+      "topic": "1.11",
+      "title": "Defining Continuity at a Point",
+      "url": "lessons/ap-calculus/unit-1/1-11-continuity-at-a-point.html",
+      "learningObjective": "LIM-2.A",
+      "essentialKnowledge": "LIM-2.A.2",
+      "skill": "3.C",
+      "checks": 16,
+      "frqs": 2,
+      "slides": 18,
+      "source": "Original ECHS practice; AP Classroom resources linked, not reproduced."
+    },
+    {
+      "topic": "1.12",
+      "title": "Confirming Continuity over an Interval",
+      "url": "lessons/ap-calculus/unit-1/1-12-continuity-over-an-interval.html",
+      "learningObjective": "LIM-2.B",
+      "essentialKnowledge": "LIM-2.B.1–2",
+      "skill": "1.E",
+      "checks": 16,
+      "frqs": 2,
+      "slides": 18,
+      "source": "Original ECHS practice; AP Classroom resources linked, not reproduced."
+    },
+    {
+      "topic": "1.13",
+      "title": "Removing Discontinuities",
+      "url": "lessons/ap-calculus/unit-1/1-13-removing-discontinuities.html",
+      "learningObjective": "LIM-2.C",
+      "essentialKnowledge": "LIM-2.C.1–2",
+      "skill": "1.E",
+      "checks": 16,
+      "frqs": 2,
+      "slides": 18,
+      "source": "Original ECHS practice; AP Classroom resources linked, not reproduced."
+    },
+    {
+      "topic": "1.14",
+      "title": "Infinite Limits and Vertical Asymptotes",
+      "url": "lessons/ap-calculus/unit-1/1-14-infinite-limits-and-vertical-asymptotes.html",
+      "learningObjective": "LIM-2.D",
+      "essentialKnowledge": "LIM-2.D.1–2",
+      "skill": "3.D",
+      "checks": 16,
+      "frqs": 2,
+      "slides": 18,
+      "source": "Original ECHS practice; AP Classroom resources linked, not reproduced."
+    },
+    {
+      "topic": "1.15",
+      "title": "Limits at Infinity and Horizontal Asymptotes",
+      "url": "lessons/ap-calculus/unit-1/1-15-limits-at-infinity-and-horizontal-asymptotes.html",
+      "learningObjective": "LIM-2.D",
+      "essentialKnowledge": "LIM-2.D.3–5",
+      "skill": "2.D",
+      "checks": 16,
+      "frqs": 2,
+      "slides": 18,
+      "source": "Original ECHS practice; AP Classroom resources linked, not reproduced."
+    },
+    {
+      "topic": "1.16",
+      "title": "The Intermediate Value Theorem",
+      "url": "lessons/ap-calculus/unit-1/1-16-intermediate-value-theorem.html",
+      "learningObjective": "FUN-1.A",
+      "essentialKnowledge": "FUN-1.A.1",
+      "skill": "3.E",
+      "checks": 16,
+      "frqs": 2,
+      "slides": 18,
+      "source": "Original ECHS practice; AP Classroom resources linked, not reproduced."
+    }
+  ]
+}
