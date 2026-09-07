@@ -12,9 +12,9 @@ The canonical lessons 1.7–1.16 now use the ECHS interactive lesson format: con
 | 1.10 | Removable, jump, infinite and oscillatory discontinuities; exact local behavior and graphical/tabular justification | LIM-2.A / LIM-2.A.1 | 3.B |
 | 1.11 | All continuity conditions; piecewise joins; operations with continuous functions; complete justification | LIM-2.A / LIM-2.A.2 | 3.C |
 | 1.12 | Original-domain restrictions; maximal continuity intervals; radicals, logarithms, tangent; inward endpoint limits | LIM-2.B / LIM-2.B.1–2 | 1.E |
-| 1.13 | Continuous extensions; unique repair values; multiple parameterized joins; discontinuities that cannot be repaired | LIM-2.C / LIM-2.C.1–2 | 1.E |
+| 1.13 | Continuous extensions; unique repair values; multiple parameterized joins, including numerical nonlinear equations; discontinuities that cannot be repaired | LIM-2.C / LIM-2.C.1–2 | 1.E |
 | 1.14 | Signed infinite limits; one-sided sign analysis; vertical asymptotes; canceled factors; threshold models | LIM-2.D / LIM-2.D.1–2 | 3.D |
-| 1.15 | Rational, radical and exponential end behavior; relative growth from supplied ratio limits; horizontal asymptotes and crossings; contextual plateaus | LIM-2.D / LIM-2.D.3–5 | 2.D |
+| 1.15 | Rational, radical and exponential end behavior; relative growth from supplied ratio limits and mixed exponential–polynomial behavior at both ends; horizontal asymptotes and crossings; contextual plateaus | LIM-2.D / LIM-2.D.3–5 | 2.D |
 | 1.16 | IVT hypotheses; roots and intersections; multiple guaranteed solutions; contextual events; existence versus uniqueness | FUN-1.A / FUN-1.A.1 | 3.E |
 
 Framework: [College Board AP Calculus AB and BC Course and Exam Description](https://apcentral.collegeboard.org/media/pdf/ap-calculus-ab-and-bc-course-and-exam-description.pdf), with the [2026–27 clarifications](https://apcentral.collegeboard.org/media/pdf/ap-calculus-ab-bc-course-and-exam-description-clarifications.pdf). The public framework, signed-in AP Classroom Unit 1 topic labels, AP Daily descriptions, and representative topic and progress-check items informed the idea-level coverage review. This is a topic coverage map, not a claim that every secure AP Classroom item has been independently audited or reproduced.
@@ -33,6 +33,6 @@ All new ECHS questions and classroom rubrics are original. Secure AP Classroom q
 
 ## Validation and scope
 
-Automated checks cover all 160 objective answer paths, 20 FRQ structures, 2,066 authored equations rendered with local KaTeX, all selectable investigation cases and slider boundaries, local resource references, hint provenance, edited work, account isolation, denied storage, reset, and protected continuation. Independent review checked answer keys, graph geometry and rubric mathematics. Browser inspection verified the rendered slide layout and a completed graph-investigation response.
+Automated checks cover all 160 objective answer paths, 20 FRQ structures, more than 2,000 authored equations rendered with local KaTeX, all selectable investigation cases and slider boundaries, local resource references, hint provenance, edited work, account isolation, denied storage, reset, and protected continuation. Independent review checked answer keys, graph geometry and rubric mathematics. Browser inspection verified the rendered slide layout and a completed graph-investigation response.
 
 Lessons 1.1–1.6, the mid-unit check, other units, the separate Unit 1 assessment, and existing companion PDFs remain outside this revision. The course catalogue keeps canonical lesson URLs and identifiers. The service-worker revision refreshes the new content, and the deployment workflow includes the new content and interaction checks.
