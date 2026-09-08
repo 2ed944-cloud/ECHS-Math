@@ -1,0 +1,25 @@
+.echsDocument { --lesson-accent:#741c3c; max-width:72rem; margin:0 auto; padding:clamp(1rem,3vw,2.5rem); color:#202b35; background:#fff; font:1.08rem/1.6 system-ui,sans-serif; }
+.echsDocument h1,.echsDocument h2,.echsDocument h3 { line-height:1.2; overflow-wrap:anywhere; }
+.echsDocument h1 { font-size:clamp(1.75rem,4vw,2.7rem); }
+.echsDocument h2 { font-size:clamp(1.45rem,3vw,2rem); }
+.echsDocumentSummary { max-width:65ch; }
+.echsDocumentSlide[hidden] { display:none; }
+.echsDocumentBlocks { display:grid; grid-template-columns:minmax(0,1fr); gap:1.25rem; align-items:start; }
+.echsDocumentBlocks > * { min-width:0; }
+.layout-two-column .echsDocumentBlocks { grid-template-columns:repeat(2,minmax(0,1fr)); }
+.layout-three-panel .echsDocumentBlocks { grid-template-columns:repeat(3,minmax(0,1fr)); }
+.echsDocumentCallout { border-inline-start:4px solid var(--lesson-accent); padding:1rem 1.25rem; background:#f7f2f4; }
+.echsDocumentCallout h3 { margin-top:0; }
+.echsDocumentMath { max-width:100%; overflow-x:auto; padding:.25rem 0; }
+.echsDocument .katex-display { margin:.6rem 0; }
+.echsDocumentNavigation { display:flex; flex-wrap:wrap; gap:.75rem; align-items:center; border-top:1px solid #c3cbd2; padding-top:1.25rem; margin-top:2rem; }
+.echsDocument button,.echsDocument select { min-height:44px; padding:.6rem .9rem; font:inherit; border:1px solid #66737e; border-radius:.35rem; color:#202b35; background:#fff; }
+.echsDocument button { cursor:pointer; }
+.echsDocument select { flex:1 1 14rem; min-width:0; max-width:100%; }
+.echsDocument button:disabled { opacity:.6; cursor:default; }
+.echsDocument a { color:#741c3c; text-decoration:underline; }
+.echsDocument :focus-visible { outline:3px solid #22628e; outline-offset:3px; }
+.echsDocumentStatus { min-height:1.7em; font-size:.95rem; }
+@media(max-width:760px) { .layout-two-column .echsDocumentBlocks,.layout-three-panel .echsDocumentBlocks { grid-template-columns:minmax(0,1fr); } }
+@media(prefers-reduced-motion:reduce) { .echsDocument * { scroll-behavior:auto!important; animation:none!important; transition:none!important; } }
+@media print { .echsDocumentSlide[hidden] { display:block; } .echsDocumentNavigation,.echsDocument button,.echsDocumentStatus { display:none; } .echsDocumentSlide { break-inside:avoid; } }

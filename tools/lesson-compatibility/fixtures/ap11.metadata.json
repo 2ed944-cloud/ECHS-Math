@@ -1,0 +1,279 @@
+{
+  "snapshot_version": "echs.legacy.metadata.v1",
+  "kind": "ap11",
+  "source_commit": "fda45056e7b11e3f1d45bf96f7c8c36246d69e8d",
+  "source": "lessons/ap-calculus/unit-1/1-1-can-change-occur-at-an-instant.html",
+  "sha256": "366b4418e2db0bfbe7c0a55956abe205889dd9f0b7da9099e4e4b5c087b7e026",
+  "aliases": [
+    "lessons/ap-calculus/1-1-introducing-calculus.html"
+  ],
+  "assets": [
+    {
+      "kind": "stylesheet",
+      "url": "../../ib-math-ai/unit-1/assets/css/katex.css"
+    },
+    {
+      "kind": "stylesheet",
+      "url": "assets/lesson-1-1.css?v=20260904-1"
+    },
+    {
+      "kind": "script",
+      "url": "../../ib-math-ai/unit-1/assets/js/katex-global.js"
+    },
+    {
+      "kind": "script",
+      "url": "assets/lesson-1-1-model.js?v=20260904-1"
+    },
+    {
+      "kind": "script",
+      "url": "assets/lesson-1-1-questions.js?v=20260904-1"
+    },
+    {
+      "kind": "script",
+      "url": "assets/lesson-1-1.js?v=20260904-1"
+    }
+  ],
+  "counts": {
+    "slides": 33,
+    "questions": 20,
+    "frqs": 3
+  },
+  "slides": [
+    {
+      "id": "start",
+      "source_index": 1,
+      "title": "Can change occur at an instant?",
+      "layout": "two-column",
+      "anchor": "start"
+    },
+    {
+      "id": "roadmap",
+      "source_index": 2,
+      "title": "What you will be able to explain",
+      "layout": "two-column",
+      "anchor": "roadmap"
+    },
+    {
+      "id": "classify",
+      "source_index": 3,
+      "title": "A value, an average, or an instant?",
+      "layout": "single",
+      "anchor": "classify"
+    },
+    {
+      "id": "average-rate",
+      "source_index": 4,
+      "title": "Start with a quotient of changes",
+      "layout": "two-column",
+      "anchor": "average-rate"
+    },
+    {
+      "id": "secant-lab",
+      "source_index": 5,
+      "title": "Build and move a secant line",
+      "layout": "two-column",
+      "anchor": "secant-lab"
+    },
+    {
+      "id": "bike-lab",
+      "source_index": 6,
+      "title": "A return journey changes the story",
+      "layout": "two-column",
+      "anchor": "bike-lab"
+    },
+    {
+      "id": "bike-check",
+      "source_index": 7,
+      "title": "Check the full journey",
+      "layout": "three-panel",
+      "anchor": "bike-check"
+    },
+    {
+      "id": "one-point",
+      "source_index": 8,
+      "title": "Why one point is not enough",
+      "layout": "two-column",
+      "anchor": "one-point"
+    },
+    {
+      "id": "shrinking-lab",
+      "source_index": 9,
+      "title": "Shrink the interval. Keep both sides in view.",
+      "layout": "two-column",
+      "anchor": "shrinking-lab"
+    },
+    {
+      "id": "rate-table",
+      "source_index": 10,
+      "title": "Read the pattern from both directions",
+      "layout": "two-column",
+      "anchor": "rate-table"
+    },
+    {
+      "id": "explain-limit",
+      "source_index": 11,
+      "title": "Why these rates approach 22.4",
+      "layout": "two-column",
+      "anchor": "explain-limit"
+    },
+    {
+      "id": "tangent-lab",
+      "source_index": 12,
+      "title": "Fit the local direction of the curve",
+      "layout": "two-column",
+      "anchor": "tangent-lab"
+    },
+    {
+      "id": "table-estimates",
+      "source_index": 13,
+      "title": "Estimate a rate when only readings are available",
+      "layout": "two-column",
+      "anchor": "table-estimates"
+    },
+    {
+      "id": "evidence",
+      "source_index": 14,
+      "title": "Exact calculation or supported estimate?",
+      "layout": "two-column",
+      "anchor": "evidence"
+    },
+    {
+      "id": "units",
+      "source_index": 15,
+      "title": "Read a rate in its own context",
+      "layout": "two-column",
+      "anchor": "units"
+    },
+    {
+      "id": "calculator-lab",
+      "source_index": 16,
+      "title": "Use technology to examine nearby rates",
+      "layout": "two-column",
+      "anchor": "calculator-lab"
+    },
+    {
+      "id": "airport-worked",
+      "source_index": 17,
+      "title": "Turn calculator output into an explanation",
+      "layout": "two-column",
+      "anchor": "airport-worked"
+    },
+    {
+      "id": "ap-habits",
+      "source_index": 18,
+      "title": "Build an AP-style response",
+      "layout": "two-column",
+      "anchor": "ap-habits"
+    },
+    {
+      "id": "ap-set-1",
+      "source_index": 19,
+      "title": "AP-style MCQ · 1–2",
+      "layout": "two-column",
+      "anchor": "ap-set-1"
+    },
+    {
+      "id": "ap-set-2",
+      "source_index": 20,
+      "title": "AP-style MCQ · 3–4",
+      "layout": "two-column",
+      "anchor": "ap-set-2"
+    },
+    {
+      "id": "ap-set-3",
+      "source_index": 21,
+      "title": "AP-style MCQ · 5–6",
+      "layout": "two-column",
+      "anchor": "ap-set-3"
+    },
+    {
+      "id": "ap-set-4",
+      "source_index": 22,
+      "title": "AP-style MCQ · 7–8",
+      "layout": "two-column",
+      "anchor": "ap-set-4"
+    },
+    {
+      "id": "ap-set-5",
+      "source_index": 23,
+      "title": "AP-style MCQ · 9–10",
+      "layout": "two-column",
+      "anchor": "ap-set-5"
+    },
+    {
+      "id": "ap-set-6",
+      "source_index": 24,
+      "title": "AP-style MCQ · 11–12",
+      "layout": "two-column",
+      "anchor": "ap-set-6"
+    },
+    {
+      "id": "frq-tank",
+      "source_index": 25,
+      "title": "AP-style free response · Water in a tank",
+      "layout": "single",
+      "anchor": "frq-tank"
+    },
+    {
+      "id": "frq-bike",
+      "source_index": 26,
+      "title": "AP-style free response · Position is not distance travelled",
+      "layout": "single",
+      "anchor": "frq-bike"
+    },
+    {
+      "id": "frq-airport",
+      "source_index": 27,
+      "title": "AP-style free response · Airport traffic model",
+      "layout": "single",
+      "anchor": "frq-airport"
+    },
+    {
+      "id": "corner-challenge",
+      "source_index": 28,
+      "title": "Challenge: can a centred quotient mislead?",
+      "layout": "two-column",
+      "anchor": "corner-challenge"
+    },
+    {
+      "id": "finite-data-challenge",
+      "source_index": 29,
+      "title": "Challenge: the same table, different local rates",
+      "layout": "two-column",
+      "anchor": "finite-data-challenge"
+    },
+    {
+      "id": "error-detective",
+      "source_index": 30,
+      "title": "Challenge: repair the argument",
+      "layout": "two-column",
+      "anchor": "error-detective"
+    },
+    {
+      "id": "exit",
+      "source_index": 31,
+      "title": "Exit ticket · explain the connection",
+      "layout": "two-column",
+      "anchor": "exit"
+    },
+    {
+      "id": "finish",
+      "source_index": 32,
+      "title": "From average change to change at an instant",
+      "layout": "two-column",
+      "anchor": "finish"
+    },
+    {
+      "id": "alignment",
+      "source_index": 33,
+      "title": "Alignment and classroom use",
+      "layout": "two-column",
+      "anchor": "alignment"
+    }
+  ],
+  "finish": {
+    "trigger": "#continuePractice",
+    "delegate": "[data-finish-lesson]",
+    "guard": "js/lesson-access-guard.js"
+  }
+}
