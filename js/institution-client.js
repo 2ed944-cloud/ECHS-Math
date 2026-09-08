@@ -48,15 +48,17 @@
     return configPromise;
   }
   async function api(service,path,options={}){
+    const {sessionGuard,...requestOptions}=options;
     const cfg=await config();
     if(cfg.configuration_error)throw requestError(cfg.configuration_error,0,"configuration_unavailable");
     if(!cfg.enabled)throw requestError("Institutional accounts are not configured yet",503,"unconfigured");
+    if(sessionGuard)assertSyncSession(sessionGuard);
     const base=String(cfg.api_base||"").replace(/\/$/,"");
     const headers=new Headers(options.headers||{});
     if(options.body&&!headers.has("content-type"))headers.set("content-type","application/json");
     const currentToken=token();if(currentToken)headers.set("authorization",`Bearer ${currentToken}`);
     const body=options.body&&typeof options.body!=="string"&&!(options.body instanceof FormData)&&!(options.body instanceof Blob)?JSON.stringify(options.body):options.body;
-    const response=await request(`${base}/${service}${path}`,{timeoutMs:options.method&&options.method!=="GET"?45000:20000,...options,cache:"no-store",body,headers});
+    const response=await request(`${base}/${service}${path}`,{timeoutMs:options.method&&options.method!=="GET"?45000:20000,...requestOptions,cache:"no-store",body,headers});
     const payload=await response.json().catch(()=>({ok:false,error:{message:`HTTP ${response.status}`}}));
     if(response.status===401&&currentToken&&token()===currentToken){clearSession();document.dispatchEvent(new CustomEvent("echs:institution-signed-out"))}
     if(!response.ok&&response.status!==207)throw requestError(payload?.error?.message||`Request failed (${response.status})`,response.status,payload?.error?.code||"request_error");
@@ -163,30 +165,57 @@
     const attempts=safeJSON(localStorage.getItem("echs_learning_events_v2"),[]);
     return {attempts,sessions:safeJSON(localStorage.getItem("echs_learning_sessions_v2"),[]),mastery:Object.values(safeJSON(localStorage.getItem("echs_learning_mastery_v2"),{})),review:Object.values(safeJSON(localStorage.getItem("echs_learning_reviews_v2"),{})),lessons:localLessonCompletions()};
   }
+  function syncSession(){
+    const current=account(),currentToken=token();
+    return current?.id&&current.role==="student"&&currentToken&&!isExpired()?{accountId:current.id,token:currentToken}:null;
+  }
+  function assertSyncSession(owner){
+    if(token()!==owner.token||account()?.id!==owner.accountId||isExpired())throw requestError("Your session changed. Please reload this page.",409,"session_changed");
+  }
+  function mergeLearningPayload(previous,current){
+    const keys={attempts:row=>row.event_id??row.client_event_id??row.id,sessions:row=>row.client_session_id??row.clientSessionId??row.id,review:row=>row.question_id??row.questionId??row.id,lessons:row=>row.access_key,mastery:row=>row.skill_key??row.key};
+    return Object.fromEntries(Object.entries(keys).map(([field,key])=>{
+      const rows=new Map();
+      for(const row of [...(Array.isArray(previous?.[field])?previous[field]:[]),...(Array.isArray(current?.[field])?current[field]:[])])rows.set(String(key(row)??JSON.stringify(row)),row);
+      return[field,[...rows.values()]];
+    }));
+  }
+  async function sendLearningQueue(owner,pendingKey,serialized){
+    const pending=safeJSON(serialized,null);
+    // Old unowned queues, including the former mastery bridge queue, are never adopted.
+    if(!pending?.accountId||pending.accountId!==owner.accountId||!pending.payload)return{skipped:true};
+    assertSyncSession(owner);
+    const verified=await me();
+    assertSyncSession(owner);
+    if(verified?.id!==owner.accountId||verified.role!=="student")throw requestError("Student sign-in is required",401,"student_required");
+    const result=await api("mastery-evidence","/sync",{method:"POST",body:pending.payload,sessionGuard:owner});
+    assertSyncSession(owner);
+    // Pages and Edge Functions deploy separately. An older endpoint can accept
+    // evidence while silently ignoring completions; retain that snapshot for retry.
+    if(pending.payload.lessons?.length&&result.sync_contract!=="echs-learning-sync-v1")return{...result,queued:true,reason:"completion_sync_unavailable"};
+    if(localStorage.getItem(pendingKey)===serialized)localStorage.removeItem(pendingKey);
+    if(result.authoritative)document.dispatchEvent(new CustomEvent("echs:mastery-authority",{detail:{source:"server",result}}));
+    return result;
+  }
   async function syncLearning(){
-    // An offline reload may queue local work; the server still verifies the
-    // account when this queue is flushed after reconnecting.
-    const current=navigator.onLine?await me():token()&&!isExpired()?account():null;
-    if(!current||current.role!=="student")return{skipped:true};
-    const payload=localLearningPayload();
-    const pendingKey=`${KEYS.pending}:${current.id}`;
-    if(!navigator.onLine){localStorage.setItem(pendingKey,JSON.stringify({accountId:current.id,payload}));return{queued:true}}
-    const pendingBefore=localStorage.getItem(pendingKey);
-    const result=await api("learning-sync","/sync",{method:"POST",body:payload});
-    if(token()&&account()?.id===current.id&&localStorage.getItem(pendingKey)===pendingBefore)localStorage.removeItem(pendingKey);return result;
+    // Capture ownership and persist the snapshot before any asynchronous verification
+    // or request. A failed online send is just as recoverable as an offline send.
+    const owner=syncSession();
+    if(!owner)return{skipped:true};
+    const pendingKey=`${KEYS.pending}:${owner.accountId}`,previous=safeJSON(localStorage.getItem(pendingKey),null);
+    const payload=mergeLearningPayload(previous?.accountId===owner.accountId?previous.payload:null,localLearningPayload());
+    const serialized=JSON.stringify({accountId:owner.accountId,payload});
+    localStorage.setItem(pendingKey,serialized);
+    if(!navigator.onLine)return{queued:true};
+    return sendLearningQueue(owner,pendingKey,serialized);
   }
   async function flushPending(){
-    if(!navigator.onLine)return;
-    try{
-      const current=await me();
-      if(!current||current.role!=="student")return;
-      const ownedKey=`${KEYS.pending}:${current.id}`,pendingKey=localStorage.getItem(ownedKey)?ownedKey:KEYS.pending;
-      const serialized=localStorage.getItem(pendingKey),pending=safeJSON(serialized,null);
-      // Legacy unowned queues are preserved, but never sent under a different school account.
-      if(!pending?.accountId||pending.accountId!==current.id||!pending.payload)return;
-      await api("learning-sync","/sync",{method:"POST",body:pending.payload});
-      if(localStorage.getItem(pendingKey)===serialized)localStorage.removeItem(pendingKey);
-    }catch(error){console.warn("Pending learning sync failed",error)}
+    if(!navigator.onLine)return{skipped:true};
+    const owner=syncSession();
+    if(!owner)return{skipped:true};
+    const ownedKey=`${KEYS.pending}:${owner.accountId}`,pendingKey=localStorage.getItem(ownedKey)?ownedKey:KEYS.pending;
+    try{return await sendLearningQueue(owner,pendingKey,localStorage.getItem(pendingKey))}
+    catch(error){console.warn("Pending learning sync failed",error);return{queued:true,error:error.code||"sync_failed"}}
   }
   function ensurePolish(){
     if(document.body.classList.contains("institutionBody")&&!document.querySelector('link[href*="platform-usability.css"]')){
@@ -238,5 +267,5 @@
   }
   if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",bind,{once:true});else bind();
 
-  window.ECHSInstitution={ROOT:ROOT.href,root,config,api,login,logout,me,requireAuth,account,token,setSession,clearSession,roleHome,mountIdentity,mountUploadManagerLink,syncLearning,flushPending,initials};
+  window.ECHSInstitution={ROOT:ROOT.href,root,config,api,login,logout,me,requireAuth,account,token,setSession,clearSession,roleHome,mountIdentity,mountUploadManagerLink,learningPayload:localLearningPayload,syncLearning,flushPending,initials};
 })();

@@ -1,4 +1,5 @@
 import { createClient } from "npm:@supabase/supabase-js@2";
+import { canonicalCourseKey, lessonAccessKey } from "../institution-api/lesson-access-policy.js";
 
 type Role = "admin" | "teacher" | "student" | "parent";
 type SessionAccount = { account_id: string; organization_id: string; role: Role };
@@ -196,10 +197,12 @@ async function sync(current: SessionAccount, req: Request) {
     sessions?: Record<string, unknown>[];
     review?: Record<string, unknown>[];
     mastery?: Record<string, unknown>[];
+    lessons?: Record<string, unknown>[];
   };
   const attempts = (payload.attempts ?? []).slice(-10000);
   const sessions = (payload.sessions ?? []).slice(-1000);
   const review = (payload.review ?? []).slice(-5000);
+  const lessons = (payload.lessons ?? []).slice(-2000);
   const attemptRows = await Promise.all(attempts.map(async (row, index) => {
     const questionId = String(row.question_id ?? row.questionId ?? row.id ?? "");
     const eventId = String(row.event_id ?? row.client_event_id ?? row.id ?? await hash(JSON.stringify([questionId, row.at, row.response, index])));
@@ -269,11 +272,32 @@ async function sync(current: SessionAccount, req: Request) {
     payload: row.payload,
     updated_at: new Date().toISOString(),
   }));
+  // Explicit lesson completions use the existing pathway contract. They never
+  // create attempts or contribute skill keys to mastery recomputation.
+  const lessonRows = lessons.map((row) => {
+    const course = canonicalCourseKey(row.course_key ?? row.course);
+    const unitIndex = number(row.unit_index, number(row.unit, 1) - 1);
+    const topic = String(row.topic ?? "").trim();
+    return {
+      organization_id: current.organization_id,
+      account_id: current.account_id,
+      access_key: String(row.access_key ?? lessonAccessKey(course, unitIndex, topic)),
+      course_key: course,
+      unit_index: unitIndex,
+      topic,
+      title: String(row.title ?? ""),
+      completed_at: String(row.completed_at ?? row.completedAt ?? new Date().toISOString()),
+      payload: row,
+      updated_at: new Date().toISOString(),
+    };
+  }).filter((row) => row.course_key && row.topic && Number.isInteger(row.unit_index) && row.unit_index >= 0 &&
+    row.access_key === lessonAccessKey(row.course_key, row.unit_index, row.topic));
   const operations = [];
   if (attemptRows.length) operations.push(db.from("learning_attempts").upsert(attemptRows, { onConflict: "account_id,client_event_id", ignoreDuplicates: true }));
   if (sessionRows.length) operations.push(db.from("learning_sessions").upsert(sessionRows, { onConflict: "account_id,client_session_id" }));
   if (reviewRows.length) operations.push(db.from("review_items").upsert(reviewRows, { onConflict: "account_id,question_id" }));
   if (assignmentRows.length) operations.push(db.from("assignment_results").upsert(assignmentRows, { onConflict: "assignment_id,student_id" }));
+  if (lessonRows.length) operations.push(db.from("lesson_completions").upsert(lessonRows, { onConflict: "account_id,access_key" }));
   const results = await Promise.all(operations);
   const failed = results.find((result) => result.error);
   if (failed?.error) throw failed.error;
@@ -281,8 +305,9 @@ async function sync(current: SessionAccount, req: Request) {
   return reply(req, {
     ok: true,
     authoritative: true,
+    sync_contract: "echs-learning-sync-v1",
     client_mastery_ignored: Array.isArray(payload.mastery) && payload.mastery.length > 0,
-    synced: { attempts: attemptRows.length, sessions: sessionRows.length, review: reviewRows.length, assignment_results: assignmentRows.length },
+    synced: { attempts: attemptRows.length, sessions: sessionRows.length, review: reviewRows.length, assignment_results: assignmentRows.length, lessons: lessonRows.length },
     mastery: authoritativeMastery,
   });
 }

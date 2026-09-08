@@ -166,12 +166,16 @@ def validate_client_and_teacher_evidence() -> None:
     worker = read("sw.js")
     require(experience, ["loadMasteryEvidence", "institution-mastery-evidence.js", "teacher-evidence-heatmap.js", "mastery-evidence.css"], "Institution experience loader")
     require(client, [
-        "ECHSInstitution.syncLearning=syncLearning",
-        'ECHSInstitution.api("mastery-evidence","/sync"',
+        "ECHSInstitution.learningPayload()",
+        "ECHSInstitution.syncLearning()",
+        "ECHSInstitution.flushPending()",
         "document.documentElement.dataset.masteryAuthority=\"server\"",
         "classEvidence",
         "Question Trust",
     ], "Mastery evidence client")
+    forbid(client, ["ECHSInstitution.syncLearning=", "ECHSInstitution.flushPending=", "localStorage.setItem", "exportStudentReport"], "Mastery evidence delegation")
+    canonical = read("js/institution-client.js")
+    require(canonical, ['api("mastery-evidence","/sync"', "sessionGuard:owner", "learningPayload:localLearningPayload"], "Canonical mastery sync")
     require(teacher, [
         "authoritativeEvidence",
         "ECHSMasteryEvidence.classEvidence",
