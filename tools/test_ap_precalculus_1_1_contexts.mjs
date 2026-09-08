@@ -1,9 +1,10 @@
+import {fileURLToPath} from 'node:url';
 /* Independent mathematical checks for the six added practice families. */
 import assert from 'node:assert/strict';
 import {createRequire} from 'node:module';
 import fs from 'node:fs';
 const require=createRequire(import.meta.url),base=new URL('../lessons/ap-precalculus/unit-1/',import.meta.url);
-const C=require(new URL('assets/tandem-context-models-v4.js',base).pathname),Q=require(new URL('assets/tandem-1-1-questions-v3.js',base).pathname);
+const C=require(fileURLToPath(new URL('assets/tandem-context-models-v4.js',base))),Q=require(fileURLToPath(new URL('assets/tandem-1-1-questions-v3.js',base)));
 const extra=Q.questions.filter(q=>q.id.startsWith('ex')),near=(a,b,e=1e-8)=>assert.ok(Math.abs(a-b)<e,`${a} != ${b}`),key=q=>q.choices[q.answer];
 assert.equal(extra.length,48);for(const family of new Set(extra.map(q=>q.family)))assert.equal(extra.filter(q=>q.family===family).length,8);
 for(const q of extra){assert.equal(new Set(q.choices).size,4,q.id);assert.ok(q.hint&&q.solution&&q.ek);}

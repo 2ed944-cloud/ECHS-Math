@@ -1,3 +1,4 @@
+import {fileURLToPath} from 'node:url';
 /* DOM interaction tests; no browser, network or real student account. */
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -12,7 +13,7 @@ let account={id:'test-a'},failStorage=false,printed=false;
 const events=new dom.EventTarget(),location={pathname:'/ECHS-Math/lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.2_arithmetic_sequences_ECHS.html',search:'?course=ib-math-ai&lessonKey=test&accessKey=protected',hash:'#practice'};
 const math=vm.createContext({window:{}});vm.runInContext(fs.readFileSync(new URL('assets/js/katex-global.js',base),'utf8'),math);
 let equations=0;
-const win={document,ECHSInstitution:{account:()=>account},ArithmeticLessonModels:require(new URL('data/lesson-1.2-arithmetic-model-v7.js',base).pathname),ArithmeticLessonQuestions:require(new URL('data/lesson-1.2-arithmetic-questions-v7.js',base).pathname),katex:{render(tex,node){math.window.katex.renderToString(tex,{throwOnError:true,strict:'ignore'});node.textContent=tex;equations++;}},addEventListener:events.addEventListener.bind(events),dispatchEvent:events.dispatchEvent.bind(events),print(){printed=true;}};
+const win={document,ECHSInstitution:{account:()=>account},ArithmeticLessonModels:require(fileURLToPath(new URL('data/lesson-1.2-arithmetic-model-v7.js',base))),ArithmeticLessonQuestions:require(fileURLToPath(new URL('data/lesson-1.2-arithmetic-questions-v7.js',base))),katex:{render(tex,node){math.window.katex.renderToString(tex,{throwOnError:true,strict:'ignore'});node.textContent=tex;equations++;}},addEventListener:events.addEventListener.bind(events),dispatchEvent:events.dispatchEvent.bind(events),print(){printed=true;}};
 const scheduled=new Map();let timer=0;
 const ctx=vm.createContext({window:win,document,location,history:{replaceState(_s,_t,url){const u=new URL(url,'https://example.test');assert.equal(u.search,location.search);location.hash=u.hash;}},localStorage:{getItem:k=>storage.get(k)||null,setItem(k,v){if(failStorage)throw Error('Denied');storage.set(k,v);}},setTimeout:fn=>{scheduled.set(++timer,fn);return timer;},clearTimeout:id=>scheduled.delete(id),console});
 for(const file of ['labs','core'])vm.runInContext(fs.readFileSync(new URL('data/lesson-1.2-arithmetic-'+file+'-v7.js',base),'utf8'),ctx);

@@ -1,10 +1,11 @@
+import {fileURLToPath} from 'node:url';
 import assert from 'node:assert/strict';
 import crypto from 'node:crypto';
 import fs from 'node:fs';
 import vm from 'node:vm';
 import {createRequire} from 'node:module';
 const require=createRequire(import.meta.url),root=new URL('../',import.meta.url),base=new URL('lessons/ap-calculus/unit-1/assets/',root);
-const Q=require(new URL('midunit-questions.js',base).pathname),G=require(new URL('midunit-graphs.js',base).pathname);
+const Q=require(fileURLToPath(new URL('midunit-questions.js',base))),G=require(fileURLToPath(new URL('midunit-graphs.js',base)));
 const near=(a,b,tol=1e-8)=>assert.ok(Math.abs(a-b)<tol,`${a} differs from ${b}`);
 assert.equal(crypto.createHash('sha256').update(JSON.stringify(Q.questions.slice(0,44))).digest('hex'),'457a016777ab221d56f1cd4c81948309a60343078fbf6056b653795c133f6a1e','All 44 existing questions retain their content and stable IDs');
 assert.equal(Q.revision,'midunit-v1');

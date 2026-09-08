@@ -67,7 +67,7 @@ This report validates the strict public release boundary. Student practice, exam
 
 ```json
 {
-  "jsonFilesParsed": 262,
+  "jsonFilesParsed": 281,
   "canonicalQuestionObjects": 1217
 }
 ```
@@ -194,7 +194,7 @@ This report validates the strict public release boundary. Student practice, exam
 ```json
 {
   "htmlFiles": 14,
-  "localReferencesChecked": 129,
+  "localReferencesChecked": 132,
   "javascriptFilesSyntaxChecked": 8
 }
 ```
@@ -385,7 +385,7 @@ Warnings:
 
 ```json
 {
-  "textFilesScanned": 2530,
+  "textFilesScanned": 3632,
   "secretPatternHits": 0
 }
 ```
@@ -396,7 +396,7 @@ Warnings:
 
 ```json
 {
-  "caseSensitiveReferencesChecked": 129,
+  "caseSensitiveReferencesChecked": 132,
   "errors": 0
 }
 ```

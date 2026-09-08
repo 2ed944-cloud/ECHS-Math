@@ -1,10 +1,11 @@
+import {fileURLToPath} from 'node:url';
 /* Independent numerical, curriculum and content contracts for Topic 1.2. */
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
 import {createRequire} from 'node:module';
 const require=createRequire(import.meta.url),base=new URL('../lessons/ap-precalculus/unit-1/',import.meta.url);
-const M=require(new URL('assets/rates-1-2-model-v3.js',base).pathname),Q=require(new URL('assets/rates-1-2-questions-v3.js',base).pathname);
+const M=require(fileURLToPath(new URL('assets/rates-1-2-model-v3.js',base))),Q=require(fileURLToPath(new URL('assets/rates-1-2-questions-v3.js',base)));
 const read=p=>fs.readFileSync(new URL(p,base),'utf8'),html=read('AP_Precalculus_1.2_Rates_of_Change_ECHS_Refined.html'),core=read('assets/rates-1-2-core-v3.js');
 const near=(a,b,tol=1e-8)=>assert.ok(Math.abs(a-b)<=tol,String(a)+' != '+b);
 const volume=x=>M.linear(M.tank,x),reader=x=>M.linear(M.reader,x);

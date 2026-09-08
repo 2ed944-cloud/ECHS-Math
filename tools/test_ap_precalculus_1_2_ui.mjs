@@ -1,3 +1,4 @@
+import {fileURLToPath} from 'node:url';
 /* Interaction tests without a browser, network or real student account. */
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -12,7 +13,7 @@ let account={id:'test-a'},failStorage=false,printed=false;
 const events=new dom.EventTarget(),location={pathname:'/ECHS-Math/lessons/ap-precalculus/unit-1/AP_Precalculus_1.2_Rates_of_Change_ECHS_Refined.html',search:'?course=ap-precalculus&lessonKey=test&accessKey=protected',hash:'#practice'};
 const math=vm.createContext({window:{}});vm.runInContext(fs.readFileSync(new URL('../../ib-math-ai/unit-1/assets/js/katex-global.js',base),'utf8'),math);
 let equations=0;
-const win={document,ECHSInstitution:{account:()=>account},RatesModels:require(new URL('assets/rates-1-2-model-v3.js',base).pathname),RatesQuestions:require(new URL('assets/rates-1-2-questions-v3.js',base).pathname),katex:{render(tex,node){math.window.katex.renderToString(tex,{throwOnError:true,strict:'ignore'});node.textContent=tex;equations++;}},addEventListener:events.addEventListener.bind(events),dispatchEvent:events.dispatchEvent.bind(events),print(){printed=true;}};
+const win={document,ECHSInstitution:{account:()=>account},RatesModels:require(fileURLToPath(new URL('assets/rates-1-2-model-v3.js',base))),RatesQuestions:require(fileURLToPath(new URL('assets/rates-1-2-questions-v3.js',base))),katex:{render(tex,node){math.window.katex.renderToString(tex,{throwOnError:true,strict:'ignore'});node.textContent=tex;equations++;}},addEventListener:events.addEventListener.bind(events),dispatchEvent:events.dispatchEvent.bind(events),print(){printed=true;}};
 const scheduled=new Map();let timer=0;
 const ctx=vm.createContext({window:win,document,location,history:{replaceState(_s,_t,url){const u=new URL(url,'https://example.test');assert.equal(u.search,location.search);location.hash=u.hash;}},localStorage:{getItem(k){if(failStorage)throw Error('Denied');return storage.get(k)||null;},setItem(k,v){if(failStorage)throw Error('Denied');storage.set(k,v);}},setTimeout:fn=>{scheduled.set(++timer,fn);return timer;},clearTimeout:id=>scheduled.delete(id),console});
 for(const file of ['graphs','labs','core'])vm.runInContext(fs.readFileSync(new URL('assets/rates-1-2-'+file+'-v3.js',base),'utf8'),ctx);

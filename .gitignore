@@ -25,3 +25,5 @@ PRIVATE_BANK_VALIDATION.md
 artifacts/
 node_modules/
 __pycache__/
+.test-deps/
+.baseline-results/

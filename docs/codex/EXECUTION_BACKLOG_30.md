@@ -3,7 +3,9 @@
 ## Execution record — 2026-09-08
 
 - ECHS-001: complete; main rechecked at `fda45056e7b11e3f1d45bf96f7c8c36246d69e8d`. See `RUNTIME_INVENTORY_20260908.md` and its machine-readable JSON. `python tools/test_runtime_inventory.py` passed. No runtime/database changes in this slice.
-- ECHS-002–006: pending implementation and acceptance evidence.
+- ECHS-002: implemented; portable baseline command runs 68 critical checks across core, lessons and bank suites. Runner failure/timeout/missing-input tests and Windows portability regressions included. CI must pass on this PR before acceptance. See `BASELINE_VALIDATION.md`.
+- ECHS-003–006: pending acceptance evidence.
+- Audit-discovered sync repair: PR #346 merged after 13 successful PR workflows; account-owned queue/report-contract tests and backend/Pages deployment passed. See `MASTERY_SYNC_REPAIR_20260908.md`.
 - ECHS-007: not started; blocked on ECHS-002–006 acceptance.
 
 Rules:

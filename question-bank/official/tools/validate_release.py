@@ -42,6 +42,12 @@ def check(no,name):
 def load_json(p:Path):
     return json.loads(p.read_text(encoding='utf-8-sig'))
 
+
+def has_case_colliding_manifest(root:Path):
+    # Path.exists aliases lowercase manifest.json on case-insensitive filesystems.
+    # Preserve the forbidden uppercase-entry rule by inspecting directory spelling.
+    return any(path.name == 'MANIFEST.json' for path in root.iterdir())
+
 def release_files(folder:Path=ROOT):
     for p in folder.rglob('*'):
         if p.is_file() and not SKIP_PARTS.intersection(p.relative_to(ROOT).parts):
@@ -565,7 +571,7 @@ else:
     for icon in web_manifest.get('icons',[]):
         icon_path=ROOT/str(icon.get('src',''))
         if not icon_path.is_file(): c.errors.append(f"Manifest icon missing: {icon.get('src')}")
-if (ROOT/'MANIFEST.json').exists(): c.errors.append('Case-colliding duplicate MANIFEST.json must not be present.')
+if has_case_colliding_manifest(ROOT): c.errors.append('Case-colliding duplicate MANIFEST.json must not be present.')
 c.evidence={'webManifest':'manifest.json','name':web_manifest.get('name'),'icons':len(web_manifest.get('icons',[]))}
 
 # 33 deterministic checksum manifest

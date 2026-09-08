@@ -1,10 +1,11 @@
+import {fileURLToPath} from 'node:url';
 /* Exact-model, curriculum and rendering checks for original Topic 1.2 content. */
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
 import {createRequire} from 'node:module';
 const require=createRequire(import.meta.url),base=new URL('../lessons/ap-calculus/unit-1/',import.meta.url);
-const M=require(new URL('assets/lesson-1-2-model.js',base).pathname),Q=require(new URL('assets/lesson-1-2-questions.js',base).pathname);
+const M=require(fileURLToPath(new URL('assets/lesson-1-2-model.js',base))),Q=require(fileURLToPath(new URL('assets/lesson-1-2-questions.js',base)));
 const html=fs.readFileSync(new URL('1-2-defining-limits-and-using-limit-notation.html',base),'utf8'),runtime=fs.readFileSync(new URL('assets/lesson-1-2.js',base),'utf8');
 const near=(a,b,tol=1e-8)=>assert.ok(Math.abs(a-b)<=tol,`${a} should equal ${b}`);
 // Independently computed limiting values, including a negative target, zero, a constant and a jump.

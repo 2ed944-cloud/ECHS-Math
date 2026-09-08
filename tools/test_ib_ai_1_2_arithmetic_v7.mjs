@@ -1,10 +1,11 @@
+import {fileURLToPath} from 'node:url';
 /* Mathematical and curriculum contracts for the active arithmetic lesson. */
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
 import {createRequire} from 'node:module';
 const require=createRequire(import.meta.url),base=new URL('../lessons/ib-math-ai/unit-1/',import.meta.url);
-const M=require(new URL('data/lesson-1.2-arithmetic-model-v7.js',base).pathname),Q=require(new URL('data/lesson-1.2-arithmetic-questions-v7.js',base).pathname);
+const M=require(fileURLToPath(new URL('data/lesson-1.2-arithmetic-model-v7.js',base))),Q=require(fileURLToPath(new URL('data/lesson-1.2-arithmetic-questions-v7.js',base)));
 const near=(a,b)=>assert.ok(Math.abs(a-b)<1e-9,`${a} versus ${b}`);
 const direct=(a,d,lo,hi)=>Array.from({length:hi-lo+1},(_,i)=>a+(lo+i-1)*d).reduce((a,b)=>a+b,0);
 // Independent summation, including a single term, constant and decreasing sequences.

@@ -1,3 +1,4 @@
+import {fileURLToPath} from 'node:url';
 /* DOM-level interaction regression; no browser, network or production account is used. */
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -14,7 +15,7 @@ Object.defineProperty(dom.HTMLInputElement.prototype,'checked',{configurable:tru
 const storage=new Map();let account={id:'fixture-student-a'},failStorage=false;
 const eventTarget=new dom.EventTarget();
 const location={pathname:'/ECHS-Math/lessons/ap-calculus/unit-1/1-1-can-change-occur-at-an-instant.html',search:'?course=ap-calculus&lessonKey=fixture-key&accessKey=fixture-access',hash:''};
-const win={document,Calculus11:require(new URL('assets/lesson-1-1-model.js',base).pathname),Calculus11Questions:require(new URL('assets/lesson-1-1-questions.js',base).pathname),ECHSInstitution:{account:()=>account},katex:{render(tex,node){node.textContent=tex;}},addEventListener:eventTarget.addEventListener.bind(eventTarget),dispatchEvent:eventTarget.dispatchEvent.bind(eventTarget),print(){}};
+const win={document,Calculus11:require(fileURLToPath(new URL('assets/lesson-1-1-model.js',base))),Calculus11Questions:require(fileURLToPath(new URL('assets/lesson-1-1-questions.js',base))),ECHSInstitution:{account:()=>account},katex:{render(tex,node){node.textContent=tex;}},addEventListener:eventTarget.addEventListener.bind(eventTarget),dispatchEvent:eventTarget.dispatchEvent.bind(eventTarget),print(){}};
 const scheduled=new Map();let timer=0;
 const context=vm.createContext({window:win,document,location,history:{replaceState(_s,_t,url){const value=new URL(url,'https://example.test');assert.equal(value.search,location.search,'Navigation retains protected lesson context');location.hash=value.hash;}},localStorage:{getItem:key=>storage.get(key)||null,setItem(key,value){if(failStorage)throw Error('Storage denied');storage.set(key,value);}},setTimeout:fn=>{scheduled.set(++timer,fn);return timer;},clearTimeout:id=>scheduled.delete(id),console});
 vm.runInContext(fs.readFileSync(new URL('assets/lesson-1-1.js',base),'utf8'),context);

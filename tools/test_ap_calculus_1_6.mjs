@@ -1,6 +1,7 @@
+import {fileURLToPath} from 'node:url';
 /* Independently checked algebra, answer keys, source order, and equation rendering. */
 import assert from 'node:assert/strict';import fs from 'node:fs';import vm from 'node:vm';import {createRequire} from 'node:module';
-const require=createRequire(import.meta.url),base=new URL('../lessons/ap-calculus/unit-1/',import.meta.url),A=require(new URL('assets/lesson-1-6-model.js',base).pathname),Q=require(new URL('assets/lesson-1-6-questions.js',base).pathname);
+const require=createRequire(import.meta.url),base=new URL('../lessons/ap-calculus/unit-1/',import.meta.url),A=require(fileURLToPath(new URL('assets/lesson-1-6-model.js',base))),Q=require(fileURLToPath(new URL('assets/lesson-1-6-questions.js',base)));
 const near=(a,b,t=1e-8)=>assert.ok(Math.abs(a-b)<=t,`${a} should equal ${b}`);
 for(const [co,c,quot,rem] of [[[1,3,0,-3,-1],-1,[1,2,-2,-1],0],[[1,-5,3,9,-8],3,[1,-2,-3,0],-8],[[1,-5,3,9,0],3,[1,-2,-3,0],0]]){const d=A.synthetic(co,c);assert.deepEqual(d.quotient,quot);assert.equal(d.remainder,rem);for(const x of [-4,-1,0,1,3,5])near(A.polynomial(co,x),(x-c)*A.polynomial(d.quotient,x)+d.remainder);}
 for(const n of [1,2,3,5,7])for(const a of [-3,-1,0,2])for(const x of [-4,-.5,0,1,3]){near((x-a)*A.powerSum(x,a,n),x**n-a**n,1e-7);if(n>1)near(A.powerSum(a,a,n),n*a**(n-1));else assert.equal(A.powerSum(a,a,n),1);}

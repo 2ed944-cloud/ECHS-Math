@@ -1,8 +1,9 @@
+import {fileURLToPath} from 'node:url';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {createRequire} from 'node:module';
 const require=createRequire(import.meta.url),base=new URL('../lessons/ib-math-ai/unit-1/',import.meta.url);
-const M=require(new URL('data/lesson-1.4-finance-model-v8.js',base).pathname),Q=require(new URL('data/lesson-1.4-finance-questions-v8.js',base).pathname);
+const M=require(fileURLToPath(new URL('data/lesson-1.4-finance-model-v8.js',base))),Q=require(fileURLToPath(new URL('data/lesson-1.4-finance-questions-v8.js',base)));
 export const answers=['1.045','0.5','18','5202.00','202.00','5721.24','6575.42','5.00','3','4','0.82','14739.00','18750.00','10000.00','-1.89','0','-5000','4.75','48','18000','422.73','50.00','200.00','9800.00','401.00','0','1169.00','5010.00'];
 assert.equal(Q.questions.length,28);assert.equal(Q.frqs.length,24);
 Q.questions.forEach((q,i)=>{assert.ok(M.checkAnswer(answers[i],q).correct,q.id);assert.ok(!M.checkAnswer('9999999',q).correct,q.id);});
