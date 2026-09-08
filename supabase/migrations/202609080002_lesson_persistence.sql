@@ -20,7 +20,7 @@ begin
     if kind='uuid' then return text_value ~ '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$'; end if;
     if kind='id' then return length(text_value) between 1 and 128 and text_value ~ '^[A-Za-z][A-Za-z0-9_-]*$'; end if;
     if kind='scoped' then return length(text_value) between 1 and 160 and text_value ~ '^[A-Za-z0-9][A-Za-z0-9._:-]*$'; end if;
-    if length(text_value) not between 1 and case when kind='title' then 240 else 4000 end
+    if length(text_value) not between 1 and (case when kind='title' then 240 else 4000 end)
       or text_value !~ '[^[:space:]]' then return false; end if;
     if kind<>'tex' and text_value ~ '[<>]' then return false; end if;
     if kind='title' then return text_value !~ '[[:cntrl:]]'; end if;
@@ -106,7 +106,7 @@ begin
       or value->>'slug' !~ '^[a-z0-9]+(-[a-z0-9]+)*$' or not private.lesson_json_valid(value->'title','title',depth+1) then return false; end if;
     foreach field in array array['objectives','skills','slides'] loop
       if jsonb_typeof(value->field)<>'array' then return false; end if;
-      if jsonb_array_length(value->field) not between 1 and case when field='slides' then 120 else 40 end then return false; end if;
+      if jsonb_array_length(value->field) not between 1 and (case when field='slides' then 120 else 40 end) then return false; end if;
       for item in select * from jsonb_array_elements(value->field) loop
         if field='slides' then
           if not private.lesson_json_valid(item,'slide',depth+1) then return false; end if;
