@@ -1,0 +1,46 @@
+name: Lesson schema contracts
+
+on:
+  pull_request:
+    paths:
+      - "schemas/**"
+      - "js/lesson-runtime/**"
+      - "css/lesson-document.css"
+      - "tools/lesson-runtime/**"
+      - "tools/lesson-compatibility/**"
+      - "docs/codex/LESSON_SCHEMA_FOUNDATION.md"
+      - ".github/workflows/lesson-schema.yml"
+  push:
+    branches: [main]
+    paths:
+      - "schemas/**"
+      - "js/lesson-runtime/**"
+      - "css/lesson-document.css"
+      - "tools/lesson-runtime/**"
+      - "tools/lesson-compatibility/**"
+      - "docs/codex/LESSON_SCHEMA_FOUNDATION.md"
+      - ".github/workflows/lesson-schema.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lesson-schema-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  schema:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install exact schema build and math-test dependencies
+        run: npx --yes pnpm@11.19.0 --dir tools/lesson-runtime install --frozen-lockfile --ignore-scripts
+      - name: Check generated browser validator against the canonical schema
+        run: node tools/lesson-runtime/build-validator.mjs --check
+      - name: Validate version, safety, publication and math contracts
+        run: node tools/lesson-runtime/test-schema.mjs

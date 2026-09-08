@@ -1,0 +1,16 @@
+{
+  "name": "echs-lesson-runtime-build-tools",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Build/test-only dependencies; this tools directory is excluded from Pages.",
+  "scripts": {
+    "build": "node build-validator.mjs",
+    "check": "node build-validator.mjs --check",
+    "test": "node test-schema.mjs"
+  },
+  "dependencies": {
+    "ajv": "8.17.1",
+    "esbuild": "0.25.5",
+    "katex": "0.16.22"
+  }
+}
