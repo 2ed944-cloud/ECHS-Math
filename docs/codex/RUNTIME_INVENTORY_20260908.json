@@ -1,0 +1,2469 @@
+{
+  "schema_version": "echs.runtime-inventory.v1",
+  "repository": "2ed944-cloud/ECHS-Math",
+  "observed_main_sha": "fda45056e7b11e3f1d45bf96f7c8c36246d69e8d",
+  "inspected_at": "2026-09-08",
+  "observation": "Repository source audit, not a live database introspection",
+  "tracked_source_files": 28749,
+  "top_level_file_counts": {
+    "(root files)": 44,
+    ".deploy": 7,
+    ".echs-backups": 2025,
+    ".github": 64,
+    ".staging": 10,
+    "assets": 5,
+    "cloudflare-ai-worker": 3,
+    "config": 2,
+    "css": 37,
+    "curriculum": 2,
+    "data": 21,
+    "docs": 28,
+    "integration": 6,
+    "js": 32,
+    "lessons": 906,
+    "notes": 64,
+    "packages": 37,
+    "platform": 15,
+    "preview": 1,
+    "question-bank": 25036,
+    "readiness": 8,
+    "reports": 9,
+    "resources": 65,
+    "reviews": 10,
+    "supabase": 37,
+    "templates": 1,
+    "tools": 225,
+    "worksheets": 49
+  },
+  "canonical_runtime": [
+    {
+      "paths": [
+        "index.html",
+        "login.html",
+        "setup.html",
+        "offline.html",
+        "js/portal.js",
+        "js/portal-access.js",
+        "js/institution-client.js"
+      ],
+      "role": "Static portal, authentication and school-account API client"
+    },
+    {
+      "paths": [
+        "data/courses.js",
+        "data/ap-calculus-update.js",
+        "data/ap-precalculus-update.js",
+        "data/ib-math-ai-unit-1-update.js"
+      ],
+      "role": "Base catalogue followed by ordered course overlays; inspect index_script_order for all loaded overlays"
+    },
+    {
+      "paths": [
+        "lessons/",
+        "notes/",
+        "worksheets/",
+        "resources/"
+      ],
+      "role": "Canonical instructional resources; active lesson URLs are selected by the catalogue, not by newest filename"
+    },
+    {
+      "paths": [
+        "question-bank/practice.html",
+        "question-bank/js/",
+        "question-bank/official/",
+        "question-bank/private-sources/"
+      ],
+      "role": "Practice, canonical audited provider, private-provider metadata/tooling; rights boundaries remain distinct"
+    },
+    {
+      "paths": [
+        "supabase/functions/",
+        "supabase/migrations/",
+        "config/institution.json"
+      ],
+      "role": "Institutional API and database source; backend excluded from Pages"
+    },
+    {
+      "paths": [
+        "sw.js",
+        "manifest.json"
+      ],
+      "role": "Offline/cache policy and PWA metadata"
+    }
+  ],
+  "noncanonical_copies": [
+    {
+      "paths": [
+        ".echs-backups/",
+        "*.bak"
+      ],
+      "role": "Historical rollback copies",
+      "pages_policy": "Explicitly excluded"
+    },
+    {
+      "paths": [
+        "integration/"
+      ],
+      "role": "Historical integration instructions/manifests, not active catalogue",
+      "pages_policy": "Explicitly excluded"
+    },
+    {
+      "paths": [
+        ".staging/",
+        "packages/"
+      ],
+      "role": "Materialization/staging source; canonical lessons are elsewhere",
+      "pages_policy": "No explicit exclusion in current rsync; artifact inclusion must not be confused with canonical runtime"
+    },
+    {
+      "paths": [
+        ".deploy/"
+      ],
+      "role": "Historical deployment retry markers",
+      "pages_policy": "No explicit exclusion in current rsync"
+    },
+    {
+      "paths": [
+        "preview.html",
+        "preview/courses-preview.js"
+      ],
+      "role": "Separate preview catalogue; production index does not load it",
+      "pages_policy": "Included"
+    },
+    {
+      "paths": [
+        "reviews/"
+      ],
+      "role": "Review artifacts",
+      "pages_policy": "Explicitly excluded"
+    }
+  ],
+  "index_script_order": [
+    "data/courses.js",
+    "data/ap-calculus-update.js",
+    "data/ap-precalculus-update.js?v=20260726-phase2",
+    "data/ap-precalculus-unit-3-update.js?v=20260726-unit3",
+    "question-bank/js/learning-system.js?v=20260830-lesson-visibility1",
+    "js/institution-client.js?v=20260904-platform",
+    "js/portal-access.js?v=20260830-lesson-visibility1",
+    "data/ap-precalculus-unit-4-update.js",
+    "data/grade-9-10-pathways.js?v=20260826-pathways",
+    "data/ib-math-ai-unit-1-update.js?v=20260729-unit1",
+    "data/ib-math-ai-unit-2-update.js?v=20260802-unit2",
+    "data/ib-math-ai-unit-4-update.js?v=20260802-unit4",
+    "data/ib-math-ai-unit-5-update.js?v=20260803-unit5-v2",
+    "data/ib-math-ai-unit-6-update.js?v=20260808-unit6-v1",
+    "js/portal.js?v=20260904-platform",
+    "js/lesson-learning-bridge.js?v=20260904-platform",
+    "js/lesson-portal-overhaul.js?v=20260802-calm2-20260904",
+    "js/platform-foundation.js?v=20260904-platform",
+    "js/institution-portal.js?v=20260727-pathway",
+    "js/visible-copy-guard-v5.js?v=20260807-v5"
+  ],
+  "deployment": {
+    "workflow": ".github/workflows/deploy-pages.yml",
+    "production_branch": "main",
+    "public_url": "https://2ed944-cloud.github.io/ECHS-Math/",
+    "flow": [
+      "Exact checkout",
+      "Existing regression and math/DOM checks",
+      "rsync source into _pages",
+      "Inject lesson access guard",
+      "Fingerprint institution assets by commit",
+      "Write deployment.json",
+      "Validate exact artifact",
+      "Upload and deploy same artifact",
+      "Verify live commit and protected assets"
+    ],
+    "artifact_exclusions": [
+      ".git/",
+      "_pages/",
+      ".echs-backups/",
+      "node_modules/",
+      "supabase/.temp/",
+      ".github/",
+      "tools/",
+      "supabase/",
+      "cloudflare-ai-worker/",
+      "integration/",
+      "reviews/",
+      "question-bank/official/tools/",
+      "question-bank/official/reports/",
+      "question-bank/official/admin/reports/",
+      "question-bank/official/admin/tools/",
+      "question-bank/prac.html",
+      "*.bak",
+      "*.bat",
+      "QA_REPORT.md"
+    ],
+    "pr_behavior": "Build/validate only; deploy skipped",
+    "concurrency": "Production and PR groups separate; newer main deployment may supersede older main deployment",
+    "backend_workflow": ".github/workflows/deploy-institution-backend.yml",
+    "backend_trigger": "Migrations/functions merged to main automatically apply linked migrations and redeploy functions; manual dispatch also exists",
+    "rollback": "Revert a reviewed change through main; never rewrite deployment history or delete legacy source"
+  },
+  "supabase_functions": [
+    "supabase/functions/account-api/index.ts",
+    "supabase/functions/institution-api/index.ts",
+    "supabase/functions/learning-sync/index.ts",
+    "supabase/functions/login-diagnostics/index.ts",
+    "supabase/functions/mastery-evidence/index.ts",
+    "supabase/functions/practice-bank-api/index.ts",
+    "supabase/functions/private-bank-api/index.ts",
+    "supabase/functions/private-bank-purge-api/index.ts",
+    "supabase/functions/readiness-api/index.ts",
+    "supabase/functions/setup-api/index.ts",
+    "supabase/functions/upload-manager-api/index.ts"
+  ],
+  "supabase_migrations": [
+    "supabase/migrations/202607260001_institutional_platform.sql",
+    "supabase/migrations/202607260002_bootstrap_function_repair.sql",
+    "supabase/migrations/202607260003_login_authentication_repair.sql",
+    "supabase/migrations/202607270001_session_lookup_repair.sql",
+    "supabase/migrations/202607272001_mastery_evidence_foundation.sql",
+    "supabase/migrations/202607272002_mastery_authority_guard.sql",
+    "supabase/migrations/202607272003_attempt_trust_guard.sql",
+    "supabase/migrations/202607272004_atomic_skill_mapping.sql",
+    "supabase/migrations/202607272101_private_bank_foundation.sql",
+    "supabase/migrations/202607272102_private_attempt_trust_bridge.sql",
+    "supabase/migrations/202607272201_teacher_upload_manager.sql",
+    "supabase/migrations/202607282330_verified_private_bank_import.sql",
+    "supabase/migrations/202607290001_raise_teacher_upload_bucket_limit.sql",
+    "supabase/migrations/202607291900_resumable_private_bank_course_purge.sql",
+    "supabase/migrations/202607300020_sync_private_bank_mapping_indexes.sql",
+    "supabase/migrations/202607301500_private_bank_practice_inventory.sql",
+    "supabase/migrations/202607312230_restore_ib_current_bank_practice_visibility.sql",
+    "supabase/migrations/202608020002_assignment_routes_and_timetables.sql",
+    "supabase/migrations/202608300001_lesson_visibility_progression.sql",
+    "supabase/migrations/202609050100_ib_readiness_pathway_engine.sql"
+  ],
+  "critical_tests": [
+    "tools/test_platform_resilience.mjs",
+    "tools/test_portal_workspace.mjs",
+    "tools/test_login_recovery.mjs",
+    "tools/test_practice_interactions.mjs",
+    "tools/test_institution_identity_mount.mjs",
+    "tools/test_learning_system.mjs",
+    "tools/test_lesson_visibility_progression.mjs",
+    "tools/test_practice_course_isolation.mjs",
+    "tools/test_student_single_bank.mjs",
+    "tools/test_learning_access_contract.py",
+    "tools/test_lesson_visibility_contract.py",
+    "tools/validate_mastery_foundation.py",
+    "tools/validate_mastery_guards.py",
+    "tools/validate_private_bank_foundation.py",
+    "tools/validate_upload_manager.py",
+    "tools/validate_supabase_migration_versions.py",
+    "tools/validate_local_links.py",
+    "tools/validate_pages_artifact.py",
+    "question-bank/official/tools/validate_release.py",
+    "tools/test_ap_calculus_1_1.mjs",
+    "tools/test_ap_calculus_1_1_ui.mjs",
+    "tools/test_ap_calculus_unit1_continuation.mjs",
+    "tools/test_ap_calculus_unit1_continuation_ui.mjs",
+    "tools/test_ib_ai_1_3_definitive_v6.py",
+    "tools/test_ib_lesson_platform_integration.py",
+    "supabase/functions/readiness-api/readiness-engine.test.mjs"
+  ],
+  "protected_source_hashes": {
+    "index.html": "e2bfc2fe49b0499e85e04954f305186129042295f0a5eaeeaf9c658ef19283cb",
+    "data/courses.js": "2e47966085306e025c9dd8661882986adc3c695b56994887b2044a8408cf4aad",
+    "js/portal-access.js": "8b1dbcd1beb68219340c196e6f0bda3471c0bbe11a55228ee83fc102c63931a5",
+    "js/lesson-access-guard.js": "71b8afb5f48d07f6288d9181f18287d5ae24423b010919a35d4bdffb6bc27bbd"
+  },
+  "backend_audit": {
+    "schema": "echs-foundation-backend-audit",
+    "schemaVersion": 1,
+    "auditDate": "2026-09-08",
+    "task": "ECHS-001",
+    "repoRoot": "C:/Users/mabughuwaleh/Documents/Codex/2026-09-07/i-2/work/foundations",
+    "snapshot": {
+      "commit": "fda45056e7b11e3f1d45bf96f7c8c36246d69e8d",
+      "commitBasis": "Parent supplied exact main archive; source files independently inspected, no .git verification in archive"
+    },
+    "scope": {
+      "sourceOnly": true,
+      "sourceEdits": false,
+      "productionCalls": false,
+      "testsExecuted": [
+        {
+          "command": "node work/reproduce-mastery-bridge.cjs",
+          "result": "PASS: expected baseline defects reproduced; canonical queue control passed",
+          "network": "All fetches mocked; no external calls",
+          "artifact": "work/mastery-bridge-reproduction.json"
+        }
+      ],
+      "requiredInstructionsRead": [
+        "work/development-system/ECHS_Codex_Development_System_2026-09-07/AGENTS.md",
+        "work/development-system/ECHS_Codex_Development_System_2026-09-07/docs/codex/BASELINE_AUDIT_20260907.md",
+        "work/development-system/ECHS_Codex_Development_System_2026-09-07/docs/codex/ARCHITECTURE_MIGRATION.md"
+      ]
+    },
+    "canonical": {
+      "backend": [
+        "supabase/functions",
+        "supabase/migrations",
+        "supabase/config.toml"
+      ],
+      "browser": [
+        "js/institution-client.js",
+        "js/institution-mastery-evidence.js",
+        "js/lesson-access-guard.js",
+        "js/lesson-learning-bridge.js",
+        "question-bank/js/learning-system.js"
+      ],
+      "noncanonical": [
+        {
+          "path": ".echs-backups/ap-v5-20260724-230839",
+          "reason": "Historical static/AP-bank backup, not backend authority; deploy Pages excludes backup directory."
+        },
+        {
+          "path": ".staging/ib-ai-3-3-v5",
+          "reason": "Materialization chunks, not runtime backend."
+        },
+        {
+          "path": "packages/ib-unit5-v2",
+          "reason": "Release bundle/install assets, not schema authority."
+        },
+        {
+          "path": "integration",
+          "reason": "Worksheet/portal integration references."
+        },
+        {
+          "path": ".deploy",
+          "reason": "Deployment support markers."
+        }
+      ]
+    },
+    "edgeFunctions": [
+      {
+        "name": "account-api",
+        "file": "supabase/functions/account-api/index.ts",
+        "purpose": "Custom username/password login, session creation/revocation, account and parent-link administration.",
+        "verifyJwt": false,
+        "anchor": {
+          "file": "supabase/functions/account-api/index.ts",
+          "line": 136
+        }
+      },
+      {
+        "name": "institution-api",
+        "file": "supabase/functions/institution-api/index.ts",
+        "purpose": "Class membership, role-scoped dashboards, assignments/timetables, lesson catalog/release/access, compatibility learning sync.",
+        "verifyJwt": false,
+        "anchor": {
+          "file": "supabase/functions/institution-api/index.ts",
+          "line": 67
+        }
+      },
+      {
+        "name": "learning-sync",
+        "file": "supabase/functions/learning-sync/index.ts",
+        "purpose": "Compatibility student attempt/session/review/completion upload; rejects client mastery by ignoring it; no mastery recomputation.",
+        "verifyJwt": false,
+        "anchor": {
+          "file": "supabase/functions/learning-sync/index.ts",
+          "line": 22
+        }
+      },
+      {
+        "name": "mastery-evidence",
+        "file": "supabase/functions/mastery-evidence/index.ts",
+        "purpose": "Student evidence ingestion and deterministic server mastery aggregation; staff class evidence.",
+        "verifyJwt": false,
+        "anchor": {
+          "file": "supabase/functions/mastery-evidence/index.ts",
+          "line": 98
+        }
+      },
+      {
+        "name": "private-bank-api",
+        "file": "supabase/functions/private-bank-api/index.ts",
+        "purpose": "Private package administration and older student question/detail/media routes.",
+        "verifyJwt": false,
+        "anchor": {
+          "file": "supabase/functions/private-bank-api/index.ts",
+          "line": 224
+        }
+      },
+      {
+        "name": "practice-bank-api",
+        "file": "supabase/functions/practice-bank-api/index.ts",
+        "purpose": "Current private inventory/questions/media with assigned-course and dedicated-course filters.",
+        "verifyJwt": false,
+        "anchor": {
+          "file": "supabase/functions/practice-bank-api/index.ts",
+          "line": 83
+        }
+      },
+      {
+        "name": "private-bank-purge-api",
+        "file": "supabase/functions/private-bank-purge-api/index.ts",
+        "purpose": "Administrator-only resumable private-bank purge jobs; destructive endpoints must retain authorization.",
+        "verifyJwt": false,
+        "anchor": {
+          "file": "supabase/functions/private-bank-purge-api/index.ts",
+          "line": 473
+        }
+      },
+      {
+        "name": "upload-manager-api",
+        "file": "supabase/functions/upload-manager-api/index.ts",
+        "purpose": "Teacher/admin private ZIP uploads and course-release staging, completion, listing/download; background processing workflow.",
+        "verifyJwt": false,
+        "anchor": {
+          "file": "supabase/functions/upload-manager-api/index.ts",
+          "line": 28
+        }
+      },
+      {
+        "name": "setup-api",
+        "file": "supabase/functions/setup-api/index.ts",
+        "purpose": "Bootstrap-secret-protected setup and secret verification, plus health; not ordinary user session auth.",
+        "verifyJwt": false,
+        "anchor": {
+          "file": "supabase/functions/setup-api/index.ts",
+          "line": 14
+        }
+      },
+      {
+        "name": "login-diagnostics",
+        "file": "supabase/functions/login-diagnostics/index.ts",
+        "purpose": "Bootstrap-secret-protected transactional login/session self-test; do not invoke against production in an audit.",
+        "verifyJwt": false,
+        "anchor": {
+          "file": "supabase/functions/login-diagnostics/index.ts",
+          "line": 5
+        }
+      },
+      {
+        "name": "readiness-api",
+        "file": "supabase/functions/readiness-api/index.ts",
+        "purpose": "Role-scoped readiness schools, evidence imports, diagnostic/model/pathway/snapshot/intervention/outcome APIs.",
+        "verifyJwt": false,
+        "anchor": {
+          "file": "supabase/functions/readiness-api/index.ts",
+          "line": 80
+        }
+      }
+    ],
+    "migrations": [
+      {
+        "file": "supabase/migrations/202607260001_institutional_platform.sql",
+        "sha256": "d795417c79539f0aa0fdf7d2c59165654458b3b8c85ff1da465645e4052c6e00",
+        "createsTables": [
+          {
+            "table": "public.organizations",
+            "line": 10
+          },
+          {
+            "table": "public.accounts",
+            "line": 25
+          },
+          {
+            "table": "private.account_credentials",
+            "line": 51
+          },
+          {
+            "table": "private.sessions",
+            "line": 61
+          },
+          {
+            "table": "public.classes",
+            "line": 76
+          },
+          {
+            "table": "public.class_memberships",
+            "line": 90
+          },
+          {
+            "table": "public.parent_student_links",
+            "line": 99
+          },
+          {
+            "table": "public.assignments",
+            "line": 107
+          },
+          {
+            "table": "public.assignment_results",
+            "line": 124
+          },
+          {
+            "table": "public.learning_attempts",
+            "line": 139
+          },
+          {
+            "table": "public.learning_sessions",
+            "line": 161
+          },
+          {
+            "table": "public.mastery_records",
+            "line": 180
+          },
+          {
+            "table": "public.review_items",
+            "line": 197
+          },
+          {
+            "table": "public.account_audit_log",
+            "line": 214
+          }
+        ],
+        "definesFunctions": [
+          {
+            "function": "private.password_is_strong",
+            "line": 242
+          },
+          {
+            "function": "private.normalise_username",
+            "line": 255
+          },
+          {
+            "function": "public.api_bootstrap_admin",
+            "line": 264
+          },
+          {
+            "function": "public.api_create_account",
+            "line": 316
+          },
+          {
+            "function": "public.api_verify_login",
+            "line": 381
+          },
+          {
+            "function": "public.api_create_session",
+            "line": 454
+          },
+          {
+            "function": "public.api_session_lookup",
+            "line": 478
+          },
+          {
+            "function": "public.api_revoke_session",
+            "line": 519
+          },
+          {
+            "function": "public.api_reset_password",
+            "line": 529
+          },
+          {
+            "function": "public.api_set_account_status",
+            "line": 599
+          }
+        ]
+      },
+      {
+        "file": "supabase/migrations/202607260002_bootstrap_function_repair.sql",
+        "sha256": "5753b6408a824fb99d76348f2f09831d6e8026dbe0b1e89d7763594710997613",
+        "createsTables": [],
+        "definesFunctions": [
+          {
+            "function": "public.api_bootstrap_admin",
+            "line": 7
+          }
+        ]
+      },
+      {
+        "file": "supabase/migrations/202607260003_login_authentication_repair.sql",
+        "sha256": "2a4ce577fd8c31dd55192330cfa24a13708d0bbe5d77fdd6d1271adcaff14a11",
+        "createsTables": [],
+        "definesFunctions": [
+          {
+            "function": "public.api_verify_login",
+            "line": 10
+          },
+          {
+            "function": "public.api_login_self_test",
+            "line": 118
+          }
+        ]
+      },
+      {
+        "file": "supabase/migrations/202607270001_session_lookup_repair.sql",
+        "sha256": "b7742cfc9e9154c7ade12005f87215602422b54c99cebd9973b0277c45547c13",
+        "createsTables": [],
+        "definesFunctions": [
+          {
+            "function": "public.api_session_lookup",
+            "line": 11
+          },
+          {
+            "function": "public.api_login_self_test",
+            "line": 73
+          }
+        ]
+      },
+      {
+        "file": "supabase/migrations/202607272001_mastery_evidence_foundation.sql",
+        "sha256": "434d31d932a66c91a14c27ed2f13533dcd30b4b31cb6e8642e23fe9fc024c49e",
+        "createsTables": [
+          {
+            "table": "public.skill_definitions",
+            "line": 4
+          },
+          {
+            "table": "public.question_trust_records",
+            "line": 25
+          }
+        ],
+        "definesFunctions": []
+      },
+      {
+        "file": "supabase/migrations/202607272002_mastery_authority_guard.sql",
+        "sha256": "7d1e8b5229b64bab2d52ab6da0f3fb1b5304dc4cd41a298c203caa3df74cd683",
+        "createsTables": [],
+        "definesFunctions": [
+          {
+            "function": "private.enforce_mastery_authority",
+            "line": 10
+          }
+        ]
+      },
+      {
+        "file": "supabase/migrations/202607272003_attempt_trust_guard.sql",
+        "sha256": "87eab47e172a34ad4e64d502c7f4add618631d598e5f147131bdab446d5fe689",
+        "createsTables": [],
+        "definesFunctions": [
+          {
+            "function": "private.apply_question_trust_to_attempt",
+            "line": 3
+          }
+        ]
+      },
+      {
+        "file": "supabase/migrations/202607272004_atomic_skill_mapping.sql",
+        "sha256": "f05a8ffa3f78c6d4dce1a79c48fa15964047d69147e83a2648ab98d84982fc08",
+        "createsTables": [],
+        "definesFunctions": [
+          {
+            "function": "private.apply_atomic_skill_to_attempt",
+            "line": 4
+          }
+        ]
+      },
+      {
+        "file": "supabase/migrations/202607272101_private_bank_foundation.sql",
+        "sha256": "2d6614d54e5867bb8a1765b17343f4b564e760e132f3b97e05db1d8a0aee2dc8",
+        "createsTables": [
+          {
+            "table": "public.private_bank_packages",
+            "line": 6
+          },
+          {
+            "table": "public.private_bank_questions",
+            "line": 32
+          },
+          {
+            "table": "public.private_bank_media_objects",
+            "line": 61
+          },
+          {
+            "table": "public.private_bank_import_runs",
+            "line": 74
+          }
+        ],
+        "definesFunctions": [
+          {
+            "function": "private.enforce_private_bank_question_release",
+            "line": 104
+          }
+        ]
+      },
+      {
+        "file": "supabase/migrations/202607272102_private_attempt_trust_bridge.sql",
+        "sha256": "0056dc1cd5f8b5468b949a20aa5e3471e9febb054603dbda3da101963f6f6214",
+        "createsTables": [],
+        "definesFunctions": [
+          {
+            "function": "private.apply_question_trust_to_attempt",
+            "line": 4
+          }
+        ]
+      },
+      {
+        "file": "supabase/migrations/202607272201_teacher_upload_manager.sql",
+        "sha256": "7a1e472e7c3feab091e6d0c7c3b54e5b7c4bcc5b3a4cb6e37a78ee775fc93ace",
+        "createsTables": [
+          {
+            "table": "public.teacher_upload_requests",
+            "line": 3
+          }
+        ],
+        "definesFunctions": []
+      },
+      {
+        "file": "supabase/migrations/202607282330_verified_private_bank_import.sql",
+        "sha256": "877681c751b5f55bc415f8534b4360c0fc34cf8a8086f60e8e63b4cbad66e831",
+        "createsTables": [],
+        "definesFunctions": [
+          {
+            "function": "private.enforce_private_bank_question_release",
+            "line": 30
+          }
+        ]
+      },
+      {
+        "file": "supabase/migrations/202607290001_raise_teacher_upload_bucket_limit.sql",
+        "sha256": "6af0fb5f637ad309d0c8a4e9647650e9b5e4f7fbf9af6ad2bb6d9586cf6ddd51",
+        "createsTables": [],
+        "definesFunctions": []
+      },
+      {
+        "file": "supabase/migrations/202607291900_resumable_private_bank_course_purge.sql",
+        "sha256": "9a7083fd9f3cf30fe036ad4ff5a5e2e6298de5f6383f9287d1ae32e7566b0910",
+        "createsTables": [
+          {
+            "table": "public.private_bank_course_purge_jobs",
+            "line": 8
+          }
+        ],
+        "definesFunctions": [
+          {
+            "function": "private.clean_private_bank_payload_for_course",
+            "line": 54
+          },
+          {
+            "function": "public.purge_private_bank_course_mappings_batch",
+            "line": 112
+          },
+          {
+            "function": "public.delete_private_bank_questions_batch",
+            "line": 193
+          }
+        ]
+      },
+      {
+        "file": "supabase/migrations/202607300020_sync_private_bank_mapping_indexes.sql",
+        "sha256": "d1107fb8c6464cef5fcb9b445d46fdc5c1f1672c644a2749d8e4962976b32e71",
+        "createsTables": [],
+        "definesFunctions": [
+          {
+            "function": "public.sync_private_bank_mapping_indexes",
+            "line": 5
+          }
+        ]
+      },
+      {
+        "file": "supabase/migrations/202607301500_private_bank_practice_inventory.sql",
+        "sha256": "1a74d46d17cfc028f03f8fa79973e2c5abeb80283497bfb5d76c55ff3b098687",
+        "createsTables": [],
+        "definesFunctions": [
+          {
+            "function": "public.private_bank_practice_inventory",
+            "line": 4
+          }
+        ]
+      },
+      {
+        "file": "supabase/migrations/202607312230_restore_ib_current_bank_practice_visibility.sql",
+        "sha256": "a56066e8f979eca033dfe0c54e5f46335ed2479602764bd4544c13e06cdd3d39",
+        "createsTables": [],
+        "definesFunctions": [
+          {
+            "function": "public.sync_private_bank_mapping_indexes",
+            "line": 8
+          },
+          {
+            "function": "public.private_bank_practice_inventory",
+            "line": 98
+          }
+        ]
+      },
+      {
+        "file": "supabase/migrations/202608020002_assignment_routes_and_timetables.sql",
+        "sha256": "51987bffa02ad10993f67bf8ebc819fa62c09f2a38440aff413bccf3c81a4025",
+        "createsTables": [
+          {
+            "table": "public.timetable_entries",
+            "line": 4
+          }
+        ],
+        "definesFunctions": [
+          {
+            "function": "public.api_replace_timetable",
+            "line": 32
+          }
+        ]
+      },
+      {
+        "file": "supabase/migrations/202608300001_lesson_visibility_progression.sql",
+        "sha256": "26c8daec8bf8cdd451b350e99b03273e056d0509949b673639810481d712b627",
+        "createsTables": [
+          {
+            "table": "public.lesson_catalog",
+            "line": 2
+          },
+          {
+            "table": "public.lesson_access_overrides",
+            "line": 20
+          },
+          {
+            "table": "public.lesson_completions",
+            "line": 33
+          }
+        ],
+        "definesFunctions": []
+      },
+      {
+        "file": "supabase/migrations/202609050100_ib_readiness_pathway_engine.sql",
+        "sha256": "53df739f2b0201936e03eff00a93f7e1c58d020d264e94a37ca286ace4e96650",
+        "createsTables": [
+          {
+            "table": "public.readiness_schools",
+            "line": 5
+          },
+          {
+            "table": "public.readiness_student_schools",
+            "line": 19
+          },
+          {
+            "table": "public.readiness_models",
+            "line": 34
+          },
+          {
+            "table": "public.readiness_import_batches",
+            "line": 52
+          },
+          {
+            "table": "public.map_assessments",
+            "line": 68
+          },
+          {
+            "table": "public.myp_math_evidence",
+            "line": 92
+          },
+          {
+            "table": "public.readiness_diagnostic_attempts",
+            "line": 115
+          },
+          {
+            "table": "public.readiness_snapshots",
+            "line": 133
+          },
+          {
+            "table": "public.readiness_interventions",
+            "line": 158
+          },
+          {
+            "table": "public.readiness_preferences",
+            "line": 182
+          },
+          {
+            "table": "public.readiness_outcomes",
+            "line": 193
+          }
+        ],
+        "definesFunctions": []
+      }
+    ],
+    "identity": {
+      "accountPrimaryKey": "public.accounts.id uuid",
+      "organizationPrimaryKey": "public.organizations.id uuid",
+      "classPrimaryKey": "public.classes.id uuid",
+      "roleValues": [
+        "admin",
+        "teacher",
+        "student",
+        "parent"
+      ],
+      "supabaseAuthIdentity": false,
+      "cohortTables": [],
+      "curriculumVersionTables": [],
+      "courseVersionTables": [],
+      "existingYearFields": [
+        "public.classes.academic_year text nullable",
+        "public.readiness_student_schools.academic_year text not null",
+        "public.readiness_outcomes.academic_year text not null"
+      ]
+    },
+    "foreignKeys": [
+      {
+        "table": "public.accounts",
+        "column": "organization_id",
+        "type": "uuid",
+        "target": "public.organizations(id)",
+        "source": {
+          "file": "supabase/migrations/202607260001_institutional_platform.sql",
+          "line": 27
+        },
+        "constraintNameExplicitInSql": false,
+        "expectedPostgresConstraintName": "accounts_organization_id_fkey",
+        "deleteAction": "CASCADE",
+        "liveCatalogVerified": false
+      },
+      {
+        "table": "public.accounts",
+        "column": "created_by",
+        "type": "uuid",
+        "target": "public.accounts(id)",
+        "source": {
+          "file": "supabase/migrations/202607260001_institutional_platform.sql",
+          "line": 37
+        },
+        "constraintNameExplicitInSql": false,
+        "expectedPostgresConstraintName": "accounts_created_by_fkey",
+        "deleteAction": "SET NULL",
+        "liveCatalogVerified": false
+      },
+      {
+        "table": "public.classes",
+        "column": "organization_id",
+        "type": "uuid",
+        "target": "public.organizations(id)",
+        "source": {
+          "file": "supabase/migrations/202607260001_institutional_platform.sql",
+          "line": 78
+        },
+        "constraintNameExplicitInSql": false,
+        "expectedPostgresConstraintName": "classes_organization_id_fkey",
+        "deleteAction": "CASCADE",
+        "liveCatalogVerified": false
+      },
+      {
+        "table": "public.classes",
+        "column": "created_by",
+        "type": "uuid",
+        "target": "public.accounts(id)",
+        "source": {
+          "file": "supabase/migrations/202607260001_institutional_platform.sql",
+          "line": 84
+        },
+        "constraintNameExplicitInSql": false,
+        "expectedPostgresConstraintName": "classes_created_by_fkey",
+        "deleteAction": "NO ACTION",
+        "liveCatalogVerified": false
+      },
+      {
+        "table": "public.class_memberships",
+        "column": "class_id",
+        "type": "uuid",
+        "target": "public.classes(id)",
+        "source": {
+          "file": "supabase/migrations/202607260001_institutional_platform.sql",
+          "line": 91
+        },
+        "constraintNameExplicitInSql": false,
+        "expectedPostgresConstraintName": "class_memberships_class_id_fkey",
+        "deleteAction": "CASCADE",
+        "liveCatalogVerified": false
+      },
+      {
+        "table": "public.class_memberships",
+        "column": "account_id",
+        "type": "uuid",
+        "target": "public.accounts(id)",
+        "source": {
+          "file": "supabase/migrations/202607260001_institutional_platform.sql",
+          "line": 92
+        },
+        "constraintNameExplicitInSql": false,
+        "expectedPostgresConstraintName": "class_memberships_account_id_fkey",
+        "deleteAction": "CASCADE",
+        "liveCatalogVerified": false
+      },
+      {
+        "table": "public.assignments",
+        "column": "organization_id",
+        "type": "uuid",
+        "target": "public.organizations(id)",
+        "source": {
+          "file": "supabase/migrations/202607260001_institutional_platform.sql",
+          "line": 109
+        },
+        "constraintNameExplicitInSql": false,
+        "expectedPostgresConstraintName": "assignments_organization_id_fkey",
+        "deleteAction": "CASCADE",
+        "liveCatalogVerified": false
+      },
+      {
+        "table": "public.assignments",
+        "column": "class_id",
+        "type": "uuid",
+        "target": "public.classes(id)",
+        "source": {
+          "file": "supabase/migrations/202607260001_institutional_platform.sql",
+          "line": 110
+        },
+        "constraintNameExplicitInSql": false,
+        "expectedPostgresConstraintName": "assignments_class_id_fkey",
+        "deleteAction": "CASCADE",
+        "liveCatalogVerified": false
+      }
+    ],
+    "futureAssignmentContract": {
+      "status": "Design requirements, not implemented schema",
+      "existingTargetTypes": {
+        "organization_id": "uuid -> public.organizations(id)",
+        "class_id": "uuid -> public.classes(id)",
+        "account_id": "uuid -> public.accounts(id)",
+        "course_version_id": "No existing target; proposed immutable course_versions.id uuid"
+      },
+      "tenantIntegrity": "Single organization_id FK plus class_id FK is insufficient to prove same tenant. Add an explicit tenant-consistent composite candidate key/FK or equivalent validated relation. Existing classes has no UNIQUE(organization_id,id) declaration.",
+      "constraintNaming": "Existing core references are unnamed in source; listed PostgreSQL names are expected autogenerated names, not live verified. New constraints must be explicitly named for repeatable testing and forward rollback.",
+      "proposedTests": [
+        "organization/class tenant mismatch rejected",
+        "course_version belongs to intended organization/global scope and curriculum version",
+        "duplicate active class/cohort assignment rule is explicit",
+        "school/year or alias never implies curriculum version",
+        "assignment transition/draft/archive/publication rules",
+        "deleting referenced version cannot silently erase learning evidence",
+        "anon/authenticated/PUBLIC read and write denied",
+        "service role can perform only intended isolated table operations",
+        "full migration chain applies on fresh PostgreSQL 15",
+        "no runtime/query behavior change before explicit feature flag and migration adapter"
+      ]
+    },
+    "findings": [
+      {
+        "id": "BE-01",
+        "severity": "architecture",
+        "title": "Identity is custom school accounts, not Supabase Auth",
+        "finding": "public.accounts.id and organization_id are UUIDs. Opaque bearer tokens are SHA-256 hashed and checked by service-role api_session_lookup against private.sessions. All 11 configured Edge Functions disable gateway JWT verification intentionally; ordinary account APIs must perform their own lookup/role checks. setup-api and login-diagnostics instead use a bootstrap secret.",
+        "sources": [
+          {
+            "file": "supabase/migrations/202607260001_institutional_platform.sql",
+            "line": 25
+          },
+          {
+            "file": "supabase/migrations/202607260001_institutional_platform.sql",
+            "line": 61
+          },
+          {
+            "file": "supabase/functions/account-api/index.ts",
+            "line": 136
+          },
+          {
+            "file": "supabase/migrations/202607270001_session_lookup_repair.sql",
+            "line": 11
+          },
+          {
+            "file": "supabase/config.toml",
+            "line": 14
+          }
+        ],
+        "action": "Extend existing account identities/capabilities. Do not use auth.uid() = accounts.id or introduce a parallel authentication system."
+      },
+      {
+        "id": "BE-02",
+        "severity": "architecture",
+        "title": "RLS is deny-direct with Edge service-role authorization",
+        "finding": "Foundational and newer protected tables enable RLS; explicit anon/authenticated revokes cover foundations, mastery, private banks/uploads and readiness. No CREATE POLICY or auth.uid() use was found in canonical migrations. Lesson visibility and timetable migrations enable RLS but do not independently restate table grants/revokes. Effective deployed grants were not queried.",
+        "sources": [
+          {
+            "file": "supabase/migrations/202607260001_institutional_platform.sql",
+            "line": 225
+          },
+          {
+            "file": "supabase/migrations/202607260001_institutional_platform.sql",
+            "line": 238
+          },
+          {
+            "file": "supabase/migrations/202608300001_lesson_visibility_progression.sql",
+            "line": 50
+          },
+          {
+            "file": "supabase/migrations/202609050100_ib_readiness_pathway_engine.sql",
+            "line": 226
+          }
+        ],
+        "action": "New foundation tables must explicitly enable RLS and revoke PUBLIC/anon/authenticated access and RPC execution. Grant only service_role. Add executable isolated database role tests; source-marker checks alone are insufficient."
+      },
+      {
+        "id": "BE-03",
+        "severity": "high",
+        "title": "Current identifiers collapse curriculum versions and AB/BC",
+        "finding": "Class course_key/academic_year are text. canonicalCourseKey collapses AP AB and BC into ap-calculus. lesson_catalog keys are (organization_id,access_key), completions (account_id,access_key), mastery (account_id,skill_key), and trust (question_id). None identifies curriculum or lesson content version. readiness_models has its own integer model version and diagnostic_version is text; neither is a curriculum version.",
+        "sources": [
+          {
+            "file": "supabase/migrations/202607260001_institutional_platform.sql",
+            "line": 76
+          },
+          {
+            "file": "supabase/migrations/202607260001_institutional_platform.sql",
+            "line": 180
+          },
+          {
+            "file": "supabase/functions/institution-api/lesson-access-policy.js",
+            "line": 1
+          },
+          {
+            "file": "supabase/migrations/202608300001_lesson_visibility_progression.sql",
+            "line": 2
+          },
+          {
+            "file": "supabase/migrations/202607272001_mastery_evidence_foundation.sql",
+            "line": 25
+          }
+        ],
+        "action": "Add immutable curriculum/course/lesson versions and explicit class/cohort assignment tables alongside legacy keys. Preserve alias adapters for existing URLs but never infer new AB/BC or IB syllabus identity from an old alias. Do not overwrite or backfill existing evidence without an explicit audited mapping."
+      },
+      {
+        "id": "BE-04",
+        "severity": "high",
+        "title": "Class membership writes do not enforce tenant and account-role consistency",
+        "finding": "class_memberships has only class_id/account_id UUID FKs and membership_role check; these do not ensure both records share an organization or that membership_role matches account role. setMembers checks access to the target class, then deletes all memberships and inserts caller-supplied UUIDs without candidate-account org/status/role validation or a transaction. Failure after delete can leave membership loss.",
+        "sources": [
+          {
+            "file": "supabase/migrations/202607260001_institutional_platform.sql",
+            "line": 90
+          },
+          {
+            "file": "supabase/functions/institution-api/index.ts",
+            "line": 848
+          },
+          {
+            "file": "supabase/functions/institution-api/index.ts",
+            "line": 855
+          }
+        ],
+        "action": "Do not reuse this mutation for new cohort assignments. Use tenant-consistent FK design and transactional validated operations with cross-org, role-mismatch and failed-write rollback tests. Treat baseline remediation as a separate approved narrow slice."
+      },
+      {
+        "id": "BE-05",
+        "severity": "architecture",
+        "title": "Lesson release and progression are completion based",
+        "finding": "Catalog rows are organization-wide mutable current routes. Students need an active matching class. Explicit hidden/shown overrides are evaluated per class; any class allowing wins. First two ready positions are automatic; later positions need previous lesson completion plus nonempty completed practice session. These completion/session values originate in authenticated client uploads, not verified mastery.",
+        "sources": [
+          {
+            "file": "supabase/functions/institution-api/index.ts",
+            "line": 201
+          },
+          {
+            "file": "supabase/functions/institution-api/index.ts",
+            "line": 215
+          },
+          {
+            "file": "supabase/functions/institution-api/lesson-access-policy.js",
+            "line": 33
+          },
+          {
+            "file": "supabase/functions/institution-api/index.ts",
+            "line": 323
+          },
+          {
+            "file": "supabase/functions/learning-sync/index.ts",
+            "line": 30
+          }
+        ],
+        "action": "Keep current release semantics behind an adapter. New version/cohort publication must not silently reinterpret legacy completion as mastery, share completions across versions, or let one cohort override another unintentionally."
+      },
+      {
+        "id": "BE-06",
+        "severity": "high",
+        "title": "Active mastery bridge bypasses account-owned queues and drops evidence",
+        "finding": "institution-experience dynamically loads institution-mastery-evidence on dashboards. The bridge replaces canonical syncLearning/flushPending, stores one global unowned pending payload, and flushes it under current credentials. Its exportStudentReport-based builder expects raw arrays absent from the actual summary report, and never includes lessons. The canonical client already collects raw engine arrays and lesson completions and uses account-owned pending envelopes. Isolated VM execution of all three unmodified source files reproduces cross-account replay and raw evidence/completion loss; canonical queue control passes. Event callbacks retain closed-over canonical functions, so these exported overrides coexist with the compatibility path. This is not a production-state claim.",
+        "sources": [
+          {
+            "file": "js/institution-experience.js",
+            "line": 41
+          },
+          {
+            "file": "js/institution-mastery-evidence.js",
+            "line": 6
+          },
+          {
+            "file": "js/institution-mastery-evidence.js",
+            "line": 39
+          },
+          {
+            "file": "js/institution-mastery-evidence.js",
+            "line": 69
+          },
+          {
+            "file": "js/institution-client.js",
+            "line": 156
+          },
+          {
+            "file": "js/institution-client.js",
+            "line": 172
+          },
+          {
+            "file": "question-bank/js/learning-system.js",
+            "line": 57
+          }
+        ],
+        "action": "Reproduce with local VM/browser harness. Then centralize payload and owned queue logic, preserving mastery-evidence recomputation; make bridge delegate, support completions on the authoritative sync route, and test account changes/offline replay/summary-vs-raw engine shape."
+      },
+      {
+        "id": "BE-07",
+        "severity": "high",
+        "title": "Server-computed mastery is not fully server-validated evidence",
+        "finding": "The database rejects client mastery records and overwrites attempt trust tier. However mastery-evidence accepts client correctness, skill, assistance, difficulty, representation and timestamps; all trust tiers participate in scoring. Verified question evidence adds a confidence bonus but is not required by last_verified_at thresholds. No answer-key validation or enrolled-course/assignment check is present in ingestion. APCALC-prefixed skill input bypasses atomic remapping.",
+        "sources": [
+          {
+            "file": "supabase/functions/mastery-evidence/index.ts",
+            "line": 192
+          },
+          {
+            "file": "supabase/functions/mastery-evidence/index.ts",
+            "line": 215
+          },
+          {
+            "file": "supabase/functions/mastery-evidence/index.ts",
+            "line": 125
+          },
+          {
+            "file": "supabase/migrations/202607272002_mastery_authority_guard.sql",
+            "line": 10
+          },
+          {
+            "file": "supabase/migrations/202607272102_private_attempt_trust_bridge.sql",
+            "line": 4
+          },
+          {
+            "file": "supabase/migrations/202607272004_atomic_skill_mapping.sql",
+            "line": 4
+          }
+        ],
+        "action": "Preserve current guardrails and distinguish aggregation authority from evidence authenticity. New versioned records should carry server-resolved question/content version/skill and evidence provenance. Stronger grading/evidence authorization requires its own design and executable tests."
+      },
+      {
+        "id": "BE-08",
+        "severity": "medium",
+        "title": "Atomic DB remapping and recomputation use different skill identities",
+        "finding": "The atomic attempt trigger may replace an ambiguous legacy skill key with its unique APCALC skill. recomputeMastery is invoked using pre-insert attemptRows skill keys, then queries database rows only for those keys. An inserted row remapped by the trigger may not be included in that immediate recomputation. The query also takes the first 10,000 ascending attempts, which can omit later evidence once an account exceeds that total for affected skills.",
+        "sources": [
+          {
+            "file": "supabase/migrations/202607272004_atomic_skill_mapping.sql",
+            "line": 4
+          },
+          {
+            "file": "supabase/functions/mastery-evidence/index.ts",
+            "line": 280
+          },
+          {
+            "file": "supabase/functions/mastery-evidence/index.ts",
+            "line": 105
+          }
+        ],
+        "action": "Test unique atomic remap with stored return rows and high-volume evidence before relying on this path for new curriculum versions; resolve canonical stored skills and define bounded aggregation semantics."
+      },
+      {
+        "id": "BE-09",
+        "severity": "medium",
+        "title": "Older backend access routes remain reachable beside newer guards",
+        "finding": "practice-bank-api requires assigned course and student lesson/unit scope but does not itself call lesson progression checks; assignedCourses omits active-class and organization filters used by institution lesson access. private-bank-api older student question/detail/media handlers check organization/readiness but not enrollment/dedicated-course scope. institution-api /learning/sync still attempts client mastery writes; the authority trigger should reject those while parallel non-mastery writes can succeed first.",
+        "sources": [
+          {
+            "file": "supabase/functions/practice-bank-api/index.ts",
+            "line": 83
+          },
+          {
+            "file": "supabase/functions/practice-bank-api/index.ts",
+            "line": 216
+          },
+          {
+            "file": "supabase/functions/private-bank-api/index.ts",
+            "line": 224
+          },
+          {
+            "file": "supabase/functions/private-bank-api/index.ts",
+            "line": 254
+          },
+          {
+            "file": "supabase/functions/private-bank-api/index.ts",
+            "line": 265
+          },
+          {
+            "file": "supabase/functions/institution-api/index.ts",
+            "line": 806
+          }
+        ],
+        "action": "Do not integrate new curricula through legacy bypass routes. Add negative endpoint integration tests for unassigned/archived/cross-org classes, hidden lessons, foreign assignments and older API aliases; consolidate authoritative policy separately."
+      },
+      {
+        "id": "BE-10",
+        "severity": "architecture",
+        "title": "Private bank release already has rights and trust contracts",
+        "finding": "The latest release trigger allows at least one verified lesson/skill mapping and enforces publisher-key or independent-solution-audit evidence plus rights.student_publication_allowed. Mapping index triggers and practice inventory RPC support imported bank routes. Media is private and signed temporarily. New lesson publication must not bypass these gates or publish private payloads to Pages.",
+        "sources": [
+          {
+            "file": "supabase/migrations/202607282330_verified_private_bank_import.sql",
+            "line": 30
+          },
+          {
+            "file": "supabase/migrations/202607312230_restore_ib_current_bank_practice_visibility.sql",
+            "line": 8
+          },
+          {
+            "file": "supabase/migrations/202607301500_private_bank_practice_inventory.sql",
+            "line": 4
+          },
+          {
+            "file": "supabase/functions/practice-bank-api/index.ts",
+            "line": 306
+          }
+        ],
+        "action": "Attach versioned mapping/provenance to existing bank contracts rather than duplicating question stores or weakening ready/rights checks."
+      },
+      {
+        "id": "BE-11",
+        "severity": "release-gate",
+        "title": "Merging backend migrations to main auto-applies production changes",
+        "finding": "deploy-institution-backend triggers on main changes to migrations/functions, runs source validators, links production, performs db push, and deploys all Edge Functions. Existing checks cover source contracts and selected pure JS logic, not full isolated PostgreSQL tenant/RLS/FK lifecycle tests.",
+        "sources": [
+          {
+            "file": ".github/workflows/deploy-institution-backend.yml",
+            "line": 6
+          },
+          {
+            "file": ".github/workflows/deploy-institution-backend.yml",
+            "line": 73
+          },
+          {
+            "file": "tools/validate_mastery_guards.py",
+            "line": 10
+          },
+          {
+            "file": "tools/test_lesson_visibility_contract.py",
+            "line": 56
+          }
+        ],
+        "action": "ECHS003 must include executable isolated database tests before merge. Initially create only additive, deny-direct schema with no runtime integration. Verify fresh migration chain, rollback-by-forward-migration, tenant constraints and role grants. Do not run production diagnostics as part of this audit."
+      }
+    ],
+    "criticalTests": [
+      {
+        "paths": [
+          "tools/validate_supabase_migration_versions.py",
+          "tools/validate_login_authentication_repair.py",
+          "tools/validate_auth_shell_cache.py"
+        ],
+        "purpose": "Migration/auth/session shell source checks"
+      },
+      {
+        "paths": [
+          "tools/validate_mastery_foundation.py",
+          "tools/validate_mastery_guards.py",
+          "tools/validate_learning_system.py",
+          "tools/validate_smart_learning_route.py",
+          "tools/test_learning_system.mjs"
+        ],
+        "purpose": "Preserve mastery/learning route and local engine contracts; guard validators are mostly source markers"
+      },
+      {
+        "paths": [
+          "tools/test_lesson_visibility_contract.py",
+          "tools/test_lesson_visibility_progression.mjs",
+          "tools/test_learning_access_contract.py",
+          "tools/test_practice_scope_access.py"
+        ],
+        "purpose": "Release/progression/policy and access contract regression coverage"
+      },
+      {
+        "paths": [
+          "tools/validate_private_bank_foundation.py",
+          "tools/validate_upload_manager.py",
+          "tools/test_course_release_changed_file_selection.py"
+        ],
+        "purpose": "Private rights/trust/upload/release contracts"
+      },
+      {
+        "paths": [
+          "tools/validate_readiness_system.py",
+          "supabase/functions/readiness-api/readiness-engine.test.mjs"
+        ],
+        "purpose": "Keep readiness pathways separate from curriculum versioning"
+      }
+    ],
+    "limitations": [
+      "Source audit only; no Supabase project introspection, credentials, account data, endpoint calls or deployment-state claims.",
+      "No existing runtime edited. Risks need isolated reproductions and narrowly scoped fixes after inventory approval.",
+      "Existing repository tests were inventoried but not executed by this audit; the separate mocked VM reproduction passed. Parent runs baseline verification."
+    ],
+    "reproduction": {
+      "harness": "work/reproduce-mastery-bridge.cjs",
+      "results": "work/mastery-bridge-reproduction.json",
+      "confirmed": [
+        "Global bridge queue replays A evidence under B credentials and deletes original queue",
+        "Actual summary export drops raw attempts/sessions/review in bridge",
+        "Bridge omits lessons; canonical payload contains them"
+      ],
+      "control": "Canonical queue preserves A envelope while B signs in and replays only under A",
+      "scopeNote": "Exported dashboard sync overrides coexist with event callbacks closing over original canonical functions; current runtime has two sync paths."
+    }
+  },
+  "content_audit": {
+    "schema_version": "echs.audit.content.v1",
+    "task_id": "ECHS-001",
+    "audit_date": "2026-09-08",
+    "mode": "Read-only source audit; no source edits, private retrieval, migration, or deployment",
+    "source": {
+      "production_commit": "fda45056e7b11e3f1d45bf96f7c8c36246d69e8d",
+      "commit_evidence": "Root agent verified GitHub branches/main and supplied the exact-commit archive.",
+      "snapshot_root": "work/foundations",
+      "local_git_head_excluded": "f1f6eabb03fa49766868fcdd3702903c6adabdcf belongs to the earlier partial local snapshot and is not production evidence.",
+      "instructions_read": [
+        "work/development-system/ECHS_Codex_Development_System_2026-09-07/AGENTS.md",
+        "work/development-system/ECHS_Codex_Development_System_2026-09-07/docs/codex/BASELINE_AUDIT_20260907.md",
+        "work/development-system/ECHS_Codex_Development_System_2026-09-07/docs/codex/ARCHITECTURE_MIGRATION.md"
+      ]
+    },
+    "limitations": [
+      "Critical regression tests were inspected, not rerun for this architectural audit.",
+      "Artifact inclusion findings are based on source and rsync rules, not an independent live HTTP exposure scan.",
+      "This is not a full security review and does not certify that all existing client-originated mastery events are independently server-verified."
+    ],
+    "question_providers": [
+      {
+        "id": "official-public",
+        "entrypoint": "ECHSOfficial.init/question/questions/filter in question-bank/official/js/app.js",
+        "read_root": "question-bank/official/data/student",
+        "canonical_count": 1217,
+        "student_ready_count": 1104,
+        "restricted_count": 113,
+        "student_course_counts": {
+          "AP Calculus AB": 697,
+          "AP Calculus BC": 377,
+          "AP Precalculus": 19,
+          "Grade 9 Pre-Precalculus": 11
+        },
+        "shape": [
+          "id",
+          "courseId",
+          "assessmentFamily",
+          "prompt",
+          "choices[{label,text,mediaIds}]",
+          "answer",
+          "acceptedAnswers",
+          "parts",
+          "media",
+          "rubric",
+          "source",
+          "classification",
+          "pedagogy",
+          "quality",
+          "studentReady"
+        ],
+        "quality_gate": [
+          "transcriptionVerified",
+          "answerVerified",
+          "mathematicalVerificationPassed",
+          "katexVerified",
+          "mediaVerified",
+          "mappingVerified",
+          "studentReadyGatePassed"
+        ],
+        "additional_gate": [
+          "studentReady=true",
+          "studentEligible=true",
+          "source.publicPublicationAllowed=true",
+          "student index/chunks/id-map equal canonical studentReady IDs and gate.json"
+        ],
+        "authorization": "question-bank/official/data/rights/echs-ap-official-student-practice-2026-07-28.json; scoped publication approval does not waive content verification",
+        "preserve": [
+          "Permanent IDs",
+          "Source/licensing references",
+          "Facsimile and media authority",
+          "Exact lesson/topic filters",
+          "Empty exact-scope result without substituting other topics"
+        ],
+        "warning": "ECHSOfficial.isStudentReady uses studentReady OR quality.studentReadyGatePassed; a new normalizer must retain the stronger build gate rather than copying this permissive helper as its publication rule.",
+        "evidence": [
+          {
+            "file": "question-bank/official/js/app.js",
+            "line": 6
+          },
+          {
+            "file": "question-bank/official/js/app.js",
+            "line": 49
+          },
+          {
+            "file": "question-bank/official/js/app.js",
+            "line": 60
+          },
+          {
+            "file": "question-bank/official/tools/validate_release.py",
+            "line": 348
+          },
+          {
+            "file": "question-bank/official/data/rights/README.md",
+            "line": 1
+          }
+        ]
+      },
+      {
+        "id": "legacy-course-bundles",
+        "entrypoint": "ECHSBank.loadCatalog/loadBundle/loadFile/loadBundleEntry in question-bank/js/bank.js",
+        "catalog": "question-bank/data/catalog.json",
+        "catalog_advertised_questions": 5882,
+        "bank_codes": [
+          "CALCT3BC",
+          "ADAMS10",
+          "PEARSON_CH0"
+        ],
+        "payloads": "Referenced JSON files and ZIP bundle_entries; payloadCache and ID deduplication",
+        "preserve": [
+          "bank_code",
+          "source fingerprint",
+          "course filters",
+          "loadBundle wrapper installation order",
+          "IB static-compatibility block unless echs_curated_skill"
+        ],
+        "warning": "This imported catalog is separate from the 1104-record official student-ready pool; counts and certification must not be conflated.",
+        "evidence": [
+          {
+            "file": "question-bank/js/bank.js",
+            "line": 9
+          },
+          {
+            "file": "question-bank/js/bank.js",
+            "line": 15
+          },
+          {
+            "file": "question-bank/js/practice-course-isolation.js",
+            "line": 76
+          },
+          {
+            "file": "question-bank/practice.html",
+            "line": 1
+          }
+        ]
+      },
+      {
+        "id": "institution-private",
+        "entrypoint": "ECHSInstitution.api with practice-bank-api /inventory, /questions, and /media-url",
+        "adapter": "question-bank/js/mapped-private-bank-practice.js",
+        "shape": [
+          "question_id",
+          "bank_code",
+          "pool_id",
+          "course_keys",
+          "lesson_keys",
+          "course_mappings",
+          "mapping_verified",
+          "trust_tier",
+          "student_visible",
+          "payload_sha256",
+          "payload"
+        ],
+        "accepted_ready_tiers": [
+          "publisher_key_direct",
+          "student_ready_verified"
+        ],
+        "rights_contract": "student_publication_allowed=true and public_web_publication_allowed=false",
+        "server_gate": "Authenticated membership; student lesson/unit scope; dedicated course; exact mapping; student_visible; mapping_verified; accepted trust tier.",
+        "fallback": "After strict retries, private-bank-api /student-questions compatibility fallback is staff-only. Students fail closed.",
+        "preserve": [
+          "Private payloads stay out of public documents",
+          "Protected private-bank:// media resolution",
+          "Original bank identity and hash",
+          "No promotion of publisher_key_direct to student_ready_verified",
+          "view=ready for students"
+        ],
+        "evidence": [
+          {
+            "file": "supabase/functions/practice-bank-api/index.ts",
+            "line": 221
+          },
+          {
+            "file": "supabase/functions/practice-bank-api/index.ts",
+            "line": 245
+          },
+          {
+            "file": "question-bank/js/mapped-private-bank-practice.js",
+            "line": 25
+          },
+          {
+            "file": "question-bank/js/mapped-private-bank-practice.js",
+            "line": 56
+          },
+          {
+            "file": "question-bank/js/private-bank-assets.js",
+            "line": 23
+          },
+          {
+            "file": "tools/upload_private_bank_package_verified_fast.py",
+            "line": 53
+          }
+        ]
+      },
+      {
+        "id": "lesson-local-original",
+        "entrypoints": [
+          "Calculus11Questions",
+          "LimitLessonQuestions",
+          "Unit1Lesson.questions/frqs",
+          "LESSON_DATA.practice/quiz/exam"
+        ],
+        "preserve": [
+          "Provider-plus-lesson namespacing for recurring local IDs such as ap1",
+          "Original source and rubric metadata",
+          "Calculator and representation fields",
+          "Local review state"
+        ],
+        "warning": "Original provenance is not automatic canonical publication approval. Local feedback, reveals and self-scoring must not automatically call ECHSLearning.recordAttempt or mastery sync.",
+        "evidence": [
+          {
+            "file": "lessons/ap-calculus/unit-1/assets/lesson-1-1-questions.js",
+            "line": 1
+          },
+          {
+            "file": "lessons/ap-calculus/unit-1/assets/lesson-1-1.js",
+            "line": 27
+          },
+          {
+            "file": "lessons/ap-calculus/unit-1/assets/lesson-1-13-ab.js",
+            "line": 1
+          }
+        ]
+      }
+    ],
+    "lesson_architectures": [
+      {
+        "id": "ap-handcrafted-reference",
+        "canonical_url": "lessons/ap-calculus/unit-1/1-1-can-change-occur-at-an-instant.html",
+        "legacy_alias": "lessons/ap-calculus/1-1-introducing-calculus.html",
+        "slides": 33,
+        "question_slots": 20,
+        "frq_slots": 3,
+        "structure": [
+          "Handcrafted section.slide with id/data-title/heading/objective",
+          "data-question/data-frq slots",
+          "Calculus11 model and Calculus11Questions",
+          "Custom DOM-bound secant, journey, shrinking-interval, tangent and calculator controls"
+        ],
+        "assets": [
+          "assets/lesson-1-1.css",
+          "assets/lesson-1-1-model.js",
+          "assets/lesson-1-1-questions.js",
+          "assets/lesson-1-1.js"
+        ],
+        "state": {
+          "key": "echs:ap-calculus:1.1:interactive-v1:<account-id>",
+          "fields": [
+            "version",
+            "answers",
+            "drafts",
+            "selfScores",
+            "slide"
+          ],
+          "answer_fields": [
+            "value",
+            "checked",
+            "pending",
+            "correct",
+            "reviewed",
+            "firstCorrect"
+          ]
+        },
+        "initial_adapter": "Immutable legacy-embedded page/assets with full URL context; convert only supported sections later."
+      },
+      {
+        "id": "ap-shared-and-continuation",
+        "families": [
+          "AP1.3–1.6 use LimitLessonQuestions, limit-lesson-models/core/graphs and per-lesson labs",
+          "AP1.7–1.16 use Unit1Lesson and continuation core/labs",
+          "Midunit uses its own assessment engine"
+        ],
+        "continuation_fields": [
+          "number",
+          "title",
+          "subtitle",
+          "objective",
+          "lo",
+          "ek",
+          "skill",
+          "goals",
+          "ideas[{title,body}]",
+          "workedExamples[{title,body}]",
+          "questions",
+          "frqs"
+        ],
+        "initial_adapter": "Keep original runtime and HTML; do not assume one universal AP lesson schema already exists."
+      },
+      {
+        "id": "ib-layered-lesson-data-reference",
+        "canonical_url": "lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.3_geometric_sequences_ECHS.html",
+        "global": "window.LESSON_DATA",
+        "schema_version": "1.0.0",
+        "final_version": "6.0.0",
+        "final_counts": {
+          "slides": 73,
+          "practice": 96,
+          "exam": 5,
+          "quiz": 14
+        },
+        "top_level_fields": [
+          "schemaVersion",
+          "version",
+          "buildDate",
+          "course",
+          "unit",
+          "lesson",
+          "slides",
+          "practice",
+          "quiz",
+          "exam",
+          "bankBridge",
+          "assessmentDesign",
+          "v6Audit",
+          "ibPacing",
+          "__ibAiSlPacingMarkersApplied"
+        ],
+        "lesson_fields": [
+          "number",
+          "slug",
+          "title",
+          "subtitle",
+          "syllabus_focus",
+          "skill_keys",
+          "objectives",
+          "vocab",
+          "technology",
+          "transition",
+          "source_basis"
+        ],
+        "slide_fields": [
+          "section",
+          "title",
+          "kind",
+          "eyebrow",
+          "html",
+          "ibPacing"
+        ],
+        "slide_kinds": [
+          "cover",
+          "inquiry",
+          "content",
+          "student",
+          "worked",
+          "misconception",
+          "lab"
+        ],
+        "practice_fields": [
+          "id",
+          "level",
+          "prompt",
+          "answer",
+          "solution",
+          "marks",
+          "calculator",
+          "command",
+          "hint",
+          "tags"
+        ],
+        "quiz_fields": [
+          "id",
+          "level",
+          "prompt",
+          "answer",
+          "solution",
+          "marks",
+          "calculator",
+          "command",
+          "tags",
+          "choices",
+          "correct"
+        ],
+        "exam_fields": [
+          "id",
+          "style",
+          "title",
+          "total_marks",
+          "calculator",
+          "context",
+          "parts"
+        ],
+        "exam_part_fields": [
+          "label",
+          "prompt",
+          "marks",
+          "answer",
+          "markscheme"
+        ],
+        "data_layers": [
+          "lesson-1.3.js",
+          "lesson-1.3-v3.js",
+          "unit-1-v5-content-data.js",
+          "unit-1-v5-apply.js",
+          "lesson-1.3-geometric-definitive-v6.js",
+          "lesson-1.3-geometric-v6-polish.js",
+          "ib-ai-sl-pacing-markers.js"
+        ],
+        "layer_directory": "lessons/ib-math-ai/unit-1/data",
+        "layer_counts": [
+          {
+            "stage": "base",
+            "slides": 49,
+            "practice": 40,
+            "exam": 2,
+            "quiz": 10
+          },
+          {
+            "stage": "v5 apply",
+            "slides": 36,
+            "practice": 52,
+            "exam": 3,
+            "quiz": 14
+          },
+          {
+            "stage": "v6 final",
+            "slides": 73,
+            "practice": 96,
+            "exam": 5,
+            "quiz": 14
+          }
+        ],
+        "runtime": "lessons/ib-math-ai/unit-1/assets/js/engine.js plus runtime/interaction/GDC overlays",
+        "state_prefix": "echs:ib-ai:u1:<lesson.number>:",
+        "base_state_account_scoped": false,
+        "local_readiness": "round(.25*viewedPercent + .45*practiceAccuracy + .30*quizPercent), explicitly local/non-transmitted",
+        "initial_adapter": "Capture final supported data layers in declared order and hash them. Keep unsupported HTML/SVG/labs immutable until typed conversion. Never make arbitrary legacy HTML teacher-editable."
+      },
+      {
+        "id": "ib-newer-split-decks",
+        "examples": [
+          "IB1.1 lesson-1.1-merged-model/questions/labs/core-v7",
+          "IB1.2 lesson-1.2-arithmetic-core-v7",
+          "IB1.4 lesson-1.4-finance-core-v8"
+        ],
+        "initial_adapter": "Treat these as split handcrafted decks. Current IB1.1 is not the appropriate sole generic LESSON_DATA importer reference."
+      },
+      {
+        "id": "pathway-inline-generated",
+        "example": "lessons/pathways/grade-9/unit-0/g9-0.1-entry-diagnostic-mathematical-profile.html",
+        "structure": "Inline slides array, renderer/navigation, local responses, score/export and #sN deep links",
+        "initial_adapter": "Preserve legacy embedded runtime and exports."
+      }
+    ],
+    "url_and_progress_contract": {
+      "effective_catalog": "index.html loads data/courses.js followed by AP/IB/pathway overlays. courses.js alone is not the effective catalog.",
+      "lesson_query": [
+        "course",
+        "unit",
+        "topic",
+        "lessonKey",
+        "accessKey",
+        "title"
+      ],
+      "practice_query": [
+        "course",
+        "unit",
+        "topic",
+        "from",
+        "accessKey",
+        "title",
+        "mode=adaptive",
+        "autostart=1"
+      ],
+      "official_practice_query": [
+        "course",
+        "unit",
+        "topicCode",
+        "lesson",
+        "from",
+        "learningObjective",
+        "skill"
+      ],
+      "completion_identity": "<catalog course.id>::<zero-based unitIndex>::<lesson.number>::<lesson.title>",
+      "access_identity": "<normalized courseKey>::<zero-based unitIndex>::<lesson.number>",
+      "course_aliases": [
+        "ap-calculus-ab/ap-calculus-bc -> ap-calculus",
+        "g11-ib-ai -> ib-math-ai"
+      ],
+      "deep_links": [
+        {
+          "family": "AP decks",
+          "format": "#slide=N",
+          "index_base": 1
+        },
+        {
+          "family": "AP midunit",
+          "format": "#question=<id>, #section=<id>, legacy #slide=N",
+          "note": "Historical slide27/28 map to review/reference."
+        },
+        {
+          "family": "IB generic",
+          "format": "#learn/#practice/#exam/#quiz/#review"
+        },
+        {
+          "family": "IB split decks",
+          "format": "#slide=N plus declared named aliases"
+        },
+        {
+          "family": "Pathways",
+          "format": "#sN"
+        }
+      ],
+      "finish_bridge": "continuePractice delegates to [data-finish-lesson]; the injected guard marks the legacy completion key only on explicit finish and routes to focused practice.",
+      "embedded_practice": "Preserve lesson.practice=embedded, lesson.practiceHash and html data-practice/data-practice-start.",
+      "ib_bank_bridge": "js/ib-lesson-platform-integration.js preserves exact lesson scope and explicit consolidated aliases. 1.1 includes scientific notation/standard form/approximation; 1.4 includes finance/loans; 1.6 maps technology. Do not replace these with broad unit pools.",
+      "guard_delivery": "tools/inject_learning_access_guard.py transforms the Pages artifact: course metadata, hidden-until-gate CSS, institution-client, portal-access, lesson-access-guard, and IB bridge. Source HTML can legitimately lack these before artifact construction.",
+      "evidence": [
+        {
+          "file": "js/portal.js",
+          "line": 22
+        },
+        {
+          "file": "js/portal.js",
+          "line": 42
+        },
+        {
+          "file": "js/lesson-access-guard.js",
+          "line": 24
+        },
+        {
+          "file": "js/lesson-access-guard.js",
+          "line": 83
+        },
+        {
+          "file": "js/ib-lesson-platform-integration.js",
+          "line": 14
+        },
+        {
+          "file": "tools/inject_learning_access_guard.py",
+          "line": 46
+        }
+      ]
+    },
+    "staging_and_deployment": {
+      "canonical_rule": "Use effective catalog and referenced runtime assets; not folder age or similar filenames.",
+      "excluded_from_pages": [
+        ".echs-backups/",
+        "integration/",
+        "reviews/",
+        "*.bak",
+        ".github/",
+        "tools/",
+        "supabase/",
+        "cloudflare-ai-worker/",
+        "question-bank/official/tools/",
+        "question-bank/official/reports/",
+        "question-bank/official/admin/reports/",
+        "question-bank/official/admin/tools/"
+      ],
+      "not_explicitly_excluded": [
+        ".staging/",
+        "packages/",
+        ".deploy/",
+        "question-bank/official/admin/data/",
+        "question-bank/official/data/"
+      ],
+      "interpretation": "Noncanonical does not mean private. These staging/package/deploy directories and static canonical/admin data remain packageable under current rsync. Teacher/archive UI labels do not secure static assets.",
+      "evidence": [
+        {
+          "file": ".github/workflows/deploy-pages.yml",
+          "line": 141
+        },
+        {
+          "file": ".github/workflows/deploy-pages.yml",
+          "line": 163
+        },
+        {
+          "file": "question-bank/official/tools/validate_release.py",
+          "line": 641
+        }
+      ]
+    },
+    "recommended_compatibility_entrypoints": [
+      {
+        "name": "LegacyLessonLocator",
+        "contract": "Resolve existing URL, effective catalog row, full legacy identities and query/hash aliases without source mutation."
+      },
+      {
+        "name": "LegacyLessonAdapter",
+        "contract": "Versioned immutable legacy-embedded page/assets, with distinct AP and IB importers; supported data conversion only."
+      },
+      {
+        "name": "QuestionRepository",
+        "contract": "Provider-qualified references and normalized read metadata; existing provider retains publication, rights and authorization authority."
+      },
+      {
+        "name": "LessonProgressBridge",
+        "contract": "Separate UI state, response/review state, explicit completion and institutional evidence. Initially delegate only the existing finish action."
+      }
+    ],
+    "new_question_reference_fields": [
+      "provider",
+      "provider_question_id",
+      "bank_id when applicable",
+      "lesson_reference",
+      "content_version or payload_sha256",
+      "source_and_rights_reference"
+    ],
+    "never_convert_to_mastery": [
+      "slide viewed",
+      "content/reveal opened",
+      "hint requested",
+      "solution viewed",
+      "self-scored rubric",
+      "legacy local readiness percentage",
+      "explicit lesson finish by itself"
+    ],
+    "rollback": "Opt-in adapter/routing flag. Keep original page and assets. Disabling the flag restores unchanged canonical runtime and legacy state. Never delete source during first cutover.",
+    "findings": [
+      {
+        "id": "CONTENT-01",
+        "severity": "high",
+        "finding": "Generic IB local readiness includes 25% slide-view contribution and its base lesson prefix lacks an account ID.",
+        "action": "Keep isolated as legacy UI progress; no institutional mastery import. Plan account-key migration separately.",
+        "evidence": [
+          {
+            "file": "lessons/ib-math-ai/unit-1/assets/js/engine.js",
+            "line": 31
+          },
+          {
+            "file": "lessons/ib-math-ai/unit-1/assets/js/engine.js",
+            "line": 399
+          }
+        ]
+      },
+      {
+        "id": "CONTENT-02",
+        "severity": "high",
+        "finding": "Distinct public/legacy/private/local providers have different review and trust contracts.",
+        "action": "Normalize read/search metadata without trust upgrades or publication promotion."
+      },
+      {
+        "id": "CONTENT-03",
+        "severity": "medium",
+        "finding": "Importing only base LESSON_DATA loses later approved content and interaction dependencies.",
+        "action": "Capture final ordered data composition and hashes."
+      },
+      {
+        "id": "CONTENT-04",
+        "severity": "medium",
+        "finding": "Legacy completion identity includes title and original course ID; access identity uses normalized course and positional unit.",
+        "action": "Retain both identities as aliases; do not silently replace them with UUIDs."
+      },
+      {
+        "id": "CONTENT-05",
+        "severity": "high",
+        "finding": "Noncanonical directories and static admin/canonical data remain packageable.",
+        "action": "Separate scoped deployment/privacy follow-up; no deployment edits in ECHS-001."
+      },
+      {
+        "id": "CONTENT-06",
+        "severity": "medium",
+        "finding": "LESSON_DATA contains authored HTML/SVG and DOM hooks rather than safe typed teacher content.",
+        "action": "Use immutable legacy blocks; sanitize/convert only supported structures before authoring."
+      }
+    ],
+    "critical_tests": [
+      {
+        "category": "AP1.1 reference",
+        "files": [
+          "tools/test_ap_calculus_1_1.mjs",
+          "tools/test_ap_calculus_1_1_ui.mjs"
+        ],
+        "protects": [
+          "33 slides/question bindings/math/KaTeX",
+          "Redirect query/hash retention",
+          "Input-focused keyboard behavior",
+          "Attempt-before-solution and draft-before-rubric",
+          "Account isolation/storage failure",
+          "Finish delegation; no recordAttempt or completion mutation"
+        ]
+      },
+      {
+        "category": "Split engines and deep links",
+        "files": [
+          "tools/test_ap_calculus_unit1_continuation.mjs",
+          "tools/test_ap_calculus_unit1_continuation_ui.mjs",
+          "tools/test_ap_calculus_midunit.mjs",
+          "tools/test_ap_calculus_midunit_ui.mjs",
+          "tools/test_ib_ai_1_1_merged_v7.mjs",
+          "tools/test_ib_ai_1_1_merged_v7_ui.mjs",
+          "tools/test_ib_ai_1_2_arithmetic_v7.mjs",
+          "tools/test_ib_ai_1_4_finance_v8.mjs"
+        ]
+      },
+      {
+        "category": "IB data composition and bank bridge",
+        "files": [
+          "tools/test_ib_ai_1_3_definitive_v6.py",
+          "tools/test_ib_lesson_platform_integration.py",
+          "tools/test_ib_unit1_portal_update.mjs"
+        ]
+      },
+      {
+        "category": "Publication/provider isolation",
+        "files": [
+          "question-bank/official/tools/validate_release.py",
+          "question-bank/official/tools/validate_katex.mjs",
+          "question-bank/official/tools/browser_smoke.mjs",
+          "tools/test_practice_global_bridge.mjs",
+          "tools/test_practice_course_isolation.mjs",
+          "tools/test_practice_scope_access.py",
+          "tools/test_student_single_bank.mjs",
+          "tools/test_ap_calculus_private_bank_support.py"
+        ]
+      },
+      {
+        "category": "Protected delivery/institution",
+        "files": [
+          "tools/test_learning_access_contract.py",
+          "tools/test_lesson_visibility_contract.py",
+          "tools/test_lesson_visibility_progression.mjs",
+          "tools/test_learning_system.mjs",
+          "tools/test_platform_resilience.mjs",
+          "tools/test_login_recovery.mjs",
+          "tools/test_institution_identity_mount.mjs",
+          "tools/validate_pages_artifact.py"
+        ]
+      },
+      {
+        "category": "Required new compatibility tests; not implemented",
+        "files": [],
+        "protects": [
+          "Old URL/query/hash round trips",
+          "Namespaced duplicate local question IDs",
+          "No mastery mutations on view/reveal/self-score/finish",
+          "No trust/publication promotion",
+          "Private fail-closed behavior",
+          "IB layer/unsupported-block preservation",
+          "Feature-flag rollback"
+        ]
+      }
+    ],
+    "source_verification": [
+      {
+        "file": ".github/workflows/deploy-pages.yml",
+        "sha256": "ef1d4071e570b3bd3fe06730dfb38c92b2c8e00a7384ca13fb4a3fa8f360cbe4",
+        "prior_worktree_matches": true
+      },
+      {
+        "file": "data/ap-calculus-update.js",
+        "sha256": "7dff7fca1e06c15028218a643f8ccc3d4ce2f9dacf47f3963e3c2a61abb412cc",
+        "prior_worktree_matches": true
+      },
+      {
+        "file": "data/courses.js",
+        "sha256": "2e47966085306e025c9dd8661882986adc3c695b56994887b2044a8408cf4aad",
+        "prior_worktree_matches": true
+      },
+      {
+        "file": "data/ib-math-ai-unit-1-update.js",
+        "sha256": "4480193d7dc53f7270eea81f03ae43b864329990e801b82282d4701eec748e0d",
+        "prior_worktree_matches": true
+      },
+      {
+        "file": "index.html",
+        "sha256": "e2bfc2fe49b0499e85e04954f305186129042295f0a5eaeeaf9c658ef19283cb",
+        "prior_worktree_matches": true
+      },
+      {
+        "file": "js/ib-lesson-platform-integration.js",
+        "sha256": "d92d3c8aaceb1669edf7c7b072d6bc2e01f653cfaab7a9ab42a6d8ffdc6a5c83",
+        "prior_worktree_matches": true
+      },
+      {
+        "file": "js/lesson-access-guard.js",
+        "sha256": "71b8afb5f48d07f6288d9181f18287d5ae24423b010919a35d4bdffb6bc27bbd",
+        "prior_worktree_matches": true
+      },
+      {
+        "file": "js/portal.js",
+        "sha256": "c061679dd08e65875909f71db2b581d0bd5266658e4c1a03b602b87558847ae2",
+        "prior_worktree_matches": true
+      },
+      {
+        "file": "lessons/ap-calculus/1-1-introducing-calculus.html",
+        "sha256": "7a6e65579721ef791fb012731ad907ef5c06cd9bfff910083c993beaf57cbc4e",
+        "prior_worktree_matches": true
+      },
+      {
+        "file": "lessons/ap-calculus/unit-1/1-1-can-change-occur-at-an-instant.html",
+        "sha256": "366b4418e2db0bfbe7c0a55956abe205889dd9f0b7da9099e4e4b5c087b7e026",
+        "prior_worktree_matches": true
+      },
+      {
+        "file": "lessons/ap-calculus/unit-1/assets/lesson-1-1-model.js",
+        "sha256": "baae48eb8a033f6d31b982b6c9841247802886359b1e00274e76d1913da54d16",
+        "prior_worktree_matches": true
+      },
+      {
+        "file": "lessons/ap-calculus/unit-1/assets/lesson-1-1-questions.js",
+        "sha256": "90a4543492c45b013b74636cf9157234359bcd2c55820eed5ae8fbd059b679c3",
+        "prior_worktree_matches": true
+      },
+      {
+        "file": "lessons/ap-calculus/unit-1/assets/lesson-1-1.js",
+        "sha256": "0c92ce56f7d10c0039ee88e4dc4722686a9256f9ae987aa38aaf368ba0c4ea3a",
+        "prior_worktree_matches": true
+      },
+      {
+        "file": "lessons/ap-calculus/unit-1/assets/lesson-1-13-ab.js",
+        "sha256": "324c829c99944593014d3275e5d6b8ec83e414039749a934da56fc5689daddfa",
+        "prior_worktree_matches": true
+      },
+      {
+        "file": "lessons/ib-math-ai/unit-1/assets/js/engine.js",
+        "sha256": "d9844ab767b02ca26537baefe31bc28cfffa605e2a93736aadadc45aa8087d17",
+        "prior_worktree_matches": true
+      },
+      {
+        "file": "lessons/ib-math-ai/unit-1/data/ib-ai-sl-pacing-markers.js",
+        "sha256": "4b0faa50c172ae1b2fbad4c4d858c230972d3645964fe8d1ea00e246be0348e8",
+        "prior_worktree_matches": true
+      },
+      {
+        "file": "lessons/ib-math-ai/unit-1/data/lesson-1.3-geometric-definitive-v6.js",
+        "sha256": "521061647864a1f975c9d3fdfd2a197b57acadd7caf04e40b362fef6db4b203c",
+        "prior_worktree_matches": true
+      },
+      {
+        "file": "lessons/ib-math-ai/unit-1/data/lesson-1.3-geometric-v6-polish.js",
+        "sha256": "fc42bca4f5f892af306c291a7d6b45a476bdf686d18c8dfa068e34e4728bf0ea",
+        "prior_worktree_matches": true
+      },
+      {
+        "file": "lessons/ib-math-ai/unit-1/data/lesson-1.3-v3.js",
+        "sha256": "745ebf21a003333cfd1f9273b82d03f144fb23502dc2d96c16d0ce0a4fd76348",
+        "prior_worktree_matches": true
+      },
+      {
+        "file": "lessons/ib-math-ai/unit-1/data/lesson-1.3.js",
+        "sha256": "fdeac55d9ed07ce9652101afdd0a9d9adca23d8bcdd380c47c419eb9ffa1b455",
+        "prior_worktree_matches": true
+      },
+      {
+        "file": "lessons/ib-math-ai/unit-1/data/unit-1-v5-apply.js",
+        "sha256": "8bc516ba797b7ce28de152e5e0f0f5c54f441e55528acdfa276ec40eb1fe679a",
+        "prior_worktree_matches": true
+      },
+      {
+        "file": "lessons/ib-math-ai/unit-1/data/unit-1-v5-content-data.js",
+        "sha256": "01d8e7e5996c96ffdeaecacb2caa86471e21644104ca8dfaefee03225394c202",
+        "prior_worktree_matches": true
+      },
+      {
+        "file": "lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.1_standard_form_ECHS.html",
+        "sha256": "de562ec8c4a1222a3d32fe04141ddd2421059e2d58b86828107e953ea4100f69",
+        "prior_worktree_matches": true
+      },
+      {
+        "file": "lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.3_geometric_sequences_ECHS.html",
+        "sha256": "c10fc5e4bded7a5b2ba5134bfc2bf9869bff487968ea6971ae777af3a74f2192",
+        "prior_worktree_matches": true
+      },
+      {
+        "file": "question-bank/data/catalog.json",
+        "sha256": "3bd821620ddb9eb3c0a8c2813e1beb585d27dbfb89ad1435fb814a1f707c1c41",
+        "prior_worktree_matches": true
+      },
+      {
+        "file": "question-bank/js/bank.js",
+        "sha256": "77de0a481ab3c3148e33c7a2a8156ed4649f948a6c0136ab365162b205e5ea58",
+        "prior_worktree_matches": true
+      },
+      {
+        "file": "question-bank/js/mapped-private-bank-practice.js",
+        "sha256": "5f05f4facbbfdc39744feafcc760388fef700ff7991fa286be3d26adec446b5f",
+        "prior_worktree_matches": true
+      },
+      {
+        "file": "question-bank/js/practice-course-isolation.js",
+        "sha256": "1199dcba7ac1534a96a757abc7fa9b4cd8c551a8b7295afebb5158b198886871",
+        "prior_worktree_matches": true
+      },
+      {
+        "file": "question-bank/js/private-bank-assets.js",
+        "sha256": "0ae9165b4283a307460ae943c49a56e0149c7f1ef4eb7307a8af966c58451abb",
+        "prior_worktree_matches": true
+      },
+      {
+        "file": "question-bank/official/data/catalog.json",
+        "sha256": "ea993160a638d44fbfd4caea0b4a9602d6c15952c8119153f2eb9807d219fa63",
+        "prior_worktree_matches": true
+      },
+      {
+        "file": "question-bank/official/data/rights/README.md",
+        "sha256": "6f3c79922f248f991587ad4f9acc6586b33c70e9d79f0960533670f052dbe6d1",
+        "prior_worktree_matches": true
+      },
+      {
+        "file": "question-bank/official/data/student/catalog.json",
+        "sha256": "48ba9e56983f28562a5d2cb24dbd78e91ce4f2e67564557fe817d2dbef48a61c",
+        "prior_worktree_matches": true
+      },
+      {
+        "file": "question-bank/official/data/student/gate.json",
+        "sha256": "36aa67d5a719298c4e8da5a2f895a58b46edfc5df2c4aa96c6655b32e1ce75e6",
+        "prior_worktree_matches": true
+      },
+      {
+        "file": "question-bank/official/js/app.js",
+        "sha256": "c9ad4cb730d26c7ff3cdbc4ec7dfd5428fa728f244e381b33f9748d9802b2698",
+        "prior_worktree_matches": true
+      },
+      {
+        "file": "question-bank/official/tools/browser_smoke.mjs",
+        "sha256": "e56e6d5c790c5230223a13d33d4e708a21c405955f412de2d94c2dd470796525",
+        "prior_worktree_matches": true
+      },
+      {
+        "file": "question-bank/official/tools/validate_katex.mjs",
+        "sha256": "780e6a269249f371c913716068968686790839a558cb7212861d72299c1dd902",
+        "prior_worktree_matches": true
+      },
+      {
+        "file": "question-bank/official/tools/validate_release.py",
+        "sha256": "3acaf52537a5d6c98d4f7be45db617c793214ea60adddab9046f26e0cd313c59",
+        "prior_worktree_matches": true
+      },
+      {
+        "file": "question-bank/practice.html",
+        "sha256": "dc5f4b6bcca884c6361dd12924b414476e88de8e40500d37fecadb8df4026892",
+        "prior_worktree_matches": true
+      },
+      {
+        "file": "supabase/functions/practice-bank-api/index.ts",
+        "sha256": "a38171f19ef67c0465939a852bc9af8ca3e059f9a07b9f7e945a864845555ea8",
+        "prior_worktree_matches": true
+      },
+      {
+        "file": "tools/inject_learning_access_guard.py",
+        "sha256": "775f9d270f0475fd5069b9edd8cbf10bb5324fa211de475933d4bda6fbd98a2b",
+        "prior_worktree_matches": true
+      },
+      {
+        "file": "tools/test_ap_calculus_1_1.mjs",
+        "sha256": "931a946b32e61ef6ea21875f6bb04b44905887746b84478338bde72f957b1149",
+        "prior_worktree_matches": true
+      },
+      {
+        "file": "tools/test_ap_calculus_1_1_ui.mjs",
+        "sha256": "8957e0cb1c718dd9aeab143021e11acb7b20ede411dfc6abda03c229f2993a17",
+        "prior_worktree_matches": true
+      },
+      {
+        "file": "tools/test_ap_calculus_midunit.mjs",
+        "sha256": "4f72fcb3162d04f1652fd3d2c87912eebae94f38fc8648ce0b6556787c629255",
+        "prior_worktree_matches": true
+      },
+      {
+        "file": "tools/test_ap_calculus_midunit_ui.mjs",
+        "sha256": "f0c1f8e326a01984419701ed5bbf128bf40773cfa62c1e5b3f2aa9d47b89afb7",
+        "prior_worktree_matches": true
+      },
+      {
+        "file": "tools/test_ap_calculus_private_bank_support.py",
+        "sha256": "ed7c898e5eb476bd2fbedfac024d0f2634ee632c392ba0763f39dd7a49bc9d13",
+        "prior_worktree_matches": true
+      },
+      {
+        "file": "tools/test_ap_calculus_unit1_continuation.mjs",
+        "sha256": "0f2641da885fafa6677e0c60b05a8dcf2b9b75be414491f05ac3b75f7542d032",
+        "prior_worktree_matches": true
+      },
+      {
+        "file": "tools/test_ap_calculus_unit1_continuation_ui.mjs",
+        "sha256": "0c0f83b135515449b5f6e87e4a69d4ee92d8550357b636f3e3970f306b10fe13",
+        "prior_worktree_matches": true
+      },
+      {
+        "file": "tools/test_ib_ai_1_1_merged_v7.mjs",
+        "sha256": "2869c2ecd408dac9ee273ede313fa211bb127079a6b2294941900a443ffc5174",
+        "prior_worktree_matches": true
+      },
+      {
+        "file": "tools/test_ib_ai_1_1_merged_v7_ui.mjs",
+        "sha256": "aee6aa60461a761f29cfe50ffd7c6d35511f804c953fbc9c2047a82627312106",
+        "prior_worktree_matches": true
+      },
+      {
+        "file": "tools/test_ib_ai_1_2_arithmetic_v7.mjs",
+        "sha256": "2d6c380bfd7d38612d70cef115c374295c6a675eb2c647e75071a0855f8b073c",
+        "prior_worktree_matches": true
+      },
+      {
+        "file": "tools/test_ib_ai_1_3_definitive_v6.py",
+        "sha256": "d30b567186aff6fa7d89bad87ed3973a31e2a76d9cc5ca38dec744aab66ade1f",
+        "prior_worktree_matches": true
+      },
+      {
+        "file": "tools/test_ib_ai_1_4_finance_v8.mjs",
+        "sha256": "f7e7bec90b659fd5d65b6dfbf28921d0098ebf96a50ad5321fc714302c49eba6",
+        "prior_worktree_matches": true
+      },
+      {
+        "file": "tools/test_ib_lesson_platform_integration.py",
+        "sha256": "c8bb1630edbf43a8096cde366c75ce08233f8a194a23a9575ca2ef35362c4567",
+        "prior_worktree_matches": true
+      },
+      {
+        "file": "tools/test_ib_unit1_portal_update.mjs",
+        "sha256": "510c90101bef3160d3a50ff74f9aacdc44e23a57ac2afe4d8ba58b43303b4888",
+        "prior_worktree_matches": true
+      },
+      {
+        "file": "tools/test_institution_identity_mount.mjs",
+        "sha256": "e59b929a4fbb631a8577d4705527630dff666b6e1cc2b1d21328c79b4ecee9ab",
+        "prior_worktree_matches": true
+      },
+      {
+        "file": "tools/test_learning_access_contract.py",
+        "sha256": "02e17b7260d7d8e781f8aee5f6e1362007356e8335e74ef0395f60dc8e442e93",
+        "prior_worktree_matches": true
+      },
+      {
+        "file": "tools/test_learning_system.mjs",
+        "sha256": "3be64074f2caf292e0d2ff259e5070c90450885bd11f5c5e82e7285e62f90d00",
+        "prior_worktree_matches": true
+      },
+      {
+        "file": "tools/test_lesson_visibility_contract.py",
+        "sha256": "b42df68b007d030543c97c154a40f5c30fe53e576abba944a306f6565ec73350",
+        "prior_worktree_matches": true
+      },
+      {
+        "file": "tools/test_lesson_visibility_progression.mjs",
+        "sha256": "899626423ab40d35d88e28a63ac09eee4c2a212172d1aa49bdc1cc32c2b1da2a",
+        "prior_worktree_matches": true
+      },
+      {
+        "file": "tools/test_login_recovery.mjs",
+        "sha256": "512b61bd425fc4ddcaa35543288bb9c4daf379a1d2cc96661f798315eff56018",
+        "prior_worktree_matches": true
+      },
+      {
+        "file": "tools/test_platform_resilience.mjs",
+        "sha256": "679d6c4d935a2d08f8dd66bc9b883dee999e21225ec53f8114d404a1514be1c8",
+        "prior_worktree_matches": true
+      },
+      {
+        "file": "tools/test_practice_course_isolation.mjs",
+        "sha256": "432a8222511dcb2f8af726f59b77e0f84cf99cc57668f2154f24f689f76fa096",
+        "prior_worktree_matches": true
+      },
+      {
+        "file": "tools/test_practice_global_bridge.mjs",
+        "sha256": "6dd8f7e694e62f7caf718250ac3c814e404ed2b5c0b3cf8dce4b84052b00abb5",
+        "prior_worktree_matches": true
+      },
+      {
+        "file": "tools/test_practice_scope_access.py",
+        "sha256": "b86f3379d9da24803a795e17ceac2cdc031fd84bff83943341ad9c561518547d",
+        "prior_worktree_matches": true
+      },
+      {
+        "file": "tools/test_student_single_bank.mjs",
+        "sha256": "d9081b3a5310cc32cc24bb5b2bbb874fbc5fea42a91d97b90727d02642dc2ab5",
+        "prior_worktree_matches": true
+      },
+      {
+        "file": "tools/upload_private_bank_package_verified_fast.py",
+        "sha256": "c57660ab99aa19dd4697d1fbfa984009f0676216459a4adcf3263ac1c7f0d4a3",
+        "prior_worktree_matches": true
+      },
+      {
+        "file": "tools/validate_pages_artifact.py",
+        "sha256": "466edb9200974b510b830c644c49efb753532e6f5702a7812c57e6bcb67dd012",
+        "prior_worktree_matches": true
+      }
+    ],
+    "validation": {
+      "referenced_files": 67,
+      "prior_mismatches": [],
+      "ib_snapshot_verified": {
+        "slides": 73,
+        "practice": 96,
+        "exam": 5,
+        "quiz": 14
+      },
+      "regression_suites_rerun": false
+    }
+  }
+}
