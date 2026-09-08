@@ -1,0 +1,9 @@
+# Pages fixture dependency repair
+
+The main Pages run `34190698246` at `f6bf7b3af9c576b3bb5d9d59dda121e9f0e7d3d3` passed the platform, lesson mathematics/UI and access checks, then failed the unchanged source-link validator: two of 1,842 references pointed from the new renderer fixtures to an uninstalled `tools/lesson-runtime/node_modules/katex` stylesheet. Pages validates source HTML before excluding `tools/` from its artifact. The failed build stopped before artifact preparation, upload or deployment.
+
+Both development fixtures now reference the existing checked-in `lessons/ib-math-ai/unit-1/assets/css/katex.css`. The stylesheet is KaTeX 0.16.27; the test-only lesson-runtime package and lockfile are aligned to that version. The existing stylesheet, fonts, lessons and bank files are unchanged. Browser tests still install their pinned engine dependency, while source-link validation no longer needs installed packages to resolve fixture stylesheet references.
+
+Pages pull-request triggers now include `js/lesson-runtime/**`, `css/lesson-document.css`, `schemas/**`, `tools/lesson-runtime/**` and `tools/lesson-compatibility/**`. Changes to these foundations therefore run the existing source and exact-artifact checks before merge. No Pages job step, artifact exclusion, deployment path, link-validator rule, access gate or publication check is removed or weakened. This repair does not enable the optional renderer in any production lesson.
+
+Acceptance requires the unchanged local-link validator on the complete source tree, schema generation and all 18 schema / 12 renderer / 11 original-guard / 15 compatibility test groups, followed by successful PR checks and a Pages deployment whose identity matches the merged revision. A local test pass is not evidence that the corrected Pages artifact is live.

@@ -15,7 +15,7 @@ npx --prefix question-bank/official/tools playwright install chromium-headless-s
 
 On Linux CI, browser installation may additionally need Playwright's `--with-deps` option. The bank's committed package and lock files pin KaTeX and Playwright. The DOM suite requires exactly LinkeDOM 0.18.12.
 
-The lesson-runtime package has its own pinned lockfile and supplies the local KaTeX stylesheet referenced by the renderer and guard-integration HTML fixtures. Install it even when running only the baseline: the unchanged local-link check validates those fixture links as well as product links. Missing fixture dependencies remain failures; the check does not exclude fixtures to obtain a pass.
+The lesson-runtime package has its own pinned lockfile for schema and browser tests. The baseline workflow also installs it to keep the full foundation test environment reproducible. Renderer and guard-integration HTML fixtures reference the committed IB unit 1 KaTeX stylesheet, so the unchanged source-link check also passes in a clean Pages checkout without installed lesson-runtime packages. Fixtures remain included in source-link validation.
 
 Set `ECHS_TEST_DOM_MODULE` to its **absolute package directory**, not its parent node_modules directory:
 
