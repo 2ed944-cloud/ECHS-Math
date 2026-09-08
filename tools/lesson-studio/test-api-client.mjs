@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import {createHash} from 'node:crypto';
 import katex from '../lesson-runtime/node_modules/katex/dist/katex.mjs';
 import { createStudioClient,STUDIO_API_CONTRACT,supportsStudioContentV2 } from '../../js/lesson-studio/api-client.mjs';
 
@@ -35,7 +36,7 @@ function reply(url,data,status=200,headers={}){
   const response=new Response(JSON.stringify(data),{status,headers:{'content-type':'application/json','cache-control':'no-store, private','x-content-type-options':'nosniff',...headers}});
   Object.defineProperty(response,'url',{value:url,configurable:true});return response;
 }
-function harness(t,{role='teacher',timeoutMs=500,meHook,configHook,fetchHook}={}){
+function harness(t,{role='teacher',timeoutMs=500,assetTimeoutMs=500,meHook,configHook,fetchHook}={}){
   const local=new Map(),session=new Map(),writes=[];
   const storage=map=>({getItem:key=>map.get(key)??null,setItem:(key,value)=>{writes.push(key);map.set(key,String(value));},removeItem:key=>{writes.push(key);map.delete(key);}});
   const win=new EventTarget();win.document=new EventTarget();win.location={href:'https://2ed944-cloud.github.io/ECHS-Math/question-bank/lesson-studio.html'};
@@ -81,7 +82,7 @@ function harness(t,{role='teacher',timeoutMs=500,meHook,configHook,fetchHook}={}
     if(state==='unpublish')stored.lesson.active_publication_id=null;
     return reply(url,stored);
   }
-  const client=createStudioClient({window:win,institution,fetch:fetchImpl,mathEngine:katex,timeoutMs,onInvalidSession:error=>invalidations.push(error)});
+  const client=createStudioClient({window:win,institution,fetch:fetchImpl,mathEngine:katex,timeoutMs,assetTimeoutMs,onInvalidSession:error=>invalidations.push(error)});
   t.after(()=>client.dispose());
   return {client,win,institution,config,calls,invalidations,writes,local,put,get stored(){return stored;},get clearCount(){return clearCount;},get meCount(){return meCount;}};
 }
@@ -199,4 +200,76 @@ test('authoring route and lesson-query changes reject pending private responses 
   await assert.rejects(pending,{code:'route_changed'});assert.equal(h.clearCount,0);assert.equal(h.invalidations.length,1);
   const event=harness(t);await event.client.initialize();event.win.location.href+='?class='+id(99);event.win.dispatchEvent(new Event('popstate'));assert.equal(event.invalidations[0].code,'route_changed');
   const anchor=harness(t);await anchor.client.initialize();anchor.win.location.href+='#preview';anchor.client.assertCurrent();await anchor.client.get(ids.lesson);assert.equal(anchor.invalidations.length,0);
+});
+
+const assetBytes=new Uint8Array([1,7,8,9]);
+const assetFile=()=>new File([assetBytes],'Original image.png',{type:'image/png'});
+const assetMeta=(assetId=id(71))=>({asset_id:assetId,mime_type:'image/png',byte_length:4,width:2,height:2,sha256:createHash('sha256').update(assetBytes).digest('hex'),state:'ready'});
+async function assetHarness(t,{hook,assetTimeoutMs=500}={}){
+  const h=harness(t,{assetTimeoutMs,fetchHook:async(url,init)=>{
+    if(!url.includes('/assets'))return reply(url,record());
+    if(hook)return hook(url,init);
+    const asset=assetMeta(init.headers['x-echs-asset-id']||id(71));
+    if(url.endsWith('/bytes')){
+      const result=new Response(assetBytes,{headers:{'content-type':asset.mime_type,'cache-control':'private, no-store'}});Object.defineProperty(result,'url',{value:url});return result;
+    }
+    return reply(url,{ok:true,contract:STUDIO_API_CONTRACT,lesson_id:ids.lesson,...(url.endsWith('/assets')&&init.method==='GET'?{assets:[asset]}:{asset})},init.method==='POST'?201:200);
+  }});
+  await h.client.initialize();await h.client.get(ids.lesson);return h;
+}
+test('asset upload sends bounded immutable bytes to the known lesson and reuses its logical ID on retry',async t=>{
+  const file=assetFile();let uploads=0;
+  const h=await assetHarness(t,{hook:async(url,init)=>{
+    uploads++;assert.equal(init.method,'POST');assert.equal(init.headers['content-type'],'image/png');
+    assert.equal(init.headers['x-echs-asset-name'],'Original%20image.png');assert.deepEqual(new Uint8Array(init.body),assetBytes);
+    assert.equal(init.credentials,'omit');assert.equal(init.cache,'no-store');assert.equal(init.redirect,'error');
+    if(uploads===1)throw new Error('Lost acknowledgement');
+    return reply(url,{ok:true,contract:STUDIO_API_CONTRACT,lesson_id:ids.lesson,asset:assetMeta(init.headers['x-echs-asset-id'])},200);
+  }});
+  await assert.rejects(h.client.uploadAsset(ids.lesson,file),{code:'network_error'});
+  const saved=await h.client.uploadAsset(ids.lesson,file);
+  assert.equal(h.calls[1].init.headers['x-echs-asset-id'],saved.asset_id);assert.equal(h.calls[2].init.headers['x-echs-asset-id'],saved.asset_id);
+  assert.deepEqual(h.writes,[]);
+});
+test('assets require a known lesson and reject unsafe file declarations before network access',async t=>{
+  const h=await assetHarness(t);const before=h.calls.length;
+  for(const file of [new File(['x'],'script.svg',{type:'image/svg+xml'}),new File(['x'],'../image.png',{type:'image/png'}),new File([],'empty.png',{type:'image/png'}),new File([new Uint8Array(4194305)],'large.png',{type:'image/png'})])await assert.rejects(h.client.uploadAsset(ids.lesson,file),{code:'invalid_request'});
+  await assert.rejects(h.client.uploadAsset(id(99),assetFile()),{code:'invalid_request'});
+  assert.equal(h.calls.length,before);
+});
+test('asset listing and metadata-then-bytes delivery validate scope, integrity and privacy',async t=>{
+  const h=await assetHarness(t);assert.equal((await h.client.listAssets(ids.lesson))[0].asset_id,id(71));
+  const loaded=await h.client.loadAsset(ids.lesson,id(71),{kind:'image'});assert.deepEqual(new Uint8Array(await loaded.blob.arrayBuffer()),assetBytes);
+  assert.equal(loaded.metadata.sha256,assetMeta().sha256);assert.deepEqual(h.writes,[]);
+  assert.ok(h.calls.at(-2).url.endsWith('/assets/'+id(71)));assert.ok(h.calls.at(-1).url.endsWith('/assets/'+id(71)+'/bytes'));
+});
+test('foreign metadata, private extra fields, wrong digest and duplicate asset lists are rejected',async t=>{
+  for(const mutate of [d=>d.lesson_id=id(99),d=>d.storage_path='private/path',d=>d.asset.asset_id=id(99),d=>d.asset.sha256='0'.repeat(64)]){
+    const h=await assetHarness(t,{hook:async(url,init)=>{
+      const data={ok:true,contract:STUDIO_API_CONTRACT,lesson_id:ids.lesson,asset:assetMeta(init.headers['x-echs-asset-id']||id(71))};mutate(data);return reply(url,data,init.method==='POST'?201:200);
+    }});
+    await assert.rejects(h.client.uploadAsset(ids.lesson,assetFile()));
+  }
+  const duplicate=await assetHarness(t,{hook:async url=>reply(url,{ok:true,contract:STUDIO_API_CONTRACT,lesson_id:ids.lesson,assets:[assetMeta(),assetMeta()]})});
+  await assert.rejects(duplicate.client.listAssets(ids.lesson));
+});
+test('account changes during an upload reject its late receipt and do not clear the successor login',async t=>{
+  const pause=deferred(),started=deferred();let receipt;
+  const h=await assetHarness(t,{hook:async(url,init)=>{receipt=reply(url,{ok:true,contract:STUDIO_API_CONTRACT,lesson_id:ids.lesson,asset:assetMeta(init.headers['x-echs-asset-id'])},201);started.resolve();return pause.promise;}});
+  const pending=h.client.uploadAsset(ids.lesson,assetFile());await started.promise;
+  h.put('new-asset-successor-token',{id:id(22),organization_id:id(23),role:'teacher',status:'active'});pause.resolve(receipt);
+  await assert.rejects(pending,{code:'session_changed'});assert.equal(h.clearCount,0);assert.deepEqual(h.writes,[]);
+});
+test('asset timeout and explicit cancellation reject even when the fetch ignores its signal',async t=>{
+  const stalled=await assetHarness(t,{assetTimeoutMs:10,hook:()=>new Promise(()=>{})});
+  await assert.rejects(stalled.client.uploadAsset(ids.lesson,assetFile()),{code:'timeout'});
+  const started=deferred();const h=await assetHarness(t,{hook:()=>{started.resolve();return new Promise(()=>{});}});
+  const abort=new AbortController();const reading=h.client.loadAsset(ids.lesson,id(71),{signal:abort.signal});await started.promise;abort.abort();
+  await assert.rejects(reading,{code:'aborted'});assert.equal(h.calls.length,2);
+});
+test('a changed backend configuration rejects pending asset metadata without fetching the successor origin',async t=>{
+  const pause=deferred(),started=deferred();let receipt;
+  const h=await assetHarness(t,{hook:async url=>{receipt=reply(url,{ok:true,contract:STUDIO_API_CONTRACT,lesson_id:ids.lesson,asset:assetMeta()});started.resolve();return pause.promise;}});
+  const pending=h.client.loadAsset(ids.lesson,id(71));await started.promise;h.config.api_base='https://successor.supabase.co/functions/v1';pause.resolve(receipt);
+  await assert.rejects(pending,{code:'configuration_changed'});assert.equal(h.calls.length,2);assert.equal(h.clearCount,0);
 });

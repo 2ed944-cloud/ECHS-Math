@@ -5,6 +5,7 @@ import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import katex from '../lesson-runtime/node_modules/katex/dist/katex.mjs';
 import {createLessonHandler,LESSON_API_CONTRACT} from '../../supabase/functions/lesson-api/handler.mjs';
+import {LESSON_MEDIA_CAPABILITIES} from '../../supabase/functions/lesson-api/media-handler.mjs';
 
 // Original synthetic data only. This fixture exercises the real HTTP handler;
 // its in-memory RPC adapter is not evidence of database authorization or RLS.
@@ -34,9 +35,10 @@ export function studioStorageState(role = 'teacher') {
   ] : []}]};
 }
 
-export function createStudioFixture({pinned = true, contentV2 = false} = {}) {
+export function createStudioFixture({pinned = true, contentV2 = false,media = false} = {}) {
   const calls = [], rpcCalls = [], external = [], failures = [], holds = [];
   const records = new Map(); let serial = 100;
+  const assets=new Map(),assetBytes=new Map();
   const accounts = new Map(['teacher','admin','student','parent','other'].map(role => [createHash('sha256').update(tokenFor(role)).digest('hex'),accountFor(role)]));
   const selectedClass = {id:STUDIO_IDS.class,organization_id:STUDIO_IDS.organization,name:'Fixture AP Calculus AB',course_key:'ap-calculus',status:'active',section:'A',academic_year:'2026-27'};
   const course = {id:STUDIO_IDS.course,course_code:'ap-calculus-ab',record:{title:'AP Calculus AB'},version_key:'fixture-ap-ab-2026-27',status:'active',is_placeholder:false};
@@ -52,7 +54,22 @@ export function createStudioFixture({pinned = true, contentV2 = false} = {}) {
     rpcCalls.push({name,action:args.p_action,lesson_id:args.p_payload?.lesson_id});
     if (name === 'lesson_content_capabilities') return {data:contentV2 ? {contract:'echs.lesson.authoring.v1',content_version:2,math_expression_version:1,
       blocks:{'rich-text':[1,2],math:[1,2],callout:[1,2],'legacy-embedded':[1]}} : null,error:null};
+    if(name==='lesson_media_capabilities')return {data:media?LESSON_MEDIA_CAPABILITIES:null,error:null};
     if (name === 'api_session_lookup') return {data:account ? [{account_id:account.id,organization_id:account.organization_id,role:account.role,status:account.status,expires_at:expires}] : [],error:null};
+    if(name==='lesson_asset_store'){
+      const p=args.p_payload,record=records.get(p.lesson_id);
+      if(!media||!record||!account||!['teacher','admin'].includes(account.role)||account.organization_id!==record.lesson.organization_id)return {data:null,error:{code:'42501'}};
+      let asset=assets.get(p.asset_id);
+      const envelope={ok:true,contract:'echs.lesson.assets.v1',lesson_id:p.lesson_id,organization_id:account.organization_id,class_id:record.lesson.class_id,account_id:account.id};
+      if(args.p_action==='list')return {data:{...envelope,assets:[...assets.values()].filter(a=>a.lesson_id===p.lesson_id&&a.state==='ready').map(clone)},error:null};
+      if(args.p_action==='reserve'){
+        if(asset){if(asset.lesson_id!==p.lesson_id||asset.uploaded_by!==account.id||asset.sha256!==p.sha256)return {data:null,error:{code:'40001'}};}
+        else{asset={...clone(p),id:p.asset_id,organization_id:account.organization_id,class_id:record.lesson.class_id,uploaded_by:account.id,state:'pending'};assets.set(asset.id,asset);}
+      }else if(!asset||asset.lesson_id!==p.lesson_id)return {data:null,error:{code:'P0002'}};
+      if(args.p_action==='finalize'){if(!assetBytes.has(asset.id))return {data:null,error:{code:'23514'}};asset.state='ready';}
+      if(args.p_action==='read'&&asset.state!=='ready')return {data:null,error:{code:'P0002'}};
+      return {data:{...envelope,asset:clone(asset),reused:false},error:null};
+    }
     assert.equal(name,'lesson_store');
     if (!account || !['teacher','admin'].includes(account.role)) return {data:null,error:{code:'42501'}};
     const payload = args.p_payload;
@@ -94,8 +111,16 @@ export function createStudioFixture({pinned = true, contentV2 = false} = {}) {
     }
     throw new Error(`Unexpected Studio008 RPC action: ${args.p_action}`);
   };
-  const handler = createLessonHandler({rpc,mathEngine:katex,allowedOrigins:[STUDIO_ORIGIN],siteBase:STUDIO_BASE});
+  const assetStorage=media?{
+    async put({scope,bytes}){if(assetBytes.has(scope.asset_id))throw new Error('Immutable fixture asset.');assetBytes.set(scope.asset_id,bytes.slice());},
+    async get({scope}){if(!assetBytes.has(scope.asset_id))throw new Error('Missing fixture bytes.');return assetBytes.get(scope.asset_id).slice();},
+    async removeTemporary({scope}){assert.equal(assets.get(scope.asset_id)?.state,'cleanup');assetBytes.delete(scope.asset_id);}
+  }:undefined;
+  const handler = createLessonHandler({rpc,mathEngine:katex,allowedOrigins:[STUDIO_ORIGIN],siteBase:STUDIO_BASE,assetStorage});
   function actionFor(url,method) {
+    if(/\/assets\/[0-9a-f-]+\/bytes$/.test(url.pathname))return 'asset_bytes';
+    if(/\/assets\/[0-9a-f-]+$/.test(url.pathname))return 'asset_read';
+    if(url.pathname.endsWith('/assets'))return method==='POST'?'asset_upload':'asset_list';
     if (url.pathname.endsWith('/course-version')) return 'pin_course';
     if (url.pathname.endsWith('/context')) return 'context';
     if (url.pathname.endsWith('/draft')) return 'save';
@@ -119,7 +144,7 @@ export function createStudioFixture({pinned = true, contentV2 = false} = {}) {
     }
     if (url.origin !== new URL(STUDIO_API).origin || !url.pathname.startsWith('/functions/v1/')) {external.push(url.href); return route.abort();}
     if (method === 'OPTIONS') return route.fulfill({status:204,headers:{'access-control-allow-origin':STUDIO_ORIGIN,
-      'access-control-allow-methods':'GET, POST, OPTIONS','access-control-allow-headers':'authorization, content-type'}});
+      'access-control-allow-methods':'GET, POST, OPTIONS','access-control-allow-headers':'authorization, content-type, x-echs-asset-id, x-echs-asset-name'}});
     const authorization = request.headers().authorization || '';
     if (url.pathname === '/functions/v1/account-api/me') {
       const role = ['teacher','admin','student','parent','other'].find(role => authorization === `Bearer ${tokenFor(role)}`);
@@ -128,17 +153,19 @@ export function createStudioFixture({pinned = true, contentV2 = false} = {}) {
       return route.fulfill({status:account ? 200 : 401,contentType:'application/json',headers:{'cache-control':'no-store','x-content-type-options':'nosniff','access-control-allow-origin':STUDIO_ORIGIN},body:JSON.stringify(account ? {ok:true,account} : error('sign_in_required'))});
     }
     if (!url.pathname.startsWith('/functions/v1/lesson-api/')) {external.push(url.href); return route.abort();}
-    const action = actionFor(url,method), body = request.postData();
-    calls.push({service:'lesson',action,method,path:url.pathname,query:url.search,body:body ? JSON.parse(body) : undefined});
+    const action = actionFor(url,method), body = request.postDataBuffer();
+    calls.push({service:'lesson',action,method,path:url.pathname,query:url.search,body:body&&action!=='asset_upload' ? JSON.parse(body.toString()) : undefined});
     const failure = failures.find(item => item.action === action && !item.used);
-    const respondFailure = () => {
+    const respondFailure = async () => {
       failure.used = true;
+      const held=holds.find(item=>item.action===action&&!item.used);
+      if(held){held.used=true;held.startedResolve();await held.released;}
       if (failure.network) return route.abort('internetdisconnected');
       return route.fulfill({status:failure.status,contentType:'application/json',headers:{'cache-control':'no-store, private','x-content-type-options':'nosniff','access-control-allow-origin':STUDIO_ORIGIN},body:JSON.stringify(error(failure.code))});
     };
     if (failure && !failure.afterCommit) return respondFailure();
     const response = await handler(new Request(url.href,{method,headers:request.headers(),...(body === null ? {} : {body})}));
-    const result = await response.text();
+    const result = Buffer.from(await response.arrayBuffer());
     if (failure?.afterCommit) return respondFailure();
     const hold = holds.find(item => item.action === action && !item.used);
     if (hold) {hold.used = true; hold.startedResolve(); await hold.released;}
@@ -146,7 +173,7 @@ export function createStudioFixture({pinned = true, contentV2 = false} = {}) {
     catch (error) {if (!hold) throw error; /* An aborted old request may outlive its page. */}
   };
   return {
-    calls,rpcCalls,external,records,catalog,accountFor,tokenFor,
+    calls,rpcCalls,external,records,catalog,accountFor,tokenFor,assets,assetBytes,
     async attach(context) {await context.route('**/*',routeRequest);},
     failNext(action,{status=409,code='revision_conflict',network=false,afterCommit=false} = {}) {failures.push({action,status,code,network,afterCommit,used:false});},
     holdNext(action) {

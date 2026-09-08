@@ -1,4 +1,5 @@
 import { assertPersistableDocument, assertPublishableDocument, assertStudentDocument } from './document-contract.mjs';
+import { confirmedMediaCapabilities, handleLessonAsset, LessonMediaRequestError } from './media-handler.mjs';
 
 export const LESSON_API_CONTRACT = 'echs.lesson.store.v1';
 export const MAX_REQUEST_BYTES = 1024 * 1024 + 128 * 1024;
@@ -102,6 +103,7 @@ function route(req) {
   let match;
   if (req.method === 'GET' && path === '/health') { query(url, []); return { action: 'health', payload: {} }; }
   if (req.method === 'GET' && path === '/health/authoring') { query(url, []); return { action: 'authoring_health', payload: {} }; }
+  if (req.method === 'GET' && path === '/health/media') { query(url, []); return { action: 'media_health', payload: {} }; }
   if (req.method === 'GET' && path === '/context') {
     const args = query(url, ['class_id']); if (own(args, 'class_id')) uuid(args.class_id);
     return { action: 'context', payload: args };
@@ -112,6 +114,20 @@ function route(req) {
   if (req.method === 'POST' && path === '/lessons') { query(url, []); return { action: 'create' }; }
   if ((match = /^\/classes\/([^/]+)\/course-version$/.exec(path)) && req.method === 'POST') {
     query(url, []); return { action: 'pin_course', pathId: uuid(match[1]) };
+  }
+  if ((match = /^\/lessons\/([^/]+)\/assets(?:\/([^/]+)(?:\/(bytes|cleanup))?)?$/.exec(path))) {
+    const lesson_id=uuid(match[1]);
+    if (!match[2] && req.method==='GET') { query(url,[]);return {action:'asset_list',payload:{lesson_id}}; }
+    if (!match[2] && req.method==='POST') { query(url,[]);return {action:'asset_upload',payload:{lesson_id}}; }
+    if (match[2]) {
+      const asset_id=uuid(match[2]);
+      if (req.method==='GET' && match[3]!=='cleanup') {
+        const args=query(url,['class_id']);if(own(args,'class_id'))uuid(args.class_id);
+        return {action:match[3]==='bytes'?'asset_bytes':'asset_read',payload:{lesson_id,asset_id,...args}};
+      }
+      if (req.method==='POST' && match[3]==='cleanup') {query(url,[]);return {action:'asset_cleanup',payload:{lesson_id,asset_id}};}
+    }
+    throw new ApiError(404,'not_found','Lesson endpoint not found.');
   }
   if ((match = /^\/lessons\/([^/]+)(?:\/(.*))?$/.exec(path))) {
     const lesson_id = uuid(match[1]); const suffix = match[2] || '';
@@ -201,9 +217,9 @@ function delivery(result, actor, payload, siteBase, mathEngine) {
 
 /** The only browser-facing authorization input is the existing opaque school token. */
 /**
- * @param {{rpc: (name: string, args: Record<string, unknown>) => Promise<{data: unknown, error: null | {code: string}}>, mathEngine: {version: string, renderToString: Function}, allowedOrigins?: string[], siteBase?: string, now?: () => number, bodyTimeoutMs?: number}} options
+ * @param {{rpc: (name: string, args: Record<string, unknown>) => Promise<{data: unknown, error: null | {code: string}}>, mathEngine: {version: string, renderToString: Function}, assetStorage?: {put: Function,get: Function,removeTemporary: Function}, allowedOrigins?: string[], siteBase?: string, now?: () => number, bodyTimeoutMs?: number}} options
  */
-export function createLessonHandler({ rpc, mathEngine, allowedOrigins = ['https://2ed944-cloud.github.io'], siteBase = 'https://2ed944-cloud.github.io/ECHS-Math/', now = () => Date.now(), bodyTimeoutMs = 10000 } = {}) {
+export function createLessonHandler({ rpc, mathEngine, assetStorage, allowedOrigins = ['https://2ed944-cloud.github.io'], siteBase = 'https://2ed944-cloud.github.io/ECHS-Math/', now = () => Date.now(), bodyTimeoutMs = 10000 } = {}) {
   if (!Number.isInteger(bodyTimeoutMs) || bodyTimeoutMs < 1 || bodyTimeoutMs > 30000) throw new TypeError('A bounded request timeout is required.');
   if (typeof rpc !== 'function' || !mathEngine) throw new TypeError('Trusted database and math dependencies are required.');
   const base = new URL(siteBase);
@@ -214,7 +230,7 @@ export function createLessonHandler({ rpc, mathEngine, allowedOrigins = ['https:
     const origin = req.headers.get('origin');
     const headers = { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'no-store, private',
       'pragma': 'no-cache', 'vary': 'Origin, Authorization', 'x-content-type-options': 'nosniff',
-      'access-control-allow-methods': 'GET, POST, OPTIONS', 'access-control-allow-headers': 'authorization, content-type',
+      'access-control-allow-methods': 'GET, POST, OPTIONS', 'access-control-allow-headers': 'authorization, content-type, x-echs-asset-id, x-echs-asset-name',
       'access-control-max-age': '600' };
     if (origin && origins.has(origin)) headers['access-control-allow-origin'] = origin;
     const reply = (data, status = 200) => new Response(JSON.stringify(data), { status, headers });
@@ -241,6 +257,12 @@ export function createLessonHandler({ rpc, mathEngine, allowedOrigins = ['https:
         if (!capabilities) throw unavailable();
         return reply({ ok: true, service: 'lesson-api', contract: LESSON_API_CONTRACT, authoring_capabilities: capabilities });
       }
+      if (target.action === 'media_health') {
+        let capabilities=null;
+        if (assetStorage) {try {capabilities=confirmedMediaCapabilities(await invoke('lesson_media_capabilities',{}));} catch {/* fail closed */}}
+        if (!capabilities) throw unavailable();
+        return reply({ok:true,service:'lesson-api',contract:LESSON_API_CONTRACT,media_capabilities:capabilities});
+      }
       const header = req.headers.get('authorization') || '';
       const token = /^Bearer ([^\s]{16,2048})$/.exec(header)?.[1];
       if (!token) throw new ApiError(401, 'sign_in_required', 'An active ECHS school session is required.');
@@ -251,10 +273,12 @@ export function createLessonHandler({ rpc, mathEngine, allowedOrigins = ['https:
       if (!actor || !UUID.test(actor.account_id || '') || !UUID.test(actor.organization_id || '') || actor.status !== 'active' || !(Date.parse(actor.expires_at) > now())) {
         throw new ApiError(401, 'sign_in_required', 'An active ECHS school session is required.');
       }
-      if (target.action === 'deliver' ? !['admin','teacher','student'].includes(actor.role) : !STAFF.has(actor.role)) {
+      const studentDelivery=target.action==='deliver' || (['asset_read','asset_bytes'].includes(target.action) && target.payload.class_id);
+      if (studentDelivery ? !['admin','teacher','student'].includes(actor.role) : !STAFF.has(actor.role)) {
         throw new ApiError(403, 'staff_required', 'This operation requires an authorized teacher or administrator.');
       }
       if (target.action === 'pin_course' && actor.role !== 'admin') throw new ApiError(403, 'admin_required', 'Only an administrator can assign a class course version.');
+      if (target.action.startsWith('asset_')) return await handleLessonAsset({target,req,actor,tokenHash,invoke,reply,storage:assetStorage,timeoutMs:bodyTimeoutMs});
       const store = async (action, payload) => {
         const data = await invoke('lesson_store', { p_token_hash: tokenHash, p_action: action, p_payload: payload });
         if (data?.ok !== true || data.contract !== LESSON_API_CONTRACT) throw unavailable();
@@ -310,7 +334,9 @@ export function createLessonHandler({ rpc, mathEngine, allowedOrigins = ['https:
         // v1; it never claims v2 support based on the Edge code alone.
         let capabilities = null;
         try { capabilities = confirmedCapabilities(await invoke('lesson_content_capabilities', {})); } catch { /* fail closed */ }
-        return reply({ ...data, authoring_capabilities: capabilities });
+        let mediaCapabilities=null;
+        if (assetStorage) {try {mediaCapabilities=confirmedMediaCapabilities(await invoke('lesson_media_capabilities',{}));} catch {/* fail closed */}}
+        return reply({ ...data, authoring_capabilities: capabilities, media_capabilities:mediaCapabilities });
       }
       return reply(data, target.action === 'create' ? 201 : 200);
     } catch (error) {
@@ -322,7 +348,7 @@ export function createLessonHandler({ rpc, mathEngine, allowedOrigins = ['https:
         return reply({ ok: false, error: { code: inputValidation ? 'invalid_lesson_document' : 'invalid_stored_document',
           message: inputValidation ? 'The lesson document failed validation.' : 'The stored lesson cannot be delivered or published safely.' } }, status);
       }
-      const safe = error instanceof ApiError ? error : unavailable();
+      const safe = error instanceof ApiError || error instanceof LessonMediaRequestError ? error : unavailable();
       return reply({ ok: false, error: { code: safe.code, message: safe.message } }, safe.status);
     }
   };

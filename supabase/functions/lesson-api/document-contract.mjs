@@ -6,7 +6,7 @@ export const SERVER_KATEX_VERSION = '0.16.27';
 export const MAX_PERSISTED_DOCUMENT_BYTES = 1024 * 1024;
 const encoder = new TextEncoder();
 const identityFields = ['lesson_id', 'course_version_id', 'unit_id', 'topic_id', 'document_version'];
-const publishedBlocks = new Set(['rich-text@1', 'math@1', 'callout@1', 'rich-text@2', 'math@2', 'callout@2']);
+const publishedBlocks = new Set(['rich-text@1', 'math@1', 'callout@1', 'rich-text@2', 'math@2', 'callout@2', 'image@1', 'video@1', 'table@1', 'resource@1']);
 const issue = (path, code, message) => ({ path, code, message });
 
 /**

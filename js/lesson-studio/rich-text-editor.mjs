@@ -68,12 +68,17 @@ function withMark(nodes, mark, enabled) {
 }
 
 /** Framework-neutral, controlled rich text. The DOM is an editing buffer, never persisted HTML. */
-export function createRichTextEditor({ root, content, mathEngine, onChange = () => {}, onInvalid = () => {} } = {}) {
+export function createRichTextEditor({ root, content, mathEngine, onChange = () => {}, onInvalid = () => {}, inlineOnly = false } = {}) {
   if (!root?.ownerDocument || typeof onChange !== 'function' || typeof onInvalid !== 'function') throw new TypeError('An editor root and callbacks are required.');
-  assertBlockContent('rich-text', 2, content, { mathEngine });
+  if (typeof inlineOnly !== 'boolean') throw new TypeError('Inline-only mode must be a boolean.');
+  function checked(next) {
+    assertBlockContent('rich-text', 2, next, { mathEngine });
+    if (inlineOnly && (next.nodes.length !== 1 || next.nodes[0].type !== 'paragraph')) throw issue('inline-content', 'A table cell contains one text paragraph with optional formatting and mathematics.');
+  }
+  checked(content);
   const document = root.ownerDocument, window = document.defaultView, listeners = [];
   let value = clone(content), invalid = null, disposed = false, composing = false, pending = false, savedSelection = { start: 0, end: 0 };
-  let atoms = new WeakMap(), mathEditor = null, dialogRange = null;
+  let atoms = new WeakMap(), paddingBreaks = new WeakSet(), mathEditor = null, dialogRange = null;
   const markButtons = {};
   const element = (tag, className, label) => {
     const node = document.createElement(tag); if (className) node.className = className; if (label) node.textContent = label; return node;
@@ -102,7 +107,7 @@ export function createRichTextEditor({ root, content, mathEngine, onChange = () 
     onInvalid({ valid: false, errors: invalid.errors.map(({ path, code, message }) => ({ path, code, message })) });
   }
   function valid(next, notify = true) {
-    assertBlockContent('rich-text', 2, next, { mathEngine });
+    checked(next);
     value = clone(next); invalid = null; surface.removeAttribute('aria-invalid'); status.textContent = '';
     if (notify) onChange(clone(value));
   }
@@ -128,7 +133,7 @@ export function createRichTextEditor({ root, content, mathEngine, onChange = () 
     parent.append(atom);
   }
   function render(next) {
-    atoms = new WeakMap(); const fragment = document.createDocumentFragment();
+    atoms = new WeakMap(); paddingBreaks = new WeakSet(); const fragment = document.createDocumentFragment();
     for (const node of next.nodes) {
       if (node.type === 'paragraph') { const paragraph = element('p'); node.children.forEach(child => appendInline(paragraph, child)); fragment.append(paragraph); }
       else {
@@ -138,6 +143,13 @@ export function createRichTextEditor({ root, content, mathEngine, onChange = () 
       }
     }
     surface.replaceChildren(fragment);
+    if (inlineOnly) ensureTerminalLine();
+  }
+  function ensureTerminalLine() {
+    if (!inlineOnly) return;
+    const row = surface.querySelector('p') || surface;
+    for (const child of row.querySelectorAll('br')) if (paddingBreaks.has(child)) child.remove();
+    if (row.textContent.endsWith('\n')) { const br = element('br'); paddingBreaks.add(br); row.append(br); }
   }
   /** Read only controlled nodes. Unknown markup is rejected, never interpreted or exported. */
   function read() {
@@ -146,6 +158,7 @@ export function createRichTextEditor({ root, content, mathEngine, onChange = () 
       if (++inspected > 15000) throw issue('editor-size', 'This block contains too much content.');
       if (node.nodeType === 3) { const text = node.data; positions.push({ node, start: at, length: text.length }); at += text.length; return text.length ? [textNode(text, marks)] : []; }
       if (node.nodeType !== 1) throw issue('unsupported-markup', 'Use plain text, formatting, lists, links or mathematics.');
+      if (paddingBreaks.has(node)) return [];
       if (atoms.has(node)) { positions.push({ node, start: at++, length: 1, atom: true }); return [clone(atoms.get(node))]; }
       const tag = node.tagName;
       if (tag === 'BR') { positions.push({ node, start: at++, length: 1, atom: true }); return [textNode('\n', marks)]; }
@@ -215,14 +228,14 @@ export function createRichTextEditor({ root, content, mathEngine, onChange = () 
   }
   function currentBuffer() {
     active(); if (composing || pending) throw issue('unfinished-edit', 'Finish or cancel the current edit before saving.');
-    const buffer = read(); assertBlockContent('rich-text', 2, buffer.content, { mathEngine }); return buffer;
+    const buffer = read(); checked(buffer.content); return buffer;
   }
   function commit(next, selection) {
-    assertBlockContent('rich-text', 2, next, { mathEngine }); render(next); restore(selection); valid(next);
+    checked(next); render(next); restore(selection); valid(next);
   }
   function processInput() {
     if (disposed || composing || pending) return;
-    try { const buffer = read(); capture(buffer); valid(buffer.content); } catch (error) { report(error); }
+    try { ensureTerminalLine(); const buffer = read(); capture(buffer); valid(buffer.content); } catch (error) { report(error); }
   }
   function selectedText(action) {
     const buffer = currentBuffer(), selection = capture(buffer);
@@ -248,9 +261,11 @@ export function createRichTextEditor({ root, content, mathEngine, onChange = () 
   markButtons.strong = button(toolbar, 'Bold', () => format('strong'));
   markButtons.em = button(toolbar, 'Italic', () => format('em'));
   for (const control of Object.values(markButtons)) control.setAttribute('aria-pressed', 'false');
-  button(toolbar, 'Paragraph', () => styleRows('paragraph'));
-  button(toolbar, 'Bulleted list', () => styleRows('unordered'));
-  button(toolbar, 'Numbered list', () => styleRows('ordered'));
+  if (!inlineOnly) {
+    button(toolbar, 'Paragraph', () => styleRows('paragraph'));
+    button(toolbar, 'Bulleted list', () => styleRows('unordered'));
+    button(toolbar, 'Numbered list', () => styleRows('ordered'));
+  }
   button(toolbar, 'Add link', () => selectedText((buffer, selection) => {
     dialogRange = selection; setPending(true); linkPanel.hidden = false; linkInput.value = ''; linkInput.focus();
     report(issue('unfinished-link', 'Enter a safe web address, or cancel the link.'));
@@ -264,7 +279,7 @@ export function createRichTextEditor({ root, content, mathEngine, onChange = () 
       if (children.some(node => node.type === 'math')) throw issue('invalid-link', 'Select text without mathematics for this link.');
       return [{ type: 'link', href: linkInput.value, children: compact(textLeaves(children)) }];
     }));
-    assertBlockContent('rich-text', 2, next, { mathEngine }); setPending(false); linkPanel.hidden = true; linkInput.value = ''; dialogRange = null;
+    checked(next); setPending(false); linkPanel.hidden = true; linkInput.value = ''; dialogRange = null;
     commit(next, selection);
   });
   function cancelPending() {
@@ -297,7 +312,7 @@ export function createRichTextEditor({ root, content, mathEngine, onChange = () 
   button(mathDialog, 'Insert mathematics', () => {
     const math = mathEditor.getValue(), selection = dialogRange, buffer = read();
     const next = spliceInline(buffer, selection, [{ type: 'math', source: clone(math.source), spoken: math.spoken }]);
-    assertBlockContent('rich-text', 2, next, { mathEngine }); setPending(false); mathEditor.dispose(); mathEditor = null;
+    checked(next); setPending(false); mathEditor.dispose(); mathEditor = null;
     mathDialog.close(); dialogRange = null; commit(next, { start: selection.start + 1, end: selection.start + 1 });
   });
   button(mathDialog, 'Cancel mathematics', cancelPending);
@@ -322,23 +337,29 @@ export function createRichTextEditor({ root, content, mathEngine, onChange = () 
   });
   listen(surface, 'compositionstart', () => { composing = true; report(issue('unfinished-composition', 'Finish entering this text before saving.')); });
   listen(surface, 'compositionend', () => { composing = false; processInput(); });
-  function pastePlain(event) {
-    event.preventDefault(); if (disposed || pending) return;
-    const text = event.clipboardData?.getData('text/plain') ?? event.dataTransfer?.getData('text/plain') ?? '';
+  function insertPlainText(text) {
+    if (disposed || pending) return;
     if (!text) return;
     if (text.length > 200000) { report(issue('editor-size', 'Paste a smaller amount of text.')); return; }
     try {
       restore(capture()); const selection = window.getSelection(), range = selection.getRangeAt(0), node = document.createTextNode(text);
-      range.deleteContents(); range.insertNode(node); range.setStartAfter(node); range.collapse(true); selection.removeAllRanges(); selection.addRange(range); processInput();
+      range.deleteContents(); range.insertNode(node); ensureTerminalLine(); range.setStart(node, node.length); range.collapse(true); selection.removeAllRanges(); selection.addRange(range); processInput();
     } catch (error) { report(error); }
   }
+  function pastePlain(event) {
+    event.preventDefault();
+    insertPlainText(event.clipboardData?.getData('text/plain') ?? event.dataTransfer?.getData('text/plain') ?? '');
+  }
+  listen(surface, 'beforeinput', event => {
+    if (inlineOnly && !event.isComposing && ['insertParagraph', 'insertLineBreak'].includes(event.inputType)) { event.preventDefault(); insertPlainText('\n'); }
+  });
   listen(surface, 'paste', pastePlain); listen(surface, 'drop', pastePlain);
   listen(document, 'selectionchange', () => { if (!disposed && !pending) { try { capture(); } catch {} } });
   render(value);
   return Object.freeze({
     getValue() { const buffer = currentBuffer(); if (invalid) throw invalid; return clone(buffer.content); },
     setValue(next) {
-      active(); assertBlockContent('rich-text', 2, next, { mathEngine });
+      active(); checked(next);
       if (JSON.stringify(next) === JSON.stringify(value)) return;
       if (composing || pending) throw issue('unfinished-edit', 'Finish or cancel the current edit first.');
       render(next); valid(next, false); savedSelection = { start: 0, end: 0 };
@@ -346,7 +367,7 @@ export function createRichTextEditor({ root, content, mathEngine, onChange = () 
     focus() { active(); surface.focus(); },
     dispose() {
       if (disposed) return; disposed = true; listeners.splice(0).forEach(remove => remove()); mathEditor?.dispose(); mathEditor = null;
-      if (mathDialog.open) mathDialog.close(); root.replaceChildren(); value = null; invalid = null; atoms = new WeakMap();
+      if (mathDialog.open) mathDialog.close(); root.replaceChildren(); value = null; invalid = null; atoms = new WeakMap(); paddingBreaks = new WeakSet();
       savedSelection = null; dialogRange = null; linkInput.value = ''; surface.replaceChildren(); mathRoot.replaceChildren();
     }
   });

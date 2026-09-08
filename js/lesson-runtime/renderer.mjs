@@ -1,5 +1,6 @@
 import {assertPublicLessonDocument, assertLessonDocument, LESSON_DOCUMENT_LIMITS} from './schema.mjs';
 import {createContentRenderer} from './content-renderer.mjs';
+import {LESSON_MEDIA_TYPES,assertLessonAssetMetadata,readLessonAssetResponse} from './asset-contract.mjs';
 
 const EDITABLE = 'input,textarea,select,button,a,[contenteditable="true"]';
 const mountedLessonRoots = new WeakMap();
@@ -73,7 +74,7 @@ export async function mountLesson({root, lesson, binding, enabled = false, windo
 
 // Only the two explicit entry points can reach this renderer. There is no public
 // audience override or caller-provided "authorized" document shortcut.
-function mountValidatedLesson({root, lesson, binding, win, mathEngine, owner, scopeAllowed = () => true}) {
+function mountValidatedLesson({root, lesson, binding, win, mathEngine, owner, scopeAllowed = () => true,resolveAsset}) {
   const host = validateHostBinding(binding, lesson, win);
   let currentAccess = owner.access;
   const data = JSON.parse(JSON.stringify(lesson));
@@ -81,6 +82,7 @@ function mountValidatedLesson({root, lesson, binding, win, mathEngine, owner, sc
   const listeners = [];
   let disposed = false;
   let mountRecord;
+  let contentRenderer;
   const on = (target, type, handler) => { target.addEventListener(type, handler); listeners.push(() => target.removeEventListener(type, handler)); };
   const el = (tag, text, className) => { const node = doc.createElement(tag); if (text !== undefined) node.textContent = text; if (className) node.className = className; return node; };
   const currentRoute = () => { const url = new URL(win.location.href); url.hash = ''; return url.href; };
@@ -89,13 +91,17 @@ function mountValidatedLesson({root, lesson, binding, win, mathEngine, owner, sc
   const dispose = () => {
     if (disposed) return;
     disposed = true;
+    contentRenderer?.dispose();
     for (const remove of listeners.splice(0)) remove();
     if (mountedLessonRoots.get(root) === mountRecord) {mountedLessonRoots.delete(root); root.replaceChildren();}
   };
   const verify = () => { if (stillAllowed()) return true; dispose(); return false; };
-  const contentRenderer = createContentRenderer({document:doc,mathEngine});
+  contentRenderer = createContentRenderer({document:doc,mathEngine,resolveAsset:resolveAsset?async(assetId,options)=>{
+    if(!verify())throw envelopeError();const result=await resolveAsset(assetId,options);if(!verify())throw envelopeError();return result;
+  }:undefined});
   function blockNode(block) {
     if (['rich-text','math','callout'].includes(block.type) && [1,2].includes(block.version)) return contentRenderer.block(block);
+    if (LESSON_MEDIA_TYPES.includes(block.type) && block.version===1) return contentRenderer.block(block);
     if (block.type === 'legacy-embedded') {
       const aside = el('aside', undefined, 'echsDocumentCallout');
       const repositoryRoot = new URL('../../', import.meta.url);
@@ -133,7 +139,7 @@ function mountValidatedLesson({root, lesson, binding, win, mathEngine, owner, sc
     if (!verify()) return;
     if (!Number.isInteger(value)) throw new TypeError('Slide index must be an integer.');
     index = Math.max(0, Math.min(sections.length - 1, value));
-    sections.forEach((section, i) => { section.hidden = i !== index; });
+    sections.forEach((section, i) => {if(i!==index)contentRenderer.deactivate(section);section.hidden = i !== index;});
     previous.disabled = index === 0; next.disabled = index === sections.length - 1; select.value = String(index);
     status.textContent = `Slide ${index + 1} of ${sections.length}: ${data.slides[index].title}`;
     if (updateUrl) win.history.replaceState(null, '', slideHref(win.location.href, index));
@@ -242,7 +248,7 @@ function institutionalBinding(payload, {lessonId, classId, accountId, organizati
   assertLessonDocument(payload.document, {mathEngine:mathEngine ?? null});
   if (payload.document.publication.status !== 'published' || payload.document.publication.audience !== 'institutional' ||
       payload.document.lesson_id !== lessonId || payload.document.publication.revision !== payload.revision ||
-      payload.document.slides.some(slide => slide.blocks.some(block => !['rich-text','math','callout'].includes(block.type) || ![1,2].includes(block.version)))) throw envelopeError();
+      payload.document.slides.some(slide => slide.blocks.some(block => !(['rich-text','math','callout'].includes(block.type)&&[1,2].includes(block.version))&&!(LESSON_MEDIA_TYPES.includes(block.type)&&block.version===1)))) throw envelopeError();
   const host = {course_key:binding.course_key, route, document:binding.document};
   validateHostBinding(host, payload.document, win);
   return host;
@@ -254,11 +260,12 @@ function institutionalBinding(payload, {lessonId, classId, accountId, organizati
  * its caller. Server authorization remains authoritative; no data is persisted.
  */
 export async function mountInstitutionalLesson({root, lessonId, classId, enabled = false, window:win = window,
-  mathEngine = win.katex, accessTimeoutMs = 10000, requestTimeoutMs = 10000, signal} = {}) {
+  mathEngine = win.katex, accessTimeoutMs = 10000, requestTimeoutMs = 10000, assetTimeoutMs = 60000, signal} = {}) {
   if (enabled !== true) return Object.freeze({mode:'legacy', href:win.location.href, dispose(){}});
   if (!root || root.ownerDocument !== win.document) throw new TypeError('A lesson mount in the current document is required.');
   if (!UUID.test(lessonId) || !UUID.test(classId)) throw new TypeError('A lesson and class identity are required.');
   if (![accessTimeoutMs,requestTimeoutMs].every(value => Number.isInteger(value) && value >= 1 && value <= 30000)) throw new TypeError('Lesson request timeouts must be bounded.');
+  if(!Number.isInteger(assetTimeoutMs)||assetTimeoutMs<1||assetTimeoutMs>60000)throw new TypeError('Asset requests must be bounded.');
   const client = win.ECHSInstitution;
   const account = client?.account?.();
   const accountId = account?.id, organizationId = account?.organization_id, role = account?.role, token = client?.token?.();
@@ -320,7 +327,39 @@ export async function mountInstitutionalLesson({root, lessonId, classId, enabled
       assertCurrent(); if (!configMatches()) throw new Error('Institutional lesson configuration changed.');
       const binding = institutionalBinding(payload, {lessonId,classId,accountId,organizationId,route,site:endpoint.site,win,mathEngine});
       assertCurrent();
-      return mountValidatedLesson({root,lesson:payload.document,binding,win,mathEngine,owner,scopeAllowed:() => sessionMatches() && configMatches()});
+      const refs=new Map(payload.document.slides.flatMap(slide=>slide.blocks.filter(block=>['image','resource'].includes(block.type)).map(block=>[block.content.asset_id,block.type])));
+      const resolveAsset=async(assetId,{kind,signal:parentSignal}={})=>{
+        if(!refs.has(assetId)||refs.get(assetId)!==kind)throw envelopeError();
+        const assetController=new win.AbortController(),assetSignal=assetController.signal;
+        const cancel=()=>assetController.abort(new Error('This asset request has ended.'));
+        if(parentSignal?.aborted)cancel();else parentSignal?.addEventListener('abort',cancel,{once:true});
+        const assetTimer=win.setTimeout(cancel,assetTimeoutMs);
+        const check=()=>{assetSignal.throwIfAborted();if(!sessionMatches()||!configMatches())throw envelopeError();};
+        const checkConfig=async()=>{check();const latest=await client.config();check();const current=configuredEndpoint(latest);if(current.api!==endpoint.api||current.site!==endpoint.site)throw envelopeError();};
+        let rejectCancelled;
+        const cancelled=new Promise((_,reject)=>{rejectCancelled=()=>reject(assetSignal.reason);assetSignal.addEventListener('abort',rejectCancelled,{once:true});});
+        if(assetSignal.aborted)rejectCancelled();
+        const fetchAsset=async(requestUrl,accept)=>{
+          await checkConfig();
+          const result=await win.fetch(requestUrl,{method:'GET',headers:{Accept:accept,Authorization:`Bearer ${token}`},mode:'cors',credentials:'omit',cache:'no-store',redirect:'error',referrerPolicy:'no-referrer',signal:assetSignal});
+          await checkConfig();return result;
+        };
+        try{return await Promise.race([cancelled,(async()=>{
+          const base=`${endpoint.api}/lesson-api/lessons/${lessonId}/assets/${assetId}`;
+          const query=`?class_id=${encodeURIComponent(classId)}`,metadataUrl=base+query;
+          const response=await fetchAsset(metadataUrl,'application/json');
+          const cache=response.headers.get('cache-control')||'';
+          if(!/\bprivate\b/i.test(cache)||!/\bno-store\b/i.test(cache))throw envelopeError();
+          const envelope=await readInstitutionalEnvelope(response,metadataUrl,assetSignal);await checkConfig();
+          exactKeys(envelope,['ok','contract','lesson_id','asset']);
+          if(envelope.ok!==true||envelope.contract!==INSTITUTIONAL_CONTRACT||envelope.lesson_id!==lessonId)throw envelopeError();
+          const metadata=assertLessonAssetMetadata(envelope.asset,{assetId,kind});
+          const bytesUrl=base+'/bytes'+query,bytes=await fetchAsset(bytesUrl,metadata.mime_type);
+          const result=await readLessonAssetResponse(bytes,{metadata,expectedUrl:bytesUrl,signal:assetSignal,assertCurrent:check,crypto:win.crypto});
+          await checkConfig();return result;
+        })()]);}finally{cancel();win.clearTimeout(assetTimer);parentSignal?.removeEventListener('abort',cancel);assetSignal.removeEventListener('abort',rejectCancelled);}
+      };
+      return mountValidatedLesson({root,lesson:payload.document,binding,win,mathEngine,owner,resolveAsset,scopeAllowed:() => sessionMatches() && configMatches()});
     })()]);
   } catch (error) {
     controller.abort(error);

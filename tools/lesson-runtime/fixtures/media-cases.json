@@ -1,0 +1,4664 @@
+{
+  "source": "Original ECHS structural fixtures; no private or AP Classroom data",
+  "cases": [
+    {
+      "label": "original image",
+      "valid": true,
+      "block": {
+        "id": "original-image",
+        "type": "image",
+        "version": 1,
+        "content": {
+          "asset_id": "10000000-0000-4000-8000-000000000001",
+          "alt": "A rising line on coordinate axes",
+          "decorative": false,
+          "caption": "Original ECHS illustration",
+          "description": "The line passes through the origin."
+        }
+      }
+    },
+    {
+      "label": "original video",
+      "valid": true,
+      "block": {
+        "id": "original-video",
+        "type": "video",
+        "version": 1,
+        "content": {
+          "provider": "youtube",
+          "video_id": "Abcd_ef-123",
+          "title": "Original video fixture",
+          "start_seconds": 0,
+          "transcript": "The presenter explains an example."
+        }
+      }
+    },
+    {
+      "label": "original table",
+      "valid": true,
+      "block": {
+        "id": "original-table",
+        "type": "table",
+        "version": 1,
+        "content": {
+          "caption": "Original values",
+          "columns": [
+            {
+              "id": "x",
+              "label": "x"
+            },
+            {
+              "id": "y",
+              "label": "y"
+            }
+          ],
+          "rows": [
+            {
+              "id": "row-a",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "1"
+                  }
+                ],
+                [
+                  {
+                    "type": "math",
+                    "source": {
+                      "mode": "tex",
+                      "tex": "2"
+                    },
+                    "spoken": "two"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "row-b",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "2"
+                  }
+                ],
+                [
+                  {
+                    "type": "link",
+                    "href": "https://example.org/resource",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "Original explanation"
+                      }
+                    ]
+                  }
+                ]
+              ]
+            }
+          ],
+          "row_header": true
+        }
+      }
+    },
+    {
+      "label": "original resource",
+      "valid": true,
+      "block": {
+        "id": "original-resource",
+        "type": "resource",
+        "version": 1,
+        "content": {
+          "asset_id": "10000000-0000-4000-8000-000000000001",
+          "title": "Original PDF resource",
+          "description": "An accessible explanation of the lesson."
+        }
+      }
+    },
+    {
+      "label": "image missing asset_id",
+      "valid": false,
+      "block": {
+        "id": "original-image",
+        "type": "image",
+        "version": 1,
+        "content": {
+          "alt": "A rising line on coordinate axes",
+          "decorative": false,
+          "caption": "Original ECHS illustration",
+          "description": "The line passes through the origin."
+        }
+      }
+    },
+    {
+      "label": "image null asset_id",
+      "valid": false,
+      "block": {
+        "id": "original-image",
+        "type": "image",
+        "version": 1,
+        "content": {
+          "asset_id": null,
+          "alt": "A rising line on coordinate axes",
+          "decorative": false,
+          "caption": "Original ECHS illustration",
+          "description": "The line passes through the origin."
+        }
+      }
+    },
+    {
+      "label": "image missing alt",
+      "valid": false,
+      "block": {
+        "id": "original-image",
+        "type": "image",
+        "version": 1,
+        "content": {
+          "asset_id": "10000000-0000-4000-8000-000000000001",
+          "decorative": false,
+          "caption": "Original ECHS illustration",
+          "description": "The line passes through the origin."
+        }
+      }
+    },
+    {
+      "label": "image null alt",
+      "valid": false,
+      "block": {
+        "id": "original-image",
+        "type": "image",
+        "version": 1,
+        "content": {
+          "asset_id": "10000000-0000-4000-8000-000000000001",
+          "alt": null,
+          "decorative": false,
+          "caption": "Original ECHS illustration",
+          "description": "The line passes through the origin."
+        }
+      }
+    },
+    {
+      "label": "image missing decorative",
+      "valid": false,
+      "block": {
+        "id": "original-image",
+        "type": "image",
+        "version": 1,
+        "content": {
+          "asset_id": "10000000-0000-4000-8000-000000000001",
+          "alt": "A rising line on coordinate axes",
+          "caption": "Original ECHS illustration",
+          "description": "The line passes through the origin."
+        }
+      }
+    },
+    {
+      "label": "image null decorative",
+      "valid": false,
+      "block": {
+        "id": "original-image",
+        "type": "image",
+        "version": 1,
+        "content": {
+          "asset_id": "10000000-0000-4000-8000-000000000001",
+          "alt": "A rising line on coordinate axes",
+          "decorative": null,
+          "caption": "Original ECHS illustration",
+          "description": "The line passes through the origin."
+        }
+      }
+    },
+    {
+      "label": "image missing caption",
+      "valid": false,
+      "block": {
+        "id": "original-image",
+        "type": "image",
+        "version": 1,
+        "content": {
+          "asset_id": "10000000-0000-4000-8000-000000000001",
+          "alt": "A rising line on coordinate axes",
+          "decorative": false,
+          "description": "The line passes through the origin."
+        }
+      }
+    },
+    {
+      "label": "image null caption",
+      "valid": false,
+      "block": {
+        "id": "original-image",
+        "type": "image",
+        "version": 1,
+        "content": {
+          "asset_id": "10000000-0000-4000-8000-000000000001",
+          "alt": "A rising line on coordinate axes",
+          "decorative": false,
+          "caption": null,
+          "description": "The line passes through the origin."
+        }
+      }
+    },
+    {
+      "label": "image missing description",
+      "valid": false,
+      "block": {
+        "id": "original-image",
+        "type": "image",
+        "version": 1,
+        "content": {
+          "asset_id": "10000000-0000-4000-8000-000000000001",
+          "alt": "A rising line on coordinate axes",
+          "decorative": false,
+          "caption": "Original ECHS illustration"
+        }
+      }
+    },
+    {
+      "label": "image null description",
+      "valid": false,
+      "block": {
+        "id": "original-image",
+        "type": "image",
+        "version": 1,
+        "content": {
+          "asset_id": "10000000-0000-4000-8000-000000000001",
+          "alt": "A rising line on coordinate axes",
+          "decorative": false,
+          "caption": "Original ECHS illustration",
+          "description": null
+        }
+      }
+    },
+    {
+      "label": "image unknown content",
+      "valid": false,
+      "block": {
+        "id": "original-image",
+        "type": "image",
+        "version": 1,
+        "content": {
+          "asset_id": "10000000-0000-4000-8000-000000000001",
+          "alt": "A rising line on coordinate axes",
+          "decorative": false,
+          "caption": "Original ECHS illustration",
+          "description": "The line passes through the origin.",
+          "html": "<script>bad</script>"
+        }
+      }
+    },
+    {
+      "label": "image unsupported version",
+      "valid": false,
+      "block": {
+        "id": "original-image",
+        "type": "image",
+        "version": 2,
+        "content": {
+          "asset_id": "10000000-0000-4000-8000-000000000001",
+          "alt": "A rising line on coordinate axes",
+          "decorative": false,
+          "caption": "Original ECHS illustration",
+          "description": "The line passes through the origin."
+        }
+      }
+    },
+    {
+      "label": "image string version",
+      "valid": false,
+      "block": {
+        "id": "original-image",
+        "type": "image",
+        "version": "1",
+        "content": {
+          "asset_id": "10000000-0000-4000-8000-000000000001",
+          "alt": "A rising line on coordinate axes",
+          "decorative": false,
+          "caption": "Original ECHS illustration",
+          "description": "The line passes through the origin."
+        }
+      }
+    },
+    {
+      "label": "video missing provider",
+      "valid": false,
+      "block": {
+        "id": "original-video",
+        "type": "video",
+        "version": 1,
+        "content": {
+          "video_id": "Abcd_ef-123",
+          "title": "Original video fixture",
+          "start_seconds": 0,
+          "transcript": "The presenter explains an example."
+        }
+      }
+    },
+    {
+      "label": "video null provider",
+      "valid": false,
+      "block": {
+        "id": "original-video",
+        "type": "video",
+        "version": 1,
+        "content": {
+          "provider": null,
+          "video_id": "Abcd_ef-123",
+          "title": "Original video fixture",
+          "start_seconds": 0,
+          "transcript": "The presenter explains an example."
+        }
+      }
+    },
+    {
+      "label": "video missing video_id",
+      "valid": false,
+      "block": {
+        "id": "original-video",
+        "type": "video",
+        "version": 1,
+        "content": {
+          "provider": "youtube",
+          "title": "Original video fixture",
+          "start_seconds": 0,
+          "transcript": "The presenter explains an example."
+        }
+      }
+    },
+    {
+      "label": "video null video_id",
+      "valid": false,
+      "block": {
+        "id": "original-video",
+        "type": "video",
+        "version": 1,
+        "content": {
+          "provider": "youtube",
+          "video_id": null,
+          "title": "Original video fixture",
+          "start_seconds": 0,
+          "transcript": "The presenter explains an example."
+        }
+      }
+    },
+    {
+      "label": "video missing title",
+      "valid": false,
+      "block": {
+        "id": "original-video",
+        "type": "video",
+        "version": 1,
+        "content": {
+          "provider": "youtube",
+          "video_id": "Abcd_ef-123",
+          "start_seconds": 0,
+          "transcript": "The presenter explains an example."
+        }
+      }
+    },
+    {
+      "label": "video null title",
+      "valid": false,
+      "block": {
+        "id": "original-video",
+        "type": "video",
+        "version": 1,
+        "content": {
+          "provider": "youtube",
+          "video_id": "Abcd_ef-123",
+          "title": null,
+          "start_seconds": 0,
+          "transcript": "The presenter explains an example."
+        }
+      }
+    },
+    {
+      "label": "video missing start_seconds",
+      "valid": false,
+      "block": {
+        "id": "original-video",
+        "type": "video",
+        "version": 1,
+        "content": {
+          "provider": "youtube",
+          "video_id": "Abcd_ef-123",
+          "title": "Original video fixture",
+          "transcript": "The presenter explains an example."
+        }
+      }
+    },
+    {
+      "label": "video null start_seconds",
+      "valid": false,
+      "block": {
+        "id": "original-video",
+        "type": "video",
+        "version": 1,
+        "content": {
+          "provider": "youtube",
+          "video_id": "Abcd_ef-123",
+          "title": "Original video fixture",
+          "start_seconds": null,
+          "transcript": "The presenter explains an example."
+        }
+      }
+    },
+    {
+      "label": "video missing transcript",
+      "valid": false,
+      "block": {
+        "id": "original-video",
+        "type": "video",
+        "version": 1,
+        "content": {
+          "provider": "youtube",
+          "video_id": "Abcd_ef-123",
+          "title": "Original video fixture",
+          "start_seconds": 0
+        }
+      }
+    },
+    {
+      "label": "video null transcript",
+      "valid": false,
+      "block": {
+        "id": "original-video",
+        "type": "video",
+        "version": 1,
+        "content": {
+          "provider": "youtube",
+          "video_id": "Abcd_ef-123",
+          "title": "Original video fixture",
+          "start_seconds": 0,
+          "transcript": null
+        }
+      }
+    },
+    {
+      "label": "video unknown content",
+      "valid": false,
+      "block": {
+        "id": "original-video",
+        "type": "video",
+        "version": 1,
+        "content": {
+          "provider": "youtube",
+          "video_id": "Abcd_ef-123",
+          "title": "Original video fixture",
+          "start_seconds": 0,
+          "transcript": "The presenter explains an example.",
+          "html": "<script>bad</script>"
+        }
+      }
+    },
+    {
+      "label": "video unsupported version",
+      "valid": false,
+      "block": {
+        "id": "original-video",
+        "type": "video",
+        "version": 2,
+        "content": {
+          "provider": "youtube",
+          "video_id": "Abcd_ef-123",
+          "title": "Original video fixture",
+          "start_seconds": 0,
+          "transcript": "The presenter explains an example."
+        }
+      }
+    },
+    {
+      "label": "video string version",
+      "valid": false,
+      "block": {
+        "id": "original-video",
+        "type": "video",
+        "version": "1",
+        "content": {
+          "provider": "youtube",
+          "video_id": "Abcd_ef-123",
+          "title": "Original video fixture",
+          "start_seconds": 0,
+          "transcript": "The presenter explains an example."
+        }
+      }
+    },
+    {
+      "label": "table missing caption",
+      "valid": false,
+      "block": {
+        "id": "original-table",
+        "type": "table",
+        "version": 1,
+        "content": {
+          "columns": [
+            {
+              "id": "x",
+              "label": "x"
+            },
+            {
+              "id": "y",
+              "label": "y"
+            }
+          ],
+          "rows": [
+            {
+              "id": "row-a",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "1"
+                  }
+                ],
+                [
+                  {
+                    "type": "math",
+                    "source": {
+                      "mode": "tex",
+                      "tex": "2"
+                    },
+                    "spoken": "two"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "row-b",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "2"
+                  }
+                ],
+                [
+                  {
+                    "type": "link",
+                    "href": "https://example.org/resource",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "Original explanation"
+                      }
+                    ]
+                  }
+                ]
+              ]
+            }
+          ],
+          "row_header": true
+        }
+      }
+    },
+    {
+      "label": "table null caption",
+      "valid": false,
+      "block": {
+        "id": "original-table",
+        "type": "table",
+        "version": 1,
+        "content": {
+          "caption": null,
+          "columns": [
+            {
+              "id": "x",
+              "label": "x"
+            },
+            {
+              "id": "y",
+              "label": "y"
+            }
+          ],
+          "rows": [
+            {
+              "id": "row-a",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "1"
+                  }
+                ],
+                [
+                  {
+                    "type": "math",
+                    "source": {
+                      "mode": "tex",
+                      "tex": "2"
+                    },
+                    "spoken": "two"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "row-b",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "2"
+                  }
+                ],
+                [
+                  {
+                    "type": "link",
+                    "href": "https://example.org/resource",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "Original explanation"
+                      }
+                    ]
+                  }
+                ]
+              ]
+            }
+          ],
+          "row_header": true
+        }
+      }
+    },
+    {
+      "label": "table missing columns",
+      "valid": false,
+      "block": {
+        "id": "original-table",
+        "type": "table",
+        "version": 1,
+        "content": {
+          "caption": "Original values",
+          "rows": [
+            {
+              "id": "row-a",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "1"
+                  }
+                ],
+                [
+                  {
+                    "type": "math",
+                    "source": {
+                      "mode": "tex",
+                      "tex": "2"
+                    },
+                    "spoken": "two"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "row-b",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "2"
+                  }
+                ],
+                [
+                  {
+                    "type": "link",
+                    "href": "https://example.org/resource",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "Original explanation"
+                      }
+                    ]
+                  }
+                ]
+              ]
+            }
+          ],
+          "row_header": true
+        }
+      }
+    },
+    {
+      "label": "table null columns",
+      "valid": false,
+      "block": {
+        "id": "original-table",
+        "type": "table",
+        "version": 1,
+        "content": {
+          "caption": "Original values",
+          "columns": null,
+          "rows": [
+            {
+              "id": "row-a",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "1"
+                  }
+                ],
+                [
+                  {
+                    "type": "math",
+                    "source": {
+                      "mode": "tex",
+                      "tex": "2"
+                    },
+                    "spoken": "two"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "row-b",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "2"
+                  }
+                ],
+                [
+                  {
+                    "type": "link",
+                    "href": "https://example.org/resource",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "Original explanation"
+                      }
+                    ]
+                  }
+                ]
+              ]
+            }
+          ],
+          "row_header": true
+        }
+      }
+    },
+    {
+      "label": "table missing rows",
+      "valid": false,
+      "block": {
+        "id": "original-table",
+        "type": "table",
+        "version": 1,
+        "content": {
+          "caption": "Original values",
+          "columns": [
+            {
+              "id": "x",
+              "label": "x"
+            },
+            {
+              "id": "y",
+              "label": "y"
+            }
+          ],
+          "row_header": true
+        }
+      }
+    },
+    {
+      "label": "table null rows",
+      "valid": false,
+      "block": {
+        "id": "original-table",
+        "type": "table",
+        "version": 1,
+        "content": {
+          "caption": "Original values",
+          "columns": [
+            {
+              "id": "x",
+              "label": "x"
+            },
+            {
+              "id": "y",
+              "label": "y"
+            }
+          ],
+          "rows": null,
+          "row_header": true
+        }
+      }
+    },
+    {
+      "label": "table missing row_header",
+      "valid": false,
+      "block": {
+        "id": "original-table",
+        "type": "table",
+        "version": 1,
+        "content": {
+          "caption": "Original values",
+          "columns": [
+            {
+              "id": "x",
+              "label": "x"
+            },
+            {
+              "id": "y",
+              "label": "y"
+            }
+          ],
+          "rows": [
+            {
+              "id": "row-a",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "1"
+                  }
+                ],
+                [
+                  {
+                    "type": "math",
+                    "source": {
+                      "mode": "tex",
+                      "tex": "2"
+                    },
+                    "spoken": "two"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "row-b",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "2"
+                  }
+                ],
+                [
+                  {
+                    "type": "link",
+                    "href": "https://example.org/resource",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "Original explanation"
+                      }
+                    ]
+                  }
+                ]
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "label": "table null row_header",
+      "valid": false,
+      "block": {
+        "id": "original-table",
+        "type": "table",
+        "version": 1,
+        "content": {
+          "caption": "Original values",
+          "columns": [
+            {
+              "id": "x",
+              "label": "x"
+            },
+            {
+              "id": "y",
+              "label": "y"
+            }
+          ],
+          "rows": [
+            {
+              "id": "row-a",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "1"
+                  }
+                ],
+                [
+                  {
+                    "type": "math",
+                    "source": {
+                      "mode": "tex",
+                      "tex": "2"
+                    },
+                    "spoken": "two"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "row-b",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "2"
+                  }
+                ],
+                [
+                  {
+                    "type": "link",
+                    "href": "https://example.org/resource",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "Original explanation"
+                      }
+                    ]
+                  }
+                ]
+              ]
+            }
+          ],
+          "row_header": null
+        }
+      }
+    },
+    {
+      "label": "table unknown content",
+      "valid": false,
+      "block": {
+        "id": "original-table",
+        "type": "table",
+        "version": 1,
+        "content": {
+          "caption": "Original values",
+          "columns": [
+            {
+              "id": "x",
+              "label": "x"
+            },
+            {
+              "id": "y",
+              "label": "y"
+            }
+          ],
+          "rows": [
+            {
+              "id": "row-a",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "1"
+                  }
+                ],
+                [
+                  {
+                    "type": "math",
+                    "source": {
+                      "mode": "tex",
+                      "tex": "2"
+                    },
+                    "spoken": "two"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "row-b",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "2"
+                  }
+                ],
+                [
+                  {
+                    "type": "link",
+                    "href": "https://example.org/resource",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "Original explanation"
+                      }
+                    ]
+                  }
+                ]
+              ]
+            }
+          ],
+          "row_header": true,
+          "html": "<script>bad</script>"
+        }
+      }
+    },
+    {
+      "label": "table unsupported version",
+      "valid": false,
+      "block": {
+        "id": "original-table",
+        "type": "table",
+        "version": 2,
+        "content": {
+          "caption": "Original values",
+          "columns": [
+            {
+              "id": "x",
+              "label": "x"
+            },
+            {
+              "id": "y",
+              "label": "y"
+            }
+          ],
+          "rows": [
+            {
+              "id": "row-a",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "1"
+                  }
+                ],
+                [
+                  {
+                    "type": "math",
+                    "source": {
+                      "mode": "tex",
+                      "tex": "2"
+                    },
+                    "spoken": "two"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "row-b",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "2"
+                  }
+                ],
+                [
+                  {
+                    "type": "link",
+                    "href": "https://example.org/resource",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "Original explanation"
+                      }
+                    ]
+                  }
+                ]
+              ]
+            }
+          ],
+          "row_header": true
+        }
+      }
+    },
+    {
+      "label": "table string version",
+      "valid": false,
+      "block": {
+        "id": "original-table",
+        "type": "table",
+        "version": "1",
+        "content": {
+          "caption": "Original values",
+          "columns": [
+            {
+              "id": "x",
+              "label": "x"
+            },
+            {
+              "id": "y",
+              "label": "y"
+            }
+          ],
+          "rows": [
+            {
+              "id": "row-a",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "1"
+                  }
+                ],
+                [
+                  {
+                    "type": "math",
+                    "source": {
+                      "mode": "tex",
+                      "tex": "2"
+                    },
+                    "spoken": "two"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "row-b",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "2"
+                  }
+                ],
+                [
+                  {
+                    "type": "link",
+                    "href": "https://example.org/resource",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "Original explanation"
+                      }
+                    ]
+                  }
+                ]
+              ]
+            }
+          ],
+          "row_header": true
+        }
+      }
+    },
+    {
+      "label": "resource missing asset_id",
+      "valid": false,
+      "block": {
+        "id": "original-resource",
+        "type": "resource",
+        "version": 1,
+        "content": {
+          "title": "Original PDF resource",
+          "description": "An accessible explanation of the lesson."
+        }
+      }
+    },
+    {
+      "label": "resource null asset_id",
+      "valid": false,
+      "block": {
+        "id": "original-resource",
+        "type": "resource",
+        "version": 1,
+        "content": {
+          "asset_id": null,
+          "title": "Original PDF resource",
+          "description": "An accessible explanation of the lesson."
+        }
+      }
+    },
+    {
+      "label": "resource missing title",
+      "valid": false,
+      "block": {
+        "id": "original-resource",
+        "type": "resource",
+        "version": 1,
+        "content": {
+          "asset_id": "10000000-0000-4000-8000-000000000001",
+          "description": "An accessible explanation of the lesson."
+        }
+      }
+    },
+    {
+      "label": "resource null title",
+      "valid": false,
+      "block": {
+        "id": "original-resource",
+        "type": "resource",
+        "version": 1,
+        "content": {
+          "asset_id": "10000000-0000-4000-8000-000000000001",
+          "title": null,
+          "description": "An accessible explanation of the lesson."
+        }
+      }
+    },
+    {
+      "label": "resource missing description",
+      "valid": false,
+      "block": {
+        "id": "original-resource",
+        "type": "resource",
+        "version": 1,
+        "content": {
+          "asset_id": "10000000-0000-4000-8000-000000000001",
+          "title": "Original PDF resource"
+        }
+      }
+    },
+    {
+      "label": "resource null description",
+      "valid": false,
+      "block": {
+        "id": "original-resource",
+        "type": "resource",
+        "version": 1,
+        "content": {
+          "asset_id": "10000000-0000-4000-8000-000000000001",
+          "title": "Original PDF resource",
+          "description": null
+        }
+      }
+    },
+    {
+      "label": "resource unknown content",
+      "valid": false,
+      "block": {
+        "id": "original-resource",
+        "type": "resource",
+        "version": 1,
+        "content": {
+          "asset_id": "10000000-0000-4000-8000-000000000001",
+          "title": "Original PDF resource",
+          "description": "An accessible explanation of the lesson.",
+          "html": "<script>bad</script>"
+        }
+      }
+    },
+    {
+      "label": "resource unsupported version",
+      "valid": false,
+      "block": {
+        "id": "original-resource",
+        "type": "resource",
+        "version": 2,
+        "content": {
+          "asset_id": "10000000-0000-4000-8000-000000000001",
+          "title": "Original PDF resource",
+          "description": "An accessible explanation of the lesson."
+        }
+      }
+    },
+    {
+      "label": "resource string version",
+      "valid": false,
+      "block": {
+        "id": "original-resource",
+        "type": "resource",
+        "version": "1",
+        "content": {
+          "asset_id": "10000000-0000-4000-8000-000000000001",
+          "title": "Original PDF resource",
+          "description": "An accessible explanation of the lesson."
+        }
+      }
+    },
+    {
+      "label": "decorative image with empty optional text",
+      "valid": true,
+      "block": {
+        "id": "original-image",
+        "type": "image",
+        "version": 1,
+        "content": {
+          "asset_id": "10000000-0000-4000-8000-000000000001",
+          "alt": "",
+          "decorative": true,
+          "caption": "",
+          "description": ""
+        }
+      }
+    },
+    {
+      "label": "decorative image nonempty alt",
+      "valid": false,
+      "block": {
+        "id": "original-image",
+        "type": "image",
+        "version": 1,
+        "content": {
+          "asset_id": "10000000-0000-4000-8000-000000000001",
+          "alt": "A rising line on coordinate axes",
+          "decorative": true,
+          "caption": "Original ECHS illustration",
+          "description": "The line passes through the origin."
+        }
+      }
+    },
+    {
+      "label": "whitespace image alt",
+      "valid": false,
+      "block": {
+        "id": "original-image",
+        "type": "image",
+        "version": 1,
+        "content": {
+          "asset_id": "10000000-0000-4000-8000-000000000001",
+          "alt": "  ",
+          "decorative": false,
+          "caption": "Original ECHS illustration",
+          "description": "The line passes through the origin."
+        }
+      }
+    },
+    {
+      "label": "overlength image alt",
+      "valid": false,
+      "block": {
+        "id": "original-image",
+        "type": "image",
+        "version": 1,
+        "content": {
+          "asset_id": "10000000-0000-4000-8000-000000000001",
+          "alt": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+          "decorative": false,
+          "caption": "Original ECHS illustration",
+          "description": "The line passes through the origin."
+        }
+      }
+    },
+    {
+      "label": "whitespace image caption",
+      "valid": false,
+      "block": {
+        "id": "original-image",
+        "type": "image",
+        "version": 1,
+        "content": {
+          "asset_id": "10000000-0000-4000-8000-000000000001",
+          "alt": "A rising line on coordinate axes",
+          "decorative": false,
+          "caption": "  ",
+          "description": "The line passes through the origin."
+        }
+      }
+    },
+    {
+      "label": "overlength image caption",
+      "valid": false,
+      "block": {
+        "id": "original-image",
+        "type": "image",
+        "version": 1,
+        "content": {
+          "asset_id": "10000000-0000-4000-8000-000000000001",
+          "alt": "A rising line on coordinate axes",
+          "decorative": false,
+          "caption": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+          "description": "The line passes through the origin."
+        }
+      }
+    },
+    {
+      "label": "whitespace image description",
+      "valid": false,
+      "block": {
+        "id": "original-image",
+        "type": "image",
+        "version": 1,
+        "content": {
+          "asset_id": "10000000-0000-4000-8000-000000000001",
+          "alt": "A rising line on coordinate axes",
+          "decorative": false,
+          "caption": "Original ECHS illustration",
+          "description": "  "
+        }
+      }
+    },
+    {
+      "label": "overlength image description",
+      "valid": false,
+      "block": {
+        "id": "original-image",
+        "type": "image",
+        "version": 1,
+        "content": {
+          "asset_id": "10000000-0000-4000-8000-000000000001",
+          "alt": "A rising line on coordinate axes",
+          "decorative": false,
+          "caption": "Original ECHS illustration",
+          "description": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+        }
+      }
+    },
+    {
+      "label": "external or invalid asset reference 0 https://example.org/file",
+      "valid": false,
+      "block": {
+        "id": "original-image",
+        "type": "image",
+        "version": 1,
+        "content": {
+          "asset_id": "https://example.org/file",
+          "alt": "A rising line on coordinate axes",
+          "decorative": false,
+          "caption": "Original ECHS illustration",
+          "description": "The line passes through the origin."
+        }
+      }
+    },
+    {
+      "label": "external or invalid asset reference 0 ../file",
+      "valid": false,
+      "block": {
+        "id": "original-image",
+        "type": "image",
+        "version": 1,
+        "content": {
+          "asset_id": "../file",
+          "alt": "A rising line on coordinate axes",
+          "decorative": false,
+          "caption": "Original ECHS illustration",
+          "description": "The line passes through the origin."
+        }
+      }
+    },
+    {
+      "label": "external or invalid asset reference 0 data:image/png;base64,AA",
+      "valid": false,
+      "block": {
+        "id": "original-image",
+        "type": "image",
+        "version": 1,
+        "content": {
+          "asset_id": "data:image/png;base64,AA",
+          "alt": "A rising line on coordinate axes",
+          "decorative": false,
+          "caption": "Original ECHS illustration",
+          "description": "The line passes through the origin."
+        }
+      }
+    },
+    {
+      "label": "external or invalid asset reference 0 not-a-uuid",
+      "valid": false,
+      "block": {
+        "id": "original-image",
+        "type": "image",
+        "version": 1,
+        "content": {
+          "asset_id": "not-a-uuid",
+          "alt": "A rising line on coordinate axes",
+          "decorative": false,
+          "caption": "Original ECHS illustration",
+          "description": "The line passes through the origin."
+        }
+      }
+    },
+    {
+      "label": "external or invalid asset reference 3 https://example.org/file",
+      "valid": false,
+      "block": {
+        "id": "original-resource",
+        "type": "resource",
+        "version": 1,
+        "content": {
+          "asset_id": "https://example.org/file",
+          "title": "Original PDF resource",
+          "description": "An accessible explanation of the lesson."
+        }
+      }
+    },
+    {
+      "label": "external or invalid asset reference 3 ../file",
+      "valid": false,
+      "block": {
+        "id": "original-resource",
+        "type": "resource",
+        "version": 1,
+        "content": {
+          "asset_id": "../file",
+          "title": "Original PDF resource",
+          "description": "An accessible explanation of the lesson."
+        }
+      }
+    },
+    {
+      "label": "external or invalid asset reference 3 data:image/png;base64,AA",
+      "valid": false,
+      "block": {
+        "id": "original-resource",
+        "type": "resource",
+        "version": 1,
+        "content": {
+          "asset_id": "data:image/png;base64,AA",
+          "title": "Original PDF resource",
+          "description": "An accessible explanation of the lesson."
+        }
+      }
+    },
+    {
+      "label": "external or invalid asset reference 3 not-a-uuid",
+      "valid": false,
+      "block": {
+        "id": "original-resource",
+        "type": "resource",
+        "version": 1,
+        "content": {
+          "asset_id": "not-a-uuid",
+          "title": "Original PDF resource",
+          "description": "An accessible explanation of the lesson."
+        }
+      }
+    },
+    {
+      "label": "invalid video identity https://youtu.be/Abcd_ef-1234",
+      "valid": false,
+      "block": {
+        "id": "original-video",
+        "type": "video",
+        "version": 1,
+        "content": {
+          "provider": "youtube",
+          "video_id": "https://youtu.be/Abcd_ef-1234",
+          "title": "Original video fixture",
+          "start_seconds": 0,
+          "transcript": "The presenter explains an example."
+        }
+      }
+    },
+    {
+      "label": "invalid video identity abcdefghij",
+      "valid": false,
+      "block": {
+        "id": "original-video",
+        "type": "video",
+        "version": 1,
+        "content": {
+          "provider": "youtube",
+          "video_id": "abcdefghij",
+          "title": "Original video fixture",
+          "start_seconds": 0,
+          "transcript": "The presenter explains an example."
+        }
+      }
+    },
+    {
+      "label": "invalid video identity abcdefghijkl",
+      "valid": false,
+      "block": {
+        "id": "original-video",
+        "type": "video",
+        "version": 1,
+        "content": {
+          "provider": "youtube",
+          "video_id": "abcdefghijkl",
+          "title": "Original video fixture",
+          "start_seconds": 0,
+          "transcript": "The presenter explains an example."
+        }
+      }
+    },
+    {
+      "label": "invalid video identity abcé_ef-1234",
+      "valid": false,
+      "block": {
+        "id": "original-video",
+        "type": "video",
+        "version": 1,
+        "content": {
+          "provider": "youtube",
+          "video_id": "abcé_ef-1234",
+          "title": "Original video fixture",
+          "start_seconds": 0,
+          "transcript": "The presenter explains an example."
+        }
+      }
+    },
+    {
+      "label": "invalid video offset -1",
+      "valid": false,
+      "block": {
+        "id": "original-video",
+        "type": "video",
+        "version": 1,
+        "content": {
+          "provider": "youtube",
+          "video_id": "Abcd_ef-123",
+          "title": "Original video fixture",
+          "start_seconds": -1,
+          "transcript": "The presenter explains an example."
+        }
+      }
+    },
+    {
+      "label": "invalid video offset 86401",
+      "valid": false,
+      "block": {
+        "id": "original-video",
+        "type": "video",
+        "version": 1,
+        "content": {
+          "provider": "youtube",
+          "video_id": "Abcd_ef-123",
+          "title": "Original video fixture",
+          "start_seconds": 86401,
+          "transcript": "The presenter explains an example."
+        }
+      }
+    },
+    {
+      "label": "invalid video offset 1.5",
+      "valid": false,
+      "block": {
+        "id": "original-video",
+        "type": "video",
+        "version": 1,
+        "content": {
+          "provider": "youtube",
+          "video_id": "Abcd_ef-123",
+          "title": "Original video fixture",
+          "start_seconds": 1.5,
+          "transcript": "The presenter explains an example."
+        }
+      }
+    },
+    {
+      "label": "invalid video offset 1",
+      "valid": false,
+      "block": {
+        "id": "original-video",
+        "type": "video",
+        "version": 1,
+        "content": {
+          "provider": "youtube",
+          "video_id": "Abcd_ef-123",
+          "title": "Original video fixture",
+          "start_seconds": "1",
+          "transcript": "The presenter explains an example."
+        }
+      }
+    },
+    {
+      "label": "video maximum offset",
+      "valid": true,
+      "block": {
+        "id": "original-video",
+        "type": "video",
+        "version": 1,
+        "content": {
+          "provider": "youtube",
+          "video_id": "Abcd_ef-123",
+          "title": "Original video fixture",
+          "start_seconds": 86400,
+          "transcript": "The presenter explains an example."
+        }
+      }
+    },
+    {
+      "label": "unsupported provider",
+      "valid": false,
+      "block": {
+        "id": "original-video",
+        "type": "video",
+        "version": 1,
+        "content": {
+          "provider": "vimeo",
+          "video_id": "Abcd_ef-123",
+          "title": "Original video fixture",
+          "start_seconds": 0,
+          "transcript": "The presenter explains an example."
+        }
+      }
+    },
+    {
+      "label": "table duplicate columns",
+      "valid": false,
+      "block": {
+        "id": "original-table",
+        "type": "table",
+        "version": 1,
+        "content": {
+          "caption": "Original values",
+          "columns": [
+            {
+              "id": "x",
+              "label": "x"
+            },
+            {
+              "id": "x",
+              "label": "y"
+            }
+          ],
+          "rows": [
+            {
+              "id": "row-a",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "1"
+                  }
+                ],
+                [
+                  {
+                    "type": "math",
+                    "source": {
+                      "mode": "tex",
+                      "tex": "2"
+                    },
+                    "spoken": "two"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "row-b",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "2"
+                  }
+                ],
+                [
+                  {
+                    "type": "link",
+                    "href": "https://example.org/resource",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "Original explanation"
+                      }
+                    ]
+                  }
+                ]
+              ]
+            }
+          ],
+          "row_header": true
+        }
+      }
+    },
+    {
+      "label": "table duplicate rows",
+      "valid": false,
+      "block": {
+        "id": "original-table",
+        "type": "table",
+        "version": 1,
+        "content": {
+          "caption": "Original values",
+          "columns": [
+            {
+              "id": "x",
+              "label": "x"
+            },
+            {
+              "id": "y",
+              "label": "y"
+            }
+          ],
+          "rows": [
+            {
+              "id": "row-a",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "1"
+                  }
+                ],
+                [
+                  {
+                    "type": "math",
+                    "source": {
+                      "mode": "tex",
+                      "tex": "2"
+                    },
+                    "spoken": "two"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "row-a",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "2"
+                  }
+                ],
+                [
+                  {
+                    "type": "link",
+                    "href": "https://example.org/resource",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "Original explanation"
+                      }
+                    ]
+                  }
+                ]
+              ]
+            }
+          ],
+          "row_header": true
+        }
+      }
+    },
+    {
+      "label": "table ragged row",
+      "valid": false,
+      "block": {
+        "id": "original-table",
+        "type": "table",
+        "version": 1,
+        "content": {
+          "caption": "Original values",
+          "columns": [
+            {
+              "id": "x",
+              "label": "x"
+            },
+            {
+              "id": "y",
+              "label": "y"
+            }
+          ],
+          "rows": [
+            {
+              "id": "row-a",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "1"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "row-b",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "2"
+                  }
+                ],
+                [
+                  {
+                    "type": "link",
+                    "href": "https://example.org/resource",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "Original explanation"
+                      }
+                    ]
+                  }
+                ]
+              ]
+            }
+          ],
+          "row_header": true
+        }
+      }
+    },
+    {
+      "label": "table missing rows",
+      "valid": false,
+      "block": {
+        "id": "original-table",
+        "type": "table",
+        "version": 1,
+        "content": {
+          "caption": "Original values",
+          "columns": [
+            {
+              "id": "x",
+              "label": "x"
+            },
+            {
+              "id": "y",
+              "label": "y"
+            }
+          ],
+          "rows": [],
+          "row_header": true
+        }
+      }
+    },
+    {
+      "label": "table missing columns",
+      "valid": false,
+      "block": {
+        "id": "original-table",
+        "type": "table",
+        "version": 1,
+        "content": {
+          "caption": "Original values",
+          "columns": [],
+          "rows": [
+            {
+              "id": "row-a",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "1"
+                  }
+                ],
+                [
+                  {
+                    "type": "math",
+                    "source": {
+                      "mode": "tex",
+                      "tex": "2"
+                    },
+                    "spoken": "two"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "row-b",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "2"
+                  }
+                ],
+                [
+                  {
+                    "type": "link",
+                    "href": "https://example.org/resource",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "Original explanation"
+                      }
+                    ]
+                  }
+                ]
+              ]
+            }
+          ],
+          "row_header": true
+        }
+      }
+    },
+    {
+      "label": "table too many columns",
+      "valid": false,
+      "block": {
+        "id": "original-table",
+        "type": "table",
+        "version": 1,
+        "content": {
+          "caption": "Original values",
+          "columns": [
+            {
+              "id": "c0",
+              "label": "0"
+            },
+            {
+              "id": "c1",
+              "label": "1"
+            },
+            {
+              "id": "c2",
+              "label": "2"
+            },
+            {
+              "id": "c3",
+              "label": "3"
+            },
+            {
+              "id": "c4",
+              "label": "4"
+            },
+            {
+              "id": "c5",
+              "label": "5"
+            },
+            {
+              "id": "c6",
+              "label": "6"
+            },
+            {
+              "id": "c7",
+              "label": "7"
+            },
+            {
+              "id": "c8",
+              "label": "8"
+            },
+            {
+              "id": "c9",
+              "label": "9"
+            },
+            {
+              "id": "c10",
+              "label": "10"
+            },
+            {
+              "id": "c11",
+              "label": "11"
+            },
+            {
+              "id": "c12",
+              "label": "12"
+            }
+          ],
+          "rows": [
+            {
+              "id": "row-a",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "1"
+                  }
+                ],
+                [
+                  {
+                    "type": "math",
+                    "source": {
+                      "mode": "tex",
+                      "tex": "2"
+                    },
+                    "spoken": "two"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "row-b",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "2"
+                  }
+                ],
+                [
+                  {
+                    "type": "link",
+                    "href": "https://example.org/resource",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "Original explanation"
+                      }
+                    ]
+                  }
+                ]
+              ]
+            }
+          ],
+          "row_header": true
+        }
+      }
+    },
+    {
+      "label": "table too many rows",
+      "valid": false,
+      "block": {
+        "id": "original-table",
+        "type": "table",
+        "version": 1,
+        "content": {
+          "caption": "Original values",
+          "columns": [
+            {
+              "id": "x",
+              "label": "x"
+            },
+            {
+              "id": "y",
+              "label": "y"
+            }
+          ],
+          "rows": [
+            {
+              "id": "r0",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r1",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r2",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r3",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r4",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r5",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r6",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r7",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r8",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r9",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r10",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r11",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r12",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r13",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r14",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r15",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r16",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r17",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r18",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r19",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r20",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r21",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r22",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r23",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r24",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r25",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r26",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r27",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r28",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r29",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r30",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r31",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r32",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r33",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r34",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r35",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r36",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r37",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r38",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r39",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r40",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r41",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r42",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r43",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r44",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r45",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r46",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r47",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r48",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r49",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r50",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r51",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r52",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r53",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r54",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r55",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r56",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r57",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r58",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r59",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r60",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r61",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r62",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r63",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r64",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r65",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r66",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r67",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r68",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r69",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r70",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r71",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r72",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r73",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r74",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r75",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r76",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r77",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r78",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r79",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r80",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r81",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r82",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r83",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r84",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r85",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r86",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r87",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r88",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r89",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r90",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r91",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r92",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r93",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r94",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r95",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r96",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r97",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r98",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r99",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "r100",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "text",
+                    "text": "y"
+                  }
+                ]
+              ]
+            }
+          ],
+          "row_header": true
+        }
+      }
+    },
+    {
+      "label": "table too many cell inlines",
+      "valid": false,
+      "block": {
+        "id": "original-table",
+        "type": "table",
+        "version": 1,
+        "content": {
+          "caption": "Original values",
+          "columns": [
+            {
+              "id": "x",
+              "label": "x"
+            },
+            {
+              "id": "y",
+              "label": "y"
+            }
+          ],
+          "rows": [
+            {
+              "id": "row-a",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  },
+                  {
+                    "type": "text",
+                    "text": "x"
+                  },
+                  {
+                    "type": "text",
+                    "text": "x"
+                  },
+                  {
+                    "type": "text",
+                    "text": "x"
+                  },
+                  {
+                    "type": "text",
+                    "text": "x"
+                  },
+                  {
+                    "type": "text",
+                    "text": "x"
+                  },
+                  {
+                    "type": "text",
+                    "text": "x"
+                  },
+                  {
+                    "type": "text",
+                    "text": "x"
+                  },
+                  {
+                    "type": "text",
+                    "text": "x"
+                  },
+                  {
+                    "type": "text",
+                    "text": "x"
+                  },
+                  {
+                    "type": "text",
+                    "text": "x"
+                  },
+                  {
+                    "type": "text",
+                    "text": "x"
+                  },
+                  {
+                    "type": "text",
+                    "text": "x"
+                  },
+                  {
+                    "type": "text",
+                    "text": "x"
+                  },
+                  {
+                    "type": "text",
+                    "text": "x"
+                  },
+                  {
+                    "type": "text",
+                    "text": "x"
+                  },
+                  {
+                    "type": "text",
+                    "text": "x"
+                  },
+                  {
+                    "type": "text",
+                    "text": "x"
+                  },
+                  {
+                    "type": "text",
+                    "text": "x"
+                  },
+                  {
+                    "type": "text",
+                    "text": "x"
+                  },
+                  {
+                    "type": "text",
+                    "text": "x"
+                  },
+                  {
+                    "type": "text",
+                    "text": "x"
+                  },
+                  {
+                    "type": "text",
+                    "text": "x"
+                  },
+                  {
+                    "type": "text",
+                    "text": "x"
+                  },
+                  {
+                    "type": "text",
+                    "text": "x"
+                  },
+                  {
+                    "type": "text",
+                    "text": "x"
+                  },
+                  {
+                    "type": "text",
+                    "text": "x"
+                  },
+                  {
+                    "type": "text",
+                    "text": "x"
+                  },
+                  {
+                    "type": "text",
+                    "text": "x"
+                  },
+                  {
+                    "type": "text",
+                    "text": "x"
+                  },
+                  {
+                    "type": "text",
+                    "text": "x"
+                  },
+                  {
+                    "type": "text",
+                    "text": "x"
+                  },
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "math",
+                    "source": {
+                      "mode": "tex",
+                      "tex": "2"
+                    },
+                    "spoken": "two"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "row-b",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "2"
+                  }
+                ],
+                [
+                  {
+                    "type": "link",
+                    "href": "https://example.org/resource",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "Original explanation"
+                      }
+                    ]
+                  }
+                ]
+              ]
+            }
+          ],
+          "row_header": true
+        }
+      }
+    },
+    {
+      "label": "table max cell inlines",
+      "valid": true,
+      "block": {
+        "id": "original-table",
+        "type": "table",
+        "version": 1,
+        "content": {
+          "caption": "Original values",
+          "columns": [
+            {
+              "id": "x",
+              "label": "x"
+            },
+            {
+              "id": "y",
+              "label": "y"
+            }
+          ],
+          "rows": [
+            {
+              "id": "row-a",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "x"
+                  },
+                  {
+                    "type": "text",
+                    "text": "x"
+                  },
+                  {
+                    "type": "text",
+                    "text": "x"
+                  },
+                  {
+                    "type": "text",
+                    "text": "x"
+                  },
+                  {
+                    "type": "text",
+                    "text": "x"
+                  },
+                  {
+                    "type": "text",
+                    "text": "x"
+                  },
+                  {
+                    "type": "text",
+                    "text": "x"
+                  },
+                  {
+                    "type": "text",
+                    "text": "x"
+                  },
+                  {
+                    "type": "text",
+                    "text": "x"
+                  },
+                  {
+                    "type": "text",
+                    "text": "x"
+                  },
+                  {
+                    "type": "text",
+                    "text": "x"
+                  },
+                  {
+                    "type": "text",
+                    "text": "x"
+                  },
+                  {
+                    "type": "text",
+                    "text": "x"
+                  },
+                  {
+                    "type": "text",
+                    "text": "x"
+                  },
+                  {
+                    "type": "text",
+                    "text": "x"
+                  },
+                  {
+                    "type": "text",
+                    "text": "x"
+                  },
+                  {
+                    "type": "text",
+                    "text": "x"
+                  },
+                  {
+                    "type": "text",
+                    "text": "x"
+                  },
+                  {
+                    "type": "text",
+                    "text": "x"
+                  },
+                  {
+                    "type": "text",
+                    "text": "x"
+                  },
+                  {
+                    "type": "text",
+                    "text": "x"
+                  },
+                  {
+                    "type": "text",
+                    "text": "x"
+                  },
+                  {
+                    "type": "text",
+                    "text": "x"
+                  },
+                  {
+                    "type": "text",
+                    "text": "x"
+                  },
+                  {
+                    "type": "text",
+                    "text": "x"
+                  },
+                  {
+                    "type": "text",
+                    "text": "x"
+                  },
+                  {
+                    "type": "text",
+                    "text": "x"
+                  },
+                  {
+                    "type": "text",
+                    "text": "x"
+                  },
+                  {
+                    "type": "text",
+                    "text": "x"
+                  },
+                  {
+                    "type": "text",
+                    "text": "x"
+                  },
+                  {
+                    "type": "text",
+                    "text": "x"
+                  },
+                  {
+                    "type": "text",
+                    "text": "x"
+                  }
+                ],
+                [
+                  {
+                    "type": "math",
+                    "source": {
+                      "mode": "tex",
+                      "tex": "2"
+                    },
+                    "spoken": "two"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "row-b",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "2"
+                  }
+                ],
+                [
+                  {
+                    "type": "link",
+                    "href": "https://example.org/resource",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "Original explanation"
+                      }
+                    ]
+                  }
+                ]
+              ]
+            }
+          ],
+          "row_header": true
+        }
+      }
+    },
+    {
+      "label": "table whitespace cell",
+      "valid": false,
+      "block": {
+        "id": "original-table",
+        "type": "table",
+        "version": 1,
+        "content": {
+          "caption": "Original values",
+          "columns": [
+            {
+              "id": "x",
+              "label": "x"
+            },
+            {
+              "id": "y",
+              "label": "y"
+            }
+          ],
+          "rows": [
+            {
+              "id": "row-a",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "  "
+                  }
+                ],
+                [
+                  {
+                    "type": "math",
+                    "source": {
+                      "mode": "tex",
+                      "tex": "2"
+                    },
+                    "spoken": "two"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "row-b",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "2"
+                  }
+                ],
+                [
+                  {
+                    "type": "link",
+                    "href": "https://example.org/resource",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "Original explanation"
+                      }
+                    ]
+                  }
+                ]
+              ]
+            }
+          ],
+          "row_header": true
+        }
+      }
+    },
+    {
+      "label": "table empty cell",
+      "valid": false,
+      "block": {
+        "id": "original-table",
+        "type": "table",
+        "version": 1,
+        "content": {
+          "caption": "Original values",
+          "columns": [
+            {
+              "id": "x",
+              "label": "x"
+            },
+            {
+              "id": "y",
+              "label": "y"
+            }
+          ],
+          "rows": [
+            {
+              "id": "row-a",
+              "cells": [
+                [],
+                [
+                  {
+                    "type": "math",
+                    "source": {
+                      "mode": "tex",
+                      "tex": "2"
+                    },
+                    "spoken": "two"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "row-b",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "2"
+                  }
+                ],
+                [
+                  {
+                    "type": "link",
+                    "href": "https://example.org/resource",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "Original explanation"
+                      }
+                    ]
+                  }
+                ]
+              ]
+            }
+          ],
+          "row_header": true
+        }
+      }
+    },
+    {
+      "label": "table unsafe link",
+      "valid": false,
+      "block": {
+        "id": "original-table",
+        "type": "table",
+        "version": 1,
+        "content": {
+          "caption": "Original values",
+          "columns": [
+            {
+              "id": "x",
+              "label": "x"
+            },
+            {
+              "id": "y",
+              "label": "y"
+            }
+          ],
+          "rows": [
+            {
+              "id": "row-a",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "1"
+                  }
+                ],
+                [
+                  {
+                    "type": "math",
+                    "source": {
+                      "mode": "tex",
+                      "tex": "2"
+                    },
+                    "spoken": "two"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "row-b",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "2"
+                  }
+                ],
+                [
+                  {
+                    "type": "link",
+                    "href": "javascript:alert(1)",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "Original explanation"
+                      }
+                    ]
+                  }
+                ]
+              ]
+            }
+          ],
+          "row_header": true
+        }
+      }
+    },
+    {
+      "label": "table unknown math source",
+      "valid": false,
+      "block": {
+        "id": "original-table",
+        "type": "table",
+        "version": 1,
+        "content": {
+          "caption": "Original values",
+          "columns": [
+            {
+              "id": "x",
+              "label": "x"
+            },
+            {
+              "id": "y",
+              "label": "y"
+            }
+          ],
+          "rows": [
+            {
+              "id": "row-a",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "1"
+                  }
+                ],
+                [
+                  {
+                    "type": "math",
+                    "source": {
+                      "mode": "html",
+                      "tex": "2"
+                    },
+                    "spoken": "two"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "row-b",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "2"
+                  }
+                ],
+                [
+                  {
+                    "type": "link",
+                    "href": "https://example.org/resource",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "Original explanation"
+                      }
+                    ]
+                  }
+                ]
+              ]
+            }
+          ],
+          "row_header": true
+        }
+      }
+    },
+    {
+      "label": "table unsafe TeX",
+      "valid": false,
+      "block": {
+        "id": "original-table",
+        "type": "table",
+        "version": 1,
+        "content": {
+          "caption": "Original values",
+          "columns": [
+            {
+              "id": "x",
+              "label": "x"
+            },
+            {
+              "id": "y",
+              "label": "y"
+            }
+          ],
+          "rows": [
+            {
+              "id": "row-a",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "1"
+                  }
+                ],
+                [
+                  {
+                    "type": "math",
+                    "source": {
+                      "mode": "tex",
+                      "tex": "\\href{https://example.org}{x}"
+                    },
+                    "spoken": "two"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "row-b",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "2"
+                  }
+                ],
+                [
+                  {
+                    "type": "link",
+                    "href": "https://example.org/resource",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "Original explanation"
+                      }
+                    ]
+                  }
+                ]
+              ]
+            }
+          ],
+          "row_header": true
+        }
+      }
+    },
+    {
+      "label": "table inline nested paragraph",
+      "valid": false,
+      "block": {
+        "id": "original-table",
+        "type": "table",
+        "version": 1,
+        "content": {
+          "caption": "Original values",
+          "columns": [
+            {
+              "id": "x",
+              "label": "x"
+            },
+            {
+              "id": "y",
+              "label": "y"
+            }
+          ],
+          "rows": [
+            {
+              "id": "row-a",
+              "cells": [
+                [
+                  {
+                    "type": "paragraph",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "x"
+                      }
+                    ]
+                  }
+                ],
+                [
+                  {
+                    "type": "math",
+                    "source": {
+                      "mode": "tex",
+                      "tex": "2"
+                    },
+                    "spoken": "two"
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "row-b",
+              "cells": [
+                [
+                  {
+                    "type": "text",
+                    "text": "2"
+                  }
+                ],
+                [
+                  {
+                    "type": "link",
+                    "href": "https://example.org/resource",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "Original explanation"
+                      }
+                    ]
+                  }
+                ]
+              ]
+            }
+          ],
+          "row_header": true
+        }
+      }
+    },
+    {
+      "label": "multilingual image text",
+      "valid": true,
+      "block": {
+        "id": "original-image",
+        "type": "image",
+        "version": 1,
+        "content": {
+          "asset_id": "10000000-0000-4000-8000-000000000001",
+          "alt": "رسم بياني",
+          "decorative": false,
+          "caption": "قيمة",
+          "description": "الخط صاعد"
+        }
+      }
+    }
+  ]
+}

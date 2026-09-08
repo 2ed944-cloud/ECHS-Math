@@ -1,10 +1,12 @@
 import {compileMathSource} from './math-expression.mjs';
 import {isSafeLessonHref} from './schema.mjs';
+import {createMediaRenderer} from './media-renderer.mjs';
+import {LESSON_MEDIA_TYPES} from './asset-contract.mjs';
 let nextRendererId=0;
 
 /** Pure content DOM construction. The host must validate the lesson and authorize
  * its delivery before calling this module; it fetches nothing and grants nothing. */
-export function createContentRenderer({document:doc,mathEngine}) {
+export function createContentRenderer({document:doc,mathEngine,resolveAsset}) {
   if(!doc?.createElement||!mathEngine||mathEngine.version!=='0.16.27')throw new TypeError('A document and pinned math engine are required.');
   const element=(tag,value,className)=>{const node=doc.createElement(tag);if(value!==undefined)node.textContent=value;if(className)node.className=className;return node;};
   const idPrefix=`echs-content-${++nextRendererId}-`;
@@ -46,6 +48,7 @@ export function createContentRenderer({document:doc,mathEngine}) {
     return group;
   }
   function block(value){
+    if(LESSON_MEDIA_TYPES.includes(value.type)&&value.version===1)return media.block(value);
     if(![1,2].includes(value.version))throw new Error('Unsupported block version.');
     if(value.type==='rich-text')return rich(value.content,value.version);
     if(value.type==='math')return math(value.content,value.version);
@@ -56,5 +59,6 @@ export function createContentRenderer({document:doc,mathEngine}) {
     }
     throw new Error(`Unsupported content block ${value.type}@${value.version}.`);
   }
-  return Object.freeze({math,rich,block});
+  const media=createMediaRenderer({document:doc,inline:value=>inline(value,2),resolveAsset});
+  return Object.freeze({math,rich,block,deactivate:root=>media.deactivate(root),dispose:()=>media.dispose()});
 }

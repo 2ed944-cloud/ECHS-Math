@@ -14,9 +14,9 @@ const types = { '.mjs': 'text/javascript', '.js': 'text/javascript', '.css': 'te
 const module = `import {createRichTextEditor} from '/js/lesson-studio/rich-text-editor.mjs';
 import katex from '/lessons/ib-math-ai/unit-1/assets/js/katex.js';
 const root=document.querySelector('#editor');
-window.fixture={changes:[],invalids:[],controller:null,ready:true,mount(content){
+window.fixture={changes:[],invalids:[],controller:null,ready:true,mount(content,options={}){
 this.controller?.dispose();this.changes=[];this.invalids=[];
-this.controller=createRichTextEditor({root,content,mathEngine:katex,onChange:next=>this.changes.push(next),onInvalid:error=>this.invalids.push(error)});
+this.controller=createRichTextEditor({root,content,mathEngine:katex,onChange:next=>this.changes.push(next),onInvalid:error=>this.invalids.push(error),...options});
 },get(){return this.controller.getValue();},fails(){try{this.get();return false}catch{return true}}};`;
 const browser = await chromium.launch({ headless: true, executablePath: process.env.ECHS_CHROMIUM_PATH || undefined });
 const context = await browser.newContext({ viewport: { width: 1200, height: 1000 }, serviceWorkers: 'block' });
@@ -78,6 +78,13 @@ try {
   await toolbar('Bold').focus(); await page.keyboard.press('ArrowRight');
   assert.equal(await page.evaluate(() => document.activeElement.textContent), 'Italic');
   pass('native paragraph entry recovers after its temporary empty buffer and toolbar arrow keys retain keyboard access');
+
+  await page.evaluate(content => fixture.mount(content, { inlineOnly: true }), plain('Cell value'));
+  for (const label of ['Paragraph', 'Bulleted list', 'Numbered list']) assert.equal(await toolbar(label).count(), 0);
+  await select(10, 10); await page.keyboard.press('Enter'); await page.keyboard.type('continued');
+  assert.deepEqual(await get(), plain('Cell value\ncontinued'));
+  assert.equal(await page.evaluate(() => { try { fixture.controller.setValue({ nodes: [{ type: 'list', style: 'ordered', items: [{ type: 'list-item', children: [{ type: 'text', text: 'Wrong shape' }] }] }] }); return false; } catch { return true; } }), true);
+  pass('optional inline-only mode hides block structure controls and keeps cell line breaks inside one paragraph');
 
   await mount(plain('Alpha beta gamma.')); await select(0, 5); await toolbar('Add link').click();
   assert.equal(await page.locator('.rich-editor-surface').evaluate(element => element.inert), true);
