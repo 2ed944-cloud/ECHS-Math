@@ -5,6 +5,18 @@ export const MAX_REQUEST_BYTES = 1024 * 1024 + 128 * 1024;
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 const STAFF = new Set(['admin', 'teacher']);
 const own = (value, key) => Object.prototype.hasOwnProperty.call(value, key);
+const AUTHORING_CAPABILITIES = Object.freeze({ contract: 'echs.lesson.authoring.v1', content_version: 2,
+  blocks: Object.freeze({ 'rich-text': Object.freeze([1, 2]), math: Object.freeze([1, 2]), callout: Object.freeze([1, 2]), 'legacy-embedded': Object.freeze([1]) }),
+  math_expression_version: 1 });
+function confirmedCapabilities(value) {
+  if (!value || Object.keys(value).length !== 4 || value.contract !== AUTHORING_CAPABILITIES.contract ||
+      value.content_version !== 2 || value.math_expression_version !== 1 || !value.blocks ||
+      Object.keys(value.blocks).length !== 4) return null;
+  for (const [type, versions] of Object.entries(AUTHORING_CAPABILITIES.blocks)) {
+    if (!Array.isArray(value.blocks[type]) || value.blocks[type].length !== versions.length || value.blocks[type].some((v, i) => v !== versions[i])) return null;
+  }
+  return AUTHORING_CAPABILITIES;
+}
 
 class ApiError extends Error {
   constructor(status, code, message) { super(message); this.status = status; this.code = code; }
@@ -283,6 +295,14 @@ export function createLessonHandler({ rpc, mathEngine, allowedOrigins = ['https:
       if (target.action === 'deliver') return reply(delivery(data, actor, payload, base, mathEngine));
       if (data.head) checkDraft(data, assertPersistableDocument, mathEngine);
       if (data.version) checkDraft(data, assertPersistableDocument, mathEngine, 'version');
+      if (target.action === 'context') {
+        // Probe the actual installed SQL validator only after scoped school
+        // authorization. A rolling deployment with the old DB stays usable for
+        // v1; it never claims v2 support based on the Edge code alone.
+        let capabilities = null;
+        try { capabilities = confirmedCapabilities(await invoke('lesson_content_capabilities', {})); } catch { /* fail closed */ }
+        return reply({ ...data, authoring_capabilities: capabilities });
+      }
       return reply(data, target.action === 'create' ? 201 : 200);
     } catch (error) {
       if (error?.name === 'LessonDocumentError') {

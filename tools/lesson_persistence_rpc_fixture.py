@@ -27,6 +27,9 @@ def main():
     from psycopg.conninfo import conninfo_to_dict
     from psycopg.types.json import Jsonb
 
+    assert sys.argv[1:] in ([], ['--content-v2']), 'Only the explicit content-v2 fixture mode is supported'
+    content_v2 = sys.argv[1:] == ['--content-v2']
+
     dsn = os.environ.get("ECHS_LESSON_TEST_DSN", "")
     assert dsn, "Explicit disposable database required"
     info = conninfo_to_dict(dsn)
@@ -86,6 +89,9 @@ def main():
                     elif name == "lesson_store_health":
                         assert not args
                         data = conn.execute("select public.lesson_store_health()").fetchone()[0]
+                    elif name == "lesson_content_capabilities" and content_v2:
+                        assert not args
+                        data = conn.execute("select public.lesson_content_capabilities()").fetchone()[0]
                     else:
                         raise AssertionError("Function is not allowed")
                 emit({"id":request_id,"result":{"data":data,"error":None}})

@@ -1,5 +1,4 @@
 import assert from 'node:assert/strict';
-import {createServer} from 'node:http';
 import {readFile, mkdir, stat} from 'node:fs/promises';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
@@ -12,19 +11,24 @@ const {chromium}=require('playwright');
 const output=process.env.ECHS_RENDERER_EVIDENCE || path.join(root,'artifacts/lesson-runtime');
 await mkdir(output,{recursive:true});
 const types={'.html':'text/html','.mjs':'text/javascript','.js':'text/javascript','.json':'application/json','.css':'text/css','.woff2':'font/woff2','.woff':'font/woff','.ttf':'font/ttf'};
-const server=createServer(async(req,res)=>{
-  try {
-    const file=path.resolve(root,'.'+decodeURIComponent(new URL(req.url,'http://localhost').pathname));
-    if(!file.startsWith(path.resolve(root)+path.sep)) {res.writeHead(403).end();return;}
-    if(!(await stat(file)).isFile()){res.writeHead(404).end();return;}
-    res.setHeader('Content-Type',types[path.extname(file)]||'application/octet-stream');res.end(await readFile(file));
-  } catch {res.writeHead(404).end();}
-});
-await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
-const base=`http://127.0.0.1:${server.address().port}/tools/lesson-runtime/fixtures/renderer.html`;
+// Serve unchanged fixture/source bytes through the browser harness. This avoids
+// host-specific Chrome loopback stalls before HTTP reaches the local test server;
+// paths, query/hash bindings and every rendering/access assertion remain real.
+const fixtureOrigin='http://127.0.0.1:4173';
+const base=fixtureOrigin+'/tools/lesson-runtime/fixtures/renderer.html';
 const browser=await chromium.launch({headless:true,executablePath:process.env.ECHS_CHROMIUM_PATH || undefined});
-const context=await browser.newContext({viewport:{width:1280,height:900}});
-await context.route('**/*',route=>new URL(route.request().url()).hostname==='127.0.0.1'?route.continue():route.abort());
+const context=await browser.newContext({viewport:{width:1280,height:900},serviceWorkers:'block'});
+const external=[];
+await context.route('**/*',async route=>{
+  const url=new URL(route.request().url());
+  if(url.origin!==fixtureOrigin){external.push(url.href);await route.abort();return;}
+  try {
+    const file=path.resolve(root,'.'+decodeURIComponent(url.pathname));
+    if(!file.startsWith(path.resolve(root)+path.sep)){await route.fulfill({status:403,body:''});return;}
+    if(!(await stat(file)).isFile()){await route.fulfill({status:404,body:''});return;}
+    await route.fulfill({status:200,contentType:types[path.extname(file)]||'application/octet-stream',body:await readFile(file)});
+  } catch {await route.fulfill({status:404,body:''});}
+});
 const page=await context.newPage();page.setDefaultTimeout(15000);
 const errors=[];page.on('pageerror',error=>{errors.push(error.message);console.error(error.message);});
 page.on('response',response=>{if(response.status()>=400)console.error(response.status(),response.url());});
@@ -34,7 +38,7 @@ let navigation=0;
 async function open(scenario='allowed',hash='#slide=2'){
   // Identical hash URLs can retain the previous document and its disposed view.
   // Force a fresh document for each independent access/mutation scenario.
-  await page.goto(base+'?course=ap-calculus&unit=0&topic=1.7&scope=lesson&scenario='+scenario+'&testCase='+(++navigation)+hash);
+  await page.goto(base+'?course=ap-calculus&unit=0&topic=1.7&scope=lesson&scenario='+scenario+'&testCase='+(++navigation)+hash,{waitUntil:'domcontentloaded'});
   await page.waitForFunction(()=>window.fixture?.ready);
 }
 async function state(){return page.evaluate(()=>({error:fixture.error,mode:fixture.controller?.mode,index:fixture.controller?.slideIndex,text:document.querySelector('#lesson').textContent,finish:fixture.finishCalls,learning:fixture.learningCalls,href:location.href}));}
@@ -111,6 +115,6 @@ try {
   await open('math-size');assert.equal((await state()).mode,'document');
   assert.ok(await page.locator('.echsDocumentMath').last().evaluate(el=>el.scrollHeight<500));
   pass('KaTeX size limit remains enforced during actual rendering');
-  assert.deepEqual(errors,[]);pass('no browser script errors or external network dependencies');
+  assert.deepEqual(errors,[]);assert.deepEqual(external,[]);pass('no browser script errors or external network dependencies');
   await import('node:fs/promises').then(fs=>fs.writeFile(path.join(output,'renderer-results.json'),JSON.stringify({status:'passed',checks,scope:'original local fixture, simulated access; no production calls'},null,2)+'\n'));
-} finally {await context.close();await browser.close();await new Promise(resolve=>server.close(resolve));}
+} finally {await context.close();await browser.close();}

@@ -1,6 +1,16 @@
 import { assertLessonDocument } from '../lesson-runtime/schema.mjs';
 
 export const STUDIO_API_CONTRACT = 'echs.lesson.store.v1';
+export const STUDIO_AUTHORING_CONTRACT = 'echs.lesson.authoring.v1';
+
+export function supportsStudioContentV2(value) {
+  if(!value||typeof value!=='object'||Array.isArray(value))return false;
+  const keys=Object.keys(value).sort();
+  if(JSON.stringify(keys)!==JSON.stringify(['blocks','content_version','contract','math_expression_version']))return false;
+  if(value.contract!==STUDIO_AUTHORING_CONTRACT||value.content_version!==2||value.math_expression_version!==1||!value.blocks||typeof value.blocks!=='object'||Array.isArray(value.blocks))return false;
+  if(JSON.stringify(Object.keys(value.blocks).sort())!==JSON.stringify(['callout','legacy-embedded','math','rich-text']))return false;
+  return ['rich-text','math','callout','legacy-embedded'].every(type=>JSON.stringify(value.blocks[type])===JSON.stringify(type==='legacy-embedded'?[1]:[1,2]));
+}
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 const TOKEN = /^[^\s]{16,2048}$/;
 const MAX_DOCUMENT = 1024 * 1024;
@@ -184,6 +194,7 @@ export function createStudioClient({window:win=globalThis.window,institution=win
     const learned=[];
     if(action==='context'){
       accountScope(data.actor);
+      data.authoring_capabilities=supportsStudioContentV2(data.authoring_capabilities)?data.authoring_capabilities:null;
       if(args.class_id){
         requireValue(object(data.class)&&data.class.id===args.class_id&&data.class.organization_id===owner.organization_id&&data.class.status==='active'&&text(data.class.name,240));
         assignment(data.current_assignment,args.class_id);courses(data.course_versions);

@@ -2,7 +2,16 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import katex from '../lesson-runtime/node_modules/katex/dist/katex.mjs';
-import { createStudioClient,STUDIO_API_CONTRACT } from '../../js/lesson-studio/api-client.mjs';
+import { createStudioClient,STUDIO_API_CONTRACT,supportsStudioContentV2 } from '../../js/lesson-studio/api-client.mjs';
+
+test('v2 authoring requires the exact complete capability contract; absent, partial and future contracts fail closed',()=>{
+  const capability={contract:'echs.lesson.authoring.v1',content_version:2,blocks:{'rich-text':[1,2],math:[1,2],callout:[1,2],'legacy-embedded':[1]},math_expression_version:1};
+  assert.equal(supportsStudioContentV2(capability),true);
+  for(const value of [null,undefined,false,{},[],{...capability,content_version:3},{...capability,contract:'other'},
+    {...capability,math_expression_version:2},{...capability,blocks:{...capability.blocks,math:[1]}},
+    {...capability,blocks:{...capability.blocks,math:[1,2,3]}},{...capability,blocks:{math:[1,2]}},
+    {...capability,blocks:{...capability.blocks,question:[1]}},{...capability,extra:true}])assert.equal(supportsStudioContentV2(value),false);
+});
 
 const id=n=>`10000000-0000-4000-8000-${String(n).padStart(12,'0')}`;
 const ids={actor:id(1),org:id(2),class:id(3),course:id(4),lesson:id(5),version:id(6),publication:id(7),pin:id(8)};

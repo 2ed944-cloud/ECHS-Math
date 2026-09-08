@@ -35,8 +35,8 @@ const ajv = new Ajv({
   removeAdditional: false,
   code: { source: true, esm: true, lines: true }
 });
-const validator = ajv.compile(schema);
-const standalone = standaloneCode(ajv, validator);
+ajv.compile(schema);
+const standalone = standaloneCode(ajv, { validate: schema.$id, validateBlock: schema.$id + '#/definitions/block' }) + '\nexport default validate;\n';
 const compiled = await esbuild.build({
   stdin: { contents: standalone, sourcefile: 'lesson-schema-validator.js', resolveDir: fileURLToPath(new URL('.', import.meta.url)), loader: 'js' },
   bundle: true,
