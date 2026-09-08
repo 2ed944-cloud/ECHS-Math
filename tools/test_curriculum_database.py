@@ -35,6 +35,7 @@ def main():
               "migrations": [{"file": p.name, "sha256": hashlib.sha256(p.read_bytes()).hexdigest()} for p in [*legacy, migration]]}
     def passed(label):
         report["checks"].append(label)
+        print("PASS " + label, flush=True)
     def finish(status):
         report["status"] = status
         if args.report:
@@ -88,7 +89,7 @@ def main():
         conn.execute("insert into class_memberships(class_id,account_id,membership_role) values(%s,%s,'student')", (ids["class_a"],ids["student"]))
         conn.execute("insert into learning_attempts(organization_id,account_id,client_event_id,question_id,correct,occurred_at,course,payload) values(%s,%s,'preserved-event','fixture-question',true,now(),'fixture-legacy','{}')", (ids["org_a"],ids["student"]))
         conn.execute("insert into learning_sessions(organization_id,account_id,client_session_id,mode,course,total,started_at) values(%s,%s,'preserved-session','practice','ap-calculus',1,now())", (ids["org_a"],ids["student"]))
-        conn.execute("insert into lesson_completions(organization_id,account_id,access_key,course_key,unit_index,topic,title) values(%s,%s,'ap-calculus::0::1.7','ap-calculus',0,'1.7','Preserved lesson')", (ids["org_a"],ids["student"]))
+        conn.execute("insert into lesson_completions(organization_id,account_id,access_key,course_key,unit_index,topic,title,completed_at) values(%s,%s,'ap-calculus::0::1.7','ap-calculus',0,'1.7','Preserved lesson',now())", (ids["org_a"],ids["student"]))
         conn.execute("insert into mastery_records(organization_id,account_id,skill_key,score,source,payload) values(%s,%s,'fixture-preserved-skill',40,'server','{\"algorithm\":\"echs-mastery-2.0-foundation\"}')", (ids["org_a"],ids["student"]))
         legacy_tables = [row[0] for row in conn.execute("select tablename from pg_tables where schemaname='public' order by tablename")]
         def snapshot():
