@@ -1,3 +1,4 @@
+import {fileURLToPath} from 'node:url';
 /* DOM-level interaction regression; no browser, network or production account is used. */
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -18,7 +19,7 @@ const storage=new Map([[legacyKey,legacy]]);let account={id:'fixture-student-a'}
 const eventTarget=new dom.EventTarget();
 const location={pathname:'/ECHS-Math/lessons/ap-calculus/unit-1/1-5-algebraic-properties-of-limits.html',search:'?course=ap-calculus&lessonKey=fixture-key&accessKey=fixture-access',hash:''};
 const renderedMath=vm.createContext({window:{},console});vm.runInContext(fs.readFileSync(new URL('../lessons/ib-math-ai/unit-1/assets/js/katex-global.js',import.meta.url),'utf8'),renderedMath);
-const win={document,LimitLessonModels:require(new URL('assets/limit-lesson-models.js',base).pathname),LimitLessonQuestions:require(new URL(`assets/lesson-1-${n}-questions.js`,base).pathname),ECHSInstitution:{account:()=>account},katex:{render(tex,node){renderedMath.window.katex.renderToString(tex,{throwOnError:true,strict:"ignore"});node.textContent=tex;}},addEventListener:eventTarget.addEventListener.bind(eventTarget),dispatchEvent:eventTarget.dispatchEvent.bind(eventTarget),print(){}};
+const win={document,LimitLessonModels:require(fileURLToPath(new URL('assets/limit-lesson-models.js',base))),LimitLessonQuestions:require(fileURLToPath(new URL(`assets/lesson-1-${n}-questions.js`,base))),ECHSInstitution:{account:()=>account},katex:{render(tex,node){renderedMath.window.katex.renderToString(tex,{throwOnError:true,strict:"ignore"});node.textContent=tex;}},addEventListener:eventTarget.addEventListener.bind(eventTarget),dispatchEvent:eventTarget.dispatchEvent.bind(eventTarget),print(){}};
 const scheduled=new Map();let timer=0;
 const context=vm.createContext({window:win,document,location,history:{replaceState(_s,_t,url){const value=new URL(url,'https://example.test');assert.equal(value.search,location.search,'Navigation retains protected lesson context');location.hash=value.hash;}},localStorage:{getItem:key=>storage.get(key)||null,setItem(key,value){if(failStorage)throw Error('Storage denied');storage.set(key,value);}},setTimeout:fn=>{scheduled.set(++timer,fn);return timer;},clearTimeout:id=>scheduled.delete(id),console});
 for(const file of ['limit-lesson-graphs.js','lesson-1-5-model.js',`lesson-1-${n}-labs.js`,'limit-lesson-core.js'])vm.runInContext(fs.readFileSync(new URL('assets/'+file,base),'utf8'),context);

@@ -2,6 +2,7 @@
 
 import fs from "node:fs";
 import path from "node:path";
+import os from "node:os";
 import { spawn } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { chromium } from "playwright";
@@ -41,7 +42,7 @@ const expected = {
 };
 
 const server = spawn(
-  "python3",
+  process.env.ECHS_TEST_PYTHON || "python3",
   ["-m", "http.server", String(port), "--bind", "127.0.0.1"],
   {
     cwd: repositoryDir,
@@ -68,6 +69,7 @@ const fontConfigPath = process.env.ECHS_FONTCONFIG_PATH;
 let browser;
 let page;
 let launchOptions;
+let browserWorkspace;
 const results = [];
 const pageErrors = [];
 const caseGroups = new Map([
@@ -113,8 +115,9 @@ async function restartBrowser() {
 
 try {
   await waitForServer();
-  const browserHome = "/tmp/echs-browser-home";
-  const browserCache = "/tmp/echs-browser-cache";
+  browserWorkspace = fs.mkdtempSync(path.join(path.resolve(os.tmpdir()), "echs-bank-browser-"));
+  const browserHome = path.join(browserWorkspace, "home");
+  const browserCache = path.join(browserWorkspace, "cache");
   fs.mkdirSync(browserHome, { recursive: true });
   fs.mkdirSync(browserCache, { recursive: true });
   launchOptions = {
@@ -359,6 +362,9 @@ try {
 } finally {
   await browser?.close();
   server.kill("SIGTERM");
+  if (browserWorkspace && path.dirname(browserWorkspace) === path.resolve(os.tmpdir())) {
+    fs.rmSync(browserWorkspace, { recursive: true, force: true });
+  }
 }
 
 const priorPath = path.join(reportsDir, "browser_smoke_results.json");

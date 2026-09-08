@@ -1,10 +1,11 @@
+import {fileURLToPath} from 'node:url';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
 import {createRequire} from 'node:module';
 const require=createRequire(import.meta.url),{parseHTML}=require(process.env.ECHS_TEST_DOM_MODULE||'linkedom');
 const root=new URL('../',import.meta.url),base=new URL('lessons/ap-calculus/unit-1/',root),html=fs.readFileSync(new URL('middle-unit-important-checking-questions.html',base),'utf8');
-const Q=require(new URL('assets/midunit-questions.js',base).pathname),G=require(new URL('assets/midunit-graphs.js',base).pathname);
+const Q=require(fileURLToPath(new URL('assets/midunit-questions.js',base))),G=require(fileURLToPath(new URL('assets/midunit-graphs.js',base)));
 const storage=new Map(),N=Q.questions.length;
 function fixture(data=Q){
   const {window:dom,document}=parseHTML(html);let account={id:'student-a'},failStorage=false;

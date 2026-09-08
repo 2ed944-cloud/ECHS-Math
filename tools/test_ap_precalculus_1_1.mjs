@@ -1,10 +1,11 @@
+import {fileURLToPath} from 'node:url';
 /* Independent mathematics and curriculum/content contracts for Topic 1.1. */
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
 import {createRequire} from 'node:module';
 const require=createRequire(import.meta.url),base=new URL('../lessons/ap-precalculus/unit-1/',import.meta.url);
-const M=require(new URL('assets/tandem-1-1-model-v3.js',base).pathname),Q=require(new URL('assets/tandem-1-1-questions-v3.js',base).pathname);
+const M=require(fileURLToPath(new URL('assets/tandem-1-1-model-v3.js',base))),Q=require(fileURLToPath(new URL('assets/tandem-1-1-questions-v3.js',base)));
 const html=fs.readFileSync(new URL('AP_Precalculus_1.1_Change_in_Tandem_ECHS_Refined.html',base),'utf8');
 const near=(a,b,tol=1e-8)=>assert.ok(Math.abs(a-b)<=tol,String(a)+' != '+b);
 assert.deepEqual([0,1,3,4,5,6,8].map(M.reservoir),[10,18,34,34,34,28,16]);

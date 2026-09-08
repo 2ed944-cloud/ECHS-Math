@@ -1,9 +1,10 @@
+import {fileURLToPath} from 'node:url';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
 import {createRequire} from 'node:module';
 const require=createRequire(import.meta.url),root=new URL('../',import.meta.url),base=new URL('lessons/ap-calculus/unit-1/',root);
-const Q=require(new URL('assets/midunit-questions.js',base).pathname),G=require(new URL('assets/midunit-graphs.js',base).pathname);
+const Q=require(fileURLToPath(new URL('assets/midunit-questions.js',base))),G=require(fileURLToPath(new URL('assets/midunit-graphs.js',base)));
 const close=(a,b)=>assert.ok(Math.abs(a-b)<1e-8,`${a} differs from ${b}`);
 assert.ok(Q.questions.length>=44);assert.equal(new Set(Q.questions.map(q=>q.id)).size,Q.questions.length);
 assert.equal(new Set(Q.questions.map(q=>q.family)).size,25);

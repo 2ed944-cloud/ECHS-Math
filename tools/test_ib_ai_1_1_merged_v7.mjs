@@ -1,11 +1,12 @@
+import {fileURLToPath} from 'node:url';
 /* Independent mathematical and publishing contracts for the current merged lesson. */
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
 import {createRequire} from 'node:module';
 const require=createRequire(import.meta.url),base=new URL('../lessons/ib-math-ai/unit-1/',import.meta.url);
-const M=require(new URL('data/lesson-1.1-merged-model-v7.js',base).pathname);
-const Q=require(new URL('data/lesson-1.1-merged-questions-v7.js',base).pathname);
+const M=require(fileURLToPath(new URL('data/lesson-1.1-merged-model-v7.js',base)));
+const Q=require(fileURLToPath(new URL('data/lesson-1.1-merged-questions-v7.js',base)));
 export const answers=['7.25 x 10^-5','3080000','1.92 x 10^3','4.95 x 10^6','6.20','0.00451','4','8.35','3.605','2.4','10','210'];
 assert.equal(Q.questions.length,12);
 for(const [i,q] of Q.questions.entries()){

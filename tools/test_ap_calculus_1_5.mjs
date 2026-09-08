@@ -1,12 +1,13 @@
+import {fileURLToPath} from 'node:url';
 /* Exact mathematics, complete approach notation, and AP-scope regression checks. */
 import assert from 'node:assert/strict';import fs from 'node:fs';import vm from 'node:vm';import {createRequire} from 'node:module';
-const require=createRequire(import.meta.url),base=new URL('../lessons/ap-calculus/unit-1/',import.meta.url),A=require(new URL('assets/lesson-1-5-model.js',base).pathname),Q=require(new URL('assets/lesson-1-5-questions.js',base).pathname),near=(a,b,t=1e-8)=>assert.ok(Math.abs(a-b)<=t,`${a} should equal ${b}`);
+const require=createRequire(import.meta.url),base=new URL('../lessons/ap-calculus/unit-1/',import.meta.url),A=require(fileURLToPath(new URL('assets/lesson-1-5-model.js',base))),Q=require(fileURLToPath(new URL('assets/lesson-1-5-questions.js',base))),near=(a,b,t=1e-8)=>assert.ok(Math.abs(a-b)<=t,`${a} should equal ${b}`);
 for(const [a,b] of [[2,-3],[0,0],[-4,2],[3,0]]){assert.equal(A.combine(a,b,'linear').value,3*a-2*b);assert.equal(A.combine(a,b,'product').value,a*b);assert.equal(A.combine(a,b,'power').value,a*a);const q=A.combine(a,b,'quotient');assert.equal(q.valid,b!==0);assert.equal(q.value,b===0?null:a/b);}
 assert.equal(A.combine(NaN,1,'product'),null);assert.equal(A.combine(1,1,'unknown'),null);
 for(const [i,op,l,r,b] of [[0,'product',6,6,6],[0,'quotient',2/3,2/3,2/3],[1,'product',0,0,0],[2,'linear',-3,14,'DNE']]){const s=A.sideResult(i,op);near(s.left,l);near(s.right,r);assert.equal(s.both,b);}assert.equal(A.sideResult(1,'quotient').valid,false);
 for(const key of Object.keys(A.roots))for(const n of [2,3]){const r=A.rootCase(key,n);for(const x of [-.01,.01]){const v=r.fn(x);if(n===2&&A.roots[key].rad(x)<0)assert.ok(Number.isNaN(v));else near(v**n,A.roots[key].rad(x));}}assert.equal(A.rootCase('linear',2).domain,'right');assert.equal(A.rootCase('negative',2).domain,'none');assert.equal(A.rootCase('negative',3).value,-2);assert.equal(A.rootCase('square',2).value,0);
 for(const [key,c,l,r] of [['holeF',1,3,3],['holeG',1,1,1],['jumpF',2,4,-1],['zeroG',2,0,0],['innerJump',2,-1,1]]){const m=A.graphs[key];near(m.fn(c-1e-7),l,1e-6);near(m.fn(c+1e-7),r,1e-6);assert.equal(m.fn(c),m.at);}
-const M=require(new URL('assets/limit-lesson-models.js',base).pathname);
+const M=require(fileURLToPath(new URL('assets/limit-lesson-models.js',base)));
 // Test both composite outcomes independently of the assigned center value.
 for(const at of [-5,0,3,8])for(const [key,l,r,b] of [['square',1,1,1],['linear',1,3,'DNE']]){
  const j=A.jumpCase(key,at);assert.deepEqual([j.innerLeft,j.innerRight,j.left,j.right,j.both],[-1,1,l,r,b]);

@@ -1,11 +1,12 @@
+import {fileURLToPath} from 'node:url';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
 import {createRequire} from 'node:module';
 const require=createRequire(import.meta.url);
 const base=new URL('../lessons/ap-calculus/unit-1/',import.meta.url);
-const M=require(new URL('assets/lesson-1-1-model.js',base).pathname);
-const Q=require(new URL('assets/lesson-1-1-questions.js',base).pathname);
+const M=require(fileURLToPath(new URL('assets/lesson-1-1-model.js',base)));
+const Q=require(fileURLToPath(new URL('assets/lesson-1-1-questions.js',base)));
 const html=fs.readFileSync(new URL('1-1-can-change-occur-at-an-instant.html',base),'utf8');
 const runtime=fs.readFileSync(new URL('assets/lesson-1-1.js',base),'utf8');
 const near=(a,b,tol=1e-8)=>assert.ok(Math.abs(a-b)<=tol,`${a} should equal ${b}`);

@@ -1,8 +1,9 @@
+import {fileURLToPath} from 'node:url';
 import assert from 'node:assert/strict';
 import crypto from 'node:crypto';
 import {createRequire} from 'node:module';
 const require=createRequire(import.meta.url),base=new URL('../lessons/ap-calculus/unit-1/assets/',import.meta.url);
-const Q=require(new URL('midunit-questions.js',base).pathname),G=require(new URL('midunit-graphs.js',base).pathname);
+const Q=require(fileURLToPath(new URL('midunit-questions.js',base))),G=require(fileURLToPath(new URL('midunit-graphs.js',base)));
 const near=(a,b,tol=1e-8)=>assert.ok(Math.abs(a-b)<tol,`${a} differs from ${b}`);
 assert.equal(Q.revision,'midunit-v1','Extending the set preserves the account storage key');
 assert.equal(crypto.createHash('sha256').update(JSON.stringify(Q.questions.slice(0,24))).digest('hex'),'00f1fde5ddcb58929b28d13daef1442618d3583bdf73d4de0cce572c4e2717e9','The first 24 questions remain unchanged');
