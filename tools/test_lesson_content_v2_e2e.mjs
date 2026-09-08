@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 // Actual Request/Response handler + pinned KaTeX + actual session-authenticated
-// PostgreSQL RPCs. The subprocess is a parameterized transport, not an auth mock.
+// production RPC transport + PostgreSQL RPCs. The subprocess is a parameterized
+// database bridge behind the fixed HTTP adapter, not an authorization mock.
 import assert from 'node:assert/strict';
 import { spawn } from 'node:child_process';
 import { randomUUID } from 'node:crypto';
@@ -10,12 +11,13 @@ import readline from 'node:readline';
 import { fileURLToPath } from 'node:url';
 import katex from './lesson-runtime/node_modules/katex/dist/katex.mjs';
 import { createLessonHandler, LESSON_API_CONTRACT } from '../supabase/functions/lesson-api/handler.mjs';
+import { createRpcTransport } from '../supabase/functions/lesson-api/transport.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const reportIndex = process.argv.indexOf('--report');
 const reportPath = path.resolve(reportIndex < 0 ? path.join(root,'reports/lesson-content-v2-e2e.json') : process.argv[reportIndex+1]);
 const report = { status:'RUNNING; NOT PASS', production_calls:false, external_network:false,
-  transport:'Actual HTTP handler and KaTeX through parameterized Python stdio to real PostgreSQL service-role RPCs', checks:[] };
+  transport:'Actual HTTP handler, KaTeX and createRpcTransport through fixed PostgREST HTTP adapter and parameterized Python stdio to real PostgreSQL service-role RPCs', checks:[] };
 const saveReport = () => { fs.mkdirSync(path.dirname(reportPath),{recursive:true});fs.writeFileSync(reportPath,JSON.stringify(report,null,2)+'\n'); };
 const passed = label => { report.checks.push(label);console.log('PASS '+label);saveReport(); };
 const clone = value => structuredClone(value);
@@ -59,7 +61,7 @@ try {
   const fixture = initialized.fixture;
   report.postgres_version=initialized.postgres_version;
   const rpcCalls=[];
-  const rpc = (name,args) => new Promise((resolve,reject)=>{
+  const databaseRpc = (name,args) => new Promise((resolve,reject)=>{
     assert.ok(['api_session_lookup','lesson_store','lesson_store_health','lesson_content_capabilities'].includes(name));
     rpcCalls.push({name,action:args.p_action});
     const id=++sequence;
@@ -67,6 +69,21 @@ try {
     pending.set(id,{resolve,reject,timer});
     child.stdin.write(JSON.stringify({id,name,args})+'\n',error=>{if(error){clearTimeout(timer);pending.delete(id);reject(error);}});
   });
+  const transportCalls=[];
+  const rpc=createRpcTransport({url:'https://isolatedfixture.supabase.co',serviceKey:'isolated-fixture-only-service-key',fetch:async(url,options)=>{
+    const target=new URL(url);
+    assert.equal(target.origin,'https://isolatedfixture.supabase.co'); assert.equal(target.search,''); assert.equal(target.hash,'');
+    const match=/^\/rest\/v1\/rpc\/(api_session_lookup|lesson_store|lesson_store_health|lesson_content_capabilities)$/.exec(target.pathname);
+    assert.ok(match,'Only the fixed production RPC routes may reach the isolated database');
+    assert.equal(options.method,'POST'); assert.equal(options.redirect,'error'); assert.equal(options.credentials,'omit'); assert.equal(options.cache,'no-store');
+    assert.equal(options.headers.apikey,'isolated-fixture-only-service-key');
+    assert.equal(options.headers.authorization,'Bearer isolated-fixture-only-service-key');
+    assert.equal(options.headers['content-type'],'application/json'); assert.ok(options.signal instanceof AbortSignal);
+    const args=JSON.parse(options.body); transportCalls.push({name:match[1],action:args.p_action});
+    const result=await databaseRpc(match[1],args);
+    const status=result.error?({'28000':401,'42501':403,'P0002':404,'40001':409,'23505':409,'22023':400,'23514':400}[result.error.code]||500):200;
+    return new Response(JSON.stringify(result.error?{code:result.error.code}:result.data),{status,headers:{'content-type':'application/json'}});
+  }});
   const handler=createLessonHandler({rpc,mathEngine:katex});
   const tokens=fixture.tokens;
   const makeRequest=(endpoint,actor='teacher',body,options={})=>new Request('https://isolated.invalid/functions/v1/lesson-api'+endpoint,{
@@ -84,13 +101,17 @@ try {
   };
 
   const capabilities={contract:'echs.lesson.authoring.v1',content_version:2,blocks:{'rich-text':[1,2],math:[1,2],callout:[1,2],'legacy-embedded':[1]},math_expression_version:1};
+  assert.deepEqual(await expect('/health/authoring',null),{ok:true,service:'lesson-api',contract:LESSON_API_CONTRACT,authoring_capabilities:capabilities});
+  assert.deepEqual(rpcCalls,[{name:'lesson_content_capabilities',action:undefined}]);
+  assert.deepEqual(transportCalls,rpcCalls);
   assert.deepEqual((await expect('/context','teacher')).authoring_capabilities,capabilities);
   assert.deepEqual((await expect('/context','unassigned_teacher')).classes,[]);
   await expect('/context','student',undefined,403);
   await expect('/context','parent',undefined,403);
   await expect('/context',null,undefined,401);
   assert.ok(rpcCalls.some(call=>call.name==='lesson_content_capabilities'));
-  passed('actual authenticated HTTP context confirms installed SQL content-v2 capability; student/parent/guest denied');
+  assert.deepEqual(transportCalls,rpcCalls);
+  passed('actual handler and production transport confirm public data-free authoring health and authenticated context against installed SQL; student/parent/guest context denied');
 
   const {cases}=JSON.parse(fs.readFileSync(new URL('./lesson-runtime/fixtures/content-v2-cases.json',import.meta.url),'utf8'));
   const base=JSON.parse(fs.readFileSync(new URL('./lesson-runtime/fixtures/published-original.lesson.json',import.meta.url),'utf8'));
