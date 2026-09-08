@@ -1,0 +1,39 @@
+name: Account-owned mastery sync regression
+on:
+  pull_request:
+    paths:
+      - 'js/institution-client.js'
+      - 'js/institution-mastery-evidence.js'
+      - 'supabase/functions/mastery-evidence/**'
+      - 'tools/test_mastery_sync*.mjs'
+      - '.github/workflows/mastery-sync-regression.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'js/institution-client.js'
+      - 'js/institution-mastery-evidence.js'
+      - 'supabase/functions/mastery-evidence/**'
+      - 'tools/test_mastery_sync*.mjs'
+      - '.github/workflows/mastery-sync-regression.yml'
+permissions:
+  contents: read
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify queue ownership, rollout and evidence boundaries
+        run: |
+          node tools/test_mastery_sync.mjs
+          node tools/test_mastery_sync_endpoint.mjs
+          node tools/test_platform_resilience.mjs
+          python tools/validate_mastery_foundation.py
+          python tools/validate_mastery_guards.py
+          python tools/test_lesson_visibility_contract.py .

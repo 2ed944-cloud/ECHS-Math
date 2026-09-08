@@ -119,7 +119,9 @@ for marker in [
 
 client = text("js/institution-client.js")
 for marker in [
-    "learning-sync",
+    'api("mastery-evidence","/sync"',
+    "sessionGuard:owner",
+    "learningPayload:localLearningPayload",
     "requireAuth",
     "roleHome",
     "echs:learning-attempt",
@@ -129,6 +131,18 @@ for marker in [
 ]:
     if marker not in client:
         fail(f"Institution client missing: {marker}")
+
+mastery_api = text("supabase/functions/mastery-evidence/index.ts")
+for marker in ['db.from("lesson_completions")', 'onConflict: "account_id,access_key"', "lessons: lessonRows.length", "const authoritativeMastery = await recomputeMastery"]:
+    if marker not in mastery_api:
+        fail(f"Authoritative sync missing completion/evidence integration: {marker}")
+mastery_client = text("js/institution-mastery-evidence.js")
+for marker in ["ECHSInstitution.learningPayload()", "ECHSInstitution.syncLearning()", "ECHSInstitution.flushPending()"]:
+    if marker not in mastery_client:
+        fail(f"Mastery bridge missing canonical delegation: {marker}")
+for forbidden in ["ECHSInstitution.syncLearning=", "ECHSInstitution.flushPending=", "localStorage.setItem"]:
+    if forbidden in mastery_client:
+        fail(f"Mastery bridge duplicates canonical queue: {forbidden}")
 
 page_requirements = {
     "login.html": [
