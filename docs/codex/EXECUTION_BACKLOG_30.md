@@ -1,0 +1,251 @@
+# ECHS First 30 Codex Tasks
+
+## Execution record — 2026-09-08
+
+- ECHS-001: complete; main rechecked at `fda45056e7b11e3f1d45bf96f7c8c36246d69e8d`. See `RUNTIME_INVENTORY_20260908.md` and its machine-readable JSON. `python tools/test_runtime_inventory.py` passed. No runtime/database changes in this slice.
+- ECHS-002–006: pending implementation and acceptance evidence.
+- ECHS-007: not started; blocked on ECHS-002–006 acceptance.
+
+Rules:
+- execute in dependency order;
+- one coherent PR/branch slice at a time;
+- never merge all tasks into one giant change;
+- run current tests plus new tests;
+- update this file with status/evidence.
+
+## P0 — Architecture / safety
+
+### ECHS-001 — Canonical runtime inventory
+Map canonical directories, entrypoints, deployment flow, Supabase functions, lesson architectures, bank providers, tests, and archived/noncanonical copies.
+
+Acceptance:
+- machine-readable inventory;
+- no production change;
+- canonical vs archive paths identified.
+
+### ECHS-002 — Baseline test command
+Create one documented command/script that runs the critical existing validation suites relevant to platform work.
+
+Acceptance:
+- exit code reliable;
+- output identifies failing suite;
+- no removal of existing tests.
+
+### ECHS-003 — Curriculum version schema
+Add versioned curriculum model/migration without changing current user-visible curriculum.
+
+Acceptance:
+- AP Calculus 2026–27;
+- AP Precalculus 2026–27;
+- IB AI SL first-assessment-2021;
+- future IB AI SL first-assessment-2029 placeholder;
+- cohort/course-version assignment design;
+- RLS reviewed.
+
+### ECHS-004 — Lesson document JSON schema
+Implement `echs.lesson.v1`.
+
+Acceptance:
+- validator;
+- migration/version field;
+- block registry;
+- valid/invalid tests.
+
+### ECHS-005 — Shared lesson renderer shell
+Render an `echs.lesson.v1` document using existing platform auth/release behavior.
+
+Acceptance:
+- text/math/callout/layout;
+- keyboard;
+- responsive;
+- KaTeX;
+- deep links.
+
+### ECHS-006 — Legacy lesson compatibility contract
+Define adapters for handcrafted HTML and `LESSON_DATA`.
+
+Acceptance:
+- no URL breakage;
+- legacy finish/practice behavior retained;
+- adapter tests.
+
+## P1 — Lesson Studio
+
+### ECHS-007 — Secure lesson persistence
+Create Supabase lesson/version/publication tables and secure API/RLS.
+
+Acceptance:
+- student cannot write;
+- teacher scope enforced;
+- published version immutable.
+
+### ECHS-008 — Lesson Studio shell
+Desktop authoring workspace with slide navigator/canvas/inspector.
+
+Acceptance:
+- create lesson;
+- create/rename/reorder/delete slides;
+- autosave state.
+
+### ECHS-009 — Rich text and math blocks
+Implement safe rich text and visual math entry.
+
+Acceptance:
+- no arbitrary script HTML;
+- math validation;
+- publish check.
+
+### ECHS-010 — Media/table/resource blocks
+Image, video, table, file/resource blocks.
+
+Acceptance:
+- alt text rules;
+- safe external embed policy;
+- asset failure handling.
+
+### ECHS-011 — Undo/redo + autosave + offline draft
+Account-scoped resilient editing.
+
+Acceptance:
+- no cross-account draft leakage;
+- server conflict detection;
+- retry state.
+
+### ECHS-012 — Version history
+Compare/restore/publish versions.
+
+Acceptance:
+- restore creates new draft;
+- immutable publication history.
+
+### ECHS-013 — Presentation mode
+Full-screen class presentation from the same lesson document.
+
+Acceptance:
+- keyboard next/back;
+- reveal;
+- reset;
+- reduced motion.
+
+### ECHS-014 — Import IB `LESSON_DATA` reference lesson
+Migrate one strong IB AI lesson.
+
+Acceptance:
+- visual/content parity documented;
+- original URL works.
+
+### ECHS-015 — Import AP Calculus 1.1 reference lesson
+Use the complex interactive AP 1.1 lesson to prove adapter/plugin strategy.
+
+Acceptance:
+- six existing investigations preserved;
+- question gating preserved;
+- existing tests or equivalent pass;
+- no mastery regression.
+
+## P1 — Interactive mathematics
+
+### ECHS-016 — Math component registry
+Plugin interface for render/editor/validate/lazy-load/accessibility.
+
+### ECHS-017 — Interactive graph block
+Reusable function/point/slider/tangent/secant block.
+
+Acceptance:
+- authoring preset;
+- student render;
+- accessible text state.
+
+### ECHS-018 — Parameter explorer
+Reusable function-family parameter lab.
+
+First use:
+AP Precalculus polynomial/exponential/trig.
+
+### ECHS-019 — Calculus accumulation/Riemann block
+Reusable signed area/Riemann/accumulation module.
+
+### ECHS-020 — 3D engine foundation
+Three.js lazy-loaded math plugin with model/render separation.
+
+Acceptance:
+- WebGL fallback;
+- cleanup;
+- keyboard slice;
+- unit tests.
+
+### ECHS-021 — Washer/disk 3D template
+Support shifted horizontal/vertical axes.
+
+Acceptance:
+- 2D/3D/formula sync;
+- radius validation.
+
+### ECHS-022 — Shell 3D template
+Support representative shell and correct radius/height.
+
+### ECHS-023 — Cross-section 3D template
+Squares/rectangles/equilateral triangles/semicircles.
+
+## P1 — Question engine
+
+### ECHS-024 — Question provider abstraction
+Normalize current public canonical and private providers without copying restricted content to public storage.
+
+### ECHS-025 — Curriculum/practice/representation mappings
+Add versioned mappings and coverage queries.
+
+### ECHS-026 — Question QA pipeline v2
+Extend current gates with:
+- curriculum version;
+- representation;
+- misconception;
+- calculator policy;
+- originality status;
+- accessibility.
+
+### ECHS-027 — Assessment blueprint builder
+Teacher filters by objective/skill/representation/difficulty/calculator/type.
+
+### ECHS-028 — AI draft question workflow
+“Generate similar” and “Qatar variant” as review-required drafts only.
+
+Acceptance:
+- independent solution validation;
+- never student-ready automatically.
+
+## P2 — Intelligence / identity
+
+### ECHS-029 — Qatar Context Library
+Versioned approved context/dataset registry + neutral/Qatar variant mechanism.
+
+Acceptance:
+- source/date/units;
+- no fabricated production data;
+- lesson studio insertion.
+
+### ECHS-030 — Curriculum Coverage & Quality dashboard
+Show:
+- objectives without lessons;
+- objectives without reviewed questions;
+- representation gaps;
+- practice gaps;
+- calculator imbalance;
+- AP FRQ gaps;
+- IB structured-response gaps.
+
+Acceptance:
+Every chart/action leads to a concrete curriculum decision.
+
+# Next wave after task 30
+
+- misconception engine expansion;
+- student representation profile;
+- teacher intervention dashboard;
+- AP exam simulation profiles;
+- IB Paper simulation;
+- calculator lab integration;
+- scalable lesson migration by unit;
+- design-system visual polish;
+- performance budgets and telemetry;
+- WCAG audit.
