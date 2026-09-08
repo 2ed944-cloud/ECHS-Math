@@ -28,9 +28,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "22"
-      - name: Install pinned DOM and bank validation dependencies
+      - name: Install pinned baseline test dependencies
         run: |
           npm install --prefix "$RUNNER_TEMP/echs-baseline-dom" --no-save --ignore-scripts --no-audit --no-fund linkedom@0.18.12
+          npx --yes pnpm@11.19.0 --dir tools/lesson-runtime install --frozen-lockfile --ignore-scripts
           npm ci --prefix question-bank/official/tools
           npx --prefix question-bank/official/tools playwright install --with-deps chromium-headless-shell
       - name: Run all critical baseline suites

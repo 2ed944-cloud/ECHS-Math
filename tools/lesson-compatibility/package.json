@@ -1,0 +1,8 @@
+{
+  "name": "echs-lesson-compatibility-tools",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Development-only pinned metadata fixture composition and compatibility tests.",
+  "dependencies": {"parse5": "7.3.0"},
+  "scripts": {"test": "node test-compatibility.mjs"}
+}

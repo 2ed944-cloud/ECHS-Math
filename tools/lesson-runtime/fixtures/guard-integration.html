@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ECHS existing lesson guard integration fixture</title>
+<link rel="stylesheet" href="../../../css/lesson-document.css">
+<link rel="stylesheet" href="../node_modules/katex/dist/katex.min.css">
+</head><body>
+<p>Development fixture: original public sample, original access scripts, simulated institution API responses, no production requests.</p>
+<main id="lesson"><p>Existing lesson content remains until access and document checks complete.</p></main>
+<script>
+(() => {
+  const scenario = new URL(location.href).searchParams.get('scenario') || 'released';
+  const trace = event => console.debug('ECHS_GUARD_FIXTURE ' + JSON.stringify({scenario,...event}));
+  window.fixture = {ready:false,trace};
+  // Observe actual production event contracts, without synthesizing evidence.
+  for (const name of ['echs:learning-attempt','echs:learning-session','echs:lesson-completed']) {
+    window.addEventListener(name,event => trace({kind:'learning-event',name,detail:event.detail}));
+  }
+  for (const name of ['echs:learning-updated','echs:mastery-authority']) {
+    document.addEventListener(name,event => trace({kind:'learning-event',name,detail:event.detail}));
+  }
+  const originalSetItem = Storage.prototype.setItem;
+  Storage.prototype.setItem = function(key,value) {
+    trace({kind:'storage-write',store:this===localStorage?'localStorage':'sessionStorage',key:String(key),value:String(value)});
+    return originalSetItem.call(this,key,value);
+  };
+  // Sentinels fail the test if this renderer/guard slice calls any learning API.
+  // The canonical learning engine is deliberately not loaded in this fixture.
+  window.ECHSLearning = new Proxy({}, {get:(_,method) => (...args) => {
+    trace({kind:'learning-call',method:String(method),args});
+    throw new Error('Unexpected learning API call in the completion-only guard fixture.');
+  }});
+  let account = null;
+  async function boundary(path,options={}) {
+    const url = new URL('/__guard_fixture__/api',location.origin);
+    url.searchParams.set('scenario',scenario); url.searchParams.set('path',path);
+    const response = await fetch(url,{method:options.method||'GET',headers:{'Content-Type':'application/json'},body:options.body===undefined?undefined:JSON.stringify(options.body)});
+    if (!response.ok) throw new Error('Simulated institutional API failure.');
+    return response.json();
+  }
+  window.ECHSInstitution = {
+    config:async()=>({enabled:true}),
+    me:async()=>{account=await boundary('/me');return account;},
+    account:()=>account,
+    token:()=>account?'guard-fixture-token':null,
+    api:(endpoint,path,options)=>{
+      if(endpoint!=='institution-api')throw new Error('Unexpected endpoint in isolated guard fixture.');
+      return boundary(path,options);
+    },
+    root:path=>new URL(path,location.origin+'/').href,
+    roleHome:role=>`question-bank/${role==='admin'?'admin':role==='teacher'?'teacher':role==='parent'?'parent':'student'}.html`,
+    syncLearning:()=>{trace({kind:'learning-call',method:'ECHSInstitution.syncLearning'});throw new Error('Unexpected direct learning sync.');}
+  };
+  new MutationObserver(()=>trace({kind:'gate',value:document.documentElement.dataset.lessonGate||null})).observe(document.documentElement,{attributes:true,attributeFilter:['data-lesson-gate']});
+})();
+</script>
+<!-- These are the unmodified production sources. Only their institution API boundary is simulated. -->
+<script src="../../../js/portal-access.js"></script>
+<script src="../../../js/lesson-access-guard.js"></script>
+<script type="module">
+import katex from '../node_modules/katex/dist/katex.mjs';
+import {mountLesson} from '../../../js/lesson-runtime/renderer.mjs';
+const route = new URL(location.href); route.hash='';
+// Host-controlled fixture identity, intentionally independent of the loaded JSON.
+// Production hosts must obtain their route/document binding from approved records.
+const binding = {
+  route:route.href,
+  course_key:'ap-calculus',
+  document:{lesson_id:'b0b4cd8b-e110-45fd-948f-d3ee06c843a1',course_version_id:'7314e157-f5f5-4492-bedd-b787730cf6d1',unit_id:'fixture:unit-1',topic_id:'fixture:continuity',document_version:1,publication_revision:1}
+};
+try {
+  const lesson = await (await fetch('./published-original.lesson.json')).json();
+  fixture.controller = await mountLesson({root:document.querySelector('#lesson'),lesson,binding,enabled:true,mathEngine:katex,accessTimeoutMs:3000});
+  fixture.trace({kind:'mounted',mode:fixture.controller.mode});
+} catch(error) {
+  fixture.error=error.message; fixture.trace({kind:'mount-error',message:error.message});
+} finally { fixture.ready=true; }
+</script>
+</body></html>

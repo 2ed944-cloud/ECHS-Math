@@ -1,0 +1,50 @@
+name: Lesson renderer integration
+on:
+  pull_request:
+    paths:
+      - 'js/lesson-runtime/**'
+      - 'js/portal-access.js'
+      - 'js/lesson-access-guard.js'
+      - 'css/lesson-document.css'
+      - 'tools/lesson-runtime/**'
+      - '.github/workflows/lesson-renderer.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'js/lesson-runtime/**'
+      - 'js/portal-access.js'
+      - 'js/lesson-access-guard.js'
+      - 'css/lesson-document.css'
+      - 'tools/lesson-runtime/**'
+      - '.github/workflows/lesson-renderer.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install pinned test dependencies
+        run: |
+          npx --yes pnpm@11.19.0 --dir tools/lesson-runtime install --frozen-lockfile --ignore-scripts
+          npm ci --prefix question-bank/official/tools
+          npx --prefix question-bank/official/tools playwright install --with-deps chromium-headless-shell
+      - name: Check schema and generated validator
+        run: |
+          node tools/lesson-runtime/build-validator.mjs --check
+          node tools/lesson-runtime/test-schema.mjs
+      - name: Exercise rendering and original access / finish integration
+        run: |
+          node tools/lesson-runtime/test-renderer.mjs
+          node tools/lesson-runtime/test-guard-integration.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lesson-renderer-evidence
+          path: artifacts/lesson-runtime/
+          retention-days: 14

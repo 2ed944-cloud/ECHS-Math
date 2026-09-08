@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ECHS renderer contract fixture</title>
+<link rel="stylesheet" href="../../../css/lesson-document.css">
+<link rel="stylesheet" href="../node_modules/katex/dist/katex.min.css">
+<style>body{margin:0;background:#edf0f3} .fixture-note{margin:0;padding:.7rem 1rem;background:#243545;color:white;font:14px/1.5 system-ui} #legacy-finish{margin:1rem}</style>
+</head><body>
+<p class="fixture-note">Development fixture · original sample content · simulated access · no production account or learning writes</p>
+<main id="lesson"><p>Existing lesson remains available until the document is validated.</p></main>
+<button id="legacy-finish" data-finish-lesson>Existing finish / practice control (fixture)</button>
+<script type="module">
+import katex from '../node_modules/katex/dist/katex.mjs';
+import {mountLesson} from '../../../js/lesson-runtime/renderer.mjs';
+const params = new URLSearchParams(location.search);
+const scenario = params.get('scenario') || 'allowed';
+const account = {id:'fixture-account',role:'student'};
+let activeAccount = account, token = 'fixture-token';
+window.fixture = {finishCalls:0,learningCalls:0,ready:false,account(value){activeAccount=value;},token(value){token=value;}};
+document.querySelector('[data-finish-lesson]').addEventListener('click',()=>fixture.finishCalls++);
+window.ECHSInstitution = {account:()=>activeAccount,token:()=>token};
+const access = {authenticated:scenario!=='guest',role:scenario==='guest'?'guest':'student',current:account};
+window.ECHSPortalAccess = {current:access,courseAllowed:(course,access)=>access.courseAllowed!==false && course==='ap-calculus',ready:scenario==='pending-account'?new Promise(()=>{}):Promise.resolve(access)};
+document.documentElement.dataset.lessonGate = ['denied','delayed'].includes(scenario)?'pending':'allowed';
+document.documentElement.dataset.echsLessonCourse = 'ap-calculus';
+if(scenario==='delayed') setTimeout(()=>document.documentElement.dataset.lessonGate='allowed',100);
+for(const name of ['echs:learning-attempt','echs:learning-session','echs:lesson-completed']) window.addEventListener(name,()=>fixture.learningCalls++);
+for(const name of ['echs:learning-updated','echs:mastery-authority']) document.addEventListener(name,()=>fixture.learningCalls++);
+fixture.lesson = await (await fetch('./published-original.lesson.json')).json();
+if(scenario==='draft') fixture.lesson.publication.status='draft';
+if(scenario==='private') fixture.lesson.publication.audience='teacher';
+if(scenario==='invalid') fixture.lesson.slides[0].blocks[0].content.paragraphs[0].children[0].text='<'+'script>bad<'+'/script>';
+if(scenario==='math-size') fixture.lesson.slides[1].blocks[0].content.tex='\\rule{500em}{500em}';
+try {
+  const route=new URL(location.href);route.hash='';
+  const binding={route:route.href,course_key:'ap-calculus',document:{lesson_id:'b0b4cd8b-e110-45fd-948f-d3ee06c843a1',course_version_id:'7314e157-f5f5-4492-bedd-b787730cf6d1',unit_id:'fixture:unit-1',topic_id:'fixture:continuity',document_version:1,publication_revision:1}};
+  if(scenario==='wrong-binding')binding.document.publication_revision=2;
+  if(scenario==='wrong-route')binding.route=location.origin+'/other.html';
+  if(scenario==='missing-token')token='';
+  if(scenario==='pending-token'){document.documentElement.dataset.lessonGate='pending';setTimeout(()=>{token='new';document.documentElement.dataset.lessonGate='allowed';},100);}
+  if(scenario==='wrong-legacy')fixture.lesson.slides[0].blocks.push({id:'wrong-legacy',type:'legacy-embedded',version:1,content:{source:'lessons/ap-calculus/unit-1/1-1-introducing-calculus.html',anchor:'slide-1',sha256:'a'.repeat(64),summary:'A different lesson must not inherit this access key.'}});
+  fixture.controller=await mountLesson({root:document.querySelector('#lesson'),lesson:fixture.lesson,binding,enabled:scenario!=='disabled',mathEngine:katex,accessTimeoutMs:500});
+} catch(error) { fixture.error=error.message; }
+fixture.ready=true;
+</script></body></html>

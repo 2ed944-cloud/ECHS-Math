@@ -8,11 +8,16 @@ Use Python 3.12 and Node.js 22 or newer. The runner invokes Python children with
 
 ```text
 npm install --prefix .test-deps --no-save --ignore-scripts --no-audit --no-fund linkedom@0.18.12
+npx --yes pnpm@11.19.0 --dir tools/lesson-runtime install --frozen-lockfile --ignore-scripts
 npm ci --prefix question-bank/official/tools
 npx --prefix question-bank/official/tools playwright install chromium-headless-shell
 ```
 
-On Linux CI, browser installation may additionally need Playwright's `--with-deps` option. The bank's committed package and lock files pin KaTeX and Playwright. The DOM suite requires exactly LinkeDOM 0.18.12. Set `ECHS_TEST_DOM_MODULE` to its **absolute package directory**, not its parent node_modules directory:
+On Linux CI, browser installation may additionally need Playwright's `--with-deps` option. The bank's committed package and lock files pin KaTeX and Playwright. The DOM suite requires exactly LinkeDOM 0.18.12.
+
+The lesson-runtime package has its own pinned lockfile and supplies the local KaTeX stylesheet referenced by the renderer and guard-integration HTML fixtures. Install it even when running only the baseline: the unchanged local-link check validates those fixture links as well as product links. Missing fixture dependencies remain failures; the check does not exclude fixtures to obtain a pass.
+
+Set `ECHS_TEST_DOM_MODULE` to its **absolute package directory**, not its parent node_modules directory:
 
 PowerShell:
 

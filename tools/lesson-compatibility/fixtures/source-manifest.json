@@ -1,0 +1,107 @@
+{
+  "version": 1,
+  "source_commit": "fda45056e7b11e3f1d45bf96f7c8c36246d69e8d",
+  "ap_source": "lessons/ap-calculus/unit-1/1-1-can-change-occur-at-an-instant.html",
+  "ap_aliases": [
+    "lessons/ap-calculus/1-1-introducing-calculus.html"
+  ],
+  "ib_source": "lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.3_geometric_sequences_ECHS.html",
+  "ib_layers": [
+    "lessons/ib-math-ai/unit-1/data/lesson-1.3.js",
+    "lessons/ib-math-ai/unit-1/data/lesson-1.3-v3.js",
+    "lessons/ib-math-ai/unit-1/data/unit-1-v5-content-data.js",
+    "lessons/ib-math-ai/unit-1/data/unit-1-v5-apply.js",
+    "lessons/ib-math-ai/unit-1/data/lesson-1.3-geometric-definitive-v6.js",
+    "lessons/ib-math-ai/unit-1/data/lesson-1.3-geometric-v6-polish.js",
+    "lessons/ib-math-ai/unit-1/data/ib-ai-sl-pacing-markers.js"
+  ],
+  "expected_stages": [
+    {
+      "stage": "base",
+      "slides": 49,
+      "practice": 40,
+      "exam": 2,
+      "quiz": 10
+    },
+    {
+      "stage": "v5",
+      "slides": 36,
+      "practice": 52,
+      "exam": 3,
+      "quiz": 14
+    },
+    {
+      "stage": "final",
+      "slides": 73,
+      "practice": 96,
+      "exam": 5,
+      "quiz": 14
+    }
+  ],
+  "files": [
+    {
+      "path": "lessons/ap-calculus/unit-1/1-1-can-change-occur-at-an-instant.html",
+      "sha256": "366b4418e2db0bfbe7c0a55956abe205889dd9f0b7da9099e4e4b5c087b7e026"
+    },
+    {
+      "path": "lessons/ap-calculus/1-1-introducing-calculus.html",
+      "sha256": "7a6e65579721ef791fb012731ad907ef5c06cd9bfff910083c993beaf57cbc4e"
+    },
+    {
+      "path": "lessons/ap-calculus/unit-1/assets/lesson-1-1.css",
+      "sha256": "4e8c979bb00fe0070719896ac92e4840219afca6b646fc85938c56d035089ab9"
+    },
+    {
+      "path": "lessons/ap-calculus/unit-1/assets/lesson-1-1-model.js",
+      "sha256": "baae48eb8a033f6d31b982b6c9841247802886359b1e00274e76d1913da54d16"
+    },
+    {
+      "path": "lessons/ap-calculus/unit-1/assets/lesson-1-1-questions.js",
+      "sha256": "90a4543492c45b013b74636cf9157234359bcd2c55820eed5ae8fbd059b679c3"
+    },
+    {
+      "path": "lessons/ap-calculus/unit-1/assets/lesson-1-1.js",
+      "sha256": "0c92ce56f7d10c0039ee88e4dc4722686a9256f9ae987aa38aaf368ba0c4ea3a"
+    },
+    {
+      "path": "lessons/ib-math-ai/unit-1/assets/css/katex.css",
+      "sha256": "28b480168f048e5d738f03a158eb292c9add1d3fa480977935187320612a5f48"
+    },
+    {
+      "path": "lessons/ib-math-ai/unit-1/assets/js/katex-global.js",
+      "sha256": "2aa3bedb9bce3e020f45e458067ed33662c9e68355ac51ceea29691c8333016f"
+    },
+    {
+      "path": "lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.3_geometric_sequences_ECHS.html",
+      "sha256": "c10fc5e4bded7a5b2ba5134bfc2bf9869bff487968ea6971ae777af3a74f2192"
+    },
+    {
+      "path": "lessons/ib-math-ai/unit-1/data/lesson-1.3.js",
+      "sha256": "fdeac55d9ed07ce9652101afdd0a9d9adca23d8bcdd380c47c419eb9ffa1b455"
+    },
+    {
+      "path": "lessons/ib-math-ai/unit-1/data/lesson-1.3-v3.js",
+      "sha256": "745ebf21a003333cfd1f9273b82d03f144fb23502dc2d96c16d0ce0a4fd76348"
+    },
+    {
+      "path": "lessons/ib-math-ai/unit-1/data/unit-1-v5-content-data.js",
+      "sha256": "01d8e7e5996c96ffdeaecacb2caa86471e21644104ca8dfaefee03225394c202"
+    },
+    {
+      "path": "lessons/ib-math-ai/unit-1/data/unit-1-v5-apply.js",
+      "sha256": "8bc516ba797b7ce28de152e5e0f0f5c54f441e55528acdfa276ec40eb1fe679a"
+    },
+    {
+      "path": "lessons/ib-math-ai/unit-1/data/lesson-1.3-geometric-definitive-v6.js",
+      "sha256": "521061647864a1f975c9d3fdfd2a197b57acadd7caf04e40b362fef6db4b203c"
+    },
+    {
+      "path": "lessons/ib-math-ai/unit-1/data/lesson-1.3-geometric-v6-polish.js",
+      "sha256": "fc42bca4f5f892af306c291a7d6b45a476bdf686d18c8dfa068e34e4728bf0ea"
+    },
+    {
+      "path": "lessons/ib-math-ai/unit-1/data/ib-ai-sl-pacing-markers.js",
+      "sha256": "4b0faa50c172ae1b2fbad4c4d858c230972d3645964fe8d1ea00e246be0348e8"
+    }
+  ]
+}
