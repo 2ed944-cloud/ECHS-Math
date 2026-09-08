@@ -160,9 +160,16 @@ def main():
             def execute(statement, params=(), role="service_role", connection=None):
                 db = connection or conn
                 with db.transaction():
+                    previous_role = db.execute("select current_user").fetchone()[0]
                     db.execute(sql.SQL("set local role {}").format(sql.Identifier(role)))
                     result = db.execute(statement, params)
-                    return result.fetchall() if result.description else None
+                    rows = result.fetchall() if result.description else None
+                    # A successful nested transaction releases a savepoint; its
+                    # SET LOCAL ROLE otherwise survives in the outer fixture
+                    # transaction. Restore the caller's role before release.
+                    # On an exception, savepoint rollback restores it instead.
+                    db.execute(sql.SQL("set local role {}").format(sql.Identifier(previous_role)))
+                    return rows
 
             def rpc(actor, action, payload=None, role="service_role", connection=None):
                 value = execute("select public.lesson_store(%s,%s,%s)", (tokens.get(actor, actor), action, Jsonb(payload or {})), role, connection)[0][0]
