@@ -1,0 +1,88 @@
+name: Secure lesson persistence contracts
+on:
+  pull_request:
+    paths:
+      - "supabase/migrations/**"
+      - "supabase/functions/**"
+      - "schemas/**"
+      - "js/lesson-runtime/**"
+      - "tools/test_lesson_persistence*"
+      - "tools/lesson_persistence_rpc_fixture.py"
+      - "tools/lesson-runtime/**"
+      - ".github/workflows/lesson-persistence.yml"
+  push:
+    branches: [main]
+    paths:
+      - "supabase/migrations/**"
+      - "supabase/functions/lesson-api/**"
+      - "schemas/**"
+      - "js/lesson-runtime/**"
+      - "tools/test_lesson_persistence*"
+      - "tools/lesson_persistence_rpc_fixture.py"
+      - "tools/lesson-runtime/**"
+      - ".github/workflows/lesson-persistence.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  server-contracts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.5.6
+      - name: Install pinned schema and math dependencies
+        run: npx --yes pnpm@11.19.0 --dir tools/lesson-runtime install --frozen-lockfile --ignore-scripts
+      - name: Verify generated server bundle and fail-closed API contracts
+        run: |
+          node tools/lesson-runtime/build-server-validator.mjs --check
+          node tools/lesson-runtime/test-server-document.mjs
+          node tools/test_lesson_persistence_api.mjs
+      - name: Check the deployable entrypoint and frozen dependencies
+        run: deno check --frozen --config supabase/functions/lesson-api/deno.json supabase/functions/lesson-api/index.ts
+  postgres15:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: isolated-fixture-only
+          POSTGRES_DB: echs_lesson_test_ci
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d echs_lesson_test_ci"
+          --health-interval 5s --health-timeout 5s --health-retries 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install pinned database test driver
+        run: python -m pip install 'psycopg[binary]==3.2.9'
+      - name: Install pinned HTTP contract math dependency
+        run: npx --yes pnpm@11.19.0 --dir tools/lesson-runtime install --frozen-lockfile --ignore-scripts
+      - name: Execute full migration chain and secure lesson contracts
+        env:
+          ECHS_LESSON_TEST_DSN: postgresql://postgres:isolated-fixture-only@127.0.0.1:5432/echs_lesson_test_ci
+        run: python tools/test_lesson_persistence_database.py --report reports/lesson-persistence-database.json
+      - name: Exercise actual HTTP handler against actual service-role SQL
+        env:
+          ECHS_LESSON_TEST_DSN: postgresql://postgres:isolated-fixture-only@127.0.0.1:5432/echs_lesson_test_ci
+        run: node tools/test_lesson_persistence_e2e.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lesson-persistence-database-results
+          path: reports/lesson-persistence-*.json
+          if-no-files-found: warn

@@ -1,0 +1,28 @@
+{
+  "format": "echs.server-lesson-validator.v1",
+  "schema_version": "echs.lesson.v1",
+  "schema_sha256_json": "1df8457ecc90d1b8eedacfd8cdec00bc3bfe641bb24939ca72d76c60972527bc",
+  "source_hash_normalization": "UTF-8 source text with CRLF/CR normalized to LF",
+  "sources": [
+    {
+      "path": "js/lesson-runtime/schema.mjs",
+      "sha256_lf": "7ee327715560c546e13feacf418587c94200123c49f917000ab796ad261b3990"
+    },
+    {
+      "path": "js/lesson-runtime/block-registry.mjs",
+      "sha256_lf": "d309703ad596f1a8c2c1ceb3b01a5500f2d1a259dc0d3d3ea716e7f4caf5f3bb"
+    },
+    {
+      "path": "js/lesson-runtime/generated/validate-lesson-document.mjs",
+      "sha256_lf": "6bbfc99c4ad8ebdd32e2ff259e90edeaa68e25c9063434b7ec187f10a98e4935"
+    }
+  ],
+  "build": {
+    "tool": "esbuild",
+    "version": "0.25.5",
+    "target": "es2020",
+    "platform": "browser",
+    "format": "esm"
+  },
+  "output_sha256": "169d77484889d7ce6dce715deb7f8cb374993996c4128f5504202cd1cf40eaeb"
+}
