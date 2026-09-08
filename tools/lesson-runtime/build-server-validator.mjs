@@ -9,7 +9,8 @@ const root = new URL('../../', import.meta.url);
 const sourcePaths = [
   'js/lesson-runtime/schema.mjs',
   'js/lesson-runtime/block-registry.mjs',
-  'js/lesson-runtime/generated/validate-lesson-document.mjs'
+  'js/lesson-runtime/generated/validate-lesson-document.mjs',
+  'js/lesson-runtime/math-expression.mjs'
 ];
 const sha256 = value => createHash('sha256').update(value).digest('hex');
 const sources = [];
@@ -39,7 +40,7 @@ const compiled = await esbuild.build({
 });
 const inputs = Object.keys(compiled.metafile.inputs).map(path => path.replaceAll('\\', '/')).sort();
 if (JSON.stringify(inputs) !== JSON.stringify([...sourcePaths].sort())) {
-  throw new Error('The server validator must bundle only the three reviewed canonical runtime modules.');
+  throw new Error('The server validator must bundle exactly the reviewed canonical runtime modules.');
 }
 if (Object.values(compiled.metafile.outputs).some(output => output.imports.length)) {
   throw new Error('The deployed validator must have no external imports.');

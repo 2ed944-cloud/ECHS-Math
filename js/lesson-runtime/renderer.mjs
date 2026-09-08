@@ -1,4 +1,5 @@
 import {assertPublicLessonDocument, assertLessonDocument, LESSON_DOCUMENT_LIMITS} from './schema.mjs';
+import {createContentRenderer} from './content-renderer.mjs';
 
 const EDITABLE = 'input,textarea,select,button,a,[contenteditable="true"]';
 const mountedLessonRoots = new WeakMap();
@@ -92,33 +93,9 @@ function mountValidatedLesson({root, lesson, binding, win, mathEngine, owner, sc
     if (mountedLessonRoots.get(root) === mountRecord) {mountedLessonRoots.delete(root); root.replaceChildren();}
   };
   const verify = () => { if (stillAllowed()) return true; dispose(); return false; };
-  function math(content) {
-    const span = el(content.display ? 'div' : 'span', undefined, 'echsDocumentMath');
-    span.setAttribute('role', 'math'); span.setAttribute('aria-label', content.spoken);
-    mathEngine.render(content.tex, span, {displayMode:Boolean(content.display), throwOnError:true, trust:false, strict:'error', output:'htmlAndMathml', maxExpand:100, maxSize:10});
-    return span;
-  }
-  function paragraphs(content) {
-    const group = el('div');
-    for (const paragraph of content.paragraphs) {
-      const p = el('p');
-      for (const inline of paragraph.children) {
-        let child = inline.type === 'math' ? math(inline) : doc.createTextNode(inline.text);
-        for (const mark of inline.marks || []) { const wrap = el(mark); wrap.append(child); child = wrap; }
-        p.append(child);
-      }
-      group.append(p);
-    }
-    return group;
-  }
+  const contentRenderer = createContentRenderer({document:doc,mathEngine});
   function blockNode(block) {
-    if (block.type === 'rich-text') return paragraphs(block.content);
-    if (block.type === 'math') return math(block.content);
-    if (block.type === 'callout') {
-      const aside = el('aside', undefined, `echsDocumentCallout ${block.content.kind}`);
-      const heading = el('h3', block.content.title); heading.id = `echs-block-${block.id}`;
-      aside.setAttribute('aria-labelledby', heading.id); aside.append(heading, paragraphs(block.content.body)); return aside;
-    }
+    if (['rich-text','math','callout'].includes(block.type) && [1,2].includes(block.version)) return contentRenderer.block(block);
     if (block.type === 'legacy-embedded') {
       const aside = el('aside', undefined, 'echsDocumentCallout');
       const repositoryRoot = new URL('../../', import.meta.url);
@@ -265,7 +242,7 @@ function institutionalBinding(payload, {lessonId, classId, accountId, organizati
   assertLessonDocument(payload.document, {mathEngine:mathEngine ?? null});
   if (payload.document.publication.status !== 'published' || payload.document.publication.audience !== 'institutional' ||
       payload.document.lesson_id !== lessonId || payload.document.publication.revision !== payload.revision ||
-      payload.document.slides.some(slide => slide.blocks.some(block => !['rich-text','math','callout'].includes(block.type)))) throw envelopeError();
+      payload.document.slides.some(slide => slide.blocks.some(block => !['rich-text','math','callout'].includes(block.type) || ![1,2].includes(block.version)))) throw envelopeError();
   const host = {course_key:binding.course_key, route, document:binding.document};
   validateHostBinding(host, payload.document, win);
   return host;

@@ -1,4 +1,5 @@
-import validateCanonicalSchema from './generated/validate-lesson-document.mjs';
+import validateCanonicalSchema, { validateBlock as validateCanonicalBlock } from './generated/validate-lesson-document.mjs';
+import { compileMathSource, validateMathSource } from './math-expression.mjs';
 
 export { LESSON_SCHEMA_VERSION } from './block-registry.mjs';
 export const LESSON_DOCUMENT_LIMITS = Object.freeze({ maxBytes: 2 * 1024 * 1024, maxDepth: 24, maxNodes: 30000 });
@@ -10,6 +11,16 @@ const encoder = new TextEncoder();
 const error = (path, code, message) => ({ path, code, message });
 const result = errors => ({ valid: errors.length === 0, errors });
 const pointer = key => String(key).replace(/~/g, '~0').replace(/\//g, '~1');
+
+// Deliberately shared with the SQL v2 validator. This is an absolute HTTPS
+// navigation subset, never a permission to fetch, embed or execute resources.
+const httpsHref = /^https:\/\/(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z]{2,63}(?:\/[A-Za-z0-9._~!$&'()*+,;=:@%/-]*)?(?:\?[A-Za-z0-9._~!$&'()*+,;=:@%/?-]*)?(?:#[A-Za-z0-9._~!$&'()*+,;=:@%/?-]*)?$/;
+export function isSafeLessonHref(value) {
+  return typeof value === 'string' && value.length <= 2048 && httpsHref.test(value) &&
+    value.slice(8).split(/[/?#]/, 1)[0].length <= 253 &&
+    !value.replace(/%[0-9a-f]{2}/gi, '').includes('%') && !/%(?:0[0-9a-f]|1[0-9a-f]|7f|5c)/i.test(value);
+}
+const meaningful = text => /[^\u0009-\u000d\u0020\u00a0\u1680\u2000-\u200a\u2028\u2029\u202f\u205f\u3000\ufeff]/u.test(text);
 
 export class LessonDocumentError extends Error {
   constructor(errors) {
@@ -82,24 +93,57 @@ function inspectData(document) {
   }
 }
 
-function mathEntries(document) {
-  const entries = [];
-  function addRichText(content, path) {
-    content.paragraphs.forEach((paragraph, paragraphIndex) => {
-      paragraph.children.forEach((node, nodeIndex) => {
-        if (node.type === 'math') entries.push({ tex: node.tex, display: false, path: `${path}/paragraphs/${paragraphIndex}/children/${nodeIndex}/tex` });
+function analyzeBlock(block, base = '') {
+  const entries = [], errors = [];
+  const contentPath = `${base}/content`;
+  function addMath(content, path, display, version) {
+    if (version === 1) entries.push({ tex: content.tex, display, path: `${path}/tex` });
+    else {
+      const checked = validateMathSource(content.source);
+      if (!checked.valid) errors.push(...checked.errors.map(issue => ({ ...issue, path: `${path}/source${issue.path}` })));
+      else entries.push({ tex: compileMathSource(content.source), display, path: `${path}/source` });
+    }
+  }
+  function inline(children, path) {
+    let visible = false;
+    children.forEach((node, index) => {
+      const here = `${path}/${index}`;
+      if (node.type === 'math') { visible = true; addMath(node, here, false, 2); }
+      else if (node.type === 'text') visible ||= meaningful(node.text);
+      else if (node.type === 'link') {
+        if (!isSafeLessonHref(node.href)) errors.push(error(`${here}/href`, 'unsafe-link', 'Links require a bounded absolute HTTPS address.'));
+        const label = node.children.some(child => meaningful(child.text));
+        if (!label) errors.push(error(`${here}/children`, 'empty-link-label', 'Links need a meaningful text label.'));
+        visible ||= label;
+      }
+    });
+    if (!visible) errors.push(error(path, 'empty-rich-text', 'A paragraph or list item must contain meaningful text or mathematics.'));
+  }
+  function rich(content, path, version) {
+    if (version === 1) content.paragraphs.forEach((paragraph, index) => {
+      paragraph.children.forEach((node, childIndex) => {
+        if (node.type === 'math') addMath(node, `${path}/paragraphs/${index}/children/${childIndex}`, false, 1);
       });
     });
-  }
-  document.slides.forEach((slide, slideIndex) => {
-    slide.blocks.forEach((block, blockIndex) => {
-      const path = `/slides/${slideIndex}/blocks/${blockIndex}/content`;
-      if (block.type === 'math') entries.push({ tex: block.content.tex, display: block.content.display, path: `${path}/tex` });
-      else if (block.type === 'rich-text') addRichText(block.content, path);
-      else if (block.type === 'callout') addRichText(block.content.body, `${path}/body`);
+    else content.nodes.forEach((node, index) => {
+      const here = `${path}/nodes/${index}`;
+      if (node.type === 'paragraph') inline(node.children, `${here}/children`);
+      else node.items.forEach((item, itemIndex) => inline(item.children, `${here}/items/${itemIndex}/children`));
     });
-  });
-  return entries;
+  }
+  if (block.type === 'math') addMath(block.content, contentPath, block.content.display, block.version);
+  else if (block.type === 'rich-text') rich(block.content, contentPath, block.version);
+  else if (block.type === 'callout') rich(block.content.body, `${contentPath}/body`, block.version);
+  for (const entry of entries) {
+    if (forbiddenTexCommands.test(entry.tex) || htmlInTex.test(entry.tex)) {
+      errors.push(error(entry.path, 'unsafe-math', 'Math cannot contain HTML, links, external resources, or macro definitions.'));
+    }
+  }
+  return { entries, errors };
+}
+function mathEntries(document) {
+  return document.slides.flatMap((slide, slideIndex) => slide.blocks.flatMap((block, blockIndex) =>
+    analyzeBlock(block, `/slides/${slideIndex}/blocks/${blockIndex}`).entries));
 }
 
 function semanticErrors(document) {
@@ -117,13 +161,9 @@ function semanticErrors(document) {
     slide.blocks.forEach((block, blockIndex) => {
       if (blocks.has(block.id)) errors.push(error(`/slides/${slideIndex}/blocks/${blockIndex}/id`, 'duplicate-block-id', 'Block IDs must be unique across the document.'));
       blocks.add(block.id);
+      errors.push(...analyzeBlock(block, `/slides/${slideIndex}/blocks/${blockIndex}`).errors);
     });
   });
-  for (const entry of mathEntries(document)) {
-    if (forbiddenTexCommands.test(entry.tex) || htmlInTex.test(entry.tex)) {
-      errors.push(error(entry.path, 'unsafe-math', 'Math cannot contain HTML, links, external resources, or macro definitions.'));
-    }
-  }
   return errors;
 }
 
@@ -136,8 +176,7 @@ function structuralErrors(document) {
   return semanticErrors(document);
 }
 
-function mathErrors(document, engine) {
-  const entries = mathEntries(document);
+function checkMathEntries(entries, engine) {
   if (!entries.length) return [];
   if (!engine || typeof engine.renderToString !== 'function') {
     return [error('', 'math-engine-required', 'A local KaTeX engine is required to validate lesson mathematics.')];
@@ -159,6 +198,25 @@ function mathErrors(document, engine) {
     }
   }
   return errors;
+}
+function mathErrors(document, engine) { return checkMathEntries(mathEntries(document), engine); }
+
+/** Validate a real canonical block without inventing a lesson identity. */
+export function assertLessonBlock(block, options = {}) {
+  let errors = inspectData(block);
+  if (!errors.length && !validateCanonicalBlock(block)) {
+    errors = validateCanonicalBlock.errors.slice(0, 100).map(issue => error(issue.instancePath, `schema:${issue.keyword}`, issue.message));
+  }
+  if (!errors.length) {
+    const analyzed = analyzeBlock(block); errors.push(...analyzed.errors);
+    if (!errors.length && options.mathEngine !== undefined) errors.push(...checkMathEntries(analyzed.entries, options.mathEngine));
+  }
+  if (errors.length) throw new LessonDocumentError(errors);
+  return block;
+}
+export function assertBlockContent(type, version, content, options = {}) {
+  assertLessonBlock({ id: 'content', type, version, content }, options);
+  return content;
 }
 
 /** Validate controlled content. No cloning, mutation, state writes, or implicit version migration. */

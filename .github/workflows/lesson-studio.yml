@@ -45,11 +45,18 @@ jobs:
           node tools/lesson-studio/test-draft-model.mjs
           node tools/lesson-studio/test-draft-session.mjs
           node tools/lesson-studio/test-api-client.mjs
+          node tools/lesson-studio/test-block-model.mjs
       - name: Exercise the authenticated Studio in Chromium
-        run: node tools/lesson-studio/test-studio-browser.mjs
+        run: |
+          node tools/lesson-studio/test-math-editor.mjs
+          node tools/lesson-studio/test-rich-text-editor.mjs
+          node tools/lesson-studio/test-studio-browser.mjs
+          node tools/lesson-studio/test-studio-content-v2.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: lesson-studio-evidence
-          path: artifacts/lesson-studio/
+          path: |
+            artifacts/lesson-studio/
+            artifacts/lesson-content-v2/
           retention-days: 14

@@ -38,14 +38,18 @@ jobs:
         run: |
           node tools/lesson-runtime/build-validator.mjs --check
           node tools/lesson-runtime/test-schema.mjs
+          node tools/lesson-runtime/test-math-expression.mjs
       - name: Exercise rendering and original access / finish integration
         run: |
           node tools/lesson-runtime/test-renderer.mjs
           node tools/lesson-runtime/test-guard-integration.mjs
           node tools/lesson-runtime/test-institutional-loader.mjs
+          node tools/lesson-runtime/test-content-v2-renderer.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: lesson-renderer-evidence
-          path: artifacts/lesson-runtime/
+          path: |
+            artifacts/lesson-runtime/
+            artifacts/lesson-content-v2/
           retention-days: 14

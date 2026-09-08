@@ -130,12 +130,722 @@
         }
       }
     },
+    "textRunV2": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4000,
+      "pattern": "^[^<>\\u0000-\\u0008\\u000b\\u000c\\u000e-\\u001f\\u007f]*$"
+    },
+    "textNodeV2": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "text"
+      ],
+      "properties": {
+        "type": {
+          "const": "text"
+        },
+        "text": {
+          "$ref": "#/definitions/textRunV2"
+        },
+        "marks": {
+          "type": "array",
+          "maxItems": 2,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "strong",
+              "em"
+            ]
+          }
+        }
+      }
+    },
+    "httpsHrefV2": {
+      "type": "string",
+      "minLength": 11,
+      "maxLength": 2048,
+      "pattern": "^https://(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\\.)+[a-z]{2,63}(?:/[A-Za-z0-9._~!$&'()*+,;=:@%/-]*)?(?:\\?[A-Za-z0-9._~!$&'()*+,;=:@%/?-]*)?(?:#[A-Za-z0-9._~!$&'()*+,;=:@%/?-]*)?$"
+    },
+    "linkNodeV2": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "href",
+        "children"
+      ],
+      "properties": {
+        "type": {
+          "const": "link"
+        },
+        "href": {
+          "$ref": "#/definitions/httpsHrefV2"
+        },
+        "children": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 20,
+          "items": {
+            "$ref": "#/definitions/textNodeV2"
+          }
+        }
+      }
+    },
+    "mathExpressionV2": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "value"
+          ],
+          "properties": {
+            "kind": {
+              "const": "number"
+            },
+            "value": {
+              "type": "string",
+              "pattern": "^(?:0|[1-9][0-9]{0,15})(?:\\.[0-9]{1,12})?$"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "name"
+          ],
+          "properties": {
+            "kind": {
+              "const": "symbol"
+            },
+            "name": {
+              "enum": [
+                "a",
+                "b",
+                "c",
+                "d",
+                "e",
+                "f",
+                "g",
+                "h",
+                "i",
+                "j",
+                "k",
+                "l",
+                "m",
+                "n",
+                "o",
+                "p",
+                "q",
+                "r",
+                "s",
+                "t",
+                "u",
+                "v",
+                "w",
+                "x",
+                "y",
+                "z",
+                "A",
+                "B",
+                "C",
+                "D",
+                "E",
+                "F",
+                "G",
+                "H",
+                "I",
+                "J",
+                "K",
+                "L",
+                "M",
+                "N",
+                "O",
+                "P",
+                "Q",
+                "R",
+                "S",
+                "T",
+                "U",
+                "V",
+                "W",
+                "X",
+                "Y",
+                "Z",
+                "pi",
+                "theta",
+                "alpha",
+                "beta",
+                "gamma",
+                "delta",
+                "epsilon",
+                "infinity"
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "body"
+          ],
+          "properties": {
+            "kind": {
+              "const": "group"
+            },
+            "body": {
+              "$ref": "#/definitions/mathExpressionV2"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "body"
+          ],
+          "properties": {
+            "kind": {
+              "const": "negate"
+            },
+            "body": {
+              "$ref": "#/definitions/mathExpressionV2"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "operator",
+            "left",
+            "right"
+          ],
+          "properties": {
+            "kind": {
+              "const": "binary"
+            },
+            "operator": {
+              "enum": [
+                "add",
+                "subtract",
+                "multiply",
+                "equals",
+                "less",
+                "lessEqual",
+                "greater",
+                "greaterEqual"
+              ]
+            },
+            "left": {
+              "$ref": "#/definitions/mathExpressionV2"
+            },
+            "right": {
+              "$ref": "#/definitions/mathExpressionV2"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "numerator",
+            "denominator"
+          ],
+          "properties": {
+            "kind": {
+              "const": "fraction"
+            },
+            "numerator": {
+              "$ref": "#/definitions/mathExpressionV2"
+            },
+            "denominator": {
+              "$ref": "#/definitions/mathExpressionV2"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "base",
+            "exponent"
+          ],
+          "properties": {
+            "kind": {
+              "const": "power"
+            },
+            "base": {
+              "$ref": "#/definitions/mathExpressionV2"
+            },
+            "exponent": {
+              "$ref": "#/definitions/mathExpressionV2"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "radicand",
+            "index"
+          ],
+          "properties": {
+            "kind": {
+              "const": "root"
+            },
+            "radicand": {
+              "$ref": "#/definitions/mathExpressionV2"
+            },
+            "index": {
+              "anyOf": [
+                {
+                  "type": "null"
+                },
+                {
+                  "$ref": "#/definitions/mathExpressionV2"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "name",
+            "argument"
+          ],
+          "properties": {
+            "kind": {
+              "const": "function"
+            },
+            "name": {
+              "enum": [
+                "sin",
+                "cos",
+                "tan",
+                "arcsin",
+                "arccos",
+                "arctan",
+                "ln",
+                "log",
+                "exp",
+                "abs",
+                "f",
+                "g",
+                "h"
+              ]
+            },
+            "argument": {
+              "$ref": "#/definitions/mathExpressionV2"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "variable",
+            "lower",
+            "upper",
+            "body"
+          ],
+          "properties": {
+            "kind": {
+              "const": "sum"
+            },
+            "variable": {
+              "type": "string",
+              "pattern": "^[A-Za-z]$"
+            },
+            "lower": {
+              "$ref": "#/definitions/mathExpressionV2"
+            },
+            "upper": {
+              "$ref": "#/definitions/mathExpressionV2"
+            },
+            "body": {
+              "$ref": "#/definitions/mathExpressionV2"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "variable",
+            "lower",
+            "upper",
+            "body"
+          ],
+          "properties": {
+            "kind": {
+              "const": "integral"
+            },
+            "variable": {
+              "type": "string",
+              "pattern": "^[A-Za-z]$"
+            },
+            "lower": {
+              "anyOf": [
+                {
+                  "type": "null"
+                },
+                {
+                  "$ref": "#/definitions/mathExpressionV2"
+                }
+              ]
+            },
+            "upper": {
+              "anyOf": [
+                {
+                  "type": "null"
+                },
+                {
+                  "$ref": "#/definitions/mathExpressionV2"
+                }
+              ]
+            },
+            "body": {
+              "$ref": "#/definitions/mathExpressionV2"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "variable",
+            "target",
+            "side",
+            "body"
+          ],
+          "properties": {
+            "kind": {
+              "const": "limit"
+            },
+            "variable": {
+              "type": "string",
+              "pattern": "^[A-Za-z]$"
+            },
+            "target": {
+              "$ref": "#/definitions/mathExpressionV2"
+            },
+            "side": {
+              "enum": [
+                "both",
+                "left",
+                "right"
+              ]
+            },
+            "body": {
+              "$ref": "#/definitions/mathExpressionV2"
+            }
+          }
+        }
+      ]
+    },
+    "mathSourceV2": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "mode",
+            "expression"
+          ],
+          "properties": {
+            "mode": {
+              "const": "visual"
+            },
+            "expression": {
+              "$ref": "#/definitions/mathExpressionV2"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "mode",
+            "tex"
+          ],
+          "properties": {
+            "mode": {
+              "const": "tex"
+            },
+            "tex": {
+              "$ref": "#/definitions/tex"
+            }
+          }
+        }
+      ]
+    },
+    "inlineMathNodeV2": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "source",
+        "spoken"
+      ],
+      "properties": {
+        "type": {
+          "const": "math"
+        },
+        "source": {
+          "$ref": "#/definitions/mathSourceV2"
+        },
+        "spoken": {
+          "$ref": "#/definitions/plainText"
+        }
+      }
+    },
+    "inlineNodeV2": {
+      "oneOf": [
+        {
+          "$ref": "#/definitions/textNodeV2"
+        },
+        {
+          "$ref": "#/definitions/inlineMathNodeV2"
+        },
+        {
+          "$ref": "#/definitions/linkNodeV2"
+        }
+      ]
+    },
+    "paragraphV2": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "children"
+      ],
+      "properties": {
+        "type": {
+          "const": "paragraph"
+        },
+        "children": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 100,
+          "items": {
+            "$ref": "#/definitions/inlineNodeV2"
+          }
+        }
+      }
+    },
+    "listItemV2": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "children"
+      ],
+      "properties": {
+        "type": {
+          "const": "list-item"
+        },
+        "children": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 100,
+          "items": {
+            "$ref": "#/definitions/inlineNodeV2"
+          }
+        }
+      }
+    },
+    "listV2": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "style",
+        "items"
+      ],
+      "properties": {
+        "type": {
+          "const": "list"
+        },
+        "style": {
+          "enum": [
+            "ordered",
+            "unordered"
+          ]
+        },
+        "items": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 50,
+          "items": {
+            "$ref": "#/definitions/listItemV2"
+          }
+        }
+      }
+    },
+    "richTextContentV2": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "nodes"
+      ],
+      "properties": {
+        "nodes": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 50,
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/paragraphV2"
+              },
+              {
+                "$ref": "#/definitions/listV2"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "richTextBlockV2": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "type",
+        "version",
+        "content"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/stableId"
+        },
+        "type": {
+          "const": "rich-text"
+        },
+        "version": {
+          "const": 2
+        },
+        "content": {
+          "$ref": "#/definitions/richTextContentV2"
+        }
+      }
+    },
+    "mathBlockV2": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "type",
+        "version",
+        "content"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/stableId"
+        },
+        "type": {
+          "const": "math"
+        },
+        "version": {
+          "const": 2
+        },
+        "content": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "source",
+            "spoken",
+            "display"
+          ],
+          "properties": {
+            "source": {
+              "$ref": "#/definitions/mathSourceV2"
+            },
+            "spoken": {
+              "$ref": "#/definitions/plainText"
+            },
+            "display": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    },
+    "calloutBlockV2": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "type",
+        "version",
+        "content"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/stableId"
+        },
+        "type": {
+          "const": "callout"
+        },
+        "version": {
+          "const": 2
+        },
+        "content": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "title",
+            "body"
+          ],
+          "properties": {
+            "kind": {
+              "enum": [
+                "note",
+                "definition",
+                "warning",
+                "example"
+              ]
+            },
+            "title": {
+              "$ref": "#/definitions/title"
+            },
+            "body": {
+              "$ref": "#/definitions/richTextContentV2"
+            }
+          }
+        }
+      }
+    },
     "block": {
       "oneOf": [
         {"$ref": "#/definitions/richTextBlock"},
         {"$ref": "#/definitions/mathBlock"},
         {"$ref": "#/definitions/calloutBlock"},
-        {"$ref": "#/definitions/legacyEmbeddedBlock"}
+        {"$ref": "#/definitions/legacyEmbeddedBlock"},
+        {"$ref": "#/definitions/richTextBlockV2"},
+        {"$ref": "#/definitions/mathBlockV2"},
+        {"$ref": "#/definitions/calloutBlockV2"}
       ]
     }
   }

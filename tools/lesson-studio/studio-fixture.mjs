@@ -34,7 +34,7 @@ export function studioStorageState(role = 'teacher') {
   ] : []}]};
 }
 
-export function createStudioFixture({pinned = true} = {}) {
+export function createStudioFixture({pinned = true, contentV2 = false} = {}) {
   const calls = [], rpcCalls = [], external = [], failures = [], holds = [];
   const records = new Map(); let serial = 100;
   const accounts = new Map(['teacher','admin','student','parent','other'].map(role => [createHash('sha256').update(tokenFor(role)).digest('hex'),accountFor(role)]));
@@ -50,6 +50,8 @@ export function createStudioFixture({pinned = true} = {}) {
   const rpc = async (name,args) => {
     const account = accounts.get(args.p_token_hash);
     rpcCalls.push({name,action:args.p_action,lesson_id:args.p_payload?.lesson_id});
+    if (name === 'lesson_content_capabilities') return {data:contentV2 ? {contract:'echs.lesson.authoring.v1',content_version:2,math_expression_version:1,
+      blocks:{'rich-text':[1,2],math:[1,2],callout:[1,2],'legacy-embedded':[1]}} : null,error:null};
     if (name === 'api_session_lookup') return {data:account ? [{account_id:account.id,organization_id:account.organization_id,role:account.role,status:account.status,expires_at:expires}] : [],error:null};
     assert.equal(name,'lesson_store');
     if (!account || !['teacher','admin'].includes(account.role)) return {data:null,error:{code:'42501'}};

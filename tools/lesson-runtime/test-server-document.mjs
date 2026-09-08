@@ -87,7 +87,10 @@ test('bundle provenance hashes the actual generated output and has no external r
   const provenance = JSON.parse(await readFile(new URL('schema.provenance.json', url), 'utf8'));
   assert.equal(createHash('sha256').update(output).digest('hex'), provenance.output_sha256);
   assert.equal(provenance.schema_version, 'echs.lesson.v1');
-  assert.equal(provenance.sources.length, 3);
+  assert.deepEqual(provenance.sources.map(source => source.path).sort(), [
+    'js/lesson-runtime/schema.mjs', 'js/lesson-runtime/block-registry.mjs',
+    'js/lesson-runtime/generated/validate-lesson-document.mjs', 'js/lesson-runtime/math-expression.mjs'
+  ].sort());
   assert.equal(/\bimport\s*(?:["'{*(]|[A-Za-z_$])/.test(output), false);
   assert.equal(/\b(?:eval\s*\(|new\s+Function\s*\()/.test(output), false);
 });

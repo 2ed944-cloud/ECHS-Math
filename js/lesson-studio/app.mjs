@@ -1,13 +1,17 @@
 import katex from '../../lessons/ib-math-ai/unit-1/assets/js/katex.js';
-import {createStudioClient} from './api-client.mjs';
+import {createStudioClient,supportsStudioContentV2} from './api-client.mjs';
 import {createLessonDraft,addSlide,duplicateSlide,renameSlide,moveSlide,removeSlide,restoreRemovedSlide,updateSlide} from './draft-model.mjs';
 import {createDraftSession} from './draft-session.mjs';
 import {renderSlidePreview,renderLessonPreview} from './preview.mjs';
+import {createMathEditor} from './math-editor.mjs';
+import {createRichTextEditor} from './rich-text-editor.mjs';
+import {addBlock,removeBlock,moveBlock,updateBlock,restoreRemovedBlock,convertBlockToV2} from './block-model.mjs';
 
 const $=id=>document.getElementById(id);
 const uuidPattern=/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 let client=null,session=null,classes=[],classContext=null,library=[],selectedSlide=null,deleted=null;
 let epoch=0,locked=false,invalid=false,discardAction=null,pendingCreate=null;
+let blockEditor=null,editorKey='',editorJSON='',editorInvalid=false,selectedBlock=null,removedBlock=null;
 const plainError=error=>({conflict:'Another editor changed this draft. Keep your edits or reload the server version.',
   sign_in_required:'Sign in with an active teacher or school administrator account.',
   session_changed:'Your school session changed. Sign in again to continue.',
@@ -24,16 +28,17 @@ function showGate(message,{retry=false}={}){
   if(retry){const button=text('button','Try again');button.addEventListener('click',()=>location.reload());$('studio-gate').append(document.createTextNode(' '),button);}
 }
 function closeStudio(message='Your school session changed. Sign in again to continue.'){
+  disposeBlockEditor();selectedBlock=null;removedBlock=null;
   invalid=true;epoch++;session?.dispose();session=null;client?.dispose();client=null;
   classes=[];classContext=null;library=[];selectedSlide=null;deleted=null;discardAction=null;pendingCreate=null;
   for(const dialog of document.querySelectorAll('dialog'))if(dialog.open)dialog.close();
   for(const control of document.querySelectorAll('input,textarea,select'))control.value='';
-  for(const id of ['slide-canvas','preview-slides','slide-list','lesson-list','class-select','catalog-select','course-version-select'])$(id).replaceChildren();
+  for(const id of ['slide-canvas','preview-slides','slide-list','lesson-list','class-select','catalog-select','course-version-select','block-select','block-editor'])$(id).replaceChildren();
   for(const id of ['studio-identity','lesson-heading','preview-heading','new-heading','course-status','library-status','edit-error','create-error','save-message','slide-count','save-status'])$(id).textContent='';
   $('workspace').hidden=true;$('new-lesson').disabled=true;showGate(message);
 }
 function busy(value){locked=value;$('new-lesson').disabled=value||!classContext?.current_assignment;
-  $('workspace').inert=value;$('workspace').setAttribute('aria-busy',String(value));
+  $('workspace').inert=value||unsupportedDocument();$('workspace').setAttribute('aria-busy',String(value));
   $('class-select').disabled=value;$('create-lesson').disabled=value;$('pin-course').disabled=value;
   for(const button of $('lesson-list').querySelectorAll('button'))button.disabled=value;
 }
@@ -41,9 +46,70 @@ function setValue(id,value){const control=$(id);if(document.activeElement!==cont
 function snapshot(){return session?.snapshot();}
 function selected(){return snapshot()?.document.slides.find(slide=>slide.id===selectedSlide);}
 function editableText(slide){
-  const block=slide?.blocks.find(item=>item.type==='rich-text');
+  const block=slide?.blocks.find(item=>item.id===selectedBlock&&item.type==='rich-text'&&item.version===1)||(!selectedBlock?slide?.blocks.find(item=>item.type==='rich-text'&&item.version===1):null);
   const editable=Boolean(block&&block.content.paragraphs.every(p=>p.children.every(c=>c.type==='text'&&!c.marks?.length)));
   return {block,editable,value:block?block.content.paragraphs.map(p=>p.children.map(c=>c.type==='math'?c.spoken:c.text).join('')).join('\n\n'):''};
+}
+const canContentV2=()=>supportsStudioContentV2(classContext?.authoring_capabilities);
+const unsupportedDocument=()=>!canContentV2()&&Boolean(snapshot()?.document.slides.some(slide=>slide.blocks.some(block=>block.version>1)));
+function disposeBlockEditor(){
+  const editor=blockEditor;blockEditor=null;editorKey='';editorJSON='';editorInvalid=false;
+  editor?.dispose();$('block-editor').replaceChildren();$('block-error').textContent='';
+}
+function renderBlocks(state,slide){
+  const block=slide.blocks.find(item=>item.id===selectedBlock),index=slide.blocks.indexOf(block),allowed=canContentV2();
+  const readOnly=unsupportedDocument();$('workspace').inert=locked||readOnly;
+  if(readOnly)$('library-status').textContent='This draft uses content that the current server cannot edit. It is shown read-only until the compatible service is available.';
+  $('block-select').replaceChildren(...slide.blocks.map((item,i)=>{const option=text('option',`${i+1}. ${{'rich-text':'Text',math:'Mathematics',callout:'Callout','legacy-embedded':'Existing lesson reference'}[item.type]||'Content'}`);option.value=item.id;return option;}));
+  $('block-select').value=selectedBlock;
+  for(const id of ['add-text-block','add-math-block','add-callout-block'])$(id).disabled=!allowed||slide.blocks.length>=40;
+  $('move-block-up').disabled=!allowed||index===0;$('move-block-down').disabled=!allowed||index===slide.blocks.length-1;
+  $('delete-block').disabled=!allowed||slide.blocks.length===1;$('undo-delete-block').disabled=!allowed||!removedBlock||removedBlock.slideId!==slide.id;
+  $('content-capability').textContent=allowed?'Add and edit formatted text, links and accessible mathematics.':'Additional content editors will be available when the school service confirms support. Existing plain text can still be edited.';
+  $('upgrade-block').hidden=!allowed||block.version!==1||!['rich-text','math','callout'].includes(block.type);
+  $('legacy-text-group').hidden=block.version!==1||block.type!=='rich-text';
+  if(block.version!==2||!allowed){if(blockEditor)disposeBlockEditor();return;}
+  const key=`${state.record.lesson.id}/${slide.id}/${block.id}/${block.type}/${block.version}`,json=JSON.stringify(block.content);
+  if(blockEditor&&key===editorKey){if(json!==editorJSON&&!editorInvalid){editorJSON=json;blockEditor.setValue(block.content);}return;}
+  disposeBlockEditor();editorKey=key;editorJSON=json;
+  const stillHere=()=>!invalid&&session&&editorKey===key&&snapshot().record.lesson.id===state.record.lesson.id;
+  const invalidContent=()=>{if(!stillHere())return;editorInvalid=true;$('block-error').textContent='Complete all required fields and correct the highlighted content.';renderStatus(snapshot());};
+  const changed=content=>{
+    if(!stillHere()||locked)return;
+    try{assertActive();const next=updateBlock(snapshot().document,slide.id,block.id,{content},{mathEngine:katex});editorJSON=JSON.stringify(content);editorInvalid=false;$('block-error').textContent='';session.editDocument(next);}
+    catch{invalidContent();}
+  };
+  if(block.type==='math')blockEditor=createMathEditor({root:$('block-editor'),value:block.content,mathEngine:katex,onChange:changed,onInvalid:invalidContent});
+  else if(block.type==='rich-text')blockEditor=createRichTextEditor({root:$('block-editor'),content:block.content,mathEngine:katex,onChange:changed,onInvalid:invalidContent});
+  else if(block.type==='callout'){
+    const kindLabel=text('label','Callout style'),kind=document.createElement('select'),titleLabel=text('label','Callout title'),title=document.createElement('input'),body=document.createElement('div');
+    kind.id='callout-kind';kindLabel.htmlFor=kind.id;title.id='callout-title';titleLabel.htmlFor=title.id;title.maxLength=240;title.required=true;
+    for(const value of ['note','definition','warning','example'])kind.append(Object.assign(text('option',value[0].toUpperCase()+value.slice(1)),{value}));
+    kind.value=block.content.kind;title.value=block.content.title;$('block-editor').append(kindLabel,kind,titleLabel,title,body);
+    let rich;
+    const value=()=>{if(!title.value.trim())throw new Error('A title is required.');return {kind:kind.value,title:title.value,body:rich.getValue()};};
+    const emit=()=>{try{changed(value());}catch{invalidContent();}};
+    rich=createRichTextEditor({root:body,content:block.content.body,mathEngine:katex,onChange:emit,onInvalid:invalidContent});
+    title.addEventListener('input',emit);kind.addEventListener('change',emit);
+    blockEditor={getValue:value,setValue(content){kind.value=content.kind;title.value=content.title;rich.setValue(content.body);},focus(){title.focus();},dispose(){title.removeEventListener('input',emit);kind.removeEventListener('change',emit);rich.dispose();$('block-editor').replaceChildren();}};
+  }
+}
+function blockAction(action){
+  if(locked||!canContentV2()||!commitFields())return;
+  changeDocument(lesson=>{
+    const slide=lesson.slides.find(item=>item.id===selectedSlide),index=slide.blocks.findIndex(item=>item.id===selectedBlock);
+    if(['rich-text','math','callout'].includes(action)){
+      const next=addBlock(lesson,slide.id,{type:action,afterId:selectedBlock});selectedBlock=next.slides.find(item=>item.id===slide.id).blocks.find(item=>!slide.blocks.some(old=>old.id===item.id)).id;return next;
+    }
+    if(action==='upgrade'){const converted=convertBlockToV2(slide.blocks[index],{mathEngine:katex});return updateBlock(lesson,slide.id,selectedBlock,{version:converted.version,content:converted.content},{mathEngine:katex});}
+    if(action==='delete'){
+      const next=removeBlock(lesson,slide.id,selectedBlock);removedBlock={slideId:slide.id,block:structuredClone(slide.blocks[index]),index};selectedBlock=next.slides.find(item=>item.id===slide.id).blocks[Math.min(index,slide.blocks.length-2)].id;return next;
+    }
+    if(action==='undo'&&removedBlock?.slideId===slide.id){
+      const next=restoreRemovedBlock(lesson,slide.id,{block:removedBlock.block,index:removedBlock.index});selectedBlock=next.slides.find(item=>item.id===slide.id).blocks.find(item=>!slide.blocks.some(old=>old.id===item.id)).id;removedBlock=null;return next;
+    }
+    return moveBlock(lesson,slide.id,selectedBlock,index+(action==='up'?-1:1));
+  });
 }
 function renderLibrary(){
   const active=snapshot()?.record.lesson.id;
@@ -65,12 +131,14 @@ function renderStatus(state){
   $('retry-save').hidden=state.status==='conflict'||state.status==='invalid';
   $('reload-draft').hidden=!['conflict','offline','error'].includes(state.status);
   $('save-now').disabled=!state.dirty||state.status==='saving'||needsAttention;
+  if(editorInvalid){$('save-status').textContent='Check block content';$('save-now').disabled=true;}
 }
 function renderEditor(state){
   if(invalid||!session)return;assertActive();
   const lesson=state.document;
   if(!lesson.slides.some(slide=>slide.id===selectedSlide))selectedSlide=lesson.slides[0].id;
   const index=lesson.slides.findIndex(slide=>slide.id===selectedSlide),slide=lesson.slides[index];
+  if(!slide.blocks.some(block=>block.id===selectedBlock))selectedBlock=slide.blocks[0].id;
   $('workspace').hidden=false;$('empty-state').hidden=true;$('lesson-heading').textContent=lesson.title;
   const focusedSlide=document.activeElement?.closest('#slide-list button')?.dataset.slideId;
   $('slide-list').replaceChildren(...lesson.slides.map((item,i)=>{
@@ -91,6 +159,7 @@ function renderEditor(state){
   $('undo-delete').disabled=!deleted;renderStatus(state);
   try{renderSlidePreview({root:$('slide-canvas'),document:lesson,slideIndex:index,mathEngine:katex});}
   catch{$('slide-canvas').replaceChildren(text('p','This slide needs valid content before it can be previewed.'));}
+  renderBlocks(state,slide);
   renderLibrary();
 }
 function selectSlide(id){
@@ -100,12 +169,12 @@ function selectSlide(id){
 }
 function changeDocument(transform){
   if(!session||locked)return;
-  const priorSlide=selectedSlide,priorDeleted=deleted;
+  const priorSlide=selectedSlide,priorDeleted=deleted,priorBlock=selectedBlock,priorRemovedBlock=removedBlock;
   try{assertActive();const before=snapshot().document,next=transform(before);session.editDocument(next);$('edit-error').textContent='';renderEditor(snapshot());}
-  catch(error){if(!invalid){selectedSlide=priorSlide;deleted=priorDeleted;$('edit-error').textContent='Check the slide content and document limits. Titles and text must be nonempty plain text without HTML.';renderStatus(snapshot());}}
+  catch(error){if(!invalid){selectedSlide=priorSlide;deleted=priorDeleted;selectedBlock=priorBlock;removedBlock=priorRemovedBlock;$('edit-error').textContent='Check the slide content and document limits. Titles and text must be nonempty plain text without HTML.';renderStatus(snapshot());}}
 }
 function commitField(id){
-  if(!session||locked)return true;
+  if(!session||locked||unsupportedDocument())return true;
   const slide=selected();if(!slide)return false;
   try{
     assertActive();const original=snapshot().document;let next=original;
@@ -124,21 +193,28 @@ function commitField(id){
     $(id).removeAttribute('aria-invalid');$('edit-error').textContent='';return true;
   }catch(error){if(!invalid){$(id).setAttribute('aria-invalid','true');$('edit-error').textContent='Check this field. Required text cannot be blank or contain HTML.';}return false;}
 }
-function commitFields(){for(const id of ['slide-title','slide-layout','slide-text','private-notes'])if(!commitField(id))return false;return true;}
+function commitFields(){
+  if(blockEditor){try{blockEditor.getValue();}catch{editorInvalid=true;$('block-error').textContent='Complete or correct this block before continuing.';return false;}}
+  if(editorInvalid)return false;
+  for(const id of ['slide-title','slide-layout','slide-text','private-notes'])if(!commitField(id))return false;return true;
+}
 async function canLeave(){
   if(pendingCreate){$('library-status').textContent='Check the pending lesson creation before changing classes or lessons.';return false;}
   if(!session)return true;if(!commitFields())return false;
-  if(snapshot().dirty)await session.flush();
-  if(invalid)return false;
+  const active=session;
+  busy(true);
+  try{if(snapshot().dirty)await active.flush();}
+  finally{if(!invalid&&session===active)busy(false);}
+  if(invalid||session!==active||!commitFields())return false;
   if(snapshot().dirty){$('library-status').textContent='Save or resolve this draft before opening another lesson.';return false;}
   return true;
 }
 function attachRecord(record){
-  assertActive();session?.dispose();selectedSlide=record.head.document.slides[0].id;deleted=null;
+  assertActive();disposeBlockEditor();session?.dispose();selectedSlide=record.head.document.slides[0].id;deleted=null;selectedBlock=null;removedBlock=null;
   session=createDraftSession({client,record,mathEngine:katex,delayMs:800,isCurrent:()=>!invalid&&Boolean(client),onChange:state=>{if(!invalid&&session)renderEditor(state);}});
   renderEditor(snapshot());$('library-status').textContent='';
 }
-function clearWorkspace(){session?.dispose();session=null;selectedSlide=null;deleted=null;$('workspace').hidden=true;$('empty-state').hidden=false;
+function clearWorkspace(){disposeBlockEditor();session?.dispose();session=null;selectedSlide=null;deleted=null;selectedBlock=null;removedBlock=null;$('workspace').hidden=true;$('empty-state').hidden=false;
   for(const id of ['slide-canvas','slide-list','preview-slides'])$(id).replaceChildren();for(const id of ['slide-title','slide-text','private-notes'])$(id).value='';
 }
 async function openLesson(id){
@@ -257,7 +333,7 @@ function preview(){
 }
 async function reloadDraft(){
   if(!session)return;const active=session;
-  discardAction=async()=>{try{await active.discardAndReload();if(session===active&&!invalid){deleted=null;selectedSlide=null;renderEditor(snapshot());}}catch(error){if(!invalid)$('save-message').textContent=plainError(error);}};
+  discardAction=async()=>{try{busy(true);const result=await active.discardAndReload();if(session===active&&!invalid&&result.status==='saved'&&!result.dirty){disposeBlockEditor();deleted=null;removedBlock=null;selectedBlock=null;selectedSlide=null;renderEditor(snapshot());}}catch(error){if(!invalid)$('save-message').textContent=plainError(error);}finally{if(!invalid)busy(false);}};
   $('discard-dialog').showModal();$('keep-edits').focus();
 }
 for(const id of ['slide-title','slide-layout','slide-text','private-notes']){
@@ -265,6 +341,8 @@ for(const id of ['slide-title','slide-layout','slide-text','private-notes']){
   if(id!=='slide-layout')$(id).addEventListener('input',()=>commitField(id));
 }
 for(const [id,action] of [['add-slide','add'],['duplicate-slide','duplicate'],['delete-slide','delete'],['undo-delete','undo'],['move-slide-up','up'],['move-slide-down','down']])$(id).addEventListener('click',()=>slideAction(action));
+for(const [id,action] of [['add-text-block','rich-text'],['add-math-block','math'],['add-callout-block','callout'],['upgrade-block','upgrade'],['move-block-up','up'],['move-block-down','down'],['delete-block','delete'],['undo-delete-block','undo']])$(id).addEventListener('click',()=>blockAction(action));
+$('block-select').addEventListener('change',event=>{if(locked||!commitFields()){event.target.value=selectedBlock;return;}selectedBlock=event.target.value;disposeBlockEditor();renderEditor(snapshot());});
 $('class-select').addEventListener('change',event=>chooseClass(event.target.value));
 $('new-lesson').addEventListener('click',()=>showCreate().catch(error=>{if(!invalid)$('library-status').textContent=plainError(error);}));
 $('cancel-create').addEventListener('click',()=>{$('new-lesson-dialog').close();if(!pendingCreate)$('create-form').reset();});
@@ -278,7 +356,7 @@ $('discard-edits').addEventListener('click',async()=>{const action=discardAction
 $('discard-dialog').addEventListener('cancel',()=>{discardAction=null;});
 $('preview-lesson').addEventListener('click',preview);$('close-preview').addEventListener('click',()=>{$('preview-dialog').close();$('preview-slides').replaceChildren();});
 $('preview-dialog').addEventListener('close',()=>{$('preview-slides').replaceChildren();$('preview-heading').textContent='';});
-window.addEventListener('beforeunload',event=>{if(pendingCreate||(session&&(snapshot().dirty||document.querySelector('[aria-invalid="true"]')))){event.preventDefault();event.returnValue='';}});
+window.addEventListener('beforeunload',event=>{if(pendingCreate||editorInvalid||(session&&(snapshot().dirty||document.querySelector('[aria-invalid="true"]')))){event.preventDefault();event.returnValue='';}});
 window.addEventListener('pagehide',()=>closeStudio('Reopen Lesson Studio to verify your school session.'));
 window.addEventListener('pageshow',event=>{if(event.persisted)location.reload();});
 

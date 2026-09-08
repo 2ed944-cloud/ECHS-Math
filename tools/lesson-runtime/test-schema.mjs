@@ -224,7 +224,8 @@ test('public math fails closed without local syntax validation; text-only docume
 
 test('registry is explicit, immutable and agrees with the canonical schema', () => {
   const registry = listBlockDefinitions();
-  assert.equal(registry.length, 4);
+  assert.equal(registry.length, 7);
+  assert.equal(registry.filter(item => item.version === 1).length, 4);
   assert.ok(Object.isFrozen(registry));
   assert.deepEqual(registry.map(item => item.schema).sort(), canonical.definitions.block.oneOf.map(item => item.$ref).sort());
   for (const definition of registry) {
@@ -235,7 +236,8 @@ test('registry is explicit, immutable and agrees with the canonical schema', () 
   }
   assert.equal(getBlockDefinition('legacy-embedded').capabilities.referenceOnly, true);
   assert.equal(getBlockDefinition('question'), null);
-  assert.equal(isSupportedBlock('math', 2), false);
+  assert.equal(isSupportedBlock('math', 2), true);
+  assert.equal(isSupportedBlock('math', 3), false);
   assert.equal(isSupportedBlock('__proto__'), false);
 });
 

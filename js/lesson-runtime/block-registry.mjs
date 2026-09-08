@@ -3,7 +3,10 @@ const definitions = [
   { type: 'rich-text', version: 1, schema: '#/definitions/richTextBlock', capabilities: { text: true, math: true, referenceOnly: false, interactive: false } },
   { type: 'math', version: 1, schema: '#/definitions/mathBlock', capabilities: { text: false, math: true, referenceOnly: false, interactive: false } },
   { type: 'callout', version: 1, schema: '#/definitions/calloutBlock', capabilities: { text: true, math: true, referenceOnly: false, interactive: false } },
-  { type: 'legacy-embedded', version: 1, schema: '#/definitions/legacyEmbeddedBlock', capabilities: { text: true, math: false, referenceOnly: true, interactive: false } }
+  { type: 'legacy-embedded', version: 1, schema: '#/definitions/legacyEmbeddedBlock', capabilities: { text: true, math: false, referenceOnly: true, interactive: false } },
+  { type: 'rich-text', version: 2, schema: '#/definitions/richTextBlockV2', capabilities: { text: true, math: true, referenceOnly: false, interactive: false } },
+  { type: 'math', version: 2, schema: '#/definitions/mathBlockV2', capabilities: { text: false, math: true, referenceOnly: false, interactive: false } },
+  { type: 'callout', version: 2, schema: '#/definitions/calloutBlockV2', capabilities: { text: true, math: true, referenceOnly: false, interactive: false } }
 ];
 
 for (const definition of definitions) {

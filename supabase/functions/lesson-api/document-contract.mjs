@@ -6,7 +6,7 @@ export const SERVER_KATEX_VERSION = '0.16.27';
 export const MAX_PERSISTED_DOCUMENT_BYTES = 1024 * 1024;
 const encoder = new TextEncoder();
 const identityFields = ['lesson_id', 'course_version_id', 'unit_id', 'topic_id', 'document_version'];
-const publishedBlockTypes = new Set(['rich-text', 'math', 'callout']);
+const publishedBlocks = new Set(['rich-text@1', 'math@1', 'callout@1', 'rich-text@2', 'math@2', 'callout@2']);
 const issue = (path, code, message) => ({ path, code, message });
 
 /**
@@ -45,7 +45,7 @@ function assertContract(document, options, status, allowLegacy) {
   }
   if (!allowLegacy) {
     document.slides.forEach((slide, slideIndex) => slide.blocks.forEach((block, blockIndex) => {
-      if (!publishedBlockTypes.has(block.type)) {
+      if (!publishedBlocks.has(`${block.type}@${block.version}`)) {
         errors.push(issue(`/slides/${slideIndex}/blocks/${blockIndex}/type`, 'unverified-publication-block', 'Publication requires a supported content block with no unverified legacy reference.'));
       }
     }));

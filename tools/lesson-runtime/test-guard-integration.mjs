@@ -1,5 +1,4 @@
 import assert from 'node:assert/strict';
-import {createServer} from 'node:http';
 import {readFile,mkdir,writeFile,stat} from 'node:fs/promises';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
@@ -19,46 +18,46 @@ const title='Continuity & joins';
 const accessKey='ap-calculus::0::1.7';
 const lessonKey=`${accessKey}::${title}`;
 const types={'.html':'text/html','.mjs':'text/javascript','.js':'text/javascript','.json':'application/json','.css':'text/css','.woff2':'font/woff2','.woff':'font/woff','.ttf':'font/ttf'};
-const json=(res,status,body)=>{res.writeHead(status,{'Content-Type':'application/json'});res.end(JSON.stringify(body));};
+const json=(route,status,body)=>route.fulfill({status,contentType:'application/json',body:JSON.stringify(body)});
 const landingPaths=new Set(['/login.html','/question-bank/student.html','/question-bank/parent.html','/question-bank/teacher.html','/question-bank/admin.html','/question-bank/practice.html','/index.html']);
-const server=createServer(async(req,res)=>{
+// Fulfill the same fixture bytes and API responses at the browser boundary.
+// This avoids host Chrome loopback stalls before any guard code executes.
+const origin='http://127.0.0.1:4173';
+async function fulfillFixture(route){
   try {
-    const url=new URL(req.url,'http://127.0.0.1');
+    const request=route.request(),url=new URL(request.url());
     if(url.pathname==='/__guard_fixture__/api'){
       const scenario=url.searchParams.get('scenario'),apiPath=url.searchParams.get('path');
-      if(!scenarios.has(scenario)){json(res,400,{error:'Unknown fixture scenario'});return;}
-      const buffers=[];for await(const chunk of req)buffers.push(chunk);
-      const raw=Buffer.concat(buffers).toString('utf8');
+      if(!scenarios.has(scenario))return json(route,400,{error:'Unknown fixture scenario'});
+      const raw=request.postData()||'';
       const body=raw?JSON.parse(raw):undefined;
-      calls.push({scenario,path:apiPath,method:req.method,body});
+      calls.push({scenario,path:apiPath,method:request.method(),body});
       if(apiPath==='/me'){
-        json(res,200,scenario==='guest'?null:{id:'guard-fixture-account',role:['parent','teacher','admin'].includes(scenario)?scenario:'student'});return;
+        return json(route,200,scenario==='guest'?null:{id:'guard-fixture-account',role:['parent','teacher','admin'].includes(scenario)?scenario:'student'});
       }
       if(apiPath==='/dashboard/student'){
-        json(res,200,{classes:scenario==='unassigned'?[]:[{classes:{id:'fixture-class',course_key:'ap-calculus'}}]});return;
+        return json(route,200,{classes:scenario==='unassigned'?[]:[{classes:{id:'fixture-class',course_key:'ap-calculus'}}]});
       }
       if(apiPath==='/lesson-access/check'){
-        if(scenario==='api-failure'){json(res,503,{error:'Intentional fixture failure'});return;}
+        if(scenario==='api-failure')return json(route,503,{error:'Intentional fixture failure'});
         const correctRoute=body?.course_key==='ap-calculus'&&body?.access_key===accessKey;
-        json(res,200,{allowed:correctRoute&&scenario!=='unreleased',reason:correctRoute?'lesson-not-released':'wrong-lesson-route'});return;
+        return json(route,200,{allowed:correctRoute&&scenario!=='unreleased',reason:correctRoute?'lesson-not-released':'wrong-lesson-route'});
       }
-      json(res,500,{error:'Unexpected fixture API route'});return;
+      return json(route,500,{error:'Unexpected fixture API route'});
     }
     if(landingPaths.has(url.pathname)){
-      res.writeHead(200,{'Content-Type':'text/html'});res.end('<!doctype html><html lang="en"><title>Local redirect destination</title><p>Isolated redirect destination; no production scripts.</p></html>');return;
+      return route.fulfill({status:200,contentType:'text/html',body:'<!doctype html><html lang="en"><title>Local redirect destination</title><p>Isolated redirect destination; no production scripts.</p></html>'});
     }
     if(url.pathname==='/js/lesson-ai-loader.js'){
-      res.writeHead(200,{'Content-Type':'text/javascript'});res.end('// Unrelated tutor startup is intentionally stubbed at this isolated test HTTP boundary.');return;
+      return route.fulfill({status:200,contentType:'text/javascript',body:'// Unrelated tutor startup is intentionally stubbed at this isolated test HTTP boundary.'});
     }
     const file=path.resolve(root,'.'+decodeURIComponent(url.pathname));
-    if(!file.startsWith(path.resolve(root)+path.sep)){res.writeHead(403).end();return;}
-    if(!(await stat(file)).isFile()){res.writeHead(404).end();return;}
-    res.setHeader('Content-Type',types[path.extname(file)]||'application/octet-stream');res.end(await readFile(file));
-  } catch {res.writeHead(404).end();}
-});
+    if(!file.startsWith(path.resolve(root)+path.sep))return route.fulfill({status:403,body:''});
+    if(!(await stat(file)).isFile())return route.fulfill({status:404,body:''});
+    return route.fulfill({status:200,contentType:types[path.extname(file)]||'application/octet-stream',body:await readFile(file)});
+  } catch {return route.fulfill({status:404,body:''});}
+}
 await mkdir(output,{recursive:true});
-await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
-const origin=`http://127.0.0.1:${server.address().port}`;
 const base=origin+'/tools/lesson-runtime/fixtures/guard-integration.html';
 let browser;
 const pass=label=>{checks.push(label);console.log('PASS '+label);};
@@ -70,7 +69,7 @@ function fixtureURL(scenario){
 async function newPage(){
   const context=await browser.newContext({serviceWorkers:'block'});
   await context.route('**/*',route=>{
-    if(new URL(route.request().url()).origin===origin)return route.continue();
+    if(new URL(route.request().url()).origin===origin)return fulfillFixture(route);
     blocked.push(route.request().url());return route.abort();
   });
   const page=await context.newPage();page.setDefaultTimeout(15000);
@@ -158,9 +157,8 @@ try {
     await assertOnlyCompletionStorage(run.page,false);noScoredEvidence(run.events);assert.deepEqual(run.errors,[]);
     await run.context.close();pass(`existing ${role} full-course access policy preserved without student release API call`);
   }
-  assert.deepEqual(blocked,[]);pass('every browser request stayed on this isolated loopback server');
+  assert.deepEqual(blocked,[]);pass('every browser request stayed on this isolated local fixture origin');
   await writeFile(path.join(output,'guard-integration-results.json'),JSON.stringify({status:'PASS',scope:'Original portal + guard + renderer, local original sample, simulated institution API; no production requests or database authorization claims.',checks,apiCalls:calls,blockedRequests:blocked},null,2)+'\n');
 } finally {
   if(browser)await browser.close();
-  await new Promise(resolve=>server.close(resolve));
 }
