@@ -17,8 +17,6 @@ jobs:
   baseline:
     runs-on: ubuntu-latest
     timeout-minutes: 25
-    env:
-      ECHS_TEST_DOM_MODULE: ${{ runner.temp }}/echs-baseline-dom/node_modules/linkedom
     steps:
       - name: Check out the requested revision
         uses: actions/checkout@v4
@@ -36,6 +34,8 @@ jobs:
           npm ci --prefix question-bank/official/tools
           npx --prefix question-bank/official/tools playwright install --with-deps chromium-headless-shell
       - name: Run all critical baseline suites
+        env:
+          ECHS_TEST_DOM_MODULE: ${{ runner.temp }}/echs-baseline-dom/node_modules/linkedom
         run: python tools/validate_baseline.py --json-report "$RUNNER_TEMP/echs-baseline.json"
       - name: Upload baseline diagnostics
         if: always()
