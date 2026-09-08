@@ -1,4 +1,4 @@
-const RPC_NAMES = new Set(['api_session_lookup', 'lesson_store', 'lesson_store_health']);
+const RPC_NAMES = new Set(['api_session_lookup', 'lesson_store', 'lesson_store_health', 'lesson_content_capabilities']);
 const MAX_RESPONSE_BYTES = 5 * 1024 * 1024;
 
 /** A fixed service-side transport; request data cannot choose hosts, RPCs or keys.

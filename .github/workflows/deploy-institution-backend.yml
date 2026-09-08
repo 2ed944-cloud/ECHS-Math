@@ -100,6 +100,25 @@ jobs:
             --header "x-bootstrap-secret: $ECHS_BOOTSTRAP_SECRET" \
             "https://${SUPABASE_PROJECT_ID}.supabase.co/functions/v1/setup-api/verify-secret" | python -m json.tool
 
+      - name: Verify deployed lesson authoring transport and database capability
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error \
+            "https://${SUPABASE_PROJECT_ID}.supabase.co/functions/v1/lesson-api/health/authoring" \
+            --output "$RUNNER_TEMP/echs-authoring-health.json"
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          actual = json.loads((Path(os.environ['RUNNER_TEMP']) / 'echs-authoring-health.json').read_text())
+          expected = {'ok': True, 'service': 'lesson-api', 'contract': 'echs.lesson.store.v1',
+                      'authoring_capabilities': {'contract': 'echs.lesson.authoring.v1', 'content_version': 2,
+                        'blocks': {'rich-text': [1, 2], 'math': [1, 2], 'callout': [1, 2], 'legacy-embedded': [1]},
+                        'math_expression_version': 1}}
+          assert actual == expected, 'Deployed lesson authoring capability is unavailable or incompatible'
+          print('Production lesson authoring transport and database capability: PASS')
+          PY
+
       - name: Verify production authentication and session transaction
         shell: bash
         run: |

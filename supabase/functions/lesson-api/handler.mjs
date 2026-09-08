@@ -101,6 +101,7 @@ function route(req) {
   const path = url.pathname.replace(prefix, '') || '/';
   let match;
   if (req.method === 'GET' && path === '/health') { query(url, []); return { action: 'health', payload: {} }; }
+  if (req.method === 'GET' && path === '/health/authoring') { query(url, []); return { action: 'authoring_health', payload: {} }; }
   if (req.method === 'GET' && path === '/context') {
     const args = query(url, ['class_id']); if (own(args, 'class_id')) uuid(args.class_id);
     return { action: 'context', payload: args };
@@ -231,6 +232,14 @@ export function createLessonHandler({ rpc, mathEngine, allowedOrigins = ['https:
         const data = await invoke('lesson_store_health', {});
         if (data?.ok !== true || data.contract !== LESSON_API_CONTRACT) throw unavailable();
         return reply({ ok: true, service: 'lesson-api', contract: LESSON_API_CONTRACT });
+      }
+      if (target.action === 'authoring_health') {
+        // This public probe returns only the fixed, data-free validator contract.
+        // No school session, class, lesson or database error detail is exposed.
+        let capabilities = null;
+        try { capabilities = confirmedCapabilities(await invoke('lesson_content_capabilities', {})); } catch { /* fail closed */ }
+        if (!capabilities) throw unavailable();
+        return reply({ ok: true, service: 'lesson-api', contract: LESSON_API_CONTRACT, authoring_capabilities: capabilities });
       }
       const header = req.headers.get('authorization') || '';
       const token = /^Bearer ([^\s]{16,2048})$/.exec(header)?.[1];

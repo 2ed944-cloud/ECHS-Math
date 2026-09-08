@@ -63,6 +63,35 @@ async function expectStatus(h,path,options,status) {
 }
 const draftBody = () => ({ class_id:ids.class,course_version_id:ids.course,access_key:'ap-calculus::0::1.7',document:fixture().head.document,private_notes:'Teacher private note',expected_revision:0 });
 const lessonPath = `/lessons/${ids.lesson}`;
+const authoringCapabilities = { contract:'echs.lesson.authoring.v1',content_version:2,
+  blocks:{'rich-text':[1,2],math:[1,2],callout:[1,2],'legacy-embedded':[1]},math_expression_version:1 };
+
+// Exercise the production handler AND its production RPC allowlist/transport.
+// Only the fixed PostgREST HTTP boundary is simulated; no external fetch occurs.
+function transportHarness({ session=actor, capabilities=authoringCapabilities, probe, scopeError } = {}) {
+  const calls=[];
+  const rpc=createRpcTransport({url:'https://fixture.supabase.co',serviceKey:'fixture-service-credential-only',fetch:async(url,options)=>{
+    const target=new URL(url);
+    assert.equal(target.origin,'https://fixture.supabase.co'); assert.equal(target.search,''); assert.equal(target.hash,'');
+    assert.equal(options.method,'POST'); assert.equal(options.cache,'no-store'); assert.equal(options.redirect,'error'); assert.equal(options.credentials,'omit');
+    assert.equal(options.headers.apikey,'fixture-service-credential-only'); assert.equal(options.headers.authorization,'Bearer fixture-service-credential-only');
+    assert.equal(options.headers['content-type'],'application/json'); assert.ok(options.signal instanceof AbortSignal);
+    const name=target.pathname.replace('/rest/v1/rpc/','');
+    assert.equal(target.pathname,'/rest/v1/rpc/'+name);
+    assert.ok(['api_session_lookup','lesson_store','lesson_store_health','lesson_content_capabilities'].includes(name));
+    const args=JSON.parse(options.body); calls.push({name,args});
+    const json=(value,status=200)=>new Response(JSON.stringify(value),{status,headers:{'content-type':'application/json'}});
+    if(name==='lesson_content_capabilities') { assert.deepEqual(args,{}); return probe ? probe() : json(capabilities); }
+    if(name==='lesson_store_health') { assert.deepEqual(args,{}); return json({ok:true,contract:LESSON_API_CONTRACT}); }
+    assert.equal(args.p_token_hash,tokenHash);
+    if(name==='api_session_lookup') { assert.deepEqual(Object.keys(args),['p_token_hash']); return json(session?[clone(session)]:[]); }
+    assert.equal(name,'lesson_store'); assert.equal(args.p_action,'context');
+    assert.deepEqual(Object.keys(args).sort(),['p_action','p_payload','p_token_hash']);
+    if(scopeError) return json({code:scopeError,message:'PRIVATE_SCOPE_CANARY'},403);
+    return json({ok:true,contract:LESSON_API_CONTRACT,classes:[],catalog:[]});
+  }});
+  return {calls,rpc,handler:createLessonHandler({rpc,mathEngine:katex})};
+}
 
 function documentBytes(bytes, version = 1) {
   const document = fixture().head.document;
@@ -236,6 +265,62 @@ test('RPC transport fixes service host and method, refuses redirects and suppres
   assert.equal(seen[0].options.redirect,'error');assert.equal(seen[0].options.credentials,'omit');assert.equal(seen[0].options.cache,'no-store');
   await assert.rejects(rpc('arbitrary_rpc',{}));assert.equal(seen.length,1);
   assert.throws(()=>createRpcTransport({url:'https://attacker.example',serviceKey:'fixture-service-credential-only'}));
+});
+test('actual handler context traverses the fixed production transport for all four permitted RPCs',async()=>{
+  const h=transportHarness();
+  const context=await expectStatus(h,'/context?class_id='+ids.class,{},200);
+  assert.deepEqual(context.authoring_capabilities,authoringCapabilities);
+  assert.deepEqual(h.calls.map(call=>call.name),['api_session_lookup','lesson_store','lesson_content_capabilities']);
+  assert.deepEqual(h.calls[1].args.p_payload,{class_id:ids.class});
+  assert.deepEqual(await expectStatus(h,'/health',{authorization:null},200),{ok:true,service:'lesson-api',contract:LESSON_API_CONTRACT});
+  assert.equal(h.calls.at(-1).name,'lesson_store_health');
+  for(const name of ['arbitrary_rpc','lesson_content_capabilities/../lesson_store','lesson_content_capabilities?class_id='+ids.class]) {
+    await assert.rejects(h.rpc(name,{}),/Unsupported RPC/);
+  }
+  assert.equal(h.calls.length,4);
+});
+test('public authoring health confirms the real transport probe without school authentication or private reads',async()=>{
+  const h=transportHarness();
+  for(const origin of [null,'https://2ed944-cloud.github.io']) {
+    const result=await expectStatus(h,'/health/authoring',{authorization:null,origin},200);
+    assert.deepEqual(result,{ok:true,service:'lesson-api',contract:LESSON_API_CONTRACT,authoring_capabilities:authoringCapabilities});
+  }
+  assert.deepEqual(h.calls,[{name:'lesson_content_capabilities',args:{}},{name:'lesson_content_capabilities',args:{}}]);
+});
+test('missing, malformed or failed authoring probes give sanitized 503 health and fail-closed context through the real transport',async()=>{
+  const malformed=[null,{},[],{...authoringCapabilities,content_version:3},{...authoringCapabilities,private_notes:'PRIVATE_PROBE_CANARY'},
+    {...authoringCapabilities,blocks:{...authoringCapabilities.blocks,math:[1,2,3]}}];
+  const probes=[...malformed.map(capabilities=>({capabilities})),
+    ...['42501','PGRST202','28000'].map(code=>({probe:()=>new Response(JSON.stringify({code,message:'PRIVATE_PROBE_CANARY',details:'PRIVATE_SQL_CANARY'}),{status:404,headers:{'content-type':'application/json'}})})),
+    {probe:()=>{throw new Error('PRIVATE_TRANSPORT_CANARY');}},
+    {probe:()=>new Response('<html>PRIVATE_UPSTREAM_CANARY</html>',{headers:{'content-type':'text/html'}})}];
+  for(const setup of probes) {
+    const h=transportHarness(setup);
+    const health=await expectStatus(h,'/health/authoring',{authorization:null},503);
+    assert.deepEqual(health,{ok:false,error:{code:'service_unavailable',message:'Lesson storage is temporarily unavailable.'}});
+    assert.deepEqual(h.calls,[{name:'lesson_content_capabilities',args:{}}]);
+    const context=await expectStatus(h,'/context',{},200);
+    assert.equal(context.authoring_capabilities,null); assert.equal(JSON.stringify(context).includes('PRIVATE'),false);
+  }
+});
+test('authoring health accepts no scope inputs, and scoped context still authenticates before probing',async()=>{
+  const h=transportHarness();
+  for(const suffix of ['?class_id='+ids.class,'?rpc=lesson_store','/lessons','/']) {
+    await expectStatus(h,'/health/authoring'+suffix,{authorization:null},suffix.startsWith('?')?422:404);
+  }
+  await expectStatus(h,'/health/authoring',{authorization:null,body:{class_id:ids.class}},404);
+  await expectStatus(h,'/health/authoring',{authorization:null,origin:'https://attacker.example'},403);
+  await expectStatus(h,'/context',{authorization:null},401);
+  assert.equal(h.calls.length,0);
+  for(const role of ['student','parent']) {
+    const denied=transportHarness({session:{...actor,role}});
+    await expectStatus(denied,'/context',{},403);
+    assert.deepEqual(denied.calls.map(call=>call.name),['api_session_lookup']);
+  }
+  const revoked=transportHarness({session:null}); await expectStatus(revoked,'/context',{},401);
+  assert.deepEqual(revoked.calls.map(call=>call.name),['api_session_lookup']);
+  const scoped=transportHarness({scopeError:'42501'}); await expectStatus(scoped,'/context?class_id='+ids.class,{},404);
+  assert.deepEqual(scoped.calls.map(call=>call.name),['api_session_lookup','lesson_store']);
 });
 test('RPC transport bounds database response size and cancels stalled requests without retrying writes',async()=>{
   let cancelled=false;const rpc=createRpcTransport({url:'https://fixture.supabase.co',serviceKey:'fixture-service-credential-only',fetch:async()=>new Response(new ReadableStream({start(controller){controller.enqueue(new Uint8Array(5*1024*1024+1));},cancel(){cancelled=true;}}),{headers:{'content-type':'application/json'}})});
