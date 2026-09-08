@@ -43,3 +43,7 @@ verify_jwt = false
 
 [functions.readiness-api]
 verify_jwt = false
+
+# ECHS school sessions are verified by the API and again inside lesson_store.
+[functions.lesson-api]
+verify_jwt = false

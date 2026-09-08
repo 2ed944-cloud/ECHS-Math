@@ -142,6 +142,7 @@ jobs:
             deno check supabase/functions/private-bank-purge-api/index.ts
             deno check supabase/functions/upload-manager-api/index.ts
             deno check supabase/functions/setup-api/index.ts
+            deno check --frozen --config supabase/functions/lesson-api/deno.json supabase/functions/lesson-api/index.ts
           } 2>&1 | tee deno-check.log
 
       - name: Upload Deno type-check diagnostics

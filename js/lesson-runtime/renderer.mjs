@@ -1,6 +1,7 @@
-import {assertPublicLessonDocument} from './schema.mjs';
+import {assertPublicLessonDocument, assertLessonDocument, LESSON_DOCUMENT_LIMITS} from './schema.mjs';
 
 const EDITABLE = 'input,textarea,select,button,a,[contenteditable="true"]';
+const mountedLessonRoots = new WeakMap();
 
 export function resolveSlideIndex(hash, slides) {
   const raw = String(hash || '').replace(/^#/, '');
@@ -66,18 +67,30 @@ export async function mountLesson({root, lesson, binding, enabled = false, windo
   if (!root || root.ownerDocument !== win.document) throw new TypeError('A lesson mount in the current document is required.');
   const owner = await waitForExistingAccess(win, accessTimeoutMs);
   assertPublicLessonDocument(lesson, {mathEngine});
+  return mountValidatedLesson({root, lesson, binding, win, mathEngine, owner});
+}
+
+// Only the two explicit entry points can reach this renderer. There is no public
+// audience override or caller-provided "authorized" document shortcut.
+function mountValidatedLesson({root, lesson, binding, win, mathEngine, owner, scopeAllowed = () => true}) {
   const host = validateHostBinding(binding, lesson, win);
   let currentAccess = owner.access;
   const data = JSON.parse(JSON.stringify(lesson));
   const doc = win.document;
   const listeners = [];
   let disposed = false;
+  let mountRecord;
   const on = (target, type, handler) => { target.addEventListener(type, handler); listeners.push(() => target.removeEventListener(type, handler)); };
   const el = (tag, text, className) => { const node = doc.createElement(tag); if (text !== undefined) node.textContent = text; if (className) node.className = className; return node; };
   const currentRoute = () => { const url = new URL(win.location.href); url.hash = ''; return url.href; };
   const allowedRole = () => currentAccess?.authenticated && ['student','teacher','admin'].includes(currentAccess.role) && currentAccess.current?.id === owner.owner && (currentAccess.role !== 'student' || win.ECHSPortalAccess.courseAllowed?.(host.course_key,currentAccess) === true);
-  const stillAllowed = () => !disposed && allowedRole() && currentRoute() === host.route && doc.documentElement.dataset.lessonGate === 'allowed' && doc.documentElement.dataset.echsLessonCourse === host.course_key && win.ECHSInstitution.account()?.id === owner.owner && win.ECHSInstitution.token?.() === owner.token;
-  const dispose = () => { if (disposed) return; disposed = true; for (const remove of listeners.splice(0)) remove(); root.replaceChildren(); };
+  const stillAllowed = () => !disposed && allowedRole() && scopeAllowed() && currentRoute() === host.route && doc.documentElement.dataset.lessonGate === 'allowed' && doc.documentElement.dataset.echsLessonCourse === host.course_key && win.ECHSInstitution.account()?.id === owner.owner && win.ECHSInstitution.token?.() === owner.token;
+  const dispose = () => {
+    if (disposed) return;
+    disposed = true;
+    for (const remove of listeners.splice(0)) remove();
+    if (mountedLessonRoots.get(root) === mountRecord) {mountedLessonRoots.delete(root); root.replaceChildren();}
+  };
   const verify = () => { if (stillAllowed()) return true; dispose(); return false; };
   function math(content) {
     const span = el(content.display ? 'div' : 'span', undefined, 'echsDocumentMath');
@@ -169,6 +182,175 @@ export async function mountLesson({root, lesson, binding, enabled = false, windo
   const gateObserver = new win.MutationObserver(verify);
   gateObserver.observe(doc.documentElement, {attributes:true, attributeFilter:['data-lesson-gate','data-echs-lesson-course']});
   listeners.push(() => gateObserver.disconnect());
+  mountRecord = Object.freeze({mode:'document', get slideIndex(){return index;}, goTo:show, dispose});
+  mountedLessonRoots.get(root)?.dispose();
+  mountedLessonRoots.set(root,mountRecord);
   root.replaceChildren(shell); show(index,{focus:false,updateUrl:false});
-  return Object.freeze({mode:'document', get slideIndex(){return index;}, goTo:show, dispose});
+  return mountRecord;
+}
+
+const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+const INSTITUTIONAL_CONTRACT = 'echs.lesson.store.v1';
+const MAX_ENVELOPE_BYTES = LESSON_DOCUMENT_LIMITS.maxBytes + 16384;
+const pendingInstitutionalMounts = new WeakMap();
+const envelopeError = () => new Error('The institutional lesson response does not match its authorized delivery contract.');
+
+function exactKeys(value, keys) {
+  if (!value || typeof value !== 'object' || Array.isArray(value) || Object.getPrototypeOf(value) !== Object.prototype) throw envelopeError();
+  const actual = Object.keys(value);
+  if (actual.length !== keys.length || keys.some(key => !Object.hasOwn(value, key))) throw envelopeError();
+}
+
+function configuredEndpoint(config) {
+  if (config?.enabled !== true || config.configuration_error || typeof config.api_base !== 'string' ||
+      config.api_base.trim() !== config.api_base || !/^https:\/\/[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.supabase\.co\/functions\/v1\/?$/i.test(config.api_base)) {
+    throw new Error('A trusted institutional lesson service is not configured.');
+  }
+  const api = new URL(config.api_base);
+  const site = new URL(config.site_base);
+  if (site.protocol !== 'https:' || site.username || site.password || site.port || site.search || site.hash || !site.pathname.endsWith('/')) {
+    throw new Error('The institutional lesson site is not configured.');
+  }
+  return {api:api.href.replace(/\/$/, ''), site:site.href};
+}
+
+async function readInstitutionalEnvelope(response, requestUrl, signal) {
+  if (response.status !== 200 || !response.ok || response.redirected || response.url !== requestUrl ||
+      !/^application\/json(?:\s*;|$)/i.test(response.headers.get('content-type') || '')) throw envelopeError();
+  const declared = response.headers.get('content-length');
+  if (declared !== null && (!/^\d+$/.test(declared) || Number(declared) > MAX_ENVELOPE_BYTES)) throw envelopeError();
+  if (!response.body?.getReader) throw envelopeError();
+  const reader = response.body.getReader();
+  const cancel = () => {void reader.cancel().catch(() => {});};
+  signal.addEventListener('abort', cancel, {once:true});
+  const decoder = new TextDecoder('utf-8', {fatal:true});
+  let size = 0, text = '', complete = false;
+  try {
+    while (true) {
+      signal.throwIfAborted();
+      const chunk = await reader.read();
+      signal.throwIfAborted();
+      if (chunk.done) break;
+      size += chunk.value.byteLength;
+      if (size > MAX_ENVELOPE_BYTES) throw envelopeError();
+      text += decoder.decode(chunk.value, {stream:true});
+    }
+    text += decoder.decode(); complete = true;
+    return JSON.parse(text);
+  } finally {
+    signal.removeEventListener('abort', cancel);
+    if (!complete) void reader.cancel().catch(() => {});
+    reader.releaseLock();
+  }
+}
+
+function institutionalBinding(payload, {lessonId, classId, accountId, organizationId, route, site, win, mathEngine}) {
+  exactKeys(payload, ['ok','contract','lesson_id','class_id','publication_id','revision','document','binding']);
+  if (payload.ok !== true || payload.contract !== INSTITUTIONAL_CONTRACT || payload.lesson_id !== lessonId ||
+      payload.class_id !== classId || !UUID.test(payload.publication_id) || !Number.isSafeInteger(payload.revision) || payload.revision < 1) throw envelopeError();
+  const binding = payload.binding;
+  exactKeys(binding, ['account_id','organization_id','class_id','course_key','access_key','route','document']);
+  exactKeys(binding.document, ['lesson_id','course_version_id','unit_id','topic_id','document_version','publication_revision']);
+  if (binding.account_id !== accountId || binding.organization_id !== organizationId || binding.class_id !== classId ||
+      typeof binding.course_key !== 'string' || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(binding.course_key) || binding.course_key.length > 160 ||
+      typeof binding.access_key !== 'string' || !binding.access_key || binding.access_key.length > 512 || /[\u0000-\u001f\u007f]/.test(binding.access_key)) throw envelopeError();
+  if (typeof binding.route !== 'string' || /[?#]/.test(binding.route)) throw envelopeError();
+  const destination = new URL(binding.route);
+  const current = new URL(route);
+  const configuredSite = new URL(site);
+  if (destination.href !== binding.route || destination.username || destination.password || destination.search || destination.hash ||
+      destination.origin !== configuredSite.origin || !destination.pathname.startsWith(configuredSite.pathname) ||
+      destination.origin !== current.origin || destination.pathname !== current.pathname ||
+      current.searchParams.getAll('accessKey').length !== 1 || current.searchParams.get('accessKey') !== binding.access_key) throw envelopeError();
+  assertLessonDocument(payload.document, {mathEngine:mathEngine ?? null});
+  if (payload.document.publication.status !== 'published' || payload.document.publication.audience !== 'institutional' ||
+      payload.document.lesson_id !== lessonId || payload.document.publication.revision !== payload.revision ||
+      payload.document.slides.some(slide => slide.blocks.some(block => !['rich-text','math','callout'].includes(block.type)))) throw envelopeError();
+  const host = {course_key:binding.course_key, route, document:binding.document};
+  validateHostBinding(host, payload.document, win);
+  return host;
+}
+
+/**
+ * Fetch a published institutional lesson through the existing account boundary.
+ * This opt-in entry point never accepts a document, binding, or endpoint from
+ * its caller. Server authorization remains authoritative; no data is persisted.
+ */
+export async function mountInstitutionalLesson({root, lessonId, classId, enabled = false, window:win = window,
+  mathEngine = win.katex, accessTimeoutMs = 10000, requestTimeoutMs = 10000, signal} = {}) {
+  if (enabled !== true) return Object.freeze({mode:'legacy', href:win.location.href, dispose(){}});
+  if (!root || root.ownerDocument !== win.document) throw new TypeError('A lesson mount in the current document is required.');
+  if (!UUID.test(lessonId) || !UUID.test(classId)) throw new TypeError('A lesson and class identity are required.');
+  if (![accessTimeoutMs,requestTimeoutMs].every(value => Number.isInteger(value) && value >= 1 && value <= 30000)) throw new TypeError('Lesson request timeouts must be bounded.');
+  const client = win.ECHSInstitution;
+  const account = client?.account?.();
+  const accountId = account?.id, organizationId = account?.organization_id, role = account?.role, token = client?.token?.();
+  if (!UUID.test(accountId) || !UUID.test(organizationId) || !['student','teacher','admin'].includes(role) || typeof token !== 'string' || !token || typeof client?.config !== 'function') {
+    throw new Error('An active institutional course account is required.');
+  }
+  const routeUrl = new URL(win.location.href); routeUrl.hash = '';
+  const route = routeUrl.href;
+  const currentRoute = () => {const url = new URL(win.location.href); url.hash = ''; return url.href;};
+  const sessionMatches = () => win.ECHSInstitution === client && client.account()?.id === accountId &&
+    client.account()?.organization_id === organizationId && client.account()?.role === role && client.token?.() === token && currentRoute() === route;
+  const controller = new win.AbortController();
+  const abort = message => controller.abort(new Error(message));
+  pendingInstitutionalMounts.get(root)?.abort(new Error('A newer institutional lesson request replaced this request.'));
+  pendingInstitutionalMounts.set(root, controller);
+  const cleanups = [];
+  const on = (target, type, handler) => {target.addEventListener(type, handler); cleanups.push(() => target.removeEventListener(type, handler));};
+  const changed = () => {if (!sessionMatches()) abort('Your institutional lesson account or route changed.');};
+  on(win, 'storage', changed); on(win, 'pageshow', changed);
+  on(win.document, 'echs:institution-signed-out', () => abort('Your institutional session ended.'));
+  on(win.document, 'echs:institution-auth-error', () => abort('Your institutional session is no longer authorized.'));
+  let accessReady = false, courseKey;
+  const accessChanged = event => {
+    const access = event.detail;
+    if (!access?.authenticated || access.current?.id !== accountId || access.current?.organization_id !== organizationId || access.role !== role ||
+        (accessReady && role === 'student' && win.ECHSPortalAccess.courseAllowed?.(courseKey,access) !== true)) abort('Institutional course access changed.');
+  };
+  on(win.document, 'echs:portal-access', accessChanged);
+  const observer = new win.MutationObserver(() => {
+    if (accessReady && (win.document.documentElement.dataset.lessonGate !== 'allowed' || win.document.documentElement.dataset.echsLessonCourse !== courseKey)) abort('Institutional lesson access changed.');
+  });
+  observer.observe(win.document.documentElement, {attributes:true, attributeFilter:['data-lesson-gate','data-echs-lesson-course']});
+  cleanups.push(() => observer.disconnect());
+  if (signal) {
+    const cancelled = () => abort('The institutional lesson request was cancelled.');
+    if (signal.aborted) cancelled(); else {signal.addEventListener('abort', cancelled, {once:true}); cleanups.push(() => signal.removeEventListener('abort',cancelled));}
+  }
+  const timer = win.setTimeout(() => abort('The institutional lesson request timed out.'), requestTimeoutMs);
+  let rejectAborted;
+  const aborted = new Promise((_, reject) => {rejectAborted = () => reject(controller.signal.reason); controller.signal.addEventListener('abort', rejectAborted, {once:true});});
+  if (controller.signal.aborted) rejectAborted();
+  const assertCurrent = () => {controller.signal.throwIfAborted(); if (!sessionMatches()) throw new Error('Your institutional lesson account or route changed.');};
+  try {
+    return await Promise.race([aborted, (async () => {
+      assertCurrent();
+      const owner = await waitForExistingAccess(win, accessTimeoutMs);
+      assertCurrent();
+      courseKey = win.document.documentElement.dataset.echsLessonCourse; accessReady = true;
+      if (role === 'student' && win.ECHSPortalAccess.courseAllowed?.(courseKey,owner.access) !== true) throw new Error('An assigned institutional course is required.');
+      const config = await client.config(); assertCurrent();
+      const endpoint = configuredEndpoint(config);
+      const configuredApi = config.api_base, configuredSite = config.site_base;
+      const configMatches = () => config.enabled === true && !config.configuration_error && config.api_base === configuredApi && config.site_base === configuredSite;
+      const url = `${endpoint.api}/lesson-api/lessons/${lessonId}/published?class_id=${encodeURIComponent(classId)}`;
+      const response = await win.fetch(url, {method:'GET', headers:{Accept:'application/json',Authorization:`Bearer ${token}`},
+        mode:'cors', credentials:'omit', cache:'no-store', redirect:'error', referrerPolicy:'no-referrer', signal:controller.signal});
+      assertCurrent(); if (!configMatches()) throw new Error('Institutional lesson configuration changed.');
+      const payload = await readInstitutionalEnvelope(response, url, controller.signal);
+      assertCurrent(); if (!configMatches()) throw new Error('Institutional lesson configuration changed.');
+      const binding = institutionalBinding(payload, {lessonId,classId,accountId,organizationId,route,site:endpoint.site,win,mathEngine});
+      assertCurrent();
+      return mountValidatedLesson({root,lesson:payload.document,binding,win,mathEngine,owner,scopeAllowed:() => sessionMatches() && configMatches()});
+    })()]);
+  } catch (error) {
+    controller.abort(error);
+    throw error;
+  } finally {
+    win.clearTimeout(timer); controller.signal.removeEventListener('abort', rejectAborted);
+    for (const cleanup of cleanups) cleanup();
+    if (pendingInstitutionalMounts.get(root) === controller) pendingInstitutionalMounts.delete(root);
+  }
 }

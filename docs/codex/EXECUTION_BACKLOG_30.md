@@ -9,7 +9,7 @@
 - ECHS-005: complete; PR #350 merged after all seven workflows passed; 12 renderer and 11 original-guard integration groups passed. PR #351 repaired clean-source fixture validation; Pages run 34191816882 and exact live module/route checks passed. Optional renderer remains disabled on existing lessons. See `LESSON_RENDERER_FOUNDATION.md` and `FOUNDATION_ACCEPTANCE_20260908.md`.
 - ECHS-006: complete; PR #350 merged; 15 compatibility suites and exact pinned-source build passed on the integrated branch and final PR #351. Existing handcrafted AP and layered IB engines, questions, URLs and rollback remain intact. See `LEGACY_LESSON_COMPATIBILITY.md` and `FOUNDATION_ACCEPTANCE_20260908.md`.
 - Audit-discovered sync repair: PR #346 merged after 13 successful PR workflows; account-owned queue/report-contract tests and backend/Pages deployment passed. See `MASTERY_SYNC_REPAIR_20260908.md`.
-- ECHS-007: ready to start; NOT STARTED. ECHS-001–006 acceptance and production Pages verification are complete. The next scope is secure lesson persistence, not visual Lesson Studio work. See `FOUNDATION_ACCEPTANCE_20260908.md` for evidence, security boundaries and remaining risks.
+- ECHS-007: implemented, under validation; secure class-scoped persistence, immutable version/publication history, independent review, authenticated API and an optional institutional renderer loader. Actual PostgreSQL 15, full HTTP/SQL integration and deployment acceptance are required before completion. See `LESSON_PERSISTENCE_FOUNDATION.md`. ECHS-008 remains NOT STARTED.
 
 Rules:
 - execute in dependency order;

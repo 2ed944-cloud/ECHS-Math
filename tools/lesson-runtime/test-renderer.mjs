@@ -30,8 +30,11 @@ const errors=[];page.on('pageerror',error=>{errors.push(error.message);console.e
 page.on('response',response=>{if(response.status()>=400)console.error(response.status(),response.url());});
 page.on('console',message=>{if(message.type()==='error')console.error(message.text());});
 const checks=[];const pass=label=>{checks.push(label);console.log('PASS '+label);};
+let navigation=0;
 async function open(scenario='allowed',hash='#slide=2'){
-  await page.goto(base+'?course=ap-calculus&unit=0&topic=1.7&scope=lesson&scenario='+scenario+hash);
+  // Identical hash URLs can retain the previous document and its disposed view.
+  // Force a fresh document for each independent access/mutation scenario.
+  await page.goto(base+'?course=ap-calculus&unit=0&topic=1.7&scope=lesson&scenario='+scenario+'&testCase='+(++navigation)+hash);
   await page.waitForFunction(()=>window.fixture?.ready);
 }
 async function state(){return page.evaluate(()=>({error:fixture.error,mode:fixture.controller?.mode,index:fixture.controller?.slideIndex,text:document.querySelector('#lesson').textContent,finish:fixture.finishCalls,learning:fixture.learningCalls,href:location.href}));}
@@ -91,7 +94,8 @@ try {
   await open('disabled','#unknown-fragment');assert.equal((await state()).mode,'legacy');assert.ok((await state()).href.endsWith('#unknown-fragment'));
   pass('feature-off rollback leaves original URL and DOM');
   for(const mutation of ['gate','account','token','signout','role','course','route']){
-    await open();await page.evaluate(kind=>{
+    await open();assert.equal((await state()).mode,'document',mutation);assert.equal(await page.locator('.echsDocument').count(),1,mutation);
+    await page.evaluate(kind=>{
       if(kind==='gate')document.documentElement.dataset.lessonGate='denied';
       if(kind==='account')fixture.account({id:'other'});
       if(kind==='token')fixture.token('changed');
