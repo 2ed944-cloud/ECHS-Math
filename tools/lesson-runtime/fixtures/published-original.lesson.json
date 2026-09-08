@@ -1,0 +1,65 @@
+{
+  "schema_version": "echs.lesson.v1",
+  "document_version": 1,
+  "lesson_id": "b0b4cd8b-e110-45fd-948f-d3ee06c843a1",
+  "course_version_id": "7314e157-f5f5-4492-bedd-b787730cf6d1",
+  "unit_id": "fixture:unit-1",
+  "topic_id": "fixture:continuity",
+  "slug": "original-continuity-contract-fixture",
+  "title": "Continuity contract fixture",
+  "objectives": [{"id": "fixture:observe-join", "text": "Describe how matching values join two continuous pieces."}],
+  "skills": ["fixture:explain"],
+  "publication": {"status": "published", "audience": "public", "revision": 1},
+  "accessibility": {"language": "en", "summary": "Original schema test content with descriptive text and spoken mathematics."},
+  "variants": {"contexts": ["neutral", "qatar"]},
+  "slides": [
+    {
+      "id": "continuity-introduction",
+      "title": "A continuous join",
+      "layout": "single",
+      "blocks": [
+        {
+          "id": "continuity-description",
+          "type": "rich-text",
+          "version": 1,
+          "content": {"paragraphs": [{"type": "paragraph", "children": [
+            {"type": "text", "text": "Compare the limit with the function value at ", "marks": ["strong"]},
+            {"type": "math", "tex": "x=a", "spoken": "x equals a"},
+            {"type": "text", "text": ". A continuous join requires both to agree."}
+          ]}]}
+        }
+      ]
+    },
+    {
+      "id": "continuity-statement",
+      "title": "State the condition",
+      "layout": "two-column",
+      "blocks": [
+        {
+          "id": "continuity-equation",
+          "type": "math",
+          "version": 1,
+          "content": {"tex": "\\lim_{x\\to a}f(x)=f(a)", "spoken": "The limit of f of x as x approaches a equals f of a.", "display": true}
+        },
+        {
+          "id": "continuity-callout",
+          "type": "callout",
+          "version": 1,
+          "content": {"kind": "definition", "title": "Check all conditions", "body": {"paragraphs": [{"type": "paragraph", "children": [
+            {"type": "text", "text": "The function value and the two-sided limit must exist and agree.", "marks": ["em"]}
+          ]}]}}
+        }
+      ]
+    },
+    {
+      "id": "continuity-representations",
+      "title": "Connect representations",
+      "layout": "three-panel",
+      "blocks": [
+        {"id": "continuity-symbols", "type": "rich-text", "version": 1, "content": {"paragraphs": [{"type": "paragraph", "children": [{"type": "text", "text": "Use symbols to state the limiting value."}]}]}},
+        {"id": "continuity-graph", "type": "rich-text", "version": 1, "content": {"paragraphs": [{"type": "paragraph", "children": [{"type": "text", "text": "Use a graph to describe how values approach the join."}]}]}},
+        {"id": "continuity-words", "type": "rich-text", "version": 1, "content": {"paragraphs": [{"type": "paragraph", "children": [{"type": "text", "text": "Use words to explain why the conditions agree."}]}]}}
+      ]
+    }
+  ]
+}

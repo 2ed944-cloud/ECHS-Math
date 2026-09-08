@@ -1,0 +1,142 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://2ed944-cloud.github.io/ECHS-Math/schemas/echs.lesson.v1.schema.json",
+  "title": "ECHS Lesson Document v1",
+  "description": "Controlled lesson content. No executable HTML, question payloads, answer keys, teacher notes, persistence, or authorization claims.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "document_version", "lesson_id", "course_version_id", "unit_id", "topic_id", "slug", "title", "objectives", "skills", "slides", "publication", "accessibility", "variants"],
+  "properties": {
+    "schema_version": {"const": "echs.lesson.v1"},
+    "document_version": {"type": "integer", "minimum": 1, "maximum": 2147483647},
+    "lesson_id": {"$ref": "#/definitions/uuid"},
+    "course_version_id": {"$ref": "#/definitions/uuid"},
+    "unit_id": {"$ref": "#/definitions/scopedId"},
+    "topic_id": {"$ref": "#/definitions/scopedId"},
+    "slug": {"type": "string", "minLength": 1, "maxLength": 160, "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "title": {"$ref": "#/definitions/title"},
+    "objectives": {"type": "array", "minItems": 1, "maxItems": 40, "items": {"$ref": "#/definitions/objective"}},
+    "skills": {"type": "array", "minItems": 1, "maxItems": 40, "uniqueItems": true, "items": {"$ref": "#/definitions/scopedId"}},
+    "slides": {"type": "array", "minItems": 1, "maxItems": 120, "items": {"$ref": "#/definitions/slide"}},
+    "publication": {"$ref": "#/definitions/publication"},
+    "accessibility": {"$ref": "#/definitions/accessibility"},
+    "variants": {"$ref": "#/definitions/variants"}
+  },
+  "definitions": {
+    "uuid": {"type": "string", "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"},
+    "stableId": {"type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"},
+    "scopedId": {"type": "string", "minLength": 1, "maxLength": 160, "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"},
+    "title": {"type": "string", "minLength": 1, "maxLength": 240, "allOf": [{"pattern": "\\S"}, {"pattern": "^[^<>\\u0000-\\u001f\\u007f]*$"}]},
+    "plainText": {"type": "string", "minLength": 1, "maxLength": 4000, "allOf": [{"pattern": "\\S"}, {"pattern": "^[^<>\\u0000-\\u0008\\u000b\\u000c\\u000e-\\u001f\\u007f]*$"}]},
+    "tex": {"type": "string", "minLength": 1, "maxLength": 4000, "allOf": [{"pattern": "\\S"}, {"pattern": "^[^\\u0000-\\u0008\\u000b\\u000c\\u000e-\\u001f\\u007f]*$"}]},
+    "objective": {
+      "type": "object", "additionalProperties": false, "required": ["id", "text"],
+      "properties": {"id": {"$ref": "#/definitions/scopedId"}, "text": {"$ref": "#/definitions/plainText"}}
+    },
+    "publication": {
+      "type": "object", "additionalProperties": false, "required": ["status", "audience", "revision"],
+      "properties": {
+        "status": {"enum": ["draft", "review", "approved", "published", "superseded", "archived"]},
+        "audience": {"enum": ["public", "institutional", "teacher"]},
+        "revision": {"type": "integer", "minimum": 1, "maximum": 2147483647}
+      }
+    },
+    "accessibility": {
+      "type": "object", "additionalProperties": false, "required": ["language", "summary"],
+      "properties": {
+        "language": {"type": "string", "minLength": 2, "maxLength": 35, "pattern": "^[A-Za-z]{2,3}(?:-[A-Za-z0-9]{2,8})*$"},
+        "summary": {"$ref": "#/definitions/plainText"}
+      }
+    },
+    "variants": {
+      "type": "object", "additionalProperties": false, "required": ["contexts"],
+      "properties": {"contexts": {"type": "array", "minItems": 1, "maxItems": 2, "uniqueItems": true, "items": {"enum": ["neutral", "qatar"]}}}
+    },
+    "slide": {
+      "type": "object", "additionalProperties": false, "required": ["id", "title", "layout", "blocks"],
+      "properties": {
+        "id": {"$ref": "#/definitions/stableId"},
+        "title": {"$ref": "#/definitions/title"},
+        "layout": {"enum": ["single", "two-column", "three-panel"]},
+        "blocks": {"type": "array", "minItems": 1, "maxItems": 40, "items": {"$ref": "#/definitions/block"}}
+      }
+    },
+    "textNode": {
+      "type": "object", "additionalProperties": false, "required": ["type", "text"],
+      "properties": {
+        "type": {"const": "text"},
+        "text": {"$ref": "#/definitions/plainText"},
+        "marks": {"type": "array", "maxItems": 2, "uniqueItems": true, "items": {"enum": ["strong", "em"]}}
+      }
+    },
+    "inlineMathNode": {
+      "type": "object", "additionalProperties": false, "required": ["type", "tex", "spoken"],
+      "properties": {"type": {"const": "math"}, "tex": {"$ref": "#/definitions/tex"}, "spoken": {"$ref": "#/definitions/plainText"}}
+    },
+    "paragraph": {
+      "type": "object", "additionalProperties": false, "required": ["type", "children"],
+      "properties": {
+        "type": {"const": "paragraph"},
+        "children": {"type": "array", "minItems": 1, "maxItems": 100, "items": {"oneOf": [{"$ref": "#/definitions/textNode"}, {"$ref": "#/definitions/inlineMathNode"}]}}
+      }
+    },
+    "richTextContent": {
+      "type": "object", "additionalProperties": false, "required": ["paragraphs"],
+      "properties": {"paragraphs": {"type": "array", "minItems": 1, "maxItems": 50, "items": {"$ref": "#/definitions/paragraph"}}}
+    },
+    "richTextBlock": {
+      "type": "object", "additionalProperties": false, "required": ["id", "type", "version", "content"],
+      "properties": {
+        "id": {"$ref": "#/definitions/stableId"}, "type": {"const": "rich-text"}, "version": {"const": 1},
+        "content": {"$ref": "#/definitions/richTextContent"}
+      }
+    },
+    "mathBlock": {
+      "type": "object", "additionalProperties": false, "required": ["id", "type", "version", "content"],
+      "properties": {
+        "id": {"$ref": "#/definitions/stableId"}, "type": {"const": "math"}, "version": {"const": 1},
+        "content": {
+          "type": "object", "additionalProperties": false, "required": ["tex", "spoken", "display"],
+          "properties": {"tex": {"$ref": "#/definitions/tex"}, "spoken": {"$ref": "#/definitions/plainText"}, "display": {"type": "boolean"}}
+        }
+      }
+    },
+    "calloutBlock": {
+      "type": "object", "additionalProperties": false, "required": ["id", "type", "version", "content"],
+      "properties": {
+        "id": {"$ref": "#/definitions/stableId"}, "type": {"const": "callout"}, "version": {"const": 1},
+        "content": {
+          "type": "object", "additionalProperties": false, "required": ["kind", "title", "body"],
+          "properties": {
+            "kind": {"enum": ["note", "definition", "warning", "example"]},
+            "title": {"$ref": "#/definitions/title"},
+            "body": {"$ref": "#/definitions/richTextContent"}
+          }
+        }
+      }
+    },
+    "legacyEmbeddedBlock": {
+      "type": "object", "additionalProperties": false, "required": ["id", "type", "version", "content"],
+      "properties": {
+        "id": {"$ref": "#/definitions/stableId"}, "type": {"const": "legacy-embedded"}, "version": {"const": 1},
+        "content": {
+          "type": "object", "additionalProperties": false, "required": ["source", "anchor", "sha256", "summary"],
+          "properties": {
+            "source": {"type": "string", "minLength": 14, "maxLength": 400, "pattern": "^lessons/(?:[A-Za-z0-9][A-Za-z0-9._-]*/)*[A-Za-z0-9][A-Za-z0-9._-]*\\.html$"},
+            "anchor": {"type": "string", "maxLength": 128, "pattern": "^(?:[A-Za-z][A-Za-z0-9_-]*)?$"},
+            "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+            "summary": {"$ref": "#/definitions/plainText"}
+          }
+        }
+      }
+    },
+    "block": {
+      "oneOf": [
+        {"$ref": "#/definitions/richTextBlock"},
+        {"$ref": "#/definitions/mathBlock"},
+        {"$ref": "#/definitions/calloutBlock"},
+        {"$ref": "#/definitions/legacyEmbeddedBlock"}
+      ]
+    }
+  }
+}
