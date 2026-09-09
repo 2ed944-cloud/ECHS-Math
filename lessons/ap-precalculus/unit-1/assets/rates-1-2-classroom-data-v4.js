@@ -1,7 +1,7 @@
 /* Original, reviewed ECHS Topic 1.2 classroom sequence. Fixed-template data; no student records. */
 (function(root){const plan={
   "version": "echs.rates-classroom.v1",
-  "revision": "4.1.0",
+  "revision": "4.2.0",
   "framework": "College Board AP Precalculus CED effective Fall 2026",
   "source": "https://apcentral.collegeboard.org/media/pdf/ap-precalculus-course-and-exam-description.pdf#page=38",
   "teacher": "Mr. Mohammad Abu Ghuwaleh",
@@ -519,10 +519,6 @@
             "The output change is 3−9=−6. The input change is 4−(−2)=6.",
             "The average is −6/6=−1 output unit per input unit. This fixes the endpoint change, not every interior change."
           ]
-        },
-        {
-          "type": "graph",
-          "key": "endpoint-options"
         }
       ]
     },
@@ -670,6 +666,12 @@
             "“Greatest decrease” asks for the largest magnitude of a negative net change.",
             "To combine interval rates, compute total signed change ÷ total width. Do not use an unweighted mean unless the widths are equal."
           ]
+        },
+        {
+          "type": "key-notes",
+          "items": [
+            "To recover an output: \\(f(b)=f(a)+r(b-a)\\). For example, if f(2)=7 and r=−3 on [2,6], then f(6)=7+(−3)(4)=−5."
+          ]
         }
       ]
     },
@@ -755,7 +757,7 @@
     {
       "id": "shape-language",
       "title": "Key idea · Direction and concavity are different questions",
-      "objective": "Connect Topic 1.1 graph behavior to the signed rates in Topic 1.2.",
+      "objective": "Connect the graphical concavity language from Topic 1.1 to rate comparisons in Topic 1.2.",
       "phase": "Explain and connect",
       "minutes": 5,
       "blocks": [
@@ -806,7 +808,7 @@
           "items": [
             "For example, −6, −4, −2 are increasing signed rates even though the function is decreasing.",
             "Concave up does not mean positive output or increasing function.",
-            "A smooth inflection point changes concavity. It need not have zero rate. A down-to-up change gives a local minimum of the signed rate when the stated smooth behavior supports that comparison."
+            "At a smooth inflection point, concavity changes; the rate need not be zero. Compare the signed rates on each side."
           ]
         },
         {
@@ -1169,9 +1171,9 @@
   ],
   "updates": {
     "tank-lab": {
-      "title": "Activity 1 · How quickly is the tank changing?",
+      "title": "Activity 1 · From an amount to a rate",
       "phase": "Activity 1",
-      "minutes": 7,
+      "minutes": 8,
       "mission": [
         "Predict whether the rate is positive or negative from minute 5 to minute 8.",
         "Set a=5 and b=8. Calculate the volume change and average rate, then check your reasoning.",
@@ -1187,7 +1189,7 @@
     "secant-lab": {
       "title": "Activity 2 · Move the endpoints",
       "phase": "Activity 2",
-      "minutes": 7,
+      "minutes": 8,
       "mission": [
         "Start with q(x)=x²−3x+2, a=1 and b=4. Predict the sign of the average rate.",
         "Use the coordinates and the dashed comparison line to find output change ÷ input change.",
@@ -1201,8 +1203,8 @@
       "minutes": 3
     },
     "unequal-lab": {
-      "title": "Activity 3 · A fair comparison",
-      "phase": "Activity 3",
+      "title": "Extra investigation · Compare unequal intervals",
+      "phase": "More practice",
       "minutes": 5,
       "mission": [
         "Compare the two output changes. Make an initial prediction.",
@@ -1211,9 +1213,9 @@
       ]
     },
     "zero-lab": {
-      "title": "Activity 4 · Does zero mean nothing happened?",
-      "phase": "Activity 4",
-      "minutes": 4,
+      "title": "Activity 3 · What do endpoints tell us?",
+      "phase": "Activity 3",
+      "minutes": 7,
       "mission": [
         "Predict the average rate for the rise-then-fall graph.",
         "Switch between all three graphs. Compare their endpoint values and their interior values.",
@@ -1236,9 +1238,9 @@
       "minutes": 4
     },
     "local-lab": {
-      "title": "Activity 5 · Zoom in with smaller intervals",
-      "phase": "Activity 5",
-      "minutes": 7,
+      "title": "Activity 6 · Estimate a rate near a point",
+      "phase": "Activity 6",
+      "minutes": 9,
       "mission": [
         "Set c=2 and h=0.5. Calculate the left, right and centered averages.",
         "Reduce h to 0.1 and then 0.01. How do the three estimates compare?",
@@ -1247,9 +1249,9 @@
       "reflection": "As the intervals get smaller, the nearby averages ___. This supports an estimated rate of ___ at x=2."
     },
     "compare-lab": {
-      "title": "Activity 6 · Compare rates at two points",
-      "phase": "Activity 6",
-      "minutes": 6,
+      "title": "Activity 7 · Compare two nearby rates",
+      "phase": "Activity 7",
+      "minutes": 7,
       "mission": [
         "Use the same half-width near A and B. Predict which local-rate estimate is greater.",
         "Check using the centered quotients. Then reduce h and compare again.",
@@ -1257,9 +1259,9 @@
       ]
     },
     "calculator-lab": {
-      "title": "Activity 7 · Calculate and interpret",
-      "phase": "Activity 7",
-      "minutes": 5,
+      "title": "Activity 9 · Calculate and interpret",
+      "phase": "Activity 9",
+      "minutes": 6,
       "mission": [
         "Use the interval [1.2,4.7] and keep the full calculator values.",
         "Switch to the small interval near t=2. Decide whether the question asks for an interval average or a point estimate.",
@@ -1282,9 +1284,9 @@
       "minutes": 2
     },
     "roadmap": {
-      "title": "Choose your practice and reference notes",
-      "phase": "Practice menu",
-      "minutes": 0
+      "title": "Review your work and choose more practice",
+      "phase": "Review",
+      "minutes": 2
     },
     "corner-lab": {
       "title": "Optional extension · When a centered estimate misleads",
@@ -1305,38 +1307,48 @@
     },
     "challenge02": {
       "phase": "Optional extension"
+    },
+    "net-change-notes": {
+      "title": "Activity 4 · Add the signed changes",
+      "phase": "Activity 4",
+      "minutes": 8
+    },
+    "amount-from-rate": {
+      "title": "Activity 5 · Greatest rate or greatest increase?",
+      "phase": "Activity 5",
+      "minutes": 8
+    },
+    "shape-language": {
+      "title": "Activity 8 · Direction and concavity",
+      "phase": "Activity 8",
+      "minutes": 8
+    },
+    "sum-rates-notes": {
+      "title": "Activity 10 · Combine rates on the same interval",
+      "phase": "Activity 10",
+      "minutes": 8
     }
   },
   "order": [
     "warm-up",
     "tank-lab",
-    "quotient",
     "secant-lab",
-    "graph-rate",
     "your-turn-1",
-    "endpoint-evidence",
+    "zero-lab",
     "interval-comparisons",
     "ideas-your-turn-1",
-    "unequal-lab",
-    "your-turn-2",
+    "your-turn-3",
     "net-change-notes",
-    "net-change-lab",
     "amount-from-rate",
-    "weighted-rate-lab",
     "ideas-your-turn-2",
+    "your-turn-2",
     "quadratic-signs",
     "ideas-your-turn-3",
-    "zero-lab",
-    "your-turn-3",
-    "day-one-exit",
-    "local-idea",
-    "local-worked",
     "local-lab",
     "your-turn-4",
     "compare-lab",
     "your-turn-5",
     "shape-language",
-    "shape-lab",
     "least-local-rate",
     "ideas-your-turn-4",
     "varying-decrease",
@@ -1344,38 +1356,28 @@
     "ideas-your-turn-5",
     "calculator-lab",
     "sum-rates-notes",
-    "sum-rates-lab",
     "ideas-your-turn-6",
-    "key-notes-checklist",
     "frq01",
     "exit",
-    "finish",
     "roadmap"
   ],
   "session1": [
     "warm-up",
     "tank-lab",
-    "quotient",
     "secant-lab",
-    "graph-rate",
     "your-turn-1",
-    "endpoint-evidence",
+    "zero-lab",
     "interval-comparisons",
     "ideas-your-turn-1",
-    "unequal-lab",
-    "your-turn-2"
+    "your-turn-3"
   ],
   "session2": [
     "net-change-notes",
-    "net-change-lab",
     "amount-from-rate",
-    "weighted-rate-lab",
     "ideas-your-turn-2",
+    "your-turn-2",
     "quadratic-signs",
-    "ideas-your-turn-3",
-    "zero-lab",
-    "your-turn-3",
-    "day-one-exit"
+    "ideas-your-turn-3"
   ],
   "navigation": [
     [
@@ -1391,7 +1393,7 @@
       "Changes and intervals"
     ],
     [
-      "local-idea",
+      "local-lab",
       "Nearby rates and shape"
     ],
     [
@@ -1400,7 +1402,7 @@
     ],
     [
       "roadmap",
-      "More practice"
+      "Review and practice"
     ]
   ],
   "chapters": [
@@ -1417,7 +1419,7 @@
       "label": "Changes and intervals"
     },
     {
-      "start": "local-idea",
+      "start": "local-lab",
       "label": "Nearby rates and shape"
     },
     {
@@ -1426,18 +1428,15 @@
     },
     {
       "start": "roadmap",
-      "label": "More practice"
+      "label": "Review and practice"
     }
   ],
   "session3": [
-    "local-idea",
-    "local-worked",
     "local-lab",
     "your-turn-4",
     "compare-lab",
     "your-turn-5",
     "shape-language",
-    "shape-lab",
     "least-local-rate",
     "ideas-your-turn-4",
     "varying-decrease",
@@ -1447,12 +1446,10 @@
   ],
   "session4": [
     "sum-rates-notes",
-    "sum-rates-lab",
     "ideas-your-turn-6",
-    "key-notes-checklist",
     "frq01",
     "exit",
-    "finish"
+    "roadmap"
   ],
   "coverage": [
     {
@@ -1473,7 +1470,7 @@
       ],
       "other": [],
       "explanation": "shape-language",
-      "activity": "shape-lab",
+      "activity": "shape-language",
       "practice": [
         "idea02"
       ]
@@ -1484,7 +1481,7 @@
         3
       ],
       "other": [],
-      "explanation": "endpoint-evidence",
+      "explanation": "zero-lab",
       "practice": [
         "idea03"
       ]
@@ -1498,7 +1495,7 @@
         6
       ],
       "explanation": "net-change-notes",
-      "activity": "net-change-lab",
+      "activity": "net-change-notes",
       "practice": [
         "idea04"
       ]
@@ -1512,7 +1509,7 @@
         1
       ],
       "explanation": "amount-from-rate",
-      "activity": "weighted-rate-lab",
+      "activity": "amount-from-rate",
       "practice": [
         "idea05",
         "idea12"
@@ -1577,12 +1574,472 @@
         5
       ],
       "explanation": "sum-rates-notes",
-      "activity": "sum-rates-lab",
+      "activity": "sum-rates-notes",
       "practice": [
         "idea10",
         "idea11"
       ]
     }
-  ]
+  ],
+  "merges": [
+    {
+      "from": "quotient",
+      "to": "tank-lab",
+      "mode": "replace"
+    },
+    {
+      "from": "graph-rate",
+      "to": "secant-lab",
+      "mode": "replace"
+    },
+    {
+      "from": "endpoint-evidence",
+      "to": "zero-lab",
+      "mode": "notes"
+    },
+    {
+      "from": "net-change-lab",
+      "to": "net-change-notes",
+      "mode": "activity"
+    },
+    {
+      "from": "weighted-rate-lab",
+      "to": "amount-from-rate",
+      "mode": "activity"
+    },
+    {
+      "from": "day-one-exit",
+      "to": "your-turn-3",
+      "mode": "checkpoint"
+    },
+    {
+      "from": "local-idea",
+      "to": "local-lab",
+      "mode": "replace"
+    },
+    {
+      "from": "local-worked",
+      "to": "local-lab",
+      "mode": "replace"
+    },
+    {
+      "from": "shape-lab",
+      "to": "shape-language",
+      "mode": "activity"
+    },
+    {
+      "from": "sum-rates-lab",
+      "to": "sum-rates-notes",
+      "mode": "activity"
+    },
+    {
+      "from": "finish",
+      "to": "roadmap",
+      "mode": "review"
+    },
+    {
+      "from": "start",
+      "to": "warm-up",
+      "mode": "replace"
+    },
+    {
+      "from": "interpret-sign",
+      "to": "zero-lab",
+      "mode": "replace"
+    },
+    {
+      "from": "formula-example",
+      "to": "secant-lab",
+      "mode": "replace"
+    },
+    {
+      "from": "reconstruct",
+      "to": "amount-from-rate",
+      "mode": "replace"
+    }
+  ],
+  "moveQuestions": [
+    {
+      "from": "quotient",
+      "to": "amount-rate"
+    },
+    {
+      "from": "local-worked",
+      "to": "signed-magnitude"
+    }
+  ],
+  "teachingNotes": {
+    "tank-lab": [
+      {
+        "type": "explanation",
+        "paragraphs": [
+          "A function value tells you an amount. Net change compares two amounts. Average rate tells you the net change for each unit of input."
+        ]
+      },
+      {
+        "type": "key-notes",
+        "items": [
+          "On an interval with distinct endpoints: \\(r=\\frac{f(b)-f(a)}{b-a}\\). Subtract final minus initial in both places.",
+          "Units are output units per input unit. A rate of 30 L/min would give the same net change as adding 30 L each minute; the actual rate may vary."
+        ]
+      },
+      {
+        "type": "worked",
+        "prompt": "A tank holds 820 L at minute 2 and 910 L at minute 5. Find and interpret the average rate.",
+        "steps": [
+          "Net change: 910−820=90 L. Time change: 5−2=3 min.",
+          "Average rate: 90/3=30 L/min. From minute 2 to minute 5, volume increased by an average of 30 liters per minute."
+        ]
+      }
+    ],
+    "secant-lab": [
+      {
+        "type": "explanation",
+        "paragraphs": [
+          "A secant line joins two points on a graph. Its slope is the average rate on their input interval."
+        ]
+      },
+      {
+        "type": "key-notes",
+        "items": [
+          "Read the axis scales and both endpoint coordinates. Use endpoint change even if the curve turns between them.",
+          "From a formula, evaluate each entire output first. The average of the two outputs is not a rate."
+        ]
+      },
+      {
+        "type": "worked",
+        "prompt": "For \\(q(x)=x^2-3x+2\\), compare the points with inputs 1 and 4.",
+        "steps": [
+          "\\(q(1)=0\\) and \\(q(4)=6\\).",
+          "The secant slope is \\(\\frac{6-0}{4-1}=2\\) output units per input unit.",
+          "Now move the endpoints in the activity and explain how the quotient changes."
+        ]
+      }
+    ],
+    "local-lab": [
+      {
+        "type": "explanation",
+        "paragraphs": [
+          "An interval average is exact for the chosen endpoints. Using a small interval to describe a point gives an estimate of the rate there, when that rate exists."
+        ]
+      },
+      {
+        "type": "key-notes",
+        "items": [
+          "Left [c−h,c] and right [c,c+h] have width h. Centered [c−h,c+h] has width 2h; keep h positive.",
+          "Use accurate values, compare both sides, and try smaller widths. Agreement supports a point-rate estimate."
+        ]
+      },
+      {
+        "type": "worked",
+        "prompt": "Given f(1.9)=3.61, f(2)=4 and f(2.1)=4.41, estimate the rate near x=2.",
+        "steps": [
+          "Left: (4−3.61)/0.1=3.9. Right: (4.41−4)/0.1=4.1.",
+          "Centered: (4.41−3.61)/0.2=4. These nearby averages support a rate of approximately 4 at x=2."
+        ]
+      }
+    ],
+    "compare-lab": [
+      {
+        "type": "explanation",
+        "paragraphs": [
+          "Compare how quickly the outputs change near each point. A larger function value does not establish a larger rate."
+        ]
+      },
+      {
+        "type": "key-notes",
+        "items": [
+          "Choose small intervals close to each point and compare more than one width. Use the actual width in each quotient.",
+          "For signed rates, −2 is greater than −5. For the speed of a decrease, −5 has the greater magnitude."
+        ]
+      },
+      {
+        "type": "worked",
+        "prompt": "Two nearby estimates are −8 and −3 liters per minute.",
+        "steps": [
+          "Both quantities are decreasing. The greater signed rate is −3 L/min.",
+          "The faster decrease is 8 L/min in magnitude, corresponding to the signed rate −8 L/min."
+        ]
+      }
+    ],
+    "calculator-lab": [
+      {
+        "type": "explanation",
+        "paragraphs": [
+          "Use the calculator to evaluate endpoint values accurately, then use the same average-rate definition."
+        ]
+      },
+      {
+        "type": "key-notes",
+        "items": [
+          "Enter (final output − initial output) ÷ (final input − initial input), with parentheses around each difference.",
+          "Keep full stored values until the final answer. Round as requested and include output units per input unit.",
+          "A quotient over a small interval is an estimate when the question asks about a point. State approximately and interpret the sign."
+        ]
+      }
+    ]
+  },
+  "stagedActivities": [
+    "tank-lab",
+    "secant-lab",
+    "zero-lab",
+    "net-change-notes",
+    "amount-from-rate",
+    "local-lab",
+    "compare-lab",
+    "shape-language",
+    "calculator-lab",
+    "sum-rates-notes"
+  ],
+  "questionNotes": {
+    "ct00": [
+      "Compare change per minute: divide each volume change by its own elapsed time.",
+      "Prepare a sentence naming the quantity and its units."
+    ],
+    "q01": [
+      "Read the quantity requested: net change means final output minus initial output.",
+      "A change uses output units. A rate uses output units per input unit."
+    ],
+    "q02": [
+      "Use \\(r=\\frac{f(b)-f(a)}{b-a}\\). Match the endpoint order in numerator and denominator.",
+      "State the interval, direction and output units per input unit."
+    ],
+    "q03": [
+      "Use \\(r=\\frac{f(b)-f(a)}{b-a}\\). Match the endpoint order in numerator and denominator.",
+      "State the interval, direction and output units per input unit."
+    ],
+    "q04": [
+      "Use \\(r=\\frac{f(b)-f(a)}{b-a}\\). Match the endpoint order in numerator and denominator.",
+      "State the interval, direction and output units per input unit."
+    ],
+    "ap01": [
+      "Use \\(r=\\frac{f(b)-f(a)}{b-a}\\). Match the endpoint order in numerator and denominator.",
+      "State the interval, direction and output units per input unit."
+    ],
+    "ap02": [
+      "Use \\(r=\\frac{f(b)-f(a)}{b-a}\\). Match the endpoint order in numerator and denominator.",
+      "State the interval, direction and output units per input unit."
+    ],
+    "ap06": [
+      "Use \\(r=\\frac{f(b)-f(a)}{b-a}\\). Match the endpoint order in numerator and denominator.",
+      "State the interval, direction and output units per input unit."
+    ],
+    "ap07": [
+      "Use \\(r=\\frac{f(b)-f(a)}{b-a}\\). Match the endpoint order in numerator and denominator.",
+      "State the interval, direction and output units per input unit."
+    ],
+    "ct07": [
+      "Use \\(r=\\frac{f(b)-f(a)}{b-a}\\). Match the endpoint order in numerator and denominator.",
+      "State the interval, direction and output units per input unit."
+    ],
+    "q05": [
+      "For a<b, the denominator is positive, so compare f(b) with f(a).",
+      "An interval average fixes the endpoint change. It does not determine every interior movement."
+    ],
+    "ap05": [
+      "For a<b, the denominator is positive, so compare f(b) with f(a).",
+      "An interval average fixes the endpoint change. It does not determine every interior movement."
+    ],
+    "ap15": [
+      "For a<b, the denominator is positive, so compare f(b) with f(a).",
+      "An interval average fixes the endpoint change. It does not determine every interior movement."
+    ],
+    "ap19": [
+      "For a<b, the denominator is positive, so compare f(b) with f(a).",
+      "An interval average fixes the endpoint change. It does not determine every interior movement."
+    ],
+    "ap20": [
+      "For a<b, the denominator is positive, so compare f(b) with f(a).",
+      "An interval average fixes the endpoint change. It does not determine every interior movement."
+    ],
+    "ap21": [
+      "For a<b, the denominator is positive, so compare f(b) with f(a).",
+      "An interval average fixes the endpoint change. It does not determine every interior movement."
+    ],
+    "ct04": [
+      "For a<b, the denominator is positive, so compare f(b) with f(a).",
+      "An interval average fixes the endpoint change. It does not determine every interior movement."
+    ],
+    "idea03": [
+      "For a<b, the denominator is positive, so compare f(b) with f(a).",
+      "An interval average fixes the endpoint change. It does not determine every interior movement."
+    ],
+    "ct01": [
+      "First find net change: \\(\\Delta f=r(b-a)\\). Add it to the starting output if a final output is requested.",
+      "Compare rates using their own widths; compare increases using signed changes."
+    ],
+    "ct08": [
+      "First find net change: \\(\\Delta f=r(b-a)\\). Add it to the starting output if a final output is requested.",
+      "Compare rates using their own widths; compare increases using signed changes."
+    ],
+    "ap08": [
+      "First find net change: \\(\\Delta f=r(b-a)\\). Add it to the starting output if a final output is requested.",
+      "Compare rates using their own widths; compare increases using signed changes."
+    ],
+    "ap10": [
+      "First find net change: \\(\\Delta f=r(b-a)\\). Add it to the starting output if a final output is requested.",
+      "Compare rates using their own widths; compare increases using signed changes."
+    ],
+    "ap16": [
+      "First find net change: \\(\\Delta f=r(b-a)\\). Add it to the starting output if a final output is requested.",
+      "Compare rates using their own widths; compare increases using signed changes."
+    ],
+    "ch01": [
+      "First find net change: \\(\\Delta f=r(b-a)\\). Add it to the starting output if a final output is requested.",
+      "Compare rates using their own widths; compare increases using signed changes."
+    ],
+    "q06": [
+      "Use values close to the point. A centered interval [c−h,c+h] has width 2h.",
+      "Compare quotients, not output heights. Use approximately when describing a point-rate estimate."
+    ],
+    "ct02": [
+      "Use values close to the point. A centered interval [c−h,c+h] has width 2h.",
+      "Compare quotients, not output heights. Use approximately when describing a point-rate estimate."
+    ],
+    "ct05": [
+      "Use values close to the point. A centered interval [c−h,c+h] has width 2h.",
+      "Compare quotients, not output heights. Use approximately when describing a point-rate estimate."
+    ],
+    "ap09": [
+      "Use values close to the point. A centered interval [c−h,c+h] has width 2h.",
+      "Compare quotients, not output heights. Use approximately when describing a point-rate estimate."
+    ],
+    "ap12": [
+      "Use values close to the point. A centered interval [c−h,c+h] has width 2h.",
+      "Compare quotients, not output heights. Use approximately when describing a point-rate estimate."
+    ],
+    "ap13": [
+      "Use values close to the point. A centered interval [c−h,c+h] has width 2h.",
+      "Compare quotients, not output heights. Use approximately when describing a point-rate estimate."
+    ],
+    "ap14": [
+      "Use values close to the point. A centered interval [c−h,c+h] has width 2h.",
+      "Compare quotients, not output heights. Use approximately when describing a point-rate estimate."
+    ],
+    "q07": [
+      "Order signed rates on a number line: a less negative number is greater.",
+      "For a faster decrease, compare magnitudes of the negative rates. Graph height answers a different question."
+    ],
+    "ct03": [
+      "Order signed rates on a number line: a less negative number is greater.",
+      "For a faster decrease, compare magnitudes of the negative rates. Graph height answers a different question."
+    ],
+    "idea01": [
+      "Order signed rates on a number line: a less negative number is greater.",
+      "For a faster decrease, compare magnitudes of the negative rates. Graph height answers a different question."
+    ],
+    "idea08": [
+      "Order signed rates on a number line: a less negative number is greater.",
+      "For a faster decrease, compare magnitudes of the negative rates. Graph height answers a different question."
+    ],
+    "idea09": [
+      "Order signed rates on a number line: a less negative number is greater.",
+      "For a faster decrease, compare magnitudes of the negative rates. Graph height answers a different question."
+    ],
+    "ap11": [
+      "Order signed rates on a number line: a less negative number is greater.",
+      "For a faster decrease, compare magnitudes of the negative rates. Graph height answers a different question."
+    ],
+    "q08": [
+      "Compute from the values the question supplies. Rounded outputs may conceal a small change.",
+      "Keep full calculator precision until the final rounding; distinguish an interval average from a point estimate."
+    ],
+    "ap22": [
+      "Compute from the values the question supplies. Rounded outputs may conceal a small change.",
+      "Keep full calculator precision until the final rounding; distinguish an interval average from a point estimate."
+    ],
+    "ap23": [
+      "Compute from the values the question supplies. Rounded outputs may conceal a small change.",
+      "Keep full calculator precision until the final rounding; distinguish an interval average from a point estimate."
+    ],
+    "ap24": [
+      "Compute from the values the question supplies. Rounded outputs may conceal a small change.",
+      "Keep full calculator precision until the final rounding; distinguish an interval average from a point estimate."
+    ],
+    "ct06": [
+      "Read each pair of endpoint coordinates and the axis scales.",
+      "For each stated interval, divide signed output change by its own width. Least means the smallest signed value."
+    ],
+    "idea06": [
+      "Read each pair of endpoint coordinates and the axis scales.",
+      "For each stated interval, divide signed output change by its own width. Least means the smallest signed value."
+    ],
+    "ap03": [
+      "Read each pair of endpoint coordinates and the axis scales.",
+      "For each stated interval, divide signed output change by its own width. Least means the smallest signed value."
+    ],
+    "ap04": [
+      "Evaluate the complete formula at each endpoint before subtracting.",
+      "Divide the output difference by the input difference. Averaging the outputs is a different calculation."
+    ],
+    "ap18": [
+      "Read each pair of endpoint coordinates and the axis scales.",
+      "For each stated interval, divide signed output change by its own width. Least means the smallest signed value."
+    ],
+    "idea04": [
+      "Add the signed changes to obtain net change; upward and downward changes can cancel.",
+      "Divide by total elapsed time. Initial amounts are unnecessary when all changes are given."
+    ],
+    "idea05": [
+      "Greatest rate compares r. Greatest increase compares r × interval width.",
+      "For a combined average, add signed changes and divide by total width."
+    ],
+    "idea12": [
+      "Greatest rate compares r. Greatest increase compares r × interval width.",
+      "For a combined average, add signed changes and divide by total width."
+    ],
+    "ap17": [
+      "Greatest rate compares r. Greatest increase compares r × interval width.",
+      "For a combined average, add signed changes and divide by total width."
+    ],
+    "ch06": [
+      "Greatest rate compares r. Greatest increase compares r × interval width.",
+      "For a combined average, add signed changes and divide by total width."
+    ],
+    "idea07": [
+      "Locate the vertex and decide whether the interval stays on one side.",
+      "If an interval crosses the vertex, compare its endpoint outputs; crossing alone does not determine the rate sign."
+    ],
+    "idea02": [
+      "First describe rising or falling outputs; then compare nearby signed rates.",
+      "Increasing signed rates mean concave up; decreasing signed rates mean concave down. A negative rate can increase."
+    ],
+    "idea10": [
+      "Add rates only when they refer to the same input interval. Opposite signs require a comparison of sizes.",
+      "An average-rate sign on every subinterval supports a monotonicity claim. One whole-interval average is weaker."
+    ],
+    "idea11": [
+      "Add rates only when they refer to the same input interval. Opposite signs require a comparison of sizes.",
+      "An average-rate sign on every subinterval supports a monotonicity claim. One whole-interval average is weaker."
+    ],
+    "ch02": [
+      "Write the average-rate quotient before simplifying. Substitute each complete endpoint expression.",
+      "Keep the inputs distinct and cancel factors only when the stated domain permits it."
+    ],
+    "ch03": [
+      "Write the average-rate quotient before simplifying. Substitute each complete endpoint expression.",
+      "Keep the inputs distinct and cancel factors only when the stated domain permits it."
+    ],
+    "ch04": [
+      "Compare left, right and centered nearby averages.",
+      "A centered value alone need not establish a rate at a corner; inspect whether the two sides support a common value."
+    ],
+    "ch05": [
+      "An interval average uses its endpoint outputs, including which points belong to the graph.",
+      "Interior discontinuities require separate local evidence; endpoint change alone does not locate them."
+    ]
+  },
+  "writtenNotes": [
+    "Show the endpoint quotient \\(\\frac{f(b)-f(a)}{b-a}\\), or an equivalent calculation, when a rate is requested.",
+    "Support comparisons with values or graph evidence. For a point rate, explain why the interval is nearby.",
+    "Use units and the requested precision; state only what the evidence supports."
+  ],
+  "presentation": {
+    "classroomSlides": 30,
+    "totalSlides": 67,
+    "optionalSlides": 37,
+    "questionDisplay": "one-at-a-time",
+    "bodyText": "24–28 px on classroom screens"
+  }
 };
 if(typeof module!=="undefined"&&module.exports)module.exports=plan;else root.RatesClassroomPlan=plan;})(typeof window!=="undefined"?window:globalThis);

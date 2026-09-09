@@ -56,7 +56,7 @@ assert.match(html,/data-lesson="1.2"/);assert.match(html,/data-framework="fall-2
 assert.doesNotMatch(html,/<script[^>]*src="https?:|lesson-1\.2-engine|lesson-1\.2-content/);
 const P=require(fileURLToPath(new URL('assets/rates-1-2-classroom-data-v4.js',base)));
 assert.equal(P.version,'echs.rates-classroom.v1');assert.equal(P.slides.length,27);assert.equal(P.questions.length,21);
-assert.deepEqual(P.order.slice(0,6),['warm-up','tank-lab','quotient','secant-lab','graph-rate','your-turn-1']);
+assert.deepEqual(P.order.slice(0,6),['warm-up','tank-lab','secant-lab','your-turn-1','zero-lab','interval-comparisons']);
 assert.deepEqual(P.questions.slice(0,9).map(q=>q.answer),[0,1,3,1,2,2,0,3,2]);
 // Independently calculated rates for the new tasks.
 near(90/3/(90/6),2);near((58-40)/2,9);near((82-58)/3,8);near((102-82)/4,5);
@@ -66,7 +66,7 @@ const I=require(fileURLToPath(new URL('assets/rates-1-2-ideas-model-v4.js',base)
 assert.deepEqual(P.questions.slice(9).map(q=>q.answer),[2,2,1,2,3,0,1,1,0,3,0,1]);
 assert.deepEqual(P.coverage.flatMap(x=>x.main).sort((a,b)=>a-b),[1,2,3,4,5,6,7,8,9,10]);
 assert.deepEqual(P.coverage.flatMap(x=>x.other).sort((a,b)=>a-b),[1,2,3,4,5,6]);
-for(const entry of P.coverage){assert.ok(P.order.includes(entry.explanation));const slide=P.slides.find(s=>s.id===entry.explanation);assert.ok(slide.blocks.some(b=>b.type==='key-notes'));assert.ok(slide.blocks.some(b=>b.type==='worked'));for(const qid of entry.practice)assert.ok(P.slides.some(s=>P.order.includes(s.id)&&s.blocks.some(b=>b.type==='questions'&&b.ids.includes(qid))));}
+for(const entry of P.coverage){assert.ok(P.order.includes(entry.explanation));const source=P.merges.find(m=>m.to===entry.explanation&&m.mode==='notes')?.from||entry.explanation;const slide=P.slides.find(s=>s.id===source);assert.ok(slide.blocks.some(b=>b.type==='key-notes'));assert.ok(slide.blocks.some(b=>b.type==='worked'));for(const qid of entry.practice)assert.ok(P.slides.some(s=>P.order.includes(s.id)&&s.blocks.some(b=>b.type==='questions'&&b.ids.includes(qid))));}
 assert.equal(I.net(I.ledgers.A),18);assert.equal(I.net(I.ledgers.B),18);near(I.net(I.ledgers.A)/20,.9);
 assert.deepEqual(I.intervals.map(I.amount),[14,-12,12,15]);near(I.combinedRate(I.intervals),29/12);
 assert.deepEqual(I.cumulative(I.ledgers.A),[0,14,8,16,13,18]);
@@ -83,6 +83,10 @@ for(const slide of P.slides){assert.ok(!ids.has(slide.id));ids.add(slide.id);}
 for(const id of P.order)assert.ok(ids.has(id));
 const aliases=JSON.parse(core.match(/const aliases=(\{.*?\});/)[1]);for(const [old,target] of Object.entries(aliases))assert.ok(ids.has(target),old+' -> '+target);
 const ctx=vm.createContext({window:{}});vm.runInContext(fs.readFileSync(new URL('../../../data/ap-precalculus-update.js',base),'utf8'),ctx);
-const lessons=ctx.window.ECHS_COURSES[0].units[0].lessons;assert.equal(lessons[0].interactiveSlides,(fs.readFileSync(new URL('AP_Precalculus_1.1_Change_in_Tandem_ECHS_Refined.html',base),'utf8').match(/class="slide"/g)||[]).length);assert.equal(lessons[1].interactiveSlides,82);assert.equal(lessons[1].assessment.written_points,36);assert.equal(lessons[1].interactiveInvestigations,14);
-assert.equal(lessons[1].assessment.learning_checks,29);
+const lessons=ctx.window.ECHS_COURSES[0].units[0].lessons;assert.equal(lessons[0].interactiveSlides,(fs.readFileSync(new URL('AP_Precalculus_1.1_Change_in_Tandem_ECHS_Refined.html',base),'utf8').match(/class="slide"/g)||[]).length);assert.equal(lessons[1].interactiveSlides,30);assert.equal(lessons[1].assessment.written_points,36);assert.equal(lessons[1].interactiveInvestigations,14);
+assert.equal(lessons[1].assessment.learning_checks,29);assert.equal(lessons[1].optionalSlides,37);assert.equal(lessons[1].totalInteractiveSlides,67);
+assert.equal(P.order.length,30);assert.equal(P.merges.length,15);assert.equal(ids.size-P.merges.length,67);assert.equal(new Set(P.merges.map(m=>m.from)).size,15);for(const m of P.merges){assert.ok(ids.has(m.from)&&ids.has(m.to));assert.ok(!P.order.includes(m.from));}
+assert.deepEqual(Object.keys(P.questionNotes).sort(),[...Q.questions,...P.questions].map(q=>q.id).sort());for(const q of [...Q.questions,...P.questions])assert.ok(P.questionNotes[q.id].length>=2);
+assert.deepEqual(P.stagedActivities.map(id=>P.updates[id].phase),Array.from({length:10},(_,i)=>'Activity '+(i+1)));
+
 console.log('AP Precalculus 1.2 mathematics: PASS (10 models, 59 independently verified answer keys, 6 six-point FRQs, scope, legacy links and portal metadata).');
