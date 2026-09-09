@@ -4,6 +4,7 @@ on:
     paths:
       - 'lesson-studio.html'
       - 'css/lesson-import.css'
+      - 'assets/vendor/katex/**'
       - 'js/lesson-studio/**'
       - 'js/lesson-runtime/**'
       - 'tools/lesson-import/**'
@@ -19,6 +20,7 @@ on:
     paths:
       - 'lesson-studio.html'
       - 'css/lesson-import.css'
+      - 'assets/vendor/katex/**'
       - 'js/lesson-studio/**'
       - 'js/lesson-runtime/**'
       - 'tools/lesson-import/**'

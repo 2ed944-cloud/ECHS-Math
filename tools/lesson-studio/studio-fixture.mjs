@@ -60,6 +60,7 @@ export function createStudioFixture({pinned = true, contentV2 = false,media = fa
     ['1.4','Financial Models','IB_AI_SL_1.4_financial_models_ECHS.html',4]
   ].map(([topic,title,file,position])=>({access_key:`ib-math-ai::0::${topic}`,course_key:'ib-math-ai',title,
     route_path:`lessons/ib-math-ai/unit-1/lessons/${file}`,unit_id:'legacy:ib-math-ai:unit:1',topic_id:`legacy:ib-math-ai:topic:${topic}`,topic,unit_index:0,is_ready:true,position})));
+  const catalogProjection=()=>catalog.map(({position,...row})=>clone(row)); // Production context omits its internal ordering position.
   const secondClass=includeSecondClass?{...clone(selectedClass),id:STUDIO_IDS.otherClass,name:selectedClass.name+' B',section:'B'}:null;
   const secondAssignment=secondClass&&assignment?{...clone(assignment),id:uuid(13),class_id:secondClass.id}:null;
   const snapshot = record => data({lesson:clone(record.lesson),head:clone(record.head),
@@ -101,7 +102,7 @@ export function createStudioFixture({pinned = true, contentV2 = false,media = fa
     const scopeClass=secondClass&&payload.class_id===secondClass.id?secondClass:selectedClass;
     const scopeAssignment=scopeClass===secondClass?secondAssignment:assignment;
     if(['context','list','create'].includes(args.p_action)&&payload.class_id&&![selectedClass.id,secondClass?.id].includes(payload.class_id))return {data:null,error:{code:'42501'}};
-    if (args.p_action === 'context') return {data:payload.class_id ? data({actor,class:clone(scopeClass),current_assignment:clone(scopeAssignment),catalog:clone(catalog),course_versions:[clone(course)]}) :
+    if (args.p_action === 'context') return {data:payload.class_id ? data({actor,class:clone(scopeClass),current_assignment:clone(scopeAssignment),catalog:catalogProjection(),course_versions:[clone(course)]}) :
       data({actor,classes:[{...clone(selectedClass),current_assignment:clone(assignment),course_versions:[clone(course)]},...(secondClass?[{...clone(secondClass),current_assignment:clone(secondAssignment),course_versions:[clone(course)]}]:[])]}),error:null};
     if (args.p_action === 'list') return {data:data({lessons:[...records.values()].filter(record=>record.lesson.class_id===scopeClass.id).map(record => clone(record.lesson))}),error:null};
     if (args.p_action === 'pin_course') {

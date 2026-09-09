@@ -1,3 +1,13 @@
+/* Unmodified KaTeX 0.16.27 main font; SIL OFL 1.1, see assets/vendor/katex/OFL.txt.
+   Loaded by Studio only. Supplies private-use glyphs such as the not-equal overlay
+   to its import, editor, preview and presentation surfaces without legacy CSS edits. */
+@font-face {
+  font-family: KaTeX_Main;
+  src: url('../assets/vendor/katex/KaTeX_Main-Regular.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+}
 #ib13-import-option { padding: .85rem; border: 1px solid #b9ccde; border-radius: .5rem; background: #f0f6fc; }
 #ib13-import-option p { margin: .4rem 0; line-height: 1.45; }
 #ib13-import-option button { white-space: normal; }

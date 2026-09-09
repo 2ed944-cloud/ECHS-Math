@@ -9,7 +9,7 @@ import {IB13_REFERENCE as reference} from '../../js/lesson-studio/ib13-reference
 import {createIB13Import} from '../../js/lesson-studio/ib13-import-model.mjs';
 
 const clone=value=>JSON.parse(JSON.stringify(value));
-const catalog=()=>({course_key:target.courseKey,access_key:target.accessKey,unit_id:target.unitId,topic_id:target.topicId,route_path:target.path,unit_index:0,topic:'1.3',position:3,is_ready:true,title:'Server catalog title'});
+const catalog=()=>({course_key:target.courseKey,access_key:target.accessKey,unit_id:target.unitId,topic_id:target.topicId,route_path:target.path,unit_index:0,topic:'1.3',is_ready:true,title:'Server catalog title'});
 const base=()=>createLessonDraft({lessonId:'b27b9a11-b5a2-4c56-8393-21ad0e01c901',courseVersionId:target.courseVersionId,catalog:catalog(),title:'Teacher geometric discussion',objective:'Explain the constant multiplier in the selected context.',skill:'teacher:representation',summary:'A teacher-selected geometric discussion.'});
 const build=(extra={})=>createIB13Import({baseDocument:base(),mathEngine:katex,...extra});
 const eligible=reference.slides.filter(row=>row.disposition==='native').map(row=>row.id);
@@ -17,6 +17,8 @@ function freeze(value){if(value&&typeof value==='object'){Object.values(value).f
 
 test('lightweight target uses every exact catalog binding and is inert',async()=>{
   assert.equal(isIB13ImportTarget({courseVersionId:target.courseVersionId,catalog:catalog()}),true);
+  assert.equal(Object.hasOwn(catalog(),'position'),false,'Production SQL context does not project catalog position');
+  assert.equal(isIB13ImportTarget({courseVersionId:target.courseVersionId,catalog:{...catalog(),position:99}}),true,'Optional ordering metadata is not identity or authority');
   for(const value of [undefined,null,{},[],{courseVersionId:target.courseVersionId},{catalog:catalog()}])assert.equal(isIB13ImportTarget(value),false);
   for(const [key,value] of Object.entries(catalog())){
     if(key==='title')continue;

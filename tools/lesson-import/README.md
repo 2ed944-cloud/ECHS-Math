@@ -20,6 +20,7 @@ Review corrections are visible in each native ledger entry:
 
 - Slides 9 and 26 state the nonzero/sign and integer-gap assumptions.
 - Slides 34–39 state positive-domain, monotonicity and first-stage restrictions; strict threshold inequalities are checked independently.
+- Slide 42 includes all three runtime sigma presets, their first included terms and inclusive counts (8, 7 and 6). The second preset uses `r` as its running index; the third begins at index zero. Native content presents those relationships statically; the original preset-switching buttons remain at the original route. Its existing count-line TeX escape defect is not reproduced.
 - Slide 55 distinguishes disjoint-period totals from repeated stock readings; summing medication stock readings is not labeled integrated exposure.
 - Slide 62 explicitly labels the data synthetic and states three-decimal rounding.
 - Candidate 69 stays a reference: its use of “Evaluate” as a command term is not supported by the current official AI guide glossary. No replacement glossary is silently imported.
@@ -29,7 +30,7 @@ The guide basis is the [official IB Mathematics: Applications and Interpretation
 
 ## Draft contract and safety
 
-`createIB13Import({baseDocument, selectedSlideIds, mathEngine})` requires a canonical institutional draft at revision 1 bound to the exact active first-assessment-2021 course version and original unit/topic. The caller verifies the complete catalog route with `isIB13ImportTarget`; the server remains authoritative for membership, class, course pin and route. Missing or mismatched target data returns false.
+`createIB13Import({baseDocument, selectedSlideIds, mathEngine})` requires a canonical institutional draft at revision 1 bound to the exact active first-assessment-2021 course version and original unit/topic. The caller verifies the complete catalog route with `isIB13ImportTarget`; the server remains authoritative for membership, class, course pin and route. Missing or mismatched target data returns false. The target uses only fields projected by the production context RPC; catalog position is server ordering metadata and is neither required nor treated as identity.
 
 Omitted selection chooses all 20 native candidates. Explicit selections must contain at least one unique eligible ID. Every result has 78 slots in original order; an unselected candidate becomes a reference, and the returned summary lists selected IDs in source order. Inputs and the frozen reference are never mutated. The model performs strict local KaTeX and canonical validation before returning a draft.
 

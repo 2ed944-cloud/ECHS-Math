@@ -3,11 +3,15 @@ import {readFile,mkdir,writeFile} from 'node:fs/promises';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {createRequire} from 'node:module';
+import {createHash} from 'node:crypto';
 
 const repository=fileURLToPath(new URL('../../',import.meta.url));
 const require=createRequire(new URL('../../question-bank/official/tools/package.json',import.meta.url));
 const {chromium}=require('playwright'),origin='https://ib13-import-fixture.example.test';
 const output=path.join(repository,'artifacts/lesson-import'),checks=[],errors=[],external=[],writes=[],paths=[];
+const fontPath='assets/vendor/katex/KaTeX_Main-Regular.woff2',fontBytes=await readFile(path.join(repository,fontPath));
+assert.deepEqual(fontBytes,await readFile(path.join(repository,'tools/lesson-runtime/node_modules/katex/dist/fonts/KaTeX_Main-Regular.woff2')));
+const fontVerification={family:'KaTeX_Main',sha256:createHash('sha256').update(fontBytes).digest('hex'),bytes:fontBytes.length,custom_glyphs_verified:false};
 const pass=label=>{checks.push(label);console.log('PASS '+label);};
 const source=`import {openIB13ImportDialog} from '/js/lesson-studio/import-dialog.mjs';
 import {IB13_REFERENCE} from '/js/lesson-studio/ib13-reference.mjs';
@@ -31,14 +35,15 @@ window.fixture={ready:true,
  retain(){this.retained={heading:document.querySelector('#ib13-import-preview h2'),checkbox:document.querySelector('[data-import-select]'),use:document.querySelector('#ib13-import-use'),source:document.querySelector('#ib13-import-source')};},
  retainedState(){const r=this.retained;return {heading:r.heading?.textContent||'',checked:r.checkbox.checked,disabled:r.checkbox.disabled,href:r.source.getAttribute('href'),use:r.use.textContent};},
  late(){this.retained.checkbox.checked=true;this.retained.checkbox.dispatchEvent(new Event('change',{bubbles:true}));this.retained.use.dispatchEvent(new MouseEvent('click',{bubbles:true}));},
- keepPreview(){this.oldPreview=document.querySelector('#ib13-import-preview h2');},previewCleared(){return this.oldPreview?.textContent==='';}
+ keepPreview(){this.oldPreview=document.querySelector('#ib13-import-preview h2');},previewCleared(){return this.oldPreview?.textContent==='';},
+ fontProof(){const preview=document.querySelector('#ib13-import-preview');for(const kind of ['editor','presentation']){const node=document.createElement('div');node.dataset.fontSurface=kind;node.className=kind==='editor'?'slide-canvas':'lesson-presentation-block';katex.render('u_n\\\\ne0\\\\quad r\\\\ne1',node,{throwOnError:true,trust:false,strict:'error'});preview.append(node);}return [...preview.querySelectorAll('.katex-html span')].filter(node=>[...node.childNodes].some(child=>child.nodeType===3&&/[\\uE000-\\uF8FF]/.test(child.textContent))).map((node,index)=>{node.dataset.fontGlyph=String(index);return {id:String(index),surface:node.closest('[data-font-surface]')?.dataset.fontSurface||'import-preview',codepoints:[...node.textContent].map(c=>c.codePointAt(0)).filter(n=>n>=0xe000&&n<=0xf8ff)};});}
 };`;
 const browser=await chromium.launch({headless:true,executablePath:process.env.ECHS_CHROMIUM_PATH||undefined});
 const context=await browser.newContext({viewport:{width:1440,height:1000},serviceWorkers:'block'});
 await context.route('**/*',async route=>{
  const request=route.request(),url=new URL(request.url());paths.push(url.pathname);if(!['GET','HEAD'].includes(request.method()))writes.push({url:url.href,method:request.method()});
  if(url.origin!==origin){external.push(url.href);return route.abort();}
- if(url.pathname==='/fixture.html')return route.fulfill({contentType:'text/html',body:'<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>IB import review fixture</title><link rel="stylesheet" href="/css/lesson-import.css"><link rel="stylesheet" href="/lessons/ib-math-ai/unit-1/assets/css/katex.css"></head><body><main><h1>Teacher workspace</h1><p>PRIVATE_TEACHER_NOTES outside the review dialog</p><button id="open">Open review fixture</button><dialog id="ib13-import-dialog"></dialog></main><script type="module" src="/fixture.mjs"></script></body></html>'});
+ if(url.pathname==='/fixture.html')return route.fulfill({contentType:'text/html',body:'<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><meta http-equiv="Content-Security-Policy" content="default-src &#39;self&#39;; script-src &#39;self&#39;; style-src &#39;self&#39; &#39;unsafe-inline&#39;; font-src &#39;self&#39;"><title>IB import review fixture</title><link rel="stylesheet" href="/css/lesson-import.css"><link rel="stylesheet" href="/lessons/ib-math-ai/unit-1/assets/css/katex.css"></head><body><main><h1>Teacher workspace</h1><p>PRIVATE_TEACHER_NOTES outside the review dialog</p><button id="open">Open review fixture</button><dialog id="ib13-import-dialog"></dialog></main><script type="module" src="/fixture.mjs"></script></body></html>'});
  if(url.pathname==='/fixture.mjs')return route.fulfill({contentType:'text/javascript',body:source});
  const file=path.resolve(repository,'.'+decodeURIComponent(url.pathname));if(!file.startsWith(path.resolve(repository)+path.sep))return route.fulfill({status:403,body:''});
  try{return route.fulfill({contentType:/\.m?js$/.test(file)?'text/javascript':file.endsWith('.css')?'text/css':file.endsWith('.woff2')?'font/woff2':'application/octet-stream',body:await readFile(file)});}catch{return route.fulfill({status:404,body:''});}
@@ -69,7 +74,15 @@ try{
  assert.equal(await page.locator('#ib13-import-preview-heading').innerText(),'Source slide '+eligible[1].sourceIndex+': '+eligible[1].title);
  let mathPreview;for(const row of eligible){await page.locator('[data-import-preview="'+row.id+'"]').click();if(await page.locator('#ib13-import-preview .katex').count()){mathPreview=row;break;}}
  assert.ok(mathPreview);assert.equal(await page.locator('#ib13-import-preview .katex-error').count(),0);
- pass('switching the single native preview clears retained outgoing nodes and renders original canonical mathematics with local KaTeX');
+ await page.locator('[data-import-preview="'+metadata.slides.find(row=>row.sourceIndex===5).id+'"]').click();
+ const glyphs=await page.evaluate(()=>fixture.fontProof());await page.evaluate(async()=>{await document.fonts.load('16px KaTeX_Main',String.fromCodePoint(0xe020));await document.fonts.ready;});
+ assert.deepEqual([...new Set(glyphs.map(row=>row.surface))].sort(),['editor','import-preview','presentation']);assert.ok(glyphs.every(row=>row.codepoints.includes(0xe020)));
+ const cdp=await context.newCDPSession(page);await cdp.send('DOM.enable');await cdp.send('CSS.enable');const dom=await cdp.send('DOM.getDocument');
+ for(const glyph of glyphs){const {nodeId}=await cdp.send('DOM.querySelector',{nodeId:dom.root.nodeId,selector:'[data-font-glyph="'+glyph.id+'"]'});const {fonts}=await cdp.send('CSS.getPlatformFontsForNode',{nodeId});assert.ok(fonts.some(font=>font.isCustomFont&&font.familyName==='KaTeX_Main'&&font.glyphCount>0),'Private-use glyph must use the shipped font');}
+ await cdp.detach();fontVerification.custom_glyphs_verified=true;fontVerification.glyph_nodes=glyphs.length;fontVerification.surfaces=['import-preview','editor','presentation'];
+ assert.equal(paths.filter(p=>p==='/'+fontPath).length,1);
+ fontVerification.font_requests=1;
+ pass('switching clears outgoing nodes and local KaTeX uses the exact custom font for not-equal glyphs across import, editor and presentation surfaces');
 
  await page.evaluate(()=>fixture.failPreview(true));await page.locator('[data-import-preview="'+mathPreview.id+'"]').click();assert.equal(await page.locator('#ib13-import-use').isDisabled(),true);assert.match(await page.locator('#ib13-import-error').innerText(),/preview is unavailable/);
  await page.locator('[data-import-select="'+eligible[0].id+'"]').uncheck();assert.equal(await page.locator('#ib13-import-use').isDisabled(),true);assert.match(await page.locator('#ib13-import-error').innerText(),/preview is unavailable/);await page.locator('#ib13-import-use').dispatchEvent('click');assert.equal((await page.evaluate(()=>fixture.state())).open,true);
@@ -122,5 +135,5 @@ try{
 
  await page.locator('#ib13-import-cancel').click();assert.equal(await page.locator('#ib13-import-dialog').innerHTML(),'');assert.deepEqual(await page.evaluate(()=>[Object.keys(localStorage),Object.keys(sessionStorage)]),[[],[]]);assert.deepEqual(errors,[]);assert.deepEqual(external,[]);assert.deepEqual(writes,[]);assert.equal(paths.includes('/'+metadata.source.path),false);assert.equal(paths.some(p=>/lesson-api|question-bank|practice/.test(p)),false);
  pass('the review makes no external, original-lesson, question, account or write requests and persists no browser data');
- await writeFile(path.join(output,'import-dialog-browser.json'),JSON.stringify({ok:true,groups:checks.length,checks,native_options:eligible.length,reference_options:references.length,source_slides:metadata.slides.length,browser_errors:errors,external_requests:external,write_requests:writes,scope:'Actual Chromium with local canonical IB13 reference/model and local KaTeX, synthetic unsaved staff document and injected owner guard. No production account/API, question bank, source activity execution, saving, publication or student-route authority is claimed.'},null,2)+'\n');
+ await writeFile(path.join(output,'import-dialog-browser.json'),JSON.stringify({ok:true,groups:checks.length,checks,native_options:eligible.length,reference_options:references.length,source_slides:metadata.slides.length,browser_errors:errors,external_requests:external,write_requests:writes,font_verification:fontVerification,scope:'Actual Chromium with local canonical IB13 reference/model and local KaTeX, synthetic unsaved staff document and injected owner guard. No production account/API, question bank, source activity execution, saving, publication or student-route authority is claimed.'},null,2)+'\n');
 }finally{await context.close();await browser.close();}

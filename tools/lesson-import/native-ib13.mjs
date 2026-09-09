@@ -93,13 +93,20 @@ export const NATIVE_IB13 = {
       ['Decay below T',math('u_{k-1}\\ge T','u sub k minus one is at least T'),math('u_k<T','u sub k is less than T')]]),
     rich(paragraph('Monotonicity rules out all earlier stages once the previous one fails. Equality at the previous stage is allowed because the target condition is strict. For a first-stage answer, test stage 1 directly; there is no stage 0 in this indexing convention.'))
   ],['Monotonicity and first-stage exception added to make the minimality claim valid.']),
-  42: entry(['sigma lower bound','sigma upper bound','summand','term count'],[
+  42: entry(['sigma lower bound','sigma upper bound','summand','term count','three runtime presets','shifted first index','zero-based index'],[
     equation('\\sum_{k=1}^{8}5(2)^{k-1}','The sum, from k equals one to eight, of five times two to the power k minus one'),
     table('Read every part of the sigma expression',['Part','Meaning'],[
       ['Lower index 1','Begin by substituting k = 1.'],['Upper index 8','Finish by substituting k = 8.'],
       ['Summand 5 times 2 to the power k minus 1','This rule supplies each term being added.'],['Number of terms','There are eight integer index values, including both endpoints.']]),
-    rich(paragraph('The index is a running placeholder. It changes from one term to the next; the sigma symbol instructs us to add all the resulting values.'))
-  ]),
+    rich(paragraph('The index is a running placeholder. It changes from one term to the next; the sigma symbol instructs us to add all the resulting values. The original lesson also offers these two presets:')),
+    equation('\\sum_{r=3}^{9}4(1.5)^{r-1}','The sum, from r equals three to nine, of four times one point five to the power r minus one'),
+    equation('\\sum_{j=0}^{5}12(-0.5)^j','The sum, from j equals zero to five, of twelve times negative zero point five to the power j'),
+    table('Compare all three index ranges',['Index range','First included term','Number of terms'],[
+      ['k = 1 through 8',math('5(2)^0=5','Five times two to the power zero equals five'),'8 − 1 + 1 = 8'],
+      ['r = 3 through 9',math('4(1.5)^2=9','Four times one point five squared equals nine'),'9 − 3 + 1 = 7'],
+      ['j = 0 through 5',math('12(-0.5)^0=12','Twelve times negative zero point five to the power zero equals twelve'),'5 − 0 + 1 = 6']]),
+    rich(paragraph('In the second expression, r is the running index; the geometric multiplier is 1.5. Starting at index 3 changes the first included term. In the third expression, index 0 is valid for this sigma expression and contributes its first term; the negative multiplier makes signs alternate. Each range includes both endpoints. The original lesson retains the buttons that switch between these presets.'))
+  ],['All three presets added by the original runtime are represented as native formulas and index relationships. The preset-switching controls remain in the original lesson; the original count-line escape defect is not reproduced.']),
   43: entry(['shifted sigma bounds','inclusive count','first included term'],[
     equation('\\sum_{k=p}^{q}u_k=u_p+u_{p+1}+\\cdots+u_q','The sum from k equals p to q includes u sub p through u sub q'),
     rich(paragraph('Take p and q to be integers with p at least 1 and q at least p. Both endpoint terms are included.')),

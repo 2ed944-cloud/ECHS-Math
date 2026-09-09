@@ -71,6 +71,24 @@ test('sigma endpoints and shifted sums use the first included term and inclusive
   assert.match(content(42),/k=1/);assert.match(content(43),/q-p\+1/);assert.match(content(43),/exactly one term/);
 });
 
+test('all three runtime sigma presets retain exact expressions, bounds, first terms and inclusive counts',()=>{
+  const cases=[
+    {tex:'\\sum_{k=1}^{8}5(2)^{k-1}',low:1,high:8,term:k=>5*2**(k-1),first:5,count:8,total:1275},
+    {tex:'\\sum_{r=3}^{9}4(1.5)^{r-1}',low:3,high:9,term:r=>4*1.5**(r-1),first:9,count:7,total:289.546875},
+    {tex:'\\sum_{j=0}^{5}12(-0.5)^j',low:0,high:5,term:j=>12*(-.5)**j,first:12,count:6,total:7.875}
+  ];
+  const slide=reference.slides[41].nativeSlide,expressions=nodes(slide,node=>node.mode==='tex').map(node=>node.tex);
+  for(const item of cases){
+    assert.ok(expressions.includes(item.tex),item.tex);
+    const direct=[];for(let index=item.low;index<=item.high;index++)direct.push(item.term(index));
+    assert.equal(direct.length,item.count);assert.equal(direct[0],item.first);near(direct.reduce((a,b)=>a+b,0),item.total);
+  }
+  const comparison=slide.blocks.filter(block=>block.type==='table').at(-1);
+  assert.deepEqual(comparison.content.rows.map(row=>row.cells[2][0].text),['8 − 1 + 1 = 8','9 − 3 + 1 = 7','5 − 0 + 1 = 6']);
+  assert.match(content(42),/r is the running index/);assert.match(content(42),/index 0 is valid/);
+  assert.match(reference.slides[41].reviewNotes.join(' '),/controls remain in the original/);
+});
+
 test('compounding and synthetic residual table preserve exact values and stated rounding',()=>{
   assert.equal(11**3,1331);near(1.1**3,1331/1000);near((1.1**3-1)*100,33.1);near(1+3*.1,1.3);
   const observed=[100,121,143,174],model=terms(100,1.2,4),expected=['1.000','1.008','0.993','1.007'];

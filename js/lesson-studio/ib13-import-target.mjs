@@ -23,6 +23,6 @@ export function isIB13ImportTarget(value) {
       catalog.course_key === binding.courseKey && catalog.access_key === binding.accessKey &&
       catalog.unit_id === binding.unitId && catalog.topic_id === binding.topicId &&
       catalog.route_path === binding.path && catalog.unit_index === 0 && catalog.topic === '1.3' &&
-      catalog.position === 3 && catalog.is_ready === true);
+      catalog.is_ready === true);
   } catch { return false; }
 }

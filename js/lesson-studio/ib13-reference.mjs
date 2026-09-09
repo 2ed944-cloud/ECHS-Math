@@ -2066,14 +2066,19 @@ const reference = {
         "sigma lower bound",
         "sigma upper bound",
         "summand",
-        "term count"
+        "term count",
+        "three runtime presets",
+        "shifted first index",
+        "zero-based index"
       ],
       "pacing": {
         "teachingBlock": "Lesson 1.3B",
         "classification": "🟢 Core (Teach in class)",
         "sourceIndex": 42
       },
-      "reviewNotes": [],
+      "reviewNotes": [
+        "All three presets added by the original runtime are represented as native formulas and index relationships. The preset-switching controls remain in the original lesson; the original count-line escape defect is not reproduced."
+      ],
       "nativeSlide": {
         "id": "ib13-fda45056e7b1-s042",
         "title": "Sigma notation for geometric terms",
@@ -2192,7 +2197,157 @@ const reference = {
                   "children": [
                     {
                       "type": "text",
-                      "text": "The index is a running placeholder. It changes from one term to the next; the sigma symbol instructs us to add all the resulting values."
+                      "text": "The index is a running placeholder. It changes from one term to the next; the sigma symbol instructs us to add all the resulting values. The original lesson also offers these two presets:"
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "id": "ib13-fda45056e7b1-s042-b04",
+            "type": "math",
+            "version": 2,
+            "content": {
+              "source": {
+                "mode": "tex",
+                "tex": "\\sum_{r=3}^{9}4(1.5)^{r-1}"
+              },
+              "spoken": "The sum, from r equals three to nine, of four times one point five to the power r minus one",
+              "display": true
+            }
+          },
+          {
+            "id": "ib13-fda45056e7b1-s042-b05",
+            "type": "math",
+            "version": 2,
+            "content": {
+              "source": {
+                "mode": "tex",
+                "tex": "\\sum_{j=0}^{5}12(-0.5)^j"
+              },
+              "spoken": "The sum, from j equals zero to five, of twelve times negative zero point five to the power j",
+              "display": true
+            }
+          },
+          {
+            "id": "ib13-fda45056e7b1-s042-b06",
+            "type": "table",
+            "version": 1,
+            "content": {
+              "caption": "Compare all three index ranges",
+              "row_header": true,
+              "columns": [
+                {
+                  "id": "column-1",
+                  "label": "Index range"
+                },
+                {
+                  "id": "column-2",
+                  "label": "First included term"
+                },
+                {
+                  "id": "column-3",
+                  "label": "Number of terms"
+                }
+              ],
+              "rows": [
+                {
+                  "id": "row-1",
+                  "cells": [
+                    [
+                      {
+                        "type": "text",
+                        "text": "k = 1 through 8"
+                      }
+                    ],
+                    [
+                      {
+                        "type": "math",
+                        "source": {
+                          "mode": "tex",
+                          "tex": "5(2)^0=5"
+                        },
+                        "spoken": "Five times two to the power zero equals five"
+                      }
+                    ],
+                    [
+                      {
+                        "type": "text",
+                        "text": "8 − 1 + 1 = 8"
+                      }
+                    ]
+                  ]
+                },
+                {
+                  "id": "row-2",
+                  "cells": [
+                    [
+                      {
+                        "type": "text",
+                        "text": "r = 3 through 9"
+                      }
+                    ],
+                    [
+                      {
+                        "type": "math",
+                        "source": {
+                          "mode": "tex",
+                          "tex": "4(1.5)^2=9"
+                        },
+                        "spoken": "Four times one point five squared equals nine"
+                      }
+                    ],
+                    [
+                      {
+                        "type": "text",
+                        "text": "9 − 3 + 1 = 7"
+                      }
+                    ]
+                  ]
+                },
+                {
+                  "id": "row-3",
+                  "cells": [
+                    [
+                      {
+                        "type": "text",
+                        "text": "j = 0 through 5"
+                      }
+                    ],
+                    [
+                      {
+                        "type": "math",
+                        "source": {
+                          "mode": "tex",
+                          "tex": "12(-0.5)^0=12"
+                        },
+                        "spoken": "Twelve times negative zero point five to the power zero equals twelve"
+                      }
+                    ],
+                    [
+                      {
+                        "type": "text",
+                        "text": "5 − 0 + 1 = 6"
+                      }
+                    ]
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "id": "ib13-fda45056e7b1-s042-b07",
+            "type": "rich-text",
+            "version": 2,
+            "content": {
+              "nodes": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "type": "text",
+                      "text": "In the second expression, r is the running index; the geometric multiplier is 1.5. Starting at index 3 changes the first included term. In the third expression, index 0 is valid for this sigma expression and contributes its first term; the negative multiplier makes signs alternate. Each range includes both endpoints. The original lesson retains the buttons that switch between these presets."
                     }
                   ]
                 }
