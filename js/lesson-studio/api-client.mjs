@@ -3,6 +3,14 @@ import {supportsLessonMedia,assertLessonAssetMetadata,readLessonAssetResponse,LE
 
 export const STUDIO_API_CONTRACT = 'echs.lesson.store.v1';
 export const STUDIO_AUTHORING_CONTRACT = 'echs.lesson.authoring.v1';
+export const STUDIO_RECOVERY_CONTRACT = 'echs.lesson.recovery.v1';
+
+export function supportsDraftRecovery(value) {
+  return Boolean(value && typeof value === 'object' && !Array.isArray(value) &&
+    JSON.stringify(Object.keys(value).sort()) === JSON.stringify(['checkpoint_version','cipher','contract','max_plaintext_bytes']) &&
+    value.contract === STUDIO_RECOVERY_CONTRACT && value.cipher === 'AES-256-GCM' &&
+    value.checkpoint_version === 1 && value.max_plaintext_bytes === 4194304);
+}
 
 export function supportsStudioContentV2(value) {
   if(!value||typeof value!=='object'||Array.isArray(value))return false;
@@ -192,12 +200,19 @@ export function createStudioClient({window:win=globalThis.window,institution=win
     else requireValue(!own(row,'document')&&!own(row,'private_notes'));
   }
   function validateResponse(data,action,args){
-    safeJSON(data);requireValue(object(data)&&data.ok===true&&data.contract===STUDIO_API_CONTRACT);
+    safeJSON(data);requireValue(object(data)&&data.ok===true&&data.contract===(action==='recovery_key'?STUDIO_RECOVERY_CONTRACT:STUDIO_API_CONTRACT));
     const learned=[];
-    if(action==='context'){
+    if(action==='recovery_key'){
+      requireValue(JSON.stringify(Object.keys(data).sort())===JSON.stringify(['account_id','class_id','contract','key_base64','key_id','lesson_id','ok','organization_id']));
+      const binding=bindings.get(args.lesson_id);
+      requireValue(binding&&data.account_id===owner.id&&data.organization_id===owner.organization_id&&data.lesson_id===args.lesson_id&&data.class_id===binding.class_id&&UUID.test(data.key_id||''));
+      requireValue(typeof data.key_base64==='string'&&/^[A-Za-z0-9+/]{43}=$/.test(data.key_base64));
+      try{requireValue(atob(data.key_base64).length===32&&btoa(atob(data.key_base64))===data.key_base64);}catch{throw failure('invalid_response');}
+    } else if(action==='context'){
       accountScope(data.actor);
       data.authoring_capabilities=supportsStudioContentV2(data.authoring_capabilities)?data.authoring_capabilities:null;
       data.media_capabilities=supportsLessonMedia(data.media_capabilities)?data.media_capabilities:null;
+      data.recovery_capabilities=supportsDraftRecovery(data.recovery_capabilities)?data.recovery_capabilities:null;
       if(args.class_id){
         requireValue(object(data.class)&&data.class.id===args.class_id&&data.class.organization_id===owner.organization_id&&data.class.status==='active'&&text(data.class.name,240));
         assignment(data.current_assignment,args.class_id);courses(data.course_versions);
@@ -342,6 +357,7 @@ export function createStudioClient({window:win=globalThis.window,institution=win
   function dispose(){if(closed)return;closed=true;initialized=false;verified=null;owner=null;configuration=null;bindings.clear();uploadIds=new WeakMap();clearInterval(guardTimer);guardTimer=null;for(const controller of controllers)controller.abort(failure('disposed'));for(const remove of listeners.splice(0))remove();}
   const client={initialize,assertCurrent,actor:()=>assertCurrent(),dispose,
     uploadAsset,loadAsset,
+    recoveryKey:(id,options={})=>{knownAssetLesson(id);return post('recovery_key','/recovery-key',id,{},options);},
     listAssets:(id,options={})=>{knownAssetLesson(id);return bounded(async signal=>{const result=await assetFetch(pathFor(id)+'/assets',signal);return assetEnvelope(result.response,id,signal,{list:true});},options.signal);},
     context:(classId,options={})=>{if(classId!==undefined)identifier(classId);return request('context','/context'+(classId?'?class_id='+classId:''),classId?{class_id:classId}:{},'GET',options);},
     list:(classId,options={})=>request('list','/lessons?class_id='+identifier(classId),{class_id:classId},'GET',options),

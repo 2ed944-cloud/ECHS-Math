@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {createHash} from 'node:crypto';
 import katex from '../lesson-runtime/node_modules/katex/dist/katex.mjs';
-import { createStudioClient,STUDIO_API_CONTRACT,supportsStudioContentV2 } from '../../js/lesson-studio/api-client.mjs';
+import { createStudioClient,STUDIO_API_CONTRACT,supportsStudioContentV2,supportsDraftRecovery } from '../../js/lesson-studio/api-client.mjs';
 
 test('v2 authoring requires the exact complete capability contract; absent, partial and future contracts fail closed',()=>{
   const capability={contract:'echs.lesson.authoring.v1',content_version:2,blocks:{'rich-text':[1,2],math:[1,2],callout:[1,2],'legacy-embedded':[1]},math_expression_version:1};
@@ -68,6 +68,7 @@ function harness(t,{role='teacher',timeoutMs=500,assetTimeoutMs=500,meHook,confi
     }
     if(suffix.endsWith('/history'))return reply(url,envelope({versions:stored.versions,next_before_version:null}));
     if(suffix.includes('/versions/'))return reply(url,envelope({lesson:stored.lesson,version:stored.head}));
+    if(suffix.endsWith('/recovery-key'))return reply(url,{ok:true,contract:'echs.lesson.recovery.v1',account_id:ids.actor,organization_id:ids.org,class_id:ids.class,lesson_id:ids.lesson,key_id:id(90),key_base64:Buffer.alloc(32,7).toString('base64')});
     if(init.method==='GET')return reply(url,stored);
     assert.ok(!Object.hasOwn(body,'lesson_id'),'path lesson ID is not duplicated in strict HTTP body');
     assert.ok(!Object.hasOwn(body,'validated_version_id'),'only server supplies validated version ID');
@@ -86,6 +87,33 @@ function harness(t,{role='teacher',timeoutMs=500,assetTimeoutMs=500,meHook,confi
   t.after(()=>client.dispose());
   return {client,win,institution,config,calls,invalidations,writes,local,put,get stored(){return stored;},get clearCount(){return clearCount;},get meCount(){return meCount;}};
 }
+
+test('recovery capability is independent, exact and fails closed for incomplete or future contracts',()=>{
+  const value={contract:'echs.lesson.recovery.v1',cipher:'AES-256-GCM',checkpoint_version:1,max_plaintext_bytes:4194304};
+  assert.equal(supportsDraftRecovery(value),true);
+  for(const key of Object.keys(value)){const bad={...value};delete bad[key];assert.equal(supportsDraftRecovery(bad),false);}
+  for(const bad of [null,[],{},false,{...value,cipher:'AES-CBC'},{...value,checkpoint_version:2},{...value,max_plaintext_bytes:9999999},{...value,extra:true}])assert.equal(supportsDraftRecovery(bad),false);
+});
+test('recovery key requires a known lesson and uses authenticated uncached exact empty POST without persisting its key',async t=>{
+  const h=harness(t);await h.client.initialize();assert.throws(()=>h.client.recoveryKey(ids.lesson),{code:'invalid_request'});
+  await h.client.get(ids.lesson);const value=await h.client.recoveryKey(ids.lesson),call=h.calls.at(-1);
+  assert.equal(value.key_base64,Buffer.alloc(32,7).toString('base64'));assert.equal(call.init.body,'{}');assert.equal(call.init.method,'POST');
+  assert.equal(call.init.cache,'no-store');assert.equal(call.init.credentials,'omit');assert.match(call.init.headers.authorization,/^Bearer /);
+  assert.deepEqual(h.writes,[]);assert.equal(JSON.stringify([...h.local.values()]).includes(value.key_base64),false);
+});
+test('recovery key rejects wrong account organization class lesson key encoding and extra private response fields',async t=>{
+  const valid={ok:true,contract:'echs.lesson.recovery.v1',account_id:ids.actor,organization_id:ids.org,class_id:ids.class,lesson_id:ids.lesson,key_id:id(90),key_base64:Buffer.alloc(32,7).toString('base64')};
+  const invalid=[{account_id:id(99)},{organization_id:id(99)},{class_id:id(99)},{lesson_id:id(99)},{key_id:'invalid'},{key_base64:'A'.repeat(44)},{key_base64:'A'.repeat(42)+'B='},{key_base64:Buffer.alloc(31).toString('base64')},{contract:STUDIO_API_CONTRACT},{private_notes:NOTE}];
+  for(const change of invalid){const h=harness(t,{fetchHook:(url,init,{stored,reply})=>reply(url,url.endsWith('/recovery-key')?{...valid,...change}:stored)});await h.client.initialize();await h.client.get(ids.lesson);await assert.rejects(h.client.recoveryKey(ids.lesson),{code:'invalid_response'});assert.deepEqual(h.writes,[]);}
+});
+test('a late recovery key cannot cross an account change or configuration change',async t=>{
+  const wait=deferred();let entered;const started=new Promise(resolve=>{entered=resolve;});
+  const h=harness(t,{fetchHook:async(url,init,{stored,reply})=>{if(url.endsWith('/recovery-key')){entered();return wait.promise;}return reply(url,stored);}});
+  await h.client.initialize();await h.client.get(ids.lesson);const job=h.client.recoveryKey(ids.lesson);await started;
+  h.put('synthetic-new-owner-token', {...h.client.actor(),id:id(99)});
+  wait.resolve(reply(h.calls.at(-1).url,{ok:true,contract:'echs.lesson.recovery.v1',account_id:ids.actor,organization_id:ids.org,class_id:ids.class,lesson_id:ids.lesson,key_id:id(90),key_base64:Buffer.alloc(32,7).toString('base64')}));
+  await assert.rejects(job,{code:'session_changed'});assert.deepEqual(h.writes,[]);
+});
 
 test('verified staff initialization is forced, defensive, and refuses use before verification',async t=>{
   const h=harness(t);assert.throws(()=>h.client.actor(),{code:'not_initialized'});

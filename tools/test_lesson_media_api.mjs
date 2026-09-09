@@ -62,7 +62,8 @@ function harness({session=actor,asset=row(),capabilities=LESSON_MEDIA_CAPABILITI
     assert.equal(options.headers['content-type'],'application/json');assert.equal(options.redirect,'error');
     assert.equal(options.credentials,'omit');assert.equal(options.cache,'no-store');assert.ok(options.signal instanceof AbortSignal);
     const name=url.pathname.slice('/rest/v1/rpc/'.length);assert.equal(url.pathname,`/rest/v1/rpc/${name}`);
-    assert.ok(['api_session_lookup','lesson_store','lesson_store_health','lesson_content_capabilities','lesson_media_capabilities','lesson_asset_store'].includes(name));
+    assert.ok(['api_session_lookup','lesson_store','lesson_store_health','lesson_content_capabilities','lesson_media_capabilities','lesson_asset_store','lesson_recovery_capabilities'].includes(name));
+    if(name==='lesson_recovery_capabilities'){assert.deepEqual(JSON.parse(options.body),{});return json({code:'42883'},404);}
     const args=JSON.parse(options.body);state.calls.push({name,args});state.events.push(`rpc:${name==='lesson_asset_store'?args.p_action:name}`);
     if(['lesson_media_capabilities','lesson_content_capabilities','lesson_store_health'].includes(name))assert.deepEqual(args,{});
     else assert.equal(args.p_token_hash,tokenHash,'the raw school token never crosses PostgREST');

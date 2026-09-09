@@ -35,7 +35,7 @@ export function studioStorageState(role = 'teacher') {
   ] : []}]};
 }
 
-export function createStudioFixture({pinned = true, contentV2 = false,media = false} = {}) {
+export function createStudioFixture({pinned = true, contentV2 = false,media = false,recovery = false} = {}) {
   const calls = [], rpcCalls = [], external = [], failures = [], holds = [];
   const records = new Map(); let serial = 100;
   const assets=new Map(),assetBytes=new Map();
@@ -55,6 +55,12 @@ export function createStudioFixture({pinned = true, contentV2 = false,media = fa
     if (name === 'lesson_content_capabilities') return {data:contentV2 ? {contract:'echs.lesson.authoring.v1',content_version:2,math_expression_version:1,
       blocks:{'rich-text':[1,2],math:[1,2],callout:[1,2],'legacy-embedded':[1]}} : null,error:null};
     if(name==='lesson_media_capabilities')return {data:media?LESSON_MEDIA_CAPABILITIES:null,error:null};
+    if(name==='lesson_recovery_capabilities')return {data:recovery?{contract:'echs.lesson.recovery.v1',cipher:'AES-256-GCM',checkpoint_version:1,max_plaintext_bytes:4194304}:null,error:null};
+    if(name==='lesson_draft_recovery_key'){
+      const record=records.get(args.p_payload?.lesson_id);
+      if(!recovery||!record||!account||!['teacher','admin'].includes(account.role)||account.organization_id!==record.lesson.organization_id)return {data:null,error:{code:'42501'}};
+      return {data:{ok:true,contract:'echs.lesson.recovery.v1',account_id:account.id,organization_id:account.organization_id,class_id:record.lesson.class_id,lesson_id:record.lesson.id,key_id:uuid(900),key_base64:createHash('sha256').update('synthetic-recovery-key:'+account.id+':'+record.lesson.id).digest('base64')},error:null};
+    }
     if (name === 'api_session_lookup') return {data:account ? [{account_id:account.id,organization_id:account.organization_id,role:account.role,status:account.status,expires_at:expires}] : [],error:null};
     if(name==='lesson_asset_store'){
       const p=args.p_payload,record=records.get(p.lesson_id);
@@ -118,6 +124,7 @@ export function createStudioFixture({pinned = true, contentV2 = false,media = fa
   }:undefined;
   const handler = createLessonHandler({rpc,mathEngine:katex,allowedOrigins:[STUDIO_ORIGIN],siteBase:STUDIO_BASE,assetStorage});
   function actionFor(url,method) {
+    if(url.pathname.endsWith('/recovery-key'))return 'recovery_key';
     if(/\/assets\/[0-9a-f-]+\/bytes$/.test(url.pathname))return 'asset_bytes';
     if(/\/assets\/[0-9a-f-]+$/.test(url.pathname))return 'asset_read';
     if(url.pathname.endsWith('/assets'))return method==='POST'?'asset_upload':'asset_list';

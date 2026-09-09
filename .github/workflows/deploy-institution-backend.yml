@@ -140,6 +140,24 @@ jobs:
           print('Production lesson media transport, database and private bucket configuration: PASS')
           PY
 
+      - name: Verify deployed private draft recovery transport and key configuration
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error \
+            "https://${SUPABASE_PROJECT_ID}.supabase.co/functions/v1/lesson-api/health/recovery" \
+            --output "$RUNNER_TEMP/echs-recovery-health.json"
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          actual = json.loads((Path(os.environ['RUNNER_TEMP']) / 'echs-recovery-health.json').read_text())
+          expected = {'ok': True, 'service': 'lesson-api', 'contract': 'echs.lesson.store.v1',
+                      'recovery_capabilities': {'contract': 'echs.lesson.recovery.v1',
+                        'cipher': 'AES-256-GCM', 'checkpoint_version': 1, 'max_plaintext_bytes': 4194304}}
+          assert actual == expected, 'Deployed private recovery capability is unavailable or incompatible'
+          print('Production draft recovery transport, database and private key configuration: PASS')
+          PY
+
       - name: Verify production authentication and session transaction
         shell: bash
         run: |

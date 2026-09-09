@@ -2,7 +2,7 @@
 
 ## Scope and release status
 
-Implementation ready for review; actual PostgreSQL 15, complete PR CI and deployment verification are pending. This document does not mark ECHS-010 complete or deployed. The preceding accepted main revision is `d873f39b8c59bf495db6008dbed02a94c19f618a`.
+Complete and deployed through PR #358 at `33d90e6025946450e15e91afa16696ae5d245bf4`. All 22 final PR workflows, 16 production workflows and 92 public acceptance checks passed. PostgreSQL 15.19 applied all 24 migrations and passed 609 database checks plus 20 real HTTP/SQL groups. The preceding accepted main revision is `d873f39b8c59bf495db6008dbed02a94c19f618a`.
 
 This stage adds image, YouTube video, semantic table and PDF resource blocks to the existing authenticated Lesson Studio and document renderer. It preserves the `echs.lesson.v1` envelope, all original version 1/version 2 blocks, the separate ECHS-009 authoring capability, existing class/course assignments and institutional release gates. Existing student lesson routes are not automatically adopted into the new renderer. No question grading, mastery, lesson completion or curriculum metadata policy changes.
 
@@ -98,7 +98,7 @@ python tools/test_lesson_media_database.py --static-only --report reports/lesson
 deno check --frozen --config supabase/functions/lesson-api/deno.json supabase/functions/lesson-api/index.ts
 ```
 
-The completed local suites at this writing include 18 original schema groups, 15 server-document groups, 10 content-v2 groups, 23 existing API groups, five new media groups covering 92 shared content cases, 10 byte-inspection groups, 14 Storage protocol groups and 24 transport-inclusive media API groups. Static database input checks and the frozen deployable Deno check pass. Ten new Studio browser groups and eight institutional-media groups also pass locally. This is not an actual database execution result. Complete CI remains pending.
+The completed local suites at this writing include 18 original schema groups, 15 server-document groups, 10 content-v2 groups, 23 existing API groups, five new media groups covering 92 shared content cases, 10 byte-inspection groups, 14 Storage protocol groups and 24 transport-inclusive media API groups. Static database input checks and the frozen deployable Deno check pass. Ten new Studio browser groups and eight institutional-media groups also pass locally. Those local checks were supplemented by actual PostgreSQL 15.19 CI: 235 original, 203 content-v2 and 171 media database checks passed, together with eight original, seven content-v2 and five media HTTP/SQL groups. All 68 baseline checks passed in clean Linux CI. The final PR and production workflows and 92 public acceptance checks passed before release closure.
 
 The new `Private lesson media contracts` workflow (`.github/workflows/lesson-media.yml`) checks generated provenance and the exact deployable Deno entrypoint. Its browser job runs `test-media-renderer.mjs` and `test-institutional-media.mjs`, uploading `artifacts/lesson-media/`. The separate Studio workflow exercises authoring, invalid buffers, upload cancellation, state clearing and preview behavior.
 
