@@ -25,7 +25,15 @@ class MasterExecutionPlanTests(unittest.TestCase):
     def test_cycle(self):self.row('ECHS-C00')['depends_on']=['ECHS-C01'];self.rejected('cycle')
     def test_final_gate_cannot_omit_assessment_studio(self):self.row('ECHS-062')['depends_on'].remove('ECHS-028');self.rejected('final acceptance omits')
     def test_false_verified(self):self.row('ECHS-C02')['status']='VERIFIED';self.rejected('verified deployment required')
-    def test_code_is_not_tested(self):self.row('ECHS-C01')['status']='TESTED';self.rejected('passing tests')
+    def test_code_is_not_tested(self):
+        self.row('ECHS-C01')['tests']={'status':'NOT_RUN','evidence':[]}
+        self.row('ECHS-C01')['status']='TESTED';self.rejected('passing tests')
+    def test_latest_release_matches_verified_revision(self):
+        self.plan['last_verified_release']['main_sha']='0'*40;self.rejected('latest release revision')
+    def test_latest_release_requires_evidence(self):
+        self.plan['last_verified_release']['evidence']='docs/codex/not-a-receipt.json';self.rejected('latest release evidence')
+    def test_latest_release_cannot_claim_unverified_task(self):
+        self.plan['last_verified_release']['task']='ECHS-C09';self.rejected('latest release task')
     def test_passing_claim_without_evidence(self):self.row('ECHS-014')['tests']['evidence']=[];self.rejected('need evidence')
     def test_missing_deployed_revision(self):self.row('ECHS-014')['deployment']['verified_at_main']='local';self.rejected('verified revision')
     def test_unknown_component_task(self):self.plan['component_families'][0]['tasks']=['ECHS-999'];self.rejected('family task mapping')

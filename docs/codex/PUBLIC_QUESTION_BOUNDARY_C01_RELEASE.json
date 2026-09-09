@@ -1,0 +1,303 @@
+{
+  "stage": "ECHS-C01",
+  "status": "VERIFIED",
+  "verified_at_utc": "2026-09-09T17:38:00.553607+00:00",
+  "main_sha": "eacaff26f27a0c69debf8e5023686c2acf8e17f0",
+  "tree_sha": "54c4673d962e241e61f230e8f6edc75bd18a79e6",
+  "pr_head": "143500a6b364fe1d8ea04f32b193d8198770d4ec",
+  "pull_request": 363,
+  "source_files": [
+    {
+      "path": ".github/workflows/deploy-pages.yml",
+      "bytes": 17132,
+      "sha256": "10925d05fe490d42bb6322afbcf1e7aa5ee852a6ae52c9e8ce512f77755fff0a",
+      "git_blob_sha": "d5d6d5f463f94365085ba6fd8e6cb049ee4f453f"
+    },
+    {
+      "path": ".github/workflows/master-charter.yml",
+      "bytes": 725,
+      "sha256": "10035e09814a919e3bb45dcdb5ca2e4307c6fe1d1c292f15fdcb59fc9e4e3215",
+      "git_blob_sha": "00d832565523198c1ae29aac12226a38eab7f2cf"
+    },
+    {
+      "path": ".github/workflows/public-question-boundary.yml",
+      "bytes": 1615,
+      "sha256": "b275b21e921ea19f2c0d5dbc2815e4c2becc6f5d0e976bf32bb2dfc659fcaeb6",
+      "git_blob_sha": "1f7640a0f7fec233e05d13161a51ba3197026228"
+    },
+    {
+      "path": "docs/codex/EXECUTION_BACKLOG_30.md",
+      "bytes": 12584,
+      "sha256": "47f95a62e6677101f157253655a81968cdade3f3218a0ce48b279f75d6bf458b",
+      "git_blob_sha": "9821d247aac9cda6de6a3a75d79643202c8c857e"
+    },
+    {
+      "path": "docs/codex/IB_REFERENCE_IMPORT.md",
+      "bytes": 11441,
+      "sha256": "0db979146e121ed5a9b0dc981b9fc5018d7bf6e8a8222b6d6148f64a4b49f639",
+      "git_blob_sha": "46e74a2c018d42eb359375b5a8ee45a027ffda05"
+    },
+    {
+      "path": "docs/codex/MASTER_DEVELOPMENT_CHARTER_20260909.md",
+      "bytes": 47618,
+      "sha256": "e2076585e1acced01815823ace11918697774c9580b4fb50e37961cd47f3f69d",
+      "git_blob_sha": "ae6d0690982be2ce1133d51fb2f5fe08d75f3acf"
+    },
+    {
+      "path": "docs/codex/MASTER_EXECUTION_PLAN.json",
+      "bytes": 155430,
+      "sha256": "a303f4020cbabd42cd981c7683da4bbc360888486f1e4a23aeb6d9ff16b404dd",
+      "git_blob_sha": "8da5094171d2785e73ed9c91135bf8baff4a0c5a"
+    },
+    {
+      "path": "docs/codex/MASTER_SOURCE_BASELINE_20260909.json",
+      "bytes": 123167,
+      "sha256": "49f62dc29aa0e538760ae9b02349500ffb00f88d29e54d03b185a7e607cf148e",
+      "git_blob_sha": "6fc3c343aaa5d4dc162214d94567846e69ce0c0c"
+    },
+    {
+      "path": "docs/codex/MASTER_ARCHITECTURE_AUDIT_20260909.md",
+      "bytes": 11533,
+      "sha256": "47b3cd2d1ae8bd7bbcd58126b6dc84d94f2eee8563c49137f2eb98399ed71bb5",
+      "git_blob_sha": "7da0794c3cb241cc651f6eb123e814ab4bebf8ba"
+    },
+    {
+      "path": "docs/codex/MASTER_ARCHITECTURE_AUDIT_20260909.json",
+      "bytes": 37107,
+      "sha256": "797ad68f2abcfcbaab75853445d7a0aa773da3fb91c70f2e301192b8199b1dac",
+      "git_blob_sha": "b3e6e06a61283c2893d007cdcd9664d1a21948cb"
+    },
+    {
+      "path": "docs/codex/AP_CALCULUS_U2_U5_AUDIT.md",
+      "bytes": 3488,
+      "sha256": "7edc9f7eac8c81b035fc9f1945477796f5ddc0a0e336ecca3fbff9f11611dff7",
+      "git_blob_sha": "cbe8220577604071e8aec124b8d9bb40ebce2d22"
+    },
+    {
+      "path": "docs/codex/AP_CALCULUS_U2_U5_AUDIT.json",
+      "bytes": 1383940,
+      "sha256": "74575061e3ce68206f35d4feee87f9d2ad23cd9c743dd4af94959b7a9fa802cf",
+      "git_blob_sha": "9ef17bf443f462869287685581e020886eaac97e"
+    },
+    {
+      "path": "docs/codex/AP_CALCULUS_U2_U5_SOURCE_BASELINE.json",
+      "bytes": 22217,
+      "sha256": "ce39e59cff8779ad58b7ed018a5d095d59c23f6127bd7861f2e62d4b95502b63",
+      "git_blob_sha": "d2356c444702d01a1c11273f0f6d770004afd521"
+    },
+    {
+      "path": "docs/codex/LEGACY_PRIVATE_DELIVERY_AUDIT.md",
+      "bytes": 6321,
+      "sha256": "84f090a635a7e67fd705607ff03331eff0b142f728e1eba502a35a891fc46dc2",
+      "git_blob_sha": "665f757fd0e68bb24ebc07bdb309067d3f7faaa4"
+    },
+    {
+      "path": "docs/codex/LEGACY_PRIVATE_DELIVERY_AUDIT.json",
+      "bytes": 38206,
+      "sha256": "ea2ca4b453757b9ebdc45fc7d85f76a7241bdc8b5040bd69f0911522ee2b0bc3",
+      "git_blob_sha": "fc44763689b621158b0e39b88189463405fd40de"
+    },
+    {
+      "path": "docs/codex/PUBLIC_QUESTION_BOUNDARY_C01.md",
+      "bytes": 8200,
+      "sha256": "e371b323c624a80185a24378e766e1bfa6c139a3fb44c342582da5350b4a6522",
+      "git_blob_sha": "4d79b307be095dbd2562fa14e189ce1d2fa186a5"
+    },
+    {
+      "path": "tools/validate_master_execution_plan.py",
+      "bytes": 8474,
+      "sha256": "686d39c12612259712f44e8e2cb9983edc6744fd94a481f6031325dbe806e09f",
+      "git_blob_sha": "cea5c13c8cbe697d81490b526c1b946e81bae8a5"
+    },
+    {
+      "path": "tools/test_master_execution_plan.py",
+      "bytes": 4119,
+      "sha256": "ab8e40ed4c197d147080243c0fa7288c13d16ba051e8430cd46cc5414d40fab4",
+      "git_blob_sha": "d07e30849ee45ac4997d98f2d6c5a27d627a93aa"
+    },
+    {
+      "path": "tools/project_public_question_bank.py",
+      "bytes": 27211,
+      "sha256": "0c9052b23fcddb52ed409e73f36d5f14119a3ab8d0ff56364e5d8534b334f0cd",
+      "git_blob_sha": "294bc7c314ed8b9913f6c53baebf5576208df8cf"
+    },
+    {
+      "path": "tools/test_public_question_projection.py",
+      "bytes": 6759,
+      "sha256": "2b8515212baf50606448cbfe7b577f61b0c8b00b441a493169d63548a2d2cbbd",
+      "git_blob_sha": "0e726a34520e5c9b4d394a299e164055e59eb715"
+    },
+    {
+      "path": "tools/test_public_question_worker.mjs",
+      "bytes": 18376,
+      "sha256": "4beb43816247b9b3ffb3c94fe27c29ef7a5ea7658e68350c2c8d3d270bbd4908",
+      "git_blob_sha": "d96a54ff2ecd7f7b84503687ece1ce1611bfa0db"
+    },
+    {
+      "path": "tools/test_public_question_preservation.py",
+      "bytes": 17338,
+      "sha256": "54360250d3df6103e44923ba8c7c5f165ce5026cda79e0e189c98064cccfa34a",
+      "git_blob_sha": "a5a5692f3e119d2c1f8e02ef7d36d0347c44d3b8"
+    },
+    {
+      "path": "tools/build_public_question_fixture.py",
+      "bytes": 2042,
+      "sha256": "a3ccc39e12144cee939ffe5473e6b93ee32f637bb6b3833bb5e4791e7825be65",
+      "git_blob_sha": "d8f7a6253404202f49d795d3ac40a138c387116e"
+    },
+    {
+      "path": "tools/test_public_question_browser.mjs",
+      "bytes": 13854,
+      "sha256": "93a497285781398522f4ad27ebd7a6cf227ba115c55064b3d0d6711da660750b",
+      "git_blob_sha": "37e73a824cb4313ebe3ab1c69d5e2c6fe04f5c45"
+    },
+    {
+      "path": "tools/validate_pages_artifact.py",
+      "bytes": 9967,
+      "sha256": "0684da409b36253a222594de5910b49928e22db46e103dbefd62931a208a53c3",
+      "git_blob_sha": "00b3e8e4f0db666bf52d0005fcdde2f641e311de"
+    },
+    {
+      "path": "tools/validate_local_links.py",
+      "bytes": 3389,
+      "sha256": "05b3d3bfced8cdec56fffd90443c5b35b4e93c8e5f75eeb5b1ecc6ad27508d78",
+      "git_blob_sha": "f10edce9dbce5d254579048b73164d5585d0c4f5"
+    },
+    {
+      "path": "tools/test_local_links_artifacts.py",
+      "bytes": 1216,
+      "sha256": "4269f9029c0d585e0d39ac498a9dbd2443678cb2cc95d44798acfd98f8531a0b",
+      "git_blob_sha": "5a507354b0e0403a1e1e67adc08d42c882493115"
+    },
+    {
+      "path": "sw.js",
+      "bytes": 21238,
+      "sha256": "c0be954dcfc94284ed4299985fa7ead8e6d97b29325f5c92b52b68af50ead30a",
+      "git_blob_sha": "3cd29b6469b80a41183ed455eaa6b0c88e6a05f0"
+    }
+  ],
+  "database_migrations": [],
+  "evidence_files": [
+    {
+      "path": "browser/import-public-boundary-mobile.png",
+      "bytes": 133591,
+      "sha256": "8647f685290897de94f4b570488844a8819af65bb3762117bb43528aa9bb6dcf"
+    },
+    {
+      "path": "browser/network-metadata.json",
+      "bytes": 75569,
+      "sha256": "c1f987f7773e1714f8ad1d7c83c3352d8e7a70d2ccd903b1329cd9445f129ca2"
+    },
+    {
+      "path": "browser/public-home-desktop.png",
+      "bytes": 463946,
+      "sha256": "b855b2f9932e2c6204cae07555c57f7ede59cd6dc416b892194c30cea9e4e41e"
+    },
+    {
+      "path": "browser/restricted-archive-detail.png",
+      "bytes": 115859,
+      "sha256": "ab4a562a9524041486f92db3ab1984da06a77b310fe41903ec12f7c2b4a37166"
+    },
+    {
+      "path": "browser/restricted-archive-metadata.png",
+      "bytes": 118499,
+      "sha256": "3566ab131599510dca62de0bd6e34da86a2b933a77c7b5982e94d3c709827b67"
+    },
+    {
+      "path": "browser/results.json",
+      "bytes": 1254,
+      "sha256": "b265aadcbef830651452c018347309647653d4cbaf6a6d280c8658ec8e888fe3"
+    },
+    {
+      "path": "browser/teacher-public-review-desktop.png",
+      "bytes": 426492,
+      "sha256": "05485477902b7807c46ce3c741913352a110bfa9c0c837065300d159aa8a2432"
+    },
+    {
+      "path": "c01-approved-path-cache-install-repair.json",
+      "bytes": 1093,
+      "sha256": "43c55c5b60ffc7151149094ca3444d97bd34b73cd5479426abeacba6359e1772"
+    },
+    {
+      "path": "c01-final-local.json",
+      "bytes": 2152,
+      "sha256": "68d4a8531b85c2305756c59bc4f9be287da75dc21e995d1c695945ca826ccfec"
+    },
+    {
+      "path": "c01-independent-release-review.json",
+      "bytes": 4580,
+      "sha256": "bba837334f9e4d15972bfa56a96678644f1f6c7ce650eda19f6ba2a20b73c95c"
+    },
+    {
+      "path": "c01-initial-ci-diagnostic.json",
+      "bytes": 4414,
+      "sha256": "3426209a3e852dde28c10760173258b0ba6bd5cbc1130f4f076e850a82923ffe"
+    },
+    {
+      "path": "c01-owned-manifest.json",
+      "bytes": 2308,
+      "sha256": "91ce89079d3207c5f2853d3fc006607176ed62fa51b86f376b918f9e6a50479c"
+    },
+    {
+      "path": "c01-preservation-final-local.json",
+      "bytes": 1719,
+      "sha256": "01e4cff27bdbc6fcb3da753f2bdf8468b0a648df6e3083b2f294c19b2c3b9fac"
+    },
+    {
+      "path": "c01-runtime-source-main-verification.json",
+      "bytes": 715936,
+      "sha256": "e62564bd7aba3d82b051590d7c990ceb49985c6f04b3c40a82c39bc9c09f1877"
+    },
+    {
+      "path": "c01-source-manifest.json",
+      "bytes": 7281,
+      "sha256": "8e7b84a6068fbb42e86baabb20e3c48ce449d95b256325220c0148aaa4f6a2d9"
+    },
+    {
+      "path": "ci-metadata.json",
+      "bytes": 20184,
+      "sha256": "01a440c8f0f5be9ac97d8759ac68a393aec482673150842e46c2266eb01af5c1"
+    },
+    {
+      "path": "final-integrity-checks.json",
+      "bytes": 3807,
+      "sha256": "9358c9d770e29d4c27837c1291d665cfbb7751db1cbac0cbc5e0d4494211ff47"
+    },
+    {
+      "path": "live-acceptance.json",
+      "bytes": 3344682,
+      "sha256": "2ef682cd4ba6ad44d02c000a5337d4c80fd044f703c66ec73c82971706ad7cf1"
+    }
+  ],
+  "report": {
+    "path": "ECHS_C01_REPORT.md",
+    "bytes": 4906,
+    "sha256": "17d5454df1bd81d7685c42eff2c170ad0d92f94a17662f52f905c13931be5b95"
+  },
+  "test_counts": {
+    "pr_workflows": 15,
+    "main_workflows": 12,
+    "baseline": 68,
+    "projection": 9,
+    "worker": 26,
+    "preservation": 12,
+    "execution_board": 23,
+    "browser": 8,
+    "screenshots_reviewed": 5,
+    "public_gets": 1354,
+    "production_checks": 4062
+  },
+  "whole_charter_complete": false,
+  "next_work": [
+    "C09 membership authorization hotfix",
+    "C02 truthful mastery reporting",
+    "C08 private legacy delivery",
+    "C03 authenticated grading",
+    "C04 account ownership"
+  ],
+  "stage015_ready": false,
+  "scope": "C01 official-bank projection only. C09 membership, C02 mastery reporting, C08 private legacy delivery and C03/C04 grading/ownership remain separate work.",
+  "sealed_receipt_sha256": "00f9b0e304abf44b8dcacb9a4d9c8e1b27a99cda6288739e0a50783e7ecdc9bd",
+  "sealed_archive_sha256": "bd6e5c62af696ca36213ea6928c99e320eaad890fb90db7cc712e266dece1934",
+  "pages_run_url": "https://github.com/2ed944-cloud/ECHS-Math/actions/runs/34382509360"
+}
