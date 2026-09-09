@@ -1,13 +1,20 @@
 /* ECHS Parent Learning Report */
 (function(){
   "use strict";
+  // A mixed cached release must fail closed before rendering any practice claims.
+  if(!window.ECHSLearning?.projectLearningReport||!window.ECHSLearning?.projectMasteryRecord){
+    const main=document.querySelector(".institutionMain")||document.querySelector("main");
+    if(main){const notice=document.createElement("p");notice.setAttribute("role","status");notice.dataset.masteryStatusUnavailable="true";notice.textContent="Practice status is unavailable in this cached version. Reload the page to continue. Verified mastery is unavailable.";main.replaceChildren(notice);}
+    return;
+  }
+
   const $=id=>document.getElementById(id),esc=ECHSLearning.escapeHTML,labels=ECHSLearning.COURSE_LABELS;
   let report=null;
 
   function localReport(){return ECHSLearning.exportStudentReport();}
   function formatDate(value){const d=new Date(value);return Number.isNaN(d.getTime())?"—":d.toLocaleDateString([], {dateStyle:"long"});}
   function topicRows(rows,emptyText){
-    return rows.length?rows.map(row=>`<div class="reviewRow"><div><strong>${esc(row.title)}</strong><p>${esc(labels[row.course]||row.course)}${row.unit?` · Unit ${esc(row.unit)}`:""} · ${row.score}% mastery · ${row.attempts||0} attempts</p></div><span class="masteryBadge ${String(row.level||"developing").toLowerCase()}">${esc(row.level||"Developing")}</span></div>`).join(""):`<div class="emptyLearning">${esc(emptyText)}</div>`;
+    return rows.length?rows.map(row=>`<div class="reviewRow"><div><strong>${esc(row.title)}</strong><p>${esc(labels[row.course]||row.course)}${row.unit?` · Unit ${esc(row.unit)}`:""} · ${ECHSLearning.evidencePercent(row)} provisional practice · ${row.attempts||0} attempts</p></div><span class="masteryBadge ${row.evidence_status==="insufficient"?"starting":"developing"}">${esc(row.level||"Developing")}</span></div>`).join(""):`<div class="emptyLearning">${esc(emptyText)}</div>`;
   }
   function planItems(){
     const weak=(report.weakTopics||[]).slice(0,3),due=report.summary?.due||0,goal=Math.max(5,Math.min(15,Math.round((report.summary?.attempts||0)/20)||10));
@@ -24,16 +31,17 @@
   }
   function render(){
     if(!report)report=localReport();
+    report=ECHSLearning.projectLearningReport(report);
     const student=report.student||{},summary=report.summary||{},mastery=report.mastery||[];
     const strengths=mastery.filter(row=>row.score>=65).sort((a,b)=>b.score-a.score).slice(0,6);
     const weak=(report.weakTopics||mastery.filter(row=>row.score<65)).slice(0,6);
     $("heroStudent").textContent=student.name||"Student";
-    $("heroAccuracy").textContent=`${summary.accuracy||0}%`;
+    $("heroAccuracy").textContent=ECHSLearning.evidencePercent(summary,"accuracy");
     $("heroMastered").textContent=summary.mastered||0;
     $("heroStreak").textContent=summary.streak||0;
     $("reportTitle").textContent=`${student.name||"Student"}'s mathematics learning report`;
-    $("reportSubtitle").textContent=`Generated ${formatDate(report.generatedAt)}${student.grade?` · Grade ${student.grade}`:""}${student.school?` · ${student.school}`:""}.`;
-    $("overallScore").textContent=`${summary.accuracy||0}%`;
+    $("reportSubtitle").textContent=`Generated ${formatDate(report.generatedAt)}${student.grade?` · Grade ${student.grade}`:""}${student.school?` · ${student.school}`:""}. Practice indicators are provisional; verified mastery is unavailable.`;
+    $("overallScore").textContent=ECHSLearning.evidencePercent(summary,"accuracy");
     $("parentDue").textContent=summary.due||0;$("parentStreak").textContent=summary.streak||0;
     $("parentMetrics").innerHTML=`<div class="metric"><b>${summary.attempts||0}</b><span>practice attempts</span></div><div class="metric"><b>${summary.uniqueQuestions||0}</b><span>unique questions</span></div><div class="metric"><b>${summary.mastered||0}</b><span>topics mastered</span></div><div class="metric"><b>${summary.unresolved||0}</b><span>mistakes to review</span></div>`;
     $("strengthList").innerHTML=topicRows(strengths,"More practice evidence is needed before strengths can be identified.");

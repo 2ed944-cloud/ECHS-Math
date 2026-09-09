@@ -1,5 +1,12 @@
 (() => {
   "use strict";
+  // A mixed cached release must fail closed before rendering any practice claims.
+  if(!window.ECHSLearning?.projectLearningReport||!window.ECHSLearning?.projectMasteryRecord){
+    const main=document.querySelector(".institutionMain")||document.querySelector("main");
+    if(main){const notice=document.createElement("p");notice.setAttribute("role","status");notice.dataset.masteryStatusUnavailable="true";notice.textContent="Practice status is unavailable in this cached version. Reload the page to continue. Verified mastery is unavailable.";main.replaceChildren(notice);}
+    return;
+  }
+
   let current = null,
     classes = [],
     selectedClass = null,
@@ -17,6 +24,10 @@
   const $ = (id) => document.getElementById(id),
     X = window.ECHSExperience,
     esc = X.escapeHTML;
+  const practiceMetric=$("heroMastery")?.closest("article");
+  if(practiceMetric){practiceMetric.querySelector(".premiumMetricLabel").textContent="Average provisional practice";practiceMetric.querySelector("p").textContent="Recorded practice; not authenticated grading.";}
+  const distributionHeading=$("distributionChart")?.closest("article")?.querySelector("h3");
+  if(distributionHeading)distributionHeading.textContent="Practice score distribution";
   const date = (value) =>
     value
       ? new Date(value).toLocaleDateString(undefined, {
@@ -295,9 +306,13 @@
       "assignmentCount",
       "rosterCount",
     ].forEach((id) => ($(id).textContent = "0"));
-    ["heroMastery", "classAccuracy", "coverageMetric"].forEach(
-      (id) => ($(id).textContent = "0%"),
+    ["heroMastery", "classAccuracy"].forEach(
+      (id) => ($(id).textContent = "—"),
     );
+    $("coverageMetric").textContent="0%";
+    $("masteryTrend").textContent="Insufficient practice evidence";
+    $("classHeatmap").dataset.authoritativeEvidence="false";
+    $("classHeatmap").innerHTML='<div class="emptyInstitution">Choose a class to view recorded practice evidence.</div>';
     lessonAccess = [];
     if ($("lessonAccessBadge")) $("lessonAccessBadge").textContent = "No class selected";
     if ($("lessonAccessList")) $("lessonAccessList").innerHTML = '<div class="emptyInstitution">Choose a class to manage lesson visibility.</div>';
@@ -316,8 +331,8 @@
         alerts.push({
           color: "var(--px-danger)",
           name: row.display_name,
-          title: "Mastery support needed",
-          detail: `${row.mastery}% mastery · ${row.open_mistakes} open mistakes`,
+          title: "Practice support needed",
+          detail: `${row.mastery}% provisional practice · ${row.open_mistakes} open mistakes`,
           action: "Open report",
           id: row.id,
         });
@@ -335,7 +350,7 @@
           color: "var(--px-success)",
           name: row.display_name,
           title: "Ready for extension",
-          detail: `${row.mastery}% mastery · ${row.accuracy}% accuracy`,
+          detail: `${row.mastery}% provisional practice · ${row.accuracy}% accuracy`,
           action: "Challenge",
           id: row.id,
         });
@@ -376,29 +391,12 @@
     $("engagementBadge").textContent =
       `${students.filter((row) => activityClass(row.last_login_at) !== "inactive").length} active`;
   }
-  function renderHeatmap(students) {
-    const skills = (classData.support_priorities || []).slice(0, 8);
-    let html =
-      '<span class="heatmapHead">Learner</span>' +
-      skills
-        .map((_, index) => `<span class="heatmapHead">S${index + 1}</span>`)
-        .join("");
-    students.slice(0, 5).forEach((student, rowIndex) => {
-      html += `<span class="heatmapName">${esc(student.display_name.split(/\s+/)[0])}</span>`;
-      skills.forEach((skill, index) => {
-        const value = Math.max(
-          18,
-          Math.min(
-            96,
-            Math.round((student.mastery || 0) + (index - rowIndex) * 5 - 9),
-          ),
-        );
-        html += `<span class="heatmapCell" style="--level:${value}%" title="${esc(skill.title)} · ${value}%">${value}</span>`;
-      });
-    });
-    $("classHeatmap").innerHTML = skills.length
-      ? html
-      : '<div class="emptyInstitution" style="grid-column:1/-1">Heatmap appears after topic evidence is available.</div>';
+  function renderHeatmap() {
+    // A class aggregate cannot identify a learner's skill score. The separate
+    // evidence renderer supplies actual rows; never manufacture a warm-up grid.
+    const node=$("classHeatmap");
+    node.dataset.authoritativeEvidence="false";
+    node.innerHTML='<div class="emptyInstitution" style="grid-column:1/-1">Loading recorded practice evidence… Verified mastery is unavailable.</div>';
   }
   function lessonAccessCopy(row) {
     if (row.override_state === "shown") return "Shown by teacher or administrator";
@@ -466,12 +464,13 @@
     $("classHeroTitle").innerHTML =
       `${esc(classData.class.name)}.<span>Clear evidence for every learner.</span>`;
     $("classHeroText").textContent =
-      `${classData.class.course_key} · ${classData.class.academic_year || "Current year"} · ${students.length} students`;
+      `${classData.class.course_key} · ${classData.class.academic_year || "Current year"} · ${students.length} students · practice indicators are provisional; verified mastery is unavailable.`;
     $("heroStudents").textContent = summary.students || students.length;
     $("heroActive").textContent = summary.active_this_week || 0;
-    $("heroMastery").textContent = `${summary.average_mastery || 0}%`;
+    const reportedAttempts=students.reduce((total,row)=>total+(typeof row.attempts==="number"?row.attempts:0),0);
+    $("heroMastery").textContent = ECHSLearning.evidencePercent({score:summary.average_mastery,attempts:reportedAttempts});
     $("heroSupport").textContent = summary.need_support || 0;
-    $("classAccuracy").textContent = `${summary.average_accuracy || 0}%`;
+    $("classAccuracy").textContent = ECHSLearning.evidencePercent({score:summary.average_accuracy,attempts:reportedAttempts});
     $("assignmentCount").textContent = (classData.assignments || []).length;
     $("rosterCount").textContent = students.length;
     $("coverageMetric").textContent =
@@ -480,7 +479,7 @@
     $("activeTrend").textContent =
       `${students.length ? Math.round(((summary.active_this_week || 0) / students.length) * 100) : 0}% engagement`;
     $("masteryTrend").textContent =
-      (summary.average_mastery || 0) >= 80 ? "Mastery level" : "Developing";
+      ECHSLearning.evidenceStatus({score:summary.average_mastery,attempts:reportedAttempts}).display_level;
     $("supportTrend").textContent =
       summary.need_support || 0 ? "Intervention ready" : "On track";
     X.setRing("classReadinessRing", readiness);
@@ -497,7 +496,7 @@
     $("classReadinessSteps").innerHTML = [
       {
         i: "✓",
-        t: `${students.filter((row) => row.mastery >= 65).length} proficient or mastered`,
+        t: `${students.filter((row) => row.mastery >= 65).length} with proficient practice scores`,
       },
       { i: "↗", t: `${summary.active_this_week || 0} active this week` },
       { i: "!", t: `${summary.need_support || 0} intervention priorities` },
@@ -518,16 +517,16 @@
               `<div class="premiumListRow" style="--row-color:var(--px-maroon)"><span class="rowIcon">!</span><div><strong>${esc(row.title)}</strong><small>${row.students} learners represented</small><div class="progressMini"><i style="width:${X.safePercent(row.mastery)}%"></i></div></div><span class="rowValue">${Math.round(row.mastery)}%</span></div>`,
           )
           .join("")
-      : '<div class="emptyInstitution">Mastery priorities appear after students practise.</div>';
+      : '<div class="emptyInstitution">Practice priorities appear after students practise.</div>';
     const bins = [
-        { label: "Starting", min: 0, max: 34, color: "#b42343" },
-        { label: "Developing", min: 35, max: 64, color: "#d09a35" },
-        { label: "Proficient", min: 65, max: 84, color: "#2b779d" },
-        { label: "Mastered", min: 85, max: 100, color: "#087d72" },
+        { label: "Starting practice", min: 0, max: 34, color: "#b42343" },
+        { label: "Developing practice", min: 35, max: 64, color: "#d09a35" },
+        { label: "Proficient practice", min: 65, max: 84, color: "#2b779d" },
+        { label: "Strong practice", min: 85, max: 100, color: "#087d72" },
       ],
       rows = bins.map((bin) => {
         const count = students.filter(
-          (row) => row.mastery >= bin.min && row.mastery <= bin.max,
+          (row) => ECHSLearning.evidenceStatus({score:row.mastery,attempts:row.attempts}).evidence_status==="provisional"&&row.mastery >= bin.min && row.mastery <= bin.max,
         ).length;
         return {
           label: bin.label,
@@ -536,6 +535,8 @@
           color: bin.color,
         };
       });
+    const missing=students.filter(row=>ECHSLearning.evidenceStatus({score:row.mastery,attempts:row.attempts}).evidence_status==="insufficient").length;
+    if(missing)rows.push({label:"Insufficient practice evidence",count:missing,value:students.length?missing/students.length*100:0,color:"#6b7280"});
     X.renderDistribution("distributionChart", rows);
     $("assignmentList").innerHTML = (classData.assignments || []).length
       ? classData.assignments
@@ -563,7 +564,7 @@
       ? students
           .map(
             (row) =>
-              `<tr><td><div class="accountIdentity"><span class="avatarInitial">${ECHSInstitution.initials(row.display_name)}</span><div><strong>${esc(row.display_name)}</strong><br><small><i class="activityDot ${activityClass(row.last_login_at)}"></i>${esc(row.grade ? `Grade ${row.grade}` : "Student")}</small></div></div></td><td><strong>${esc(row.username)}</strong></td><td><div class="masteryCell"><strong><span>${row.mastery >= 85 ? "Mastered" : row.mastery >= 65 ? "Proficient" : row.mastery >= 35 ? "Developing" : "Starting"}</span><span>${row.mastery}%</span></strong><div class="progressMini" style="--row-color:${row.mastery >= 65 ? "var(--px-teal)" : row.mastery >= 35 ? "var(--px-gold)" : "var(--px-maroon)"}"><i style="width:${row.mastery}%"></i></div></div></td><td>${row.accuracy}%</td><td>${row.attempts}</td><td>${row.open_mistakes}</td><td>${date(row.last_login_at)}</td><td><div class="tableActions"><a class="iButton secondary small" href="student.html?student_id=${row.id}">Report</a><button class="iButton small" data-reset="${row.id}" ${preview ? "disabled" : ""}>Reset</button></div></td></tr>`,
+              `<tr><td><div class="accountIdentity"><span class="avatarInitial">${ECHSInstitution.initials(row.display_name)}</span><div><strong>${esc(row.display_name)}</strong><br><small><i class="activityDot ${activityClass(row.last_login_at)}"></i>${esc(row.grade ? `Grade ${row.grade}` : "Student")}</small></div></div></td><td><strong>${esc(row.username)}</strong></td><td><div class="masteryCell"><strong><span>${esc(ECHSLearning.evidenceStatus({score:row.mastery,attempts:row.attempts}).display_level)}</span><span>${ECHSLearning.evidencePercent(row,"mastery")}</span></strong><div class="progressMini" style="--row-color:${row.mastery >= 65 ? "var(--px-teal)" : row.mastery >= 35 ? "var(--px-gold)" : "var(--px-maroon)"}"><i style="width:${row.mastery}%"></i></div></div></td><td>${ECHSLearning.evidencePercent(row,"accuracy")}</td><td>${row.attempts}</td><td>${row.open_mistakes}</td><td>${date(row.last_login_at)}</td><td><div class="tableActions"><a class="iButton secondary small" href="student.html?student_id=${row.id}">Report</a><button class="iButton small" data-reset="${row.id}" ${preview ? "disabled" : ""}>Reset</button></div></td></tr>`,
           )
           .join("")
       : '<tr><td colspan="8"><div class="emptyInstitution">No matching students.</div></td></tr>';

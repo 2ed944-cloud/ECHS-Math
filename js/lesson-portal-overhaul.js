@@ -38,8 +38,8 @@
       identity.innerHTML = `
         <div class="calmIdentityCopy">
           <span class="calmIdentityEyebrow"><i aria-hidden="true"></i>ECHS Mathematics · Lesson Portal</span>
-          <h1 id="calmIdentityTitle"><span>Learn with purpose.</span> <em>Master with confidence.</em></h1>
-          <p>Focused lessons, evidence-led practice, and verified mastery—one clear learning journey.</p>
+          <h1 id="calmIdentityTitle"><span>Learn with purpose.</span> <em>Build with confidence.</em></h1>
+          <p>Focused lessons and provisional practice indicators. Verified mastery requires authenticated grading evidence.</p>
         </div>
         <div class="calmIdentityCycle" aria-label="Learning cycle: learn, practise, master">
           <span class="active"><b>01</b><small>Learn</small></span>
@@ -76,12 +76,12 @@
   }
 
   function statusFor(card) {
-    const score = Number(card.dataset.score || 0);
+    const score = card.dataset.practiceScore ? Number(card.dataset.practiceScore) : undefined;
     const completed = card.dataset.completed === "true";
     const ready = card.dataset.ready === "true";
-    if (score >= 80) return { label: "Mastered", css: "mastered", icon: "★" };
+    const evidence=window.ECHSMasteryStatus?.projectMasteryStatus?.({score,attempts:card.dataset.practiceAttempts?Number(card.dataset.practiceAttempts):undefined})||{evidence_status:"insufficient",verified_mastery:false};
     if (completed) return { label: "Completed", css: "complete", icon: "✓" };
-    if (score > 0) return { label: "In progress", css: "progress", icon: "◐" };
+    if (evidence.evidence_status === "provisional") return { label: "Practice recorded", css: "progress", icon: "◐" };
     if (ready) return { label: "Ready", css: "ready", icon: "●" };
     return { label: "Coming soon", css: "locked", icon: "○" };
   }
@@ -118,8 +118,11 @@
   }
 
   function enhanceCard(card) {
-    if (card.dataset.calmEnhanced === "1") return;
     enhanceLegacyCard(card);
+    // Recompute chrome even on an already-enhanced/cached card. Old score-based
+    // classes and data-verified flags are not a mastery certificate.
+    const status=statusFor(card), badge=qs(".lessonCardOpen .lessonCardStatus",card);
+    if(badge){badge.className=`lessonCardStatus ${status.css}`;badge.innerHTML=`<i aria-hidden="true">${status.icon}</i>${status.label}`;}
     card.dataset.calmEnhanced = "1";
   }
 

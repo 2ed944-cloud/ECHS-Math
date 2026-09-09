@@ -1,0 +1,223 @@
+{
+  "stage": "ECHS-C09",
+  "status": "VERIFIED",
+  "whole_charter_complete": false,
+  "pr": 364,
+  "head_sha": "c9e0b55fbfb15b1437802fa91c4f22312699e72d",
+  "merged_sha": "21478287590fcc04ac8000180aef0f1fe91e79b8",
+  "tree_sha": "f182333c9f86286b78623ddb8947f61aea868534",
+  "source_files": [
+    {
+      "path": "supabase/functions/institution-api/index.ts",
+      "bytes": 52458,
+      "sha256": "1a2bd5fb9217bb15e18c2d5810c5a80b3d5e450a57ab97201500746f4d005c49",
+      "git_blob_sha": "fd9544b41522b182ef0f1d2bf0d152b8548b03e0"
+    },
+    {
+      "path": "supabase/functions/mastery-evidence/index.ts",
+      "bytes": 21257,
+      "sha256": "887d2f53434dc695833a513ffef01aa07d100a5be419c11ce90e1c1a99a4163f",
+      "git_blob_sha": "96ece3e057f10188ae77541d112491d4550f56b8"
+    },
+    {
+      "path": "supabase/migrations/202609090002_membership_authorization.sql",
+      "bytes": 7078,
+      "sha256": "4760871d3a24847e9b813959d53f3705afff30261e7628dc4e051db8039149ed",
+      "git_blob_sha": "6fe645bca6928de850409fde159a3a4c00da93bc"
+    },
+    {
+      "path": "tools/test_membership_authorization_api.mjs",
+      "bytes": 16419,
+      "sha256": "756f2b7c034e17552f41ffea2d2adafc4bd8cd40505f97670d3f0b90b8d78ddd",
+      "git_blob_sha": "f19aa008699c1df11d0fa0d00aa38bad67a4ce71"
+    },
+    {
+      "path": "tools/test_membership_authorization_database.py",
+      "bytes": 22909,
+      "sha256": "ff66dcd24ad843b214e942db6521938e4652c086b11d1a19a278d7deb27644e9",
+      "git_blob_sha": "d611e5e18953470115922e9989b41cf5d8ca1c54"
+    },
+    {
+      "path": "tools/test_membership_authorization_e2e.mjs",
+      "bytes": 9300,
+      "sha256": "52121b12f32820b4a785051581d62c12cac04c08e765fc34ec3af8747ba9733b",
+      "git_blob_sha": "46c5599e61bfa86a4850a1d0c57261188b756a89"
+    },
+    {
+      "path": "tools/membership_authorization_rpc_fixture.py",
+      "bytes": 8102,
+      "sha256": "5bb060061488429f19457de5f806647f13a31dc7e042bcd2d98cc99b09d2e3df",
+      "git_blob_sha": "2c1ef47e6539658c7831e5df6224cf3d41146d96"
+    },
+    {
+      "path": ".github/workflows/membership-authorization.yml",
+      "bytes": 2848,
+      "sha256": "de16b05171ec87abc2ed8780caa558947337b96f7d5c9c0845f60ed7bdb70ddb",
+      "git_blob_sha": "5f8196c79197d3c58b0220b8c64261118fc14525"
+    },
+    {
+      "path": ".github/workflows/deploy-institution-backend.yml",
+      "bytes": 9422,
+      "sha256": "401845f10c7bbf9664fdf3ee435b4cbda02c879cfbfd59a5babb8479060879e6",
+      "git_blob_sha": "345e5cc8c347af7d61cb46d51883254552066cbd"
+    },
+    {
+      "path": "docs/codex/MASTER_EXECUTION_PLAN.json",
+      "bytes": 161156,
+      "sha256": "d45d4214be6d17d6ab625fad178fd76697553a383f891e50857abebb8b515f76",
+      "git_blob_sha": "1b391af595eda96adc2f56a0b99a7eb0907850e9"
+    },
+    {
+      "path": "docs/codex/MASTER_ARCHITECTURE_AUDIT_20260909.md",
+      "bytes": 12908,
+      "sha256": "d80a394c68b2b341f5282474be140c0acd6c7d1db3ebb4770c25681aa74522cf",
+      "git_blob_sha": "8db81959f5fe1ba4e4743c28d3d561b36c7155c7"
+    },
+    {
+      "path": "docs/codex/PUBLIC_QUESTION_BOUNDARY_C01.md",
+      "bytes": 8570,
+      "sha256": "e5492a70f1830cca1817cccdbf973fcfff3a5dc12e0fa6ba67142f0cf7d21c7a",
+      "git_blob_sha": "40537f1f1b72c779360eb93b5b047b2e42ef9e9d"
+    },
+    {
+      "path": "docs/codex/PUBLIC_QUESTION_BOUNDARY_C01_RELEASE.json",
+      "bytes": 11554,
+      "sha256": "8dbd4dce40c9cd71614aea8ffe523e395ceab328585de410c72bebe7fb710726",
+      "git_blob_sha": "8a7c0ec58cdbea3a803d44e95f40ad86bd8dbeb5"
+    },
+    {
+      "path": "docs/codex/MEMBERSHIP_AUTHORIZATION_C09.md",
+      "bytes": 6910,
+      "sha256": "2c9909e24f10135f260cacb6ec273a880d6200f9b16891c8453ba1e6a40d77f3",
+      "git_blob_sha": "8d9d180b86400374bcb929e211e8fcc918766339"
+    },
+    {
+      "path": "tools/validate_master_execution_plan.py",
+      "bytes": 9343,
+      "sha256": "98afe3f3fb6c3b4951d8262c57a7e67154a2258f69022fb26cfce25b38f7db6d",
+      "git_blob_sha": "0900943127eb2615b276101dd6644b6232f17eac"
+    },
+    {
+      "path": "tools/test_master_execution_plan.py",
+      "bytes": 4709,
+      "sha256": "287f96c293346a9586bb4c19472edf781c1e9ad137ae5c8d199a78e0b0de51b5",
+      "git_blob_sha": "4fcc455e651e98a267a44a0c9e35674705f57517"
+    }
+  ],
+  "evidence_files": [
+    {
+      "path": "ci-membership-authorization-database.json",
+      "bytes": 9010,
+      "sha256": "d308c8ad1d195868494332c61f7dda6699f0eba4f915f67ed3d69ec7a2d5b408"
+    },
+    {
+      "path": "ci-membership-authorization-e2e.json",
+      "bytes": 1438,
+      "sha256": "7cba11525498ec29303faa0d9d99fa8eb5effd15b34705d3446fbf93fc2142cb"
+    },
+    {
+      "path": "ci-membership-handler-evidence.json",
+      "bytes": 1974,
+      "sha256": "31abd1f800c5b492a13d121544bdb57ee861d73d6bc0c728d088754b32ba1e47"
+    },
+    {
+      "path": "ci-membership-safe-job-log.txt",
+      "bytes": 8140,
+      "sha256": "446cb05ef4c00439ec7e171d5867bcee872e0193af4ced60d2884d9d5b32b112"
+    },
+    {
+      "path": "ci-reports.json",
+      "bytes": 1991,
+      "sha256": "a64f74e848b7d6e40be8259c8447bf7a6a459292feab8d4c64d438329fd5402a"
+    },
+    {
+      "path": "post-merge-ci-metadata.json",
+      "bytes": 10675,
+      "sha256": "588e761804c2d41f80728e7afb6c3880b1f04a60413e6d011b79b0db8c19146f"
+    },
+    {
+      "path": "production-functional.json",
+      "bytes": 3817,
+      "sha256": "dee410df72faee759e64f52c7b515b128a640d6e8a7c3cd5cc733c421ad250e9"
+    },
+    {
+      "path": "release-ci-metadata.json",
+      "bytes": 7668,
+      "sha256": "837f4beb089c4caea2cc9bfa54278730c1e03bed4955d9fcfe0580d84aa712f4"
+    },
+    {
+      "path": "source-manifest.json",
+      "bytes": 4452,
+      "sha256": "e461f641ca374ba274115cde0aa1f38d36d9279ce2f3c2416272ed8975de4984"
+    },
+    {
+      "path": "backend-owned-path-manifest.json",
+      "bytes": 3033,
+      "sha256": "47d2debfb5bf216b36f274e3b35a45d7255f3e625f67d4cfa82062807a1176d9"
+    },
+    {
+      "path": "independent-review.json",
+      "bytes": 6950,
+      "sha256": "55a997a4fb53433865e6e3243ee0763b2a507a5b083aa909f07bb502e2644333"
+    },
+    {
+      "path": "independent-review.pre-ci.json",
+      "bytes": 5383,
+      "sha256": "31c4886540da49f71d6927a81908f26c109d28f64d1655695acd8272452d24c8"
+    },
+    {
+      "path": "independent-handler-results.json",
+      "bytes": 1454,
+      "sha256": "e3ed893ed1b56cb67e8ce0962a95f78e0d10ccf17e18b34d8a89a78459534f3e"
+    },
+    {
+      "path": "fixture-report-binding-tests.json",
+      "bytes": 374,
+      "sha256": "5b62121afeee5e48333d1e140e1fac57f646eb2edb36fe4e903e5e03e08d4fe8"
+    }
+  ],
+  "tests": {
+    "pr_workflows": 15,
+    "main_workflows": 17,
+    "baseline_checks": 68,
+    "database_checks": 55,
+    "migrations_executed_in_ci": 26,
+    "actual_handler_groups": 11,
+    "actual_http_sql_groups": 7,
+    "board_tests": 26,
+    "stale_report_rejections": 4,
+    "production_read_only_checks": 15
+  },
+  "database_migrations": [
+    {
+      "file": "202609090002_membership_authorization.sql",
+      "sha256": "4760871d3a24847e9b813959d53f3705afff30261e7628dc4e051db8039149ed",
+      "status": "APPLIED; capability verified",
+      "new_functions": [
+        "api_replace_class_memberships",
+        "api_membership_capabilities"
+      ],
+      "existing_row_cleanup": false,
+      "existing_table_grants_changed": false
+    }
+  ],
+  "deployment": {
+    "backend_run": 34387386416,
+    "pages_run": 34387386492,
+    "exact_tested_tree": true
+  },
+  "readiness": {
+    "next_release": "ECHS-C02 composed candidate; CI and deployment still required",
+    "ECHS-015": "DESIGN ONLY; blocked on C02/C08/C03/C04 acceptance",
+    "ECHS-001_to_014": "Original scoped verification retained; not full master-charter completion"
+  },
+  "limits": [
+    "No production roster or learner inspection; direct live checks were data-free or rejected before protected records.",
+    "Existing malformed memberships remain stored and are filtered by the repaired handlers; no automatic backfill.",
+    "Other private provider/readiness/parent-management and trusted direct database writers retain separate scopes.",
+    "C02 mastery labels, C08 private snapshots and C03/C04 grading/account ownership remain separate releases."
+  ],
+  "main_sha": "21478287590fcc04ac8000180aef0f1fe91e79b8",
+  "sealed_handoff_sha256": "f34d897db22cc80dcc2cfb5b1599e359c80e3953548329800864b4a7d851b008",
+  "sealed_archive_sha256": "3e0e933da5a2317f6e1f82c33b5ca114fb56985585778d2a05297f6bc03c262f"
+}

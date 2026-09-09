@@ -42,8 +42,9 @@ for marker in [
     'count: 8',
     'count: 10',
     'courseLessons',
-    'Verified evidence only',
-    'Trusted mastery gate',
+    'practiceStatus',
+    'Mastery verification unavailable',
+    'practice indicators are provisional',
     'data-slr-assignment',
     'assignmentSelectionMode',
 ]:

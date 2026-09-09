@@ -350,6 +350,7 @@ body.practiceStudio .studioHero::after{
 }
 body.practiceStudio .studioHeroContent,body.practiceStudio .studioHeroStats{position:relative!important;z-index:2!important}
 body.practiceStudio .studioHero :is(.eyebrow,#practiceHeroText){color:var(--echs51-muted)!important;opacity:1!important;text-shadow:none!important}
+body.practiceStudio[data-platform-page="dashboard"] .studioHeroContent>p{color:var(--echs51-muted)!important}
 body.practiceStudio .studioHero .eyebrow{
   border-color:rgba(123,23,63,.11)!important;background:var(--echs51-maroon-soft)!important;
   color:var(--echs51-maroon)!important;font-weight:900!important;
@@ -483,9 +484,9 @@ body[data-platform-page="home"] :is(.courseCard,.lessonCard,.journeyCard,.premiu
 @media(max-width:1220px){
   body.institutionBody .institutionShell{grid-template-columns:238px minmax(0,1fr)!important}
   body.institutionBody .institutionSidebar{width:238px!important}
-  body.institutionBody .experienceHero{grid-template-columns:1fr!important;min-height:0!important}
+  body.institutionBody[data-premium-page] .experienceHero{grid-template-columns:minmax(0,1fr)!important;min-height:0!important}
   body.institutionBody .experienceHeroPanel{max-width:720px!important}
-  body.institutionBody .premiumMetrics{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  body.institutionBody[data-premium-page] .premiumMetrics{grid-template-columns:repeat(2,minmax(0,1fr))!important}
   body.institutionBody .quickLaunchGrid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
   body.practiceStudio .studioHero{grid-template-columns:1fr!important}
   body.practiceStudio .studioHeroStats{grid-template-columns:repeat(4,minmax(0,1fr))!important;margin-top:8px!important}
@@ -509,7 +510,7 @@ body[data-platform-page="home"] :is(.courseCard,.lessonCard,.journeyCard,.premiu
   body.practiceStudio .questionShell,body.practiceStudio .empty{min-height:430px!important}
 }
 @media(max-width:560px){
-  body.institutionBody .premiumMetrics{grid-template-columns:1fr!important}
+  body.institutionBody[data-premium-page] .premiumMetrics{grid-template-columns:minmax(0,1fr)!important}
   body.institutionBody .quickLaunchGrid{grid-template-columns:1fr!important}
   body.institutionBody .premiumMetric{min-height:116px!important}
   body.institutionBody .premiumMetric strong{font-size:34px!important}
@@ -546,7 +547,8 @@ html[data-theme="dark"] body.institutionBody .experienceHero h2 span,
 html[data-theme="dark"] body.practiceStudio .studioHero h1 span{color:#f0c86d!important}
 html[data-theme="dark"] body.institutionBody .missionRing::before{background:#142b3d!important}
 html[data-theme="dark"] body.institutionBody .missionRing small{color:#b7c6d1!important}
-html[data-theme="dark"] body.practiceStudio .studioHero #practiceHeroText{color:#b7c6d1!important}
+html[data-theme="dark"] body.practiceStudio .studioHero #practiceHeroText,
+html[data-theme="dark"] body.practiceStudio[data-platform-page="dashboard"] .studioHeroContent>p{color:#b7c6d1!important}
 
 @media(prefers-reduced-motion:reduce){
   *{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}

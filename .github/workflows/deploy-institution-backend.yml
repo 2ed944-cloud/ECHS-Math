@@ -91,6 +91,27 @@ jobs:
               "https://${SUPABASE_PROJECT_ID}.supabase.co/functions/v1/${endpoint}/health" | python -m json.tool
           done
 
+      - name: Verify deployed provisional mastery status contract
+        shell: bash
+        run: |
+          set -euo pipefail
+          for endpoint in institution-api mastery-evidence; do
+            curl --fail --silent --show-error \
+              "https://${SUPABASE_PROJECT_ID}.supabase.co/functions/v1/${endpoint}/health" \
+              --output "$RUNNER_TEMP/echs-${endpoint}-status-health.json"
+          done
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          for endpoint, service, version in [('institution-api', 'echs-institution-api', '4.0.0'),
+                                             ('mastery-evidence', 'echs-mastery-evidence', '2.0.0-foundation')]:
+              actual = json.loads((Path(os.environ['RUNNER_TEMP']) / f'echs-{endpoint}-status-health.json').read_text())
+              expected = {'ok': True, 'service': service, 'version': version,
+                          'status_contract': 'echs.mastery-status.v1', 'grading_authoritative': False}
+              assert actual == expected, f'Deployed {endpoint} provisional mastery contract is incompatible'
+          print('Production institutional and mastery evidence status contracts: PASS')
+          PY
+
       - name: Verify deployed atomic membership transport and database capability
         shell: bash
         run: |
