@@ -167,7 +167,12 @@ def main():
             passed('save rejects foreign/missing/wrong-type assets transactionally and records immutable version attachments')
             for table,column in (('lesson_assets','id'),('lesson_version_assets','asset_id')):
                 assert code('delete from '+table+' where '+column+'=%s',(request['asset_id'],))=='23514'
-                assert code('truncate '+table)=='23514'
+            # PostgreSQL refuses a standalone FK-parent TRUNCATE before firing
+            # its trigger. Include both related tables to exercise our actual
+            # append-only trigger independently of that built-in FK refusal.
+            assert code('truncate lesson_assets')=='0A000'
+            assert code('truncate lesson_version_assets')=='23514'
+            assert code('truncate lesson_assets,lesson_version_assets')=='23514'
             assert code("update lesson_assets set sha256=%s where id=%s",('b'*64,request['asset_id']))=='23514'
             denied('teacher','cleanup',asset_payload,'23514');passed('ready metadata and historical attachments are immutable including deletes/truncates')
             def mutate(action,actor='teacher',**extra):return rpc(actor,action,{'lesson_id':lesson_id,'expected_revision':record['lesson']['head_revision'],**extra})
