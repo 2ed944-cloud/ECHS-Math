@@ -1,0 +1,2911 @@
+{
+  "schema_version": "echs.master-source-baseline.v1",
+  "main_sha": "99a0e6582cd82941a03c7d5cc2ec4517def62bb7",
+  "scope": "Selected canonical source paths compared byte-for-byte to GitHub main blobs before charter edits; not a whole-tree or private-content audit.",
+  "files": [
+    {
+      "path": "docs/ECHS_CURRICULUM_AGENT.md",
+      "sha256": "608253608b20dc2ca3e04ba7cceceee43a2ca932d467c9636435c6b8d9853f95",
+      "git_blob_sha": "927b6fe115e2e5ff8246390600ee6271779a4ea2",
+      "bytes": 5584
+    },
+    {
+      "path": "docs/IB_READINESS_PATHWAY_SYSTEM.md",
+      "sha256": "41d542059db82e7afc13a64e98565e5393bc723106b51ef3858ed06870dd2b2f",
+      "git_blob_sha": "016204b34dd1fccbea0bb719b04cb08df4e27886",
+      "bytes": 14429
+    },
+    {
+      "path": "docs/UI_COPY_AUDIT_V5.md",
+      "sha256": "a232fff9a0899c546ae5d5d678f1bcc0a35db129198b900481e933733d4ffdde",
+      "git_blob_sha": "9e5e975741746a86543f29359b652fca10d200e5",
+      "bytes": 229
+    },
+    {
+      "path": "docs/ap-calculus-private-bank-manager.md",
+      "sha256": "34014c1d3d68eb13df8e089995ee2a259fd0bd24d9493124b44285ff4b4ca3a5",
+      "git_blob_sha": "482ccb383df770f06b69f208e9b2d59cec9a17b2",
+      "bytes": 1183
+    },
+    {
+      "path": "docs/codex/AP_CALCULUS_SPEC.md",
+      "sha256": "29c80d4d98aabf71ffe89e208197bd5086e54793010de3d7a8851485207c0927",
+      "git_blob_sha": "5b713d6391b7cf4b7cde88d92c1b445295f8cd27",
+      "bytes": 5865
+    },
+    {
+      "path": "docs/codex/AP_PRECALCULUS_SPEC.md",
+      "sha256": "ee11588f17e09acb5d64703f716da7b9c37d3d88034c457c546eda227208d6d0",
+      "git_blob_sha": "4002a1f89f8d72c146edcff6b27192c6b7c2f05d",
+      "bytes": 4179
+    },
+    {
+      "path": "docs/codex/ARCHITECTURE_MIGRATION.md",
+      "sha256": "62a1014fae2b9069d9e69ecfced5c1978909d7a051a30665c3c2f57cc7404ef5",
+      "git_blob_sha": "8520565fd7a65931a67e22203ef338d48393a8da",
+      "bytes": 6921
+    },
+    {
+      "path": "docs/codex/BASELINE_AUDIT_20260907.md",
+      "sha256": "43a7c8cb62a728317c5e87ea64249c3467a7cecd7b9c3b3e2710060c8cfdfe09",
+      "git_blob_sha": "43432055b9c1eb952507b98769ae1eb5143da187",
+      "bytes": 7176
+    },
+    {
+      "path": "docs/codex/BASELINE_VALIDATION.md",
+      "sha256": "39b1b8c2d1316cae806f8f6c53a10770c27eddfd1cd9596e6c2449cf9f11bd49",
+      "git_blob_sha": "0685f9c4d0c7b6d4f75f21962477b144a4d2efe2",
+      "bytes": 8823
+    },
+    {
+      "path": "docs/codex/CURRICULUM_DATABASE_FOUNDATION.md",
+      "sha256": "ea9f11de9a4ac29e7f3332b04f89c0f9a70c42086c29e447a1d19106c50d459a",
+      "git_blob_sha": "f8be912329649ed22281c8494c3699d06b51156e",
+      "bytes": 8679
+    },
+    {
+      "path": "docs/codex/CURRICULUM_METADATA_ACCEPTANCE.md",
+      "sha256": "81810d5d8a3b55f38b5d31b16e0901fd9a66b7160b69fc0950ad0938f6d7f9f7",
+      "git_blob_sha": "33ae5d45785b98c5c48af2029e230625df00e58d",
+      "bytes": 4481
+    },
+    {
+      "path": "docs/codex/CURRICULUM_SOURCES_20260908.md",
+      "sha256": "aa95c762c4f89e81ac96790ee9cadfb0dfeec4be6ffc809b891d325d14d3bc09",
+      "git_blob_sha": "703e4635ed0775387974e24190f77ca1f4fd3d8f",
+      "bytes": 10559
+    },
+    {
+      "path": "docs/codex/CURRICULUM_VERSIONING.md",
+      "sha256": "7ee0c807e9ff1c2920c51c6ae1515f2a0520fb8f7482a855038362db095c4165",
+      "git_blob_sha": "b203e173235a0bfb4b50bd48d867ef89dfd1caa0",
+      "bytes": 3149
+    },
+    {
+      "path": "docs/codex/ECHS_PRODUCT_SPEC.md",
+      "sha256": "edc083445c37c22e0064e5d5805b1ff3ce7f855dc543ca4559962d99e615c9f0",
+      "git_blob_sha": "d2ccf06b534946ee1702d05007b789d58e8a4ea0",
+      "bytes": 6086
+    },
+    {
+      "path": "docs/codex/EXECUTION_BACKLOG_30.md",
+      "sha256": "1f2badaa2c888023a3d91a8cbddb7782db7c4e7ae81574a22c2b0a05c08a0eb7",
+      "git_blob_sha": "15ad41f6010e3f4349500f16915e65886163da10",
+      "bytes": 12013
+    },
+    {
+      "path": "docs/codex/FOUNDATION_ACCEPTANCE_20260908.md",
+      "sha256": "5043522a2a903ea248a719c10fa3771a3b27c347a05ce0a6713ed2d97efbd295",
+      "git_blob_sha": "1f4823bbc2bee786d03c4ef6366ab819c7edcb1c",
+      "bytes": 11376
+    },
+    {
+      "path": "docs/codex/IB_AI_SL_SPEC.md",
+      "sha256": "421f381aff77fe2f37319a299b07c94781966df62eb0cfc6df0cee36217cfadb",
+      "git_blob_sha": "a65d6a80423ad551b2189bf7d35bfcb87d7b91f8",
+      "bytes": 4366
+    },
+    {
+      "path": "docs/codex/IB_REFERENCE_IMPORT.md",
+      "sha256": "4d5de69162b3f581cd81369ecda0cf25c4a7c2946e2ac142fe56cfac3959d5c3",
+      "git_blob_sha": "a1b58f88febc423f10baa53bfb5794524bbc6016",
+      "bytes": 11071
+    },
+    {
+      "path": "docs/codex/LEGACY_LESSON_COMPATIBILITY.md",
+      "sha256": "a249a44678feb8a3d897b635d83b3d046039b8455f81f887bcb49fc67f2334cb",
+      "git_blob_sha": "b4bbe629f631c624cc0adda51a477d85ce886750",
+      "bytes": 5611
+    },
+    {
+      "path": "docs/codex/LESSON_CONTENT_V2_FOUNDATION.md",
+      "sha256": "887753c6927843237aac66e7cadfa17a6ada90c0966873bb6c3b9b6e8808b9b1",
+      "git_blob_sha": "5a6909c2e018f1aa0b7083ffa96cb5565e708a1f",
+      "bytes": 7939
+    },
+    {
+      "path": "docs/codex/LESSON_DRAFT_RECOVERY.md",
+      "sha256": "6e6ac9bffaee679c47194bd3ce22dc6ae5eebcc10d95b4fbe9ec7efc9051f4db",
+      "git_blob_sha": "74495125f6248d60b82db6d3308298e1b78778ad",
+      "bytes": 10020
+    },
+    {
+      "path": "docs/codex/LESSON_MEDIA_FOUNDATION.md",
+      "sha256": "7adf77405c0093c1827e32a9a83748dd36d5e7e7cc9b61059389bd462ba0e1db",
+      "git_blob_sha": "337cf8fd7a2bdff5e78b8abeba97204f2f61d339",
+      "bytes": 16715
+    },
+    {
+      "path": "docs/codex/LESSON_PERSISTENCE_FOUNDATION.md",
+      "sha256": "184791e49452edd1a35f43326453b506202b0f8af312995490d62d1346fda63b",
+      "git_blob_sha": "98b27ff542698d9c5b4a88a85ea4e25c62537f95",
+      "bytes": 14408
+    },
+    {
+      "path": "docs/codex/LESSON_PRESENTATION.md",
+      "sha256": "2d05fa0a2c131a61a6cec4bdb82ef863d6fde8faecec7f365494471d851d4cc1",
+      "git_blob_sha": "b7089a0e92e8396647389221620357f84b58b29e",
+      "bytes": 6644
+    },
+    {
+      "path": "docs/codex/LESSON_RENDERER_FOUNDATION.md",
+      "sha256": "6a176e37372cab2c770d48f2c5e25e858fee13b9c1618fba43d54dc106ba1950",
+      "git_blob_sha": "090768114b6e983122f2abe2f048a028f2463aa4",
+      "bytes": 5971
+    },
+    {
+      "path": "docs/codex/LESSON_SCHEMA_FOUNDATION.md",
+      "sha256": "61a0c000a228e0a13b433cfb84a050fad761ff9abfe9c0e993a0e578d227e7a6",
+      "git_blob_sha": "501f2e037999b82675edcbf013e068fd82badb05",
+      "bytes": 5284
+    },
+    {
+      "path": "docs/codex/LESSON_STUDIO_FOUNDATION.md",
+      "sha256": "074b077e131e48f62486200dfea2a3494f3e685f817ea582e2f503e4696684c3",
+      "git_blob_sha": "779e96f7c5cdf9d0b3631325b342265c0de81428",
+      "bytes": 8699
+    },
+    {
+      "path": "docs/codex/LESSON_STUDIO_SPEC.md",
+      "sha256": "9add88e7e1c7f6a76d0145468e81fa99db50d6905200f6bb6a494e92713c704c",
+      "git_blob_sha": "fa34aaf1c4f227a02c46d1dc7f67e78ec3269079",
+      "bytes": 4797
+    },
+    {
+      "path": "docs/codex/LESSON_VERSION_HISTORY.md",
+      "sha256": "e639059905839e7f4552eddaaa3c7c0002836957691cfdc1e20699e1ff7fcbcb",
+      "git_blob_sha": "446b9e6a0e90ccf05263873f289de523883f62ae",
+      "bytes": 11461
+    },
+    {
+      "path": "docs/codex/MASTERY_SYNC_REPAIR_20260908.md",
+      "sha256": "859e29c7474d3e4bf5e74595132b0802bca4a3fd3349192ed3e4c4f00a4eeeed",
+      "git_blob_sha": "ffe4e6983fab657f36482d59770e7a17a0687318",
+      "bytes": 5544
+    },
+    {
+      "path": "docs/codex/PAGES_FIXTURE_DEPENDENCY_REPAIR.md",
+      "sha256": "d4c2540f3f57f1ea90071493ea79b9cea684e3ce64244ec909be5780bf8079a0",
+      "git_blob_sha": "c5a3686e4d648e3d98b0934ea24455f0bd058dc4",
+      "bytes": 1818
+    },
+    {
+      "path": "docs/codex/QATAR_IDENTITY_SPEC.md",
+      "sha256": "6eb69e638206a4e54210db2f0c9821eee5fd74e86dc8da3caf33bc7a94241745",
+      "git_blob_sha": "5f806c56571ca7dc2f4a3d1be3d1daad936be63d",
+      "bytes": 3417
+    },
+    {
+      "path": "docs/codex/QUESTION_ENGINE_SPEC.md",
+      "sha256": "7ad83cd4a00c9291976bdd6edb8673579d9d4184864dd406a89621a797807043",
+      "git_blob_sha": "fdcf763b4e64d1cdd3a6562a2e21627e768b00b1",
+      "bytes": 4977
+    },
+    {
+      "path": "docs/codex/RUNTIME_INVENTORY_20260908.json",
+      "sha256": "9d3a340c85148c33272f11300d7e692d60056f4b53311a41b1590bb578b8b76c",
+      "git_blob_sha": "14cf66d530a724fdd80a8b8156fba21623104f06",
+      "bytes": 96164
+    },
+    {
+      "path": "docs/codex/RUNTIME_INVENTORY_20260908.md",
+      "sha256": "1a136491f7f6059467e75bd1a1f397b0de14bab65be4cdb00029b0edca8b7959",
+      "git_blob_sha": "41a316bba879ea625bee79e79161bca9cf2759f5",
+      "bytes": 5663
+    },
+    {
+      "path": "docs/codex/THREE_D_MATH_ENGINE_SPEC.md",
+      "sha256": "68b7ecdea0da4f31ded9b5008b91a8fcb77d10c3f68b1350f5644eae8fd3f916",
+      "git_blob_sha": "a6f3403aad394cfee1d5a5c1771f895a7d293334",
+      "bytes": 4390
+    },
+    {
+      "path": "docs/design-v5-applied.txt",
+      "sha256": "152a3766eedb5b7c778a9007125e8ac9974877b5882fbfd7f3bf7efa7a2d3e44",
+      "git_blob_sha": "7db6973cc365a61177e1646099e430bae8ba956b",
+      "bytes": 297
+    },
+    {
+      "path": "docs/private-bank-import-recovery.md",
+      "sha256": "eb27dd8254a65ece4688fa4668c92ddb8857863b03403ef5e5b2c76ca77e56fc",
+      "git_blob_sha": "989f9087ee8cfa34f33c75a4f095359f6e091740",
+      "bytes": 648
+    },
+    {
+      "path": "docs/releases/ap-calculus-1-2-interactive-v1.md",
+      "sha256": "bd6558797e5a3da1913233b9653d5b4c7b75b8f8f9add7f038e68ddd65cce681",
+      "git_blob_sha": "8508f945b3faa42a0c67659a3b6a9931e086da3a",
+      "bytes": 2492
+    },
+    {
+      "path": "docs/releases/ap-calculus-1-3-1-4-interactive-v1.md",
+      "sha256": "b8769f86a6c4adc2ee2a7725197fbd5411208747698dc66262015cb39aaf467a",
+      "git_blob_sha": "30f0ccda87f731a70b38687350b9ed148e79e90f",
+      "bytes": 2808
+    },
+    {
+      "path": "docs/releases/ap-calculus-1-5-ap-scope-v2.md",
+      "sha256": "cb6a764af14a48ea62053aaec7893bfd9375315e0f77c6e14346f85720a20ea9",
+      "git_blob_sha": "45fe750453e447af97fa5af744cba5f8c54643fa",
+      "bytes": 3346
+    },
+    {
+      "path": "docs/releases/ap-calculus-1-5-interactive-v1.md",
+      "sha256": "578f1f7c5653b38d647d894924924e13df07e4c6d75b804a91121ba960a71fc0",
+      "git_blob_sha": "a988c00cdb98bd3480bf761b990125d2ba17925c",
+      "bytes": 4130
+    },
+    {
+      "path": "docs/releases/ap-calculus-1-6-interactive-v1.md",
+      "sha256": "156f9c0c2f74474c912f07a1980c398c04bf70534050e81d9bcbaddfd4f83fd7",
+      "git_blob_sha": "49fb7062df1a12e09f08945c4935fd68f2e591e4",
+      "bytes": 3812
+    },
+    {
+      "path": "docs/releases/ap-calculus-1-7-1-16-ab.md",
+      "sha256": "159525615137cb50428407c62957259d0be8609390b6d2de6c37b1ef11e4b8d8",
+      "git_blob_sha": "8fd84353da15faa47302a71dc6542ddf7f31ba68",
+      "bytes": 5636
+    },
+    {
+      "path": "docs/releases/ap-calculus-1-7-1-16-coverage.json",
+      "sha256": "aebc6e02a1c43e60eedddf2333f7077652c7356932ce32e23841f7584ddd6603",
+      "git_blob_sha": "56fa5b9ca43574a0564eb577de4afd8457c251c0",
+      "bytes": 4466
+    },
+    {
+      "path": "docs/releases/ap-precalculus-1-1-ap-scope-v3.md",
+      "sha256": "e40e24178ee4a9b6d705d08a8dd0bc6e0cf347ae2d99bd48905c0a91025a8355",
+      "git_blob_sha": "9c47679126f63738f44f2e05ef567106ce41c559",
+      "bytes": 4372
+    },
+    {
+      "path": "docs/releases/ap-precalculus-1-1-context-practice-v4.md",
+      "sha256": "cebbf0996279d68cc49bb9ce91db72bddeaa8faaae98bfc85ce4f14b88b593f5",
+      "git_blob_sha": "fd3b957fbb35c9428626ad09975e8852882fac9d",
+      "bytes": 3527
+    },
+    {
+      "path": "docs/releases/ap-precalculus-1-2-ap-scope-v3.md",
+      "sha256": "d8d50586f489a69eab69d0094fa919e8c6e1e98d8433e95c215b24660e1903bb",
+      "git_blob_sha": "999dbe3e0c862ae0cee128ce13179f63d21e804d",
+      "bytes": 4437
+    },
+    {
+      "path": "docs/releases/ib-ai-1-1-merged-sl-v7.md",
+      "sha256": "a615f17a71551e25c1efff099efd1753fff00296c1fa6236a4dddd0b4e68b22a",
+      "git_blob_sha": "b1666052739dfaa8158b5162aae82867ffc0f437",
+      "bytes": 3959
+    },
+    {
+      "path": "docs/releases/ib-ai-1-2-arithmetic-sequences-v6.md",
+      "sha256": "7e44c392feec7eea643335fc7118a052e8faf7cd81639276f43264b16a57bf49",
+      "git_blob_sha": "989e1cec317772623d0b8219aae383a72d2113b8",
+      "bytes": 1805
+    },
+    {
+      "path": "docs/releases/ib-ai-1-2-sl-alignment-v7.md",
+      "sha256": "8dbc3702b18814cabd887a708c71334dd197f0563eb9f9642276a06e0ad1e6b9",
+      "git_blob_sha": "e0cba8fdfbe8aa62927a1fe408347a11a6d13fa8",
+      "bytes": 3330
+    },
+    {
+      "path": "docs/releases/ib-ai-1-3-geometric-sequences-v6.md",
+      "sha256": "e67edf3d5af2c2c052540cb30bb7828b2e0afc512ae90aa3073ada86929c9bb7",
+      "git_blob_sha": "6aa9ffd15fc9ea258614722a6aa05a4099b57eb6",
+      "bytes": 3138
+    },
+    {
+      "path": "docs/releases/ib-ai-1-4-1-7-finance-v8.md",
+      "sha256": "b874f497e060dda61e80b7cb42d4b6e4194f250292726cc0e3cd504a220d3c92",
+      "git_blob_sha": "c6d4857b3d3fb6974b195c30db6f34cff0745840",
+      "bytes": 4453
+    },
+    {
+      "path": "docs/releases/ib-ai-1-4-core-scope-v6-2.md",
+      "sha256": "2b4ddc3a36509cbee31d398ab669b696895e42234b402e6072cdb28bc130d29a",
+      "git_blob_sha": "79cd739896b7dda160c7345173d4badc07659027",
+      "bytes": 3194
+    },
+    {
+      "path": "docs/releases/ib-ai-1-4-financial-applications-v6.md",
+      "sha256": "0d0dbe3960cb250384085ce3c6ca810d801c3ac0a1065cf00187ab50c38c2960",
+      "git_blob_sha": "f273f30063b712b6bace335dbffd6d32fb3b00ad",
+      "bytes": 3795
+    },
+    {
+      "path": "docs/releases/ib-ai-1-5-exponent-laws-logarithms-v6.md",
+      "sha256": "dfe8f62fc242390d3e5b9b052054bf6db407fc27ad708c72e3e7b269319aa3c9",
+      "git_blob_sha": "1a0e6143d349276623f3f4aa0f6fcdafc53141e3",
+      "bytes": 4594
+    },
+    {
+      "path": "docs/releases/ib-ai-2-1-definitive-v3.md",
+      "sha256": "180ec14dd6dd5a170f1740fb5e669f054c4c64f23111e08d848fb3b654be74a6",
+      "git_blob_sha": "75c946f8c9f44f2d93057123ac33e0cac890dfe4",
+      "bytes": 4511
+    },
+    {
+      "path": "docs/releases/ib-ai-2-1-definitive-v5.md",
+      "sha256": "847905f59937d0c5d3d482e298983d3dce4e3ee48bef1f5b636b90b0ea9429b6",
+      "git_blob_sha": "239b0ac8a9694c0c1f72476cbb106b1369c07708",
+      "bytes": 2505
+    },
+    {
+      "path": "docs/releases/ib-ai-2-2-definitive-v3.md",
+      "sha256": "15ebb53388a7738f87613ffd9d879b79a1ad819569cd8a955d22f16fe5c56636",
+      "git_blob_sha": "41af8c213304e18b05822edf294724fa2ef58beb",
+      "bytes": 1797
+    },
+    {
+      "path": "docs/releases/ib-ai-2-2-definitive-v5.md",
+      "sha256": "1450353959a9a2302b767e62913e94af135777cfec18b846829703a4e3c21b8b",
+      "git_blob_sha": "f1416c277f82258c4fc5f09645b40dbff306a51e",
+      "bytes": 1906
+    },
+    {
+      "path": "js/curriculum-versions.mjs",
+      "sha256": "5f95de7d11748b54a83059c3ed1f26038086c670498b5123e9b5952adbbb9003",
+      "git_blob_sha": "9d266a377ce2b2857788850ff60b5053c951cf49",
+      "bytes": 9373
+    },
+    {
+      "path": "js/echs-ai-tutor-config.js",
+      "sha256": "4ef837cec776e88d32031aab627e28740f8474d67bd478858bccff7fb26aeae7",
+      "git_blob_sha": "03680a5991ede44adf9a79b91defc5564d53c1e7",
+      "bytes": 582
+    },
+    {
+      "path": "js/echs-ai-tutor.js",
+      "sha256": "6ad87305f3cb94d5ca4b454685f51778fcda2fa5444829f11ef46b92f99f7020",
+      "git_blob_sha": "793c78c7b1020561761d61a9d0b75baa944b24d7",
+      "bytes": 23000
+    },
+    {
+      "path": "js/gamification-overlay.js",
+      "sha256": "b4c19faced3ff79bdeedaf1b1ec9154377eb50d8a0140415eea398a90608393c",
+      "git_blob_sha": "1752ac88d83e571e5043a177b326694aa7e94743",
+      "bytes": 3131
+    },
+    {
+      "path": "js/ib-lesson-platform-integration.js",
+      "sha256": "d92d3c8aaceb1669edf7c7b072d6bc2e01f653cfaab7a9ab42a6d8ffdc6a5c83",
+      "git_blob_sha": "3dc57a5c5bd313456417fd91e8ae200f09555f54",
+      "bytes": 6567
+    },
+    {
+      "path": "js/institution-client.js",
+      "sha256": "7462a21998aae97bad308273e2a7a2b198de77bbd40d9c60eea0f79cb2defaad",
+      "git_blob_sha": "ef6d9cefc7c4d1270dafe96fbaf3185f36e60cda",
+      "bytes": 19875
+    },
+    {
+      "path": "js/institution-completion.js",
+      "sha256": "606858767b204d7b02703ae60ebe636ad4ef2764705d0c2464b5a184f0640158",
+      "git_blob_sha": "9014d04d6cc4e31367f67389471bd06096c0d148",
+      "bytes": 32619
+    },
+    {
+      "path": "js/institution-experience.js",
+      "sha256": "05bd1a34169956a7fc5c668782495aea2028cdc9c429578cf9f75c2955e8fa46",
+      "git_blob_sha": "d310fb080e9b8824c2c05dbfe0cfe4a4c78206a1",
+      "bytes": 10604
+    },
+    {
+      "path": "js/institution-mastery-evidence.js",
+      "sha256": "90c789d0d64abdbf88a96c7c3b44744c8b2249fbfd144f36477ddeb1c0dd63af",
+      "git_blob_sha": "5c6be856b1f99b896e8b7da5489c3c6e6ca5bce5",
+      "bytes": 2464
+    },
+    {
+      "path": "js/institution-portal.js",
+      "sha256": "5167e3742436ae4a00722b668febfe95f99423ac99c53b03e800406e543645c7",
+      "git_blob_sha": "db089287f100ea74f692c88f49092ac4d9a095b5",
+      "bytes": 2586
+    },
+    {
+      "path": "js/institution-setup.js",
+      "sha256": "8e61972a17b5bc65b13771f1222ebfec98a2adddce5c0825c4ccf9e6f648e68e",
+      "git_blob_sha": "eba2bf33d91863307befecbdb870e0eb463638ba",
+      "bytes": 13183
+    },
+    {
+      "path": "js/landing-hybrid-hero.js",
+      "sha256": "eebecf1f9fe1e51319c7177b5d79adc9a61f74c31d4ef00406b651dcc2fc3e2f",
+      "git_blob_sha": "f0019027c9c931f325e3d7c4db830478add24b09",
+      "bytes": 12088
+    },
+    {
+      "path": "js/lesson-access-guard.js",
+      "sha256": "71b8afb5f48d07f6288d9181f18287d5ae24423b010919a35d4bdffb6bc27bbd",
+      "git_blob_sha": "ac6e38be75b102c86c08a45afaf7fe5ffb4ada29",
+      "bytes": 8095
+    },
+    {
+      "path": "js/lesson-ai-loader.js",
+      "sha256": "36dde5d15cc1230b605b5078694ef84b3ccffdfd89bec726c0d0a25944c74ed2",
+      "git_blob_sha": "b058f5c62f92ea348720eb1f30c19fd195aa9bc3",
+      "bytes": 1484
+    },
+    {
+      "path": "js/lesson-learning-bridge.js",
+      "sha256": "9583bc062992e24ed3cbc10510d6e3e101d7866b6ff38814b7cc1b8e8559f8be",
+      "git_blob_sha": "0c2eadf171c92b26cab50415223d2fccfdc47605",
+      "bytes": 2094
+    },
+    {
+      "path": "js/lesson-portal-overhaul.js",
+      "sha256": "b3e38707dc17f7a6c07097493d193e2035e7ab8ba9ea9ea7ab6d858f37cd2f27",
+      "git_blob_sha": "0ca876888b01265bb68488463eaaf46823c8ca97",
+      "bytes": 13997
+    },
+    {
+      "path": "js/lesson-runtime/asset-contract.mjs",
+      "sha256": "2cecef26e973bafd198cd3d5fd6a7b95751c33120ef869cf8a90a1f470f41485",
+      "git_blob_sha": "2dd853a8076e083bc144405699a97c94615a989d",
+      "bytes": 5286
+    },
+    {
+      "path": "js/lesson-runtime/block-registry.mjs",
+      "sha256": "9101985b1a62c2384df5b8c51e7fb88659c70889d384c1133f2ed16db5fec222",
+      "git_blob_sha": "320aa4856f737149444fbee5c64b2b22a046c7c5",
+      "bytes": 2447
+    },
+    {
+      "path": "js/lesson-runtime/content-renderer.mjs",
+      "sha256": "acf2091b77ffff8354d9ded349a207d3f4e9dbd2dd8f7550de1c72f229870015",
+      "git_blob_sha": "3362494129664d1e27f52031f2c5df428da6df97",
+      "bytes": 4251
+    },
+    {
+      "path": "js/lesson-runtime/generated/validate-lesson-document.mjs",
+      "sha256": "4bc2654500506460fd63822f08cb3580e681e6bcc47dcde70b8e7756f137d9c2",
+      "git_blob_sha": "6246775e966fd4b09fc931aed689cf0c19697b23",
+      "bytes": 201024
+    },
+    {
+      "path": "js/lesson-runtime/legacy-compatibility.mjs",
+      "sha256": "4e981ea62cb3e19a0f94c317f3bb8a080ba3db5219466bc4e4c613714f7a5ed6",
+      "git_blob_sha": "d4c8b6fd55323d6334780d78c592d4c5ff059b11",
+      "bytes": 12114
+    },
+    {
+      "path": "js/lesson-runtime/math-expression.mjs",
+      "sha256": "eadf1b5b856f7fb080513f0b8d560a51763ef5af125b9c0b79609c153fd6fb77",
+      "git_blob_sha": "e31f33f7e5dc27d902f17afcd3df86a9a6b33fc1",
+      "bytes": 14143
+    },
+    {
+      "path": "js/lesson-runtime/media-renderer.mjs",
+      "sha256": "83bc7dc38bae289e842bd026b0e5aa0b3964bee22ad9e684f693760ece1728fe",
+      "git_blob_sha": "61194002867d8710d130d8f9fdd355b321a10c02",
+      "bytes": 14039
+    },
+    {
+      "path": "js/lesson-runtime/pinned-legacy-contracts.mjs",
+      "sha256": "8b5b586de2ff5af572f14d57dc19233e4a385cd1bf0412db9e79027b23f1b123",
+      "git_blob_sha": "c476b98cd865372577ef8b5f1df7489104cfd036",
+      "bytes": 44493
+    },
+    {
+      "path": "js/lesson-runtime/renderer.mjs",
+      "sha256": "3ec8dd8993c12d2bd426d37e1f28895e1562a69c693a92782b8e69379e46ef97",
+      "git_blob_sha": "e89bbb772a024350ecebfdec17490ca10ce721ee",
+      "bytes": 27480
+    },
+    {
+      "path": "js/lesson-runtime/schema.mjs",
+      "sha256": "9bdd6f9450adcfc5cff5a3167d2ded44d0b31493a749dc2499693878b693f8a8",
+      "git_blob_sha": "b149018972ecf035885ea3b77938d9ce8b6dfe5b",
+      "bytes": 15036
+    },
+    {
+      "path": "js/lesson-studio/api-client.mjs",
+      "sha256": "3d83cc1855de85d09a45634496332125215626657ba456d29b0463b6f458b014",
+      "git_blob_sha": "a7828eb565aaaeaf9906c1e2a4a78a93a0c06fa4",
+      "bytes": 34044
+    },
+    {
+      "path": "js/lesson-studio/app.mjs",
+      "sha256": "a0f87d7d7bf6c1b08f6e079524f905b8d5dd35cc92b4a28471b34e22c8eae895",
+      "git_blob_sha": "e92bbbe2973115387bdeb07fca0dda87ed0ae36a",
+      "bytes": 53189
+    },
+    {
+      "path": "js/lesson-studio/block-model.mjs",
+      "sha256": "7d051c65d8b33258ba6a9f2d430a2c04d5e1a0e359cf0fd00fbec03052beccd9",
+      "git_blob_sha": "b4d255a44f92c919b1c3eb51a08e1f2fb9a2a5eb",
+      "bytes": 8601
+    },
+    {
+      "path": "js/lesson-studio/draft-backup.mjs",
+      "sha256": "669e0b07822679c178186c7f1e492fdd95c60827405a89747de632f8f098c55d",
+      "git_blob_sha": "53be9227108b6e2eafce750ae93f54f2666e0f5d",
+      "bytes": 16543
+    },
+    {
+      "path": "js/lesson-studio/draft-model.mjs",
+      "sha256": "0cac149d7d0505a50bcfb53f169b16c70fed1d268980d18846702f254977ae0b",
+      "git_blob_sha": "0a55d30d029ba4964f3595e3493e530c7fc5a655",
+      "bytes": 8037
+    },
+    {
+      "path": "js/lesson-studio/draft-session.mjs",
+      "sha256": "d473d2f4d7246085e50bf3dba4a0128683fffd3dc3db06553e95783ecfaadb64",
+      "git_blob_sha": "c7f8351fea9b3a423001bf164bda8666e6ec1fa3",
+      "bytes": 24289
+    },
+    {
+      "path": "js/lesson-studio/history-dialog.mjs",
+      "sha256": "f24f72df7140545e044dd087902abf3a7f25253372487f38807ce732d01ce26c",
+      "git_blob_sha": "ab1171b558c940cbb42ed7136912c3fe7a0941aa",
+      "bytes": 17238
+    },
+    {
+      "path": "js/lesson-studio/history-session.mjs",
+      "sha256": "d213e280a4760d3195d34c0becf568c339e0dececd9d0d89fe59ed046d6f365a",
+      "git_blob_sha": "7fc34fd776f8eb83394d58d2cbe7abffbfb7c066",
+      "bytes": 24606
+    },
+    {
+      "path": "js/lesson-studio/ib13-import-model.mjs",
+      "sha256": "dcddd9728c7551e4567ff4d7cc27d28967cf943c4be3f42dd9c0a18c434e4d4b",
+      "git_blob_sha": "bbf60134597e0573385cf1601fa6ad924b554bc4",
+      "bytes": 4243
+    },
+    {
+      "path": "js/lesson-studio/ib13-import-target.mjs",
+      "sha256": "ffab8618b845c2e31ab53a8ff284c762fd1851b43c1da1c85fdd2953fff16f5c",
+      "git_blob_sha": "2350d5c0958aee5a5c3cc433e8787559d75071e6",
+      "bytes": 1604
+    },
+    {
+      "path": "js/lesson-studio/ib13-reference.mjs",
+      "sha256": "1d3f63b916c7dd682136f6e07da9303e912b3c832225b09b3eef8125688d975d",
+      "git_blob_sha": "feae3a6f03df6a884813a2c52520fd420feae446",
+      "bytes": 128461
+    },
+    {
+      "path": "js/lesson-studio/import-dialog.mjs",
+      "sha256": "148078870722d0d16b1a3370d783a756b029a0c04b302f7b8a7141454479dd06",
+      "git_blob_sha": "f1fc8e3547be52c2a6cc249401440b646b137e3b",
+      "bytes": 12416
+    },
+    {
+      "path": "js/lesson-studio/math-editor.mjs",
+      "sha256": "3dbf743be8a00fd8f47f0f81d32a9265379d0636763e70ece0995a014aef29e3",
+      "git_blob_sha": "c4aa17f9d28f39faaa1dfcff6a914460f5f1d417",
+      "bytes": 14684
+    },
+    {
+      "path": "js/lesson-studio/media-editor.mjs",
+      "sha256": "b81a3bc4aebc44e97aa600dc55315309e20969bd073a5e5479ce8148518dd572",
+      "git_blob_sha": "6682cbaa2d86d7b427cfae47c934b50955b6a98b",
+      "bytes": 26999
+    },
+    {
+      "path": "js/lesson-studio/presentation-session.mjs",
+      "sha256": "495def7885283c3e9fd8e54e6b4f15f2133fddf28b3db2aa69c36e0a0482880a",
+      "git_blob_sha": "2b52c8cb2e346ed56905f7ed2229435a9efca499",
+      "bytes": 3206
+    },
+    {
+      "path": "js/lesson-studio/presentation.mjs",
+      "sha256": "6f169c1660e9f09eb061dae1c1a4f7249281e53f40cb8707952303066fca14be",
+      "git_blob_sha": "0bcf9fd7b4f14c786056568e03f11d3ffb620c69",
+      "bytes": 12437
+    },
+    {
+      "path": "js/lesson-studio/preview.mjs",
+      "sha256": "239cfe7ecd65653d5e5f682c8e21d0d96c2b0cc95555ac3247f55e6fe437cbc8",
+      "git_blob_sha": "bcf7aba0f1440b953a77d81b26eca76bed3f5dff",
+      "bytes": 2225
+    },
+    {
+      "path": "js/lesson-studio/rich-text-editor.mjs",
+      "sha256": "1361b05d1746c2d52e5962c146adb04db9bdb9238a8a9e31c403e4a8ee4dd7f2",
+      "git_blob_sha": "63206707c962d60916ed36e21c8c826c177465f3",
+      "bytes": 24770
+    },
+    {
+      "path": "js/lesson-studio/version-diff.mjs",
+      "sha256": "4f8fd679e1e3d6f29c52a0658aa55bc75f78fb2249e6445a270f112d658682f9",
+      "git_blob_sha": "312720442fb69477348317d52e3ac96322a6e7de",
+      "bytes": 18835
+    },
+    {
+      "path": "js/lesson-zero-cinematic-post.js",
+      "sha256": "e3806411df748fae4cbb541b49e087ab2736ad8cfc449d7b0efd2a416f8f4d7e",
+      "git_blob_sha": "6a99dbd1857942316b1fa93cece01ca021d9b3eb",
+      "bytes": 3300
+    },
+    {
+      "path": "js/lesson-zero-cinematic.js",
+      "sha256": "83e31804f81ad59601e67acf11f967572036f4e186e227acdf10929571d41f7d",
+      "git_blob_sha": "e5db12f950a15f0c3fba7785dd2bdad473862ec8",
+      "bytes": 20005
+    },
+    {
+      "path": "js/lesson-zero-compact-bindings.js",
+      "sha256": "594fb523fe433874589a7731a85edfa55b91c87e9a88eb1cad22a1f53d4e195c",
+      "git_blob_sha": "94ec1db1e8de6c093ce5b3e59c843f92ecb33aa0",
+      "bytes": 472
+    },
+    {
+      "path": "js/lesson-zero-compact-route.js",
+      "sha256": "ce359d1ba14b56a10e7975242f68df115d7d18f3e6177d4b31a050c75cf7c190",
+      "git_blob_sha": "d6b2e88cd6ef45f180aa9d81ee56af9d333b7286",
+      "bytes": 15206
+    },
+    {
+      "path": "js/lesson-zero-precalculus-opening.js",
+      "sha256": "8a9ec78229701ef595878e32ee76531e5806ab2eae38a033ea23504238d49714",
+      "git_blob_sha": "ef06722741357e4c5b9173786942043618b0e3bb",
+      "bytes": 5912
+    },
+    {
+      "path": "js/lesson-zero-student-presentation.js",
+      "sha256": "8cb6b076a7ca48df3c7b6077a75b4dffe0f2cc12652837829509bb4a07b81a50",
+      "git_blob_sha": "8fbde3a72da8d1ee506b244957e8e1f105743319",
+      "bytes": 6246
+    },
+    {
+      "path": "js/login.js",
+      "sha256": "f2117abc9a1705bb2128c6e6c13b139d17e3f5fac2961946f81878d880925571",
+      "git_blob_sha": "6b3c55aa8d88a60c58f1254a5c25edc7f7408f12",
+      "bytes": 6334
+    },
+    {
+      "path": "js/official-ap-integration.js",
+      "sha256": "2a95804c1d811e9212cbec502bde3ca56a104d6ecd13d1d90800e6fc6c65b57e",
+      "git_blob_sha": "5aa08411cd2d8047d62aab60d3a36e8e31795856",
+      "bytes": 4021
+    },
+    {
+      "path": "js/platform-foundation.js",
+      "sha256": "1db705c425b73aed357d2ac07bf28812234f2c9d94568eea4299dbab777b4e3c",
+      "git_blob_sha": "5ea57a617f0037bd1024bef578671c483bb2ce8f",
+      "bytes": 15741
+    },
+    {
+      "path": "js/portal-access.js",
+      "sha256": "8b1dbcd1beb68219340c196e6f0bda3471c0bbe11a55228ee83fc102c63931a5",
+      "git_blob_sha": "21fcc1a0820b7fede023c081e850fd7d1c511c28",
+      "bytes": 4298
+    },
+    {
+      "path": "js/portal.js",
+      "sha256": "c061679dd08e65875909f71db2b581d0bd5266658e4c1a03b602b87558847ae2",
+      "git_blob_sha": "37e7a4415e913175f44ecf33b041e3f17bd80492",
+      "bytes": 28179
+    },
+    {
+      "path": "js/practice-integration.js",
+      "sha256": "1651d3c470ee9f99703080c9d1817abcde09476614a4292924d85d3a98190a16",
+      "git_blob_sha": "f7417944657c287d79f09b77a7c730d34991cb3b",
+      "bytes": 8222
+    },
+    {
+      "path": "js/preview-portal-access.js",
+      "sha256": "4a031c354893a7b41c1706e0a7ec1bb8df82a99e3677b61c8fab220bf4dfa30d",
+      "git_blob_sha": "3bb38da3995231025b9ed3b28b2cc97f9102fe38",
+      "bytes": 585
+    },
+    {
+      "path": "js/setup-frame-guard.js",
+      "sha256": "c569fbf55d3baec846903adabaa46cefb8e6e4217d9683de4fae83f5a34704de",
+      "git_blob_sha": "2845bf9fa9805a28238b607c4f95cfa67e278d5d",
+      "bytes": 283
+    },
+    {
+      "path": "js/smart-learning-route.js",
+      "sha256": "386290f0612ed09deccea7c2a794e44dd55a53bb07efa65d0e02629e155d4f85",
+      "git_blob_sha": "c87a2645f51ec1b19bbfd7190d75106abf9643ce",
+      "bytes": 23629
+    },
+    {
+      "path": "js/unit-practice-unlock.js",
+      "sha256": "ba198d8f78bc33d269da0737e77d50cb987edd828a32784192d28efd628872fe",
+      "git_blob_sha": "cedb006ac6483982680fe6ab5202ea6662aece88",
+      "bytes": 4060
+    },
+    {
+      "path": "js/visible-copy-guard-v5.js",
+      "sha256": "e34f9c7bc38f7371222135ee235aedb99492ee267bfdda28cb699fe298df9822",
+      "git_blob_sha": "85153239d6a34be5dbc4ada0e5aeb430c877e3fb",
+      "bytes": 4055
+    },
+    {
+      "path": "data/ap-calculus-update.js",
+      "bytes": 88500,
+      "sha256": "7dff7fca1e06c15028218a643f8ccc3d4ce2f9dacf47f3963e3c2a61abb412cc",
+      "git_blob_sha": "809183ddf734f738ae1c4dd4eabcb88d1b931f85"
+    },
+    {
+      "path": "data/ap-precalculus-resources-update.js",
+      "sha256": "40f441fe4fc606ff758874f4e492e55d33ee1658c3df0a80de4d023722216be8",
+      "git_blob_sha": "f49a84a0d685a9f58aa416b6c3a047ca4c0225ae",
+      "bytes": 12360
+    },
+    {
+      "path": "data/ap-precalculus-unit-3-update.js",
+      "sha256": "33beead6fac7687d05cea543ef1b377d9c6ad99f9e9d2b13258ba2a21e0d4b40",
+      "git_blob_sha": "5c95e5edbfd9dc901f6d419c1c307d275c42831a",
+      "bytes": 7089
+    },
+    {
+      "path": "data/ap-precalculus-unit-4-update.js",
+      "sha256": "bb1dbbeb623c7522c3171ffa164e56f9f603586355151ee83bcb434856394d85",
+      "git_blob_sha": "9ebceec03d98dae56043d8adfbc526a02507736e",
+      "bytes": 12840
+    },
+    {
+      "path": "data/ap-precalculus-update.js",
+      "sha256": "286b87ab2bcc3cef8c7c19edaacfc1ffd2128f8122f4744598bcb81737e5ea0c",
+      "git_blob_sha": "d5b057bcd3138de61902a342d11474182e66d6b2",
+      "bytes": 63589
+    },
+    {
+      "path": "data/courses.js",
+      "bytes": 220763,
+      "sha256": "2e47966085306e025c9dd8661882986adc3c695b56994887b2044a8408cf4aad",
+      "git_blob_sha": "c8bf1161448e7ea46a8f99aa25763598f9094e14"
+    },
+    {
+      "path": "data/grade-9-10-pathways.js",
+      "sha256": "ede4aa320c28b241137ccb3cb7ca9d8b8c1e37cd1149e6e7887e5243bdfac6cf",
+      "git_blob_sha": "9e55f84e405190f10a0077c64a799ec87a6d60ab",
+      "bytes": 112236
+    },
+    {
+      "path": "data/ib-math-ai-lesson-catalog.json",
+      "sha256": "d56bf9d4b03d90b82fecc97b62726ed4f73f935a116700a2b39823e1253de118",
+      "git_blob_sha": "3691dcd647acbca0c024712702a0e7bce8e54eee",
+      "bytes": 6378
+    },
+    {
+      "path": "data/ib-math-ai-unit-1-delivery-catalog.json",
+      "sha256": "71f115158f40dec8e1cf247376cc015de1dde13079d7444e7b61543a62501d4a",
+      "git_blob_sha": "c1a5648c27a519464d114248013779719eee5d68",
+      "bytes": 13603
+    },
+    {
+      "path": "data/ib-math-ai-unit-1-update.js",
+      "sha256": "4480193d7dc53f7270eea81f03ae43b864329990e801b82282d4701eec748e0d",
+      "git_blob_sha": "56debb08e87f9d347d5e4985b8e13574c08a2e2c",
+      "bytes": 17640
+    },
+    {
+      "path": "data/ib-math-ai-unit-2-update.js",
+      "sha256": "889b0f34106323ed0bdcf2f6bfb60c5909c42ad9ab2f8ac686062aff9a5f8982",
+      "git_blob_sha": "78a5148e4fe40515169539e156ff3eb5857924f0",
+      "bytes": 13153
+    },
+    {
+      "path": "data/ib-math-ai-unit-4-delivery-catalog.json",
+      "sha256": "009cff62874ee93f3e9e1c7efea50a518cba261fe450bdcd754ec0cdf06a8016",
+      "git_blob_sha": "3c903fc8ff5c3b8f77d4662207ff099ff6270685",
+      "bytes": 6973
+    },
+    {
+      "path": "data/ib-math-ai-unit-4-update.js",
+      "sha256": "9d9611de58cfffa1d89bcfb5dd4f7b19518271d70db6e3fbc79b276850df4b1a",
+      "git_blob_sha": "2af793a93751a1a1e978e1f13e662d5d61fcf41e",
+      "bytes": 25269
+    },
+    {
+      "path": "data/ib-math-ai-unit-5-delivery-catalog.json",
+      "sha256": "4f74e019a4b7e190a1118c50337f4d8065693eefdbadc806ffd981ff714c2269",
+      "git_blob_sha": "8021b3437e73fa242b8948ed5857c48a5babd5ee",
+      "bytes": 3454
+    },
+    {
+      "path": "data/ib-math-ai-unit-5-update.js",
+      "sha256": "f77e02cac7f0794e4f555cbc4f04751b1aaeba890a6620ac71ce0680ec6eac10",
+      "git_blob_sha": "d567dbfc16f48b8dd80db970cebb30a5f296b741",
+      "bytes": 8994
+    },
+    {
+      "path": "data/ib-math-ai-unit-6-update.js",
+      "sha256": "10e94d81f26df71f12aa4bf40e35f9075364d8988fd20a3c124b90cb93066880",
+      "git_blob_sha": "a570112a6bde201881200749f20fd5a63184bcd3",
+      "bytes": 12301
+    },
+    {
+      "path": "data/knowledge-graph/ap-calculus-unit-1.json",
+      "sha256": "1f7d7601fb189a0e13643318c3bc921e7f010238e09c75b8b9f229724d5dec50",
+      "git_blob_sha": "52b1ef48e6d0196df26fbfbe84f452d966502bd9",
+      "bytes": 11096
+    },
+    {
+      "path": "data/knowledge-graph/ap-precalculus-v1.json",
+      "sha256": "6c96503d6d0a764160a12d2de8b83205bb679c93f834fd1f324a8d1cd1ba3964",
+      "git_blob_sha": "b1780a38d685ee755c8ca9a2c3b944ba3a89b744",
+      "bytes": 8071
+    },
+    {
+      "path": "data/knowledge-graph/ib-math-ai-v1.json",
+      "sha256": "884dcd6ab543914f1e3505722d96bd0d0954fbb918ae871fcce83249b9f38de0",
+      "git_blob_sha": "6755c77a86b1672d810c89c38ff8088ac710e7c6",
+      "bytes": 5294
+    },
+    {
+      "path": "data/knowledge-graph/schema-v1.json",
+      "sha256": "63a7b52cd05ded06d598a5e9584300217a189e66c3eca425320ef5443bcbd113",
+      "git_blob_sha": "740cbfc7c69b1dddeb4e355c8d77692ff32734a8",
+      "bytes": 2190
+    },
+    {
+      "path": "data/pages-ti84-release.json",
+      "sha256": "b86228f2f59a0497d26be507e87563c864cb8b0830b79428a59b7908968d92b9",
+      "git_blob_sha": "036c24e214b98a3193a39acc282ecf8eb3809b39",
+      "bytes": 420
+    },
+    {
+      "path": "supabase/config.toml",
+      "sha256": "c124882a14260c078dee80269c356663b303c3cd024e28aa580098b2e2dd6048",
+      "git_blob_sha": "1c0f2973e4d86e169fc5ce5c3978fcdd65240959",
+      "bytes": 849
+    },
+    {
+      "path": "supabase/functions/account-api/index.ts",
+      "sha256": "65c7b555d2f7130aa3cb61baa2150b8aa0917051584cbaf420783a242ac0160e",
+      "git_blob_sha": "47ea8982e7115ad59f7d8f5f8fbc5b8eeb25c002",
+      "bytes": 19750
+    },
+    {
+      "path": "supabase/functions/institution-api/index.ts",
+      "sha256": "d833d5a5c4ab9fc830540dbaf3f5c14c521859cca6e0174e6a866365ff7d1025",
+      "git_blob_sha": "e178d751f602195f7786c0122d28fea400733483",
+      "bytes": 47979
+    },
+    {
+      "path": "supabase/functions/institution-api/lesson-access-policy.js",
+      "sha256": "48a982764348151a51d1a19772b5dc1d0e5a1a04a9c79e065a6cda6d26f6e9ac",
+      "git_blob_sha": "0ce1a28c689132a5fce075e075c27d96d2b5c0c6",
+      "bytes": 2111
+    },
+    {
+      "path": "supabase/functions/learning-sync/index.ts",
+      "sha256": "f58b4a32a55acb49590faa81f5566723f221e9896cff8e7990e3647a346e86aa",
+      "git_blob_sha": "e48e90e72ac433c80bc644fe721d7ce3bec3c0f2",
+      "bytes": 8027
+    },
+    {
+      "path": "supabase/functions/lesson-api/asset-bytes.mjs",
+      "sha256": "564e2ea7d554a95cbdbededfdaa1719c880f0094d0bcefde0472fd98c847dc20",
+      "git_blob_sha": "1c33eb4c8ed3abe0a61e7c992d15a3303082b35a",
+      "bytes": 11125
+    },
+    {
+      "path": "supabase/functions/lesson-api/asset-storage.mjs",
+      "sha256": "90fe53ef89af450d31420a2ff0d1b14c05abb4bdcc79ccbbfbff2f1426360970",
+      "git_blob_sha": "c52d424a4c91029e7843d99aaa6a4a4cdbd9c661",
+      "bytes": 9341
+    },
+    {
+      "path": "supabase/functions/lesson-api/deno.json",
+      "sha256": "e5a889efecc5799fedd4ece0a959465104d729ca1f38f81f5366225dcca4a444",
+      "git_blob_sha": "f8a8104f50489199267852143e65e7e206c1f0e1",
+      "bytes": 26
+    },
+    {
+      "path": "supabase/functions/lesson-api/deno.lock",
+      "sha256": "5e4de73c8656f90e94a3966708147c7c8e84d464fc1794379f9238edb217d1a9",
+      "git_blob_sha": "c3003eb1b257294b1c31771ee5099a11b7a27fc9",
+      "bytes": 462
+    },
+    {
+      "path": "supabase/functions/lesson-api/document-contract.mjs",
+      "sha256": "3461d89a8ec193d8d144584925f30fb1162970394d2c869eed757779a8c63584",
+      "git_blob_sha": "2e40c8b67029ec94fdcd94a0af3775013ce145ce",
+      "bytes": 4121
+    },
+    {
+      "path": "supabase/functions/lesson-api/generated/schema.mjs",
+      "sha256": "f3c0096b4fa4ed3eadfc7f726038acb715ec476f181c4cb7b4b9b9fdbc8d4071",
+      "git_blob_sha": "c6ce75aef42cf4ff3af3dbf6e60d767421736966",
+      "bytes": 218470
+    },
+    {
+      "path": "supabase/functions/lesson-api/generated/schema.provenance.json",
+      "sha256": "2640ca795294a54a1312dedbcc3cf7a6efa310c1e7867999b117478911db0315",
+      "git_blob_sha": "295659cbbcc4f66ecc4c7f2a29a80059fb793b53",
+      "bytes": 1130
+    },
+    {
+      "path": "supabase/functions/lesson-api/handler.mjs",
+      "sha256": "ca68365dc6755b41e09be8e94e943b787bbc6a6309f7ebed803c4d12c87438ea",
+      "git_blob_sha": "05973f4b51e638a519d2734b7952fcd9d0123dd9",
+      "bytes": 26216
+    },
+    {
+      "path": "supabase/functions/lesson-api/index.ts",
+      "sha256": "6e8d7e3dbb4bed8a6d65115a3a2f84329f4bd29e29984e54986e8f96a276ca04",
+      "git_blob_sha": "bf19235be46d258169f60b677642639f608c0a72",
+      "bytes": 1262
+    },
+    {
+      "path": "supabase/functions/lesson-api/media-handler.mjs",
+      "sha256": "3502186fa79833c5b70c058806d4c8976ba18e660b716b45aab0adc947855bac",
+      "git_blob_sha": "308d861259ee1f3971dd35d07f524088a914e987",
+      "bytes": 10835
+    },
+    {
+      "path": "supabase/functions/lesson-api/recovery-contract.mjs",
+      "sha256": "d8b606f9256a519c4ab915f902135a5af72072b62e457dadb1e83e6c8d86c940",
+      "git_blob_sha": "1b524deeec11526d1f89394c923c49bfa03475ad",
+      "bytes": 1532
+    },
+    {
+      "path": "supabase/functions/lesson-api/transport.mjs",
+      "sha256": "9fbeca7a3224b4591067f626261a8cb7a94497e287fe1185159965e7fdc55c12",
+      "git_blob_sha": "81e2dc7247eb0385345854ed7f540e6192bc906c",
+      "bytes": 2739
+    },
+    {
+      "path": "supabase/functions/login-diagnostics/index.ts",
+      "sha256": "ac0ca72c0ad1b6ff247fe9c3e8e5fb845d03904dca2087b82faf1531c7500b3c",
+      "git_blob_sha": "0e69df90117d2f1f7e5184148a910821b9cde602",
+      "bytes": 2328
+    },
+    {
+      "path": "supabase/functions/mastery-evidence/index.ts",
+      "sha256": "6ed8c253d37c8a92cbc1e5acd3b89dc8415c2773db2553d1a80047f2b29507c9",
+      "git_blob_sha": "07e1b2d4ab34b0f7bdbd1e61b4bd2f5b63f57639",
+      "bytes": 20855
+    },
+    {
+      "path": "supabase/functions/practice-bank-api/DEPLOY_VERSION",
+      "sha256": "cfe1ccb9b81cd4de000f3aa1e573c0dc5e1311f3fa7861770e8ed31e232af7e9",
+      "git_blob_sha": "1641559c023e95df180134f106e2ab4b234470fb",
+      "bytes": 117
+    },
+    {
+      "path": "supabase/functions/practice-bank-api/index.ts",
+      "sha256": "a38171f19ef67c0465939a852bc9af8ca3e059f9a07b9f7e945a864845555ea8",
+      "git_blob_sha": "a5f43b030bfc280b9f0922eab9101cfedd8ee03a",
+      "bytes": 15921
+    },
+    {
+      "path": "supabase/functions/private-bank-api/index.ts",
+      "sha256": "427781471a4c1e32f36cc02f4fb9b85e070928705b56dbdde1a2e4db15290d85",
+      "git_blob_sha": "0f9b301090ea3f58314fd835d7b57b3806d4aefe",
+      "bytes": 45442
+    },
+    {
+      "path": "supabase/functions/private-bank-purge-api/index.ts",
+      "sha256": "e1401bcc3cfbf28b6dd72c5039be266ccd80278be34969f5b0dfd54c09ffb391",
+      "git_blob_sha": "2e99a4e18e7508ba1820f9b34d8ff1759c8b7811",
+      "bytes": 25516
+    },
+    {
+      "path": "supabase/functions/readiness-api/diagnostic-bank.js",
+      "sha256": "7b2ca6b27e45a6de1f61ee31fce187f15e781120a900b2a05cd2833517c88c41",
+      "git_blob_sha": "a4e51cc8b768ed3e21c4d25a61c0e8b06a2db929",
+      "bytes": 7265
+    },
+    {
+      "path": "supabase/functions/readiness-api/index.ts",
+      "sha256": "22e621d4fcc4cdfde766b737da9ad03621f8d291b50d5f58314a478ed0fe7df1",
+      "git_blob_sha": "f28e9149a01f6fa11970216e16f2effe08945b0f",
+      "bytes": 48332
+    },
+    {
+      "path": "supabase/functions/readiness-api/readiness-engine.js",
+      "sha256": "5e3f229197954a5bd4c978074016793c9d26801cecb169e69de2b45cfccf916b",
+      "git_blob_sha": "a96150c9c10b62a0c3c4b90c712b6cfc2437eb78",
+      "bytes": 20973
+    },
+    {
+      "path": "supabase/functions/readiness-api/readiness-engine.test.mjs",
+      "sha256": "252abce7007a74dc597fcd60a5e209971ef0e5ab9c85d09cdb50a25e89ff3b4b",
+      "git_blob_sha": "f0fdbacf095c9dfe9942823fa90106a08f40d8cc",
+      "bytes": 2947
+    },
+    {
+      "path": "supabase/functions/setup-api/index.ts",
+      "sha256": "eb124f7a5872b3d583323d09b51e4985869a91d7c957b499ae818264d3b8e047",
+      "git_blob_sha": "0f8bdfff1e95b49c32711ef0906e991b753d7e80",
+      "bytes": 8397
+    },
+    {
+      "path": "supabase/functions/upload-manager-api/index.ts",
+      "sha256": "59d3a13f5f18f2af95cd5ec3e2d0e02260c5c91f7c9886fcbd376291296e3d33",
+      "git_blob_sha": "af4cc2aef1fa776db12d7a98a437eca756e4d076",
+      "bytes": 12620
+    },
+    {
+      "path": "supabase/migrations/202607260001_institutional_platform.sql",
+      "sha256": "d795417c79539f0aa0fdf7d2c59165654458b3b8c85ff1da465645e4052c6e00",
+      "git_blob_sha": "1de56567ebe9a69a74a6bc7d4db194d07b243ac7",
+      "bytes": 24164
+    },
+    {
+      "path": "supabase/migrations/202607260002_bootstrap_function_repair.sql",
+      "sha256": "5753b6408a824fb99d76348f2f09831d6e8026dbe0b1e89d7763594710997613",
+      "git_blob_sha": "5e42cca3ffcc4a79523ef2a42d82e02aa2559b87",
+      "bytes": 3545
+    },
+    {
+      "path": "supabase/migrations/202607260003_login_authentication_repair.sql",
+      "sha256": "2a4ce577fd8c31dd55192330cfa24a13708d0bbe5d77fdd6d1271adcaff14a11",
+      "git_blob_sha": "0f5ed726fce3e0a868fa532d521b22a7718c6a3e",
+      "bytes": 5946
+    },
+    {
+      "path": "supabase/migrations/202607270001_session_lookup_repair.sql",
+      "sha256": "b7742cfc9e9154c7ade12005f87215602422b54c99cebd9973b0277c45547c13",
+      "git_blob_sha": "bcc4b4ffc006b528e84e184a885cde409a39774a",
+      "bytes": 5817
+    },
+    {
+      "path": "supabase/migrations/202607272001_mastery_evidence_foundation.sql",
+      "sha256": "434d31d932a66c91a14c27ed2f13533dcd30b4b31cb6e8642e23fe9fc024c49e",
+      "git_blob_sha": "c64d46f44460ec3ae6c9f20d679b1622f3f7e2a8",
+      "bytes": 12279
+    },
+    {
+      "path": "supabase/migrations/202607272002_mastery_authority_guard.sql",
+      "sha256": "7d1e8b5229b64bab2d52ab6da0f3fb1b5304dc4cd41a298c203caa3df74cd683",
+      "git_blob_sha": "ed06bf319ba52f6890beed337863f42283d56b98",
+      "bytes": 1480
+    },
+    {
+      "path": "supabase/migrations/202607272003_attempt_trust_guard.sql",
+      "sha256": "87eab47e172a34ad4e64d502c7f4add618631d598e5f147131bdab446d5fe689",
+      "git_blob_sha": "5ce65d0169b6ea88cf2e3f19737709784caff6b1",
+      "bytes": 916
+    },
+    {
+      "path": "supabase/migrations/202607272004_atomic_skill_mapping.sql",
+      "sha256": "f05a8ffa3f78c6d4dce1a79c48fa15964047d69147e83a2648ab98d84982fc08",
+      "git_blob_sha": "875bb243a3da1005e76d035a3e812338c8e4ab49",
+      "bytes": 1488
+    },
+    {
+      "path": "supabase/migrations/202607272101_private_bank_foundation.sql",
+      "sha256": "2d6614d54e5867bb8a1765b17343f4b564e760e132f3b97e05db1d8a0aee2dc8",
+      "git_blob_sha": "c61587f37bb8783acadec2cf571188c2c3a49e87",
+      "bytes": 9555
+    },
+    {
+      "path": "supabase/migrations/202607272102_private_attempt_trust_bridge.sql",
+      "sha256": "0056dc1cd5f8b5468b949a20aa5e3471e9febb054603dbda3da101963f6f6214",
+      "git_blob_sha": "fbd14fdfd9fcac81e24e6e6321ba893480626507",
+      "bytes": 1331
+    },
+    {
+      "path": "supabase/migrations/202607272201_teacher_upload_manager.sql",
+      "sha256": "7a1e472e7c3feab091e6d0c7c3b54e5b7c4bcc5b3a4cb6e37a78ee775fc93ace",
+      "git_blob_sha": "4d1fa57028d7ed02b30df445688a0cb9554eb5bd",
+      "bytes": 2253
+    },
+    {
+      "path": "supabase/migrations/202607282330_verified_private_bank_import.sql",
+      "sha256": "877681c751b5f55bc415f8534b4360c0fc34cf8a8086f60e8e63b4cbad66e831",
+      "git_blob_sha": "5fb292ae685a543ed3cdd420e90dac3230212c9a",
+      "bytes": 4203
+    },
+    {
+      "path": "supabase/migrations/202607290001_raise_teacher_upload_bucket_limit.sql",
+      "sha256": "6af0fb5f637ad309d0c8a4e9647650e9b5e4f7fbf9af6ad2bb6d9586cf6ddd51",
+      "git_blob_sha": "5123ab3fcc212d0b742f2cba15e2b98c9ff21656",
+      "bytes": 623
+    },
+    {
+      "path": "supabase/migrations/202607291900_resumable_private_bank_course_purge.sql",
+      "sha256": "9a7083fd9f3cf30fe036ad4ff5a5e2e6298de5f6383f9287d1ae32e7566b0910",
+      "git_blob_sha": "20b7631024b1edf6ac82a8dba5ad30d15ed14717",
+      "bytes": 9897
+    },
+    {
+      "path": "supabase/migrations/202607300020_sync_private_bank_mapping_indexes.sql",
+      "sha256": "d1107fb8c6464cef5fcb9b445d46fdc5c1f1672c644a2749d8e4962976b32e71",
+      "git_blob_sha": "ddd36346ec6b227ee0315c65c9cbdfbda6586e88",
+      "bytes": 3253
+    },
+    {
+      "path": "supabase/migrations/202607301500_private_bank_practice_inventory.sql",
+      "sha256": "1a74d46d17cfc028f03f8fa79973e2c5abeb80283497bfb5d76c55ff3b098687",
+      "git_blob_sha": "dd57c2f40bbdff548bd329e2a90fb9567670a92c",
+      "bytes": 2337
+    },
+    {
+      "path": "supabase/migrations/202607312230_restore_ib_current_bank_practice_visibility.sql",
+      "sha256": "a56066e8f979eca033dfe0c54e5f46335ed2479602764bd4544c13e06cdd3d39",
+      "git_blob_sha": "b8381902a087c26c03f1bdf4e8f56e5cb1cf6849",
+      "bytes": 5938
+    },
+    {
+      "path": "supabase/migrations/202608020002_assignment_routes_and_timetables.sql",
+      "sha256": "51987bffa02ad10993f67bf8ebc819fa62c09f2a38440aff413bccf3c81a4025",
+      "git_blob_sha": "cf27832699e863862fcfccca78829f1e1e745c11",
+      "bytes": 3184
+    },
+    {
+      "path": "supabase/migrations/202608300001_lesson_visibility_progression.sql",
+      "sha256": "26c8daec8bf8cdd451b350e99b03273e056d0509949b673639810481d712b627",
+      "git_blob_sha": "a8b4de9fd1ba102af770ba874790181edb018ae4",
+      "bytes": 58983
+    },
+    {
+      "path": "supabase/migrations/202609050100_ib_readiness_pathway_engine.sql",
+      "sha256": "53df739f2b0201936e03eff00a93f7e1c58d020d264e94a37ca286ace4e96650",
+      "git_blob_sha": "788f5b7f8038e8511725c32db4fc1ea9b221591f",
+      "bytes": 15607
+    },
+    {
+      "path": "supabase/migrations/202609080001_curriculum_versions.sql",
+      "sha256": "aaad19c8e9c3d5e88ed85041cb1f83b1b732030e6fbb5a388b7b573325233845",
+      "git_blob_sha": "6517ba014effeaf0e16cd0ab128f5f877141763e",
+      "bytes": 20008
+    },
+    {
+      "path": "supabase/migrations/202609080002_lesson_persistence.sql",
+      "sha256": "01e522b73729669d29bf2219f4753d561e80a733f954624612a1a69ea845c0bf",
+      "git_blob_sha": "f106d0b52f64c1327d41bef78a8b966d9225625e",
+      "bytes": 52564
+    },
+    {
+      "path": "supabase/migrations/202609080003_lesson_content_v2.sql",
+      "sha256": "ed5abde8826c67bbe161cf0d90d367d9b78a1d4cdb3cd4d7da07e72dbcd1ab61",
+      "git_blob_sha": "cbd955ce28fbc8c63f380383102b2e2361cc1a0f",
+      "bytes": 23991
+    },
+    {
+      "path": "supabase/migrations/202609080004_lesson_media.sql",
+      "sha256": "af9b34a41200a4ca2ef25502a40a617c81eef41e9b5ab060a618728b770d21e5",
+      "git_blob_sha": "1fbcdeb7f843e93e077d042a4d60de61e766e89b",
+      "bytes": 36628
+    },
+    {
+      "path": "supabase/migrations/202609090001_lesson_draft_recovery.sql",
+      "sha256": "df0d4fbff433645ac12e1ff00ee0f0ea7dad122d5703fb7f74d8dd51453de264",
+      "git_blob_sha": "a2a4cfbb9027677eb21688aea4ac092fbb9416de",
+      "bytes": 7099
+    },
+    {
+      "path": "curriculum/pathways/grade-10-2026-2027.json",
+      "sha256": "502a98a927f94660a6c47aed220c394072cc87e46c0b9640109a5d841376529a",
+      "git_blob_sha": "28ea2aba576991b9c8cc1c743da1f7acc53b9410",
+      "bytes": 98638
+    },
+    {
+      "path": "curriculum/pathways/grade-9-2026-2027.json",
+      "sha256": "a95b2d8eecbb157a820749324b98769bd2c4d127bdf6d9da9f56cd901383112e",
+      "git_blob_sha": "5178e51fcb2fd978c60ed7017434f90eb0bcaa43",
+      "bytes": 50091
+    },
+    {
+      "path": "curriculum/registry/course-versions.v1.json",
+      "sha256": "2ea7a70e3a32f57930f85ba023a015af743e99a0e22bcba2684c83b31e504398",
+      "git_blob_sha": "7da4587b74045e3c41f337a3d6ebdd2e3d478513",
+      "bytes": 14396
+    },
+    {
+      "path": "readiness/README.md",
+      "sha256": "4b082542457e936e022a01816bfc6c69539a8e031050db3d1742afe98e622cb6",
+      "git_blob_sha": "ea96a365ed0c2e9757fad0754f109b59de0b2d5d",
+      "bytes": 466
+    },
+    {
+      "path": "readiness/diagnostic-demo.json",
+      "sha256": "7f1e086df9151fa0efa8d09c3ba359de99ec35b0343bffa7cc57e8c1d3e7d224",
+      "git_blob_sha": "3c48e9bf9e3c41e61e908dd671d99e7e0fdfa5c2",
+      "bytes": 8524
+    },
+    {
+      "path": "readiness/index.html",
+      "sha256": "d1009ef90173149b0c8eb132896ba35e15ed56a9a4c141de7a96bc40a35b9ef8",
+      "git_blob_sha": "d9b297fc1e9e8c117abf0b21f63fc42d16ac34d9",
+      "bytes": 26357
+    },
+    {
+      "path": "readiness/readiness.css",
+      "sha256": "847879bd0196f9573d158f2764aa9f0df5bd8082e56e938e040342101b19a4b6",
+      "git_blob_sha": "f31a742708874e1f7fd7924f57ecb3b04360ea4a",
+      "bytes": 19844
+    },
+    {
+      "path": "readiness/readiness.js",
+      "sha256": "287b86ca78e896152d2ccd909385b4a97468a1c520e50c0b8df636c403e07cb3",
+      "git_blob_sha": "90fa4f5d11f1e36f1740746df75cabd1fee520b5",
+      "bytes": 62386
+    },
+    {
+      "path": "readiness/templates/ib-outcomes-template.csv",
+      "sha256": "3b3b9e6a3e0342719ad7eaacfa581848fdc72272f65a7a534ab73b30e30c5b30",
+      "git_blob_sha": "46e4fa08e5f7b606a65ec4d0fd988aa20d4fa91b",
+      "bytes": 225
+    },
+    {
+      "path": "readiness/templates/map-import-template.csv",
+      "sha256": "37ae991372529241604f140ddbe5114ae4c9ff3e0c69c9dddce54a9b730cc0cc",
+      "git_blob_sha": "ce0ca58d146e7344386eb231a385d6b5974819a6",
+      "bytes": 250
+    },
+    {
+      "path": "readiness/templates/myp-evidence-template.csv",
+      "sha256": "570d484cac5d308ced66bae0b6fbada0bb0348f33928b8e771bae252a3f11513",
+      "git_blob_sha": "8a48098c3794070af759b45ff8011e610eea68af",
+      "bytes": 256
+    },
+    {
+      "path": "cloudflare-ai-worker/README.md",
+      "sha256": "a5ba76c9ad1f9c198abf23bd0aa89c97c4106f02e178b0d31f58598b708896a9",
+      "git_blob_sha": "e966034d9f9e5c02bdfb4ef74f274b2dc203be3a",
+      "bytes": 5151
+    },
+    {
+      "path": "cloudflare-ai-worker/src/index.js",
+      "sha256": "d2326827d3721b8c2b666f6a873e2ed38d6883f88046f8f148e565b1c02aafae",
+      "git_blob_sha": "b6971253988d18e4e2c4a1b04acab5f957445565",
+      "bytes": 26568
+    },
+    {
+      "path": "cloudflare-ai-worker/wrangler.toml",
+      "sha256": "9a1a4213dc2f619ae931039a145f481420af1c38a32d9ee1c1df0f3fc1897dd9",
+      "git_blob_sha": "60a04dbf5ebdef856034e8185652748e6874e2f5",
+      "bytes": 623
+    },
+    {
+      "path": ".github/audit-bootstrap.part-00",
+      "sha256": "a6a29bcd0687498aadb52a0a0f7bae40bcc3d141a1efa944f597633da129179a",
+      "git_blob_sha": "88db6adedf920e98f0b6747b62c9ff1148520595",
+      "bytes": 8000
+    },
+    {
+      "path": ".github/audit-bootstrap.part-01",
+      "sha256": "9f912422fb966eaf99935e01d769bcccecff87be7b4ea3d62956f351a4215dd3",
+      "git_blob_sha": "faecb8bbb29e9bff1a828b07b3d1efee0ce288c6",
+      "bytes": 8000
+    },
+    {
+      "path": ".github/audit-bootstrap.part-02",
+      "sha256": "9b127263fb5397b476cf53c3476d6cd1963193d03a117bd91842bfe3a5bd3a03",
+      "git_blob_sha": "63a4f12f2778053feeb3c07b996a3dff3593483f",
+      "bytes": 8001
+    },
+    {
+      "path": ".github/audit-bootstrap.part-02a",
+      "sha256": "9b381ebcf5f5f39a86b575bf84b063ccab89e2a95f162d3f655b7aeec60b4a8b",
+      "git_blob_sha": "16622089df628438991d4acab1129284127f7a42",
+      "bytes": 4000
+    },
+    {
+      "path": ".github/audit-bootstrap.part-02b",
+      "sha256": "16152277bc1bf59434f1049b4c5d9426f83e8440bf348201a90835f06565573a",
+      "git_blob_sha": "07c70cb12f58e16c401594baa1bd56297a336b6b",
+      "bytes": 4001
+    },
+    {
+      "path": ".github/audit-bootstrap.safe-00",
+      "sha256": "a577b725fa087960bc259c939414caa051095b9e2614f851739b876e0b2fa92c",
+      "git_blob_sha": "4d98bf3b21ac6a75b9f9085063c812985829295a",
+      "bytes": 2000
+    },
+    {
+      "path": ".github/audit-bootstrap.safe-01",
+      "sha256": "03c8448ab439c9292493be1b5ea907c96ec42ced63193b84a67d6226656357f2",
+      "git_blob_sha": "d619446b0789f7463000dda15c423a8703e5cf19",
+      "bytes": 2001
+    },
+    {
+      "path": ".github/audit-bootstrap.safe-01a",
+      "sha256": "c2851c99bf8e542b1ad5a57a25ecd3a498e2993d30dfa099bdab6fff8d35e8d7",
+      "git_blob_sha": "5a2303d08dd80cff58497f866d9951f9f52846a0",
+      "bytes": 1553
+    },
+    {
+      "path": ".github/audit-bootstrap.safe-01b",
+      "sha256": "318a47858ca7f1befc01f7e5b8abbb92ba9caeeb42ac068cd2af9d30cf6cf614",
+      "git_blob_sha": "b838a49951f0700b518df5dc3e64651a68104833",
+      "bytes": 446
+    },
+    {
+      "path": ".github/audit-bootstrap.safe-01n",
+      "sha256": "8ce86a6ae65d3692e7305e2c58ac62eebd97d3d943e093f577da25c36988246b",
+      "git_blob_sha": "2f94675b7cc5772325e379fc48538156958bab62",
+      "bytes": 1
+    },
+    {
+      "path": ".github/audit-bootstrap.safe-02",
+      "sha256": "39b4be785f3f60e9857ee8e7c159a43d7bbbee6805331dc4c62cf20a21334d22",
+      "git_blob_sha": "368b29eef1aa375cf946e8e7a66ae050663ac7e8",
+      "bytes": 2000
+    },
+    {
+      "path": ".github/audit-bootstrap.safe-03",
+      "sha256": "61b4e77d9e6642a79ce55f08c172bd931082b5d63a06271de6f5905f6352beb9",
+      "git_blob_sha": "d62d6fb1600bb82453a9be7e778521cad46c1f34",
+      "bytes": 2000
+    },
+    {
+      "path": ".github/audit-bootstrap.safe-04",
+      "sha256": "32a77aae528597f010d5a753cad26f2b1ec23c3c447918096e9973284a5f98af",
+      "git_blob_sha": "730dd23ad868308dbca8fd656d02739e68fb7fe9",
+      "bytes": 2000
+    },
+    {
+      "path": ".github/audit-bootstrap.safe-05",
+      "sha256": "58ec1a2388344b7cf9bb02aa1d15d995601824b631a704c966bbd2446210dc95",
+      "git_blob_sha": "f65bf312c3010ae0454d09f5c0e536c24c54e55f",
+      "bytes": 2000
+    },
+    {
+      "path": ".github/audit-bootstrap.safe-06",
+      "sha256": "a2b91effb791b61bf9817b97b19d602e566aa68d0e8c906c3f45f7e63a1b760c",
+      "git_blob_sha": "888765c376749392473143f38e61f0fbdf215bf2",
+      "bytes": 2000
+    },
+    {
+      "path": ".github/audit-bootstrap.safe-07",
+      "sha256": "0cdb434288968d3a2db4b04847865ff66804cfc44734bf73087552a9b655ed62",
+      "git_blob_sha": "06372e06209f7dca5c1a4840d4f160c15c12bb77",
+      "bytes": 2000
+    },
+    {
+      "path": ".github/audit-bootstrap.safe-08",
+      "sha256": "d2d0be3259320e7a5f407812b7abfef4ea2176eb11eb58153b1095e9257c13f1",
+      "git_blob_sha": "99341665612a7a420767525b9d7135657ef31d5d",
+      "bytes": 832
+    },
+    {
+      "path": ".github/workflows/apply-upload-staging-limit.yml",
+      "sha256": "c2125b1b352f8aecab7651d2af5ca7e7830aeddc8cac99d21a3132757e2c4c27",
+      "git_blob_sha": "337a5fe36184e7b34362b220cfef665fb2e6dc49",
+      "bytes": 2557
+    },
+    {
+      "path": ".github/workflows/auth-shell-cache-repair.yml",
+      "sha256": "418acadc893c18a8967e4da3b1477d4a046b35356481b2a635ba66095c28a0c4",
+      "git_blob_sha": "6bfd42cca3fb2ef4849d63c0149ecb082cb8c589",
+      "bytes": 1046
+    },
+    {
+      "path": ".github/workflows/baseline-validation.yml",
+      "sha256": "a3721dd80d95b587b76608b7ac6779b59a8f036038d6e859483b0d3cc4569e76",
+      "git_blob_sha": "534e6aa2033122c86f0518d91b12c0e521e28bfc",
+      "bytes": 1605
+    },
+    {
+      "path": ".github/workflows/bootstrap-transaction-repair.yml",
+      "sha256": "2e3a4ce1f5304e00aa9b36c9604506566891aec5976ef9a55f887ae51711df1e",
+      "git_blob_sha": "29a7be04f70f838aec6946095cd4e7fa51cb6825",
+      "bytes": 1113
+    },
+    {
+      "path": ".github/workflows/curriculum-database.yml",
+      "sha256": "c6e71b3d947ea24dd4e19da35ac6246743a2ba6a1897c225719f205055889865",
+      "git_blob_sha": "a6ed0664715ed50132acbea68b26348619017be8",
+      "bytes": 1757
+    },
+    {
+      "path": ".github/workflows/deploy-institution-backend.yml",
+      "sha256": "685f66b40a08b752f06f5404670fcea39718b60ef9ca7133648a6e8aeef709ce",
+      "git_blob_sha": "e50f9f97af6fae60c6bc642ffe598c48587f26de",
+      "bytes": 8415
+    },
+    {
+      "path": ".github/workflows/deploy-pages.yml",
+      "sha256": "f97351cf9f39741d8f5e1d9d23aab1a9d484a7756647ca97c0924bf835e510db",
+      "git_blob_sha": "1e90b235c54b3ba3b96bac511fa96ad62a8bc7ad",
+      "bytes": 16078
+    },
+    {
+      "path": ".github/workflows/deploy-upload-manager-chunking.yml",
+      "sha256": "ff4d17467909b702d4d8be7158658792db50ab9629e2276486315f2a63116a67",
+      "git_blob_sha": "182ba13f1d30f411aed62841c40122bad9e6f420",
+      "bytes": 2816
+    },
+    {
+      "path": ".github/workflows/echs-ap-bank-validate.yml",
+      "sha256": "218f0bde38e8f3ccf79f1f2dea9f541dae510bdc10bf98c68fa44d224546c398",
+      "git_blob_sha": "839555f6a1468c880a55477497a0d1cb16f5c3a7",
+      "bytes": 2384
+    },
+    {
+      "path": ".github/workflows/echs-curriculum-agent.yml",
+      "sha256": "9de1103780960ab79bb3975a5d983690a25a644cb139b206d21aedbff74d5f03",
+      "git_blob_sha": "e970fe4d5fff7a393cf5f8f2a95ce6e3a85290c8",
+      "bytes": 3138
+    },
+    {
+      "path": ".github/workflows/echs-design-v5-apply.yml",
+      "sha256": "d68de266257122f8187dddd8d9757589d59ebc57fd4489f2cf38ffdf7a3e38cb",
+      "git_blob_sha": "33ede2af248a7b88538431d61dac785fa2c7bfe8",
+      "bytes": 8692
+    },
+    {
+      "path": ".github/workflows/echs-design-v5-copy-final.yml",
+      "sha256": "9d02803a24c4f5ba5934425610b23c6a04aed803b3705a3ca3fe5fd6388dd474",
+      "git_blob_sha": "cd15cf708f41e83482f61aed9dee54d3032d0db4",
+      "bytes": 7431
+    },
+    {
+      "path": ".github/workflows/echs-design-v5-finalize.yml",
+      "sha256": "246674631c6e5d3ee3c413f945c3da27c8964558d6f776e541ea56c0360bf7d4",
+      "git_blob_sha": "b24bf2d9198d4b3a261bb3a5f61fb1f2ae9c0e71",
+      "bytes": 8722
+    },
+    {
+      "path": ".github/workflows/echs-design-v5-pages-marker.yml",
+      "sha256": "3880b7c213c001cee4ae5c770d251acde969772531bb4e2d3abdbbe87fae8955",
+      "git_blob_sha": "2316c5e4ce97713270269baddb16f644c46d2217",
+      "bytes": 1180
+    },
+    {
+      "path": ".github/workflows/ib-ai-1-4-ti84-finance-qa.yml",
+      "sha256": "cd85aac4c8882e38045a4a6b9fc487d0b7d343fab8764e25bf21091251cccb20",
+      "git_blob_sha": "6988c02a381323f0948e6b2c85bf700da1a591f0",
+      "bytes": 1372
+    },
+    {
+      "path": ".github/workflows/ib-ai-1-5-visual-qa.yml",
+      "sha256": "1a9a128f1399bb4999ebf552e920887e837eec97b64613eb8d11af5cdfb879b6",
+      "git_blob_sha": "c7b55a96c62095dbc5a4695efbc1f6d66d023cac",
+      "bytes": 2049
+    },
+    {
+      "path": ".github/workflows/ib-ai-1-6-qa.yml",
+      "sha256": "15a297b6ab053fa9bbfa06c95dfad6e5adb2a8d566ee04ff866f6461666ca09f",
+      "git_blob_sha": "051b6fb4d090805c7edacba242917c370c4868c7",
+      "bytes": 2286
+    },
+    {
+      "path": ".github/workflows/ib-ai-1-6-ti84-classroom-qa.yml",
+      "sha256": "78a858d0a4cb4d8cbd5432fdf7633184cdc05d731eb4b6e517d899dbc9b6612c",
+      "git_blob_sha": "e519507967791a52ffee3fd7f5dd55482791df35",
+      "bytes": 3485
+    },
+    {
+      "path": ".github/workflows/ib-ai-2-2-definitive-qa.yml",
+      "sha256": "7deb0b054f99ac10f38cd414f87f109cac3b4c73315f9d74e15eedc2bdbc0c7c",
+      "git_blob_sha": "f12fe7f6d703852107e726a6226179736bae526c",
+      "bytes": 3212
+    },
+    {
+      "path": ".github/workflows/ib-ai-2-3-definitive-qa.yml",
+      "sha256": "8b587ff8d7ac62687030f1c7cdb22a8444bea26932bed0a303f932508abd30c4",
+      "git_blob_sha": "fa1a7f13c932165f73ea51666ae381e60bd0f034",
+      "bytes": 2504
+    },
+    {
+      "path": ".github/workflows/ib-ai-3-3-definitive-qa.yml",
+      "sha256": "3a4e1434d866db4459ad987d1765c7b7e7fdac0d0b8067af02817cc0484e50c8",
+      "git_blob_sha": "9a37805b772a0a62ff4be6f80ead61ca2bf25ed6",
+      "bytes": 2459
+    },
+    {
+      "path": ".github/workflows/ib-ai-unit6-release.yml",
+      "sha256": "08c3f671b60bed08a7866210f0a07485705b16daa70cb57159587225808c3949",
+      "git_blob_sha": "ca0c6adadbc0251e0e9c819b994ce1c8d6760ca8",
+      "bytes": 2275
+    },
+    {
+      "path": ".github/workflows/ib-lesson-platform-qa.yml",
+      "sha256": "0681cc976cff5cc922917056885930360829dd3aa120125d58e84568a558437c",
+      "git_blob_sha": "4d9f1c4acbc78d16b4755a78eaa5efa1023a8b34",
+      "bytes": 5404
+    },
+    {
+      "path": ".github/workflows/independent-question-bank-audit.yml",
+      "sha256": "2731a42f8a22181a90dde017a13a7e86ded4b8865d6134c6ab0ff94a3cf99f14",
+      "git_blob_sha": "067df98ddf97e08417ddde9f543c0f530cf96c46",
+      "bytes": 2605
+    },
+    {
+      "path": ".github/workflows/independent-question-bank-repair.yml",
+      "sha256": "3a001bde06b92f9434b4b4b695a071fb0b70870f3178587c29213cc62394f574",
+      "git_blob_sha": "7c6c52cf3255f8edb5da42e0cf262a0317f2ee06",
+      "bytes": 5626
+    },
+    {
+      "path": ".github/workflows/initial-setup.yml",
+      "sha256": "b639a11e7914e6a9b375ff2ac5964a539bf1eef2727d745d167f9b158741062e",
+      "git_blob_sha": "253695ae4f60f5ecb013931b1963960ceb435f87",
+      "bytes": 2428
+    },
+    {
+      "path": ".github/workflows/install-ib-unit5-v2-final.yml",
+      "sha256": "eaacd5a303142db529934d31a3e9b05aed8399ab9edb947565ad64c83ae3f0a4",
+      "git_blob_sha": "802bd278ab0b4a8c13dff918de2f3b52f509bdc2",
+      "bytes": 3748
+    },
+    {
+      "path": ".github/workflows/institution-platform.yml",
+      "sha256": "aadba43244e56786a3772089950c77f1ff98521356cb8f9ad8b163ad77b9847c",
+      "git_blob_sha": "524fd15b46b8c988506f6ed6f9f8b1eeefadaee2",
+      "bytes": 7645
+    },
+    {
+      "path": ".github/workflows/learning-system.yml",
+      "sha256": "d279036c98a66454b96d62423b9deff5a74ce532d9896b174b3b98f22dc174c8",
+      "git_blob_sha": "4736f76ad327a8ad708a7d48a9e7f43abff9a4f3",
+      "bytes": 1317
+    },
+    {
+      "path": ".github/workflows/lesson-compatibility.yml",
+      "sha256": "9ae83c574f046b3a93c5cb491face08bba33532b9cca69d082587b848b71dd5a",
+      "git_blob_sha": "af04c4dc21e7f48c5c24d65d03a06e1dc43788d3",
+      "bytes": 2550
+    },
+    {
+      "path": ".github/workflows/lesson-content-v2.yml",
+      "sha256": "73c94a66b8cc42548899abb47d587523a6533e50d15c652106532b96cb06bef6",
+      "git_blob_sha": "bfbd2d164191f456c92c51d6a4d2268c47335ccd",
+      "bytes": 4283
+    },
+    {
+      "path": ".github/workflows/lesson-history.yml",
+      "sha256": "ee090fc7fef37b16cf81e6fdad2897092201bbb80f42f989418d8463672a4c26",
+      "git_blob_sha": "5ead160da49e6f3bc77155412b20c3473ccbb596",
+      "bytes": 7014
+    },
+    {
+      "path": ".github/workflows/lesson-import.yml",
+      "sha256": "39e20a0202b64f73ddc0d5521b32e671d124704ee4b9ec5499c8cc2e2aef0509",
+      "git_blob_sha": "126a1d969163af498855cb7d0597aca217ca6547",
+      "bytes": 3753
+    },
+    {
+      "path": ".github/workflows/lesson-media.yml",
+      "sha256": "5a064cca6dcd8b3f6cd79fbf99bee42a1422b973cb1979f2c3ebd04f277ccc08",
+      "git_blob_sha": "a4cff45d371fdf0d67fdb39404f4eb1fdca170d1",
+      "bytes": 5982
+    },
+    {
+      "path": ".github/workflows/lesson-persistence.yml",
+      "sha256": "1ade0a1ddaf58825cda3905369ee2601e4017528cb144ac07d539582ec4d39de",
+      "git_blob_sha": "e2b2c7e083dbacbb1c821e785fa2eca39ef1b148",
+      "bytes": 3394
+    },
+    {
+      "path": ".github/workflows/lesson-presentation.yml",
+      "sha256": "be58a110b93039ea609e7f0b1dfdc61b874a6c8e4111795049d9cad607b64ae3",
+      "git_blob_sha": "8ce65582263aabf7330cff22881007781297e4ee",
+      "bytes": 2797
+    },
+    {
+      "path": ".github/workflows/lesson-recovery.yml",
+      "sha256": "8ecb9ca9c55c3632749b70902fceb2d1751dc9eea5275c9eb0945acc79c576de",
+      "git_blob_sha": "1ca6fe8cb935f920f74ea90b3243ea4b3429979a",
+      "bytes": 6232
+    },
+    {
+      "path": ".github/workflows/lesson-renderer.yml",
+      "sha256": "b41877b6864b60cd26d7b5f748e1e346f0f0b111f86a4f4138e7c64e24d30878",
+      "git_blob_sha": "adb2faa2df3c266699612b859cde4245890914ad",
+      "bytes": 1924
+    },
+    {
+      "path": ".github/workflows/lesson-schema.yml",
+      "sha256": "67548daebacda12a474e3bdd7818b27c514ed6f15f326867f080da3853380adf",
+      "git_blob_sha": "3be5e42046ce928023781e58d78b560c76bbaaca",
+      "bytes": 1407
+    },
+    {
+      "path": ".github/workflows/lesson-studio.yml",
+      "sha256": "5eaecfb4b7d2edb2e3bd10bead83a5c8619a51d0fb113b1df43a79afea93f74a",
+      "git_blob_sha": "82419d5d9589d2a234d5ed61264efda82ed9c446",
+      "bytes": 2339
+    },
+    {
+      "path": ".github/workflows/licensed-official-promotion.yml",
+      "sha256": "10a79c677bfcbe9ce3ca62b9e1b695cac9a3bd7f7cd6e2348c009b3a5562a138",
+      "git_blob_sha": "2df5970e786a462fa8465d1a4ff2434ae814379e",
+      "bytes": 3376
+    },
+    {
+      "path": ".github/workflows/login-authentication-repair.yml",
+      "sha256": "c042df6f95d2b791fec763ec4e4e210da88d1cd9635c7444d45ac6341a828870",
+      "git_blob_sha": "12d24e0f99e3fb5eaddf1afc319d81a89135c8d1",
+      "bytes": 1504
+    },
+    {
+      "path": ".github/workflows/mastery-sync-regression.yml",
+      "sha256": "0f579dcc01ade13dd5ac4ad85bb89cd8ea19a2f12d468405af4f02fa3ecf5090",
+      "git_blob_sha": "944b3f7134bc3c7550882a12ed9f894ef66e24b4",
+      "bytes": 1267
+    },
+    {
+      "path": ".github/workflows/materialize-ib-ai-3-3-v5-fix.yml",
+      "sha256": "291108d7061ae464be71a3633f882e40d7dc937e0fbe6303082f3f2695f3b022",
+      "git_blob_sha": "551c963601cb553ad3a37d06ca4775856bba3339",
+      "bytes": 7858
+    },
+    {
+      "path": ".github/workflows/materialize-ib-ai-3-3-v5-release.yml",
+      "sha256": "82b8cf21a97777276f4d61798d6cd1265be5e168428f2f85a80b83f637b1040a",
+      "git_blob_sha": "e1ec8168947d812ec7686a17ae5ea6c4040137f7",
+      "bytes": 6293
+    },
+    {
+      "path": ".github/workflows/pathway-lesson-visual-qa.yml",
+      "sha256": "2580b47321e6116bbae8a1f92372922b05d785b7c05847c32da8cbe934180373",
+      "git_blob_sha": "ca6ac6f6e88d4e0fcb8b4908b486d780ad8eab24",
+      "bytes": 3122
+    },
+    {
+      "path": ".github/workflows/platform-foundation.yml",
+      "sha256": "05f6574f20b8bdc5926dcf8e6c058360ce61a81d53f3fd9eea3d5c82dbbcbe7c",
+      "git_blob_sha": "73401c7615191154cdc4aa87c76fe721e621995f",
+      "bytes": 1307
+    },
+    {
+      "path": ".github/workflows/platform-visual-qa.yml",
+      "sha256": "b4dc3fc460a607a93536f657531fba72604eb63c1e96fc9a0cc7ca0c36b70d54",
+      "git_blob_sha": "0453ff90c5288a9859ac34f3cbc77ed5d30b8b68",
+      "bytes": 4338
+    },
+    {
+      "path": ".github/workflows/practice-scope-access-qa.yml",
+      "sha256": "432518cc966ace75145f4698646a825c38845c6de98696c04117f928c8c2b809",
+      "git_blob_sha": "302bb0cd88970958ce75416f828e79ba1b067962",
+      "bytes": 1948
+    },
+    {
+      "path": ".github/workflows/premium-experience.yml",
+      "sha256": "997b230d36c1189f8c943c0f4011c0fb85be942e2d0311557317fe097fb08392",
+      "git_blob_sha": "a65c302526508175d6dd8e796e22925fc474f4fb",
+      "bytes": 2077
+    },
+    {
+      "path": ".github/workflows/private-bank-exact-replacement-qa.yml",
+      "sha256": "f60bc92fd6a2331aba726b25e9baa335bad6445c6a4a66adb8079611885e4585",
+      "git_blob_sha": "b57878249565b9c7ab6bc1ad25cc845a2cb7fbd6",
+      "bytes": 783
+    },
+    {
+      "path": ".github/workflows/private-bank-exact-snapshot-qa.yml",
+      "sha256": "a956a6874b9a594901002eed41ff3f1424227dc8b920637cc22b131ff4a9dc2e",
+      "git_blob_sha": "6aec7c96c270642151c89362a585b86813941c79",
+      "bytes": 1353
+    },
+    {
+      "path": ".github/workflows/process-teacher-uploads.yml",
+      "sha256": "9784d0dd6c2bfc2e8b13df5a09d7d444e35ac39db9901371737a863671fd9747",
+      "git_blob_sha": "24c5c1a59e36e3dc82d80de57044432222897e66",
+      "bytes": 10634
+    },
+    {
+      "path": ".github/workflows/readiness-engine.yml",
+      "sha256": "e52873b6f183c4007a06888e7987e74c0053edd59cafbe5ac7abedbf667e20b5",
+      "git_blob_sha": "205a7238052a2e90fb4d6b6441c6f9081b92745e",
+      "bytes": 1654
+    },
+    {
+      "path": ".github/workflows/repair-install-ib-unit5-v2.yml",
+      "sha256": "e32351f658de51d7c2dac77f42d1541ec6d757dc5c5c9a009c88f629a0cd2eb7",
+      "git_blob_sha": "8b1713de29bb08e0aa7fddaef9e89656174c905a",
+      "bytes": 4514
+    },
+    {
+      "path": ".github/workflows/verify-live-ap-calculus-midunit.yml",
+      "sha256": "db6f87ff4211a4b8b1f95776ca1e1e57236320deced544f3c47ef8c3de5122ff",
+      "git_blob_sha": "c4835bdd678539c5b55b1c5ed98af64f15c3793d",
+      "bytes": 1217
+    },
+    {
+      "path": ".github/workflows/verify-live-ap-precalculus-1-1.yml",
+      "sha256": "93f17cd9c93e613a93fdac31829c53a198f9067273f737977cb2d812166dd795",
+      "git_blob_sha": "37799db2770526382dfe7dcd64fa155fd62b2280",
+      "bytes": 1217
+    },
+    {
+      "path": ".github/workflows/verify-live-ap-precalculus-1-2.yml",
+      "sha256": "65c65ead2205b5a00e09038660e4fb9b0e1b2e32349d4e51077f59e3115f2c81",
+      "git_blob_sha": "83cac3bffcbcd0a897bdca8fb1db23bc465cf0c4",
+      "bytes": 1217
+    },
+    {
+      "path": ".github/workflows/verify-live-ib-ai-1-1.yml",
+      "sha256": "1099c0148796f700528d8075c2de614b4baa1e8c7e21a5afed0bc244eb16f67d",
+      "git_blob_sha": "9a3ba71bd647571480254df9818bd2db2e471fae",
+      "bytes": 1196
+    },
+    {
+      "path": ".github/workflows/verify-live-ib-ai-1-2.yml",
+      "sha256": "d085c27ed2d293fadcd5810964de4a8f5e2cf0faeb543f97177c20fba577f9e5",
+      "git_blob_sha": "eff183d6b945b8bb78f1efedab9adaecde657569",
+      "bytes": 1208
+    },
+    {
+      "path": ".github/workflows/verify-live-ib-ai-1-4.yml",
+      "sha256": "a8870be0c249bbe337724601ac1547ef2cd41c2029190c8a8c43dec83eb271f5",
+      "git_blob_sha": "395646dfcf5604c2279d548c20b1e3e7b4cc3aea",
+      "bytes": 1213
+    },
+    {
+      "path": "lessons/ap-calculus/1-1-introducing-calculus.html",
+      "sha256": "7a6e65579721ef791fb012731ad907ef5c06cd9bfff910083c993beaf57cbc4e",
+      "git_blob_sha": "4cd67c5e13fda75d87f45ade22b72b24379dfb9d",
+      "bytes": 791
+    },
+    {
+      "path": "lessons/ap-calculus/1-2-understanding-limits-graphically.html",
+      "sha256": "7bcfec5a972167b368d2d8fa10f71eef5a428311c9cbe9dc086fa38259f79c37",
+      "git_blob_sha": "4afdcbf399d25095b7b1dbdd809aced70d233297",
+      "bytes": 800
+    },
+    {
+      "path": "lessons/ap-calculus/1-3-properties-of-limits.html",
+      "sha256": "a00545b94e5d8511edfe9bcca1a24844124e30f3d3ff61e10b8307578046dc66",
+      "git_blob_sha": "dc43703a92f3e0b08e69e2fb4ef9b4f0f3254212",
+      "bytes": 688
+    },
+    {
+      "path": "lessons/ap-calculus/1-4-limits-of-composite-functions.html",
+      "sha256": "66a86d404d91c2c0b143028f2020ca775087cc369b8c7a0a1d06a0c8901601a2",
+      "git_blob_sha": "6c66c876036fcc9e8820cb3e5c9068d057fe1747",
+      "bytes": 688
+    },
+    {
+      "path": "lessons/ap-calculus/course-launch/AP_Calculus_Lesson_0_First_Day_Diagnostic_ECHS.html",
+      "sha256": "9fc10b2f4f47ed510f5439ea09aaae87c457f4c1f0ad2bcf79f67e99fd80f9f1",
+      "git_blob_sha": "eeeccf796988a75e8e6d054c740af950364c3a60",
+      "bytes": 7165
+    },
+    {
+      "path": "lessons/ap-calculus/course-launch/assets/lesson-0-style-01.css",
+      "sha256": "3a922498a003f174bc0afb6c81228e07ec6c17700359d745131bb25fe1ff092e",
+      "git_blob_sha": "68e7c44bef59e7d4b45cf9d3096a589baec27606",
+      "bytes": 7968
+    },
+    {
+      "path": "lessons/ap-calculus/course-launch/assets/lesson-0-style-02.css",
+      "sha256": "544e8071c9fac0c084084481f3128d09aaaf60bf6a38aba071fd1ff529496d68",
+      "git_blob_sha": "ba88ac646d2a7b31444e4c3ca4310cdd351231a2",
+      "bytes": 1109
+    },
+    {
+      "path": "lessons/ap-calculus/course-launch/data/lesson-0-data-01.js",
+      "sha256": "62d81628e32331f5bf8708b53b5316395594612e4348bf675212058c089e72bb",
+      "git_blob_sha": "43154444b39addb2a68546b1e6830e54a369e9a8",
+      "bytes": 19114
+    },
+    {
+      "path": "lessons/ap-calculus/course-launch/data/lesson-0-data-02.js",
+      "sha256": "8bd1ee4f1a99896cbe298db902f6d93b65af743999170be01bc25fe13dc2c0d2",
+      "git_blob_sha": "34cda1742e687c7db3bf7fd2f036616fb25a9003",
+      "bytes": 12284
+    },
+    {
+      "path": "lessons/ap-calculus/course-launch/data/lesson-0-data-03.js",
+      "sha256": "606a553407f531c5c62f8d78144929936fa67758ff0cdadfb3c4a4cb5c606b98",
+      "git_blob_sha": "25f40f4e441c409c346cf81ea652b6ca016a0dbc",
+      "bytes": 6133
+    },
+    {
+      "path": "lessons/ap-calculus/course-launch/data/lesson-0-diagnostic.js",
+      "sha256": "6658672e6b3192ead485e6e7a61794b39d93220cfce388d805033a045234bdc5",
+      "git_blob_sha": "e224905c59715427405202d4bea67b9ab6641aea",
+      "bytes": 11901
+    },
+    {
+      "path": "lessons/ap-calculus/course-launch/data/lesson-0-engine.js",
+      "sha256": "c9d9657f0f2409ff7b7c59cd4b7af78b1050dce639540d7fbd42b6a0bdb9fb05",
+      "git_blob_sha": "5e45b21bf87cb651b85e5ec06dc2c08922202b58",
+      "bytes": 14634
+    },
+    {
+      "path": "lessons/ap-calculus/unit-1/1-1-can-change-occur-at-an-instant.html",
+      "sha256": "366b4418e2db0bfbe7c0a55956abe205889dd9f0b7da9099e4e4b5c087b7e026",
+      "git_blob_sha": "d259ca68708720050db8376e701977c310fb1848",
+      "bytes": 47296
+    },
+    {
+      "path": "lessons/ap-calculus/unit-1/1-10-types-of-discontinuities.html",
+      "sha256": "cf7d9aad20e7417b11bbb56443bb71d6d3f3433a8cc0cba38d828826f0b8d89f",
+      "git_blob_sha": "324d634100f1cecca81d5b5adbc595a6bbfa8705",
+      "bytes": 19359
+    },
+    {
+      "path": "lessons/ap-calculus/unit-1/1-11-continuity-at-a-point.html",
+      "sha256": "05fbe6631b43d91e46644a3117f0a35acc5681b907734be50ca25e1fd30c5f73",
+      "git_blob_sha": "18d6e5a9b75bc51d501ba6e17179c6a25ea10200",
+      "bytes": 18997
+    },
+    {
+      "path": "lessons/ap-calculus/unit-1/1-12-continuity-over-an-interval.html",
+      "sha256": "46977463829b435859679beed7e87c9128563dc6cd5c88e01a45319bff4d9450",
+      "git_blob_sha": "34d2c22dfaa818025817b1762524a04d7adabcff",
+      "bytes": 19602
+    },
+    {
+      "path": "lessons/ap-calculus/unit-1/1-13-removing-discontinuities.html",
+      "sha256": "1028da56b36ccbdcd4599dfc8f142f4bcbe959fd61fedafda8e2a002b61e29c1",
+      "git_blob_sha": "37322fa5dc52e17648a4bed14244d39d84c593eb",
+      "bytes": 20480
+    },
+    {
+      "path": "lessons/ap-calculus/unit-1/1-14-infinite-limits-and-vertical-asymptotes.html",
+      "sha256": "076945ef4692ea79a7eec1ec8c86870a66a0be7d9a392fefd1a4c68200b0fad6",
+      "git_blob_sha": "1ea1cf6a61a7a84dd9e2d58ee66199ccd19324df",
+      "bytes": 19142
+    },
+    {
+      "path": "lessons/ap-calculus/unit-1/1-15-limits-at-infinity-and-horizontal-asymptotes.html",
+      "sha256": "7f48f56f9952ba3d33197e08becb3169a842eb8a289fd2ed469fae78bf734670",
+      "git_blob_sha": "da47db63f94ffd67348ac1c160dbb26d38b8e0ce",
+      "bytes": 20711
+    },
+    {
+      "path": "lessons/ap-calculus/unit-1/1-16-intermediate-value-theorem.html",
+      "sha256": "9194765bbd0a36736b817b59b0f2a6c095a2954492a435c3828b9c8221a22d0f",
+      "git_blob_sha": "8718e4716a8638ac99da7f437e52326269b6a623",
+      "bytes": 19919
+    },
+    {
+      "path": "lessons/ap-calculus/unit-1/1-2-defining-limits-and-using-limit-notation.html",
+      "sha256": "de95be381876b303c54c050457b99d165b0b9a4dab9978fa5d22c0f946c1c89a",
+      "git_blob_sha": "1a8f6811097a2b23df0bcbc508ee5ea49d864653",
+      "bytes": 45537
+    },
+    {
+      "path": "lessons/ap-calculus/unit-1/1-3-estimating-limit-values-from-graphs.html",
+      "sha256": "0c6a8a481ff773bea21db7bd0990129dd3f69f01da0bf0c1f925f12d709a1103",
+      "git_blob_sha": "bf611877998573d9c00ea31de285f6a1a616f6b0",
+      "bytes": 40739
+    },
+    {
+      "path": "lessons/ap-calculus/unit-1/1-4-estimating-limit-values-from-tables.html",
+      "sha256": "3c4c54f07919e6c6614d2ba72cc360b02fd9f384f739201ff6942c16e812ec34",
+      "git_blob_sha": "374eb2751b3da54ae2f6fe4f9280cc93180def5b",
+      "bytes": 43449
+    },
+    {
+      "path": "lessons/ap-calculus/unit-1/1-5-algebraic-properties-of-limits.html",
+      "sha256": "f647e24422a5c45618ce4ab35ef9b0d442682f04a2a869ead1e62337d3be0e0a",
+      "git_blob_sha": "60a308ac0354b5769cebd13320eca3c4cc70c417",
+      "bytes": 47616
+    },
+    {
+      "path": "lessons/ap-calculus/unit-1/1-6-algebraic-manipulation.html",
+      "sha256": "81ec37555009819c2fdf3bad5e968896ae9ba95f2146a5d727439bd8fb6fa965",
+      "git_blob_sha": "66c75c868539025b5fc1a98071b35a520b2ae62e",
+      "bytes": 44022
+    },
+    {
+      "path": "lessons/ap-calculus/unit-1/1-7-selecting-limit-procedures.html",
+      "sha256": "0d2050777ed9bd7fe5979aefc56b3ba0a770e09e4d8f5e43826e5fa0ee8ead9a",
+      "git_blob_sha": "f8d682b3839f3d89410ce5bc589bc6bfe66de09b",
+      "bytes": 19954
+    },
+    {
+      "path": "lessons/ap-calculus/unit-1/1-8-squeeze-theorem.html",
+      "sha256": "f903a4bfec128c5c1404424bc2302dd92b011f422d5a4dd989bbeb2b2694c6fb",
+      "git_blob_sha": "9341ca3f6fb902ebdf1993861cebc309fe24fa2f",
+      "bytes": 20595
+    },
+    {
+      "path": "lessons/ap-calculus/unit-1/1-9-multiple-representations-of-limits.html",
+      "sha256": "0874a6cfb9203258bbd980b60d1b673ea6d8d19b14359656891c858108b2fbee",
+      "git_blob_sha": "ce9c2e275af608da01b7bd6de03c28a9c90d4eae",
+      "bytes": 21480
+    },
+    {
+      "path": "lessons/ap-calculus/unit-1/assets/lesson-1-1-model.js",
+      "sha256": "baae48eb8a033f6d31b982b6c9841247802886359b1e00274e76d1913da54d16",
+      "git_blob_sha": "7f2746ed586075597e3e87dd15414ef00d954777",
+      "bytes": 4345
+    },
+    {
+      "path": "lessons/ap-calculus/unit-1/assets/lesson-1-1-questions.js",
+      "sha256": "90a4543492c45b013b74636cf9157234359bcd2c55820eed5ae8fbd059b679c3",
+      "git_blob_sha": "0264d9e7572e92061da454506053c486fd9a323d",
+      "bytes": 17627
+    },
+    {
+      "path": "lessons/ap-calculus/unit-1/assets/lesson-1-1.css",
+      "sha256": "4e8c979bb00fe0070719896ac92e4840219afca6b646fc85938c56d035089ab9",
+      "git_blob_sha": "97382f1f4222bc588df3e517fdaec85e93ed104b",
+      "bytes": 12408
+    },
+    {
+      "path": "lessons/ap-calculus/unit-1/assets/lesson-1-1.js",
+      "sha256": "0c92ce56f7d10c0039ee88e4dc4722686a9256f9ae987aa38aaf368ba0c4ea3a",
+      "git_blob_sha": "203db0e253aed4d28b10ef38386d2f592020ed0e",
+      "bytes": 26018
+    },
+    {
+      "path": "lessons/ap-calculus/unit-1/assets/lesson-1-10-ab.js",
+      "sha256": "64c3afab3f2744898610cb9df371e931678e1f77dac085e113598067cbbdf9de",
+      "git_blob_sha": "239a5d3b44d63d83d4002989c26a367604d964b1",
+      "bytes": 16186
+    },
+    {
+      "path": "lessons/ap-calculus/unit-1/assets/lesson-1-11-ab.js",
+      "sha256": "7ae9183b2dd6701c44c7df45f05bc4ca1e587a5328ffae7ac8d9f8d1ca9d68a4",
+      "git_blob_sha": "cf7781073ac9e732c5db8da2b2bdd76736c04056",
+      "bytes": 15978
+    },
+    {
+      "path": "lessons/ap-calculus/unit-1/assets/lesson-1-12-ab.js",
+      "sha256": "e5ed3b746817540ef407ecd9b92760d340213a0076c31c80827d4db565deaef5",
+      "git_blob_sha": "7941f10259f6047dbc448ca3ac3e8906863f959f",
+      "bytes": 15930
+    },
+    {
+      "path": "lessons/ap-calculus/unit-1/assets/lesson-1-13-ab.js",
+      "sha256": "324c829c99944593014d3275e5d6b8ec83e414039749a934da56fc5689daddfa",
+      "git_blob_sha": "273c197676537101f63d8fcc648b080cf8aa723d",
+      "bytes": 17840
+    },
+    {
+      "path": "lessons/ap-calculus/unit-1/assets/lesson-1-14-ab.js",
+      "sha256": "634fae1e223be5e24e6ded314a44e4a99eae71e67f7112c3be7efa48304a605a",
+      "git_blob_sha": "5ff51bdb0e7e3a9b46783f8b57cbc6bb1e95550b",
+      "bytes": 17521
+    },
+    {
+      "path": "lessons/ap-calculus/unit-1/assets/lesson-1-15-ab.js",
+      "sha256": "a2d1237867832482cbdedb26b702ac0959568585ee40a15546c36f97e8204d09",
+      "git_blob_sha": "a9a9b9e1b7ade5c7640421366ed6c2a363b0fadb",
+      "bytes": 18509
+    },
+    {
+      "path": "lessons/ap-calculus/unit-1/assets/lesson-1-16-ab.js",
+      "sha256": "5f7cbe1c81ae5407e659a90461777473f0c5e826885bdfa585d86f6dcdc3a22c",
+      "git_blob_sha": "7efec9fc834d0463248f1650858c6227f7fca702",
+      "bytes": 19887
+    },
+    {
+      "path": "lessons/ap-calculus/unit-1/assets/lesson-1-2-model.js",
+      "sha256": "4608d5450f7c93a5b2888659ab9add004343a7925c5f7648a9718c60b6b7a113",
+      "git_blob_sha": "d888e2b86483e37c22d77f828de76ed6715bf227",
+      "bytes": 4873
+    },
+    {
+      "path": "lessons/ap-calculus/unit-1/assets/lesson-1-2-questions.js",
+      "sha256": "c2cbbeaf427e3d9a6ca4c3b0720139d8dfe9e1f228a446d005c4c6369ec5cdf1",
+      "git_blob_sha": "a6368a99f63c211a8042d7d4aa961e9872082b4c",
+      "bytes": 21056
+    },
+    {
+      "path": "lessons/ap-calculus/unit-1/assets/lesson-1-2.css",
+      "sha256": "130a47de7d92ba6dd94af66d20a320fd531d254ec5ce907c08aa49a1bb6dabe0",
+      "git_blob_sha": "5f7db20d7aff618d3f9b10d9cfedab597e84d77a",
+      "bytes": 1273
+    },
+    {
+      "path": "lessons/ap-calculus/unit-1/assets/lesson-1-2.js",
+      "sha256": "8a50862511d7ce7aa0db5512e9ae7b1a3737f6e901a40578090f4b06cd0bf9cb",
+      "git_blob_sha": "8158498af387fc67c989e4503fa39494962f0c10",
+      "bytes": 27125
+    },
+    {
+      "path": "lessons/ap-calculus/unit-1/assets/lesson-1-3-labs.js",
+      "sha256": "743b652fe38965685328ad9e619130be7c60793d7f4d44f84f0045f43b584078",
+      "git_blob_sha": "0c24ec9dc686da8490816ef3d26ea469b08fa920",
+      "bytes": 8538
+    },
+    {
+      "path": "lessons/ap-calculus/unit-1/assets/lesson-1-3-questions.js",
+      "sha256": "75e566581eaa5883f4772a0473fb414300fe0c07bf4902a76bf92c9d40c89062",
+      "git_blob_sha": "29602df82403bc614fc101d8b0f2f2dac2ee8d84",
+      "bytes": 22333
+    },
+    {
+      "path": "lessons/ap-calculus/unit-1/assets/lesson-1-4-labs.js",
+      "sha256": "0843d6dd97d778211cf51cbe0297b233a1ed466e3c0d05c6dda7b21c982185cf",
+      "git_blob_sha": "e5683e951e04c17d2d48f0c6084cb793dd55bda1",
+      "bytes": 8908
+    },
+    {
+      "path": "lessons/ap-calculus/unit-1/assets/lesson-1-4-questions.js",
+      "sha256": "8de07b57a5277fb5d241146a81f1b614f0410f97f7ee6171097e063b5e675829",
+      "git_blob_sha": "b9cf515a5b1a9069df2601133a4c39f301504e0a",
+      "bytes": 28822
+    },
+    {
+      "path": "lessons/ap-calculus/unit-1/assets/lesson-1-5-labs.js",
+      "sha256": "8c577058bba52b9c9e7d8a5bf05d7c04ae1bd2556a48481a75b29d9d06d0142c",
+      "git_blob_sha": "4fe425a046a21e1191874705291ea450e7d1ab04",
+      "bytes": 10555
+    },
+    {
+      "path": "lessons/ap-calculus/unit-1/assets/lesson-1-5-model.js",
+      "sha256": "6fb561f13c38e28a6026b5540f8f5cbd5898b845ebb79531eef23381d640c03f",
+      "git_blob_sha": "e726e4eecd22b8eabca8cb50addf085cfe5dbfd4",
+      "bytes": 5395
+    },
+    {
+      "path": "lessons/ap-calculus/unit-1/assets/lesson-1-5-questions.js",
+      "sha256": "78547650a1a481040da0fca39f8639b424b8ae6a4168473e275fb62e027bc69a",
+      "git_blob_sha": "e33930be22c52ff069930522a8b7786527b7799b",
+      "bytes": 33758
+    },
+    {
+      "path": "lessons/ap-calculus/unit-1/assets/lesson-1-5.css",
+      "sha256": "2a4b32c937581000dd5b62118e5c962fdef8621801dacd9cb80c26c3165740e2",
+      "git_blob_sha": "a41ddee371fb007f8cedea6bf759045c35f3ab89",
+      "bytes": 1844
+    },
+    {
+      "path": "lessons/ap-calculus/unit-1/assets/lesson-1-6-labs.js",
+      "sha256": "2bdf6bc148f1fec854b76b8c87da246a0eed306aeba0792fe4edb519e036668a",
+      "git_blob_sha": "ab474c99b4da9e97e1851e3496aaba4522ab37ea",
+      "bytes": 10800
+    },
+    {
+      "path": "lessons/ap-calculus/unit-1/assets/lesson-1-6-model.js",
+      "sha256": "c0be3a9c19346d31fb9c40b46eba4a0800787996e29d1a55eb91aae115adce7f",
+      "git_blob_sha": "3604af3490548b4260bff7dbe6dbc76be59466c7",
+      "bytes": 3306
+    },
+    {
+      "path": "lessons/ap-calculus/unit-1/assets/lesson-1-6-questions.js",
+      "sha256": "7b230a84f6c07cc41b95b1894719f0ba84cdb04358fd86f14f74e1e02ff993ed",
+      "git_blob_sha": "80fc765313582d74bbc9f79537a167c3721308cf",
+      "bytes": 34487
+    },
+    {
+      "path": "lessons/ap-calculus/unit-1/assets/lesson-1-6.css",
+      "sha256": "5e6b7f78827f0eae0086c2692e79dcb622f372bc28032917f41c00a0cd38d32d",
+      "git_blob_sha": "81b332e281d5d12c31d47c6c9c87673c22f64933",
+      "bytes": 1268
+    },
+    {
+      "path": "lessons/ap-calculus/unit-1/assets/lesson-1-7-ab.js",
+      "sha256": "43553afc7f707e77aac17c2276a56c925acdbbb2d7fe1c77f1783c20d217710a",
+      "git_blob_sha": "e449ed5a8760b7e99d4bed0f17967a5a09168a0f",
+      "bytes": 23995
+    },
+    {
+      "path": "lessons/ap-calculus/unit-1/assets/lesson-1-8-ab.js",
+      "sha256": "a85a0294af06fde9bd9cd86f71a01d3460188462326167d5891a9de6601c2d9f",
+      "git_blob_sha": "826d9b7403053ca17549e42744bcf2c6b02e12ec",
+      "bytes": 32634
+    },
+    {
+      "path": "lessons/ap-calculus/unit-1/assets/lesson-1-9-ab.js",
+      "sha256": "663d15f7cce0aa25d037e70a0785bdb5ada9394bfbd60e1f354dbd426ccba6d9",
+      "git_blob_sha": "075f66ff527644b23ccc17356b968eb61f54540b",
+      "bytes": 30665
+    },
+    {
+      "path": "lessons/ap-calculus/unit-1/assets/limit-lesson-core.js",
+      "sha256": "e3fd9ba45052ed87e42ab677100c7e611a87c59a287fabcd49a6c54b3c0fac4d",
+      "git_blob_sha": "280e4b2037ed355692fdcb2190809e53b840dab6",
+      "bytes": 15540
+    },
+    {
+      "path": "lessons/ap-calculus/unit-1/assets/limit-lesson-graphs.js",
+      "sha256": "fccf66ac1735e4f7018c50e5230a332969b3780a42cd0ba433bdbfd75ffb6f41",
+      "git_blob_sha": "aa1fcc79044fff88a8aadc39c700624f7d8a8d0e",
+      "bytes": 3654
+    },
+    {
+      "path": "lessons/ap-calculus/unit-1/assets/limit-lesson-models.js",
+      "sha256": "c316c111db42f4717d3c6a3e9f16011a1a512fe39862c6f26c5a51e6c9241c9f",
+      "git_blob_sha": "056148e40cd862672877ca3fd9a05cb59e90ac35",
+      "bytes": 9769
+    },
+    {
+      "path": "lessons/ap-calculus/unit-1/assets/limit-lesson.css",
+      "sha256": "e929d1fcac932817a3f62f5d2611615f72b41bff23847f6694a255541650a56b",
+      "git_blob_sha": "166a7b42b6359e1eca779285777ba78a0c6ad160",
+      "bytes": 2241
+    },
+    {
+      "path": "lessons/ap-calculus/unit-1/assets/midunit-checkpoint.css",
+      "sha256": "7649d2f9efff312aac49d11881473d4be5dea80f80f65476b2d298c60fdcb70c",
+      "git_blob_sha": "4c89930bdee0d91dbb191b3ae48ec88ea6303289",
+      "bytes": 3592
+    },
+    {
+      "path": "lessons/ap-calculus/unit-1/assets/midunit-checkpoint.js",
+      "sha256": "645534a706c355244b3620cc9ad2bedb9441871c35c715088bb7b7a9d9110559",
+      "git_blob_sha": "39015eb069e8dd026bdf0959ad1d4cf0ad7d6115",
+      "bytes": 19473
+    },
+    {
+      "path": "lessons/ap-calculus/unit-1/assets/midunit-graphs.js",
+      "sha256": "d0ccc8a41e4377a53e3ddfe2294781196c3ae64cad93a1aaeff38075acbf73d1",
+      "git_blob_sha": "76ebe1ea5a62682ab5608aa5932c0e01bd7e7118",
+      "bytes": 2677
+    },
+    {
+      "path": "lessons/ap-calculus/unit-1/assets/midunit-questions.js",
+      "sha256": "80999a67c726aa9a8d8f7fbc7f55cc5814e10d6450c582bbd699f51dc1034958",
+      "git_blob_sha": "8035b47f9f6ccd78f1c721ba4a4f082dc7a39bf0",
+      "bytes": 105794
+    },
+    {
+      "path": "lessons/ap-calculus/unit-1/assets/unit1-continuation-core.js",
+      "sha256": "03c4ceb75dc420fd8c0a5c66bd189f7ce9d1e82d7b7589b6907a7f5ecfe1d14f",
+      "git_blob_sha": "c96f85386106d931a845753a91883189d713da87",
+      "bytes": 16895
+    },
+    {
+      "path": "lessons/ap-calculus/unit-1/assets/unit1-continuation-labs.js",
+      "sha256": "ebd678d1a9ecc8b8446eff8ffea8e4f6d3cfab2cab59b6ce42fa296ff2546e5f",
+      "git_blob_sha": "db84a80487f38cc124fcf72cc7bfa3ef533cb794",
+      "bytes": 13790
+    },
+    {
+      "path": "lessons/ap-calculus/unit-1/assets/unit1-continuation-ui.js",
+      "sha256": "4debfa7a6541e2e41cedc6dc1ff02e7b90b0b80581b4d3b6449319414d04c626",
+      "git_blob_sha": "5c5b8524d12cc13f2fc8a567c2094f3b170f4531",
+      "bytes": 2750
+    },
+    {
+      "path": "lessons/ap-calculus/unit-1/assets/unit1-continuation.css",
+      "sha256": "4ee12ce89727d0283c35a562b1fcea73c0559493941b553184e10be8fd53260c",
+      "git_blob_sha": "e1bbf71793eae49a59a0b3bc972260df7ee38798",
+      "bytes": 1372
+    },
+    {
+      "path": "lessons/ap-calculus/unit-1/middle-unit-important-checking-questions.html",
+      "sha256": "d4bac695d131cf93e20a2bee60c21515de5cfff92b2e7f8cc5c56203ff0c71f4",
+      "git_blob_sha": "eb2d8c744f4715c1b798544224defc4db21863a2",
+      "bytes": 9907
+    },
+    {
+      "path": "lessons/ap-calculus/unit-1/unit-1-assessment.html",
+      "sha256": "880336756f7daf17b82a4f35df6f7cc5ce95cafd6fc90e4c0bda1b5f515d947b",
+      "git_blob_sha": "606b29779566935c55818b31a07b1651f99e9c18",
+      "bytes": 854245
+    },
+    {
+      "path": "lessons/ap-calculus/unit-2/2-1-rates-of-change-and-tangent-lines.html",
+      "bytes": 105040,
+      "sha256": "1dcb4732da642784c73d2f75d50ccd65ae1925325668a7c7a6b7639a5ff66249",
+      "git_blob_sha": "99d3c79c8d6ab307a3ad986c6411783cbcde629c"
+    },
+    {
+      "path": "lessons/ap-calculus/unit-2/2-2-tangent-lines-and-the-derivative.html",
+      "bytes": 230497,
+      "sha256": "23c20cbe8eb8699194f83e7459175ef8f6d30f067aeb14ff254379e0ff70b062",
+      "git_blob_sha": "044101e56d5bb2dcf3a026f9e632bb4463d89b3b"
+    },
+    {
+      "path": "lessons/ap-calculus/unit-2/2-3-derivative-graphs-differentiability-continuity.html",
+      "bytes": 61962,
+      "sha256": "cb9997234dc3d5a86d2c6b941516aadc230b599344a38d1ed854199db49f492f",
+      "git_blob_sha": "be5066ba36afd6fb0d50d29832bde1e35fef48d5"
+    },
+    {
+      "path": "lessons/ap-calculus/unit-2/2-4-basic-derivative-rules.html",
+      "bytes": 63642,
+      "sha256": "01f71802a082cc415541b4002f51752c1123828a79288cc131fe1d229d7e813b",
+      "git_blob_sha": "3b10628cfeedc71564eeaee61311dfc28b7dac64"
+    },
+    {
+      "path": "lessons/ap-calculus/unit-2/2-5-product-and-quotient-rules.html",
+      "bytes": 47307,
+      "sha256": "c85d1f02c659eae0f59ebb5a3a0792e6fe57765b12fface868ec39ccf0472cff",
+      "git_blob_sha": "1b7fbc65c7c2efc8318c4dce2a1305a8a9732f3d"
+    },
+    {
+      "path": "lessons/ap-calculus/unit-2/unit-2-assessment.html",
+      "bytes": 49695,
+      "sha256": "d33a3554a859d735cd27ac02aef0e49ca01555f318185f06b91868f7399e759f",
+      "git_blob_sha": "6b5a2ace73fab4e641b9475bbaca93b17242ace7"
+    },
+    {
+      "path": "lessons/ap-calculus/unit-3/3-1-chain-rule.html",
+      "bytes": 75340,
+      "sha256": "8c9ef0098b05632deda373e6b61fab5a5272064747db0e7380fe68a62f428dfa",
+      "git_blob_sha": "64461e81325590b21b767f8b982af3b2fa39f959"
+    },
+    {
+      "path": "lessons/ap-calculus/unit-3/3-2-implicit-differentiation.html",
+      "bytes": 79317,
+      "sha256": "6f06cad6d1bbecb1be090bc13892a47214a030148c8b4360ed46958c3ba58d39",
+      "git_blob_sha": "68c8a6f3000f5f770bab8e2ba659b8a0a1ca365a"
+    },
+    {
+      "path": "lessons/ap-calculus/unit-3/3-3-inverse-function-and-inverse-trig-derivatives.html",
+      "bytes": 120554,
+      "sha256": "037452dff6f00d2452723a8f22bc36472e3d5e501075378058263823b32403dd",
+      "git_blob_sha": "7e115f3875366145d84f6c9cc8f2d7382207bf54"
+    },
+    {
+      "path": "lessons/ap-calculus/unit-3/unit-3-assessment.html",
+      "bytes": 48402,
+      "sha256": "b959c6b41d7b09ad22cab57ff9fb4ac25a1cfa0a4584a1d34f912384089b0969",
+      "git_blob_sha": "506021804c0e86d67d0eed18a8427c63b39cb017"
+    },
+    {
+      "path": "lessons/ap-calculus/unit-4/4-1-interpretations-of-the-derivative.html",
+      "bytes": 68853,
+      "sha256": "eeec255b4c532f607bd6c07efcb71bc97b29638f1b61be3fef58fb37be547fd3",
+      "git_blob_sha": "b1ee0fbeeb7474a482c44439b4125e2055fd8427"
+    },
+    {
+      "path": "lessons/ap-calculus/unit-4/4-2-straight-line-motion.html",
+      "bytes": 76430,
+      "sha256": "e30efdf9dc8a13b59bc89bf4a6199a46e1991661c1e4fbda35acb810e43759b6",
+      "git_blob_sha": "1dece26bd91999f69999b5f20d81f592ea24bb51"
+    },
+    {
+      "path": "lessons/ap-calculus/unit-4/4-3-other-rates-of-change.html",
+      "bytes": 68542,
+      "sha256": "90bd857b548db1c2fe3578a2823c1f8dd07a53e4966671218dae8fe1ff3e017e",
+      "git_blob_sha": "6a813f876dc33f0a3bb3c2f834eb66b03267e4c0"
+    },
+    {
+      "path": "lessons/ap-calculus/unit-4/4-4-related-rates.html",
+      "bytes": 214766,
+      "sha256": "fc3d88c246dc8c9594f621e10d05eaef5ff6e0dfc2e83f9719acf174caa02fed",
+      "git_blob_sha": "a240108e5af5c4d05aaec21c88ac67116d2005b7"
+    },
+    {
+      "path": "lessons/ap-calculus/unit-4/4-5-linear-approximation.html",
+      "bytes": 125041,
+      "sha256": "a6526aa3b5ae0480df7c5251ec13dd95952f00b71322a160b047d5419bbc5e9c",
+      "git_blob_sha": "19699997db22ada904ed1e6ca2a53e90ffc9b35a"
+    },
+    {
+      "path": "lessons/ap-calculus/unit-4/4-6-lhopitals-rule.html",
+      "bytes": 109066,
+      "sha256": "a54af1d8af5082741ecf45832a1bd73369ac0d1675cd3d1a5e9433d76c22c5bb",
+      "git_blob_sha": "2c08ad1ab629244aba8f3b50b89ca9ce8be6c009"
+    },
+    {
+      "path": "lessons/ap-calculus/unit-4/unit-4-assessment.html",
+      "bytes": 50545,
+      "sha256": "6c4f2ee330763bec6341dce5c2723fc0ef89b86e51535a8c5e0ad1ac44b16204",
+      "git_blob_sha": "53dcecbb227c7e05c1a132416ad1de4350c06144"
+    },
+    {
+      "path": "lessons/ap-calculus/unit-5/5-1-mean-value-theorem.html",
+      "bytes": 183716,
+      "sha256": "e72e9506c985db12c498754e09686ed5ccd86e0ab88b6e95d224125b1259976b",
+      "git_blob_sha": "372206f888cf7df29e232dca48a42c1328951ffe"
+    },
+    {
+      "path": "lessons/ap-calculus/unit-5/5-10-optimization-problems.html",
+      "bytes": 1577455,
+      "sha256": "2d4280eacdd5689a1336f44f8349db68b3c02b32515576c6534c44347cc3f0f1",
+      "git_blob_sha": "1ebc36a98067e45e2d8f87febe0673cc72940071"
+    },
+    {
+      "path": "lessons/ap-calculus/unit-5/5-2-to-5-5-derivative-graph-analysis-part-1.html",
+      "bytes": 383374,
+      "sha256": "6019ab107ed78344e49502864b63a5f39a6921e8ca1af1dba4aacc9704103957",
+      "git_blob_sha": "86d60d6ab2da4a44cd45e515edf186277c2eb424"
+    },
+    {
+      "path": "lessons/ap-calculus/unit-5/5-2-to-5-5-derivative-graph-analysis-part-2.html",
+      "bytes": 222157,
+      "sha256": "f598a2cd0dc6aec6450bb166bcba565fe07ca6f71908d0694b9faa7d85773797",
+      "git_blob_sha": "d5691a1305f4754d24138675c850bc39e93a4994"
+    },
+    {
+      "path": "lessons/ap-calculus/unit-5/unit-5-assessment.html",
+      "bytes": 51588,
+      "sha256": "d1ebe1f1a2c67b4ac4de80e74f168f678fdb8f201c99a765d8d97aa8cb37b74b",
+      "git_blob_sha": "faa76a6fb9ca207b72130cc1406571ab30caf7aa"
+    },
+    {
+      "path": "question-bank/js/admin-accounts.js",
+      "sha256": "fceda702a44038b1a1526adc4c806fce2f4e5696375bad7d33c39027b3d21994",
+      "git_blob_sha": "7b83be1b14c0c81eb5964db7b681131ae24181d7",
+      "bytes": 21607
+    },
+    {
+      "path": "question-bank/js/bank.js",
+      "sha256": "77de0a481ab3c3148e33c7a2a8156ed4649f948a6c0136ab365162b205e5ea58",
+      "git_blob_sha": "54e4c109f758563f6e0a8073ea4205550cda0db6",
+      "bytes": 12972
+    },
+    {
+      "path": "question-bank/js/blackboard-assets.js",
+      "sha256": "383fafd41928c2f6afa04728be53d64d952fb52379600f13f2d3707155b151bf",
+      "git_blob_sha": "95fa8de558c180c68568b31f12c04006d7d8ed46",
+      "bytes": 3461
+    },
+    {
+      "path": "question-bank/js/dashboard.js",
+      "sha256": "8ecf1c8e5d598ff50a71c82a8351381cb0f39ede865406527beb42abd1012b38",
+      "git_blob_sha": "651b40a0dbb99a969c90b55c4b47f9aa32439038",
+      "bytes": 6582
+    },
+    {
+      "path": "question-bank/js/exam.js",
+      "sha256": "91361d5bd52964ed6bfc69404db3026bd280e145f5f2a1d2081b165d2f7fd5f6",
+      "git_blob_sha": "eea4b32fb710dcbad78512bcd61ddd970cd6b7af",
+      "bytes": 10642
+    },
+    {
+      "path": "question-bank/js/institution-timetable.js",
+      "sha256": "5e74ecac0cde66fcdbdee0d424f460e2e565498055131b3d8c8a5f75596620e5",
+      "git_blob_sha": "9fe67ee6fd1379219989dbe339231556e1ef108b",
+      "bytes": 15545
+    },
+    {
+      "path": "question-bank/js/learning-home.js",
+      "sha256": "8f335c17473f6adcd0448f7fed8f4bd534b0d1afb367bd0e21ae859501ea76c7",
+      "git_blob_sha": "9f15c48c3a2837f5c25e4dacaaefb1e5ec7c9ca8",
+      "bytes": 936
+    },
+    {
+      "path": "question-bank/js/learning-system.js",
+      "sha256": "10a5152ecde895044383fb92d4308bd9d53f08efb3ecf976fef6237a9031ef71",
+      "git_blob_sha": "dc296a134f647239d1ca7d96ff6c8ba2c83c6134",
+      "bytes": 16888
+    },
+    {
+      "path": "question-bank/js/mapped-practice.js",
+      "sha256": "84ea362ce15bd96f215919729605da513383c4b18e6771ca9a3e40bf37e7b8b6",
+      "git_blob_sha": "42f5afa2b0da88b19b2b2b8094c215d94241c7b1",
+      "bytes": 59553
+    },
+    {
+      "path": "question-bank/js/mapped-private-bank-practice.js",
+      "sha256": "5f05f4facbbfdc39744feafcc760388fef700ff7991fa286be3d26adec446b5f",
+      "git_blob_sha": "344c5cf342fd3e8eefb4b496c83dee05443c6ce0",
+      "bytes": 10281
+    },
+    {
+      "path": "question-bank/js/mistakes.js",
+      "sha256": "4a0575904e0d6861687865d5f80dbfc3e1c4e0fe8e311e62806b635664283b3c",
+      "git_blob_sha": "ab959a7c25c4a63343c138d55acdd1e8aa168e4a",
+      "bytes": 4224
+    },
+    {
+      "path": "question-bank/js/parent-cloud.js",
+      "sha256": "ee867c6ba661971cdd674096f8a5a28fd7deaf4281bb9909697bf8f70b27f88a",
+      "git_blob_sha": "cfea87274c3a19bda94f70cb7bcef19b11141ce8",
+      "bytes": 10117
+    },
+    {
+      "path": "question-bank/js/parent.js",
+      "sha256": "e2c9907e10871ca2a49478df669f38e3f51b3299d3138baeeeb4504f95e3976f",
+      "git_blob_sha": "46da18df7d80bdacd11df9d28f22fb7424b24788",
+      "bytes": 4736
+    },
+    {
+      "path": "question-bank/js/practice-builder.js",
+      "sha256": "a655f23d31a8f04209f1e2f833bd420a3fe2cee03c1eba6c8fb0d67a15c147b3",
+      "git_blob_sha": "d48c1190cecb840d6a1756f05fe55917cfecbf15",
+      "bytes": 5915
+    },
+    {
+      "path": "question-bank/js/practice-course-isolation.js",
+      "sha256": "1199dcba7ac1534a96a757abc7fa9b4cd8c551a8b7295afebb5158b198886871",
+      "git_blob_sha": "0cf9d33fe6210c4dc2f6dca779c2ac6ffb03ae4a",
+      "bytes": 7843
+    },
+    {
+      "path": "question-bank/js/practice-global-bridge.js",
+      "sha256": "7abe97324ebae0e5a2668a1ea50f592d59b2360dabfa5abdf75435af481dba63",
+      "git_blob_sha": "f25a1c3675a78b161d5b2d369c8ac4614f02c986",
+      "bytes": 375
+    },
+    {
+      "path": "question-bank/js/practice-recovery-ui.js",
+      "sha256": "39bbec96d956a343394abc2f563b3a1cba0f26ea6e5c40228096affb4440208c",
+      "git_blob_sha": "3c303484ea8d660c60a67587e475bbe80e929819",
+      "bytes": 6802
+    },
+    {
+      "path": "question-bank/js/practice-single-bank.js",
+      "sha256": "4e1dba86d6cfef5e99e45f4863a7a05b43d1595d001ae00e87ecfa7b947b2b91",
+      "git_blob_sha": "960b69b8185644646008865611e550c7d980bd24",
+      "bytes": 10775
+    },
+    {
+      "path": "question-bank/js/practice.js",
+      "sha256": "dc26d34c7bc65b61585eb7ece4036ddc1528f5ca5286b7af62ebdcc71ae7ab27",
+      "git_blob_sha": "be5df23827583b7ea62035464a32829ea4e14a36",
+      "bytes": 20964
+    },
+    {
+      "path": "question-bank/js/private-bank-assets.js",
+      "sha256": "0ae9165b4283a307460ae943c49a56e0149c7f1ef4eb7307a8af966c58451abb",
+      "git_blob_sha": "2377ed51e000888ee142854e95464a5494808086",
+      "bytes": 2705
+    },
+    {
+      "path": "question-bank/js/review.js",
+      "sha256": "cf8bf43abecaec18dfd2ea51586b1245a14e585abb8424308d3b5931bfe0743c",
+      "git_blob_sha": "ca32a5aaa9ac2903bb579d43a295bf96d2ce4e4b",
+      "bytes": 7218
+    },
+    {
+      "path": "question-bank/js/role-entry.js",
+      "sha256": "437bfe0ab3f3723f01704abaf2aa36ad88133397055a12ff94c8d91d2b07ee7e",
+      "git_blob_sha": "d42ae222b0f7c6d5416b3f5798c9ecd4d08a8158",
+      "bytes": 439
+    },
+    {
+      "path": "question-bank/js/student-cloud.js",
+      "sha256": "4bb546e681c9a4f05ae6f68f80b34074c4914e5a9d1fb29cdf99ce6570a2d164",
+      "git_blob_sha": "d303bc1163a412ecc418f08a9f2ed822210db775",
+      "bytes": 19124
+    },
+    {
+      "path": "question-bank/js/sync-adapter.js",
+      "sha256": "1fb94fa880246aba0f353370e3490de54da20c65d48d49fea339e47e132d14ba",
+      "git_blob_sha": "ea1ff307afc56f453b60a304e2cea16bba7b21e7",
+      "bytes": 1575
+    },
+    {
+      "path": "question-bank/js/teacher-cloud.js",
+      "sha256": "65198f203ebd2aa64e95bce2221cd2662b439c9431d425c005a5d6dc038655ef",
+      "git_blob_sha": "e15620bab25aeadc2a09edb78260b073670107bb",
+      "bytes": 52147
+    },
+    {
+      "path": "question-bank/js/teacher-evidence-heatmap.js",
+      "sha256": "31624a2a3c35d3d0f400964981b6e6e6817ecb6103b9a827f92c94c1dd609dee",
+      "git_blob_sha": "38b73aba07f249870287ee42653810002d10ead6",
+      "bytes": 5739
+    },
+    {
+      "path": "question-bank/js/teacher.js",
+      "sha256": "df1cc3acfca714a37047ed5ac3eb8936ac5731d32f636fd5ae3eafb8e57b5bd2",
+      "git_blob_sha": "2399892b307065f4246bc132d6379dfa826309e2",
+      "bytes": 11008
+    },
+    {
+      "path": "question-bank/official/js/app.js",
+      "sha256": "c9ad4cb730d26c7ff3cdbc4ec7dfd5428fa728f244e381b33f9748d9802b2698",
+      "git_blob_sha": "06286662800a4cc8c578e5d9f3c5deecdaef5513",
+      "bytes": 17156
+    },
+    {
+      "path": "question-bank/official/js/archive.js",
+      "sha256": "d5cd1a26fff8d1207e8460af5e863c63c8883f7cc64ddbc538e71f678989fd21",
+      "git_blob_sha": "1394cd4a8e80b892aed3b3d4e3809d5fd9c16b6b",
+      "bytes": 4689
+    },
+    {
+      "path": "question-bank/official/js/dashboard.js",
+      "sha256": "b3f2ede8d7025ed8ee0192f538e89b24745c846e20a5f440f19c96a907623e67",
+      "git_blob_sha": "4d9dd9d9cd015aa11d402d3e349e46abdf4a8c10",
+      "bytes": 3573
+    },
+    {
+      "path": "question-bank/official/js/exam.js",
+      "sha256": "3c755f9b81a500e2ca12745d1ab2ad6bef41639193a0b9caed6f91d8b1003f9b",
+      "git_blob_sha": "5a7d60999594556123a411ea4b0e99b559fa3985",
+      "bytes": 11935
+    },
+    {
+      "path": "question-bank/official/js/import.js",
+      "sha256": "b3a78150da3ec9ca780096de9771164b0140678fef87efe0cd6082f2d95905dc",
+      "git_blob_sha": "31a28feb9595d72e1d821f6a0ecf557a58e5d458",
+      "bytes": 4986
+    },
+    {
+      "path": "question-bank/official/js/practice.js",
+      "sha256": "fd66283ee8a2d0e6ef47fa039626da920b02ffbf0db95cc666e6dc8e0c793b11",
+      "git_blob_sha": "f6538e6b1d39f308907a5414c08ff085b4cc2d05",
+      "bytes": 11206
+    },
+    {
+      "path": "question-bank/official/js/teacher.js",
+      "sha256": "92d3a9e7bc2655f27139e381bebe69372d860b25afb3d2311365f060065e0662",
+      "git_blob_sha": "9cc7f872faa8bcd3780714045589b9f000df7a7d",
+      "bytes": 9360
+    },
+    {
+      "path": "question-bank/official/reports/AUDIT_SUMMARY.json",
+      "sha256": "b66cad41492d059bfb352a70f4026858c526547e379b52a461b0905baaf6e577",
+      "git_blob_sha": "ff5322d8bf8bd7f5040c7c81d6a29a43632a48dd",
+      "bytes": 1200
+    },
+    {
+      "path": "question-bank/official/reports/QUESTION_CORRECTIONS_LOG.json",
+      "sha256": "01a115c1d12b20d2bb9c1a69e5f4f3484f86086cf8998178019472826f2b15ad",
+      "git_blob_sha": "520e239e8882e5d5def860fb3a265388dee9555f",
+      "bytes": 662270
+    },
+    {
+      "path": "question-bank/official/reports/browser_smoke_results.json",
+      "sha256": "f65277cfdad864b7994f272d77e94117287e3c3f133720dc7e8f3d272668c157",
+      "git_blob_sha": "716e366afe09f75d975fbaa0811da0cfc085e25f",
+      "bytes": 2707
+    },
+    {
+      "path": "question-bank/official/reports/katex_audit_results.json",
+      "sha256": "2cfa54372f27ca798cabcf780b8e766b559e992cd042d3c91f53ffe2b0424d34",
+      "git_blob_sha": "70f1f19712c3e16217bae14e1211caeefde6d717",
+      "bytes": 239985
+    },
+    {
+      "path": "question-bank/official/reports/katex_error_log.json",
+      "sha256": "2aa8ad51826ddb405bdbbb6cae8362449435ab30945f1762584edd784bfc784e",
+      "git_blob_sha": "df59069874868f624ffbab86807eb0cab31ca2fd",
+      "bytes": 115
+    },
+    {
+      "path": "question-bank/official/reports/latest-expansion-validation.json",
+      "sha256": "1416a2b1ef214c4f6ad8d842cb0423fdbf35c639636df3d3b2d7ddcc65fa14a1",
+      "git_blob_sha": "7e0117ae15578bcfc58733f20f96e4bc3053fb65",
+      "bytes": 222
+    },
+    {
+      "path": "question-bank/official/reports/public_build_security_audit.json",
+      "sha256": "e81c692448a49208b45e8df044ace59c3980da235c21050d6c5603574ac0f318",
+      "git_blob_sha": "fba9448bd689073affd928e315fefbc78c5242b3",
+      "bytes": 507
+    },
+    {
+      "path": "question-bank/official/reports/release_checksum_manifest.json",
+      "sha256": "2b95f5759221e0e1919bcf0b3dc9e346d17daa33e14a85c15b67dd012900edd8",
+      "git_blob_sha": "bc6e46d94bf019e1d8821e55d6e2a37f2fefb832",
+      "bytes": 16270
+    },
+    {
+      "path": "question-bank/official/reports/statistics_dashboard.json",
+      "sha256": "527f077d0300aec5fafd2673bb6698b58837e48a1c8ce272c4d4a84d33d811d8",
+      "git_blob_sha": "e511048547a378ce3c23e0073d2bf90fc3e89422",
+      "bytes": 195
+    },
+    {
+      "path": "question-bank/official/tools/add-question-batch.ps1",
+      "sha256": "77b39b4808447243299adb280cae5cf8ba924acee1ebdfd4ef31b69110360d24",
+      "git_blob_sha": "481c159a94f36f63f9cb294a60ae80ee633c18d7",
+      "bytes": 209
+    },
+    {
+      "path": "question-bank/official/tools/apply_strict_audit_gate.py",
+      "sha256": "230eeafcb37de0925d54194ef545db8b6b64e0685cfb313bbe80a088421cfce3",
+      "git_blob_sha": "0704f546eb19577494f91b18417f27a6e19c29dd",
+      "bytes": 55653
+    },
+    {
+      "path": "question-bank/official/tools/browser_smoke.mjs",
+      "sha256": "abec7e6371155a45309c8a5e1dc0e7eb3571f39b685a0ae4dfd6cb9e55c366bd",
+      "git_blob_sha": "c21dadd76dc7d542d9342e1362b2e4c7dfc5391f",
+      "bytes": 14099
+    },
+    {
+      "path": "question-bank/official/tools/create-batch-from-csv.ps1",
+      "sha256": "51f4a53d03c1e42db090347a912672992b8a911deedb34608c5fba03f7440049",
+      "git_blob_sha": "9fda9e28b2b3a5cb91ed89555cf6096b710396bc",
+      "bytes": 222
+    },
+    {
+      "path": "question-bank/official/tools/generate_release_checksums.py",
+      "sha256": "67e411c2f0d59f5c17e4cf0d537a672b9074c753a29e0cb5e8f68de10829732e",
+      "git_blob_sha": "b119f693fdf45ac1c02f638d8a86fc1a9c74c008",
+      "bytes": 3090
+    },
+    {
+      "path": "question-bank/official/tools/package-lock.json",
+      "sha256": "71d7f1a56e83396c603335f745e1b820f32b4bb289feed076250921d4bf06dec",
+      "git_blob_sha": "b5a7330bad9b3c19b2aca20b31596262c7de9ee7",
+      "bytes": 2672
+    },
+    {
+      "path": "question-bank/official/tools/package.json",
+      "sha256": "d2645c8717def8ae1f5577bc103f464a2eacf473af26947ee3ca9f88ea8736e3",
+      "git_blob_sha": "c7810bfbd062cfd011b85cc89c4f1d01e360d229",
+      "bytes": 458
+    },
+    {
+      "path": "question-bank/official/tools/publish_licensed_official.py",
+      "sha256": "67ab0d953785882f3e558edd17c3514ca7f900498fafb3d35594a1cf3ac8b136",
+      "git_blob_sha": "adab4a33e5654b10be36cbb981013c386f77f18f",
+      "bytes": 61717
+    },
+    {
+      "path": "question-bank/official/tools/sync_student_media_manifest.py",
+      "sha256": "1bd4006a8904c4fb0ae7b4bd668b025b219930590baf78a03cfc358496a6c0d4",
+      "git_blob_sha": "39e106b6406310d1f4a6700cc2ccd58a14f9d464",
+      "bytes": 3646
+    },
+    {
+      "path": "question-bank/official/tools/validate-private-bank.ps1",
+      "sha256": "b724a2b9772a31e4e7f3f5bf900be0aae9f8dd152acf99196be432228bef4e69",
+      "git_blob_sha": "33c83a9416bd40ae7bf68538936e9834e9ad28d0",
+      "bytes": 150
+    },
+    {
+      "path": "question-bank/official/tools/validate_admin_overlays.mjs",
+      "sha256": "9087e7672801f73e19f9f81a3c123dd4867f5e5a165c61c799905e3a74c30d5e",
+      "git_blob_sha": "959d900828f7dd55324ff492a1fb516bac56fc2a",
+      "bytes": 16683
+    },
+    {
+      "path": "question-bank/official/tools/validate_katex.mjs",
+      "sha256": "780e6a269249f371c913716068968686790839a558cb7212861d72299c1dd902",
+      "git_blob_sha": "2625f3c69fbe49efaff02de5a7ac611fe0e16c6b",
+      "bytes": 7812
+    },
+    {
+      "path": "question-bank/official/tools/validate_release.py",
+      "sha256": "027ede536081a5946b7d9c3fa7fd6bcf6a2b62e8b9d73ac5dbe2cefbf74daa94",
+      "git_blob_sha": "27763c81124746c70cb00a6ceffbae863316fdaa",
+      "bytes": 41031
+    },
+    {
+      "path": "index.html",
+      "bytes": 20628,
+      "sha256": "e2bfc2fe49b0499e85e04954f305186129042295f0a5eaeeaf9c658ef19283cb",
+      "git_blob_sha": "7ca343d5650b0a2b2e63f0ee417088992e5d46ae"
+    },
+    {
+      "path": "notes/ap-calculus/unit-2/notes-2-1-rates-of-change-and-tangent-lines.pdf",
+      "bytes": 313652,
+      "sha256": "6731b6735ebfe1bacfca9776d042869c84c4e1dd7b29134520f7958f4e110aae",
+      "git_blob_sha": "5e86057d60dad0cafbd4a0cbc3f10f894d442556"
+    },
+    {
+      "path": "notes/ap-calculus/unit-2/notes-2-2-tangent-lines-and-the-derivative.pdf",
+      "bytes": 310574,
+      "sha256": "9fb992f9255614e13ea8f700267cc5ca76f75b7ae159c7aa9cea2d121d367bce",
+      "git_blob_sha": "13da90ac46ae07a94872a01180e5a302064896e0"
+    },
+    {
+      "path": "notes/ap-calculus/unit-2/notes-2-3-the-derivative-graphs-differentiability-and-continuity.pdf",
+      "bytes": 326308,
+      "sha256": "741b7c3f0789aa27915197dcba62333eb4fab94b78216a5f51031c8873eb7400",
+      "git_blob_sha": "9e9eb51a81169201904c1514ac51790042dc9ca4"
+    },
+    {
+      "path": "notes/ap-calculus/unit-2/notes-2-4-basic-derivative-rules.pdf",
+      "bytes": 324766,
+      "sha256": "2ff84f0799d1f3a13efa9461c2daede7fcf1d279a3c27610a9d2c5c25102b7eb",
+      "git_blob_sha": "9717b9df9459009eb4a95b0f7af8bab211229512"
+    },
+    {
+      "path": "notes/ap-calculus/unit-2/notes-2-5-product-and-quotient-rules.pdf",
+      "bytes": 315597,
+      "sha256": "920e73410aa36e25a0df760f9dbe2821079876874814a77eed25ba1623b4077f",
+      "git_blob_sha": "85308c81249a95f8074541507d9319c3770c6061"
+    },
+    {
+      "path": "notes/ap-calculus/unit-3/notes-3-1-the-chain-rule.pdf",
+      "bytes": 308834,
+      "sha256": "ab697c1e7af09594cc822b747fe5ba74917baf2d7083cbf0bd83e71bc7a48cc9",
+      "git_blob_sha": "31761061455232720cb12c661978f2938817f8db"
+    },
+    {
+      "path": "notes/ap-calculus/unit-3/notes-3-2-implicit-differentiation.pdf",
+      "bytes": 308698,
+      "sha256": "d575435704d9220bd82b242e39df55127b3694e69811b304e4d1f07ea42be49a",
+      "git_blob_sha": "3578235f237972965fb174c19320d76c4e47cfcc"
+    },
+    {
+      "path": "notes/ap-calculus/unit-3/notes-3-3-inverse-function-and-inverse-trigonometric-derivatives.pdf",
+      "bytes": 313407,
+      "sha256": "8a525112602c3eb2eb37e4c998556b6d06c9b0e248e656c2c63da42de62cb9ec",
+      "git_blob_sha": "be988a280d8cc50c787106112343ad3c099cf16d"
+    },
+    {
+      "path": "notes/ap-calculus/unit-4/notes-4-1-interpretations-of-the-derivative.pdf",
+      "bytes": 312773,
+      "sha256": "538a716481dfc28aa5c36b479dcbc51d9ee8700d34abd5947c8626beb23cdad9",
+      "git_blob_sha": "e1453b2bece192eea5cb4f0c81f8fcb13dc6a645"
+    },
+    {
+      "path": "notes/ap-calculus/unit-4/notes-4-2-straight-line-motion.pdf",
+      "bytes": 303509,
+      "sha256": "f478d4ca68fd0aea35b6524e2fb8045a9a535d38d8869c977ef1232adad47ea0",
+      "git_blob_sha": "1c45cc733fcefb827426c4ed275ef5afd518a171"
+    },
+    {
+      "path": "notes/ap-calculus/unit-4/notes-4-3-other-rates-of-change.pdf",
+      "bytes": 314580,
+      "sha256": "b60934b292f250ef11c7b3826e8f1f3175b5e634cdc49d028681af6853fbc519",
+      "git_blob_sha": "f6f1d305ed3d6255f716d64595b54adb1a29f923"
+    },
+    {
+      "path": "notes/ap-calculus/unit-4/notes-4-4-related-rates.pdf",
+      "bytes": 315692,
+      "sha256": "5e5a8c2d602d9c24a89ce954d07f5ee12e2657ea74327aaeb4cc0465131b450c",
+      "git_blob_sha": "694170b79a285e5847e54d6dda02a97bb2fb0c7f"
+    },
+    {
+      "path": "notes/ap-calculus/unit-4/notes-4-5-linear-approximation.pdf",
+      "bytes": 311782,
+      "sha256": "0d44093b673e24424e1d7341c034ef5a51a72a92f08880b04f7a7b7d88618633",
+      "git_blob_sha": "61e3d0c180ba3123af324cb12e0f86742f0128d9"
+    },
+    {
+      "path": "notes/ap-calculus/unit-4/notes-4-6-lhopitals-rule.pdf",
+      "bytes": 316286,
+      "sha256": "62639d873ca373fcf48927dd3fe79bcee11e66113f955ea28273948121b6b9f4",
+      "git_blob_sha": "bb7c26f3c5432963afca4db7bbd8fa5950b7b87f"
+    },
+    {
+      "path": "notes/ap-calculus/unit-5/notes-5-1-mean-value-theorem.pdf",
+      "bytes": 314965,
+      "sha256": "4471b3f8bcba97fa9b1437604826fe4164691726ffed8f563c14ceaa1f517211",
+      "git_blob_sha": "acc8907fe6541527f67f7bb5713e896bb1852daf"
+    },
+    {
+      "path": "notes/ap-calculus/unit-5/notes-5-10-optimization-problems.pdf",
+      "bytes": 314546,
+      "sha256": "19d97d4245684ebafe4d274d5d405fde8cd4b3822a35836f39b139a4cfab8053",
+      "git_blob_sha": "20e0b0139b73c90bad345df0c292b8c9047de0d9"
+    },
+    {
+      "path": "notes/ap-calculus/unit-5/notes-5-2-to-5-5-part-1-derivative-graph-analysis-part-1.pdf",
+      "bytes": 308180,
+      "sha256": "05832f35bcd71eb364f9bf3cb600f3fa12d5e9bb865001f8eae705fd79b81b6d",
+      "git_blob_sha": "768ae6e430225de44c844d79748647ad3a5f5e1c"
+    },
+    {
+      "path": "notes/ap-calculus/unit-5/notes-5-2-to-5-5-part-2-derivative-graph-analysis-part-2-challenge-questions.pdf",
+      "bytes": 314984,
+      "sha256": "4b2babd1537ace5a2d8e46c30ede8e90c462b58444cb88fa16c5cf1a80f4e164",
+      "git_blob_sha": "8c92317384afc7ffe0e0ff7f2e32f7e7e8a66bdc"
+    },
+    {
+      "path": "reviews/ap-calculus/unit-2/unit-2-ap-style-review.pdf",
+      "bytes": 315230,
+      "sha256": "ac2f910e425a5048bd6c23baf9bf97b08c950296e7a23538aec3770ca6b41a03",
+      "git_blob_sha": "fe0ef03422ec7f16b5f2815f6a338f2023898634"
+    },
+    {
+      "path": "reviews/ap-calculus/unit-2/unit-2-comprehensive-review.pdf",
+      "bytes": 368685,
+      "sha256": "bc861f35406a88539903a41ee3cbde5d3eaa12f1e4fa3bdf6b99e7998312290f",
+      "git_blob_sha": "4a22ee5d074b419ab48bec7f73620e3cfa6a0b0d"
+    },
+    {
+      "path": "reviews/ap-calculus/unit-3/unit-3-ap-style-review.pdf",
+      "bytes": 310429,
+      "sha256": "563090f4dfc4179c1004ef5dde90c0fe7f3b445cf3702ba28da758f61c84ae15",
+      "git_blob_sha": "cd5fac5c2ac094fe3cf8cb100e934c2a5049fe67"
+    },
+    {
+      "path": "reviews/ap-calculus/unit-3/unit-3-comprehensive-review.pdf",
+      "bytes": 348720,
+      "sha256": "426037124ace731911ebfe26a4b7651ab55151f4633552d5e7f22a954587983d",
+      "git_blob_sha": "e1034f9ee0092b761854bc3996cbca7e896649a3"
+    },
+    {
+      "path": "reviews/ap-calculus/unit-4/unit-4-ap-style-review.pdf",
+      "bytes": 314974,
+      "sha256": "9d2738d871ed289f76e2c6f41c55c5b7a7a293f32239ea5818a8d2389d839762",
+      "git_blob_sha": "87ff33f337e04c5ec76e881f60777590a980d2df"
+    },
+    {
+      "path": "reviews/ap-calculus/unit-4/unit-4-comprehensive-review.pdf",
+      "bytes": 375783,
+      "sha256": "dcdae64e5c8e38e7b440ab483220389ad9087485b79ecc0b15c271ec15b08743",
+      "git_blob_sha": "a0c32bd12143af0cd741451d2394ed258cf736ba"
+    },
+    {
+      "path": "reviews/ap-calculus/unit-5/unit-5-ap-style-review.pdf",
+      "bytes": 308179,
+      "sha256": "a6884126328fb5b96b69cacbbda5e5ca62d19c03ca11f1f13671f37afcf96f31",
+      "git_blob_sha": "3a52cd48521c0f322b0c6536b1e468304b6b6aeb"
+    },
+    {
+      "path": "reviews/ap-calculus/unit-5/unit-5-comprehensive-review.pdf",
+      "bytes": 346772,
+      "sha256": "76810a3c7ecee2e558604f02b465917448f1985b46fca040c01bd94d90b8628c",
+      "git_blob_sha": "cdb21728c83114adb2b60b6b54e1981d10429049"
+    },
+    {
+      "path": "worksheets/ap-calculus/unit-2/worksheet-2-1-rates-of-change-and-tangent-lines.pdf",
+      "bytes": 329066,
+      "sha256": "8851d9d875299197e73f1d214bb7a23c9db66bdae3a5308129b3db1ce6472c77",
+      "git_blob_sha": "be8566b16eb7c20a22f10c591d20dc7d5a6dac7c"
+    },
+    {
+      "path": "worksheets/ap-calculus/unit-2/worksheet-2-2-tangent-lines-and-the-derivative.pdf",
+      "bytes": 332636,
+      "sha256": "07d107e0abcb1080738ceea477c4aaf6075d55bf0e53302b21b070d77e6ebf41",
+      "git_blob_sha": "88290945097954678d28a27a1a40842585963b27"
+    },
+    {
+      "path": "worksheets/ap-calculus/unit-2/worksheet-2-3-the-derivative-graphs-differentiability-and-continuity.pdf",
+      "bytes": 350807,
+      "sha256": "bdaf48ff5b315f2626c18691e565f79fad4b8f84df246a9af6fb1430074a8e19",
+      "git_blob_sha": "4bda8772ca83e63f16e5ed8fc43c03ddd433c61c"
+    },
+    {
+      "path": "worksheets/ap-calculus/unit-2/worksheet-2-4-basic-derivative-rules.pdf",
+      "bytes": 366007,
+      "sha256": "34218a7696fc4e7f8943f6905695291ff0fd36369a878cd95f9b88e2c26cdddd",
+      "git_blob_sha": "9615a3a57218543df4eb40e6adf196090b09075d"
+    },
+    {
+      "path": "worksheets/ap-calculus/unit-2/worksheet-2-5-product-and-quotient-rules.pdf",
+      "bytes": 342092,
+      "sha256": "fc93424105480e599814e97fca5d21fca0f50e2e86b550fcc61ac8ad2ea05318",
+      "git_blob_sha": "2cddc036fb93170b7fa77eb1c5b9e731280b13cc"
+    },
+    {
+      "path": "worksheets/ap-calculus/unit-3/worksheet-3-1-the-chain-rule.pdf",
+      "bytes": 319619,
+      "sha256": "cf645efaca801442b5fded81a39c11729436cd8eccb62a1a67e8807f3d866dc6",
+      "git_blob_sha": "eeb54a2f25d294d690e812702ecbae24a8640c51"
+    },
+    {
+      "path": "worksheets/ap-calculus/unit-3/worksheet-3-2-implicit-differentiation.pdf",
+      "bytes": 319072,
+      "sha256": "628c7c01bd66934bbd9e6dd419e14e687cc30f98648d14c4df911d8d8cca4b44",
+      "git_blob_sha": "31795088415b0dc67cee571ff3eb066acea6ccf0"
+    },
+    {
+      "path": "worksheets/ap-calculus/unit-3/worksheet-3-3-inverse-function-and-inverse-trigonometric-derivatives.pdf",
+      "bytes": 320931,
+      "sha256": "3dc133d5008fce00e7c6e904edac30304faea0c1d157ad481f0bf4ce924f74a3",
+      "git_blob_sha": "c90167e702162a7c10e01ab16af62f1dfee0ccf5"
+    },
+    {
+      "path": "worksheets/ap-calculus/unit-4/worksheet-4-1-interpretations-of-the-derivative.pdf",
+      "bytes": 322446,
+      "sha256": "722adcb5620486e9adf72b531cf1b46ed098c587b329d159e164426d8882c788",
+      "git_blob_sha": "23ff334e0aee041c024794ff37f2d9749dacf4e4"
+    },
+    {
+      "path": "worksheets/ap-calculus/unit-4/worksheet-4-2-straight-line-motion.pdf",
+      "bytes": 314108,
+      "sha256": "b7882f1c700bdefef88ebc05b7ed8124191346b9f180873c37bbc9687d9da495",
+      "git_blob_sha": "915d6a1f06a684c0b4d999cc9d7050f7a7775da9"
+    },
+    {
+      "path": "worksheets/ap-calculus/unit-4/worksheet-4-3-other-rates-of-change.pdf",
+      "bytes": 324776,
+      "sha256": "7f0bed4a29cac6fba4f03ebc413d83affd456137a541593aa7013a7d07be0a4f",
+      "git_blob_sha": "304bea3d7d97a0dde4e57666a380257bfa390495"
+    },
+    {
+      "path": "worksheets/ap-calculus/unit-4/worksheet-4-4-related-rates.pdf",
+      "bytes": 325568,
+      "sha256": "391f1aa4dcd892fc19c004b41b3dcb008daf3290742b43564d4b8a8ec3d2f19b",
+      "git_blob_sha": "25e0fdbc7bf2102afa7f6c6f6882da10cccc23ce"
+    },
+    {
+      "path": "worksheets/ap-calculus/unit-4/worksheet-4-5-linear-approximation.pdf",
+      "bytes": 320962,
+      "sha256": "441d21c3f2e47fc58ea2cd839297a6e3d9f3f977c5ccf3321d461606ca26e42b",
+      "git_blob_sha": "8310fafbf8091a89e22cbf2b1d096252bffb3202"
+    },
+    {
+      "path": "worksheets/ap-calculus/unit-4/worksheet-4-6-lhopitals-rule.pdf",
+      "bytes": 329179,
+      "sha256": "0434b234635657564d2f81ca7ebbff48c9d939bff1b72f387808e128cef7e4c4",
+      "git_blob_sha": "bf5bd6d636c1f45c263b28b1947674ae00737d8a"
+    },
+    {
+      "path": "worksheets/ap-calculus/unit-5/worksheet-5-1-mean-value-theorem.pdf",
+      "bytes": 323344,
+      "sha256": "1cc04d1091f36ab1151a4ee0877def6ac9e26c86ba85623f51735257b20bfe28",
+      "git_blob_sha": "6568d61cec2919407b1d049c3e30723f5ba16034"
+    },
+    {
+      "path": "worksheets/ap-calculus/unit-5/worksheet-5-10-optimization-problems.pdf",
+      "bytes": 322269,
+      "sha256": "2d1d21467f78a5474fa0b3726bc42af99d13d82495946d25f4603b3b46164d05",
+      "git_blob_sha": "4516edab0e436d35c5ba89b14b76c31583f6c06e"
+    },
+    {
+      "path": "worksheets/ap-calculus/unit-5/worksheet-5-2-to-5-5-part-1-derivative-graph-analysis-part-1.pdf",
+      "bytes": 315479,
+      "sha256": "2765d8b52075391ab8fc062a2181dc4596a27de7561534b5e71e9b59d4338811",
+      "git_blob_sha": "44bbcb382dff62cbe16299c77da0d2e0a9c6f598"
+    },
+    {
+      "path": "worksheets/ap-calculus/unit-5/worksheet-5-2-to-5-5-part-2-derivative-graph-analysis-part-2-challenge-questions.pdf",
+      "bytes": 322010,
+      "sha256": "54caf43daa81034ae57d2d4502f5b2db57c787b61e522ff227a095d3a452d8e5",
+      "git_blob_sha": "a1e991c49f963b91205d9046a996ecba836ed114"
+    }
+  ]
+}

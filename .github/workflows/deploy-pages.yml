@@ -64,6 +64,12 @@ on:
       - "tools/test_lesson_visibility_progression.mjs"
       - "tools/test_institution_identity_mount.mjs"
       - "tools/validate_pages_artifact.py"
+      - "tools/project_public_question_bank.py"
+      - "tools/test_public_question*.py"
+      - "tools/test_public_question*.mjs"
+      - "question-bank/official/data/**"
+      - "question-bank/official/admin/data/**"
+      - "question-bank/official/media/**"
   workflow_dispatch:
 
 permissions:
@@ -138,6 +144,12 @@ jobs:
           python tools/test_learning_access_contract.py .
           python tools/test_lesson_visibility_contract.py .
 
+      - name: Verify public question distribution boundary
+        run: |
+          python tools/test_public_question_projection.py
+          python tools/test_public_question_preservation.py
+          node tools/test_public_question_worker.mjs
+
       - name: Verify all local HTML references
         run: python tools/validate_local_links.py .
 
@@ -151,6 +163,10 @@ jobs:
             --exclude='.git/' \
             --exclude='_pages/' \
             --exclude='.echs-backups/' \
+            --exclude='.staging/' \
+            --exclude='packages/' \
+            --exclude='.deploy/' \
+            --exclude='/artifacts/' \
             --exclude='node_modules/' \
             --exclude='supabase/.temp/' \
             --exclude='.github/' \
@@ -168,6 +184,7 @@ jobs:
             --exclude='*.bat' \
             --exclude='QA_REPORT.md' \
             ./ _pages/
+          python tools/project_public_question_bank.py . _pages
           touch _pages/.nojekyll
           python tools/inject_learning_access_guard.py _pages
           python tools/test_learning_access_contract.py _pages --artifact

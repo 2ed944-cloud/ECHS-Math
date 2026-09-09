@@ -1,6 +1,6 @@
 # ECHS-014 — Reviewed IB reference import
 
-Status: implementation and verification in progress. The release report records the tested commit, CI results and deployment evidence; this document does not itself assert a completed release.
+Status: complete and deployed through [PR #362](https://github.com/2ed944-cloud/ECHS-Math/pull/362), main `99a0e6582cd82941a03c7d5cc2ec4517def62bb7`. All 20 PR workflows, 16 final production workflows, 68 baseline checks and 164 public acceptance checks passed. Real PostgreSQL evidence covers the unchanged 25 migrations, 676 database checks and 46 HTTP/SQL groups. The 41 import browser groups and 84 reviewed screenshots are bound to the tested source. The sealed release archive has SHA-256 `dc9417349a1981a8f390fc0c5fa9bded82b537dad2f71d36773ed21bf0b196f6`.
 
 ## What is being migrated
 

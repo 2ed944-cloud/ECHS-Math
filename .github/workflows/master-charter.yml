@@ -1,0 +1,26 @@
+name: ECHS master charter integrity
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  execution-board:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate evidence claims and complete dependency graph
+        run: python tools/validate_master_execution_plan.py
+      - name: Reject misleading completion and incomplete charter coverage
+        run: python tools/test_master_execution_plan.py
+      - name: Keep generated fixtures out of product link checks
+        run: python tools/test_local_links_artifacts.py

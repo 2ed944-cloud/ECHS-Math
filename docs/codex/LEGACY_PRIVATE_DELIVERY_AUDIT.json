@@ -1,0 +1,991 @@
+{
+  "contract": "echs.c08.public-audit.v1",
+  "status": "PLANNED",
+  "priority": "P0",
+  "dependency": "Complete before ECHS015 and broad question-bank security claims; preserve active availability until verified private coverage.",
+  "source_main": "99a0e6582cd82941a03c7d5cc2ec4517def62bb7",
+  "scope": "Legacy textbook pools outside C01 official-bank containment. No question text, answer values, media bytes or per-question/full-asset manifests included.",
+  "counts": {
+    "canonical_questions": 5882,
+    "payload_json_files": 70,
+    "row_occurrences": 15123,
+    "full_record_variant_ids": 0,
+    "source_banks": {
+      "CALCT3BC": 3309,
+      "ADAMS10": 2170,
+      "PEARSON_CH0": 403
+    },
+    "assets": 22777,
+    "referenced_assets": 22112,
+    "additional_assets_preserved": 665
+  },
+  "payload_groups": {
+    "source": {
+      "files": 39,
+      "row_occurrences": 5882,
+      "unique_ids": 5882,
+      "nonempty_fields": {
+        "prompt_html": 5882,
+        "prompt_text": 5882,
+        "choices": 5591,
+        "correct_choice_ids": 5591,
+        "correct_choice_indices": 5591,
+        "accepted_answers": 36,
+        "solution_html": 258,
+        "solution_text": 258,
+        "feedback_html": 249,
+        "images": 4828
+      }
+    },
+    "ap": {
+      "files": 29,
+      "row_occurrences": 6171,
+      "unique_ids": 5882,
+      "nonempty_fields": {
+        "prompt_html": 6171,
+        "prompt_text": 6171,
+        "choices": 5870,
+        "correct_choice_ids": 5870,
+        "correct_choice_indices": 5870,
+        "accepted_answers": 36,
+        "solution_html": 268,
+        "solution_text": 268,
+        "feedback_html": 259,
+        "images": 5109
+      }
+    },
+    "courses": {
+      "files": 1,
+      "row_occurrences": 3013,
+      "unique_ids": 3013,
+      "nonempty_fields": {
+        "prompt_html": 3013,
+        "prompt_text": 3013,
+        "choices": 2895,
+        "correct_choice_ids": 2895,
+        "correct_choice_indices": 2895,
+        "accepted_answers": 15,
+        "solution_html": 102,
+        "solution_text": 102,
+        "feedback_html": 104,
+        "images": 2513
+      }
+    },
+    "review": {
+      "files": 1,
+      "row_occurrences": 57,
+      "unique_ids": 57,
+      "nonempty_fields": {
+        "prompt_html": 57,
+        "prompt_text": 57,
+        "choices": 56,
+        "correct_choice_ids": 56,
+        "correct_choice_indices": 56,
+        "accepted_answers": 0,
+        "solution_html": 1,
+        "solution_text": 1,
+        "feedback_html": 1,
+        "images": 54
+      }
+    }
+  },
+  "payload_source_hashes": [
+    {
+      "path": "question-bank/data/source/adams10/chapter_01.json",
+      "bytes": 307669,
+      "sha256": "d91a21acc98e3d64fa1569c5747af4f428edfe66bb9b903db65ee8cafd629106",
+      "git_blob_sha1": "568f0c8882ec2095a0093dea7f73529af9c04512",
+      "row_count": 94
+    },
+    {
+      "path": "question-bank/data/source/adams10/chapter_02.json",
+      "bytes": 422995,
+      "sha256": "320739bf1749e44bdf0e102e6d06336f582352c73f7a1aff476f488607ccccd2",
+      "git_blob_sha1": "8e21ba3ec3d4a8c64b6f2cd69e583bf6f60b73a2",
+      "row_count": 131
+    },
+    {
+      "path": "question-bank/data/source/adams10/chapter_03.json",
+      "bytes": 415853,
+      "sha256": "69ea7f79c8aa7b3e1e50bcfb695824d7aea384097d4b78f8bd9387b37659825a",
+      "git_blob_sha1": "d0d5fdcd8a237692f08201dc3615705084ecbf41",
+      "row_count": 127
+    },
+    {
+      "path": "question-bank/data/source/adams10/chapter_04.json",
+      "bytes": 468682,
+      "sha256": "b8fc26822a1f303470b371617aef51f931919ec9bf912b5012c6e589acb7eae2",
+      "git_blob_sha1": "497c7fb9a55bace13d26d3f83e3c7918a198b090",
+      "row_count": 130
+    },
+    {
+      "path": "question-bank/data/source/adams10/chapter_05.json",
+      "bytes": 464458,
+      "sha256": "68e4a639dc4af980ced16481d9fdce260732063c0e383acd8fa29d2eed08bc42",
+      "git_blob_sha1": "bc7c46778aa08f62c02965b863fbe9d00a516c97",
+      "row_count": 119
+    },
+    {
+      "path": "question-bank/data/source/adams10/chapter_06.json",
+      "bytes": 515391,
+      "sha256": "21ac77b2ea45c8306c3242a34d7de9adff79425892889ac0aeae6e470cecbe6d",
+      "git_blob_sha1": "ca014ddd3645d1aaf4a49067743aa8290caf6452",
+      "row_count": 118
+    },
+    {
+      "path": "question-bank/data/source/adams10/chapter_07.json",
+      "bytes": 507233,
+      "sha256": "673990943d077b4833e054486d9cf0b8f56c5dc81e8282e80d398f1d4b6470d6",
+      "git_blob_sha1": "81e22957a1b9a3dd9662c872cd4ae9b038704951",
+      "row_count": 139
+    },
+    {
+      "path": "question-bank/data/source/adams10/chapter_08.json",
+      "bytes": 437562,
+      "sha256": "27f84326f1461b1da27ab737c846f11d02546abb602bd406751d732a6d38e813",
+      "git_blob_sha1": "4e9662204c3f3753ea83309c7b0252c8f4611185",
+      "row_count": 115
+    },
+    {
+      "path": "question-bank/data/source/adams10/chapter_09.json",
+      "bytes": 488251,
+      "sha256": "f99fdc96f9ea28ab554e7fe82ced39c05ca099a0ffb1512f91d90a3ec4dceb77",
+      "git_blob_sha1": "328c2619ce5d69d7f5c7b06d0c5ca89fd9975a72",
+      "row_count": 125
+    },
+    {
+      "path": "question-bank/data/source/adams10/chapter_10.json",
+      "bytes": 411560,
+      "sha256": "0b29f910cb809a9723e10cdd6db9c0569e3bdfc39ea9ecf6ecc5c497eaedb512",
+      "git_blob_sha1": "19e2cafca2b09d95c5e725c00252e37294374bcf",
+      "row_count": 119
+    },
+    {
+      "path": "question-bank/data/source/adams10/chapter_11.json",
+      "bytes": 105295,
+      "sha256": "7f4bf81f57114849031341cd1662a742e7785ed3220e93aec2c796d8ae6a5584",
+      "git_blob_sha1": "57f946ddb66369db095e416553a51286862e3049",
+      "row_count": 40
+    },
+    {
+      "path": "question-bank/data/source/adams10/chapter_12.json",
+      "bytes": 397611,
+      "sha256": "08ec658256122eab7792e9834573a4dcb20e035c0564a510f076915b1bad7eb6",
+      "git_blob_sha1": "2c79cb614f831579944ed4a6bcd6de85be50a3ae",
+      "row_count": 87
+    },
+    {
+      "path": "question-bank/data/source/adams10/chapter_13.json",
+      "bytes": 441286,
+      "sha256": "0440c31548b24aa0a5a533d563c6dcb37f8621fe7f3833b212ced13197fa7757",
+      "git_blob_sha1": "3924151d515c79f3b65850ccaf5b05cc498833bb",
+      "row_count": 104
+    },
+    {
+      "path": "question-bank/data/source/adams10/chapter_14.json",
+      "bytes": 256233,
+      "sha256": "d66dbfdcb9715fbe5feef0507099de55482a22d19266c1881296e690e4f29317",
+      "git_blob_sha1": "17ba7077b98af4907be8484c89f9414fcf487b53",
+      "row_count": 67
+    },
+    {
+      "path": "question-bank/data/source/adams10/chapter_15.json",
+      "bytes": 393280,
+      "sha256": "e024b17a1bc0f6d5726bb6cc4eed1d0c41257bc52519150e118db54d6526a459",
+      "git_blob_sha1": "80395b36af43e1d871ec688f5a150fb04f94f0a0",
+      "row_count": 105
+    },
+    {
+      "path": "question-bank/data/source/adams10/chapter_16.json",
+      "bytes": 351975,
+      "sha256": "ab50d229011f8d99312690ab8cfb7ed32c0be312ace5068ba3f832fe9a2430a5",
+      "git_blob_sha1": "662648f5cbc66d7dc101b42d6303ee31880e73f3",
+      "row_count": 90
+    },
+    {
+      "path": "question-bank/data/source/adams10/chapter_17.json",
+      "bytes": 350792,
+      "sha256": "f36f1fb8c254212827940d623e9940980ea0e82476f0a58178eb6ca83b5cd803",
+      "git_blob_sha1": "2651b63da34f287ed81abf009b99d7f563b0cbfb",
+      "row_count": 92
+    },
+    {
+      "path": "question-bank/data/source/adams10/chapter_18.json",
+      "bytes": 274212,
+      "sha256": "26c567e4593609133273eebc5598e37b59a290cc7e70456b8799abbf839f163d",
+      "git_blob_sha1": "9132f8bd9f39388a5947da8a473e241e78d8f56f",
+      "row_count": 76
+    },
+    {
+      "path": "question-bank/data/source/adams10/chapter_19.json",
+      "bytes": 326789,
+      "sha256": "04cd9a7317a07367b85f521f51046fdd5b4b81937e8fdf6bc25ef1afe5158b25",
+      "git_blob_sha1": "acf95f59dd6f022d993fadeefe353a94c6bd3154",
+      "row_count": 94
+    },
+    {
+      "path": "question-bank/data/source/adams10/chapter_20.json",
+      "bytes": 331417,
+      "sha256": "42dddb50f45170f085915ad9ee369298fb2852ce06abcf909831cee14d38551e",
+      "git_blob_sha1": "f0b82a06a6e62cdb669a802e9770145775cba840",
+      "row_count": 71
+    },
+    {
+      "path": "question-bank/data/source/adams10/chapter_p.json",
+      "bytes": 418272,
+      "sha256": "1b9766fb0548bd9aea8766f61cd4ef83e52d2353a7b69d2f49a8246da4d74049",
+      "git_blob_sha1": "0424b62a9124d30c3a066855f830fb6237000469",
+      "row_count": 127
+    },
+    {
+      "path": "question-bank/data/source/calct3bc/chapter_01.json",
+      "bytes": 766363,
+      "sha256": "4161aef9552f045f68c2455835cc92344a35c0a9bd8d41dca2a2b4ede3ad7fcf",
+      "git_blob_sha1": "ee9f081f56d30fc2415f621fd09e05780908d381",
+      "row_count": 229
+    },
+    {
+      "path": "question-bank/data/source/calct3bc/chapter_02.json",
+      "bytes": 783605,
+      "sha256": "e014c595c5c025603f4884b67e4c8b9d06794105309cd4b1621bbe6cf8dd4760",
+      "git_blob_sha1": "083e1138ea1f8814cf0f3010edf8872310f80dbd",
+      "row_count": 225
+    },
+    {
+      "path": "question-bank/data/source/calct3bc/chapter_03.json",
+      "bytes": 1377605,
+      "sha256": "827d7f8391d4d5efb802aded700454f696fdaca36f32b0f43840023e646c58bf",
+      "git_blob_sha1": "3850ee72a4071919cd90552bc825cdd9e7c64082",
+      "row_count": 373
+    },
+    {
+      "path": "question-bank/data/source/calct3bc/chapter_04.json",
+      "bytes": 886730,
+      "sha256": "20407ac7f0ad87d044984b0c16f3cfee53a144a8b317bba320ae68e6eeff1f1d",
+      "git_blob_sha1": "36d40193a69fb5ba42763637899bf89894a54b3d",
+      "row_count": 248
+    },
+    {
+      "path": "question-bank/data/source/calct3bc/chapter_05.json",
+      "bytes": 583528,
+      "sha256": "cf4f2366845f9c593b6c8f2e42e2b38e3fb6dee9e1de32a6fe1c9da5782eb401",
+      "git_blob_sha1": "fa915d64adbc373a348b905a87f8f648a99f8d59",
+      "row_count": 166
+    },
+    {
+      "path": "question-bank/data/source/calct3bc/chapter_06.json",
+      "bytes": 755513,
+      "sha256": "3c4a0af889381ac71f5173e257a0b70616f56c36c6272b4f8c7178ca41215766",
+      "git_blob_sha1": "259b3dce6aa0e6cbbc8f5027442248bb8ee9e18b",
+      "row_count": 219
+    },
+    {
+      "path": "question-bank/data/source/calct3bc/chapter_07.json",
+      "bytes": 319639,
+      "sha256": "b05434a28fbb60e11ea6405f3e909c0a5bd5b2b099ea90693018f4f56a8c978b",
+      "git_blob_sha1": "6a72400e2670e816ef95b7a64124e0771bc0910a",
+      "row_count": 88
+    },
+    {
+      "path": "question-bank/data/source/calct3bc/chapter_08.json",
+      "bytes": 1317892,
+      "sha256": "1e4072c0bda3a1456fd38d9e7519c5ba78085d485afd06f204c1eb71033ee10a",
+      "git_blob_sha1": "f269567005b91a9877a4b1a48139546f6e66db27",
+      "row_count": 292
+    },
+    {
+      "path": "question-bank/data/source/calct3bc/chapter_09.json",
+      "bytes": 302117,
+      "sha256": "5b04ac6ba29d52c030eee67ca2c8716b2f99854e0c9c83c1a3badb1453e8e374",
+      "git_blob_sha1": "1355dc10ade29bb66e0b8926c2f61d069d8139e6",
+      "row_count": 76
+    },
+    {
+      "path": "question-bank/data/source/calct3bc/chapter_10.json",
+      "bytes": 553859,
+      "sha256": "677bf5e565627c904f884b2aa5220ed3d75352ed1f7f4a4b67c224ae3e67c15b",
+      "git_blob_sha1": "6cc467be1c9eb06338dd1b1d60c58633285fa525",
+      "row_count": 177
+    },
+    {
+      "path": "question-bank/data/source/calct3bc/chapter_11.json",
+      "bytes": 403372,
+      "sha256": "56d860b06d1a0a4145de9a21cd2456b97c33642ab7295909e69e2fe517421f8e",
+      "git_blob_sha1": "f7bb683720bb1937bc50221afdf3efa626524f17",
+      "row_count": 103
+    },
+    {
+      "path": "question-bank/data/source/calct3bc/chapter_12.json",
+      "bytes": 606834,
+      "sha256": "0ab7a444edc4c3206df17e1fd87aa9929f50737a0ab6d73e61bfbabcdac7a0a8",
+      "git_blob_sha1": "3c050f1b847b277fb04ca6810518fa55d8747155",
+      "row_count": 170
+    },
+    {
+      "path": "question-bank/data/source/calct3bc/chapter_13.json",
+      "bytes": 496758,
+      "sha256": "7c7a69b52c620ff89b9ecbc10107bc357c66ffa6186352e2b957e131b5df56c5",
+      "git_blob_sha1": "edcf8a9d06d6e914f04207028ddbb515679d9f84",
+      "row_count": 142
+    },
+    {
+      "path": "question-bank/data/source/calct3bc/chapter_14.json",
+      "bytes": 374351,
+      "sha256": "9c4dbcd5352c269e9bf346b121cc86775f6aeef34b56bea4def2c1762b45a9ee",
+      "git_blob_sha1": "6a45d80408a36b2ac1396fbf92a01c0061d0e956",
+      "row_count": 86
+    },
+    {
+      "path": "question-bank/data/source/calct3bc/chapter_15.json",
+      "bytes": 1081634,
+      "sha256": "10f96db25c8a99376db550a11c98916688ac54a0e2c7e723dc39495e4026c6f1",
+      "git_blob_sha1": "24573487b19a210a8cf36a3daef1679a452148fc",
+      "row_count": 234
+    },
+    {
+      "path": "question-bank/data/source/calct3bc/chapter_16.json",
+      "bytes": 1247342,
+      "sha256": "66148ee8e212f2203ab414b3d1b73e76b273173d0a9b6633952733ceb884bffc",
+      "git_blob_sha1": "7f511fc5709dd5368842ee6f8ec42cab25ab117e",
+      "row_count": 301
+    },
+    {
+      "path": "question-bank/data/source/calct3bc/chapter_17.json",
+      "bytes": 645878,
+      "sha256": "a84b73206808db65a7a00ae1ae9c54ed0fe24dbce4f87d24abf9f11d34797ee6",
+      "git_blob_sha1": "930df86afbe491f757a8d072696efc3788a5495a",
+      "row_count": 180
+    },
+    {
+      "path": "question-bank/data/source/pearson_ch0/chapter_00.json",
+      "bytes": 1052172,
+      "sha256": "6918bf46f79954c6c85022820fdeb85df0d93a51451caaeaa6e120cb5bd64c3f",
+      "git_blob_sha1": "d516979421914484f08cc795002cf2f320147064",
+      "row_count": 403
+    },
+    {
+      "path": "question-bank/data/ap/scope_beyond_ap.json",
+      "bytes": 7768717,
+      "sha256": "4f14a77f19bd0395d30a2a1bd63deb3fad6b244def2200dba142fedb94689213",
+      "git_blob_sha1": "afa136f39e41b8012dc1093efc95866116143e2b",
+      "row_count": 1952
+    },
+    {
+      "path": "question-bank/data/ap/scope_enrichment.json",
+      "bytes": 270145,
+      "sha256": "a6805dde5f6c70299af4c8fffc0dce847c9dc31943855228e352a99bf5fd3280",
+      "git_blob_sha1": "330e4c1b74d5089e2a48afdc25386a13cab81cf2",
+      "row_count": 66
+    },
+    {
+      "path": "question-bank/data/ap/scope_prerequisite.json",
+      "bytes": 2605661,
+      "sha256": "4b439bea0820a00978ff4ed36c7816d54973f3f2b2a78a394bf43e6bc8075fc4",
+      "git_blob_sha1": "25f07acf3c276c245f049c96b4c677799e10561e",
+      "row_count": 852
+    },
+    {
+      "path": "question-bank/data/ap/topics/1_1.json",
+      "bytes": 70445,
+      "sha256": "307f4e1bd3d74997037e7c533a09015fe272735de9508b2dcd6f16b52491e1fc",
+      "git_blob_sha1": "420d0dfe13d31bd69a752ec4a98cfb71402e256f",
+      "row_count": 22
+    },
+    {
+      "path": "question-bank/data/ap/topics/1_10.json",
+      "bytes": 28059,
+      "sha256": "8766f79adcc18d84b0c47f1c6fa7ecdea4f57ae81da6086fefb3604ce0435ba8",
+      "git_blob_sha1": "13e8c2e7924ccccb20e9b50506487b03b8142891",
+      "row_count": 11
+    },
+    {
+      "path": "question-bank/data/ap/topics/1_11.json",
+      "bytes": 27481,
+      "sha256": "ab8c347d781edcaca3cb6070fd25bc4420a9af8b96f386f0f3e06e0163192c20",
+      "git_blob_sha1": "d49f6c5e3c32f0cef28f91560fc6f13e24be41e1",
+      "row_count": 9
+    },
+    {
+      "path": "question-bank/data/ap/topics/1_12.json",
+      "bytes": 58817,
+      "sha256": "20df74f272ae6fa78e613ae80a527ae7ad6d0f33b4bccb0d8a8a9eac91e433d2",
+      "git_blob_sha1": "b9c0ea4f2c047de70bb183b34b541f9309763f30",
+      "row_count": 19
+    },
+    {
+      "path": "question-bank/data/ap/topics/1_13.json",
+      "bytes": 26787,
+      "sha256": "d81ec0dc4dae9520cbce223c833479dc5e749968804f109f93f8139879f80370",
+      "git_blob_sha1": "b7580a24a85ae0f7013d835c5aad65162c3b94a0",
+      "row_count": 9
+    },
+    {
+      "path": "question-bank/data/ap/topics/1_14.json",
+      "bytes": 219266,
+      "sha256": "032ed9737ac7a00742707a7a1b2001745f0a7786ca5bf573c915bf908740984d",
+      "git_blob_sha1": "943a8d5e0729d52ca7516491fdb83a9c7e2d4048",
+      "row_count": 69
+    },
+    {
+      "path": "question-bank/data/ap/topics/1_15.json",
+      "bytes": 110145,
+      "sha256": "cc9d2370bd49f53496dadc516031ba84c7376328de4ce174c3c2a086ef13e2a7",
+      "git_blob_sha1": "ac97f75ef0cfbc230a7da3eb0886d2bc0aaa3bee",
+      "row_count": 36
+    },
+    {
+      "path": "question-bank/data/ap/topics/1_16.json",
+      "bytes": 31168,
+      "sha256": "3bf20c1817b14c14fe24274ac1a394115c5b92909fb220790aaca33abe56c353",
+      "git_blob_sha1": "6f237ee6827851ca62835fd1e9866f3a88bbfe53",
+      "row_count": 8
+    },
+    {
+      "path": "question-bank/data/ap/topics/1_2.json",
+      "bytes": 40607,
+      "sha256": "7abfe0a6f0de375329ef81866fdf26ba82318a2c4d58dd785be035f9bbd2d14f",
+      "git_blob_sha1": "6611a5d889c7a96494921015f3fb3feac49d9041",
+      "row_count": 11
+    },
+    {
+      "path": "question-bank/data/ap/topics/1_3.json",
+      "bytes": 27531,
+      "sha256": "8efa892c37af6cf72a50b4dc9698d08495de04e11165b959d0e0d47d475d8c61",
+      "git_blob_sha1": "66d18dc8be977685ed09505a5cccb07dcc0f84ef",
+      "row_count": 10
+    },
+    {
+      "path": "question-bank/data/ap/topics/1_4.json",
+      "bytes": 36073,
+      "sha256": "47233b4e795ac53dd80f1231c9c06c15f8458016f80687e25015eca1be8542b7",
+      "git_blob_sha1": "13287ef290e029d78b1179be8e194688a1bacd82",
+      "row_count": 7
+    },
+    {
+      "path": "question-bank/data/ap/topics/1_5.json",
+      "bytes": 109525,
+      "sha256": "54d7dd2835647d746cbfff1dd25ada3fe4af038fdd6084ae19320b279cf3d5a0",
+      "git_blob_sha1": "e85122f7aff62edb27131c5bac418b9a7c8affc6",
+      "row_count": 32
+    },
+    {
+      "path": "question-bank/data/ap/topics/1_6.json",
+      "bytes": 76945,
+      "sha256": "a274bfda3fdc87706054a021e2455c99970a436b46032c74d4de59057ad5cfdb",
+      "git_blob_sha1": "fadcd8bfe83abed667ca489a949a9c37fa308265",
+      "row_count": 23
+    },
+    {
+      "path": "question-bank/data/ap/topics/1_7.json",
+      "bytes": 27217,
+      "sha256": "bb723628732eaf005b486801d98967ced852fbf88ef52535d4073824a535ea95",
+      "git_blob_sha1": "1467658e82aab6b38d43f4dc8b1b910e1f8da04b",
+      "row_count": 8
+    },
+    {
+      "path": "question-bank/data/ap/topics/1_8.json",
+      "bytes": 9567,
+      "sha256": "292def163b4b31c943366ed1665b18a37074a55ec79170458597f6a972bc515d",
+      "git_blob_sha1": "becfb9c7b0b27adee2cb41488a0607037c772c09",
+      "row_count": 3
+    },
+    {
+      "path": "question-bank/data/ap/topics/1_9.json",
+      "bytes": 37592,
+      "sha256": "0ef8573f0c191f8d0cc8dbbb3a44f60ed0616cee10bca640a011cf7542ca3c66",
+      "git_blob_sha1": "adbee60ff27bfdc6ea5c74529cb2fba4c2f6b659",
+      "row_count": 11
+    },
+    {
+      "path": "question-bank/data/ap/unit_1.json",
+      "bytes": 939191,
+      "sha256": "e9663260ed731ee1e410d03cf150b8a22cb215103637e75f6a517b49e25b8f2b",
+      "git_blob_sha1": "d774ddbdc5436361b8fcaef7efccf65a138fe68f",
+      "row_count": 289
+    },
+    {
+      "path": "question-bank/data/ap/unit_10.json",
+      "bytes": 1500208,
+      "sha256": "c3fdf637a127fc7952cc13b136b5d40af2329c0b3ed8fcca4c41363a3b4fd14c",
+      "git_blob_sha1": "8558a847cbd3ebd38ff4973b80ae8099ffbb2884",
+      "row_count": 415
+    },
+    {
+      "path": "question-bank/data/ap/unit_2.json",
+      "bytes": 795245,
+      "sha256": "b1b93184d3b17635e73b24f3a39cef4d0d7c6f4e71b681515d98d22f4960b11f",
+      "git_blob_sha1": "efdf660c9bf21b75ca6c267923d0023cdd44ebe8",
+      "row_count": 228
+    },
+    {
+      "path": "question-bank/data/ap/unit_3.json",
+      "bytes": 1025110,
+      "sha256": "9d8031b656b930c0979b9177749082f5303b790edde6a5e4bbc11c806090eff8",
+      "git_blob_sha1": "0ee4e11ef3a39ee2115ea2476f921eec81f21dde",
+      "row_count": 280
+    },
+    {
+      "path": "question-bank/data/ap/unit_4.json",
+      "bytes": 484545,
+      "sha256": "d4f7eb321d5ffddf6a3e4fcc70630bbd61495593c81fdfe6eaf27e241ef1578d",
+      "git_blob_sha1": "41aa1bb78e6604c9fd3cc4be9867fadbbb7b6ae6",
+      "row_count": 149
+    },
+    {
+      "path": "question-bank/data/ap/unit_5.json",
+      "bytes": 696882,
+      "sha256": "c6b44b33690149e01c576b1378a6e5f079cc25187f6abc740aaf7e8862e004f8",
+      "git_blob_sha1": "36c70e18ef06cb386321edc4dc8002f7789f9844",
+      "row_count": 194
+    },
+    {
+      "path": "question-bank/data/ap/unit_6.json",
+      "bytes": 2554020,
+      "sha256": "bc642faaf972a165ad6e29dc4f9f19007838a94cc4d85a23ca531b20875c817e",
+      "git_blob_sha1": "4acfc731a9c03a3e8c3cd8544e7680b5d764e346",
+      "row_count": 638
+    },
+    {
+      "path": "question-bank/data/ap/unit_7.json",
+      "bytes": 733992,
+      "sha256": "718d3d7973deaf70ac85fd1f4653d2e3fc6beaf234b59db6a4e81c8c2ebc5057",
+      "git_blob_sha1": "ebbd244a5d1f2dde51ae135c1e0d7b4a7fc5d6ad",
+      "row_count": 196
+    },
+    {
+      "path": "question-bank/data/ap/unit_8.json",
+      "bytes": 1163246,
+      "sha256": "8fe0c5b88b5cddbb3e6e7f9fd9e341a120831cbfca1c606d8c33d746ac81ac7f",
+      "git_blob_sha1": "c020d0da600dda78f4df693fe73154774881f779",
+      "row_count": 333
+    },
+    {
+      "path": "question-bank/data/ap/unit_9.json",
+      "bytes": 1105661,
+      "sha256": "0cf225471c429187ffea65e844c4dd467b3ca3dcab5f3d991dea6c9f9094871b",
+      "git_blob_sha1": "4c235bedab1b1f838174b70768b3c56bf5d5ed6f",
+      "row_count": 291
+    },
+    {
+      "path": "question-bank/data/courses/ap-calculus/all.json",
+      "bytes": 10997372,
+      "sha256": "6034fbdeb4a85cb04f0505863c518eae06a4cee5fb25e309eeb48d61bec80ee2",
+      "git_blob_sha1": "f730cfac918a120fc88c5dff464d451d65b49576",
+      "row_count": 3013
+    },
+    {
+      "path": "question-bank/data/review/unit1_teacher_review_queue.json",
+      "bytes": 212100,
+      "sha256": "ab439f0865e4f7f2ca290886733615b194979b56d39ab0b1a5bcd340b13a4ac1",
+      "git_blob_sha1": "5ab31ac93c8a5dd277500aec93a09fd3730c223d",
+      "row_count": 57
+    }
+  ],
+  "asset_aggregate_metadata": {
+    "CALCT3BC": {
+      "root": "question-bank/assets/calct3bc",
+      "files": 13964,
+      "bytes": 32551081,
+      "extensions": {
+        ".jpg": 13964
+      },
+      "source_questions": 3309,
+      "distinct_declared_image_references": 13959,
+      "tree_sha256": "def68ed6897d4d9167f7dba694b815f027478d23d678fed5c0533eebb2eb5ac4"
+    },
+    "ADAMS10": {
+      "root": "question-bank/assets/adams10",
+      "files": 8410,
+      "bytes": 12581168,
+      "extensions": {
+        ".jpg": 8410
+      },
+      "source_questions": 2170,
+      "distinct_declared_image_references": 7750,
+      "tree_sha256": "4f878a9f1801423a638ea6063e0e95790e45e1b0925cb1ebe87a7ffbe110a4ad"
+    },
+    "PEARSON_CH0": {
+      "root": "question-bank/assets/pearson_ch0",
+      "files": 403,
+      "bytes": 6965653,
+      "extensions": {
+        ".png": 403
+      },
+      "source_questions": 403,
+      "distinct_declared_image_references": 403,
+      "tree_sha256": "b4680f87d67997866fd53da53e0a434979603553ca8a4b869de8bc7aef3bf581"
+    }
+  },
+  "main_binding": {
+    "status": "PASS",
+    "input_tree_sha256": "44c1b108e9d7f719b9dd1991814109f7586dfc962668284d85779b36ea3bc679",
+    "checked_payloads": 70,
+    "checked_assets": 22777,
+    "missing": 0,
+    "mismatched_git_blobs": 0,
+    "method": "Compared locally computed Git blob SHA-1 values against root-fetched exact-main metadata; all 70 payload and 22,777 asset SHA-256 values were also independently re-read after the initial audit.",
+    "supplemental_tree_sha256": "5818140908c6f323f72dbe3b391177c2772f7b805b2c0a442cc6d077e3f038db",
+    "additional_runtime_sources_matched": 2,
+    "private_foundation_migrations_matched": 4,
+    "working_candidate_difference": "Pages workflow C01 candidate intentionally differs; original main and candidate hashes are both recorded."
+  },
+  "rights_metadata": {
+    "source_license_counts": {
+      "NOT_PRESENT": 5479,
+      "commercial_publisher_resource_private_use_only": 403
+    },
+    "interpretation": "Pearson's explicit value limits use to a private commercial publisher resource. Missing source_license on the other rows is no proof of public publication authorization. This is not a legal-rights certification."
+  },
+  "active_runtime_findings": [
+    {
+      "path": "question-bank/js/bank.js",
+      "lines": [
+        10,
+        12,
+        15
+      ],
+      "finding": "loadCatalog reads the public catalog; loadBundle/loadFile fetch its static bundle paths. No authorization check protects the JSON file bytes."
+    },
+    {
+      "path": "question-bank/js/mapped-private-bank-practice.js",
+      "lines": [
+        90,
+        95,
+        98
+      ],
+      "finding": "The focused-practice adapter merges static bundled records with authenticated API rows, and falls back to the static loader on API failure. Merely deleting JSON files would also break this Promise.all path until static bundles are explicitly disabled."
+    },
+    {
+      "path": "question-bank/js/mapped-practice.js",
+      "lines": [
+        354,
+        361,
+        772
+      ],
+      "finding": "Loads authenticated private inventory but retains a calculus catalog fallback and then calls ECHSBank.loadBundle."
+    },
+    {
+      "path": "question-bank/js/practice-single-bank.js",
+      "lines": [
+        8,
+        30
+      ],
+      "finding": "The student calculus selector explicitly includes ADAMS10 and CALCT3BC bundled banks; it does not make their raw public files private."
+    },
+    {
+      "path": "question-bank/js/review.js",
+      "lines": [
+        19
+      ],
+      "finding": "The review shell actively fetches its 57-row queue, including full nested questions and editorial prompt_text."
+    },
+    {
+      "path": "question-bank/js/private-bank-assets.js",
+      "lines": [
+        6,
+        25,
+        30
+      ],
+      "finding": "Authenticated media uses private-bank URI data attributes and scoped API media-url endpoints. It does not gate ordinary assets/calct3bc, adams10 or pearson_ch0 URLs."
+    },
+    {
+      "path": "question-bank/official/admin/js/private-bank-center.js",
+      "lines": [
+        46,
+        92
+      ],
+      "finding": "Private Bank Center reads authenticated private-bank-api /packages. It does not use the public empty registry to establish that these static banks have a private replacement."
+    }
+  ],
+  "code_source_hashes": [
+    {
+      "path": "question-bank/js/bank.js",
+      "bytes": 12972,
+      "sha256": "77de0a481ab3c3148e33c7a2a8156ed4649f948a6c0136ab365162b205e5ea58",
+      "git_blob_sha1": "54e4c109f758563f6e0a8073ea4205550cda0db6",
+      "main_binding": "MATCH"
+    },
+    {
+      "path": "question-bank/js/mapped-private-bank-practice.js",
+      "bytes": 10281,
+      "sha256": "5f05f4facbbfdc39744feafcc760388fef700ff7991fa286be3d26adec446b5f",
+      "git_blob_sha1": "344c5cf342fd3e8eefb4b496c83dee05443c6ce0",
+      "main_binding": "MATCH"
+    },
+    {
+      "path": "question-bank/js/mapped-practice.js",
+      "bytes": 59553,
+      "sha256": "84ea362ce15bd96f215919729605da513383c4b18e6771ca9a3e40bf37e7b8b6",
+      "git_blob_sha1": "42f5afa2b0da88b19b2b2b8094c215d94241c7b1",
+      "main_binding": "MATCH"
+    },
+    {
+      "path": "question-bank/js/practice-single-bank.js",
+      "bytes": 10775,
+      "sha256": "4e1dba86d6cfef5e99e45f4863a7a05b43d1595d001ae00e87ecfa7b947b2b91",
+      "git_blob_sha1": "960b69b8185644646008865611e550c7d980bd24",
+      "main_binding": "MATCH"
+    },
+    {
+      "path": "question-bank/js/private-bank-assets.js",
+      "bytes": 2705,
+      "sha256": "0ae9165b4283a307460ae943c49a56e0149c7f1ef4eb7307a8af966c58451abb",
+      "git_blob_sha1": "2377ed51e000888ee142854e95464a5494808086",
+      "main_binding": "MATCH"
+    },
+    {
+      "path": "question-bank/js/blackboard-assets.js",
+      "bytes": 3461,
+      "sha256": "383fafd41928c2f6afa04728be53d64d952fb52379600f13f2d3707155b151bf",
+      "git_blob_sha1": "95fa8de558c180c68568b31f12c04006d7d8ed46",
+      "main_binding": "MATCH"
+    },
+    {
+      "path": "question-bank/js/review.js",
+      "bytes": 7218,
+      "sha256": "cf8bf43abecaec18dfd2ea51586b1245a14e585abb8424308d3b5931bfe0743c",
+      "git_blob_sha1": "ca32a5aaa9ac2903bb579d43a295bf96d2ce4e4b",
+      "main_binding": "MATCH"
+    },
+    {
+      "path": "question-bank/practice.html",
+      "bytes": 14904,
+      "sha256": "dc5f4b6bcca884c6361dd12924b414476e88de8e40500d37fecadb8df4026892",
+      "git_blob_sha1": "d3f6ff84e88ee01b640762d80ce55ee2a2fd7f3a",
+      "main_binding": "MATCH"
+    },
+    {
+      "path": "question-bank/review.html",
+      "bytes": 2263,
+      "sha256": "88adf49d27d0064a6ab415c044b3a6a33696c042f8ae61e8e097402796193c5c",
+      "git_blob_sha1": "810e0494b478782f960ac173bdddb8fc2373816e",
+      "main_binding": "MATCH"
+    },
+    {
+      "path": "question-bank/exam.html",
+      "bytes": 5071,
+      "sha256": "493d14bfbc281e7eac04cb9f45f305ebd2ee1e6f7b33a38299deb573e9e2bc8a",
+      "git_blob_sha1": "824bebcef67bbb3aaf8bc7bf084222835c345cf6",
+      "main_binding": "MATCH"
+    },
+    {
+      "path": "question-bank/teacher.html",
+      "bytes": 32925,
+      "sha256": "4c79d3479545eff68a764296140c7d982cb2c05db8f7251ab662711b1fdcac34",
+      "git_blob_sha1": "7d3bbe4a6146a4a7fad8ef0418ffbe3021d1a8bf",
+      "main_binding": "MATCH"
+    },
+    {
+      "path": "question-bank/official/admin/js/private-bank-center.js",
+      "bytes": 8223,
+      "sha256": "068fdae96aaf55f6145f61b9ec3f0ef431db5b56aa040025a36f573b71efc970",
+      "git_blob_sha1": "9ff2a8ef8a5c16e46b206ae5b8c174af0e2d386b",
+      "main_binding": "MATCH"
+    },
+    {
+      "path": "question-bank/private-sources/README.md",
+      "bytes": 1619,
+      "sha256": "d5d92aa8833dc7b381a6590bad58ed589da6e67ed2246a7e787cb0f82d80f975",
+      "git_blob_sha1": "4729cb918824de4905124404188ae70b6a7393da",
+      "main_binding": "MATCH"
+    },
+    {
+      "path": "question-bank/private-sources/data/private-bank-registry.json",
+      "bytes": 874,
+      "sha256": "58622a1289d701d527cfa06f31ec9a409136bdf713bef5d6b8b46616273a5332",
+      "git_blob_sha1": "5763eae766631f1ce9b93995bbabcae4abcbab74",
+      "main_binding": "MATCH"
+    },
+    {
+      "path": "supabase/functions/practice-bank-api/index.ts",
+      "bytes": 15921,
+      "sha256": "a38171f19ef67c0465939a852bc9af8ca3e059f9a07b9f7e945a864845555ea8",
+      "git_blob_sha1": "a5f43b030bfc280b9f0922eab9101cfedd8ee03a",
+      "main_binding": "MATCH"
+    },
+    {
+      "path": "supabase/functions/private-bank-api/index.ts",
+      "bytes": 45442,
+      "sha256": "427781471a4c1e32f36cc02f4fb9b85e070928705b56dbdde1a2e4db15290d85",
+      "git_blob_sha1": "0f9b301090ea3f58314fd835d7b57b3806d4aefe",
+      "main_binding": "MATCH"
+    },
+    {
+      "path": ".github/workflows/deploy-pages.yml",
+      "bytes": 17132,
+      "sha256": "10925d05fe490d42bb6322afbcf1e7aa5ee852a6ae52c9e8ce512f77755fff0a",
+      "git_blob_sha1": "d5d6d5f463f94365085ba6fd8e6cb049ee4f453f",
+      "main_binding": "C01_CANDIDATE_DIFFERS_FROM_MAIN",
+      "main_baseline": {
+        "bytes": 16078,
+        "sha256": "f97351cf9f39741d8f5e1d9d23aab1a9d484a7756647ca97c0924bf835e510db",
+        "git_blob_sha1": "1e90b235c54b3ba3b96bac511fa96ad62a8bc7ad",
+        "source": "Root captured local-extra-main-verification.json and exact-main Git metadata"
+      },
+      "note": "This row hashes the audited C01 working candidate. It is not the unchanged main workflow; baseline hashes are recorded separately."
+    },
+    {
+      "path": "question-bank/data/catalog.json",
+      "bytes": 39240,
+      "sha256": "3bd821620ddb9eb3c0a8c2813e1beb585d27dbfb89ad1435fb814a1f707c1c41",
+      "git_blob_sha1": "0e22fb982c1f6a47b79e5d711c26d30f5b0191ce",
+      "main_binding": "MATCH"
+    },
+    {
+      "path": "question-bank/data/blackboard-addon.json",
+      "bytes": 149,
+      "sha256": "6b545a0147dc35c906ea470ec5809e86f424b81a502b9377a573fa014d49212a",
+      "git_blob_sha1": "1ddc6abd9c842cb1ab55889455b4252290d79df2",
+      "main_binding": "MATCH"
+    },
+    {
+      "path": "question-bank/data/course-routing.json",
+      "bytes": 1518,
+      "sha256": "c8adbd0fb2af09be9c145ef09b8ab6adc3427f6001b9aa5344e46f97748caec0",
+      "git_blob_sha1": "92ad74a4b953f4787e02f54bf726deecfb51d66e",
+      "main_binding": "MATCH"
+    }
+  ],
+  "private_registry": {
+    "source": "question-bank/private-sources/data/private-bank-registry.json",
+    "public_safe": true,
+    "source_content_in_registry": false,
+    "totals": {
+      "banks": 0,
+      "questions": 0,
+      "pools": 0,
+      "media_files": 0
+    },
+    "bank_rows": 0,
+    "public_web_publication_allowed": false,
+    "authenticated_school_use_only": true,
+    "live_database_contents_verified": false
+  },
+  "required_private_pipeline": [
+    {
+      "stage": "Seal and map",
+      "requirement": "Retain every canonical ID, full/content hash, bundle membership and original asset; verify private rights and exact class/course-version mappings without inventing trust or collapsing BC/enrichment into AB."
+    },
+    {
+      "stage": "Immutable private staging",
+      "requirement": "Do not invoke current uploaders for dry runs: they upsert, upload and delete stale records. Use immutable package versions, organization/version media namespaces and transactional activation only after complete payload/media integrity checks."
+    },
+    {
+      "stage": "Authority",
+      "requirement": "Practice-bank-api delivery must revalidate active same-organization class, account/session, membership, active version pin and class-specific release. Existing course-only checks and package status labels are insufficient for these claims."
+    },
+    {
+      "stage": "Preserve authenticated delivery",
+      "requirement": "Verify real private inventory and all 5,882 preserved records/media, including current student-route parity, before removing static availability. Keep the existing practice URLs and successful private API behavior."
+    },
+    {
+      "stage": "Test before cutover",
+      "requirement": "Actual PostgreSQL + handler/transport/SQL negatives for grants, tenants, session expiry/revocation, inactive class/membership/pin, unpublished/partial snapshots, CAS/rollback/concurrency and missing/corrupt media; browser preservation/lifecycle/cache tests."
+    },
+    {
+      "stage": "Public cutover",
+      "requirement": "Only after accepted coverage, remove legacy payload/media roots from Pages, keep safe metadata/URL shells, remove public static fallback and purge/deny stale service-worker paths. Preserve official 1,104 independently. Rollback uses a verified private snapshot, never public raw data."
+    }
+  ],
+  "confirmed_source_only_risks": [
+    {
+      "path": "tools/upload_private_bank_package_fast.py",
+      "lines": [
+        173,
+        396,
+        400,
+        435
+      ],
+      "finding": "Mutating uploader uses overwrite, publishes question rows before media completion and deletes stale IDs; bank_slug/chapter media keys lack organization/version namespace."
+    },
+    {
+      "path": "supabase/functions/practice-bank-api/index.ts",
+      "lines": [
+        87,
+        212,
+        246,
+        277,
+        306
+      ],
+      "finding": "Current delivery is course scoped, without explicit active-class/version/release transaction or ready-snapshot join; media-url issues 300-second signed URLs. Do not infer stronger revocation behavior."
+    }
+  ],
+  "limits": [
+    "Source-code findings, not production exploit proof.",
+    "No production calls, credentials, imports, package creation or source mutation.",
+    "C01 contains the official bank only; this legacy gap remains open until C08 passes.",
+    "No independent mathematics, rights or current-course mapping certification.",
+    "Public Git source/history and already downloaded copies remain separate residual exposure.",
+    "Per-question and 22,777-asset manifests remain local and are excluded from this publication copy."
+  ],
+  "existing_private_foundation": {
+    "source_scope": "Canonical SQL bytes match supplemental exact-main Git blob metadata.",
+    "migrations": [
+      {
+        "path": "supabase/migrations/202607272101_private_bank_foundation.sql",
+        "lines": [
+          6,
+          32,
+          61,
+          74,
+          158,
+          163,
+          167,
+          175
+        ],
+        "contract": "Four organization-scoped package/question/media/import tables; RLS enabled, direct public/anon/authenticated access revoked, service_role table access; private-question-banks bucket.",
+        "bytes": 9555,
+        "sha256": "2d6614d54e5867bb8a1765b17343f4b564e760e132f3b97e05db1d8a0aee2dc8",
+        "git_blob_sha1": "c61587f37bb8783acadec2cf571188c2c3a49e87",
+        "main_binding": "MATCH"
+      },
+      {
+        "path": "supabase/migrations/202607282330_verified_private_bank_import.sql",
+        "lines": [
+          22
+        ],
+        "contract": "Additional independent-audit package trust state; does not establish that legacy items earned it.",
+        "bytes": 4203,
+        "sha256": "877681c751b5f55bc415f8534b4360c0fc34cf8a8086f60e8e63b4cbad66e831",
+        "git_blob_sha1": "5fb292ae685a543ed3cdd420e90dac3230212c9a",
+        "main_binding": "MATCH"
+      },
+      {
+        "path": "supabase/migrations/202607300020_sync_private_bank_mapping_indexes.sql",
+        "lines": [
+          5,
+          36,
+          74
+        ],
+        "contract": "Derived course/lesson indexes synchronize from stored course mappings.",
+        "bytes": 3253,
+        "sha256": "d1107fb8c6464cef5fcb9b445d46fdc5c1f1672c644a2749d8e4962976b32e71",
+        "git_blob_sha1": "ddd36346ec6b227ee0315c65c9cbdfbda6586e88",
+        "main_binding": "MATCH"
+      },
+      {
+        "path": "supabase/migrations/202607301500_private_bank_practice_inventory.sql",
+        "lines": [
+          4,
+          39,
+          60
+        ],
+        "contract": "Organization/course inventory RPC over private questions; service-only execute boundary.",
+        "bytes": 2337,
+        "sha256": "1a74d46d17cfc028f03f8fa79973e2c5abeb80283497bfb5d76c55ff3b098687",
+        "git_blob_sha1": "dd57c2f40bbdff548bd329e2a90fb9567670a92c",
+        "main_binding": "MATCH"
+      }
+    ],
+    "question_identity": [
+      "organization_id",
+      "question_id"
+    ],
+    "media_identity": [
+      "organization_id",
+      "object_path"
+    ],
+    "tenant_join_gap": "Question/media package_id foreign keys reference package UUID alone; future package-version delivery must prove matching organization and immutable ready version.",
+    "production_inventory_verified": false
+  }
+}
