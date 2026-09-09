@@ -134,6 +134,23 @@ function analyzeBlock(block, base = '') {
   if (block.type === 'math') addMath(block.content, contentPath, block.content.display, block.version);
   else if (block.type === 'rich-text') rich(block.content, contentPath, block.version);
   else if (block.type === 'callout') rich(block.content.body, `${contentPath}/body`, block.version);
+  else if (block.type === 'image') {
+    for (const field of ['alt', 'caption', 'description']) {
+      if (block.content[field] !== '' && !meaningful(block.content[field])) errors.push(error(`${contentPath}/${field}`, 'empty-media-text', 'Media text must be empty or meaningful.'));
+    }
+  } else if (block.type === 'table') {
+    const columns = new Set(), rows = new Set();
+    block.content.columns.forEach((column, index) => {
+      if (columns.has(column.id)) errors.push(error(`${contentPath}/columns/${index}/id`, 'duplicate-column-id', 'Column IDs must be unique within the table.'));
+      columns.add(column.id);
+    });
+    block.content.rows.forEach((row, index) => {
+      if (rows.has(row.id)) errors.push(error(`${contentPath}/rows/${index}/id`, 'duplicate-row-id', 'Row IDs must be unique within the table.'));
+      rows.add(row.id);
+      if (row.cells.length !== block.content.columns.length) errors.push(error(`${contentPath}/rows/${index}/cells`, 'table-shape', 'Every row needs exactly one cell per column.'));
+      row.cells.forEach((cell, cellIndex) => inline(cell, `${contentPath}/rows/${index}/cells/${cellIndex}`));
+    });
+  }
   for (const entry of entries) {
     if (forbiddenTexCommands.test(entry.tex) || htmlInTex.test(entry.tex)) {
       errors.push(error(entry.path, 'unsafe-math', 'Math cannot contain HTML, links, external resources, or macro definitions.'));

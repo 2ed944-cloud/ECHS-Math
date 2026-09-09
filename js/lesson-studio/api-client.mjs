@@ -1,4 +1,5 @@
 import { assertLessonDocument } from '../lesson-runtime/schema.mjs';
+import {supportsLessonMedia,assertLessonAssetMetadata,readLessonAssetResponse,LESSON_ASSET_MIMES,LESSON_IMAGE_LIMIT,LESSON_RESOURCE_LIMIT} from '../lesson-runtime/asset-contract.mjs';
 
 export const STUDIO_API_CONTRACT = 'echs.lesson.store.v1';
 export const STUDIO_AUTHORING_CONTRACT = 'echs.lesson.authoring.v1';
@@ -66,11 +67,12 @@ function safeJSON(value,depth=0){
 }
 
 /** In-memory, account-owned client. SQL remains the authority for every scope. */
-export function createStudioClient({window:win=globalThis.window,institution=win?.ECHSInstitution,fetch:fetchImpl=win?.fetch?.bind(win),timeoutMs=10000,onInvalidSession=()=>{},mathEngine}={}) {
+export function createStudioClient({window:win=globalThis.window,institution=win?.ECHSInstitution,fetch:fetchImpl=win?.fetch?.bind(win),timeoutMs=10000,assetTimeoutMs=60000,onInvalidSession=()=>{},mathEngine}={}) {
   if(!win||typeof fetchImpl!=='function'||!institution||!['token','account','config','me'].every(key=>typeof institution[key]==='function'))throw new TypeError('Existing school session and browser dependencies are required.');
   if(!mathEngine||mathEngine.version!=='0.16.27'||typeof mathEngine.renderToString!=='function')throw new TypeError('Pinned KaTeX 0.16.27 is required.');
-  if(!integer(timeoutMs,1,30000)||typeof onInvalidSession!=='function')throw new TypeError('A bounded timeout and session callback are required.');
+  if(!integer(timeoutMs,1,30000)||!integer(assetTimeoutMs,1,60000)||typeof onInvalidSession!=='function')throw new TypeError('A bounded timeout and session callback are required.');
   let owner=null,verified=null,configuration=null,initialized=false,closed=false,invalid=null,initializing=null,guardTimer=null;
+  let uploadIds=new WeakMap();
   const controllers=new Set(),bindings=new Map(),listeners=[];
 
   function snapshot(){
@@ -87,7 +89,7 @@ export function createStudioClient({window:win=globalThis.window,institution=win
   const same = (a,b) => a&&b&&['token','id','organization_id','role','status','route'].every(key=>a[key]===b[key]);
   function invalidate(error,clearOwn=false){
     if(invalid||closed)return;
-    invalid=error;initialized=false;verified=null;bindings.clear();clearInterval(guardTimer);guardTimer=null;
+    invalid=error;initialized=false;verified=null;bindings.clear();uploadIds=new WeakMap();clearInterval(guardTimer);guardTimer=null;
     if(clearOwn&&owner){
       try {if(same(owner,snapshot()))institution.clearSession?.();}catch{}
     }
@@ -127,7 +129,7 @@ export function createStudioClient({window:win=globalThis.window,institution=win
     return next;
   }
   function check(signal){if(signal?.aborted)throw signal.reason instanceof StudioClientError?signal.reason:failure('aborted');assertOwner();}
-  async function bounded(work,signal){
+  async function bounded(work,signal,limit=timeoutMs){
     const controller=new AbortController();controllers.add(controller);
     let rejectAbort;
     const aborted=new Promise((_,reject)=>{rejectAbort=reject;});
@@ -136,7 +138,7 @@ export function createStudioClient({window:win=globalThis.window,institution=win
     const external=()=>controller.abort(failure('aborted'));
     signal?.addEventListener('abort',external,{once:true});
     if(signal?.aborted)external();
-    const timer=setTimeout(()=>controller.abort(failure('timeout')),timeoutMs);
+    const timer=setTimeout(()=>controller.abort(failure('timeout')),limit);
     try {return await Promise.race([Promise.resolve().then(()=>{check(controller.signal);return work(controller.signal);}),aborted]);}
     finally{clearTimeout(timer);signal?.removeEventListener('abort',external);controller.signal.removeEventListener('abort',stop);controllers.delete(controller);}
   }
@@ -195,6 +197,7 @@ export function createStudioClient({window:win=globalThis.window,institution=win
     if(action==='context'){
       accountScope(data.actor);
       data.authoring_capabilities=supportsStudioContentV2(data.authoring_capabilities)?data.authoring_capabilities:null;
+      data.media_capabilities=supportsLessonMedia(data.media_capabilities)?data.media_capabilities:null;
       if(args.class_id){
         requireValue(object(data.class)&&data.class.id===args.class_id&&data.class.organization_id===owner.organization_id&&data.class.status==='active'&&text(data.class.name,240));
         assignment(data.current_assignment,args.class_id);courses(data.course_versions);
@@ -286,8 +289,60 @@ export function createStudioClient({window:win=globalThis.window,institution=win
   }
   const pathFor=id=>'/lessons/'+identifier(id);
   const post=(action,suffix,id,body,options)=>request(action,pathFor(id)+suffix,{lesson_id:id,...body},'POST',options);
-  function dispose(){if(closed)return;closed=true;initialized=false;verified=null;owner=null;configuration=null;bindings.clear();clearInterval(guardTimer);guardTimer=null;for(const controller of controllers)controller.abort(failure('disposed'));for(const remove of listeners.splice(0))remove();}
+  async function assetFetch(path,signal,{body,headers={}}={}){
+    await checkConfiguration(signal);check(signal);
+    const url=configuration.api+'/lesson-api'+path;
+    let response;
+    try{response=await fetchImpl(url,{method:body===undefined?'GET':'POST',mode:'cors',credentials:'omit',redirect:'error',cache:'no-store',referrerPolicy:'no-referrer',signal,
+      headers:{accept:'application/json',authorization:'Bearer '+owner.token,...headers},...(body===undefined?{}:{body})});}
+    catch{check(signal);throw failure('network_error');}
+    await checkConfiguration(signal);check(signal);requireValue(!response.redirected&&response.url===url);
+    if(response.status===401){const error=failure('sign_in_required',401);invalidate(error,true);throw error;}
+    if(response.status===403){const error=failure('authorization_changed',403);invalidate(error);throw error;}
+    if(!response.ok){await readResponse(response,signal);check(signal);throw failure(({404:'lesson_unavailable',409:'revision_conflict',400:'invalid_request',413:'invalid_request',415:'invalid_request',422:'invalid_request'})[response.status]||'network_error',response.status);}
+    return {response,url};
+  }
+  function knownAssetLesson(id){assertCurrent();identifier(id);requireValue(bindings.has(id),'invalid_request');}
+  async function assetEnvelope(response,lessonId,signal,{assetId,list=false,upload=false}={}){
+    requireValue(upload?[200,201].includes(response.status):response.status===200);
+    const data=await readResponse(response,signal);await checkConfiguration(signal);check(signal);safeJSON(data);
+    const keys=['ok','contract','lesson_id',list?'assets':'asset'];
+    requireValue(object(data)&&Object.keys(data).length===4&&keys.every(key=>own(data,key))&&data.ok===true&&data.contract===STUDIO_API_CONTRACT&&data.lesson_id===lessonId);
+    try{
+      if(!list)return assertLessonAssetMetadata(data.asset,{assetId});
+      requireValue(Array.isArray(data.assets)&&data.assets.length<=128);const seen=new Set();
+      return data.assets.map(value=>{const meta=assertLessonAssetMetadata(value);requireValue(!seen.has(meta.asset_id));seen.add(meta.asset_id);return meta;});
+    }catch{throw failure('invalid_response');}
+  }
+  async function loadAsset(lessonId,assetId,options={}){
+    knownAssetLesson(lessonId);identifier(assetId);
+    return bounded(async signal=>{
+      const path=pathFor(lessonId)+'/assets/'+assetId;
+      const head=await assetFetch(path,signal);
+      const metadata=await assetEnvelope(head.response,lessonId,signal,{assetId});
+      try{assertLessonAssetMetadata(metadata,{assetId,kind:options.kind});}catch{throw failure('invalid_response');}
+      const bytes=await assetFetch(path+'/bytes',signal,{headers:{accept:metadata.mime_type}});
+      const result=await readLessonAssetResponse(bytes.response,{metadata,expectedUrl:bytes.url,signal,assertCurrent:()=>check(signal)});await checkConfiguration(signal);check(signal);return result;
+    },options.signal,assetTimeoutMs);
+  }
+  async function uploadAsset(lessonId,file,options={}){
+    knownAssetLesson(lessonId);
+    requireValue(file instanceof (win.Blob||globalThis.Blob)&&typeof file.name==='string'&&text(file.name,160)&&!/[\\/<>\u0000-\u001f\u007f]/.test(file.name)&&LESSON_ASSET_MIMES.includes(file.type)&&integer(file.size,1,file.type.startsWith('image/')?LESSON_IMAGE_LIMIT:LESSON_RESOURCE_LIMIT),'invalid_request');
+    let ids=uploadIds.get(file);if(!ids){ids=new Map();uploadIds.set(file,ids);}
+    const assetId=options.assetId===undefined?(ids.get(lessonId)||globalThis.crypto.randomUUID()):identifier(options.assetId);ids.set(lessonId,assetId);
+    return bounded(async signal=>{
+      const body=await file.arrayBuffer();check(signal);requireValue(body.byteLength===file.size,'invalid_request');
+      const hash=await globalThis.crypto.subtle.digest('SHA-256',body);check(signal);
+      const sha256=[...new Uint8Array(hash)].map(value=>value.toString(16).padStart(2,'0')).join('');
+      const sent=await assetFetch(pathFor(lessonId)+'/assets',signal,{body,headers:{'content-type':file.type,'x-echs-asset-id':assetId,'x-echs-asset-name':encodeURIComponent(file.name)}});
+      const metadata=await assetEnvelope(sent.response,lessonId,signal,{assetId,upload:true});
+      requireValue(metadata.sha256===sha256&&metadata.byte_length===file.size&&metadata.mime_type===file.type);check(signal);return metadata;
+    },options.signal,assetTimeoutMs);
+  }
+  function dispose(){if(closed)return;closed=true;initialized=false;verified=null;owner=null;configuration=null;bindings.clear();uploadIds=new WeakMap();clearInterval(guardTimer);guardTimer=null;for(const controller of controllers)controller.abort(failure('disposed'));for(const remove of listeners.splice(0))remove();}
   const client={initialize,assertCurrent,actor:()=>assertCurrent(),dispose,
+    uploadAsset,loadAsset,
+    listAssets:(id,options={})=>{knownAssetLesson(id);return bounded(async signal=>{const result=await assetFetch(pathFor(id)+'/assets',signal);return assetEnvelope(result.response,id,signal,{list:true});},options.signal);},
     context:(classId,options={})=>{if(classId!==undefined)identifier(classId);return request('context','/context'+(classId?'?class_id='+classId:''),classId?{class_id:classId}:{},'GET',options);},
     list:(classId,options={})=>request('list','/lessons?class_id='+identifier(classId),{class_id:classId},'GET',options),
     get:(id,options={})=>request('get',pathFor(id),{lesson_id:id},'GET',options),

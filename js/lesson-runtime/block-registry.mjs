@@ -6,7 +6,11 @@ const definitions = [
   { type: 'legacy-embedded', version: 1, schema: '#/definitions/legacyEmbeddedBlock', capabilities: { text: true, math: false, referenceOnly: true, interactive: false } },
   { type: 'rich-text', version: 2, schema: '#/definitions/richTextBlockV2', capabilities: { text: true, math: true, referenceOnly: false, interactive: false } },
   { type: 'math', version: 2, schema: '#/definitions/mathBlockV2', capabilities: { text: false, math: true, referenceOnly: false, interactive: false } },
-  { type: 'callout', version: 2, schema: '#/definitions/calloutBlockV2', capabilities: { text: true, math: true, referenceOnly: false, interactive: false } }
+  { type: 'callout', version: 2, schema: '#/definitions/calloutBlockV2', capabilities: { text: true, math: true, referenceOnly: false, interactive: false } },
+  { type: 'image', version: 1, schema: '#/definitions/imageBlock', capabilities: { text: true, math: false, referenceOnly: false, interactive: false } },
+  { type: 'video', version: 1, schema: '#/definitions/videoBlock', capabilities: { text: true, math: false, referenceOnly: false, interactive: false } },
+  { type: 'table', version: 1, schema: '#/definitions/tableBlock', capabilities: { text: true, math: true, referenceOnly: false, interactive: false } },
+  { type: 'resource', version: 1, schema: '#/definitions/resourceBlock', capabilities: { text: true, math: false, referenceOnly: false, interactive: false } }
 ];
 
 for (const definition of definitions) {

@@ -837,6 +837,45 @@
         }
       }
     },
+    "optionalMediaText": {"type":"string","maxLength":4000,"pattern":"^[^<>\\u0000-\\u0008\\u000b\\u000c\\u000e-\\u001f\\u007f]*$"},
+    "imageBlock": {
+      "type":"object","additionalProperties":false,"required":["id","type","version","content"],
+      "properties": {
+        "id":{"$ref":"#/definitions/stableId"},"type":{"const":"image"},"version":{"const":1},
+        "content": {
+          "type":"object","additionalProperties":false,"required":["asset_id","alt","decorative","caption","description"],
+          "properties":{"asset_id":{"$ref":"#/definitions/uuid"},"alt":{"$ref":"#/definitions/optionalMediaText"},"decorative":{"type":"boolean"},"caption":{"$ref":"#/definitions/optionalMediaText"},"description":{"$ref":"#/definitions/optionalMediaText"}},
+          "allOf":[{"if":{"properties":{"decorative":{"const":true}},"required":["decorative"]},"then":{"properties":{"alt":{"const":""}}},"else":{"properties":{"alt":{"$ref":"#/definitions/plainText"}}}}]
+        }
+      }
+    },
+    "videoBlock": {
+      "type":"object","additionalProperties":false,"required":["id","type","version","content"],
+      "properties": {
+        "id":{"$ref":"#/definitions/stableId"},"type":{"const":"video"},"version":{"const":1},
+        "content": {
+          "type":"object","additionalProperties":false,"required":["provider","video_id","title","start_seconds","transcript"],
+          "properties":{"provider":{"const":"youtube"},"video_id":{"type":"string","pattern":"^[A-Za-z0-9_-]{11}$"},"title":{"$ref":"#/definitions/title"},"start_seconds":{"type":"integer","minimum":0,"maximum":86400},"transcript":{"$ref":"#/definitions/plainText"}}
+        }
+      }
+    },
+    "tableCell": {"type":"array","minItems":1,"maxItems":32,"items":{"oneOf":[{"$ref":"#/definitions/textNodeV2"},{"$ref":"#/definitions/linkNodeV2"},{"$ref":"#/definitions/inlineMathNodeV2"}]}},
+    "tableColumn": {"type":"object","additionalProperties":false,"required":["id","label"],"properties":{"id":{"$ref":"#/definitions/stableId"},"label":{"$ref":"#/definitions/title"}}},
+    "tableRow": {"type":"object","additionalProperties":false,"required":["id","cells"],"properties":{"id":{"$ref":"#/definitions/stableId"},"cells":{"type":"array","minItems":1,"maxItems":12,"items":{"$ref":"#/definitions/tableCell"}}}},
+    "tableBlock": {
+      "type":"object","additionalProperties":false,"required":["id","type","version","content"],
+      "properties": {
+        "id":{"$ref":"#/definitions/stableId"},"type":{"const":"table"},"version":{"const":1},
+        "content": {"type":"object","additionalProperties":false,"required":["caption","columns","rows","row_header"],"properties":{"caption":{"$ref":"#/definitions/title"},"columns":{"type":"array","minItems":1,"maxItems":12,"items":{"$ref":"#/definitions/tableColumn"}},"rows":{"type":"array","minItems":1,"maxItems":100,"items":{"$ref":"#/definitions/tableRow"}},"row_header":{"type":"boolean"}}}
+      }
+    },
+    "resourceBlock": {
+      "type":"object","additionalProperties":false,"required":["id","type","version","content"],
+      "properties": {
+        "id":{"$ref":"#/definitions/stableId"},"type":{"const":"resource"},"version":{"const":1},
+        "content":{"type":"object","additionalProperties":false,"required":["asset_id","title","description"],"properties":{"asset_id":{"$ref":"#/definitions/uuid"},"title":{"$ref":"#/definitions/title"},"description":{"$ref":"#/definitions/plainText"}}}
+      }
+    },
     "block": {
       "oneOf": [
         {"$ref": "#/definitions/richTextBlock"},
@@ -845,7 +884,11 @@
         {"$ref": "#/definitions/legacyEmbeddedBlock"},
         {"$ref": "#/definitions/richTextBlockV2"},
         {"$ref": "#/definitions/mathBlockV2"},
-        {"$ref": "#/definitions/calloutBlockV2"}
+        {"$ref": "#/definitions/calloutBlockV2"},
+        {"$ref": "#/definitions/imageBlock"},
+        {"$ref": "#/definitions/videoBlock"},
+        {"$ref": "#/definitions/tableBlock"},
+        {"$ref": "#/definitions/resourceBlock"}
       ]
     }
   }

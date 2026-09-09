@@ -4,6 +4,7 @@ on:
     paths:
       - 'lesson-studio.html'
       - 'css/lesson-studio.css'
+      - 'css/lesson-media.css'
       - 'js/lesson-studio/**'
       - 'js/lesson-runtime/**'
       - 'js/institution-client.js'
@@ -16,6 +17,7 @@ on:
     paths:
       - 'lesson-studio.html'
       - 'css/lesson-studio.css'
+      - 'css/lesson-media.css'
       - 'js/lesson-studio/**'
       - 'js/lesson-runtime/**'
       - 'js/institution-client.js'
@@ -50,8 +52,10 @@ jobs:
         run: |
           node tools/lesson-studio/test-math-editor.mjs
           node tools/lesson-studio/test-rich-text-editor.mjs
+          node tools/lesson-studio/test-media-editor.mjs
           node tools/lesson-studio/test-studio-browser.mjs
           node tools/lesson-studio/test-studio-content-v2.mjs
+          node tools/lesson-studio/test-studio-media.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -59,4 +63,5 @@ jobs:
           path: |
             artifacts/lesson-studio/
             artifacts/lesson-content-v2/
+            artifacts/lesson-media/
           retention-days: 14

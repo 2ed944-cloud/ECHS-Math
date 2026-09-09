@@ -1,7 +1,8 @@
 import { assertLessonBlock } from '../lesson-runtime/schema.mjs';
 import { assertDraftDocument, DraftModelError } from './draft-model.mjs';
 
-export const EDITABLE_BLOCK_TYPES = Object.freeze(['rich-text', 'math', 'callout']);
+const BASIC_BLOCK_TYPES = Object.freeze(['rich-text', 'math', 'callout']);
+export const EDITABLE_BLOCK_TYPES = Object.freeze([...BASIC_BLOCK_TYPES, 'image', 'video', 'table', 'resource']);
 const clone = value => JSON.parse(JSON.stringify(value));
 const fail = (code, message) => { throw new DraftModelError(code, message); };
 const rich = text => ({ nodes: [{ type: 'paragraph', children: [{ type: 'text', text }] }] });
@@ -29,7 +30,7 @@ function editable(block) {
 
 /** New content is an original teacher-editable placeholder, never a curriculum claim. */
 export function addBlock(document, slideId, { type = 'rich-text', afterId } = {}) {
-  if (!EDITABLE_BLOCK_TYPES.includes(type)) fail('unsupported_block', 'Choose text, mathematics or a callout.');
+  if (!BASIC_BLOCK_TYPES.includes(type)) fail('unsupported_block', 'Choose text, mathematics or a callout. Media requires validated content.');
   const next = copyDocument(document), slide = slideFor(next, slideId);
   if (slide.blocks.length >= 40) fail('block_limit', 'A slide can contain at most 40 blocks.');
   const index = afterId == null ? slide.blocks.length : indexFor(slide, afterId) + 1;
@@ -38,6 +39,26 @@ export function addBlock(document, slideId, { type = 'rich-text', afterId } = {}
     : { kind: 'note', title: 'Teaching note', body: rich('Add your teaching point.') };
   slide.blocks.splice(index, 0, { id: availableId(next), type, version: 2, content });
   return finish(next);
+}
+
+/** Insert complete canonical content; asset IDs must come from the upload service. */
+export function insertBlock(document, slideId, input, options = {}) {
+  const next = copyDocument(document, options), slide = slideFor(next, slideId);
+  if (!input || typeof input !== 'object' || Array.isArray(input) || ![Object.prototype, null].includes(Object.getPrototypeOf(input))) {
+    fail('invalid_patch', 'Supply a block type, version and content.');
+  }
+  const fields = Object.getOwnPropertyDescriptors(input);
+  if (!['type', 'version', 'content'].every(key => Object.hasOwn(fields, key))) fail('invalid_patch', 'A block type, version and content are required.');
+  for (const key of Reflect.ownKeys(fields)) {
+    if (!['type', 'version', 'content', 'afterId'].includes(key) || !Object.hasOwn(fields[key], 'value') || !fields[key].enumerable) fail('invalid_patch', 'Block insertion accepts plain canonical fields only.');
+  }
+  const block = { id: availableId(next), type: fields.type.value, version: fields.version.value, content: fields.content.value };
+  assertLessonBlock(block, options); editable(block);
+  if (slide.blocks.length >= 40) fail('block_limit', 'A slide can contain at most 40 blocks.');
+  const afterId = fields.afterId?.value;
+  if (afterId != null && typeof afterId !== 'string') fail('invalid_patch', 'The insertion position must be a block identifier.');
+  const index = afterId == null ? slide.blocks.length : indexFor(slide, afterId) + 1;
+  slide.blocks.splice(index, 0, clone(block)); return finish(next, options);
 }
 
 export function removeBlock(document, slideId, blockId) {
@@ -92,6 +113,7 @@ export function restoreRemovedBlock(document, slideId, { block, index } = {}) {
 /** Explicit conversion of a working copy; the original block and its version stay intact. */
 export function convertBlockToV2(block, options = {}) {
   assertLessonBlock(block, options); editable(block);
+  if (!BASIC_BLOCK_TYPES.includes(block.type)) fail('unsupported_conversion', 'Media blocks keep their own content version.');
   if (block.version === 2) return clone(block);
   if (block.version !== 1) fail('unsupported_version', 'This block version cannot be converted.');
   const convertRich = content => ({ nodes: content.paragraphs.map(paragraph => ({ type: 'paragraph', children: paragraph.children.map(node => node.type === 'math'

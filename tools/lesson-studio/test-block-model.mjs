@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import katex from '../lesson-runtime/node_modules/katex/dist/katex.mjs';
 import { createLessonDraft, addSlide } from '../../js/lesson-studio/draft-model.mjs';
-import { addBlock, removeBlock, moveBlock, updateBlock, restoreRemovedBlock, convertBlockToV2 } from '../../js/lesson-studio/block-model.mjs';
+import { addBlock, insertBlock, removeBlock, moveBlock, updateBlock, restoreRemovedBlock, convertBlockToV2 } from '../../js/lesson-studio/block-model.mjs';
 
 const initial = () => createLessonDraft({ lessonId: 'b27b9a11-b5a2-4c56-8393-21ad0e01c901', courseVersionId: 'c7109cf8-abb4-5541-b431-c2ef17f6dffb',
   catalog: { unit_id: 'legacy:ap-calculus:unit:1', topic_id: 'legacy:ap-calculus:topic:1.7' }, title: 'Original teacher discussion',
@@ -113,4 +113,47 @@ test('legacy references remain intact and cannot be converted into editable or p
   assert.throws(() => removeBlock(doc, 'slide-1', 'legacy'), { code: 'unsupported_edit' });
   assert.throws(() => updateBlock(doc, 'slide-1', 'legacy', { content: block.content }), { code: 'unsupported_edit' });
   assert.equal(JSON.stringify(doc), before);
+});
+
+const media = () => ({
+  image: { asset_id: 'd8229fe6-8180-43bc-8fb4-f87c344995dd', alt: 'A teacher-created graph showing the selected point.', decorative: false, caption: '', description: '' },
+  video: { provider: 'youtube', video_id: 'AbCdEf123_-', title: 'Original class explanation', start_seconds: 3, transcript: 'A teacher-provided transcript of the explanation.' },
+  table: { caption: 'Original recorded values', columns: [{ id: 'x', label: 'Input' }, { id: 'y', label: 'Output' }],
+    rows: [{ id: 'r1', cells: [[{ type: 'text', text: '2' }], [{ type: 'math', source: { mode: 'tex', tex: 'x^2' }, spoken: 'x squared' }]] }], row_header: true },
+  resource: { asset_id: '9c7a51f9-2648-443c-9b1d-852b1daf0e28', title: 'Original teacher resource', description: 'Read the teacher-created worked example.' }
+});
+
+test('complete media inserts canonically with unique IDs while source versions and metadata remain intact', () => {
+  const original = freeze(initial()); let next = original;
+  for (const [type, content] of Object.entries(media())) next = insertBlock(next, 'slide-1', { type, version: 1, content }, { mathEngine: katex });
+  assert.equal(next.slides[0].blocks.length, 5); assert.equal(new Set(next.slides[0].blocks.map(block => block.id)).size, 5);
+  assert.deepEqual(next.slides[0].blocks.map(block => block.version), [1, 1, 1, 1, 1]);
+  assert.deepEqual(next.slides[0].blocks[0], original.slides[0].blocks[0]); assert.deepEqual(next.publication, original.publication);
+  assert.equal(original.slides[0].blocks.length, 1);
+});
+
+test('media has no invented asset placeholders and cannot enter the basic v2 conversion path', () => {
+  for (const type of Object.keys(media())) assert.throws(() => addBlock(initial(), 'slide-1', { type }), { code: 'unsupported_block' });
+  for (const [type, content] of Object.entries(media())) assert.throws(() => convertBlockToV2({ id: 'media', type, version: 1, content }), { code: 'unsupported_conversion' });
+  assert.throws(() => insertBlock(initial(), 'slide-1', { type: 'image', version: 1, content: { ...media().image, asset_id: null } }));
+});
+
+test('media updates, movement and recoverable deletion preserve exact asset references and table cell structure', () => {
+  let doc = insertBlock(initial(), 'slide-1', { type: 'image', version: 1, content: media().image });
+  const block = copy(doc.slides[0].blocks[1]); doc = updateBlock(doc, 'slide-1', block.id, { content: { ...block.content, caption: 'Original caption.' } });
+  doc = moveBlock(doc, 'slide-1', block.id, 0); assert.equal(doc.slides[0].blocks[0].content.asset_id, block.content.asset_id);
+  doc = removeBlock(doc, 'slide-1', block.id); doc = insertBlock(doc, 'slide-1', { type: 'table', version: 1, content: media().table });
+  doc = restoreRemovedBlock(doc, 'slide-1', { block, index: 1 });
+  assert.equal(new Set(doc.slides[0].blocks.map(item => item.id)).size, 3);
+  assert.deepEqual(doc.slides[0].blocks.find(item => item.type === 'table').content, media().table);
+});
+
+test('generic insertion rejects descriptor hooks, unknown transport fields and malformed table dimensions before changing a lesson', () => {
+  const doc = freeze(initial()); let accessed = false;
+  assert.throws(() => insertBlock(doc, 'slide-1', { get type() { accessed = true; return 'image'; }, version: 1, content: media().image }));
+  assert.equal(accessed, false);
+  for (const input of [{ type: 'image', version: 1, content: media().image, signed_url: 'https://example.org/private' },
+    { type: 'image', version: 1, content: { ...media().image, bytes: 'private bytes' } },
+    { type: 'table', version: 1, content: { ...media().table, rows: [{ id: 'r1', cells: [[{ type: 'text', text: 'Only one cell' }]] }] } }]) assert.throws(() => insertBlock(doc, 'slide-1', input));
+  assert.equal(doc.slides[0].blocks.length, 1);
 });

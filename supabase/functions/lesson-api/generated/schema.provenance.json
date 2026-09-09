@@ -1,20 +1,20 @@
 {
   "format": "echs.server-lesson-validator.v1",
   "schema_version": "echs.lesson.v1",
-  "schema_sha256_json": "6b26a5063e2917687f8667d20f934a5d219010f1669f4b44d704c7f1a9e42b39",
+  "schema_sha256_json": "ee822ecb3f87e3767aa95c5f27a5b16747c24f3c1307aacd3310fd973e1d38e8",
   "source_hash_normalization": "UTF-8 source text with CRLF/CR normalized to LF",
   "sources": [
     {
       "path": "js/lesson-runtime/schema.mjs",
-      "sha256_lf": "7f42bebdabb4c161d1cfafbf18460928af53e33e955c8b528981a68fbf64b270"
+      "sha256_lf": "9bdd6f9450adcfc5cff5a3167d2ded44d0b31493a749dc2499693878b693f8a8"
     },
     {
       "path": "js/lesson-runtime/block-registry.mjs",
-      "sha256_lf": "7d8445484bd5d54a78c42cacee41e1377ae0e2b6fa49a7a436dea84951edde51"
+      "sha256_lf": "9101985b1a62c2384df5b8c51e7fb88659c70889d384c1133f2ed16db5fec222"
     },
     {
       "path": "js/lesson-runtime/generated/validate-lesson-document.mjs",
-      "sha256_lf": "5c92ddc92ae9375f997846a30b10b993b632ba401f7a3136589a7122aebc49d6"
+      "sha256_lf": "4bc2654500506460fd63822f08cb3580e681e6bcc47dcde70b8e7756f137d9c2"
     },
     {
       "path": "js/lesson-runtime/math-expression.mjs",
@@ -28,5 +28,5 @@
     "platform": "browser",
     "format": "esm"
   },
-  "output_sha256": "f229c799145cafd81b5e290dcf5b9151a463d2a68dd03c34aefcc7f9cda47842"
+  "output_sha256": "f3c0096b4fa4ed3eadfc7f726038acb715ec476f181c4cb7b4b9b9fdbc8d4071"
 }

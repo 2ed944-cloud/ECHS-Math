@@ -27,8 +27,9 @@ def main():
     from psycopg.conninfo import conninfo_to_dict
     from psycopg.types.json import Jsonb
 
-    assert sys.argv[1:] in ([], ['--content-v2']), 'Only the explicit content-v2 fixture mode is supported'
-    content_v2 = sys.argv[1:] == ['--content-v2']
+    assert sys.argv[1:] in ([], ['--content-v2'], ['--media']), 'Only explicit versioned fixture modes are supported'
+    media = sys.argv[1:] == ['--media']
+    content_v2 = sys.argv[1:] in (['--content-v2'], ['--media'])
 
     dsn = os.environ.get("ECHS_LESSON_TEST_DSN", "")
     assert dsn, "Explicit disposable database required"
@@ -77,6 +78,25 @@ def main():
                 assert isinstance(request_id,int) and not isinstance(request_id,bool) and request_id>0
                 name, args = request["name"], request["args"]
                 assert isinstance(args,dict)
+                if media and name in ('fixture_storage_metadata','fixture_storage_remove'):
+                    # Explicit isolated provider-metadata fixture, never a deployed
+                    # RPC or authorization stub. Only this process's new fixture
+                    # organization's lesson assets may be touched. Byte storage
+                    # lives in the Node HTTP adapter; SQL authorization remains real.
+                    assert set(args)=={'lesson_id','asset_id'}
+                    lesson_id, asset_id = uuid.UUID(args['lesson_id']),uuid.UUID(args['asset_id'])
+                    row=conn.execute('select organization_id,lesson_id,id,mime_type,byte_length,state from public.lesson_assets where organization_id=%s and lesson_id=%s and id=%s',(ids['organization'],lesson_id,asset_id)).fetchone()
+                    assert row is not None
+                    key='/'.join(str(value) for value in row[:3])
+                    with conn.transaction():
+                        if name=='fixture_storage_metadata':
+                            assert row[5]=='pending'
+                            conn.execute('insert into storage.objects(bucket_id,name,metadata) values(%s,%s,%s)',('lesson-assets',key,Jsonb({'mimetype':row[3],'size':row[4]})))
+                        else:
+                            assert row[5]=='cleanup'
+                            conn.execute('delete from storage.objects where bucket_id=%s and name=%s',('lesson-assets',key))
+                    emit({'id':request_id,'result':{'data':{'ok':True},'error':None}})
+                    continue
                 with conn.transaction():
                     conn.execute("set local role service_role")
                     if name == "api_session_lookup":
@@ -92,6 +112,13 @@ def main():
                     elif name == "lesson_content_capabilities" and content_v2:
                         assert not args
                         data = conn.execute("select public.lesson_content_capabilities()").fetchone()[0]
+                    elif name == 'lesson_media_capabilities' and media:
+                        assert not args
+                        data=conn.execute('select public.lesson_media_capabilities()').fetchone()[0]
+                    elif name == 'lesson_asset_store' and media:
+                        assert set(args)=={'p_token_hash','p_action','p_payload'}
+                        assert isinstance(args['p_token_hash'],str) and isinstance(args['p_action'],str) and isinstance(args['p_payload'],dict)
+                        data=conn.execute('select public.lesson_asset_store(%s,%s,%s)',(args['p_token_hash'],args['p_action'],Jsonb(args['p_payload']))).fetchone()[0]
                     else:
                         raise AssertionError("Function is not allowed")
                 emit({"id":request_id,"result":{"data":data,"error":None}})
