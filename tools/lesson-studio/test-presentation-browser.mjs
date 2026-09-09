@@ -67,6 +67,16 @@ const page=await context.newPage();page.setDefaultTimeout(10000);page.on('pageer
 const mount=async()=>{await page.evaluate(()=>fixture.mount());await page.locator('#presentation-slide').waitFor();};
 const reveal=async count=>{for(let i=0;i<count;i++)await page.locator('#presentation-reveal').click();};
 const jump=async index=>page.locator('#presentation-jump').selectOption(String(index));
+// The native fullscreen element can change before fullscreenchange and the
+// request promise settle. Wait for the actual element and the usable UI together.
+const fullscreenReady=async expected=>page.waitForFunction(full=>{
+ const surface=document.querySelector('.lesson-presentation-surface');
+ const button=document.querySelector('#presentation-fullscreen'),status=document.querySelector('#presentation-status');
+ return surface&&document.querySelector('#presentation-dialog')?.open&&
+   (full?document.fullscreenElement===surface:document.fullscreenElement===null)&&
+   button?.getAttribute('aria-pressed')===String(full)&&!button.disabled&&
+   status?.textContent.includes(full?'Full screen is on.':'Presentation remains open.');
+},expected);
 try{
  await page.goto(origin+'/fixture.html');await page.waitForFunction(()=>window.fixture?.ready);
  const initial=await page.evaluate(()=>fixture.mount());assert.deepEqual(initial.keys,['closed','dispose','hasPending']);
@@ -103,12 +113,12 @@ try{
  pass('invalid document fields fail before replacing the view and stale disposal/native close events cannot remove a replacement presentation');
 
  await page.locator('#presentation-fullscreen').click();
- await page.waitForFunction(()=>document.fullscreenElement===document.querySelector('.lesson-presentation-surface'));
+ await fullscreenReady(true);
  assert.equal(await page.evaluate(()=>document.fullscreenElement.tagName),'SECTION');assert.equal(await page.locator('#presentation-fullscreen').getAttribute('aria-pressed'),'true');
- await page.evaluate(()=>document.exitFullscreen());await page.waitForFunction(()=>document.fullscreenElement===null);
+ await page.evaluate(()=>document.exitFullscreen());await fullscreenReady(false);
  assert.equal(await page.locator('#presentation-dialog').evaluate(node=>node.open),true);assert.match(await page.locator('#presentation-status').textContent(),/Presentation remains open/);
- await page.locator('#presentation-fullscreen').click();await page.waitForFunction(()=>document.fullscreenElement===document.querySelector('.lesson-presentation-surface'));
- await page.keyboard.press('Escape');await page.waitForFunction(()=>document.fullscreenElement===null);
+ await page.locator('#presentation-fullscreen').click();await fullscreenReady(true);
+ await page.keyboard.press('Escape');await fullscreenReady(false);
  assert.equal(await page.locator('#presentation-dialog').evaluate(node=>node.open),true);
  pass('a separate user gesture enters actual browser fullscreen on the inner surface, and actual fullscreen exit keeps the opaque modal open');
 
