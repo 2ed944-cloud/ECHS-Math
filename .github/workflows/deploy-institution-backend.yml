@@ -108,7 +108,7 @@ jobs:
               actual = json.loads((Path(os.environ['RUNNER_TEMP']) / f'echs-{endpoint}-status-health.json').read_text())
               expected = {'ok': True, 'service': service, 'version': version,
                           'status_contract': 'echs.mastery-status.v1', 'grading_authoritative': False}
-              assert actual == expected, f'Deployed {endpoint} provisional mastery contract is incompatible'
+              assert actual == expected and actual.get('ok') is True and actual.get('grading_authoritative') is False, f'Deployed {endpoint} provisional mastery contract is incompatible'
           print('Production institutional and mastery evidence status contracts: PASS')
           PY
 

@@ -4991,7 +4991,7 @@
       "id": "CLASS_MEMBERSHIP_AUTHORIZATION",
       "owner_task": "ECHS-C09",
       "severity": "P0",
-      "description": "Current mutation accepts requested account IDs without tenant/actual-role validation and delete/insert replacement is nontransactional; existing malformed membership rows can influence legacy reports. Source-confirmed, no production data inspected."
+      "description": "The unchecked/nontransactional roster endpoint and selected institutional/mastery report scopes were repaired and verified in sealed C09 at main21478287590fcc04ac8000180aef0f1fe91e79b8. Existing malformed membership rows remain stored; private-provider, readiness, parent-management and trusted direct database writers retain separate acceptance/cleanup scopes. No production roster was inspected or backfilled."
     }
   ],
   "last_verified_release": {
