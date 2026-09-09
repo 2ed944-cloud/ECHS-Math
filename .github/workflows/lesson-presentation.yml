@@ -1,0 +1,77 @@
+name: Lesson presentation contracts
+on:
+  pull_request:
+    paths:
+      - 'lesson-studio.html'
+      - 'css/lesson-presentation.css'
+      - 'css/lesson-studio.css'
+      - 'css/lesson-media.css'
+      - 'js/lesson-studio/**'
+      - 'js/lesson-runtime/**'
+      - 'js/institution-client.js'
+      - 'sw.js'
+      - 'tools/lesson-studio/**'
+      - '.github/workflows/lesson-presentation.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'lesson-studio.html'
+      - 'css/lesson-presentation.css'
+      - 'css/lesson-studio.css'
+      - 'css/lesson-media.css'
+      - 'js/lesson-studio/**'
+      - 'js/lesson-runtime/**'
+      - 'js/institution-client.js'
+      - 'sw.js'
+      - 'tools/lesson-studio/**'
+      - '.github/workflows/lesson-presentation.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: lesson-presentation-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  contracts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install exact schema and math dependencies
+        run: npx --yes pnpm@11.19.0 --dir tools/lesson-runtime install --frozen-lockfile --ignore-scripts
+      - name: Verify canonical documents and private presentation state
+        run: |
+          node tools/lesson-runtime/build-validator.mjs --check
+          node tools/lesson-runtime/build-server-validator.mjs --check
+          node tools/lesson-studio/test-presentation-session.mjs
+          node tools/lesson-studio/test-history-session.mjs
+          node tools/lesson-studio/test-draft-session.mjs
+          node tools/lesson-studio/test-api-client.mjs
+          python tools/validate_auth_shell_cache.py
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install exact browser and math dependencies
+        run: |
+          npm --prefix question-bank/official/tools ci
+          npx --yes pnpm@11.19.0 --dir tools/lesson-runtime install --frozen-lockfile --ignore-scripts
+          npx --prefix question-bank/official/tools playwright install --with-deps chromium-headless-shell
+      - name: Verify fullscreen, keyboard, reveal, cleanup and authenticated Studio integration
+        run: |
+          node tools/lesson-studio/test-presentation-browser.mjs
+          node tools/lesson-studio/test-studio-presentation.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lesson-presentation-browser-evidence
+          path: artifacts/lesson-presentation/
+          if-no-files-found: error
+          retention-days: 14

@@ -4,6 +4,7 @@ import {createLessonDraft,addSlide,duplicateSlide,renameSlide,moveSlide,removeSl
 import {createDraftSession} from './draft-session.mjs';
 import {createDraftBackup} from './draft-backup.mjs';
 import {openHistoryDialog} from './history-dialog.mjs';
+import {openLessonPresentation} from './presentation.mjs';
 import {renderSlidePreview,renderLessonPreview,disposeLessonPreview} from './preview.mjs';
 import {createMathEditor} from './math-editor.mjs';
 import {createRichTextEditor} from './rich-text-editor.mjs';
@@ -20,6 +21,7 @@ let mediaInsert=null;
 let backup=null,backupEpoch=0,backupState='unavailable',recoveryChoice=null,checkpointBusy=false;
 let composing=false;
 let historyDialog=null;
+let presentationView=null;
 const plainError=error=>({conflict:'Another editor changed this draft. Keep your edits or reload the server version.',
   sign_in_required:'Sign in with an active teacher or school administrator account.',
   session_changed:'Your school session changed. Sign in again to continue.',
@@ -36,12 +38,14 @@ function showGate(message,{retry=false}={}){
   if(retry){const button=text('button','Try again');button.addEventListener('click',()=>location.reload());$('studio-gate').append(document.createTextNode(' '),button);}
 }
 function closeStudio(message='Your school session changed. Sign in again to continue.'){
+  invalid=true;epoch++;
+  presentationView?.dispose();presentationView=null;
   historyDialog?.dispose();historyDialog=null;
   disposeBackup();
   closeMediaInsert();
   disposeLessonPreview($('slide-canvas'));disposeLessonPreview($('preview-slides'));
   disposeBlockEditor();selectedBlock=null;removedBlock=null;
-  invalid=true;epoch++;session?.dispose();session=null;client?.dispose();client=null;
+  session?.dispose();session=null;client?.dispose();client=null;
   classes=[];classContext=null;library=[];selectedSlide=null;deleted=null;discardAction=null;pendingCreate=null;
   for(const dialog of document.querySelectorAll('dialog'))if(dialog.open)dialog.close();
   for(const control of document.querySelectorAll('input,textarea,select'))control.value='';
@@ -192,6 +196,7 @@ function renderStatus(state){
   $('redo-edit').disabled=!state.canRedo||editorInvalid||composing;
   $('device-backups').disabled=!backup;
   $('version-history').disabled=composing||editorInvalid;
+  $('present-lesson').disabled=composing||editorInvalid;
   if(editorInvalid){$('save-status').textContent='Check block content';$('save-now').disabled=true;}
 }
 function renderEditor(state){
@@ -498,6 +503,21 @@ async function reloadDraft(){
   discardAction=async()=>{try{busy(true);const result=await active.discardAndReload();if(session===active&&!invalid&&result.status==='saved'&&!result.dirty){disposeBlockEditor();deleted=null;removedBlock=null;selectedBlock=null;selectedSlide=null;renderEditor(snapshot());}}catch(error){if(!invalid)$('save-message').textContent=plainError(error);}finally{if(!invalid)busy(false);}};
   $('discard-dialog').showModal();$('keep-edits').focus();
 }
+async function presentLesson(){
+  if(locked||composing||!session||!await canLeave()||composing)return;
+  const stamp=epoch,activeClient=client,id=snapshot().record.lesson.id;let restoreFocus=false;busy(true);
+  try{
+    assertActive();const fresh=await client.get(id);if(!current(stamp))return;
+    disposeLessonPreview($('slide-canvas'));$('slide-canvas').replaceChildren();
+    const opened=openLessonPresentation({dialog:$('presentation-dialog'),document:fresh.head.document,mathEngine:katex,
+      isCurrent:()=>{if(!current(stamp)||client!==activeClient)return false;try{activeClient.assertCurrent();return true;}catch{closeStudio();return false;}},resolveAsset:previewAssetResolver()});
+    presentationView=opened;await opened.closed;if(presentationView===opened)presentationView=null;
+    if(!current(stamp))return;
+    try{const latest=await client.get(id);if(current(stamp)){await attachRecord(latest);restoreFocus=true;}}
+    catch{if(current(stamp))closeStudio('Presentation closed. Reconnect and sign in to verify the current lesson before editing.');}
+  }catch(error){if(current(stamp)){if([401,403,404].includes(error?.status))closeStudio('This lesson is no longer available to your account. Sign in again to verify access.');else{renderEditor(snapshot());$('library-status').textContent=plainError(error);}}}
+  finally{if(current(stamp)){busy(false);if(restoreFocus)$('present-lesson').focus();}}
+}
 for(const id of ['slide-title','slide-layout','slide-text','private-notes']){
   $(id).addEventListener('change',()=>{if(commitField(id)&&session)renderEditor(snapshot());});
   if(id!=='slide-layout')$(id).addEventListener('input',()=>commitField(id));
@@ -519,6 +539,7 @@ $('undo-edit').addEventListener('click',()=>historyAction('undo'));
 $('redo-edit').addEventListener('click',()=>historyAction('redo'));
 $('device-backups').addEventListener('click',showDeviceBackups);
 $('version-history').addEventListener('click',showVersionHistory);
+$('present-lesson').addEventListener('click',presentLesson);
 $('keep-server-draft').addEventListener('click',()=>recoveryChoice?.(null));
 $('recovery-dialog').addEventListener('cancel',event=>{event.preventDefault();recoveryChoice?.(null);});
 document.addEventListener('compositionstart',()=>{composing=true;if(session)renderStatus(snapshot());});

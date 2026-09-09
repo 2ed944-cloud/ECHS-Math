@@ -2,7 +2,7 @@
 
 ## Release status
 
-Implementation and acceptance checks are in progress. ECHS-012 is not yet accepted as merged or deployed. Complete integration checks, actual PostgreSQL/HTTP execution, PR workflows and production acceptance remain required. The accepted predecessor is ECHS-011, PR #359, main `1d42d363164c200277632c3d09a53e30e07450a6`.
+Complete and deployed through PR #360, main `34db877f92de9c3748b32b79245a36c221dd6904`. All18 PR and14 production workflows passed, including the full68-check Linux baseline. The unchanged25 migrations passed676 database checks and38 actual HTTP/SQL groups. All96 public acceptance checks passed. Existing student routes and server publication gates remain unchanged.
 
 ## Architecture and preserved behavior
 
