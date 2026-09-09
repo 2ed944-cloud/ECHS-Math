@@ -1,0 +1,715 @@
+{
+  "schema_version": "echs.master-architecture-audit.v1",
+  "snapshot_date": "2026-09-09",
+  "main_sha": "99a0e6582cd82941a03c7d5cc2ec4517def62bb7",
+  "whole_program_complete": false,
+  "source_baseline": "docs/codex/MASTER_SOURCE_BASELINE_20260909.json",
+  "scope": "Metadata-only current-main source audit. Selected484 unique canonical files were matched to actual main Git blobs before repair edits. Source observations are not full mathematical, browser, rights, tenant or production-data acceptance.",
+  "platform_subsystems": [
+    {
+      "id": "lesson_document",
+      "status": "DEPLOYED_FOUNDATION",
+      "paths": [
+        "schemas/echs.lesson.v1.schema.json",
+        "js/lesson-runtime/schema.mjs",
+        "js/lesson-runtime/block-registry.mjs",
+        "js/lesson-runtime/generated/validate-lesson-document.mjs",
+        "js/lesson-runtime/math-expression.mjs",
+        "supabase/functions/lesson-api/generated/schema.mjs",
+        "supabase/functions/lesson-api/document-contract.mjs"
+      ],
+      "implemented": [
+        "Closed versioned document, UUID lesson/course identities, stable slide/block IDs, objective metadata, layout, publication and accessibility.",
+        "Exact generated Ajv validator plus bounded plain JSON, unique IDs, unsafe-markup checks and injected pinned KaTeX.",
+        "Text/math/callout v1 and v2; image/video/table/resource v1; inert legacy reference v1.",
+        "Institutional save/publish validation repeats server-side, including identity and projected revision."
+      ],
+      "limits": [
+        "Eight distinct block types / eleven type-version definitions; all registry interactive flags false.",
+        "No question, worked-example, student-turn, hidden-solution, graph, reusable interactive or 3D block.",
+        "General schema budget 2 MiB; compact persisted document budget 1 MiB. Syntax/shape is not independent curriculum or mathematical review.",
+        "variants.contexts contains neutral/qatar labels only, not alternative datasets or a context engine."
+      ]
+    },
+    {
+      "id": "lesson_studio",
+      "status": "DEPLOYED_FOUNDATION_WITH_REMAINING_PRODUCT_REQUIREMENTS",
+      "paths": [
+        "lesson-studio.html",
+        "css/lesson-studio.css",
+        "js/lesson-studio/app.mjs",
+        "js/lesson-studio/api-client.mjs",
+        "js/lesson-studio/draft-model.mjs",
+        "js/lesson-studio/block-model.mjs",
+        "js/lesson-studio/draft-session.mjs",
+        "js/lesson-studio/rich-text-editor.mjs",
+        "js/lesson-studio/math-editor.mjs",
+        "js/lesson-studio/media-editor.mjs",
+        "js/lesson-studio/preview.mjs"
+      ],
+      "implemented": [
+        "Fresh authenticated teacher/admin entry; exact organization/class/catalog and explicit current-course pin.",
+        "Create and reconcile original UUID after uncertain creation; rename/duplicate/reorder/delete/undo slides and supported blocks.",
+        "Accessible visual mathematics/rich text/callouts; images, semantic tables, YouTube and PDFs.",
+        "Serialized autosave with CAS, conflict and ambiguous-response reconciliation; invalid raw buffers retained and blocked from navigation/persistence; current-owner guards."
+      ]
+    },
+    {
+      "id": "studio_reliability",
+      "status": "DEPLOYED",
+      "paths": [
+        "js/lesson-studio/draft-session.mjs",
+        "js/lesson-studio/draft-backup.mjs",
+        "supabase/migrations/202609090001_lesson_draft_recovery.sql"
+      ],
+      "implemented": [
+        "50-state / 20 MiB in-memory undo-redo with grouping and revision rebasing.",
+        "Encrypted IndexedDB checkpoints scoped to account/org/class/lesson and per-tab branches; server reauthorization before key release.",
+        "AES-256-GCM, nonextractable key in memory, bound AAD, coalesced pending writes, CAS/tombstones, late-disposal cleanup and explicit recovery choices."
+      ],
+      "limits": [
+        "Checkpoint plaintext maximum 4 MiB; checkpoint failure must not block server save.",
+        "Cold offline unlock is unsupported; previously verified open-tab editing can persist encrypted recovery.",
+        "Raw invalid buffers, history and workflow confirmation intent are not durable.",
+        "This fixes Studio ownership, not every legacy global learning-storage key."
+      ]
+    },
+    {
+      "id": "lesson_governance",
+      "status": "DEPLOYED",
+      "paths": [
+        "supabase/functions/lesson-api/handler.mjs",
+        "supabase/migrations/202609080002_lesson_persistence.sql",
+        "js/lesson-studio/history-session.mjs",
+        "js/lesson-studio/history-dialog.mjs",
+        "js/lesson-studio/version-diff.mjs"
+      ],
+      "implemented": [
+        "Private authorized reads/writes, immutable versions/publications, CAS workflow transitions.",
+        "Independent review of current saved version, publish and reasoned withdrawal; restore appends a new draft.",
+        "Bounded semantic diff by stable identity, separate private notes, unknown-write reconciliation."
+      ],
+      "limits": [
+        "Approval declarations are human review decisions, not automatic proof of mathematical correctness, rights or curriculum coverage.",
+        "Existing student routes retain original lessons; published institutional snapshots require explicit authenticated delivery adoption.",
+        "Legacy references cannot publish; no private prompts/notes or arbitrary HTML are accepted into public fixtures."
+      ]
+    },
+    {
+      "id": "presentation",
+      "status": "DEPLOYED",
+      "paths": [
+        "js/lesson-studio/presentation-session.mjs",
+        "js/lesson-studio/presentation.mjs",
+        "css/lesson-presentation.css",
+        "js/lesson-runtime/content-renderer.mjs",
+        "js/lesson-runtime/media-renderer.mjs"
+      ],
+      "implemented": [
+        "Same saved canonical document, modal/fullscreen fallback, next/back/jump, keyboard, ordered reveals/reset, mobile and reduced-motion.",
+        "Unrevealed content absent from DOM; outgoing media canceled/disposed; current-owner loss clears private content.",
+        "No private notes, publication, completion or mastery writes."
+      ],
+      "limits": [
+        "Presentation reveals do not classify or authorize hidden assessment solutions.",
+        "Remote permission changes require subsequent authorized requests; already projected content is not recalled automatically."
+      ]
+    },
+    {
+      "id": "legacy_imports",
+      "status": "IB_REFERENCE_TESTED_AP_EXECUTABLE_PENDING",
+      "paths": [
+        "js/lesson-runtime/legacy-compatibility.mjs",
+        "js/lesson-runtime/pinned-legacy-contracts.mjs",
+        "js/lesson-studio/ib13-import-target.mjs",
+        "js/lesson-studio/ib13-import-model.mjs",
+        "js/lesson-studio/ib13-reference.mjs",
+        "js/lesson-studio/import-dialog.mjs",
+        "tools/lesson-import/build-ib13-reference.mjs"
+      ],
+      "implemented": [
+        "ECHS-006 exact inert AP/IB metadata, route/query/hash and original guard finish contract.",
+        "ECHS-014 full 78-position IB1.3 import: 20 original native conceptual slides and 58 reference slots by default, exact source ledger and current catalog binding.",
+        "Original 103 practice, six exam and fourteen quiz items remain in original IB source/engine; not copied into authored question blocks."
+      ]
+    },
+    {
+      "id": "math_component_registry",
+      "status": "NOT_IMPLEMENTED_AS_REQUIRED_SHARED_SUBSYSTEM",
+      "paths": [
+        "js/lesson-runtime/block-registry.mjs",
+        "js/lesson-runtime/content-renderer.mjs",
+        "lessons/ap-calculus/unit-1/assets/lesson-1-1-model.js",
+        "lessons/ap-calculus/unit-1/assets/lesson-1-1.js",
+        "lessons/ap-calculus/unit-1/assets/unit1-continuation-labs.js",
+        "lessons/ap-precalculus/unit-1/assets/tandem-context-models-v4.js",
+        "lessons/ap-precalculus/unit-1/assets/tandem-contexts-v4.js"
+      ]
+    },
+    {
+      "id": "three_d",
+      "status": "NOT_FOUND_IN_ACTIVE_SHARED_RUNTIME",
+      "paths": [
+        "docs/codex/THREE_D_MATH_ENGINE_SPEC.md",
+        "docs/codex/EXECUTION_BACKLOG_30.md"
+      ],
+      "limits": [
+        "This is a bounded source search, not a browser audit of every diagram.",
+        "SVG vessel/geometry diagrams are useful 2D material but do not meet the synchronized 3D benchmark."
+      ]
+    },
+    {
+      "id": "curriculum_versions",
+      "status": "DEPLOYED_VERSION_FOUNDATION_PARTIAL_CONTENT_MAPPING",
+      "paths": [
+        "curriculum/registry/course-versions.v1.json",
+        "js/curriculum-versions.mjs",
+        "supabase/migrations/202609080001_curriculum_versions.sql",
+        "curriculum/pathways/grade-9-2026-2027.json",
+        "curriculum/pathways/grade-10-2026-2027.json"
+      ],
+      "implemented": [
+        "Separate AB/BC/Precalculus/current-IB identities and versioned assessment profiles with source metadata.",
+        "Immutable SQL snapshots and explicit class pins, used by authorized Lesson Studio create/delivery.",
+        "Future IB2029 remains non-active and has no imported objective mapping."
+      ]
+    },
+    {
+      "id": "question_providers",
+      "status": "EXISTING_MULTIPLE_PROVIDERS_NO_UNIFIED_REPOSITORY",
+      "paths": [
+        "question-bank/official/js/app.js",
+        "js/official-ap-integration.js",
+        "question-bank/js/bank.js",
+        "question-bank/js/mapped-practice.js",
+        "question-bank/js/mapped-private-bank-practice.js",
+        "question-bank/js/private-bank-assets.js",
+        "supabase/functions/practice-bank-api/index.ts",
+        "supabase/functions/private-bank-api/index.ts",
+        "supabase/functions/upload-manager-api/index.ts"
+      ],
+      "implemented": [
+        "Exact eligible public AP pool, stable IDs/provenance and redacted student archive.",
+        "Authenticated private course-specific bank and media APIs, upload validation and mapping boundaries.",
+        "Lesson-local original practice remains separate.",
+        "Browser-normalized imports reset all readiness verification flags to draft/teacher-only."
+      ]
+    },
+    {
+      "id": "question_qa_and_rights",
+      "status": "MATURE_EXISTING_GATE_WITH_NEW_CHARTER_GAPS",
+      "paths": [
+        "question-bank/official/tools/validate_release.py",
+        "question-bank/official/tools/apply_strict_audit_gate.py",
+        "question-bank/official/data/student/gate.json",
+        "question-bank/official/data/rights/echs-ap-official-student-practice-2026-07-28.json",
+        "question-bank/official/data/rights/README.md",
+        ".github/workflows/echs-ap-bank-validate.yml",
+        ".github/workflows/independent-question-bank-audit.yml"
+      ],
+      "implemented": [
+        "Readiness flags for independent answer/math verification, transcription, mapping, media and KaTeX; exact pool reconciliation and rights approval.",
+        "Scope-specific recorded official-AP authorization does not remove other mathematical/provenance requirements.",
+        "Existing CI tests notation/browser/overlays/release checks; imported items never auto-promote."
+      ]
+    },
+    {
+      "id": "qatar_context",
+      "status": "LESSON_LOCAL_CONTEXT_PRESENT_SHARED_REGISTRY_NOT_FOUND",
+      "paths": [
+        "schemas/echs.lesson.v1.schema.json",
+        "docs/codex/QATAR_IDENTITY_SPEC.md",
+        "lessons/ib-math-ai/unit-2/data/lesson-2.2-v5-content-a.js",
+        "lessons/ib-math-ai/unit-4/data/lesson-4.1.js"
+      ],
+      "implemented": [
+        "Qatar/Doha/QAR context occurs in existing lessons, such as the original two transport-plan linear models.",
+        "Canonical documents can declare neutral and qatar context labels.",
+        "Math-first Qatar guidance and source/data review specification exist."
+      ],
+      "limits": [
+        "No QatarContextRegistry/qatar-context-registry/qatar-context-library identifier found in the bounded active-source scan.",
+        "Local context wording is not evidence of a reviewed factual dataset or full Context Engine."
+      ]
+    },
+    {
+      "id": "runtime_and_deployment",
+      "status": "EXISTING_PRODUCTION_ARCHITECTURE_REUSED",
+      "paths": [
+        "index.html",
+        "data/courses.js",
+        "js/portal.js",
+        "js/institution-client.js",
+        "js/portal-access.js",
+        "js/lesson-access-guard.js",
+        "sw.js",
+        ".github/workflows/deploy-pages.yml",
+        ".github/workflows/deploy-institution-backend.yml",
+        "tools/inject_learning_access_guard.py",
+        "tools/validate_pages_artifact.py"
+      ],
+      "implemented": [
+        "Static GitHub Pages plus Supabase custom institutional accounts/Edge APIs/private storage; no whole-app framework migration.",
+        "Pages builds immutable artifact, injects guard, validates links/access/exact deployment SHA and probes known live routes.",
+        "Backend deployment is path-filtered to reviewed functions/migrations merged to main, with health and regression gates.",
+        "Baseline workflow covers 68 critical checks; dedicated schema, renderer, compatibility, Studio, history, recovery, media, presentation and import workflows."
+      ],
+      "limits": [
+        "Source guard markers are not equivalent to server privacy; Pages artifacts and repository files are public.",
+        "Tools/Supabase/integration/backups excluded from Pages, but .staging/packages/.deploy are not blanket excluded by current rsync; their noncanonical role is not a secrecy boundary.",
+        "Legacy docs and stored CI reports must be tied to exact revisions rather than treated as current live database proof.",
+        "Supabase deployment currently uses the workflow's latest CLI; library/test dependency pinning is otherwise explicit in new lesson tooling."
+      ]
+    }
+  ],
+  "learning_subsystems": [
+    {
+      "id": "ib_readiness",
+      "charter_sections": [
+        29,
+        30,
+        34
+      ],
+      "status": "IMPLEMENTED_PARTIALLY_TESTED_PRIOR_BACKEND_DEPLOYMENT_VERIFIED",
+      "paths": [
+        "docs/IB_READINESS_PATHWAY_SYSTEM.md",
+        "readiness/index.html",
+        "readiness/readiness.js",
+        "readiness/readiness.css",
+        "readiness/diagnostic-demo.json",
+        "supabase/functions/readiness-api/index.ts",
+        "supabase/functions/readiness-api/readiness-engine.js",
+        "supabase/functions/readiness-api/diagnostic-bank.js",
+        "supabase/migrations/202609050100_ib_readiness_pathway_engine.sql"
+      ],
+      "capabilities": [
+        "Four distinct AA_HL/AA_SL/AI_HL/AI_SL indices with pathway-specific weights.",
+        "MAP, MYP A-D and 30-item server-graded diagnostic; answer-stripped public diagnostic and response digest.",
+        "Separate index/completeness, missing-evidence screening, no-evidence null score; default RIT anchors empty.",
+        "Versioned model configurations, snapshot history, preferences, skills/gaps, intervention tracking and local validation statistics.",
+        "School records and student-school membership, role-filtered views, CSV imports and synthetic demonstration."
+      ],
+      "tests": [
+        "supabase/functions/readiness-api/readiness-engine.test.mjs",
+        "tools/validate_readiness_system.py",
+        ".github/workflows/readiness-engine.yml"
+      ],
+      "evidence_status": "Arithmetic and static/syntax checks pass locally. Prior backend deployment+health verified; no new real readiness DB/API/browser acceptance performed.",
+      "gaps": [
+        "IB-only model keys; no exact curriculum_version_id/course_version_id linkage in readiness snapshot/model contract.",
+        "Recommendations are skill-level text, not executable linked micro-lesson/independent/transfer/retention preparation plans.",
+        "Interventions can become status mastered when a recomputed heuristic gap disappears or authorized staff change status; that status is not verified skill mastery.",
+        "Model activation and school assignment/recompute use multiple service calls, not an atomic CAS transaction; concurrent activation/failure safety needs database tests.",
+        "Scope selectors for teachers/parents depend on memberships/links; direct detail/evidence reads rely on prior scope and do not all rejoin active same-organization classes/accounts. Requires adversarial DB/API verification before broader use.",
+        "Predictive calibration, fairness/holdout validation and governance remain unverified; sample statistics cannot establish probability of IB success."
+      ]
+    },
+    {
+      "id": "ap_readiness",
+      "charter_sections": [
+        29,
+        31,
+        32
+      ],
+      "status": "NOT_FOUND_AS_SEPARATE_OPERATIONAL_MODEL",
+      "paths": [
+        "curriculum/registry/course-versions.v1.json",
+        "data/knowledge-graph/ap-precalculus-v1.json",
+        "data/knowledge-graph/ap-calculus-unit-1.json"
+      ],
+      "capabilities": [
+        "Separate AB/BC/AP Precalculus course identities and curriculum snapshots exist.",
+        "Precalculus prerequisite topic graph and AP Calculus Unit1 skill/evidence graph exist."
+      ],
+      "tests": [],
+      "evidence_status": "Inspected readiness engine/API/UI only expose four IB pathway keys. Graph existence is not a readiness engine.",
+      "gaps": [
+        "Missing AP Precalculus readiness diagnostic/model/trajectory/preparation route.",
+        "Missing distinct AB and BC target readiness profiles.",
+        "Need reviewed prerequisite mapping and instrument versions, not copied IB weights; connect future models to course-version identities."
+      ]
+    },
+    {
+      "id": "grade9_grade10_pathways",
+      "charter_sections": [
+        33,
+        34
+      ],
+      "status": "LESSON_PATHWAYS_EXIST_READINESS_TRANSITION_UNVERIFIED",
+      "paths": [
+        "lessons/pathways/grade-9",
+        "lessons/pathways/grade-10",
+        "lessons/pathways/lesson.html",
+        "tools/test_g9_9_4_cumulative_ap_readiness_capstone.py",
+        "tools/test_g10b_r1_2_quadratic_equation_mastery.py"
+      ],
+      "capabilities": [
+        "49 Grade9 HTML lessons, 9 Grade10 HTML lessons plus one shared pathway HTML file found in the source tree.",
+        "Existing capstone/quadratic lesson checks and school pathway content should be preserved."
+      ],
+      "tests": [
+        "tools/test_g9_9_4_cumulative_ap_readiness_capstone.py",
+        "tools/test_g10b_r1_2_quadratic_equation_mastery.py"
+      ],
+      "evidence_status": "Presence/count only in this bounded audit; these lesson-specific tests were not rerun.",
+      "gaps": [
+        "No verified bridge from these pathway assessments into separate AP Precalculus/AB/BC readiness models.",
+        "Full objective/course-version alignment and transition evidence quality require course-content audit."
+      ]
+    },
+    {
+      "id": "mastery_authority",
+      "charter_sections": [
+        25,
+        26,
+        28,
+        39
+      ],
+      "status": "SERVER_RECOMPUTATION_EXISTS_EVIDENCE_AUTHENTICITY_GAP_CONFIRMED",
+      "paths": [
+        "supabase/functions/mastery-evidence/index.ts",
+        "supabase/functions/learning-sync/index.ts",
+        "supabase/migrations/202607272001_mastery_evidence_foundation.sql",
+        "supabase/migrations/202607272002_mastery_authority_guard.sql",
+        "supabase/migrations/202607272003_attempt_trust_guard.sql",
+        "supabase/migrations/202607272004_atomic_skill_mapping.sql",
+        "js/institution-client.js",
+        "js/institution-mastery-evidence.js"
+      ],
+      "capabilities": [
+        "Custom-session identity bound to actor/org; client mastery arrays ignored.",
+        "Server recomputes accuracy/recent accuracy/confidence with assistance, transfer, representation, day and retention counters.",
+        "DB trust-tier override and deterministic unambiguous atomic mapping; server algorithm identity guard.",
+        "Account-owned sync queue/retry/race behavior repaired and tested; lesson completions do not become mastery attempts."
+      ],
+      "tests": [
+        "tools/test_mastery_sync.mjs",
+        "tools/test_mastery_sync_endpoint.mjs",
+        "tools/validate_mastery_foundation.py",
+        "tools/validate_mastery_guards.py",
+        ".github/workflows/mastery-sync-regression.yml"
+      ],
+      "evidence_status": "Existing tests pass. Additional actual-handler synthetic counterexamples reproduced two gaps; trigger logic explicitly emulated, not executed in PostgreSQL.",
+      "gaps": [
+        "Endpoint accepts browser correct, response, mode, difficulty, assistance, representation and occurred_at; no independent answer/provider/assignment validation in sync/recompute.",
+        "Unknown question trust falls back to legacy_verified_boundary; such attempts still contribute all score/evidence terms except small trust confidence bonus.",
+        "APCALC.* skill keys bypass mapping trigger; no exact authorized question-to-skill version proof.",
+        "24 synthetic unregistered client-claimed unaided/challenge events yield verified=true and score97 despite zero verified-question evidence.",
+        "Mastery records are keyed account+skill, not class/course-version; retention counts correct events >=48h after first client timestamp rather than authenticated retention assignment.",
+        "No unresolved-mistake requirement in recomputation; transfer counter counts tagged attempts rather than verified successful transfer."
+      ]
+    },
+    {
+      "id": "mastery_read_models",
+      "charter_sections": [
+        25,
+        38,
+        39,
+        40,
+        41
+      ],
+      "status": "FALSE_MASTERED_LABELS_REPRODUCED",
+      "paths": [
+        "supabase/functions/mastery-evidence/index.ts",
+        "supabase/functions/institution-api/index.ts",
+        "question-bank/js/teacher-evidence-heatmap.js",
+        "question-bank/js/student-cloud.js",
+        "question-bank/js/parent-cloud.js",
+        "question-bank/js/dashboard.js",
+        "question-bank/js/learning-home.js",
+        "question-bank/js/learning-system.js",
+        "question-bank/js/parent.js",
+        "js/portal.js",
+        "js/lesson-portal-overhaul.js"
+      ],
+      "capabilities": [
+        "Student/teacher/parent dashboards and class heatmap display existing evidence.",
+        "Class endpoint includes confidence/independent/retention/transfer counts; no-evidence empty state exists."
+      ],
+      "tests": [
+        "tools/validate_mastery_foundation.py",
+        "tools/validate_learning_system.py"
+      ],
+      "evidence_status": "Exact production label functions executed on synthetic endpoint result.",
+      "gaps": [
+        "Endpoint/class/heatmap level based on score+confidence, not payload.verified.",
+        "Institution student/teacher summaries count mastered by score>=85 and omit provenance/gate fields from student dashboard select.",
+        "Legacy local engine/portal uses score>=80 mastery and badges.",
+        "24 hinted practice events yield score93, confidence.769, independent0, transfer0, verified=false but actual endpoint/dashboard/heatmap still say Mastered.",
+        "Parent narrative infers strong transfer/extension from aggregate score alone; absent direct transfer evidence."
+      ]
+    },
+    {
+      "id": "mistake_spaced_recovery",
+      "charter_sections": [
+        26,
+        27,
+        34
+      ],
+      "status": "BASIC_RECOVERY_IMPLEMENTED_RICH_EVIDENCE_LOOP_INCOMPLETE",
+      "paths": [
+        "question-bank/mistakes.html",
+        "question-bank/js/mistakes.js",
+        "question-bank/js/learning-system.js",
+        "question-bank/js/practice-recovery-ui.js",
+        "supabase/functions/mastery-evidence/index.ts",
+        "supabase/migrations/202607260001_institutional_platform.sql"
+      ],
+      "capabilities": [
+        "Wrong answers enter local review map; due filters, mistake practice links, manual resolve/reopen.",
+        "Box schedule 1/3/7/14/30/60 days; wrong answer resets to next day.",
+        "review_items sync persists status/due/wrong/recovery counts; account-owned sync protects queue identity."
+      ],
+      "tests": [
+        "tools/test_learning_system.mjs",
+        "tools/validate_learning_system.py",
+        "tools/test_mastery_sync.mjs"
+      ],
+      "evidence_status": "Synthetic basic attempt→wrong→correct→resolved and selection tests pass; no end-to-end delayed retention proof.",
+      "gaps": [
+        "One immediate correct retry sets unresolved=false; manual resolve can clear it without independent delayed evidence.",
+        "Server accepts review status/due/counts from client; this is tracking, not authenticated mastery recovery.",
+        "No reviewed misconception classification/confidence/diagnostic chain, varied recovery families or retention-task linkage."
+      ]
+    },
+    {
+      "id": "misconception_intelligence",
+      "charter_sections": [
+        27,
+        38,
+        39
+      ],
+      "status": "STATIC_TAG_FOUNDATION_ONLY",
+      "paths": [
+        "data/knowledge-graph/ap-calculus-unit-1.json",
+        "data/knowledge-graph/ap-precalculus-v1.json",
+        "data/knowledge-graph/ib-math-ai-v1.json",
+        "supabase/migrations/202607272001_mastery_evidence_foundation.sql"
+      ],
+      "capabilities": [
+        "AP Calculus skill definitions include misconception tags and prerequisite/evidence rules; other course graph files exist."
+      ],
+      "tests": [
+        "tools/validate_mastery_foundation.py"
+      ],
+      "evidence_status": "Static graph/schema markers checked; runtime reviewed inference was not found.",
+      "gaps": [
+        "No evidence-linked per-learner likely-misconception/confidence records and reviewed recovery lookup proved.",
+        "Graph coverage/source alignment across courses is not established by file presence.",
+        "Do not promote default tags or AI guesses into certain diagnoses."
+      ]
+    },
+    {
+      "id": "smart_learning_route",
+      "charter_sections": [
+        28,
+        34
+      ],
+      "status": "DETERMINISTIC_ROUTE_EXISTS_INPUT_TRUST_AND_READINESS_GAPS",
+      "paths": [
+        "js/smart-learning-route.js",
+        "js/portal.js",
+        "question-bank/js/teacher-cloud.js",
+        "js/institution-client.js",
+        "css/smart-learning-route.css",
+        "platform/ACCESS_MODEL.md"
+      ],
+      "capabilities": [
+        "Support/Core/Challenge rules, teacher assignment priority, timetable, current lesson, preceding lesson score, accuracy, reviews and mistakes.",
+        "Support/Core/Challenge practice sets 6/8/10 questions; reasons displayed; no AI API in routing module."
+      ],
+      "tests": [
+        "tools/validate_smart_learning_route.py",
+        "tools/test_portal_workspace.mjs"
+      ],
+      "evidence_status": "Static deterministic-rule and syntax validation passes; no new actual route-browser acceptance.",
+      "gaps": [
+        "Prerequisite readiness currently means previous course lesson masteryScore, not readiness-api skill/pathway synthesis.",
+        "Challenge uses score>=85/accuracy>=75/no reviews/<=1 mistake without authenticated provenance.",
+        "Text says Verified evidence only although scores can come from uncertified evidence; local fallback can fill counters.",
+        "Keep deterministic lane behavior stable in label repair; route-input trust remediation requires its own explicit tests."
+      ]
+    },
+    {
+      "id": "ai_tutor_and_vision",
+      "charter_sections": [
+        35,
+        36,
+        37
+      ],
+      "status": "IMPLEMENTED_STATICALLY_TESTED_LIVE_MODEL_AND_INTEGRITY_UNVERIFIED",
+      "paths": [
+        "cloudflare-ai-worker/src/index.js",
+        "cloudflare-ai-worker/wrangler.toml",
+        "cloudflare-ai-worker/README.md",
+        "js/echs-ai-tutor.js",
+        "js/echs-ai-tutor-config.js",
+        "js/lesson-ai-loader.js",
+        "css/echs-ai-tutor.css"
+      ],
+      "capabilities": [
+        "Guide default; hint/guide/explain/check/alternative/practice modes.",
+        "Image file/paste handling and bounded image preparation, text/vision fallback/review/continuation, safe answer rendering.",
+        "Prompt includes math/domain/unit/ambiguity rules and never-award-mastery instruction.",
+        "Origin allowlist and anonymous rate limiting; browser timeouts; bounded in-memory conversation."
+      ],
+      "tests": [
+        "tools/validate_ai_tutor.py"
+      ],
+      "evidence_status": "Static/source/syntax validator passes. No live AI generation, deployment metadata, vision quality or adversarial assessment test performed.",
+      "gaps": [
+        "No custom institutional session validation found in worker; context is sanitized caller input, not authorized assignment/evidence context.",
+        "Active assessment detection is user-message regex; screenshot-only or omitted exam wording can escape it. Guidance is prompt policy, not a server-enforced assessment permit.",
+        "No assistance telemetry bridge found from tutor to learning attempts; existing recordAttempt has no assistance/representation payload and server defaults missing assistance to none.",
+        "No account-switch disposal/clearing of tutor conversation/images found; same-page identity race requires tests.",
+        "AI-created similar practice is unreviewed chat output; it must not automatically enter bank/mastery authority.",
+        "Tutor fallback dynamically loads CDN KaTeX0.17.0 while authored lessons use local0.16.27; dependency/CSP/offline consistency needs review."
+      ]
+    },
+    {
+      "id": "student_profile",
+      "charter_sections": [
+        39
+      ],
+      "status": "PARTIAL_AGGREGATE_PROFILE_NOT_UNIFIED_LONGITUDINAL_MODEL",
+      "paths": [
+        "question-bank/student.html",
+        "question-bank/js/student-cloud.js",
+        "question-bank/js/learning-home.js",
+        "question-bank/js/learning-system.js",
+        "supabase/functions/institution-api/index.ts",
+        "readiness/readiness.js"
+      ],
+      "capabilities": [
+        "Student dashboard aggregates attempts/scores/streak/assignments/reviews; readiness passport separately shows pathway trajectory.",
+        "Local profile/goals/session history/export with institutional synchronization layer."
+      ],
+      "tests": [
+        "tools/test_learning_system.mjs",
+        "tools/test_institution_identity_mount.mjs",
+        "tools/test_mastery_sync.mjs"
+      ],
+      "evidence_status": "Found and basic synthetic tests pass; full authorized longitudinal browser/API flow not audited.",
+      "gaps": [
+        "Separate readiness, mastery and local reports; no single versioned evidence profile joins readiness/representation/technology/misconception/independence/transfer/retention/intervention trajectory.",
+        "Score-based labels risk permanent ability interpretation; need reasoned evidence status and next action."
+      ]
+    },
+    {
+      "id": "teacher_parent_leadership",
+      "charter_sections": [
+        38,
+        40,
+        41
+      ],
+      "status": "SCOPED_DASHBOARDS_EXIST_INTERPRETATION_AND_ACCEPTANCE_GAPS",
+      "paths": [
+        "question-bank/teacher.html",
+        "question-bank/parent.html",
+        "question-bank/admin.html",
+        "question-bank/school-control.html",
+        "question-bank/js/teacher-cloud.js",
+        "question-bank/js/teacher-evidence-heatmap.js",
+        "question-bank/js/parent-cloud.js",
+        "question-bank/js/admin-accounts.js",
+        "supabase/functions/institution-api/index.ts",
+        "readiness/readiness.js"
+      ],
+      "capabilities": [
+        "Class reports/heatmaps/assignments; parent-child linked dashboard with strengths/priorities/reviews/print.",
+        "Readiness school/network summary and local outcome validation; synthetic preview modes explicitly labeled."
+      ],
+      "tests": [
+        "tools/validate_mastery_foundation.py",
+        "tools/validate_readiness_system.py",
+        "tools/test_institution_identity_mount.mjs"
+      ],
+      "evidence_status": "Source and aggregate/basic tests available, prior institution backend deploy verified. No new parent/teacher cross-tenant browser+DB acceptance here.",
+      "gaps": [
+        "Common misconception, representation difficulty, heavy AI reliance, missing objective evidence and actionable intervention quality not yet unified.",
+        "Parent output uses score-based transfer/extension prose, not verified transfer/retention receipts.",
+        "Leadership curriculum-quality/adoption/accessibility completeness is not demonstrated by current dashboard existence."
+      ]
+    }
+  ],
+  "ap_calculus_u2_u5": {
+    "audit": "docs/codex/AP_CALCULUS_U2_U5_AUDIT.json",
+    "summary": {
+      "html_routes": 22,
+      "teaching_lessons": 18,
+      "assessment_routes": 4,
+      "review_catalog_entries": 4,
+      "static_slide_sections": 1331,
+      "assessment_mcq_items": 168,
+      "assessment_frq_items": 24,
+      "category_counts": {
+        "D": 3,
+        "C": 6,
+        "A": 6,
+        "F": 7
+      }
+    },
+    "source_files": 69,
+    "source_binding": {
+      "status": "VERIFIED_MAIN_BYTES",
+      "main_sha": "99a0e6582cd82941a03c7d5cc2ec4517def62bb7",
+      "files": 69,
+      "manifest": "docs/codex/AP_CALCULUS_U2_U5_SOURCE_BASELINE.json",
+      "scope": "Source equivalence only; no mathematical, rights, browser or live-link certification."
+    }
+  },
+  "not_verified": [
+    "Current exact deployed file equivalence for all audited legacy sources pending parent verification.",
+    "Real readiness database role/tenant/concurrency behavior.",
+    "Live AI worker version, model availability, answer quality, assessment resistance and vision correctness.",
+    "Approved institution readiness calibration/data retention policy.",
+    "Complete source alignment of every AP/IB/Grade9/10 graph and lesson.",
+    "Cross-school data adoption, real student outcomes, teacher/parent private flows."
+  ],
+  "first_repairs": [
+    "ECHS-C01",
+    "ECHS-C02",
+    "ECHS-C08",
+    "ECHS-C03",
+    "ECHS-C04"
+  ],
+  "security_findings": [
+    {
+      "id": "P0-STATIC-RESTRICTED",
+      "task": "ECHS-C01",
+      "finding": "The source Pages pipeline copies raw canonical/admin question data and packaging roots. Existing archive redaction is a denylist and permits content-bearing extra fields. Use a closed public projection; keep the canonical gate and source untouched."
+    },
+    {
+      "id": "P0-MASTERY-TRUTHFULNESS",
+      "task": "ECHS-C02",
+      "finding": "Two synthetic actual-handler counterexamples show high fully hinted practice labeled Mastered and fabricated unaided/challenge claims setting legacy verified=true without authenticated grading. Preserve records; truthful read projections precede grading receipts."
+    },
+    {
+      "id": "P0-ATTEMPT-PROVENANCE",
+      "task": "ECHS-C03",
+      "finding": "Authenticated server recomputation is not authenticated grading. Client correctness, help, mode, skill and time claims require issued-attempt receipts and versioned certification."
+    },
+    {
+      "id": "P0-ACCOUNT-STORAGE",
+      "task": "ECHS-C04",
+      "finding": "Legacy learning and assessment/drawing/image stores are not all owner-bound; current Studio and queue protections do not cover them."
+    },
+    {
+      "id": "PUBLIC-REPOSITORY-HISTORY",
+      "task": "ECHS-C05",
+      "finding": "A safe Pages artifact cannot make public Git source/history private. Source-page media visual scope and licensing also need review."
+    },
+    {
+      "id": "P0-LEGACY-PRIVATE-DISTRIBUTION",
+      "task": "ECHS-C08",
+      "finding": "Outside the official bank,70 payload JSON files contain15123 occurrences of5882 unique legacy questions, with22777 textbook assets. Current static and failure-fallback providers are active.403 Pearson records explicitly specify commercial_publisher_resource_private_use_only;5479 others lack source_license. Verify and harden authorized private delivery before cutover, not a blind removal of active availability."
+    }
+  ],
+  "limitations": [
+    "No production student/parent/private authoring data inspected or mutated.",
+    "No protected AP Classroom/IB question text copied into this report.",
+    "No new curriculum records written from memory. Existing version foundation is not complete coverage.",
+    "No reusable interactive component/production3D completion claim.",
+    "No live AI requests or complete readiness tenant/concurrency proof in this audit."
+  ]
+}

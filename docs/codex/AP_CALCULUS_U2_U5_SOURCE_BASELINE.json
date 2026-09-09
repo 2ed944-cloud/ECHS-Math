@@ -1,0 +1,559 @@
+{
+  "main_sha": "99a0e6582cd82941a03c7d5cc2ec4517def62bb7",
+  "files": [
+    {
+      "path": "data/ap-calculus-update.js",
+      "exists": true,
+      "bytes": 88500,
+      "sha256": "7dff7fca1e06c15028218a643f8ccc3d4ce2f9dacf47f3963e3c2a61abb412cc",
+      "git_blob_sha": "809183ddf734f738ae1c4dd4eabcb88d1b931f85",
+      "matches": true
+    },
+    {
+      "path": "data/courses.js",
+      "exists": true,
+      "bytes": 220763,
+      "sha256": "2e47966085306e025c9dd8661882986adc3c695b56994887b2044a8408cf4aad",
+      "git_blob_sha": "c8bf1161448e7ea46a8f99aa25763598f9094e14",
+      "matches": true
+    },
+    {
+      "path": "index.html",
+      "exists": true,
+      "bytes": 20628,
+      "sha256": "e2bfc2fe49b0499e85e04954f305186129042295f0a5eaeeaf9c658ef19283cb",
+      "git_blob_sha": "7ca343d5650b0a2b2e63f0ee417088992e5d46ae",
+      "matches": true
+    },
+    {
+      "path": "lessons/ap-calculus/unit-2/2-1-rates-of-change-and-tangent-lines.html",
+      "exists": true,
+      "bytes": 105040,
+      "sha256": "1dcb4732da642784c73d2f75d50ccd65ae1925325668a7c7a6b7639a5ff66249",
+      "git_blob_sha": "99d3c79c8d6ab307a3ad986c6411783cbcde629c",
+      "matches": true
+    },
+    {
+      "path": "lessons/ap-calculus/unit-2/2-2-tangent-lines-and-the-derivative.html",
+      "exists": true,
+      "bytes": 230497,
+      "sha256": "23c20cbe8eb8699194f83e7459175ef8f6d30f067aeb14ff254379e0ff70b062",
+      "git_blob_sha": "044101e56d5bb2dcf3a026f9e632bb4463d89b3b",
+      "matches": true
+    },
+    {
+      "path": "lessons/ap-calculus/unit-2/2-3-derivative-graphs-differentiability-continuity.html",
+      "exists": true,
+      "bytes": 61962,
+      "sha256": "cb9997234dc3d5a86d2c6b941516aadc230b599344a38d1ed854199db49f492f",
+      "git_blob_sha": "be5066ba36afd6fb0d50d29832bde1e35fef48d5",
+      "matches": true
+    },
+    {
+      "path": "lessons/ap-calculus/unit-2/2-4-basic-derivative-rules.html",
+      "exists": true,
+      "bytes": 63642,
+      "sha256": "01f71802a082cc415541b4002f51752c1123828a79288cc131fe1d229d7e813b",
+      "git_blob_sha": "3b10628cfeedc71564eeaee61311dfc28b7dac64",
+      "matches": true
+    },
+    {
+      "path": "lessons/ap-calculus/unit-2/2-5-product-and-quotient-rules.html",
+      "exists": true,
+      "bytes": 47307,
+      "sha256": "c85d1f02c659eae0f59ebb5a3a0792e6fe57765b12fface868ec39ccf0472cff",
+      "git_blob_sha": "1b7fbc65c7c2efc8318c4dce2a1305a8a9732f3d",
+      "matches": true
+    },
+    {
+      "path": "lessons/ap-calculus/unit-2/unit-2-assessment.html",
+      "exists": true,
+      "bytes": 49695,
+      "sha256": "d33a3554a859d735cd27ac02aef0e49ca01555f318185f06b91868f7399e759f",
+      "git_blob_sha": "6b5a2ace73fab4e641b9475bbaca93b17242ace7",
+      "matches": true
+    },
+    {
+      "path": "lessons/ap-calculus/unit-3/3-1-chain-rule.html",
+      "exists": true,
+      "bytes": 75340,
+      "sha256": "8c9ef0098b05632deda373e6b61fab5a5272064747db0e7380fe68a62f428dfa",
+      "git_blob_sha": "64461e81325590b21b767f8b982af3b2fa39f959",
+      "matches": true
+    },
+    {
+      "path": "lessons/ap-calculus/unit-3/3-2-implicit-differentiation.html",
+      "exists": true,
+      "bytes": 79317,
+      "sha256": "6f06cad6d1bbecb1be090bc13892a47214a030148c8b4360ed46958c3ba58d39",
+      "git_blob_sha": "68c8a6f3000f5f770bab8e2ba659b8a0a1ca365a",
+      "matches": true
+    },
+    {
+      "path": "lessons/ap-calculus/unit-3/3-3-inverse-function-and-inverse-trig-derivatives.html",
+      "exists": true,
+      "bytes": 120554,
+      "sha256": "037452dff6f00d2452723a8f22bc36472e3d5e501075378058263823b32403dd",
+      "git_blob_sha": "7e115f3875366145d84f6c9cc8f2d7382207bf54",
+      "matches": true
+    },
+    {
+      "path": "lessons/ap-calculus/unit-3/unit-3-assessment.html",
+      "exists": true,
+      "bytes": 48402,
+      "sha256": "b959c6b41d7b09ad22cab57ff9fb4ac25a1cfa0a4584a1d34f912384089b0969",
+      "git_blob_sha": "506021804c0e86d67d0eed18a8427c63b39cb017",
+      "matches": true
+    },
+    {
+      "path": "lessons/ap-calculus/unit-4/4-1-interpretations-of-the-derivative.html",
+      "exists": true,
+      "bytes": 68853,
+      "sha256": "eeec255b4c532f607bd6c07efcb71bc97b29638f1b61be3fef58fb37be547fd3",
+      "git_blob_sha": "b1ee0fbeeb7474a482c44439b4125e2055fd8427",
+      "matches": true
+    },
+    {
+      "path": "lessons/ap-calculus/unit-4/4-2-straight-line-motion.html",
+      "exists": true,
+      "bytes": 76430,
+      "sha256": "e30efdf9dc8a13b59bc89bf4a6199a46e1991661c1e4fbda35acb810e43759b6",
+      "git_blob_sha": "1dece26bd91999f69999b5f20d81f592ea24bb51",
+      "matches": true
+    },
+    {
+      "path": "lessons/ap-calculus/unit-4/4-3-other-rates-of-change.html",
+      "exists": true,
+      "bytes": 68542,
+      "sha256": "90bd857b548db1c2fe3578a2823c1f8dd07a53e4966671218dae8fe1ff3e017e",
+      "git_blob_sha": "6a813f876dc33f0a3bb3c2f834eb66b03267e4c0",
+      "matches": true
+    },
+    {
+      "path": "lessons/ap-calculus/unit-4/4-4-related-rates.html",
+      "exists": true,
+      "bytes": 214766,
+      "sha256": "fc3d88c246dc8c9594f621e10d05eaef5ff6e0dfc2e83f9719acf174caa02fed",
+      "git_blob_sha": "a240108e5af5c4d05aaec21c88ac67116d2005b7",
+      "matches": true
+    },
+    {
+      "path": "lessons/ap-calculus/unit-4/4-5-linear-approximation.html",
+      "exists": true,
+      "bytes": 125041,
+      "sha256": "a6526aa3b5ae0480df7c5251ec13dd95952f00b71322a160b047d5419bbc5e9c",
+      "git_blob_sha": "19699997db22ada904ed1e6ca2a53e90ffc9b35a",
+      "matches": true
+    },
+    {
+      "path": "lessons/ap-calculus/unit-4/4-6-lhopitals-rule.html",
+      "exists": true,
+      "bytes": 109066,
+      "sha256": "a54af1d8af5082741ecf45832a1bd73369ac0d1675cd3d1a5e9433d76c22c5bb",
+      "git_blob_sha": "2c08ad1ab629244aba8f3b50b89ca9ce8be6c009",
+      "matches": true
+    },
+    {
+      "path": "lessons/ap-calculus/unit-4/unit-4-assessment.html",
+      "exists": true,
+      "bytes": 50545,
+      "sha256": "6c4f2ee330763bec6341dce5c2723fc0ef89b86e51535a8c5e0ad1ac44b16204",
+      "git_blob_sha": "53dcecbb227c7e05c1a132416ad1de4350c06144",
+      "matches": true
+    },
+    {
+      "path": "lessons/ap-calculus/unit-5/5-1-mean-value-theorem.html",
+      "exists": true,
+      "bytes": 183716,
+      "sha256": "e72e9506c985db12c498754e09686ed5ccd86e0ab88b6e95d224125b1259976b",
+      "git_blob_sha": "372206f888cf7df29e232dca48a42c1328951ffe",
+      "matches": true
+    },
+    {
+      "path": "lessons/ap-calculus/unit-5/5-10-optimization-problems.html",
+      "exists": true,
+      "bytes": 1577455,
+      "sha256": "2d4280eacdd5689a1336f44f8349db68b3c02b32515576c6534c44347cc3f0f1",
+      "git_blob_sha": "1ebc36a98067e45e2d8f87febe0673cc72940071",
+      "matches": true
+    },
+    {
+      "path": "lessons/ap-calculus/unit-5/5-2-to-5-5-derivative-graph-analysis-part-1.html",
+      "exists": true,
+      "bytes": 383374,
+      "sha256": "6019ab107ed78344e49502864b63a5f39a6921e8ca1af1dba4aacc9704103957",
+      "git_blob_sha": "86d60d6ab2da4a44cd45e515edf186277c2eb424",
+      "matches": true
+    },
+    {
+      "path": "lessons/ap-calculus/unit-5/5-2-to-5-5-derivative-graph-analysis-part-2.html",
+      "exists": true,
+      "bytes": 222157,
+      "sha256": "f598a2cd0dc6aec6450bb166bcba565fe07ca6f71908d0694b9faa7d85773797",
+      "git_blob_sha": "d5691a1305f4754d24138675c850bc39e93a4994",
+      "matches": true
+    },
+    {
+      "path": "lessons/ap-calculus/unit-5/unit-5-assessment.html",
+      "exists": true,
+      "bytes": 51588,
+      "sha256": "d1ebe1f1a2c67b4ac4de80e74f168f678fdb8f201c99a765d8d97aa8cb37b74b",
+      "git_blob_sha": "faa76a6fb9ca207b72130cc1406571ab30caf7aa",
+      "matches": true
+    },
+    {
+      "path": "notes/ap-calculus/unit-2/notes-2-1-rates-of-change-and-tangent-lines.pdf",
+      "exists": true,
+      "bytes": 313652,
+      "sha256": "6731b6735ebfe1bacfca9776d042869c84c4e1dd7b29134520f7958f4e110aae",
+      "git_blob_sha": "5e86057d60dad0cafbd4a0cbc3f10f894d442556",
+      "matches": true
+    },
+    {
+      "path": "notes/ap-calculus/unit-2/notes-2-2-tangent-lines-and-the-derivative.pdf",
+      "exists": true,
+      "bytes": 310574,
+      "sha256": "9fb992f9255614e13ea8f700267cc5ca76f75b7ae159c7aa9cea2d121d367bce",
+      "git_blob_sha": "13da90ac46ae07a94872a01180e5a302064896e0",
+      "matches": true
+    },
+    {
+      "path": "notes/ap-calculus/unit-2/notes-2-3-the-derivative-graphs-differentiability-and-continuity.pdf",
+      "exists": true,
+      "bytes": 326308,
+      "sha256": "741b7c3f0789aa27915197dcba62333eb4fab94b78216a5f51031c8873eb7400",
+      "git_blob_sha": "9e9eb51a81169201904c1514ac51790042dc9ca4",
+      "matches": true
+    },
+    {
+      "path": "notes/ap-calculus/unit-2/notes-2-4-basic-derivative-rules.pdf",
+      "exists": true,
+      "bytes": 324766,
+      "sha256": "2ff84f0799d1f3a13efa9461c2daede7fcf1d279a3c27610a9d2c5c25102b7eb",
+      "git_blob_sha": "9717b9df9459009eb4a95b0f7af8bab211229512",
+      "matches": true
+    },
+    {
+      "path": "notes/ap-calculus/unit-2/notes-2-5-product-and-quotient-rules.pdf",
+      "exists": true,
+      "bytes": 315597,
+      "sha256": "920e73410aa36e25a0df760f9dbe2821079876874814a77eed25ba1623b4077f",
+      "git_blob_sha": "85308c81249a95f8074541507d9319c3770c6061",
+      "matches": true
+    },
+    {
+      "path": "notes/ap-calculus/unit-3/notes-3-1-the-chain-rule.pdf",
+      "exists": true,
+      "bytes": 308834,
+      "sha256": "ab697c1e7af09594cc822b747fe5ba74917baf2d7083cbf0bd83e71bc7a48cc9",
+      "git_blob_sha": "31761061455232720cb12c661978f2938817f8db",
+      "matches": true
+    },
+    {
+      "path": "notes/ap-calculus/unit-3/notes-3-2-implicit-differentiation.pdf",
+      "exists": true,
+      "bytes": 308698,
+      "sha256": "d575435704d9220bd82b242e39df55127b3694e69811b304e4d1f07ea42be49a",
+      "git_blob_sha": "3578235f237972965fb174c19320d76c4e47cfcc",
+      "matches": true
+    },
+    {
+      "path": "notes/ap-calculus/unit-3/notes-3-3-inverse-function-and-inverse-trigonometric-derivatives.pdf",
+      "exists": true,
+      "bytes": 313407,
+      "sha256": "8a525112602c3eb2eb37e4c998556b6d06c9b0e248e656c2c63da42de62cb9ec",
+      "git_blob_sha": "be988a280d8cc50c787106112343ad3c099cf16d",
+      "matches": true
+    },
+    {
+      "path": "notes/ap-calculus/unit-4/notes-4-1-interpretations-of-the-derivative.pdf",
+      "exists": true,
+      "bytes": 312773,
+      "sha256": "538a716481dfc28aa5c36b479dcbc51d9ee8700d34abd5947c8626beb23cdad9",
+      "git_blob_sha": "e1453b2bece192eea5cb4f0c81f8fcb13dc6a645",
+      "matches": true
+    },
+    {
+      "path": "notes/ap-calculus/unit-4/notes-4-2-straight-line-motion.pdf",
+      "exists": true,
+      "bytes": 303509,
+      "sha256": "f478d4ca68fd0aea35b6524e2fb8045a9a535d38d8869c977ef1232adad47ea0",
+      "git_blob_sha": "1c45cc733fcefb827426c4ed275ef5afd518a171",
+      "matches": true
+    },
+    {
+      "path": "notes/ap-calculus/unit-4/notes-4-3-other-rates-of-change.pdf",
+      "exists": true,
+      "bytes": 314580,
+      "sha256": "b60934b292f250ef11c7b3826e8f1f3175b5e634cdc49d028681af6853fbc519",
+      "git_blob_sha": "f6f1d305ed3d6255f716d64595b54adb1a29f923",
+      "matches": true
+    },
+    {
+      "path": "notes/ap-calculus/unit-4/notes-4-4-related-rates.pdf",
+      "exists": true,
+      "bytes": 315692,
+      "sha256": "5e5a8c2d602d9c24a89ce954d07f5ee12e2657ea74327aaeb4cc0465131b450c",
+      "git_blob_sha": "694170b79a285e5847e54d6dda02a97bb2fb0c7f",
+      "matches": true
+    },
+    {
+      "path": "notes/ap-calculus/unit-4/notes-4-5-linear-approximation.pdf",
+      "exists": true,
+      "bytes": 311782,
+      "sha256": "0d44093b673e24424e1d7341c034ef5a51a72a92f08880b04f7a7b7d88618633",
+      "git_blob_sha": "61e3d0c180ba3123af324cb12e0f86742f0128d9",
+      "matches": true
+    },
+    {
+      "path": "notes/ap-calculus/unit-4/notes-4-6-lhopitals-rule.pdf",
+      "exists": true,
+      "bytes": 316286,
+      "sha256": "62639d873ca373fcf48927dd3fe79bcee11e66113f955ea28273948121b6b9f4",
+      "git_blob_sha": "bb7c26f3c5432963afca4db7bbd8fa5950b7b87f",
+      "matches": true
+    },
+    {
+      "path": "notes/ap-calculus/unit-5/notes-5-1-mean-value-theorem.pdf",
+      "exists": true,
+      "bytes": 314965,
+      "sha256": "4471b3f8bcba97fa9b1437604826fe4164691726ffed8f563c14ceaa1f517211",
+      "git_blob_sha": "acc8907fe6541527f67f7bb5713e896bb1852daf",
+      "matches": true
+    },
+    {
+      "path": "notes/ap-calculus/unit-5/notes-5-10-optimization-problems.pdf",
+      "exists": true,
+      "bytes": 314546,
+      "sha256": "19d97d4245684ebafe4d274d5d405fde8cd4b3822a35836f39b139a4cfab8053",
+      "git_blob_sha": "20e0b0139b73c90bad345df0c292b8c9047de0d9",
+      "matches": true
+    },
+    {
+      "path": "notes/ap-calculus/unit-5/notes-5-2-to-5-5-part-1-derivative-graph-analysis-part-1.pdf",
+      "exists": true,
+      "bytes": 308180,
+      "sha256": "05832f35bcd71eb364f9bf3cb600f3fa12d5e9bb865001f8eae705fd79b81b6d",
+      "git_blob_sha": "768ae6e430225de44c844d79748647ad3a5f5e1c",
+      "matches": true
+    },
+    {
+      "path": "notes/ap-calculus/unit-5/notes-5-2-to-5-5-part-2-derivative-graph-analysis-part-2-challenge-questions.pdf",
+      "exists": true,
+      "bytes": 314984,
+      "sha256": "4b2babd1537ace5a2d8e46c30ede8e90c462b58444cb88fa16c5cf1a80f4e164",
+      "git_blob_sha": "8c92317384afc7ffe0e0ff7f2e32f7e7e8a66bdc",
+      "matches": true
+    },
+    {
+      "path": "reviews/ap-calculus/unit-2/unit-2-ap-style-review.pdf",
+      "exists": true,
+      "bytes": 315230,
+      "sha256": "ac2f910e425a5048bd6c23baf9bf97b08c950296e7a23538aec3770ca6b41a03",
+      "git_blob_sha": "fe0ef03422ec7f16b5f2815f6a338f2023898634",
+      "matches": true
+    },
+    {
+      "path": "reviews/ap-calculus/unit-2/unit-2-comprehensive-review.pdf",
+      "exists": true,
+      "bytes": 368685,
+      "sha256": "bc861f35406a88539903a41ee3cbde5d3eaa12f1e4fa3bdf6b99e7998312290f",
+      "git_blob_sha": "4a22ee5d074b419ab48bec7f73620e3cfa6a0b0d",
+      "matches": true
+    },
+    {
+      "path": "reviews/ap-calculus/unit-3/unit-3-ap-style-review.pdf",
+      "exists": true,
+      "bytes": 310429,
+      "sha256": "563090f4dfc4179c1004ef5dde90c0fe7f3b445cf3702ba28da758f61c84ae15",
+      "git_blob_sha": "cd5fac5c2ac094fe3cf8cb100e934c2a5049fe67",
+      "matches": true
+    },
+    {
+      "path": "reviews/ap-calculus/unit-3/unit-3-comprehensive-review.pdf",
+      "exists": true,
+      "bytes": 348720,
+      "sha256": "426037124ace731911ebfe26a4b7651ab55151f4633552d5e7f22a954587983d",
+      "git_blob_sha": "e1034f9ee0092b761854bc3996cbca7e896649a3",
+      "matches": true
+    },
+    {
+      "path": "reviews/ap-calculus/unit-4/unit-4-ap-style-review.pdf",
+      "exists": true,
+      "bytes": 314974,
+      "sha256": "9d2738d871ed289f76e2c6f41c55c5b7a7a293f32239ea5818a8d2389d839762",
+      "git_blob_sha": "87ff33f337e04c5ec76e881f60777590a980d2df",
+      "matches": true
+    },
+    {
+      "path": "reviews/ap-calculus/unit-4/unit-4-comprehensive-review.pdf",
+      "exists": true,
+      "bytes": 375783,
+      "sha256": "dcdae64e5c8e38e7b440ab483220389ad9087485b79ecc0b15c271ec15b08743",
+      "git_blob_sha": "a0c32bd12143af0cd741451d2394ed258cf736ba",
+      "matches": true
+    },
+    {
+      "path": "reviews/ap-calculus/unit-5/unit-5-ap-style-review.pdf",
+      "exists": true,
+      "bytes": 308179,
+      "sha256": "a6884126328fb5b96b69cacbbda5e5ca62d19c03ca11f1f13671f37afcf96f31",
+      "git_blob_sha": "3a52cd48521c0f322b0c6536b1e468304b6b6aeb",
+      "matches": true
+    },
+    {
+      "path": "reviews/ap-calculus/unit-5/unit-5-comprehensive-review.pdf",
+      "exists": true,
+      "bytes": 346772,
+      "sha256": "76810a3c7ecee2e558604f02b465917448f1985b46fca040c01bd94d90b8628c",
+      "git_blob_sha": "cdb21728c83114adb2b60b6b54e1981d10429049",
+      "matches": true
+    },
+    {
+      "path": "worksheets/ap-calculus/unit-2/worksheet-2-1-rates-of-change-and-tangent-lines.pdf",
+      "exists": true,
+      "bytes": 329066,
+      "sha256": "8851d9d875299197e73f1d214bb7a23c9db66bdae3a5308129b3db1ce6472c77",
+      "git_blob_sha": "be8566b16eb7c20a22f10c591d20dc7d5a6dac7c",
+      "matches": true
+    },
+    {
+      "path": "worksheets/ap-calculus/unit-2/worksheet-2-2-tangent-lines-and-the-derivative.pdf",
+      "exists": true,
+      "bytes": 332636,
+      "sha256": "07d107e0abcb1080738ceea477c4aaf6075d55bf0e53302b21b070d77e6ebf41",
+      "git_blob_sha": "88290945097954678d28a27a1a40842585963b27",
+      "matches": true
+    },
+    {
+      "path": "worksheets/ap-calculus/unit-2/worksheet-2-3-the-derivative-graphs-differentiability-and-continuity.pdf",
+      "exists": true,
+      "bytes": 350807,
+      "sha256": "bdaf48ff5b315f2626c18691e565f79fad4b8f84df246a9af6fb1430074a8e19",
+      "git_blob_sha": "4bda8772ca83e63f16e5ed8fc43c03ddd433c61c",
+      "matches": true
+    },
+    {
+      "path": "worksheets/ap-calculus/unit-2/worksheet-2-4-basic-derivative-rules.pdf",
+      "exists": true,
+      "bytes": 366007,
+      "sha256": "34218a7696fc4e7f8943f6905695291ff0fd36369a878cd95f9b88e2c26cdddd",
+      "git_blob_sha": "9615a3a57218543df4eb40e6adf196090b09075d",
+      "matches": true
+    },
+    {
+      "path": "worksheets/ap-calculus/unit-2/worksheet-2-5-product-and-quotient-rules.pdf",
+      "exists": true,
+      "bytes": 342092,
+      "sha256": "fc93424105480e599814e97fca5d21fca0f50e2e86b550fcc61ac8ad2ea05318",
+      "git_blob_sha": "2cddc036fb93170b7fa77eb1c5b9e731280b13cc",
+      "matches": true
+    },
+    {
+      "path": "worksheets/ap-calculus/unit-3/worksheet-3-1-the-chain-rule.pdf",
+      "exists": true,
+      "bytes": 319619,
+      "sha256": "cf645efaca801442b5fded81a39c11729436cd8eccb62a1a67e8807f3d866dc6",
+      "git_blob_sha": "eeb54a2f25d294d690e812702ecbae24a8640c51",
+      "matches": true
+    },
+    {
+      "path": "worksheets/ap-calculus/unit-3/worksheet-3-2-implicit-differentiation.pdf",
+      "exists": true,
+      "bytes": 319072,
+      "sha256": "628c7c01bd66934bbd9e6dd419e14e687cc30f98648d14c4df911d8d8cca4b44",
+      "git_blob_sha": "31795088415b0dc67cee571ff3eb066acea6ccf0",
+      "matches": true
+    },
+    {
+      "path": "worksheets/ap-calculus/unit-3/worksheet-3-3-inverse-function-and-inverse-trigonometric-derivatives.pdf",
+      "exists": true,
+      "bytes": 320931,
+      "sha256": "3dc133d5008fce00e7c6e904edac30304faea0c1d157ad481f0bf4ce924f74a3",
+      "git_blob_sha": "c90167e702162a7c10e01ab16af62f1dfee0ccf5",
+      "matches": true
+    },
+    {
+      "path": "worksheets/ap-calculus/unit-4/worksheet-4-1-interpretations-of-the-derivative.pdf",
+      "exists": true,
+      "bytes": 322446,
+      "sha256": "722adcb5620486e9adf72b531cf1b46ed098c587b329d159e164426d8882c788",
+      "git_blob_sha": "23ff334e0aee041c024794ff37f2d9749dacf4e4",
+      "matches": true
+    },
+    {
+      "path": "worksheets/ap-calculus/unit-4/worksheet-4-2-straight-line-motion.pdf",
+      "exists": true,
+      "bytes": 314108,
+      "sha256": "b7882f1c700bdefef88ebc05b7ed8124191346b9f180873c37bbc9687d9da495",
+      "git_blob_sha": "915d6a1f06a684c0b4d999cc9d7050f7a7775da9",
+      "matches": true
+    },
+    {
+      "path": "worksheets/ap-calculus/unit-4/worksheet-4-3-other-rates-of-change.pdf",
+      "exists": true,
+      "bytes": 324776,
+      "sha256": "7f0bed4a29cac6fba4f03ebc413d83affd456137a541593aa7013a7d07be0a4f",
+      "git_blob_sha": "304bea3d7d97a0dde4e57666a380257bfa390495",
+      "matches": true
+    },
+    {
+      "path": "worksheets/ap-calculus/unit-4/worksheet-4-4-related-rates.pdf",
+      "exists": true,
+      "bytes": 325568,
+      "sha256": "391f1aa4dcd892fc19c004b41b3dcb008daf3290742b43564d4b8a8ec3d2f19b",
+      "git_blob_sha": "25e0fdbc7bf2102afa7f6c6f6882da10cccc23ce",
+      "matches": true
+    },
+    {
+      "path": "worksheets/ap-calculus/unit-4/worksheet-4-5-linear-approximation.pdf",
+      "exists": true,
+      "bytes": 320962,
+      "sha256": "441d21c3f2e47fc58ea2cd839297a6e3d9f3f977c5ccf3321d461606ca26e42b",
+      "git_blob_sha": "8310fafbf8091a89e22cbf2b1d096252bffb3202",
+      "matches": true
+    },
+    {
+      "path": "worksheets/ap-calculus/unit-4/worksheet-4-6-lhopitals-rule.pdf",
+      "exists": true,
+      "bytes": 329179,
+      "sha256": "0434b234635657564d2f81ca7ebbff48c9d939bff1b72f387808e128cef7e4c4",
+      "git_blob_sha": "bf5bd6d636c1f45c263b28b1947674ae00737d8a",
+      "matches": true
+    },
+    {
+      "path": "worksheets/ap-calculus/unit-5/worksheet-5-1-mean-value-theorem.pdf",
+      "exists": true,
+      "bytes": 323344,
+      "sha256": "1cc04d1091f36ab1151a4ee0877def6ac9e26c86ba85623f51735257b20bfe28",
+      "git_blob_sha": "6568d61cec2919407b1d049c3e30723f5ba16034",
+      "matches": true
+    },
+    {
+      "path": "worksheets/ap-calculus/unit-5/worksheet-5-10-optimization-problems.pdf",
+      "exists": true,
+      "bytes": 322269,
+      "sha256": "2d1d21467f78a5474fa0b3726bc42af99d13d82495946d25f4603b3b46164d05",
+      "git_blob_sha": "4516edab0e436d35c5ba89b14b76c31583f6c06e",
+      "matches": true
+    },
+    {
+      "path": "worksheets/ap-calculus/unit-5/worksheet-5-2-to-5-5-part-1-derivative-graph-analysis-part-1.pdf",
+      "exists": true,
+      "bytes": 315479,
+      "sha256": "2765d8b52075391ab8fc062a2181dc4596a27de7561534b5e71e9b59d4338811",
+      "git_blob_sha": "44bbcb382dff62cbe16299c77da0d2e0a9c6f598",
+      "matches": true
+    },
+    {
+      "path": "worksheets/ap-calculus/unit-5/worksheet-5-2-to-5-5-part-2-derivative-graph-analysis-part-2-challenge-questions.pdf",
+      "exists": true,
+      "bytes": 322010,
+      "sha256": "54caf43daa81034ae57d2d4502f5b2db57c787b61e522ff227a095d3a452d8e5",
+      "git_blob_sha": "a1e991c49f963b91205d9046a996ecba836ed114",
+      "matches": true
+    }
+  ],
+  "missing": [],
+  "mismatch": []
+}

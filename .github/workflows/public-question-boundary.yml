@@ -1,0 +1,41 @@
+name: ECHS public question artifact browser acceptance
+
+on:
+  pull_request:
+    paths: ['sw.js', 'tools/*public_question*', 'question-bank/official/**', 'js/institution-client.js', 'js/portal-access.js', '.github/workflows/public-question-boundary.yml']
+  push:
+    branches: [main]
+    paths: ['sw.js', 'tools/*public_question*', 'question-bank/official/**', 'js/institution-client.js', 'js/portal-access.js', '.github/workflows/public-question-boundary.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  chromium:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install pinned browser
+        run: |
+          npm ci --prefix question-bank/official/tools
+          npx --prefix question-bank/official/tools playwright install --with-deps chromium-headless-shell
+      - name: Build projected fixture and retain original guards
+        run: python tools/build_public_question_fixture.py artifacts/public-question-boundary/site
+      - name: Exercise public UI and actual service worker
+        run: node tools/test_public_question_browser.mjs artifacts/public-question-boundary/site
+      - name: Upload metadata-only browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: public-question-browser
+          path: artifacts/public-question-boundary/browser
+          if-no-files-found: warn
+          retention-days: 7

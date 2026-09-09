@@ -1,7 +1,87 @@
-const VERSION = "echs-platform-school-control-v3-hybrid2-mastery1-recovery1-calculus-only-practice-routing-redesign-ib-lesson-query-premium-practice-20260802-fullwidth-filter-drawer2-landing-layout1-unit-collapse1-tangent-logo-collapse2-bank-export1-dynamic-calculus-banks1-multi-route-timetable2-lesson-portal-calm2-multicourse-banks1-ib-ai-1-1-local-ti84-v68-design-v51-ib-ai-u6-61-v1-lesson-visibility-progression-20260830-v1-platform-resilience-20260904-ap-calculus-11-interactive-v1-ap-calculus-12-interactive-v1-ap-calculus-13-14-interactive-v1-ap-calculus-16-interactive-v1-ap-calculus-15-interactive-v1-ap-calculus-15-ap-scope-v2-ib-ai-11-16-merged-v7-ap-precalculus-11-ap-scope-v3-ap-precalculus-12-ap-scope-v3-ib-ai-14-17-finance-v8-ap-precalculus11-heading-focus-v1-ap-precalculus11-context-practice-v4-ap-calculus-midunit-v1-midunit-batch2-midunit-batch3-ib-ai-12-sl-alignment-v7-ap-calculus-17-116-ab1-owned-sync-v1-lesson-content-009-v2-lesson-media-010-v1-lesson-recovery-011-v1-lesson-history-012-v1-lesson-presentation-013-v1-ib-reference-import-014-v1";
+const VERSION = "echs-platform-school-control-v3-hybrid2-mastery1-recovery1-calculus-only-practice-routing-redesign-ib-lesson-query-premium-practice-20260802-fullwidth-filter-drawer2-landing-layout1-unit-collapse1-tangent-logo-collapse2-bank-export1-dynamic-calculus-banks1-multi-route-timetable2-lesson-portal-calm2-multicourse-banks1-ib-ai-1-1-local-ti84-v68-design-v51-ib-ai-u6-61-v1-lesson-visibility-progression-20260830-v1-platform-resilience-20260904-ap-calculus-11-interactive-v1-ap-calculus-12-interactive-v1-ap-calculus-13-14-interactive-v1-ap-calculus-16-interactive-v1-ap-calculus-15-interactive-v1-ap-calculus-15-ap-scope-v2-ib-ai-11-16-merged-v7-ap-precalculus-11-ap-scope-v3-ap-precalculus-12-ap-scope-v3-ib-ai-14-17-finance-v8-ap-precalculus11-heading-focus-v1-ap-precalculus11-context-practice-v4-ap-calculus-midunit-v1-midunit-batch2-midunit-batch3-ib-ai-12-sl-alignment-v7-ap-calculus-17-116-ab1-owned-sync-v1-lesson-content-009-v2-lesson-media-010-v1-lesson-recovery-011-v1-lesson-history-012-v1-lesson-presentation-013-v1-ib-reference-import-014-v1-public-question-boundary-c01-v1";
 // Practice assignment studio assets are versioned with the authenticated shell.
 const STATIC_CACHE = `${VERSION}-static`;
 const RUNTIME_CACHE = `${VERSION}-runtime`;
+// Exact reviewed build output. This metadata is public and contains paths only.
+// A valid cached copy with this same pin supports already-approved media offline.
+const PUBLIC_QUESTION_BOUNDARY_SHA256 = "c4fcdce623c44155185719ab4612045a5f3ef7fd1b979a7019c3e68655b13069";
+const PUBLIC_QUESTION_BOUNDARY_URL = new URL("./question-bank/official/data/student/publication-boundary.json",self.location.href).href;
+const PUBLIC_SITE_PATH = new URL("./",self.location.href).pathname;
+const PUBLIC_STUDENT_FILES = new Set([
+  "archive-id-map.json","archive-index.json","catalog.json","gate.json","id-map.json","media-manifest.json","question-index.json","publication-boundary.json",
+  ...Array.from({length:16},(_,index)=>`questions/chunk-${String(index).padStart(3,"0")}.json`),
+  ...Array.from({length:21},(_,index)=>`archive-questions/chunk-${String(index).padStart(3,"0")}.json`)
+]);
+const PUBLIC_RIGHTS_FILES = new Set(["README.md","echs-ap-official-student-practice-2026-07-28.json"]);
+let publicMediaBoundaryPromise=null;
+let publicMediaBoundaryRetryAt=0;
+async function readPublicMediaBoundary(response){
+  if(!response?.ok||!/^application\/json(?:\s*;|$)/i.test(response.headers.get("content-type")||""))return null;
+  const reader=response.body?.getReader();if(!reader)return null;
+  const chunks=[];let size=0,timedOut=false,timer;
+  const deadline=new Promise((_,reject)=>{timer=setTimeout(()=>{timedOut=true;reader.cancel().catch(()=>{});reject(new Error("Boundary read timed out"))},3000)});
+  try{
+    while(true){const part=await Promise.race([reader.read(),deadline]);if(timedOut)return null;if(part.done)break;size+=part.value.byteLength;if(size>262144){reader.cancel().catch(()=>{});return null}chunks.push(part.value)}
+    const bytes=new Uint8Array(size);let offset=0;for(const chunk of chunks){bytes.set(chunk,offset);offset+=chunk.byteLength}
+    const hash=[...new Uint8Array(await crypto.subtle.digest("SHA-256",bytes))].map(x=>x.toString(16).padStart(2,"0")).join("");
+    if(hash!==PUBLIC_QUESTION_BOUNDARY_SHA256)return null;
+    const value=JSON.parse(new TextDecoder("utf-8",{fatal:true}).decode(bytes));
+    if(!value||Object.keys(value).sort().join(",")!=="contract,counts,media"||value.contract!=="echs.public-question-boundary.v1")return null;
+    const counts=value.counts,expected={student_ready:1104,archive_records:1217,restricted_archive:113,direct_media:1193,media_files:1277};
+    if(!counts||Object.keys(counts).sort().join(",")!==Object.keys(expected).sort().join(",")||Object.keys(expected).some(key=>counts[key]!==expected[key]))return null;
+    if(!Array.isArray(value.media)||value.media.length!==1277)return null;
+    let previous="";for(const path of value.media){if(typeof path!=="string"||path.length>512||!/^media\/(?:[A-Za-z0-9_.-]+\/)*[A-Za-z0-9_.-]+\.(?:svg|png|jpe?g|webp)$/.test(path)||path.split("/").some(x=>x==="."||x==="..")||path<=previous)return null;previous=path}
+    return new Set(value.media);
+  }catch{return null}finally{clearTimeout(timer);reader.releaseLock()}
+}
+async function loadPublicMediaBoundary(){
+  if(publicMediaBoundaryPromise)return publicMediaBoundaryPromise;
+  if(Date.now()<publicMediaBoundaryRetryAt)return null;
+  publicMediaBoundaryPromise=(async()=>{
+    const cache=await caches.open(STATIC_CACHE);let response;const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),4000);
+    try{response=await fetch(PUBLIC_QUESTION_BOUNDARY_URL,{cache:"no-store",credentials:"omit",redirect:"error",signal:controller.signal})}
+    catch{const cached=await cache.match(PUBLIC_QUESTION_BOUNDARY_URL);return cached?readPublicMediaBoundary(cached):null}
+    finally{clearTimeout(timer)}
+    // An HTTP error or malformed online response never falls back to old data.
+    const approved=await readPublicMediaBoundary(response.clone());
+    if(approved)try{await cache.put(PUBLIC_QUESTION_BOUNDARY_URL,response)}catch{/* Approval stays in memory if storage is unavailable. */}
+    else response.body?.cancel().catch(()=>{});
+    return approved;
+  })().catch(()=>null).then(value=>{if(!value){publicMediaBoundaryRetryAt=Date.now()+5000;publicMediaBoundaryPromise=null}return value});
+  return publicMediaBoundaryPromise;
+}
+function publicQuestionPath(url){
+  if(url.origin!==self.location.origin)return null;
+  let decoded;try{decoded=decodeURIComponent(url.pathname)}catch{return /question-bank|\.staging|packages|\.deploy|\.echs-backups|artifacts/i.test(url.pathname)?{path:"",noncanonical:true}:null}
+  const scoped=decoded.replace(/\\/g,"/");
+  if(!scoped.startsWith(PUBLIC_SITE_PATH))return null;
+  const path=scoped.slice(PUBLIC_SITE_PATH.length);
+  if(!/^(?:question-bank\/official\/|\.staging(?:\/|$)|packages(?:\/|$)|\.deploy(?:\/|$)|\.echs-backups(?:\/|$)|artifacts(?:\/|$))/.test(path))return null;
+  return {path,noncanonical:decoded!==url.pathname||scoped!==decoded||path.split("/").some(x=>x==="."||x==="..")};
+}
+function deniedPublicQuestionPath(url,media){
+  const info=publicQuestionPath(url);if(!info)return false;
+  const {path,noncanonical}=info;if(noncanonical)return true;
+  if(/^(?:\.staging|packages|\.deploy|\.echs-backups|artifacts)(?:\/|$)/.test(path))return true;
+  const relative=path.slice("question-bank/official/".length);
+  if(relative.startsWith("media/"))return Boolean(url.search)||!media?.has(relative);
+  if(relative.startsWith("admin/data/"))return relative!=="admin/data/question-trust-manifest.json";
+  if(relative.startsWith("data/student/"))return !PUBLIC_STUDENT_FILES.has(relative.slice("data/student/".length));
+  if(relative.startsWith("data/rights/"))return !PUBLIC_RIGHTS_FILES.has(relative.slice("data/rights/".length));
+  if(relative.startsWith("data/"))return true;
+  return false;
+}
+function changedPublicProjectionPath(url){
+  const info=publicQuestionPath(url);if(!info)return false;
+  return /^question-bank\/official\/(?:admin\/(?:teacher|import)\.html|data\/student\/(?:archive-index\.json|archive-questions\/chunk-\d{3}\.json))$/.test(info.path);
+}
+async function purgeDeniedPublicQuestionCache(){
+  const approved=await loadPublicMediaBoundary();
+  for(const name of await caches.keys()){
+    const cache=await caches.open(name);
+    for(const request of await cache.keys()){const url=new URL(request.url);if(deniedPublicQuestionPath(url,approved)||changedPublicProjectionPath(url))await cache.delete(request)}
+  }
+}
 const SHELL = [
   "./","./index.html","./offline.html","./manifest.json","./login.html","./config/institution.json",
   "./css/platform-usability.css","./css/portal.css","./css/lesson-portal-overhaul.css","./css/practice-integration.css","./css/official-ap-integration.css","./css/platform-foundation.css","./css/institution.css","./css/institution-polish.css","./css/institution-premium.css","./css/institution-responsive.css","./css/institution-completion.css","./css/learning-access.css","./css/ib-lesson-platform-integration.css","./css/gamification.css","./css/landing-premium.css","./css/platform-executive-v4.css","./css/echs-design-system-v5-1.css","./css/admin-executive-v4.css","./css/landing-calculus-motion.css","./css/mastery-evidence.css","./css/unit-practice-unlock.css","./css/smart-learning-route.css",
@@ -29,38 +109,68 @@ async function navigationFetch(request){
   const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),12000);
   try{return await fetch(reloadRequest(request),{signal:controller.signal})}finally{clearTimeout(timer)}
 }
-async function networkFirst(request,fallbackUrl,{reload=false}={}){
+async function networkFirst(request,fallbackUrl,{reload=false,currentOnly=false}={}){
   const cache=await caches.open(RUNTIME_CACHE);
   try{const response=await(reload?navigationFetch(request):fetch(request));await saveResponse(cache,request,response);return response}
-  catch{return(await cache.match(request))||(await caches.match(request))||(fallbackUrl?await caches.match(fallbackUrl):null)||Response.error()}
+  catch{return(await cache.match(request))||(!currentOnly?await caches.match(request):null)||(fallbackUrl?await caches.match(fallbackUrl):null)||Response.error()}
 }
 async function freshAuthDocument(request){
   const cache=await caches.open(RUNTIME_CACHE);
   try{const response=await navigationFetch(request);if(!await validAuthShell(response))throw new Error("Invalid authenticated shell response");await saveResponse(cache,request,response);return response}
   catch{const cached=(await cache.match(request))||(await caches.match(request));if(cached&&await validAuthShell(cached))return cached;return(await caches.match("./offline.html"))||Response.error()}
 }
-async function staleWhileRevalidate(request,event){
-  const cache=await caches.open(RUNTIME_CACHE),cached=await cache.match(request)||await caches.match(request);
+async function staleWhileRevalidate(request,event,{currentOnly=false}={}){
+  const cache=await caches.open(RUNTIME_CACHE),cached=await cache.match(request)||(!currentOnly?await caches.match(request):null);
   const network=fetch(request).then(async response=>{await saveResponse(cache,request,response);return response}).catch(()=>cached||Response.error());
   // Keep the worker alive until an updated asset has actually been stored.
   event.waitUntil(network.then(()=>{}));
   return cached||network;
 }
 const REQUIRED_SHELL=["./offline.html","./login.html","./js/institution-client.js","./js/login.js","./css/platform-usability.css"];
+const OPTIONAL_SHELL_TIMEOUT_MS=4000;
+async function precacheOptionalShell(cache,requests){
+  const controller=new AbortController();let stopped=false,timer;
+  const deadline=new Promise(resolve=>{timer=setTimeout(()=>{stopped=true;controller.abort();resolve()},OPTIONAL_SHELL_TIMEOUT_MS)});
+  const work=Promise.allSettled(requests.map(async request=>{
+    let response;
+    try{
+      response=await fetch(request,{signal:controller.signal});
+      if(stopped||!response.ok){response.body?.cancel().catch(()=>{});return}
+      await cache.put(request,response);
+    }catch{if(response?.body&&!response.body.locked)response.body.cancel().catch(()=>{})}
+  }));
+  // A stalled fetch, response body, or storage operation cannot hold install open.
+  // Late responses are discarded; the fixed optional list contains public assets.
+  try{await Promise.race([work,deadline])}finally{stopped=true;clearTimeout(timer);controller.abort()}
+}
 self.addEventListener("install",event=>{event.waitUntil((async()=>{
   const cache=await caches.open(STATIC_CACHE);
   const shellRequest=url=>new Request(new URL(url,self.location.href),{cache:"reload"});
   await cache.addAll(REQUIRED_SHELL.map(shellRequest));
+  await loadPublicMediaBoundary();
   // A missing optional lesson asset must not strand everyone on an old release.
-  await Promise.allSettled(SHELL.filter(url=>!REQUIRED_SHELL.includes(url)).map(url=>cache.add(shellRequest(url))));
+  await precacheOptionalShell(cache,SHELL.filter(url=>!REQUIRED_SHELL.includes(url)).map(shellRequest));
   await self.skipWaiting();
 })())});
-self.addEventListener("activate",event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key.startsWith("echs-")&&![STATIC_CACHE,RUNTIME_CACHE].includes(key)).map(key=>caches.delete(key)))).then(()=>self.clients.claim()))});
+self.addEventListener("activate",event=>{event.waitUntil(purgeDeniedPublicQuestionCache().then(()=>caches.keys()).then(keys=>Promise.all(keys.filter(key=>key.startsWith("echs-")&&![STATIC_CACHE,RUNTIME_CACHE].includes(key)).map(key=>caches.delete(key)))).then(()=>self.clients.claim()))});
 self.addEventListener("fetch",event=>{
   const request=event.request;if(request.method!=="GET")return;
   const url=new URL(request.url),sameOrigin=url.origin===self.location.origin;
   const sensitive=request.headers.has("authorization")||privateApi.test(url.pathname)||/\.supabase\.co$/i.test(url.hostname)||[...url.searchParams.keys()].some(key=>/^(?:token|access_token|refresh_token|signature|apikey)$/i.test(key));
   if(sensitive){event.respondWith(fetch(request,{cache:"no-store"}));return}
+  const official=publicQuestionPath(url);
+  if(official&&(official.noncanonical||changedPublicProjectionPath(url)||/^(?:question-bank\/official\/(?:media|data|admin\/data)\/|\.staging(?:\/|$)|packages(?:\/|$)|\.deploy(?:\/|$)|\.echs-backups(?:\/|$)|artifacts(?:\/|$))/.test(official.path))){
+    // Removed raw files and unapproved media must never use stale cache fallback.
+    // Approved images retain the same runtime cache path and offline behavior.
+    event.respondWith((async()=>{
+      const media=official.path.startsWith("question-bank/official/media/")?await loadPublicMediaBoundary():null;
+      if(deniedPublicQuestionPath(url,media))return fetch(request,{cache:"no-store"});
+      if(official.path.startsWith("question-bank/official/media/"))return staleWhileRevalidate(request,event,{currentOnly:true});
+      if(url.pathname.endsWith(".json")||changedPublicProjectionPath(url))return networkFirst(request,null,{reload:true,currentOnly:true});
+      if(request.mode==="navigate")return networkFirst(request,"./offline.html",{reload:true,currentOnly:true});
+      return staleWhileRevalidate(request,event,{currentOnly:true});
+    })());return;
+  }
   if(sameOrigin&&AUTH_DOCUMENT.test(url.pathname)){event.respondWith(freshAuthDocument(request));return}
   const setupPage=sameOrigin&&/\/setup\.html$/i.test(url.pathname);
   if(setupPage){event.respondWith(fetch(request,{cache:"no-store"}));return}

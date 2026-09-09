@@ -8,6 +8,8 @@ import re
 import sys
 from pathlib import Path
 
+from project_public_question_bank import validate_projection
+
 
 def fail(errors: list[str], message: str) -> None:
     errors.append(message)
@@ -56,6 +58,11 @@ def validate(root: Path, expected_sha: str) -> list[str]:
 
     development_only = [
         ".github",
+        ".staging",
+        "packages",
+        ".deploy",
+        ".echs-backups",
+        "artifacts",
         "tools",
         "supabase",
         "cloudflare-ai-worker",
@@ -70,6 +77,8 @@ def validate(root: Path, expected_sha: str) -> list[str]:
     for relative in development_only:
         if (root / relative).exists():
             fail(errors, f"Pages artifact includes development-only path: {relative}")
+
+    errors.extend(validate_projection(Path(__file__).resolve().parents[1], root))
 
     deployment_text = read(root, "deployment.json", errors)
     try:

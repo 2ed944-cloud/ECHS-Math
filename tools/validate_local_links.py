@@ -11,7 +11,7 @@ from urllib.parse import unquote, urlsplit
 
 
 ATTRS = {"href", "src", "poster", "action"}
-SKIP_PARTS = {".git", ".echs-backups", "node_modules", "_pages"}
+SKIP_PARTS = {".git", ".echs-backups", "node_modules", "_pages", "artifacts"}
 SKIP_SCHEMES = {"data", "http", "https", "mailto", "tel", "javascript", "blob"}
 
 
