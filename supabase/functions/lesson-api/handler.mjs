@@ -1,5 +1,6 @@
 import { assertPersistableDocument, assertPublishableDocument, assertStudentDocument } from './document-contract.mjs';
 import { confirmedMediaCapabilities, handleLessonAsset, LessonMediaRequestError } from './media-handler.mjs';
+import { confirmedRecoveryCapabilities, projectRecoveryKey } from './recovery-contract.mjs';
 
 export const LESSON_API_CONTRACT = 'echs.lesson.store.v1';
 export const MAX_REQUEST_BYTES = 1024 * 1024 + 128 * 1024;
@@ -104,6 +105,7 @@ function route(req) {
   if (req.method === 'GET' && path === '/health') { query(url, []); return { action: 'health', payload: {} }; }
   if (req.method === 'GET' && path === '/health/authoring') { query(url, []); return { action: 'authoring_health', payload: {} }; }
   if (req.method === 'GET' && path === '/health/media') { query(url, []); return { action: 'media_health', payload: {} }; }
+  if (req.method === 'GET' && path === '/health/recovery') { query(url, []); return { action: 'recovery_health', payload: {} }; }
   if (req.method === 'GET' && path === '/context') {
     const args = query(url, ['class_id']); if (own(args, 'class_id')) uuid(args.class_id);
     return { action: 'context', payload: args };
@@ -132,6 +134,7 @@ function route(req) {
   if ((match = /^\/lessons\/([^/]+)(?:\/(.*))?$/.exec(path))) {
     const lesson_id = uuid(match[1]); const suffix = match[2] || '';
     if (req.method === 'GET' && suffix === '') { query(url, []); return { action: 'get', payload: { lesson_id } }; }
+    if (req.method === 'POST' && suffix === 'recovery-key') { query(url, []); return { action: 'recovery_key', payload: { lesson_id } }; }
     if (req.method === 'GET' && suffix === 'published') {
       const args = query(url, ['class_id'], ['class_id']); uuid(args.class_id);
       return { action: 'deliver', payload: { lesson_id, ...args } };
@@ -263,6 +266,12 @@ export function createLessonHandler({ rpc, mathEngine, assetStorage, allowedOrig
         if (!capabilities) throw unavailable();
         return reply({ok:true,service:'lesson-api',contract:LESSON_API_CONTRACT,media_capabilities:capabilities});
       }
+      if (target.action === 'recovery_health') {
+        let capabilities=null;
+        try {capabilities=confirmedRecoveryCapabilities(await invoke('lesson_recovery_capabilities',{}));} catch {/* fail closed */}
+        if(!capabilities)throw unavailable();
+        return reply({ok:true,service:'lesson-api',contract:LESSON_API_CONTRACT,recovery_capabilities:capabilities});
+      }
       const header = req.headers.get('authorization') || '';
       const token = /^Bearer ([^\s]{16,2048})$/.exec(header)?.[1];
       if (!token) throw new ApiError(401, 'sign_in_required', 'An active ECHS school session is required.');
@@ -284,6 +293,15 @@ export function createLessonHandler({ rpc, mathEngine, assetStorage, allowedOrig
         if (data?.ok !== true || data.contract !== LESSON_API_CONTRACT) throw unavailable();
         return data;
       };
+      if(target.action==='recovery_key') {
+        inputValidation=true;object(await readJson(req,bodyTimeoutMs),[]);inputValidation=false;
+        const current=await store('get',target.payload);
+        if(current.lesson?.id!==target.payload.lesson_id || current.lesson?.organization_id!==actor.organization_id || !UUID.test(current.lesson?.class_id||''))throw unavailable();
+        const released=await invoke('lesson_draft_recovery_key',{p_token_hash:tokenHash,p_payload:target.payload});
+        if(req.signal.aborted)throw unavailable();
+        if(!(Date.parse(actor.expires_at)>now()))throw new ApiError(401,'sign_in_required','An active ECHS school session is required.');
+        return reply(projectRecoveryKey(released,{actor,lessonId:target.payload.lesson_id,classId:current.lesson.class_id}));
+      }
       let payload = target.payload;
       if (!payload) { inputValidation = true; payload = mutationPayload(target.action, await readJson(req, bodyTimeoutMs), target.pathId); inputValidation = false; }
       if (target.action === 'create') {
@@ -336,7 +354,9 @@ export function createLessonHandler({ rpc, mathEngine, assetStorage, allowedOrig
         try { capabilities = confirmedCapabilities(await invoke('lesson_content_capabilities', {})); } catch { /* fail closed */ }
         let mediaCapabilities=null;
         if (assetStorage) {try {mediaCapabilities=confirmedMediaCapabilities(await invoke('lesson_media_capabilities',{}));} catch {/* fail closed */}}
-        return reply({ ...data, authoring_capabilities: capabilities, media_capabilities:mediaCapabilities });
+        let recoveryCapabilities=null;
+        try {recoveryCapabilities=confirmedRecoveryCapabilities(await invoke('lesson_recovery_capabilities',{}));} catch {/* fail closed */}
+        return reply({ ...data, authoring_capabilities: capabilities, media_capabilities:mediaCapabilities,recovery_capabilities:recoveryCapabilities });
       }
       return reply(data, target.action === 'create' ? 201 : 200);
     } catch (error) {

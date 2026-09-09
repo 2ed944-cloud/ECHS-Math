@@ -109,14 +109,16 @@ function endpoint(probe,override={}) {
     if(name==='api_session_lookup')return {data:[{...actor,...override}],error:null};
     if(name==='lesson_store')return {data:{ok:true,contract:'echs.lesson.store.v1',actor,classes:[]},error:null};
     if(name==='lesson_content_capabilities')return probe();
+    if(name==='lesson_recovery_capabilities')return {data:null,error:{code:'42883'}};
     throw Error('Unexpected RPC');
   }});
   return {calls,read:()=>handler(new Request('https://fixture.supabase.co/functions/v1/lesson-api/context',{headers:{authorization:'Bearer isolated-opaque-token'}}))};
 }
 test('authenticated context advertises only a precisely matching successful installed-database probe', async () => {
   const service=endpoint(()=>({data:capability,error:null})),response=await service.read();
-  assert.equal(response.status,200);assert.deepEqual((await response.json()).authoring_capabilities,capability);
-  assert.deepEqual(service.calls,['api_session_lookup','lesson_store','lesson_content_capabilities']);
+  assert.equal(response.status,200);const body=await response.json();assert.deepEqual(body.authoring_capabilities,capability);
+  assert.equal(body.recovery_capabilities,null);
+  assert.deepEqual(service.calls,['api_session_lookup','lesson_store','lesson_content_capabilities','lesson_recovery_capabilities']);
   assert.match(response.headers.get('cache-control'),/no-store/);
 });
 test('missing, failing, malformed and incomplete database capabilities remain null without raw errors', async () => {

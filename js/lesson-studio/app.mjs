@@ -1,7 +1,8 @@
 import katex from '../../lessons/ib-math-ai/unit-1/assets/js/katex.js';
-import {createStudioClient,supportsStudioContentV2} from './api-client.mjs';
+import {createStudioClient,supportsStudioContentV2,supportsDraftRecovery} from './api-client.mjs';
 import {createLessonDraft,addSlide,duplicateSlide,renameSlide,moveSlide,removeSlide,restoreRemovedSlide,updateSlide} from './draft-model.mjs';
 import {createDraftSession} from './draft-session.mjs';
+import {createDraftBackup} from './draft-backup.mjs';
 import {renderSlidePreview,renderLessonPreview,disposeLessonPreview} from './preview.mjs';
 import {createMathEditor} from './math-editor.mjs';
 import {createRichTextEditor} from './rich-text-editor.mjs';
@@ -15,6 +16,8 @@ let client=null,session=null,classes=[],classContext=null,library=[],selectedSli
 let epoch=0,locked=false,invalid=false,discardAction=null,pendingCreate=null;
 let blockEditor=null,editorKey='',editorJSON='',editorInvalid=false,selectedBlock=null,removedBlock=null;
 let mediaInsert=null;
+let backup=null,backupEpoch=0,backupState='unavailable',recoveryChoice=null,checkpointBusy=false;
+let composing=false;
 const plainError=error=>({conflict:'Another editor changed this draft. Keep your edits or reload the server version.',
   sign_in_required:'Sign in with an active teacher or school administrator account.',
   session_changed:'Your school session changed. Sign in again to continue.',
@@ -31,6 +34,7 @@ function showGate(message,{retry=false}={}){
   if(retry){const button=text('button','Try again');button.addEventListener('click',()=>location.reload());$('studio-gate').append(document.createTextNode(' '),button);}
 }
 function closeStudio(message='Your school session changed. Sign in again to continue.'){
+  disposeBackup();
   closeMediaInsert();
   disposeLessonPreview($('slide-canvas'));disposeLessonPreview($('preview-slides'));
   disposeBlockEditor();selectedBlock=null;removedBlock=null;
@@ -39,7 +43,7 @@ function closeStudio(message='Your school session changed. Sign in again to cont
   for(const dialog of document.querySelectorAll('dialog'))if(dialog.open)dialog.close();
   for(const control of document.querySelectorAll('input,textarea,select'))control.value='';
   for(const id of ['slide-canvas','preview-slides','slide-list','lesson-list','class-select','catalog-select','course-version-select','block-select','block-editor'])$(id).replaceChildren();
-  for(const id of ['studio-identity','lesson-heading','preview-heading','new-heading','course-status','library-status','edit-error','create-error','save-message','slide-count','save-status'])$(id).textContent='';
+  for(const id of ['studio-identity','lesson-heading','preview-heading','new-heading','course-status','library-status','edit-error','create-error','save-message','slide-count','save-status','backup-status'])$(id).textContent='';
   $('workspace').hidden=true;$('new-lesson').disabled=true;showGate(message);
 }
 function busy(value){locked=value;$('new-lesson').disabled=value||!classContext?.current_assignment;
@@ -122,8 +126,8 @@ function renderBlocks(state,slide){
   const stillHere=()=>!invalid&&session&&editorKey===key&&snapshot().record.lesson.id===state.record.lesson.id;
   const invalidContent=()=>{if(!stillHere())return;editorInvalid=true;$('block-error').textContent='Complete all required fields and correct the highlighted content.';renderStatus(snapshot());};
   const changed=content=>{
-    if(!stillHere()||locked)return;
-    try{assertActive();const next=updateBlock(snapshot().document,slide.id,block.id,{content},{mathEngine:katex});editorJSON=JSON.stringify(content);editorInvalid=false;$('block-error').textContent='';session.editDocument(next);}
+    if(!stillHere()||locked||composing)return;
+    try{assertActive();const next=updateBlock(snapshot().document,slide.id,block.id,{content},{mathEngine:katex});editorJSON=JSON.stringify(content);editorInvalid=false;$('block-error').textContent='';session.editDocument(next,{group:`block:${slide.id}:${block.id}`});}
     catch{invalidContent();}
   };
   if(mediaType(block.type))blockEditor=createMediaEditor({root:$('block-editor'),type:block.type,value:block.content,mathEngine:katex,onChange:changed,onInvalid:invalidContent,
@@ -176,11 +180,14 @@ function renderStatus(state){
   const needsAttention=['offline','conflict','invalid','error'].includes(state.status);
   $('save-alert').hidden=!needsAttention;
   $('save-message').textContent=state.status==='conflict'?'Another editor changed this draft. Your edits are kept here. Reloading will replace them with the server draft.':
-    state.status==='offline'?'Your edits are kept in this open tab. Reconnect and retry before closing it.':
+    state.status==='offline'?'Reconnect and retry to check the server before saving. The device backup status below shows whether accepted edits can be recovered after reopening.':
     state.status==='invalid'?'Some content needs attention before it can be saved.':'Saving failed. Your edits are kept in this open tab. Retry to check the server before saving again.';
   $('retry-save').hidden=state.status==='conflict'||state.status==='invalid';
   $('reload-draft').hidden=!['conflict','offline','error'].includes(state.status);
   $('save-now').disabled=!state.dirty||state.status==='saving'||needsAttention;
+  $('undo-edit').disabled=!state.canUndo||editorInvalid||composing;
+  $('redo-edit').disabled=!state.canRedo||editorInvalid||composing;
+  $('device-backups').disabled=!backup;
   if(editorInvalid){$('save-status').textContent='Check block content';$('save-now').disabled=true;}
 }
 function renderEditor(state){
@@ -224,6 +231,7 @@ function changeDocument(transform){
   catch(error){if(!invalid){selectedSlide=priorSlide;deleted=priorDeleted;selectedBlock=priorBlock;removedBlock=priorRemovedBlock;$('edit-error').textContent='Check the slide content and document limits. Titles and text must be nonempty plain text without HTML.';renderStatus(snapshot());}}
 }
 function commitField(id){
+  if(composing)return true;
   if(!session||locked||unsupportedDocument())return true;
   const slide=selected();if(!slide)return false;
   try{
@@ -238,8 +246,8 @@ function commitField(id){
         next=updateSlide(next,slide.id,{blocks});
       }
     }
-    if(id==='private-notes'){if($(id).value!==snapshot().privateNotes)session.editNotes($(id).value);}
-    else if(next!==original)session.editDocument(next);
+    if(id==='private-notes'){if($(id).value!==snapshot().privateNotes)session.editNotes($(id).value,{group:id});}
+    else if(next!==original)session.editDocument(next,{group:id==='slide-layout'?undefined:`${selectedSlide}:${id}`});
     $(id).removeAttribute('aria-invalid');$('edit-error').textContent='';return true;
   }catch(error){if(!invalid){$(id).setAttribute('aria-invalid','true');$('edit-error').textContent='Check this field. Required text cannot be blank or contain HTML.';}return false;}
 }
@@ -267,18 +275,84 @@ async function canLeave(){
   if(snapshot().dirty){$('library-status').textContent='Save or resolve this draft before opening another lesson.';return false;}
   return true;
 }
-function attachRecord(record){
-  assertActive();disposeBlockEditor();session?.dispose();selectedSlide=record.head.document.slides[0].id;deleted=null;selectedBlock=null;removedBlock=null;
-  session=createDraftSession({client,record,mathEngine:katex,delayMs:800,isCurrent:()=>!invalid&&Boolean(client),onChange:state=>{if(!invalid&&session)renderEditor(state);}});
-  renderEditor(snapshot());$('library-status').textContent='';
+function backupStatus(value){
+  backupState=value.status;
+  const labels={ready:'Device backup ready',saving:'Updating device backup…',saved:'Encrypted device backup updated',warning:'Some device backups could not be read',error:'Device backup unavailable · keep this tab open until the server saves',unavailable:'Device backup unavailable · server saving remains available'};
+  $('backup-status').textContent=labels[value.status]||'';
+  $('backup-status').dataset.state=value.status;
 }
-function clearWorkspace(){closeMediaInsert();disposeLessonPreview($('slide-canvas'));disposeLessonPreview($('preview-slides'));disposeBlockEditor();session?.dispose();session=null;selectedSlide=null;deleted=null;selectedBlock=null;removedBlock=null;$('workspace').hidden=true;$('empty-state').hidden=false;
+function disposeBackup(){
+  backupEpoch++;backup?.dispose();backup=null;checkpointBusy=false;
+  recoveryChoice?.(null);recoveryChoice=null;
+  $('recovery-list').replaceChildren();$('recovery-message').textContent='';
+  if($('recovery-dialog').open)$('recovery-dialog').close();
+}
+async function storeCheckpoint(state=snapshot(),active=session){
+  const device=backup;
+  if(!device||!active||active!==session||invalid||checkpointBusy)return false;
+  try{
+    if(state.dirty||state.status==='saving')return await device.write(active.checkpoint());
+    await device.clear();return true;
+  }catch{if(device===backup&&!invalid)backupStatus({status:'error'});return false;}
+}
+function chooseRecovery(candidates,device,stamp){
+  if(!candidates.length)return Promise.resolve(null);
+  return new Promise(resolve=>{
+    const finish=value=>{if(recoveryChoice!==finish)return;recoveryChoice=null;$('recovery-dialog').close();$('recovery-list').replaceChildren();resolve(value);};
+    recoveryChoice=finish;$('recovery-message').textContent='These encrypted drafts belong to your account and this lesson. Recovering compares them with the current server version before saving.';
+    const items=candidates.map(candidate=>{
+      const row=document.createElement('li'),description=text('p',`${candidate.checkpoint.document.title} · ${new Date(candidate.updated_at).toLocaleString()} · base revision ${candidate.checkpoint.base.lesson.head_revision}`);
+      const recover=text('button','Recover this draft'),remove=text('button','Delete this device backup');recover.type=remove.type='button';
+      recover.addEventListener('click',()=>{if(device===backup&&stamp===backupEpoch&&!invalid)finish(candidate);});
+      remove.addEventListener('click',async()=>{recover.disabled=remove.disabled=true;try{const removed=await device.remove(candidate.branch_id);if(device!==backup||stamp!==backupEpoch||invalid)return;if(removed===false)throw new Error('Backup removal failed');row.remove();if(!$('recovery-list').children.length)finish(null);}catch{if(device===backup&&!invalid){recover.disabled=remove.disabled=false;$('recovery-message').textContent='The device backup could not be deleted. It has been retained.';}}});
+      row.append(description,recover,remove);return row;
+    });
+    $('recovery-list').replaceChildren(...items);$('recovery-dialog').showModal();$('keep-server-draft').focus();
+  });
+}
+async function prepareBackup(record){
+  disposeBackup();backupStatus({status:'unavailable'});
+  if(!supportsDraftRecovery(classContext?.recovery_capabilities))return null;
+  const stamp=backupEpoch,activeClient=client;
+  const valid=()=>!invalid&&client===activeClient&&stamp===backupEpoch;
+  try{
+    let key=await client.recoveryKey(record.lesson.id);if(!valid())return null;
+    const device=await createDraftBackup({key,indexedDB:window.indexedDB,crypto:window.crypto,mathEngine:katex,isCurrent:()=>{if(!valid())return false;activeClient.assertCurrent();return true;},onStatus:status=>{if(valid())backupStatus(status);}});
+    key=null;if(!valid()){device.dispose();return null;}backup=device;
+    const candidates=await device.list();if(!valid())return null;
+    return await chooseRecovery(candidates,device,stamp);
+  }catch{if(valid())backupStatus({status:'error'});return null;}
+}
+async function attachRecord(record){
+  assertActive();disposeBlockEditor();session?.dispose();selectedSlide=record.head.document.slides[0].id;deleted=null;selectedBlock=null;removedBlock=null;
+  session=null;
+  const stamp=epoch,candidate=await prepareBackup(record);if(!current(stamp))return;
+  session=createDraftSession({client,record,mathEngine:katex,delayMs:800,isCurrent:()=>!invalid&&Boolean(client),
+    beforeSave:checkpoint=>backup?.write(checkpoint),
+    onChange:state=>{if(!invalid&&session){renderEditor(state);void storeCheckpoint(state);}}});
+  let recoveryError=false;
+  if(candidate){
+    checkpointBusy=true;
+    try{
+      // Refresh after the teacher chooses; the dialog may have been open while another editor saved.
+      const fresh=await client.get(record.lesson.id);if(!current(stamp))return;
+      session.dispose();session=createDraftSession({client,record:fresh,mathEngine:katex,delayMs:800,isCurrent:()=>!invalid&&Boolean(client),beforeSave:checkpoint=>backup?.write(checkpoint),onChange:state=>{if(!invalid&&session){renderEditor(state);void storeCheckpoint(state);}}});
+      session.restoreCheckpoint(candidate.checkpoint);
+      const device=backup;
+      if(!snapshot().dirty||await device.write(session.checkpoint())){if(current(stamp)&&device===backup)await device.remove(candidate.branch_id);}
+    }catch{recoveryError=true;}
+    finally{checkpointBusy=false;}
+  }
+  if(!current(stamp))return;
+  renderEditor(snapshot());$('library-status').textContent=recoveryError?'This backup could not be recovered. It remains on this device; reopen it after reconnecting.':'';
+}
+function clearWorkspace(){disposeBackup();closeMediaInsert();disposeLessonPreview($('slide-canvas'));disposeLessonPreview($('preview-slides'));disposeBlockEditor();session?.dispose();session=null;selectedSlide=null;deleted=null;selectedBlock=null;removedBlock=null;$('workspace').hidden=true;$('empty-state').hidden=false;
   for(const id of ['slide-canvas','slide-list','preview-slides'])$(id).replaceChildren();for(const id of ['slide-title','slide-text','private-notes'])$(id).value='';
 }
 async function openLesson(id){
   if(locked||snapshot()?.record.lesson.id===id)return;
   if(!await canLeave())return;busy(true);const stamp=++epoch;
-  try{const record=await client.get(id);if(!current(stamp))return;attachRecord(record);}
+  try{const record=await client.get(id);if(!current(stamp))return;await attachRecord(record);}
   catch(error){if(current(stamp))$('library-status').textContent=plainError(error);}
   finally{if(current(stamp))busy(false);}
 }
@@ -349,7 +423,7 @@ async function createLesson(event){
     setCreatePending(true);const record=await createOrReconcile(pendingCreate);
     if(!current(stamp))return;pendingCreate=null;setCreatePending(false);
     if(!library.some(item=>item.id===record.lesson.id))library.push(record.lesson);
-    $('new-lesson-dialog').close();$('create-form').reset();attachRecord(record);
+    $('new-lesson-dialog').close();$('create-form').reset();await attachRecord(record);
   }catch(error){if(current(stamp)){
     if(pendingCreate?.rejected){pendingCreate=null;setCreatePending(false);}
     if(!pendingCreate&&error.status===409){
@@ -389,6 +463,18 @@ function preview(){
     renderLessonPreview({root:$('preview-slides'),document:lesson,mathEngine:katex,resolveAsset:previewAssetResolver()});$('preview-dialog').showModal();
   }catch(error){if(!invalid)$('edit-error').textContent='Check the lesson content before previewing.';}
 }
+function historyAction(action){
+  if(locked||composing||!session||unsupportedDocument()||!commitFields())return;
+  try{assertActive();disposeBlockEditor();deleted=null;removedBlock=null;session[action]();renderEditor(snapshot());}
+  catch{if(!invalid)$('edit-error').textContent='This edit could not be restored. Your current draft is retained.';}
+}
+async function showDeviceBackups(){
+  if(locked||!session||!backup||!await canLeave())return;
+  const id=snapshot().record.lesson.id,stamp=epoch;busy(true);
+  try{const record=await client.get(id);if(current(stamp))await attachRecord(record);}
+  catch(error){if(current(stamp))$('library-status').textContent=plainError(error);}
+  finally{if(current(stamp))busy(false);}
+}
 async function reloadDraft(){
   if(!session)return;const active=session;
   discardAction=async()=>{try{busy(true);const result=await active.discardAndReload();if(session===active&&!invalid&&result.status==='saved'&&!result.dirty){disposeBlockEditor();deleted=null;removedBlock=null;selectedBlock=null;selectedSlide=null;renderEditor(snapshot());}}catch(error){if(!invalid)$('save-message').textContent=plainError(error);}finally{if(!invalid)busy(false);}};
@@ -411,6 +497,19 @@ $('cancel-create').addEventListener('click',()=>{$('new-lesson-dialog').close();
 $('catalog-select').addEventListener('change',()=>{$('new-title').value=classContext.catalog.find(item=>item.access_key===$('catalog-select').value)?.title||'';});
 $('create-form').addEventListener('submit',createLesson);$('pin-form').addEventListener('submit',pinCourse);
 $('save-now').addEventListener('click',async()=>{if(commitFields())await session?.flush();});
+$('undo-edit').addEventListener('click',()=>historyAction('undo'));
+$('redo-edit').addEventListener('click',()=>historyAction('redo'));
+$('device-backups').addEventListener('click',showDeviceBackups);
+$('keep-server-draft').addEventListener('click',()=>recoveryChoice?.(null));
+$('recovery-dialog').addEventListener('cancel',event=>{event.preventDefault();recoveryChoice?.(null);});
+document.addEventListener('compositionstart',()=>{composing=true;if(session)renderStatus(snapshot());});
+document.addEventListener('compositionend',()=>{composing=false;if(session&&!locked){commitFields();renderStatus(snapshot());}});
+document.addEventListener('keydown',event=>{
+  if(event.defaultPrevented||event.isComposing||event.altKey||!(event.ctrlKey||event.metaKey)||document.querySelector('dialog[open]')||event.target.closest('input,textarea,select,[contenteditable="true"]'))return;
+  const key=event.key.toLowerCase();if(key!=='z'&&!(key==='y'&&!event.shiftKey))return;
+  if(!session||locked)return;event.preventDefault();historyAction(key==='y'||event.shiftKey?'redo':'undo');
+});
+window.addEventListener('online',()=>{if(!invalid&&session&&snapshot().status==='offline'&&!editorInvalid&&!composing)void session.retry();});
 $('retry-save').addEventListener('click',async()=>{if(commitFields())await session?.retry();});
 $('reload-draft').addEventListener('click',reloadDraft);
 $('keep-edits').addEventListener('click',()=>{discardAction=null;$('discard-dialog').close();});

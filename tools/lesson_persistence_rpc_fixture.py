@@ -27,9 +27,10 @@ def main():
     from psycopg.conninfo import conninfo_to_dict
     from psycopg.types.json import Jsonb
 
-    assert sys.argv[1:] in ([], ['--content-v2'], ['--media']), 'Only explicit versioned fixture modes are supported'
+    assert sys.argv[1:] in ([], ['--content-v2'], ['--media'], ['--recovery']), 'Only explicit versioned fixture modes are supported'
+    recovery = sys.argv[1:] == ['--recovery']
     media = sys.argv[1:] == ['--media']
-    content_v2 = sys.argv[1:] in (['--content-v2'], ['--media'])
+    content_v2 = sys.argv[1:] in (['--content-v2'], ['--media'], ['--recovery'])
 
     dsn = os.environ.get("ECHS_LESSON_TEST_DSN", "")
     assert dsn, "Explicit disposable database required"
@@ -112,13 +113,19 @@ def main():
                     elif name == "lesson_content_capabilities" and content_v2:
                         assert not args
                         data = conn.execute("select public.lesson_content_capabilities()").fetchone()[0]
-                    elif name == 'lesson_media_capabilities' and media:
+                    elif name == 'lesson_media_capabilities' and (media or recovery):
                         assert not args
                         data=conn.execute('select public.lesson_media_capabilities()').fetchone()[0]
                     elif name == 'lesson_asset_store' and media:
                         assert set(args)=={'p_token_hash','p_action','p_payload'}
                         assert isinstance(args['p_token_hash'],str) and isinstance(args['p_action'],str) and isinstance(args['p_payload'],dict)
                         data=conn.execute('select public.lesson_asset_store(%s,%s,%s)',(args['p_token_hash'],args['p_action'],Jsonb(args['p_payload']))).fetchone()[0]
+                    elif name == 'lesson_recovery_capabilities' and recovery:
+                        assert not args
+                        data=conn.execute('select public.lesson_recovery_capabilities()').fetchone()[0]
+                    elif name == 'lesson_draft_recovery_key' and recovery:
+                        assert set(args)=={'p_token_hash','p_payload'} and isinstance(args['p_token_hash'],str) and isinstance(args['p_payload'],dict)
+                        data=conn.execute('select public.lesson_draft_recovery_key(%s,%s)',(args['p_token_hash'],Jsonb(args['p_payload']))).fetchone()[0]
                     else:
                         raise AssertionError("Function is not allowed")
                 emit({"id":request_id,"result":{"data":data,"error":None}})

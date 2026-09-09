@@ -1,0 +1,146 @@
+name: Private lesson draft recovery contracts
+on:
+  pull_request:
+    paths:
+      - 'lesson-studio.html'
+      - 'css/lesson-studio.css'
+      - 'js/lesson-studio/**'
+      - 'supabase/migrations/**'
+      - 'supabase/functions/lesson-api/**'
+      - 'tools/lesson-studio/**'
+      - 'tools/test_lesson_recovery*'
+      - 'tools/test_lesson_persistence*'
+      - 'tools/test_lesson_content_v2*'
+      - 'tools/test_lesson_media*'
+      - 'tools/lesson_persistence_rpc_fixture.py'
+      - '.github/workflows/lesson-recovery.yml'
+      - '.github/workflows/deploy-institution-backend.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'lesson-studio.html'
+      - 'css/lesson-studio.css'
+      - 'js/lesson-studio/**'
+      - 'supabase/migrations/**'
+      - 'supabase/functions/lesson-api/**'
+      - 'tools/lesson-studio/**'
+      - 'tools/test_lesson_recovery*'
+      - 'tools/test_lesson_persistence*'
+      - 'tools/test_lesson_content_v2*'
+      - 'tools/test_lesson_media*'
+      - 'tools/lesson_persistence_rpc_fixture.py'
+      - '.github/workflows/lesson-recovery.yml'
+      - '.github/workflows/deploy-institution-backend.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: lesson-recovery-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  contracts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.5.6
+      - name: Install exact schema and math dependencies
+        run: npx --yes pnpm@11.19.0 --dir tools/lesson-runtime install --frozen-lockfile --ignore-scripts
+      - name: Preserve existing private authoring and media contracts
+        run: |
+          node tools/lesson-runtime/build-validator.mjs --check
+          node tools/lesson-runtime/build-server-validator.mjs --check
+          node tools/test_lesson_persistence_api.mjs
+          node tools/test_lesson_media_api.mjs
+      - name: Verify recovery API and conflict-aware private client/session contracts
+        run: |
+          node tools/test_lesson_recovery_api.mjs
+          node tools/lesson-studio/test-api-client.mjs
+          node tools/lesson-studio/test-draft-session.mjs
+      - name: Check exact deployable function and frozen dependencies
+        run: deno check --frozen --config supabase/functions/lesson-api/deno.json supabase/functions/lesson-api/index.ts
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install exact browser and math dependencies
+        run: |
+          npm --prefix question-bank/official/tools ci
+          npx --yes pnpm@11.19.0 --dir tools/lesson-runtime install --frozen-lockfile --ignore-scripts
+          npx --prefix question-bank/official/tools playwright install --with-deps chromium-headless-shell
+      - name: Verify encrypted-only durable checkpoints and integrated Studio recovery
+        run: |
+          node tools/lesson-studio/test-draft-backup.mjs
+          node tools/lesson-studio/test-studio-recovery.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lesson-recovery-browser-evidence
+          path: |
+            artifacts/lesson-recovery/
+            artifacts/lesson-studio/
+          retention-days: 14
+  postgres15:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: isolated-fixture-only
+          POSTGRES_DB: echs_lesson_test_recovery_ci
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d echs_lesson_test_recovery_ci"
+          --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      ECHS_LESSON_TEST_DSN: postgresql://postgres:isolated-fixture-only@127.0.0.1:5432/echs_lesson_test_recovery_ci
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install exact PostgreSQL test driver
+        run: python -m pip install 'psycopg[binary]==3.2.9'
+      - name: Install exact mathematics and schema dependencies
+        run: npx --yes pnpm@11.19.0 --dir tools/lesson-runtime install --frozen-lockfile --ignore-scripts
+      - name: Preserve original 22-migration 235-check persistence and eight HTTP groups
+        run: |
+          python tools/test_lesson_persistence_database.py --report reports/lesson-persistence-database.json
+          node tools/test_lesson_persistence_e2e.mjs
+      - name: Preserve migration23 and 203 content checks plus seven HTTP groups
+        run: |
+          python tools/test_lesson_content_v2_database.py --baseline-report reports/lesson-persistence-database.json --report reports/lesson-content-v2-database.json
+          node tools/test_lesson_content_v2_e2e.mjs
+      - name: Preserve migration24 and 171 media checks plus five HTTP groups
+        run: |
+          python tools/test_lesson_media_database.py --baseline-report reports/lesson-content-v2-database.json --report reports/lesson-media-database.json
+          node tools/test_lesson_media_e2e.mjs
+      - name: Apply migration25 and verify real recovery authorization, immutable key scope and races
+        run: python tools/test_lesson_recovery_database.py --baseline-report reports/lesson-media-database.json --report reports/lesson-recovery-database.json
+      - name: Verify actual HTTP and production transport against session-authorized SQL keys
+        run: node tools/test_lesson_recovery_e2e.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lesson-recovery-database-results
+          path: |
+            reports/lesson-persistence-*.json
+            reports/lesson-content-v2-*.json
+            reports/lesson-media-*.json
+            reports/lesson-recovery-*.json
+          if-no-files-found: warn
