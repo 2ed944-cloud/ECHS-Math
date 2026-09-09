@@ -36,9 +36,10 @@ assert html.count('data-question="') == 38
 assert html.count('data-frq="') == 6
 plan_source = files[BASE + "assets/rates-1-2-classroom-data-v4.js"].decode()
 plan = json.loads(plan_source.split("const plan=", 1)[1].split(";\nif(typeof module", 1)[0])
-assert len(plan["slides"]) + html.count('class="slide"') == 82
+assert len(plan["slides"]) + html.count('class="slide"') - len(plan["merges"]) == 67
+assert len(plan["order"]) == 30 and plan["presentation"]["optionalSlides"] == 37
 assert len(plan["questions"]) + html.count('data-question="') == 59
-assert plan["order"][:6] == ["warm-up", "tank-lab", "quotient", "secant-lab", "graph-rate", "your-turn-1"]
+assert plan["order"][:6] == ["warm-up", "tank-lab", "secant-lab", "your-turn-1", "zero-lab", "interval-comparisons"]
 assert "engine.js" not in html
 legacy = files[LEGACY].decode()
 assert "target.search=location.search" in legacy and "target.hash=location.hash" in legacy
@@ -46,4 +47,4 @@ for path in ASSETS:
     assert hashlib.sha256(files[path]).digest() == hashlib.sha256((ROOT / path).read_bytes()).digest(), "Asset differs: " + path
 assert '"written_points": 36' in files["data/ap-precalculus-update.js"].decode()
 assert 'ap-precalculus-12-ap-scope-v3' in files['sw.js'].decode()
-print("Live AP Precalculus 1.2: PASS — exact commit, protected entry, 55 retained + 27 classroom slides, 14 investigations, 59 checks, 6 FRQs and matching versioned assets.")
+print("Live AP Precalculus 1.2: PASS — exact commit, protected entry, 30 classroom slides + 37 optional slides, 14 investigations, 59 checks, 6 FRQs and matching versioned assets.")

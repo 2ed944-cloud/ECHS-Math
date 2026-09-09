@@ -25,7 +25,7 @@ const current=()=>document.querySelector('.slide:not([hidden])').id,key=(target,
 const Q=win.RatesQuestions,M=win.RatesModels;
 assert.equal(document.documentElement.dataset.ratesLessonReady,'true');assert.equal(current(),'practice-guide');
 assert.equal(document.querySelectorAll('.slide:not([hidden])').length,1);
-for(const [hash,id] of [['#slide=6','tank-lab'],['#slide=1','start'],['#exam','frq01'],['#mini-frq','frq01'],['#corner-warning','corner-lab'],['#symbolic-worked','challenge-mcq-3'],['#review','finish'],['#learn','warm-up']]){location.hash=hash;win.dispatchEvent(new dom.Event('hashchange'));assert.equal(current(),id);}
+for(const [hash,id] of [['#slide=6','tank-lab'],['#slide=1','warm-up'],['#exam','frq01'],['#mini-frq','frq01'],['#corner-warning','corner-lab'],['#symbolic-worked','challenge-mcq-3'],['#review','roadmap'],['#learn','warm-up']]){location.hash=hash;win.dispatchEvent(new dom.Event('hashchange'));assert.equal(current(),id);}
 key(document,'ArrowRight');assert.equal(current(),'tank-lab');
 for(const target of [$('answer-q01'),$('slideSelect'),$('lab-secant-a'),$('draft-frq01-0'),$('nextSlide')]){key(target,'ArrowRight');assert.equal(current(),'tank-lab');}
 click(document.querySelector('[data-solution="q01"]'));assert.equal($('solution-q01').hidden,true);
@@ -73,7 +73,7 @@ for(const [key,rg,rh,behavior] of [['1',1,-1,'decreasing'],['2',2,0,'constant'],
 for(const name of ['ledger','widths','shape','sum']){const input= document.querySelector('[data-idea-lab="'+name+'"] [data-response]');input.value='incorrect';input.dispatchEvent(new dom.Event('input',{bubbles:true}));assert.equal($('idea-'+name+'-work').hidden,true);click($('idea-'+name+'-check'));assert.doesNotMatch($('idea-'+name+'-feedback').textContent,/Correct/);click($('idea-'+name+'-reset'));assert.equal(input.value,'');}
 for(const el of document.querySelectorAll('[data-idea-plot]'))assert.ok(el.querySelector('svg'),'Missing idea graph '+el.dataset.ideaPlot);
 assert.equal(document.querySelectorAll('[data-idea-lab]').length,4);
-for(const el of document.querySelectorAll('.classroom-worked')){const b=el.querySelector('[data-reveal]'),box=$(b.dataset.reveal);assert.equal(box.hidden,true);click(b);assert.equal(box.hidden,false);click(b);assert.equal(box.hidden,true);}
+for(const el of document.querySelectorAll('.classroom-worked')){const b=el.querySelector('[data-reveal]'),box=$(b.dataset.reveal);assert.equal(box.hidden,false);click(b);assert.equal(box.hidden,true);click(b);assert.equal(box.hidden,false);}
 for(const el of document.querySelectorAll('[data-rates-plot]'))assert.ok(el.querySelector('svg'),'Unrendered graph: '+el.dataset.ratesPlot);
 for(const svg of document.querySelectorAll('svg')){assert.ok(svg.getAttribute('aria-label'));assert.doesNotMatch(svg.outerHTML,/NaN|Infinity/);}
 assert.ok(document.querySelector('[data-rates-plot="shared"] path.curve[style="stroke:#a26714"][stroke-dasharray]'),'Shared CSS must not erase the gold graph color');
@@ -85,15 +85,30 @@ account={id:'test-b'};win.dispatchEvent(new dom.Event('focus'));assert.equal($('
 account={id:'test-a'};win.dispatchEvent(new dom.Event('focus'));assert.equal($('answer-q01').value,'90');assert.equal($('draft-frq01-0').value,'Last edit before switching accounts.');
 failStorage=true;input($('answer-q01'),'90');click(document.querySelector('[data-check="q01"]'));assert.match(document.querySelector('.save-note').textContent,/unavailable/);failStorage=false;
 click($('printLesson'));assert.ok(printed);click($('resetWork'));click($('cancelReset'));assert.equal($('answer-q01').value,'90');click($('resetWork'));click($('confirmReset'));assert.equal($('answer-q01').value,'');assert.match($('attemptedCount').textContent,/^0/);
-key(document,'End');assert.equal(current(),'alignment');key(document,'Home');assert.equal(current(),'warm-up');
+location.hash='#warm-up';win.dispatchEvent(new dom.Event('hashchange'));key(document,'End');assert.equal(current(),'roadmap');assert.equal($('nextSlide').disabled,true);key(document,'ArrowRight');assert.equal(current(),'roadmap');key(document,'Home');assert.equal(current(),'warm-up');
 let continued=false;const finish=document.createElement('button');finish.dataset.finishLesson='';finish.addEventListener('click',()=>continued=true);document.body.append(finish);click($('continuePractice'));assert.ok(continued);
 const ids=[...document.querySelectorAll('[id]')].map(n=>n.id);assert.equal(new Set(ids).size,ids.length);for(const n of document.querySelectorAll('[aria-controls]'))assert.ok($(n.getAttribute('aria-controls')));
-assert.equal(document.querySelectorAll('.slide').length,82);assert.equal(document.querySelectorAll('[data-question]').length,59);
-assert.deepEqual([...document.querySelectorAll('.slide')].slice(0,6).map(n=>n.id),['warm-up','tank-lab','quotient','secant-lab','graph-rate','your-turn-1']);
-click(document.querySelector('.classroom-nav [data-go="local-idea"]'));assert.equal(current(),'local-idea');assert.equal(document.querySelector('.classroom-nav [aria-current]').dataset.go,'local-idea');
-click(document.querySelector('.classroom-menu [data-go="precision-lab"]'));assert.equal(current(),'precision-lab');
+assert.equal(document.querySelectorAll('.slide').length,67);assert.equal(document.querySelectorAll('[data-question]').length,59);
+assert.deepEqual([...document.querySelectorAll('.slide')].slice(0,6).map(n=>n.id),['warm-up','tank-lab','secant-lab','your-turn-1','zero-lab','interval-comparisons']);
+click(document.querySelector('.classroom-nav [data-go="local-lab"]'));assert.equal(current(),'local-lab');assert.equal(document.querySelector('.classroom-nav [aria-current]').dataset.go,'local-lab');
+click(document.querySelector('.classroom-menu [data-go="unequal-lab"]'));assert.equal(current(),'unequal-lab');
 setting('tank','a',2);setting('tank','b',2);click($('lab-tank-reset'));assert.equal($('lab-tank-check').disabled,false);assert.equal($('lab-tank-a').value,'0');assert.equal($('lab-tank-b').value,'2');
 assert.ok(document.querySelector('[data-classroom-plot] svg'));
+assert.equal(document.querySelectorAll('.slide[data-path="classroom"]').length,30);assert.equal(document.querySelectorAll('.slide[data-path="practice"]').length,37);
+assert.equal($('slideSelect').querySelectorAll('option').length,37);assert.match($('topCounter').textContent,/Extra practice/);
+click(document.querySelector('#unequal-lab .classroom-return'));assert.equal(current(),'roadmap');assert.equal($('slideSelect').querySelectorAll('option').length,30);
+for(const {from,to} of win.RatesClassroomPlan.merges){location.hash='#'+from;win.dispatchEvent(new dom.Event('hashchange'));assert.equal(current(),to,'Consolidated link '+from);}
+for(const deck of document.querySelectorAll('.classroom-questions')){
+ const panels=[...deck.querySelectorAll('.classroom-question-page')];assert.equal(panels.filter(p=>!p.hidden).length,1);
+ for(const panel of panels){assert.equal(panel.firstElementChild.classList.contains('before-question'),true);assert.ok(panel.querySelectorAll('.before-question li').length>=2);assert.equal(panel.querySelectorAll('[data-question]').length,1);}
+ const buttons=[...deck.querySelectorAll('.question-pages button')];for(const [i,b] of buttons.entries()){click(b);assert.equal(panels.filter(p=>!p.hidden).length,1);assert.equal(panels[i].hidden,false);assert.equal(b.getAttribute('aria-pressed'),'true');}
+}
+assert.equal(document.querySelectorAll('.before-question').length,59);assert.equal(document.querySelectorAll('.before-written').length,6);
+for(const id of win.RatesClassroomPlan.stagedActivities){const el=$(id),panels=[...el.querySelectorAll('[data-activity-panel]')],buttons=[...el.querySelectorAll('[data-activity-step]')];assert.equal(panels.length,2);assert.equal(panels[0].hidden,false);assert.ok(panels[0].querySelector('.classroom-key-notes'));assert.ok(panels[1].querySelector('.investigation'));click(buttons[1]);assert.equal(panels[0].hidden,true);assert.equal(panels[1].hidden,false);click(buttons[0]);assert.equal(panels[0].hidden,false);}
+location.hash='#warm-up';win.dispatchEvent(new dom.Event('hashchange'));const visited=[];for(let i=0;i<30;i++){visited.push(current());click($('nextSlide'));}assert.deepEqual(visited,Array.from(win.RatesClassroomPlan.order));assert.equal(current(),'roadmap');
+// Saved stable IDs from the previous release resolve to consolidated destinations.
+storage.set('echs:ap-precalculus:1.2:ap-precalculus-topic-1-2-v3:test-old',JSON.stringify({version:1,answers:{},drafts:{},selfScores:{},slideId:'local-worked',slide:0}));account={id:'test-old'};win.dispatchEvent(new dom.Event('focus'));assert.equal(current(),'local-lab');account={id:'test-a'};win.dispatchEvent(new dom.Event('focus'));
+
 input($('draft-warm-up-1'),'Tank A has twice the average rate.');flush();account={id:'test-c'};win.dispatchEvent(new dom.Event('focus'));assert.equal($('draft-warm-up-1').value,'');account={id:'test-a'};win.dispatchEvent(new dom.Event('focus'));assert.equal($('draft-warm-up-1').value,'Tank A has twice the average rate.');
 flush();click($('resetWork'));click($('confirmReset'));const saved=JSON.parse(storage.get('echs:ap-precalculus:1.2:ap-precalculus-topic-1-2-v3:test-a'));assert.equal(saved.slideId,current());assert.equal(location.hash,'#'+current());
 const css=fs.readFileSync(new URL('assets/rates-1-2-v3.css',base),'utf8');assert.match(css,/@media print\{\.solution,\.rubric,\.hint,\.feedback/);assert.match(css,/@media\(max-width:650px\)/);
