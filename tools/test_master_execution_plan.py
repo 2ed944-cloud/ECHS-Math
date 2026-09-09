@@ -1,6 +1,8 @@
 """Negative tests for misleading completion, lost dependencies and source drift."""
 import copy
+from pathlib import Path
 import unittest
+from unittest.mock import patch
 from validate_master_execution_plan import load, validate, safe_path
 
 class MasterExecutionPlanTests(unittest.TestCase):
@@ -8,6 +10,16 @@ class MasterExecutionPlanTests(unittest.TestCase):
     def row(self,id):return next(t for t in self.plan['tasks'] if t['id']==id)
     def rejected(self,fragment):self.assertTrue(any(fragment in e for e in validate(self.plan)),validate(self.plan))
     def test_current_snapshot(self):self.assertEqual(validate(self.plan),[])
+    def test_current_release_without_future_candidate_files(self):
+        # Concurrent local C02 work must not make this C01 board claim those
+        # paths already ship in production, including references in other tasks.
+        future = {'supabase/functions/_shared','supabase/functions/_shared/mastery-status.mjs','js/learning-evidence-status.mjs','tools/test_mastery_read_models.mjs'}
+        original = Path.exists
+        def in_release(path):
+            if any(path.as_posix().endswith('/' + name) for name in future):return False
+            return original(path)
+        with patch.object(Path, 'exists', in_release):
+            self.assertEqual(validate(self.plan),[])
     def test_duplicate_task(self):self.plan['tasks'].append(copy.deepcopy(self.plan['tasks'][0]));self.rejected('duplicate task')
     def test_missing_dependency(self):self.row('ECHS-C01')['depends_on'].append('ECHS-999');self.rejected('unknown/self')
     def test_cycle(self):self.row('ECHS-C00')['depends_on']=['ECHS-C01'];self.rejected('cycle')

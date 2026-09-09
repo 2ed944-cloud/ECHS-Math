@@ -127,13 +127,29 @@ async function staleWhileRevalidate(request,event,{currentOnly=false}={}){
   return cached||network;
 }
 const REQUIRED_SHELL=["./offline.html","./login.html","./js/institution-client.js","./js/login.js","./css/platform-usability.css"];
+const OPTIONAL_SHELL_TIMEOUT_MS=4000;
+async function precacheOptionalShell(cache,requests){
+  const controller=new AbortController();let stopped=false,timer;
+  const deadline=new Promise(resolve=>{timer=setTimeout(()=>{stopped=true;controller.abort();resolve()},OPTIONAL_SHELL_TIMEOUT_MS)});
+  const work=Promise.allSettled(requests.map(async request=>{
+    let response;
+    try{
+      response=await fetch(request,{signal:controller.signal});
+      if(stopped||!response.ok){response.body?.cancel().catch(()=>{});return}
+      await cache.put(request,response);
+    }catch{if(response?.body&&!response.body.locked)response.body.cancel().catch(()=>{})}
+  }));
+  // A stalled fetch, response body, or storage operation cannot hold install open.
+  // Late responses are discarded; the fixed optional list contains public assets.
+  try{await Promise.race([work,deadline])}finally{stopped=true;clearTimeout(timer);controller.abort()}
+}
 self.addEventListener("install",event=>{event.waitUntil((async()=>{
   const cache=await caches.open(STATIC_CACHE);
   const shellRequest=url=>new Request(new URL(url,self.location.href),{cache:"reload"});
   await cache.addAll(REQUIRED_SHELL.map(shellRequest));
   await loadPublicMediaBoundary();
   // A missing optional lesson asset must not strand everyone on an old release.
-  await Promise.allSettled(SHELL.filter(url=>!REQUIRED_SHELL.includes(url)).map(url=>cache.add(shellRequest(url))));
+  await precacheOptionalShell(cache,SHELL.filter(url=>!REQUIRED_SHELL.includes(url)).map(shellRequest));
   await self.skipWaiting();
 })())});
 self.addEventListener("activate",event=>{event.waitUntil(purgeDeniedPublicQuestionCache().then(()=>caches.keys()).then(keys=>Promise.all(keys.filter(key=>key.startsWith("echs-")&&![STATIC_CACHE,RUNTIME_CACHE].includes(key)).map(key=>caches.delete(key)))).then(()=>self.clients.claim()))});

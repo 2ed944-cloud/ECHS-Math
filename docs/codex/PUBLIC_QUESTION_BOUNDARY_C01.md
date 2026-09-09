@@ -23,6 +23,8 @@ Official data uses exact file allowlists rather than directory-prefix permission
 
 Activation purges denied paths and prior same-URL archive/teacher/import content from all caches, including caches with unfamiliar names. Official cache fallback reads only the current release's runtime cache. This prevents an old denylist-redacted archive from surviving simply because its URL is still valid. Approved public content retains tested offline caching; private/session responses remain uncacheable.
 
+The required sign-in shell must cache successfully before installation. Optional prefetch has a four-second global deadline and abort signal, so failed or stalled optional downloads, response bodies or cache writes cannot indefinitely postpone the new worker and its cleanup. Late optional responses cannot start a new cache write after the deadline.
+
 ## Preserved behavior and security limits
 
 No canonical lesson, question source, original teacher tool, answer/provenance gate, account, assignment, mastery record or database migration changes. Existing guard injection, fingerprinting, Pages deployment and current URLs remain in place. Teacher Pages URLs provide approved public review, not a client-side security boundary for private authoring.
@@ -34,15 +36,17 @@ This is not a new license or an audit of every pixel in approved source-page ima
 Local acceptance completed before CI:
 
 - 9 projection unit groups, including malformed metadata, strict booleans, source drift, SVG/path safety and source-preservation failures.
-- 20 worker groups covering manifest bounds/pin, failure recovery, exact paths, stale arbitrary caches, approved offline media and private/session exclusions.
+- 26 worker groups covering manifest bounds/pin, failure recovery, exact paths, stale arbitrary caches, approved offline media, private/session exclusions and optional-install deadline failures.
 - 12 independent preservation groups against the actual corpus: all approved IDs/bytes, archive projection, transitive media, shells, gate/trust/rights and source immutability.
 - Existing platform resilience checks.
-- 22 execution-board tests and a generated-artifact/product-link isolation test.
+- 23 execution-board tests and a generated-artifact/product-link isolation test.
 - 2,129 official-bank source files match actual main Git blobs, including all question data, media, gate, rights and UI inputs. Two pre-existing locally changed validation reports are explicitly excluded from this source identity claim, the release manifest and Pages. The initial whole-tree mismatch is retained separately; no report or question source was overwritten to produce a pass.
 
 Independent review reproduced both an unknown-student-path stale cache leak and a same-URL old archive/shell leak in intermediate candidates. Both were fixed and independently retested. Those failing diagnostics are retained separately from final proof.
 
-`tools/build_public_question_fixture.py` builds a separate projected UI fixture and retains the actual auth modules and guard injection. `tools/test_public_question_browser.mjs` exercises approved practice, restricted archive metadata, teacher/import aliases and normalization, signed-out redirect, and the actual Chromium service worker. Its account/API transport is synthetic and external math assets are fulfilled from the pinned local package. Browser/CI results and reviewed screenshots must be attached to the final release receipt; intermediate navigation diagnostics are not a pass.
+`tools/build_public_question_fixture.py` builds a separate projected UI fixture and retains the actual auth modules and guard injection. All eight real Chromium cases pass: approved keyboard practice, restricted archive metadata, teacher/import aliases and normalization, signed-out redirect, and actual service-worker activation, cache purge and approved offline fallback. Its account/API transport is synthetic and external math assets are fulfilled from the pinned local package. Desktop/mobile screenshots were reviewed. Exact browser/CI results and screenshot hashes must be attached to the final release receipt; intermediate navigation/install diagnostics are retained separately and are not passing evidence.
+
+Initial Linux CI caught two board references to candidate-only C02 paths. They are now planned across every referring task, and a regression test simulates those files being absent. No C02 implementation is included to silence that failure.
 
 CI adds master-board integrity and a dedicated projected-artifact Chromium workflow, while the existing Pages job runs projection, preservation, worker and final artifact validation. The canonical source-bank baseline tests remain intact. Generated browser fixtures are excluded from local HTML link scanning and Pages; the new test proves identical broken links in real lessons still fail.
 

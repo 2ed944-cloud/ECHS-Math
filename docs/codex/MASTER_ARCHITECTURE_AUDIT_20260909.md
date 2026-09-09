@@ -54,7 +54,7 @@ No new database migration is part of this audit or the bounded C01/C02 read/arti
 
 ## Board validation and continuation
 
-Run `python tools/validate_master_execution_plan.py` and `python tools/test_master_execution_plan.py`. The 22 negative/positive tests reject lost dependencies (including omitted Assessment Studio/AI drafts at the final gate), cycles, fake verified status, missing deployment evidence, unknown components, lost charter sections, unsafe paths and false overall completion. These checks validate tracking integrity; they do not certify mathematical or production behavior.
+Run `python tools/validate_master_execution_plan.py` and `python tools/test_master_execution_plan.py`. The 23 negative/positive tests reject lost dependencies (including omitted Assessment Studio/AI drafts at the final gate), cycles, fake verified status, missing deployment evidence, unknown components, lost charter sections, unsafe paths and false overall completion. They also simulate a release without concurrently developed future files. These checks validate tracking integrity; they do not certify mathematical or production behavior.
 
 In-flight work remains IN PROGRESS until its real acceptance and deployed revision are recorded in a later board snapshot. Every new release uses one coherent manifest, current baseline/regression tests, targeted failure/permission/browser checks and exact post-merge verification. Previously sealed outputs are not regenerated from a changed working tree.
 

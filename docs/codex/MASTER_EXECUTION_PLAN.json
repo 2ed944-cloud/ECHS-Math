@@ -2767,7 +2767,7 @@
         },
         {
           "path": "supabase/functions/_shared",
-          "state": "existing"
+          "state": "planned"
         },
         {
           "path": "supabase/migrations",
@@ -3866,7 +3866,7 @@
         },
         {
           "path": "js/learning-evidence-status.mjs",
-          "state": "existing"
+          "state": "planned"
         }
       ],
       "acceptance_criteria": [

@@ -90,6 +90,9 @@ try{
     assert.equal(await page.locator('#archiveDetail .questionCard').count(),0);
     assert.equal(await page.locator('#archiveDetail').getByText('Open verified practice').count(),0);
     await page.screenshot({path:path.join(output,'restricted-archive-metadata.png')});
+    await page.locator('#archiveDetail').scrollIntoViewIfNeeded();
+    await page.evaluate(()=>window.scrollBy(0,-120));
+    await page.screenshot({path:path.join(output,'restricted-archive-detail.png')});
   });
   await run('Approved direct question remains interactive',async()=>{
     await page.goto(origin+OFFICIAL+'/practice.html?id='+encodeURIComponent(ready.id)+'&autostart=1',{waitUntil:'domcontentloaded'});
