@@ -1,4 +1,4 @@
-const VERSION = "echs-platform-school-control-v3-hybrid2-mastery1-recovery1-calculus-only-practice-routing-redesign-ib-lesson-query-premium-practice-20260802-fullwidth-filter-drawer2-landing-layout1-unit-collapse1-tangent-logo-collapse2-bank-export1-dynamic-calculus-banks1-multi-route-timetable2-lesson-portal-calm2-multicourse-banks1-ib-ai-1-1-local-ti84-v68-design-v51-ib-ai-u6-61-v1-lesson-visibility-progression-20260830-v1-platform-resilience-20260904-ap-calculus-11-interactive-v1-ap-calculus-12-interactive-v1-ap-calculus-13-14-interactive-v1-ap-calculus-16-interactive-v1-ap-calculus-15-interactive-v1-ap-calculus-15-ap-scope-v2-ib-ai-11-16-merged-v7-ap-precalculus-11-ap-scope-v3-ap-precalculus-12-ap-scope-v3-classroom-v4-ideas-v41-ib-ai-14-17-finance-v8-ap-precalculus11-heading-focus-v1-ap-precalculus11-context-practice-v4-ap-calculus-midunit-v1-midunit-batch2-midunit-batch3-ib-ai-12-sl-alignment-v7-ap-calculus-17-116-ab1-owned-sync-v1-lesson-content-009-v2-lesson-media-010-v1-lesson-recovery-011-v1-lesson-history-012-v1-lesson-presentation-013-v1-ib-reference-import-014-v1-public-question-boundary-c01-v1-mastery-truthfulness-c02-v1";
+const VERSION = "echs-platform-school-control-v3-hybrid2-mastery1-recovery1-calculus-only-practice-routing-redesign-ib-lesson-query-premium-practice-20260802-fullwidth-filter-drawer2-landing-layout1-unit-collapse1-tangent-logo-collapse2-bank-export1-dynamic-calculus-banks1-multi-route-timetable2-lesson-portal-calm2-multicourse-banks1-ib-ai-1-1-local-ti84-v68-design-v51-ib-ai-u6-61-v1-lesson-visibility-progression-20260830-v1-platform-resilience-20260904-ap-calculus-11-interactive-v1-ap-calculus-12-interactive-v1-ap-calculus-13-14-interactive-v1-ap-calculus-16-interactive-v1-ap-calculus-15-interactive-v1-ap-calculus-15-ap-scope-v2-ib-ai-11-16-merged-v7-ap-precalculus-11-ap-scope-v3-ap-precalculus-12-ap-scope-v3-ib-ai-14-17-finance-v8-ap-precalculus11-heading-focus-v1-ap-precalculus11-context-practice-v4-ap-calculus-midunit-v1-midunit-batch2-midunit-batch3-ib-ai-12-sl-alignment-v7-ap-calculus-17-116-ab1-owned-sync-v1-lesson-content-009-v2-lesson-media-010-v1-lesson-recovery-011-v1-lesson-history-012-v1-lesson-presentation-013-v1-ib-reference-import-014-v1-public-question-boundary-c01-v1";
 // Practice assignment studio assets are versioned with the authenticated shell.
 const STATIC_CACHE = `${VERSION}-static`;
 const RUNTIME_CACHE = `${VERSION}-runtime`;
@@ -7,38 +7,6 @@ const RUNTIME_CACHE = `${VERSION}-runtime`;
 const PUBLIC_QUESTION_BOUNDARY_SHA256 = "c4fcdce623c44155185719ab4612045a5f3ef7fd1b979a7019c3e68655b13069";
 const PUBLIC_QUESTION_BOUNDARY_URL = new URL("./question-bank/official/data/student/publication-boundary.json",self.location.href).href;
 const PUBLIC_SITE_PATH = new URL("./",self.location.href).pathname;
-// Reporting code may not fall back to a previous release's certification labels.
-// This fixed public-asset set is separate from the C01 question publication rules.
-const MASTERY_REPORT_ASSETS = new Set([
-  "js/learning-evidence-status.mjs", "js/portal.js", "js/lesson-portal-overhaul.js",
-  "js/smart-learning-route.js", "js/gamification-overlay.js", "js/institution-experience.js",
-  "question-bank/js/learning-system.js", "question-bank/js/teacher-evidence-heatmap.js",
-  "question-bank/js/student-cloud.js", "question-bank/js/parent-cloud.js",
-  "question-bank/js/teacher-cloud.js", "question-bank/js/dashboard.js",
-  "question-bank/js/learning-home.js", "question-bank/js/parent.js",
-  "css/echs-design-system-v5-1.css", "css/lesson-portal-overhaul.css"
-]);
-const MASTERY_REPORT_DOCUMENTS = new Set([
-  "index.html", "preview.html", "question-bank/student.html",
-  "question-bank/teacher.html", "question-bank/parent.html", "question-bank/dashboard.html"
-]);
-function masteryReportDocument(url){
-  if(url.origin!==self.location.origin||!url.pathname.startsWith(PUBLIC_SITE_PATH))return false;
-  const path=url.pathname.slice(PUBLIC_SITE_PATH.length);
-  return path===""||MASTERY_REPORT_DOCUMENTS.has(path);
-}
-function masteryReportAsset(url){
-  return url.origin===self.location.origin && url.pathname.startsWith(PUBLIC_SITE_PATH)
-    && MASTERY_REPORT_ASSETS.has(url.pathname.slice(PUBLIC_SITE_PATH.length));
-}
-async function purgeHistoricalMasteryAssets(){
-  for(const name of await caches.keys()){
-    if(name===STATIC_CACHE||name===RUNTIME_CACHE)continue;
-    const cache=await caches.open(name);
-    for(const request of await cache.keys())if(masteryReportAsset(new URL(request.url))||masteryReportDocument(new URL(request.url)))await cache.delete(request);
-  }
-}
-
 const PUBLIC_STUDENT_FILES = new Set([
   "archive-id-map.json","archive-index.json","catalog.json","gate.json","id-map.json","media-manifest.json","question-index.json","publication-boundary.json",
   ...Array.from({length:16},(_,index)=>`questions/chunk-${String(index).padStart(3,"0")}.json`),
@@ -146,43 +114,6 @@ async function networkFirst(request,fallbackUrl,{reload=false,currentOnly=false}
   try{const response=await(reload?navigationFetch(request):fetch(request));await saveResponse(cache,request,response);return response}
   catch{return(await cache.match(request))||(!currentOnly?await caches.match(request):null)||(fallbackUrl?await caches.match(fallbackUrl):null)||Response.error()}
 }
-async function freshMasteryReportAsset(request){
-  const runtime=await caches.open(RUNTIME_CACHE);
-  try{
-    const response=await navigationFetch(request);
-    await saveResponse(runtime,request,response);
-    // HTTP failures are visible, rather than replaced by an older success.
-    return response;
-  }catch{
-    // Only this release's successful responses or its installed public shell.
-    // Query revisioning bypasses prior-worker keys on the first online visit.
-    const cached=await runtime.match(request);
-    if(cached)return cached;
-    const shell=await caches.open(STATIC_CACHE);
-    return await shell.match(request,{ignoreSearch:true})||Response.error();
-  }
-}
-async function validMasteryEntry(response,url){
-  if(AUTH_DOCUMENT.test(url.pathname))return validAuthShell(response);
-  if(!response?.ok||!/^text\/html(?:\s*;|$)/i.test(response.headers.get("content-type")||""))return false;
-  const text=await response.clone().text();
-  return text.length>1500&&/<!doctype html/i.test(text)&&/<body\b/i.test(text);
-}
-async function freshMasteryEntryDocument(request){
-  const runtime=await caches.open(RUNTIME_CACHE),url=new URL(request.url);
-  try{
-    const response=await navigationFetch(request);
-    if(!response.ok)return response;
-    if(!await validMasteryEntry(response,url))return Response.error();
-    await saveResponse(runtime,request,response);return response;
-  }catch{
-    const cached=await runtime.match(request);
-    if(cached&&await validMasteryEntry(cached,url))return cached;
-    const shell=await caches.open(STATIC_CACHE),installed=await shell.match(request,{ignoreSearch:true});
-    if(installed&&await validMasteryEntry(installed,url))return installed;
-    return await shell.match(new URL("./offline.html",self.location.href).href)||Response.error();
-  }
-}
 async function freshAuthDocument(request){
   const cache=await caches.open(RUNTIME_CACHE);
   try{const response=await navigationFetch(request);if(!await validAuthShell(response))throw new Error("Invalid authenticated shell response");await saveResponse(cache,request,response);return response}
@@ -221,14 +152,12 @@ self.addEventListener("install",event=>{event.waitUntil((async()=>{
   await precacheOptionalShell(cache,SHELL.filter(url=>!REQUIRED_SHELL.includes(url)).map(shellRequest));
   await self.skipWaiting();
 })())});
-self.addEventListener("activate",event=>{event.waitUntil(purgeHistoricalMasteryAssets().then(()=>purgeDeniedPublicQuestionCache()).then(()=>caches.keys()).then(keys=>Promise.all(keys.filter(key=>key.startsWith("echs-")&&![STATIC_CACHE,RUNTIME_CACHE].includes(key)).map(key=>caches.delete(key)))).then(()=>self.clients.claim()))});
+self.addEventListener("activate",event=>{event.waitUntil(purgeDeniedPublicQuestionCache().then(()=>caches.keys()).then(keys=>Promise.all(keys.filter(key=>key.startsWith("echs-")&&![STATIC_CACHE,RUNTIME_CACHE].includes(key)).map(key=>caches.delete(key)))).then(()=>self.clients.claim()))});
 self.addEventListener("fetch",event=>{
   const request=event.request;if(request.method!=="GET")return;
   const url=new URL(request.url),sameOrigin=url.origin===self.location.origin;
   const sensitive=request.headers.has("authorization")||privateApi.test(url.pathname)||/\.supabase\.co$/i.test(url.hostname)||[...url.searchParams.keys()].some(key=>/^(?:token|access_token|refresh_token|signature|apikey)$/i.test(key));
   if(sensitive){event.respondWith(fetch(request,{cache:"no-store"}));return}
-  if(masteryReportDocument(url)){event.respondWith(freshMasteryEntryDocument(request));return}
-  if(masteryReportAsset(url)){event.respondWith(freshMasteryReportAsset(request));return}
   const official=publicQuestionPath(url);
   if(official&&(official.noncanonical||changedPublicProjectionPath(url)||/^(?:question-bank\/official\/(?:media|data|admin\/data)\/|\.staging(?:\/|$)|packages(?:\/|$)|\.deploy(?:\/|$)|\.echs-backups(?:\/|$)|artifacts(?:\/|$))/.test(official.path))){
     // Removed raw files and unapproved media must never use stale cache fallback.

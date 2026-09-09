@@ -33,7 +33,7 @@ class MasterExecutionPlanTests(unittest.TestCase):
     def test_latest_release_requires_evidence(self):
         self.plan['last_verified_release']['evidence']='docs/codex/not-a-receipt.json';self.rejected('latest release evidence')
     def test_latest_release_cannot_claim_unverified_task(self):
-        self.plan['last_verified_release']['task']='ECHS-C09';self.rejected('latest release task')
+        self.plan['last_verified_release']['task']=next(t['id'] for t in self.plan['tasks'] if t['status']!='VERIFIED');self.rejected('latest release task')
     def test_passing_claim_without_evidence(self):self.row('ECHS-014')['tests']['evidence']=[];self.rejected('need evidence')
     def test_missing_deployed_revision(self):self.row('ECHS-014')['deployment']['verified_at_main']='local';self.rejected('verified revision')
     def test_unknown_component_task(self):self.plan['component_families'][0]['tasks']=['ECHS-999'];self.rejected('family task mapping')

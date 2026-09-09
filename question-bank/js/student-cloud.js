@@ -1,8 +1,19 @@
 (async () => {
   "use strict";
+  // A mixed cached release must fail closed before rendering any practice claims.
+  if(!window.ECHSLearning?.projectLearningReport||!window.ECHSLearning?.projectMasteryRecord){
+    const main=document.querySelector(".institutionMain")||document.querySelector("main");
+    if(main){const notice=document.createElement("p");notice.setAttribute("role","status");notice.dataset.masteryStatusUnavailable="true";notice.textContent="Practice status is unavailable in this cached version. Reload the page to continue. Verified mastery is unavailable.";main.replaceChildren(notice);}
+    return;
+  }
+
   const $ = (id) => document.getElementById(id),
     X = window.ECHSExperience;
   const esc = X.escapeHTML;
+  const practiceMetric=$("heroMastery")?.closest("article");
+  if(practiceMetric){practiceMetric.querySelector(".premiumMetricLabel").textContent="Provisional practice score";practiceMetric.querySelector("p").textContent="Recorded practice; not authenticated grading.";}
+  const practiceMeter=$("masteryMeter");
+  if(practiceMeter){practiceMeter.querySelector("small").textContent="Practice";practiceMeter.closest("article").querySelector("p").textContent="Provisional recorded practice score.";}
   const dailyGoal = Number(
       localStorage.getItem("echs_student_daily_goal") || 10,
     ),
@@ -184,10 +195,10 @@
   function skillRows(rows, empty, color = "var(--px-teal)") {
     if (!rows?.length)
       return `<div class="emptyInstitution">${esc(empty)}</div>`;
-    return rows
+    return rows.map(ECHSLearning.projectMasteryRecord)
       .map(
         (row) =>
-          `<div class="premiumListRow" style="--row-color:${color}"><span class="rowIcon">${X.icon(row.score >= 80 ? "achievement" : "mastery")}</span><div><strong>${esc(row.title || row.topic || row.skill_key)}</strong><small>${esc([row.course, row.unit ? `Unit ${row.unit}` : "", row.level].filter(Boolean).join(" · "))}</small><div class="progressMini"><i style="width:${X.safePercent(row.score)}%"></i></div></div><span class="rowValue">${Math.round(Number(row.score || 0))}%</span></div>`,
+          `<div class="premiumListRow" style="--row-color:${color}"><span class="rowIcon">${X.icon(row.score >= 80 ? "achievement" : "mastery")}</span><div><strong>${esc(row.title || row.topic || row.skill_key)}</strong><small>${esc([row.course, row.unit ? `Unit ${row.unit}` : "", row.level].filter(Boolean).join(" · "))}</small><div class="progressMini"><i style="width:${X.safePercent(row.score)}%"></i></div></div><span class="rowValue">${ECHSLearning.evidencePercent(row)}</span></div>`,
       )
       .join("");
   }
@@ -218,6 +229,7 @@
     return Number.isNaN(date.getTime()) ? "" : date.toISOString().slice(0, 10);
   }
   function renderJourney(mastery) {
+    mastery=(mastery||[]).map(ECHSLearning.projectMasteryRecord);
     const groups = new Map();
     (mastery || []).forEach((row) => {
       const id = `${row.course || "Mathematics"}::${row.unit || "General"}`,
@@ -247,17 +259,18 @@
                   0,
                 ) / group.rows.length,
               ),
+              groupEvidence=group.rows.every(row=>row.evidence_status==="provisional")?{score,attempts:group.rows.reduce((total,row)=>total+row.attempts,0)}:null,
               colors = [
                 "var(--px-teal)",
                 "var(--px-gold)",
                 "var(--px-maroon)",
                 "var(--px-navy-2)",
               ];
-            return `<div class="journeyUnit" style="--unit-color:${colors[index % colors.length]}"><span class="journeyNode">U${esc(group.unit)}</span><div><h4>${esc(group.course)} · Unit ${esc(group.unit)}</h4><p>${group.rows.length} mapped skill${group.rows.length === 1 ? "" : "s"} · ${score >= 85 ? "Mastered" : score >= 65 ? "Proficient" : score >= 40 ? "Developing" : "Starting"}</p><div class="progressMini" style="--row-color:${colors[index % colors.length]}"><i style="width:${score}%"></i></div></div><span class="journeyPercent">${score}%</span></div>`;
+            return `<div class="journeyUnit" style="--unit-color:${colors[index % colors.length]}"><span class="journeyNode">U${esc(group.unit)}</span><div><h4>${esc(group.course)} · Unit ${esc(group.unit)}</h4><p>${group.rows.length} mapped skill${group.rows.length === 1 ? "" : "s"} · ${esc(ECHSLearning.evidenceStatus(groupEvidence).display_level)}</p><div class="progressMini" style="--row-color:${colors[index % colors.length]}"><i style="width:${score}%"></i></div></div><span class="journeyPercent">${ECHSLearning.evidencePercent(groupEvidence)}</span></div>`;
           })
           .join("")
       : `<div class="emptyInstitution"><h3>Your knowledge map is ready to grow</h3><p>Complete your first adaptive set to place the first skill.</p></div>`;
-    $("masteryList").innerHTML = skillRows(mastery, "No mastery evidence yet.");
+    $("masteryList").innerHTML = skillRows(mastery, "No practice evidence yet.");
   }
   function renderAchievements(data) {
     const local = window.ECHSLearning?.earnedAchievements?.() || [],
@@ -274,9 +287,9 @@
       },
       {
         icon: "★",
-        title: "Topic master",
-        description: `${data.counters?.mastered_topics || 0} topics currently mastered.`,
-        earned: (data.counters?.mastered_topics || 0) > 0,
+        title: "Mastery verification unavailable",
+        description: "Recorded practice does not certify mastery.",
+        earned: false,
       },
       {
         icon: "↻",
@@ -307,6 +320,7 @@
       .join("");
   }
   function render(data, current) {
+    data = ECHSLearning.projectLearningReport(data);
     const c = data.counters || {},
       mastery = data.mastery || [],
       firstName = (
@@ -318,13 +332,13 @@
     $("heroGreeting").innerHTML =
       `${esc(X.greeting())}, ${esc(firstName)}.<span>${c.review_due ? `${c.review_due} reviews are ready today.` : "Your next skill is ready."}</span>`;
     $("heroMessage").textContent =
-      `You have mastered ${c.mastered_topics || 0} topic${c.mastered_topics === 1 ? "" : "s"}. Complete the next focused step to keep your journey moving.`;
-    $("heroMastery").textContent = `${c.mastery || 0}%`;
+      "Practice indicators are provisional. Verified mastery requires authenticated grading evidence.";
+    $("heroMastery").textContent = ECHSLearning.evidencePercent(c,"mastery");
     $("heroToday").textContent = c.questions_today || 0;
     $("heroStreak").textContent = c.streak || 0;
     $("heroDue").textContent = c.review_due || 0;
     $("masteryTrend").textContent =
-      c.mastery >= 80 ? "Mastery level" : "Growing steadily";
+      ECHSLearning.evidenceStatus({score:c.mastery,attempts:c.attempts}).display_level;
     $("goalTrend").textContent = `Goal ${dailyGoal}`;
     $("streakTrend").textContent = c.streak ? "Keep it going" : "Start today";
     $("reviewTrend").textContent = c.review_due ? "Ready now" : "Up to date";
@@ -358,6 +372,7 @@
       )
       .join("");
     X.setRing("masteryMeter", c.mastery);
+    $("masteryMeter").querySelector("strong").textContent=ECHSLearning.evidencePercent(c,"mastery");
     X.setRing(
       "topicsMeter",
       c.total_topics ? (c.mastered_topics / c.total_topics) * 100 : 0,
@@ -369,7 +384,7 @@
     $("todayCount").textContent = c.questions_today || 0;
     $("weeklyMinutes").textContent = c.weekly_minutes || 0;
     $("weeklyTimeBadge").textContent = `${c.weekly_minutes || 0} min`;
-    $("accuracyMetric").textContent = `${c.accuracy || 0}%`;
+    $("accuracyMetric").textContent = ECHSLearning.evidencePercent(c,"accuracy");
     $("dueMetric").textContent = c.review_due || 0;
     $("mistakeMetric").textContent = c.open_mistakes || 0;
     $("streakMetric").textContent = c.streak || 0;
@@ -377,10 +392,10 @@
     $("nextSkillTitle").textContent =
       next?.title || "Adaptive practice pathway";
     $("nextSkillMeta").textContent = next
-      ? `${next.course || "Mathematics"}${next.unit ? ` · Unit ${next.unit}` : ""} · current mastery ${Math.round(Number(next.score || 0))}%`
+      ? `${next.course || "Mathematics"}${next.unit ? ` · Unit ${next.unit}` : ""} · provisional practice ${ECHSLearning.evidencePercent(next)}`
       : "Complete practice to generate your first evidence-based recommendation.";
     $("nextSkillScore").textContent =
-      `${Math.round(Number(next?.score || c.mastery || 0))}%`;
+      next ? ECHSLearning.evidencePercent(next) : ECHSLearning.evidencePercent(c,"mastery");
     $("nextSkillTags").innerHTML = [
       next?.level || "Personalised",
       c.review_due ? `${c.review_due} reviews due` : "Review clear",

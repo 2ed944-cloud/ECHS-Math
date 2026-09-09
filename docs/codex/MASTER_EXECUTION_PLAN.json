@@ -39,14 +39,12 @@
     "board_snapshot": "In-flight tasks remain unverified until a later evidence-backed board update. The board cannot contain its own future commit hash."
   },
   "execution_order": {
-    "first_unmet_dependency": "ECHS-C09",
+    "first_unmet_dependency": "ECHS-C02",
     "active_work": [
-      "ECHS-C09",
       "ECHS-C02",
       "ECHS-C08"
     ],
     "next_after_public_projection": [
-      "ECHS-C09",
       "ECHS-C02",
       "ECHS-C08",
       "ECHS-C03",
@@ -2760,6 +2758,22 @@
         {
           "path": "tools/test_mastery_read_models.mjs",
           "state": "planned"
+        },
+        {
+          "path": ".github/workflows/mastery-truthfulness.yml",
+          "state": "planned"
+        },
+        {
+          "path": "tools/test_mastery_browser_acceptance.mjs",
+          "state": "planned"
+        },
+        {
+          "path": "tools/test_mastery_worker.mjs",
+          "state": "planned"
+        },
+        {
+          "path": "docs/codex/MASTERY_TRUTHFULNESS_C02.md",
+          "state": "planned"
         }
       ],
       "acceptance_criteria": [
@@ -2780,7 +2794,9 @@
         "strategy": "Revert only this reviewed slice; retain prior URLs, published versions, raw evidence and existing accounts. Any database changes require a task-specific forward/rollback note before implementation."
       },
       "known_limits": [
-        "This fixes labels and counters; it does not authenticate existing client-reported practice. C03 and ECHS-046 provide that separate boundary."
+        "This fixes response/display labels and certified counters; it does not authenticate existing client-reported practice. C03 and ECHS-046 provide that separate boundary.",
+        "Already executing old tabs require reload. New worker activation/current-release fallback cannot recall code already running in a page.",
+        "C09 authorization guards are retained. Old numerical scores, raw evidence, historical milestone IDs, practice XP and routing remain preserved."
       ],
       "next_dependency": [
         "ECHS-015",
@@ -4829,7 +4845,7 @@
       "id": "ECHS-C09",
       "title": "Class-membership tenant authorization and atomic replacement",
       "phase": "CHARTER_FOUNDATIONS",
-      "status": "IN PROGRESS",
+      "status": "VERIFIED",
       "depends_on": [
         "ECHS-C01"
       ],
@@ -4853,31 +4869,31 @@
         },
         {
           "path": "supabase/migrations/202609090002_membership_authorization.sql",
-          "state": "planned"
+          "state": "existing"
         },
         {
           "path": "tools/test_membership_authorization_api.mjs",
-          "state": "planned"
+          "state": "existing"
         },
         {
           "path": "tools/test_membership_authorization_database.py",
-          "state": "planned"
+          "state": "existing"
         },
         {
           "path": "tools/test_membership_authorization_e2e.mjs",
-          "state": "planned"
+          "state": "existing"
         },
         {
           "path": "tools/membership_authorization_rpc_fixture.py",
-          "state": "planned"
+          "state": "existing"
         },
         {
           "path": ".github/workflows/membership-authorization.yml",
-          "state": "planned"
+          "state": "existing"
         },
         {
           "path": "docs/codex/MEMBERSHIP_AUTHORIZATION_C09.md",
-          "state": "planned"
+          "state": "existing"
         }
       ],
       "acceptance_criteria": [
@@ -4888,12 +4904,35 @@
         "No existing membership backfill/deletion at deployment, learner-data inspection, role widening, mastery/curriculum change or public private material. Verify the exact merged backend capability and preserve a safe rollback."
       ],
       "tests": {
-        "status": "NOT_RUN",
-        "evidence": []
+        "status": "PASS",
+        "evidence": [
+          {
+            "kind": "sealed_scoped_release",
+            "path": "docs/codex/MEMBERSHIP_AUTHORIZATION_C09_RELEASE.json"
+          }
+        ]
       },
       "deployment": {
-        "status": "NOT_DEPLOYED",
-        "evidence": []
+        "status": "VERIFIED",
+        "verified_at_main": "21478287590fcc04ac8000180aef0f1fe91e79b8",
+        "evidence": [
+          {
+            "kind": "merged_pull_request",
+            "url": "https://github.com/2ed944-cloud/ECHS-Math/pull/364"
+          },
+          {
+            "kind": "backend_release",
+            "url": "https://github.com/2ed944-cloud/ECHS-Math/actions/runs/34387386416"
+          },
+          {
+            "kind": "pages_release",
+            "url": "https://github.com/2ed944-cloud/ECHS-Math/actions/runs/34387386492"
+          },
+          {
+            "kind": "production_acceptance",
+            "path": "docs/codex/MEMBERSHIP_AUTHORIZATION_C09_RELEASE.json"
+          }
+        ]
       },
       "rollback": {
         "strategy": "Retain tenant/role read guards. Revert compatible caller code only after preserving the atomic authorized replacement path; no restoration of unchecked delete/insert behavior. Additive RPC migration does not backfill or delete existing memberships."
@@ -4952,13 +4991,13 @@
       "id": "CLASS_MEMBERSHIP_AUTHORIZATION",
       "owner_task": "ECHS-C09",
       "severity": "P0",
-      "description": "Current mutation accepts requested account IDs without tenant/actual-role validation and delete/insert replacement is nontransactional; existing malformed membership rows can influence legacy reports. Source-confirmed, no production data inspected."
+      "description": "The unchecked/nontransactional roster endpoint and selected institutional/mastery report scopes were repaired and verified in sealed C09 at main21478287590fcc04ac8000180aef0f1fe91e79b8. Existing malformed membership rows remain stored; private-provider, readiness, parent-management and trusted direct database writers retain separate acceptance/cleanup scopes. No production roster was inspected or backfilled."
     }
   ],
   "last_verified_release": {
-    "task": "ECHS-C01",
-    "main_sha": "eacaff26f27a0c69debf8e5023686c2acf8e17f0",
-    "tree_sha": "54c4673d962e241e61f230e8f6edc75bd18a79e6",
-    "evidence": "docs/codex/PUBLIC_QUESTION_BOUNDARY_C01_RELEASE.json"
+    "task": "ECHS-C09",
+    "main_sha": "21478287590fcc04ac8000180aef0f1fe91e79b8",
+    "tree_sha": "f182333c9f86286b78623ddb8947f61aea868534",
+    "evidence": "docs/codex/MEMBERSHIP_AUTHORIZATION_C09_RELEASE.json"
   }
 }

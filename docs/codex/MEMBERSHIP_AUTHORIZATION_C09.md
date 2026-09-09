@@ -1,6 +1,6 @@
 # C09 membership authorization and atomic roster replacement
 
-Status: **IN PROGRESS — real PostgreSQL, final CI and production verification pending.** This is a separate release based on verified main `eacaff26f27a0c69debf8e5023686c2acf8e17f0`. It contains no C02 mastery-label or C08 question-storage changes.
+Status: **VERIFIED** at main `21478287590fcc04ac8000180aef0f1fe91e79b8`, tree `f182333c9f86286b78623ddb8947f61aea868534`. [Sealed release metadata](MEMBERSHIP_AUTHORIZATION_C09_RELEASE.json) records all 15 PR workflows, 17 post-merge workflows, 68 baseline checks, 55 PostgreSQL checks, 7 actual HTTP/SQL groups and 15 read-only production checks passing. This separate release contains no C02 mastery-label or C08 question-storage changes. The implementation below describes that sealed C09 snapshot; later C02 composition retains its authorization contracts.
 
 ## Problem and resulting behavior
 
@@ -36,4 +36,4 @@ Preserve the current source and exact release manifest. The additive migration c
 
 ## Remaining limits
 
-Existing malformed memberships are denied where checked but are not automatically repaired. Other private question-provider, readiness and parent-management boundaries require their own acceptance; C09 is not a blanket authorization certification. C02 still must project client-reported learning as provisional, and C03 must add authenticated grading evidence. No lesson, question body, private answer, student record or account secret is added to public assets by C09. Completion requires real database and HTTP/SQL passes, independent review, exact merged-source verification, successful deployment and the production capability response.
+Existing malformed memberships are denied where checked but are not automatically repaired. Other private question-provider, readiness and parent-management boundaries require their own acceptance; C09 is not a blanket authorization certification. C02 still must project client-reported learning as provisional, and C03 must add authenticated grading evidence. No lesson, question body, private answer, student record or account secret is added to public assets by C09. Real database and HTTP/SQL acceptance, independent review, exact merged-source verification, successful deployment and the production capability response are recorded in the sealed release metadata.

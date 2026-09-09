@@ -1,6 +1,130 @@
 /* ECHS Mathematics Learning System — Phase 2 local-first engine */
 (function(){
 "use strict";
+// BEGIN GENERATED ECHS MASTERY STATUS
+const MASTERY_STATUS = (() => {
+// ECHS-C02: presentation policy, not a grader or a certification authority.
+// Current attempt ingestion accepts client-reported answers and assistance/time.
+// Recomputing those records on the server does not authenticate their correctness.
+const STATUS_CONTRACT = 'echs.mastery-status.v1';
+
+function field(value, key) {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return undefined;
+  try {
+    const descriptor = Object.getOwnPropertyDescriptor(value, key);
+    return descriptor && Object.hasOwn(descriptor, 'value') ? descriptor.value : undefined;
+  } catch { return undefined; }
+}
+function numeric(value, maximum = Number.MAX_SAFE_INTEGER) {
+  return typeof value === 'number' && Number.isFinite(value) && value >= 0 && value <= maximum ? value : null;
+}
+
+/** Pure projection of existing evidence. No input, including receipt-like fields,
+ * can enable verified mastery until a separate authenticated grading contract exists.
+ * Missing-evidence codes describe recorded practice diagnostics, not trusted proofs.
+ */
+function projectMasteryStatus(record) {
+  const attempts = numeric(field(record, 'attempts'));
+  const score = numeric(field(record, 'score'), 100);
+  const hasAttempts = attempts !== null && attempts > 0;
+  const sufficient = hasAttempts && score !== null;
+  const missing = ['grading_provenance_missing'];
+  if (!hasAttempts) missing.push('practice_attempts_missing');
+  if (score === null) missing.push('practice_score_missing');
+  const rules = field(field(record, 'payload'), 'requirements');
+  const diagnostic = (key, minimum, name, maximum) => {
+    const value = numeric(field(record, key), maximum);
+    if (value === null) missing.push(`${name}_unavailable`);
+    else if (value < minimum) missing.push(`${name}_insufficient`);
+  };
+  // These are the existing foundation's defaults; they do not change its score.
+  diagnostic('independent_evidence', numeric(field(rules, 'minimumIndependent')) ?? 4, 'independent_evidence');
+  diagnostic('active_days', numeric(field(rules, 'minimumDays')) ?? 2, 'active_days');
+  diagnostic('confidence', numeric(field(rules, 'minimumConfidence'), 1) ?? .72, 'confidence', 1);
+  for (const [key, rule] of [['transfer_evidence', 'requiresTransfer'], ['retention_evidence', 'requiresRetention']]) {
+    const value = numeric(field(record, key));
+    if (value === null) missing.push(`${key}_unavailable`);
+    else if (field(rules, rule) === true && value < 1) missing.push(`${key}_insufficient`);
+  }
+  const display = !sufficient ? 'Insufficient practice evidence'
+    : score >= 85 ? 'Strong practice performance'
+    : score >= 65 ? 'Proficient practice performance'
+    : score >= 35 ? 'Developing practice performance' : 'Starting practice performance';
+  return Object.freeze({
+    status_contract: STATUS_CONTRACT,
+    evidence_status: sufficient ? 'provisional' : 'insufficient',
+    verified_mastery: false,
+    display_level: display,
+    provenance: hasAttempts ? 'client_reported' : 'unknown',
+    missing_evidence: Object.freeze(missing),
+  });
+}
+
+/** Response-only compatibility projection; the supplied/stored record is untouched.
+ * Old algorithm claims remain explicitly diagnostic, never the active label/flag.
+ */
+function projectMasteryRecord(record) {
+  const status = projectMasteryStatus(record);
+  const payload = field(record, 'payload');
+  const hasPayload = payload && typeof payload === 'object' && !Array.isArray(payload);
+  return {
+    ...record,
+    ...status,
+    level: status.display_level,
+    last_verified_at: null,
+    ...(hasPayload ? {payload: {...payload, level: status.display_level, verified: false}} : {}),
+    legacy_algorithm_diagnostics: {
+      interpretation: 'Server recomputation of client-reported practice; not authenticated grading.',
+      level: field(payload, 'level') ?? null,
+      verified: field(payload, 'verified') ?? null,
+      last_verified_at: field(record, 'last_verified_at') ?? null,
+    },
+  };
+}
+
+/** Aggregate certification status only; score/accuracy/routing remain caller-owned. */
+function projectMasterySummary(records) {
+  const statuses = Array.isArray(records) ? records.map(projectMasteryStatus) : [];
+  const hasPractice = statuses.some(value => value.provenance === 'client_reported');
+  const provisional = statuses.some(value => value.evidence_status === 'provisional');
+  return {
+    status_contract: STATUS_CONTRACT,
+    grading_authoritative: false,
+    verified_mastery: false,
+    evidence_status: provisional ? 'provisional' : 'insufficient',
+    provenance: hasPractice ? 'client_reported' : 'unknown',
+    missing_evidence: statuses.length ? [...new Set(statuses.flatMap(value => value.missing_evidence))] : [...projectMasteryStatus(null).missing_evidence],
+  };
+}
+
+return Object.freeze({STATUS_CONTRACT,projectMasteryStatus,projectMasteryRecord,projectMasterySummary});
+})();
+// END GENERATED ECHS MASTERY STATUS
+const evidenceStatus=MASTERY_STATUS.projectMasteryStatus,projectMasteryRecord=MASTERY_STATUS.projectMasteryRecord,projectMasterySummary=MASTERY_STATUS.projectMasterySummary;
+// Read models only. Never write these projections back over recorded practice.
+function evidencePercent(record,key="score"){
+  const value=record?.[key];
+  return evidenceStatus({score:value,attempts:record?.attempts}).evidence_status==="provisional"?`${Math.round(value)}%`:"—";
+}
+function projectPracticeAchievement(row){
+  if(!row||typeof row!=="object")return{};
+  if(!["first-mastery","five-masteries"].includes(row.id)){
+    const known=ACHIEVEMENTS.find(item=>item.id===row.id);
+    return{...row,title:known?.title||"Recorded practice milestone",description:known?.description||"Imported historical practice entry; not a verified mastery certificate.",verified_mastery:false,evidence_status:"provisional"};
+  }
+  return{...row,title:row.id==="first-mastery"?"Historical topic practice milestone":"Historical five-topic practice milestone",description:"Recorded by the earlier practice-score system; this is not verified mastery.",verified_mastery:false,evidence_status:"provisional"};
+}
+function projectLearningReport(data={}){
+  if(!data||typeof data!=="object"||Array.isArray(data))data={};
+  const result={...data};
+  for(const key of ["mastery","strengths","priorities","weakTopics"])if(Array.isArray(data[key]))result[key]=data[key].map(projectMasteryRecord);
+  const status=projectMasterySummary(result.mastery||[...(result.strengths||[]),...(result.priorities||[])]);
+  Object.assign(result,status);
+  if(data.counters)result.counters={...data.counters,mastered_topics:0,...status};
+  if(data.summary)result.summary={...data.summary,mastered:0,mastered_topics:0,...status};
+  if(Array.isArray(data.achievements))result.achievements=data.achievements.map(projectPracticeAchievement);
+  return result;
+}
 const VERSION="2.0.0",DAY=86400000;
 const KEYS={profile:"echs_learning_profile_v2",attempts:"echs_learning_events_v2",mastery:"echs_learning_mastery_v2",reviews:"echs_learning_reviews_v2",sessions:"echs_learning_sessions_v2",continue:"echs_learning_continue_v2",achievements:"echs_learning_achievements_v2",streak:"echs_learning_streak_v2",classes:"echs_learning_classes_v2",assignments:"echs_learning_assignments_v2",submissions:"echs_learning_submissions_v2",settings:"echs_learning_settings_v2"};
 const COURSE_LABELS={"ap-calculus":"AP Calculus","ap-precalculus":"AP Precalculus","algebra-2":"Algebra 2 Concepts","ib-math-ai":"IB Mathematics AI","grade-9":"Grade 9 Pre-Precalculus",unassigned:"General Mathematics"};
@@ -37,9 +161,9 @@ const interval=b=>[0,1,3,7,14,30,60][clamp(b,0,6)];
 function updateReview(q,ok,c={}){const all=reviewMap(),id=String(q?.id||"");if(!id)return null;const d=topicDescriptor(q,c),r=all[id]||{questionId:id,box:0,attempts:0,correct:0};r.attempts++;if(ok)r.correct++;r.box=ok?clamp((r.box||0)+1,1,6):0;r.unresolved=!ok;r.lastResult=Boolean(ok);r.lastAttemptAt=now();r.dueAt=new Date(Date.now()+(ok?interval(r.box):1)*DAY).toISOString();Object.assign(r,{course:d.course,unit:d.unit,topic:d.topic,topicKey:d.key,title:d.title,bankCode:q.bank_code||"",section:q.source?.section||"",promptText:String(q.prompt_text||"").slice(0,300)});all[id]=r;write(KEYS.reviews,all);return r}
 function dueReviews({course=null,unit=null,limit=Infinity}={}){return Object.values(reviewMap()).filter(r=>new Date(r.dueAt||0).getTime()<=Date.now()).filter(r=>!course||r.course===course).filter(r=>unit==null||String(r.unit)===String(unit)).sort((a,b)=>new Date(a.dueAt)-new Date(b.dueAt)).slice(0,limit)}
 function mistakes({course=null,unit=null,limit=Infinity}={}){return Object.values(reviewMap()).filter(r=>r.unresolved).filter(r=>!course||r.course===course).filter(r=>unit==null||String(r.unit)===String(unit)).sort((a,b)=>new Date(b.lastAttemptAt)-new Date(a.lastAttemptAt)).slice(0,limit)}
-function masteryRows({course=null}={}){return Object.values(masteryMap()).filter(r=>!course||r.course===course).sort((a,b)=>a.score-b.score||b.attempts-a.attempts)}
+function masteryRows({course=null}={}){return Object.values(masteryMap()).filter(r=>!course||r.course===course).sort((a,b)=>a.score-b.score||b.attempts-a.attempts).map(projectMasteryRecord)}
 function weakTopics(limit=5){return masteryRows().filter(r=>r.attempts>=2&&r.score<65).slice(0,limit)}
-function summary(){const a=attempts(),correct=a.filter(x=>x.correct).length,m=Object.values(masteryMap()),s=streak();return{attempts:a.length,correct,accuracy:a.length?Math.round(correct/a.length*100):0,uniqueQuestions:new Set(a.map(x=>x.questionId||x.id)).size,topics:m.length,mastered:m.filter(x=>x.score>=80).length,proficient:m.filter(x=>x.score>=65).length,due:dueReviews().length,unresolved:mistakes().length,streak:s.current||0,longestStreak:s.longest||0,completedLessons:read("echs_math_complete",[]).length,bookmarkedLessons:read("echs_math_bookmarks",[]).length}}
+function summary(){const a=attempts(),correct=a.filter(x=>x.correct).length,m=Object.values(masteryMap()),s=streak();return{attempts:a.length,correct,accuracy:a.length?Math.round(correct/a.length*100):0,uniqueQuestions:new Set(a.map(x=>x.questionId||x.id)).size,topics:m.length,mastered:m.map(evidenceStatus).filter(x=>x.verified_mastery).length,...projectMasterySummary(m),legacy_practice_points:{topics_at_80_percent:m.filter(x=>x.score>=80).length,certified:false},proficient:m.filter(x=>x.score>=65).length,due:dueReviews().length,unresolved:mistakes().length,streak:s.current||0,longestStreak:s.longest||0,completedLessons:read("echs_math_complete",[]).length,bookmarkedLessons:read("echs_math_bookmarks",[]).length}}
 function evaluateAchievements(){const s=summary(),all=achievements(),newly=[];ACHIEVEMENTS.forEach(x=>{if(!all[x.id]&&x.test(s)){all[x.id]={id:x.id,title:x.title,description:x.description,icon:x.icon,earnedAt:now()};newly.push(all[x.id])}});write(KEYS.achievements,all);if(newly.length)window.dispatchEvent(new CustomEvent("echs:achievement",{detail:{earned:newly}}));return newly}
 function recordAttempt({question,correct,response="",mode="practice",sessionId=null,durationMs=null,context={}}){if(!question?.id)return null;const d=topicDescriptor(question,context),e={schemaVersion:VERSION,id:uid("attempt"),questionId:String(question.id),bankCode:question.bank_code||"",type:question.type||"",correct:Boolean(correct),response:String(response??""),mode,sessionId,durationMs:Number.isFinite(durationMs)?durationMs:null,assignmentId:context.assignmentId||null,...d,at:now()},a=attempts();a.push(e);write(KEYS.attempts,a.slice(-15000));updateMastery(question,Boolean(correct),context);updateReview(question,Boolean(correct),context);updateStreak(e.at);evaluateAchievements();window.dispatchEvent(new CustomEvent("echs:learning-attempt",{detail:e}));return e}
 function markReviewResolved(id,resolved=true){const all=reviewMap();if(!all[id])return false;all[id].unresolved=!resolved;all[id].manuallyResolvedAt=resolved?now():null;write(KEYS.reviews,all);return true}
@@ -52,14 +176,14 @@ const questionDifficulty=q=>{const v=Number(q?.metadata?.difficulty);return Numb
 function adaptiveTarget(q){const d=topicDescriptor(q),s=masteryMap()[d.key]?.score??35;return s<40?1:s<72?2:3}
 function adaptiveScore(q,{excludedIds=[],lastCorrect=null}={}){if(excludedIds.includes(String(q.id)))return-Infinity;const d=topicDescriptor(q),m=masteryMap()[d.key],r=reviewMap()[q.id],difficulty=questionDifficulty(q);let target=adaptiveTarget(q),score=0;if(lastCorrect===true)target=Math.min(3,target+1);if(lastCorrect===false)target=Math.max(1,target-1);if(r?.unresolved)score+=80;if(r&&new Date(r.dueAt||0)<=new Date())score+=65;if(!r)score+=28;score+=(100-(m?.score??30))*.65;score-=Math.abs(difficulty-target)*22;return score+Math.random()*18}
 function selectAdaptive(qs,count=10,o={}){const excluded=[...(o.excludedIds||[])],out=[];for(let i=0;i<count;i++){const ranked=qs.map(q=>({q,score:adaptiveScore(q,{...o,excludedIds:excluded})})).filter(x=>Number.isFinite(x.score)).sort((a,b)=>b.score-a.score);if(!ranked.length)break;const top=ranked.slice(0,Math.min(8,ranked.length)),q=top[Math.floor(Math.random()*top.length)].q;out.push(q);excluded.push(String(q.id))}return out}
-function dailyPlan(){const p=profile(),goal=Number(settings().dailyGoal||p.dailyGoal||10),today=dateKey(),todayAttempts=attempts().filter(r=>dateKey(r.at)===today).length,due=dueReviews({limit:20}),weak=weakTopics(3),cont=getContinue(),items=[];if(cont)items.push({type:"continue",title:"Continue where you stopped",detail:cont.label||"Resume your last activity",href:cont.url||"practice.html?resume=1",priority:100});if(due.length)items.push({type:"review",title:`Review ${Math.min(due.length,10)} due question${due.length===1?"":"s"}`,detail:"Spaced review is ready now.",href:"practice.html?mode=review&autostart=1",priority:90});if(weak.length)items.push({type:"adaptive",title:`Strengthen ${weak[0].title}`,detail:`Current mastery ${weak[0].score}%.`,href:`practice.html?course=${encodeURIComponent(weak[0].course)}&unit=${encodeURIComponent(weak[0].unit)}&mode=adaptive&autostart=1`,priority:80});if(todayAttempts<goal)items.push({type:"goal",title:`Complete ${goal-todayAttempts} more question${goal-todayAttempts===1?"":"s"} today`,detail:`Daily goal: ${goal}.`,href:"practice.html?mode=adaptive&autostart=1",priority:70});if(!items.length)items.push({type:"complete",title:"Today's plan is complete",detail:"Choose a challenge set or continue a lesson.",href:"practice.html?mode=adaptive",priority:1});return{goal,todayAttempts,progress:goal?Math.min(100,Math.round(todayAttempts/goal*100)):0,items:items.sort((a,b)=>b.priority-a.priority)}}
-const earnedAchievements=()=>{const e=achievements();return ACHIEVEMENTS.map(x=>({...x,earned:e[x.id]||null}))};
-function exportStudentReport(){const p=profile();return{schema:"echs-learning-report",schemaVersion:VERSION,generatedAt:now(),student:{id:p.id,name:p.name,grade:p.grade,school:p.school},summary:summary(),mastery:masteryRows(),dueReviews:dueReviews({limit:100}).map(({questionId,course,unit,topic,title,dueAt,unresolved})=>({questionId,course,unit,topic,title,dueAt,unresolved})),weakTopics:weakTopics(10),achievements:Object.values(achievements()),recentSessions:recentSessions(25).map(({id,type,mode,status,startedAt,endedAt,answered,correct,score,assignmentId,course,unit,topic})=>({id,type,mode,status,startedAt,endedAt,answered,correct,score,assignmentId,course,unit,topic}))}}
+function dailyPlan(){const p=profile(),goal=Number(settings().dailyGoal||p.dailyGoal||10),today=dateKey(),todayAttempts=attempts().filter(r=>dateKey(r.at)===today).length,due=dueReviews({limit:20}),weak=weakTopics(3),cont=getContinue(),items=[];if(cont)items.push({type:"continue",title:"Continue where you stopped",detail:cont.label||"Resume your last activity",href:cont.url||"practice.html?resume=1",priority:100});if(due.length)items.push({type:"review",title:`Review ${Math.min(due.length,10)} due question${due.length===1?"":"s"}`,detail:"Spaced review is ready now.",href:"practice.html?mode=review&autostart=1",priority:90});if(weak.length)items.push({type:"adaptive",title:`Strengthen ${weak[0].title}`,detail:`Current provisional practice score ${weak[0].score}%.`,href:`practice.html?course=${encodeURIComponent(weak[0].course)}&unit=${encodeURIComponent(weak[0].unit)}&mode=adaptive&autostart=1`,priority:80});if(todayAttempts<goal)items.push({type:"goal",title:`Complete ${goal-todayAttempts} more question${goal-todayAttempts===1?"":"s"} today`,detail:`Daily goal: ${goal}.`,href:"practice.html?mode=adaptive&autostart=1",priority:70});if(!items.length)items.push({type:"complete",title:"Today's plan is complete",detail:"Choose a challenge set or continue a lesson.",href:"practice.html?mode=adaptive",priority:1});return{goal,todayAttempts,progress:goal?Math.min(100,Math.round(todayAttempts/goal*100)):0,items:items.sort((a,b)=>b.priority-a.priority)}}
+const earnedAchievements=()=>{const e=achievements();return ACHIEVEMENTS.map(x=>({...projectPracticeAchievement(x),earned:e[x.id]?projectPracticeAchievement(e[x.id]):null}))};
+function exportStudentReport(){const p=profile();return{schema:"echs-learning-report",schemaVersion:VERSION,generatedAt:now(),student:{id:p.id,name:p.name,grade:p.grade,school:p.school},summary:summary(),mastery:masteryRows(),dueReviews:dueReviews({limit:100}).map(({questionId,course,unit,topic,title,dueAt,unresolved})=>({questionId,course,unit,topic,title,dueAt,unresolved})),weakTopics:weakTopics(10),achievements:Object.values(achievements()).map(projectPracticeAchievement),recentSessions:recentSessions(25).map(({id,type,mode,status,startedAt,endedAt,answered,correct,score,assignmentId,course,unit,topic})=>({id,type,mode,status,startedAt,endedAt,answered,correct,score,assignmentId,course,unit,topic}))}}
 function downloadJSON(name,data){const b=new Blob([JSON.stringify(data,null,2)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(b);a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}
 const exportReport=()=>{const r=exportStudentReport();downloadJSON(`ECHS-learning-report-${dateKey()}.json`,r);return r};
 function migrateLegacyAttempts(){if(attempts().length)return 0;const old=read("echs_qbank_attempts_v20",[]);if(!Array.isArray(old)||!old.length)return 0;const events=[],mastery={...masteryMap()},reviews={...reviewMap()};old.slice(-15000).forEach(r=>{const course=r.course||"unassigned",unit=String(r.unit||"all"),topic=String(r.topic||r.section||"general"),key=[course,unit,topic].map(v=>String(v).toLowerCase()).join("::"),title=r.lesson||r.section||`Unit ${unit}`;events.push({schemaVersion:VERSION,id:uid("legacy"),questionId:String(r.id||""),bankCode:r.bank_code||"",type:r.type||"",correct:Boolean(r.correct),response:String(r.response||""),mode:"legacy",key,course,unit,topic,title,courseLabel:COURSE_LABELS[course]||course,at:r.at||now(),migrated:true});const m=mastery[key]||{key,course,unit,topic,title,courseLabel:COURSE_LABELS[course]||course,attempts:0,correct:0,recent:[]};m.attempts++;if(r.correct)m.correct++;m.recent=[...(m.recent||[]),Boolean(r.correct)].slice(-12);m.lastAttemptAt=r.at||now();mastery[key]=recalc(m);if(r.id){const v=reviews[r.id]||{questionId:String(r.id),box:0,attempts:0,correct:0};v.attempts++;if(r.correct)v.correct++;v.box=r.correct?Math.max(1,v.box||0):0;v.unresolved=!r.correct;v.lastAttemptAt=r.at||now();v.dueAt=new Date(new Date(r.at||Date.now()).getTime()+(r.correct?interval(v.box):1)*DAY).toISOString();Object.assign(v,{course,unit,topic,topicKey:key,title,bankCode:r.bank_code||"",section:r.section||""});reviews[r.id]=v}});write(KEYS.attempts,events);write(KEYS.mastery,mastery);write(KEYS.reviews,reviews);old.forEach(r=>updateStreak(r.at||now()));evaluateAchievements();return events.length}
 function resetLearningData({keepProfile=true,keepTeacher=true}={}){const keep=new Set();if(keepProfile)keep.add(KEYS.profile);if(keepTeacher)[KEYS.classes,KEYS.assignments,KEYS.submissions].forEach(k=>keep.add(k));Object.values(KEYS).forEach(k=>{if(!keep.has(k))localStorage.removeItem(k)})}
-const api={VERSION,KEYS,COURSE_LABELS,ACHIEVEMENTS,escapeHTML,uid,dateKey,profile,saveProfile,settings,saveSettings,attempts,masteryMap,reviewMap,sessions,achievements,streak,topicDescriptor,recordAttempt,summary,updateStreak,evaluateAchievements,dueReviews,mistakes,markReviewResolved,masteryRows,weakTopics,startSession,patchSession,endSession,activeSession,recentSessions,setContinue,getContinue,clearContinue,selectAdaptive,adaptiveScore,adaptiveTarget,questionDifficulty,dailyPlan,earnedAchievements,exportStudentReport,exportReport,downloadJSON,resetLearningData,migrateLegacyAttempts,read,write};
-window.ECHSLearning=api;migrateLegacyAttempts();
+const api={evidenceStatus,projectMasteryRecord,projectMasterySummary,evidencePercent,projectPracticeAchievement,projectLearningReport,VERSION,KEYS,COURSE_LABELS,ACHIEVEMENTS,escapeHTML,uid,dateKey,profile,saveProfile,settings,saveSettings,attempts,masteryMap:()=>Object.fromEntries(Object.entries(masteryMap()).map(([key,row])=>[key,projectMasteryRecord(row)])),reviewMap,sessions,achievements:()=>Object.fromEntries(Object.entries(achievements()).map(([key,row])=>[key,projectPracticeAchievement(row)])),streak,topicDescriptor,recordAttempt,summary,updateStreak,evaluateAchievements,dueReviews,mistakes,markReviewResolved,masteryRows,weakTopics,startSession,patchSession,endSession,activeSession,recentSessions,setContinue,getContinue,clearContinue,selectAdaptive,adaptiveScore,adaptiveTarget,questionDifficulty,dailyPlan,earnedAchievements,exportStudentReport,exportReport,downloadJSON,resetLearningData,migrateLegacyAttempts,read,write};
+window.ECHSMasteryStatus=MASTERY_STATUS;window.ECHSLearning=api;migrateLegacyAttempts();
 window.addEventListener("echs:achievement",e=>{const a=e.detail?.earned||[];if(a.length&&window.ECHSPlatform?.toast)window.ECHSPlatform.toast(`Achievement unlocked: ${a.map(x=>x.title).join(", ")}`)});
 })();

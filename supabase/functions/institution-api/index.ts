@@ -1,4 +1,5 @@
 import { createClient } from "npm:@supabase/supabase-js@2";
+import { STATUS_CONTRACT, projectMasteryRecord, projectMasterySummary } from "../_shared/mastery-status.mjs";
 import {
   anyClassAllows,
   canonicalCourseKey,
@@ -100,13 +101,6 @@ function computeStreak(attempts: { occurred_at: string }[]): number {
     cursor.setUTCDate(cursor.getUTCDate() - 1);
   }
   return streak;
-}
-
-function masteryLabel(score: number): string {
-  if (score >= 85) return "Mastered";
-  if (score >= 65) return "Proficient";
-  if (score >= 35) return "Developing";
-  return "Starting";
 }
 
 // Membership rows are identifiers, not a tenant or account-role authority.
@@ -449,7 +443,7 @@ async function studentDashboard(session: SessionAccount, req: Request, requested
         .order("occurred_at", { ascending: false })
         .limit(5000),
       admin.from("mastery_records")
-        .select("skill_key,course,unit,topic,title,score,attempts,correct,evidence,updated_at")
+        .select("skill_key,course,unit,topic,title,score,attempts,correct,evidence,confidence,independent_evidence,transfer_evidence,retention_evidence,representation_count,active_days,last_verified_at,source,payload,updated_at")
         .eq("account_id", studentId).eq("organization_id", session.organization_id)
         .order("score", { ascending: false }),
       admin.from("review_items")
@@ -467,7 +461,7 @@ async function studentDashboard(session: SessionAccount, req: Request, requested
   }
 
   const attempts = attemptsResult.data ?? [];
-  const mastery = masteryResult.data ?? [];
+  const mastery = (masteryResult.data ?? []).map(projectMasteryRecord);
   const reviews = reviewResult.data ?? [];
   const sessions = sessionsResult.data ?? [];
   const correct = attempts.filter((row) => row.correct).length;
@@ -475,7 +469,7 @@ async function studentDashboard(session: SessionAccount, req: Request, requested
   const weekStart = new Date();
   weekStart.setUTCDate(weekStart.getUTCDate() - 6);
   weekStart.setUTCHours(0, 0, 0, 0);
-  const mastered = mastery.filter((row) => Number(row.score) >= 85).length;
+  const mastered = mastery.filter((row) => row.verified_mastery === true).length;
   const masteryAverage = mastery.length
     ? Math.round(mastery.reduce((sum, row) => sum + Number(row.score || 0), 0) / mastery.length)
     : 0;
@@ -516,6 +510,7 @@ async function studentDashboard(session: SessionAccount, req: Request, requested
   return json(req, {
     ok: true,
     student,
+    ...projectMasterySummary(mastery),
     classes: scopedMemberships,
     counters: {
       attempts: attempts.length,
@@ -529,7 +524,7 @@ async function studentDashboard(session: SessionAccount, req: Request, requested
       streak: computeStreak(attempts),
       weekly_minutes: Math.round(durationWeek / 60),
     },
-    mastery: mastery.map((row) => ({ ...row, level: masteryLabel(Number(row.score)) })),
+    mastery,
     strengths: mastery.slice(0, 5),
     priorities: [...mastery].sort((a, b) => Number(a.score) - Number(b.score)).slice(0, 5),
     review: reviews,
@@ -639,7 +634,7 @@ async function classDashboard(session: SessionAccount, req: Request, classId: st
       ? admin.from("learning_attempts").select("account_id,correct,occurred_at").eq("organization_id", session.organization_id).in("account_id", studentIds)
       : Promise.resolve({ data: [], error: null }),
     studentIds.length
-      ? admin.from("mastery_records").select("account_id,skill_key,title,course,unit,topic,score").eq("organization_id", session.organization_id).in("account_id", studentIds)
+      ? admin.from("mastery_records").select("account_id,skill_key,title,course,unit,topic,score,attempts,confidence,independent_evidence,transfer_evidence,retention_evidence,representation_count,active_days,last_verified_at,source,payload").eq("organization_id", session.organization_id).in("account_id", studentIds)
       : Promise.resolve({ data: [], error: null }),
     studentIds.length
       ? admin.from("review_items").select("account_id,status,due_at").eq("organization_id", session.organization_id).in("account_id", studentIds)
@@ -654,7 +649,7 @@ async function classDashboard(session: SessionAccount, req: Request, classId: st
   }
 
   const attempts = attemptsResult.data ?? [];
-  const mastery = masteryResult.data ?? [];
+  const mastery = (masteryResult.data ?? []).map(projectMasteryRecord);
   const reviews = reviewResult.data ?? [];
   const todayMinus7 = new Date(Date.now() - 7 * 86400000);
   const analytics = (students ?? []).map((student) => {
@@ -670,7 +665,8 @@ async function classDashboard(session: SessionAccount, req: Request, classId: st
       attempts: studentAttempts.length,
       accuracy: studentAttempts.length ? Math.round(correct / studentAttempts.length * 100) : 0,
       mastery: avgMastery,
-      mastered_topics: studentMastery.filter((row) => Number(row.score) >= 85).length,
+      ...projectMasterySummary(studentMastery),
+      mastered_topics: studentMastery.filter((row) => row.verified_mastery === true).length,
       open_mistakes: studentReviews.length,
       active_this_week: studentAttempts.some((row) => new Date(row.occurred_at) >= todayMinus7),
     };
@@ -693,6 +689,7 @@ async function classDashboard(session: SessionAccount, req: Request, classId: st
     ok: true,
     class: classRow,
     students: analytics,
+    ...projectMasterySummary(mastery),
     assignments: assignmentsResult.data ?? [],
     support_priorities: supportPriorities,
     summary: {
@@ -1044,7 +1041,7 @@ Deno.serve(async (req: Request) => {
   const path = new URL(req.url).pathname.split("/institution-api")[1] || "/";
   try {
     if (path === "/health" && req.method === "GET") {
-      return json(req, { ok: true, service: "echs-institution-api", version: "4.0.0" });
+      return json(req, { ok: true, service: "echs-institution-api", version: "4.0.0", status_contract: STATUS_CONTRACT, grading_authoritative: false });
     }
     if (path === "/health/membership" && req.method === "GET") return await membershipHealth(req);
     const session = await sessionFromRequest(req);

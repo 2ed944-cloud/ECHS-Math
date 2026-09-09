@@ -13,6 +13,8 @@
     return Number.isFinite(number) ? number : fallback;
   };
   const clamp = (value) => Math.max(0, Math.min(100, Math.round(safeNumber(value))));
+  const practiceStatus=record=>window.ECHSMasteryStatus?.projectMasteryStatus?.(record)||{evidence_status:"insufficient",verified_mastery:false,display_level:"Insufficient practice evidence"};
+  const practicePercent=record=>practiceStatus(record).evidence_status==="provisional"?`${Math.round(record.score)}%`:"—";
   const absolute = (path) => new URL(path, ROOT).href;
   const page = document.body?.dataset?.platformPage === "home"
     ? "lessons"
@@ -194,6 +196,8 @@
     const summary = window.ECHSLearning?.summary?.() || {};
     return {
       accuracy: safeNumber(summary.accuracy),
+      recorded_accuracy: summary.accuracy,
+      attempts: summary.attempts,
       review_due: safeNumber(summary.reviewDue || summary.due),
       open_mistakes: safeNumber(summary.mistakes || summary.openMistakes),
       mastery: window.ECHSLearning?.masteryRows?.() || [],
@@ -225,6 +229,7 @@
     delete node.dataset.routeAudience;
     const dashboard = context.access.dashboard || {};
     const counters = { ...localEvidence(), ...(dashboard.counters || {}) };
+    const accuracyEvidence={score:Object.hasOwn(dashboard.counters||{},"accuracy")?dashboard.counters.accuracy:counters.recorded_accuracy,attempts:counters.attempts};
     const openAssignments = (dashboard.assignments || [])
       .filter((row) => (row.result?.status || "not_started") !== "submitted")
       .sort((a, b) => new Date(a.due_at || "2999-12-31") - new Date(b.due_at || "2999-12-31"));
@@ -256,13 +261,13 @@
       },
       core: {
         title: `Continue ${target?.number ? `${target.number} · ` : ""}${target?.title || "your assigned learning"}`,
-        copy: "The evidence is stable enough for the intended lesson sequence and a focused core practice set.",
+        copy: "Continue the intended lesson sequence with a focused core practice set. Practice indicators remain provisional.",
         count: 8,
         action: "Start 8-question core route",
       },
       challenge: {
-        title: `Extend mastery in ${target?.number ? `${target.number} · ` : ""}${target?.title || "this skill"}`,
-        copy: "Strong recent evidence unlocks a compact challenge set without bypassing spaced review or trusted mastery rules.",
+        title: `Extend practice in ${target?.number ? `${target.number} · ` : ""}${target?.title || "this skill"}`,
+        copy: "High recorded practice scores suggest a compact challenge set. These indicators are provisional and do not certify mastery.",
         count: 10,
         action: "Start 10-question challenge",
       },
@@ -270,7 +275,7 @@
     const reasons = [
       schedule.text,
       assignment ? `Teacher priority · ${assignment.title}` : "Next incomplete lesson selected",
-      prerequisite ? `Prerequisite evidence · ${prerequisiteScore}%` : "No prerequisite gap detected",
+      prerequisite ? `Prerequisite practice · ${practicePercent(prerequisite.practiceEvidence)}` : "No earlier prerequisite in this sequence",
       reviews ? `${reviews} spaced review${reviews === 1 ? "" : "s"} due` : "Spaced review is clear",
     ];
     const basePractice = assignment && assignment.activity_type !== "lesson"
@@ -280,9 +285,9 @@
     const lesson = target?.lessonHref || absolute("index.html#courses");
     node.innerHTML = `${header(
       "ECHS Smart Learning Route",
-      "One clear next step, chosen from real learning evidence.",
-      "The route combines today’s timetable, teacher assignments, prerequisite readiness, practice evidence and spaced review. Mastery remains controlled by the verified evidence engine.",
-    )}<div class="slrBody"><article class="slrDecision"><div class="slrDecisionTop">${routeBadge(route)}${routeScale(route)}<span class="slrFreshness">${esc(schedule.detail)}</span></div><span class="slrDecisionLabel">ECHS Smart Learning Route · Recommended now</span><h3>${esc(routeMeta.title)}</h3><p class="slrDecisionCopy">${esc(routeMeta.copy)}</p><div class="slrReasonList">${reasons.map((reason) => `<span>${esc(reason)}</span>`).join("")}</div><div class="slrActions"><a class="slrAction primary" href="${esc(practice)}">${esc(routeMeta.action)} <b>→</b></a><a class="slrAction" href="${esc(lesson)}">Open the lesson</a>${reviews ? `<a class="slrAction" href="${absolute("question-bank/mistakes.html")}">Clear spaced review</a>` : ""}</div></article><aside class="slrEvidence"><div class="slrEvidenceHead"><span>Evidence used in this decision</span><b>Updated now</b></div><div class="slrEvidenceGrid"><div class="slrMetric"><span>Prerequisite</span><strong>${prerequisite ? `${prerequisiteScore}%` : "Ready"}</strong><small>${prerequisite ? esc(prerequisite.title) : "First available target"}</small></div><div class="slrMetric"><span>Recent accuracy</span><strong>${accuracy ? `${accuracy}%` : "New"}</strong><small>${accuracy ? "Synchronized attempts" : "Route starts conservatively"}</small></div><div class="slrMetric"><span>Reviews due</span><strong>${reviews}</strong><small>${mistakes} open mistake${mistakes === 1 ? "" : "s"}</small></div><div class="slrMetric"><span>Target mastery</span><strong>${targetScore}%</strong><small>Verified evidence only</small></div></div><div class="slrRuleRail"><div class="slrRule"><i>1</i><span><strong>Schedule signal</strong><small>${esc(schedule.text)}</small></span><em>${schedule.entry ? "LIVE" : "CLEAR"}</em></div><div class="slrRule"><i>2</i><span><strong>Teacher priority</strong><small>${esc(assignment?.title || "No urgent assignment")}</small></span><em>${assignment ? "SET" : "OPEN"}</em></div><div class="slrRule"><i>3</i><span><strong>Trusted mastery gate</strong><small>Multiple suitable attempts and recovery remain required.</small></span><em>LOCKED</em></div></div></aside></div>`;
+      "One clear next step, guided by recorded practice.",
+      "The route combines today’s timetable, teacher assignments, recorded practice and spaced review. Its practice indicators are provisional; authenticated grading evidence is required to certify mastery.",
+    )}<div class="slrBody"><article class="slrDecision"><div class="slrDecisionTop">${routeBadge(route)}${routeScale(route)}<span class="slrFreshness">${esc(schedule.detail)}</span></div><span class="slrDecisionLabel">ECHS Smart Learning Route · Recommended now</span><h3>${esc(routeMeta.title)}</h3><p class="slrDecisionCopy">${esc(routeMeta.copy)}</p><div class="slrReasonList">${reasons.map((reason) => `<span>${esc(reason)}</span>`).join("")}</div><div class="slrActions"><a class="slrAction primary" href="${esc(practice)}">${esc(routeMeta.action)} <b>→</b></a><a class="slrAction" href="${esc(lesson)}">Open the lesson</a>${reviews ? `<a class="slrAction" href="${absolute("question-bank/mistakes.html")}">Clear spaced review</a>` : ""}</div></article><aside class="slrEvidence"><div class="slrEvidenceHead"><span>Evidence used in this decision</span><b>Updated now</b></div><div class="slrEvidenceGrid"><div class="slrMetric"><span>Prerequisite</span><strong>${prerequisite ? practicePercent(prerequisite.practiceEvidence) : "None"}</strong><small>${prerequisite ? esc(prerequisite.title) : "First available target"}</small></div><div class="slrMetric"><span>Recent accuracy</span><strong>${practicePercent(accuracyEvidence)}</strong><small>${practiceStatus(accuracyEvidence).evidence_status==="provisional"?"Recorded practice accuracy":"Recorded accuracy unavailable"}</small></div><div class="slrMetric"><span>Reviews due</span><strong>${reviews}</strong><small>${mistakes} open mistake${mistakes === 1 ? "" : "s"}</small></div><div class="slrMetric"><span>Target practice</span><strong>${practicePercent(target?.practiceEvidence)}</strong><small>${esc(practiceStatus(target?.practiceEvidence).display_level)} · unverified</small></div></div><div class="slrRuleRail"><div class="slrRule"><i>1</i><span><strong>Schedule signal</strong><small>${esc(schedule.text)}</small></span><em>${schedule.entry ? "LIVE" : "CLEAR"}</em></div><div class="slrRule"><i>2</i><span><strong>Teacher priority</strong><small>${esc(assignment?.title || "No urgent assignment")}</small></span><em>${assignment ? "SET" : "OPEN"}</em></div><div class="slrRule"><i>3</i><span><strong>Mastery verification unavailable</strong><small>Practice and completion do not authenticate grading.</small></span><em>LOCKED</em></div></div></aside></div>`;
   }
 
   function renderTeacher(context) {
@@ -297,12 +302,12 @@
     node.innerHTML = `${header(
       "Smart route intelligence",
       `${className}: three paths, one shared destination.`,
-      "The class is organised from current mastery, accuracy, mistakes and activity. Use the groups to assign support, core or challenge work without exposing students publicly.",
+      "The class is organised from recorded practice scores, accuracy, mistakes and activity. These provisional groups support assignment decisions and do not certify mastery.",
       "Teacher-controlled · evidence-led",
     )}<div class="slrLanes">${[
       ["support", "↻", support.length, "Support", "Recover prerequisites", "Short scaffolded practice and spaced review for learners with fragile evidence."],
       ["core", "→", core.length, "Core", "Continue the planned lesson", "The intended lesson and balanced practice for learners whose evidence is developing normally."],
-      ["challenge", "★", challenge.length, "Challenge", "Extend secure mastery", "Higher-demand reasoning for learners with strong accuracy and limited unresolved mistakes."],
+      ["challenge", "★", challenge.length, "Challenge", "Extend practice", "Higher-demand reasoning for learners with strong accuracy and limited unresolved mistakes."],
     ].map(([route, icon, count, label, title, copy]) => `<article class="slrLane ${route}"><div class="slrLaneTop"><span class="slrLaneIcon">${icon}</span><strong class="slrLaneCount">${count}</strong></div><small>${label} route</small><h3>${title}</h3><p>${copy}</p><button type="button" data-slr-assignment="${route}">Build ${label.toLowerCase()} assignment →</button></article>`).join("")}</div>`;
     node.querySelectorAll("[data-slr-assignment]").forEach((button) => {
       button.addEventListener("click", () => {
@@ -362,10 +367,10 @@
     const scheduleCoverage = teachers ? Math.round((scheduledTeachers / teachers) * 100) : entries.length ? 100 : 0;
     node.innerHTML = `${header(
       "Academic route operations",
-      "A school-wide view of how learning moves from timetable to mastery.",
+      "A school-wide view of how learning moves from timetable to practice.",
       "Administration controls the operational signals—accounts, classes and published timetables—while teachers control the learning decisions and students receive only their own route.",
       "Private by role · administrator governed",
-    )}<div class="slrOpsGrid"><div class="slrOpsMap"><article class="slrOpsStage"><span>01 · Operate</span><strong>Timetable and class structure</strong><p>The school publishes the teacher, class, room and period that start every route.</p><b>${entries.length}</b></article><article class="slrOpsStage"><span>02 · Guide</span><strong>Teacher assignment decisions</strong><p>Teachers select exact banks, lessons and questions for support, core or challenge.</p><b>${assignments.length}</b></article><article class="slrOpsStage"><span>03 · Verify</span><strong>Evidence-based mastery</strong><p>Attempts, recovery and suitable difficulty—not page completion alone—control mastery.</p><b>✓</b></article></div><aside class="slrOpsHealth"><div class="slrMetric"><span>Active students</span><strong>${students}</strong><small>Private individual routes</small></div><div class="slrMetric"><span>Active teachers</span><strong>${teachers}</strong><small>${scheduledTeachers} with published periods</small></div><div class="slrMetric"><span>Active classes</span><strong>${classes.length}</strong><small>Course-linked learning groups</small></div><div class="slrMetric"><span>Schedule coverage</span><strong>${scheduleCoverage}%</strong><small>${entries.length} published mathematics periods</small></div></aside></div>`;
+    )}<div class="slrOpsGrid"><div class="slrOpsMap"><article class="slrOpsStage"><span>01 · Operate</span><strong>Timetable and class structure</strong><p>The school publishes the teacher, class, room and period that start every route.</p><b>${entries.length}</b></article><article class="slrOpsStage"><span>02 · Guide</span><strong>Teacher assignment decisions</strong><p>Teachers select exact banks, lessons and questions for support, core or challenge.</p><b>${assignments.length}</b></article><article class="slrOpsStage"><span>03 · Review</span><strong>Provisional practice indicators</strong><p>Authenticated grading evidence is required to certify mastery. Practice scores and page completion do not provide that verification.</p><b>Pending</b></article></div><aside class="slrOpsHealth"><div class="slrMetric"><span>Active students</span><strong>${students}</strong><small>Private individual routes</small></div><div class="slrMetric"><span>Active teachers</span><strong>${teachers}</strong><small>${scheduledTeachers} with published periods</small></div><div class="slrMetric"><span>Active classes</span><strong>${classes.length}</strong><small>Course-linked learning groups</small></div><div class="slrMetric"><span>Schedule coverage</span><strong>${scheduleCoverage}%</strong><small>${entries.length} published mathematics periods</small></div></aside></div>`;
   }
 
   function render(context) {

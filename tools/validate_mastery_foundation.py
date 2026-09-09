@@ -179,11 +179,13 @@ def validate_client_and_teacher_evidence() -> None:
     require(teacher, [
         "authoritativeEvidence",
         "ECHSMasteryEvidence.classEvidence",
-        "The platform will not invent heatmap values",
+        "projectMasteryRecord",
         "independent_evidence",
         "retention_evidence",
         "transfer_evidence",
-        "Server-authoritative",
+        'gradingAuthoritative="false"',
+        "Provisional practice",
+        "Verified mastery is unavailable",
     ], "Teacher evidence heatmap")
     require(css, [".evidenceHeatmap", ".evidenceCell.mastered", ".evidenceCell.noEvidence", ".evidenceLegend"], "Mastery evidence stylesheet")
     require(trust_page, ["Question Trust Center", "Audited content boundary", "question-trust.js"], "Question Trust Center")
