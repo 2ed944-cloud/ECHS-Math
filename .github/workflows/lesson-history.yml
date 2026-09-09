@@ -9,6 +9,7 @@ on:
       - 'supabase/functions/lesson-api/**'
       - 'tools/lesson-studio/**'
       - 'tools/test_lesson_history*'
+      - 'tools/test_lesson_import*'
       - 'tools/test_lesson_recovery*'
       - 'tools/test_lesson_persistence*'
       - 'tools/test_lesson_content_v2*'
@@ -26,6 +27,7 @@ on:
       - 'supabase/functions/lesson-api/**'
       - 'tools/lesson-studio/**'
       - 'tools/test_lesson_history*'
+      - 'tools/test_lesson_import*'
       - 'tools/test_lesson_recovery*'
       - 'tools/test_lesson_persistence*'
       - 'tools/test_lesson_content_v2*'
@@ -143,6 +145,8 @@ jobs:
         run: node tools/test_lesson_recovery_e2e.mjs
       - name: Verify existing history, independent review, publication and lost-acknowledgement contracts
         run: node tools/test_lesson_history_e2e.mjs
+      - name: Verify current IB reference import through production client and real SQL
+        run: node tools/test_lesson_import_e2e.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -153,4 +157,5 @@ jobs:
             reports/lesson-media-*.json
             reports/lesson-recovery-*.json
             reports/lesson-history-*.json
+            reports/lesson-import-*.json
           if-no-files-found: warn

@@ -1,0 +1,94 @@
+name: IB reference lesson import contracts
+on:
+  pull_request:
+    paths:
+      - 'lesson-studio.html'
+      - 'css/lesson-import.css'
+      - 'assets/vendor/katex/**'
+      - 'js/lesson-studio/**'
+      - 'js/lesson-runtime/**'
+      - 'tools/lesson-import/**'
+      - 'tools/lesson-studio/**'
+      - 'tools/lesson-compatibility/**'
+      - 'lessons/ib-math-ai/unit-1/**'
+      - 'js/lesson-access-guard.js'
+      - 'js/institution-client.js'
+      - 'sw.js'
+      - '.github/workflows/lesson-import.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'lesson-studio.html'
+      - 'css/lesson-import.css'
+      - 'assets/vendor/katex/**'
+      - 'js/lesson-studio/**'
+      - 'js/lesson-runtime/**'
+      - 'tools/lesson-import/**'
+      - 'tools/lesson-studio/**'
+      - 'tools/lesson-compatibility/**'
+      - 'lessons/ib-math-ai/unit-1/**'
+      - 'js/lesson-access-guard.js'
+      - 'js/institution-client.js'
+      - 'sw.js'
+      - '.github/workflows/lesson-import.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: lesson-import-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  contracts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install pinned schema, math and inert parser dependencies
+        run: |
+          npx --yes pnpm@11.19.0 --dir tools/lesson-runtime install --frozen-lockfile --ignore-scripts
+          npx --yes pnpm@11.19.0 --dir tools/lesson-compatibility install --frozen-lockfile --ignore-scripts
+      - name: Verify canonical generated output and immutable legacy compatibility
+        run: |
+          node tools/lesson-runtime/build-validator.mjs --check
+          node tools/lesson-runtime/build-server-validator.mjs --check
+          node tools/lesson-compatibility/build-fixtures.mjs --source-root . --check
+          node tools/lesson-compatibility/test-compatibility.mjs
+      - name: Verify native import identity and independent mathematics
+        run: |
+          node tools/lesson-import/test-ib13-import-model.mjs
+          node tools/lesson-import/test-ib13-mathematics.mjs
+          node tools/lesson-import/test-ib13-sources.mjs
+          python tools/test_ib_ai_1_3_definitive_v6.py .
+          python tools/test_ib_lesson_platform_integration.py .
+          python tools/validate_auth_shell_cache.py
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install exact browser, math and parser dependencies
+        run: |
+          npm --prefix question-bank/official/tools ci
+          npx --yes pnpm@11.19.0 --dir tools/lesson-runtime install --frozen-lockfile --ignore-scripts
+          npx --yes pnpm@11.19.0 --dir tools/lesson-compatibility install --frozen-lockfile --ignore-scripts
+          npx --prefix question-bank/official/tools playwright install --with-deps chromium-headless-shell
+      - name: Verify full original source composition and exact import ledger
+        run: node tools/lesson-import/build-ib13-reference.mjs --source-root . --check
+      - name: Verify review, private draft creation and original lesson parity
+        run: |
+          node tools/lesson-studio/test-import-dialog.mjs
+          node tools/lesson-studio/test-studio-import.mjs
+          node tools/lesson-import/test-ib13-parity.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lesson-import-browser-evidence
+          path: artifacts/lesson-import/
+          if-no-files-found: error
+          retention-days: 14

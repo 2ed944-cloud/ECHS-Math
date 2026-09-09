@@ -5,6 +5,7 @@ import {createDraftSession} from './draft-session.mjs';
 import {createDraftBackup} from './draft-backup.mjs';
 import {openHistoryDialog} from './history-dialog.mjs';
 import {openLessonPresentation} from './presentation.mjs';
+import {isIB13ImportTarget} from './ib13-import-target.mjs';
 import {renderSlidePreview,renderLessonPreview,disposeLessonPreview} from './preview.mjs';
 import {createMathEditor} from './math-editor.mjs';
 import {createRichTextEditor} from './rich-text-editor.mjs';
@@ -22,6 +23,7 @@ let backup=null,backupEpoch=0,backupState='unavailable',recoveryChoice=null,chec
 let composing=false;
 let historyDialog=null;
 let presentationView=null;
+let importView=null,importSelection=null,importModules=null;
 const plainError=error=>({conflict:'Another editor changed this draft. Keep your edits or reload the server version.',
   sign_in_required:'Sign in with an active teacher or school administrator account.',
   session_changed:'Your school session changed. Sign in again to continue.',
@@ -39,6 +41,8 @@ function showGate(message,{retry=false}={}){
 }
 function closeStudio(message='Your school session changed. Sign in again to continue.'){
   invalid=true;epoch++;
+  importView?.dispose();importView=null;importSelection=null;composing=false;
+  $('create-form').inert=false;
   presentationView?.dispose();presentationView=null;
   historyDialog?.dispose();historyDialog=null;
   disposeBackup();
@@ -50,13 +54,15 @@ function closeStudio(message='Your school session changed. Sign in again to cont
   for(const dialog of document.querySelectorAll('dialog'))if(dialog.open)dialog.close();
   for(const control of document.querySelectorAll('input,textarea,select'))control.value='';
   for(const id of ['slide-canvas','preview-slides','slide-list','lesson-list','class-select','catalog-select','course-version-select','block-select','block-editor'])$(id).replaceChildren();
-  for(const id of ['studio-identity','lesson-heading','preview-heading','new-heading','course-status','library-status','edit-error','create-error','save-message','slide-count','save-status','backup-status'])$(id).textContent='';
+  for(const id of ['studio-identity','lesson-heading','preview-heading','new-heading','course-status','library-status','edit-error','create-error','save-message','slide-count','save-status','backup-status','ib13-import-selection'])$(id).textContent='';
+  $('ib13-import-option').hidden=true;
   $('workspace').hidden=true;$('new-lesson').disabled=true;showGate(message);
 }
 function busy(value){locked=value;$('new-lesson').disabled=value||!classContext?.current_assignment;
   $('workspace').inert=value||unsupportedDocument();$('workspace').setAttribute('aria-busy',String(value));
-  $('class-select').disabled=value;$('create-lesson').disabled=value;$('pin-course').disabled=value;
+  $('class-select').disabled=value;$('create-lesson').disabled=value||composing;$('pin-course').disabled=value;
   for(const button of $('lesson-list').querySelectorAll('button'))button.disabled=value;
+  renderImportOption();
 }
 function setValue(id,value){const control=$(id);if(document.activeElement!==control)control.value=value;}
 function snapshot(){return session?.snapshot();}
@@ -368,6 +374,7 @@ async function openLesson(id){
 async function chooseClass(id){
   if(locked)return;
   const previous=classContext?.class.id||'';
+  if(pendingCreate&&id!==pendingCreate.payload.class_id){$('class-select').value=previous;$('library-status').textContent='Check the pending lesson creation before changing classes. Open New lesson to verify its saved result.';return;}
   if(!await canLeave()){$('class-select').value=previous;return;}
   busy(true);const stamp=++epoch;
   try{
@@ -385,19 +392,65 @@ async function chooseClass(id){
   finally{if(current(stamp))busy(false);}
 }
 async function showCreate(){
-  if(locked||!classContext?.current_assignment)return;
+  if(locked||composing||!classContext?.current_assignment)return;
   if(pendingCreate){$('new-lesson-dialog').showModal();return;}
   if(!await canLeave())return;
   assertActive();const used=new Set(library.map(item=>item.access_key));
   const choices=classContext.catalog.filter(item=>!used.has(item.access_key));
   if(!choices.length){$('library-status').textContent='Every lesson location already has a draft. Open an existing lesson to edit it.';return;}
-  $('create-form').reset();$('create-error').textContent='';setCreatePending(false);
+  $('create-form').reset();importSelection=null;$('create-error').textContent='';setCreatePending(false);
   $('catalog-select').replaceChildren(...choices.map(item=>{const option=text('option',`${item.topic} · ${item.title}`);option.value=item.access_key;return option;}));
-  $('new-title').value=choices[0].title;$('new-lesson-dialog').showModal();$('new-title').focus();
+  $('new-title').value=choices[0].title;renderImportOption();$('new-lesson-dialog').showModal();$('new-title').focus();
+}
+function importTarget(){
+  const catalog=classContext?.catalog.find(item=>item.access_key===$('catalog-select').value);
+  const assignment=classContext?.current_assignment;
+  const course=classContext?.course_versions.find(item=>item.id===assignment?.course_version_id);
+  return !invalid&&assignment?.state==='active'&&course?.status==='active'&&!course.is_placeholder&&
+    classContext?.class.course_key==='ib-math-ai'&&canContentV2()&&canMedia()&&
+    isIB13ImportTarget({courseVersionId:assignment.course_version_id,catalog})?catalog:null;
+}
+function renderImportOption(){
+  const eligible=Boolean(importTarget());$('ib13-import-option').hidden=!eligible;
+  $('review-ib13-import').disabled=!eligible||locked||composing||Boolean(pendingCreate);
+  $('clear-ib13-import').disabled=locked||composing||Boolean(pendingCreate);
+  $('clear-ib13-import').hidden=!importSelection;
+  $('ib13-import-selection').textContent=importSelection?
+    `${importSelection.summary.nativeSlides} editable slides selected; ${importSelection.summary.referenceSlides} slides retained as references to the original lesson.`:
+    'Review the existing lesson before choosing which teaching content to import.';
+}
+function loadImportModules(){
+  if(!importModules)importModules=Promise.all([import('./ib13-import-model.mjs'),import('./import-dialog.mjs')]).catch(error=>{importModules=null;throw error;});
+  return importModules;
+}
+async function reviewIB13Import(){
+  if(locked||composing||pendingCreate||!importTarget())return;
+  const stamp=epoch,activeClient=client,catalog=importTarget(),assignment=classContext.current_assignment;
+  const classId=classContext.class.id;busy(true);$('create-form').inert=true;
+  try{
+    assertActive();const [model,viewModule]=await loadImportModules();
+    if(!current(stamp)||!$('new-lesson-dialog').open)return;
+    assertActive();if(importTarget()?.access_key!==catalog.access_key)throw new Error('Import location changed.');
+    const id=crypto.randomUUID();
+    const baseDocument=createLessonDraft({lessonId:id,courseVersionId:assignment.course_version_id,catalog,
+      title:$('new-title').value.trim()||catalog.title,objective:$('new-objective').value.trim()||'Review the selected geometric-sequence teaching content.',
+      skill:`teacher:${id}:skill:geometric-structure`,summary:$('new-summary').value.trim()||'Preview of reviewed IB geometric-sequence explanations and preserved lesson references.'});
+    const view=viewModule.openIB13ImportDialog({dialog:$('ib13-import-dialog'),baseDocument,mathEngine:katex,
+      selectedSlideIds:importSelection?.selectedSlideIds,
+      isCurrent:()=>{if(!current(stamp)||client!==activeClient||!$('new-lesson-dialog').open)return false;try{activeClient.assertCurrent();return true;}catch{closeStudio();return false;}}});
+    importView=view;const selection=await view.closed;if(importView===view)importView=null;
+    if(!current(stamp)||!$('new-lesson-dialog').open||!selection)return;
+    assertActive();if(importTarget()?.access_key!==catalog.access_key)throw new Error('Import location changed.');
+    const {summary}=model.createIB13Import({baseDocument,selectedSlideIds:selection.selectedSlideIds,mathEngine:katex});
+    importSelection=Object.freeze({classId,assignmentId:assignment.id,accessKey:catalog.access_key,
+      selectedSlideIds:Object.freeze([...summary.selectedSlideIds]),summary:Object.freeze({...summary})});
+  }catch(error){if(current(stamp))$('create-error').textContent=error?.code?plainError(error):'The import preview could not be opened. Check the lesson details and reload Studio if its resources are unavailable.';}
+  finally{if(current(stamp)){$('create-form').inert=false;busy(false);if($('new-lesson-dialog').open)$('review-ib13-import').focus();}}
 }
 function setCreatePending(value){
   for(const control of $('create-form').querySelectorAll('input,textarea,select'))control.disabled=value;
   $('create-lesson').textContent=value?'Check saved lesson':'Create lesson';
+  renderImportOption();
 }
 async function createOrReconcile(attempt){
   const id=attempt.payload.document.lesson_id;
@@ -418,21 +471,26 @@ async function createOrReconcile(attempt){
   }
 }
 async function createLesson(event){
-  event.preventDefault();if(locked||!classContext)return;const stamp=epoch;busy(true);
+  event.preventDefault();if(locked||composing||!classContext)return;const stamp=epoch;busy(true);
   try{
     assertActive();
     if(!pendingCreate){
       const catalog=classContext.catalog.find(item=>item.access_key===$('catalog-select').value);
       if(!catalog)throw new Error('Invalid lesson location.');const id=crypto.randomUUID();
       const skill=$('new-skill').value.trim().toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,80)||'teaching-focus';
-      const document=createLessonDraft({lessonId:id,courseVersionId:classContext.current_assignment.course_version_id,catalog,
+      let document=createLessonDraft({lessonId:id,courseVersionId:classContext.current_assignment.course_version_id,catalog,
         title:$('new-title').value.trim(),objective:$('new-objective').value.trim(),skill:`teacher:${id}:skill:${skill}`,summary:$('new-summary').value.trim()});
+      if(importSelection){
+        if(!importTarget()||importSelection.classId!==classContext.class.id||importSelection.assignmentId!==classContext.current_assignment.id||importSelection.accessKey!==catalog.access_key)throw new Error('The import selection no longer matches this class and lesson.');
+        const [model]=await loadImportModules();if(!current(stamp))return;assertActive();
+        document=model.createIB13Import({baseDocument:document,selectedSlideIds:importSelection.selectedSlideIds,mathEngine:katex}).document;
+      }
       pendingCreate={submitted:false,rejected:false,payload:{class_id:classContext.class.id,course_version_id:classContext.current_assignment.course_version_id,access_key:catalog.access_key,document,private_notes:'',expected_revision:0}};
     }
     setCreatePending(true);const record=await createOrReconcile(pendingCreate);
     if(!current(stamp))return;pendingCreate=null;setCreatePending(false);
     if(!library.some(item=>item.id===record.lesson.id))library.push(record.lesson);
-    $('new-lesson-dialog').close();$('create-form').reset();await attachRecord(record);
+    $('new-lesson-dialog').close();$('create-form').reset();importSelection=null;renderImportOption();await attachRecord(record);
   }catch(error){if(current(stamp)){
     if(pendingCreate?.rejected){pendingCreate=null;setCreatePending(false);}
     if(!pendingCreate&&error.status===409){
@@ -531,8 +589,11 @@ $('media-insert-dialog').addEventListener('cancel',event=>{event.preventDefault(
 $('block-select').addEventListener('change',event=>{if(locked||!commitFields()){event.target.value=selectedBlock;return;}selectedBlock=event.target.value;disposeBlockEditor();renderEditor(snapshot());});
 $('class-select').addEventListener('change',event=>chooseClass(event.target.value));
 $('new-lesson').addEventListener('click',()=>showCreate().catch(error=>{if(!invalid)$('library-status').textContent=plainError(error);}));
-$('cancel-create').addEventListener('click',()=>{$('new-lesson-dialog').close();if(!pendingCreate)$('create-form').reset();});
-$('catalog-select').addEventListener('change',()=>{$('new-title').value=classContext.catalog.find(item=>item.access_key===$('catalog-select').value)?.title||'';});
+$('cancel-create').addEventListener('click',()=>{$('new-lesson-dialog').close();if(!pendingCreate){$('create-form').reset();importSelection=null;renderImportOption();}});
+$('new-lesson-dialog').addEventListener('cancel',()=>{if(!pendingCreate){importSelection=null;renderImportOption();}});
+$('catalog-select').addEventListener('change',()=>{if(locked||pendingCreate)return;importSelection=null;$('new-title').value=classContext.catalog.find(item=>item.access_key===$('catalog-select').value)?.title||'';renderImportOption();});
+$('review-ib13-import').addEventListener('click',reviewIB13Import);
+$('clear-ib13-import').addEventListener('click',()=>{if(!locked&&!composing&&!pendingCreate){importSelection=null;renderImportOption();}});
 $('create-form').addEventListener('submit',createLesson);$('pin-form').addEventListener('submit',pinCourse);
 $('save-now').addEventListener('click',async()=>{if(commitFields())await session?.flush();});
 $('undo-edit').addEventListener('click',()=>historyAction('undo'));
@@ -542,8 +603,8 @@ $('version-history').addEventListener('click',showVersionHistory);
 $('present-lesson').addEventListener('click',presentLesson);
 $('keep-server-draft').addEventListener('click',()=>recoveryChoice?.(null));
 $('recovery-dialog').addEventListener('cancel',event=>{event.preventDefault();recoveryChoice?.(null);});
-document.addEventListener('compositionstart',()=>{composing=true;if(session)renderStatus(snapshot());});
-document.addEventListener('compositionend',()=>{composing=false;if(session&&!locked){commitFields();renderStatus(snapshot());}});
+document.addEventListener('compositionstart',()=>{composing=true;$('create-lesson').disabled=true;renderImportOption();if(session)renderStatus(snapshot());});
+document.addEventListener('compositionend',()=>{composing=false;$('create-lesson').disabled=locked;renderImportOption();if(session&&!locked){commitFields();renderStatus(snapshot());}});
 document.addEventListener('keydown',event=>{
   if(event.defaultPrevented||event.isComposing||event.altKey||!(event.ctrlKey||event.metaKey)||document.querySelector('dialog[open]')||event.target.closest('input,textarea,select,[contenteditable="true"]'))return;
   const key=event.key.toLowerCase();if(key!=='z'&&!(key==='y'&&!event.shiftKey))return;

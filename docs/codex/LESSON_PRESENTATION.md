@@ -2,7 +2,7 @@
 
 ## Release status
 
-Implementation and validation are in progress. This stage is not yet accepted as merged or deployed. Its accepted predecessor is ECHS-012, PR #360, main `34db877f92de9c3748b32b79245a36c221dd6904`.
+Complete and deployed through PR #361, main `74530fe355cf68452d5daa0cbf31f8b132302f30`. All 16 PR workflows, 12 main/deployment/live workflows and 100 final public checks passed. The sealed release evidence includes 17 state tests, 33 presentation browser groups, nine local Studio browser suites, 68 Linux baseline checks, and the unchanged 25-migration PostgreSQL regression with 676 database checks and 38 HTTP/SQL groups. Its rollback predecessor is ECHS-012, PR #360, main `34db877f92de9c3748b32b79245a36c221dd6904`.
 
 ## Architecture
 

@@ -1,0 +1,246 @@
+{
+  "contract": "echs.ib13.import.sources.v1",
+  "source_commit": "fda45056e7b11e3f1d45bf96f7c8c36246d69e8d",
+  "source": "lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.3_geometric_sequences_ECHS.html",
+  "script_order": [
+    "lessons/ib-math-ai/unit-1/data/lesson-1.3.js",
+    "lessons/ib-math-ai/unit-1/data/lesson-1.3-v3.js",
+    "lessons/ib-math-ai/unit-1/data/unit-1-v5-content-data.js",
+    "lessons/ib-math-ai/unit-1/data/unit-1-v5-apply.js",
+    "lessons/ib-math-ai/unit-1/data/lesson-1.3-geometric-definitive-v6.js",
+    "lessons/ib-math-ai/unit-1/data/lesson-1.3-geometric-v6-polish.js",
+    "lessons/ib-math-ai/unit-1/data/ib-ai-sl-pacing-markers.js",
+    "lessons/ib-math-ai/unit-1/assets/js/katex-global.js",
+    "lessons/ib-math-ai/unit-1/assets/js/engine.js",
+    "lessons/ib-math-ai/unit-1/data/unit-1-v5-runtime.js",
+    "lessons/ib-math-ai/unit-1/data/lesson-1.2-exam-focus-v6.js",
+    "lessons/ib-math-ai/unit-1/data/lesson-1.1-exam-scroll-v5-2-3.js",
+    "lessons/ib-math-ai/unit-1/data/lesson-1.3-geometric-v6-interactions.js",
+    "lessons/ib-math-ai/unit-1/data/unit-1-gdc-integration-v7.js",
+    "lessons/ib-math-ai/unit-1/data/unit-1-ti84-simulator-v7.js",
+    "lessons/ib-math-ai/unit-1/data/unit-1-gdc-classroom-training-v8.js"
+  ],
+  "files": [
+    {
+      "path": "lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.3_geometric_sequences_ECHS.html",
+      "sha256": "c10fc5e4bded7a5b2ba5134bfc2bf9869bff487968ea6971ae777af3a74f2192"
+    },
+    {
+      "path": "lessons/ib-math-ai/unit-1/data/lesson-1.3.js",
+      "sha256": "fdeac55d9ed07ce9652101afdd0a9d9adca23d8bcdd380c47c419eb9ffa1b455"
+    },
+    {
+      "path": "lessons/ib-math-ai/unit-1/data/lesson-1.3-v3.js",
+      "sha256": "745ebf21a003333cfd1f9273b82d03f144fb23502dc2d96c16d0ce0a4fd76348"
+    },
+    {
+      "path": "lessons/ib-math-ai/unit-1/data/unit-1-v5-content-data.js",
+      "sha256": "01d8e7e5996c96ffdeaecacb2caa86471e21644104ca8dfaefee03225394c202"
+    },
+    {
+      "path": "lessons/ib-math-ai/unit-1/data/unit-1-v5-apply.js",
+      "sha256": "8bc516ba797b7ce28de152e5e0f0f5c54f441e55528acdfa276ec40eb1fe679a"
+    },
+    {
+      "path": "lessons/ib-math-ai/unit-1/data/lesson-1.3-geometric-definitive-v6.js",
+      "sha256": "521061647864a1f975c9d3fdfd2a197b57acadd7caf04e40b362fef6db4b203c"
+    },
+    {
+      "path": "lessons/ib-math-ai/unit-1/data/lesson-1.3-geometric-v6-polish.js",
+      "sha256": "fc42bca4f5f892af306c291a7d6b45a476bdf686d18c8dfa068e34e4728bf0ea"
+    },
+    {
+      "path": "lessons/ib-math-ai/unit-1/data/ib-ai-sl-pacing-markers.js",
+      "sha256": "4b0faa50c172ae1b2fbad4c4d858c230972d3645964fe8d1ea00e246be0348e8"
+    },
+    {
+      "path": "lessons/ib-math-ai/unit-1/assets/js/katex-global.js",
+      "sha256": "2aa3bedb9bce3e020f45e458067ed33662c9e68355ac51ceea29691c8333016f"
+    },
+    {
+      "path": "lessons/ib-math-ai/unit-1/assets/js/engine.js",
+      "sha256": "d9844ab767b02ca26537baefe31bc28cfffa605e2a93736aadadc45aa8087d17"
+    },
+    {
+      "path": "lessons/ib-math-ai/unit-1/data/unit-1-v5-runtime.js",
+      "sha256": "6a1748b4366c3a04ad49d889db2b3da4e3e85e7e7f4971ecd6ac42d1e404f0ea"
+    },
+    {
+      "path": "lessons/ib-math-ai/unit-1/data/lesson-1.2-exam-focus-v6.js",
+      "sha256": "0828ca994e08db66e78e01b79d216e11343a29f0f810117c4fb030f6ccf8f1cf"
+    },
+    {
+      "path": "lessons/ib-math-ai/unit-1/data/lesson-1.1-exam-scroll-v5-2-3.js",
+      "sha256": "77792d1c993a7d0bff8a502bf6ae200d914bf60a7319c36f6f2d9bdf3c791cca"
+    },
+    {
+      "path": "lessons/ib-math-ai/unit-1/data/lesson-1.3-geometric-v6-interactions.js",
+      "sha256": "a75bf0545593033ad746f7f5f47b49cf56e588eaad1c6d998c4734c86d70b8b2"
+    },
+    {
+      "path": "lessons/ib-math-ai/unit-1/data/unit-1-gdc-integration-v7.js",
+      "sha256": "a1487b6a1b5ae5f700ca8350159251552699226cd85bfb3ca2188e63d1a0ec23"
+    },
+    {
+      "path": "lessons/ib-math-ai/unit-1/data/unit-1-ti84-simulator-v7.js",
+      "sha256": "83c9a7766784cc91fd2b585760a5edbe4a8b70e5d90447b270bbe0a1d054f114"
+    },
+    {
+      "path": "lessons/ib-math-ai/unit-1/data/unit-1-gdc-classroom-training-v8.js",
+      "sha256": "b72ada91b286cb653e85fdf423541f4a190e50f8a0d91d00d937d476fb5cb531"
+    },
+    {
+      "path": "tools/lesson-compatibility/fixtures/ib13.metadata.json",
+      "sha256": "4c1e5da3f8a273955aa449c861f9ab2b04481766607b7d8e253af6ba4fd4b497"
+    }
+  ],
+  "expected_stages": [
+    {
+      "script": "lessons/ib-math-ai/unit-1/data/lesson-1.3.js",
+      "slides": 49,
+      "practice": 40,
+      "exam": 2,
+      "quiz": 10
+    },
+    {
+      "script": "lessons/ib-math-ai/unit-1/data/lesson-1.3-v3.js",
+      "slides": 49,
+      "practice": 40,
+      "exam": 2,
+      "quiz": 10
+    },
+    {
+      "script": "lessons/ib-math-ai/unit-1/data/unit-1-v5-content-data.js",
+      "slides": 49,
+      "practice": 40,
+      "exam": 2,
+      "quiz": 10
+    },
+    {
+      "script": "lessons/ib-math-ai/unit-1/data/unit-1-v5-apply.js",
+      "slides": 36,
+      "practice": 52,
+      "exam": 3,
+      "quiz": 14
+    },
+    {
+      "script": "lessons/ib-math-ai/unit-1/data/lesson-1.3-geometric-definitive-v6.js",
+      "slides": 73,
+      "practice": 96,
+      "exam": 5,
+      "quiz": 14
+    },
+    {
+      "script": "lessons/ib-math-ai/unit-1/data/lesson-1.3-geometric-v6-polish.js",
+      "slides": 73,
+      "practice": 96,
+      "exam": 5,
+      "quiz": 14
+    },
+    {
+      "script": "lessons/ib-math-ai/unit-1/data/ib-ai-sl-pacing-markers.js",
+      "slides": 73,
+      "practice": 96,
+      "exam": 5,
+      "quiz": 14
+    },
+    {
+      "script": "lessons/ib-math-ai/unit-1/assets/js/katex-global.js",
+      "slides": 73,
+      "practice": 96,
+      "exam": 5,
+      "quiz": 14
+    },
+    {
+      "script": "lessons/ib-math-ai/unit-1/assets/js/engine.js",
+      "slides": 73,
+      "practice": 96,
+      "exam": 5,
+      "quiz": 14
+    },
+    {
+      "script": "lessons/ib-math-ai/unit-1/data/unit-1-v5-runtime.js",
+      "slides": 73,
+      "practice": 96,
+      "exam": 5,
+      "quiz": 14
+    },
+    {
+      "script": "lessons/ib-math-ai/unit-1/data/lesson-1.2-exam-focus-v6.js",
+      "slides": 73,
+      "practice": 96,
+      "exam": 5,
+      "quiz": 14
+    },
+    {
+      "script": "lessons/ib-math-ai/unit-1/data/lesson-1.1-exam-scroll-v5-2-3.js",
+      "slides": 73,
+      "practice": 96,
+      "exam": 5,
+      "quiz": 14
+    },
+    {
+      "script": "lessons/ib-math-ai/unit-1/data/lesson-1.3-geometric-v6-interactions.js",
+      "slides": 73,
+      "practice": 96,
+      "exam": 5,
+      "quiz": 14
+    },
+    {
+      "script": "lessons/ib-math-ai/unit-1/data/unit-1-gdc-integration-v7.js",
+      "slides": 78,
+      "practice": 103,
+      "exam": 6,
+      "quiz": 14
+    },
+    {
+      "script": "lessons/ib-math-ai/unit-1/data/unit-1-ti84-simulator-v7.js",
+      "slides": 78,
+      "practice": 103,
+      "exam": 6,
+      "quiz": 14
+    },
+    {
+      "script": "lessons/ib-math-ai/unit-1/data/unit-1-gdc-classroom-training-v8.js",
+      "slides": 78,
+      "practice": 103,
+      "exam": 6,
+      "quiz": 14
+    }
+  ],
+  "expected_counts": {
+    "slides": 78,
+    "practice": 103,
+    "exam": 6,
+    "quiz": 14
+  },
+  "native_candidates": [
+    3,
+    5,
+    6,
+    8,
+    9,
+    13,
+    26,
+    34,
+    35,
+    37,
+    39,
+    42,
+    43,
+    44,
+    45,
+    55,
+    58,
+    62,
+    63,
+    72
+  ],
+  "review_exceptions": [
+    {
+      "sourceIndex": 69,
+      "reason": "The source gives Evaluate a command-term meaning not supported by the first-assessment 2021 AI guide glossary; retain the complete source slide as a reference."
+    }
+  ],
+  "max_public_json_bytes": 262144
+}

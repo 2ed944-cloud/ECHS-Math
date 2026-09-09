@@ -16,7 +16,8 @@
 - ECHS-010: complete; PR #358 merged as `33d90e6025946450e15e91afa16696ae5d245bf4`. All 22 final PR workflows, 16 production workflows and 92 public acceptance checks passed. PostgreSQL 15.19 applied all 24 migrations with 609 database checks and 20 real HTTP/SQL groups. Private media, publication attachments and safe video/table rendering are deployed. See `LESSON_MEDIA_FOUNDATION.md`.
 - ECHS-011: complete; PR #359 merged as `1d42d363164c200277632c3d09a53e30e07450a6`. All 23 PR workflows, 17 production workflows and 80 public checks passed. PostgreSQL 15.19 applied all 25 migrations with 676 database checks and 25 actual HTTP/SQL groups. Bounded undo/redo and encrypted account-scoped device recovery are deployed. See `LESSON_DRAFT_RECOVERY.md`.
 - ECHS-012: complete; PR #360 merged as `34db877f92de9c3748b32b79245a36c221dd6904`. All18 PR workflows,14 production workflows and96 public checks passed. The existing25 migrations passed676 database checks and38 actual HTTP/SQL groups, including the production Studio client/history controller. No backend or student-route change. See `LESSON_VERSION_HISTORY.md`.
-- ECHS-013: in progress; classroom presentation with keyboard navigation, reveal, reset and reduced motion. ECHS-014 onward have not started.
+- ECHS-013: complete; PR #361 merged as `74530fe355cf68452d5daa0cbf31f8b132302f30`. All 16 PR workflows, 12 production workflows and 100 final public checks passed. Presentation passed 17 state tests and 33 browser groups; the unchanged 25 migrations passed 676 database checks and 38 HTTP/SQL groups. See `LESSON_PRESENTATION.md`.
+- ECHS-014: in progress; IB 1.3 reference import with reviewed native teaching blocks and a complete 78-slide preservation ledger. ECHS-015 onward have not started.
 
 Rules:
 - execute in dependency order;
