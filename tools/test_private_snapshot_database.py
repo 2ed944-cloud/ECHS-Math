@@ -22,6 +22,44 @@ MEMBERSHIP = '202609090002_membership_authorization.sql'
 TABLES = ['private_bank_snapshots', 'private_bank_snapshot_files', 'private_bank_snapshot_questions', 'private_bank_snapshot_question_files', 'private_bank_snapshot_mappings', 'private_bank_snapshot_events']
 CAP = {'contract': CONTRACT, 'schema_version': 1, 'immutable_ready': True, 'student_delivery': False, 'max_record_bytes': 65536, 'max_object_bytes': 16777216, 'max_snapshot_bytes': 268435456}
 
+def isolated_hostaddr(info):
+    assert info.get('host') in ('127.0.0.1', 'localhost', '::1') and info.get('dbname', '').startswith('echs_bank_test_')
+    assert not info.get('hostaddr') and not info.get('service') and not info.get('options')
+    return '::1' if info['host'] == '::1' else '127.0.0.1'
+
+def assert_connected_isolation(info, expected_address, expected_database):
+    # libpq reports the client connection target. inet_server_addr() instead
+    # reports Docker's bridge listener when CI maps a local port to a service.
+    assert info.hostaddr == expected_address
+    assert info.dbname == expected_database
+
+def isolation_guard_vectors():
+    from types import SimpleNamespace
+    cases = 0
+    base = {'host': '127.0.0.1', 'dbname': 'echs_bank_test_synthetic'}
+    for host, address in [('127.0.0.1', '127.0.0.1'), ('localhost', '127.0.0.1'), ('::1', '::1')]:
+        assert isolated_hostaddr({**base, 'host': host}) == address
+        # A port-mapped server can report a bridge address; only libpq's actual
+        # client target and exact database identity authorize this harness.
+        assert_connected_isolation(SimpleNamespace(hostaddr=address, dbname=base['dbname'], server_side_address='172.19.0.2'), address, base['dbname'])
+        cases += 1
+    for changed in [{'host': 'database.example'}, {'host': '127.0.0.1,other'}, {'host': '/tmp'}, {'host': ''}, {'dbname': 'production'},
+                    {'hostaddr': '127.0.0.1'}, {'hostaddr': '192.0.2.1'}, {'service': 'other'}, {'options': '-c search_path=other'}]:
+        try:
+            isolated_hostaddr({**base, **changed})
+        except AssertionError:
+            cases += 1
+        else:
+            raise AssertionError('Unsafe test connection override accepted')
+    for address, database in [('192.0.2.1', base['dbname']), ('', base['dbname']), ('127.0.0.1', 'echs_bank_test_other'), ('127.0.0.1', 'production')]:
+        try:
+            assert_connected_isolation(SimpleNamespace(hostaddr=address, dbname=database), '127.0.0.1', base['dbname'])
+        except AssertionError:
+            cases += 1
+        else:
+            raise AssertionError('Unexpected connected endpoint accepted')
+    return cases
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--repo-root', type=Path, default=Path(__file__).resolve().parents[1])
@@ -55,6 +93,9 @@ def main():
         assert roots_for(f['files'], f['records'], f['mappings'], f['reserve']['unit_review_sets']) == {key: f['reserve'][key] for key in ('question_root', 'file_root', 'membership_root', 'mapping_root')}
         assert len(f['files']) == 5 and sum(len(q['bundle_memberships']) for q in f['records']) == 3
         passed('additive archive-only source and independent UTF-8 framing/manifest exclusion vectors')
+        report['connection_isolation_vectors'] = isolation_guard_vectors()
+        assert report['connection_isolation_vectors'] == 16
+        passed('loopback client targets permit Docker port mapping but reject remote/override/wrong-database connections')
         if args.static_only:
             report['status'] = 'STATIC INPUTS PASS; DATABASE NOT RUN'
             report['pending_dependencies'] = [] if any(p.name == MEMBERSHIP for p in migrations) else [MEMBERSHIP]
@@ -71,17 +112,19 @@ def main():
         dsn = os.environ.get('ECHS_BANK_TEST_DSN', '')
         assert dsn, 'Explicit isolated test DSN required'
         info = conninfo_to_dict(dsn)
-        assert info.get('host') in ('127.0.0.1', 'localhost', '::1') and info.get('dbname', '').startswith('echs_bank_test_')
-        assert not info.get('hostaddr') and not info.get('service') and not info.get('options')
-        hostaddr = '::1' if info['host'] == '::1' else '127.0.0.1'
+        hostaddr = isolated_hostaddr(info)
         def connect():
             db = psycopg.connect(dsn, hostaddr=hostaddr, autocommit=True)
+            try:
+                assert_connected_isolation(db.info, hostaddr, info['dbname'])
+            except BaseException:
+                db.close()
+                raise
             db.execute("set statement_timeout='10s'")
             return db
         with connect() as conn:
             assert int(conn.execute('show server_version_num').fetchone()[0]) // 10000 == 15
-            assert conn.execute('select current_database()').fetchone()[0].startswith('echs_bank_test_')
-            assert conn.execute("select host(inet_server_addr())").fetchone()[0] in ('127.0.0.1', '::1')
+            assert conn.execute('select current_database()').fetchone()[0] == info['dbname']
             assert conn.execute("select count(*) from pg_tables where schemaname in ('public','private','storage')").fetchone()[0] == 0, 'Refusing nonempty database'
             report['postgres_version'] = conn.execute('show server_version').fetchone()[0]
             # Infrastructure normally supplied by Supabase. No mocked authorization.
