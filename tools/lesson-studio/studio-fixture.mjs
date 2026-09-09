@@ -35,18 +35,33 @@ export function studioStorageState(role = 'teacher') {
   ] : []}]};
 }
 
-export function createStudioFixture({pinned = true, contentV2 = false,media = false,recovery = false} = {}) {
+export function createStudioFixture({pinned = true, contentV2 = false,media = false,recovery = false,
+  referenceCourse = 'ap',referenceVersion = 'current',includeSecondClass = false} = {}) {
+  assert.ok(['ap','ib13'].includes(referenceCourse));assert.ok(['current','wrong','future'].includes(referenceVersion));
   const calls = [], rpcCalls = [], external = [], failures = [], holds = [];
   const records = new Map(); let serial = 100;
   const assets=new Map(),assetBytes=new Map();
   const accounts = new Map(['teacher','admin','student','parent','other'].map(role => [createHash('sha256').update(tokenFor(role)).digest('hex'),accountFor(role)]));
   const selectedClass = {id:STUDIO_IDS.class,organization_id:STUDIO_IDS.organization,name:'Fixture AP Calculus AB',course_key:'ap-calculus',status:'active',section:'A',academic_year:'2026-27'};
   const course = {id:STUDIO_IDS.course,course_code:'ap-calculus-ab',record:{title:'AP Calculus AB'},version_key:'fixture-ap-ab-2026-27',status:'active',is_placeholder:false};
-  let assignment = pinned ? {id:STUDIO_IDS.assignment,organization_id:STUDIO_IDS.organization,class_id:STUDIO_IDS.class,course_version_id:STUDIO_IDS.course,
+  if(referenceCourse==='ib13'){
+    Object.assign(selectedClass,{name:'Fixture IB Mathematics AI SL',course_key:'ib-math-ai'});
+    Object.assign(course,{id:referenceVersion==='current'?'9a875b4c-61af-5001-9f31-a22044f6f58d':referenceVersion==='future'?'56880c32-495b-5f31-a0aa-b04efa1b34b7':STUDIO_IDS.course,
+      course_code:'ib-math-ai-sl',record:{title:'IB Mathematics: Applications and Interpretation SL'},version_key:referenceVersion==='future'?'ib-ai-sl-first-assessment-2029':'ib-ai-sl-first-assessment-2021',
+      status:referenceVersion==='future'?'future':'active',is_placeholder:referenceVersion==='future'});
+  }
+  let assignment = pinned ? {id:STUDIO_IDS.assignment,organization_id:STUDIO_IDS.organization,class_id:STUDIO_IDS.class,course_version_id:course.id,
     state:'active',assigned_by:STUDIO_IDS.admin,created_at:now,reason:'Original fixture class pin'} : null;
   const catalog = ['1.7','1.8','1.9'].map((topic,index) => ({access_key:`ap-calculus::0::${topic}`,course_key:'ap-calculus',
     title:`Original fixture lesson ${topic}`,route_path:`lessons/ap-calculus/unit-1/lesson-${topic.replace('.','-')}.html`,
     unit_id:'legacy:ap-calculus:unit:1',topic_id:`legacy:ap-calculus:topic:${topic}`,topic,unit_index:0,is_ready:true,position:index}));
+  if(referenceCourse==='ib13')catalog.splice(0,catalog.length,...[
+    ['1.3','Geometric Sequences and Series','IB_AI_SL_1.3_geometric_sequences_ECHS.html',3],
+    ['1.4','Financial Models','IB_AI_SL_1.4_financial_models_ECHS.html',4]
+  ].map(([topic,title,file,position])=>({access_key:`ib-math-ai::0::${topic}`,course_key:'ib-math-ai',title,
+    route_path:`lessons/ib-math-ai/unit-1/lessons/${file}`,unit_id:'legacy:ib-math-ai:unit:1',topic_id:`legacy:ib-math-ai:topic:${topic}`,topic,unit_index:0,is_ready:true,position})));
+  const secondClass=includeSecondClass?{...clone(selectedClass),id:STUDIO_IDS.otherClass,name:selectedClass.name+' B',section:'B'}:null;
+  const secondAssignment=secondClass&&assignment?{...clone(assignment),id:uuid(13),class_id:secondClass.id}:null;
   const snapshot = record => data({lesson:clone(record.lesson),head:clone(record.head),
     versions:record.history.slice(-25).map(({document,private_notes,...entry}) => clone(entry)).reverse(),
     reviews:clone((record.reviews||[]).slice(-25).reverse()),
@@ -83,9 +98,12 @@ export function createStudioFixture({pinned = true, contentV2 = false,media = fa
     const payload = args.p_payload;
     const actor = {id:account.id,organization_id:account.organization_id,role:account.role};
     if (account.organization_id !== STUDIO_IDS.organization) return {data:args.p_action === 'context' ? data({actor,classes:[]}) : null,error:args.p_action === 'context' ? null : {code:'42501'}};
-    if (args.p_action === 'context') return {data:payload.class_id ? data({actor,class:clone(selectedClass),current_assignment:clone(assignment),catalog:clone(catalog),course_versions:[clone(course)]}) :
-      data({actor,classes:[{...clone(selectedClass),current_assignment:clone(assignment),course_versions:[clone(course)]}]}),error:null};
-    if (args.p_action === 'list') return {data:data({lessons:[...records.values()].map(record => clone(record.lesson))}),error:null};
+    const scopeClass=secondClass&&payload.class_id===secondClass.id?secondClass:selectedClass;
+    const scopeAssignment=scopeClass===secondClass?secondAssignment:assignment;
+    if(['context','list','create'].includes(args.p_action)&&payload.class_id&&![selectedClass.id,secondClass?.id].includes(payload.class_id))return {data:null,error:{code:'42501'}};
+    if (args.p_action === 'context') return {data:payload.class_id ? data({actor,class:clone(scopeClass),current_assignment:clone(scopeAssignment),catalog:clone(catalog),course_versions:[clone(course)]}) :
+      data({actor,classes:[{...clone(selectedClass),current_assignment:clone(assignment),course_versions:[clone(course)]},...(secondClass?[{...clone(secondClass),current_assignment:clone(secondAssignment),course_versions:[clone(course)]}]:[])]}),error:null};
+    if (args.p_action === 'list') return {data:data({lessons:[...records.values()].filter(record=>record.lesson.class_id===scopeClass.id).map(record => clone(record.lesson))}),error:null};
     if (args.p_action === 'pin_course') {
       if (account.role !== 'admin' || payload.class_id !== selectedClass.id || payload.course_version_id !== course.id) return {data:null,error:{code:'42501'}};
       if (payload.expected_assignment_id !== (assignment?.id || null)) return {data:null,error:{code:'40001'}};
@@ -95,12 +113,12 @@ export function createStudioFixture({pinned = true, contentV2 = false,media = fa
     }
     if (args.p_action === 'create') {
       const binding = catalog.find(item => item.access_key === payload.access_key);
-      if (!binding || !assignment || payload.class_id !== selectedClass.id || payload.course_version_id !== assignment.course_version_id) return {data:null,error:{code:'42501'}};
-      if ([...records.values()].some(record => record.lesson.access_key === binding.access_key)) return {data:null,error:{code:'23505'}};
+      if (!binding || !scopeAssignment || payload.class_id !== scopeClass.id || payload.course_version_id !== scopeAssignment.course_version_id) return {data:null,error:{code:'42501'}};
+      if ([...records.values()].some(record => record.lesson.class_id===scopeClass.id&&record.lesson.access_key === binding.access_key)) return {data:null,error:{code:'23505'}};
       const versionId = uuid(serial++), document = clone(payload.document);
       const head = {id:versionId,lesson_id:document.lesson_id,organization_id:account.organization_id,version_number:1,document,private_notes:payload.private_notes,created_by:account.id,created_at:now,restored_from_version_id:null};
-      const record = {lesson:{id:document.lesson_id,organization_id:account.organization_id,class_id:selectedClass.id,course_version_id:course.id,
-        access_key:binding.access_key,legacy_course_key:'ap-calculus',route_path:binding.route_path,unit_id:binding.unit_id,topic_id:binding.topic_id,slug:document.slug,
+      const record = {lesson:{id:document.lesson_id,organization_id:account.organization_id,class_id:scopeClass.id,course_version_id:course.id,
+        access_key:binding.access_key,legacy_course_key:scopeClass.course_key,route_path:binding.route_path,unit_id:binding.unit_id,topic_id:binding.topic_id,slug:document.slug,
         created_by:account.id,created_at:now,updated_at:now,head_revision:1,head_version_id:versionId,workflow_state:'draft',
         approved_version_id:null,approved_review_id:null,active_publication_id:null},head,history:[clone(head)],reviews:[],publications:[]};
       records.set(document.lesson_id,record); return {data:snapshot(record),error:null};

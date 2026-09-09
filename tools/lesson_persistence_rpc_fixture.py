@@ -27,11 +27,12 @@ def main():
     from psycopg.conninfo import conninfo_to_dict
     from psycopg.types.json import Jsonb
 
-    assert sys.argv[1:] in ([], ['--content-v2'], ['--media'], ['--recovery'], ['--history']), 'Only explicit versioned fixture modes are supported'
+    assert sys.argv[1:] in ([], ['--content-v2'], ['--media'], ['--recovery'], ['--history'], ['--ib13-import']), 'Only explicit versioned fixture modes are supported'
+    ib13_import = sys.argv[1:] == ['--ib13-import']
     history = sys.argv[1:] == ['--history']
-    recovery = sys.argv[1:] in (['--recovery'], ['--history'])
+    recovery = sys.argv[1:] in (['--recovery'], ['--history'], ['--ib13-import'])
     media = sys.argv[1:] == ['--media']
-    content_v2 = sys.argv[1:] in (['--content-v2'], ['--media'], ['--recovery'], ['--history'])
+    content_v2 = sys.argv[1:] in (['--content-v2'], ['--media'], ['--recovery'], ['--history'], ['--ib13-import'])
 
     dsn = os.environ.get("ECHS_LESSON_TEST_DSN", "")
     assert dsn, "Explicit disposable database required"
@@ -45,13 +46,19 @@ def main():
         assert int(conn.execute("show server_version_num").fetchone()[0]) // 10000 == 15
         assert conn.execute("select current_database()").fetchone()[0].startswith("echs_lesson_test")
         assert conn.execute("select public.lesson_store_health()").fetchone()[0] == {"ok": True, "contract": "echs.lesson.store.v1"}
-        course = conn.execute("select id from public.course_versions where course_code='ap-calculus-ab' and status='active' and not is_placeholder").fetchall()
-        assert len(course) == 1, "Exactly one seeded AB version required"
+        course_code = 'ib-math-ai-sl' if ib13_import else 'ap-calculus-ab'
+        course_key = 'ib-math-ai' if ib13_import else 'ap-calculus'
+        topic = '1.3' if ib13_import else '1.7'
+        access_key = course_key + '::0::' + topic
+        course = conn.execute("select id from public.course_versions where course_code=%s and status='active' and not is_placeholder", (course_code,)).fetchall()
+        assert len(course) == 1, "Exactly one seeded active course version required"
+        if ib13_import:
+            assert str(course[0][0]) == '9a875b4c-61af-5001-9f31-a22044f6f58d', 'Current IB 2021 version required'
         nonce = uuid.uuid4().hex
         names = ("organization", "foreign_organization", "class", "foreign_class", "admin", "teacher", "reviewer", "student", "foreign_teacher", "parent", "unassigned_teacher")
         ids = {name: uuid.uuid4() for name in names}
         tokens = {name: "isolated-e2e-"+name+"-"+uuid.uuid4().hex for name in ("admin", "teacher", "reviewer", "student", "foreign_teacher", "parent", "unassigned_teacher")}
-        route = "lessons/ap-calculus/unit-1/1-7-selecting-limit-procedures.html"
+        route = 'lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.3_geometric_sequences_ECHS.html' if ib13_import else 'lessons/ap-calculus/unit-1/1-7-selecting-limit-procedures.html'
         with conn.transaction():
             if history:
                 # Explicit disposable fixture only: create a compatible alternate
@@ -74,14 +81,14 @@ def main():
                 conn.execute("insert into public.accounts(id,organization_id,username,display_name,role,status) values(%s,%s,%s,%s,%s,'active')", (ids[name],org,"lesson-http-"+name+"-"+nonce,name,role))
                 conn.execute("select public.api_create_session(%s,%s,now()+interval '1 hour','fixture','loopback')", (ids[name],hashlib.sha256(token.encode()).hexdigest()))
             for name, org, creator in (("class", "organization", "admin"), ("foreign_class", "foreign_organization", "foreign_teacher")):
-                conn.execute("insert into public.classes(id,organization_id,name,course_key,status,created_by) values(%s,%s,%s,'ap-calculus','active',%s)", (ids[name],ids[org],"Isolated HTTP class",ids[creator]))
+                conn.execute("insert into public.classes(id,organization_id,name,course_key,status,created_by) values(%s,%s,%s,%s,'active',%s)", (ids[name],ids[org],"Isolated HTTP class",course_key,ids[creator]))
             for name in ("teacher", "reviewer", "student"):
                 conn.execute("insert into public.class_memberships(class_id,account_id,membership_role) values(%s,%s,%s)", (ids["class"],ids[name],"student" if name == "student" else "teacher"))
             conn.execute("insert into public.class_memberships(class_id,account_id,membership_role) values(%s,%s,'teacher')", (ids["foreign_class"],ids["foreign_teacher"]))
-            # Position zero is explicit fixture setup, preserving the real first-
-            # lesson release rule without fabricating practice or mastery.
-            conn.execute("insert into public.lesson_catalog(organization_id,access_key,course_key,unit_index,unit_title,topic,title,position,url,is_ready) values(%s,'ap-calculus::0::1.7','ap-calculus',0,'Unit 1','1.7','Original HTTP fixture',0,%s,true)", (ids["organization"],route))
-        emit({"event":"ready", "postgres_version":conn.execute("show server_version").fetchone()[0], "fixture":{**ids,"course_version_id":course[0][0],"tokens":tokens,"route_path":route,"access_key":"ap-calculus::0::1.7"}})
+            # Existing first-lesson fixtures use position zero; IB import uses its
+            # exact position three and remains private, with no fabricated mastery.
+            conn.execute("insert into public.lesson_catalog(organization_id,access_key,course_key,unit_index,unit_title,topic,title,position,url,is_ready) values(%s,%s,%s,0,'Unit 1',%s,%s,%s,%s,true)", (ids['organization'],access_key,course_key,topic,'Geometric Sequences and Series' if ib13_import else 'Original HTTP fixture',3 if ib13_import else 0,route))
+        emit({"event":"ready", "postgres_version":conn.execute("show server_version").fetchone()[0], "fixture":{**ids,"course_version_id":course[0][0],"tokens":tokens,"route_path":route,"access_key":access_key}})
 
         for line in sys.stdin:
             request_id = None
