@@ -21,7 +21,33 @@
   function applyTheme(theme){document.documentElement.dataset.theme=theme;localStorage.setItem(THEME_KEY,theme);$$('[data-experience-theme]').forEach(button=>{button.textContent=theme==="dark"?"☀":"☾";button.setAttribute("aria-label",theme==="dark"?"Use light appearance":"Use dark appearance")})}
   function bindTheme(){const saved=localStorage.getItem(THEME_KEY)||"light";applyTheme(saved);$$('[data-experience-theme]').forEach(button=>button.addEventListener("click",()=>applyTheme(document.documentElement.dataset.theme==="dark"?"light":"dark")))}
   function bindDate(){$$('[data-experience-date]').forEach(node=>node.textContent=formatDate())}
-  function bindAnimatedNumbers(){if(!('IntersectionObserver'in window))return;const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(!entry.isIntersecting)return;const node=entry.target,raw=node.textContent.trim(),match=raw.match(/^([\d,.]+)(.*)$/);if(!match)return observer.unobserve(node);const target=Number(match[1].replace(/,/g,""));if(!Number.isFinite(target)||target<=0||target>5000)return observer.unobserve(node);const suffix=match[2],start=performance.now(),duration=500;function tick(now){const p=Math.min(1,(now-start)/duration),currentText=node.textContent.trim(),currentMatch=currentText.match(/^([\d,.]+)(.*)$/),currentValue=currentMatch?Number(currentMatch[1].replace(/,/g,"")):target;if(p<1&&Number.isFinite(currentValue)&&currentValue!==0&&currentValue!==target)return observer.unobserve(node);const value=Math.round(target*(1-Math.pow(1-p,3)));node.textContent=value.toLocaleString()+suffix;if(p<1)requestAnimationFrame(tick)}requestAnimationFrame(tick);observer.unobserve(node)}),{threshold:.55});$$('[data-animate-number]').forEach(node=>observer.observe(node))}
+  function bindAnimatedNumbers(){
+    const reducedMotion=()=>Boolean(window.matchMedia?.("(prefers-reduced-motion: reduce)").matches);
+    if(!('IntersectionObserver'in window)||reducedMotion())return;
+    const ownerKey=()=>{const current=window.ECHSInstitution?.account?.();return JSON.stringify([current?.id??current?.account_id??null,current?.organization_id??null,current?.role??null])};
+    const started=new WeakSet();
+    const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{
+      if(!entry.isIntersecting||started.has(entry.target))return;
+      const node=entry.target,raw=node.textContent.trim(),match=raw.match(/^([\d,.]+)(.*)$/);
+      if(!match)return observer.unobserve(node);
+      const target=Number(match[1].replace(/,/g,""));
+      if(!Number.isFinite(target)||target<=0||target>5000)return observer.unobserve(node);
+      const suffix=match[2],start=performance.now(),duration=500,owner=ownerKey();
+      let previousText=raw;
+      started.add(node);observer.unobserve(node);
+      function tick(now){
+        // Only this animation's previous write may be replaced. A newer report,
+        // detached view or changed account owns the element immediately.
+        if(!node.isConnected||ownerKey()!==owner||node.textContent.trim()!==previousText)return;
+        const p=reducedMotion()?1:Math.max(0,Math.min(1,(now-start)/duration));
+        previousText=p>=1?raw:Math.round(target*(1-Math.pow(1-p,3))).toLocaleString()+suffix;
+        node.textContent=previousText;
+        if(p<1)requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    }),{threshold:.55});
+    $$('[data-animate-number]').forEach(node=>observer.observe(node));
+  }
   function bindDialogFocusRecovery(){document.addEventListener("close",event=>{if(event.target?.id!=="premiumCommandDialog")return;const target=$(".institutionMain")||$(".authCard")||document.body;if(!target.hasAttribute("tabindex"))target.tabIndex=-1;requestAnimationFrame(()=>target.focus({preventScroll:true}))},true)}
   function bindGuideShortcutCompatibility(){document.addEventListener("keydown",event=>{const guideKey=event.key==="?"||(event.code==="Slash"&&event.shiftKey);if(!guideKey||$("#premiumCommandDialog")?.open)return;const active=document.activeElement,inputLike=/INPUT|TEXTAREA|SELECT/.test(active?.tagName||""),hiddenContext=Boolean(active?.closest?.("dialog:not([open])"))||active?.offsetParent===null;if(inputLike&&!hiddenContext)return;if(!window.ECHSPremiumCompletion?.openGuide)return;event.preventDefault();event.stopImmediatePropagation();window.ECHSPremiumCompletion.openGuide()},true)}
   function bindReadinessEntry(){

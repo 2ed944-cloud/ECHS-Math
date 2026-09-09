@@ -41,7 +41,12 @@ function harness(service='institution-api',extra={}){
   const policy=fs.readFileSync(path.join(baseline,'supabase/functions/institution-api/lesson-access-policy.js'),'utf8').replace(/export /g,'');
   const context=vm.createContext({createClient:()=>db,Deno:{env:{get:()=>''},serve:fn=>handler=fn},Request,Response,URL,TextEncoder,crypto:webcrypto,console:{error(){}},Date});
   vm.runInContext(policy,context);
-  const source=read(`supabase/functions/${service}/index.ts`).replace(/^import\s[\s\S]*?;\r?\n/gm,'');
+  const rawSource=read(`supabase/functions/${service}/index.ts`);
+  if(rawSource.includes('../_shared/mastery-status.mjs')){
+    const statusPolicy=read('supabase/functions/_shared/mastery-status.mjs');
+    vm.runInContext(statusPolicy.replace(/^export /gm,''),context,{filename:'actual/mastery-status.mjs'});
+  }
+  const source=rawSource.replace(/^import\s[\s\S]*?;\r?\n/gm,'');
   vm.runInContext(stripTypeScriptTypes(source),context,{filename:`actual/${service}/index.ts`});
   const send=(route,{actor='teacher',body,method}={})=>handler(new Request(`https://fixture.invalid/functions/v1/${service}${route}`,{method:method||(body===undefined?'GET':'POST'),headers:{...(actor?{authorization:'Bearer '+actor}:{}),'content-type':'application/json'},...(body===undefined?{}:{body:JSON.stringify(body)})}));
   return {tables,state,reads,writes,rpcs,send};

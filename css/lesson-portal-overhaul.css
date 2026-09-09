@@ -959,7 +959,7 @@ html[data-theme="dark"] .lessonDrawerBody .star{background:#172a38;color:#c3ced7
   }
   body[data-platform-page="home"][data-auth-state="signed-in"] .premiumLandingHeader .top{
     display:grid!important;
-    grid-template-columns:minmax(0,1fr) auto!important;
+    grid-template-columns:auto minmax(0,1fr)!important;
     min-height:64px!important;
   }
   body[data-platform-page="home"][data-auth-state="signed-in"] .premiumLandingHeader .searchBox{
@@ -970,8 +970,11 @@ html[data-theme="dark"] .lessonDrawerBody .star{background:#172a38;color:#c3ced7
     grid-column:2;
     grid-row:1;
     min-width:0;
+    width:100%;
+    margin-left:0;
   }
   body[data-platform-page="home"][data-auth-state="signed-in"] .premiumLandingHeader .platformNav{
+    min-width:0;
     max-width:58vw;
     overflow-x:auto;
   }

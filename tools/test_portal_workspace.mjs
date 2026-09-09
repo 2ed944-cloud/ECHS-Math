@@ -15,7 +15,7 @@ const localStorage={getItem:()=>null,setItem(){}};
 const context=vm.createContext({document,window,location,localStorage,URL,URLSearchParams,history:{state:null,replaceState:(_s,_t,url)=>{location.href=String(url)}},ECHSPortalAccess:{normaliseCourseKey:v=>v,courseAllowed:()=>true,ready:Promise.resolve(access)},ECHSInstitution:{syncLearning:async()=>{},api:async()=>({})},CustomEvent:class{},matchMedia:()=>({matches:false}),setTimeout,clearTimeout,console});
 await vm.runInContext(source,context);await new Promise(resolve=>setImmediate(resolve));
 assert.equal(vm.runInContext('state.courseId',context),'course-b','A lesson deep link overrides a previously selected course');
-assert.equal(nodes.get('#statQuestions').textContent,3,'Mastery total is a mastery count');
+assert.equal(nodes.get('#statQuestions').textContent,0,'A cached legacy summary without authenticated grading cannot certify mastery');
 assert.equal(masteryReads,2,'Build each course mastery index once per render');
 assert.match(nodes.get('#tabs').innerHTML,/tabindex="0"/);assert.match(nodes.get('#tabs').innerHTML,/aria-controls="lessonWorkspacePanel"/);
 vm.runInContext('state.search="table quadratic";renderUnits()',context);assert.match(nodes.get('#lessonResultsStatus').textContent,/2 lessons/,'Search matches words in any order across available courses');assert.match(nodes.get('#units').innerHTML,/Course A/);assert.match(nodes.get('#units').innerHTML,/Outcome 7/,'All objectives remain available');assert.match(nodes.get('#units').innerHTML,/Resource 9/,'All resources remain available');

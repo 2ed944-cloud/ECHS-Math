@@ -56,4 +56,4 @@ No database migration. Production acceptance must verify the exact merged `deplo
 
 The canonical source remains the rollback/reference path. If an intentional source change violates projection pins, the build fails and the last accepted artifact stays deployed. Prefer a forward repair or a narrow UI rollback that retains projection and cache exclusions. A wholesale rollback to the old copy/worker would restore known exposure and is not a safe rollback plan. Worker fixes require a fresh cache version while preserving denied-path rules.
 
-Next: C09 membership authorization, C02 truthful evidence reporting, C08 verified private legacy delivery and C03/C04 grading/account ownership. AP 1.1 and new interactive components wait for those foundations. C01 does not certify the whole charter or complete platform confidentiality.
+The separate C09 membership authorization release is now verified. Next: C02 truthful evidence reporting, C08 verified private legacy delivery and C03/C04 grading/account ownership. AP 1.1 and new interactive components wait for those foundations. C01 does not certify the whole charter or complete platform confidentiality.
