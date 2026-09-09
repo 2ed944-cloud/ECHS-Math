@@ -84,16 +84,19 @@ function masteryLevel(score: number, confidence: number) {
 }
 
 async function accessibleClassIds(current: SessionAccount) {
-  if (current.role === "admin") {
-    const { data, error } = await db.from("classes").select("id").eq("organization_id", current.organization_id);
+  if (!["admin", "teacher"].includes(current.role)) return [];
+  let query = db.from("classes").select("id").eq("organization_id", current.organization_id);
+  if (current.role === "teacher") {
+    const { data, error } = await db.from("class_memberships").select("class_id")
+      .eq("account_id", current.account_id).eq("membership_role", "teacher");
     if (error) throw error;
-    return (data ?? []).map((row) => row.id as string);
+    const ids = (data ?? []).map((row) => row.class_id);
+    if (!ids.length) return [];
+    query = query.in("id", ids);
   }
-  if (current.role !== "teacher") return [];
-  const { data, error } = await db.from("class_memberships").select("class_id")
-    .eq("account_id", current.account_id).eq("membership_role", "teacher");
+  const { data, error } = await query;
   if (error) throw error;
-  return (data ?? []).map((row) => row.class_id as string);
+  return (data ?? []).map((row) => row.id as string);
 }
 
 async function recomputeMastery(current: SessionAccount, affectedSkills: string[]) {
@@ -317,17 +320,22 @@ async function classEvidence(current: SessionAccount, req: Request, classId: str
   const accessible = await accessibleClassIds(current);
   if (!accessible.includes(classId)) return failure(req, "Class access is not permitted", 403, "forbidden");
   const [{ data: classRow, error: classError }, { data: memberships, error: membershipError }] = await Promise.all([
-    db.from("classes").select("id,name,course_key,academic_year,section").eq("id", classId).single(),
+    db.from("classes").select("id,name,course_key,academic_year,section").eq("id", classId).eq("organization_id", current.organization_id).single(),
     db.from("class_memberships").select("account_id,membership_role").eq("class_id", classId),
   ]);
   if (classError) throw classError;
   if (membershipError) throw membershipError;
-  const studentIds = (memberships ?? []).filter((row) => row.membership_role === "student").map((row) => row.account_id);
-  const [{ data: students, error: studentError }, { data: mastery, error: masteryError }, { data: definitions, error: definitionError }] = await Promise.all([
-    studentIds.length ? db.from("accounts").select("id,display_name,username,grade").in("id", studentIds).order("display_name") : Promise.resolve({ data: [], error: null }),
+  const requestedStudentIds = (memberships ?? []).filter((row) => row.membership_role === "student").map((row) => row.account_id);
+  const { data: students, error: studentError } = requestedStudentIds.length
+    ? await db.from("accounts").select("id,display_name,username,grade")
+      .eq("organization_id", current.organization_id).eq("role", "student").in("id", requestedStudentIds).order("display_name")
+    : { data: [], error: null };
+  if (studentError) throw studentError;
+  const studentIds = (students ?? []).map((row) => row.id);
+  const [{ data: mastery, error: masteryError }, { data: definitions, error: definitionError }] = await Promise.all([
     studentIds.length ? db.from("mastery_records")
       .select("account_id,skill_key,title,course,unit,topic,score,confidence,attempts,independent_evidence,transfer_evidence,retention_evidence,representation_count,active_days,last_attempt_at,last_verified_at,source,payload")
-      .in("account_id", studentIds) : Promise.resolve({ data: [], error: null }),
+      .eq("organization_id", current.organization_id).in("account_id", studentIds) : Promise.resolve({ data: [], error: null }),
     db.from("skill_definitions").select("skill_key,title,course,unit,topic,lesson_ids,evidence_rules").eq("active", true),
   ]);
   if (studentError) throw studentError;

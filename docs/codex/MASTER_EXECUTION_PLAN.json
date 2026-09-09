@@ -39,13 +39,14 @@
     "board_snapshot": "In-flight tasks remain unverified until a later evidence-backed board update. The board cannot contain its own future commit hash."
   },
   "execution_order": {
-    "first_unmet_dependency": "ECHS-C01",
+    "first_unmet_dependency": "ECHS-C09",
     "active_work": [
-      "ECHS-C00",
-      "ECHS-C01",
-      "ECHS-C02"
+      "ECHS-C09",
+      "ECHS-C02",
+      "ECHS-C08"
     ],
     "next_after_public_projection": [
+      "ECHS-C09",
       "ECHS-C02",
       "ECHS-C08",
       "ECHS-C03",
@@ -340,7 +341,8 @@
         "ECHS-001",
         "ECHS-C00",
         "ECHS-C01",
-        "ECHS-C08"
+        "ECHS-C08",
+        "ECHS-C09"
       ]
     },
     {
@@ -351,7 +353,8 @@
         "ECHS-C00",
         "ECHS-C01",
         "ECHS-C04",
-        "ECHS-C08"
+        "ECHS-C08",
+        "ECHS-C09"
       ]
     },
     {
@@ -658,7 +661,8 @@
       "title": "TEACHER INTELLIGENCE",
       "tasks": [
         "ECHS-C02",
-        "ECHS-051"
+        "ECHS-051",
+        "ECHS-C09"
       ]
     },
     {
@@ -666,7 +670,8 @@
       "title": "STUDENT MATHEMATICAL PROFILE",
       "tasks": [
         "ECHS-C02",
-        "ECHS-052"
+        "ECHS-052",
+        "ECHS-C09"
       ]
     },
     {
@@ -674,7 +679,8 @@
       "title": "PARENT / FAMILY REPORTING",
       "tasks": [
         "ECHS-C02",
-        "ECHS-052"
+        "ECHS-052",
+        "ECHS-C09"
       ]
     },
     {
@@ -746,7 +752,8 @@
         "ECHS-C06",
         "ECHS-C07",
         "ECHS-C08",
-        "ECHS-056"
+        "ECHS-056",
+        "ECHS-C09"
       ]
     },
     {
@@ -758,7 +765,8 @@
         "ECHS-C04",
         "ECHS-C07",
         "ECHS-055",
-        "ECHS-056"
+        "ECHS-056",
+        "ECHS-C09"
       ]
     },
     {
@@ -2543,7 +2551,7 @@
       "id": "ECHS-C00",
       "title": "Current-main charter audit and execution board",
       "phase": "CHARTER_FOUNDATIONS",
-      "status": "IN PROGRESS",
+      "status": "VERIFIED",
       "depends_on": [],
       "charter_sections": [
         0,
@@ -2580,12 +2588,31 @@
         "Proceed into C01 implementation after the audit."
       ],
       "tests": {
-        "status": "NOT_RUN",
-        "evidence": []
+        "status": "PASS",
+        "evidence": [
+          {
+            "kind": "sealed_scoped_release",
+            "path": "docs/codex/PUBLIC_QUESTION_BOUNDARY_C01_RELEASE.json"
+          }
+        ]
       },
       "deployment": {
-        "status": "NOT_DEPLOYED",
-        "evidence": []
+        "status": "VERIFIED",
+        "verified_at_main": "eacaff26f27a0c69debf8e5023686c2acf8e17f0",
+        "evidence": [
+          {
+            "kind": "merged_pull_request",
+            "url": "https://github.com/2ed944-cloud/ECHS-Math/pull/363"
+          },
+          {
+            "kind": "pages_release",
+            "url": "https://github.com/2ed944-cloud/ECHS-Math/actions/runs/34382509360"
+          },
+          {
+            "kind": "public_acceptance",
+            "path": "docs/codex/PUBLIC_QUESTION_BOUNDARY_C01_RELEASE.json"
+          }
+        ]
       },
       "rollback": {
         "strategy": "Revert only this reviewed slice; retain prior URLs, published versions, raw evidence and existing accounts. Any database changes require a task-specific forward/rollback note before implementation."
@@ -2605,7 +2632,7 @@
       "id": "ECHS-C01",
       "title": "Contain official question sources in the public Pages artifact",
       "phase": "CHARTER_FOUNDATIONS",
-      "status": "IN PROGRESS",
+      "status": "VERIFIED",
       "depends_on": [
         "ECHS-C00"
       ],
@@ -2650,12 +2677,31 @@
         "Expire cached denied paths; prove approved student flows and original lesson routes work on the exact deployed revision."
       ],
       "tests": {
-        "status": "NOT_RUN",
-        "evidence": []
+        "status": "PASS",
+        "evidence": [
+          {
+            "kind": "sealed_scoped_release",
+            "path": "docs/codex/PUBLIC_QUESTION_BOUNDARY_C01_RELEASE.json"
+          }
+        ]
       },
       "deployment": {
-        "status": "NOT_DEPLOYED",
-        "evidence": []
+        "status": "VERIFIED",
+        "verified_at_main": "eacaff26f27a0c69debf8e5023686c2acf8e17f0",
+        "evidence": [
+          {
+            "kind": "merged_pull_request",
+            "url": "https://github.com/2ed944-cloud/ECHS-Math/pull/363"
+          },
+          {
+            "kind": "pages_release",
+            "url": "https://github.com/2ed944-cloud/ECHS-Math/actions/runs/34382509360"
+          },
+          {
+            "kind": "public_acceptance",
+            "path": "docs/codex/PUBLIC_QUESTION_BOUNDARY_C01_RELEASE.json"
+          }
+        ]
       },
       "rollback": {
         "strategy": "Revert only this reviewed slice; retain prior URLs, published versions, raw evidence and existing accounts. Any database changes require a task-specific forward/rollback note before implementation."
@@ -2667,10 +2713,9 @@
       ],
       "next_dependency": [
         "ECHS-024",
-        "ECHS-C02",
         "ECHS-C04",
         "ECHS-C05",
-        "ECHS-C08"
+        "ECHS-C09"
       ],
       "shared_acceptance_contracts": [
         "incremental-preservation-v1"
@@ -2682,7 +2727,7 @@
       "phase": "CHARTER_FOUNDATIONS",
       "status": "IN PROGRESS",
       "depends_on": [
-        "ECHS-C01"
+        "ECHS-C09"
       ],
       "charter_sections": [
         25,
@@ -3026,9 +3071,9 @@
       "id": "ECHS-C08",
       "title": "Legacy private question delivery and public distribution migration",
       "phase": "CHARTER_FOUNDATIONS",
-      "status": "PLANNED",
+      "status": "IN PROGRESS",
       "depends_on": [
-        "ECHS-C01"
+        "ECHS-C09"
       ],
       "charter_sections": [
         4,
@@ -4779,6 +4824,91 @@
       "shared_acceptance_contracts": [
         "incremental-preservation-v1"
       ]
+    },
+    {
+      "id": "ECHS-C09",
+      "title": "Class-membership tenant authorization and atomic replacement",
+      "phase": "CHARTER_FOUNDATIONS",
+      "status": "IN PROGRESS",
+      "depends_on": [
+        "ECHS-C01"
+      ],
+      "charter_sections": [
+        4,
+        5,
+        38,
+        39,
+        40,
+        48,
+        49
+      ],
+      "implementation_location": [
+        {
+          "path": "supabase/functions/institution-api/index.ts",
+          "state": "existing"
+        },
+        {
+          "path": "supabase/functions/mastery-evidence/index.ts",
+          "state": "existing"
+        },
+        {
+          "path": "supabase/migrations/202609090002_membership_authorization.sql",
+          "state": "planned"
+        },
+        {
+          "path": "tools/test_membership_authorization_api.mjs",
+          "state": "planned"
+        },
+        {
+          "path": "tools/test_membership_authorization_database.py",
+          "state": "planned"
+        },
+        {
+          "path": "tools/test_membership_authorization_e2e.mjs",
+          "state": "planned"
+        },
+        {
+          "path": "tools/membership_authorization_rpc_fixture.py",
+          "state": "planned"
+        },
+        {
+          "path": ".github/workflows/membership-authorization.yml",
+          "state": "planned"
+        },
+        {
+          "path": "docs/codex/MEMBERSHIP_AUTHORIZATION_C09.md",
+          "state": "planned"
+        }
+      ],
+      "acceptance_criteria": [
+        "Validate every requested member against exact organization, active status and actual account role before any roster replacement.",
+        "Reauthenticate and lock the session, actor, class and target accounts in one service-only transaction; failure preserves the prior roster and revocation/concurrent replacement has a defined outcome.",
+        "Both institutional and mastery read scopes reject malformed preexisting foreign/wrong-role memberships while preserving legitimate organization-scoped historical reporting.",
+        "Actual PostgreSQL15 grants/RLS/transaction/concurrency tests and actual HTTP-to-service-role-SQL tests cover rejection, rollback, valid replacement, lost acknowledgement and data-free capability readiness.",
+        "No existing membership backfill/deletion at deployment, learner-data inspection, role widening, mastery/curriculum change or public private material. Verify the exact merged backend capability and preserve a safe rollback."
+      ],
+      "tests": {
+        "status": "NOT_RUN",
+        "evidence": []
+      },
+      "deployment": {
+        "status": "NOT_DEPLOYED",
+        "evidence": []
+      },
+      "rollback": {
+        "strategy": "Retain tenant/role read guards. Revert compatible caller code only after preserving the atomic authorized replacement path; no restoration of unchecked delete/insert behavior. Additive RPC migration does not backfill or delete existing memberships."
+      },
+      "known_limits": [
+        "Source inspection found separate account/class FKs with no cross-tenant or actual-role membership constraint; no production exploit or roster enumeration is claimed.",
+        "Existing malformed rows remain stored; authorization must reject their use. Broader private-provider and parent/readiness boundaries retain their separate task scopes."
+      ],
+      "next_dependency": [
+        "ECHS-C02",
+        "ECHS-C08"
+      ],
+      "shared_acceptance_contracts": [
+        "incremental-preservation-v1"
+      ]
     }
   ],
   "unresolved_risks": [
@@ -4817,6 +4947,18 @@
       "owner_task": "ECHS-059",
       "severity": "P1",
       "description": "Source counts and interaction signals do not establish exact curriculum alignment, correctness, rights or browser accessibility."
+    },
+    {
+      "id": "CLASS_MEMBERSHIP_AUTHORIZATION",
+      "owner_task": "ECHS-C09",
+      "severity": "P0",
+      "description": "Current mutation accepts requested account IDs without tenant/actual-role validation and delete/insert replacement is nontransactional; existing malformed membership rows can influence legacy reports. Source-confirmed, no production data inspected."
     }
-  ]
+  ],
+  "last_verified_release": {
+    "task": "ECHS-C01",
+    "main_sha": "eacaff26f27a0c69debf8e5023686c2acf8e17f0",
+    "tree_sha": "54c4673d962e241e61f230e8f6edc75bd18a79e6",
+    "evidence": "docs/codex/PUBLIC_QUESTION_BOUNDARY_C01_RELEASE.json"
+  }
 }

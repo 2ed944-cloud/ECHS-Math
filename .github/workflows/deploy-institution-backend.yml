@@ -91,6 +91,24 @@ jobs:
               "https://${SUPABASE_PROJECT_ID}.supabase.co/functions/v1/${endpoint}/health" | python -m json.tool
           done
 
+      - name: Verify deployed atomic membership transport and database capability
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error \
+            "https://${SUPABASE_PROJECT_ID}.supabase.co/functions/v1/institution-api/health/membership" \
+            --output "$RUNNER_TEMP/echs-membership-health.json"
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          actual = json.loads((Path(os.environ['RUNNER_TEMP']) / 'echs-membership-health.json').read_text())
+          expected = {'ok': True, 'service': 'echs-institution-api',
+                      'membership_capabilities': {'contract': 'echs.membership.v1',
+                        'atomic_replacement': True, 'tenant_scoped': True}}
+          assert actual == expected, 'Deployed membership transaction capability is unavailable or incompatible'
+          print('Production membership transport and service-only database capability: PASS')
+          PY
+
       - name: Verify deployed bootstrap secret
         shell: bash
         run: |

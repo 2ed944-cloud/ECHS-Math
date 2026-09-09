@@ -109,54 +109,58 @@ function masteryLabel(score: number): string {
   return "Starting";
 }
 
-async function accessibleClassIds(session: SessionAccount): Promise<string[]> {
-  let query = admin.from("classes").select("id").eq("organization_id", session.organization_id);
-  if (session.role === "teacher") {
-    const { data: memberships, error } = await admin
-      .from("class_memberships")
-      .select("class_id")
-      .eq("account_id", session.account_id)
-      .eq("membership_role", "teacher");
-    if (error) throw error;
-    return (memberships ?? []).map((row) => row.class_id);
-  }
-  if (session.role === "admin") {
-    const { data, error } = await query;
-    if (error) throw error;
-    return (data ?? []).map((row) => row.id);
-  }
-  return [];
+// Membership rows are identifiers, not a tenant or account-role authority.
+async function scopedClassIds(session: SessionAccount, accountId: string, role: "student" | "teacher"): Promise<string[]> {
+  const { data: memberships, error } = await admin.from("class_memberships").select("class_id")
+    .eq("account_id", accountId).eq("membership_role", role);
+  if (error) throw error;
+  const ids = [...new Set((memberships ?? []).map((row) => row.class_id))];
+  if (!ids.length) return [];
+  const { data: classes, error: classError } = await admin.from("classes").select("id")
+    .eq("organization_id", session.organization_id).in("id", ids);
+  if (classError) throw classError;
+  return (classes ?? []).map((row) => row.id);
 }
-
+async function accessibleClassIds(session: SessionAccount): Promise<string[]> {
+  if (session.role === "teacher") return scopedClassIds(session, session.account_id, "teacher");
+  if (session.role !== "admin") return [];
+  const { data, error } = await admin.from("classes").select("id").eq("organization_id", session.organization_id);
+  if (error) throw error;
+  return (data ?? []).map((row) => row.id);
+}
+type ScopedMembership = { account_id: string; membership_role: string; class_id?: string };
+async function validMembershipRows(session: SessionAccount, rows: ScopedMembership[]): Promise<ScopedMembership[]> {
+  const ids = [...new Set(rows.map((row) => String(row.account_id)))];
+  if (!ids.length) return [];
+  // Historical reports retain inactive students. Session actors are active, and
+  // roster replacement separately requires all assigned accounts to be active.
+  const { data, error } = await admin.from("accounts").select("id,role")
+    .eq("organization_id", session.organization_id).in("id", ids);
+  if (error) throw error;
+  const roles = new Map((data ?? []).map((row) => [row.id, row.role]));
+  return rows.filter((row) => ["student", "teacher"].includes(String(row.membership_role)) && roles.get(row.account_id) === row.membership_role);
+}
 async function canAccessStudent(session: SessionAccount, studentId: string): Promise<boolean> {
-  if (session.role === "admin") {
-    const { count } = await admin
-      .from("accounts")
-      .select("id", { count: "exact", head: true })
-      .eq("id", studentId)
-      .eq("organization_id", session.organization_id)
-      .eq("role", "student");
-    return Boolean(count);
-  }
+  const { count, error } = await admin.from("accounts").select("id", { count: "exact", head: true })
+    .eq("id", studentId).eq("organization_id", session.organization_id).eq("role", "student");
+  if (error) throw error;
+  if (!count) return false;
+  if (session.role === "admin") return true;
   if (session.role === "student") return session.account_id === studentId;
   if (session.role === "parent") {
-    const { count } = await admin
-      .from("parent_student_links")
-      .select("student_id", { count: "exact", head: true })
-      .eq("parent_id", session.account_id)
-      .eq("student_id", studentId);
-    return Boolean(count);
+    const { count: links, error: linkError } = await admin.from("parent_student_links")
+      .select("student_id", { count: "exact", head: true }).eq("parent_id", session.account_id).eq("student_id", studentId);
+    if (linkError) throw linkError;
+    return Boolean(links);
   }
   if (session.role === "teacher") {
     const classes = await accessibleClassIds(session);
     if (!classes.length) return false;
-    const { count } = await admin
-      .from("class_memberships")
-      .select("account_id", { count: "exact", head: true })
-      .eq("account_id", studentId)
-      .eq("membership_role", "student")
-      .in("class_id", classes);
-    return Boolean(count);
+    const { count: memberships, error: memberError } = await admin.from("class_memberships")
+      .select("account_id", { count: "exact", head: true }).eq("account_id", studentId)
+      .eq("membership_role", "student").in("class_id", classes);
+    if (memberError) throw memberError;
+    return Boolean(memberships);
   }
   return false;
 }
@@ -438,22 +442,22 @@ async function studentDashboard(session: SessionAccount, req: Request, requested
 
   const [{ data: student, error: studentError }, attemptsResult, masteryResult, reviewResult, sessionsResult] =
     await Promise.all([
-      admin.from("accounts").select("id,username,display_name,email,grade,last_login_at").eq("id", studentId).single(),
+      admin.from("accounts").select("id,username,display_name,email,grade,last_login_at").eq("id", studentId).eq("organization_id", session.organization_id).eq("role", "student").single(),
       admin.from("learning_attempts")
         .select("question_id,correct,course,unit,topic,mode,occurred_at")
-        .eq("account_id", studentId)
+        .eq("account_id", studentId).eq("organization_id", session.organization_id)
         .order("occurred_at", { ascending: false })
         .limit(5000),
       admin.from("mastery_records")
         .select("skill_key,course,unit,topic,title,score,attempts,correct,evidence,updated_at")
-        .eq("account_id", studentId)
+        .eq("account_id", studentId).eq("organization_id", session.organization_id)
         .order("score", { ascending: false }),
       admin.from("review_items")
         .select("question_id,course,unit,topic,status,due_at,wrong_count,correct_recovery_count")
-        .eq("account_id", studentId),
+        .eq("account_id", studentId).eq("organization_id", session.organization_id),
       admin.from("learning_sessions")
         .select("client_session_id,mode,course,unit,topic,correct,total,duration_seconds,started_at,completed_at")
-        .eq("account_id", studentId)
+        .eq("account_id", studentId).eq("organization_id", session.organization_id)
         .order("started_at", { ascending: false })
         .limit(20),
     ]);
@@ -483,16 +487,17 @@ async function studentDashboard(session: SessionAccount, req: Request, requested
 
   const { data: memberships, error: membershipError } = await admin
     .from("class_memberships")
-    .select("class_id,classes(id,name,course_key,academic_year,section)")
+    .select("class_id,classes(id,organization_id,name,course_key,academic_year,section)")
     .eq("account_id", studentId)
     .eq("membership_role", "student");
   if (membershipError) throw membershipError;
-  const classIds = (memberships ?? []).map((row) => row.class_id);
+  const scopedMemberships = (memberships ?? []).filter((row) => nestedClass(row as unknown as Record<string, unknown>).organization_id === session.organization_id);
+  const classIds = scopedMemberships.map((row) => row.class_id);
   const { data: assignments, error: assignmentError } = classIds.length
     ? await admin
       .from("assignments")
       .select("id,class_id,title,description,activity_type,configuration,available_at,due_at,status")
-      .in("class_id", classIds)
+      .eq("organization_id", session.organization_id).in("class_id", classIds)
       .eq("status", "published")
       .order("due_at", { ascending: true })
     : { data: [], error: null };
@@ -511,7 +516,7 @@ async function studentDashboard(session: SessionAccount, req: Request, requested
   return json(req, {
     ok: true,
     student,
-    classes: memberships ?? [],
+    classes: scopedMemberships,
     counters: {
       attempts: attempts.length,
       accuracy: attempts.length ? Math.round(correct / attempts.length * 100) : 0,
@@ -540,7 +545,7 @@ async function listChildren(session: SessionAccount, req: Request): Promise<Resp
   if (session.role === "student") {
     const { data, error } = await admin.from("accounts")
       .select("id,username,display_name,email,grade,last_login_at")
-      .eq("id", session.account_id);
+      .eq("id", session.account_id).eq("organization_id", session.organization_id).eq("role", "student");
     if (error) throw error;
     return json(req, { ok: true, students: data ?? [] });
   }
@@ -553,7 +558,7 @@ async function listChildren(session: SessionAccount, req: Request): Promise<Resp
     if (!ids.length) return json(req, { ok: true, students: [] });
     const { data, error } = await admin.from("accounts")
       .select("id,username,display_name,email,grade,last_login_at")
-      .in("id", ids).order("display_name");
+      .in("id", ids).eq("organization_id", session.organization_id).eq("role", "student").order("display_name");
     if (error) throw error;
     return json(req, { ok: true, students: data ?? [] });
   }
@@ -567,7 +572,7 @@ async function listChildren(session: SessionAccount, req: Request): Promise<Resp
     if (!ids.length) return json(req, { ok: true, students: [] });
     const { data, error } = await admin.from("accounts")
       .select("id,username,display_name,email,grade,last_login_at")
-      .in("id", ids).order("display_name");
+      .in("id", ids).eq("organization_id", session.organization_id).eq("role", "student").order("display_name");
     if (error) throw error;
     return json(req, { ok: true, students: data ?? [] });
   }
@@ -593,7 +598,8 @@ async function listClasses(session: SessionAccount, req: Request): Promise<Respo
     : { data: [], error: null };
   if (memberError) throw memberError;
   const counts = new Map<string, { teachers: number; students: number }>();
-  for (const row of memberships ?? []) {
+  for (const row of await validMembershipRows(session, memberships ?? [])) {
+    if (typeof row.class_id !== "string") continue;
     const entry = counts.get(row.class_id) ?? { teachers: 0, students: 0 };
     if (row.membership_role === "teacher") entry.teachers++;
     else entry.students++;
@@ -612,34 +618,35 @@ async function classDashboard(session: SessionAccount, req: Request, classId: st
   if (!classIds.includes(classId)) return fail(req, "Class access is not permitted", 403, "forbidden");
 
   const [{ data: classRow, error: classError }, { data: memberships, error: memberError }] = await Promise.all([
-    admin.from("classes").select("*").eq("id", classId).single(),
+    admin.from("classes").select("*").eq("id", classId).eq("organization_id", session.organization_id).single(),
     admin.from("class_memberships").select("account_id,membership_role").eq("class_id", classId),
   ]);
   if (classError) throw classError;
   if (memberError) throw memberError;
 
-  const studentIds = (memberships ?? []).filter((row) => row.membership_role === "student").map((row) => row.account_id);
+  const safeMemberships = await validMembershipRows(session, memberships ?? []);
+  const studentIds = safeMemberships.filter((row) => row.membership_role === "student").map((row) => row.account_id);
   const { data: students, error: studentError } = studentIds.length
     ? await admin.from("accounts")
       .select("id,username,display_name,email,grade,status,last_login_at")
-      .in("id", studentIds)
+      .eq("organization_id", session.organization_id).eq("role", "student").in("id", studentIds)
       .order("display_name")
     : { data: [], error: null };
   if (studentError) throw studentError;
 
   const [attemptsResult, masteryResult, reviewResult, assignmentsResult] = await Promise.all([
     studentIds.length
-      ? admin.from("learning_attempts").select("account_id,correct,occurred_at").in("account_id", studentIds)
+      ? admin.from("learning_attempts").select("account_id,correct,occurred_at").eq("organization_id", session.organization_id).in("account_id", studentIds)
       : Promise.resolve({ data: [], error: null }),
     studentIds.length
-      ? admin.from("mastery_records").select("account_id,skill_key,title,course,unit,topic,score").in("account_id", studentIds)
+      ? admin.from("mastery_records").select("account_id,skill_key,title,course,unit,topic,score").eq("organization_id", session.organization_id).in("account_id", studentIds)
       : Promise.resolve({ data: [], error: null }),
     studentIds.length
-      ? admin.from("review_items").select("account_id,status,due_at").in("account_id", studentIds)
+      ? admin.from("review_items").select("account_id,status,due_at").eq("organization_id", session.organization_id).in("account_id", studentIds)
       : Promise.resolve({ data: [], error: null }),
     admin.from("assignments")
       .select("id,title,activity_type,due_at,status,created_at")
-      .eq("class_id", classId)
+      .eq("class_id", classId).eq("organization_id", session.organization_id)
       .order("created_at", { ascending: false }),
   ]);
   for (const result of [attemptsResult, masteryResult, reviewResult, assignmentsResult]) {
@@ -845,26 +852,52 @@ async function createClass(session: SessionAccount, req: Request): Promise<Respo
   return json(req, { ok: true, class: data }, 201);
 }
 
+const MEMBERSHIP_CAPABILITY = { contract: "echs.membership.v1", atomic_replacement: true, tenant_scoped: true };
+function isMembershipCapability(value: unknown): boolean {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return false;
+  const row = value as Record<string, unknown>;
+  return Object.keys(row).sort().join(",") === Object.keys(MEMBERSHIP_CAPABILITY).sort().join(",") &&
+    row.contract === MEMBERSHIP_CAPABILITY.contract && row.atomic_replacement === true && row.tenant_scoped === true;
+}
+async function membershipHealth(req: Request): Promise<Response> {
+  try {
+    const { data, error } = await admin.rpc("api_membership_capabilities");
+    if (!error && isMembershipCapability(data)) return json(req, { ok: true, service: "echs-institution-api", membership_capabilities: data });
+  } catch { /* No database details or account information in public health. */ }
+  return fail(req, "Membership service is unavailable", 503, "membership_unavailable");
+}
 async function setMembers(session: SessionAccount, req: Request, classId: string): Promise<Response> {
   requireRole(session, ["admin", "teacher"]);
-  const classIds = await accessibleClassIds(session);
-  if (!classIds.includes(classId)) return fail(req, "Class access is not permitted", 403, "forbidden");
-  const payload = await body<{ student_ids?: string[]; teacher_ids?: string[] }>(req);
-  const students = [...new Set(payload.student_ids ?? [])];
-  const teachers = [...new Set(payload.teacher_ids ?? [])];
-  await admin.from("class_memberships").delete().eq("class_id", classId);
-  const rows = [
-    ...teachers.map((account_id) => ({ class_id: classId, account_id, membership_role: "teacher" })),
-    ...students.map((account_id) => ({ class_id: classId, account_id, membership_role: "student" })),
-  ];
-  if (!teachers.includes(session.account_id) && session.role === "teacher") {
-    rows.push({ class_id: classId, account_id: session.account_id, membership_role: "teacher" });
+  classId = classId.toLowerCase();
+  const input = await body<unknown>(req);
+  if (!input || typeof input !== "object" || Array.isArray(input) ||
+    Object.keys(input).some((key) => key !== "student_ids" && key !== "teacher_ids"))
+    return fail(req, "Invalid class member list", 400, "invalid_members");
+  const payload = input as { student_ids?: unknown; teacher_ids?: unknown };
+  const students = Object.hasOwn(payload, "student_ids") ? payload.student_ids : [];
+  const teachers = Object.hasOwn(payload, "teacher_ids") ? payload.teacher_ids : [];
+  const validIds = (value: unknown): value is string[] => Array.isArray(value) && value.every((id) =>
+    typeof id === "string" && /^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/i.test(id));
+  if (!validIds(students) || !validIds(teachers) || students.length + teachers.length > 10000)
+    return fail(req, "Invalid class member list", 400, "invalid_members");
+  const token = (req.headers.get("authorization") ?? "").slice(7).trim();
+  let result;
+  try {
+    result = await admin.rpc("api_replace_class_memberships", {
+      p_token_hash: await sha256(token), p_class_id: classId, p_student_ids: students, p_teacher_ids: teachers,
+    });
+  } catch { return fail(req, "Membership update could not be completed", 503, "membership_unavailable"); }
+  const { data, error } = result;
+  if (error) {
+    if (error.code === "28000") return fail(req, "Sign in is required", 401, "unauthenticated");
+    if (error.code === "42501") return fail(req, "Class or member access is not permitted", 403, "forbidden");
+    if (error.code === "22023" || error.code === "22P02") return fail(req, "Invalid class member list", 400, "invalid_members");
+    return fail(req, "Membership update could not be completed", 503, "membership_unavailable");
   }
-  if (rows.length) {
-    const { error } = await admin.from("class_memberships").insert(rows);
-    if (error) throw error;
-  }
-  return json(req, { ok: true, members: rows.length });
+  if (!data || data.ok !== true || data.contract !== MEMBERSHIP_CAPABILITY.contract || data.class_id !== classId ||
+    !Number.isInteger(data.members) || data.members < 0 || data.members > 10001)
+    return fail(req, "Membership update acknowledgement is unavailable", 503, "membership_unavailable");
+  return json(req, { ok: true, contract: data.contract, members: data.members });
 }
 
 async function listTimetable(session: SessionAccount, req: Request): Promise<Response> {
@@ -877,10 +910,7 @@ async function listTimetable(session: SessionAccount, req: Request): Promise<Res
     teacherId = session.account_id;
     classIds = await accessibleClassIds(session);
   } else if (session.role === "student") {
-    const { data: memberships, error } = await admin.from("class_memberships")
-      .select("class_id").eq("account_id", session.account_id).eq("membership_role", "student");
-    if (error) throw error;
-    classIds = (memberships ?? []).map((row) => row.class_id);
+    classIds = await scopedClassIds(session, session.account_id, "student");
     if (!classIds.length) return json(req, { ok: true, entries: [], editable: false });
   } else {
     return json(req, { ok: true, entries: [], editable: false });
@@ -970,9 +1000,7 @@ async function listAssignments(session: SessionAccount, req: Request): Promise<R
     if (!classIds.length) return json(req, { ok: true, assignments: [] });
     query = query.in("class_id", classIds);
   } else if (session.role === "student") {
-    const { data: memberships } = await admin.from("class_memberships")
-      .select("class_id").eq("account_id", session.account_id).eq("membership_role", "student");
-    const classIds = (memberships ?? []).map((row) => row.class_id);
+    const classIds = await scopedClassIds(session, session.account_id, "student");
     if (!classIds.length) return json(req, { ok: true, assignments: [] });
     query = query.in("class_id", classIds).eq("status", "published");
   } else if (session.role === "parent") {
@@ -1018,6 +1046,7 @@ Deno.serve(async (req: Request) => {
     if (path === "/health" && req.method === "GET") {
       return json(req, { ok: true, service: "echs-institution-api", version: "4.0.0" });
     }
+    if (path === "/health/membership" && req.method === "GET") return await membershipHealth(req);
     const session = await sessionFromRequest(req);
     if (!session) return fail(req, "Sign in is required", 401, "unauthenticated");
 

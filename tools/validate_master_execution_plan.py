@@ -120,6 +120,17 @@ def validate(plan, root=ROOT):
     else:errors.append('source baseline missing')
     for risk in plan.get('unresolved_risks',[]):
         need(risk.get('owner_task') in by_id,'risk owner missing')
+    latest=plan.get('last_verified_release')
+    if latest is not None:
+        task=by_id.get(latest.get('task'),{})
+        need(task.get('status')=='VERIFIED','latest release task is not verified')
+        need(bool(HEX40.fullmatch(latest.get('main_sha',''))) and latest.get('main_sha')==task.get('deployment',{}).get('verified_at_main'),'latest release revision mismatch')
+        need(bool(HEX40.fullmatch(latest.get('tree_sha',''))),'latest release tree identity')
+        p=latest.get('evidence')
+        need(safe_path(p) and (root/p).is_file(),'latest release evidence missing')
+        if safe_path(p) and (root/p).is_file():
+            receipt=load(root/p)
+            need(receipt.get('status')=='VERIFIED' and receipt.get('main_sha')==latest.get('main_sha') and receipt.get('tree_sha')==latest.get('tree_sha'),'latest release evidence identity mismatch')
     if plan.get('whole_program_complete') is True:
         need(all(t.get('status')=='VERIFIED' for t in tasks),'whole program has unverified tasks')
         need(all(f.get('status')=='VERIFIED' for f in families),'whole program has unverified components')
