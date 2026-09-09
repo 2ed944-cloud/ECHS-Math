@@ -27,10 +27,11 @@ def main():
     from psycopg.conninfo import conninfo_to_dict
     from psycopg.types.json import Jsonb
 
-    assert sys.argv[1:] in ([], ['--content-v2'], ['--media'], ['--recovery']), 'Only explicit versioned fixture modes are supported'
-    recovery = sys.argv[1:] == ['--recovery']
+    assert sys.argv[1:] in ([], ['--content-v2'], ['--media'], ['--recovery'], ['--history']), 'Only explicit versioned fixture modes are supported'
+    history = sys.argv[1:] == ['--history']
+    recovery = sys.argv[1:] in (['--recovery'], ['--history'])
     media = sys.argv[1:] == ['--media']
-    content_v2 = sys.argv[1:] in (['--content-v2'], ['--media'], ['--recovery'])
+    content_v2 = sys.argv[1:] in (['--content-v2'], ['--media'], ['--recovery'], ['--history'])
 
     dsn = os.environ.get("ECHS_LESSON_TEST_DSN", "")
     assert dsn, "Explicit disposable database required"
@@ -52,6 +53,19 @@ def main():
         tokens = {name: "isolated-e2e-"+name+"-"+uuid.uuid4().hex for name in ("admin", "teacher", "reviewer", "student", "foreign_teacher", "parent", "unassigned_teacher")}
         route = "lessons/ap-calculus/unit-1/1-7-selecting-limit-procedures.html"
         with conn.transaction():
+            if history:
+                # Explicit disposable fixture only: create a compatible alternate
+                # course identity so the actual administrator pin RPC can change
+                # scope. This is not a curriculum source or a production record.
+                alternate_id = uuid.uuid4()
+                alternate_key = 'isolated-history-bc-' + nonce
+                conn.execute("""insert into public.course_versions
+                    (id,version_key,curriculum_version_id,course_code,status,is_placeholder,record)
+                    select %s,%s,curriculum_version_id,'ap-calculus-bc','active',false,
+                    record || %s from public.course_versions where id=%s""",
+                    (alternate_id,alternate_key,Jsonb({'id':str(alternate_id),'key':alternate_key,
+                     'course_code':'ap-calculus-bc','title':'Isolated history pin fixture; not an authored curriculum'}),course[0][0]))
+                ids['alternate_course_version_id'] = alternate_id
             for name in ("organization", "foreign_organization"):
                 conn.execute("insert into public.organizations(id,name,slug) values(%s,%s,%s)", (ids[name], "Isolated HTTP lesson fixture", "lesson-http-"+name+"-"+nonce))
             for name, token in tokens.items():

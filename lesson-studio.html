@@ -31,7 +31,7 @@
       </section>
       <p id="empty-state" class="empty-state">Choose a class to find its lessons or create a draft.</p>
       <section id="workspace" hidden aria-label="Lesson editor">
-        <div class="editor-toolbar"><div><span class="eyebrow">PRIVATE DRAFT</span><h2 id="lesson-heading"></h2></div><div class="save-tools"><button id="undo-edit" disabled>Undo edit</button><button id="redo-edit" disabled>Redo edit</button><span id="save-status" role="status" aria-live="polite">Saved</span><button id="save-now">Save now</button><button id="preview-lesson">Preview lesson</button></div></div>
+        <div class="editor-toolbar"><div><span class="eyebrow">PRIVATE DRAFT</span><h2 id="lesson-heading"></h2></div><div class="save-tools"><button id="undo-edit" disabled>Undo edit</button><button id="redo-edit" disabled>Redo edit</button><span id="save-status" role="status" aria-live="polite">Saved</span><button id="save-now">Save now</button><button id="preview-lesson">Preview lesson</button><button id="version-history">Version history</button></div></div>
         <div class="backup-line"><span id="backup-status" role="status" aria-live="polite"></span><button id="device-backups" disabled>Device backups</button><small>Recovery requires reconnecting and verifying your school account. Unfinished invalid fields stay in this tab.</small></div>
         <div id="save-alert" class="save-alert" hidden><p id="save-message"></p><button id="retry-save">Retry save</button><button id="reload-draft">Reload server draft</button></div>
         <div class="editor-grid">
@@ -46,6 +46,7 @@
   <dialog id="preview-dialog" class="preview-dialog" aria-labelledby="preview-heading"><div class="dialog-heading"><div><span class="eyebrow">PRIVATE PREVIEW</span><h2 id="preview-heading"></h2></div><button id="close-preview">Close preview</button></div><div id="preview-slides"></div></dialog>
   <dialog id="media-insert-dialog" aria-labelledby="media-insert-heading"><div class="dialog-heading"><h2 id="media-insert-heading">Add content</h2><button id="cancel-media-insert" type="button">Cancel insertion</button></div><div id="media-insert-editor"></div><p id="media-insert-error" role="alert"></p><div class="dialog-actions"><button id="confirm-media-insert" type="button" class="primary">Insert in slide</button></div></dialog>
   <dialog id="discard-dialog" aria-labelledby="discard-heading"><h2 id="discard-heading">Keep your current edits?</h2><p id="discard-message">The draft has changes that have not been saved. Reloading replaces them with the server version.</p><div class="dialog-actions"><button id="keep-edits">Keep editing</button><button id="discard-edits">Discard local edits</button></div></dialog>
+  <dialog id="history-dialog" class="history-dialog" aria-labelledby="history-heading"></dialog>
   <dialog id="recovery-dialog" aria-labelledby="recovery-heading"><h2 id="recovery-heading">Recover a device draft</h2><p id="recovery-message"></p><ul id="recovery-list"></ul><button id="keep-server-draft" type="button">Keep backups and use server draft</button></dialog>
 </body>
 </html>

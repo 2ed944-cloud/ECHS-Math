@@ -48,7 +48,9 @@ export function createStudioFixture({pinned = true, contentV2 = false,media = fa
     title:`Original fixture lesson ${topic}`,route_path:`lessons/ap-calculus/unit-1/lesson-${topic.replace('.','-')}.html`,
     unit_id:'legacy:ap-calculus:unit:1',topic_id:`legacy:ap-calculus:topic:${topic}`,topic,unit_index:0,is_ready:true,position:index}));
   const snapshot = record => data({lesson:clone(record.lesson),head:clone(record.head),
-    versions:record.history.map(({document,private_notes,...entry}) => clone(entry)).reverse(),reviews:[],publications:[]});
+    versions:record.history.slice(-25).map(({document,private_notes,...entry}) => clone(entry)).reverse(),
+    reviews:clone((record.reviews||[]).slice(-25).reverse()),
+    publications:(record.publications||[]).slice(-25).reverse().map(({document,...entry})=>clone(entry))});
   const rpc = async (name,args) => {
     const account = accounts.get(args.p_token_hash);
     rpcCalls.push({name,action:args.p_action,lesson_id:args.p_payload?.lesson_id});
@@ -96,26 +98,66 @@ export function createStudioFixture({pinned = true, contentV2 = false,media = fa
       if (!binding || !assignment || payload.class_id !== selectedClass.id || payload.course_version_id !== assignment.course_version_id) return {data:null,error:{code:'42501'}};
       if ([...records.values()].some(record => record.lesson.access_key === binding.access_key)) return {data:null,error:{code:'23505'}};
       const versionId = uuid(serial++), document = clone(payload.document);
-      const head = {id:versionId,lesson_id:document.lesson_id,organization_id:account.organization_id,version_number:1,document,private_notes:payload.private_notes,created_by:account.id,created_at:now};
+      const head = {id:versionId,lesson_id:document.lesson_id,organization_id:account.organization_id,version_number:1,document,private_notes:payload.private_notes,created_by:account.id,created_at:now,restored_from_version_id:null};
       const record = {lesson:{id:document.lesson_id,organization_id:account.organization_id,class_id:selectedClass.id,course_version_id:course.id,
         access_key:binding.access_key,legacy_course_key:'ap-calculus',route_path:binding.route_path,unit_id:binding.unit_id,topic_id:binding.topic_id,slug:document.slug,
         created_by:account.id,created_at:now,updated_at:now,head_revision:1,head_version_id:versionId,workflow_state:'draft',
-        approved_version_id:null,approved_review_id:null,active_publication_id:null},head,history:[clone(head)]};
+        approved_version_id:null,approved_review_id:null,active_publication_id:null},head,history:[clone(head)],reviews:[],publications:[]};
       records.set(document.lesson_id,record); return {data:snapshot(record),error:null};
     }
     const record = records.get(payload.lesson_id);
     if (!record) return {data:null,error:{code:'P0002'}};
     if (args.p_action === 'get') return {data:snapshot(record),error:null};
-    if (args.p_action === 'save') {
+    if(args.p_action==='history'){
+      const rows=record.history.filter(v=>v.version_number<(payload.before_version||Infinity)).reverse(),limit=payload.limit||25;
+      const versions=rows.slice(0,limit).map(({document,private_notes,...entry})=>clone(entry));
+      return {data:data({versions,next_before_version:rows.length>limit?versions.at(-1).version_number:null}),error:null};
+    }
+    if(args.p_action==='version'){
+      const version=record.history.find(v=>v.id===payload.version_id);
+      return version?{data:data({lesson:clone(record.lesson),version:clone(version)}),error:null}:{data:null,error:{code:'P0002'}};
+    }
+    if (args.p_action === 'save'||args.p_action==='restore') {
       if (payload.expected_revision !== record.lesson.head_revision) return {data:null,error:{code:'40001'}};
-      const revision = record.lesson.head_revision + 1, document = clone(payload.document), versionId = uuid(serial++);
+      const source=args.p_action==='restore'?record.history.find(v=>v.id===payload.version_id):null;
+      if(args.p_action==='restore'&&!source)return {data:null,error:{code:'P0002'}};
+      const revision = record.lesson.head_revision + 1, document = clone(source?.document||payload.document), versionId = uuid(serial++);
       document.document_version = revision; document.publication = {...document.publication,status:'draft',revision};
       const head = {id:versionId,organization_id:account.organization_id,lesson_id:record.lesson.id,version_number:revision,document,
-        private_notes:payload.private_notes,created_by:account.id,created_at:now};
-      Object.assign(record.lesson,{head_revision:revision,head_version_id:versionId,workflow_state:'draft'});
+        private_notes:source?source.private_notes:payload.private_notes,created_by:account.id,created_at:now,restored_from_version_id:source?.id||null};
+      Object.assign(record.lesson,{head_revision:revision,head_version_id:versionId,workflow_state:'draft',approved_version_id:null,approved_review_id:null});
       record.head = head; record.history.push(clone(head)); return {data:snapshot(record),error:null};
     }
-    throw new Error(`Unexpected Studio008 RPC action: ${args.p_action}`);
+    if(['request_review','approve','publish','unpublish'].includes(args.p_action)){
+      if(payload.expected_revision!==record.lesson.head_revision)return {data:null,error:{code:'40001'}};
+      const reject=code=>({data:null,error:{code}}),action=args.p_action,head=record.head,lesson=record.lesson;
+      if(action==='request_review'&&lesson.workflow_state!=='draft')return reject('23514');
+      if(action==='approve'){
+        if(payload.validated_version_id!==head.id)return reject('40001');
+        if(lesson.workflow_state!=='review')return reject('23514');
+        if([lesson.created_by,head.created_by].includes(account.id))return reject('42501');
+        if(!['curriculum','mathematics','accessibility','rights','student_safe'].every(k=>payload.checks?.[k]===true))return reject('22023');
+      }
+      if(action==='publish'&&(lesson.workflow_state!=='approved'||lesson.approved_version_id!==head.id||payload.validated_version_id!==head.id||!assignment||assignment.course_version_id!==lesson.course_version_id))return reject('23514');
+      if(['approve','publish'].includes(action)&&head.document.slides.some(s=>s.blocks.some(b=>b.type==='legacy-embedded')))return reject('23514');
+      if(action==='unpublish'&&!lesson.active_publication_id)return reject('23514');
+      const revision=lesson.head_revision+1,eventId=uuid(serial++),base={id:eventId,organization_id:lesson.organization_id,lesson_id:lesson.id,revision,actor_id:account.id,created_at:now};
+      if(action==='request_review'||action==='approve'){
+        record.reviews.push({...base,version_id:head.id,event_type:action==='approve'?'approved':'requested',checks:action==='approve'?clone(payload.checks):null,comment:payload.comment||''});
+        lesson.workflow_state=action==='approve'?'approved':'review';
+        if(action==='approve')Object.assign(lesson,{approved_version_id:head.id,approved_review_id:eventId});
+      }else if(action==='publish'){
+        const document=clone(head.document);document.publication={status:'published',audience:'institutional',revision};
+        record.publications.push({...base,source_version_id:head.id,event_type:'published',document,reason:''});
+        Object.assign(lesson,{workflow_state:'published',active_publication_id:eventId});
+      }else{
+        const prior=record.publications.find(p=>p.id===lesson.active_publication_id);
+        record.publications.push({...base,source_version_id:prior.source_version_id,event_type:'unpublished',document:null,reason:payload.reason.trim()});
+        Object.assign(lesson,{workflow_state:'draft',active_publication_id:null,approved_version_id:null,approved_review_id:null});
+      }
+      lesson.head_revision=revision;return {data:snapshot(record),error:null};
+    }
+    throw new Error(`Unexpected Studio RPC action: ${args.p_action}`);
   };
   const assetStorage=media?{
     async put({scope,bytes}){if(assetBytes.has(scope.asset_id))throw new Error('Immutable fixture asset.');assetBytes.set(scope.asset_id,bytes.slice());},
@@ -124,6 +166,9 @@ export function createStudioFixture({pinned = true, contentV2 = false,media = fa
   }:undefined;
   const handler = createLessonHandler({rpc,mathEngine:katex,allowedOrigins:[STUDIO_ORIGIN],siteBase:STUDIO_BASE,assetStorage});
   function actionFor(url,method) {
+    if(url.pathname.endsWith('/history'))return 'history';
+    if(/\/versions\/[0-9a-f-]+$/.test(url.pathname))return 'version';
+    for(const action of ['restore','request-review','approve','publish','unpublish'])if(url.pathname.endsWith('/'+action))return action.replace('-','_');
     if(url.pathname.endsWith('/recovery-key'))return 'recovery_key';
     if(/\/assets\/[0-9a-f-]+\/bytes$/.test(url.pathname))return 'asset_bytes';
     if(/\/assets\/[0-9a-f-]+$/.test(url.pathname))return 'asset_read';
@@ -193,8 +238,8 @@ export function createStudioFixture({pinned = true, contentV2 = false,media = fa
       const record = [...records.values()].at(-1); assert.ok(record,'Create a fixture lesson first.');
       const document = clone(record.head.document); change?.(document); const revision = record.lesson.head_revision + 1;
       document.document_version = revision; document.publication.revision = revision;
-      const versionId = uuid(serial++); record.head = {...record.head,id:versionId,version_number:revision,document};
-      Object.assign(record.lesson,{head_revision:revision,head_version_id:versionId}); record.history.push(clone(record.head));
+      const versionId = uuid(serial++); record.head = {...record.head,id:versionId,version_number:revision,document,restored_from_version_id:null};
+      Object.assign(record.lesson,{head_revision:revision,head_version_id:versionId,workflow_state:'draft',approved_version_id:null,approved_review_id:null}); record.history.push(clone(record.head));
     }
   };
 }

@@ -2,7 +2,7 @@
 
 ## Release status
 
-Implementation and local integration checks are in progress. ECHS-011 is not yet merged or deployed. The accepted predecessor is ECHS-010, PR #358, main `33d90e6025946450e15e91afa16696ae5d245bf4`. Actual PostgreSQL migration execution, complete PR checks and production acceptance remain required before completion.
+Complete and deployed through PR #359, main `1d42d363164c200277632c3d09a53e30e07450a6`. All 23 final PR workflows, 17 production workflows and 80 public acceptance checks passed. PostgreSQL 15.19 applied all 25 migrations and passed 676 database checks plus 25 actual HTTP/SQL groups. Local checks passed 18 contract/build commands, 37 session groups, 29 client groups, 17 encrypted-backup groups and 11 integrated recovery browser groups. The accepted predecessor is ECHS-010, PR #358, main `33d90e6025946450e15e91afa16696ae5d245bf4`.
 
 ## Architecture and protected behavior
 
