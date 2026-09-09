@@ -11,7 +11,7 @@ const PUBLIC_SITE_PATH = new URL("./",self.location.href).pathname;
 // This fixed public-asset set is separate from the C01 question publication rules.
 const MASTERY_REPORT_ASSETS = new Set([
   "js/learning-evidence-status.mjs", "js/portal.js", "js/lesson-portal-overhaul.js",
-  "js/smart-learning-route.js", "js/gamification-overlay.js",
+  "js/smart-learning-route.js", "js/gamification-overlay.js", "js/institution-experience.js",
   "question-bank/js/learning-system.js", "question-bank/js/teacher-evidence-heatmap.js",
   "question-bank/js/student-cloud.js", "question-bank/js/parent-cloud.js",
   "question-bank/js/teacher-cloud.js", "question-bank/js/dashboard.js",

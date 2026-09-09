@@ -332,7 +332,7 @@
           color: "var(--px-danger)",
           name: row.display_name,
           title: "Practice support needed",
-          detail: `${row.mastery}% provisional practice · ${row.open_mistakes} open mistakes`,
+          detail: `${practiceDetail(row)} · ${row.open_mistakes} open mistakes`,
           action: "Open report",
           id: row.id,
         });
@@ -350,7 +350,7 @@
           color: "var(--px-success)",
           name: row.display_name,
           title: "Ready for extension",
-          detail: `${row.mastery}% provisional practice · ${row.accuracy}% accuracy`,
+          detail: `${practiceDetail(row)} · ${ECHSLearning.evidencePercent(row,"accuracy")} accuracy`,
           action: "Challenge",
           id: row.id,
         });
@@ -366,6 +366,10 @@
           )
           .join("")
       : '<div class="emptyInstitution"><h3>No urgent alerts</h3><p>The class is currently on track.</p></div>';
+  }
+  function practiceDetail(row) {
+    const percent = ECHSLearning.evidencePercent(row, "mastery");
+    return percent === "—" ? "Insufficient practice evidence" : `${percent} provisional practice`;
   }
   function renderPulse(students) {
     const days = [...Array(7)].map((_, index) => {
@@ -564,7 +568,7 @@
       ? students
           .map(
             (row) =>
-              `<tr><td><div class="accountIdentity"><span class="avatarInitial">${ECHSInstitution.initials(row.display_name)}</span><div><strong>${esc(row.display_name)}</strong><br><small><i class="activityDot ${activityClass(row.last_login_at)}"></i>${esc(row.grade ? `Grade ${row.grade}` : "Student")}</small></div></div></td><td><strong>${esc(row.username)}</strong></td><td><div class="masteryCell"><strong><span>${esc(ECHSLearning.evidenceStatus({score:row.mastery,attempts:row.attempts}).display_level)}</span><span>${ECHSLearning.evidencePercent(row,"mastery")}</span></strong><div class="progressMini" style="--row-color:${row.mastery >= 65 ? "var(--px-teal)" : row.mastery >= 35 ? "var(--px-gold)" : "var(--px-maroon)"}"><i style="width:${row.mastery}%"></i></div></div></td><td>${ECHSLearning.evidencePercent(row,"accuracy")}</td><td>${row.attempts}</td><td>${row.open_mistakes}</td><td>${date(row.last_login_at)}</td><td><div class="tableActions"><a class="iButton secondary small" href="student.html?student_id=${row.id}">Report</a><button class="iButton small" data-reset="${row.id}" ${preview ? "disabled" : ""}>Reset</button></div></td></tr>`,
+              `<tr><td><div class="accountIdentity"><span class="avatarInitial">${ECHSInstitution.initials(row.display_name)}</span><div><strong>${esc(row.display_name)}</strong><br><small><i class="activityDot ${activityClass(row.last_login_at)}"></i>${esc(row.grade ? `Grade ${row.grade}` : "Student")}</small></div></div></td><td><strong>${esc(row.username)}</strong></td><td><div class="masteryCell"><strong><span>${esc(ECHSLearning.evidenceStatus({score:row.mastery,attempts:row.attempts}).display_level)}</span><span>${ECHSLearning.evidencePercent(row,"mastery")}</span></strong><div class="progressMini" style="--row-color:${row.mastery >= 65 ? "var(--px-teal)" : row.mastery >= 35 ? "var(--px-gold)" : "var(--px-maroon)"}"><i style="width:${ECHSLearning.evidenceStatus({score:row.mastery,attempts:row.attempts}).evidence_status === "provisional" ? row.mastery : 0}%"></i></div></div></td><td>${ECHSLearning.evidencePercent(row,"accuracy")}</td><td>${row.attempts}</td><td>${row.open_mistakes}</td><td>${date(row.last_login_at)}</td><td><div class="tableActions"><a class="iButton secondary small" href="student.html?student_id=${row.id}">Report</a><button class="iButton small" data-reset="${row.id}" ${preview ? "disabled" : ""}>Reset</button></div></td></tr>`,
           )
           .join("")
       : '<tr><td colspan="8"><div class="emptyInstitution">No matching students.</div></td></tr>';

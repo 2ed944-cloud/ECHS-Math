@@ -109,6 +109,20 @@ await check('Teacher scores and numeric support rules remain; certified bands an
   const h=harness('teacher.html');h.run('teacher-cloud.js',source=>expose(source,'  init().catch((error) => {','{render(data){classData=data;selectedClass={id:"class-a"};renderClass();},renderStudents}'));
   const data=teacherData(),before=JSON.stringify(data);h.context.view.render(data);
   assert.equal(JSON.stringify(data),before);assert.equal(text(h,'heroMastery'),'97%');assert.match(text(h,'studentRows'),/Strong practice performance/);assert.match(text(h,'studentRows'),/Insufficient practice evidence/);assert.doesNotMatch(text(h,'studentRows'),/Mastered/);
+  assert.match(text(h,'attentionList'),/Insufficient practice evidence · 0 open mistakes/);
+  assert.doesNotMatch(text(h,'attentionList'),/null%|undefined%/);
+  for(const value of [null,undefined,97]){
+    const missing=teacherData();missing.students[1].mastery=value;const saved=JSON.stringify(missing);h.context.view.render(missing);
+    assert.equal(JSON.stringify(missing),saved);assert.match(text(h,'studentRows'),/Insufficient practice evidence/);
+    assert.equal(h.ensure('studentRows').querySelectorAll('.masteryCell .progressMini i')[1].style.width,'0%');
+    assert.doesNotMatch(text(h,'attentionList'),/null%|undefined%/);
+  }
+  const zero=teacherData();zero.students[1].attempts=3;h.context.view.render(zero);
+  assert.match(text(h,'attentionList'),/0% provisional practice · 0 open mistakes/);
+  assert.match(text(h,'studentRows'),/Starting practice performance/);
+  assert.equal(h.ensure('studentRows').querySelectorAll('.masteryCell .progressMini i')[0].style.width,'97%');
+  assert.equal(h.ensure('studentRows').querySelectorAll('.masteryCell .progressMini i')[1].style.width,'0%');
+  h.context.view.render(data);
   assert.equal(h.captured.distribution.find(row=>row.label==='Strong practice').count,1);assert.equal(h.captured.distribution.find(row=>row.label==='Insufficient practice evidence').count,1);assert.match(text(h,'classHeatmap'),/Loading recorded practice/);assert.equal(h.ensure('classHeatmap').querySelectorAll('.heatmapCell').length,0);
 });
 function heatmap(){const h=harness('teacher.html');h.run('teacher-evidence-heatmap.js',source=>expose(source,'  if(document.readyState===','{render,renderMessage,refresh}'));return h;}
@@ -154,7 +168,7 @@ await check('Static entry chrome is truthful and new policy/consumer query keys 
   assert.match(student.querySelector('#journeySection p').textContent,/recorded practice.*authenticated grading/);assert.doesNotMatch(student.querySelector('#journeySection p').textContent,/Proficient and Mastered/);
   assert.equal(parent.querySelector('#parentMasteryMeter').closest('article').querySelector('h3').textContent,'Practice performance');assert.doesNotMatch(dashboard.body.textContent,/Mastery combines|Topic mastery/);assert.match(dashboard.body.textContent,/They are provisional; verified mastery requires authenticated grading/);assert.match(dashboard.body.textContent,/Historical achievements record practice milestones; they do not certify mastery/);
   const teacher=parseHTML(read('question-bank/teacher.html')).document;assert.doesNotMatch(teacher.body.textContent,/Average mastery|Weighted skill mastery|Mastery distribution/);assert.ok([...teacher.querySelectorAll('th')].some(n=>n.textContent==='Practice score'));
-  const changed=new Set(['learning-system.js','portal.js','lesson-portal-overhaul.js','student-cloud.js','teacher-cloud.js','parent-cloud.js','dashboard.js']);
+  const changed=new Set(['learning-system.js','portal.js','lesson-portal-overhaul.js','student-cloud.js','teacher-cloud.js','parent-cloud.js','dashboard.js','institution-experience.js']);
   for(const name of ['index.html','preview.html','question-bank/student.html','question-bank/teacher.html','question-bank/parent.html','question-bank/dashboard.html']){
     const doc=parseHTML(read(name)).document;let count=0;for(const script of doc.querySelectorAll('script[src]')){const url=new URL(script.getAttribute('src'),'https://fixture.test/'+name);if(!changed.has(url.pathname.split('/').pop()))continue;assert.equal(url.searchParams.get('echsEvidence'),'c02-v1',name);assert.ok(url.searchParams.has('v'),'Original v parameter remains');count++;}assert.ok(count>=2,name);for(const link of doc.querySelectorAll('link[href]')){const url=new URL(link.getAttribute('href'),'https://fixture.test/'+name);if(/\/(?:echs-design-system-v5-1|lesson-portal-overhaul)\.css$/.test(url.pathname))assert.equal(url.searchParams.get('echsEvidence'),'c02-v1',name+': responsive stylesheet cache revision');}
   }

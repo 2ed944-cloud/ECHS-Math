@@ -481,13 +481,19 @@ body[data-platform-page="home"] :is(.courseCard,.lessonCard,.journeyCard,.premiu
 /* ================================================================
    Responsive — preserve the premium hierarchy on iPad and phones
    ================================================================ */
+/* The student evidence panel keeps its two-card grid; each narrow desktop
+   card stacks the ring above its label so the text cannot overlap its neighbor. */
+@media(min-width:951px){
+  body.institutionBody[data-premium-page="student"] .meterCard{grid-template-columns:minmax(0,1fr)!important;justify-items:center;text-align:center}
+  body.institutionBody[data-premium-page="student"] .meterCard>div{min-width:0;max-width:100%}
+}
 @media(max-width:1220px){
   body.institutionBody .institutionShell{grid-template-columns:238px minmax(0,1fr)!important}
   body.institutionBody .institutionSidebar{width:238px!important}
   body.institutionBody[data-premium-page] .experienceHero{grid-template-columns:minmax(0,1fr)!important;min-height:0!important}
   body.institutionBody .experienceHeroPanel{max-width:720px!important}
   body.institutionBody[data-premium-page] .premiumMetrics{grid-template-columns:repeat(2,minmax(0,1fr))!important}
-  body.institutionBody .quickLaunchGrid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  body.institutionBody[data-premium-page] .quickLaunchGrid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
   body.practiceStudio .studioHero{grid-template-columns:1fr!important}
   body.practiceStudio .studioHeroStats{grid-template-columns:repeat(4,minmax(0,1fr))!important;margin-top:8px!important}
 }
@@ -511,7 +517,7 @@ body[data-platform-page="home"] :is(.courseCard,.lessonCard,.journeyCard,.premiu
 }
 @media(max-width:560px){
   body.institutionBody[data-premium-page] .premiumMetrics{grid-template-columns:minmax(0,1fr)!important}
-  body.institutionBody .quickLaunchGrid{grid-template-columns:1fr!important}
+  body.institutionBody[data-premium-page] .quickLaunchGrid{grid-template-columns:1fr!important}
   body.institutionBody .premiumMetric{min-height:116px!important}
   body.institutionBody .premiumMetric strong{font-size:34px!important}
   body.practiceStudio .siteHeader{padding-inline:12px!important}

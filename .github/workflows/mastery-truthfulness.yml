@@ -23,6 +23,7 @@ on:
       - 'tools/*mastery*'
       - 'tools/test_membership_authorization_api.mjs'
       - 'tools/test_membership_authorization_e2e.mjs'
+      - 'tools/test_institution_metric_animation.mjs'
       - 'tools/test_portal_workspace.mjs'
       - 'tools/test_learning_system.mjs'
       - 'tools/fixtures/c02-prior-worker.js'
@@ -51,6 +52,7 @@ on:
       - 'tools/*mastery*'
       - 'tools/test_membership_authorization_api.mjs'
       - 'tools/test_membership_authorization_e2e.mjs'
+      - 'tools/test_institution_metric_animation.mjs'
       - 'tools/test_portal_workspace.mjs'
       - 'tools/test_learning_system.mjs'
       - 'tools/fixtures/c02-prior-worker.js'
@@ -89,6 +91,7 @@ jobs:
           node tools/build_mastery_status.mjs --check | tee artifacts/mastery-truthfulness/contracts/mirror.log
           node tools/test_mastery_status.mjs | tee artifacts/mastery-truthfulness/contracts/policy.log
           node tools/test_mastery_worker.mjs | tee artifacts/mastery-truthfulness/contracts/worker.log
+          node tools/test_institution_metric_animation.mjs | tee artifacts/mastery-truthfulness/contracts/animator.log
           node tools/test_public_question_worker.mjs | tee artifacts/mastery-truthfulness/contracts/public-question-worker.log
           node tools/test_mastery_read_models.mjs | tee artifacts/mastery-truthfulness/contracts/handlers.log
           node tools/test_membership_authorization_api.mjs | tee artifacts/mastery-truthfulness/contracts/membership-handlers.log
