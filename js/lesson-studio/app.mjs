@@ -3,6 +3,7 @@ import {createStudioClient,supportsStudioContentV2,supportsDraftRecovery} from '
 import {createLessonDraft,addSlide,duplicateSlide,renameSlide,moveSlide,removeSlide,restoreRemovedSlide,updateSlide} from './draft-model.mjs';
 import {createDraftSession} from './draft-session.mjs';
 import {createDraftBackup} from './draft-backup.mjs';
+import {openHistoryDialog} from './history-dialog.mjs';
 import {renderSlidePreview,renderLessonPreview,disposeLessonPreview} from './preview.mjs';
 import {createMathEditor} from './math-editor.mjs';
 import {createRichTextEditor} from './rich-text-editor.mjs';
@@ -18,6 +19,7 @@ let blockEditor=null,editorKey='',editorJSON='',editorInvalid=false,selectedBloc
 let mediaInsert=null;
 let backup=null,backupEpoch=0,backupState='unavailable',recoveryChoice=null,checkpointBusy=false;
 let composing=false;
+let historyDialog=null;
 const plainError=error=>({conflict:'Another editor changed this draft. Keep your edits or reload the server version.',
   sign_in_required:'Sign in with an active teacher or school administrator account.',
   session_changed:'Your school session changed. Sign in again to continue.',
@@ -34,6 +36,7 @@ function showGate(message,{retry=false}={}){
   if(retry){const button=text('button','Try again');button.addEventListener('click',()=>location.reload());$('studio-gate').append(document.createTextNode(' '),button);}
 }
 function closeStudio(message='Your school session changed. Sign in again to continue.'){
+  historyDialog?.dispose();historyDialog=null;
   disposeBackup();
   closeMediaInsert();
   disposeLessonPreview($('slide-canvas'));disposeLessonPreview($('preview-slides'));
@@ -188,6 +191,7 @@ function renderStatus(state){
   $('undo-edit').disabled=!state.canUndo||editorInvalid||composing;
   $('redo-edit').disabled=!state.canRedo||editorInvalid||composing;
   $('device-backups').disabled=!backup;
+  $('version-history').disabled=composing||editorInvalid;
   if(editorInvalid){$('save-status').textContent='Check block content';$('save-now').disabled=true;}
 }
 function renderEditor(state){
@@ -475,6 +479,20 @@ async function showDeviceBackups(){
   catch(error){if(current(stamp))$('library-status').textContent=plainError(error);}
   finally{if(current(stamp))busy(false);}
 }
+async function showVersionHistory(){
+  if(locked||composing||!session||!await canLeave()||composing)return;
+  const stamp=epoch,activeClient=client;let restoreFocus=false;busy(true);
+  try{
+    assertActive();
+    const opened=openHistoryDialog({dialog:$('history-dialog'),client,record:snapshot().record,mathEngine:katex,
+      isCurrent:()=>current(stamp)&&client===activeClient,resolveAsset:previewAssetResolver()});
+    historyDialog=opened;
+    const fresh=await opened.closed;
+    if(historyDialog===opened)historyDialog=null;
+    if(current(stamp)){if(fresh){await attachRecord(fresh);restoreFocus=true;}else closeStudio('This workspace is no longer available to your account. Sign in again to verify access.');}
+  }catch(error){if(current(stamp))$('library-status').textContent=plainError(error);}
+  finally{if(current(stamp)){busy(false);if(restoreFocus)$('version-history').focus();}}
+}
 async function reloadDraft(){
   if(!session)return;const active=session;
   discardAction=async()=>{try{busy(true);const result=await active.discardAndReload();if(session===active&&!invalid&&result.status==='saved'&&!result.dirty){disposeBlockEditor();deleted=null;removedBlock=null;selectedBlock=null;selectedSlide=null;renderEditor(snapshot());}}catch(error){if(!invalid)$('save-message').textContent=plainError(error);}finally{if(!invalid)busy(false);}};
@@ -500,6 +518,7 @@ $('save-now').addEventListener('click',async()=>{if(commitFields())await session
 $('undo-edit').addEventListener('click',()=>historyAction('undo'));
 $('redo-edit').addEventListener('click',()=>historyAction('redo'));
 $('device-backups').addEventListener('click',showDeviceBackups);
+$('version-history').addEventListener('click',showVersionHistory);
 $('keep-server-draft').addEventListener('click',()=>recoveryChoice?.(null));
 $('recovery-dialog').addEventListener('cancel',event=>{event.preventDefault();recoveryChoice?.(null);});
 document.addEventListener('compositionstart',()=>{composing=true;if(session)renderStatus(snapshot());});
@@ -517,7 +536,7 @@ $('discard-edits').addEventListener('click',async()=>{const action=discardAction
 $('discard-dialog').addEventListener('cancel',()=>{discardAction=null;});
 $('preview-lesson').addEventListener('click',preview);$('close-preview').addEventListener('click',()=>{$('preview-dialog').close();$('preview-slides').replaceChildren();});
 $('preview-dialog').addEventListener('close',()=>{disposeLessonPreview($('preview-slides'));$('preview-slides').replaceChildren();$('preview-heading').textContent='';});
-window.addEventListener('beforeunload',event=>{if(mediaInsert||pendingCreate||editorInvalid||(session&&(snapshot().dirty||document.querySelector('[aria-invalid="true"]')))){event.preventDefault();event.returnValue='';}});
+window.addEventListener('beforeunload',event=>{if(historyDialog?.hasPending()||mediaInsert||pendingCreate||editorInvalid||(session&&(snapshot().dirty||document.querySelector('[aria-invalid="true"]')))){event.preventDefault();event.returnValue='';}});
 window.addEventListener('pagehide',()=>closeStudio('Reopen Lesson Studio to verify your school session.'));
 window.addEventListener('pageshow',event=>{if(event.persisted)location.reload();});
 
