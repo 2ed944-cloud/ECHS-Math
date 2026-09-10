@@ -17,7 +17,7 @@ function makeStorage(){
 const localStorage=makeStorage();
 const sessionStorage=makeStorage();
 localStorage.setItem("echs_institution_token_v1","test-token");
-localStorage.setItem("echs_institution_expires_v1",new Date(Date.now()+3600000).toISOString());
+localStorage.setItem("echs_institution_expires_v1",'2099-01-01T00:00:00Z');
 
 let rootWriteCount=0;
 const htmlRoot={dataset:{},get textContent(){return "DOCUMENT-SENTINEL"},set textContent(_value){rootWriteCount++}};
@@ -39,13 +39,17 @@ const selectorMap=new Map([
 ]);
 
 const account={
-  id:"admin-1",
+  id:"11111111-1111-4111-8111-111111111111",
+  organization_id:"aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+  expires_at:"2099-01-01T00:00:00Z",
   display_name:"Mohammad Abu-Ghuwaleh",
   username:"abughuwaleh",
   email:"mabughuwaleh@qf.org.qa",
   role:"admin",
   organization_name:"Education City High School",
 };
+
+localStorage.setItem("echs_institution_account_v1",JSON.stringify(account));
 
 const document={
   currentScript:{src:"https://example.test/ECHS-Math/js/institution-client.js"},

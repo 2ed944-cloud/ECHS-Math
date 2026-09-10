@@ -4,8 +4,8 @@ import vm from 'node:vm';
 import { webcrypto } from 'node:crypto';
 
 const read = file => fs.readFileSync(new URL('../' + file, import.meta.url), 'utf8');
-const A = { id: 'student-a', organization_id: 'org-a', role: 'student' };
-const B = { id: 'student-b', organization_id: 'org-a', role: 'student' };
+const A = { id: '11111111-1111-4111-8111-111111111111', organization_id: 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa', role: 'student' };
+const B = { id: '22222222-2222-4222-8222-222222222222', organization_id: 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa', role: 'student' };
 const queueKey = account => 'echs_institution_pending_sync_v1:' + account.id;
 const response = data => new Response(JSON.stringify(data), { headers: { 'content-type': 'application/json' } });
 const deferred = () => { let resolve, reject; const promise = new Promise((yes, no) => { resolve = yes; reject = no; }); return { promise, resolve, reject }; };
@@ -47,7 +47,7 @@ function harness({ engine = false, bridge = false } = {}) {
       if (String(url).endsWith('/me')) {
         if (state.failMe) throw new Error('Fixture verification failure');
         if (state.meGate) await state.meGate.promise;
-        return response({ ok: true, account: auth === 'Bearer token-a' ? A : B });
+        return response({ ok: true, account: { ...(auth === 'Bearer token-a' ? A : B), expires_at: '2099-01-01T00:00:00Z' } });
       }
       assert.ok(String(url).endsWith('/mastery-evidence/sync'), 'Every sync path must use authoritative recomputation');
       if (state.failSync) throw new Error('Fixture send failure');
@@ -187,7 +187,7 @@ for (const failure of ['failMe', 'failSync']) {
 }
 // Expired/non-student sessions never create a queue.
 {
-  const h = harness(); h.signIn({ id: 'teacher', role: 'teacher' }); h.seed();
+  const h = harness(); h.signIn({ ...A, id: '33333333-3333-4333-8333-333333333333', role: 'teacher' }); h.seed();
   assert.equal((await h.client.syncLearning()).skipped, true); assert.equal(h.syncs().length, 0);
   h.signIn(); h.sandbox.localStorage.setItem('echs_institution_expires_v1', 'invalid');
   assert.equal((await h.client.syncLearning()).skipped, true); assert.equal(h.pending(), null);

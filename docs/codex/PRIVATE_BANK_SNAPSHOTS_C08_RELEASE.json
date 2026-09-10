@@ -1,0 +1,158 @@
+{
+  "contract": "echs.c08.foundation-release.v1",
+  "status": "FOUNDATION VERIFIED",
+  "whole_c08_status": "IN PROGRESS",
+  "whole_program_complete": false,
+  "head_sha": "2cc08951935e0f0fd455aa9f7f78142cafab8c60",
+  "main_sha": "5c1d90385c666dd62ed7183bea3c5ad92a6490a9",
+  "tree_sha": "791fbc851515d0599f9600b44654f7ac9c526c17",
+  "tested_merge_sha": "7b2681edaf31d855cd26723567c732c7596f9ee5",
+  "pull_request": "https://github.com/2ed944-cloud/ECHS-Math/pull/366",
+  "source_files": [
+    {
+      "path": ".github/workflows/private-bank-snapshots.yml",
+      "bytes": 5564,
+      "sha256": "ea8527fd0ef60f848250beeb49917d474c3ac6462c672cb0efe5c3b8e9efe041",
+      "git_blob_sha": "cb204e4ed97190ff03d4389b7a092f287a62bd03"
+    },
+    {
+      "path": "docs/codex/PRIVATE_BANK_SNAPSHOTS_C08.md",
+      "bytes": 15299,
+      "sha256": "2786c68223cb5ec841a582e50b15eb69a2c534f61839c10deffb3a0ac1784987",
+      "git_blob_sha": "c377d66c1346dfa3a158fb8bfe18e7fbca58bfa4"
+    },
+    {
+      "path": "supabase/migrations/202609090003_private_bank_snapshots.sql",
+      "bytes": 66467,
+      "sha256": "9169cee2067fef09bcd0d15c0f65703c3b2c203bbe2ad3fd6217a6c41c1d6412",
+      "git_blob_sha": "0a4cf6a2a7d16ce84da93ead17a81fc4099c2c58"
+    },
+    {
+      "path": "tools/private_snapshot_fixture.py",
+      "bytes": 8127,
+      "sha256": "6e8b91bbe5cfa869cdfb9a426b967f8c1ee25ee64a5c196863ec574037bbce7a",
+      "git_blob_sha": "b743fedfa3734e6d8623ff7a1ec9d097eb621ee0"
+    },
+    {
+      "path": "tools/test_private_snapshot_database.py",
+      "bytes": 42846,
+      "sha256": "521ea6aa6f3415c1527469f35eef52454d9c6d21bb663a900f4e4466aae53618",
+      "git_blob_sha": "afe931f590dc24690807ddb0cbd48205caa3f921"
+    },
+    {
+      "path": "tools/test_private_snapshot_hash.mjs",
+      "bytes": 7505,
+      "sha256": "d8f4160128fad894f34b0af2d1ee1f65d8b8334afdc295a12888c74e051f665b",
+      "git_blob_sha": "1053c23e21eb675cdd6a6e03ee7c2abfe50b3167"
+    },
+    {
+      "path": "supabase/functions/private-bank-api/index.ts",
+      "bytes": 46502,
+      "sha256": "081bed57f012b785bb536210fd05c929849e1806b40686f2119599eabb4561ee",
+      "git_blob_sha": "87186ca8be97897d8928321050b9919cd452bcc8"
+    },
+    {
+      "path": "tools/test_private_snapshot_health.mjs",
+      "bytes": 6420,
+      "sha256": "40535fa45a13c94acc442a0af76f5d1914fa146647fc33fcf0fd1ce84764c947",
+      "git_blob_sha": "664fdbc73c9579b49f31d46a93746615230d3776"
+    },
+    {
+      "path": ".github/workflows/deploy-institution-backend.yml",
+      "bytes": 12137,
+      "sha256": "324ef9c6df8c2c6d3b2aab36c1f4fb387226baede0389319c43b3aefb479e825",
+      "git_blob_sha": "91142ba8c59e96249822fc2f7598b605d5c2b9f1"
+    },
+    {
+      "path": "docs/codex/MASTER_EXECUTION_PLAN.json",
+      "bytes": 160252,
+      "sha256": "9ec9d84568688401afa6a65bb5aed50818aad6900d316c43cc1a755235723b54",
+      "git_blob_sha": "5cc156cfc6c0016f83cd05839a659da8c97dc196"
+    },
+    {
+      "path": "docs/codex/MASTER_ARCHITECTURE_AUDIT_20260909.md",
+      "bytes": 13915,
+      "sha256": "d5b478aaf32e5fa54349d4aae08697ef4e94f50432a7b736cf03e23319ff39bc",
+      "git_blob_sha": "f9a4f8173c577e3a1ea567e5498996435b6c9b40"
+    },
+    {
+      "path": "docs/codex/MASTERY_TRUTHFULNESS_C02.md",
+      "bytes": 8395,
+      "sha256": "fe2a109b32289653ea2999b199662ee90341d96b0409889dd9be5873eb6e3501",
+      "git_blob_sha": "738eb42b48c43cfa974d97a838f0b6545a7e8ab0"
+    },
+    {
+      "path": "docs/codex/MASTERY_TRUTHFULNESS_C02_RELEASE.json",
+      "bytes": 15470,
+      "sha256": "4d7dbaa4dc623c0e07e5e94367ac2488ec4b2d9451f9d7b539940431be97e1eb",
+      "git_blob_sha": "e71dc674de0e0679de4fd46ff607c82909864582"
+    },
+    {
+      "path": "tools/test_master_execution_plan.py",
+      "bytes": 5358,
+      "sha256": "6c4189a20ae3df234b1ff2ef778ecfb0e10d825d4b787a4728e6d90f564a8954",
+      "git_blob_sha": "cc98397e0a481bc4a5c41b6dc719a4d36eb017b8"
+    }
+  ],
+  "source_manifest_sha256": "b30df4efc3684105924f49502eb08d38432b9b9d1b0730aa4a1e074a1f7fff5a",
+  "tests": {
+    "pr_workflows": 15,
+    "main_workflows": 17,
+    "baseline_commands": 68,
+    "membership_database": 55,
+    "membership_http": 7,
+    "archive_database": 222,
+    "archive_hash": 8,
+    "archive_health": 5,
+    "migrations": 27,
+    "public_gets": 16,
+    "public_checks": 41
+  },
+  "deployments": {
+    "backend": {
+      "url": "https://github.com/2ed944-cloud/ECHS-Math/actions/runs/34437302815",
+      "run_id": 34437302815,
+      "head_sha": "5c1d90385c666dd62ed7183bea3c5ad92a6490a9",
+      "conclusion": "success"
+    },
+    "pages": {
+      "url": "https://github.com/2ed944-cloud/ECHS-Math/actions/runs/34437302766",
+      "run_id": 34437302766,
+      "head_sha": "5c1d90385c666dd62ed7183bea3c5ad92a6490a9",
+      "conclusion": "success"
+    }
+  },
+  "live_acceptance": {
+    "requests": 16,
+    "checks": 41,
+    "production_writes": 0,
+    "credential_requests": 0,
+    "private_learner_requests": 0,
+    "sha256": "01eb5834efe4d3a54d418220d8680464c97f7cc79234b8c930dbb5b31f16bd3e"
+  },
+  "sealed_outputs": [
+    {
+      "file": "ECHS_C08_FOUNDATION_REPORT.md",
+      "bytes": 2808,
+      "sha256": "a6016e42cb7629876afc5ea0b1da8b15610ed9dace08ed4863162a503744dc92"
+    },
+    {
+      "file": "ECHS_C08_FOUNDATION_HANDOFF.json",
+      "bytes": 10419,
+      "sha256": "a6a448794a65a6141ad239330afd327d64cc810b87a55c9f4d0e8522ce3c3fee"
+    },
+    {
+      "file": "ECHS-C08-foundation-handoff.zip",
+      "bytes": 174626,
+      "sha256": "f2fd252d7d4a421946c0ce18b83412762b3027f39563aa25b742a76a4463eeca"
+    }
+  ],
+  "scope": "Unused additive private archive schema and data-free health; no content upload, import, student delivery, grading, rights promotion or public cutover.",
+  "rollback": "Leave unused schema private; disconnect future callers and apply reviewed forward fixes. Do not drop history or rewrite existing banks.",
+  "next_work": [
+    "Bounded authenticated immutable upload/read-back and transport acceptance",
+    "Complete source/media coverage and server-generated receipts",
+    "Reviewed rights/mappings and class/course-version-bound delivery",
+    "C04 owner storage and C03 grading remain separate incomplete work"
+  ]
+}

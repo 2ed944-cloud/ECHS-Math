@@ -2914,6 +2914,38 @@
         {
           "path": "js",
           "state": "existing"
+        },
+        {
+          "path": "js/institution-client.js",
+          "state": "existing"
+        },
+        {
+          "path": "js/owner-storage.mjs",
+          "state": "existing"
+        },
+        {
+          "path": "tools/test_canonical_owner_authority.mjs",
+          "state": "existing"
+        },
+        {
+          "path": "tools/test_owner_storage.mjs",
+          "state": "existing"
+        },
+        {
+          "path": "tools/test_owner_storage_browser.mjs",
+          "state": "existing"
+        },
+        {
+          "path": "tools/test_owner_worker.mjs",
+          "state": "existing"
+        },
+        {
+          "path": ".github/workflows/owner-storage.yml",
+          "state": "existing"
+        },
+        {
+          "path": "docs/codex/OWNER_STORAGE_FOUNDATION_C04.md",
+          "state": "existing"
         }
       ],
       "acceptance_criteria": [
@@ -2922,8 +2954,13 @@
         "Test logout, account switch, revoked scope, stale async writes, offline reconnect and IndexedDB image disposal; preserve current URLs and questions."
       ],
       "tests": {
-        "status": "NOT_RUN",
-        "evidence": []
+        "status": "PARTIAL",
+        "evidence": [
+          {
+            "kind": "canonical_session_foundation_scope",
+            "path": "docs/codex/OWNER_STORAGE_FOUNDATION_C04.md"
+          }
+        ]
       },
       "deployment": {
         "status": "NOT_DEPLOYED",
@@ -2933,7 +2970,10 @@
         "strategy": "Revert only this reviewed slice; retain prior URLs, published versions, raw evidence and existing accounts. Any database changes require a task-specific forward/rollback note before implementation."
       },
       "known_limits": [
-        "Existing queue and Studio encrypted recovery fixes cover only their stated stores; account ownership must be proven for each legacy store."
+        "Existing queue and Studio encrypted recovery fixes cover only their stated stores; account ownership must be proven for each legacy store.",
+        "Canonical session/client and owner-storage foundation implemented; composed CI/deployment acceptance pending. No legacy raw producer/reader/queue adoption is claimed.",
+        "Full adoption inventory includes AP Precalculus1.2 response/save timers and49 explicit source-review obligations; this is not blanket storage completeness.",
+        "Synchronous localStorage compare/remove is not cross-tab atomic; queue adoption requires a transactional source-versioned journal and exact revision acknowledgements."
       ],
       "next_dependency": [
         "ECHS-015",
@@ -3176,6 +3216,10 @@
         {
           "path": "tools/test_private_snapshot_health.mjs",
           "state": "existing"
+        },
+        {
+          "path": "docs/codex/PRIVATE_BANK_SNAPSHOTS_C08_RELEASE.json",
+          "state": "existing"
         }
       ],
       "acceptance_criteria": [
@@ -3190,18 +3234,25 @@
         "status": "PARTIAL",
         "evidence": [
           {
-            "kind": "archive_foundation_candidate_ci_on_c09_base",
-            "url": "https://github.com/2ed944-cloud/ECHS-Math/actions/runs/34393306131"
+            "kind": "verified_archive_foundation_scope",
+            "path": "docs/codex/PRIVATE_BANK_SNAPSHOTS_C08_RELEASE.json"
           },
           {
-            "kind": "scope_and_remaining_acceptance",
-            "path": "docs/codex/PRIVATE_BANK_SNAPSHOTS_C08.md"
+            "kind": "actual_archive_postgres_and_http",
+            "url": "https://github.com/2ed944-cloud/ECHS-Math/actions/runs/34436806345"
           }
         ]
       },
       "deployment": {
-        "status": "NOT_DEPLOYED",
-        "evidence": []
+        "status": "DEPLOYED",
+        "scope": "Archive foundation only; whole C08 IN PROGRESS",
+        "deployed_at_main": "5c1d90385c666dd62ed7183bea3c5ad92a6490a9",
+        "evidence": [
+          {
+            "kind": "archive_foundation_release",
+            "path": "docs/codex/PRIVATE_BANK_SNAPSHOTS_C08_RELEASE.json"
+          }
+        ]
       },
       "rollback": {
         "strategy": "Revert only this reviewed slice; retain prior URLs, published versions, raw evidence and existing accounts. Any database changes require a task-specific forward/rollback note before implementation."
@@ -3209,7 +3260,7 @@
       "known_limits": [
         "403 Pearson records explicitly say commercial_publisher_resource_private_use_only; 5479 other records have no source_license. Private storage does not itself create publication or usage rights.",
         "Current raw static provider fallback is active. This is a P0 production migration, not a safe deletion of dormant files. No production import or redistribution decision has been made.",
-        "The additive archive foundation passed 222 PostgreSQL checks over 27 migrations on its earlier C09 base. Composition with verified C02 and concurrent AP Precalculus main aa2ad54e8971b03adfcef2c48c4472f4099afc34 still requires fresh CI/deployment. No import, private delivery, rights promotion or public cutover is claimed."
+        "The additive archive foundation is verified at 5c1d90385c666dd62ed7183bea3c5ad92a6490a9 with222 PostgreSQL archive checks over27 migrations,15 PR/17 main workflows and41 checks from16 anonymous liveGETs. No importer, actual archive object coverage, private delivery, rights promotion or public cutover is claimed."
       ],
       "next_dependency": [
         "ECHS-015",
@@ -5059,5 +5110,12 @@
     "main_sha": "bcdeaa97ada19b23980dad93b828390371d41bf6",
     "tree_sha": "b205b2d1673e5131942a637341052515ded45f1d",
     "evidence": "docs/codex/MASTERY_TRUTHFULNESS_C02_RELEASE.json"
+  },
+  "last_verified_foundation_slice": {
+    "task": "ECHS-C08",
+    "scope": "archive foundation only",
+    "main_sha": "5c1d90385c666dd62ed7183bea3c5ad92a6490a9",
+    "tree_sha": "791fbc851515d0599f9600b44654f7ac9c526c17",
+    "evidence": "docs/codex/PRIVATE_BANK_SNAPSHOTS_C08_RELEASE.json"
   }
 }

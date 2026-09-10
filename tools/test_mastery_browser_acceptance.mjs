@@ -25,7 +25,9 @@ async function sourceRecords(){return Promise.all(sourceFiles.map(async file=>{c
 const sourceBefore=await sourceRecords();
 let origin,browser,mode='high',currentCase='startup';
 const org='00000000-0000-4000-8000-000000000002',studentId='00000000-0000-4000-8000-000000000003',classId='00000000-0000-4000-8000-000000000004';
+const fixtureExpires=new Date(Date.now()+3600000).toISOString();
 const accounts={student:{id:studentId,organization_id:org,role:'student',status:'active',display_name:'Synthetic Learner',username:'synthetic-learner',grade:'12',organization_name:'Synthetic ECHS QA'},teacher:{id:'00000000-0000-4000-8000-000000000005',organization_id:org,role:'teacher',status:'active',display_name:'Synthetic Teacher',username:'synthetic-teacher',organization_name:'Synthetic ECHS QA'},parent:{id:'00000000-0000-4000-8000-000000000006',organization_id:org,role:'parent',status:'active',display_name:'Synthetic Family',username:'synthetic-family',organization_name:'Synthetic ECHS QA'}};
+Object.values(accounts).forEach(account=>{account.expires_at=fixtureExpires;});
 const classRow={id:classId,name:'Synthetic Calculus Class',course_key:'ap-calculus-ab',academic_year:'Synthetic QA'};
 const raw={key:'ap-calculus::1::1.1',course:'ap-calculus',unit:'1',topic:'1.1',title:'Instantaneous change',score:97,accuracy:100,attempts:24,correct:24,recent:Array(12).fill(true),confidence:.94,independent_evidence:24,active_days:3,retention_evidence:8,transfer_evidence:24,level:'Mastered',verified_mastery:true,source:'server',payload:{level:'Mastered',verified:true},last_verified_at:'2026-01-01T00:00:00Z'};
 function record(){return mode==='missing'?{title:raw.title,topic:'1.1',course:raw.course,unit:'1',score:null}:mode==='zero'?{...raw,score:0,accuracy:0}:raw;}
@@ -83,7 +85,7 @@ async function open(route,role='student',{missingHelper=false,mobile=false,worke
     return r.continue();
   }if(url.hostname==='fonts.googleapis.com')return r.fulfill({status:200,contentType:'text/css',body:'/* Isolated deterministic system font fallback. */'});return r.abort();});
   await ctx.addInitScript(({actor,role,raw})=>{
-    sessionStorage.setItem('echs_institution_token_v1','synthetic-'+role);sessionStorage.setItem('echs_institution_account_v1',JSON.stringify(actor));sessionStorage.setItem('echs_institution_expires_v1',new Date(Date.now()+3600000).toISOString());
+    sessionStorage.setItem('echs_institution_token_v1','synthetic-'+role);sessionStorage.setItem('echs_institution_account_v1',JSON.stringify(actor));sessionStorage.setItem('echs_institution_expires_v1',actor.expires_at);
     localStorage.setItem('echs_learning_events_v2',JSON.stringify(Array.from({length:24},(_,i)=>({id:'synthetic-'+i,questionId:'synthetic-'+i,correct:true,at:new Date().toISOString()}))));
     localStorage.setItem('echs_learning_mastery_v2',JSON.stringify({[raw.key]:raw}));localStorage.setItem('echs_learning_achievements_v2',JSON.stringify({'first-mastery':{id:'first-mastery',title:'Topic Master',description:'Master your first topic.',earnedAt:'2025-01-01'}}));
   },{actor:accounts[role],role,raw});
