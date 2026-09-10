@@ -21,7 +21,7 @@ const tokenFor = role => `synthetic-studio-${role}-token-008`;
 const now = '2026-09-08T12:00:00.000Z';
 const expires = '2099-01-01T00:00:00.000Z';
 const accountFor = role => role === 'guest' ? null : ({id:STUDIO_IDS[role],organization_id:role === 'other' ? STUDIO_IDS.otherOrganization : STUDIO_IDS.organization,
-  role:role === 'other' ? 'teacher' : role,status:'active',display_name:`Synthetic ${role}`,username:`fixture-${role}`,organization_name:'Synthetic fixture school'});
+  role:role === 'other' ? 'teacher' : role,status:'active',expires_at:expires,display_name:`Synthetic ${role}`,username:`fixture-${role}`,organization_name:'Synthetic fixture school'});
 const error = (code,message = 'Synthetic fixture rejection.') => ({ok:false,error:{code,message}});
 const data = extra => ({ok:true,contract:LESSON_API_CONTRACT,...extra});
 const types = {'.html':'text/html','.mjs':'text/javascript','.js':'text/javascript','.json':'application/json','.css':'text/css','.woff2':'font/woff2','.woff':'font/woff','.ttf':'font/ttf','.svg':'image/svg+xml','.png':'image/png'};

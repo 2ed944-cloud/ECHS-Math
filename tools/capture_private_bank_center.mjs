@@ -7,7 +7,7 @@ const outputDir=process.env.ECHS_PREVIEW_OUTPUT||'artifacts/private-bank-visual'
 await mkdir(outputDir,{recursive:true});
 const browser=await chromium.launch({executablePath:process.env.CHROME_PATH||'/usr/bin/google-chrome',headless:true,args:['--no-sandbox','--disable-dev-shm-usage']});
 const config={enabled:true,api_base:`${baseURL}/functions/v1`,setup_api_base:`${baseURL}/functions/v1`,backend_deployed:true,platform_name:'ECHS Mathematics',institution_name:'Education City High School',session_storage:'local'};
-const teacher={id:'teacher-qa',display_name:'Mohammad Abu Ghuwaleh',username:'m.abughuwaleh',role:'teacher',organization_name:'ECHS Mathematics',can_manage_accounts:true};
+const teacher={id:'00000000-0000-4000-8000-000000000005',organization_id:'00000000-0000-4000-8000-000000000002',status:'active',expires_at:new Date(Date.now()+3600000).toISOString(),display_name:'Mohammad Abu Ghuwaleh',username:'m.abughuwaleh',role:'teacher',organization_name:'ECHS Mathematics',can_manage_accounts:true};
 const calculusPackage={bank_code:'CALC-BANK-01',bank_slug:'ap-calculus-bank-1',display_aliases:{student:'AP Calculus Bank 1',teacher:'AP Calculus Bank 1'},deployment_state:'complete-direct-upload',question_count:3019,pool_count:46,media_count:3366,trust_default:'publisher_key_direct',manifest:{target_courses:['ap-calculus'],questions:3019,pools:46,mapping_counts:{'ap-calculus:U0':822},question_types:{essay:3019}}};
 const precalculusPackage={bank_code:'PRECALC-BANK-01',display_aliases:{student:'AP Precalculus Bank 1',teacher:'AP Precalculus Bank 1'},deployment_state:'complete-direct-upload',question_count:500,pool_count:5,media_count:100,manifest:{target_courses:['ap-precalculus'],questions:500,pools:5,mapping_counts:{'ap-precalculus:U0':120},question_types:{essay:300}}};
 const ibPackage={bank_code:'IB-AI-BANK-01',display_aliases:{student:'IB Mathematics Bank 1',teacher:'IB Mathematics Bank 1'},deployment_state:'complete-direct-upload',question_count:300,pool_count:4,media_count:60,manifest:{target_courses:['ib-math-ai'],questions:300,pools:4,mapping_counts:{'ib-math-ai:U0':80},question_types:{essay:180}}};
@@ -19,7 +19,7 @@ for(const device of devices){
   const page=await context.newPage();const consoleErrors=[],pageErrors=[];
   page.on('console',message=>{if(message.type()==='error')consoleErrors.push(message.text())});
   page.on('pageerror',error=>pageErrors.push(error.message));
-  await page.addInitScript(account=>{localStorage.setItem('echs_institution_token_v1','private-bank-visual-token');localStorage.setItem('echs_institution_account_v1',JSON.stringify(account));localStorage.setItem('echs_institution_expires_v1',new Date(Date.now()+3600000).toISOString())},teacher);
+  await page.addInitScript(account=>{localStorage.setItem('echs_institution_token_v1','private-bank-visual-token');localStorage.setItem('echs_institution_account_v1',JSON.stringify(account));localStorage.setItem('echs_institution_expires_v1',account.expires_at)},teacher);
   await page.route('**/config/institution.json*',route=>route.fulfill({status:200,contentType:'application/json',body:JSON.stringify(config)}));
   await page.route('**/functions/v1/account-api/me*',route=>route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({ok:true,account:teacher})}));
   await page.route('**/functions/v1/private-bank-api/packages*',route=>route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({ok:true,private:true,packages:livePackages})}));

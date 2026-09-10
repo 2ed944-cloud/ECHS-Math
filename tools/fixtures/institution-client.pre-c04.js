@@ -5,141 +5,21 @@
   const ROOT=script?new URL("../",script.src):new URL("./",location.href);
   const KEYS={token:"echs_institution_token_v1",account:"echs_institution_account_v1",expires:"echs_institution_expires_v1",pending:"echs_institution_pending_sync_v1"};
   let configPromise=null,mePromise=null;
-  // C04 session-lifecycle foundation: local ownership is not grading authority.
-  const OWNER_CONTRACT="echs.owner-authority.v1",ME_CACHE_MS=30000;
-  const SESSION_EVENT="echs:institution-session-change";
-  const authorityListeners=new Set();
-  const sessionNonce=`owner_${Date.now().toString(36)}_${Math.random().toString(36).slice(2).padEnd(12,"0")}`;
-  let sessionEpoch=0,sessionState=null,sessionCommitting=false,sessionBlocked=false;
-  let verifiedEpoch=-1,verifiedAt=0,expiryTimer=null,authClear=null;
 
   function safeJSON(value,fallback){try{const parsed=JSON.parse(value);return parsed??fallback}catch{return fallback}}
   function root(path=""){return new URL(path,ROOT).href}
   function storage(){return localStorage}
-  function cleanAccount(value){
-    if(!value||typeof value!=="object"||Array.isArray(value))throw requestError("Account information is invalid",0,"invalid_session");
-    const fields=["id","organization_id","organization_name","username","display_name","email","role","grade","can_manage_accounts","expires_at","home","status"];
-    const result={};
-    for(const key of Reflect.ownKeys(value)){
-      const descriptor=Object.getOwnPropertyDescriptor(value,key);
-      if(typeof key!=="string"||!fields.includes(key)||!descriptor||!Object.hasOwn(descriptor,"value"))throw requestError("Account information is invalid",0,"invalid_session");
-      const item=descriptor.value;
-      if(item!==null&&typeof item!=="string"&&typeof item!=="boolean"&&!(typeof item==="number"&&Number.isFinite(item)))throw requestError("Account information is invalid",0,"invalid_session");
-      if(typeof item==="string"&&item.length>4000)throw requestError("Account information is invalid",0,"invalid_session");
-      result[key]=item;
-    }
-    const uuid=/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
-    if(!uuid.test(result.id)||!uuid.test(result.organization_id)||!["student","teacher","admin","parent"].includes(result.role)||
-      (result.status!==undefined&&result.status!=="active"))throw requestError("Account information is invalid",0,"invalid_session");
-    return result;
-  }
-  function readSessionState(){
-    if(sessionCommitting)return{kind:"unavailable",signature:"committing",reason:"storage_unavailable"};
-    if(sessionBlocked)return{kind:"unavailable",signature:"blocked",reason:"storage_unavailable"};
-    let areas;
-    try{areas=[storage(),sessionStorage].map(store=>({store,token:store.getItem(KEYS.token),account:store.getItem(KEYS.account),expires:store.getItem(KEYS.expires)}))}
-    catch{return{kind:"unavailable",signature:"storage_unavailable",reason:"storage_unavailable"}}
-    try{
-      const used=areas.filter(area=>area.token!==null||area.account!==null||area.expires!==null);
-      if(!used.length)return{kind:"guest",signature:"guest"};
-      if(used.length!==1)throw new Error("Ambiguous session storage");
-      const area=used[0],current=cleanAccount(safeJSON(area.account,null)),expires=Date.parse(area.expires);
-      if(typeof area.token!=="string"||!area.token||area.token.length>4096||typeof area.account!=="string"||area.account.length>20000||
-        !Number.isSafeInteger(expires)||expires<=Date.now())throw new Error("Incomplete or expired session");
-      const index=areas.indexOf(area),status=current.status||"active";
-      return{kind:"account",token:area.token,account:current,expires,expiresRaw:area.expires,area:index,
-        signature:JSON.stringify([index,area.token,current.id,current.organization_id,current.role,status,expires])};
-    }catch{return{kind:"unavailable",signature:"invalid_session",reason:"invalid_session"}}
-  }
-  function notifyTransition(reason){
-    const detail=Object.freeze({contract:OWNER_CONTRACT,epoch:sessionEpoch,state:sessionState.kind,reason});
-    for(const listener of [...authorityListeners]){try{listener(detail)}catch{}}
-    document.dispatchEvent(new CustomEvent(SESSION_EVENT,{detail}));
-  }
-  function armExpiryTimer(){
-    if(expiryTimer!==null)clearTimeout(expiryTimer);expiryTimer=null;
-    if(sessionState?.kind!=="account")return;
-    const expectedEpoch=sessionEpoch,delay=Math.max(1,Math.min(60000,sessionState.expires-Date.now()));
-    const timer=setTimeout(()=>{
-      if(expiryTimer!==timer||sessionEpoch!==expectedEpoch)return;
-      expiryTimer=null;observeSession("expiry_timer");
-      if(sessionState.kind==="account")armExpiryTimer();
-    },delay);
-    expiryTimer=timer;timer?.unref?.(); // Optional Node fixture handle; browser timers are numeric.
-  }
-  function observeSession(reason="observe",force=false,notify=true){
-    if(sessionCommitting)return{kind:"unavailable",signature:"committing"};
-    const next=readSessionState();
-    if(!sessionState||force||next.signature!==sessionState.signature){
-      sessionState=next;sessionEpoch++;mePromise=null;verifiedEpoch=-1;verifiedAt=0;authClear=null;
-      armExpiryTimer();
-      if(notify)notifyTransition(reason);
-    }else sessionState=next;
-    return sessionState;
-  }
-  function captureRequest(){
-    const state=observeSession();
-    if(state.kind==="unavailable")throw requestError("Session storage is unavailable. Sign in again when storage is available.",0,"session_unavailable");
-    return{epoch:sessionEpoch,signature:state.signature,token:state.token||"",kind:state.kind};
-  }
-  function sameRequest(owner){const state=observeSession();return state.kind!=="unavailable"&&owner.epoch===sessionEpoch&&owner.signature===state.signature}
-  function assertRequest(owner){if(!sameRequest(owner))throw requestError("Your session changed. Please reload this page.",409,"session_changed")}
-  function sameAuthRequest(owner,allowCleared=false){
-    const state=observeSession();
-    return(owner.epoch===sessionEpoch&&owner.signature===state.signature)||
-      (allowCleared&&state.kind==="guest"&&authClear?.from===owner.epoch&&authClear?.to===sessionEpoch);
-  }
-  function clearAuthSession(owner){
-    if(!sameAuthRequest(owner))throw requestError("Your session changed. Please reload this page.",409,"session_changed");
-    clearSession();
-    // Only this request's direct transition to guest authorizes its sign-in UI.
-    // A synchronous successor login from a listener must never inherit this receipt.
-    if(sessionEpoch!==owner.epoch+1||sessionState.kind!=="guest")throw requestError("Your session changed. Please reload this page.",409,"session_changed");
-    authClear={from:owner.epoch,to:sessionEpoch};
-  }
-  function token(){const state=observeSession();return state.kind==="account"?state.token:""}
-  function account(){const state=observeSession();return state.kind==="account"?{...state.account}:null}
-  function expiresAt(){const state=observeSession();return state.kind==="account"?state.expiresRaw:""}
-  function isExpired(){return observeSession().kind!=="account"}
-  function freshVerification(at){const age=Date.now()-at;return age>=0&&age<ME_CACHE_MS}
-  function commitSession(data,remember,reason){
-    if(sessionCommitting)throw requestError("Session storage is changing",409,"session_changed");
-    let current=null;
-    if(data){
-      current=cleanAccount(data.account);
-      if(typeof data.token!=="string"||!data.token||data.token.length>4096||typeof data.expires_at!=="string"||
-        !Number.isSafeInteger(Date.parse(data.expires_at))||Date.parse(data.expires_at)<=Date.now())throw requestError("Session information is invalid",0,"invalid_session");
-    }
-    sessionCommitting=true;
-    let failed=false;const stores=[];
-    try{
-      stores.push(storage());stores.push(sessionStorage);
-      for(const store of stores)for(const key of [KEYS.token,KEYS.account,KEYS.expires])store.removeItem(key);
-      if(data){
-        const store=stores[remember?0:1];
-        store.setItem(KEYS.account,JSON.stringify(current));store.setItem(KEYS.expires,data.expires_at);
-        store.setItem(KEYS.token,data.token); // The coherent triplet commits with its token last.
-      }
-    }catch{
-      failed=true;
-      // Reuse only acquired references: a blocked global property must not throw
-      // again here and bypass the mandatory invalidation/notification below.
-      for(const store of stores)for(const key of [KEYS.token,KEYS.account,KEYS.expires]){try{store.removeItem(key)}catch{}}
-    }finally{sessionCommitting=false;sessionBlocked=failed}
-    if(!failed){
-      const stored=readSessionState();
-      failed=data?stored.kind!=="account"||stored.token!==data.token||stored.account.id!==current.id||stored.account.organization_id!==current.organization_id||
-        stored.account.role!==current.role||stored.expires!==Date.parse(data.expires_at)||stored.area!==(remember?0:1):stored.kind!=="guest";
-      sessionBlocked=failed;
-    }
-    const state=observeSession(failed?"storage_unavailable":reason,true);
-    if(failed||(data?state.kind!=="account":state.kind!=="guest")){
-      throw requestError("Session storage is unavailable. Sign in again when storage is available.",0,"session_unavailable");
-    }
-  }
-  function clearSession(){commitSession(null,false,"clear_session")}
+  function token(){return storage().getItem(KEYS.token)||sessionStorage.getItem(KEYS.token)||""}
+  function account(){return safeJSON(storage().getItem(KEYS.account)||sessionStorage.getItem(KEYS.account),"")}
+  function expiresAt(){return storage().getItem(KEYS.expires)||sessionStorage.getItem(KEYS.expires)||""}
+  function isExpired(){const value=Date.parse(expiresAt());return !Number.isFinite(value)||value<=Date.now()}
+  function clearSession(){[storage(),sessionStorage].forEach(store=>{store.removeItem(KEYS.token);store.removeItem(KEYS.account);store.removeItem(KEYS.expires)});mePromise=null}
   function setSession(data,remember){
-    commitSession(data,!!remember,"set_session");
+    clearSession();
+    const store=remember?storage():sessionStorage;
+    store.setItem(KEYS.token,data.token);
+    store.setItem(KEYS.account,JSON.stringify(data.account));
+    store.setItem(KEYS.expires,data.expires_at);
   }
   function requestError(message,status=0,code="request_error"){
     const error=new Error(message||"Institutional request failed");
@@ -169,109 +49,46 @@
   }
   async function api(service,path,options={}){
     const {sessionGuard,...requestOptions}=options;
-    const requestOwner=captureRequest();
     const cfg=await config();
     if(cfg.configuration_error)throw requestError(cfg.configuration_error,0,"configuration_unavailable");
     if(!cfg.enabled)throw requestError("Institutional accounts are not configured yet",503,"unconfigured");
-    assertRequest(requestOwner);
     if(sessionGuard)assertSyncSession(sessionGuard);
     const base=String(cfg.api_base||"").replace(/\/$/,"");
     const headers=new Headers(options.headers||{});
     if(options.body&&!headers.has("content-type"))headers.set("content-type","application/json");
-    const currentToken=requestOwner.token;if(currentToken)headers.set("authorization",`Bearer ${currentToken}`);
+    const currentToken=token();if(currentToken)headers.set("authorization",`Bearer ${currentToken}`);
     const body=options.body&&typeof options.body!=="string"&&!(options.body instanceof FormData)&&!(options.body instanceof Blob)?JSON.stringify(options.body):options.body;
     const response=await request(`${base}/${service}${path}`,{timeoutMs:options.method&&options.method!=="GET"?45000:20000,...requestOptions,cache:"no-store",body,headers});
     const payload=await response.json().catch(()=>({ok:false,error:{message:`HTTP ${response.status}`}}));
-    if(response.status===401&&currentToken&&sameRequest(requestOwner)){
-      try{clearAuthSession(requestOwner)}catch{}
-      if(sameAuthRequest(requestOwner,true))document.dispatchEvent(new CustomEvent("echs:institution-signed-out"));
-    }
+    if(response.status===401&&currentToken&&token()===currentToken){clearSession();document.dispatchEvent(new CustomEvent("echs:institution-signed-out"))}
     if(!response.ok&&response.status!==207)throw requestError(payload?.error?.message||`Request failed (${response.status})`,response.status,payload?.error?.code||"request_error");
     if(payload?.ok===false&&response.status!==207)throw requestError(payload?.error?.message||"The request could not be completed. Please try again.",response.status,payload?.error?.code||"request_error");
-    assertRequest(requestOwner);
     return payload;
   }
   async function login(username,password,remember=false){
-    if(observeSession().kind==="unavailable")clearSession();
     const payload=await api("account-api","/login",{method:"POST",body:{username,password,remember}});
-    setSession(payload,remember);return account();
+    setSession(payload,remember);mePromise=Promise.resolve(payload.account);return payload.account;
   }
   async function logout(){
-    const owner=captureRequest();
     try{if(token())await api("account-api","/logout",{method:"POST",body:{}})}catch(_error){}
-    if(sameRequest(owner)){clearSession();location.href=root("login.html")}
+    clearSession();location.href=root("login.html");
   }
   async function me(force=false){
-    const initial=observeSession();
-    if(initial.kind==="guest")return null;
-    if(initial.kind==="unavailable"&&initial.reason==="invalid_session"){clearAuthSession({epoch:sessionEpoch,signature:initial.signature});return null}
-    if(initial.kind!=="account")throw requestError("Session storage is unavailable. Sign in again when storage is available.",0,"session_unavailable");
-    const requested=captureRequest();
-    if(mePromise&&mePromise.epoch===requested.epoch&&(!mePromise.settled||(!force&&freshVerification(mePromise.verifiedAt))))return mePromise.promise.then(value=>{if(value===null&&sameAuthRequest(requested,true))return null;assertRequest(requested);return{...value}});
-    const entry={epoch:requested.epoch,settled:false,verifiedAt:0,promise:null};
-    mePromise=entry;
-    entry.promise=(async()=>{
-      try{
-        const payload=await api("account-api","/me");assertRequest(requested);
-        const current=cleanAccount(payload.account);
-        if(typeof current.expires_at!=="string")throw requestError("The verified account expiry is invalid",0,"invalid_verified_session");
-        const serverExpiry=Date.parse(current.expires_at);
-        if(payload.ok!==true||current.id!==initial.account.id||!Number.isSafeInteger(serverExpiry)||serverExpiry<=Date.now())throw requestError("The verified account did not match this session",0,"invalid_verified_session");
-        const store=initial.area===0?storage():sessionStorage;
-        sessionCommitting=true;let failed=false;
-        try{store.setItem(KEYS.account,JSON.stringify(current));store.setItem(KEYS.expires,current.expires_at)}catch{failed=true}
-        finally{sessionCommitting=false;sessionBlocked=failed}
-        if(!failed){
-          const stored=readSessionState();
-          failed=stored.kind!=="account"||stored.token!==requested.token||stored.area!==initial.area||sessionEpoch!==requested.epoch||
-            stored.account.id!==current.id||stored.account.organization_id!==current.organization_id||stored.account.role!==current.role||stored.expires!==serverExpiry;
-          sessionBlocked=failed;
-        }
-        const updated=observeSession(failed?"storage_unavailable":"verified_account");
-        if(failed||updated.kind!=="account")throw requestError("Session storage is unavailable",0,"session_unavailable");
-        if(updated.account.id!==current.id||updated.account.organization_id!==current.organization_id||updated.account.role!==current.role||updated.expires!==serverExpiry)throw requestError("The verified account did not match this session",0,"invalid_verified_session");
-        entry.verifiedAt=Date.now();verifiedAt=entry.verifiedAt;verifiedEpoch=sessionEpoch;
-        // A server-confirmed role/org/expiry change is a new local authority epoch.
-        // Existing captured handles must reopen rather than adopt that transition.
-        if(sessionEpoch!==requested.epoch)throw requestError("Your session changed. Please reload this page.",409,"session_changed");
-        return{...current};
-      }catch(error){
-        if(mePromise===entry)mePromise=null;
-        if(error?.status===401){
-          if(sameRequest(requested))clearAuthSession(requested);
-          if(sameAuthRequest(requested,true))return null;
-          throw requestError("Your session changed. Please reload this page.",409,"session_changed");
-        }
-        if(["invalid_session","invalid_verified_session"].includes(error?.code)&&sameRequest(requested))observeSession("verification_failed",true);
-        throw error;
-      }finally{entry.settled=true}
-    })();
-    return entry.promise;
-  }
-  function authorityCapture(){
-    const state=observeSession();
-    const base={epoch:sessionEpoch,session_id:`${sessionNonce}_${sessionEpoch}`};
-    if(state.kind==="guest")return Object.freeze({kind:"guest",...base});
-    if(state.kind!=="account")throw requestError("Current ownership is unavailable",0,"authority_unavailable");
-    return Object.freeze({kind:"account",organization_id:state.account.organization_id,account_id:state.account.id,role:state.account.role,
-      status:"active",expires_at:state.expires,...base});
-  }
-  function sameCapture(left,right){
-    const keys=Object.keys(right);return left&&typeof left==="object"&&Object.keys(left).length===keys.length&&keys.every(key=>{
-      const descriptor=Object.getOwnPropertyDescriptor(left,key);return descriptor&&Object.hasOwn(descriptor,"value")&&descriptor.value===right[key];
+    if(!token()||isExpired()){clearSession();return null}
+    const requestedToken=token();
+    if(force||!mePromise)mePromise=api("account-api","/me").then(payload=>{
+      if(token()!==requestedToken)throw requestError("Your session changed. Please reload this page.",409,"session_changed");
+      const current=payload.account;
+      const store=storage().getItem(KEYS.token)?storage():sessionStorage;
+      store.setItem(KEYS.account,JSON.stringify(current));
+      return current;
+    }).catch(error=>{
+      mePromise=null;
+      if(error?.status===401){if(token()===requestedToken)clearSession();return null}
+      throw error;
     });
+    return mePromise;
   }
-  const ownerAuthority=Object.freeze({
-    capture:authorityCapture,
-    async verify(captured){
-      const before=authorityCapture();
-      if(before.kind!=="account"||!sameCapture(captured,before))throw requestError("Your session changed. Please reload this page.",409,"session_changed");
-      const current=await me(true),after=authorityCapture();
-      if(!current||!sameCapture(captured,after)||verifiedEpoch!==after.epoch||!freshVerification(verifiedAt))throw requestError("Current ownership could not be verified",0,"verification_failed");
-      return Object.freeze({contract:OWNER_CONTRACT,verified:true,identity:after});
-    },
-    subscribe(listener){if(typeof listener!=="function")throw new TypeError("A listener is required");authorityListeners.add(listener);return()=>authorityListeners.delete(listener)},
-  });
   function roleHome(role){return role==="admin"?"question-bank/school-control.html":role==="teacher"?"question-bank/teacher.html":role==="parent"?"question-bank/parent.html":"question-bank/student.html"}
   function showAuthUnavailable(error){
     if(document.getElementById("institutionAuthUnavailable"))return;
@@ -285,33 +102,21 @@
     document.body.prepend(notice);
   }
   async function requireAuth(roles=[]){
-    const initial=observeSession(),owner={epoch:sessionEpoch,signature:initial.signature};
     const cfg=await config();
-    if(!sameAuthRequest(owner))return null;
     if(!cfg.enabled){document.documentElement.dataset.institution="unconfigured";return null}
     let current;
     try{current=await me()}catch(error){
-      if(!sameAuthRequest(owner))return null;
       document.documentElement.dataset.institution="unavailable";
-      if(!sameAuthRequest(owner))return null;
       showAuthUnavailable(error);
-      if(!sameAuthRequest(owner))return null;
       document.dispatchEvent(new CustomEvent("echs:institution-auth-error",{detail:{message:error?.message||"Session verification failed"}}));
       return null;
     }
-    if(!current){
-      if(!sameAuthRequest(owner,true))return null;
-      const next=encodeURIComponent(location.href);location.replace(root(`login.html?next=${next}`));return null;
-    }
-    if(!sameAuthRequest(owner))return null;
+    if(!current){const next=encodeURIComponent(location.href);location.replace(root(`login.html?next=${next}`));return null}
     if(roles.length&&!roles.includes(current.role)){location.replace(root(roleHome(current.role)));return null}
-    if(!sameAuthRequest(owner))return null;
     delete document.documentElement.dataset.institutionRole;
-    if(!sameAuthRequest(owner))return null;
     document.documentElement.dataset.institutionAccessRole=current.role;
-    if(!sameAuthRequest(owner))return null;
     mountUploadManagerLink(current);
-    return sameAuthRequest(owner)?current:null;
+    return current;
   }
   function initials(name){return String(name||"?").split(/\s+/).slice(0,2).map(part=>part[0]).join("").toUpperCase()}
   function mountIdentity(current){
@@ -362,11 +167,10 @@
   }
   function syncSession(){
     const current=account(),currentToken=token();
-    return current?.id&&current.role==="student"&&currentToken&&!isExpired()?{accountId:current.id,...captureRequest()}:null;
+    return current?.id&&current.role==="student"&&currentToken&&!isExpired()?{accountId:current.id,token:currentToken}:null;
   }
   function assertSyncSession(owner){
-    if(owner.epoch!==undefined)assertRequest(owner);
-    if(token()!==owner.token||account()?.id!==owner.accountId||account()?.role!=="student"||isExpired())throw requestError("Your session changed. Please reload this page.",409,"session_changed");
+    if(token()!==owner.token||account()?.id!==owner.accountId||isExpired())throw requestError("Your session changed. Please reload this page.",409,"session_changed");
   }
   function mergeLearningPayload(previous,current){
     const keys={attempts:row=>row.event_id??row.client_event_id??row.id,sessions:row=>row.client_session_id??row.clientSessionId??row.id,review:row=>row.question_id??row.questionId??row.id,lessons:row=>row.access_key,mastery:row=>row.skill_key??row.key};
@@ -463,9 +267,5 @@
   }
   if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",bind,{once:true});else bind();
 
-  observeSession("bootstrap",false,false);
-  window.addEventListener("storage",event=>{if(event.key===null||[KEYS.token,KEYS.account,KEYS.expires].includes(event.key))observeSession("storage",true)});
-  window.addEventListener("focus",()=>{observeSession("focus");if(mePromise?.settled)mePromise=null});
-  document.addEventListener("visibilitychange",()=>{if(document.visibilityState!=="hidden"){observeSession("visibility");if(mePromise?.settled)mePromise=null}});
-  window.ECHSInstitution={ROOT:ROOT.href,root,config,api,login,logout,me,requireAuth,account,token,setSession,clearSession,roleHome,mountIdentity,mountUploadManagerLink,learningPayload:localLearningPayload,syncLearning,flushPending,initials,ownerAuthority};
+  window.ECHSInstitution={ROOT:ROOT.href,root,config,api,login,logout,me,requireAuth,account,token,setSession,clearSession,roleHome,mountIdentity,mountUploadManagerLink,learningPayload:localLearningPayload,syncLearning,flushPending,initials};
 })();

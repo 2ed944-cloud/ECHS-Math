@@ -1,0 +1,107 @@
+name: Canonical account ownership contracts
+
+on:
+  pull_request:
+    paths:
+      - 'js/institution-client.js'
+      - 'js/owner-storage.mjs'
+      - 'sw.js'
+      - 'tools/test_canonical_owner_authority.mjs'
+      - 'tools/test_owner_*.mjs'
+      - 'tools/test_mastery_sync.mjs'
+      - 'tools/test_platform_resilience.mjs'
+      - 'tools/test_institution_identity_mount.mjs'
+      - 'tools/fixtures/institution-client.pre-c04.js'
+      - 'tools/fixtures/c04-prior-worker.js'
+      - 'tools/fixtures/c02-prior-worker.js'
+      - 'tools/test_public_question_worker.mjs'
+      - 'tools/test_mastery_worker.mjs'
+      - 'tools/verify_owner_storage_ci.py'
+      - 'tools/test_owner_storage_ci.py'
+      - 'question-bank/js/learning-system.js'
+      - 'js/institution-mastery-evidence.js'
+      - 'question-bank/official/tools/package*.json'
+      - 'question-bank/official/data/student/**'
+      - 'question-bank/official/media/**'
+      - '.github/workflows/owner-storage.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'js/institution-client.js'
+      - 'js/owner-storage.mjs'
+      - 'sw.js'
+      - 'tools/test_canonical_owner_authority.mjs'
+      - 'tools/test_owner_*.mjs'
+      - 'tools/test_mastery_sync.mjs'
+      - 'tools/test_platform_resilience.mjs'
+      - 'tools/test_institution_identity_mount.mjs'
+      - 'tools/fixtures/institution-client.pre-c04.js'
+      - 'tools/fixtures/c04-prior-worker.js'
+      - 'tools/fixtures/c02-prior-worker.js'
+      - 'tools/test_public_question_worker.mjs'
+      - 'tools/test_mastery_worker.mjs'
+      - 'tools/verify_owner_storage_ci.py'
+      - 'tools/test_owner_storage_ci.py'
+      - 'question-bank/js/learning-system.js'
+      - 'js/institution-mastery-evidence.js'
+      - 'question-bank/official/tools/package*.json'
+      - 'question-bank/official/data/student/**'
+      - 'question-bank/official/media/**'
+      - '.github/workflows/owner-storage.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: owner-storage-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  ownership:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install pinned browser dependencies
+        run: |
+          npm ci --prefix question-bank/official/tools
+          npx --prefix question-bank/official/tools playwright install --with-deps chromium-headless-shell
+      - name: Check canonical authority, storage, cache and existing client contracts
+        id: contracts
+        shell: bash
+        run: |
+          mkdir -p artifacts/owner-storage
+          python tools/test_owner_storage_ci.py
+          node tools/test_owner_storage.mjs --report artifacts/owner-storage/core.json
+          node tools/test_canonical_owner_authority.mjs --report artifacts/owner-storage/client.json
+          node tools/test_owner_worker.mjs --report artifacts/owner-storage/worker.json
+          node tools/test_mastery_sync.mjs | tee artifacts/owner-storage/sync.log
+          node tools/test_platform_resilience.mjs | tee artifacts/owner-storage/resilience.log
+          node tools/test_institution_identity_mount.mjs | tee artifacts/owner-storage/identity.log
+          node tools/test_public_question_worker.mjs | tee artifacts/owner-storage/c01-worker.log
+          node tools/test_mastery_worker.mjs | tee artifacts/owner-storage/c02-worker.log
+          cp artifacts/public-question-boundary/worker.json artifacts/owner-storage/c01-worker.json
+          cp artifacts/mastery-truthfulness/worker.json artifacts/owner-storage/c02-worker.json
+      - name: Exercise actual Chromium tabs and native browser storage
+        id: browser
+        run: node tools/test_owner_storage_browser.mjs --report artifacts/owner-storage/browser.json
+      - name: Bind reports to the actual tested source
+        if: always()
+        env:
+          CONTRACT_OUTCOME: ${{ steps.contracts.outcome }}
+          BROWSER_OUTCOME: ${{ steps.browser.outcome }}
+        run: python tools/verify_owner_storage_ci.py --reports artifacts/owner-storage
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: owner-storage-contracts
+          path: artifacts/owner-storage
+          retention-days: 14
+          if-no-files-found: error

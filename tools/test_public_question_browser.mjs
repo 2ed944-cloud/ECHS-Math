@@ -24,7 +24,7 @@ await fs.mkdir(output,{recursive:true});
 const results=[], errors=[], requests=[], networkEvents=[];
 let currentCase='startup';
 let origin, browser;
-const account={id:'00000000-0000-4000-8000-000000000011',organization_id:'00000000-0000-4000-8000-000000000012',role:'teacher',display_name:'Synthetic Review Teacher',username:'synthetic-review'};
+const account={id:'00000000-0000-4000-8000-000000000011',organization_id:'00000000-0000-4000-8000-000000000012',role:'teacher',status:'active',expires_at:new Date(Date.now()+3600000).toISOString(),display_name:'Synthetic Review Teacher',username:'synthetic-review'};
 const types={'.html':'text/html','.js':'text/javascript','.mjs':'text/javascript','.css':'text/css','.json':'application/json','.svg':'image/svg+xml','.png':'image/png','.woff2':'font/woff2'};
 const server=http.createServer(async(req,res)=>{
   try{
@@ -63,7 +63,7 @@ async function context(signedIn=true,viewport={width:1365,height:900}){
   if(signedIn)await ctx.addInitScript(a=>{
     sessionStorage.setItem('echs_institution_token_v1','synthetic-token-not-production');
     sessionStorage.setItem('echs_institution_account_v1',JSON.stringify(a));
-    sessionStorage.setItem('echs_institution_expires_v1',new Date(Date.now()+3600000).toISOString());
+    sessionStorage.setItem('echs_institution_expires_v1',a.expires_at);
   },account);
   const page=await ctx.newPage();page.setDefaultTimeout(15000);
   page.on('pageerror',e=>errors.push(String(e.message)));

@@ -1,4 +1,4 @@
-const VERSION = "echs-platform-school-control-v3-hybrid2-mastery1-recovery1-calculus-only-practice-routing-redesign-ib-lesson-query-premium-practice-20260802-fullwidth-filter-drawer2-landing-layout1-unit-collapse1-tangent-logo-collapse2-bank-export1-dynamic-calculus-banks1-multi-route-timetable2-lesson-portal-calm2-multicourse-banks1-ib-ai-1-1-local-ti84-v68-design-v51-ib-ai-u6-61-v1-lesson-visibility-progression-20260830-v1-platform-resilience-20260904-ap-calculus-11-interactive-v1-ap-calculus-12-interactive-v1-ap-calculus-13-14-interactive-v1-ap-calculus-16-interactive-v1-ap-calculus-15-interactive-v1-ap-calculus-15-ap-scope-v2-ib-ai-11-16-merged-v7-ap-precalculus-11-ap-scope-v3-ap-precalculus-12-ap-scope-v3-classroom-v4-ready-v42-ib-ai-14-17-finance-v8-ap-precalculus11-heading-focus-v1-ap-precalculus11-context-practice-v4-ap-calculus-midunit-v1-midunit-batch2-midunit-batch3-ib-ai-12-sl-alignment-v7-ap-calculus-17-116-ab1-owned-sync-v1-lesson-content-009-v2-lesson-media-010-v1-lesson-recovery-011-v1-lesson-history-012-v1-lesson-presentation-013-v1-ib-reference-import-014-v1-public-question-boundary-c01-v1-mastery-truthfulness-c02-v1-owner-authority-c04-v1";
+const VERSION = "echs-platform-school-control-v3-hybrid2-mastery1-recovery1-calculus-only-practice-routing-redesign-ib-lesson-query-premium-practice-20260802-fullwidth-filter-drawer2-landing-layout1-unit-collapse1-tangent-logo-collapse2-bank-export1-dynamic-calculus-banks1-multi-route-timetable2-lesson-portal-calm2-multicourse-banks1-ib-ai-1-1-local-ti84-v68-design-v51-ib-ai-u6-61-v1-lesson-visibility-progression-20260830-v1-platform-resilience-20260904-ap-calculus-11-interactive-v1-ap-calculus-12-interactive-v1-ap-calculus-13-14-interactive-v1-ap-calculus-16-interactive-v1-ap-calculus-15-interactive-v1-ap-calculus-15-ap-scope-v2-ib-ai-11-16-merged-v7-ap-precalculus-11-ap-scope-v3-ap-precalculus-12-ap-scope-v3-classroom-v4-ready-v42-ib-ai-14-17-finance-v8-ap-precalculus11-heading-focus-v1-ap-precalculus11-context-practice-v4-ap-calculus-midunit-v1-midunit-batch2-midunit-batch3-ib-ai-12-sl-alignment-v7-ap-calculus-17-116-ab1-owned-sync-v1-lesson-content-009-v2-lesson-media-010-v1-lesson-recovery-011-v1-lesson-history-012-v1-lesson-presentation-013-v1-ib-reference-import-014-v1-public-question-boundary-c01-v1-mastery-truthfulness-c02-v1";
 // Practice assignment studio assets are versioned with the authenticated shell.
 const STATIC_CACHE = `${VERSION}-static`;
 const RUNTIME_CACHE = `${VERSION}-runtime`;
@@ -36,20 +36,6 @@ async function purgeHistoricalMasteryAssets(){
     if(name===STATIC_CACHE||name===RUNTIME_CACHE)continue;
     const cache=await caches.open(name);
     for(const request of await cache.keys())if(masteryReportAsset(new URL(request.url))||masteryReportDocument(new URL(request.url)))await cache.delete(request);
-  }
-}
-
-// Account lifecycle modules use only this release's public asset caches.
-const OWNER_AUTHORITY_ASSETS = new Set(["js/institution-client.js", "js/owner-storage.mjs"]);
-function ownerAuthorityAsset(url){
-  return url.origin===self.location.origin && url.pathname.startsWith(PUBLIC_SITE_PATH)
-    && OWNER_AUTHORITY_ASSETS.has(url.pathname.slice(PUBLIC_SITE_PATH.length));
-}
-async function purgeHistoricalOwnerAssets(){
-  for(const name of await caches.keys()){
-    if(name===STATIC_CACHE||name===RUNTIME_CACHE)continue;
-    const cache=await caches.open(name);
-    for(const request of await cache.keys())if(ownerAuthorityAsset(new URL(request.url)))await cache.delete(request);
   }
 }
 
@@ -235,7 +221,7 @@ self.addEventListener("install",event=>{event.waitUntil((async()=>{
   await precacheOptionalShell(cache,SHELL.filter(url=>!REQUIRED_SHELL.includes(url)).map(shellRequest));
   await self.skipWaiting();
 })())});
-self.addEventListener("activate",event=>{event.waitUntil(purgeHistoricalMasteryAssets().then(()=>purgeHistoricalOwnerAssets()).then(()=>purgeDeniedPublicQuestionCache()).then(()=>caches.keys()).then(keys=>Promise.all(keys.filter(key=>key.startsWith("echs-")&&![STATIC_CACHE,RUNTIME_CACHE].includes(key)).map(key=>caches.delete(key)))).then(()=>self.clients.claim()))});
+self.addEventListener("activate",event=>{event.waitUntil(purgeHistoricalMasteryAssets().then(()=>purgeDeniedPublicQuestionCache()).then(()=>caches.keys()).then(keys=>Promise.all(keys.filter(key=>key.startsWith("echs-")&&![STATIC_CACHE,RUNTIME_CACHE].includes(key)).map(key=>caches.delete(key)))).then(()=>self.clients.claim()))});
 self.addEventListener("fetch",event=>{
   const request=event.request;if(request.method!=="GET")return;
   const url=new URL(request.url),sameOrigin=url.origin===self.location.origin;
@@ -243,7 +229,6 @@ self.addEventListener("fetch",event=>{
   if(sensitive){event.respondWith(fetch(request,{cache:"no-store"}));return}
   if(masteryReportDocument(url)){event.respondWith(freshMasteryEntryDocument(request));return}
   if(masteryReportAsset(url)){event.respondWith(freshMasteryReportAsset(request));return}
-  if(ownerAuthorityAsset(url)){event.respondWith(freshMasteryReportAsset(request));return}
   const official=publicQuestionPath(url);
   if(official&&(official.noncanonical||changedPublicProjectionPath(url)||/^(?:question-bank\/official\/(?:media|data|admin\/data)\/|\.staging(?:\/|$)|packages(?:\/|$)|\.deploy(?:\/|$)|\.echs-backups(?:\/|$)|artifacts(?:\/|$))/.test(official.path))){
     // Removed raw files and unapproved media must never use stale cache fallback.

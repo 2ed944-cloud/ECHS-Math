@@ -13,9 +13,9 @@ function clientHarness(fetcher){
 }
 const config={enabled:true,api_base:'https://example.test/functions/v1'};
 const response=(body,status=200)=>new Response(JSON.stringify(body),{status,headers:{'content-type':'application/json'}});
-const a={id:'student-a',role:'student',display_name:'Student A'};
-const b={id:'student-b',role:'student',display_name:'Student B'};
-const session=(account,token)=>({account,token,expires_at:new Date(Date.now()+3600000).toISOString()});
+const a={id:'11111111-1111-4111-8111-111111111111',organization_id:'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa',role:'student',display_name:'Student A'};
+const b={id:'22222222-2222-4222-8222-222222222222',organization_id:'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa',role:'student',display_name:'Student B'};
+const session=(account,token)=>({account,token,expires_at:'2099-01-01T00:00:00Z'});
 let scenario='success',requests=[],releaseLate;
 const h=clientHarness(async(url,options={})=>{
   if(String(url).endsWith('institution.json'))return response(config);
@@ -24,7 +24,7 @@ const h=clientHarness(async(url,options={})=>{
   if(scenario==='late401')return new Promise(resolve=>{releaseLate=()=>resolve(response({ok:false,error:{message:'expired'}},401))});
   if(scenario==='timeout')return new Promise((resolve,reject)=>options.signal.addEventListener('abort',()=>reject(new DOMException('Aborted','AbortError'))));
   if(scenario==='multi')return response({ok:false,results:[{ok:true},{ok:false}]},207);
-  if(String(url).endsWith('/me'))return response({ok:true,account:a});
+  if(String(url).endsWith('/me'))return response({ok:true,account:{...a,expires_at:'2099-01-01T00:00:00Z'}});
   return response({ok:true});
 });
 h.client.setSession(session(a,'token-a'),true);
@@ -36,13 +36,13 @@ scenario='multi';assert.equal((await h.client.api('institution-api','/batch')).r
 scenario='success';h.client.setSession(session(a,'token-a'),true);
 h.window.ECHSLearning={exportStudentReport:()=>({summary:{}}),attempts:()=>[{id:'event-1',questionId:'q1',correct:true}],sessions:()=>[{id:'session-1',answered:1}],masteryRows:()=>[],reviewMap:()=>({q1:{questionId:'q1',unresolved:false}})};
 await h.client.syncLearning();const sent=JSON.parse(requests.at(-1).options.body);assert.equal(sent.attempts[0].id,'event-1');assert.equal(sent.sessions[0].id,'session-1');assert.equal(sent.review[0].questionId,'q1');assert.equal(requests.at(-1).options.cache,'no-store');
-h.context.navigator.onLine=false;await h.client.syncLearning();const pending=JSON.parse(h.localStorage.getItem('echs_institution_pending_sync_v1:student-a'));assert.equal(pending.accountId,a.id);
+h.context.navigator.onLine=false;await h.client.syncLearning();const pending=JSON.parse(h.localStorage.getItem('echs_institution_pending_sync_v1:11111111-1111-4111-8111-111111111111'));assert.equal(pending.accountId,a.id);
 h.context.navigator.onLine=true;h.client.setSession(session(b,'token-b'),true);
 // Force a verified B account without changing the pending A upload.
-const q=clientHarness(async(url,options)=>String(url).endsWith('institution.json')?response(config):String(url).endsWith('/me')?response({ok:true,account:b}):(requests.push({url,options}),response({ok:true})));
+const q=clientHarness(async(url,options)=>String(url).endsWith('institution.json')?response(config):String(url).endsWith('/me')?response({ok:true,account:{...b,expires_at:'2099-01-01T00:00:00Z'}}):(requests.push({url,options}),response({ok:true})));
 q.client.setSession(session(b,'token-b'),true);q.localStorage.setItem('echs_institution_pending_sync_v1',JSON.stringify(pending));const before=requests.length;await q.client.flushPending();assert.equal(requests.length,before,'A queued upload cannot be sent as another student');assert.ok(q.localStorage.getItem('echs_institution_pending_sync_v1'));
 q.localStorage.setItem('echs_institution_expires_v1','invalid');assert.equal(await q.client.me(true),null,'Invalid expiry cannot create a durable session');
-const offlineReload=clientHarness(async()=>{throw new Error('Offline sync must not request the server')});offlineReload.client.setSession(session(a,'token-a'),true);offlineReload.context.navigator.onLine=false;await offlineReload.client.syncLearning();assert.ok(offlineReload.localStorage.getItem('echs_institution_pending_sync_v1:student-a'),'An offline reload can queue work without a verification request');
+const offlineReload=clientHarness(async()=>{throw new Error('Offline sync must not request the server')});offlineReload.client.setSession(session(a,'token-a'),true);offlineReload.context.navigator.onLine=false;await offlineReload.client.syncLearning();assert.ok(offlineReload.localStorage.getItem('echs_institution_pending_sync_v1:11111111-1111-4111-8111-111111111111'),'An offline reload can queue work without a verification request');
 let configCalls=0;const retry=clientHarness(async()=>{if(++configCalls===1)throw new TypeError('offline');return response(config)});assert.ok((await retry.client.config()).configuration_error);assert.equal((await retry.client.config()).enabled,true,'Configuration loading can recover without clearing credentials');
 
 // Service worker privacy, cache failures, and optional install assets.

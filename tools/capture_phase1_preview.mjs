@@ -31,7 +31,7 @@ const devices=[
   {key:'mobile',viewport:{width:390,height:844},isMobile:true}
 ];
 const previewInstitutionConfig={enabled:false,api_base:'https://YOUR_PROJECT_REF.supabase.co/functions/v1',setup_api_base:'https://wkqadnfloiohqfnesmyq.supabase.co/functions/v1',setup_enabled:true,backend_deployed:true,setup_path:'setup.html',institution_name:'Education City High School',platform_name:'ECHS Mathematics',site_base:'https://2ed944-cloud.github.io/ECHS-Math/',support_email:'',session_storage:'local'};
-const teacherAccount={id:'t1',display_name:'Mohammad Abu Ghuwaleh',username:'m.abughuwaleh',role:'teacher',organization_name:'ECHS Mathematics',can_manage_accounts:true};
+const teacherAccount={id:'00000000-0000-4000-8000-000000000005',organization_id:'00000000-0000-4000-8000-000000000002',status:'active',expires_at:new Date(Date.now()+3600000).toISOString(),display_name:'Mohammad Abu Ghuwaleh',username:'m.abughuwaleh',role:'teacher',organization_name:'ECHS Mathematics',can_manage_accounts:true};
 const evidenceFixture={ok:true,authoritative:true,class:{id:'c1',name:'AP Calculus · Period 1',course_key:'AP Calculus'},coverage:{students_with_evidence:3,students_total:4,percent:75},students:[{id:'s1',display_name:'Amina Hassan'},{id:'s2',display_name:'Yousef Ali'},{id:'s3',display_name:'Sara Omar'},{id:'s4',display_name:'Khalid Noor'}],skills:[{skill_key:'APCALC.U1.LIMIT.GRAPH',title:'Estimate limits from graphs',lesson_ids:['1.3'],average_score:74},{skill_key:'APCALC.U1.LIMIT.TABLE',title:'Estimate limits from numerical tables',lesson_ids:['1.4'],average_score:67},{skill_key:'APCALC.U1.CONTINUITY.POINT',title:'Justify continuity at a point',lesson_ids:['1.11'],average_score:58}],matrix:[{account_id:'s1',skill_key:'APCALC.U1.LIMIT.GRAPH',score:91,confidence:.84,attempts:12,independent_evidence:9,retention_evidence:3,transfer_evidence:2},{account_id:'s1',skill_key:'APCALC.U1.LIMIT.TABLE',score:78,confidence:.72,attempts:9,independent_evidence:7,retention_evidence:2,transfer_evidence:1},{account_id:'s2',skill_key:'APCALC.U1.LIMIT.GRAPH',score:72,confidence:.66,attempts:8,independent_evidence:6,retention_evidence:1,transfer_evidence:1},{account_id:'s2',skill_key:'APCALC.U1.CONTINUITY.POINT',score:63,confidence:.58,attempts:7,independent_evidence:5,retention_evidence:1,transfer_evidence:0},{account_id:'s3',skill_key:'APCALC.U1.LIMIT.TABLE',score:56,confidence:.52,attempts:6,independent_evidence:4,retention_evidence:0,transfer_evidence:0}]};
 // Synthetic API responses use a real-shaped class ID; production correctly
 // refuses to request evidence for preview labels such as "c1".
@@ -57,7 +57,7 @@ for(const device of devices){
     page.on('pageerror',error=>pageErrors.push(error.message));
     page.on('requestfailed',request=>failedRequests.push(`${request.method()} ${request.url()} :: ${request.failure()?.errorText||'failed'}`));
     if(route.evidenceHeatmap){
-      await page.addInitScript(account=>{localStorage.setItem('echs_institution_token_v1','synthetic-visual-teacher');localStorage.setItem('echs_institution_account_v1',JSON.stringify(account));localStorage.setItem('echs_institution_expires_v1',new Date(Date.now()+3600000).toISOString());},evidenceTeacher);
+      await page.addInitScript(account=>{localStorage.setItem('echs_institution_token_v1','synthetic-visual-teacher');localStorage.setItem('echs_institution_account_v1',JSON.stringify(account));localStorage.setItem('echs_institution_expires_v1',account.expires_at);},evidenceTeacher);
       await page.route('**/config/institution.json*',request=>request.fulfill({status:200,contentType:'application/json',body:JSON.stringify({...previewInstitutionConfig,enabled:true,api_base:`${baseURL}/functions/v1`})}));
       await page.route('**/functions/v1/**',request=>{
         const apiPath=new URL(request.request().url()).pathname.split('/functions/v1/')[1];
@@ -75,7 +75,7 @@ for(const device of devices){
       });
     }
     if(route.trustCenter){
-      await page.addInitScript(account=>{localStorage.setItem('echs_institution_token_v1','visual-qa-token');localStorage.setItem('echs_institution_account_v1',JSON.stringify(account));localStorage.setItem('echs_institution_expires_v1',new Date(Date.now()+3600000).toISOString())},teacherAccount);
+      await page.addInitScript(account=>{localStorage.setItem('echs_institution_token_v1','visual-qa-token');localStorage.setItem('echs_institution_account_v1',JSON.stringify(account));localStorage.setItem('echs_institution_expires_v1',account.expires_at)},teacherAccount);
       const configured={...previewInstitutionConfig,enabled:true,api_base:`${baseURL}/functions/v1`};
       await page.route('**/config/institution.json*',request=>request.fulfill({status:200,contentType:'application/json',body:JSON.stringify(configured)}));
       await page.route('**/functions/v1/account-api/me*',request=>request.fulfill({status:200,contentType:'application/json',body:JSON.stringify({ok:true,account:teacherAccount})}));
