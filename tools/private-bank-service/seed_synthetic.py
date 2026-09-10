@@ -15,6 +15,7 @@ import uuid
 from service_contract import HERE, need, digest, local_file, run_identifier
 
 FIXTURE_HASH='6e8b91bbe5cfa869cdfb9a426b967f8c1ee25ee64a5c196863ec574037bbce7a'
+stage='entry'
 
 def load_fixture(repo):
     data=local_file(repo,'tools/private_snapshot_fixture.py')
@@ -24,18 +25,24 @@ def load_fixture(repo):
     return module
 
 def main():
+    global stage
     parser=argparse.ArgumentParser();parser.add_argument('--run-dir',type=Path,required=True);parser.add_argument('--repo',type=Path,required=True)
     args=parser.parse_args();run_dir=args.run_dir.absolute();run_identifier(run_dir.name)
     need(run_dir.parent==HERE/'runs' and not run_dir.is_symlink() and not run_dir.is_junction(),'run-directory')
+    stage='configuration'
     config=json.loads((run_dir/'control.json').read_text());secret=json.loads((run_dir/'secrets'/'credentials.json').read_text())
     need(config['project']=='echs-c08-service-'+run_dir.name,'database-fixture')
+    stage='network-validation'
     from run_actual_service import validate_network_receipt
     endpoint=validate_network_receipt(config['network'],run_dir.name)['db']
-    fixture_module=load_fixture(args.repo)
+    stage='fixture-source';fixture_module=load_fixture(args.repo)
+    stage='driver-import'
     import psycopg
     from psycopg.types.json import Jsonb
+    stage='database-connect'
     db=psycopg.connect(host=endpoint['ipv4'],port=5432,user='postgres',password=secret['POSTGRES_PASSWORD'],
         dbname='postgres',sslmode='disable',autocommit=True,connect_timeout=5,application_name='echs-c08-service-seed')
+    stage='database-identity'
     need(db.info.hostaddr==endpoint['ipv4'] and db.info.port==5432 and db.info.dbname=='postgres','database-fixture')
     need(db.execute("select shobj_description(oid,'pg_database') from pg_database where datname=current_database()").fetchone()[0]==config['project'],'database-owner-marker')
     db.execute("set statement_timeout='8s'")
@@ -90,7 +97,7 @@ def main():
         return {'ids':ids,'tokens':tokens,'snapshot_id':sid,'files':f['files'],'recipes':recipes}
     def emit(value):
         print(json.dumps(value,separators=(',',':')),flush=True)
-    emit({'ready':True,'actual_managed_postgres':True,'storage_metadata_dml':False})
+    stage='controls-ready';emit({'ready':True,'actual_managed_postgres':True,'storage_metadata_dml':False})
     try:
         for line in sys.stdin:
             request_id=None
@@ -133,5 +140,5 @@ def main():
 if __name__=='__main__':
     try:main()
     except Exception as error:
-        print(json.dumps({'ready':False,'error_type':type(error).__name__,'code':getattr(error,'sqlstate',None)}),flush=True)
+        print(json.dumps({'ready':False,'phase':stage,'error_type':type(error).__name__,'code':getattr(error,'sqlstate',None)}),flush=True)
         raise SystemExit(1)

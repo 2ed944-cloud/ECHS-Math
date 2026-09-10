@@ -11,12 +11,12 @@ import os
 import re
 import subprocess
 from service_contract import HERE, ContractError, closed, digest, exact, local_file, need, strict_json, verify_sources
-from run_actual_service import SOURCE_FILES, verify_manifest
+from run_actual_service import SOURCE_FILES, verify_manifest, validate_child_failure
 from seed_synthetic import load_fixture
 from collect_service import collect
 
-BASE = '53c55fe51ca3fff5a70028e89a67098d32d64632'
-BASE_TREE = '1856ae2585ac08db3c0086d4fa7d5bd0d07ed071'
+BASE = '20e470daa986cae9c4e260e0c90eb3f700131a60'
+BASE_TREE = '50f16f647881f3e23edc6a51eebf0db447635636'
 PREFIX = 'tools/private-bank-service/'
 WORKFLOW = '.github/workflows/private-bank-service-integration.yml'
 WRAPPER_FILES = ('ci.py', 'test_ci.py', 'ci-expected-groups.json', 'UPSTREAM_LICENSE.txt', 'UPSTREAM_NOTICE.md')
@@ -146,6 +146,13 @@ def safe_failure(directory):
                 selected[key] = item
         if type(failure.get('timed_out')) is bool:
             selected['timed_out'] = failure['timed_out']
+        if 'child' in failure:
+            try:
+                selected['child'] = validate_child_failure(failure['child'])
+            except ContractError:
+                selected['child_diagnostic'] = 'INVALID_OR_UNAVAILABLE'
+        elif failure.get('child_diagnostic') == 'INVALID_OR_UNAVAILABLE':
+            selected['child_diagnostic'] = 'INVALID_OR_UNAVAILABLE'
         result['failure'] = selected
     test_path = directory/'service-test-results.json'
     if test_path.is_file() and not test_path.is_symlink() and not test_path.is_junction():

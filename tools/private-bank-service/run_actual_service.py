@@ -38,6 +38,30 @@ def command(args,stage,env,*,data=None,timeout=60):
     if r.returncode:raise RunnerError(stage,exit_code=r.returncode)
     return r.stdout
 
+CHILD_PHASES={'entry','runtime-check','control-config','private-config','tls-trust','resolver-install','gateway-listen','seed-start','seed-ready','runtime-handler','case-source','schema-readiness','service-cases','report-write','cleanup'}
+CHILD_CODES={'ENOTFOUND','EAI_AGAIN','EADDRINUSE','EACCES','EPERM','ECONNREFUSED','ECONNRESET','ETIMEDOUT','EPIPE','ENOENT','ERR_TLS_CERT_ALTNAME_INVALID','DEPTH_ZERO_SELF_SIGNED_CERT','UNABLE_TO_VERIFY_LEAF_SIGNATURE','CERT_HAS_EXPIRED','ERR_DLOPEN_FAILED','MODULE_NOT_FOUND','ERR_MODULE_NOT_FOUND','ERR_INVALID_ARG_TYPE','ERR_ASSERTION','CHILD_EXIT'}
+CHILD_TYPES={'Error','TypeError','RangeError','SyntaxError','AssertionError','AggregateError','SystemError'}
+SEED_PHASES={'entry','configuration','network-validation','fixture-source','driver-import','database-connect','database-identity','controls-ready'}
+SEED_TYPES={'Exception','ModuleNotFoundError','ImportError','OperationalError','ProgrammingError','IntegrityError','DataError','InterfaceError','InternalError','NotSupportedError','ContractError','ValueError','KeyError','TypeError','FileNotFoundError','PermissionError','JSONDecodeError'}
+def validate_child_failure(value):
+    need(type(value) is dict and set(value)=={'contract','status','phase','error_type','code','sqlstate','seed_phase','seed_error_type','seed_exit_code'},'child-diagnostic-shape')
+    need(value['contract']=='echs.c08.service-child-failure.v1' and value['status']=='FAIL' and type(value['phase']) is str and value['phase'] in CHILD_PHASES
+         and type(value['error_type']) is str and value['error_type'] in CHILD_TYPES,'child-diagnostic-type')
+    need(value['code'] is None or type(value['code']) is str and value['code'] in CHILD_CODES,'child-diagnostic-code')
+    need(value['sqlstate'] is None or type(value['sqlstate']) is str and re.fullmatch('[0-9A-Z]{5}',value['sqlstate']),'child-diagnostic-sqlstate')
+    need(value['seed_phase'] is None or type(value['seed_phase']) is str and value['seed_phase'] in SEED_PHASES,'child-diagnostic-seed')
+    need(value['seed_error_type'] is None or type(value['seed_error_type']) is str and value['seed_error_type'] in SEED_TYPES,'child-diagnostic-seed-type')
+    need(value['seed_exit_code'] is None or type(value['seed_exit_code']) is int and 0<=value['seed_exit_code']<=255,'child-diagnostic-exit')
+    return value
+
+def child_failure(run_dir):
+    target=run_dir/'service-child-failure.json'
+    if not target.exists():return None
+    need(not target.is_symlink() and not target.is_junction(),'linked-child-diagnostic')
+    with target.open('rb') as stream:raw=stream.read(1025)
+    need(len(raw)<=1024,'child-diagnostic-size')
+    return validate_child_failure(strict_json(raw))
+
 def resource_candidates(kind,custom,compose_project,named):
     need(kind in ('container','network','volume'),'resource-kind')
     for values in (custom,compose_project,named):
@@ -251,10 +275,16 @@ def main():
         # The fixed runtime origin has no alternate port. Privilege is limited to
         # this ephemeral job's test child binding loopback443; no hosts/trust-store edits.
         checked([paths['sudo'],'-n',paths['timeout'],'--signal=TERM','--kill-after=5s','900s',paths['node'],str(HERE/'test_service.mjs'),str(run_dir)],'actual-service-cases',timeout=915)
+        need(child_failure(run_dir) is None,'unexpected-child-failure')
         metadata['status']='PASS'
     except Exception as error:
         failure={'stage':getattr(error,'stage',stage),'type':type(error).__name__,'code':getattr(error,'code',None),
             'exit_code':getattr(error,'exit_code',None),'reason':getattr(error,'reason',None)}
+        if stage=='actual-service-cases':
+            try:
+                child=child_failure(run_dir)
+                if child is not None:failure['child']=child
+            except Exception:failure['child_diagnostic']='INVALID_OR_UNAVAILABLE'
     finally:
         if started:
             try:

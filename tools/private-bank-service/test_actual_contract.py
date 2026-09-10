@@ -16,7 +16,7 @@ import sys
 import uuid
 from fixture_config import compose_fixture,mint_credentials
 from service_contract import HERE,IMAGE_TAGS,UPSTREAM_COMMIT,RUNTIME_HASHES,PIN_SHA256,ContractError,digest,strict_json,write_report_exclusive
-from run_actual_service import SOURCE_FILES,RunnerError,command,execution_guard,image_result,verify_manifest,resource_candidates,assert_resource_owner,inspect_owned_network,validate_network_receipt,PORTS
+from run_actual_service import SOURCE_FILES,RunnerError,command,execution_guard,image_result,verify_manifest,resource_candidates,assert_resource_owner,inspect_owned_network,validate_network_receipt,validate_child_failure,child_failure,PORTS
 from collect_service import accept,collect,RAW_FILES
 
 def rejects(fn):
@@ -190,6 +190,19 @@ def suite():
             try:command([sys.executable,'-c','import time; time.sleep(2)'],'bounded-stage',{'PATH':os.environ.get('PATH','')},timeout=0.05)
             except RunnerError as error:assert error.exit_code is None and error.reason=='timeout' and error.stage=='bounded-stage'
             else:raise AssertionError('Expected bounded child')
+            node=shutil.which('node');assert node
+            script="import {safeChildDiagnostic} from "+json.dumps((HERE/'test_service.mjs').as_uri())+"; const e=Object.assign(new Error('synthetic-sensitive-sentinel'),{code:'ENOTFOUND',safeCode:'42501',seedPhase:'database-connect',seedType:'OperationalError',seedExitCode:1,body:'synthetic-sensitive-sentinel'}); console.log(JSON.stringify([safeChildDiagnostic('gateway-listen',e),safeChildDiagnostic('synthetic-sensitive-sentinel',{code:'synthetic-sensitive-sentinel',message:'synthetic-sensitive-sentinel',constructor:{name:'synthetic-sensitive-sentinel'}})]));"
+            node_env={'PATH':os.environ.get('PATH','')}
+            if sys.platform=='win32':node_env['SystemRoot']=os.environ['SystemRoot']
+            result=command([node,'--input-type=module','-e',script],'closed-child-diagnostic',node_env,timeout=10)
+            assert b'synthetic-sensitive-sentinel' not in result
+            observed=json.loads(result);assert len(observed)==2
+            first=validate_child_failure(observed[0]);assert first['phase']=='gateway-listen' and first['code']=='ENOTFOUND' and first['sqlstate']=='42501' and first['seed_error_type']=='OperationalError'
+            second=validate_child_failure(observed[1]);assert second['phase']=='entry' and second['code'] is None and second['error_type']=='Error'
+            target=run_dir/'service-child-failure.json';target.write_bytes(encoded(first));assert child_failure(run_dir)==first
+            for key,value in [('phase','unreviewed'),('error_type','private-body'),('code','arbitrary-value'),('seed_error_type','private-body'),('seed_exit_code',True),('body','synthetic-sensitive-sentinel')]:
+                wrong=copy.deepcopy(first);wrong[key]=value;rejects(lambda:validate_child_failure(wrong))
+            target.write_bytes(b' '*1025);rejects(lambda:child_failure(run_dir));target.unlink()
         group('stage and timeout diagnostics remain useful without raw child output',safe_deadline)
 
         def positive_schema():

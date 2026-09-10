@@ -129,6 +129,29 @@ def suite():
             value['failure']['code'] = 'unexpected private payload with spaces'
             (temporary/'service-run-report.json').write_bytes(encode(value))
             assert 'code' not in safe_failure(temporary)['failure']
+            child = {'contract':'echs.c08.service-child-failure.v1','status':'FAIL',
+                'phase':'seed-ready','error_type':'Error','code':'CHILD_EXIT',
+                'sqlstate':'42501','seed_phase':'database-connect',
+                'seed_error_type':'OperationalError','seed_exit_code':1}
+            value['failure']['child'] = child
+            (temporary/'service-run-report.json').write_bytes(encode(value))
+            assert safe_failure(temporary)['failure']['child'] == child
+            for key, replacement in [('phase','synthetic-sensitive-sentinel'),
+                    ('code','synthetic-sensitive-sentinel'),('seed_exit_code',True),
+                    ('seed_exit_code',256),('sqlstate','private body'),
+                    ('seed_error_type','synthetic-sensitive-sentinel')]:
+                malformed = child.copy();malformed[key] = replacement
+                value['failure']['child'] = malformed
+                (temporary/'service-run-report.json').write_bytes(encode(value))
+                exported = safe_failure(temporary)['failure']
+                assert 'child' not in exported and exported['child_diagnostic'] == 'INVALID_OR_UNAVAILABLE'
+                assert 'synthetic-sensitive-sentinel' not in json.dumps(exported)
+            for malformed in [None, [], {**child,'tokens':['synthetic-sensitive-sentinel']},
+                    {k:v for k,v in child.items() if k != 'code'}]:
+                value['failure']['child'] = malformed
+                (temporary/'service-run-report.json').write_bytes(encode(value))
+                exported = safe_failure(temporary)['failure']
+                assert 'child' not in exported and exported['child_diagnostic'] == 'INVALID_OR_UNAVAILABLE'
     group(7, failure_export)
     return rows
 

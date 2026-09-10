@@ -18,6 +18,23 @@ export function privateUpstreamHost(value){
  return value==='127.0.0.1'||v[0]===10||v[0]===172&&v[1]>=16&&v[1]<=31||v[0]===192&&v[1]===168;
 }
 
+// Node may resolve literal listen hosts as well as outbound service addresses.
+// Never delegate to ambient DNS or permit an arbitrary private destination.
+export function fixtureLookup({restHost='127.0.0.1',storageHost='127.0.0.1'}={}){
+ need(privateUpstreamHost(restHost)&&privateUpstreamHost(storageHost));
+ const allowed=new Map([[HOST,'127.0.0.1'],['127.0.0.1','127.0.0.1'],[restHost,restHost],[storageHost,storageHost]]);
+ return (hostname,options,callback)=>{
+  if(typeof options==='function'){callback=options;options={};}
+  if(typeof options==='number')options={family:options};
+  need(typeof callback==='function'&&options!==null&&typeof options==='object');
+  const family=options.family??0,address=allowed.get(hostname);
+  queueMicrotask(()=>{
+   if(!address||![0,4].includes(family)){callback(Object.assign(new Error('Fixture DNS refused'),{code:'ENOTFOUND'}));return;}
+   if(options.all===true)callback(null,[{address,family:4}]);else callback(null,address,4);
+  });
+ };
+}
+
 export function targetFor(method,path){
  if(typeof method!=='string'||typeof path!=='string'||path.includes('?')||path.includes('#')||path.includes('%')||path.includes('\\'))return null;
  if(method==='POST'&&RPC.test(path))return {service:'rest',path:path.slice('/rest/v1'.length),limit:131072,bodyLimit:4096};

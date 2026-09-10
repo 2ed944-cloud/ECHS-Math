@@ -3,16 +3,18 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import http from 'node:http';
 import https from 'node:https';
+import dns from 'node:dns';
 import crypto from 'node:crypto';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
-import {HOST,openGateway,targetFor,privateUpstreamHost} from './tls-gateway.mjs';
+import {HOST,openGateway,targetFor,privateUpstreamHost,fixtureLookup} from './tls-gateway.mjs';
 const here=path.dirname(fileURLToPath(import.meta.url));
 const [secretDir,reportPath]=process.argv.slice(2);
 assert(secretDir&&reportPath&&path.dirname(path.resolve(reportPath))===path.join(here,'results'));
 await assert.rejects(fs.stat(reportPath),{code:'ENOENT'});
 const ca=await fs.readFile(path.join(secretDir,'ca.pem')),cert=await fs.readFile(path.join(secretDir,'server.pem')),key=await fs.readFile(path.join(secretDir,'server-key.pem'));
 const certificate=new crypto.X509Certificate(cert);assert.equal(certificate.checkHost(HOST),HOST);
+const originalLookup=dns.lookup;dns.lookup=fixtureLookup();
 let calls=0,mode='echo',observed;
 const sockets=new Set();
 const backend=http.createServer(async(req,res)=>{calls++;let chunks=[];for await(const chunk of req)chunks.push(chunk);observed={method:req.method,path:req.url,bytes:Buffer.concat(chunks),headers:req.headers};
@@ -26,7 +28,7 @@ const rpc='/rest/v1/rpc/private_bank_snapshot_capabilities';
 const object='/storage/v1/object/private-bank-snapshots/'+['11111111-1111-4111-8111-111111111111','22222222-2222-4222-8222-222222222222','33333333-3333-4333-8333-333333333333'].join('/');
 function request({url=rpc,body=Buffer.from('{}'),method='POST',hostname=HOST,trust=ca,host=HOST,extra={}}={}){
  return new Promise((resolve,reject)=>{const r=https.request({hostname,port:gateway.port,servername:hostname,ca:trust,rejectUnauthorized:true,
-   lookup:(name,options,cb)=>{assert.equal(name,hostname);if(options.all)cb(null,[{address:'127.0.0.1',family:4}]);else cb(null,'127.0.0.1',4);},method,path:url,headers:{host,'content-type':'application/json','content-length':body.length,...extra},agent:false},res=>{
+   ...(hostname===HOST?{}:{lookup:(name,options,cb)=>{assert.equal(name,hostname);if(options.all)cb(null,[{address:'127.0.0.1',family:4}]);else cb(null,'127.0.0.1',4);}}),method,path:url,headers:{host,'content-type':'application/json','content-length':body.length,...extra},agent:false},res=>{
     const authorized=res.socket.authorized;const chunks=[];res.on('data',c=>chunks.push(c));res.on('end',()=>resolve({status:res.statusCode,headers:res.headers,bytes:Buffer.concat(chunks),authorized}));res.on('error',reject);
    });r.setTimeout(1500,()=>r.destroy(new Error('Fixture client timeout')));r.on('error',reject);r.end(body);});
 }
@@ -45,9 +47,17 @@ try{
    assert.equal(privateUpstreamHost(host),false);await assert.rejects(openGateway({cert,key,restPort:123,storagePort:123,restHost:host}));
   }
   for(const host of ['127.0.0.1','10.0.0.2','172.16.0.2','172.31.255.254','192.168.1.2'])assert.equal(privateUpstreamHost(host),true);
+  const lookup=fixtureLookup({restHost:'172.18.0.4',storageHost:'172.18.0.5'});
+  const resolve=(name,options)=>new Promise((yes,no)=>lookup(name,options,(error,address,family)=>error?no(error):yes({address,family})));
+  assert.deepEqual(await resolve(HOST,{}),{address:'127.0.0.1',family:4});
+  assert.deepEqual(await resolve('127.0.0.1',{all:true,family:4,verbatim:true}),{address:[{address:'127.0.0.1',family:4}],family:undefined});
+  assert.deepEqual(await resolve('172.18.0.4',4),{address:'172.18.0.4',family:4});
+  assert.deepEqual(await resolve('172.18.0.5',{all:true,family:0}),{address:[{address:'172.18.0.5',family:4}],family:undefined});
+  for(const host of ['localhost','foreign.supabase.co','172.18.0.6','10.0.0.1','169.254.169.254','8.8.8.8','::1'])await assert.rejects(resolve(host,{}),{code:'ENOTFOUND'});
+  await assert.rejects(resolve(HOST,{family:6}),{code:'ENOTFOUND'});
  });
  await group('gateway disposal closes live sockets and rejects subsequent access',async()=>{await gateway.close();await gateway.close();await assert.rejects(request());});
-}finally{await gateway.close();for(const s of sockets)s.destroy();await new Promise(resolve=>backend.close(resolve));key.fill(0);}
+}finally{await gateway.close();for(const s of sockets)s.destroy();await new Promise(resolve=>backend.close(resolve));key.fill(0);dns.lookup=originalLookup;}
 const source_sha256={};for(const name of ['tls-gateway.mjs','test_tls_gateway.mjs','generate_tls.py'])source_sha256[name]=crypto.createHash('sha256').update(await fs.readFile(path.join(here,name))).digest('hex');
 const report={contract:'echs.c08.tls-gateway-tests.v1',status:groups.every(g=>g.status==='PASS')?'PASS':'FAIL',passed:groups.filter(g=>g.status==='PASS').length,total:groups.length,groups,source_sha256,
  actual_tls_sockets:true,certificate_verification:true,hostname_verification:true,upstream:'SYNTHETIC_HTTP_ONLY',storage_service_executed:false,postgrest_service_executed:false,production_calls:false};

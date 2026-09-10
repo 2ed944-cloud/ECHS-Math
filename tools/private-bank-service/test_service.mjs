@@ -10,13 +10,42 @@ import path from 'node:path';
 import readline from 'node:readline';
 import {spawn} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
-import {HOST,openGateway,privateUpstreamHost} from './tls-gateway.mjs';
+import {HOST,openGateway,privateUpstreamHost,fixtureLookup} from './tls-gateway.mjs';
 import {createSnapshotTransportHandler} from './runtime/handler.mjs';
 import {createSnapshotRpcTransport,createSnapshotStorageTransport} from './runtime/transport.mjs';
 const here=path.dirname(fileURLToPath(import.meta.url));
+export const CHILD_PHASES=Object.freeze(['entry','runtime-check','control-config','private-config','tls-trust','resolver-install','gateway-listen','seed-start','seed-ready','runtime-handler','case-source','schema-readiness','service-cases','report-write','cleanup']);
+const SAFE_CODES=new Set(['ENOTFOUND','EAI_AGAIN','EADDRINUSE','EACCES','EPERM','ECONNREFUSED','ECONNRESET','ETIMEDOUT','EPIPE','ENOENT','ERR_TLS_CERT_ALTNAME_INVALID','DEPTH_ZERO_SELF_SIGNED_CERT','UNABLE_TO_VERIFY_LEAF_SIGNATURE','CERT_HAS_EXPIRED','ERR_DLOPEN_FAILED','MODULE_NOT_FOUND','ERR_MODULE_NOT_FOUND','ERR_INVALID_ARG_TYPE','ERR_ASSERTION','CHILD_EXIT']);
+const SAFE_TYPES=new Set(['Error','TypeError','RangeError','SyntaxError','AssertionError','AggregateError','SystemError']);
+const SEED_PHASES=new Set(['entry','configuration','network-validation','fixture-source','driver-import','database-connect','database-identity','controls-ready']);
+const SEED_TYPES=new Set(['Exception','ModuleNotFoundError','ImportError','OperationalError','ProgrammingError','IntegrityError','DataError','InterfaceError','InternalError','NotSupportedError','ContractError','ValueError','KeyError','TypeError','FileNotFoundError','PermissionError','JSONDecodeError']);
+export function safeChildDiagnostic(phase,error){
+ const code=SAFE_CODES.has(error?.code)?error.code:SAFE_CODES.has(error?.cause?.code)?error.cause.code:null;
+ return {contract:'echs.c08.service-child-failure.v1',status:'FAIL',phase:CHILD_PHASES.includes(phase)?phase:'entry',
+  error_type:SAFE_TYPES.has(error?.constructor?.name)?error.constructor.name:'Error',code,
+  sqlstate:typeof error?.safeCode==='string'&&/^[0-9A-Z]{5}$/.test(error.safeCode)?error.safeCode:null,
+  seed_phase:SEED_PHASES.has(error?.seedPhase)?error.seedPhase:null,
+  seed_error_type:SEED_TYPES.has(error?.seedType)?error.seedType:null,
+  seed_exit_code:Number.isInteger(error?.seedExitCode)&&error.seedExitCode>=0&&error.seedExitCode<=255?error.seedExitCode:null};
+}
+let phase='entry',diagnosticDir=null,failureDiagnostic=null;
+const resources={gateway:null,child:null,privateLines:null,readyTimer:null,key:null,secrets:null};
+async function disposeResources(){
+ clearTimeout(resources.readyTimer);resources.privateLines?.close();
+ const child=resources.child;resources.child=null;
+ if(child){try{child.stdin.end();}catch{}if(child.exitCode===null&&child.signalCode===null)await Promise.race([
+  new Promise(resolve=>child.once('exit',resolve)),new Promise(resolve=>{const timer=setTimeout(()=>{child.kill();resolve();},3000);timer.unref();})]);}
+ const gateway=resources.gateway;resources.gateway=null;if(gateway)await gateway.close();
+ resources.key?.fill(0);resources.key=null;
+ if(resources.secrets)for(const name of Object.keys(resources.secrets))resources.secrets[name]=null;resources.secrets=null;
+}
+async function main(){
+phase='runtime-check';
 const runDir=path.resolve(process.argv[2]||'');
 assert.equal(path.dirname(runDir),path.join(here,'runs'));assert.match(path.basename(runDir),/^[0-9a-f]{32}$/);
+diagnosticDir=runDir;
 assert.equal(process.platform,'linux');assert.equal(typeof tls.setDefaultCACertificates,'function');
+phase='control-config';
 const control=JSON.parse(await fs.readFile(path.join(runDir,'control.json'),'utf8'));
 assert.equal(control.project,'echs-c08-service-'+path.basename(runDir));
 assert.equal(control.network.connection_mode,'owned-internal-bridge');assert.equal(control.network.network_name,control.project+'_internal');
@@ -26,36 +55,40 @@ assert.equal(Object.keys(addresses).length,5);
 for(const [name,port]of Object.entries({db:5432,auth:9999,rest:3000,storage:5000,imgproxy:5001})){
  assert.equal(addresses[name].port,port);assert(privateUpstreamHost(addresses[name].ipv4)&&addresses[name].ipv4!=='127.0.0.1');
 }
-const secrets=JSON.parse(await fs.readFile(path.join(runDir,'secrets','credentials.json'),'utf8'));
+phase='private-config';
+const secrets=JSON.parse(await fs.readFile(path.join(runDir,'secrets','credentials.json'),'utf8'));resources.secrets=secrets;
 const secretPath=path.join(runDir,'secrets','tls');
 const ca=await fs.readFile(path.join(secretPath,'ca.pem'));
 const cert=await fs.readFile(path.join(secretPath,'server.pem')),key=await fs.readFile(path.join(secretPath,'server-key.pem'));
+resources.key=key;phase='tls-trust';
 // Process-local trust and DNS only. Certificate/SAN checks stay enabled; no
 // hosts file, OS trust store, global production DNS or Response.url rewrite.
 tls.setDefaultCACertificates([ca.toString()]);
-dns.lookup=(name,options,callback)=>{
- if(typeof options==='function'){callback=options;options={};}
- if(name!==HOST){queueMicrotask(()=>callback(Object.assign(new Error('Fixture DNS refused'),{code:'ENOTFOUND'})));return;}
- queueMicrotask(()=>options?.all?callback(null,[{address:'127.0.0.1',family:4}]):callback(null,'127.0.0.1',4));
-};
+phase='resolver-install';dns.lookup=fixtureLookup({restHost:addresses.rest.ipv4,storageHost:addresses.storage.ipv4});
+phase='gateway-listen';
 const gateway=await openGateway({cert,key,restHost:addresses.rest.ipv4,storageHost:addresses.storage.ipv4,restPort:3000,storagePort:5000,listenPort:443});
+resources.gateway=gateway;
 const origin='https://'+HOST,endpoint=origin+'/functions/v1/private-bank-snapshot-transport';
 const rawFetch=globalThis.fetch;
+phase='seed-start';
 const child=spawn(control.python,['-B',path.join(here,'seed_synthetic.py'),'--run-dir',runDir,'--repo',control.repo],
  {stdio:['pipe','pipe','pipe'],env:{PATH:process.env.PATH||'',LANG:'C.UTF-8',PYTHONDONTWRITEBYTECODE:'1'}});
+resources.child=child;
 let sequence=0,failedControl=false;const pending=new Map();let readyResolve,readyReject;
 const ready=new Promise((resolve,reject)=>{readyResolve=resolve;readyReject=reject;});
 void ready.catch(()=>{});
 const privateLines=readline.createInterface({input:child.stdout});
 const readyTimer=setTimeout(()=>readyReject(new Error('Synthetic control readiness deadline')),20000);
+resources.privateLines=privateLines;resources.readyTimer=readyTimer;
 privateLines.on('line',line=>{try{assert(Buffer.byteLength(line)<=1048576);const row=JSON.parse(line);
- if(Object.hasOwn(row,'ready')){clearTimeout(readyTimer);row.ready===true?readyResolve(row):readyReject(new Error('Synthetic control unavailable'));return;}
+ if(Object.hasOwn(row,'ready')){clearTimeout(readyTimer);row.ready===true?readyResolve(row):readyReject(Object.assign(new Error('Synthetic control unavailable'),{safeCode:row.code,seedPhase:row.phase,seedType:row.error_type}));return;}
  const p=pending.get(row.id);if(!p)return;pending.delete(row.id);clearTimeout(p.timer);
  row.error?p.reject(Object.assign(new Error('Synthetic SQL control rejected'),{safeCode:row.error.code})):p.resolve(row.data);
  }catch{failedControl=true;readyReject(new Error('Synthetic control invalid output'));}});
 child.stderr.on('data',()=>{failedControl=true;}); // Never persist or print SQL/credential diagnostics.
-child.on('error',()=>{failedControl=true;readyReject(new Error('Synthetic control start failed'));});
-child.on('exit',()=>{for(const p of pending.values()){clearTimeout(p.timer);p.reject(new Error('Synthetic control closed'));}pending.clear();});
+child.on('error',error=>{failedControl=true;readyReject(error);});
+child.stdin.on('error',error=>{failedControl=true;readyReject(error);for(const p of pending.values()){clearTimeout(p.timer);p.reject(error);}pending.clear();});
+child.on('exit',code=>{const error=Object.assign(new Error('Synthetic control closed'),{code:'CHILD_EXIT',seedExitCode:code});readyReject(error);for(const p of pending.values()){clearTimeout(p.timer);p.reject(error);}pending.clear();});
 function ctl(action,extra={}){const id=++sequence;return new Promise((resolve,reject)=>{const timer=setTimeout(()=>{pending.delete(id);reject(new Error('Synthetic control timeout'));},15000);pending.set(id,{resolve,reject,timer});child.stdin.write(JSON.stringify({id,action,...extra})+'\n');});}
 const fresh=(size='small')=>ctl('new_case',{size});
 const stats=c=>ctl('stats',{snapshot_id:c.snapshot_id});
@@ -66,7 +99,7 @@ const objectOf=(c,f)=>origin+'/storage/v1/object/private-bank-snapshots/'+keyOf(
 const urlOf=(c,f,upload=false)=>endpoint+'/snapshots/'+c.snapshot_id+'/files/'+f.file_id+(upload?'/bytes':'');
 function handler(fetchImpl){const options={supabaseUrl:origin,serviceKey:secrets.SERVICE_ROLE_KEY,...(fetchImpl?{fetchImpl}:{})};
  return createSnapshotTransportHandler({rpc:createSnapshotRpcTransport(options),storage:createSnapshotStorageTransport(options),endpoint,allowedOrigin:'https://teacher.example.invalid'});}
-const ordinary=handler();
+phase='runtime-handler';const ordinary=handler();
 let verifiedTls=false;
 async function invoke(c,f,{upload=false,who='admin',body=undefined,requestId=crypto.randomUUID(),mime=f.mime_type,signal,extra={},h=ordinary}={}){
  const headers={...(who?{authorization:'Bearer '+c.tokens[who]}:{}),...(upload?{'content-type':mime,'x-echs-request-id':requestId}:{}),...extra};
@@ -79,7 +112,7 @@ async function direct(url,{jwt=secrets.SERVICE_ROLE_KEY,method='GET',body,header
 }
 function success(result,c,f){assert.equal(result.status,200);assert.deepEqual(result.value,{ok:true,contract:'echs.private-bank.snapshot-transport.v1',snapshot_id:c.snapshot_id,file_id:f.file_id,
  file:{byte_length:f.byte_length,mime_type:f.mime_type,sha256:f.sha256,bytes_verified:true}});}
-const expected=JSON.parse(await fs.readFile(path.join(here,'service-cases.json'),'utf8'));
+phase='case-source';const expected=JSON.parse(await fs.readFile(path.join(here,'service-cases.json'),'utf8'));
 const groups=[];let shared;
 async function group(index,fn){const start=Date.now();try{await fn();groups.push({name:expected[index],status:'PASS',elapsed_ms:Date.now()-start});}
  catch(error){groups.push({name:expected[index],status:'FAIL',elapsed_ms:Date.now()-start,error_type:error.constructor.name,...(typeof error.safeCode==='string'&&/^[0-9A-Z]{5}$/.test(error.safeCode)?{sqlstate:error.safeCode}:{})});}}
@@ -101,8 +134,8 @@ async function waitForSchemaCache(){
  readiness.elapsed_ms=Date.now()-start;throw new Error('Actual schema cache readiness deadline');
 }
 try{
- await ready;
- await waitForSchemaCache();
+ phase='seed-ready';await ready;
+ phase='schema-readiness';await waitForSchemaCache();phase='service-cases';
  await group(0,async()=>{const r=await direct(origin+'/rest/v1/rpc/private_bank_snapshot_capabilities',{method:'POST',body:'{}',headers:{'content-type':'application/json'}});assert.equal(r.status,200);assert.deepEqual(JSON.parse(r.bytes),capability);});
  await group(1,async()=>{for(const jwt of [secrets.ANON_KEY,secrets.AUTHENTICATED_KEY])for(const name of ['private_bank_snapshot_capabilities','private_bank_snapshot_file']){
   const body=name.endsWith('_file')?JSON.stringify({p_token_hash:'0'.repeat(64),p_action:'status',p_payload:{snapshot_id:crypto.randomUUID(),file_id:crypto.randomUUID()}}):'{}';
@@ -146,12 +179,12 @@ try{
  });
 }catch(error){
  failedControl=true;
+ failureDiagnostic=safeChildDiagnostic(phase,error);
  while(groups.length<expected.length)groups.push({name:expected[groups.length],status:'FAIL',elapsed_ms:0,error_type:error.constructor.name});
 }finally{
- child.stdin.end();await Promise.race([new Promise(resolve=>child.once('exit',resolve)),new Promise(resolve=>setTimeout(()=>{child.kill();resolve();},3000))]);
- clearTimeout(readyTimer);privateLines.close();await gateway.close();key.fill(0);
- for(const name of Object.keys(secrets))secrets[name]=null;
+ phase='cleanup';await disposeResources();
 }
+phase='report-write';
 assert.deepEqual(groups.map(g=>g.name),expected);
 const report={contract:'echs.c08.actual-storage-service-tests.v1',status:groups.every(g=>g.status==='PASS')&&!failedControl?'PASS':'FAIL',passed:groups.filter(g=>g.status==='PASS').length,total:groups.length,groups,
  head:control.expected_head,tree:control.expected_tree,source_manifest_sha256:control.source_manifest_sha256,services_executed:true,
@@ -160,3 +193,13 @@ const report={contract:'echs.c08.actual-storage-service-tests.v1',status:groups.
  explicit_fault_cases:[8,9,10,11].map(i=>expected[i]),opaque_mime_fixtures_not_decoder_tests:true,storage_metadata_dml:false,control_error:failedControl,gateway_counts:gateway.counts(),readiness};
 await fs.writeFile(path.join(runDir,'service-test-results.json'),JSON.stringify(report,null,2)+'\n',{flag:'wx'});
 console.log(JSON.stringify({status:report.status,passed:report.passed,total:report.total,services_executed:true}));if(report.status!=='PASS')process.exitCode=1;
+}
+// Importing the diagnostic helper performs no service, filesystem or DNS work.
+if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)){
+ try{await main();}catch(error){failureDiagnostic=safeChildDiagnostic(phase,error);process.exitCode=1;}
+ finally{
+  try{await disposeResources();}catch(error){failureDiagnostic??=safeChildDiagnostic('cleanup',error);process.exitCode=1;}
+  if(failureDiagnostic&&diagnosticDir)try{await fs.writeFile(path.join(diagnosticDir,'service-child-failure.json'),JSON.stringify(failureDiagnostic,null,2)+'\n',{flag:'wx'});}
+   catch{console.log(JSON.stringify({status:'FAIL',phase:'diagnostic-write',error_type:'Error'}));process.exitCode=1;}
+ }
+}

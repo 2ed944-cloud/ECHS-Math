@@ -1,0 +1,37 @@
+{
+  "status": "ISOLATED OWNER-FENCE CANDIDATE; ACTUAL POSTGRESQL PENDING",
+  "original_v1_inputs_sha256": "ea8c081c37f08c5c01d84b872b2290b43a950c2ccafb483a0500e0f035bd502b",
+  "migration_count": 27,
+  "writer_count": 3,
+  "legacy_owner_columns": {
+    "learning_attempts": "account_id",
+    "learning_sessions": "account_id",
+    "review_items": "account_id",
+    "lesson_completions": "account_id",
+    "assignment_results": "student_id",
+    "mastery_records": "account_id"
+  },
+  "existing_tenant_key": "accounts_curriculum_org_id on public.accounts(organization_id,id)",
+  "existing_guards": [
+    "private.enforce_mastery_authority",
+    "private.apply_atomic_skill_to_attempt",
+    "private.apply_question_trust_to_attempt"
+  ],
+  "existing_writer_sessions": "Fresh HTTP session lookup precedes separate table upserts; no token/session identity crosses into table triggers.",
+  "implemented_candidate": [
+    "Three private metadata tables; transactional existing/future-account provisioning; zero adopted routes at installation.",
+    "All-six OLD/NEW owner KEY SHARE fences; adoption changes a nonpartial unique epoch key; missing companions fail40001.",
+    "Singleton key-version TRUNCATE barrier and adoption relation locks; ordinary unadopted writers retain shared locks.",
+    "Nullable globally unique live-account FK and partial uniqueness preserve unadopted tenant moves and deletion; reused account UUID has a new incarnation.",
+    "Actual-PG harness composes unchanged membership55 and archive222 with additive candidate insertion and explicit source preservation receipt."
+  ],
+  "explicit_limits": [
+    "Actual PostgreSQL must prove fixed-snapshot, SET NULL, cascade and both concurrency orders; offline guards are not database acceptance.",
+    "Metadata-only unadopted tombstones are retained indefinitely in this candidate; later maintenance is separately reviewed.",
+    "Snapshot predating provisioning/installation fails closed and may require transaction retry.",
+    "No legacy table trigger receives the HTTP session token, so post-wait session reauthorization requires a future RPC.",
+    "No journal, HTTP route, public adoption API, real-owner adoption, delivery or production calls."
+  ],
+  "database_executed": false,
+  "production_calls": 0
+}

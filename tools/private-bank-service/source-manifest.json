@@ -3,13 +3,13 @@
   "files": [
     {
       "path": "PLAN.md",
-      "bytes": 12421,
-      "sha256": "9a10dea6d744431659349059c087fb42877554a8d38de70e52c673a8c5978adf"
+      "bytes": 13783,
+      "sha256": "a3c4dad45eb3e38b268b2db4d864fb4ef057bf7fa3960536bdbb2f1049d840cc"
     },
     {
       "path": "README.md",
-      "bytes": 8181,
-      "sha256": "81876f69e9eab5b24eac2c1a78392807823e7dafa6ecc942f1780194cc925fa0"
+      "bytes": 9515,
+      "sha256": "0e1754c2df30e4b7fc9bef5dfa8ced56e73e35c483e4d293356344fe78d67bc4"
     },
     {
       "path": "collect_service.py",
@@ -38,8 +38,8 @@
     },
     {
       "path": "run_actual_service.py",
-      "bytes": 22829,
-      "sha256": "350e244ccbaf7c6e7771ba4e90b8297a55d8e65cac06a1ef1710d21fd74b694a"
+      "bytes": 25854,
+      "sha256": "3dbf68fb5cd9633a7abb8d953b268221c7f7f3e71ca51b6ce5c1d1724b756b0e"
     },
     {
       "path": "run_service.py",
@@ -63,8 +63,8 @@
     },
     {
       "path": "seed_synthetic.py",
-      "bytes": 10541,
-      "sha256": "37391dc8327da7ac893737239abd51135d36d53b9a644a44d5989f3689a39117"
+      "bytes": 10774,
+      "sha256": "1b6ee3e6cbd4be50d4064140438dcf03d94508cc409d001939a8486721f85875"
     },
     {
       "path": "service-cases.json",
@@ -83,13 +83,13 @@
     },
     {
       "path": "test_actual_contract.py",
-      "bytes": 19923,
-      "sha256": "ab81f35be57ef8f3ab90d4f93d2751b90945c0b4bdd4ff0fc232e8192346d14e"
+      "bytes": 21858,
+      "sha256": "bed18d206ea53bb958f1584f54607ff4dae64b00012fe010b21052153988dbac"
     },
     {
       "path": "test_service.mjs",
-      "bytes": 19427,
-      "sha256": "7c2047f20b1efa850eaae167587a4ceed661e2440f716427b7a322b6867dcd35"
+      "bytes": 23301,
+      "sha256": "aab049a737c1962dc5ad310db57c45218edd9f429aeb4eac08c66ca396810338"
     },
     {
       "path": "test_service_contract.py",
@@ -98,13 +98,13 @@
     },
     {
       "path": "test_tls_gateway.mjs",
-      "bytes": 7310,
-      "sha256": "fd8a00e7a736d0f734c688c8238500e6ac287234ab44a9a72f4c2e05bcab005b"
+      "bytes": 8355,
+      "sha256": "569b7faab7798b88883b96d68986047607093a995602bb4f2fb14b0bd16aded2"
     },
     {
       "path": "tls-gateway.mjs",
-      "bytes": 6662,
-      "sha256": "ec2018109c33a1b73661e43a18014e139fbe1e2fddb066aa0ccadbbfcfc4636c"
+      "bytes": 7651,
+      "sha256": "d54f5eb1a2ebd729db4317842b11e6447862765579ce38570f9920f9cb17ce2b"
     },
     {
       "path": "upstream-observation.json",
