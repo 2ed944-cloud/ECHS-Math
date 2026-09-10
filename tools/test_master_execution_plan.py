@@ -11,20 +11,31 @@ class MasterExecutionPlanTests(unittest.TestCase):
     def rejected(self,fragment):self.assertTrue(any(fragment in e for e in validate(self.plan)),validate(self.plan))
     def test_current_snapshot(self):self.assertEqual(validate(self.plan),[])
     def test_current_release_without_future_candidate_files(self):
-        # Concurrent local C02 work must not make this C01 board claim those
-        # paths already ship in production, including references in other tasks.
-        future = {'supabase/functions/_shared','supabase/functions/_shared/mastery-status.mjs','js/learning-evidence-status.mjs','tools/test_mastery_read_models.mjs'}
+        # Planned files need not exist. A path used by another implemented
+        # task remains required as releases advance through the same board.
+        locations = [r for t in self.plan['tasks'] for r in t['implementation_location']]
+        future = {r['path'] for r in locations if r['state']=='planned'} - {r['path'] for r in locations if r['state']=='existing'}
+        self.assertTrue(future)
         original = Path.exists
         def in_release(path):
             if any(path.as_posix().endswith('/' + name) for name in future):return False
             return original(path)
         with patch.object(Path, 'exists', in_release):
             self.assertEqual(validate(self.plan),[])
+    def test_current_release_requires_existing_files(self):
+        required = self.row(self.plan['last_verified_release']['task'])['implementation_location'][0]['path']
+        original = Path.exists
+        with patch.object(Path, 'exists', lambda path: False if path.as_posix().endswith('/'+required) else original(path)):
+            self.rejected('existing path missing')
     def test_duplicate_task(self):self.plan['tasks'].append(copy.deepcopy(self.plan['tasks'][0]));self.rejected('duplicate task')
     def test_missing_dependency(self):self.row('ECHS-C01')['depends_on'].append('ECHS-999');self.rejected('unknown/self')
     def test_cycle(self):self.row('ECHS-C00')['depends_on']=['ECHS-C01'];self.rejected('cycle')
     def test_final_gate_cannot_omit_assessment_studio(self):self.row('ECHS-062')['depends_on'].remove('ECHS-028');self.rejected('final acceptance omits')
-    def test_false_verified(self):self.row('ECHS-C02')['status']='VERIFIED';self.rejected('verified deployment required')
+    def test_false_verified(self):
+        task=self.row(self.plan['last_verified_release']['task'])
+        task['status']='VERIFIED'
+        task['deployment']={'status':'NOT_DEPLOYED','evidence':[]}
+        self.rejected('verified deployment required')
     def test_code_is_not_tested(self):
         self.row('ECHS-C01')['tests']={'status':'NOT_RUN','evidence':[]}
         self.row('ECHS-C01')['status']='TESTED';self.rejected('passing tests')

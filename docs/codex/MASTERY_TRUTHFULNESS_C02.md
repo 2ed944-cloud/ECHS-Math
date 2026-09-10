@@ -1,6 +1,6 @@
 # C02 truthful practice and mastery reporting
 
-Status: **IN PROGRESS — local acceptance and independent composition review pass; final CI and production acceptance pending.** The candidate is based on verified C09 main `21478287590fcc04ac8000180aef0f1fe91e79b8`. It preserves the accepted membership transaction and read scopes. C08 private snapshots are excluded.
+Status: **VERIFIED** at main `bcdeaa97ada19b23980dad93b828390371d41bf6`. [Sealed release metadata](MASTERY_TRUTHFULNESS_C02_RELEASE.json) binds all 24 PR workflows, 18 main workflows, 68 baseline checks, 18 browser groups and 129 anonymous production checks. The final Linux review inspected 14 of 20 captures. C09 authorization remains included; C03/C04/C08 and the complete charter remain open.
 
 ## Problem and behavior
 

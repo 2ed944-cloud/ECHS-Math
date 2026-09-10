@@ -750,11 +750,31 @@ async function deletePackageStep(req: Request, current: SessionAccount, bankCode
     deleted: { packages: 1, import_runs: (runs ?? []).length } });
 }
 
+async function snapshotArchiveHealth(req: Request) {
+  const expected: JsonRecord = {
+    contract: "echs.private-bank.snapshot-store.v1", schema_version: 1,
+    immutable_ready: true, student_delivery: false,
+    max_record_bytes: 65536, max_object_bytes: 16777216, max_snapshot_bytes: 268435456,
+  };
+  try {
+    const { data, error } = await db.rpc("private_bank_snapshot_capabilities", {});
+    if (error || !data || typeof data !== "object" || Array.isArray(data)
+      || Object.keys(data).length !== Object.keys(expected).length
+      || Object.entries(expected).some(([key, value]) => data[key] !== value)) {
+      return fail(req, "Private archive capability is unavailable", 503, "archive_unavailable");
+    }
+    return reply(req, { ok: true, service: "echs-private-bank-api", archive_capabilities: expected });
+  } catch {
+    return fail(req, "Private archive capability is unavailable", 503, "archive_unavailable");
+  }
+}
+
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { status: 204, headers: responseHeaders(req) });
   const url = new URL(req.url); const path = url.pathname.split("/private-bank-api")[1] || "/";
   try {
     if (path === "/health" && req.method === "GET") return reply(req, { ok: true, service: "echs-private-bank-api", version: "1.5.0-specific-bank-delete" });
+    if (path === "/health/snapshots" && req.method === "GET") return await snapshotArchiveHealth(req);
     const current = await session(req);
     if (!canPractise(current)) return fail(req, "Student, teacher, or administrator sign-in is required", 403, "forbidden");
     if (path === "/student-questions" && req.method === "GET") return await studentQuestions(req, current, url);

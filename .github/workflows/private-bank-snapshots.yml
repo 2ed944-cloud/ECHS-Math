@@ -1,0 +1,123 @@
+name: Private bank snapshot archive contracts
+
+on:
+  pull_request:
+    paths:
+      - 'supabase/migrations/**'
+      - 'supabase/functions/institution-api/**'
+      - 'supabase/functions/mastery-evidence/**'
+      - 'supabase/functions/_shared/**'
+      - 'supabase/functions/private-bank-api/**'
+      - 'supabase/functions/practice-bank-api/**'
+      - 'tools/test_membership_authorization*'
+      - 'tools/membership_authorization_rpc_fixture.py'
+      - 'tools/private_snapshot_fixture.py'
+      - 'tools/test_private_snapshot*'
+      - 'docs/codex/PRIVATE_BANK_SNAPSHOTS_C08.md'
+      - '.github/workflows/private-bank-snapshots.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'supabase/migrations/**'
+      - 'supabase/functions/institution-api/**'
+      - 'supabase/functions/mastery-evidence/**'
+      - 'supabase/functions/_shared/**'
+      - 'supabase/functions/private-bank-api/**'
+      - 'supabase/functions/practice-bank-api/**'
+      - 'tools/test_membership_authorization*'
+      - 'tools/membership_authorization_rpc_fixture.py'
+      - 'tools/private_snapshot_fixture.py'
+      - 'tools/test_private_snapshot*'
+      - 'docs/codex/PRIVATE_BANK_SNAPSHOTS_C08.md'
+      - '.github/workflows/private-bank-snapshots.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  postgres15:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: isolated-fixture-only
+          POSTGRES_DB: echs_membership_test_ci
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d echs_membership_test_ci"
+          --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      ECHS_MEMBERSHIP_TEST_DSN: postgresql://postgres:isolated-fixture-only@127.0.0.1:5432/echs_membership_test_ci
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.5.6
+      - name: Type-check the private provider and read-only archive health route
+        run: deno check supabase/functions/private-bank-api/index.ts
+      - name: Verify the actual data-free archive health handler
+        run: node tools/test_private_snapshot_health.mjs
+      - name: Install pinned isolated database driver
+        run: python -m pip install 'psycopg[binary]==3.2.9'
+      - name: Preserve the accepted membership migration bytes
+        run: |
+          python - <<'PY'
+          import hashlib
+          from pathlib import Path
+          path = Path('supabase/migrations/202609090002_membership_authorization.sql')
+          assert hashlib.sha256(path.read_bytes()).hexdigest() == '4760871d3a24847e9b813959d53f3705afff30261e7628dc4e051db8039149ed'
+          PY
+      - name: Run accepted membership migrations and real database contracts first
+        run: python tools/test_membership_authorization_database.py --report reports/membership-authorization-database.json
+      - name: Run the actual membership HTTP handler against the accepted SQL
+        run: node tools/test_membership_authorization_e2e.mjs
+      - name: Require accepted membership evidence before creating the archive database
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+          import psycopg
+          database = json.loads(Path('reports/membership-authorization-database.json').read_text())
+          http = json.loads(Path('reports/membership-authorization-e2e.json').read_text())
+          assert database['status'] == http['status'] == 'PASS'
+          assert database['production_calls'] == http['production_calls'] == 0
+          assert database['migration_count'] == 26 and len(database['checks']) == 55
+          assert len(http['checks']) == 7
+          with psycopg.connect(os.environ['ECHS_MEMBERSHIP_TEST_DSN'], autocommit=True) as connection:
+              assert connection.execute('select current_database()').fetchone()[0] == 'echs_membership_test_ci'
+              assert int(connection.execute('show server_version_num').fetchone()[0]) // 10000 == 15
+              assert connection.execute("select 1 from pg_database where datname='echs_bank_test_ci'").fetchone() is None
+              connection.execute('create database echs_bank_test_ci')
+          PY
+      - name: Execute the full exact prefix and additive snapshot migration in the separate fresh database
+        env:
+          ECHS_BANK_TEST_DSN: postgresql://postgres:isolated-fixture-only@127.0.0.1:5432/echs_bank_test_ci
+        run: python tools/test_private_snapshot_database.py --baseline-report reports/membership-authorization-database.json --report reports/private-snapshot-database.json
+      - name: Verify independent JavaScript and Python archive roots
+        env:
+          ECHS_TEST_PYTHON: python
+        run: node tools/test_private_snapshot_hash.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: private-bank-snapshot-contracts
+          path: |
+            reports/membership-authorization-database.json
+            reports/membership-authorization-e2e.json
+            reports/private-snapshot-database.json
+            reports/private-snapshot-hash.json
+            reports/private-snapshot-health.json
+          if-no-files-found: warn
+          retention-days: 14

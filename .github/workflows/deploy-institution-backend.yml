@@ -130,6 +130,27 @@ jobs:
           print('Production membership transport and service-only database capability: PASS')
           PY
 
+      - name: Verify deployed immutable private archive schema and bucket configuration
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error \
+            "https://${SUPABASE_PROJECT_ID}.supabase.co/functions/v1/private-bank-api/health/snapshots" \
+            --output "$RUNNER_TEMP/echs-private-archive-health.json"
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          actual = json.loads((Path(os.environ['RUNNER_TEMP']) / 'echs-private-archive-health.json').read_text())
+          expected = {'ok': True, 'service': 'echs-private-bank-api',
+                      'archive_capabilities': {'contract': 'echs.private-bank.snapshot-store.v1',
+                        'schema_version': 1, 'immutable_ready': True, 'student_delivery': False,
+                        'max_record_bytes': 65536, 'max_object_bytes': 16777216,
+                        'max_snapshot_bytes': 268435456}}
+          # Canonical JSON comparison preserves boolean/integer distinctions.
+          assert json.dumps(actual, sort_keys=True, separators=(',', ':')) == json.dumps(expected, sort_keys=True, separators=(',', ':')), 'Deployed private archive capability is unavailable or incompatible'
+          print('Production private archive schema and private bucket configuration: PASS; no content imported or delivered')
+          PY
+
       - name: Verify deployed bootstrap secret
         shell: bash
         run: |
