@@ -1,0 +1,72 @@
+name: Private learning owner fence candidate
+
+on:
+  pull_request:
+    paths:
+      - 'tools/private-learning-owner-fence/**'
+      - '.github/workflows/private-learning-owner-fence.yml'
+      - 'supabase/migrations/**'
+      - 'supabase/functions/mastery-evidence/index.ts'
+      - 'supabase/functions/institution-api/index.ts'
+      - 'supabase/functions/learning-sync/index.ts'
+      - 'tools/test_membership_authorization_database.py'
+      - 'tools/test_private_snapshot_database.py'
+      - 'tools/private_snapshot_fixture.py'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: private-learning-owner-fence-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  postgres15:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: isolated-owner-fence-fixture-only
+          POSTGRES_DB: echs_membership_test_owner_fence_ci
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d echs_membership_test_owner_fence_ci"
+          --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      ECHS_MEMBERSHIP_TEST_DSN: postgresql://postgres:isolated-owner-fence-fixture-only@127.0.0.1:5432/echs_membership_test_owner_fence_ci
+      ECHS_BANK_TEST_DSN: postgresql://postgres:isolated-owner-fence-fixture-only@127.0.0.1:5432/echs_bank_test_owner_fence_ci
+      PYTHONUTF8: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Bind exact source checkout and PostgreSQL image before dependency installation
+        env:
+          TEST_POSTGRES_CONTAINER: ${{ job.services.postgres.id }}
+        run: python tools/private-learning-owner-fence/checkout.py
+      - name: Check offline source and artifact guards
+        run: |
+          python tools/private-learning-owner-fence/test_local.py
+          python tools/private-learning-owner-fence/test_actions.py
+      - name: Install pinned isolated database driver
+        run: python -m pip install 'psycopg[binary]==3.2.9'
+      - name: Execute unchanged baselines and actual owner-fence races
+        run: python tools/private-learning-owner-fence/run_integration.py --execute --checkout-report tools/private-learning-owner-fence/results/checkout.json
+      - name: Assemble closed metadata evidence without masking failures
+        if: always()
+        run: python tools/private-learning-owner-fence/assemble.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: private-learning-owner-fence-sql
+          path: ${{ runner.temp }}/private-learning-owner-fence-evidence/
+          if-no-files-found: error
+          retention-days: 14
