@@ -69,12 +69,33 @@ def exercise(db,connect,passed):
    assert not db.execute('select has_function_privilege(%s,%s,%s)',(role,'private.'+name+'()','EXECUTE')).fetchone()[0]
  passed('No trigger function is a client or service-role adoption API')
  role_owner=account()
+ def legacy_acls():return db.execute('select relname,relacl,relrowsecurity from pg_class where oid=any(%s::regclass[]) order by relname',(['public.'+t for t in TABLES],)).fetchall()
+ original_acls=legacy_acls()
+ privileges=['SELECT','INSERT','UPDATE','DELETE','TRUNCATE','REFERENCES','TRIGGER']
+ actual_privileges={t:{p:db.execute('select has_table_privilege(%s,%s,%s)',('service_role','public.'+t,p)).fetchone()[0] for p in privileges} for t in TABLES}
+ assert actual_privileges=={t:{p:t!='lesson_completions' for p in privileges} for t in TABLES}
+ passed('Existing six-table service-role privilege profile matches the frozen thin-PostgreSQL grants')
+ for table in ['assignment_results','learning_attempts','learning_sessions','mastery_records','review_items']:
+  with db.transaction(force_rollback=True):
+   db.execute('set local role service_role');insert(table,values(table,role_owner));db.execute('reset role')
+   assert count(table,role_owner)==1
+  passed('Existing '+table+' service-role INSERT remains allowed without a fixture grant')
+ def missing_lesson_grant():
+  db.execute('set local role service_role');insert('lesson_completions',values('lesson_completions',role_owner))
+ rejected('Existing lesson_completions service-role INSERT remains denied without a fixture grant',missing_lesson_grant,'42501')
+ # The first migration grants then-existing tables. lesson_completions is
+ # created later with no explicit grant in this thin PG fixture. Do not repair
+ # that historical/managed-default difference in production or baseline SQL.
+ # Grant only INSERT, inside an explicitly rolled-back synthetic transaction,
+ # to prove the private trigger path for a privileged writer on all six tables.
  with db.transaction(force_rollback=True):
+  db.execute(sql.SQL('grant insert on {} to service_role').format(sql.SQL(',').join(sql.Identifier('public',t) for t in TABLES)))
   db.execute('set local role service_role')
   for table in TABLES:insert(table,values(table,role_owner))
   db.execute('reset role')
   assert all(count(t,role_owner)==1 for t in TABLES)
- passed('Existing service-role DML uses definer fences without private-table privileges')
+ assert legacy_acls()==original_acls and all(count(t,role_owner)==0 for t in TABLES)
+ passed('Fixture-granted all-six service-role INSERT uses definer fences and rolls back exact original ACLs')
  for role in ['anon','authenticated','service_role','fixture_unprivileged']:
   def private_adoption(role=role):
    db.execute(sql.SQL('set local role {}').format(sql.Identifier(role)))
@@ -196,10 +217,13 @@ def exercise(db,connect,passed):
  assert db.execute('select epoch from private.learning_owner_barrier').fetchone()[0]==epoch and state(owner)==before
  passed('Exact synthetic adoption duplicate-ignore does not change the retained route or epoch')
  with db.transaction(force_rollback=True):
+  db.execute(sql.SQL('grant insert on {} to service_role').format(sql.SQL(',').join(sql.Identifier('public',t) for t in TABLES)))
   db.execute('set local role service_role')
   for table in TABLES:
-   rejected('Adopted '+table+' service-role writer remains fenced',lambda table=table:insert(table,rows[table]))
+   rejected('Adopted '+table+' fixture-granted service-role writer remains fenced',lambda table=table:insert(table,rows[table]))
   db.execute('reset role')
+ assert legacy_acls()==original_acls and state(owner)==before
+ passed('Fixture-granted adopted-writer tests restore exact original ACLs and retained owner rows')
  with db.transaction(force_rollback=True):
   # Corruption vector uses a trusted fixture-only trigger disable, never a
   # runtime API. Both changes are rolled back and cannot enter the candidate.
