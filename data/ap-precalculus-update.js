@@ -102,17 +102,19 @@
     {
       "number": "2",
       "title": "1.2 Rates of Change",
-      "release": "3.0.0",
+      "release": "4.2.0",
       "officialTopic": "1.2 Rates of Change",
       "framework": "College Board CED effective Fall 2026",
       "learningObjectives": [
         "1.2.A",
         "1.2.B"
       ],
-      "interactiveSlides": 55,
-      "interactiveInvestigations": 10,
+      "interactiveSlides": 30,
+      "optionalSlides": 37,
+      "totalInteractiveSlides": 67,
+      "interactiveInvestigations": 14,
       "assessment": {
-        "learning_checks": 8,
+        "learning_checks": 29,
         "ap_style_mcq": 24,
         "ap_style_frq": 4,
         "challenge_mcq": 6,
@@ -127,7 +129,7 @@
       ],
       "resources": [
         {
-          "label": "Complete interactive lesson · 55 slides and 10 investigations",
+          "label": "30 classroom slides · large notes, guided activities and AP-style practice",
           "url": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.2_Rates_of_Change_ECHS_Refined.html",
           "type": "resource"
         },

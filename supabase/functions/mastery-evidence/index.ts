@@ -1,4 +1,5 @@
 import { createClient } from "npm:@supabase/supabase-js@2";
+import { STATUS_CONTRACT, projectMasteryRecord, projectMasterySummary } from "../_shared/mastery-status.mjs";
 import { canonicalCourseKey, lessonAccessKey } from "../institution-api/lesson-access-policy.js";
 
 type Role = "admin" | "teacher" | "student" | "parent";
@@ -308,10 +309,11 @@ async function sync(current: SessionAccount, req: Request) {
   return reply(req, {
     ok: true,
     authoritative: true,
+    ...projectMasterySummary(authoritativeMastery),
     sync_contract: "echs-learning-sync-v1",
     client_mastery_ignored: Array.isArray(payload.mastery) && payload.mastery.length > 0,
     synced: { attempts: attemptRows.length, sessions: sessionRows.length, review: reviewRows.length, assignment_results: assignmentRows.length, lessons: lessonRows.length },
-    mastery: authoritativeMastery,
+    mastery: authoritativeMastery.map(projectMasteryRecord),
   });
 }
 
@@ -362,14 +364,14 @@ async function classEvidence(current: SessionAccount, req: Request, classId: str
   }).slice(0, 8);
   const selected = new Set(skills.map((skill) => skill.skill_key));
   const matrix = (mastery ?? []).filter((row) => selected.has(row.skill_key)).map((row) => ({
-    ...row,
-    level: masteryLevel(number(row.score), number(row.confidence)),
+    ...projectMasteryRecord(row),
     has_evidence: number(row.attempts) > 0,
   }));
   const coveredStudents = new Set(matrix.filter((row) => row.has_evidence).map((row) => row.account_id)).size;
   return reply(req, {
     ok: true,
     authoritative: true,
+    ...projectMasterySummary(matrix),
     class: classRow,
     students: students ?? [],
     skills,
@@ -386,7 +388,7 @@ Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { status: 204, headers: headers(req) });
   const path = new URL(req.url).pathname.split("/mastery-evidence")[1] || "/";
   try {
-    if (path === "/health" && req.method === "GET") return reply(req, { ok: true, service: "echs-mastery-evidence", version: "2.0.0-foundation" });
+    if (path === "/health" && req.method === "GET") return reply(req, { ok: true, service: "echs-mastery-evidence", version: "2.0.0-foundation", status_contract: STATUS_CONTRACT, grading_authoritative: false });
     const current = await session(req);
     if (!current) return failure(req, "Sign in is required", 401, "unauthenticated");
     if (path === "/sync" && req.method === "POST") return await sync(current, req);

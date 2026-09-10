@@ -1,0 +1,405 @@
+{
+  "contract": "echs.c02.production-release.v1",
+  "status": "VERIFIED",
+  "task": "ECHS-C02",
+  "main_sha": "bcdeaa97ada19b23980dad93b828390371d41bf6",
+  "tree_sha": "b205b2d1673e5131942a637341052515ded45f1d",
+  "head_sha": "baf24ad58cc613556162d64350fa6494ede9280f",
+  "pull_request": "https://github.com/2ed944-cloud/ECHS-Math/pull/365",
+  "pr_workflows_passed": 24,
+  "main_workflows_passed": 18,
+  "baseline_checks": 68,
+  "counts": {
+    "animator": 9,
+    "policy": 12,
+    "handlers": 8,
+    "membership-handlers": 11,
+    "classic-dom": 16,
+    "portal-dom": 11,
+    "current_worker": 12,
+    "c01_worker_preservation": 26,
+    "contract_commands": 20,
+    "browser_cases": 18,
+    "screenshots": 20,
+    "migrations": 26,
+    "database_checks": 55,
+    "actual_http_sql_groups": 7
+  },
+  "scope": {
+    "source_files": 51,
+    "owned_files": 42,
+    "raw_final_ci_files": 46,
+    "screenshots_captured": 20,
+    "screenshots_human_reviewed": 14,
+    "visual_review_mode": "representative"
+  },
+  "database_migrations_added": [],
+  "public_get_requests": 55,
+  "public_checks": 129,
+  "production_writes_by_verifier": 0,
+  "deployment_runs": {
+    "backend": 34398155700,
+    "pages": 34398155678
+  },
+  "files": [
+    {
+      "path": ".github/workflows/mastery-truthfulness.yml",
+      "bytes": 7879,
+      "sha256": "b86e9d20450f35875fca17ca7811acd68f7c38f93c9ba19a7578e0734205ed4f",
+      "git_blob_sha": "3fcaaba142788c73572dcec85fa464b9f2eb0f5b"
+    },
+    {
+      "path": "css/echs-design-system-v5-1.css",
+      "bytes": 44090,
+      "sha256": "4a95b562e8e70e3a6c38f415223c96c18af3a459c2a01c9a70af80cfd3cfebd0",
+      "git_blob_sha": "0f1faec188627f22746f40105b2d7c639e92f5dc"
+    },
+    {
+      "path": "css/lesson-portal-overhaul.css",
+      "bytes": 30916,
+      "sha256": "e5efd2384a1b6605d732c0d2a35bb32c7b6fbf59618c480b4ff03cc6c84a0c4d",
+      "git_blob_sha": "65128892163976d26bfea4594fee38a7daa18cfb"
+    },
+    {
+      "path": "index.html",
+      "bytes": 20748,
+      "sha256": "d86c0eebb749c663227341fb4a34c1ce748bdef64138eed593485172845ae794",
+      "git_blob_sha": "024e5031ecff2ab96f798cdf5acc241f89fd2e8f"
+    },
+    {
+      "path": "js/gamification-overlay.js",
+      "bytes": 3593,
+      "sha256": "2e5ead2c8ab12e25aa9405c269987a2281ac3864373120c1e4a4634feb23bed7",
+      "git_blob_sha": "0c2635c86c11499cb8a399ae2ade0da2f8a11658"
+    },
+    {
+      "path": "js/institution-experience.js",
+      "bytes": 11197,
+      "sha256": "1509fc440b9a504797b14721103b9f7160729be2ea03dfb1ea8c93824192448c",
+      "git_blob_sha": "7f423387905924d0254363f29e0341139717ac88"
+    },
+    {
+      "path": "js/learning-evidence-status.mjs",
+      "bytes": 4778,
+      "sha256": "ce692d731b4f3e21145ba5a849d1274476f171cf03f6b55445f6d4e99927c16b",
+      "git_blob_sha": "da8205c41001a516f39b2812370d35222df743e4"
+    },
+    {
+      "path": "js/lesson-portal-overhaul.js",
+      "bytes": 14565,
+      "sha256": "9fd2d40c41b1e31bbdfdb73d419f628b7f5ff906e97eec9fcbe62b49217d1116",
+      "git_blob_sha": "33d35fc2d16f7d831a2c99cf2d19bc67ad61a859"
+    },
+    {
+      "path": "js/portal.js",
+      "bytes": 29378,
+      "sha256": "63f2826c506ddb48a9e277a70a1d58c06bd1862279f3df3bf25b0fe77a280ef2",
+      "git_blob_sha": "ff1f7742e630237fd49086b8b41591667f4e04b7"
+    },
+    {
+      "path": "js/smart-learning-route.js",
+      "bytes": 24494,
+      "sha256": "55577d12f280d8f9fb3bc5cee53a0e66338863a6d7fd035be0761e08613bf3d8",
+      "git_blob_sha": "d42e2e87f49aac72c96386f64eaecd66f4177bbe"
+    },
+    {
+      "path": "preview.html",
+      "bytes": 16964,
+      "sha256": "dd93bbd2a8c717321af3c80c687e0e77b95a90a3044e3240aae517406a6743c5",
+      "git_blob_sha": "9ad1ac28d154c54a9b60427fd4190ddda46f80eb"
+    },
+    {
+      "path": "question-bank/dashboard.html",
+      "bytes": 7749,
+      "sha256": "1105bc0dadf34ee4f037ec12964ee94c859981ecde9c4b7e8637a79ace4bc6d3",
+      "git_blob_sha": "e5f2ccf40c64c316888df2e8f03d945f8920570e"
+    },
+    {
+      "path": "question-bank/js/dashboard.js",
+      "bytes": 7397,
+      "sha256": "1e5ebec14755a6fdbb7db7c3fdf7c5409eb7790ea073f8db9cfba1f256b251d0",
+      "git_blob_sha": "ea09e1842a7c8fdee3cc79c1c13b5ac3e2b6644c"
+    },
+    {
+      "path": "question-bank/js/learning-home.js",
+      "bytes": 1634,
+      "sha256": "8282424970e3799bb0147b951124cd43e1acbf7b194efeb8ee33380173032857",
+      "git_blob_sha": "6c8f71f2da775f7cbc8f1cd497c6f96fd1ee7c05"
+    },
+    {
+      "path": "question-bank/js/learning-system.js",
+      "bytes": 24418,
+      "sha256": "d9ce5918121145383a37f916665fb1a7b62eadea631eceb1799d9baa05ab9161",
+      "git_blob_sha": "32569addd91e6b1d7d2370705ed2820e384df23d"
+    },
+    {
+      "path": "question-bank/js/parent-cloud.js",
+      "bytes": 12595,
+      "sha256": "eb49009fced6d2d243178505f0dc3b7195d60b0120126ded1ceb2917fbcd72c3",
+      "git_blob_sha": "85010635756c2d68a394616ab3e0f40f6b70cb17"
+    },
+    {
+      "path": "question-bank/js/parent.js",
+      "bytes": 5551,
+      "sha256": "44e58c65599b9f8867b7d789fdade4cb3016684c21f769d9df423d43616ee94c",
+      "git_blob_sha": "20f40485770b44bcc9ba7b4d413d2299774406f7"
+    },
+    {
+      "path": "question-bank/js/student-cloud.js",
+      "bytes": 20648,
+      "sha256": "ac1a1cb3808238625076bc47a07ad5c40015ca3753c76fb7e18fe79200f378f9",
+      "git_blob_sha": "804187c0614c2132035348ccfbff9708f6629ad1"
+    },
+    {
+      "path": "question-bank/js/teacher-cloud.js",
+      "bytes": 54064,
+      "sha256": "a5bddadb6238dbfecad9fab25b6cdf0ffc4bcb9df8d0c4bc95008afddcafa4ec",
+      "git_blob_sha": "7a4bd10062eb2249c383c19cba223ff777300ea9"
+    },
+    {
+      "path": "question-bank/js/teacher-evidence-heatmap.js",
+      "bytes": 6800,
+      "sha256": "d4bb53db2f7684a39f746b90ce2c307cb1ec41c87762362b872dc4de2c6eb1d3",
+      "git_blob_sha": "df109f77e64b9d8151c1d7f311d0c71069bde6db"
+    },
+    {
+      "path": "question-bank/parent.html",
+      "bytes": 11859,
+      "sha256": "b8c2cac423838e4c510aa80324cd1a1ecc477463d6d18c1b5e5fa6ae27632625",
+      "git_blob_sha": "198189665910480ce470928596ab03bcabd425ce"
+    },
+    {
+      "path": "question-bank/student.html",
+      "bytes": 13038,
+      "sha256": "d9ec957234bcbcd86250e70d9ddc4bae8ab4b543ea2ce6aae636792aecfc2fae",
+      "git_blob_sha": "15bf40cfe83c31c5d6bc96b159acf482031f0a66"
+    },
+    {
+      "path": "question-bank/teacher.html",
+      "bytes": 33063,
+      "sha256": "7106ae1e4fc0bf7655d7c2094480ad9c90ff8047cb777f2d57446a00a17fbefc",
+      "git_blob_sha": "24ddffc903c887fd1f681bb2f27a07c414e3d52a"
+    },
+    {
+      "path": "supabase/functions/_shared/mastery-status.mjs",
+      "bytes": 4778,
+      "sha256": "ce692d731b4f3e21145ba5a849d1274476f171cf03f6b55445f6d4e99927c16b",
+      "git_blob_sha": "da8205c41001a516f39b2812370d35222df743e4"
+    },
+    {
+      "path": "supabase/functions/institution-api/index.ts",
+      "bytes": 52838,
+      "sha256": "0c45db599f1dd51ecbb1e47cb7189ca90d67df464d42c415920023d1126c900e",
+      "git_blob_sha": "311d38bf8625e184fd136bec87ec7cd9b8389f82"
+    },
+    {
+      "path": "supabase/functions/mastery-evidence/index.ts",
+      "bytes": 21501,
+      "sha256": "9cb09c5be9248a5389c5697e4f6aaacf8d2c1055ce70020e056793c22fd23505",
+      "git_blob_sha": "f732cebe243e5382b081b5c354e8e8169f761549"
+    },
+    {
+      "path": "sw.js",
+      "bytes": 25137,
+      "sha256": "75c3a30996d7553e94c2267d5dd3a8367f47a13360ea4ccd566e63f710aa11de",
+      "git_blob_sha": "a2fa2599d5149f0578ca62c379234098c37fb43a"
+    },
+    {
+      "path": "tools/build_mastery_status.mjs",
+      "bytes": 2135,
+      "sha256": "db0f2dd0ca6ce495b6d6f8197064b1ac8d85f7b5e8701ad956cdf6ad35549f6b",
+      "git_blob_sha": "94936f4a273c8ee86f462d8a3f19ef100652346d"
+    },
+    {
+      "path": "tools/fixtures/c02-prior-worker.js",
+      "bytes": 21238,
+      "sha256": "c0be954dcfc94284ed4299985fa7ead8e6d97b29325f5c92b52b68af50ead30a",
+      "git_blob_sha": "3cd29b6469b80a41183ed455eaa6b0c88e6a05f0"
+    },
+    {
+      "path": "tools/test_institution_metric_animation.mjs",
+      "bytes": 4609,
+      "sha256": "cbe06f2cece88d66afb1d94d6ecc4d3789874d9632bd95c9857f888275f179d0",
+      "git_blob_sha": "8f9f2b1428c4593f74c1dc21452bd41133d9a0d4"
+    },
+    {
+      "path": "tools/test_mastery_browser_acceptance.mjs",
+      "bytes": 34422,
+      "sha256": "730eb9646149a13fc562d044a040a4f4018675bcf9aa31771dc14f676c3675ff",
+      "git_blob_sha": "bb6f03ef64583a49a80e20a51cabed2cd30c14ab"
+    },
+    {
+      "path": "tools/test_mastery_browser_views.mjs",
+      "bytes": 25021,
+      "sha256": "3e2743e153fefce3ee016ba451b7cfb97925c891a0651af0f3672ff7b3b470ee",
+      "git_blob_sha": "93f0e327fa1033cf28d2a9f062290a33ff637216"
+    },
+    {
+      "path": "tools/test_mastery_portal_views.mjs",
+      "bytes": 15707,
+      "sha256": "fbfa5832946bc8a77448aa95ee9dabf79ce03c37950c5febf95db2682055e0dc",
+      "git_blob_sha": "a2e6eabdf705d43662ffd8413cbe25bbf5360c29"
+    },
+    {
+      "path": "tools/test_mastery_read_models.mjs",
+      "bytes": 11790,
+      "sha256": "bf2372899ce710c8629b5f7daa2629055d05cab4ea308fe6379eb5c279d6abf6",
+      "git_blob_sha": "6fd5ef5751cab9cae47249a5d2788c510d7f4d35"
+    },
+    {
+      "path": "tools/test_mastery_status.mjs",
+      "bytes": 7741,
+      "sha256": "8428eb8d7b0d23487a74e35b3e2a6db7899d74a588f166143d84f75de77ec474",
+      "git_blob_sha": "dbf59a8ba6c01872758398191b422aeaa51ef0c7"
+    },
+    {
+      "path": "tools/test_mastery_sync_endpoint.mjs",
+      "bytes": 6332,
+      "sha256": "8bb47c2ff77dfaa4a444074e4948786a9ecbf964607cc80da04d4b12d08ce0ee",
+      "git_blob_sha": "44eb8f59dae34e4f000b4399db8703d2dd0e1049"
+    },
+    {
+      "path": "tools/test_mastery_worker.mjs",
+      "bytes": 10982,
+      "sha256": "0676be4e00f65980b80eb877544ef85135a31ddc4ebc5efcbccddcf737b4cba2",
+      "git_blob_sha": "746772de85eaf8d52d5606d246b7c28966898c32"
+    },
+    {
+      "path": "tools/test_membership_authorization_api.mjs",
+      "bytes": 16696,
+      "sha256": "a603cc3ad8cc5da7d87047b8e15b19471a4e4c0c3847806394615c9a291418b6",
+      "git_blob_sha": "e854e9defa4148841fc17c0664642b254c5a10ae"
+    },
+    {
+      "path": "tools/test_membership_authorization_e2e.mjs",
+      "bytes": 9632,
+      "sha256": "3d46ee09a73cc403195e9642e5d60a7d49bd3ff8ef1d2542ea62a501d15a7ea7",
+      "git_blob_sha": "9ae001bfe786a576b1ab27868ee4f6a8586380e5"
+    },
+    {
+      "path": "tools/test_portal_workspace.mjs",
+      "bytes": 4497,
+      "sha256": "e92c1841179d7b9e3e74c9a3006f9c3a072d2adf370bbf064cdedff97acadec4",
+      "git_blob_sha": "a878fd510e22f343bf6019d5ed96487ff46d7eb1"
+    },
+    {
+      "path": "tools/validate_mastery_foundation.py",
+      "bytes": 10397,
+      "sha256": "b20425d663f60bdeafb59a314dbe8eb3b33624ca4bf361c6d78a98619c715cd7",
+      "git_blob_sha": "ba2fa8e4620f8fa67a804916d59d3bcd235561b9"
+    },
+    {
+      "path": "tools/validate_smart_learning_route.py",
+      "bytes": 3502,
+      "sha256": "ae92ae29c04efe928cbe41d86bcd2d7354ff6ec9dc58d71dceb4159d5ceae995",
+      "git_blob_sha": "decd330fccf75f7384d31e580fb6f4ce611d1f21"
+    },
+    {
+      "path": ".github/workflows/deploy-institution-backend.yml",
+      "bytes": 10734,
+      "sha256": "5027b9477a98b4a65e3b69c3f192d4a56ccccdd1766a48f96b1c9fab3d36eafa",
+      "git_blob_sha": "9134ac5fdeb0b00c4248bdd5e766781f76d52598"
+    },
+    {
+      "path": "docs/codex/MASTER_EXECUTION_PLAN.json",
+      "bytes": 162904,
+      "sha256": "4ea8dcf49648b931a9867dac4b784997f1099a4bbf0092cdd400b0763a9c9350",
+      "git_blob_sha": "7e2352dae52755619dfdb36e292c11896f1f2fd3"
+    },
+    {
+      "path": "docs/codex/MASTER_ARCHITECTURE_AUDIT_20260909.md",
+      "bytes": 13386,
+      "sha256": "c82904371423ecd798285d8dccfaa700fd272f6163f21c6d9b2ee052e3cefa79",
+      "git_blob_sha": "5b54cb4badaf82062c1f8a816327d793b6e3d21d"
+    },
+    {
+      "path": "docs/codex/MEMBERSHIP_AUTHORIZATION_C09.md",
+      "bytes": 7248,
+      "sha256": "fc87d6b416ab30703c817f8711c2f7765be441189e96971a1ba23f5945871bc5",
+      "git_blob_sha": "d5814e0f9d297ab983e7a6429ff216656a9857ea"
+    },
+    {
+      "path": "docs/codex/MEMBERSHIP_AUTHORIZATION_C09_RELEASE.json",
+      "bytes": 8659,
+      "sha256": "a86f38dd29c3e3bebd70936c04895380aa5892484329145656400aee3e93652a",
+      "git_blob_sha": "d1bb90e32bdd08a043af25e89be5d5ffb4455e34"
+    },
+    {
+      "path": "docs/codex/MASTERY_TRUTHFULNESS_C02.md",
+      "bytes": 8318,
+      "sha256": "cdf97f8ce9a8e3cfb4d15ae5f462403e368937e8b767972cf30118a61302af94",
+      "git_blob_sha": "227ff381cd93701e6119d9d1a0fc9f44d7afc86a"
+    },
+    {
+      "path": "docs/codex/PUBLIC_QUESTION_BOUNDARY_C01.md",
+      "bytes": 8607,
+      "sha256": "1bd90b2d38cda9f2761741b05f4cbf36e26c6c49ebe589442d433e6e6a9daa20",
+      "git_blob_sha": "eb2efee2bfa491c128e5bc7609eb982ebd9f3ba2"
+    },
+    {
+      "path": "tools/test_master_execution_plan.py",
+      "bytes": 4767,
+      "sha256": "bece661b0dd3ff9542deae363b89cc476cdb7bcf53805681d5c22b59a43253df",
+      "git_blob_sha": "b4bfed7003749084cc4fe631a17cacc3cb1aa73e"
+    },
+    {
+      "path": "tools/capture_phase1_preview.mjs",
+      "bytes": 27630,
+      "sha256": "75271c51f48bb9fc44d52cc5e1a03b8b8137170e5029b0c1b290a3f97e8977ff",
+      "git_blob_sha": "4eb954e696c2fa6810d369d3c5ac9758f2c8c7d0"
+    }
+  ],
+  "evidence": {
+    "source_manifest": {
+      "path": "work/master-charter/c02-source-manifest.json",
+      "sha256": "f64d1afedc690fadf9f3140fb663b5c2b3592bc5352c1a6b9dce86eeef295c6b"
+    },
+    "owned_manifest": {
+      "path": "work/master-charter/c02-owned-path-manifest.json",
+      "sha256": "45fee1690be1d8e93383f9e54cbb4699052bbdfccf88504b2dd3b2244e43e088"
+    },
+    "ci_index": {
+      "path": "outputs/echs-c02-evidence/ci-reports.json",
+      "sha256": "8f1b00dfd32401c25dd705ba6b4bfd4937ff17c3bb41a80101256650321e8789"
+    },
+    "release_ci": {
+      "path": "outputs/echs-c02-evidence/release-ci-metadata.json",
+      "sha256": "649c0a81b8e67f7f9fbe9d5e7da787110cbb84578c4ca2c8ea54233175d6ab42"
+    },
+    "post_merge_ci": {
+      "path": "outputs/echs-c02-evidence/post-merge-ci-metadata.json",
+      "sha256": "21f44e6e046518b343071dc7d10848994e8f2a0fbd2459f99e27e031982d000a"
+    },
+    "live": {
+      "path": "outputs/echs-c02-evidence/live-acceptance.json",
+      "sha256": "a22c3546593f432c56912ac9f2bfddacb57b82213ad3a18e1aa55d34998b6503"
+    },
+    "visual": {
+      "path": "outputs/echs-c02-evidence/visual-review.json",
+      "sha256": "15f62f3fca07d8c3654e6cfe8e2ca2514a62c77d13002c6d3847cab776bec733"
+    }
+  },
+  "sealed_deliverables": [
+    {
+      "file": "ECHS_C02_REPORT.md",
+      "bytes": 3055,
+      "sha256": "c7b6348178a7d6ab07f3d9c060934c63cc604e2b04363da87d6fdbf51327ace5"
+    },
+    {
+      "file": "ECHS_C02_HANDOFF.json",
+      "bytes": 24605,
+      "sha256": "7b3c571329f7c1984d74394df32499210cac30110edefa37e6f38ba1c391adb5"
+    },
+    {
+      "file": "ECHS-C02-handoff.zip",
+      "bytes": 10821093,
+      "sha256": "e81c84b7f4e62a22546889ae21add9c90ad4ac792220a5fca3ef1cf8d9d09330"
+    }
+  ],
+  "limits": [
+    "Cross-checks supplied evidence and local bytes only; this helper does not independently call GitHub, deploy, inspect production data or replace human visual review.",
+    "Existing authoritative compatibility flags describe recomputation; C02 does not authenticate grading or fix account-local raw storage.",
+    "Already executing older pages need reload. Root retains responsibility for the final VERIFIED task/board decision.",
+    "C03 and C04 remain incomplete; this handoff seals C02 only."
+  ]
+}

@@ -54,8 +54,39 @@ assert.equal((html.match(/class="slide"/g)||[]).length,55);assert.equal((html.ma
 assert.ok(html.indexOf('id="corner-lab"')>html.indexOf('id="frq04"'));assert.ok(html.indexOf('id="challenge-mcq-1"')>html.indexOf('id="frq04"'));
 assert.match(html,/data-lesson="1.2"/);assert.match(html,/data-framework="fall-2026"/);assert.match(html,/1\.2\.A\.1/);assert.match(html,/1\.2\.A\.2–3/);assert.match(html,/1\.2\.B\.1–3/);assert.match(html,/Skills 2.A and 3.A/);
 assert.doesNotMatch(html,/<script[^>]*src="https?:|lesson-1\.2-engine|lesson-1\.2-content/);
+const P=require(fileURLToPath(new URL('assets/rates-1-2-classroom-data-v4.js',base)));
+assert.equal(P.version,'echs.rates-classroom.v1');assert.equal(P.slides.length,27);assert.equal(P.questions.length,21);
+assert.deepEqual(P.order.slice(0,6),['warm-up','tank-lab','secant-lab','your-turn-1','zero-lab','interval-comparisons']);
+assert.deepEqual(P.questions.slice(0,9).map(q=>q.answer),[0,1,3,1,2,2,0,3,2]);
+// Independently calculated rates for the new tasks.
+near(90/3/(90/6),2);near((58-40)/2,9);near((82-58)/3,8);near((102-82)/4,5);
+near((7.9-7.1)/.2,4);near((24.5-20.5)/.4,10);near((59.2-61.2)/.2,-10);near((30.7-31.1)/.2,-2);
+near((10.061-8.059)/.2,10.01);near((2-14)/6,-2);near((335-245)/30,3);near(-3+4*(6-2),13);
+const I=require(fileURLToPath(new URL('assets/rates-1-2-ideas-model-v4.js',base)));
+assert.deepEqual(P.questions.slice(9).map(q=>q.answer),[2,2,1,2,3,0,1,1,0,3,0,1]);
+assert.deepEqual(P.coverage.flatMap(x=>x.main).sort((a,b)=>a-b),[1,2,3,4,5,6,7,8,9,10]);
+assert.deepEqual(P.coverage.flatMap(x=>x.other).sort((a,b)=>a-b),[1,2,3,4,5,6]);
+for(const entry of P.coverage){assert.ok(P.order.includes(entry.explanation));const source=P.merges.find(m=>m.to===entry.explanation&&m.mode==='notes')?.from||entry.explanation;const slide=P.slides.find(s=>s.id===source);assert.ok(slide.blocks.some(b=>b.type==='key-notes'));assert.ok(slide.blocks.some(b=>b.type==='worked'));for(const qid of entry.practice)assert.ok(P.slides.some(s=>P.order.includes(s.id)&&s.blocks.some(b=>b.type==='questions'&&b.ids.includes(qid))));}
+assert.equal(I.net(I.ledgers.A),18);assert.equal(I.net(I.ledgers.B),18);near(I.net(I.ledgers.A)/20,.9);
+assert.deepEqual(I.intervals.map(I.amount),[14,-12,12,15]);near(I.combinedRate(I.intervals),29/12);
+assert.deepEqual(I.cumulative(I.ledgers.A),[0,14,8,16,13,18]);
+for(const [key,model] of Object.entries(I.shapes))for(const c of [1,2,3]){const r=M.nearby(model.fn,c,.1);assert.equal(r.center>0,model.sign==='positive');assert.equal(r.right>r.left,model.bend==='up');}
+for(const k of ['1','2','4','varying']){const f=M.average(I.f,5,7),g=M.average(x=>I.g(x,k),5,7),h=M.average(x=>I.sum(x,k),5,7);near(f+g,h);}
+assert.deepEqual(['1','2','4','varying'].map(k=>I.sumBehavior(k)),['decreasing','constant','increasing','mixed']);near(I.sum(5,'varying'),-13);assert.ok(I.sum(4.5,'varying')>-13&&I.sum(6,'varying')>-13);
+for(let t=0;t<12;t+=.05)assert.ok(I.drainage(t+.01)<I.drainage(t));
+near(M.nearby(I.drainage,2,.1).center,-12+6*Math.cos(2)*Math.sin(.1)/.1,1e-8);near(M.nearby(I.drainage,6,.1).center,-12+6*Math.cos(6)*Math.sin(.1)/.1,1e-8);
+assert.ok(I.cycle(3)>I.cycle(1));assert.ok(M.nearby(I.cycle,1,.01).center>0);near(M.nearby(I.cycle,3,.01).center,0);assert.ok(M.nearby(I.cycle,6,.01).center<0);near(M.nearby(I.cycle,9,.01).center,0);
+const locals=[-2,-1,0,2.5].map(x=>M.nearby(I.bend,x,.01).center);assert.equal(locals.indexOf(Math.min(...locals)),2);
+for(const q of P.questions){assert.equal(q.choices.length,4);assert.equal(new Set(q.choices).size,4);assert.ok(q.origin&&q.ek&&q.solution&&q.hint);}
 const ids=new Set([...html.matchAll(/<section class="slide" id="([^"]+)"/g)].map(m=>m[1]));
+for(const slide of P.slides){assert.ok(!ids.has(slide.id));ids.add(slide.id);}
+for(const id of P.order)assert.ok(ids.has(id));
 const aliases=JSON.parse(core.match(/const aliases=(\{.*?\});/)[1]);for(const [old,target] of Object.entries(aliases))assert.ok(ids.has(target),old+' -> '+target);
 const ctx=vm.createContext({window:{}});vm.runInContext(fs.readFileSync(new URL('../../../data/ap-precalculus-update.js',base),'utf8'),ctx);
-const lessons=ctx.window.ECHS_COURSES[0].units[0].lessons;assert.equal(lessons[0].interactiveSlides,(fs.readFileSync(new URL('AP_Precalculus_1.1_Change_in_Tandem_ECHS_Refined.html',base),'utf8').match(/class="slide"/g)||[]).length);assert.equal(lessons[1].interactiveSlides,55);assert.equal(lessons[1].assessment.written_points,36);assert.equal(lessons[1].interactiveInvestigations,10);
-console.log('AP Precalculus 1.2 mathematics: PASS (10 models, 38 independent answer keys, 6 six-point FRQs, scope, legacy links and portal metadata).');
+const lessons=ctx.window.ECHS_COURSES[0].units[0].lessons;assert.equal(lessons[0].interactiveSlides,(fs.readFileSync(new URL('AP_Precalculus_1.1_Change_in_Tandem_ECHS_Refined.html',base),'utf8').match(/class="slide"/g)||[]).length);assert.equal(lessons[1].interactiveSlides,30);assert.equal(lessons[1].assessment.written_points,36);assert.equal(lessons[1].interactiveInvestigations,14);
+assert.equal(lessons[1].assessment.learning_checks,29);assert.equal(lessons[1].optionalSlides,37);assert.equal(lessons[1].totalInteractiveSlides,67);
+assert.equal(P.order.length,30);assert.equal(P.merges.length,15);assert.equal(ids.size-P.merges.length,67);assert.equal(new Set(P.merges.map(m=>m.from)).size,15);for(const m of P.merges){assert.ok(ids.has(m.from)&&ids.has(m.to));assert.ok(!P.order.includes(m.from));}
+assert.deepEqual(Object.keys(P.questionNotes).sort(),[...Q.questions,...P.questions].map(q=>q.id).sort());for(const q of [...Q.questions,...P.questions])assert.ok(P.questionNotes[q.id].length>=2);
+assert.deepEqual(P.stagedActivities.map(id=>P.updates[id].phase),Array.from({length:10},(_,i)=>'Activity '+(i+1)));
+
+console.log('AP Precalculus 1.2 mathematics: PASS (10 models, 59 independently verified answer keys, 6 six-point FRQs, scope, legacy links and portal metadata).');

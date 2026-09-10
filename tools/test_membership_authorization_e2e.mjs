@@ -38,6 +38,11 @@ try{
   const context=vm.createContext({createClient:()=>db,Deno:{env:{get:()=>''},serve:fn=>handler=fn},Request,Response,URL,TextEncoder,crypto:webcrypto,console:{error(){}},Date});
   vm.runInContext(fs.readFileSync(path.join(baseline,'supabase/functions/institution-api/lesson-access-policy.js'),'utf8').replace(/export /g,''),context);
   const source=fs.readFileSync(path.join(root,'supabase/functions/institution-api/index.ts'),'utf8');report.handler_sha256=hash(source);
+  if(source.includes('../_shared/mastery-status.mjs')){
+    const statusPolicy=fs.readFileSync(path.join(root,'supabase/functions/_shared/mastery-status.mjs'),'utf8');
+    report.mastery_status_sha256=hash(statusPolicy);
+    vm.runInContext(statusPolicy.replace(/^export /gm,''),context,{filename:'actual/mastery-status.mjs'});
+  }
   vm.runInContext(stripTypeScriptTypes(source.replace(/^import\s[\s\S]*?;\r?\n/gm,'')),context,{filename:'actual/institution-api/index.ts'});
   const send=(actor,body,cls=ids.class)=>handler(new Request(`https://fixture.invalid/functions/v1/institution-api/classes/${cls}/members`,{method:'POST',headers:{...(actor?{authorization:'Bearer '+fixture.tokens[actor]}:{}),'content-type':'application/json'},body:JSON.stringify(body)}));
   async function check(name,fn){await fn();report.checks.push(name);save();console.log('PASS '+name);}

@@ -1,0 +1,59 @@
+/* ECHS classroom edition: maroon chapter rail, clear tasks, generous working space. */
+:root{--ink:#172d45;--maroon:#7d193b;--teal:#006c67;--line:#d8e0e8;--paper:#fff;--wash:#f3f6fa}
+.topbar{flex-wrap:wrap;gap:8px 20px;padding-bottom:0;border-top:4px solid var(--maroon)}
+.classroom-nav{display:flex;gap:6px;flex-basis:100%;overflow-x:auto;padding:6px 0 9px;scrollbar-width:thin}
+.classroom-nav-button{flex:0 0 auto;background:transparent;border:1px solid transparent;border-radius:6px;color:var(--ink);padding:9px 14px;min-height:44px;font-size:.9rem;font-weight:650}
+.classroom-nav-button:hover{background:#f2e8ee}.classroom-nav-button[aria-current]{background:var(--maroon);color:white}
+.slide{background:#f6f8fb;padding-top:24px}.slide-inner{max-width:1320px}.slide h1,.slide h2{font-size:clamp(1.8rem,2.8vw,2.7rem);line-height:1.15;letter-spacing:-.025em;max-width:1100px}.slide .objective{font-size:1.1rem;max-width:1000px;line-height:1.6;color:#435670;margin-bottom:24px}
+.slide .card{border:1px solid var(--line);border-radius:12px;box-shadow:0 3px 12px #19395606;background:white;padding:24px}.slide .card.accent{border-left:5px solid var(--maroon)}
+.eyebrow{letter-spacing:.075em;font-size:.875rem}.classroom-byline{margin:0 0 20px!important;color:#465b71;font-size:.875rem!important;font-weight:600}
+.slide[data-phase="Your turn"] .question{border-top:4px solid var(--teal)}.slide[data-phase="Warm-up"] .question{border-top:4px solid var(--maroon)}
+.classroom-single{grid-template-columns:1fr!important;max-width:1000px}.classroom-mission{display:grid;grid-template-columns:180px minmax(0,1fr);gap:20px;padding:18px 22px;margin:0 0 20px;border-left:5px solid var(--maroon);background:#f0e8ee;border-radius:0 10px 10px 0}.classroom-mission h3{font-size:1rem;line-height:1.5;margin:0;color:#681632}.classroom-mission ol{margin:0;padding-left:21px;display:grid;gap:7px}.classroom-mission li{font-size:1rem!important;line-height:1.6}
+.classroom-reflection{padding:20px 24px;border:1px solid #bdd9d5;border-left:5px solid var(--teal);border-radius:10px;background:#f0f8f6;margin-top:22px}.classroom-reflection label{display:block;font-weight:650;margin-bottom:12px}.classroom-reflection textarea{background:white;min-height:100px}.classroom-reflection .save-note{font-size:.875rem!important;margin-bottom:0;color:#465b71}
+.classroom-key-equation{border:1px solid #dac1cc;border-left:5px solid var(--maroon);background:#fbf4f7!important;padding:24px!important}.classroom-menu{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.classroom-menu-item{text-align:left;display:grid;gap:9px;background:white;border:1px solid var(--line);border-left:4px solid var(--maroon);border-radius:10px;padding:22px;line-height:1.5;color:var(--ink)}.classroom-menu-item strong{font-size:1.15rem}.classroom-menu-item span{font-size:1rem;color:#455a72}.classroom-menu-item:hover{background:#faf0f5}
+.question-prompt{line-height:1.65}.question-prompt .rates-graph{max-height:290px;margin:16px auto}.question-head{align-items:flex-start;flex-wrap:wrap}.choices .choice{border-radius:8px;min-height:52px}.choices .choice:has(input:checked){outline:2px solid var(--teal);background:#edf7f5}.rate-table{font-variant-numeric:tabular-nums}.investigation .readout{font-variant-numeric:tabular-nums}.investigation .controls label{display:grid;align-content:start;gap:6px}.footer{border-top:2px solid #d9c1cc}
+@media(max-width:900px){.classroom-mission{grid-template-columns:1fr;gap:8px}.slide .card{padding:18px}.classroom-nav-button{padding:8px 12px}}
+@media(max-width:600px){.classroom-menu{grid-template-columns:1fr}.classroom-nav{gap:2px}.classroom-nav-button{font-size:.875rem}.classroom-reflection{padding:16px}.slide h2{font-size:1.8rem}.slide .objective{font-size:1rem}.classroom-mission{padding:16px}.topbar{padding-left:12px;padding-right:12px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+@media print{.classroom-nav,.classroom-menu,.classroom-byline,.save-note{display:none!important}.classroom-mission,.classroom-reflection{background:white;break-inside:avoid}.slide{background:white}.classroom-reflection textarea{min-height:30mm}.classroom-mission{display:block}.slide .card{box-shadow:none}}
+.classroom-explanation{max-width:1050px;line-height:1.7}.classroom-key-notes{margin:22px 0;padding:20px 24px;border-left:5px solid var(--teal);background:#eaf5f2;border-radius:0 10px 10px 0}.classroom-key-notes h3{margin:0 0 10px;color:#075d57}.classroom-key-notes li{margin:8px 0;line-height:1.6}.classroom-worked{margin:22px 0;max-width:1100px}.classroom-worked .solution{margin-bottom:0}.classroom-worked li{line-height:1.65;margin:12px 0}[data-idea-plot]{max-width:950px;margin:20px auto}[data-idea-plot] .rates-graph{max-height:430px}.question [data-idea-plot] .rates-graph{max-height:300px}.question [data-idea-plot="endpoint-options"] .graph-options{grid-template-columns:1fr}.slide:has([data-question="idea03"])>.slide-inner>.grid{grid-template-columns:1fr}.table-wrap{max-width:100%;overflow-x:auto}.classroom-key-notes,.classroom-worked{break-inside:avoid}@media print{.classroom-key-notes{background:white}.classroom-worked .solution{display:none!important}}
+
+/* Classroom presentation: readable notes and one question at a time. */
+:root{--classroom-text:clamp(1.25rem,1.9vw,1.75rem)}
+.slide{font-size:var(--classroom-text);padding:24px clamp(18px,3.4vw,58px) 48px}
+.slide-inner{max-width:1240px}
+.slide h1,.slide h2{font-size:clamp(2rem,3.6vw,3.3rem);max-width:1200px;line-height:1.16}
+.slide h3{font-size:clamp(1.5rem,2.25vw,2rem);line-height:1.35}
+.slide p,.slide li,.slide .question-prompt,.slide .choice,.slide .question fieldset,.slide .controls label,.slide .feedback,.slide .hint,.slide .solution,.slide .rubric,.slide table,.slide .formula,.slide .classroom-reflection label,.slide .frq-part>label{font-size:var(--classroom-text);line-height:1.55}
+.slide .objective{font-size:clamp(1.2rem,1.8vw,1.6rem)!important;max-width:1180px;line-height:1.5;margin-bottom:18px!important}
+.slide .grid,.slide .grid.wide,.slide .grid.three{grid-template-columns:1fr}
+.classroom-mission{grid-template-columns:1fr;gap:10px;padding:22px 26px}
+.slide .classroom-mission h3{font-size:clamp(1.4rem,2vw,1.75rem)}
+.slide .classroom-mission li{font-size:var(--classroom-text)!important;line-height:1.55}
+.classroom-key-notes{padding:22px 28px;margin:18px 0 24px;background:#e9f4f1;border-left-width:6px}
+.classroom-key-notes ul{margin-bottom:0}.classroom-key-notes li{margin:10px 0}
+.classroom-explanation,.classroom-worked{max-width:none}
+.classroom-worked{padding:22px!important}.worked-steps{padding:18px 22px;background:#f1f5fa;border:1px solid #d8e0e8;border-radius:8px;margin-top:16px}
+.worked-steps ol{margin:0}.worked-steps li:last-child{margin-bottom:0}
+.classroom-steps,.question-pages{display:flex;flex-wrap:wrap;gap:12px;margin:18px 0 24px}
+.classroom-steps .btn,.question-pages .btn{font-size:1.1rem;min-height:48px}
+.classroom-steps [aria-pressed="true"],.question-pages [aria-pressed="true"]{background:var(--maroon);color:white;border-color:var(--maroon)}
+.classroom-teach[hidden],.classroom-explore[hidden],.classroom-question-page[hidden]{display:none!important}
+.classroom-questions{max-width:1180px}.classroom-questions .question{padding:26px}
+.classroom-questions .choices{gap:12px}.classroom-questions .choice{padding:15px 18px;min-height:58px}
+.slide .question-prompt p,.slide .solution p,.slide .solution li,.slide .hint p,.slide .rubric p,.slide .rubric li{font-size:var(--classroom-text)}
+.slide input:not([type=radio]):not([type=checkbox]):not([type=range]),.slide select,.slide textarea{font-size:1.25rem;min-height:48px;max-width:100%}
+.slide input[type=radio],.slide input[type=checkbox]{width:21px;height:21px;flex-shrink:0;margin-top:7px}
+.slide .btn,.slide summary{font-size:1.15rem}.slide .tag,.slide .score-chip{font-size:1rem}
+.slide .mode-note,.slide .save-note,.slide .classroom-byline{font-size:1rem!important;line-height:1.5}
+.slide .metric span,.slide .rates-legend,.slide figcaption{font-size:1.125rem!important}.slide .metric strong{font-size:1.4rem}
+.slide th,.slide td{padding:14px 16px}.slide caption{font-size:1.15rem}
+.question-prompt .rates-graph,.question [data-idea-plot] .rates-graph,[data-idea-plot] .rates-graph{max-height:none}
+[data-idea-plot]{max-width:980px}.question .graph-options{grid-template-columns:repeat(2,minmax(0,1fr))}
+.classroom-menu-item strong{font-size:1.4rem}.classroom-menu-item span{font-size:1.15rem}
+.classroom-return{margin-bottom:20px}.classroom-extra-check summary{font-size:1.2rem}
+.slide :focus-visible{outline:3px solid #006c67;outline-offset:4px}
+@media(min-width:1100px){.slide{--classroom-text:clamp(1.5rem,1.9vw,1.75rem)}}
+@media(max-width:700px){.question .graph-options,.classroom-menu{grid-template-columns:1fr}.classroom-steps .btn{width:100%}.classroom-key-notes,.classroom-mission{padding:18px}.classroom-questions .question{padding:18px}.classroom-nav-button{font-size:.95rem}.slide table{font-size:1.125rem}.slide th,.slide td{padding:10px}.topbar .brand-copy span{display:none}}
+@media print{.classroom-steps,.question-pages,.classroom-return{display:none!important}.classroom-teach[hidden],.classroom-explore[hidden],.classroom-question-page[hidden]{display:block!important}.worked-steps{display:none!important}.slide{--classroom-text:12pt}.slide .objective{font-size:13pt!important}.slide h2{font-size:24pt}.slide h3{font-size:16pt}.slide input,.slide textarea,.slide select{font-size:12pt}.before-question{break-after:avoid}.classroom-question-page{break-inside:avoid}}
+.slide .rates-graph .tick,.slide .rates-graph .point-label{font-size:18px}.slide .rates-graph .axis-label{font-size:20px}

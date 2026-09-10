@@ -1,0 +1,167 @@
+name: Mastery evidence truthfulness
+
+on:
+  pull_request:
+    paths:
+      - 'supabase/functions/_shared/mastery-status.mjs'
+      - 'supabase/functions/mastery-evidence/**'
+      - 'supabase/functions/institution-api/**'
+      - 'js/learning-evidence-status.mjs'
+      - 'js/portal*.js'
+      - 'js/lesson-portal-overhaul.js'
+      - 'js/smart-learning-route.js'
+      - 'js/gamification-overlay.js'
+      - 'js/institution-*.js'
+      - 'question-bank/js/**'
+      - 'question-bank/*.html'
+      - 'index.html'
+      - 'preview.html'
+      - 'sw.js'
+      - 'css/echs-design-system-v5-1.css'
+      - 'css/lesson-portal-overhaul.css'
+      - 'tools/test_public_question_worker.mjs'
+      - 'tools/*mastery*'
+      - 'tools/test_membership_authorization_api.mjs'
+      - 'tools/test_membership_authorization_e2e.mjs'
+      - 'tools/test_institution_metric_animation.mjs'
+      - 'tools/test_portal_workspace.mjs'
+      - 'tools/test_learning_system.mjs'
+      - 'tools/fixtures/c02-prior-worker.js'
+      - 'tools/validate_smart_learning_route.py'
+      - '.github/workflows/mastery-truthfulness.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'supabase/functions/_shared/mastery-status.mjs'
+      - 'supabase/functions/mastery-evidence/**'
+      - 'supabase/functions/institution-api/**'
+      - 'js/learning-evidence-status.mjs'
+      - 'js/portal*.js'
+      - 'js/lesson-portal-overhaul.js'
+      - 'js/smart-learning-route.js'
+      - 'js/gamification-overlay.js'
+      - 'js/institution-*.js'
+      - 'question-bank/js/**'
+      - 'question-bank/*.html'
+      - 'index.html'
+      - 'preview.html'
+      - 'sw.js'
+      - 'css/echs-design-system-v5-1.css'
+      - 'css/lesson-portal-overhaul.css'
+      - 'tools/test_public_question_worker.mjs'
+      - 'tools/*mastery*'
+      - 'tools/test_membership_authorization_api.mjs'
+      - 'tools/test_membership_authorization_e2e.mjs'
+      - 'tools/test_institution_metric_animation.mjs'
+      - 'tools/test_portal_workspace.mjs'
+      - 'tools/test_learning_system.mjs'
+      - 'tools/fixtures/c02-prior-worker.js'
+      - 'tools/validate_smart_learning_route.py'
+      - '.github/workflows/mastery-truthfulness.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: mastery-truthfulness-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  contracts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install pinned isolated DOM dependency
+        run: npm install --prefix "$RUNNER_TEMP/echs-mastery-dom" --no-save --ignore-scripts --no-audit --no-fund linkedom@0.18.12
+      - name: Verify canonical mirrors and actual read-model consumers
+        id: contracts
+        shell: bash
+        env:
+          ECHS_TEST_DOM_MODULE: ${{ runner.temp }}/echs-mastery-dom/node_modules/linkedom
+        run: |
+          mkdir -p artifacts/mastery-truthfulness/contracts
+          node tools/build_mastery_status.mjs --check | tee artifacts/mastery-truthfulness/contracts/mirror.log
+          node tools/test_mastery_status.mjs | tee artifacts/mastery-truthfulness/contracts/policy.log
+          node tools/test_mastery_worker.mjs | tee artifacts/mastery-truthfulness/contracts/worker.log
+          node tools/test_institution_metric_animation.mjs | tee artifacts/mastery-truthfulness/contracts/animator.log
+          node tools/test_public_question_worker.mjs | tee artifacts/mastery-truthfulness/contracts/public-question-worker.log
+          node tools/test_mastery_read_models.mjs | tee artifacts/mastery-truthfulness/contracts/handlers.log
+          node tools/test_membership_authorization_api.mjs | tee artifacts/mastery-truthfulness/contracts/membership-handlers.log
+          node tools/test_mastery_browser_views.mjs | tee artifacts/mastery-truthfulness/contracts/classic-dom.log
+          node tools/test_mastery_portal_views.mjs | tee artifacts/mastery-truthfulness/contracts/portal-dom.log
+          node tools/test_mastery_sync.mjs | tee artifacts/mastery-truthfulness/contracts/sync.log
+          node tools/test_mastery_sync_endpoint.mjs | tee artifacts/mastery-truthfulness/contracts/sync-endpoint.log
+          python tools/validate_mastery_foundation.py | tee artifacts/mastery-truthfulness/contracts/mastery-foundation.log
+          python tools/validate_mastery_guards.py | tee artifacts/mastery-truthfulness/contracts/guards.log
+          node tools/test_platform_resilience.mjs | tee artifacts/mastery-truthfulness/contracts/resilience.log
+          node tools/test_institution_identity_mount.mjs | tee artifacts/mastery-truthfulness/contracts/identity.log
+          node tools/test_portal_workspace.mjs | tee artifacts/mastery-truthfulness/contracts/workspace.log
+          node tools/test_learning_system.mjs | tee artifacts/mastery-truthfulness/contracts/learning.log
+          python tools/validate_smart_learning_route.py | tee artifacts/mastery-truthfulness/contracts/route.log
+          python tools/validate_lesson_portal_calm.py | tee artifacts/mastery-truthfulness/contracts/portal.log
+          python tools/validate_learning_system.py | tee artifacts/mastery-truthfulness/contracts/learning-source.log
+      - name: Bind diagnostic logs to the tested Git tree
+        if: always()
+        env:
+          CONTRACT_OUTCOME: ${{ steps.contracts.outcome }}
+        run: |
+          python - <<'PY'
+          import hashlib, json, os, pathlib, subprocess
+          output = pathlib.Path('artifacts/mastery-truthfulness/contracts')
+          output.mkdir(parents=True, exist_ok=True)
+          value = {'contract': 'echs.mastery-contract-ci.v1', 'head_sha': os.environ['GITHUB_SHA'], 'tree_sha': subprocess.check_output(['git', 'rev-parse', 'HEAD^{tree}'], text=True).strip(), 'run_id': os.environ['GITHUB_RUN_ID'], 'status': os.environ['CONTRACT_OUTCOME'], 'production_calls': 0, 'logs': [{'path': p.name, 'sha256': hashlib.sha256(p.read_bytes()).hexdigest()} for p in sorted(output.glob('*.log'))]}
+          (output / 'ci-metadata.json').write_text(json.dumps(value, indent=2) + '\n', encoding='utf-8')
+          PY
+      - name: Upload synthetic contract evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mastery-truthfulness-contracts
+          path: artifacts/mastery-truthfulness/contracts
+          if-no-files-found: warn
+          retention-days: 14
+
+  deployed-function-types:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.5.6
+      - name: Check actual institution and evidence entry points
+        run: |
+          deno check supabase/functions/_shared/mastery-status.mjs
+          deno check supabase/functions/institution-api/index.ts
+          deno check supabase/functions/mastery-evidence/index.ts
+
+  chromium:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install pinned browser
+        run: |
+          npm ci --prefix question-bank/official/tools
+          npx --prefix question-bank/official/tools playwright install --with-deps chromium-headless-shell
+      - name: Exercise real pages and client with synthetic account APIs
+        run: node tools/test_mastery_browser_acceptance.mjs
+      - name: Upload synthetic desktop and mobile evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mastery-truthfulness-browser
+          path: artifacts/mastery-truthfulness/browser
+          if-no-files-found: warn
+          retention-days: 14

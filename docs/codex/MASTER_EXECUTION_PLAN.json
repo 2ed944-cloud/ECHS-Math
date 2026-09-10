@@ -35,22 +35,19 @@
     ],
     "completion_status": "VERIFIED",
     "production_visible_requires": "Exact deployed revision and functional evidence, beyond code presence or CI alone.",
-    "historical_scope": "ECHS-001–014 remain verified only for their original acceptance, not the expanded charter.",
+    "historical_scope": "ECHS-001\u2013014 remain verified only for their original acceptance, not the expanded charter.",
     "board_snapshot": "In-flight tasks remain unverified until a later evidence-backed board update. The board cannot contain its own future commit hash."
   },
   "execution_order": {
-    "first_unmet_dependency": "ECHS-C09",
+    "first_unmet_dependency": "ECHS-C08",
     "active_work": [
-      "ECHS-C09",
-      "ECHS-C02",
-      "ECHS-C08"
+      "ECHS-C08",
+      "ECHS-C04"
     ],
     "next_after_public_projection": [
-      "ECHS-C09",
-      "ECHS-C02",
       "ECHS-C08",
-      "ECHS-C03",
-      "ECHS-C04"
+      "ECHS-C04",
+      "ECHS-C03"
     ],
     "ap11_adapter_after": [
       "ECHS-C02",
@@ -73,7 +70,7 @@
       "Student changes mathematically meaningful state and investigates outcomes; no mastery from viewing, revealing or manipulating."
     ],
     "learning-sequence-v1": [
-      "See → manipulate → predict → explain → symbolize → apply → remove scaffold → original static AP/IB task → authenticated evidence.",
+      "See \u2192 manipulate \u2192 predict \u2192 explain \u2192 symbolize \u2192 apply \u2192 remove scaffold \u2192 original static AP/IB task \u2192 authenticated evidence.",
       "A contextual/visual variation preserves target skill, rigor and exam command expectations."
     ],
     "spatial-mathematics-v1": [
@@ -430,7 +427,7 @@
     },
     {
       "section": 12,
-      "title": "AP CALCULUS — CONTENT PRESERVATION MANDATE",
+      "title": "AP CALCULUS \u2014 CONTENT PRESERVATION MANDATE",
       "tasks": [
         "ECHS-006",
         "ECHS-058",
@@ -483,7 +480,7 @@
     },
     {
       "section": 18,
-      "title": "AP CALCULUS UNITS 6–10",
+      "title": "AP CALCULUS UNITS 6\u201310",
       "tasks": [
         "ECHS-019",
         "ECHS-037",
@@ -1037,8 +1034,8 @@
         }
       ],
       "acceptance_criteria": [
-        "AP Calculus 2026–27",
-        "AP Precalculus 2026–27",
+        "AP Calculus 2026\u201327",
+        "AP Precalculus 2026\u201327",
         "IB AI SL first-assessment-2021",
         "future IB AI SL first-assessment-2029 placeholder",
         "cohort/course-version assignment design",
@@ -2582,8 +2579,8 @@
         }
       ],
       "acceptance_criteria": [
-        "Reconcile production main, scoped ECHS-001–014 evidence, canonical runtime and actual remaining dependencies.",
-        "Inventory AP Units 2–5 without copying question/answer payloads into reports; distinguish source signals from mathematical/browser acceptance.",
+        "Reconcile production main, scoped ECHS-001\u2013014 evidence, canonical runtime and actual remaining dependencies.",
+        "Inventory AP Units 2\u20135 without copying question/answer payloads into reports; distinguish source signals from mathematical/browser acceptance.",
         "Machine board has unique tasks, acyclic dependencies, all charter sections, concrete acceptance, evidence, limits and rollback; no unverified completion claims.",
         "Proceed into C01 implementation after the audit."
       ],
@@ -2725,7 +2722,7 @@
       "id": "ECHS-C02",
       "title": "Truthful mastery status in APIs and all read models",
       "phase": "CHARTER_FOUNDATIONS",
-      "status": "IN PROGRESS",
+      "status": "VERIFIED",
       "depends_on": [
         "ECHS-C09"
       ],
@@ -2739,7 +2736,7 @@
       "implementation_location": [
         {
           "path": "supabase/functions/_shared/mastery-status.mjs",
-          "state": "planned"
+          "state": "existing"
         },
         {
           "path": "supabase/functions/mastery-evidence/index.ts",
@@ -2751,7 +2748,7 @@
         },
         {
           "path": "js/learning-evidence-status.mjs",
-          "state": "planned"
+          "state": "existing"
         },
         {
           "path": "question-bank/js/learning-system.js",
@@ -2759,7 +2756,23 @@
         },
         {
           "path": "tools/test_mastery_read_models.mjs",
-          "state": "planned"
+          "state": "existing"
+        },
+        {
+          "path": ".github/workflows/mastery-truthfulness.yml",
+          "state": "existing"
+        },
+        {
+          "path": "tools/test_mastery_browser_acceptance.mjs",
+          "state": "existing"
+        },
+        {
+          "path": "tools/test_mastery_worker.mjs",
+          "state": "existing"
+        },
+        {
+          "path": "docs/codex/MASTERY_TRUTHFULNESS_C02.md",
+          "state": "existing"
         }
       ],
       "acceptance_criteria": [
@@ -2769,18 +2782,43 @@
         "Actual-handler counterexamples for fully hinted high scores and fabricated unaided/challenge claims no longer display verified mastery; browser legacy/failure cases fail closed."
       ],
       "tests": {
-        "status": "NOT_RUN",
-        "evidence": []
+        "status": "PASS",
+        "evidence": [
+          {
+            "kind": "sealed_scoped_release",
+            "path": "docs/codex/MASTERY_TRUTHFULNESS_C02_RELEASE.json"
+          }
+        ]
       },
       "deployment": {
-        "status": "NOT_DEPLOYED",
-        "evidence": []
+        "status": "VERIFIED",
+        "verified_at_main": "bcdeaa97ada19b23980dad93b828390371d41bf6",
+        "evidence": [
+          {
+            "kind": "merged_pull_request",
+            "url": "https://github.com/2ed944-cloud/ECHS-Math/pull/365"
+          },
+          {
+            "kind": "backend_release",
+            "url": "https://github.com/2ed944-cloud/ECHS-Math/actions/runs/34398155700"
+          },
+          {
+            "kind": "pages_release",
+            "url": "https://github.com/2ed944-cloud/ECHS-Math/actions/runs/34398155678"
+          },
+          {
+            "kind": "production_acceptance",
+            "path": "docs/codex/MASTERY_TRUTHFULNESS_C02_RELEASE.json"
+          }
+        ]
       },
       "rollback": {
-        "strategy": "Revert only this reviewed slice; retain prior URLs, published versions, raw evidence and existing accounts. Any database changes require a task-specific forward/rollback note before implementation."
+        "strategy": "Retain the provisional status policy and C09 authorization. Revert compatible presentation assets coherently with the worker revision; do not restore score-only certification. No raw-record restoration is needed."
       },
       "known_limits": [
-        "This fixes labels and counters; it does not authenticate existing client-reported practice. C03 and ECHS-046 provide that separate boundary."
+        "This fixes response/display labels and certified counters; it does not authenticate existing client-reported practice. C03 and ECHS-046 provide that separate boundary.",
+        "Already executing old tabs require reload. New worker activation/current-release fallback cannot recall code already running in a page.",
+        "C09 authorization guards are retained. Old numerical scores, raw evidence, historical milestone IDs, practice XP and routing remain preserved."
       ],
       "next_dependency": [
         "ECHS-015",
@@ -2855,7 +2893,7 @@
       "id": "ECHS-C04",
       "title": "Account ownership for legacy learning and lesson-local storage",
       "phase": "CHARTER_FOUNDATIONS",
-      "status": "PLANNED",
+      "status": "IN PROGRESS",
       "depends_on": [
         "ECHS-C01"
       ],
@@ -2879,7 +2917,7 @@
         }
       ],
       "acceptance_criteria": [
-        "Inventory and owner-scope legacy learning caches, Unit 2–5 assessment responses, Optimization notes/drawings/images and tutor conversation state.",
+        "Inventory and owner-scope legacy learning caches, Unit 2\u20135 assessment responses, Optimization notes/drawings/images and tutor conversation state.",
         "Do not attribute an unowned legacy cache to the next signed-in person; retain a safe recovery/expiry policy without silent evidence loss.",
         "Test logout, account switch, revoked scope, stale async writes, offline reconnect and IndexedDB image disposal; preserve current URLs and questions."
       ],
@@ -3110,6 +3148,34 @@
         {
           "path": "supabase/functions/practice-bank-api",
           "state": "existing"
+        },
+        {
+          "path": "supabase/migrations/202609090003_private_bank_snapshots.sql",
+          "state": "existing"
+        },
+        {
+          "path": "supabase/functions/private-bank-api/index.ts",
+          "state": "existing"
+        },
+        {
+          "path": "docs/codex/PRIVATE_BANK_SNAPSHOTS_C08.md",
+          "state": "existing"
+        },
+        {
+          "path": ".github/workflows/private-bank-snapshots.yml",
+          "state": "existing"
+        },
+        {
+          "path": "tools/test_private_snapshot_database.py",
+          "state": "existing"
+        },
+        {
+          "path": "tools/test_private_snapshot_hash.mjs",
+          "state": "existing"
+        },
+        {
+          "path": "tools/test_private_snapshot_health.mjs",
+          "state": "existing"
         }
       ],
       "acceptance_criteria": [
@@ -3121,8 +3187,17 @@
         "Before import, harden or replace the existing uploader/delivery path with immutable package readiness, organization/version media namespaces and active class/course-version release enforcement. Existing exact-replacement uploader can delete stale IDs and publish question rows before media completes; it is not a dry-run tool."
       ],
       "tests": {
-        "status": "NOT_RUN",
-        "evidence": []
+        "status": "PARTIAL",
+        "evidence": [
+          {
+            "kind": "archive_foundation_candidate_ci_on_c09_base",
+            "url": "https://github.com/2ed944-cloud/ECHS-Math/actions/runs/34393306131"
+          },
+          {
+            "kind": "scope_and_remaining_acceptance",
+            "path": "docs/codex/PRIVATE_BANK_SNAPSHOTS_C08.md"
+          }
+        ]
       },
       "deployment": {
         "status": "NOT_DEPLOYED",
@@ -3133,7 +3208,8 @@
       },
       "known_limits": [
         "403 Pearson records explicitly say commercial_publisher_resource_private_use_only; 5479 other records have no source_license. Private storage does not itself create publication or usage rights.",
-        "Current raw static provider fallback is active. This is a P0 production migration, not a safe deletion of dormant files. No production import or redistribution decision has been made."
+        "Current raw static provider fallback is active. This is a P0 production migration, not a safe deletion of dormant files. No production import or redistribution decision has been made.",
+        "The additive archive foundation passed 222 PostgreSQL checks over 27 migrations on its earlier C09 base. Composition with verified C02 and concurrent AP Precalculus main aa2ad54e8971b03adfcef2c48c4472f4099afc34 still requires fresh CI/deployment. No import, private delivery, rights promotion or public cutover is claimed."
       ],
       "next_dependency": [
         "ECHS-015",
@@ -4555,7 +4631,7 @@
         }
       ],
       "acceptance_criteria": [
-        "Verify every 1.7–1.16 objective/idea/question against current authoritative AP AB scope; preserve 1.1–1.6 and mid-unit-check boundaries.",
+        "Verify every 1.7\u20131.16 objective/idea/question against current authoritative AP AB scope; preserve 1.1\u20131.6 and mid-unit-check boundaries.",
         "Inventory all current explanations, examples and questions, then fill gaps with reviewed original items covering representations, calculator policy, justification and feedback.",
         "No protected AP Classroom copying; access can inform authorized review but does not grant public redistribution rights. Preserve URLs, all original content and independent evidence semantics."
       ],
@@ -4571,7 +4647,7 @@
         "strategy": "Revert only this reviewed slice; retain prior URLs, published versions, raw evidence and existing accounts. Any database changes require a task-specific forward/rollback note before implementation."
       },
       "known_limits": [
-        "Earlier user priority remains 1.7–1.16; exact alignment requires mathematical and browser acceptance, not this audit."
+        "Earlier user priority remains 1.7\u20131.16; exact alignment requires mathematical and browser acceptance, not this audit."
       ],
       "next_dependency": [
         "ECHS-062"
@@ -4582,7 +4658,7 @@
     },
     {
       "id": "ECHS-059",
-      "title": "AP Calculus Units 2–5 lesson-by-lesson enhancement and acceptance",
+      "title": "AP Calculus Units 2\u20135 lesson-by-lesson enhancement and acceptance",
       "phase": "CURRICULUM_MIGRATION",
       "status": "PLANNED",
       "depends_on": [
@@ -4622,7 +4698,7 @@
       ],
       "acceptance_criteria": [
         "Start from hashed audit of 18 teaching and 4 assessment routes, 1331 slide sections and 168 MCQ/24 FRQ; preserve every original.",
-        "Review A–F source proposals with actual mathematics and browsers, current authoritative topics, calculator/FRQ/representation coverage and question rights.",
+        "Review A\u2013F source proposals with actual mathematics and browsers, current authoritative topics, calculator/FRQ/representation coverage and question rights.",
         "Each lesson follows see/manipulate/predict/explain/symbolize/apply/remove-scaffold/static-task/evidence; retain rich Related Rates and Optimization investigations."
       ],
       "tests": {
@@ -4648,7 +4724,7 @@
     },
     {
       "id": "ECHS-060",
-      "title": "AP Calculus Units 6–10 audit and incremental migration",
+      "title": "AP Calculus Units 6\u201310 audit and incremental migration",
       "phase": "CURRICULUM_MIGRATION",
       "status": "PLANNED",
       "depends_on": [
@@ -4736,7 +4812,7 @@
         }
       ],
       "acceptance_criteria": [
-        "Inventory and verify every lesson against active versioned authoritative sources, including AP assessed Units1–3 versus Unit4 and IB2021 versus future2029.",
+        "Inventory and verify every lesson against active versioned authoritative sources, including AP assessed Units1\u20133 versus Unit4 and IB2021 versus future2029.",
         "Preserve Toy Car/covariation and IB contextual modeling/statistics/GDC/rounding/command-term depth; add reviewed reusable interactions and original multi-part tasks.",
         "Publish per-lesson mathematical, accessibility, browser, question-rights and rollback evidence without a big-bang route change."
       ],
@@ -4829,7 +4905,7 @@
       "id": "ECHS-C09",
       "title": "Class-membership tenant authorization and atomic replacement",
       "phase": "CHARTER_FOUNDATIONS",
-      "status": "IN PROGRESS",
+      "status": "VERIFIED",
       "depends_on": [
         "ECHS-C01"
       ],
@@ -4853,31 +4929,31 @@
         },
         {
           "path": "supabase/migrations/202609090002_membership_authorization.sql",
-          "state": "planned"
+          "state": "existing"
         },
         {
           "path": "tools/test_membership_authorization_api.mjs",
-          "state": "planned"
+          "state": "existing"
         },
         {
           "path": "tools/test_membership_authorization_database.py",
-          "state": "planned"
+          "state": "existing"
         },
         {
           "path": "tools/test_membership_authorization_e2e.mjs",
-          "state": "planned"
+          "state": "existing"
         },
         {
           "path": "tools/membership_authorization_rpc_fixture.py",
-          "state": "planned"
+          "state": "existing"
         },
         {
           "path": ".github/workflows/membership-authorization.yml",
-          "state": "planned"
+          "state": "existing"
         },
         {
           "path": "docs/codex/MEMBERSHIP_AUTHORIZATION_C09.md",
-          "state": "planned"
+          "state": "existing"
         }
       ],
       "acceptance_criteria": [
@@ -4888,12 +4964,35 @@
         "No existing membership backfill/deletion at deployment, learner-data inspection, role widening, mastery/curriculum change or public private material. Verify the exact merged backend capability and preserve a safe rollback."
       ],
       "tests": {
-        "status": "NOT_RUN",
-        "evidence": []
+        "status": "PASS",
+        "evidence": [
+          {
+            "kind": "sealed_scoped_release",
+            "path": "docs/codex/MEMBERSHIP_AUTHORIZATION_C09_RELEASE.json"
+          }
+        ]
       },
       "deployment": {
-        "status": "NOT_DEPLOYED",
-        "evidence": []
+        "status": "VERIFIED",
+        "verified_at_main": "21478287590fcc04ac8000180aef0f1fe91e79b8",
+        "evidence": [
+          {
+            "kind": "merged_pull_request",
+            "url": "https://github.com/2ed944-cloud/ECHS-Math/pull/364"
+          },
+          {
+            "kind": "backend_release",
+            "url": "https://github.com/2ed944-cloud/ECHS-Math/actions/runs/34387386416"
+          },
+          {
+            "kind": "pages_release",
+            "url": "https://github.com/2ed944-cloud/ECHS-Math/actions/runs/34387386492"
+          },
+          {
+            "kind": "production_acceptance",
+            "path": "docs/codex/MEMBERSHIP_AUTHORIZATION_C09_RELEASE.json"
+          }
+        ]
       },
       "rollback": {
         "strategy": "Retain tenant/role read guards. Revert compatible caller code only after preserving the atomic authorized replacement path; no restoration of unchecked delete/insert behavior. Additive RPC migration does not backfill or delete existing memberships."
@@ -4952,13 +5051,13 @@
       "id": "CLASS_MEMBERSHIP_AUTHORIZATION",
       "owner_task": "ECHS-C09",
       "severity": "P0",
-      "description": "Current mutation accepts requested account IDs without tenant/actual-role validation and delete/insert replacement is nontransactional; existing malformed membership rows can influence legacy reports. Source-confirmed, no production data inspected."
+      "description": "The unchecked/nontransactional roster endpoint and selected institutional/mastery report scopes were repaired and verified in sealed C09 at main21478287590fcc04ac8000180aef0f1fe91e79b8. Existing malformed membership rows remain stored; private-provider, readiness, parent-management and trusted direct database writers retain separate acceptance/cleanup scopes. No production roster was inspected or backfilled."
     }
   ],
   "last_verified_release": {
-    "task": "ECHS-C01",
-    "main_sha": "eacaff26f27a0c69debf8e5023686c2acf8e17f0",
-    "tree_sha": "54c4673d962e241e61f230e8f6edc75bd18a79e6",
-    "evidence": "docs/codex/PUBLIC_QUESTION_BOUNDARY_C01_RELEASE.json"
+    "task": "ECHS-C02",
+    "main_sha": "bcdeaa97ada19b23980dad93b828390371d41bf6",
+    "tree_sha": "b205b2d1673e5131942a637341052515ded45f1d",
+    "evidence": "docs/codex/MASTERY_TRUTHFULNESS_C02_RELEASE.json"
   }
 }

@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import vm from 'node:vm';
 import { stripTypeScriptTypes } from 'node:module';
 import { createHash, webcrypto } from 'node:crypto';
+import * as masteryStatus from '../supabase/functions/_shared/mastery-status.mjs';
 
 // Execute the actual Edge handler with a fake database. No network/production calls.
 const read = file => fs.readFileSync(new URL('../' + file, import.meta.url), 'utf8');
@@ -31,7 +32,7 @@ function harness() {
       return query;
     },
   };
-  const context = vm.createContext({ createClient: () => db, Deno: { env: { get: () => '' }, serve: fn => { handler = fn; } }, Request, Response, URL, TextEncoder, crypto: webcrypto, console, Date });
+  const context = vm.createContext({ createClient: () => db, ...masteryStatus, Deno: { env: { get: () => '' }, serve: fn => { handler = fn; } }, Request, Response, URL, TextEncoder, crypto: webcrypto, console, Date });
   vm.runInContext(policy, context);
   vm.runInContext(stripTypeScriptTypes(source), context, { filename: 'mastery-evidence/index.ts' });
   const send = (body, token = 'valid-a') => handler(new Request('https://fixture.invalid/functions/v1/mastery-evidence/sync', { method: 'POST', headers: { ...(token ? { authorization: 'Bearer ' + token } : {}), 'content-type': 'application/json' }, body: JSON.stringify(body) }));

@@ -1,6 +1,13 @@
 /* ECHS Student Learning Dashboard */
 (function(){
   "use strict";
+  // A mixed cached release must fail closed before rendering any practice claims.
+  if(!window.ECHSLearning?.projectLearningReport||!window.ECHSLearning?.projectMasteryRecord){
+    const main=document.querySelector(".institutionMain")||document.querySelector("main");
+    if(main){const notice=document.createElement("p");notice.setAttribute("role","status");notice.dataset.masteryStatusUnavailable="true";notice.textContent="Practice status is unavailable in this cached version. Reload the page to continue. Verified mastery is unavailable.";main.replaceChildren(notice);}
+    return;
+  }
+
   const $=id=>document.getElementById(id);
   const esc=value=>ECHSLearning.escapeHTML(value);
   const labels=ECHSLearning.COURSE_LABELS;
@@ -40,10 +47,10 @@
     const filter=$("courseFilter").value;
     const rows=all.filter(row=>filter==="all"||row.course===filter);
     $("masteryRows").innerHTML=rows.length?rows.map(row=>{
-      const cls=row.level.toLowerCase();
+      const cls=row.evidence_status==="insufficient"?"starting":"developing";
       const href=`practice.html?course=${encodeURIComponent(row.course)}&unit=${encodeURIComponent(row.unit)}&mode=adaptive&autostart=1`;
-      return`<tr><td><b>${esc(labels[row.course]||row.course)}</b><br><small>${esc(row.title)}${row.unit!=="all"?` · Unit ${esc(row.unit)}`:""}</small></td><td style="min-width:180px"><div class="masteryTrack"><i style="width:${row.score}%"></i></div><span class="masteryScore">${row.score}%</span></td><td>${row.accuracy}%</td><td>${row.attempts} attempt${row.attempts===1?"":"s"}</td><td><span class="masteryBadge ${cls}">${esc(row.level)}</span></td><td><a class="button ghost" href="${href}">${row.score>=80?"Challenge":"Practise"}</a></td></tr>`;
-    }).join(""):`<tr><td colspan="6"><div class="emptyLearning">No mastery evidence yet. Complete a practice set to begin.</div></td></tr>`;
+      return`<tr><td><b>${esc(labels[row.course]||row.course)}</b><br><small>${esc(row.title)}${row.unit!=="all"?` · Unit ${esc(row.unit)}`:""}</small></td><td style="min-width:180px"><div class="masteryTrack"><i style="width:${row.score}%"></i></div><span class="masteryScore">${ECHSLearning.evidencePercent(row)}</span></td><td>${ECHSLearning.evidencePercent(row,"accuracy")}</td><td>${row.attempts} attempt${row.attempts===1?"":"s"}</td><td><span class="masteryBadge ${cls}">${esc(row.level)}</span></td><td><a class="button ghost" href="${href}">${row.score>=80?"Challenge":"Practise"}</a></td></tr>`;
+    }).join(""):`<tr><td colspan="6"><div class="emptyLearning">No practice evidence yet. Complete a practice set to begin.</div></td></tr>`;
   }
   function renderAchievements(){
     $("achievementGrid").innerHTML=ECHSLearning.earnedAchievements().map(item=>`<article class="achievement ${item.earned?"earned":""}"><span class="achievementIcon">${esc(item.icon)}</span><div><strong>${esc(item.title)}</strong><p>${esc(item.description)}</p>${item.earned?`<small>Earned ${formatDate(item.earned.earnedAt)}</small>`:"<small>Not earned yet</small>"}</div></article>`).join("");
@@ -59,8 +66,8 @@
     ECHSLearning.evaluateAchievements();
     const p=ECHSLearning.profile(),s=ECHSLearning.summary();
     $("welcomeTitle").innerHTML=`Welcome back, ${esc(p.name||"Student")}.<span>Your next step is ready.</span>`;
-    $("heroMastery").textContent=s.mastered.toLocaleString();
-    $("heroAccuracy").textContent=`${s.accuracy}%`;
+    $("heroMastery").textContent=s.mastered.toLocaleString();$("heroMastery").title="Verified mastery is unavailable. Recorded practice indicators are provisional.";
+    $("heroAccuracy").textContent=ECHSLearning.evidencePercent(s,"accuracy");
     $("heroAttempts").textContent=s.attempts.toLocaleString();
     $("heroStreak").textContent=s.streak.toLocaleString();
     $("streakMeta").textContent=`${s.streak}-day streak`;

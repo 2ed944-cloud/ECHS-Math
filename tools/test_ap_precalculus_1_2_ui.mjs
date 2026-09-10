@@ -16,7 +16,7 @@ let equations=0;
 const win={document,ECHSInstitution:{account:()=>account},RatesModels:require(fileURLToPath(new URL('assets/rates-1-2-model-v3.js',base))),RatesQuestions:require(fileURLToPath(new URL('assets/rates-1-2-questions-v3.js',base))),katex:{render(tex,node){math.window.katex.renderToString(tex,{throwOnError:true,strict:'ignore'});node.textContent=tex;equations++;}},addEventListener:events.addEventListener.bind(events),dispatchEvent:events.dispatchEvent.bind(events),print(){printed=true;}};
 const scheduled=new Map();let timer=0;
 const ctx=vm.createContext({window:win,document,location,history:{replaceState(_s,_t,url){const u=new URL(url,'https://example.test');assert.equal(u.search,location.search);location.hash=u.hash;}},localStorage:{getItem(k){if(failStorage)throw Error('Denied');return storage.get(k)||null;},setItem(k,v){if(failStorage)throw Error('Denied');storage.set(k,v);}},setTimeout:fn=>{scheduled.set(++timer,fn);return timer;},clearTimeout:id=>scheduled.delete(id),console});
-for(const file of ['graphs','labs','core'])vm.runInContext(fs.readFileSync(new URL('assets/rates-1-2-'+file+'-v3.js',base),'utf8'),ctx);
+for(const file of ['graphs-v3','labs-v3','classroom-data-v4','ideas-model-v4','ideas-v4','classroom-v4','core-v3'])vm.runInContext(fs.readFileSync(new URL('assets/rates-1-2-'+file+'.js',base),'utf8'),ctx);
 const $=id=>document.getElementById(id),click=n=>{assert.ok(n,'Missing click target');n.dispatchEvent(new dom.Event('click',{bubbles:true}));};
 const input=(n,v,event='input')=>{assert.ok(n,'Missing input');n.value=String(v);n.dispatchEvent(new dom.Event(event,{bubbles:true}));};
 const choose=(id,value)=>{const n=document.querySelector('input[name="answer-'+id+'"][value="'+value+'"]');for(const r of document.querySelectorAll('input[name="answer-'+id+'"]')){r.checked=r===n;r.toggleAttribute('checked',r===n);}input(n,value);};
@@ -25,14 +25,14 @@ const current=()=>document.querySelector('.slide:not([hidden])').id,key=(target,
 const Q=win.RatesQuestions,M=win.RatesModels;
 assert.equal(document.documentElement.dataset.ratesLessonReady,'true');assert.equal(current(),'practice-guide');
 assert.equal(document.querySelectorAll('.slide:not([hidden])').length,1);
-for(const [hash,id] of [['#exam','frq01'],['#mini-frq','frq01'],['#corner-warning','corner-lab'],['#symbolic-worked','challenge-mcq-3'],['#review','finish'],['#learn','start']]){location.hash=hash;win.dispatchEvent(new dom.Event('hashchange'));assert.equal(current(),id);}
-key(document,'ArrowRight');assert.equal(current(),'roadmap');
-for(const target of [$('answer-q01'),$('slideSelect'),$('lab-secant-a'),$('draft-frq01-0'),$('nextSlide')]){key(target,'ArrowRight');assert.equal(current(),'roadmap');}
+for(const [hash,id] of [['#slide=6','tank-lab'],['#slide=1','warm-up'],['#exam','frq01'],['#mini-frq','frq01'],['#corner-warning','corner-lab'],['#symbolic-worked','challenge-mcq-3'],['#review','roadmap'],['#learn','warm-up']]){location.hash=hash;win.dispatchEvent(new dom.Event('hashchange'));assert.equal(current(),id);}
+key(document,'ArrowRight');assert.equal(current(),'tank-lab');
+for(const target of [$('answer-q01'),$('slideSelect'),$('lab-secant-a'),$('draft-frq01-0'),$('nextSlide')]){key(target,'ArrowRight');assert.equal(current(),'tank-lab');}
 click(document.querySelector('[data-solution="q01"]'));assert.equal($('solution-q01').hidden,true);
 for(const q of Q.questions){if(q.type==='number')input($('answer-'+q.id),q.answer);else choose(q.id,q.answer);click(document.querySelector('[data-check="'+q.id+'"]'));assert.match($('feedback-'+q.id).textContent,/Correct/,q.id);}
-assert.equal($('correctCount').textContent,'38');assert.equal($('attemptedCount').textContent,'38 / 38');
+assert.equal($('correctCount').textContent,'59');assert.equal($('attemptedCount').textContent,'59 / 59');
 click(document.querySelector('[data-solution="ap01"]'));assert.equal($('solution-ap01').hidden,false);
-choose('ap01',0);assert.equal($('solution-ap01').hidden,true);assert.equal($('correctCount').textContent,'37');
+choose('ap01',0);assert.equal($('solution-ap01').hidden,true);assert.equal($('correctCount').textContent,'58');
 click(document.querySelector('[data-solution="ap01"]'));assert.equal($('solution-ap01').hidden,true);
 click(document.querySelector('[data-check="ap01"]'));assert.doesNotMatch($('feedback-ap01').textContent,/Correct/);
 choose('ap01',1);click(document.querySelector('[data-check="ap01"]'));
@@ -64,6 +64,16 @@ for(const model of ['corner','smooth'])for(const h of [1,.5,.1,.01]){setting('co
 for(const [i,answer] of ['-9.569','-13.348','-13.333','-3.333'].entries()){setting('calculator','model',i);prediction('calculator','answer',answer);correct('calculator');}
 for(const [h,dp,answer] of [[1,1,.05],[.5,1,0],[.1,2,0],[.01,2,0],[.1,4,.04],[.01,4,.04],[.01,6,.04]]){setting('precision','h',h);setting('precision','dp',dp);prediction('precision','answer',answer);prediction('precision','claim','no');correct('precision');}
 prediction('precision','answer','999');assert.doesNotMatch($('lab-precision-feedback').textContent,/Correct/);assert.equal($('lab-precision-work').hidden,true);
+const ideaInput=(name,key,v,ev='input')=>input($('idea-'+name+'-'+key),v,ev);
+const ideaCheck=name=>{click($('idea-'+name+'-check'));assert.match($('idea-'+name+'-feedback').textContent,/Correct/);click($('idea-'+name+'-reveal'));assert.equal($('idea-'+name+'-work').hidden,false);};
+for(const [count,a,b,rate,winner] of [[1,14,5,3.5,'A'],[2,8,6,1,'A'],[3,16,8,1.3333,'A'],[4,13,12,13/16,'A'],[5,18,18,.9,'equal']]){ideaInput('ledger','count',count,'change');ideaInput('ledger','a',a);ideaInput('ledger','b',b);ideaInput('ledger','rate',rate);ideaInput('ledger','compare',winner);ideaCheck('ledger');}
+for(const [idx,amount] of [14,-12,12,15].entries()){ideaInput('widths','interval',idx,'change');ideaInput('widths','amount',amount);ideaInput('widths','overall','29/12');ideaInput('widths','most','3');ideaCheck('widths');}
+for(const [key,sign,bend,left,right] of [['risingUp','positive','up',3.9,4.1],['risingDown','positive','down',4.1,3.9],['fallingUp','negative','up',-4.1,-3.9],['fallingDown','negative','down',-3.9,-4.1]]){ideaInput('shape','model',key,'change');ideaInput('shape','c',2,'change');ideaInput('shape','sign',sign);ideaInput('shape','bend',bend);ideaInput('shape','left',left);ideaInput('shape','right',right);ideaCheck('shape');}
+for(const [key,rg,rh,behavior] of [['1',1,-1,'decreasing'],['2',2,0,'constant'],['4',4,2,'increasing'],['varying',4,2,'mixed']]){ideaInput('sum','model',key,'change');ideaInput('sum','f',-2);ideaInput('sum','g',rg);ideaInput('sum','h',rh);ideaInput('sum','behavior',behavior);ideaCheck('sum');}
+for(const name of ['ledger','widths','shape','sum']){const input= document.querySelector('[data-idea-lab="'+name+'"] [data-response]');input.value='incorrect';input.dispatchEvent(new dom.Event('input',{bubbles:true}));assert.equal($('idea-'+name+'-work').hidden,true);click($('idea-'+name+'-check'));assert.doesNotMatch($('idea-'+name+'-feedback').textContent,/Correct/);click($('idea-'+name+'-reset'));assert.equal(input.value,'');}
+for(const el of document.querySelectorAll('[data-idea-plot]'))assert.ok(el.querySelector('svg'),'Missing idea graph '+el.dataset.ideaPlot);
+assert.equal(document.querySelectorAll('[data-idea-lab]').length,4);
+for(const el of document.querySelectorAll('.classroom-worked')){const b=el.querySelector('[data-reveal]'),box=$(b.dataset.reveal);assert.equal(box.hidden,false);click(b);assert.equal(box.hidden,true);click(b);assert.equal(box.hidden,false);}
 for(const el of document.querySelectorAll('[data-rates-plot]'))assert.ok(el.querySelector('svg'),'Unrendered graph: '+el.dataset.ratesPlot);
 for(const svg of document.querySelectorAll('svg')){assert.ok(svg.getAttribute('aria-label'));assert.doesNotMatch(svg.outerHTML,/NaN|Infinity/);}
 assert.ok(document.querySelector('[data-rates-plot="shared"] path.curve[style="stroke:#a26714"][stroke-dasharray]'),'Shared CSS must not erase the gold graph color');
@@ -75,13 +85,36 @@ account={id:'test-b'};win.dispatchEvent(new dom.Event('focus'));assert.equal($('
 account={id:'test-a'};win.dispatchEvent(new dom.Event('focus'));assert.equal($('answer-q01').value,'90');assert.equal($('draft-frq01-0').value,'Last edit before switching accounts.');
 failStorage=true;input($('answer-q01'),'90');click(document.querySelector('[data-check="q01"]'));assert.match(document.querySelector('.save-note').textContent,/unavailable/);failStorage=false;
 click($('printLesson'));assert.ok(printed);click($('resetWork'));click($('cancelReset'));assert.equal($('answer-q01').value,'90');click($('resetWork'));click($('confirmReset'));assert.equal($('answer-q01').value,'');assert.match($('attemptedCount').textContent,/^0/);
-key(document,'End');assert.equal(current(),'alignment');key(document,'Home');assert.equal(current(),'start');
+location.hash='#warm-up';win.dispatchEvent(new dom.Event('hashchange'));key(document,'End');assert.equal(current(),'roadmap');assert.equal($('nextSlide').disabled,true);key(document,'ArrowRight');assert.equal(current(),'roadmap');key(document,'Home');assert.equal(current(),'warm-up');
 let continued=false;const finish=document.createElement('button');finish.dataset.finishLesson='';finish.addEventListener('click',()=>continued=true);document.body.append(finish);click($('continuePractice'));assert.ok(continued);
 const ids=[...document.querySelectorAll('[id]')].map(n=>n.id);assert.equal(new Set(ids).size,ids.length);for(const n of document.querySelectorAll('[aria-controls]'))assert.ok($(n.getAttribute('aria-controls')));
+assert.equal(document.querySelectorAll('.slide').length,67);assert.equal(document.querySelectorAll('[data-question]').length,59);
+assert.deepEqual([...document.querySelectorAll('.slide')].slice(0,6).map(n=>n.id),['warm-up','tank-lab','secant-lab','your-turn-1','zero-lab','interval-comparisons']);
+click(document.querySelector('.classroom-nav [data-go="local-lab"]'));assert.equal(current(),'local-lab');assert.equal(document.querySelector('.classroom-nav [aria-current]').dataset.go,'local-lab');
+click(document.querySelector('.classroom-menu [data-go="unequal-lab"]'));assert.equal(current(),'unequal-lab');
+setting('tank','a',2);setting('tank','b',2);click($('lab-tank-reset'));assert.equal($('lab-tank-check').disabled,false);assert.equal($('lab-tank-a').value,'0');assert.equal($('lab-tank-b').value,'2');
+assert.ok(document.querySelector('[data-classroom-plot] svg'));
+assert.equal(document.querySelectorAll('.slide[data-path="classroom"]').length,30);assert.equal(document.querySelectorAll('.slide[data-path="practice"]').length,37);
+assert.equal($('slideSelect').querySelectorAll('option').length,37);assert.match($('topCounter').textContent,/Extra practice/);
+click(document.querySelector('#unequal-lab .classroom-return'));assert.equal(current(),'roadmap');assert.equal($('slideSelect').querySelectorAll('option').length,30);
+for(const {from,to} of win.RatesClassroomPlan.merges){location.hash='#'+from;win.dispatchEvent(new dom.Event('hashchange'));assert.equal(current(),to,'Consolidated link '+from);}
+for(const deck of document.querySelectorAll('.classroom-questions')){
+ const panels=[...deck.querySelectorAll('.classroom-question-page')];assert.equal(panels.filter(p=>!p.hidden).length,1);
+ for(const panel of panels){assert.equal(panel.firstElementChild.classList.contains('before-question'),true);assert.ok(panel.querySelectorAll('.before-question li').length>=2);assert.equal(panel.querySelectorAll('[data-question]').length,1);}
+ const buttons=[...deck.querySelectorAll('.question-pages button')];for(const [i,b] of buttons.entries()){click(b);assert.equal(panels.filter(p=>!p.hidden).length,1);assert.equal(panels[i].hidden,false);assert.equal(b.getAttribute('aria-pressed'),'true');}
+}
+assert.equal(document.querySelectorAll('.before-question').length,59);assert.equal(document.querySelectorAll('.before-written').length,6);
+for(const id of win.RatesClassroomPlan.stagedActivities){const el=$(id),panels=[...el.querySelectorAll('[data-activity-panel]')],buttons=[...el.querySelectorAll('[data-activity-step]')];assert.equal(panels.length,2);assert.equal(panels[0].hidden,false);assert.ok(panels[0].querySelector('.classroom-key-notes'));assert.ok(panels[1].querySelector('.investigation'));click(buttons[1]);assert.equal(panels[0].hidden,true);assert.equal(panels[1].hidden,false);click(buttons[0]);assert.equal(panels[0].hidden,false);}
+location.hash='#warm-up';win.dispatchEvent(new dom.Event('hashchange'));const visited=[];for(let i=0;i<30;i++){visited.push(current());click($('nextSlide'));}assert.deepEqual(visited,Array.from(win.RatesClassroomPlan.order));assert.equal(current(),'roadmap');
+// Saved stable IDs from the previous release resolve to consolidated destinations.
+storage.set('echs:ap-precalculus:1.2:ap-precalculus-topic-1-2-v3:test-old',JSON.stringify({version:1,answers:{},drafts:{},selfScores:{},slideId:'local-worked',slide:0}));account={id:'test-old'};win.dispatchEvent(new dom.Event('focus'));assert.equal(current(),'local-lab');account={id:'test-a'};win.dispatchEvent(new dom.Event('focus'));
+
+input($('draft-warm-up-1'),'Tank A has twice the average rate.');flush();account={id:'test-c'};win.dispatchEvent(new dom.Event('focus'));assert.equal($('draft-warm-up-1').value,'');account={id:'test-a'};win.dispatchEvent(new dom.Event('focus'));assert.equal($('draft-warm-up-1').value,'Tank A has twice the average rate.');
+flush();click($('resetWork'));click($('confirmReset'));const saved=JSON.parse(storage.get('echs:ap-precalculus:1.2:ap-precalculus-topic-1-2-v3:test-a'));assert.equal(saved.slideId,current());assert.equal(location.hash,'#'+current());
 const css=fs.readFileSync(new URL('assets/rates-1-2-v3.css',base),'utf8');assert.match(css,/@media print\{\.solution,\.rubric,\.hint,\.feedback/);assert.match(css,/@media\(max-width:650px\)/);
 // Execute the legacy redirect and verify the protected URL survives.
 const legacyHTML=fs.readFileSync(new URL('../1-2-rates-of-change.html',base),'utf8');
 let destination='';const link={};const legacyLocation={href:'https://example.test/ECHS-Math/lessons/ap-precalculus/1-2-rates-of-change.html?accessKey=keep&course=ap-precalculus#mini-frq',search:'?accessKey=keep&course=ap-precalculus',hash:'#mini-frq',replace(url){destination=url;}};
 vm.runInNewContext(legacyHTML.match(/<script>([\s\S]*?)<\/script>/)[1],{URL,location:legacyLocation,document:{getElementById(){return link;}}});
 assert.equal(new URL(destination).search,legacyLocation.search);assert.equal(new URL(destination).hash,'#mini-frq');assert.equal(link.href,destination);
-console.log('AP Precalculus 1.2 UI: PASS (10 labs, 38 checks, 18 scoring parts, equations, zero-width safety, account isolation, edit invalidation, legacy redirects and protected progression).');
+console.log('AP Precalculus 1.2 UI: PASS (14 labs, 59 checks, 18 scoring parts, equations, zero-width safety, account isolation, edit invalidation, legacy redirects and protected progression).');
