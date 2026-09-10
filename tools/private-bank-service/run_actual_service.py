@@ -6,6 +6,7 @@ production DSN, arbitrary Docker context, broad cleanup, or service-log collecti
 from pathlib import Path
 import argparse
 import importlib.metadata
+import ipaddress
 import json
 import os
 import re
@@ -52,6 +53,58 @@ def assert_resource_owner(kind,identifier,labels,project,run_id):
     elif kind=='volume':need(identifier in {project+'_'+n for n in ('db-data','db-config','storage-data')},'cleanup-volume')
     elif kind=='container':need(labels.get('com.docker.compose.service') in IMAGE_TAGS,'cleanup-container')
     else:raise ContractError('resource-kind')
+
+PORTS={'db':5432,'auth':9999,'rest':3000,'storage':5000,'imgproxy':5001}
+PRIVATE_NETS=tuple(ipaddress.IPv4Network(v) for v in ('10.0.0.0/8','172.16.0.0/12','192.168.0.0/16'))
+def private_ipv4(value):
+    need(type(value) is str,'private-ipv4')
+    try:address=ipaddress.IPv4Address(value)
+    except ipaddress.AddressValueError:raise ContractError('private-ipv4') from None
+    need(str(address)==value and any(address in n for n in PRIVATE_NETS),'private-ipv4');return address
+
+def validate_network_receipt(receipt,run_id):
+    need(type(receipt) is dict and set(receipt)=={'contract','connection_mode','network_id','network_name','driver','internal','ipv6','subnet','gateway','containers','published_ports'},'network-receipt')
+    need(receipt['contract']=='echs.c08.owned-bridge-network.v1' and receipt['connection_mode']=='owned-internal-bridge'
+         and receipt['network_name']=='echs-c08-service-'+run_id+'_internal' and receipt['driver']=='bridge'
+         and receipt['internal'] is True and receipt['ipv6'] is False and receipt['published_ports'] is False,'network-receipt')
+    need(type(receipt['network_id']) is str and re.fullmatch('[0-9a-f]{64}',receipt['network_id']),'network-id')
+    try:subnet=ipaddress.IPv4Network(receipt['subnet'],strict=True)
+    except (ValueError,TypeError):raise ContractError('private-subnet') from None
+    need(str(subnet)==receipt['subnet'] and 8<=subnet.prefixlen<=29 and any(subnet.subnet_of(n) for n in PRIVATE_NETS),'private-subnet')
+    gateway=private_ipv4(receipt['gateway']);need(gateway in subnet and gateway not in (subnet.network_address,subnet.broadcast_address),'network-gateway')
+    need(type(receipt['containers']) is list and len(receipt['containers'])==5,'five-network-members')
+    seen=set();ips=set();ids=set();result={}
+    for row in receipt['containers']:
+        need(type(row) is dict and set(row)=={'service','container_id','ipv4','prefix_length','port'},'network-member')
+        n=row['service'];need(type(n) is str and n in PORTS and n not in seen,'network-service')
+        need(type(row['container_id']) is str and re.fullmatch('[0-9a-f]{64}',row['container_id']) and row['container_id'] not in ids,'network-container')
+        ip=private_ipv4(row['ipv4']);need(ip in subnet and ip not in (subnet.network_address,subnet.broadcast_address,gateway) and ip not in ips,'network-member-ip')
+        need(type(row['prefix_length']) is int and row['prefix_length']==subnet.prefixlen and type(row['port']) is int and row['port']==PORTS[n],'network-fixed-port')
+        seen.add(n);ips.add(ip);ids.add(row['container_id']);result[n]=row
+    need([r['service'] for r in receipt['containers']]==list(PORTS),'network-service-order');return result
+
+def inspect_owned_network(network,attachments,containers,project,run_id):
+    need(type(network) is dict and network['Name']==project+'_internal' and network['Driver']=='bridge' and network['Scope']=='local'
+         and network['Internal'] is True and network['EnableIPv6'] is False,'owned-internal-network')
+    assert_resource_owner('network',network['Name'],network['Labels'],project,run_id)
+    need(type(network['Id']) is str and re.fullmatch('[0-9a-f]{64}',network['Id']),'network-id')
+    need(type(network['IPAM']) is dict and network['IPAM']['Driver']=='default' and type(network['IPAM']['Config']) is list and len(network['IPAM']['Config'])==1,'network-ipam')
+    need(type(network['Containers']) is dict and set(network['Containers'])==set(containers.values()) and set(containers)==set(PORTS)
+         and type(attachments) is dict and set(attachments)==set(PORTS),'exact-five-network-members')
+    config=network['IPAM']['Config'][0];receipt={'contract':'echs.c08.owned-bridge-network.v1','connection_mode':'owned-internal-bridge',
+        'network_id':network['Id'],'network_name':network['Name'],'driver':'bridge','internal':True,'ipv6':False,
+        'subnet':config['Subnet'],'gateway':config['Gateway'],'containers':[],'published_ports':False}
+    for name in PORTS:
+        detail=attachments[name]
+        need(type(detail) is dict and set(detail)=={'id','network_mode','port_bindings','networks'} and detail['id']==containers[name]
+             and detail['network_mode']==network['Name'] and (detail['port_bindings'] is None or type(detail['port_bindings']) is dict and not detail['port_bindings'])
+             and type(detail['networks']) is dict and set(detail['networks'])=={network['Name']},'sole-owned-attachment')
+        attached=detail['networks'][network['Name']];member=network['Containers'][containers[name]]
+        need(attached['NetworkID']==network['Id'] and attached['GlobalIPv6Address']=='' and member['IPv6Address']==''
+             and attached['Gateway'] in ('',config['Gateway']),'network-address-family')
+        need(type(attached['IPPrefixLen']) is int and member['IPv4Address']==attached['IPAddress']+'/'+str(attached['IPPrefixLen']),'matching-network-address')
+        receipt['containers'].append({'service':name,'container_id':containers[name],'ipv4':attached['IPAddress'],'prefix_length':attached['IPPrefixLen'],'port':PORTS[name]})
+    validate_network_receipt(receipt,run_id);return receipt
 
 def execution_guard(environ,platform,workspace,expected_head):
     clean_environment(dict(environ))
@@ -176,18 +229,21 @@ def main():
         for row in migrations:checked(psql,'migration-'+row['path'].split('/')[-1],data=(repo/row['path']).read_bytes(),timeout=90)
         sql=("comment on database postgres is '"+project+"'; notify pgrst,'reload schema'; select public.private_bank_snapshot_capabilities()->>'immutable_ready';").encode()
         need(checked(psql,'actual-capability',data=sql).strip()==b'true','actual-sql-capability')
-        ports={}
-        for service,target in [('db','5432'),('rest','3000'),('storage','5000')]:
-            value=checked(compose+['port',service,target],'loopback-port').decode().strip()
-            need(re.fullmatch(r'127\.0\.0\.1:[1-9][0-9]{0,4}',value),'loopback-port')
-            ports[service]=int(value.split(':')[1]);need(ports[service]<=65535,'loopback-port')
-        control={'project':project,'db_port':ports['db'],'rest_port':ports['rest'],'storage_port':ports['storage'],
+        stage='owned-network';assert_owned()
+        network=json.loads(docker('network','inspect',project+'_internal',stage='owned-network-inspect'))
+        need(type(network) is list and len(network)==1,'single-owned-network');attachments={}
+        for service,identifier in containers.items():
+            values=[json.loads(docker('inspect',identifier,'--format','{{json .'+field+'}}',stage='owned-network-'+service))
+                for field in ('Id','HostConfig.NetworkMode','HostConfig.PortBindings','NetworkSettings.Networks')]
+            attachments[service]=dict(zip(('id','network_mode','port_bindings','networks'),values))
+        network_receipt=inspect_owned_network(network[0],attachments,containers,project,run_id)
+        control={'project':project,'network':network_receipt,
             'python':sys.executable,'repo':str(repo),'expected_head':head,'expected_tree':tree,'source_manifest_sha256':args.source_manifest_sha256}
         (run_dir/'control.json').write_text(json.dumps(control))
         metadata={'contract':'echs.c08.storage-service-run.v1','status':'RUNNING','run_id':run_id,'head':head,'tree':tree,
             'source_manifest_sha256':args.source_manifest_sha256,'source_pins_sha256':digest((HERE/'source-pins.json').read_bytes()),
             'migration_files':migrations,'image_receipt_sha256':digest(image_raw),'running_image_ids':{r['service']:r['config_digest'] for r in images},
-            'managed_schema_probed':True,'migrations_applied':27,'tls':tls_receipt,'services_executed':True,'hosted_edge_executed':False,'corpus_imported':False,
+            'managed_schema_probed':True,'migrations_applied':27,'tls':tls_receipt,'network':network_receipt,'services_executed':True,'hosted_edge_executed':False,'corpus_imported':False,
             'tool_versions':{'python':sys.version.split()[0],'node':checked([paths['node'],'--version'],'node-version').decode().strip(),
                 'docker':docker('version','--format','{{.Server.Version}}',stage='docker-version').decode().strip(),
                 'compose':docker('compose','version','--short',stage='compose-version').decode().strip(),'cryptography':'50.0.1','psycopg':'3.2.9'}}

@@ -71,6 +71,8 @@
       "image resolution accepts only reviewed repository/tag and linux-amd64 content",
       "compose retains seven official init mounts, real services and private fresh resources",
       "cleanup includes project-only orphans and named unlabelled resources before ownership checks",
+      "exact owned internal bridge and five private addresses produce fixed service endpoints",
+      "foreign ownership addresses attachments or published ports cannot authorize service access",
       "generated test JWT roles are signed distinctly and secret values stay outside compose",
       "subprocess failure never exposes captured credential-like stderr",
       "stage and timeout diagnostics remain useful without raw child output",

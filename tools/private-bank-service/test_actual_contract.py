@@ -16,7 +16,7 @@ import sys
 import uuid
 from fixture_config import compose_fixture,mint_credentials
 from service_contract import HERE,IMAGE_TAGS,UPSTREAM_COMMIT,RUNTIME_HASHES,PIN_SHA256,ContractError,digest,strict_json,write_report_exclusive
-from run_actual_service import SOURCE_FILES,RunnerError,command,execution_guard,image_result,verify_manifest,resource_candidates,assert_resource_owner
+from run_actual_service import SOURCE_FILES,RunnerError,command,execution_guard,image_result,verify_manifest,resource_candidates,assert_resource_owner,inspect_owned_network,validate_network_receipt,PORTS
 from collect_service import accept,collect,RAW_FILES
 
 def rejects(fn):
@@ -25,6 +25,20 @@ def rejects(fn):
     raise AssertionError('Expected closed rejection')
 
 def encoded(v):return (json.dumps(v,indent=2)+'\n').encode()
+
+def network_fixture(run_id):
+    project='echs-c08-service-'+run_id;name=project+'_internal';network_id='f'*64
+    containers={s:format(i+1,'x')*64 for i,s in enumerate(PORTS)}
+    network={'Id':network_id,'Name':name,'Driver':'bridge','Scope':'local','Internal':True,'EnableIPv6':False,
+        'Labels':{'echs.fixture':project,'echs.run_id':run_id,'com.docker.compose.project':project},
+        'IPAM':{'Driver':'default','Config':[{'Subnet':'172.18.0.0/16','Gateway':'172.18.0.1'}]},'Containers':{}}
+    attachments={}
+    for i,(s,identifier) in enumerate(containers.items()):
+        address='172.18.0.'+str(i+2)
+        network['Containers'][identifier]={'IPv4Address':address+'/16','IPv6Address':''}
+        attachments[s]={'id':identifier,'network_mode':name,'port_bindings':{},'networks':{name:{'NetworkID':network_id,
+            'GlobalIPv6Address':'','Gateway':'172.18.0.1','IPAddress':address,'IPPrefixLen':16}}}
+    return network,attachments,containers,project
 
 def suite():
     rows=[]
@@ -49,7 +63,8 @@ def suite():
         'image_receipt_sha256':digest(image_raw),'running_image_ids':{r['service']:r['config_digest'] for r in image_receipt['images']},
         'managed_schema_probed':True,'migrations_applied':27,'tls':{'hostname':'echsc08servicetest.supabase.co','ca_fingerprint_sha256':'1'*64,'leaf_fingerprint_sha256':'2'*64},
         'services_executed':True,'hosted_edge_executed':False,'corpus_imported':False,'tool_versions':{'python':'3.12.12','node':'v24.19.0','docker':'28.0.0','compose':'2.39.0','cryptography':'50.0.1','psycopg':'3.2.9'},
-        'service_start_attempted':True,'failure':None,'cleanup_complete':True}
+        'service_start_attempted':True,'failure':None,'cleanup_complete':True,
+        'network':inspect_owned_network(*network_fixture(run_id),run_id)}
     tests={'contract':'echs.c08.actual-storage-service-tests.v1','status':'PASS','passed':19,'total':19,
         'groups':[{'name':n,'status':'PASS','elapsed_ms':1} for n in names],'head':head,'tree':tree,'source_manifest_sha256':manifest_hash,
         'services_executed':True,'actual_postgrest':True,'actual_storage':True,'actual_managed_postgres':True,'verified_tls':True,'synthetic_only':True,
@@ -102,7 +117,8 @@ def suite():
             for service in value['services'].values():
                 assert '@sha256:' in service['image'] and service['platform']=='linux/amd64' and service['restart']=='no'
                 assert service['networks']==['isolated'] and 'network_mode' not in service and 'privileged' not in service
-                for binding in service.get('ports',[]):assert binding.startswith('127.0.0.1::')
+                assert 'ports' not in service
+            assert value['networks']['isolated']['driver']=='bridge' and value['networks']['isolated']['enable_ipv6'] is False
             mounts=[r for r in value['services']['db']['volumes'] if type(r) is dict]
             assert len(mounts)==7 and all(r['read_only'] is True for r in mounts)
             assert len(value['volumes'])==3 and all(v['external'] is False for v in value['volumes'].values())
@@ -122,6 +138,35 @@ def suite():
             rejects(lambda:assert_resource_owner('volume',project+'_foreign',labels,project,run_id))
             rejects(lambda:resource_candidates('container',[],['--unsafe'],[]))
         group('cleanup includes project-only orphans and named unlabelled resources before ownership checks',ownership_union)
+
+        def network_identity():
+            n,a,c,p=network_fixture(run_id);receipt=inspect_owned_network(n,a,c,p,run_id)
+            result=validate_network_receipt(receipt,run_id)
+            assert set(result)==set(PORTS) and result['db']['ipv4']=='172.18.0.2' and result['storage']['port']==5000
+            assert receipt['connection_mode']=='owned-internal-bridge' and receipt['published_ports'] is False
+        group('exact owned internal bridge and five private addresses produce fixed service endpoints',network_identity)
+
+        def foreign_network():
+            for change in ('external','integer','driver','owner','ipv6','public-subnet','outside-subnet','bad-mask','foreign-ip','gateway-ip','extra-member','network-id','second-network','port-binding','host-network'):
+                n,a,c,p=network_fixture(run_id);name=n['Name'];member=n['Containers'][c['db']];attached=a['db']['networks'][name]
+                if change=='external':n['Internal']=False
+                elif change=='integer':n['Internal']=1
+                elif change=='driver':n['Driver']='host'
+                elif change=='owner':n['Labels']['echs.run_id']='0'*32
+                elif change=='ipv6':n['EnableIPv6']=True
+                elif change=='public-subnet':n['IPAM']['Config'][0]={'Subnet':'8.8.0.0/16','Gateway':'8.8.0.1'}
+                elif change=='outside-subnet':attached['IPAddress']='172.19.0.2';member['IPv4Address']='172.19.0.2/16'
+                elif change=='bad-mask':n['IPAM']['Config'][0]['Subnet']='172.18.0.2/16'
+                elif change=='foreign-ip':attached['IPAddress']='169.254.169.254';member['IPv4Address']='169.254.169.254/16'
+                elif change=='gateway-ip':attached['IPAddress']='172.18.0.1';member['IPv4Address']='172.18.0.1/16'
+                elif change=='extra-member':n['Containers']['a'*64]={'IPv4Address':'172.18.0.9/16','IPv6Address':''}
+                elif change=='network-id':attached['NetworkID']='e'*64
+                elif change=='second-network':a['db']['networks']['foreign']={}
+                elif change=='port-binding':a['db']['port_bindings']={'5432/tcp':[{'HostIp':'0.0.0.0','HostPort':'5432'}]}
+                else:a['db']['network_mode']='host'
+                rejects(lambda:inspect_owned_network(n,a,c,p,run_id))
+            bad=copy.deepcopy(run['network']);bad['containers'][0]['port']=5433;rejects(lambda:validate_network_receipt(bad,run_id))
+        group('foreign ownership addresses attachments or published ports cannot authorize service access',foreign_network)
 
         def credentials():
             a=mint_credentials();b=mint_credentials();assert a['JWT_SECRET']!=b['JWT_SECRET'] and a['POSTGRES_PASSWORD']!=b['POSTGRES_PASSWORD']
@@ -162,7 +207,8 @@ def suite():
             for file,key,value in [('service-run-report.json','services_executed',1),('service-run-report.json','cleanup_complete',False),
                 ('service-run-report.json','migrations_applied',True),('service-test-results.json','actual_storage',1),
                 ('service-test-results.json','production_calls',0),('service-test-results.json','hosted_edge_executed',True),
-                ('service-test-results.json','readiness',{'status':'FAIL','probes':1,'elapsed_ms':1})]:
+                ('service-test-results.json','readiness',{'status':'FAIL','probes':1,'elapsed_ms':1}),
+                ('service-run-report.json','network',{})]:
                 x=copy.deepcopy(records[file]);x[key]=value;(run_dir/file).write_bytes(encoded(x));rejects(current);restore()
         group('numeric boolean substitutes and incomplete cleanup cannot pass acceptance',false_claims)
 

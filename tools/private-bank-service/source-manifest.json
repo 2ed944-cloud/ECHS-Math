@@ -3,18 +3,18 @@
   "files": [
     {
       "path": "PLAN.md",
-      "bytes": 11326,
-      "sha256": "b72fd6ffaa843b2df577d2160ff0ba5ff9ac8bcd19ed5f4a61c31af321b39d0d"
+      "bytes": 12421,
+      "sha256": "9a10dea6d744431659349059c087fb42877554a8d38de70e52c673a8c5978adf"
     },
     {
       "path": "README.md",
-      "bytes": 7242,
-      "sha256": "46797e87a98733d7b8ba5b9dd2ebe8eff64ce7b6a6f13fa98d4a8f3e75285bff"
+      "bytes": 8181,
+      "sha256": "81876f69e9eab5b24eac2c1a78392807823e7dafa6ecc942f1780194cc925fa0"
     },
     {
       "path": "collect_service.py",
-      "bytes": 8774,
-      "sha256": "cc765369937b55cc003323754f0c2b6d204719cf1550c03877d0b8d0e0f90aec"
+      "bytes": 8868,
+      "sha256": "fb279c48bf42046c36333cd11090250bcf2d17b118b5bbfa6504737dddcbeb3d"
     },
     {
       "path": "fixture-source-pin.json",
@@ -23,8 +23,8 @@
     },
     {
       "path": "fixture_config.py",
-      "bytes": 7198,
-      "sha256": "ac77f6f73caac592fd58cfee1453aee6cadb6a4849f1121336ce79299d8bfafc"
+      "bytes": 7149,
+      "sha256": "b0167b11c9bbcac2626c7d1719288c3d596409ca6dddf05429b796ed825ae487"
     },
     {
       "path": "generate_tls.py",
@@ -38,8 +38,8 @@
     },
     {
       "path": "run_actual_service.py",
-      "bytes": 17314,
-      "sha256": "1fb828673b19ef9e6d99fd5dd63a4461d2a10fdf61050e24b0987aec76cc7fe1"
+      "bytes": 22829,
+      "sha256": "350e244ccbaf7c6e7771ba4e90b8297a55d8e65cac06a1ef1710d21fd74b694a"
     },
     {
       "path": "run_service.py",
@@ -63,8 +63,8 @@
     },
     {
       "path": "seed_synthetic.py",
-      "bytes": 10452,
-      "sha256": "cc50c568f1f1c3ac7c329604244e34930389cf12c1ab52752dd39292664d34e5"
+      "bytes": 10541,
+      "sha256": "37391dc8327da7ac893737239abd51135d36d53b9a644a44d5989f3689a39117"
     },
     {
       "path": "service-cases.json",
@@ -83,13 +83,13 @@
     },
     {
       "path": "test_actual_contract.py",
-      "bytes": 16142,
-      "sha256": "670656910573c183ad56d6ae5251998d96b348e3cf8771799a898c3bac1eeb9c"
+      "bytes": 19923,
+      "sha256": "ab81f35be57ef8f3ab90d4f93d2751b90945c0b4bdd4ff0fc232e8192346d14e"
     },
     {
       "path": "test_service.mjs",
-      "bytes": 18680,
-      "sha256": "cd0a70b1c850e85ec0bca180c16650129821acd4e382aeddec007efd31727c56"
+      "bytes": 19427,
+      "sha256": "7c2047f20b1efa850eaae167587a4ceed661e2440f716427b7a322b6867dcd35"
     },
     {
       "path": "test_service_contract.py",
@@ -98,13 +98,13 @@
     },
     {
       "path": "test_tls_gateway.mjs",
-      "bytes": 6855,
-      "sha256": "7ae93da82e9f592bdf919a86796be94df9bf34705dbee33019a1d9d7202b78ac"
+      "bytes": 7310,
+      "sha256": "fd8a00e7a736d0f734c688c8238500e6ac287234ab44a9a72f4c2e05bcab005b"
     },
     {
       "path": "tls-gateway.mjs",
-      "bytes": 6142,
-      "sha256": "c34e9ea242e0c4557fd468d8ad15f196e85f28167a015206a4993944c74ea2d0"
+      "bytes": 6662,
+      "sha256": "ec2018109c33a1b73661e43a18014e139fbe1e2fddb066aa0ccadbbfcfc4636c"
     },
     {
       "path": "upstream-observation.json",

@@ -6,7 +6,7 @@ import https from 'node:https';
 import crypto from 'node:crypto';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
-import {HOST,openGateway,targetFor} from './tls-gateway.mjs';
+import {HOST,openGateway,targetFor,privateUpstreamHost} from './tls-gateway.mjs';
 const here=path.dirname(fileURLToPath(import.meta.url));
 const [secretDir,reportPath]=process.argv.slice(2);
 assert(secretDir&&reportPath&&path.dirname(path.resolve(reportPath))===path.join(here,'results'));
@@ -40,7 +40,12 @@ try{
  await group('upstream redirect is refused without following any target',async()=>{mode='redirect';try{assert.equal((await request()).status,502);}finally{mode='echo';}});
  await group('oversized RPC request is rejected before the service socket',async()=>{let n=calls;assert.equal((await request({body:Buffer.alloc(4097)})).status,413);assert.equal(calls,n);});
  await group('real stalled upstream is bounded and loses its socket',async()=>{mode='stall';try{let start=Date.now();assert.equal((await request()).status,504);assert(Date.now()-start<1400);}finally{mode='echo';}});
- await group('configuration and pure target checks reject unexpected services',async()=>{assert.equal(targetFor('POST','/rest/v1/rpc/evil'),null);await assert.rejects(openGateway({cert,key,restPort:'443',storagePort:123}));await assert.rejects(openGateway({cert,key,restPort:123,storagePort:123,listenPort:-1}));});
+ await group('configuration and pure target checks reject unexpected services',async()=>{assert.equal(targetFor('POST','/rest/v1/rpc/evil'),null);await assert.rejects(openGateway({cert,key,restPort:'443',storagePort:123}));await assert.rejects(openGateway({cert,key,restPort:123,storagePort:123,listenPort:-1}));
+  for(const host of ['8.8.8.8','169.254.169.254','0.0.0.0','127.0.0.2','10.01.0.1','10.0.0.256','localhost','https://10.0.0.1','::1','::ffff:127.0.0.1']){
+   assert.equal(privateUpstreamHost(host),false);await assert.rejects(openGateway({cert,key,restPort:123,storagePort:123,restHost:host}));
+  }
+  for(const host of ['127.0.0.1','10.0.0.2','172.16.0.2','172.31.255.254','192.168.1.2'])assert.equal(privateUpstreamHost(host),true);
+ });
  await group('gateway disposal closes live sockets and rejects subsequent access',async()=>{await gateway.close();await gateway.close();await assert.rejects(request());});
 }finally{await gateway.close();for(const s of sockets)s.destroy();await new Promise(resolve=>backend.close(resolve));key.fill(0);}
 const source_sha256={};for(const name of ['tls-gateway.mjs','test_tls_gateway.mjs','generate_tls.py'])source_sha256[name]=crypto.createHash('sha256').update(await fs.readFile(path.join(here,name))).digest('hex');

@@ -12,6 +12,11 @@ const REQUEST_HEADERS=new Set(['authorization','apikey','content-type','content-
 const HOP=new Set(['connection','keep-alive','proxy-authenticate','proxy-authorization','te','trailer','transfer-encoding','upgrade','set-cookie']);
 const need=(value)=>{if(!value)throw new TypeError('Invalid isolated gateway configuration');};
 const port=(n)=>Number.isInteger(n)&&n>0&&n<=65535;
+export function privateUpstreamHost(value){
+ if(typeof value!=='string'||! /^(?:0|[1-9][0-9]{0,2})(?:\.(?:0|[1-9][0-9]{0,2})){3}$/.test(value))return false;
+ const v=value.split('.').map(Number);if(v.some(n=>n>255))return false;
+ return value==='127.0.0.1'||v[0]===10||v[0]===172&&v[1]>=16&&v[1]<=31||v[0]===192&&v[1]===168;
+}
 
 export function targetFor(method,path){
  if(typeof method!=='string'||typeof path!=='string'||path.includes('?')||path.includes('#')||path.includes('%')||path.includes('\\'))return null;
@@ -24,10 +29,12 @@ export function targetFor(method,path){
 
 function bound(limit,counter){let count=0;return new Transform({transform(chunk,_encoding,done){count+=chunk.length;if(count>limit){done(new Error('Bounded fixture stream'));return;}counter(chunk.length);done(null,chunk);}});}
 
-export async function openGateway({cert,key,restPort,storagePort,listenPort=0,timeoutMs=20000}){
+export async function openGateway({cert,key,restPort,storagePort,restHost='127.0.0.1',storageHost='127.0.0.1',listenPort=0,timeoutMs=20000}){
  need(Buffer.isBuffer(cert)&&Buffer.isBuffer(key)&&port(restPort)&&port(storagePort));
+ need(privateUpstreamHost(restHost)&&privateUpstreamHost(storageHost));
  need(Number.isInteger(listenPort)&&listenPort>=0&&listenPort<=65535&&Number.isInteger(timeoutMs)&&timeoutMs>=20&&timeoutMs<=30000);
  const upstream={rest:restPort,storage:storagePort};
+ const upstreamHosts={rest:restHost,storage:storageHost};
  const sockets=new Set(),requests=new Set();
  const counts={rest_requests:0,storage_requests:0,denied:0,upstream_errors:0,request_bytes:0,response_bytes:0};
  let closed=false;
@@ -41,7 +48,7 @@ export async function openGateway({cert,key,restPort,storagePort,listenPort=0,ti
   const headers={};for(const [name,value]of Object.entries(req.headers))if(REQUEST_HEADERS.has(name))headers[name]=value;
   counts[target.service+'_requests']++;
   let response,settled=false;
-  const outgoing=http.request({hostname:'127.0.0.1',port:upstream[target.service],method:req.method,path:target.path,headers,agent:false});
+  const outgoing=http.request({hostname:upstreamHosts[target.service],port:upstream[target.service],method:req.method,path:target.path,headers,agent:false});
   requests.add(outgoing);
   const cancel=()=>{outgoing.destroy();response?.destroy();};
   const timer=setTimeout(()=>{if(!res.headersSent){res.writeHead(504,{'content-type':'application/json','connection':'close'});res.end('{"error":"fixture_gateway_timeout"}');}else res.destroy();cancel();},timeoutMs);

@@ -28,13 +28,15 @@ def main():
     args=parser.parse_args();run_dir=args.run_dir.absolute();run_identifier(run_dir.name)
     need(run_dir.parent==HERE/'runs' and not run_dir.is_symlink() and not run_dir.is_junction(),'run-directory')
     config=json.loads((run_dir/'control.json').read_text());secret=json.loads((run_dir/'secrets'/'credentials.json').read_text())
-    need(config['project']=='echs-c08-service-'+run_dir.name and type(config['db_port']) is int and 1<=config['db_port']<=65535,'database-fixture')
+    need(config['project']=='echs-c08-service-'+run_dir.name,'database-fixture')
+    from run_actual_service import validate_network_receipt
+    endpoint=validate_network_receipt(config['network'],run_dir.name)['db']
     fixture_module=load_fixture(args.repo)
     import psycopg
     from psycopg.types.json import Jsonb
-    db=psycopg.connect(host='127.0.0.1',port=config['db_port'],user='postgres',password=secret['POSTGRES_PASSWORD'],
+    db=psycopg.connect(host=endpoint['ipv4'],port=5432,user='postgres',password=secret['POSTGRES_PASSWORD'],
         dbname='postgres',sslmode='disable',autocommit=True,connect_timeout=5,application_name='echs-c08-service-seed')
-    need(db.info.hostaddr=='127.0.0.1' and db.info.dbname=='postgres','database-fixture')
+    need(db.info.hostaddr==endpoint['ipv4'] and db.info.port==5432 and db.info.dbname=='postgres','database-fixture')
     need(db.execute("select shobj_description(oid,'pg_database') from pg_database where datname=current_database()").fetchone()[0]==config['project'],'database-owner-marker')
     db.execute("set statement_timeout='8s'")
     cases={}

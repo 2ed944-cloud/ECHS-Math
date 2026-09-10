@@ -10,7 +10,7 @@ import path from 'node:path';
 import readline from 'node:readline';
 import {spawn} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
-import {HOST,openGateway} from './tls-gateway.mjs';
+import {HOST,openGateway,privateUpstreamHost} from './tls-gateway.mjs';
 import {createSnapshotTransportHandler} from './runtime/handler.mjs';
 import {createSnapshotRpcTransport,createSnapshotStorageTransport} from './runtime/transport.mjs';
 const here=path.dirname(fileURLToPath(import.meta.url));
@@ -19,6 +19,13 @@ assert.equal(path.dirname(runDir),path.join(here,'runs'));assert.match(path.base
 assert.equal(process.platform,'linux');assert.equal(typeof tls.setDefaultCACertificates,'function');
 const control=JSON.parse(await fs.readFile(path.join(runDir,'control.json'),'utf8'));
 assert.equal(control.project,'echs-c08-service-'+path.basename(runDir));
+assert.equal(control.network.connection_mode,'owned-internal-bridge');assert.equal(control.network.network_name,control.project+'_internal');
+assert.equal(control.network.internal,true);assert.equal(control.network.published_ports,false);assert.equal(control.network.ipv6,false);
+assert.equal(control.network.containers.length,5);const addresses=Object.fromEntries(control.network.containers.map(r=>[r.service,r]));
+assert.equal(Object.keys(addresses).length,5);
+for(const [name,port]of Object.entries({db:5432,auth:9999,rest:3000,storage:5000,imgproxy:5001})){
+ assert.equal(addresses[name].port,port);assert(privateUpstreamHost(addresses[name].ipv4)&&addresses[name].ipv4!=='127.0.0.1');
+}
 const secrets=JSON.parse(await fs.readFile(path.join(runDir,'secrets','credentials.json'),'utf8'));
 const secretPath=path.join(runDir,'secrets','tls');
 const ca=await fs.readFile(path.join(secretPath,'ca.pem'));
@@ -31,7 +38,7 @@ dns.lookup=(name,options,callback)=>{
  if(name!==HOST){queueMicrotask(()=>callback(Object.assign(new Error('Fixture DNS refused'),{code:'ENOTFOUND'})));return;}
  queueMicrotask(()=>options?.all?callback(null,[{address:'127.0.0.1',family:4}]):callback(null,'127.0.0.1',4));
 };
-const gateway=await openGateway({cert,key,restPort:control.rest_port,storagePort:control.storage_port,listenPort:443});
+const gateway=await openGateway({cert,key,restHost:addresses.rest.ipv4,storageHost:addresses.storage.ipv4,restPort:3000,storagePort:5000,listenPort:443});
 const origin='https://'+HOST,endpoint=origin+'/functions/v1/private-bank-snapshot-transport';
 const rawFetch=globalThis.fetch;
 const child=spawn(control.python,['-B',path.join(here,'seed_synthetic.py'),'--run-dir',runDir,'--repo',control.repo],

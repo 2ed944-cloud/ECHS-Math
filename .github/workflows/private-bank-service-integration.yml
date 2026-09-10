@@ -21,7 +21,7 @@ jobs:
     env:
       PYTHONUTF8: '1'
       PYTHONDONTWRITEBYTECODE: '1'
-      SERVICE_MANIFEST_SHA256: 6062af9432379d7425c6a1f8200efc939a5c1299101e17ce40242e7bca56ab65
+      SERVICE_MANIFEST_SHA256: b1b1efb847bc979438d96aacee74d0b7fe9ddaff4334e73ccf00f2efdc56df9d
     steps:
       - name: Check out the exact reviewed revision
         uses: actions/checkout@v4

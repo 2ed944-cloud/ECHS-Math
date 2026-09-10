@@ -53,7 +53,6 @@ def compose_fixture(run_id,run_dir,image_receipt,approved_image_receipt_sha256):
         'JWT_SECRET':'${JWT_SECRET}','JWT_EXP':'${JWT_EXPIRY}'},
         volumes=[bind('docker/volumes/db/'+n+'.sql','/docker-entrypoint-initdb.d/'+target) for n,target in mounts.items()]
             +['db-data:/var/lib/postgresql/data','db-config:/etc/postgresql-custom'],
-        ports=['127.0.0.1::5432'],
         healthcheck=health(['CMD','pg_isready','-U','postgres','-h','localhost']),
         command=['postgres','-c','config_file=/etc/postgresql/postgresql.conf','-c','log_min_messages=fatal'])
     services['auth'].update(depends_on={'db':{'condition':'service_healthy'}},
@@ -71,7 +70,7 @@ def compose_fixture(run_id,run_dir,image_receipt,approved_image_receipt_sha256):
             'PGRST_DB_ANON_ROLE':'anon','PGRST_ADMIN_SERVER_PORT':'3001','PGRST_ADMIN_SERVER_HOST':'localhost',
             'PGRST_JWT_SECRET':'${JWT_SECRET}','PGRST_DB_USE_LEGACY_GUCS':'false',
             'PGRST_APP_SETTINGS_JWT_SECRET':'${JWT_SECRET}','PGRST_APP_SETTINGS_JWT_EXP':'${JWT_EXPIRY}'},
-        ports=['127.0.0.1::3000'],healthcheck=health(['CMD','postgrest','--ready']),command=['postgrest'])
+        healthcheck=health(['CMD','postgrest','--ready']),command=['postgrest'])
     services['storage'].update(depends_on={'db':{'condition':'service_healthy'},'rest':{'condition':'service_started'},'imgproxy':{'condition':'service_started'}},
         environment={'ANON_KEY':'${ANON_KEY}','SERVICE_KEY':'${SERVICE_ROLE_KEY}','POSTGREST_URL':'http://rest:3000',
             'AUTH_JWT_SECRET':'${JWT_SECRET}','DATABASE_URL':'postgres://supabase_storage_admin:${POSTGRES_PASSWORD}@db:5432/postgres',
@@ -79,13 +78,13 @@ def compose_fixture(run_id,run_dir,image_receipt,approved_image_receipt_sha256):
             'STORAGE_BACKEND':'file','GLOBAL_S3_BUCKET':'synthetic-c08-fixture','FILE_STORAGE_BACKEND_PATH':'/var/lib/storage',
             'TENANT_ID':'synthetic-c08-fixture','REGION':'local','ENABLE_IMAGE_TRANSFORMATION':'true','IMGPROXY_URL':'http://imgproxy:5001',
             'S3_PROTOCOL_ACCESS_KEY_ID':'${S3_PROTOCOL_ACCESS_KEY_ID}','S3_PROTOCOL_ACCESS_KEY_SECRET':'${S3_PROTOCOL_ACCESS_KEY_SECRET}'},
-        volumes=['storage-data:/var/lib/storage'],ports=['127.0.0.1::5000'],
+        volumes=['storage-data:/var/lib/storage'],
         healthcheck=health(['CMD','wget','--no-verbose','--tries=1','--spider','http://storage:5000/status']))
     services['imgproxy'].update(environment={'IMGPROXY_BIND':':5001','IMGPROXY_LOCAL_FILESYSTEM_ROOT':'/',
         'IMGPROXY_USE_ETAG':'true','IMGPROXY_AUTO_WEBP':'false','IMGPROXY_MAX_SRC_RESOLUTION':'16.8'},
         volumes=['storage-data:/var/lib/storage'],healthcheck=health(['CMD','imgproxy','health']))
     value={'name':plan['project'],'services':services,
-        'networks':{'isolated':{'name':plan['network']['name'],'internal':True,'external':False,'labels':dict(labels)}},
+        'networks':{'isolated':{'name':plan['network']['name'],'driver':'bridge','enable_ipv6':False,'internal':True,'external':False,'labels':dict(labels)}},
         'volumes':{n:{'name':plan['project']+'_'+n,'external':False,'labels':dict(labels)} for n in ('db-data','db-config','storage-data')}}
     # This exact source-derived set is the only configuration the runner starts.
     need(len(mounts)==7 and set('docker/volumes/db/'+n+'.sql' for n in mounts)==set(INIT_SQL),'initialization-closure')

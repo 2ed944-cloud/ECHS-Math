@@ -8,7 +8,7 @@ import argparse
 import json
 import re
 from service_contract import HERE,IMAGE_TAGS,RUNTIME_HASHES,PIN_SHA256,UPSTREAM_COMMIT,ContractError,closed,digest,exact,need,strict_json,validate_image_receipt
-from run_actual_service import SOURCE_FILES,verify_manifest
+from run_actual_service import SOURCE_FILES,verify_manifest,validate_network_receipt
 
 RAW_FILES=('service-run-report.json','service-test-results.json','image-receipt.json')
 
@@ -28,9 +28,10 @@ def accept(directory,expected_head,expected_tree,manifest_hash):
     run=data['service-run-report.json'];tests=data['service-test-results.json'];images=data['image-receipt.json']
     closed(run,('contract','status','run_id','head','tree','source_manifest_sha256','source_pins_sha256','migration_files','image_receipt_sha256',
         'running_image_ids','managed_schema_probed','migrations_applied','tls','services_executed','hosted_edge_executed','corpus_imported',
-        'tool_versions','service_start_attempted','failure','cleanup_complete'))
+        'tool_versions','service_start_attempted','failure','cleanup_complete','network'))
     need(run['contract']=='echs.c08.storage-service-run.v1' and run['status']=='PASS' and run['run_id']==directory.name,'runner-contract')
     need(run['failure'] is None,'runner-failure')
+    validate_network_receipt(run['network'],run['run_id'])
     for key in ('managed_schema_probed','services_executed','service_start_attempted','cleanup_complete'):need(run[key] is True,'runner-true-flag')
     for key in ('hosted_edge_executed','corpus_imported'):need(run[key] is False,'runner-false-flag')
     need(type(run['migrations_applied']) is int and run['migrations_applied']==27,'migration-count')
