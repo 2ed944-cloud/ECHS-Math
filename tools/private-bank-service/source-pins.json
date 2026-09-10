@@ -1,0 +1,260 @@
+{
+  "contract": "echs.c08.storage-service-source-pins.v1",
+  "status": "SOURCE_BOUND_SERVICES_NOT_EXECUTED",
+  "upstream": {
+    "tag": "self-hosted/v0.8.1",
+    "tag_object": "690080884040e238926ba22606e8c05a3536829b",
+    "commit": "8c7a4d9dbbaf8b552893822e89d7bf06f33f9220",
+    "tree": "cfff91877eb85435d69c02b2680da05b2ecc150e",
+    "docker_tree": "2e0e90793e486fb10f2b5a291d6f64530cb1a0ae",
+    "files": [
+      {
+        "path": "docker/docker-compose.pg15.yml",
+        "git_blob": "f87fe8c4828f354d6f73ba171d5d3f6295ed7370",
+        "bytes": 707,
+        "sha256": "00d21617e4c989adb0936571c0a07a6f6648a5393be8735602bebf2726c1bb4f"
+      },
+      {
+        "path": "docker/docker-compose.yml",
+        "git_blob": "ce94117ffd434d04e16e89cc842f0d12d0d3c509",
+        "bytes": 21338,
+        "sha256": "f6724c97f1ca555b700f5ecf630e8a2e5114682b64ca94158061326187139183"
+      },
+      {
+        "path": "docker/volumes/api/kong.yml",
+        "git_blob": "84433c13657d4fd7131e87e0122bee98a1e494d4",
+        "bytes": 12695,
+        "sha256": "acdce0ff4ac9e1dfa496733df7ca97cc89a9632de4b727af3f3a0d600ada2db7"
+      },
+      {
+        "path": "docker/volumes/db/_supabase.sql",
+        "git_blob": "6236ae1bccc21f929362bb617947174ccd1519d3",
+        "bytes": 83,
+        "sha256": "9dce462adc04137d6afabcf28efa60a6c355270a4b32d7af58891ac4eb964c5f"
+      },
+      {
+        "path": "docker/volumes/db/jwt.sql",
+        "git_blob": "cfd3b16028fa85bab45b75dc57e8677c7b7b4dc9",
+        "bytes": 207,
+        "sha256": "1cc94a4f16f6e2932b383cd68e211a96bcae298437ca4120d8a5106396c58465"
+      },
+      {
+        "path": "docker/volumes/db/logs.sql",
+        "git_blob": "255c0f407b8d5b1c72b75c4daad0ca4fe3ff3eef",
+        "bytes": 144,
+        "sha256": "f0463ce5030907acef49326d2bffd36002df0718035071be7c99bd7fc897c63d"
+      },
+      {
+        "path": "docker/volumes/db/pooler.sql",
+        "git_blob": "162c5b96aae50ab4c03b034a2d096898b1df4cd0",
+        "bytes": 144,
+        "sha256": "df97ebe148d94cfb92a5e37ebf972dfd496be195f0915ecf14396b2cf50efecb"
+      },
+      {
+        "path": "docker/volumes/db/realtime.sql",
+        "git_blob": "4d4b9ffb912b9312dd78257956c180f12913264d",
+        "bytes": 117,
+        "sha256": "7e9e442e7fc4dae05544c07b67bede37a00d84644304dfce4d937134cb4c8f88"
+      },
+      {
+        "path": "docker/volumes/db/roles.sql",
+        "git_blob": "8f7161a6db66d75288722b60577ed30c81cc4f62",
+        "bytes": 379,
+        "sha256": "3ad717b225daa38aa982da26750f35641eb404e1eb5e69a763c22236ab96c1b2"
+      },
+      {
+        "path": "docker/volumes/db/webhooks.sql",
+        "git_blob": "5837b86188ef68912bb55654fe2a9539c0f8a6c8",
+        "bytes": 8771,
+        "sha256": "b584aaaa0c393f27218f81e01e76e1d07d42f947083249adcd6097ad471cde62"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "path": "supabase/migrations/202607260001_institutional_platform.sql",
+      "bytes": 24164,
+      "sha256": "d795417c79539f0aa0fdf7d2c59165654458b3b8c85ff1da465645e4052c6e00",
+      "git_blob": "1de56567ebe9a69a74a6bc7d4db194d07b243ac7"
+    },
+    {
+      "path": "supabase/migrations/202607260002_bootstrap_function_repair.sql",
+      "bytes": 3545,
+      "sha256": "5753b6408a824fb99d76348f2f09831d6e8026dbe0b1e89d7763594710997613",
+      "git_blob": "5e42cca3ffcc4a79523ef2a42d82e02aa2559b87"
+    },
+    {
+      "path": "supabase/migrations/202607260003_login_authentication_repair.sql",
+      "bytes": 5946,
+      "sha256": "2a4ce577fd8c31dd55192330cfa24a13708d0bbe5d77fdd6d1271adcaff14a11",
+      "git_blob": "0f5ed726fce3e0a868fa532d521b22a7718c6a3e"
+    },
+    {
+      "path": "supabase/migrations/202607270001_session_lookup_repair.sql",
+      "bytes": 5817,
+      "sha256": "b7742cfc9e9154c7ade12005f87215602422b54c99cebd9973b0277c45547c13",
+      "git_blob": "bcc4b4ffc006b528e84e184a885cde409a39774a"
+    },
+    {
+      "path": "supabase/migrations/202607272001_mastery_evidence_foundation.sql",
+      "bytes": 12279,
+      "sha256": "434d31d932a66c91a14c27ed2f13533dcd30b4b31cb6e8642e23fe9fc024c49e",
+      "git_blob": "c64d46f44460ec3ae6c9f20d679b1622f3f7e2a8"
+    },
+    {
+      "path": "supabase/migrations/202607272002_mastery_authority_guard.sql",
+      "bytes": 1480,
+      "sha256": "7d1e8b5229b64bab2d52ab6da0f3fb1b5304dc4cd41a298c203caa3df74cd683",
+      "git_blob": "ed06bf319ba52f6890beed337863f42283d56b98"
+    },
+    {
+      "path": "supabase/migrations/202607272003_attempt_trust_guard.sql",
+      "bytes": 916,
+      "sha256": "87eab47e172a34ad4e64d502c7f4add618631d598e5f147131bdab446d5fe689",
+      "git_blob": "5ce65d0169b6ea88cf2e3f19737709784caff6b1"
+    },
+    {
+      "path": "supabase/migrations/202607272004_atomic_skill_mapping.sql",
+      "bytes": 1488,
+      "sha256": "f05a8ffa3f78c6d4dce1a79c48fa15964047d69147e83a2648ab98d84982fc08",
+      "git_blob": "875bb243a3da1005e76d035a3e812338c8e4ab49"
+    },
+    {
+      "path": "supabase/migrations/202607272101_private_bank_foundation.sql",
+      "bytes": 9555,
+      "sha256": "2d6614d54e5867bb8a1765b17343f4b564e760e132f3b97e05db1d8a0aee2dc8",
+      "git_blob": "c61587f37bb8783acadec2cf571188c2c3a49e87"
+    },
+    {
+      "path": "supabase/migrations/202607272102_private_attempt_trust_bridge.sql",
+      "bytes": 1331,
+      "sha256": "0056dc1cd5f8b5468b949a20aa5e3471e9febb054603dbda3da101963f6f6214",
+      "git_blob": "fbd14fdfd9fcac81e24e6e6321ba893480626507"
+    },
+    {
+      "path": "supabase/migrations/202607272201_teacher_upload_manager.sql",
+      "bytes": 2253,
+      "sha256": "7a1e472e7c3feab091e6d0c7c3b54e5b7c4bcc5b3a4cb6e37a78ee775fc93ace",
+      "git_blob": "4d1fa57028d7ed02b30df445688a0cb9554eb5bd"
+    },
+    {
+      "path": "supabase/migrations/202607282330_verified_private_bank_import.sql",
+      "bytes": 4203,
+      "sha256": "877681c751b5f55bc415f8534b4360c0fc34cf8a8086f60e8e63b4cbad66e831",
+      "git_blob": "5fb292ae685a543ed3cdd420e90dac3230212c9a"
+    },
+    {
+      "path": "supabase/migrations/202607290001_raise_teacher_upload_bucket_limit.sql",
+      "bytes": 623,
+      "sha256": "6af0fb5f637ad309d0c8a4e9647650e9b5e4f7fbf9af6ad2bb6d9586cf6ddd51",
+      "git_blob": "5123ab3fcc212d0b742f2cba15e2b98c9ff21656"
+    },
+    {
+      "path": "supabase/migrations/202607291900_resumable_private_bank_course_purge.sql",
+      "bytes": 9897,
+      "sha256": "9a7083fd9f3cf30fe036ad4ff5a5e2e6298de5f6383f9287d1ae32e7566b0910",
+      "git_blob": "20b7631024b1edf6ac82a8dba5ad30d15ed14717"
+    },
+    {
+      "path": "supabase/migrations/202607300020_sync_private_bank_mapping_indexes.sql",
+      "bytes": 3253,
+      "sha256": "d1107fb8c6464cef5fcb9b445d46fdc5c1f1672c644a2749d8e4962976b32e71",
+      "git_blob": "ddd36346ec6b227ee0315c65c9cbdfbda6586e88"
+    },
+    {
+      "path": "supabase/migrations/202607301500_private_bank_practice_inventory.sql",
+      "bytes": 2337,
+      "sha256": "1a74d46d17cfc028f03f8fa79973e2c5abeb80283497bfb5d76c55ff3b098687",
+      "git_blob": "dd57c2f40bbdff548bd329e2a90fb9567670a92c"
+    },
+    {
+      "path": "supabase/migrations/202607312230_restore_ib_current_bank_practice_visibility.sql",
+      "bytes": 5938,
+      "sha256": "a56066e8f979eca033dfe0c54e5f46335ed2479602764bd4544c13e06cdd3d39",
+      "git_blob": "b8381902a087c26c03f1bdf4e8f56e5cb1cf6849"
+    },
+    {
+      "path": "supabase/migrations/202608020002_assignment_routes_and_timetables.sql",
+      "bytes": 3184,
+      "sha256": "51987bffa02ad10993f67bf8ebc819fa62c09f2a38440aff413bccf3c81a4025",
+      "git_blob": "cf27832699e863862fcfccca78829f1e1e745c11"
+    },
+    {
+      "path": "supabase/migrations/202608300001_lesson_visibility_progression.sql",
+      "bytes": 58983,
+      "sha256": "26c8daec8bf8cdd451b350e99b03273e056d0509949b673639810481d712b627",
+      "git_blob": "a8b4de9fd1ba102af770ba874790181edb018ae4"
+    },
+    {
+      "path": "supabase/migrations/202609050100_ib_readiness_pathway_engine.sql",
+      "bytes": 15607,
+      "sha256": "53df739f2b0201936e03eff00a93f7e1c58d020d264e94a37ca286ace4e96650",
+      "git_blob": "788f5b7f8038e8511725c32db4fc1ea9b221591f"
+    },
+    {
+      "path": "supabase/migrations/202609080001_curriculum_versions.sql",
+      "bytes": 20008,
+      "sha256": "aaad19c8e9c3d5e88ed85041cb1f83b1b732030e6fbb5a388b7b573325233845",
+      "git_blob": "6517ba014effeaf0e16cd0ab128f5f877141763e"
+    },
+    {
+      "path": "supabase/migrations/202609080002_lesson_persistence.sql",
+      "bytes": 52564,
+      "sha256": "01e522b73729669d29bf2219f4753d561e80a733f954624612a1a69ea845c0bf",
+      "git_blob": "f106d0b52f64c1327d41bef78a8b966d9225625e"
+    },
+    {
+      "path": "supabase/migrations/202609080003_lesson_content_v2.sql",
+      "bytes": 23991,
+      "sha256": "ed5abde8826c67bbe161cf0d90d367d9b78a1d4cdb3cd4d7da07e72dbcd1ab61",
+      "git_blob": "cbd955ce28fbc8c63f380383102b2e2361cc1a0f"
+    },
+    {
+      "path": "supabase/migrations/202609080004_lesson_media.sql",
+      "bytes": 36628,
+      "sha256": "af9b34a41200a4ca2ef25502a40a617c81eef41e9b5ab060a618728b770d21e5",
+      "git_blob": "1fbcdeb7f843e93e077d042a4d60de61e766e89b"
+    },
+    {
+      "path": "supabase/migrations/202609090001_lesson_draft_recovery.sql",
+      "bytes": 7099,
+      "sha256": "df0d4fbff433645ac12e1ff00ee0f0ea7dad122d5703fb7f74d8dd51453de264",
+      "git_blob": "a2a4cfbb9027677eb21688aea4ac092fbb9416de"
+    },
+    {
+      "path": "supabase/migrations/202609090002_membership_authorization.sql",
+      "bytes": 7078,
+      "sha256": "4760871d3a24847e9b813959d53f3705afff30261e7628dc4e051db8039149ed",
+      "git_blob": "6fe645bca6928de850409fde159a3a4c00da93bc"
+    },
+    {
+      "path": "supabase/migrations/202609090003_private_bank_snapshots.sql",
+      "bytes": 66467,
+      "sha256": "9169cee2067fef09bcd0d15c0f65703c3b2c203bbe2ad3fd6217a6c41c1d6412",
+      "git_blob": "0a4cf6a2a7d16ce84da93ead17a81fc4099c2c58"
+    }
+  ],
+  "runtime": [
+    {
+      "path": "handler.mjs",
+      "bytes": 12566,
+      "sha256": "ff49fd68970612cd325dec9819707a91a431eb1799cf6c4d88d1fea675f4cf0e"
+    },
+    {
+      "path": "transport.mjs",
+      "bytes": 9572,
+      "sha256": "11425bcd086ddb2f88c788969ef82e1f2af8a7803d8b8110baabf785bb3152d3"
+    }
+  ],
+  "image_tags": {
+    "db": "supabase/postgres:15.8.1.085",
+    "auth": "supabase/gotrue:v2.196.0",
+    "rest": "postgrest/postgrest:v14.17",
+    "storage": "supabase/storage-api:v1.74.0",
+    "imgproxy": "darthsim/imgproxy:v3.31.4"
+  },
+  "image_digests_resolved": false,
+  "services_executed": false,
+  "hosted_edge_executed": false,
+  "corpus_imported": false
+}

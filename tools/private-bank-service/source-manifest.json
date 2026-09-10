@@ -1,0 +1,115 @@
+{
+  "contract": "echs.c08.storage-service-candidate.v1",
+  "files": [
+    {
+      "path": "PLAN.md",
+      "bytes": 13783,
+      "sha256": "a3c4dad45eb3e38b268b2db4d864fb4ef057bf7fa3960536bdbb2f1049d840cc"
+    },
+    {
+      "path": "README.md",
+      "bytes": 9515,
+      "sha256": "0e1754c2df30e4b7fc9bef5dfa8ced56e73e35c483e4d293356344fe78d67bc4"
+    },
+    {
+      "path": "collect_service.py",
+      "bytes": 8868,
+      "sha256": "fb279c48bf42046c36333cd11090250bcf2d17b118b5bbfa6504737dddcbeb3d"
+    },
+    {
+      "path": "fixture-source-pin.json",
+      "bytes": 267,
+      "sha256": "a0089b2870cc3eafcf61b40646bed536ec39077eda754981d3cdc90804d0687b"
+    },
+    {
+      "path": "fixture_config.py",
+      "bytes": 7149,
+      "sha256": "b0167b11c9bbcac2626c7d1719288c3d596409ca6dddf05429b796ed825ae487"
+    },
+    {
+      "path": "generate_tls.py",
+      "bytes": 3141,
+      "sha256": "8316a933843f54dc9e74b4fbc008c88363cf93f9c36dfc33cd764db96f806237"
+    },
+    {
+      "path": "requirements.txt",
+      "bytes": 44,
+      "sha256": "e3853497c6d08944183be7908a0dc7ddf5e6e4b921f74b8983912221a1efab1e"
+    },
+    {
+      "path": "run_actual_service.py",
+      "bytes": 25854,
+      "sha256": "3dbf68fb5cd9633a7abb8d953b268221c7f7f3e71ca51b6ce5c1d1724b756b0e"
+    },
+    {
+      "path": "run_service.py",
+      "bytes": 2101,
+      "sha256": "4295d0e917cbd9c964837ff63cd2eccae1fe8b4674830bb2a8018af9717ee727"
+    },
+    {
+      "path": "run_tls_test.py",
+      "bytes": 1025,
+      "sha256": "6d58bd3b9430ab0f271c6732b7fe77b7ae59e3ecdc6f2ee40b1b011697000534"
+    },
+    {
+      "path": "runtime/handler.mjs",
+      "bytes": 12566,
+      "sha256": "ff49fd68970612cd325dec9819707a91a431eb1799cf6c4d88d1fea675f4cf0e"
+    },
+    {
+      "path": "runtime/transport.mjs",
+      "bytes": 9572,
+      "sha256": "11425bcd086ddb2f88c788969ef82e1f2af8a7803d8b8110baabf785bb3152d3"
+    },
+    {
+      "path": "seed_synthetic.py",
+      "bytes": 10774,
+      "sha256": "1b6ee3e6cbd4be50d4064140438dcf03d94508cc409d001939a8486721f85875"
+    },
+    {
+      "path": "service-cases.json",
+      "bytes": 1414,
+      "sha256": "1cc0de93711fcb31410130f6df4a86a3ba7f6da0bb4cafe46b41d7301ec2bf4b"
+    },
+    {
+      "path": "service_contract.py",
+      "bytes": 11987,
+      "sha256": "69a418b04e6d032982ebf2f86eb883d8635670878ce0836b1e8fb0d10c7b554f"
+    },
+    {
+      "path": "source-pins.json",
+      "bytes": 10492,
+      "sha256": "a5c22ac3bad71e7a7549be9f49ecd51990a8f22ccb1850a7eddd007a7421c020"
+    },
+    {
+      "path": "test_actual_contract.py",
+      "bytes": 21858,
+      "sha256": "bed18d206ea53bb958f1584f54607ff4dae64b00012fe010b21052153988dbac"
+    },
+    {
+      "path": "test_service.mjs",
+      "bytes": 23301,
+      "sha256": "aab049a737c1962dc5ad310db57c45218edd9f429aeb4eac08c66ca396810338"
+    },
+    {
+      "path": "test_service_contract.py",
+      "bytes": 13724,
+      "sha256": "ef54b6e251b5fd67291372c7036e068a785c821e444f97114dd14a14d8c56f5f"
+    },
+    {
+      "path": "test_tls_gateway.mjs",
+      "bytes": 8355,
+      "sha256": "569b7faab7798b88883b96d68986047607093a995602bb4f2fb14b0bd16aded2"
+    },
+    {
+      "path": "tls-gateway.mjs",
+      "bytes": 7651,
+      "sha256": "d54f5eb1a2ebd729db4317842b11e6447862765579ce38570f9920f9cb17ce2b"
+    },
+    {
+      "path": "upstream-observation.json",
+      "bytes": 49897,
+      "sha256": "c17720ce76be5f136264440818b7c708141e0c6e08515449f652b09616b98d67"
+    }
+  ]
+}

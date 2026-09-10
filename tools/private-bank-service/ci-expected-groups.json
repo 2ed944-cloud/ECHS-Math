@@ -1,0 +1,140 @@
+{
+  "safety.json": {
+    "contract": "echs.c08.storage-service-safety-tests.v1",
+    "groups": [
+      "exact27 migration, runtime2 and upstream10 source closure",
+      "one changed migration byte fails before service planning",
+      "missing final migration cannot shorten the accepted prefix",
+      "self-rehashed stale manifest cannot replace approved source pins",
+      "altered official initialization bytes fail upstream binding",
+      "both reviewed runtime files remain byte-exact dependencies",
+      "metadata duplicate keys, nonfinite values and path escapes rejected",
+      "exact unique fixture namespace, no existing project adoption",
+      "production/arbitrary origins and public listeners rejected",
+      "TLS, private network, image set and type-exact false claims enforced",
+      "ambient Docker, DSN, proxy and TLS overrides fail with sanitized errors",
+      "explicit approved image receipt hash and platform binding",
+      "missing, duplicate, floating and secret-bearing image rows rejected",
+      "cleanup observations require exact project resource ownership",
+      "report creation is bounded and cannot overwrite prior evidence",
+      "successful source preflight cannot claim service acceptance",
+      "runner CLI has no service-start or execution switch",
+      "all actual source inputs unchanged after reversible local tests"
+    ],
+    "fields": {
+      "services_executed": false,
+      "hosted_edge_executed": false,
+      "corpus_imported": false
+    },
+    "source_files": [
+      "run_service.py",
+      "service_contract.py",
+      "source-pins.json",
+      "test_service_contract.py",
+      "upstream-observation.json"
+    ]
+  },
+  "tls.json": {
+    "contract": "echs.c08.tls-gateway-tests.v1",
+    "groups": [
+      "trusted generated CA and exact SAN complete a real TLS handshake",
+      "untrusted CA fails before the upstream request",
+      "wrong certificate hostname fails before the upstream request",
+      "host and path spoofing cannot turn fixture into a forward proxy",
+      "fixed Storage path, MIME and bytes cross genuine HTTP sockets unchanged",
+      "upstream redirect is refused without following any target",
+      "oversized RPC request is rejected before the service socket",
+      "real stalled upstream is bounded and loses its socket",
+      "configuration and pure target checks reject unexpected services",
+      "gateway disposal closes live sockets and rejects subsequent access"
+    ],
+    "fields": {
+      "actual_tls_sockets": true,
+      "certificate_verification": true,
+      "hostname_verification": true,
+      "upstream": "SYNTHETIC_HTTP_ONLY",
+      "storage_service_executed": false,
+      "postgrest_service_executed": false,
+      "production_calls": false
+    },
+    "source_files": [
+      "generate_tls.py",
+      "test_tls_gateway.mjs",
+      "tls-gateway.mjs"
+    ]
+  },
+  "actual-contract.json": {
+    "contract": "echs.c08.actual-service-offline-tests.v1",
+    "groups": [
+      "source manifest cannot omit a safety/configuration dependency",
+      "executable runner rejects local/non-hosted/foreign source and ambient configuration",
+      "image resolution accepts only reviewed repository/tag and linux-amd64 content",
+      "compose retains seven official init mounts, real services and private fresh resources",
+      "cleanup includes project-only orphans and named unlabelled resources before ownership checks",
+      "exact owned internal bridge and five private addresses produce fixed service endpoints",
+      "foreign ownership addresses attachments or published ports cannot authorize service access",
+      "generated test JWT roles are signed distinctly and secret values stay outside compose",
+      "subprocess failure never exposes captured credential-like stderr",
+      "stage and timeout diagnostics remain useful without raw child output",
+      "synthetic execution receipt schema remains separate from GitHub CI acceptance",
+      "stale head/tree/runtime source evidence is rejected",
+      "numeric boolean substitutes and incomplete cleanup cannot pass acceptance",
+      "missing/failing/renamed cases and body-bearing report fields rejected",
+      "changed image/migration identities, duplicate JSON keys and retained secrets rejected",
+      "missing real image provenance cannot be inferred from test success",
+      "collector copies exactly five safe members and refuses overwrites",
+      "all candidate source files remain unchanged after offline tests"
+    ],
+    "fields": {
+      "services_executed": false,
+      "hosted_edge_executed": false,
+      "synthetic_receipts_removed": true
+    },
+    "source_files": [
+      "PLAN.md",
+      "README.md",
+      "collect_service.py",
+      "fixture-source-pin.json",
+      "fixture_config.py",
+      "generate_tls.py",
+      "requirements.txt",
+      "run_actual_service.py",
+      "run_service.py",
+      "run_tls_test.py",
+      "runtime/handler.mjs",
+      "runtime/transport.mjs",
+      "seed_synthetic.py",
+      "service-cases.json",
+      "service_contract.py",
+      "source-pins.json",
+      "test_actual_contract.py",
+      "test_service.mjs",
+      "test_service_contract.py",
+      "test_tls_gateway.mjs",
+      "tls-gateway.mjs",
+      "upstream-observation.json"
+    ]
+  },
+  "ci-contract.json": {
+    "contract": "echs.c08.storage-service-ci-offline-tests.v1",
+    "groups": [
+      "exact same-repository pull-request merge is bound to reviewed base and source paths",
+      "missing duplicate or unrelated changed paths cannot pass checkout acceptance",
+      "stale tree head parents repository and event are rejected",
+      "exact offline reports remain explicitly separate from actual service execution",
+      "missing renamed failing and duplicate test groups cannot be accepted",
+      "numeric boolean substitutes and broadened execution claims are rejected",
+      "changed source hashes extra body fields and wrong manifest are rejected",
+      "failure export preserves safe stage codes without private output fields"
+    ],
+    "fields": {
+      "services_executed": false,
+      "hosted_edge_executed": false
+    },
+    "source_files": [
+      "ci-expected-groups.json",
+      "ci.py",
+      "test_ci.py"
+    ]
+  }
+}
