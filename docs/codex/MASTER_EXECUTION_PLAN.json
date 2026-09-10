@@ -35,7 +35,7 @@
     ],
     "completion_status": "VERIFIED",
     "production_visible_requires": "Exact deployed revision and functional evidence, beyond code presence or CI alone.",
-    "historical_scope": "ECHS-001\u2013014 remain verified only for their original acceptance, not the expanded charter.",
+    "historical_scope": "ECHS-001–014 remain verified only for their original acceptance, not the expanded charter.",
     "board_snapshot": "In-flight tasks remain unverified until a later evidence-backed board update. The board cannot contain its own future commit hash."
   },
   "execution_order": {
@@ -70,7 +70,7 @@
       "Student changes mathematically meaningful state and investigates outcomes; no mastery from viewing, revealing or manipulating."
     ],
     "learning-sequence-v1": [
-      "See \u2192 manipulate \u2192 predict \u2192 explain \u2192 symbolize \u2192 apply \u2192 remove scaffold \u2192 original static AP/IB task \u2192 authenticated evidence.",
+      "See → manipulate → predict → explain → symbolize → apply → remove scaffold → original static AP/IB task → authenticated evidence.",
       "A contextual/visual variation preserves target skill, rigor and exam command expectations."
     ],
     "spatial-mathematics-v1": [
@@ -427,7 +427,7 @@
     },
     {
       "section": 12,
-      "title": "AP CALCULUS \u2014 CONTENT PRESERVATION MANDATE",
+      "title": "AP CALCULUS — CONTENT PRESERVATION MANDATE",
       "tasks": [
         "ECHS-006",
         "ECHS-058",
@@ -480,7 +480,7 @@
     },
     {
       "section": 18,
-      "title": "AP CALCULUS UNITS 6\u201310",
+      "title": "AP CALCULUS UNITS 6–10",
       "tasks": [
         "ECHS-019",
         "ECHS-037",
@@ -1034,8 +1034,8 @@
         }
       ],
       "acceptance_criteria": [
-        "AP Calculus 2026\u201327",
-        "AP Precalculus 2026\u201327",
+        "AP Calculus 2026–27",
+        "AP Precalculus 2026–27",
         "IB AI SL first-assessment-2021",
         "future IB AI SL first-assessment-2029 placeholder",
         "cohort/course-version assignment design",
@@ -2579,8 +2579,8 @@
         }
       ],
       "acceptance_criteria": [
-        "Reconcile production main, scoped ECHS-001\u2013014 evidence, canonical runtime and actual remaining dependencies.",
-        "Inventory AP Units 2\u20135 without copying question/answer payloads into reports; distinguish source signals from mathematical/browser acceptance.",
+        "Reconcile production main, scoped ECHS-001–014 evidence, canonical runtime and actual remaining dependencies.",
+        "Inventory AP Units 2–5 without copying question/answer payloads into reports; distinguish source signals from mathematical/browser acceptance.",
         "Machine board has unique tasks, acyclic dependencies, all charter sections, concrete acceptance, evidence, limits and rollback; no unverified completion claims.",
         "Proceed into C01 implementation after the audit."
       ],
@@ -2946,10 +2946,14 @@
         {
           "path": "docs/codex/OWNER_STORAGE_FOUNDATION_C04.md",
           "state": "existing"
+        },
+        {
+          "path": "docs/codex/OWNER_STORAGE_FOUNDATION_C04_RELEASE.json",
+          "state": "existing"
         }
       ],
       "acceptance_criteria": [
-        "Inventory and owner-scope legacy learning caches, Unit 2\u20135 assessment responses, Optimization notes/drawings/images and tutor conversation state.",
+        "Inventory and owner-scope legacy learning caches, Unit 2–5 assessment responses, Optimization notes/drawings/images and tutor conversation state.",
         "Do not attribute an unowned legacy cache to the next signed-in person; retain a safe recovery/expiry policy without silent evidence loss.",
         "Test logout, account switch, revoked scope, stale async writes, offline reconnect and IndexedDB image disposal; preserve current URLs and questions."
       ],
@@ -2959,20 +2963,31 @@
           {
             "kind": "canonical_session_foundation_scope",
             "path": "docs/codex/OWNER_STORAGE_FOUNDATION_C04.md"
+          },
+          {
+            "kind": "verified_session_foundation_scope",
+            "path": "docs/codex/OWNER_STORAGE_FOUNDATION_C04_RELEASE.json"
           }
         ]
       },
       "deployment": {
-        "status": "NOT_DEPLOYED",
-        "evidence": []
+        "status": "DEPLOYED",
+        "scope": "Session foundation only; whole C04 IN PROGRESS",
+        "deployed_at_main": "9ea1fe0ada9ab76d85b0e7f67a626cfcae05de79",
+        "evidence": [
+          {
+            "kind": "session_foundation_release",
+            "path": "docs/codex/OWNER_STORAGE_FOUNDATION_C04_RELEASE.json"
+          }
+        ]
       },
       "rollback": {
         "strategy": "Revert only this reviewed slice; retain prior URLs, published versions, raw evidence and existing accounts. Any database changes require a task-specific forward/rollback note before implementation."
       },
       "known_limits": [
         "Existing queue and Studio encrypted recovery fixes cover only their stated stores; account ownership must be proven for each legacy store.",
-        "Canonical session/client and owner-storage foundation implemented; composed CI/deployment acceptance pending. No legacy raw producer/reader/queue adoption is claimed.",
-        "Full adoption inventory includes AP Precalculus1.2 response/save timers and49 explicit source-review obligations; this is not blanket storage completeness.",
+        "Canonical session/client and owner-storage foundation verified in PR369 with24 PR/19 main workflows and57 live checks. No legacy raw producer/reader/queue adoption is claimed.",
+        "The next isolated engine inventory extends the prior49 obligations with seven additional completion writers and45 HTML dependency entries; no blanket storage completeness is claimed.",
         "Synchronous localStorage compare/remove is not cross-tab atomic; queue adoption requires a transactional source-versioned journal and exact revision acknowledgements."
       ],
       "next_dependency": [
@@ -4682,7 +4697,7 @@
         }
       ],
       "acceptance_criteria": [
-        "Verify every 1.7\u20131.16 objective/idea/question against current authoritative AP AB scope; preserve 1.1\u20131.6 and mid-unit-check boundaries.",
+        "Verify every 1.7–1.16 objective/idea/question against current authoritative AP AB scope; preserve 1.1–1.6 and mid-unit-check boundaries.",
         "Inventory all current explanations, examples and questions, then fill gaps with reviewed original items covering representations, calculator policy, justification and feedback.",
         "No protected AP Classroom copying; access can inform authorized review but does not grant public redistribution rights. Preserve URLs, all original content and independent evidence semantics."
       ],
@@ -4698,7 +4713,7 @@
         "strategy": "Revert only this reviewed slice; retain prior URLs, published versions, raw evidence and existing accounts. Any database changes require a task-specific forward/rollback note before implementation."
       },
       "known_limits": [
-        "Earlier user priority remains 1.7\u20131.16; exact alignment requires mathematical and browser acceptance, not this audit."
+        "Earlier user priority remains 1.7–1.16; exact alignment requires mathematical and browser acceptance, not this audit."
       ],
       "next_dependency": [
         "ECHS-062"
@@ -4709,7 +4724,7 @@
     },
     {
       "id": "ECHS-059",
-      "title": "AP Calculus Units 2\u20135 lesson-by-lesson enhancement and acceptance",
+      "title": "AP Calculus Units 2–5 lesson-by-lesson enhancement and acceptance",
       "phase": "CURRICULUM_MIGRATION",
       "status": "PLANNED",
       "depends_on": [
@@ -4749,7 +4764,7 @@
       ],
       "acceptance_criteria": [
         "Start from hashed audit of 18 teaching and 4 assessment routes, 1331 slide sections and 168 MCQ/24 FRQ; preserve every original.",
-        "Review A\u2013F source proposals with actual mathematics and browsers, current authoritative topics, calculator/FRQ/representation coverage and question rights.",
+        "Review A–F source proposals with actual mathematics and browsers, current authoritative topics, calculator/FRQ/representation coverage and question rights.",
         "Each lesson follows see/manipulate/predict/explain/symbolize/apply/remove-scaffold/static-task/evidence; retain rich Related Rates and Optimization investigations."
       ],
       "tests": {
@@ -4775,7 +4790,7 @@
     },
     {
       "id": "ECHS-060",
-      "title": "AP Calculus Units 6\u201310 audit and incremental migration",
+      "title": "AP Calculus Units 6–10 audit and incremental migration",
       "phase": "CURRICULUM_MIGRATION",
       "status": "PLANNED",
       "depends_on": [
@@ -4863,7 +4878,7 @@
         }
       ],
       "acceptance_criteria": [
-        "Inventory and verify every lesson against active versioned authoritative sources, including AP assessed Units1\u20133 versus Unit4 and IB2021 versus future2029.",
+        "Inventory and verify every lesson against active versioned authoritative sources, including AP assessed Units1–3 versus Unit4 and IB2021 versus future2029.",
         "Preserve Toy Car/covariation and IB contextual modeling/statistics/GDC/rounding/command-term depth; add reviewed reusable interactions and original multi-part tasks.",
         "Publish per-lesson mathematical, accessibility, browser, question-rights and rollback evidence without a big-bang route change."
       ],
@@ -5112,10 +5127,10 @@
     "evidence": "docs/codex/MASTERY_TRUTHFULNESS_C02_RELEASE.json"
   },
   "last_verified_foundation_slice": {
-    "task": "ECHS-C08",
-    "scope": "archive foundation only",
-    "main_sha": "5c1d90385c666dd62ed7183bea3c5ad92a6490a9",
-    "tree_sha": "791fbc851515d0599f9600b44654f7ac9c526c17",
-    "evidence": "docs/codex/PRIVATE_BANK_SNAPSHOTS_C08_RELEASE.json"
+    "task": "ECHS-C04",
+    "scope": "session and owner-storage foundation only",
+    "main_sha": "9ea1fe0ada9ab76d85b0e7f67a626cfcae05de79",
+    "tree_sha": "de227c260e5ae4a7b3bf87a2cf73ee82867e36a2",
+    "evidence": "docs/codex/OWNER_STORAGE_FOUNDATION_C04_RELEASE.json"
   }
 }

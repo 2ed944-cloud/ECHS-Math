@@ -1,0 +1,175 @@
+name: Private bank transport SQL candidate
+
+on:
+  pull_request:
+    paths:
+      - 'tools/private-bank-transport/**'
+      - '.github/workflows/private-bank-transport-integration.yml'
+      - 'supabase/migrations/**'
+      - 'tools/private_snapshot_fixture.py'
+      - 'tools/test_private_snapshot_database.py'
+      - 'tools/test_membership_authorization_database.py'
+      - 'tools/membership_authorization_rpc_fixture.py'
+      - 'tools/test_membership_authorization_e2e.mjs'
+      - 'supabase/functions/institution-api/index.ts'
+      - 'supabase/functions/institution-api/lesson-access-policy.js'
+      - 'supabase/functions/_shared/mastery-status.mjs'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: private-bank-transport-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  postgres15:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: isolated-transport-fixture-only
+          POSTGRES_DB: echs_membership_test_transport_ci
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d echs_membership_test_transport_ci"
+          --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      ECHS_MEMBERSHIP_TEST_DSN: postgresql://postgres:isolated-transport-fixture-only@127.0.0.1:5432/echs_membership_test_transport_ci
+      ECHS_BANK_TEST_DSN: postgresql://postgres:isolated-transport-fixture-only@127.0.0.1:5432/echs_bank_test_transport_ci
+      PYTHONUTF8: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Bind the exact checkout, dependency bytes and PostgreSQL image
+        env:
+          TEST_POSTGRES_CONTAINER: ${{ job.services.postgres.id }}
+        run: |
+          python - <<'PY'
+          import hashlib,json,os,re,subprocess,sys
+          from pathlib import Path
+          root=Path.cwd();here=root/'tools/private-bank-transport';sys.path.insert(0,str(here))
+          from contract import sources,REPOSITORY_INPUTS
+          manifest,_=sources()
+          def git(*args):return subprocess.check_output(['git',*args],text=True).strip()
+          tested=git('rev-parse','HEAD');tree=git('rev-parse','HEAD^{tree}');parents=git('rev-list','--parents','-n','1','HEAD').split()[1:]
+          assert re.fullmatch('[0-9a-f]{40}',tested) and tested==os.environ['GITHUB_SHA']
+          base=manifest['base_sha'];base_tree=git('rev-parse',base+'^{tree}');assert base_tree==manifest['base_tree']
+          own=['tools/private-bank-transport/'+p for p in ['handler.mjs','transport.mjs','contract.py','rpc-fixture.py','run-integration.py','test-contract.py','test-http-sql.mjs','source-pins.json','README.md']]+['.github/workflows/private-bank-transport-integration.yml']
+          followups=['docs/codex/'+p for p in ['OWNER_STORAGE_FOUNDATION_C04_RELEASE.json','OWNER_STORAGE_FOUNDATION_C04.md','MASTER_ARCHITECTURE_AUDIT_20260909.md','MASTER_EXECUTION_PLAN.json','PRIVATE_BANK_SNAPSHOTS_C08.md']]+['tools/validate_master_execution_plan.py','tools/test_master_execution_plan.py']
+          changed=git('diff','--name-only',base,tested).splitlines();assert set(changed)==set(own)|set(followups) and len(changed)==17
+          event=json.loads(Path(os.environ['GITHUB_EVENT_PATH']).read_text());kind=os.environ['GITHUB_EVENT_NAME'];pr_head=None;pr_number=None
+          if kind=='pull_request':
+              pr=event['pull_request'];pr_head=pr['head']['sha'];pr_number=event['number']
+              assert pr['base']['sha']==base and len(parents)==2 and parents==[base,pr_head]
+              assert git('rev-parse',pr_head+'^{tree}')==tree
+          else:
+              assert kind=='workflow_dispatch'
+              subprocess.run(['git','merge-base','--is-ancestor',base,tested],check=True)
+          rows=[]
+          for name in sorted(set(own)|set(followups)|set(REPOSITORY_INPUTS)):
+              raw=(root/name).read_bytes();blob=git('rev-parse',tested+':'+name)
+              assert hashlib.sha1(b'blob '+str(len(raw)).encode()+b'\0'+raw).hexdigest()==blob
+              rows.append({'path':name,'bytes':len(raw),'sha256':hashlib.sha256(raw).hexdigest(),'git_blob_sha':blob})
+          assert len(rows)==52
+          container=os.environ['TEST_POSTGRES_CONTAINER'];assert re.fullmatch('[0-9a-f]{12,64}',container)
+          image=subprocess.check_output(['docker','inspect','--format','{{.Image}}',container],text=True).strip();assert re.fullmatch('sha256:[0-9a-f]{64}',image)
+          repo_digests=json.loads(subprocess.check_output(['docker','image','inspect','--format','{{json .RepoDigests}}',image],text=True))
+          assert isinstance(repo_digests,list) and repo_digests and all(re.fullmatch('[A-Za-z0-9./_-]+@sha256:[0-9a-f]{64}',v) for v in repo_digests)
+          result={'status':'EXACT SOURCE CHECKOUT VERIFIED','event':kind,'tested_sha':tested,'tested_tree':tree,'parents':parents,'base_sha':base,'base_tree':base_tree,
+              'pr_head_sha':pr_head,'pr_number':pr_number,'owned_paths':own,'approved_followup_paths':followups,'source_files':rows,'source_pins_sha256':hashlib.sha256((here/'source-pins.json').read_bytes()).hexdigest(),
+              'postgres_image':{'configured':'postgres:15','image_id':image,'repo_digests':repo_digests},'prior_transport_runtime_byte_identical':True,'prior_synthetic_30_suites_rerun':False}
+          (here/'results').mkdir();(here/'results/checkout.json').write_text(json.dumps(result,indent=2)+'\n')
+          PY
+      - name: Install the pinned isolated database driver
+        run: python -m pip install 'psycopg[binary]==3.2.9'
+      - name: Check guarded local inputs and JavaScript syntax
+        run: |
+          python tools/private-bank-transport/test-contract.py
+          node --check tools/private-bank-transport/test-http-sql.mjs
+      - name: Execute fresh C09, archive and transport SQL contracts
+        run: python tools/private-bank-transport/run-integration.py --execute --checkout-report tools/private-bank-transport/results/checkout.json
+      - name: Assemble a closed metadata artifact
+        if: always()
+        run: |
+          python - <<'PY'
+          import hashlib,json,os,re,shutil,subprocess
+          from pathlib import Path
+          here=Path('tools/private-bank-transport');results=here/'results';target=Path(os.environ['RUNNER_TEMP'])/'private-bank-transport-evidence'
+          assert not target.exists();target.mkdir()
+          allowed={'checkout.json','source-pins.json','local-preflight.json','acceptance.json','membership-database.json','membership-http.json','archive-database.json','transport-http-sql.json'}
+          sources={'checkout.json':results/'checkout.json','source-pins.json':here/'source-pins.json','local-preflight.json':results/'local-preflight.json'}
+          runs=sorted(p for p in results.glob('run-*') if p.is_dir());assert len(runs)<=1
+          if runs:
+              for name in ['acceptance.json','membership-database.json','membership-http.json','archive-database.json','transport-http-sql.json']:sources[name]=runs[0]/name
+          def clean(value):
+              if isinstance(value,dict):
+                  assert not set(value)&{'tokens','bytes_base64','dsn','password','service_key','access_token','p_token_hash'}
+                  for child in value.values():clean(child)
+              elif isinstance(value,list):
+                  for child in value:clean(child)
+          rows=[];parsed={}
+          for name,source in sorted(sources.items()):
+              assert name in allowed
+              if not source.is_file():continue
+              raw=source.read_bytes();assert len(raw)<=2097152;parsed[name]=json.loads(raw);clean(parsed[name]);shutil.copyfile(source,target/name)
+              rows.append({'file':name,'bytes':len(raw),'sha256':hashlib.sha256(raw).hexdigest()})
+          complete=set(parsed)==allowed
+          def passed(document,count,status):
+              checks=document.get('checks')
+              return document.get('status')==status and isinstance(checks,list) and len(checks)==count and all(isinstance(v,str) and 0<len(v)<=1000 for v in checks) and len(set(checks))==count
+          if complete:
+              checkout=parsed['checkout.json'];acceptance=parsed['acceptance.json'];sql=parsed['transport-http-sql.json']
+              own=['tools/private-bank-transport/'+p for p in ['handler.mjs','transport.mjs','contract.py','rpc-fixture.py','run-integration.py','test-contract.py','test-http-sql.mjs','source-pins.json','README.md']]+['.github/workflows/private-bank-transport-integration.yml']
+              followups=['docs/codex/'+p for p in ['OWNER_STORAGE_FOUNDATION_C04_RELEASE.json','OWNER_STORAGE_FOUNDATION_C04.md','MASTER_ARCHITECTURE_AUDIT_20260909.md','MASTER_EXECUTION_PLAN.json','PRIVATE_BANK_SNAPSHOTS_C08.md']]+['tools/validate_master_execution_plan.py','tools/test_master_execution_plan.py']
+              dependencies={r['path'] for r in parsed['source-pins.json']['files'] if r['root']=='repo'}
+              expected=set(own)|set(followups)|dependencies;bound=checkout['source_files']
+              assert len(dependencies)==35 and len(bound)==len(expected)==52 and {r['path'] for r in bound}==expected
+              assert checkout['owned_paths']==own and checkout['approved_followup_paths']==followups
+              for row in bound:
+                  assert set(row)=={'path','bytes','sha256','git_blob_sha'}
+                  raw=Path(row['path']).read_bytes()
+                  assert type(row['bytes']) is int and len(raw)==row['bytes'] and hashlib.sha256(raw).hexdigest()==row['sha256'],'Source changed before artifact assembly'
+                  assert hashlib.sha1(b'blob '+str(len(raw)).encode()+b'\0'+raw).hexdigest()==row['git_blob_sha']
+              def git(*args):return subprocess.check_output(['git',*args],text=True).strip()
+              assert git('rev-parse','HEAD')==checkout['tested_sha'] and git('rev-parse','HEAD^{tree}')==checkout['tested_tree']
+              pin_sha=hashlib.sha256((target/'source-pins.json').read_bytes()).hexdigest()
+              migrations=[{'file':r['path'].split('/')[-1],'sha256':r['sha256']} for r in parsed['source-pins.json']['files'] if r['path'].startswith('supabase/migrations/')]
+              complete=checkout['status']=='EXACT SOURCE CHECKOUT VERIFIED' and checkout['tested_sha']==os.environ['GITHUB_SHA'] and acceptance['status']=='ACTUAL POSTGRESQL/HTTP PASS; STORAGE SERVICE AND HOSTED EDGE PENDING'
+              complete=complete and acceptance['tested_sha']==checkout['tested_sha'] and acceptance['tested_tree']==checkout['tested_tree'] and acceptance['checkout_report_sha256']==hashlib.sha256((target/'checkout.json').read_bytes()).hexdigest()
+              complete=complete and checkout['source_pins_sha256']==acceptance['source_pins_sha256']==sql['input_pins_sha256']==pin_sha
+              complete=complete and passed(parsed['local-preflight.json'],8,'LOCAL HARNESS PREFLIGHT PASS; ACTUAL POSTGRESQL NOT EXECUTED') and parsed['local-preflight.json']['passed']==8 and parsed['local-preflight.json']['database_executed'] is False
+              complete=complete and passed(parsed['membership-database.json'],55,'PASS') and passed(parsed['membership-http.json'],7,'PASS') and parsed['membership-database.json']['migrations']==migrations[:-1]
+              complete=complete and passed(parsed['archive-database.json'],222,'PASS') and len(migrations)==27 and parsed['archive-database.json']['migrations']==sql['migrations']==migrations
+              complete=complete and passed(sql,15,'ACTUAL POSTGRESQL AND ROUTE PASS; STORAGE SERVICE AND EDGE NOT RUN') and sql['database_executed'] is True and sql['real_storage_executed'] is False and sql['real_postgrest_executed'] is False and sql['hosted_edge_executed'] is False
+              complete=complete and acceptance['checks']=={'membership_database':55,'membership_http':7,'archive_database':222,'transport_http_sql':15}
+              expected_reports={'membership-database.json','membership-http.json','archive-database.json','transport-http-sql.json'}
+              complete=complete and len(acceptance.get('reports',[]))==4 and {r['file'] for r in acceptance['reports']}==expected_reports
+              for row in acceptance.get('reports',[]):
+                  assert row['file'] in expected_reports
+                  raw=(target/row['file']).read_bytes();complete=complete and len(raw)==row['bytes'] and hashlib.sha256(raw).hexdigest()==row['sha256']
+          result={'status':'ACTUAL SQL/HTTP PASS; STORAGE/EDGE PENDING' if complete else 'INCOMPLETE OR FAILED; NO ACCEPTANCE','files':rows,'complete':complete,
+              'expected_actual_checks':{'membership_database':55,'membership_http':7,'archive_database':222,'transport_sql':15},'real_storage_executed':False,'real_postgrest_executed':False,'hosted_edge_executed':False,'production_calls':0}
+          (target/'artifact-index.json').write_text(json.dumps(result,indent=2)+'\n')
+          assert set(p.name for p in target.iterdir())<=allowed|{'artifact-index.json'}
+          assert complete,'Isolated SQL evidence is incomplete or failed; retain the closed diagnostic artifact without acceptance.'
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: private-bank-transport-sql
+          path: ${{ runner.temp }}/private-bank-transport-evidence/
+          if-no-files-found: error
+          retention-days: 14
