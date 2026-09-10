@@ -1,0 +1,63 @@
+name: Private bank actual Storage service candidate
+
+on:
+  pull_request:
+    paths:
+      - 'tools/private-bank-service/**'
+      - '.github/workflows/private-bank-service-integration.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: private-bank-service-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  managed-services:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      PYTHONUTF8: '1'
+      PYTHONDONTWRITEBYTECODE: '1'
+      SERVICE_MANIFEST_SHA256: 6062af9432379d7425c6a1f8200efc939a5c1299101e17ce40242e7bca56ab65
+    steps:
+      - name: Check out the exact reviewed revision
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Set up Node with process-local certificate trust support
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Bind the exact source checkout
+        run: python -B tools/private-bank-service/ci.py prepare --manifest-sha256 "$SERVICE_MANIFEST_SHA256"
+      - name: Install the two pinned synthetic fixture dependencies
+        run: python -m pip install -r tools/private-bank-service/requirements.txt
+      - name: Test fixture safety and exact-source acceptance
+        run: |
+          python -B tools/private-bank-service/test_service_contract.py --repo . --report tools/private-bank-service/results/safety.json
+          python -B tools/private-bank-service/test_actual_contract.py --report tools/private-bank-service/results/actual-contract.json
+          python -B tools/private-bank-service/test_ci.py --report tools/private-bank-service/results/ci-contract.json
+          node --check tools/private-bank-service/test_service.mjs
+      - name: Verify real TLS sockets and certificate rejection
+        run: python -B tools/private-bank-service/run_tls_test.py --report tools/private-bank-service/results/tls.json
+      - name: Execute real managed PostgreSQL PostgREST and Storage services
+        run: python -B tools/private-bank-service/run_actual_service.py --execute --repo . --expected-head "$GITHUB_SHA" --source-manifest-sha256 "$SERVICE_MANIFEST_SHA256"
+      - name: Assemble bounded metadata and reject incomplete execution
+        if: always()
+        run: python -B tools/private-bank-service/ci.py assemble --manifest-sha256 "$SERVICE_MANIFEST_SHA256"
+      - name: Retain only the closed metadata artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: private-bank-actual-service
+          path: ${{ runner.temp }}/private-bank-service-evidence/
+          if-no-files-found: error
+          retention-days: 14

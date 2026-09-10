@@ -1,0 +1,21 @@
+[
+  "actual PostgREST capability matches the unchanged SQL contract",
+  "ordinary JWT roles cannot invoke service-only capability or file RPC",
+  "all six MIME policies and registered bytes pass actual handler and Storage readback",
+  "real duplicate POST returns400 and preserves the first immutable writer",
+  "anon and authenticated object/list/write/upsert/delete access is denied",
+  "custom school roles, foreign tenant and missing session are denied",
+  "expiry, revocation, suspension and demotion prevent Storage writes",
+  "preexisting conflicting real object bytes never receive a byte receipt",
+  "lost real upload acknowledgement reconciles the same immutable key",
+  "lost real SQL receipt acknowledgement reconciles committed status",
+  "revocation after a real object commit leaves an unreceipted immutable orphan",
+  "caller cancellation after a real object commit prevents stale success",
+  "two simultaneous actual HTTP operations converge on one receipt event",
+  "aborted snapshot permits status but denies further object I/O",
+  "ready synthetic snapshot permits status but denies further object I/O",
+  "actual standard uploads cover six-MiB-plus-one, eleven-MiB and sixteen-MiB bounds",
+  "wrong MIME, byte count and SHA cannot reach Storage writes",
+  "encoded client bodies fail without a byte receipt",
+  "real bucket misconfiguration fails closed and is restored through Storage API"
+]

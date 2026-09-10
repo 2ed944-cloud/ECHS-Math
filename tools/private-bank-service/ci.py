@@ -1,0 +1,250 @@
+"""Bind disposable service execution to the exact reviewed Git checkout.
+
+Only closed metadata is exported. A local collector result is not independent
+GitHub job/artifact verification, and this fixture never imports a real corpus.
+"""
+from pathlib import Path
+import argparse
+import hashlib
+import json
+import os
+import re
+import subprocess
+from service_contract import HERE, ContractError, closed, digest, exact, local_file, need, strict_json, verify_sources
+from run_actual_service import SOURCE_FILES, verify_manifest
+from seed_synthetic import load_fixture
+from collect_service import collect
+
+BASE = '53c55fe51ca3fff5a70028e89a67098d32d64632'
+BASE_TREE = '1856ae2585ac08db3c0086d4fa7d5bd0d07ed071'
+PREFIX = 'tools/private-bank-service/'
+WORKFLOW = '.github/workflows/private-bank-service-integration.yml'
+WRAPPER_FILES = ('ci.py', 'test_ci.py', 'ci-expected-groups.json', 'UPSTREAM_LICENSE.txt', 'UPSTREAM_NOTICE.md')
+OWN = tuple(sorted([PREFIX + p for p in (*SOURCE_FILES, 'source-manifest.json', *WRAPPER_FILES)] + [WORKFLOW]))
+OFFLINE = ('safety.json', 'tls.json', 'actual-contract.json', 'ci-contract.json')
+SHA40 = re.compile('[0-9a-f]{40}')
+SHA64 = re.compile('[0-9a-f]{64}')
+
+
+def encode(value):
+    return (json.dumps(value, indent=2, allow_nan=False) + '\n').encode()
+
+
+def write(path, value):
+    with Path(path).open('xb') as handle:
+        handle.write(encode(value))
+
+
+def git(root, *args):
+    return subprocess.check_output(['git', '-C', str(root), *args], text=True).strip()
+
+
+def checkout_policy(head, tree, parents, base_tree, changed, event_name, event, environment_sha):
+    need(type(head) is str and SHA40.fullmatch(head) and head == environment_sha, 'checkout-head')
+    need(type(tree) is str and SHA40.fullmatch(tree) and base_tree == BASE_TREE, 'checkout-tree')
+    need(type(changed) is list and len(changed) == len(OWN) and set(changed) == set(OWN), 'checkout-diff')
+    need(type(parents) is list and all(type(p) is str and SHA40.fullmatch(p) for p in parents), 'checkout-parents')
+    pr_head = None
+    pr_number = None
+    if event_name == 'pull_request':
+        pr = event['pull_request']
+        pr_head = pr['head']['sha']
+        pr_number = event['number']
+        need(type(pr_number) is int and pr_number > 0 and pr['base']['sha'] == BASE
+             and parents == [BASE, pr_head], 'checkout-pull-request')
+        need(pr['head']['repo']['full_name'] == '2ed944-cloud/ECHS-Math'
+             and pr['base']['repo']['full_name'] == '2ed944-cloud/ECHS-Math', 'checkout-repository')
+    else:
+        need(event_name == 'workflow_dispatch', 'checkout-event')
+    return pr_head, pr_number
+
+
+def inputs(root, manifest_hash):
+    verify_sources(root, HERE/'runtime')
+    load_fixture(root)
+    verify_manifest(local_file(HERE, 'source-manifest.json'), manifest_hash)
+    pins = strict_json(local_file(HERE, 'source-pins.json'))
+    dependencies = [row['path'] for row in pins['migrations']] + ['tools/private_snapshot_fixture.py']
+    names = sorted(set(OWN) | set(dependencies))
+    need(len(OWN) == 29 and len(dependencies) == 28 and len(names) == 57, 'source-closure')
+    return names
+
+
+def snapshot(root, manifest_hash):
+    names = inputs(root, manifest_hash)
+    head = git(root, 'rev-parse', 'HEAD')
+    tree = git(root, 'rev-parse', 'HEAD^{tree}')
+    parents = git(root, 'rev-list', '--parents', '-n', '1', 'HEAD').split()[1:]
+    event_name = os.environ['GITHUB_EVENT_NAME']
+    event = strict_json(Path(os.environ['GITHUB_EVENT_PATH']).read_bytes())
+    pr_head, pr_number = checkout_policy(head, tree, parents, git(root, 'rev-parse', BASE+'^{tree}'),
+        git(root, 'diff', '--name-only', BASE, head).splitlines(), event_name, event, os.environ['GITHUB_SHA'])
+    if pr_head:
+        need(git(root, 'rev-parse', pr_head+'^{tree}') == tree, 'pull-request-tree')
+    else:
+        subprocess.run(['git', '-C', str(root), 'merge-base', '--is-ancestor', BASE, head], check=True)
+    rows = []
+    for name in names:
+        raw = local_file(root, name)
+        blob = git(root, 'rev-parse', head+':'+name)
+        need(hashlib.sha1(b'blob '+str(len(raw)).encode()+b'\0'+raw).hexdigest() == blob, 'checkout-file-drift')
+        rows.append({'path':name, 'bytes':len(raw), 'sha256':digest(raw), 'git_blob':blob})
+    return {'contract':'echs.c08.storage-service-checkout.v1', 'status':'EXACT_SOURCE_CHECKOUT_VERIFIED',
+        'event':event_name, 'head':head, 'tree':tree, 'parents':parents, 'base':BASE, 'base_tree':BASE_TREE,
+        'pr_head':pr_head, 'pr_number':pr_number, 'source_manifest_sha256':manifest_hash,
+        'owned_paths':list(OWN), 'source_files':rows, 'production_calls':False}
+
+
+def validate_offline(name, raw, expected, source_rows):
+    value = strict_json(raw)
+    spec = expected[name]
+    base = {'contract','status','passed','total','groups','source_sha256'}
+    extra = set(spec['fields'])
+    if name == 'actual-contract.json':
+        extra.add('source_manifest_sha256')
+    closed(value, base | extra)
+    need(value['contract'] == spec['contract'] and value['status'] == 'PASS', 'offline-contract')
+    names = spec['groups']
+    need(type(value['passed']) is int and type(value['total']) is int
+         and value['passed'] == value['total'] == len(names), 'offline-count')
+    need(type(value['groups']) is list and len(value['groups']) == len(names), 'offline-count')
+    for row, label in zip(value['groups'], names):
+        closed(row, ('name','status'))
+        need(row['name'] == label and row['status'] == 'PASS', 'offline-case')
+    for key, required in spec['fields'].items():
+        need(exact(value[key], required), 'offline-execution-scope')
+    hashes = value['source_sha256']
+    need(type(hashes) is dict and set(hashes) == set(spec['source_files']), 'offline-source-closure')
+    for key, actual in hashes.items():
+        need(actual == source_rows[PREFIX+key]['sha256'], 'offline-source-drift')
+    if name == 'actual-contract.json':
+        need(value['source_manifest_sha256'] == source_rows[PREFIX+'source-manifest.json']['sha256'], 'offline-manifest')
+    return value
+
+
+def safe_failure(directory):
+    """Retain only typed status metadata on a failed service run, never its body."""
+    result = {'run_report_present':False, 'status':'NOT_ACCEPTED'}
+    p = directory/'service-run-report.json'
+    if not p.is_file() or p.is_symlink() or p.is_junction():
+        return result
+    value = strict_json(p.read_bytes())
+    result['run_report_present'] = True
+    for key in ('services_executed','hosted_edge_executed','corpus_imported','service_start_attempted','cleanup_complete'):
+        if type(value.get(key)) is bool:
+            result[key] = value[key]
+    failure = value.get('failure')
+    if type(failure) is dict:
+        selected = {}
+        for key in ('stage','type','code','command_stage','reason'):
+            item = failure.get(key)
+            if item is None or (type(item) is str and re.fullmatch('[A-Za-z0-9_.-]{1,128}', item)):
+                selected[key] = item
+        for key in ('exit_code',):
+            item = failure.get(key)
+            if type(item) is int and -256 <= item <= 65535:
+                selected[key] = item
+        if type(failure.get('timed_out')) is bool:
+            selected['timed_out'] = failure['timed_out']
+        result['failure'] = selected
+    test_path = directory/'service-test-results.json'
+    if test_path.is_file() and not test_path.is_symlink() and not test_path.is_junction():
+        tests = strict_json(test_path.read_bytes())
+        expected = strict_json(local_file(HERE, 'service-cases.json'))
+        groups = tests.get('groups') if type(tests) is dict else None
+        if (type(groups) is list and len(groups) == len(expected) == 19
+                and all(type(row) is dict and row.get('name') == label
+                    and row.get('status') in ('PASS','FAIL') for row, label in zip(groups, expected))):
+            selected = []
+            for row in groups:
+                item = {'name':row['name'], 'status':row['status']}
+                for key in ('error_type','sqlstate'):
+                    value = row.get(key)
+                    if type(value) is str and re.fullmatch('[A-Za-z0-9_]{1,80}', value):
+                        item[key] = value
+                selected.append(item)
+            result['service_groups'] = selected
+    return result
+
+
+def prepare(root, manifest_hash):
+    value = snapshot(root, manifest_hash)
+    results = HERE/'results'
+    need(not results.exists(), 'existing-ci-results')
+    need(not (HERE/'runs').exists(), 'existing-ci-runs')
+    results.mkdir()
+    write(results/'checkout.json', value)
+    return {'status':value['status'], 'source_files':len(value['source_files'])}
+
+
+def assemble(root, manifest_hash):
+    destination = Path(os.environ['RUNNER_TEMP'])/'private-bank-service-evidence'
+    for p in (destination, *destination.parents):
+        need(not p.is_symlink() and not p.is_junction(), 'linked-artifact')
+    need(not destination.exists(), 'artifact-exists')
+    destination.mkdir()
+    complete = False
+    failure = None
+    try:
+        fresh = snapshot(root, manifest_hash)
+        checkout_raw = local_file(HERE, 'results/checkout.json')
+        need(exact(strict_json(checkout_raw), fresh), 'checkout-changed')
+        expected = strict_json(local_file(HERE, 'ci-expected-groups.json'))
+        need(set(expected) == set(OFFLINE), 'offline-report-set')
+        sources = {row['path']:row for row in fresh['source_files']}
+        offline = {}
+        for name in OFFLINE:
+            raw = local_file(HERE, 'results/'+name)
+            validate_offline(name, raw, expected, sources)
+            offline[name] = raw
+        runs = list((HERE/'runs').iterdir())
+        need(len(runs) == 1 and runs[0].is_dir() and re.fullmatch('[0-9a-f]{32}', runs[0].name), 'actual-run-set')
+        local_target = HERE/'results'/'accepted-service'
+        collect(runs[0], local_target, fresh['head'], fresh['tree'], manifest_hash)
+        members = {'checkout.json':checkout_raw, **offline}
+        for p in local_target.iterdir():
+            need(p.is_file() and not p.is_symlink() and not p.is_junction(), 'artifact-member')
+            members[p.name] = p.read_bytes()
+        need(len(members) == 10, 'artifact-count')
+        need(exact(snapshot(root, manifest_hash), fresh), 'source-changed-before-export')
+        for name, raw in members.items():
+            with (destination/name).open('xb') as handle:
+                handle.write(raw)
+        complete = True
+    except Exception as error:
+        failure = {'type':type(error).__name__, 'code':getattr(error,'code',None)}
+        runs = list((HERE/'runs').glob('*')) if (HERE/'runs').is_dir() else []
+        if len(runs) == 1 and runs[0].is_dir() and re.fullmatch('[0-9a-f]{32}', runs[0].name):
+            try:
+                failure['runner'] = safe_failure(runs[0])
+            except Exception:
+                failure['runner'] = {'status':'UNREADABLE_METADATA'}
+    rows = [{'file':p.name,'bytes':p.stat().st_size,'sha256':digest(p.read_bytes())}
+            for p in sorted(destination.iterdir())]
+    result = {'contract':'echs.c08.storage-service-ci-index.v1',
+        'status':'ACTUAL_SERVICES_PASS' if complete else 'INCOMPLETE_OR_FAILED', 'complete':complete,
+        'github_ci_accepted':False, 'requires_independent_workflow_metadata':True,
+        'source_manifest_sha256':manifest_hash, 'files':rows, 'failure':failure,
+        'production_calls':False, 'hosted_edge_executed':False, 'corpus_imported':False, 'whole_c08_complete':False}
+    write(destination/'ci-index.json', result)
+    need(complete, 'service-ci-incomplete')
+    return {'status':result['status'], 'artifact_members':len(rows)+1, 'service_groups':19}
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('mode', choices=('prepare','assemble'))
+    parser.add_argument('--manifest-sha256', required=True)
+    args = parser.parse_args()
+    need(SHA64.fullmatch(args.manifest_sha256), 'manifest-hash-shape')
+    root = HERE.parents[1]
+    try:
+        print(json.dumps((prepare if args.mode == 'prepare' else assemble)(root, args.manifest_sha256)))
+        return 0
+    except ContractError as error:
+        print(json.dumps({'status':'REJECTED','code':error.code}))
+        return 1
+
+
+if __name__ == '__main__':
+    raise SystemExit(main())
