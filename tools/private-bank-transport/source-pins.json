@@ -1,0 +1,238 @@
+{
+  "contract": "echs.c08.transport-sql-inputs.v1",
+  "files": [
+    {
+      "root": "repo",
+      "path": "supabase/migrations/202607260001_institutional_platform.sql",
+      "bytes": 24164,
+      "sha256": "d795417c79539f0aa0fdf7d2c59165654458b3b8c85ff1da465645e4052c6e00"
+    },
+    {
+      "root": "repo",
+      "path": "supabase/migrations/202607260002_bootstrap_function_repair.sql",
+      "bytes": 3545,
+      "sha256": "5753b6408a824fb99d76348f2f09831d6e8026dbe0b1e89d7763594710997613"
+    },
+    {
+      "root": "repo",
+      "path": "supabase/migrations/202607260003_login_authentication_repair.sql",
+      "bytes": 5946,
+      "sha256": "2a4ce577fd8c31dd55192330cfa24a13708d0bbe5d77fdd6d1271adcaff14a11"
+    },
+    {
+      "root": "repo",
+      "path": "supabase/migrations/202607270001_session_lookup_repair.sql",
+      "bytes": 5817,
+      "sha256": "b7742cfc9e9154c7ade12005f87215602422b54c99cebd9973b0277c45547c13"
+    },
+    {
+      "root": "repo",
+      "path": "supabase/migrations/202607272001_mastery_evidence_foundation.sql",
+      "bytes": 12279,
+      "sha256": "434d31d932a66c91a14c27ed2f13533dcd30b4b31cb6e8642e23fe9fc024c49e"
+    },
+    {
+      "root": "repo",
+      "path": "supabase/migrations/202607272002_mastery_authority_guard.sql",
+      "bytes": 1480,
+      "sha256": "7d1e8b5229b64bab2d52ab6da0f3fb1b5304dc4cd41a298c203caa3df74cd683"
+    },
+    {
+      "root": "repo",
+      "path": "supabase/migrations/202607272003_attempt_trust_guard.sql",
+      "bytes": 916,
+      "sha256": "87eab47e172a34ad4e64d502c7f4add618631d598e5f147131bdab446d5fe689"
+    },
+    {
+      "root": "repo",
+      "path": "supabase/migrations/202607272004_atomic_skill_mapping.sql",
+      "bytes": 1488,
+      "sha256": "f05a8ffa3f78c6d4dce1a79c48fa15964047d69147e83a2648ab98d84982fc08"
+    },
+    {
+      "root": "repo",
+      "path": "supabase/migrations/202607272101_private_bank_foundation.sql",
+      "bytes": 9555,
+      "sha256": "2d6614d54e5867bb8a1765b17343f4b564e760e132f3b97e05db1d8a0aee2dc8"
+    },
+    {
+      "root": "repo",
+      "path": "supabase/migrations/202607272102_private_attempt_trust_bridge.sql",
+      "bytes": 1331,
+      "sha256": "0056dc1cd5f8b5468b949a20aa5e3471e9febb054603dbda3da101963f6f6214"
+    },
+    {
+      "root": "repo",
+      "path": "supabase/migrations/202607272201_teacher_upload_manager.sql",
+      "bytes": 2253,
+      "sha256": "7a1e472e7c3feab091e6d0c7c3b54e5b7c4bcc5b3a4cb6e37a78ee775fc93ace"
+    },
+    {
+      "root": "repo",
+      "path": "supabase/migrations/202607282330_verified_private_bank_import.sql",
+      "bytes": 4203,
+      "sha256": "877681c751b5f55bc415f8534b4360c0fc34cf8a8086f60e8e63b4cbad66e831"
+    },
+    {
+      "root": "repo",
+      "path": "supabase/migrations/202607290001_raise_teacher_upload_bucket_limit.sql",
+      "bytes": 623,
+      "sha256": "6af0fb5f637ad309d0c8a4e9647650e9b5e4f7fbf9af6ad2bb6d9586cf6ddd51"
+    },
+    {
+      "root": "repo",
+      "path": "supabase/migrations/202607291900_resumable_private_bank_course_purge.sql",
+      "bytes": 9897,
+      "sha256": "9a7083fd9f3cf30fe036ad4ff5a5e2e6298de5f6383f9287d1ae32e7566b0910"
+    },
+    {
+      "root": "repo",
+      "path": "supabase/migrations/202607300020_sync_private_bank_mapping_indexes.sql",
+      "bytes": 3253,
+      "sha256": "d1107fb8c6464cef5fcb9b445d46fdc5c1f1672c644a2749d8e4962976b32e71"
+    },
+    {
+      "root": "repo",
+      "path": "supabase/migrations/202607301500_private_bank_practice_inventory.sql",
+      "bytes": 2337,
+      "sha256": "1a74d46d17cfc028f03f8fa79973e2c5abeb80283497bfb5d76c55ff3b098687"
+    },
+    {
+      "root": "repo",
+      "path": "supabase/migrations/202607312230_restore_ib_current_bank_practice_visibility.sql",
+      "bytes": 5938,
+      "sha256": "a56066e8f979eca033dfe0c54e5f46335ed2479602764bd4544c13e06cdd3d39"
+    },
+    {
+      "root": "repo",
+      "path": "supabase/migrations/202608020002_assignment_routes_and_timetables.sql",
+      "bytes": 3184,
+      "sha256": "51987bffa02ad10993f67bf8ebc819fa62c09f2a38440aff413bccf3c81a4025"
+    },
+    {
+      "root": "repo",
+      "path": "supabase/migrations/202608300001_lesson_visibility_progression.sql",
+      "bytes": 58983,
+      "sha256": "26c8daec8bf8cdd451b350e99b03273e056d0509949b673639810481d712b627"
+    },
+    {
+      "root": "repo",
+      "path": "supabase/migrations/202609050100_ib_readiness_pathway_engine.sql",
+      "bytes": 15607,
+      "sha256": "53df739f2b0201936e03eff00a93f7e1c58d020d264e94a37ca286ace4e96650"
+    },
+    {
+      "root": "repo",
+      "path": "supabase/migrations/202609080001_curriculum_versions.sql",
+      "bytes": 20008,
+      "sha256": "aaad19c8e9c3d5e88ed85041cb1f83b1b732030e6fbb5a388b7b573325233845"
+    },
+    {
+      "root": "repo",
+      "path": "supabase/migrations/202609080002_lesson_persistence.sql",
+      "bytes": 52564,
+      "sha256": "01e522b73729669d29bf2219f4753d561e80a733f954624612a1a69ea845c0bf"
+    },
+    {
+      "root": "repo",
+      "path": "supabase/migrations/202609080003_lesson_content_v2.sql",
+      "bytes": 23991,
+      "sha256": "ed5abde8826c67bbe161cf0d90d367d9b78a1d4cdb3cd4d7da07e72dbcd1ab61"
+    },
+    {
+      "root": "repo",
+      "path": "supabase/migrations/202609080004_lesson_media.sql",
+      "bytes": 36628,
+      "sha256": "af9b34a41200a4ca2ef25502a40a617c81eef41e9b5ab060a618728b770d21e5"
+    },
+    {
+      "root": "repo",
+      "path": "supabase/migrations/202609090001_lesson_draft_recovery.sql",
+      "bytes": 7099,
+      "sha256": "df0d4fbff433645ac12e1ff00ee0f0ea7dad122d5703fb7f74d8dd51453de264"
+    },
+    {
+      "root": "repo",
+      "path": "supabase/migrations/202609090002_membership_authorization.sql",
+      "bytes": 7078,
+      "sha256": "4760871d3a24847e9b813959d53f3705afff30261e7628dc4e051db8039149ed"
+    },
+    {
+      "root": "repo",
+      "path": "supabase/migrations/202609090003_private_bank_snapshots.sql",
+      "bytes": 66467,
+      "sha256": "9169cee2067fef09bcd0d15c0f65703c3b2c203bbe2ad3fd6217a6c41c1d6412"
+    },
+    {
+      "root": "repo",
+      "path": "tools/private_snapshot_fixture.py",
+      "bytes": 8127,
+      "sha256": "6e8b91bbe5cfa869cdfb9a426b967f8c1ee25ee64a5c196863ec574037bbce7a"
+    },
+    {
+      "root": "repo",
+      "path": "tools/test_private_snapshot_database.py",
+      "bytes": 42846,
+      "sha256": "521ea6aa6f3415c1527469f35eef52454d9c6d21bb663a900f4e4466aae53618"
+    },
+    {
+      "root": "repo",
+      "path": "tools/test_membership_authorization_database.py",
+      "bytes": 22909,
+      "sha256": "ff66dcd24ad843b214e942db6521938e4652c086b11d1a19a278d7deb27644e9"
+    },
+    {
+      "root": "repo",
+      "path": "tools/membership_authorization_rpc_fixture.py",
+      "bytes": 8102,
+      "sha256": "5bb060061488429f19457de5f806647f13a31dc7e042bcd2d98cc99b09d2e3df"
+    },
+    {
+      "root": "repo",
+      "path": "tools/test_membership_authorization_e2e.mjs",
+      "bytes": 9632,
+      "sha256": "3d46ee09a73cc403195e9642e5d60a7d49bd3ff8ef1d2542ea62a501d15a7ea7"
+    },
+    {
+      "root": "repo",
+      "path": "supabase/functions/institution-api/index.ts",
+      "bytes": 52838,
+      "sha256": "0c45db599f1dd51ecbb1e47cb7189ca90d67df464d42c415920023d1126c900e"
+    },
+    {
+      "root": "repo",
+      "path": "supabase/functions/institution-api/lesson-access-policy.js",
+      "bytes": 2111,
+      "sha256": "48a982764348151a51d1a19772b5dc1d0e5a1a04a9c79e065a6cda6d26f6e9ac"
+    },
+    {
+      "root": "repo",
+      "path": "supabase/functions/_shared/mastery-status.mjs",
+      "bytes": 4778,
+      "sha256": "ce692d731b4f3e21145ba5a849d1274476f171cf03f6b55445f6d4e99927c16b"
+    },
+    {
+      "root": "transport",
+      "path": "transport.mjs",
+      "bytes": 9572,
+      "sha256": "11425bcd086ddb2f88c788969ef82e1f2af8a7803d8b8110baabf785bb3152d3"
+    },
+    {
+      "root": "transport",
+      "path": "handler.mjs",
+      "bytes": 12566,
+      "sha256": "ff49fd68970612cd325dec9819707a91a431eb1799cf6c4d88d1fea675f4cf0e"
+    }
+  ],
+  "production_calls": 0,
+  "base_sha": "9ea1fe0ada9ab76d85b0e7f67a626cfcae05de79",
+  "base_tree": "de227c260e5ae4a7b3bf87a2cf73ee82867e36a2",
+  "provenance": {
+    "prior_transport_manifest_sha256": "91884b4feb89f6fe4635823296f33b7b6f87cb63c7cc67630d6c7fe354498304",
+    "prior_integration_manifest_sha256": "7cbbd73698cafac4c56db46bb0086c4e42784e2160da1202cca00de7493e3c25",
+    "original_runtime_bytes_preserved": true,
+    "prior_node_groups": 30,
+    "prior_deno_groups": 30,
+    "prior_synthetic_suites_rerun_here": false
+  }
+}

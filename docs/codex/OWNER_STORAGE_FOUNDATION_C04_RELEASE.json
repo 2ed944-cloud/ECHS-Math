@@ -1,0 +1,230 @@
+{
+  "contract": "echs.c04.foundation-release.v1",
+  "status": "FOUNDATION VERIFIED",
+  "whole_c04_status": "IN PROGRESS",
+  "whole_program_complete": false,
+  "head_sha": "d68776828bd3afdb11cc8e3c6bf3c645134eafee",
+  "main_sha": "9ea1fe0ada9ab76d85b0e7f67a626cfcae05de79",
+  "tree_sha": "de227c260e5ae4a7b3bf87a2cf73ee82867e36a2",
+  "tested_merge_sha": "c2d00d7b9c8285074a3619c921270d08745f7f31",
+  "pull_request": "https://github.com/2ed944-cloud/ECHS-Math/pull/369",
+  "source_files": [
+    {
+      "path": ".github/workflows/owner-storage.yml",
+      "bytes": 4454,
+      "sha256": "2fd08781a071462afc1c08dc6d021e97de3fef29477f6e6955a0a8d388fcf88c",
+      "git_blob_sha": "2026782d1039c266703185a8c379464d4cb29452"
+    },
+    {
+      "path": "docs/codex/MASTER_ARCHITECTURE_AUDIT_20260909.md",
+      "bytes": 15265,
+      "sha256": "5e6d8b7fe863d8a91725a12332dbe9eb145c4239ff4ec397b62239c091e79243",
+      "git_blob_sha": "385b98252a4a7f53c62af895d1b8e00f6c7c6836"
+    },
+    {
+      "path": "docs/codex/MASTER_EXECUTION_PLAN.json",
+      "bytes": 162470,
+      "sha256": "5324f762cf9b638a11516c8a72a62c0af81684edefb845937557c5f819b79ba1",
+      "git_blob_sha": "1aa878560608f2d1aff6cad76f01fac16b99d152"
+    },
+    {
+      "path": "docs/codex/OWNER_STORAGE_FOUNDATION_C04.md",
+      "bytes": 7715,
+      "sha256": "f7a39dbbb805d822cc9515cebe7322346ccb4ce4c8f7fe58f8ddd651d16043d8",
+      "git_blob_sha": "a5143607131a5bc993efa4a4616577b40f71703d"
+    },
+    {
+      "path": "docs/codex/PRIVATE_BANK_SNAPSHOTS_C08.md",
+      "bytes": 16371,
+      "sha256": "1f4e35b3b2aeaf55a16b9ffc962fb4f1a6c8ce37a77d68ec97b115ffb2f5e1e8",
+      "git_blob_sha": "4a0f4af062f105c251fb7dafb84db6a7c53c9f9d"
+    },
+    {
+      "path": "docs/codex/PRIVATE_BANK_SNAPSHOTS_C08_RELEASE.json",
+      "bytes": 6176,
+      "sha256": "2c64f94dc63e19cb2aa37d57ac31c5f0895fabf031cca0df656368cc010cc5c8",
+      "git_blob_sha": "72334817cf1b8f92bc59dfbc93c21971586df366"
+    },
+    {
+      "path": "js/institution-client.js",
+      "bytes": 33898,
+      "sha256": "c2f95a415a0cba9d5a315770df7d14ed2775d881f3e5212facae2efc6900b1da",
+      "git_blob_sha": "82cee35be881cc461c8fc5734289bcc807d55ff9"
+    },
+    {
+      "path": "js/owner-storage.mjs",
+      "bytes": 14938,
+      "sha256": "73648c5974118b1dfb863cf6908c54edf6a20ffefab8934102a9651c404881f2",
+      "git_blob_sha": "c42069aab9ca2f3de1bcef3f21156007ca3311e4"
+    },
+    {
+      "path": "sw.js",
+      "bytes": 25998,
+      "sha256": "e0b6b382df6f3aa7cb718ec203250f79f989c0582ac18aea3fe9a647552fd8d2",
+      "git_blob_sha": "a7c9d5ac7df8af1c29ef75609c5280e40c7864a9"
+    },
+    {
+      "path": "tools/capture_phase1_preview.mjs",
+      "bytes": 27741,
+      "sha256": "749555b857856b3218a009939aeaf86dc110f1c588bba36f3927f04e814c911b",
+      "git_blob_sha": "5eebc7e360a6dbf9f7052192d59ccc03f0eff7bc"
+    },
+    {
+      "path": "tools/capture_private_bank_center.mjs",
+      "bytes": 7939,
+      "sha256": "20b5d2332082eae6a5d4480bb939033be666a62beb11f24e72b80e34a999d640",
+      "git_blob_sha": "9ffffddd2734f2243097301ee25377eb25aa22be"
+    },
+    {
+      "path": "tools/capture_upload_manager.mjs",
+      "bytes": 4400,
+      "sha256": "28ed74dceae7fb3fdacb65dce81cb65eda0743af18d291c2335498729ca230ba",
+      "git_blob_sha": "9497d73caf4e6c43fb07544d2260b81aeb4cbec7"
+    },
+    {
+      "path": "tools/fixtures/c04-prior-worker.js",
+      "bytes": 25160,
+      "sha256": "d2205deb9e8ad884093fca20433d0d4bf79774e743beddfd61cc70c195d7b0ff",
+      "git_blob_sha": "658f331abdbeab9dabe06ed71945567d7f92db21"
+    },
+    {
+      "path": "tools/fixtures/institution-client.pre-c04.js",
+      "bytes": 19875,
+      "sha256": "7462a21998aae97bad308273e2a7a2b198de77bbd40d9c60eea0f79cb2defaad",
+      "git_blob_sha": "ef6d9cefc7c4d1270dafe96fbaf3185f36e60cda"
+    },
+    {
+      "path": "tools/lesson-import/test-ib13-parity.mjs",
+      "bytes": 27980,
+      "sha256": "41aaa6567c4d1d3eb526c7e9bb7c3ec5a8f5c8883da50889bde690e5dac077b9",
+      "git_blob_sha": "1105ed0a0332efe3d1a06bb471778dbbb7c2bb92"
+    },
+    {
+      "path": "tools/lesson-studio/studio-fixture.mjs",
+      "bytes": 24879,
+      "sha256": "8235cb9ea2797b32865c5bbc0aea1be405398cd05946f784d35dfde288e47e26",
+      "git_blob_sha": "121cd9af6c416b676a35475c91edffcf56c147f4"
+    },
+    {
+      "path": "tools/test_canonical_owner_authority.mjs",
+      "bytes": 27277,
+      "sha256": "04d2a3bbe6de8ed2f50406f426ec7b6346b27f9721527dbd68e222607b603f8d",
+      "git_blob_sha": "80b3709e64d269f241dcec58448e398b9ac0af85"
+    },
+    {
+      "path": "tools/test_institution_identity_mount.mjs",
+      "bytes": 4118,
+      "sha256": "9951d3d288ef7ffa76d26975cdd1ea1a7e88515c3b9e2c2d959961274079ac16",
+      "git_blob_sha": "bcbbb7d1ac8df3d449ebc216f48be20501faf11f"
+    },
+    {
+      "path": "tools/test_mastery_browser_acceptance.mjs",
+      "bytes": 34541,
+      "sha256": "d24056b4e324fbfa73037e11bbf45935823d1b6c38cb8f06d9f2c6748f8a2e8f",
+      "git_blob_sha": "8af88fb5d22719810e8b3ed0a7b12aa73d4f7f16"
+    },
+    {
+      "path": "tools/test_mastery_sync.mjs",
+      "bytes": 14049,
+      "sha256": "0b40bd46f026c5a334bbdee4018ab3ad1927365a70130183d7b607d49ac5e89b",
+      "git_blob_sha": "01569809b6de1839f574fbd97335f936439cbe7c"
+    },
+    {
+      "path": "tools/test_owner_storage.mjs",
+      "bytes": 19014,
+      "sha256": "86b663269fd245e724955e73bb1cda09716e4a683d2f6eac2b86cdad60889d1d",
+      "git_blob_sha": "8a163de07af1a462f97c7bb352e4dace9a3f8cbd"
+    },
+    {
+      "path": "tools/test_owner_storage_browser.mjs",
+      "bytes": 12541,
+      "sha256": "54982e64a2b7c43cfaa5c0751ed36403770223f5d2dccddda5ce9a8fcf7a3ffd",
+      "git_blob_sha": "865b194f62bbb8d5f775efe10dc5d1687670b0b9"
+    },
+    {
+      "path": "tools/test_owner_storage_ci.py",
+      "bytes": 7934,
+      "sha256": "58fdd2858a1cb73f13b956161083313bec3732bac2836e4de2c215fe8cc608f2",
+      "git_blob_sha": "ac6652383eceef75b1dabff20c2b655594244ced"
+    },
+    {
+      "path": "tools/test_owner_worker.mjs",
+      "bytes": 6512,
+      "sha256": "3118edb9a1360f1b899906c7d7114fd62c7f91462f60499ce5e7b4926f4ee974",
+      "git_blob_sha": "60768bcab4e26aac79f8efa4900d4fc7fa3c1251"
+    },
+    {
+      "path": "tools/test_platform_resilience.mjs",
+      "bytes": 8080,
+      "sha256": "0400cf3ff34805cb1982beae7827d8bab9ce9036d5a59cd28c3315bfe9eca881",
+      "git_blob_sha": "821f25be6c78d6d6089eaa1f64f7f37b43b6760d"
+    },
+    {
+      "path": "tools/test_public_question_browser.mjs",
+      "bytes": 13894,
+      "sha256": "277f9571fb7818c0b9061759141d93fe57d7221ead0a4a67c03e0f133a34eba0",
+      "git_blob_sha": "d6a260e67a14ad38ebace23f3dbfdfe7b2d8bd8e"
+    },
+    {
+      "path": "tools/verify_owner_storage_ci.py",
+      "bytes": 8790,
+      "sha256": "7fae33b7a17645f9b0d3fe8ba0448357be13f060a93d469f36ef1741c8ab71c2",
+      "git_blob_sha": "e9b7f9612dbb046cc54949236a9ae52229eea418"
+    }
+  ],
+  "source_manifest_sha256": "bc6044eb6163a9319c782c3e02f42645b54e2b21eea7877182626fcf6effc4f1",
+  "database_migrations": [],
+  "tests": {
+    "pr_workflows": 24,
+    "main_workflows": 19,
+    "baseline_commands": 68,
+    "core": 21,
+    "canonical_client": 28,
+    "owner_worker": 8,
+    "ownership_browser": 8,
+    "C01_worker": 26,
+    "C02_worker": 12,
+    "legacy_client_assertions": 92
+  },
+  "deployments": {
+    "pages": {
+      "url": "https://github.com/2ed944-cloud/ECHS-Math/actions/runs/34443363197",
+      "run_id": 34443363197,
+      "head_sha": "9ea1fe0ada9ab76d85b0e7f67a626cfcae05de79",
+      "conclusion": "success"
+    }
+  },
+  "live_acceptance": {
+    "requests": 24,
+    "checks": 57,
+    "production_writes": 0,
+    "credential_requests": 0,
+    "private_learner_requests": 0,
+    "sha256": "a0115060b010595fda673324dee67ea6498c0d75632296b3ec4e55626d7eac53"
+  },
+  "sealed_outputs": [
+    {
+      "file": "ECHS_C04_FOUNDATION_REPORT.md",
+      "bytes": 2677,
+      "sha256": "cc500568435c2a7b3ef7c17a6d011386f24fe00edd86fe161075d50fec2e04ce"
+    },
+    {
+      "file": "ECHS_C04_FOUNDATION_HANDOFF.json",
+      "bytes": 20222,
+      "sha256": "f72cca8a5deecbc00094f417a5a3fac77af765ee61bb473d5364ea33f26284ed"
+    },
+    {
+      "file": "ECHS-C04-foundation-handoff.zip",
+      "bytes": 285779,
+      "sha256": "20085718c98853f49e4a2534a4e08254629c2f9375554da5cb0ad432fa6eec1c"
+    }
+  ],
+  "scope": "Canonical session/client, owner-storage library and current-release caching only; no legacy raw-store or queue adoption.",
+  "rollback": "Deploy a coherent client/worker set and retain browser bytes. Prefer forward repair; do not restore stale-session effects or silently assign raw stores.",
+  "next_work": [
+    "Atomic learning state and pending intent",
+    "Complete producer/reader/bootstrap adoption",
+    "Versioned sync with exact receipts and all legacy writers fenced",
+    "Lesson-local response/image/tutor ownership"
+  ]
+}

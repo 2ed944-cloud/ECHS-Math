@@ -59,6 +59,31 @@ class MasterExecutionPlanTests(unittest.TestCase):
     def test_absolute_private_path(self):self.plan['charter']['path']='C:/Users/name/private';self.rejected('unsafe')
     def test_misleading_overall_completion(self):self.plan['whole_program_complete']=True;self.rejected('unverified tasks')
     def test_unknown_risk_owner(self):self.plan['unresolved_risks'][0]['owner_task']='ECHS-999';self.rejected('risk owner')
+    def test_foundation_keeps_whole_task_incomplete(self):
+        self.row(self.plan['last_verified_foundation_slice']['task'])['status']='VERIFIED'
+        self.rejected('foundation does not complete')
+    def test_foundation_requires_deployed_scope(self):
+        self.row(self.plan['last_verified_foundation_slice']['task'])['deployment']['scope']=''
+        self.rejected('foundation deployed scope')
+    def test_foundation_revision_matches_deployment(self):
+        self.plan['last_verified_foundation_slice']['main_sha']='0'*40
+        self.rejected('foundation deployment revision')
+    def test_foundation_requires_receipt(self):
+        self.plan['last_verified_foundation_slice']['evidence']='docs/codex/not-a-foundation.json'
+        self.rejected('foundation receipt missing')
+    def check_foundation_receipt_rejection(self,changes,fragment):
+        foundation=self.plan['last_verified_foundation_slice'];original=load
+        def altered(path):
+            result=original(path)
+            if Path(path).as_posix().endswith('/'+foundation['evidence']):result.update(changes)
+            return result
+        with patch('validate_master_execution_plan.load',side_effect=altered):self.rejected(fragment)
+    def test_foundation_receipt_cannot_claim_program_complete(self):
+        self.check_foundation_receipt_rejection({'whole_program_complete':True},'foundation receipt scope')
+    def test_foundation_receipt_tree_matches_release(self):
+        self.check_foundation_receipt_rejection({'tree_sha':'0'*40},'foundation receipt identity')
+    def test_foundation_requires_manifest_hash(self):
+        self.check_foundation_receipt_rejection({'source_manifest_sha256':'unknown'},'foundation source manifest')
     def test_safe_paths(self):
         for p in ['/tmp/x','C:/private','../x','a/../x','a\\b','a//b','./a']:
             self.assertFalse(safe_path(p),p)

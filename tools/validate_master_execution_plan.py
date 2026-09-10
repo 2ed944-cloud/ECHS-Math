@@ -131,6 +131,23 @@ def validate(plan, root=ROOT):
         if safe_path(p) and (root/p).is_file():
             receipt=load(root/p)
             need(receipt.get('status')=='VERIFIED' and receipt.get('main_sha')==latest.get('main_sha') and receipt.get('tree_sha')==latest.get('tree_sha'),'latest release evidence identity mismatch')
+    foundation=plan.get('last_verified_foundation_slice')
+    if foundation is not None:
+        id=foundation.get('task'); task=by_id.get(id,{})
+        need(id in ('ECHS-C04','ECHS-C08'),'unsupported foundation task')
+        need(task.get('status')=='IN PROGRESS' and task.get('tests',{}).get('status')=='PARTIAL','foundation does not complete the whole task')
+        deployment=task.get('deployment',{})
+        need(deployment.get('status')=='DEPLOYED' and bool(deployment.get('scope')),'foundation deployed scope required')
+        need(bool(HEX40.fullmatch(foundation.get('main_sha',''))) and foundation.get('main_sha')==deployment.get('deployed_at_main'),'foundation deployment revision mismatch')
+        need(bool(HEX40.fullmatch(foundation.get('tree_sha',''))),'foundation tree identity')
+        p=foundation.get('evidence')
+        need(safe_path(p) and (root/p).is_file(),'foundation receipt missing')
+        if safe_path(p) and (root/p).is_file():
+            receipt=load(root/p)
+            key='whole_'+str(id).removeprefix('ECHS-').lower()+'_status'
+            need(receipt.get('status')=='FOUNDATION VERIFIED' and receipt.get(key)=='IN PROGRESS' and receipt.get('whole_program_complete') is False,'foundation receipt scope mismatch')
+            need(receipt.get('main_sha')==foundation.get('main_sha') and receipt.get('tree_sha')==foundation.get('tree_sha'),'foundation receipt identity mismatch')
+            need(bool(HEX64.fullmatch(receipt.get('source_manifest_sha256',''))),'foundation source manifest required')
     if plan.get('whole_program_complete') is True:
         need(all(t.get('status')=='VERIFIED' for t in tasks),'whole program has unverified tasks')
         need(all(f.get('status')=='VERIFIED' for f in families),'whole program has unverified components')

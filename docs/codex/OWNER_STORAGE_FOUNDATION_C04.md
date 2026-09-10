@@ -1,6 +1,6 @@
 # C04 canonical session and owner-storage foundation
 
-Status: **implemented foundation; composed CI and deployment pending. Whole C04 remains IN PROGRESS.**
+Status: **foundation verified at `9ea1fe0ada9ab76d85b0e7f67a626cfcae05de79`. Whole C04 remains IN PROGRESS.**
 
 The institutional client now exposes one canonical `echs.owner-authority.v1` boundary. A session is read as a coherent token/account/expiry triplet from one browser storage area. Partial, ambiguous or inaccessible storage fails closed. Committing a same-tab session emits one ownership transition; native credential events invalidate the prior epoch even after an A→B→A change. Unrelated storage events do not change ownership.
 
@@ -18,7 +18,7 @@ The current core uses synchronous browser storage. Item bounds are4MiB, export b
 
 ## Active scope and preserved behavior
 
-The canonical client changes are active code in this candidate. The owner-storage library is available for explicit adoption; no legacy learning engine or lesson producer imports it yet. This slice does not migrate or delete original raw stores, historical sync queues, question records, assignments, lesson responses or completion history. Seven raw payload/completion/merge/send/flush algorithms are checked byte-for-byte against the before-C04 fixture. Existing numeric practice scores, provisional reporting and server authorization rules retain their scope.
+The canonical client changes are deployed production code. The owner-storage library is available for explicit adoption; no legacy learning engine or lesson producer imports it yet. This slice does not migrate or delete original raw stores, historical sync queues, question records, assignments, lesson responses or completion history. Seven raw payload/completion/merge/send/flush algorithms are checked byte-for-byte against the before-C04 fixture. Existing numeric practice scores, provisional reporting and server authorization rules retain their scope.
 
 Public worker caching treats exactly `js/institution-client.js` and `js/owner-storage.mjs` as assets of the current release. Offline fallback can use only this release's runtime or installed shell; historical foreign-cache copies are purged. Credential-bearing requests still bypass public caching. The C01 publication boundary and C02 reporting policy are retained. An already executing older page needs a reload to use newly deployed JavaScript.
 
@@ -28,7 +28,7 @@ No database migration, new backend endpoint, publication grant, grading authorit
 
 The isolated candidate passed21 core groups,28 actual-client/core groups and7 independent adversarial groups. Independent review found and repaired delayed-auth side effects, queued A→B→A credential events and malformed expiry coercion; original diagnostics are retained separately. The copied existing sync, resilience and identity suites retained all92 assertions with realistic session fixtures.
 
-Eight actual Chromium groups exercised native two-tab storage events, old/new owner separation, raw-byte preservation, delayed/current401, idle expiry, a blocked browser storage property and ephemeral guests, using only a loopback synthetic account service. This establishes the bounded foundation behavior; it does not exercise real institutional accounts or adopt legacy readers/writers. Production-installed files differ from that candidate only in foundation-scope comments, and the installed composition requires its own tests and CI.
+Eight actual Chromium groups exercised native two-tab storage events, old/new owner separation, raw-byte preservation, delayed/current401, idle expiry, a blocked browser storage property and ephemeral guests, using only a loopback synthetic account service. This establishes the bounded foundation behavior; it does not exercise real institutional accounts or adopt legacy readers/writers. Production-installed files differ from that candidate only in foundation-scope comments, and the installed composition passed its own source-bound tests and CI.
 
 Run the focused checks from the repository root:
 
@@ -47,7 +47,7 @@ python tools/validate_baseline.py
 
 The installed composition passed all 68 baseline commands, the 18-case existing mastery browser suite and the eight native ownership browser groups. Existing browser fixtures now use complete synthetic account/session records with matching expiry values; their assertions remain unchanged. The initial local baseline lacked its configured DOM dependency and hit Windows console encoding; the configured rerun passed without changing the baseline runner or weakening checks.
 
-`.github/workflows/owner-storage.yml` validates exact report contracts, counts and runtime hashes, then binds executed sources to the tested Git tree. Its evidence validator has 12 positive and negative test groups. A failed or skipped step is not a PASS. Fresh composed CI, existing platform captures, exact Pages deployment and bounded live source verification remain required before this foundation is accepted as deployed.
+`.github/workflows/owner-storage.yml` validates exact report contracts, counts and runtime hashes, then binds executed sources to the tested Git tree. Its evidence validator has 12 positive and negative test groups. A failed or skipped step is not a PASS. All24 PR workflows and19 main/live workflows passed. The exact Pages deployment and24 anonymous GETs passed57 checks, including all three public runtime source hashes. The [release receipt](OWNER_STORAGE_FOUNDATION_C04_RELEASE.json) binds the tested tree, deployment and sealed evidence. Existing local browser and parity results remain scoped to synthetic accounts; no authenticated production learner test is claimed.
 
 ## Next adoption and rollback
 
