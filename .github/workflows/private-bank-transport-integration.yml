@@ -127,9 +127,11 @@ jobs:
               raw=source.read_bytes();assert len(raw)<=2097152;parsed[name]=json.loads(raw);clean(parsed[name]);shutil.copyfile(source,target/name)
               rows.append({'file':name,'bytes':len(raw),'sha256':hashlib.sha256(raw).hexdigest()})
           complete=set(parsed)==allowed
-          def passed(document,count,status):
+          def passed(document,count,status,duplicates=None):
               checks=document.get('checks')
-              return document.get('status')==status and isinstance(checks,list) and len(checks)==count and all(isinstance(v,str) and 0<len(v)<=1000 for v in checks) and len(set(checks))==count
+              if not (document.get('status')==status and isinstance(checks,list) and len(checks)==count and all(isinstance(v,str) and 0<len(v)<=1000 for v in checks)):return False
+              repeated={label:checks.count(label) for label in set(checks) if checks.count(label)>1}
+              return repeated==(duplicates or {})
           if complete:
               checkout=parsed['checkout.json'];acceptance=parsed['acceptance.json'];sql=parsed['transport-http-sql.json']
               own=['tools/private-bank-transport/'+p for p in ['handler.mjs','transport.mjs','contract.py','rpc-fixture.py','run-integration.py','test-contract.py','test-http-sql.mjs','source-pins.json','README.md']]+['.github/workflows/private-bank-transport-integration.yml']
@@ -151,8 +153,9 @@ jobs:
               complete=complete and acceptance['tested_sha']==checkout['tested_sha'] and acceptance['tested_tree']==checkout['tested_tree'] and acceptance['checkout_report_sha256']==hashlib.sha256((target/'checkout.json').read_bytes()).hexdigest()
               complete=complete and checkout['source_pins_sha256']==acceptance['source_pins_sha256']==sql['input_pins_sha256']==pin_sha
               complete=complete and passed(parsed['local-preflight.json'],8,'LOCAL HARNESS PREFLIGHT PASS; ACTUAL POSTGRESQL NOT EXECUTED') and parsed['local-preflight.json']['passed']==8 and parsed['local-preflight.json']['database_executed'] is False
-              complete=complete and passed(parsed['membership-database.json'],55,'PASS') and passed(parsed['membership-http.json'],7,'PASS') and parsed['membership-database.json']['migrations']==migrations[:-1]
-              complete=complete and passed(parsed['archive-database.json'],222,'PASS') and len(migrations)==27 and parsed['archive-database.json']['migrations']==sql['migrations']==migrations
+              complete=complete and passed(parsed['membership-database.json'],55,'PASS',{'invalid null/overlapping member arrays rejected atomically':4}) and passed(parsed['membership-http.json'],7,'PASS') and parsed['membership-database.json']['migrations']==migrations[:-1]
+              archive_duplicates={'capability rejects RLS/grant/trigger/bucket drift: alter':2,'capability rejects RLS/grant/trigger/bucket drift: grant':2,'closed snapshot payload rejects malformed/client scope':6,'current account/session cannot be stale':3,'caller cannot spoof file readiness/profile/path/type':6}
+              complete=complete and passed(parsed['archive-database.json'],222,'PASS',archive_duplicates) and len(migrations)==27 and parsed['archive-database.json']['migrations']==sql['migrations']==migrations
               complete=complete and passed(sql,15,'ACTUAL POSTGRESQL AND ROUTE PASS; STORAGE SERVICE AND EDGE NOT RUN') and sql['database_executed'] is True and sql['real_storage_executed'] is False and sql['real_postgrest_executed'] is False and sql['hosted_edge_executed'] is False
               complete=complete and acceptance['checks']=={'membership_database':55,'membership_http':7,'archive_database':222,'transport_http_sql':15}
               expected_reports={'membership-database.json','membership-http.json','archive-database.json','transport-http-sql.json'}
