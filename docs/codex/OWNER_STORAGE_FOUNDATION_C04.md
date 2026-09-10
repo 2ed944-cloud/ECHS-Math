@@ -45,7 +45,7 @@ node tools/test_mastery_worker.mjs
 python tools/validate_baseline.py
 ```
 
-The installed composition passed all 68 baseline commands, the 18-case existing mastery browser suite and the eight native ownership browser groups. Four existing browser fixtures now use complete synthetic account/session records with matching expiry values; their assertions remain unchanged. The initial local baseline lacked its configured DOM dependency and hit Windows console encoding; the configured rerun passed without changing the baseline runner or weakening checks.
+The installed composition passed all 68 baseline commands, the 18-case existing mastery browser suite and the eight native ownership browser groups. Existing browser fixtures now use complete synthetic account/session records with matching expiry values; their assertions remain unchanged. The initial local baseline lacked its configured DOM dependency and hit Windows console encoding; the configured rerun passed without changing the baseline runner or weakening checks.
 
 `.github/workflows/owner-storage.yml` validates exact report contracts, counts and runtime hashes, then binds executed sources to the tested Git tree. Its evidence validator has 12 positive and negative test groups. A failed or skipped step is not a PASS. Fresh composed CI, existing platform captures, exact Pages deployment and bounded live source verification remain required before this foundation is accepted as deployed.
 
