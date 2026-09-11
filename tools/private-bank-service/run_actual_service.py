@@ -17,7 +17,7 @@ import uuid
 from fixture_config import compose_fixture,mint_credentials
 from generate_tls import generate_tls
 from seed_synthetic import load_fixture
-from service_contract import HERE,IMAGE_TAGS,UPSTREAM_COMMIT,ContractError,clean_environment,digest,need,strict_json,verify_sources
+from service_contract import HERE,IMAGE_TAGS,UPSTREAM_COMMIT,ContractError,clean_environment,digest,need,strict_json,verify_sources,image_tags,postgres_major,postgres_observation
 
 class RunnerError(RuntimeError):
     def __init__(self,stage,*,exit_code=None,reason='nonzero_exit'):
@@ -137,8 +137,9 @@ def execution_guard(environ,platform,workspace,expected_head):
     need(re.fullmatch('[0-9a-f]{40}',expected_head or '') and environ.get('GITHUB_SHA')==expected_head,'expected-checkout')
     need(Path(environ.get('GITHUB_WORKSPACE','/not-a-workspace')).resolve()==Path(workspace).resolve(),'runner-workspace')
 
-def image_result(service,tag,repo_digests,config_id,os_name,architecture):
-    need(service in IMAGE_TAGS and tag==IMAGE_TAGS[service] and os_name=='linux' and architecture=='amd64','image-platform')
+def image_result(service,tag,repo_digests,config_id,os_name,architecture,expected_major=15):
+    tags=image_tags(expected_major)
+    need(service in tags and tag==tags[service] and os_name=='linux' and architecture=='amd64','image-platform')
     need(type(repo_digests) is list and type(config_id) is str and re.fullmatch('sha256:[0-9a-f]{64}',config_id),'image-resolution')
     repository=tag.rsplit(':',1)[0]
     matches=[r.split('@')[1] for r in repo_digests if type(r) is str and re.fullmatch(re.escape(repository)+'@sha256:[0-9a-f]{64}',r)]
@@ -160,11 +161,12 @@ def verify_manifest(raw,expected_hash):
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--execute',action='store_true');parser.add_argument('--repo',type=Path,default=HERE.parents[1]/'foundations')
+    parser.add_argument('--postgres-major',type=int,choices=(15,17),default=15)
     parser.add_argument('--expected-head');parser.add_argument('--source-manifest-sha256')
-    args=parser.parse_args();repo=args.repo.resolve()
+    args=parser.parse_args();repo=args.repo.resolve();tags=image_tags(args.postgres_major)
     verify_sources(repo,HERE/'runtime');load_fixture(repo)
     if not args.execute:
-        print(json.dumps({'status':'NOT_EXECUTED','mode':'SOURCE_PREFLIGHT_ONLY','services_executed':False,'migrations_verified':27,'runtime_verified':2,'synthetic_fixture_verified':True}))
+        print(json.dumps({'status':'NOT_EXECUTED','mode':'SOURCE_PREFLIGHT_ONLY','services_executed':False,'migrations_verified':27,'runtime_verified':2,'synthetic_fixture_verified':True,'postgres_required':args.postgres_major}))
         return 0
     execution_guard(os.environ,sys.platform,repo,args.expected_head)
     manifest_raw=(HERE/'source-manifest.json').read_bytes();verify_manifest(manifest_raw,args.source_manifest_sha256)
@@ -213,13 +215,13 @@ def main():
         need(context=='unix:///var/run/docker.sock','local-docker-socket')
         for kind in ('container','network','volume'):need(not rows_for(kind),'existing-fixture-resource')
         stage='resolve-images';images=[]
-        for service,tag in IMAGE_TAGS.items():
+        for service,tag in tags.items():
             docker('pull','--platform','linux/amd64',tag,stage='pull-'+service,timeout=240)
             values=[]
             for field in ('RepoDigests','Id','Os','Architecture'):
                 values.append(json.loads(docker('image','inspect',tag,'--format','{{json .'+field+'}}',stage='image-'+service)))
-            images.append(image_result(service,tag,*values))
-        image_receipt={'contract':'echs.c08.storage-image-receipt.v1','upstream_commit':UPSTREAM_COMMIT,'platform':'linux/amd64','images':images}
+            images.append(image_result(service,tag,*values,expected_major=args.postgres_major))
+        image_receipt={'contract':'echs.c08.storage-image-receipt.v1','upstream_commit':UPSTREAM_COMMIT,'platform':'linux/amd64','images':images,'postgres_required':args.postgres_major}
         image_raw=(json.dumps(image_receipt,indent=2)+'\n').encode();(run_dir/'image-receipt.json').write_bytes(image_raw)
         credentials=mint_credentials()
         with (secret_dir/'credentials.json').open('x') as f:json.dump(credentials,f)
@@ -233,7 +235,7 @@ def main():
         observation=strict_json((HERE/'upstream-observation.json').read_bytes())
         for row in observation['files']:
             dest=run_dir/'upstream'/row['path'];dest.parent.mkdir(parents=True,exist_ok=True);dest.write_bytes(row['content'].encode())
-        configuration=compose_fixture(run_id,run_dir,image_raw,digest(image_raw))
+        configuration=compose_fixture(run_id,run_dir,image_raw,digest(image_raw),args.postgres_major)
         (run_dir/'compose.fixture.json').write_text(json.dumps(configuration,indent=2)+'\n')
         stage='start-services';started=True
         checked(compose+['up','-d','--wait','--wait-timeout','240','--no-build','--pull','never'],'compose-up',timeout=300)
@@ -246,8 +248,10 @@ def main():
             need(state=='healthy','managed-service-health');containers[name]=identifier
         observed_services=True;stage='managed-schema'
         psql=[paths['docker'],'--context','default','exec','-i',containers['db'],'psql','-X','-qAt','-v','ON_ERROR_STOP=1','-U','postgres','-d','postgres']
-        query="select current_user='postgres' and current_setting('server_version_num')::int/10000=15 and to_regclass('auth.users') is not null and to_regclass('auth.identities') is not null and to_regclass('storage.objects') is not null and to_regclass('storage.buckets') is not null and to_regclass('public.accounts') is null;"
+        query="select current_user='postgres' and to_regclass('auth.users') is not null and to_regclass('auth.identities') is not null and to_regclass('storage.objects') is not null and to_regclass('storage.buckets') is not null and to_regclass('public.accounts') is null;"
         need(checked(psql,'managed-schema',data=query.encode()).strip()==b't','actual-managed-schema')
+        version_query="select json_build_object('server_version_num',current_setting('server_version_num')::int,'server_version',current_setting('server_version'));"
+        database=postgres_observation(strict_json(checked(psql,'managed-postgres-version',data=version_query.encode())),args.postgres_major)
         migrations=strict_json((HERE/'source-pins.json').read_bytes())['migrations']
         stage='apply-migrations'
         for row in migrations:checked(psql,'migration-'+row['path'].split('/')[-1],data=(repo/row['path']).read_bytes(),timeout=90)
@@ -266,6 +270,7 @@ def main():
         (run_dir/'control.json').write_text(json.dumps(control))
         metadata={'contract':'echs.c08.storage-service-run.v1','status':'RUNNING','run_id':run_id,'head':head,'tree':tree,
             'source_manifest_sha256':args.source_manifest_sha256,'source_pins_sha256':digest((HERE/'source-pins.json').read_bytes()),
+            'postgres_required':args.postgres_major,'postgres_observation':database,
             'migration_files':migrations,'image_receipt_sha256':digest(image_raw),'running_image_ids':{r['service']:r['config_digest'] for r in images},
             'managed_schema_probed':True,'migrations_applied':27,'tls':tls_receipt,'network':network_receipt,'services_executed':True,'hosted_edge_executed':False,'corpus_imported':False,
             'tool_versions':{'python':sys.version.split()[0],'node':checked([paths['node'],'--version'],'node-version').decode().strip(),
@@ -276,6 +281,7 @@ def main():
         # this ephemeral job's test child binding loopback443; no hosts/trust-store edits.
         checked([paths['sudo'],'-n',paths['timeout'],'--signal=TERM','--kill-after=5s','900s',paths['node'],str(HERE/'test_service.mjs'),str(run_dir)],'actual-service-cases',timeout=915)
         need(child_failure(run_dir) is None,'unexpected-child-failure')
+        need(postgres_observation(strict_json(checked(psql,'final-postgres-version',data=version_query.encode())),args.postgres_major)==database,'postgres-version-changed')
         metadata['status']='PASS'
     except Exception as error:
         failure={'stage':getattr(error,'stage',stage),'type':type(error).__name__,'code':getattr(error,'code',None),
@@ -294,6 +300,7 @@ def main():
                 'exit_code':getattr(error,'exit_code',None),'reason':getattr(error,'reason',None)}
         else:cleanup_complete=True
         report=metadata or {'contract':'echs.c08.storage-service-run.v1','run_id':run_id,'services_executed':observed_services,'hosted_edge_executed':False,'corpus_imported':False}
+        report['postgres_required']=args.postgres_major
         report['service_start_attempted']=started
         report['status']='FAIL' if failure else 'PASS';report['failure']=failure;report['cleanup_complete']=cleanup_complete
         (run_dir/'service-run-report.json').write_text(json.dumps(report,indent=2)+'\n')

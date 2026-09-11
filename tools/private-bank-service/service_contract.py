@@ -10,7 +10,7 @@ import math
 import re
 
 HERE = Path(__file__).resolve().parent
-PIN_SHA256 = 'a5c22ac3bad71e7a7549be9f49ecd51990a8f22ccb1850a7eddd007a7421c020'
+PIN_SHA256 = '1c12cbf8c3e5d420d50032912586d8472aa2ed16d5bcdd73c47be5e98cb72a73'
 OBSERVATION_SHA256 = 'c17720ce76be5f136264440818b7c708141e0c6e08515449f652b09616b98d67'
 UPSTREAM_COMMIT = '8c7a4d9dbbaf8b552893822e89d7bf06f33f9220'
 UPSTREAM_TREE = 'cfff91877eb85435d69c02b2680da05b2ecc150e'
@@ -20,6 +20,7 @@ SERVICES = ('db', 'auth', 'rest', 'storage', 'imgproxy')
 IMAGE_TAGS = dict(zip(SERVICES, ('supabase/postgres:15.8.1.085',
     'supabase/gotrue:v2.196.0', 'postgrest/postgrest:v14.17',
     'supabase/storage-api:v1.74.0', 'darthsim/imgproxy:v3.31.4')))
+POSTGRES_TAGS = {15:'supabase/postgres:15.8.1.085',17:'supabase/postgres:17.6.1.136'}
 RUNTIME_HASHES = {'handler.mjs':'ff49fd68970612cd325dec9819707a91a431eb1799cf6c4d88d1fea675f4cf0e',
     'transport.mjs':'11425bcd086ddb2f88c788969ef82e1f2af8a7803d8b8110baabf785bb3152d3'}
 INIT_SQL = tuple('docker/volumes/db/'+n+'.sql' for n in
@@ -99,17 +100,34 @@ def row_hash(row, raw, git=False):
         actual = hashlib.sha1(b'blob '+str(len(raw)).encode()+b'\0'+raw).hexdigest()
         need(row['git_blob'] == actual, 'git-blob')
 
+def postgres_major(value):
+    need(type(value) is int and value in (15,17),'configured-postgres-major')
+    return value
+
+def image_tags(expected_major=15):
+    return dict(IMAGE_TAGS,db=POSTGRES_TAGS[postgres_major(expected_major)])
+
+def postgres_observation(value,expected_major=15):
+    major=postgres_major(expected_major)
+    closed(value,('server_version_num','server_version'))
+    number=value['server_version_num'];version=value['server_version']
+    need(type(number) is int and number//10000==major,'actual-postgres-major')
+    need(type(version) is str,'actual-postgres-version')
+    match=re.fullmatch(str(major)+r'\.(0|[1-9][0-9]{0,3})(?: \([^\r\n]{1,180}\))?',version)
+    need(match is not None and int(match.group(1))==number%10000,'actual-postgres-version')
+    return value
+
 def verify_sources(repo, runtime, candidate=HERE):
     raw = local_file(candidate,'source-pins.json')
     need(digest(raw) == PIN_SHA256, 'unapproved-source-pins')
     pins = strict_json(raw)
-    closed(pins, ('contract','status','upstream','migrations','runtime','image_tags',
+    closed(pins, ('contract','status','upstream','migrations','runtime','image_tags_by_major',
         'image_digests_resolved','services_executed','hosted_edge_executed','corpus_imported'))
     need(pins['contract'] == 'echs.c08.storage-service-source-pins.v1'
          and pins['status'] == 'SOURCE_BOUND_SERVICES_NOT_EXECUTED', 'source-contract')
     for key in ('image_digests_resolved','services_executed','hosted_edge_executed','corpus_imported'):
         need(pins[key] is False, 'false-execution-claim')
-    need(exact(pins['image_tags'],IMAGE_TAGS), 'image-tags')
+    need(exact(pins['image_tags_by_major'],{str(m):image_tags(m) for m in (15,17)}), 'image-tags')
     upstream = pins['upstream']
     closed(upstream, ('tag','tag_object','commit','tree','docker_tree','files'))
     need(upstream['tag'] == 'self-hosted/v0.8.1' and upstream['tag_object'] == '690080884040e238926ba22606e8c05a3536829b'
@@ -151,8 +169,8 @@ def run_identifier(value):
     need(type(value) is str and re.fullmatch(r'[0-9a-f]{32}',value), 'run-id')
     return value
 
-def fixture_plan(run_id):
-    run_identifier(run_id)
+def fixture_plan(run_id,expected_major=15):
+    major=postgres_major(expected_major);run_identifier(run_id)
     project = 'echs-c08-service-'+run_id
     return {'contract':'echs.c08.storage-service-fixture-plan.v1', 'run_id':run_id,
         'project':project,'origin':ORIGIN,'bind_address':'127.0.0.1',
@@ -161,27 +179,29 @@ def fixture_plan(run_id):
         'ownership_labels':{'echs.fixture':project,'echs.run_id':run_id},
         'tls':{'hostname':'echsc08servicetest.supabase.co','verify_certificate':True,
                'verify_hostname':True,'test_ca':'GENERATED_PER_RUN','resolver':'LOOPBACK_ONLY'},
-        'services':dict(IMAGE_TAGS),'data_scope':'SYNTHETIC_ONLY',
+        'postgres_required':major,'services':image_tags(major),'data_scope':'SYNTHETIC_ONLY',
         'managed_schema':'OFFICIAL_IMAGE_AND_SERVICE_MIGRATIONS',
         'image_digests_resolved':False,'services_executed':False,
         'hosted_edge_executed':False,'corpus_imported':False}
 
-def validate_fixture_plan(value):
+def validate_fixture_plan(value,expected_major=15):
     need(type(value) is dict and 'run_id' in value, 'fixture-shape')
-    need(exact(value,fixture_plan(value['run_id'])), 'fixture-policy')
+    need(exact(value,fixture_plan(value['run_id'],expected_major)), 'fixture-policy')
     return value
 
 def clean_environment(environ):
     # Check keys only. Never stringify or log a rejected value.
     need(type(environ) is dict and not UNSAFE_ENVIRONMENT.intersection(environ), 'ambient-service-configuration')
 
-def validate_image_receipt(raw, approved_sha256):
+def validate_image_receipt(raw, approved_sha256,expected_major=15):
+    major=postgres_major(expected_major)
     need(type(approved_sha256) is str and re.fullmatch('[0-9a-f]{64}',approved_sha256)
          and digest(raw) == approved_sha256, 'unapproved-image-receipt')
     receipt = strict_json(raw)
-    closed(receipt, ('contract','upstream_commit','platform','images'))
+    closed(receipt, ('contract','upstream_commit','platform','images','postgres_required'))
     need(receipt['contract'] == 'echs.c08.storage-image-receipt.v1'
          and receipt['upstream_commit'] == UPSTREAM_COMMIT and receipt['platform'] == 'linux/amd64', 'image-receipt-contract')
+    need(type(receipt['postgres_required']) is int and receipt['postgres_required']==major,'image-postgres-major')
     rows = receipt['images']
     need(type(rows) is list and len(rows) == 5, 'image-service-set')
     for row in rows:
@@ -190,15 +210,15 @@ def validate_image_receipt(raw, approved_sha256):
     need({r['service'] for r in rows} == set(SERVICES), 'image-service-set')
     for row in rows:
         closed(row, ('service','tag','manifest_digest','config_digest'))
-        need(row['tag'] == IMAGE_TAGS[row['service']], 'image-version')
+        need(row['tag'] == image_tags(major)[row['service']], 'image-version')
         for key in ('manifest_digest','config_digest'):
             need(type(row[key]) is str and re.fullmatch(r'sha256:[0-9a-f]{64}',row[key]), 'image-digest')
     # Shape/hash validation cannot independently establish a registry observation.
     return {r['service']:r['tag']+'@'+r['manifest_digest'] for r in rows}
 
-def cleanup_targets(plan, observed_resources):
+def cleanup_targets(plan, observed_resources,expected_major=15):
     """Validate caller-provided observations only; perform no Docker/filesystem action."""
-    validate_fixture_plan(plan)
+    validate_fixture_plan(plan,expected_major)
     expected = {('network',plan['network']['name'])} | {('volume',r['name']) for r in plan['volumes']}
     need(type(observed_resources) is list and len(observed_resources) == len(expected), 'resource-set')
     actual = set()

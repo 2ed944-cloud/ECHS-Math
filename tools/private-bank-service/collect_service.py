@@ -7,7 +7,7 @@ from pathlib import Path
 import argparse
 import json
 import re
-from service_contract import HERE,IMAGE_TAGS,RUNTIME_HASHES,PIN_SHA256,UPSTREAM_COMMIT,ContractError,closed,digest,exact,need,strict_json,validate_image_receipt
+from service_contract import HERE,IMAGE_TAGS,RUNTIME_HASHES,PIN_SHA256,UPSTREAM_COMMIT,ContractError,closed,digest,exact,need,strict_json,validate_image_receipt,postgres_major,postgres_observation
 from run_actual_service import SOURCE_FILES,verify_manifest,validate_network_receipt
 
 RAW_FILES=('service-run-report.json','service-test-results.json','image-receipt.json')
@@ -15,7 +15,8 @@ RAW_FILES=('service-run-report.json','service-test-results.json','image-receipt.
 def read(path):
     raw=Path(path).read_bytes();return raw,strict_json(raw)
 
-def accept(directory,expected_head,expected_tree,manifest_hash):
+def accept(directory,expected_head,expected_tree,manifest_hash,expected_major=15):
+    major=postgres_major(expected_major)
     directory=Path(directory).absolute()
     need(directory.parent==HERE/'runs' and re.fullmatch('[0-9a-f]{32}',directory.name),'run-directory')
     for p in (directory,*directory.parents):need(not p.is_symlink() and not p.is_junction(),'linked-evidence')
@@ -28,9 +29,11 @@ def accept(directory,expected_head,expected_tree,manifest_hash):
     run=data['service-run-report.json'];tests=data['service-test-results.json'];images=data['image-receipt.json']
     closed(run,('contract','status','run_id','head','tree','source_manifest_sha256','source_pins_sha256','migration_files','image_receipt_sha256',
         'running_image_ids','managed_schema_probed','migrations_applied','tls','services_executed','hosted_edge_executed','corpus_imported',
-        'tool_versions','service_start_attempted','failure','cleanup_complete','network'))
+        'tool_versions','service_start_attempted','failure','cleanup_complete','network','postgres_required','postgres_observation'))
     need(run['contract']=='echs.c08.storage-service-run.v1' and run['status']=='PASS' and run['run_id']==directory.name,'runner-contract')
     need(run['failure'] is None,'runner-failure')
+    need(type(run['postgres_required']) is int and run['postgres_required']==major,'runner-postgres-major')
+    database=postgres_observation(run['postgres_observation'],major)
     validate_network_receipt(run['network'],run['run_id'])
     for key in ('managed_schema_probed','services_executed','service_start_attempted','cleanup_complete'):need(run[key] is True,'runner-true-flag')
     for key in ('hosted_edge_executed','corpus_imported'):need(run[key] is False,'runner-false-flag')
@@ -40,7 +43,7 @@ def accept(directory,expected_head,expected_tree,manifest_hash):
     for obj in (run,tests):
         need(obj['head']==expected_head and obj['tree']==expected_tree and obj['source_manifest_sha256']==manifest_hash,'checkout-binding')
     need(re.fullmatch('[0-9a-f]{40}',expected_head) and re.fullmatch('[0-9a-f]{40}',expected_tree),'checkout-shape')
-    validate_image_receipt(raw['image-receipt.json'],run['image_receipt_sha256'])
+    validate_image_receipt(raw['image-receipt.json'],run['image_receipt_sha256'],major)
     need(images['upstream_commit']==UPSTREAM_COMMIT and exact(run['running_image_ids'],{r['service']:r['config_digest'] for r in images['images']}),'running-images')
     closed(run['tls'],('hostname','ca_fingerprint_sha256','leaf_fingerprint_sha256'))
     need(run['tls']['hostname']=='echsc08servicetest.supabase.co','tls-hostname')
@@ -71,32 +74,34 @@ def accept(directory,expected_head,expected_tree,manifest_hash):
     index={'contract':'echs.c08.actual-storage-service-index.v1','status':'LOCAL_EXECUTION_RECEIPTS_ACCEPTED',
         'github_ci_accepted':False,'head':expected_head,'tree':expected_tree,'source_manifest_sha256':manifest_hash,
         'source_files':len(manifest['files']),'raw_files':[{'file':name,'bytes':len(raw[name]),'sha256':digest(raw[name])} for name in RAW_FILES],
+        'postgres_required':major,'postgres_observation':database,
         'service_groups':19,'actual_managed_migrations':27,'services':list(IMAGE_TAGS),'synthetic_only':True,'hosted_edge_executed':False,
         'corpus_imported':False,'whole_c08_complete':False,'requires_independent_workflow_metadata':True}
     return index,raw,manifest_raw
 
-def collect(directory,destination,head,tree,manifest_hash):
+def collect(directory,destination,head,tree,manifest_hash,expected_major=15):
     destination=Path(destination).absolute()
     need(destination.parent==HERE/'results' and re.fullmatch('[a-z0-9][a-z0-9_-]{0,80}',destination.name),'artifact-directory')
     need(not destination.exists(),'artifact-exists')
     for p in (destination,*destination.parents):need(not p.is_symlink() and not p.is_junction(),'linked-artifact')
-    index,raw,manifest_raw=accept(directory,head,tree,manifest_hash)
+    index,raw,manifest_raw=accept(directory,head,tree,manifest_hash,expected_major)
     # Revalidate every byte immediately before exclusive creation and after copy.
-    again=accept(directory,head,tree,manifest_hash);need(exact(index,again[0]) and raw==again[1] and manifest_raw==again[2],'evidence-changed')
+    again=accept(directory,head,tree,manifest_hash,expected_major);need(exact(index,again[0]) and raw==again[1] and manifest_raw==again[2],'evidence-changed')
     destination.mkdir();members={**raw,'source-manifest.json':manifest_raw,'service-evidence-index.json':(json.dumps(index,indent=2)+'\n').encode()}
     for name,value in members.items():
         with (destination/name).open('xb') as f:f.write(value)
     need({p.name for p in destination.iterdir()}==set(members),'artifact-members')
     for name,value in members.items():need((destination/name).read_bytes()==value,'artifact-copy')
-    need(accept(directory,head,tree,manifest_hash)[1]==raw,'evidence-changed')
+    need(accept(directory,head,tree,manifest_hash,expected_major)[1]==raw,'evidence-changed')
     return index
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--run-dir',type=Path,required=True)
     parser.add_argument('--destination',type=Path,required=True);parser.add_argument('--head',required=True);parser.add_argument('--tree',required=True)
+    parser.add_argument('--postgres-major',type=int,choices=(15,17),default=15)
     parser.add_argument('--source-manifest-sha256',required=True);args=parser.parse_args()
     try:
-        index=collect(args.run_dir,args.destination,args.head,args.tree,args.source_manifest_sha256)
+        index=collect(args.run_dir,args.destination,args.head,args.tree,args.source_manifest_sha256,args.postgres_major)
         print(json.dumps({'status':index['status'],'raw_files':3,'artifact_members':5,'service_groups':19,'github_ci_accepted':False}));return 0
     except ContractError as error:
         print(json.dumps({'status':'REJECTED','code':error.code}));return 1
