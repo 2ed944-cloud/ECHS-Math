@@ -1,0 +1,162 @@
+{
+  "schemaVersion": "echs-import-v1",
+  "bank": {
+    "bankId": "calculus-practice-bank-1",
+    "displayName": "Calculus Practice Bank 1",
+    "batchId": "schaums-ch01-batch-001",
+    "course": "AP Calculus AB",
+    "courseId": "ap-calculus-ab",
+    "assessmentFamily": "Calculus Practice Bank 1",
+    "chapter": 1,
+    "chapterTitle": "Inequalities",
+    "sourceFile": "3000-solved-problems-in-calculus(2).pdf",
+    "sourceTitle": "3000 Solved Problems in Calculus",
+    "sourceProblemRange": "1.1-1.10",
+    "deploymentAccess": "teacher-archive-only",
+    "publicPublicationAllowed": false,
+    "lessonIds": [
+      "APCALC-PREREQUISITE"
+    ],
+    "primaryUnitLabel": "Prerequisite Review"
+  },
+  "verification": {
+    "sourceCompared": true,
+    "transcriptionVerified": true,
+    "mathematicallyVerified": true,
+    "katexParserStatus": "pending",
+    "mappingStatus": "candidate",
+    "studentReadyGatePassed": false
+  },
+  "records": [
+    {
+      "id": "CALC-BANK-01-CH01-001",
+      "number": "1.1",
+      "sourcePages": [8],
+      "topic": "Linear Inequalities",
+      "difficulty": 1,
+      "prompt": "Solve \\(3+2x<7\\) and express the solution in interval notation.",
+      "answer": "\\(x<2\\), equivalently \\((-\\infty,2)\\).",
+      "workedSolution": "Subtract \\(3\\) from both sides: \\(2x<4\\). Divide by \\(2\\): \\(x<2\\). Therefore, the solution set is \\((-\\infty,2)\\).",
+      "acceptedAnswers": ["(-\\infty,2)", "x<2"],
+      "concepts": ["linear inequality", "inverse operations", "interval notation"],
+      "commonMistakes": []
+    },
+    {
+      "id": "CALC-BANK-01-CH01-002",
+      "number": "1.2",
+      "sourcePages": [8],
+      "topic": "Linear Inequalities",
+      "difficulty": 1,
+      "prompt": "Solve \\(5-3x<5x+2\\) and express the solution in interval notation.",
+      "answer": "\\(x>\\frac{3}{8}\\), equivalently \\(\\left(\\frac{3}{8},\\infty\\right)\\).",
+      "workedSolution": "Add \\(3x\\) to both sides: \\(5<8x+2\\). Subtract \\(2\\): \\(3<8x\\). Divide by \\(8\\): \\(x>\\frac{3}{8}\\). Therefore, the solution set is \\(\\left(\\frac{3}{8},\\infty\\right)\\).",
+      "acceptedAnswers": ["\\left(\\frac{3}{8},\\infty\\right)", "x>\\frac{3}{8}"],
+      "concepts": ["linear inequality", "collecting variable terms", "interval notation"],
+      "commonMistakes": []
+    },
+    {
+      "id": "CALC-BANK-01-CH01-003",
+      "number": "1.3",
+      "sourcePages": [8],
+      "topic": "Compound Inequalities",
+      "difficulty": 1,
+      "prompt": "Solve \\(-7<2x+5<9\\) and express the solution in interval notation.",
+      "answer": "\\(-6<x<2\\), equivalently \\((-6,2)\\).",
+      "workedSolution": "Subtract \\(5\\) from all three parts: \\(-12<2x<4\\). Divide all three parts by \\(2\\): \\(-6<x<2\\). Therefore, the solution set is \\((-6,2)\\).",
+      "acceptedAnswers": ["(-6,2)", "-6<x<2"],
+      "concepts": ["compound inequality", "three-part inequality", "interval notation"],
+      "commonMistakes": []
+    },
+    {
+      "id": "CALC-BANK-01-CH01-004",
+      "number": "1.4",
+      "sourcePages": [8],
+      "topic": "Compound Inequalities",
+      "difficulty": 1,
+      "prompt": "Solve \\(3\\le 4x-1<5\\) and express the solution in interval notation.",
+      "answer": "\\(1\\le x<\\frac{3}{2}\\), equivalently \\(\\left[1,\\frac{3}{2}\\right)\\).",
+      "workedSolution": "Add \\(1\\) to all three parts: \\(4\\le 4x<6\\). Divide all three parts by \\(4\\): \\(1\\le x<\\frac{3}{2}\\). Therefore, the solution set is \\(\\left[1,\\frac{3}{2}\\right)\\).",
+      "acceptedAnswers": ["\\left[1,\\frac{3}{2}\\right)", "1\\le x<\\frac{3}{2}"],
+      "concepts": ["compound inequality", "inclusive endpoint", "interval notation"],
+      "commonMistakes": []
+    },
+    {
+      "id": "CALC-BANK-01-CH01-005",
+      "number": "1.5",
+      "sourcePages": [8],
+      "topic": "Compound Inequalities",
+      "difficulty": 2,
+      "prompt": "Solve \\(4<-2x+5\\le 7\\) and express the solution in interval notation.",
+      "answer": "\\(-1\\le x<\\frac{1}{2}\\), equivalently \\(\\left[-1,\\frac{1}{2}\\right)\\).",
+      "workedSolution": "Subtract \\(5\\) from all three parts: \\(-1<-2x\\le 2\\). Divide by \\(-2\\) and reverse both inequality signs: \\(\\frac12>x\\ge -1\\). Rewrite in increasing order: \\(-1\\le x<\\frac12\\). Therefore, the solution set is \\(\\left[-1,\\frac{1}{2}\\right)\\).",
+      "acceptedAnswers": ["\\left[-1,\\frac{1}{2}\\right)", "-1\\le x<\\frac{1}{2}"],
+      "concepts": ["compound inequality", "reversing inequality sign", "interval notation"],
+      "commonMistakes": ["Forgetting to reverse the inequality sign when dividing by a negative number."]
+    },
+    {
+      "id": "CALC-BANK-01-CH01-006",
+      "number": "1.6",
+      "sourcePages": [8],
+      "topic": "Compound Inequalities",
+      "difficulty": 1,
+      "prompt": "Solve \\(5\\le \\frac{x}{3}+1\\le 6\\) and express the solution in interval notation.",
+      "answer": "\\(12\\le x\\le 15\\), equivalently \\([12,15]\\).",
+      "workedSolution": "Subtract \\(1\\) from all three parts: \\(4\\le \\frac{x}{3}\\le 5\\). Multiply all three parts by \\(3\\): \\(12\\le x\\le 15\\). Therefore, the solution set is \\([12,15]\\).",
+      "acceptedAnswers": ["[12,15]", "12\\le x\\le 15"],
+      "concepts": ["compound inequality", "fractional coefficient", "closed interval"],
+      "commonMistakes": []
+    },
+    {
+      "id": "CALC-BANK-01-CH01-007",
+      "number": "1.7",
+      "sourcePages": [8],
+      "topic": "Rational Inequalities",
+      "difficulty": 3,
+      "prompt": "Solve \\(\\frac{2}{x}<3\\) and express the solution in interval notation.",
+      "answer": "\\(x<0\\text{ or }x>\\frac{2}{3}\\), equivalently \\((-\\infty,0)\\cup\\left(\\frac{2}{3},\\infty\\right)\\).",
+      "workedSolution": "Move all terms to one side: \\(\\frac{2-3x}{x}<0\\). The critical numbers are \\(x=0\\), where the expression is undefined, and \\(x=\\frac23\\), where the numerator is zero. A sign analysis gives a negative quotient on \\((-\\infty,0)\\) and \\((\\frac23,\\infty)\\). Therefore, the solution set is \\((-\\infty,0)\\cup\\left(\\frac{2}{3},\\infty\\right)\\).",
+      "acceptedAnswers": ["(-\\infty,0)\\cup\\left(\\frac{2}{3},\\infty\\right)", "x<0\\text{ or }x>\\frac{2}{3}"],
+      "concepts": ["rational inequality", "critical numbers", "sign chart", "domain restriction"],
+      "commonMistakes": ["Multiplying by an expression of unknown sign without splitting cases or using a sign chart."]
+    },
+    {
+      "id": "CALC-BANK-01-CH01-008",
+      "number": "1.8",
+      "sourcePages": [8, 9],
+      "topic": "Rational Inequalities",
+      "difficulty": 3,
+      "prompt": "Solve \\(\\frac{x+4}{x-3}<2\\) and express the solution in interval notation.",
+      "answer": "\\(x<3\\text{ or }x>10\\), equivalently \\((-\\infty,3)\\cup(10,\\infty)\\).",
+      "workedSolution": "Move \\(2\\) to the left and combine: \\(\\frac{x+4}{x-3}-2=\\frac{10-x}{x-3}<0\\). The critical numbers are \\(x=3\\), where the expression is undefined, and \\(x=10\\), where the numerator is zero. The quotient is negative for \\(x<3\\) and for \\(x>10\\). Therefore, the solution set is \\((-\\infty,3)\\cup(10,\\infty)\\).",
+      "acceptedAnswers": ["(-\\infty,3)\\cup(10,\\infty)", "x<3\\text{ or }x>10"],
+      "concepts": ["rational inequality", "critical numbers", "sign chart", "excluded value"],
+      "commonMistakes": ["Multiplying by an expression of unknown sign without splitting cases or using a sign chart."]
+    },
+    {
+      "id": "CALC-BANK-01-CH01-009",
+      "number": "1.9",
+      "sourcePages": [9],
+      "topic": "Rational Inequalities",
+      "difficulty": 2,
+      "prompt": "Solve \\(\\frac{x}{x+5}<1\\) and express the solution in interval notation.",
+      "answer": "\\(x>-5\\), equivalently \\((-5,\\infty)\\).",
+      "workedSolution": "Move \\(1\\) to the left: \\(\\frac{x}{x+5}-1=\\frac{-5}{x+5}<0\\). Because the numerator is negative, the quotient is negative exactly when \\(x+5>0\\). Thus \\(x>-5\\); note that \\(x=-5\\) is excluded from the domain. Therefore, the solution set is \\((-5,\\infty)\\).",
+      "acceptedAnswers": ["(-5,\\infty)", "x>-5"],
+      "concepts": ["rational inequality", "domain restriction", "sign analysis"],
+      "commonMistakes": ["Multiplying by an expression of unknown sign without splitting cases or using a sign chart."]
+    },
+    {
+      "id": "CALC-BANK-01-CH01-010",
+      "number": "1.10",
+      "sourcePages": [9],
+      "topic": "Rational Inequalities",
+      "difficulty": 3,
+      "prompt": "Solve \\(\\frac{x-7}{x+3}>2\\) and express the solution in interval notation.",
+      "answer": "\\(-13<x<-3\\), equivalently \\((-13,-3)\\).",
+      "workedSolution": "Move \\(2\\) to the left and combine: \\(\\frac{x-7}{x+3}-2=\\frac{-x-13}{x+3}>0\\). Equivalently, \\(\\frac{x+13}{x+3}<0\\). The critical numbers are \\(-13\\) and \\(-3\\); the quotient is negative only on \\((-13,-3)\\). Therefore, the solution set is \\((-13,-3)\\).",
+      "acceptedAnswers": ["(-13,-3)", "-13<x<-3"],
+      "concepts": ["rational inequality", "critical numbers", "sign chart", "interval notation"],
+      "commonMistakes": ["Multiplying by an expression of unknown sign without splitting cases or using a sign chart."]
+    }
+  ]
+}
