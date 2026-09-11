@@ -1,0 +1,971 @@
+{
+  "contract": "echs.c04.operation-journal-reviewed-checks.v1",
+  "frozen_candidate_manifest_sha256": "f777e16014893bff212019e919b8c6783d010b0fc44e15d365271cf4fcc7f9f0",
+  "frozen_candidate_files": [
+    {
+      "path": "operation-journal.sql",
+      "bytes": 41757,
+      "sha256": "acc19054f829fc1d23513080428e4a671177d3faced7060110d9d96803f823a5"
+    },
+    {
+      "path": "contract.py",
+      "bytes": 5341,
+      "sha256": "313312f41cef6b0191264150e833f84ff9159f72c72f7d21086b2b2cda6f445d"
+    },
+    {
+      "path": "test_journal.py",
+      "bytes": 52635,
+      "sha256": "4112ba261387017b5cdc2d96f1ed6c3631c543380fd7264b49c1908049191c48"
+    },
+    {
+      "path": "run_integration.py",
+      "bytes": 10041,
+      "sha256": "46cd2d89e07e5264d7b2aafe14bc6b28515b33f6084e6c78915c846acef060b5"
+    },
+    {
+      "path": "test_local.py",
+      "bytes": 8731,
+      "sha256": "e8782aabe87c9c670dafc9ff88747e6c6fb4070db892751bc6d842c696345975"
+    },
+    {
+      "path": "input-pins.json",
+      "bytes": 15913,
+      "sha256": "241e9569f02c78e3b7547a422671ec4b6fa76ce5f80b994bfad71ebe3ceaa51d"
+    },
+    {
+      "path": "README.md",
+      "bytes": 9233,
+      "sha256": "c3e17f46d4350186ba75867826a87b8346477d0dbd5f353f207f48ab0ac13892"
+    }
+  ],
+  "design_manifest_sha256": "dd02c3fa2a7114f0e81afcd3b0e6de931119d9991e993f0c8c721b7117db422d",
+  "design_case_map": [
+    {
+      "id": "J001",
+      "label": "J001 Exact PostgreSQL foundation has zero journal rows and the scoped route key",
+      "status": "IMPLEMENTED; NOT EXECUTED"
+    },
+    {
+      "id": "J003",
+      "label": "J003 Private journal tables and helper functions deny direct client and service access",
+      "status": "IMPLEMENTED; NOT EXECUTED"
+    },
+    {
+      "id": "J004",
+      "label": "J004 Immutable history and owner or head rewind are denied to ordinary privileged DML",
+      "status": "IMPLEMENTED; NOT EXECUTED"
+    },
+    {
+      "id": "J005",
+      "label": "J005 Complete tenant and incarnation foreign keys reject crossed scope tuples",
+      "status": "IMPLEMENTED; NOT EXECUTED"
+    },
+    {
+      "id": "J006",
+      "label": "J006 Missing routes states and fabricated bindings never provision or adopt",
+      "status": "IMPLEMENTED; NOT EXECUTED"
+    },
+    {
+      "id": "J007",
+      "label": "J007 Nonstudent callers and caller supplied ownership fields are rejected",
+      "status": "IMPLEMENTED; NOT EXECUTED"
+    },
+    {
+      "id": "J008",
+      "label": "J008 Account reuse and never-adopted tenant movement retain incarnation boundaries",
+      "status": "IMPLEMENTED; NOT EXECUTED"
+    },
+    {
+      "id": "J009",
+      "label": "J009 Exact current session and active account are required before any journal write",
+      "status": "IMPLEMENTED; NOT EXECUTED"
+    },
+    {
+      "id": "J010",
+      "label": "J010 Session revocation commits during an observed owner-lock wait and the resumed write rejects",
+      "status": "IMPLEMENTED; NOT EXECUTED"
+    },
+    {
+      "id": "J011",
+      "label": "J011 Role and activity changes commit during owner waits and invalidate the waiting writer",
+      "status": "IMPLEMENTED; NOT EXECUTED"
+    },
+    {
+      "id": "J012",
+      "label": "J012 Revocation during an observed account-lock wait is seen by the subsequent session read",
+      "status": "IMPLEMENTED; NOT EXECUTED"
+    },
+    {
+      "id": "J013",
+      "label": "J013 Wall-clock expiry after an observed session-lock wait rejects the resumed request",
+      "status": "IMPLEMENTED; NOT EXECUTED"
+    },
+    {
+      "id": "J014",
+      "label": "J014 Authorized account and session locks serialize later revocation after the commit",
+      "status": "IMPLEMENTED; NOT EXECUTED"
+    },
+    {
+      "id": "J015",
+      "label": "J015 Expiry before the final check rolls back every compound journal row",
+      "status": "IMPLEMENTED; NOT EXECUTED"
+    },
+    {
+      "id": "J016",
+      "label": "J016 Read lookup and replay paths recheck authority after observed waits",
+      "status": "IMPLEMENTED; NOT EXECUTED"
+    },
+    {
+      "id": "J017",
+      "label": "J017 New RPCs reject fixed snapshots while legacy unadopted writes retain isolation support",
+      "status": "IMPLEMENTED; NOT EXECUTED"
+    },
+    {
+      "id": "J018",
+      "label": "J018 Disjoint owners proceed independently without a global journal lock",
+      "status": "IMPLEMENTED; NOT EXECUTED"
+    },
+    {
+      "id": "J019",
+      "label": "J019 Existing session and account maintenance paths obey the tested lock ordering",
+      "status": "IMPLEMENTED; NOT EXECUTED"
+    },
+    {
+      "id": "J020",
+      "label": "J020 Concurrent exact operation retries produce one immutable receipt and one charge",
+      "status": "IMPLEMENTED; NOT EXECUTED"
+    },
+    {
+      "id": "J021",
+      "label": "J021 Reused operation UUID with any changed normalized intent conflicts atomically",
+      "status": "IMPLEMENTED; NOT EXECUTED"
+    },
+    {
+      "id": "J022",
+      "label": "J022 A fresh session for the same incarnation can resolve the original exact operation",
+      "status": "IMPLEMENTED; NOT EXECUTED"
+    },
+    {
+      "id": "J023",
+      "label": "J023 Commit and rollback followed by disconnect reconcile through exact operation lookup",
+      "status": "IMPLEMENTED; NOT EXECUTED"
+    },
+    {
+      "id": "J024",
+      "label": "J024 Unknown or another-owner operation UUID does not disclose foreign receipt metadata",
+      "status": "IMPLEMENTED; NOT EXECUTED"
+    },
+    {
+      "id": "J025",
+      "label": "J025 Distinct operations racing one mutable expected revision have exactly one winner",
+      "status": "IMPLEMENTED; NOT EXECUTED"
+    },
+    {
+      "id": "J026",
+      "label": "J026 Disjoint mutable keys serialize with independent record revisions",
+      "status": "IMPLEMENTED; NOT EXECUTED"
+    },
+    {
+      "id": "J027",
+      "label": "J027 Missing live and tombstoned records have distinct compare-and-set boundaries",
+      "status": "IMPLEMENTED; NOT EXECUTED"
+    },
+    {
+      "id": "J028",
+      "label": "J028 One stale mutable member rolls back the entire compound attempt and record operation",
+      "status": "IMPLEMENTED; NOT EXECUTED"
+    },
+    {
+      "id": "J029",
+      "label": "J029 Identical attempt repetition preserves one event and its original generation",
+      "status": "IMPLEMENTED; NOT EXECUTED"
+    },
+    {
+      "id": "J030",
+      "label": "J030 Changed immutable attempt content conflicts including after reset",
+      "status": "IMPLEMENTED; NOT EXECUTED"
+    },
+    {
+      "id": "J031",
+      "label": "J031 Duplicate keys conflicting aliases and invalid attempt actions reject before writes",
+      "status": "IMPLEMENTED; NOT EXECUTED"
+    },
+    {
+      "id": "J032",
+      "label": "J032 Failures after each durable phase roll back every table and allow exact retry",
+      "status": "IMPLEMENTED; NOT EXECUTED"
+    },
+    {
+      "id": "J033",
+      "label": "J033 Suppressed durable rows are detected by exact post-write invariants",
+      "status": "IMPLEMENTED; NOT EXECUTED"
+    },
+    {
+      "id": "J034",
+      "label": "J034 Reset advances generation once and retains immutable history and old heads",
+      "status": "IMPLEMENTED; NOT EXECUTED"
+    },
+    {
+      "id": "J035",
+      "label": "J035 Concurrent identical and conflicting resets have deterministic replay or CAS outcomes",
+      "status": "IMPLEMENTED; NOT EXECUTED"
+    },
+    {
+      "id": "J036",
+      "label": "J036 Commit-first ordering forces a stale reset to refuse unseen committed state",
+      "status": "IMPLEMENTED; NOT EXECUTED"
+    },
+    {
+      "id": "J037",
+      "label": "J037 Reset-first ordering rejects a delayed old-generation new operation",
+      "status": "IMPLEMENTED; NOT EXECUTED"
+    },
+    {
+      "id": "J038",
+      "label": "J038 Exact historical operation replay after resets returns the unchanged receipt only",
+      "status": "IMPLEMENTED; NOT EXECUTED"
+    },
+    {
+      "id": "J039",
+      "label": "J039 New-generation mutable data survives a delayed old-generation receipt",
+      "status": "IMPLEMENTED; NOT EXECUTED"
+    },
+    {
+      "id": "J040",
+      "label": "J040 Reset revision and retained-history exhaustion refuse without pruning or wraparound",
+      "status": "IMPLEMENTED; NOT EXECUTED"
+    },
+    {
+      "id": "J041",
+      "label": "J041 Actual SQL validators enforce row envelope count depth node and revision bounds",
+      "status": "IMPLEMENTED; NOT EXECUTED"
+    },
+    {
+      "id": "J042",
+      "label": "J042 Unicode identities preserve supported bytes and reject unsafe identity forms",
+      "status": "IMPLEMENTED; NOT EXECUTED"
+    },
+    {
+      "id": "J043",
+      "label": "J043 PostgreSQL normalized text and hash vectors define replay without raw-wire claims",
+      "status": "IMPLEMENTED; NOT EXECUTED"
+    },
+    {
+      "id": "J044",
+      "label": "J044 SQL-expanded envelope over the byte budget is refused atomically",
+      "status": "IMPLEMENTED; NOT EXECUTED"
+    },
+    {
+      "id": "J045",
+      "label": "J045 Concurrent history quota contenders cannot exceed serialized owner counters",
+      "status": "IMPLEMENTED; NOT EXECUTED"
+    },
+    {
+      "id": "J046",
+      "label": "J046 Current head reads return exact ordered missing and tombstone projections",
+      "status": "IMPLEMENTED; NOT EXECUTED"
+    },
+    {
+      "id": "J047",
+      "label": "J047 Receipt bytes remain immutable while read wrappers expose the current generation",
+      "status": "IMPLEMENTED; NOT EXECUTED"
+    },
+    {
+      "id": "J048",
+      "label": "J048 Local browser command and receipt envelopes cannot impersonate server authority",
+      "status": "IMPLEMENTED; NOT EXECUTED"
+    },
+    {
+      "id": "J002",
+      "label": "J002 Existing rows ACLs functions and triggers remain preserved after the journal suite",
+      "status": "IMPLEMENTED; NOT EXECUTED"
+    },
+    {
+      "id": "J049",
+      "status": "DEFERRED",
+      "reason": "Requires future HTTP status and browser receipt/acknowledgement bridge; not SQL-only acceptance."
+    }
+  ],
+  "inputs": [
+    {
+      "path": "tools/private-learning-owner-fence/owner-fence.sql",
+      "bytes": 14222,
+      "sha256": "2c4ece7736e858d7923601898cc3a5c8ac77b57500a0f0f3e22dc566eb31348f",
+      "kind": "owner_fence"
+    },
+    {
+      "path": "tools/private-learning-owner-fence/contract.py",
+      "bytes": 8657,
+      "sha256": "d2b9e5deb0ab99f57695e87a72106f5b0948c895b5080c9ab390b2aa05d8fe08",
+      "kind": "owner_fence"
+    },
+    {
+      "path": "tools/private-learning-owner-fence/test_fence.py",
+      "bytes": 26202,
+      "sha256": "7d64147d0e27956446b5d26f74f3ae4b13e0b6c7406b1879cdf9c9206b6fab0f",
+      "kind": "owner_fence"
+    },
+    {
+      "path": "tools/private-learning-owner-fence/run_integration.py",
+      "bytes": 10918,
+      "sha256": "d57591d6234b5e566b3600424b468e3c819904c42c1fbff5d6205d3aaf365ae5",
+      "kind": "owner_fence"
+    },
+    {
+      "path": "tools/private-learning-owner-fence/input-pins.json",
+      "bytes": 7011,
+      "sha256": "9b2a353d4ce76fa00498f0e3054ecab874e3a696fa3fbee6119096762d2b6cd3",
+      "kind": "owner_fence"
+    },
+    {
+      "path": "tools/private-learning-owner-fence/source-audit.json",
+      "bytes": 2302,
+      "sha256": "6444a8feb9abe68f7cb229cc69dff57e05f8ee0e6190c7b81e50b3c2a6e96993",
+      "kind": "owner_fence"
+    },
+    {
+      "path": "tools/private-learning-owner-fence/test_local.py",
+      "bytes": 5016,
+      "sha256": "09b4a37e110392561e81ba304938a714b28dbb13fe9778b3bf84f3cff8e82c40",
+      "kind": "owner_fence"
+    },
+    {
+      "path": "tools/private-learning-owner-fence/README.md",
+      "bytes": 9951,
+      "sha256": "8da1178a6fa264bd0f43bafae3098fff3a1e74e06f52f20436d4b56326735883",
+      "kind": "owner_fence"
+    },
+    {
+      "path": "tools/private-learning-owner-fence/checkout.py",
+      "bytes": 3354,
+      "sha256": "b88b04514c084fe4fdb5723c7abcc00fa32d25d99989beb15eb1204573e7ca87",
+      "kind": "owner_fence"
+    },
+    {
+      "path": "tools/private-learning-owner-fence/assemble.py",
+      "bytes": 7833,
+      "sha256": "655213f117d5a8a2d56d2e0324af8f98e45691077836118884165185401dfbe1",
+      "kind": "owner_fence"
+    },
+    {
+      "path": "tools/private-learning-owner-fence/test_actions.py",
+      "bytes": 9216,
+      "sha256": "768ca0299d6a2024e5c4cb84d37f6e3746c44caaf5e1957494ef24ca73860d9e",
+      "kind": "owner_fence"
+    },
+    {
+      "path": ".github/workflows/private-learning-owner-fence.yml",
+      "bytes": 2897,
+      "sha256": "019747e2fa8dd03379ba1cff9c67e2c19598c75058ae1af96d82b845f8a298fd",
+      "kind": "owner_fence"
+    },
+    {
+      "path": "supabase/migrations/202607260001_institutional_platform.sql",
+      "bytes": 24164,
+      "sha256": "d795417c79539f0aa0fdf7d2c59165654458b3b8c85ff1da465645e4052c6e00",
+      "kind": "existing"
+    },
+    {
+      "path": "supabase/migrations/202607260002_bootstrap_function_repair.sql",
+      "bytes": 3545,
+      "sha256": "5753b6408a824fb99d76348f2f09831d6e8026dbe0b1e89d7763594710997613",
+      "kind": "existing"
+    },
+    {
+      "path": "supabase/migrations/202607260003_login_authentication_repair.sql",
+      "bytes": 5946,
+      "sha256": "2a4ce577fd8c31dd55192330cfa24a13708d0bbe5d77fdd6d1271adcaff14a11",
+      "kind": "existing"
+    },
+    {
+      "path": "supabase/migrations/202607270001_session_lookup_repair.sql",
+      "bytes": 5817,
+      "sha256": "b7742cfc9e9154c7ade12005f87215602422b54c99cebd9973b0277c45547c13",
+      "kind": "existing"
+    },
+    {
+      "path": "supabase/migrations/202607272001_mastery_evidence_foundation.sql",
+      "bytes": 12279,
+      "sha256": "434d31d932a66c91a14c27ed2f13533dcd30b4b31cb6e8642e23fe9fc024c49e",
+      "kind": "existing"
+    },
+    {
+      "path": "supabase/migrations/202607272002_mastery_authority_guard.sql",
+      "bytes": 1480,
+      "sha256": "7d1e8b5229b64bab2d52ab6da0f3fb1b5304dc4cd41a298c203caa3df74cd683",
+      "kind": "existing"
+    },
+    {
+      "path": "supabase/migrations/202607272003_attempt_trust_guard.sql",
+      "bytes": 916,
+      "sha256": "87eab47e172a34ad4e64d502c7f4add618631d598e5f147131bdab446d5fe689",
+      "kind": "existing"
+    },
+    {
+      "path": "supabase/migrations/202607272004_atomic_skill_mapping.sql",
+      "bytes": 1488,
+      "sha256": "f05a8ffa3f78c6d4dce1a79c48fa15964047d69147e83a2648ab98d84982fc08",
+      "kind": "existing"
+    },
+    {
+      "path": "supabase/migrations/202607272101_private_bank_foundation.sql",
+      "bytes": 9555,
+      "sha256": "2d6614d54e5867bb8a1765b17343f4b564e760e132f3b97e05db1d8a0aee2dc8",
+      "kind": "existing"
+    },
+    {
+      "path": "supabase/migrations/202607272102_private_attempt_trust_bridge.sql",
+      "bytes": 1331,
+      "sha256": "0056dc1cd5f8b5468b949a20aa5e3471e9febb054603dbda3da101963f6f6214",
+      "kind": "existing"
+    },
+    {
+      "path": "supabase/migrations/202607272201_teacher_upload_manager.sql",
+      "bytes": 2253,
+      "sha256": "7a1e472e7c3feab091e6d0c7c3b54e5b7c4bcc5b3a4cb6e37a78ee775fc93ace",
+      "kind": "existing"
+    },
+    {
+      "path": "supabase/migrations/202607282330_verified_private_bank_import.sql",
+      "bytes": 4203,
+      "sha256": "877681c751b5f55bc415f8534b4360c0fc34cf8a8086f60e8e63b4cbad66e831",
+      "kind": "existing"
+    },
+    {
+      "path": "supabase/migrations/202607290001_raise_teacher_upload_bucket_limit.sql",
+      "bytes": 623,
+      "sha256": "6af0fb5f637ad309d0c8a4e9647650e9b5e4f7fbf9af6ad2bb6d9586cf6ddd51",
+      "kind": "existing"
+    },
+    {
+      "path": "supabase/migrations/202607291900_resumable_private_bank_course_purge.sql",
+      "bytes": 9897,
+      "sha256": "9a7083fd9f3cf30fe036ad4ff5a5e2e6298de5f6383f9287d1ae32e7566b0910",
+      "kind": "existing"
+    },
+    {
+      "path": "supabase/migrations/202607300020_sync_private_bank_mapping_indexes.sql",
+      "bytes": 3253,
+      "sha256": "d1107fb8c6464cef5fcb9b445d46fdc5c1f1672c644a2749d8e4962976b32e71",
+      "kind": "existing"
+    },
+    {
+      "path": "supabase/migrations/202607301500_private_bank_practice_inventory.sql",
+      "bytes": 2337,
+      "sha256": "1a74d46d17cfc028f03f8fa79973e2c5abeb80283497bfb5d76c55ff3b098687",
+      "kind": "existing"
+    },
+    {
+      "path": "supabase/migrations/202607312230_restore_ib_current_bank_practice_visibility.sql",
+      "bytes": 5938,
+      "sha256": "a56066e8f979eca033dfe0c54e5f46335ed2479602764bd4544c13e06cdd3d39",
+      "kind": "existing"
+    },
+    {
+      "path": "supabase/migrations/202608020002_assignment_routes_and_timetables.sql",
+      "bytes": 3184,
+      "sha256": "51987bffa02ad10993f67bf8ebc819fa62c09f2a38440aff413bccf3c81a4025",
+      "kind": "existing"
+    },
+    {
+      "path": "supabase/migrations/202608300001_lesson_visibility_progression.sql",
+      "bytes": 58983,
+      "sha256": "26c8daec8bf8cdd451b350e99b03273e056d0509949b673639810481d712b627",
+      "kind": "existing"
+    },
+    {
+      "path": "supabase/migrations/202609050100_ib_readiness_pathway_engine.sql",
+      "bytes": 15607,
+      "sha256": "53df739f2b0201936e03eff00a93f7e1c58d020d264e94a37ca286ace4e96650",
+      "kind": "existing"
+    },
+    {
+      "path": "supabase/migrations/202609080001_curriculum_versions.sql",
+      "bytes": 20008,
+      "sha256": "aaad19c8e9c3d5e88ed85041cb1f83b1b732030e6fbb5a388b7b573325233845",
+      "kind": "existing"
+    },
+    {
+      "path": "supabase/migrations/202609080002_lesson_persistence.sql",
+      "bytes": 52564,
+      "sha256": "01e522b73729669d29bf2219f4753d561e80a733f954624612a1a69ea845c0bf",
+      "kind": "existing"
+    },
+    {
+      "path": "supabase/migrations/202609080003_lesson_content_v2.sql",
+      "bytes": 23991,
+      "sha256": "ed5abde8826c67bbe161cf0d90d367d9b78a1d4cdb3cd4d7da07e72dbcd1ab61",
+      "kind": "existing"
+    },
+    {
+      "path": "supabase/migrations/202609080004_lesson_media.sql",
+      "bytes": 36628,
+      "sha256": "af9b34a41200a4ca2ef25502a40a617c81eef41e9b5ab060a618728b770d21e5",
+      "kind": "existing"
+    },
+    {
+      "path": "supabase/migrations/202609090001_lesson_draft_recovery.sql",
+      "bytes": 7099,
+      "sha256": "df0d4fbff433645ac12e1ff00ee0f0ea7dad122d5703fb7f74d8dd51453de264",
+      "kind": "existing"
+    },
+    {
+      "path": "supabase/migrations/202609090002_membership_authorization.sql",
+      "bytes": 7078,
+      "sha256": "4760871d3a24847e9b813959d53f3705afff30261e7628dc4e051db8039149ed",
+      "kind": "existing"
+    },
+    {
+      "path": "supabase/migrations/202609090003_private_bank_snapshots.sql",
+      "bytes": 66467,
+      "sha256": "9169cee2067fef09bcd0d15c0f65703c3b2c203bbe2ad3fd6217a6c41c1d6412",
+      "kind": "existing"
+    },
+    {
+      "path": "supabase/functions/mastery-evidence/index.ts",
+      "bytes": 21501,
+      "sha256": "9cb09c5be9248a5389c5697e4f6aaacf8d2c1055ce70020e056793c22fd23505",
+      "kind": "existing"
+    },
+    {
+      "path": "supabase/functions/institution-api/index.ts",
+      "bytes": 52838,
+      "sha256": "0c45db599f1dd51ecbb1e47cb7189ca90d67df464d42c415920023d1126c900e",
+      "kind": "existing"
+    },
+    {
+      "path": "supabase/functions/learning-sync/index.ts",
+      "bytes": 8027,
+      "sha256": "f58b4a32a55acb49590faa81f5566723f221e9896cff8e7990e3647a346e86aa",
+      "kind": "existing"
+    },
+    {
+      "path": "tools/test_membership_authorization_database.py",
+      "bytes": 22909,
+      "sha256": "ff66dcd24ad843b214e942db6521938e4652c086b11d1a19a278d7deb27644e9",
+      "kind": "existing"
+    },
+    {
+      "path": "tools/test_private_snapshot_database.py",
+      "bytes": 42846,
+      "sha256": "521ea6aa6f3415c1527469f35eef52454d9c6d21bb663a900f4e4466aae53618",
+      "kind": "existing"
+    },
+    {
+      "path": "tools/private_snapshot_fixture.py",
+      "bytes": 8127,
+      "sha256": "6e8b91bbe5cfa869cdfb9a426b967f8c1ee25ee64a5c196863ec574037bbce7a",
+      "kind": "existing"
+    }
+  ],
+  "checks": {
+    "membership-baseline.json": [
+      "exact25 prior migrations plus additive26 RPC-only membership input",
+      "all25 existing migrations executed on real PostgreSQL15",
+      "migration26 preserves every public row, existing membership table grants and lesson capabilities",
+      "anon denied api_membership_capabilities",
+      "anon denied api_replace_class_memberships",
+      "authenticated denied api_membership_capabilities",
+      "authenticated denied api_replace_class_memberships",
+      "fixture_unprivileged denied api_membership_capabilities",
+      "fixture_unprivileged denied api_replace_class_memberships",
+      "service-only data-free capability confirms supported private RPC grants",
+      "capability fails closed when replacement execute is widened to anon",
+      "capability fails closed when replacement execute is widened to authenticated",
+      "capability fails closed when replacement execute is widened to public",
+      "invalid/inactive session denied without roster mutation: missing",
+      "invalid/inactive session denied without roster mutation: ",
+      "invalid/inactive session denied without roster mutation: None",
+      "invalid/inactive session denied without roster mutation: inactive_student",
+      "unauthorized role/class/tenant denied without roster mutation: student",
+      "unauthorized role/class/tenant denied without roster mutation: parent",
+      "unauthorized role/class/tenant denied without roster mutation: unassigned_teacher",
+      "unauthorized role/class/tenant denied without roster mutation: foreign_admin",
+      "unauthorized role/class/tenant denied without roster mutation: foreign_teacher",
+      "student target org/role/activity/existence rejected atomically: foreign_student",
+      "student target org/role/activity/existence rejected atomically: parent",
+      "student target org/role/activity/existence rejected atomically: other_teacher",
+      "student target org/role/activity/existence rejected atomically: inactive_student",
+      "student target org/role/activity/existence rejected atomically: unknown",
+      "teacher target org/role rejected atomically: foreign_teacher",
+      "teacher target org/role rejected atomically: parent",
+      "teacher target org/role rejected atomically: student",
+      "invalid null/overlapping member arrays rejected atomically",
+      "invalid null/overlapping member arrays rejected atomically",
+      "invalid null/overlapping member arrays rejected atomically",
+      "invalid null/overlapping member arrays rejected atomically",
+      "oversized and multidimensional member arrays are rejected before replacement",
+      "foreign class membership cannot grant tenant access",
+      "parent mislabeled as teacher cannot acquire staff authority",
+      "teacher self retention, deduplication and no-op retries preserve exact joined timestamps",
+      "administrator can explicitly set an empty roster without a forced teacher membership",
+      "valid administrator/teacher access remains; archived-class roster mutations fail closed",
+      "actual insert failure rolls back all removals and preserves the prior roster byte values",
+      "silently skipped insert fails final roster verification and rolls back prior deletions",
+      "concurrent actor/session status change is revalidated without deadlock or partial roster",
+      "concurrent actor/session role change is revalidated without deadlock or partial roster",
+      "concurrent actor/session organization_id change is revalidated without deadlock or partial roster",
+      "concurrent actor/session revoked_at change is revalidated without deadlock or partial roster",
+      "concurrent class status change fails closed after its lock wait",
+      "concurrent class organization_id change fails closed after its lock wait",
+      "concurrent requested account status change rejects after waiting and preserves roster",
+      "concurrent requested account role change rejects after waiting and preserves roster",
+      "concurrent requested account organization_id change rejects after waiting and preserves roster",
+      "session expiry while waiting for class lock rolls back without changing roster",
+      "revoked current session cannot use a retained teacher membership",
+      "concurrent valid replacements serialize to one exact complete roster",
+      "legacy learning evidence and numeric grading data remain unchanged"
+    ],
+    "archive-with-fence-and-journal.json": [
+      "additive archive-only source and independent UTF-8 framing/manifest exclusion vectors",
+      "loopback client targets permit Docker port mapping but reject remote/override/wrong-database connections",
+      "existing cluster roles are preserved and retain the expected isolated Supabase-style privileges",
+      "full exact accepted prior migration chain executed in a new loopback PostgreSQL15 database",
+      "new migration preserves every existing public row and function and seeds zero snapshots or assignments",
+      "anon directSELECT denied on private_bank_snapshots",
+      "anon directINSERT denied on private_bank_snapshots",
+      "anon directUPDATE denied on private_bank_snapshots",
+      "anon directDELETE denied on private_bank_snapshots",
+      "anon directTRUNCATE denied on private_bank_snapshots",
+      "anon directSELECT denied on private_bank_snapshot_files",
+      "anon directINSERT denied on private_bank_snapshot_files",
+      "anon directUPDATE denied on private_bank_snapshot_files",
+      "anon directDELETE denied on private_bank_snapshot_files",
+      "anon directTRUNCATE denied on private_bank_snapshot_files",
+      "anon directSELECT denied on private_bank_snapshot_questions",
+      "anon directINSERT denied on private_bank_snapshot_questions",
+      "anon directUPDATE denied on private_bank_snapshot_questions",
+      "anon directDELETE denied on private_bank_snapshot_questions",
+      "anon directTRUNCATE denied on private_bank_snapshot_questions",
+      "anon directSELECT denied on private_bank_snapshot_question_files",
+      "anon directINSERT denied on private_bank_snapshot_question_files",
+      "anon directUPDATE denied on private_bank_snapshot_question_files",
+      "anon directDELETE denied on private_bank_snapshot_question_files",
+      "anon directTRUNCATE denied on private_bank_snapshot_question_files",
+      "anon directSELECT denied on private_bank_snapshot_mappings",
+      "anon directINSERT denied on private_bank_snapshot_mappings",
+      "anon directUPDATE denied on private_bank_snapshot_mappings",
+      "anon directDELETE denied on private_bank_snapshot_mappings",
+      "anon directTRUNCATE denied on private_bank_snapshot_mappings",
+      "anon directSELECT denied on private_bank_snapshot_events",
+      "anon directINSERT denied on private_bank_snapshot_events",
+      "anon directUPDATE denied on private_bank_snapshot_events",
+      "anon directDELETE denied on private_bank_snapshot_events",
+      "anon directTRUNCATE denied on private_bank_snapshot_events",
+      "anon cannot execute private_bank_snapshot_import",
+      "anon cannot execute private_bank_snapshot_file",
+      "anon cannot execute capability RPC",
+      "authenticated directSELECT denied on private_bank_snapshots",
+      "authenticated directINSERT denied on private_bank_snapshots",
+      "authenticated directUPDATE denied on private_bank_snapshots",
+      "authenticated directDELETE denied on private_bank_snapshots",
+      "authenticated directTRUNCATE denied on private_bank_snapshots",
+      "authenticated directSELECT denied on private_bank_snapshot_files",
+      "authenticated directINSERT denied on private_bank_snapshot_files",
+      "authenticated directUPDATE denied on private_bank_snapshot_files",
+      "authenticated directDELETE denied on private_bank_snapshot_files",
+      "authenticated directTRUNCATE denied on private_bank_snapshot_files",
+      "authenticated directSELECT denied on private_bank_snapshot_questions",
+      "authenticated directINSERT denied on private_bank_snapshot_questions",
+      "authenticated directUPDATE denied on private_bank_snapshot_questions",
+      "authenticated directDELETE denied on private_bank_snapshot_questions",
+      "authenticated directTRUNCATE denied on private_bank_snapshot_questions",
+      "authenticated directSELECT denied on private_bank_snapshot_question_files",
+      "authenticated directINSERT denied on private_bank_snapshot_question_files",
+      "authenticated directUPDATE denied on private_bank_snapshot_question_files",
+      "authenticated directDELETE denied on private_bank_snapshot_question_files",
+      "authenticated directTRUNCATE denied on private_bank_snapshot_question_files",
+      "authenticated directSELECT denied on private_bank_snapshot_mappings",
+      "authenticated directINSERT denied on private_bank_snapshot_mappings",
+      "authenticated directUPDATE denied on private_bank_snapshot_mappings",
+      "authenticated directDELETE denied on private_bank_snapshot_mappings",
+      "authenticated directTRUNCATE denied on private_bank_snapshot_mappings",
+      "authenticated directSELECT denied on private_bank_snapshot_events",
+      "authenticated directINSERT denied on private_bank_snapshot_events",
+      "authenticated directUPDATE denied on private_bank_snapshot_events",
+      "authenticated directDELETE denied on private_bank_snapshot_events",
+      "authenticated directTRUNCATE denied on private_bank_snapshot_events",
+      "authenticated cannot execute private_bank_snapshot_import",
+      "authenticated cannot execute private_bank_snapshot_file",
+      "authenticated cannot execute capability RPC",
+      "service_role directSELECT denied on private_bank_snapshots",
+      "service_role directINSERT denied on private_bank_snapshots",
+      "service_role directUPDATE denied on private_bank_snapshots",
+      "service_role directDELETE denied on private_bank_snapshots",
+      "service_role directTRUNCATE denied on private_bank_snapshots",
+      "service_role directSELECT denied on private_bank_snapshot_files",
+      "service_role directINSERT denied on private_bank_snapshot_files",
+      "service_role directUPDATE denied on private_bank_snapshot_files",
+      "service_role directDELETE denied on private_bank_snapshot_files",
+      "service_role directTRUNCATE denied on private_bank_snapshot_files",
+      "service_role directSELECT denied on private_bank_snapshot_questions",
+      "service_role directINSERT denied on private_bank_snapshot_questions",
+      "service_role directUPDATE denied on private_bank_snapshot_questions",
+      "service_role directDELETE denied on private_bank_snapshot_questions",
+      "service_role directTRUNCATE denied on private_bank_snapshot_questions",
+      "service_role directSELECT denied on private_bank_snapshot_question_files",
+      "service_role directINSERT denied on private_bank_snapshot_question_files",
+      "service_role directUPDATE denied on private_bank_snapshot_question_files",
+      "service_role directDELETE denied on private_bank_snapshot_question_files",
+      "service_role directTRUNCATE denied on private_bank_snapshot_question_files",
+      "service_role directSELECT denied on private_bank_snapshot_mappings",
+      "service_role directINSERT denied on private_bank_snapshot_mappings",
+      "service_role directUPDATE denied on private_bank_snapshot_mappings",
+      "service_role directDELETE denied on private_bank_snapshot_mappings",
+      "service_role directTRUNCATE denied on private_bank_snapshot_mappings",
+      "service_role directSELECT denied on private_bank_snapshot_events",
+      "service_role directINSERT denied on private_bank_snapshot_events",
+      "service_role directUPDATE denied on private_bank_snapshot_events",
+      "service_role directDELETE denied on private_bank_snapshot_events",
+      "service_role directTRUNCATE denied on private_bank_snapshot_events",
+      "fixture_unprivileged directSELECT denied on private_bank_snapshots",
+      "fixture_unprivileged directINSERT denied on private_bank_snapshots",
+      "fixture_unprivileged directUPDATE denied on private_bank_snapshots",
+      "fixture_unprivileged directDELETE denied on private_bank_snapshots",
+      "fixture_unprivileged directTRUNCATE denied on private_bank_snapshots",
+      "fixture_unprivileged directSELECT denied on private_bank_snapshot_files",
+      "fixture_unprivileged directINSERT denied on private_bank_snapshot_files",
+      "fixture_unprivileged directUPDATE denied on private_bank_snapshot_files",
+      "fixture_unprivileged directDELETE denied on private_bank_snapshot_files",
+      "fixture_unprivileged directTRUNCATE denied on private_bank_snapshot_files",
+      "fixture_unprivileged directSELECT denied on private_bank_snapshot_questions",
+      "fixture_unprivileged directINSERT denied on private_bank_snapshot_questions",
+      "fixture_unprivileged directUPDATE denied on private_bank_snapshot_questions",
+      "fixture_unprivileged directDELETE denied on private_bank_snapshot_questions",
+      "fixture_unprivileged directTRUNCATE denied on private_bank_snapshot_questions",
+      "fixture_unprivileged directSELECT denied on private_bank_snapshot_question_files",
+      "fixture_unprivileged directINSERT denied on private_bank_snapshot_question_files",
+      "fixture_unprivileged directUPDATE denied on private_bank_snapshot_question_files",
+      "fixture_unprivileged directDELETE denied on private_bank_snapshot_question_files",
+      "fixture_unprivileged directTRUNCATE denied on private_bank_snapshot_question_files",
+      "fixture_unprivileged directSELECT denied on private_bank_snapshot_mappings",
+      "fixture_unprivileged directINSERT denied on private_bank_snapshot_mappings",
+      "fixture_unprivileged directUPDATE denied on private_bank_snapshot_mappings",
+      "fixture_unprivileged directDELETE denied on private_bank_snapshot_mappings",
+      "fixture_unprivileged directTRUNCATE denied on private_bank_snapshot_mappings",
+      "fixture_unprivileged directSELECT denied on private_bank_snapshot_events",
+      "fixture_unprivileged directINSERT denied on private_bank_snapshot_events",
+      "fixture_unprivileged directUPDATE denied on private_bank_snapshot_events",
+      "fixture_unprivileged directDELETE denied on private_bank_snapshot_events",
+      "fixture_unprivileged directTRUNCATE denied on private_bank_snapshot_events",
+      "fixture_unprivileged cannot execute private_bank_snapshot_import",
+      "fixture_unprivileged cannot execute private_bank_snapshot_file",
+      "fixture_unprivileged cannot execute capability RPC",
+      "actual service-only capability is data-free and explicitly does not authorize student delivery",
+      "capability rejects RLS/grant/trigger/bucket drift: alter",
+      "capability rejects RLS/grant/trigger/bucket drift: grant",
+      "capability rejects RLS/grant/trigger/bucket drift: grant",
+      "capability rejects RLS/grant/trigger/bucket drift: alter",
+      "capability rejects RLS/grant/trigger/bucket drift: update",
+      "actual SQL binary framing and SHA-256 agree with independent Python on empty, Unicode and delimiter vectors",
+      "ASCII identity/path/hash/token contract rejects accented and fullwidth alternatives independently of database locale",
+      "null hash leaves are rejected instead of silently omitted",
+      "large framed roots aggregate25,000 ordered leaves within the bounded SQL statement timeout",
+      "changed same snapshot ID cannot overwrite frozen roots",
+      "same organization manifest cannot be silently renamed to another snapshot ID",
+      "snapshot IDs and frozen manifests support exact idempotent retries",
+      "teacher cannot stage an archive",
+      "student cannot stage an archive",
+      "parent cannot stage an archive",
+      "unknown session cannot inspect archive metadata",
+      "foreign administrator receives the same not-found result",
+      "closed snapshot payload rejects malformed/client scope",
+      "closed snapshot payload rejects malformed/client scope",
+      "closed snapshot payload rejects malformed/client scope",
+      "closed snapshot payload rejects malformed/client scope",
+      "closed snapshot payload rejects malformed/client scope",
+      "closed snapshot payload rejects malformed/client scope",
+      "snapshot bound/type rejects expected_total_bytes",
+      "snapshot bound/type rejects expected_file_count",
+      "snapshot bound/type rejects expected_question_count",
+      "snapshot bound/type rejects expected_occurrence_count",
+      "snapshot bound/type rejects unit_review_sets",
+      "snapshot bound/type rejects bank_codes",
+      "review teaching set cannot claim a foreign catalog identity",
+      "current account/session cannot be stale",
+      "current account/session cannot be stale",
+      "current account/session cannot be stale",
+      "a still-live session cannot retain a former administrator role",
+      "a request UUID cannot be reused for a different action",
+      "same file ID cannot change content hash",
+      "duplicate file IDs inside a batch are rejected atomically",
+      "caller cannot spoof file readiness/profile/path/type",
+      "caller cannot spoof file readiness/profile/path/type",
+      "caller cannot spoof file readiness/profile/path/type",
+      "caller cannot spoof file readiness/profile/path/type",
+      "caller cannot spoof file readiness/profile/path/type",
+      "caller cannot spoof file readiness/profile/path/type",
+      "claimed matching byte receipt without a stored object fails",
+      "mismatched read-back hash cannot verify a file",
+      "file registration/retry is immutable and separate trusted receipts require exact registered metadata and object namespace",
+      "record bytes are hashed directly, not JSONB reserialized",
+      "record text64KiB bound is enforced before parse",
+      "source JSON cannot become a student media dependency",
+      "source occurrence cannot exceed the explicit extraction profile",
+      "canonical record UTF-8 text/hash and derived parsed value remain exact; three original occurrences retained",
+      "an existing question cannot lose a dependency on retry",
+      "an existing question retry validates dependency types before UUID casts",
+      "mapping reviewer is derived from session, never a client field",
+      "mappings require the exact current course/catalog identity",
+      "all four actual SQL roots match independent Python including media edges, unit sets and manifest self-exclusion",
+      "byte verification alone is insufficient to seal source consistency",
+      "catalog drift in an unmapped teaching lesson blocks unit-set seal",
+      "atomic seal proves preservation while unresolved rights/mappings remain archive-only and no class assignment is created",
+      "owner-level update cannot rewrite ready private_bank_snapshots",
+      "owner-level delete cannot erase private_bank_snapshots",
+      "owner-level update cannot rewrite ready private_bank_snapshot_files",
+      "owner-level delete cannot erase private_bank_snapshot_files",
+      "owner-level update cannot rewrite ready private_bank_snapshot_questions",
+      "owner-level delete cannot erase private_bank_snapshot_questions",
+      "owner-level update cannot rewrite ready private_bank_snapshot_question_files",
+      "owner-level delete cannot erase private_bank_snapshot_question_files",
+      "owner-level update cannot rewrite ready private_bank_snapshot_mappings",
+      "owner-level delete cannot erase private_bank_snapshot_mappings",
+      "owner-level update cannot rewrite ready private_bank_snapshot_events",
+      "owner-level delete cannot erase private_bank_snapshot_events",
+      "owner-level truncate cannot erase any archive tables",
+      "ready snapshot cannot be aborted",
+      "ready file cannot be replaced under a fresh request ID",
+      "incomplete snapshot seal rolls back with staging intact",
+      "aborted snapshot remains terminal and non-deliverable",
+      "complete counts cannot override a mismatched frozen content root",
+      "cross-tenant question/file composite foreign key rejects owner-level insertion",
+      "cross-version media edge cannot attach another snapshot file",
+      "foreign administrator cannot submit a file receipt to local snapshot",
+      "concurrent identical reserve converges on one immutable snapshot/event",
+      "concurrent media registrations cannot overbook the frozen quota and the losing insert/event roll back",
+      "concurrent identical seal preserves one terminal transition and exact retry",
+      "concurrent seal versus abort has one terminal winner and rolls back the losing transition",
+      "seal waits for a real catalog writer and rejects committed identity drift without a terminal event",
+      "session expiry during an observed real snapshot lock rolls back the pending mutation",
+      "original private packages/records/media/imports/course pins remain unchanged; no practice RPC or cutover exists"
+    ],
+    "fence": [
+      "Existing and new accounts have private epoch0 fences with zero adopted routes",
+      "All three private tables enforce RLS and expose no table privileges to client/service roles",
+      "No trigger function is a client or service-role adoption API",
+      "Existing six-table service-role privilege profile matches the frozen thin-PostgreSQL grants",
+      "Existing assignment_results service-role INSERT remains allowed without a fixture grant",
+      "Existing learning_attempts service-role INSERT remains allowed without a fixture grant",
+      "Existing learning_sessions service-role INSERT remains allowed without a fixture grant",
+      "Existing mastery_records service-role INSERT remains allowed without a fixture grant",
+      "Existing review_items service-role INSERT remains allowed without a fixture grant",
+      "Existing lesson_completions service-role INSERT remains denied without a fixture grant",
+      "Fixture-granted all-six service-role INSERT uses definer fences and rolls back exact original ACLs",
+      "anon has no direct private adoption authority",
+      "authenticated has no direct private adoption authority",
+      "service_role has no direct private adoption authority",
+      "fixture_unprivileged has no direct private adoption authority",
+      "Never-adopted all-six insert/upsert/update/delete retain read committed compatibility",
+      "Never-adopted all-six insert/upsert/update/delete retain repeatable read compatibility",
+      "Never-adopted all-six insert/upsert/update/delete retain serializable compatibility",
+      "All-six legacy TRUNCATE succeeds and rolls back while adoption count is zero",
+      "TRUNCATE-first relation lock serializes adoption and rollback retains zero routing state",
+      "Adoption-first relation lock blocks TRUNCATE until the protected route is visible",
+      "Versioned singleton rejects repeatable read TRUNCATE predating creation and adoption",
+      "Versioned singleton rejects serializable TRUNCATE predating creation and adoption",
+      "Synthetic adoption changes private routing only and retains every legacy byte value",
+      "Adopted assignment_results INSERT is denied",
+      "Adopted assignment_results duplicate-ignore upsert is denied",
+      "Adopted assignment_results updating upsert is denied",
+      "Adopted assignment_results UPDATE is denied",
+      "Adopted assignment_results DELETE is denied",
+      "Adopted assignment_results TRUNCATE is denied",
+      "Adopted learning_attempts INSERT is denied",
+      "Adopted learning_attempts duplicate-ignore upsert is denied",
+      "Adopted learning_attempts updating upsert is denied",
+      "Adopted learning_attempts UPDATE is denied",
+      "Adopted learning_attempts DELETE is denied",
+      "Adopted learning_attempts TRUNCATE is denied",
+      "Adopted learning_sessions INSERT is denied",
+      "Adopted learning_sessions duplicate-ignore upsert is denied",
+      "Adopted learning_sessions updating upsert is denied",
+      "Adopted learning_sessions UPDATE is denied",
+      "Adopted learning_sessions DELETE is denied",
+      "Adopted learning_sessions TRUNCATE is denied",
+      "Adopted lesson_completions INSERT is denied",
+      "Adopted lesson_completions duplicate-ignore upsert is denied",
+      "Adopted lesson_completions updating upsert is denied",
+      "Adopted lesson_completions UPDATE is denied",
+      "Adopted lesson_completions DELETE is denied",
+      "Adopted lesson_completions TRUNCATE is denied",
+      "Adopted mastery_records INSERT is denied",
+      "Adopted mastery_records duplicate-ignore upsert is denied",
+      "Adopted mastery_records updating upsert is denied",
+      "Adopted mastery_records UPDATE is denied",
+      "Adopted mastery_records DELETE is denied",
+      "Adopted mastery_records TRUNCATE is denied",
+      "Adopted review_items INSERT is denied",
+      "Adopted review_items duplicate-ignore upsert is denied",
+      "Adopted review_items updating upsert is denied",
+      "Adopted review_items UPDATE is denied",
+      "Adopted review_items DELETE is denied",
+      "Adopted review_items TRUNCATE is denied",
+      "OLD adopted owner cannot move assignment_results to a legacy owner",
+      "NEW adopted owner cannot receive assignment_results from a legacy owner",
+      "Mixed-owner bulk assignment_results update rolls back every row",
+      "Mixed-owner bulk assignment_results delete rolls back every row",
+      "Mixed-owner bulk assignment_results insert rolls back every row",
+      "OLD adopted owner cannot move learning_attempts to a legacy owner",
+      "NEW adopted owner cannot receive learning_attempts from a legacy owner",
+      "Mixed-owner bulk learning_attempts update rolls back every row",
+      "Mixed-owner bulk learning_attempts delete rolls back every row",
+      "Mixed-owner bulk learning_attempts insert rolls back every row",
+      "OLD adopted owner cannot move learning_sessions to a legacy owner",
+      "NEW adopted owner cannot receive learning_sessions from a legacy owner",
+      "Mixed-owner bulk learning_sessions update rolls back every row",
+      "Mixed-owner bulk learning_sessions delete rolls back every row",
+      "Mixed-owner bulk learning_sessions insert rolls back every row",
+      "OLD adopted owner cannot move lesson_completions to a legacy owner",
+      "NEW adopted owner cannot receive lesson_completions from a legacy owner",
+      "Mixed-owner bulk lesson_completions update rolls back every row",
+      "Mixed-owner bulk lesson_completions delete rolls back every row",
+      "Mixed-owner bulk lesson_completions insert rolls back every row",
+      "OLD adopted owner cannot move mastery_records to a legacy owner",
+      "NEW adopted owner cannot receive mastery_records from a legacy owner",
+      "Mixed-owner bulk mastery_records update rolls back every row",
+      "Mixed-owner bulk mastery_records delete rolls back every row",
+      "Mixed-owner bulk mastery_records insert rolls back every row",
+      "OLD adopted owner cannot move review_items to a legacy owner",
+      "NEW adopted owner cannot receive review_items from a legacy owner",
+      "Mixed-owner bulk review_items update rolls back every row",
+      "Mixed-owner bulk review_items delete rolls back every row",
+      "Mixed-owner bulk review_items insert rolls back every row",
+      "Adopted route is immutable: update",
+      "Adopted route is immutable: delete",
+      "Adopted account deletion is restricted",
+      "Adopted tenant move is restricted",
+      "Never-adopted tenant move remains valid and later adoption binds current tenant",
+      "Never-adopted empty account ID update retains the old tombstone and provisions a new incarnation",
+      "Unadopted deletion cascades retain payload-free tombstone and reused UUID gets a fresh incarnation",
+      "Never-adopted organization deletion keeps existing cascade behavior",
+      "Failed route insertion rolls back the epoch and singleton transition",
+      "Synthetic adoption rejects a foreign tenant",
+      "Synthetic adoption rejects a supplied foreign fence",
+      "Exact synthetic adoption duplicate-ignore does not change the retained route or epoch",
+      "Adopted assignment_results fixture-granted service-role writer remains fenced",
+      "Adopted learning_attempts fixture-granted service-role writer remains fenced",
+      "Adopted learning_sessions fixture-granted service-role writer remains fenced",
+      "Adopted lesson_completions fixture-granted service-role writer remains fenced",
+      "Adopted mastery_records fixture-granted service-role writer remains fenced",
+      "Adopted review_items fixture-granted service-role writer remains fenced",
+      "Fixture-granted adopted-writer tests restore exact original ACLs and retained owner rows",
+      "Missing current companion fails closed for ordinary read committed writes",
+      "Original server mastery authority rejects a legacy claim for an unadopted owner",
+      "Two different legacy records for one unadopted owner retain shared-lock concurrency",
+      "Legacy-first read committed owner lock completes before adoption",
+      "Adoption-first read committed blocks or serializes the stale legacy writer",
+      "Legacy-first repeatable read owner lock completes before adoption",
+      "Adoption-first repeatable read blocks or serializes the stale legacy writer",
+      "Legacy-first serializable owner lock completes before adoption",
+      "Adoption-first serializable blocks or serializes the stale legacy writer",
+      "Actual FK SET NULL is a non-key update compatible with an outstanding legacy key-share lock",
+      "Legacy INSERT-first completes before parent deletion and original cascade removes its row",
+      "Parent deletion and a late legacy INSERT cannot deadlock or resurrect the deleted owner",
+      "A missing fence in an older fixed snapshot fails closed instead of implying nonadoption",
+      "Private owner metadata contains no learning payload, name, response or session token"
+    ]
+  },
+  "database_executed": false,
+  "production_calls": 0
+}

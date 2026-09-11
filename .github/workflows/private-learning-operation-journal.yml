@@ -1,0 +1,81 @@
+name: Private learning operation journal candidate
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/private-learning-operation-journal.yml'
+      - 'tools/private-learning-operation-journal/**'
+      - '.github/workflows/private-learning-owner-fence.yml'
+      - 'tools/private-learning-owner-fence/**'
+      - 'supabase/migrations/**'
+      - 'supabase/functions/institution-api/index.ts'
+      - 'supabase/functions/mastery-evidence/index.ts'
+      - 'supabase/functions/learning-sync/index.ts'
+      - 'tools/test_membership_authorization_database.py'
+      - 'tools/test_private_snapshot_database.py'
+      - 'tools/private_snapshot_fixture.py'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: private-learning-operation-journal-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  postgres15:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    defaults:
+      run:
+        shell: bash
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: isolated-journal-fixture-only
+          POSTGRES_DB: echs_membership_test_journal_ci
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d echs_membership_test_journal_ci"
+          --health-interval 5s --health-timeout 5s --health-retries 12
+    env:
+      PYTHONUTF8: '1'
+      ECHS_JOURNAL_MEMBERSHIP_DSN: 'host=127.0.0.1 port=5432 dbname=echs_membership_test_journal_ci user=postgres password=isolated-journal-fixture-only sslmode=disable'
+      ECHS_JOURNAL_BANK_DSN: 'host=127.0.0.1 port=5432 dbname=echs_bank_test_journal_ci user=postgres password=isolated-journal-fixture-only sslmode=disable'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Bind exact checkout and disposable service
+        env:
+          TEST_POSTGRES_CONTAINER: ${{ job.services.postgres.id }}
+        run: python tools/private-learning-operation-journal/checkout.py
+      - name: Install pinned offline parser dependencies
+        run: python -m pip install pglast==7.7 PyYAML==6.0.2
+      - name: Run source and Actions guards without database access
+        run: |
+          python tools/private-learning-operation-journal/test_local.py
+          python tools/private-learning-operation-journal/test_actions.py
+      - name: Install pinned PostgreSQL driver
+        run: python -m pip install 'psycopg[binary]==3.2.9'
+      - name: Exercise unchanged baselines and candidate SQL
+        run: python tools/private-learning-operation-journal/run_integration.py --execute --checkout-report tools/private-learning-operation-journal/results/checkout.json
+      - name: Assemble closed metadata evidence
+        if: always()
+        run: python tools/private-learning-operation-journal/assemble.py
+      - name: Retain metadata evidence including incomplete diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: private-learning-operation-journal-sql
+          path: ${{ runner.temp }}/private-learning-operation-journal-evidence
+          if-no-files-found: error
+          retention-days: 14
