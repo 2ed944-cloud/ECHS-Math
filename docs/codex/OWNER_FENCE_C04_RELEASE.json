@@ -1,0 +1,152 @@
+{
+  "contract": "echs.c04.owner-fence-tooling-release.v1",
+  "status": "FOUNDATION VERIFIED",
+  "scope": "Isolated owner-fence SQL validation tooling only; no production database change or owner adoption",
+  "whole_c04_status": "IN PROGRESS",
+  "whole_c08_status": "IN PROGRESS",
+  "whole_program_complete": false,
+  "main_sha": "20e470daa986cae9c4e260e0c90eb3f700131a60",
+  "tree_sha": "50f16f647881f3e23edc6a51eebf0db447635636",
+  "head_sha": "a03fc97dd6d6736600e2d20438ad16f173ec5799",
+  "tested_merge_sha": "ba1833ad97516528ae2df8b34ee2652fae43ae5c",
+  "pull_request": "https://github.com/2ed944-cloud/ECHS-Math/pull/372",
+  "source_manifest_sha256": "b942e0691a5712d3b9222282360122f753a569279d6c56f8725e9f1aa11935fc",
+  "changed_files": 12,
+  "executed_sources": 45,
+  "source_files": [
+    {
+      "path": ".github/workflows/private-learning-owner-fence.yml",
+      "bytes": 2897,
+      "sha256": "019747e2fa8dd03379ba1cff9c67e2c19598c75058ae1af96d82b845f8a298fd"
+    },
+    {
+      "path": "tools/private-learning-owner-fence/README.md",
+      "bytes": 9951,
+      "sha256": "8da1178a6fa264bd0f43bafae3098fff3a1e74e06f52f20436d4b56326735883"
+    },
+    {
+      "path": "tools/private-learning-owner-fence/assemble.py",
+      "bytes": 7833,
+      "sha256": "655213f117d5a8a2d56d2e0324af8f98e45691077836118884165185401dfbe1"
+    },
+    {
+      "path": "tools/private-learning-owner-fence/checkout.py",
+      "bytes": 3354,
+      "sha256": "b88b04514c084fe4fdb5723c7abcc00fa32d25d99989beb15eb1204573e7ca87"
+    },
+    {
+      "path": "tools/private-learning-owner-fence/contract.py",
+      "bytes": 8657,
+      "sha256": "d2b9e5deb0ab99f57695e87a72106f5b0948c895b5080c9ab390b2aa05d8fe08"
+    },
+    {
+      "path": "tools/private-learning-owner-fence/input-pins.json",
+      "bytes": 7011,
+      "sha256": "9b2a353d4ce76fa00498f0e3054ecab874e3a696fa3fbee6119096762d2b6cd3"
+    },
+    {
+      "path": "tools/private-learning-owner-fence/owner-fence.sql",
+      "bytes": 14222,
+      "sha256": "2c4ece7736e858d7923601898cc3a5c8ac77b57500a0f0f3e22dc566eb31348f"
+    },
+    {
+      "path": "tools/private-learning-owner-fence/run_integration.py",
+      "bytes": 10918,
+      "sha256": "d57591d6234b5e566b3600424b468e3c819904c42c1fbff5d6205d3aaf365ae5"
+    },
+    {
+      "path": "tools/private-learning-owner-fence/source-audit.json",
+      "bytes": 2302,
+      "sha256": "6444a8feb9abe68f7cb229cc69dff57e05f8ee0e6190c7b81e50b3c2a6e96993"
+    },
+    {
+      "path": "tools/private-learning-owner-fence/test_actions.py",
+      "bytes": 9216,
+      "sha256": "768ca0299d6a2024e5c4cb84d37f6e3746c44caaf5e1957494ef24ca73860d9e"
+    },
+    {
+      "path": "tools/private-learning-owner-fence/test_fence.py",
+      "bytes": 26202,
+      "sha256": "7d64147d0e27956446b5d26f74f3ae4b13e0b6c7406b1879cdf9c9206b6fab0f"
+    },
+    {
+      "path": "tools/private-learning-owner-fence/test_local.py",
+      "bytes": 5016,
+      "sha256": "09b4a37e110392561e81ba304938a714b28dbb13fe9778b3bf84f3cff8e82c40"
+    }
+  ],
+  "accepted_checks": {
+    "postgres_version": "15.19",
+    "unchanged_migrations": 27,
+    "membership_sql": 55,
+    "archive_sql": 222,
+    "owner_fence_sql": 123,
+    "total_sql": 400,
+    "baseline_commands": 68,
+    "pr_workflows": 4,
+    "main_workflows": 9,
+    "live_anonymous_gets": 13,
+    "live_checks": 27,
+    "local_harness_groups": 6,
+    "actions_guard_groups": 10,
+    "collector_synthetic_groups": 83
+  },
+  "production": {
+    "new_migrations": 0,
+    "backend_changed": false,
+    "runtime_changed": false,
+    "adoption_api": false,
+    "learner_adoption": false,
+    "private_data_import": false,
+    "new_ui_visuals_claimed": false
+  },
+  "sealed_evidence": {
+    "report": {
+      "file": "ECHS_C04_OWNER_FENCE_REPORT.md",
+      "sha256": "8e47d4290b4f7d6132439c0170385e9a9b6c37d017d41a812dcdcfbdf6a88abb"
+    },
+    "handoff": {
+      "file": "ECHS_C04_OWNER_FENCE_HANDOFF.json",
+      "sha256": "2e6f554f116dba30d4dc8a625b9cc2991531da99cfb5dc84b66c88266860ad9b"
+    }
+  },
+  "prior_session_foundation": {
+    "main_sha": "9ea1fe0ada9ab76d85b0e7f67a626cfcae05de79",
+    "tree_sha": "de227c260e5ae4a7b3bf87a2cf73ee82867e36a2",
+    "evidence": "docs/codex/OWNER_STORAGE_FOUNDATION_C04_RELEASE.json",
+    "receipt_sha256": "2e24a0b560b95ee0ac19bb3f8fec8daa159cb1ce0a5cfcf2a81b89c47d86b8c0",
+    "preserved": true
+  },
+  "independent_local_student_repair": {
+    "status": "LOCAL STUDENT REPAIR REVIEW PASS; NOT INSTALLED",
+    "review_sha256": "3b398f0bf0d3c9fa82e36028ab2886620efa27a8320aca298d77f5c8043cda41",
+    "candidate_manifest_sha256": "817c3395b1589c74391cce55fd7dffdae9de3a28c2b1f9fd90e371428c788722",
+    "runtime_files": 22,
+    "runtime_changed_files": 6,
+    "native_page_groups": 24,
+    "flow_groups": 9,
+    "flow_comparisons": 65,
+    "action_groups": 12,
+    "legacy_client_suites": 3,
+    "authority_groups": 28,
+    "open_findings": 0,
+    "active_installation": false,
+    "production_calls": 0,
+    "server_cas": false
+  },
+  "journal_design": {
+    "status": "DESIGN FROZEN; IMPLEMENTATION AND ACTUAL SQL ACCEPTANCE NOT CLAIMED",
+    "manifest_sha256": "dd02c3fa2a7114f0e81afcd3b0e6de931119d9991e993f0c8c721b7117db422d",
+    "planned_cases": 49,
+    "source_consistency_checks": 12,
+    "adoption_available": false
+  },
+  "rollback": "Revert PR372 tooling/workflow paths only; preserve sealed earlier foundation receipts and all raw/learning data. No production database rollback is required.",
+  "limits": [
+    "The temporary lesson_completions privilege repair exists only in rollback-scoped synthetic tests; original production grants are unchanged.",
+    "Not all multi-table schedules are proved deadlock-free; legacy writers do not acquire new session-after-wait checks by implication.",
+    "P2b repair is local student-only candidate acceptance; all-role/producer/reader/worker adoption and baseline reconciliation remain pending.",
+    "Immutable server journal/CAS/reset, actual transport acknowledgements and authenticated grading remain separate work.",
+    "C08 private delivery, rights, hosted service and cutover acceptance remain outside this receipt."
+  ]
+}
