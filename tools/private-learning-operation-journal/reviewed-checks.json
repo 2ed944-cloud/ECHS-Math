@@ -967,5 +967,34 @@
     ]
   },
   "database_executed": false,
-  "production_calls": 0
+  "production_calls": 0,
+  "sql_repair": {
+    "reason": "First actual PostgreSQL execution reached J004 and rejected an ambiguous unqualified local receipt reference in learning_journal_apply. Rename its six local-variable references to result_receipt; qualified table columns and the public receipt key remain unchanged.",
+    "original_sql": {
+      "bytes": 41757,
+      "sha256": "acc19054f829fc1d23513080428e4a671177d3faced7060110d9d96803f823a5"
+    },
+    "repaired_sql": {
+      "bytes": 41799,
+      "sha256": "ac3ad94dce3d89b3e32594b9fd01593a266738abb66cbb8f3c2d72ca597b075e"
+    },
+    "first_ci": {
+      "head_sha": "81c3af3ff54227b4a309223287e8376673070d87",
+      "tested_sha": "f943f31f60191712e30b63c1c1b029ec7eded8a0",
+      "run_id": 34548721798,
+      "job_id": 103106877222,
+      "artifact_id": 10179998897,
+      "artifact_sha256": "f351c8441fb24da998b7dee0c85065ed06974a54c02b1fb23ad72bf0445772a9",
+      "completed_outcomes": {
+        "membership": 55,
+        "archive": 222,
+        "owner_fence": 123,
+        "journal": 2,
+        "total": 402
+      },
+      "accepted": false
+    },
+    "fixture_unchanged": true,
+    "successor_actual_sql_acceptance": false
+  }
 }

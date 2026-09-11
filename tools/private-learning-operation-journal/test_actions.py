@@ -344,8 +344,14 @@ class Guards(unittest.TestCase):
         self.assertEqual((len(pins['files']),len(migrations)),(45,27))
         self.assertEqual(len(reference['design_case_map']),49);self.assertEqual(len(contract.planned_labels()),48)
         self.assertEqual(contract.planned_labels()[-1].split()[0],'J002')
+        repair=reference['sql_repair']
+        self.assertEqual(repair['original_sql']['sha256'],'acc19054f829fc1d23513080428e4a671177d3faced7060110d9d96803f823a5')
+        self.assertEqual(repair['repaired_sql']['sha256'],'ac3ad94dce3d89b3e32594b9fd01593a266738abb66cbb8f3c2d72ca597b075e')
+        self.assertIs(repair['fixture_unchanged'],True);self.assertIs(repair['first_ci']['accepted'],False)
         for name in ('operation-journal.sql','test_journal.py'):
-            expected=next(r for r in reference['frozen_candidate_files'] if r['path']==name)
+            original=next(r for r in reference['frozen_candidate_files'] if r['path']==name)
+            expected=repair['repaired_sql'] if name=='operation-journal.sql' else original
+            if name=='operation-journal.sql':self.assertEqual(repair['original_sql'],{key:original[key] for key in ('bytes','sha256')})
             self.assertEqual(contract.digest((contract.HERE/name).read_bytes()),expected['sha256'])
 
 class RecordingResult(unittest.TextTestResult):

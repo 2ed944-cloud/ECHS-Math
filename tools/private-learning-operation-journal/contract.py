@@ -5,8 +5,8 @@ HERE=Path(__file__).resolve().parent
 REPO=HERE.parent.parent
 FENCE=REPO/'tools/private-learning-owner-fence'
 WORKFLOW='.github/workflows/private-learning-operation-journal.yml'
-REVIEWED_SHA='9bcebe9957e01d465c9653f1627b614135b63f7939d1531cbc31ded057f0adbb'
-INPUT_SHA='cd419740745d22a9d73e346d5be8a2b5bf0562ef2b06d349b7eb25fc2ef8ab03'
+REVIEWED_SHA='3ed2b46e791ea79d94fd4e186acec3afa8075b6967ae2b9bae5414ce2a1b3537'
+INPUT_SHA='d50db08d63bf85fdec0cf030e01f9695d637b06569ad6a3fdfd2304f4d472ee2'
 NAMES=('operation-journal.sql','contract.py','test_journal.py','run_integration.py','test_local.py','input-pins.json','README.md',
        'checkout.py','assemble.py','test_actions.py','reviewed-checks.json')
 OWN_PATHS=tuple('tools/private-learning-operation-journal/'+p for p in NAMES)+(WORKFLOW,)
@@ -45,9 +45,15 @@ def sources(repo=None):
     migrations=[r for r in rows if r['path'].startswith('supabase/migrations/')]
     assert len(migrations)==27 and migrations[-1]['path'].endswith('202609090003_private_bank_snapshots.sql')
     assert sorted(p.name for p in (repo/'supabase/migrations').glob('*.sql'))==[r['path'].split('/')[-1] for r in migrations]
+    repair=reference['sql_repair']
+    original=next(r for r in reference['frozen_candidate_files'] if r['path']=='operation-journal.sql')
+    assert repair['original_sql']=={key:original[key] for key in ('bytes','sha256')}
+    assert repair['fixture_unchanged'] is True and repair['first_ci']['accepted'] is False
+    assert repair['successor_actual_sql_acceptance'] is False
     for name in ('operation-journal.sql','test_journal.py'):
-        origin=next(r for r in reference['frozen_candidate_files'] if r['path']==name);raw=(HERE/name).read_bytes()
-        assert len(raw)==origin['bytes'] and digest(raw)==origin['sha256'],'Frozen SQL or test fixture changed'
+        pin=repair['repaired_sql'] if name=='operation-journal.sql' else next(r for r in reference['frozen_candidate_files'] if r['path']==name)
+        raw=(HERE/name).read_bytes()
+        assert len(raw)==pin['bytes'] and digest(raw)==pin['sha256'],'Frozen SQL repair or test fixture changed'
     return pins,migrations
 
 def snapshot():

@@ -8,9 +8,18 @@ The SQL is not an API that an existing client can safely start using.
 The reviewed design identity and complete 49-case mapping are retained in
 `reviewed-checks.json`, with design-manifest SHA-256
 `dd02c3fa2a7114f0e81afcd3b0e6de931119d9991e993f0c8c721b7117db422d`.
-The SQL and actual journal test fixture are byte exact copies from the frozen
-seven-file candidate manifest
+The original seven-file candidate manifest remains
 `f777e16014893bff212019e919b8c6783d010b0fc44e15d365271cf4fcc7f9f0`.
+The actual 48-group journal test fixture remains byte exact. The first real
+PostgreSQL run (34548721798, artifact 10179998897) completed the 55 membership,
+222 archive, 123 owner-fence and first two journal outcomes, then failed at
+J004 because an unqualified local `receipt` name was ambiguous with a table
+column. Its failed artifact remains preserved; it did not establish acceptance.
+This successor renames only the six local references in `learning_journal_apply`
+to `result_receipt`. Qualified columns and the public receipt key stay unchanged.
+`reviewed-checks.json` retains the original file pins plus the explicit repair
+provenance and repaired SQL SHA-256 `ac3ad94dce3d89b3e32594b9fd01593a266738abb66cbb8f3c2d72ca597b075e`.
+A passing successor run is still required; the repair record is not SQL evidence.
 `input-pins.json` binds the unchanged original 27 migrations, three writers,
 three baseline fixture/test files, and all 12 released owner-fence sources.
 The exact base is commit `318b65a92316b2b4377b775415bf061e8599601c`, tree

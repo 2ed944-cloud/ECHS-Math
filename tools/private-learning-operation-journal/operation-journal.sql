@@ -381,7 +381,7 @@ language plpgsql volatile security definer set search_path=pg_catalog,pg_temp as
 declare started timestamptz:=clock_timestamp(); accepted timestamptz; s private.learning_journal_owners%rowtype;
  oldop private.learning_journal_operations%rowtype; oldattempt private.learning_journal_attempts%rowtype;
  op uuid; generation bigint; expected bigint; revision bigint; local_rev bigint; recgen bigint;
- item jsonb; metadata jsonb; receipt jsonb; records jsonb:='[]'; seen jsonb:='[]'; plans jsonb:='[]'; plan jsonb;
+ item jsonb; metadata jsonb; result_receipt jsonb; records jsonb:='[]'; seen jsonb:='[]'; plans jsonb:='[]'; plan jsonb;
  id text; k text; action text; disposition text; val jsonb; vh text; normalized text; request_hash text;
  rowcount bigint; new_attempts bigint:=0; new_versions bigint:=0; new_heads bigint:=0; charge bigint:=0;
  reset_to bigint; idx integer:=0;
@@ -456,21 +456,21 @@ begin
    end loop;
  end if;
  accepted:=clock_timestamp();
- receipt:=jsonb_build_object('contract','echs.learning.server-receipt.v1','operation_id',op,'incarnation_id',s.incarnation_id,'adoption_epoch',s.adoption_epoch,
+ result_receipt:=jsonb_build_object('contract','echs.learning.server-receipt.v1','operation_id',op,'incarnation_id',s.incarnation_id,'adoption_epoch',s.adoption_epoch,
    'accepted_generation',generation,'owner_revision',s.owner_revision+1,'request_sha256',request_hash,
    'accepted_at',to_char(accepted at time zone 'UTC','YYYY-MM-DD"T"HH24:MI:SS.US"Z"'),
    'durability','committed','grading_authoritative',false,'action',action,'records',records,'reset_to',reset_to);
  -- Charge exactly retained normalized request text + immutable receipt text +
  -- newly retained value text. This is logical payload accounting, not disk size.
- charge:=charge+octet_length(normalized)+octet_length(receipt::text);
+ charge:=charge+octet_length(normalized)+octet_length(result_receipt::text);
  if s.operation_count+1>50000 or s.attempt_count+new_attempts>50000 or s.version_count+new_versions>200000
    or s.head_count+new_heads>50000 or s.charged_bytes+charge>268435456 then
    raise exception using errcode='54000',message='Journal retained history limit'; end if;
- insert into private.learning_journal_operations values(s.organization_id,s.account_id,s.incarnation_id,s.adoption_epoch,op,generation,s.owner_revision+1,normalized,request_hash,receipt,accepted);
+ insert into private.learning_journal_operations values(s.organization_id,s.account_id,s.incarnation_id,s.adoption_epoch,op,generation,s.owner_revision+1,normalized,request_hash,result_receipt,accepted);
  get diagnostics rowcount=row_count;
  if rowcount<>1 or not exists(select 1 from private.learning_journal_operations o where o.incarnation_id=s.incarnation_id and o.operation_id=op
    and (o.organization_id,o.account_id,o.adoption_epoch,o.accepted_generation,o.owner_revision,o.request_text,o.request_sha256,o.receipt::text,o.accepted_at)
-    =(s.organization_id,s.account_id,s.adoption_epoch,generation,s.owner_revision+1,normalized,request_hash,receipt::text,accepted)) then
+    =(s.organization_id,s.account_id,s.adoption_epoch,generation,s.owner_revision+1,normalized,request_hash,result_receipt::text,accepted)) then
    raise exception using errcode='23514',message='Journal operation invariant'; end if;
  for plan in select value from jsonb_array_elements(plans) loop
    k:=plan->>'kind';id:=plan->>'record_id';val:=plan->'value';vh:=plan->>'value_sha256';revision:=(plan->>'record_revision')::bigint;
@@ -508,7 +508,7 @@ begin
    (s.organization_id,s.account_id,s.adoption_epoch,coalesce(reset_to,generation),s.owner_revision+1,s.operation_count+1,s.attempt_count+new_attempts,s.version_count+new_versions,s.head_count+new_heads,s.charged_bytes+charge)) then
    raise exception using errcode='23514',message='Journal owner invariant'; end if;
  return private.learning_journal_finish(p_token_hash,s.account_id,started,jsonb_build_object('ok',true,'contract','echs.learning.server-journal.v1','replayed',false,
-   'receipt',receipt,'current',jsonb_build_object('reset_generation',coalesce(reset_to,generation),'owner_revision',s.owner_revision+1)));
+   'receipt',result_receipt,'current',jsonb_build_object('reset_generation',coalesce(reset_to,generation),'owner_revision',s.owner_revision+1)));
 end $$;
 
 revoke all on function private.learning_journal_immutable(),private.learning_journal_owner_transition(),private.learning_journal_head_transition(),private.learning_journal_limits(),
