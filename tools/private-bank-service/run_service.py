@@ -6,10 +6,10 @@ import uuid
 from service_contract import (HERE, ContractError, fixture_plan, verify_sources,
     validate_fixture_plan, write_report_exclusive)
 
-def preflight(repo, runtime, run_id):
+def preflight(repo, runtime, run_id,expected_major=15):
     sources = verify_sources(repo,runtime)
-    plan = fixture_plan(run_id)
-    validate_fixture_plan(plan)
+    plan = fixture_plan(run_id,expected_major)
+    validate_fixture_plan(plan,expected_major)
     return {'contract':'echs.c08.storage-service-preflight.v1','status':'PREFLIGHT_PASS',
         'mode':'OFFLINE_PLAN_ONLY','sources':sources,'fixture_plan':plan,
         'services_executed':False,'hosted_edge_executed':False,'corpus_imported':False,
@@ -22,11 +22,12 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--report',type=Path,help='New JSON filename in this candidate results directory')
     parser.add_argument('--run-id',default=None)
+    parser.add_argument('--postgres-major',type=int,choices=(15,17),default=15)
     parser.add_argument('--repo',type=Path,default=HERE.parents[1]/'foundations')
     args = parser.parse_args()
     try:
         report = preflight(args.repo.resolve(),HERE/'runtime',
-            args.run_id or uuid.uuid4().hex)
+            args.run_id or uuid.uuid4().hex,args.postgres_major)
         # Recheck all pinned source bytes immediately before writing the receipt.
         verify_sources(args.repo.resolve(),HERE/'runtime')
         if args.report:

@@ -1,37 +1,93 @@
-# C08 actual-service acceptance candidate
+# C08 managed-service PostgreSQL compatibility matrix
 
-The isolated candidate implements a five-service disposable fixture, a verified TLS gateway, synthetic setup controls, the unchanged upload/status runtime,19 service cases and a closed evidence collector. Actual Docker, PostgREST and Storage service execution remains **NOT EXECUTED**. No active application, CI, migration or sealed output is edited. The separately sealed299 SQL/HTTP assertions remain distinct from this service acceptance.
+PR371 accepted the original five-service fixture, all 19 actual service groups,
+27 unchanged migrations and 54 offline/TLS groups. Its original 29-file release,
+failed-run diagnostics and acceptance artifacts remain preserved. This successor
+requires fresh independent results for both PostgreSQL majors; it has no current
+matrix execution claim.
 
-The preceding frozen6062 candidate reached five healthy real services and applied27 migrations in GitHub run34513167676, then failed at Compose port discovery with complete cleanup. That failed run establishes no service-case acceptance. This separate revision removes published-port assumptions: it validates network ID/driver/internal flag/labels, an RFC1918 subnet and gateway, exactly five container IDs, sole network attachments, matching IPAM addresses and absent PortBindings before choosing fixed DB/REST/Storage endpoints. The gateway still listens only on127.0.0.1:443. The host-to-bridge approach follows Docker's documented access from the host to container bridge ports. [Docker port publishing](https://docs.docker.com/engine/network/port-publishing/)
+The selected images are `supabase/postgres:15.8.1.085` and
+`supabase/postgres:17.6.1.136`, derived from the already pinned official PG15
+override and base Compose at Supabase commit
+`8c7a4d9dbbaf8b552893822e89d7bf06f33f9220`. The upstream bytes and all seven SQL
+initialization mounts remain unchanged. Both jobs retain the same Auth,
+PostgREST, Storage and imgproxy versions. Each image tag is resolved to its
+actual linux/amd64 manifest and config digest before execution; the runner
+starts that digest and verifies the running image ID.
 
-The source manifest closes22 explicit files, including the byte-exact runtime2,10 verified public upstream configuration files embedded in an observation,27 migration pins and the existing synthetic SQL fixture pin. Source verification runs before and after child processes. The upstream tag is unsigned; tag/tree/blob binding is not a signature attestation. Docker version tags have not been resolved locally. Only a later execution resolves the five reviewed repository/version tags, records manifest/config digests and starts those exact linux/amd64 images.
+Every relevant entrypoint accepts `--postgres-major 15|17`, with default 15.
+Plans, image receipts, checkout receipts, run reports and final indexes bind the
+selected major. The runner reads `server_version_num` and `server_version` from
+the actual managed database before migrations and after the 19 cases. Both
+observations must agree and must match the configured job. An artifact from
+one major cannot satisfy the other. Neither accepting both majors globally nor
+rewriting a version observation is permitted.
 
-Local verification uses Python3.12+ and Node24.19.0. TLS certificate generation uses `cryptography==50.0.1`; the future SQL setup also requires `psycopg[binary]==3.2.9`. Install only the pinned requirements into the disposable test environment. These commands are run from the workspace root, using a Python environment with the pinned dependencies:
+The production metadata observation was PostgreSQL 17.6.1.147. The fixture's
+17.6.1.136 image is a distinct version. Passing this matrix does not establish
+exact production-image equivalence, hosted Edge resource compatibility, or
+hosted test-project acceptance. No separate hosted test project currently exists.
 
-```text
-python -B -X utf8 work/master-charter/c08-storage-service-dns-candidate/test_service_contract.py --repo work/foundations --report work/master-charter/c08-storage-service-dns-candidate/results/safety-review.json
-python -B -X utf8 work/master-charter/c08-storage-service-dns-candidate/test_actual_contract.py --report work/master-charter/c08-storage-service-dns-candidate/results/actual-contract-review.json
-python -B -X utf8 work/master-charter/c08-storage-service-dns-candidate/run_tls_test.py --report work/master-charter/c08-storage-service-dns-candidate/results/tls-review.json
-python -B -X utf8 work/master-charter/c08-storage-service-dns-candidate/run_actual_service.py --repo work/foundations
+The 19 service cases and their complete JavaScript file, the handler/transport
+runtime pair, the synthetic seed, all 27 ECHS migrations, the seven upstream SQL
+mounts and TLS gateway are byte unchanged. Cases cover real RPC/bucket policies,
+six MIME policies and readback, duplicate/no-upsert behavior, tenant/role/session
+denial, byte conflicts, concurrent idempotency, lost acknowledgements, orphaned
+uploads, terminal states and upload bounds. Four cases deliberately inject
+faults. Opaque MIME fixtures do not establish decoder or sanitization safety.
+
+The source manifest closes 22 fixture files; the complete CI closure remains
+57 files: 29 owned tooling/workflow files and 28 existing inputs. Historical base
+`20e470daa986cae9c4e260e0c90eb3f700131a60`, tree
+`50f16f647881f3e23edc6a51eebf0db447635636`, remains provenance and must be an
+ancestor. The actual PR event supplies its current base and two merge parents.
+Checkout verification binds actual HEAD/tree, changed paths and every tested
+source blob. An advanced base may produce a merge tree different from the
+feature-head tree. The old whole-PR changed-path equality is no longer used.
+
+From the repository root, with the pinned dependencies installed:
+
+```bash
+python -m pip install -r tools/private-bank-service/requirements.txt
+python -B tools/private-bank-service/test_service_contract.py --repo . --report tools/private-bank-service/results/safety.json
+python -B tools/private-bank-service/test_actual_contract.py --report tools/private-bank-service/results/actual-contract.json
+python -B tools/private-bank-service/test_ci.py --report tools/private-bank-service/results/ci-contract.json
+python -B tools/private-bank-service/run_tls_test.py --report tools/private-bank-service/results/tls.json
+python -B tools/private-bank-service/run_actual_service.py --repo . --postgres-major 17
 ```
 
-Reports use exclusive creation; choose a new filename for a rerun. The18 safety groups and18 executable-configuration/collector groups are offline. Synthetic success receipts used to test the collector are deleted from their exact newly created directories and are never real service evidence. The10 TLS groups use real loopback HTTP/TLS sockets with an explicitly synthetic echo upstream. They prove generated CA/SAN verification, rejection of an untrusted CA/wrong hostname, fixed-path byte forwarding, proxy/redirect rejection, size/time bounds and disposal. They do not establish Storage compatibility. Initial Windows temporary-directory permission and Node lookup-callback diagnostics are retained separately; only current source-bound reports count as the final local checks.
+Reports are created exclusively; use a fresh report name for a local rerun.
+There are 20 safety, 20 fixture/collector and 11 CI groups, plus the unchanged
+10 real loopback TLS groups. The default runners perform source preflight only.
+Synthetic successful receipt fixtures are discarded after tests and cannot
+establish service execution. Actual execution requires the explicit `--execute`
+switch, matching GitHub SHA/workspace and a disposable GitHub-hosted Linux runner.
 
-`run_service.py` remains a non-starting offline preflight. `run_actual_service.py` also defaults to source preflight; its explicit `--execute --expected-head <40hex> --source-manifest-sha256 <64hex>` mode requires a disposable GitHub-hosted Linux runner, matching Git HEAD/workspace, local default Docker socket, no ambient Docker/proxy/TLS/production credentials, and a fresh owned resource namespace. A future separately reviewed Actions wrapper must bind the source manifest and artifact to actual GitHub checkout/job metadata. All source-reading launchers accept an explicit --repo checkout path, and runtime2 is bundled under this directory's runtime/. A flattened CI installation uses --repo . without rewriting source or requiring a sibling candidate. No such workflow is installed by this candidate.
+The matrix workflow uses separate jobs, fresh UUID-owned networks/volumes and
+artifacts `private-bank-actual-service-pg15` and `private-bank-actual-service-pg17`.
+Only `contents:read` is granted and checkout retains no credentials. No project
+secret or production connection is used. Five services run on one owned internal
+Docker bridge with no published ports or external volumes. Real managed schema
+initialization, Auth/Storage startup migrations and the unchanged ECHS SQL prefix
+are required; no substitute managed schema is created. Cleanup verifies the
+full exact ownership set and incomplete cleanup fails the job.
 
-The execution runner uses the actual Supabase Postgres15 image initialization plus seven official SQL mounts and real Auth/Storage startup migrations. It applies all27 unchanged ECHS migrations and verifies managed tables and the capability. It never fabricates managed schemas or performs Storage object metadata DML. No container ports are published. The Linux host connects to fixed ports on the exact five inspected container IPv4 addresses within the owned internal RFC1918 bridge. Containers have no egress network, use fresh labeled volumes, disable restart and service logging, and are removed only after label/namespace verification. Preflight and cleanup inspect the union of custom labels, Compose project labels and exact named volumes/network; a foreign or missing ownership label refuses deletion. Cleanup failure is a failed run. Generated credentials and TLS keys stay in a fresh private directory and are removed before collection; no compose/env/service-log dumps are artifacts.
+The actual test child binds only loopback443, uses a generated exact-SAN
+certificate and process-local trusted CA/resolver, and permits only the synthetic
+hostname and verified fixture addresses. No hosts-file, OS trust-store, ambient
+DNS or insecure TLS override is used. Credentials and private keys remain in a
+new private directory, removed before evidence collection. Raw service logs,
+compose/env dumps, tokens, SQL rows and private payloads are never artifacts.
 
-The immutable runtime origin requires HTTPS port443. A deadline-bounded test child uses the disposable runner's existing sudo to bind **127.0.0.1:443**, with a generated exact-SAN leaf and process-local CA trust and DNS mapping for `echsc08servicetest.supabase.co`. Certificate and hostname checks remain enabled. There are no hosts-file or OS trust-store changes, insecure flags, production DNS fallbacks or Response.url rewrites. Ordinary runtime calls use native fetch through the real gateway. Four explicitly labeled fault cases discard a real committed response or invalidate a synthetic request after upload; they are not evidence of an actual network outage.
+The local collector exports five closed metadata members. The CI wrapper binds
+four offline reports and checkout evidence, for exactly 11 final artifact
+members including its index. Both jobs must pass all 19 service groups, exact
+source/image/database/version checks, readiness and cleanup. Independent GitHub
+run/job/tree/artifact verification is required before reporting CI acceptance.
 
-After the asynchronous PostgREST schema-cache notification, a bounded exact-capability readiness probe runs before the19 cases and is recorded separately. The first acceptance group independently checks the actual capability again. Boot failures retain only fixed stage, exit code and timeout category, without child output.
-
-The19 pending service groups cover actual RPC/bucket policies, six allowed MIME types, direct duplicate400/no-upsert and readback, ordinary JWT role denial, custom school tenant/role/session denial, conflicting bytes, lost acknowledgement reconciliation, revoked/aborted upload orphans, concurrent idempotency, terminal states,6MiB+1/11MiB/16MiB size probes, invalid body metadata and public-bucket failure. Image MIME fixtures are deliberately opaque synthetic bytes, not decoder/sanitizer tests. Setup-only registration/record receipts/sealing controls are private to the fixture; the HTTP handler has no such routes. No real corpus or learner data is loaded.
-
-`collect_service.py` accepts exact source/head/tree/image/migration/runtime/case contracts and copies only five named members: the three raw run/test/image reports, source-manifest.json and service-evidence-index.json. It refuses stale/failing evidence, non-boolean success claims, omitted cases, additional body fields, retained secrets, source drift and overwrite. Its accepted status is `LOCAL_EXECUTION_RECEIPTS_ACCEPTED`, with `github_ci_accepted:false`; independent workflow and artifact metadata is still required to claim CI acceptance. A pinned process report alone cannot prove where that process ran.
-
-Whole C08 remains in progress. This candidate does not establish hosted Edge resource feasibility, arbitrary parsing, verified source-record receipts, immutable package completion, private student delivery or full5882-record/media cutover coverage. Rollback removes only the newly owned disposable fixture or leaves this candidate uninstalled, preserving all sealed foundations and existing question availability.
-
-
-The network-repaired candidate (manifest b1b1efb847bc979438d96aacee74d0b7fe9ddaff4334e73ccf00f2efdc56df9d) reached and validated the actual owned bridge in run 34539461954, then its child exited before the 19-group report. No case acceptance is inferred. A local native Node reproduction showed that server.listen with literal 127.0.0.1 calls dns.lookup; the earlier hostname-only resolver rejected its own gateway listener. This separate candidate installs an exact resolver for the synthetic Supabase hostname, literal loopback and the two verified REST/Storage addresses before opening the real gateway. It never delegates to ambient DNS or allows all private addresses. The loopback TLS suite exercises that installation order and exact family/all response forms.
-
-Startup failures now produce a closed service-child-failure.json containing only fixed phase, error type, approved code/SQLSTATE and optional synthetic-seed phase/type/exit code. The runner validates this bounded record before nesting it in failure.child. No message, stack, response body, token, SQL text or raw stderr is exported. The Actions wrapper must retain only this closed diagnostic on failure; it is not an additional successful artifact member. The 22 sources and transport/runtime pair remain separately pinned; actual service acceptance still requires a fresh reviewed CI run.
+Full C08 remains in progress. Hosted Edge feasibility, source-record receipts,
+immutable package completion, rights/provenance, corpus import and private
+student delivery remain separate gates. No public URL, authentication,
+publication, mastery or Pages behavior changes. Rollback reverts only the 15
+tooling/workflow changes; there is no database/data rollback. Preserve PR371
+evidence and all earlier sealed foundations.

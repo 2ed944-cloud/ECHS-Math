@@ -9,7 +9,7 @@ import tempfile
 from service_contract import (HERE, PIN_SHA256, OBSERVATION_SHA256, ContractError,
     IMAGE_TAGS, UPSTREAM_COMMIT, RUNTIME_HASHES, UNSAFE_ENVIRONMENT, digest, strict_json,
     relative_path, verify_sources, fixture_plan, validate_fixture_plan, clean_environment,
-    validate_image_receipt, cleanup_targets, write_report_exclusive)
+    validate_image_receipt, cleanup_targets, write_report_exclusive, image_tags, postgres_major, postgres_observation)
 from run_service import preflight
 
 RUNTIME=HERE/'runtime'
@@ -143,7 +143,7 @@ def tests(source_repo):
         group('ambient Docker, DSN, proxy and TLS overrides fail with sanitized errors',ambient)
 
         receipt={'contract':'echs.c08.storage-image-receipt.v1','upstream_commit':UPSTREAM_COMMIT,
-            'platform':'linux/amd64','images':[{'service':s,'tag':tag,'manifest_digest':'sha256:'+'1'*64,
+            'platform':'linux/amd64','postgres_required':15,'images':[{'service':s,'tag':tag,'manifest_digest':'sha256:'+'1'*64,
                 'config_digest':'sha256:'+'2'*64} for s,tag in IMAGE_TAGS.items()]}
         def image_binding():
             b=raw(receipt); refs=validate_image_receipt(b,digest(b))
@@ -211,6 +211,29 @@ def tests(source_repo):
             assert json.loads(accepted.stdout)=={'status':'PREFLIGHT_PASS','services_executed':False,
                 'migration_files_verified':27,'runtime_files_verified':2,'upstream_files_verified':10}
         group('runner CLI has no service-start or execution switch',no_execute)
+
+        def selected_major():
+            assert fixture_plan('1'*32)==fixture_plan('1'*32,15)
+            for major in (15,17):
+                plan=fixture_plan('1'*32,major);validate_fixture_plan(plan,major)
+                assert plan['postgres_required']==major and plan['services']==image_tags(major)
+                rejects(lambda:validate_fixture_plan(plan,17 if major==15 else 15))
+                result=preflight(source_repo,RUNTIME,'1'*32,major)
+                assert result['fixture_plan']==plan and result['services_executed'] is False
+            for invalid in (True,False,'15',15.0,16,18,None):
+                rejects(lambda:postgres_major(invalid),'configured-postgres-major')
+                rejects(lambda:fixture_plan('1'*32,invalid),'configured-postgres-major')
+        group('explicit typed PostgreSQL major selects one exact image set and retains default15',selected_major)
+
+        def observed_major():
+            for major in (15,17):
+                observed={'server_version_num':major*10000+6,'server_version':str(major)+'.6 (synthetic)'}
+                assert postgres_observation(observed,major)==observed
+                for actual in (14,15,16,17,18):
+                    if actual!=major:rejects(lambda:postgres_observation({'server_version_num':actual*10000+6,'server_version':str(actual)+'.6'},major))
+                for key,value in [('server_version_num',True),('server_version_num',float(major*10000+6)),('server_version','17.6.1.136'),('server_version',str(major)+'.7'),('server_version',str(major)+'.06')]:
+                    wrong=dict(observed);wrong[key]=value;rejects(lambda:postgres_observation(wrong,major))
+        group('actual PostgreSQL major and full version observation must agree with the configured job',observed_major)
 
         def unchanged():
             assert verify_sources(source_repo,RUNTIME)==before

@@ -16,12 +16,18 @@ concurrency:
 
 jobs:
   managed-services:
+    name: Managed PostgreSQL ${{ matrix.postgres_major }}
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        postgres_major: [15, 17]
     runs-on: ubuntu-latest
     timeout-minutes: 40
     env:
       PYTHONUTF8: '1'
       PYTHONDONTWRITEBYTECODE: '1'
-      SERVICE_MANIFEST_SHA256: 37c3d75609daf1c2221e3be7139b021ac4bb80263dbe0dbd03997ceba1beb91e
+      SERVICE_MANIFEST_SHA256: 07e53a2a4dae4b3fb36536f97ba4b3d77a265bd17d4e4e53a19d825f24383fa9
     steps:
       - name: Check out the exact reviewed revision
         uses: actions/checkout@v4
@@ -37,7 +43,7 @@ jobs:
         with:
           node-version: '24'
       - name: Bind the exact source checkout
-        run: python -B tools/private-bank-service/ci.py prepare --manifest-sha256 "$SERVICE_MANIFEST_SHA256"
+        run: python -B tools/private-bank-service/ci.py prepare --postgres-major ${{ matrix.postgres_major }} --manifest-sha256 "$SERVICE_MANIFEST_SHA256"
       - name: Install the two pinned synthetic fixture dependencies
         run: python -m pip install -r tools/private-bank-service/requirements.txt
       - name: Test fixture safety and exact-source acceptance
@@ -49,15 +55,15 @@ jobs:
       - name: Verify real TLS sockets and certificate rejection
         run: python -B tools/private-bank-service/run_tls_test.py --report tools/private-bank-service/results/tls.json
       - name: Execute real managed PostgreSQL PostgREST and Storage services
-        run: python -B tools/private-bank-service/run_actual_service.py --execute --repo . --expected-head "$GITHUB_SHA" --source-manifest-sha256 "$SERVICE_MANIFEST_SHA256"
+        run: python -B tools/private-bank-service/run_actual_service.py --postgres-major ${{ matrix.postgres_major }} --execute --repo . --expected-head "$GITHUB_SHA" --source-manifest-sha256 "$SERVICE_MANIFEST_SHA256"
       - name: Assemble bounded metadata and reject incomplete execution
         if: always()
-        run: python -B tools/private-bank-service/ci.py assemble --manifest-sha256 "$SERVICE_MANIFEST_SHA256"
+        run: python -B tools/private-bank-service/ci.py assemble --postgres-major ${{ matrix.postgres_major }} --manifest-sha256 "$SERVICE_MANIFEST_SHA256"
       - name: Retain only the closed metadata artifact
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: private-bank-actual-service
-          path: ${{ runner.temp }}/private-bank-service-evidence/
+          name: private-bank-actual-service-pg${{ matrix.postgres_major }}
+          path: ${{ runner.temp }}/private-bank-service-evidence-pg${{ matrix.postgres_major }}/
           if-no-files-found: error
           retention-days: 14
