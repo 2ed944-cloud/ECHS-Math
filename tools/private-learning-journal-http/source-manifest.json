@@ -23,8 +23,8 @@
     },
     {
       "path": "tools/private-learning-journal-http/test_http.mjs",
-      "bytes": 18585,
-      "sha256": "6532c207176013a6adb929f9cb1bd1bea8e0f6bfb4f8bf06b7a21aaf573e34c5"
+      "bytes": 19671,
+      "sha256": "745952fcef17baea9a48b1848cacce70ca4d5a5e99c78946f110c838787cc0cb"
     },
     {
       "path": "tools/private-learning-journal-http/test_offline.py",
@@ -33,13 +33,13 @@
     },
     {
       "path": "tools/private-learning-journal-http/test_bridge.mjs",
-      "bytes": 4758,
-      "sha256": "1bfc845413194dd0a46c9a7fb1919b65fa9d247fe971f132cd7320b2754f26b4"
+      "bytes": 6180,
+      "sha256": "985a37eea553c772d0f410a970344fb8959527f1aa0725fecdfd6903b2597b38"
     },
     {
       "path": "tools/private-learning-journal-http/README.md",
-      "bytes": 8691,
-      "sha256": "e9c59f0b44de2585008404b6b7a57bf46d316670ed3cb32961a6e8c35075d725"
+      "bytes": 9218,
+      "sha256": "530b7f3d6b8d461ef378d107254066d31679b2ed04e77e17ecbeb5f578ba8c76"
     },
     {
       "path": "tools/private-learning-journal-http/input-pins.json",

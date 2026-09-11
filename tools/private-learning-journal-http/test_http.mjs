@@ -4,6 +4,7 @@ import {readFile,writeFile} from 'node:fs/promises';
 import {createHash,randomUUID} from 'node:crypto';
 import {createInterface} from 'node:readline';
 import {fileURLToPath} from 'node:url';
+import {resolve} from 'node:path';
 import {createJournalHandler} from './runtime/handler.mjs';
 import {createPendingIntent,operationLookup,acknowledgeIntent} from './runtime/pending-intent.mjs';
 import {CONTRACT} from './runtime/contract.mjs';
@@ -55,13 +56,22 @@ async function control(configPath,python){
  }};
 }
 
-function diagnostic(error){
+export function diagnostic(error){
  const result={type:error?.constructor?.name||'Error'};
  if(/^[0-9A-Z]{5}$/.test(error?.sqlstate||''))result.sqlstate=error.sqlstate;
  const code=error?.code||error?.cause?.code;if(['ERR_ASSERTION','ECONNRESET','ECONNREFUSED','EPIPE','ETIMEDOUT','UND_ERR_SOCKET','UND_ERR_CONNECT_TIMEOUT'].includes(code))result.code=code;
  if(['strictEqual','deepStrictEqual','match','notStrictEqual','=='].includes(error?.operator))result.operator=error.operator;
- for(const key of ['actual','expected'])if(typeof error?.[key]==='number'&&Number.isFinite(error[key]))result[key]=error[key];
+ for(const key of ['actual','expected']){
+  const value=error?.[key];if(typeof value==='number'&&Number.isFinite(value))result[key]=value;
+  else if(Array.isArray(value)&&value.length<=8&&value.every(x=>typeof x==='number'&&Number.isFinite(x)))result[key]=value.slice();
+ }
  const location=/test_http\.mjs:(\d+):(\d+)/.exec(error?.stack||'');if(location)result.location={line:Number(location[1]),column:Number(location[2])};return result;
+}
+
+const handlerCodes=new Set(['session-unavailable','actor-unavailable','owner-unavailable','invalid-request','journal-conflict','journal-limit','journal-deadline','journal-busy','journal-unavailable','upstream-rejected','invalid-upstream','content-type','content-encoding','content-length','deadline','cancelled']);
+export function recordHttpObservation(rows,route,status,data){
+ if(!['state','apply','operation','heads'].includes(route)||!Number.isInteger(status)||status<100||status>599)return;
+ const code=data?.error?.code;rows.push({route,status,code:handlerCodes.has(code)?code:null});if(rows.length>12)rows.shift();
 }
 
 async function runtimeSnapshot(){const names=['runtime/wire.mjs','runtime/contract.mjs','runtime/handler.mjs','runtime/pending-intent.mjs','bridge.mjs','controls.py','fixture.py','test_http.mjs'];return Promise.all(names.map(async path=>{const raw=await readFile(new URL(path,import.meta.url));return {path,bytes:raw.length,sha256:hash(raw)};}));}
@@ -70,7 +80,7 @@ async function main(){
  const [configPath,python,output]=process.argv.slice(2);const config=JSON.parse(await readFile(configPath,'utf8'));
  assert.equal(config.contract,'echs.c04.journal-http-private-run.v1');assert.equal(process.platform,'linux');assert.equal(process.env.GITHUB_ACTIONS,'true');assert.equal(process.env.RUNNER_ENVIRONMENT,'github-hosted');
  const sourceBefore=await runtimeSnapshot();assert.equal(hash(await readFile(new URL('./source-manifest.json',import.meta.url))),config.source_manifest_sha256);
- const observations=[],outcomes=[];let fault=null,server,ctl;
+ const observations=[],nativeObservations=[],outcomes=[];let fault=null,server,ctl;
  const report={contract:'echs.c04.journal-http-actual.v1',status:'RUNNING; NOT ACCEPTED',planned_groups:labels,checks:outcomes,real_http_executed:false,postgrest_executed:false,database_executed:false,hosted_edge_executed:false,tls_executed:false,browser_persistence_executed:false,production_calls:0};
  const fresh=(role='student')=>ctl.call('new',{role});
  const command=(action,c,extra={})=>ctl.call(action,{case:c.case,...extra});
@@ -78,7 +88,7 @@ async function main(){
  const snapshot=c=>command('snapshot',c);
  const stored=(c,b)=>command('operation',c,{operation_id:b.operation_id});
  const acknowledge=(intent,r,c,route='apply',requestRaw=intent.raw)=>acknowledgeIntent(intent,{route,requestRaw,status:r.status,replyRaw:r.raw,activeOwner:c.owner});
- async function call(route,raw,c){report.http_attempted=true;const response=await fetch(server.origin+'/functions/v1/learning-journal/'+route,{method:'POST',headers:{'content-type':'application/json',authorization:'Bearer '+c.token},body:raw,signal:AbortSignal.timeout(12000),redirect:'error'});report.real_http_executed=true;const text=await readWire(response.body,{timeoutMs:12000});return {status:response.status,raw:text,data:JSON.parse(text)};}
+ async function call(route,raw,c){report.http_attempted=true;const response=await fetch(server.origin+'/functions/v1/learning-journal/'+route,{method:'POST',headers:{'content-type':'application/json',authorization:'Bearer '+c.token},body:raw,signal:AbortSignal.timeout(12000),redirect:'error'});report.real_http_executed=true;const text=await readWire(response.body,{timeoutMs:12000});const data=JSON.parse(text);recordHttpObservation(nativeObservations,route,response.status,data);return {status:response.status,raw:text,data};}
  async function mark(index,fn){await fn();outcomes.push(labels[index]);}
  try{
   ctl=await control(configPath,python);report.database_executed=true;
@@ -105,7 +115,7 @@ async function main(){
   await mark(18,async()=>{const c=await fresh(),before=await snapshot(c),payload={p_token_hash:hash(c.token),p_payload:body(c)};for(const key of [config.anon_key,config.authenticated_key]){const r=await fetch('http://'+config.rest_ip+':3000/rpc/learning_journal_apply',{method:'POST',headers:{authorization:'Bearer '+key,'content-type':'application/json'},body:json(payload),redirect:'error',signal:AbortSignal.timeout(8000)});assert.ok([401,403].includes(r.status));await r.body.cancel();}assert.deepEqual(await snapshot(c),before);});
   await mark(19,async()=>{const c=await fresh(),b=body(c),before=await snapshot(c);b.records[0].value.oversize='x'.repeat(65537);assert.equal((await call('apply',json(b),c)).status,413);assert.deepEqual(await snapshot(c),before);});
   assert.deepEqual(outcomes,labels);assert.deepEqual(await runtimeSnapshot(),sourceBefore);Object.assign(report,{status:'ACTUAL HTTP POSTGREST SQL PASS',real_http_executed:true,postgrest_executed:true,database_executed:true,http_metrics:server.metrics,rpc_observations:observations,source_files:sourceBefore});
- }catch(error){report.status='FAIL; NO ACCEPTANCE';report.failure=diagnostic(error);report.failed_group=labels[outcomes.length]||'setup';}
+ }catch(error){report.status='FAIL; NO ACCEPTANCE';report.failure=diagnostic(error);report.failed_group=labels[outcomes.length]||'setup';report.rpc_observations=observations.slice(-12);report.http_observations=nativeObservations;}
  finally{
   try{if(server)await server.close();if(ctl)await ctl.close();report.control_reaped=true;}catch(error){report.status='FAIL; NO ACCEPTANCE';report.control_reaped=false;report.cleanup_failure=diagnostic(error);}
   try{assert.deepEqual(await runtimeSnapshot(),sourceBefore);}catch(error){report.status='FAIL; NO ACCEPTANCE';report.source_changed=true;}
@@ -113,4 +123,4 @@ async function main(){
  }
  process.stdout.write(json({status:report.status,passed:outcomes.length,planned:labels.length})+'\n');if(report.status!=='ACTUAL HTTP POSTGREST SQL PASS')process.exitCode=1;
 }
-main().catch(()=>{process.stdout.write('{"status":"FAIL BEFORE REPORT; NO ACCEPTANCE"}\n');process.exitCode=1;});
+if(process.argv[1]&&fileURLToPath(import.meta.url)===resolve(process.argv[1]))main().catch(()=>{process.stdout.write('{"status":"FAIL BEFORE REPORT; NO ACCEPTANCE"}\n');process.exitCode=1;});

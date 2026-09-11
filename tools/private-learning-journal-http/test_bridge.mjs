@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import {EventEmitter} from 'node:events';
 import {writeFile} from 'node:fs/promises';
 import {postgrestPort,listen,waitDrain,FIXTURE_ORIGIN} from './bridge.mjs';
+import {diagnostic,recordHttpObservation} from './test_http.mjs';
 const tests=[];const test=(name,fn)=>tests.push({name,fn});
 test('B01 fixture target is canonical private IPv4 at exact port3000',()=>{
  for(const target of ['http://127.0.0.1:3000/','http://8.8.8.8:3000','https://127.0.0.1:3000','http://127.0.0.1:3001','http://user@127.0.0.1:3000','http://localhost:3000'])assert.throws(()=>postgrestPort(target));
@@ -26,6 +27,15 @@ test('B07 client disconnect cancels an active streaming response producer',async
  let stopped;const cancelled=new Promise(resolve=>{stopped=resolve;});let timer;
  const server=await listen(async()=>new Response(new ReadableStream({start(controller){timer=setInterval(()=>controller.enqueue(new Uint8Array(65536)),1);},cancel(){clearInterval(timer);stopped();}})));
  try{const controller=new AbortController();const response=await fetch(server.origin+'/functions/v1/learning-journal/state',{method:'POST',body:'{}',signal:controller.signal});const reader=response.body.getReader();await reader.read();controller.abort();let limit;try{await Promise.race([cancelled,new Promise((_,reject)=>{limit=setTimeout(()=>reject(new Error('producer-not-cancelled')),2000);})]);}finally{clearTimeout(limit);}}finally{clearInterval(timer);await server.close();}
+});
+test('B08 assertion diagnostics retain only bounded numeric arrays',()=>{
+ const observed=diagnostic({actual:[200,504],expected:[200,409],message:'synthetic private body',stack:'synthetic private stack'});assert.deepEqual(observed.actual,[200,504]);assert.deepEqual(observed.expected,[200,409]);assert.equal(Object.hasOwn(observed,'message'),false);
+ for(const actual of [Array(9).fill(200),[NaN],[Infinity],['synthetic-private-value'],[{token:'synthetic'}]])assert.equal(Object.hasOwn(diagnostic({actual}),'actual'),false);
+});
+test('B09 HTTP observations are capped and retain only fixed routes statuses and codes',()=>{
+ const rows=[];for(let i=0;i<20;i++)recordHttpObservation(rows,'apply',504,{error:{code:'deadline',details:'synthetic-private-value'},token:'synthetic'});assert.equal(rows.length,12);assert.deepEqual(rows[0],{route:'apply',status:504,code:'deadline'});
+ recordHttpObservation(rows,'apply',502,{error:{code:'synthetic-private-value'}});assert.deepEqual(rows.at(-1),{route:'apply',status:502,code:null});assert.equal(rows.length,12);assert.equal(JSON.stringify(rows).includes('synthetic'),false);
+ for(const [route,status] of [['private/path',500],['state',NaN],['state',99],['state',600]])recordHttpObservation(rows,route,status,{});assert.equal(rows.length,12);assert.deepEqual(rows.at(-1),{route:'apply',status:502,code:null});
 });
 const outcomes=[];for(const {name,fn} of tests){try{await fn();outcomes.push({name,status:'PASS'});}catch(error){outcomes.push({name,status:'FAIL',error:String(error.stack||error)});}}
 const report={contract:'echs.c04.journal-http-loopback-adapter.v1',status:outcomes.every(x=>x.status==='PASS')?'PASS':'FAIL',groups:outcomes.length,outcomes,real_loopback_http:true,postgrest_executed:false,database_executed:false,production_calls:0};
