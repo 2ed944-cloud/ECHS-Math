@@ -2950,6 +2950,26 @@
         {
           "path": "docs/codex/OWNER_STORAGE_FOUNDATION_C04_RELEASE.json",
           "state": "existing"
+        },
+        {
+          "path": "tools/private-learning-owner-fence/owner-fence.sql",
+          "state": "existing"
+        },
+        {
+          "path": "tools/private-learning-owner-fence/test_fence.py",
+          "state": "existing"
+        },
+        {
+          "path": "tools/private-learning-owner-fence/run_integration.py",
+          "state": "existing"
+        },
+        {
+          "path": ".github/workflows/private-learning-owner-fence.yml",
+          "state": "existing"
+        },
+        {
+          "path": "docs/codex/OWNER_FENCE_C04_RELEASE.json",
+          "state": "existing"
         }
       ],
       "acceptance_criteria": [
@@ -2967,17 +2987,25 @@
           {
             "kind": "verified_session_foundation_scope",
             "path": "docs/codex/OWNER_STORAGE_FOUNDATION_C04_RELEASE.json"
+          },
+          {
+            "kind": "verified_owner_fence_tooling_scope",
+            "path": "docs/codex/OWNER_FENCE_C04_RELEASE.json"
           }
         ]
       },
       "deployment": {
         "status": "DEPLOYED",
-        "scope": "Session foundation only; whole C04 IN PROGRESS",
-        "deployed_at_main": "9ea1fe0ada9ab76d85b0e7f67a626cfcae05de79",
+        "scope": "Session foundation and validated owner-fence tooling only; no production schema or legacy-store adoption; whole C04 IN PROGRESS",
+        "deployed_at_main": "20e470daa986cae9c4e260e0c90eb3f700131a60",
         "evidence": [
           {
             "kind": "session_foundation_release",
             "path": "docs/codex/OWNER_STORAGE_FOUNDATION_C04_RELEASE.json"
+          },
+          {
+            "kind": "owner_fence_tooling_release",
+            "path": "docs/codex/OWNER_FENCE_C04_RELEASE.json"
           }
         ]
       },
@@ -2988,7 +3016,10 @@
         "Existing queue and Studio encrypted recovery fixes cover only their stated stores; account ownership must be proven for each legacy store.",
         "Canonical session/client and owner-storage foundation verified in PR369 with24 PR/19 main workflows and57 live checks. No legacy raw producer/reader/queue adoption is claimed.",
         "The next isolated engine inventory extends the prior49 obligations with seven additional completion writers and45 HTML dependency entries; no blanket storage completeness is claimed.",
-        "Synchronous localStorage compare/remove is not cross-tab atomic; queue adoption requires a transactional source-versioned journal and exact revision acknowledgements."
+        "Synchronous localStorage compare/remove is not cross-tab atomic; queue adoption requires a transactional source-versioned journal and exact revision acknowledgements.",
+        "Owner-fence tooling PR372 is verified at main20e470daa986cae9c4e260e0c90eb3f700131a60:400 actual PostgreSQL checks,68 baseline commands,4 PR/9 main workflows and13 anonymous GETs/27 checks. No production migration, active API or owner adoption was enabled.",
+        "Independent P2b student-practice repair review passed24 native page,9 flow/65 comparison,12 action and3 legacy-client suites (authority28); the candidate is not installed and transport remains held.",
+        "The frozen P3 design proposes immutable replay, server record CAS, reset generations and session checks after waits;49 planned cases are not executed SQL acceptance. P2 local revisions/receipts are not server acknowledgements or adoption authority."
       ],
       "next_dependency": [
         "ECHS-015",
@@ -3235,6 +3266,30 @@
         {
           "path": "docs/codex/PRIVATE_BANK_SNAPSHOTS_C08_RELEASE.json",
           "state": "existing"
+        },
+        {
+          "path": "tools/private-bank-service/run_actual_service.py",
+          "state": "existing"
+        },
+        {
+          "path": "tools/private-bank-service/test_service.mjs",
+          "state": "existing"
+        },
+        {
+          "path": "tools/private-bank-service/runtime/handler.mjs",
+          "state": "existing"
+        },
+        {
+          "path": "tools/private-bank-service/runtime/transport.mjs",
+          "state": "existing"
+        },
+        {
+          "path": ".github/workflows/private-bank-service-integration.yml",
+          "state": "existing"
+        },
+        {
+          "path": "docs/codex/PRIVATE_BANK_SERVICE_C08_RELEASE.json",
+          "state": "existing"
         }
       ],
       "acceptance_criteria": [
@@ -3255,17 +3310,25 @@
           {
             "kind": "actual_archive_postgres_and_http",
             "url": "https://github.com/2ed944-cloud/ECHS-Math/actions/runs/34436806345"
+          },
+          {
+            "kind": "verified_managed_service_tooling_scope",
+            "path": "docs/codex/PRIVATE_BANK_SERVICE_C08_RELEASE.json"
           }
         ]
       },
       "deployment": {
         "status": "DEPLOYED",
-        "scope": "Archive foundation only; whole C08 IN PROGRESS",
-        "deployed_at_main": "5c1d90385c666dd62ed7183bea3c5ad92a6490a9",
+        "scope": "Unused archive foundation and actual managed-service validation tooling only; no new production endpoint, import or delivery; whole C08 IN PROGRESS",
+        "deployed_at_main": "8ac226228128cd64728fc4aa4fee30aa6f975569",
         "evidence": [
           {
             "kind": "archive_foundation_release",
             "path": "docs/codex/PRIVATE_BANK_SNAPSHOTS_C08_RELEASE.json"
+          },
+          {
+            "kind": "managed_service_tooling_release",
+            "path": "docs/codex/PRIVATE_BANK_SERVICE_C08_RELEASE.json"
           }
         ]
       },
@@ -3275,7 +3338,10 @@
       "known_limits": [
         "403 Pearson records explicitly say commercial_publisher_resource_private_use_only; 5479 other records have no source_license. Private storage does not itself create publication or usage rights.",
         "Current raw static provider fallback is active. This is a P0 production migration, not a safe deletion of dormant files. No production import or redistribution decision has been made.",
-        "The additive archive foundation is verified at 5c1d90385c666dd62ed7183bea3c5ad92a6490a9 with222 PostgreSQL archive checks over27 migrations,15 PR/17 main workflows and41 checks from16 anonymous liveGETs. No importer, actual archive object coverage, private delivery, rights promotion or public cutover is claimed."
+        "The additive archive foundation is verified at 5c1d90385c666dd62ed7183bea3c5ad92a6490a9 with222 PostgreSQL archive checks over27 migrations,15 PR/17 main workflows and41 checks from16 anonymous liveGETs. No importer, actual archive object coverage, private delivery, rights promotion or public cutover is claimed.",
+        "PR370 verified299 SQL/HTTP checks with injected service dependencies; PR371 separately verifies19 real managed-service groups,54 local groups and68 baseline commands. Neither enables a production transport endpoint.",
+        "Managed-service tooling PR371 is verified at main8ac226228128cd64728fc4aa4fee30aa6f975569 with4 PR/9 main workflows and30 anonymous GETs/61 checks. The unchanged handler/transport and all57 executed sources are bound to the tested tree.",
+        "Hosted Edge CPU/memory feasibility, full importer/sealing receipts, complete rights/provenance and private delivery remain unfinished. Runner upload limits are not hosted Edge acceptance."
       ],
       "next_dependency": [
         "ECHS-015",
@@ -5127,10 +5193,10 @@
     "evidence": "docs/codex/MASTERY_TRUTHFULNESS_C02_RELEASE.json"
   },
   "last_verified_foundation_slice": {
-    "task": "ECHS-C04",
-    "scope": "session and owner-storage foundation only",
-    "main_sha": "9ea1fe0ada9ab76d85b0e7f67a626cfcae05de79",
-    "tree_sha": "de227c260e5ae4a7b3bf87a2cf73ee82867e36a2",
-    "evidence": "docs/codex/OWNER_STORAGE_FOUNDATION_C04_RELEASE.json"
+    "task": "ECHS-C08",
+    "scope": "isolated managed-service integration validation tooling; prior archive and owner foundations retained",
+    "main_sha": "8ac226228128cd64728fc4aa4fee30aa6f975569",
+    "tree_sha": "f7c3e82b53944d54b99cbc5499a5480ed09eefb0",
+    "evidence": "docs/codex/PRIVATE_BANK_SERVICE_C08_RELEASE.json"
   }
 }

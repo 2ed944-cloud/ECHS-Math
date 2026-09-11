@@ -1,6 +1,6 @@
 # C04 canonical session and owner-storage foundation
 
-Status: **foundation verified at `9ea1fe0ada9ab76d85b0e7f67a626cfcae05de79`. Whole C04 remains IN PROGRESS.**
+Status: **session foundation verified at `9ea1fe0ada9ab76d85b0e7f67a626cfcae05de79`; isolated owner-fence tooling verified at `20e470daa986cae9c4e260e0c90eb3f700131a60`. Whole C04 remains IN PROGRESS.**
 
 The institutional client now exposes one canonical `echs.owner-authority.v1` boundary. A session is read as a coherent token/account/expiry triplet from one browser storage area. Partial, ambiguous or inaccessible storage fails closed. Committing a same-tab session emits one ownership transition; native credential events invalidate the prior epoch even after an A→B→A change. Unrelated storage events do not change ownership.
 
@@ -48,6 +48,18 @@ python tools/validate_baseline.py
 The installed composition passed all 68 baseline commands, the 18-case existing mastery browser suite and the eight native ownership browser groups. Existing browser fixtures now use complete synthetic account/session records with matching expiry values; their assertions remain unchanged. The initial local baseline lacked its configured DOM dependency and hit Windows console encoding; the configured rerun passed without changing the baseline runner or weakening checks.
 
 `.github/workflows/owner-storage.yml` validates exact report contracts, counts and runtime hashes, then binds executed sources to the tested Git tree. Its evidence validator has 12 positive and negative test groups. A failed or skipped step is not a PASS. All24 PR workflows and19 main/live workflows passed. The exact Pages deployment and24 anonymous GETs passed57 checks, including all three public runtime source hashes. The [release receipt](OWNER_STORAGE_FOUNDATION_C04_RELEASE.json) binds the tested tree, deployment and sealed evidence. Existing local browser and parity results remain scoped to synthetic accounts; no authenticated production learner test is claimed.
+
+## Verified owner-fence tooling and isolated follow-ups
+
+[PR372](https://github.com/2ed944-cloud/ECHS-Math/pull/372) adds only the isolated `tools/private-learning-owner-fence/` candidate and its workflow. The [separate tooling receipt](OWNER_FENCE_C04_RELEASE.json) binds main `20e470daa986cae9c4e260e0c90eb3f700131a60`, tree `50f16f647881f3e23edc6a51eebf0db447635636`, 12 changed files and 45 executed sources. PostgreSQL 15.19 passed the unchanged 27-migration prefix and 55 membership + 222 archive + 123 fence checks = 400. All four PR workflows, 68 baseline commands and nine main workflows passed. Thirteen anonymous GETs passed 27 checks, confirming the deployed revision and excluding the tooling/workflow paths from Pages.
+
+The candidate tracks owner incarnations, explicit adoption routes and a truncation barrier, and tests OLD/NEW owner fencing on all six legacy learning tables. It remains tooling: no production migration, new active API, journal or learner adoption was enabled. The three production writers retain their existing behavior. The fixture explicitly preserves the original service-role ACLs; temporary grants used to prove all-six trigger behavior roll back. All synthetic evidence and initial failures are retained. This release does not claim every possible multi-table lock schedule or add session checks to legacy payloads that never carried them.
+
+The independently reviewed P2b student-practice repair is a separate, uninstalled local candidate: 24 native page groups, nine flow groups with 65 original-engine comparisons, 12 action groups and three legacy-client suites including authority28 passed. Its six runtime deltas address late catalog/cache writes, response-body cancellation, successful-receipt revision races, owner counter cleanup and trusted continuation routes. The independent review found no open issue in that scope; its hash and candidate binding appear in the tooling receipt. This is not the broader guest/staff/parent adoption, a production browser release or server sync acceptance. The original P1/P2a and raw queues remain preserved; transport is held.
+
+The P3 journal design now specifies exact replay, expected server record revisions, reset generations and fresh session checks after serialization waits. Its 49 planned protocol cases include one later handler/client case; none is an executed result. It identifies concrete missing browser seams: durable sent envelopes/server acknowledgements, deletion intent, full domain coverage and separate local/server revisions. The existing inventory remains broader than this repair: 45 HTML dependency entries, nine direct-engine entry points, seven additional completion writers and the original 49 review obligations still require their own closure. These counts are different inventories and must not be summed or treated as complete adoption.
+
+Rollback of PR372 removes only its tooling/workflow paths; it needs no production database rollback. Preserve the earlier session-foundation receipt, raw records and the remaining rollback requirements below. Full C04 and C08 remain IN PROGRESS; no local receipt establishes authenticated grading or private-content delivery.
 
 ## Next adoption and rollback
 
