@@ -1,0 +1,83 @@
+name: Read-only Supabase project metadata
+
+"on":
+  pull_request:
+    paths:
+      - "tools/private-bank-hosted-metadata/hosted_contract.py"
+      - "tools/private-bank-hosted-metadata/management_preflight.py"
+      - "tools/private-bank-hosted-metadata/test_management_preflight.py"
+      - "tools/private-bank-hosted-metadata/source_guard.py"
+      - "tools/private-bank-hosted-metadata/README.md"
+      - ".github/workflows/private-bank-hosted-metadata.yml"
+  push:
+    branches: [main]
+    paths:
+      - "tools/private-bank-hosted-metadata/hosted_contract.py"
+      - "tools/private-bank-hosted-metadata/management_preflight.py"
+      - "tools/private-bank-hosted-metadata/test_management_preflight.py"
+      - "tools/private-bank-hosted-metadata/source_guard.py"
+      - "tools/private-bank-hosted-metadata/README.md"
+      - ".github/workflows/private-bank-hosted-metadata.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: c08-project-metadata-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  offline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Check out exact event commit
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 2
+          persist-credentials: false
+      - name: Verify fixed sources and run ten mocked groups
+        run: python3 -I tools/private-bank-hosted-metadata/source_guard.py --offline
+      - name: Preserve closed offline metadata
+        if: success()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: c08-project-metadata-offline-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            artifacts/private-bank-hosted-metadata/offline/checkout.json
+            artifacts/private-bank-hosted-metadata/offline/result.json
+            artifacts/private-bank-hosted-metadata/offline/artifact-index.json
+          if-no-files-found: error
+          include-hidden-files: false
+          retention-days: 14
+
+  fixed-project-read:
+    needs: offline
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && github.repository == '2ed944-cloud/ECHS-Math' && github.run_attempt == 1 }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    environment: institutional-production
+    steps:
+      - name: Check out exact reviewed main commit
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 2
+          persist-credentials: false
+      - name: Read the one fixed project metadata endpoint
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+        run: python3 -I tools/private-bank-hosted-metadata/source_guard.py --metadata
+      - name: Preserve closed projected metadata
+        if: success()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: c08-project-metadata-read-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            artifacts/private-bank-hosted-metadata/metadata/checkout.json
+            artifacts/private-bank-hosted-metadata/metadata/result.json
+            artifacts/private-bank-hosted-metadata/metadata/artifact-index.json
+          if-no-files-found: error
+          include-hidden-files: false
+          retention-days: 14
