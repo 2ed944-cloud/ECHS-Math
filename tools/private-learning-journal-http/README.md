@@ -33,6 +33,16 @@ is disabled. Every actual journal call still reaches the service-only SQL RPC
 with a hashed custom student token and fresh authorization. The version and
 environment configuration follow the [PostgREST 14 configuration reference](https://docs.postgrest.org/en/v14/references/configuration.html).
 
+Readiness calls SQL directly and requires exactly HTTP403 with SQLSTATE28000
+for the nonexistent synthetic custom session. PostgREST v14.17 maps SQLSTATE
+class28 to HTTP403 in its [Error.hs source](https://github.com/PostgREST/postgrest/blob/v14.17/src/PostgREST/Error.hs).
+The native handler separately translates that SQL code into client401. The
+first PR376 service attempt required401 at the direct probe and failed readiness
+on both majors after successful schema installation; its artifacts remain
+retained as failed evidence. This successor corrects only that fixture probe,
+records a bounded status/code observation, and still requires all twenty actual
+HTTP cases. The four runtime modules, SQL inputs and service case bytes are unchanged.
+
 ## Actual HTTP path
 
 The Node fixture binds an ephemeral loopback HTTP port, converts incoming
@@ -91,13 +101,13 @@ Local commands, from the workspace root, use explicit repository inputs and a
 new report filename. They never start Docker or execute SQL:
 
 ```text
-python -X utf8 -B work/master-charter/c04-journal-http-service-candidate/test_offline.py work/foundations <new-offline-report.json>
-node work/master-charter/c04-journal-http-service-candidate/test_bridge.mjs <new-bridge-report.json>
-python -X utf8 -B work/master-charter/c04-journal-http-service-candidate/run.py --repo work/foundations --postgres-major 15
-python -X utf8 -B work/master-charter/c04-journal-http-service-candidate/run.py --repo work/foundations --postgres-major 17
+python -X utf8 -B work/master-charter/c04-journal-http-service-candidate-v2/test_offline.py work/foundations <new-offline-report.json>
+node work/master-charter/c04-journal-http-service-candidate-v2/test_bridge.mjs <new-bridge-report.json>
+python -X utf8 -B work/master-charter/c04-journal-http-service-candidate-v2/run.py --repo work/foundations --postgres-major 15
+python -X utf8 -B work/master-charter/c04-journal-http-service-candidate-v2/run.py --repo work/foundations --postgres-major 17
 ```
 
-The 15 offline configuration/ownership/failure tests and seven native loopback
+The 17 offline configuration/ownership/failure tests and seven native loopback
 adapter groups are separate evidence from the twenty real service cases. The
 adapter tests include an actual client disconnect and producer cancellation;
 their upstream service is injected and they do not execute PostgREST or SQL.

@@ -24,6 +24,21 @@ class NoRedirect(urllib.request.HTTPRedirectHandler):
         return None
 
 
+def readiness_observation(status, payload):
+    need(type(status) is int and 100 <= status <= 599, "readiness-status")
+    need(status not in (301, 302, 303, 307, 308), "readiness-redirect")
+    code = None
+    if len(payload) <= 1024:
+        try:
+            value = json.loads(payload)
+            candidate = value.get("code") if isinstance(value, dict) else None
+            if type(candidate) is str and re.fullmatch(r"[A-Z0-9]{5,8}", candidate): code = candidate
+        except (ValueError, UnicodeError): pass
+    # PostgREST v14.17 Error.hs maps SQLSTATE class28 to HTTP403. The
+    # native handler's client401 mapping is outside this direct SQL probe.
+    return {"http_status": status, "code": code, "ready": status == 403 and code == "28000"}
+
+
 def start_network(docker, identifier, plan):
     plan["network_planned"] = True
     docker("network", "create", "--driver", "bridge", "--internal", "--label", "echs.journal.http.run=" + identifier, project(identifier))
@@ -167,13 +182,13 @@ def main():
         while time.monotonic() < deadline:
             req = urllib.request.Request("http://" + rest_ip + ":3000/rpc/learning_journal_state", data=json.dumps({"p_token_hash": "0" * 64, "p_payload": {}}).encode(), headers={"Authorization": "Bearer " + values["service_key"], "Content-Type": "application/json"}, method="POST")
             try:
-                with opener.open(req, timeout=2) as response: response.read(1024)
+                with opener.open(req, timeout=2) as response:
+                    report["readiness"] = readiness_observation(response.status, response.read(1025))
             except urllib.error.HTTPError as error:
                 with error:
-                    need(error.code not in (301, 302, 303, 307, 308), "readiness-redirect")
-                    payload = error.read(1025)
-                    if error.code == 401 and len(payload) <= 1024 and json.loads(payload).get("code") == "28000": ready = True; break
+                    report["readiness"] = readiness_observation(error.code, error.read(1025))
             except (urllib.error.URLError, TimeoutError, ConnectionError): pass
+            if report.get("readiness", {}).get("ready") is True: ready = True; break
             time.sleep(.25)
         need(ready, "postgrest-schema-ready")
         report["fresh_sql_denial_observed"] = True

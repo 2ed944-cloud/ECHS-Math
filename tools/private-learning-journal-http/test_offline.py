@@ -136,6 +136,21 @@ class Guards(unittest.TestCase):
         self.assertEqual(fixture.source_receipt(repo), before)
 
 
+    def test_16_direct_sql_readiness_requires_exact_postgrest_status_and_code(self):
+        self.assertEqual(run.readiness_observation(403, b'{"code":"28000"}'), {"http_status": 403, "code": "28000", "ready": True})
+        for status, payload in ((401, b'{"code":"28000"}'), (403, b'{"code":"42501"}'), (200, b'{"code":"28000"}'), (403, b'{}'), (403, b'not json'), (403, b'{"code":"28000","padding":"' + b'x' * 1024 + b'"}')):
+            self.assertFalse(run.readiness_observation(status, payload)["ready"])
+        for status in (301, 302, 303, 307, 308):
+            with self.assertRaises(ValueError): run.readiness_observation(status, b'{"code":"28000"}')
+
+    def test_17_readiness_metadata_never_retains_raw_response_fields(self):
+        for payload in (b'{"code":"28000","details":"synthetic-private-value"}', b'{"code":"synthetic-private-value"}', b'{"code":28000}', b'[]', b'\xff'):
+            observed = run.readiness_observation(403, payload)
+            self.assertEqual(set(observed), {"http_status", "code", "ready"})
+            self.assertNotIn("synthetic-private-value", json.dumps(observed))
+            self.assertTrue(observed["code"] is None or observed["code"] == "28000")
+
+
 subprocess_guard = run.subprocess
 if __name__ == "__main__":
     output = Path(sys.argv[2])
