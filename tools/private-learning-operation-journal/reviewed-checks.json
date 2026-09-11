@@ -1,5 +1,5 @@
 {
-  "contract": "echs.c04.operation-journal-reviewed-checks.v1",
+  "contract": "echs.c04.operation-journal-reviewed-checks.v2",
   "frozen_candidate_manifest_sha256": "f777e16014893bff212019e919b8c6783d010b0fc44e15d365271cf4fcc7f9f0",
   "frozen_candidate_files": [
     {
@@ -295,8 +295,8 @@
     },
     {
       "path": "tools/private-learning-owner-fence/contract.py",
-      "bytes": 8657,
-      "sha256": "d2b9e5deb0ab99f57695e87a72106f5b0948c895b5080c9ab390b2aa05d8fe08",
+      "bytes": 10728,
+      "sha256": "698dfdd07002e939ace1dce48063f9cafb8894d4a060ccbaaaab25dac531c25a",
       "kind": "owner_fence"
     },
     {
@@ -313,8 +313,8 @@
     },
     {
       "path": "tools/private-learning-owner-fence/input-pins.json",
-      "bytes": 7011,
-      "sha256": "9b2a353d4ce76fa00498f0e3054ecab874e3a696fa3fbee6119096762d2b6cd3",
+      "bytes": 6833,
+      "sha256": "349fef542ea6f7d0d19154c1c8b6842ceda21df97dc09cef2386e0fb3af6bd4c",
       "kind": "owner_fence"
     },
     {
@@ -337,8 +337,8 @@
     },
     {
       "path": "tools/private-learning-owner-fence/checkout.py",
-      "bytes": 3354,
-      "sha256": "b88b04514c084fe4fdb5723c7abcc00fa32d25d99989beb15eb1204573e7ca87",
+      "bytes": 2598,
+      "sha256": "ae08467c5071418a256680d677c27288dadd5abbe17bfd802950abdf454aa1c6",
       "kind": "owner_fence"
     },
     {
@@ -349,8 +349,8 @@
     },
     {
       "path": "tools/private-learning-owner-fence/test_actions.py",
-      "bytes": 9216,
-      "sha256": "768ca0299d6a2024e5c4cb84d37f6e3746c44caaf5e1957494ef24ca73860d9e",
+      "bytes": 10816,
+      "sha256": "5e6c01986dff6aca084156ea295dbc96fa53a722f2ae5b604b45a5b06b27fd94",
       "kind": "owner_fence"
     },
     {
@@ -541,14 +541,14 @@
     },
     {
       "path": "tools/test_membership_authorization_database.py",
-      "bytes": 22909,
-      "sha256": "ff66dcd24ad843b214e942db6521938e4652c086b11d1a19a278d7deb27644e9",
+      "bytes": 23071,
+      "sha256": "a37114e985ffbb61739d9fba6df1b7accbe65b94531e8c2c24db46b9a7054ca3",
       "kind": "existing"
     },
     {
       "path": "tools/test_private_snapshot_database.py",
-      "bytes": 42846,
-      "sha256": "521ea6aa6f3415c1527469f35eef52454d9c6d21bb663a900f4e4466aae53618",
+      "bytes": 43032,
+      "sha256": "4ad7c785d7b7478580cd89334458187dcc5d315134022bcabf00457481c6ca4b",
       "kind": "existing"
     },
     {
@@ -996,5 +996,187 @@
     },
     "fixture_unchanged": true,
     "successor_actual_sql_acceptance": false
+  },
+  "version_matrix": {
+    "supported_majors": [
+      15,
+      17
+    ],
+    "default_major": 15,
+    "prior_release_manifest_sha256": "027f09b7b74593ee78f275d2c40c90ac87de889d05a9fb1f2ad1bec95fca6b6a",
+    "production_metadata_verification_sha256": "f03c58bdecf77cfb06276e42f8fd9688333478193e44273da261683e360baa2a",
+    "setup_changes": [
+      {
+        "path": "tools/test_membership_authorization_database.py",
+        "before_bytes": 22909,
+        "before_sha256": "ff66dcd24ad843b214e942db6521938e4652c086b11d1a19a278d7deb27644e9",
+        "bytes": 23071,
+        "sha256": "a37114e985ffbb61739d9fba6df1b7accbe65b94531e8c2c24db46b9a7054ca3",
+        "replacements": [
+          {
+            "before": "C09 real PostgreSQL15 authorization/atomicity tests.",
+            "after": "C09 real PostgreSQL authorization/atomicity tests (default major 15)."
+          },
+          {
+            "before": "p.add_argument('--static-only',action='store_true');args=p.parse_args()",
+            "after": "p.add_argument('--static-only',action='store_true');p.add_argument('--postgres-major',type=int,choices=(15,17),default=15);args=p.parse_args()"
+          },
+          {
+            "before": "'postgres_required':15",
+            "after": "'postgres_required':args.postgres_major"
+          },
+          {
+            "before": "//10000==15;report['postgres_version']",
+            "after": "//10000==args.postgres_major;report['postgres_version']"
+          },
+          {
+            "before": "passed('all25 existing migrations executed on real PostgreSQL15')",
+            "after": "passed(f'all25 existing migrations executed on real PostgreSQL{args.postgres_major}')"
+          },
+          {
+            "before": "['Isolated PostgreSQL15 only; no production fixtures or data.'",
+            "after": "[f'Isolated PostgreSQL{args.postgres_major} only; no production fixtures or data.'"
+          }
+        ]
+      },
+      {
+        "path": "tools/test_private_snapshot_database.py",
+        "before_bytes": 42846,
+        "before_sha256": "521ea6aa6f3415c1527469f35eef52454d9c6d21bb663a900f4e4466aae53618",
+        "bytes": 43032,
+        "sha256": "4ad7c785d7b7478580cd89334458187dcc5d315134022bcabf00457481c6ca4b",
+        "replacements": [
+          {
+            "before": "Actual isolated PostgreSQL15 C08 archive authorization/immutability contracts.",
+            "after": "Actual isolated PostgreSQL C08 archive contracts (default major 15)."
+          },
+          {
+            "before": "    args = parser.parse_args()",
+            "after": "    parser.add_argument('--postgres-major', type=int, choices=(15, 17), default=15)\r\n    args = parser.parse_args()"
+          },
+          {
+            "before": "'postgres_required': 15",
+            "after": "'postgres_required': args.postgres_major"
+          },
+          {
+            "before": "baseline['status'] == 'PASS' and baseline['migrations'] == report['migrations'][:-1]",
+            "after": "baseline['status'] == 'PASS' and baseline['postgres_required'] == args.postgres_major and baseline['migrations'] == report['migrations'][:-1]"
+          },
+          {
+            "before": "// 10000 == 15",
+            "after": "// 10000 == args.postgres_major"
+          },
+          {
+            "before": "passed('full exact accepted prior migration chain executed in a new loopback PostgreSQL15 database')",
+            "after": "passed(f'full exact accepted prior migration chain executed in a new loopback PostgreSQL{args.postgres_major} database')"
+          }
+        ]
+      },
+      {
+        "path": "tools/private-learning-operation-journal/test_journal.py",
+        "before_bytes": 52635,
+        "before_sha256": "4112ba261387017b5cdc2d96f1ed6c3631c543380fd7264b49c1908049191c48",
+        "bytes": 52743,
+        "sha256": "f36e430eac32ccdbec7fddc9229b1267111531bc1b60552fafee728def09563e",
+        "replacements": [
+          {
+            "before": "def exercise(db, connect, passed):",
+            "after": "def exercise(db, connect, passed, *, expected_major=15):"
+          },
+          {
+            "before": "    assert db.execute('show server_version_num').fetchone()[0].startswith('15')",
+            "after": "    assert type(expected_major) is int and expected_major in (15, 17)\r\n    assert int(db.execute('show server_version_num').fetchone()[0]) // 10000 == expected_major"
+          }
+        ]
+      }
+    ],
+    "sql_unchanged_from_pr374": false,
+    "journal_case_labels_unchanged": 48,
+    "fence_case_labels_unchanged": 123,
+    "membership_cases": 55,
+    "archive_cases": 222,
+    "actual_pg17_execution": false,
+    "docs": [
+      "https://www.postgresql.org/docs/17/release-17.html",
+      "https://supabase.com/docs/guides/platform/upgrading"
+    ],
+    "scope": "Each configured job requires that exact major. Three setup/report-only source differences remain separately described. The subsequent domain_conflict_repair changes only five SQL error-code literals and twelve corresponding fixture expectations. All48 labels and substantive assertions remain. No version equivalence or hosted compatibility is assumed."
+  },
+  "domain_conflict_repair": {
+    "contract": "echs.c04.journal-domain-conflict-repair.v1",
+    "status": "CONFIRMED HTTP504 CAUSE; REPAIRED ACTUAL ACCEPTANCE PENDING",
+    "previous_matrix_manifest_sha256": "639b6b06a6ffe2211f44c5ca135c0c5b50725c2a9f9cf05298c8ec150a818426",
+    "files": [
+      {
+        "path": "tools/private-learning-operation-journal/operation-journal.sql",
+        "before_bytes": 41799,
+        "before_sha256": "ac3ad94dce3d89b3e32594b9fd01593a266738abb66cbb8f3c2d72ca597b075e",
+        "bytes": 41799,
+        "sha256": "9ce98da90d5c141fdf184d32a00067eca1aaa800870204edd9c383cc22b1e1bf",
+        "replacements": [
+          {
+            "before": "errcode='40001'",
+            "after": "errcode='PT409'",
+            "count": 5
+          }
+        ]
+      },
+      {
+        "path": "tools/private-learning-operation-journal/test_journal.py",
+        "before_bytes": 52743,
+        "before_sha256": "f36e430eac32ccdbec7fddc9229b1267111531bc1b60552fafee728def09563e",
+        "bytes": 52743,
+        "sha256": "467abb8230f0e2dabbcfba41b2f548ef4470c920aa16c8fbf4ee98ff14c8c728",
+        "replacements": [
+          {
+            "before": "'40001'",
+            "after": "'PT409'",
+            "count": 12
+          }
+        ]
+      }
+    ],
+    "journal_labels_unchanged": 48,
+    "sql_raise_replacements": 5,
+    "fixture_expected_code_replacements": 12,
+    "reason": "Pinned PostgREST14.17/Hasql1.1.0.1 source retries SQLSTATE40001. HTTP V3 S05 observed first200 and second504/deadline instead of expected409 on both majors, with no completed loser upstream response. This is consistent with the retry mechanism; retry counts were not directly instrumented. Domain conflicts use explicit PostgREST PT409; transaction locking, SQL conditions and case labels are unchanged.",
+    "http_v3_evidence": {
+      "diagnostic_sha256": "167f66db6a383be65a152e601b49fa2efbf90e7d7b4fbf7a49065445db363d62",
+      "artifact_verification_sha256": "f59eb0a5a2e3f2b3090a26b092a9897a852745a8235cd80b3b4e4e5b5ec2a8c9",
+      "run_id": 34656604117,
+      "head": "0d9522372f7d4c551cdedfdf0b26e2e47d860254",
+      "tested_sha": "23289ae4beacce7d03614ed24d8ae30443359926",
+      "tested_tree": "c97861db2c968cc71b17e804645f0c265b1edcfc",
+      "artifacts": [
+        {
+          "major": 15,
+          "artifact_id": 10285691270,
+          "zip_sha256": "fd3f5abdbfb946dd15a18190dfca19a65f7165ca05bc1f5d0a800a0fbb9f5720"
+        },
+        {
+          "major": 17,
+          "artifact_id": 10286326463,
+          "zip_sha256": "eddc89cd1de784213ec2eb055840dd3222db73b6afcb745fda830a44950a1e4e"
+        }
+      ],
+      "observed_statuses": [
+        200,
+        504
+      ],
+      "expected_statuses": [
+        200,
+        409
+      ],
+      "accepted": false,
+      "mechanism_evidence": {
+        "postgrest_source": "https://github.com/PostgREST/postgrest/blob/v14.17/src/PostgREST/MainTx.hs",
+        "static_dependency_pin": "https://github.com/PostgREST/postgrest/blob/v14.17/nix/overlays/haskell-packages.nix",
+        "pinned_hasql_retry_source": "https://github.com/nikita-volkov/hasql-transaction/blob/1.1.0.1/library/Hasql/Transaction/Private/Sessions.hs",
+        "conclusion": "Pinned source retries40001 without a bound; actual artifacts demonstrate native deadline and no completed loser upstream response. Retry counts were not directly instrumented."
+      }
+    },
+    "actual_repaired_sql_execution": false,
+    "actual_repaired_http_execution": false,
+    "production_calls": 0
   }
 }

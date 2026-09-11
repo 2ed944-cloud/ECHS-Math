@@ -55,16 +55,30 @@ def invalid_tokens():
 check('Only exact lowercase SHA256 session lookup tokens cross the fixture RPC boundary',invalid_tokens)
 
 def checkout_binding():
-    original=contract.REPO
+    original=contract.REPO;original_git=contract.git
     with tempfile.TemporaryDirectory(prefix='echs-checkout-guard-') as directory:
         root=Path(directory);manifest={'base_sha':'a'*40,'base_tree':'b'*40};rows=[]
         for name in sorted(set(contract.REPOSITORY_INPUTS)|set(contract.OWN_PATHS)|set(contract.FOLLOWUP_PATHS)):
             raw=('synthetic fixture: '+name+'\n').encode();target=root/name;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(raw)
             rows.append({'path':name,'bytes':len(raw),'sha256':hashlib.sha256(raw).hexdigest(),'git_blob_sha':hashlib.sha1(b'blob '+str(len(raw)).encode()+b'\0'+raw).hexdigest()})
         receipt={'status':'EXACT SOURCE CHECKOUT VERIFIED',**manifest,'source_files':rows}
+        receipt.update(event='pull_request',source_baseline_sha=receipt['base_sha'],source_baseline_tree=receipt['base_tree'],
+            tested_sha='a'*40,tested_tree='b'*40,pr_head_sha='c'*40,pr_number=7,parents=[receipt['base_sha'],'c'*40],changed_paths=['tools/test_membership_authorization_database.py'])
+        answers={('rev-parse','HEAD'):receipt['tested_sha'],('rev-parse','HEAD^{tree}'):receipt['tested_tree'],
+            ('rev-list','--parents','-n','1','HEAD'):' '.join([receipt['tested_sha'],*receipt['parents']]),
+            ('rev-parse',receipt['pr_head_sha']):receipt['pr_head_sha'],('rev-parse',receipt['base_sha']+'^{tree}'):receipt['base_tree'],
+            ('diff','--name-only',receipt['base_sha'],receipt['tested_sha']):'\n'.join(receipt['changed_paths'])}
+        contract.git=lambda *args:answers[args]
         contract.REPO=root
         try:
             contract.checkout_sources(receipt,manifest)
+            for field,value in [('base_tree','0'*40),('parents',[]),('changed_paths',[]),('pr_number',True),('pr_head_sha','0'*40),('source_baseline_sha','0'*40)]:
+                bad=copy.deepcopy(receipt);bad[field]=value;rejects(lambda bad=bad:contract.checkout_sources(bad,manifest))
+            event={'number':7,'pull_request':{'base':{'sha':receipt['base_sha'],'repo':{'full_name':'2ed944-cloud/ECHS-Math'}},'head':{'sha':receipt['pr_head_sha']}}}
+            assert contract.checkout_event('pull_request',event,receipt['tested_sha'],receipt['tested_tree'],contract.git)['changed_paths']==receipt['changed_paths']
+            bad_event=copy.deepcopy(event);bad_event['pull_request']['base']['repo']['full_name']='foreign/repository'
+            rejects(lambda:contract.checkout_event('pull_request',bad_event,receipt['tested_sha'],receipt['tested_tree'],contract.git))
+            rejects(lambda:contract.checkout_event('push',event,receipt['tested_sha'],receipt['tested_tree'],contract.git))
             for name in ['tools/private-bank-transport/run-integration.py','.github/workflows/private-bank-transport-integration.yml','docs/codex/OWNER_STORAGE_FOUNDATION_C04_RELEASE.json']:
                 target=root/name;original_bytes=target.read_bytes();target.write_bytes(original_bytes+b'changed')
                 rejects(lambda:contract.checkout_sources(receipt,manifest));target.write_bytes(original_bytes)
@@ -73,7 +87,7 @@ def checkout_binding():
             wrong=copy.deepcopy(receipt);wrong['source_files'][0]['git_blob_sha']='0'*40
             rejects(lambda:contract.checkout_sources(wrong,manifest))
             contract.checkout_sources(receipt,manifest)
-        finally:contract.REPO=original
+        finally:contract.REPO=original;contract.git=original_git
 check('All52 checkout bindings reject altered harness/workflow/follow-up bytes, missing or duplicate paths and forged Git blobs',checkout_binding)
 report={'status':'LOCAL HARNESS PREFLIGHT PASS; ACTUAL POSTGRESQL NOT EXECUTED','checks':checks,'passed':len(checks),'production_calls':0,'database_executed':False,'real_storage_executed':False,'hosted_edge_executed':False}
 (HERE/'results').mkdir(exist_ok=True);(HERE/'results/local-preflight.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps({'status':report['status'],'groups':len(checks)}))

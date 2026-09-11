@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Execute 26 migrations and C09 real PostgreSQL15 authorization/atomicity tests.
+"""Execute 26 migrations and C09 real PostgreSQL authorization/atomicity tests (default major 15).
 
 Explicit disposable loopback database only. No production calls or credentials.
 Existing public rows and table grants are retained; only the two new RPC grants
@@ -11,10 +11,10 @@ from concurrent.futures import ThreadPoolExecutor
 NEW='202609090002_membership_authorization.sql'
 CAP={'contract':'echs.membership.v1','atomic_replacement':True,'tenant_scoped':True}
 def main():
-    p=argparse.ArgumentParser();p.add_argument('--repo-root',type=Path,default=Path(__file__).resolve().parents[1]);p.add_argument('--legacy-root',type=Path);p.add_argument('--report',type=Path,default=Path('reports/membership-authorization-database.json'));p.add_argument('--static-only',action='store_true');args=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument('--repo-root',type=Path,default=Path(__file__).resolve().parents[1]);p.add_argument('--legacy-root',type=Path);p.add_argument('--report',type=Path,default=Path('reports/membership-authorization-database.json'));p.add_argument('--static-only',action='store_true');p.add_argument('--postgres-major',type=int,choices=(15,17),default=15);args=p.parse_args()
     root=args.repo_root.resolve();legacy=(args.legacy_root or root).resolve();paths=sorted(x for x in (legacy/'supabase/migrations').glob('*.sql') if x.name<NEW);assert len(paths)==25
     new=root/'supabase/migrations'/NEW;paths.append(new);source=new.read_text(encoding='utf-8')
-    report={'status':'RUNNING; NOT PASS','contract':'echs.membership-database-tests.v1','production_calls':0,'postgres_required':15,'migration_count':26,'migrations':[{'file':x.name,'sha256':hashlib.sha256(x.read_bytes()).hexdigest()} for x in paths],'checks':[]}
+    report={'status':'RUNNING; NOT PASS','contract':'echs.membership-database-tests.v1','production_calls':0,'postgres_required':args.postgres_major,'migration_count':26,'migrations':[{'file':x.name,'sha256':hashlib.sha256(x.read_bytes()).hexdigest()} for x in paths],'checks':[]}
     def save():args.report.parent.mkdir(parents=True,exist_ok=True);args.report.write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8')
     def passed(label):report['checks'].append(label);print('PASS '+label,flush=True);save()
     try:
@@ -30,7 +30,7 @@ def main():
         def connect():
             db=psycopg.connect(dsn,hostaddr='::1' if info['host']=='::1' else '127.0.0.1',autocommit=True);db.execute("set statement_timeout='12s'");return db
         with connect() as db:
-            assert int(db.execute('show server_version_num').fetchone()[0])//10000==15;report['postgres_version']=db.execute('show server_version').fetchone()[0]
+            assert int(db.execute('show server_version_num').fetchone()[0])//10000==args.postgres_major;report['postgres_version']=db.execute('show server_version').fetchone()[0]
             assert db.execute('select current_database()').fetchone()[0].startswith('echs_membership_test')
             assert db.execute("select count(*) from pg_tables where schemaname='public'").fetchone()[0]==0,'Refusing nonempty database'
             db.execute("""
@@ -45,7 +45,7 @@ def main():
               set search_path=public,extensions;
             """)
             for path in paths[:-1]:db.execute(path.read_text(encoding='utf-8'),prepare=False)
-            passed('all25 existing migrations executed on real PostgreSQL15')
+            passed(f'all25 existing migrations executed on real PostgreSQL{args.postgres_major}')
             names=['org','foreign_org','admin','foreign_admin','teacher','other_teacher','unassigned_teacher','student','second_student','third_student','inactive_student','parent','foreign_teacher','foreign_student','class','second_class','foreign_class','archived_class']
             ids={name:uuid.uuid4() for name in names};nonce=uuid.uuid4().hex;tokens={}
             for name in ['org','foreign_org']:db.execute('insert into organizations(id,name,slug) values(%s,%s,%s)',(ids[name],'C09 synthetic organization','c09-'+name+'-'+nonce))
@@ -213,7 +213,7 @@ def main():
             passed('concurrent valid replacements serialize to one exact complete roster')
             assert db.execute("select correct from learning_attempts where client_event_id='c09-preserved'").fetchone()[0] is False
             passed('legacy learning evidence and numeric grading data remain unchanged')
-            report['status']='PASS';report['limits']=['Isolated PostgreSQL15 only; no production fixtures or data.','Existing membership table grants and other membership-writing APIs are unchanged. New RPC atomicity does not assert control over a trusted direct service-role/database administrator.','Historical same-org inactive student reports are preserved; roster mutations require an active class and active target accounts.'];save()
+            report['status']='PASS';report['limits']=[f'Isolated PostgreSQL{args.postgres_major} only; no production fixtures or data.','Existing membership table grants and other membership-writing APIs are unchanged. New RPC atomicity does not assert control over a trusted direct service-role/database administrator.','Historical same-org inactive student reports are preserved; roster mutations require an active class and active target accounts.'];save()
     except Exception as error:
         report['status']='FAIL';report['error']={'type':type(error).__name__,'sqlstate':getattr(error,'sqlstate',None),'message':str(error)[:500] if isinstance(error,AssertionError) else 'See sanitized SQL state and failing check position'};save();raise
 if __name__=='__main__':main()

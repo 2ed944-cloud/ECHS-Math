@@ -32,9 +32,22 @@ for name in sorted(set(contract.OWN_PATHS)|set(contract.REPOSITORY_INPUTS)):
 original_git=contract.git;original_actions=os.environ.pop('GITHUB_ACTIONS',None)
 # This in-memory Git answer is only a checker unit fixture. checkout.py uses
 # real Git in Actions, and no successful fixture receipt is persisted here.
-contract.git=lambda *args:receipt['tested_tree'] if args==('rev-parse','HEAD^{tree}') else receipt['tested_sha']
+receipt.update(event='pull_request',source_baseline_sha=receipt['base_sha'],source_baseline_tree=receipt['base_tree'],
+    tested_sha='a'*40,tested_tree='b'*40,pr_head_sha='c'*40,pr_number=7,parents=[receipt['base_sha'],'c'*40],changed_paths=['tools/test_membership_authorization_database.py'])
+answers={('rev-parse','HEAD'):receipt['tested_sha'],('rev-parse','HEAD^{tree}'):receipt['tested_tree'],
+    ('rev-list','--parents','-n','1','HEAD'):' '.join([receipt['tested_sha'],*receipt['parents']]),
+    ('rev-parse',receipt['pr_head_sha']):receipt['pr_head_sha'],('rev-parse',receipt['base_sha']+'^{tree}'):receipt['base_tree'],
+    ('diff','--name-only',receipt['base_sha'],receipt['tested_sha']):'\n'.join(receipt['changed_paths'])}
+contract.git=lambda *args:answers[args]
 try:
     contract.checkout_sources(receipt);assert len(receipt['source_files'])==45
+    for field,value in [('base_tree','0'*40),('parents',[]),('changed_paths',[]),('pr_number',True),('pr_head_sha','0'*40),('source_baseline_sha','0'*40)]:
+        bad=copy.deepcopy(receipt);bad[field]=value;rejected(lambda bad=bad:contract.checkout_sources(bad))
+    event={'number':7,'pull_request':{'base':{'sha':receipt['base_sha'],'repo':{'full_name':'2ed944-cloud/ECHS-Math'}},'head':{'sha':receipt['pr_head_sha']}}}
+    assert contract.checkout_event('pull_request',event,receipt['tested_sha'],receipt['tested_tree'],contract.git)['changed_paths']==receipt['changed_paths']
+    bad_event=copy.deepcopy(event);bad_event['pull_request']['base']['repo']['full_name']='foreign/repository'
+    rejected(lambda:contract.checkout_event('pull_request',bad_event,receipt['tested_sha'],receipt['tested_tree'],contract.git))
+    rejected(lambda:contract.checkout_event('push',event,receipt['tested_sha'],receipt['tested_tree'],contract.git))
     passed('Exact12 owned and33 unchanged source paths form the closed45-file checker fixture')
     for change in ['missing','duplicate','hash','boolean','extra']:
         bad=copy.deepcopy(receipt)

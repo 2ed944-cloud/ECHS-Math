@@ -5,19 +5,19 @@ HERE=Path(__file__).resolve().parent
 REPO=HERE.parent.parent
 FENCE=REPO/'tools/private-learning-owner-fence'
 WORKFLOW='.github/workflows/private-learning-operation-journal.yml'
-REVIEWED_SHA='3ed2b46e791ea79d94fd4e186acec3afa8075b6967ae2b9bae5414ce2a1b3537'
-INPUT_SHA='d50db08d63bf85fdec0cf030e01f9695d637b06569ad6a3fdfd2304f4d472ee2'
+REVIEWED_SHA='3438fafa4e329ad4444e6d23166f840bb83c7bd0bb64b399d212fc2e78909645'
+INPUT_SHA='10b60ba32e62e0a08302136fcf2d6f76a9842919d9677c8b88ec533eccd72eaf'
 NAMES=('operation-journal.sql','contract.py','test_journal.py','run_integration.py','test_local.py','input-pins.json','README.md',
        'checkout.py','assemble.py','test_actions.py','reviewed-checks.json')
 OWN_PATHS=tuple('tools/private-learning-operation-journal/'+p for p in NAMES)+(WORKFLOW,)
 CHECKOUT_KEYS={'contract','status','event','tested_sha','tested_tree','parents','base_sha','base_tree','pr_head_sha','pr_number',
-              'owned_paths','source_files','input_pins_sha256','reviewed_checks_sha256','postgres_image','sql_location','production_migration','production_calls'}
+              'owned_paths','source_files','input_pins_sha256','reviewed_checks_sha256','postgres_image','postgres_required','source_baseline','changed_paths','sql_location','production_migration','production_calls'}
 
 def digest(raw):return hashlib.sha256(raw).hexdigest()
 
 def reviewed():
     raw=(HERE/'reviewed-checks.json').read_bytes();assert digest(raw)==REVIEWED_SHA,'Reviewed source contract changed'
-    value=json.loads(raw);assert value['contract']=='echs.c04.operation-journal-reviewed-checks.v1'
+    value=json.loads(raw);assert value['contract']=='echs.c04.operation-journal-reviewed-checks.v2'
     assert value['frozen_candidate_manifest_sha256']=='f777e16014893bff212019e919b8c6783d010b0fc44e15d365271cf4fcc7f9f0'
     assert value['design_manifest_sha256']=='dd02c3fa2a7114f0e81afcd3b0e6de931119d9991e993f0c8c721b7117db422d'
     return value
@@ -26,13 +26,13 @@ def sources(repo=None):
     repo=REPO if repo is None else Path(repo)
     raw=(HERE/'input-pins.json').read_bytes();assert digest(raw)==INPUT_SHA,'Journal prerequisite manifest changed'
     pins=json.loads(raw);reference=reviewed()
-    assert set(pins)=={'contract','status','base_sha','base_tree','files','reviewed_checks_sha256','original_migrations','unchanged_owner_fence_sources','production_calls'}
-    assert pins['contract']=='echs.c04.operation-journal-inputs.v2' and pins['status']=='EXACT POST-PR373 BASE PINNED'
+    assert set(pins)=={'contract','status','base_sha','base_tree','files','reviewed_checks_sha256','original_migrations','owner_fence_sources','production_calls'}
+    assert pins['contract']=='echs.c04.operation-journal-inputs.v3' and pins['status']=='VERSION MATRIX INPUTS PINNED'
     assert type(pins['base_sha']) is str and re.fullmatch('[0-9a-f]{40}',pins['base_sha'])
     assert type(pins['base_tree']) is str and re.fullmatch('[0-9a-f]{40}',pins['base_tree'])
     assert pins['reviewed_checks_sha256']==REVIEWED_SHA
     assert type(pins['original_migrations']) is int and pins['original_migrations']==27
-    assert type(pins['unchanged_owner_fence_sources']) is int and pins['unchanged_owner_fence_sources']==12
+    assert type(pins['owner_fence_sources']) is int and pins['owner_fence_sources']==12
     assert type(pins['production_calls']) is int and pins['production_calls']==0
     rows=pins['files'];assert rows==reference['inputs'] and len(rows)==45 and len({r['path'] for r in rows})==45
     assert sum(r['kind']=='owner_fence' for r in rows)==12
@@ -51,10 +51,37 @@ def sources(repo=None):
     assert repair['fixture_unchanged'] is True and repair['first_ci']['accepted'] is False
     assert repair['successor_actual_sql_acceptance'] is False
     for name in ('operation-journal.sql','test_journal.py'):
-        pin=repair['repaired_sql'] if name=='operation-journal.sql' else next(r for r in reference['frozen_candidate_files'] if r['path']==name)
-        raw=(HERE/name).read_bytes()
+        pin=repair['repaired_sql'] if name=='operation-journal.sql' else next(r for r in reference['version_matrix']['setup_changes'] if r['path']=='tools/private-learning-operation-journal/test_journal.py')
+        raw=before_domain_repair('tools/private-learning-operation-journal/'+name,(HERE/name).read_bytes())
         assert len(raw)==pin['bytes'] and digest(raw)==pin['sha256'],'Frozen SQL repair or test fixture changed'
+    matrix=reference['version_matrix'];assert matrix['supported_majors']==[15,17] and matrix['default_major']==15
+    for change in matrix['setup_changes']:
+        data=before_domain_repair(change['path'],(repo/change['path']).read_bytes())
+        assert len(data)==change['bytes'] and digest(data)==change['sha256'],'Reviewed version setup changed'
+        for replacement in reversed(change['replacements']):
+            old=replacement['before'].encode();new=replacement['after'].encode()
+            assert data.count(new)==1;data=data.replace(new,old)
+        assert len(data)==change['before_bytes'] and digest(data)==change['before_sha256'],'Version setup is not the reviewed narrow change'
     return pins,migrations
+
+def before_domain_repair(path,raw):
+    """Audit the exact code-only diff in memory; never rewrite executed SQL."""
+    repair=reviewed()['domain_conflict_repair']
+    assert repair['contract']=='echs.c04.journal-domain-conflict-repair.v1'
+    assert repair['previous_matrix_manifest_sha256']=='639b6b06a6ffe2211f44c5ca135c0c5b50725c2a9f9cf05298c8ec150a818426'
+    expected={'tools/private-learning-operation-journal/operation-journal.sql':5,'tools/private-learning-operation-journal/test_journal.py':12}
+    assert len(repair['files'])==2 and {row['path'] for row in repair['files']}==set(expected)
+    if path not in expected:return raw
+    row=next(row for row in repair['files'] if row['path']==path)
+    assert len(raw)==row['bytes'] and digest(raw)==row['sha256'],'Frozen SQL domain-conflict repair or fixture changed'
+    assert len(row['replacements'])==1
+    edit=row['replacements'][0];assert edit['count']==expected[path]
+    assert edit['before']==("errcode='40001'" if path.endswith('.sql') else "'40001'")
+    assert edit['after']==("errcode='PT409'" if path.endswith('.sql') else "'PT409'")
+    assert raw.count(edit['after'].encode())==edit['count']
+    result=raw.replace(edit['after'].encode(),edit['before'].encode())
+    assert len(result)==row['before_bytes'] and digest(result)==row['before_sha256'],'Domain-conflict repair exceeds reviewed literals'
+    return result
 
 def snapshot():
     sources()
@@ -79,9 +106,18 @@ def connection_guard(info,prefix):
     assert re.fullmatch('[1-9][0-9]{0,4}',info.get('port','5432')) and int(info.get('port','5432'))<=65535
     return '::1' if info['host']=='::1' else '127.0.0.1'
 
-def connected(db,info,address):
+def postgres_major(value):
+    assert type(value) is int and value in (15,17),'Expected PostgreSQL major must be exactly 15 or 17'
+    return value
+
+def postgres_version(value,expected_major):
+    major=postgres_major(expected_major)
+    assert type(value) is str and re.fullmatch(str(major)+r'\.[0-9]+(?: \([^\r\n]{1,180}\))?',value),'Actual PostgreSQL version differs from configured job'
+
+def connected(db,info,address,expected_major=15):
+    major=postgres_major(expected_major)
     assert db.info.hostaddr==address and db.info.dbname==info['dbname']
-    assert int(db.execute('show server_version_num').fetchone()[0])//10000==15
+    assert int(db.execute('show server_version_num').fetchone()[0])//10000==major
 
 def load_fence():
     old=sys.modules.get('contract')
@@ -122,23 +158,27 @@ def actions_labels():
 
 def git(*args):return subprocess.check_output(['git',*args],cwd=REPO,text=True).strip()
 
-def checkout_sources(value,verify_git=True):
+def checkout_sources(value,verify_git=True,expected_major=15):
+    major=postgres_major(expected_major)
     pins,_=sources();assert type(value) is dict and set(value)==CHECKOUT_KEYS
     assert value['contract']=='echs.c04.operation-journal-checkout.v1' and value['status']=='EXACT JOURNAL SOURCE CHECKOUT VERIFIED'
-    assert value['base_sha']==pins['base_sha'] and value['base_tree']==pins['base_tree']
-    for key in ('tested_sha','tested_tree'):assert type(value[key]) is str and re.fullmatch('[0-9a-f]{40}',value[key])
+    assert value['source_baseline']=={'sha':pins['base_sha'],'tree':pins['base_tree']}
+    for key in ('tested_sha','tested_tree','base_sha','base_tree'):assert type(value[key]) is str and re.fullmatch('[0-9a-f]{40}',value[key]) and value[key]!='0'*40
+    changed=value['changed_paths'];assert type(changed) is list and 1<=len(changed)<=2000 and len(changed)==len(set(changed))
+    assert all(type(p) is str and re.fullmatch('[A-Za-z0-9._/-]{1,500}',p) and not p.startswith('/') and '..' not in p.split('/') for p in changed)
     assert value['event'] in ('pull_request','workflow_dispatch') and type(value['parents']) is list and 1<=len(value['parents'])<=2
     assert all(type(x) is str and re.fullmatch('[0-9a-f]{40}',x) for x in value['parents'])
     if value['event']=='pull_request':
         assert type(value['pr_number']) is int and value['pr_number']>0
         assert type(value['pr_head_sha']) is str and re.fullmatch('[0-9a-f]{40}',value['pr_head_sha'])
-        assert value['parents']==[pins['base_sha'],value['pr_head_sha']]
-    else:assert value['pr_number'] is None and value['pr_head_sha'] is None
+        assert value['parents']==[value['base_sha'],value['pr_head_sha']]
+    else:assert value['pr_number'] is None and value['pr_head_sha'] is None and value['parents']==[value['base_sha']]
     assert value['owned_paths']==list(OWN_PATHS) and len(OWN_PATHS)==12
     assert value['input_pins_sha256']==digest((HERE/'input-pins.json').read_bytes()) and value['reviewed_checks_sha256']==REVIEWED_SHA
     assert value['sql_location']=='tools/private-learning-operation-journal/operation-journal.sql'
     assert value['production_migration'] is False and type(value['production_calls']) is int and value['production_calls']==0
-    image=value['postgres_image'];assert type(image) is dict and set(image)=={'configured','image_id','repo_digests'} and image['configured']=='postgres:15'
+    assert type(value['postgres_required']) is int and value['postgres_required']==major
+    image=value['postgres_image'];assert type(image) is dict and set(image)=={'configured','image_id','repo_digests'} and image['configured']=='postgres:'+str(major)
     assert type(image['image_id']) is str and re.fullmatch('sha256:[0-9a-f]{64}',image['image_id'])
     assert type(image['repo_digests']) is list and 1<=len(image['repo_digests'])<=8 and len(set(image['repo_digests']))==len(image['repo_digests'])
     assert all(type(x) is str and re.fullmatch('[A-Za-z0-9./_-]+@sha256:[0-9a-f]{64}',x) for x in image['repo_digests'])
@@ -155,9 +195,10 @@ def checkout_sources(value,verify_git=True):
     if verify_git:
         assert git('rev-parse','HEAD')==value['tested_sha'] and git('rev-parse','HEAD^{tree}')==value['tested_tree']
         assert git('rev-parse',pins['base_sha']+'^{tree}')==pins['base_tree']
+        assert git('merge-base',pins['base_sha'],value['tested_sha'])==pins['base_sha'],'Historical source baseline is not an ancestor'
+        assert git('rev-parse',value['base_sha']+'^{tree}')==value['base_tree']
         assert git('rev-list','--parents','-n','1','HEAD').split()[1:]==value['parents']
-        assert set(git('diff','--name-only',pins['base_sha'],value['tested_sha']).splitlines())==set(OWN_PATHS)
-        if value['event']=='pull_request':assert git('rev-parse',value['pr_head_sha']+'^{tree}')==value['tested_tree']
+        assert git('diff','--name-only',value['base_sha'],value['tested_sha']).splitlines()==changed
+        if value['event']=='pull_request':assert git('rev-parse',value['pr_head_sha'])==value['pr_head_sha']
         for row in rows:
             assert git('rev-parse',value['tested_sha']+':'+row['path'])==row['git_blob_sha']
-            if row['path'] not in OWN_PATHS:assert git('rev-parse',pins['base_sha']+':'+row['path'])==row['git_blob_sha']

@@ -13,22 +13,22 @@ def row_digest(values):
     return result.hexdigest()
 
 def main():
-    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--execute',action='store_true');parser.add_argument('--checkout-report',type=Path);args=parser.parse_args()
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--postgres-major',type=int,choices=(15,17),default=15);parser.add_argument('--execute',action='store_true');parser.add_argument('--checkout-report',type=Path);args=parser.parse_args()
     pins,migrations=sources();expected=snapshot();labels=planned_labels()
     migration_rows=[{'file':r['path'].split('/')[-1],'sha256':r['sha256']} for r in migrations]
     if not args.execute:
-        print(json.dumps({'status':'SOURCE PREFLIGHT ONLY; POSTGRESQL NOT EXECUTED','prerequisites':45,'original_migrations':27,'unchanged_owner_fence_sources':12,
+        print(json.dumps({'status':'SOURCE PREFLIGHT ONLY; POSTGRESQL NOT EXECUTED','prerequisites':45,'original_migrations':27,'reviewed_owner_fence_sources':12,'postgres_required':args.postgres_major,
             'planned_sql_groups':len(labels),'source_files':expected,'database_executed':False,'production_calls':0}));return
     checkout=None;checkout_hash=None
     if os.environ.get('GITHUB_ACTIONS')=='true':assert args.checkout_report,'Actions requires exact checkout evidence'
     if args.checkout_report:
         raw=args.checkout_report.read_bytes();checkout_hash=digest(raw);checkout=json.loads(raw)
-        checkout_sources(checkout)
+        checkout_sources(checkout,expected_major=args.postgres_major)
     def verified():
         unchanged(expected)
         if checkout is not None:
             assert digest(args.checkout_report.read_bytes())==checkout_hash,'Checkout receipt changed'
-            checkout_sources(checkout)
+            checkout_sources(checkout,expected_major=args.postgres_major)
     verified()
     # Only explicitly supplied disposable loopback databases. Never log DSNs.
     import psycopg
@@ -43,13 +43,13 @@ def main():
     assert connection_guard(bank_info,'echs_bank_test_journal_')==address
     assert {k:v for k,v in member_info.items() if k!='dbname'}=={k:v for k,v in bank_info.items() if k!='dbname'}
     with psycopg.connect(member_dsn,hostaddr=address,autocommit=True,connect_timeout=5) as db:
-        connected(db,member_info,address)
+        connected(db,member_info,address,args.postgres_major)
         assert db.execute("select count(*) from pg_tables where schemaname in ('public','private','storage')").fetchone()[0]==0
         assert db.execute("select count(*) from pg_roles where rolname in ('anon','authenticated','service_role','fixture_unprivileged')").fetchone()[0]==0
         assert db.execute('select 1 from pg_database where datname=%s',(bank_info['dbname'],)).fetchone() is None
     output=HERE/'results'/('run-'+uuid.uuid4().hex);output.mkdir(parents=True)
     report={'contract':'echs.c04.operation-journal-acceptance.v1','status':'RUNNING; NOT ACCEPTED','source_files':expected,'migrations':migration_rows,
-        'checks':[],'fence_checks':[],'production_calls':0,'database_executed':False,'production_migration':False,
+        'postgres_required':args.postgres_major,'checks':[],'fence_checks':[],'production_calls':0,'database_executed':False,'production_migration':False,
         'active_api':False,'http_executed':False,'owner_adoption_api':False,'browser_bridge':False,'grading_authoritative':False}
     if checkout is not None:report.update(checkout_report_sha256=checkout_hash,tested_sha=checkout['tested_sha'],tested_tree=checkout['tested_tree'])
     def save():(output/'acceptance.json').write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8')
@@ -64,12 +64,12 @@ def main():
         verified()
         member=output/'membership-baseline.json'
         with (output/'membership-baseline.log').open('w',encoding='utf-8') as log:
-            done=subprocess.run([sys.executable,str(REPO/'tools/test_membership_authorization_database.py'),'--repo-root',str(REPO),'--report',str(member)],cwd=REPO,env=env,stdout=log,stderr=subprocess.STDOUT,timeout=180)
-        verified();assert done.returncode==0,'Unchanged membership baseline failed'
-        baseline=json.loads(member.read_text());assert baseline['status']=='PASS' and len(baseline['checks'])==55 and baseline['migrations']==migration_rows[:-1]
+            done=subprocess.run([sys.executable,str(REPO/'tools/test_membership_authorization_database.py'),'--repo-root',str(REPO),'--postgres-major',str(args.postgres_major),'--report',str(member)],cwd=REPO,env=env,stdout=log,stderr=subprocess.STDOUT,timeout=180)
+        verified();assert done.returncode==0,'Membership baseline failed'
+        baseline=json.loads(member.read_text());assert baseline['status']=='PASS' and baseline['postgres_required']==args.postgres_major and len(baseline['checks'])==55 and baseline['migrations']==migration_rows[:-1]
         report['membership_baseline_checks']=55;save()
         with psycopg.connect(member_dsn,hostaddr=address,autocommit=True,connect_timeout=5) as db:
-            connected(db,member_info,address)
+            connected(db,member_info,address,args.postgres_major)
             assert db.execute('select 1 from pg_database where datname=%s',(bank_info['dbname'],)).fetchone() is None
             db.execute(sql.SQL('create database {}').format(sql.Identifier(bank_info['dbname'])))
         trigger=(REPO/migrations[-1]['path']).read_text(encoding='utf-8')
@@ -88,7 +88,7 @@ def main():
             def execute(self,query,*args,**kwargs):
                 cursor=super().execute(query,*args,**kwargs)
                 if type(query) is str and query==trigger:
-                    assert not injections;verified();connected(self,bank_info,address)
+                    assert not injections;verified();connected(self,bank_info,address,args.postgres_major)
                     original=preservation(self)
                     super().execute(fence_sql,prepare=False)
                     before=preservation(self)
@@ -108,7 +108,7 @@ def main():
         try:
             psycopg.connect=CandidateConnection.connect;os.environ['ECHS_BANK_TEST_DSN']=bank_dsn
             sys.path.insert(0,str(REPO/'tools'))
-            sys.argv=[str(REPO/'tools/test_private_snapshot_database.py'),'--repo-root',str(REPO),'--baseline-report',str(member),'--report',str(archive)]
+            sys.argv=[str(REPO/'tools/test_private_snapshot_database.py'),'--repo-root',str(REPO),'--baseline-report',str(member),'--postgres-major',str(args.postgres_major),'--report',str(archive)]
             with (output/'archive-with-fence-and-journal.log').open('w',encoding='utf-8') as log,contextlib.redirect_stdout(log),contextlib.redirect_stderr(log):
                 runpy.run_path(sys.argv[0],run_name='__main__')
         finally:
@@ -116,12 +116,12 @@ def main():
             if old_env is None:os.environ.pop('ECHS_BANK_TEST_DSN',None)
             else:os.environ['ECHS_BANK_TEST_DSN']=old_env
         assert len(injections)==1;verified()
-        baseline=json.loads(archive.read_text());assert baseline['status']=='PASS' and len(baseline['checks'])==222 and baseline['migrations']==migration_rows
+        baseline=json.loads(archive.read_text());assert baseline['status']=='PASS' and baseline['postgres_required']==args.postgres_major and len(baseline['checks'])==222 and baseline['migrations']==migration_rows
         report.update(archive_baseline_checks=222,candidate_installation=injections[0]);save()
         def connect():
             db=original_connect(bank_dsn,hostaddr=address,autocommit=True,connect_timeout=5)
             try:
-                connected(db,bank_info,address);db.execute("set statement_timeout='10s'");db.execute("set lock_timeout='8s'");return db
+                connected(db,bank_info,address,args.postgres_major);db.execute("set statement_timeout='10s'");db.execute("set lock_timeout='8s'");return db
             except BaseException:db.close();raise
         fence,fence_labels=load_fence()
         with connect() as db:
@@ -132,7 +132,7 @@ def main():
         verified()
         from test_journal import exercise
         with connect() as db:
-            details=exercise(db,connect,passed)
+            details=exercise(db,connect,passed,expected_major=args.postgres_major)
         verified();assert report['checks']==labels,'Journal assertion sequence incomplete'
         assert details is None or type(details) is dict
         report.update(status='ACTUAL POSTGRESQL JOURNAL PASS; NO ACTIVE API OR ADOPTION',database_executed=True,

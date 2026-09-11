@@ -55,6 +55,15 @@ class Guards(unittest.TestCase):
                 return SimpleNamespace(fetchone=lambda:(self.version,))
         info={'dbname':'echs_bank_test_journal_synthetic'}
         contract.connected(DB(),info,'127.0.0.1')
+        for expected in (15,17):
+            contract.connected(DB(version=expected*10000+1),info,'127.0.0.1',expected)
+            for actual in (14,15,16,17,18):
+                if actual!=expected:
+                    with self.assertRaises(AssertionError):contract.connected(DB(version=actual*10000+1),info,'127.0.0.1',expected)
+            contract.postgres_version(str(expected)+'.6 (synthetic fixture)',expected)
+            with self.assertRaises(AssertionError):contract.postgres_version(str(17 if expected==15 else 15)+'.6',expected)
+        for invalid in (True,15.0,'17',16,None):
+            with self.assertRaises(AssertionError):contract.connected(DB(),info,'127.0.0.1',invalid)
         for changed in ({'address':'192.0.2.1'},{'name':'production'},{'version':160001}):
             with self.assertRaises(AssertionError):contract.connected(DB(**changed),info,'127.0.0.1')
 

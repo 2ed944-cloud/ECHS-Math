@@ -1,6 +1,6 @@
 """Closed local integration inputs. Importing this module performs no I/O."""
 from pathlib import Path
-import hashlib,json,re
+import hashlib,json,re,subprocess
 
 HERE=Path(__file__).resolve().parent
 REPO=HERE.parent.parent
@@ -12,7 +12,8 @@ def digest(raw):return hashlib.sha256(raw).hexdigest()
 OWN_PATHS=tuple('tools/private-bank-transport/'+p for p in ['handler.mjs','transport.mjs','contract.py','rpc-fixture.py','run-integration.py','test-contract.py','test-http-sql.mjs','source-pins.json','README.md'])+('.github/workflows/private-bank-transport-integration.yml',)
 FOLLOWUP_PATHS=tuple('docs/codex/'+p for p in ['OWNER_STORAGE_FOUNDATION_C04_RELEASE.json','OWNER_STORAGE_FOUNDATION_C04.md','MASTER_ARCHITECTURE_AUDIT_20260909.md','MASTER_EXECUTION_PLAN.json','PRIVATE_BANK_SNAPSHOTS_C08.md'])+('tools/validate_master_execution_plan.py','tools/test_master_execution_plan.py')
 def checkout_sources(checkout,manifest):
-    assert checkout['status']=='EXACT SOURCE CHECKOUT VERIFIED' and checkout['base_sha']==manifest['base_sha'] and checkout['base_tree']==manifest['base_tree']
+    assert checkout['status']=='EXACT SOURCE CHECKOUT VERIFIED' and checkout['source_baseline_sha']==manifest['base_sha'] and checkout['source_baseline_tree']==manifest['base_tree']
+    validate_checkout_event(checkout,git)
     rows=checkout['source_files'];expected=set(REPOSITORY_INPUTS)|set(OWN_PATHS)|set(FOLLOWUP_PATHS)
     assert isinstance(rows,list) and len(rows)==len(expected)==52 and {r['path'] for r in rows}==expected
     for row in rows:
@@ -21,6 +22,37 @@ def checkout_sources(checkout,manifest):
         raw=(REPO/row['path']).read_bytes()
         assert len(raw)==row['bytes'] and digest(raw)==row['sha256'],'Checkout source bytes changed'
         assert hashlib.sha1(b'blob '+str(len(raw)).encode()+b'\0'+raw).hexdigest()==row['git_blob_sha'],'Checkout Git blob changed'
+def git(*args):return subprocess.check_output(['git',*args],cwd=REPO,text=True).strip()
+
+def checkout_event(kind,event,tested,tree,read_git):
+    """Bind this actual event, including a PR whose head predates its base."""
+    valid=lambda value:type(value) is str and re.fullmatch('[0-9a-f]{40}',value)
+    assert valid(tested) and valid(tree)
+    assert read_git('rev-parse','HEAD')==tested and read_git('rev-parse','HEAD^{tree}')==tree
+    parents=read_git('rev-list','--parents','-n','1','HEAD').split()[1:]
+    assert parents and all(valid(value) for value in parents)
+    head=number=None
+    if kind=='pull_request':
+        pr=event['pull_request'];base=pr['base']['sha'];head=pr['head']['sha'];number=event['number']
+        assert valid(base) and valid(head) and type(number) is int and number>0
+        assert pr['base']['repo']['full_name']=='2ed944-cloud/ECHS-Math' and parents==[base,head]
+        assert read_git('rev-parse',head)==head
+    else:
+        assert kind=='workflow_dispatch';base=parents[0]
+    base_tree=read_git('rev-parse',base+'^{tree}');assert valid(base_tree)
+    changed=read_git('diff','--name-only',base,tested).splitlines()
+    assert len(changed)==len(set(changed)) and len(changed)<=10000
+    assert all(type(path) is str and re.fullmatch(r'[A-Za-z0-9._ /()-]+',path) and not path.startswith('/') and '..' not in path.split('/') for path in changed)
+    return {'event':kind,'tested_sha':tested,'tested_tree':tree,'parents':parents,'base_sha':base,'base_tree':base_tree,'pr_head_sha':head,'pr_number':number,'changed_paths':changed}
+
+def validate_checkout_event(receipt,read_git):
+    if receipt['event']=='pull_request':
+        event={'number':receipt['pr_number'],'pull_request':{'base':{'sha':receipt['base_sha'],'repo':{'full_name':'2ed944-cloud/ECHS-Math'}},'head':{'sha':receipt['pr_head_sha']}}}
+    else:event={}
+    expected=checkout_event(receipt['event'],event,receipt['tested_sha'],receipt['tested_tree'],read_git)
+    assert all(receipt.get(key)==value for key,value in expected.items()),'Checkout event identity changed'
+    return expected
+
 def sources():
     manifest=json.loads((HERE/'source-pins.json').read_text())
     assert manifest['contract']=='echs.c08.transport-sql-inputs.v1'
