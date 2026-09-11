@@ -1,0 +1,58 @@
+name: Private learning journal HTTP services
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/private-learning-journal-http.yml'
+      - 'tools/private-learning-journal-http/**'
+      - 'tools/private-learning-operation-journal/operation-journal.sql'
+      - 'tools/private-learning-owner-fence/owner-fence.sql'
+      - 'supabase/migrations/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: private-learning-journal-http-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  http:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        postgres: [15, 17]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Check offline configuration and native loopback adapter
+        shell: bash
+        run: |
+          python tools/private-learning-journal-http/test_offline.py . "$RUNNER_TEMP/journal-http-offline.json"
+          node tools/private-learning-journal-http/test_bridge.mjs "$RUNNER_TEMP/journal-http-bridge.json"
+      - name: Install pinned PostgreSQL driver
+        run: python -m pip install 'psycopg[binary]==3.2.9'
+      - name: Run owned PostgreSQL and PostgREST HTTP cases
+        run: python tools/private-learning-journal-http/run.py --postgres-major '${{ matrix.postgres }}' --execute
+      - name: Retain closed metadata evidence including incomplete runs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: private-learning-journal-http-pg${{ matrix.postgres }}
+          path: |
+            ${{ runner.temp }}/private-learning-journal-http-${{ matrix.postgres }}
+            ${{ runner.temp }}/journal-http-offline.json
+            ${{ runner.temp }}/journal-http-bridge.json
+          if-no-files-found: error
+          retention-days: 14

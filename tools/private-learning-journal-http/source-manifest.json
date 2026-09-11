@@ -1,0 +1,75 @@
+{
+  "contract": "echs.c04.journal-http-service-sources.v1",
+  "files": [
+    {
+      "path": "tools/private-learning-journal-http/fixture.py",
+      "bytes": 8300,
+      "sha256": "8080c650d19fe908c5af97e31f3effbe619974f73c694b4d3bc00bcc8254e295"
+    },
+    {
+      "path": "tools/private-learning-journal-http/controls.py",
+      "bytes": 9176,
+      "sha256": "1e542c35f3f6f59678fd48ad202c886f1aa69219f98be05f71d5f221c5c8abaa"
+    },
+    {
+      "path": "tools/private-learning-journal-http/run.py",
+      "bytes": 15676,
+      "sha256": "7f757f919ecd7d8d92529209f9f1ee6f09268d498c3285caba092c2f233cdf70"
+    },
+    {
+      "path": "tools/private-learning-journal-http/bridge.mjs",
+      "bytes": 4059,
+      "sha256": "117eda1e93c50aaecd7689422bd4934a7ae47c000b750f23048453bfdac454f9"
+    },
+    {
+      "path": "tools/private-learning-journal-http/test_http.mjs",
+      "bytes": 18585,
+      "sha256": "6532c207176013a6adb929f9cb1bd1bea8e0f6bfb4f8bf06b7a21aaf573e34c5"
+    },
+    {
+      "path": "tools/private-learning-journal-http/test_offline.py",
+      "bytes": 9105,
+      "sha256": "91b2cc144161c21a9176c5490ad746897e2562d6253e71c005e46c668a178bd7"
+    },
+    {
+      "path": "tools/private-learning-journal-http/test_bridge.mjs",
+      "bytes": 4758,
+      "sha256": "1bfc845413194dd0a46c9a7fb1919b65fa9d247fe971f132cd7320b2754f26b4"
+    },
+    {
+      "path": "tools/private-learning-journal-http/README.md",
+      "bytes": 7929,
+      "sha256": "312ec87b8a515a8e1064bee1dae78eaa1a627b75ae43bfd18ad29a6e30da8cf9"
+    },
+    {
+      "path": "tools/private-learning-journal-http/input-pins.json",
+      "bytes": 7461,
+      "sha256": "61eb5095da2c07e7792033147107fa3a58b6fe7915cee533e85054d91053dc6e"
+    },
+    {
+      "path": "tools/private-learning-journal-http/runtime/wire.mjs",
+      "bytes": 4397,
+      "sha256": "d6e1a9675d12d125454b827ae1187a55e9176408a81dfb8fe2f0397598f8407b"
+    },
+    {
+      "path": "tools/private-learning-journal-http/runtime/contract.mjs",
+      "bytes": 9956,
+      "sha256": "050a652f28e957aaabd7e87428b4811dbeb2ebfad80552023ebef9c931271e84"
+    },
+    {
+      "path": "tools/private-learning-journal-http/runtime/handler.mjs",
+      "bytes": 7107,
+      "sha256": "d404d2845d435f4faaa0b4af7b9bd0bf1b7a4713ca3dff09e9f64446db4d0945"
+    },
+    {
+      "path": "tools/private-learning-journal-http/runtime/pending-intent.mjs",
+      "bytes": 3573,
+      "sha256": "10aa9c3ba04aa0e32483763b5b8ef17d489b6449f4b8738563254d427811f69d"
+    },
+    {
+      "path": ".github/workflows/private-learning-journal-http.yml",
+      "bytes": 2038,
+      "sha256": "87f08ec29af9e6ef0f249af99df6fb3176c0986770fbfa8b77064b2fde1cbd68"
+    }
+  ]
+}

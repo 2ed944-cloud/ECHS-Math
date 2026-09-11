@@ -1,0 +1,132 @@
+# C04 journal HTTP and PostgREST integration candidate
+
+This directory prepares an isolated, executable CI gate for the accepted journal
+SQL and frozen J049 v2 native handler. It does not install an active API, change
+student pages, create a Supabase project, apply a production migration, or
+complete C04. No PostgreSQL/PostgREST service execution has been performed for
+this candidate locally. Actual acceptance is pending both CI matrix jobs.
+
+## Small service boundary
+
+The workflow runs two independent jobs: PostgreSQL 15 and PostgreSQL 17, each
+with PostgREST 14.17. These are the only allowed majors/tags. Each run resolves
+the tag to its actual Linux amd64 image and records the repository digest and
+running image ID. It creates one uniquely named internal Docker bridge and two
+labelled containers. There are no published service ports, external networks,
+persistent named volumes or production secrets. PostgreSQL data lives in an
+owned tmpfs; cleanup removes only the inspected run-owned containers/network.
+An ambiguous network-create result still enters owned cleanup, and final
+network/container absence is required for acceptance.
+
+The exact 27 repository migrations run on a fresh empty database, followed by
+the retained owner-fence SQL and accepted operation-journal SQL. The small
+storage catalog tables required by these migrations are fixture bootstrap
+tables, using the same shapes as the previously accepted SQL fixtures. No
+Storage service or Storage compatibility is claimed. Roles/JWTs and custom
+school tokens are generated for this run; fixture-only setup provisions
+synthetic owner routes and zero-state journal owners. It does not implement an
+owner-adoption API.
+
+PostgREST connects as an unprivileged authenticator that can assume the existing
+anon/authenticated/service_role roles. Its in-database configuration override
+is disabled. Every actual journal call still reaches the service-only SQL RPC
+with a hashed custom student token and fresh authorization. The version and
+environment configuration follow the [PostgREST 14 configuration reference](https://docs.postgrest.org/en/v14/references/configuration.html).
+
+## Actual HTTP path
+
+The Node fixture binds an ephemeral loopback HTTP port, converts incoming
+requests to native Request objects, and consumes native Response bodies with
+abort-aware backpressure. The four frozen runtime modules are copied byte for
+byte from J049 v2 manifest
+`117cdb0a97cd4408b31fedf9f4eba5928b1385f5e2a86d6ee5e55c750c286817`.
+
+Only the fixture fetch port maps the handler's fixed synthetic HTTPS origin and
+four exact RPC paths onto the inspected private PostgREST HTTP address. It
+preserves the body bytes, options, headers, signal and status. It rejects public
+addresses, noncanonical origins, queries, redirects and unknown routes. This
+is real native HTTP transport and actual PostgREST transactions; it is not a
+TLS, Supabase gateway, Deno runtime or hosted Edge test. The synthetic origin is
+never resolved or contacted over the internet.
+
+The SQL control process is a private parent pipe. Its closed operations only
+create bounded synthetic cases, inspect their retained rows, change their
+session/role state, or install/remove one narrowly scoped failure trigger. It
+does not implement an alternative journal RPC. Independent SQL reads compare
+actual retained operation text/receipts and table digests after HTTP results.
+It enforces the run-owned configuration path, private database address and
+database owner marker, and is reaped before acceptance.
+
+## Twenty cases per database major
+
+The real service suite covers all four routes, receipt/SQL text/digest equality,
+raw numeric precision and scale, heads/tombstones, exact concurrent retries,
+conflicting CAS contenders, compound rollback, and an injected SQL failure
+after head insertion followed by a successful exact retry.
+
+Lost-response cases drop the socket or truncate the HTTP response after an
+actual committed PostgREST result. Another case returns gateway status207 after
+a real commit. These are explicit transport fault injections, not claims that
+PostgREST naturally emits those responses. Pending intent remains intact until
+the exact raw apply request is replayed successfully. An operation lookup is
+informational for a first pending ACK: the suite includes the concrete same-UUID,
+same-metadata, different-opaque-value counterexample. Lookup cannot acknowledge
+the changed intent, and exact apply replay must conflict without changing rows.
+
+Further cases verify fresh revocation, new-session recovery, foreign ownership,
+nonstudent roles, direct anon/authenticated RPC denial, malformed UTF-8 and
+duplicate JSON keys rejected before SQL, actual owner-lock wait followed by
+committed revocation, historical receipt behavior after reset, and SQL's
+normalized row-byte limit.
+
+The PostgreSQL17 job is required because the observed production project uses
+major17. Passing a generic postgres:17 image establishes only this fixture's
+HTTP/SQL behavior on the recorded image. It does not establish compatibility
+with the exact hosted Supabase 17.6.1.147 variant, all extensions, or all448
+pre-existing SQL checks; those remain separate proofs.
+
+## Review and execution
+
+Local commands, from the workspace root, use explicit repository inputs and a
+new report filename. They never start Docker or execute SQL:
+
+```text
+python -X utf8 -B work/master-charter/c04-journal-http-service-candidate/test_offline.py work/foundations <new-offline-report.json>
+node work/master-charter/c04-journal-http-service-candidate/test_bridge.mjs <new-bridge-report.json>
+python -X utf8 -B work/master-charter/c04-journal-http-service-candidate/run.py --repo work/foundations --postgres-major 15
+python -X utf8 -B work/master-charter/c04-journal-http-service-candidate/run.py --repo work/foundations --postgres-major 17
+```
+
+The 15 offline configuration/ownership/failure tests and seven native loopback
+adapter groups are separate evidence from the twenty real service cases. The
+adapter tests include an actual client disconnect and producer cancellation;
+their upstream service is injected and they do not execute PostgREST or SQL.
+
+The only execution mode is `run.py --postgres-major 15|17 --execute` on an exact
+GitHub-hosted Linux checkout. It rejects ambient database, Supabase, Docker and
+proxy overrides. The workflow uses read-only repository permission, no persisted
+checkout credentials and no production environment or secret references.
+Executable sources and the manifest are checked against Git HEAD; immutable
+input hashes and runtime copies are rechecked before and after service tests.
+
+The artifact contains metadata JSON only: source receipt, image receipt, HTTP
+case results, run report and a final member index, plus the separate offline and
+loopback reports. No service logs, raw request/response bodies, JWTs, tokens,
+private control output or generated configuration are uploaded. Failed runs
+retain bounded case/SQLSTATE/error-code/assertion diagnostics. A PASS requires
+all twenty exact cases, source preservation and complete owned cleanup. Reports
+without the final complete artifact index cannot establish acceptance.
+
+## Remaining actual CI gate and rollback
+
+Publish the reviewed tooling and workflow in a small PR, execute both matrix
+jobs, inspect each recorded checkout/image/source and all twenty outcomes, and
+repair actual failures before claiming HTTP/PostgREST compatibility. The first
+execution may expose integration differences; no synthetic success is
+substituted for that gate.
+
+This is tooling-only. Rollback removes the candidate workflow/tooling through
+the normal reviewed change process; active `learning-sync`, authentication,
+mastery, lesson URLs and Pages deployment are unaffected. Hosted Edge validation,
+durable browser pending/ACK transactions, adoption/provisioning, complete
+producer/reader closure and production rollout remain outstanding.
