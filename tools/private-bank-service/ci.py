@@ -10,7 +10,7 @@ import json
 import os
 import re
 import subprocess
-from service_contract import HERE, ContractError, closed, digest, exact, local_file, need, strict_json, verify_sources
+from service_contract import HERE, ContractError, closed, digest, exact, local_file, need, strict_json, verify_sources, postgres_major
 from run_actual_service import SOURCE_FILES, verify_manifest, validate_child_failure
 from seed_synthetic import load_fixture
 from collect_service import collect
@@ -39,24 +39,28 @@ def git(root, *args):
     return subprocess.check_output(['git', '-C', str(root), *args], text=True).strip()
 
 
-def checkout_policy(head, tree, parents, base_tree, changed, event_name, event, environment_sha):
-    need(type(head) is str and SHA40.fullmatch(head) and head == environment_sha, 'checkout-head')
-    need(type(tree) is str and SHA40.fullmatch(tree) and base_tree == BASE_TREE, 'checkout-tree')
-    need(type(changed) is list and len(changed) == len(OWN) and set(changed) == set(OWN), 'checkout-diff')
-    need(type(parents) is list and all(type(p) is str and SHA40.fullmatch(p) for p in parents), 'checkout-parents')
-    pr_head = None
-    pr_number = None
-    if event_name == 'pull_request':
-        pr = event['pull_request']
-        pr_head = pr['head']['sha']
-        pr_number = event['number']
-        need(type(pr_number) is int and pr_number > 0 and pr['base']['sha'] == BASE
-             and parents == [BASE, pr_head], 'checkout-pull-request')
-        need(pr['head']['repo']['full_name'] == '2ed944-cloud/ECHS-Math'
-             and pr['base']['repo']['full_name'] == '2ed944-cloud/ECHS-Math', 'checkout-repository')
+def checkout_policy(head,tree,event_name,event,environment_sha,read_git):
+    valid=lambda value:type(value) is str and SHA40.fullmatch(value) and value!='0'*40
+    need(valid(head) and head==environment_sha,'checkout-head')
+    need(valid(tree) and read_git('rev-parse','HEAD')==head and read_git('rev-parse','HEAD^{tree}')==tree,'checkout-tree')
+    need(read_git('rev-parse',BASE+'^{tree}')==BASE_TREE,'source-baseline-tree')
+    need(read_git('merge-base',BASE,head)==BASE,'source-baseline-ancestry')
+    parents=read_git('rev-list','--parents','-n','1','HEAD').split()[1:]
+    need(type(parents) is list and 1<=len(parents)<=2 and all(valid(p) for p in parents),'checkout-parents')
+    pr_head=pr_number=None
+    if event_name=='pull_request':
+        pr=event['pull_request'];pr_head=pr['head']['sha'];pr_number=event['number'];base=pr['base']['sha']
+        need(valid(base) and valid(pr_head) and type(pr_number) is int and pr_number>0 and parents==[base,pr_head],'checkout-pull-request')
+        need(pr['head']['repo']['full_name']==pr['base']['repo']['full_name']=='2ed944-cloud/ECHS-Math','checkout-repository')
+        need(read_git('rev-parse',pr_head)==pr_head,'checkout-pr-head')
     else:
-        need(event_name == 'workflow_dispatch', 'checkout-event')
-    return pr_head, pr_number
+        need(event_name=='workflow_dispatch','checkout-event');base=parents[0]
+    base_tree=read_git('rev-parse',base+'^{tree}');need(valid(base_tree),'checkout-base-tree')
+    changed=read_git('diff','--name-only',base,head).splitlines()
+    need(type(changed) is list and len(changed)<=10000 and len(set(changed))==len(changed),'checkout-diff')
+    need(all(type(p) is str and re.fullmatch(r'[A-Za-z0-9._ /()-]{1,500}',p) and not p.startswith('/') and '..' not in p.split('/') for p in changed),'checkout-diff')
+    return {'event':event_name,'head':head,'tree':tree,'parents':parents,'base':base,'base_tree':base_tree,
+        'pr_head':pr_head,'pr_number':pr_number,'changed_paths':changed,'source_baseline':{'sha':BASE,'tree':BASE_TREE}}
 
 
 def inputs(root, manifest_hash):
@@ -70,19 +74,14 @@ def inputs(root, manifest_hash):
     return names
 
 
-def snapshot(root, manifest_hash):
+def snapshot(root, manifest_hash,expected_major=15):
+    major=postgres_major(expected_major)
     names = inputs(root, manifest_hash)
     head = git(root, 'rev-parse', 'HEAD')
     tree = git(root, 'rev-parse', 'HEAD^{tree}')
-    parents = git(root, 'rev-list', '--parents', '-n', '1', 'HEAD').split()[1:]
-    event_name = os.environ['GITHUB_EVENT_NAME']
-    event = strict_json(Path(os.environ['GITHUB_EVENT_PATH']).read_bytes())
-    pr_head, pr_number = checkout_policy(head, tree, parents, git(root, 'rev-parse', BASE+'^{tree}'),
-        git(root, 'diff', '--name-only', BASE, head).splitlines(), event_name, event, os.environ['GITHUB_SHA'])
-    if pr_head:
-        need(git(root, 'rev-parse', pr_head+'^{tree}') == tree, 'pull-request-tree')
-    else:
-        subprocess.run(['git', '-C', str(root), 'merge-base', '--is-ancestor', BASE, head], check=True)
+    need(os.environ['GITHUB_REPOSITORY']=='2ed944-cloud/ECHS-Math','checkout-repository')
+    event_name=os.environ['GITHUB_EVENT_NAME'];event=strict_json(Path(os.environ['GITHUB_EVENT_PATH']).read_bytes())
+    context=checkout_policy(head,tree,event_name,event,os.environ['GITHUB_SHA'],lambda *args:git(root,*args))
     rows = []
     for name in names:
         raw = local_file(root, name)
@@ -90,8 +89,7 @@ def snapshot(root, manifest_hash):
         need(hashlib.sha1(b'blob '+str(len(raw)).encode()+b'\0'+raw).hexdigest() == blob, 'checkout-file-drift')
         rows.append({'path':name, 'bytes':len(raw), 'sha256':digest(raw), 'git_blob':blob})
     return {'contract':'echs.c08.storage-service-checkout.v1', 'status':'EXACT_SOURCE_CHECKOUT_VERIFIED',
-        'event':event_name, 'head':head, 'tree':tree, 'parents':parents, 'base':BASE, 'base_tree':BASE_TREE,
-        'pr_head':pr_head, 'pr_number':pr_number, 'source_manifest_sha256':manifest_hash,
+        **context,'postgres_required':major,'source_manifest_sha256':manifest_hash,
         'owned_paths':list(OWN), 'source_files':rows, 'production_calls':False}
 
 
@@ -174,8 +172,8 @@ def safe_failure(directory):
     return result
 
 
-def prepare(root, manifest_hash):
-    value = snapshot(root, manifest_hash)
+def prepare(root, manifest_hash,expected_major=15):
+    value = snapshot(root, manifest_hash,expected_major)
     results = HERE/'results'
     need(not results.exists(), 'existing-ci-results')
     need(not (HERE/'runs').exists(), 'existing-ci-runs')
@@ -184,16 +182,17 @@ def prepare(root, manifest_hash):
     return {'status':value['status'], 'source_files':len(value['source_files'])}
 
 
-def assemble(root, manifest_hash):
-    destination = Path(os.environ['RUNNER_TEMP'])/'private-bank-service-evidence'
+def assemble(root, manifest_hash,expected_major=15):
+    major=postgres_major(expected_major)
+    destination = Path(os.environ['RUNNER_TEMP'])/('private-bank-service-evidence-pg'+str(major))
     for p in (destination, *destination.parents):
         need(not p.is_symlink() and not p.is_junction(), 'linked-artifact')
     need(not destination.exists(), 'artifact-exists')
     destination.mkdir()
-    complete = False
+    complete = False; accepted_service = None
     failure = None
     try:
-        fresh = snapshot(root, manifest_hash)
+        fresh = snapshot(root, manifest_hash,major)
         checkout_raw = local_file(HERE, 'results/checkout.json')
         need(exact(strict_json(checkout_raw), fresh), 'checkout-changed')
         expected = strict_json(local_file(HERE, 'ci-expected-groups.json'))
@@ -207,13 +206,13 @@ def assemble(root, manifest_hash):
         runs = list((HERE/'runs').iterdir())
         need(len(runs) == 1 and runs[0].is_dir() and re.fullmatch('[0-9a-f]{32}', runs[0].name), 'actual-run-set')
         local_target = HERE/'results'/'accepted-service'
-        collect(runs[0], local_target, fresh['head'], fresh['tree'], manifest_hash)
+        accepted_service=collect(runs[0], local_target, fresh['head'], fresh['tree'], manifest_hash,major)
         members = {'checkout.json':checkout_raw, **offline}
         for p in local_target.iterdir():
             need(p.is_file() and not p.is_symlink() and not p.is_junction(), 'artifact-member')
             members[p.name] = p.read_bytes()
         need(len(members) == 10, 'artifact-count')
-        need(exact(snapshot(root, manifest_hash), fresh), 'source-changed-before-export')
+        need(exact(snapshot(root, manifest_hash,major), fresh), 'source-changed-before-export')
         for name, raw in members.items():
             with (destination/name).open('xb') as handle:
                 handle.write(raw)
@@ -232,6 +231,7 @@ def assemble(root, manifest_hash):
         'status':'ACTUAL_SERVICES_PASS' if complete else 'INCOMPLETE_OR_FAILED', 'complete':complete,
         'github_ci_accepted':False, 'requires_independent_workflow_metadata':True,
         'source_manifest_sha256':manifest_hash, 'files':rows, 'failure':failure,
+        'postgres_required':major,'postgres_observation':accepted_service['postgres_observation'] if complete else None,
         'production_calls':False, 'hosted_edge_executed':False, 'corpus_imported':False, 'whole_c08_complete':False}
     write(destination/'ci-index.json', result)
     need(complete, 'service-ci-incomplete')
@@ -242,11 +242,12 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('mode', choices=('prepare','assemble'))
     parser.add_argument('--manifest-sha256', required=True)
+    parser.add_argument('--postgres-major',type=int,choices=(15,17),default=15)
     args = parser.parse_args()
     need(SHA64.fullmatch(args.manifest_sha256), 'manifest-hash-shape')
     root = HERE.parents[1]
     try:
-        print(json.dumps((prepare if args.mode == 'prepare' else assemble)(root, args.manifest_sha256)))
+        print(json.dumps((prepare if args.mode == 'prepare' else assemble)(root, args.manifest_sha256,args.postgres_major)))
         return 0
     except ContractError as error:
         print(json.dumps({'status':'REJECTED','code':error.code}))

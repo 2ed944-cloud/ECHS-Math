@@ -19,6 +19,8 @@
       "report creation is bounded and cannot overwrite prior evidence",
       "successful source preflight cannot claim service acceptance",
       "runner CLI has no service-start or execution switch",
+      "explicit typed PostgreSQL major selects one exact image set and retains default15",
+      "actual PostgreSQL major and full version observation must agree with the configured job",
       "all actual source inputs unchanged after reversible local tests"
     ],
     "fields": {
@@ -83,6 +85,8 @@
       "changed image/migration identities, duplicate JSON keys and retained secrets rejected",
       "missing real image provenance cannot be inferred from test success",
       "collector copies exactly five safe members and refuses overwrites",
+      "both exact managed image variants preserve identical initialization and isolation configuration",
+      "collector rejects cross-major image runner and observed-version evidence for each configured job",
       "all candidate source files remain unchanged after offline tests"
     ],
     "fields": {
@@ -118,14 +122,17 @@
   "ci-contract.json": {
     "contract": "echs.c08.storage-service-ci-offline-tests.v1",
     "groups": [
-      "exact same-repository pull-request merge is bound to reviewed base and source paths",
-      "missing duplicate or unrelated changed paths cannot pass checkout acceptance",
+      "actual same-repository merge binds event parents tree diff and historical ancestry",
+      "duplicate unsafe paths and wrong historical ancestry cannot pass checkout acceptance",
       "stale tree head parents repository and event are rejected",
       "exact offline reports remain explicitly separate from actual service execution",
       "missing renamed failing and duplicate test groups cannot be accepted",
       "numeric boolean substitutes and broadened execution claims are rejected",
       "changed source hashes extra body fields and wrong manifest are rejected",
-      "failure export preserves safe stage codes without private output fields"
+      "failure export preserves safe stage codes without private output fields",
+      "actual local Git accepts an advanced-base merge and rejects a nonancestor baseline",
+      "matrix workflow propagates the explicit major and keeps separate closed artifacts",
+      "all nineteen service cases and both runtime files remain byte identical"
     ],
     "fields": {
       "services_executed": false,

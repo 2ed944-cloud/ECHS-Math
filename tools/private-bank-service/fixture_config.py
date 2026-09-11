@@ -26,14 +26,14 @@ def mint_credentials():
         'AUTHENTICATED_KEY':jwt('authenticated','44444444-4444-4444-8444-444444444444'),
         'S3_PROTOCOL_ACCESS_KEY_ID':secrets.token_hex(16),'S3_PROTOCOL_ACCESS_KEY_SECRET':secrets.token_hex(32)}
 
-def compose_fixture(run_id,run_dir,image_receipt,approved_image_receipt_sha256):
-    plan=fixture_plan(run_id)
+def compose_fixture(run_id,run_dir,image_receipt,approved_image_receipt_sha256,expected_major=15):
+    plan=fixture_plan(run_id,expected_major)
     run_dir=Path(run_dir).absolute()
     for p in (run_dir,*run_dir.parents):
         need(not p.is_symlink() and not p.is_junction(),'linked-run-directory')
     need(run_dir.resolve().is_relative_to((HERE/'runs').resolve())
          and run_dir.name==run_id and run_dir.parent==HERE/'runs','run-directory')
-    refs=validate_image_receipt(image_receipt,approved_image_receipt_sha256)
+    refs=validate_image_receipt(image_receipt,approved_image_receipt_sha256,expected_major)
     labels=plan['ownership_labels']
     def common(name):
         return {'image':refs[name],'platform':'linux/amd64','restart':'no','labels':dict(labels),'networks':['isolated'],

@@ -1,5 +1,5 @@
 """Offline adversarial tests. Synthetic success fixtures never prove SQL execution."""
-import copy,hashlib,io,json,os,subprocess,sys,tempfile,unittest
+import ast,copy,hashlib,io,json,os,subprocess,sys,tempfile,types,unittest
 from pathlib import Path
 from unittest.mock import patch
 import contract
@@ -433,6 +433,49 @@ class Guards(unittest.TestCase):
         for invalid in ('16','latest','15.0'):
             done=subprocess.run([sys.executable,'-B',str(contract.HERE/'run_integration.py'),'--postgres-major',invalid],capture_output=True,text=True,timeout=10)
             self.assertEqual(done.returncode,2)
+        # Execute the actual injection class with a fake driver. This exercises
+        # the closure lookup that source-only/default preflight cannot reach.
+        parsed=ast.parse((contract.HERE/'run_integration.py').read_text(encoding='utf-8'))
+        classes=[node for node in ast.walk(parsed) if isinstance(node,ast.ClassDef) and node.name=='CandidateConnection']
+        self.assertEqual(len(classes),1);current=classes[0]
+        previous=copy.deepcopy(current);method=next(node for node in previous.body if isinstance(node,ast.FunctionDef) and node.name=='execute')
+        self.assertEqual(method.args.vararg.arg,'params');method.args.vararg.arg='args'
+        forwarded=[node for node in ast.walk(method) if isinstance(node,ast.Name) and node.id=='params']
+        self.assertEqual(len(forwarded),1);forwarded[0].id='args'
+        self.assertEqual(contract.digest(ast.dump(previous,include_attributes=False).encode()),'b28ec8507a5b8d732190fa0277c96a5f9f2ccdd5998fef1321933b5cb74887b7')
+        for major in (15,17):
+            for node,broken in ((current,False),(previous,True)):
+                calls=[];versions=[];injections=[];verified=[]
+                cursor=types.SimpleNamespace(fetchone=lambda:(0,))
+                class FakeConnection:
+                    def execute(self,query,*params,**kwargs):
+                        calls.append((query,params,kwargs));return cursor
+                bank_info={'dbname':'synthetic-injection-fixture'};address='127.0.0.1';trigger='synthetic final migration'
+                def connected(db,info,host,expected_major):
+                    self.assertIsInstance(db,FakeConnection);self.assertIs(info,bank_info)
+                    self.assertEqual(host,address);self.assertEqual(expected_major,major);versions.append(expected_major)
+                namespace={'psycopg':types.SimpleNamespace(Connection=FakeConnection),'args':types.SimpleNamespace(postgres_major=major),
+                    'trigger':trigger,'injections':injections,'verified':lambda:verified.append(True),'connected':connected,
+                    'bank_info':bank_info,'address':address,'preservation':lambda db:{'public_rows':{},'table_acl':[],'functions':[],'triggers':[]},
+                    'fence_sql':'synthetic fence SQL','journal_sql':'synthetic journal SQL','migration_rows':[{'file':'synthetic.sql','sha256':'a'*64}],
+                    'digest':contract.digest,'expected':{'operation-journal.sql':{'sha256':'b'*64}}}
+                module=ast.fix_missing_locations(ast.Module(body=[copy.deepcopy(node)],type_ignores=[]))
+                exec(compile(module,str(contract.HERE/'run_integration.py'),'exec'),namespace)
+                connection=namespace['CandidateConnection']();binding=('synthetic bound parameter',)
+                if broken:
+                    with self.assertRaisesRegex(AttributeError,"tuple.*postgres_major"):
+                        connection.execute(trigger,binding,prepare=True)
+                    self.assertEqual(versions,[]);self.assertEqual(injections,[]);self.assertEqual(len(calls),1)
+                else:
+                    self.assertIs(connection.execute(trigger,binding,prepare=True),cursor)
+                    self.assertEqual(versions,[major]);self.assertEqual(len(injections),1)
+                    self.assertEqual(calls[1:],[('synthetic fence SQL',(),{'prepare':False}),('synthetic journal SQL',(),{'prepare':False}),
+                        ('select count(*) from private.learning_owner_routes',(),{}),('select count(*) from private.learning_journal_owners',(),{})])
+                    self.assertEqual(injections[0],{'after_migration':namespace['migration_rows'][0],
+                        'unchanged_fence_sha256':contract.digest(b'synthetic fence SQL'),'journal_sha256':'b'*64,
+                        'existing_public_rows_preserved':True,'existing_function_acl_rls_triggers_preserved':True,
+                        'row_representation':'postgres-jsonb-text-length-prefixed-v1','initial_routes':0,'initial_journal_owners':0})
+                self.assertEqual(calls[0],(trigger,(binding,),{'prepare':True}));self.assertEqual(verified,[True])
 
     def test_30_real_git_advanced_base_and_nonancestor(self):
         # Only the historical baseline SHA/tree are substituted for a synthetic

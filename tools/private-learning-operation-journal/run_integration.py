@@ -85,8 +85,8 @@ def main():
                 'functions':conn.execute("select p.oid,md5(pg_get_functiondef(p.oid)),p.proacl from pg_proc p join pg_namespace n on n.oid=p.pronamespace where n.nspname in ('public','private') and p.prokind='f' order by p.oid").fetchall(),
                 'triggers':conn.execute("select oid,md5(pg_get_triggerdef(oid)) from pg_trigger where not tgisinternal order by oid").fetchall()}
         class CandidateConnection(psycopg.Connection):
-            def execute(self,query,*args,**kwargs):
-                cursor=super().execute(query,*args,**kwargs)
+            def execute(self,query,*params,**kwargs):
+                cursor=super().execute(query,*params,**kwargs)
                 if type(query) is str and query==trigger:
                     assert not injections;verified();connected(self,bank_info,address,args.postgres_major)
                     original=preservation(self)

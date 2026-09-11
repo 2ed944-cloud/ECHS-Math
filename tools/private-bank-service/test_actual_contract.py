@@ -15,7 +15,7 @@ import shutil
 import sys
 import uuid
 from fixture_config import compose_fixture,mint_credentials
-from service_contract import HERE,IMAGE_TAGS,UPSTREAM_COMMIT,RUNTIME_HASHES,PIN_SHA256,ContractError,digest,strict_json,write_report_exclusive
+from service_contract import HERE,IMAGE_TAGS,UPSTREAM_COMMIT,RUNTIME_HASHES,PIN_SHA256,ContractError,digest,strict_json,write_report_exclusive,image_tags
 from run_actual_service import SOURCE_FILES,RunnerError,command,execution_guard,image_result,verify_manifest,resource_candidates,assert_resource_owner,inspect_owned_network,validate_network_receipt,validate_child_failure,child_failure,PORTS
 from collect_service import accept,collect,RAW_FILES
 
@@ -53,12 +53,13 @@ def suite():
         assert not directory.is_symlink() and not directory.is_junction();directory.mkdir(exist_ok=True)
     assert not run_dir.exists() and not output.exists();run_dir.mkdir()
     head='a'*40;tree='b'*40
-    image_receipt={'contract':'echs.c08.storage-image-receipt.v1','upstream_commit':UPSTREAM_COMMIT,'platform':'linux/amd64',
+    image_receipt={'contract':'echs.c08.storage-image-receipt.v1','upstream_commit':UPSTREAM_COMMIT,'platform':'linux/amd64','postgres_required':15,
         'images':[{'service':s,'tag':tag,'manifest_digest':'sha256:'+str(i+1)*64,'config_digest':'sha256:'+str(i+1)*64} for i,(s,tag) in enumerate(IMAGE_TAGS.items())]}
     image_raw=encoded(image_receipt)
     names=strict_json((HERE/'service-cases.json').read_bytes())
     run={'contract':'echs.c08.storage-service-run.v1','status':'PASS','run_id':run_id,'head':head,'tree':tree,
         'source_manifest_sha256':manifest_hash,'source_pins_sha256':PIN_SHA256,
+        'postgres_required':15,'postgres_observation':{'server_version_num':150006,'server_version':'15.6 (synthetic)'},
         'migration_files':strict_json((HERE/'source-pins.json').read_bytes())['migrations'],
         'image_receipt_sha256':digest(image_raw),'running_image_ids':{r['service']:r['config_digest'] for r in image_receipt['images']},
         'managed_schema_probed':True,'migrations_applied':27,'tls':{'hostname':'echsc08servicetest.supabase.co','ca_fingerprint_sha256':'1'*64,'leaf_fingerprint_sha256':'2'*64},
@@ -257,6 +258,37 @@ def suite():
             rejects(lambda:collect(run_dir,output,head,tree,manifest_hash))
             assert before=={p.name:p.read_bytes() for p in output.iterdir()}
         group('collector copies exactly five safe members and refuses overwrites',artifact)
+
+        def selected_config():
+            original=compose_fixture(run_id,run_dir,image_raw,digest(image_raw))
+            for major in (15,17):
+                receipt=copy.deepcopy(image_receipt);receipt['postgres_required']=major
+                for row in receipt['images']:row['tag']=image_tags(major)[row['service']]
+                data=encoded(receipt);value=compose_fixture(run_id,run_dir,data,digest(data),major)
+                expected=copy.deepcopy(original);expected['services']['db']['image']=image_tags(major)['db']+'@'+receipt['images'][0]['manifest_digest']
+                assert value==expected
+                rejects(lambda:compose_fixture(run_id,run_dir,data,digest(data),17 if major==15 else 15))
+                tag=image_tags(major)['db'];repo=tag.rsplit(':',1)[0]
+                assert image_result('db',tag,[repo+'@sha256:'+'1'*64],'sha256:'+'2'*64,'linux','amd64',major)['tag']==tag
+                rejects(lambda:image_result('db',tag,[repo+'@sha256:'+'1'*64],'sha256:'+'2'*64,'linux','amd64',17 if major==15 else 15))
+        group('both exact managed image variants preserve identical initialization and isolation configuration',selected_config)
+
+        def selected_receipts():
+            for major in (15,17):
+                receipt=copy.deepcopy(image_receipt);receipt['postgres_required']=major
+                for row in receipt['images']:row['tag']=image_tags(major)[row['service']]
+                selected=copy.deepcopy(run);selected['postgres_required']=major
+                selected['postgres_observation']={'server_version_num':major*10000+6,'server_version':str(major)+'.6 (synthetic)'}
+                selected['image_receipt_sha256']=digest(encoded(receipt))
+                (run_dir/'image-receipt.json').write_bytes(encoded(receipt));(run_dir/'service-run-report.json').write_bytes(encoded(selected))
+                result=accept(run_dir,head,tree,manifest_hash,major)[0]
+                assert result['postgres_required']==major and result['postgres_observation']==selected['postgres_observation']
+                rejects(lambda:accept(run_dir,head,tree,manifest_hash,17 if major==15 else 15))
+                for key,value in [('postgres_required',True),('postgres_required',17 if major==15 else 15),('postgres_observation',{'server_version_num':major*10000+6,'server_version':str(major)+'.7'})]:
+                    bad=copy.deepcopy(selected);bad[key]=value;(run_dir/'service-run-report.json').write_bytes(encoded(bad))
+                    rejects(lambda:accept(run_dir,head,tree,manifest_hash,major))
+                restore()
+        group('collector rejects cross-major image runner and observed-version evidence for each configured job',selected_receipts)
 
         def source_unchanged():assert source_before=={r['path']:digest((HERE/r['path']).read_bytes()) for r in manifest['files']}
         group('all candidate source files remain unchanged after offline tests',source_unchanged)
