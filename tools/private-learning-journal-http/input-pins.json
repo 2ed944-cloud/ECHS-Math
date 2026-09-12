@@ -1,0 +1,204 @@
+{
+  "contract": "echs.c04.journal-http-service-inputs.v1",
+  "j049_manifest_sha256": "84284f19b00a26b8ee30ed2567132b7913e0a0c8e5cb7c80e4167f62d778445c",
+  "files": [
+    {
+      "scope": "repository",
+      "path": "supabase/migrations/202607260001_institutional_platform.sql",
+      "bytes": 24164,
+      "sha256": "d795417c79539f0aa0fdf7d2c59165654458b3b8c85ff1da465645e4052c6e00"
+    },
+    {
+      "scope": "repository",
+      "path": "supabase/migrations/202607260002_bootstrap_function_repair.sql",
+      "bytes": 3545,
+      "sha256": "5753b6408a824fb99d76348f2f09831d6e8026dbe0b1e89d7763594710997613"
+    },
+    {
+      "scope": "repository",
+      "path": "supabase/migrations/202607260003_login_authentication_repair.sql",
+      "bytes": 5946,
+      "sha256": "2a4ce577fd8c31dd55192330cfa24a13708d0bbe5d77fdd6d1271adcaff14a11"
+    },
+    {
+      "scope": "repository",
+      "path": "supabase/migrations/202607270001_session_lookup_repair.sql",
+      "bytes": 5817,
+      "sha256": "b7742cfc9e9154c7ade12005f87215602422b54c99cebd9973b0277c45547c13"
+    },
+    {
+      "scope": "repository",
+      "path": "supabase/migrations/202607272001_mastery_evidence_foundation.sql",
+      "bytes": 12279,
+      "sha256": "434d31d932a66c91a14c27ed2f13533dcd30b4b31cb6e8642e23fe9fc024c49e"
+    },
+    {
+      "scope": "repository",
+      "path": "supabase/migrations/202607272002_mastery_authority_guard.sql",
+      "bytes": 1480,
+      "sha256": "7d1e8b5229b64bab2d52ab6da0f3fb1b5304dc4cd41a298c203caa3df74cd683"
+    },
+    {
+      "scope": "repository",
+      "path": "supabase/migrations/202607272003_attempt_trust_guard.sql",
+      "bytes": 916,
+      "sha256": "87eab47e172a34ad4e64d502c7f4add618631d598e5f147131bdab446d5fe689"
+    },
+    {
+      "scope": "repository",
+      "path": "supabase/migrations/202607272004_atomic_skill_mapping.sql",
+      "bytes": 1488,
+      "sha256": "f05a8ffa3f78c6d4dce1a79c48fa15964047d69147e83a2648ab98d84982fc08"
+    },
+    {
+      "scope": "repository",
+      "path": "supabase/migrations/202607272101_private_bank_foundation.sql",
+      "bytes": 9555,
+      "sha256": "2d6614d54e5867bb8a1765b17343f4b564e760e132f3b97e05db1d8a0aee2dc8"
+    },
+    {
+      "scope": "repository",
+      "path": "supabase/migrations/202607272102_private_attempt_trust_bridge.sql",
+      "bytes": 1331,
+      "sha256": "0056dc1cd5f8b5468b949a20aa5e3471e9febb054603dbda3da101963f6f6214"
+    },
+    {
+      "scope": "repository",
+      "path": "supabase/migrations/202607272201_teacher_upload_manager.sql",
+      "bytes": 2253,
+      "sha256": "7a1e472e7c3feab091e6d0c7c3b54e5b7c4bcc5b3a4cb6e37a78ee775fc93ace"
+    },
+    {
+      "scope": "repository",
+      "path": "supabase/migrations/202607282330_verified_private_bank_import.sql",
+      "bytes": 4203,
+      "sha256": "877681c751b5f55bc415f8534b4360c0fc34cf8a8086f60e8e63b4cbad66e831"
+    },
+    {
+      "scope": "repository",
+      "path": "supabase/migrations/202607290001_raise_teacher_upload_bucket_limit.sql",
+      "bytes": 623,
+      "sha256": "6af0fb5f637ad309d0c8a4e9647650e9b5e4f7fbf9af6ad2bb6d9586cf6ddd51"
+    },
+    {
+      "scope": "repository",
+      "path": "supabase/migrations/202607291900_resumable_private_bank_course_purge.sql",
+      "bytes": 9897,
+      "sha256": "9a7083fd9f3cf30fe036ad4ff5a5e2e6298de5f6383f9287d1ae32e7566b0910"
+    },
+    {
+      "scope": "repository",
+      "path": "supabase/migrations/202607300020_sync_private_bank_mapping_indexes.sql",
+      "bytes": 3253,
+      "sha256": "d1107fb8c6464cef5fcb9b445d46fdc5c1f1672c644a2749d8e4962976b32e71"
+    },
+    {
+      "scope": "repository",
+      "path": "supabase/migrations/202607301500_private_bank_practice_inventory.sql",
+      "bytes": 2337,
+      "sha256": "1a74d46d17cfc028f03f8fa79973e2c5abeb80283497bfb5d76c55ff3b098687"
+    },
+    {
+      "scope": "repository",
+      "path": "supabase/migrations/202607312230_restore_ib_current_bank_practice_visibility.sql",
+      "bytes": 5938,
+      "sha256": "a56066e8f979eca033dfe0c54e5f46335ed2479602764bd4544c13e06cdd3d39"
+    },
+    {
+      "scope": "repository",
+      "path": "supabase/migrations/202608020002_assignment_routes_and_timetables.sql",
+      "bytes": 3184,
+      "sha256": "51987bffa02ad10993f67bf8ebc819fa62c09f2a38440aff413bccf3c81a4025"
+    },
+    {
+      "scope": "repository",
+      "path": "supabase/migrations/202608300001_lesson_visibility_progression.sql",
+      "bytes": 58983,
+      "sha256": "26c8daec8bf8cdd451b350e99b03273e056d0509949b673639810481d712b627"
+    },
+    {
+      "scope": "repository",
+      "path": "supabase/migrations/202609050100_ib_readiness_pathway_engine.sql",
+      "bytes": 15607,
+      "sha256": "53df739f2b0201936e03eff00a93f7e1c58d020d264e94a37ca286ace4e96650"
+    },
+    {
+      "scope": "repository",
+      "path": "supabase/migrations/202609080001_curriculum_versions.sql",
+      "bytes": 20008,
+      "sha256": "aaad19c8e9c3d5e88ed85041cb1f83b1b732030e6fbb5a388b7b573325233845"
+    },
+    {
+      "scope": "repository",
+      "path": "supabase/migrations/202609080002_lesson_persistence.sql",
+      "bytes": 52564,
+      "sha256": "01e522b73729669d29bf2219f4753d561e80a733f954624612a1a69ea845c0bf"
+    },
+    {
+      "scope": "repository",
+      "path": "supabase/migrations/202609080003_lesson_content_v2.sql",
+      "bytes": 23991,
+      "sha256": "ed5abde8826c67bbe161cf0d90d367d9b78a1d4cdb3cd4d7da07e72dbcd1ab61"
+    },
+    {
+      "scope": "repository",
+      "path": "supabase/migrations/202609080004_lesson_media.sql",
+      "bytes": 36628,
+      "sha256": "af9b34a41200a4ca2ef25502a40a617c81eef41e9b5ab060a618728b770d21e5"
+    },
+    {
+      "scope": "repository",
+      "path": "supabase/migrations/202609090001_lesson_draft_recovery.sql",
+      "bytes": 7099,
+      "sha256": "df0d4fbff433645ac12e1ff00ee0f0ea7dad122d5703fb7f74d8dd51453de264"
+    },
+    {
+      "scope": "repository",
+      "path": "supabase/migrations/202609090002_membership_authorization.sql",
+      "bytes": 7078,
+      "sha256": "4760871d3a24847e9b813959d53f3705afff30261e7628dc4e051db8039149ed"
+    },
+    {
+      "scope": "repository",
+      "path": "supabase/migrations/202609090003_private_bank_snapshots.sql",
+      "bytes": 66467,
+      "sha256": "9169cee2067fef09bcd0d15c0f65703c3b2c203bbe2ad3fd6217a6c41c1d6412"
+    },
+    {
+      "scope": "repository",
+      "path": "tools/private-learning-owner-fence/owner-fence.sql",
+      "bytes": 14222,
+      "sha256": "2c4ece7736e858d7923601898cc3a5c8ac77b57500a0f0f3e22dc566eb31348f"
+    },
+    {
+      "scope": "repository",
+      "path": "tools/private-learning-operation-journal/operation-journal.sql",
+      "bytes": 41799,
+      "sha256": "9ce98da90d5c141fdf184d32a00067eca1aaa800870204edd9c383cc22b1e1bf"
+    },
+    {
+      "scope": "candidate",
+      "path": "runtime/wire.mjs",
+      "bytes": 4397,
+      "sha256": "d6e1a9675d12d125454b827ae1187a55e9176408a81dfb8fe2f0397598f8407b"
+    },
+    {
+      "scope": "candidate",
+      "path": "runtime/contract.mjs",
+      "bytes": 9956,
+      "sha256": "050a652f28e957aaabd7e87428b4811dbeb2ebfad80552023ebef9c931271e84"
+    },
+    {
+      "scope": "candidate",
+      "path": "runtime/handler.mjs",
+      "bytes": 7140,
+      "sha256": "6acb0db4dea5949eff11bad59560781134b788406187e6b393ceb151ba55b089"
+    },
+    {
+      "scope": "candidate",
+      "path": "runtime/pending-intent.mjs",
+      "bytes": 3573,
+      "sha256": "10aa9c3ba04aa0e32483763b5b8ef17d489b6449f4b8738563254d427811f69d"
+    }
+  ]
+}
