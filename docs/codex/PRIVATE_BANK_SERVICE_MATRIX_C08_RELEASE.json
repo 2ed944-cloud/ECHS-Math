@@ -1,0 +1,135 @@
+{
+  "contract": "echs.c08.service-matrix-foundation-release.v1",
+  "status": "FOUNDATION VERIFIED",
+  "scope": "Unused archive foundation and actual managed-service PostgreSQL 15/17 validation tooling; no production endpoint, import or private-delivery cutover",
+  "whole_c04_status": "IN PROGRESS",
+  "whole_c08_status": "IN PROGRESS",
+  "whole_program_complete": false,
+  "main_sha": "8eef049612010f798e636ced3b456ba48ad29a1a",
+  "tree_sha": "415cc6535979d191c219931be32f041b2c83e296",
+  "source_manifest_sha256": "3f1967a64c9d028d91cc0dddd578ea7bc53608a416424e7f954b90b64ebb66bd",
+  "source_manifest_kind": "Exact frozen publication/source receipt referenced by the originating acceptance; not necessarily the in-repository closure manifest.",
+  "historical_receipts": [
+    "docs/codex/PRIVATE_BANK_SNAPSHOTS_C08_RELEASE.json",
+    "docs/codex/PRIVATE_BANK_SERVICE_C08_RELEASE.json"
+  ],
+  "releases": [
+    {
+      "pull_request": "https://github.com/2ed944-cloud/ECHS-Math/pull/378",
+      "main_sha": "8eef049612010f798e636ced3b456ba48ad29a1a",
+      "tree_sha": "415cc6535979d191c219931be32f041b2c83e296",
+      "previous_main_sha": "f6ba511d95cd7e7f9f581f2267e34173da62c994",
+      "pr_head_sha": "32e902396c5144090f97662eb76253d4da41e2e4",
+      "tested_merge_sha": "a48a9383c1db70e4a5ff267fddb714488f954032",
+      "source_manifest_sha256": "3f1967a64c9d028d91cc0dddd578ea7bc53608a416424e7f954b90b64ebb66bd",
+      "changed_paths": 15,
+      "database_migrations": [],
+      "baseline": {
+        "run_id": 34659732007,
+        "job_id": 103459537931,
+        "commands": 68,
+        "unique_commands": 68,
+        "failed_checks": 0
+      },
+      "main_workflows_passed": 9,
+      "pages": {
+        "run_id": 34659732033,
+        "deployment_sha": "8eef049612010f798e636ced3b456ba48ad29a1a",
+        "public_requests": 16,
+        "tooling_paths_returning_404": 15
+      },
+      "provenance": [
+        {
+          "workspace_path": "outputs/ECHS_C08_MANAGED_SERVICE_MATRIX_ACCEPTANCE.json",
+          "bytes": 16304,
+          "sha256": "acfed19f0af2dc9a962d23a6f3cc309d985f40fb7c20debcfeeccf28c89443be"
+        },
+        {
+          "workspace_path": "outputs/ECHS_C08_MANAGED_SERVICE_MATRIX_REPORT.md",
+          "bytes": 3627,
+          "sha256": "3711c574bba66be587450a7665b89adecaf77bc7200aacb444f783cb185a2072"
+        }
+      ],
+      "actual_run": {
+        "url": "https://github.com/2ed944-cloud/ECHS-Math/actions/runs/34657853649",
+        "jobs": [
+          {
+            "major": 15,
+            "artifact_id": 10286004018,
+            "zip_sha256": "8cde21109e08d862395a1d9fdfef7d43d709bf06e96d049d5c8abc09e17761b9",
+            "zip_members": 11,
+            "indexed_members": 10,
+            "source_files_verified": 57,
+            "actual_service_groups_passed": 19,
+            "offline_groups": 61,
+            "postgres_observation": {
+              "server_version_num": 150008,
+              "server_version": "15.8"
+            },
+            "database_image": {
+              "service": "db",
+              "tag": "supabase/postgres:15.8.1.085",
+              "manifest_digest": "sha256:af083ef64d0408c8f098ee6f5c364a59b26f36fbc0f3a334a62c5c1d57362e9b",
+              "config_digest": "sha256:8613ba8eab946dff6674a2db6aab75b80aa101da39035fe20f62b0c7591ab35d"
+            },
+            "cleanup_complete": true,
+            "runtime_hashes": {
+              "handler.mjs": "ff49fd68970612cd325dec9819707a91a431eb1799cf6c4d88d1fea675f4cf0e",
+              "transport.mjs": "11425bcd086ddb2f88c788969ef82e1f2af8a7803d8b8110baabf785bb3152d3"
+            },
+            "readiness": {
+              "status": "PASS",
+              "probes": 1,
+              "elapsed_ms": 67
+            }
+          },
+          {
+            "major": 17,
+            "artifact_id": 10285984008,
+            "zip_sha256": "4c52735ad1ff00f12aafabdc12d29fb146af1abcee274fff5298711cec578fb0",
+            "zip_members": 11,
+            "indexed_members": 10,
+            "source_files_verified": 57,
+            "actual_service_groups_passed": 19,
+            "offline_groups": 61,
+            "postgres_observation": {
+              "server_version_num": 170006,
+              "server_version": "17.6"
+            },
+            "database_image": {
+              "service": "db",
+              "tag": "supabase/postgres:17.6.1.136",
+              "manifest_digest": "sha256:f371b5f3f2ac0a05703f33d6e6134515fb2498cab708fb948a0aeb7481467c00",
+              "config_digest": "sha256:f519727303f0af6862882be2a30f420e28710d4209226e681aaddb2c01d12d9b"
+            },
+            "cleanup_complete": true,
+            "runtime_hashes": {
+              "handler.mjs": "ff49fd68970612cd325dec9819707a91a431eb1799cf6c4d88d1fea675f4cf0e",
+              "transport.mjs": "11425bcd086ddb2f88c788969ef82e1f2af8a7803d8b8110baabf785bb3152d3"
+            },
+            "readiness": {
+              "status": "PASS",
+              "probes": 1,
+              "elapsed_ms": 237
+            }
+          }
+        ],
+        "version_recheck": "Exact pinned runner requires final server observation equal to its initial observation before a PASS report."
+      },
+      "source_binding": {
+        "reviewed_closure": 57,
+        "unchanged_service_cases": 19,
+        "unchanged_migrations": 27
+      }
+    }
+  ],
+  "production_database_migrations": [],
+  "active_runtime_adoption": false,
+  "hosted_edge_accepted": false,
+  "production_variant_equivalence_claimed": false,
+  "known_limits": [
+    "The actual managed fixtures use supabase/postgres:15.8.1.085 and 17.6.1.136. The reported live build is 17.6.1.147; no hosted-version equivalence or hosted Edge acceptance is established.",
+    "The 19 unchanged cases use synthetic data. Corpus import, canonical record verification, sealing, private delivery, rights decisions and public fallback cutover remain unfinished.",
+    "No separate hosted test project exists. The live ECHS backend must not receive immutable hosted test fixtures. Local TLS checks and upload limits are not hosted Edge CPU/memory acceptance."
+  ]
+}

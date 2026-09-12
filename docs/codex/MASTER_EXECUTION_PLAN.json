@@ -2970,6 +2970,62 @@
         {
           "path": "docs/codex/OWNER_FENCE_C04_RELEASE.json",
           "state": "existing"
+        },
+        {
+          "path": "tools/private-learning-operation-journal/operation-journal.sql",
+          "state": "existing"
+        },
+        {
+          "path": "tools/private-learning-operation-journal/run_integration.py",
+          "state": "existing"
+        },
+        {
+          "path": "tools/private-learning-operation-journal/input-pins.json",
+          "state": "existing"
+        },
+        {
+          "path": ".github/workflows/private-learning-operation-journal.yml",
+          "state": "existing"
+        },
+        {
+          "path": "tools/private-learning-journal-http/run.py",
+          "state": "existing"
+        },
+        {
+          "path": "tools/private-learning-journal-http/runtime/handler.mjs",
+          "state": "existing"
+        },
+        {
+          "path": "tools/private-learning-journal-http/source-manifest.json",
+          "state": "existing"
+        },
+        {
+          "path": ".github/workflows/private-learning-journal-http.yml",
+          "state": "existing"
+        },
+        {
+          "path": "tools/private-learning-owner-fence-retry/owner-fence.sql",
+          "state": "existing"
+        },
+        {
+          "path": "tools/private-learning-owner-fence-retry/run_services.py",
+          "state": "existing"
+        },
+        {
+          "path": "tools/private-learning-owner-fence-retry/source-manifest.json",
+          "state": "existing"
+        },
+        {
+          "path": ".github/workflows/private-learning-owner-fence-retry.yml",
+          "state": "existing"
+        },
+        {
+          "path": "docs/codex/C04_JOURNAL_SERVICE_C04_RELEASE.json",
+          "state": "existing"
+        },
+        {
+          "path": "docs/codex/C04_C08_SERVICE_MATRIX_RELEASE.md",
+          "state": "existing"
         }
       ],
       "acceptance_criteria": [
@@ -2991,13 +3047,17 @@
           {
             "kind": "verified_owner_fence_tooling_scope",
             "path": "docs/codex/OWNER_FENCE_C04_RELEASE.json"
+          },
+          {
+            "kind": "verified_journal_sql_http_retry_tooling_scope",
+            "path": "docs/codex/C04_JOURNAL_SERVICE_C04_RELEASE.json"
           }
         ]
       },
       "deployment": {
         "status": "DEPLOYED",
-        "scope": "Session foundation and validated owner-fence tooling only; no production schema or legacy-store adoption; whole C04 IN PROGRESS",
-        "deployed_at_main": "20e470daa986cae9c4e260e0c90eb3f700131a60",
+        "scope": "Isolated journal SQL/native HTTP and owner-fence retry validation tooling; prior session and owner foundations retained; no production schema or legacy-store adoption; whole C04 IN PROGRESS",
+        "deployed_at_main": "2c1a0ec618d7a4231195876ff6cbdfb53ad4c819",
         "evidence": [
           {
             "kind": "session_foundation_release",
@@ -3006,6 +3066,10 @@
           {
             "kind": "owner_fence_tooling_release",
             "path": "docs/codex/OWNER_FENCE_C04_RELEASE.json"
+          },
+          {
+            "kind": "verified_journal_sql_http_retry_tooling_scope",
+            "path": "docs/codex/C04_JOURNAL_SERVICE_C04_RELEASE.json"
           }
         ]
       },
@@ -3019,7 +3083,12 @@
         "Synchronous localStorage compare/remove is not cross-tab atomic; queue adoption requires a transactional source-versioned journal and exact revision acknowledgements.",
         "Owner-fence tooling PR372 is verified at main20e470daa986cae9c4e260e0c90eb3f700131a60:400 actual PostgreSQL checks,68 baseline commands,4 PR/9 main workflows and13 anonymous GETs/27 checks. No production migration, active API or owner adoption was enabled.",
         "Independent P2b student-practice repair review passed24 native page,9 flow/65 comparison,12 action and3 legacy-client suites (authority28); the candidate is not installed and transport remains held.",
-        "The frozen P3 design proposes immutable replay, server record CAS, reset generations and session checks after waits;49 planned cases are not executed SQL acceptance. P2 local revisions/receipts are not server acknowledgements or adoption authority."
+        "The historical P3 SQL-unexecuted limit is superseded by merged PR377 (448 actual SQL groups per major), PR376 (20 actual native HTTP cases per major), and PR379 (448 SQL +20 retained HTTP +9 focused SQL +2 retry HTTP groups per major). Their exact source/image/artifact and deployment evidence is recorded in docs/codex/C04_JOURNAL_SERVICE_C04_RELEASE.json. P2 local revisions/receipts do not confer server acknowledgement or adoption authority.",
+        "Actual stock PostgreSQL 15.19/17.11 and PostgREST 14.17 fixtures are accepted as isolated tooling. They do not establish equivalence to live Supabase 17.6.1.147 or hosted Edge/TLS acceptance.",
+        "The accepted retry successor does not replace the original owner-fence SQL or install an active endpoint. Future adoption must explicitly select and migrate the accepted successor.",
+        "Browser persistence/HTTP integration, owner adoption, legacy-store cutover, authoritative grading and active rollout retain separate acceptance gates. This receipt grants no remote, ownership or mastery authority.",
+        "No separate hosted Supabase test project exists. Immutable fixture testing must not use the live ECHS backend.",
+        "The 479 groups per major in PR379 count separately executed SQL/HTTP groups with overlapping semantics; they are not 479 unique business behaviors. Earlier reports retain their historical limits; PR376 resolves the journal native HTTP gate and PR379 resolves only the isolated four-branch retry gate."
       ],
       "next_dependency": [
         "ECHS-015",
@@ -3290,6 +3359,34 @@
         {
           "path": "docs/codex/PRIVATE_BANK_SERVICE_C08_RELEASE.json",
           "state": "existing"
+        },
+        {
+          "path": "tools/private-bank-service/fixture_config.py",
+          "state": "existing"
+        },
+        {
+          "path": "tools/private-bank-service/service_contract.py",
+          "state": "existing"
+        },
+        {
+          "path": "tools/private-bank-service/collect_service.py",
+          "state": "existing"
+        },
+        {
+          "path": "tools/private-bank-service/source-manifest.json",
+          "state": "existing"
+        },
+        {
+          "path": "tools/private-bank-service/source-pins.json",
+          "state": "existing"
+        },
+        {
+          "path": "docs/codex/PRIVATE_BANK_SERVICE_MATRIX_C08_RELEASE.json",
+          "state": "existing"
+        },
+        {
+          "path": "docs/codex/C04_C08_SERVICE_MATRIX_RELEASE.md",
+          "state": "existing"
         }
       ],
       "acceptance_criteria": [
@@ -3314,13 +3411,17 @@
           {
             "kind": "verified_managed_service_tooling_scope",
             "path": "docs/codex/PRIVATE_BANK_SERVICE_C08_RELEASE.json"
+          },
+          {
+            "kind": "verified_managed_service_pg15_pg17_tooling_scope",
+            "path": "docs/codex/PRIVATE_BANK_SERVICE_MATRIX_C08_RELEASE.json"
           }
         ]
       },
       "deployment": {
         "status": "DEPLOYED",
-        "scope": "Unused archive foundation and actual managed-service validation tooling only; no new production endpoint, import or delivery; whole C08 IN PROGRESS",
-        "deployed_at_main": "8ac226228128cd64728fc4aa4fee30aa6f975569",
+        "scope": "Unused archive foundation and actual managed-service PostgreSQL 15/17 validation tooling; no production endpoint, import or private-delivery cutover; whole C08 IN PROGRESS",
+        "deployed_at_main": "8eef049612010f798e636ced3b456ba48ad29a1a",
         "evidence": [
           {
             "kind": "archive_foundation_release",
@@ -3329,6 +3430,10 @@
           {
             "kind": "managed_service_tooling_release",
             "path": "docs/codex/PRIVATE_BANK_SERVICE_C08_RELEASE.json"
+          },
+          {
+            "kind": "verified_managed_service_pg15_pg17_tooling_scope",
+            "path": "docs/codex/PRIVATE_BANK_SERVICE_MATRIX_C08_RELEASE.json"
           }
         ]
       },
@@ -3341,7 +3446,11 @@
         "The additive archive foundation is verified at 5c1d90385c666dd62ed7183bea3c5ad92a6490a9 with222 PostgreSQL archive checks over27 migrations,15 PR/17 main workflows and41 checks from16 anonymous liveGETs. No importer, actual archive object coverage, private delivery, rights promotion or public cutover is claimed.",
         "PR370 verified299 SQL/HTTP checks with injected service dependencies; PR371 separately verifies19 real managed-service groups,54 local groups and68 baseline commands. Neither enables a production transport endpoint.",
         "Managed-service tooling PR371 is verified at main8ac226228128cd64728fc4aa4fee30aa6f975569 with4 PR/9 main workflows and30 anonymous GETs/61 checks. The unchanged handler/transport and all57 executed sources are bound to the tested tree.",
-        "Hosted Edge CPU/memory feasibility, full importer/sealing receipts, complete rights/provenance and private delivery remain unfinished. Runner upload limits are not hosted Edge acceptance."
+        "Hosted Edge CPU/memory feasibility, full importer/sealing receipts, complete rights/provenance and private delivery remain unfinished. Runner upload limits are not hosted Edge acceptance.",
+        "PR378 merged at 8eef049612010f798e636ced3b456ba48ad29a1a verifies the unchanged 19 actual service cases on each managed PostgreSQL major, 61 local safety/collector/CI/TLS groups per job, 57 source bindings, 68 main baseline commands, 9 successful main/follow-up workflows and 16 public deployment/exclusion reads. docs/codex/PRIVATE_BANK_SERVICE_MATRIX_C08_RELEASE.json records exact tested image tags and digests.",
+        "The actual managed fixtures use supabase/postgres:15.8.1.085 and 17.6.1.136. The reported live build is 17.6.1.147; no hosted-version equivalence or hosted Edge acceptance is established.",
+        "The 19 unchanged cases use synthetic data. Corpus import, canonical record verification, sealing, private delivery, rights decisions and public fallback cutover remain unfinished.",
+        "No separate hosted test project exists. The live ECHS backend must not receive immutable hosted test fixtures. Local TLS checks and upload limits are not hosted Edge CPU/memory acceptance."
       ],
       "next_dependency": [
         "ECHS-015",
@@ -5193,10 +5302,10 @@
     "evidence": "docs/codex/MASTERY_TRUTHFULNESS_C02_RELEASE.json"
   },
   "last_verified_foundation_slice": {
-    "task": "ECHS-C08",
-    "scope": "isolated managed-service integration validation tooling; prior archive and owner foundations retained",
-    "main_sha": "8ac226228128cd64728fc4aa4fee30aa6f975569",
-    "tree_sha": "f7c3e82b53944d54b99cbc5499a5480ed09eefb0",
-    "evidence": "docs/codex/PRIVATE_BANK_SERVICE_C08_RELEASE.json"
+    "task": "ECHS-C04",
+    "scope": "Isolated journal SQL/native HTTP and owner-fence retry validation tooling; prior session and owner foundations retained; no production schema or legacy-store adoption",
+    "main_sha": "2c1a0ec618d7a4231195876ff6cbdfb53ad4c819",
+    "tree_sha": "a4a4ca451e98afff6908339edc87ea42f9e0e184",
+    "evidence": "docs/codex/C04_JOURNAL_SERVICE_C04_RELEASE.json"
   }
 }
