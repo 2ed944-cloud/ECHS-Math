@@ -1,0 +1,436 @@
+{
+  "contract": "echs.c04.service-matrix-foundation-release.v1",
+  "status": "FOUNDATION VERIFIED",
+  "scope": "Isolated journal SQL/native HTTP and owner-fence retry validation tooling; prior session and owner foundations retained; no production schema or legacy-store adoption",
+  "whole_c04_status": "IN PROGRESS",
+  "whole_c08_status": "IN PROGRESS",
+  "whole_program_complete": false,
+  "main_sha": "2c1a0ec618d7a4231195876ff6cbdfb53ad4c819",
+  "tree_sha": "a4a4ca451e98afff6908339edc87ea42f9e0e184",
+  "source_manifest_sha256": "729ed9b91c0747e7fec7294696bbc7297b75c9d1966d83729624392b836734ba",
+  "source_manifest_kind": "Exact frozen publication/source receipt referenced by the originating acceptance; not necessarily the in-repository closure manifest.",
+  "historical_receipts": [
+    "docs/codex/OWNER_STORAGE_FOUNDATION_C04_RELEASE.json",
+    "docs/codex/OWNER_FENCE_C04_RELEASE.json"
+  ],
+  "releases": [
+    {
+      "pull_request": "https://github.com/2ed944-cloud/ECHS-Math/pull/377",
+      "main_sha": "35912284a457d439b7104bc863257b1719c09bdb",
+      "tree_sha": "06c7455204d6b782b04601c23814c9b0222e338f",
+      "previous_main_sha": "8eef049612010f798e636ced3b456ba48ad29a1a",
+      "pr_head_sha": "bad03dd46086dcb5d55676a7adbf73b0df4b3bf8",
+      "tested_merge_sha": "b02efe3338a8758ca2c46c03c0075f21d2c93612",
+      "source_manifest_sha256": "55a22acba684e133d63003a4b2138edd467c609484dbd1f92aed59b3f4b2ed8d",
+      "changed_paths": 22,
+      "database_migrations": [],
+      "baseline": {
+        "run_id": 34660300099,
+        "job_id": 103461216915,
+        "commands": 68,
+        "unique_commands": 68,
+        "passed_command_markers": 68,
+        "failed_checks": 0
+      },
+      "main_workflows_passed": 11,
+      "pages": {
+        "run_id": 34660300120,
+        "deployment_sha": "35912284a457d439b7104bc863257b1719c09bdb",
+        "public_requests": 23,
+        "tooling_paths_returning_404": 22
+      },
+      "provenance": [
+        {
+          "workspace_path": "outputs/ECHS_C04_JOURNAL_MATRIX_ACCEPTANCE.json",
+          "bytes": 43551,
+          "sha256": "877135b48d904288432361decdcd466e4f5531fc9ec7b486071f5c46fcf2a4ba"
+        },
+        {
+          "workspace_path": "outputs/ECHS_C04_JOURNAL_MATRIX_REPORT.md",
+          "bytes": 4526,
+          "sha256": "a757018c83d52b3b61e8648db9ef329deb2f821cb40860c5e4574f668006aa11"
+        }
+      ],
+      "actual_run": {
+        "url": "https://github.com/2ed944-cloud/ECHS-Math/actions/runs/34659866520",
+        "jobs": [
+          {
+            "major": 15,
+            "job_id": 103459935447,
+            "artifact_id": 10286946817,
+            "zip_sha256": "38b61f656a0c751e96b379dec28436ba656ff13006c92fa0317cf26ba1c5529e",
+            "members": 8,
+            "index_members_verified": 7,
+            "source_files_verified": 57,
+            "counts": {
+              "membership": 55,
+              "archive": 222,
+              "owner_fence": 123,
+              "journal": 48,
+              "total": 448
+            },
+            "local_counts": {
+              "source_guards": 14,
+              "actions_guards": 30
+            },
+            "postgres_version": "15.19 (Debian 15.19-1.pgdg13+2)",
+            "postgres_image": {
+              "configured": "postgres:15",
+              "image_id": "sha256:40710ae201396ad27dfd01526815d5ad83c83850e7cb16dce9f0012da66f4689",
+              "repo_digests": [
+                "postgres@sha256:9b1d34adbce1dd07ee6e94b4a2cf698884b89bd44a6c9c12f5da8f3acbfe4957"
+              ]
+            },
+            "cleanup_step_success": true
+          },
+          {
+            "major": 17,
+            "job_id": 103459935301,
+            "artifact_id": 10286474490,
+            "zip_sha256": "05bc976df57ab95a9baf7944522fbbe039730b3e75685e46e5cf45a31b6acc4c",
+            "members": 8,
+            "index_members_verified": 7,
+            "source_files_verified": 57,
+            "counts": {
+              "membership": 55,
+              "archive": 222,
+              "owner_fence": 123,
+              "journal": 48,
+              "total": 448
+            },
+            "local_counts": {
+              "source_guards": 14,
+              "actions_guards": 30
+            },
+            "postgres_version": "17.11 (Debian 17.11-1.pgdg13+2)",
+            "postgres_image": {
+              "configured": "postgres:17",
+              "image_id": "sha256:7296f210ae81031ec955dbad9a67a84fe958572a2153b8d0826a647522904dc1",
+              "repo_digests": [
+                "postgres@sha256:67f41722b7a8cbdb868a44a4995c846eddfdc2973bccb291ce937dce88ad5675"
+              ]
+            },
+            "cleanup_step_success": true
+          }
+        ]
+      },
+      "source_binding": {
+        "reviewed_closure": 78,
+        "journal_job_closure": 57
+      },
+      "disposable_sql_change": "Five intentional journal domain conflicts now raise PT409 rather than transaction-retry SQLSTATE40001; twelve matching fixture expected-code literals updated. Owner-fence SQL is unchanged."
+    },
+    {
+      "pull_request": "https://github.com/2ed944-cloud/ECHS-Math/pull/376",
+      "main_sha": "f127a8e9d5a18be2f19bd8bb3d5e30b159dbb169",
+      "tree_sha": "42148dda6ec82d8bf470cd17a9b9f2752170aa3d",
+      "previous_main_sha": "35912284a457d439b7104bc863257b1719c09bdb",
+      "pr_head_sha": "8096734c8d1b61883a341b3878b841cb83791be1",
+      "tested_merge_sha": "342e2409054f6fcd1b02c5010ea4c9468b41ef15",
+      "source_manifest_sha256": "91d0bfd407bc8dfee242afbacb7c063b460e97fa24edd9fde6abea33cdc2dd9b",
+      "changed_paths": 15,
+      "database_migrations": [],
+      "baseline": {
+        "run_id": 34660777646,
+        "job_id": 103462638074,
+        "commands": 68,
+        "unique_commands": 68,
+        "passed_command_markers": 68,
+        "failed_checks": 0
+      },
+      "main_workflows_passed": 9,
+      "pages": {
+        "run_id": 34660777621,
+        "deployment_sha": "f127a8e9d5a18be2f19bd8bb3d5e30b159dbb169",
+        "public_requests": 16,
+        "tooling_paths_returning_404": 15
+      },
+      "provenance": [
+        {
+          "workspace_path": "outputs/ECHS_C04_JOURNAL_HTTP_ACCEPTANCE.json",
+          "bytes": 15547,
+          "sha256": "4759ad607780d0a139e2906e116380f3c7d40914691942df2b0ef938609bab7d"
+        },
+        {
+          "workspace_path": "outputs/ECHS_C04_JOURNAL_HTTP_REPORT.md",
+          "bytes": 3663,
+          "sha256": "86f2f2a884d0ceea1301f6c42f49e40b34c4d7846417916e267221422f8d7892"
+        }
+      ],
+      "actual_run": {
+        "url": "https://github.com/2ed944-cloud/ECHS-Math/actions/runs/34660368314",
+        "jobs": [
+          {
+            "postgres_major": 15,
+            "job_id": 103461417992,
+            "artifact_id": 10287242144,
+            "zip_sha256": "908b6c4bb01af31ec65a87095b6db2c44ee20c67cd543ed8305ced4d37a66446",
+            "members": 7,
+            "indexed_members_verified": 4,
+            "actual_cases": 20,
+            "offline_groups": 17,
+            "loopback_groups": 9,
+            "installation": {
+              "migrations": 27,
+              "journal_owners_initial": 0,
+              "postgres_version": "15.19 (Debian 15.19-1.pgdg13+2)",
+              "storage_service_executed": false
+            },
+            "images": {
+              "db": {
+                "tag": "postgres:15",
+                "image_id": "sha256:40710ae201396ad27dfd01526815d5ad83c83850e7cb16dce9f0012da66f4689",
+                "repository_digest": "postgres@sha256:9b1d34adbce1dd07ee6e94b4a2cf698884b89bd44a6c9c12f5da8f3acbfe4957"
+              },
+              "rest": {
+                "tag": "postgrest/postgrest:v14.17",
+                "image_id": "sha256:fc3d286fec899d5a5bebbb98eac771ced1ccaa44deac8ce2fc23fe5d262eb3d9",
+                "repository_digest": "postgrest/postgrest@sha256:c9dc201e555f5d8e37e7f39cdd4df0229774996e213bfd7de8d10ac609030f2c"
+              }
+            },
+            "http_metrics": {
+              "requests": 42,
+              "responses": 40,
+              "dropped": 2
+            },
+            "control_reaped": true,
+            "cleanup_complete": true
+          },
+          {
+            "postgres_major": 17,
+            "job_id": 103461418101,
+            "artifact_id": 10286922593,
+            "zip_sha256": "16c2767c115453fedad18b5458f5eaf3e176c2f16549e93ad5547481e4e1d128",
+            "members": 7,
+            "indexed_members_verified": 4,
+            "actual_cases": 20,
+            "offline_groups": 17,
+            "loopback_groups": 9,
+            "installation": {
+              "migrations": 27,
+              "journal_owners_initial": 0,
+              "postgres_version": "17.11 (Debian 17.11-1.pgdg13+2)",
+              "storage_service_executed": false
+            },
+            "images": {
+              "db": {
+                "tag": "postgres:17",
+                "image_id": "sha256:7296f210ae81031ec955dbad9a67a84fe958572a2153b8d0826a647522904dc1",
+                "repository_digest": "postgres@sha256:67f41722b7a8cbdb868a44a4995c846eddfdc2973bccb291ce937dce88ad5675"
+              },
+              "rest": {
+                "tag": "postgrest/postgrest:v14.17",
+                "image_id": "sha256:fc3d286fec899d5a5bebbb98eac771ced1ccaa44deac8ce2fc23fe5d262eb3d9",
+                "repository_digest": "postgrest/postgrest@sha256:c9dc201e555f5d8e37e7f39cdd4df0229774996e213bfd7de8d10ac609030f2c"
+              }
+            },
+            "http_metrics": {
+              "requests": 42,
+              "responses": 40,
+              "dropped": 2
+            },
+            "control_reaped": true,
+            "cleanup_complete": true
+          }
+        ]
+      },
+      "source_binding": {
+        "publication_files": 15,
+        "repository_inputs": 29,
+        "explicit_pins": 33
+      }
+    },
+    {
+      "pull_request": "https://github.com/2ed944-cloud/ECHS-Math/pull/379",
+      "main_sha": "2c1a0ec618d7a4231195876ff6cbdfb53ad4c819",
+      "tree_sha": "a4a4ca451e98afff6908339edc87ea42f9e0e184",
+      "previous_main_sha": "f127a8e9d5a18be2f19bd8bb3d5e30b159dbb169",
+      "pr_head_sha": "f3640afba754014f366b8623b1bdf559bc0ea6d3",
+      "tested_merge_sha": "d688e3560d502ce9405250d44493250e7489f1ab",
+      "source_manifest_sha256": "729ed9b91c0747e7fec7294696bbc7297b75c9d1966d83729624392b836734ba",
+      "changed_paths": 24,
+      "database_migrations": [],
+      "baseline": {
+        "status": "MAIN BASELINE68 PASS",
+        "main_sha": "2c1a0ec618d7a4231195876ff6cbdfb53ad4c819",
+        "run_id": 34676707424,
+        "job_id": 103507735809,
+        "commands": 68,
+        "unique_commands": 68,
+        "passed_markers": 68,
+        "failed_checks": 0,
+        "log_sha256": "801b49d9167a3fe01a8f37b2822d251bdb3fd258154548979ee4d024d8764e8d"
+      },
+      "main_workflows_passed": 9,
+      "pages": {
+        "run_id": 34676707417,
+        "deployment_sha": "2c1a0ec618d7a4231195876ff6cbdfb53ad4c819",
+        "anonymous_public_requests": 25,
+        "new_paths_returning_404": 24
+      },
+      "provenance": [
+        {
+          "workspace_path": "outputs/ECHS_C04_OWNER_FENCE_RETRY_ACCEPTANCE.json",
+          "bytes": 27400,
+          "sha256": "7ede865e4d9ad8c81ab7b506f0a3dc304a9ac8d5eeb78737ae9546c42ed34853"
+        },
+        {
+          "workspace_path": "outputs/ECHS_C04_OWNER_FENCE_RETRY_REPORT.md",
+          "bytes": 6591,
+          "sha256": "9d64463d3bd5021108df5d200029e898aaee1b4612afc08bd03f9f2a0c729be5"
+        }
+      ],
+      "actual_run": {
+        "url": "https://github.com/2ed944-cloud/ECHS-Math/actions/runs/34676455969",
+        "jobs": [
+          {
+            "postgres_major": 15,
+            "job_id": 103507071045,
+            "artifact_id": 10292741930,
+            "zip_sha256": "065a9436b8a70aa0a1c46a28e212c1a325f3d7b14d9e7edc535b10a8c38f426d",
+            "zip_members": 15,
+            "indexed_members": 14,
+            "actual_counts": {
+              "membership": 55,
+              "archive": 222,
+              "legacy_fence": 123,
+              "journal": 48,
+              "retained_sql_total": 448,
+              "base_http": 20,
+              "focused_sql": 9,
+              "retry_http": 2,
+              "executed_groups_total": 479
+            },
+            "local_counts": {
+              "successor_contract": 25,
+              "service_offline": 17,
+              "native_loopback": 9
+            },
+            "focused_sql": {
+              "deliberate_absence_55000": 29,
+              "native_serialization_40001": 4,
+              "observed_lock_waits": 6,
+              "all_six_mutations": 18,
+              "fixture_schema_acl_triggers_restored": true,
+              "journal_owners_remain_zero": true,
+              "production_calls": 0
+            },
+            "sql_postgres_version": "15.19 (Debian 15.19-1.pgdg13+2)",
+            "service_postgres_version": "15.19 (Debian 15.19-1.pgdg13+2)",
+            "sql_image": {
+              "configured": "postgres:15",
+              "image_id": "sha256:40710ae201396ad27dfd01526815d5ad83c83850e7cb16dce9f0012da66f4689",
+              "repo_digests": [
+                "postgres@sha256:9b1d34adbce1dd07ee6e94b4a2cf698884b89bd44a6c9c12f5da8f3acbfe4957"
+              ]
+            },
+            "service_images": {
+              "db": {
+                "tag": "postgres:15",
+                "image_id": "sha256:40710ae201396ad27dfd01526815d5ad83c83850e7cb16dce9f0012da66f4689",
+                "repository_digest": "postgres@sha256:9b1d34adbce1dd07ee6e94b4a2cf698884b89bd44a6c9c12f5da8f3acbfe4957"
+              },
+              "rest": {
+                "tag": "postgrest/postgrest:v14.17",
+                "image_id": "sha256:fc3d286fec899d5a5bebbb98eac771ced1ccaa44deac8ce2fc23fe5d262eb3d9",
+                "repository_digest": "postgrest/postgrest@sha256:c9dc201e555f5d8e37e7f39cdd4df0229774996e213bfd7de8d10ac609030f2c"
+              }
+            },
+            "cleanup_complete": true,
+            "source_closure_verified": 96,
+            "retry_http": {
+              "finite_missing_state_requests": 4,
+              "finite_missing_state_transaction_attempts": 4,
+              "old_code_transaction_attempts_observed": 6,
+              "owned_postgrest_stopped": true,
+              "owned_backend_count_after_stop": 0,
+              "http_worker_reaped": true
+            }
+          },
+          {
+            "postgres_major": 17,
+            "job_id": 103507070884,
+            "artifact_id": 10292652258,
+            "zip_sha256": "26b49a063a2a74323071395cb3de6f640d63f8e51fc4aa2dc1c9ac1964da2db6",
+            "zip_members": 15,
+            "indexed_members": 14,
+            "actual_counts": {
+              "membership": 55,
+              "archive": 222,
+              "legacy_fence": 123,
+              "journal": 48,
+              "retained_sql_total": 448,
+              "base_http": 20,
+              "focused_sql": 9,
+              "retry_http": 2,
+              "executed_groups_total": 479
+            },
+            "local_counts": {
+              "successor_contract": 25,
+              "service_offline": 17,
+              "native_loopback": 9
+            },
+            "focused_sql": {
+              "deliberate_absence_55000": 29,
+              "native_serialization_40001": 4,
+              "observed_lock_waits": 6,
+              "all_six_mutations": 18,
+              "fixture_schema_acl_triggers_restored": true,
+              "journal_owners_remain_zero": true,
+              "production_calls": 0
+            },
+            "sql_postgres_version": "17.11 (Debian 17.11-1.pgdg13+2)",
+            "service_postgres_version": "17.11 (Debian 17.11-1.pgdg13+2)",
+            "sql_image": {
+              "configured": "postgres:17",
+              "image_id": "sha256:7296f210ae81031ec955dbad9a67a84fe958572a2153b8d0826a647522904dc1",
+              "repo_digests": [
+                "postgres@sha256:67f41722b7a8cbdb868a44a4995c846eddfdc2973bccb291ce937dce88ad5675"
+              ]
+            },
+            "service_images": {
+              "db": {
+                "tag": "postgres:17",
+                "image_id": "sha256:7296f210ae81031ec955dbad9a67a84fe958572a2153b8d0826a647522904dc1",
+                "repository_digest": "postgres@sha256:67f41722b7a8cbdb868a44a4995c846eddfdc2973bccb291ce937dce88ad5675"
+              },
+              "rest": {
+                "tag": "postgrest/postgrest:v14.17",
+                "image_id": "sha256:fc3d286fec899d5a5bebbb98eac771ced1ccaa44deac8ce2fc23fe5d262eb3d9",
+                "repository_digest": "postgrest/postgrest@sha256:c9dc201e555f5d8e37e7f39cdd4df0229774996e213bfd7de8d10ac609030f2c"
+              }
+            },
+            "cleanup_complete": true,
+            "source_closure_verified": 96,
+            "retry_http": {
+              "finite_missing_state_requests": 4,
+              "finite_missing_state_transaction_attempts": 4,
+              "old_code_transaction_attempts_observed": 21,
+              "owned_postgrest_stopped": true,
+              "owned_backend_count_after_stop": 0,
+              "http_worker_reaped": true
+            }
+          }
+        ]
+      },
+      "source_binding": {
+        "reviewed_closure": 96,
+        "retained_inputs": 72,
+        "new_files": 24,
+        "unchanged_http_source_copies": 8
+      },
+      "disposable_sql_change": "Four explicit missing-state errors in the isolated successor fence use 55000. Native serialization 40001, authorization, locks and triggers are preserved; original fence and active runtime are unchanged."
+    }
+  ],
+  "production_database_migrations": [],
+  "active_runtime_adoption": false,
+  "hosted_edge_accepted": false,
+  "production_variant_equivalence_claimed": false,
+  "known_limits": [
+    "Actual stock PostgreSQL 15.19/17.11 and PostgREST 14.17 fixtures are accepted as isolated tooling. They do not establish equivalence to live Supabase 17.6.1.147 or hosted Edge/TLS acceptance.",
+    "The accepted retry successor does not replace the original owner-fence SQL or install an active endpoint. Future adoption must explicitly select and migrate the accepted successor.",
+    "Browser persistence/HTTP integration, owner adoption, legacy-store cutover, authoritative grading and active rollout retain separate acceptance gates. This receipt grants no remote, ownership or mastery authority.",
+    "No separate hosted Supabase test project exists. Immutable fixture testing must not use the live ECHS backend.",
+    "The 479 groups per major in PR379 count separately executed SQL/HTTP groups with overlapping semantics; they are not 479 unique business behaviors. Earlier reports retain their historical limits; PR376 resolves the journal native HTTP gate and PR379 resolves only the isolated four-branch retry gate."
+  ]
+}
