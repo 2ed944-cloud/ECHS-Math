@@ -1,0 +1,84 @@
+{
+  "contract": "echs.c04.current-session-http-selected-source.v1",
+  "predecessor_manifest_sha256": "660bb66c7a37cab21972dc540a32fd2df788f9756333852bb10b848bf95eef76",
+  "files": [
+    {
+      "path": "selected/js/current-session-journal-bridge.mjs",
+      "bytes": 14417,
+      "sha256": "e5f39170b24d259c5a801fe950d8e1252895e806415e8c18f59f12c965ff8df8",
+      "served": true
+    },
+    {
+      "path": "selected/js/institution-client.js",
+      "bytes": 35019,
+      "sha256": "fb2d41425e31d6f51325ec3b254343f0c5d859d3a5ed5d6a2b80c3d76bcac973",
+      "served": true
+    },
+    {
+      "path": "selected/js/journal/contract.mjs",
+      "bytes": 9956,
+      "sha256": "050a652f28e957aaabd7e87428b4811dbeb2ebfad80552023ebef9c931271e84",
+      "served": true
+    },
+    {
+      "path": "selected/js/journal/pending-intent.mjs",
+      "bytes": 3573,
+      "sha256": "10aa9c3ba04aa0e32483763b5b8ef17d489b6449f4b8738563254d427811f69d",
+      "served": true
+    },
+    {
+      "path": "selected/js/journal/wire.mjs",
+      "bytes": 4397,
+      "sha256": "d6e1a9675d12d125454b827ae1187a55e9176408a81dfb8fe2f0397598f8407b",
+      "served": true
+    },
+    {
+      "path": "selected/js/owned-learning-bootstrap.mjs",
+      "bytes": 9106,
+      "sha256": "eb7db750c8ea62f4c6c610f2a0bc9ec9558e8fcce66cfaf701aeb90d17375f96",
+      "served": true
+    },
+    {
+      "path": "selected/js/owned-learning-store.mjs",
+      "bytes": 73123,
+      "sha256": "75c64156b4a69db6b9f2b9862ec45e673cbd6dc75a090030e9c5383ef3e02773",
+      "served": true
+    },
+    {
+      "path": "selected/js/owned-learning-transport.mjs",
+      "bytes": 400,
+      "sha256": "0a214e92e003a1c8a0f3317ba53a502e2a9604aa5d57ba3e77ddf0c11268b860",
+      "served": true
+    },
+    {
+      "path": "selected/js/wire-binding-model.mjs",
+      "bytes": 12774,
+      "sha256": "41d8b60bce63d25b6d2da782ee900d0a3e139ce830ffbea2a26ef2e696d990a5",
+      "served": true
+    },
+    {
+      "path": "selected/question-bank/js/learning-system.js",
+      "bytes": 1757,
+      "sha256": "69952f6ddbfed512fde53038cfe83a0ff6fcefb262699203db5290f1bdb9ec7b",
+      "served": true
+    },
+    {
+      "path": "selected/question-bank/js/learning-transition.mjs",
+      "bytes": 27867,
+      "sha256": "4167b49674f8dcb55d3427817b62dd81c28d5f9d46140c13bf92de55eb601b5b",
+      "served": true
+    },
+    {
+      "path": "selected/question-bank/js/practice-flow.mjs",
+      "bytes": 10918,
+      "sha256": "82be3e7149d7375427804331491d75516287b67aaccac519a442be733ef08418",
+      "served": true
+    },
+    {
+      "path": "selected/question-bank/practice.html",
+      "bytes": 14983,
+      "sha256": "06c4920c00da32eb35e157c7a4c4e7450cc6841857186e7dfe0a50c01e8fb4b8",
+      "served": false
+    }
+  ]
+}
