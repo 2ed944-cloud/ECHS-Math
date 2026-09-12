@@ -346,3 +346,16 @@ The exact feature name and Linux default are defined in Chromium149's
 Its [selection logic](https://github.com/chromium/chromium/blob/149.0.7827.55/content/browser/network/network_service_util_internal.cc)
 and [native service construction](https://github.com/chromium/chromium/blob/149.0.7827.55/content/browser/network_service_instance_impl.cc)
 define this fixture configuration's scope.
+
+After the unrelated certificate is specifically rejected and its listener has
+received zero application HTTP requests, the fixture-absence check uses
+Playwright's native `waitForFunction` with a five-second deadline. It must
+successfully observe absence, then dispose the returned handle within two
+seconds. This allows native execution-context settlement without accepting a
+timeout, evaluation error, closed target or disposal failure. The immediate
+evaluation failed in the prior Linux run; its generic error does not establish
+the exact underlying cause. Pinned Playwright1.61.1's
+[frame implementation](https://github.com/microsoft/playwright/blob/v1.61.1/packages/playwright-core/src/server/frames.ts)
+reacquires the execution context when retrying recoverable wait failures under
+the original deadline. The certificate checks and all HTTP/browser case bodies
+remain unchanged.

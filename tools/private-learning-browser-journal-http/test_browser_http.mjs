@@ -86,6 +86,12 @@ export function observeSetupBrowser(){
  };
 }
 function bounded(task,ms,code){let timer;return Promise.race([task,new Promise((_,reject)=>timer=setTimeout(()=>reject(new Error(code)),ms))]).finally(()=>clearTimeout(timer))}
+export async function requireFixtureAbsent(page){
+ // Rejected navigation can still be settling its execution context. The native
+ // wait must observe absence successfully; timeout and evaluation errors fail.
+ const handle=await page.waitForFunction(()=>!window.fixture,undefined,{timeout:5000});
+ await bounded(handle.dispose(),2000,'negative-absence-handle-dispose');
+}
 
 export function protocolBoundary(debug,runId,write=line=>writeSync(2,line)){
  assert.match(runId,/^[a-f0-9]{32}$/);assert.equal(typeof debug.disable,'function');let emitted=false;
@@ -337,7 +343,7 @@ async function main(){
   stage='negative-page';const bad=await tlsContext.newPage();let certificateRejected=false;
   stage='negative-navigation';
   try{await bad.goto(negative.origin,{waitUntil:'load',timeout:5000})}catch(error){certificateRejected=/net::ERR_CERT_AUTHORITY_INVALID/.test(error.message)}
-  stage='negative-verification';assert.equal(certificateRejected,true);assert.equal(negative.metrics.requests,0);assert.equal(await bad.evaluate(()=>!!window.fixture),false);
+  stage='negative-verification';assert.equal(certificateRejected,true);assert.equal(negative.metrics.requests,0);await requireFixtureAbsent(bad);
   report.tls={accepted_leaf:true,served_der_sha256:hash(observedLeaf.raw),served_spki_sha256:hash(observedLeaf.publicKey.export({type:'spki',format:'der'})),narrow_spki_exception:true,fresh_explicit_profile:true,unrelated_leaf_rejected:true,negative_application_requests:0,broad_tls_flags:false};
   report.browser={product:version.product,revision:version.revision,playwright:pin.playwright,descriptor_revision:pin.revision,executable_sha256:config.browser_executable_sha256};
   report.native_browser_executed=true;report.real_https_executed=true;

@@ -1095,6 +1095,60 @@ process.stdout.write('PASS');
 """
         logging=subprocess.run(['node','--input-type=module','-',(HERE/'test_browser_http.mjs').as_uri()],input=logging_script,text=True,capture_output=True,timeout=10,check=True)
         self.assertEqual(logging.stdout,'PASS')
+        # Actual exported absence helper, injected page/handle only: Playwright
+        # remains responsible for waiting through navigation-context replacement.
+        absence_script=r"""
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+const moduleUrl=process.argv[2],{requireFixtureAbsent}=await import(moduleUrl);
+const deferred=()=>{let resolve,reject;const promise=new Promise((a,b)=>{resolve=a;reject=b});return {promise,resolve,reject}};
+const tick=async()=>{await Promise.resolve();await Promise.resolve()};
+const originalWindow=globalThis.window;
+try{
+ const wait=deferred(),dispose=deferred();let waits=0,disposals=0,settled=false;
+ const result=requireFixtureAbsent({waitForFunction(predicate,arg,options){
+  waits++;assert.equal(arg,undefined);assert.deepEqual(options,{timeout:5000});
+  for(const fixture of [undefined,null,false,0,'',{},()=>{}]){globalThis.window={fixture};assert.equal(predicate(),!fixture)}
+  return wait.promise;
+ }}).then(()=>{settled=true});
+ await tick();assert.equal(waits,1);assert.equal(disposals,0);assert.equal(settled,false);
+ wait.resolve({dispose(){disposals++;return dispose.promise}});
+ await tick();assert.equal(disposals,1);assert.equal(settled,false);
+ dispose.resolve();await result;assert.equal(settled,true);assert.equal(disposals,1);
+ for(const name of ['TimeoutError','TargetClosedError','EvaluationError']){
+  for(const sync of [false,true]){
+   const error=Object.assign(new Error('synthetic-private-error'),{name});let calls=0;
+   await assert.rejects(requireFixtureAbsent({waitForFunction(){calls++;if(sync)throw error;return Promise.reject(error)}}),caught=>caught===error);
+   assert.equal(calls,1);
+  }
+ }
+ for(const sync of [false,true]){
+  const error=new Error('synthetic-disposal-error');let disposals=0;
+  await assert.rejects(requireFixtureAbsent({waitForFunction:async()=>({dispose(){disposals++;if(sync)throw error;return Promise.reject(error)}})}),caught=>caught===error);
+  assert.equal(disposals,1);
+ }
+ // Timer seam exercises the actual bounded disposal without a two-second sleep.
+ const set=globalThis.setTimeout,clear=globalThis.clearTimeout;let fire,clears=0,timerDisposals=0;
+ const token={};
+ try{
+  globalThis.setTimeout=(callback,ms)=>{assert.equal(ms,2000);assert.equal(fire,undefined);fire=callback;return token};
+  globalThis.clearTimeout=value=>{assert.equal(value,token);clears++};
+  const pending=requireFixtureAbsent({waitForFunction:async()=>({dispose(){timerDisposals++;return new Promise(()=>{})}})});
+  const rejected=assert.rejects(pending,error=>error.message==='negative-absence-handle-dispose');
+  await tick();assert.equal(timerDisposals,1);assert.equal(typeof fire,'function');fire();await rejected;
+  assert.equal(clears,1);assert.equal(timerDisposals,1);
+ }finally{globalThis.setTimeout=set;globalThis.clearTimeout=clear}
+ const source=await readFile(new URL(moduleUrl),'utf8');
+ const start=source.indexOf("  stage='negative-page';"),end=source.indexOf('  report.tls=',start);
+ assert.ok(start>=0&&end>start);const caller=source.slice(start,end);
+ assert.ok(caller.includes('certificateRejected=/net::ERR_CERT_AUTHORITY_INVALID/.test(error.message)'));
+ assert.match(caller,/stage='negative-verification';assert\.equal\(certificateRejected,true\);assert\.equal\(negative\.metrics\.requests,0\);await requireFixtureAbsent\(bad\);/);
+ assert.ok(!caller.includes('bad.evaluate'));
+}finally{if(originalWindow===undefined)delete globalThis.window;else globalThis.window=originalWindow}
+process.stdout.write('PASS');
+"""
+        absence=subprocess.run(['node','--input-type=module','-',(HERE/'test_browser_http.mjs').as_uri()],input=absence_script,text=True,capture_output=True,timeout=10,check=True)
+        self.assertEqual(absence.stdout,'PASS')
         # Python traceback projection accepts exact known source paths only,
         # selects the deepest allowed frame, and ignores hostile properties.
         namespace={}
