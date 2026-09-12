@@ -341,6 +341,50 @@ def verify(repo, published=False):
     return contract.sources(repo, published)
 
 
+def verify_current_session_cdp_owner(process, endpoint):
+    """Prove the exact live browser leader owns the current loopback socket."""
+    from itertools import islice
+    from urllib.parse import urlsplit
+    from processes import process_info, socket_inode
+    value=urlsplit(endpoint)
+    need(value.scheme=='ws' and value.hostname=='127.0.0.1'
+         and value.port is not None and 1024<=value.port<=65535
+         and value.netloc=='127.0.0.1:'+str(value.port)
+         and not value.query and not value.fragment
+         and re.fullmatch('/devtools/browser/[a-f0-9-]{36}',value.path),'current-cdp-origin')
+    need(process.role=='browser' and process.closed is False
+         and process.child is not None and process.identity is not None,'current-cdp-owned-root')
+    expected=dict(process.identity)
+    need(expected['pid']==process.child.pid and expected['pgrp']==expected['pid']
+         and expected['session']==expected['pid'] and expected['uid']==os.getuid(),'current-cdp-leader')
+
+    def live_identity():
+        need(process.child.returncode is None and process.child.poll() is None,'current-cdp-unreaped')
+        actual=process_info(expected['pid'])
+        need(actual is not None and all(actual[key]==expected[key] for key in ('pid','pgrp','session','start','uid'))
+             and actual['ppid']==os.getpid() and actual['state'] not in ('Z','X','x'),'current-cdp-identity')
+
+    live_identity()
+    inode=socket_inode(value.port);wanted='socket:['+inode+']'
+    directory=Path('/proc')/str(expected['pid'])/'fd'
+    entries=list(islice(directory.iterdir(),4097))
+    need(len(entries)<=4096,'current-cdp-fd-limit')
+    matched=None
+    for path in entries:
+        try:
+            if os.readlink(path)==wanted:
+                matched=path
+                break
+        except FileNotFoundError:
+            continue
+    need(matched is not None,'current-cdp-leader-socket')
+    # Permission failures for the leader still fail. No descendant FD access is
+    # needed after this positive, independently rechecked leader/socket proof.
+    live_identity()
+    need(socket_inode(value.port)==inode and os.readlink(matched)==wanted,'current-cdp-binding-changed')
+    return {'loopback':True,'owned_browser_listener':True}
+
+
 FAILURE_STAGES = frozenset({'checkout','dependency-identity','ephemeral-tls','image-resolution',
     'network-create','postgres-start','install-exact-schema','postgrest-start','postgrest-readiness',
     'browser-launch','actual-http-cases','actual-browser-cases','post-execution-identity',
@@ -637,7 +681,7 @@ def main():
         need(actual['unexpected_requests']==actual['page_errors']==[] and actual['tls']['negative_application_requests']==0,'browser-network-boundary')
         report['browser_groups']=12;report['tls_executed']=True;report['browser_persistence_executed']=True
         need(verify_session(repo,True)==session_receipt,'session-source-drift-before-driver')
-        stage='current-session-cdp-recheck';verify_cdp_owner(browser_process,browser_endpoint)
+        stage='current-session-cdp-recheck';verify_current_session_cdp_owner(browser_process,browser_endpoint)
         run_child([paths['node'],str(SESSION_HERE/'test_current_session_http.mjs'),str(private_config),sys.executable,str(run_dir/'current-session-results.json')],'driver',900,'current-session-results.json')
         stage='current-session-report-check'
         current=json.loads((run_dir/'current-session-results.json').read_bytes())
