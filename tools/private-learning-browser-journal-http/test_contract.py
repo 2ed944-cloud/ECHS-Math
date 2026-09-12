@@ -549,6 +549,128 @@ process.stdout.write(JSON.stringify({stages:BROWSER_FAILURE_STAGES,network_error
         self.assertNotIn(secret,checked.stdout+checked.stderr)
         self.assertEqual(runner.FAILURE_STAGES,assemble.RUN_FAILURE_STAGES)
         self.assertEqual(set(runner.FAILURE_SOURCE_NAMES),assemble.RUN_FAILURE_SOURCE_NAMES)
+        # Exercise the real exported passive observers with injected event
+        # emitters. This makes no browser, socket, TLS or SQL execution claim.
+        observer_script=r"""
+import assert from 'node:assert/strict';
+import {EventEmitter} from 'node:events';
+const {observeSetupBrowser}=await import(process.argv[2]);
+const {observeSetupTransport,SETUP_TRANSPORT_CODES}=await import(process.argv[3]);
+const secret='SYNTHETIC_PRIVATE_VALUE_DO_NOT_UPLOAD_9741';
+const hostile=key=>Object.defineProperty({},key,{get(){throw new Error(secret)}});
+const server=new EventEmitter(),emit=server.emit;let outsideRequests=0;
+const foreign=()=>outsideRequests++;server.on('request',foreign);
+assert.equal(server.listenerCount('clientError'),0);
+const transport=observeSetupTransport(server);
+assert.equal(server.emit,emit);assert.equal(server.listenerCount('clientError'),0);
+assert.deepEqual(transport.snapshot(),{counts:{tcp_connections:0,tls_connections:0,tls_errors:0,http_requests:0},saturated:false,last_tls_error:null});
+const socket=new Proxy({},{get(){throw new Error(secret)}});
+assert.doesNotThrow(()=>server.emit('connection',socket));assert.doesNotThrow(()=>server.emit('secureConnection',socket));
+assert.doesNotThrow(()=>server.emit('request',socket,socket));assert.equal(outsideRequests,1);
+for(const code of SETUP_TRANSPORT_CODES){server.emit('tlsClientError',{code,message:secret},socket);assert.equal(transport.snapshot().last_tls_error,code)}
+for(const value of [secret,true,1,[],{},null]){server.emit('tlsClientError',{code:value});assert.equal(transport.snapshot().last_tls_error,'OTHER')}
+assert.doesNotThrow(()=>server.emit('tlsClientError',hostile('code')));
+const copied=transport.snapshot();copied.counts.tcp_connections=999;assert.equal(transport.snapshot().counts.tcp_connections,1);
+for(let i=0;i<300;i++)for(const event of ['connection','secureConnection','tlsClientError','request'])server.emit(event,{code:secret},socket);
+const cappedTransport=transport.snapshot();assert.ok(Object.values(cappedTransport.counts).every(n=>n===255));assert.equal(cappedTransport.saturated,true);
+transport.dispose();transport.dispose();assert.equal(server.emit,emit);assert.equal(server.listenerCount('clientError'),0);
+assert.equal(server.listenerCount('connection'),0);assert.equal(server.listenerCount('secureConnection'),0);assert.equal(server.listenerCount('tlsClientError'),0);assert.deepEqual(server.listeners('request'),[foreign]);
+for(const event of ['connection','secureConnection','tlsClientError','request'])server.emit(event,{code:'ECONNRESET'},socket);
+assert.deepEqual(transport.snapshot(),cappedTransport);
+
+const page=new EventEmitter(),cdp=new EventEmitter(),browser=observeSetupBrowser();let outsideLoads=0;
+const outside=()=>outsideLoads++;page.on('load',outside);browser.attach(page,cdp);
+const first=browser.snapshot();assert.equal(Object.keys(first.counts).length,15);assert.ok(Object.values(first.counts).every(n=>n===0));
+assert.equal(first.identity_verified,false);assert.equal(first.document_status,null);assert.equal(first.network_error,null);assert.equal(first.saturated,false);
+const navigation={isNavigationRequest:()=>true},subresource={isNavigationRequest:()=>false};
+for(const key of ['url','headers','postData','body'])Object.defineProperty(navigation,key,{get(){throw new Error(secret)}});
+page.emit('request',navigation);page.emit('request',subresource);
+page.emit('response',{request:()=>navigation,status:()=>200});page.emit('response',{request:()=>subresource,status:()=>500});
+assert.equal(browser.snapshot().document_status,200);
+for(const value of [true,false,0,99,600,1.5,secret,null])page.emit('response',{request:()=>navigation,status:()=>value});
+assert.equal(browser.snapshot().document_status,200);
+for(const status of [100,599]){page.emit('response',{request:()=>navigation,status:()=>status});assert.equal(browser.snapshot().document_status,status)}
+page.emit('requestfailed',{failure:()=>({errorText:secret+' net::ERR_CONNECTION_RESET'})});assert.equal(browser.snapshot().network_error,'ERR_CONNECTION_RESET');
+cdp.emit('Network.requestWillBeSent',socket);cdp.emit('Network.responseReceived',socket);
+cdp.emit('Network.loadingFailed',{errorText:secret});assert.equal(browser.snapshot().network_error,'OTHER');
+const badStatus=Object.defineProperty({request:()=>navigation},'status',{get(){throw new Error(secret)}});
+for(const [emitter,event,value] of [[page,'request',hostile('isNavigationRequest')],[page,'response',hostile('request')],[page,'response',badStatus],[page,'requestfailed',hostile('failure')],[cdp,'Network.loadingFailed',hostile('errorText')]])assert.doesNotThrow(()=>emitter.emit(event,value));
+assert.equal(browser.snapshot().counts.observer_errors,5);
+let calls=0,finish;const result={private:secret},pending=new Promise(resolve=>finish=resolve);
+assert.equal(browser.continueRoute(()=>{calls++;return pending}),pending);
+assert.equal(browser.snapshot().counts.route_attempted,1);assert.equal(browser.snapshot().counts.route_continued,0);assert.equal(browser.snapshot().counts.route_failed,0);
+finish(result);assert.equal(await pending,result);assert.equal(browser.snapshot().counts.route_continued,1);
+const originalError=new Error(secret),rejected=Promise.reject(originalError);
+assert.equal(browser.continueRoute(()=>{calls++;return rejected}),rejected);
+await assert.rejects(rejected,error=>error===originalError);assert.equal(browser.snapshot().counts.route_failed,1);
+assert.throws(()=>browser.continueRoute(()=>{calls++;throw originalError}),error=>error===originalError);
+assert.equal(browser.continueRoute(()=>{calls++;return result}),result);await Promise.resolve();
+assert.equal(calls,4);assert.equal(browser.snapshot().counts.route_attempted,4);assert.equal(browser.snapshot().counts.route_continued,2);assert.equal(browser.snapshot().counts.route_failed,2);
+browser.abortRoute();browser.identityVerified();page.emit('domcontentloaded');page.emit('load');
+assert.equal(outsideLoads,1);assert.equal(browser.snapshot().identity_verified,true);
+const copy=browser.snapshot();copy.counts.requests=999;assert.notEqual(browser.snapshot().counts.requests,999);
+for(let i=0;i<300;i++){
+ page.emit('request',navigation);page.emit('response',{request:()=>navigation,status:()=>200});page.emit('requestfailed',{failure:()=>({errorText:secret})});
+ page.emit('request',hostile('isNavigationRequest'));page.emit('domcontentloaded');page.emit('load');browser.continueRoute(()=>Promise.resolve(null));browser.abortRoute();
+ assert.throws(()=>browser.continueRoute(()=>{throw originalError}),error=>error===originalError);
+ cdp.emit('Network.requestWillBeSent',socket);cdp.emit('Network.responseReceived',socket);cdp.emit('Network.loadingFailed',{errorText:secret});
+}
+await Promise.resolve();const cappedBrowser=browser.snapshot();assert.ok(Object.values(cappedBrowser.counts).every(n=>n===255));assert.equal(cappedBrowser.saturated,true);
+browser.dispose();browser.dispose();for(const event of ['request','response','requestfailed','domcontentloaded','load'])page.emit(event,hostile('isNavigationRequest'));
+for(const event of ['Network.requestWillBeSent','Network.responseReceived','Network.loadingFailed'])cdp.emit(event,hostile('errorText'));
+assert.deepEqual(browser.snapshot(),cappedBrowser);assert.deepEqual(page.listeners('load'),[outside]);
+for(const event of ['request','response','requestfailed','domcontentloaded'])assert.equal(page.listenerCount(event),0);
+assert.equal(cdp.eventNames().length,0);assert.equal(JSON.stringify({cappedBrowser,cappedTransport}).includes(secret),false);
+process.stdout.write(JSON.stringify({contract:'echs.c04.browser-setup-observation.v1',browser:cappedBrowser,transport:cappedTransport}));
+"""
+        observed=subprocess.run(['node','--input-type=module','-',(HERE/'test_browser_http.mjs').as_uri(),(HERE/'https-bridge.mjs').as_uri()],input=observer_script,text=True,capture_output=True,timeout=15,check=True)
+        observation=json.loads(observed.stdout);self.assertNotIn(secret,observed.stdout+observed.stderr)
+        self.assertEqual(tuple(observation['browser']['counts']),assemble.SETUP_BROWSER_COUNTS)
+        self.assertEqual(tuple(observation['transport']['counts']),assemble.SETUP_TRANSPORT_COUNTS)
+        assemble.validate_setup_observation(observation)
+        directory=self.temporary()
+        def project_setup(value,status='FAIL; NO ACCEPTANCE',group='setup',name='browser-results.json'):
+            (directory/name).write_bytes(encoded({'status':status,'failed_group':group,'setup_observation':value,'service_key':secret,'failure':{'type':'TimeoutError','message':secret}}))
+            with patch.object(assemble,'labels',side_effect=AssertionError('setup projection must not read rejected source labels')):
+                projected=assemble.failure_projection(directory,15,ValueError(secret))
+            self.assertNotIn(secret,json.dumps(projected));return projected['reports'][name]
+        for transport in [observation['transport'],None]:
+            valid={**observation,'transport':transport};assemble.validate_setup_observation(valid)
+            self.assertEqual(project_setup(valid)['setup_observation'],valid)
+        for network in [None,'OTHER',*assemble.BROWSER_NETWORK_ERRORS]:
+            valid=copy.deepcopy(observation);valid['browser']['network_error']=network;assemble.validate_setup_observation(valid)
+            self.assertEqual(project_setup(valid)['setup_observation'],valid)
+        for code in [None,*assemble.SETUP_TRANSPORT_CODES]:
+            valid=copy.deepcopy(observation);valid['transport']['last_tls_error']=code;assemble.validate_setup_observation(valid)
+        for status in ['RUNNING; NOT ACCEPTED','ACTUAL BROWSER HTTPS POSTGREST SQL PASS',True,None]:
+            self.assertNotIn('setup_observation',project_setup(observation,status=status))
+        for group in ['B01', 'B01 '+secret, None,True,[],{}]:
+            self.assertNotIn('setup_observation',project_setup(observation,group=group))
+        for name in ['run-report.json','http-results.json']:
+            self.assertNotIn('setup_observation',project_setup(observation,name=name))
+        for branch in [(),('browser',),('browser','counts'),('transport',),('transport','counts')]:
+            invalid=copy.deepcopy(observation);target=invalid
+            for key in branch:target=target[key]
+            target['private_url']=secret;self.rejects(lambda:assemble.validate_setup_observation(invalid))
+            self.assertNotIn('setup_observation',project_setup(invalid))
+        for side,names in [('browser',assemble.SETUP_BROWSER_COUNTS),('transport',assemble.SETUP_TRANSPORT_COUNTS)]:
+            for name in names:
+                for number in [True,False,-1,256,1.5,None,secret]:
+                    invalid=copy.deepcopy(observation);invalid[side]['counts'][name]=number
+                    self.rejects(lambda:assemble.validate_setup_observation(invalid));self.assertNotIn('setup_observation',project_setup(invalid))
+            for key in ['saturated']+(['identity_verified'] if side=='browser' else []):
+                for value in [0,1,None,secret]:
+                    invalid=copy.deepcopy(observation);invalid[side][key]=value
+                    self.rejects(lambda:assemble.validate_setup_observation(invalid));self.assertNotIn('setup_observation',project_setup(invalid))
+        for key,values in [('network_error',[True,[],{},secret,'ERR_FAILED_SUFFIX']),('document_status',[True,False,99,600,1.5,secret])]:
+            for value in values:
+                invalid=copy.deepcopy(observation);invalid['browser'][key]=value
+                self.rejects(lambda:assemble.validate_setup_observation(invalid));self.assertNotIn('setup_observation',project_setup(invalid))
+        for value in [True,[],{},secret,'ECONNRESET_SUFFIX']:
+            invalid=copy.deepcopy(observation);invalid['transport']['last_tls_error']=value
+            self.rejects(lambda:assemble.validate_setup_observation(invalid));self.assertNotIn('setup_observation',project_setup(invalid))
+        for value in [None,True,[],secret,{}, {'contract':'wrong','browser':observation['browser'],'transport':None}]:
+            self.rejects(lambda:assemble.validate_setup_observation(value));self.assertNotIn('setup_observation',project_setup(value))
         # Python traceback projection accepts exact known source paths only,
         # selects the deepest allowed frame, and ignores hostile properties.
         namespace={}

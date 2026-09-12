@@ -15,6 +15,9 @@ TEST_NAMES=('contract-tests.json','cert-tests.json','supervisor-tests.json','des
 LOCAL_INDEX='local-executions.json'
 BROWSER_FAILURE_STAGES={'control-start','listener-start','listener-metadata','cdp-connect','positive-context','positive-page','positive-navigation','positive-fixture','browser-identity','positive-certificate','negative-page','negative-navigation','negative-verification','tls-cleanup','group-account','group-context','group-route','group-page','group-navigation','group-fixture','group-configure','group-body','group-verification','group-cleanup','final-verification'}
 BROWSER_NETWORK_ERRORS={'ERR_CERT_AUTHORITY_INVALID','ERR_CERT_COMMON_NAME_INVALID','ERR_CERT_DATE_INVALID','ERR_CERT_INVALID','ERR_SSL_PROTOCOL_ERROR','ERR_CONNECTION_CLOSED','ERR_CONNECTION_REFUSED','ERR_CONNECTION_RESET','ERR_CONNECTION_TIMED_OUT','ERR_TIMED_OUT','ERR_ABORTED','ERR_FAILED','ERR_BLOCKED_BY_CLIENT','ERR_BLOCKED_BY_RESPONSE','ERR_NAME_NOT_RESOLVED','ERR_ADDRESS_UNREACHABLE','ERR_NETWORK_ACCESS_DENIED','ERR_EMPTY_RESPONSE'}
+SETUP_TRANSPORT_CODES={'ECONNRESET','ERR_SSL_TLSV1_ALERT_UNKNOWN_CA','ERR_SSL_SSLV3_ALERT_BAD_CERTIFICATE','ERR_SSL_WRONG_VERSION_NUMBER','ERR_SSL_HTTP_REQUEST','ERR_SSL_UNSUPPORTED_PROTOCOL','OTHER'}
+SETUP_BROWSER_COUNTS=('requests','document_requests','responses','document_responses','failed_requests','route_attempted','route_continued','route_failed','route_abort_attempted','cdp_requests','cdp_responses','cdp_failed','domcontentloaded','load','observer_errors')
+SETUP_TRANSPORT_COUNTS=('tcp_connections','tls_connections','tls_errors','http_requests')
 RUN_FAILURE_STAGES={'checkout','dependency-identity','ephemeral-tls','image-resolution','network-create','postgres-start','install-exact-schema','postgrest-start','postgrest-readiness','browser-launch','actual-http-cases','actual-browser-cases','post-execution-identity','browser-cdp-recheck','actual-browser-driver-start','actual-browser-driver-wait','actual-browser-driver-output','actual-browser-driver-cleanup','actual-browser-report-check'}
 RUN_FAILURE_SOURCE_NAMES={'run.py','processes.py','owned_children.py','fixture.py','certs.py','contract.py'}
 SOURCE=contract.HERE
@@ -89,6 +92,21 @@ def validate_observations(rows,native=False,limit=1000):
 
 def integer(value,minimum=0,maximum=1000000):
     return type(value) is int and minimum<=value<=maximum
+
+
+def validate_setup_observation(value):
+    """Closed failure-only setup counters; never arbitrary event objects."""
+    closed(value,{'contract':str,'browser':{'counts':dict.fromkeys(SETUP_BROWSER_COUNTS,int),'saturated':bool,'network_error':(str,type(None)),'document_status':(int,type(None)),'identity_verified':bool},'transport':(dict,type(None))},'setup-observation-shape')
+    need(value['contract']=='echs.c04.browser-setup-observation.v1','setup-observation-contract')
+    browser=value['browser']
+    need(all(integer(number,0,255) for number in browser['counts'].values()),'setup-browser-counts')
+    need(browser['network_error'] is None or browser['network_error'] in BROWSER_NETWORK_ERRORS|{'OTHER'},'setup-network-error')
+    need(browser['document_status'] is None or integer(browser['document_status'],100,599),'setup-document-status')
+    if value['transport'] is not None:
+        transport=value['transport']
+        closed(transport,{'counts':dict.fromkeys(SETUP_TRANSPORT_COUNTS,int),'saturated':bool,'last_tls_error':(str,type(None))},'setup-transport-shape')
+        need(all(integer(number,0,255) for number in transport['counts'].values()),'setup-transport-counts')
+        need(transport['last_tls_error'] is None or transport['last_tls_error'] in SETUP_TRANSPORT_CODES,'setup-transport-error')
 
 
 def digest(raw):
@@ -339,6 +357,11 @@ def failure_projection(directory,major,error):
         projected={}
         statuses={'RUNNING; NOT ACCEPTED','FAIL; NO ACCEPTANCE','ACTUAL BROWSER JOURNAL SERVICES PASS','ACTUAL HTTP POSTGREST SQL PASS','ACTUAL BROWSER HTTPS POSTGREST SQL PASS'}
         if type(value.get('status')) is str and value['status'] in statuses:projected['status']=value['status']
+        if name=='browser-results.json' and value.get('status')=='FAIL; NO ACCEPTANCE' and value.get('failed_group')=='setup':
+            observation=value.get('setup_observation')
+            try:validate_setup_observation(observation)
+            except Exception:pass
+            else:projected['setup_observation']=observation
         for field in ('cleanup_complete','process_cleanup_complete','secrets_removed','cdp_listener_absent','tls_listeners_absent','control_reaped','real_http_executed','postgrest_executed','database_executed','native_browser_executed','real_https_executed'):
             if type(value.get(field)) is bool:projected[field]=value[field]
         for field in ('process_initial_scan_failure_type','descendant_cleanup_failure_type','process_cleanup_failure_type','network_cleanup_failure_type','cleanup_failure_type','final_source_failure_type','private_cleanup_failure_type'):

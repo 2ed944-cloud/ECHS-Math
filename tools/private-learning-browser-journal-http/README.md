@@ -121,6 +121,22 @@ leaf DER/SPKI and rejected an unrelated leaf before HTTP. That CDP control had
 a managed persistent browser owner plus a second controller. These local
 adaptations do not establish the cause of the Linux CI timeout, execute any
 PostgREST/SQL browser cases or replace the required PG15/17 matrix acceptance.
+
+The Linux no-proxy run still timed out at initial navigation on both majors.
+The diagnostic successor therefore records passive setup counters for browser
+requests, route continuation, TCP/TLS connections, parsed HTTP, CDP responses
+and document lifecycle events. Existing browser version, argv, profile and TLS
+flag checks run before navigation; successful verification is recorded as a
+boolean. The navigation deadline and all acceptance cases are unchanged.
+Counters saturate at255 with an explicit saturation flag.
+Continuation attempts, fulfillment and rejection are counted separately while
+returning the original promise; the abort counter records invocation only.
+Throwing browser event getters increment an observer-error counter without changing request
+flow. No socket data listener, clientError listener or emit override is added.
+Only fixed error codes, a numeric document status and closed counters can leave
+the private report, and only for a setup failure captured before cleanup.
+Malformed observations are omitted entirely; successful artifact shapes and
+case counts are unchanged. This diagnostic evidence cannot grant acceptance.
 The listener serves exactly ten fixed buffered entries: one HTML page, one
 fixture module, a favicon and seven exact T3 modules. The held transport module
 is retained but unserved. There is no arbitrary static root or filesystem path

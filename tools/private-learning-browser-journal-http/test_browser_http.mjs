@@ -45,6 +45,34 @@ export function browserDiagnostic(error,stage=null){
 }
 const safeError=error=>browserDiagnostic(error);
 export const failedBrowserGroup=index=>Number.isInteger(index)&&index>=0&&index<LABELS.length?LABELS[index]:'setup';
+export function observeSetupBrowser(){
+ const counts={requests:0,document_requests:0,responses:0,document_responses:0,failed_requests:0,route_attempted:0,route_continued:0,route_failed:0,route_abort_attempted:0,cdp_requests:0,cdp_responses:0,cdp_failed:0,domcontentloaded:0,load:0,observer_errors:0};
+ const listeners=[];let saturated=false,networkError=null,documentStatus=null,identityVerified=false,disposed=false;
+ const bump=name=>{if(counts[name]===255)saturated=true;else counts[name]++};
+ const status=value=>{if(Number.isInteger(value)&&value>=100&&value<=599)documentStatus=value};
+ const failure=message=>{networkError=browserDiagnostic({message}).network_error??'OTHER'};
+ const on=(emitter,event,fn)=>{const observed=(...args)=>{try{fn(...args)}catch{bump('observer_errors')}};emitter.on(event,observed);listeners.push([emitter,event,observed])};
+ return {
+  attach:(page,cdp)=>{
+   on(page,'request',request=>{bump('requests');if(request.isNavigationRequest())bump('document_requests')});
+   on(page,'response',response=>{bump('responses');if(response.request().isNavigationRequest()){bump('document_responses');status(response.status())}});
+   on(page,'requestfailed',request=>{bump('failed_requests');failure(request.failure()?.errorText)});
+   on(page,'domcontentloaded',()=>bump('domcontentloaded'));on(page,'load',()=>bump('load'));
+   on(cdp,'Network.requestWillBeSent',()=>bump('cdp_requests'));
+   on(cdp,'Network.responseReceived',()=>bump('cdp_responses'));
+   on(cdp,'Network.loadingFailed',event=>{bump('cdp_failed');failure(event.errorText)});
+  },
+  continueRoute:action=>{
+   bump('route_attempted');
+   try{const task=action();void Promise.resolve(task).then(()=>bump('route_continued'),()=>bump('route_failed'));return task}
+   catch(error){bump('route_failed');throw error}
+  },
+  abortRoute:()=>bump('route_abort_attempted'),
+  identityVerified:()=>{identityVerified=true},
+  snapshot:()=>({counts:{...counts},saturated,network_error:networkError,document_status:documentStatus,identity_verified:identityVerified}),
+  dispose:()=>{if(disposed)return;disposed=true;for(const [emitter,event,fn] of listeners)emitter.removeListener(event,fn);listeners.length=0},
+ };
+}
 function bounded(task,ms,code){let timer;return Promise.race([task,new Promise((_,reject)=>timer=setTimeout(()=>reject(new Error(code)),ms))]).finally(()=>clearTimeout(timer))}
 
 export async function closeContext(context,contexts,primaryError=null){
@@ -107,7 +135,7 @@ async function main(){
   {path:'/browser-page.mjs',type:'text/javascript; charset=utf-8',body:await readFile(resolve(HERE,'browser-page.mjs'))},{path:'/favicon.ico',type:'image/x-icon',body:Buffer.alloc(0)}];
  for(const name of MODULES)entries.push({path:'/source/'+name,type:'text/javascript; charset=utf-8',body:await readFile(resolve(HERE,'retained/c04-learning-ack-candidate/source',name))});
  assert.equal(entries.length,10);
- const outcomes=[],unexpected=[],pageErrors=[],nativeObservations=[],rpcObservations=[],rpcPayloads=[],contexts=new Set(),faults=new Set();
+ const outcomes=[],unexpected=[],pageErrors=[],nativeObservations=[],rpcObservations=[],rpcPayloads=[],contexts=new Set(),faults=new Set(),setup=observeSetupBrowser();
  let ctl,server,negative,browser,pendingFault=null,stage='control-start',failureStage=null,currentGroup=null;
  const report={contract:'echs.c04.browser-journal-http-actual.v1',status:'RUNNING; NOT ACCEPTED',planned_groups:LABELS,checks:outcomes,production_calls:0,hosted_edge_executed:false,hosted_tls_executed:false,production_authority_accepted:false,native_browser_executed:false,real_https_executed:false,postgrest_executed:false,database_executed:false,cleanup_complete:false};
  const command=(action,c,extra={})=>ctl.call(action,{case:c.case,...extra});
@@ -125,14 +153,15 @@ async function main(){
   value.enter(true);
   try{if(value.mode==='pause')await value.gate;return value.mode==='pause'?null:value.mode}finally{signal.removeEventListener('abort',onAbort);faults.delete(value)}
  }
- function guard(context,{allowNegative=false}={}){
+ function guard(context,{allowNegative=false,observeSetup=false}={}){
   context.on('page',page=>page.on('pageerror',()=>pageErrors.push({kind:'pageerror'})));
   const validPaths=new Set(entries.map(row=>row.path));
   return context.route('**/*',route=>{
    const request=route.request(),url=new URL(request.url());
    const positive=url.origin===server.origin&&!url.search&&!url.hash&&(validPaths.has(url.pathname)||/^\/functions\/v1\/learning-journal\/(state|heads|apply|operation)$/.test(url.pathname));
    const negativeAllowed=allowNegative&&url.origin===negative.origin&&url.pathname==='/'&&!url.search&&!url.hash;
-   if(positive||negativeAllowed)return route.continue();
+   if(positive||negativeAllowed){if(observeSetup&&positive)return setup.continueRoute(()=>route.continue());return route.continue();}
+   if(observeSetup)setup.abortRoute();
    unexpected.push({url_sha256:hash(request.url()),method:['GET','POST','OPTIONS'].includes(request.method())?request.method():'OTHER'});return route.abort('blockedbyclient');
   });
  }
@@ -164,15 +193,13 @@ async function main(){
    const parsed=JSON.parse(match[1]);if(typeof parsed.operation_id==='string')rpcPayloads.push({operation_id:parsed.operation_id,payload_sha256:hash(match[1])});
    return fetch(url,options);
   },observe:row=>{rpcObservations.push(row);report.postgrest_executed=true}});
-  stage='listener-start';server=await listenHttps({cert,key,entries,afterResponse,handlerFactory:origin=>createJournalHandler({supabaseUrl:FIXTURE_ORIGIN,serviceKey:config.service_key,allowedOrigins:[origin],fetchImpl:port})});
+  stage='listener-start';server=await listenHttps({cert,key,entries,afterResponse,setupDiagnostics:true,handlerFactory:origin=>createJournalHandler({supabaseUrl:FIXTURE_ORIGIN,serviceKey:config.service_key,allowedOrigins:[origin],fetchImpl:port})});
   negative=await listenHttps({cert:otherCert,key:otherKey,entries,handlerFactory:()=>()=>new Response('{}')});
   stage='listener-metadata';await writeFile(resolve(dirname(configPath),'listener-private.json'),JSON.stringify([Number(new URL(server.origin).port),Number(new URL(negative.origin).port)]),{flag:'wx',mode:0o600});
   assert.match(config.cdp_endpoint,/^ws:\/\/127\.0\.0\.1:\d+\/devtools\/browser\/[a-f0-9-]{36}$/);
   stage='cdp-connect';browser=await chromium.connectOverCDP(config.cdp_endpoint,{timeout:10000});
-  stage='positive-context';const tlsContext=await browser.newContext({serviceWorkers:'block',ignoreHTTPSErrors:false});contexts.add(tlsContext);await guard(tlsContext,{allowNegative:true});
+  stage='positive-context';const tlsContext=await browser.newContext({serviceWorkers:'block',ignoreHTTPSErrors:false});contexts.add(tlsContext);await guard(tlsContext,{allowNegative:true,observeSetup:true});
   stage='positive-page';const page=await tlsContext.newPage();
-  stage='positive-navigation';await page.goto(server.origin,{waitUntil:'load',timeout:10000});
-  stage='positive-fixture';await page.waitForFunction(()=>!!window.fixture,undefined,{timeout:5000});
   stage='browser-identity';
   const cdp=await tlsContext.newCDPSession(page),version=await cdp.send('Browser.getVersion'),commandLine=await cdp.send('Browser.getBrowserCommandLine');
   assert.equal(version.product.split('/').at(-1),pin.version);assert.ok(version.revision.startsWith('@'));
@@ -181,6 +208,9 @@ async function main(){
   assert.equal(args.filter(arg=>arg.startsWith('--ignore-certificate-errors-spki-list=')).length,1);assert.ok(args.includes(spki));
   assert.equal(args.filter(arg=>arg.startsWith('--user-data-dir=')).length,1);assert.ok(args.includes('--user-data-dir='+config.browser_profile));assert.ok(args.includes('--enable-automation'));
   assert.ok(!args.some(arg=>/^--(?:ignore-certificate-errors(?:=|$)|allow-insecure-localhost(?:=|$))/.test(arg)));
+  setup.identityVerified();setup.attach(page,cdp);await cdp.send('Network.enable');
+  stage='positive-navigation';await page.goto(server.origin,{waitUntil:'load',timeout:10000});
+  stage='positive-fixture';await page.waitForFunction(()=>!!window.fixture,undefined,{timeout:5000});
   stage='positive-certificate';const chain=await cdp.send('Network.getCertificate',{origin:server.origin});assert.equal(chain.tableNames.length,1);
   const observedLeaf=new X509Certificate(Buffer.from(chain.tableNames[0],'base64'));
   assert.equal(hash(observedLeaf.raw),config.tls.positive.metadata.der_sha256);assert.equal(hash(observedLeaf.publicKey.export({type:'spki',format:'der'})),config.tls.positive.metadata.spki_sha256);
@@ -196,8 +226,10 @@ async function main(){
   await exercise({group,api,command,arm,newPage,rpcPayloads});
   stage='final-verification';assert.deepEqual(outcomes.map(row=>row.name),LABELS);assert.deepEqual(await snapshot(),sourceBefore);assert.deepEqual(unexpected,[]);assert.deepEqual(pageErrors,[]);
   Object.assign(report,{status:'ACTUAL BROWSER HTTPS POSTGREST SQL PASS',source_files:sourceBefore,static_routes:10,served_t3_modules:7,held_transport_served:false});
- }catch(error){report.status='FAIL; NO ACCEPTANCE';report.failure=browserDiagnostic(error,failureStage??stage);report.failed_group=failedBrowserGroup(currentGroup)}
+ }catch(error){report.status='FAIL; NO ACCEPTANCE';report.failure=browserDiagnostic(error,failureStage??stage);report.failed_group=failedBrowserGroup(currentGroup);if(currentGroup===null&&outcomes.length===0)report.setup_observation={contract:'echs.c04.browser-setup-observation.v1',browser:setup.snapshot(),transport:server?.setupObservation()??null}}
  finally{
+  // Diagnostic listeners must not prevent independent owned cleanup attempts.
+  try{setup.dispose()}catch{}
   for(const fault of faults)fault.release();
   const cleaned=await cleanupFixture({contexts,browser,negative,server,ctl});Object.assign(report,cleaned);
   if(!cleaned.cleanup_complete)report.status='FAIL; NO ACCEPTANCE';

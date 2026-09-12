@@ -8,6 +8,22 @@ const STATIC=/^\/[A-Za-z0-9_./-]*$/;
 const TYPES=new Set(['text/html; charset=utf-8','text/javascript; charset=utf-8','image/x-icon']);
 const CSP="default-src 'none'; script-src 'self'; connect-src 'self'; img-src 'self'; base-uri 'none'; frame-ancestors 'none'; form-action 'none'";
 const closedError=()=>new Error('fixture-client-closed');
+export const SETUP_TRANSPORT_CODES=Object.freeze(['ECONNRESET','ERR_SSL_TLSV1_ALERT_UNKNOWN_CA','ERR_SSL_SSLV3_ALERT_BAD_CERTIFICATE','ERR_SSL_WRONG_VERSION_NUMBER','ERR_SSL_HTTP_REQUEST','ERR_SSL_UNSUPPORTED_PROTOCOL','OTHER']);
+export function observeSetupTransport(server){
+ const counts={tcp_connections:0,tls_connections:0,tls_errors:0,http_requests:0};
+ let lastTls=null,saturated=false,disposed=false;
+ const bump=name=>{if(counts[name]===255)saturated=true;else counts[name]++};
+ const code=error=>{let value;try{value=error?.code}catch{}return SETUP_TRANSPORT_CODES.includes(value)?value:'OTHER'};
+ const connected=()=>bump('tcp_connections'),secured=()=>bump('tls_connections'),requested=()=>bump('http_requests');
+ const failed=error=>{bump('tls_errors');lastTls=code(error)};
+ // Deliberately omit clientError: adding that listener would suppress Node's
+ // default parser-error handling. These listeners do not read socket data.
+ server.on('connection',connected);server.on('secureConnection',secured);server.on('tlsClientError',failed);server.on('request',requested);
+ return {
+  snapshot:()=>({counts:{...counts},saturated,last_tls_error:lastTls}),
+  dispose:()=>{if(disposed)return;disposed=true;server.removeListener('connection',connected);server.removeListener('secureConnection',secured);server.removeListener('tlsClientError',failed);server.removeListener('request',requested)},
+ };
+}
 
 export function staticMap(entries){
  if(!Array.isArray(entries)||entries.length<2||entries.length>16)throw new Error('fixture-static-count');
@@ -70,14 +86,16 @@ export async function closeTrackedServer(server,sockets,tasks,controllers,timeou
  }
 }
 
-export async function listenHttps({key,cert,entries,handlerFactory,afterResponse=async()=>null,hookTimeoutMs=8000}){
+export async function listenHttps({key,cert,entries,handlerFactory,afterResponse=async()=>null,hookTimeoutMs=8000,setupDiagnostics=false}){
  if(!Buffer.isBuffer(key)||!Buffer.isBuffer(cert)||key.length>65536||cert.length>65536||typeof handlerFactory!=='function')throw new Error('fixture-tls-config');
+ if(typeof setupDiagnostics!=='boolean')throw new Error('fixture-setup-diagnostics');
  const routes=staticMap(entries),sockets=new Set(),tasks=new Set(),controllers=new Set();
  const metrics={requests:0,static:0,api:0,responses:0,dropped:0,aborted:0,rejected:0};
  let origin,handler,closing=false,closePromise;
  const server=https.createServer({key,cert,minVersion:'TLSv1.2'},(req,res)=>{
   const task=handle(req,res);tasks.add(task);void task.finally(()=>tasks.delete(task));
  });
+ const setup=setupDiagnostics?observeSetupTransport(server):null;
  async function handle(req,res){
   metrics.requests++;const controller=new AbortController();controllers.add(controller);
   const client={aborted:false,event:null};
@@ -120,8 +138,8 @@ export async function listenHttps({key,cert,entries,handlerFactory,afterResponse
  try{
   await new Promise((resolve,reject)=>{const fail=error=>{server.removeListener('listening',ready);reject(error)},ready=()=>{server.removeListener('error',fail);resolve()};server.once('error',fail);server.once('listening',ready);server.listen(0,'127.0.0.1')});
   origin='https://127.0.0.1:'+server.address().port;handler=handlerFactory(origin);if(typeof handler!=='function')throw new Error('fixture-handler');
- }catch(error){for(const socket of sockets)socket.destroy();if(server.listening)await new Promise(resolve=>server.close(resolve));throw error;}
- return {origin,metrics,close:()=>{
-  closing=true;return closePromise??=closeTrackedServer(server,sockets,tasks,controllers);
+ }catch(error){try{for(const socket of sockets)socket.destroy();if(server.listening)await new Promise(resolve=>server.close(resolve))}finally{setup?.dispose()}throw error;}
+ return {origin,metrics,setupObservation:()=>setup?.snapshot()??null,close:()=>{
+  closing=true;return closePromise??=closeTrackedServer(server,sockets,tasks,controllers).finally(()=>setup?.dispose());
  }};
 }
