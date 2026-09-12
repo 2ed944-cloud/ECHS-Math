@@ -1,0 +1,148 @@
+// Actual browser/IDB -> loopback TLS -> unchanged J049 -> PostgREST/SQL fixture.
+import assert from 'node:assert/strict';
+import https from 'node:https';
+import {readFile,writeFile,realpath} from 'node:fs/promises';
+import {fileURLToPath,pathToFileURL} from 'node:url';
+import {resolve,dirname} from 'node:path';
+import {createHash,randomUUID,X509Certificate} from 'node:crypto';
+import {createJournalHandler} from './runtime/handler.mjs';
+import {FIXTURE_ORIGIN,postgrestPort} from './bridge.mjs';
+import {listenHttps} from './https-bridge.mjs';
+import {control} from './control-client.mjs';
+import {diagnostic,recordHttpObservation} from './test_http.mjs';
+import {LABELS,exercise} from './browser-cases.mjs';
+
+const HERE=dirname(fileURLToPath(import.meta.url)),hash=raw=>createHash('sha256').update(raw).digest('hex');
+const MODULES=['js/owned-learning-store.mjs','js/wire-binding-model.mjs','js/journal/wire.mjs','js/journal/contract.mjs','js/journal/pending-intent.mjs','question-bank/js/learning-transition.mjs','question-bank/js/practice-flow.mjs'];
+const SOURCE_NAMES=['runtime/handler.mjs','runtime/wire.mjs','runtime/contract.mjs','runtime/pending-intent.mjs','bridge.mjs','https-bridge.mjs','browser-page.mjs','controls.py','fixture.py','control-client.mjs','test_http.mjs','test_browser_http.mjs','browser-cases.mjs','browser-dependency.json',...MODULES.map(name=>'retained/c04-learning-ack-candidate/source/'+name)];
+const snapshot=()=>Promise.all(SOURCE_NAMES.map(async path=>{const raw=await readFile(resolve(HERE,path));return {path,bytes:raw.length,sha256:hash(raw)}}));
+function deferred(){let resolve;const promise=new Promise(yes=>resolve=yes);return {promise,resolve}}
+function safeError(error){const result=diagnostic(error);const match=/test_browser_http\.mjs:(\d+):(\d+)|browser-cases\.mjs:(\d+):(\d+)/.exec(error?.stack||'');if(match)result.location={file:match[1]?'test_browser_http.mjs':'browser-cases.mjs',line:Number(match[1]||match[3]),column:Number(match[2]||match[4])};return result}
+function bounded(task,ms,code){let timer;return Promise.race([task,new Promise((_,reject)=>timer=setTimeout(()=>reject(new Error(code)),ms))]).finally(()=>clearTimeout(timer))}
+
+function tlsCall(origin,cert,route,raw,token){
+ assert.ok(['state','heads','apply','operation'].includes(route));assert.equal(typeof raw,'string');
+ return new Promise((resolve,reject)=>{
+  const parts=[];let total=0;const started=performance.now();
+  const request=https.request(origin+'/functions/v1/learning-journal/'+route,{method:'POST',ca:cert,rejectUnauthorized:true,agent:false,headers:{'content-type':'application/json',authorization:'Bearer '+token,origin},timeout:12000},response=>{
+   response.on('data',part=>{total+=part.length;if(total>1048576||performance.now()-started>12000){request.destroy(new Error('node-response-bound'));return;}parts.push(part)});
+   response.once('end',()=>{try{const raw=Buffer.concat(parts).toString('utf8');resolve({status:response.statusCode,raw,data:JSON.parse(raw)})}catch{reject(new Error('node-response-json'))}});
+   response.once('error',reject);
+  });
+  request.once('timeout',()=>request.destroy(new Error('node-response-deadline')));request.once('error',reject);request.end(raw);
+ });
+}
+
+async function main(){
+ const [configPath,python,output]=process.argv.slice(2),config=JSON.parse(await readFile(configPath,'utf8'));
+ assert.equal(config.contract,'echs.c04.journal-http-private-run.v1');assert.equal(process.platform,'linux');assert.equal(process.env.GITHUB_ACTIONS,'true');assert.equal(process.env.RUNNER_ENVIRONMENT,'github-hosted');
+ assert.match(config.run_id,/^[a-f0-9]{32}$/);assert.equal(await realpath(configPath),resolve(HERE,'runs',config.run_id,'secrets','control-private.json'));
+ assert.equal(hash(await readFile(resolve(HERE,'source-manifest.json'))),config.source_manifest_sha256);
+ const sourceBefore=await snapshot(),pin=JSON.parse(await readFile(resolve(HERE,'browser-dependency.json'))),repo=resolve(config.repo);
+ assert.equal(await realpath(resolve(repo,'tools/private-learning-browser-journal-http')),await realpath(HERE));
+ const packageRoot=resolve(repo,'question-bank/official/tools/node_modules/playwright');
+ const {chromium}=await import(pathToFileURL(resolve(packageRoot,'index.mjs')));
+ assert.equal(JSON.parse(await readFile(resolve(packageRoot,'package.json'))).version,pin.playwright);
+ const cert=await readFile(config.tls.positive.certificate_path),key=await readFile(config.tls.positive.key_path),otherCert=await readFile(config.tls.negative.certificate_path),otherKey=await readFile(config.tls.negative.key_path);
+ const leaf=new X509Certificate(cert),other=new X509Certificate(otherCert);
+ assert.equal(hash(leaf.raw),config.tls.positive.metadata.der_sha256);assert.equal(hash(other.raw),config.tls.negative.metadata.der_sha256);
+ assert.equal(hash(leaf.publicKey.export({type:'spki',format:'der'})),config.tls.positive.metadata.spki_sha256);assert.notEqual(hash(leaf.raw),hash(other.raw));assert.notEqual(leaf.fingerprint256,other.fingerprint256);
+ const entries=[{path:'/',type:'text/html; charset=utf-8',body:Buffer.from('<!doctype html><html lang="en"><meta charset="utf-8"><title>Isolated journal fixture</title><link rel="icon" href="/favicon.ico"><script type="module" src="/browser-page.mjs"></script><body>Isolated synthetic journal fixture</body></html>')},
+  {path:'/browser-page.mjs',type:'text/javascript; charset=utf-8',body:await readFile(resolve(HERE,'browser-page.mjs'))},{path:'/favicon.ico',type:'image/x-icon',body:Buffer.alloc(0)}];
+ for(const name of MODULES)entries.push({path:'/source/'+name,type:'text/javascript; charset=utf-8',body:await readFile(resolve(HERE,'retained/c04-learning-ack-candidate/source',name))});
+ assert.equal(entries.length,10);
+ const outcomes=[],unexpected=[],pageErrors=[],nativeObservations=[],rpcObservations=[],rpcPayloads=[],contexts=new Set(),faults=new Set();
+ let ctl,server,negative,browser,pendingFault=null;
+ const report={contract:'echs.c04.browser-journal-http-actual.v1',status:'RUNNING; NOT ACCEPTED',planned_groups:LABELS,checks:outcomes,production_calls:0,hosted_edge_executed:false,hosted_tls_executed:false,production_authority_accepted:false,native_browser_executed:false,real_https_executed:false,postgrest_executed:false,database_executed:false,cleanup_complete:false};
+ const command=(action,c,extra={})=>ctl.call(action,{case:c.case,...extra});
+ function arm(mode,id,c){
+  assert.equal(pendingFault,null);assert.ok(['pause','drop','partial','207'].includes(mode));
+  const enter=deferred(),gate=deferred(),abort=deferred();
+  const value={mode,id,c,proved:false,entered:bounded(enter.promise,8000,'fault-entry-deadline'),aborted:abort.promise,release:()=>gate.resolve(null),gate:gate.promise,enter:enter.resolve,abort:abort.resolve};
+  value.entered.catch(()=>{});pendingFault=value;faults.add(value);return value;
+ }
+ async function afterResponse(request,response,signal,client){
+  if(!pendingFault||!request.url.endsWith('/apply')||response.status!==200)return null;
+  const value=pendingFault,data=await response.clone().json();assert.equal(data.receipt.operation_id,value.id);pendingFault=null;value.client=client;
+  const stored=await command('operation',value.c,{operation_id:value.id});assert.ok(stored);assert.deepEqual(JSON.parse(stored.receipt_text),data.receipt);value.proved=true;
+  const onAbort=()=>{value.abort(true);value.release()};signal.addEventListener('abort',onAbort,{once:true});if(signal.aborted)onAbort();
+  value.enter(true);
+  try{if(value.mode==='pause')await value.gate;return value.mode==='pause'?null:value.mode}finally{signal.removeEventListener('abort',onAbort);faults.delete(value)}
+ }
+ function guard(context,{allowNegative=false}={}){
+  context.on('page',page=>page.on('pageerror',()=>pageErrors.push({kind:'pageerror'})));
+  const validPaths=new Set(entries.map(row=>row.path));
+  return context.route('**/*',route=>{
+   const request=route.request(),url=new URL(request.url());
+   const positive=url.origin===server.origin&&!url.search&&!url.hash&&(validPaths.has(url.pathname)||/^\/functions\/v1\/learning-journal\/(state|heads|apply|operation)$/.test(url.pathname));
+   const negativeAllowed=allowNegative&&url.origin===negative.origin&&url.pathname==='/'&&!url.search&&!url.hash;
+   if(positive||negativeAllowed)return route.continue();
+   unexpected.push({url_sha256:hash(request.url()),method:['GET','POST','OPTIONS'].includes(request.method())?request.method():'OTHER'});return route.abort('blockedbyclient');
+  });
+ }
+ async function newPage(context,c){
+  const page=await context.newPage();await page.goto(server.origin,{waitUntil:'load',timeout:10000});await page.waitForFunction(()=>!!window.fixture,undefined,{timeout:5000});
+  await page.evaluate(({owner,token,session_tag})=>fixture.configure({owner,token,session_tag}),c);return page;
+ }
+ async function group(index,fn){
+  assert.equal(outcomes.length,index);const began=performance.now(),c=await ctl.call('new',{role:'student'});c.session_tag='synthetic_'+randomUUID().replaceAll('-','');
+  const context=await browser.newContext({serviceWorkers:'block',ignoreHTTPSErrors:false});contexts.add(context);await guard(context);
+  let details;
+  try{const page=await newPage(context,c);details=await bounded(fn(page,c,context),45000,'browser-group-deadline');assert.deepEqual(unexpected,[]);assert.deepEqual(pageErrors,[])}
+  finally{
+   for(const fault of faults)fault.release();
+   for(const page of context.pages()){try{await bounded(page.evaluate(()=>window.fixture?.disposeAll()),2000,'page-dispose-deadline')}catch{}}
+   await bounded(context.close(),5000,'context-close-deadline');contexts.delete(context);
+  }
+  outcomes.push({name:LABELS[index],status:'PASS',elapsed_ms:Math.round(performance.now()-began),details});
+ }
+ try{
+  ctl=await control(configPath,python);report.database_executed=true;
+  const port=postgrestPort('http://'+config.rest_ip+':3000',{fetchImpl:async(url,options)=>{
+   const match=/^\{"p_token_hash":"[a-f0-9]{64}","p_payload":([\s\S]+)\}$/.exec(options.body);assert.ok(match);
+   const parsed=JSON.parse(match[1]);if(typeof parsed.operation_id==='string')rpcPayloads.push({operation_id:parsed.operation_id,payload_sha256:hash(match[1])});
+   return fetch(url,options);
+  },observe:row=>{rpcObservations.push(row);report.postgrest_executed=true}});
+  server=await listenHttps({cert,key,entries,afterResponse,handlerFactory:origin=>createJournalHandler({supabaseUrl:FIXTURE_ORIGIN,serviceKey:config.service_key,allowedOrigins:[origin],fetchImpl:port})});
+  negative=await listenHttps({cert:otherCert,key:otherKey,entries,handlerFactory:()=>()=>new Response('{}')});
+  await writeFile(resolve(dirname(configPath),'listener-private.json'),JSON.stringify([Number(new URL(server.origin).port),Number(new URL(negative.origin).port)]),{flag:'wx',mode:0o600});
+  assert.match(config.cdp_endpoint,/^ws:\/\/127\.0\.0\.1:\d+\/devtools\/browser\/[a-f0-9-]{36}$/);
+  browser=await chromium.connectOverCDP(config.cdp_endpoint,{timeout:10000});
+  const tlsContext=await browser.newContext({serviceWorkers:'block',ignoreHTTPSErrors:false});contexts.add(tlsContext);await guard(tlsContext,{allowNegative:true});
+  const page=await tlsContext.newPage();await page.goto(server.origin,{waitUntil:'load',timeout:10000});await page.waitForFunction(()=>!!window.fixture,undefined,{timeout:5000});
+  const cdp=await tlsContext.newCDPSession(page),version=await cdp.send('Browser.getVersion'),commandLine=await cdp.send('Browser.getBrowserCommandLine');
+  assert.equal(version.product.split('/').at(-1),pin.version);assert.ok(version.revision.startsWith('@'));
+  const args=commandLine.arguments,spki='--ignore-certificate-errors-spki-list='+config.tls.positive.metadata.spki_sha256_base64;
+  assert.equal(args.filter(arg=>arg.startsWith('--ignore-certificate-errors-spki-list=')).length,1);assert.ok(args.includes(spki));
+  assert.equal(args.filter(arg=>arg.startsWith('--user-data-dir=')).length,1);assert.ok(args.includes('--user-data-dir='+config.browser_profile));assert.ok(args.includes('--enable-automation'));
+  assert.ok(!args.some(arg=>/^--(?:ignore-certificate-errors(?:=|$)|allow-insecure-localhost(?:=|$))/.test(arg)));
+  const chain=await cdp.send('Network.getCertificate',{origin:server.origin});assert.equal(chain.tableNames.length,1);
+  const observedLeaf=new X509Certificate(Buffer.from(chain.tableNames[0],'base64'));
+  assert.equal(hash(observedLeaf.raw),config.tls.positive.metadata.der_sha256);assert.equal(hash(observedLeaf.publicKey.export({type:'spki',format:'der'})),config.tls.positive.metadata.spki_sha256);
+  const bad=await tlsContext.newPage();let certificateRejected=false;
+  try{await bad.goto(negative.origin,{waitUntil:'load',timeout:5000})}catch(error){certificateRejected=/net::ERR_CERT_AUTHORITY_INVALID/.test(error.message)}
+  assert.equal(certificateRejected,true);assert.equal(negative.metrics.requests,0);assert.equal(await bad.evaluate(()=>!!window.fixture),false);
+  report.tls={accepted_leaf:true,served_der_sha256:hash(observedLeaf.raw),served_spki_sha256:hash(observedLeaf.publicKey.export({type:'spki',format:'der'})),narrow_spki_exception:true,fresh_explicit_profile:true,unrelated_leaf_rejected:true,negative_application_requests:0,broad_tls_flags:false};
+  report.browser={product:version.product,revision:version.revision,playwright:pin.playwright,descriptor_revision:pin.revision,executable_sha256:config.browser_executable_sha256};
+  report.native_browser_executed=true;report.real_https_executed=true;
+  await cdp.detach();await tlsContext.close();contexts.delete(tlsContext);await negative.close();negative=null;
+  const api=async(route,raw,c)=>{const result=await tlsCall(server.origin,cert,route,raw,c.token);recordHttpObservation(nativeObservations,route,result.status,result.data);return result};
+  await exercise({group,api,command,arm,newPage,rpcPayloads});
+  assert.deepEqual(outcomes.map(row=>row.name),LABELS);assert.deepEqual(await snapshot(),sourceBefore);assert.deepEqual(unexpected,[]);assert.deepEqual(pageErrors,[]);
+  Object.assign(report,{status:'ACTUAL BROWSER HTTPS POSTGREST SQL PASS',source_files:sourceBefore,static_routes:10,served_t3_modules:7,held_transport_served:false});
+ }catch(error){report.status='FAIL; NO ACCEPTANCE';report.failure=safeError(error);report.failed_group=LABELS[outcomes.length]||'setup'}
+ finally{
+  for(const fault of faults)fault.release();
+  try{
+   for(const context of contexts){for(const page of context.pages()){try{await bounded(page.evaluate(()=>window.fixture?.disposeAll()),2000,'page-dispose-deadline')}catch{}}await bounded(context.close(),5000,'context-close-deadline')}contexts.clear();
+   if(browser)await bounded(browser.close(),5000,'browser-disconnect-deadline');
+   const listeners=[];if(negative)listeners.push(await negative.close());if(server)listeners.push(await server.close());if(ctl)await ctl.close();
+   report.cleanup_complete=true;report.cleanup={contexts_closed:true,browser_connection_closed:true,control_reaped:true,listeners_closed:listeners.every(row=>row.listeners_closed),response_tasks_remaining:0};
+  }catch(error){report.status='FAIL; NO ACCEPTANCE';report.cleanup_failure=safeError(error)}
+  try{assert.deepEqual(await snapshot(),sourceBefore)}catch{report.status='FAIL; NO ACCEPTANCE';report.source_changed=true}
+  report.unexpected_requests=unexpected;report.page_errors=pageErrors;report.rpc_observations=rpcObservations.slice(-12);report.http_observations=nativeObservations.slice(-12);report.source_files=sourceBefore;
+  await writeFile(output,JSON.stringify(report)+'\n',{flag:'wx'});
+ }
+ process.stdout.write(JSON.stringify({status:report.status,groups:outcomes.length,cleanup_complete:report.cleanup_complete})+'\n');if(report.status!=='ACTUAL BROWSER HTTPS POSTGREST SQL PASS')process.exitCode=1;
+}
+if(process.argv[1]&&fileURLToPath(import.meta.url)===resolve(process.argv[1]))main().catch(()=>{process.stdout.write('{"status":"FAIL BEFORE REPORT; NO ACCEPTANCE"}\n');process.exitCode=1});

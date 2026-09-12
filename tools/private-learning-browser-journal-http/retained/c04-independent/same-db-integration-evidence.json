@@ -1,0 +1,646 @@
+{
+  "contract": "echs.c04.same-db-integration-plan-evidence.v1",
+  "status": "SOURCE-BOUND PROPOSAL; NO INTEGRATION IMPLEMENTATION",
+  "plan": {
+    "path": "work/master-charter/c04-independent/same-db-integration-plan.md",
+    "bytes": 22478,
+    "sha256": "398a043f0bbdb9e341a1af542249a3033968a020172e0a553324f3bfb230ec40"
+  },
+  "frozen_and_design_inputs": [
+    {
+      "path": "work/master-charter/c04-learning-p2b-candidate/candidate-manifest.json",
+      "bytes": 9395,
+      "sha256": "817c3395b1589c74391cce55fd7dffdae9de3a28c2b1f9fd90e371428c788722"
+    },
+    {
+      "path": "work/master-charter/c04-learning-p2b-candidate/source/js/owned-learning-store.mjs",
+      "bytes": 31668,
+      "sha256": "3f1863498a014f6d49c726357679b7a8d2f00354768d556739cf1102a3da3928"
+    },
+    {
+      "path": "work/master-charter/c04-learning-p2b-candidate/source/js/owned-learning-transport.mjs",
+      "bytes": 400,
+      "sha256": "0a214e92e003a1c8a0f3317ba53a502e2a9604aa5d57ba3e77ddf0c11268b860"
+    },
+    {
+      "path": "work/master-charter/c04-learning-p2b-candidate/source/js/owned-learning-bootstrap.mjs",
+      "bytes": 7424,
+      "sha256": "4a1ae56792b9d8f4115f70e0f001e1f481cb3c9ab9d722d04f8605f02fda37e2"
+    },
+    {
+      "path": "work/master-charter/c04-learning-p2b-candidate/source/question-bank/js/learning-transition.mjs",
+      "bytes": 27867,
+      "sha256": "4167b49674f8dcb55d3427817b62dd81c28d5f9d46140c13bf92de55eb601b5b"
+    },
+    {
+      "path": "work/master-charter/c04-learning-p2b-candidate/source/question-bank/js/practice-flow.mjs",
+      "bytes": 10918,
+      "sha256": "82be3e7149d7375427804331491d75516287b67aaccac519a442be733ef08418"
+    },
+    {
+      "path": "work/master-charter/c04-learning-p2b-candidate/source/question-bank/js/practice-actions.mjs",
+      "bytes": 2876,
+      "sha256": "96ef1684d1f7a9738ad4f8c431fd2654470518ab0c48d22254f952d54d6ed7e9"
+    },
+    {
+      "path": "work/master-charter/c04-learning-p2b-candidate/source/question-bank/js/mapped-practice.js",
+      "bytes": 64677,
+      "sha256": "f2426d53ad146583118a8b9363d81f916341a7e0d84152f164d54d32458f691b"
+    },
+    {
+      "path": "work/master-charter/c04-learning-p2b-candidate/source/question-bank/js/practice-owner.js",
+      "bytes": 4537,
+      "sha256": "6e31d9f8f1eea92ba5003c2dd31c11b9f74fded3b8f0d8195c18efa0f7410035"
+    },
+    {
+      "path": "work/master-charter/c04-learning-p2b-candidate/source/question-bank/js/learning-system.js",
+      "bytes": 1684,
+      "sha256": "3db92078beb4027734b072950f446f767ede069d83f64ed3fc8859e9039062e3"
+    },
+    {
+      "path": "work/master-charter/c04-learning-p2b-candidate/source/js/institution-client.js",
+      "bytes": 35019,
+      "sha256": "fb2d41425e31d6f51325ec3b254343f0c5d859d3a5ed5d6a2b80c3d76bcac973"
+    },
+    {
+      "path": "work/master-charter/c04-durable-intent-candidate/source-manifest.json",
+      "bytes": 2046,
+      "sha256": "f449d38c6dbf32f29162b327078966076a4afaf24ca39b93909f8c11934685fd"
+    },
+    {
+      "path": "work/master-charter/c04-durable-intent-candidate/durable-intent.mjs",
+      "bytes": 14671,
+      "sha256": "290db5c662c38f5c155024e54f77fd015e57268879d47ac701cf490c9dcb49ae"
+    },
+    {
+      "path": "work/master-charter/c04-journal-http-candidate-v2/source-manifest.json",
+      "bytes": 2015,
+      "sha256": "117cdb0a97cd4408b31fedf9f4eba5928b1385f5e2a86d6ee5e55c750c286817"
+    },
+    {
+      "path": "work/master-charter/c04-journal-http-candidate-v2/pending-intent.mjs",
+      "bytes": 3573,
+      "sha256": "10aa9c3ba04aa0e32483763b5b8ef17d489b6449f4b8738563254d427811f69d"
+    },
+    {
+      "path": "work/master-charter/c04-journal-http-candidate-v2/contract.mjs",
+      "bytes": 9956,
+      "sha256": "050a652f28e957aaabd7e87428b4811dbeb2ebfad80552023ebef9c931271e84"
+    },
+    {
+      "path": "work/master-charter/c04-journal-design/PROPOSAL.md",
+      "bytes": 17470,
+      "sha256": "0ec3af7d65b7f596eee27eaf456a98f2b91fe9f8a83979ac9b16651197354b34"
+    },
+    {
+      "path": "work/master-charter/c04-journal-design/rpc-contract.json",
+      "bytes": 10904,
+      "sha256": "306d897432d4b438e6120c03db18656ef7c9314f16c2f9e502e0521317f63c9e"
+    },
+    {
+      "path": "work/master-charter/c04-learning-candidate/IMPLEMENTATION_PLAN.md",
+      "bytes": 21366,
+      "sha256": "2be6ce484b023ea69eecb1ca4349ce13ef18ff9c8e2f3019564e4a375a177510"
+    },
+    {
+      "path": "work/master-charter/c04-learning-candidate/source-closure.json",
+      "bytes": 180784,
+      "sha256": "a718e3df9690b3b52ce9eab9c139e520a3dbcee534eeff0ac718d6db5d1d23ee"
+    },
+    {
+      "path": "work/master-charter/c04-versioned-sync-candidate/IMPLEMENTATION_PLAN.md",
+      "bytes": 9729,
+      "sha256": "34d5417f0809f4217d6a77eaa83e77fb2a0013080655f85f54436b4eb44d32ff"
+    }
+  ],
+  "runtime_ledger_rechecks": [
+    {
+      "path": "work/foundations/js/gamification-overlay.js",
+      "bytes": 3593,
+      "sha256": "2e5ead2c8ab12e25aa9405c269987a2281ac3864373120c1e4a4634feb23bed7",
+      "historical_ledger_sha256": "2e5ead2c8ab12e25aa9405c269987a2281ac3864373120c1e4a4634feb23bed7",
+      "matches_historical_ledger": true,
+      "current_literal_hit_lines": [
+        6,
+        20,
+        21
+      ]
+    },
+    {
+      "path": "work/foundations/js/institution-client.js",
+      "bytes": 33898,
+      "sha256": "c2f95a415a0cba9d5a315770df7d14ed2775d881f3e5212facae2efc6900b1da",
+      "historical_ledger_sha256": "c2f95a415a0cba9d5a315770df7d14ed2775d881f3e5212facae2efc6900b1da",
+      "matches_historical_ledger": true,
+      "current_literal_hit_lines": [
+        349,
+        354,
+        355,
+        360,
+        361
+      ]
+    },
+    {
+      "path": "work/foundations/js/lesson-access-guard.js",
+      "bytes": 8095,
+      "sha256": "71b8afb5f48d07f6288d9181f18287d5ae24423b010919a35d4bdffb6bc27bbd",
+      "historical_ledger_sha256": "71b8afb5f48d07f6288d9181f18287d5ae24423b010919a35d4bdffb6bc27bbd",
+      "matches_historical_ledger": true,
+      "current_literal_hit_lines": [
+        4
+      ]
+    },
+    {
+      "path": "work/foundations/js/lesson-learning-bridge.js",
+      "bytes": 2094,
+      "sha256": "9583bc062992e24ed3cbc10510d6e3e101d7866b6ff38814b7cc1b8e8559f8be",
+      "historical_ledger_sha256": "9583bc062992e24ed3cbc10510d6e3e101d7866b6ff38814b7cc1b8e8559f8be",
+      "matches_historical_ledger": true,
+      "current_literal_hit_lines": [
+        4,
+        5,
+        20,
+        21,
+        28,
+        29
+      ]
+    },
+    {
+      "path": "work/foundations/js/platform-foundation.js",
+      "bytes": 15741,
+      "sha256": "1db705c425b73aed357d2ac07bf28812234f2c9d94568eea4299dbab777b4e3c",
+      "historical_ledger_sha256": "1db705c425b73aed357d2ac07bf28812234f2c9d94568eea4299dbab777b4e3c",
+      "matches_historical_ledger": true,
+      "current_literal_hit_lines": [
+        6,
+        104,
+        105,
+        106
+      ]
+    },
+    {
+      "path": "work/foundations/js/portal-access.js",
+      "bytes": 4298,
+      "sha256": "8b1dbcd1beb68219340c196e6f0bda3471c0bbe11a55228ee83fc102c63931a5",
+      "historical_ledger_sha256": "8b1dbcd1beb68219340c196e6f0bda3471c0bbe11a55228ee83fc102c63931a5",
+      "matches_historical_ledger": true,
+      "current_literal_hit_lines": [
+        72
+      ]
+    },
+    {
+      "path": "work/foundations/js/portal.js",
+      "bytes": 29378,
+      "sha256": "63f2826c506ddb48a9e277a70a1d58c06bd1862279f3df3bf25b0fe77a280ef2",
+      "historical_ledger_sha256": "63f2826c506ddb48a9e277a70a1d58c06bd1862279f3df3bf25b0fe77a280ef2",
+      "matches_historical_ledger": true,
+      "current_literal_hit_lines": [
+        12,
+        42
+      ]
+    },
+    {
+      "path": "work/foundations/js/smart-learning-route.js",
+      "bytes": 24494,
+      "sha256": "55577d12f280d8f9fb3bc5cee53a0e66338863a6d7fd035be0761e08613bf3d8",
+      "historical_ledger_sha256": "55577d12f280d8f9fb3bc5cee53a0e66338863a6d7fd035be0761e08613bf3d8",
+      "matches_historical_ledger": true,
+      "current_literal_hit_lines": [
+        196,
+        203
+      ]
+    },
+    {
+      "path": "work/foundations/js/unit-practice-unlock.js",
+      "bytes": 4060,
+      "sha256": "ba198d8f78bc33d269da0737e77d50cb987edd828a32784192d28efd628872fe",
+      "historical_ledger_sha256": "ba198d8f78bc33d269da0737e77d50cb987edd828a32784192d28efd628872fe",
+      "matches_historical_ledger": true,
+      "current_literal_hit_lines": [
+        5
+      ]
+    },
+    {
+      "path": "work/foundations/lessons/ap-calculus/course-launch/data/lesson-0-engine.js",
+      "bytes": 14634,
+      "sha256": "c9d9657f0f2409ff7b7c59cd4b7af78b1050dce639540d7fbd42b6a0bdb9fb05",
+      "historical_ledger_sha256": "c9d9657f0f2409ff7b7c59cd4b7af78b1050dce639540d7fbd42b6a0bdb9fb05",
+      "matches_historical_ledger": true,
+      "current_literal_hit_lines": [
+        125
+      ]
+    },
+    {
+      "path": "work/foundations/lessons/ap-precalculus/course-launch/data/lesson-0-engine.js",
+      "bytes": 13803,
+      "sha256": "c624e8022f4ee394452ca52fea09aca60cc4f95c0a1c2f23e1ef31b100476763",
+      "historical_ledger_sha256": "c624e8022f4ee394452ca52fea09aca60cc4f95c0a1c2f23e1ef31b100476763",
+      "matches_historical_ledger": true,
+      "current_literal_hit_lines": [
+        41
+      ]
+    },
+    {
+      "path": "work/foundations/lessons/ib-math-ai/course-launch/data/lesson-0-engine.js",
+      "bytes": 14668,
+      "sha256": "316fec70cf3b69961010cec12ff1f074a356457869c5e0f8e6dc11d6a682a370",
+      "historical_ledger_sha256": "316fec70cf3b69961010cec12ff1f074a356457869c5e0f8e6dc11d6a682a370",
+      "matches_historical_ledger": true,
+      "current_literal_hit_lines": [
+        125
+      ]
+    },
+    {
+      "path": "work/foundations/lessons/ib-math-ai/unit-2/assets/js/engine.js",
+      "bytes": 35730,
+      "sha256": "4bf276122394d906c72f3272e529d4ec2ca2b52292527c91d546006f4fcd7b6c",
+      "historical_ledger_sha256": "4bf276122394d906c72f3272e529d4ec2ca2b52292527c91d546006f4fcd7b6c",
+      "matches_historical_ledger": true,
+      "current_literal_hit_lines": [
+        425,
+        427
+      ]
+    },
+    {
+      "path": "work/foundations/lessons/ib-math-ai/unit-4/assets/js/engine.js",
+      "bytes": 35094,
+      "sha256": "893912867d7672c6db5c5314becbb0e25513395a12d2319d12164cefb0858fbd",
+      "historical_ledger_sha256": "893912867d7672c6db5c5314becbb0e25513395a12d2319d12164cefb0858fbd",
+      "matches_historical_ledger": true,
+      "current_literal_hit_lines": [
+        58
+      ]
+    },
+    {
+      "path": "work/foundations/lessons/ib-math-ai/unit-6/assets/js/engine.js",
+      "bytes": 35340,
+      "sha256": "3e6dd9ae63d1dbd655fe8b1165deaa21833d3472296ee035e4dfd3bbf54beb2e",
+      "historical_ledger_sha256": "3e6dd9ae63d1dbd655fe8b1165deaa21833d3472296ee035e4dfd3bbf54beb2e",
+      "matches_historical_ledger": true,
+      "current_literal_hit_lines": [
+        416,
+        418
+      ]
+    },
+    {
+      "path": "work/foundations/lessons/ib-math-ai/unit-6/data/lesson-6.1-v1-interactions.js",
+      "bytes": 8388,
+      "sha256": "eaf0075cdf3d83250c60453c3ef12db7ad13b6874195105ef279b9b83946f097",
+      "historical_ledger_sha256": "eaf0075cdf3d83250c60453c3ef12db7ad13b6874195105ef279b9b83946f097",
+      "matches_historical_ledger": true,
+      "current_literal_hit_lines": [
+        13,
+        15
+      ]
+    },
+    {
+      "path": "work/foundations/lessons/ib-math-ai/unit-6/data/lesson-6.2-v1-interactions.js",
+      "bytes": 15087,
+      "sha256": "757ee1361a0348ed326fbe5ea87a54b62233312090a691876d3e0e83c6ef87ac",
+      "historical_ledger_sha256": "757ee1361a0348ed326fbe5ea87a54b62233312090a691876d3e0e83c6ef87ac",
+      "matches_historical_ledger": true,
+      "current_literal_hit_lines": [
+        18,
+        20
+      ]
+    },
+    {
+      "path": "work/foundations/question-bank/js/bank.js",
+      "bytes": 12972,
+      "sha256": "77de0a481ab3c3148e33c7a2a8156ed4649f948a6c0136ab365162b205e5ea58",
+      "historical_ledger_sha256": "77de0a481ab3c3148e33c7a2a8156ed4649f948a6c0136ab365162b205e5ea58",
+      "matches_historical_ledger": true,
+      "current_literal_hit_lines": [
+        2,
+        19
+      ]
+    },
+    {
+      "path": "work/foundations/question-bank/js/dashboard.js",
+      "bytes": 7397,
+      "sha256": "1e5ebec14755a6fdbb7db7c3fdf7c5409eb7790ea073f8db9cfba1f256b251d0",
+      "historical_ledger_sha256": "1e5ebec14755a6fdbb7db7c3fdf7c5409eb7790ea073f8db9cfba1f256b251d0",
+      "matches_historical_ledger": true,
+      "current_literal_hit_lines": [
+        5,
+        12,
+        13,
+        21,
+        23,
+        32,
+        39,
+        45,
+        52,
+        56,
+        59,
+        66,
+        67,
+        70,
+        82,
+        87,
+        97,
+        98,
+        103
+      ]
+    },
+    {
+      "path": "work/foundations/question-bank/js/exam.js",
+      "bytes": 10642,
+      "sha256": "91361d5bd52964ed6bfc69404db3026bd280e145f5f2a1d2081b165d2f7fd5f6",
+      "historical_ledger_sha256": "91361d5bd52964ed6bfc69404db3026bd280e145f5f2a1d2081b165d2f7fd5f6",
+      "matches_historical_ledger": true,
+      "current_literal_hit_lines": [
+        20,
+        23,
+        27,
+        29,
+        53,
+        57,
+        59,
+        67,
+        72,
+        73,
+        75,
+        82
+      ]
+    },
+    {
+      "path": "work/foundations/question-bank/js/learning-home.js",
+      "bytes": 1634,
+      "sha256": "8282424970e3799bb0147b951124cd43e1acbf7b194efeb8ee33380173032857",
+      "historical_ledger_sha256": "8282424970e3799bb0147b951124cd43e1acbf7b194efeb8ee33380173032857",
+      "matches_historical_ledger": true,
+      "current_literal_hit_lines": [
+        5,
+        11,
+        12
+      ]
+    },
+    {
+      "path": "work/foundations/question-bank/js/learning-system.js",
+      "bytes": 24418,
+      "sha256": "d9ce5918121145383a37f916665fb1a7b62eadea631eceb1799d9baa05ab9161",
+      "historical_ledger_sha256": "d9ce5918121145383a37f916665fb1a7b62eadea631eceb1799d9baa05ab9161",
+      "matches_historical_ledger": true,
+      "current_literal_hit_lines": [
+        129,
+        166,
+        184,
+        187
+      ]
+    },
+    {
+      "path": "work/foundations/question-bank/js/mapped-practice.js",
+      "bytes": 59553,
+      "sha256": "84ea362ce15bd96f215919729605da513383c4b18e6771ca9a3e40bf37e7b8b6",
+      "historical_ledger_sha256": "84ea362ce15bd96f215919729605da513383c4b18e6771ca9a3e40bf37e7b8b6",
+      "matches_historical_ledger": true,
+      "current_literal_hit_lines": [
+        98,
+        311,
+        951,
+        961,
+        1015,
+        1022,
+        1057,
+        1063,
+        1168,
+        1209,
+        1229,
+        1239,
+        1290,
+        1303,
+        1323,
+        1349,
+        1350,
+        1514
+      ]
+    },
+    {
+      "path": "work/foundations/question-bank/js/mapped-private-bank-practice.js",
+      "bytes": 10281,
+      "sha256": "5f05f4facbbfdc39744feafcc760388fef700ff7991fa286be3d26adec446b5f",
+      "historical_ledger_sha256": "5f05f4facbbfdc39744feafcc760388fef700ff7991fa286be3d26adec446b5f",
+      "matches_historical_ledger": true,
+      "current_literal_hit_lines": [
+        13,
+        88,
+        89,
+        101
+      ]
+    },
+    {
+      "path": "work/foundations/question-bank/js/mistakes.js",
+      "bytes": 4224,
+      "sha256": "4a0575904e0d6861687865d5f80dbfc3e1c4e0fe8e311e62806b635664283b3c",
+      "historical_ledger_sha256": "4a0575904e0d6861687865d5f80dbfc3e1c4e0fe8e311e62806b635664283b3c",
+      "matches_historical_ledger": true,
+      "current_literal_hit_lines": [
+        4,
+        5,
+        10,
+        11
+      ]
+    },
+    {
+      "path": "work/foundations/question-bank/js/parent-cloud.js",
+      "bytes": 12595,
+      "sha256": "eb49009fced6d2d243178505f0dc3b7195d60b0120126ded1ceb2917fbcd72c3",
+      "historical_ledger_sha256": "eb49009fced6d2d243178505f0dc3b7195d60b0120126ded1ceb2917fbcd72c3",
+      "matches_historical_ledger": true,
+      "current_literal_hit_lines": [
+        4,
+        17,
+        29,
+        32,
+        33,
+        34,
+        36,
+        38,
+        40,
+        46,
+        47
+      ]
+    },
+    {
+      "path": "work/foundations/question-bank/js/parent.js",
+      "bytes": 5551,
+      "sha256": "44e58c65599b9f8867b7d789fdade4cb3016684c21f769d9df423d43616ee94c",
+      "historical_ledger_sha256": "44e58c65599b9f8867b7d789fdade4cb3016684c21f769d9df423d43616ee94c",
+      "matches_historical_ledger": true,
+      "current_literal_hit_lines": [
+        5,
+        11,
+        14,
+        17,
+        34,
+        39,
+        44
+      ]
+    },
+    {
+      "path": "work/foundations/question-bank/js/practice-global-bridge.js",
+      "bytes": 375,
+      "sha256": "7abe97324ebae0e5a2668a1ea50f592d59b2360dabfa5abdf75435af481dba63",
+      "historical_ledger_sha256": "7abe97324ebae0e5a2668a1ea50f592d59b2360dabfa5abdf75435af481dba63",
+      "matches_historical_ledger": true,
+      "current_literal_hit_lines": [
+        5,
+        7
+      ]
+    },
+    {
+      "path": "work/foundations/question-bank/js/practice-single-bank.js",
+      "bytes": 10775,
+      "sha256": "4e1dba86d6cfef5e99e45f4863a7a05b43d1595d001ae00e87ecfa7b947b2b91",
+      "historical_ledger_sha256": "4e1dba86d6cfef5e99e45f4863a7a05b43d1595d001ae00e87ecfa7b947b2b91",
+      "matches_historical_ledger": true,
+      "current_literal_hit_lines": [
+        5,
+        32,
+        35,
+        36,
+        57,
+        66
+      ]
+    },
+    {
+      "path": "work/foundations/question-bank/js/practice.js",
+      "bytes": 20964,
+      "sha256": "dc26d34c7bc65b61585eb7ece4036ddc1528f5ca5286b7af62ebdcc71ae7ab27",
+      "historical_ledger_sha256": "dc26d34c7bc65b61585eb7ece4036ddc1528f5ca5286b7af62ebdcc71ae7ab27",
+      "matches_historical_ledger": true,
+      "current_literal_hit_lines": [
+        22,
+        26,
+        32,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40
+      ]
+    },
+    {
+      "path": "work/foundations/question-bank/js/student-cloud.js",
+      "bytes": 20648,
+      "sha256": "ac1a1cb3808238625076bc47a07ad5c40015ca3753c76fb7e18fe79200f378f9",
+      "historical_ledger_sha256": "ac1a1cb3808238625076bc47a07ad5c40015ca3753c76fb7e18fe79200f378f9",
+      "matches_historical_ledger": true,
+      "current_literal_hit_lines": [
+        4,
+        198,
+        201,
+        232,
+        269,
+        276,
+        323,
+        336,
+        341,
+        375,
+        387,
+        395,
+        398
+      ]
+    },
+    {
+      "path": "work/foundations/question-bank/js/sync-adapter.js",
+      "bytes": 1575,
+      "sha256": "1fb94fa880246aba0f353370e3490de54da20c65d48d49fea339e47e132d14ba",
+      "historical_ledger_sha256": "1fb94fa880246aba0f353370e3490de54da20c65d48d49fea339e47e132d14ba",
+      "matches_historical_ledger": true,
+      "current_literal_hit_lines": [
+        5
+      ]
+    },
+    {
+      "path": "work/foundations/question-bank/js/teacher-cloud.js",
+      "bytes": 54064,
+      "sha256": "a5bddadb6238dbfecad9fab25b6cdf0ffc4bcb9df8d0c4bc95008afddcafa4ec",
+      "historical_ledger_sha256": "a5bddadb6238dbfecad9fab25b6cdf0ffc4bcb9df8d0c4bc95008afddcafa4ec",
+      "matches_historical_ledger": true,
+      "current_literal_hit_lines": [
+        4,
+        353,
+        371,
+        475,
+        477,
+        486,
+        533,
+        542,
+        571
+      ]
+    },
+    {
+      "path": "work/foundations/question-bank/js/teacher-evidence-heatmap.js",
+      "bytes": 6800,
+      "sha256": "d4bb53db2f7684a39f746b90ce2c307cb1ec41c87762362b872dc4de2c6eb1d3",
+      "historical_ledger_sha256": "d4bb53db2f7684a39f746b90ce2c307cb1ec41c87762362b872dc4de2c6eb1d3",
+      "matches_historical_ledger": true,
+      "current_literal_hit_lines": [
+        5,
+        6,
+        31,
+        50
+      ]
+    },
+    {
+      "path": "work/foundations/question-bank/js/teacher.js",
+      "bytes": 11008,
+      "sha256": "df1cc3acfca714a37047ed5ac3eb8936ac5731d32f636fd5ae3eafb8e57b5bd2",
+      "historical_ledger_sha256": "df1cc3acfca714a37047ed5ac3eb8936ac5731d32f636fd5ae3eafb8e57b5bd2",
+      "matches_historical_ledger": true,
+      "current_literal_hit_lines": [
+        4,
+        5,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        76,
+        78,
+        86,
+        91,
+        94
+      ]
+    }
+  ],
+  "runtime_count": 35,
+  "server_and_grading_inputs": [
+    {
+      "path": "work/foundations/supabase/functions/mastery-evidence/index.ts",
+      "bytes": 21501,
+      "sha256": "9cb09c5be9248a5389c5697e4f6aaacf8d2c1055ce70020e056793c22fd23505"
+    },
+    {
+      "path": "work/foundations/supabase/functions/institution-api/index.ts",
+      "bytes": 52838,
+      "sha256": "0c45db599f1dd51ecbb1e47cb7189ca90d67df464d42c415920023d1126c900e"
+    },
+    {
+      "path": "work/foundations/supabase/functions/learning-sync/index.ts",
+      "bytes": 8027,
+      "sha256": "f58b4a32a55acb49590faa81f5566723f221e9896cff8e7990e3647a346e86aa"
+    },
+    {
+      "path": "work/foundations/js/institution-mastery-evidence.js",
+      "bytes": 2464,
+      "sha256": "90c789d0d64abdbf88a96c7c3b44744c8b2249fbfd144f36477ddeb1c0dd63af"
+    },
+    {
+      "path": "work/foundations/tools/private-learning-operation-journal/operation-journal.sql",
+      "bytes": 41799,
+      "sha256": "ac3ad94dce3d89b3e32594b9fd01593a266738abb66cbb8f3c2d72ca597b075e"
+    }
+  ],
+  "scope": "Frozen P2b and durable/J049 bytes, plus current local work/foundations files. Not remote-main, deployment, exhaustive privacy closure or runtime acceptance.",
+  "source_edits": 0,
+  "database_migrations": 0,
+  "network_calls": 0,
+  "new_integration_tests_executed": false,
+  "recommended_initial_slice": "T1 same-database engine/command/history/rows plus immutable source bundle, deletion candidates and unbound reset barrier; read/reload. T2/T3 only after source-bundle review."
+}

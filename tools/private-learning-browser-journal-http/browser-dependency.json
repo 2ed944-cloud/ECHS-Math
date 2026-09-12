@@ -1,0 +1,13 @@
+{
+  "contract": "echs.c04.browser-http-browser-pin.v1",
+  "playwright": "1.61.1",
+  "playwright_core": "1.61.1",
+  "browsers_json_bytes": 1939,
+  "browsers_json_sha256": "ee39bc924bc3d1bd895626c2910f1292d109bbfeeb5abd113acb45e1951cc942",
+  "browser": "chromium",
+  "revision": "1228",
+  "version": "149.0.7827.55",
+  "channel": "chromium",
+  "historical_t3_browser": "Chrome/153.0.8010.37",
+  "same_historical_browser_binary": false
+}

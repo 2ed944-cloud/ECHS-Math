@@ -1,0 +1,53 @@
+{
+  "contract": "echs.c04.source-bundle-copy.v1",
+  "frozen_p2b_manifest_sha256": "817c3395b1589c74391cce55fd7dffdae9de3a28c2b1f9fd90e371428c788722",
+  "source_files": [
+    {
+      "path": "source/js/owned-learning-store.mjs",
+      "bytes": 31668,
+      "sha256": "3f1863498a014f6d49c726357679b7a8d2f00354768d556739cf1102a3da3928"
+    },
+    {
+      "path": "source/js/owned-learning-transport.mjs",
+      "bytes": 400,
+      "sha256": "0a214e92e003a1c8a0f3317ba53a502e2a9604aa5d57ba3e77ddf0c11268b860"
+    },
+    {
+      "path": "source/question-bank/js/learning-transition.mjs",
+      "bytes": 27867,
+      "sha256": "4167b49674f8dcb55d3427817b62dd81c28d5f9d46140c13bf92de55eb601b5b"
+    },
+    {
+      "path": "source/question-bank/js/practice-flow.mjs",
+      "bytes": 10918,
+      "sha256": "82be3e7149d7375427804331491d75516287b67aaccac519a442be733ef08418"
+    }
+  ],
+  "preserved_original_tests": [
+    {
+      "path": "test-practice-flow.mjs",
+      "bytes": 14156,
+      "sha256": "720ba9f479bd487e0d0499c93a0dc7443de0fa694673a891139d8c594bcbdb09",
+      "role": "frozen reference; not edited or relabeled as executed successor evidence"
+    },
+    {
+      "path": "test-practice-atomic.mjs",
+      "bytes": 14358,
+      "sha256": "1fa0deadfc915f241eaef3081a42d86107cb712ac617430a5828d5ed79d17ce2",
+      "role": "frozen reference; not edited or relabeled as executed successor evidence"
+    },
+    {
+      "path": "test-practice-actions.mjs",
+      "bytes": 9371,
+      "sha256": "2f211579b7c2a085db28a9a5c172da795bdd772c0f2ba1ed37f9ef6d0ab069b4",
+      "role": "frozen reference; not edited or relabeled as executed successor evidence"
+    },
+    {
+      "path": "practice-atomic-fixture.mjs",
+      "bytes": 10256,
+      "sha256": "3287e9e81e2bdf6e689eefb86306e845d2484a12acc12d3928d6de7f318d788e",
+      "role": "frozen reference; not edited or relabeled as executed successor evidence"
+    }
+  ],
+  "scope": "Fresh isolated T1 local source-bundle successor. No transport binding, ACK, adoption, active page or server changes."
+}

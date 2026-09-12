@@ -1,0 +1,64 @@
+{
+  "contract": "echs.c04.journal-http-candidate.v1",
+  "status": "ISOLATED INJECTED CONTRACT VALIDATION ONLY",
+  "source_files": [
+    {
+      "path": "wire.mjs",
+      "bytes": 4397,
+      "sha256": "d6e1a9675d12d125454b827ae1187a55e9176408a81dfb8fe2f0397598f8407b"
+    },
+    {
+      "path": "contract.mjs",
+      "bytes": 9956,
+      "sha256": "050a652f28e957aaabd7e87428b4811dbeb2ebfad80552023ebef9c931271e84"
+    },
+    {
+      "path": "handler.mjs",
+      "bytes": 7140,
+      "sha256": "6acb0db4dea5949eff11bad59560781134b788406187e6b393ceb151ba55b089"
+    },
+    {
+      "path": "pending-intent.mjs",
+      "bytes": 3573,
+      "sha256": "10aa9c3ba04aa0e32483763b5b8ef17d489b6449f4b8738563254d427811f69d"
+    },
+    {
+      "path": "test_contract.mjs",
+      "bytes": 29371,
+      "sha256": "084c36683f8d5fd41c679c7bf01935044c2b8610f00fe0d7de063ff49e7d95d7"
+    },
+    {
+      "path": "README.md",
+      "bytes": 10454,
+      "sha256": "02589da648714e528f365f6ce37c799dd98dba803202271d8100a10200f03622"
+    },
+    {
+      "path": "input-pins.json",
+      "bytes": 1226,
+      "sha256": "744fbc52203d3ad01bb0bc31f735e916b79c57094af02878d5df037f43d2f6ba"
+    },
+    {
+      "path": "verify_candidate.py",
+      "bytes": 3893,
+      "sha256": "fb43534998999ee8adfb0e20bf1818faa16f4c79e847f84d5c6029ddc8c5cc3d"
+    }
+  ],
+  "evidence_files": [
+    {
+      "path": "test-results-conflict-v1.json",
+      "bytes": 5273,
+      "sha256": "88d26f62ae212c39caa7426cbb325a56022f76b729b5bdf59dc29f734059ee0c"
+    },
+    {
+      "path": "COPY_RECEIPT.json",
+      "bytes": 1386,
+      "sha256": "b85ad7309942f6719cc7cdad1bed6ff4dcb64cc45a3c74b04567830a00c51d98"
+    }
+  ],
+  "database_migrations": [],
+  "production_changes": false,
+  "real_http_acceptance": false,
+  "browser_persistence_acceptance": false,
+  "supersedes_manifest_sha256": "117cdb0a97cd4408b31fedf9f4eba5928b1385f5e2a86d6ee5e55c750c286817",
+  "repair": "J049-CONFLICT-01: map nonretryable PT409 to409 journal-conflict while preserving exact-apply first ACK."
+}

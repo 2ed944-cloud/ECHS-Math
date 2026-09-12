@@ -1,0 +1,191 @@
+# Isolated browser journal HTTPS acceptance
+
+This tooling proves the next transport boundary for the accepted T3 IndexedDB
+store. It does not install a browser journal, deploy an Edge Function, adopt a
+production account, or change a lesson, answer, mastery rule, curriculum record,
+URL, publication gate or Pages configuration. Implementation and offline checks
+alone do not establish actual browser or SQL acceptance.
+
+## Source and prerequisite closure
+
+`source-manifest.json` lists 100 exact source files with byte counts, SHA256 and
+Git blob hashes. Its own bytes are bound separately by the publication and
+execution receipts. The 101 new repository paths comprise this namespace and
+one workflow. `input-pins.json` binds 98 existing repository files; none is
+modified here.
+
+The 69-file `retained/` layout preserves the accepted T3 source manifest,
+17 sources, 49 inputs and two native browser reports byte for byte. Its original
+verifier checks only that original closure. The T3 manifest is
+`62ceef6e1a69bc8462aaa80ff56800e27452ee5a028b527b3fc88a6a853222ce`.
+Its 84 main and 14 supplemental native groups are historical prerequisites.
+They are not rerun or added to this gate's fresh integration count.
+
+Eight server files are exact copies from accepted owner-fence retry tooling:
+the four J049 modules, `bridge.mjs`, `controls.py`, `test_http.mjs` and
+`test_bridge.mjs`. All original twenty HTTP case bodies remain unchanged.
+`control-client.mjs` exports the exact original private control function.
+`fixture.py` retains the bootstrap and SQL ordering while removing the previous
+retry-counter probe; its installer verifies the actual connected PostgreSQL
+major and an independently established owned database marker before changes.
+
+Installation order is the exact 27 pinned migrations, the accepted repaired
+owner-fence SQL, then the accepted journal SQL. There is no new migration.
+The accepted server prerequisite is main
+`2c1a0ec618d7a4231195876ff6cbdfb53ad4c819`, tree
+`a4a4ca451e98afff6908339edc87ea42f9e0e184`, actual run `34676455969`.
+Its 479 assertions per major remain historical evidence; this workflow does not
+claim to rerun those 479 assertions.
+
+## Actual execution boundary
+
+The new workflow has exactly two disposable jobs, PostgreSQL 15 and 17. Each
+installs the unchanged schema into its own initially empty database, executes
+the original twenty Node HTTP cases, then twelve native Chromium cases through:
+
+`native IndexedDB → browser fetch → HTTPS 127.0.0.1 → unchanged J049 → private PostgREST → owned PostgreSQL`
+
+The integration total is **32 fresh groups per major**, comprising twenty HTTP
+groups and twelve browser groups. B05 contains two required fault subcases.
+Local fixture suites are reported separately: 20 contract groups, 14 certificate
+groups, 17 process supervisor groups, 20 descendant registry groups, 10 HTTPS
+adapter groups and the nine retained loopback adapter groups. Strict Linux CI
+requires zero skipped certificate/process/descendant groups.
+
+| Browser group | Required actual observation |
+| --- | --- |
+| B01 | Native durable intent reaches SQL; raw request hash and committed receipt agree; ACK clears three matching rows without changing learning effects. |
+| B02 | SQL commits before a held reply; a newer native edit survives the old ACK and is sent with the correct predecessor revisions. |
+| B03 | Two pages sharing one context/database deliver the same UUID; SQL retains one operation and native storage records one first ACK and one duplicate. |
+| B04 | A committed reply is dropped; lookup remains informational; reopening the page/store within the same browser context preserves the UUID and exact raw replay. |
+| B05 | A real 207 response and a flushed HTTP200 truncated response each retain the pending intent until exact replay. |
+| B06 | SQL session revocation produces native401; a fresh synthetic session for the same owner can retry the unchanged intent. |
+| B07 | Revocation commits during an observed database lock wait; no journal commit or local ACK follows. |
+| B08 | Reset advances the server generation after a dropped old receipt; replay retains the historical receipt, blocks old-context materialization and preserves newer pending work. |
+| B09 | A competing mutable revision produces409 and rolls back the entire compound request, retaining the native attempt and pending state. |
+| B10 | A held response is already committed when disposal aborts browser fetch; a request/socket-close event is observed before release, the late ACK is refused, and exact retry recovers. |
+| B11 | An actual IndexedDB request-success callback invokes transaction.abort; the native abort event occurs, all eleven stores stay unchanged, and exact retry recovers the committed SQL receipt. |
+| B12 | A duplicate receipt cannot rewrite the first raw reply or immutable receipt after generation change; new materialization remains blocked. |
+
+B04 proves same-context page/store reopening. It does not claim a full browser,
+profile or operating-system restart. Fault controls and SQL credentials remain
+in private supervisor/Node processes. The browser receives only synthetic owner
+data and a short-lived synthetic session token. No privileged control endpoint
+is served to the browser.
+
+## Browser, HTTPS and process ownership
+
+The existing package and lock files pin Playwright/core 1.61.1. The installed
+`browsers.json` must match the exact descriptor in `browser-dependency.json`:
+full Chromium revision 1228, version 149.0.7827.55. The runner records the actual
+version and executable SHA256 before execution, then verifies that the executable
+SHA256 remains unchanged after execution. The accepted native
+T3 Chrome153 evidence is a separate browser build.
+
+Python directly launches Chromium and the two Node test children in separate
+owned process groups. Playwright connects over the private ephemeral CDP
+endpoint after Python verifies its loopback address, socket inode and owned
+browser process identity. Each browser case uses a fresh incognito context;
+only the cases explicitly requiring two pages or reopening share a context.
+The explicit fresh profile, CDP file and endpoint stay outside served routes
+and uploaded artifacts.
+
+Each run generates two unrelated EC P-256 self-signed leaves with SAN127.0.0.1,
+CAfalse, serverAuth and a 24-hour validity period. Private material resides in an
+owned0700 directory with0600 files and is removed during independently attempted
+cleanup. Chromium receives only the positive leaf SPKI exception and an explicit
+fresh user-data-dir. That flag is a narrowly scoped certificate-error exception,
+not exclusive certificate pinning: Chromium can match a presented-chain SPKI.
+No broad ignore-certificate-errors, ignoreHTTPSErrors or CDP certificate bypass
+is used. The real browser must return the generated leaf's exact DER and SPKI
+through `Network.getCertificate`; the unrelated same-SAN listener must fail
+with zero application HTTP requests and no fixture sentinel.
+
+This per-run loopback TLS exercise is not hosted TLS or hosted Edge acceptance.
+The listener serves exactly ten fixed buffered entries: one HTML page, one
+fixture module, a favicon and seven exact T3 modules. The held transport module
+is retained but unserved. There is no arbitrary static root or filesystem path
+conversion. Four fixed API routes are the only dynamic browser endpoints.
+
+Chromium can create detached helper processes. The supervisor therefore enables
+Linux subreaper mode before any child launch, requires an initially empty child
+set, and records PPID/UID/start identities plus pidfds. Registered Popen roots
+are waited only by their owner; adopted descendants are reaped by the registry.
+Every group and registered root is independently cleaned even after an earlier
+inventory error. Exact pidfds bound TERM/KILL for detached descendants; final
+acceptance requires zero descendants, closed CDP/TLS listeners, removed owned
+containers/network and removed private material. The test-only Crashpad disable
+flag is defense in depth; actual absence proof is still required. Synchronous
+Docker/OpenSSL commands are waited before any registry scan, avoiding competing
+wait ownership. No global process-name or broad container deletion is used.
+
+Primary references: [Chromium SPKI verifier](https://chromium.googlesource.com/chromium/src/+/main/services/network/ignore_errors_cert_verifier.cc),
+[CDP certificate method](https://chromedevtools.github.io/devtools-protocol/tot/Network/#method-getCertificate),
+[Playwright browser installation](https://playwright.dev/docs/browsers),
+[Crashpad detached process implementation](https://github.com/chromium/crashpad/blob/main/util/posix/spawn_subprocess.cc).
+These explain mechanisms; the locked executable's actual behavior is established
+only by the CI controls and cleanup receipts.
+
+## Reproducible isolated gate
+
+From the repository root, a network-free source preflight is:
+
+```sh
+python -B tools/private-learning-browser-journal-http/contract.py --repo .
+python -B tools/private-learning-browser-journal-http/run.py --repo . --postgres-major 15
+python -B tools/private-learning-browser-journal-http/run.py --repo . --postgres-major 17
+```
+
+Actual execution is restricted to a dedicated Linux GitHub-hosted job with
+Node24, Python3.12, OpenSSL3, Docker and the exact locked dependencies. No
+production environment variables, remote Docker context or ambient database
+overrides are accepted. The workflow installs full Chromium into a fresh
+`RUNNER_TEMP/echs-browser-bin` cache and pins psycopg[binary]3.2.9, pglast7.7 and
+PyYAML6.0.2. PostgreSQL and PostgREST image digest plus actual image ID are checked
+before launch; their exact references are in `fixture.py` and `run.py`.
+
+```sh
+python -B tools/private-learning-browser-journal-http/local_tests.py --repo . --output "$RUNNER_TEMP/browser-journal-local-tests" --execute
+python -B tools/private-learning-browser-journal-http/run.py --repo . --postgres-major 15 --execute
+python -B tools/private-learning-browser-journal-http/assemble.py --repo . --postgres-major 15 --directory "$RUNNER_TEMP/private-learning-browser-journal-http-15" --tests "$RUNNER_TEMP/browser-journal-local-tests" --output "$RUNNER_TEMP/private-learning-browser-journal-http-evidence-15"
+```
+
+Run major17 in its own matrix job with the analogous two major arguments and
+artifact directory. Output directories must be fresh. A local Windows run may
+execute portable guard tests, but cannot satisfy the required native Linux,
+OpenSSL or real browser/SQL gate by skipping tests.
+
+## Evidence, security and rollback
+
+The service runner indexes nine safe reports. It records actual Git HEAD, tree,
+parents and event head/base; source hashes before and after; image and database
+versions; and each waited child report's exact hash tied to run UUID, major and
+source manifest. The local suite wrapper separately records six exact waited
+suite outputs and source sweeps. The collector requires their seven-member
+closure, strict success shapes, exact labels/counts/source files and native
+availability flags. It independently rereads Git event/tree/parents and every
+member before writing the final index. A successful service artifact has
+19 members: nine service reports, their inner index, seven local members,
+acceptance and the final artifact index. Local seven-member evidence is also
+retained separately. The workflow uploads only the separate validated evidence
+directory. If raw evidence is rejected, the collector emits a fixed failure
+projection containing fixed case identifiers, status/count/error and cleanup
+fields; rejected raw reports are never copied into the upload directory. Missing,
+stale, substituted, partial or cleanup-failed evidence cannot create an accepted
+index. A partial safe copy is also unaccepted unless its final index is present.
+
+No token, JWT, password, PEM, private key, browser profile/CDP endpoint, raw RPC
+body, screenshot, tracing/HAR data, database content or service log is uploaded.
+Synthetic values used in assertions remain in process/private pipes; only
+closed status/count/hash metadata is retained. Docker services use an owned
+internal network without published ports and volatile PostgreSQL data. Source
+drift cannot skip secret cleanup, and one resource failure cannot skip another
+owned resource's cleanup attempt.
+
+Rollback is removal/reversion of this new tools namespace and workflow only.
+All previous tools, frozen candidates, accepted SQL, runtime modules, current
+deployment and cohort behavior remain unchanged. Actual hosted Supabase17.6
+compatibility, production authority integration, browser adoption, migration
+execution and full C04 completion remain outside this gate. Readiness for the
+next integration step requires both real PG15/17 matrix artifacts and independent
+source/index/cleanup review; source or local injected checks alone are insufficient.

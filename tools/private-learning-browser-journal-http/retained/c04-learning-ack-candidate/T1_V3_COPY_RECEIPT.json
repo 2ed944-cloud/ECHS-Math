@@ -1,0 +1,80 @@
+{
+  "contract": "echs.c04.t2-copy.v1",
+  "t1_manifest_sha256": "1497ab6384d016be37af7d52eb451d7693ba54a46009e9e7940829b7b0478b66",
+  "j049_v3_manifest_sha256": "84284f19b00a26b8ee30ed2567132b7913e0a0c8e5cb7c80e4167f62d778445c",
+  "files": [
+    {
+      "from": "c04-learning-source-bundle-candidate/source/js/owned-learning-store.mjs",
+      "to": "source/js/owned-learning-store.mjs",
+      "sha256": "b8d3f366160c4f613dc5cd7152b0b2df8fa5b4f20bdbb20d1815a021bf4d4e76",
+      "bytes": 43540
+    },
+    {
+      "from": "c04-learning-source-bundle-candidate/source/js/owned-learning-transport.mjs",
+      "to": "source/js/owned-learning-transport.mjs",
+      "sha256": "0a214e92e003a1c8a0f3317ba53a502e2a9604aa5d57ba3e77ddf0c11268b860",
+      "bytes": 400
+    },
+    {
+      "from": "c04-learning-source-bundle-candidate/source/question-bank/js/learning-transition.mjs",
+      "to": "source/question-bank/js/learning-transition.mjs",
+      "sha256": "4167b49674f8dcb55d3427817b62dd81c28d5f9d46140c13bf92de55eb601b5b",
+      "bytes": 27867
+    },
+    {
+      "from": "c04-learning-source-bundle-candidate/source/question-bank/js/practice-flow.mjs",
+      "to": "source/question-bank/js/practice-flow.mjs",
+      "sha256": "82be3e7149d7375427804331491d75516287b67aaccac519a442be733ef08418",
+      "bytes": 10918
+    },
+    {
+      "from": "c04-learning-source-bundle-candidate/browser-page.mjs",
+      "to": "browser-page.mjs",
+      "sha256": "72b10d8f0532d14b8f5c3c9cf691f9a8022927602f85d939cb45b1fc0360e2e6",
+      "bytes": 6978
+    },
+    {
+      "from": "c04-learning-source-bundle-candidate/test_browser.mjs",
+      "to": "test_browser.mjs",
+      "sha256": "5898bce364cb7a438b1891870a41293e4bc93c671d9b7d7ad35516a6486f3d38",
+      "bytes": 23495
+    },
+    {
+      "from": "c04-learning-source-bundle-candidate/COPY_RECEIPT.json",
+      "to": "COPY_RECEIPT.json",
+      "sha256": "9810bcd6427d41d031dfe4d9791aabfb934c65ecafe8f2f565515d9d97c17a51",
+      "bytes": 2098
+    },
+    {
+      "from": "c04-learning-source-bundle-candidate/README.md",
+      "to": "README.md",
+      "sha256": "d8c4407e1f7e0a99ff494c7d2fb65b4e73d8a54f62731eb373de2726ad083c76",
+      "bytes": 8540
+    },
+    {
+      "from": "c04-learning-source-bundle-candidate/verify_candidate.py",
+      "to": "verify_candidate.py",
+      "sha256": "f906d246ce239b9abdebe4cf6fc3b1764b46757848d1e80c2c4f4de2ebbb66c6",
+      "bytes": 4198
+    },
+    {
+      "from": "c04-journal-http-candidate-v3/wire.mjs",
+      "to": "source/js/journal/wire.mjs",
+      "sha256": "d6e1a9675d12d125454b827ae1187a55e9176408a81dfb8fe2f0397598f8407b",
+      "bytes": 4397
+    },
+    {
+      "from": "c04-journal-http-candidate-v3/contract.mjs",
+      "to": "source/js/journal/contract.mjs",
+      "sha256": "050a652f28e957aaabd7e87428b4811dbeb2ebfad80552023ebef9c931271e84",
+      "bytes": 9956
+    },
+    {
+      "from": "c04-journal-http-candidate-v3/pending-intent.mjs",
+      "to": "source/js/journal/pending-intent.mjs",
+      "sha256": "10aa9c3ba04aa0e32483763b5b8ef17d489b6449f4b8738563254d427811f69d",
+      "bytes": 3573
+    }
+  ],
+  "scope": "Developing isolated future-T1/T2 successor. No active or frozen source edits."
+}

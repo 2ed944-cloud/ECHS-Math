@@ -1,0 +1,145 @@
+{
+  "contract": "echs.peer.t3-terminal-origin-counterexample.v1",
+  "status": "PASS",
+  "groups": 1,
+  "passed": 1,
+  "failed": 0,
+  "skipped": 0,
+  "outcomes": [
+    {
+      "name": "PEER01 acknowledged terminal witness accepts a context installed after its source command",
+      "status": "PASS",
+      "details": {
+        "code": null,
+        "accepted": true,
+        "rawUnchanged": true,
+        "firstContext": "7d712f11-39f5-4c16-a2d4-fd94bd2031b9",
+        "secondContext": "4587d8ec-aecc-4bd0-ae5e-8f3637932c21",
+        "sourceCommandRevision": 2,
+        "laterContextInstalledRevision": 2,
+        "changedStores": [
+          "bindings"
+        ],
+        "beforeBinding": {
+          "account_id": "20000000-0000-4000-8000-000000000002",
+          "adoption_epoch": 1,
+          "command_revision": 2,
+          "contract": "echs.learning.bundle-binding.v2",
+          "hold_reason": null,
+          "id": "befedbae-ca80-4633-b2b4-40fc98c5a0ba",
+          "incarnation_id": "30000000-0000-4000-8000-000000000003",
+          "operation_id": "ae273471-317b-4829-af5d-1a61aab56a85",
+          "organization_id": "10000000-0000-4000-8000-000000000001",
+          "origin": {
+            "context_id": "7d712f11-39f5-4c16-a2d4-fd94bd2031b9",
+            "generation": 0,
+            "reset_barrier_id": null,
+            "rows": [
+              {
+                "type": "append"
+              },
+              {
+                "context_id": "7d712f11-39f5-4c16-a2d4-fd94bd2031b9",
+                "expected_revision": 0,
+                "type": "missing"
+              },
+              {
+                "context_id": "7d712f11-39f5-4c16-a2d4-fd94bd2031b9",
+                "expected_revision": 0,
+                "type": "missing"
+              }
+            ]
+          },
+          "state": "acknowledged"
+        },
+        "afterBinding": {
+          "account_id": "20000000-0000-4000-8000-000000000002",
+          "adoption_epoch": 1,
+          "command_revision": 2,
+          "contract": "echs.learning.bundle-binding.v2",
+          "hold_reason": null,
+          "id": "befedbae-ca80-4633-b2b4-40fc98c5a0ba",
+          "incarnation_id": "30000000-0000-4000-8000-000000000003",
+          "operation_id": "ae273471-317b-4829-af5d-1a61aab56a85",
+          "organization_id": "10000000-0000-4000-8000-000000000001",
+          "origin": {
+            "context_id": "4587d8ec-aecc-4bd0-ae5e-8f3637932c21",
+            "generation": 0,
+            "reset_barrier_id": null,
+            "rows": [
+              {
+                "type": "append"
+              },
+              {
+                "context_id": "7d712f11-39f5-4c16-a2d4-fd94bd2031b9",
+                "expected_revision": 0,
+                "type": "missing"
+              },
+              {
+                "context_id": "7d712f11-39f5-4c16-a2d4-fd94bd2031b9",
+                "expected_revision": 0,
+                "type": "missing"
+              }
+            ]
+          },
+          "state": "acknowledged"
+        },
+        "noValidationWrites": true
+      }
+    }
+  ],
+  "source_files": [
+    {
+      "path": "source/js/owned-learning-store.mjs",
+      "bytes": 72623,
+      "sha256": "441e7ea654f88461f8f5fbd92ad1ff3e751c138527e8cda185c625f19a71ff0a"
+    },
+    {
+      "path": "source/js/owned-learning-transport.mjs",
+      "bytes": 400,
+      "sha256": "0a214e92e003a1c8a0f3317ba53a502e2a9604aa5d57ba3e77ddf0c11268b860"
+    },
+    {
+      "path": "source/question-bank/js/learning-transition.mjs",
+      "bytes": 27867,
+      "sha256": "4167b49674f8dcb55d3427817b62dd81c28d5f9d46140c13bf92de55eb601b5b"
+    },
+    {
+      "path": "source/question-bank/js/practice-flow.mjs",
+      "bytes": 10918,
+      "sha256": "82be3e7149d7375427804331491d75516287b67aaccac519a442be733ef08418"
+    },
+    {
+      "path": "browser-page.mjs",
+      "bytes": 11196,
+      "sha256": "a169dd13c1ef2fc9575b9f19ee14ed9bb3187cb38e6c5dd1d03106b013d0eca1"
+    },
+    {
+      "path": "source/js/wire-binding-model.mjs",
+      "bytes": 12366,
+      "sha256": "eb66b46bfada9d1dfdf93454f03c63b4f1a9168f3f009dc0c261d854d82246d5"
+    },
+    {
+      "path": "source/js/journal/wire.mjs",
+      "bytes": 4397,
+      "sha256": "d6e1a9675d12d125454b827ae1187a55e9176408a81dfb8fe2f0397598f8407b"
+    },
+    {
+      "path": "source/js/journal/contract.mjs",
+      "bytes": 9956,
+      "sha256": "050a652f28e957aaabd7e87428b4811dbeb2ebfad80552023ebef9c931271e84"
+    },
+    {
+      "path": "source/js/journal/pending-intent.mjs",
+      "bytes": 3573,
+      "sha256": "10aa9c3ba04aa0e32483763b5b8ef17d489b6449f4b8738563254d427811f69d"
+    }
+  ],
+  "original_manifest_sha256": "817c3395b1589c74391cce55fd7dffdae9de3a28c2b1f9fd90e371428c788722",
+  "loopback_requests": 13,
+  "unexpected_requests": [],
+  "page_errors": [],
+  "chromium_version": "153.0.8010.37",
+  "node_version": "v24.19.0",
+  "scope": "One native corruption counterexample on developing T3; PASS means the suspected origin gap was reproduced. Synthetic ports only; no actual browser-to-server HTTP or production calls."
+}

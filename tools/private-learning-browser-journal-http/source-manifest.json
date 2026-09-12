@@ -1,0 +1,605 @@
+{
+  "contract": "echs.c04.browser-journal-http-sources.v1",
+  "files": [
+    {
+      "path": ".github/workflows/private-learning-browser-journal-http.yml",
+      "bytes": 5180,
+      "sha256": "a4107baadf867c525b0d0d686fe8021807b36a9455ff137357ad1ef4e638bb5b",
+      "git_blob_sha": "005eb31a8fdb14052b89d3a469df09adae59844d"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/README.md",
+      "bytes": 12904,
+      "sha256": "57679f2bf6d55e872a946437df79ea43fe7eda080ab9f36cb8e3b4187c9e1798",
+      "git_blob_sha": "edec1f95ec1dd9b7f7539903632e651040da9886"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/T3_COPY_RECEIPT.json",
+      "bytes": 23817,
+      "sha256": "8a6474591244184333056cac461e0938ac66dba67020f1f0f10a33571538044f",
+      "git_blob_sha": "d38268927e6acf863332c6feb17cf8dac39b0885"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/assemble.py",
+      "bytes": 39632,
+      "sha256": "f7d979c359b4b5e78ad0a9cc90ba8a98d32cb5ef2089c38db1db92576dd4f021",
+      "git_blob_sha": "e4fafe8b392d5b4d263f8d5f91759854f61526c6"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/bridge.mjs",
+      "bytes": 4059,
+      "sha256": "117eda1e93c50aaecd7689422bd4934a7ae47c000b750f23048453bfdac454f9",
+      "git_blob_sha": "9e168587611db8dd3ad7373730e8151a566c1e42"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/browser-cases.mjs",
+      "bytes": 14552,
+      "sha256": "3f692a77d52cafd803b6f7f996cbccaa0529b1a155dd139035443f15245d97cb",
+      "git_blob_sha": "175a693f4ae59ff136ea59cce682696f84bf1d6b"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/browser-dependency.json",
+      "bytes": 435,
+      "sha256": "1519592e5d755025ba0533c8df8029b10bc87d0d3ffa96a397758802e921c6ed",
+      "git_blob_sha": "80334d8fc788f435a1ebb3020c6593d4449dbfb3"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/browser-page.mjs",
+      "bytes": 5188,
+      "sha256": "5c42a35184db5005430e86fd206694c0f213b51b30e134f105f6a3cf020d2130",
+      "git_blob_sha": "a513e507d15214637f25cc492d2eaaac4e39f403"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/certs.py",
+      "bytes": 10192,
+      "sha256": "bd5e3eca2c08662739302c6052ac747e9a7afa25ca8d69bdd8989aa9ace14ca2",
+      "git_blob_sha": "30f3149d681212359469a5347432660df1b297c5"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/contract.py",
+      "bytes": 9604,
+      "sha256": "a00fa041c45f4868d71fd9908011b3a0b1db2cff02fa3614ed764c0d47d462d7",
+      "git_blob_sha": "b75b0edad5417c5fbfc0dce795e2451de9955181"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/control-client.mjs",
+      "bytes": 2596,
+      "sha256": "9e77d7ecfa7737915e59c5fd327a1e8eec8d308229100e1ff8c1f6ebc5631381",
+      "git_blob_sha": "7646c6547015d83e85e7353ef4e8f71d54b4d161"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/controls.py",
+      "bytes": 9176,
+      "sha256": "1e542c35f3f6f59678fd48ad202c886f1aa69219f98be05f71d5f221c5c8abaa",
+      "git_blob_sha": "1f2ea18082f0f47144a21f897f36607762e7ce6e"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/fixture.py",
+      "bytes": 7952,
+      "sha256": "6c020db7cafa5cbc6727ccd8ca31af70a7c4eea0290e3febc1a7ac21f21e1ad3",
+      "git_blob_sha": "7dcbd2e2b0d0d6bb8fa9a1993b60ab9b0ad40761"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/https-bridge.mjs",
+      "bytes": 7520,
+      "sha256": "a664fb8e9eee2340ba46b6df4bd43bc1eeefce1b3c08549db2810c009243b767",
+      "git_blob_sha": "aae5cd428893a3389d240abfe2d58bf4f75706c4"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/input-pins.json",
+      "bytes": 25486,
+      "sha256": "439dec3b15b9e58dd09d34a0b22c0350ae3117b21e418462bba9cb071cf4710a",
+      "git_blob_sha": "9e9c59ce2d49cd4b7bd1074567300260ccd14847"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/local_tests.py",
+      "bytes": 12461,
+      "sha256": "3522978049e821325fd446ee2f5d61b8ff9bf9fd6c57db1d91d3b86273ebff2b",
+      "git_blob_sha": "211eee7878ae8187f93d9ad2505669aaf25dcbd4"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/owned_children.py",
+      "bytes": 15122,
+      "sha256": "bafbc6a9d85aec06a429be6f0430ed0500a5ad0f15614f2cd46a0bf77a7adbaf",
+      "git_blob_sha": "d8bce8b95564547f9d4a33f972272a0b34a59886"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/processes.py",
+      "bytes": 8717,
+      "sha256": "88bc7fe059ae85d8a4fc0b91c539171bc1c28a3238834126f2d578bcd3419d00",
+      "git_blob_sha": "9aded713344a87aea8bd6a4734850207a234eab5"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-durable-intent-candidate/source-manifest.json",
+      "bytes": 2046,
+      "sha256": "f449d38c6dbf32f29162b327078966076a4afaf24ca39b93909f8c11934685fd",
+      "git_blob_sha": "45375c23930f1337d557a98063fc3be8944df966"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-independent/same-db-integration-evidence.json",
+      "bytes": 21713,
+      "sha256": "7c1d5eb1f0a15ea5e522cd156dfc30b831a27386054cf9c3705bf214e67d0e51",
+      "git_blob_sha": "b3c017da68cd99c972de921d823ef0fdac9f1ccf"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-independent/same-db-integration-plan.md",
+      "bytes": 22478,
+      "sha256": "398a043f0bbdb9e341a1af542249a3033968a020172e0a553324f3bfb230ec40",
+      "git_blob_sha": "0a5e87e6616b256807bc6dd5e7de1827f6d58233"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-independent/t2-binding-proposal-v1.md",
+      "bytes": 22509,
+      "sha256": "fdbf5003ed39ab5b30350c74ca059dd3026890452f6668dad51da5c4fcd56059",
+      "git_blob_sha": "17ab5f01a7b0cef2af4c1667265217132311bffd"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-independent/t2-cleanup-reentrant-counterexample-v1.json",
+      "bytes": 2871,
+      "sha256": "2c94d35265ef9e864199f6f0240b6bac8d9d9770528fc54aae87a44a3c143f41",
+      "git_blob_sha": "37cc2bcc5597f4f74ba0fff33f0cc7684ff9a012"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-independent/t2-cleanup-reentrant-counterexample-v1.mjs",
+      "bytes": 6371,
+      "sha256": "69b4e701a1f4586834eeaf29e2feb4885e098dc49f72fc6d84abd5ec84c5ac61",
+      "git_blob_sha": "b9143f51b68bafb61d9af92e768112879acae1ed"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-independent/t3-ack-review-outline-v1.md",
+      "bytes": 7068,
+      "sha256": "f047ba2a8af5c87b27fbe32916115dadd0f2a27a2af591056e664f8c60b97630",
+      "git_blob_sha": "01738a43ceb24a8aa8d23baf818497b646c90275"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-independent/t3-terminal-origin-counterexample-v2.json",
+      "bytes": 5043,
+      "sha256": "bd10968e6e1ed6e0dffd5ef6a0248b1afc43a5aff4198ca2e2d5a9d6d3651d55",
+      "git_blob_sha": "119728524b3a4c990a105906f46123fcd8fa5fe7"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-independent/t3-terminal-origin-counterexample-v2.mjs",
+      "bytes": 7041,
+      "sha256": "7bd8c3f331018e3cb88fb68175401872cae60359961e205bfe9077961009f7ff",
+      "git_blob_sha": "a3a7088341c6f436b8ea01f752746f5975622535"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-journal-http-candidate-v2/source-manifest.json",
+      "bytes": 2015,
+      "sha256": "117cdb0a97cd4408b31fedf9f4eba5928b1385f5e2a86d6ee5e55c750c286817",
+      "git_blob_sha": "8ac989799373a136350b1a3ba627fc5a11537694"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-journal-http-candidate-v3/contract.mjs",
+      "bytes": 9956,
+      "sha256": "050a652f28e957aaabd7e87428b4811dbeb2ebfad80552023ebef9c931271e84",
+      "git_blob_sha": "ebbbde8190f475a012165303d4dc399ed1221c7e"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-journal-http-candidate-v3/pending-intent.mjs",
+      "bytes": 3573,
+      "sha256": "10aa9c3ba04aa0e32483763b5b8ef17d489b6449f4b8738563254d427811f69d",
+      "git_blob_sha": "9dbdaf7a54d172554896ca820bbd91f9e29d7f74"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-journal-http-candidate-v3/source-manifest.json",
+      "bytes": 2025,
+      "sha256": "84284f19b00a26b8ee30ed2567132b7913e0a0c8e5cb7c80e4167f62d778445c",
+      "git_blob_sha": "9f6bfd3bb6b7a5568f14282cdff5362e3a65558f"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-journal-http-candidate-v3/wire.mjs",
+      "bytes": 4397,
+      "sha256": "d6e1a9675d12d125454b827ae1187a55e9176408a81dfb8fe2f0397598f8407b",
+      "git_blob_sha": "1a5c3dd764c37d46262eeb775cad230e1d18854e"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-journal-pg-matrix-candidate-v2/source/tools/private-learning-operation-journal/operation-journal.sql",
+      "bytes": 41799,
+      "sha256": "9ce98da90d5c141fdf184d32a00067eca1aaa800870204edd9c383cc22b1e1bf",
+      "git_blob_sha": "27b246142b2df52a50ee582cd3d1360d46e3e979"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-learning-ack-candidate/COPY_RECEIPT.json",
+      "bytes": 2098,
+      "sha256": "9810bcd6427d41d031dfe4d9791aabfb934c65ecafe8f2f565515d9d97c17a51",
+      "git_blob_sha": "e466e99761e1fc89d991464ba0a54f35e68abaea"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-learning-ack-candidate/README.md",
+      "bytes": 9620,
+      "sha256": "f509d47252c5b6d8e9b12c6f43a1e556e3e0c620a91cd724559d6f5503282b4e",
+      "git_blob_sha": "8ba0a83d7006c5cb49b13d568595dbdc8084f810"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-learning-ack-candidate/T1_V3_COPY_RECEIPT.json",
+      "bytes": 3260,
+      "sha256": "4388d5c09ef7bc399d849686a6ed9b8b804a0a15e95f67c50f9fa737c59df7dd",
+      "git_blob_sha": "62e99dce6b5652d5526823153b14061f5ea38191"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-learning-ack-candidate/T2_COPY_RECEIPT.json",
+      "bytes": 3638,
+      "sha256": "71d5ed9c105910956aef2247636339422f210a27f29f93df0be777b77ac35060",
+      "git_blob_sha": "0c9325b31d0e2d012e7a82a9abfa1913d1c26a7b"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-learning-ack-candidate/T3_SOURCE_OVERVIEW.md",
+      "bytes": 3373,
+      "sha256": "857ce10daa86b17f12f765c67303a2feafb300692cc085ecdddf2cbdf5b8fa6e",
+      "git_blob_sha": "5025d6a906359f77625448144612e9008b3a3338"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-learning-ack-candidate/adversarial-t3-v3.json",
+      "bytes": 5579,
+      "sha256": "5c811ae9032ba0e96e039683ebebcef7834fdb4faeb773ad2136f49bdf516524",
+      "git_blob_sha": "4b1aec330a658daf3cf61e403320b6d0c93755d8"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-learning-ack-candidate/browser-page.mjs",
+      "bytes": 11196,
+      "sha256": "a169dd13c1ef2fc9575b9f19ee14ed9bb3187cb38e6c5dd1d03106b013d0eca1",
+      "git_blob_sha": "8fff72e0af98ac5ec056a36860e546320d318cff"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-learning-ack-candidate/browser-t3-v2.json",
+      "bytes": 24575,
+      "sha256": "301099e652995339b0f61b6afca23f56514c756445100d8f9694b505045bbb4b",
+      "git_blob_sha": "e31761b2e0ec6adec7dbc070d883fe4dc8af2d2a"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-learning-ack-candidate/source-manifest-v1.json",
+      "bytes": 13540,
+      "sha256": "62ceef6e1a69bc8462aaa80ff56800e27452ee5a028b527b3fc88a6a853222ce",
+      "git_blob_sha": "3097b7695af7a6c9a8d94f7b8b1125c53eeceaee"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-learning-ack-candidate/source/js/journal/contract.mjs",
+      "bytes": 9956,
+      "sha256": "050a652f28e957aaabd7e87428b4811dbeb2ebfad80552023ebef9c931271e84",
+      "git_blob_sha": "ebbbde8190f475a012165303d4dc399ed1221c7e"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-learning-ack-candidate/source/js/journal/pending-intent.mjs",
+      "bytes": 3573,
+      "sha256": "10aa9c3ba04aa0e32483763b5b8ef17d489b6449f4b8738563254d427811f69d",
+      "git_blob_sha": "9dbdaf7a54d172554896ca820bbd91f9e29d7f74"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-learning-ack-candidate/source/js/journal/wire.mjs",
+      "bytes": 4397,
+      "sha256": "d6e1a9675d12d125454b827ae1187a55e9176408a81dfb8fe2f0397598f8407b",
+      "git_blob_sha": "1a5c3dd764c37d46262eeb775cad230e1d18854e"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-learning-ack-candidate/source/js/owned-learning-store.mjs",
+      "bytes": 73123,
+      "sha256": "75c64156b4a69db6b9f2b9862ec45e673cbd6dc75a090030e9c5383ef3e02773",
+      "git_blob_sha": "76edc38e9857ba1827f2136cb6ff944b84149ae4"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-learning-ack-candidate/source/js/owned-learning-transport.mjs",
+      "bytes": 400,
+      "sha256": "0a214e92e003a1c8a0f3317ba53a502e2a9604aa5d57ba3e77ddf0c11268b860",
+      "git_blob_sha": "a03bb80536b3d2159feb940a4a4e536c7568368e"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-learning-ack-candidate/source/js/wire-binding-model.mjs",
+      "bytes": 12774,
+      "sha256": "41d8b60bce63d25b6d2da782ee900d0a3e139ce830ffbea2a26ef2e696d990a5",
+      "git_blob_sha": "1255a1334823acc6b55daa497926f282061f0c9e"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-learning-ack-candidate/source/question-bank/js/learning-transition.mjs",
+      "bytes": 27867,
+      "sha256": "4167b49674f8dcb55d3427817b62dd81c28d5f9d46140c13bf92de55eb601b5b",
+      "git_blob_sha": "d6f557c18aa18e59a4b642675adae2b874600a92"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-learning-ack-candidate/source/question-bank/js/practice-flow.mjs",
+      "bytes": 10918,
+      "sha256": "82be3e7149d7375427804331491d75516287b67aaccac519a442be733ef08418",
+      "git_blob_sha": "b34b006dcf4e5a47cc24d5b0bcef2a50172f5ec5"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-learning-ack-candidate/test_adversarial.mjs",
+      "bytes": 18276,
+      "sha256": "285fe358260d056e85e13729a81ffb67b0ea3ea36eb339d3f24ba3fc17c78fc4",
+      "git_blob_sha": "1cf4b91eafca6a19556752233b25da669b7c6d6a"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-learning-ack-candidate/test_browser.mjs",
+      "bytes": 68194,
+      "sha256": "8c9733bc799ee2b2cefb47701ae89250ca9d607791e878ac5ccaa2cb9e78f6c1",
+      "git_blob_sha": "b02bf44d41788995fa695b0529734f7b2fed5c78"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-learning-ack-candidate/verify_candidate.py",
+      "bytes": 6916,
+      "sha256": "9da6c012a68385df6bff353476eb333e1d86298a53edb04d9224132b9c343f25",
+      "git_blob_sha": "7ce35584dfa1ad91445cb89f74fbeec7cdd942c2"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-learning-p2b-candidate/candidate-manifest.json",
+      "bytes": 9395,
+      "sha256": "817c3395b1589c74391cce55fd7dffdae9de3a28c2b1f9fd90e371428c788722",
+      "git_blob_sha": "2bed9c89842568c2312105d17b095fbe9a2d706d"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-learning-p2b-candidate/practice-atomic-fixture.mjs",
+      "bytes": 10256,
+      "sha256": "3287e9e81e2bdf6e689eefb86306e845d2484a12acc12d3928d6de7f318d788e",
+      "git_blob_sha": "4de053c0784d52f8507a57e12227af9f7096539e"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-learning-p2b-candidate/source/js/owned-learning-store.mjs",
+      "bytes": 31668,
+      "sha256": "3f1863498a014f6d49c726357679b7a8d2f00354768d556739cf1102a3da3928",
+      "git_blob_sha": "50c1131da29ef4e3f07a411612bfdbbe1b109e3b"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-learning-p2b-candidate/source/js/owned-learning-transport.mjs",
+      "bytes": 400,
+      "sha256": "0a214e92e003a1c8a0f3317ba53a502e2a9604aa5d57ba3e77ddf0c11268b860",
+      "git_blob_sha": "a03bb80536b3d2159feb940a4a4e536c7568368e"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-learning-p2b-candidate/source/question-bank/js/learning-transition.mjs",
+      "bytes": 27867,
+      "sha256": "4167b49674f8dcb55d3427817b62dd81c28d5f9d46140c13bf92de55eb601b5b",
+      "git_blob_sha": "d6f557c18aa18e59a4b642675adae2b874600a92"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-learning-p2b-candidate/source/question-bank/js/practice-flow.mjs",
+      "bytes": 10918,
+      "sha256": "82be3e7149d7375427804331491d75516287b67aaccac519a442be733ef08418",
+      "git_blob_sha": "b34b006dcf4e5a47cc24d5b0bcef2a50172f5ec5"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-learning-p2b-candidate/test-practice-actions.mjs",
+      "bytes": 9371,
+      "sha256": "2f211579b7c2a085db28a9a5c172da795bdd772c0f2ba1ed37f9ef6d0ab069b4",
+      "git_blob_sha": "0347917886854acdb0af6815022766a3f46afe54"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-learning-p2b-candidate/test-practice-atomic.mjs",
+      "bytes": 14358,
+      "sha256": "1fa0deadfc915f241eaef3081a42d86107cb712ac617430a5828d5ed79d17ce2",
+      "git_blob_sha": "415ee103b138d1705a5cc0494334b38f9d6d1ba9"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-learning-p2b-candidate/test-practice-flow.mjs",
+      "bytes": 14156,
+      "sha256": "720ba9f479bd487e0d0499c93a0dc7443de0fa694673a891139d8c594bcbdb09",
+      "git_blob_sha": "69db654c81506a3b01a3575ba5d03d22f94809b5"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-learning-source-bundle-candidate/COPY_RECEIPT.json",
+      "bytes": 2098,
+      "sha256": "9810bcd6427d41d031dfe4d9791aabfb934c65ecafe8f2f565515d9d97c17a51",
+      "git_blob_sha": "e466e99761e1fc89d991464ba0a54f35e68abaea"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-learning-source-bundle-candidate/README.md",
+      "bytes": 8540,
+      "sha256": "d8c4407e1f7e0a99ff494c7d2fb65b4e73d8a54f62731eb373de2726ad083c76",
+      "git_blob_sha": "ef10a6a48b8298282cae05b51faabd909ea95e94"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-learning-source-bundle-candidate/browser-page.mjs",
+      "bytes": 6978,
+      "sha256": "72b10d8f0532d14b8f5c3c9cf691f9a8022927602f85d939cb45b1fc0360e2e6",
+      "git_blob_sha": "0623145d9cb95726642d13642bcb33329daf9bd6"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-learning-source-bundle-candidate/source-manifest-v1.json",
+      "bytes": 4653,
+      "sha256": "1497ab6384d016be37af7d52eb451d7693ba54a46009e9e7940829b7b0478b66",
+      "git_blob_sha": "46d005a59c0bc985a38c2770a12bf74b78e97348"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-learning-source-bundle-candidate/source/js/owned-learning-store.mjs",
+      "bytes": 43540,
+      "sha256": "b8d3f366160c4f613dc5cd7152b0b2df8fa5b4f20bdbb20d1815a021bf4d4e76",
+      "git_blob_sha": "c761a6df35b1fc4822ad0fa33b0370c75617fa81"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-learning-source-bundle-candidate/source/js/owned-learning-transport.mjs",
+      "bytes": 400,
+      "sha256": "0a214e92e003a1c8a0f3317ba53a502e2a9604aa5d57ba3e77ddf0c11268b860",
+      "git_blob_sha": "a03bb80536b3d2159feb940a4a4e536c7568368e"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-learning-source-bundle-candidate/source/question-bank/js/learning-transition.mjs",
+      "bytes": 27867,
+      "sha256": "4167b49674f8dcb55d3427817b62dd81c28d5f9d46140c13bf92de55eb601b5b",
+      "git_blob_sha": "d6f557c18aa18e59a4b642675adae2b874600a92"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-learning-source-bundle-candidate/source/question-bank/js/practice-flow.mjs",
+      "bytes": 10918,
+      "sha256": "82be3e7149d7375427804331491d75516287b67aaccac519a442be733ef08418",
+      "git_blob_sha": "b34b006dcf4e5a47cc24d5b0bcef2a50172f5ec5"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-learning-source-bundle-candidate/test_browser.mjs",
+      "bytes": 23495,
+      "sha256": "5898bce364cb7a438b1891870a41293e4bc93c671d9b7d7ad35516a6486f3d38",
+      "git_blob_sha": "6c3146c5eb8bb03190efb1bd05c6abef2a294a29"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-learning-source-bundle-candidate/verify_candidate.py",
+      "bytes": 4198,
+      "sha256": "f906d246ce239b9abdebe4cf6fc3b1764b46757848d1e80c2c4f4de2ebbb66c6",
+      "git_blob_sha": "c457332542dd3cda73ff46e3a1032ca19843270d"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-learning-wire-binding-candidate/COPY_RECEIPT.json",
+      "bytes": 2098,
+      "sha256": "9810bcd6427d41d031dfe4d9791aabfb934c65ecafe8f2f565515d9d97c17a51",
+      "git_blob_sha": "e466e99761e1fc89d991464ba0a54f35e68abaea"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-learning-wire-binding-candidate/README.md",
+      "bytes": 10080,
+      "sha256": "ff4681725c285ba177d127957f74c1b1d4e26b17fb172257cac709e37bf1cf2c",
+      "git_blob_sha": "d76a80ebb0734c6af79ec4559492a6c20faef2b5"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-learning-wire-binding-candidate/T1_V3_COPY_RECEIPT.json",
+      "bytes": 3260,
+      "sha256": "4388d5c09ef7bc399d849686a6ed9b8b804a0a15e95f67c50f9fa737c59df7dd",
+      "git_blob_sha": "62e99dce6b5652d5526823153b14061f5ea38191"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-learning-wire-binding-candidate/browser-page.mjs",
+      "bytes": 8555,
+      "sha256": "98ddfa87ecb0b0d81be25e17e32b6ad53604352a8d05ae3cb715a77372c266bf",
+      "git_blob_sha": "84b5f601b484fbc886b0dfce59965970bd503393"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-learning-wire-binding-candidate/source-manifest-v3.json",
+      "bytes": 8998,
+      "sha256": "34d4640a7fb9176ce93500bdc50ce9273b3be3791f99446e79a0282b92666968",
+      "git_blob_sha": "ae5e90d7aefc7a239e1fdc23b993b923e598e144"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-learning-wire-binding-candidate/source/js/journal/contract.mjs",
+      "bytes": 9956,
+      "sha256": "050a652f28e957aaabd7e87428b4811dbeb2ebfad80552023ebef9c931271e84",
+      "git_blob_sha": "ebbbde8190f475a012165303d4dc399ed1221c7e"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-learning-wire-binding-candidate/source/js/journal/pending-intent.mjs",
+      "bytes": 3573,
+      "sha256": "10aa9c3ba04aa0e32483763b5b8ef17d489b6449f4b8738563254d427811f69d",
+      "git_blob_sha": "9dbdaf7a54d172554896ca820bbd91f9e29d7f74"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-learning-wire-binding-candidate/source/js/journal/wire.mjs",
+      "bytes": 4397,
+      "sha256": "d6e1a9675d12d125454b827ae1187a55e9176408a81dfb8fe2f0397598f8407b",
+      "git_blob_sha": "1a5c3dd764c37d46262eeb775cad230e1d18854e"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-learning-wire-binding-candidate/source/js/owned-learning-store.mjs",
+      "bytes": 61219,
+      "sha256": "58d988cafb7c68ee7f27a7f0a61520062c10ec105ca2f76784a6d07cd6659880",
+      "git_blob_sha": "9ed66dad4d5427171e545d97640ef52a4a73534d"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-learning-wire-binding-candidate/source/js/owned-learning-transport.mjs",
+      "bytes": 400,
+      "sha256": "0a214e92e003a1c8a0f3317ba53a502e2a9604aa5d57ba3e77ddf0c11268b860",
+      "git_blob_sha": "a03bb80536b3d2159feb940a4a4e536c7568368e"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-learning-wire-binding-candidate/source/js/wire-binding-model.mjs",
+      "bytes": 9962,
+      "sha256": "9cbe22c6d394f3e2ad60f2d6c00715d6ffa0f33b518091ec691375829b33fef0",
+      "git_blob_sha": "9359a7da3b61b3cf068d60029a8469c5786fc061"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-learning-wire-binding-candidate/source/question-bank/js/learning-transition.mjs",
+      "bytes": 27867,
+      "sha256": "4167b49674f8dcb55d3427817b62dd81c28d5f9d46140c13bf92de55eb601b5b",
+      "git_blob_sha": "d6f557c18aa18e59a4b642675adae2b874600a92"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-learning-wire-binding-candidate/source/question-bank/js/practice-flow.mjs",
+      "bytes": 10918,
+      "sha256": "82be3e7149d7375427804331491d75516287b67aaccac519a442be733ef08418",
+      "git_blob_sha": "b34b006dcf4e5a47cc24d5b0bcef2a50172f5ec5"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-learning-wire-binding-candidate/test_browser.mjs",
+      "bytes": 48509,
+      "sha256": "4267a1d612e9c5001ff13d04f8d2895604be28536c6918e2c2a1a2e7328a5270",
+      "git_blob_sha": "4c5224a30f4d54429ddb15a987a92625b609b3ac"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/retained/c04-learning-wire-binding-candidate/verify_candidate.py",
+      "bytes": 6933,
+      "sha256": "8da24313ebc3f6830850aa493e7fe38980099a1a6cbb7ffc9fe92805d9ef844e",
+      "git_blob_sha": "bfd602b5ffcaa66fd643873e547991f5e5e5cec8"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/run.py",
+      "bytes": 29631,
+      "sha256": "191fb822eb9f193a2f7988d822cc1c0d8e0bce61716032bce2c90ccb3fea9dea",
+      "git_blob_sha": "f2784b59cdcb14e905b72e35b74285ac340e9b44"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/runtime/contract.mjs",
+      "bytes": 9956,
+      "sha256": "050a652f28e957aaabd7e87428b4811dbeb2ebfad80552023ebef9c931271e84",
+      "git_blob_sha": "ebbbde8190f475a012165303d4dc399ed1221c7e"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/runtime/handler.mjs",
+      "bytes": 7140,
+      "sha256": "6acb0db4dea5949eff11bad59560781134b788406187e6b393ceb151ba55b089",
+      "git_blob_sha": "37a213ac0ea95b88bbf5e7100a8c11bb2c542045"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/runtime/pending-intent.mjs",
+      "bytes": 3573,
+      "sha256": "10aa9c3ba04aa0e32483763b5b8ef17d489b6449f4b8738563254d427811f69d",
+      "git_blob_sha": "9dbdaf7a54d172554896ca820bbd91f9e29d7f74"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/runtime/wire.mjs",
+      "bytes": 4397,
+      "sha256": "d6e1a9675d12d125454b827ae1187a55e9176408a81dfb8fe2f0397598f8407b",
+      "git_blob_sha": "1a5c3dd764c37d46262eeb775cad230e1d18854e"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/test_bridge.mjs",
+      "bytes": 6180,
+      "sha256": "985a37eea553c772d0f410a970344fb8959527f1aa0725fecdfd6903b2597b38",
+      "git_blob_sha": "6d40f1d68912a7e23817180af9f015d4506b8523"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/test_browser_http.mjs",
+      "bytes": 16013,
+      "sha256": "8c703650e2636e7c3320802db7123244a12b69cd6f6855338a2aa6d8a69b0a16",
+      "git_blob_sha": "4dda3ef6d9b78ffdf11b28008fbf527a0565a976"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/test_certs.py",
+      "bytes": 13342,
+      "sha256": "a4ba8edf1e3040b71d97c234b5c90a22184f09714ee3fa565c3ef8be08ad9e7a",
+      "git_blob_sha": "4fefcde439b4e1d238ee73186500653aa0fdeeec"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/test_contract.py",
+      "bytes": 46270,
+      "sha256": "67ba7e28e2dcda453560675fb4776019f9ac54de22bcac40ba9766e3205f0dd9",
+      "git_blob_sha": "3de290a35f69da5b7e366fa1fddcaee590eb3a85"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/test_http.mjs",
+      "bytes": 19671,
+      "sha256": "745952fcef17baea9a48b1848cacce70ca4d5a5e99c78946f110c838787cc0cb",
+      "git_blob_sha": "82e8b0cb8c8a9dbcf7e19f5e8f5a0d43fdebf82b"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/test_https_bridge.mjs",
+      "bytes": 10342,
+      "sha256": "6aeda9f759db911f9c83a925ff4c2c2ca496e6ba589cfa70cb8ef3ab6757dc33",
+      "git_blob_sha": "e3e7cfb89c0bca55a05f27455cee621fb61897af"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/test_owned_children.py",
+      "bytes": 20736,
+      "sha256": "024f87bdb4beba6892d9408bae5ab5fa6e0d83bef661e332b5aa8a6346807276",
+      "git_blob_sha": "8abeec6dc82993bc0f1de851d930576e474d3c31"
+    },
+    {
+      "path": "tools/private-learning-browser-journal-http/test_supervisor.py",
+      "bytes": 18172,
+      "sha256": "afa609e68d20ba80a00cfef1f32c56480a983add8bcc82d3db8c5402979d5856",
+      "git_blob_sha": "6357fe3aabf88a703eb7da0d511a76b7bcb901d7"
+    }
+  ]
+}
