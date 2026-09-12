@@ -1,0 +1,96 @@
+name: Private learning owner fence retry boundary
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/private-learning-owner-fence-retry.yml'
+      - 'tools/private-learning-owner-fence-retry/**'
+      - '.github/workflows/private-learning-owner-fence.yml'
+      - 'tools/private-learning-owner-fence/**'
+      - '.github/workflows/private-learning-operation-journal.yml'
+      - 'tools/private-learning-operation-journal/**'
+      - '.github/workflows/private-learning-journal-http.yml'
+      - 'tools/private-learning-journal-http/**'
+      - 'supabase/migrations/**'
+      - 'supabase/functions/institution-api/index.ts'
+      - 'supabase/functions/mastery-evidence/index.ts'
+      - 'supabase/functions/learning-sync/index.ts'
+      - 'tools/test_membership_authorization_database.py'
+      - 'tools/test_private_snapshot_database.py'
+      - 'tools/private_snapshot_fixture.py'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: private-learning-owner-fence-retry-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  postgres:
+    name: Retry boundary PostgreSQL ${{ matrix.postgres_major }}
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        postgres_major: [15, 17]
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    defaults:
+      run:
+        shell: bash
+    services:
+      postgres:
+        image: postgres:${{ matrix.postgres_major }}
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: isolated-journal-fixture-only
+          POSTGRES_DB: echs_membership_test_journal_ci
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d echs_membership_test_journal_ci"
+          --health-interval 5s --health-timeout 5s --health-retries 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Bind unchanged predecessor source and disposable SQL service
+        env:
+          TEST_POSTGRES_CONTAINER: ${{ job.services.postgres.id }}
+        run: python tools/private-learning-operation-journal/checkout.py --postgres-major ${{ matrix.postgres_major }}
+      - name: Install pinned offline parser dependencies
+        run: python -m pip install pglast==7.7 PyYAML==6.0.2
+      - name: Check successor sources and bounded fixture helpers offline
+        run: |
+          python tools/private-learning-owner-fence-retry/test_contract.py "$RUNNER_TEMP/owner-fence-retry-contract.json"
+          python tools/private-learning-owner-fence-retry/test_offline.py . "$RUNNER_TEMP/owner-fence-retry-offline.json"
+          node tools/private-learning-owner-fence-retry/test_bridge.mjs "$RUNNER_TEMP/owner-fence-retry-bridge.json"
+      - name: Install pinned PostgreSQL driver
+        run: python -m pip install 'psycopg[binary]==3.2.9'
+      - name: Execute all448 SQL assertions against successor fence
+        env:
+          ECHS_JOURNAL_MEMBERSHIP_DSN: 'host=127.0.0.1 port=5432 dbname=echs_membership_test_journal_ci user=postgres password=isolated-journal-fixture-only sslmode=disable'
+          ECHS_JOURNAL_BANK_DSN: 'host=127.0.0.1 port=5432 dbname=echs_bank_test_journal_ci user=postgres password=isolated-journal-fixture-only sslmode=disable'
+        run: python tools/private-learning-owner-fence-retry/run_sql.py --postgres-major ${{ matrix.postgres_major }} --execute --checkout-report tools/private-learning-operation-journal/results/checkout.json
+      - name: Execute twenty J049 HTTP cases and focused R01 through R11
+        run: python tools/private-learning-owner-fence-retry/run_services.py --repo . --postgres-major ${{ matrix.postgres_major }} --execute
+      - name: Validate and assemble closed combined evidence
+        if: always()
+        run: python tools/private-learning-owner-fence-retry/assemble.py --postgres-major ${{ matrix.postgres_major }}
+      - name: Retain metadata evidence including incomplete outcomes
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: private-learning-owner-fence-retry-pg${{ matrix.postgres_major }}
+          path: ${{ runner.temp }}/private-learning-owner-fence-retry-evidence-${{ matrix.postgres_major }}
+          if-no-files-found: error
+          retention-days: 14

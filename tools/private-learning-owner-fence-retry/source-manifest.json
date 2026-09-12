@@ -1,0 +1,120 @@
+{
+  "contract": "echs.c04.owner-fence-retry-sources.v1",
+  "files": [
+    {
+      "path": ".github/workflows/private-learning-owner-fence-retry.yml",
+      "bytes": 4461,
+      "sha256": "ea1d4bb9ed7a11d40f4e31c238cdfa0779baa99a0b37f878c7b0971b4b54ae57"
+    },
+    {
+      "path": "tools/private-learning-owner-fence-retry/assemble.py",
+      "bytes": 23018,
+      "sha256": "19393d950e0623177c797b5c104a1d0ea256f5019b127d1c1a479e00ce0f27a5"
+    },
+    {
+      "path": "tools/private-learning-owner-fence-retry/bridge.mjs",
+      "bytes": 4059,
+      "sha256": "117eda1e93c50aaecd7689422bd4934a7ae47c000b750f23048453bfdac454f9"
+    },
+    {
+      "path": "tools/private-learning-owner-fence-retry/contract.py",
+      "bytes": 8672,
+      "sha256": "4bb4a8e4c98a1fe38a12937702fadd77f2736387b1f0701ed0054ba7378e4688"
+    },
+    {
+      "path": "tools/private-learning-owner-fence-retry/controls.py",
+      "bytes": 9176,
+      "sha256": "1e542c35f3f6f59678fd48ad202c886f1aa69219f98be05f71d5f221c5c8abaa"
+    },
+    {
+      "path": "tools/private-learning-owner-fence-retry/fixture.py",
+      "bytes": 9065,
+      "sha256": "ecfe9c9c85efea6dbe0c303161f9f326706763b92dda0c6008e0aceea69f7c3e"
+    },
+    {
+      "path": "tools/private-learning-owner-fence-retry/input-pins.json",
+      "bytes": 18739,
+      "sha256": "00b4c33a095ca5bb53b655c63151116976829250fe85073d4dda2cc98bf8295c"
+    },
+    {
+      "path": "tools/private-learning-owner-fence-retry/owner-fence.sql",
+      "bytes": 14222,
+      "sha256": "cd553dc8e1a715af588553f19d74df6b5f2f20d6a4c5c86930ecb74ab933600b"
+    },
+    {
+      "path": "tools/private-learning-owner-fence-retry/README.md",
+      "bytes": 9368,
+      "sha256": "b75c285b61291cd40504d5a1bab48931900156647dfc32df705b7b80c6748da5"
+    },
+    {
+      "path": "tools/private-learning-owner-fence-retry/run_retry_sql.py",
+      "bytes": 6952,
+      "sha256": "073d68a59ea89a28778e091a81fa59721b5ea9df1c2ba5326f8acf4603d4088a"
+    },
+    {
+      "path": "tools/private-learning-owner-fence-retry/run_services.py",
+      "bytes": 18380,
+      "sha256": "4303fa409ecafe11fd1dc7f05f8541cab7afc526402f3296a55a4be13a23e5b3"
+    },
+    {
+      "path": "tools/private-learning-owner-fence-retry/run_sql.py",
+      "bytes": 11708,
+      "sha256": "d5499f4717bec2a4d3f5a30185608205ab595310767d18bb9e40c16fb9ff8ff4"
+    },
+    {
+      "path": "tools/private-learning-owner-fence-retry/runtime/contract.mjs",
+      "bytes": 9956,
+      "sha256": "050a652f28e957aaabd7e87428b4811dbeb2ebfad80552023ebef9c931271e84"
+    },
+    {
+      "path": "tools/private-learning-owner-fence-retry/runtime/handler.mjs",
+      "bytes": 7140,
+      "sha256": "6acb0db4dea5949eff11bad59560781134b788406187e6b393ceb151ba55b089"
+    },
+    {
+      "path": "tools/private-learning-owner-fence-retry/runtime/pending-intent.mjs",
+      "bytes": 3573,
+      "sha256": "10aa9c3ba04aa0e32483763b5b8ef17d489b6449f4b8738563254d427811f69d"
+    },
+    {
+      "path": "tools/private-learning-owner-fence-retry/runtime/wire.mjs",
+      "bytes": 4397,
+      "sha256": "d6e1a9675d12d125454b827ae1187a55e9176408a81dfb8fe2f0397598f8407b"
+    },
+    {
+      "path": "tools/private-learning-owner-fence-retry/test_bridge.mjs",
+      "bytes": 6180,
+      "sha256": "985a37eea553c772d0f410a970344fb8959527f1aa0725fecdfd6903b2597b38"
+    },
+    {
+      "path": "tools/private-learning-owner-fence-retry/test_contract.py",
+      "bytes": 18121,
+      "sha256": "84a419df43903c6c5e8e6ad9dacc1803fdcdc369a0b750548236b5783c358ca4"
+    },
+    {
+      "path": "tools/private-learning-owner-fence-retry/test_fence.py",
+      "bytes": 26202,
+      "sha256": "165528a3d69b7b22ff8ba8f92bd2a7d2d05885f6fe6114248041f8540a426ec3"
+    },
+    {
+      "path": "tools/private-learning-owner-fence-retry/test_http.mjs",
+      "bytes": 19671,
+      "sha256": "745952fcef17baea9a48b1848cacce70ca4d5a5e99c78946f110c838787cc0cb"
+    },
+    {
+      "path": "tools/private-learning-owner-fence-retry/test_offline.py",
+      "bytes": 10320,
+      "sha256": "ccf8684d7131580e2b71ee412a9b1fcf185855abf6af7e4b70a355af20f0dfc4"
+    },
+    {
+      "path": "tools/private-learning-owner-fence-retry/test_retry_http.py",
+      "bytes": 13821,
+      "sha256": "5aad377f0d87c26ec73ebc785eb44ec230a1e9d48339c5fc9ae8b3f04b0420a7"
+    },
+    {
+      "path": "tools/private-learning-owner-fence-retry/test_retry_sql.py",
+      "bytes": 18300,
+      "sha256": "253dc78abd161564fa573b08d278b0b4ffac12ebccba1d6e2057dd0b89f4d3dd"
+    }
+  ]
+}
