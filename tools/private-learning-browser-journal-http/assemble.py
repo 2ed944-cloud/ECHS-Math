@@ -13,6 +13,10 @@ from certs import public_metadata
 RUN_NAMES=('checkout.json','source-receipt.json','image-receipt.json','http-results.json','browser-results.json','dependency-receipt.json','tls-material.json','final-source-receipt.json','run-report.json')
 TEST_NAMES=('contract-tests.json','cert-tests.json','supervisor-tests.json','descendant-tests.json','https-tests.json','bridge-tests.json')
 LOCAL_INDEX='local-executions.json'
+BROWSER_FAILURE_STAGES={'control-start','listener-start','listener-metadata','cdp-connect','positive-context','positive-page','positive-navigation','positive-fixture','browser-identity','positive-certificate','negative-page','negative-navigation','negative-verification','tls-cleanup','group-account','group-context','group-route','group-page','group-navigation','group-fixture','group-configure','group-body','group-verification','group-cleanup','final-verification'}
+BROWSER_NETWORK_ERRORS={'ERR_CERT_AUTHORITY_INVALID','ERR_CERT_COMMON_NAME_INVALID','ERR_CERT_DATE_INVALID','ERR_CERT_INVALID','ERR_SSL_PROTOCOL_ERROR','ERR_CONNECTION_CLOSED','ERR_CONNECTION_REFUSED','ERR_CONNECTION_RESET','ERR_CONNECTION_TIMED_OUT','ERR_TIMED_OUT','ERR_ABORTED','ERR_FAILED','ERR_BLOCKED_BY_CLIENT','ERR_BLOCKED_BY_RESPONSE','ERR_NAME_NOT_RESOLVED','ERR_ADDRESS_UNREACHABLE','ERR_NETWORK_ACCESS_DENIED','ERR_EMPTY_RESPONSE'}
+RUN_FAILURE_STAGES={'checkout','dependency-identity','ephemeral-tls','image-resolution','network-create','postgres-start','install-exact-schema','postgrest-start','postgrest-readiness','browser-launch','actual-http-cases','actual-browser-cases','post-execution-identity','browser-cdp-recheck','actual-browser-driver-start','actual-browser-driver-wait','actual-browser-driver-output','actual-browser-driver-cleanup','actual-browser-report-check'}
+RUN_FAILURE_SOURCE_NAMES={'run.py','processes.py','owned_children.py','fixture.py','certs.py','contract.py'}
 SOURCE=contract.HERE
 HTTP_SOURCES=['runtime/wire.mjs','runtime/contract.mjs','runtime/handler.mjs','runtime/pending-intent.mjs','bridge.mjs','controls.py','fixture.py','test_http.mjs']
 BROWSER_SOURCES=['runtime/handler.mjs','runtime/wire.mjs','runtime/contract.mjs','runtime/pending-intent.mjs','bridge.mjs','https-bridge.mjs','browser-page.mjs','controls.py','fixture.py','control-client.mjs','test_http.mjs','test_browser_http.mjs','browser-cases.mjs','browser-dependency.json']+['retained/c04-learning-ack-candidate/source/'+name for name in ['js/owned-learning-store.mjs','js/wire-binding-model.mjs','js/journal/wire.mjs','js/journal/contract.mjs','js/journal/pending-intent.mjs','question-bank/js/learning-transition.mjs','question-bank/js/practice-flow.mjs']]
@@ -319,7 +323,7 @@ def assemble(directory,tests,repo,major):
 
 def failure_projection(directory,major,error):
     """Fixed failure metadata only; never copy a rejected raw report."""
-    types={'ValueError','TypeError','KeyError','AssertionError','Error','TimeoutError','TimeoutExpired','PermissionError','FileNotFoundError','OSError','CalledProcessError','OperationalError','InterfaceError','DatabaseError','CertificateError'}
+    types={'ValueError','TypeError','KeyError','AssertionError','Error','TimeoutError','TargetClosedError','RangeError','ReferenceError','TimeoutExpired','PermissionError','FileNotFoundError','OSError','CalledProcessError','OperationalError','InterfaceError','DatabaseError','CertificateError'}
     def error_type(value):return value if type(value) is str and value in types else 'OtherError'
     location=None;trace=error.__traceback__
     while trace:
@@ -347,8 +351,10 @@ def failure_projection(directory,major,error):
         if type(failure) is dict:
             safe={'type':error_type(failure.get('type'))}
             if type(failure.get('sqlstate')) is str and re.fullmatch('[A-Z0-9]{5}',failure['sqlstate']):safe['sqlstate']=failure['sqlstate']
-            stages={'checkout','dependency-identity','ephemeral-tls','image-resolution','network-create','postgres-start','install-exact-schema','postgrest-start','postgrest-readiness','browser-launch','actual-http-cases','actual-browser-cases','post-execution-identity'}
+            stages=BROWSER_FAILURE_STAGES if name=='browser-results.json' else RUN_FAILURE_STAGES
             if type(failure.get('stage')) is str and failure['stage'] in stages:safe['stage']=failure['stage']
+            if name=='browser-results.json' and type(failure.get('network_error')) is str and failure['network_error'] in BROWSER_NETWORK_ERRORS:safe['network_error']=failure['network_error']
+            if name=='run-report.json' and integer(failure.get('errno'),1,4095):safe['errno']=failure['errno']
             for key in ('actual','expected'):
                 item=failure.get(key)
                 if type(item) is int and -1000000<=item<=1000000:safe[key]=item
@@ -356,7 +362,11 @@ def failure_projection(directory,major,error):
             for key,allowed in [('code',{'ERR_ASSERTION','ECONNRESET','ECONNREFUSED','EPIPE','ETIMEDOUT','UND_ERR_SOCKET','UND_ERR_CONNECT_TIMEOUT'}),('operator',{'strictEqual','deepStrictEqual','match','notStrictEqual','=='})]:
                 if type(failure.get(key)) is str and failure[key] in allowed:safe[key]=failure[key]
             point=failure.get('location')
-            if type(point) is dict and integer(point.get('line'),1,1000000) and integer(point.get('column'),1,1000000):safe['location']={'line':point['line'],'column':point['column']}
+            if name=='run-report.json':
+                if type(point) is dict and type(point.get('file')) is str and point['file'] in RUN_FAILURE_SOURCE_NAMES and integer(point.get('line'),1,1000000):safe['location']={'file':point['file'],'line':point['line']}
+            elif type(point) is dict and integer(point.get('line'),1,1000000) and integer(point.get('column'),1,1000000):
+                safe['location']={'line':point['line'],'column':point['column']}
+                if name=='browser-results.json' and type(point.get('file')) is str and point['file'] in {'test_browser_http.mjs','browser-cases.mjs'}:safe['location']['file']=point['file']
             projected['failure']=safe
         if name!='run-report.json':
             # Failure diagnostics do not trust source text after a failed

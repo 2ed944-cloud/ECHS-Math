@@ -14,6 +14,7 @@ import json
 import os
 from pathlib import Path
 import re
+import subprocess
 import sys
 import tempfile
 from types import SimpleNamespace
@@ -504,6 +505,81 @@ class ContractTests(unittest.TestCase):
                 self.rejects(lambda:assemble.assemble(directory,tests,REPO,15))
             self.assertFalse((directory/'artifact-index.json').exists())
         secret='SYNTHETIC_PRIVATE_VALUE_DO_NOT_UPLOAD_9741'
+        # Import only the fixture's pure diagnostics: its main guard prevents
+        # browser/service execution. Private messages and paths never leave.
+        diagnostic_script=r"""
+import assert from 'node:assert/strict';
+const {browserDiagnostic,failedBrowserGroup,BROWSER_FAILURE_STAGES,BROWSER_NETWORK_ERRORS}=await import(process.argv[2]);
+const secret='SYNTHETIC_PRIVATE_VALUE_DO_NOT_UPLOAD_9741';
+const error={name:'TimeoutError',constructor:{name:'RenamedBrowserError'},message:secret+' net::ERR_CERT_AUTHORITY_INVALID at https://private.invalid/'+secret,stack:'at goto (/private/'+secret+'/test_browser_http.mjs:141:52)'};
+assert.deepEqual(browserDiagnostic(error,'positive-navigation'),{type:'TimeoutError',stage:'positive-navigation',network_error:'ERR_CERT_AUTHORITY_INVALID',location:{file:'test_browser_http.mjs',line:141,column:52}});
+for(const name of ['Error','TimeoutError','TargetClosedError','AssertionError','TypeError','RangeError','ReferenceError'])assert.equal(browserDiagnostic({name}).type,name);
+for(const network of BROWSER_NETWORK_ERRORS)assert.equal(browserDiagnostic({message:'net::'+network}).network_error,network);
+for(const stage of BROWSER_FAILURE_STAGES)assert.equal(browserDiagnostic({},stage).stage,stage);
+for(const invalid of [secret,[secret],{secret},null,true,1]){
+ const value=browserDiagnostic({name:invalid,constructor:{name:invalid},message:invalid,stack:invalid},invalid);
+ assert.deepEqual(value,{type:'OtherError'});assert.equal(JSON.stringify(value).includes(secret),false);
+}
+for(const message of ['net::ERR_'+secret,'net::ERR_FAILED_SUFFIX',secret.repeat(300)+' net::ERR_FAILED'])assert.equal('network_error' in browserDiagnostic({message}),false);
+for(const stack of ['x'.repeat(32769)+' test_browser_http.mjs:1:2','other-test_browser_http.mjs:1:2','test_http.mjs:999999999:2','test_browser_http.mjs:0:2','browser-cases.mjs:1000001:2'])assert.equal('location' in browserDiagnostic({stack}),false);
+const getters={};for(const key of ['name','constructor','message','stack','sqlstate','code','cause','operator','actual','expected'])Object.defineProperty(getters,key,{get(){throw new Error(secret)}});
+assert.deepEqual(browserDiagnostic(getters,secret),{type:'OtherError'});
+for(const value of [null,undefined,true,false,-1,12,1.5,secret])assert.equal(failedBrowserGroup(value),'setup');
+for(let i=0;i<12;i++)assert.equal(failedBrowserGroup(i).slice(0,3),'B'+String(i+1).padStart(2,'0'));
+process.stdout.write(JSON.stringify({stages:BROWSER_FAILURE_STAGES,network_errors:BROWSER_NETWORK_ERRORS}));
+"""
+        checked=subprocess.run(['node','--input-type=module','-',(HERE/'test_browser_http.mjs').as_uri()],input=diagnostic_script,text=True,capture_output=True,timeout=15,check=True)
+        declared=json.loads(checked.stdout)
+        self.assertEqual(set(declared['stages']),assemble.BROWSER_FAILURE_STAGES)
+        self.assertEqual(set(declared['network_errors']),assemble.BROWSER_NETWORK_ERRORS)
+        self.assertNotIn(secret,checked.stdout+checked.stderr)
+        self.assertEqual(runner.FAILURE_STAGES,assemble.RUN_FAILURE_STAGES)
+        self.assertEqual(set(runner.FAILURE_SOURCE_NAMES),assemble.RUN_FAILURE_SOURCE_NAMES)
+        # Python traceback projection accepts exact known source paths only,
+        # selects the deepest allowed frame, and ignores hostile properties.
+        namespace={}
+        exec(compile('def inner():\n raise PermissionError(13,"'+secret+'")\n',str(HERE/'processes.py'),'exec'),namespace)
+        exec(compile('def outer():\n inner()\n',str(HERE/'run.py'),'exec'),namespace)
+        try:namespace['outer']()
+        except PermissionError as error:
+            metadata=runner.failure_metadata(error,'browser-cdp-recheck')
+        self.assertEqual(metadata,{'type':'PermissionError','sqlstate':None,'errno':13,'stage':'browser-cdp-recheck','location':{'file':'processes.py','line':2}})
+        foreign={}
+        exec(compile('def fail():\n raise PermissionError(13,"'+secret+'")\n',str(HERE/'foreign'/ 'processes.py'),'exec'),foreign)
+        try:foreign['fail']()
+        except PermissionError as error:self.assertNotIn('location',runner.failure_metadata(error,secret))
+        class UnknownDiagnosticError(Exception):
+            @property
+            def sqlstate(self):raise ValueError(secret)
+            @property
+            def errno(self):raise ValueError(secret)
+        self.assertEqual(runner.failure_metadata(UnknownDiagnosticError(secret),secret),{'type':'OtherError','sqlstate':None})
+        for invalid in [True,False,0,-1,4096,1.5,secret,[13]]:
+            error=Exception(secret);error.errno=invalid;error.sqlstate=invalid
+            metadata=runner.failure_metadata(error,secret)
+            self.assertNotIn('errno',metadata);self.assertNotIn('stage',metadata);self.assertIsNone(metadata['sqlstate']);self.assertNotIn(secret,json.dumps(metadata))
+        directory=self.temporary()
+        for stage in assemble.BROWSER_FAILURE_STAGES:
+            value={'status':'FAIL; NO ACCEPTANCE','failed_group':'setup','checks':[],
+                   'failure':{'type':'TimeoutError','stage':stage,'network_error':'ERR_CERT_AUTHORITY_INVALID','message':secret,'url':secret,'location':{'file':'test_browser_http.mjs','line':141,'column':52}}}
+            (directory/'browser-results.json').write_bytes(encoded(value))
+            projected=assemble.failure_projection(directory,15,ValueError(secret))['reports']['browser-results.json']
+            self.assertEqual(projected['failure'],{key:value['failure'][key] for key in ('type','stage','network_error','location')})
+            self.assertEqual(projected['failed_group'],'setup');self.assertNotIn(secret,json.dumps(projected))
+        for stage in assemble.RUN_FAILURE_STAGES:
+            value={'failure':{'type':'PermissionError','stage':stage,'errno':13,'location':{'file':'processes.py','line':2},'message':secret,'filename':secret}}
+            (directory/'run-report.json').write_bytes(encoded(value))
+            projected=assemble.failure_projection(directory,15,ValueError(secret))['reports']['run-report.json']
+            self.assertEqual(projected['failure'],{key:value['failure'][key] for key in ('type','stage','errno','location')})
+            self.assertNotIn(secret,json.dumps(projected))
+        for invalid in [secret,[secret],{'hidden':secret},None,True,0,4096,1.5]:
+            for name in ['run-report.json','browser-results.json']:
+                value={'failure':{'type':'Error','stage':invalid,'network_error':invalid,'errno':invalid,'location':{'file':invalid,'line':True,'column':0},'message':secret}}
+                (directory/name).write_bytes(encoded(value))
+            projected=assemble.failure_projection(directory,15,ValueError(secret))
+            self.assertEqual(projected['reports']['run-report.json']['failure'],{'type':'Error'})
+            self.assertEqual(projected['reports']['browser-results.json']['failure'],{'type':'Error'})
+            self.assertNotIn(secret,json.dumps(projected))
         for name in ['run-report.json','http-results.json','browser-results.json']:
             directory,tests,source=self.collector_fixture();temporary=self.temporary()
             output=temporary/'private-learning-browser-journal-http-evidence-15'

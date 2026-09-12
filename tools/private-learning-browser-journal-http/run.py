@@ -97,6 +97,37 @@ def verify(repo, published=False):
     return contract.sources(repo, published)
 
 
+FAILURE_STAGES = frozenset({'checkout','dependency-identity','ephemeral-tls','image-resolution',
+    'network-create','postgres-start','install-exact-schema','postgrest-start','postgrest-readiness',
+    'browser-launch','actual-http-cases','actual-browser-cases','post-execution-identity',
+    'browser-cdp-recheck','actual-browser-driver-start','actual-browser-driver-wait',
+    'actual-browser-driver-output','actual-browser-driver-cleanup','actual-browser-report-check'})
+FAILURE_TYPES = frozenset({'ValueError','TypeError','KeyError','AssertionError','TimeoutError',
+    'TimeoutExpired','PermissionError','FileNotFoundError','OSError','CalledProcessError',
+    'OperationalError','InterfaceError','DatabaseError','CertificateError'})
+FAILURE_SOURCE_NAMES = ('run.py','processes.py','owned_children.py','fixture.py','certs.py','contract.py')
+
+
+def failure_metadata(error, stage):
+    """Closed diagnostic fields only; exception messages and paths stay private."""
+    name=type(error).__name__
+    result={'type':name if name in FAILURE_TYPES else 'OtherError','sqlstate':None}
+    if type(stage) is str and stage in FAILURE_STAGES:result['stage']=stage
+    for key in ('errno','sqlstate'):
+        try:value=getattr(error,key,None)
+        except Exception:value=None
+        if key=='errno' and type(value) is int and 1<=value<=4095:result[key]=value
+        elif key=='sqlstate' and type(value) is str and re.fullmatch('[A-Z0-9]{5}',value):result[key]=value
+    names={os.path.normcase(os.path.abspath(HERE/name)):name for name in FAILURE_SOURCE_NAMES}
+    trace=error.__traceback__
+    while trace:
+        filename=os.path.normcase(os.path.abspath(trace.tb_frame.f_code.co_filename))
+        if filename in names and type(trace.tb_lineno) is int and 1<=trace.tb_lineno<=1000000:
+            result['location']={'file':names[filename],'line':trace.tb_lineno}
+        trace=trace.tb_next
+    return result
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--repo", type=Path, default=HERE.parents[1])
@@ -149,15 +180,20 @@ def main():
         processes.append(child);registry.register_root(child.child)
         return child
     def run_child(argv, role, timeout, output):
+        nonlocal stage
+        if role=='driver':stage='actual-browser-driver-start'
         child=launch(argv,role)
+        if role=='driver':stage='actual-browser-driver-wait'
         exit_code=child.wait(timeout)
         need(exit_code==0,'child-test-failed')
+        if role=='driver':stage='actual-browser-driver-output'
         output_path=contract.guarded_path(run_dir/output,run_dir)
         need(output_path.is_file() and output_path.stat().st_nlink==1,'child-output-file')
         output_bytes=output_path.read_bytes();need(0<len(output_bytes)<=1048576,'child-output-size')
         report.setdefault('child_executions',[]).append({'role':role,'run_id':identifier,
           'postgres_major':args.postgres_major,'source_manifest_sha256':receipt['manifest_sha256'],
           'exit_code':exit_code,'output':{'path':output,'bytes':len(output_bytes),'sha256':sha(output_bytes)}})
+        if role=='driver':stage='actual-browser-driver-cleanup'
         registry.scan(); report.setdefault('process_cleanup',[]).append(child.close())
     try:
         require_private_directory(secrets_dir,run_dir)
@@ -286,9 +322,10 @@ def main():
         need(outcome["real_http_executed"] is True and outcome["postgrest_executed"] is True and outcome["database_executed"] is True, "actual-execution")
         need(verify(repo, True) == receipt, "source-drift")
         report["groups"] = 20
-        stage = "actual-browser-cases"
+        stage = "browser-cdp-recheck"
         verify_cdp_owner(browser_process,browser_endpoint)
         run_child([paths['node'],str(HERE/'test_browser_http.mjs'),str(private_config),sys.executable,str(run_dir/'browser-results.json')],'driver',660,'browser-results.json')
+        stage='actual-browser-report-check'
         actual=json.loads((run_dir/'browser-results.json').read_bytes())
         need(actual['status']=='ACTUAL BROWSER HTTPS POSTGREST SQL PASS' and len(actual['checks'])==12
              and [row['name'] for row in actual['checks']]==actual['planned_groups'] and all(row['status']=='PASS' for row in actual['checks']),'browser-actual-groups')
@@ -307,7 +344,7 @@ def main():
         report["status"] = "ACTUAL BROWSER JOURNAL SERVICES PASS"
 
     except Exception as error:
-        report["status"] = "FAIL; NO ACCEPTANCE"; report["failure"] = {"stage": stage, "type": type(error).__name__, "sqlstate": getattr(error, "sqlstate", None)}
+        report["status"] = "FAIL; NO ACCEPTANCE"; report["failure"] = failure_metadata(error,stage)
     finally:
         process_ok=True
         try:

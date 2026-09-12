@@ -17,7 +17,27 @@ const MODULES=['js/owned-learning-store.mjs','js/wire-binding-model.mjs','js/jou
 const SOURCE_NAMES=['runtime/handler.mjs','runtime/wire.mjs','runtime/contract.mjs','runtime/pending-intent.mjs','bridge.mjs','https-bridge.mjs','browser-page.mjs','controls.py','fixture.py','control-client.mjs','test_http.mjs','test_browser_http.mjs','browser-cases.mjs','browser-dependency.json',...MODULES.map(name=>'retained/c04-learning-ack-candidate/source/'+name)];
 const snapshot=()=>Promise.all(SOURCE_NAMES.map(async path=>{const raw=await readFile(resolve(HERE,path));return {path,bytes:raw.length,sha256:hash(raw)}}));
 function deferred(){let resolve;const promise=new Promise(yes=>resolve=yes);return {promise,resolve}}
-function safeError(error){const result=diagnostic(error);const match=/test_browser_http\.mjs:(\d+):(\d+)|browser-cases\.mjs:(\d+):(\d+)/.exec(error?.stack||'');if(match)result.location={file:match[1]?'test_browser_http.mjs':'browser-cases.mjs',line:Number(match[1]||match[3]),column:Number(match[2]||match[4])};return result}
+export const BROWSER_FAILURE_STAGES=Object.freeze(['control-start','listener-start','listener-metadata','cdp-connect','positive-context','positive-page','positive-navigation','positive-fixture','browser-identity','positive-certificate','negative-page','negative-navigation','negative-verification','tls-cleanup','group-account','group-context','group-route','group-page','group-navigation','group-fixture','group-configure','group-body','group-verification','group-cleanup','final-verification']);
+export const BROWSER_NETWORK_ERRORS=Object.freeze(['ERR_CERT_AUTHORITY_INVALID','ERR_CERT_COMMON_NAME_INVALID','ERR_CERT_DATE_INVALID','ERR_CERT_INVALID','ERR_SSL_PROTOCOL_ERROR','ERR_CONNECTION_CLOSED','ERR_CONNECTION_REFUSED','ERR_CONNECTION_RESET','ERR_CONNECTION_TIMED_OUT','ERR_TIMED_OUT','ERR_ABORTED','ERR_FAILED','ERR_BLOCKED_BY_CLIENT','ERR_BLOCKED_BY_RESPONSE','ERR_NAME_NOT_RESOLVED','ERR_ADDRESS_UNREACHABLE','ERR_NETWORK_ACCESS_DENIED','ERR_EMPTY_RESPONSE']);
+export function browserDiagnostic(error,stage=null){
+ const read=(value,key)=>{try{return value?.[key]}catch{return undefined}},types=new Set(['Error','TimeoutError','TargetClosedError','AssertionError','TypeError','RangeError','ReferenceError']);
+ let result;try{result=diagnostic({constructor:{name:'Error'},...Object.fromEntries(['sqlstate','code','operator','actual','expected'].map(key=>[key,read(error,key)])),cause:{code:read(read(error,'cause'),'code')}})}catch{result={}};
+ delete result.location;
+ // Bundled browser error constructors can be renamed; only fixed public
+ // error categories and exact network tokens may leave the private report.
+ const name=read(error,'name'),constructor=read(read(error,'constructor'),'name');
+ result.type=types.has(name)?name:types.has(constructor)?constructor:'OtherError';
+ if(BROWSER_FAILURE_STAGES.includes(stage))result.stage=stage;
+ const rawMessage=read(error,'message'),message=typeof rawMessage==='string'&&rawMessage.length<=8192?rawMessage:'';
+ const network=/\bnet::(ERR_[A-Z0-9_]+)\b/.exec(message);
+ if(network&&BROWSER_NETWORK_ERRORS.includes(network[1]))result.network_error=network[1];
+ const rawStack=read(error,'stack'),stack=typeof rawStack==='string'&&rawStack.length<=32768?rawStack:'';
+ const match=/(?<![A-Za-z0-9_.-])test_browser_http\.mjs:(\d+):(\d+)|(?<![A-Za-z0-9_.-])browser-cases\.mjs:(\d+):(\d+)/.exec(stack);
+ if(match){const line=Number(match[1]||match[3]),column=Number(match[2]||match[4]);if(Number.isInteger(line)&&line>=1&&line<=1000000&&Number.isInteger(column)&&column>=1&&column<=1000000)result.location={file:match[1]?'test_browser_http.mjs':'browser-cases.mjs',line,column};}
+ return result;
+}
+const safeError=error=>browserDiagnostic(error);
+export const failedBrowserGroup=index=>Number.isInteger(index)&&index>=0&&index<LABELS.length?LABELS[index]:'setup';
 function bounded(task,ms,code){let timer;return Promise.race([task,new Promise((_,reject)=>timer=setTimeout(()=>reject(new Error(code)),ms))]).finally(()=>clearTimeout(timer))}
 
 export async function closeContext(context,contexts,primaryError=null){
@@ -81,7 +101,7 @@ async function main(){
  for(const name of MODULES)entries.push({path:'/source/'+name,type:'text/javascript; charset=utf-8',body:await readFile(resolve(HERE,'retained/c04-learning-ack-candidate/source',name))});
  assert.equal(entries.length,10);
  const outcomes=[],unexpected=[],pageErrors=[],nativeObservations=[],rpcObservations=[],rpcPayloads=[],contexts=new Set(),faults=new Set();
- let ctl,server,negative,browser,pendingFault=null;
+ let ctl,server,negative,browser,pendingFault=null,stage='control-start',failureStage=null,currentGroup=null;
  const report={contract:'echs.c04.browser-journal-http-actual.v1',status:'RUNNING; NOT ACCEPTED',planned_groups:LABELS,checks:outcomes,production_calls:0,hosted_edge_executed:false,hosted_tls_executed:false,production_authority_accepted:false,native_browser_executed:false,real_https_executed:false,postgrest_executed:false,database_executed:false,cleanup_complete:false};
  const command=(action,c,extra={})=>ctl.call(action,{case:c.case,...extra});
  function arm(mode,id,c){
@@ -110,20 +130,25 @@ async function main(){
   });
  }
  async function newPage(context,c){
-  const page=await context.newPage();await page.goto(server.origin,{waitUntil:'load',timeout:10000});await page.waitForFunction(()=>!!window.fixture,undefined,{timeout:5000});
-  await page.evaluate(({owner,token,session_tag})=>fixture.configure({owner,token,session_tag}),c);return page;
+  const previousStage=stage;
+  stage='group-page';const page=await context.newPage();
+  stage='group-navigation';await page.goto(server.origin,{waitUntil:'load',timeout:10000});
+  stage='group-fixture';await page.waitForFunction(()=>!!window.fixture,undefined,{timeout:5000});
+  stage='group-configure';
+  await page.evaluate(({owner,token,session_tag})=>fixture.configure({owner,token,session_tag}),c);stage=previousStage;return page;
  }
  async function group(index,fn){
-  assert.equal(outcomes.length,index);const began=performance.now(),c=await ctl.call('new',{role:'student'});c.session_tag='synthetic_'+randomUUID().replaceAll('-','');
-  const context=await browser.newContext({serviceWorkers:'block',ignoreHTTPSErrors:false});contexts.add(context);await guard(context);
+  assert.equal(outcomes.length,index);currentGroup=index;stage='group-account';const began=performance.now(),c=await ctl.call('new',{role:'student'});c.session_tag='synthetic_'+randomUUID().replaceAll('-','');
+  stage='group-context';const context=await browser.newContext({serviceWorkers:'block',ignoreHTTPSErrors:false});contexts.add(context);stage='group-route';await guard(context);
   let details,primaryError;
-  try{const page=await newPage(context,c);details=await bounded(fn(page,c,context),45000,'browser-group-deadline');assert.deepEqual(unexpected,[]);assert.deepEqual(pageErrors,[])}
-  catch(error){primaryError=error;throw error}
+  try{const page=await newPage(context,c);stage='group-body';details=await bounded(fn(page,c,context),45000,'browser-group-deadline');stage='group-verification';assert.deepEqual(unexpected,[]);assert.deepEqual(pageErrors,[])}
+  catch(error){primaryError=error;failureStage=stage;throw error}
   finally{
    for(const fault of faults)fault.release();
-   await closeContext(context,contexts,primaryError);
+   stage='group-cleanup';await closeContext(context,contexts,primaryError);
   }
   outcomes.push({name:LABELS[index],status:'PASS',elapsed_ms:Math.round(performance.now()-began),details});
+  currentGroup=null;
  }
  try{
   ctl=await control(configPath,python);report.database_executed=true;
@@ -132,34 +157,38 @@ async function main(){
    const parsed=JSON.parse(match[1]);if(typeof parsed.operation_id==='string')rpcPayloads.push({operation_id:parsed.operation_id,payload_sha256:hash(match[1])});
    return fetch(url,options);
   },observe:row=>{rpcObservations.push(row);report.postgrest_executed=true}});
-  server=await listenHttps({cert,key,entries,afterResponse,handlerFactory:origin=>createJournalHandler({supabaseUrl:FIXTURE_ORIGIN,serviceKey:config.service_key,allowedOrigins:[origin],fetchImpl:port})});
+  stage='listener-start';server=await listenHttps({cert,key,entries,afterResponse,handlerFactory:origin=>createJournalHandler({supabaseUrl:FIXTURE_ORIGIN,serviceKey:config.service_key,allowedOrigins:[origin],fetchImpl:port})});
   negative=await listenHttps({cert:otherCert,key:otherKey,entries,handlerFactory:()=>()=>new Response('{}')});
-  await writeFile(resolve(dirname(configPath),'listener-private.json'),JSON.stringify([Number(new URL(server.origin).port),Number(new URL(negative.origin).port)]),{flag:'wx',mode:0o600});
+  stage='listener-metadata';await writeFile(resolve(dirname(configPath),'listener-private.json'),JSON.stringify([Number(new URL(server.origin).port),Number(new URL(negative.origin).port)]),{flag:'wx',mode:0o600});
   assert.match(config.cdp_endpoint,/^ws:\/\/127\.0\.0\.1:\d+\/devtools\/browser\/[a-f0-9-]{36}$/);
-  browser=await chromium.connectOverCDP(config.cdp_endpoint,{timeout:10000});
-  const tlsContext=await browser.newContext({serviceWorkers:'block',ignoreHTTPSErrors:false});contexts.add(tlsContext);await guard(tlsContext,{allowNegative:true});
-  const page=await tlsContext.newPage();await page.goto(server.origin,{waitUntil:'load',timeout:10000});await page.waitForFunction(()=>!!window.fixture,undefined,{timeout:5000});
+  stage='cdp-connect';browser=await chromium.connectOverCDP(config.cdp_endpoint,{timeout:10000});
+  stage='positive-context';const tlsContext=await browser.newContext({serviceWorkers:'block',ignoreHTTPSErrors:false});contexts.add(tlsContext);await guard(tlsContext,{allowNegative:true});
+  stage='positive-page';const page=await tlsContext.newPage();
+  stage='positive-navigation';await page.goto(server.origin,{waitUntil:'load',timeout:10000});
+  stage='positive-fixture';await page.waitForFunction(()=>!!window.fixture,undefined,{timeout:5000});
+  stage='browser-identity';
   const cdp=await tlsContext.newCDPSession(page),version=await cdp.send('Browser.getVersion'),commandLine=await cdp.send('Browser.getBrowserCommandLine');
   assert.equal(version.product.split('/').at(-1),pin.version);assert.ok(version.revision.startsWith('@'));
   const args=commandLine.arguments,spki='--ignore-certificate-errors-spki-list='+config.tls.positive.metadata.spki_sha256_base64;
   assert.equal(args.filter(arg=>arg.startsWith('--ignore-certificate-errors-spki-list=')).length,1);assert.ok(args.includes(spki));
   assert.equal(args.filter(arg=>arg.startsWith('--user-data-dir=')).length,1);assert.ok(args.includes('--user-data-dir='+config.browser_profile));assert.ok(args.includes('--enable-automation'));
   assert.ok(!args.some(arg=>/^--(?:ignore-certificate-errors(?:=|$)|allow-insecure-localhost(?:=|$))/.test(arg)));
-  const chain=await cdp.send('Network.getCertificate',{origin:server.origin});assert.equal(chain.tableNames.length,1);
+  stage='positive-certificate';const chain=await cdp.send('Network.getCertificate',{origin:server.origin});assert.equal(chain.tableNames.length,1);
   const observedLeaf=new X509Certificate(Buffer.from(chain.tableNames[0],'base64'));
   assert.equal(hash(observedLeaf.raw),config.tls.positive.metadata.der_sha256);assert.equal(hash(observedLeaf.publicKey.export({type:'spki',format:'der'})),config.tls.positive.metadata.spki_sha256);
-  const bad=await tlsContext.newPage();let certificateRejected=false;
+  stage='negative-page';const bad=await tlsContext.newPage();let certificateRejected=false;
+  stage='negative-navigation';
   try{await bad.goto(negative.origin,{waitUntil:'load',timeout:5000})}catch(error){certificateRejected=/net::ERR_CERT_AUTHORITY_INVALID/.test(error.message)}
-  assert.equal(certificateRejected,true);assert.equal(negative.metrics.requests,0);assert.equal(await bad.evaluate(()=>!!window.fixture),false);
+  stage='negative-verification';assert.equal(certificateRejected,true);assert.equal(negative.metrics.requests,0);assert.equal(await bad.evaluate(()=>!!window.fixture),false);
   report.tls={accepted_leaf:true,served_der_sha256:hash(observedLeaf.raw),served_spki_sha256:hash(observedLeaf.publicKey.export({type:'spki',format:'der'})),narrow_spki_exception:true,fresh_explicit_profile:true,unrelated_leaf_rejected:true,negative_application_requests:0,broad_tls_flags:false};
   report.browser={product:version.product,revision:version.revision,playwright:pin.playwright,descriptor_revision:pin.revision,executable_sha256:config.browser_executable_sha256};
   report.native_browser_executed=true;report.real_https_executed=true;
-  await cdp.detach();await tlsContext.close();contexts.delete(tlsContext);await negative.close();negative=null;
+  stage='tls-cleanup';await cdp.detach();await tlsContext.close();contexts.delete(tlsContext);await negative.close();negative=null;
   const api=async(route,raw,c)=>{const result=await tlsCall(server.origin,cert,route,raw,c.token);recordHttpObservation(nativeObservations,route,result.status,result.data);return result};
   await exercise({group,api,command,arm,newPage,rpcPayloads});
-  assert.deepEqual(outcomes.map(row=>row.name),LABELS);assert.deepEqual(await snapshot(),sourceBefore);assert.deepEqual(unexpected,[]);assert.deepEqual(pageErrors,[]);
+  stage='final-verification';assert.deepEqual(outcomes.map(row=>row.name),LABELS);assert.deepEqual(await snapshot(),sourceBefore);assert.deepEqual(unexpected,[]);assert.deepEqual(pageErrors,[]);
   Object.assign(report,{status:'ACTUAL BROWSER HTTPS POSTGREST SQL PASS',source_files:sourceBefore,static_routes:10,served_t3_modules:7,held_transport_served:false});
- }catch(error){report.status='FAIL; NO ACCEPTANCE';report.failure=safeError(error);report.failed_group=LABELS[outcomes.length]||'setup'}
+ }catch(error){report.status='FAIL; NO ACCEPTANCE';report.failure=browserDiagnostic(error,failureStage??stage);report.failed_group=failedBrowserGroup(currentGroup)}
  finally{
   for(const fault of faults)fault.release();
   const cleaned=await cleanupFixture({contexts,browser,negative,server,ctl});Object.assign(report,cleaned);
