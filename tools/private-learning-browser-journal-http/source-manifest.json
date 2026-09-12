@@ -9,9 +9,9 @@
     },
     {
       "path": "tools/private-learning-browser-journal-http/README.md",
-      "bytes": 19694,
-      "sha256": "7273c101f76ad4c8a659fa651a05c11910cc1f67d46cc239d464b29661fcc5f6",
-      "git_blob_sha": "32ecd61b21c4c9a38dfe8a1168db3345d6139e7c"
+      "bytes": 22316,
+      "sha256": "7ad79f72d980caa83e79493869ad247cfd91195e8cd0e1073cd6923e2d7ac65d",
+      "git_blob_sha": "2bacdf902796c176eaa6372e8c8bc273ec0516c2"
     },
     {
       "path": "tools/private-learning-browser-journal-http/T3_COPY_RECEIPT.json",
@@ -21,9 +21,9 @@
     },
     {
       "path": "tools/private-learning-browser-journal-http/assemble.py",
-      "bytes": 59985,
-      "sha256": "f67448bd1f35a8cef2250aff3e693b669f54f30fb04d43daaf1c472436a3292e",
-      "git_blob_sha": "9b1cb5023e40b5010b050c5b29d8cd467d779942"
+      "bytes": 64693,
+      "sha256": "f1e5e21ecf02de52d23af3492a288e4989ff62ffe1e4ea0ffc7819aa1cb564cf",
+      "git_blob_sha": "f34c32dc7272907b5de76c80c7f03bf77ff37605"
     },
     {
       "path": "tools/private-learning-browser-journal-http/bridge.mjs",
@@ -525,9 +525,9 @@
     },
     {
       "path": "tools/private-learning-browser-journal-http/run.py",
-      "bytes": 35041,
-      "sha256": "214398e56c8e976c9bccd2a20d212e30f29db7e5d317b171035852041a143999",
-      "git_blob_sha": "12c565fd54526e80ce9d27a8bf0e1fe1792d0bb9"
+      "bytes": 43559,
+      "sha256": "cebd7b24e88e7d5a6708c27c0583a737f684833b1adcf6a9c412eb03d3c8d190",
+      "git_blob_sha": "b1a4e19cbee21a4ac48b85d81ae18ce2fbabc20a"
     },
     {
       "path": "tools/private-learning-browser-journal-http/runtime/contract.mjs",
@@ -561,9 +561,9 @@
     },
     {
       "path": "tools/private-learning-browser-journal-http/test_browser_http.mjs",
-      "bytes": 33706,
-      "sha256": "f3e2b7be3fce597a665ad6df3324613f183b81c291ae7be8739250904d653404",
-      "git_blob_sha": "be7b696846e924430b4ad32edb1a0886d8b61e75"
+      "bytes": 34012,
+      "sha256": "9eb9175bf60aaeb70f17ae755a79e1155c7d2f01ac1acf07493909e66d6b61ba",
+      "git_blob_sha": "01ffc74b338c786ff8ee8d4fc37b40c928ec0bda"
     },
     {
       "path": "tools/private-learning-browser-journal-http/test_certs.py",
@@ -573,9 +573,9 @@
     },
     {
       "path": "tools/private-learning-browser-journal-http/test_contract.py",
-      "bytes": 97467,
-      "sha256": "c35f1f83091f7f34f86b96422d5a0817122e25069c20a658e524b516ecfb73a8",
-      "git_blob_sha": "169e6d1f65e1cde7cdbaa2f7cfd58ff51539bdd0"
+      "bytes": 109851,
+      "sha256": "81ffa7fde60a542e791dabcc36b19191c4e6fe8ab80b86134fbb3e2ce3db2ec4",
+      "git_blob_sha": "bde5c3931ba77d6f0094cd0697141aa705f3e058"
     },
     {
       "path": "tools/private-learning-browser-journal-http/test_http.mjs",
@@ -597,9 +597,9 @@
     },
     {
       "path": "tools/private-learning-browser-journal-http/test_supervisor.py",
-      "bytes": 21744,
-      "sha256": "472a0a3c9a7c7807864044a541a019c3a0d0c53655b6fb5431e6abc4ac5e347d",
-      "git_blob_sha": "8d23fdbaf9224bb371ebf93c48d457b5f4f588e1"
+      "bytes": 26781,
+      "sha256": "47a2273326e3b156062175d1f6b7d2941a21b6bcee0a82f8ba4a6289ab53b428",
+      "git_blob_sha": "0ff8fb3266801a7d27ab306135d3a43aa0f7756c"
     }
   ]
 }

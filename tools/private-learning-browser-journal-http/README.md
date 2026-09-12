@@ -284,3 +284,40 @@ any extra page CDP session existed, so extra CDP is not necessary for this failu
 An `OBSERVED` control is a diagnostic observation, not a repair or an acceptance
 result. The original run always remains failed, and the 20 HTTP, 12 browser and
 90 local test-group totals are unchanged.
+
+Chromium startup stderr is captured privately with the single diagnostic flag
+`--enable-logging=stderr`. The parent continuously drains its owned pipe into an
+exclusive mode0600 file under the per-run secrets directory. Storage stops at
+2MiB while draining continues, so a log flood cannot block the browser on a full
+pipe. This does not apply a file-size resource limit to the browser or its profile.
+The reader starts after subreaper initialization and has no process or reaping
+authority. The parent's writer handle closes immediately after launch.
+
+After the driver wait, a locked, flushed whole-line cutoff records the observed
+prefix before Python's owned-process cleanup. It may already include the
+driver's context/listener teardown and diagnostic controls, so a recorded error
+does not establish that it preceded the failed navigation. This also does not
+establish that Chromium or the pipe has delivered all startup bytes. Following
+independent root and descendant cleanup,
+the reader waits for EOF and joins with a bounded stop fallback. Private-directory
+removal requires the reader stopped and all its handles closed. Raw stderr stays
+private and is never included in an artifact.
+EOF is also required for cleanup acceptance. A daemon-thread fallback only
+bounds interpreter exit after failed I/O shutdown; an unjoined or non-EOF reader
+fails the run and retains its private directory.
+
+Only failed runs expose fixed severity and source-backed category counters from
+that prefix: network-service restarts, shared-memory errors and DBus source lines.
+Unknown and malformed lines, saturation, storage caps, partial lines and reader
+uncertainty remain explicit. Known positive observations survive unrelated
+unknown lines. Counts are lower bounds; zero means none observed in this prefix
+and never proves absence throughout startup. Successful report shapes and the
+20 HTTP, 12 browser and 90 local group totals remain unchanged.
+
+The diagnostic logging flag and exact log prefix follow Chromium149's
+[logging destination implementation](https://github.com/chromium/chromium/blob/149.0.7827.55/chrome/common/logging_chrome.cc)
+and [log formatter](https://github.com/chromium/chromium/blob/149.0.7827.55/base/logging.cc).
+Fixed categories use its
+[network-service restart message](https://github.com/chromium/chromium/blob/149.0.7827.55/content/browser/network_service_instance_impl.cc),
+[shared-memory diagnostics](https://github.com/chromium/chromium/blob/149.0.7827.55/base/memory/platform_shared_memory_region_posix.cc)
+and [DBus source](https://github.com/chromium/chromium/blob/149.0.7827.55/dbus/bus.cc).

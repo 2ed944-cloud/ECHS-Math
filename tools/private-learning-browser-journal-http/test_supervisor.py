@@ -309,6 +309,78 @@ while True:os.write(2,b'x'*4096)
                     self.assertEqual(wrapped.close(),{'role':'driver','reaped':True,'group_members_remaining':0})
                     self.assertIsNone(processes.process_info(wrapped.identity['pid']))
 
+        # Same existing native group: a real pipe must keep draining after its
+        # private storage cap, without applying file limits to this child.
+        import shutil
+        from run import BrowserStderrCapture, BROWSER_STDERR_LIMIT
+        from owned_children import OwnedChildren
+        registry=OwnedChildren.enable();parent=Path(WORK_DIR or tempfile.gettempdir()).resolve()
+        directory=Path(tempfile.mkdtemp(prefix='echs-stderr-native-',dir=parent)).resolve()
+        self.assertEqual(directory.parent,parent);private=directory/'secrets';private.mkdir(mode=0o700)
+        capture=BrowserStderrCapture(private/'browser-stderr.log',private);flood=None
+        def cleanup_capture():
+            cleaned=False
+            try:
+                if flood is not None and not flood.closed:flood.close()
+                registry.cleanup(term_seconds=1,kill_seconds=1);registry.assert_empty();cleaned=True
+            finally:
+                finished=capture.finish(cleaned,timeout=1)
+                # An unexpected stuck reader retains its private directory.
+                # Never unlink its file while that reader may still use it.
+                closed=finished['reader_joined'] and finished['eof_observed'] and not capture.thread.is_alive() and capture.writer.closed and capture.stream.closed and capture.read_fd is None
+                if closed:
+                    self.assertEqual(directory.resolve().parent,parent);shutil.rmtree(directory)
+                self.assertTrue(closed,'Private reader closure incomplete; directory retained')
+        self.addCleanup(cleanup_capture)
+        body=r"""import json,os,resource,sys,time
+from pathlib import Path
+root=Path(sys.argv[1]);line=b'[123:456:0912/113000.123456:ERROR:content/browser/network_service_instance_impl.cc:722] SYNTHETIC_PRIVATE_URL_https://private.invalid/session/123\n'
+initial=line*2048
+view=memoryview(initial)
+while view:
+ count=os.write(2,view);view=view[count:]
+(root/'ready.json').write_text(json.dumps({'initial':len(initial),'limits':resource.getrlimit(resource.RLIMIT_FSIZE)}))
+deadline=time.monotonic()+15
+while not (root/'continue').exists():
+ if time.monotonic()>deadline:raise SystemExit(91)
+ time.sleep(.01)
+chunk=b'SYNTHETIC_PRIVATE_TAIL_'+b'x'*4073+b'\n'
+for _ in range(2048):
+ view=memoryview(chunk)
+ while view:
+  count=os.write(2,view);view=view[count:]
+(root/'completed').write_text('complete')
+"""
+        initial_limits=list(resource.getrlimit(resource.RLIMIT_FSIZE))
+        flood=processes.OwnedProcess([sys.executable,'-B','-c',body,str(directory)],env=dict(os.environ),cwd=directory,role='browser',stderr=capture.writer)
+        registry.register_root(flood.child);capture.close_writer();deadline=time.monotonic()+8
+        while True:
+            self.assertIsNone(flood.child.poll(),'Pipe writer exited before cutoff handshake')
+            self.assertLess(time.monotonic(),deadline,'Pipe-capacity flood stalled before handshake')
+            try:ready=json.loads((directory/'ready.json').read_bytes());break
+            except (FileNotFoundError,json.JSONDecodeError):time.sleep(.01)
+        self.assertGreater(ready['initial'],131072);self.assertLess(ready['initial'],BROWSER_STDERR_LIMIT)
+        self.assertEqual(ready['limits'],initial_limits)
+        while capture.path.stat().st_size<ready['initial']:
+            self.assertLess(time.monotonic(),deadline,'Reader did not drain the initial pipe burst');time.sleep(.01)
+        frozen=capture.snapshot(True);self.assertEqual(frozen['cutoff'],ready['initial'])
+        self.assertFalse(frozen['capped']);self.assertFalse(frozen['partial_line']);self.assertFalse(frozen['reader_error'])
+        with capture.path.open('rb') as stream:prefix=stream.read(frozen['cutoff']+1)
+        self.assertEqual(len(prefix),frozen['cutoff']);self.assertTrue(prefix.endswith(b'\n'))
+        (directory/'continue').write_bytes(b'go')
+        self.assertEqual(flood.wait(10),0,'Drain/discard stalled the owned pipe writer')
+        self.assertTrue((directory/'completed').is_file())
+        registry.scan();self.assertEqual(flood.close(),{'role':'browser','reaped':True,'group_members_remaining':0})
+        registry.cleanup(term_seconds=1,kill_seconds=1);registry.assert_empty()
+        finished=capture.finish(True,timeout=2)
+        self.assertTrue(finished['reader_joined']);self.assertTrue(finished['owned_children_reaped']);self.assertTrue(finished['eof_observed'])
+        self.assertTrue(capture.capped);self.assertEqual(capture.path.stat().st_size,BROWSER_STDERR_LIMIT)
+        self.assertEqual({key:finished[key] for key in frozen},frozen);self.assertEqual(capture.snapshot(True),frozen)
+        with capture.path.open('rb') as stream:self.assertEqual(stream.read(frozen['cutoff']),prefix)
+        self.assertEqual(resource.getrlimit(resource.RLIMIT_FSIZE),tuple(initial_limits))
+        self.assertTrue(capture.writer.closed);self.assertTrue(capture.stream.closed);self.assertIsNone(capture.read_fd)
+        self.assertIsNone(processes.process_info(flood.identity['pid']))
+
     def test_native_term_resistant_direct_child_is_killed_and_reaped(self):
         child = self.start("import signal,time,sys;from pathlib import Path;signal.signal(signal.SIGTERM,signal.SIG_IGN);Path(sys.argv[1],'ready').write_text('ready');time.sleep(30)")
         self.ready(child)

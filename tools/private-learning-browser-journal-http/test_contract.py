@@ -5,6 +5,7 @@ collector tests inject its source and Git observations; they exercise only local
 member closure. They cannot establish browser, HTTP, PostgreSQL or deployment.
 """
 import argparse
+import ast
 import base64
 import copy
 from fnmatch import fnmatchcase
@@ -962,6 +963,118 @@ process.stdout.write(JSON.stringify({observed:observed.value,failed:failed.value
                 self.rejects(lambda:assemble.validate_setup_controls(invalid));self.assertNotIn('setup_controls',project_controls(invalid))
         for value in [None,True,[],secret,{}, {**valid,'contract':'wrong'}]:
             self.rejects(lambda:assemble.validate_setup_controls(value));self.assertNotIn('setup_controls',project_controls(value))
+        # Chromium149's exact source-path/colon-line prefix is projected to
+        # bounded category counts; raw messages, URLs and process IDs stay private.
+        def chrome_line(source,message,severity='ERROR'):
+            return f'[123:456:0912/113000.123456:{severity}:{source}:722] {message}\n'.replace('\\n','\n').encode()
+        restart=chrome_line('content/browser/network_service_instance_impl.cc','Network service crashed or was terminated, restarting service. '+secret)
+        raw_stderr=b''.join([restart,chrome_line('content/browser/network_service_instance_impl.cc',secret,'INFO'),
+            chrome_line('base/memory/platform_shared_memory_region_posix.cc','Creating shared memory in /dev/shm/'+secret+' failed'),
+            chrome_line('base/memory/platform_shared_memory_region_posix.cc','Insufficient space on /dev/shm '+secret,'FATAL'),
+            chrome_line('dbus/bus.cc',secret,'WARNING'),chrome_line('other/source.cc','https://private.invalid/'+secret),
+            b'\xff\n',b'x'*32769+b'\n',b'[123:456:0912/113000.123456:ERROR:network_service_instance_impl.cc(722)] old format\n',secret.encode()+b'\n'])
+        metadata={name:name in ('driver_waited','snapshot_taken','reader_joined','owned_children_reaped','eof_observed') for name in assemble.STDERR_FLAGS}
+        metadata['cutoff']=len(raw_stderr)
+        parsed_stderr=assemble.parse_browser_stderr(raw_stderr,metadata);assemble.validate_browser_stderr(parsed_stderr)
+        expected_counts=dict.fromkeys(assemble.STDERR_COUNTS,0)
+        expected_counts.update(lines=10,unknown_lines=2,malformed_lines=2,info=1,warning=1,error=3,fatal=1,
+            other_source=1,network_service_lines=2,network_service_restart=1,shared_memory_lines=2,shared_memory_failure=2,dbus_lines=1)
+        self.assertEqual(parsed_stderr['counts'],expected_counts);self.assertIs(parsed_stderr['absence_claimed'],False)
+        self.assertNotIn(secret,json.dumps(parsed_stderr));self.assertNotIn('123',json.dumps(parsed_stderr));self.assertNotIn('cutoff',parsed_stderr)
+        for flag in ('capped','storage_capped','partial_line','reader_error'):
+            observed=assemble.parse_browser_stderr(raw_stderr,{**metadata,flag:True});self.assertEqual(observed['counts'],expected_counts);self.assertTrue(observed[flag])
+        # Joined lower-bound positive observations survive missing EOF/ownership
+        # proof; those flags cannot become a complete-run or absence claim.
+        for flag in ('owned_children_reaped','eof_observed'):
+            observed=assemble.parse_browser_stderr(restart,{**metadata,flag:False});self.assertEqual(observed['counts']['network_service_restart'],1);self.assertFalse(observed[flag])
+        for flag in ('driver_waited','snapshot_taken','reader_joined'):
+            for value in (False,None,1):self.assertIsNone(assemble.parse_browser_stderr(raw_stderr,{**metadata,flag:value})['counts'])
+        for raw in (None,'not bytes',b'x'*2097153,raw_stderr[:-1]):self.assertIsNone(assemble.parse_browser_stderr(raw,metadata)['counts'])
+        self.assertEqual(assemble.parse_browser_stderr(b'',metadata)['counts'],dict.fromkeys(assemble.STDERR_COUNTS,0))
+        saturated_stderr=assemble.parse_browser_stderr(restart*300,metadata);self.assertTrue(saturated_stderr['saturated']);self.assertEqual(saturated_stderr['counts']['network_service_restart'],255)
+        near=chrome_line('content/browser/network_service_instance_impl.cc','Network service crashed, restarting service. '+secret)
+        self.assertEqual(assemble.parse_browser_stderr(near,metadata)['counts']['network_service_restart'],0)
+        for changed in (restart.replace(b'.123456:',b'.123:'),restart.replace(b'impl.cc:722]',b'impl.cc(722)]'),restart.replace(b':ERROR:',b':ERR:')):
+            self.assertEqual(assemble.parse_browser_stderr(changed,metadata)['counts']['unknown_lines'],1)
+        directory=self.temporary()
+        def project_stderr(value,status='FAIL; NO ACCEPTANCE',name='run-report.json'):
+            (directory/name).write_bytes(encoded({'status':status,'browser_stderr':value,'raw_url':secret}))
+            safe=assemble.failure_projection(directory,15,ValueError(secret));self.assertNotIn(secret,json.dumps(safe));return safe['reports'][name]
+        self.assertEqual(project_stderr(parsed_stderr)['browser_stderr'],parsed_stderr)
+        for status in ('ACTUAL BROWSER JOURNAL SERVICES PASS','RUNNING; NOT ACCEPTED',True):self.assertNotIn('browser_stderr',project_stderr(parsed_stderr,status))
+        for name in ('http-results.json','browser-results.json'):self.assertNotIn('browser_stderr',project_stderr(parsed_stderr,name=name))
+        for path,value in [(('counts','error'),True),(('counts','lines'),256),(('counts','network_service_restart'),3),
+            (('counts','lines'),11),(('counts','private'),secret),(('raw_url',),secret),(('absence_claimed',),True),
+            (('counts_are_lower_bounds',),False),(('scope',),secret),(('prefix_parsed',),False),(('reader_joined',),False)]:
+            invalid=copy.deepcopy(parsed_stderr);target=invalid
+            for key in path[:-1]:target=target[key]
+            target[path[-1]]=value;self.rejects(lambda:assemble.validate_browser_stderr(invalid));self.assertNotIn('browser_stderr',project_stderr(invalid))
+        # Portable lifecycle controls inject thread/lock/file operations only.
+        # The separate existing Linux group proves real pipe draining.
+        def capture_fixture():
+            capture=runner.BrowserStderrCapture.__new__(runner.BrowserStderrCapture)
+            capture.lock=Mock();capture.lock.acquire.return_value=True;capture.stop=Mock();capture.thread=Mock();capture.thread.is_alive.return_value=False
+            capture.writer=SimpleNamespace(closed=False);capture.writer.close=Mock(side_effect=lambda:setattr(capture.writer,'closed',True))
+            capture.stream=SimpleNamespace(closed=False,flush=Mock());capture.read_fd=17
+            capture.stored=8;capture.cutoff=6;capture.capped=False;capture.reader_error=False;capture.snapshot_failed=False;capture.eof=True;capture.frozen=None
+            return capture
+        capture=capture_fixture();frozen=capture.snapshot(True);self.assertTrue(frozen['partial_line']);self.assertEqual(frozen['cutoff'],6)
+        frozen['cutoff']=999;capture.stored=100;capture.cutoff=99;capture.capped=True
+        self.assertEqual(capture.snapshot(False)['cutoff'],6);self.assertTrue(capture.snapshot(False)['driver_waited']);capture.stream.flush.assert_called_once()
+        for bad in (1,None,'true'):self.rejects(lambda:capture.snapshot(bad))
+        capture=capture_fixture();capture.stream.flush.side_effect=OSError(secret);self.assertTrue(capture.snapshot(True)['reader_error'])
+        capture=capture_fixture();capture.lock.acquire.return_value=False
+        self.rejects(lambda:capture.snapshot(True));capture.lock.acquire.assert_called_with(timeout=1);capture.stream.flush.assert_not_called()
+        for alive in (False,True):
+            capture=capture_fixture();capture.thread.is_alive.return_value=alive;capture.snapshot(True)
+            result=capture.finish(True,timeout=.01);self.assertEqual(result['reader_joined'],not alive);self.assertTrue(capture.writer.closed)
+            self.assertEqual([call.args for call in capture.thread.join.call_args_list],[(.01,),(1,)] if alive else [(.01,)])
+            self.assertEqual(capture.stop.set.call_count,int(alive));capture.lock.acquire.assert_called_with(timeout=1)
+        capture=capture_fixture();capture.lock.acquire.return_value=False;result=capture.finish(False,timeout=.01)
+        self.assertTrue(result['reader_error']);self.assertFalse(result['snapshot_taken']);self.assertFalse(result['owned_children_reaped'])
+        for owned_value,timeout in ((1,1),(True,0),(True,4),(True,float('nan')),(True,True)):
+            capture=capture_fixture();self.rejects(lambda:capture.finish(owned_value,timeout));capture.thread.join.assert_not_called()
+        # Read only a joined, identity-bound prefix; never perform an unbounded
+        # read, or touch a file while its reader remains live.
+        raw_path=self.temporary()/'browser-stderr.log';capture=SimpleNamespace(path=raw_path,identity=SimpleNamespace(st_dev=1,st_ino=2))
+        info=SimpleNamespace(st_mode=runner.stat.S_IFREG|0o600,st_nlink=1,st_uid=1234,st_dev=1,st_ino=2,st_size=len(restart)+100)
+        file=SimpleNamespace(stat=Mock(return_value=info),open=Mock(side_effect=lambda *a,**k:io.BytesIO(restart+b'PRIVATE_LATER_BYTES')))
+        with patch.object(contract,'guarded_path',return_value=file) as guard,patch.object(runner.os,'getuid',return_value=1234,create=True):
+            result=runner.read_browser_stderr(capture,{**metadata,'cutoff':len(restart)});self.assertEqual(result['counts']['network_service_restart'],1)
+            guard.reset_mock();file.open.reset_mock();self.assertIsNone(runner.read_browser_stderr(capture,{**metadata,'reader_joined':False})['counts']);guard.assert_not_called();file.open.assert_not_called()
+            for key,value in [('st_ino',3),('st_nlink',2),('st_uid',9),('st_mode',runner.stat.S_IFREG|0o644),('st_size',2097153)]:
+                before=getattr(info,key);setattr(info,key,value);self.assertIsNone(runner.read_browser_stderr(capture,metadata)['counts']);setattr(info,key,before)
+        # Execute the actual private-cleanup guard extracted from main, with all
+        # filesystem operations injected. A live/unclosed/no-EOF reader retains
+        # the directory and cannot overwrite the original failure object.
+        run_source=(HERE/'run.py').read_text(encoding='utf-8');tree=ast.parse(run_source)
+        cleanup_nodes=[node for node in ast.walk(tree) if isinstance(node,ast.Try) and any(isinstance(item,ast.Expr) and isinstance(item.value,ast.Call) and ast.unparse(item.value.func)=='shutil.rmtree' for item in node.body)]
+        self.assertEqual(len(cleanup_nodes),1);cleanup_text=ast.unparse(cleanup_nodes[0])
+        code='def cleanup_probe():\n    cleanup_ok=True\n'+''.join('    '+line+'\n' for line in cleanup_text.splitlines())+'    return cleanup_ok\n'
+        code=code.replace('\\n','\n')
+        root=self.temporary()
+        for failure in ('live','stream','writer','fd','eof',None):
+            primary={'type':'TimeoutError','stage':'positive-navigation'};report={'status':'FAIL; NO ACCEPTANCE','failure':primary}
+            current=SimpleNamespace(thread=Mock(),stream=SimpleNamespace(closed=failure!='stream'),writer=SimpleNamespace(closed=failure!='writer'),read_fd=1 if failure=='fd' else None)
+            current.thread.is_alive.return_value=failure=='live';remove=Mock()
+            namespace={'browser_stderr':current,'browser_stderr_metadata':{'eof_observed':failure!='eof'},'report':report,'need':runner.need,
+                'require_private_directory':Mock(),'shutil':SimpleNamespace(rmtree=remove),'secrets_dir':SimpleNamespace(exists=lambda:False),'run_dir':root/'runs'/'owned','HERE':root}
+            exec(compile(code,'<actual-private-cleanup-guard>','exec'),namespace)
+            self.assertEqual(namespace['cleanup_probe'](),failure is None);self.assertIs(report['failure'],primary)
+            self.assertEqual(remove.call_count,int(failure is None))
+        self.assertLess(run_source.index("report['descendant_absence']=registry.assert_empty()"),run_source.index('browser_stderr.finish(reaped)'))
+        self.assertLess(run_source.index('browser_stderr.snapshot(waited)'),run_source.index('protocol_setup=read_protocol_setup('))
+        logging_script=r"""
+import assert from 'node:assert/strict';
+const {assertBrowserLoggingArgs}=await import(process.argv[2]);
+assertBrowserLoggingArgs(['chrome','--headless=new','--enable-logging=stderr']);
+for(const flags of [[],['--enable-logging'],['--enable-logging=stderr','--enable-logging=stderr'],['--enable-logging=file'],
+ ['--enable-logging=stderr','--disable-logging'],['--enable-logging=stderr','--log-file=private'],['--enable-logging=stderr','--log-level=0'],
+ ['--enable-logging=stderr','--v=1'],['--enable-logging=stderr','--vmodule=*'],[true]])assert.throws(()=>assertBrowserLoggingArgs(flags));
+process.stdout.write('PASS');
+"""
+        logging=subprocess.run(['node','--input-type=module','-',(HERE/'test_browser_http.mjs').as_uri()],input=logging_script,text=True,capture_output=True,timeout=10,check=True)
+        self.assertEqual(logging.stdout,'PASS')
         # Python traceback projection accepts exact known source paths only,
         # selects the deepest allowed frame, and ignores hostile properties.
         namespace={}

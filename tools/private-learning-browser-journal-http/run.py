@@ -7,8 +7,10 @@ import os
 import re
 import shutil
 import stat
+import selectors
 import subprocess
 import sys
+import threading
 import time
 import urllib.error
 import urllib.request
@@ -69,10 +71,133 @@ def read_protocol_setup(path, secrets_dir, identifier, waited):
         return protocol_incomplete('log-unavailable',waited is True)
 
 
+BROWSER_STDERR_LIMIT = 2097152
+
+
+class BrowserStderrCapture:
+    """Private bounded prefix storage; always drain the owned browser pipe.
+
+    The reader owns no process and never waits/reaps/signals any child. Enable
+    the subreaper before constructing this object. The caller closes its writer
+    immediately after launch, then finishes only after owned child cleanup.
+    """
+    def __init__(self,path,parent):
+        import contract
+        need(os.name=='posix','stderr-linux-pipe')
+        require_private_directory(parent,parent.parent)
+        self.path=contract.guarded_path(path,parent)
+        need(self.path.parent==parent and self.path.name=='browser-stderr.log' and not self.path.exists(),'stderr-private-path')
+        self.lock=threading.Lock();self.stop=threading.Event();self.thread=None;self.writer=None;self.stream=None;self.read_fd=None
+        self.stored=0;self.cutoff=0;self.capped=False;self.reader_error=False;self.eof=False;self.frozen=None;self.snapshot_failed=False
+        write_fd=None;descriptor=None
+        try:
+            descriptor=os.open(self.path,os.O_WRONLY|os.O_CREAT|os.O_EXCL,0o600)
+            self.stream=os.fdopen(descriptor,'wb',buffering=0);descriptor=None;self.identity=os.fstat(self.stream.fileno())
+            self.read_fd,write_fd=os.pipe();os.set_blocking(self.read_fd,False)
+            self.writer=os.fdopen(write_fd,'wb',buffering=0);write_fd=None
+            # Daemon only bounds interpreter exit after failed I/O shutdown;
+            # acceptance still requires EOF, join and closed handles below.
+            self.thread=threading.Thread(target=self._drain,name='owned-browser-stderr',daemon=True);self.thread.start()
+        except Exception:
+            if self.writer:self.writer.close()
+            if write_fd is not None:os.close(write_fd)
+            if self.read_fd is not None:os.close(self.read_fd)
+            if self.stream:self.stream.close()
+            if descriptor is not None:os.close(descriptor)
+            raise
+
+    def _drain(self):
+        try:
+            with selectors.DefaultSelector() as selector:
+                selector.register(self.read_fd,selectors.EVENT_READ)
+                while not self.stop.is_set():
+                    if not selector.select(.05):continue
+                    try:chunk=os.read(self.read_fd,65536)
+                    except BlockingIOError:continue
+                    if not chunk:
+                        with self.lock:self.eof=True
+                        break
+                    with self.lock:
+                        remaining=BROWSER_STDERR_LIMIT-self.stored
+                        if len(chunk)>remaining:self.capped=True
+                        if remaining and not self.reader_error:
+                            kept=chunk[:remaining]
+                            try:
+                                written=self.stream.write(kept)
+                                need(written==len(kept),'stderr-short-write')
+                                newline=kept.rfind(b'\n')
+                                if newline>=0:self.cutoff=self.stored+newline+1
+                                self.stored+=len(kept)
+                            except Exception:self.reader_error=True
+                        # Once full or a write failed, discard but keep draining.
+        except Exception:
+            with self.lock:self.reader_error=True
+        finally:
+            try:
+                if self.read_fd is not None:os.close(self.read_fd)
+            except Exception:
+                with self.lock:self.reader_error=True
+            self.read_fd=None
+            try:
+                if self.stream:self.stream.close()
+            except Exception:
+                with self.lock:self.reader_error=True
+
+    def close_writer(self):
+        if self.writer and not self.writer.closed:self.writer.close()
+
+    def snapshot(self,driver_waited):
+        need(type(driver_waited) is bool,'stderr-driver-waited')
+        need(self.lock.acquire(timeout=1),'stderr-snapshot-lock')
+        try:
+            if self.frozen is None:
+                try:
+                    if self.stream and not self.stream.closed:self.stream.flush()
+                except Exception:self.reader_error=True
+                self.frozen={'driver_waited':driver_waited,'snapshot_taken':True,'cutoff':self.cutoff,
+                    'capped':self.capped,'partial_line':self.cutoff!=self.stored,'reader_error':self.reader_error}
+            return dict(self.frozen)
+        finally:self.lock.release()
+
+    def finish(self,owned_reaped,timeout=3):
+        need(type(owned_reaped) is bool and type(timeout) in (int,float) and 0<timeout<=3,'stderr-finish-boundary')
+        self.close_writer()
+        self.thread.join(timeout)
+        if self.thread.is_alive():
+            self.stop.set();self.thread.join(1)
+        acquired=self.lock.acquire(timeout=1)
+        if not acquired:
+            return {'driver_waited':False,'snapshot_taken':False,'cutoff':0,'capped':False,'storage_capped':False,
+                'partial_line':False,'reader_error':True,'reader_joined':not self.thread.is_alive(),'owned_children_reaped':owned_reaped,'eof_observed':False}
+        try:
+            snapshot=dict(self.frozen or {'driver_waited':False,'snapshot_taken':False,'cutoff':0,'capped':False,'partial_line':False,'reader_error':False})
+            snapshot.update(reader_joined=not self.thread.is_alive(),owned_children_reaped=owned_reaped,
+                eof_observed=self.eof,storage_capped=self.capped,reader_error=snapshot['reader_error'] or self.reader_error or self.snapshot_failed)
+            return snapshot
+        finally:self.lock.release()
+
+
+def read_browser_stderr(capture,metadata):
+    from assemble import parse_browser_stderr
+    import contract
+    try:
+        need(metadata['reader_joined'] is True,'stderr-reader-active')
+        checked=contract.guarded_path(capture.path,capture.path.parent);info=checked.stat()
+        need(stat.S_ISREG(info.st_mode) and info.st_nlink==1 and info.st_uid==os.getuid()
+             and stat.S_IMODE(info.st_mode)==0o600 and (info.st_dev,info.st_ino)==(capture.identity.st_dev,capture.identity.st_ino)
+             and info.st_size<=BROWSER_STDERR_LIMIT,'stderr-read-owner')
+        cutoff=metadata['cutoff'];need(type(cutoff) is int and 0<=cutoff<=info.st_size,'stderr-read-cutoff')
+        with checked.open('rb') as stream:raw=stream.read(cutoff)
+        need(len(raw)==cutoff,'stderr-read-short')
+        return parse_browser_stderr(raw,metadata)
+    except Exception:
+        return parse_browser_stderr(None,metadata)
+
+
 def browser_arguments(executable, profile, spki):
     need(type(spki) is str and re.fullmatch(r'[A-Za-z0-9+/]{43}=', spki), 'browser-spki')
     need(profile.is_absolute() and not profile.exists(), 'fresh-browser-profile')
-    return [str(executable), '--headless=new', '--no-sandbox', '--disable-setuid-sandbox', '--no-proxy-server',
+    return [str(executable), '--headless=new', '--no-sandbox', '--disable-setuid-sandbox', '--no-proxy-server', '--enable-logging=stderr',
             '--remote-debugging-address=127.0.0.1', '--remote-debugging-port=0',
             '--user-data-dir=' + str(profile), '--enable-automation',
             '--ignore-certificate-errors-spki-list=' + spki,
@@ -191,6 +316,7 @@ def main():
     env = {"PATH": os.environ["PATH"], "HOME": str(secrets_dir / "home"), "DOCKER_CONFIG": str(secrets_dir / "docker"), "LANG": "C.UTF-8", "PYTHONDONTWRITEBYTECODE": "1", "GITHUB_ACTIONS": "true", "RUNNER_ENVIRONMENT": "github-hosted"}
     stage = "checkout"; created = []; plan = {"network_planned": False}; cleanup_ok = False
     registry = None; processes = []; browser_endpoint = None; browser_process = None; protocol_setup = None
+    browser_stderr=None;browser_stderr_metadata=None;browser_stderr_safe=None
     report = {"contract": "echs.c04.browser-journal-service-run.v1", "status": "RUNNING; NOT ACCEPTED", "run_id": identifier, "postgres_major": args.postgres_major, "production_calls": 0, "hosted_edge_executed": False, "hosted_tls_executed": False, "tls_executed": False, "browser_persistence_executed": False, "service_start_attempted": False, "cleanup_complete": False}
     def save(path, value):
         with path.open("x", encoding="utf-8", newline="\n") as stream: json.dump(value, stream, indent=2); stream.write("\n")
@@ -234,6 +360,9 @@ def main():
                     # The parent handle is always closed before reading. An
                     # unwaited child is never parsed as complete evidence.
                     stderr.close()
+                    if browser_stderr:
+                        try:browser_stderr.snapshot(waited)
+                        except Exception:browser_stderr.snapshot_failed=True
                     protocol_setup=read_protocol_setup(trace,secrets_dir,identifier,waited)
         else:
             child=launch(argv,role);exit_code=child.wait(timeout)
@@ -355,7 +484,10 @@ def main():
         stage='browser-launch'
         profile=secrets_dir/'browser-profile'
         argv=browser_arguments(executable,profile,tls['positive']['metadata']['spki_sha256_base64'])
-        browser_process=launch(argv,'browser');deadline=time.monotonic()+15
+        browser_stderr=BrowserStderrCapture(secrets_dir/'browser-stderr.log',secrets_dir)
+        try:browser_process=launch(argv,'browser',stderr=browser_stderr.writer)
+        finally:browser_stderr.close_writer()
+        deadline=time.monotonic()+15
         while time.monotonic()<deadline:
             need(browser_process.child.poll() is None,'browser-start-exit')
             if (profile/'DevToolsActivePort').is_file():
@@ -418,6 +550,18 @@ def main():
                 report['descendant_absence']=registry.assert_empty()
         except Exception as error:
             process_ok=False;report['descendant_cleanup_failure_type']=type(error).__name__
+        # This reader never owns/reaps children. Only after all known roots and
+        # adopted descendants have had independent cleanup attempts may it stop.
+        if browser_stderr:
+            try:
+                reaped=process_ok and all(child.closed for child in processes) and report.get('descendant_absence',{}).get('descendants_remaining')==0
+                browser_stderr_metadata=browser_stderr.finish(reaped)
+                need(browser_stderr_metadata['reader_joined'] and browser_stderr.stream.closed
+                     and browser_stderr.writer.closed and browser_stderr.read_fd is None,'stderr-reader-remains')
+                browser_stderr_safe=read_browser_stderr(browser_stderr,browser_stderr_metadata)
+                need(browser_stderr_metadata['eof_observed'],'stderr-reader-eof-missing')
+            except Exception as error:
+                process_ok=False;report['browser_stderr_failure_type']=type(error).__name__
         try:
             if browser_endpoint:
                 from urllib.parse import urlsplit
@@ -467,6 +611,9 @@ def main():
             cleanup_ok=False;report['status']='FAIL; NO ACCEPTANCE';report['final_source_failure_type']=type(error).__name__
         # Source/reporting errors must never bypass guarded private cleanup.
         try:
+            need(browser_stderr is None or (not browser_stderr.thread.is_alive() and browser_stderr.stream.closed
+                 and browser_stderr.writer.closed and browser_stderr.read_fd is None and browser_stderr_metadata is not None
+                 and browser_stderr_metadata['eof_observed']),'stderr-private-cleanup-live-reader')
             require_private_directory(secrets_dir,run_dir)
             need(run_dir.resolve().parent == (HERE / "runs").resolve(), "secret-cleanup-path")
             shutil.rmtree(secrets_dir)
@@ -476,6 +623,8 @@ def main():
         report["cleanup_complete"] = cleanup_ok
         if report['status']!='ACTUAL BROWSER JOURNAL SERVICES PASS' and protocol_setup is not None:
             report['protocol_setup']=protocol_setup
+        if report['status']!='ACTUAL BROWSER JOURNAL SERVICES PASS' and browser_stderr_safe is not None:
+            report['browser_stderr']=browser_stderr_safe
         # Closed metadata-only evidence is copied into a fresh artifact directory.
         # No service logs, config files, JWTs, tokens, bodies or private pipes.
         save(run_dir / "run-report.json", report)

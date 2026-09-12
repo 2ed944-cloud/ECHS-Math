@@ -134,6 +134,68 @@ def validate_setup_controls(value):
         previous=row
 
 
+STDERR_FLAGS=('driver_waited','snapshot_taken','reader_joined','owned_children_reaped','eof_observed','capped','storage_capped','partial_line','reader_error')
+STDERR_COUNTS=('lines','unknown_lines','malformed_lines','info','warning','error','fatal','other_source',
+ 'network_service_lines','network_service_restart','shared_memory_lines','shared_memory_failure','dbus_lines')
+
+
+def validate_browser_stderr(value):
+    closed(value,{'contract':str,'scope':str,'counts_are_lower_bounds':bool,'absence_claimed':bool,'prefix_parsed':bool,
+        'saturated':bool,**dict.fromkeys(STDERR_FLAGS,bool),'counts':(dict,type(None))},'stderr-prefix-shape')
+    need(value['contract']=='echs.c04.browser-stderr-prefix.v1' and value['scope']=='captured-pre-cleanup-prefix'
+         and value['counts_are_lower_bounds'] is True and value['absence_claimed'] is False,'stderr-prefix-scope')
+    if value['prefix_parsed']:
+        need(value['driver_waited'] and value['snapshot_taken'] and value['reader_joined'],'stderr-prefix-boundary')
+        closed(value['counts'],dict.fromkeys(STDERR_COUNTS,int),'stderr-prefix-counts')
+        need(all(integer(item,0,255) for item in value['counts'].values()),'stderr-prefix-range')
+        counts=value['counts'];need(all(item<=counts['lines'] for item in counts.values()),'stderr-prefix-line-bound')
+        need(counts['network_service_restart']<=min(counts['network_service_lines'],counts['error'])
+             and counts['shared_memory_failure']<=counts['shared_memory_lines'],'stderr-prefix-category-bound')
+        if not value['saturated']:
+            severity=sum(counts[key] for key in ('info','warning','error','fatal'))
+            need(severity+counts['unknown_lines']+counts['malformed_lines']==counts['lines']
+                 and sum(counts[key] for key in ('other_source','network_service_lines','shared_memory_lines','dbus_lines'))==severity,'stderr-prefix-count-closure')
+    else:need(value['counts'] is None and value['saturated'] is False,'stderr-unparsed-counts')
+
+
+def parse_browser_stderr(raw,metadata):
+    """Project only fixed counters from a captured Chromium149 stderr prefix.
+
+    Unknown/capped/partial lines never erase known positive observations. The
+    prefix need not contain all bytes still buffered in Chromium or the pipe;
+    every returned count is explicitly a lower bound, never an absence proof.
+    """
+    flags={key:metadata.get(key) is True for key in STDERR_FLAGS} if type(metadata) is dict else dict.fromkeys(STDERR_FLAGS,False)
+    result={'contract':'echs.c04.browser-stderr-prefix.v1','scope':'captured-pre-cleanup-prefix',
+        'counts_are_lower_bounds':True,'absence_claimed':False,'prefix_parsed':False,'saturated':False,**flags,'counts':None}
+    if not (flags['driver_waited'] and flags['snapshot_taken'] and flags['reader_joined']):return result
+    if type(raw) is not bytes or len(raw)>2097152 or (raw and not raw.endswith(b'\n')):return result
+    counts=dict.fromkeys(STDERR_COUNTS,0)
+    def bump(key):
+        if counts[key]==255:result['saturated']=True
+        else:counts[key]+=1
+    prefix=re.compile(r'^\[[0-9]{1,12}:[0-9]{1,12}:[0-9]{4}/[0-9]{6}\.[0-9]{6}:(INFO|WARNING|ERROR|FATAL):([A-Za-z0-9_./-]{1,240}):[0-9]{1,7}\] (.*)$')
+    for raw_line in raw.splitlines():
+        bump('lines')
+        if len(raw_line)>32768:bump('malformed_lines');continue
+        try:line=raw_line.decode('utf-8')
+        except UnicodeError:bump('malformed_lines');continue
+        match=prefix.fullmatch(line)
+        if not match:bump('unknown_lines');continue
+        severity,source,message=match.groups();bump(severity.lower())
+        if source=='content/browser/network_service_instance_impl.cc':
+            bump('network_service_lines')
+            if severity=='ERROR' and message.startswith('Network service crashed or was terminated, restarting service.'):
+                bump('network_service_restart')
+        elif source=='base/memory/platform_shared_memory_region_posix.cc':
+            bump('shared_memory_lines')
+            if (severity=='ERROR' and ((message.startswith('Creating shared memory in ') and ' failed' in message) or message.startswith('Unable to access(W_OK|X_OK) '))) or (severity=='FATAL' and '/dev/shm' in message):
+                bump('shared_memory_failure')
+        elif source=='dbus/bus.cc':bump('dbus_lines')
+        else:bump('other_source')
+    result.update(prefix_parsed=True,counts=counts);validate_browser_stderr(result);return result
+
+
 def parse_protocol_setup(raw,run_id,origin,*,driver_waited,capped=False):
     """Private pinned Playwright1.61.1 trace -> closed pre-cleanup metadata.
 
@@ -562,6 +624,10 @@ def failure_projection(directory,major,error):
             try:validate_protocol_setup(observation)
             except Exception:pass
             else:projected['protocol_setup']=observation
+            browser_stderr=value.get('browser_stderr')
+            try:validate_browser_stderr(browser_stderr)
+            except Exception:pass
+            else:projected['browser_stderr']=browser_stderr
         if name=='browser-results.json' and value.get('status')=='FAIL; NO ACCEPTANCE' and value.get('failed_group')=='setup':
             observation=value.get('setup_observation')
             try:validate_setup_observation(observation)
@@ -576,7 +642,7 @@ def failure_projection(directory,major,error):
                 else:projected['setup_controls']=controls
         for field in ('cleanup_complete','process_cleanup_complete','secrets_removed','cdp_listener_absent','tls_listeners_absent','control_reaped','real_http_executed','postgrest_executed','database_executed','native_browser_executed','real_https_executed'):
             if type(value.get(field)) is bool:projected[field]=value[field]
-        for field in ('process_initial_scan_failure_type','descendant_cleanup_failure_type','process_cleanup_failure_type','network_cleanup_failure_type','cleanup_failure_type','final_source_failure_type','private_cleanup_failure_type'):
+        for field in ('process_initial_scan_failure_type','descendant_cleanup_failure_type','process_cleanup_failure_type','network_cleanup_failure_type','cleanup_failure_type','final_source_failure_type','private_cleanup_failure_type','browser_stderr_failure_type'):
             if type(value.get(field)) is str:projected[field]=error_type(value[field])
         for field,key,allowed in [('process_cleanup_errors','role',{'browser','driver','http'}),('container_cleanup_errors','service',{'db','rest'})]:
             if type(value.get(field)) is list:
