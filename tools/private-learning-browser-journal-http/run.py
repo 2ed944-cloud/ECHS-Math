@@ -198,6 +198,7 @@ def browser_arguments(executable, profile, spki):
     need(type(spki) is str and re.fullmatch(r'[A-Za-z0-9+/]{43}=', spki), 'browser-spki')
     need(profile.is_absolute() and not profile.exists(), 'fresh-browser-profile')
     return [str(executable), '--headless=new', '--no-sandbox', '--disable-setuid-sandbox', '--no-proxy-server', '--enable-logging=stderr',
+            '--enable-features=NetworkServiceInProcess2',
             '--remote-debugging-address=127.0.0.1', '--remote-debugging-port=0',
             '--user-data-dir=' + str(profile), '--enable-automation',
             '--ignore-certificate-errors-spki-list=' + spki,

@@ -336,15 +336,35 @@ class ContractTests(unittest.TestCase):
         self.assertIn('--remote-debugging-address=127.0.0.1',args)
         self.assertNotIn('--allow-insecure-localhost',args)
         self.assertEqual([arg for arg in args if 'proxy' in arg],['--no-proxy-server'])
+        self.assertEqual([arg for arg in args if re.match(r'^--(?:enable-features|disable-features|single-process)(?:=|$)',arg)],['--enable-features=NetworkServiceInProcess2'])
         proxy_script=r"""
 import assert from 'node:assert/strict';
-const {assertLoopbackProxyArgs}=await import(process.argv[2]),actual=JSON.parse(process.argv[3]);
+const {assertLoopbackProxyArgs,assertNetworkServiceArgs}=await import(process.argv[2]),actual=JSON.parse(process.argv[3]);
 assertLoopbackProxyArgs(actual);
 assertLoopbackProxyArgs(['chrome','--no-proxy-server','--user-data-dir=owned-fixture']);
 for(const invalid of [null,{},['chrome',null],[],actual.filter(x=>x!=='--no-proxy-server'),[...actual,'--no-proxy-server'],actual.map(x=>x==='--no-proxy-server'?x+'=true':x)])assert.throws(()=>assertLoopbackProxyArgs(invalid));
 for(const flag of ['--proxy-server','--proxy-pac-url','--proxy-auto-detect','--proxy-bypass-list']){
  for(const value of [flag,flag+'=synthetic-local-fixture'])assert.throws(()=>assertLoopbackProxyArgs([...actual,value]));
 }
+// This fixture uses an explicitly different process layout; these checks do
+// not assert repair of Chromium's original out-of-process network service.
+const feature='--enable-features=NetworkServiceInProcess2';
+assertNetworkServiceArgs(actual);
+assertNetworkServiceArgs(['chrome',feature,'--headless=new']);
+for(const invalid of [null,{},true,'chrome',[],[true],['chrome',null],actual.filter(x=>x!==feature),[...actual,feature]]){
+ assert.throws(()=>assertNetworkServiceArgs(invalid));
+}
+for(const replacement of ['--enable-features','--enable-features=',
+ '--enable-features=NetworkServiceInProcess','--enable-features=networkserviceinprocess2',
+ '--enable-features=NetworkServiceInProcess2,Other','--enable-features=Other,NetworkServiceInProcess2',
+ '--enable-features=NetworkServiceInProcess2,NetworkServiceInProcess2','--enable-features=NetworkServiceInProcess2<Trial']){
+ assert.throws(()=>assertNetworkServiceArgs(actual.map(x=>x===feature?replacement:x)));
+}
+for(const conflict of ['--disable-features','--disable-features=NetworkServiceInProcess2','--disable-features=Other',
+ '--single-process','--single-process=true','--single-process=false','--enable-features=Other']){
+ assert.throws(()=>assertNetworkServiceArgs([...actual,conflict]));
+}
+assert.throws(()=>assertNetworkServiceArgs([...actual.filter(x=>x!==feature),'--enable-features','NetworkServiceInProcess2']));
 process.stdout.write('fixed-loopback-proxy-argv-pass');
 """
         checked=subprocess.run(['node','--input-type=module','-',(HERE/'test_browser_http.mjs').as_uri(),json.dumps(args)],input=proxy_script,text=True,capture_output=True,timeout=15,check=True)

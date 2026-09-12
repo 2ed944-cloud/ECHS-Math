@@ -321,3 +321,28 @@ Fixed categories use its
 [network-service restart message](https://github.com/chromium/chromium/blob/149.0.7827.55/content/browser/network_service_instance_impl.cc),
 [shared-memory diagnostics](https://github.com/chromium/chromium/blob/149.0.7827.55/base/memory/platform_shared_memory_region_posix.cc)
 and [DBus source](https://github.com/chromium/chromium/blob/149.0.7827.55/dbus/bus.cc).
+
+This isolated CI fixture explicitly selects
+`--enable-features=NetworkServiceInProcess2`. Chromium149 defaults this feature
+off on Linux. The selected path constructs the native `network::NetworkService`
+on a browser IO or dedicated thread, using the same service parameters and
+client initialization; it does not use the separate mock-network test branch.
+Only the network service moves into the already owned browser process. Browser
+contexts, renderer processes, native HTTP/TLS, interception and exact certificate
+checks remain required. The observed browser arguments must contain precisely
+this feature selection, with no conflicting feature or single-process flags.
+
+The prior fixture repeatedly logged network-service replacement while both
+routed and unrouted navigation failed before reaching the loopback listener.
+Those logs do not distinguish a crash from termination or establish exact causal
+timing. This configuration changes service process isolation; it does not repair
+or explain that unknown out-of-process failure, prove default Linux Chrome
+equivalence, or support a production deployment claim. Acceptance still requires
+all32 actual HTTP/browser groups per PostgreSQL major and every existing native
+TLS, SQL, source and owned-process cleanup check. Diagnostics remain available.
+
+The exact feature name and Linux default are defined in Chromium149's
+[content features](https://github.com/chromium/chromium/blob/149.0.7827.55/content/public/common/content_features.cc).
+Its [selection logic](https://github.com/chromium/chromium/blob/149.0.7827.55/content/browser/network/network_service_util_internal.cc)
+and [native service construction](https://github.com/chromium/chromium/blob/149.0.7827.55/content/browser/network_service_instance_impl.cc)
+define this fixture configuration's scope.
