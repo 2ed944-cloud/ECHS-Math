@@ -1,0 +1,359 @@
+{
+  "contract": "echs.c04.ack-candidate.v1",
+  "stage": "ISOLATED_T3_LOCAL_CANDIDATE_ONLY",
+  "source_files": [
+    {
+      "path": "source/js/owned-learning-store.mjs",
+      "bytes": 73123,
+      "sha256": "75c64156b4a69db6b9f2b9862ec45e673cbd6dc75a090030e9c5383ef3e02773"
+    },
+    {
+      "path": "source/js/owned-learning-transport.mjs",
+      "bytes": 400,
+      "sha256": "0a214e92e003a1c8a0f3317ba53a502e2a9604aa5d57ba3e77ddf0c11268b860"
+    },
+    {
+      "path": "source/question-bank/js/learning-transition.mjs",
+      "bytes": 27867,
+      "sha256": "4167b49674f8dcb55d3427817b62dd81c28d5f9d46140c13bf92de55eb601b5b"
+    },
+    {
+      "path": "source/question-bank/js/practice-flow.mjs",
+      "bytes": 10918,
+      "sha256": "82be3e7149d7375427804331491d75516287b67aaccac519a442be733ef08418"
+    },
+    {
+      "path": "browser-page.mjs",
+      "bytes": 11196,
+      "sha256": "a169dd13c1ef2fc9575b9f19ee14ed9bb3187cb38e6c5dd1d03106b013d0eca1"
+    },
+    {
+      "path": "test_browser.mjs",
+      "bytes": 68194,
+      "sha256": "8c9733bc799ee2b2cefb47701ae89250ca9d607791e878ac5ccaa2cb9e78f6c1"
+    },
+    {
+      "path": "source/js/wire-binding-model.mjs",
+      "bytes": 12774,
+      "sha256": "41d8b60bce63d25b6d2da782ee900d0a3e139ce830ffbea2a26ef2e696d990a5"
+    },
+    {
+      "path": "source/js/journal/wire.mjs",
+      "bytes": 4397,
+      "sha256": "d6e1a9675d12d125454b827ae1187a55e9176408a81dfb8fe2f0397598f8407b"
+    },
+    {
+      "path": "source/js/journal/contract.mjs",
+      "bytes": 9956,
+      "sha256": "050a652f28e957aaabd7e87428b4811dbeb2ebfad80552023ebef9c931271e84"
+    },
+    {
+      "path": "source/js/journal/pending-intent.mjs",
+      "bytes": 3573,
+      "sha256": "10aa9c3ba04aa0e32483763b5b8ef17d489b6449f4b8738563254d427811f69d"
+    },
+    {
+      "path": "test_adversarial.mjs",
+      "bytes": 18276,
+      "sha256": "285fe358260d056e85e13729a81ffb67b0ea3ea36eb339d3f24ba3fc17c78fc4"
+    },
+    {
+      "path": "COPY_RECEIPT.json",
+      "bytes": 2098,
+      "sha256": "9810bcd6427d41d031dfe4d9791aabfb934c65ecafe8f2f565515d9d97c17a51"
+    },
+    {
+      "path": "T1_V3_COPY_RECEIPT.json",
+      "bytes": 3260,
+      "sha256": "4388d5c09ef7bc399d849686a6ed9b8b804a0a15e95f67c50f9fa737c59df7dd"
+    },
+    {
+      "path": "T2_COPY_RECEIPT.json",
+      "bytes": 3638,
+      "sha256": "71d5ed9c105910956aef2247636339422f210a27f29f93df0be777b77ac35060"
+    },
+    {
+      "path": "T3_SOURCE_OVERVIEW.md",
+      "bytes": 3373,
+      "sha256": "857ce10daa86b17f12f765c67303a2feafb300692cc085ecdddf2cbdf5b8fa6e"
+    },
+    {
+      "path": "README.md",
+      "bytes": 9620,
+      "sha256": "f509d47252c5b6d8e9b12c6f43a1e556e3e0c620a91cd724559d6f5503282b4e"
+    },
+    {
+      "path": "verify_candidate.py",
+      "bytes": 6916,
+      "sha256": "9da6c012a68385df6bff353476eb333e1d86298a53edb04d9224132b9c343f25"
+    }
+  ],
+  "input_files": [
+    {
+      "path": "c04-learning-p2b-candidate/candidate-manifest.json",
+      "bytes": 9395,
+      "sha256": "817c3395b1589c74391cce55fd7dffdae9de3a28c2b1f9fd90e371428c788722"
+    },
+    {
+      "path": "c04-durable-intent-candidate/source-manifest.json",
+      "bytes": 2046,
+      "sha256": "f449d38c6dbf32f29162b327078966076a4afaf24ca39b93909f8c11934685fd"
+    },
+    {
+      "path": "c04-journal-http-candidate-v2/source-manifest.json",
+      "bytes": 2015,
+      "sha256": "117cdb0a97cd4408b31fedf9f4eba5928b1385f5e2a86d6ee5e55c750c286817"
+    },
+    {
+      "path": "c04-learning-p2b-candidate/source/js/owned-learning-store.mjs",
+      "bytes": 31668,
+      "sha256": "3f1863498a014f6d49c726357679b7a8d2f00354768d556739cf1102a3da3928"
+    },
+    {
+      "path": "c04-learning-p2b-candidate/source/js/owned-learning-transport.mjs",
+      "bytes": 400,
+      "sha256": "0a214e92e003a1c8a0f3317ba53a502e2a9604aa5d57ba3e77ddf0c11268b860"
+    },
+    {
+      "path": "c04-learning-p2b-candidate/source/question-bank/js/learning-transition.mjs",
+      "bytes": 27867,
+      "sha256": "4167b49674f8dcb55d3427817b62dd81c28d5f9d46140c13bf92de55eb601b5b"
+    },
+    {
+      "path": "c04-learning-p2b-candidate/source/question-bank/js/practice-flow.mjs",
+      "bytes": 10918,
+      "sha256": "82be3e7149d7375427804331491d75516287b67aaccac519a442be733ef08418"
+    },
+    {
+      "path": "c04-learning-p2b-candidate/test-practice-flow.mjs",
+      "bytes": 14156,
+      "sha256": "720ba9f479bd487e0d0499c93a0dc7443de0fa694673a891139d8c594bcbdb09"
+    },
+    {
+      "path": "c04-learning-p2b-candidate/test-practice-atomic.mjs",
+      "bytes": 14358,
+      "sha256": "1fa0deadfc915f241eaef3081a42d86107cb712ac617430a5828d5ed79d17ce2"
+    },
+    {
+      "path": "c04-learning-p2b-candidate/test-practice-actions.mjs",
+      "bytes": 9371,
+      "sha256": "2f211579b7c2a085db28a9a5c172da795bdd772c0f2ba1ed37f9ef6d0ab069b4"
+    },
+    {
+      "path": "c04-learning-p2b-candidate/practice-atomic-fixture.mjs",
+      "bytes": 10256,
+      "sha256": "3287e9e81e2bdf6e689eefb86306e845d2484a12acc12d3928d6de7f318d788e"
+    },
+    {
+      "path": "c04-independent/same-db-integration-plan.md",
+      "bytes": 22478,
+      "sha256": "398a043f0bbdb9e341a1af542249a3033968a020172e0a553324f3bfb230ec40"
+    },
+    {
+      "path": "c04-independent/same-db-integration-evidence.json",
+      "bytes": 21713,
+      "sha256": "7c1d5eb1f0a15ea5e522cd156dfc30b831a27386054cf9c3705bf214e67d0e51"
+    },
+    {
+      "path": "c04-learning-source-bundle-candidate/source-manifest-v1.json",
+      "bytes": 4653,
+      "sha256": "1497ab6384d016be37af7d52eb451d7693ba54a46009e9e7940829b7b0478b66"
+    },
+    {
+      "path": "c04-learning-source-bundle-candidate/source/js/owned-learning-store.mjs",
+      "bytes": 43540,
+      "sha256": "b8d3f366160c4f613dc5cd7152b0b2df8fa5b4f20bdbb20d1815a021bf4d4e76"
+    },
+    {
+      "path": "c04-learning-source-bundle-candidate/source/js/owned-learning-transport.mjs",
+      "bytes": 400,
+      "sha256": "0a214e92e003a1c8a0f3317ba53a502e2a9604aa5d57ba3e77ddf0c11268b860"
+    },
+    {
+      "path": "c04-learning-source-bundle-candidate/source/question-bank/js/learning-transition.mjs",
+      "bytes": 27867,
+      "sha256": "4167b49674f8dcb55d3427817b62dd81c28d5f9d46140c13bf92de55eb601b5b"
+    },
+    {
+      "path": "c04-learning-source-bundle-candidate/source/question-bank/js/practice-flow.mjs",
+      "bytes": 10918,
+      "sha256": "82be3e7149d7375427804331491d75516287b67aaccac519a442be733ef08418"
+    },
+    {
+      "path": "c04-learning-source-bundle-candidate/browser-page.mjs",
+      "bytes": 6978,
+      "sha256": "72b10d8f0532d14b8f5c3c9cf691f9a8022927602f85d939cb45b1fc0360e2e6"
+    },
+    {
+      "path": "c04-learning-source-bundle-candidate/test_browser.mjs",
+      "bytes": 23495,
+      "sha256": "5898bce364cb7a438b1891870a41293e4bc93c671d9b7d7ad35516a6486f3d38"
+    },
+    {
+      "path": "c04-learning-source-bundle-candidate/COPY_RECEIPT.json",
+      "bytes": 2098,
+      "sha256": "9810bcd6427d41d031dfe4d9791aabfb934c65ecafe8f2f565515d9d97c17a51"
+    },
+    {
+      "path": "c04-learning-source-bundle-candidate/README.md",
+      "bytes": 8540,
+      "sha256": "d8c4407e1f7e0a99ff494c7d2fb65b4e73d8a54f62731eb373de2726ad083c76"
+    },
+    {
+      "path": "c04-learning-source-bundle-candidate/verify_candidate.py",
+      "bytes": 4198,
+      "sha256": "f906d246ce239b9abdebe4cf6fc3b1764b46757848d1e80c2c4f4de2ebbb66c6"
+    },
+    {
+      "path": "c04-journal-http-candidate-v3/source-manifest.json",
+      "bytes": 2025,
+      "sha256": "84284f19b00a26b8ee30ed2567132b7913e0a0c8e5cb7c80e4167f62d778445c"
+    },
+    {
+      "path": "c04-journal-http-candidate-v3/wire.mjs",
+      "bytes": 4397,
+      "sha256": "d6e1a9675d12d125454b827ae1187a55e9176408a81dfb8fe2f0397598f8407b"
+    },
+    {
+      "path": "c04-journal-http-candidate-v3/contract.mjs",
+      "bytes": 9956,
+      "sha256": "050a652f28e957aaabd7e87428b4811dbeb2ebfad80552023ebef9c931271e84"
+    },
+    {
+      "path": "c04-journal-http-candidate-v3/pending-intent.mjs",
+      "bytes": 3573,
+      "sha256": "10aa9c3ba04aa0e32483763b5b8ef17d489b6449f4b8738563254d427811f69d"
+    },
+    {
+      "path": "c04-independent/t2-binding-proposal-v1.md",
+      "bytes": 22509,
+      "sha256": "fdbf5003ed39ab5b30350c74ca059dd3026890452f6668dad51da5c4fcd56059"
+    },
+    {
+      "path": "c04-journal-pg-matrix-candidate-v2/source/tools/private-learning-operation-journal/operation-journal.sql",
+      "bytes": 41799,
+      "sha256": "9ce98da90d5c141fdf184d32a00067eca1aaa800870204edd9c383cc22b1e1bf"
+    },
+    {
+      "path": "c04-learning-wire-binding-candidate/source-manifest-v3.json",
+      "bytes": 8998,
+      "sha256": "34d4640a7fb9176ce93500bdc50ce9273b3be3791f99446e79a0282b92666968"
+    },
+    {
+      "path": "c04-learning-wire-binding-candidate/source/js/owned-learning-store.mjs",
+      "bytes": 61219,
+      "sha256": "58d988cafb7c68ee7f27a7f0a61520062c10ec105ca2f76784a6d07cd6659880"
+    },
+    {
+      "path": "c04-learning-wire-binding-candidate/source/js/owned-learning-transport.mjs",
+      "bytes": 400,
+      "sha256": "0a214e92e003a1c8a0f3317ba53a502e2a9604aa5d57ba3e77ddf0c11268b860"
+    },
+    {
+      "path": "c04-learning-wire-binding-candidate/source/question-bank/js/learning-transition.mjs",
+      "bytes": 27867,
+      "sha256": "4167b49674f8dcb55d3427817b62dd81c28d5f9d46140c13bf92de55eb601b5b"
+    },
+    {
+      "path": "c04-learning-wire-binding-candidate/source/question-bank/js/practice-flow.mjs",
+      "bytes": 10918,
+      "sha256": "82be3e7149d7375427804331491d75516287b67aaccac519a442be733ef08418"
+    },
+    {
+      "path": "c04-learning-wire-binding-candidate/browser-page.mjs",
+      "bytes": 8555,
+      "sha256": "98ddfa87ecb0b0d81be25e17e32b6ad53604352a8d05ae3cb715a77372c266bf"
+    },
+    {
+      "path": "c04-learning-wire-binding-candidate/test_browser.mjs",
+      "bytes": 48509,
+      "sha256": "4267a1d612e9c5001ff13d04f8d2895604be28536c6918e2c2a1a2e7328a5270"
+    },
+    {
+      "path": "c04-learning-wire-binding-candidate/source/js/wire-binding-model.mjs",
+      "bytes": 9962,
+      "sha256": "9cbe22c6d394f3e2ad60f2d6c00715d6ffa0f33b518091ec691375829b33fef0"
+    },
+    {
+      "path": "c04-learning-wire-binding-candidate/source/js/journal/wire.mjs",
+      "bytes": 4397,
+      "sha256": "d6e1a9675d12d125454b827ae1187a55e9176408a81dfb8fe2f0397598f8407b"
+    },
+    {
+      "path": "c04-learning-wire-binding-candidate/source/js/journal/contract.mjs",
+      "bytes": 9956,
+      "sha256": "050a652f28e957aaabd7e87428b4811dbeb2ebfad80552023ebef9c931271e84"
+    },
+    {
+      "path": "c04-learning-wire-binding-candidate/source/js/journal/pending-intent.mjs",
+      "bytes": 3573,
+      "sha256": "10aa9c3ba04aa0e32483763b5b8ef17d489b6449f4b8738563254d427811f69d"
+    },
+    {
+      "path": "c04-learning-wire-binding-candidate/COPY_RECEIPT.json",
+      "bytes": 2098,
+      "sha256": "9810bcd6427d41d031dfe4d9791aabfb934c65ecafe8f2f565515d9d97c17a51"
+    },
+    {
+      "path": "c04-learning-wire-binding-candidate/T1_V3_COPY_RECEIPT.json",
+      "bytes": 3260,
+      "sha256": "4388d5c09ef7bc399d849686a6ed9b8b804a0a15e95f67c50f9fa737c59df7dd"
+    },
+    {
+      "path": "c04-learning-wire-binding-candidate/README.md",
+      "bytes": 10080,
+      "sha256": "ff4681725c285ba177d127957f74c1b1d4e26b17fb172257cac709e37bf1cf2c"
+    },
+    {
+      "path": "c04-learning-wire-binding-candidate/verify_candidate.py",
+      "bytes": 6933,
+      "sha256": "8da24313ebc3f6830850aa493e7fe38980099a1a6cbb7ffc9fe92805d9ef844e"
+    },
+    {
+      "path": "c04-independent/t3-ack-review-outline-v1.md",
+      "bytes": 7068,
+      "sha256": "f047ba2a8af5c87b27fbe32916115dadd0f2a27a2af591056e664f8c60b97630"
+    },
+    {
+      "path": "c04-independent/t2-cleanup-reentrant-counterexample-v1.mjs",
+      "bytes": 6371,
+      "sha256": "69b4e701a1f4586834eeaf29e2feb4885e098dc49f72fc6d84abd5ec84c5ac61"
+    },
+    {
+      "path": "c04-independent/t2-cleanup-reentrant-counterexample-v1.json",
+      "bytes": 2871,
+      "sha256": "2c94d35265ef9e864199f6f0240b6bac8d9d9770528fc54aae87a44a3c143f41"
+    },
+    {
+      "path": "c04-independent/t3-terminal-origin-counterexample-v2.mjs",
+      "bytes": 7041,
+      "sha256": "7bd8c3f331018e3cb88fb68175401872cae60359961e205bfe9077961009f7ff"
+    },
+    {
+      "path": "c04-independent/t3-terminal-origin-counterexample-v2.json",
+      "bytes": 5043,
+      "sha256": "bd10968e6e1ed6e0dffd5ef6a0248b1afc43a5aff4198ca2e2d5a9d6d3651d55"
+    }
+  ],
+  "browser_evidence": {
+    "path": "browser-t3-v2.json",
+    "bytes": 24575,
+    "sha256": "301099e652995339b0f61b6afca23f56514c756445100d8f9694b505045bbb4b"
+  },
+  "adversarial_evidence": {
+    "path": "adversarial-t3-v3.json",
+    "bytes": 5579,
+    "sha256": "5c811ae9032ba0e96e039683ebebcef7834fdb4faeb773ad2136f49bdf516524"
+  },
+  "database_migrations": [],
+  "active_runtime_changed": false,
+  "actual_http_accepted": false,
+  "production_authority_accepted": false,
+  "retained_diagnostics": [
+    "browser-t3-v1.json",
+    "adversarial-t3-v1.json",
+    "adversarial-t3-v2.json"
+  ],
+  "evidence_boundary": "Native IndexedDB84 main plus14 supplemental groups. Original61 bodies preserved (one original pure numeric test explicitly labeled); synthetic authority/delivery ports. Actual native ACK quota error+rollback+exact retry verified. Real browser-to-server HTTP, adoption and grading remain separate.",
+  "prior_findings": "Frozen T2 cleanup red and developing T3 terminal-origin red are pinned inputs; queue, exact origin anchor, own-context timing/coverage and post-cleanup authority guards have native green controls."
+}

@@ -1,0 +1,64 @@
+{
+  "contract": "echs.c04.durable-intent-candidate.v1",
+  "status": "ISOLATED NATIVE INDEXEDDB VALIDATION; NO P2 INTEGRATION OR NETWORK",
+  "source_files": [
+    {
+      "path": "durable-intent.mjs",
+      "bytes": 14671,
+      "sha256": "290db5c662c38f5c155024e54f77fd015e57268879d47ac701cf490c9dcb49ae"
+    },
+    {
+      "path": "browser-page.mjs",
+      "bytes": 4145,
+      "sha256": "ef490457863838eecd8dda938e87f995fb3302d2da4288e9f0c0208a37daa3fe"
+    },
+    {
+      "path": "test_browser.mjs",
+      "bytes": 19976,
+      "sha256": "61b764ea24ffed2e71a10d6a4de1e2c702000e3922a2f295313339ba350bf87a"
+    },
+    {
+      "path": "README.md",
+      "bytes": 7581,
+      "sha256": "5523dd2a1017d502ef0060b2b818e1c253bd275ffa952f07c81684e8fbddc629"
+    },
+    {
+      "path": "input-pins.json",
+      "bytes": 1469,
+      "sha256": "6a2434095b6fb1552dcc5f00f4c570ae61987ac6689533797306a398c50adf2e"
+    },
+    {
+      "path": "verify_candidate.py",
+      "bytes": 2596,
+      "sha256": "00a040626935cb065e7d57cf6606ca3f862c5ad37fa706037800151c160cb188"
+    }
+  ],
+  "evidence_files": [
+    {
+      "path": "browser-results-v1.json",
+      "bytes": 4489,
+      "sha256": "3c5fbdcc9279e7dc67a8dbe2f1a091d2b1c6c29bc520053630b7543b1397f590",
+      "role": "first-native-run-before-version-fields"
+    },
+    {
+      "path": "browser-results-v2.json",
+      "bytes": 4574,
+      "sha256": "ca6caac289679fb4714eb20025dec6749665453b478f4495e53ef9db1c206233",
+      "role": "final-native-run-exact-frozen-javascript"
+    }
+  ],
+  "input_manifest_sha256": "117cdb0a97cd4408b31fedf9f4eba5928b1385f5e2a86d6ee5e55c750c286817",
+  "acceptance": {
+    "native_browser_groups": 27,
+    "passed": 27,
+    "failed": 0,
+    "skipped": 0,
+    "production_changes": false,
+    "database_migrations": [],
+    "real_http_transport": false,
+    "same_database_p2_integration": false,
+    "owner_adoption": false,
+    "authoritative_grading": false
+  },
+  "rollback": "Uninstalled candidate; discard directory. Frozen predecessors and active sources are preserved."
+}

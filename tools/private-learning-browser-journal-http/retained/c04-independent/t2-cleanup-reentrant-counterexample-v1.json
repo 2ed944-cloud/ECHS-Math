@@ -1,0 +1,83 @@
+{
+  "contract": "echs.c04.t2-cleanup-reentrant-counterexample.v1",
+  "status": "PASS",
+  "groups": 1,
+  "passed": 1,
+  "failed": 0,
+  "skipped": 0,
+  "outcomes": [
+    {
+      "name": "Frozen T2 can resolve installed after cleanup invalidates authority",
+      "status": "PASS",
+      "details": {
+        "aborts": 1,
+        "installedResult": true,
+        "errorCode": null,
+        "staleHandleRejected": true,
+        "handleCode": "owner_changed",
+        "contexts": 1,
+        "activeStatus": "inactive",
+        "wireRows": 0
+      }
+    }
+  ],
+  "source_files": [
+    {
+      "path": "source/js/owned-learning-store.mjs",
+      "bytes": 61219,
+      "sha256": "58d988cafb7c68ee7f27a7f0a61520062c10ec105ca2f76784a6d07cd6659880"
+    },
+    {
+      "path": "source/js/owned-learning-transport.mjs",
+      "bytes": 400,
+      "sha256": "0a214e92e003a1c8a0f3317ba53a502e2a9604aa5d57ba3e77ddf0c11268b860"
+    },
+    {
+      "path": "source/question-bank/js/learning-transition.mjs",
+      "bytes": 27867,
+      "sha256": "4167b49674f8dcb55d3427817b62dd81c28d5f9d46140c13bf92de55eb601b5b"
+    },
+    {
+      "path": "source/question-bank/js/practice-flow.mjs",
+      "bytes": 10918,
+      "sha256": "82be3e7149d7375427804331491d75516287b67aaccac519a442be733ef08418"
+    },
+    {
+      "path": "browser-page.mjs",
+      "bytes": 8555,
+      "sha256": "98ddfa87ecb0b0d81be25e17e32b6ad53604352a8d05ae3cb715a77372c266bf"
+    },
+    {
+      "path": "test_browser.mjs",
+      "bytes": 48509,
+      "sha256": "4267a1d612e9c5001ff13d04f8d2895604be28536c6918e2c2a1a2e7328a5270"
+    },
+    {
+      "path": "source/js/wire-binding-model.mjs",
+      "bytes": 9962,
+      "sha256": "9cbe22c6d394f3e2ad60f2d6c00715d6ffa0f33b518091ec691375829b33fef0"
+    },
+    {
+      "path": "source/js/journal/wire.mjs",
+      "bytes": 4397,
+      "sha256": "d6e1a9675d12d125454b827ae1187a55e9176408a81dfb8fe2f0397598f8407b"
+    },
+    {
+      "path": "source/js/journal/contract.mjs",
+      "bytes": 9956,
+      "sha256": "050a652f28e957aaabd7e87428b4811dbeb2ebfad80552023ebef9c931271e84"
+    },
+    {
+      "path": "source/js/journal/pending-intent.mjs",
+      "bytes": 3573,
+      "sha256": "10aa9c3ba04aa0e32483763b5b8ef17d489b6449f4b8738563254d427811f69d"
+    }
+  ],
+  "original_manifest_sha256": "817c3395b1589c74391cce55fd7dffdae9de3a28c2b1f9fd90e371428c788722",
+  "loopback_requests": 13,
+  "unexpected_requests": [],
+  "page_errors": [],
+  "chromium_version": "153.0.8010.37",
+  "node_version": "v24.19.0",
+  "scope": "Independent counterexample: frozen T2 can report installed after synchronous cleanup-abort invalidates its account authority. PASS means the known predecessor defect was reproduced; it does not mean lifecycle acceptance. Context commits under the original valid scope before cleanup; no cross-owner write or network occurred. Successor fix is required before use."
+}

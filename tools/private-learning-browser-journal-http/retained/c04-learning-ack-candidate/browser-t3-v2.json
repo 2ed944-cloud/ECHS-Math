@@ -1,0 +1,767 @@
+{
+  "contract": "echs.c04.ack-browser-tests.v1",
+  "status": "PASS",
+  "groups": 84,
+  "passed": 84,
+  "failed": 0,
+  "skipped": 0,
+  "outcomes": [
+    {
+      "name": "S01 genuine P2b compound transitions retain exact state/results and immutable grouping",
+      "status": "PASS",
+      "details": {
+        "counts": [
+          {
+            "action": "start",
+            "rows": 1,
+            "coverage": [
+              "echs_learning_sessions_v2",
+              "echs_learning_continue_v2"
+            ],
+            "wire": "unbound"
+          },
+          {
+            "action": "answer",
+            "rows": 4,
+            "coverage": [
+              "echs_learning_events_v2",
+              "echs_learning_mastery_v2",
+              "echs_learning_reviews_v2",
+              "echs_learning_sessions_v2",
+              "echs_learning_continue_v2",
+              "echs_learning_achievements_v2",
+              "echs_learning_streak_v2"
+            ],
+            "wire": "unbound"
+          },
+          {
+            "action": "checkpoint",
+            "rows": 1,
+            "coverage": [
+              "echs_learning_sessions_v2",
+              "echs_learning_continue_v2"
+            ],
+            "wire": "unbound"
+          },
+          {
+            "action": "answer",
+            "rows": 4,
+            "coverage": [
+              "echs_learning_events_v2",
+              "echs_learning_mastery_v2",
+              "echs_learning_reviews_v2",
+              "echs_learning_sessions_v2",
+              "echs_learning_continue_v2"
+            ],
+            "wire": "unbound"
+          },
+          {
+            "action": "finish",
+            "rows": 1,
+            "coverage": [
+              "echs_learning_sessions_v2",
+              "echs_learning_continue_v2"
+            ],
+            "wire": "unbound"
+          },
+          {
+            "action": "start",
+            "rows": 1,
+            "coverage": [
+              "echs_learning_sessions_v2",
+              "echs_learning_continue_v2"
+            ],
+            "wire": "unbound"
+          },
+          {
+            "action": "discard",
+            "rows": 0,
+            "coverage": [
+              "echs_learning_continue_v2"
+            ],
+            "wire": "local-only"
+          }
+        ],
+        "revision": 8,
+        "bundles": 8,
+        "summary": {
+          "accuracy": 50,
+          "attempts": 2,
+          "bookmarkedLessons": 0,
+          "completedLessons": 0,
+          "correct": 1,
+          "due": 0,
+          "evidence_status": "provisional",
+          "grading_authoritative": false,
+          "legacy_practice_points": {
+            "certified": false,
+            "topics_at_80_percent": 0
+          },
+          "longestStreak": 1,
+          "mastered": 0,
+          "missing_evidence": [
+            "grading_provenance_missing",
+            "independent_evidence_unavailable",
+            "active_days_unavailable",
+            "confidence_unavailable",
+            "transfer_evidence_unavailable",
+            "retention_evidence_unavailable"
+          ],
+          "proficient": 0,
+          "provenance": "client_reported",
+          "status_contract": "echs.mastery-status.v1",
+          "streak": 1,
+          "topics": 1,
+          "uniqueQuestions": 2,
+          "unresolved": 1,
+          "verified_mastery": false
+        },
+        "held": {
+          "status": "held",
+          "reason": "versioned_sync_required",
+          "uploaded": 0,
+          "acknowledged": 0
+        }
+      }
+    },
+    {
+      "name": "S02 exact command retry and reload preserve one bundle and source row bytes",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "S03 coalesced review/mastery retain separate earlier source bundles",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "S04 abort after native history write rolls back all seven stores",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "S04 abort after native attempts write rolls back all seven stores",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "S04 abort after native records write rolls back all seven stores",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "S04 abort after native bundles write rolls back all seven stores",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "S04 abort after native owners write rolls back all seven stores",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "S04 abort after native states write rolls back all seven stores",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "S04 abort after native commands write rolls back all seven stores",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "S05 two tabs identical command commit once and preserve immutable receipt",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "S06 two tabs stale session compounds conflict without partial bundles",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "S07 reset records removal candidates and unbound barrier while retaining history/pending",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "S08 native lost completion recovers both local receipt and bundle after reload",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "S09 owner revocation after request success aborts source/state together",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "S10 same account with new incarnation cannot read old source bundles",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "S11 reentrant capture disposal during completion rejects known commit observation",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "S12 corrupted bundle fails read and exact command receipt lookup",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "S13 native quota refusal leaves no partial initial compound or source bundle",
+      "status": "PASS",
+      "details": {
+        "code": "storage_error",
+        "method": "actual Chromium quota override with incompressible record"
+      }
+    },
+    {
+      "name": "S14 native versionchange disposes old handle and refuses incompatible schema",
+      "status": "PASS",
+      "details": {
+        "oldCode": "version_changed",
+        "newCode": "storage_error"
+      }
+    },
+    {
+      "name": "S15 real blocked upgrade fails closed and late open cannot mutate schema",
+      "status": "PASS",
+      "details": {
+        "code": "storage_blocked",
+        "version": 1
+      }
+    },
+    {
+      "name": "S16 reentrant subscription and missed owner notifications fail closed",
+      "status": "PASS",
+      "details": {
+        "code": "owner_changed",
+        "removed": true,
+        "listeners": 0,
+        "missed": "owner_changed",
+        "same": true
+      }
+    },
+    {
+      "name": "S17 idle expiry aborts handles without a notification or read",
+      "status": "PASS",
+      "details": {
+        "aborted": true,
+        "listeners": 0
+      }
+    },
+    {
+      "name": "S18 strict durability refusal cannot partially create a command",
+      "status": "PASS",
+      "details": {
+        "code": "durability_unavailable",
+        "same": true
+      }
+    },
+    {
+      "name": "S19 locally unsupported and zero-row commands preserve original behavior and explicit coverage",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "S20 native bundle paging bounds aggregate bytes and retains every later bundle",
+      "status": "PASS",
+      "details": {
+        "total": 87,
+        "first": 74,
+        "bytes": 4147159,
+        "second": 13,
+        "next": 75,
+        "last": 74,
+        "small": 5
+      }
+    },
+    {
+      "name": "S21 bundle command linkage and owner accounting corruption reject bounded reads",
+      "status": "PASS",
+      "details": {
+        "linkage": "invalid_source_bundle",
+        "accounting": "invalid_store"
+      }
+    },
+    {
+      "name": "S22 original session window eviction creates a retained candidate, never an inferred tombstone",
+      "status": "PASS",
+      "details": {
+        "fixture": "Native stored engine seeded with the same synthetic 1000-session boundary for both exact original and successor transitions. This is test-only state setup, not an adoption API.",
+        "removed": "window-0"
+      }
+    },
+    {
+      "name": "S23 source-bundle capacity refusal aborts all command/state/history writes",
+      "status": "PASS",
+      "details": {
+        "code": "source_bundle_full",
+        "fixture": "Native metadata capacity fault injection; no full-store size claim."
+      }
+    },
+    {
+      "name": "T01 prior verified empty-owner context captures atomic origin and complete first wire body",
+      "status": "PASS",
+      "details": {
+        "records": 3,
+        "transport": "held",
+        "observation": "Synthetic injected read port with actual Response/raw V3 validation; no server executed"
+      }
+    },
+    {
+      "name": "T02 first binding survives exact retries and reload with one unresolved operation",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "T03 concurrent materializers share one persisted UUID and exact body",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "T04 old unknown-origin work cannot acquire missing heads after another-device reset",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "T05 command prepared without context stays unknown when context appears before commit",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "T06 changed prepared context rejects without changing original learning state",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "T07 local mutation during remote observation invalidates its capture ticket",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "T08 changing remote observation window and nonmissing heads cannot establish a baseline",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "T09 caller verified flags, status207, wrong owner and protocol numbers fail response validation",
+      "status": "PASS",
+      "details": {
+        "codes": [
+          "observation_response",
+          "observation_response",
+          "sync_scope",
+          "protocol-integer"
+        ]
+      }
+    },
+    {
+      "name": "T10 captured per-key absence permits first CAS0 without adopting other server values",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "T11 reset observed after captured source blocks materialization without replacing its generation",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "T12 coalesced later sources retain predecessor references and cannot advance without T3",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "T13 native future-T1 bindings write abort keeps all eleven stores atomic",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "T13 native future-T1 lineage write abort keeps all eleven stores atomic",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "T14 native T2 wire write abort leaves no partial raw binding or queue pointer",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "T14 native T2 bindings write abort leaves no partial raw binding or queue pointer",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "T14 native T2 owners write abort leaves no partial raw binding or queue pointer",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "T15 lost T2 completion is recovered as the exact known persisted binding",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "T16 immutable wire corruption and retained-capacity refusal fail closed",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "T17 corrupted local-only binding cannot skip an outbound source bundle",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "T18 observation deadline aborts its port signal and cancels a late native response body",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "T19 owner revocation cancels an unresolved observation without awaiting its response",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "T20 corrupted predecessor lineage context_id cannot acquire another origin",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "T20 corrupted predecessor lineage generation cannot acquire another origin",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "T21 full retained envelopes and replaced lineages reconcile to native owner accounting",
+      "status": "PASS",
+      "details": {
+        "totals": {
+          "context": {
+            "count": 1,
+            "bytes": 2011,
+            "recorded_count": 1,
+            "recorded_bytes": 2011
+          },
+          "binding": {
+            "count": 3,
+            "bytes": 1850,
+            "recorded_count": 3,
+            "recorded_bytes": 1850
+          },
+          "lineage": {
+            "count": 4,
+            "bytes": 1773,
+            "recorded_count": 4,
+            "recorded_bytes": 1773
+          },
+          "wire": {
+            "count": 1,
+            "bytes": 4591,
+            "recorded_count": 1,
+            "recorded_bytes": 4591
+          }
+        },
+        "raw": 1560,
+        "pendingRaw": true
+      }
+    },
+    {
+      "name": "T22 binding retained metadata capacity aborts the whole future-T1 compound",
+      "status": "PASS",
+      "details": {
+        "fixture": "Synthetic native owner-counter capacity fault; physical quota is covered separately by S13."
+      }
+    },
+    {
+      "name": "T22 lineage retained metadata capacity aborts the whole future-T1 compound",
+      "status": "PASS",
+      "details": {
+        "fixture": "Synthetic native owner-counter capacity fault; physical quota is covered separately by S13."
+      }
+    },
+    {
+      "name": "T23 native source rejects numeric-lexeme corruption without normalizing it",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "T23 native source rejects duplicate-revision corruption without normalizing it",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "T24 native materialization holds the entire synthetic record-limit source",
+      "status": "PASS",
+      "details": {
+        "records": 129,
+        "fixture": "Native IndexedDB synthetic complete-source/binding boundary injection. This is not an original transition producer or import path."
+      }
+    },
+    {
+      "name": "T24 native materialization holds the entire synthetic byte-limit source",
+      "status": "PASS",
+      "details": {
+        "records": 20,
+        "fixture": "Native IndexedDB synthetic complete-source/binding boundary injection. This is not an original transition producer or import path."
+      }
+    },
+    {
+      "name": "T25 pure builder preserves opaque numeric tokens and enforces 128 records and row bytes",
+      "status": "PASS",
+      "details": {
+        "fixture": "Pure injected in-memory raw tokens through actual V3 parser, not native T1 import. Native noncanonical numbers are rejected by T23."
+      }
+    },
+    {
+      "name": "A01 exact trusted apply ACK clears matching rows and retains all immutable local evidence",
+      "status": "PASS",
+      "details": {
+        "cleared": 3,
+        "fixture": "Synthetic trusted delivery Response through unchanged V3; native IndexedDB transaction, no server/SQL proof."
+      }
+    },
+    {
+      "name": "A02 local compound during delivery preserves newer exact sources and advances by predecessor receipt",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "A03 concurrent ACK transactions converge on one first raw receipt and one clear",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "A04 lost ACK completion reloads the exact committed receipt without replaying local effects",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "A05 rejected delivery evidence keeps exact pending bytes and every participating store",
+      "status": "PASS",
+      "details": [
+        {
+          "mode": "verified",
+          "pending": true,
+          "same": true
+        },
+        {
+          "mode": "207",
+          "pending": true,
+          "same": true
+        },
+        {
+          "mode": "partial",
+          "pending": true,
+          "same": true
+        },
+        {
+          "mode": "foreign",
+          "pending": true,
+          "same": true
+        },
+        {
+          "mode": "lookup",
+          "pending": true,
+          "same": true
+        },
+        {
+          "mode": "same_uuid_lookup",
+          "pending": true,
+          "same": true
+        },
+        {
+          "mode": "protocol_number",
+          "pending": true,
+          "same": true
+        },
+        {
+          "mode": "wrong_local_revision",
+          "pending": true,
+          "same": true
+        },
+        {
+          "mode": "wrong_cas",
+          "pending": true,
+          "same": true
+        },
+        {
+          "mode": "malformed",
+          "pending": true,
+          "same": true
+        }
+      ]
+    },
+    {
+      "name": "A06 delivery deadline cancels unresolved port and late body while preserving pending",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "A07 stalled response body cancels before ACK and retains native pending",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "A08 revocation during delivery cannot report success",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "A08 expiry during delivery cannot report success",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "A09 delivery cleanup invalidation rejects stale success after legitimate old-scope commit",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "A10 observation cleanup invalidation rejects stale installed success after legitimate commit",
+      "status": "PASS",
+      "details": {
+        "predecessor_probe": "c04-independent/t2-cleanup-reentrant-counterexample-v1.json",
+        "distinction": "Context committed under old current owner; cleanup invalidation must reject response, not erase committed evidence."
+      }
+    },
+    {
+      "name": "A11 native ACK records-delete abort rolls back receipt and every pending clear",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "A11 native ACK wire abort rolls back receipt and every pending clear",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "A11 native ACK bindings abort rolls back receipt and every pending clear",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "A11 native ACK owners abort rolls back receipt and every pending clear",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "A12 full retained first-evidence budget refuses ACK before clearing any row",
+      "status": "PASS",
+      "details": {
+        "fixture": "Native metadata capacity fault, distinct from physical browser quota."
+      }
+    },
+    {
+      "name": "A13 historical replay preserves first evidence while later reset blocks new materialization",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "A14 equal-value-change in pending data retains first ACK and fails closed",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "A14 newer-source-change in pending data retains first ACK and fails closed",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "A14 missing in pending data retains first ACK and fails closed",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "A15 immediate acknowledged witness corruption blocks reconstructed pending wire",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "A16 seventy successive compounds do not acquire a lifetime ancestor limit",
+      "status": "PASS",
+      "details": {
+        "last": {
+          "status": "acknowledged",
+          "acknowledged": true,
+          "duplicate": false,
+          "operation_id": "826a35ca-38b5-4088-a8ab-4dd36bc0227f",
+          "cleared": 3,
+          "preserved": 0,
+          "generation_blocked": false,
+          "receipt": "{\"accepted_at\":\"2026-09-12T12:00:00.000000Z\",\"accepted_generation\":0,\"action\":\"commit\",\"adoption_epoch\":1,\"contract\":\"echs.learning.server-receipt.v1\",\"durability\":\"committed\",\"grading_authoritative\":false,\"incarnation_id\":\"30000000-0000-4000-8000-000000000003\",\"operation_id\":\"826a35ca-38b5-4088-a8ab-4dd36bc0227f\",\"owner_revision\":70,\"records\":[{\"disposition\":\"appended\",\"kind\":\"attempts\",\"local_revision\":208,\"record_generation\":0,\"record_id\":\"attempt_mywpkewg_hu13wiz\",\"record_revision\":1,\"request_index\":0,\"value_sha256\":\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\"},{\"disposition\":\"put\",\"kind\":\"review\",\"local_revision\":209,\"record_generation\":0,\"record_id\":\"long\",\"record_revision\":70,\"request_index\":1,\"value_sha256\":\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\"},{\"disposition\":\"put\",\"kind\":\"mastery\",\"local_revision\":210,\"record_generation\":0,\"record_id\":\"ap-precalculus::1::1.1\",\"record_revision\":70,\"request_index\":2,\"value_sha256\":\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\"}],\"request_sha256\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"reset_to\":null}"
+        },
+        "wire": 70,
+        "history": 70,
+        "records": 0,
+        "queue": 71,
+        "accounted": true
+      }
+    },
+    {
+      "name": "A17 absent trusted delivery port cannot bind or send an arbitrary caller intent",
+      "status": "PASS",
+      "details": null
+    }
+  ],
+  "source_files": [
+    {
+      "path": "source/js/owned-learning-store.mjs",
+      "bytes": 73123,
+      "sha256": "75c64156b4a69db6b9f2b9862ec45e673cbd6dc75a090030e9c5383ef3e02773"
+    },
+    {
+      "path": "source/js/owned-learning-transport.mjs",
+      "bytes": 400,
+      "sha256": "0a214e92e003a1c8a0f3317ba53a502e2a9604aa5d57ba3e77ddf0c11268b860"
+    },
+    {
+      "path": "source/question-bank/js/learning-transition.mjs",
+      "bytes": 27867,
+      "sha256": "4167b49674f8dcb55d3427817b62dd81c28d5f9d46140c13bf92de55eb601b5b"
+    },
+    {
+      "path": "source/question-bank/js/practice-flow.mjs",
+      "bytes": 10918,
+      "sha256": "82be3e7149d7375427804331491d75516287b67aaccac519a442be733ef08418"
+    },
+    {
+      "path": "browser-page.mjs",
+      "bytes": 11196,
+      "sha256": "a169dd13c1ef2fc9575b9f19ee14ed9bb3187cb38e6c5dd1d03106b013d0eca1"
+    },
+    {
+      "path": "test_browser.mjs",
+      "bytes": 68194,
+      "sha256": "8c9733bc799ee2b2cefb47701ae89250ca9d607791e878ac5ccaa2cb9e78f6c1"
+    },
+    {
+      "path": "source/js/wire-binding-model.mjs",
+      "bytes": 12774,
+      "sha256": "41d8b60bce63d25b6d2da782ee900d0a3e139ce830ffbea2a26ef2e696d990a5"
+    },
+    {
+      "path": "source/js/journal/wire.mjs",
+      "bytes": 4397,
+      "sha256": "d6e1a9675d12d125454b827ae1187a55e9176408a81dfb8fe2f0397598f8407b"
+    },
+    {
+      "path": "source/js/journal/contract.mjs",
+      "bytes": 9956,
+      "sha256": "050a652f28e957aaabd7e87428b4811dbeb2ebfad80552023ebef9c931271e84"
+    },
+    {
+      "path": "source/js/journal/pending-intent.mjs",
+      "bytes": 3573,
+      "sha256": "10aa9c3ba04aa0e32483763b5b8ef17d489b6449f4b8738563254d427811f69d"
+    }
+  ],
+  "original_manifest_sha256": "817c3395b1589c74391cce55fd7dffdae9de3a28c2b1f9fd90e371428c788722",
+  "loopback_requests": 1209,
+  "unexpected_requests": [],
+  "page_errors": [],
+  "chromium_version": "153.0.8010.37",
+  "node_version": "v24.19.0",
+  "scope": "Native IndexedDB T3 atomic ACK with synthetic trusted delivery/observation ports; original61 predecessor cases preserved, including its labeled pure T25. No actual browser-to-server HTTP, active adoption, production authority or grading acceptance."
+}

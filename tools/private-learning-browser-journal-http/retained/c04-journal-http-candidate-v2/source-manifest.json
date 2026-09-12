@@ -1,0 +1,64 @@
+{
+  "contract": "echs.c04.journal-http-candidate.v1",
+  "status": "ISOLATED INJECTED CONTRACT VALIDATION ONLY",
+  "source_files": [
+    {
+      "path": "wire.mjs",
+      "bytes": 4397,
+      "sha256": "d6e1a9675d12d125454b827ae1187a55e9176408a81dfb8fe2f0397598f8407b"
+    },
+    {
+      "path": "contract.mjs",
+      "bytes": 9956,
+      "sha256": "050a652f28e957aaabd7e87428b4811dbeb2ebfad80552023ebef9c931271e84"
+    },
+    {
+      "path": "handler.mjs",
+      "bytes": 7107,
+      "sha256": "d404d2845d435f4faaa0b4af7b9bd0bf1b7a4713ca3dff09e9f64446db4d0945"
+    },
+    {
+      "path": "pending-intent.mjs",
+      "bytes": 3573,
+      "sha256": "10aa9c3ba04aa0e32483763b5b8ef17d489b6449f4b8738563254d427811f69d"
+    },
+    {
+      "path": "test_contract.mjs",
+      "bytes": 29191,
+      "sha256": "6f1ba48d851f85fc46b4b46fb7e64ad30d8a85cd35695b71181c9eea9563e750"
+    },
+    {
+      "path": "README.md",
+      "bytes": 8141,
+      "sha256": "a9d5c09a2c89441e5ed4f5405bfd40673988da108fde466bc9019a6836a35277"
+    },
+    {
+      "path": "input-pins.json",
+      "bytes": 1242,
+      "sha256": "98ac5dce5d3dea5334825b953388c982323061341488613b361bbddfcd65fb0a"
+    },
+    {
+      "path": "verify_candidate.py",
+      "bytes": 3813,
+      "sha256": "9738954ab0f9f913fd3ceb92983f752f02b089008efd23d229a6191bc7c10968"
+    }
+  ],
+  "evidence_files": [
+    {
+      "path": "test-results-repair-v1.json",
+      "bytes": 5273,
+      "sha256": "a65065ab31257373232b2a893d29191131cfe0dc8d2de61f0b4c4702533734d6"
+    },
+    {
+      "path": "COPY_RECEIPT.json",
+      "bytes": 1489,
+      "sha256": "d1cfefcb503653cf33e5a5fa8fa142c63b6e45f266fc1c38895d0dace98b0cc3"
+    }
+  ],
+  "database_migrations": [],
+  "production_changes": false,
+  "real_http_acceptance": false,
+  "browser_persistence_acceptance": false,
+  "supersedes_manifest_sha256": "e06e9423adbdb64c3fffde2eb0c8fd7ea6e25dc03a976df0cfd939c0bcc5bf4e",
+  "repair": "J049-ACK-01: require exact apply replay for first acknowledgement; lookup remains informational."
+}

@@ -1,0 +1,265 @@
+{
+  "contract": "echs.c04.learning-p2b-repair-manifest.v1",
+  "status": "LOCAL REPAIR ACCEPTANCE PASS; INDEPENDENT FINAL REVIEW PENDING; NOT INSTALLED",
+  "runtime_count": 22,
+  "runtime_changed_from_p2a": [
+    "source/js/institution-client.js",
+    "source/js/owned-learning-store.mjs",
+    "source/question-bank/js/bank.js",
+    "source/question-bank/js/practice-actions.mjs",
+    "source/question-bank/js/practice-flow.mjs",
+    "source/question-bank/js/practice-owner.js"
+  ],
+  "file_count": 36,
+  "files": [
+    {
+      "path": "BASELINE_MANIFEST.json",
+      "bytes": 27613,
+      "sha256": "98c2ea8f731ab62f0515153c28526b5abfaa8777cd509e07c0bffac63e98f9f4"
+    },
+    {
+      "path": "CANDIDATE_REPORT.md",
+      "bytes": 7251,
+      "sha256": "d55ff06ad2a5ca00242b73ffb9a77f38e2c4ee04b1c94f7c44f08d795e441ec4"
+    },
+    {
+      "path": "COPY_RECEIPT.json",
+      "bytes": 16009,
+      "sha256": "f9113b9c8a49bc8cd834a5496601a7176004c214b52f3316d7ba8bafab9e2194"
+    },
+    {
+      "path": "IMPLEMENTATION_PLAN.md",
+      "bytes": 2937,
+      "sha256": "66d59a3709d673aee856b363c545d9d273ff89676c7f016e85be050ec2694e5c"
+    },
+    {
+      "path": "freeze_candidate.py",
+      "bytes": 6088,
+      "sha256": "2ff2e64ef061c20ec4cfccf182c3d303e9c65b6586cba85935f408c458874d9b"
+    },
+    {
+      "path": "practice-atomic-fixture.mjs",
+      "bytes": 10256,
+      "sha256": "3287e9e81e2bdf6e689eefb86306e845d2484a12acc12d3928d6de7f318d788e"
+    },
+    {
+      "path": "practice-fixture.mjs",
+      "bytes": 9619,
+      "sha256": "254f4072032275875a3736c5ffca7cc32a4f37bef33e4bafe67feed548a555a4"
+    },
+    {
+      "path": "source/js/institution-client.js",
+      "bytes": 35019,
+      "sha256": "fb2d41425e31d6f51325ec3b254343f0c5d859d3a5ed5d6a2b80c3d76bcac973"
+    },
+    {
+      "path": "source/js/owned-learning-bootstrap.mjs",
+      "bytes": 7424,
+      "sha256": "4a1ae56792b9d8f4115f70e0f001e1f481cb3c9ab9d722d04f8605f02fda37e2"
+    },
+    {
+      "path": "source/js/owned-learning-store.mjs",
+      "bytes": 31668,
+      "sha256": "3f1863498a014f6d49c726357679b7a8d2f00354768d556739cf1102a3da3928"
+    },
+    {
+      "path": "source/js/owned-learning-transport.mjs",
+      "bytes": 400,
+      "sha256": "0a214e92e003a1c8a0f3317ba53a502e2a9604aa5d57ba3e77ddf0c11268b860"
+    },
+    {
+      "path": "source/js/platform-foundation.js",
+      "bytes": 17080,
+      "sha256": "31676263b053f3540cba51e3e02aea8f03d1ca2165b5c794f994e4a0c6e7c99f"
+    },
+    {
+      "path": "source/js/portal-access.js",
+      "bytes": 5003,
+      "sha256": "c6d65ab1f71fcfe0d9104227c4a50cf24704e276388c4add3b3ab29eda202d37"
+    },
+    {
+      "path": "source/question-bank/js/bank.js",
+      "bytes": 13873,
+      "sha256": "9093ce62bcdab02ff2fd61f451e3183068a449df22e703cdd91074462c552d8d"
+    },
+    {
+      "path": "source/question-bank/js/blackboard-assets.js",
+      "bytes": 4510,
+      "sha256": "f36e14d0a9a22d8743ed66d074c868f39b43fc54363065309fd7759963067265"
+    },
+    {
+      "path": "source/question-bank/js/learning-system.js",
+      "bytes": 1684,
+      "sha256": "3db92078beb4027734b072950f446f767ede069d83f64ed3fc8859e9039062e3"
+    },
+    {
+      "path": "source/question-bank/js/learning-transition.mjs",
+      "bytes": 27867,
+      "sha256": "4167b49674f8dcb55d3427817b62dd81c28d5f9d46140c13bf92de55eb601b5b"
+    },
+    {
+      "path": "source/question-bank/js/mapped-practice.js",
+      "bytes": 64677,
+      "sha256": "f2426d53ad146583118a8b9363d81f916341a7e0d84152f164d54d32458f691b"
+    },
+    {
+      "path": "source/question-bank/js/mapped-private-bank-practice.js",
+      "bytes": 11008,
+      "sha256": "6f8c13e02ab260f2b5760c04c87357f272da3030452b08c7883298e7abfd5b5f"
+    },
+    {
+      "path": "source/question-bank/js/practice-actions.mjs",
+      "bytes": 2876,
+      "sha256": "96ef1684d1f7a9738ad4f8c431fd2654470518ab0c48d22254f952d54d6ed7e9"
+    },
+    {
+      "path": "source/question-bank/js/practice-builder.js",
+      "bytes": 6502,
+      "sha256": "44a6fe294062f3ac0f5c9c470c46635571b0dc02af8a19e0efbfaf778e893934"
+    },
+    {
+      "path": "source/question-bank/js/practice-flow.mjs",
+      "bytes": 10918,
+      "sha256": "82be3e7149d7375427804331491d75516287b67aaccac519a442be733ef08418"
+    },
+    {
+      "path": "source/question-bank/js/practice-global-bridge.js",
+      "bytes": 1404,
+      "sha256": "05efc9c95feaf3726f0771c197292414be9e139a793123ac09f3760b856b71e3"
+    },
+    {
+      "path": "source/question-bank/js/practice-owner.js",
+      "bytes": 4537,
+      "sha256": "6e31d9f8f1eea92ba5003c2dd31c11b9f74fded3b8f0d8195c18efa0f7410035"
+    },
+    {
+      "path": "source/question-bank/js/practice-recovery-ui.js",
+      "bytes": 7599,
+      "sha256": "750a066859845fba7a80888b50ff24d95f26d2515a11ec4c012422759304220a"
+    },
+    {
+      "path": "source/question-bank/js/practice-single-bank.js",
+      "bytes": 11760,
+      "sha256": "8326898507a43c9fe3582311eea9fb11a18db9033748000f545fe4fd735c73d5"
+    },
+    {
+      "path": "source/question-bank/js/private-bank-assets.js",
+      "bytes": 3634,
+      "sha256": "a38097c3051b2f3f77d7319971e6167193c71d348ff6c6aaefefdf667979aebf"
+    },
+    {
+      "path": "source/question-bank/js/sync-adapter.js",
+      "bytes": 2097,
+      "sha256": "d99342e15963753c197f40a949b38a8c9a7733f4475415d0494f6eef51584e07"
+    },
+    {
+      "path": "source/question-bank/practice.html",
+      "bytes": 14983,
+      "sha256": "06c4920c00da32eb35e157c7a4c4e7450cc6841857186e7dfe0a50c01e8fb4b8"
+    },
+    {
+      "path": "test-baseline-regressions.mjs",
+      "bytes": 1876,
+      "sha256": "216d81b99e24f6f871935d96fe16c0616eeaf8cb6fb55f6ea8c5d9bb4393f3e6"
+    },
+    {
+      "path": "test-client-compatibility.mjs",
+      "bytes": 3966,
+      "sha256": "10fd3c821a6b2befa1b7d511673216023d36b409647545b6ea174978706ffe9e"
+    },
+    {
+      "path": "test-practice-actions.mjs",
+      "bytes": 9371,
+      "sha256": "2f211579b7c2a085db28a9a5c172da795bdd772c0f2ba1ed37f9ef6d0ab069b4"
+    },
+    {
+      "path": "test-practice-atomic.mjs",
+      "bytes": 14358,
+      "sha256": "1fa0deadfc915f241eaef3081a42d86107cb712ac617430a5828d5ed79d17ce2"
+    },
+    {
+      "path": "test-practice-browser.mjs",
+      "bytes": 30706,
+      "sha256": "e746560646e0e954c849f2a60d5f380cc2b5a902ea7cef1b00c7239b0401e931"
+    },
+    {
+      "path": "test-practice-flow.mjs",
+      "bytes": 14156,
+      "sha256": "720ba9f479bd487e0d0499c93a0dc7443de0fa694673a891139d8c594bcbdb09"
+    },
+    {
+      "path": "vendor/jszip-3.10.1.min.js",
+      "bytes": 97630,
+      "sha256": "acc7e41455a80765b5fd9c7ee1b8078a6d160bbbca455aeae854de65c947d59e"
+    }
+  ],
+  "evidence": [
+    {
+      "path": "flow-repair-v2.json",
+      "bytes": 1928,
+      "sha256": "8c295b3409290ebb4c42e57df04d5e58a6ea9b059cdced5a4dfb21c8f0785f2d"
+    },
+    {
+      "path": "actions-repair-v1.json",
+      "bytes": 2033,
+      "sha256": "18be3b67f6ea459151df9d8c9ba3194e2b3a7e75d9e8c6ac50f4fd0e1b3b8929"
+    },
+    {
+      "path": "atomic-repair-v2.json",
+      "bytes": 3415,
+      "sha256": "90cdea84e1cfae35e6a08eb968daab87d23d4407c27419b3f58aeaaafb8597ec"
+    },
+    {
+      "path": "page-repair-v4.json",
+      "bytes": 28539,
+      "sha256": "57fd4d19cc4aeda72d39462c33e9a24b8f05de9331963db99e32c079114e0def"
+    },
+    {
+      "path": "baseline-repair-v1.json",
+      "bytes": 2222,
+      "sha256": "f84bf4ed66c9e2a2c31a31830e1254ce6e70ee76d95005ca7c8ec2b8d668e3f1"
+    },
+    {
+      "path": "client-repair-v2.json",
+      "bytes": 9830,
+      "sha256": "1c474aced6b2bca146f394c3a983b2be432652dc10e8e537f95e2ce3be91a3c3"
+    },
+    {
+      "path": "visual-review.json",
+      "bytes": 1067,
+      "sha256": "063a19daba51492dd1cfa3b5ca978a409c663161fd94ce116d64b09b89f33fdc"
+    },
+    {
+      "path": "page-repair-v4-page-desktop-result.png",
+      "bytes": 90716,
+      "sha256": "316cdbf2691ea125dec36c1703eadefe0873b57e9fc7c376d1f58f25ef5fe1a8"
+    },
+    {
+      "path": "page-repair-v4-page-mobile-question.png",
+      "bytes": 94102,
+      "sha256": "9b82546eafc0427e1ed03436d7322c4765f22cc18f7961e90fcdcb04e49bfe9c"
+    }
+  ],
+  "p2a_manifest_sha256": "2a912a9f0d4cf75f445e0bf262aed75d7757e0a47e1301d88f4edde9be7ddc67",
+  "copy_receipt_sha256": "f9113b9c8a49bc8cd834a5496601a7176004c214b52f3316d7ba8bafab9e2194",
+  "baseline_manifest_sha256": "98c2ea8f731ab62f0515153c28526b5abfaa8777cd509e07c0bffac63e98f9f4",
+  "baseline_repository_inputs": 44,
+  "baseline_p1_files": 5,
+  "native_page_groups": 24,
+  "native_atomic_groups": 9,
+  "flow_groups": 9,
+  "flow_comparisons": 65,
+  "action_groups": 12,
+  "legacy_client_suites": 3,
+  "authority_groups": 28,
+  "original_baseline_suites": 4,
+  "production_calls": 0,
+  "active_source_edits": 0,
+  "raw_storage_adoption": false,
+  "remote_upload": false,
+  "limits": [
+    "Student-only local repair; this is not the broader role/entry P2b adoption.",
+    "Real HTTP/IndexedDB only on synthetic loopback fixtures. The overlap test delays native completion notification explicitly; no timing-frequency claim.",
+    "Server CAS, production adoption and all legacy producer/reader, offline and hosted revocation boundaries remain pending."
+  ]
+}
