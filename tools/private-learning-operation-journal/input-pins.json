@@ -1,8 +1,8 @@
 {
-  "contract": "echs.c04.operation-journal-inputs.v2",
-  "status": "EXACT POST-PR373 BASE PINNED",
-  "base_sha": "318b65a92316b2b4377b775415bf061e8599601c",
-  "base_tree": "a8954b5981cb232a288622424f233f59bfa9432f",
+  "contract": "echs.c04.operation-journal-inputs.v3",
+  "status": "VERSION MATRIX INPUTS PINNED",
+  "base_sha": "f6ba511d95cd7e7f9f581f2267e34173da62c994",
+  "base_tree": "def57c0d11e27876c51fb964a4b05388b5d97556",
   "files": [
     {
       "path": "tools/private-learning-owner-fence/owner-fence.sql",
@@ -12,8 +12,8 @@
     },
     {
       "path": "tools/private-learning-owner-fence/contract.py",
-      "bytes": 8657,
-      "sha256": "d2b9e5deb0ab99f57695e87a72106f5b0948c895b5080c9ab390b2aa05d8fe08",
+      "bytes": 10728,
+      "sha256": "698dfdd07002e939ace1dce48063f9cafb8894d4a060ccbaaaab25dac531c25a",
       "kind": "owner_fence"
     },
     {
@@ -30,8 +30,8 @@
     },
     {
       "path": "tools/private-learning-owner-fence/input-pins.json",
-      "bytes": 7011,
-      "sha256": "9b2a353d4ce76fa00498f0e3054ecab874e3a696fa3fbee6119096762d2b6cd3",
+      "bytes": 6833,
+      "sha256": "349fef542ea6f7d0d19154c1c8b6842ceda21df97dc09cef2386e0fb3af6bd4c",
       "kind": "owner_fence"
     },
     {
@@ -54,8 +54,8 @@
     },
     {
       "path": "tools/private-learning-owner-fence/checkout.py",
-      "bytes": 3354,
-      "sha256": "b88b04514c084fe4fdb5723c7abcc00fa32d25d99989beb15eb1204573e7ca87",
+      "bytes": 2598,
+      "sha256": "ae08467c5071418a256680d677c27288dadd5abbe17bfd802950abdf454aa1c6",
       "kind": "owner_fence"
     },
     {
@@ -66,8 +66,8 @@
     },
     {
       "path": "tools/private-learning-owner-fence/test_actions.py",
-      "bytes": 9216,
-      "sha256": "768ca0299d6a2024e5c4cb84d37f6e3746c44caaf5e1957494ef24ca73860d9e",
+      "bytes": 10816,
+      "sha256": "5e6c01986dff6aca084156ea295dbc96fa53a722f2ae5b604b45a5b06b27fd94",
       "kind": "owner_fence"
     },
     {
@@ -258,14 +258,14 @@
     },
     {
       "path": "tools/test_membership_authorization_database.py",
-      "bytes": 22909,
-      "sha256": "ff66dcd24ad843b214e942db6521938e4652c086b11d1a19a278d7deb27644e9",
+      "bytes": 23071,
+      "sha256": "a37114e985ffbb61739d9fba6df1b7accbe65b94531e8c2c24db46b9a7054ca3",
       "kind": "existing"
     },
     {
       "path": "tools/test_private_snapshot_database.py",
-      "bytes": 42846,
-      "sha256": "521ea6aa6f3415c1527469f35eef52454d9c6d21bb663a900f4e4466aae53618",
+      "bytes": 43032,
+      "sha256": "4ad7c785d7b7478580cd89334458187dcc5d315134022bcabf00457481c6ca4b",
       "kind": "existing"
     },
     {
@@ -275,8 +275,8 @@
       "kind": "existing"
     }
   ],
-  "reviewed_checks_sha256": "3ed2b46e791ea79d94fd4e186acec3afa8075b6967ae2b9bae5414ce2a1b3537",
+  "reviewed_checks_sha256": "3438fafa4e329ad4444e6d23166f840bb83c7bd0bb64b399d212fc2e78909645",
   "original_migrations": 27,
-  "unchanged_owner_fence_sources": 12,
-  "production_calls": 0
+  "production_calls": 0,
+  "owner_fence_sources": 12
 }

@@ -1,5 +1,5 @@
 """Offline adversarial tests. Synthetic success fixtures never prove SQL execution."""
-import copy,hashlib,io,json,os,subprocess,sys,tempfile,unittest
+import ast,copy,hashlib,io,json,os,subprocess,sys,tempfile,types,unittest
 from pathlib import Path
 from unittest.mock import patch
 import contract
@@ -34,19 +34,24 @@ EXPECTED_LABELS=(
  'test_24_exact_sql_text_preservation',
  'test_25_workflow_closed_execution_contract',
  'test_26_frozen_sql_fixture_and_case_mapping',
+ 'test_27_each_configured_major_is_bound_to_all_reports',
+ 'test_28_actual_event_parent_tree_diff_and_source_binding',
+ 'test_29_setup_only_versions_and_default_preflight',
+ 'test_30_real_git_advanced_base_and_nonancestor',
 )
 
 def raw(value):return (json.dumps(value,indent=2)+'\n').encode('utf-8')
-def check_checkout(value):contract.checkout_sources(value,verify_git=False)
+def check_checkout(value,expected_major=15):contract.checkout_sources(value,verify_git=False,expected_major=expected_major)
 
-def fixtures():
+def fixtures(major=15):
     pins,migrations=contract.sources();owned=contract.snapshot();reference=contract.reviewed()
     rows=[{'file':r['path'].split('/')[-1],'sha256':r['sha256']} for r in migrations]
     checkout={'contract':'echs.c04.operation-journal-checkout.v1','status':'EXACT JOURNAL SOURCE CHECKOUT VERIFIED',
         'event':'pull_request','tested_sha':'a'*40,'tested_tree':'b'*40,'parents':[pins['base_sha'],'c'*40],
         'base_sha':pins['base_sha'],'base_tree':pins['base_tree'],'pr_head_sha':'c'*40,'pr_number':999999,
         'owned_paths':list(contract.OWN_PATHS),'source_files':[],'input_pins_sha256':contract.INPUT_SHA,
-        'reviewed_checks_sha256':contract.REVIEWED_SHA,'postgres_image':{'configured':'postgres:15','image_id':'sha256:'+'d'*64,'repo_digests':['postgres@sha256:'+'e'*64]},
+        'source_baseline':{'sha':pins['base_sha'],'tree':pins['base_tree']},'changed_paths':list(contract.OWN_PATHS),'postgres_required':major,
+        'reviewed_checks_sha256':contract.REVIEWED_SHA,'postgres_image':{'configured':'postgres:'+str(major),'image_id':'sha256:'+'d'*64,'repo_digests':['postgres@sha256:'+'e'*64]},
         'sql_location':'tools/private-learning-operation-journal/operation-journal.sql','production_migration':False,'production_calls':0}
     for name in sorted(set(contract.OWN_PATHS)|{r['path'] for r in pins['files']}):
         data=(contract.REPO/name).read_bytes()
@@ -57,11 +62,11 @@ def fixtures():
         checks=contract.local_labels(),check_count=14,groups_run=14,skipped=[],failures=0,errors=0)
     actions=dict(common,contract='echs.c04.journal-actions-guards.v1',status='LOCAL JOURNAL ACTIONS GUARDS PASS; POSTGRESQL NOT EXECUTED',
         checks=list(EXPECTED_LABELS),check_count=len(EXPECTED_LABELS))
-    member={'contract':'echs.membership-database-tests.v1','status':'PASS','production_calls':0,'postgres_required':15,
-        'migration_count':26,'migrations':rows[:-1],'checks':reference['checks']['membership-baseline.json'],
-        'postgres_version':'15.19 (synthetic offline fixture)','limits':assemble.MEMBER_LIMITS}
-    archive={'contract':'echs.private-snapshot-database-test.v1','status':'PASS','production_calls':False,'postgres_required':15,
-        'migration_count':27,'migrations':rows,'checks':reference['checks']['archive-with-fence-and-journal.json'],
+    member={'contract':'echs.membership-database-tests.v1','status':'PASS','production_calls':0,'postgres_required':major,
+        'migration_count':26,'migrations':rows[:-1],'checks':assemble.baseline_labels(reference,'membership-baseline.json',major),
+        'postgres_version':str(major)+'.6 (synthetic offline fixture)','limits':assemble.member_limits(major)}
+    archive={'contract':'echs.private-snapshot-database-test.v1','status':'PASS','production_calls':False,'postgres_required':major,
+        'migration_count':27,'migrations':rows,'checks':assemble.baseline_labels(reference,'archive-with-fence-and-journal.json',major),
         'postgres_version':member['postgres_version'],'limits':assemble.ARCHIVE_LIMITS,'connection_isolation_vectors':16,'external_network':False}
     accepted={'contract':'echs.c04.operation-journal-acceptance.v1','status':'ACTUAL POSTGRESQL JOURNAL PASS; NO ACTIVE API OR ADOPTION',
         'source_files':owned,'migrations':rows,'checks':contract.planned_labels(),'fence_checks':reference['checks']['fence'],
@@ -72,7 +77,7 @@ def fixtures():
             'unchanged_fence_sha256':next(r['sha256'] for r in pins['files'] if r['path']=='tools/private-learning-owner-fence/owner-fence.sql'),
             'journal_sha256':owned['operation-journal.sql']['sha256'],'existing_public_rows_preserved':True,
             'existing_function_acl_rls_triggers_preserved':True,'row_representation':'postgres-jsonb-text-length-prefixed-v1','initial_routes':0,'initial_journal_owners':0},
-        'postgres_version':member['postgres_version'],'journal_check_count':48,'fence_check_count':123,
+        'postgres_required':major,'postgres_version':member['postgres_version'],'journal_check_count':48,'fence_check_count':123,
         'details':{'executed_case_ids':[x.split()[0] for x in contract.planned_labels()],'deferred_case_ids':['J049'],
             'deferred_reason':'HTTP status/body/receipt and browser acknowledgement acceptance need the later transport; SQL does not claim those tests.',
             'network_scope':'guarded disposable PostgreSQL connections only; no production or Storage calls'},
@@ -88,9 +93,9 @@ class Guards(unittest.TestCase):
     def reject(self,fn):
         with self.assertRaises((AssertionError,KeyError,ValueError,TypeError,FileNotFoundError)):fn()
 
-    def validate(self,parsed=None):
+    def validate(self,parsed=None,major=15):
         values=self.parsed if parsed is None else parsed
-        return assemble.validate(values,{name:raw(value) for name,value in values.items()},check_checkout)
+        return assemble.validate(values,{name:raw(value) for name,value in values.items()},check_checkout,major)
 
     def mutate(self,fn):
         value=copy.deepcopy(self.parsed);fn(value);self.reject(lambda:self.validate(value))
@@ -321,18 +326,20 @@ class Guards(unittest.TestCase):
     def test_25_workflow_closed_execution_contract(self):
         import fnmatch,yaml
         text=(contract.REPO/contract.WORKFLOW).read_text();workflow=yaml.load(text,Loader=yaml.BaseLoader)
-        self.assertEqual(workflow['permissions'],{'contents':'read'});self.assertEqual(set(workflow['jobs']),{'postgres15'})
-        job=workflow['jobs']['postgres15'];self.assertEqual(job['runs-on'],'ubuntu-latest');self.assertEqual(job['defaults']['run']['shell'],'bash')
+        self.assertEqual(workflow['permissions'],{'contents':'read'});self.assertEqual(set(workflow['jobs']),{'postgres'})
+        job=workflow['jobs']['postgres'];self.assertEqual(job['strategy'],{'fail-fast':'false','max-parallel':'2','matrix':{'postgres_major':['15','17']}});self.assertEqual(job['runs-on'],'ubuntu-latest');self.assertEqual(job['defaults']['run']['shell'],'bash')
         self.assertLessEqual(int(job['timeout-minutes']),30);self.assertEqual(set(job['services']),{'postgres'})
-        service=job['services']['postgres'];self.assertEqual(service['image'],'postgres:15');self.assertEqual(service['ports'],['5432:5432'])
+        service=job['services']['postgres'];self.assertEqual(service['image'],'postgres:${{ matrix.postgres_major }}');self.assertEqual(service['ports'],['5432:5432'])
         self.assertEqual(service['env']['POSTGRES_DB'],'echs_membership_test_journal_ci')
         self.assertNotIn('secrets.',text);self.assertNotIn('continue-on-error',text);self.assertNotIn('supabase db',text)
         steps=job['steps'];self.assertEqual(len(steps),9)
         self.assertEqual(steps[0]['with'],{'fetch-depth':'0','persist-credentials':'false'})
-        self.assertEqual(steps[2]['run'],'python tools/private-learning-operation-journal/checkout.py')
+        self.assertEqual(steps[2]['run'],'python tools/private-learning-operation-journal/checkout.py --postgres-major ${{ matrix.postgres_major }}')
         self.assertEqual(steps[3]['run'],'python -m pip install pglast==7.7 PyYAML==6.0.2')
         self.assertEqual(steps[4]['run'].splitlines(),['python tools/private-learning-operation-journal/test_local.py','python tools/private-learning-operation-journal/test_actions.py'])
         self.assertIn('psycopg[binary]==3.2.9',steps[5]['run']);self.assertIn('--execute --checkout-report tools/private-learning-operation-journal/results/checkout.json',steps[6]['run'])
+        self.assertIn('--postgres-major ${{ matrix.postgres_major }}',steps[6]['run']);self.assertIn('--postgres-major ${{ matrix.postgres_major }}',steps[7]['run'])
+        self.assertEqual(steps[8]['with']['name'],'private-learning-operation-journal-sql-pg${{ matrix.postgres_major }}');self.assertEqual(steps[8]['with']['path'],'${{ runner.temp }}/private-learning-operation-journal-evidence-pg${{ matrix.postgres_major }}')
         self.assertEqual(steps[7]['if'],'always()');self.assertEqual(steps[8]['if'],'always()')
         self.assertEqual(steps[8]['uses'],'actions/upload-artifact@v4');self.assertEqual(steps[8]['with']['if-no-files-found'],'error')
         patterns=workflow['on']['pull_request']['paths']
@@ -350,9 +357,176 @@ class Guards(unittest.TestCase):
         self.assertIs(repair['fixture_unchanged'],True);self.assertIs(repair['first_ci']['accepted'],False)
         for name in ('operation-journal.sql','test_journal.py'):
             original=next(r for r in reference['frozen_candidate_files'] if r['path']==name)
-            expected=repair['repaired_sql'] if name=='operation-journal.sql' else original
+            expected=repair['repaired_sql'] if name=='operation-journal.sql' else next(x for x in reference['version_matrix']['setup_changes'] if x['path']=='tools/private-learning-operation-journal/test_journal.py')
             if name=='operation-journal.sql':self.assertEqual(repair['original_sql'],{key:original[key] for key in ('bytes','sha256')})
-            self.assertEqual(contract.digest((contract.HERE/name).read_bytes()),expected['sha256'])
+            before=contract.before_domain_repair('tools/private-learning-operation-journal/'+name,(contract.HERE/name).read_bytes())
+            self.assertEqual(contract.digest(before),expected['sha256'])
+        conflict=reference['domain_conflict_repair']
+        self.assertEqual((conflict['sql_raise_replacements'],conflict['fixture_expected_code_replacements'],conflict['journal_labels_unchanged']),(5,12,48))
+        sql=(contract.HERE/'operation-journal.sql').read_bytes();fixture=(contract.HERE/'test_journal.py').read_bytes()
+        self.assertEqual(sql.count(b"errcode='PT409'"),5);self.assertNotIn(b"errcode='40001'",sql)
+        self.assertEqual(fixture.count(b"'PT409'"),12);self.assertNotIn(b"'40001'",fixture)
+
+
+    def test_27_each_configured_major_is_bound_to_all_reports(self):
+        for major in (15,17):
+            value=fixtures(major);self.validate(value,major)
+            wrong=17 if major==15 else 15
+            self.reject(lambda:self.validate(value,wrong))
+            for name in ('checkout.json','membership-baseline.json','archive-with-fence-and-journal.json','acceptance.json'):
+                bad=copy.deepcopy(value);bad[name]['postgres_required']=wrong
+                self.reject(lambda:self.validate(bad,major))
+            for name in ('membership-baseline.json','archive-with-fence-and-journal.json','acceptance.json'):
+                bad=copy.deepcopy(value);bad[name]['postgres_version']=str(wrong)+'.6'
+                self.reject(lambda:self.validate(bad,major))
+            bad=copy.deepcopy(value);bad['checkout.json']['postgres_image']['configured']='postgres:'+str(wrong)
+            self.reject(lambda:check_checkout(bad['checkout.json'],major))
+            with tempfile.TemporaryDirectory() as folder:
+                saved=self.parsed;self.parsed=value
+                try:
+                    results,target,_=self.tree(Path(folder));index=assemble.assemble(results,target,check_checkout,major)
+                finally:self.parsed=saved
+                self.assertIs(index['complete'],True);self.assertEqual(index['postgres_required'],major)
+                self.assertEqual(index['postgres_version'],str(major)+'.6 (synthetic offline fixture)')
+                self.assertEqual(index['postgres_image']['configured'],'postgres:'+str(major))
+                self.assertEqual(index['actual_counts']['total'],448)
+
+    def test_28_actual_event_parent_tree_diff_and_source_binding(self):
+        pins,_=contract.sources()
+        for major in (15,17):
+            value=fixtures(major)['checkout.json'];value.update(base_sha='1'*40,base_tree='2'*40,parents=['1'*40,'c'*40],changed_paths=['docs/reviewed-dependency-change.md'])
+            objects={row['path']:row['git_blob_sha'] for row in value['source_files']}
+            def git(*args):
+                if args==('rev-parse','HEAD'):return 'a'*40
+                if args==('rev-parse','HEAD^{tree}'):return 'b'*40
+                if args==('rev-parse',pins['base_sha']+'^{tree}'):return pins['base_tree']
+                if args==('rev-parse','1'*40+'^{tree}'):return '2'*40
+                if args==('rev-parse','c'*40):return 'c'*40
+                if args==('merge-base',pins['base_sha'],'a'*40):return pins['base_sha']
+                if args==('rev-list','--parents','-n','1','HEAD'):return ' '.join(['a'*40,'1'*40,'c'*40])
+                if args==('diff','--name-only','1'*40,'a'*40):return 'docs/reviewed-dependency-change.md'
+                if len(args)==2 and args[0]=='rev-parse' and args[1].startswith('a'*40+':'):return objects[args[1][41:]]
+                raise AssertionError('Unexpected synthetic Git query')
+            with patch.object(contract,'git',git):
+                contract.checkout_sources(value,expected_major=major)
+                for key,changed in [('parents',['1'*40,'e'*40]),('changed_paths',['docs/different.md']),('base_tree','e'*40),('source_baseline',{'sha':'1'*40,'tree':'2'*40})]:
+                    bad=copy.deepcopy(value);bad[key]=changed
+                    self.reject(lambda:contract.checkout_sources(bad,expected_major=major))
+                bad=copy.deepcopy(value);bad['source_files'][0]['git_blob_sha']='0'*40
+                self.reject(lambda:contract.checkout_sources(bad,expected_major=major))
+
+    def test_29_setup_only_versions_and_default_preflight(self):
+        reference=contract.reviewed();matrix=reference['version_matrix']
+        self.assertEqual(matrix['supported_majors'],[15,17]);self.assertEqual(matrix['default_major'],15)
+        self.assertEqual(len(matrix['setup_changes']),3)
+        for change in matrix['setup_changes']:
+            data=contract.before_domain_repair(change['path'],(contract.REPO/change['path']).read_bytes())
+            self.assertEqual(contract.digest(data),change['sha256'])
+            for edit in reversed(change['replacements']):
+                before=edit['before'].encode();after=edit['after'].encode()
+                self.assertEqual(data.count(after),1);data=data.replace(after,before)
+            self.assertEqual(contract.digest(data),change['before_sha256'])
+        for major in (15,17):
+            done=subprocess.run([sys.executable,'-B',str(contract.HERE/'run_integration.py'),'--postgres-major',str(major)],capture_output=True,text=True,timeout=30)
+            self.assertEqual(done.returncode,0,done.stderr);report=json.loads(done.stdout)
+            self.assertEqual(report['postgres_required'],major);self.assertIs(report['database_executed'],False)
+        for invalid in ('16','latest','15.0'):
+            done=subprocess.run([sys.executable,'-B',str(contract.HERE/'run_integration.py'),'--postgres-major',invalid],capture_output=True,text=True,timeout=10)
+            self.assertEqual(done.returncode,2)
+        # Execute the actual injection class with a fake driver. This exercises
+        # the closure lookup that source-only/default preflight cannot reach.
+        parsed=ast.parse((contract.HERE/'run_integration.py').read_text(encoding='utf-8'))
+        classes=[node for node in ast.walk(parsed) if isinstance(node,ast.ClassDef) and node.name=='CandidateConnection']
+        self.assertEqual(len(classes),1);current=classes[0]
+        previous=copy.deepcopy(current);method=next(node for node in previous.body if isinstance(node,ast.FunctionDef) and node.name=='execute')
+        self.assertEqual(method.args.vararg.arg,'params');method.args.vararg.arg='args'
+        forwarded=[node for node in ast.walk(method) if isinstance(node,ast.Name) and node.id=='params']
+        self.assertEqual(len(forwarded),1);forwarded[0].id='args'
+        self.assertEqual(contract.digest(ast.dump(previous,include_attributes=False).encode()),'b28ec8507a5b8d732190fa0277c96a5f9f2ccdd5998fef1321933b5cb74887b7')
+        for major in (15,17):
+            for node,broken in ((current,False),(previous,True)):
+                calls=[];versions=[];injections=[];verified=[]
+                cursor=types.SimpleNamespace(fetchone=lambda:(0,))
+                class FakeConnection:
+                    def execute(self,query,*params,**kwargs):
+                        calls.append((query,params,kwargs));return cursor
+                bank_info={'dbname':'synthetic-injection-fixture'};address='127.0.0.1';trigger='synthetic final migration'
+                def connected(db,info,host,expected_major):
+                    self.assertIsInstance(db,FakeConnection);self.assertIs(info,bank_info)
+                    self.assertEqual(host,address);self.assertEqual(expected_major,major);versions.append(expected_major)
+                namespace={'psycopg':types.SimpleNamespace(Connection=FakeConnection),'args':types.SimpleNamespace(postgres_major=major),
+                    'trigger':trigger,'injections':injections,'verified':lambda:verified.append(True),'connected':connected,
+                    'bank_info':bank_info,'address':address,'preservation':lambda db:{'public_rows':{},'table_acl':[],'functions':[],'triggers':[]},
+                    'fence_sql':'synthetic fence SQL','journal_sql':'synthetic journal SQL','migration_rows':[{'file':'synthetic.sql','sha256':'a'*64}],
+                    'digest':contract.digest,'expected':{'operation-journal.sql':{'sha256':'b'*64}}}
+                module=ast.fix_missing_locations(ast.Module(body=[copy.deepcopy(node)],type_ignores=[]))
+                exec(compile(module,str(contract.HERE/'run_integration.py'),'exec'),namespace)
+                connection=namespace['CandidateConnection']();binding=('synthetic bound parameter',)
+                if broken:
+                    with self.assertRaisesRegex(AttributeError,"tuple.*postgres_major"):
+                        connection.execute(trigger,binding,prepare=True)
+                    self.assertEqual(versions,[]);self.assertEqual(injections,[]);self.assertEqual(len(calls),1)
+                else:
+                    self.assertIs(connection.execute(trigger,binding,prepare=True),cursor)
+                    self.assertEqual(versions,[major]);self.assertEqual(len(injections),1)
+                    self.assertEqual(calls[1:],[('synthetic fence SQL',(),{'prepare':False}),('synthetic journal SQL',(),{'prepare':False}),
+                        ('select count(*) from private.learning_owner_routes',(),{}),('select count(*) from private.learning_journal_owners',(),{})])
+                    self.assertEqual(injections[0],{'after_migration':namespace['migration_rows'][0],
+                        'unchanged_fence_sha256':contract.digest(b'synthetic fence SQL'),'journal_sha256':'b'*64,
+                        'existing_public_rows_preserved':True,'existing_function_acl_rls_triggers_preserved':True,
+                        'row_representation':'postgres-jsonb-text-length-prefixed-v1','initial_routes':0,'initial_journal_owners':0})
+                self.assertEqual(calls[0],(trigger,(binding,),{'prepare':True}));self.assertEqual(verified,[True])
+
+    def test_30_real_git_advanced_base_and_nonancestor(self):
+        # Only the historical baseline SHA/tree are substituted for a synthetic
+        # graph. Every Git query and all 57 tested source blobs use actual Git.
+        pins,migrations=contract.sources()
+        with tempfile.TemporaryDirectory() as folder:
+            root=Path(folder)
+            env={k:v for k,v in os.environ.items() if not k.startswith(('GIT_','GITHUB_','GH_'))}
+            env.update(GIT_AUTHOR_NAME='Synthetic fixture',GIT_AUTHOR_EMAIL='fixture@example.invalid',
+                GIT_COMMITTER_NAME='Synthetic fixture',GIT_COMMITTER_EMAIL='fixture@example.invalid',
+                GIT_CONFIG_NOSYSTEM='1',GIT_CONFIG_GLOBAL=os.devnull)
+            def git(*args):
+                return subprocess.check_output(['git',*args],cwd=root,env=env,text=True,encoding='utf-8',stderr=subprocess.PIPE,timeout=15).strip()
+            git('init','--initial-branch','main');git('config','core.autocrlf','false')
+            for row in self.parsed['checkout.json']['source_files']:
+                path=root/row['path'];path.parent.mkdir(parents=True,exist_ok=True)
+                path.write_bytes((contract.REPO/row['path']).read_bytes());git('add','--',row['path'])
+            def commit(parent=None):
+                tree=git('write-tree');args=['commit-tree',tree,'-m','Synthetic reviewed Git fixture']
+                if parent:args+=['-p',parent]
+                result=git(*args);git('update-ref','HEAD',result);return result
+            initial=commit();initial_tree=git('rev-parse','HEAD^{tree}')
+            git('checkout','-b','feature')
+            (root/'feature.txt').write_bytes(b'Feature\n');git('add','--','feature.txt');head=commit(initial)
+            git('checkout','main')
+            (root/'main.txt').write_bytes(b'Advanced base\n');git('add','--','main.txt');base=commit(initial)
+            git('merge','--no-ff','--no-gpg-sign','-m','Synthetic tested merge','feature')
+            tested=git('rev-parse','HEAD');tree=git('rev-parse','HEAD^{tree}')
+            self.assertNotEqual(git('rev-parse',head+'^{tree}'),tree)
+            # A same-tree sibling is a real commit, but cannot be substituted for
+            # the reviewed historical baseline because it is not an ancestor.
+            sibling=git('commit-tree',initial_tree,'-p',initial,'-m','Synthetic nonancestor')
+            fixture_pins=copy.deepcopy(pins);fixture_pins.update(base_sha=initial,base_tree=initial_tree)
+            with patch.object(contract,'REPO',root),patch.object(contract,'git',git),patch.object(contract,'sources',lambda:(fixture_pins,migrations)):
+                for major in (15,17):
+                    value=copy.deepcopy(self.parsed['checkout.json'])
+                    value.update(tested_sha=tested,tested_tree=tree,base_sha=base,base_tree=git('rev-parse',base+'^{tree}'),
+                        pr_head_sha=head,parents=[base,head],changed_paths=['feature.txt'],postgres_required=major,
+                        source_baseline={'sha':initial,'tree':initial_tree})
+                    value['postgres_image']['configured']='postgres:'+str(major)
+                    contract.checkout_sources(value,expected_major=major)
+                    for key,changed in [('parents',[head,base]),('pr_head_sha',base),('changed_paths',['main.txt']),('tested_tree',git('rev-parse',head+'^{tree}'))]:
+                        bad=copy.deepcopy(value);bad[key]=changed
+                        self.reject(lambda:contract.checkout_sources(bad,expected_major=major))
+                    fixture_pins['base_sha']=sibling;bad=copy.deepcopy(value);bad['source_baseline']['sha']=sibling
+                    self.reject(lambda:contract.checkout_sources(bad,expected_major=major))
+                    fixture_pins['base_sha']=initial
+                    changed=root/value['source_files'][0]['path'];original=changed.read_bytes()
+                    changed.write_bytes(original+b'\n')
+                    try:self.reject(lambda:contract.checkout_sources(value,expected_major=major))
+                    finally:changed.write_bytes(original)
 
 class RecordingResult(unittest.TextTestResult):
     def __init__(self,*args,**kwargs):super().__init__(*args,**kwargs);self.successes=[]

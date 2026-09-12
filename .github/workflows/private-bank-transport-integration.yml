@@ -61,23 +61,18 @@ jobs:
           import hashlib,json,os,re,subprocess,sys
           from pathlib import Path
           root=Path.cwd();here=root/'tools/private-bank-transport';sys.path.insert(0,str(here))
-          from contract import sources,REPOSITORY_INPUTS
+          from contract import sources,REPOSITORY_INPUTS,checkout_event,checkout_sources
           manifest,_=sources()
           def git(*args):return subprocess.check_output(['git',*args],text=True).strip()
           tested=git('rev-parse','HEAD');tree=git('rev-parse','HEAD^{tree}');parents=git('rev-list','--parents','-n','1','HEAD').split()[1:]
           assert re.fullmatch('[0-9a-f]{40}',tested) and tested==os.environ['GITHUB_SHA']
-          base=manifest['base_sha'];base_tree=git('rev-parse',base+'^{tree}');assert base_tree==manifest['base_tree']
+          assert os.environ['GITHUB_REPOSITORY']=='2ed944-cloud/ECHS-Math'
+          assert git('rev-parse',manifest['base_sha']+'^{tree}')==manifest['base_tree']
+          assert git('merge-base',manifest['base_sha'],tested)==manifest['base_sha']
           own=['tools/private-bank-transport/'+p for p in ['handler.mjs','transport.mjs','contract.py','rpc-fixture.py','run-integration.py','test-contract.py','test-http-sql.mjs','source-pins.json','README.md']]+['.github/workflows/private-bank-transport-integration.yml']
           followups=['docs/codex/'+p for p in ['OWNER_STORAGE_FOUNDATION_C04_RELEASE.json','OWNER_STORAGE_FOUNDATION_C04.md','MASTER_ARCHITECTURE_AUDIT_20260909.md','MASTER_EXECUTION_PLAN.json','PRIVATE_BANK_SNAPSHOTS_C08.md']]+['tools/validate_master_execution_plan.py','tools/test_master_execution_plan.py']
-          changed=git('diff','--name-only',base,tested).splitlines();assert set(changed)==set(own)|set(followups) and len(changed)==17
-          event=json.loads(Path(os.environ['GITHUB_EVENT_PATH']).read_text());kind=os.environ['GITHUB_EVENT_NAME'];pr_head=None;pr_number=None
-          if kind=='pull_request':
-              pr=event['pull_request'];pr_head=pr['head']['sha'];pr_number=event['number']
-              assert pr['base']['sha']==base and len(parents)==2 and parents==[base,pr_head]
-              assert git('rev-parse',pr_head+'^{tree}')==tree
-          else:
-              assert kind=='workflow_dispatch'
-              subprocess.run(['git','merge-base','--is-ancestor',base,tested],check=True)
+          event=json.loads(Path(os.environ['GITHUB_EVENT_PATH']).read_text())
+          context=checkout_event(os.environ['GITHUB_EVENT_NAME'],event,tested,tree,git)
           rows=[]
           for name in sorted(set(own)|set(followups)|set(REPOSITORY_INPUTS)):
               raw=(root/name).read_bytes();blob=git('rev-parse',tested+':'+name)
@@ -88,9 +83,10 @@ jobs:
           image=subprocess.check_output(['docker','inspect','--format','{{.Image}}',container],text=True).strip();assert re.fullmatch('sha256:[0-9a-f]{64}',image)
           repo_digests=json.loads(subprocess.check_output(['docker','image','inspect','--format','{{json .RepoDigests}}',image],text=True))
           assert isinstance(repo_digests,list) and repo_digests and all(re.fullmatch('[A-Za-z0-9./_-]+@sha256:[0-9a-f]{64}',v) for v in repo_digests)
-          result={'status':'EXACT SOURCE CHECKOUT VERIFIED','event':kind,'tested_sha':tested,'tested_tree':tree,'parents':parents,'base_sha':base,'base_tree':base_tree,
-              'pr_head_sha':pr_head,'pr_number':pr_number,'owned_paths':own,'approved_followup_paths':followups,'source_files':rows,'source_pins_sha256':hashlib.sha256((here/'source-pins.json').read_bytes()).hexdigest(),
+          result={'status':'EXACT SOURCE CHECKOUT VERIFIED',**context,'source_baseline_sha':manifest['base_sha'],'source_baseline_tree':manifest['base_tree'],
+              'owned_paths':own,'approved_followup_paths':followups,'source_files':rows,'source_pins_sha256':hashlib.sha256((here/'source-pins.json').read_bytes()).hexdigest(),
               'postgres_image':{'configured':'postgres:15','image_id':image,'repo_digests':repo_digests},'prior_transport_runtime_byte_identical':True,'prior_synthetic_30_suites_rerun':False}
+          checkout_sources(result,manifest)
           (here/'results').mkdir();(here/'results/checkout.json').write_text(json.dumps(result,indent=2)+'\n')
           PY
       - name: Install the pinned isolated database driver
@@ -105,7 +101,7 @@ jobs:
         if: always()
         run: |
           python - <<'PY'
-          import hashlib,json,os,re,shutil,subprocess
+          import hashlib,json,os,re,shutil,subprocess,sys
           from pathlib import Path
           here=Path('tools/private-bank-transport');results=here/'results';target=Path(os.environ['RUNNER_TEMP'])/'private-bank-transport-evidence'
           assert not target.exists();target.mkdir()
@@ -134,6 +130,9 @@ jobs:
               return repeated==(duplicates or {})
           if complete:
               checkout=parsed['checkout.json'];acceptance=parsed['acceptance.json'];sql=parsed['transport-http-sql.json']
+              sys.path.insert(0,str(here.resolve()))
+              from contract import checkout_sources
+              checkout_sources(checkout,parsed['source-pins.json'])
               own=['tools/private-bank-transport/'+p for p in ['handler.mjs','transport.mjs','contract.py','rpc-fixture.py','run-integration.py','test-contract.py','test-http-sql.mjs','source-pins.json','README.md']]+['.github/workflows/private-bank-transport-integration.yml']
               followups=['docs/codex/'+p for p in ['OWNER_STORAGE_FOUNDATION_C04_RELEASE.json','OWNER_STORAGE_FOUNDATION_C04.md','MASTER_ARCHITECTURE_AUDIT_20260909.md','MASTER_EXECUTION_PLAN.json','PRIVATE_BANK_SNAPSHOTS_C08.md']]+['tools/validate_master_execution_plan.py','tools/test_master_execution_plan.py']
               dependencies={r['path'] for r in parsed['source-pins.json']['files'] if r['root']=='repo'}

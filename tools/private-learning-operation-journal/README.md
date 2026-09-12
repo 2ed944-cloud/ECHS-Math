@@ -10,22 +10,53 @@ The reviewed design identity and complete 49-case mapping are retained in
 `dd02c3fa2a7114f0e81afcd3b0e6de931119d9991e993f0c8c721b7117db422d`.
 The original seven-file candidate manifest remains
 `f777e16014893bff212019e919b8c6783d010b0fc44e15d365271cf4fcc7f9f0`.
-The actual 48-group journal test fixture remains byte exact. The first real
-PostgreSQL run (34548721798, artifact 10179998897) completed the 55 membership,
-222 archive, 123 owner-fence and first two journal outcomes, then failed at
-J004 because an unqualified local `receipt` name was ambiguous with a table
-column. Its failed artifact remains preserved; it did not establish acceptance.
-This successor renames only the six local references in `learning_journal_apply`
-to `result_receipt`. Qualified columns and the public receipt key stay unchanged.
-`reviewed-checks.json` retains the original file pins plus the explicit repair
-provenance and repaired SQL SHA-256 `ac3ad94dce3d89b3e32594b9fd01593a266738abb66cbb8f3c2d72ca597b075e`.
-A passing successor run is still required; the repair record is not SQL evidence.
-`input-pins.json` binds the unchanged original 27 migrations, three writers,
-three baseline fixture/test files, and all 12 released owner-fence sources.
-The exact base is commit `318b65a92316b2b4377b775415bf061e8599601c`, tree
-`a8954b5981cb232a288622424f233f59bfa9432f`. Twelve new tooling/workflow paths
-plus those 45 unchanged prerequisites form the closed 57-source checkout.
-Base/source identity is not a later test result.
+PR374 verified all 448 outcomes on PostgreSQL 15.19 in run 34651122721
+(artifact 10283697552). Its prior failed run and the narrow local-variable repair
+remain preserved. Matrix V1 retained the accepted SQL at
+`ac3ad94dce3d89b3e32594b9fd01593a266738abb66cbb8f3c2d72ca597b075e`.
+This separate V2 changes exactly five deliberate domain-conflict error-code
+literals from `40001` to `PT409`, producing SQL SHA-256
+`9ce98da90d5c141fdf184d32a00067eca1aaa800870204edd9c383cc22b1e1bf`.
+The 48-case fixture changes exactly twelve corresponding expected-code literals.
+All 48 journal labels, 123 fence labels and substantive test assertions remain.
+
+Real HTTP V3 run 34656604117 failed S05 on both majors with observed statuses
+`[200,504]` instead of `[200,409]`. The first four groups passed and cleanup
+completed; the losing request ended at the native deadline without a completed
+upstream response. Pinned PostgREST14.17 uses Hasql1.1.0.1, whose source retries
+`40001`; the observations are consistent with this mechanism. Retry counts were
+not instrumented. `PT409` expresses the intended domain conflict as HTTP409
+without treating it as a retryable database serialization failure. The separate
+`domain_conflict_repair` record binds both failed artifacts and the exact inverse
+source diff. No SQL condition, lock, statement, API privilege or test case is
+removed. Fresh actual SQL and HTTP execution are still required.
+
+The membership/archive entrypoints now take `--postgres-major 15|17`, defaulting
+to 15. The journal fixture takes an explicit `expected_major` keyword, also
+with default 15. Those setup guards compare the actual server major with the
+configured job; accepting either major globally would be insufficient. Only
+setup/report wording changes accompany these parameters. Three exact, reversible
+source-diff descriptions in `reviewed-checks.json` prove that the case bodies were
+not otherwise changed. The complete journal fixture file is therefore no longer
+byte identical to its predecessor. The later PT409 expected-code change is
+audited separately by reversing only its twelve literal replacements in memory.
+These inversions verify source provenance; the runner executes the actual pinned
+PT409 SQL bytes and the actual updated fixture without rewriting either.
+
+The matrix was motivated by one verified, read-only production metadata response:
+PostgreSQL 17.6.1.147, rather than the PostgreSQL 15.19 used in the prior proof.
+This is evidence to test compatibility, not an assumption that majors are equivalent.
+`input-pins.json` binds 27 original migrations, three writers, three baseline
+fixture/test files and 12 owner-fence sources. Its source-baseline provenance is
+commit `f6ba511d95cd7e7f9f581f2267e34173da62c994`, tree
+`def57c0d11e27876c51fb964a4b05388b5d97556`. Twelve journal tooling/workflow
+paths plus 45 pinned dependencies form the same closed 57-source checkout.
+Each run verifies that the historical source baseline is an ancestor and
+separately binds the actual PR base, merge parents, changed paths, HEAD tree,
+PR-head commit and every source Git blob. An advanced base may legitimately
+make the tested merge tree differ from the PR-head tree. A historical whole-PR diff is not used as
+an authorization boundary for later reviewed dependency changes.
+
 The owner-fence SQL remains byte exact. The only alteration to an existing SQL
 relation is an additive four-column UNIQUE constraint on the retained route,
 needed by the full tenant/account/incarnation/epoch foreign key. Its effect on
@@ -86,8 +117,10 @@ results, mastery certification, content permissions, or assessment provider stat
 
 ## Normalization, IDs and bounds
 
-Identity for retry is the accepted closed JSONB envelope's PostgreSQL 15 `::text`
-and SHA-256 of its UTF-8 bytes (`pg15-jsonb-text-v1`). It is not raw wire identity,
+The SQL retains the accepted JSONB `::text` and UTF-8 SHA-256 retry contract
+(`pg15-jsonb-text-v1`). The identifier is historical and remains unchanged.
+PostgreSQL17 execution must verify the same existing normalization vectors;
+this does not claim universal normalization equivalence across major versions. It is not raw wire identity,
 JCS, or universal JavaScript/SQL canonicalization. PostgreSQL may erase exponent
 spelling (for example `1e0` becomes `1`) before this code sees a number. Envelope
 integers are accepted only when normalized text is an unsigned decimal integer
@@ -122,26 +155,28 @@ python tools/private-learning-operation-journal/test_actions.py
 python tools/private-learning-operation-journal/run_integration.py
 ```
 
-The 14 source guards and 26 Actions guards execute offline. The default runner is
+The 14 source guards and 30 Actions guards execute offline. The default runner is
 source preflight only. Parsing SQL/PLpgSQL is not executing PostgreSQL. These tests
 record only successful test callbacks; an expected-label list is never execution
 evidence. Missing `pglast` produces a serializable skipped-test diagnostic and an
 incomplete result, not acceptance (JR1). CI requires every guard, with no skips.
 
-The isolated Actions job first binds the real Git checkout, exact base and merge
-parents, PR-head tree, all 57 source hashes/Git blobs, and running `postgres:15`
-service image ID/digest. Checkout stores no Git credentials. Only `contents:read`
+Two isolated Actions matrix jobs select PostgreSQL15 and PostgreSQL17 explicitly.
+Each binds the real Git checkout, historical baseline ancestry, actual base and merge parents, PR-head commit,
+all 57 source hashes/Git blobs, and its running `postgres:15` or `postgres:17`
+service image ID/digest. The jobs have separate databases and artifact names. Checkout stores no Git credentials. Only `contents:read`
 is granted. The disposable fixture password is local to that service; no deployed
 credential, project secret, production URL or migration command is used. The job
 installs the pinned driver and explicitly executes:
 
 ```bash
 python -m pip install 'psycopg[binary]==3.2.9'
-python tools/private-learning-operation-journal/run_integration.py --execute --checkout-report tools/private-learning-operation-journal/results/checkout.json
-python tools/private-learning-operation-journal/assemble.py
+python tools/private-learning-operation-journal/run_integration.py --postgres-major 17 --execute --checkout-report tools/private-learning-operation-journal/results/checkout.json
+python tools/private-learning-operation-journal/assemble.py --postgres-major 17
 ```
 
-Execution requires a fresh PostgreSQL 15 cluster and explicit
+Use `--postgres-major 15` for the other matrix job. Each execution requires a
+fresh cluster of the selected exact major and explicit
 `ECHS_JOURNAL_MEMBERSHIP_DSN` / `ECHS_JOURNAL_BANK_DSN` environment values.
 Both must use the same fixed loopback address and credentials. Database names must
 begin `echs_membership_test_journal_` / `echs_bank_test_journal_`. Ambient `PG*`
@@ -152,7 +187,7 @@ copied into evidence. No driver, container or network is started on import/defau
 The runner executes original membership 55, original archive 222, unchanged fence
 123 and new journal 48 groups: 448 actual SQL outcomes if the run completes. J002
 preservation executes last; J049 remains expressly deferred for future HTTP/client
-acceptance. The unchanged archive setup receives the frozen fence followed by
+acceptance. The parameterized archive setup receives the unchanged fence followed by
 this SQL immediately after byte-pinned migration 27. No SQL result is mocked or
 rewritten. Original public rows, ACL/RLS, functions and triggers are checked across
 installation. Row preservation hashes PostgreSQL `to_jsonb(t)::text` bytes with
@@ -162,16 +197,16 @@ through Python floats; scale-only and precision-only changes remain detectable
 
 `results/run-<UUID>/` retains raw local diagnostics. The always-run assembler only
 exports these eight bounded metadata JSON members to
-`$RUNNER_TEMP/private-learning-operation-journal-evidence`:
+`$RUNNER_TEMP/private-learning-operation-journal-evidence-pg15` or `-pg17`:
 
 * `checkout.json`: real checkout, service image and 57-source binding.
-* `input-pins.json`: exact base and unchanged 45-source contract.
+* `input-pins.json`: historical source-baseline provenance and current 45-source pins.
 * `local-results.json`: actual 14 offline source-guard outcomes.
-* `actions-results.json`: actual 26 offline Actions-guard outcomes.
+* `actions-results.json`: actual 30 offline Actions-guard outcomes, including an actual local Git graph with an advanced base and a rejected nonancestor baseline.
 * `acceptance.json`: actual 123 fence and 48 journal outcomes and preservation.
 * `membership-baseline.json`: original 55 actual outcomes.
 * `archive-with-fence-and-journal.json`: original 222 actual outcomes.
-* `artifact-index.json`: exact member hashes, counts and scope flags.
+* `artifact-index.json`: exact member hashes, counts, selected/actual version, image and scope flags.
 
 The assembler validates exact labels (including historical duplicate labels),
 typed flags, original migration hashes, raw report hashes and source closure.
@@ -183,7 +218,8 @@ SQL logs, row payloads, credentials or expected-only results become acceptance.
 Synthetic successful assembler fixtures exist only in temporary test directories;
 they never establish actual SQL/Actions acceptance.
 
-At preparation time actual PostgreSQL execution remains pending. A later passing
+The prior PostgreSQL15 proof remains preserved. Both new matrix jobs must complete
+all 448 outcomes independently; one cannot stand in for the other. A passing
 artifact must be independently bound to the real GitHub run/job/artifact and final
 source tree before being reported as executed. This package adds no release
 collector or deployment behavior. Tooling paths and `.github` remain excluded from
@@ -196,8 +232,9 @@ rows after usage validation.
 
 ## Gates still pending
 
-Actual PostgreSQL execution and independent race review remain pending until
-recorded separately. Current browser snapshots lack a durable sent-operation and
+Actual execution of both current matrix jobs and independent review of their
+artifacts remain pending until recorded separately. A generic PostgreSQL17 image
+is not proof of the hosted Supabase variant, extensions, configuration or resources. Current browser snapshots lack a durable sent-operation and
 server-revision bridge and cannot serve as this protocol. True HTTP status handling,
 lost-ack UI, remote reset policy, all producer/reader/bootstrap closure, baseline
 adoption, role coverage, authenticated grading, retention and production rollout
