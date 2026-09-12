@@ -1,0 +1,179 @@
+{
+  "contract": "echs.c04.current-session-journal-http-sources.v1",
+  "files": [
+    {
+      "path": ".github/workflows/private-learning-current-session-journal-http.yml",
+      "bytes": 5789,
+      "sha256": "d9cfc9907f215a5f442488dc18152023c8007c5fc801b651bcb6219df2fb1cac",
+      "git_blob_sha": "edca1a1230a6fdcad3891d5ae82f54910d8f77d1"
+    },
+    {
+      "path": "tools/private-learning-current-session-journal-http/README.md",
+      "bytes": 4403,
+      "sha256": "d8a1b0d42273ffa2201d0f3e48e75c9557eda3d21a8f99fbcacac79fb1fa92bf",
+      "git_blob_sha": "4c130be6d624c9622bdd3b8f04628e7ae068a823"
+    },
+    {
+      "path": "tools/private-learning-current-session-journal-http/current-session-browser-page.mjs",
+      "bytes": 7993,
+      "sha256": "90d21973139320d5a21566ba72a374d9d03447ecc09cede1a9a4db5cd5d01778",
+      "git_blob_sha": "1984f4c2294af130a768d0247354c3beab939aca"
+    },
+    {
+      "path": "tools/private-learning-current-session-journal-http/current-session-cases.mjs",
+      "bytes": 18918,
+      "sha256": "310d2420cc561663e260bf4cac40a79d978b72605dc26a15041c47e465d27e8f",
+      "git_blob_sha": "be691f4f0e02e9dda1b308912ffc1d30cb7dbff0"
+    },
+    {
+      "path": "tools/private-learning-current-session-journal-http/report-contract.json",
+      "bytes": 5893,
+      "sha256": "a8e7c7261a88c8136c7db62e0cca063d41679c66a579ba62b50cc6dbdf1d2693",
+      "git_blob_sha": "5fc0c43e6ffb3935950e53d048b9b967f63f3447"
+    },
+    {
+      "path": "tools/private-learning-current-session-journal-http/report-shape.json",
+      "bytes": 3761,
+      "sha256": "3a5d96265bc0da6a01992a204d0f0e21567611416612dd917b025e17ca2318da",
+      "git_blob_sha": "b3912226595664b4dd69bb0c8a0fc043a538da27"
+    },
+    {
+      "path": "tools/private-learning-current-session-journal-http/selected-source.json",
+      "bytes": 2825,
+      "sha256": "f9c3436ad28a6a2b86c51ebfa0d87e0bfdbda76119dc7fa4301880d806d59340",
+      "git_blob_sha": "8e44df92efe882b9543aca577629c028c1fbe158"
+    },
+    {
+      "path": "tools/private-learning-current-session-journal-http/selected/js/current-session-journal-bridge.mjs",
+      "bytes": 14417,
+      "sha256": "e5f39170b24d259c5a801fe950d8e1252895e806415e8c18f59f12c965ff8df8",
+      "git_blob_sha": "d835b38b8e5ce7834e10eaedb8fa17cd152089b9"
+    },
+    {
+      "path": "tools/private-learning-current-session-journal-http/selected/js/institution-client.js",
+      "bytes": 35019,
+      "sha256": "fb2d41425e31d6f51325ec3b254343f0c5d859d3a5ed5d6a2b80c3d76bcac973",
+      "git_blob_sha": "a2e7dcbc8bdc246ebf0b415e8fe7414115d7169c"
+    },
+    {
+      "path": "tools/private-learning-current-session-journal-http/selected/js/journal/contract.mjs",
+      "bytes": 9956,
+      "sha256": "050a652f28e957aaabd7e87428b4811dbeb2ebfad80552023ebef9c931271e84",
+      "git_blob_sha": "ebbbde8190f475a012165303d4dc399ed1221c7e"
+    },
+    {
+      "path": "tools/private-learning-current-session-journal-http/selected/js/journal/pending-intent.mjs",
+      "bytes": 3573,
+      "sha256": "10aa9c3ba04aa0e32483763b5b8ef17d489b6449f4b8738563254d427811f69d",
+      "git_blob_sha": "9dbdaf7a54d172554896ca820bbd91f9e29d7f74"
+    },
+    {
+      "path": "tools/private-learning-current-session-journal-http/selected/js/journal/wire.mjs",
+      "bytes": 4397,
+      "sha256": "d6e1a9675d12d125454b827ae1187a55e9176408a81dfb8fe2f0397598f8407b",
+      "git_blob_sha": "1a5c3dd764c37d46262eeb775cad230e1d18854e"
+    },
+    {
+      "path": "tools/private-learning-current-session-journal-http/selected/js/owned-learning-bootstrap.mjs",
+      "bytes": 9106,
+      "sha256": "eb7db750c8ea62f4c6c610f2a0bc9ec9558e8fcce66cfaf701aeb90d17375f96",
+      "git_blob_sha": "d0203b85dd00c4e814a0a4de33f9f830d9e7a16a"
+    },
+    {
+      "path": "tools/private-learning-current-session-journal-http/selected/js/owned-learning-store.mjs",
+      "bytes": 73123,
+      "sha256": "75c64156b4a69db6b9f2b9862ec45e673cbd6dc75a090030e9c5383ef3e02773",
+      "git_blob_sha": "76edc38e9857ba1827f2136cb6ff944b84149ae4"
+    },
+    {
+      "path": "tools/private-learning-current-session-journal-http/selected/js/owned-learning-transport.mjs",
+      "bytes": 400,
+      "sha256": "0a214e92e003a1c8a0f3317ba53a502e2a9604aa5d57ba3e77ddf0c11268b860",
+      "git_blob_sha": "a03bb80536b3d2159feb940a4a4e536c7568368e"
+    },
+    {
+      "path": "tools/private-learning-current-session-journal-http/selected/js/wire-binding-model.mjs",
+      "bytes": 12774,
+      "sha256": "41d8b60bce63d25b6d2da782ee900d0a3e139ce830ffbea2a26ef2e696d990a5",
+      "git_blob_sha": "1255a1334823acc6b55daa497926f282061f0c9e"
+    },
+    {
+      "path": "tools/private-learning-current-session-journal-http/selected/question-bank/js/learning-system.js",
+      "bytes": 1757,
+      "sha256": "69952f6ddbfed512fde53038cfe83a0ff6fcefb262699203db5290f1bdb9ec7b",
+      "git_blob_sha": "7e311018e8e339848568679e7e32ba9db8d91a43"
+    },
+    {
+      "path": "tools/private-learning-current-session-journal-http/selected/question-bank/js/learning-transition.mjs",
+      "bytes": 27867,
+      "sha256": "4167b49674f8dcb55d3427817b62dd81c28d5f9d46140c13bf92de55eb601b5b",
+      "git_blob_sha": "d6f557c18aa18e59a4b642675adae2b874600a92"
+    },
+    {
+      "path": "tools/private-learning-current-session-journal-http/selected/question-bank/js/practice-flow.mjs",
+      "bytes": 10918,
+      "sha256": "82be3e7149d7375427804331491d75516287b67aaccac519a442be733ef08418",
+      "git_blob_sha": "b34b006dcf4e5a47cc24d5b0bcef2a50172f5ec5"
+    },
+    {
+      "path": "tools/private-learning-current-session-journal-http/selected/question-bank/practice.html.source",
+      "bytes": 14983,
+      "sha256": "06c4920c00da32eb35e157c7a4c4e7450cc6841857186e7dfe0a50c01e8fb4b8",
+      "git_blob_sha": "b5e0c5a5bbedb2a5b976a426ed7c81c3fbec308f"
+    },
+    {
+      "path": "tools/private-learning-current-session-journal-http/session-control-client.mjs",
+      "bytes": 2610,
+      "sha256": "ed4f60cd9b186c2d07d9eb73164a6080eeba1cb98881f66034e6c27b09162437",
+      "git_blob_sha": "d9b379eb5331b6ff97843cee2470010e9f8faf81"
+    },
+    {
+      "path": "tools/private-learning-current-session-journal-http/session-controls.py",
+      "bytes": 9537,
+      "sha256": "bd62dd6d610b86e2b500e31313ac1bb9aced2462d55e3655d16154da099dd81a",
+      "git_blob_sha": "b12c869d1f584a2ddd2279e34b87247fdeecf9ee"
+    },
+    {
+      "path": "tools/private-learning-current-session-journal-http/session-fixture.mjs",
+      "bytes": 3312,
+      "sha256": "8ab78a9208247ae013b046b2170fbf7569f2154d0d5fed7d1c1a88f913f1dab7",
+      "git_blob_sha": "d31f7de71106132ad65c218528a0bbe840247105"
+    },
+    {
+      "path": "tools/private-learning-current-session-journal-http/session-https-bridge.mjs",
+      "bytes": 9324,
+      "sha256": "64f3a4ccacb813b3072c9fde7504939d1bbe628a213fd39edf1410cff2bc943b",
+      "git_blob_sha": "bd4b22c0d05132438350f1230e65a611e56692b2"
+    },
+    {
+      "path": "tools/private-learning-current-session-journal-http/session-run.py",
+      "bytes": 56711,
+      "sha256": "8afff087db1fbf7a1acc56267b0a6b34abc8afe0331114405e048832f08f7d15",
+      "git_blob_sha": "1d771dc472cd6b2868ea3c3d27e3cd0363998807"
+    },
+    {
+      "path": "tools/private-learning-current-session-journal-http/session_assemble.py",
+      "bytes": 25370,
+      "sha256": "236e4aae9dfb38112cb0b1447317530208d29c8795d7bbfb830fd5eda466d0ee",
+      "git_blob_sha": "372e050cab8b2e225fdb0bfb158f81e406607d0d"
+    },
+    {
+      "path": "tools/private-learning-current-session-journal-http/session_contract.py",
+      "bytes": 4528,
+      "sha256": "379f022a25b2dc95c1c5b92bd7a2a0c6e351a70ad0cb87ecf8e51d63699d955a",
+      "git_blob_sha": "0ef8f0cb0a165279cfdc214a8ce637846c132b9a"
+    },
+    {
+      "path": "tools/private-learning-current-session-journal-http/session_report_review.py",
+      "bytes": 13622,
+      "sha256": "5c2c20ccb92f67484ebdaf57029bfcb311e2635223121f522029eaf71afa3d5c",
+      "git_blob_sha": "cdc9b7fcd2898915edb934837ac4f18822ed60da"
+    },
+    {
+      "path": "tools/private-learning-current-session-journal-http/test_current_session_http.mjs",
+      "bytes": 19825,
+      "sha256": "d84fbd22cb56c132b27fe7ef7372e3319c08ff2ae85561943066bfd6f450aad5",
+      "git_blob_sha": "c062aaf14046118e6e6c8cc6eb1a62eafe422a7c"
+    }
+  ]
+}

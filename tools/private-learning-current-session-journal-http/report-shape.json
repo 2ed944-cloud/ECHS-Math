@@ -1,0 +1,23 @@
+{
+  "phase":"REPORT SHAPE CONTRACT; NO EXECUTION CLAIM",
+  "keys":["contract","status","planned_groups","checks","run_id","production_calls","active_adoption","production_auth_executed","synthetic_account_api","same_origin_fixture","native_browser_executed","real_https_executed","canonical_client_executed","journal_handler_executed","postgrest_executed","database_executed","cleanup_complete","tls","browser","cleanup","unexpected_requests","page_errors","source_files","static_routes","served_runtime_scripts","retained_html_served"],
+  "required_literals":{
+    "contract":"echs.c04.current-session-journal-http-actual.v1",
+    "status":"ACTUAL CURRENT SESSION HTTPS POSTGREST SQL PASS",
+    "production_calls":0,"active_adoption":false,"production_auth_executed":false,"synthetic_account_api":true,"same_origin_fixture":true,
+    "native_browser_executed":true,"real_https_executed":true,"canonical_client_executed":true,"journal_handler_executed":true,"postgrest_executed":true,"database_executed":true,"cleanup_complete":true,
+    "unexpected_requests":[],"page_errors":[],"static_routes":15,"served_runtime_scripts":12,"retained_html_served":false
+  },
+  "run_id":{"type":"string","pattern":"^[a-f0-9]{32}$","expected":"run_id"},
+  "planned_groups":"Exact ordered twelve labels from REPORT_CONTRACT-v1.json",
+  "checks":"Exact ordered twelve rows under REPORT_CONTRACT-v1.json group_shape and literal details",
+  "source_files":{"type":"array","length":21,"row_keys":["path","bytes","sha256"],"path":"Exact relative path under the new publication namespace, matched to expected.source_files","bytes":"Positive integer; boolean rejected; equal to external exact source row","sha256":"Lowercase64hex equal to external exact source row","ordering":"Exact equality with expected.source_files; no duplicate or additional path"},
+  "browser":{"keys":["product","revision","playwright","descriptor_revision","executable_sha256"],"expected":"Exact equality with expected.browser from independently verified actual dependency/browser evidence"},
+  "tls":{"keys":["accepted_leaf","served_der_sha256","served_spki_sha256","narrow_spki_exception","fresh_explicit_profile","unrelated_leaf_rejected","negative_application_requests","broad_tls_flags"],"literals":{"accepted_leaf":true,"narrow_spki_exception":true,"fresh_explicit_profile":true,"unrelated_leaf_rejected":true,"negative_application_requests":0,"broad_tls_flags":false},"served_der_sha256":"expected.der_sha256","served_spki_sha256":"expected.spki_sha256"},
+  "cleanup":{"keys":["contexts_closed","browser_connection_closed","control_reaped","listeners_closed","response_tasks_remaining"],"literals":{"contexts_closed":true,"browser_connection_closed":true,"control_reaped":true,"listeners_closed":true,"response_tasks_remaining":0}},
+  "external_expected_keys":["run_id","source_files","browser","der_sha256","spki_sha256"],
+  "collector_owned":"GitHub event/attempt/job/commit/tree and PostgreSQL major; source graph and source-manifest receipt; exact child argv/root/descendant/output receipt; baseline20/12 and90 reports; final service/process/network/secrets cleanup; all ZIP/member/digest binding. Do not infer these from the driver report.",
+  "parser":"UTF-8 JSON under one MiB; reject duplicate keys, non-finite numbers, non-object top level, extra keys and bool-as-integer substitutions",
+  "failure":"Full success validator rejects every failure report. Failure projection will be separate and closed; it cannot establish acceptance.",
+  "qualification":"C11 guarded_paths:5 denotes five exact selected source guard sites supported by native public/event behavior across four lifecycle stages. It does not claim all five branch bodies can be independently reached through held public APIs."
+}

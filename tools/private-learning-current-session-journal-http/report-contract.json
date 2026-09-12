@@ -1,0 +1,32 @@
+{
+  "phase": "IMPLEMENTATION CONTRACT; NO EXECUTION OR ACCEPTANCE CLAIM",
+  "driver": "tools/private-learning-current-session-journal-http/test_current_session_http.mjs",
+  "page": "tools/private-learning-current-session-journal-http/current-session-browser-page.mjs",
+  "cases": "tools/private-learning-current-session-journal-http/current-session-cases.mjs",
+  "report": "current-session-results.json",
+  "contract": "echs.c04.current-session-journal-http-actual.v1",
+  "success_status": "ACTUAL CURRENT SESSION HTTPS POSTGREST SQL PASS",
+  "failure_status": "FAIL; NO ACCEPTANCE",
+  "baseline": {"http_groups":20,"browser_groups":12,"local_groups":90,"original_cases_unchanged":true,"new_groups_counted_separately":true},
+  "group_shape": {"keys":["name","status","elapsed_ms","details"],"status":"PASS","elapsed_ms":{"integer":true,"minimum":0,"maximum":90000},"details":"Exact literal object below; no extra keys"},
+  "groups": [
+    {"name":"C01 Canonical discovery and explicit learning delivery agree with real SQL", "details":{"canonical_client":true,"empty_raw_state":true,"no_automatic_command":true,"initial_revision":0,"initial_rows":0,"composite_matches_sql":true,"sql_receipt_equal":true,"raw_forwarding_equal":true,"exact_replay":true,"delivery_effects_unchanged":true,"operations":1}},
+    {"name":"C02 Guest nonstudent and invalid canonical sessions never open a journal", "details":{"subcases":3,"journal_requests":0,"journal_databases":0,"no_adoption":true}},
+    {"name":"C03 Missing SQL owner and foreign canonical profiles cannot establish authority", "details":{"missing_owner_is_real_sql":true,"missing_owner_rows_before":0,"missing_owner_rows_after":0,"foreign_profile_subcases":2,"journal_databases":0,"apply_requests":0}},
+    {"name":"C04 Shared canonical work survives disposal but rejects an obsolete session", "details":{"shared_me_survives_disposal":true,"shared_config_survives_disposal":true,"old_session_waiter_rejected":true,"late_bridge_progress_refused":true,"journal_requests":0,"journal_databases":0}},
+    {"name":"C05 Session replacement and late state cannot restore captured handles", "details":{"same_account_new_login_fenced":true,"a_b_a_fenced":true,"cross_page_storage_fenced":true,"late_state_body_aborted":true,"late_state_store_unopened":true,"prior_store_bytes_preserved":true}},
+    {"name":"C06 Committed native response bodies cancel without ACK and retry exact bytes", "details":{"subcases":2,"sql_commit_proved":true,"prefix_written":true,"request_abort_observed":true,"late_ack_refused":true,"unchanged_stores":11,"exact_retry":true,"one_operation_each":true,"hold_cleanup_complete":true}},
+    {"name":"C07 The bridge deadline cancels its native body with caller signal still live", "details":{"direct_port":true,"caller_signal_aborted":false,"bridge_deadline_observed":true,"native_body_rejected":true,"server_abort_observed":true,"t3_deadline_attribution":false,"hold_cleanup_complete":true}},
+    {"name":"C08 Real SQL revocation expiry and demotion override stale synthetic profiles", "details":{"subcases":3,"synthetic_me_intentionally_stale":true,"canonical_profile_valid":true,"journal_denied":true,"unchanged_stores":11,"sql_unchanged_after_denial":true,"pending_preserved":true}},
+    {"name":"C09 New generation changes context while preserving immutable exact receipts", "details":{"authority_identity_unchanged":true,"new_generation_context_only":true,"first_raw_reply_unchanged":true,"receipt_unchanged":true,"old_context_materialization_blocked":true}},
+    {"name":"C10 A labeled changed-incarnation wire mutation cannot acknowledge old work", "details":{"wire_mutation_only":true,"actual_sql_incarnation_transition":false,"original_sql_reply_retained_privately":true,"acknowledged":false,"unchanged_stores":11,"exact_retry":true}},
+    {"name":"C11 All five legacy upload holds remain effective across entry lifecycle", "details":{"guarded_paths":5,"stages":4,"online_and_learning_events":true,"legacy_queue_preserved":true,"legacy_request_attempts":0,"early_html_marker":true,"client_before_classic":true}},
+    {"name":"C12 Controller disposal and foreign channel notifications cannot adopt a store", "details":{"dispose_during_native_open":true,"late_handle_refused":true,"foreign_incarnation_ignored":true,"channel_is_not_authority":true,"store_bytes_preserved":true,"no_adoption":true}}
+  ],
+  "success_required": {"native_browser_executed":true,"real_https_executed":true,"canonical_client_executed":true,"synthetic_account_api":true,"journal_handler_executed":true,"postgrest_executed":true,"database_executed":true,"same_origin_fixture":true,"production_auth_executed":false,"production_calls":0,"active_adoption":false,"unexpected_requests":[],"page_errors":[],"cleanup_complete":true},
+  "source_binding": "Same closed {path,bytes,sha256} rows, source-before/source-after identity and exact runtime pins as the accepted prerequisite; final explicit selected set will be frozen before acceptance",
+  "tls_binding": "Same exact positive DER/SPKI, negative ERR_CERT_AUTHORITY_INVALID with zero application HTTP, observed narrow argv and fresh private profile assertions as the accepted prerequisite",
+  "cleanup_binding": "Same independent context/browser/control/listener cleanup shape; additional sticky body-hold settlement failure denies success",
+  "failure_projection": "Closed fixed stage/error/location and completed group prefix only; no raw token, account body, URL, request/receipt string, storage dump, trace or arbitrary message",
+  "attribution": "C01-C12 execute real canonical P2b and native J049/PostgREST/SQL against a synthetic same-origin account fixture. This does not establish production authentication, cross-origin configuration, hosted availability, active adoption or full C04. C07 alone attributes the bridge timer; C06 is composite cancellation. C10 is a labeled wire mutation."
+}
