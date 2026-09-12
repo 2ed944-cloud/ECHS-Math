@@ -20,6 +20,35 @@ function deferred(){let resolve;const promise=new Promise(yes=>resolve=yes);retu
 function safeError(error){const result=diagnostic(error);const match=/test_browser_http\.mjs:(\d+):(\d+)|browser-cases\.mjs:(\d+):(\d+)/.exec(error?.stack||'');if(match)result.location={file:match[1]?'test_browser_http.mjs':'browser-cases.mjs',line:Number(match[1]||match[3]),column:Number(match[2]||match[4])};return result}
 function bounded(task,ms,code){let timer;return Promise.race([task,new Promise((_,reject)=>timer=setTimeout(()=>reject(new Error(code)),ms))]).finally(()=>clearTimeout(timer))}
 
+export async function closeContext(context,contexts,primaryError=null){
+ // Disposal is best effort; a failed required close leaves ownership recorded.
+ try{for(const page of context.pages()){try{await bounded(page.evaluate(()=>window.fixture?.disposeAll()),2000,'page-dispose-deadline')}catch{}}}catch{}
+ try{await bounded(context.close(),5000,'context-close-deadline');contexts.delete(context)}
+ catch(error){throw primaryError||error}
+}
+
+export async function cleanupFixture({contexts,browser,negative,server,ctl}){
+ // Failure of one owned resource never skips attempts on the others. The
+ // caller keeps the primary test failure separate from this cleanup result.
+ const failures=[];let contextsClosed=true,browserClosed=!browser,controlReaped=!ctl,listenersClosed=true;
+ const note=error=>failures.push(safeError(error));
+ for(const context of contexts){
+  try{await closeContext(context,contexts)}
+  catch(error){contextsClosed=false;note(error)}
+ }
+ if(browser){try{await bounded(browser.close(),5000,'browser-disconnect-deadline');browserClosed=true}catch(error){note(error)}}
+ for(const listener of [negative,server]){
+  if(!listener)continue;
+  try{const result=await bounded(listener.close(),5000,'listener-close-deadline');assert.deepEqual(result,{listeners_closed:true,sockets_remaining:0,response_tasks_remaining:0})}
+  catch(error){listenersClosed=false;note(error)}
+ }
+ if(ctl){try{await bounded(ctl.close(),5000,'control-close-deadline');controlReaped=true}catch(error){note(error)}}
+ const cleanup={contexts_closed:contextsClosed&&contexts.size===0,browser_connection_closed:browserClosed,
+  control_reaped:controlReaped,listeners_closed:listenersClosed,response_tasks_remaining:listenersClosed?0:null};
+ const complete=failures.length===0&&cleanup.contexts_closed&&browserClosed&&controlReaped&&listenersClosed;
+ return {cleanup_complete:complete,cleanup,...(failures.length?{cleanup_failure:failures[0]}:{})};
+}
+
 function tlsCall(origin,cert,route,raw,token){
  assert.ok(['state','heads','apply','operation'].includes(route));assert.equal(typeof raw,'string');
  return new Promise((resolve,reject)=>{
@@ -87,12 +116,12 @@ async function main(){
  async function group(index,fn){
   assert.equal(outcomes.length,index);const began=performance.now(),c=await ctl.call('new',{role:'student'});c.session_tag='synthetic_'+randomUUID().replaceAll('-','');
   const context=await browser.newContext({serviceWorkers:'block',ignoreHTTPSErrors:false});contexts.add(context);await guard(context);
-  let details;
+  let details,primaryError;
   try{const page=await newPage(context,c);details=await bounded(fn(page,c,context),45000,'browser-group-deadline');assert.deepEqual(unexpected,[]);assert.deepEqual(pageErrors,[])}
+  catch(error){primaryError=error;throw error}
   finally{
    for(const fault of faults)fault.release();
-   for(const page of context.pages()){try{await bounded(page.evaluate(()=>window.fixture?.disposeAll()),2000,'page-dispose-deadline')}catch{}}
-   await bounded(context.close(),5000,'context-close-deadline');contexts.delete(context);
+   await closeContext(context,contexts,primaryError);
   }
   outcomes.push({name:LABELS[index],status:'PASS',elapsed_ms:Math.round(performance.now()-began),details});
  }
@@ -133,12 +162,8 @@ async function main(){
  }catch(error){report.status='FAIL; NO ACCEPTANCE';report.failure=safeError(error);report.failed_group=LABELS[outcomes.length]||'setup'}
  finally{
   for(const fault of faults)fault.release();
-  try{
-   for(const context of contexts){for(const page of context.pages()){try{await bounded(page.evaluate(()=>window.fixture?.disposeAll()),2000,'page-dispose-deadline')}catch{}}await bounded(context.close(),5000,'context-close-deadline')}contexts.clear();
-   if(browser)await bounded(browser.close(),5000,'browser-disconnect-deadline');
-   const listeners=[];if(negative)listeners.push(await negative.close());if(server)listeners.push(await server.close());if(ctl)await ctl.close();
-   report.cleanup_complete=true;report.cleanup={contexts_closed:true,browser_connection_closed:true,control_reaped:true,listeners_closed:listeners.every(row=>row.listeners_closed),response_tasks_remaining:0};
-  }catch(error){report.status='FAIL; NO ACCEPTANCE';report.cleanup_failure=safeError(error)}
+  const cleaned=await cleanupFixture({contexts,browser,negative,server,ctl});Object.assign(report,cleaned);
+  if(!cleaned.cleanup_complete)report.status='FAIL; NO ACCEPTANCE';
   try{assert.deepEqual(await snapshot(),sourceBefore)}catch{report.status='FAIL; NO ACCEPTANCE';report.source_changed=true}
   report.unexpected_requests=unexpected;report.page_errors=pageErrors;report.rpc_observations=rpcObservations.slice(-12);report.http_observations=nativeObservations.slice(-12);report.source_files=sourceBefore;
   await writeFile(output,JSON.stringify(report)+'\n',{flag:'wx'});

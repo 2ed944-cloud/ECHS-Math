@@ -44,11 +44,37 @@ export function flushPrefix(response,signal){
  });
 }
 
+export async function closeTrackedServer(server,sockets,tasks,controllers,timeoutMs=2000){
+ if(!Number.isInteger(timeoutMs)||timeoutMs<1||timeoutMs>2000)throw new Error('fixture-close-config');
+ const listeners=[],failures=[];let timer;
+ // server.close's callback can run before destroyed TLS sockets emit close.
+ // Subscribe before destruction and wait for those actual events, not a delay.
+ const socketClosures=[...sockets].map(socket=>new Promise(resolve=>{
+  const closed=()=>resolve();listeners.push([socket,closed]);socket.once('close',closed);
+ }));
+ try{
+  const deadline=new Promise((_,reject)=>timer=setTimeout(()=>reject(new Error('fixture-close-deadline')),timeoutMs));
+  for(const controller of controllers){try{controller.abort()}catch(error){failures.push(error)}}
+  for(const socket of sockets){try{socket.destroy()}catch(error){failures.push(error)}}
+  const serverClosed=new Promise(resolve=>{
+   try{server.close(error=>{if(error&&error.code!=='ERR_SERVER_NOT_RUNNING')failures.push(error);resolve()})}
+   catch(error){failures.push(error);resolve()}
+  });
+  const work=Promise.all([...tasks].map(task=>Promise.resolve(task).catch(error=>failures.push(error))));
+  await Promise.race([Promise.all([serverClosed,work,...socketClosures]),deadline]);
+  if(failures.length)throw new Error('fixture-close-operation-failed');
+  if(sockets.size||tasks.size||controllers.size||server.listening)throw new Error('fixture-listener-not-closed');
+  return {listeners_closed:true,sockets_remaining:0,response_tasks_remaining:0};
+ }finally{
+  clearTimeout(timer);for(const [socket,closed] of listeners)socket.removeListener('close',closed);
+ }
+}
+
 export async function listenHttps({key,cert,entries,handlerFactory,afterResponse=async()=>null,hookTimeoutMs=8000}){
  if(!Buffer.isBuffer(key)||!Buffer.isBuffer(cert)||key.length>65536||cert.length>65536||typeof handlerFactory!=='function')throw new Error('fixture-tls-config');
  const routes=staticMap(entries),sockets=new Set(),tasks=new Set(),controllers=new Set();
  const metrics={requests:0,static:0,api:0,responses:0,dropped:0,aborted:0,rejected:0};
- let origin,handler,closing=false;
+ let origin,handler,closing=false,closePromise;
  const server=https.createServer({key,cert,minVersion:'TLSv1.2'},(req,res)=>{
   const task=handle(req,res);tasks.add(task);void task.finally(()=>tasks.delete(task));
  });
@@ -95,11 +121,7 @@ export async function listenHttps({key,cert,entries,handlerFactory,afterResponse
   await new Promise((resolve,reject)=>{const fail=error=>{server.removeListener('listening',ready);reject(error)},ready=()=>{server.removeListener('error',fail);resolve()};server.once('error',fail);server.once('listening',ready);server.listen(0,'127.0.0.1')});
   origin='https://127.0.0.1:'+server.address().port;handler=handlerFactory(origin);if(typeof handler!=='function')throw new Error('fixture-handler');
  }catch(error){for(const socket of sockets)socket.destroy();if(server.listening)await new Promise(resolve=>server.close(resolve));throw error;}
- return {origin,metrics,close:async()=>{
-  closing=true;for(const controller of controllers)controller.abort();for(const socket of sockets)socket.destroy();
-  await new Promise(resolve=>server.close(resolve));
-  await Promise.all([...tasks]);
-  if(sockets.size||tasks.size||controllers.size||server.listening)throw new Error('fixture-listener-not-closed');
-  return {listeners_closed:true,sockets_remaining:0,response_tasks_remaining:0};
+ return {origin,metrics,close:()=>{
+  closing=true;return closePromise??=closeTrackedServer(server,sockets,tasks,controllers);
  }};
 }

@@ -81,9 +81,9 @@
     },
     {
       "path": "tools/private-learning-browser-journal-http/https-bridge.mjs",
-      "bytes": 7520,
-      "sha256": "a664fb8e9eee2340ba46b6df4bd43bc1eeefce1b3c08549db2810c009243b767",
-      "git_blob_sha": "aae5cd428893a3389d240abfe2d58bf4f75706c4"
+      "bytes": 8876,
+      "sha256": "4e8c1e7946e21aeda42f1930ceeb8ed132a96092472cdae88f74300c093e1ae0",
+      "git_blob_sha": "17298ff0cfd17e5884866889999f1662f643466b"
     },
     {
       "path": "tools/private-learning-browser-journal-http/input-pins.json",
@@ -561,9 +561,9 @@
     },
     {
       "path": "tools/private-learning-browser-journal-http/test_browser_http.mjs",
-      "bytes": 16013,
-      "sha256": "8c703650e2636e7c3320802db7123244a12b69cd6f6855338a2aa6d8a69b0a16",
-      "git_blob_sha": "4dda3ef6d9b78ffdf11b28008fbf527a0565a976"
+      "bytes": 17217,
+      "sha256": "b9cdbe8c339a68956f4d02849fce288b32a00d3f3a4476e5cb05921072fe2eec",
+      "git_blob_sha": "350262065ded8f37ee9aa88f0fc419299b43cb50"
     },
     {
       "path": "tools/private-learning-browser-journal-http/test_certs.py",
@@ -585,9 +585,9 @@
     },
     {
       "path": "tools/private-learning-browser-journal-http/test_https_bridge.mjs",
-      "bytes": 10342,
-      "sha256": "6aeda9f759db911f9c83a925ff4c2c2ca496e6ba589cfa70cb8ef3ab6757dc33",
-      "git_blob_sha": "e3e7cfb89c0bca55a05f27455cee621fb61897af"
+      "bytes": 15074,
+      "sha256": "e26c6fa47f7e8fbb6bcba06c9c01ff319e6e44f91473acff63e3634c5b899f11",
+      "git_blob_sha": "03802157a15039a5ab99623ebac6f56cecb6cd45"
     },
     {
       "path": "tools/private-learning-browser-journal-http/test_owned_children.py",
