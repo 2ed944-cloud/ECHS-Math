@@ -357,5 +357,26 @@ evaluation failed in the prior Linux run; its generic error does not establish
 the exact underlying cause. Pinned Playwright1.61.1's
 [frame implementation](https://github.com/microsoft/playwright/blob/v1.61.1/packages/playwright-core/src/server/frames.ts)
 reacquires the execution context when retrying recoverable wait failures under
-the original deadline. The certificate checks and all HTTP/browser case bodies
-remain unchanged.
+the original deadline. This absence-check adjustment preserves the certificate
+checks and all HTTP/browser case assertions.
+
+The lost-reply fault stays armed for the selected operation throughout its
+initial browser delivery. Every matching successful response is compared with
+the committed SQL receipt before the listener destroys the connection without
+headers. This includes any transparent retry made by Chromium. A proof failure
+keeps the fault owned and invalidates its proof; abort events cannot disarm it.
+The lost-reply and reset-after-loss cases release the fault in `finally` after
+that delivery settles, then await all already-claimed receipt proofs under an
+eight-second deadline before reading the proof result or starting lookup, reset
+or deliberate replay. A pending or rejected proof fails this settled check.
+Group and final cleanup also release any remaining fault. The existing
+ten-second native delivery deadline and 45-second case deadline bound this phase.
+
+The prior one-response fault allowed a subsequent successful replay to escape
+the loss scenario. Chromium149's
+[HTTP transaction implementation](https://github.com/chromium/chromium/blob/149.0.7827.55/net/http/http_network_transaction.cc)
+can resend after a connection error when a reused connection has supplied no
+response headers. The observed duplicate apply calls are consistent with that
+mechanism; they do not identify its exact internal retry event. All case
+assertions remain required, including unchanged native pending rows, one SQL
+operation, the same intent after reopening, and successful deliberate replay.

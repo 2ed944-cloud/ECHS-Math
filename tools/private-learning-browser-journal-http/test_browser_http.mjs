@@ -92,6 +92,40 @@ export async function requireFixtureAbsent(page){
  const handle=await page.waitForFunction(()=>!window.fixture,undefined,{timeout:5000});
  await bounded(handle.dispose(),2000,'negative-absence-handle-dispose');
 }
+export function createResponseFaults(command){
+ const faults=new Set();let pendingFault=null;
+ function arm(mode,id,c){
+  assert.equal(pendingFault,null);assert.ok(['pause','drop','partial','207'].includes(mode));
+  const enter=deferred(),gate=deferred(),abort=deferred(),proofs=new Set();
+  const value={mode,id,c,proved:false,proof_failed:false,responses:0,released:false,
+   entered:bounded(enter.promise,8000,'fault-entry-deadline'),aborted:abort.promise,
+   release:()=>{value.released=true;if(pendingFault===value)pendingFault=null;faults.delete(value);gate.resolve(null)},
+   settle:async()=>{assert.equal(value.released,true);await bounded(Promise.all([...proofs]),8000,'fault-proof-settle-deadline');assert.equal(value.proof_failed,false)},
+   proofs,
+   gate:gate.promise,enter:enter.resolve,abort:abort.resolve};
+  value.entered.catch(()=>{});pendingFault=value;faults.add(value);return value;
+ }
+ async function afterResponse(request,response,signal,client){
+  if(!pendingFault||!request.url.endsWith('/apply')||response.status!==200)return null;
+  const value=pendingFault;value.client=client;
+  const proof=(async()=>{try{
+   const data=await response.clone().json();assert.equal(data.receipt.operation_id,value.id);
+   if(value.mode!=='drop'&&pendingFault===value)pendingFault=null;
+   const stored=await command('operation',value.c,{operation_id:value.id});assert.ok(stored);
+   assert.deepEqual(JSON.parse(stored.receipt_text),data.receipt);
+   value.responses++;if(!value.proof_failed)value.proved=true;
+  }catch(error){value.proof_failed=true;value.proved=false;throw error}})();
+  value.proofs.add(proof);try{await proof}finally{value.proofs.delete(proof)}
+  // A zero-header loss may be transparently retried by the browser. Keep every
+  // response for this operation dropped until the delivery phase releases it.
+  const onAbort=()=>{value.abort(true);if(value.mode!=='drop')value.release()};
+  signal.addEventListener('abort',onAbort,{once:true});if(signal.aborted)onAbort();
+  value.enter(true);
+  try{if(value.mode==='pause')await value.gate;return value.mode==='pause'?null:value.mode}
+  finally{signal.removeEventListener('abort',onAbort);if(value.mode!=='drop')faults.delete(value)}
+ }
+ return {faults,arm,afterResponse};
+}
 
 export function protocolBoundary(debug,runId,write=line=>writeSync(2,line)){
  assert.match(runId,/^[a-f0-9]{32}$/);assert.equal(typeof debug.disable,'function');let emitted=false;
@@ -261,24 +295,11 @@ async function main(){
   {path:'/browser-page.mjs',type:'text/javascript; charset=utf-8',body:await readFile(resolve(HERE,'browser-page.mjs'))},{path:'/favicon.ico',type:'image/x-icon',body:Buffer.alloc(0)}];
  for(const name of MODULES)entries.push({path:'/source/'+name,type:'text/javascript; charset=utf-8',body:await readFile(resolve(HERE,'retained/c04-learning-ack-candidate/source',name))});
  assert.equal(entries.length,10);
- const outcomes=[],unexpected=[],pageErrors=[],nativeObservations=[],rpcObservations=[],rpcPayloads=[],contexts=new Set(),faults=new Set(),setup=observeSetupBrowser();
- let ctl,server,negative,browser,pendingFault=null,stage='control-start',failureStage=null,currentGroup=null;
+ const outcomes=[],unexpected=[],pageErrors=[],nativeObservations=[],rpcObservations=[],rpcPayloads=[],contexts=new Set(),setup=observeSetupBrowser();
+ let ctl,server,negative,browser,stage='control-start',failureStage=null,currentGroup=null;
  const report={contract:'echs.c04.browser-journal-http-actual.v1',status:'RUNNING; NOT ACCEPTED',planned_groups:LABELS,checks:outcomes,production_calls:0,hosted_edge_executed:false,hosted_tls_executed:false,production_authority_accepted:false,native_browser_executed:false,real_https_executed:false,postgrest_executed:false,database_executed:false,cleanup_complete:false};
  const command=(action,c,extra={})=>ctl.call(action,{case:c.case,...extra});
- function arm(mode,id,c){
-  assert.equal(pendingFault,null);assert.ok(['pause','drop','partial','207'].includes(mode));
-  const enter=deferred(),gate=deferred(),abort=deferred();
-  const value={mode,id,c,proved:false,entered:bounded(enter.promise,8000,'fault-entry-deadline'),aborted:abort.promise,release:()=>gate.resolve(null),gate:gate.promise,enter:enter.resolve,abort:abort.resolve};
-  value.entered.catch(()=>{});pendingFault=value;faults.add(value);return value;
- }
- async function afterResponse(request,response,signal,client){
-  if(!pendingFault||!request.url.endsWith('/apply')||response.status!==200)return null;
-  const value=pendingFault,data=await response.clone().json();assert.equal(data.receipt.operation_id,value.id);pendingFault=null;value.client=client;
-  const stored=await command('operation',value.c,{operation_id:value.id});assert.ok(stored);assert.deepEqual(JSON.parse(stored.receipt_text),data.receipt);value.proved=true;
-  const onAbort=()=>{value.abort(true);value.release()};signal.addEventListener('abort',onAbort,{once:true});if(signal.aborted)onAbort();
-  value.enter(true);
-  try{if(value.mode==='pause')await value.gate;return value.mode==='pause'?null:value.mode}finally{signal.removeEventListener('abort',onAbort);faults.delete(value)}
- }
+ const {faults,arm,afterResponse}=createResponseFaults(command);
  function guard(context,{allowNegative=false,observeSetup=false}={}){
   context.on('page',page=>page.on('pageerror',()=>pageErrors.push({kind:'pageerror'})));
   const validPaths=new Set(entries.map(row=>row.path));

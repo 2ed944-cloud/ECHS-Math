@@ -1149,6 +1149,118 @@ process.stdout.write('PASS');
 """
         absence=subprocess.run(['node','--input-type=module','-',(HERE/'test_browser_http.mjs').as_uri()],input=absence_script,text=True,capture_output=True,timeout=10,check=True)
         self.assertEqual(absence.stdout,'PASS')
+        # Exercise the real fault hook with injected SQL proof and Fetch API
+        # messages. This is not browser retry, HTTP or SQL execution evidence.
+        fault_script=r"""
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+const moduleUrl=process.argv[2],{createResponseFaults}=await import(moduleUrl);
+const request=new Request('https://127.0.0.1:1/functions/v1/learning-journal/apply',{method:'POST'});
+const other=new Request('https://127.0.0.1:1/functions/v1/learning-journal/state');
+const id='11111111-1111-4111-8111-111111111111',nextId='22222222-2222-4222-8222-222222222222',owner={case:'synthetic-case'};
+const receipt=operation_id=>({operation_id,revision:1});
+const reply=(operation_id=id,status=200)=>new Response(JSON.stringify({receipt:receipt(operation_id)}),{status});
+const proof=operation_id=>({receipt_text:JSON.stringify(receipt(operation_id))});
+const deferred=()=>{let resolve,reject;const promise=new Promise((a,b)=>{resolve=a;reject=b});return {promise,resolve,reject}};
+const controller=()=>new AbortController();
+const set=globalThis.setTimeout,clear=globalThis.clearTimeout,timers=new Set();
+// Invalid proof paths intentionally do not enter. Clear only their pending
+// native timers on test teardown, without treating an entry timeout as proof.
+globalThis.setTimeout=(...args)=>{const timer=set(...args);timers.add(timer);return timer};
+globalThis.clearTimeout=timer=>{timers.delete(timer);return clear(timer)};
+try{
+ let calls=0;
+ const h=createResponseFaults(async(action,c,extra)=>{calls++;assert.equal(action,'operation');assert.equal(c,owner);assert.deepEqual(extra,{operation_id:id});return proof(id)});
+ const drop=h.arm('drop',id,owner);assert.throws(()=>h.arm('drop',id,owner));
+ assert.equal(await h.afterResponse(other,reply(),controller().signal,{}),null);
+ assert.equal(await h.afterResponse(request,reply(id,500),controller().signal,{}),null);assert.equal(calls,0);
+ const aborted=controller();aborted.abort();
+ for(const signal of [aborted.signal,controller().signal])assert.equal(await h.afterResponse(request,reply(),signal,{}),'drop');
+ await drop.entered;assert.equal(calls,2);assert.equal(drop.responses,2);assert.equal(drop.proved,true);assert.equal(drop.released,false);assert.ok(h.faults.has(drop));
+ await assert.rejects(drop.settle());drop.release();drop.release();await drop.settle();await drop.settle();assert.equal(drop.released,true);assert.equal(h.faults.size,0);
+ assert.equal(await h.afterResponse(request,reply(),controller().signal,{}),null);assert.equal(calls,2);
+ // Concurrent captured replies each need a separate proof. Release cannot make
+ // a late old completion remove, restore or bypass a newly armed fault.
+ const proofs=[];const concurrent=createResponseFaults(async(action,c,extra)=>{const gate=deferred();proofs.push({id:extra.operation_id,gate});return gate.promise});
+ const old=concurrent.arm('drop',id,owner);
+ const a=concurrent.afterResponse(request,reply(),controller().signal,{}),b=concurrent.afterResponse(request,reply(),controller().signal,{});
+ while(proofs.length<2)await new Promise(resolve=>set(resolve,0));
+ old.release();let oldSettled=false;const oldSettlement=old.settle().then(()=>{oldSettled=true});const newer=concurrent.arm('drop',nextId,owner);old.release();
+ await Promise.resolve();assert.equal(oldSettled,false);
+ proofs[1].gate.resolve(proof(id));proofs[0].gate.resolve(proof(id));assert.deepEqual(await Promise.all([a,b]),['drop','drop']);
+ await oldSettlement;assert.equal(oldSettled,true);assert.equal(old.responses,2);assert.ok(concurrent.faults.has(newer));assert.ok(!concurrent.faults.has(old));
+ const next=concurrent.afterResponse(request,reply(nextId),controller().signal,{});
+ while(proofs.length<3)await new Promise(resolve=>set(resolve,0));
+ assert.equal(proofs[2].id,nextId);proofs[2].gate.resolve(proof(nextId));assert.equal(await next,'drop');newer.release();await newer.settle();
+ for(const mode of ['pause','207','partial']){
+  let proofs=0;const one=createResponseFaults(async()=>{proofs++;return proof(id)}),fault=one.arm(mode,id,owner),abort=controller();let settled=false;
+  const result=one.afterResponse(request,reply(),abort.signal,{}).then(value=>{settled=true;return value});await fault.entered;
+  if(mode==='pause'){assert.equal(settled,false);abort.abort();assert.equal(await fault.aborted,true);assert.equal(fault.released,true)}
+  assert.equal(await result,mode==='pause'?null:mode);assert.equal(proofs,1);assert.equal(one.faults.size,0);
+  assert.equal(await one.afterResponse(request,reply(),controller().signal,{}),null);fault.release();
+ }
+ for(const mode of ['wrong-id','malformed','missing','mismatch','sql-error']){
+  const original=new Error('synthetic-private-SQL-error');let valid=false,calls=0;
+  const bad=createResponseFaults(async()=>{calls++;if(valid)return proof(id);if(mode==='sql-error')throw original;if(mode==='missing')return null;return proof(nextId)});
+  const fault=bad.arm('drop',id,owner),response=mode==='wrong-id'?reply(nextId):mode==='malformed'?new Response('{'):reply();
+  await assert.rejects(bad.afterResponse(request,response,controller().signal,{}),error=>mode!=='sql-error'||error===original);
+  assert.equal(fault.proof_failed,true);assert.equal(fault.proved,false);assert.equal(fault.responses,0);assert.ok(bad.faults.has(fault));
+  if(mode==='wrong-id'||mode==='malformed')assert.equal(calls,0);
+  valid=true;assert.equal(await bad.afterResponse(request,reply(),controller().signal,{}),'drop');
+  assert.equal(fault.responses,1);assert.equal(fault.proof_failed,true);assert.equal(fault.proved,false);fault.release();await assert.rejects(fault.settle());
+ }
+ // A first valid response cannot authorize the case while an already-claimed
+ // retry proof is pending. Late rejection/mismatch must fail settlement.
+ for(const mode of ['good','rejection','mismatch','deadline']){
+  const delayed=deferred(),original=new Error('synthetic-late-proof-error');let count=0;
+  const late=createResponseFaults(async()=>{count++;return count===1?proof(id):delayed.promise});
+  const fault=late.arm('drop',id,owner);assert.equal(await late.afterResponse(request,reply(),controller().signal,{}),'drop');
+  assert.equal(fault.proved,true);
+  const pending=late.afterResponse(request,reply(),controller().signal,{});
+  const observed=pending.then(value=>({value}),error=>({error}));
+  while(count<2)await new Promise(resolve=>set(resolve,0));
+  fault.release();assert.equal(await late.afterResponse(request,reply(),controller().signal,{}),null);assert.equal(count,2);
+  const setNow=globalThis.setTimeout,clearNow=globalThis.clearTimeout;let fire,cleared=0;const token={};
+  if(mode==='deadline'){
+   globalThis.setTimeout=(callback,ms)=>{assert.equal(ms,8000);fire=callback;return token};
+   globalThis.clearTimeout=value=>{if(value===token){cleared++;return}return clearNow(value)};
+  }
+  try{
+   let complete=false;const settlement=fault.settle().then(()=>{complete=true;return {}},error=>{complete=true;return {error}});
+   await Promise.resolve();await Promise.resolve();assert.equal(complete,false);
+   if(mode==='deadline'){
+    assert.equal(typeof fire,'function');fire();const settled=await settlement;
+    assert.equal(settled.error.message,'fault-proof-settle-deadline');assert.equal(cleared,1);
+    delayed.resolve(proof(id));assert.equal((await observed).value,'drop');
+   }else{
+    if(mode==='rejection')delayed.reject(original);else delayed.resolve(proof(mode==='mismatch'?nextId:id));
+    const actual=await observed,settled=await settlement;
+    if(mode==='good'){assert.deepEqual(settled,{});assert.equal(actual.value,'drop');assert.equal(fault.responses,2);assert.equal(fault.proved,true)}
+    else{assert.equal(settled.error,actual.error);if(mode==='rejection')assert.equal(settled.error,original);assert.equal(fault.proof_failed,true);assert.equal(fault.proved,false)}
+   }
+  }finally{globalThis.setTimeout=setNow;globalThis.clearTimeout=clearNow}
+ }
+ const source=await readFile(new URL('./browser-cases.mjs',moduleUrl),'utf8');
+ for(const index of [3,7]){
+  const start=source.indexOf(' await group('+index+','),end=source.indexOf(' await group('+(index+1)+',',start);assert.ok(start>=0&&end>start);
+  const body=source.slice(start,end),release='let denied;try{denied=await deliver(p,id)}finally{fault.release()}';
+  const releaseThenSettle=release+'\n  await fault.settle();';assert.ok(body.includes(releaseThenSettle));
+  assert.ok(body.indexOf('await fault.settle();')<body.indexOf('assert.equal(denied.acknowledged,false)'));
+  const AsyncFunction=Object.getPrototypeOf(async function(){}).constructor;
+  const sequence=new AsyncFunction('deliver','fault','p','id',releaseThenSettle+'return denied;');
+  const primary=new Error('synthetic-primary-delivery-error');let released=0,settled=0;
+  await assert.rejects(sequence(async()=>{throw primary},{release(){released++},async settle(){settled++}},null,id),error=>error===primary);
+  assert.equal(released,1);assert.equal(settled,0);
+  assert.deepEqual(await sequence(async()=>({acknowledged:false}),{release(){released++},async settle(){settled++}},null,id),{acknowledged:false});
+  assert.equal(released,2);assert.equal(settled,1);
+  assert.ok(body.indexOf(release)<body.indexOf(index===3?"const lookup=await api('operation'":"const original=await command('operation'"));
+ }
+ const driver=await readFile(new URL(moduleUrl),'utf8');assert.equal((driver.match(/for\(const fault of faults\)fault\.release\(\)/g)||[]).length,2);
+}finally{for(const timer of timers)clear(timer);globalThis.setTimeout=set;globalThis.clearTimeout=clear}
+process.stdout.write('PASS');
+"""
+        faults=subprocess.run(['node','--input-type=module','-',(HERE/'test_browser_http.mjs').as_uri()],input=fault_script,text=True,capture_output=True,timeout=12,check=True)
+        self.assertEqual(faults.stdout,'PASS')
         # Python traceback projection accepts exact known source paths only,
         # selects the deepest allowed frame, and ignores hostile properties.
         namespace={}

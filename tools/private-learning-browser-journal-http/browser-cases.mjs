@@ -78,7 +78,9 @@ export async function exercise({group,api,command,arm,newPage,rpcPayloads}){
  });
  await group(3,async(p,c,context)=>{
   const start=await prepare(p,'lost-reply'),id=start.wire.intent.id,fault=arm('drop',id,c);
-  const denied=await deliver(p,id);assert.equal(denied.acknowledged,false);same(await dump(p),start.before);assert.equal(fault.proved,true);
+  let denied;try{denied=await deliver(p,id)}finally{fault.release()}
+  await fault.settle();
+  assert.equal(denied.acknowledged,false);same(await dump(p),start.before);assert.equal(fault.proved,true);
   const lookup=await api('operation',JSON.stringify({contract:CONTRACT,incarnation_id:c.owner.incarnation_id,adoption_epoch:1,operation_id:id}),c);
   assert.equal(lookup.status,200);assert.equal(lookup.data.found,true);same(await dump(p),start.before);
   await p.evaluate(()=>fixture.disposeAll());await p.close();const reopened=await newPage(context,c);await reopened.evaluate(()=>fixture.open({initialize:false}));
@@ -119,7 +121,9 @@ export async function exercise({group,api,command,arm,newPage,rpcPayloads}){
  });
  await group(7,async(p,c)=>{
   const start=await prepare(p,'reset-first'),id=start.wire.intent.id,fault=arm('drop',id,c);
-  assert.equal((await deliver(p,id)).acknowledged,false);assert.equal(fault.proved,true);
+  let denied;try{denied=await deliver(p,id)}finally{fault.release()}
+  await fault.settle();
+  assert.equal(denied.acknowledged,false);assert.equal(fault.proved,true);
   const original=await command('operation',c,{operation_id:id});await reset(api,c);await nextCommand(p,'reset-first');
   const ack=await deliver(p,id);assert.equal(ack.acknowledged,true);assert.equal(ack.generation_blocked,true);
   const known=await wire(p,id),held=await p.evaluate(()=>fixture.stores[0].materializeNext());
