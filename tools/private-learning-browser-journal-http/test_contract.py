@@ -807,6 +807,161 @@ process.stdout.write(JSON.stringify({boundary:'PASS',run_bound:true,disable_prec
         for name in ['browser-results.json','http-results.json']:self.assertNotIn('protocol_setup',project_protocol(complete,name=name))
         for value in [None,[],secret,{**complete,'raw_url':secret},{**complete,'counts':{**expected,'raw':secret}},{**complete,'driver_waited':False}]:
             self.assertNotIn('protocol_setup',project_protocol(value))
+        # Actual exported setup-control helper with injected browser operations:
+        # no network/browser/service execution is claimed by these probes.
+        control_script=r"""
+import assert from 'node:assert/strict';
+import {EventEmitter} from 'node:events';
+import {readFileSync} from 'node:fs';
+const moduleUrl=process.argv[2],{runSetupControls,SETUP_CONTROL_IDS,closeContext}=await import(moduleUrl);
+const secret='SYNTHETIC_PRIVATE_VALUE_DO_NOT_UPLOAD_9741',paths=['/',...Array.from({length:8},(_,i)=>'/asset-'+i+'.mjs')];
+async function probe(options={}){
+ const events=[],metrics={requests:0,static:0,api:0},transport={tcp_connections:0,tls_connections:0,tls_errors:0,http_requests:0};
+ const pages=[],created=[],contexts=new Set();let index=0;
+ const original={pages:()=>[],async close(){events.push('original-close');if(options.originalClose)throw new Error(secret)}};contexts.add(original);
+ const server={origin:'https://127.0.0.1:45678',metrics,setupObservation:()=>({counts:{...transport},saturated:!!options.transportSaturated,last_tls_error:null})};
+ const browser={async newContext(value){
+  const i=index++;events.push(i+':context');assert.deepEqual(value,{serviceWorkers:'block',ignoreHTTPSErrors:false});
+  assert.ok(events.includes('original-close'));if(i===1)assert.ok(events.includes('0:close')||options.contextFailure);
+  if(i===0&&options.contextFailure)throw new TypeError(secret);
+  let routeCallback,loaded=false;const page=new EventEmitter();pages.push(page);
+  const recordStatic=async path=>{
+   const request={url:()=>server.origin+path,method:()=>'GET'};
+   if(routeCallback)await routeCallback({request:()=>request,continue(){events.push(i+':continue');return Promise.resolve()},abort(){throw new Error('unexpected abort')}});
+   page.emit('request',request);metrics.requests++;metrics.static++;transport.http_requests++;
+  };
+  page.evaluate=async fn=>{
+   if(String(fn).includes('disposeAll')){events.push(i+':dispose');return}
+   assert.ok(loaded&&events.includes(i+':enable'));const previous=globalThis.fetch;let calls=0,drains=0;
+   globalThis.fetch=async(url,args)=>{
+    calls++;assert.equal(url,'/');assert.deepEqual(args,{cache:'no-store'});events.push(i+':static-fetch');
+    if(options.fetchFailure&&i===0)throw new TypeError(secret);
+    await recordStatic('/');return {status:options.fetchStatus&&i===0?503:200,async arrayBuffer(){drains++;events.push(i+':drained');if(options.drainFailure&&i===0)throw new TypeError(secret);return new ArrayBuffer(0)}};
+   };
+   try{const status=await fn();assert.equal(calls,1);assert.equal(drains,1);return status}finally{globalThis.fetch=previous}
+  };
+  page.goto=async(url,args)=>{
+   events.push(i+':goto');assert.equal(url,server.origin);assert.deepEqual(args,{waitUntil:'load',timeout:10000});
+   assert.ok(!events.includes(i+':cdp'));assert.equal(!!routeCallback,i===0);
+   for(let j=0;j<(options.saturate?300:9);j++){
+    await recordStatic(paths[j%paths.length]);
+   }
+   if(options.hostile&&i===0)page.emit('request',{url(){throw new Error(secret)},method:()=>'GET'});
+   if(options.api&&i===0){metrics.requests++;metrics.api++}
+   transport.tcp_connections++;transport.tls_connections++;
+   if(options.navigationFailure&&i===0){const error=new Error('net::ERR_CONNECTION_REFUSED '+secret);error.name='TimeoutError';throw error}
+   loaded=true;events.push(i+':loaded');return {status:()=>options.statusFailure&&i===0?503:200};
+  };
+  const context={pages:()=>[page],async route(pattern,callback){assert.equal(i,0);assert.equal(pattern,'**/*');events.push(i+':route');routeCallback=callback},
+   async newPage(){events.push(i+':page');return page},async newCDPSession(value){assert.equal(value,page);assert.ok(loaded);events.push(i+':cdp');return {i,async send(method){assert.equal(method,'Network.enable');assert.ok(loaded);events.push(i+':enable');if(options.enableFailure&&i===0)throw new TypeError(secret);return {}},async detach(){events.push(i+':detach');if(options.detachFailure&&i===0)throw new Error(secret)}}},
+   async close(){events.push(i+':close');if(options.closeFailure&&i===0)throw new Error(secret)}};
+  created.push(context);return context;
+ }};
+ const parameters={browser,server,contexts,entryPaths:paths,verifyLeaf:async(session,origin)=>{
+  assert.equal(origin,server.origin);assert.ok(events.indexOf(session.i+':loaded')<events.indexOf(session.i+':cdp'));assert.ok(events.includes(session.i+':drained'));events.push(session.i+':leaf');
+  if(options.certificateFailure&&session.i===0)throw new TypeError(secret);
+ }};
+ if(options.originalClose){await assert.rejects(runSetupControls(parameters));assert.equal(index,0);assert.ok(contexts.has(original));return}
+ const value=await runSetupControls(parameters);
+ assert.equal(index,value.controls[0].cleanup_complete?2:1);assert.deepEqual(value.controls.map(x=>x.id),SETUP_CONTROL_IDS);assert.equal(value.same_browser,true);assert.equal(value.after_failure,true);
+ assert.ok(!events.includes('1:route'));assert.ok(!JSON.stringify(value).includes(secret));
+ for(const page of pages){assert.equal(page.listenerCount('request'),0);assert.equal(page.listenerCount('pageerror'),0)}
+ assert.equal(contexts.has(original),!!options.originalClose);assert.equal(value.original_contexts_closed,!options.originalClose);
+ for(let i=0;i<created.length;i++)assert.equal(contexts.has(created[i]),!!options.closeFailure&&i===0);
+ return {value,events};
+}
+const observed=await probe();assert.ok(observed.value.controls.every(x=>x.status==='OBSERVED'&&x.cleanup_complete));
+assert.deepEqual(observed.value.controls.map(x=>x.counts.route_continued),[10,0]);
+assert.deepEqual(observed.value.controls.map(x=>x.server_delta),[{requests:10,static:10,api:0},{requests:10,static:10,api:0}]);
+for(const row of observed.value.controls){
+ assert.deepEqual(row.navigation_snapshot.server_delta,{requests:9,static:9,api:0});assert.equal(row.navigation_snapshot.counts.static_requests,9);
+ assert.equal(row.counts.requests-row.navigation_snapshot.counts.requests,1);assert.equal(row.counts.static_requests-row.navigation_snapshot.counts.static_requests,1);
+ assert.deepEqual(row.certificate_probe,{attempted:true,completed:true,http_status:200});
+}
+assert.deepEqual(observed.value.controls.map(x=>x.navigation_snapshot.counts.route_continued),[9,0]);
+await probe({originalClose:true});
+const failed=await probe({navigationFailure:true});
+assert.equal(failed.value.controls[0].failure.type,'TimeoutError');assert.equal(failed.value.controls[0].failure.network_error,'ERR_CONNECTION_REFUSED');
+assert.equal(failed.value.controls[0].stage,'navigation');assert.equal(failed.value.controls[0].cleanup_complete,true);assert.equal(failed.value.controls[1].status,'OBSERVED');
+assert.ok(!failed.events.includes('0:cdp'));assert.ok(failed.events.includes('1:leaf'));
+const held=await probe({navigationFailure:true,closeFailure:true});
+assert.equal(held.value.controls[0].failure.type,'TimeoutError');assert.equal(held.value.controls[0].cleanup_failed,true);assert.ok(!held.events.includes('1:context'));
+const untouched=held.value.controls[1];assert.equal(untouched.status,'FAILED');assert.equal(untouched.stage,'context');assert.equal(untouched.context_created,false);
+assert.equal(untouched.transport_delta,null);assert.equal(untouched.server_delta,null);assert.equal(untouched.failure,null);assert.equal(untouched.navigation_snapshot,null);assert.deepEqual(untouched.certificate_probe,{attempted:false,completed:false,http_status:null});assert.ok(Object.values(untouched.counts).every(x=>x===0));
+for(const option of ['contextFailure','statusFailure','certificateFailure','enableFailure','fetchFailure','fetchStatus','drainFailure','detachFailure','hostile','api']){
+ const tested=await probe({[option]:true}),first=tested.value.controls[0];assert.equal(first.status,'FAILED');assert.equal(tested.value.controls[1].status,first.cleanup_complete?'OBSERVED':'FAILED');
+ if(!first.cleanup_complete){assert.ok(!tested.events.includes('1:context'));assert.equal(tested.value.controls[1].context_created,false);assert.equal(tested.value.controls[1].server_delta,null)}
+ if(option==='contextFailure')assert.equal(first.context_created,false);
+ if(option==='statusFailure')assert.ok(!tested.events.includes('0:cdp'));
+ if(['certificateFailure','enableFailure','fetchFailure','fetchStatus','drainFailure'].includes(option))assert.equal(first.stage,'certificate');
+ if(['enableFailure','fetchFailure','fetchStatus','drainFailure'].includes(option))assert.ok(!tested.events.includes('0:leaf'));
+ if(option==='enableFailure')assert.ok(!tested.events.includes('0:static-fetch'));
+ if(option==='fetchStatus')assert.ok(tested.events.includes('0:drained'));
+ if(option==='hostile')assert.equal(first.counts.observer_errors,1);
+}
+const saturated=await probe({saturate:true});assert.ok(saturated.value.controls.every(x=>x.saturated&&x.counts.static_requests===255&&x.server_delta.static===255));
+const nullable=await probe({transportSaturated:true});assert.ok(nullable.value.controls.every(x=>x.saturated&&x.transport_delta===null));
+const primary=new Error(secret),cleanup=new Error('cleanup'),owned=new Set();const context={pages:()=>[],close:async()=>{throw cleanup}};owned.add(context);
+await assert.rejects(closeContext(context,owned,primary),error=>error===primary);assert.ok(owned.has(context));
+// Source relationship guard: original failure/snapshot and protocol cutoff
+// precede diagnostics, which cannot overwrite the original status or failure.
+const source=readFileSync(new URL(moduleUrl),'utf8').replaceAll('\r\n','\n'),start=source.indexOf(" }catch(error){\n  report.status='FAIL; NO ACCEPTANCE';report.failure=browserDiagnostic"),end=source.indexOf('\n finally{',start);
+assert.ok(start>0&&end>start);const handling=source.slice(start,end);
+assert.equal((handling.match(/report\.failure=/g)||[]).length,1);assert.equal((handling.match(/report\.status=/g)||[]).length,1);
+assert.ok(handling.indexOf('report.setup_observation=')<handling.indexOf('endProtocol();setup.dispose();'));
+assert.ok(handling.indexOf('endProtocol();setup.dispose();')<handling.indexOf('await runSetupControls('));
+assert.ok(handling.includes("report.failure.stage==='positive-navigation'&&report.failure.type==='TimeoutError'"));
+assert.ok(handling.includes('report.setup_observation?.browser.identity_verified===true'));
+process.stdout.write(JSON.stringify({observed:observed.value,failed:failed.value,held:held.value,nullable:nullable.value}));
+"""
+        controls_run=subprocess.run(['node','--input-type=module','-',(HERE/'test_browser_http.mjs').as_uri()],input=control_script,text=True,capture_output=True,timeout=20,check=False)
+        self.assertEqual(controls_run.returncode,0,controls_run.stderr)
+        self.assertNotIn(secret,controls_run.stdout+controls_run.stderr)
+        controls_results=json.loads(controls_run.stdout);directory=self.temporary()
+        def project_controls(value,**overrides):
+            payload={'status':'FAIL; NO ACCEPTANCE','failed_group':'setup','checks':[],
+                     'failure':{'type':'TimeoutError','stage':'positive-navigation','message':secret},
+                     'setup_observation':observation,'setup_controls':value,'rawbody':secret,**overrides}
+            name=payload.pop('name','browser-results.json');(directory/name).write_bytes(encoded(payload))
+            with patch.object(assemble,'labels',side_effect=AssertionError('must not read rejected source')):safe=assemble.failure_projection(directory,15,ValueError(secret))
+            self.assertNotIn(secret,json.dumps(safe));return safe['reports'][name]
+        for value in controls_results.values():
+            assemble.validate_setup_controls(value);self.assertEqual(project_controls(value)['setup_controls'],value)
+        valid=controls_results['observed']
+        for overrides in [{'status':'ACTUAL BROWSER HTTPS POSTGREST SQL PASS'},{'status':'RUNNING; NOT ACCEPTED'},
+                          {'failed_group':'B01'},{'failure':{'type':'Error','stage':'positive-navigation'}},
+                          {'failure':{'type':'TimeoutError','stage':'positive-fixture'}},
+                          {'setup_observation':{**observation,'browser':{**observation['browser'],'identity_verified':False}}},
+                          {'setup_observation':None},{'name':'run-report.json'},{'name':'http-results.json'}]:
+            self.assertNotIn('setup_controls',project_controls(valid,**overrides))
+        for branch in [(),('controls',0),('controls',0,'counts'),('controls',0,'transport_delta'),('controls',0,'server_delta'),('controls',0,'navigation_snapshot'),('controls',0,'navigation_snapshot','counts'),('controls',0,'navigation_snapshot','transport_delta'),('controls',0,'navigation_snapshot','server_delta'),('controls',0,'certificate_probe')]:
+            invalid=copy.deepcopy(valid);target=invalid
+            for key in branch:target=target[key]
+            target['private']=secret;self.rejects(lambda:assemble.validate_setup_controls(invalid));self.assertNotIn('setup_controls',project_controls(invalid))
+        for path,values in [(('same_browser',),[False,1]),(('after_failure',),[False,1]),(('original_contexts_closed',),[False,1]),
+                            (('controls',),[[],valid['controls'][:1],list(reversed(valid['controls'])),valid['controls']*2]),
+                            (('controls',0,'status'),['PASS',secret]),(('controls',0,'stage'),[secret]),
+                            (('controls',0,'http_status'),[True,99,600,'200']),
+                            (('controls',0,'cleanup_complete'),[False,1]),(('controls',0,'certificate_verified'),[False,1]),
+                            (('controls',0,'counts','static_requests'),[True,-1,256,8]),
+                            (('controls',0,'counts','unexpected_requests'),[1]),(('controls',0,'server_delta','api'),[1,True]),
+                            (('controls',0,'server_delta','requests'),[11]),(('controls',0,'transport_delta','http_requests'),[-1,256,False]),
+                            (('controls',0,'navigation_snapshot'),[None]),(('controls',0,'navigation_snapshot','saturated'),[1]),
+                            (('controls',0,'navigation_snapshot','counts','static_requests'),[True,8,10]),
+                            (('controls',0,'navigation_snapshot','server_delta','api'),[1,False]),
+                            (('controls',0,'navigation_snapshot','transport_delta','http_requests'),[-1,256,False]),
+                            (('controls',0,'certificate_probe','attempted'),[False,1]),(('controls',0,'certificate_probe','completed'),[False,1]),
+                            (('controls',0,'certificate_probe','http_status'),[True,None,99,201,600])]:
+            for value in values:
+                invalid=copy.deepcopy(valid);target=invalid
+                for key in path[:-1]:target=target[key]
+                target[path[-1]]=value;self.rejects(lambda:assemble.validate_setup_controls(invalid));self.assertNotIn('setup_controls',project_controls(invalid))
+        for key,values in [('type',[secret,True]),('network_error',[secret,True]),('private',[secret])]:
+            for value in values:
+                invalid=copy.deepcopy(controls_results['failed']);invalid['controls'][0]['failure'][key]=value
+                self.rejects(lambda:assemble.validate_setup_controls(invalid));self.assertNotIn('setup_controls',project_controls(invalid))
+        for value in [None,True,[],secret,{}, {**valid,'contract':'wrong'}]:
+            self.rejects(lambda:assemble.validate_setup_controls(value));self.assertNotIn('setup_controls',project_controls(value))
         # Python traceback projection accepts exact known source paths only,
         # selects the deepest allowed frame, and ignores hostile properties.
         namespace={}

@@ -19,6 +19,9 @@ BROWSER_NETWORK_ERRORS={'ERR_CERT_AUTHORITY_INVALID','ERR_CERT_COMMON_NAME_INVAL
 SETUP_TRANSPORT_CODES={'ECONNRESET','ERR_SSL_TLSV1_ALERT_UNKNOWN_CA','ERR_SSL_SSLV3_ALERT_BAD_CERTIFICATE','ERR_SSL_WRONG_VERSION_NUMBER','ERR_SSL_HTTP_REQUEST','ERR_SSL_UNSUPPORTED_PROTOCOL','OTHER'}
 SETUP_BROWSER_COUNTS=('requests','document_requests','responses','document_responses','failed_requests','route_attempted','route_continued','route_failed','route_abort_attempted','cdp_requests','cdp_responses','cdp_failed','domcontentloaded','load','observer_errors')
 SETUP_TRANSPORT_COUNTS=('tcp_connections','tls_connections','tls_errors','http_requests')
+SETUP_CONTROL_IDS=('routed-no-extra-cdp','unrouted-no-extra-cdp')
+SETUP_CONTROL_COUNTS=('requests','static_requests','unexpected_requests','route_attempted','route_continued','route_failed','page_errors','observer_errors')
+SETUP_CONTROL_STAGES={'context','route','page','navigation','certificate','static-verification','complete'}
 RUN_FAILURE_STAGES={'checkout','dependency-identity','ephemeral-tls','image-resolution','network-create','postgres-start','install-exact-schema','postgrest-start','postgrest-readiness','browser-launch','actual-http-cases','actual-browser-cases','post-execution-identity','browser-cdp-recheck','actual-browser-driver-start','actual-browser-driver-wait','actual-browser-driver-output','actual-browser-driver-cleanup','actual-browser-report-check'}
 RUN_FAILURE_SOURCE_NAMES={'run.py','processes.py','owned_children.py','fixture.py','certs.py','contract.py'}
 SOURCE=contract.HERE
@@ -83,6 +86,52 @@ def validate_protocol_setup(value):
         need(all(integer(count,0,255) for count in value['counts'].values()),'protocol-count-range')
     else:
         need(value['reason']!='complete' and value['counts'] is None and value['saturated'] is False,'protocol-incomplete')
+
+
+def validate_setup_controls(value):
+    closed(value,{'contract':str,'same_browser':bool,'after_failure':bool,'original_contexts_closed':bool,'controls':[dict]},'setup-controls-shape')
+    need(value['contract']=='echs.c04.browser-setup-controls.v1' and value['same_browser'] and value['after_failure'] and value['original_contexts_closed'],'setup-controls-contract')
+    need(len(value['controls'])==2,'setup-controls-count')
+    def window(row):
+        need(all(integer(item,0,255) for item in row['counts'].values()),'setup-control-counts')
+        for key,names in [('transport_delta',SETUP_TRANSPORT_COUNTS),('server_delta',('requests','static','api'))]:
+            if row[key] is not None:
+                closed(row[key],dict.fromkeys(names,int),'setup-control-delta-shape')
+                need(all(integer(item,0,255) for item in row[key].values()),'setup-control-delta-range')
+    previous=None
+    for expected,row in zip(SETUP_CONTROL_IDS,value['controls']):
+        closed(row,{'id':str,'status':str,'stage':str,'context_created':bool,'navigation_completed':bool,'certificate_verified':bool,
+         'cleanup_complete':bool,'cleanup_failed':bool,'http_status':(int,type(None)),'saturated':bool,'failure':(dict,type(None)),
+         'counts':dict.fromkeys(SETUP_CONTROL_COUNTS,int),'transport_delta':(dict,type(None)),'server_delta':(dict,type(None)),
+         'navigation_snapshot':(dict,type(None)),'certificate_probe':{'attempted':bool,'completed':bool,'http_status':(int,type(None))}},'setup-control-shape')
+        need(row['id']==expected and row['status'] in {'OBSERVED','FAILED'} and row['stage'] in SETUP_CONTROL_STAGES,'setup-control-values')
+        need(row['http_status'] is None or integer(row['http_status'],100,599),'setup-control-http-status')
+        window(row);nav=row['navigation_snapshot'];probe=row['certificate_probe']
+        need(probe['http_status'] is None or integer(probe['http_status'],100,599),'setup-control-probe-status')
+        need(not probe['completed'] or probe['attempted'],'setup-control-probe-order')
+        need(probe['completed'] or probe['http_status'] is None,'setup-control-probe-result')
+        if nav is not None:
+            closed(nav,{'counts':dict.fromkeys(SETUP_CONTROL_COUNTS,int),'saturated':bool,'transport_delta':(dict,type(None)),'server_delta':(dict,type(None))},'setup-control-navigation-shape')
+            window(nav);need(row['navigation_completed'] and row['http_status']==200,'setup-control-navigation-order')
+            need(all(nav['counts'][key]<=row['counts'][key] for key in SETUP_CONTROL_COUNTS),'setup-control-window-order')
+        need(not probe['attempted'] or nav is not None,'setup-control-probe-navigation')
+        if previous is not None and not previous['cleanup_complete']:
+            need(row['status']=='FAILED' and row['stage']=='context' and not any(row[key] for key in ('context_created','navigation_completed','certificate_verified','cleanup_complete','cleanup_failed','saturated'))
+              and row['failure'] is None and row['http_status'] is None and not any(row['counts'].values()) and row['transport_delta'] is None and row['server_delta'] is None and nav is None
+              and probe=={'attempted':False,'completed':False,'http_status':None},'setup-control-prior-cleanup')
+        if row['failure'] is not None:
+            closed(row['failure'],{'type':str,'network_error':(str,type(None))},'setup-control-failure-shape')
+            need(row['failure']['type'] in {'Error','TimeoutError','TargetClosedError','AssertionError','TypeError','RangeError','ReferenceError','OtherError'},'setup-control-error-type')
+            need(row['failure']['network_error'] is None or row['failure']['network_error'] in BROWSER_NETWORK_ERRORS,'setup-control-network-error')
+        if row['status']=='OBSERVED':
+            need(row['stage']=='complete' and row['context_created'] and row['navigation_completed'] and row['certificate_verified']
+              and row['cleanup_complete'] and not row['cleanup_failed'] and row['http_status']==200 and row['failure'] is None,'setup-control-observed')
+            need(row['server_delta'] is not None and row['server_delta']['api']==0 and row['server_delta']['requests']==row['server_delta']['static'],'setup-control-static-only')
+            need(nav is not None and nav['counts']['static_requests']>=9 and all(row['counts'][name]==0 for name in ('unexpected_requests','route_failed','page_errors','observer_errors')),'setup-control-clean-events')
+            need(probe=={'attempted':True,'completed':True,'http_status':200} and all(row['counts'][key]-nav['counts'][key]==1 for key in ('requests','static_requests')),'setup-control-probe-counts')
+            need(nav['server_delta'] is not None and nav['server_delta']['api']==0 and nav['server_delta']['requests']==nav['server_delta']['static']
+              and all(row['server_delta'][key]-nav['server_delta'][key]==1 for key in ('requests','static')),'setup-control-probe-server-counts')
+        previous=row
 
 
 def parse_protocol_setup(raw,run_id,origin,*,driver_waited,capped=False):
@@ -518,6 +567,13 @@ def failure_projection(directory,major,error):
             try:validate_setup_observation(observation)
             except Exception:pass
             else:projected['setup_observation']=observation
+            if (type(value.get('failure')) is dict and value['failure'].get('stage')=='positive-navigation'
+              and value['failure'].get('type')=='TimeoutError' and type(observation) is dict
+              and type(observation.get('browser')) is dict and observation['browser'].get('identity_verified') is True):
+                controls=value.get('setup_controls')
+                try:validate_setup_observation(observation);validate_setup_controls(controls)
+                except Exception:pass
+                else:projected['setup_controls']=controls
         for field in ('cleanup_complete','process_cleanup_complete','secrets_removed','cdp_listener_absent','tls_listeners_absent','control_reaped','real_http_executed','postgrest_executed','database_executed','native_browser_executed','real_https_executed'):
             if type(value.get(field)) is bool:projected[field]=value[field]
         for field in ('process_initial_scan_failure_type','descendant_cleanup_failure_type','process_cleanup_failure_type','network_cleanup_failure_type','cleanup_failure_type','final_source_failure_type','private_cleanup_failure_type'):

@@ -89,6 +89,95 @@ export function protocolBoundary(debug,runId,write=line=>writeSync(2,line)){
  };
 }
 
+export const SETUP_CONTROL_IDS=Object.freeze(['routed-no-extra-cdp','unrouted-no-extra-cdp']);
+export async function runSetupControls({browser,server,contexts,entryPaths,verifyLeaf}){
+ // These sequential controls follow a failed navigation in the same browser.
+ // They never configure learning state or grant acceptance for the original run.
+ const result={contract:'echs.c04.browser-setup-controls.v1',same_browser:true,after_failure:true,
+  original_contexts_closed:true,controls:[]};
+ for(const context of [...contexts]){try{await closeContext(context,contexts)}catch{result.original_contexts_closed=false}}
+ assert.equal(result.original_contexts_closed,true);
+ const paths=new Set(entryPaths),networkCodes=new Set(BROWSER_NETWORK_ERRORS);
+ const failure=error=>{const value=browserDiagnostic(error);return {type:value.type,network_error:networkCodes.has(value.network_error)?value.network_error:null}};
+ for(const id of SETUP_CONTROL_IDS){
+  const row={id,status:'FAILED',stage:'context',context_created:false,navigation_completed:false,certificate_verified:false,
+   cleanup_complete:false,cleanup_failed:false,http_status:null,saturated:false,failure:null,
+   counts:{requests:0,static_requests:0,unexpected_requests:0,route_attempted:0,route_continued:0,route_failed:0,page_errors:0,observer_errors:0},
+   transport_delta:null,server_delta:null,navigation_snapshot:null,certificate_probe:{attempted:false,completed:false,http_status:null}};
+  const previous=result.controls.at(-1);result.controls.push(row);
+  // An unclosed earlier context could contribute to shared listener counters.
+  // Retain an unattempted, unknown second row instead of attributing its traffic.
+  if(previous&&!previous.cleanup_complete)continue;
+  let context,cdp,beforeTransport,beforeServer,observing=true;const listeners=[];
+  const bump=name=>{if(!observing)return;if(row.counts[name]===255)row.saturated=true;else row.counts[name]++};
+  const on=(emitter,event,callback)=>{const listener=(...args)=>{try{callback(...args)}catch{bump('observer_errors')}};emitter.on(event,listener);listeners.push([emitter,event,listener])};
+  const staticRequest=request=>{const url=new URL(request.url());return request.method()==='GET'&&url.origin===server.origin&&!url.search&&!url.hash&&paths.has(url.pathname)};
+  const counters=()=>{
+   const after=server.setupObservation(),transportNames=['tcp_connections','tls_connections','tls_errors','http_requests'],serverNames=['requests','static','api'];let saturated=row.saturated;
+   const difference=(before,after,names)=>{
+    const values={};for(const name of names){const value=after[name]-before[name];if(!Number.isInteger(value)||value<0)throw new Error('control-counter-order');if(value>255)saturated=true;values[name]=Math.min(value,255)}return values;
+   };
+   let transport=null;if(beforeTransport?.saturated||after?.saturated)saturated=true;
+   else transport=difference(beforeTransport.counts,after.counts,transportNames);
+   const serverDelta=difference(beforeServer,server.metrics,serverNames);
+   assert.equal(serverDelta.api,0);assert.equal(serverDelta.requests,serverDelta.static);
+   return {counts:{...row.counts},saturated,transport_delta:transport,server_delta:serverDelta};
+  };
+  try{
+   beforeTransport=server.setupObservation();beforeServer={...server.metrics};
+   context=await bounded(browser.newContext({serviceWorkers:'block',ignoreHTTPSErrors:false}).then(value=>{contexts.add(value);return value}),5000,'control-context-deadline');row.context_created=true;
+   if(id==='routed-no-extra-cdp'){
+    row.stage='route';
+    await bounded(context.route('**/*',route=>{
+     const request=route.request(),url=new URL(request.url());
+     // Same positive destination predicate as the original setup guard.
+     const positive=url.origin===server.origin&&!url.search&&!url.hash&&(paths.has(url.pathname)||/^\/functions\/v1\/learning-journal\/(state|heads|apply|operation)$/.test(url.pathname));
+     if(!positive)return route.abort('blockedbyclient');
+     bump('route_attempted');try{const task=route.continue();void Promise.resolve(task).then(()=>bump('route_continued'),()=>bump('route_failed'));return task}catch(error){bump('route_failed');throw error}
+    }),5000,'control-route-deadline');
+   }
+   row.stage='page';const page=await bounded(context.newPage(),5000,'control-page-deadline');
+   on(page,'request',request=>{bump('requests');bump(staticRequest(request)?'static_requests':'unexpected_requests')});
+   on(page,'pageerror',()=>bump('page_errors'));
+   row.stage='navigation';const response=await page.goto(server.origin,{waitUntil:'load',timeout:10000});row.navigation_completed=true;
+   const status=response?.status();if(Number.isInteger(status)&&status>=100&&status<=599)row.http_status=status;
+   assert.equal(row.http_status,200);
+   row.navigation_snapshot=counters();
+   assert.ok(row.navigation_snapshot.counts.static_requests>=9);
+   // No extra page CDP session exists before this navigation has completed.
+   row.stage='certificate';cdp=await bounded(context.newCDPSession(page),3000,'control-cdp-deadline');
+   // A newly attached agent has no certificate history. Observe one fixed
+   // static response after enabling it; this does not warm the initial goto.
+   await bounded(cdp.send('Network.enable'),3000,'control-network-enable-deadline');
+   row.certificate_probe.attempted=true;
+   const leafStatus=await bounded(page.evaluate(async()=>{const response=await fetch('/',{cache:'no-store'});await response.arrayBuffer();return response.status}),3000,'control-static-fetch-deadline');
+   row.certificate_probe.completed=true;if(Number.isInteger(leafStatus)&&leafStatus>=100&&leafStatus<=599)row.certificate_probe.http_status=leafStatus;
+   assert.equal(leafStatus,200);
+   await bounded(verifyLeaf(cdp,server.origin),3000,'control-certificate-deadline');row.certificate_verified=true;
+   row.stage='static-verification';assert.equal(row.counts.unexpected_requests,0);assert.equal(row.counts.page_errors,0);assert.equal(row.counts.observer_errors,0);
+   assert.equal(row.counts.static_requests-row.navigation_snapshot.counts.static_requests,1);
+   assert.equal(row.counts.requests-row.navigation_snapshot.counts.requests,1);assert.equal(row.counts.route_failed,0);
+   row.status='OBSERVED';row.stage='complete';
+  }catch(error){row.failure=failure(error)}
+  finally{
+   // Snapshot before control cleanup. Capped/inconsistent deltas stay unknown.
+   try{
+    const value=counters();row.saturated=value.saturated;row.transport_delta=value.transport_delta;row.server_delta=value.server_delta;
+    if(row.status==='OBSERVED'){
+     assert.equal(row.server_delta.requests-row.navigation_snapshot.server_delta.requests,1);
+     assert.equal(row.server_delta.static-row.navigation_snapshot.server_delta.static,1);
+    }
+   }catch(error){row.status='FAILED';row.failure??=failure(error)}
+   observing=false;
+   for(const [emitter,event,listener] of listeners){try{emitter.removeListener(event,listener)}catch{row.cleanup_failed=true}}
+   if(cdp){try{await bounded(cdp.detach(),3000,'control-cdp-detach-deadline')}catch{row.cleanup_failed=true}}
+   if(context){try{await closeContext(context,contexts);row.cleanup_complete=!row.cleanup_failed}catch{row.cleanup_failed=true}}
+   if(!row.cleanup_complete)row.status='FAILED';
+  }
+ }
+ return result;
+}
+
 export async function closeContext(context,contexts,primaryError=null){
  // Disposal is best effort; a failed required close leaves ownership recorded.
  try{for(const page of context.pages()){try{await bounded(page.evaluate(()=>window.fixture?.disposeAll()),2000,'page-dispose-deadline')}catch{}}}catch{}
@@ -247,7 +336,24 @@ async function main(){
   await exercise({group,api,command,arm,newPage,rpcPayloads});
   stage='final-verification';assert.deepEqual(outcomes.map(row=>row.name),LABELS);assert.deepEqual(await snapshot(),sourceBefore);assert.deepEqual(unexpected,[]);assert.deepEqual(pageErrors,[]);
   Object.assign(report,{status:'ACTUAL BROWSER HTTPS POSTGREST SQL PASS',source_files:sourceBefore,static_routes:10,served_t3_modules:7,held_transport_served:false});
- }catch(error){report.status='FAIL; NO ACCEPTANCE';report.failure=browserDiagnostic(error,failureStage??stage);report.failed_group=failedBrowserGroup(currentGroup);if(currentGroup===null&&outcomes.length===0)report.setup_observation={contract:'echs.c04.browser-setup-observation.v1',browser:setup.snapshot(),transport:server?.setupObservation()??null}}
+ }catch(error){
+  report.status='FAIL; NO ACCEPTANCE';report.failure=browserDiagnostic(error,failureStage??stage);report.failed_group=failedBrowserGroup(currentGroup);
+  if(currentGroup===null&&outcomes.length===0)report.setup_observation={contract:'echs.c04.browser-setup-observation.v1',browser:setup.snapshot(),transport:server?.setupObservation()??null};
+  if(report.failed_group==='setup'&&report.failure.stage==='positive-navigation'&&report.failure.type==='TimeoutError'
+    &&report.setup_observation?.browser.identity_verified===true&&browser&&server){
+   // Preserve the original error and by-value observations before any control.
+   // A successful sequential control never changes the failed run's status.
+   try{
+    endProtocol();setup.dispose();
+    report.setup_controls=await runSetupControls({browser,server,contexts,entryPaths:entries.map(row=>row.path),verifyLeaf:async(session,origin)=>{
+     const chain=await session.send('Network.getCertificate',{origin});assert.equal(chain.tableNames.length,1);
+     const observed=new X509Certificate(Buffer.from(chain.tableNames[0],'base64'));
+     assert.equal(hash(observed.raw),config.tls.positive.metadata.der_sha256);
+     assert.equal(hash(observed.publicKey.export({type:'spki',format:'der'})),config.tls.positive.metadata.spki_sha256);
+    }});
+   }catch{}
+  }
+ }
  finally{
   try{endProtocol()}catch{report.status='FAIL; NO ACCEPTANCE'}
   // Diagnostic listeners must not prevent independent owned cleanup attempts.

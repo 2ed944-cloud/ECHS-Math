@@ -253,3 +253,34 @@ file overflow; real PG15/17 browser jobs remain the acceptance gate. The parser
 relies on the source-pinned Playwright private logger, so a dependency upgrade
 requires deliberate source review, not a relaxed parser. The file-limit contract
 is documented in Python's [resource reference](https://docs.python.org/3.12/library/resource.html#resource.RLIMIT_FSIZE).
+
+Only after an identity-verified initial navigation times out, two diagnostic
+contexts may run in the same owned browser. The original failure, passive
+snapshot and synchronous private-protocol boundary are retained first, and the
+original contexts must close successfully. The first fresh context retains the
+original positive route predicate; the second performs no interception. Neither
+attaches an extra page CDP session before navigation. Successful loads receive
+the same exact leaf DER/SPKI check through a session attached afterward. A fresh
+agent has no certificate history, so it enables Network and observes one fixed
+static GET of `/` before reading the certificate. This verifies the post-load
+static response; it neither warms nor independently identifies the initial
+navigation response. The response body is drained privately and only status200
+and the exact leaf comparison are used.
+
+These contexts load the pinned static fixture without configuring learning
+state or calling a journal API. Closed counts record static requests, unexpected
+events, zero-API checks, transport deltas and independent context cleanup. A
+navigation snapshot records counts and deltas before the certificate probe;
+the row totals cover the whole arm. Fixed probe attempted/completed/status
+fields and exactly one extra static request distinguish its contribution. The
+original nine-static-request requirement applies to the navigation snapshot. Each
+arm has bounded operations. A failed navigation still permits the second arm
+when its context closes successfully; incomplete cleanup leaves the second arm
+unattempted with unknown deltas, so leftover traffic cannot be attributed to it.
+Final owned-resource cleanup always runs. Unknown or saturated counters are explicit.
+The controls run after the original timeout, sequentially in the same browser;
+startup time or warming can influence their results. V5 already timed out before
+any extra page CDP session existed, so extra CDP is not necessary for this failure.
+An `OBSERVED` control is a diagnostic observation, not a repair or an acceptance
+result. The original run always remains failed, and the 20 HTTP, 12 browser and
+90 local test-group totals are unchanged.
