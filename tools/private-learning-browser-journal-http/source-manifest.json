@@ -3,9 +3,9 @@
   "files": [
     {
       "path": ".github/workflows/private-learning-browser-journal-http.yml",
-      "bytes": 5180,
-      "sha256": "a4107baadf867c525b0d0d686fe8021807b36a9455ff137357ad1ef4e638bb5b",
-      "git_blob_sha": "005eb31a8fdb14052b89d3a469df09adae59844d"
+      "bytes": 5282,
+      "sha256": "74ac9bd517a7b88f4ba040fbd43c64653890a50917869f3f1c4e03f07a7b5d2e",
+      "git_blob_sha": "287ae18246f368de3e75629b5afcb9cd9675e247"
     },
     {
       "path": "tools/private-learning-browser-journal-http/README.md",
@@ -573,9 +573,9 @@
     },
     {
       "path": "tools/private-learning-browser-journal-http/test_contract.py",
-      "bytes": 46270,
-      "sha256": "67ba7e28e2dcda453560675fb4776019f9ac54de22bcac40ba9766e3205f0dd9",
-      "git_blob_sha": "3de290a35f69da5b7e366fa1fddcaee590eb3a85"
+      "bytes": 47474,
+      "sha256": "9b5db70737b15190c29c0876db21e5fbcdc7cceaadb1118c10f90b48cf87e366",
+      "git_blob_sha": "c87f9b87ad8205d198f3366adca65cc21916661c"
     },
     {
       "path": "tools/private-learning-browser-journal-http/test_http.mjs",

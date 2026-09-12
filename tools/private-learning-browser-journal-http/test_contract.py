@@ -285,7 +285,25 @@ class ContractTests(unittest.TestCase):
         self.assertNotIn('services',job);self.assertNotIn('container',job)
         self.assertEqual(job['strategy'],{'fail-fast':'false','max-parallel':'2','matrix':{'postgres_major':['15','17']}})
         self.assertEqual(job['runs-on'],'ubuntu-latest');self.assertEqual(job['timeout-minutes'],'30')
-        self.assertEqual(job['env'],{'PYTHONDONTWRITEBYTECODE':'1','PLAYWRIGHT_BROWSERS_PATH':'${{ runner.temp }}/echs-browser-bin'})
+        # GitHub permits runner context in steps.env, but not jobs.<id>.env.
+        # Keep this focused guard executable against the original invalid form.
+        def validate_browser_cache_environment(candidate):
+            self.assertEqual(candidate['env'],{'PYTHONDONTWRITEBYTECODE':'1'})
+            cache={'PLAYWRIGHT_BROWSERS_PATH':'${{ runner.temp }}/echs-browser-bin'}
+            self.assertEqual(len(candidate['steps']),9)
+            for index,step in enumerate(candidate['steps']):
+                if index in (3,5):self.assertEqual(step.get('env'),cache)
+                else:self.assertNotIn('env',step)
+        validate_browser_cache_environment(job)
+        original=copy.deepcopy(job)
+        original['env']['PLAYWRIGHT_BROWSERS_PATH']='${{ runner.temp }}/echs-browser-bin'
+        for index in (3,5):original['steps'][index].pop('env')
+        with self.assertRaises(AssertionError):validate_browser_cache_environment(original)
+        for index in (3,5):
+            missing=copy.deepcopy(job);missing['steps'][index].pop('env')
+            with self.assertRaises(AssertionError):validate_browser_cache_environment(missing)
+        wrong=copy.deepcopy(job);wrong['steps'][5]['env']['PLAYWRIGHT_BROWSERS_PATH']='unbound-cache'
+        with self.assertRaises(AssertionError):validate_browser_cache_environment(wrong)
         self.assertNotIn('secrets.',raw);self.assertNotIn('pull_request_target',raw)
         steps=job['steps'];self.assertEqual(len(steps),9)
         self.assertEqual([step['uses'] for step in steps if 'uses' in step],[
