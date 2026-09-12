@@ -39,9 +39,9 @@
     },
     {
       "path": "tools/private-learning-current-session-journal-http/selected-source.json",
-      "bytes": 2818,
-      "sha256": "76eb25d48fc09858b7cdaad037e158fdd6d452acfb28a2cc5fc049b77fc0a978",
-      "git_blob_sha": "9ceff89835d8e824fc331456c98d9576652e8cd1"
+      "bytes": 2825,
+      "sha256": "f9c3436ad28a6a2b86c51ebfa0d87e0bfdbda76119dc7fa4301880d806d59340",
+      "git_blob_sha": "8e44df92efe882b9543aca577629c028c1fbe158"
     },
     {
       "path": "tools/private-learning-current-session-journal-http/selected/js/current-session-journal-bridge.mjs",
@@ -116,7 +116,7 @@
       "git_blob_sha": "b34b006dcf4e5a47cc24d5b0bcef2a50172f5ec5"
     },
     {
-      "path": "tools/private-learning-current-session-journal-http/selected/question-bank/practice.html",
+      "path": "tools/private-learning-current-session-journal-http/selected/question-bank/practice.html.source",
       "bytes": 14983,
       "sha256": "06c4920c00da32eb35e157c7a4c4e7450cc6841857186e7dfe0a50c01e8fb4b8",
       "git_blob_sha": "b5e0c5a5bbedb2a5b976a426ed7c81c3fbec308f"
@@ -160,14 +160,14 @@
     {
       "path": "tools/private-learning-current-session-journal-http/session_contract.py",
       "bytes": 4528,
-      "sha256": "58bc9e17617560e2d5a8103cbe2affc025af87a0f6c489e9418e5198c473990a",
-      "git_blob_sha": "2ddc499653c9d3bb945ebaf9513b948eb7ca1776"
+      "sha256": "379f022a25b2dc95c1c5b92bd7a2a0c6e351a70ad0cb87ecf8e51d63699d955a",
+      "git_blob_sha": "0ef8f0cb0a165279cfdc214a8ce637846c132b9a"
     },
     {
       "path": "tools/private-learning-current-session-journal-http/session_report_review.py",
-      "bytes": 13615,
-      "sha256": "dfa1c1d0aba78a7d4de857c4fc4db777972c280ff80c9470673b20beb107ab6c",
-      "git_blob_sha": "5f058491d2eb03db01c64609e1715bb711cff0b4"
+      "bytes": 13622,
+      "sha256": "5c2c20ccb92f67484ebdaf57029bfcb311e2635223121f522029eaf71afa3d5c",
+      "git_blob_sha": "cdc9b7fcd2898915edb934837ac4f18822ed60da"
     },
     {
       "path": "tools/private-learning-current-session-journal-http/test_current_session_http.mjs",

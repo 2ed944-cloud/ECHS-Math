@@ -7,7 +7,7 @@ PREFIX='tools/private-learning-current-session-journal-http/'
 BASELINE_PREFIX='tools/private-learning-browser-journal-http/'
 WORKFLOW='.github/workflows/private-learning-current-session-journal-http.yml'
 BASELINE_SHA='d92528f084050bb36254fc5b495cc6792a15821d02601ec98c2a17f072c3f0b8'
-SELECTED_SHA='76eb25d48fc09858b7cdaad037e158fdd6d452acfb28a2cc5fc049b77fc0a978'
+SELECTED_SHA='f9c3436ad28a6a2b86c51ebfa0d87e0bfdbda76119dc7fa4301880d806d59340'
 FROZEN_BRIDGE_SHA='660bb66c7a37cab21972dc540a32fd2df788f9756333852bb10b848bf95eef76'
 NAMES=('session-fixture.mjs','session-https-bridge.mjs','session-controls.py','session-control-client.mjs',
  'test_current_session_http.mjs','current-session-browser-page.mjs','current-session-cases.mjs','selected-source.json',

@@ -62,7 +62,7 @@ SELECTED = (
  ('question-bank/js/learning-system.js',1757,'69952f6ddbfed512fde53038cfe83a0ff6fcefb262699203db5290f1bdb9ec7b'),
  ('question-bank/js/learning-transition.mjs',27867,'4167b49674f8dcb55d3427817b62dd81c28d5f9d46140c13bf92de55eb601b5b'),
  ('question-bank/js/practice-flow.mjs',10918,'82be3e7149d7375427804331491d75516287b67aaccac519a442be733ef08418'),
- ('question-bank/practice.html',14983,'06c4920c00da32eb35e157c7a4c4e7450cc6841857186e7dfe0a50c01e8fb4b8'),
+ ('question-bank/practice.html.source',14983,'06c4920c00da32eb35e157c7a4c4e7450cc6841857186e7dfe0a50c01e8fb4b8'),
 )
 SOURCE_PATHS = [*NEW_SOURCE_PATHS, *('selected/'+name for name, _, _ in SELECTED)]
 

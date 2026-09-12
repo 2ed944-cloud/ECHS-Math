@@ -75,7 +75,7 @@
       "served": true
     },
     {
-      "path": "selected/question-bank/practice.html",
+      "path": "selected/question-bank/practice.html.source",
       "bytes": 14983,
       "sha256": "06c4920c00da32eb35e157c7a4c4e7450cc6841857186e7dfe0a50c01e8fb4b8",
       "served": false
