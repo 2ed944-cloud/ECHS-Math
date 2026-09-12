@@ -334,6 +334,20 @@ class ContractTests(unittest.TestCase):
         self.assertEqual([arg for arg in args if arg.startswith('--ignore-certificate-errors')],['--ignore-certificate-errors-spki-list='+spki])
         self.assertIn('--remote-debugging-address=127.0.0.1',args)
         self.assertNotIn('--allow-insecure-localhost',args)
+        self.assertEqual([arg for arg in args if 'proxy' in arg],['--no-proxy-server'])
+        proxy_script=r"""
+import assert from 'node:assert/strict';
+const {assertLoopbackProxyArgs}=await import(process.argv[2]),actual=JSON.parse(process.argv[3]);
+assertLoopbackProxyArgs(actual);
+assertLoopbackProxyArgs(['chrome','--no-proxy-server','--user-data-dir=owned-fixture']);
+for(const invalid of [null,{},['chrome',null],[],actual.filter(x=>x!=='--no-proxy-server'),[...actual,'--no-proxy-server'],actual.map(x=>x==='--no-proxy-server'?x+'=true':x)])assert.throws(()=>assertLoopbackProxyArgs(invalid));
+for(const flag of ['--proxy-server','--proxy-pac-url','--proxy-auto-detect','--proxy-bypass-list']){
+ for(const value of [flag,flag+'=synthetic-local-fixture'])assert.throws(()=>assertLoopbackProxyArgs([...actual,value]));
+}
+process.stdout.write('fixed-loopback-proxy-argv-pass');
+"""
+        checked=subprocess.run(['node','--input-type=module','-',(HERE/'test_browser_http.mjs').as_uri(),json.dumps(args)],input=proxy_script,text=True,capture_output=True,timeout=15,check=True)
+        self.assertEqual(checked.stdout,'fixed-loopback-proxy-argv-pass');self.assertEqual(checked.stderr,'')
         profile.mkdir();self.rejects(lambda:runner.browser_arguments(root/'chrome',profile,spki),'fresh-browser-profile')
         self.rejects(lambda:runner.browser_arguments(root/'chrome',root/'fresh','bad'),'browser-spki')
 

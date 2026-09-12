@@ -35,7 +35,7 @@ process.stdout.write(JSON.stringify({playwright:JSON.parse(fs.readFileSync(path.
 def browser_arguments(executable, profile, spki):
     need(type(spki) is str and re.fullmatch(r'[A-Za-z0-9+/]{43}=', spki), 'browser-spki')
     need(profile.is_absolute() and not profile.exists(), 'fresh-browser-profile')
-    return [str(executable), '--headless=new', '--no-sandbox', '--disable-setuid-sandbox',
+    return [str(executable), '--headless=new', '--no-sandbox', '--disable-setuid-sandbox', '--no-proxy-server',
             '--remote-debugging-address=127.0.0.1', '--remote-debugging-port=0',
             '--user-data-dir=' + str(profile), '--enable-automation',
             '--ignore-certificate-errors-spki-list=' + spki,

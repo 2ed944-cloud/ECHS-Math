@@ -9,9 +9,9 @@
     },
     {
       "path": "tools/private-learning-browser-journal-http/README.md",
-      "bytes": 12904,
-      "sha256": "57679f2bf6d55e872a946437df79ea43fe7eda080ab9f36cb8e3b4187c9e1798",
-      "git_blob_sha": "edec1f95ec1dd9b7f7539903632e651040da9886"
+      "bytes": 14226,
+      "sha256": "bc8bf1d2056191d55109df3c685ede04468ecbf85a17f4d02a3e8c2860ef908e",
+      "git_blob_sha": "f19c0b90c3948cf7d8fc4ff5fee7fce0131ea35c"
     },
     {
       "path": "tools/private-learning-browser-journal-http/T3_COPY_RECEIPT.json",
@@ -525,9 +525,9 @@
     },
     {
       "path": "tools/private-learning-browser-journal-http/run.py",
-      "bytes": 31799,
-      "sha256": "d06d32430547327ec22ddbb2d55b1855c5fe064d64d4d7480ca8437bcdad4874",
-      "git_blob_sha": "8118f58c71dfb10a5e94cc2eea86cf443475abfe"
+      "bytes": 31820,
+      "sha256": "fce90fa8ab69b4d1ce2b277b700823ded0f804e51991886119e86535f08acb2a",
+      "git_blob_sha": "50a3cee15efaabe51091a180d358edc3b341472e"
     },
     {
       "path": "tools/private-learning-browser-journal-http/runtime/contract.mjs",
@@ -561,9 +561,9 @@
     },
     {
       "path": "tools/private-learning-browser-journal-http/test_browser_http.mjs",
-      "bytes": 20498,
-      "sha256": "371c3edded88e1e1750c7741cb7cfb820fb4e55ccc929a52eac8f93d6d858b7e",
-      "git_blob_sha": "81aa04349194d4a431422c40e4bb261c68523242"
+      "bytes": 20992,
+      "sha256": "5583cc53ab0ef5b81b8e68863f494b05abc27d5dac5011a9ba1401c9271e4fc1",
+      "git_blob_sha": "460ba6f416cd3ff84778d8711298e8a29c1b43d3"
     },
     {
       "path": "tools/private-learning-browser-journal-http/test_certs.py",
@@ -573,9 +573,9 @@
     },
     {
       "path": "tools/private-learning-browser-journal-http/test_contract.py",
-      "bytes": 54490,
-      "sha256": "7bade8acce586e045bda678fec0026c3da899f86f9d400ea301fceefceb5337e",
-      "git_blob_sha": "79b407cb1192a30abf32f6d1a7befb1acbd162c7"
+      "bytes": 55683,
+      "sha256": "d9dc1be5322cd363feee14bcb92cc1a5e85cbffbe8a203040e09ef7e030d428b",
+      "git_blob_sha": "8a27da4c8dc61997c5e7fc485c0d28dc11152b69"
     },
     {
       "path": "tools/private-learning-browser-journal-http/test_http.mjs",

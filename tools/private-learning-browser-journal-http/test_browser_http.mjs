@@ -17,6 +17,13 @@ const MODULES=['js/owned-learning-store.mjs','js/wire-binding-model.mjs','js/jou
 const SOURCE_NAMES=['runtime/handler.mjs','runtime/wire.mjs','runtime/contract.mjs','runtime/pending-intent.mjs','bridge.mjs','https-bridge.mjs','browser-page.mjs','controls.py','fixture.py','control-client.mjs','test_http.mjs','test_browser_http.mjs','browser-cases.mjs','browser-dependency.json',...MODULES.map(name=>'retained/c04-learning-ack-candidate/source/'+name)];
 const snapshot=()=>Promise.all(SOURCE_NAMES.map(async path=>{const raw=await readFile(resolve(HERE,path));return {path,bytes:raw.length,sha256:hash(raw)}}));
 function deferred(){let resolve;const promise=new Promise(yes=>resolve=yes);return {promise,resolve}}
+export function assertLoopbackProxyArgs(args){
+ assert.ok(Array.isArray(args)&&args.every(arg=>typeof arg==='string'));
+ // This owned loopback fixture must not inherit ambient PAC/proxy settings.
+ // Check the browser's observed command line, preserving the TLS exception.
+ const proxy=args.filter(arg=>/^--(?:no-proxy-server|proxy-server|proxy-pac-url|proxy-auto-detect|proxy-bypass-list)(?:=|$)/.test(arg));
+ assert.deepEqual(proxy,['--no-proxy-server']);
+}
 export const BROWSER_FAILURE_STAGES=Object.freeze(['control-start','listener-start','listener-metadata','cdp-connect','positive-context','positive-page','positive-navigation','positive-fixture','browser-identity','positive-certificate','negative-page','negative-navigation','negative-verification','tls-cleanup','group-account','group-context','group-route','group-page','group-navigation','group-fixture','group-configure','group-body','group-verification','group-cleanup','final-verification']);
 export const BROWSER_NETWORK_ERRORS=Object.freeze(['ERR_CERT_AUTHORITY_INVALID','ERR_CERT_COMMON_NAME_INVALID','ERR_CERT_DATE_INVALID','ERR_CERT_INVALID','ERR_SSL_PROTOCOL_ERROR','ERR_CONNECTION_CLOSED','ERR_CONNECTION_REFUSED','ERR_CONNECTION_RESET','ERR_CONNECTION_TIMED_OUT','ERR_TIMED_OUT','ERR_ABORTED','ERR_FAILED','ERR_BLOCKED_BY_CLIENT','ERR_BLOCKED_BY_RESPONSE','ERR_NAME_NOT_RESOLVED','ERR_ADDRESS_UNREACHABLE','ERR_NETWORK_ACCESS_DENIED','ERR_EMPTY_RESPONSE']);
 export function browserDiagnostic(error,stage=null){
@@ -170,6 +177,7 @@ async function main(){
   const cdp=await tlsContext.newCDPSession(page),version=await cdp.send('Browser.getVersion'),commandLine=await cdp.send('Browser.getBrowserCommandLine');
   assert.equal(version.product.split('/').at(-1),pin.version);assert.ok(version.revision.startsWith('@'));
   const args=commandLine.arguments,spki='--ignore-certificate-errors-spki-list='+config.tls.positive.metadata.spki_sha256_base64;
+  assertLoopbackProxyArgs(args);
   assert.equal(args.filter(arg=>arg.startsWith('--ignore-certificate-errors-spki-list=')).length,1);assert.ok(args.includes(spki));
   assert.equal(args.filter(arg=>arg.startsWith('--user-data-dir=')).length,1);assert.ok(args.includes('--user-data-dir='+config.browser_profile));assert.ok(args.includes('--enable-automation'));
   assert.ok(!args.some(arg=>/^--(?:ignore-certificate-errors(?:=|$)|allow-insecure-localhost(?:=|$))/.test(arg)));

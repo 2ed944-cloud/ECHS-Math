@@ -102,6 +102,25 @@ through `Network.getCertificate`; the unrelated same-SAN listener must fail
 with zero application HTTP requests and no fixture sentinel.
 
 This per-run loopback TLS exercise is not hosted TLS or hosted Edge acceptance.
+
+The owned Chromium process also receives exactly one `--no-proxy-server` flag.
+The browser's observed command line must contain that flag and no proxy-server,
+PAC, auto-detect or bypass override. This keeps the isolated loopback transport
+independent of ambient proxy discovery; it does not change system settings,
+the route allowlist, fresh contexts or the narrow TLS exception. Chromium
+documents this command-line behavior in its
+[network settings reference](https://www.chromium.org/developers/design-documents/network-settings/).
+Offline guards reject a missing, duplicated, valued or conflicting proxy flag.
+
+Local diagnostic evidence used Playwright1.61.1 and pinned Chromium149.0.7827.55
+on Windows with per-run .NET certificates. A private NetLog showed pending PAC
+initialization before any loopback TCP connection; its raw trace was deleted.
+With the explicit no-proxy flag, fresh-context HTTP/HTTPS controls and a separate
+CDP-attached exact-route HTTPS control loaded the fixture, verified the served
+leaf DER/SPKI and rejected an unrelated leaf before HTTP. That CDP control had
+a managed persistent browser owner plus a second controller. These local
+adaptations do not establish the cause of the Linux CI timeout, execute any
+PostgREST/SQL browser cases or replace the required PG15/17 matrix acceptance.
 The listener serves exactly ten fixed buffered entries: one HTML page, one
 fixture module, a favicon and seven exact T3 modules. The held transport module
 is retained but unserved. There is no arbitrary static root or filesystem path
