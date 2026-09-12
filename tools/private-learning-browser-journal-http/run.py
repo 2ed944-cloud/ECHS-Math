@@ -31,6 +31,43 @@ const pw=require(entry),core=require.resolve('playwright-core/package.json',{pat
 const browser=JSON.parse(raw).browsers.find(x=>x.name==='chromium');
 process.stdout.write(JSON.stringify({playwright:JSON.parse(fs.readFileSync(path.join(entry,'package.json'))).version,playwright_core:JSON.parse(fs.readFileSync(core)).version,descriptor_sha256:crypto.createHash('sha256').update(raw).digest('hex'),descriptor_bytes:raw.length,browser,executable:pw.chromium.executablePath(),node:process.version}));"""
 
+# The exec preserves the registered PID/start time/session/group. No helper
+# remains alive; a tighter inherited hard file limit is never increased.
+PROTOCOL_LOG_LIMIT = 2097152
+PROTOCOL_EXEC = """import os,resource,sys
+soft,hard=resource.getrlimit(resource.RLIMIT_FSIZE)
+cap=2097152 if hard==resource.RLIM_INFINITY else min(2097152,hard)
+resource.setrlimit(resource.RLIMIT_FSIZE,(cap,cap))
+os.execv(sys.argv[1],sys.argv[1:])
+"""
+
+
+def protocol_driver_arguments(argv):
+    need(type(argv) is list and argv and all(type(arg) is str and arg and '\0' not in arg for arg in argv), 'protocol-driver-argv')
+    need(Path(argv[0]).is_absolute(), 'protocol-driver-executable')
+    return [sys.executable, '-c', PROTOCOL_EXEC, *argv]
+
+
+def read_protocol_setup(path, secrets_dir, identifier, waited):
+    """Read only a stopped driver's private, exclusive, bounded trace."""
+    from assemble import parse_protocol_setup, protocol_incomplete
+    import contract
+    if waited is not True:return protocol_incomplete('driver-not-waited')
+    try:
+        checked=contract.guarded_path(path,secrets_dir)
+        info=checked.stat()
+        need(checked.parent==secrets_dir and stat.S_ISREG(info.st_mode) and info.st_nlink==1
+             and info.st_uid==os.getuid() and stat.S_IMODE(info.st_mode)==0o600, 'protocol-log-owner')
+        with checked.open('rb') as stream:raw=stream.read(PROTOCOL_LOG_LIMIT+1)
+        listener=contract.guarded_path(secrets_dir/'listener-private.json',secrets_dir)
+        with listener.open('rb') as stream:ports=json.loads(stream.read(129))
+        need(type(ports) is list and len(ports)==2 and len(set(ports))==2
+             and all(type(port) is int and 1<=port<=65535 for port in ports),'protocol-listener')
+        return parse_protocol_setup(raw,identifier,'https://127.0.0.1:'+str(ports[0]),
+             driver_waited=waited,capped=len(raw)>=PROTOCOL_LOG_LIMIT)
+    except Exception:
+        return protocol_incomplete('log-unavailable',waited is True)
+
 
 def browser_arguments(executable, profile, spki):
     need(type(spki) is str and re.fullmatch(r'[A-Za-z0-9+/]{43}=', spki), 'browser-spki')
@@ -153,7 +190,7 @@ def main():
     (secrets_dir / "home").mkdir(); (secrets_dir / "docker").mkdir()
     env = {"PATH": os.environ["PATH"], "HOME": str(secrets_dir / "home"), "DOCKER_CONFIG": str(secrets_dir / "docker"), "LANG": "C.UTF-8", "PYTHONDONTWRITEBYTECODE": "1", "GITHUB_ACTIONS": "true", "RUNNER_ENVIRONMENT": "github-hosted"}
     stage = "checkout"; created = []; plan = {"network_planned": False}; cleanup_ok = False
-    registry = None; processes = []; browser_endpoint = None; browser_process = None
+    registry = None; processes = []; browser_endpoint = None; browser_process = None; protocol_setup = None
     report = {"contract": "echs.c04.browser-journal-service-run.v1", "status": "RUNNING; NOT ACCEPTED", "run_id": identifier, "postgres_major": args.postgres_major, "production_calls": 0, "hosted_edge_executed": False, "hosted_tls_executed": False, "tls_executed": False, "browser_persistence_executed": False, "service_start_attempted": False, "cleanup_complete": False}
     def save(path, value):
         with path.open("x", encoding="utf-8", newline="\n") as stream: json.dump(value, stream, indent=2); stream.write("\n")
@@ -173,18 +210,33 @@ def main():
             else: json.dump(value, stream)
         path.chmod(0o600)
         return path
-    def launch(argv, role):
+    def launch(argv, role, child_env=None, stderr=None):
         need(registry is not None, 'child-registry-required')
-        child=OwnedProcess(argv,env=env,cwd=str(repo),role=role,reap=registry.reap_adopted)
+        child=OwnedProcess(argv,env=env if child_env is None else child_env,cwd=str(repo),role=role,reap=registry.reap_adopted,stderr=stderr)
         # Register before waiting or starting any second child.
         processes.append(child);registry.register_root(child.child)
         return child
     def run_child(argv, role, timeout, output):
-        nonlocal stage
+        nonlocal stage,protocol_setup
         if role=='driver':stage='actual-browser-driver-start'
-        child=launch(argv,role)
-        if role=='driver':stage='actual-browser-driver-wait'
-        exit_code=child.wait(timeout)
+        if role=='driver':
+            trace=contract.guarded_path(secrets_dir/'driver-protocol.log',secrets_dir)
+            need(not trace.exists(),'fresh-protocol-log')
+            waited=False
+            # Open exclusively with the final private mode, before child launch.
+            descriptor=os.open(trace,os.O_WRONLY|os.O_CREAT|os.O_EXCL,0o600)
+            with os.fdopen(descriptor,'wb',buffering=0) as stderr:
+                try:
+                    child=launch(protocol_driver_arguments(argv),role,
+                        {**env,'DEBUG':'pw:protocol','DEBUG_COLORS':'0','MAX_LOG_LENGTH':'16384'},stderr)
+                    stage='actual-browser-driver-wait';exit_code=child.wait(timeout);waited=True
+                finally:
+                    # The parent handle is always closed before reading. An
+                    # unwaited child is never parsed as complete evidence.
+                    stderr.close()
+                    protocol_setup=read_protocol_setup(trace,secrets_dir,identifier,waited)
+        else:
+            child=launch(argv,role);exit_code=child.wait(timeout)
         need(exit_code==0,'child-test-failed')
         if role=='driver':stage='actual-browser-driver-output'
         output_path=contract.guarded_path(run_dir/output,run_dir)
@@ -422,6 +474,8 @@ def main():
         except Exception as error:
             cleanup_ok=False;report['status']='FAIL; NO ACCEPTANCE';report['private_cleanup_failure_type']=type(error).__name__
         report["cleanup_complete"] = cleanup_ok
+        if report['status']!='ACTUAL BROWSER JOURNAL SERVICES PASS' and protocol_setup is not None:
+            report['protocol_setup']=protocol_setup
         # Closed metadata-only evidence is copied into a fresh artifact directory.
         # No service logs, config files, JWTs, tokens, bodies or private pipes.
         save(run_dir / "run-report.json", report)

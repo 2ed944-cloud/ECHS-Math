@@ -671,6 +671,142 @@ process.stdout.write(JSON.stringify({contract:'echs.c04.browser-setup-observatio
             self.rejects(lambda:assemble.validate_setup_observation(invalid));self.assertNotIn('setup_observation',project_setup(invalid))
         for value in [None,True,[],secret,{}, {'contract':'wrong','browser':observation['browser'],'transport':None}]:
             self.rejects(lambda:assemble.validate_setup_observation(value));self.assertNotIn('setup_observation',project_setup(value))
+        # Execute the exact wrapper body with injected resource/os modules;
+        # actual Linux exec and file-limit evidence belongs to the existing
+        # native supervisor group, which is explicitly skipped on Windows.
+        argv=[sys.executable,'-B','-c','pass','literal spaces;$(not-a-command)']
+        wrapped=runner.protocol_driver_arguments(argv)
+        self.assertEqual(wrapped,[sys.executable,'-c',runner.PROTOCOL_EXEC,*argv])
+        self.assertEqual(runner.PROTOCOL_LOG_LIMIT,2097152)
+        for invalid in [None,[],[True],['relative-python'],[sys.executable,''],[sys.executable,'bad\0argument']]:
+            self.rejects(lambda:runner.protocol_driver_arguments(invalid))
+        for hard,expected in [(-1,2097152),(4194304,2097152),(4096,4096),(0,0)]:
+            resource=SimpleNamespace(RLIMIT_FSIZE=19,RLIM_INFINITY=-1,getrlimit=Mock(return_value=(0,hard)),setrlimit=Mock())
+            operating=SimpleNamespace(execv=Mock());arguments=SimpleNamespace(argv=['-c',*argv])
+            with patch.dict(sys.modules,{'resource':resource,'os':operating,'sys':arguments}):
+                exec(compile(runner.PROTOCOL_EXEC,'<owned-protocol-wrapper>','exec'),{})
+            resource.getrlimit.assert_called_once_with(19);resource.setrlimit.assert_called_once_with(19,(expected,expected))
+            operating.execv.assert_called_once_with(argv[0],argv)
+        failure=OSError(secret);resource.setrlimit=Mock(side_effect=failure);operating.execv.reset_mock()
+        with patch.dict(sys.modules,{'resource':resource,'os':operating,'sys':arguments}):
+            with self.assertRaises(OSError) as raised:exec(compile(runner.PROTOCOL_EXEC,'<owned-protocol-wrapper>','exec'),{})
+        self.assertIs(raised.exception,failure);operating.execv.assert_not_called()
+        boundary_script=r"""
+import assert from 'node:assert/strict';
+const {protocolBoundary}=await import(process.argv[2]);
+const runId='a'.repeat(32),events=[],lines=[];
+const stop=protocolBoundary({disable(){events.push('disable');return 'pw:protocol'}},runId,line=>{events.push('write');lines.push(line);return Buffer.byteLength(line)});
+stop();stop();assert.deepEqual(events,['disable','write']);assert.equal(lines.length,1);
+assert.equal(lines[0],'ECHS_PROTOCOL_BOUNDARY '+JSON.stringify({contract:'echs.c04.browser-protocol-boundary.v1',run_id:runId,phase:'setup'})+'\n');
+for(const invalid of ['',true,null,'a'.repeat(31),'SYNTHETIC_PRIVATE_VALUE_DO_NOT_UPLOAD_9741']){
+ let touched=0;assert.throws(()=>protocolBoundary({disable(){touched++;return 'pw:protocol'}},invalid,()=>touched++));assert.equal(touched,0);
+}
+for(const mode of ['wrong-channel','short-write','throw-write']){
+ let disables=0,writes=0;const error=new Error('synthetic write failure');
+ const boundary=protocolBoundary({disable(){disables++;return mode==='wrong-channel'||disables>1?'':'pw:protocol'}},runId,line=>{writes++;if(mode==='throw-write')throw error;return Buffer.byteLength(line)-1});
+ if(mode==='throw-write')assert.throws(boundary,e=>e===error);else assert.throws(boundary);
+ assert.throws(boundary);assert.equal(writes,mode==='wrong-channel'?0:1);
+}
+process.stdout.write(JSON.stringify({boundary:'PASS',run_bound:true,disable_precedes_marker:true}));
+"""
+        boundary=subprocess.run(['node','--input-type=module','-',(HERE/'test_browser_http.mjs').as_uri()],input=boundary_script,text=True,capture_output=True,timeout=15,check=True)
+        self.assertEqual(json.loads(boundary.stdout),{'boundary':'PASS','run_bound':True,'disable_precedes_marker':True})
+        self.assertNotIn(secret,boundary.stdout+boundary.stderr)
+        run_id='a'*32;origin='https://127.0.0.1:45678';session=secret+'-session'
+        def send(identifier,method,params=None,selected=session):
+            return True,{'id':identifier,'method':method,'params':params or {},'sessionId':selected}
+        def reply(identifier,error=False,selected=session):
+            return False,{'id':identifier,'error' if error else 'result':{'private':secret},'sessionId':selected}
+        def event(method,params,selected=session):return False,{'method':method,'params':params,'sessionId':selected}
+        def network(identifier,url=origin):return event('Network.requestWillBeSent',{'requestId':identifier,'request':{'url':url,'headers':{'private':secret},'postData':secret}})
+        def paused(identifier,network_id=None,url=origin):
+            params={'requestId':identifier,'request':{'url':url,'headers':{'private':secret}}}
+            if network_id is not None:params['networkId']=network_id
+            return event('Fetch.requestPaused',params)
+        records=[send(1,'Network.enable'),reply(1),send(2,'Fetch.enable'),reply(2,True),
+                 send(3,'Page.navigate',{'url':origin+'/'}),reply(3),network(secret+'-n1'),paused(secret+'-p1',secret+'-n1'),
+                 send(4,'Fetch.continueRequest',{'requestId':secret+'-p1'}),reply(4),network(secret+'-n2'),
+                 paused(secret+'-p3',secret+'-n3'),paused(secret+'-p4'),
+                 event('Network.responseReceived',{'requestId':secret+'-n1'}),event('Network.loadingFailed',{'requestId':secret+'-n2','errorText':secret}),
+                 network(secret+'-asset',origin+'/browser-page.mjs'),paused(secret+'-asset-p',secret+'-asset',origin+'/browser-page.mjs')]
+        def line(record):
+            outgoing,value=record
+            return '2026-09-12T00:00:00.000Z pw:protocol '+('SEND \u25ba ' if outgoing else '\u25c0 RECV ')+json.dumps(value,separators=(',',':'))+'\n'
+        marker=assemble.PROTOCOL_MARKER+json.dumps({'contract':'echs.c04.browser-protocol-boundary.v1','run_id':run_id,'phase':'setup'})+'\n'
+        def trace(values=records,tail=marker):return (''.join(map(line,values))+tail).encode()
+        def parsed(raw,**kwargs):return assemble.parse_protocol_setup(raw,run_id,origin,driver_waited=kwargs.pop('driver_waited',True),**kwargs)
+        def incomplete(raw,reason=None,**kwargs):
+            result=parsed(raw,**kwargs);assemble.validate_protocol_setup(result)
+            self.assertIs(result['complete'],False);self.assertIsNone(result['counts']);self.assertIs(result['saturated'],False)
+            if reason:self.assertEqual(result['reason'],reason)
+            self.assertNotIn(secret,json.dumps(result));return result
+        complete=parsed(trace());assemble.validate_protocol_setup(complete)
+        expected=dict.fromkeys(assemble.PROTOCOL_COUNTS,0)
+        expected.update(network_enable_sent=1,network_enable_ack=1,fetch_enable_sent=1,fetch_enable_error=1,navigate_sent=1,navigate_ack=1,
+                        fetch_continue_sent=1,fetch_continue_ack=1,root_network_requests=2,root_fetch_paused=3,root_paused_without_network_id=1,
+                        matched_pairs=1,network_without_pause=1,pause_without_network_event=1,root_responses=1,root_loading_failed=1)
+        self.assertEqual(complete['counts'],expected);self.assertTrue(complete['complete']);self.assertNotIn(secret,json.dumps(complete))
+        self.assertEqual(parsed(trace(tail=marker+secret+' trailing non-protocol error\n')),complete)
+        self.assertEqual(parsed(trace(records+[send(1,'Runtime.enable',selected='other-session'),reply(1,selected='other-session')])),complete)
+        extra=records+[send(50,'Runtime.enable'),reply(50)];self.assertEqual(parsed(trace(extra)),complete)
+        wrong_reply=copy.deepcopy(records);wrong_reply[1][1]['sessionId']='other-session'
+        self.assertEqual(parsed(trace(wrong_reply))['counts']['network_enable_ack'],0)
+        slash=copy.deepcopy(records);slash[4][1]['params']['url']=origin;self.assertEqual(parsed(trace(slash)),complete)
+        for changed in [records+[send(1,'Runtime.enable')],records+[send(50,'Runtime.enable'),send(50,'Network.enable')],
+                        extra+[reply(50)],records+[reply(999)],records+[reply(1)],records+[send(True,'Runtime.enable')]]:
+            incomplete(trace(changed),'command-ambiguous')
+        both=copy.deepcopy(records);both[1][1]['error']={'private':secret};incomplete(trace(both),'command-ambiguous')
+        incomplete(trace(records+[send(99,'Page.navigate',{'url':origin},selected='other-session')]),'session-ambiguous')
+        incomplete(trace(records+[send(99,'Page.navigate',{'url':'https://private.invalid/'+secret})]),'session-ambiguous')
+        for bad in ['https://127.0.0.1:45679/','https://localhost:45678/','http://127.0.0.1:45678/',origin+'?private='+secret,origin+'/other',origin+'/#private',origin.replace('127.0.0.1','user@127.0.0.1')]:
+            changed=copy.deepcopy(records);changed[4][1]['params']['url']=bad;incomplete(trace(changed),'session-missing')
+        for bad in ['http://127.0.0.1:45678','https://localhost:45678',origin+'?x=1',origin+'/other','https://127.0.0.1']:
+            result=assemble.parse_protocol_setup(trace(),run_id,bad,driver_waited=True);self.assertFalse(result['complete']);self.assertIsNone(result['counts'])
+        for raw,reason in [(trace(tail=''),'marker-missing'),(trace(tail=marker.replace(run_id,'b'*32)),'marker-invalid'),
+                           (trace(tail=marker+marker),'marker-invalid'),(trace(tail=marker+line(send(99,'Network.enable'))),'marker-invalid'),
+                           (trace()[:-1],'log-malformed'),(b'\xff\n','log-utf8'),(b'bad prefix\n','log-malformed'),
+                           ((('x'*32769)+'\n').encode(),'log-malformed'),(b' <<<<<( LOG TRUNCATED )>>>>> \n','log-truncated'),
+                           (b'x'*2097152,'log-capped')]:incomplete(raw,reason)
+        incomplete(trace(),'log-capped',capped=True)
+        for waited in [False,None,1]:incomplete(trace(),'driver-not-waited',driver_waited=waited)
+        for raw in [trace().replace(b'"id":1',b'"id":1,"id":1',1),trace().replace(b'"id":1',b'"id":NaN',1),
+                    trace([*records,event('Fetch.requestPaused',{'request':{'url':origin},'requestId':True})])]:incomplete(raw)
+        saturated=parsed(trace(records+[item for i in range(100,370) for item in (send(i,'Network.enable'),reply(i))]))
+        self.assertIs(saturated['saturated'],True);self.assertEqual(saturated['counts']['network_enable_sent'],255);self.assertEqual(saturated['counts']['network_enable_ack'],255)
+        for reason in assemble.PROTOCOL_REASONS-{'complete'}:assemble.validate_protocol_setup(assemble.protocol_incomplete(reason))
+        for key in assemble.PROTOCOL_COUNTS:
+            for value in [True,-1,256,1.5]:
+                invalid=copy.deepcopy(complete);invalid['counts'][key]=value;self.rejects(lambda:assemble.validate_protocol_setup(invalid))
+        for branch in [(),('counts',)]:
+            invalid=copy.deepcopy(complete);target=invalid
+            for key in branch:target=target[key]
+            target['private']=secret;self.rejects(lambda:assemble.validate_protocol_setup(invalid))
+        for key in ['driver_waited','marker_valid','session_selected']:
+            invalid={**complete,key:False};self.rejects(lambda:assemble.validate_protocol_setup(invalid))
+        invalid=assemble.protocol_incomplete('driver-not-waited');invalid['counts']=expected;self.rejects(lambda:assemble.validate_protocol_setup(invalid))
+        # A stopped log read is bounded and requires exclusive private ownership;
+        # a failed wait cannot yield a complete diagnostic or read live bytes.
+        private=self.temporary();raw_path=private/'driver-protocol.log';stream=MagicMock();stream.__enter__.return_value=stream;stream.read.return_value=trace()
+        checked=SimpleNamespace(parent=private,stat=Mock(return_value=SimpleNamespace(st_mode=runner.stat.S_IFREG|0o600,st_nlink=1,st_uid=1234)),open=Mock(return_value=stream))
+        listener=Mock();listener.open.side_effect=lambda *a,**k:io.BytesIO(b'[45678,45679]')
+        def guarded(path,parent):return listener if Path(path).name=='listener-private.json' else checked
+        with patch.object(contract,'guarded_path',side_effect=guarded),patch.object(runner.os,'getuid',return_value=1234,create=True):
+            self.assertEqual(runner.read_protocol_setup(raw_path,private,run_id,True),complete);stream.read.assert_called_once_with(2097153)
+            checked.open.reset_mock();unwaited=runner.read_protocol_setup(raw_path,private,run_id,False)
+            self.assertFalse(unwaited['complete']);self.assertIsNone(unwaited['counts']);checked.open.assert_not_called()
+            for field,value in [('st_nlink',2),('st_uid',9876),('st_mode',runner.stat.S_IFREG|0o644)]:
+                original=getattr(checked.stat.return_value,field);setattr(checked.stat.return_value,field,value)
+                self.assertIsNone(runner.read_protocol_setup(raw_path,private,run_id,True)['counts']);setattr(checked.stat.return_value,field,original)
+        directory=self.temporary()
+        def project_protocol(value,status='FAIL; NO ACCEPTANCE',name='run-report.json'):
+            (directory/name).write_bytes(encoded({'status':status,'protocol_setup':value,'rawbody':secret,'failure':{'type':'Error','message':secret}}))
+            with patch.object(assemble,'labels',side_effect=AssertionError('must not read rejected source')):safe=assemble.failure_projection(directory,15,ValueError(secret))
+            self.assertNotIn(secret,json.dumps(safe));return safe['reports'][name]
+        for value in [complete,saturated,assemble.protocol_incomplete('driver-not-waited')]:self.assertEqual(project_protocol(value)['protocol_setup'],value)
+        for status in ['ACTUAL BROWSER JOURNAL SERVICES PASS','RUNNING; NOT ACCEPTED',True,None]:self.assertNotIn('protocol_setup',project_protocol(complete,status=status))
+        for name in ['browser-results.json','http-results.json']:self.assertNotIn('protocol_setup',project_protocol(complete,name=name))
+        for value in [None,[],secret,{**complete,'raw_url':secret},{**complete,'counts':{**expected,'raw':secret}},{**complete,'driver_waited':False}]:
+            self.assertNotIn('protocol_setup',project_protocol(value))
         # Python traceback projection accepts exact known source paths only,
         # selects the deepest allowed frame, and ignores hostile properties.
         namespace={}

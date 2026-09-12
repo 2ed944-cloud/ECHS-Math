@@ -224,3 +224,32 @@ compatibility, production authority integration, browser adoption, migration
 execution and full C04 completion remain outside this gate. Readiness for the
 next integration step requires both real PG15/17 matrix artifacts and independent
 source/index/cleanup review; source or local injected checks alone are insufficient.
+
+The setup diagnostic also captures Playwright 1.61.1's private protocol logger in
+an exclusive `0600` file under the run's `0700` secrets directory. Only the browser
+driver receives `DEBUG=pw:protocol`; the shared logger implementation and format
+are pinned by exact coreBundle/utilsBundle hashes. A same-PID exec wrapper sets
+`RLIMIT_FSIZE` to at most 2 MiB, retaining a tighter inherited hard limit. The
+existing owned process/group registration still governs the exec'd Node driver.
+The parent always closes its log handle and only parses a waited driver.
+
+A synchronous run-bound marker disables that logger immediately after the first
+HTTPS navigation settles, before fixture evaluation or cleanup. The parser
+selects the Playwright session that sent the exact owned-root `Page.navigate`,
+binds command acknowledgements to that session, and compares its root Network
+request IDs with Fetch pause network IDs. This differs from the separate CDP
+observer's event counts. IDs, URLs, parameters and raw log lines remain private.
+Only closed capped counts and completeness flags enter a failure projection;
+the success artifact shape and all 20 HTTP and 12 browser cases remain unchanged.
+Missing/ambiguous markers, malformed or truncated captures and file-cap overflow
+produce incomplete diagnostics with no counters and cannot grant acceptance.
+The trace is removed through the existing independent guarded secret cleanup.
+
+The local pinned Windows149/.NET smoke verifies actual logger formatting,
+first-HTTPS session pairing and marker parsing with a synchronous capped stderr
+observer. It does not exercise Linux's file limit or prove the Linux failure's
+cause. Required Linux supervisor tests additionally exercise exec identity and
+file overflow; real PG15/17 browser jobs remain the acceptance gate. The parser
+relies on the source-pinned Playwright private logger, so a dependency upgrade
+requires deliberate source review, not a relaxed parser. The file-limit contract
+is documented in Python's [resource reference](https://docs.python.org/3.12/library/resource.html#resource.RLIMIT_FSIZE).

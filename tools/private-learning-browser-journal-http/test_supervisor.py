@@ -261,6 +261,53 @@ class ActualLinuxTests(unittest.TestCase):
         self.assertEqual(child.wait(5),0)
         self.assertEqual(child.close(),{'role':'browser','reaped':True,'group_members_remaining':0})
         self.assertIsNone(processes.process_info(child.identity['pid']))
+        # The actual wrapper execs into the registered root rather than creating
+        # a second child. Exercise both its 2MiB cap and a lower inherited hard
+        # limit; only these owned Linux children receive changed resource limits.
+        import resource
+        from run import PROTOCOL_LOG_LIMIT, protocol_driver_arguments
+        inherited_hard=resource.getrlimit(resource.RLIMIT_FSIZE)[1]
+        expected_cap=PROTOCOL_LOG_LIMIT if inherited_hard==resource.RLIM_INFINITY else min(PROTOCOL_LOG_LIMIT,inherited_hard)
+        body="""import json,os,resource,signal,sys,time
+from pathlib import Path
+root=Path(sys.argv[1]);signal.signal(signal.SIGXFSZ,signal.SIG_DFL)
+(root/'ready.json').write_text(json.dumps({'pid':os.getpid(),'pgrp':os.getpgrp(),'session':os.getsid(0),'uid':os.getuid(),'limits':resource.getrlimit(resource.RLIMIT_FSIZE)}))
+deadline=time.monotonic()+10
+while not (root/'begin').exists():
+ if time.monotonic()>deadline:raise SystemExit(91)
+ time.sleep(.01)
+while True:os.write(2,b'x'*4096)
+"""
+        for name,cap in [('wrapper',expected_cap),('inherited',min(8192,expected_cap))]:
+            with self.subTest(cap_case=name):
+                directory=self.root/name;directory.mkdir();log=directory/'stderr.bin'
+                argv=protocol_driver_arguments([sys.executable,'-B','-c',body,str(directory)])
+                if name=='inherited':
+                    prefix='import os,resource,sys;resource.setrlimit(resource.RLIMIT_FSIZE,('+str(cap)+','+str(cap)+'));os.execv(sys.argv[1],sys.argv[1:])'
+                    argv=[sys.executable,'-B','-c',prefix,*argv]
+                with log.open('xb') as output:
+                    log.chmod(0o600)
+                    wrapped=processes.OwnedProcess(argv,env=dict(os.environ),cwd=directory,role='driver',stderr=output)
+                    self.addCleanup(wrapped.close);deadline=time.monotonic()+5
+                    while not (directory/'ready.json').is_file():
+                        self.assertIsNone(wrapped.child.poll(),'Wrapper exited before identity capture')
+                        self.assertLess(time.monotonic(),deadline,'Wrapper identity deadline')
+                        time.sleep(.01)
+                    # File visibility can precede the final buffered write.
+                    while True:
+                        try:actual=json.loads((directory/'ready.json').read_bytes());break
+                        except json.JSONDecodeError:
+                            self.assertLess(time.monotonic(),deadline,'Wrapper identity write deadline');time.sleep(.01)
+                    observed=processes.process_info(wrapped.child.pid)
+                    for key in ['pid','pgrp','session','uid','start']:self.assertEqual(observed[key],wrapped.identity[key])
+                    self.assertEqual(actual,{key:wrapped.identity[key] for key in ['pid','pgrp','session','uid']}|{'limits':[cap,cap]})
+                    self.assertEqual(wrapped.child.pid,wrapped.identity['pid']);self.assertEqual(wrapped.identity['pid'],wrapped.identity['pgrp'])
+                    self.assertEqual(wrapped.identity['pid'],wrapped.identity['session'])
+                    (directory/'begin').write_bytes(b'go')
+                    self.assertEqual(wrapped.wait(10),-signal.SIGXFSZ)
+                    self.assertEqual(log.stat().st_size,cap);self.assertLessEqual(log.stat().st_size,2097152)
+                    self.assertEqual(wrapped.close(),{'role':'driver','reaped':True,'group_members_remaining':0})
+                    self.assertIsNone(processes.process_info(wrapped.identity['pid']))
 
     def test_native_term_resistant_direct_child_is_killed_and_reaped(self):
         child = self.start("import signal,time,sys;from pathlib import Path;signal.signal(signal.SIGTERM,signal.SIG_IGN);Path(sys.argv[1],'ready').write_text('ready');time.sleep(30)")

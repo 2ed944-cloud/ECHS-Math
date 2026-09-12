@@ -7,6 +7,7 @@ import re
 import subprocess
 import os
 import ipaddress
+from urllib.parse import urlsplit
 import contract
 from certs import public_metadata
 
@@ -52,6 +53,156 @@ BROWSER_SHAPE={**dict.fromkeys(('contract','status'),str),'planned_groups':[str]
 def need(value,code):
     if not value:
         raise ValueError(code)
+
+
+PROTOCOL_COUNTS=('network_enable_sent','network_enable_ack','network_enable_error',
+ 'fetch_enable_sent','fetch_enable_ack','fetch_enable_error','navigate_sent','navigate_ack','navigate_error',
+ 'fetch_continue_sent','fetch_continue_ack','fetch_continue_error','root_network_requests','root_fetch_paused',
+ 'root_paused_without_network_id','matched_pairs','network_without_pause','pause_without_network_event',
+ 'root_responses','root_loading_failed')
+PROTOCOL_REASONS={'complete','driver-not-waited','log-capped','log-unavailable','log-utf8',
+ 'log-truncated','log-malformed','marker-missing','marker-invalid','session-missing','session-ambiguous',
+ 'command-ambiguous','event-invalid'}
+PROTOCOL_MARKER='ECHS_PROTOCOL_BOUNDARY '
+
+
+def protocol_incomplete(reason,waited=False,marker=False,session=False):
+    need(reason in PROTOCOL_REASONS and reason!='complete','protocol-reason')
+    return {'contract':'echs.c04.browser-protocol-setup.v1','complete':False,'reason':reason,
+      'driver_waited':waited is True,'marker_valid':marker is True,'session_selected':session is True,
+      'saturated':False,'counts':None}
+
+
+def validate_protocol_setup(value):
+    closed(value,{'contract':str,'complete':bool,'reason':str,'driver_waited':bool,
+      'marker_valid':bool,'session_selected':bool,'saturated':bool,'counts':(dict,type(None))},'protocol-shape')
+    need(value['contract']=='echs.c04.browser-protocol-setup.v1' and value['reason'] in PROTOCOL_REASONS,'protocol-contract')
+    if value['complete']:
+        need(value['reason']=='complete' and value['driver_waited'] and value['marker_valid'] and value['session_selected'],'protocol-complete')
+        closed(value['counts'],dict.fromkeys(PROTOCOL_COUNTS,int),'protocol-counts')
+        need(all(integer(count,0,255) for count in value['counts'].values()),'protocol-count-range')
+    else:
+        need(value['reason']!='complete' and value['counts'] is None and value['saturated'] is False,'protocol-incomplete')
+
+
+def parse_protocol_setup(raw,run_id,origin,*,driver_waited,capped=False):
+    """Private pinned Playwright1.61.1 trace -> closed pre-cleanup metadata.
+
+    All URLs, session/request/command IDs, headers and JSON bodies stay here.
+    No counter is returned when the bounded capture cannot establish closure.
+    """
+    marker=False;selected=False
+    def reject(reason):return protocol_incomplete(reason,driver_waited,marker,selected)
+    if driver_waited is not True:return reject('driver-not-waited')
+    if type(raw) is not bytes or type(capped) is not bool:return reject('log-malformed')
+    if capped or len(raw)>=2097152:return reject('log-capped')
+    if type(run_id) is not str or not re.fullmatch('[a-f0-9]{32}',run_id):return reject('marker-invalid')
+    if type(origin) is not str or len(origin)>512:return reject('event-invalid')
+    def pairs(items):
+        result={}
+        for key,value in items:
+            if key in result:raise ValueError('duplicate-json-key')
+            result[key]=value
+        return result
+    def invalid_constant(value):raise ValueError('invalid-json-constant')
+    try:
+        expected=urlsplit(origin)
+        if (expected.scheme!='https' or expected.hostname!='127.0.0.1' or expected.username is not None
+          or expected.password is not None or expected.path not in ('','/') or expected.query or expected.fragment
+          or not integer(expected.port,1,65535)):return reject('event-invalid')
+        def root_url(value):
+            if type(value) is not str or len(value)>512:return False
+            try:
+                parsed=urlsplit(value)
+                return (parsed.scheme=='https' and parsed.netloc==expected.netloc and parsed.path in ('','/')
+                   and not parsed.query and not parsed.fragment and parsed.username is None and parsed.password is None)
+            except ValueError:return False
+        try:text=raw.decode('utf-8','strict')
+        except UnicodeError:return reject('log-utf8')
+        if ' <<<<<( LOG TRUNCATED )>>>>> ' in text:return reject('log-truncated')
+        if not text.endswith('\n'):return reject('log-malformed')
+        records=[];boundary_count=0
+        for line in text.splitlines():
+            if len(line)>32768:return reject('log-malformed')
+            if line.startswith(PROTOCOL_MARKER):
+                boundary_count+=1
+                value=json.loads(line[len(PROTOCOL_MARKER):],object_pairs_hook=pairs,parse_constant=invalid_constant)
+                if value!={'contract':'echs.c04.browser-protocol-boundary.v1','run_id':run_id,'phase':'setup'}:
+                    return reject('marker-invalid')
+                marker=True
+                continue
+            if marker:
+                # Logger is disabled at the boundary; any later trace is an
+                # ambiguous capture, not evidence from setup or cleanup.
+                if 'pw:protocol' in line or line.startswith(PROTOCOL_MARKER):return reject('marker-invalid')
+                continue
+            match=re.fullmatch(r'\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z pw:protocol (SEND ► |◀ RECV )(.*)',line)
+            if not match:return reject('log-malformed')
+            value=json.loads(match[2],object_pairs_hook=pairs,parse_constant=invalid_constant)
+            if type(value) is not dict:return reject('log-malformed')
+            records.append((match[1].startswith('SEND'),value))
+            if len(records)>16384:return reject('log-capped')
+        if boundary_count!=1:return reject('marker-invalid' if boundary_count else 'marker-missing')
+        navigations=[value for send,value in records if send and value.get('method')=='Page.navigate'
+          and type(value.get('params')) is dict and root_url(value['params'].get('url'))]
+        if not navigations:return reject('session-missing')
+        if len(navigations)!=1:return reject('session-ambiguous')
+        session=navigations[0].get('sessionId')
+        if type(session) is not str or not 1<=len(session)<=256:return reject('session-missing')
+        selected=True;counts=dict.fromkeys(PROTOCOL_COUNTS,0);saturated=False
+        def bump(name,amount=1):
+            nonlocal saturated
+            total=counts[name]+amount
+            if total>255:saturated=True
+            counts[name]=min(total,255)
+        methods={'Network.enable':'network_enable','Fetch.enable':'fetch_enable','Page.navigate':'navigate',
+          'Fetch.continueRequest':'fetch_continue'}
+        commands={};all_commands=set();replies=set();network=set();paused=set();responses=set();failed=set()
+        def event_id(value):
+            if type(value) is not str or not 1<=len(value)<=256:raise ValueError('event-invalid')
+            return value
+        for send,value in records:
+            if value.get('sessionId')!=session:continue
+            if send:
+                method=value.get('method')
+                identifier=value.get('id')
+                if not integer(identifier,1,2147483647) or identifier in all_commands:return reject('command-ambiguous')
+                all_commands.add(identifier)
+                if method not in methods:continue
+                # A different later Page.navigate cannot borrow the selected
+                # navigation's acknowledgement or be mistaken for setup.
+                if method=='Page.navigate' and value is not navigations[0]:return reject('session-ambiguous')
+                commands[identifier]=methods[method];bump(methods[method]+'_sent')
+            elif 'id' in value:
+                identifier=value['id']
+                if type(identifier) is not int:return reject('command-ambiguous')
+                if identifier not in all_commands:return reject('command-ambiguous')
+                if identifier in replies or ('result' in value)==('error' in value):return reject('command-ambiguous')
+                replies.add(identifier)
+                if identifier in commands:bump(commands[identifier]+('_error' if 'error' in value else '_ack'))
+            else:
+                method=value.get('method');params=value.get('params')
+                if method not in ('Network.requestWillBeSent','Fetch.requestPaused','Network.responseReceived','Network.loadingFailed'):continue
+                if type(params) is not dict:return reject('event-invalid')
+                if method in ('Network.requestWillBeSent','Fetch.requestPaused'):
+                    request=params.get('request')
+                    if type(request) is not dict:return reject('event-invalid')
+                    if not root_url(request.get('url')):continue
+                    if method=='Network.requestWillBeSent':
+                        network.add(event_id(params.get('requestId')));bump('root_network_requests')
+                    else:
+                        event_id(params.get('requestId'));bump('root_fetch_paused')
+                        if params.get('networkId') is None:bump('root_paused_without_network_id')
+                        else:paused.add(event_id(params['networkId']))
+                elif method=='Network.responseReceived':
+                    responses.add(event_id(params.get('requestId')))
+                else:failed.add(event_id(params.get('requestId')))
+        bump('matched_pairs',len(network&paused));bump('network_without_pause',len(network-paused))
+        bump('pause_without_network_event',len(paused-network));bump('root_responses',len(network&responses));bump('root_loading_failed',len(network&failed))
+        result={'contract':'echs.c04.browser-protocol-setup.v1','complete':True,'reason':'complete',
+          'driver_waited':True,'marker_valid':True,'session_selected':True,'saturated':saturated,'counts':counts}
+        validate_protocol_setup(result);return result
+    except (ValueError,TypeError,KeyError,RecursionError,OverflowError):return reject('log-malformed')
 
 
 def exact_keys(value,keys,code):
@@ -357,6 +508,11 @@ def failure_projection(directory,major,error):
         projected={}
         statuses={'RUNNING; NOT ACCEPTED','FAIL; NO ACCEPTANCE','ACTUAL BROWSER JOURNAL SERVICES PASS','ACTUAL HTTP POSTGREST SQL PASS','ACTUAL BROWSER HTTPS POSTGREST SQL PASS'}
         if type(value.get('status')) is str and value['status'] in statuses:projected['status']=value['status']
+        if name=='run-report.json' and value.get('status')=='FAIL; NO ACCEPTANCE':
+            observation=value.get('protocol_setup')
+            try:validate_protocol_setup(observation)
+            except Exception:pass
+            else:projected['protocol_setup']=observation
         if name=='browser-results.json' and value.get('status')=='FAIL; NO ACCEPTANCE' and value.get('failed_group')=='setup':
             observation=value.get('setup_observation')
             try:validate_setup_observation(observation)

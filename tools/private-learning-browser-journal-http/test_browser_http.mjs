@@ -4,6 +4,8 @@ import https from 'node:https';
 import {readFile,writeFile,realpath} from 'node:fs/promises';
 import {fileURLToPath,pathToFileURL} from 'node:url';
 import {resolve,dirname} from 'node:path';
+import {createRequire} from 'node:module';
+import {writeSync} from 'node:fs';
 import {createHash,randomUUID,X509Certificate} from 'node:crypto';
 import {createJournalHandler} from './runtime/handler.mjs';
 import {FIXTURE_ORIGIN,postgrestPort} from './bridge.mjs';
@@ -75,6 +77,18 @@ export function observeSetupBrowser(){
 }
 function bounded(task,ms,code){let timer;return Promise.race([task,new Promise((_,reject)=>timer=setTimeout(()=>reject(new Error(code)),ms))]).finally(()=>clearTimeout(timer))}
 
+export function protocolBoundary(debug,runId,write=line=>writeSync(2,line)){
+ assert.match(runId,/^[a-f0-9]{32}$/);assert.equal(typeof debug.disable,'function');let emitted=false;
+ return ()=>{
+  if(emitted)return;
+  // Same pinned debug object used by coreBundle's protocol logger. Disable
+  // before the synchronous marker so no cleanup traffic can follow it.
+  assert.equal(debug.disable(),'pw:protocol');
+  const line='ECHS_PROTOCOL_BOUNDARY '+JSON.stringify({contract:'echs.c04.browser-protocol-boundary.v1',run_id:runId,phase:'setup'})+'\n';
+  assert.equal(write(line),Buffer.byteLength(line));emitted=true;
+ };
+}
+
 export async function closeContext(context,contexts,primaryError=null){
  // Disposal is best effort; a failed required close leaves ownership recorded.
  try{for(const page of context.pages()){try{await bounded(page.evaluate(()=>window.fixture?.disposeAll()),2000,'page-dispose-deadline')}catch{}}}catch{}
@@ -127,6 +141,13 @@ async function main(){
  const packageRoot=resolve(repo,'question-bank/official/tools/node_modules/playwright');
  const {chromium}=await import(pathToFileURL(resolve(packageRoot,'index.mjs')));
  assert.equal(JSON.parse(await readFile(resolve(packageRoot,'package.json'))).version,pin.playwright);
+ const require=createRequire(await realpath(resolve(packageRoot,'index.mjs'))),coreRoot=dirname(require.resolve('playwright-core/package.json'));
+ assert.equal(JSON.parse(await readFile(resolve(coreRoot,'package.json'))).version,'1.61.1');
+ // Pin the private logger API and exact formatting, not just the package name.
+ assert.equal(hash(await readFile(resolve(coreRoot,'lib/utilsBundle.js'))),'1295945f0054d2504c9b751945b15aa3c672530ad5a340f3f9636e5e238f304a');
+ assert.equal(hash(await readFile(resolve(coreRoot,'lib/coreBundle.js'))),'6be5c2ea035554e9b184b1dbc7aa5e7f1fb428dd1b5c202022858dcfae9bee27');
+ assert.equal(process.env.DEBUG,'pw:protocol');assert.equal(process.env.DEBUG_COLORS,'0');assert.equal(process.env.MAX_LOG_LENGTH,'16384');
+ const endProtocol=protocolBoundary(require(resolve(coreRoot,'lib/utilsBundle.js')).debug,config.run_id);
  const cert=await readFile(config.tls.positive.certificate_path),key=await readFile(config.tls.positive.key_path),otherCert=await readFile(config.tls.negative.certificate_path),otherKey=await readFile(config.tls.negative.key_path);
  const leaf=new X509Certificate(cert),other=new X509Certificate(otherCert);
  assert.equal(hash(leaf.raw),config.tls.positive.metadata.der_sha256);assert.equal(hash(other.raw),config.tls.negative.metadata.der_sha256);
@@ -209,7 +230,7 @@ async function main(){
   assert.equal(args.filter(arg=>arg.startsWith('--user-data-dir=')).length,1);assert.ok(args.includes('--user-data-dir='+config.browser_profile));assert.ok(args.includes('--enable-automation'));
   assert.ok(!args.some(arg=>/^--(?:ignore-certificate-errors(?:=|$)|allow-insecure-localhost(?:=|$))/.test(arg)));
   setup.identityVerified();setup.attach(page,cdp);await cdp.send('Network.enable');
-  stage='positive-navigation';await page.goto(server.origin,{waitUntil:'load',timeout:10000});
+  stage='positive-navigation';await page.goto(server.origin,{waitUntil:'load',timeout:10000});endProtocol();
   stage='positive-fixture';await page.waitForFunction(()=>!!window.fixture,undefined,{timeout:5000});
   stage='positive-certificate';const chain=await cdp.send('Network.getCertificate',{origin:server.origin});assert.equal(chain.tableNames.length,1);
   const observedLeaf=new X509Certificate(Buffer.from(chain.tableNames[0],'base64'));
@@ -228,6 +249,7 @@ async function main(){
   Object.assign(report,{status:'ACTUAL BROWSER HTTPS POSTGREST SQL PASS',source_files:sourceBefore,static_routes:10,served_t3_modules:7,held_transport_served:false});
  }catch(error){report.status='FAIL; NO ACCEPTANCE';report.failure=browserDiagnostic(error,failureStage??stage);report.failed_group=failedBrowserGroup(currentGroup);if(currentGroup===null&&outcomes.length===0)report.setup_observation={contract:'echs.c04.browser-setup-observation.v1',browser:setup.snapshot(),transport:server?.setupObservation()??null}}
  finally{
+  try{endProtocol()}catch{report.status='FAIL; NO ACCEPTANCE'}
   // Diagnostic listeners must not prevent independent owned cleanup attempts.
   try{setup.dispose()}catch{}
   for(const fault of faults)fault.release();
