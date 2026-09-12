@@ -380,3 +380,16 @@ response headers. The observed duplicate apply calls are consistent with that
 mechanism; they do not identify its exact internal retry event. All case
 assertions remain required, including unchanged native pending rows, one SQL
 operation, the same intent after reopening, and successful deliberate replay.
+
+The native ACK-abort fixture waits for its own transaction `abort` listener
+before returning observation flags. The retained store's earlier `onabort`
+handler rejects its transaction promise; that rejection alone does not establish
+that the fixture's later listener has run. Only the actual fixture listener sets
+the observed flag. Request success still invokes native `transaction.abort()`,
+and the called flag is set only after that invocation returns successfully.
+The event wait has a five-second deadline. Missing events, disposal or a thrown
+abort call fail the observation; every path removes owned listeners, clears the
+timer and restores the prototype. The retained store and all B11 assertions,
+including exact equality of eleven stores, committed SQL and exact retry,
+remain unchanged. This addresses observation settlement without claiming a
+more specific browser event-order cause than the retained evidence establishes.

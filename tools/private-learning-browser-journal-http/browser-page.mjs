@@ -42,19 +42,34 @@ function configure({owner,token,session_tag}){
 
 function injectAckAbort(){
  if(restoreAbort)throw new Error('fixture-fault-already-armed');
- const original=IDBObjectStore.prototype.put;let armed=false,fired=false,requestSuccess=false,transactionAbort=false;
- const restore=()=>{if(IDBObjectStore.prototype.put===wrapped)IDBObjectStore.prototype.put=original;restoreAbort=null};
+ const original=IDBObjectStore.prototype.put;let armed=false,fired=false,requestSuccess=false,transactionAbort=false,disposed=false,tx,request,resolveAbort,rejectAbort;
+ const observed=new Promise((resolve,reject)=>{resolveAbort=resolve;rejectAbort=reject});observed.catch(()=>{});
+ const restore=()=>{if(IDBObjectStore.prototype.put===wrapped)IDBObjectStore.prototype.put=original};
+ const onAbort=()=>{if(disposed)return;transactionAbort=true;resolveAbort()};
+ const onSuccess=()=>{if(disposed)return;requestSuccess=true;try{tx.abort();fired=true}catch(error){rejectAbort(error)}};
+ const dispose=()=>{
+  if(disposed)return;disposed=true;restore();
+  tx?.removeEventListener('abort',onAbort);request?.removeEventListener('success',onSuccess);
+  if(restoreAbort===dispose)restoreAbort=null;
+  rejectAbort(new Error('fixture-native-abort-disposed'));
+ };
  function wrapped(...args){
   const result=original.apply(this,args);
-  if(!armed&&this.name==='wire'&&args[0]?.pending_intent?.state==='acknowledged'){
-   armed=true;restore();const tx=this.transaction;
-   tx.addEventListener('abort',()=>{transactionAbort=true},{once:true});
-   result.addEventListener('success',()=>{requestSuccess=true;tx.abort();fired=true},{once:true});
+  if(!disposed&&!armed&&this.name==='wire'&&args[0]?.pending_intent?.state==='acknowledged'){
+   armed=true;restore();tx=this.transaction;request=result;
+   tx.addEventListener('abort',onAbort,{once:true});
+   request.addEventListener('success',onSuccess,{once:true});
   }
   return result;
  }
- IDBObjectStore.prototype.put=wrapped;restoreAbort=restore;
- return ()=>({native_abort_fired:fired,native_request_success:requestSuccess,native_abort_observed:transactionAbort});
+ IDBObjectStore.prototype.put=wrapped;restoreAbort=dispose;
+ return {dispose,async wait(){
+  let timer;
+  try{
+   await Promise.race([observed,new Promise((_,reject)=>timer=setTimeout(()=>reject(new Error('fixture-native-abort-deadline')),5000))]);
+   return {native_abort_fired:fired,native_request_success:requestSuccess,native_abort_observed:transactionAbort};
+  }finally{clearTimeout(timer);dispose()}
+ }};
 }
 
 const q=id=>({id,type:'mcq',bank_code:'SYNTHETIC',prompt_text:'Synthetic function',metadata:{difficulty:2},classification:{course_scope:'AP Precalculus',ap_unit:1,ap_topic:'1.1',ap_topic_title:'Functions'}});
@@ -67,10 +82,11 @@ window.fixture=Object.freeze({
   stores.push(store);if(initialize)await store.commit(store.prepare('initialize'));return stores.length-1;
  },
  async deliveryWithNativeAbort(index,operation_id){
-  const fired=injectAckAbort();let code=null,value=null;
-  try{value=await stores[index].deliverNext({operation_id})}catch(error){code=error.code}
-  finally{restoreAbort?.()}
-  return {code,value,...fired()};
+  const fault=injectAckAbort();let code=null,value=null;
+  try{
+   try{value=await stores[index].deliverNext({operation_id})}catch(error){code=error.code}
+   return {code,value,...await fault.wait()};
+  }finally{fault.dispose()}
  },
  disposeAll(){for(const store of stores)store.dispose();restoreAbort?.();sessionToken=null;return {disposed:stores.every(store=>store.state().status==='disposed'),authority_listeners:listeners.size}},
 });

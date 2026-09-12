@@ -1261,6 +1261,85 @@ process.stdout.write('PASS');
 """
         faults=subprocess.run(['node','--input-type=module','-',(HERE/'test_browser_http.mjs').as_uri()],input=fault_script,text=True,capture_output=True,timeout=12,check=True)
         self.assertEqual(faults.stdout,'PASS')
+        # Execute the exact page fixture with only its one module import
+        # stubbed. Synthetic request/transaction events do not claim native IDB.
+        abort_script=r"""
+import assert from 'node:assert/strict';
+import vm from 'node:vm';
+import {readFile} from 'node:fs/promises';
+const source=await readFile(new URL('./browser-page.mjs',process.argv[2]),'utf8');
+const imported="import {openOwnedLearningStore,JOURNAL_DATABASE} from '/source/js/owned-learning-store.mjs';";
+assert.equal(source.split(imported).length,2);
+const code=source.replace(imported,'const {openOwnedLearningStore,JOURNAL_DATABASE}=globalThis.__ownedStoreStub;');
+class Target{
+ constructor(){this.events=new Map()}
+ addEventListener(name,fn,options){const rows=this.events.get(name)||[];rows.push({fn,once:options?.once===true});this.events.set(name,rows)}
+ removeEventListener(name,fn){this.events.set(name,(this.events.get(name)||[]).filter(row=>row.fn!==fn))}
+ emit(name){for(const row of [...(this.events.get(name)||[])]){if(row.once)this.removeEventListener(name,row.fn);row.fn({target:this})}}
+ count(){return [...this.events.values()].reduce((sum,rows)=>sum+rows.length,0)}
+}
+const tick=async()=>{for(let i=0;i<8;i++)await Promise.resolve()};
+function environment(){
+ const timers=new Map(),requests=[],transactions=[];let mode='good',disposed=false,abortCalls=0,cleared=0;
+ const abortError=new Error('synthetic-native-abort-throw');
+ class Transaction extends Target{abort(){abortCalls++;if(mode==='abort-throws')throw abortError}}
+ class Store{constructor(name,transaction){this.name=name;this.transaction=transaction}put(value){const request=new Target();requests.push(request);return request}}
+ const original=Store.prototype.put;
+ const context=vm.createContext({window:{},IDBObjectStore:Store,structuredClone,
+  __ownedStoreStub:{JOURNAL_DATABASE:'synthetic-database',openOwnedLearningStore(){throw new Error('unexpected-store-open')}},
+  setTimeout(fn,ms){assert.equal(ms,5000);const token={};timers.set(token,fn);return token},
+  clearTimeout(token){assert.ok(timers.has(token));timers.delete(token);cleared++}});
+ vm.runInContext(code,context,{filename:'actual-browser-page.mjs'});
+ const fixture=context.window.fixture;
+ fixture.stores.push({async deliverNext(){
+  if(mode!=='never-armed'){
+   const tx=new Transaction();transactions.push(tx);
+   new Store(mode==='wrong-store'?'records':'wire',tx).put({pending_intent:{state:mode==='wrong-state'?'pending':'acknowledged'}});
+   if(mode!=='before-success')requests.at(-1).emit('success');
+  }
+  throw Object.assign(new Error('synthetic-delivery-storage-error'),{code:'storage_error'});
+ },dispose(){disposed=true},state(){return {status:disposed?'disposed':'ready'}}});
+ return {fixture,Store,original,requests,transactions,timers,abortError,setMode:value=>mode=value,
+  abortCalls:()=>abortCalls,cleared:()=>cleared,expire(){assert.equal(timers.size,1);[...timers.values()][0]()},
+  clean(){assert.equal(timers.size,0);assert.equal(Store.prototype.put,original);assert.ok(requests.every(item=>item.count()===0));assert.ok(transactions.every(item=>item.count()===0))}};
+}
+const good=environment();
+for(let iteration=0;iteration<2;iteration++){
+ let settled=false;const pending=good.fixture.deliveryWithNativeAbort(0,'synthetic-operation').then(value=>{settled=true;return value});
+ await tick();assert.equal(settled,false);assert.equal(good.timers.size,1);assert.equal(good.Store.prototype.put,good.original);
+ assert.equal(good.abortCalls(),iteration+1);
+ new Target().emit('abort');await tick();assert.equal(settled,false);
+ good.transactions.at(-1).emit('abort');const value=await pending;
+ assert.equal(value.code,'storage_error');assert.equal(value.value,null);
+ for(const key of ['native_abort_fired','native_request_success','native_abort_observed'])assert.equal(value[key],true);
+ good.clean();assert.equal(good.cleared(),iteration+1);
+}
+for(const mode of ['never-armed','wrong-store','wrong-state','no-abort-event','before-success']){
+ const env=environment();env.setMode(mode);const pending=env.fixture.deliveryWithNativeAbort(0,'synthetic-operation');
+ const rejected=assert.rejects(pending,error=>error.message==='fixture-native-abort-deadline');
+ await tick();assert.equal(env.timers.size,1);env.expire();await rejected;env.clean();
+}
+{
+ const env=environment();env.setMode('abort-throws');
+ await assert.rejects(env.fixture.deliveryWithNativeAbort(0,'synthetic-operation'),error=>error===env.abortError);
+ assert.equal(env.abortCalls(),1);env.clean();
+}
+for(const mode of ['good','before-success','never-armed']){
+ const env=environment();env.setMode(mode);const pending=env.fixture.deliveryWithNativeAbort(0,'synthetic-operation');
+ const rejected=assert.rejects(pending,error=>error.message==='fixture-native-abort-disposed');await tick();
+ const late=[...env.requests.flatMap(item=>item.events.get('success')||[]),...env.transactions.flatMap(item=>item.events.get('abort')||[])].map(row=>row.fn);
+ const calls=env.abortCalls();env.fixture.disposeAll();env.fixture.disposeAll();await rejected;
+ for(const callback of late)callback({});assert.equal(env.abortCalls(),calls);env.clean();
+}
+{
+ const env=environment();const first=env.fixture.deliveryWithNativeAbort(0,'synthetic-operation');await tick();
+ await assert.rejects(env.fixture.deliveryWithNativeAbort(0,'second-operation'),error=>error.message==='fixture-fault-already-armed');
+ env.transactions.at(-1).emit('abort');await first;env.clean();
+}
+process.stdout.write('PASS');
+"""
+        abort=subprocess.run(['node','--input-type=module','-',(HERE/'test_browser_http.mjs').as_uri()],input=abort_script,text=True,capture_output=True,timeout=10,check=True)
+        self.assertEqual(abort.stdout,'PASS')
         # Python traceback projection accepts exact known source paths only,
         # selects the deepest allowed frame, and ignores hostile properties.
         namespace={}
