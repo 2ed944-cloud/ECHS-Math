@@ -1,7 +1,7 @@
 # C04 journal HTTP and PostgREST integration candidate
 
-This directory prepares an isolated, executable CI gate for the accepted journal
-SQL and frozen J049 v2 native handler. It does not install an active API, change
+This directory prepares an isolated, executable CI gate for the reviewed journal
+SQL and frozen J049 v3 native handler. It does not install an active API, change
 student pages, create a Supabase project, apply a production migration, or
 complete C04. No PostgreSQL/PostgREST service execution has been performed for
 this candidate locally. Actual acceptance is pending both CI matrix jobs.
@@ -39,25 +39,41 @@ class28 to HTTP403 in its [Error.hs source](https://github.com/PostgREST/postgre
 The native handler separately translates that SQL code into client401. The
 first PR376 service attempt required401 at the direct probe and failed readiness
 on both majors after successful schema installation; its artifacts remain
-retained as failed evidence. This successor corrects only that fixture probe,
-records a bounded status/code observation, and still requires all twenty actual
-HTTP cases. The four runtime modules, SQL inputs and twenty service case bodies are unchanged.
+retained as failed evidence. The readiness repair corrected that fixture probe
+and added a bounded status/code observation while preserving all runtime and
+SQL bytes and requiring all twenty actual HTTP cases.
 
 The second service attempt passed S01–S04 on both majors and failed the S05
-concurrent status assertion. This diagnostic successor retains its exact
+concurrent status assertion. The diagnostic successor retained its exact
 expected statuses and all twenty cases. Failed reports additionally retain at
 most eight numbers per assertion array, twelve RPC route/status pairs, and
 twelve native HTTP route/status/known-error-code observations. Private bodies,
 SQL text, tokens, and arbitrary error messages remain excluded. This change
-does not fix or accept the observed S05 failure.
+did not fix or accept the observed S05 failure.
+
+The third diagnostic attempt confirmed S05 returned `[200,504]`, with a native
+`deadline` error and no completed loser PostgREST response on both majors.
+PostgREST14.17's [pinned Hasql1.1.0.1 transaction implementation](https://github.com/nikita-volkov/hasql-transaction/blob/1.1.0.1/library/Hasql/Transaction/Private/Sessions.hs)
+retries40001 without a bound. This successor pins the reviewed SQL repair
+`9ce98da90d5c141fdf184d32a00067eca1aaa800870204edd9c383cc22b1e1bf`,
+which changes exactly five journal domain-conflict raises to PT409, and the
+matching J049v3 handler mapping. All twenty service case bodies and the required
+S05 `[200,409]` outcome remain exact. The repaired full SQL matrix must pass and
+merge before this HTTP successor is published. Its own real HTTP matrix remains
+required afterward. Earlier failed source/artifact directories remain retained.
+
+Predecessor owner-fence SQL is unchanged. Its deliberate40001 stale/missing
+owner-barrier errors require a separate HTTP retry-boundary review before a new
+runtime path can expose them. Neither these fixture pins nor the injected
+handler tests establish hosted compatibility or production readiness.
 
 ## Actual HTTP path
 
 The Node fixture binds an ephemeral loopback HTTP port, converts incoming
 requests to native Request objects, and consumes native Response bodies with
 abort-aware backpressure. The four frozen runtime modules are copied byte for
-byte from J049 v2 manifest
-`117cdb0a97cd4408b31fedf9f4eba5928b1385f5e2a86d6ee5e55c750c286817`.
+byte from J049 v3 manifest
+`84284f19b00a26b8ee30ed2567132b7913e0a0c8e5cb7c80e4167f62d778445c`.
 
 Only the fixture fetch port maps the handler's fixed synthetic HTTPS origin and
 four exact RPC paths onto the inspected private PostgREST HTTP address. It
@@ -109,10 +125,10 @@ Local commands, from the workspace root, use explicit repository inputs and a
 new report filename. They never start Docker or execute SQL:
 
 ```text
-python -X utf8 -B work/master-charter/c04-journal-http-service-candidate-v3/test_offline.py work/foundations <new-offline-report.json>
-node work/master-charter/c04-journal-http-service-candidate-v3/test_bridge.mjs <new-bridge-report.json>
-python -X utf8 -B work/master-charter/c04-journal-http-service-candidate-v3/run.py --repo work/foundations --postgres-major 15
-python -X utf8 -B work/master-charter/c04-journal-http-service-candidate-v3/run.py --repo work/foundations --postgres-major 17
+python -X utf8 -B tools/private-learning-journal-http/test_offline.py . <new-offline-report.json>
+node tools/private-learning-journal-http/test_bridge.mjs <new-bridge-report.json>
+python -X utf8 -B tools/private-learning-journal-http/run.py --repo . --postgres-major 15
+python -X utf8 -B tools/private-learning-journal-http/run.py --repo . --postgres-major 17
 ```
 
 The 17 offline configuration/ownership/failure tests and nine native loopback/diagnostic

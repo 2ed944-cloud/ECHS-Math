@@ -1,58 +1,44 @@
-Status: isolated implementation candidate; actual services NOT EXECUTED. No production, hosted project, corpus or real learner requests. The separate SQL/HTTP release is now sealed at main `53c55fe51ca3fff5a70028e89a67098d32d64632`, tree `1856ae2585ac08db3c0086d4fa7d5bd0d07ed071`:299 combined assertions (55 membership SQL +7 membership HTTP +222 snapshot SQL +15 transport HTTP-to-SQL groups with injected Storage),68 baseline commands and18 bounded live GETs/37 checks. This candidate neither reruns nor promotes that evidence into actual Storage-service proof. Earlier offline preflight receipts retain their original scope.
+# Managed-service PostgreSQL matrix execution plan
 
-The first service slice will exercise the reviewed upload/status handler through real PostgREST and Storage sockets. It admits only synthetic preregistered objects and school sessions. It has no registration, record parser, seal, deletion, browser delivery or legacy cutover route. The two runtime files remain byte-exact dependencies.
+Extend the accepted PR371 fixture with explicit PostgreSQL 15 and 17 jobs.
+Preserve its complete 19-case JavaScript test, runtime pair, seed, TLS gateway,
+27 ECHS migrations and all seven upstream initialization SQL mounts.
 
-The preceding frozen6062 candidate reached five healthy real services and applied27 migrations in GitHub run34513167676, then failed at Compose port discovery with complete cleanup. That failed run establishes no service-case acceptance. This separate revision removes published-port assumptions: it validates network ID/driver/internal flag/labels, an RFC1918 subnet and gateway, exactly five container IDs, sole network attachments, matching IPAM addresses and absent PortBindings before choosing fixed DB/REST/Storage endpoints. The gateway still listens only on127.0.0.1:443. The host-to-bridge approach follows Docker's documented access from the host to container bridge ports. [Docker port publishing](https://docs.docker.com/engine/network/port-publishing/)
+1. Reuse the exact source-bound upstream variants: PG15
+   `supabase/postgres:15.8.1.085` and PG17 `supabase/postgres:17.6.1.136`.
+   Keep Auth, PostgREST, Storage and imgproxy fixed. The official PG15 override
+   changes only the database image, so both jobs use the same reviewed managed
+   initialization and isolation configuration with fresh volumes. Preserve the
+   upstream observation, license and notices.
+2. Carry one typed configured major through planning, image resolution,
+   execution, collection and CI packaging. Bind actual database numeric/full
+   version observations before migrations and after the cases to that major,
+   exact source tree and running image. Reject cross-major or inconsistent
+   evidence; never patch a server response or relax a guard to accept either.
+3. Retain historical source-base ancestry, while checking actual event base,
+   merge parents, HEAD/tree, changed paths and all 57 source blobs. Permit a
+   valid advanced-base merge whose tree differs from the feature-head tree.
+   Add actual local Git regression coverage and nonancestor rejection.
+4. Run all 20 safety, 20 fixture/collector, 11 CI and unchanged 10 TLS groups.
+   Add typed/version/image mismatch controls and require byte-exact 19-case
+   source/runtime hashes. Refresh exact source manifests and workflow hash.
+5. Execute both jobs on disposable GitHub-hosted Linux runners, with no secrets
+   or hosted project. Resolve immutable image digests, launch fresh owned
+   services, require genuine managed schemas, apply unchanged SQL and run all
+   19 cases. Keep TLS, fixed endpoints, bounded deadlines and complete cleanup.
+6. Independently verify both actual run/job/artifact identities, all source
+   hashes, selected/observed versions, image IDs, 19 successful outcomes and
+   exact 11-member artifacts. A failure remains failed diagnostic evidence;
+   it cannot be replaced by an expected-label list or the other major's result.
 
-## Verified upstream and schema boundary
+The new PG17 fixture tag differs from production metadata 17.6.1.147. This
+matrix is a compatibility observation for the reviewed images, not a production
+image or hosted Edge equivalence claim. No production SQL, fixture writes,
+corpus import, private-question publication or student delivery is included.
+The absence of a separate hosted test project remains a separate gate.
 
-GitHub reads independently verified `self-hosted/v0.8.1` annotated tag `690080884040e238926ba22606e8c05a3536829b` → commit `8c7a4d9dbbaf8b552893822e89d7bf06f33f9220` → tree `cfff91877eb85435d69c02b2680da05b2ecc150e` → docker tree `2e0e90793e486fb10f2b5a291d6f64530cb1a0ae`. The tag itself is unsigned; this is byte/source binding, not a signature attestation.
-
-The exact [base compose](https://github.com/supabase/supabase/blob/8c7a4d9dbbaf8b552893822e89d7bf06f33f9220/docker/docker-compose.yml) uses PostgreSQL17. The official [PG15 override](https://github.com/supabase/supabase/blob/8c7a4d9dbbaf8b552893822e89d7bf06f33f9220/docker/docker-compose.pg15.yml), Git blob `f87fe8c4828f354d6f73ba171d5d3f6295ed7370`, selects `supabase/postgres:15.8.1.085`. Base pins are `postgrest/postgrest:v14.17`, `supabase/storage-api:v1.74.0`, `darthsim/imgproxy:v3.31.4`, `supabase/gotrue:v2.196.0`. Optional `supabase/edge-runtime:v1.76.2` is excluded from this first slice. Tags are reviewed version pins; the disposable runner will resolve their immutable content from the allowlisted registries, run by digest and record the actual manifests/configs before service launch. This is an implementation check within the authorized isolated work, not a new user permission gate.
-
-Derive the minimal five-service configuration from those exact definitions: db, auth, rest, storage, imgproxy. Retain the official seven SQL initialization mounts, PostgreSQL image initialization and real Auth/Storage startup migrations. Do not create substitute managed schemas, tables or roles. Wait for real managed-schema migration completion, apply the unchanged 27 ECHS migration files with ON_ERROR_STOP, notify PostgREST to reload its schema cache, and verify actual catalog/role/RLS and bucket capability. A schema incompatibility fails acceptance and is diagnosed; it never causes replacement with the thin pure-SQL fixture schema. Services, environment and mount reductions are fixture changes, not a claim of an unchanged full Supabase deployment. The official guide explicitly permits omitting unused services. [Self-hosting guide](https://supabase.com/docs/guides/self-hosting/docker)
-
-## Proposed files and first implementation boundary
-
-| File | Purpose |
-| --- | --- |
-| `PLAN.md`, `source-pins.json`, `upstream-observation.json` | This plan; exact 27 migrations, runtime2 and official source pins; locally retained public upstream bytes for reproducible inspection. No corpus. |
-| `service_contract.py`, `test_service_contract.py` | Offline closed configuration, immutable source/prefix and digest receipt validation; local path/project/network/credential-output safety checks. |
-| `run_service.py`, `run_actual_service.py`, `test_actual_contract.py` | Non-starting plan/preflight plus separate explicit execution runner, guarded to a disposable GitHub-hosted Linux checkout; offline source, configuration and collector negatives. |
-| `fixture_config.py`, generated `compose.fixture.json` | Explicit five services, resolved immutable image digests, no external volumes, unique project labels, no host network or public listeners, restart disabled. Seven source-derived initialization mounts. Credentials remain outside the generated compose file. |
-| `generate_tls.py`, `tls-gateway.mjs`, `test_tls_gateway.mjs`, `run_tls_test.py` | Real verified TLS socket forwarding, exact routes/methods and one synthetic host, no response fabrication. The local socket suite uses an explicitly synthetic HTTP upstream. |
-| `seed_synthetic.py`, `test_service.mjs`, `collect_service.py`, `service-cases.json`, `fixture-source-pin.json`, `requirements.txt` | Disposable synthetic identities/registration,19 genuine service cases, exact synthetic setup dependency and closed five-member result packaging. No direct writes to storage.objects. |
-| `runtime/handler.mjs`, `runtime/transport.mjs` | Byte-exact reviewed runtime dependencies; ordinary requests use native fetch through verified TLS. |
-
-All listed source files are implemented in isolation. The generated compose, credentials, image receipt and service reports only exist during an explicit disposable runner execution. Implementation status and local evidence are recorded in README.md. Implemented files are never evidence that actual services executed.
-
-## Isolation, transport and lifecycle agreement
-
-Use a fresh Linux Actions runner later, a random `echs-c08-service-<hex>` project and fresh private network/volumes with exact ownership labels. Keep the service network internal with no published ports. The Linux host connects directly to the inspected, owned container addresses on fixed service ports. Never adopt an existing project/database/volume, accept DOCKER_HOST or arbitrary DSNs, run a global prune, reset an existing stack or use production environment variables. Cleanup targets only the freshly created project after resolved path and ownership verification; on ambiguous ownership it reports a leak and stops. Generated synthetic passwords/JWT material/CA/private keys stay in an ephemeral secret directory or memory and out of artifacts, command lines and logs. Do not collect raw compose config, environment dumps, Docker inspect output or service request logs.
-
-Preserve the transport's exact HTTPS origin grammar: one compiled synthetic hostname `echsc08servicetest.supabase.co`, no port/path override and no production DNS resolution. A test-only socket resolver maps that hostname solely to the loopback TLS gateway; the gateway certificate has that exact SAN and is signed by a fresh test CA. The test process trusts the selected CA and still verifies the hostname. No NODE_TLS_REJECT_UNAUTHORIZED=0, insecure TLS flag, response.url rewriting or mock fetch response. The gateway forwards only `/rest/v1/rpc/` and `/storage/v1/` to fixed ports at the validated owned container addresses, preserves request/response bytes and relevant integrity headers, and has no generic forward-proxy route. Reject unexpected hosts, targets, redirects and non-loopback ingress. Upstream hosts are canonical RFC1918 IPv4 literals authorized by the inspected network receipt; loopback remains the default only for the local synthetic TLS test. The actual-service test uses a process-local DNS resolver and native fetch; a deadline-bounded sudo child binds loopback443 without changing OS hosts or trust stores. Local gateway tests must pass before the separate service run.
-
-Use locally generated service/anon/authenticated JWTs for the Supabase services. Use separate random custom school-session bearer values whose hashes are seeded in the disposable ECHS public.accounts and private.sessions tables. They are not Supabase Auth sessions. The handler continues to use actual api_session_lookup plus003 authorization on every operation. Keep two organizations and admin/teacher/student/parent, inactive, expired and revoked synthetic cases. Service-role RLS bypass is a trusted administrative boundary, not an immutability promise against administrators.
-
-## Ordered acceptance cases and receipts
-
-1. Prove actual container identities/digests, exact sole internal bridge membership/IPAM, absence of port bindings, managed migrations and exact27 prefix; read the real capability and private bucket through actual PostgREST/Storage. Reject wrong bucket public flag, MIME/size policy, missing RPC/grants and wrong JWT role without fabricating metadata.
-2. Upload each of six allowed MIME types through the unchanged handler/transport; read back registered length/MIME/SHA. Independently issue a direct real duplicate POST with `x-upsert:false`; require observed400 duplicate and byte-exact first writer. The standard upload documentation describes first-writer behavior; if this pinned release differs, report the actual mismatch. [Standard uploads](https://supabase.com/docs/guides/storage/uploads/standard-uploads)
-3. Exercise anon/authenticated list/download/write/upsert/delete denials, direct service-only RPC denial, foreign-org and wrong-role custom sessions, revocation/expiry/class-independent admin scope and terminal ready/aborted snapshots. Only mutate the disposable synthetic fixture through its closed control API.
-4. Drop upload or verify_bytes acknowledgement after a real upstream commit, then reconcile the same request ID through real status/readback. Different bytes cannot overwrite, read corruption cannot gain a receipt, and no cleanup follows ambiguous completion. Record every fault injection distinctly from unmodified service behavior. Assert receipt/event count via read-only SQL.
-5. Use two real simultaneous HTTP requests and distinct SQL sessions to prove idempotent event behavior. Bound slow/aborted/late streams and source sizes around6MiB, the11MB source-size analogue and16MiB without loading real source data. Standard POST remains unchanged; TUS is a separate protocol if these tests fail.
-
-A service PASS requires the real PostgREST/Storage processes, unmodified runtime2, exact source/image/test hashes, all executed cases and closed reports. A preflight PASS reports `services_executed:false`, `hosted_edge_executed:false`, `corpus_imported:false` and cannot be used as service acceptance. Reports contain case labels/status codes/counts/digests/timing only; no body snippets, object bytes, tokens, keys, source records or screenshots.
-
-## Remaining gates and rollback
-
-The service socket/gateway, real managed-schema application, actual duplicate behavior and full cases are NOT EXECUTED here. Docker is not available in the bounded local tool inventory; no container setup or install is attempted. The later disposable runner must resolve the reviewed allowlisted version tags, run the resulting immutable digests, and record exact runner/tool versions. This plan does not claim the minimal fixture has booted.
-
-Local Node services or an optional self-hosted Edge container do not establish hosted Supabase Edge feasibility. The separate hosted gate must measure cold/warm and concurrent memory/CPU against the published256MB and2s CPU limits, gateway/custom-session routing and16MiB operation deadlines. The source parser, record receipts, package sealing, rights/full5882-record/media proof and private delivery coverage remain independent before any legacy public cutover. No current question availability or publication gate changes.
-
-Rollback of this candidate means not installing, or disabling a later experimental entrypoint, while retaining sealed C08/C04 foundations and immutable receipts. Delete only the newly created disposable fixture resources under exact ownership checks. Never restore raw public data or clean ambiguous production uploads.
-
-
-The network-repaired candidate (manifest b1b1efb847bc979438d96aacee74d0b7fe9ddaff4334e73ccf00f2efdc56df9d) reached and validated the actual owned bridge in run 34539461954, then its child exited before the 19-group report. No case acceptance is inferred. A local native Node reproduction showed that server.listen with literal 127.0.0.1 calls dns.lookup; the earlier hostname-only resolver rejected its own gateway listener. This separate candidate installs an exact resolver for the synthetic Supabase hostname, literal loopback and the two verified REST/Storage addresses before opening the real gateway. It never delegates to ambient DNS or allows all private addresses. The loopback TLS suite exercises that installation order and exact family/all response forms.
-
-Startup failures now produce a closed service-child-failure.json containing only fixed phase, error type, approved code/SQLSTATE and optional synthetic-seed phase/type/exit code. The runner validates this bounded record before nesting it in failure.child. No message, stack, response body, token, SQL text or raw stderr is exported. The Actions wrapper must retain only this closed diagnostic on failure; it is not an additional successful artifact member. The 22 sources and transport/runtime pair remain separately pinned; actual service acceptance still requires a fresh reviewed CI run.
+Primary sources are already retained byte-for-byte in `upstream-observation.json`:
+[base Compose](https://github.com/supabase/supabase/blob/8c7a4d9dbbaf8b552893822e89d7bf06f33f9220/docker/docker-compose.yml)
+and [PG15 override](https://github.com/supabase/supabase/blob/8c7a4d9dbbaf8b552893822e89d7bf06f33f9220/docker/docker-compose.pg15.yml).
+The upstream tag is unsigned; recorded tag/tree/blob identities are provenance,
+not a signature attestation. Passing these tests does not close whole C08.

@@ -172,14 +172,14 @@
     {
       "root": "repo",
       "path": "tools/test_private_snapshot_database.py",
-      "bytes": 42846,
-      "sha256": "521ea6aa6f3415c1527469f35eef52454d9c6d21bb663a900f4e4466aae53618"
+      "bytes": 43032,
+      "sha256": "4ad7c785d7b7478580cd89334458187dcc5d315134022bcabf00457481c6ca4b"
     },
     {
       "root": "repo",
       "path": "tools/test_membership_authorization_database.py",
-      "bytes": 22909,
-      "sha256": "ff66dcd24ad843b214e942db6521938e4652c086b11d1a19a278d7deb27644e9"
+      "bytes": 23071,
+      "sha256": "a37114e985ffbb61739d9fba6df1b7accbe65b94531e8c2c24db46b9a7054ca3"
     },
     {
       "root": "repo",

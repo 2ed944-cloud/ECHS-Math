@@ -38,13 +38,13 @@
     },
     {
       "path": "tools/private-learning-journal-http/README.md",
-      "bytes": 9218,
-      "sha256": "530b7f3d6b8d461ef378d107254066d31679b2ed04e77e17ecbeb5f578ba8c76"
+      "bytes": 10214,
+      "sha256": "c83133b70af3a62c7e2031998ca935c0e4020b6aee5a4489ca7914abbd1c8f49"
     },
     {
       "path": "tools/private-learning-journal-http/input-pins.json",
       "bytes": 7461,
-      "sha256": "61eb5095da2c07e7792033147107fa3a58b6fe7915cee533e85054d91053dc6e"
+      "sha256": "9df1f01bde6894661946432a51a79121fcf168764faa1e794df2460dd5f5054e"
     },
     {
       "path": "tools/private-learning-journal-http/runtime/wire.mjs",
@@ -58,8 +58,8 @@
     },
     {
       "path": "tools/private-learning-journal-http/runtime/handler.mjs",
-      "bytes": 7107,
-      "sha256": "d404d2845d435f4faaa0b4af7b9bd0bf1b7a4713ca3dff09e9f64446db4d0945"
+      "bytes": 7140,
+      "sha256": "6acb0db4dea5949eff11bad59560781134b788406187e6b393ceb151ba55b089"
     },
     {
       "path": "tools/private-learning-journal-http/runtime/pending-intent.mjs",

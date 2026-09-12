@@ -62,7 +62,8 @@ def git(*args):return subprocess.check_output(['git',*args],cwd=REPO,text=True).
 def checkout_sources(checkout):
     pins,_=sources();expected=set(OWN_PATHS)|{r['path'] for r in pins['files']}
     assert len(expected)==45 and checkout['status']=='EXACT OWNER-FENCE SOURCE CHECKOUT VERIFIED'
-    assert checkout['base_sha']==pins['base_sha'] and checkout['base_tree']==pins['base_tree']
+    assert checkout['source_baseline_sha']==pins['base_sha'] and checkout['source_baseline_tree']==pins['base_tree']
+    validate_checkout_event(checkout,git)
     assert checkout['owned_paths']==list(OWN_PATHS)
     assert checkout['input_pins_sha256']==digest((HERE/'input-pins.json').read_bytes())
     rows=checkout['source_files'];assert isinstance(rows,list) and len(rows)==45 and {r['path'] for r in rows}==expected
@@ -73,6 +74,36 @@ def checkout_sources(checkout):
         assert hashlib.sha1(b'blob '+str(len(raw)).encode()+b'\0'+raw).hexdigest()==row['git_blob_sha'],'Checkout blob changed'
     assert re.fullmatch('[0-9a-f]{40}',checkout['tested_sha']) and re.fullmatch('[0-9a-f]{40}',checkout['tested_tree'])
     assert git('rev-parse','HEAD')==checkout['tested_sha'] and git('rev-parse','HEAD^{tree}')==checkout['tested_tree']
+
+def checkout_event(kind,event,tested,tree,read_git):
+    """Bind this actual event, including a PR whose head predates its base."""
+    valid=lambda value:type(value) is str and re.fullmatch('[0-9a-f]{40}',value)
+    assert valid(tested) and valid(tree)
+    assert read_git('rev-parse','HEAD')==tested and read_git('rev-parse','HEAD^{tree}')==tree
+    parents=read_git('rev-list','--parents','-n','1','HEAD').split()[1:]
+    assert parents and all(valid(value) for value in parents)
+    head=number=None
+    if kind=='pull_request':
+        pr=event['pull_request'];base=pr['base']['sha'];head=pr['head']['sha'];number=event['number']
+        assert valid(base) and valid(head) and type(number) is int and number>0
+        assert pr['base']['repo']['full_name']=='2ed944-cloud/ECHS-Math' and parents==[base,head]
+        assert read_git('rev-parse',head)==head
+    else:
+        assert kind=='workflow_dispatch';base=parents[0]
+    base_tree=read_git('rev-parse',base+'^{tree}');assert valid(base_tree)
+    changed=read_git('diff','--name-only',base,tested).splitlines()
+    assert len(changed)==len(set(changed)) and len(changed)<=10000
+    assert all(type(path) is str and re.fullmatch(r'[A-Za-z0-9._ /()-]+',path) and not path.startswith('/') and '..' not in path.split('/') for path in changed)
+    return {'event':kind,'tested_sha':tested,'tested_tree':tree,'parents':parents,'base_sha':base,'base_tree':base_tree,'pr_head_sha':head,'pr_number':number,'changed_paths':changed}
+
+def validate_checkout_event(receipt,read_git):
+    if receipt['event']=='pull_request':
+        event={'number':receipt['pr_number'],'pull_request':{'base':{'sha':receipt['base_sha'],'repo':{'full_name':'2ed944-cloud/ECHS-Math'}},'head':{'sha':receipt['pr_head_sha']}}}
+    else:event={}
+    expected=checkout_event(receipt['event'],event,receipt['tested_sha'],receipt['tested_tree'],read_git)
+    assert all(receipt.get(key)==value for key,value in expected.items()),'Checkout event identity changed'
+    return expected
+
 def connection_guard(info,prefix):
     assert prefix in ('echs_membership_test_owner_fence_','echs_bank_test_owner_fence_')
     assert set(info)<= {'host','port','dbname','user','password','sslmode','connect_timeout','application_name'}

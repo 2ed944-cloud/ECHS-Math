@@ -1,7 +1,7 @@
 """Exact eight-member metadata artifact. Partial runs never become acceptance."""
-import json,math,os,re
+import argparse,json,math,os,re
 from pathlib import Path
-from contract import HERE,INPUT_SHA,sources,snapshot,digest,checkout_sources,planned_labels,local_labels,actions_labels,reviewed
+from contract import HERE,INPUT_SHA,sources,snapshot,digest,checkout_sources,planned_labels,local_labels,actions_labels,reviewed,postgres_major,postgres_version
 
 REPORTS={'checkout.json','input-pins.json','local-results.json','actions-results.json','acceptance.json','membership-baseline.json','archive-with-fence-and-journal.json'}
 MEMBER_KEYS={'status','contract','production_calls','postgres_required','migration_count','migrations','checks','postgres_version','limits'}
@@ -10,7 +10,7 @@ LOCAL_KEYS={'contract','status','checks','check_count','groups_run','skipped','f
 ACTIONS_KEYS={'contract','status','checks','check_count','database_executed','production_calls','source_unchanged','source_files'}
 ACCEPTANCE_KEYS={'contract','status','source_files','migrations','checks','fence_checks','production_calls','database_executed','production_migration',
  'active_api','http_executed','owner_adoption_api','browser_bridge','grading_authoritative','checkout_report_sha256','tested_sha','tested_tree',
- 'membership_baseline_checks','archive_baseline_checks','candidate_installation','postgres_version','journal_check_count','fence_check_count','details','reports'}
+ 'membership_baseline_checks','archive_baseline_checks','candidate_installation','postgres_required','postgres_version','journal_check_count','fence_check_count','details','reports'}
 MEMBER_LIMITS=['Isolated PostgreSQL15 only; no production fixtures or data.',
  'Existing membership table grants and other membership-writing APIs are unchanged. New RPC atomicity does not assert control over a trusted direct service-role/database administrator.',
  'Historical same-org inactive student reports are preserved; roster mutations require an active class and active target accounts.']
@@ -50,14 +50,23 @@ def actual_checks(document,expected,status):
     assert document['status']==status and type(document['checks']) is list and document['checks']==expected
     assert all(type(x) is str and 0<len(x)<=1000 for x in document['checks'])
 
-def validate(parsed,raws,checkout_validator=checkout_sources):
+def member_limits(major):
+    postgres_major(major)
+    return [MEMBER_LIMITS[0].replace('PostgreSQL15','PostgreSQL'+str(major)),*MEMBER_LIMITS[1:]]
+
+def baseline_labels(reference,name,major):
+    postgres_major(major)
+    return [label.replace('PostgreSQL15','PostgreSQL'+str(major)) for label in reference['checks'][name]]
+
+def validate(parsed,raws,checkout_validator=checkout_sources,expected_major=15):
+    major=postgres_major(expected_major)
     assert set(parsed)==set(raws)==REPORTS
     assert all(type(v) is dict for v in parsed.values())
     for name in REPORTS:assert decode(raws[name])==parsed[name]
     pins,migrations=sources();owned=snapshot();reference=reviewed()
     assert digest(raws['input-pins.json'])==INPUT_SHA and parsed['input-pins.json']==pins
     rows=[{'file':r['path'].split('/')[-1],'sha256':r['sha256']} for r in migrations]
-    checkout=parsed['checkout.json'];checkout_validator(checkout)
+    checkout=parsed['checkout.json'];checkout_validator(checkout,expected_major=major)
     if os.environ.get('GITHUB_ACTIONS')=='true':assert checkout['tested_sha']==os.environ['GITHUB_SHA']
     local=parsed['local-results.json'];actions=parsed['actions-results.json']
     assert set(local)==LOCAL_KEYS and local['contract']=='echs.c04.journal-local-guards.v1'
@@ -73,24 +82,25 @@ def validate(parsed,raws,checkout_validator=checkout_sources):
     member=parsed['membership-baseline.json'];archive=parsed['archive-with-fence-and-journal.json'];accepted=parsed['acceptance.json']
     assert set(member)==MEMBER_KEYS and member['contract']=='echs.membership-database-tests.v1'
     assert set(archive)==ARCHIVE_KEYS and archive['contract']=='echs.private-snapshot-database-test.v1'
-    actual_checks(member,reference['checks']['membership-baseline.json'],'PASS')
-    actual_checks(archive,reference['checks']['archive-with-fence-and-journal.json'],'PASS')
+    actual_checks(member,baseline_labels(reference,'membership-baseline.json',major),'PASS')
+    actual_checks(archive,baseline_labels(reference,'archive-with-fence-and-journal.json',major),'PASS')
     assert len(member['checks'])==55 and len(archive['checks'])==222
-    integer(member['postgres_required'],15);integer(archive['postgres_required'],15)
+    integer(member['postgres_required'],major);integer(archive['postgres_required'],major)
     integer(member['migration_count'],26);integer(archive['migration_count'],27)
     integer(member['production_calls'],0);assert archive['production_calls'] is False and archive['external_network'] is False
     integer(archive['connection_isolation_vectors'],16)
     assert member['migrations']==rows[:-1] and archive['migrations']==rows
     for report in (member,archive):
         assert type(report['limits']) is list and all(type(x) is str and 0<len(x)<=2000 for x in report['limits'])
-        assert type(report['postgres_version']) is str and re.fullmatch(r'15\.[0-9]+(?: \([^\r\n]{1,180}\))?',report['postgres_version'])
-    assert member['limits']==MEMBER_LIMITS and archive['limits']==ARCHIVE_LIMITS
+        postgres_version(report['postgres_version'],major)
+    assert member['limits']==member_limits(major) and archive['limits']==ARCHIVE_LIMITS
     assert set(accepted)==ACCEPTANCE_KEYS and accepted['contract']=='echs.c04.operation-journal-acceptance.v1'
     actual_checks(accepted,planned_labels(),'ACTUAL POSTGRESQL JOURNAL PASS; NO ACTIVE API OR ADOPTION')
     assert accepted['fence_checks']==reference['checks']['fence'] and len(accepted['fence_checks'])==123
     integer(accepted['journal_check_count'],48);integer(accepted['fence_check_count'],123)
     integer(accepted['membership_baseline_checks'],55);integer(accepted['archive_baseline_checks'],222)
     assert accepted['migrations']==rows and accepted['postgres_version']==member['postgres_version']==archive['postgres_version']
+    integer(accepted['postgres_required'],major)
     assert accepted['database_executed'] is True
     for key in ('production_migration','active_api','http_executed','owner_adoption_api','browser_bridge','grading_authoritative'):assert accepted[key] is False
     integer(accepted['production_calls'],0);source_map(accepted['source_files'],owned)
@@ -124,7 +134,8 @@ def write_exclusive(path,raw):
     with path.open('xb') as out:out.write(raw);out.flush();os.fsync(out.fileno())
     assert path.read_bytes()==raw,'Artifact copy differs'
 
-def assemble(results,target,checkout_validator=checkout_sources):
+def assemble(results,target,checkout_validator=checkout_sources,expected_major=15):
+    major=postgres_major(expected_major)
     results=no_links(results);target=no_links(target)
     assert not target.exists(),'Artifact destination already exists'
     target.mkdir(parents=True)
@@ -144,18 +155,19 @@ def assemble(results,target,checkout_validator=checkout_sources):
             captured[name]=raw;parsed[name]=value
             write_exclusive(target/name,raw)
             copied.append({'file':name,'bytes':len(raw),'sha256':digest(raw)})
-        validate(parsed,captured,checkout_validator)
+        validate(parsed,captured,checkout_validator,major)
         assert snapshot()==before,'Sources changed while copying'
         assert {p.name for p in target.iterdir()}==REPORTS
         for name,path in found.items():
             no_links(path);assert path.read_bytes()==captured[name],'Report changed while copying'
         final_raw={name:(target/name).read_bytes() for name in REPORTS}
         assert final_raw==captured
-        validate({name:decode(raw) for name,raw in final_raw.items()},final_raw,checkout_validator)
+        validate({name:decode(raw) for name,raw in final_raw.items()},final_raw,checkout_validator,major)
         assert snapshot()==before,'Final source recheck failed'
     except Exception as failure:error=type(failure).__name__
     complete=error is None
     index={'contract':'echs.c04.operation-journal-artifact.v1','status':'ACTUAL JOURNAL SQL PASS; NO ACTIVE API OR ADOPTION' if complete else 'INCOMPLETE OR FAILED; NO ACCEPTANCE',
+        'postgres_required':major,'postgres_version':parsed['acceptance.json']['postgres_version'] if complete else None,'postgres_image':parsed['checkout.json']['postgres_image'] if complete else None,
         'complete':complete,'files':copied,'expected_reports':sorted(REPORTS),'actual_counts':{'membership':55,'archive':222,'owner_fence':123,'journal':48,'total':448} if complete else None,
         'local_counts':{'source_guards':14,'actions_guards':len(actions_labels())} if complete else None,
         'tested_sha':parsed['checkout.json']['tested_sha'] if complete else None,'tested_tree':parsed['checkout.json']['tested_tree'] if complete else None,
@@ -175,7 +187,7 @@ def assemble(results,target,checkout_validator=checkout_sources):
             assert snapshot()==before,'Sources changed at index write'
             final_raw={name:(target/name).read_bytes() for name in REPORTS};assert final_raw==captured
             for name,original in found.items():no_links(original);assert original.read_bytes()==captured[name]
-            validate({name:decode(data) for name,data in final_raw.items()},final_raw,checkout_validator)
+            validate({name:decode(data) for name,data in final_raw.items()},final_raw,checkout_validator,major)
             assert snapshot()==before,'Final source recheck failed'
         assert decode(path.read_bytes())==index and path.read_bytes()==raw
     except BaseException:
@@ -184,7 +196,8 @@ def assemble(results,target,checkout_validator=checkout_sources):
     return index
 
 def main():
-    result=assemble(HERE/'results',Path(os.environ['RUNNER_TEMP'])/'private-learning-operation-journal-evidence')
+    parser=argparse.ArgumentParser();parser.add_argument('--postgres-major',type=int,choices=(15,17),default=15);args=parser.parse_args()
+    result=assemble(HERE/'results',Path(os.environ['RUNNER_TEMP'])/('private-learning-operation-journal-evidence-pg'+str(args.postgres_major)),expected_major=args.postgres_major)
     print(json.dumps({'status':result['status'],'complete':result['complete']}))
     if not result['complete']:raise SystemExit(1)
 

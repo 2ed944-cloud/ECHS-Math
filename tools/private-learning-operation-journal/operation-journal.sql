@@ -363,7 +363,7 @@ begin
    seen:=seen||jsonb_build_array(item);
  end loop;
  s:=private.learning_journal_authorize(p_token_hash,p_payload,false,started);
- if generation<>s.reset_generation then raise exception using errcode='40001',message='Journal generation conflict'; end if;
+ if generation<>s.reset_generation then raise exception using errcode='PT409',message='Journal generation conflict'; end if;
  for item in select value from jsonb_array_elements(p_payload->'keys') loop
    k:=item->>'kind';id:=item->>'record_id';
    select j.* into v from private.learning_journal_heads h join private.learning_journal_versions j
@@ -419,14 +419,14 @@ begin
  s:=private.learning_journal_authorize(p_token_hash,p_payload,true,started);
  select o.* into oldop from private.learning_journal_operations o where o.incarnation_id=s.incarnation_id and o.operation_id=op;
  if found then
-   if oldop.request_text<>normalized or oldop.request_sha256<>request_hash then raise exception using errcode='40001',message='Journal operation conflict'; end if;
+   if oldop.request_text<>normalized or oldop.request_sha256<>request_hash then raise exception using errcode='PT409',message='Journal operation conflict'; end if;
    return private.learning_journal_finish(p_token_hash,s.account_id,started,jsonb_build_object('ok',true,'contract','echs.learning.server-journal.v1','replayed',true,
      'receipt',oldop.receipt,'current',jsonb_build_object('reset_generation',s.reset_generation,'owner_revision',s.owner_revision)));
  end if;
- if generation<>s.reset_generation then raise exception using errcode='40001',message='Journal generation conflict'; end if;
+ if generation<>s.reset_generation then raise exception using errcode='PT409',message='Journal generation conflict'; end if;
  if s.owner_revision=9007199254740991 then raise exception using errcode='54000',message='Journal revision limit'; end if;
  if action='reset' then
-   if private.learning_journal_integer(p_payload->'expected_owner_revision')<>s.owner_revision then raise exception using errcode='40001',message='Journal owner revision conflict'; end if;
+   if private.learning_journal_integer(p_payload->'expected_owner_revision')<>s.owner_revision then raise exception using errcode='PT409',message='Journal owner revision conflict'; end if;
    if generation=9007199254740991 then raise exception using errcode='54000',message='Journal generation limit'; end if;
    reset_to:=generation+1;
  else
@@ -444,7 +444,7 @@ begin
        select h.record_revision into revision from private.learning_journal_heads h where h.incarnation_id=s.incarnation_id
          and h.record_generation=generation and h.kind=k and h.record_id=id;
        revision:=coalesce(revision,0);expected:=private.learning_journal_integer(item->'expected_revision');
-       if revision<>expected then raise exception using errcode='40001',message='Journal record revision conflict'; end if;
+       if revision<>expected then raise exception using errcode='PT409',message='Journal record revision conflict'; end if;
        if revision=9007199254740991 then raise exception using errcode='54000',message='Journal record revision limit'; end if;
        if revision=0 then new_heads:=new_heads+1; end if;
        revision:=revision+1;disposition:=case when item->>'action'='delete' then 'deleted' else 'put' end;

@@ -1,6 +1,6 @@
 {
   "contract": "echs.c04.journal-http-service-inputs.v1",
-  "j049_manifest_sha256": "117cdb0a97cd4408b31fedf9f4eba5928b1385f5e2a86d6ee5e55c750c286817",
+  "j049_manifest_sha256": "84284f19b00a26b8ee30ed2567132b7913e0a0c8e5cb7c80e4167f62d778445c",
   "files": [
     {
       "scope": "repository",
@@ -174,7 +174,7 @@
       "scope": "repository",
       "path": "tools/private-learning-operation-journal/operation-journal.sql",
       "bytes": 41799,
-      "sha256": "ac3ad94dce3d89b3e32594b9fd01593a266738abb66cbb8f3c2d72ca597b075e"
+      "sha256": "9ce98da90d5c141fdf184d32a00067eca1aaa800870204edd9c383cc22b1e1bf"
     },
     {
       "scope": "candidate",
@@ -191,8 +191,8 @@
     {
       "scope": "candidate",
       "path": "runtime/handler.mjs",
-      "bytes": 7107,
-      "sha256": "d404d2845d435f4faaa0b4af7b9bd0bf1b7a4713ca3dff09e9f64446db4d0945"
+      "bytes": 7140,
+      "sha256": "6acb0db4dea5949eff11bad59560781134b788406187e6b393ceb151ba55b089"
     },
     {
       "scope": "candidate",

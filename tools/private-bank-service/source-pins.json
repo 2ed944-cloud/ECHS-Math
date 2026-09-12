@@ -246,15 +246,24 @@
       "sha256": "11425bcd086ddb2f88c788969ef82e1f2af8a7803d8b8110baabf785bb3152d3"
     }
   ],
-  "image_tags": {
-    "db": "supabase/postgres:15.8.1.085",
-    "auth": "supabase/gotrue:v2.196.0",
-    "rest": "postgrest/postgrest:v14.17",
-    "storage": "supabase/storage-api:v1.74.0",
-    "imgproxy": "darthsim/imgproxy:v3.31.4"
-  },
   "image_digests_resolved": false,
   "services_executed": false,
   "hosted_edge_executed": false,
-  "corpus_imported": false
+  "corpus_imported": false,
+  "image_tags_by_major": {
+    "15": {
+      "db": "supabase/postgres:15.8.1.085",
+      "auth": "supabase/gotrue:v2.196.0",
+      "rest": "postgrest/postgrest:v14.17",
+      "storage": "supabase/storage-api:v1.74.0",
+      "imgproxy": "darthsim/imgproxy:v3.31.4"
+    },
+    "17": {
+      "db": "supabase/postgres:17.6.1.136",
+      "auth": "supabase/gotrue:v2.196.0",
+      "rest": "postgrest/postgrest:v14.17",
+      "storage": "supabase/storage-api:v1.74.0",
+      "imgproxy": "darthsim/imgproxy:v3.31.4"
+    }
+  }
 }

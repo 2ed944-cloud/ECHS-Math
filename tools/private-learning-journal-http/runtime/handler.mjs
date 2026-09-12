@@ -6,7 +6,7 @@ const JSON_TYPE=/^application\/json(?:\s*;\s*charset=utf-8)?$/i;
 const SQL_ERRORS=Object.freeze({
  '28000':[401,'session-unavailable'],'42501':[403,'actor-unavailable'],
  '55000':[409,'owner-unavailable'],'22023':[400,'invalid-request'],
- '40001':[409,'journal-conflict'],'23514':[409,'journal-conflict'],
+ 'PT409':[409,'journal-conflict'],'40001':[409,'journal-conflict'],'23514':[409,'journal-conflict'],
  '54000':[413,'journal-limit'],'57014':[504,'journal-deadline'],
  '55P03':[503,'journal-busy'],'0A000':[503,'journal-unavailable']
 });

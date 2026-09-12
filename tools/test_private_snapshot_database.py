@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Actual isolated PostgreSQL15 C08 archive authorization/immutability contracts.
+"""Actual isolated PostgreSQL C08 archive contracts (default major 15).
 
 Requires a fresh loopback echs_bank_test_* database and the accepted prior-chain
 report. No production configuration, source question content or Storage API.
@@ -66,9 +66,10 @@ def main():
     parser.add_argument('--baseline-report', type=Path, default=Path('reports/membership-authorization-database.json'))
     parser.add_argument('--report', type=Path, default=Path('reports/private-snapshot-database.json'))
     parser.add_argument('--static-only', action='store_true')
+    parser.add_argument('--postgres-major', type=int, choices=(15, 17), default=15)
     args = parser.parse_args()
     repo = args.repo_root.resolve()
-    report = {'contract': 'echs.private-snapshot-database-test.v1', 'status': 'RUNNING; NOT PASS', 'production_calls': False, 'external_network': False, 'postgres_required': 15, 'checks': []}
+    report = {'contract': 'echs.private-snapshot-database-test.v1', 'status': 'RUNNING; NOT PASS', 'production_calls': False, 'external_network': False, 'postgres_required': args.postgres_major, 'checks': []}
     def save():
         args.report.parent.mkdir(parents=True, exist_ok=True)
         args.report.write_text(json.dumps(report, indent=2) + '\n', encoding='utf-8')
@@ -108,7 +109,7 @@ def main():
         from psycopg.types.json import Jsonb
         assert any(p.name == MEMBERSHIP for p in migrations), 'Composed membership repair required'
         baseline = json.loads(args.baseline_report.read_text(encoding='utf-8'))
-        assert baseline['status'] == 'PASS' and baseline['migrations'] == report['migrations'][:-1], 'Exact accepted prior migration chain required'
+        assert baseline['status'] == 'PASS' and baseline['postgres_required'] == args.postgres_major and baseline['migrations'] == report['migrations'][:-1], 'Exact accepted prior migration chain required'
         dsn = os.environ.get('ECHS_BANK_TEST_DSN', '')
         assert dsn, 'Explicit isolated test DSN required'
         info = conninfo_to_dict(dsn)
@@ -123,7 +124,7 @@ def main():
             db.execute("set statement_timeout='10s'")
             return db
         with connect() as conn:
-            assert int(conn.execute('show server_version_num').fetchone()[0]) // 10000 == 15
+            assert int(conn.execute('show server_version_num').fetchone()[0]) // 10000 == args.postgres_major
             assert conn.execute('select current_database()').fetchone()[0] == info['dbname']
             assert conn.execute("select count(*) from pg_tables where schemaname in ('public','private','storage')").fetchone()[0] == 0, 'Refusing nonempty database'
             report['postgres_version'] = conn.execute('show server_version').fetchone()[0]
@@ -148,7 +149,7 @@ def main():
             passed('existing cluster roles are preserved and retain the expected isolated Supabase-style privileges')
             for migration in migrations[:-1]:
                 conn.execute(migration.read_text(encoding='utf-8'), prepare=False)
-            passed('full exact accepted prior migration chain executed in a new loopback PostgreSQL15 database')
+            passed(f'full exact accepted prior migration chain executed in a new loopback PostgreSQL{args.postgres_major} database')
 
             def table_hash(table):
                 rows = conn.execute(sql.SQL('select to_jsonb(t) from public.{} t').format(sql.Identifier(table))).fetchall()

@@ -69,7 +69,7 @@ CONTRACT = 'echs.learning.server-journal.v1'
 MAX_INT = 9007199254740991
 
 
-def exercise(db, connect, passed):
+def exercise(db, connect, passed, *, expected_major=15):
     import psycopg
     from psycopg import sql
     from psycopg.types.json import Jsonb
@@ -230,7 +230,8 @@ def exercise(db, connect, passed):
             db.execute('alter table private.learning_journal_owners enable trigger journal_owners_transition')
             yield
 
-    assert db.execute('show server_version_num').fetchone()[0].startswith('15')
+    assert type(expected_major) is int and expected_major in (15, 17)
+    assert int(db.execute('show server_version_num').fetchone()[0]) // 10000 == expected_major
     assert all(db.execute(sql.SQL('select count(*) from private.{}').format(sql.Identifier(t))).fetchone()[0] == 0 for t in TABLES)
     key = db.execute("select pg_get_constraintdef(oid) from pg_constraint where conrelid='private.learning_owner_routes'::regclass and conname='learning_route_journal_scope_key'").fetchone()[0]
     assert key == 'UNIQUE (organization_id, account_id, fence_id, epoch)'
@@ -461,15 +462,15 @@ def exercise(db, connect, passed):
     mark('J020')
     mutations = []
     for key, val in [('reset_generation', 1), ('adoption_epoch', 0)]:
-        changed = copy.deepcopy(body);changed[key] = val;mutations.append((changed, '55000' if key == 'adoption_epoch' else '40001'))
+        changed = copy.deepcopy(body);changed[key] = val;mutations.append((changed, '55000' if key == 'adoption_epoch' else 'PT409'))
     for key, val in [('local_revision', 2), ('expected_revision', 1)]:
-        changed = copy.deepcopy(body);changed['records'][0][key] = val;mutations.append((changed, '40001'))
-    changed = copy.deepcopy(body);changed['records'][0]['value']['different'] = True;mutations.append((changed, '40001'))
-    mutations.append((reset(who, 1, operation_id=body['operation_id']), '40001'))
+        changed = copy.deepcopy(body);changed['records'][0][key] = val;mutations.append((changed, 'PT409'))
+    changed = copy.deepcopy(body);changed['records'][0]['value']['different'] = True;mutations.append((changed, 'PT409'))
+    mutations.append((reset(who, 1, operation_id=body['operation_id']), 'PT409'))
     for changed, code in mutations:unchanged_rejection(who, changed, code)
     call('apply', who, reset(who, 1))
     changed = copy.deepcopy(body);changed['records'][0]['value']['different'] = True
-    unchanged_rejection(who, changed, '40001')
+    unchanged_rejection(who, changed, 'PT409')
     mark('J021')
     fresh_token = hashlib.sha256(uuid.uuid4().bytes).hexdigest()
     db.execute("insert into private.sessions(account_id,token_hash,expires_at) values(%s,%s,clock_timestamp()+interval '1 hour')", (who['account'], fresh_token))
@@ -492,7 +493,7 @@ def exercise(db, connect, passed):
     mark('J024')
     who = owner();l = commit(who);r = commit(who)
     result = contenders(who, l, r)
-    assert sum('value' in x for x in result) == 1 and [x['error'] for x in result if 'error' in x] == ['40001']
+    assert sum('value' in x for x in result) == 1 and [x['error'] for x in result if 'error' in x] == ['PT409']
     assert call('state', who)['owner_revision'] == 1
     mark('J025')
     who = owner();result = contenders(who, commit(who, [record(key='left')]), commit(who, [record(key='right')]))
@@ -500,15 +501,15 @@ def exercise(db, connect, passed):
     assert [x['revision'] for x in heads(who, [('sessions', 'left'), ('sessions', 'right')])['records']] == [1, 1]
     mark('J026')
     who = owner();assert heads(who, [('sessions', 'missing')])['records'][0]['revision'] == 0
-    unchanged_rejection(who, commit(who, [record(key='missing', action='delete', revision=1)]), '40001')
+    unchanged_rejection(who, commit(who, [record(key='missing', action='delete', revision=1)]), 'PT409')
     call('apply', who, commit(who));call('apply', who, commit(who, [record(action='delete', revision=1)]))
     tomb = heads(who, [('sessions', 'synthetic-session')])['records'][0]
     assert tomb['deleted'] is True and tomb['revision'] == 2 and tomb['value'] is None
-    unchanged_rejection(who, commit(who), '40001')
+    unchanged_rejection(who, commit(who), 'PT409')
     assert call('apply', who, commit(who, [record(revision=2)]))['receipt']['records'][0]['record_revision'] == 3
     mark('J027')
     body = commit(who, [record('attempts', 'compound-new'), record(revision=1), record('review', 'review-new')])
-    unchanged_rejection(who, body, '40001')
+    unchanged_rejection(who, body, 'PT409')
     mark('J028')
     who = owner();item = record('attempts', 'stable-attempt', correct=True, verified=True)
     original = call('apply', who, commit(who, [item]));call('apply', who, reset(who, 1))
@@ -566,7 +567,7 @@ def exercise(db, connect, passed):
     assert all('value' in x for x in r) and sorted(x['value']['replayed'] for x in r) == [False, True]
     assert call('state', who)['reset_generation'] == 1
     who = owner();r = contenders(who, reset(who, 0), reset(who, 0))
-    assert sum('value' in x for x in r) == 1 and [x['error'] for x in r if 'error' in x] == ['40001']
+    assert sum('value' in x for x in r) == 1 and [x['error'] for x in r if 'error' in x] == ['PT409']
     mark('J035')
     def ordered(first_kind):
         who = owner();body = commit(who);reset_body = reset(who, 0)
@@ -575,7 +576,7 @@ def exercise(db, connect, passed):
             call('apply', who, first_payload, first_conn)
             future = pool.submit(async_call, 'apply', who, reset_body if first_kind == 'commit' else body, second_conn)
             try:
-                waiting(second_conn);first_conn.execute('commit');assert future.result(timeout=7) == {'error': '40001'}
+                waiting(second_conn);first_conn.execute('commit');assert future.result(timeout=7) == {'error': 'PT409'}
             finally:first_conn.execute('rollback')
         return who, body, reset_body
     ordered('commit');mark('J036')
@@ -706,7 +707,7 @@ def exercise(db, connect, passed):
     assert rows[1]['value_sha256'] is None and rows[2]['value_sha256'] == hashlib.sha256(b'null').hexdigest()
     assert len(heads(who, [('sessions', 'empty-' + str(i)) for i in range(8)])['records']) == 8
     rejected(lambda: heads(who, [('review', 'review'), ('review', 'review')]), '22023')
-    rejected(lambda: heads(who, [('review', 'review')], generation=1), '40001')
+    rejected(lambda: heads(who, [('review', 'review')], generation=1), 'PT409')
     rejected(lambda: heads(who, [('sessions', str(i)) for i in range(9)]), '22023')
     mark('J046')
     body = commit(who, [record(key='receipt-history')]);receipt = call('apply', who, body)['receipt'];revision = receipt['owner_revision']
