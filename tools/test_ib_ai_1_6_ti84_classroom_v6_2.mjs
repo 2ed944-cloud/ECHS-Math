@@ -4,8 +4,8 @@ import vm from 'node:vm';
 const root=process.argv[2]||'.';
 const workflowFile=`${root}/lessons/ib-math-ai/unit-1/data/lesson-1.6-ti84-classroom-workflows-v6-2-2.js`;
 const officialFile=`${root}/lessons/ib-math-ai/unit-1/data/lesson-1.6-ti84-official-paths-v6-3.js`;
-const runtimeFile=`${root}/lessons/ib-math-ai/unit-1/data/lesson-1.6-ti84-classroom-runtime-v6-2-1.js`;
-const dockFile=`${root}/lessons/ib-math-ai/unit-1/data/lesson-1.6-ti84-inline-dock-v6-3.js`;
+const runtimeFile=`${root}/lessons/ib-math-ai/unit-1/data/unit-1-gdc-classroom-training-lesson-quality-v1.js`;
+const dockFile=`${root}/lessons/ib-math-ai/unit-1/data/unit-1-ti84-simulator-v7.js`;
 const htmlFile=`${root}/lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.6_technology_equations_ECHS.html`;
 const cssFile=`${root}/lessons/ib-math-ai/unit-1/assets/css/lesson-1.6-ti84-classroom-coach-v6-2.css`;
 const errors=[];
@@ -13,6 +13,7 @@ const workflowSource=fs.readFileSync(workflowFile,'utf8');
 const officialSource=fs.readFileSync(officialFile,'utf8');
 const runtimeSource=fs.readFileSync(runtimeFile,'utf8');
 const dockSource=fs.readFileSync(dockFile,'utf8');
+const shellSource=fs.readFileSync(`${root}/lessons/ib-math-ai/unit-1/data/unit-1-gdc-integration-lesson-quality-v1.js`,'utf8');
 const html=fs.readFileSync(htmlFile,'utf8');
 const css=fs.readFileSync(cssFile,'utf8');
 
@@ -23,7 +24,7 @@ const metadata=sandbox.window.LESSON_DATA.ti84Classroom||{};
 if(Object.keys(workflows).length!==6)errors.push(`Expected 6 paired workflows; found ${Object.keys(workflows).length}`);
 if(metadata.release!=='6.2.2')errors.push(`Release mismatch: ${metadata.release}`);
 if(metadata.officialPathAudit!=='6.3.0')errors.push(`Official path audit mismatch: ${metadata.officialPathAudit}`);
-if(metadata.simulator!=='https://ti84calc.com/ti84calc')errors.push('TI-84 simulator URL mismatch');
+if(metadata.simulator!=='local-echs-gdc-v7'||metadata.thirdPartySimulator!==false)errors.push('TI-84 simulator URL mismatch');
 if(metadata.pairedMethod!=='manual → TI-84 → verify → IB conclusion')errors.push('Paired method contract missing');
 if((metadata.mappedSlides||[]).length!==7)errors.push(`Expected 7 mapped lesson screens; found ${(metadata.mappedSlides||[]).length}`);
 
@@ -37,15 +38,17 @@ if(!workflows['exact-intersections'].output.includes('3.236068'))errors.push('Ex
 if(!workflows['numerical-intersection'].output.includes('6.05443'))errors.push('Numerical-intersection audit failed');
 if(!workflows['rounded-rref'].output.includes('30}{11')||!workflows['rounded-rref'].output.includes('53}{11'))errors.push('RREF exact-value audit failed');
 
-for(const marker of ['lesson-1.6-ti84-classroom-coach-v6-2.css?v=6.2.0','lesson-1.6-ti84-classroom-workflows-v6-2-2.js?v=6.2.2','lesson-1.6-ti84-official-paths-v6-3.js?v=6.3.0','lesson-1.6-ti84-classroom-runtime-v6-2-1.js?v=6.2.1','lesson-1.6-ti84-inline-dock-v6-3.js?v=6.3.0'])if(!html.includes(marker))errors.push(`Wrapper missing ${marker}`);
-for(const obsolete of ['lesson-1.6-technology-v6-gdc-lab.js','lesson-1.6-technology-v6-gdc-external-tools.js','lesson-1.6-ti84-classroom-data-guard','lesson-1.6-ti84-classroom-coach-v6-2.js'])if(html.includes(obsolete))errors.push(`Wrapper still loads obsolete asset ${obsolete}`);
-if(!(html.indexOf('lesson-1.6-ti84-classroom-workflows-v6-2-2.js')<html.indexOf('lesson-1.6-ti84-official-paths-v6-3.js')&&html.indexOf('lesson-1.6-ti84-official-paths-v6-3.js')<html.indexOf('lesson-1.6-ti84-classroom-runtime-v6-2-1.js')&&html.indexOf('lesson-1.6-ti84-classroom-runtime-v6-2-1.js')<html.indexOf('lesson-1.6-ti84-inline-dock-v6-3.js')))errors.push('TI-84 workflow, official correction, classroom runtime and dock load order is invalid');
+for(const marker of ['lesson-1.6-ti84-classroom-coach-v6-2.css?v=6.2.0','lesson-1.6-ti84-classroom-workflows-v6-2-2.js?v=6.2.2','lesson-1.6-ti84-official-paths-v6-3.js?v=6.3.0','unit-1-gdc-integration-lesson-quality-v1.js','unit-1-ti84-simulator-v7.js','unit-1-gdc-classroom-training-lesson-quality-v1.js'])if(!html.includes(marker))errors.push(`Wrapper missing ${marker}`);
+for(const obsolete of ['lesson-1.6-technology-v6-gdc-lab.js','lesson-1.6-technology-v6-gdc-external-tools.js','lesson-1.6-ti84-classroom-data-guard','lesson-1.6-ti84-classroom-coach-v6-2.js','lesson-1.6-ti84-classroom-runtime-v6-2-1.js','lesson-1.6-ti84-inline-dock-v6-3.js'])if(html.includes(obsolete))errors.push(`Wrapper still loads obsolete asset ${obsolete}`);
+const ordered=['lesson-1.6-ti84-classroom-workflows-v6-2-2.js','lesson-1.6-ti84-official-paths-v6-3.js','unit-1-gdc-integration-lesson-quality-v1.js','unit-1-ti84-simulator-v7.js','unit-1-gdc-classroom-training-lesson-quality-v1.js'];
+if(!ordered.every((marker,i)=>html.indexOf(marker)>=0&&(i===0||html.indexOf(marker)>html.indexOf(ordered[i-1]))))errors.push('Consolidated workflow, correction, GDC, simulator and training load order is invalid');
 for(const marker of ['.ti84-classroom-launch','.ti84-paired-strip','.ti84-coach-grid','.ti84-simulator-stage','.ti84-evidence-flow'])if(!css.includes(marker))errors.push(`CSS missing ${marker}`);
-for(const marker of ['Teacher demo','Students follow','Exam drill','Load simulator','Manual mathematics','TI‑84 key sequence'])if(!runtimeSource.includes(marker))errors.push(`Coach UI missing ${marker}`);
-for(const marker of ['physical calculator','PlySmlt2','rref([A])','5:intersect','2:zero','Left Bound','Right Bound'])if(!(workflowSource+officialSource+runtimeSource).includes(marker))errors.push(`Instructional contract missing ${marker}`);
-if(!runtimeSource.includes("new MutationObserver(()=>scanSlide()).observe(app"))errors.push('Runtime does not limit slide observation to #app');
-if(runtimeSource.includes("observe(document.body"))errors.push('Runtime must not observe the full document body');
-if(!dockSource.includes("layout:'docked beside slide'"))errors.push('Inline simulator dock metadata missing');
+for(const marker of ['data-mode="teacher"','data-mode="follow"','data-mode="drill"','gdc-v7-reveal'])if(!shellSource.includes(marker))errors.push(`GDC stage/mode contract missing ${marker}`);
+for(const marker of ['MODEL / MANUAL PLAN','TI‑84 KEY ROUTE','gdc8-reveal-output','window.ECHS_TI84_CLASSROOM_WORKFLOWS',"shell.querySelector('.gdc8-classroom')"])if(!runtimeSource.includes(marker))errors.push(`Paired classroom UI missing ${marker}`);
+for(const marker of ['physical calculator','PlySmlt2','rref([A])','5:intersect','2:zero','Left Bound','Right Bound'])if(!(workflowSource+officialSource+runtimeSource).toLowerCase().includes(marker.toLowerCase()))errors.push(`Instructional contract missing ${marker}`);
+if(!dockSource.includes(".observe(app,{childList:true,subtree:true})"))errors.push('Simulator must observe its lesson app');
+if(dockSource.includes("observe(document.body"))errors.push('Simulator must not observe full document body');
+for(const marker of ["provider:'ti84calc.com'","src=\"about:blank\"","sandbox=\"allow-scripts allow-same-origin","keyboardFocusTrap:true"])if(!dockSource.includes(marker))errors.push(`Lazy sandboxed simulator contract missing ${marker}`);
 
 console.log('IB AI SL Lesson 1.6 TI-84 Classroom Practice v6.3');
 console.log(JSON.stringify({workflows:Object.keys(workflows).length,mappedSlides:(metadata.mappedSlides||[]).length,modes:metadata.modes||[],officialAudit:metadata.officialPathAudit},null,2));

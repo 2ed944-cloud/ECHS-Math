@@ -1,0 +1,53 @@
+{
+  "scope": "Pinned legacy renderer repairs: hash-only metadata. Test requires external exact retained original HTML via --baseline-root.",
+  "source_unchanged": true,
+  "files": [
+    {
+      "path": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.4_Polynomial_Functions_and_Rates_of_Change_ECHS_Refined.html",
+      "original_bytes": 1311023,
+      "original_sha256": "aada3d510554fe649f3a36f5f0082a94003ba7750e29bdeb752b7f6bc20acf10",
+      "candidate_bytes": 1311571,
+      "candidate_sha256": "64196a4c3747b47eba5f0bf97f3599b1a625b20028b1b4a1a6665b87e291a8a0",
+      "changed_methods": [
+        {
+          "method": "polyfeatures",
+          "old_bytes": 537,
+          "new_bytes": 834,
+          "old_sha256": "a0a739545b3d5b48163e26587fdc73cc6e52e28e35959ecc7ada1f28f9a363a8",
+          "new_sha256": "7dfe1f9750c55f2be0ddda799aa4ed24495df441ebf71555dc840e472c235b3c"
+        },
+        {
+          "method": "polyintervalrates",
+          "old_bytes": 421,
+          "new_bytes": 672,
+          "old_sha256": "e73d131d62e41abe4a8d04d1e44c9f27245bfa63e8b892284b0386614fe94014",
+          "new_sha256": "610cf920aaa256e7628b350aaad3b4044f2fe10981360a397807664c467b6dfd"
+        }
+      ],
+      "inverse_restores_original": true,
+      "all_non_method_bytes_preserved": true,
+      "assessment_script_sha256": "b2a16103a3d49f5bbf1f6cf7ca876760b6b4f154f80bc7a22bed34f48cb74098",
+      "dom_without_scripts_sha256": "6593abab22105295e71c42b3f1af9a8ca0b35384c5f65ed2bc2fc4522ceb39fe"
+    },
+    {
+      "path": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.5_Polynomial_Functions_and_Complex_Zeros_ECHS_Refined.html",
+      "original_bytes": 1307239,
+      "original_sha256": "e53b2bcbdae24b003a94a9f1f79479bc3555e44b21743184525c5953683b5fea",
+      "candidate_bytes": 1307279,
+      "candidate_sha256": "2e964dbdb63ae5e06766eac8f26013707df9073de4f48c8a729e3a9803100d11",
+      "changed_methods": [
+        {
+          "method": "symmetry",
+          "old_bytes": 410,
+          "new_bytes": 450,
+          "old_sha256": "ba98b890e1b9449c46a9589478d755b9dc12b57f41ab1854d052a3711304a5fb",
+          "new_sha256": "0c4f7bf67060cdd89a9369ca70be6503b292ee1c3cd499fa7ef8a9cac340b8da"
+        }
+      ],
+      "inverse_restores_original": true,
+      "all_non_method_bytes_preserved": true,
+      "assessment_script_sha256": "8e5a5a94ab1d338cc81fa42b02b685898e8420c47d474a5c173a99ee152dfd68",
+      "dom_without_scripts_sha256": "f685cfb2c0660a527271050c49953c4561333b88a393e6edc55b731128d1cda1"
+    }
+  ]
+}

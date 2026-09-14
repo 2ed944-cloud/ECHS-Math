@@ -32,7 +32,7 @@ if(data.visualPatchVersion!=='6.0.1')throw new Error(`Unexpected visual patch ve
 
 const definitiveIndex=wrapper.indexOf('lesson-1.5-exponents-logarithms-definitive-v6.js?v=6.0.0');
 const hotfixIndex=wrapper.indexOf('lesson-1.5-product-law-visual-v6-0-1.js?v=6.0.1');
-const engineIndex=wrapper.indexOf('../assets/js/engine.js?v=3.0.0');
+const engineIndex=wrapper.indexOf('../assets/js/engine-lesson-quality-v1.js?v=3.0.0');
 if(definitiveIndex<0||hotfixIndex<0||engineIndex<0)throw new Error('Lesson wrapper is missing a required script');
 if(!(definitiveIndex<hotfixIndex&&hotfixIndex<engineIndex))throw new Error('The visual patch must load after the definitive data and before the lesson engine');
 

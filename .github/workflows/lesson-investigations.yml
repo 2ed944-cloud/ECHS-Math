@@ -6,6 +6,9 @@ on:
       - 'lessons/ap-precalculus/unit-1/**'
       - 'lessons/ib-math-ai/unit-1/**'
       - 'tools/lesson-investigations/**'
+      - 'tools/ib-lesson-quality/**'
+      - 'tools/test_ib_ai_1_5_product_law_visual_v6_0_1.mjs'
+      - 'tools/test_ib_ai_1_6_definitive_v6.mjs'
       - 'tools/inject_lesson_investigations.py'
       - 'tools/test_lesson_investigation_injection.py'
       - 'tools/inject_learning_access_guard.py'
@@ -18,6 +21,9 @@ on:
       - 'lessons/ap-precalculus/unit-1/**'
       - 'lessons/ib-math-ai/unit-1/**'
       - 'tools/lesson-investigations/**'
+      - 'tools/ib-lesson-quality/**'
+      - 'tools/test_ib_ai_1_5_product_law_visual_v6_0_1.mjs'
+      - 'tools/test_ib_ai_1_6_definitive_v6.mjs'
       - 'tools/inject_lesson_investigations.py'
       - 'tools/test_lesson_investigation_injection.py'
       - 'tools/inject_learning_access_guard.py'
@@ -41,6 +47,31 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Materialize the eight pinned original lesson sources for comparisons
+        run: |
+          git fetch --no-tags --depth=1 origin dcc65f84dafd2dc5cb4518ea03d18b4087ddf4ff
+          python - <<'PY'
+          import hashlib, json, os, pathlib, subprocess
+          commit = 'dcc65f84dafd2dc5cb4518ea03d18b4087ddf4ff'
+          root = pathlib.Path(os.environ['RUNNER_TEMP']) / 'lesson-quality-baseline'
+          assert not root.exists(), 'Baseline destination must be fresh'
+          planned = []
+          for name in ['tools/ib-lesson-quality/baseline-pins.json', 'tools/lesson-investigations/polynomial-baseline-pins.json']:
+              metadata = json.loads(pathlib.Path(name).read_text(encoding='utf-8'))
+              assert metadata['baseline_main'] == commit
+              for row in metadata['files']:
+                  rel = pathlib.PurePosixPath(row['path'])
+                  assert not rel.is_absolute() and '..' not in rel.parts and rel.parts[0] == 'lessons'
+                  assert '\\' not in row['path'] and ':' not in row['path']
+                  raw = subprocess.run(['git','show',commit+':'+row['path']],check=True,capture_output=True).stdout
+                  assert len(raw) == row['bytes'] and hashlib.sha256(raw).hexdigest() == row['sha256']
+                  planned.append((root.joinpath(*rel.parts),raw))
+          assert len(planned) == 8 and len({p for p,_ in planned}) == 8
+          for target, raw in planned:
+              target.parent.mkdir(parents=True,exist_ok=True)
+              target.write_bytes(raw)
+          print('Verified eight pinned baseline sources in the runner temporary directory.')
+          PY
       - name: Install pinned test dependencies
         run: |
           npm install --prefix "$RUNNER_TEMP/investigation-dom" --no-save --ignore-scripts --no-audit --no-fund linkedom@0.18.12
@@ -60,16 +91,37 @@ jobs:
           node tools/lesson-investigations/test-host.mjs
           node tools/lesson-investigations/test-workspace.mjs
           node tools/lesson-investigations/test-legacy-route.mjs
+          node tools/lesson-investigations/test-ap-polynomial-model.mjs
+          node tools/lesson-investigations/test-polynomial-view.mjs
+          node tools/lesson-investigations/test-ap-polynomial-content.mjs --baseline-root "$RUNNER_TEMP/lesson-quality-baseline"
+          node tools/lesson-investigations/test-legacy-polynomial-renderers.mjs --repo . --baseline-root "$RUNNER_TEMP/lesson-quality-baseline"
+          node tools/ib-lesson-quality/test-ib-quality.mjs --repo . --baseline-root "$RUNNER_TEMP/lesson-quality-baseline" --report "$RUNNER_TEMP/ib-components.json"
+          node tools/test_ib_ai_1_5_product_law_visual_v6_0_1.mjs
+          node tools/test_ib_ai_1_6_definitive_v6.mjs
       - name: Exercise all activities in a native browser
         env:
           ECHS_PLAYWRIGHT_MODULE: ${{ github.workspace }}/question-bank/official/tools/node_modules/playwright
           ECHS_INVESTIGATION_REPORT_DIR: ${{ runner.temp }}/investigation-browser
         run: node tools/lesson-investigations/test-browser.mjs
+      - name: Exercise IB scopes, calculator mathematics and line graphs
+        env:
+          ECHS_PLAYWRIGHT_MODULE: ${{ github.workspace }}/question-bank/official/tools/node_modules/playwright
+        run: node tools/ib-lesson-quality/test-native.mjs --repo . --report-dir "$RUNNER_TEMP/ib-native"
       - name: Upload original teaching activity evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: lesson-investigations-browser
           path: ${{ runner.temp }}/investigation-browser
+          if-no-files-found: error
+          retention-days: 14
+      - name: Upload synthetic IB lesson evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ib-lesson-quality-browser
+          path: |
+            ${{ runner.temp }}/ib-native
+            ${{ runner.temp }}/ib-components.json
           if-no-files-found: error
           retention-days: 14

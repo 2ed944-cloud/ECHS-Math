@@ -96,7 +96,7 @@ const ordered=[
   'lesson-1.6-technology-v6-assessment.js',
   'lesson-1.6-technology-v6-corrections.js',
   'assets/js/katex-global.js',
-  'assets/js/engine.js',
+  'assets/js/engine-lesson-quality-v1.js',
   'lesson-1.6-technology-v6-interactions.js'
 ];
 let last=-1;for(const marker of ordered){const at=wrapper.indexOf(marker);expect(at>last,`wrapper load order ${marker}`);last=at;}

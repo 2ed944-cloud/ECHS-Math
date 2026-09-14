@@ -22,6 +22,21 @@
       "path": "lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.4_financial_models_ECHS.html",
       "bytes": 53101,
       "sha256": "38048e087e380b56a6a6d7833fafbe1aeb3cac29ea8d8205ee4b1f3cb55508aa"
+    },
+    {
+      "path": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.4_Polynomial_Functions_and_Rates_of_Change_ECHS_Refined.html",
+      "bytes": 1311571,
+      "sha256": "64196a4c3747b47eba5f0bf97f3599b1a625b20028b1b4a1a6665b87e291a8a0"
+    },
+    {
+      "path": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.5_Polynomial_Functions_and_Complex_Zeros_ECHS_Refined.html",
+      "bytes": 1307279,
+      "sha256": "2e964dbdb63ae5e06766eac8f26013707df9073de4f48c8a729e3a9803100d11"
+    },
+    {
+      "path": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.6_Polynomial_Functions_and_End_Behavior_ECHS_Refined.html",
+      "bytes": 1302090,
+      "sha256": "b6863c19bd2ead7a45a9767b9a8560c9020bed9f7b94d6409096d9a653efd45c"
     }
   ],
   "protected_calculus_sources": [

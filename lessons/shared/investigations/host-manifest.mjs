@@ -4,6 +4,9 @@ export const INVESTIGATION_HOSTS = Object.freeze([
   Object.freeze({key:'arithmetic', course:'ib-math-ai', path:'lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.2_arithmetic_sequences_ECHS.html'}),
   Object.freeze({key:'geometric', course:'ib-math-ai', path:'lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.3_geometric_sequences_ECHS.html'}),
   Object.freeze({key:'finance', course:'ib-math-ai', path:'lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.4_financial_models_ECHS.html'}),
+  Object.freeze({key:'ap-polynomial-rates', course:'ap-precalculus', path:'lessons/ap-precalculus/unit-1/AP_Precalculus_1.4_Polynomial_Functions_and_Rates_of_Change_ECHS_Refined.html'}),
+  Object.freeze({key:'ap-polynomial-zeros', course:'ap-precalculus', path:'lessons/ap-precalculus/unit-1/AP_Precalculus_1.5_Polynomial_Functions_and_Complex_Zeros_ECHS_Refined.html'}),
+  Object.freeze({key:'ap-polynomial-tails', course:'ap-precalculus', path:'lessons/ap-precalculus/unit-1/AP_Precalculus_1.6_Polynomial_Functions_and_End_Behavior_ECHS_Refined.html'}),
 ]);
 
 export function resolveInvestigationHost(href, siteRoot = new URL('../../../', import.meta.url)) {

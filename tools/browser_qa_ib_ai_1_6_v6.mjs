@@ -1,24 +1,35 @@
-import {chromium} from 'playwright-core';
+import {createRequire} from 'node:module';
 import {mkdir,writeFile} from 'node:fs/promises';
 import path from 'node:path';
+const {chromium}=createRequire(import.meta.url)(process.env.ECHS_PLAYWRIGHT_MODULE||'playwright-core');
 
 const baseURL=process.env.ECHS_PREVIEW_URL||'http://127.0.0.1:4173';
 const outputDir=process.env.ECHS_PREVIEW_OUTPUT||'artifacts/ib-ai-1-6-v6';
 const lessonURL=`${baseURL}/lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.6_technology_equations_ECHS.html#learn`;
 const storageKey='echs:ib-ai:u1:1.6:learn-index';
 await mkdir(outputDir,{recursive:true});
-const browser=await chromium.launch({executablePath:process.env.CHROME_PATH||'/usr/bin/google-chrome',headless:true,args:['--no-sandbox','--disable-dev-shm-usage','--font-render-hinting=none']});
-const report={lessonURL,generatedAt:new Date().toISOString(),checks:[],errors:[],slides:[],screenshots:[]};
+let browser;
+const contexts=new Set();
+const expected={slides:81,practice:106,quiz:14,exam:8,baseSlides:73,basePractice:96,baseExam:5,gdcSlides:8,gdcPractice:10,gdcExam:3};
+const report={lessonURL,generatedAt:new Date().toISOString(),checks:[],errors:[],slides:[],screenshots:[],composition:[],cleanup:{contexts:false,browser:false}};
 const add=(name,pass,details='')=>{report.checks.push({name,pass,details});if(!pass)report.errors.push(`${name}: ${details}`);};
+
+function bounded(promise,ms,label){let timer;return Promise.race([promise,new Promise((_,reject)=>{timer=setTimeout(()=>reject(new Error(label)),ms);})]).finally(()=>clearTimeout(timer));}
+async function closeContext(context){await bounded(context.close(),10000,'context-close-timeout');contexts.delete(context);}
 
 async function contextPage(viewport){
   const context=await browser.newContext({viewport,deviceScaleFactor:1,reducedMotion:'reduce',serviceWorkers:'block'});
+  contexts.add(context);
+  await context.route('**/*',route=>new URL(route.request().url()).origin===new URL(baseURL).origin?route.continue():route.abort());
   const page=await context.newPage();
   const consoleErrors=[];
   page.on('console',message=>{if(message.type()==='error'&&!/favicon|404/i.test(message.text()))consoleErrors.push(message.text());});
   page.on('pageerror',error=>consoleErrors.push(error.message));
   await page.goto(lessonURL,{waitUntil:'domcontentloaded',timeout:45000});
-  await page.waitForFunction(()=>document.body.dataset.rendered==='1'&&window.LESSON_DATA?.slides?.length===73,null,{timeout:30000});
+  await page.waitForFunction(()=>document.body.dataset.rendered==='1'&&window.LESSON_DATA?.__gdcV7Applied===true,null,{timeout:30000});
+  const composition=await page.evaluate(()=>{const d=window.LESSON_DATA,prefix='U1-GDC-V7-1.6-';const count=(rows,kind)=>rows.filter(row=>String(row.id||'').startsWith(prefix+kind)).length;return{slides:d.slides.length,practice:d.practice.length,quiz:d.quiz.length,exam:d.exam.length,baseSlides:d.slides.length-count(d.slides,'S'),basePractice:d.practice.length-count(d.practice,'P'),baseExam:d.exam.length-count(d.exam,'T'),gdcSlides:count(d.slides,'S'),gdcPractice:count(d.practice,'P'),gdcExam:count(d.exam,'T')};});
+  report.composition.push(composition);
+  if(!Object.keys(expected).every(key=>composition[key]===expected[key]))throw new Error('Unexpected composed lesson counts: '+JSON.stringify(composition));
   return{context,page,consoleErrors};
 }
 
@@ -56,21 +67,23 @@ async function state(page){
 }
 
 try{
+  browser=await chromium.launch({executablePath:process.env.CHROME_PATH||'/usr/bin/google-chrome',headless:true,args:['--no-sandbox','--disable-dev-shm-usage','--font-render-hinting=none']});
+  report.browser=browser.version();
   const desktop=await contextPage({width:1754,height:877});
   await desktop.page.evaluate(key=>localStorage.setItem(key,'0'),storageKey);
   await desktop.page.reload({waitUntil:'domcontentloaded'});
   await desktop.page.waitForFunction(()=>document.body.dataset.rendered==='1'&&document.getElementById('progress-label')?.textContent?.trim().startsWith('1 /'),null,{timeout:30000});
-  for(let index=0;index<73;index++){
+  for(let index=0;index<expected.slides;index++){
     await desktop.page.waitForTimeout(35);
     const current=await state(desktop.page);
     report.slides.push({index:index+1,...current});
     if(current.bodyOverflow>2||current.stageOverflow>2||current.rawMath||current.mathErrors)report.errors.push(`Slide ${index+1} ${current.title}: ${JSON.stringify(current)}`);
-    if(index<72){
+    if(index<expected.slides-1){
       await desktop.page.click('#next-slide');
       await desktop.page.waitForFunction(expected=>document.getElementById('progress-label')?.textContent?.trim().startsWith(`${expected} /`),index+2,{timeout:10000});
     }
   }
-  add('all 73 Learn screens render',report.slides.length===73,`${report.slides.length}`);
+  add('all 81 composed Learn screens render (73 base + 8 GDC)',report.slides.length===expected.slides,`${report.slides.length}`);
   add('all Learn screens avoid horizontal overflow',report.slides.every(item=>item.bodyOverflow<=2&&item.stageOverflow<=2),'checked desktop 1754×877');
   add('all Learn-screen mathematics renders',report.slides.every(item=>item.rawMath===0&&item.mathErrors===0),'no raw delimiters or KaTeX errors');
 
@@ -115,7 +128,7 @@ try{
   add('routebar begins below topbar',geometry.routebar&&geometry.topbar&&geometry.routebar.top>=geometry.topbar.bottom-1,JSON.stringify(geometry));
   add('lesson viewport begins below routebar',geometry.app&&geometry.routebar&&geometry.app.top>=geometry.routebar.bottom-1,JSON.stringify(geometry));
   add('desktop page has no console errors',desktop.consoleErrors.length===0,desktop.consoleErrors.join('\n'));
-  await desktop.context.close();
+  await closeContext(desktop.context);
 
   const mobile=await contextPage({width:390,height:844});
   for(const title of ['Interactive system classifier','Interactive polynomial-root explorer']){
@@ -123,18 +136,23 @@ try{
   }
   const mobileShot=path.join(outputDir,'mobile-polynomial-lab.png');await mobile.page.screenshot({path:mobileShot,fullPage:false});report.screenshots.push(mobileShot);
   add('mobile page has no console errors',mobile.consoleErrors.length===0,mobile.consoleErrors.join('\n'));
-  await mobile.context.close();
+  await closeContext(mobile.context);
 
   const routes=await contextPage({width:1440,height:900});
   await routes.page.click('[data-route="practice"]');await routes.page.waitForSelector('.question-shell');
-  let routeState=await state(routes.page);add('Practice Studio exposes 96 questions',/96 original questions/.test(await routes.page.locator('.route-header p').innerText()),await routes.page.locator('.route-header p').innerText());add('Practice route avoids horizontal overflow',routeState.bodyOverflow<=2&&routeState.stageOverflow<=2,JSON.stringify(routeState));
+  let routeState=await state(routes.page);add('Practice Studio exposes 106 questions (96 base + 10 GDC)',/106 original questions/.test(await routes.page.locator('.route-header p').innerText()),await routes.page.locator('.route-header p').innerText());add('Practice route avoids horizontal overflow',routeState.bodyOverflow<=2&&routeState.stageOverflow<=2,JSON.stringify(routeState));
   await routes.page.click('[data-route="quiz"]');await routes.page.waitForSelector('.question-shell');add('Timed Quiz exposes 14 independent questions',/14-question checkpoint/.test(await routes.page.locator('.route-header h1').innerText()),await routes.page.locator('.route-header h1').innerText());
-  await routes.page.click('[data-route="exam"]');await routes.page.waitForSelector('.exam-task');add('IB Tasks route exposes five tasks',(await routes.page.locator('.exam-task').count())===5,`task cards ${await routes.page.locator('.exam-task').count()}`);
+  await routes.page.click('[data-route="exam"]');await routes.page.waitForSelector('.exam-task');add('IB Tasks route exposes eight tasks (5 base + 3 GDC)',(await routes.page.locator('.exam-task').count())===expected.exam,`task cards ${await routes.page.locator('.exam-task').count()}`);
   add('assessment routes have no console errors',routes.consoleErrors.length===0,routes.consoleErrors.join('\n'));
-  await routes.context.close();
+  await closeContext(routes.context);
+}catch(error){
+  report.errors.push('Browser QA failed: '+String(error.stack||error));
 }finally{
-  await browser.close();
+  for(const context of [...contexts]){try{await closeContext(context);}catch(error){report.errors.push('Context cleanup failed: '+String(error.message||error));}}
+  report.cleanup.contexts=contexts.size===0;
+  try{if(browser)await bounded(browser.close(),10000,'browser-close-timeout');report.cleanup.browser=true;}catch(error){report.errors.push('Browser cleanup failed: '+String(error.message||error));}
+  report.status=report.errors.length?'FAIL':'PASS';
+  await writeFile(path.join(outputDir,'report.json'),JSON.stringify(report,null,2));
 }
-await writeFile(path.join(outputDir,'report.json'),JSON.stringify(report,null,2));
 console.log(JSON.stringify({checks:report.checks.length,errors:report.errors.length,slides:report.slides.length,screenshots:report.screenshots.length},null,2));
-if(report.errors.length){for(const error of report.errors)console.error(`ERROR: ${error}`);process.exit(1);}
+if(report.errors.length){for(const error of report.errors)console.error(`ERROR: ${error}`);process.exitCode=1;}

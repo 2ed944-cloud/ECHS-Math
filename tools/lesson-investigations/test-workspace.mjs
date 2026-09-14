@@ -4,6 +4,7 @@ import {createRequire} from 'node:module';
 import {readFileSync} from 'node:fs';
 import {mountInvestigation} from '../../lessons/shared/investigations/workspace.mjs';
 import {AP_RATES_CONTENT} from '../../lessons/shared/investigations/ap-rates-content.mjs';
+import {AP_POLYNOMIAL_CONTENT} from '../../lessons/shared/investigations/ap-polynomial-content.mjs';
 import {IB_CONTENT} from '../../lessons/shared/investigations/ib-content.mjs';
 const require=createRequire(import.meta.url);
 const {parseHTML}=require(process.env.ECHS_TEST_DOM_MODULE||'linkedom');
@@ -35,8 +36,8 @@ function fixture(key) {
     cleanup(){mounted.dispose();mounted.dispose();assert.equal(dialog.childNodes.length,0);assert.equal(legacy.innerHTML,old);assert.equal(frames.size,0);assert.equal(timers.size,0);},
   };
 }
-const entries=[['ap-rates',AP_RATES_CONTENT],...Object.entries(IB_CONTENT)];
-await group('all four workspaces expose original titles, activity order and labelled dialog',()=>{
+const entries=[['ap-rates',AP_RATES_CONTENT],...Object.entries(AP_POLYNOMIAL_CONTENT),...Object.entries(IB_CONTENT)];
+await group('all seven workspaces expose original titles, activity order and labelled dialog',()=>{
   for(const [key,data] of entries){const f=fixture(key);assert.equal(f.dialog.querySelector('h1').textContent,data.title);
     assert.equal(f.dialog.getAttribute('aria-labelledby'),f.dialog.querySelector('h1').id);
     assert.equal(f.focus(),f.dialog.querySelector('h2'),'Initial activity receives explicit focus');
@@ -56,7 +57,7 @@ await group('every actual scene renders its content, explanatory prompts and mod
 await group('actual model controls at min/max remain finite and properly labelled',()=>{
   for(const [key,data] of entries){const f=fixture(key);for(const scene of data.scenes.filter(s=>s.model)){f.showTitle(scene.title);
     for(const control of [...f.dialog.querySelectorAll('.ei-control input[type="range"]')]){
-      assert.ok([...f.dialog.querySelectorAll('label')].some(label=>label.htmlFor===control.id));
+      assert.ok([...f.dialog.querySelectorAll('label')].some(label=>(label.getAttribute('for')||label.htmlFor)===control.id));
       for(const value of [control.min,control.max]){f.input(control,value);f.checkFinite();assert.doesNotMatch(f.dialog.querySelector('.ei-main').textContent,/These inputs do not define a valid model/);}
     }
   }f.cleanup();}
@@ -84,6 +85,11 @@ await group('geometric zero and negative ratio are discrete points with finite t
 });
 await group('vessel projection has accessible 2D graph/table and cylinder half-height',()=>{
   const f=fixture('ap-rates');f.showTitle('Fill a vessel in three dimensions');
+  for(const control of f.dialog.querySelectorAll('.ei-control input[type="range"]')){
+    const value=Number(control.value),step=Number(control.step||1),offset=(value-Number(control.min))/step;
+    assert.ok(Math.abs(offset-Math.round(offset))<1e-9,'Initial value lies on its native slider step');
+    assert.equal(Number(control.parentElement.querySelector('output').textContent.replaceAll(',','')),value);
+  }
   const shape=f.dialog.querySelector('select[id$="-shape"]');f.input(shape,'cylinder','change');f.checkFinite();
   assert.ok(f.dialog.querySelector('.ei-vessel[aria-label]'));assert.ok(f.dialog.querySelector('.ei-graph'));assert.ok(f.dialog.querySelector('table'));
   const wrap=f.dialog.querySelector('.ei-prediction');f.input(wrap.querySelector('input'),6);f.click(wrap.querySelector('button'));assert.equal(wrap.querySelector('[role="status"]').dataset.result,'correct');

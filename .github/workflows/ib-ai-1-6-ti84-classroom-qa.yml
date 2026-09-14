@@ -8,6 +8,13 @@ on:
       - "lessons/ib-math-ai/unit-1/data/lesson-1.6-visual-accuracy-v6-3.js"
       - "lessons/ib-math-ai/unit-1/assets/css/lesson-1.6-ti84-*.css"
       - "lessons/ib-math-ai/unit-1/assets/css/lesson-1.6-visual-accuracy-v6-3.css"
+      - "lessons/ib-math-ai/unit-1/assets/js/engine-lesson-quality-v1.js"
+      - "lessons/ib-math-ai/unit-1/data/unit-1-gdc-integration-lesson-quality-v1.js"
+      - "lessons/ib-math-ai/unit-1/data/unit-1-gdc-classroom-training-lesson-quality-v1.js"
+      - "lessons/ib-math-ai/unit-1/data/unit-1-ti84-simulator-v7.js"
+      - "lessons/ib-math-ai/unit-1/assets/css/unit-1-gdc-integration-v7.css"
+      - "lessons/ib-math-ai/unit-1/assets/css/unit-1-gdc-classroom-training-v8.css"
+      - "lessons/ib-math-ai/unit-1/assets/css/unit-1-ti84-simulator-v7.css"
       - "tools/test_ib_ai_1_6_ti84_*.mjs"
       - "tools/browser_qa_ib_ai_1_6_ti84_*.mjs"
       - ".github/workflows/ib-ai-1-6-ti84-classroom-qa.yml"
@@ -33,8 +40,10 @@ jobs:
         run: |
           node --check lessons/ib-math-ai/unit-1/data/lesson-1.6-ti84-classroom-workflows-v6-2-2.js
           node --check lessons/ib-math-ai/unit-1/data/lesson-1.6-ti84-official-paths-v6-3.js
-          node --check lessons/ib-math-ai/unit-1/data/lesson-1.6-ti84-classroom-runtime-v6-2-1.js
-          node --check lessons/ib-math-ai/unit-1/data/lesson-1.6-ti84-inline-dock-v6-3.js
+          node --check lessons/ib-math-ai/unit-1/assets/js/engine-lesson-quality-v1.js
+          node --check lessons/ib-math-ai/unit-1/data/unit-1-gdc-integration-lesson-quality-v1.js
+          node --check lessons/ib-math-ai/unit-1/data/unit-1-gdc-classroom-training-lesson-quality-v1.js
+          node --check lessons/ib-math-ai/unit-1/data/unit-1-ti84-simulator-v7.js
           node --check lessons/ib-math-ai/unit-1/data/lesson-1.6-visual-accuracy-v6-3.js
           node --check tools/test_ib_ai_1_6_ti84_classroom_v6_2.mjs
           node --check tools/test_ib_ai_1_6_ti84_only_v6_3.mjs
@@ -50,31 +59,33 @@ jobs:
       - name: Install browser driver
         run: npm install --no-save --no-package-lock playwright-core@1.54.1
 
-      - name: Start local lesson server
+      - name: Run classroom and visual simulator QA with owned preview server
+        env:
+          ECHS_PREVIEW_URL: http://127.0.0.1:4173
+          CHROME_PATH: /usr/bin/google-chrome
         run: |
-          python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/ib16-ti84-preview.log 2>&1 &
+          python3 -m http.server 4173 --bind 127.0.0.1 > "$RUNNER_TEMP/ib16-ti84-preview.log" 2>&1 &
+          preview_pid=$!
+          trap 'kill "$preview_pid" 2>/dev/null || true; wait "$preview_pid" 2>/dev/null || true' EXIT
+          ready=false
           for attempt in {1..30}; do
             if curl --fail --silent http://127.0.0.1:4173/lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.6_technology_equations_ECHS.html >/dev/null; then
-              exit 0
+              ready=true
+              break
             fi
             sleep 1
           done
-          cat /tmp/ib16-ti84-preview.log
-          exit 1
-
-      - name: Run existing TI-84 classroom QA
-        env:
-          ECHS_PREVIEW_URL: http://127.0.0.1:4173
-          ECHS_PREVIEW_OUTPUT: artifacts/ib-ai-1-6-ti84-classroom-v6-2
-          CHROME_PATH: /usr/bin/google-chrome
-        run: node tools/browser_qa_ib_ai_1_6_ti84_classroom_v6_2.mjs
-
-      - name: Run TI-84-only visual and inline simulator QA
-        env:
-          ECHS_PREVIEW_URL: http://127.0.0.1:4173
-          ECHS_PREVIEW_OUTPUT: artifacts/ib-ai-1-6-ti84-only-v6-3
-          CHROME_PATH: /usr/bin/google-chrome
-        run: node tools/browser_qa_ib_ai_1_6_ti84_only_v6_3.mjs
+          if [ "$ready" != true ]; then
+            cat "$RUNNER_TEMP/ib16-ti84-preview.log"
+            exit 1
+          fi
+          classroom_status=0
+          ECHS_PREVIEW_OUTPUT=artifacts/ib-ai-1-6-ti84-classroom-v6-2 node tools/browser_qa_ib_ai_1_6_ti84_classroom_v6_2.mjs || classroom_status=$?
+          visual_status=0
+          ECHS_PREVIEW_OUTPUT=artifacts/ib-ai-1-6-ti84-only-v6-3 node tools/browser_qa_ib_ai_1_6_ti84_only_v6_3.mjs || visual_status=$?
+          if [ "$classroom_status" -ne 0 ] || [ "$visual_status" -ne 0 ]; then
+            exit 1
+          fi
 
       - name: Upload TI-84 classroom evidence
         if: always()

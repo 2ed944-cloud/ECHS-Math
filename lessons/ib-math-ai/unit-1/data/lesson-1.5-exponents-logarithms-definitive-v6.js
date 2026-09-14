@@ -14,4 +14,64 @@ data.assessmentDesign={"practiceLevels":{"Foundation":24,"Application":24,"Reaso
 data.teachingBlocks=[{"code":"1.5A","title":"Exponent Laws and Exact Powers","estimatedClassroomTime":"60–75 minutes","beginSlide":1,"endSlide":28},{"code":"1.5B","title":"Exponential Equations and Common Bases","estimatedClassroomTime":"60–75 minutes","beginSlide":29,"endSlide":35},{"code":"1.5C","title":"Logarithms and Model Inversion","estimatedClassroomTime":"60–75 minutes","beginSlide":36,"endSlide":61},{"code":"1.5D","title":"Logarithmic Scales, Modelling and Mastery","estimatedClassroomTime":"60–75 minutes","beginSlide":62,"endSlide":73}];
 data.v6Audit={release:'6.0.0',purposefulLearnScreens:data.slides.length,balancedPractice:true,independentQuiz:true,selfContainedPrompts:true,taskMarksReconciled:true,noInlineSvg:true,katexSafeComparisons:true,mathematicalReaudit:'Exponent, logarithm, model, scale and threshold values independently recomputed.',presentationContract:'AP-style full-screen teaching with stable HTML/CSS graphics and KaTeX-safe mathematics.'};
 window.__ECHS_IB_AI_1_5_V6={slides:data.slides.length,practice:data.practice.length,quiz:data.quiz.length,exam:data.exam.length,levels:data.assessmentDesign.practiceLevels};
+
+// First-assessment-2021 scope: retain every original task and its response ID.
+// SL 1.5 covers integer exponents and introductory/numerical logarithms;
+// symbolic logarithm laws and rational-power simplification are AHL 1.9/1.10.
+data.lesson.syllabus_focus='First assessment 2021: SL 1.5 integer exponents and introductory logarithms; SL 2.5–2.6 modelling connections. Explicit optional extensions use AHL 1.9 logarithm laws and AHL 1.10 rational powers.';
+data.lesson.objectives[0]='Simplify integer, zero and negative exponents; explore rational-power simplification as an optional extension.';
+data.lesson.objectives[3]='Evaluate logarithms using technology and exponent checks; explore the change-of-base derivation as an optional method.';
+data.lesson.curriculum_version='ib-ai-sl-first-assessment-2021';
+data.lesson.scope_source={url:'https://ibo.org/globalassets/new-structure/university-admission/pdfs/dp-mathematics-applications-and-interpretation-guide-en.pdf',sections:['SL 1.5','AHL 1.9','AHL 1.10','SL 2.5','SL 2.6'],printed_pages:[28,29,30,31,37,38,76]};
+const optionalNotice=reference=>`<p class="el-warning"><b>Optional extension · ${reference}.</b> Retained for exploration; this symbolic method is not part of the SL core checkpoint.</p>`;
+const optionalSlides=new Map([
+  ...[21,22,23,24,25,26,27].map(n=>[n,'AHL 1.10']),
+  ...[42,45,46,47,67].map(n=>[n,'AHL 1.9'])
+]);
+optionalSlides.forEach((reference,number)=>{
+  const slide=data.slides[number-1];
+  slide.scope={kind:'extension',reference};
+  slide.section='Optional extension · '+slide.section;
+  slide.html=optionalNotice(reference)+slide.html;
+});
+data.slides[20].html=data.slides[20].html.replace('A rational exponent combines a root and a power:',
+  'For a positive base a, an integer m and a positive integer n, a rational exponent combines a root and a power:');
+data.slides[20].html+='<p class="el-warning">For a negative base, reduce the fractional exponent and check the real-root domain separately. Do not use all three forms interchangeably.</p>';
+data.slides[5].html+='<p class="el-warning">SL core: use integer exponents in this law map, with nonzero bases wherever reciprocals occur.</p>';
+data.slides[2].html=data.slides[2].html.replace('Simplify integer, zero, negative and rational powers exactly.','Simplify integer, zero and negative powers exactly. Rational-power simplification is optional.').replace('Translate forms, evaluate logarithms and use change of base.','Translate forms and evaluate logarithms with technology. The change-of-base derivation is optional.');
+data.slides[2].html+='<p class="el-warning">The default quiz has 12 SL core/application questions. Two symbolic extension questions remain in their own optional quiz. Both AI SL examination papers allow GDC access; hand calculation here is optional fluency practice.</p>';
+// Mixed screens keep every prompt, identifying the precise optional subpart.
+[[4,'B'],[28,'B'],[68,'A'],[73,'1']].forEach(([number,part])=>{
+  const slide=data.slides[number-1];
+  slide.scope={kind:'mixed',optionalParts:[part],reference:'AHL 1.10'};
+  slide.html=slide.html.replace(`<b>${part}</b>`,`<b>${part} · optional extension</b>`);
+});
+// Numerical evaluation can use the GDC log-base command or a graph. The
+// derivation is optional; the numerical value is still useful SL practice.
+[43,44].forEach(number=>{data.slides[number-1].html='<p class="el-warning">Numerical practice: use a GDC log-base command or solve the equivalent exponential equation. The displayed change-of-base method is optional.</p>'+data.slides[number-1].html;});
+data.slides[48].html=data.slides[48].html.replace('The logarithm laws apply to products, quotients and powers—not to addition inside the argument.','The numerical counterexample disproves the claim. Symbolic product, quotient and power laws are in the optional extension.');
+const optionalPractice=new Map([
+  ...['F08','F09','F10','A02','R05','R06'].map(id=>['ELV6-1.5-'+id,'AHL 1.10']),
+  ...['F20','A15','A16','A17','R16','C12','C13','C14','C23','C24'].map(id=>['ELV6-1.5-'+id,'AHL 1.9'])
+]);
+const optionalQuiz=new Map([['ELV6-1.5-Q01','AHL 1.10'],['ELV6-1.5-Q12','AHL 1.9']]);
+for(const [items,extensions] of [[data.practice,optionalPractice],[data.quiz,optionalQuiz]]){
+  for(const item of items){
+    const reference=extensions.get(item.id);
+    item.scope={kind:reference?'extension':'core',reference:reference||'SL practice and modelling connections'};
+    if(reference)item.prompt=optionalNotice(reference)+item.prompt;
+    if(item.calculator==='No calculator')item.calculator='Optional hand fluency · GDC available';
+  }
+}
+data.exam[0].scope={kind:'extension',reference:'AHL 1.10'};
+data.exam[0].style='Optional extension · exact hand-calculation fluency';
+data.exam[0].calculator='Optional hand fluency · GDC available';
+data.exam[0].context=optionalNotice('AHL 1.10')+data.exam[0].context;
+data.quizScopes=[
+  {id:'core',label:'SL core and applications',questionIds:data.quiz.filter(q=>q.scope.kind==='core').map(q=>q.id)},
+  {id:'extension',label:'Optional extension',questionIds:data.quiz.filter(q=>q.scope.kind==='extension').map(q=>q.id)}
+];
+data.assessmentDesign.quizScopeCounts={core:12,extension:2};
+data.assessmentDesign.calculatorPolicy='GDC access is available throughout both AI SL papers. Optional hand fluency tasks here do not define an examination-paper policy.';
+
 })();

@@ -71,7 +71,8 @@ wrapper_text: dict[str, str] = {}
 for number, filename in wrappers.items():
     text = req(f"lessons/ib-math-ai/unit-1/lessons/{filename}")
     wrapper_text[number] = text
-    for marker in ("ap-screen-lesson", 'class="topbar"', 'class="routebar"', 'data-route="practice"', "../assets/js/engine.js", "unit-1-v5-runtime.js"):
+    engine = "../assets/js/engine-lesson-quality-v1.js" if number in {"1.5", "1.6"} else "../assets/js/engine.js"
+    for marker in ("ap-screen-lesson", 'class="topbar"', 'class="routebar"', 'data-route="practice"', engine, "unit-1-v5-runtime.js"):
         require(text, marker, f"Lesson {number} wrapper")
 lesson11 = req("lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.1_standard_form_ECHS.html")
 for marker in ('data-merged-sections="SL 1.1 + SL 1.6"', 'class="topbar"', 'id="slideSelect"', 'data-go="practice-guide"', 'lesson-1.1-merged-core-v7.js', 'lesson-1.1-merged-labs-v7.js', 'TI-Nspire CX / CX II'):
