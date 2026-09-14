@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Add four public, stateless teaching adapters to the guarded Pages artifact.
+"""Add seven public, stateless teaching adapters to the guarded Pages artifact.
 
 Canonical lesson files and their immutable import identities remain unchanged.
-All source pins and all four staged inputs are checked before any stage write.
+All source pins and all staged inputs are checked before any stage write.
 """
 from __future__ import annotations
 
@@ -24,6 +24,9 @@ ROUTES = {
     "lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.2_arithmetic_sequences_ECHS.html": ("arithmetic", "ib-math-ai", "../../../shared/investigations/host.mjs"),
     "lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.3_geometric_sequences_ECHS.html": ("geometric", "ib-math-ai", "../../../shared/investigations/host.mjs"),
     "lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.4_financial_models_ECHS.html": ("finance", "ib-math-ai", "../../../shared/investigations/host.mjs"),
+    "lessons/ap-precalculus/unit-1/AP_Precalculus_1.4_Polynomial_Functions_and_Rates_of_Change_ECHS_Refined.html": ("ap-polynomial-rates", "ap-precalculus", "../../shared/investigations/host.mjs"),
+    "lessons/ap-precalculus/unit-1/AP_Precalculus_1.5_Polynomial_Functions_and_Complex_Zeros_ECHS_Refined.html": ("ap-polynomial-zeros", "ap-precalculus", "../../shared/investigations/host.mjs"),
+    "lessons/ap-precalculus/unit-1/AP_Precalculus_1.6_Polynomial_Functions_and_End_Behavior_ECHS_Refined.html": ("ap-polynomial-tails", "ap-precalculus", "../../shared/investigations/host.mjs"),
 }
 COMMENT = "<!-- Optional stateless teaching investigations; existing deck and practice remain canonical. -->"
 GATE_STYLE = 'html:not([data-lesson-gate="allowed"]) body{visibility:hidden!important}'
@@ -119,7 +122,7 @@ def load_preservation() -> dict:
         need(type(row) is dict and set(row) == {"path", "bytes", "sha256"}, "investigation-pin-shape")
         need(type(row["path"]) is str and type(row["bytes"]) is int and 0 < row["bytes"] <= MAX_HTML_BYTES and type(row["sha256"]) is str and re.fullmatch(r"[0-9a-f]{64}", row["sha256"]), "investigation-pin")
         paths.append(row["path"])
-    need(len(set(paths)) == 73, "investigation-pin-duplicates")
+    need(len(set(paths)) == len(ROUTES) + 69, "investigation-pin-duplicates")
     roster = json.loads(_safe_file(HERE.parent, value["protected_roster_source"]).read_text(encoding="utf-8"))
     need([row["path"] for row in value["protected_calculus_sources"]] == [row["path"] for row in roster["files"]], "investigation-protected-roster")
     return value
@@ -178,7 +181,7 @@ def run(stage_root: Path, source_root: Path) -> dict:
         need(inject_html(before, relative_path) == after, "investigation-stage-hook")
         planned.append((relative_path, target, before, after))
     # Source and stage sweeps finish before the first mutation. A failed stage
-    # build is never uploaded by the Pages job; only these four files can change.
+    # build is never uploaded by the Pages job; only allowlisted route files change.
     verify_sources(source_root, metadata)
     for relative_path, target, before, _ in planned:
         need(_safe_file(stage_root, relative_path) == target and target.read_bytes() == before, "investigation-stage-drift")
@@ -187,7 +190,7 @@ def run(stage_root: Path, source_root: Path) -> dict:
         if before != after:
             target.write_bytes(after)
             changed += 1
-    return {"status": "PASS", "routes": 4, "source_pins": 73, "changed": changed, "already_present": 4 - changed}
+    return {"status": "PASS", "routes": len(ROUTES), "source_pins": len(metadata["lesson_sources"]) + len(metadata["protected_calculus_sources"]), "changed": changed, "already_present": len(ROUTES) - changed}
 
 
 def main() -> int:

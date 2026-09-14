@@ -66,10 +66,14 @@ const server=createServer(async(req,res)=>{
 });
 let base;
 const storage=page=>page.evaluate(()=>JSON.stringify(Object.fromEntries(Object.keys(localStorage).sort().map(k=>[k,localStorage.getItem(k)]))));
+const checkRangeReadouts=async(page,label)=>{
+  const pairs=await page.locator('.ei-main .ei-control input[type=range]').evaluateAll(nodes=>nodes.map(n=>({id:n.id,value:Number(n.value),readout:Number(n.parentElement.querySelector('output')?.textContent.replaceAll(',',''))})));
+  for(const row of pairs)assert.equal(row.readout,row.value,`${label}: native slider and readout disagree for ${row.id}`);
+};
 try{
   sourceHashesBefore=await sourceSnapshot();
   fixture=await mkdtemp(path.join(tmpdir(),'echs-investigation-browser-'));
-  fixturePreparation=prepareFixture();assert.equal(fixturePreparation.source_pins,73);
+  fixturePreparation=prepareFixture();assert.equal(INVESTIGATION_HOSTS.length,7);assert.equal(fixturePreparation.source_pins,76);
   stagedHTMLHashes=await stagedSnapshot();
   await new Promise((resolve,reject)=>{server.once('error',reject);server.listen(0,'127.0.0.1',()=>{server.removeListener('error',reject);resolve();});});
   base=`http://127.0.0.1:${server.address().port}/`;
@@ -97,11 +101,13 @@ try{
       assert.ok(await page.locator('.ei-main h2').innerText());
       assert.equal(await page.locator('.ei-main').evaluate(n=>n.scrollWidth>n.clientWidth+2),false,`${spec.key}/${i} desktop overflow`);
       const ranges=page.locator('.ei-main input[type=range]');
+      await checkRangeReadouts(page,`${spec.key}/${i} initial`);
       for(let r=0;r<await ranges.count();r++){
         const control=ranges.nth(r);await control.focus();await control.press('Home');await control.press('End');rangeChanges+=2;
         assert.equal(await page.locator('.ei-main').getByText('These inputs do not define a valid model.',{exact:false}).count(),0);
       }
       const resets=page.getByRole('button',{name:/Reset model|Reset finance/});if(await resets.count())await resets.first().click();
+      await checkRangeReadouts(page,`${spec.key}/${i} reset`);
       await activityButtons.nth(i).click();
       const shot=`${spec.key}-activity-${i+1}-desktop.png`;await page.screenshot({path:path.join(output,shot)});screens.push(shot);
     }
@@ -172,7 +178,7 @@ finally{
     server.closeAllConnections();await bounded(closed,5000,'server-close-timeout');
   });
   await attempt('source-verification',async()=>{sourceHashes=await sourceSnapshot();assert.ok(sourceHashesBefore.length>0,'Initial source snapshot must exist');assert.deepEqual(sourceHashes,sourceHashesBefore,'Source bytes changed during browser execution');sourceStable=true;});
-  await attempt('staged-verification',async()=>{assert.equal(stagedHTMLHashes.length,4,'Four staged HTML files must have been prepared');assert.deepEqual(await stagedSnapshot(),stagedHTMLHashes,'Staged HTML changed during browser execution');stagedStable=true;});
+  await attempt('staged-verification',async()=>{assert.equal(stagedHTMLHashes.length,INVESTIGATION_HOSTS.length,'All staged HTML files must have been prepared');assert.deepEqual(await stagedSnapshot(),stagedHTMLHashes,'Staged HTML changed during browser execution');stagedStable=true;});
   cleanup.fixture=await attempt('fixture-cleanup',async()=>{
     if(!fixture)return;
     assert.equal(path.dirname(path.resolve(fixture)),path.resolve(tmpdir()));assert.ok(path.basename(fixture).startsWith('echs-investigation-browser-'));

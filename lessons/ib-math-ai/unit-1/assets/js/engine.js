@@ -56,6 +56,23 @@ let practiceFilter = storage.getItem(prefix + 'practice-filter') || 'All';
 let practiceIndex = Number(storage.getItem(prefix + 'practice-index') || 0);
 let quizIndex = Number(storage.getItem(prefix + 'quiz-index') || 0);
 let quizTimer = null;
+// This optional contract does not change unconfigured lessons or question IDs.
+const quizScopes = data.quizScopes === undefined ? [] : data.quizScopes;
+if (!Array.isArray(quizScopes) || (quizScopes.length && (
+  quizScopes.length !== 2 || quizScopes[0].id !== 'core' || quizScopes[1].id !== 'extension' ||
+  quizScopes.some(scope => typeof scope.label !== 'string' || !Array.isArray(scope.questionIds) || !scope.questionIds.length) ||
+  new Set(data.quiz.map(q => q.id)).size !== data.quiz.length ||
+  quizScopes.flatMap(scope => scope.questionIds).length !== data.quiz.length ||
+  new Set(quizScopes.flatMap(scope => scope.questionIds)).size !== data.quiz.length ||
+  quizScopes.flatMap(scope => scope.questionIds).some(id => !data.quiz.some(q => q.id === id))
+))) throw new Error('Invalid lesson quiz scopes');
+let quizScope = quizScopes.some(scope => scope.id === storage.getItem(prefix + 'quiz-scope'))
+  ? storage.getItem(prefix + 'quiz-scope') : 'core';
+function scopedQuiz(scopeId = quizScope) {
+  const scope = quizScopes.find(item => item.id === scopeId);
+  return scope ? scope.questionIds.map(id => data.quiz.find(q => q.id === id)) : data.quiz;
+}
+function quizStartKey() { return quizScopes.length ? 'quiz-start:' + quizScope : 'quiz-start'; }
 
 function getJSON(key, fallback) {
   try { return JSON.parse(storage.getItem(prefix + key)) ?? fallback; }
@@ -119,6 +136,13 @@ function renderMath(root = document) {
     node.replaceWith(fragment);
   }
 }
+
+// Math-only bridge for owned calculator panels. It neither renders a lesson route
+// nor touches responses, timers or scores. Document-wide observer calls are ignored.
+window.ECHSIBLessonRenderMath = function(root) {
+  if (!root || root.nodeType !== 1 || root.ownerDocument !== document) return;
+  renderMath(root);
+};
 
 function setRoute(route, pushHash = true) {
   const allowed = ['learn', 'practice', 'exam', 'quiz', 'review'];
@@ -346,8 +370,8 @@ function renderExam() {
 }
 
 function quizClock() {
-  const start = Number(storage.getItem(prefix + 'quiz-start') || Date.now());
-  if (!storage.getItem(prefix + 'quiz-start')) storage.setItem(prefix + 'quiz-start', String(start));
+  const start = Number(storage.getItem(prefix + quizStartKey()) || Date.now());
+  if (!storage.getItem(prefix + quizStartKey())) storage.setItem(prefix + quizStartKey(), String(start));
   const total = 25 * 60;
   const elapsed = Math.floor((Date.now() - start) / 1000);
   const remaining = Math.max(0, total - elapsed);
@@ -355,26 +379,45 @@ function quizClock() {
 }
 function renderQuiz() {
   showFooter(false);
-  quizIndex = clamp(quizIndex, 0, data.quiz.length - 1);
+  clearInterval(quizTimer);
+  const questions = scopedQuiz();
+  const scope = quizScopes.find(item => item.id === quizScope);
+  quizIndex = clamp(quizIndex, 0, questions.length - 1);
   const results = getJSON('quiz-results', {});
   const answers = getJSON('quiz-answers', {});
   const clock = quizClock();
-  const correct = Object.values(results).filter(result => result.correct === true).length;
-  const attempted = Object.values(results).filter(result => result.attempted).length;
-  const question = data.quiz[quizIndex];
-  app.innerHTML = `<section class="route-page"><header class="route-header"><div style="display:flex;justify-content:space-between;gap:14px;align-items:center;flex-wrap:wrap"><div><span class="slide-section">Independent quiz</span><h1>Ten-question checkpoint</h1><p>Suggested time: 25 minutes. Questions are distinct from Practice Studio.</p></div><div class="timer" id="quiz-timer">${clock.text}</div></div><p><b>Current score:</b> ${correct} correct · ${attempted} attempted</p></header>
-    ${questionCard(question, quizIndex, data.quiz.length, answers[question.id], results[question.id], 'quiz')}
-    <div class="studio-index">${data.quiz.map((item,index) => `<button class="dot-btn ${index === quizIndex ? 'current' : ''} ${results[item.id]?.attempted ? 'done' : ''}" data-quiz-index="${index}">${index + 1}</button>`).join('')}</div>
+  const selectedResults = scope ? questions.map(q => results[q.id]).filter(Boolean) : Object.values(results);
+  const correct = selectedResults.filter(result => result.correct === true).length;
+  const attempted = selectedResults.filter(result => result.attempted).length;
+  const question = questions[quizIndex];
+  app.innerHTML = `<section class="route-page"><header class="route-header"><div style="display:flex;justify-content:space-between;gap:14px;align-items:center;flex-wrap:wrap"><div><span class="slide-section">Independent quiz</span><h1>${scope ? escapeHtml(scope.label) + " · " + questions.length + " questions" : "Ten-question checkpoint"}</h1><p>${scope ? "Optional 25-minute practice timer. GDC available. Core and extension responses are saved separately by question ID." : "Suggested time: 25 minutes. Questions are distinct from Practice Studio."}</p></div><div class="timer" id="quiz-timer">${clock.text}</div></div><p><b>Current score:</b> ${correct} correct · ${attempted} attempted</p></header>
+    ${quizScopes.length ? `<div class="studio-toolbar" role="group" aria-label="Quiz scope">${quizScopes.map(item => `<button class="filter-btn ${item.id === quizScope ? 'active' : ''}" data-quiz-scope="${escapeHtml(item.id)}" aria-pressed="${item.id === quizScope}">${escapeHtml(item.label)} · ${item.questionIds.length}</button>`).join('')}</div>` : ''}
+    ${questionCard(question, quizIndex, questions.length, answers[question.id], results[question.id], 'quiz')}
+    <div class="studio-index">${questions.map((item,index) => `<button class="dot-btn ${index === quizIndex ? 'current' : ''} ${results[item.id]?.attempted ? 'done' : ''}" data-quiz-index="${index}">${index + 1}</button>`).join('')}</div>
     <button class="secondary-btn" id="restart-quiz">Restart timer and responses</button>
   </section>`;
+  $$('[data-quiz-scope]', app).forEach(button => button.addEventListener('click', () => {
+    quizScope = button.dataset.quizScope; quizIndex = 0;
+    storage.setItem(prefix + 'quiz-scope', quizScope);
+    storage.setItem(prefix + 'quiz-index', '0');
+    renderQuiz();
+  }));
   $$('[data-quiz-index]', app).forEach(button => button.addEventListener('click', () => { quizIndex = Number(button.dataset.quizIndex); storage.setItem(prefix + 'quiz-index', String(quizIndex)); renderQuiz(); }));
   $('#restart-quiz', app).addEventListener('click', () => {
     if (confirm('Clear this quiz attempt and restart the 25-minute timer?')) {
-      ['quiz-start','quiz-results','quiz-answers','quiz-index'].forEach(key => storage.removeItem(prefix + key));
+      if (scope) {
+        for (const key of ['quiz-results','quiz-answers']) {
+          const retained = getJSON(key, {});
+          questions.forEach(q => delete retained[q.id]);
+          setJSON(key, retained);
+        }
+        storage.removeItem(prefix + quizStartKey());
+        storage.removeItem(prefix + 'quiz-index');
+      } else ['quiz-start','quiz-results','quiz-answers','quiz-index'].forEach(key => storage.removeItem(prefix + key));
       quizIndex = 0; renderQuiz();
     }
   });
-  bindQuestionCard(question, data.quiz, 'quiz');
+  bindQuestionCard(question, questions, 'quiz');
   renderMath(app);
   quizTimer = setInterval(() => {
     const node = $('#quiz-timer'); if (!node) return;
@@ -391,11 +434,13 @@ function renderReview() {
   const quizResults = getJSON('quiz-results', {});
   const practiceAttempted = Object.values(practiceResults).filter(x => x.attempted).length;
   const practiceCorrect = Object.values(practiceResults).filter(x => x.correct === true).length;
-  const quizAttempted = Object.values(quizResults).filter(x => x.attempted).length;
-  const quizCorrect = Object.values(quizResults).filter(x => x.correct === true).length;
+  const reviewQuiz = scopedQuiz('core');
+  const reviewResults = quizScopes.length ? reviewQuiz.map(q => quizResults[q.id]).filter(Boolean) : Object.values(quizResults);
+  const quizAttempted = reviewResults.filter(x => x.attempted).length;
+  const quizCorrect = reviewResults.filter(x => x.correct === true).length;
   const learningPercent = Math.round(100 * visited.size / data.slides.length);
   const practicePercent = practiceAttempted ? Math.round(100 * practiceCorrect / practiceAttempted) : 0;
-  const quizPercent = quizAttempted ? Math.round(100 * quizCorrect / data.quiz.length) : 0;
+  const quizPercent = quizAttempted ? Math.round(100 * quizCorrect / reviewQuiz.length) : 0;
   const mastery = Math.round(0.25 * learningPercent + 0.45 * practicePercent + 0.30 * quizPercent);
   const levelRows = ['Foundation','Application','Reasoning','Challenge'].map(level => {
     const ids = data.practice.filter(q => q.level === level).map(q => q.id);
@@ -405,7 +450,11 @@ function renderReview() {
     return `<div class="stat-card"><span>${level}</span><b>${correct}/${attempted}</b><small>correct / attempted</small><div class="mastery-bar"><span style="width:${percent}%"></span></div></div>`;
   }).join('');
   app.innerHTML = `<section class="route-page"><header class="route-header"><span class="slide-section">Mastery review</span><h1>Evidence of progress</h1><p>This dashboard uses only local browser data. It does not transmit student work.</p></header>
-    <div class="review-grid"><div class="stat-card"><span>Learn route</span><b>${visited.size}/${data.slides.length}</b><small>${learningPercent}% viewed</small></div><div class="stat-card"><span>Practice</span><b>${practiceCorrect}/${practiceAttempted}</b><small>${practicePercent}% of attempted correct</small></div><div class="stat-card"><span>Quiz</span><b>${quizCorrect}/${data.quiz.length}</b><small>${quizPercent}% of full quiz</small></div><div class="stat-card"><span>Readiness indicator</span><b>${mastery}%</b><small>weighted learning evidence</small></div></div>
+    <div class="review-grid"><div class="stat-card"><span>Learn route</span><b>${visited.size}/${data.slides.length}</b><small>${learningPercent}% viewed</small></div><div class="stat-card"><span>Practice</span><b>${practiceCorrect}/${practiceAttempted}</b><small>${practicePercent}% of attempted correct</small></div><div class="stat-card"><span>${quizScopes.length ? "SL core quiz" : "Quiz"}</span><b>${quizCorrect}/${reviewQuiz.length}</b><small>${quizPercent}% of ${quizScopes.length ? "core quiz" : "full quiz"}</small></div><div class="stat-card"><span>Readiness indicator</span><b>${mastery}%</b><small>weighted learning evidence</small></div></div>
+    ${quizScopes.length ? `<div class="review-grid" aria-label="Quiz scope evidence">${quizScopes.map(scope => {
+      const rows = scopedQuiz(scope.id).map(q => quizResults[q.id]).filter(Boolean);
+      return `<div class="stat-card"><span>${escapeHtml(scope.label)}</span><b>${rows.filter(x => x.correct === true).length}/${scope.questionIds.length}</b><small>${rows.filter(x => x.attempted).length} attempted · ${scope.id === 'extension' ? 'optional; excluded from core quiz score' : 'core questions only'}</small></div>`;
+    }).join('')}</div>` : ''}
     <h2>Practice level evidence</h2><div class="review-grid">${levelRows}</div>
     <div class="unit-docs"><h2>Next best action</h2><p>${mastery >= 80 ? 'Attempt the two extended-response tasks without support, then explain one modelling limitation.' : mastery >= 55 ? 'Return to Reasoning and Challenge questions, then complete the timed quiz.' : 'Revisit the concept cycles and complete Foundation and Application practice before timing yourself.'}</p><button class="primary-btn" data-review-go="${mastery >= 80 ? 'exam' : mastery >= 55 ? 'quiz' : 'learn'}">Open recommended route</button> <button class="secondary-btn" id="reset-progress">Reset lesson progress</button></div>
   </section>`;

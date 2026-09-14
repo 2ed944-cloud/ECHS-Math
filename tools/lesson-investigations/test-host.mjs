@@ -59,16 +59,16 @@ function fixture(options={}) {
   };
 }
 
-await group('exact four routes and site origin; query/hash do not select another lesson',async()=>{
-  assert.equal(INVESTIGATION_HOSTS.length,4);
+await group('exact seven routes and site origin; query/hash do not select another lesson',async()=>{
+  assert.equal(INVESTIGATION_HOSTS.length,7);
   for(const row of INVESTIGATION_HOSTS) {
     const url=new URL(row.path,baseURL);
     assert.equal(resolveInvestigationHost(url.href+'?extra=kept#s3',baseURL),row);
     for(const bad of [url.href+'/extra',url.href.replace('example.test','other.test'),url.href.replace('.html','.html.source'),url.href.replace('https:','file:')]) assert.equal(resolveInvestigationHost(bad,baseURL),null);
   }
 });
-await group('four allowed hosts preserve original DOM and URL and import only on open',async()=>{
-  for(let index=0;index<4;index++) {
+await group('seven allowed hosts preserve original DOM and URL and import only on open',async()=>{
+  for(let index=0;index<INVESTIGATION_HOSTS.length;index++) {
     const f=fixture({index});await flush();assert.ok(f.button());assert.equal(f.counts().imports,0);
     assert.equal(f.dialog().closest('#app'),null);f.click(f.button());await flush();assert.equal(f.counts().mounts,1);
     f.invariant();f.cleanup();assert.equal(f.counts().disposals,1);

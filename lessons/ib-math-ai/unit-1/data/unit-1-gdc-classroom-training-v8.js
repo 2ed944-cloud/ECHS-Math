@@ -186,7 +186,7 @@ ibStatement:'Technology locates the crossing; mathematical interpretation determ
 ],
 '1.5':[
 {
-code:'C1',group:'Logarithms',title:'LOG, LN and change of base',
+code:'C1',group:'Numerical GDC practice · optional change-of-base derivation',title:'LOG, LN and change of base',
 prompt:'Evaluate log_2(19) and explain why LOG and LN both work.',
 math:'\\log_2(19)=\\frac{\\log(19)}{\\log(2)}=\\frac{\\ln(19)}{\\ln(2)}',
 manualSteps:[
@@ -204,7 +204,7 @@ verification:'2^{4.247927513}\\approx19.',
 ibStatement:'Using change of base gives log₂(19)≈4.24793; LOG and LN agree because the same base is used in the ratio.'
 },
 {
-code:'C2',group:'Exponential equations',title:'Solve an exponential equation with logarithms',
+code:'C2',group:'Numerical GDC practice · optional AHL 1.9 manual method',title:'Solve an exponential equation with logarithms',
 prompt:'Solve 3^x=17.',
 math:'x=\\frac{\\ln17}{\\ln3}',
 manualSteps:[
@@ -243,7 +243,7 @@ verification:'Substitution makes 2^x and 5x agree at both reported values.',
 ibStatement:'The graph has two real intersections, so the solutions are x≈0.23546 and x≈4.48800.'
 },
 {
-code:'C4',group:'Log domain',title:'Reject an algebraic candidate outside a logarithm domain',
+code:'C4',group:'Optional extension · AHL 1.9 logarithm laws',title:'Reject an algebraic candidate outside a logarithm domain',
 prompt:'Solve log(x−1)+log(x−3)=1 and check the domain.',
 math:'\\log(x-1)+\\log(x-3)=1',
 manualSteps:[
@@ -295,12 +295,12 @@ const keysMarkup=keys=>(keys||[]).map(k=>`<kbd>${esc(k)}</kbd>`).join('<i aria-h
 
 function renderMath(root){
   try{
-    if(window.renderMathInElement){
+    if(typeof window.renderMathInElement==='function'){
       window.renderMathInElement(root,{delimiters:[
         {left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},
         {left:'\\(',right:'\\)',display:false},{left:'$',right:'$',display:false}
-      ],throwOnError:false});
-    }
+      ],throwOnError:false,trust:false});
+    }else if(typeof window.ECHSIBLessonRenderMath==='function')window.ECHSIBLessonRenderMath(root);
   }catch(_){}
 }
 

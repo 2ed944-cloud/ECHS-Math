@@ -1,0 +1,20 @@
+{
+  "baseline_main": "dcc65f84dafd2dc5cb4518ea03d18b4087ddf4ff",
+  "files": [
+    {
+      "path": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.4_Polynomial_Functions_and_Rates_of_Change_ECHS_Refined.html",
+      "bytes": 1311023,
+      "sha256": "aada3d510554fe649f3a36f5f0082a94003ba7750e29bdeb752b7f6bc20acf10"
+    },
+    {
+      "path": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.5_Polynomial_Functions_and_Complex_Zeros_ECHS_Refined.html",
+      "bytes": 1307239,
+      "sha256": "e53b2bcbdae24b003a94a9f1f79479bc3555e44b21743184525c5953683b5fea"
+    },
+    {
+      "path": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.6_Polynomial_Functions_and_End_Behavior_ECHS_Refined.html",
+      "bytes": 1302090,
+      "sha256": "b6863c19bd2ead7a45a9767b9a8560c9020bed9f7b94d6409096d9a653efd45c"
+    }
+  ]
+}

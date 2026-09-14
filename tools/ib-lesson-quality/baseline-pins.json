@@ -1,0 +1,30 @@
+{
+  "baseline_main": "dcc65f84dafd2dc5cb4518ea03d18b4087ddf4ff",
+  "files": [
+    {
+      "path": "lessons/ib-math-ai/unit-1/data/lesson-1.5-exponents-logarithms-definitive-v6.js",
+      "bytes": 109668,
+      "sha256": "02f073843d3b454d18521fc2932af4654403d9d4186c383288f938e7edbcf5b4"
+    },
+    {
+      "path": "lessons/ib-math-ai/unit-1/assets/js/engine.js",
+      "bytes": 31993,
+      "sha256": "d9844ab767b02ca26537baefe31bc28cfffa605e2a93736aadadc45aa8087d17"
+    },
+    {
+      "path": "lessons/ib-math-ai/unit-1/data/lesson-1.6-technology-v6-interactions.js",
+      "bytes": 11502,
+      "sha256": "c98e06e7351110536bc47bde8f77dbd59626431817eb429c2c9d6cc591112ce7"
+    },
+    {
+      "path": "lessons/ib-math-ai/unit-1/data/unit-1-gdc-classroom-training-v8.js",
+      "bytes": 20573,
+      "sha256": "b72ada91b286cb653e85fdf423541f4a190e50f8a0d91d00d937d476fb5cb531"
+    },
+    {
+      "path": "lessons/ib-math-ai/unit-1/data/unit-1-gdc-integration-v7.js",
+      "bytes": 41239,
+      "sha256": "a1487b6a1b5ae5f700ca8350159251552699226cd85bfb3ca2188e63d1a0ec23"
+    }
+  ]
+}

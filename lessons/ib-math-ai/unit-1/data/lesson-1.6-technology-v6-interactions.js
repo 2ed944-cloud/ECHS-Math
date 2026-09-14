@@ -29,14 +29,26 @@ function mountSystem(root){
   const fields=Object.fromEntries([...root.querySelectorAll('[data-field]')].map(node=>[node.dataset.field,node]));
   const path1=root.querySelector('.line-one'),path2=root.querySelector('.line-two'),point=root.querySelector('.intersection'),result=root.querySelector('.te-lab-result');
   const sx=x=>42+(x+6)/12*486,sy=y=>294-(y+6)/12*252;
+  // Intersect the actual y = mx + b line with the mathematical viewport.
+  // Clamping endpoint heights before joining them would change the gradient.
+  const linePath=(m,b)=>{
+    let left=-6,right=6;
+    if(m===0){if(b < -6 || b > 6)return '';}
+    else{
+      const low=(-6-b)/m,high=(6-b)/m;
+      left=Math.max(left,Math.min(low,high));
+      right=Math.min(right,Math.max(low,high));
+    }
+    return left>right?'':`M ${sx(left)} ${sy(m*left+b)} L ${sx(right)} ${sy(m*right+b)}`;
+  };
   const grid=root.querySelector('.grid'),axes=root.querySelector('.axes');
   let gridHTML='';for(let value=-6;value<=6;value+=2){gridHTML+=`<line x1="${sx(value)}" y1="42" x2="${sx(value)}" y2="294"></line><line x1="42" y1="${sy(value)}" x2="528" y2="${sy(value)}"></line>`;}grid.innerHTML=gridHTML;
   axes.innerHTML=`<line x1="42" y1="${sy(0)}" x2="528" y2="${sy(0)}"></line><line x1="${sx(0)}" y1="42" x2="${sx(0)}" y2="294"></line>`;
   const update=()=>{
     const v=Object.fromEntries(Object.entries(fields).map(([key,node])=>[key,Number(node.value)]));
     Object.entries(v).forEach(([key,value])=>{root.querySelector(`[data-out="${key}"]`).textContent=format(value,2);});
-    path1.setAttribute('d',`M ${sx(-6)} ${sy(clamp(v.m1*-6+v.b1,-12,12))} L ${sx(6)} ${sy(clamp(v.m1*6+v.b1,-12,12))}`);
-    path2.setAttribute('d',`M ${sx(-6)} ${sy(clamp(v.m2*-6+v.b2,-12,12))} L ${sx(6)} ${sy(clamp(v.m2*6+v.b2,-12,12))}`);
+    path1.setAttribute('d',linePath(v.m1,v.b1));
+    path2.setAttribute('d',linePath(v.m2,v.b2));
     const delta=v.m2-v.m1,eps=1e-8;
     let title,detail,kind,x,y;
     if(Math.abs(delta)>eps){x=(v.b1-v.b2)/delta;y=v.m1*x+v.b1;title='Unique solution';detail=`Intersection: (${format(x,3)}, ${format(y,3)}); determinant Δ = ${format(delta,2)} ≠ 0.`;kind='unique';}
