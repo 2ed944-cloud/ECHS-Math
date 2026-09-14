@@ -7,6 +7,8 @@ on:
       - 'lessons/ib-math-ai/unit-1/**'
       - 'tools/lesson-investigations/**'
       - 'tools/ib-lesson-quality/**'
+      - 'tools/test_ib_ai_1_5_product_law_visual_v6_0_1.mjs'
+      - 'tools/test_ib_ai_1_6_definitive_v6.mjs'
       - 'tools/inject_lesson_investigations.py'
       - 'tools/test_lesson_investigation_injection.py'
       - 'tools/inject_learning_access_guard.py'
@@ -20,6 +22,8 @@ on:
       - 'lessons/ib-math-ai/unit-1/**'
       - 'tools/lesson-investigations/**'
       - 'tools/ib-lesson-quality/**'
+      - 'tools/test_ib_ai_1_5_product_law_visual_v6_0_1.mjs'
+      - 'tools/test_ib_ai_1_6_definitive_v6.mjs'
       - 'tools/inject_lesson_investigations.py'
       - 'tools/test_lesson_investigation_injection.py'
       - 'tools/inject_learning_access_guard.py'
@@ -92,6 +96,8 @@ jobs:
           node tools/lesson-investigations/test-ap-polynomial-content.mjs --baseline-root "$RUNNER_TEMP/lesson-quality-baseline"
           node tools/lesson-investigations/test-legacy-polynomial-renderers.mjs --repo . --baseline-root "$RUNNER_TEMP/lesson-quality-baseline"
           node tools/ib-lesson-quality/test-ib-quality.mjs --repo . --baseline-root "$RUNNER_TEMP/lesson-quality-baseline" --report "$RUNNER_TEMP/ib-components.json"
+          node tools/test_ib_ai_1_5_product_law_visual_v6_0_1.mjs
+          node tools/test_ib_ai_1_6_definitive_v6.mjs
       - name: Exercise all activities in a native browser
         env:
           ECHS_PLAYWRIGHT_MODULE: ${{ github.workspace }}/question-bank/official/tools/node_modules/playwright

@@ -10,20 +10,28 @@ const arg=name=>{const i=process.argv.indexOf(name);return i<0?null:process.argv
 const repo=path.resolve(arg('--repo')||'.'),overlayRoot=arg('--overlay-root')?path.resolve(arg('--overlay-root')):null;
 assert.ok(arg('--report-dir'),'Supply a fresh --report-dir');const output=path.resolve(arg('--report-dir'));await mkdir(output,{recursive:false});
 const sha=b=>createHash('sha256').update(b).digest('hex');
-const pins=JSON.parse(await readFile(new URL('./baseline-pins.json',import.meta.url)));
+const pinsBytes=await readFile(new URL('./baseline-pins.json',import.meta.url)),pins=JSON.parse(pinsBytes);
+const harnessBytes=await readFile(fileURLToPath(import.meta.url));
 const manifestPath=arg('--source-manifest')?path.resolve(arg('--source-manifest')):null;
 let manifestBytes=manifestPath?await readFile(manifestPath):null,manifest=manifestBytes?JSON.parse(manifestBytes):null;
-if(manifest)assert.deepEqual(manifest.source_files.map(r=>r.path),pins.files.map(r=>r.path));
-const overlay=new Map();
+if(manifest)assert.deepEqual(manifest.source_files.map(r=>r.path),pins.files.map(r=>r.active_path));
+const overlay=new Map(),preservedShared=new Map();
 for(const expected of pins.files){
-  const source=path.join(overlayRoot||repo,expected.path),bytes=await readFile(source);
-  if(manifest){const row=manifest.source_files.find(r=>r.path===expected.path);assert.equal(bytes.length,row.bytes);assert.equal(sha(bytes),row.sha256);}
-  overlay.set(expected.path,{bytes,source,kind:overlayRoot?'candidate':'repository-source'});
+  const source=path.join(overlayRoot||repo,expected.active_path),bytes=await readFile(source);
+  if(manifest){const row=manifest.source_files.find(r=>r.path===expected.active_path);assert.equal(bytes.length,row.bytes);assert.equal(sha(bytes),row.sha256);}
+  overlay.set(expected.active_path,{bytes,source,kind:overlayRoot?'candidate':'repository-source'});
+  if(expected.active_path!==expected.path){const originalSource=path.join(repo,expected.path),originalBytes=await readFile(originalSource);assert.equal(originalBytes.length,expected.bytes);assert.equal(sha(originalBytes),expected.sha256);preservedShared.set(expected.path,{source:originalSource,bytes:originalBytes});}
 }
 if(!manifest){manifest={source_files:[...overlay.entries()].map(([path,row])=>({path,bytes:row.bytes.length,sha256:sha(row.bytes)}))};manifestBytes=Buffer.from(JSON.stringify(manifest));}
 const requireMath=true;
 const pages={log:'lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.5_logarithms_ECHS.html',systems:'lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.6_technology_equations_ECHS.html'};
-for(const relative of Object.values(pages)){const bytes=await readFile(path.join(repo,relative));overlay.set(relative,{bytes,source:path.join(repo,relative),kind:'canonical-html'});}
+assert.deepEqual(pins.html_routes.map(row=>row.path),Object.values(pages));
+for(const relative of Object.values(pages)){
+  const bytes=await readFile(path.join(repo,relative)),pin=pins.html_routes.find(row=>row.path===relative);let restored=bytes.toString('utf8');
+  assert.equal(pin.replacements.length,3);for(const swap of pin.replacements){const from='src="'+swap.from+'"',to='src="'+swap.to+'"';assert.equal(restored.split(to).length,2);assert.equal(restored.includes(from),false);restored=restored.replace(to,()=>from);}
+  const original=Buffer.from(restored,'utf8');assert.equal(original.length,pin.bytes);assert.equal(sha(original),pin.sha256);
+  overlay.set(relative,{bytes,source:path.join(repo,relative),kind:'canonical-html-scoped-scripts'});
+}
 const served=new Map(),requests=[],errors=[],checks=[],screens=[],pageErrors=[],consoleErrors=[],mathProof=[];let browser,context;
 const mime={'.html':'text/html','.js':'text/javascript','.mjs':'text/javascript','.css':'text/css','.json':'application/json','.svg':'image/svg+xml','.png':'image/png','.woff2':'font/woff2','.woff':'font/woff','.ttf':'font/ttf'};
 const server=createServer(async(req,res)=>{try{
@@ -108,8 +116,8 @@ finally{
   cleanup.context=await attempt('context-close',async()=>{if(context)await bounded(context.close(),10000,'context-close-timeout');});
   cleanup.browser=await attempt('browser-close',async()=>{if(browser)await bounded(browser.close(),10000,'browser-close-timeout');});
   cleanup.server=await attempt('server-close',async()=>{if(!server.listening)return;const done=new Promise((r,j)=>server.close(e=>e?j(e):r()));server.closeAllConnections();await bounded(done,5000,'server-close-timeout');});
-  await attempt('source-check',async()=>{if(manifestPath)assert.equal(sha(await readFile(manifestPath)),sha(manifestBytes));for(const row of [...overlay.values(),...served.values()])assert.equal(sha(await readFile(row.source)),sha(row.bytes));sourceStable=true;});
+  await attempt('source-check',async()=>{assert.ok((await readFile(new URL('./baseline-pins.json',import.meta.url))).equals(pinsBytes));assert.ok((await readFile(fileURLToPath(import.meta.url))).equals(harnessBytes));if(manifestPath)assert.equal(sha(await readFile(manifestPath)),sha(manifestBytes));for(const row of [...overlay.values(),...served.values(),...preservedShared.values()])assert.equal(sha(await readFile(row.source)),sha(row.bytes));sourceStable=true;});
   const sourceFiles=[...served.entries()].map(([relative,row])=>({path:relative,kind:row.kind,bytes:row.bytes.length,sha256:sha(row.bytes)}));
-  const report={contract:'echs.ib-next.native-peer.v1',status:errors.length?'FAIL':'PASS',browser:version??null,manifest:{bytes:manifestBytes.length,sha256:sha(manifestBytes)},harness:{sha256:sha(await readFile(fileURLToPath(import.meta.url)))},scope:`Actual canonical1.5/1.6 HTML with ${manifest.source_files.length} pinned source files selected from ${overlayRoot?'an isolated overlay':'the repository'} and unchanged local dependencies. Original legacy UI only: no access-guard injection or authentication scripts, no synthetic account/credentials, no backend; all off-origin browser requests blocked. Browser storage contains only synthetic local test answers.`,checks,mathProof,coreProof,optionalProof,lineProof,sourceFiles,sourceStable,cleanup,pageErrors,consoleErrors,errors,screens};
+  const report={contract:'echs.ib-next.native-peer.v1',status:errors.length?'FAIL':'PASS',browser:version??null,manifest:{bytes:manifestBytes.length,sha256:sha(manifestBytes)},harness:{sha256:sha(harnessBytes)},baselinePins:{sha256:sha(pinsBytes)},scope:`Actual canonical1.5/1.6 HTML with only three verified scoped script substitutions each and ${manifest.source_files.length} pinned source files selected from ${overlayRoot?'an isolated overlay':'the repository'} and unchanged local dependencies. Original legacy UI only: no access-guard injection or authentication scripts, no synthetic account/credentials, no backend; all off-origin browser requests blocked. Browser storage contains only synthetic local test answers.`,checks,mathProof,coreProof,optionalProof,lineProof,sourceFiles,preservedSharedFiles:[...preservedShared.entries()].map(([path,row])=>({path,bytes:row.bytes.length,sha256:sha(row.bytes)})),scopedHTMLInverseVerified:true,sourceStable,cleanup,pageErrors,consoleErrors,errors,screens};
   await writeFile(path.join(output,'report.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify({status:report.status,checks:checks.length,errors,output}));
 }

@@ -48,8 +48,11 @@
     counts:{screens:slides.length,practice:practice.length,tasks:exams.length}, localOnly:true};
 
   const renderMath = root => {
-    if (!window.renderMathInElement || !root) return;
-    try { window.renderMathInElement(root,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false}); } catch (_) {}
+    if (!root) return;
+    try {
+      if (typeof window.renderMathInElement === 'function') window.renderMathInElement(root,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false,trust:false});
+      else if (typeof window.ECHSIBLessonRenderMath === 'function') window.ECHSIBLessonRenderMath(root);
+    } catch (_) {}
   };
   const dialogHtml = () => `<div class="gdc-v7-shell" role="dialog" aria-modal="true" aria-labelledby="gdc-v7-title">
     <header><div><span class="gdc-v7-kicker">ECHS LOCAL • ${esc(pack.intensity)}</span><h2 id="gdc-v7-title">TI-84 / GDC Lab — ${esc(pack.name)}</h2></div><button class="gdc-v7-close" type="button" aria-label="Close GDC lab">×</button></header>

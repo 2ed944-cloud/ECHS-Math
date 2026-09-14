@@ -17,7 +17,8 @@ const dataPath='lessons/ib-math-ai/unit-1/data/lesson-1.5-exponents-logarithms-d
 const enginePath='lessons/ib-math-ai/unit-1/assets/js/engine.js';
 const graphPath='lessons/ib-math-ai/unit-1/data/lesson-1.6-technology-v6-interactions.js';
 const gdcPath='lessons/ib-math-ai/unit-1/data/unit-1-gdc-classroom-training-v8.js';
-const text=(kind,p)=>fs.readFileSync(path.join(kind==='original'?baseline:repo,p),'utf8');
+const activePath=p=>baselinePins.files.find(row=>row.path===p)?.active_path||p;
+const text=(kind,p)=>fs.readFileSync(path.join(kind==='original'?baseline:repo,kind==='original'?p:activePath(p)),'utf8');
 const plain=value=>JSON.parse(JSON.stringify(value));
 function lesson(kind='source') {
   const window={LESSON_DATA:{lesson:{number:'1.5'}}};
@@ -32,7 +33,7 @@ test('01 five originals match exact baseline pins; updated source paths are pres
   assert.equal(baselinePins.baseline_main,'dcc65f84dafd2dc5cb4518ea03d18b4087ddf4ff');assert.equal(baselinePins.files.length,5);
   for(const row of baselinePins.files){
     const bytes=fs.readFileSync(path.join(baseline,row.path));assert.equal(bytes.length,row.bytes);assert.equal(sha(bytes),row.sha256);
-    assert.ok(fs.readFileSync(path.join(repo,row.path)).length>0);
+    assert.ok(fs.readFileSync(path.join(repo,row.active_path)).length>0);
   }
 });
 test('02 all 73 screens,96 practice,14 quiz,5 written tasks and original answer payloads retained',()=>{
@@ -255,7 +256,18 @@ test('22 fifth source preserves all prompts/cards outside the exact renderMath f
   assert.equal(text('source',v7Path).replace(renderer('source',v7Path),()=>renderer('original',v7Path)),text('original',v7Path));
 });
 
-const report={contract:'echs.ib-next.component-tests.v1',scope:'Controlled DOM, actual source execution and mathematical representation checks; no native browser or remote acceptance',status:checks.every(x=>x.status==='PASS')?'PASS':'FAIL',tests:checks.length,failed:checks.filter(x=>x.status==='FAIL').length,checks,source_files:baselinePins.files.map(({path:p})=>({path:p,sha256:sha(fs.readFileSync(path.join(repo,p)))}))};
+test('23 original shared assets and historical HTML bytes survive scoped versioning',()=>{
+  const moved=baselinePins.files.filter(row=>row.active_path!==row.path);assert.equal(moved.length,3);
+  for(const row of moved){const bytes=fs.readFileSync(path.join(repo,row.path));assert.equal(bytes.length,row.bytes);assert.equal(sha(bytes),row.sha256);assert.notEqual(row.active_path,row.path);}
+  assert.deepEqual(baselinePins.html_routes.map(row=>row.path),['lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.5_logarithms_ECHS.html','lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.6_technology_equations_ECHS.html']);
+  for(const row of baselinePins.html_routes){
+    let html=fs.readFileSync(path.join(repo,row.path),'utf8');assert.equal(row.replacements.length,3);
+    for(const swap of row.replacements){const from='src="'+swap.from+'"',to='src="'+swap.to+'"';assert.equal(html.split(to).length,2);assert.equal(html.includes(from),false);html=html.replace(to,()=>from);}
+    const originalBytes=Buffer.from(html,'utf8');assert.equal(originalBytes.length,row.bytes);assert.equal(sha(originalBytes),row.sha256);
+  }
+});
+
+const report={contract:'echs.ib-next.component-tests.v1',scope:'Controlled DOM, actual source execution and mathematical representation checks; no native browser or remote acceptance',status:checks.every(x=>x.status==='PASS')?'PASS':'FAIL',tests:checks.length,failed:checks.filter(x=>x.status==='FAIL').length,checks,source_files:baselinePins.files.map(({path:p,active_path:a})=>({baseline_path:p,path:a,sha256:sha(fs.readFileSync(path.join(repo,a)))})),preserved_shared_files:baselinePins.files.filter(row=>row.active_path!==row.path).map(row=>({path:row.path,sha256:sha(fs.readFileSync(path.join(repo,row.path)))})),html_routes:baselinePins.html_routes.map(row=>({path:row.path,sha256:sha(fs.readFileSync(path.join(repo,row.path)))}))};
 if(arg('--report'))fs.writeFileSync(path.resolve(arg('--report')),JSON.stringify(report,null,2)+'\n');
 console.log(JSON.stringify(report,null,2));
 process.exitCode=report.failed?1:0;
