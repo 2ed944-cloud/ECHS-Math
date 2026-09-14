@@ -105,7 +105,8 @@ for number,name,data_files in active:
   core=read('lessons/ib-math-ai/unit-1/data/lesson-1.4-finance-core-v8.js')
   require(core,['[data-finish-lesson]','finish.click()','echs:ib-math-ai:','location.search'],f'IB merged lesson protected progression {number}')
  else:
-  require(text,['../assets/css/theme.css','../assets/js/engine.js','data-route="practice"'],f'IB active lesson {number}')
+  engine='../assets/js/engine-lesson-quality-v1.js' if number in {'1.5','1.6'} else '../assets/js/engine.js'
+  require(text,['../assets/css/theme.css',engine,'data-route="practice"'],f'IB active lesson {number}')
  for data_file in data_files:
   require(text,[f'../data/{data_file}'],f'IB active lesson {number}')
   data_text=read(f'lessons/ib-math-ai/unit-1/data/{data_file}')
