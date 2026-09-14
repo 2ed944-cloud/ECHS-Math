@@ -1,0 +1,75 @@
+name: Lesson investigations and preserved routes
+on:
+  pull_request:
+    paths:
+      - 'lessons/shared/investigations/**'
+      - 'lessons/ap-precalculus/unit-1/**'
+      - 'lessons/ib-math-ai/unit-1/**'
+      - 'tools/lesson-investigations/**'
+      - 'tools/inject_lesson_investigations.py'
+      - 'tools/test_lesson_investigation_injection.py'
+      - 'tools/inject_learning_access_guard.py'
+      - '.github/workflows/lesson-investigations.yml'
+      - '.github/workflows/deploy-pages.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'lessons/shared/investigations/**'
+      - 'lessons/ap-precalculus/unit-1/**'
+      - 'lessons/ib-math-ai/unit-1/**'
+      - 'tools/lesson-investigations/**'
+      - 'tools/inject_lesson_investigations.py'
+      - 'tools/test_lesson_investigation_injection.py'
+      - 'tools/inject_learning_access_guard.py'
+      - '.github/workflows/lesson-investigations.yml'
+      - '.github/workflows/deploy-pages.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: investigations-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install pinned test dependencies
+        run: |
+          npm install --prefix "$RUNNER_TEMP/investigation-dom" --no-save --ignore-scripts --no-audit --no-fund linkedom@0.18.12
+          npm ci --prefix question-bank/official/tools
+          npx --prefix question-bank/official/tools playwright install --with-deps chromium-headless-shell
+      - name: Verify mathematics, lifecycle and build boundaries
+        env:
+          ECHS_TEST_DOM_MODULE: ${{ runner.temp }}/investigation-dom/node_modules/linkedom
+        run: |
+          python tools/test_lesson_investigation_injection.py
+          node tools/lesson-investigations/test-ap-rates-model.mjs
+          node tools/lesson-investigations/test-ib-models.mjs
+          node tools/lesson-investigations/test-vase-model.mjs
+          node tools/lesson-investigations/test-vase-view.mjs
+          node tools/lesson-investigations/test-car-view.mjs
+          node tools/lesson-investigations/test-finance-view.mjs
+          node tools/lesson-investigations/test-host.mjs
+          node tools/lesson-investigations/test-workspace.mjs
+          node tools/lesson-investigations/test-legacy-route.mjs
+      - name: Exercise all activities in a native browser
+        env:
+          ECHS_PLAYWRIGHT_MODULE: ${{ github.workspace }}/question-bank/official/tools/node_modules/playwright
+          ECHS_INVESTIGATION_REPORT_DIR: ${{ runner.temp }}/investigation-browser
+        run: node tools/lesson-investigations/test-browser.mjs
+      - name: Upload original teaching activity evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lesson-investigations-browser
+          path: ${{ runner.temp }}/investigation-browser
+          if-no-files-found: error
+          retention-days: 14

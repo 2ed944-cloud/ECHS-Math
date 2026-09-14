@@ -59,6 +59,8 @@ on:
       - "css/institution*.css"
       - "tools/fingerprint_school_control.py"
       - "tools/inject_learning_access_guard.py"
+      - "tools/inject_lesson_investigations.py"
+      - "tools/lesson-investigations/**"
       - "tools/test_learning_access_contract.py"
       - "tools/test_lesson_visibility_contract.py"
       - "tools/test_lesson_visibility_progression.mjs"
@@ -187,6 +189,7 @@ jobs:
           python tools/project_public_question_bank.py . _pages
           touch _pages/.nojekyll
           python tools/inject_learning_access_guard.py _pages
+          python tools/inject_lesson_investigations.py _pages --source-root .
           python tools/test_learning_access_contract.py _pages --artifact
           python tools/fingerprint_school_control.py _pages --sha "$GITHUB_SHA"
           python - <<'PY'
