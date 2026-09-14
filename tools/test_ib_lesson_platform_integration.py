@@ -130,7 +130,8 @@ def validate_source(root: Path, errors: list[str]) -> None:
             core = read(root, "lessons/ib-math-ai/unit-1/data/lesson-1.4-finance-core-v8.js", errors)
             require(core, ("[data-finish-lesson]", "finish.click()", "location.search", "echs:ib-math-ai:"), "Merged finance protected progression", errors)
         else:
-            require(text, ('class="topbar"', 'class="header-actions"', 'class="routebar"', 'data-route="practice"', "../assets/js/engine.js"), name, errors)
+            active_engine = "../assets/js/engine-lesson-quality-v1.js" if name in {"IB_AI_SL_1.5_logarithms_ECHS.html", "IB_AI_SL_1.6_technology_equations_ECHS.html"} else "../assets/js/engine.js"
+            require(text, ('class="topbar"', 'class="header-actions"', 'class="routebar"', 'data-route="practice"', active_engine), name, errors)
     for name, target in REDIRECTS.items():
         text = read(root, f"lessons/ib-math-ai/unit-1/lessons/{name}", errors)
         require(text, (target, "location.replace", 'rel="canonical"'), name, errors)
