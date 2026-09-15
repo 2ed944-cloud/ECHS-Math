@@ -12,6 +12,9 @@ export const INVESTIGATION_HOSTS = Object.freeze([
   Object.freeze({key:'ap-rational-poles', course:'ap-precalculus', path:'lessons/ap-precalculus/unit-1/AP_Precalculus_1.9_Rational_Functions_and_Vertical_Asymptotes_ECHS_Refined.html'}),
   Object.freeze({key:'ap-rational-holes', course:'ap-precalculus', path:'lessons/ap-precalculus/unit-1/AP_Precalculus_1.10_Rational_Functions_and_Holes_ECHS_Refined.html'}),
   Object.freeze({key:'ap-equivalent-forms', course:'ap-precalculus', path:'lessons/ap-precalculus/unit-1/AP_Precalculus_1.11_Equivalent_Representations_of_Polynomial_and_Rational_Expressions_ECHS_Refined.html'}),
+  Object.freeze({key:'ap-function-transformations', course:'ap-precalculus', path:'lessons/ap-precalculus/unit-1/AP_Precalculus_1.12_Transformations_of_Functions_ECHS_Refined.html'}),
+  Object.freeze({key:'ap-model-selection', course:'ap-precalculus', path:'lessons/ap-precalculus/unit-1/AP_Precalculus_1.13_Function_Model_Selection_and_Assumption_Articulation_ECHS_Refined.html'}),
+  Object.freeze({key:'ap-model-construction', course:'ap-precalculus', path:'lessons/ap-precalculus/unit-1/AP_Precalculus_1.14_Function_Model_Construction_and_Application_ECHS_Refined.html'}),
 ]);
 
 export function resolveInvestigationHost(href, siteRoot = new URL('../../../', import.meta.url)) {

@@ -7,6 +7,7 @@ import {AP_RATES_CONTENT} from '../../lessons/shared/investigations/ap-rates-con
 import {AP_POLYNOMIAL_CONTENT} from '../../lessons/shared/investigations/ap-polynomial-content.mjs';
 import {AP_RATIONAL_CONTENT} from '../../lessons/shared/investigations/ap-rational-content.mjs';
 import {AP_EQUIVALENCE_CONTENT} from '../../lessons/shared/investigations/ap-equivalence-content.mjs';
+import {AP_MODELING_CONTENT} from '../../lessons/shared/investigations/ap-modeling-content.mjs';
 import {IB_CONTENT} from '../../lessons/shared/investigations/ib-content.mjs';
 const require=createRequire(import.meta.url);
 const {parseHTML}=require(process.env.ECHS_TEST_DOM_MODULE||'linkedom');
@@ -38,8 +39,8 @@ function fixture(key) {
     cleanup(){mounted.dispose();mounted.dispose();assert.equal(dialog.childNodes.length,0);assert.equal(legacy.innerHTML,old);assert.equal(frames.size,0);assert.equal(timers.size,0);},
   };
 }
-const entries=[['ap-rates',AP_RATES_CONTENT],...Object.entries(AP_POLYNOMIAL_CONTENT),...Object.entries(IB_CONTENT),...Object.entries(AP_RATIONAL_CONTENT),...Object.entries(AP_EQUIVALENCE_CONTENT)];
-await group('all twelve workspaces expose original titles, activity order and labelled dialog',()=>{
+const entries=[['ap-rates',AP_RATES_CONTENT],...Object.entries(AP_POLYNOMIAL_CONTENT),...Object.entries(IB_CONTENT),...Object.entries(AP_RATIONAL_CONTENT),...Object.entries(AP_EQUIVALENCE_CONTENT),...Object.entries(AP_MODELING_CONTENT)];
+await group('all fifteen workspaces expose original titles, activity order and labelled dialog',()=>{
   for(const [key,data] of entries){const f=fixture(key);assert.equal(f.dialog.querySelector('h1').textContent,data.title);
     assert.equal(f.dialog.getAttribute('aria-labelledby'),f.dialog.querySelector('h1').id);
     assert.equal(f.focus(),f.dialog.querySelector('h2'),'Initial activity receives explicit focus');
@@ -123,7 +124,7 @@ await group('scene replacement detaches old control effects and dispose is idemp
   const current=f.dialog.innerHTML;f.input(old,9);assert.equal(f.dialog.innerHTML,current);const nav=f.nav()[0];f.cleanup();f.click(nav);assert.equal(f.dialog.childNodes.length,0);
 });
 await group('static UI has no private fetch, persistence, navigation or trusted evidence writes',()=>{
-  for(const name of ['workspace.mjs','visuals.mjs','rational-view.mjs','equivalence-view.mjs']){const text=readFileSync(new URL('../../lessons/shared/investigations/'+name,import.meta.url),'utf8');
+  for(const name of ['workspace.mjs','visuals.mjs','rational-view.mjs','equivalence-view.mjs','modeling-view.mjs','modeling-view-helpers.mjs','transform-view.mjs','model-selection-view.mjs','model-construction-view.mjs']){const text=readFileSync(new URL('../../lessons/shared/investigations/'+name,import.meta.url),'utf8');
     for(const pattern of [/localStorage|sessionStorage|indexedDB/,/\bfetch\s*\(/,/\.api\s*\(/,/echs:learning|echs:lesson-completed/,/history\.(pushState|replaceState)/,/location\.(href|hash|search)\s*=/,/\.innerHTML\s*=/])assert.equal(pattern.test(text),false,name+' '+pattern);}
 });
 await group('seven retained workspaces keep 36 activities; five additions supply exactly 21 original scenes',()=>{
@@ -135,6 +136,15 @@ await group('seven retained workspaces keep 36 activities; five additions supply
 await group('new models dispatch only to their actual views and dispose before static scene replacement',()=>{
  for(const [key,data]of [...Object.entries(AP_RATIONAL_CONTENT),...Object.entries(AP_EQUIVALENCE_CONTENT)]){const f=fixture(key);
   for(const scene of data.scenes.filter(s=>s.model)){f.showTitle(scene.title);const expected=scene.model==='rational'?'.ei-rational-view':'.ei-equivalence-view';assert.equal(f.dialog.querySelectorAll(expected).length,1);assert.equal(f.dialog.querySelector('.ei-polynomial-view'),null);assert.equal(f.dialog.querySelector('.ei-prediction'),null);const control=f.dialog.querySelector('input[type="range"]');assert.ok(control);f.showTitle(data.scenes.find(s=>!s.model).title);assert.equal(f.dialog.querySelector(expected),null);const current=f.dialog.innerHTML;f.input(control,control.max);assert.equal(f.dialog.innerHTML,current);}
+  f.cleanup();
+ }
+});
+
+await group('twelve retained workspaces keep 57 activities; three modeling workspaces supply 12 scenes',()=>{
+ const retained=entries.filter(([key])=>!Object.hasOwn(AP_MODELING_CONTENT,key));assert.equal(retained.length,12);assert.equal(retained.reduce((n,[key,data])=>n+data.scenes.length+(key==='ap-rates'?1:0),0),57);
+ const next=Object.entries(AP_MODELING_CONTENT);assert.equal(next.length,3);assert.equal(next.reduce((n,[,data])=>n+data.scenes.length,0),12);
+ for(const [key,data]of next){const f=fixture(key);assert.equal(f.dialog.querySelector('.ei-eyebrow').textContent,`AP Precalculus · Topic ${data.topic}`);assert.equal(f.nav().length,4);
+  for(const scene of data.scenes.filter(s=>s.model)){f.showTitle(scene.title);const view=f.dialog.querySelector('.ei-modeling-view');assert.ok(view);assert.equal(view.dataset.modelingFamily,scene.family);assert.equal(f.dialog.querySelector('.ei-prediction'),null);const control=view.querySelector('input[type="range"]');assert.ok(control);f.showTitle(data.scenes.find(s=>!s.model).title);assert.equal(f.dialog.querySelector('.ei-modeling-view'),null);const current=f.dialog.innerHTML;f.input(control,control.max);assert.equal(f.dialog.innerHTML,current);}
   f.cleanup();
  }
 });
