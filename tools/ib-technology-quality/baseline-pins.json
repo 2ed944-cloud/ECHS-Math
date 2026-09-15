@@ -1,0 +1,36 @@
+{
+  "schema": "echs.ib-technology.portable-pins.v1",
+  "baseline_commit": "77fe3c6ac85c6796415237ced26731ab3e307195",
+  "baseline_revision_status": "Merged PR384 baseline, exact original source verified through authenticated GitHub read",
+  "files": [
+    {
+      "path": "lessons/ib-math-ai/unit-1/data/lesson-1.6-technology-v6-interactions.js",
+      "bytes": 11850,
+      "sha256": "369020dc7ec05f93e0a77e6d045aa587097e3c793e17fef578aed82c500f9036",
+      "git_blob_sha": "0da73e785b0230998535e22d86ed2fd938ad3151",
+      "before_sha256": "c98e06e7351110536bc47bde8f77dbd59626431817eb429c2c9d6cc591112ce7"
+    }
+  ],
+  "native_context": [
+    {
+      "path": "lessons/ib-math-ai/unit-1/lessons/IB_AI_SL_1.6_technology_equations_ECHS.html",
+      "bytes": 5887,
+      "sha256": "03b12e084fdce09706e3a64cabeef2a77cd12caa984ca5d5b3ea0f3564ade83b"
+    },
+    {
+      "path": "lessons/ib-math-ai/unit-1/assets/js/engine-lesson-quality-v1.js",
+      "bytes": 35768,
+      "sha256": "41f4b9b2a75df3b59dcdb04755f51644974b180f3909bca471488633dab94de8"
+    },
+    {
+      "path": "lessons/ib-math-ai/unit-1/data/unit-1-gdc-integration-lesson-quality-v1.js",
+      "bytes": 41389,
+      "sha256": "def6bf39fd4ec818e40df71a6cade5ad895c33ad168fbe7be7a8bf6e325f9161"
+    },
+    {
+      "path": "lessons/ib-math-ai/unit-1/data/unit-1-gdc-classroom-training-lesson-quality-v1.js",
+      "bytes": 20819,
+      "sha256": "92c73a9869031f873719b467472a8d7a4ad8bcc2cd0ed3c7b0699c467e10bbb5"
+    }
+  ]
+}

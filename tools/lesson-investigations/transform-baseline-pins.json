@@ -1,0 +1,23 @@
+{
+  "baseline_main": "dcc65f84dafd2dc5cb4518ea03d18b4087ddf4ff",
+  "files": [
+    {
+      "path": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.12_Transformations_of_Functions_ECHS_Refined.html",
+      "bytes": 1306145,
+      "sha256": "8aa76bafe6b5ec7d6ddd4e9baee825d05460109a3e9a9d896a1474a87477e297",
+      "git_blob_sha": "a2792ad5c7f1097a7a662b3adfe2fc8814f7c878"
+    },
+    {
+      "path": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.13_Function_Model_Selection_and_Assumption_Articulation_ECHS_Refined.html",
+      "bytes": 1304465,
+      "sha256": "53eb5b541608ae580d5c680d0423795a971183b661f8ec1f16fdeaaa2e49a8f4",
+      "git_blob_sha": "f4e2165468cc40defb9d7b9ae38c7bd616a182e9"
+    },
+    {
+      "path": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.14_Function_Model_Construction_and_Application_ECHS_Refined.html",
+      "bytes": 1321463,
+      "sha256": "578449a8c8d70cfd8385a8f591b5659d181bdec1843ded46fafec3311a0e9297",
+      "git_blob_sha": "5297adc7489cffcbf9de880df4d78fc4571d6438"
+    }
+  ]
+}

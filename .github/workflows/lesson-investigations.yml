@@ -7,6 +7,8 @@ on:
       - 'lessons/ib-math-ai/unit-1/**'
       - 'tools/lesson-investigations/**'
       - 'tools/ib-lesson-quality/**'
+      - 'tools/ap-legacy-quality/**'
+      - 'tools/ib-technology-quality/**'
       - 'tools/test_ib_ai_1_5_product_law_visual_v6_0_1.mjs'
       - 'tools/test_ib_ai_1_6_definitive_v6.mjs'
       - 'tools/inject_lesson_investigations.py'
@@ -22,6 +24,8 @@ on:
       - 'lessons/ib-math-ai/unit-1/**'
       - 'tools/lesson-investigations/**'
       - 'tools/ib-lesson-quality/**'
+      - 'tools/ap-legacy-quality/**'
+      - 'tools/ib-technology-quality/**'
       - 'tools/test_ib_ai_1_5_product_law_visual_v6_0_1.mjs'
       - 'tools/test_ib_ai_1_6_definitive_v6.mjs'
       - 'tools/inject_lesson_investigations.py'
@@ -47,30 +51,71 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Materialize the eight pinned original lesson sources for comparisons
+      - name: Materialize exact deduplicated historical sources for comparisons
         run: |
           git fetch --no-tags --depth=1 origin dcc65f84dafd2dc5cb4518ea03d18b4087ddf4ff
+          git fetch --no-tags --depth=1 origin 77fe3c6ac85c6796415237ced26731ab3e307195
           python - <<'PY'
-          import hashlib, json, os, pathlib, subprocess
-          commit = 'dcc65f84dafd2dc5cb4518ea03d18b4087ddf4ff'
+          import hashlib, json, os, pathlib, re, subprocess
+          old = 'dcc65f84dafd2dc5cb4518ea03d18b4087ddf4ff'
+          recent = '77fe3c6ac85c6796415237ced26731ab3e307195'
+          specs = [
+              ('tools/ib-lesson-quality/baseline-pins.json', 'baseline_main', old, 5),
+              ('tools/lesson-investigations/polynomial-baseline-pins.json', 'baseline_main', old, 3),
+              ('tools/lesson-investigations/rational-baseline-pins.json', 'baseline_main', old, 2),
+              ('tools/lesson-investigations/transform-baseline-pins.json', 'baseline_main', old, 3),
+              ('tools/ap-legacy-quality/ap17-baseline-pins.json', 'baseline_main', recent, 1),
+              ('tools/ib-technology-quality/baseline-pins.json', 'baseline_commit', recent, 1),
+              ('tools/lesson-investigations/rational-content-baseline-pins.json', 'baseline_main', recent, 5),
+          ]
           root = pathlib.Path(os.environ['RUNNER_TEMP']) / 'lesson-quality-baseline'
           assert not root.exists(), 'Baseline destination must be fresh'
-          planned = []
-          for name in ['tools/ib-lesson-quality/baseline-pins.json', 'tools/lesson-investigations/polynomial-baseline-pins.json']:
-              metadata = json.loads(pathlib.Path(name).read_text(encoding='utf-8'))
-              assert metadata['baseline_main'] == commit
+          def unique(pairs):
+              assert len(pairs) == len({k for k, _ in pairs}), 'Duplicate metadata key'
+              return dict(pairs)
+          identities, targets, initial = {}, {}, set()
+          for index, (name, commit_key, commit, count) in enumerate(specs):
+              metadata = json.loads(pathlib.Path(name).read_text(encoding='utf-8'), object_pairs_hook=unique)
+              assert metadata[commit_key] == commit
+              assert type(metadata['files']) is list and len(metadata['files']) == count
               for row in metadata['files']:
-                  rel = pathlib.PurePosixPath(row['path'])
+                  assert type(row) is dict and type(row.get('path')) is str
+                  value = row['path']
+                  rel = pathlib.PurePosixPath(value)
                   assert not rel.is_absolute() and '..' not in rel.parts and rel.parts[0] == 'lessons'
-                  assert '\\' not in row['path'] and ':' not in row['path']
-                  raw = subprocess.run(['git','show',commit+':'+row['path']],check=True,capture_output=True).stdout
-                  assert len(raw) == row['bytes'] and hashlib.sha256(raw).hexdigest() == row['sha256']
-                  planned.append((root.joinpath(*rel.parts),raw))
-          assert len(planned) == 8 and len({p for p,_ in planned}) == 8
-          for target, raw in planned:
-              target.parent.mkdir(parents=True,exist_ok=True)
-              target.write_bytes(raw)
-          print('Verified eight pinned baseline sources in the runner temporary directory.')
+                  assert rel.as_posix() == value and chr(92) not in value and ':' not in value
+                  assert rel.suffix in {'.html', '.js'}
+                  assert type(row.get('bytes')) is int and 0 < row['bytes'] <= 8 * 1024 * 1024
+                  assert type(row.get('sha256')) is str and re.fullmatch(r'[0-9a-f]{64}', row['sha256'])
+                  signature = (row['bytes'], row['sha256'])
+                  target_key = (commit, value)
+                  if target_key in targets:
+                      assert targets[target_key] == signature, 'Conflicting same-commit/path baseline bytes'
+                  targets[target_key] = signature
+                  identity = (value, commit, row['sha256'])
+                  if identity in identities:
+                      assert identities[identity] == signature
+                  identities[identity] = signature
+                  if index < 2:
+                      assert value not in initial, 'Original eight sources must be unique'
+                      initial.add(value)
+          assert len(initial) == 8 and len(targets) == 19 and len(identities) == 19
+          assert sum(commit == old for commit, _ in targets) == 13
+          assert sum(commit == recent for commit, _ in targets) == 6
+          planned = {}
+          for (value, commit, digest), (size, _) in identities.items():
+              data = subprocess.run(['git', 'show', commit + ':' + value], check=True, capture_output=True).stdout
+              assert len(data) == size and hashlib.sha256(data).hexdigest() == digest
+              target_key = (commit, value)
+              if target_key in planned:
+                  assert planned[target_key] == data, 'Conflicting verified baseline bodies'
+              planned[target_key] = data
+          assert len(planned) == 19
+          for (commit, value), data in planned.items():
+              target = root.joinpath(commit, *pathlib.PurePosixPath(value).parts)
+              target.parent.mkdir(parents=True, exist_ok=True)
+              target.write_bytes(data)
+          print('Verified 19 deduplicated originals in separate commit namespaces under RUNNER_TEMP only.')
           PY
       - name: Install pinned test dependencies
         run: |
@@ -93,11 +138,21 @@ jobs:
           node tools/lesson-investigations/test-legacy-route.mjs
           node tools/lesson-investigations/test-ap-polynomial-model.mjs
           node tools/lesson-investigations/test-polynomial-view.mjs
-          node tools/lesson-investigations/test-ap-polynomial-content.mjs --baseline-root "$RUNNER_TEMP/lesson-quality-baseline"
-          node tools/lesson-investigations/test-legacy-polynomial-renderers.mjs --repo . --baseline-root "$RUNNER_TEMP/lesson-quality-baseline"
-          node tools/ib-lesson-quality/test-ib-quality.mjs --repo . --baseline-root "$RUNNER_TEMP/lesson-quality-baseline" --report "$RUNNER_TEMP/ib-components.json"
+          node tools/lesson-investigations/test-ap-polynomial-content.mjs --baseline-root "$RUNNER_TEMP/lesson-quality-baseline/dcc65f84dafd2dc5cb4518ea03d18b4087ddf4ff"
+          node tools/lesson-investigations/test-legacy-polynomial-renderers.mjs --repo . --baseline-root "$RUNNER_TEMP/lesson-quality-baseline/dcc65f84dafd2dc5cb4518ea03d18b4087ddf4ff"
+          node tools/ib-lesson-quality/test-ib-quality.mjs --repo . --baseline-root "$RUNNER_TEMP/lesson-quality-baseline/dcc65f84dafd2dc5cb4518ea03d18b4087ddf4ff" --report "$RUNNER_TEMP/ib-components.json"
           node tools/test_ib_ai_1_5_product_law_visual_v6_0_1.mjs
           node tools/test_ib_ai_1_6_definitive_v6.mjs
+          node tools/lesson-investigations/test-ap-rational-model.mjs --repo .
+          node tools/lesson-investigations/test-rational-view.mjs --repo .
+          node tools/lesson-investigations/test-ap-rational-content.mjs --repo . --baseline-root "$RUNNER_TEMP/lesson-quality-baseline/77fe3c6ac85c6796415237ced26731ab3e307195"
+          node tools/lesson-investigations/test-ap-equivalence-model.mjs --repo .
+          node tools/lesson-investigations/test-equivalence-view.mjs --repo .
+          node tools/lesson-investigations/test-ap-equivalence-content.mjs --repo . --baseline-root "$RUNNER_TEMP/lesson-quality-baseline/77fe3c6ac85c6796415237ced26731ab3e307195"
+          node tools/lesson-investigations/test-legacy-rational-renderers.mjs --repo . --baseline-root "$RUNNER_TEMP/lesson-quality-baseline/dcc65f84dafd2dc5cb4518ea03d18b4087ddf4ff"
+          node tools/lesson-investigations/test-legacy-transform-renderers.mjs --repo . --baseline-root "$RUNNER_TEMP/lesson-quality-baseline/dcc65f84dafd2dc5cb4518ea03d18b4087ddf4ff"
+          node tools/ap-legacy-quality/test-ap17-figures.mjs --repo . --baseline-root "$RUNNER_TEMP/lesson-quality-baseline/77fe3c6ac85c6796415237ced26731ab3e307195"
+          node tools/ib-technology-quality/test-technology.mjs --repo . --baseline-root "$RUNNER_TEMP/lesson-quality-baseline/77fe3c6ac85c6796415237ced26731ab3e307195" --report "$RUNNER_TEMP/ib-technology-components.json"
       - name: Exercise all activities in a native browser
         env:
           ECHS_PLAYWRIGHT_MODULE: ${{ github.workspace }}/question-bank/official/tools/node_modules/playwright
@@ -107,6 +162,22 @@ jobs:
         env:
           ECHS_PLAYWRIGHT_MODULE: ${{ github.workspace }}/question-bank/official/tools/node_modules/playwright
         run: node tools/ib-lesson-quality/test-native.mjs --repo . --report-dir "$RUNNER_TEMP/ib-native"
+      - name: Exercise rational and equivalent-form component boundaries
+        env:
+          ECHS_PLAYWRIGHT_MODULE: ${{ github.workspace }}/question-bank/official/tools/node_modules/playwright
+        run: |
+          node tools/lesson-investigations/test-rational-native.mjs --repo . --style-root . --report-dir "$RUNNER_TEMP/rational-native"
+          node tools/lesson-investigations/test-equivalence-native.mjs --repo . --style-root . --report-dir "$RUNNER_TEMP/equivalence-native"
+      - name: Exercise rational figures and AP1.10 through1.14 renderer boundaries
+        env:
+          ECHS_PLAYWRIGHT_MODULE: ${{ github.workspace }}/question-bank/official/tools/node_modules/playwright
+        run: |
+          node tools/ap-legacy-quality/test-ap17-native.mjs --repo . --report-dir "$RUNNER_TEMP/ap17-native"
+          node tools/ap-legacy-quality/test-ap110-114-native.mjs --repo . --report-dir "$RUNNER_TEMP/ap110-114-native"
+      - name: Exercise IB technology polynomial and residual repairs
+        env:
+          ECHS_PLAYWRIGHT_MODULE: ${{ github.workspace }}/question-bank/official/tools/node_modules/playwright
+        run: node tools/ib-technology-quality/test-native.mjs --repo . --report-dir "$RUNNER_TEMP/ib-technology-native"
       - name: Upload original teaching activity evidence
         if: always()
         uses: actions/upload-artifact@v4
@@ -123,5 +194,35 @@ jobs:
           path: |
             ${{ runner.temp }}/ib-native
             ${{ runner.temp }}/ib-components.json
+          if-no-files-found: error
+          retention-days: 14
+      - name: Upload AP legacy renderer evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ap-legacy-quality-browser
+          path: |
+            ${{ runner.temp }}/ap17-native
+            ${{ runner.temp }}/ap110-114-native
+          if-no-files-found: error
+          retention-days: 14
+      - name: Upload synthetic rational and equivalent-form component evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rational-equivalence-components-browser
+          path: |
+            ${{ runner.temp }}/rational-native
+            ${{ runner.temp }}/equivalence-native
+          if-no-files-found: error
+          retention-days: 14
+      - name: Upload IB technology repair evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ib-technology-quality-browser
+          path: |
+            ${{ runner.temp }}/ib-technology-native
+            ${{ runner.temp }}/ib-technology-components.json
           if-no-files-found: error
           retention-days: 14

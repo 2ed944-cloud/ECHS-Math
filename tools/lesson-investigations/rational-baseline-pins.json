@@ -1,0 +1,15 @@
+{
+  "baseline_main": "dcc65f84dafd2dc5cb4518ea03d18b4087ddf4ff",
+  "files": [
+    {
+      "path": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.10_Rational_Functions_and_Holes_ECHS_Refined.html",
+      "bytes": 1301799,
+      "sha256": "24a70414208984e6d3fccc05674193a9a8b5a1fe1fb6412ff5b7d4223871c56a"
+    },
+    {
+      "path": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.11_Equivalent_Representations_of_Polynomial_and_Rational_Expressions_ECHS_Refined.html",
+      "bytes": 1298822,
+      "sha256": "ceba826c2f3439cad3c436b8e37423961a91cd37b3382ebd4d81671e24cdfc37"
+    }
+  ]
+}

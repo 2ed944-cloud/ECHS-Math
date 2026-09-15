@@ -7,6 +7,11 @@ export const INVESTIGATION_HOSTS = Object.freeze([
   Object.freeze({key:'ap-polynomial-rates', course:'ap-precalculus', path:'lessons/ap-precalculus/unit-1/AP_Precalculus_1.4_Polynomial_Functions_and_Rates_of_Change_ECHS_Refined.html'}),
   Object.freeze({key:'ap-polynomial-zeros', course:'ap-precalculus', path:'lessons/ap-precalculus/unit-1/AP_Precalculus_1.5_Polynomial_Functions_and_Complex_Zeros_ECHS_Refined.html'}),
   Object.freeze({key:'ap-polynomial-tails', course:'ap-precalculus', path:'lessons/ap-precalculus/unit-1/AP_Precalculus_1.6_Polynomial_Functions_and_End_Behavior_ECHS_Refined.html'}),
+  Object.freeze({key:'ap-rational-tails', course:'ap-precalculus', path:'lessons/ap-precalculus/unit-1/AP_Precalculus_1.7_Rational_Functions_and_End_Behavior_ECHS_Refined.html'}),
+  Object.freeze({key:'ap-rational-zeros', course:'ap-precalculus', path:'lessons/ap-precalculus/unit-1/AP_Precalculus_1.8_Rational_Functions_and_Zeros_ECHS_Refined.html'}),
+  Object.freeze({key:'ap-rational-poles', course:'ap-precalculus', path:'lessons/ap-precalculus/unit-1/AP_Precalculus_1.9_Rational_Functions_and_Vertical_Asymptotes_ECHS_Refined.html'}),
+  Object.freeze({key:'ap-rational-holes', course:'ap-precalculus', path:'lessons/ap-precalculus/unit-1/AP_Precalculus_1.10_Rational_Functions_and_Holes_ECHS_Refined.html'}),
+  Object.freeze({key:'ap-equivalent-forms', course:'ap-precalculus', path:'lessons/ap-precalculus/unit-1/AP_Precalculus_1.11_Equivalent_Representations_of_Polynomial_and_Rational_Expressions_ECHS_Refined.html'}),
 ]);
 
 export function resolveInvestigationHost(href, siteRoot = new URL('../../../', import.meta.url)) {

@@ -1,0 +1,30 @@
+{
+  "baseline_main": "77fe3c6ac85c6796415237ced26731ab3e307195",
+  "files": [
+    {
+      "path": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.7_Rational_Functions_and_End_Behavior_ECHS_Refined.html",
+      "bytes": 1300487,
+      "sha256": "e8a25483949458b822453c3bf218200d20eeff9bb53cb62e210dfb63125921ae"
+    },
+    {
+      "path": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.8_Rational_Functions_and_Zeros_ECHS_Refined.html",
+      "bytes": 1299957,
+      "sha256": "d32dd693d7fa634261d0e8f9c831332a865a9c1174a2394d4e6e35fc9e9cea4f"
+    },
+    {
+      "path": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.9_Rational_Functions_and_Vertical_Asymptotes_ECHS_Refined.html",
+      "bytes": 1304928,
+      "sha256": "ccbf5d31c70547ba9a97b0bc0b48c63d3935468448afcb4377343b9430bbfd6f"
+    },
+    {
+      "path": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.10_Rational_Functions_and_Holes_ECHS_Refined.html",
+      "bytes": 1301799,
+      "sha256": "24a70414208984e6d3fccc05674193a9a8b5a1fe1fb6412ff5b7d4223871c56a"
+    },
+    {
+      "path": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.11_Equivalent_Representations_of_Polynomial_and_Rational_Expressions_ECHS_Refined.html",
+      "bytes": 1298822,
+      "sha256": "ceba826c2f3439cad3c436b8e37423961a91cd37b3382ebd4d81671e24cdfc37"
+    }
+  ]
+}

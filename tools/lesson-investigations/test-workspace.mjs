@@ -5,6 +5,8 @@ import {readFileSync} from 'node:fs';
 import {mountInvestigation} from '../../lessons/shared/investigations/workspace.mjs';
 import {AP_RATES_CONTENT} from '../../lessons/shared/investigations/ap-rates-content.mjs';
 import {AP_POLYNOMIAL_CONTENT} from '../../lessons/shared/investigations/ap-polynomial-content.mjs';
+import {AP_RATIONAL_CONTENT} from '../../lessons/shared/investigations/ap-rational-content.mjs';
+import {AP_EQUIVALENCE_CONTENT} from '../../lessons/shared/investigations/ap-equivalence-content.mjs';
 import {IB_CONTENT} from '../../lessons/shared/investigations/ib-content.mjs';
 const require=createRequire(import.meta.url);
 const {parseHTML}=require(process.env.ECHS_TEST_DOM_MODULE||'linkedom');
@@ -36,8 +38,8 @@ function fixture(key) {
     cleanup(){mounted.dispose();mounted.dispose();assert.equal(dialog.childNodes.length,0);assert.equal(legacy.innerHTML,old);assert.equal(frames.size,0);assert.equal(timers.size,0);},
   };
 }
-const entries=[['ap-rates',AP_RATES_CONTENT],...Object.entries(AP_POLYNOMIAL_CONTENT),...Object.entries(IB_CONTENT)];
-await group('all seven workspaces expose original titles, activity order and labelled dialog',()=>{
+const entries=[['ap-rates',AP_RATES_CONTENT],...Object.entries(AP_POLYNOMIAL_CONTENT),...Object.entries(IB_CONTENT),...Object.entries(AP_RATIONAL_CONTENT),...Object.entries(AP_EQUIVALENCE_CONTENT)];
+await group('all twelve workspaces expose original titles, activity order and labelled dialog',()=>{
   for(const [key,data] of entries){const f=fixture(key);assert.equal(f.dialog.querySelector('h1').textContent,data.title);
     assert.equal(f.dialog.getAttribute('aria-labelledby'),f.dialog.querySelector('h1').id);
     assert.equal(f.focus(),f.dialog.querySelector('h2'),'Initial activity receives explicit focus');
@@ -50,14 +52,14 @@ await group('every actual scene renders its content, explanatory prompts and mod
     assert.equal(f.dialog.querySelector('h2').textContent,scene.title);
     for(const paragraph of scene.text??[])assert.ok(f.dialog.textContent.includes(paragraph),scene.id);
     assert.ok(f.dialog.querySelector('textarea[maxlength="3000"]')||f.dialog.querySelector('textarea').maxLength===3000);
-    if(scene.model&&scene.kind!=='transfer'){assert.ok(f.dialog.querySelector('svg[role="img"]'),scene.id);assert.ok(f.dialog.querySelector('table caption'),scene.id);assert.equal(f.dialog.querySelector('thead th').scope,'col',scene.id);}
+    if(scene.model&&scene.kind!=='transfer'){if(scene.model==='equivalence'&&scene.family==='binomial'){assert.ok(f.dialog.querySelector('[data-equivalence-table="terms"]'),scene.id);assert.ok(f.dialog.querySelector('[data-equivalence-binomial]'),scene.id);}else assert.ok(f.dialog.querySelector('svg[role="img"]'),scene.id);assert.ok(f.dialog.querySelector('table caption'),scene.id);assert.equal(f.dialog.querySelector('thead th').scope,'col',scene.id);}
     if(scene.kind==='transfer')assert.equal(f.dialog.querySelector('.ei-prediction'),null,'Transfer keeps answers unscaffolded');
     f.checkFinite();}f.cleanup();}
 });
 await group('actual model controls at min/max remain finite and properly labelled',()=>{
   for(const [key,data] of entries){const f=fixture(key);for(const scene of data.scenes.filter(s=>s.model)){f.showTitle(scene.title);
     for(const control of [...f.dialog.querySelectorAll('.ei-control input[type="range"]')]){
-      assert.ok([...f.dialog.querySelectorAll('label')].some(label=>(label.getAttribute('for')||label.htmlFor)===control.id));
+      assert.ok([...f.dialog.querySelectorAll('label')].some(label=>(label.getAttribute('for')||label.htmlFor)===control.id||label.contains(control)));
       for(const value of [control.min,control.max]){f.input(control,value);f.checkFinite();assert.doesNotMatch(f.dialog.querySelector('.ei-main').textContent,/These inputs do not define a valid model/);}
     }
   }f.cleanup();}
@@ -121,7 +123,19 @@ await group('scene replacement detaches old control effects and dispose is idemp
   const current=f.dialog.innerHTML;f.input(old,9);assert.equal(f.dialog.innerHTML,current);const nav=f.nav()[0];f.cleanup();f.click(nav);assert.equal(f.dialog.childNodes.length,0);
 });
 await group('static UI has no private fetch, persistence, navigation or trusted evidence writes',()=>{
-  for(const name of ['workspace.mjs','visuals.mjs']){const text=readFileSync(new URL('../../lessons/shared/investigations/'+name,import.meta.url),'utf8');
+  for(const name of ['workspace.mjs','visuals.mjs','rational-view.mjs','equivalence-view.mjs']){const text=readFileSync(new URL('../../lessons/shared/investigations/'+name,import.meta.url),'utf8');
     for(const pattern of [/localStorage|sessionStorage|indexedDB/,/\bfetch\s*\(/,/\.api\s*\(/,/echs:learning|echs:lesson-completed/,/history\.(pushState|replaceState)/,/location\.(href|hash|search)\s*=/,/\.innerHTML\s*=/])assert.equal(pattern.test(text),false,name+' '+pattern);}
+});
+await group('seven retained workspaces keep 36 activities; five additions supply exactly 21 original scenes',()=>{
+ const old=[['ap-rates',AP_RATES_CONTENT],...Object.entries(AP_POLYNOMIAL_CONTENT),...Object.entries(IB_CONTENT)];
+ assert.equal(old.length,7);assert.equal(old.reduce((n,[key,data])=>n+data.scenes.length+(key==='ap-rates'?1:0),0),36);
+ const next=[...Object.entries(AP_RATIONAL_CONTENT),...Object.entries(AP_EQUIVALENCE_CONTENT)];assert.equal(next.length,5);assert.equal(next.reduce((n,[,data])=>n+data.scenes.length,0),21);
+ for(const [key,data]of next){const f=fixture(key);assert.equal(f.dialog.querySelector('.ei-header .ei-eyebrow').textContent,`AP Precalculus · Topic ${data.topic}`);assert.equal(f.nav().length,data.scenes.length);f.cleanup();}
+});
+await group('new models dispatch only to their actual views and dispose before static scene replacement',()=>{
+ for(const [key,data]of [...Object.entries(AP_RATIONAL_CONTENT),...Object.entries(AP_EQUIVALENCE_CONTENT)]){const f=fixture(key);
+  for(const scene of data.scenes.filter(s=>s.model)){f.showTitle(scene.title);const expected=scene.model==='rational'?'.ei-rational-view':'.ei-equivalence-view';assert.equal(f.dialog.querySelectorAll(expected).length,1);assert.equal(f.dialog.querySelector('.ei-polynomial-view'),null);assert.equal(f.dialog.querySelector('.ei-prediction'),null);const control=f.dialog.querySelector('input[type="range"]');assert.ok(control);f.showTitle(data.scenes.find(s=>!s.model).title);assert.equal(f.dialog.querySelector(expected),null);const current=f.dialog.innerHTML;f.input(control,control.max);assert.equal(f.dialog.innerHTML,current);}
+  f.cleanup();
+ }
 });
 console.log(JSON.stringify({status:'PASS',groups:passed,native_browser:false,native_dialog:false,layout_checked:false,backend_calls:0}));

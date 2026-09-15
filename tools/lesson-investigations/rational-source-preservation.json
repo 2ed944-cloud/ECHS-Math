@@ -1,0 +1,31 @@
+{
+  "scope": "Exactly2 isolated renderer-method changes; all other original bytes preserved. No native/layout/active integration claim.",
+  "files": [
+    {
+      "path": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.10_Rational_Functions_and_Holes_ECHS_Refined.html",
+      "original_bytes": 1301799,
+      "original_sha256": "24a70414208984e6d3fccc05674193a9a8b5a1fe1fb6412ff5b7d4223871c56a",
+      "candidate_bytes": 1301867,
+      "candidate_sha256": "7ec2aa34071c030558378d3d81a66a06c2fc297f373d50a1a732f23b16db39bc",
+      "method": "holes",
+      "old_method_sha256": "05129c985d1c57cb0eb9d8347ec13cd8805a22741e359f9424003156a586624b",
+      "new_method_sha256": "0102e17ceb9abc1ac808b66beae50766b910af1372f35d1f062d4d575fd875e5",
+      "method_line": 434,
+      "inverse_restores_original": true,
+      "assessment_script_sha256": "055b5fb04f1a2a7160c61d1b8aecaeca2ab86daaf57b03f9352662a9649c8013"
+    },
+    {
+      "path": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.11_Equivalent_Representations_of_Polynomial_and_Rational_Expressions_ECHS_Refined.html",
+      "original_bytes": 1298822,
+      "original_sha256": "ceba826c2f3439cad3c436b8e37423961a91cd37b3382ebd4d81671e24cdfc37",
+      "candidate_bytes": 1299088,
+      "candidate_sha256": "d78c23c18703f8658e62f7ee42f02f6d6dabc4be219713a5338043996636f807",
+      "method": "longdivision",
+      "old_method_sha256": "e7203e71ecff064fedae38021b3f0705845e9646af386a6784c3f154a9701b7b",
+      "new_method_sha256": "e1a87423a1d96705257cfbf8fe7ca3adce101a1eeaf952aa617c246e818c2169",
+      "method_line": 437,
+      "inverse_restores_original": true,
+      "assessment_script_sha256": "09da7701b8cef0ae9dc6136e20e0daf1ed9210ad8a882bf6a835d57220536615"
+    }
+  ]
+}
