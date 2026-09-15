@@ -13,7 +13,7 @@ const {chromium}=require(process.env.ECHS_PLAYWRIGHT_MODULE||'playwright');
 const overlayRoot=path.resolve(fileURLToPath(new URL('../../',import.meta.url)));
 const root=process.env.ECHS_INVESTIGATION_BASE_ROOT?path.resolve(process.env.ECHS_INVESTIGATION_BASE_ROOT):overlayRoot;
 const tempRoot=process.env.ECHS_INVESTIGATION_TEMP_ROOT?path.resolve(process.env.ECHS_INVESTIGATION_TEMP_ROOT):tmpdir();
-const expectedScenes={'ap-rates':5,arithmetic:6,geometric:6,finance:7,'ap-polynomial-rates':4,'ap-polynomial-zeros':4,'ap-polynomial-tails':4,'ap-rational-tails':4,'ap-rational-zeros':4,'ap-rational-poles':4,'ap-rational-holes':4,'ap-equivalent-forms':5};
+const expectedScenes={'ap-rates':5,arithmetic:6,geometric:6,finance:7,'ap-polynomial-rates':4,'ap-polynomial-zeros':4,'ap-polynomial-tails':4,'ap-rational-tails':4,'ap-rational-zeros':4,'ap-rational-poles':4,'ap-rational-holes':4,'ap-equivalent-forms':5,'ap-function-transformations':4,'ap-model-selection':4,'ap-model-construction':4};
 const sourceFiles=new Map(),servedSources=new Map(),contexts=new Set(),sockets=new Set();
 const digest=bytes=>createHash('sha256').update(bytes).digest('hex');
 async function sourceFile(relative){
@@ -90,6 +90,8 @@ const checkRangeReadouts=async(page,label)=>{
 const lessonDataHash=async page=>digest(Buffer.from(await page.evaluate(()=>JSON.stringify(window.LESSON_DATA??null))));
 async function rangeTo(page,selector,value){const input=page.locator(selector);await input.focus();await input.press('Home');const {min,step}=await input.evaluate(node=>({min:Number(node.min),step:Number(node.step)}));const count=(value-min)/step;assert.ok(Number.isInteger(count)&&count>=0);for(let i=0;i<count;i++)await input.press('ArrowRight');assert.equal(Number(await input.inputValue()),value);}
 async function verifyNewModel(page){
+  if(await page.locator('.ei-modeling-view').count()){const section=page.locator('.ei-modeling-view');assert.ok(['transform','selection','construction'].includes(await section.getAttribute('data-modeling-family')));assert.ok(await section.locator('svg').count()>0);assert.ok(await section.locator('table').count()>0);assert.equal(await section.locator('[data-modeling-error]:not([hidden])').count(),0);}
+
   if(await page.locator('.ei-rational-view').count()){
     const section=page.locator('.ei-rational-view'),scale=section.locator('[data-rational-control="scale"]');
     if(await scale.count()){
@@ -120,15 +122,15 @@ async function verifyNewModel(page){
 }
 try{
   sourceHashesBefore=await sourceSnapshot();
-  assert.equal(INVESTIGATION_HOSTS.length,12);assert.deepEqual(INVESTIGATION_HOSTS.map(row=>row.key),Object.keys(expectedScenes));
-  const rows=[...preservation.lesson_sources,...preservation.protected_calculus_sources];assert.equal(rows.length,81);
+  assert.equal(INVESTIGATION_HOSTS.length,15);assert.deepEqual(INVESTIGATION_HOSTS.map(row=>row.key),Object.keys(expectedScenes));
+  const rows=[...preservation.lesson_sources,...preservation.protected_calculus_sources];assert.equal(rows.length,84);
   for(const row of rows){const original=sourceFiles.get(row.path).bytes;assert.equal(original.length,row.bytes);assert.equal(digest(original),row.sha256);}
   guardedSourceHashes=rows.map(({path,bytes,sha256})=>({path,bytes,sha256}));
-  if(root!==overlayRoot){const prior=JSON.parse(await readFile(path.join(root,'tools/lesson-investigations/source-preservation.json')));assert.deepEqual(preservation.lesson_sources.slice(0,7),prior.lesson_sources);assert.deepEqual(preservation.protected_calculus_sources,prior.protected_calculus_sources);
-    for(const name of ['ap-rates-content.mjs','ap-polynomial-content.mjs','ib-content.mjs','host.mjs'])assert.ok(sourceFiles.get('lessons/shared/investigations/'+name).bytes.equals(await readFile(path.join(root,'lessons/shared/investigations',name))));}
+  if(root!==overlayRoot){const prior=JSON.parse(await readFile(path.join(root,'tools/lesson-investigations/source-preservation.json')));assert.equal(prior.lesson_sources.length,12);assert.deepEqual(preservation.lesson_sources.slice(0,12),prior.lesson_sources);assert.deepEqual(preservation.protected_calculus_sources,prior.protected_calculus_sources);
+    for(const name of ['ap-rates-content.mjs','ap-polynomial-content.mjs','ap-rational-content.mjs','ap-equivalence-content.mjs','ib-content.mjs','host.mjs'])assert.ok(sourceFiles.get('lessons/shared/investigations/'+name).bytes.equals(await readFile(path.join(root,'lessons/shared/investigations',name))));}
   await mkdir(tempRoot,{recursive:true});fixture=await mkdtemp(path.join(tempRoot,'ei-native-'));
   for(const row of rows){const target=path.join(fixture,'input',row.path);await mkdir(path.dirname(target),{recursive:true});await writeFile(target,sourceFiles.get(row.path).bytes);}
-  fixturePreparation=prepareFixture();assert.equal(fixturePreparation.routes,12);assert.equal(fixturePreparation.source_pins,81);assert.equal(fixturePreparation.changed,12);
+  fixturePreparation=prepareFixture();assert.equal(fixturePreparation.routes,15);assert.equal(fixturePreparation.source_pins,84);assert.equal(fixturePreparation.changed,15);
   stagedHTMLHashes=await stagedSnapshot();
   await new Promise((resolve,reject)=>{server.once('error',reject);server.listen(0,'127.0.0.1',()=>{server.removeListener('error',reject);resolve();});});
   base=`http://127.0.0.1:${server.address().port}/`;
@@ -163,10 +165,11 @@ try{
         const control=ranges.nth(r);await control.focus();await control.press('Home');await control.press('End');rangeChanges+=2;
         assert.equal(await page.locator('.ei-main').getByText('These inputs do not define a valid model.',{exact:false}).count(),0);
       }
+      for(const select of await page.locator('.ei-modeling-view select').all()){for(const value of await select.locator('option').evaluateAll(nodes=>nodes.map(n=>n.value))){await select.selectOption(value);assert.equal(await page.locator('[data-modeling-error]:not([hidden])').count(),0);}}
       const resets=page.getByRole('button',{name:/Reset model|Reset finance|Reset explorer/});if(await resets.count())await resets.first().click();
       await checkRangeReadouts(page,`${spec.key}/${i} reset`);
       await verifyNewModel(page);
-      await page.evaluate(()=>{const section=document.querySelector('.ei-rational-view,.ei-equivalence-view'),input=section?.querySelector('input');window.__detachedInvestigationProbe=section&&input?{section,input,html:section.innerHTML}:null;});
+      await page.evaluate(()=>{const section=document.querySelector('.ei-rational-view,.ei-equivalence-view,.ei-modeling-view'),input=section?.querySelector('input');window.__detachedInvestigationProbe=section&&input?{section,input,html:section.innerHTML}:null;});
       await activityButtons.nth(i).click();
       assert.equal(await page.evaluate(()=>{const value=window.__detachedInvestigationProbe;delete window.__detachedInvestigationProbe;if(!value)return true;value.input.value=value.input.max;value.input.dispatchEvent(new Event('input',{bubbles:true}));return !value.section.isConnected&&value.section.innerHTML===value.html;}),true,'Previous model was disposed, including detached control listeners');
       const shot=`${spec.key}-activity-${i+1}-desktop.png`;await page.screenshot({path:path.join(output,shot)});screens.push(shot);
@@ -201,7 +204,7 @@ try{
     results.push({key:spec.key,activities:count,rangeChanges,desktop:true,mobile:true,legacyStatePreserved:true,lessonDataHash:beforeLessonData,URLPreserved:true,noPersistence:true,noEvidenceEvents:true,modelDisposal:true,ownerRevocation:true});
     console.log(`PASS ${spec.key}: ${count} activities, ${rangeChanges} range changes, mobile and owner lifecycle`);await bounded(context.close(),10000,'context-close-timeout');contexts.delete(context);
   }
-  assert.equal(results.reduce((sum,row)=>sum+row.activities,0),57);assert.equal(results.slice(0,7).reduce((sum,row)=>sum+row.activities,0),36);
+  assert.equal(results.reduce((sum,row)=>sum+row.activities,0),69);assert.equal(results.slice(0,12).reduce((sum,row)=>sum+row.activities,0),57);assert.equal(results.slice(0,7).reduce((sum,row)=>sum+row.activities,0),36);
   const motionContext=await browser.newContext({viewport:{width:1440,height:1000},reducedMotion:'no-preference'});
   contexts.add(motionContext);
   await motionContext.route('**/*',route=>new URL(route.request().url()).origin===new URL(base).origin?route.continue():route.abort());
@@ -253,6 +256,6 @@ finally{
     await rm(fixture,{recursive:true,force:true});
   });
   if(!Object.values(cleanup).every(Boolean)){errors.push('One or more owned cleanup boundaries did not close.');process.exitCode=1;}
-  await writeFile(path.join(output,'browser-report.json'),JSON.stringify({schema:'echs.investigation-browser.v2',browser:version,scope:'Real headless browser against twelve routes staged with actual access-guard and investigation build transforms over exact candidate/base composition. Four authority scripts are explicitly stubbed for synthetic portal/owner state; no production authentication/backend claim. Source equality covers listed source files and 81 guarded inputs; additional legacy dependencies are captured on first serve and checked after execution. Staged hashes precede the separately declared synthetic bootstrap.',fixturePreparation:fixturePreparation??null,authorityStubs:[...authorityStubs],sourceHashesBefore,sourceHashes,sourceStable,guardedSourceHashes,stagedHTMLHashes,stagedStable,servedSources:[...servedSources].map(([path,{bytes}])=>({path,bytes:bytes.length,sha256:digest(bytes)})),cleanup,results,animation,screens,errors},null,2));
+  await writeFile(path.join(output,'browser-report.json'),JSON.stringify({schema:'echs.investigation-browser.v2',browser:version,scope:'Real headless browser against fifteen routes staged with actual access-guard and investigation build transforms over exact candidate/base composition. Four authority scripts are explicitly stubbed for synthetic portal/owner state; no production authentication/backend claim. Source equality covers listed source files and 84 guarded inputs; additional legacy dependencies are captured on first serve and checked after execution. Staged hashes precede the separately declared synthetic bootstrap.',fixturePreparation:fixturePreparation??null,authorityStubs:[...authorityStubs],sourceHashesBefore,sourceHashes,sourceStable,guardedSourceHashes,stagedHTMLHashes,stagedStable,servedSources:[...servedSources].map(([path,{bytes}])=>({path,bytes:bytes.length,sha256:digest(bytes)})),cleanup,results,animation,screens,errors},null,2));
   console.log(JSON.stringify({passed:results.length,errors,screenshots:screens.length,output}));
 }

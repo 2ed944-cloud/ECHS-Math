@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Add twelve public, stateless teaching adapters to the guarded Pages artifact.
+"""Add fifteen public, stateless teaching adapters to the guarded Pages artifact.
 
 Canonical lesson files and their immutable import identities remain unchanged.
 All source pins and all staged inputs are checked before any stage write.
@@ -32,6 +32,9 @@ ROUTES = {
     "lessons/ap-precalculus/unit-1/AP_Precalculus_1.9_Rational_Functions_and_Vertical_Asymptotes_ECHS_Refined.html": ("ap-rational-poles", "ap-precalculus", "../../shared/investigations/host.mjs"),
     "lessons/ap-precalculus/unit-1/AP_Precalculus_1.10_Rational_Functions_and_Holes_ECHS_Refined.html": ("ap-rational-holes", "ap-precalculus", "../../shared/investigations/host.mjs"),
     "lessons/ap-precalculus/unit-1/AP_Precalculus_1.11_Equivalent_Representations_of_Polynomial_and_Rational_Expressions_ECHS_Refined.html": ("ap-equivalent-forms", "ap-precalculus", "../../shared/investigations/host.mjs"),
+    "lessons/ap-precalculus/unit-1/AP_Precalculus_1.12_Transformations_of_Functions_ECHS_Refined.html": ("ap-function-transformations", "ap-precalculus", "../../shared/investigations/host.mjs"),
+    "lessons/ap-precalculus/unit-1/AP_Precalculus_1.13_Function_Model_Selection_and_Assumption_Articulation_ECHS_Refined.html": ("ap-model-selection", "ap-precalculus", "../../shared/investigations/host.mjs"),
+    "lessons/ap-precalculus/unit-1/AP_Precalculus_1.14_Function_Model_Construction_and_Application_ECHS_Refined.html": ("ap-model-construction", "ap-precalculus", "../../shared/investigations/host.mjs"),
 }
 COMMENT = "<!-- Optional stateless teaching investigations; existing deck and practice remain canonical. -->"
 GATE_STYLE = 'html:not([data-lesson-gate="allowed"]) body{visibility:hidden!important}'

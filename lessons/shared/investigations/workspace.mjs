@@ -2,6 +2,8 @@ import {AP_RATES_CONTENT} from './ap-rates-content.mjs';
 import {AP_POLYNOMIAL_CONTENT} from './ap-polynomial-content.mjs';
 import {AP_RATIONAL_CONTENT} from './ap-rational-content.mjs';
 import {AP_EQUIVALENCE_CONTENT} from './ap-equivalence-content.mjs';
+import {AP_MODELING_CONTENT} from './ap-modeling-content.mjs';
+import {mountModeling} from './modeling-view.mjs';
 import {mountRational} from './rational-view.mjs';
 import {mountEquivalence} from './equivalence-view.mjs';
 import {mountPolynomial} from './polynomial-view.mjs';
@@ -17,7 +19,7 @@ const VASE_SCENE=Object.freeze({id:'vessel',title:'Fill a vessel in three dimens
   'Water enters each idealized vessel at a constant volume rate. Predict how the height changes before testing the model. Equal amounts of water need not produce equal rises in height.',
   'Compare a cylinder with vessels that widen or narrow upward. The table uses equal time intervals. Use the height rates as evidence; a curved height graph is not automatically quadratic.'
 ],prompts:['Which vessel has constant average height rates over equal time intervals?','For a widening vessel, explain the changing height rates using the cross-sectional area.','Does half the capacity always mean half the height? Use two model measurements to justify your answer.']});
-const courses={ 'ap-rates':AP_RATES_CONTENT, ...AP_POLYNOMIAL_CONTENT, ...AP_RATIONAL_CONTENT, ...AP_EQUIVALENCE_CONTENT, ...IB_CONTENT };
+const courses={ 'ap-rates':AP_RATES_CONTENT, ...AP_POLYNOMIAL_CONTENT, ...AP_RATIONAL_CONTENT, ...AP_EQUIVALENCE_CONTENT, ...AP_MODELING_CONTENT, ...IB_CONTENT };
 let nextId=0;
 export function mountInvestigation({dialog,key,window:win,onClose}) {
   const doc=dialog.ownerDocument,data=courses[key];
@@ -28,7 +30,7 @@ export function mountInvestigation({dialog,key,window:win,onClose}) {
   const button=(text,fn,cls)=>{const n=el('button',text,cls);n.type='button';on(n,'click',fn);return n;};
   const scenes=[...data.scenes];if(key==='ap-rates')scenes.splice(Math.min(3,scenes.length),0,VASE_SCENE);
   const shell=el('div',undefined,'ei-shell'),header=el('header',undefined,'ei-header'),headingWrap=el('div');
-  const eyebrow=el('span',key==='ap-rates'?'AP Precalculus · Topic 1.3':(AP_POLYNOMIAL_CONTENT[key]||AP_RATIONAL_CONTENT[key]||AP_EQUIVALENCE_CONTENT[key])?`AP Precalculus · Topic ${data.topic}`:'IB Mathematics AI SL · First assessment 2021','ei-eyebrow');
+  const eyebrow=el('span',key==='ap-rates'?'AP Precalculus · Topic 1.3':(AP_POLYNOMIAL_CONTENT[key]||AP_RATIONAL_CONTENT[key]||AP_EQUIVALENCE_CONTENT[key]||AP_MODELING_CONTENT[key])?`AP Precalculus · Topic ${data.topic}`:'IB Mathematics AI SL · First assessment 2021','ei-eyebrow');
   const title=el('h1',data.title);title.id=`${uid}-title`;dialog.setAttribute('aria-labelledby',title.id);
   headingWrap.append(eyebrow,title);header.append(headingWrap,button('Return to lesson',onClose));
   const body=el('div',undefined,'ei-body'),nav=el('nav',undefined,'ei-nav'),main=el('main',undefined,'ei-main');nav.setAttribute('aria-label','Investigation activities');main.tabIndex=-1;
@@ -74,6 +76,7 @@ export function mountInvestigation({dialog,key,window:win,onClose}) {
     return {update(){label.textContent=getTask().label;clear();},clear(){input.value='';clear();}};
   }
   function mountModel(root,scene){
+    if(scene.model==='modeling'){const target=card('Connect the model and its representations');root.append(target);const view=mountModeling({root:target,window:win,scene});explain(root,scene);return()=>view.dispose();}
     if(scene.model==='rational'){const target=card('Explore the declared rational function');root.append(target);const view=mountRational({root:target,window:win,scene});explain(root,scene);return()=>view.dispose();}
     if(scene.model==='equivalence'){const target=card('Connect equivalent representations');root.append(target);const view=mountEquivalence({root:target,window:win,scene});explain(root,scene);return()=>view.dispose();}
     if(scene.model==='polynomial'){const target=card('Explore the declared polynomial');root.append(target);const view=mountPolynomial({root:target,window:win,scene});explain(root,scene);return()=>view.dispose();}

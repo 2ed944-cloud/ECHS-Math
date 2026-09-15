@@ -55,10 +55,12 @@ jobs:
         run: |
           git fetch --no-tags --depth=1 origin dcc65f84dafd2dc5cb4518ea03d18b4087ddf4ff
           git fetch --no-tags --depth=1 origin 77fe3c6ac85c6796415237ced26731ab3e307195
+          git fetch --no-tags --depth=1 origin b6aca24dd2a45103a8f0d238ca40d122329f557b
           python - <<'PY'
           import hashlib, json, os, pathlib, re, subprocess
           old = 'dcc65f84dafd2dc5cb4518ea03d18b4087ddf4ff'
           recent = '77fe3c6ac85c6796415237ced26731ab3e307195'
+          modeling = 'b6aca24dd2a45103a8f0d238ca40d122329f557b'
           specs = [
               ('tools/ib-lesson-quality/baseline-pins.json', 'baseline_main', old, 5),
               ('tools/lesson-investigations/polynomial-baseline-pins.json', 'baseline_main', old, 3),
@@ -67,6 +69,7 @@ jobs:
               ('tools/ap-legacy-quality/ap17-baseline-pins.json', 'baseline_main', recent, 1),
               ('tools/ib-technology-quality/baseline-pins.json', 'baseline_commit', recent, 1),
               ('tools/lesson-investigations/rational-content-baseline-pins.json', 'baseline_main', recent, 5),
+              ('tools/lesson-investigations/modeling-content-baseline-pins.json', 'baseline_commit', modeling, 3),
           ]
           root = pathlib.Path(os.environ['RUNNER_TEMP']) / 'lesson-quality-baseline'
           assert not root.exists(), 'Baseline destination must be fresh'
@@ -77,6 +80,9 @@ jobs:
           for index, (name, commit_key, commit, count) in enumerate(specs):
               metadata = json.loads(pathlib.Path(name).read_text(encoding='utf-8'), object_pairs_hook=unique)
               assert metadata[commit_key] == commit
+              if commit == modeling:
+                  assert set(metadata) == {'baseline_commit', 'status', 'files'}
+                  assert metadata['status'] == 'accepted-parent-source'
               assert type(metadata['files']) is list and len(metadata['files']) == count
               for row in metadata['files']:
                   assert type(row) is dict and type(row.get('path')) is str
@@ -99,9 +105,10 @@ jobs:
                   if index < 2:
                       assert value not in initial, 'Original eight sources must be unique'
                       initial.add(value)
-          assert len(initial) == 8 and len(targets) == 19 and len(identities) == 19
+          assert len(initial) == 8 and len(targets) == 22 and len(identities) == 22
           assert sum(commit == old for commit, _ in targets) == 13
           assert sum(commit == recent for commit, _ in targets) == 6
+          assert sum(commit == modeling for commit, _ in targets) == 3
           planned = {}
           for (value, commit, digest), (size, _) in identities.items():
               data = subprocess.run(['git', 'show', commit + ':' + value], check=True, capture_output=True).stdout
@@ -110,12 +117,12 @@ jobs:
               if target_key in planned:
                   assert planned[target_key] == data, 'Conflicting verified baseline bodies'
               planned[target_key] = data
-          assert len(planned) == 19
+          assert len(planned) == 22
           for (commit, value), data in planned.items():
               target = root.joinpath(commit, *pathlib.PurePosixPath(value).parts)
               target.parent.mkdir(parents=True, exist_ok=True)
               target.write_bytes(data)
-          print('Verified 19 deduplicated originals in separate commit namespaces under RUNNER_TEMP only.')
+          print('Verified 22 deduplicated originals in three commit namespaces under RUNNER_TEMP only.')
           PY
       - name: Install pinned test dependencies
         run: |
@@ -153,6 +160,13 @@ jobs:
           node tools/lesson-investigations/test-legacy-transform-renderers.mjs --repo . --baseline-root "$RUNNER_TEMP/lesson-quality-baseline/dcc65f84dafd2dc5cb4518ea03d18b4087ddf4ff"
           node tools/ap-legacy-quality/test-ap17-figures.mjs --repo . --baseline-root "$RUNNER_TEMP/lesson-quality-baseline/77fe3c6ac85c6796415237ced26731ab3e307195"
           node tools/ib-technology-quality/test-technology.mjs --repo . --baseline-root "$RUNNER_TEMP/lesson-quality-baseline/77fe3c6ac85c6796415237ced26731ab3e307195" --report "$RUNNER_TEMP/ib-technology-components.json"
+          node tools/lesson-investigations/test-ap-transform-model.mjs --repo .
+          node tools/lesson-investigations/test-ap-model-selection-model.mjs --repo .
+          node tools/lesson-investigations/test-ap-model-construction-model.mjs --repo .
+          node tools/lesson-investigations/test-ap-modeling-content.mjs --repo . --baseline-root "$RUNNER_TEMP/lesson-quality-baseline/b6aca24dd2a45103a8f0d238ca40d122329f557b"
+          node tools/lesson-investigations/test-transform-view.mjs --repo .
+          node tools/lesson-investigations/test-model-selection-view.mjs --repo .
+          node tools/lesson-investigations/test-model-construction-view.mjs --repo .
       - name: Exercise all activities in a native browser
         env:
           ECHS_PLAYWRIGHT_MODULE: ${{ github.workspace }}/question-bank/official/tools/node_modules/playwright
@@ -178,6 +192,10 @@ jobs:
         env:
           ECHS_PLAYWRIGHT_MODULE: ${{ github.workspace }}/question-bank/official/tools/node_modules/playwright
         run: node tools/ib-technology-quality/test-native.mjs --repo . --report-dir "$RUNNER_TEMP/ib-technology-native"
+      - name: Exercise transformations, model comparison and construction boundaries
+        env:
+          ECHS_PLAYWRIGHT_MODULE: ${{ github.workspace }}/question-bank/official/tools/node_modules/playwright
+        run: node tools/lesson-investigations/test-modeling-native.mjs --repo . --report-dir "$RUNNER_TEMP/modeling-native"
       - name: Upload original teaching activity evidence
         if: always()
         uses: actions/upload-artifact@v4
@@ -224,5 +242,13 @@ jobs:
           path: |
             ${{ runner.temp }}/ib-technology-native
             ${{ runner.temp }}/ib-technology-components.json
+          if-no-files-found: error
+          retention-days: 14
+      - name: Upload synthetic AP modeling component evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ap-modeling-components-browser
+          path: ${{ runner.temp }}/modeling-native
           if-no-files-found: error
           retention-days: 14

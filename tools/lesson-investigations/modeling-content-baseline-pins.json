@@ -1,0 +1,9 @@
+{
+  "baseline_commit": "b6aca24dd2a45103a8f0d238ca40d122329f557b",
+  "status": "accepted-parent-source",
+  "files": [
+    {"path":"lessons/ap-precalculus/unit-1/AP_Precalculus_1.12_Transformations_of_Functions_ECHS_Refined.html","bytes":1306992,"sha256":"ac25a0e8da9597e519cc368699d3ef1a11c428a57ec9819881f028c698be0f73"},
+    {"path":"lessons/ap-precalculus/unit-1/AP_Precalculus_1.13_Function_Model_Selection_and_Assumption_Articulation_ECHS_Refined.html","bytes":1304474,"sha256":"6c3a6768d4a72e5fe26750aa065b17f3e5147f3a30748863122bde67feb8f0ae"},
+    {"path":"lessons/ap-precalculus/unit-1/AP_Precalculus_1.14_Function_Model_Construction_and_Application_ECHS_Refined.html","bytes":1322000,"sha256":"b5f8a7b64d72cb4982abc666f3ca77b49f9ceb8ea5210211caf7389eaf3f4d0e"}
+  ]
+}

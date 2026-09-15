@@ -58,7 +58,7 @@ class InjectionTests(unittest.TestCase):
     def staged(self):
         return {p: (self.stage / p).read_bytes() for p in injector.ROUTES if (self.stage / p).exists()}
 
-    def test_01_pure_transform_twelve_routes_byte_preservation_and_idempotence(self):
+    def test_01_pure_transform_fifteen_routes_byte_preservation_and_idempotence(self):
         for relative_path, before in self.staged().items():
             after = injector.inject_html(before, relative_path)
             self.assertEqual(after.replace(injector.hook(relative_path).encode(), b"", 1), before)
@@ -70,8 +70,8 @@ class InjectionTests(unittest.TestCase):
         code = "import {INVESTIGATION_HOSTS} from " + json.dumps(module) + "; console.log(JSON.stringify(INVESTIGATION_HOSTS));"
         result = subprocess.run(["node", "--input-type=module", "-e", code], capture_output=True, text=True, timeout=20, check=True)
         rows = json.loads(result.stdout)
-        self.assertEqual(len(rows), 12)
-        self.assertEqual([row['key'] for row in rows], ['ap-rates', 'arithmetic', 'geometric', 'finance', 'ap-polynomial-rates', 'ap-polynomial-zeros', 'ap-polynomial-tails', 'ap-rational-tails', 'ap-rational-zeros', 'ap-rational-poles', 'ap-rational-holes', 'ap-equivalent-forms'])
+        self.assertEqual(len(rows), 15)
+        self.assertEqual([row['key'] for row in rows], ['ap-rates', 'arithmetic', 'geometric', 'finance', 'ap-polynomial-rates', 'ap-polynomial-zeros', 'ap-polynomial-tails', 'ap-rational-tails', 'ap-rational-zeros', 'ap-rational-poles', 'ap-rational-holes', 'ap-equivalent-forms', 'ap-function-transformations', 'ap-model-selection', 'ap-model-construction'])
         self.assertEqual(rows, [{"key": key, "course": course, "path": path} for path, (key, course, _) in injector.ROUTES.items()])
         for path, (_, _, module_path) in injector.ROUTES.items():
             self.assertEqual((self.source / path).parent.joinpath(module_path).resolve(), (self.source / "lessons/shared/investigations/host.mjs").resolve())
@@ -121,23 +121,23 @@ class InjectionTests(unittest.TestCase):
             self.assertTrue(guard.inject_lesson(self.root/'guard-output',target))
             self.assertEqual(target.read_bytes(),injector.guarded_projection(self.source,path,raw))
 
-    def test_08_all_twelve_prevalidated_before_any_stage_write(self):
+    def test_08_all_fifteen_prevalidated_before_any_stage_write(self):
         paths=list(injector.ROUTES);last=self.stage/paths[-1]
         last.write_bytes(last.read_bytes().replace(b'Original teaching',b'Tampered teaching'))
         before=self.staged();self.rejected(lambda: injector.run(self.stage,self.source));self.assertEqual(before,self.staged())
 
-    def test_09_each_of_81_source_mutations_rejected_without_stage_writes(self):
+    def test_09_each_of_84_source_mutations_rejected_without_stage_writes(self):
         before=self.staged()
-        self.assertEqual(len(self.metadata['lesson_sources'])+len(self.metadata['protected_calculus_sources']),81)
+        self.assertEqual(len(self.metadata['lesson_sources'])+len(self.metadata['protected_calculus_sources']),84)
         for row in self.metadata['lesson_sources']+self.metadata['protected_calculus_sources']:
             path=self.source/row['path'];raw=path.read_bytes();path.write_bytes(bytes([raw[0]^1])+raw[1:])
             self.rejected(lambda: injector.run(self.stage,self.source));self.assertEqual(before,self.staged());path.write_bytes(raw)
 
-    def test_10_success_changes_only_twelve_staged_files_and_is_idempotent(self):
+    def test_10_success_changes_only_fifteen_staged_files_and_is_idempotent(self):
         other=self.stage/'untouched.html';other.write_bytes(b'Protected unchanged stage file')
         sources={r['path']:(self.source/r['path']).read_bytes() for r in self.metadata['lesson_sources']+self.metadata['protected_calculus_sources']}
-        self.assertEqual(injector.run(self.stage,self.source),{'status':'PASS','routes':12,'source_pins':81,'changed':12,'already_present':0})
-        once=self.staged();self.assertEqual(injector.run(self.stage,self.source)['already_present'],12);self.assertEqual(once,self.staged())
+        self.assertEqual(injector.run(self.stage,self.source),{'status':'PASS','routes':15,'source_pins':84,'changed':15,'already_present':0})
+        once=self.staged();self.assertEqual(injector.run(self.stage,self.source)['already_present'],15);self.assertEqual(once,self.staged())
         self.assertEqual(other.read_bytes(),b'Protected unchanged stage file')
         for path,raw in sources.items():self.assertEqual((self.source/path).read_bytes(),raw)
 
