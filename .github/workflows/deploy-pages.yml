@@ -61,6 +61,7 @@ on:
       - "tools/inject_learning_access_guard.py"
       - "tools/inject_lesson_investigations.py"
       - "tools/lesson-investigations/**"
+      - "tools/test_pages_live_contract.py"
       - "tools/test_learning_access_contract.py"
       - "tools/test_lesson_visibility_contract.py"
       - "tools/test_lesson_visibility_progression.mjs"
@@ -97,6 +98,9 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+
+      - name: Verify live Pages contract regressions
+        run: python tools/test_pages_live_contract.py --repo .
 
       - name: Set up Node
         uses: actions/setup-node@v4
@@ -324,7 +328,7 @@ jobs:
               "lesson-1.4-ti84-finance-inline-v6-3.js" not in text["finance"],
               "lesson-1.6-multiplicity-2-fix-v6-3-3.js" in text["technology"],
               "unit-1-gdc-integration-v7.css" in text["technology"],
-              "unit-1-gdc-integration-v7.js" in text["technology"],
+              "unit-1-gdc-integration-lesson-quality-v1.js" in text["technology"],
               "lesson-1.6-ti84-classroom-runtime-v6-2-1.js" not in text["technology"],
               "lesson-1.6-ti84-inline-dock-v6-3.js" not in text["technology"],
               'const VERSION = "echs-platform-school-control-v3-' in text["worker"],
