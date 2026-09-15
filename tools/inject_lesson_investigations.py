@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Add seven public, stateless teaching adapters to the guarded Pages artifact.
+"""Add twelve public, stateless teaching adapters to the guarded Pages artifact.
 
 Canonical lesson files and their immutable import identities remain unchanged.
 All source pins and all staged inputs are checked before any stage write.
@@ -27,6 +27,11 @@ ROUTES = {
     "lessons/ap-precalculus/unit-1/AP_Precalculus_1.4_Polynomial_Functions_and_Rates_of_Change_ECHS_Refined.html": ("ap-polynomial-rates", "ap-precalculus", "../../shared/investigations/host.mjs"),
     "lessons/ap-precalculus/unit-1/AP_Precalculus_1.5_Polynomial_Functions_and_Complex_Zeros_ECHS_Refined.html": ("ap-polynomial-zeros", "ap-precalculus", "../../shared/investigations/host.mjs"),
     "lessons/ap-precalculus/unit-1/AP_Precalculus_1.6_Polynomial_Functions_and_End_Behavior_ECHS_Refined.html": ("ap-polynomial-tails", "ap-precalculus", "../../shared/investigations/host.mjs"),
+    "lessons/ap-precalculus/unit-1/AP_Precalculus_1.7_Rational_Functions_and_End_Behavior_ECHS_Refined.html": ("ap-rational-tails", "ap-precalculus", "../../shared/investigations/host.mjs"),
+    "lessons/ap-precalculus/unit-1/AP_Precalculus_1.8_Rational_Functions_and_Zeros_ECHS_Refined.html": ("ap-rational-zeros", "ap-precalculus", "../../shared/investigations/host.mjs"),
+    "lessons/ap-precalculus/unit-1/AP_Precalculus_1.9_Rational_Functions_and_Vertical_Asymptotes_ECHS_Refined.html": ("ap-rational-poles", "ap-precalculus", "../../shared/investigations/host.mjs"),
+    "lessons/ap-precalculus/unit-1/AP_Precalculus_1.10_Rational_Functions_and_Holes_ECHS_Refined.html": ("ap-rational-holes", "ap-precalculus", "../../shared/investigations/host.mjs"),
+    "lessons/ap-precalculus/unit-1/AP_Precalculus_1.11_Equivalent_Representations_of_Polynomial_and_Rational_Expressions_ECHS_Refined.html": ("ap-equivalent-forms", "ap-precalculus", "../../shared/investigations/host.mjs"),
 }
 COMMENT = "<!-- Optional stateless teaching investigations; existing deck and practice remain canonical. -->"
 GATE_STYLE = 'html:not([data-lesson-gate="allowed"]) body{visibility:hidden!important}'

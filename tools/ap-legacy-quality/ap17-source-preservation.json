@@ -1,0 +1,22 @@
+{
+  "path": "lessons/ap-precalculus/unit-1/AP_Precalculus_1.7_Rational_Functions_and_End_Behavior_ECHS_Refined.html",
+  "original_bytes": 1300487,
+  "original_sha256": "e8a25483949458b822453c3bf218200d20eeff9bb53cb62e210dfb63125921ae",
+  "candidate_bytes": 1301534,
+  "candidate_sha256": "0644db81a6a8758e8b37d120c4995763a2870004512ed8ee23bddfb1bb4f3dc9",
+  "schema": "echs.ap17.figure-source-preservation.v2",
+  "baseline_main": "77fe3c6ac85c6796415237ced26731ab3e307195",
+  "canvas_changes": [
+    {
+      "identity": "unit-figure-caption-17",
+      "before_sha256": "c6ae712e8dff6dd3f26a2710b4479c191c48b89e88e5b59c274d23802b4c5251",
+      "after_sha256": "ccf7861b0b42fa2860b321697bc8109ed0f8fd6f624fd5d6e0b6e89d8f9e31c1"
+    },
+    {
+      "identity": "unit-figure-caption-18",
+      "before_sha256": "cd44c45009c7012be2a2bf29b49214cdf9cbf9204ccf71eeca5bbc883eb0e9d7",
+      "after_sha256": "6af4e9deff04980375e490cd51014b9c18b6dcedde34bdd5fe7abdcbdcb19633"
+    }
+  ],
+  "insertion_sha256": "a454b33d3ce7b62ad8d7bc4c0e0107bab25860a8e3bd126709efc37f88b3a051"
+}

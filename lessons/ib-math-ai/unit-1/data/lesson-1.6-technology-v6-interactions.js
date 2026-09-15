@@ -70,7 +70,12 @@ function mountResidual(root){
   root.innerHTML=`<div class="te-residual-shell"><div class="te-residual-equations"><b>Candidate for</b><span data-te-tex="5x-2y=4"></span><span data-te-tex="3x+y=13"></span></div><div class="te-residual-inputs"><label>x<input type="number" step="0.000001" value="2.727273" data-residual="x"></label><label>y<input type="number" step="0.000001" value="4.818182" data-residual="y"></label><div class="te-lab-presets"><button type="button" data-rpreset="exact">Exact</button><button type="button" data-rpreset="rounded">Rounded</button><button type="button" data-rpreset="wrong">Incorrect</button></div></div><div class="te-residual-output" aria-live="polite"></div></div>`;
   const x=root.querySelector('[data-residual="x"]'),y=root.querySelector('[data-residual="y"]'),out=root.querySelector('.te-residual-output');
   const update=()=>{
-    const xv=Number(x.value),yv=Number(y.value),r1=5*xv-2*yv-4,r2=3*xv+yv-13,max=Math.max(Math.abs(r1),Math.abs(r2));
+    const rawX=x.value.trim(),rawY=y.value.trim();
+    const numeric=value=>/^[+-]?(?:\d+\.?\d*|\.\d+)(?:e[+-]?\d+)?$/i.test(value);
+    const xv=Number(rawX),yv=Number(rawY),r1=5*xv-2*yv-4,r2=3*xv+yv-13,max=Math.max(Math.abs(r1),Math.abs(r2));
+    if(!numeric(rawX)||!numeric(rawY)||![xv,yv,r1,r2,max].every(Number.isFinite)){
+      out.className='te-residual-output invalid';out.innerHTML='<p>Enter finite decimal numbers for both x and y whose residuals are finite.</p>';return;
+    }
     const kind=max<1e-10?'exact':max<5e-6?'close':'wrong';
     const message=kind==='exact'?'Both equations are satisfied exactly at the displayed precision.':kind==='close'?'Residuals are very small; the candidate is consistent with six-decimal rounding.':'At least one residual is too large for a claimed precise solution.';
     out.className=`te-residual-output ${kind}`;out.innerHTML=`<div><span>r₁</span><b>${format(r1,8)}</b></div><div><span>r₂</span><b>${format(r2,8)}</b></div><div><span>max |r|</span><b>${format(max,8)}</b></div><p>${message}</p>`;
@@ -103,8 +108,8 @@ function mountPolynomial(root){
     const r=Object.values(fields).map(node=>Number(node.value));Object.keys(fields).forEach((key,index)=>root.querySelector(`[data-pout="${key}"]`).textContent=r[index]);
     const s1=r[0]+r[1]+r[2],s2=r[0]*r[1]+r[0]*r[2]+r[1]*r[2],s3=r[0]*r[1]*r[2];
     factor.textContent=r.map(factorTerm).join('');expanded.textContent=polynomialText(-s1,s2,-s3);
-    const samples=[];for(let i=0;i<=220;i++){const x=-5+i/220*10;samples.push([x,f(x,r)]);}const ys=samples.map(item=>item[1]);let max=Math.max(6,...ys.map(Math.abs));max=Math.min(160,max*1.08);const min=-max;
-    curve.setAttribute('d',samples.map(([x,y],index)=>`${index?'L':'M'} ${sx(x)} ${sy(clamp(y,min,max),min,max)}`).join(' '));
+    const samples=[];for(let i=0;i<=220;i++){const x=-5+i/220*10;samples.push([x,f(x,r)]);}const ys=samples.map(item=>item[1]);const max=Math.max(6,...ys.map(Math.abs))*1.08,min=-max;
+    curve.setAttribute('d',samples.map(([x,y],index)=>`${index?'L':'M'} ${sx(x)} ${sy(y,min,max)}`).join(' '));
     axes.innerHTML=`<line x1="42" y1="${sy(0,min,max)}" x2="528" y2="${sy(0,min,max)}"></line><line x1="${sx(0)}" y1="42" x2="${sx(0)}" y2="294"></line>`;
     points.innerHTML=[...new Set(r)].map(value=>`<circle cx="${sx(value)}" cy="${sy(0,min,max)}" r="7"></circle><text x="${sx(value)}" y="${sy(0,min,max)+24}" text-anchor="middle">${value}</text>`).join('');
     const counts=r.reduce((map,value)=>(map[value]=(map[value]||0)+1,map),{});const multiplicity=Object.entries(counts).map(([value,count])=>`${value}: multiplicity ${count}`).join(' · ');

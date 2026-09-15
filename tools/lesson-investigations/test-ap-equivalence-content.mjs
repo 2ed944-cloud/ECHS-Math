@@ -1,0 +1,78 @@
+/** Independent AP1.11 content/model checks; exact interpolation and division oracles. */
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+import {dirname,resolve} from 'node:path';
+import {fileURLToPath,pathToFileURL} from 'node:url';
+const option=name=>{const i=process.argv.indexOf(name);return i<0?null:process.argv[i+1];};
+const repo=resolve(option('--repo')||resolve(dirname(fileURLToPath(import.meta.url)),'../..'));
+assert.ok(option('--baseline-root'),'Supply the exact historical lesson using --baseline-root.');
+const baseline=resolve(option('--baseline-root'));
+const {AP_EQUIVALENCE_CONTENT:content}=await import(pathToFileURL(resolve(repo,'lessons/shared/investigations/ap-equivalence-content.mjs')));
+const {quotientRemainder,quotientAt,sampleQuotient,binomialRow}=await import(pathToFileURL(resolve(repo,'lessons/shared/investigations/ap-equivalence-model.mjs')));
+const lesson=content['ap-equivalent-forms'],scene=id=>{const s=lesson.scenes.find(s=>s.id===id);assert.ok(s);return s;};
+const says=(id,...values)=>{const s=scene(id),text=[...s.text,...s.prompts,...s.worked].join('\n');for(const value of values)assert.ok(text.includes(value),`${id}: ${value}`);};
+const near=(a,b)=>assert.ok(Number.isFinite(a)&&Math.abs(a-b)<=3e-11*Math.max(1,Math.abs(b)),`${a} != ${b}`);
+const deepFrozen=value=>{if(value&&typeof value==='object'){assert.ok(Object.isFrozen(value));Object.values(value).forEach(deepFrozen);}if(typeof value==='number')assert.equal(Object.is(value,-0),false);};
+const gcd=(a,b)=>{a=a<0n?-a:a;b=b<0n?-b:b;while(b)[a,b]=[b,a%b];return a;};
+const Q=(n,d=1n)=>{n=BigInt(n);d=BigInt(d);assert.notEqual(d,0n);if(d<0n){n=-n;d=-d;}const g=gcd(n,d);return[n/g,d/g];};
+const add=(a,b)=>Q(a[0]*b[1]+b[0]*a[1],a[1]*b[1]),neg=a=>[-a[0],a[1]],sub=(a,b)=>add(a,neg(b)),mul=(a,b)=>Q(a[0]*b[0],a[1]*b[1]),div=(a,b)=>Q(a[0]*b[1],a[1]*b[0]);
+const numeric=q=>Number(q[0])/Number(q[1]);
+const trim=p=>{const a=[...p];while(a.length&&a.at(-1)[0]===0n)a.pop();return a;};
+function dividePolynomials(numerator,denominator){let remainder=trim(numerator),den=trim(denominator);assert.ok(den.length);const quotient=Array(Math.max(0,remainder.length-den.length+1)).fill(null).map(()=>Q(0));while(remainder.length>=den.length){const power=remainder.length-den.length,c=div(remainder.at(-1),den.at(-1));quotient[power]=c;for(let j=0;j<den.length;j++)remainder[power+j]=sub(remainder[power+j],mul(c,den[j]));remainder=trim(remainder);}return{quotient:trim(quotient),remainder};}
+// Recover coefficients from exact output samples via Newton's falling-factorial basis.
+// No binomial coefficient formula or repeated multiplication of (a*x+b) is used.
+function interpolateInteger(values){let level=values.map(BigInt),falling=[1n],factorial=1n;const coeff=Array(values.length).fill(0n);for(let k=0;k<values.length;k++){if(k){factorial*=BigInt(k);const next=Array(falling.length+1).fill(0n);for(let j=0;j<falling.length;j++){next[j]-=BigInt(k-1)*falling[j];next[j+1]+=falling[j];}falling=next;}assert.equal(level[0]%factorial,0n);const scale=level[0]/factorial;falling.forEach((v,j)=>coeff[j]+=v*scale);level=level.slice(1).map((v,j)=>v-level[j]);}return coeff;}
+const binomialOracle=({a,b,n})=>interpolateInteger(Array.from({length:n+1},(_,x)=>(BigInt(a*4)*BigInt(x)+BigInt(b*4))**BigInt(n))).map(v=>Q(v,4n**BigInt(n)));
+const degree=coeff=>{const p=trim(coeff);return p.length?p.length-1:null;};
+const horner=(descending,x)=>descending.reduce((out,c)=>out*x+c,0);
+function divisionOracle({a,b,c,r}){const [A,B,C,R]=[a,b,c,r].map(v=>BigInt(v*4));const samples=[0n,1n,2n].map(x=>(A*x+B)*(4n*x-C)+4n*R);const numerator=interpolateInteger(samples).map(v=>Q(v,16));return{numerator,...dividePolynomials(numerator,[Q(-C,4),Q(1)])};}
+const controlValues=c=>[...new Set([c.min,-c.step,0,c.step,c.max].filter(v=>v>=c.min&&v<=c.max))];
+const cartesian=(controls,initial,values=controlValues)=>controls.reduce((rows,c)=>rows.flatMap(row=>values(c).map(v=>({...row,[c.key]:v}))),[{...initial}]);
+const inputValues={a:1,b:1,c:2,r:3};
+
+ test('01 five scenes preserve original AP1.11 metadata, domains and exact historical source pin',async()=>{
+ assert.deepEqual(Object.keys(content),['ap-equivalent-forms']);assert.equal(lesson.curriculum.version,'ap-precalculus-2026-27');assert.deepEqual(lesson.curriculum.learningObjectives,['1.11.A','1.11.B','1.11.C']);assert.deepEqual(lesson.curriculum.essentialKnowledge,['1.11.A.1','1.11.A.2','1.11.A.3','1.11.B.1','1.11.B.2','1.11.C.1']);assert.deepEqual(lesson.curriculum.practices,['1.B','3.B','3.C']);assert.deepEqual(lesson.provenance,{type:'original-teaching-examples',restrictedMaterialCopied:false,awardsMastery:false,calculatorPolicy:'calculator_optional'});
+ assert.equal(lesson.pin.path,'lessons/ap-precalculus/unit-1/AP_Precalculus_1.11_Equivalent_Representations_of_Polynomial_and_Rational_Expressions_ECHS_Refined.html');assert.equal(lesson.pin.sha256,'ceba826c2f3439cad3c436b8e37423961a91cd37b3382ebd4d81671e24cdfc37');assert.equal(createHash('sha256').update(await readFile(resolve(baseline,lesson.pin.path))).digest('hex'),lesson.pin.sha256);
+ assert.deepEqual(lesson.sourceRefs.map(r=>r.url),['https://apcentral.collegeboard.org/media/pdf/ap-precalculus-course-and-exam-description.pdf','https://apcentral.collegeboard.org/media/pdf/ap-precalculus-ced-clarification-and-guidance-effective-fall-2026.pdf']);for(const r of lesson.sourceRefs)assert.equal(r.checked,'2026-09-14');deepFrozen(content);
+ assert.equal(lesson.scenes.length,5);assert.equal(new Set(lesson.scenes.map(s=>s.id)).size,5);assert.deepEqual(lesson.scenes.map(s=>s.kind),['warmup','discover','notes','discover','transfer']);assert.deepEqual(lesson.scenes.map(s=>s.model),[null,'equivalence',null,'equivalence',null]);for(const s of lesson.scenes){for(const k of ['text','prompts','worked'])assert.ok(s[k].length>=2&&s[k].every(v=>typeof v==='string'&&v.trim().length));if(s.model===null){assert.deepEqual(s.initial,{});assert.deepEqual(s.controls,[]);}}
+ });
+ test('02 declared control endpoints and zero settings round-trip without modifying scene inputs',()=>{
+ const division=scene('equivalence-division-explorer'),binomial=scene('equivalence-binomial-explorer');assert.deepEqual(division.initial,inputValues);assert.deepEqual(binomial.initial,{a:2,b:-1,n:3});assert.equal(division.family,'quotient-remainder');assert.equal(binomial.family,'binomial');const cases=[];
+ for(const [s,api,keys]of [[division,quotientRemainder,['a','b','c','r']],[binomial,binomialRow,['a','b','n']]]){assert.deepEqual(Object.keys(s.initial),keys);assert.deepEqual(s.controls.map(c=>c.key),keys);for(const c of s.controls){assert.deepEqual(Object.keys(c).sort(),['key','label','min','max','step'].sort());assert.ok(c.min<c.max&&c.step>0&&Number.isInteger((c.max-c.min)/c.step));assert.ok(s.initial[c.key]>=c.min&&s.initial[c.key]<=c.max);}for(const input of cartesian(s.controls,s.initial)){const copy={...input},model=api(input);assert.deepEqual(model.input,input);assert.deepEqual(input,copy);assert.deepEqual(api(model.input),model);cases.push(input);}}
+ assert.equal(cases.length,675); // 5^4 quotient corners/zero-neighbors plus 5*5*2 exponent endpoints.
+ });
+ test('03 independent exact interpolation plus generic polynomial division checks 625 quotient inputs',()=>{
+ const s=scene('equivalence-division-explorer');let checked=0;for(const input of cartesian(s.controls,s.initial)){const oracle=divisionOracle(input),model=quotientRemainder(input);assert.deepEqual(model.numerator.coefficients,oracle.numerator.slice().reverse().map(numeric));const q=oracle.quotient.slice().reverse().map(numeric);assert.deepEqual(model.quotient.coefficients.slice(2-q.length),q);assert.equal(model.quotient.degree,degree(oracle.quotient));assert.equal(model.numerator.degree,degree(oracle.numerator));assert.deepEqual(oracle.remainder,input.r===0?[]:[Q(input.r*4,4)]);assert.equal(model.remainder,input.r);for(const x of [-5,-.5,0,.5,5]){const row=quotientAt(input,x);if(x===input.c){assert.equal(row.y,null);continue;}near(row.y,horner(model.numerator.coefficients,x)/(x-input.c));near((x-input.c)*row.quotientY+input.r,horner(model.numerator.coefficients,x));}checked++;}assert.equal(checked,625);
+ });
+ test('04 200 binomial corner/zero inputs use finite-difference interpolation and subset-count Pascal rows',()=>{
+ let cases=0;for(const a of [-4,-.25,0,.25,4])for(const b of [-4,-.25,0,.25,4])for(let n=1;n<=8;n++){const input={a,b,n},oracle=binomialOracle(input),model=binomialRow(input),expected=oracle.slice().reverse().map(numeric);assert.deepEqual(model.coefficients,expected);assert.equal(model.degree,degree(oracle));assert.equal(model.zeroPolynomial,degree(oracle)===null);const combinations=Array(n+1).fill(0);for(let subset=0;subset<2**n;subset++){let k=0;for(let j=0;j<n;j++)if(subset&(1<<j))k++;combinations[k]++;}assert.deepEqual(model.choose,combinations);assert.equal(model.terms.length,n+1);model.terms.forEach((term,k)=>assert.deepEqual(term,{k,choose:combinations[k],aPower:n-k,bPower:k,xPower:n-k,coefficient:expected[k]}));for(const x of [-2,-.5,0,.5,2])near(horner(expected,x),(a*x+b)**n);cases++;}assert.equal(cases,200);
+ });
+ test('05 sampled and unsampled exclusions split every segment, including zero functions and zero remainders',()=>{
+ let checked=0;for(const c of [-4,-1.75,0,.125,2,4])for(const r of [-.25,0,.25])for(const [a,b]of [[0,0],[0,1],[1,-2]]){const input={a,b,c,r},model=sampleQuotient(input,{start:-5,step:.5,count:20});assert.equal(model.rows.length,21);for(const row of model.rows){assert.deepEqual(row,quotientAt(input,row.x));assert.equal(row.x===c,row.kind!=='defined');}const flattened=model.segments.flat();assert.deepEqual(flattened,model.rows.filter(r=>r.kind==='defined').map(({x,y})=>({x,y})));for(const segment of model.segments)for(let i=1;i<segment.length;i++)assert.ok(!(segment[i-1].x<c&&c<segment[i].x));assert.equal(model.segments.length,2);checked++;}assert.equal(checked,54);
+ const exact={a:0,b:2,c:1,r:0};assert.equal(quotientAt(exact,1).y,null);assert.equal(quotientAt(exact,1+Number.EPSILON).y,2);
+ });
+ test('06 degenerate degrees, tiny nonzero remainders and fixed failures remain honest',()=>{
+ for(const c of [-4,0,4]){const zero=quotientRemainder({a:0,b:0,c,r:0});assert.equal(zero.numerator.degree,null);assert.equal(zero.quotient.degree,null);assert.equal(zero.exclusion.kind,'hole');assert.equal(zero.exclusion.y,0);assert.equal(quotientAt(zero.input,c).y,null);const constant=quotientRemainder({a:0,b:2,c,r:0});assert.equal(constant.numerator.degree,1);assert.equal(constant.quotient.degree,0);assert.equal(constant.trend.coincidesOnDomain,true);}
+ for(const r of [-Number.MIN_VALUE,Number.MIN_VALUE]){const model=quotientRemainder({a:0,b:0,c:0,r});assert.equal(model.exclusion.kind,'pole');assert.equal(model.exclusion.leftLimit.kind,r>0?'negative-infinity':'positive-infinity');assert.equal(model.exclusion.rightLimit.kind,r>0?'positive-infinity':'negative-infinity');assert.equal(quotientAt(model.input,r).y,1);}
+ for(const input of [{...inputValues,a:true},{...inputValues,r:Infinity},{...inputValues,c:4.1},{...inputValues,extra:1}])assert.throws(()=>quotientRemainder(input),e=>e instanceof RangeError&&e.message==='Invalid AP equivalence model input.');let called=false;const hostile={...inputValues};Object.defineProperty(hostile,'a',{enumerable:true,get(){called=true;throw Error('private');}});assert.throws(()=>quotientRemainder(hostile),RangeError);assert.equal(called,false);assert.throws(()=>quotientAt({a:0,b:0,c:0,r:4},Number.MIN_VALUE),e=>e.message==='AP equivalence result is outside the finite numeric range.');
+ });
+ test('07 warmup preserves both polynomial zeros but only the domain-valid rational zero',()=>{
+ const id='equivalence-warmup';const p=x=>(x-2)*(x+1);for(const x of [-4,-1,0,2,4])near(p(x),x*x-x-2);near(p(-1),0);near(p(2),0);const model=quotientRemainder({a:1,b:1,c:2,r:0});assert.deepEqual(model.numerator.coefficients,[1,-1,-2]);assert.equal(quotientAt(model.input,-1).y,0);assert.equal(quotientAt(model.input,2).y,null);assert.equal(model.exclusion.y,3);says(id,'only valid zero is −1','domains differ','(2,3)');
+ });
+ test('08 division worked values, horizontal degeneration and zero numerator match exact independent division',()=>{
+ const id='equivalence-division-explorer',input=scene(id).initial,oracle=divisionOracle(input);assert.deepEqual(oracle.numerator,[Q(1),Q(-1),Q(1)]);assert.deepEqual(oracle.quotient,[Q(1),Q(1)]);assert.deepEqual(oracle.remainder,[Q(3)]);assert.equal(quotientAt(input,1).y,-1);assert.equal(quotientAt(input,3).y,7);const hole=quotientRemainder({...input,r:0});assert.equal(hole.exclusion.y,3);assert.equal(quotientAt(hole.input,2).y,null);const horizontal=quotientRemainder({...input,a:0});assert.deepEqual(horizontal.trend.coefficients,[0,1]);assert.equal(horizontal.quotient.degree,0);says(id,'R(1)=−1 and R(3)=7','horizontal y=1','degree is undefined');
+ });
+ test('09 notes distinguish additive asymptote error from an insufficient ratio comparison',()=>{
+ const id='equivalence-notes',m={a:1,b:1,c:2,r:3};for(const x of [-20,-5,5,20]){near(quotientAt(m,x).y-(x+1),3/(x-2));near(quotientAt(m,x).y-x,1+3/(x-2));}assert.ok(Math.abs(quotientAt(m,20).y/20-1)<.1);assert.ok(Math.abs(quotientAt(m,20).y-20)>1);says(id,'Any original denominator root remains excluded','additive difference approaching zero','3/(x−2)');
+ });
+ test('10 binomial worked cube/fourth power coefficients and value27 come from exact sampled-output interpolation',()=>{
+ const id='equivalence-binomial-explorer',initial=scene(id).initial;assert.deepEqual(initial,{a:2,b:-1,n:3});const cube=binomialOracle(initial).slice().reverse().map(numeric),fourth=binomialOracle({...initial,n:4}).slice().reverse().map(numeric);assert.deepEqual(cube,[8,-12,6,-1]);assert.deepEqual(fourth,[16,-32,24,-8,1]);assert.equal(horner(cube,2),27);assert.equal((2*2-1)**3,27);for(let n=1;n<=8;n++){assert.equal(binomialRow({a:0,b:-1,n}).degree,0);assert.equal(binomialRow({a:0,b:0,n}).degree,null);assert.equal(binomialRow({a:2,b:0,n}).degree,n);}says(id,'8x³−12x²+6x−1','16x⁴−32x³+24x²−8x+1','give 27','degree 0','degree is undefined');
+ });
+ test('11 transfer keeps the hole and derives the complete quadratic trend and negative discriminant',()=>{
+ const id='equivalence-transfer';const numerator=binomialOracle({a:1,b:1,n:3});numerator[0]=sub(numerator[0],Q(1));const division=dividePolynomials(numerator,[Q(0),Q(1)]);assert.deepEqual(numerator,[Q(0),Q(3),Q(3),Q(1)]);assert.deepEqual(division.quotient,[Q(3),Q(3),Q(1)]);assert.deepEqual(division.remainder,[]);const [c,b,a]=division.quotient.map(numeric);assert.equal(b*b-4*a*c,-3);for(const x of [-4,-1,.5,4])near(((x+1)**3-1)/x,a*x*x+b*x+c);assert.equal(c,3);assert.ok(a>0);assert.ok(c-b*b/(4*a)>0);says(id,'x²+3x+3 for x≠0','hole at (0,3)','9−12=−3','quadratic','a linear slant asymptote does not describe');
+ });
+ test('12 model outputs are deeply frozen independent snapshots with no shared input alias',()=>{
+ const input={...inputValues},sampling={start:-4,step:1,count:8};const q=quotientRemainder(input),at=quotientAt(input,0),sample=sampleQuotient(input,sampling),bin=binomialRow({a:-.25,b:4,n:8});input.a=0;sampling.count=1;assert.equal(q.input.a,1);assert.equal(sample.sampling.count,8);for(const value of [q,at,sample,bin])deepFrozen(value);assert.throws(()=>q.domain.excluded.push(3),TypeError);assert.throws(()=>sample.segments[0][0].y=0,TypeError);assert.throws(()=>bin.terms[0].xPower=0,TypeError);
+ });
