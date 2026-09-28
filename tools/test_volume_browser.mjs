@@ -55,6 +55,8 @@ try{
    await page.locator('#next').click();await page.locator('#back').click();
    await launch.click();assert.equal(await page.locator('#echsAiTutorPanel').isVisible(),true);checks++;
    await page.getByRole('button',{name:'Close tutor'}).click();
+   await page.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));
+   assert.equal(await page.locator('#visual-fallback').isVisible(),false,`${file}: renderer after navigation: ${await page.locator('#visual-fallback').getAttribute('data-reason')}`);checks++;
    const overflow=await page.evaluate(()=>document.documentElement.scrollWidth-window.innerWidth);
    assert.ok(overflow<=1,`${file} at ${viewport.width}: horizontal overflow ${overflow}`);checks++;
    await page.screenshot({path:path.join(out,`${file}-${viewport.width}.png`),fullPage:true});

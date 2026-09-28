@@ -114,8 +114,20 @@ async function loadRenderer(){
   try{rendererPromise??=import('./volume-renderer.mjs?v=20260928-volume2');renderer=await rendererPromise;if(destroyed)return;queueDraw();}
   catch{showFallback();}
 }
-function showFallback(){$('visual-fallback').hidden=false;$('visuals').hidden=true;$('model-text').hidden=false;}
-function draw(){drawFrame=0;if(!renderer||!model||$('workspace').hidden||destroyed)return;try{const regionResult=renderer.renderRegion($('region-canvas'),model,state);const solidResult=renderer.renderVolume($('solid-canvas'),model,state);const sectionResult=renderer.renderSection($('section-canvas'),model,state);if(regionResult?.available===false||solidResult?.available===false||sectionResult?.available===false){showFallback();return;}$('visual-fallback').hidden=true;$('visuals').hidden=false;}catch{showFallback();}}
+function showFallback(reason='Renderer unavailable'){$('visual-fallback').hidden=false;$('visual-fallback').dataset.reason=reason;$('visuals').hidden=true;$('model-text').hidden=false;}
+function draw(){
+  drawFrame=0;if(!renderer||!model||$('workspace').hidden||destroyed)return;
+  // A hidden or resizing canvas has no drawing surface yet. It is not a
+  // renderer failure; restore the views before measuring on a later frame.
+  $('visuals').hidden=false;
+  const canvases=['region-canvas','solid-canvas','section-canvas'].map($);
+  if(canvases.some(c=>{const r=c.getBoundingClientRect();return !r.width||!r.height;}))return;
+  try{
+    const results=[renderer.renderRegion(canvases[0],model,state),renderer.renderVolume(canvases[1],model,state),renderer.renderSection(canvases[2],model,state)];
+    if(results.some(r=>r?.available===false)){showFallback('Canvas context unavailable');return;}
+    $('visual-fallback').hidden=true;delete $('visual-fallback').dataset.reason;
+  }catch(error){showFallback(String(error?.message||error));}
+}
 function queueDraw(){if(!drawFrame)drawFrame=requestAnimationFrame(draw);}
 function stopAnimation(){if(animationFrame)cancelAnimationFrame(animationFrame);animationFrame=0;if($('build'))$('build').textContent='Build solid';}
 function animate(timestamp){if(destroyed||document.hidden||reduced.matches){stopAnimation();return;}if(!animationStart)animationStart=timestamp;const f=Math.min(1,(timestamp-animationStart)/4800);state.sweep=360*f;state.buildFraction=f;$('sweep').value=String(state.sweep);$('sweep-value').textContent=`${Math.round(state.sweep)}°`;$('construction').value=String(1000*f);$('construction-value').textContent=`${Math.round(100*f)}%`;queueDraw();if(f<1)animationFrame=requestAnimationFrame(animate);else{stopAnimation();updateMath();}}
