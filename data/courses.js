@@ -1878,8 +1878,10 @@ window.ECHS_COURSES = [
               "Classwork: 8.5_Guided_Notes.pdf",
               "Homework: 8.5_Practice.pdf"
             ],
-            "url": "",
-            "status": "flow",
+            "url": "lessons/ap-calculus/unit-8/8-5-volumes-cross-sections.html",
+            "status": "ready",
+            "practice": "embedded",
+            "practiceHash": "practice",
             "keywords": [
               "solve",
               "integrals",
@@ -1909,8 +1911,10 @@ window.ECHS_COURSES = [
               "Classwork: 8.6_Guided_Notes.pdf",
               "Homework: 8.6_Practice.pdf"
             ],
-            "url": "",
-            "status": "flow",
+            "url": "lessons/ap-calculus/unit-8/8-6-disks-and-washers.html",
+            "status": "ready",
+            "practice": "embedded",
+            "practiceHash": "practice",
             "keywords": [
               "revolution",
               "solve",
@@ -1940,8 +1944,10 @@ window.ECHS_COURSES = [
               "Classwork: 8.7_Guided_Notes.pdf",
               "Homework: 8.7_Practice.pdf"
             ],
-            "url": "",
-            "status": "flow",
+            "url": "lessons/ap-calculus/unit-8/8-7-volume-about-a-line.html",
+            "status": "ready",
+            "practice": "embedded",
+            "practiceHash": "practice",
             "keywords": [
               "revolution",
               "line",

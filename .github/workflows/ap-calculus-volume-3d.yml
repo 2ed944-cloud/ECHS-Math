@@ -1,0 +1,40 @@
+name: AP Calculus volume lessons
+
+on:
+  pull_request:
+    paths:
+      - 'lessons/ap-calculus/unit-8/**'
+      - 'data/courses.js'
+      - 'tools/test_volume_model.mjs'
+      - 'tools/test_volume_lessons.mjs'
+      - '.github/workflows/ap-calculus-volume-3d.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'lessons/ap-calculus/unit-8/**'
+      - 'data/courses.js'
+      - 'tools/test_volume_model.mjs'
+      - 'tools/test_volume_lessons.mjs'
+      - '.github/workflows/ap-calculus-volume-3d.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: calculus-volume-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify mathematical models and volume geometry
+        run: node tools/test_volume_model.mjs
+      - name: Verify lesson data, controls, and portal integration
+        run: node tools/test_volume_lessons.mjs
