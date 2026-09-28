@@ -41,7 +41,8 @@ try{
    if(viewport.width===1440){
     const controls=await page.locator('.view-options').boundingBox();
     const footer=await page.locator('.lesson-footer').boundingBox();
-    assert.ok(controls.y+controls.height<=footer.y,'Desktop slide controls fit above the footer');checks++;
+    await page.screenshot({path:path.join(out,`${file}-${viewport.width}.png`),fullPage:true});
+    assert.ok(controls.y+controls.height<=footer.y,`${file}: slide controls end at ${controls.y+controls.height}, footer starts at ${footer.y}`);checks++;
    }
    await page.addStyleTag({url:origin+'/css/echs-ai-tutor.css'});
    await page.evaluate(()=>{window.ECHS_AI_TUTOR_CONFIG={enabled:true,endpoint:'https://example.invalid',title:'ECHS Math Tutor Pro'};});

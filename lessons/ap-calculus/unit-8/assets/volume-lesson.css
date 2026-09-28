@@ -10,7 +10,7 @@
 .presentation-mode .lesson-top{margin-bottom:12px}
 .presentation-mode h1{font-size:clamp(26px,2.3vw,38px)}
 .presentation-mode .model-stage .stage-body{padding:14px 22px;margin-bottom:12px}
-.presentation-mode .model-stage .stage-copy>p:not(:first-child):not(.lede),.presentation-mode .model-stage .stage-copy>.formula,.presentation-mode .model-stage .objectives{display:none}
+.presentation-mode .model-stage .stage-copy>p:not(.lede),.presentation-mode .model-stage .stage-copy>.formula,.presentation-mode .model-stage .objectives{display:none}
 .presentation-mode .model-stage .stage-copy>p:last-child{margin-bottom:0}
 .presentation-mode .workspace-head{padding:10px 18px}
 .presentation-mode .preset-bar{padding:8px 18px}
