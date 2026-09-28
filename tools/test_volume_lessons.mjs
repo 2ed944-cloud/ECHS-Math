@@ -6,6 +6,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 import vm from 'node:vm';
+import {createHash} from 'node:crypto';
 import {fileURLToPath} from 'node:url';
 import {LESSONS} from '../lessons/ap-calculus/unit-8/assets/volume-lessons.mjs';
 import {SCENARIOS, SHAPES, buildModel} from '../lessons/ap-calculus/unit-8/assets/volume-model.mjs';
@@ -28,6 +29,13 @@ const ids=new Set(), formulas=[];
 let stages=0, questions=0, assertions=0;
 function check(condition,message){assertions++;assert.ok(condition,message);}
 function equal(actual,wanted,message){assertions++;assert.deepEqual(actual,wanted,message);}
+
+// The shared catalog is also an input to the preserved-lesson artifact gate.
+// Its reviewed pin must stay synchronized with legitimate lesson registrations.
+const catalogBytes=fs.readFileSync(path.join(root,'data/courses.js'));
+const catalogPin=JSON.parse(read('tools/lesson-investigations/source-preservation.json')).protected_calculus_sources.find(row=>row.path==='data/courses.js');
+equal(catalogPin.bytes,catalogBytes.length,'Catalog registration must match its reviewed byte pin');
+equal(catalogPin.sha256,createHash('sha256').update(catalogBytes).digest('hex'),'Catalog registration must match its reviewed integrity pin');
 
 equal(Object.keys(LESSONS).sort(),expected.map(x=>x.id).sort(),'Only the three scoped lessons');
 for(const spec of expected){

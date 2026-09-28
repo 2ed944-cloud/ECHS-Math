@@ -101,11 +101,29 @@ The dedicated volume workflow and Pages workflow run separately. A green volume
 workflow is not a declared dependency of the Pages deploy job; require both
 workflows to pass for the release revision before accepting the deployment.
 
+## Catalog source review for the publication gate
+
+The first PR artifact build correctly rejected a stale `data/courses.js` source
+pin. The existing investigations README requires a source review before refreshing
+a pin. Reversing only this release's three Unit 8 URL/status/practice edits
+restored every catalog byte at parent `cc8fff3150380c16091e6edce1913a12f3a1d22d`:
+220763 bytes, SHA-256
+`2e47966085306e025c9dd8661882986adc3c695b56994887b2044a8408cf4aad`.
+The reviewed current catalog is 221160 bytes, SHA-256
+`89a9384f27817af2f6a8ec1dbbbe42aed637194374c40e7a0470ea47ee626f73`.
+
+Only that row in `tools/lesson-investigations/source-preservation.json` is
+refreshed. The other 83 pins, the 69-file protected roster, historical
+`AP_CALCULUS_U2_U5_SOURCE_BASELINE.json` receipt, and all verifier logic remain
+unchanged. The volume integration test now checks the current catalog against
+its reviewed publication pin. This is a reviewed input update, not a relaxed gate.
+
 ## Rollback
 
 Revert only this release's three catalog-record changes and the added Unit 8
 assets/workflow. Restore each record's previous empty URL and `status: "flow"`,
-and remove its new embedded-practice properties. Preserve lesson numbers,
+and remove its new embedded-practice properties. Restore the catalog's reviewed
+publication pin to match the rollback content. Preserve lesson numbers,
 titles, access keys, all unrelated records, and account/progress data. No
 database or mastery migration is introduced. Existing server catalog and teacher
 publication decisions remain authoritative; withdraw these lessons through the
