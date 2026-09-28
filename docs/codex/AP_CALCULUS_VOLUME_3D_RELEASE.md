@@ -128,3 +128,40 @@ titles, access keys, all unrelated records, and account/progress data. No
 database or mastery migration is introduced. Existing server catalog and teacher
 publication decisions remain authoritative; withdraw these lessons through the
 normal teacher controls if rollback follows publication.
+
+## 28 September 2026 follow-up: geometry and classroom projection
+
+This scoped follow-up keeps the three catalog routes, access keys, question-bank
+boundaries, and mastery contracts. It adds a face-on section view, a manual
+construction slider for nonrotational solids, a slide-view layout, and explicit
+flat-region / complete-solid / isolate-slice controls. Construction switches off
+cutaway so a full turn actually finishes the full solid. The compact tutor icon
+retains its full accessible name and tooltip and clears the lesson footer.
+
+The new original sphere investigation connects idealized pearl geometry to
+Qatar's documented pearling heritage. It explicitly distinguishes the ideal
+sphere from real pearls and marks the 3 mm radius as illustrative. The existing
+water-storage application now opens its matching rectangular-section model.
+No private AP Classroom questions are added to public hosting.
+
+Independent geometry tests calculate polygon profile areas, oriented triangular
+mesh volumes, distances to shifted axes, the sphere equation, and partial-sweep
+volumes. The analytic integrals remain exact. Rasterized curved surfaces are
+finite polygon approximations: the tested full/partial models currently differ
+from analytic volume by at most 0.586%. These checks do not claim that every
+pixel or any future AI response is mathematically exact. All geometric axes
+share an equal scale before the orthographic camera projection.
+
+Local results: 13 scenarios and 6 cross-section shapes; 276 numerical checks;
+409,723 independent geometry checks; 43 stages and 152 KaTeX formulas; 163
+isolated DOM interaction checks. The existing tutor validator passes.
+The CI workflow additionally checks the actual source pages in Chromium at
+1440px and 390px, including keyboard navigation, reduced motion, and tutor/Next
+clearance. Browser evidence and deployment status must be recorded after CI.
+
+Performance budget: no added runtime dependencies or external geometry assets;
+renderer loads only for the scoped volume workspace; bounded meshes and
+on-demand frames remain, with animation stopped on visibility/lifecycle exit.
+No database migration or synthetic mastery records are introduced.
+Rollback: revert this follow-up commit; the previous three live lesson routes
+remain valid and the existing account, publication, and learner data stay intact.

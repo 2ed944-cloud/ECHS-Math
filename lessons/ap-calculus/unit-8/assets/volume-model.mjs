@@ -34,6 +34,7 @@ export const SCENARIOS = Object.freeze([
   descriptor('cross-y','Known cross sections perpendicular to the y-axis','cross','y'),
   descriptor('disk-x','Disks about the x-axis','disk','x'),
   descriptor('disk-y','Disks about the y-axis','disk','y'),
+  Object.freeze({...descriptor('pearl-y','A sphere from a semicircular region','disk','y'),bounds:Object.freeze([-1,1]),profile:'sphere'}),
   descriptor('shifted-disk-x','Disks about y = k','disk','x',true),
   descriptor('shifted-disk-y','Disks about x = k','disk','y',true),
   descriptor('washer-x','Washers about the x-axis','washer','x'),
@@ -80,12 +81,13 @@ export function buildModel({scenario='cross-x',shape='square',axisOffset}={}) {
     return Math.min(b,Math.max(a,t));
   };
   const {kind,axis}=spec;
+  const sphere=spec.profile==='sphere';
   const variable=kind==='shell' ? (axis==='y'?'x':'y') : axis;
   const xSlice=variable==='x';
   const widthTex=xSlice ? 'x-x^2' : '\\sqrt{y}-y';
   const baseAt=t=>{
     t=checked(t);
-    if(kind==='disk') return [k,k+Math.sqrt(t)];
+    if(kind==='disk') return [k,k+(sphere?Math.sqrt(Math.max(0,1-t*t)):Math.sqrt(t))];
     return xSlice ? [t*t,t] : [t,Math.sqrt(t)];
   };
   const radiiAt=t=>{
@@ -113,9 +115,9 @@ export function buildModel({scenario='cross-x',shape='square',axisOffset}={}) {
     const coefficient=section.areaTex.replace('w^2','');
     integralTex=`V=\\int_0^1 ${coefficient}\\left(${widthTex}\\right)^2\\,d${variable}`;
   } else if(kind==='disk') {
-    exactVolume=8*Math.PI; exactText='8π'; radiusTex=`\\sqrt{${variable}}`;
+    exactVolume=sphere?4*Math.PI/3:8*Math.PI; exactText=sphere?'4π/3':'8π'; radiusTex=sphere?`\\sqrt{1-${variable}^2}`:`\\sqrt{${variable}}`;
     outerRadiusTex=radiusTex; innerRadiusTex='0';
-    integralTex=`V=\\pi\\int_0^4\\left(\\sqrt{${variable}}\\right)^2\\,d${variable}=8\\pi`;
+    integralTex=sphere?`V=\\pi\\int_{-1}^1(1-y^2)\\,dy=\\frac{4\\pi}{3}`:`V=\\pi\\int_0^4\\left(\\sqrt{${variable}}\\right)^2\\,d${variable}=8\\pi`;
   } else if(kind==='washer') {
     const lower=xSlice?'x^2':'y', upper=xSlice?'x':'\\sqrt{y}';
     outerRadiusTex=k<=0 ? shiftTex(upper,k) : `${k}-${lower}`;
@@ -129,7 +131,7 @@ export function buildModel({scenario='cross-x',shape='square',axisOffset}={}) {
     exactText=axis==='y'?'π/6':'2π/15'; radiusTex=variable;
     integralTex=`V=2\\pi\\int_0^1 ${variable}\\left(${widthTex}\\right)\\,d${variable}`;
   }
-  const baseDescription=kind==='disk'
+  const baseDescription=sphere?'The filled right half of x² + y² ≤ 1, with x ≥ 0 and −1 ≤ y ≤ 1. Revolving about the y-axis produces a unit sphere.':kind==='disk'
     ? `${a} ≤ ${variable} ≤ ${b}; ${k} ≤ ${axis==='x'?'y':'x'} ≤ ${translatedTex(`√${variable}`,k)}. The region moves with the axis.`
     : 'The region bounded by y = x² and y = x, with 0 ≤ x ≤ 1 (equivalently, y ≤ x ≤ √y for 0 ≤ y ≤ 1).';
   const sliceAt=t=>{

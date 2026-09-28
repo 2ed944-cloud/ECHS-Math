@@ -1,5 +1,5 @@
-import {LESSONS} from './volume-lessons.mjs?v=20260928-volume1';
-import {SCENARIOS,SHAPES,buildModel,midpointSum} from './volume-model.mjs?v=20260928-volume1';
+import {LESSONS} from './volume-lessons.mjs?v=20260928-volume2';
+import {SCENARIOS,SHAPES,buildModel,midpointSum} from './volume-model.mjs?v=20260928-volume2';
 
 // Scoped lesson engine. Public, original teaching content; no learner-storage,
 // completion or mastery writes. The established platform guard owns access.
@@ -44,6 +44,7 @@ function showStage(index,focus=false){
   let body=`<div class="stage-copy">${paragraphList(stage.body)}${formulaList(stage.formulas)}`;
   if(stage.kind==='intro')body+=`<ol class="objectives">${lesson.objectives.map(x=>`<li>${esc(x)}</li>`).join('')}</ol>`;
   if(stage.prompt)body+=`<p class="lede"><strong>${esc(stage.prompt)}</strong></p>`;
+  if(stage.sources?.length)body+=`<p class="small context-source">${stage.sources.filter(s=>s.url.startsWith('https://')).map(s=>`<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.label)}</a>`).join(' · ')}</p>`;
   if(stage.parts?.length)body+=`<ol>${stage.parts.map(x=>`<li>${esc(x)}</li>`).join('')}</ol>`;
   if(isQuestion)body+=`<fieldset class="question-choices"><legend class="sr-only">Choose one answer</legend>${(stage.choices||[]).map((x,i)=>`<label><input type="radio" name="answer" value="${i}" ${record.choice===i?'checked':''}><span><strong>${String.fromCharCode(65+i)}.</strong> ${esc(x)}</span></label>`).join('')}</fieldset><button class="primary" id="check-answer">Check my reasoning</button><div class="feedback" id="question-feedback" role="status"></div>`;
   if(isResponse)body+=`<label for="written-response"><strong>Your setup and explanation</strong></label><textarea id="written-response" maxlength="6000" placeholder="Write the integral, explain the geometry, and include units.">${esc(record.written||'')}</textarea><p class="small">This is an ungraded reflection. Your writing stays in this open tab.</p>`;
@@ -58,8 +59,10 @@ function showStage(index,focus=false){
   if($('solution-button'))on($('solution-button'),'click',()=>{const panel=$('worked-solution');panel.hidden=!panel.hidden;$('solution-button').setAttribute('aria-expanded',String(!panel.hidden));});
   if($('return-practice'))on($('return-practice'),'click',()=>navigateToPractice());
   const useModel=Boolean(stage.scenario)||stage.kind==='lab'||stage.kind==='intro';
+  $('lessonStage').classList.toggle('model-stage',useModel);
   $('workspace').hidden=!useModel;$('explore-button').textContent=useModel?'Hide 3D workspace':'Open 3D workspace';$('explore-button').setAttribute('aria-expanded',String(useModel));
   if(useModel){setScenario(stage.scenario||selectedScenarios()[0].id,stage.shape||'square',stage.axisOffset);loadRenderer();}
+  if(document.body.classList.contains('presentation-mode'))setMathVisible(false);
   $('announcement').textContent=`Step ${current+1}: ${stage.title}`;
   if(focus){$('stage-title').focus({preventScroll:true});window.scrollTo({top:0,behavior:reduced.matches?'instant':'smooth'});}
 }
@@ -80,6 +83,8 @@ function rebuildModel(){stopAnimation();model=buildModel({scenario:$('scenario')
 function syncControls(){
   $('slice').value=String(state.slice*1000);$('slices').value=String(state.slices);$('sweep').value=String(state.sweep);$('view-mode').value=state.mode;$('cutaway').checked=state.cutaway;$('show-region').checked=state.showRegion;$('show-axes').checked=state.showAxes;$('show-slice').checked=state.showSlice;
   $('sweep-control').hidden=model.kind==='cross';$('cutaway-label').hidden=model.kind==='cross';
+  $('construction-control').hidden=model.kind!=='cross';$('construction').value=String(state.buildFraction*1000);$('construction-value').textContent=`${Math.round(state.buildFraction*100)}%`;
+  $('section-caption').textContent=model.kind==='shell'?'Unrolled shell surface':'Face-on cross section';
   $('build').textContent='Build solid';$('build').disabled=reduced.matches;
   $('motion-note').textContent=reduced.matches?'Reduced motion is on. Use the sliders to inspect construction step by step.':'Drag the solid to rotate. Arrow keys rotate, +/− zoom, and Home resets the view.';
 }
@@ -89,7 +94,7 @@ function updateMath(){
   $('slices-value').textContent=String(state.slices);$('sweep-value').textContent=`${Math.round(state.sweep)}°`;
   $('model-description').textContent=model.baseDescription;
   $('model-scope').textContent=model.enrichment?'Optional enrichment · cylindrical shells':'AP Calculus AB / BC';
-  const labels=model.kind==='cross'?['Base width w','Cross-section area A',`Thickness Δ${model.variable}`,'Midpoint volume sum']:model.kind==='shell'?['Shell radius','Shell height',`Thickness Δ${model.variable}`,'Midpoint volume sum']:['Outer radius R','Inner radius r',`Thickness Δ${model.variable}`,'Midpoint volume sum'];
+  const labels=model.kind==='cross'?['Base width w','Cross-section area A',`Partition width Δ${model.variable}`,'Midpoint volume sum']:model.kind==='shell'?['Shell radius','Shell height',`Partition width Δ${model.variable}`,'Midpoint volume sum']:['Outer radius R','Inner radius r',`Partition width Δ${model.variable}`,'Midpoint volume sum'];
   const values=model.kind==='cross'?[num(s.width),num(s.area),num(step),num(approx)]:model.kind==='shell'?[num(s.radius),num(s.height),num(step),num(approx)]:[num(s.outer),num(s.inner),num(step),num(approx)];
   $('measurements').innerHTML=labels.map((x,i)=>`<div><small>${esc(x)}${i===3?' (units³)':i===1&&model.kind==='cross'?' (units²)':' (units)'}</small><strong>${esc(values[i])}</strong></div>`).join('');
   math($('integral'),model.integralTex);
@@ -98,7 +103,7 @@ function updateMath(){
   const shape=model.shapeDescriptor;
   const area=model.kind==='cross'?`A(${model.variable})=${shape.areaTex},\\quad w=${model.widthTex}`:model.kind==='shell'?`dV=2\\pi rh\\,d${model.variable},\\quad r=${model.radiusTex},\\ h=${model.widthTex}`:`A(${model.variable})=\\pi(R^2-r^2),\\quad R=${model.outerRadiusTex},\\ r=${model.innerRadiusTex}`;
   math($('slice-formula'),area);
-  $('construction-note').textContent=model.kind==='cross'?'The base determines the width. The specified cross-section shape determines the area above it.':model.kind==='disk'?'The inner radius is zero. For the shifted disk preset, the region moves with the axis.':model.kind==='shell'?'Shells use slices parallel to the axis. The displayed exact volume is for the full solid.':'The axis stays outside the region in these reviewed presets. Radii are distances to that axis.';
+  $('construction-note').textContent=model.kind==='cross'?'The base determines the width. The specified cross-section shape determines the area above it.':model.id==='pearl-y'?'The semicircular region generates a sphere. Each horizontal segment sweeps out a disk, with zero inner radius.':model.kind==='disk'?'The inner radius is zero. For the shifted disk preset, the region moves with the axis.':model.kind==='shell'?'Shells use slices parallel to the axis. The displayed exact volume is for the full solid.':'The axis stays outside the region in these reviewed presets. Radii are distances to that axis.';
   $('volume-note').textContent=(state.cutaway||state.sweep<360||state.buildFraction<1)?'Construction and cutaway views expose the interior. The integral and exact value always refer to the complete solid.':'The finite stack is a midpoint approximation. The integral gives the exact volume of the complete solid.';
   const rows=[0,.25,.5,.75,1].map(f=>a+(b-a)*f);
   $('data-head').innerHTML=`<tr><th>${model.variable}</th><th>Base interval</th><th>${model.kind==='shell'?'2πrh':'A('+model.variable+')'}</th></tr>`;
@@ -106,15 +111,17 @@ function updateMath(){
   $('model-text').textContent=`${model.scenario.label}. ${model.baseDescription} At ${model.variable} = ${num(t)}, the base interval is ${num(s.baseLow)} to ${num(s.baseHigh)}. ${model.kind==='cross'?`The ${shape.label.toLowerCase()} has area ${num(s.area)} square units.`:model.kind==='shell'?`Shell radius ${num(s.radius)}, height ${num(s.height)}.`:`Outer radius ${num(s.outer)}, inner radius ${num(s.inner)}.`} The complete volume is ${model.exactText} cubic units.`;
 }
 async function loadRenderer(){
-  try{rendererPromise??=import('./volume-renderer.mjs?v=20260928-volume1');renderer=await rendererPromise;if(destroyed)return;queueDraw();}
+  try{rendererPromise??=import('./volume-renderer.mjs?v=20260928-volume2');renderer=await rendererPromise;if(destroyed)return;queueDraw();}
   catch{showFallback();}
 }
 function showFallback(){$('visual-fallback').hidden=false;$('visuals').hidden=true;$('model-text').hidden=false;}
-function draw(){drawFrame=0;if(!renderer||!model||$('workspace').hidden||destroyed)return;try{const regionResult=renderer.renderRegion($('region-canvas'),model,state);const solidResult=renderer.renderVolume($('solid-canvas'),model,state);if(regionResult?.available===false||solidResult?.available===false){showFallback();return;}$('visual-fallback').hidden=true;$('visuals').hidden=false;}catch{showFallback();}}
+function draw(){drawFrame=0;if(!renderer||!model||$('workspace').hidden||destroyed)return;try{const regionResult=renderer.renderRegion($('region-canvas'),model,state);const solidResult=renderer.renderVolume($('solid-canvas'),model,state);const sectionResult=renderer.renderSection($('section-canvas'),model,state);if(regionResult?.available===false||solidResult?.available===false||sectionResult?.available===false){showFallback();return;}$('visual-fallback').hidden=true;$('visuals').hidden=false;}catch{showFallback();}}
 function queueDraw(){if(!drawFrame)drawFrame=requestAnimationFrame(draw);}
 function stopAnimation(){if(animationFrame)cancelAnimationFrame(animationFrame);animationFrame=0;if($('build'))$('build').textContent='Build solid';}
-function animate(timestamp){if(destroyed||document.hidden||reduced.matches){stopAnimation();return;}if(!animationStart)animationStart=timestamp;const f=Math.min(1,(timestamp-animationStart)/3600);state.sweep=360*f;state.buildFraction=f;$('sweep').value=String(state.sweep);$('sweep-value').textContent=`${Math.round(state.sweep)}°`;queueDraw();if(f<1)animationFrame=requestAnimationFrame(animate);else{stopAnimation();updateMath();}}
-function startAnimation(){if(reduced.matches)return;if(animationFrame){stopAnimation();updateMath();return;}animationStart=0;state.sweep=0;state.buildFraction=0;$('build').textContent='Pause construction';updateMath();animationFrame=requestAnimationFrame(animate);}
+function animate(timestamp){if(destroyed||document.hidden||reduced.matches){stopAnimation();return;}if(!animationStart)animationStart=timestamp;const f=Math.min(1,(timestamp-animationStart)/4800);state.sweep=360*f;state.buildFraction=f;$('sweep').value=String(state.sweep);$('sweep-value').textContent=`${Math.round(state.sweep)}°`;$('construction').value=String(1000*f);$('construction-value').textContent=`${Math.round(100*f)}%`;queueDraw();if(f<1)animationFrame=requestAnimationFrame(animate);else{stopAnimation();updateMath();}}
+function startAnimation(){if(reduced.matches)return;if(animationFrame){stopAnimation();updateMath();return;}animationStart=0;state.sweep=0;state.buildFraction=0;state.mode='solid';state.cutaway=false;state.showRegion=true;state.showSlice=false;syncControls();$('build').textContent='Pause construction';updateMath();animationFrame=requestAnimationFrame(animate);}
+function setMathVisible(visible){$('model-mathematics').hidden=!visible;$('math-toggle').setAttribute('aria-expanded',String(visible));$('math-toggle').textContent=visible?'Hide mathematics':'Show mathematics';}
+function footerOffset(){const h=document.querySelector('.lesson-footer')?.getBoundingClientRect().height||72;document.documentElement.style.setProperty('--echs-tutor-bottom',`${h+12}px`);}
 function rotate(dx,dy){state.yaw+=dx;state.pitch=Math.max(-1.35,Math.min(1.35,state.pitch+dy));queueDraw();}
 function resetCamera(){state.yaw=-.62;state.pitch=.46;state.zoom=1;queueDraw();}
 function validateLesson(){if(!lesson||!lesson.stages?.length)throw new Error('Lesson data is unavailable');const ids=new Set();for(const s of lesson.stages){if(!s.id||ids.has(s.id))throw new Error('Invalid stage identity');ids.add(s.id);if(s.kind==='question'&&(!Array.isArray(s.choices)||!Number.isInteger(s.correct)||s.correct<0||s.correct>=s.choices.length))throw new Error('Invalid question data');}}
@@ -124,10 +131,16 @@ function init(){
   $('scenario').replaceChildren(...selectedScenarios().map(s=>new Option(s.label,s.id)));$('shape').replaceChildren(...SHAPES.map(s=>new Option(s.label,s.id)));
   $('alignment').textContent=`Platform lesson ${lesson.number} · College Board topics ${lesson.cedTopics.join(', ')} · Curriculum 2026–27`;
   on($('back'),'click',()=>go(current-1));on($('next'),'click',()=>go(current+1));on($('stage-select'),'change',e=>go(Number(e.target.value)));
+  on($('presentation-mode'),'click',()=>{const active=document.body.classList.toggle('presentation-mode');$('presentation-mode').setAttribute('aria-pressed',String(active));$('presentation-mode').textContent=active?'Reading view':'Slide view';setMathVisible(!active);footerOffset();queueDraw();});
+  on($('math-toggle'),'click',()=>setMathVisible($('model-mathematics').hidden));
+  on($('flat-region'),'click',()=>{stopAnimation();state.sweep=0;state.buildFraction=0;state.mode='solid';state.cutaway=false;state.showRegion=true;state.showSlice=false;syncControls();updateMath();queueDraw();});
+  on($('complete-solid'),'click',()=>{stopAnimation();state.sweep=360;state.buildFraction=1;state.mode='solid';state.cutaway=false;syncControls();updateMath();queueDraw();});
+  on($('isolate-slice'),'click',()=>{stopAnimation();state.sweep=360;state.buildFraction=1;state.mode='slice';state.cutaway=false;state.showSlice=true;syncControls();updateMath();queueDraw();});
   on($('explore-button'),'click',()=>{$('workspace').hidden=!$('workspace').hidden;const open=!$('workspace').hidden;$('explore-button').textContent=open?'Hide 3D workspace':'Open 3D workspace';$('explore-button').setAttribute('aria-expanded',String(open));if(open){if(!model)setScenario(selectedScenarios()[0].id);loadRenderer();}});
   on($('scenario'),'change',e=>setScenario(e.target.value,$('shape').value));on($('shape'),'change',rebuildModel);on($('axis-offset'),'change',rebuildModel);
   on($('slice'),'input',e=>{state.slice=Number(e.target.value)/1000;updateMath();queueDraw();});on($('slices'),'input',e=>{state.slices=Number(e.target.value);updateMath();queueDraw();});
   on($('sweep'),'input',e=>{stopAnimation();state.sweep=Number(e.target.value);state.buildFraction=1;updateMath();queueDraw();});
+  on($('construction'),'input',e=>{stopAnimation();state.buildFraction=Number(e.target.value)/1000;$('construction-value').textContent=`${Math.round(state.buildFraction*100)}%`;updateMath();queueDraw();});
   on($('view-mode'),'change',e=>{state.mode=e.target.value;queueDraw();});
   for(const [id,key] of [['cutaway','cutaway'],['show-region','showRegion'],['show-axes','showAxes'],['show-slice','showSlice']])on($(id),'change',e=>{state[key]=e.target.checked;updateMath();queueDraw();});
   on($('build'),'click',startAnimation);on($('reset-model'),'click',()=>setScenario(model.id,model.shape,model.axisOffset));
@@ -142,10 +155,11 @@ function init(){
   on(window,'hashchange',()=>showStage(stageIndexFromHash(),true));
   on(document,'keydown',e=>{if(e.defaultPrevented||e.altKey||e.ctrlKey||e.metaKey||/INPUT|SELECT|TEXTAREA|BUTTON|CANVAS/.test(e.target.tagName)||e.target.closest('dialog'))return;if(e.key==='ArrowRight'){e.preventDefault();go(current+1);}if(e.key==='ArrowLeft'){e.preventDefault();go(current-1);}});
   on(document,'visibilitychange',()=>{if(document.hidden)stopAnimation();});on(reduced,'change',()=>{stopAnimation();syncControls();});
-  const resize=new ResizeObserver(queueDraw);resize.observe($('workspace'));
+  const resize=new ResizeObserver(()=>{footerOffset();queueDraw();});resize.observe($('workspace'));resize.observe(document.querySelector('.lesson-footer'));
   const observer=new IntersectionObserver(entries=>{if(!entries[0].isIntersecting)stopAnimation();},{threshold:0});observer.observe($('workspace'));
   on(window,'pageshow',()=>{if(!destroyed)queueDraw();});
   on(window,'pagehide',event=>{if(event.persisted){stopAnimation();return;}destroyed=true;stopAnimation();if(drawFrame)cancelAnimationFrame(drawFrame);resize.disconnect();observer.disconnect();events.abort();answers.clear();});
   showStage(stageIndexFromHash());
+  footerOffset();
 }
 try{init();}catch(error){$('lesson-app').hidden=true;$('static-content').hidden=false;$('load-error').hidden=false;console.error('Volume lesson could not initialize',error);}

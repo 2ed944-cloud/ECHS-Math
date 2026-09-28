@@ -264,7 +264,7 @@
   root.className = "echsAiTutor";
   root.dataset.mode = state.mode;
   root.innerHTML = `
-    <button class="echsAiTutor__launcher" type="button" aria-expanded="false" aria-controls="echsAiTutorPanel">
+    <button class="echsAiTutor__launcher" type="button" aria-label="${escapeHTML(cfg.title || 'ECHS Math Tutor Pro')}" title="${escapeHTML(cfg.title || 'ECHS Math Tutor Pro')}" aria-expanded="false" aria-controls="echsAiTutorPanel">
       <span aria-hidden="true">∫</span>
       <b>${escapeHTML(cfg.title || "ECHS Math Tutor")}</b>
     </button>

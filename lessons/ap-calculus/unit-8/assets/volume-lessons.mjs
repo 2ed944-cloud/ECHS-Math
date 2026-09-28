@@ -149,6 +149,7 @@ export const LESSONS = {
       },
       {
         id: 'cs-qatar-design', title: 'Design extension · An illustrative water-storage module', phase: 'Extend', kind: 'reflection',
+        scenario: 'cross-x', shape: 'rectangle',
         body: [
           'Optional Qatar context: imagine a school engineering team proposing a small water-storage module for a campus garden in Doha. This is a hypothetical geometry model, not a real tank or a claim about water-use data.',
           'Use the shared base x² ≤ y ≤ x for 0 ≤ x ≤ 1, with coordinates in meters. Rectangular cross sections have width w = x − x² and height 2w. Ignore wall thickness.',
@@ -234,6 +235,20 @@ export const LESSONS = {
         ],
         formulas: [tex`V=\pi\int_0^4(\sqrt{x})^2\,dx=\pi\int_0^4x\,dx=\left[\frac{\pi x^2}{2}\right]_0^4=8\pi`],
         practices: [practices.process, practices.communicate], representations: ['analytical', 'verbal'], calculatorPolicy: 'Optional for decimal value'
+      },
+      {
+        id: 'dw-pearl', title: 'Qatar’s pearling heritage: an idealized sphere', phase: 'Apply', kind: 'lab',
+        scenario: 'pearl-y',
+        body: [
+          'Pearling is part of Qatar’s maritime heritage. Use a perfect sphere as an idealized pearl model. Real pearls can deviate from this shape.',
+          'Rotate the filled right half of x² + y² ≤ 1 about the y-axis. Start with the flat region, build the full turn, and move a horizontal disk through the sphere.',
+          'At height y, the disk radius is √(1 − y²). The radius is largest at y = 0 and zero at y = ±1. The numerical labels use normalized model units.',
+          'For an illustrative radius of 3 mm, multiply every model length by 3 mm per unit. Predict the volume change if the diameter increases by 10%.'
+        ],
+        prompt: 'Explain why a 10% increase in diameter gives a 33.1% increase in volume. Which assumptions make this model useful, and what does it omit?',
+        formulas: [tex`V=\pi\int_{-1}^{1}(1-y^2)\,dy=\frac{4\pi}{3}`,tex`V_{3\text{ mm}}=3^3\frac{4\pi}{3}=36\pi\text{ mm}^3,\qquad \frac{V_{\text{new}}}{V_{\text{old}}}=1.1^3=1.331`],
+        sources: [{label:'Qatar Tourism: Qatar’s pearling heritage',url:'https://www.qatartourism.com/en/news-and-media/press-releases/pearls-of-qatar-shedding-light-on-their-history-legacy-and-herit'}],
+        practices: [practices.connect,practices.justify,practices.communicate], representations: ['graphical','analytical','verbal'], calculatorPolicy: 'Optional', original:true
       },
       {
         id: 'dw-washer-x-lab', title: 'The hole is part of the mathematics', phase: 'Explore', kind: 'lab',

@@ -7,6 +7,11 @@ on:
       - 'data/courses.js'
       - 'tools/test_volume_model.mjs'
       - 'tools/test_volume_lessons.mjs'
+      - 'tools/test_volume_geometry.mjs'
+      - 'tools/test_volume_browser.mjs'
+      - 'js/echs-ai-tutor.js'
+      - 'css/echs-ai-tutor.css'
+      - 'js/lesson-ai-loader.js'
       - '.github/workflows/ap-calculus-volume-3d.yml'
   push:
     branches: [main]
@@ -15,6 +20,11 @@ on:
       - 'data/courses.js'
       - 'tools/test_volume_model.mjs'
       - 'tools/test_volume_lessons.mjs'
+      - 'tools/test_volume_geometry.mjs'
+      - 'tools/test_volume_browser.mjs'
+      - 'js/echs-ai-tutor.js'
+      - 'css/echs-ai-tutor.css'
+      - 'js/lesson-ai-loader.js'
       - '.github/workflows/ap-calculus-volume-3d.yml'
   workflow_dispatch:
 
@@ -38,3 +48,17 @@ jobs:
         run: node tools/test_volume_model.mjs
       - name: Verify lesson data, controls, and portal integration
         run: node tools/test_volume_lessons.mjs
+      - name: Independently verify rendered geometry and swept volumes
+        run: node tools/test_volume_geometry.mjs
+      - name: Install the existing pinned browser QA dependency
+        run: npm ci --prefix question-bank/official/tools
+      - name: Install Chromium for isolated UI checks
+        run: node question-bank/official/tools/node_modules/playwright/cli.js install --with-deps chromium
+      - name: Verify responsive lesson slides and tutor navigation clearance
+        run: node tools/test_volume_browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: volume-browser-evidence
+          path: .volume-browser-report
+          include-hidden-files: true
