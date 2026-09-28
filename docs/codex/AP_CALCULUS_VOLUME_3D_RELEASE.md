@@ -1,0 +1,112 @@
+# AP Calculus Unit 8: interactive volume lessons
+
+## Scope and release status
+
+This release fills only the three existing Unit 8 volume lesson slots. All other
+course records, lesson routes, question banks, account systems, teacher controls,
+and mastery systems remain unchanged. Local mathematical, lesson-data,
+interaction-harness, renderer-image, and selected integration checks have passed.
+Actual browser and deployment verification remain pending; record their final
+results below before declaring the release complete.
+
+| Existing catalog lesson | Stable lesson number | New route under `lessons/ap-calculus/unit-8/` |
+| --- | --- | --- |
+| 8.5 Volumes by Cross Sections | `94-96` | `8-5-volumes-cross-sections.html` |
+| 8.6 Volumes by Disc and Washer Methods | `97-98` | `8-6-disks-and-washers.html` |
+| 8.7 Volume About a Line | `99-100` | `8-7-volume-about-a-line.html` |
+
+These are ECHS lesson labels, not a renumbering of the official College Board
+topic sequence. Curriculum metadata in the lesson data identifies the applicable
+AP Calculus AB/BC content. Shell-method comparisons are an explicitly identified
+extension; they must not be presented as an AP-required method.
+
+## Delivery and learning behavior
+
+The lessons use original public teaching examples and practice. They do not
+publish protected AP Classroom prompts or private teacher/student materials.
+Lesson content and mathematical presets are data driven through a scoped volume
+engine, separate from rendering. This does not add a 3D block to the canonical
+Lesson Studio schema or claim that Studio can author this component.
+
+The renderer uses software 3D geometry with an equal-scale orthographic
+projection onto Canvas 2D instead of the specification's preferred Three.js
+baseline. This keeps the bounded reviewed solids independent of WebGL and avoids
+adding a heavy global library or CDN dependency. It is a genuine projection of
+three-dimensional model coordinates, not a fixed illustration. The renderer is
+lazy loaded, draws on demand, caps device-pixel ratio and mesh resolution, and
+has no independent animation loop. The controller supplies rotation, zoom,
+construction, reduced-motion behavior, and cleanup. The static diagram, exact
+setup, measurements, and table remain alternatives if Canvas rendering fails.
+This choice does not claim a general-purpose 3D authoring engine or unrestricted
+expression support.
+
+The existing Pages build injects account and lesson-access guards into the
+deployed HTML. Existing assigned-course checks, server lesson-access decisions,
+teacher visibility, automatic progression, and AI-loader integration are
+preserved. An admin portal visit synchronizes ready lesson routes into the
+existing catalog; this does not override class publication settings.
+
+The three catalog records use `practice: "embedded"` and
+`practiceHash: "practice"`. Each page must expose `data-practice="embedded"`,
+`data-practice-start="practice"`, and an actual `#practice` checkpoint. The
+existing Finish lesson action records ordinary lesson completion and opens that
+checkpoint. The stable schedule-range lesson numbers are preserved, so the new
+lessons do not route those ranges to an unverified external question-bank topic.
+Checkpoint answers and exploration do not award mastery or produce
+server-trusted assessment evidence.
+
+The mathematical relationship must remain visible across the 2D region,
+representative slice, area/radius measurements, integral setup, and 3D solid.
+Neutral and Qatar contexts must preserve the same mathematical model; any Qatar
+design is an illustrative model rather than a claim about a real structure's
+measured dimensions.
+
+## Acceptance criteria and evidence
+
+Required acceptance covers independently checked cross-section areas, disk and
+washer radii, shifted horizontal/vertical axes, shell comparisons, exact and
+numerical volume consistency, and endpoint/domain behavior. Controls must
+synchronize the representations, provide reset and keyboard access, respect
+reduced motion, and retain a readable static/2D explanation without 3D. Rendering
+must avoid continuous hidden work and release its resources when no longer used.
+
+Focused CI runs on Node 22:
+
+```sh
+node tools/test_volume_model.mjs
+node tools/test_volume_lessons.mjs
+```
+
+The existing Pages release path additionally validates local links, public
+question boundaries, authenticated learning contracts, and the exact injected
+artifact. Model tests alone do not establish browser interaction or deployment.
+The private jsdom interaction harness and renderer PNG inspection are additional
+local evidence; they are not hosted-browser tests or checks run by the dedicated
+two-script CI workflow. On the deployed platform, the established JavaScript
+authentication gate still applies to access; renderer fallback does not bypass it.
+
+| Verification | Result |
+| --- | --- |
+| Mathematical model tests | PASS: 12 scenarios, 6 cross-section shapes, 273 numerical checks |
+| Lesson data and integration tests | PASS: 3 lessons, 42 stages, 6 independently verified MCQs, 148 KaTeX formulas |
+| Private jsdom interaction harness | PASS: 146 interaction checks across 42 stages, including back/forward-cache restoration and rendering fallback; no browser visual claim |
+| Actual renderer PNG inspection | PASS: 6 representative cases inspected; these are renderer outputs, not full-page browser screenshots |
+| Portal workspace and lesson visibility progression tests | PASS |
+| Actual desktop/narrow-screen layout, keyboard, reduced-motion, and fallback behavior | Pending browser verification |
+| Injected lesson guards and embedded completion route | Pending artifact verification |
+| Remaining existing release contracts | Pending release checks |
+| Commit, deployed SHA, and live lesson routes | Pending deployment |
+
+The dedicated volume workflow and Pages workflow run separately. A green volume
+workflow is not a declared dependency of the Pages deploy job; require both
+workflows to pass for the release revision before accepting the deployment.
+
+## Rollback
+
+Revert only this release's three catalog-record changes and the added Unit 8
+assets/workflow. Restore each record's previous empty URL and `status: "flow"`,
+and remove its new embedded-practice properties. Preserve lesson numbers,
+titles, access keys, all unrelated records, and account/progress data. No
+database or mastery migration is introduced. Existing server catalog and teacher
+publication decisions remain authoritative; withdraw these lessons through the
+normal teacher controls if rollback follows publication.
