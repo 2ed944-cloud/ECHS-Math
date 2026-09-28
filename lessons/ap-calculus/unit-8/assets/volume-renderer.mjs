@@ -49,23 +49,26 @@ function setup(canvas) {
 
 // The cross-section profile is in the transverse-coordinate / z plane.
 // The planar base is always the diameter, side, leg, or hypotenuse specified.
-function profile(model,t) {
+export function sectionProfile(model,t) {
   const [lo,hi]=model.baseAt(t),w=Math.max(0,hi-lo),mid=(lo+hi)/2;
   switch(model.shape) {
     case 'rectangle':return [[lo,0],[hi,0],[hi,2*w],[lo,2*w]];
     case 'equilateral':return [[lo,0],[hi,0],[mid,Math.sqrt(3)*w/2]];
     case 'right-leg':return [[lo,0],[hi,0],[lo,w]];
     case 'right-hypotenuse':return [[lo,0],[hi,0],[mid,w/2]];
-    case 'semicircle':return Array.from({length:17},(_,j)=>{
-      const angle=Math.PI*(1-j/16);return [mid+w/2*Math.cos(angle),w/2*Math.sin(angle)];
+    case 'semicircle':return Array.from({length:65},(_,j)=>{
+      const angle=Math.PI*(1-j/64);return [mid+w/2*Math.cos(angle),w/2*Math.sin(angle)];
     });
     default:return [[lo,0],[hi,0],[hi,w],[lo,w]];
   }
 }
+const profile=sectionProfile;
 const sectionPoint=(model,t,q,z=0)=>model.axis==='x'?[t,q,z]:[q,t,z];
 const radialPoint=(model,t,r,angle)=>model.axis==='x'
   ?[t,model.axisOffset+r*Math.cos(angle),r*Math.sin(angle)]
   :[model.axisOffset+r*Math.cos(angle),t,r*Math.sin(angle)];
+const axisVector=(model,sign=1)=>model.axis==='x'?[sign,0,0]:[0,sign,0];
+const radialVector=(model,angle,sign=1)=>model.axis==='x'?[0,sign*Math.cos(angle),sign*Math.sin(angle)]:[sign*Math.cos(angle),0,sign*Math.sin(angle)];
 const basePoint=(model,t,q)=>model.kind==='shell'
   ?(model.axis==='y'?[t,q,0]:[q,t,0]):sectionPoint(model,t,q,0);
 function radialSign(model,t) {
@@ -85,70 +88,77 @@ function angularRange(model,s,t) {
 
 function meshBuilder() {
   const polygons=[];
-  return {polygons, add(points,type='body',edge=false) {
+  return {polygons, add(points,type='body',edge=false,outward=null) {
     if(points.length<3||points.some(p=>p.some(v=>!Number.isFinite(v))))return;
     let normal=[0,0,0];
     for(let j=1;j<points.length-1&&length(normal)<1e-12;j++)normal=cross(vecSub(points[j],points[0]),vecSub(points[j+1],points[0]));
     if(length(normal)<1e-12)return;
+    if(outward&&normal.reduce((sum,v,i)=>sum+v*outward[i],0)<0){points=points.slice().reverse();normal=normal.map(v=>-v);}
     polygons.push({points,type,edge,normal});
   }};
 }
 function addCrossPrism(mesh,model,t0,t1,sample,type='body',edge=false) {
   const q=profile(model,sample),p0=q.map(([v,z])=>sectionPoint(model,t0,v,z)),p1=q.map(([v,z])=>sectionPoint(model,t1,v,z));
-  mesh.add(p0.slice().reverse(),type,true);mesh.add(p1,type,true);
-  for(let j=0;j<q.length;j++) {const k=(j+1)%q.length;mesh.add([p0[j],p0[k],p1[k],p1[j]],type,edge);}
+  mesh.add(p0,type,true,axisVector(model,-1));mesh.add(p1,type,true,axisVector(model));
+  const sign=Math.sign(q.reduce((sum,p,j)=>{const r=q[(j+1)%q.length];return sum+p[0]*r[1]-r[0]*p[1];},0))||1;
+  for(let j=0;j<q.length;j++) {const k=(j+1)%q.length,dq=q[k][0]-q[j][0],dz=q[k][1]-q[j][1];
+    const outward=model.axis==='x'?[0,sign*dz,-sign*dq]:[sign*dz,0,-sign*dq];
+    mesh.add([p0[j],p0[k],p1[k],p1[j]],type,edge,outward);}
 }
 function addCrossSolid(mesh,model,s) {
-  const [a,b]=model.bounds,end=mix(a,b,s.buildFraction),n=model.shape==='semicircle'?32:42;
+  const [a,b]=model.bounds,end=mix(a,b,s.buildFraction),n=80;
   if(end<=a)return;
   let prev=profile(model,a).map(([v,z])=>sectionPoint(model,a,v,z));
   for(let i=1;i<=n;i++) {
     const t=mix(a,end,i/n),next=profile(model,t).map(([v,z])=>sectionPoint(model,t,v,z));
-    for(let j=0;j<next.length;j++){const k=(j+1)%next.length;mesh.add([prev[j],prev[k],next[k],next[j]],'body');}
-    if(i===1)mesh.add(prev.slice().reverse(),'cut',true);
-    if(i===n)mesh.add(next,'cut',true);
+    const q=profile(model,mix(a,end,(i-.5)/n)),sign=Math.sign(q.reduce((sum,p,j)=>{const r=q[(j+1)%q.length];return sum+p[0]*r[1]-r[0]*p[1];},0))||1;
+    for(let j=0;j<next.length;j++){const k=(j+1)%next.length,dq=q[k][0]-q[j][0],dz=q[k][1]-q[j][1];
+      const outward=model.axis==='x'?[0,sign*dz,-sign*dq]:[sign*dz,0,-sign*dq];
+      mesh.add([prev[j],prev[k],next[k],next[j]],'body',false,outward);}
+    if(i===1)mesh.add(prev,'cut',true,axisVector(model,-1));
+    if(i===n)mesh.add(next,'cut',true,axisVector(model));
     prev=next;
   }
 }
-function addAnnulusFace(mesh,model,t,inner,outer,start,end,n,type='body',edge=false) {
+function addAnnulusFace(mesh,model,t,inner,outer,start,end,n,type='body',edge=false,sign=1) {
   for(let j=0;j<n;j++) {
     const u=mix(start,end,j/n),v=mix(start,end,(j+1)/n);
-    mesh.add([radialPoint(model,t,inner,u),radialPoint(model,t,outer,u),radialPoint(model,t,outer,v),radialPoint(model,t,inner,v)],type,edge);
+    mesh.add([radialPoint(model,t,inner,u),radialPoint(model,t,outer,u),radialPoint(model,t,outer,v),radialPoint(model,t,inner,v)],type,edge,axisVector(model,sign));
   }
 }
 function addTube(mesh,model,t0,t1,inner,outer,start,end,n,type='body',edge=false) {
   if(outer<1e-12||end-start<1e-8)return;
   for(let j=0;j<n;j++) {
     const u=mix(start,end,j/n),v=mix(start,end,(j+1)/n);
-    mesh.add([radialPoint(model,t0,outer,u),radialPoint(model,t1,outer,u),radialPoint(model,t1,outer,v),radialPoint(model,t0,outer,v)],type,edge);
-    if(inner>1e-12)mesh.add([radialPoint(model,t0,inner,v),radialPoint(model,t1,inner,v),radialPoint(model,t1,inner,u),radialPoint(model,t0,inner,u)],type==='body'?'inner':type,edge);
+    mesh.add([radialPoint(model,t0,outer,u),radialPoint(model,t1,outer,u),radialPoint(model,t1,outer,v),radialPoint(model,t0,outer,v)],type,edge,radialVector(model,(u+v)/2));
+    if(inner>1e-12)mesh.add([radialPoint(model,t0,inner,v),radialPoint(model,t1,inner,v),radialPoint(model,t1,inner,u),radialPoint(model,t0,inner,u)],type==='body'?'inner':type,edge,radialVector(model,(u+v)/2,-1));
   }
-  addAnnulusFace(mesh,model,t0,inner,outer,start,end,n,type,edge);
+  addAnnulusFace(mesh,model,t0,inner,outer,start,end,n,type,edge,-1);
   addAnnulusFace(mesh,model,t1,inner,outer,start,end,n,type,edge);
   if(end-start<TAU-1e-7)for(const angle of [start,end])mesh.add([
     radialPoint(model,t0,inner,angle),radialPoint(model,t0,outer,angle),
     radialPoint(model,t1,outer,angle),radialPoint(model,t1,inner,angle)
-  ],type==='body'?'cut':type,true);
+  ],type==='body'?'cut':type,true,radialVector(model,angle+Math.PI/2,angle===start?-1:1));
 }
 function addRevolutionSolid(mesh,model,s) {
-  const [a,b]=model.bounds,n=26,na=40,[start,end]=angularRange(model,s,(a+b)/2);
+  const [a,b]=model.bounds,n=64,na=64,[start,end]=angularRange(model,s,(a+b)/2);
   if(end-start<1e-8)return;
   for(let i=0;i<n;i++) {
     const t0=mix(a,b,i/n),t1=mix(a,b,(i+1)/n),r0=model.radiiAt(t0),r1=model.radiiAt(t1);
     for(let j=0;j<na;j++) {
       const u=mix(start,end,j/na),v=mix(start,end,(j+1)/na);
-      mesh.add([radialPoint(model,t0,r0.outer,u),radialPoint(model,t1,r1.outer,u),radialPoint(model,t1,r1.outer,v),radialPoint(model,t0,r0.outer,v)],'body');
-      if(r0.inner>1e-12||r1.inner>1e-12)mesh.add([radialPoint(model,t0,r0.inner,v),radialPoint(model,t1,r1.inner,v),radialPoint(model,t1,r1.inner,u),radialPoint(model,t0,r0.inner,u)],'inner');
+      mesh.add([radialPoint(model,t0,r0.outer,u),radialPoint(model,t1,r1.outer,u),radialPoint(model,t1,r1.outer,v),radialPoint(model,t0,r0.outer,v)],'body',false,radialVector(model,(u+v)/2));
+      if(r0.inner>1e-12||r1.inner>1e-12)mesh.add([radialPoint(model,t0,r0.inner,v),radialPoint(model,t1,r1.inner,v),radialPoint(model,t1,r1.inner,u),radialPoint(model,t0,r0.inner,u)],'inner',false,radialVector(model,(u+v)/2,-1));
     }
     if(end-start<TAU-1e-7)for(const angle of [start,end])mesh.add([
       radialPoint(model,t0,r0.inner,angle),radialPoint(model,t0,r0.outer,angle),
       radialPoint(model,t1,r1.outer,angle),radialPoint(model,t1,r1.inner,angle)
-    ],'cut');
+    ],'cut',false,radialVector(model,angle+Math.PI/2,angle===start?-1:1));
   }
-  for(const t of [a,b]) {const r=model.radiiAt(t);addAnnulusFace(mesh,model,t,r.inner,r.outer,start,end,na,'cut');}
+  for(const t of [a,b]) {const r=model.radiiAt(t);addAnnulusFace(mesh,model,t,r.inner,r.outer,start,end,na,'cut',false,t===a?-1:1);}
 }
 function addShellSolid(mesh,model,s) {
-  const [a,b]=model.bounds,n=26,na=40,[start,end]=angularRange(model,s,(a+b)/2);
+  const [a,b]=model.bounds,n=64,na=64,[start,end]=angularRange(model,s,(a+b)/2);
   if(end-start<1e-8)return;
   for(let i=0;i<n;i++) {
     const t0=mix(a,b,i/n),t1=mix(a,b,(i+1)/n),p=model.shellAt(t0),q=model.shellAt(t1);
@@ -157,12 +167,12 @@ function addShellSolid(mesh,model,s) {
       for(const edge of ['low','high'])mesh.add([
         radialPoint(model,p[edge],p.radius,u),radialPoint(model,q[edge],q.radius,u),
         radialPoint(model,q[edge],q.radius,v),radialPoint(model,p[edge],p.radius,v)
-      ],edge==='low'?'inner':'body');
+      ],edge==='low'?'inner':'body',false,axisVector(model,edge==='low'?-1:1));
     }
     if(end-start<TAU-1e-7)for(const angle of [start,end])mesh.add([
       radialPoint(model,p.low,p.radius,angle),radialPoint(model,q.low,q.radius,angle),
       radialPoint(model,q.high,q.radius,angle),radialPoint(model,p.high,p.radius,angle)
-    ],'cut');
+    ],'cut',false,radialVector(model,angle+Math.PI/2,angle===start?-1:1));
   }
   for(const t of [a,b]) {const q=model.shellAt(t);addTube(mesh,model,q.low,q.high,q.radius,q.radius,start,end,na,'body');}
 }
@@ -198,6 +208,9 @@ function buildMesh(model,s) {
   }
   return mesh.polygons;
 }
+
+/** Pure mathematical mesh for independent geometry checks; no canvas required. */
+export function volumeMesh(model,state={}) {return buildMesh(model,settings(state));}
 
 function worldBounds(model) {
   const points=[],[a,b]=model.bounds;
@@ -284,6 +297,40 @@ export function renderVolume(canvas,model,state={}) {
   ctx.save();ctx.font='500 11px system-ui, sans-serif';ctx.fillStyle=C.muted;
   ctx.fillText('Equal-scale 3D · orthographic view',14,height-15);ctx.restore();
   return {available:true,polygonCount:polygons.length,worldBounds:bounds,sliceParameter:mix(...model.bounds,s.slice),projection:'orthographic-equal-scale'};
+}
+
+/** Face-on view preserves lengths/angles, independent of the orbit camera. */
+export function renderSection(canvas,model,state={}) {
+  const surface=setup(canvas);if(!surface)return {available:false};
+  const {ctx,width,height}=surface,s=settings(state),t=mix(...model.bounds,s.slice),slice=model.sliceAt(t);
+  let points,extentX,extentY;
+  if(model.kind==='cross'){
+    points=profile(model,t);extentX=slice.width;extentY=Math.max(0,...points.map(p=>p[1]));
+    points=points.map(([q,z])=>[q-(slice.baseLow+slice.baseHigh)/2,z-extentY/2]);
+  }else if(model.kind==='shell'){
+    extentX=TAU*slice.radius;extentY=slice.height;
+    points=[[-extentX/2,-extentY/2],[extentX/2,-extentY/2],[extentX/2,extentY/2],[-extentX/2,extentY/2]];
+  }else{extentX=extentY=2*slice.outer;}
+  const scale=Math.min((width-54)/Math.max(extentX,.001),(height-108)/Math.max(extentY,.001));
+  const project=([q,z])=>[width/2+q*scale,height/2-z*scale-8];
+  if(Math.max(extentX,extentY)<1e-10){
+    const p=project([0,0]);ctx.beginPath();ctx.arc(...p,3,0,TAU);ctx.fillStyle=C.gold;ctx.fill();
+    label(ctx,'Zero-area endpoint',width/2,height/2+28,C.ink,'center');
+  }else if(points){
+    path(ctx,points.map(project));ctx.fillStyle='rgba(230,166,61,.58)';ctx.fill();ctx.strokeStyle='#9e6819';ctx.lineWidth=2;ctx.stroke();
+  }else{
+    const p=project([0,0]);ctx.beginPath();ctx.arc(...p,slice.outer*scale,0,TAU);
+    if(slice.inner>1e-12)ctx.arc(...p,slice.inner*scale,0,TAU,true);
+    ctx.fillStyle='rgba(230,166,61,.58)';ctx.fill('evenodd');ctx.strokeStyle='#9e6819';ctx.lineWidth=2;ctx.stroke();
+    dim(ctx,p,project([slice.outer,0]),'R',C.ink,13);
+    if(slice.inner>1e-12)dim(ctx,p,project([0,slice.inner]),'r',C.ink,-14);
+  }
+  label(ctx,`${model.variable} = ${format(t)}`,14,20,C.ink);
+  const description=model.kind==='cross'?`w = ${format(slice.width)}`:model.kind==='shell'?`circumference = 2πr; height = ${format(slice.height)}`:`R = ${format(slice.outer)}; r = ${format(slice.inner)}`;
+  ctx.save();ctx.font='12px system-ui, sans-serif';ctx.fillStyle=C.ink;ctx.textAlign='center';
+  ctx.fillText(description,width/2,height-40);
+  ctx.fillText(model.kind==='shell'?'Unrolled shell surface, not a perpendicular face':`Face area ≈ ${Number(slice.area.toFixed(5))} square units`,width/2,height-20);ctx.restore();
+  return {available:true,sliceParameter:t,area:slice.area,projection:'face-on-equal-scale'};
 }
 
 function niceStep(span) {
