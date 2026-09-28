@@ -14,7 +14,8 @@
 .presentation-mode .model-stage .stage-copy>p:last-child{margin-bottom:0}
 .presentation-mode .workspace-head{padding:10px 18px}
 .presentation-mode .preset-bar{padding:8px 18px}
-.presentation-mode .canvas-region,.presentation-mode .canvas-solid,.presentation-mode .canvas-section{height:clamp(250px,34vh,460px)}
+.presentation-mode .canvas-region,.presentation-mode .canvas-solid,.presentation-mode .canvas-section{height:clamp(180px,calc(100vh - 750px),400px)}
+.presentation-mode .canvas-note{display:none}
 .presentation-mode .camera-tools{padding-bottom:5px;gap:5px}
 .presentation-mode .model-controls{padding:10px 18px}
 .presentation-mode .view-options{padding-bottom:10px;gap:9px}
@@ -22,3 +23,4 @@
 @media(min-width:1500px){.canvas-section{height:400px}}
 @media(max-width:1000px){.visuals{grid-template-columns:1fr 1.25fr}.section-pane{grid-column:1/-1;border-top:1px solid var(--line)}.canvas-section{height:280px}.section-pane .canvas-note{text-align:center}}
 @media(max-width:650px){.visuals{grid-template-columns:1fr}.section-pane{grid-column:auto}#print-view{display:none}.head-actions button{padding:7px 9px}.workspace-head{flex-wrap:wrap}.presentation-mode .model-stage .stage-copy>p:not(:first-child):not(.lede){display:block}}
+@media(max-width:1000px){.presentation-mode .canvas-region,.presentation-mode .canvas-solid,.presentation-mode .canvas-section{height:280px}.presentation-mode .canvas-note{display:block}}

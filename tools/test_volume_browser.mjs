@@ -38,6 +38,11 @@ try{
    assert.equal(await page.locator('#view-mode').inputValue(),'slice');checks++;
    await page.locator('#solid-canvas').focus();await page.keyboard.press('ArrowRight');await page.keyboard.press('Home');
    await page.locator('#complete-solid').click();
+   if(viewport.width===1440){
+    const controls=await page.locator('.view-options').boundingBox();
+    const footer=await page.locator('.lesson-footer').boundingBox();
+    assert.ok(controls.y+controls.height<=footer.y,'Desktop slide controls fit above the footer');checks++;
+   }
    await page.addStyleTag({url:origin+'/css/echs-ai-tutor.css'});
    await page.evaluate(()=>{window.ECHS_AI_TUTOR_CONFIG={enabled:true,endpoint:'https://example.invalid',title:'ECHS Math Tutor Pro'};});
    await page.addScriptTag({url:origin+'/js/echs-ai-tutor.js'});
