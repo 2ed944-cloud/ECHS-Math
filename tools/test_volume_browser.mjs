@@ -53,10 +53,12 @@ try{
    assert.ok(overflow<=1,`${file} at ${viewport.width}: horizontal overflow ${overflow}`);checks++;
    await page.screenshot({path:path.join(out,`${file}-${viewport.width}.png`),fullPage:true});
    await page.emulateMedia({reducedMotion:'reduce'});
+   await page.waitForFunction(()=>document.querySelector('#build').disabled);
    assert.equal(await page.locator('#build').isDisabled(),true);checks++;
    const control=file.includes('8-5')?'construction':'sweep';
    await page.locator('#'+control).evaluate(el=>{el.value=el.id==='construction'?'500':'180';el.dispatchEvent(new Event('input',{bubbles:true}));});
    await page.emulateMedia({reducedMotion:'no-preference'});
+   await page.waitForFunction(()=>!document.querySelector('#build').disabled);
   }
   await context.close();
  }
