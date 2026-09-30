@@ -41,6 +41,9 @@ jobs:
         run: node question-bank/official/tools/node_modules/playwright/cli.js install --with-deps chromium
       - name: Exercise all lessons and model controls at classroom and mobile sizes
         run: node tools/test_precalc_classroom_browser.mjs
+      - name: Verify the exact deployed Unit 1 release
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: python tools/verify_precalc_classroom_live.py --expected-sha "$GITHUB_SHA" --report .classroom-browser-report/live-release.json
       - uses: actions/upload-artifact@v4
         if: always()
         with:

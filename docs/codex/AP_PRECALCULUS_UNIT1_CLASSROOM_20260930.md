@@ -113,6 +113,9 @@ The initial native run passed 6498 checks with no page errors. Screenshot review
 then increased the school crest size, bounded existing SVG explorer heights for
 projection, and moved the original-mode return control above the native footer.
 The final browser run additionally checks complete model graph visibility.
+On a production main push, the same workflow verifies the live deployment SHA,
+all fourteen guarded lesson hooks, the updated Unit 1 index and exact byte hashes
+of every public classroom adapter asset. It does not log into a production account.
 
 For a per-link rollback use `?classroom=0`. For global rollback remove only the
 new build-injection step; original lessons and existing investigations remain
