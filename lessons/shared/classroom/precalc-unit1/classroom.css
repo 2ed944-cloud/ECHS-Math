@@ -1,0 +1,79 @@
+/* All presentation rules are bounded by the compatibility mode or owned root. */
+html.ec-classroom-active :is(.deck,.deck-shell,.boot-screen,.skip-link,.skip,.drawer-backdrop,.slide-map,.notebook-drawer,.ei-host,#toast){display:none!important}
+html.ec-classroom-active body{overflow:hidden!important}
+#echsClassroom{--ec-navy:#203754;--ec-maroon:#8b1538;--ec-teal:#066a59;--ec-line:#d9e3ea;position:fixed;z-index:110;inset:var(--echs-access-bar-height,64px) 0 0;display:flex;flex-direction:column;background:#f6f8fb;color:var(--ec-navy);font:18px/1.5 Inter,Arial,sans-serif;text-align:left;letter-spacing:normal}
+#echsClassroom[hidden],#echsClassroomReturn[hidden]{display:none!important}
+#echsClassroom *{box-sizing:border-box}
+#echsClassroom button,#echsClassroom select,#echsClassroom input,#echsClassroom textarea,#echsClassroom a{font:inherit}
+#echsClassroom button,#echsClassroomReturn{cursor:pointer;border:1px solid var(--ec-line,#d9e3ea);border-radius:10px;padding:10px 16px;min-height:44px;background:#fff;color:#203754;font-weight:700}
+#echsClassroom button:hover{background:#eef3f8}
+#echsClassroom button:disabled{cursor:default;opacity:.5}
+#echsClassroom .ec-primary{background:#8b1538;color:#fff;border-color:#8b1538}
+#echsClassroom .ec-primary:hover{background:#70122d}
+#echsClassroom :focus-visible,#echsClassroomReturn:focus-visible{outline:3px solid #167aa6;outline-offset:3px}
+#echsClassroom .ec-header{padding:12px 28px;background:#fff;border-bottom:1px solid var(--ec-line);display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+#echsClassroom .ec-logo{width:96px;height:50px;object-fit:contain}
+#echsClassroom .ec-brand{flex:1;min-width:160px;font-size:14px;font-weight:800;letter-spacing:.08em;color:#8b1538}
+#echsClassroom .ec-brand span{display:block;color:#53677c;font-size:12px;letter-spacing:0;font-weight:500}
+#echsClassroom .ec-tools{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+#echsClassroom .ec-unit{color:#203754;font-size:14px}
+#echsClassroom .ec-tools button{font-size:14px;padding:8px 12px}
+#echsClassroom .ec-stage{overflow:auto;flex:1;min-height:0;overscroll-behavior:contain;padding:28px clamp(18px,4vw,60px)}
+#echsClassroom .ec-slide{max-width:1280px;margin:0 auto;background:#fff;border:1px solid var(--ec-line);border-top:5px solid #8b1538;border-radius:18px;padding:28px clamp(20px,3vw,44px);box-shadow:0 12px 34px #2037540b}
+#echsClassroom .ec-eyebrow{color:#066a59;font-size:13px;font-weight:800;letter-spacing:.1em;margin:0 0 8px;text-transform:uppercase}
+#echsClassroom h1{margin:0 0 18px;font-size:clamp(25px,3vw,43px);font-weight:800;line-height:1.15;color:#203754;letter-spacing:-.02em}
+#echsClassroom h2{font-size:22px;margin:16px 0 10px;color:#203754;line-height:1.25}
+#echsClassroom p{margin:10px 0;max-width:none}
+#echsClassroom .ec-prompt{font-size:clamp(20px,2.1vw,28px);line-height:1.5;margin-bottom:22px}
+#echsClassroom .ec-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(320px,.82fr);gap:26px;align-items:start}
+#echsClassroom .ec-grid>*,#echsClassroom .ec-visual{min-width:0}
+#echsClassroom .ec-visual{background:#f5f8fc;border-radius:14px;padding:16px}
+#echsClassroom .ec-graph{width:100%;height:auto;display:block;max-height:300px}
+#echsClassroom .ec-graph text{font:14px Arial,sans-serif;fill:#203754}
+#echsClassroom .ec-table-wrap{overflow-x:auto;max-width:100%;margin:12px 0}
+#echsClassroom table{width:100%;border-collapse:collapse;text-align:center;font-size:16px}
+#echsClassroom caption{text-align:left;color:#53677c;font-size:14px;padding:8px 0}
+#echsClassroom th,#echsClassroom td{padding:8px 10px;border:1px solid #d9e3ea;white-space:nowrap}
+#echsClassroom th{background:#eaf0f6;font-weight:800}
+#echsClassroom .ec-attempt{border:1px solid var(--ec-line);border-radius:12px;background:#f8fafc;padding:18px;margin:18px 0}
+#echsClassroom .ec-attempt label{display:block;font-weight:650;margin-bottom:10px}
+#echsClassroom textarea,#echsClassroom input[type=text]{display:block;background:#fff;color:#203754;border:1px solid #adbfce;border-radius:8px;width:100%;padding:12px;margin:8px 0;font-size:18px;min-height:48px}
+#echsClassroom textarea{resize:vertical;min-height:90px}
+#echsClassroom fieldset{border:0;margin:0;padding:0;min-width:0}
+#echsClassroom legend{font-weight:800;margin-bottom:10px}
+#echsClassroom .ec-choice{display:flex;align-items:flex-start;gap:10px;padding:12px;background:#fff;border:1px solid var(--ec-line);border-radius:8px;cursor:pointer;margin:8px 0}
+#echsClassroom .ec-choice input{margin-top:7px;flex:0 0 auto}
+#echsClassroom .ec-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:12px 0}
+#echsClassroom .ec-small{font-size:14px;color:#53677c}
+#echsClassroom .ec-feedback{font-size:16px;color:#7a1634;min-height:24px}
+#echsClassroom .ec-feedback[data-correct=true]{color:#066a59}
+#echsClassroom .ec-hint{padding:12px 16px;border-left:4px solid #a77716;background:#fff8e8}
+#echsClassroom .ec-solution{margin-top:20px;background:#eff7f5;border-left:5px solid #066a59;padding:16px 22px;border-radius:0 10px 10px 0}
+#echsClassroom .ec-solution ol{padding-left:24px;margin:10px 0}
+#echsClassroom .ec-solution li{padding:8px 0;font-size:20px}
+#echsClassroom .ec-solution[hidden],#echsClassroom .ec-hint[hidden]{display:none}
+#echsClassroom .ec-goals{font-size:23px;line-height:1.6;padding-left:26px}
+#echsClassroom .ec-cover-intro{max-width:900px;font-size:22px}
+#echsClassroom .ec-footer{display:flex;align-items:center;gap:14px;justify-content:space-between;border-top:1px solid var(--ec-line);padding:12px 28px;background:#fff}
+#echsClassroom .ec-location{flex:1;max-width:680px;min-width:0}
+#echsClassroom select{max-width:100%;width:100%;padding:8px;border:1px solid #adbfce;background:#fff;color:#203754;border-radius:8px;font-size:15px;min-height:44px}
+#echsClassroom .ec-progress{height:4px;background:#e5eaf0;border-radius:4px;margin-top:7px;overflow:hidden}
+#echsClassroom .ec-progress span{display:block;height:100%;background:#8b1538}
+#echsClassroom .ec-model{margin:20px 0;border:1px solid var(--ec-line);border-radius:14px;padding:18px;background:#fff;max-width:100%;overflow-x:auto}
+#echsClassroom .ec-model-controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px}
+#echsClassroom .ec-model-controls label{font-size:15px;font-weight:700}
+#echsClassroom .ec-model-controls input{width:100%;accent-color:#8b1538}
+#echsClassroom .ec-model-summary{font-size:16px;line-height:1.6}
+#echsClassroom .ec-model .ei-graph{height:340px;max-height:340px;min-height:0}
+#echsClassroom .ec-model :is(.ei-axis-text,.ei-axis-label){font-size:17px}
+#echsClassroom .ec-model-output{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px}
+#echsClassroom .ec-native-slide{display:block!important;position:static!important;visibility:visible!important;opacity:1!important;transform:none!important;inset:auto!important;width:auto!important;height:auto!important;max-width:none!important;padding:0!important;background:transparent!important;border:0!important;box-shadow:none!important;overflow:visible!important}
+#echsClassroom .ec-native-slide [data-context-lab]{display:block;width:100%;max-width:none}
+#echsClassroom .ec-native-slide .context-pair{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+#echsClassroom .ec-native-slide svg{max-width:100%;height:auto}
+#echsClassroom .katex{font-size:1.1em}
+#echsClassroom .katex-display{overflow-x:auto;overflow-y:hidden;max-width:100%;padding:3px 0}
+#echsClassroomReturn{position:fixed;left:20px;bottom:90px;z-index:110;background:#8b1538;color:white;box-shadow:0 5px 20px #20375430;font:700 15px Arial,sans-serif}
+@media(max-width:900px){#echsClassroom .ec-grid,#echsClassroom .ec-model-output{grid-template-columns:1fr}#echsClassroom .ec-header{padding:10px 16px;gap:10px}#echsClassroom .ec-logo{width:78px;height:42px}#echsClassroom .ec-stage{padding:16px}#echsClassroom .ec-slide{padding:22px}#echsClassroom .ec-footer{padding:10px 16px;gap:8px}#echsClassroom .ec-goals{font-size:20px}#echsClassroom .ec-native-slide .context-pair{grid-template-columns:1fr}}
+@media(max-width:500px){#echsClassroom .ec-brand{font-size:12px;min-width:100px}#echsClassroom .ec-tools{width:100%;justify-content:space-between}#echsClassroom .ec-tools button{font-size:12px;padding:8px}#echsClassroom .ec-unit{font-size:12px}#echsClassroom .ec-stage{padding:10px}#echsClassroom .ec-slide{padding:18px 14px;border-radius:12px}#echsClassroom .ec-footer button{padding:8px;font-size:14px}#echsClassroom .ec-prompt{font-size:20px}#echsClassroom .ec-solution li{font-size:18px}#echsClassroom .ec-attempt{padding:12px}#echsClassroomReturn{right:10px;left:10px}}
+@media(prefers-reduced-motion:reduce){#echsClassroom *,#echsClassroomReturn{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
