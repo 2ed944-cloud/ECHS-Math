@@ -43,6 +43,11 @@ try {
         await page.emulateMedia({reducedMotion:'no-preference'});await page.waitForFunction(()=>!document.querySelector('#context-car-play').disabled);assert.equal(await page.locator('#context-car-play').isDisabled(),false);checks++;
       }
       assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+1),`${entry.id}: overflow at ${viewport.width}`);checks++;
+      if(viewport.width===1440){
+        const visual=entry.path.includes('ap-calculus')?page.locator('#visuals'):page.locator('#'+entry.anchor+' .lab-display');
+        const bounds=await visual.boundingBox(),footer=await page.locator(entry.path.includes('ap-calculus')?'.lesson-footer':'.footer').boundingBox();
+        assert.ok(bounds.y>=0&&bounds.y+Math.min(bounds.height,250)<=footer.y,`${entry.id}: model should be visible alongside the prompts`);checks++;
+      }
       await page.screenshot({path:path.join(out,`${entry.id}-explore-${viewport.width}.png`),fullPage:true});
       await panel.getByRole('button',{name:'Explain what changed',exact:true}).click();
       await panel.getByLabel('Explain what changed, and what stayed the same').fill('I connect the model with an area or a rate and state the relevant units.');
