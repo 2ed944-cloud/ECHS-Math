@@ -60,6 +60,7 @@ on:
       - "tools/fingerprint_school_control.py"
       - "tools/inject_learning_access_guard.py"
       - "tools/inject_lesson_investigations.py"
+      - "tools/inject_precalc_unit1_classroom.py"
       - "tools/lesson-investigations/**"
       - "tools/test_pages_live_contract.py"
       - "tools/test_learning_access_contract.py"
@@ -194,6 +195,7 @@ jobs:
           touch _pages/.nojekyll
           python tools/inject_learning_access_guard.py _pages
           python tools/inject_lesson_investigations.py _pages --source-root .
+          python tools/inject_precalc_unit1_classroom.py _pages
           python tools/test_learning_access_contract.py _pages --artifact
           python tools/fingerprint_school_control.py _pages --sha "$GITHUB_SHA"
           python - <<'PY'

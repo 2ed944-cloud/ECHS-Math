@@ -1,0 +1,49 @@
+name: AP Precalculus Unit 1 interactive classroom
+on:
+  pull_request:
+    paths:
+      - 'lessons/shared/classroom/precalc-unit1/**'
+      - 'lessons/ap-precalculus/unit-1/index.html'
+      - 'tools/*precalc*classroom*'
+      - '.github/workflows/precalc-unit1-classroom.yml'
+      - '.github/workflows/deploy-pages.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'lessons/shared/classroom/precalc-unit1/**'
+      - 'tools/*precalc*classroom*'
+      - '.github/workflows/precalc-unit1-classroom.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci --prefix question-bank/official/tools
+      - name: Install isolated DOM dependency
+        run: npm install --prefix "$RUNNER_TEMP/classroom-qa" linkedom@0.18.12
+      - name: Verify content, mathematics, owner fencing and build preservation
+        env:
+          ECHS_TEST_DOM_MODULE: '${{ runner.temp }}/classroom-qa/node_modules/linkedom'
+        run: |
+          python tools/test_precalc_classroom_injection.py
+          node tools/test_precalc_classroom.mjs
+          node tools/test_precalc_classroom_owner.mjs
+          python tools/test_learning_access_contract.py .
+          python tools/test_lesson_visibility_contract.py .
+      - name: Install isolated Chromium
+        run: node question-bank/official/tools/node_modules/playwright/cli.js install --with-deps chromium
+      - name: Exercise all lessons and model controls at classroom and mobile sizes
+        run: node tools/test_precalc_classroom_browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: precalc-unit1-classroom-evidence
+          path: .classroom-browser-report
+          include-hidden-files: true
