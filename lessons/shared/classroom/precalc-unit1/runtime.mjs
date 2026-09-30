@@ -174,7 +174,7 @@ export function startClassroom({window:win=globalThis.window,entryURL=win?.locat
     if(!verify())return;
     css=el('link');css.rel='stylesheet';css.href=new URL('./classroom.css',import.meta.url).href;doc.head.append(css);
     root=el('div');root.id='echsClassroom';root.hidden=true;root.lang='en';
-    const header=el('header',undefined,'ec-header'),logo=el('img');logo.src=new URL('assets/echs_logo.png',siteRoot).href;logo.alt='ECHS';logo.className='ec-logo';
+    const header=el('header',undefined,'ec-header'),logo=el('img');logo.src=new URL('assets/ap-precalculus/echs_logo.png',siteRoot).href;logo.alt='Education City High School';logo.className='ec-logo';
     const brand=el('div','ECHS · AP PRECALCULUS '+spec.topic,'ec-brand');brand.append(el('span','Interactive lesson slides'));
     const tools=el('div',undefined,'ec-tools'),unit=el('a','Unit 1','ec-unit');unit.href=new URL('lessons/ap-precalculus/unit-1/index.html',siteRoot).href;
     tools.append(unit,button('More practice & original lesson',original),button('Present',async()=>{if(!verify())return;try{if(doc.fullscreenElement)await doc.exitFullscreen();else await doc.documentElement.requestFullscreen();}catch{announce('Use your browser full-screen command to present.');}}));

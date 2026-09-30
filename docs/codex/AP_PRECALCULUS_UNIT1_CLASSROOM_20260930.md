@@ -109,6 +109,11 @@ tests denied roles and revocation, checks no new storage writes and exports
 screenshots. This does not claim a signed-in production server authorization test.
 The unchanged access contracts and Pages release checks remain required.
 
+The initial native run passed 6498 checks with no page errors. Screenshot review
+then increased the school crest size, bounded existing SVG explorer heights for
+projection, and moved the original-mode return control above the native footer.
+The final browser run additionally checks complete model graph visibility.
+
 For a per-link rollback use `?classroom=0`. For global rollback remove only the
 new build-injection step; original lessons and existing investigations remain
 available without the adapter. No learner migration or data deletion is needed.

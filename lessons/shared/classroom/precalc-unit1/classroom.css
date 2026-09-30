@@ -12,7 +12,7 @@ html.ec-classroom-active body{overflow:hidden!important}
 #echsClassroom .ec-primary:hover{background:#70122d}
 #echsClassroom :focus-visible,#echsClassroomReturn:focus-visible{outline:3px solid #167aa6;outline-offset:3px}
 #echsClassroom .ec-header{padding:12px 28px;background:#fff;border-bottom:1px solid var(--ec-line);display:flex;align-items:center;gap:18px;flex-wrap:wrap}
-#echsClassroom .ec-logo{width:48px;height:48px;object-fit:contain}
+#echsClassroom .ec-logo{width:96px;height:50px;object-fit:contain}
 #echsClassroom .ec-brand{flex:1;min-width:160px;font-size:14px;font-weight:800;letter-spacing:.08em;color:#8b1538}
 #echsClassroom .ec-brand span{display:block;color:#53677c;font-size:12px;letter-spacing:0;font-weight:500}
 #echsClassroom .ec-tools{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
@@ -64,6 +64,8 @@ html.ec-classroom-active body{overflow:hidden!important}
 #echsClassroom .ec-model-controls label{font-size:15px;font-weight:700}
 #echsClassroom .ec-model-controls input{width:100%;accent-color:#8b1538}
 #echsClassroom .ec-model-summary{font-size:16px;line-height:1.6}
+#echsClassroom .ec-model .ei-graph{height:340px;max-height:340px;min-height:0}
+#echsClassroom .ec-model :is(.ei-axis-text,.ei-axis-label){font-size:17px}
 #echsClassroom .ec-model-output{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px}
 #echsClassroom .ec-native-slide{display:block!important;position:static!important;visibility:visible!important;opacity:1!important;transform:none!important;inset:auto!important;width:auto!important;height:auto!important;max-width:none!important;padding:0!important;background:transparent!important;border:0!important;box-shadow:none!important;overflow:visible!important}
 #echsClassroom .ec-native-slide [data-context-lab]{display:block;width:100%;max-width:none}
@@ -71,7 +73,7 @@ html.ec-classroom-active body{overflow:hidden!important}
 #echsClassroom .ec-native-slide svg{max-width:100%;height:auto}
 #echsClassroom .katex{font-size:1.1em}
 #echsClassroom .katex-display{overflow-x:auto;overflow-y:hidden;max-width:100%;padding:3px 0}
-#echsClassroomReturn{position:fixed;right:20px;bottom:20px;z-index:110;background:#8b1538;color:white;box-shadow:0 5px 20px #20375430;font:700 15px Arial,sans-serif}
-@media(max-width:900px){#echsClassroom .ec-grid,#echsClassroom .ec-model-output{grid-template-columns:1fr}#echsClassroom .ec-header{padding:10px 16px;gap:10px}#echsClassroom .ec-logo{width:38px;height:38px}#echsClassroom .ec-stage{padding:16px}#echsClassroom .ec-slide{padding:22px}#echsClassroom .ec-footer{padding:10px 16px;gap:8px}#echsClassroom .ec-goals{font-size:20px}#echsClassroom .ec-native-slide .context-pair{grid-template-columns:1fr}}
+#echsClassroomReturn{position:fixed;left:20px;bottom:90px;z-index:110;background:#8b1538;color:white;box-shadow:0 5px 20px #20375430;font:700 15px Arial,sans-serif}
+@media(max-width:900px){#echsClassroom .ec-grid,#echsClassroom .ec-model-output{grid-template-columns:1fr}#echsClassroom .ec-header{padding:10px 16px;gap:10px}#echsClassroom .ec-logo{width:78px;height:42px}#echsClassroom .ec-stage{padding:16px}#echsClassroom .ec-slide{padding:22px}#echsClassroom .ec-footer{padding:10px 16px;gap:8px}#echsClassroom .ec-goals{font-size:20px}#echsClassroom .ec-native-slide .context-pair{grid-template-columns:1fr}}
 @media(max-width:500px){#echsClassroom .ec-brand{font-size:12px;min-width:100px}#echsClassroom .ec-tools{width:100%;justify-content:space-between}#echsClassroom .ec-tools button{font-size:12px;padding:8px}#echsClassroom .ec-unit{font-size:12px}#echsClassroom .ec-stage{padding:10px}#echsClassroom .ec-slide{padding:18px 14px;border-radius:12px}#echsClassroom .ec-footer button{padding:8px;font-size:14px}#echsClassroom .ec-prompt{font-size:20px}#echsClassroom .ec-solution li{font-size:18px}#echsClassroom .ec-attempt{padding:12px}#echsClassroomReturn{right:10px;left:10px}}
 @media(prefers-reduced-motion:reduce){#echsClassroom *,#echsClassroomReturn{scroll-behavior:auto!important;transition:none!important;animation:none!important}}

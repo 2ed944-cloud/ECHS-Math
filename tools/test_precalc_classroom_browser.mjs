@@ -61,7 +61,13 @@ try {
             await page.evaluate(()=>{window.__qaPortedNode=document.querySelector('#echsClassroom [data-context-lab]');});
             if(slide.id==='toy-car'){await host.locator('#context-car-step').click();assert.ok(Number(await host.locator('#context-car-time').inputValue())>0);checks++;}
           }
-          if(viewport.width===1440||item.topic==='1.1'&&viewport.width===390){await host.scrollIntoViewIfNeeded();await page.screenshot({path:path.join(out,`topic-${item.topic}-${slide.id}-${viewport.width}.png`)});}
+          const graph=host.locator('svg').first();
+          if(await graph.count()&&slide.model.kind!=='native'){
+            await graph.scrollIntoViewIfNeeded();const bounds=await graph.boundingBox(),stageBounds=await page.locator('#echsClassroom .ec-stage').boundingBox();
+            assert.ok(bounds.height<=340.1,'Model graph must fit the presentation height');
+            assert.ok(bounds.y>=stageBounds.y-1&&bounds.y+bounds.height<=stageBounds.y+stageBounds.height+1,'Complete model graph visible after scrolling');checks+=2;
+          }
+          if(viewport.width===1440||item.topic==='1.1'&&viewport.width===390){if(slide.model.kind==='native')await host.scrollIntoViewIfNeeded();await page.screenshot({path:path.join(out,`topic-${item.topic}-${slide.id}-${viewport.width}.png`)});}
           assert.equal(await host.isVisible(),true);checks++;
         }
         for(let step=0;step<slide.steps.length;step++)await reveal.click();
