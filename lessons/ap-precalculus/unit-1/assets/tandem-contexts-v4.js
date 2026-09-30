@@ -41,7 +41,7 @@
     const field=(suffix,label)=>`<label for="${id}-${suffix}">${label}<input id="${id}-${suffix}" data-context-prediction type="text" inputmode="decimal" autocomplete="off"></label>`;
     let controls='',questions='';
     if(kind==='car'){
-      controls=sel('radius','Track radius (m)',[[3,'3'],[2,'2'],[4,'4'],[5,'5']])+sel('period','Seconds per lap',[[10,'10'],[8,'8'],[12,'12'],[16,'16']])+sel('gap','Nearest distance to wall (m)',[[0,'0'],[1,'1'],[2,'2']])+sel('start','Starting position',[['near','Nearest the wall'],['far','Farthest from the wall']])+sel('laps','Number of laps',[[2,'2'],[3,'3'],[4,'4']])+range('time','Elapsed time (s)',0,20,0,.05)+`<label for="${id}-full"><input id="${id}-full" type="checkbox" data-context-setting> Show the full distance graph</label>`;
+      controls=sel('radius','Track radius (m)',[[3,'3'],[2,'2'],[4,'4'],[5,'5'],[6,'6']])+sel('period','Seconds per lap',[[10,'10'],[8,'8'],[12,'12'],[16,'16'],[20,'20']])+sel('gap','Nearest distance to wall (m)',[[0,'0'],[1,'1'],[2,'2']])+sel('start','Starting position',[['near','Nearest the wall'],['far','Farthest from the wall']])+sel('laps','Number of laps',[[2,'2'],[3,'3'],[4,'4']])+range('time','Elapsed time (s)',0,20,0,.05)+`<label for="${id}-full"><input id="${id}-full" type="checkbox" data-context-setting> Show the full distance graph</label>`;
       questions=field('max','Predict the greatest wall distance (m)')+field('repeat','Predict the time between consecutive minima (s)');
     }
     if(kind==='vessel'){
@@ -94,8 +94,11 @@
     });
     $('reveal').addEventListener('click',()=>{if(!attempted){feedback('Try the prediction before opening the explanation.');return;}$('work').hidden=!$('work').hidden;$('reveal').setAttribute('aria-expanded',String(!$('work').hidden));});
     if(kind==='car'){
+      const reducedMotion=typeof root.matchMedia==='function'?root.matchMedia('(prefers-reduced-motion: reduce)'):null;
+      const syncMotion=()=>{if(reducedMotion?.matches){stop();$('play').disabled=true;$('play').title='Reduced motion: use Advance ¼ lap or the elapsed-time slider.';}else{$('play').disabled=false;$('play').title='Animate the car at constant speed.';}};
+      reducedMotion?.addEventListener('change',syncMotion);syncMotion();
       function tick(){if(host.closest('.slide').hidden||document.hidden){stop();return;}const end=Number($('time').max);$('time').value=Math.min(end,num('time')+.1);update();if(num('time')>=end){stop();return;}timer=setTimeout(tick,100);}
-      $('play').addEventListener('click',()=>{if(timer!==null){stop();return;}if(num('time')>=Number($('time').max))$('time').value=0;invalidate();$('play').textContent='Pause';timer=setTimeout(tick,100);});
+      $('play').addEventListener('click',()=>{if(reducedMotion?.matches)return;if(timer!==null){stop();return;}if(num('time')>=Number($('time').max))$('time').value=0;invalidate();$('play').textContent='Pause';timer=setTimeout(tick,100);});
       $('step').addEventListener('click',()=>{stop();invalidate();$('time').value=Math.min(Number($('time').max),num('time')+carParams.period/4);update();});
       $('reset').addEventListener('click',()=>{stop();invalidate();$('time').value=0;update();});
       root.addEventListener('pagehide',stop);document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();});

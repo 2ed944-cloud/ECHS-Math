@@ -1,0 +1,44 @@
+name: PUE forum lesson readiness
+on:
+  pull_request:
+    paths:
+      - 'lessons/shared/forum/**'
+      - 'lessons/ap-calculus/unit-8/**'
+      - 'lessons/ap-precalculus/unit-1/assets/tandem-contexts-v4.js'
+      - 'lessons/ap-precalculus/unit-1/AP_Precalculus_1.1_Change_in_Tandem_ECHS_Refined.html'
+      - 'tools/test_forum*.mjs'
+      - '.github/workflows/pue-forum-lessons.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'lessons/shared/forum/**'
+      - 'tools/test_forum*.mjs'
+      - '.github/workflows/pue-forum-lessons.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci --prefix question-bank/official/tools
+      - name: Install isolated DOM test dependency
+        run: npm install --prefix "$RUNNER_TEMP/forum-qa" linkedom@0.18.12
+      - name: Verify transfer mathematics and guided interactions
+        env:
+          ECHS_TEST_DOM_MODULE: '${{ runner.temp }}/forum-qa/node_modules/linkedom'
+        run: node tools/test_forum_investigations.mjs
+      - name: Install browser for isolated lesson QA
+        run: node question-bank/official/tools/node_modules/playwright/cli.js install --with-deps chromium
+      - run: node tools/test_forum_browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pue-forum-browser-evidence
+          path: .forum-browser-report
+          include-hidden-files: true

@@ -52,7 +52,7 @@ function showStage(index,focus=false){
   if(stage.solution?.length||stage.solutionFormulas?.length)body+=`<div class="stage-actions"><button id="solution-button" aria-expanded="false" aria-controls="worked-solution">${isResponse?'Compare with a worked response':'Reveal the worked reasoning'}</button></div><div class="answer-panel" id="worked-solution" hidden><h3>Worked reasoning</h3>${paragraphList(stage.solution)}${formulaList(stage.solutionFormulas)}</div>`;
   if(stage.kind==='summary')body+=`<div class="stage-actions"><button id="return-practice" class="primary">Review the lesson checks</button><a href="../../../index.html?course=ap-calculus-ab#courses">Return to AP Calculus</a></div><p class="small">The platform’s lesson-completion control manages your learning pathway. Viewing a model or checking these examples does not award mastery.</p>`;
   body+='</div>';
-  $('stage-body').className=`stage-body ${stage.kind}`;$('stage-body').innerHTML=body;applyMath($('stage-body'));
+  $('stage-body').className=`stage-body ${stage.kind}`;$('stage-body').innerHTML=body;$('stage-body').dataset.investigation=stage.id;applyMath($('stage-body'));
   if(isQuestion){$('stage-body').querySelectorAll('input[name=answer]').forEach(n=>on(n,'change',()=>{record.choice=Number(n.value);answers.set(stage.id,record);}));on($('check-answer'),'click',()=>{const choice=$('stage-body').querySelector('input[name=answer]:checked');if(!choice){$('question-feedback').textContent='Choose an answer, then explain why it fits the geometry.';return;}record.choice=Number(choice.value);record.checked=true;answers.set(stage.id,record);$('question-feedback').textContent=record.choice===stage.correct?'Correct. Check that your explanation also identifies the slice and the differential.':'Revisit the radius, the slice direction, or the area formula. Use a hint before trying again.';});}
   if(isResponse)on($('written-response'),'input',e=>{record.written=e.target.value;answers.set(stage.id,record);});
   if($('hint-button')){let h=0;on($('hint-button'),'click',()=>{$('hint-text').hidden=false;$('hint-text').textContent=stage.hints[Math.min(h++,stage.hints.length-1)];});}
@@ -172,6 +172,9 @@ function init(){
   on(window,'pageshow',()=>{if(!destroyed)queueDraw();});
   on(window,'pagehide',event=>{if(event.persisted){stopAnimation();return;}destroyed=true;stopAnimation();if(drawFrame)cancelAnimationFrame(drawFrame);resize.disconnect();observer.disconnect();events.abort();answers.clear();});
   showStage(stageIndexFromHash());
+  if(new URLSearchParams(location.search).get('forum')==='1'){
+    document.body.classList.add('presentation-mode');$('presentation-mode').setAttribute('aria-pressed','true');$('presentation-mode').textContent='Reading view';setMathVisible(false);queueDraw();
+  }
   footerOffset();
 }
 try{init();}catch(error){$('lesson-app').hidden=true;$('static-content').hidden=false;$('load-error').hidden=false;console.error('Volume lesson could not initialize',error);}
