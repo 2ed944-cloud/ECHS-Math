@@ -38,9 +38,9 @@ try {
       if(entry.id==='car') {
         await page.locator('#context-car-period').selectOption('20');await page.locator('#context-car-radius').selectOption('6');
         await page.locator('#context-car-step').click();assert.equal(await page.locator('#context-car-time').inputValue(),'5');checks++;
-        await page.emulateMedia({reducedMotion:'reduce'});assert.equal(await page.locator('#context-car-play').isDisabled(),true);checks++;
+        await page.emulateMedia({reducedMotion:'reduce'});await page.waitForFunction(()=>document.querySelector('#context-car-play').disabled);assert.equal(await page.locator('#context-car-play').isDisabled(),true);checks++;
         await page.locator('#context-car-step').click();assert.equal(await page.locator('#context-car-time').inputValue(),'10');checks++;
-        await page.emulateMedia({reducedMotion:'no-preference'});assert.equal(await page.locator('#context-car-play').isDisabled(),false);checks++;
+        await page.emulateMedia({reducedMotion:'no-preference'});await page.waitForFunction(()=>!document.querySelector('#context-car-play').disabled);assert.equal(await page.locator('#context-car-play').isDisabled(),false);checks++;
       }
       assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+1),`${entry.id}: overflow at ${viewport.width}`);checks++;
       await page.screenshot({path:path.join(out,`${entry.id}-explore-${viewport.width}.png`),fullPage:true});

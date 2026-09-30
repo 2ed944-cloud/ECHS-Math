@@ -28,6 +28,8 @@ Pearl scaling is an idealized sphere calculation. Garden storage is a hypothetic
 - Desktop/mobile layout, keyboard access, reduced motion and renderer recovery are covered by browser QA.
 - Production authorization remains with the existing build-injected portal and server access checks. A forum parameter grants no access. A signed-in teacher/reviewer must have the appropriate account. Student assignment gates remain authoritative.
 
+The shared adapter, data and styles total approximately 36 KB uncompressed and have a 50 KB budget. They load only on the four lesson pages and introduce no graphing or 3D dependency. In compact volume Slide view, use the Workshop route menu to enter a guided activity; the ordinary reading view also provides Start guided investigation.
+
 Run `node tools/test_forum_investigations.mjs` with `ECHS_TEST_DOM_MODULE` pointing to linkedom when it is not installed locally. Run `node tools/test_forum_browser.mjs` after installing the existing pinned Playwright dependency. The existing volume model, mesh geometry, volume lesson, volume browser, AP Precalculus 1.1 mathematics/context/UI and Pages/access tests remain relevant.
 
 ## Rollback and limitations
