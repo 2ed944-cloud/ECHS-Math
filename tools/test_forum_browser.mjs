@@ -54,7 +54,7 @@ try {
       await page.screenshot({path:path.join(out,`${entry.id}-transfer-${viewport.width}.png`),fullPage:true});
       await panel.getByRole('button',{name:'Full lesson',exact:true}).click();assert.equal(await model.isVisible(),true);checks++;
       if(entry.path.includes('ap-calculus')) {
-        await page.locator('#next').click();await page.locator('#back').click();await panel.waitFor({state:'visible'});
+        await page.locator('#next').click();await page.locator('#back').click();await panel.waitFor({state:'attached'});
         await page.waitForFunction(()=>document.querySelector('#solid-canvas').width>300);assert.equal(await page.locator('#visual-fallback').isVisible(),false);checks++;
       }
       const footer=await page.locator(entry.path.includes('ap-calculus')?'.lesson-footer':'.footer').boundingBox();
