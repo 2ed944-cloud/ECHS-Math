@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SalesLead",
+  "type": "object",
+  "required": ["organization", "status", "consent"],
+  "properties": {
+    "organization": {"type": "string"},
+    "contact_name": {"type": "string"},
+    "contact_role": {"type": "string"},
+    "channel": {"type": "string"},
+    "status": {"enum": ["NEW", "CONSENT_VERIFIED", "QUALIFYING", "QUALIFIED", "DISQUALIFIED", "MEETING_BOOKED", "DISCOVERY_COMPLETE", "DEMO_COMPLETE", "PROPOSAL", "NEGOTIATION", "VERBAL_YES", "PAYMENT_OR_SIGNATURE_PENDING", "CLOSED_WON", "CLOSED_LOST", "ONBOARDING"]},
+    "consent": {
+      "type": "object",
+      "required": ["verified"],
+      "properties": {
+        "verified": {"type": "boolean"},
+        "source": {"type": "string"},
+        "timestamp": {"type": "string"},
+        "purpose": {"type": "string"},
+        "channel": {"type": "string"}
+      }
+    },
+    "curricula": {"type": "array", "items": {"type": "string"}},
+    "student_count": {"type": ["integer", "null"]},
+    "pain_points": {"type": "array", "items": {"type": "string"}},
+    "success_criteria": {"type": "array", "items": {"type": "string"}},
+    "decision_date": {"type": ["string", "null"]},
+    "next_action": {"type": ["string", "null"]},
+    "next_action_at": {"type": ["string", "null"]},
+    "flags": {"type": "array", "items": {"type": "string"}}
+  }
+}
