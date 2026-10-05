@@ -3,6 +3,7 @@ on:
   pull_request:
     paths:
       - 'lessons/shared/forum/**'
+      - 'lessons/ap-precalculus/unit-1/assets/tandem-context-models-v4.js'
       - 'lessons/ap-calculus/unit-8/**'
       - 'lessons/ap-precalculus/unit-1/assets/tandem-contexts-v4.js'
       - 'lessons/ap-precalculus/unit-1/AP_Precalculus_1.1_Change_in_Tandem_ECHS_Refined.html'
@@ -12,6 +13,7 @@ on:
     branches: [main]
     paths:
       - 'lessons/shared/forum/**'
+      - 'lessons/ap-precalculus/unit-1/assets/tandem-context-models-v4.js'
       - 'tools/test_forum*.mjs'
       - '.github/workflows/pue-forum-lessons.yml'
   workflow_dispatch:
@@ -29,6 +31,8 @@ jobs:
       - run: npm ci --prefix question-bank/official/tools
       - name: Install isolated DOM test dependency
         run: npm install --prefix "$RUNNER_TEMP/forum-qa" linkedom@0.18.12
+      - name: Verify synchronized A–D vessel models and controls
+        run: node tools/test_forum_vessels.mjs
       - name: Verify transfer mathematics and guided interactions
         env:
           ECHS_TEST_DOM_MODULE: '${{ runner.temp }}/forum-qa/node_modules/linkedom'
