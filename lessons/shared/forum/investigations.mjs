@@ -7,7 +7,7 @@ const disks = 'lessons/ap-calculus/unit-8/8-6-disks-and-washers.html';
 const shifted = 'lessons/ap-calculus/unit-8/8-7-volume-about-a-line.html';
 export const WORKSHOP = Object.freeze({
   schemaVersion: 'echs.guided-investigation.v1',
-  title: 'Can We Have It All? Interactive AP Mathematics, Qatari Identity, Personalized Pathways',
+  title: 'Mathematics made visible: complete teacher-led learning',
   date: '6 October 2026',
   evidencePolicy: 'Ungraded classroom reflection. An explanation and an independent task inform the teacher’s next decision; these responses do not award mastery.',
   sources: [
@@ -15,9 +15,9 @@ export const WORKSHOP = Object.freeze({
     'https://apcentral.collegeboard.org/media/pdf/ap-calculus-ab-and-bc-course-and-exam-description.pdf'
   ],
   outcomes: [
-    'Analyze how interactive lesson design can combine AP-level rigor, student agency, and local cultural relevance.',
-    'Evaluate responsible AI tutoring behaviors that preserve mathematical thinking and assessment integrity.',
-    'Apply readiness, mastery, and mistake evidence to design differentiated pathways and adaptive practice without lowering expectations.'
+    'Analyze rigorous interactive lesson design.',
+    'Evaluate evidence of understanding and guided AI.',
+    'Redesign part of one lesson with meaningful local context.'
   ]
 });
 export const INVESTIGATIONS = Object.freeze([
