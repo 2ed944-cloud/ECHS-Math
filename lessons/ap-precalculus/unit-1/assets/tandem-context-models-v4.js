@@ -91,7 +91,7 @@
     const pts=left.concat(right);return pts.map((p,i)=>(i?'L':'M')+p[0].toFixed(2)+' '+p[1].toFixed(2)).join(' ')+' Z';
   }
   function miniShape(key){
-    const d=radiusPath(key,50,82,6.0,11.2);
+    const d=radiusPath(key,50,82,7.2,7.2);
     return `<svg viewBox="0 0 100 90" aria-hidden="true"><path d="${d}" fill="#f5f7fa" stroke="#52647c" stroke-width="2"/></svg>`;
   }
   function graphAxes(x,y,w,h,tMax){
