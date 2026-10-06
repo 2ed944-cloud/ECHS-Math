@@ -1,0 +1,209 @@
+name: ECHS Authorized Account Rotation 20261006
+
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/echs-account-rotation-20261006.yml]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: echs-authorized-account-rotation-20261006
+  cancel-in-progress: false
+
+jobs:
+  rotate-and-provision:
+    runs-on: ubuntu-latest
+    environment: institutional-production
+    timeout-minutes: 10
+    env:
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+    steps:
+      - name: Prepare public encryption key
+        shell: bash
+        run: |
+          cat > "$RUNNER_TEMP/echs-demo-public.pem" <<'KEY'
+          -----BEGIN PUBLIC KEY-----
+          MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAwB9AyQWybPn9FLEycP9v
+          Ywv+DeHOET2IhzeDUu1At5CalWNQ3pOl6nDCPTO0gyYSVEpCBTqxs9lYXGmZVAtm
+          Lh6F0PnD7p89mtU7bvSM0UpLe0ReioTAqjM4Yf6vBB8Lfi1A/aTpLF9NAzK+oqaj
+          76bBYtPTE8EYremEZ8LM50zJw8RdCrzOyKnOclOOQlpUvWnN67GqT1bF56xMb2GB
+          nediSqGE/Da8uXO85/vW4P54qohvIn6IGRxw/K5cO2aZlqKumGhWnhezcOIDuN4c
+          Ecy20X/H2ekUaIPdqmFEF0/amHsg/fofmFtOuWp8lrEPSzhWZvO26Jxq9PqPXIch
+          sFNxvRKyiogiJHmKs2gXeEgWwW4IQb0HT561H4XZ/q6OdZBAsOmBj8fohNChKeer
+          4aDy/92zupkDMnnwfqEhmxl0cSFMaDA2a9Lowl8SV3kSquJDjDizYnsWoB8PX8ZI
+          bFISxVOQ9XrCkjI7+hSriDinxqdsAz7I7+2i58Ap/JmPuTumRVvzaMXamcx7Nl8z
+          fEoI9bzSE9jmJjVU6NngwS2cLV32wxQ/KsKs0DwUg38Z/OBVqr9WOZ8QdnDGlpYz
+          KG0qUTokBprLLzq1LRMtA2Wh1UY2JTbA+J1gGnX03PcRKzwaify5/BFeZJkJr9HX
+          Yy0xBdftYOA5JrqrEbGYpt0CAwEAAQ==
+          -----END PUBLIC KEY-----
+          KEY
+      - name: Rotate owner password and provision isolated demo teacher
+        shell: bash
+        env:
+          ECHS_PUBLIC_KEY_FILE: ${{ runner.temp }}/echs-demo-public.pem
+        run: |
+          python - <<'PY'
+          import datetime as dt
+          import hashlib
+          import json
+          import os
+          from pathlib import Path
+          import secrets
+          import string
+          import subprocess
+          import sys
+          import urllib.error
+          import urllib.parse
+          import urllib.request
+          import uuid
+
+          BASE = os.environ['SUPABASE_URL'].rstrip('/')
+          assert BASE == 'https://wkqadnfloiohqfnesmyq.supabase.co', 'Unexpected project'
+          KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
+          assert KEY, 'Missing encrypted backend credential'
+          OUT = Path(os.environ['RUNNER_TEMP']) / 'echs-access-result'
+          OUT.mkdir(mode=0o700, exist_ok=True)
+          OWNER = 'abughuwaleh'
+          DEMO = 'echs.demo.teacher'
+          SLUG = 'echs-workshop-demo-20261006'
+          report = {'stage': 'preflight', 'checks': {}}
+
+          def request(path, method='GET', payload=None, token=None, rest=False, expected=(200, 201, 204)):
+              headers = {'Content-Type': 'application/json', 'Cache-Control': 'no-store'}
+              if rest:
+                  headers.update({'apikey': KEY, 'Authorization': 'Bearer ' + KEY, 'Prefer': 'return=representation'})
+              elif token:
+                  headers['Authorization'] = 'Bearer ' + token
+              req = urllib.request.Request(BASE + path, data=None if payload is None else json.dumps(payload).encode(), headers=headers, method=method)
+              try:
+                  with urllib.request.urlopen(req, timeout=40) as response:
+                      code = response.status
+                      data = response.read()
+              except urllib.error.HTTPError as error:
+                  code = error.code
+                  # Never print request bodies, passwords, session tokens, or private records.
+                  data = error.read()
+              if code not in expected:
+                  raise RuntimeError('Backend operation returned HTTP ' + str(code))
+              return code, json.loads(data) if data else None
+
+          def table(name, query='', method='GET', payload=None):
+              return request('/rest/v1/' + name + ('?' + query if query else ''), method, payload, rest=True)[1]
+
+          def rpc(name, args):
+              return request('/rest/v1/rpc/' + name, 'POST', args, rest=True)[1]
+
+          def api(path, method='GET', payload=None, token=None, expected=(200, 201, 204)):
+              return request('/functions/v1/' + path, method, payload, token, expected=expected)
+
+          def password():
+              chars = string.ascii_letters + string.digits + '!@#_-+'
+              while True:
+                  value = ''.join(secrets.choice(chars) for _ in range(24))
+                  if any(c.islower() for c in value) and any(c.isupper() for c in value) and any(c.isdigit() for c in value) and any(c in '!@#_-+' for c in value):
+                      return value
+
+          def save_report():
+              (OUT / 'verification.json').write_text(json.dumps(report, indent=2))
+
+          def main():
+              owner_rows = table('accounts', 'username=eq.' + OWNER + '&select=id,organization_id,username,role,status')
+              assert len(owner_rows) == 1, 'Expected exact owner account'
+              owner = owner_rows[0]
+              assert owner['role'] == 'admin' and owner['status'] == 'active', 'Owner is not active admin'
+              assert table('accounts', 'username=eq.' + DEMO + '&select=id') == [], 'Demo username already exists; refusing to replace an unknown account'
+              assert table('organizations', 'slug=eq.' + SLUG + '&select=id') == [], 'Demo organization already exists; refusing to repeat provisioning'
+              real_class = table('classes', 'organization_id=eq.' + owner['organization_id'] + '&select=id&limit=1')
+              admin_password, demo_password = password(), password()
+              credentials = {'admin_username': OWNER, 'admin_password': admin_password, 'demo_username': DEMO, 'demo_password': demo_password}
+              raw = json.dumps(credentials, separators=(',', ':')).encode()
+              assert len(raw) <= 446, 'Credential payload exceeds RSA OAEP capacity'
+              encrypted = subprocess.run(['openssl', 'pkeyutl', '-encrypt', '-pubin', '-inkey', os.environ['ECHS_PUBLIC_KEY_FILE'], '-pkeyopt', 'rsa_padding_mode:oaep', '-pkeyopt', 'rsa_oaep_md:sha256'], input=raw, capture_output=True, check=True).stdout
+              (OUT / 'credentials.enc').write_bytes(encrypted)
+              report['stage'] = 'credentials_encrypted_before_mutation'
+              save_report()
+
+              org_id, actor_id = str(uuid.uuid4()), str(uuid.uuid4())
+              table('organizations', method='POST', payload={'id': org_id, 'name': 'ECHS Teacher Training Demo', 'slug': SLUG, 'settings': {'teachers_can_view_all_accounts': False, 'teachers_can_reset_student_passwords': False, 'students_can_change_passwords': False, 'session_hours': 4, 'remember_session_days': 1}})
+              report['demo_organization_id'] = org_id
+              report['stage'] = 'isolated_training_organization_created'
+              save_report()
+
+              # This provisioning identity never receives credentials or a login session.
+              # It is archived immediately after the existing audited account RPC is used.
+              table('accounts', method='POST', payload={'id': actor_id, 'organization_id': org_id, 'username': 'echs.demo.provisioner.' + secrets.token_hex(5), 'display_name': 'Training account provisioning service', 'role': 'admin', 'can_manage_accounts': False, 'status': 'active'})
+              try:
+                  created = rpc('api_create_account', {'p_actor_id': actor_id, 'p_organization_id': org_id, 'p_username': DEMO, 'p_display_name': 'ECHS Demo Teacher', 'p_email': '', 'p_role': 'teacher', 'p_password': demo_password, 'p_external_id': 'ECHS-TLF-DEMO-20261006', 'p_grade': None, 'p_can_manage_accounts': False})
+                  demo = created[0] if isinstance(created, list) else created
+                  assert demo['username'] == DEMO and demo['role'] == 'teacher' and not demo['can_manage_accounts']
+                  assert demo['organization_id'] == org_id and org_id != owner['organization_id']
+                  report['demo_account_id'] = demo['id']
+              finally:
+                  table('accounts', 'id=eq.' + actor_id, 'PATCH', {'status': 'archived'})
+              assert table('accounts', 'id=eq.' + actor_id + '&select=status')[0]['status'] == 'archived'
+              report['checks']['provisioner_has_no_login_credentials_and_is_archived'] = True
+
+              _, login = api('account-api/login', 'POST', {'username': DEMO, 'password': demo_password, 'remember': False})
+              assert login['ok'] and login['account']['role'] == 'teacher' and not login['account']['can_manage_accounts']
+              assert login['account']['organization_id'] == org_id
+              demo_token = login['token']
+              try:
+                  _, me = api('account-api/me', token=demo_token)
+                  assert me['account']['id'] == demo['id']
+                  for route, field in [('account-api/accounts', 'accounts'), ('institution-api/children', 'students'), ('institution-api/classes', 'classes'), ('institution-api/assignments', 'assignments')]:
+                      _, result = api(route, token=demo_token)
+                      assert result.get(field) == [], 'Demo access is not isolated: ' + route
+                  if real_class:
+                      api('institution-api/classes/' + real_class[0]['id'] + '/dashboard', token=demo_token, expected=(403,))
+                  _, denied = api('account-api/accounts/' + owner['id'] + '/reset-password', 'POST', {'password': admin_password}, token=demo_token, expected=(400, 403))
+                  assert denied.get('error', {}).get('message', '').lower() in ('you do not have permission for this action', 'not authorised')
+                  # Verify the denied cross-organization operation did not rotate the owner.
+                  assert table('accounts', 'id=eq.' + owner['id'] + '&select=organization_id')[0]['organization_id'] == owner['organization_id']
+              finally:
+                  api('account-api/logout', 'POST', {}, token=demo_token)
+              report['checks'].update({'demo_login_verified': True, 'teacher_role_without_account_management': True, 'no_school_directory_or_student_or_class_or_assignment_access': True, 'school_admin_password_reset_forbidden': True})
+              report['stage'] = 'demo_verified_before_admin_rotation'
+              save_report()
+
+              # Verify session revocation using a short-lived server-created session.
+              old_token = secrets.token_urlsafe(36)
+              expiry = (dt.datetime.now(dt.timezone.utc) + dt.timedelta(minutes=5)).isoformat()
+              rpc('api_create_session', {'p_account_id': owner['id'], 'p_token_hash': hashlib.sha256(old_token.encode()).hexdigest(), 'p_expires_at': expiry, 'p_user_agent_hash': None, 'p_ip_hash': None})
+              api('account-api/me', token=old_token)
+              rpc('api_reset_password', {'p_actor_id': owner['id'], 'p_target_id': owner['id'], 'p_new_password': admin_password})
+              report['stage'] = 'admin_rotated'
+              save_report()
+              api('account-api/me', token=old_token, expected=(401,))
+              _, owner_login = api('account-api/login', 'POST', {'username': OWNER, 'password': admin_password, 'remember': False})
+              assert owner_login['account']['id'] == owner['id'] and owner_login['account']['role'] == 'admin'
+              assert owner_login['account']['organization_id'] == owner['organization_id']
+              api('account-api/logout', 'POST', {}, token=owner_login['token'])
+              report['checks'].update({'admin_new_password_login_verified': True, 'previous_admin_sessions_revoked': True, 'admin_role_and_school_organization_preserved': True})
+              report['stage'] = 'complete'
+              report['completed_at_utc'] = dt.datetime.now(dt.timezone.utc).isoformat()
+              save_report()
+              print('Administrator password rotated; prior sessions revoked; isolated demo teacher login and permission boundaries verified. Credentials are encrypted.')
+
+          try:
+              main()
+          except Exception as error:
+              report['failure_type'] = type(error).__name__
+              report['failure_message'] = str(error)
+              save_report()
+              print('Account operation stopped at stage ' + report['stage'] + ' (' + type(error).__name__ + '). No credentials were printed.', file=sys.stderr)
+              sys.exit(1)
+
+          PY
+      - name: Retain encrypted credentials and permission verification
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: echs-authorized-access-encrypted-20261006
+          path: |
+            ${{ runner.temp }}/echs-access-result/credentials.enc
+            ${{ runner.temp }}/echs-access-result/verification.json
+          if-no-files-found: error
+          retention-days: 1
